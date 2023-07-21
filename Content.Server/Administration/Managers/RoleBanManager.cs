@@ -44,7 +44,8 @@ public sealed class RoleBanManager
         }
 
         var netChannel = e.Session.ConnectedClient;
-        await CacheDbRoleBans(e.Session.UserId, netChannel.RemoteEndPoint.Address, netChannel.UserData.HWId.Length == 0 ? null : netChannel.UserData.HWId);
+        var hwid = ImmutableArray.Create(netChannel.UserData.HWId.S1);
+        await CacheDbRoleBans(e.Session.UserId, netChannel.RemoteEndPoint.Address, hwid.Length == 0 ? null : hwid);
         SendRoleBans(e.Session);
     }
 
