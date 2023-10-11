@@ -83,6 +83,7 @@
         !type:PipeNode
         nodeGroupID: Pipe
         pipeDirection: Longitudinal
+        maxPressure: 6750
   - type: Sprite
     layers:
       - state: pipeStraight
@@ -102,6 +103,7 @@
         !type:PipeNode
         nodeGroupID: Pipe
         pipeDirection: SWBend
+        maxPressure: 6750
   - type: Sprite
     layers:
       - state: pipeBend
@@ -121,6 +123,7 @@
         !type:PipeNode
         nodeGroupID: Pipe
         pipeDirection: TSouth
+        maxPressure: 6750
   - type: Sprite
     layers:
       - state: pipeTJunction
@@ -142,6 +145,7 @@
         !type:PipeNode
         nodeGroupID: Pipe
         pipeDirection: Fourway
+        maxPressure: 6750
   - type: Sprite
     layers:
       - state: pipeFourway
