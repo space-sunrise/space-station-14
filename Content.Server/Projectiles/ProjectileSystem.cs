@@ -4,6 +4,7 @@ using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Camera;
 using Content.Shared.Damage;
 using Content.Shared.Database;
+using Content.Shared.Physics;
 using Content.Shared.Projectiles;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
@@ -29,6 +30,12 @@ public sealed class ProjectileSystem : SharedProjectileSystem
         // This is so entities that shouldn't get a collision are ignored.
         if (args.OurFixtureId != ProjectileFixture || !args.OtherFixture.Hard
             || component.DamagedEntity || component is { Weapon: null, OnlyCollideWhenShot: true })
+            return;
+
+        //Checks if the colliding entity is laying down
+        var projectileCollideEvent = new ProjectileCollideEvent(args.OtherEntity);
+        RaiseLocalEvent(uid, ref projectileCollideEvent);
+        if(projectileCollideEvent.Cancelled)
             return;
 
         var target = args.OtherEntity;

@@ -1,7 +1,6 @@
 using Content.Shared.Hands.Components;
 using Content.Shared.Physics;
 using Content.Shared.Rotation;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
@@ -37,9 +36,6 @@ namespace Content.Shared.Standing
             // Optional component.
             Resolve(uid, ref appearance, ref hands, false);
 
-            if (!standingState.Standing)
-                return true;
-
             // This is just to avoid most callers doing this manually saving boilerplate
             // 99% of the time you'll want to drop items but in some scenarios (e.g. buckling) you don't want to.
             // We do this BEFORE downing because something like buckle may be blocking downing but we want to drop hand items anyway
@@ -62,18 +58,7 @@ namespace Content.Shared.Standing
             // Seemed like the best place to put it
             _appearance.SetData(uid, RotationVisuals.RotationState, RotationState.Horizontal, appearance);
 
-            // Change collision masks to allow going under certain entities like flaps and tables
-            if (TryComp(uid, out FixturesComponent? fixtureComponent))
-            {
-                foreach (var (key, fixture) in fixtureComponent.Fixtures)
-                {
-                    if ((fixture.CollisionMask & StandingCollisionLayer) == 0)
-                        continue;
-
-                    standingState.ChangedFixtures.Add(key);
-                    _physics.SetCollisionMask(uid, key, fixture, fixture.CollisionMask & ~StandingCollisionLayer, manager: fixtureComponent);
-                }
-            }
+            ChangeCollision(uid, standingState, dropHeldItems);
 
             // check if component was just added or streamed to client
             // if true, no need to play sound - mob was down before player could seen that
@@ -118,17 +103,74 @@ namespace Content.Shared.Standing
 
             _appearance.SetData(uid, RotationVisuals.RotationState, RotationState.Vertical, appearance);
 
+            RevertCollisionChange(uid, standingState);
+
+            return true;
+        }
+
+        /// <summary>
+        /// Change collision masks to allow going under certain entities like flaps and tables
+        /// Also change layers so projectiles will pass over laying down entities.
+        /// </summary>
+        public void ChangeCollision(EntityUid uid,
+            StandingStateComponent? standingState = null,
+            bool dropHeldItems = true)
+        {
+            if (!Resolve(uid, ref standingState, false))
+                return;
+
+            var layingDownLayer = (int) standingState.LayingDownLayer;
+
             if (TryComp(uid, out FixturesComponent? fixtureComponent))
             {
-                foreach (var key in standingState.ChangedFixtures)
+                foreach (var (key, fixture) in fixtureComponent.Fixtures)
+                {
+                    if ((fixture.CollisionLayer & (int)standingState.StandingLayer) != 0 && dropHeldItems)
+                    {
+                        standingState.LayerChangedFixtures.Add(key);
+
+                        _physics.SetCollisionLayer(uid, key, fixture,
+                            (fixture.CollisionLayer & ~(int) standingState.StandingLayer) | layingDownLayer,
+                            manager: fixtureComponent);
+                    }
+
+                    if ((fixture.CollisionMask & StandingCollisionLayer) == 0)
+                        continue;
+
+                    standingState.MaskChangedFixtures.Add(key);
+                    _physics.SetCollisionMask(uid, key, fixture, fixture.CollisionMask & ~StandingCollisionLayer, manager: fixtureComponent);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Returns the entities collision mask and layer to their original values again.
+        /// </summary>
+        public void RevertCollisionChange(EntityUid uid, StandingStateComponent? standingState = null)
+        {
+            if (!Resolve(uid, ref standingState, false))
+                return;
+
+            if (TryComp(uid, out FixturesComponent? fixtureComponent))
+            {
+                foreach (var key in standingState.MaskChangedFixtures)
                 {
                     if (fixtureComponent.Fixtures.TryGetValue(key, out var fixture))
                         _physics.SetCollisionMask(uid, key, fixture, fixture.CollisionMask | StandingCollisionLayer, fixtureComponent);
                 }
-            }
-            standingState.ChangedFixtures.Clear();
 
-            return true;
+                foreach (var key in standingState.LayerChangedFixtures)
+                {
+                    if (!fixtureComponent.Fixtures.TryGetValue(key, out var fixture))
+                        continue;
+
+                    _physics.SetCollisionLayer(uid, key, fixture,
+                        (fixture.CollisionLayer & ~(int) standingState.LayingDownLayer) | (int) standingState.StandingLayer,
+                        manager: fixtureComponent);
+                }
+            }
+            standingState.MaskChangedFixtures.Clear();
+            standingState.LayerChangedFixtures.Clear();
         }
     }
 
@@ -163,4 +205,10 @@ namespace Content.Shared.Standing
     public sealed class DownedEvent : EntityEventArgs
     {
     }
+
+    /// <summary>
+    /// Raised when the collision of an entity is attempted to be reverted.
+    /// </summary>
+    [ByRefEvent]
+    public record struct TryRevertCollisionChangeEvent(bool Cancelled = false);
 }

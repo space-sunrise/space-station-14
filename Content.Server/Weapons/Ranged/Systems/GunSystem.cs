@@ -12,6 +12,7 @@ using Content.Shared.Database;
 using Content.Shared.Effects;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Projectiles;
+using Content.Shared.Standing;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Ranged;
 using Content.Shared.Weapons.Ranged.Components;
@@ -204,6 +205,20 @@ public sealed partial class GunSystem : SharedGunSystem
                                 break;
 
                             var result = rayCastResults[0];
+
+                            //Check if an entity is able to be hit.
+                            foreach (var target in rayCastResults)
+                            {
+                                var hitScanHitEvent = new OnHitScanHitEvent(target.HitEntity, gun.Target);
+                                RaiseLocalEvent(target.HitEntity, ref hitScanHitEvent);
+
+                                if(hitScanHitEvent.Cancelled)
+                                    continue;
+
+                                result = target;
+                                break;
+                            }
+
                             var hit = result.HitEntity;
                             lastHit = hit;
 
@@ -280,6 +295,16 @@ public sealed partial class GunSystem : SharedGunSystem
 
     private void ShootOrThrow(EntityUid uid, Vector2 mapDirection, Vector2 gunVelocity, GunComponent gun, EntityUid gunUid, EntityUid? user)
     {
+        if (gun.Target != null && TryComp<FixturesComponent>(uid, out var fixtures) && TryComp<StandingStateComponent>(gun.Target, out var standingState))
+        {
+            foreach (var (key, fixture) in fixtures.Fixtures)
+            {
+                Physics.SetCollisionMask(uid, key, fixture, fixture.CollisionMask | (int) standingState.LayingDownLayer);
+                var target = EnsureComp<TargetedProjectileComponent>(uid);
+                target.Target = gun.Target;
+            }
+        }
+
         // Do a throw
         if (!HasComp<ProjectileComponent>(uid))
         {

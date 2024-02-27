@@ -16,6 +16,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Payload.Components;
+using Content.Shared.Projectiles;
 using Content.Shared.Radio;
 using Content.Shared.Slippery;
 using Content.Shared.StepTrigger.Systems;
@@ -208,6 +209,12 @@ namespace Content.Server.Explosion.EntitySystems
 
         private void OnTriggerCollide(EntityUid uid, TriggerOnCollideComponent component, ref StartCollideEvent args)
         {
+            //Don't trigger if we collide with an entity that's laying down and is not our target.
+            var ev = new ProjectileCollideEvent(args.OtherEntity);
+            RaiseLocalEvent(uid, ref ev);
+            if(ev.Cancelled)
+                return;
+
             if (args.OurFixtureId == component.FixtureID && (!component.IgnoreOtherNonHard || args.OtherFixture.Hard))
                 Trigger(uid);
         }

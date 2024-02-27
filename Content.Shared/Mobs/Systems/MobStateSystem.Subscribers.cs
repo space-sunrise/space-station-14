@@ -15,7 +15,7 @@ using Content.Shared.Speech;
 using Content.Shared.Standing;
 using Content.Shared.Strip.Components;
 using Content.Shared.Throwing;
-using Robust.Shared.Physics.Components;
+using Content.Shared.Weapons.Ranged.Systems;
 
 namespace Content.Shared.Mobs.Systems;
 
@@ -43,6 +43,8 @@ public partial class MobStateSystem
         SubscribeLocalEvent<MobStateComponent, TryingToSleepEvent>(OnSleepAttempt);
         SubscribeLocalEvent<MobStateComponent, CombatModeShouldHandInteractEvent>(OnCombatModeShouldHandInteract);
         SubscribeLocalEvent<MobStateComponent, AttemptPacifiedAttackEvent>(OnAttemptPacifiedAttack);
+        SubscribeLocalEvent<MobStateComponent, OnHitScanHitEvent>(OnHitScanHit);
+        SubscribeLocalEvent<MobStateComponent, TryRevertCollisionChangeEvent>(OnTryRevertCollisionChange);
     }
 
     private void OnStateExitSubscribers(EntityUid target, MobStateComponent component, MobState state)
@@ -53,16 +55,12 @@ public partial class MobStateSystem
                 //unused
                 break;
             case MobState.Critical:
-                _standing.Stand(target);
+                //unused
                 break;
             case MobState.Dead:
-                RemComp<CollisionWakeComponent>(target);
-                _standing.Stand(target);
-                if (!_standing.IsDown(target) && TryComp<PhysicsComponent>(target, out var physics))
-                {
-                    _physics.SetCanCollide(target, true, body: physics);
-                }
-
+                // Makes someone buckled able to be hit again while not aimed at.
+                if(_buckle.IsBuckled(target))
+                    _standing.RevertCollisionChange(target);
                 break;
             case MobState.Invalid:
                 //unused
@@ -91,14 +89,10 @@ public partial class MobStateSystem
                 _appearance.SetData(target, MobStateVisuals.State, MobState.Critical);
                 break;
             case MobState.Dead:
-                EnsureComp<CollisionWakeComponent>(target);
                 _standing.Down(target);
-
-                if (_standing.IsDown(target) && TryComp<PhysicsComponent>(target, out var physics))
-                {
-                    _physics.SetCanCollide(target, false, body: physics);
-                }
-
+                // Makes someone that dies while buckled unable to be hit unless aimed at.
+                if(_buckle.IsBuckled(target))
+                    _standing.ChangeCollision(target);
                 _appearance.SetData(target, MobStateVisuals.State, MobState.Dead);
                 break;
             case MobState.Invalid:
@@ -107,6 +101,11 @@ public partial class MobStateSystem
             default:
                 throw new NotImplementedException();
         }
+    }
+
+    private bool CheckDead(MobStateComponent component)
+    {
+        return component.CurrentState == MobState.Dead;
     }
 
     #region Event Subscribers
@@ -174,6 +173,34 @@ public partial class MobStateSystem
     {
         args.Cancelled = true;
     }
+
+    /// <summary>
+    ///     Checks if the hitscan is able to hit the target it's colliding with.
+    /// </summary>
+    private void OnHitScanHit(Entity<MobStateComponent> ent, ref OnHitScanHitEvent args)
+    {
+        //Always hit the target if it was aimed at by the player.
+        if (args.GunTarget == args.HitEntity)
+            return;
+
+        //Always hit targets that are buckled and not dead.
+        if(ent.Comp.CurrentState != MobState.Dead &&
+           _buckle.IsBuckled(ent))
+            return;
+
+        //Always hit targets that are standing and not dead.
+        if(ent.Comp.CurrentState != MobState.Dead &&
+           !_standing.IsDown(ent))
+            return;
+
+        args.Cancelled = true;
+    }
+
+    private void OnTryRevertCollisionChange(Entity<MobStateComponent> ent, ref TryRevertCollisionChangeEvent args)
+    {
+        args.Cancelled = CheckDead(ent);
+    }
+
 
     #endregion
 }

@@ -4,7 +4,6 @@ using Content.Shared.Damage;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
-using Content.Shared.Mobs.Components;
 using Content.Shared.Throwing;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
@@ -207,3 +206,7 @@ public record struct ProjectileHitEvent(DamageSpecifier Damage, EntityUid Target
 /// </summary>
 [ByRefEvent]
 public record struct AfterProjectileHitEvent(DamageSpecifier Damage, EntityUid Target, Fixture Fixture);
+
+//Raised when a projectile starts colliding.
+[ByRefEvent]
+public record struct ProjectileCollideEvent(EntityUid OtherEntity,  bool Cancelled = false);

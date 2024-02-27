@@ -13,6 +13,7 @@ using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
+using Content.Shared.Standing;
 using Content.Shared.Tag;
 using Content.Shared.Throwing;
 using Content.Shared.Timing;
@@ -136,6 +137,10 @@ public abstract partial class SharedGunSystem : EntitySystem
             return;
 
         gun.ShootCoordinates = GetCoordinates(msg.Coordinates);
+        var target = GetEntity(msg.Target);
+        //Only aim at the ground if the target has a standing state.
+        gun.Target = HasComp<StandingStateComponent>(target) ? target : null;
+
         Log.Debug($"Set shoot coordinates to {gun.ShootCoordinates}");
         AttemptShoot(user.Value, ent, gun);
     }
@@ -551,6 +556,12 @@ public record struct AttemptShootEvent(EntityUid User, string? Message, bool Can
 /// <param name="User">The user that fired this gun.</param>
 [ByRefEvent]
 public record struct GunShotEvent(EntityUid User, List<(EntityUid? Uid, IShootable Shootable)> Ammo);
+
+/// <summary>
+///     Raised on the target of a hitscan after it collided with the hitscans's collision ray.
+/// </summary>
+[ByRefEvent]
+public record struct OnHitScanHitEvent(EntityUid HitEntity, EntityUid? GunTarget , bool Cancelled = false);
 
 public enum EffectLayers : byte
 {

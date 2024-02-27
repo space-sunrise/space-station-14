@@ -7,7 +7,6 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Pulling;
 using Content.Shared.Standing;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
@@ -90,5 +89,13 @@ public abstract partial class SharedBuckleSystem : EntitySystem
                 _standing.Down(buckleUid, false, false);
                 break;
         }
+
+        //Reverts the collision of the entity to it's original one if it's not dead, this is so alive and crit entities
+        //can be hit while buckled to a bed.
+        var ev = new TryRevertCollisionChangeEvent();
+        RaiseLocalEvent(buckleUid, ref ev);
+
+        if(!ev.Cancelled)
+            _standing.RevertCollisionChange(buckleUid);
     }
 }

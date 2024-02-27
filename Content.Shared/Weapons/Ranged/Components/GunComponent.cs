@@ -61,7 +61,7 @@ public sealed partial class GunComponent : Component
     /// Last time the gun fired.
     /// Used for recoil purposes.
     /// </summary>
-    [DataField]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan LastFire = TimeSpan.Zero;
 
     /// <summary>
@@ -228,6 +228,12 @@ public sealed partial class GunComponent : Component
     /// </summary>
     [DataField]
     public bool ClumsyProof = false;
+
+    /// <summary>
+    /// The entity the cursor is hovering over when shooting the gun
+    /// </summary>
+    [DataField]
+    public EntityUid? Target;
 }
 
 [Flags]
