@@ -62,15 +62,12 @@ public partial struct SeedChemQuantity
     [DataField("Min")] public int Min;
 
     /// <summary>
-    /// Maximum amount of chemical that can be produced after taking plant potency into account.
+    /// How much chemical is added on top of Min. Starts at 0 when potency is 0 and increases linearly to this value
+    /// at 50 potency. Thus, when the produce is at `PotencyLimit` (defined as 50 in `RobustHarvest.cs`) the chemical
+    /// amount will be `Min` + `PotencyAddend`, and with mutations, luck, and a long shift, it is possible to add up
+    /// to `Min` + 2x`PotencyAddend` at 100 potency.
     /// </summary>
-    [DataField("Max")] public int Max;
-
-    /// <summary>
-    /// When chemicals are added to produce, the potency of the seed is divided with this value. Final chemical amount is the result plus the `Min` value.
-    /// Example: PotencyDivisor of 20 with seed potency of 55 results in 2.75, 55/20 = 2.75. If minimum is 1 then final result will be 3.75 of that chemical, 55/20+1 = 3.75.
-    /// </summary>
-    [DataField("PotencyDivisor")] public int PotencyDivisor;
+    [DataField("PotencyAddend")] public int PotencyAddend;
 
     /// <summary>
     /// Inherent chemical is one that is NOT result of mutation or crossbreeding. These chemicals are removed if species mutation is executed.

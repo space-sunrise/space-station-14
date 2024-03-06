@@ -266,16 +266,14 @@ public sealed class MutationSystem : EntitySystem
             if (chemicals.ContainsKey(chemicalId))
             {
                 seedChemQuantity.Min = chemicals[chemicalId].Min;
-                seedChemQuantity.Max = chemicals[chemicalId].Max + amount;
+                seedChemQuantity.PotencyAddend = chemicals[chemicalId].PotencyAddend + amount;
             }
             else
             {
                 seedChemQuantity.Min = 1;
-                seedChemQuantity.Max = 1 + amount;
+                seedChemQuantity.PotencyAddend = 1 + amount;
                 seedChemQuantity.Inherent = false;
             }
-            int potencyDivisor = (int) Math.Ceiling(100.0f / seedChemQuantity.Max);
-            seedChemQuantity.PotencyDivisor = potencyDivisor;
             chemicals[chemicalId] = seedChemQuantity;
         }
     }

@@ -16,9 +16,12 @@ public sealed partial class BotanySystem
         foreach (var (chem, quantity) in seed.Chemicals)
         {
             var amount = FixedPoint2.New(quantity.Min);
-            if (quantity.PotencyDivisor > 0 && seed.Potency > 0)
-                amount += FixedPoint2.New(seed.Potency / quantity.PotencyDivisor);
-            amount = FixedPoint2.New(MathHelper.Clamp(amount.Float(), quantity.Min, quantity.Max));
+            if (seed.Potency > 0)
+            {
+                // Adds an amount, depending on the potency. The PotencyLimit in RobustHarvest is 50,
+                // but mutations (MutationSystem.cs) can cause it to go over PotencyLimit, up to 100.
+                amount += FixedPoint2.New(MathHelper.Lerp(0, quantity.PotencyAddend, seed.Potency / 50));
+            }
             solutionContainer.MaxVolume += amount;
             solutionContainer.AddReagent(chem, amount);
         }
