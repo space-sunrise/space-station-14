@@ -99,6 +99,13 @@ public partial class ListingData : IEquatable<ListingData>, ICloneable
     public object? ProductEvent;
 
     /// <summary>
+    /// Components added server-side to the purchased entity.
+    /// </summary>
+    [NonSerialized]
+    [DataField(serverOnly: true)]
+    public ComponentRegistry SecretComponents = new();
+
+    /// <summary>
     /// used internally for tracking how many times an item was purchased.
     /// </summary>
     public int PurchaseAmount = 0;
@@ -164,6 +171,7 @@ public partial class ListingData : IEquatable<ListingData>, ICloneable
             ProductUpgradeID = ProductUpgradeID,
             ProductActionEntity = ProductActionEntity,
             ProductEvent = ProductEvent,
+            SecretComponents = SecretComponents,
             PurchaseAmount = PurchaseAmount,
             RestockTime = RestockTime,
         };

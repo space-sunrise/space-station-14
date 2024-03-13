@@ -14,6 +14,8 @@ using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.Manager;
 
 namespace Content.Server.Store.Systems;
 
@@ -28,6 +30,8 @@ public sealed partial class StoreSystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly StackSystem _stack = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly ISerializationManager _serialization = default!;
+    [Dependency] private readonly IComponentFactory _componentFactory = default!;
 
     private void InitializeUi()
     {
@@ -182,6 +186,22 @@ public sealed partial class StoreSystem
         if (listing.ProductEntity != null)
         {
             var product = Spawn(listing.ProductEntity, Transform(buyer).Coordinates);
+
+            // TODO: this code is used in a lot of places (MagicSystem, ArtifcatSystem)
+            // and should probably be moved to a helper to reduce code duplication
+            foreach (var (name, data) in listing.SecretComponents)
+            {
+                var reg = _componentFactory.GetRegistration(name);
+
+                var comp = (Component) _componentFactory.GetComponent(reg);
+                var temp = (object) comp;
+                _serialization.CopyTo(data.Component, ref temp);
+                if (HasComp(product, reg.Type))
+                    RemComp(product, temp!.GetType());
+
+                AddComp(product, (Component) temp!);
+            }
+
             _hands.PickupOrDrop(buyer, product);
 
             HandleRefundComp(uid, component, product);
