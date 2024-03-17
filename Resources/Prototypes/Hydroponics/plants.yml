@@ -1,0 +1,211 @@
+# abstract parents
+
+- type: entity
+  abstract: true
+  id: BasePlant
+  components:
+  - type: Sprite
+  - type: Plant
+  - type: Damageable
+    damageContainer: Biological
+  - type: MobState # plant mob real
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: RadiationReceiver
+  - type: Hunger
+    baseDecayRate: 0.75
+    starvationDamage:
+      types:
+        Blunt: 0.25
+  - type: Thirst
+    baseDecayRate: 0.5
+    thirstDamage:
+      types:
+        Blunt: 1
+  # plants dont need to breathe since ideally the station has 0% co2 anyway
+
+# takes damage from bad atmospheric conditions
+- type: entity
+  abstract: true
+  id: BaseAtmosPlant
+  components:
+  - type: AtmosExposed
+  - type: Temperature
+    heatDamageThreshold: 325
+    coldDamageThreshold: 0
+    currentTemperature: 293.15
+    specificHeat: 1
+    coldDamage:
+      types:
+        Cold: 0.1
+    heatDamage:
+      types:
+        Heat: 1.5
+  - type: Barotrauma
+    damage:
+      types:
+        Blunt: 0.15
+
+# normal crop you'd find on earth
+- type: entity
+  abstract: true
+  parent: [BasePlant, BaseAtmosPlant]
+  id: BaseCrop
+  components:
+  - type: PlantLight
+  - type: PlantSeeds
+
+- type: entity
+  abstract: true
+  parent: BaseCrop
+  id: BaseCropRepeat
+  components:
+  - type: Plant
+    harvestType: Repeat
+
+# actual plants
+- type: entity
+  noSpawn: true
+  parent: BaseCrop
+  id: PlantWheat
+  name: wheat stalks
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/wheat.rsi
+  - type: Plant
+    lifespan: 25
+    maturation: 6
+    production: 3
+  - type: PlantLight
+    ideal: 8
+  - type: Hunger
+    baseDecayRate: 0.4
+  - type: PlantProduce
+    produce: WheatBushel
+    yield: 3
+  - type: PlantSeeds
+    packet: WheatSeeds
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        min: 1
+        max: 20
+        potencyDivisor: 20
+      Flour:
+        min: 5
+        max: 20
+        potencyDivisor: 20
+    potency: 5
+
+- type: entity
+  noSpawn: true
+  parent: PlantWheat
+  id: PlantOat
+  name: oat stalks
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/oat.rsi
+  - type: PlantSeeds
+    packet: OatSeeds
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        min: 1
+        max: 20
+        potencyDivisor: 20
+      Flour:
+        min: 5
+        max: 20
+        potencyDivisor: 20
+
+- type: entity
+  noSpawn: true
+  parent: BaseCropRepeat
+  id: PlantBanana
+  name: banana tree
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/banana.rsi
+  - type: Plant
+    lifespan: 50
+    maturation: 6
+    production: 6
+  - type: Thirst
+    baseDecayRate: 0.6
+  - type: PlantLight
+    ideal: 9
+  - type: PlantProduce
+    produce: FoodBanana
+    yield: 2
+  - type: PlantSeeds
+    packet: BananaSeeds
+  - type: PlantChemicals
+    chemicals:
+      Vitamin:
+        min: 1
+        max: 4
+        potencyDivisor: 25
+      Nutriment:
+        min: 1
+        max: 2
+        potencyDivisor: 50
+    potency: 1
+
+- type: entity
+  noSpawn: true
+  parent: PlantBanana
+  id: PlantMimana
+  name: mimana tree
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/mimana.rsi
+  - type: PlantSeeds
+    packet: MimanaSeeds
+  - type: PlantChemicals
+    chemicals:
+      MuteToxin:
+        min: 1
+        max: 5
+        potencyDivisor: 20
+      Nutriment:
+        min: 1
+        max: 2
+        potencyDivisor: 50
+
+- type: entity
+  noSpawn: true
+  parent: BaseCrop
+  id: PlantCarrot
+  name: carrots
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/carrot.rsi
+  - type: Plant
+    lifespan: 25
+    maturation: 10
+    production: 3
+    growthStages: 3
+  - type: Thirst
+    baseDecayRate: 0.6
+  - type: PlantProduce
+    produce: FoodCarrot
+    yield: 3
+  - type: PlantSeeds
+    packet: CarrotSeeds
+  - type: PlantChemicals
+    chemicals:
+      JuiceCarrot:
+        min: 1
+        max: 5
+        potencyDivisor: 20
+      Oculine:
+        min: 2
+        max: 6
+        potencyDivisor: 20
+      vitamin:
+        min: 1
+        max: 4
+        potencyDivisor: 25
+    potency: 10

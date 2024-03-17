@@ -1,4 +1,6 @@
 using Content.Shared.Alert;
+using Content.Shared.Damage;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Nutrition.Components;
@@ -15,6 +17,8 @@ public sealed class ThirstSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly AlertsSystem _alerts = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
     [Dependency] private readonly SharedJetpackSystem _jetpack = default!;
 
@@ -174,6 +178,7 @@ public sealed class ThirstSystem : EntitySystem
             thirst.NextUpdateTime += thirst.UpdateRate;
 
             ModifyThirst(uid, thirst, -thirst.ActualDecayRate);
+            DoContinuousThirstEffects((uid, thirst));
             var calculatedThirstThreshold = GetThirstThreshold(thirst, thirst.CurrentThirst);
 
             if (calculatedThirstThreshold == thirst.CurrentThirstThreshold)
@@ -181,6 +186,17 @@ public sealed class ThirstSystem : EntitySystem
 
             thirst.CurrentThirstThreshold = calculatedThirstThreshold;
             UpdateEffects(uid, thirst);
+        }
+    }
+
+    // TODO: generic addictions PLEASE
+    private void DoContinuousThirstEffects(Entity<ThirstComponent> ent)
+    {
+        if (ent.Comp.CurrentThirstThreshold <= ThirstThreshold.Parched &&
+            ent.Comp.ThirstDamage is {} damage &&
+            !_mobState.IsDead(ent))
+        {
+            _damageable.TryChangeDamage(ent, damage, true, false);
         }
     }
 }
