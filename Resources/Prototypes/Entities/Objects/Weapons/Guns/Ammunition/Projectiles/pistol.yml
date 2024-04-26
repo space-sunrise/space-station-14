@@ -19,6 +19,11 @@
     damage:
       types:
         Blunt: 2
+  - type: Fixtures
+    fixtures:
+      projectile:
+        mask:
+        - BulletMask_Low
 
 - type: entity
   id: BulletPistolRubber
@@ -30,6 +35,15 @@
     damage:
       types:
         Blunt: 3
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.1,0.1,0.1"
+        hard: false
+        mask:
+        - BulletMask_High
 
 - type: entity
   id: BulletPistolIncendiary
