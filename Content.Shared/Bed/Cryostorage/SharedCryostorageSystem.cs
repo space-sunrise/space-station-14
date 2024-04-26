@@ -2,6 +2,8 @@ using Content.Shared.Administration.Logs;
 using Content.Shared.CCVar;
 using Content.Shared.DragDrop;
 using Content.Shared.GameTicking;
+using Content.Shared.Maps;
+using Content.Shared.Maps.Components;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Systems;
@@ -20,12 +22,10 @@ public abstract class SharedCryostorageSystem : EntitySystem
     [Dependency] protected readonly ISharedAdminLogManager AdminLog = default!;
     [Dependency] private readonly IConfigurationManager _configuration = default!;
     [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] protected readonly SharedPausedMapStorageSystem PausedMapStorage = default!;
     [Dependency] protected readonly SharedMindSystem Mind = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
-
-    protected EntityUid? PausedMap { get; private set; }
 
     protected bool CryoSleepRejoiningEnabled;
 
@@ -40,8 +40,6 @@ public abstract class SharedCryostorageSystem : EntitySystem
 
         SubscribeLocalEvent<CryostorageContainedComponent, EntGotRemovedFromContainerMessage>(OnRemovedContained);
         SubscribeLocalEvent<CryostorageContainedComponent, ComponentShutdown>(OnShutdownContained);
-
-        SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
 
         Subs.CVar(_configuration, CCVars.GameCryoSleepRejoining, OnCvarChanged, true);
     }
@@ -133,7 +131,7 @@ public abstract class SharedCryostorageSystem : EntitySystem
     private void OnRemovedContained(Entity<CryostorageContainedComponent> ent, ref EntGotRemovedFromContainerMessage args)
     {
         var (uid, comp) = ent;
-        if (!IsInPausedMap(uid))
+        if (!PausedMapStorage.IsInPausedMap(uid))
             RemCompDeferred(ent, comp);
     }
 
@@ -144,37 +142,5 @@ public abstract class SharedCryostorageSystem : EntitySystem
         CompOrNull<CryostorageComponent>(comp.Cryostorage)?.StoredPlayers.Remove(ent);
         ent.Comp.Cryostorage = null;
         Dirty(ent, comp);
-    }
-
-    private void OnRoundRestart(RoundRestartCleanupEvent _)
-    {
-        DeletePausedMap();
-    }
-
-    private void DeletePausedMap()
-    {
-        if (PausedMap == null || !Exists(PausedMap))
-            return;
-
-        EntityManager.DeleteEntity(PausedMap.Value);
-        PausedMap = null;
-    }
-
-    protected void EnsurePausedMap()
-    {
-        if (PausedMap != null && Exists(PausedMap))
-            return;
-
-        var map = _mapManager.CreateMap();
-        _mapManager.SetMapPaused(map, true);
-        PausedMap = _mapManager.GetMapEntityId(map);
-    }
-
-    public bool IsInPausedMap(Entity<TransformComponent?> entity)
-    {
-        var (_, comp) = entity;
-        comp ??= Transform(entity);
-
-        return comp.MapUid != null && comp.MapUid == PausedMap;
     }
 }

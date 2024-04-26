@@ -1,10 +1,12 @@
 using Content.Shared.Interaction;
+using Content.Shared.Maps;
+using Content.Shared.Maps.Components;
 using Content.Shared.Pinpointer;
 using System.Linq;
 using System.Numerics;
 using Robust.Shared.Utility;
+using Content.Server.Respawn;
 using Content.Server.Shuttles.Events;
-using Content.Shared.IdentityManagement;
 
 namespace Content.Server.Pinpointer;
 
@@ -12,6 +14,7 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
 {
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly SharedPausedMapStorageSystem _pausedMapStorage = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;
 
@@ -22,6 +25,9 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
 
         SubscribeLocalEvent<PinpointerComponent, ActivateInWorldEvent>(OnActivate);
         SubscribeLocalEvent<FTLCompletedEvent>(OnLocateTarget);
+        SubscribeLocalEvent<BeforeEnterPausedMapEvent>(OnBeforeEnterPausedMap);
+        SubscribeLocalEvent<AfterExitPausedMapEvent>(OnAfterExitPausedMap);
+        SubscribeLocalEvent<SpecialRespawnEvent>(OnSpecialRespawn);
     }
 
     public override bool TogglePinpointer(EntityUid uid, PinpointerComponent? pinpointer = null)
@@ -41,6 +47,7 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
             return;
         _appearance.SetData(uid, PinpointerVisuals.IsActive, pinpointer.IsActive, appearance);
         _appearance.SetData(uid, PinpointerVisuals.TargetDistance, pinpointer.DistanceToTarget, appearance);
+        Dirty(uid, pinpointer);
     }
 
     private void OnActivate(EntityUid uid, PinpointerComponent component, ActivateInWorldEvent args)
@@ -51,7 +58,7 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
             LocateTarget(uid, component);
     }
 
-    private void OnLocateTarget(ref FTLCompletedEvent ev)
+    private void OnLocateTarget(ref FTLCompletedEvent args)
     {
         // This feels kind of expensive, but it only happens once per hyperspace jump
 
@@ -66,6 +73,47 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
 
             LocateTarget(uid, pinpointer);
         }
+    }
+
+    private void OnBeforeEnterPausedMap(ref BeforeEnterPausedMapEvent args)
+    {
+        var query = EntityQueryEnumerator<PinpointerComponent>();
+
+        while (query.MoveNext(out var uid, out var pinpointer))
+            if (pinpointer.Target == args.Entity)
+                SetTarget(uid, args.Proxy, pinpointer);
+    }
+
+    private void OnAfterExitPausedMap(ref AfterExitPausedMapEvent args)
+    {
+        var query = EntityQueryEnumerator<PinpointerComponent>();
+
+        while (query.MoveNext(out var uid, out var pinpointer))
+        {
+            if (pinpointer == null || pinpointer.Target != args.Proxy)
+                continue;
+
+            if (string.IsNullOrEmpty(pinpointer!.Component) || !EntityManager.ComponentFactory.TryGetRegistration(pinpointer!.Component, out var reg))
+            {
+                Log.Error($"Unable to find component registration for {pinpointer.Component} for pinpointer!");
+                DebugTools.Assert(false);
+                continue;
+            }
+
+            if (!HasComp(args.Entity, reg.Type))
+                continue;
+
+            SetTarget(uid, args.Entity, pinpointer);
+        }
+    }
+
+    private void OnSpecialRespawn(ref SpecialRespawnEvent args)
+    {
+        var query = EntityQueryEnumerator<PinpointerComponent>();
+
+        while (query.MoveNext(out var uid, out var pinpointer))
+            if (pinpointer.Target == args.OldEntity)
+                SetTarget(uid, args.NewEntity, pinpointer);
     }
 
     private void LocateTarget(EntityUid uid, PinpointerComponent component)
@@ -100,6 +148,7 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
 
     /// <summary>
     ///     Try to find the closest entity from whitelist on a current map
+    ///     Raises <see cref="EventNameHere"/> to look for entities that make use of paused maps
     ///     Will return null if can't find anything
     /// </summary>
     private EntityUid? FindTargetFromComponent(EntityUid uid, Type whitelist, TransformComponent? transform = null)
@@ -111,20 +160,36 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
 
         // sort all entities in distance increasing order
         var mapId = transform.MapID;
-        var l = new SortedList<float, EntityUid>();
         var worldPos = _transform.GetWorldPosition(transform);
+        var sortedList = new SortedList<float, EntityUid>();
 
-        foreach (var (otherUid, _) in EntityManager.GetAllComponents(whitelist))
+        foreach (var (otherUid, _) in EntityManager.GetAllComponents(whitelist, true))
         {
-            if (!_xformQuery.TryGetComponent(otherUid, out var compXform) || compXform.MapID != mapId)
+            if (!_xformQuery.TryGetComponent(otherUid, out var otherXform))
                 continue;
 
-            var dist = (_transform.GetWorldPosition(compXform) - worldPos).LengthSquared();
-            l.TryAdd(dist, otherUid);
+            var result = new Entity<TransformComponent>(otherUid, otherXform);
+
+            if (otherXform.MapID != mapId)
+            {
+                if (!TryComp<SharedPausedMapStorageComponent>(otherUid, out var otherStorage))
+                    continue;
+
+                if (!_pausedMapStorage.IsInPausedMap(otherUid))
+                    continue;
+
+                if (Deleted(otherStorage.Proxy))
+                    continue;
+
+                result = (otherStorage.Proxy, Transform(otherStorage.Proxy));
+            }
+
+            var dist = (_transform.GetWorldPosition(result.Comp) - worldPos).LengthSquared();
+            sortedList.TryAdd(dist, result.Owner);
         }
 
         // return uid with a smallest distance
-        return l.Count > 0 ? l.First().Value : null;
+        return sortedList.Count > 0 ? sortedList.First().Value : null;
     }
 
     /// <summary>
@@ -141,24 +206,25 @@ public sealed class PinpointerSystem : SharedPinpointerSystem
         var target = pinpointer.Target;
         if (target == null || !EntityManager.EntityExists(target.Value))
         {
-            SetDistance(uid, Distance.Unknown, pinpointer);
+            if (TrySetArrowAngle(uid, Angle.Zero, pinpointer) || TrySetDistance(uid, Distance.Unknown, pinpointer))
+                UpdateAppearance(uid, pinpointer);
+
             return;
         }
 
         var dirVec = CalculateDirection(uid, target.Value);
-        var oldDist = pinpointer.DistanceToTarget;
-        if (dirVec != null)
+        if (dirVec == null)
         {
-            var angle = dirVec.Value.ToWorldAngle();
-            TrySetArrowAngle(uid, angle, pinpointer);
-            var dist = CalculateDistance(dirVec.Value, pinpointer);
-            SetDistance(uid, dist, pinpointer);
+            if (TrySetArrowAngle(uid, Angle.Zero, pinpointer) || TrySetDistance(uid, Distance.Unknown, pinpointer))
+                UpdateAppearance(uid, pinpointer);
+
+            return;
         }
-        else
-        {
-            SetDistance(uid, Distance.Unknown, pinpointer);
-        }
-        if (oldDist != pinpointer.DistanceToTarget)
+
+        var angle = dirVec.Value.ToWorldAngle();
+        var dist = CalculateDistance(dirVec.Value, pinpointer);
+
+        if (TrySetArrowAngle(uid, angle, pinpointer) || TrySetDistance(uid, dist, pinpointer))
             UpdateAppearance(uid, pinpointer);
     }
 

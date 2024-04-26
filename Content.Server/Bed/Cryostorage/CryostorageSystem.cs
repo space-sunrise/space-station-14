@@ -78,13 +78,12 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
 
     private void OnRemoveItemBuiMessage(Entity<CryostorageComponent> ent, ref CryostorageRemoveItemBuiMessage args)
     {
-        var (_, comp) = ent;
         if (args.Session.AttachedEntity is not { } attachedEntity)
             return;
 
         var cryoContained = GetEntity(args.StoredEntity);
 
-        if (!comp.StoredPlayers.Contains(cryoContained) || !IsInPausedMap(cryoContained))
+        if (!ent.Comp.StoredPlayers.Contains(cryoContained) || !PausedMapStorage.IsInPausedMap(cryoContained))
             return;
 
         if (!HasComp<HandsComponent>(attachedEntity))
@@ -118,6 +117,7 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
         _transform.SetCoordinates(entity.Value, Transform(attachedEntity).Coordinates);
         _hands.PickupOrDrop(attachedEntity, entity.Value);
         UpdateCryostorageUIState(ent);
+        PausedMapStorage.AfterExit(entity.Value, ent);
     }
 
     private void UpdateCryostorageUIState(Entity<CryostorageComponent> ent)
@@ -199,12 +199,10 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
 
         _audio.PlayPvs(cryostorageComponent.RemoveSound, ent);
 
-        EnsurePausedMap();
-        if (PausedMap == null)
-        {
-            Log.Error("CryoSleep map was unexpectedly null");
+        if (!PausedMapStorage.EnsurePausedMap())
             return;
-        }
+
+        PausedMapStorage.BeforeEnter(ent.Owner, cryostorageEnt.Value);
 
         if (!CryoSleepRejoiningEnabled || !comp.AllowReEnteringBody)
         {
@@ -216,7 +214,7 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
         }
 
         comp.AllowReEnteringBody = false;
-        _transform.SetParent(ent, PausedMap.Value);
+        _transform.SetParent(ent, PausedMapStorage.PausedMap.Value);
         cryostorageComponent.StoredPlayers.Add(ent);
         Dirty(ent, comp);
         UpdateCryostorageUIState((cryostorageEnt.Value, cryostorageComponent));
@@ -249,7 +247,7 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
     private void HandleCryostorageReconnection(Entity<CryostorageContainedComponent> entity)
     {
         var (uid, comp) = entity;
-        if (!CryoSleepRejoiningEnabled || !IsInPausedMap(uid))
+        if (!CryoSleepRejoiningEnabled || !PausedMapStorage.IsInPausedMap(uid))
             return;
 
         // how did you destroy these? they're indestructible.
