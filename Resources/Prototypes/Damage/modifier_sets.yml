@@ -297,6 +297,7 @@
     Heat: 2.5
     Caustic: 0.0
 
+# Borg damage modifier sets
 - type: damageModifierSet
   id: Borg
   coefficients:
