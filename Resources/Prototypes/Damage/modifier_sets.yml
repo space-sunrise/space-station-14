@@ -306,3 +306,5 @@
     Piercing: 0.8
     Heat: 1.5
     Shock: 2.5
+  flatReductions:
+    Blunt: 5
