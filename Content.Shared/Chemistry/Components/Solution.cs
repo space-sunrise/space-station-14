@@ -27,6 +27,10 @@ namespace Content.Shared.Chemistry.Components
         [ViewVariables]
         public FixedPoint2 Volume { get; set; }
 
+        [DataField("isSeparatedByLayers")]
+        [ViewVariables(VVAccess.ReadWrite)]
+        public bool IsSeparatedByLayers { get; set; }
+
         /// <summary>
         ///     Maximum volume this solution supports.
         /// </summary>
@@ -542,6 +546,7 @@ namespace Content.Shared.Chemistry.Components
         public void RemoveAllSolution()
         {
             Contents.Clear();
+            IsSeparatedByLayers = false;
             Volume = FixedPoint2.Zero;
             _heatCapacityDirty = false;
             _heatCapacity = 0;
@@ -622,16 +627,26 @@ namespace Content.Shared.Chemistry.Components
             }
 
             var origVol = Volume;
-            var effVol = Volume.Value;
             newSolution = new Solution(Contents.Count) { Temperature = Temperature };
             var remaining = (long) toTake.Value;
 
+            var effVol = Volume.Value;
             for (var i = Contents.Count - 1; i >= 0; i--) // iterate backwards because of remove swap.
             {
                 var (reagent, quantity) = Contents[i];
 
                 // This is set up such that integer rounding will tend to take more reagents.
-                var split = remaining * quantity.Value / effVol;
+                long split;
+                if (IsSeparatedByLayers)
+                {
+                    split = remaining > quantity.Value
+                        ? quantity.Value
+                        : remaining;
+                }
+                else
+                {
+                    split = remaining * quantity.Value / effVol;
+                }
 
                 if (split <= 0)
                 {
@@ -773,6 +788,8 @@ namespace Content.Shared.Chemistry.Components
                 Temperature = _heatCapacity == 0 ? 0 : totalThermalEnergy / _heatCapacity;
 
             ValidateSolution();
+
+            IsSeparatedByLayers = false;
         }
 
         public Color GetColorWithout(IPrototypeManager? protoMan, params string[] without)
