@@ -4546,8 +4546,7 @@ entities:
           maxVol: 50
           name: null
           reagents:
-          - data: null
-            ReagentId: Leporazine
+          - ReagentId: Leporazine
             Quantity: 50
     - type: MixableSolution
       solution: beaker
@@ -22189,8 +22188,7 @@ entities:
           maxVol: 30
           name: null
           reagents:
-          - data: null
-            ReagentId: Whiskey
+          - ReagentId: Whiskey
             Quantity: 30
     - type: Physics
       canCollide: False

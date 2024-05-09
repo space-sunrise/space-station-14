@@ -32625,8 +32625,7 @@ entities:
           maxVol: 30
           name: null
           reagents:
-          - data: null
-            ReagentId: LongIslandIcedTea
+          - ReagentId: LongIslandIcedTea
             Quantity: 30
 - proto: DrinkWaterCup
   entities:
