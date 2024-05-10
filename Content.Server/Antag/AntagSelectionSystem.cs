@@ -16,6 +16,7 @@ using Content.Shared.Antag;
 using Content.Shared.Ghost;
 using Content.Shared.Humanoid;
 using Content.Shared.Players;
+using Content.Shared.Clothing;
 using Content.Shared.Preferences;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
@@ -301,6 +302,10 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
         if (session != null)
         {
+            var antagLoadout = LoadoutSystem.GetLoadoutPrototype(def.Loadout);
+            var pref = (HumanoidCharacterProfile) _pref.GetPreferences(session.UserId).SelectedCharacter;
+            _stationSpawning.EquipLoadout(player, antagLoadout, pref);
+
             var curMind = session.GetMind();
             if (curMind == null)
             {
@@ -375,17 +380,17 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         switch (def.MultiAntagSetting)
         {
             case AntagAcceptability.None:
-            {
-                if (_role.MindIsAntagonist(mind))
-                    return false;
-                break;
-            }
+                {
+                    if (_role.MindIsAntagonist(mind))
+                        return false;
+                    break;
+                }
             case AntagAcceptability.NotExclusive:
-            {
-                if (_role.MindIsExclusiveAntagonist(mind))
-                    return false;
-                break;
-            }
+                {
+                    if (_role.MindIsExclusiveAntagonist(mind))
+                        return false;
+                    break;
+                }
         }
 
         // todo: expand this to allow for more fine antag-selection logic for game rules.

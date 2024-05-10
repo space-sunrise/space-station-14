@@ -1,0 +1,74 @@
+# Jumpsuit
+- type: loadout
+  id: NukieJumpsuit
+  equipment: NukieJumpsuit
+
+- type: startingGear
+  id: NukieJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+
+- type: loadout
+  id: NukieJumpskirt
+  equipment: NukieJumpskirt
+
+- type: startingGear
+  id: NukieJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtOperative
+
+# Back
+- type: loadout
+  id: NukieBackpack
+  equipment: NukieBackpack
+
+- type: startingGear
+  id: NukieBackpack
+  equipment:
+    back: ClothingBackpackSyndicateOperative
+
+- type: loadout
+  id: NukieSatchel
+  equipment: NukieSatchel
+
+- type: startingGear
+  id: NukieSatchel
+  equipment:
+    back: ClothingBackpackSatchelSyndicateOperative
+
+- type: loadout
+  id: NukieDuffel
+  equipment: NukieDuffel
+
+- type: startingGear
+  id: NukieDuffel
+  equipment:
+    back: ClothingBackpackDuffelSyndicateOperative
+
+# Medical Backpacks
+- type: loadout
+  id: NukieMedicBackpack
+  equipment: NukieMedicBackpack
+
+- type: startingGear
+  id: NukieMedicBackpack
+  equipment:
+    back: ClothingBackpackSyndicateOperativeMedic
+
+- type: loadout
+  id: NukieMedicSatchel
+  equipment: NukieMedicSatchel
+
+- type: startingGear
+  id: NukieMedicSatchel
+  equipment:
+    back: ClothingBackpackSatchelSyndicateOperativeMedic
+
+- type: loadout
+  id: NukieMedicDuffel
+  equipment: NukieMedicDuffel
+
+- type: startingGear
+  id: NukieMedicDuffel
+  equipment:
+    back: ClothingBackpackDuffelSyndicateOperativeMedic

@@ -246,7 +246,7 @@ namespace Content.Client.Preferences.UI
                 SetDirty();
             };
 
-            _hairPicker.OnSlotAdd += delegate()
+            _hairPicker.OnSlotAdd += delegate ()
             {
                 if (Profile is null)
                     return;
@@ -266,7 +266,7 @@ namespace Content.Client.Preferences.UI
                 SetDirty();
             };
 
-            _facialHairPicker.OnSlotAdd += delegate()
+            _facialHairPicker.OnSlotAdd += delegate ()
             {
                 if (Profile is null)
                     return;
@@ -474,7 +474,7 @@ namespace Content.Client.Preferences.UI
                 var dict = new Dictionary<string, GuideEntry>();
                 dict.Add(DefaultSpeciesGuidebook, guideRoot);
                 //TODO: Don't close the guidebook if its already open, just go to the correct page
-                guidebookController.ToggleGuidebook(dict, includeChildren:true, selected: page);
+                guidebookController.ToggleGuidebook(dict, includeChildren: true, selected: page);
             }
         }
 
@@ -494,7 +494,13 @@ namespace Content.Client.Preferences.UI
                 if (!antag.SetPreference)
                     continue;
 
-                var selector = new AntagPreferenceSelector(antag, btnGroup)
+                RoleLoadout? loadout = null;
+
+                // Clone so we don't modify the underlying loadout.
+                Profile?.Loadouts.TryGetValue(LoadoutSystem.GetLoadoutPrototype(antag.ID), out loadout);
+                loadout = loadout?.Clone();
+
+                var selector = new AntagPreferenceSelector(loadout, antag, btnGroup)
                 {
                     Margin = new Thickness(3f, 3f, 3f, 0f),
                 };
@@ -509,6 +515,12 @@ namespace Content.Client.Preferences.UI
                 selector.PreferenceChanged += preference =>
                 {
                     Profile = Profile?.WithAntagPreference(antag.ID, preference);
+                    SetDirty();
+                };
+
+                selector.LoadoutUpdated += args =>
+                {
+                    Profile = Profile?.WithLoadout(args);
                     SetDirty();
                 };
             }
@@ -553,7 +565,7 @@ namespace Content.Client.Preferences.UI
 
                     category.AddChild(new PanelContainer
                     {
-                        PanelOverride = new StyleBoxFlat {BackgroundColor = Color.FromHex("#464966")},
+                        PanelOverride = new StyleBoxFlat { BackgroundColor = Color.FromHex("#464966") },
                         Children =
                         {
                             new Label
@@ -580,7 +592,7 @@ namespace Content.Client.Preferences.UI
                     RoleLoadout? loadout = null;
 
                     // Clone so we don't modify the underlying loadout.
-                    Profile?.Loadouts.TryGetValue(LoadoutSystem.GetJobPrototype(job.ID), out loadout);
+                    Profile?.Loadouts.TryGetValue(LoadoutSystem.GetLoadoutPrototype(job.ID), out loadout);
                     loadout = loadout?.Clone();
                     var selector = new JobPrioritySelector(loadout, job, jobLoadoutGroup, _prototypeManager)
                     {
@@ -832,7 +844,7 @@ namespace Content.Client.Preferences.UI
 
         private void UpdateFlavorTextEdit()
         {
-            if(_flavorTextEdit != null)
+            if (_flavorTextEdit != null)
             {
                 _flavorTextEdit.TextRope = new Rope.Leaf(Profile?.FlavorText ?? "");
             }
@@ -859,7 +871,8 @@ namespace Content.Client.Preferences.UI
                 {
                     sexes.Add(sex);
                 }
-            } else
+            }
+            else
             {
                 sexes.Add(Sex.Unsexed);
             }
@@ -1035,7 +1048,7 @@ namespace Content.Client.Preferences.UI
 
             // hair color
             Color? hairColor = null;
-            if ( Profile.Appearance.HairStyleId != HairStyles.DefaultHairStyle &&
+            if (Profile.Appearance.HairStyleId != HairStyles.DefaultHairStyle &&
                 _markingManager.Markings.TryGetValue(Profile.Appearance.HairStyleId, out var hairProto)
             )
             {
@@ -1053,7 +1066,7 @@ namespace Content.Client.Preferences.UI
             }
             if (hairColor != null)
             {
-                CMarkings.HairMarking = new (Profile.Appearance.HairStyleId, new List<Color>() { hairColor.Value });
+                CMarkings.HairMarking = new(Profile.Appearance.HairStyleId, new List<Color>() { hairColor.Value });
             }
             else
             {
@@ -1070,7 +1083,7 @@ namespace Content.Client.Preferences.UI
 
             // facial hair color
             Color? facialHairColor = null;
-            if ( Profile.Appearance.FacialHairStyleId != HairStyles.DefaultFacialHairStyle &&
+            if (Profile.Appearance.FacialHairStyleId != HairStyles.DefaultFacialHairStyle &&
                 _markingManager.Markings.TryGetValue(Profile.Appearance.FacialHairStyleId, out var facialHairProto)
             )
             {
@@ -1088,7 +1101,7 @@ namespace Content.Client.Preferences.UI
             }
             if (facialHairColor != null)
             {
-                CMarkings.FacialHairMarking = new (Profile.Appearance.FacialHairStyleId, new List<Color>() { facialHairColor.Value });
+                CMarkings.FacialHairMarking = new(Profile.Appearance.FacialHairStyleId, new List<Color>() { facialHairColor.Value });
             }
             else
             {
@@ -1210,7 +1223,7 @@ namespace Content.Client.Preferences.UI
             {
                 Trait = trait;
 
-                _checkBox = new CheckBox {Text = Loc.GetString(trait.Name)};
+                _checkBox = new CheckBox { Text = Loc.GetString(trait.Name) };
                 _checkBox.OnToggled += OnCheckBoxToggled;
 
                 if (trait.Description is { } desc)
