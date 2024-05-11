@@ -10,6 +10,7 @@ using Content.Server.Discord;
 using Content.Server.EUI;
 using Content.Server.GhostKick;
 using Content.Server.Info;
+using Content.Server.Mapping;
 using Content.Server.Maps;
 using Content.Server.MoMMI;
 using Content.Server.NodeContainer.NodeGroups;
@@ -61,6 +62,7 @@ namespace Content.Server.IoC
             IoCManager.Register<ServerDbEntryManager>();
             IoCManager.Register<ISharedPlaytimeManager, PlayTimeTrackingManager>();
             IoCManager.Register<ServerApi>();
+            IoCManager.Register<MappingManager>();
         }
     }
 }
