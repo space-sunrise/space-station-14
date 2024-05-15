@@ -13,6 +13,7 @@ using Content.Shared.Rejuvenate;
 using Robust.Server.Containers;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Atmos.Rotting;
 
@@ -134,7 +135,7 @@ public sealed class RottingSystem : SharedRottingSystem
     {
         if (perishable.Comp.RotAfter.TotalSeconds == 0 || perishable.Comp.RotAccumulator.TotalSeconds == 0)
             return 0;
-        return (int)(1 + maxStages * perishable.Comp.RotAccumulator.TotalSeconds / perishable.Comp.RotAfter.TotalSeconds);
+        return (int) (1 + maxStages * perishable.Comp.RotAccumulator.TotalSeconds / perishable.Comp.RotAfter.TotalSeconds);
     }
 
     private void OnRejuvenate(EntityUid uid, RottingComponent component, RejuvenateEvent args)
@@ -155,23 +156,45 @@ public sealed class RottingSystem : SharedRottingSystem
         if (!TryComp<PerishableComponent>(uid, out var perishable))
             return;
 
-        if (!TryComp<RottingComponent>(uid, out var rotting))
+        TimeSpan total;
+        if (TryComp<RottingComponent>(uid, out var rotting))
         {
-            perishable.RotAccumulator -= time;
-            return;
-        }
-        var total = (rotting.TotalRotTime + perishable.RotAccumulator) - time;
+            total = rotting.TotalRotTime + perishable.RotAccumulator - time;
 
-        if (total < perishable.RotAfter)
+            if (total < perishable.RotAfter)
+            {
+                RemCompDeferred(uid, rotting);
+            }
+            else
+            {
+                total -= perishable.RotAfter;
+                if (total.TotalSeconds < 0)
+                    rotting.TotalRotTime = TimeSpan.Zero;
+                else
+                    rotting.TotalRotTime = total;
+                return;
+            }
+        }
+        else // No RottingComponent
         {
-            RemCompDeferred(uid, rotting);
-            perishable.RotAccumulator = total;
+            total = perishable.RotAccumulator - time;
         }
-
+        // Either just removed or not present at start
+        DebugTools.Assert(!HasComp<RottingComponent>(uid));
+        if (total.TotalSeconds < 0)
+            perishable.RotAccumulator = TimeSpan.Zero;
         else
-            rotting.TotalRotTime = total - perishable.RotAfter;
+            perishable.RotAccumulator = total;
+
+        var stage = PerishStage((uid, perishable), MaxStages);
+        if (stage != perishable.Stage)
+        {
+            perishable.Stage = stage;
+            Dirty(uid, perishable);
+        }
     }
-    
+
+
     /// <summary>
     /// Is anything speeding up the decay?
     /// e.g. buried in a grave
@@ -188,6 +211,7 @@ public sealed class RottingSystem : SharedRottingSystem
 
         return 1f;
     }
+
 
     public override void Update(float frameTime)
     {
