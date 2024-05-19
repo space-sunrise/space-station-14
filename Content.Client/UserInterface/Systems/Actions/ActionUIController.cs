@@ -522,7 +522,7 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         if (actionId == null)
         {
             button.ClearData();
-            if (_container?.TryGetButtonIndex(button, out position) ?? false)
+            if ((_container?.TryGetButtonIndex(button, out position) ?? false) && position < _actions.Count)
             {
                 if (_actions.Count > position && position >= 0)
                     _actions.RemoveAt(position);
