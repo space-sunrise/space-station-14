@@ -1,6 +1,8 @@
 using System.Linq;
 using Content.Server.Actions;
 using Content.Server.Administration.Logs;
+using Content.Server.GameTicking;
+using Content.Server.GameTicking.Replays;
 using Content.Server.PDA.Ringer;
 using Content.Server.Stack;
 using Content.Server.Store.Components;
@@ -15,6 +17,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Store.Systems;
 
@@ -30,6 +33,8 @@ public sealed partial class StoreSystem
     [Dependency] private readonly StackSystem _stack = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
 
     private void InitializeUi()
     {
@@ -263,6 +268,16 @@ public sealed partial class StoreSystem
             $"{ToPrettyString(buyer):player} purchased listing \"{ListingLocalisationHelpers.GetLocalisedNameOrEntityName(listing, _prototypeManager)}\" from {ToPrettyString(uid)}");
 
         listing.PurchaseAmount++; //track how many times something has been purchased
+        _gameTicker.RecordReplayEvent(new StoreReplayEventBuy()
+        {
+            Buyer = _gameTicker.GetPlayerInfo(buyer),
+            Severity = ReplayEventSeverity.Medium,
+            Item = ListingLocalisationHelpers.GetLocalisedNameOrEntityName(listing, _prototypeManager),
+            Time = _gameTiming.CurTick.Value,
+            EventType = ReplayEventType.StoreBought,
+            Cost = listing.Cost.First().Value.Value
+        });
+      
         _audio.PlayEntity(component.BuySuccessSound, msg.Actor, uid); //cha-ching!
 
         UpdateUserInterface(buyer, uid, component);
