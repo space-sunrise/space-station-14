@@ -10,6 +10,8 @@
   - type: Appearance
   - type: ClusterGrenadeVisuals
     state: base
+  - type: ClusterOnTrigger
+#  - type: DeleteOnTrigger
   - type: ClusterGrenade
   - type: OnUseTimerTrigger
     delay: 3.5
@@ -29,10 +31,13 @@
     layers:
     - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
+  - type: ClusterOnTrigger
+#  - type: DeleteOnTrigger
   - type: ClusterGrenade
     fillPrototype: GrenadeFlashBang
     distance: 7
     velocity: 7
+    activateContentTimers: true
   - type: TimerTriggerVisuals
     primingSound:
       path: /Audio/Effects/countdown.ogg
@@ -60,10 +65,13 @@
     layers:
     - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
+  - type: ClusterOnTrigger
+#  - type: DeleteOnTrigger
   - type: ClusterGrenade
     fillPrototype: ExGrenade
     velocity: 3.5
     distance: 5
+    activateContentTimers: true
   - type: OnUseTimerTrigger
     beepSound:
       path: "/Audio/Effects/beep1.ogg"
@@ -88,9 +96,11 @@
     sprite: Objects/Specific/Hydroponics/banana.rsi
     state: produce
   - type: Appearance
+  - type: ClusterOnTrigger
+#  - type: DeleteOnTrigger
   - type: ClusterGrenade
     fillPrototype: TrashBananaPeelExplosive
-    maxGrenadesCount: 6
+    capacity: 6
     baseTriggerDelay: 20
   - type: DamageOnLand
     damage:
@@ -125,10 +135,12 @@
     layers:
     - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
+  - type: ClusterOnTrigger
+#  - type: DeleteOnTrigger
   - type: ClusterGrenade
     fillPrototype: PelletClusterRubber
-    maxGrenadesCount: 30
-    grenadeType: enum.GrenadeType.Shoot
+    capacity: 30
+    grenadeType: Shoot
   - type: FlashOnTrigger
     range: 7
   - type: EmitSoundOnTrigger
@@ -154,10 +166,12 @@
     layers:
     - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
+  - type: ClusterOnTrigger
+#  - type: DeleteOnTrigger
   - type: ClusterGrenade
     fillPrototype: PelletClusterIncendiary
-    maxGrenadesCount: 30
-    grenadeType: enum.GrenadeType.Shoot
+    capacity: 30
+    grenadeType: Shoot
   - type: OnUseTimerTrigger
     beepSound:
       path: "/Audio/Effects/beep1.ogg"
@@ -183,10 +197,12 @@
     layers:
     - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
+  - type: ClusterOnTrigger
+#  - type: DeleteOnTrigger
   - type: ClusterGrenade
     fillPrototype: PelletClusterLethal
-    maxGrenadesCount: 30
-    grenadeType: enum.GrenadeType.Shoot
+    capacity: 30
+    grenadeType: Shoot
   - type: OnUseTimerTrigger
     beepSound:
       path: "/Audio/Effects/beep1.ogg"
@@ -212,11 +228,11 @@
     layers:
     - state: syndie-4
   - type: Appearance
+  - type: ClusterOnTrigger
+#  - type: DeleteOnTrigger
   - type: ClusterGrenade
     fillPrototype: SoapletSyndie
-    maxGrenadesCount: 30
-    grenadeTriggerIntervalMax: 0
-    grenadeTriggerIntervalMin: 0
+    capacity: 30
     baseTriggerDelay: 60
     randomSpread: true
     velocity: 3
