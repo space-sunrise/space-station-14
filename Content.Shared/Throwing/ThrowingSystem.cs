@@ -50,7 +50,8 @@ public sealed class ThrowingSystem : EntitySystem
         bool recoil = true,
         bool animated = true,
         bool playSound = true,
-        bool doSpin = true)
+        bool doSpin = true,
+        bool hitEvents = true)
     {
         var thrownPos = _transform.GetMapCoordinates(uid);
         var mapPos = _transform.ToMapCoordinates(coordinates);
@@ -58,7 +59,7 @@ public sealed class ThrowingSystem : EntitySystem
         if (mapPos.MapId != thrownPos.MapId)
             return;
 
-        TryThrow(uid, mapPos.Position - thrownPos.Position, strength, user, pushbackRatio, recoil: recoil, animated: animated, playSound: playSound, doSpin: doSpin);
+        TryThrow(uid, mapPos.Position - thrownPos.Position, strength, user, pushbackRatio, recoil: recoil, animated: animated, playSound: playSound, doSpin: doSpin, hitEvents:hitEvents);
     }
 
     /// <summary>
@@ -69,6 +70,7 @@ public sealed class ThrowingSystem : EntitySystem
     /// <param name="strength">How much the direction vector should be multiplied for velocity.</param>
     /// <param name="pushbackRatio">The ratio of impulse applied to the thrower - defaults to 10 because otherwise it's not enough to properly recover from getting spaced</param>
     /// <param name="doSpin">Whether spin will be applied to the thrown entity.</param>
+    /// <param name="hitEvents">If ThrowHitByEvent and ThrowDoHitEvent will be raised when this item hits something.</param>
     public void TryThrow(EntityUid uid,
         Vector2 direction,
         float strength = 1.0f,
@@ -77,7 +79,8 @@ public sealed class ThrowingSystem : EntitySystem
         bool recoil = true,
         bool animated = true,
         bool playSound = true,
-        bool doSpin = true)
+        bool doSpin = true,
+        bool hitEvents = true)
     {
         var physicsQuery = GetEntityQuery<PhysicsComponent>();
         if (!physicsQuery.TryGetComponent(uid, out var physics))
@@ -93,7 +96,7 @@ public sealed class ThrowingSystem : EntitySystem
             projectileQuery,
             strength,
             user,
-            pushbackRatio, recoil: recoil, animated: animated, playSound: playSound, doSpin: doSpin);
+            pushbackRatio, recoil: recoil, animated: animated, playSound: playSound, doSpin: doSpin, hitEvents:hitEvents);
     }
 
     /// <summary>
@@ -104,6 +107,7 @@ public sealed class ThrowingSystem : EntitySystem
     /// <param name="strength">How much the direction vector should be multiplied for velocity.</param>
     /// <param name="pushbackRatio">The ratio of impulse applied to the thrower - defaults to 10 because otherwise it's not enough to properly recover from getting spaced</param>
     /// <param name="doSpin">Whether spin will be applied to the thrown entity.</param>
+    /// <param name="hitEvents">If ThrowHitByEvent and ThrowDoHitEvent will be raised when this item hits something.</param>
     public void TryThrow(EntityUid uid,
         Vector2 direction,
         PhysicsComponent physics,
@@ -115,7 +119,8 @@ public sealed class ThrowingSystem : EntitySystem
         bool recoil = true,
         bool animated = true,
         bool playSound = true,
-        bool doSpin = true)
+        bool doSpin = true,
+        bool hitEvents = true)
     {
         if (strength <= 0 || direction == Vector2Helpers.Infinity || direction == Vector2Helpers.NaN || direction == Vector2.Zero)
             return;
@@ -134,6 +139,7 @@ public sealed class ThrowingSystem : EntitySystem
         {
             Thrower = user,
             Animate = animated,
+            HitEvents = hitEvents
         };
 
         // Estimate time to arrival so we can apply OnGround status and slow it much faster.

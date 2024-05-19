@@ -9,6 +9,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Throwing
 {
@@ -114,7 +115,7 @@ namespace Content.Shared.Throwing
 
         public void LandComponent(EntityUid uid, ThrownItemComponent thrownItem, PhysicsComponent physics, bool playSound)
         {
-            if (thrownItem.Landed || thrownItem.Deleted || _gravity.IsWeightless(uid) || Deleted(uid))
+            if (!thrownItem.HitEvents || thrownItem.Landed || thrownItem.Deleted || _gravity.IsWeightless(uid) || Deleted(uid))
                 return;
 
             thrownItem.Landed = true;
@@ -133,6 +134,9 @@ namespace Content.Shared.Throwing
         /// </summary>
         public void ThrowCollideInteraction(ThrownItemComponent component, EntityUid thrown, EntityUid target)
         {
+            if (!component.HitEvents)
+                return;
+
             if (component.Thrower is not null)
                 _adminLogger.Add(LogType.ThrowHit, LogImpact.Low,
                     $"{ToPrettyString(thrown):thrown} thrown by {ToPrettyString(component.Thrower.Value):thrower} hit {ToPrettyString(target):target}.");
