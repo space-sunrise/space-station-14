@@ -378,7 +378,7 @@
       blacklist:
         components:
         - ZombieImmune
-        - InitialInfectedExempt
+        - AntagImmune
       briefing:
         text: zombie-patientzero-role-greeting
         color: Plum
@@ -428,7 +428,7 @@
         prototype: Nukeops
 
 - type: entity
-  id: SleeperAgentsRule
+  id: SleeperAgents
   parent: BaseGameRule
   noSpawn: true
   components:
@@ -444,13 +444,17 @@
   - type: TraitorRule
   - type: AntagSelection
     definitions:
-    - prefRoles: [ Traitor ]
+    - prefRoles: [ TraitorSleeper ]
+      fallbackRoles: [ Traitor ]
       min: 1
       max: 2
       playerRatio: 10
+      blacklist:
+        components:
+        - AntagImmune
       mindComponents:
       - type: TraitorRole
-        prototype: Traitor
+        prototype: TraitorSleeper
 
 - type: entity
   id: MassHallucinations
