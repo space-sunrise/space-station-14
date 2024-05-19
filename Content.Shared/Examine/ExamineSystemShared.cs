@@ -1,7 +1,4 @@
-using System.Diagnostics;
-using System.Globalization;
 using System.Linq;
-using System.Text;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
@@ -21,6 +18,7 @@ namespace Content.Shared.Examine
         [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
         [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
         [Dependency] protected readonly MobStateSystem MobStateSystem = default!;
+        [Dependency] private readonly OccluderSystem _occluder = default!;
 
         public const float MaxRaycastRange = 100;
 
@@ -47,7 +45,12 @@ namespace Content.Shared.Examine
         /// <summary>
         ///     Creates a new examine tooltip with arbitrary info.
         /// </summary>
-        public abstract void SendExamineTooltip(EntityUid player, EntityUid target, FormattedMessage message, bool getVerbs, bool centerAtCursor);
+        public abstract void SendExamineTooltip(
+            EntityUid player,
+            EntityUid target,
+            FormattedMessage message,
+            bool getVerbs,
+            bool centerAtCursor);
 
         public bool IsInDetailsRange(EntityUid examiner, EntityUid entity)
         {
@@ -83,7 +86,12 @@ namespace Content.Shared.Examine
         }
 
         [Pure]
-        public virtual bool CanExamine(EntityUid examiner, MapCoordinates target, Ignored? predicate = null, EntityUid? examined = null, ExaminerComponent? examinerComp = null)
+        public virtual bool CanExamine(
+            EntityUid examiner,
+            MapCoordinates target,
+            Ignored? predicate = null,
+            EntityUid? examined = null,
+            ExaminerComponent? examinerComp = null)
         {
             // TODO occluded container checks
             // also requires checking if the examiner has either a storage or stripping UI open, as the item may be accessible via that UI
@@ -127,12 +135,14 @@ namespace Content.Shared.Examine
                 if (MobStateSystem.IsDead(examiner, mobState))
                     return DeadExamineRange;
 
-                if (MobStateSystem.IsCritical(examiner, mobState) || TryComp<BlindableComponent>(examiner, out var blind) && blind.IsBlind)
+                if (MobStateSystem.IsCritical(examiner, mobState) ||
+                    TryComp<BlindableComponent>(examiner, out var blind) && blind.IsBlind)
                     return CritExamineRange;
 
                 if (TryComp<BlurryVisionComponent>(examiner, out var blurry))
                     return Math.Clamp(ExamineRange - blurry.Magnitude * ExamineBlurrinessMult, 2, ExamineRange);
             }
+
             return ExamineRange;
         }
 
@@ -144,7 +154,13 @@ namespace Content.Shared.Examine
             return TryComp<EyeComponent>(uid, out var eye) && eye.DrawFov;
         }
 
-        public bool InRangeUnOccluded(MapCoordinates origin, MapCoordinates other, float range, Ignored? predicate, bool ignoreInsideBlocker = true, IEntityManager? entMan = null)
+        public bool InRangeUnOccluded(
+            MapCoordinates origin,
+            MapCoordinates other,
+            float range,
+            Ignored? predicate,
+            bool ignoreInsideBlocker = true,
+            IEntityManager? entMan = null)
         {
             // No, rider. This is better.
             // ReSharper disable once ConvertToLocalFunction
@@ -154,10 +170,17 @@ namespace Content.Shared.Examine
             return InRangeUnOccluded(origin, other, range, predicate, wrapped, ignoreInsideBlocker, entMan);
         }
 
-        public bool InRangeUnOccluded<TState>(MapCoordinates origin, MapCoordinates other, float range,
-            TState state, Func<EntityUid, TState, bool> predicate, bool ignoreInsideBlocker = true, IEntityManager? entMan = null)
+        public bool InRangeUnOccluded<TState>(
+            MapCoordinates origin,
+            MapCoordinates other,
+            float range,
+            TState state,
+            Func<EntityUid, TState, bool> predicate,
+            bool ignoreInsideBlocker = true,
+            IEntityManager? entMan = null)
         {
             if (other.MapId != origin.MapId ||
+                // ReSharper disable once MissingLinebreak
                 other.MapId == MapId.Nullspace) return false;
 
             var dir = other.Position - origin.Position;
@@ -165,9 +188,11 @@ namespace Content.Shared.Examine
 
             // If range specified also check it
             // TODO: This rounding check is here because the API is kinda eh
-            if (range > 0f && length > range + 0.01f) return false;
+            if (range > 0f && length > range + 0.01f)
+                return false;
 
-            if (MathHelper.CloseTo(length, 0)) return true;
+            if (MathHelper.CloseTo(length, 0))
+                return true;
 
             if (length > MaxRaycastRange)
             {
@@ -175,15 +200,14 @@ namespace Content.Shared.Examine
                 length = MaxRaycastRange;
             }
 
-            var occluderSystem = Get<OccluderSystem>();
             IoCManager.Resolve(ref entMan);
 
             var ray = new Ray(origin.Position, dir.Normalized());
-            var rayResults = occluderSystem
+            var rayResults = _occluder
                 .IntersectRayWithPredicate(origin.MapId, ray, length, state, predicate, false).ToList();
-
+            // ReSharper disable once MissingLinebreak
             if (rayResults.Count == 0) return true;
-
+            // ReSharper disable once MissingLinebreak
             if (!ignoreInsideBlocker) return false;
 
             foreach (var result in rayResults)
@@ -194,7 +218,7 @@ namespace Content.Shared.Examine
                 }
 
                 var bBox = o.BoundingBox;
-                bBox = bBox.Translated(entMan.GetComponent<TransformComponent>(result.HitEntity).WorldPosition);
+                bBox = bBox.Translated(_transform.GetWorldPosition(result.HitEntity));
 
                 if (bBox.Contains(origin.Position) || bBox.Contains(other.Position))
                 {
@@ -207,16 +231,25 @@ namespace Content.Shared.Examine
             return true;
         }
 
-        public bool InRangeUnOccluded(EntityUid origin, EntityUid other, float range = ExamineRange, Ignored? predicate = null, bool ignoreInsideBlocker = true)
+        public bool InRangeUnOccluded(
+            EntityUid origin,
+            EntityUid other,
+            float range = ExamineRange,
+            Ignored? predicate = null,
+            bool ignoreInsideBlocker = true)
         {
-            var entMan = IoCManager.Resolve<IEntityManager>();
             var originPos = _transform.GetMapCoordinates(origin);
             var otherPos = _transform.GetMapCoordinates(other);
 
             return InRangeUnOccluded(originPos, otherPos, range, predicate, ignoreInsideBlocker);
         }
 
-        public bool InRangeUnOccluded(EntityUid origin, EntityCoordinates other, float range = ExamineRange, Ignored? predicate = null, bool ignoreInsideBlocker = true)
+        public bool InRangeUnOccluded(
+            EntityUid origin,
+            EntityCoordinates other,
+            float range = ExamineRange,
+            Ignored? predicate = null,
+            bool ignoreInsideBlocker = true)
         {
             var entMan = IoCManager.Resolve<IEntityManager>();
             var originPos = _transform.GetMapCoordinates(origin);
@@ -225,9 +258,13 @@ namespace Content.Shared.Examine
             return InRangeUnOccluded(originPos, otherPos, range, predicate, ignoreInsideBlocker);
         }
 
-        public bool InRangeUnOccluded(EntityUid origin, MapCoordinates other, float range = ExamineRange, Ignored? predicate = null, bool ignoreInsideBlocker = true)
+        public bool InRangeUnOccluded(
+            EntityUid origin,
+            MapCoordinates other,
+            float range = ExamineRange,
+            Ignored? predicate = null,
+            bool ignoreInsideBlocker = true)
         {
-            var entMan = IoCManager.Resolve<IEntityManager>();
             var originPos = _transform.GetMapCoordinates(origin);
 
             return InRangeUnOccluded(originPos, other, range, predicate, ignoreInsideBlocker);
@@ -311,7 +348,8 @@ namespace Content.Shared.Examine
 
         private ExamineMessagePart? _currentGroupPart;
 
-        public ExaminedEvent(FormattedMessage message, EntityUid examined, EntityUid examiner, bool isInDetailsRange, bool hasDescription)
+        public ExaminedEvent(FormattedMessage message, EntityUid examined, EntityUid examiner, bool isInDetailsRange,
+            bool hasDescription)
         {
             Message = message;
             Examined = examined;
@@ -370,7 +408,7 @@ namespace Content.Shared.Examine
         ///     sort messages the same as well as grouped together properly, even if subscriptions are different.
         ///     You should wrap it in a using() block so popping automatically occurs.
         /// </summary>
-        public ExamineGroupDisposable PushGroup(string groupName, int priority=0)
+        public ExamineGroupDisposable PushGroup(string groupName, int priority = 0)
         {
             // Ensure that other examine events correctly ended their groups.
             DebugTools.Assert(_currentGroupPart == null);
@@ -398,7 +436,7 @@ namespace Content.Shared.Examine
         /// </summary>
         /// <seealso cref="PushMarkup"/>
         /// <seealso cref="PushText"/>
-        public void PushMessage(FormattedMessage message, int priority=0)
+        public void PushMessage(FormattedMessage message, int priority = 0)
         {
             if (message.Nodes.Count == 0)
                 return;
@@ -421,7 +459,7 @@ namespace Content.Shared.Examine
         /// </summary>
         /// <seealso cref="PushText"/>
         /// <seealso cref="PushMessage"/>
-        public void PushMarkup(string markup, int priority=0)
+        public void PushMarkup(string markup, int priority = 0)
         {
             PushMessage(FormattedMessage.FromMarkup(markup), priority);
         }
@@ -433,7 +471,7 @@ namespace Content.Shared.Examine
         /// </summary>
         /// <seealso cref="PushMarkup"/>
         /// <seealso cref="PushMessage"/>
-        public void PushText(string text, int priority=0)
+        public void PushText(string text, int priority = 0)
         {
             var msg = new FormattedMessage();
             msg.AddText(text);
@@ -469,7 +507,7 @@ namespace Content.Shared.Examine
         /// </summary>
         /// <seealso cref="AddText"/>
         /// <seealso cref="AddMessage"/>
-        public void AddMarkup(string markup, int priority=0)
+        public void AddMarkup(string markup, int priority = 0)
         {
             AddMessage(FormattedMessage.FromMarkup(markup), priority);
         }
@@ -481,7 +519,7 @@ namespace Content.Shared.Examine
         /// </summary>
         /// <seealso cref="AddMarkup"/>
         /// <seealso cref="AddMessage"/>
-        public void AddText(string text, int priority=0)
+        public void AddText(string text, int priority = 0)
         {
             var msg = new FormattedMessage();
             msg.AddText(text);
