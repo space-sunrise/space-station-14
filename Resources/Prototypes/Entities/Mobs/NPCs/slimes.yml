@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   name: basic slime
   id: BaseMobAdultSlimes
   parent: [ SimpleMobBase, MobCombat ]
@@ -26,9 +26,6 @@
     thresholds:
       0: Alive
       120: Dead
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 4
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Effects/Footsteps/slime1.ogg
@@ -150,9 +147,6 @@
   noSpawn: true
   components:
   # they portable...
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 3
-    baseSprintSpeed: 5 # +.5 from normal movement speed
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -176,6 +170,9 @@
         Base: blue_adult_slime
       Dead:
         Base: blue_adult_slime_dead
+  - type: Body
+    prototype: Geras
+    requiredLegs: 1
 
 - type: entity
   name: blue slime
