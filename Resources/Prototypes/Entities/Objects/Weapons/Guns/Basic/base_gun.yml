@@ -1,0 +1,95 @@
+# BASE
+- type: entity
+  abstract: true
+  parent: BaseItem
+  id: BaseGun
+  components:
+  - type: Gun
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+  - type: StaticPrice
+    price: 500
+
+# SMALL
+# A basic template for a small gun that can be equipped in the belt slot.
+- type: entity
+  abstract: true
+  parent: BaseGun
+  id: BaseGunSmall
+  components:
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+  - type: Tag
+    tags:
+    - Sidearm
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Belt
+    - suitStorage
+
+# LARGE
+# A basic template for a gun that is large enough to not fit well in bags and be equipped on the back.
+- type: entity
+  abstract: true
+  parent: BaseGun
+  id: BaseGunLarge
+  components:
+  - type: Item
+    size: Huge
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+
+# HEAVY
+# A basic template for a massive gun that requires multiple hands to carry and slows the carrier.
+- type: entity
+  abstract: true
+  parent: BaseGun
+  id: BaseGunHeavy
+  components:
+  - type: Item
+    size: Ginormous
+  - type: MultiHandedItem
+  - type: ClothingSpeedModifier
+    walkModifier: 0.6
+    sprintModifier: 0.6
+  - type: HeldSpeedModifier
+
+# WIELDABLE
+# A basic template for a gun that is wieldable and has improved accuracy when wielded. Includes a standard innacuracy.
+- type: entity
+  abstract: true
+  parent: BaseGun
+  id: BaseGunWieldable
+  components:
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: GunWieldBonus
+    minAngle: -20
+    maxAngle: -30
+  - type: Gun
+    minAngle: 21
+    maxAngle: 32
+
+# SILENCED
+# A basic template for a gun that makes almost no noise when fired.
+- type: entity
+  abstract: true
+  parent: BaseGun
+  id: BaseGunSilenced
+  components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
+      params:
+        volume: -14
