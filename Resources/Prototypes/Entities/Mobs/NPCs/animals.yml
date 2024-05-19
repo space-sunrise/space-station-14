@@ -48,7 +48,8 @@
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-organic
   - type: Bloodstream
-    bloodMaxVolume: 50
+    #TODO Bloodstream: re-implement this
+#    bloodMaxVolume: 50
   - type: ReplacementAccent
     accent: mouse
   - type: MeleeWeapon
@@ -110,7 +111,8 @@
     - Bee
     - Trash
   - type: Bloodstream
-    bloodMaxVolume: 0.1
+    #TODO Bloodstream: re-implement this
+#    bloodMaxVolume: 0.1
   - type: MobPrice
     price: 50
   - type: NPCRetaliation
@@ -218,7 +220,8 @@
     interactSuccessSound:
       path: /Audio/Animals/chicken_cluck_happy.ogg
   - type: Bloodstream
-    bloodMaxVolume: 100
+    #TODO Bloodstream: re-implement this
+#    bloodMaxVolume: 100
   - type: EggLayer
     eggSpawn:
     - id: FoodEgg
@@ -341,8 +344,9 @@
       Dead:
         Base: cockroach_dead
   - type: Bloodstream
-    bloodReagent: InsectBlood
-    bloodMaxVolume: 20
+    #TODO Bloodstream: re-implement this
+#    bloodReagent: InsectBlood
+#    bloodMaxVolume: 20
   - type: Food
   - type: Hunger
     baseDecayRate: 0.25
@@ -481,14 +485,16 @@
     damageContainer: Biological
     damageModifierSet: Moth
   - type: Bloodstream
-    bloodReagent: InsectBlood
-  - type: Respirator
-    damage:
-      types:
-        Asphyxiation: 0.5
-    damageRecovery:
-      types:
-        Asphyxiation: -0.5
+    #TODO Bloodstream: re-implement this
+#    bloodReagent: InsectBlood
+  #TODO respiration: reimplement this
+#  - type: Respirator
+#    damage:
+#      types:
+#        Asphyxiation: 0.5
+#    damageRecovery:
+#      types:
+#        Asphyxiation: -0.5
   - type: CombatMode
   - type: Butcherable
     spawned:
@@ -595,7 +601,8 @@
     interactSuccessSound:
       path: /Audio/Animals/duck_quack_happy.ogg
   - type: Bloodstream
-    bloodMaxVolume: 100
+    #TODO Bloodstream: re-implement this
+#    bloodMaxVolume: 100
   - type: EggLayer
     eggSpawn:
     - id: FoodEgg
@@ -700,7 +707,8 @@
       Dead:
         Base: dead
   - type: Bloodstream
-    bloodMaxVolume: 0.1
+    #TODO Bloodstream: re-implement this
+#    bloodMaxVolume: 0.1
   - type: MobPrice
     price: 50
 
@@ -840,8 +848,9 @@
   - type: ReplacementAccent
     accent: crab
   - type: Bloodstream
-    bloodMaxVolume: 50
-    bloodReagent: CopperBlood
+    #TODO Bloodstream: re-implement this
+#    bloodMaxVolume: 50
+#    bloodReagent: CopperBlood
   - type: Tag
     tags:
     - VimPilot
@@ -983,7 +992,8 @@
     interactSuccessSound:
       path: /Audio/Animals/goose_honk.ogg
   - type: Bloodstream
-    bloodMaxVolume: 100
+    #TODO Bloodstream: re-implement this
+#    bloodMaxVolume: 100
   - type: NpcFactionMember
     factions:
     - Passive
@@ -1025,7 +1035,8 @@
     - id: FoodMeat
       amount: 4
   - type: Bloodstream
-    bloodMaxVolume: 300
+    #TODO Bloodstream: re-implement this
+#    bloodMaxVolume: 300
     # if you fuck with the gorilla he will harambe you
   - type: MeleeWeapon
     soundHit:
@@ -1609,6 +1620,14 @@
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 3
+      bloodstream:
+        maxVol: 50
+      bloodReagents:
+        maxVol: 50
+      bloodSpill:
+        maxVol: 9999
+  - type: Bloodstream
+    maxVolume: 50
   - type: Butcherable
     spawned:
     - id: FoodMeatRat
@@ -1621,13 +1640,14 @@
     - VimPilot
     - Mouse
     - Meat
-  - type: Respirator
-    damage:
-      types:
-        Asphyxiation: 0.25
-    damageRecovery:
-      types:
-        Asphyxiation: -0.25
+  #TODO respiration: reimplement this
+#  - type: Respirator
+#    damage:
+#      types:
+#        Asphyxiation: 0.25
+#    damageRecovery:
+#      types:
+#        Asphyxiation: -0.25
   - type: Barotrauma
     damage:
       types:
@@ -1641,8 +1661,8 @@
   # TODO: Remove CombatMode when Prototype Composition is added
   - type: CombatMode
     combatToggleAction: ActionCombatModeToggleOff
-  - type: Bloodstream
-    bloodMaxVolume: 50
+    #TODO Bloodstream: re-implement this
+#    bloodMaxVolume: 50
   - type: CanEscapeInventory
   - type: MobPrice
     price: 50
@@ -1812,7 +1832,8 @@
     interactSuccessSound:
       path: /Audio/Animals/lizard_happy.ogg
   - type: Bloodstream
-    bloodMaxVolume: 150
+    #TODO Bloodstream: re-implement this
+#    bloodMaxVolume: 150
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Scale
@@ -1864,7 +1885,8 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
   - type: Bloodstream
-    bloodMaxVolume: 50
+    #TODO Bloodstream: re-implement this
+#    bloodMaxVolume: 50
 
 - type: entity
   name: frog
@@ -1918,7 +1940,8 @@
     interactSuccessSound:
       path: /Audio/Animals/frog_ribbit.ogg
   - type: Bloodstream
-    bloodMaxVolume: 50
+    #TODO Bloodstream: re-implement this
+#    bloodMaxVolume: 50
   - type: Tag
     tags:
     - VimPilot
@@ -1975,7 +1998,8 @@
     interactSuccessSound:
       path: /Audio/Animals/parrot_raught.ogg
   - type: Bloodstream
-    bloodMaxVolume: 50
+    #TODO Bloodstream: re-implement this
+#    bloodMaxVolume: 50
 
 - type: entity
   name: penguin
@@ -2146,7 +2170,8 @@
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
   - type: Bloodstream
-    bloodMaxVolume: 50
+    #TODO Bloodstream: re-implement this
+#    bloodMaxVolume: 50
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Scale
@@ -2236,8 +2261,9 @@
   - type: Spider
   - type: IgnoreSpiderWeb
   - type: Bloodstream
-    bloodMaxVolume: 150
-    bloodReagent: CopperBlood
+    #TODO Bloodstream: re-implement this
+#    bloodMaxVolume: 150
+#    bloodReagent: CopperBlood
   - type: Speech
     speechVerb: Arachnid
     speechSounds: Arachnid
@@ -2342,8 +2368,9 @@
     - type: Speech
       speechVerb: Cluwne
     - type: Bloodstream
-      bloodMaxVolume: 150
-      bloodReagent: Laughter
+      #TODO Bloodstream: re-implement this
+#      bloodMaxVolume: 150
+#      bloodReagent: Laughter
 
 - type: entity
   name: wizard spider
@@ -2550,7 +2577,8 @@
     attributes:
       gender: epicene
   - type: Bloodstream
-    bloodMaxVolume: 100
+    #TODO Bloodstream: re-implement this
+#    bloodMaxVolume: 100
   - type: MeleeWeapon
     angle: 0
     animation: WeaponArcBite
@@ -2678,7 +2706,8 @@
     attributes:
       gender: epicene
   - type: Bloodstream
-    bloodReagent: DemonsBlood
+    #TODO Bloodstream: re-implement this
+#    bloodReagent: DemonsBlood
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Infernal
@@ -2890,8 +2919,9 @@
     interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/cat_meow.ogg
-  - type: Respirator #It just works?
-    minSaturation: 5.0
+#TODO respiration: reimplement this
+#  - type: Respirator #It just works?
+#    minSaturation: 5.0
 
 - type: entity
   name: caracal cat
@@ -3168,13 +3198,14 @@
     - Trash
     - Hamster
     - Meat
-  - type: Respirator
-    damage:
-      types:
-        Asphyxiation: 0.25
-    damageRecovery:
-      types:
-        Asphyxiation: -0.25
+#TODO respiration: reimplement this
+#  - type: Respirator
+#    damage:
+#      types:
+#        Asphyxiation: 0.25
+#    damageRecovery:
+#      types:
+#        Asphyxiation: -0.25
   - type: Barotrauma
     damage:
       types:
@@ -3196,7 +3227,8 @@
     interactSuccessSound:
       path: /Audio/Animals/fox_squeak.ogg
   - type: Bloodstream
-    bloodMaxVolume: 60
+    #TODO Bloodstream: re-implement this
+#    bloodMaxVolume: 60
   - type: CanEscapeInventory
     baseResistTime: 3
   - type: MobPrice
@@ -3308,8 +3340,9 @@
   - type: InventorySlots
   - type: Strippable
   - type: Bloodstream
-    bloodReagent: Sap
-    bloodMaxVolume: 60
+    #TODO Bloodstream: re-implement this
+#    bloodReagent: Water
+#    bloodMaxVolume: 60
   - type: UserInterface
     interfaces:
       enum.StrippingUiKey.Key:

@@ -3,6 +3,8 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Devour;
 using Content.Shared.Devour.Components;
 using Content.Shared.Humanoid;
+using Content.Shared.Medical.Blood.Systems;
+using Content.Shared.Medical.Blood.Systems;
 
 namespace Content.Server.Devour;
 
@@ -33,7 +35,8 @@ public sealed class DevourSystem : SharedDevourSystem
             {
                 ContainerSystem.Insert(args.Args.Target.Value, component.Stomach);
             }
-            _bloodstreamSystem.TryAddToChemicals(uid, ichorInjection);
+            //TODO: re-implement bloodstream injection for devour system
+            //_bloodstreamSystem.TryAddToChemicals(uid, ichorInjection);
         }
 
         //TODO: Figure out a better way of removing structures via devour that still entails standing still and waiting for a DoAfter. Somehow.

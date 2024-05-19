@@ -27,12 +27,16 @@ using Content.Shared.DragDrop;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
+using Content.Shared.Medical.Blood.Systems;
+using Content.Shared.Medical.Blood.Components;
+using Content.Shared.Medical.Blood.Systems;
 using Content.Shared.Medical.Cryogenics;
 using Content.Shared.MedicalScanner;
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
+using BloodstreamComponent = Content.Shared.Medical.Blood.Components.BloodstreamComponent;
 using SharedToolSystem = Content.Shared.Tools.Systems.SharedToolSystem;
 
 namespace Content.Server.Medical;
@@ -116,7 +120,8 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
                 }
 
                 var solutionToInject = _solutionContainerSystem.SplitSolution(containerSolution.Value, cryoPod.BeakerTransferAmount);
-                _bloodstreamSystem.TryAddToChemicals(patient.Value, solutionToInject, bloodstream);
+                //TODO: re-implement cryopod IV / chem injection
+                //_bloodstreamSystem.TryAddToChemicals(patient.Value, solutionToInject, bloodstream);
                 _reactiveSystem.DoEntityReaction(patient.Value, solutionToInject, ReactionMethod.Injection);
             }
         }
@@ -194,19 +199,33 @@ public sealed partial class CryoPodSystem : SharedCryoPodSystem
             healthAnalyzer.ScannedEntity = entity.Comp.BodyContainer.ContainedEntity;
         }
 
+        //TODO: re-implement cryopod analyzer UI
         // TODO: This should be a state my dude
-        _userInterfaceSystem.ServerSendUiMessage(
-            entity.Owner,
-            HealthAnalyzerUiKey.Key,
-            new HealthAnalyzerScannedUserMessage(GetNetEntity(entity.Comp.BodyContainer.ContainedEntity),
-            temp?.CurrentTemperature ?? 0,
-            (bloodstream != null && _solutionContainerSystem.ResolveSolution(entity.Comp.BodyContainer.ContainedEntity.Value,
-                bloodstream.BloodSolutionName, ref bloodstream.BloodSolution, out var bloodSolution))
-                ? bloodSolution.FillFraction
-                : 0,
-            null,
-            null
-        ));
+        // _userInterfaceSystem.ServerSendUiMessage(
+        //     entity.Owner,
+        //     HealthAnalyzerUiKey.Key,
+        //     new HealthAnalyzerScannedUserMessage(GetNetEntity(entity.Comp.BodyContainer.ContainedEntity),
+        //     temp?.CurrentTemperature ?? 0,
+        //     (bloodstream != null && _solutionContainerSystem.ResolveSolution(entity.Comp.BodyContainer.ContainedEntity.Value,
+        //         bloodstream.BloodSolutionName, ref bloodstream.BloodSolution, out var bloodSolution))
+        //         ? bloodSolution.FillFraction
+        //         : 0,
+        //     null,
+        //     null
+        // ));
+        //TODO: re-implement cryopod analyzer UI
+        // _userInterfaceSystem.TrySendUiMessage(
+        //     entity.Owner,
+        //     HealthAnalyzerUiKey.Key,
+        //     new HealthAnalyzerScannedUserMessage(GetNetEntity(entity.Comp.BodyContainer.ContainedEntity),
+        //     temp?.CurrentTemperature ?? 0,
+        //     (bloodstream != null && _solutionContainerSystem.ResolveSolution(entity.Comp.BodyContainer.ContainedEntity.Value,
+        //         bloodstream.BloodSolutionName, ref bloodstream.BloodSolution, out var bloodSolution))
+        //         ? bloodSolution.FillFraction
+        //         : 0,
+        //     null,
+        //     null
+        // ));
     }
 
     private void OnInteractUsing(Entity<CryoPodComponent> entity, ref InteractUsingEvent args)

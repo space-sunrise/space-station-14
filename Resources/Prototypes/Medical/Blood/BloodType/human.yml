@@ -1,0 +1,81 @@
+﻿# bloodtypes are labeled based on the antigens present on the bloodcells or O for none,
+# and Pos or Neg for RHFactor (AKA whether the D antigen is present or not on bloodcells)
+# any antigens that are not present on the bloodcells are found in the blood plasma
+# EXCEPT for the D antigen, this is only ever on bloodcells if it is present at all (This simulates RH factor).
+
+
+
+- type: bloodType
+  id: HumanBloodType
+  abstract: true
+  wholeBloodReagent: Blood
+  bloodCellsReagent: Blood #TODO Bloodstream: bloodcells
+  bloodPlasmaReagent: Water #TODO Bloodstream: bloodPlasma
+
+- type: bloodType
+  id: HumanAPos
+  parent: HumanBloodType
+  bloodCellAntigens:
+  - HumanA
+  - HumanD
+  plasmaAntigens:
+  - HumanB
+
+- type: bloodType
+  id: HumanANeg
+  parent: HumanBloodType
+  bloodCellAntigens:
+  - HumanA
+  plasmaAntigens:
+  - HumanB
+
+- type: bloodType
+  id: HumanBPos
+  parent: HumanBloodType
+  bloodCellAntigens:
+  - HumanB
+  - HumanD
+  plasmaAntigens:
+  - HumanA
+
+- type: bloodType
+  id: HumanBNeg
+  parent: HumanBloodType
+  bloodCellAntigens:
+  - HumanB
+  plasmaAntigens:
+  - HumanA
+
+- type: bloodType
+  id: HumanABPos
+  parent: HumanBloodType
+  bloodCellAntigens:
+  - HumanB
+  - HumanA
+  - HumanD
+  plasmaAntigens: []
+
+- type: bloodType
+  id: HumanABNeg
+  parent: HumanBloodType
+  bloodCellAntigens:
+  - HumanB
+  - HumanA
+  plasmaAntigens: []
+
+- type: bloodType
+  id: HumanOPos
+  parent: HumanBloodType
+  bloodCellAntigens:
+  - HumanD
+  plasmaAntigens:
+  - HumanB
+  - HumanA
+
+- type: bloodType
+  id: HumanONeg
+  parent: HumanBloodType
+  bloodCellAntigens: []
+  plasmaAntigens:
+  - HumanB
+  - HumanA

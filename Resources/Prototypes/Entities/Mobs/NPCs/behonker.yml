@@ -84,13 +84,14 @@
       thresholds:
         0: Alive
         500: Dead
-    - type: Metabolizer
-      solutionOnBody: false
-      updateInterval: 0.25
-      metabolizerTypes: [ Dragon ]
-      groups:
-        - id: Medicine
-        - id: Poison
+    #TODO Metabolism: Reimplement this
+#    - type: Metabolizer
+#      solutionOnBody: false
+#      updateInterval: 0.25
+#      metabolizerTypes: [ Dragon ]
+#      groups:
+#        - id: Medicine
+#        - id: Poison
     - type: Butcherable
       spawned:
         - id: MaterialBananium1
@@ -115,8 +116,9 @@
     - type: Input
       context: "human"
     - type: Bloodstream
-      bloodMaxVolume: 300
-      bloodReagent: Laughter
+      #TODO Bloodstream: re-implement this
+#      bloodMaxVolume: 300
+#      bloodReagent: Laughter
 
 - type: entity
   name: behonker

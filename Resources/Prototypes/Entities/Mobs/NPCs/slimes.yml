@@ -43,27 +43,29 @@
     spawned:
     - id: FoodMeatSlime
       amount: 2
-  - type: Respirator
-    damage:
-      types:
-        Asphyxiation: 0.2
-    damageRecovery:
-      types:
-        Asphyxiation: -1.0
-    maxSaturation: 15
+#TODO respiration: reimplement this
+#  - type: Respirator
+#    damage:
+#      types:
+#        Asphyxiation: 0.2
+#    damageRecovery:
+#      types:
+#        Asphyxiation: -1.0
+#    maxSaturation: 15
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Slime
   - type: Bloodstream
-    bloodReagent: Slime
-    bloodlossDamage:
-      types:
-        Bloodloss:
-          0.5
-    bloodlossHealDamage:
-      types:
-        Bloodloss:
-          -0.25
+    #TODO Bloodstream: re-implement this
+#    bloodReagent: Slime
+#    bloodlossDamage:
+#      types:
+#        Bloodloss:
+#          0.5
+#    bloodlossHealDamage:
+#      types:
+#        Bloodloss:
+#          -0.25
   - type: Barotrauma
     damage:
       types:

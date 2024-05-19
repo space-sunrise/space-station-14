@@ -1,10 +1,10 @@
-using Content.Server.Body.Components;
 using Content.Server.Ghost.Components;
 using Content.Shared.Body.Components;
 using Content.Shared.Body.Events;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Pointing;
+using BrainComponent = Content.Shared.Medical.Organs.Components.BrainComponent;
 
 namespace Content.Server.Body.Systems
 {

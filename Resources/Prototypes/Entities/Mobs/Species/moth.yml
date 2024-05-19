@@ -31,7 +31,8 @@
     - id: FoodMeat
       amount: 5
   - type: Bloodstream
-    bloodReagent: InsectBlood
+    #TODO Bloodstream: re-implement this
+#    bloodReagent: InsectBlood
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:

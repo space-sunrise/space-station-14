@@ -22,7 +22,9 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using System.Linq;
-
+using Content.Shared.Medical.Blood.Systems;
+using Content.Shared.Medical.Blood.Components;
+using Content.Shared.Medical.Blood.Systems;
 using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
 
 namespace Content.Server.Fluids.EntitySystems;
@@ -39,7 +41,7 @@ public sealed class SmokeSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
-    [Dependency] private readonly BloodstreamSystem _blood = default!;
+    [Dependency] private readonly BloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly InternalsSystem _internals = default!;
     [Dependency] private readonly ReactiveSystem _reactive = default!;
     [Dependency] private readonly SharedBroadphaseSystem _broadphase = default!;
@@ -262,38 +264,39 @@ public sealed class SmokeSystem : EntitySystem
         if (!Resolve(smokeUid, ref component))
             return;
 
-        if (!TryComp<BloodstreamComponent>(entity, out var bloodstream))
-            return;
+        //TODO: refactor smoke system to use respiration instead of bloodstream
 
-        if (!_solutionContainerSystem.ResolveSolution(entity, bloodstream.ChemicalSolutionName, ref bloodstream.ChemicalSolution, out var chemSolution) || chemSolution.AvailableVolume <= 0)
-            return;
-
-        var blockIngestion = _internals.AreInternalsWorking(entity);
-
-        var cloneSolution = solution.Clone();
-        var availableTransfer = FixedPoint2.Min(cloneSolution.Volume, component.TransferRate);
-        var transferAmount = FixedPoint2.Min(availableTransfer, chemSolution.AvailableVolume);
-        var transferSolution = cloneSolution.SplitSolution(transferAmount);
-
-        foreach (var reagentQuantity in transferSolution.Contents.ToArray())
-        {
-            if (reagentQuantity.Quantity == FixedPoint2.Zero)
-                continue;
-            var reagentProto = _prototype.Index<ReagentPrototype>(reagentQuantity.Reagent.Prototype);
-
-            _reactive.ReactionEntity(entity, ReactionMethod.Touch, reagentProto, reagentQuantity, transferSolution);
-            if (!blockIngestion)
-                _reactive.ReactionEntity(entity, ReactionMethod.Ingestion, reagentProto, reagentQuantity, transferSolution);
-        }
-
-        if (blockIngestion)
-            return;
-
-        if (_blood.TryAddToChemicals(entity, transferSolution, bloodstream))
-        {
-            // Log solution addition by smoke
-            _logger.Add(LogType.ForceFeed, LogImpact.Medium, $"{ToPrettyString(entity):target} ingested smoke {SolutionContainerSystem.ToPrettyString(transferSolution)}");
-        }
+        // if (!TryComp<BloodstreamComponent>(entity, out var bloodstream))
+        //     return;
+        // if (!_solutionContainerSystem.ResolveSolution(entity, bloodstream.ChemicalSolutionName, ref bloodstream.ChemicalSolution, out var chemSolution) || chemSolution.AvailableVolume <= 0)
+        //     return;
+        //
+        // var blockIngestion = _internals.AreInternalsWorking(entity);
+        //
+        // var cloneSolution = solution.Clone();
+        // var availableTransfer = FixedPoint2.Min(cloneSolution.Volume, component.TransferRate);
+        // var transferAmount = FixedPoint2.Min(availableTransfer, chemSolution.AvailableVolume);
+        // var transferSolution = cloneSolution.SplitSolution(transferAmount);
+        //
+        // foreach (var reagentQuantity in transferSolution.Contents.ToArray())
+        // {
+        //     if (reagentQuantity.Quantity == FixedPoint2.Zero)
+        //         continue;
+        //     var reagentProto = _prototype.Index<ReagentPrototype>(reagentQuantity.Reagent.Prototype);
+        //
+        //     _reactive.ReactionEntity(entity, ReactionMethod.Touch, reagentProto, reagentQuantity, transferSolution);
+        //     if (!blockIngestion)
+        //         _reactive.ReactionEntity(entity, ReactionMethod.Ingestion, reagentProto, reagentQuantity, transferSolution);
+        // }
+        //
+        // if (blockIngestion)
+        //     return;
+        //
+        // if (_blood.TryAddToChemicals(entity, transferSolution, bloodstream))
+        // {
+        //     // Log solution addition by smoke
+        //     _logger.Add(LogType.ForceFeed, LogImpact.Medium, $"{ToPrettyString(entity):target} ingested smoke {SolutionContainerSystem.ToPrettyString(transferSolution)}");
+        // }
     }
 
     private void ReactOnTile(EntityUid uid, SmokeComponent? component = null, TransformComponent? xform = null)

@@ -1,4 +1,3 @@
-using Content.Server.Body.Components;
 using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Medical.Components;
 using Content.Server.PowerCell;
@@ -186,13 +185,14 @@ public sealed class HealthAnalyzerSystem : EntitySystem
         var bloodAmount = float.NaN;
         var bleeding = false;
 
-        if (TryComp<BloodstreamComponent>(target, out var bloodstream) &&
-            _solutionContainerSystem.ResolveSolution(target, bloodstream.BloodSolutionName,
-                ref bloodstream.BloodSolution, out var bloodSolution))
-        {
-            bloodAmount = bloodSolution.FillFraction;
-            bleeding = bloodstream.BleedAmount > 0;
-        }
+        //TODO: Refactor health analyzer to check blood volume/blood pressure
+        // if (TryComp<BloodstreamComponent>(target, out var bloodstream) &&
+        //     _solutionContainerSystem.ResolveSolution(target, bloodstream.BloodSolutionName,
+        //         ref bloodstream.BloodSolution, out var bloodSolution))
+        // {
+        //     bloodAmount = bloodSolution.FillFraction;
+        //     bleeding = bloodstream.BleedAmount > 0;
+        // }
 
         _uiSystem.ServerSendUiMessage(healthAnalyzer, HealthAnalyzerUiKey.Key, new HealthAnalyzerScannedUserMessage(
             GetNetEntity(target),

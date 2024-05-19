@@ -1,6 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 using Content.Shared.Body.Components;
+using Content.Shared.Body.Events;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Prototypes;
@@ -9,6 +11,7 @@ using Content.Shared.Gibbing.Components;
 using Content.Shared.Gibbing.Events;
 using Content.Shared.Gibbing.Systems;
 using Content.Shared.Inventory;
+using Content.Shared.Medical.Blood.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -94,32 +97,47 @@ public partial class SharedBodySystem
         ent.Comp.RootContainer = Containers.EnsureContainer<ContainerSlot>(ent, BodyRootContainerId);
     }
 
-    private void OnBodyMapInit(Entity<BodyComponent> ent, ref MapInitEvent args)
+    private void OnBodyMapInit(Entity<BodyComponent> body, ref MapInitEvent args)
     {
-        if (ent.Comp.Prototype is null)
+        if (body.Comp.Prototype is null)
             return;
 
         // One-time setup
         // Obviously can't run in Init to avoid double-spawns on save / load.
-        var prototype = Prototypes.Index(ent.Comp.Prototype.Value);
-        MapInitBody(ent, prototype);
+        var prototype = Prototypes.Index(body.Comp.Prototype.Value);
+        MapInitBody(body, prototype);
     }
 
-    private void MapInitBody(EntityUid bodyEntity, BodyPrototype prototype)
+    private void MapInitBody(Entity<BodyComponent> body, BodyPrototype prototype)
     {
         var protoRoot = prototype.Slots[prototype.Root];
         if (protoRoot.Part is null)
             return;
 
         // This should already handle adding the entity to the root.
-        var rootPartUid = SpawnInContainerOrDrop(protoRoot.Part, bodyEntity, BodyRootContainerId);
+        var rootPartUid = SpawnInContainerOrDrop(protoRoot.Part, body, BodyRootContainerId);
         var rootPart = Comp<BodyPartComponent>(rootPartUid);
-        rootPart.Body = bodyEntity;
+        rootPart.Body = body;
         Dirty(rootPartUid, rootPart);
 
         // Setup the rest of the body entities.
-        SetupOrgans((rootPartUid, rootPart), protoRoot.Organs);
         MapInitParts(rootPartUid, prototype);
+        SetupOrgans((rootPartUid, rootPart), protoRoot.Organs);
+
+        body.Comp.BodyInitialized = true;
+
+        //Raise body initialized events on all bodyParts that are initialized
+        var ev = new BodyInitializedEvent(body);
+        RaiseLocalEvent(body, ref ev);
+        foreach (var (partId, part) in GetBodyPartChildren(rootPartUid, rootPart))
+        {
+            RaiseLocalEvent(partId, ref ev);
+            foreach (var (organId, organ) in GetPartOrgans(partId, part))
+            {
+                RaiseLocalEvent(organId, ref ev);
+            }
+        }
+        Dirty(body);
     }
 
     private void OnBodyCanDrag(Entity<BodyComponent> ent, ref CanDragEvent args)
@@ -221,6 +239,20 @@ public partial class SharedBodySystem
         {
             yield return childContainer;
         }
+    }
+
+
+    public bool TryGetRootBodyPart(EntityUid target, [NotNullWhen(true)] out Entity<BodyPartComponent>? rootPart,
+        BodyComponent? bodyComp = null, bool logMissingBody = false)
+    {
+        rootPart = null;
+        if (!Resolve(target, ref bodyComp, logMissingBody))
+            return false;
+        var foundEnt = ((ContainerSlot)Containers.GetContainer(target, bodyComp.RootPartSlot)).ContainedEntity;
+        if (foundEnt == null || !TryComp<BodyPartComponent>(foundEnt, out var rootPartComp))
+            return false;
+        rootPart = new Entity<BodyPartComponent>(foundEnt.Value, rootPartComp);
+        return true;
     }
 
     /// <summary>

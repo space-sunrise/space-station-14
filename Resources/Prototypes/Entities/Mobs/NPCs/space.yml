@@ -39,8 +39,9 @@
     critThreshold: 150
   - type: MovementAlwaysTouching
   - type: Bloodstream
-    bloodMaxVolume: 300
-    bloodReagent: Cryoxadone
+    #TODO Bloodstream: re-implement this
+#    bloodMaxVolume: 300
+#    bloodReagent: Cryoxadone
   - type: CombatMode
   - type: Temperature
     heatDamageThreshold: 500
@@ -217,8 +218,9 @@
       amount: 1
       prob: 0.5
   - type: Bloodstream
-    bloodMaxVolume: 250
-    bloodReagent: Cryoxadone
+    #TODO Bloodstream: re-implement this
+    #bloodMaxVolume: 250
+    #bloodReagent: Cryoxadone
   - type: Fixtures
     fixtures:
       fix1:
@@ -320,8 +322,9 @@
           amount: 1
           prob: 0.3
     - type: Bloodstream
-      bloodMaxVolume: 200
-      bloodReagent: Cryoxadone
+      #TODO Bloodstream: re-implement this
+#      bloodMaxVolume: 200
+#      bloodReagent: Cryoxadone
     - type: Fixtures
       fixtures:
         fix1:

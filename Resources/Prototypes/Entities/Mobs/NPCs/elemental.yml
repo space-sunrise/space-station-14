@@ -260,8 +260,9 @@
     speedModifierThresholds:
       50: 0.4
   - type: Bloodstream
-    bloodReagent: Water
-    chemicalMaxVolume: 100
+    #TODO Bloodstream: re-implement this
+#    bloodReagent: Water
+#    chemicalMaxVolume: 100
   - type: StatusEffects
     allowed:
     - SlowedDown
@@ -330,7 +331,8 @@
   suffix: Beer
   components:
   - type: Bloodstream
-    bloodReagent: Beer
+    #TODO Bloodstream: re-implement this
+#    bloodReagent: Beer
   - type: PointLight
     color: "#cfa85f"
   - type: Sprite
@@ -367,7 +369,8 @@
   suffix: Nocturine
   components:
   - type: Bloodstream
-    bloodReagent: Nocturine
+    #TODO Bloodstream: re-implement this
+#    bloodReagent: Nocturine
   - type: PointLight
     color: "#128e80"
   - type: Sprite
@@ -387,7 +390,8 @@
   suffix: THC
   components:
   - type: Bloodstream
-    bloodReagent: THC
+    #TODO Bloodstream: re-implement this
+#    bloodReagent: THC
   - type: PointLight
     color: "#808080"
   - type: Sprite
@@ -404,7 +408,8 @@
   suffix: Bicaridine
   components:
   - type: Bloodstream
-    bloodReagent: Bicaridine
+    #TODO Bloodstream: re-implement this
+#    bloodReagent: Bicaridine
   - type: PointLight
     color: "#ffaa00"
   - type: Sprite
@@ -421,7 +426,8 @@
   suffix: Toxin
   components:
   - type: Bloodstream
-    bloodReagent: Toxin
+    #TODO Bloodstream: re-implement this
+#    bloodReagent: Toxin
   - type: PointLight
     color: "#cf3600"
   - type: Sprite
@@ -438,7 +444,8 @@
   suffix: Napalm
   components:
   - type: Bloodstream
-    bloodReagent: Napalm
+    #TODO Bloodstream: re-implement this
+#    bloodReagent: Napalm
   - type: PointLight
     color: "#FA00AF"
   - type: Sprite
@@ -455,7 +462,8 @@
   suffix: Omnizine
   components:
   - type: Bloodstream
-    bloodReagent: Omnizine
+    #TODO Bloodstream: re-implement this
+#    bloodReagent: Omnizine
   - type: PointLight
     color: "#fcf7f9"
   - type: Sprite
@@ -472,7 +480,8 @@
   suffix: Mute Toxin
   components:
   - type: Bloodstream
-    bloodReagent: MuteToxin
+    #TODO Bloodstream: re-implement this
+#    bloodReagent: MuteToxin
   - type: PointLight
     color: "#0f0f0f"
   - type: Sprite
@@ -489,7 +498,8 @@
   suffix: Norepinephric Acid
   components:
   - type: Bloodstream
-    bloodReagent: NorepinephricAcid
+    #TODO Bloodstream: re-implement this
+#    bloodReagent: NorepinephricAcid
   - type: PointLight
     color: "#96a8b5"
   - type: Sprite
@@ -506,7 +516,8 @@
   suffix: Ephedrine
   components:
   - type: Bloodstream
-    bloodReagent: Ephedrine
+    #TODO Bloodstream: re-implement this
+#    bloodReagent: Ephedrine
   - type: PointLight
     color: "#D2FFFA"
   - type: Sprite
@@ -523,7 +534,8 @@
   suffix: Robust Harvest
   components:
   - type: Bloodstream
-    bloodReagent: RobustHarvest
+    #TODO Bloodstream: re-implement this
+#    bloodReagent: RobustHarvest
   - type: PointLight
     color: "#3e901c"
   - type: Sprite

@@ -7,12 +7,14 @@ using Content.Server.Popups;
 using Content.Server.Stunnable;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Medical.Blood.Components;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.StatusEffect;
 using Robust.Server.Audio;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
+using BloodstreamComponent = Content.Shared.Medical.Blood.Components.BloodstreamComponent;
 
 namespace Content.Server.Medical
 {
@@ -35,8 +37,9 @@ namespace Content.Server.Medical
         public void Vomit(EntityUid uid, float thirstAdded = -40f, float hungerAdded = -40f)
         {
             // Main requirement: You have a stomach
-            var stomachList = _body.GetBodyOrganComponents<StomachComponent>(uid);
-            if (stomachList.Count == 0)
+            //TODO Digestion: Re-Implement this
+            // var stomachList = _body.GetBodyOrganComponents<StomachComponent>(uid);
+            // if (stomachList.Count == 0)
                 return;
 
             // Vomiting makes you hungrier and thirstier
@@ -56,15 +59,16 @@ namespace Content.Server.Medical
             var solution = new Solution();
 
             // Empty the stomach out into it
-            foreach (var stomach in stomachList)
-            {
-                if (_solutionContainer.ResolveSolution(stomach.Comp.Owner, StomachSystem.DefaultSolutionName, ref stomach.Comp.Solution, out var sol))
-                {
-                    solution.AddSolution(sol, _proto);
-                    sol.RemoveAllSolution();
-                    _solutionContainer.UpdateChemicals(stomach.Comp.Solution.Value);
-                }
-            }
+            //TODO Digestion: Re-Implement this
+            // foreach (var stomach in stomachList)
+            // {
+            //     if (_solutionContainer.ResolveSolution(stomach.Comp.Owner, StomachSystem.DefaultSolutionName, ref stomach.Comp.Solution, out var sol))
+            //     {
+            //         solution.AddSolution(sol, _proto);
+            //         sol.RemoveAllSolution();
+            //         _solutionContainer.UpdateChemicals(stomach.Comp.Solution.Value);
+            //     }
+            // }
             // Adds a tiny amount of the chem stream from earlier along with vomit
             if (TryComp<BloodstreamComponent>(uid, out var bloodStream))
             {
@@ -72,15 +76,16 @@ namespace Content.Server.Medical
 
                 var vomitAmount = solutionSize;
 
-                // Takes 10% of the chemicals removed from the chem stream
-                if (_solutionContainer.ResolveSolution(uid, bloodStream.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
-                {
-                    var vomitChemstreamAmount = _solutionContainer.SplitSolution(bloodStream.ChemicalSolution.Value, vomitAmount);
-                    vomitChemstreamAmount.ScaleSolution(chemMultiplier);
-                    solution.AddSolution(vomitChemstreamAmount, _proto);
-
-                    vomitAmount -= (float) vomitChemstreamAmount.Volume;
-                }
+                //TODO: refactor vomit with digestion/better metabolism. Also why are we adding bloodstream contents to vomit?
+                // // Takes 10% of the chemicals removed from the chem stream
+                // if (_solutionContainer.ResolveSolution(uid, bloodStream.ChemicalSolutionName, ref bloodStream.ChemicalSolution))
+                // {
+                //     var vomitChemstreamAmount = _solutionContainer.SplitSolution(bloodStream.ChemicalSolution.Value, vomitAmount);
+                //     vomitChemstreamAmount.ScaleSolution(chemMultiplier);
+                //     solution.AddSolution(vomitChemstreamAmount, _proto);
+                //
+                //     vomitAmount -= (float) vomitChemstreamAmount.Volume;
+                // }
 
                 // Makes a vomit solution the size of 90% of the chemicals removed from the chemstream
                 solution.AddReagent("Vomit", vomitAmount); // TODO: Dehardcode vomit prototype

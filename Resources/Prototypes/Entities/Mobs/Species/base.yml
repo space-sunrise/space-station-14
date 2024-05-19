@@ -3,6 +3,10 @@
   parent:
   - BaseMob
   - MobDamageable
+  - MobConsciousness
+  - MobWoundable
+  - MobMetabolism
+  - MobPain
   - MobCombat
   id: BaseMobSpecies
   abstract: true
@@ -293,13 +297,14 @@
     spawned:
       - id: FoodMeat
         amount: 5
-  - type: Respirator
-    damage:
-      types:
-        Asphyxiation: 1.0
-    damageRecovery:
-      types:
-        Asphyxiation: -1.0
+#TODO respiration: reimplement this
+#  - type: Respirator
+#    damage:
+#      types:
+#        Asphyxiation: 1.0
+#    damageRecovery:
+#      types:
+#        Asphyxiation: -1.0
   - type: FireVisuals
     alternateState: Standing
 

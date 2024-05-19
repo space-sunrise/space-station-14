@@ -17,7 +17,7 @@ public partial struct ReagentQuantity : IEquatable<ReagentQuantity>
     [ViewVariables]
     public ReagentId Reagent { get; private set; }
 
-    public ReagentQuantity(string reagentId, FixedPoint2 quantity, ReagentData? data)
+    public ReagentQuantity(string reagentId, FixedPoint2 quantity, ReagentDiscriminator? data)
         : this(new ReagentId(reagentId, data), quantity)
     {
     }
@@ -37,11 +37,11 @@ public partial struct ReagentQuantity : IEquatable<ReagentQuantity>
         return Reagent.ToString(Quantity);
     }
 
-    public void Deconstruct(out string prototype, out FixedPoint2 quantity, out ReagentData? data)
+    public void Deconstruct(out string prototype, out FixedPoint2 quantity, out ReagentDiscriminator? data)
     {
         prototype = Reagent.Prototype;
         quantity = Quantity;
-        data = Reagent.Data;
+        data = Reagent.Discriminator;
     }
 
     public void Deconstruct(out ReagentId id, out FixedPoint2 quantity)

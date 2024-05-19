@@ -6,9 +6,23 @@
   name: "body part"
   abstract: true
   components:
+  - type: BodyPart
   - type: Damageable
     damageContainer: Biological
-  - type: BodyPart
+  - type: Woundable
+    maxHealth: 50
+    maxIntegrity: 10
+    config:
+      Piercing:
+        damageMax: 60
+        woundPool: CommonPiercing
+      Blunt:
+        damageMax: 60
+        woundPool: CommonBlunt
+      Slash:
+        damageMax: 60
+        woundPool: CommonSlash
+
   - type: Gibbable
   - type: ContainerContainer
     containers:
