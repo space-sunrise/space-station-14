@@ -1,4 +1,4 @@
-﻿using Content.Server.Administration.Logs;
+using Content.Server.Administration.Logs;
 using Content.Server.Interaction.Components;
 using Content.Server.Popups;
 using Content.Shared.Database;
@@ -24,7 +24,7 @@ namespace Content.Server.Nutrition.EntitySystems;
 public sealed class AnimalHusbandrySystem : EntitySystem
 {
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
-    [Dependency] private readonly HungerSystem _hunger = default!;
+    [Dependency] private readonly SatiationSystem _satiation = default!;
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
@@ -126,8 +126,8 @@ public sealed class AnimalHusbandrySystem : EntitySystem
         if (TryComp<InteractionPopupComponent>(uid, out var interactionPopup))
             _audio.PlayPvs(interactionPopup.InteractSuccessSound, uid);
 
-        _hunger.ModifyHunger(uid, -component.HungerPerBirth);
-        _hunger.ModifyHunger(partner, -component.HungerPerBirth);
+        _satiation.ModifyHunger(uid, -component.HungerPerBirth);
+        _satiation.ModifyHunger(partner, -component.HungerPerBirth);
 
         component.GestationEndTime = _timing.CurTime + component.GestationDuration;
         component.Gestating = true;
@@ -153,10 +153,9 @@ public sealed class AnimalHusbandrySystem : EntitySystem
         if (_mobState.IsIncapacitated(uid))
             return false;
 
-        if (TryComp<HungerComponent>(uid, out var hunger) && _hunger.GetHungerThreshold(hunger) < HungerThreshold.Okay)
-            return false;
-
-        if (TryComp<ThirstComponent>(uid, out var thirst) && thirst.CurrentThirstThreshold < ThirstThreshold.Okay)
+        if (TryComp<SatiationComponent>(uid, out var satiation)
+            && _satiation.GetHungerThreshold(satiation) < SatiationThreashold.Okay
+            && _satiation.GetThirstThreshold(satiation) < SatiationThreashold.Okay)
             return false;
 
         return true;

@@ -1,6 +1,5 @@
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Nutrition.Components;
-using Content.Shared.FixedPoint;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Chemistry.ReagentEffectConditions
@@ -15,9 +14,9 @@ namespace Content.Server.Chemistry.ReagentEffectConditions
 
         public override bool Condition(ReagentEffectArgs args)
         {
-            if (args.EntityManager.TryGetComponent(args.SolutionEntity, out HungerComponent? hunger))
+            if (args.EntityManager.TryGetComponent(args.SolutionEntity, out SatiationComponent? satiation))
             {
-                var total = hunger.CurrentHunger;
+                var total = satiation.Hunger.Current;
                 if (total > Min && total < Max)
                     return true;
             }

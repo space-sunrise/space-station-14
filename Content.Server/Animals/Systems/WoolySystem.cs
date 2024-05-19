@@ -9,12 +9,12 @@ using Robust.Shared.Timing;
 namespace Content.Server.Animals.Systems;
 
 /// <summary>
-///     Gives ability to produce fiber reagents, produces endless if the 
+///     Gives ability to produce fiber reagents, produces endless if the
 ///     owner has no HungerComponent
 /// </summary>
 public sealed class WoolySystem : EntitySystem
 {
-    [Dependency] private readonly HungerSystem _hunger = default!;
+    [Dependency] private readonly SatiationSystem _satiation = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly SolutionContainerSystem _solutionContainer = default!;
@@ -43,13 +43,13 @@ public sealed class WoolySystem : EntitySystem
                 continue;
 
             // Actually there is food digestion so no problem with instant reagent generation "OnFeed"
-            if (EntityManager.TryGetComponent(uid, out HungerComponent? hunger))
+            if (EntityManager.TryGetComponent(uid, out SatiationComponent? satiation))
             {
                 // Is there enough nutrition to produce reagent?
-                if (_hunger.GetHungerThreshold(hunger) < HungerThreshold.Okay)
+                if (_satiation.GetHungerThreshold(satiation) < SatiationThreashold.Okay)
                     continue;
 
-                _hunger.ModifyHunger(uid, -wooly.HungerUsage, hunger);
+                _satiation.ModifyHunger((uid, satiation), -wooly.HungerUsage);
             }
 
             if (!_solutionContainer.ResolveSolution(uid, wooly.SolutionName, ref wooly.Solution))
