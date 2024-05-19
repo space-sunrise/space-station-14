@@ -196,6 +196,7 @@
       - WeaponCapacitorRechargerCircuitboard
       - HandheldStationMap
       - ClothingHeadHatWelding
+      - SqueezeBottle
   - type: EmagLatheRecipes
     emagStaticRecipes:
       - BoxLethalshot
