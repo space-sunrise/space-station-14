@@ -108,7 +108,7 @@
       settings: default
   - type: GhostTakeoverAvailable
   - type: TypingIndicator
-    proto: alien
+    typingIndicatorOverrideList: [alien]
   - type: Temperature
     heatDamageThreshold: 360
     coldDamageThreshold: -150

@@ -7,12 +7,6 @@ namespace Content.Shared.Chat.TypingIndicator;
 /// </summary>
 public abstract class SharedTypingIndicatorSystem : EntitySystem
 {
-    /// <summary>
-    ///     Default ID of <see cref="TypingIndicatorPrototype"/>
-    /// </summary>
-    [ValidatePrototypeId<TypingIndicatorPrototype>]
-    public const string InitialIndicatorId = "default";
-
     public override void Initialize()
     {
         base.Initialize();
@@ -24,15 +18,15 @@ public abstract class SharedTypingIndicatorSystem : EntitySystem
     {
         if (!TryComp<TypingIndicatorComponent>(args.Wearer, out var indicator))
             return;
-
-        indicator.Prototype = component.Prototype;
+        indicator.TypingIndicatorOverrideList.Insert(0, component.OverrideIndicator);
+        Dirty(uid, component);
     }
 
     private void OnGotUnequipped(EntityUid uid, TypingIndicatorClothingComponent component, ClothingGotUnequippedEvent args)
     {
         if (!TryComp<TypingIndicatorComponent>(args.Wearer, out var indicator))
             return;
-
-        indicator.Prototype = SharedTypingIndicatorSystem.InitialIndicatorId;
+        indicator.TypingIndicatorOverrideList.Remove(component.OverrideIndicator);
+        Dirty(uid, component);
     }
 }

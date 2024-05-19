@@ -24,7 +24,7 @@
     speechVerb: Moth
     allowedEmotes: ['Chitter', 'Squeak']
   - type: TypingIndicator
-    proto: moth
+    typingIndicatorOverrideList: [moth]
   - type: Butcherable
     butcheringType: Spike
     spawned:
