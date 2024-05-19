@@ -38,18 +38,6 @@
     - type: Pacified
 
 - type: trait
-  id: Paracusia
-  name: trait-paracusia-name
-  description: trait-paracusia-desc
-  components:
-    - type: Paracusia
-      minTimeBetweenIncidents: 0.1
-      maxTimeBetweenIncidents: 300
-      maxSoundDistance: 7
-      sounds:
-        collection: Paracusia
-
-- type: trait
   id: Unrevivable
   name: trait-unrevivable-name
   description: trait-unrevivable-desc
@@ -67,11 +55,24 @@
     - type: Muted
 
 - type: trait
-  id: FrontalLisp
-  name: trait-frontal-lisp-name
-  description: trait-frontal-lisp-desc
+  id: LightweightDrunk
+  name: trait-lightweight-name
+  description: trait-lightweight-desc
   components:
-    - type: FrontalLisp
+    - type: LightweightDrunk
+      boozeStrengthMultiplier: 2
+
+- type: trait
+  id: Paracusia
+  name: trait-paracusia-name
+  description: trait-paracusia-desc
+  components:
+    - type: Paracusia
+      minTimeBetweenIncidents: 0.1
+      maxTimeBetweenIncidents: 300
+      maxSoundDistance: 7
+      sounds:
+        collection: Paracusia
 
 - type: trait
   id: Snoring

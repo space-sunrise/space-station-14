@@ -7,6 +7,7 @@ using Content.Client.Lobby.UI.Loadouts;
 using Content.Client.Lobby.UI.Roles;
 using Content.Client.Message;
 using Content.Client.Players.PlayTimeTracking;
+using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
@@ -463,41 +464,65 @@ namespace Content.Client.Lobby.UI
         {
             TraitsList.DisposeAllChildren();
 
-            var traits = _prototypeManager.EnumeratePrototypes<TraitPrototype>().OrderBy(t => Loc.GetString(t.Name)).ToList();
+            var categories = _prototypeManager.EnumeratePrototypes<TraitCategoryPrototype>().OrderBy(t => Loc.GetString(t.Name)).ToList();
             TabContainer.SetTabTitle(3, Loc.GetString("humanoid-profile-editor-traits-tab"));
 
-            if (traits.Count > 0)
-            {
-                foreach (var trait in traits)
-                {
-                    var selector = new TraitPreferenceSelector(trait);
-
-                    if (Profile?.TraitPreferences.Contains(trait.ID) == true)
-                    {
-                        selector.Preference = true;
-                    }
-                    else
-                    {
-                        selector.Preference = false;
-                    }
-
-                    selector.PreferenceChanged += preference =>
-                    {
-                        Profile = Profile?.WithTraitPreference(trait.ID, preference);
-                        SetDirty();
-                    };
-
-                    TraitsList.AddChild(selector);
-                }
-            }
-            else
+            if (categories.Count < 1)
             {
                 TraitsList.AddChild(new Label
                 {
-                    // TODO: Localise
-                    Text = "No traits available :(",
+                    Text = Loc.GetString("humanoid-profile-editor-no-traits"),
                     FontColorOverride = Color.Gray,
                 });
+                return;
+            }
+
+            foreach (var category in categories)
+            {
+                // Label
+                TraitsList.AddChild(new Label
+                {
+                    Text = Loc.GetString(category.Name),
+                    Margin = new Thickness(0, 10, 0, 0),
+                    StyleClasses = { StyleBase.StyleClassLabelHeading },
+                });
+
+                List<TraitPreferenceSelector?> selectors = new();
+                var selectionCount = 0;
+
+                foreach (var traitProto in category.Traits)
+                {
+                    var trait = _prototypeManager.Index(traitProto);
+                    var selector = new TraitPreferenceSelector(trait);
+
+                    selector.Preference = Profile?.TraitPreferences.Contains(trait.ID) == true;
+                    if (selector.Preference)
+                        selectionCount += trait.Cost;
+
+                    selector.PreferenceChanged += preference =>
+                    {
+                        Profile = Profile?.WithTraitPreference(trait.ID, category.ID, preference);
+                        SetDirty();
+                        RefreshTraits(); // If too many traits are selected, they will be reset to the real value.
+                    };
+                    selectors.Add(selector);
+                }
+
+                // Selection counter
+                if (category.MaxTraitPoints >= 0)
+                {
+                    TraitsList.AddChild(new Label
+                    {
+                        Text = Loc.GetString("humanoid-profile-editor-trait-count-hint", ("current", selectionCount) ,("max", category.MaxTraitPoints)),
+                        FontColorOverride = Color.Gray
+                    });
+                }
+
+                foreach (var selector in selectors)
+                {
+                    if (selector != null)
+                        TraitsList.AddChild(selector);
+                }
             }
         }
 
