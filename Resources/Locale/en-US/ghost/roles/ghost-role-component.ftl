@@ -224,25 +224,17 @@ ghost-role-information-syndicate-monkey-reinforcement-name = Syndicate Monkey Ag
 ghost-role-information-syndicate-monkey-reinforcement-description = Someone needs reinforcements. You, a trained monkey, will help them.
 ghost-role-information-syndicate-monkey-reinforcement-rules = Normal syndicate antagonist rules apply. Work with whoever called you in, and don't harm them.
 
-ghost-role-information-lost-cargo-technical-name = Lost Cargo Technician
-ghost-role-information-lost-cargo-technical-description = Something went wrong and your cargo shuttle with the goods was beamed into the sector to another station.
-ghost-role-information-lost-cargo-technical-rules = You're a regular cargo technician from another station. Do what regular cargo do.
-
-ghost-role-information-clown-troupe-name = Space Clown
-ghost-role-information-clown-troupe-description = You and your troupe have come to cheer up this station with your best jokes. Honk!
-ghost-role-information-clown-troupe-rules = Normal station crew rules apply.
-
 ghost-role-information-traveling-chef-name = Traveling Chef
 ghost-role-information-traveling-chef-description = You are a chef on a traveling shuttle of exotic cuisine. Delight the station with delicious food!
-ghost-role-information-traveling-chef-rules = Normal station crew rules apply.
+ghost-role-information-traveling-chef-rules = You have no allegiance. Satisfiy your customers, poison them, or do anything inbetween.
 
-ghost-role-information-disaster-victim-name = Disaster Victim
-ghost-role-information-disaster-victim-description = You were rescued in an escape pod from another station that suffered a terrible fate. Perhaps you will be found and rescued.
-ghost-role-information-disaster-victim-rules = Normal station crew rules apply.
+ghost-role-information-whiteship-pilot-name = Shuttle Pilot
+ghost-role-information-whiteship-pilot-description = You are the pilot of your own shuttle. Explore space debris for materials & gear, or do whatever else you'd do with a shuttle.
+ghost-role-information-whiteship-pilot-rules = You have no allegiance. Make friends, wage war with the station, or do anything inbetween.
 
-ghost-role-information-syndie-disaster-victim-name = Syndie Disaster Victim
-ghost-role-information-syndie-disaster-victim-description = You're a regular passenger from a syndicate station. Unfortunately, an evacuation pod has thrown you into an enemy sector.....
-ghost-role-information-syndie-disaster-victim-rules = Normal station crew rules apply. You are NOT an antagonist!
+ghost-role-information-syndicate-raider-name = Syndicate Raider
+ghost-role-information-syndicate-raider-description = You're a boarding group sent by the syndicate, tasked with disrupting NanoTrasen's work.
+ghost-role-information-syndicate-raider-rules = Work with your crew to sow chaos on the station (or defect, if you wish.)
 
 ghost-role-information-syndicate-kobold-reinforcement-name = Syndicate Kobold Agent
 ghost-role-information-syndicate-kobold-reinforcement-description = Someone needs reinforcements. You, a trained kobold, will help them.
