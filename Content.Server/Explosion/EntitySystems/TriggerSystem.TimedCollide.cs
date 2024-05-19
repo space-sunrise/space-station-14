@@ -1,7 +1,5 @@
-﻿using System.Linq;
-using Content.Server.Explosion.Components;
-using Content.Server.Explosion.EntitySystems;
-using Robust.Shared.Physics.Dynamics;
+﻿using Content.Server.Explosion.Components;
+using Content.Shared.Explosion;
 using Robust.Shared.Physics.Events;
 
 namespace Content.Server.Explosion.EntitySystems;
@@ -49,7 +47,8 @@ public sealed partial class TriggerSystem
                 triggerOnTimedCollide.Colliding[collidingEntity] += frameTime;
                 if (collidingTimer > triggerOnTimedCollide.Threshold)
                 {
-                    RaiseLocalEvent(activeTrigger.Owner, new TriggerEvent(activeTrigger.Owner, collidingEntity), true);
+                    var ev = new TriggerEvent(activeTrigger.Owner, collidingEntity);
+                    RaiseLocalEvent(activeTrigger.Owner, ref ev, true);
                     triggerOnTimedCollide.Colliding[collidingEntity] -= triggerOnTimedCollide.Threshold;
                 }
             }
