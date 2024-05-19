@@ -103,6 +103,28 @@ public sealed partial class PowerMonitoringWindow
 
         // Update power value
         button.PowerValue.Text = Loc.GetString("power-monitoring-window-value", ("value", entry.PowerValue));
+
+        // Update battery level if applicable
+        if (entry.BatteryLevel != null)
+        {
+            var batteryPercentage = (int) (entry.BatteryLevel.Value * 100);
+            button.BatteryLevel.Text = Loc.GetString("power-monitoring-window-battery-level", ("percentage", batteryPercentage));
+            button.BatteryLevel.Visible = true;
+
+            // Set battery level color based on percentage
+            var color = batteryPercentage switch
+            {
+                > 75 => Color.LawnGreen,
+                > 25 => Color.Yellow,
+                _ => new(230, 50, 50, 255)
+            };
+
+            button.BatteryLevel.ModulateSelfOverride = color;
+        }
+        else
+        {
+            button.BatteryLevel.Visible = false;
+        }
     }
 
     private void UpdateEntrySourcesOrLoads(BoxContainer masterContainer, BoxContainer currentContainer, PowerMonitoringConsoleEntry[]? entries, SpriteSpecifier.Texture icon)
@@ -442,6 +464,9 @@ public sealed class PowerMonitoringButton : Button
     public BoxContainer MainContainer;
     public TextureRect TextureRect;
     public Label NameLocalized;
+
+    public Label BatteryLevel;
+
     public Label PowerValue;
 
     public PowerMonitoringButton()
@@ -477,12 +502,24 @@ public sealed class PowerMonitoringButton : Button
 
         MainContainer.AddChild(NameLocalized);
 
+        BatteryLevel = new Label()
+        {
+            HorizontalAlignment = HAlignment.Right,
+            SetWidth = 40f,
+            Margin = new Thickness(10, 0, 0, 0),
+            ClipText = true,
+            Visible = false,
+        };
+
+        MainContainer.AddChild(BatteryLevel);
+
         PowerValue = new Label()
         {
             HorizontalAlignment = HAlignment.Right,
             SetWidth = 72f,
             Margin = new Thickness(10, 0, 0, 0),
             ClipText = true,
+            
         };
 
         MainContainer.AddChild(PowerValue);
