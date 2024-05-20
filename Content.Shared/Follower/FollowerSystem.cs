@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared.Administration.Managers;
 using Content.Shared.Database;
 using Content.Shared.Follower.Components;
 using Content.Shared.Ghost;
@@ -14,6 +15,7 @@ using Robust.Shared.Map.Events;
 using Robust.Shared.Network;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Player;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Follower;
@@ -26,6 +28,7 @@ public sealed class FollowerSystem : EntitySystem
     [Dependency] private readonly SharedJointSystem _jointSystem = default!;
     [Dependency] private readonly SharedPhysicsSystem _physicsSystem = default!;
     [Dependency] private readonly INetManager _netMan = default!;
+    [Dependency] private readonly ISharedAdminManager _adminManager = default!;
 
     public override void Initialize()
     {
@@ -249,20 +252,33 @@ public sealed class FollowerSystem : EntitySystem
     }
 
     /// <summary>
-    /// Get the most followed entity.
+    /// Gets the entity with the most non-admin ghosts following it.
     /// </summary>
-    public EntityUid? GetMostFollowed()
+    public EntityUid? GetMostGhostFollowed()
     {
         EntityUid? picked = null;
-        int most = 0;
-        var query = EntityQueryEnumerator<FollowedComponent>();
-        while (query.MoveNext(out var uid, out var comp))
+        var most = 0;
+
+        // Keep a tally of how many ghosts are following each entity
+        var followedEnts = new Dictionary<EntityUid, int>();
+
+        // Look for followers that are ghosts and are player controlled
+        var query = EntityQueryEnumerator<FollowerComponent, GhostComponent, ActorComponent>();
+        while (query.MoveNext(out var uid, out var follower, out var _, out var _))
         {
-            var count = comp.Following.Count;
-            if (count > most)
+            // Exclude admins
+            if (_adminManager.IsAdmin(uid))
+                continue;
+
+            var followed = follower.Following;
+            // Add new entry or increment existing
+            followedEnts.TryGetValue(followed, out var currentValue);
+            followedEnts[followed] = currentValue + 1;
+
+            if (followedEnts[followed] > most)
             {
                 picked = uid;
-                most = count;
+                most = followedEnts[followed];
             }
         }
 
