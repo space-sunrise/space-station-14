@@ -53,7 +53,7 @@ public sealed partial class PowerMonitoringWindow : FancyWindow
         {
             NavMap.MapUid = xform.GridUid;
 
-            // Assign station name      
+            // Assign station name
             if (_entManager.TryGetComponent<MetaDataComponent>(xform.GridUid, out var stationMetaData))
                 stationName = stationMetaData.EntityName;
 
@@ -266,7 +266,7 @@ public sealed partial class PowerMonitoringWindow : FancyWindow
     {
         AutoScrollToFocus();
 
-        // Warning sign pulse        
+        // Warning sign pulse
         var lit = _gameTiming.RealTime.TotalSeconds % BlinkFrequency > BlinkFrequency / 2f;
         SystemWarningPanel.Modulate = lit ? Color.White : new Color(178, 178, 178);
     }

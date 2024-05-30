@@ -87,6 +87,47 @@
                     <Label Name="InterfaceVolumeLabel" MinSize="48 0" Align="Right" />
                     <Control MinSize="4 0"/>
                 </BoxContainer>
+                <!-- Sunrise-TTS-Start -->
+                <BoxContainer Orientation="Horizontal" Margin="5 0 0 0">
+                    <Label Text="{Loc 'ui-options-tts-volume'}" HorizontalExpand="True" />
+                    <Control MinSize="8 0" />
+                    <Slider Name="TtsVolumeSlider"
+                            MinValue="0"
+                            MaxValue="200"
+                            HorizontalExpand="True"
+                            MinSize="80 0"
+                            Rounded="True" />
+                    <Control MinSize="8 0" />
+                    <Label Name="TtsVolumeLabel" MinSize="48 0" Align="Right" />
+                    <Control MinSize="4 0"/>
+                </BoxContainer>
+                <BoxContainer Orientation="Horizontal" Margin="5 0 0 0">
+                    <Label Text="{Loc 'ui-options-tts-radio-volume'}" HorizontalExpand="True" />
+                    <Control MinSize="8 0" />
+                    <Slider Name="TtsRadioVolumeSlider"
+                            MinValue="0"
+                            MaxValue="200"
+                            HorizontalExpand="True"
+                            MinSize="80 0"
+                            Rounded="True" />
+                    <Control MinSize="8 0" />
+                    <Label Name="TtsRadioVolumeLabel" MinSize="48 0" Align="Right" />
+                    <Control MinSize="4 0"/>
+                </BoxContainer>
+                <BoxContainer Orientation="Horizontal" Margin="5 0 0 0">
+                    <Label Text="{Loc 'ui-options-tts-announce-volume'}" HorizontalExpand="True" />
+                    <Control MinSize="8 0" />
+                    <Slider Name="TtsAnnounceVolumeSlider"
+                            MinValue="0"
+                            MaxValue="200"
+                            HorizontalExpand="True"
+                            MinSize="80 0"
+                            Rounded="True" />
+                    <Control MinSize="8 0" />
+                    <Label Name="TtsAnnounceVolumeLabel" MinSize="48 0" Align="Right" />
+                    <Control MinSize="4 0"/>
+                </BoxContainer>
+                <!-- Sunrise-TTS-End -->
                 <BoxContainer Orientation="Horizontal" Margin="5 0 0 0">
                     <Label Text="{Loc 'ui-options-ambience-max-sounds'}" HorizontalExpand="True" />
                     <Control MinSize="8 0" />

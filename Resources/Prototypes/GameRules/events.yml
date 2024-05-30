@@ -7,6 +7,8 @@
     weight: 8
     startDelay: 30
     duration: 35
+    startAudio:
+      path: /Audio/Announcements/announce.ogg # Sunrise-edit
   - type: AnomalySpawnRule
 
 - type: entity
@@ -18,6 +20,8 @@
     weight: 8
     startDelay: 30
     duration: 35
+    startAudio:
+      path: /Audio/Announcements/announce.ogg # Sunrise-edit
   - type: BluespaceArtifactRule
 
 - type: entity
@@ -50,6 +54,8 @@
   components:
   - type: StationEvent
     startAnnouncement: station-event-bureaucratic-error-announcement
+    startAudio:
+      path: /Audio/Announcements/announce.ogg # Sunrise-edit
     minimumPlayers: 25
     weight: 3
     duration: 1
@@ -62,6 +68,8 @@
   components:
   - type: StationEvent
     startAnnouncement: station-event-clerical-error-announcement
+    startAudio:
+      path: /Audio/Announcements/announce.ogg # Sunrise-edit
     minimumPlayers: 15
     weight: 5
     duration: 1
@@ -138,9 +146,11 @@
   - type: StationEvent
     startAnnouncement: station-event-gas-leak-start-announcement
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/Announcements/announce.ogg # Sunrise-edit
     endAnnouncement: station-event-gas-leak-end-announcement
     weight: 8
+    endAudio:
+      path: /Audio/Announcements/announce.ogg # Sunrise-edit
     startDelay: 20
   - type: GasLeakRule
 
@@ -169,9 +179,9 @@
     startAnnouncement: station-event-meteor-swarm-start-announcement
     endAnnouncement: station-event-meteor-swarm-end-announcement
     startAudio:
-      path: /Audio/Announcements/meteors.ogg
-      params:
-        volume: -4
+      path: /Audio/Announcements/announce.ogg # Sunrise-edit
+    endAudio:
+      path: /Audio/Announcements/announce.ogg # Sunrise-edit
     duration: null #ending is handled by MeteorSwarmRule
     startDelay: 30
   - type: MeteorSwarmRule
@@ -184,7 +194,7 @@
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/Announcements/announce.ogg # Sunrise-edit
     startDelay: 10
     earliestStart: 15
     weight: 6
@@ -211,7 +221,7 @@
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/Announcements/announce.ogg # Sunrise-edit
     startDelay: 10
     weight: 6
     duration: 50
@@ -232,9 +242,7 @@
     startAnnouncement: station-event-power-grid-check-start-announcement
     endAnnouncement: station-event-power-grid-check-end-announcement
     startAudio:
-      path: /Audio/Announcements/power_off.ogg
-      params:
-       volume: -4
+      path: /Audio/Announcements/announce.ogg # Sunrise-edit
     startDelay: 24
     duration: 60
     maxDuration: 120
@@ -250,7 +258,7 @@
     duration: 1
     maxOccurrences: 1 # this event has diminishing returns on interesting-ness, so we cap it
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/Announcements/announce.ogg # Sunrise-edit
   - type: RandomSentienceRule
 
 - type: entity
@@ -263,7 +271,7 @@
     startAnnouncement: station-event-solar-flare-start-announcement
     endAnnouncement: station-event-solar-flare-end-announcement
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/Announcements/announce.ogg # Sunrise-edit
     duration: 120
     maxDuration: 240
   - type: SolarFlareRule
@@ -290,7 +298,7 @@
   - type: StationEvent
     startAnnouncement: station-event-vent-clog-start-announcement
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/Announcements/announce.ogg # Sunrise-edit
     earliestStart: 15
     minimumPlayers: 15
     weight: 5
@@ -306,7 +314,7 @@
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/Announcements/announce.ogg # Sunrise-edit
     startDelay: 10
     earliestStart: 20
     minimumPlayers: 15
@@ -329,7 +337,7 @@
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/Announcements/announce.ogg # Sunrise-edit
     startDelay: 10
     earliestStart: 20
     minimumPlayers: 15
@@ -348,7 +356,7 @@
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/Announcements/announce.ogg # Sunrise-edit
     startDelay: 10
     earliestStart: 20
     minimumPlayers: 20
@@ -367,7 +375,7 @@
   - type: StationEvent
     earliestStart: 50
     minimumPlayers: 30
-    weight: 2
+    weight: 0 # Sunrise-edit: No-no-no
     duration: 1
   - type: ZombieRule
   - type: AntagSelection
@@ -439,7 +447,7 @@
     maxOccurrences: 1 # can only happen once per round
     startAnnouncement: station-event-communication-interception
     startAudio:
-      path: /Audio/Announcements/intercept.ogg
+      path: /Audio/Announcements/announce.ogg # Sunrise-TTS
   - type: AlertLevelInterceptionRule
   - type: AntagSelection
     definitions:
@@ -476,7 +484,7 @@
   - type: StationEvent
     startAnnouncement: station-event-immovable-rod-start-announcement
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/Announcements/announce.ogg # Sunrise-TTS
     weight: 3.5
     duration: 1
     earliestStart: 30

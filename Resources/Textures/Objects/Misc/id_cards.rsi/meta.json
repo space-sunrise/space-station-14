@@ -104,6 +104,9 @@
       "name": "idlawyer"
     },
     {
+      "name": "idiaa"
+    },
+    {
       "name": "idmedicaldoctor"
     },
     {
@@ -221,7 +224,10 @@
       "name": "idseniorphysician"
     },
     {
-      "name": "idseniorofficer"
+        "name": "idseniorofficer"
+    },
+    {
+      "name": "idpilot"
     },
     {
       "name": "gold-inhand-left",

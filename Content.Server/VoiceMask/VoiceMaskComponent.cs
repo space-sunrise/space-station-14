@@ -1,5 +1,6 @@
 using Content.Shared.Speech;
 using Robust.Shared.Prototypes;
+using Content.Shared.Humanoid;
 
 namespace Content.Server.VoiceMask;
 
@@ -13,6 +14,12 @@ public sealed partial class VoiceMaskComponent : Component
     [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
     public string VoiceName = "Unknown";
+
+    // Sunrise-TTS-Start
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public string VoiceId = SharedHumanoidAppearanceSystem.DefaultVoice;
+    // Sunrise-TTS-End
 
     /// <summary>
     /// If EnableSpeechVerbModification is true, overrides the speech verb used when this entity speaks.

@@ -188,7 +188,7 @@ public sealed class AlertLevelSystem : EntitySystem
 
         if (announce)
         {
-            _chatSystem.DispatchStationAnnouncement(station, announcementFull, playDefaultSound: playDefault,
+            _chatSystem.DispatchStationAnnouncement(station, announcementFull, playSound: playDefault,
                 colorOverride: detail.Color, sender: stationName);
         }
 

@@ -1,0 +1,55 @@
+﻿- type: entity
+  name: Urist McPig
+  parent: BaseMobSpeciesOrganic
+  id: BaseMobSwine
+  abstract: true
+  components:
+  - type: HumanoidAppearance
+    species: Swine
+  - type: Hunger
+    baseDecayRate: 0.02
+  - type: Icon
+    sprite: _Sunrise/Mobs/Species/Swine/parts.rsi
+    state: full
+  - type: Speech
+    speechSounds: Swine
+    speechVerb: Swine
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      200: Dead
+  - type: Body
+    prototype: Swine
+    requiredLegs: 2
+  - type: Vocal
+    sounds:
+      Male: UnisexSwine
+      Female: UnisexSwine
+      Unsexed: UnisexSwine
+  - type: SwineAccent
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Swine
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      50: 0.8
+      75: 0.9
+  - type: Butcherable
+    butcheringType: Spike # TODO human.
+    spawned:
+    - id: FoodMeat
+      amount: 10
+  - type: Stamina
+    critThreshold: 200
+
+- type: entity
+  save: false
+  name: Urist McHands
+  parent: MobHumanDummy
+  id: MobSwineDummy
+  noSpawn: true
+  description: A dummy swine meant to be used in character setup.
+  components:
+  - type: HumanoidAppearance
+    species: Swine

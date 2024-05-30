@@ -199,6 +199,37 @@ public sealed partial class MarkingSet
         }
     }
 
+    // Sunrise-Sponsors-Start
+    public void FilterSponsor(string[] sponsorMarkings, MarkingManager? markingManager = null, IPrototypeManager? prototypeManager = null)
+    {
+        IoCManager.Resolve(ref markingManager);
+        IoCManager.Resolve(ref prototypeManager);
+
+        var toRemove = new List<(MarkingCategories category, string id)>();
+        foreach (var (category, list) in Markings)
+        {
+            foreach (var marking in list)
+            {
+                if (prototypeManager.TryIndex<MarkingPrototype>(marking.MarkingId, out var proto) && !proto.SponsorOnly)
+                {
+                    return;
+                }
+
+                var allowedToHave = sponsorMarkings.Contains(marking.MarkingId);
+                if (!allowedToHave)
+                {
+                    toRemove.Add((category, marking.MarkingId));
+                }
+            }
+        }
+
+        foreach (var marking in toRemove)
+        {
+            Remove(marking.category, marking.id);
+        }
+    }
+    // Sunrise-Sponsors-End
+
     /// <summary>
     ///     Filters markings based on sex and it's restrictions in the marking's prototype from this marking set.
     /// </summary>

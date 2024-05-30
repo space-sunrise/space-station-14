@@ -22,6 +22,8 @@
     FacialHair: MobHumanoidAnyMarking
     Snout: MobHumanoidAnyMarking
     Chest: MobHumanTorso
+    HeadTop: MobHumanoidAnyMarking # Sunrise-Sponsors
+    Tail: MobHumanoidAnyMarking # Sunrise-Sponsors
     Eyes: MobHumanoidEyes
     LArm: MobHumanLArm
     RArm: MobHumanRArm
@@ -44,11 +46,11 @@
     Snout:
       points: 1
       required: false
-    Tail: # the cat tail joke
-      points: 0
+    Tail:
+      points: 1 # Sunrise-Sponsors
       required: false
-    HeadTop: # the cat ear joke
-      points: 0
+    HeadTop:
+      points: 1 # Sunrise-Sponsors
       required: false
     Chest:
       points: 1

@@ -363,6 +363,11 @@ public sealed partial class StationJobsSystem
                 if (!(roleBans == null || !roleBans.Contains(jobId)))
                     continue;
 
+                // Sunrise-Start
+                if (job.SpeciesBlacklist.Contains(profile.Species))
+                    continue;
+                // Sunrise-End
+
                 availableJobs ??= new List<string>(profile.JobPriorities.Count);
                 availableJobs.Add(jobId);
             }

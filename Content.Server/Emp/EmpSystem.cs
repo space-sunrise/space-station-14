@@ -21,6 +21,7 @@ public sealed class EmpSystem : SharedEmpSystem
         base.Initialize();
         SubscribeLocalEvent<EmpDisabledComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<EmpOnTriggerComponent, TriggerEvent>(HandleEmpTrigger);
+        SubscribeLocalEvent<EmpImmuneComponent, EmpAttemptEvent>(OnEmpAttempt); // Sunrise-Edit
 
         SubscribeLocalEvent<EmpDisabledComponent, RadioSendAttemptEvent>(OnRadioSendAttempt);
         SubscribeLocalEvent<EmpDisabledComponent, RadioReceiveAttemptEvent>(OnRadioReceiveAttempt);
@@ -127,6 +128,13 @@ public sealed class EmpSystem : SharedEmpSystem
     {
         args.Cancelled = true;
     }
+
+    // Sunrise-Start
+    private void OnEmpAttempt(EntityUid uid, EmpImmuneComponent comp, EmpAttemptEvent args)
+    {
+        args.Cancel();
+    }
+    // Sunrise-Edit
 }
 
 /// <summary>

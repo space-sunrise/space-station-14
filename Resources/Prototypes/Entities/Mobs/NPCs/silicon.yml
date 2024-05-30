@@ -107,6 +107,8 @@
     proto: robot
   - type: ZombieImmune
   - type: StepTriggerImmune
+  - type: TTS
+    voice: FactCore # Sunrise-TTS
 
 - type: entity
   parent: MobSiliconBase

@@ -1,6 +1,7 @@
 using Content.Server.Administration.Logs;
 using Content.Shared.Damage;
 using Content.Shared.Database;
+using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Repairable;
@@ -48,6 +49,21 @@ namespace Content.Server.Repairable
             _popup.PopupEntity(str, uid, args.User);
         }
 
+        // Sunrise-start
+        private bool CanRepair(Dictionary<string, FixedPoint2> damage, Dictionary<string, FixedPoint2> repairable)
+        {
+            foreach (var type in repairable)
+            {
+                if (damage[type.Key].Value > 0)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        // Sunrise-end
+
         public async void Repair(EntityUid uid, RepairableComponent component, InteractUsingEvent args)
         {
             if (args.Handled)
@@ -56,6 +72,11 @@ namespace Content.Server.Repairable
             // Only try repair the target if it is damaged
             if (!TryComp<DamageableComponent>(uid, out var damageable) || damageable.TotalDamage == 0)
                 return;
+
+            // Sunrise-start
+            if (component.Damage != null && !CanRepair(damageable.Damage.DamageDict, component.Damage.DamageDict))
+                return;
+            // Sunrise-end
 
             float delay = component.DoAfterDelay;
 

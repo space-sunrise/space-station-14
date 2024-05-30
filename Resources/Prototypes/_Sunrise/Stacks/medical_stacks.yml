@@ -1,0 +1,7 @@
+- type: stack
+  id: Nanopaste
+  name: нанопаста
+  icon: { sprite: "/Textures/_Sunrise/nanopaste.rsi", state: icon }
+  spawn: Nanopaste
+  maxCount: 10
+  itemSize: 1

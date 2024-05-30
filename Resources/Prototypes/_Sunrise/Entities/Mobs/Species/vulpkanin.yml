@@ -1,0 +1,30 @@
+- type: entity
+  save: false
+  name: Urist McFox
+  parent: BaseMobHuman
+  id: BaseMobVulpkanin
+  abstract: true
+  components:
+  - type: HumanoidAppearance
+    species: Vulpkanin
+  - type: Icon
+    sprite: _Sunrise/Mobs/Species/Vulpkanin/parts.rsi
+    state: full
+  - type: Body
+    prototype: Vulpkanin
+    requiredLegs: 2
+  - type: Inventory
+    speciesId: reptilian
+  - type: VulpaAccent
+
+
+- type: entity
+  save: false
+  name: Urist McHands
+  parent: MobHumanDummy
+  id: MobVulpkaninDummy
+  noSpawn: true
+  description: A dummy fox meant to be used in character setup.
+  components:
+  - type: HumanoidAppearance
+    species: Vulpkanin

@@ -25,6 +25,8 @@
   - type: Tag
     tags:
       - Structure
+  - type: TTS
+    voice: FactCore # Sunrise-TTS
 
 - type: entity
   # This means that it's not anchored on spawn.

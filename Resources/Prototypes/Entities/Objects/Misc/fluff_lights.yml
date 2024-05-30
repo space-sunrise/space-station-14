@@ -80,6 +80,7 @@
           festive: { state: christmaslamp }
         light:
           festive: { state: christmaslamp-on }
+  - type: Rotatable
 
 - type: entity
   name: banana lamp
@@ -94,6 +95,7 @@
         shader: unshaded
         visible: false
         map: [ "light" ]
+  - type: Rotatable
 
 - type: entity
   name: desk lamp
@@ -127,6 +129,7 @@
           festive:
             sprite: Objects/Misc/Lights/lamp.rsi
             state: christmaslamp-on
+  - type: Rotatable
 
 - type: entity
   name: interrogator lamp

@@ -1,0 +1,113 @@
+# vocal emotes
+- type: emote
+  id: Mews
+  name: chat-emote-name-mews
+  category: Vocal
+  chatMessages: [мя!]
+  chatTriggers:
+    - mew
+    - mew.
+    - mew!
+    - mews
+    - mews.
+    - mews!
+    - мя
+    - мя.
+    - мя!
+
+- type: emote
+  id: Meows
+  name: chat-emote-name-meows
+  category: Vocal
+  chatMessages: [мяу!]
+  chatTriggers:
+    - Meows
+    - Meows.
+    - Meows!
+    - Meow
+    - Meow.
+    - Meow!
+    - мяу
+    - мяу.
+    - мяу!
+    - мяукает
+    - мяукает.
+    - мяукает!
+
+- type: emote
+  id: Hisses
+  name: chat-emote-name-hisses
+  category: Vocal
+  chatMessages: [шипит!]
+  chatTriggers:
+  - шипит
+  - шипит.
+  - шипит!
+  - hiss
+  - hiss.
+  - hiss!
+  - hissing
+  - hissing.
+  - hissing!
+
+- type: emote
+  id: Purrs
+  name: chat-emote-name-purrs
+  category: Vocal
+  chatMessages: [мурчит!]
+  chatTriggers:
+    - мурчит
+    - мурчит.
+    - мурчит!
+    - Purrs
+    - Purrs.
+    - Purrs!
+
+- type: emote
+  id: Growls
+  name: chat-emote-name-growls
+  category: Vocal
+  chatMessages: [рычит!]
+  chatTriggers:
+  - рычит
+  - рычит.
+  - рычит!
+  - Growls
+  - Growls.
+  - Growls!
+
+- type: emote
+  id: Bark
+  name: chat-emote-name-bark
+  category: Vocal
+  chatMessages: [barks.]
+  chatTriggers:
+  - bark.
+  - bark!
+  - barks.
+  - barks!
+  - barked.
+  - barked!
+  - barking.
+
+- type: emote
+  id: Howl
+  name: chat-emote-name-howl
+  category: Vocal
+  chatMessages: [howls.]
+  chatTriggers:
+  - howl.
+  - howl!
+  - howls.
+  - howls!
+  - howling.
+  - howled.
+
+- type: emote
+  id: Oink
+  name: chat-emote-name-oink
+  category: Vocal
+  chatMessages: [хрю!]
+  chatTriggers:
+  - хрю
+  - хряк.

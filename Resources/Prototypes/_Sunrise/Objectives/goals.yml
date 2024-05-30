@@ -1,0 +1,48 @@
+- type: stationGoal
+  id: StationGoalShuttle
+  text: station-goal-shuttle
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: StationGoalSingularity
+  text: station-goal-singularity
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: StationGoalSolarPanels
+  text: station-goal-solar-panels
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: StationGoalArtifacts
+  text: station-goal-artifacts
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: StationGoalBank
+  text: station-goal-bank
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: StationGoalZoo
+  text: station-goal-zoo
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: StationGoalMiningOutpost
+  text: station-goal-mining-outpost
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: StationGoalVirusZombie
+  text: station-goal-virus
+  lockBoxPrototypeId: LockboxCaptain
+  extraItems:
+    - SyringeRomerolNT
+    - SyringeRomerolNT
+    - SyringeRomerolNT
+
+- type: stationGoal
+  id: StationGoalTesla
+  text: station-goal-tesla
+  lockBoxPrototypeId: LockboxCaptain

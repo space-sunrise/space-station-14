@@ -6,7 +6,7 @@
   requirements:
   - !type:DepartmentTimeRequirement
     department: Security
-    time: 54000 # 15 hours
+    time: 36000 #10 hrs # Sunrise-RoleTime
   startingGear: DetectiveGear
   icon: "JobIconDetective"
   supervisors: job-supervisors-hos
@@ -20,6 +20,8 @@
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
+  speciesBlacklist:
+  - Vox
 
 - type: startingGear
   id: DetectiveGear

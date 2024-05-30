@@ -243,7 +243,7 @@
   - type: Stamp
     stampedName: stamp-component-stamped-name-approved
     stampedColor: "#00be00"
-    stampState: "paper_stamp-ok"
+    stampState: "paper_stamp-approve"
   - type: Sprite
     state: stamp-ok
 

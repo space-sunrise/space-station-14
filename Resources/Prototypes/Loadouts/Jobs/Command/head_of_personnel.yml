@@ -6,7 +6,7 @@
     requirement:
       !type:RoleTimeRequirement
       role: JobHeadOfPersonnel
-      time: 54000 #15 hrs, special reward for HoP mains
+      time: 36000 #10 hrs Sunrise-RoleTime
 
 # Jumpsuit
 - type: loadout

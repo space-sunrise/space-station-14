@@ -1,3 +1,4 @@
+using Content.Shared._Sunrise.TTS;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
 using Robust.Shared.Enums;
@@ -88,6 +89,11 @@ public sealed partial class HumanoidAppearanceComponent : Component
     /// </summary>
     [DataField]
     public HashSet<HumanoidVisualLayers> HideLayersOnEquip = [HumanoidVisualLayers.Hair];
+
+    // Sunrise-TTS-Start
+    [DataField("voice")]
+    public ProtoId<TTSVoicePrototype> Voice { get; set; } = SharedHumanoidAppearanceSystem.DefaultVoice;
+    // Sunrise-TTS-End
 }
 
 [DataDefinition]

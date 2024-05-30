@@ -1,0 +1,175 @@
+- type: emoteSounds
+  id: MaleFelinid
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: FelinidScreams
+    Laugh:
+      collection: MaleLaugh
+    Sneeze:
+      collection: MaleSneezes
+    Cough:
+      collection: MaleCoughs
+    Crying:
+      collection: MaleCry
+    Whistle:
+      collection: Whistles
+    Mews:
+      collection: FelinidMews
+    Meows:
+      collection: FelinidMeows
+    Hisses:
+      collection: FelinidHisses
+    Purrs:
+      collection: FelinidPurrs
+    Growls:
+      collection: FelinidGrowls
+
+- type: emoteSounds
+  id: FemaleFelinid
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: FelinidScreams
+    Laugh:
+      collection: FemaleLaugh
+    Sneeze:
+      collection: FemaleSneezes
+    Cough:
+      collection: FemaleCoughs
+    Crying:
+      collection: FemaleCry
+    Whistle:
+      collection: Whistles
+    Mews:
+      collection: FelinidMews
+    Meows:
+      collection: FelinidMeows
+    Hisses:
+      collection: FelinidHisses
+    Purrs:
+      collection: FelinidPurrs
+    Growls:
+      collection: FelinidGrowls
+
+- type: emoteSounds
+  id: UnisexSynth
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: SynthScreams
+    Laugh:
+      collection: MaleLaugh
+    Sneeze:
+      collection: MaleSneezes
+    Cough:
+      collection: MaleCoughs
+    CatMeow:
+      collection: CatMeows
+    CatHisses:
+      collection: CatHisses
+    MonkeyScreeches:
+      collection: MonkeyScreeches
+    RobotBeep:
+      collection: RobotBeeps
+    Yawn:
+      collection: MaleYawn
+    Snore:
+      collection: Snores
+    Honk:
+      collection: BikeHorn
+    Sigh:
+      collection: MaleSigh
+    Crying:
+      collection: MaleCry
+    Whistle:
+      collection: Whistles
+
+- type: emoteSounds
+  id: MaleVulpkanin
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: VulpkaninScreams
+    Laugh:
+      collection: MaleLaugh
+    Sneeze:
+      collection: MaleSneezes
+    Cough:
+      collection: MaleCoughs
+    Crying:
+      collection: MaleCry
+    Whistle:
+      collection: Whistles
+    Sigh:
+      collection: MaleSigh
+    Growls:
+      collection: VulpkaninGrowls
+    Howl:
+      collection: VulpkaninHowl
+    Bark:
+      collection: VulpkaninBark
+
+- type: emoteSounds
+  id: FemaleVulpkanin
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: VulpkaninScreams
+    Laugh:
+      collection: FemaleLaugh
+    Sneeze:
+      collection: FemaleSneezes
+    Cough:
+      collection: FemaleCoughs
+    Crying:
+      collection: FemaleCry
+    Whistle:
+      collection: Whistles
+    Sigh:
+      collection: FemaleSigh
+    Growls:
+      collection: VulpkaninGrowls
+    Howl:
+      collection: VulpkaninHowl
+    Bark:
+      collection: VulpkaninBark
+
+- type: emoteSounds
+  id: UnisexSwine
+  sounds:
+    Scream:
+      collection: SwineScreams
+    Laugh:
+      collection: MaleLaugh
+    Sneeze:
+      collection: MaleSneezes
+    Cough:
+      collection: MaleCoughs
+    CatMeow:
+      collection: CatMeows
+    CatHisses:
+      collection: CatHisses
+    MonkeyScreeches:
+      collection: MonkeyScreeches
+    RobotBeep:
+      collection: RobotBeeps
+    Yawn:
+      collection: MaleYawn
+    Snore:
+      collection: Snores
+    Sigh:
+      collection: MaleSigh
+    Honk:
+      collection: BikeHorn
+    Crying:
+      collection: MaleCry
+    Whistle:
+      collection: Whistles
+  params:
+    variation: 0.125

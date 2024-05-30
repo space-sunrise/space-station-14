@@ -1,4 +1,5 @@
 ﻿using Content.Client.Changelog;
+using Content.Client.Credits;
 using Content.Client.UserInterface.Systems.EscapeMenu;
 using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Shared.CCVar;
@@ -34,6 +35,12 @@ namespace Content.Client.Info
             AddInfoButton("server-info-website-button", CCVars.InfoLinksWebsite);
             AddInfoButton("server-info-wiki-button", CCVars.InfoLinksWiki);
             AddInfoButton("server-info-forum-button", CCVars.InfoLinksForum);
+
+            // Sunrise-Start
+            var creditsButton = new Button {Text = Loc.GetString("server-info-credits-button")};
+            creditsButton.OnPressed += args => new CreditsWindow().Open();
+            buttons.AddChild(creditsButton);
+            // Sunrise-End
 
             var guidebookController = UserInterfaceManager.GetUIController<GuidebookUIController>();
             var guidebookButton = new Button() { Text = Loc.GetString("server-info-guidebook-button") };

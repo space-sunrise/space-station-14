@@ -99,8 +99,8 @@
   noSpawn: true
   components:
   - type: InstantAction
-    icon: { sprite: Structures/Machines/parts.rsi, state: box_0 }
-    iconOn: Structures/Machines/parts.rsi/box_2.png
+    icon: _Sunrise/Interface/AdminActions/solar.png
+    iconOn: _Sunrise/Interface/AdminActions/solar.png
     keywords: [ "AI", "console", "interface" ]
     priority: -10
     event: !type:ToggleIntrinsicUIEvent { key: enum.SolarControlConsoleUiKey.Key }
@@ -112,8 +112,8 @@
   noSpawn: true
   components:
   - type: InstantAction
-    icon: { sprite: Structures/Machines/parts.rsi, state: box_0 }
-    iconOn: Structures/Machines/parts.rsi/box_2.png
+    icon: _Sunrise/Interface/AdminActions/communications.png
+    iconOn: _Sunrise/Interface/AdminActions/communications.png
     keywords: [ "AI", "console", "interface" ]
     priority: -10
     event: !type:ToggleIntrinsicUIEvent { key: enum.CommunicationsConsoleUiKey.Key }
@@ -125,8 +125,8 @@
   noSpawn: true
   components:
   - type: InstantAction
-    icon: { sprite: Structures/Machines/parts.rsi, state: box_0 }
-    iconOn: Structures/Machines/parts.rsi/box_2.png
+    icon: _Sunrise/Interface/AdminActions/radar.png
+    iconOn: _Sunrise/Interface/AdminActions/radar.png
     keywords: [ "AI", "console", "interface" ]
     priority: -10
     event: !type:ToggleIntrinsicUIEvent { key: enum.RadarConsoleUiKey.Key }
@@ -138,8 +138,8 @@
   noSpawn: true
   components:
   - type: InstantAction
-    icon: { sprite: Structures/Machines/parts.rsi, state: box_0 }
-    iconOn: Structures/Machines/parts.rsi/box_2.png
+    icon: _Sunrise/Interface/AdminActions/cargo.png
+    iconOn: _Sunrise/Interface/AdminActions/cargo.png
     keywords: [ "AI", "console", "interface" ]
     priority: -10
     event: !type:ToggleIntrinsicUIEvent { key: enum.CargoConsoleUiKey.Orders }
@@ -151,8 +151,8 @@
   noSpawn: true
   components:
   - type: InstantAction
-    icon: { sprite: Structures/Machines/parts.rsi, state: box_0 }
-    iconOn: Structures/Machines/parts.rsi/box_2.png
+    icon: _Sunrise/Interface/AdminActions/monitoring.png
+    iconOn: _Sunrise/Interface/AdminActions/monitoring.png
     keywords: [ "AI", "console", "interface" ]
     priority: -10
     event: !type:ToggleIntrinsicUIEvent { key: enum.CrewMonitoringUIKey.Key }
@@ -164,8 +164,8 @@
   noSpawn: true
   components:
   - type: InstantAction
-    icon: { sprite: Structures/Machines/parts.rsi, state: box_0 }
-    iconOn: Structures/Machines/parts.rsi/box_2.png
+    icon: _Sunrise/Interface/AdminActions/records.png
+    iconOn: _Sunrise/Interface/AdminActions/records.png
     keywords: [ "AI", "console", "interface" ]
     priority: -10
     event: !type:ToggleIntrinsicUIEvent { key: enum.GeneralStationRecordConsoleKey.Key }

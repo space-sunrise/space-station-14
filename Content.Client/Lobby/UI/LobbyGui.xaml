@@ -8,10 +8,18 @@
     xmlns:style="clr-namespace:Content.Client.Stylesheets"
     xmlns:lobbyUi="clr-namespace:Content.Client.Lobby.UI"
     xmlns:info="clr-namespace:Content.Client.Info"
-    xmlns:widgets="clr-namespace:Content.Client.UserInterface.Systems.Chat.Widgets">
+    xmlns:widgets="clr-namespace:Content.Client.UserInterface.Systems.Chat.Widgets"
+    xmlns:changelog="clr-namespace:Content.Client.Changelog">
+    <!-- Sunrise-start -->
     <!-- Background -->
-    <TextureRect Access="Public" VerticalExpand="True" HorizontalExpand="True" Name="Background"
-                 Stretch="KeepAspectCovered" />
+    <!--<TextureRect Access="Public" VerticalExpand="True" HorizontalExpand="True" Name="Background"
+                 Stretch="KeepAspectCovered" /> -->
+    <BoxContainer Name="LogoContainer" VerticalExpand="True" HorizontalExpand="True" VerticalAlignment="Center"
+                  HorizontalAlignment="Center" Align="Center">
+        <AnimatedTextureRect Name="LobbyImage" VerticalAlignment="Center" HorizontalAlignment="Center" Access="Public">
+        </AnimatedTextureRect>
+    </BoxContainer>
+    <!-- Sunrise-end -->
     <BoxContainer Name="MainContainer" VerticalExpand="True" HorizontalExpand="True" Orientation="Horizontal"
                   Margin="10 10 10 10" SeparationOverride="2">
         <SplitContainer State="Auto" HorizontalExpand="True">
@@ -50,11 +58,26 @@
                     <!-- Vertical Padding-->
                     <Control VerticalExpand="True" />
                     <!-- Left Bot Panel -->
-                    <BoxContainer Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Bottom">
-                        <info:DevInfoBanner Name="DevInfoBanner" VerticalExpand="false" Margin="3 3 3 3" />
-                        <PanelContainer StyleClasses="AngleRect">
+                    <!-- Sunrise-start -->
+                    <BoxContainer Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Bottom" MaxWidth="620">
+                        <PanelContainer StyleClasses="AngleRect" HorizontalAlignment="Left" Name="LocalChangelog" VerticalAlignment="Top" Margin="0 10">
+                            <BoxContainer Orientation="Vertical" SetSize="550 300" VerticalExpand="True">
+                                <controls:StripeBack>
+                                    <BoxContainer Orientation="Horizontal">
+                                        <Label HorizontalExpand="True" Text="{Loc 'changelog-sunrise-window-title'}" VAlign="Center"
+                                               StyleClasses="LabelHeading" Align="Center"/>
+                                    </BoxContainer>
+                                </controls:StripeBack>
+
+                                <ScrollContainer VerticalExpand="True" HScrollEnabled="False" MinHeight="50">
+                                    <changelog:ChangelogTab Name="LocalChangelogBody" Access="Public" />
+                                </ScrollContainer>
+                            </BoxContainer>
+                        </PanelContainer>
+                        <PanelContainer Name="LobbySongPanel" StyleClasses="AngleRect" >
                             <RichTextLabel Name="LobbySong" Access="Public" HorizontalAlignment="Center" />
                         </PanelContainer>
+                        <!-- Sunrise-end -->
                     </BoxContainer>
                 </Control>
                 <!-- Character setup state -->
@@ -68,10 +91,12 @@
                     <!-- Top row -->
                     <BoxContainer Orientation="Horizontal" MinSize="0 40" Name="HeaderContainer" Access="Public"
                                   SeparationOverride="4">
-                        <Label Margin="8 0 0 0" StyleClasses="LabelHeadingBigger" VAlign="Center"
-                               Text="{Loc 'ui-lobby-title'}" />
+                        <!-- Sunrise-start -->
+                        <!-- <Label Margin="8 0 0 0" StyleClasses="LabelHeadingBigger" VAlign="Center"
+                               Text="{Loc 'ui-lobby-title'}" /> -->
                         <Label Name="ServerName" Access="Public" StyleClasses="LabelHeadingBigger" VAlign="Center"
-                               HorizontalExpand="True" HorizontalAlignment="Center" />
+                               HorizontalExpand="True" HorizontalAlignment="Center" Text="Добро пожаловать в ЫЫ14" />
+                        <!-- Sunrise-end -->
                     </BoxContainer>
                     <!-- Gold line -->
                     <controls:HLine Color="{x:Static style:StyleNano.NanoGold}" Thickness="2" />

@@ -6,20 +6,16 @@
   requirements:
     - !type:RoleTimeRequirement
       role: JobAtmosphericTechnician
-      time: 21600 #6 hrs
-    - !type:RoleTimeRequirement
-      role: JobStationEngineer
-      time: 21600 #6 hrs
+      time: 18000 #5 hrs # Sunrise-RoleTime
     - !type:DepartmentTimeRequirement
       department: Engineering
-      time: 36000 #10 hrs
-    - !type:OverallPlaytimeRequirement
-      time: 144000 #40 hrs
+      time: 36000 #10 hrs # Sunrise-RoleTime
   weight: 10
   startingGear: ChiefEngineerGear
   icon: "JobIconChiefEngineer"
   requireAdminNotify: true
   supervisors: job-supervisors-captain
+  radioBold: true
   canBeAntag: false
   access:
   - Maintenance
@@ -36,6 +32,8 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
+  speciesBlacklist:
+  - Vox
 
 - type: startingGear
   id: ChiefEngineerGear
