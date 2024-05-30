@@ -29,7 +29,7 @@ public sealed class TipsSystem : EntitySystem
     [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly IConsoleHost _conHost = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IWatchdogApi _watchdog = default!;
+    [Dependency] private readonly IWatchdogApi _watchdog = default!; // Sunrise-Edit
 
     private bool _tipsEnabled;
     private float _tipTimeOutOfRound;
@@ -55,14 +55,16 @@ public sealed class TipsSystem : EntitySystem
         _conHost.RegisterCommand("tippy", Loc.GetString("cmd-tippy-desc"), Loc.GetString("cmd-tippy-help"), SendTippy, SendTippyHelper);
         _conHost.RegisterCommand("tip", Loc.GetString("cmd-tip-desc"), "tip", SendTip);
 
-        _watchdog.UpdateReceived += WatchdogOnUpdateReceived;
+        _watchdog.UpdateReceived += WatchdogOnUpdateReceived; // Sunrise-Edit
     }
 
+    // Sunrise-Start
     private void WatchdogOnUpdateReceived()
     {
         var message = Loc.GetString("server-updates-received");
         SendTippyForAll(message, 5f);
     }
+    // Sunrise-End
 
     private CompletionResult SendTippyHelper(IConsoleShell shell, string[] args)
     {
