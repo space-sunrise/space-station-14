@@ -1,0 +1,12 @@
+- type: entity
+  id: SynthChangeScreen
+  name: Сменить дисплей
+  description: Позволяет вам изменить изображение на вашем мониторе.
+  noSpawn: true
+  components:
+  - type: InstantAction
+    icon:
+      sprite: _Sunrise/Actions/synth_actions.rsi
+      state: screen_change
+    itemIconStyle: NoItem
+    event: !type:SynthChangeScreenActionEvent

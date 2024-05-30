@@ -1,0 +1,10 @@
+- type: entity
+  id: OrganSwineStomach
+  parent: OrganAnimalStomach
+  noSpawn: true
+  components:
+    - type: SolutionContainerManager
+      solutions:
+        stomach:
+          maxVol: 200
+    - type: Stomach

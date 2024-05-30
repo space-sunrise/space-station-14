@@ -11,6 +11,11 @@
   - type: RandomSpawner
     offset: 0
     prototypes:
+      - PottedPlantAlt0
+      - PottedPlantAlt1
+      - PottedPlantAlt2
+      - PottedPlantAlt3
+      - PottedPlantAlt4
       - PottedPlant0
       - PottedPlant1
       - PottedPlant2

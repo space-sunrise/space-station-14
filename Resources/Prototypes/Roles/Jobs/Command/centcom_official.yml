@@ -6,12 +6,15 @@
   setPreference: false
   startingGear: CentcomGear
   icon: "JobIconNanotrasen"
-  supervisors: job-supervisors-hos
+  supervisors: job-supervisors-centcom
+  radioBold: true
   canBeAntag: false
   accessGroups:
   - AllAccess
   access:
   - CentralCommand
+  speciesBlacklist:
+  - Vox
 
 - type: startingGear
   id: CentcomGear

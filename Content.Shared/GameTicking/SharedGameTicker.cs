@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Shared.Roles;
 using Robust.Shared.Network;
 using Robust.Shared.Replays;
@@ -78,17 +79,23 @@ namespace Content.Shared.GameTicking
     public sealed class TickerLobbyStatusEvent : EntityEventArgs
     {
         public bool IsRoundStarted { get; }
-        public string? LobbyBackground { get; }
+        // Sunrise-Start
+        public string? LobbyParalax { get; }
+        public LobbyImage? LobbyImage { get; }
+        // Sunrise-End
         public bool YouAreReady { get; }
         // UTC.
         public TimeSpan StartTime { get; }
         public TimeSpan RoundStartTimeSpan { get; }
         public bool Paused { get; }
 
-        public TickerLobbyStatusEvent(bool isRoundStarted, string? lobbyBackground, bool youAreReady, TimeSpan startTime, TimeSpan preloadTime, TimeSpan roundStartTimeSpan, bool paused)
+        public TickerLobbyStatusEvent(bool isRoundStarted, string? lobbyParalax, LobbyImage? lobbyImage, bool youAreReady, TimeSpan startTime, TimeSpan preloadTime, TimeSpan roundStartTimeSpan, bool paused)
         {
             IsRoundStarted = isRoundStarted;
-            LobbyBackground = lobbyBackground;
+            // Sunrise-Start
+            LobbyParalax = lobbyParalax;
+            LobbyImage = lobbyImage;
+            // Sunrise-End
             YouAreReady = youAreReady;
             StartTime = startTime;
             RoundStartTimeSpan = roundStartTimeSpan;
@@ -215,4 +222,16 @@ namespace Content.Shared.GameTicking
         ReadyToPlay,
         JoinedGame,
     }
+
+    // Sunrise-Start
+    [Serializable, NetSerializable]
+    [DataDefinition]
+    public partial record LobbyImage
+    {
+        public string Path;
+        public string State;
+        public Vector2 Scale;
+    }
+    // Sunrise-End
+
 }

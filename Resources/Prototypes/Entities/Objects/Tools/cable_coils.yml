@@ -196,6 +196,16 @@
           Quantity: 3
         - ReagentId: Copper
           Quantity: 2
+  - type: Healing
+    delay: 1
+    damageContainers:
+    - Synth
+    - Silicon
+    damage:
+      types:
+        Heat: -5
+        Shock: -5
+        Caustic: -5
 
 - type: entity
   parent: CableApcStack

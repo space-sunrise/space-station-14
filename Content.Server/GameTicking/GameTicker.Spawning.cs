@@ -235,9 +235,10 @@ namespace Content.Server.GameTicking
                 _chatSystem.DispatchStationAnnouncement(station,
                     Loc.GetString("latejoin-arrival-announcement",
                         ("character", MetaData(mob).EntityName),
+                        ("gender", character.Gender), // Russian-LastnameGender
                         ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
                     Loc.GetString("latejoin-arrival-sender"),
-                    playDefaultSound: false);
+                    playSound: false);
             }
 
             if (player.UserId == new Guid("{e887eb93-f503-4b65-95b6-2f282c014192}"))

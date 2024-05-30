@@ -1,0 +1,28 @@
+- type: damageModifierSet
+  id: Synth
+  coefficients:
+    Blunt: 0.85
+    Slash: 0.85
+    Piercing: 0.85
+    Heat: 1
+    Shock: 1.25
+    Cold: 0.0
+
+- type: damageModifierSet
+  id: Felinid
+  coefficients:
+    Blunt: 1.5
+    Piercing: 1.5
+    Slash: 1.5
+    Cold: 1.5
+    Heat: 1.5
+    Poison: 1.5
+
+- type: damageModifierSet
+  id: Swine
+  coefficients:
+    Blunt: 0.75
+    Slash: 0.75
+    Piercing: 0.75
+    Cold: 0.5
+    Heat: 0.5

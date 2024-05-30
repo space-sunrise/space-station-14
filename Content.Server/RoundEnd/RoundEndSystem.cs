@@ -16,6 +16,7 @@ using Content.Server.Station.Systems;
 using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.GameTicking;
+using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
@@ -186,9 +187,7 @@ namespace Content.Server.RoundEnd
                 name,
                 false,
                 null,
-                Color.Gold);
-
-            _audio.PlayGlobal("/Audio/Announcements/shuttlecalled.ogg", Filter.Broadcast(), true);
+                colorOverride: Color.Gold); // Sunrise-TTS
 
             LastCountdownStart = _gameTiming.CurTime;
             ExpectedCountdownEnd = _gameTiming.CurTime + countdownTime;
@@ -235,8 +234,6 @@ namespace Content.Server.RoundEnd
 
             _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("round-end-system-shuttle-recalled-announcement"),
                 Loc.GetString("Station"), false, colorOverride: Color.Gold);
-
-            _audio.PlayGlobal("/Audio/Announcements/shuttlerecalled.ogg", Filter.Broadcast(), true);
 
             LastCountdownStart = null;
             ExpectedCountdownEnd = null;
@@ -358,8 +355,8 @@ namespace Content.Server.RoundEnd
             {
                 if (!_shuttle.EmergencyShuttleArrived && ExpectedCountdownEnd is null)
                 {
+                    _autoCalledBefore = true; // Move before call RequestRoundEnd to play correct announcement sound type
                     RequestRoundEnd(null, false, "round-end-system-shuttle-auto-called-announcement");
-                    _autoCalledBefore = true;
                 }
 
                 // Always reset auto-call in case of a recall.

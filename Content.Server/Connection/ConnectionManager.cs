@@ -1,6 +1,5 @@
 using System.Collections.Immutable;
 using System.Runtime.InteropServices;
-using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using Content.Server.Database;
 using Content.Server.GameTicking;
@@ -8,6 +7,8 @@ using Content.Server.Preferences.Managers;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Players.PlayTimeTracking;
+using Content.Sunrise.Interfaces.Server;
+using Content.Sunrise.Interfaces.Shared;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
@@ -19,6 +20,7 @@ namespace Content.Server.Connection
     public interface IConnectionManager
     {
         void Initialize();
+        Task<bool> HavePrivilegedJoin(NetUserId userId); // Sunrise-Queue
 
         /// <summary>
         /// Temporarily allow a user to bypass regular connection requirements.
@@ -47,6 +49,7 @@ namespace Content.Server.Connection
         [Dependency] private readonly ServerDbEntryManager _serverDbEntry = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly ILogManager _logManager = default!;
+        private IServerSponsorsManager? _sponsorsMgr; // Sunrise-Sponsors
 
         private readonly Dictionary<NetUserId, TimeSpan> _temporaryBypasses = [];
         private ISawmill _sawmill = default!;
@@ -55,6 +58,7 @@ namespace Content.Server.Connection
         {
             _sawmill = _logManager.GetSawmill("connections");
 
+            IoCManager.Instance!.TryResolveType(out _sponsorsMgr); // Sunrise-Sponsors
             _netMgr.Connecting += NetMgrOnConnecting;
             _netMgr.AssignUserIdCallback = AssignUserIdCallback;
             // Approval-based IP bans disabled because they don't play well with Happy Eyeballs.
@@ -155,7 +159,10 @@ namespace Content.Server.Connection
 
             var adminData = await _dbManager.GetAdminDataForAsync(e.UserId);
 
-            if (_cfg.GetCVar(CCVars.PanicBunkerEnabled) && adminData == null)
+            // Sunrise-Sponsors-Start
+            var isPrivileged = await HavePrivilegedJoin(e.UserId);
+            if (_cfg.GetCVar(CCVars.PanicBunkerEnabled) && adminData == null && !isPrivileged)
+            // Sunrise-Sponsors-End
             {
                 var showReason = _cfg.GetCVar(CCVars.PanicBunkerShowReason);
                 var customReason = _cfg.GetCVar(CCVars.PanicBunkerCustomReason);
@@ -202,11 +209,10 @@ namespace Content.Server.Connection
                 }
             }
 
-            var wasInGame = EntitySystem.TryGet<GameTicker>(out var ticker) &&
-                            ticker.PlayerGameStatuses.TryGetValue(userId, out var status) &&
-                            status == PlayerGameStatus.JoinedGame;
-            var adminBypass = _cfg.GetCVar(CCVars.AdminBypassMaxPlayers) && adminData != null;
-            if ((_plyMgr.PlayerCount >= _cfg.GetCVar(CCVars.SoftMaxPlayers) && !adminBypass) && !wasInGame)
+            // Sunrise-Queue-Start
+            var isQueueEnabled = IoCManager.Instance!.TryResolveType<IServerJoinQueueManager>(out var mgr) && mgr.IsEnabled;
+            if (_plyMgr.PlayerCount >= _cfg.GetCVar(CCVars.SoftMaxPlayers) && !isPrivileged && !isQueueEnabled)
+            // Sunrise-Queue-End
             {
                 return (ConnectionDenyReason.Full, Loc.GetString("soft-player-cap-full"), null);
             }
@@ -253,5 +259,19 @@ namespace Content.Server.Connection
             await _db.AssignUserIdAsync(name, assigned);
             return assigned;
         }
+
+        // Sunrise-Sponsors-Start
+        public async Task<bool> HavePrivilegedJoin(NetUserId userId)
+        {
+            var adminBypass = _cfg.GetCVar(CCVars.AdminBypassMaxPlayers) && await _dbManager.GetAdminDataForAsync(userId) != null;
+            var havePriorityJoin = _sponsorsMgr != null && _sponsorsMgr.HavePriorityJoin(userId); // Sunrise-Sponsors
+            var wasInGame = EntitySystem.TryGet<GameTicker>(out var ticker) &&
+                            ticker.PlayerGameStatuses.TryGetValue(userId, out var status) &&
+                            status == PlayerGameStatus.JoinedGame;
+            return adminBypass ||
+                   havePriorityJoin || // Sunrise-Sponsors
+                   wasInGame;
+        }
+        // Sunrise-Sponsors-End
     }
 }

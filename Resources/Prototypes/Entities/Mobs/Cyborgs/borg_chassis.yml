@@ -248,6 +248,8 @@
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepHoverBorg
+  - type: TTS
+    voice: FastCore
 
 - type: entity
   id: BorgChassisService

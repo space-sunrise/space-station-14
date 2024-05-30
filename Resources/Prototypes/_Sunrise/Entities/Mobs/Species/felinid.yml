@@ -1,0 +1,104 @@
+- type: entity
+  save: false
+  name: Urist McFelinid
+  parent: BaseMobHuman
+  id: MobFelinidBase
+  abstract: true
+  components:
+  - type: OwOAccent
+  - type: Speech
+    speechVerb: Felinid
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      25: 0.7
+      50: 0.5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      75: Critical
+      150: Dead
+  - type: Thieving
+    stealthy: true
+    stripTimeReduction: 1
+  - type: Sprite
+    scale: 0.75, 0.75
+  - type: HumanoidAppearance
+    species: Felinid
+  - type: Fixtures
+    fixtures: # TODO: This needs a second fixture just for mob collisions.
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.30
+        density: 80
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Body
+    prototype: Felinid
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Felinid
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      collection: Punch
+    angle: 30
+    animation: WeaponArcClaw
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 1
+        Slash: 2
+  - type: DamageOnHighSpeedImpact
+    damage:
+      types:
+        Blunt: 25
+    soundHit:
+      path: /Audio/Effects/hit_kick.ogg
+  - type: Stamina
+    critThreshold: 55
+  - type: Vocal
+    sounds:
+      Male: MaleFelinid
+      Female: FemaleFelinid
+      Unsexed: MaleFelinid
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 2.5
+    damageRecovery:
+      types:
+        Asphyxiation: -2.5
+  - type: NpcFactionMember
+    factions:
+      - NanoTrasen
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: hugging-success-generic
+    interactSuccessSound: /Audio/Effects/thudswoosh.ogg
+    messagePerceivedByOthers: hugging-success-generic-others
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+    reactions:
+    - reagents: [ Water, SpaceCleaner ]
+      methods: [ Touch ]
+      effects:
+      - !type:WashCreamPieReaction
+      - !type:Emote
+        emote: Hisses
+        showInChat: true
+
+- type: entity
+  save: false
+  name: Urist McHands
+  parent: MobHumanDummy
+  id: MobFelinidDummy
+  noSpawn: true
+  description: A dummy felinid meant to be used in character setup.
+
+#Nya~~

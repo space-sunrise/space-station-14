@@ -239,7 +239,7 @@
   name: lawyer
   components:
   - type: SpawnPoint
-    job_id: Lawyer
+    job_id: IAA # Lawyer replaced with IAA
   - type: Sprite
     layers:
       - state: green

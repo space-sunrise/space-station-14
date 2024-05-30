@@ -14,7 +14,7 @@
         - ShellShotgun
     capacity: 8
     soundRack:
-      path: /Audio/Weapons/Guns/Cock/smg_cock.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Cock/shotgun_cock.ogg
   - type: Item
     size: Small
   - type: ContainerContainer

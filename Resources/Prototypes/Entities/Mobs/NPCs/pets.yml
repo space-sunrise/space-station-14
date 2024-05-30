@@ -759,6 +759,8 @@
     attributes:
       proper: true
       gender: female
+  - type: TTS
+    voice: Neco
 
 - type: entity
   name: Pun Pun

@@ -1,0 +1,37 @@
+- type: body
+  name: "Synth"
+  id: Synth
+  root: torso
+  slots:
+    head:
+      part: HeadSynth
+      connections:
+      - torso
+      organs:
+        eyes: Flash
+    torso:
+      part: TorsoSynth
+      connections:
+      - left arm
+      - right arm
+      - left leg
+      - right leg
+      organs:
+        brain: PositronicBrain
+        powercell: PowerCellSynth
+    right arm:
+      part: RightArmSynth
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmSynth
+      connections:
+      - left hand
+    right hand:
+      part: RightHandSynth
+    left hand:
+      part: LeftHandSynth
+    right leg:
+      part: RightLegSynth
+    left leg:
+      part: LeftLegSynth

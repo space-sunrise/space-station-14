@@ -1,6 +1,7 @@
 using Content.Server.Chat.Systems;
 using Content.Server.Emp;
 using Content.Server.Radio.Components;
+using Content.Shared._Sunrise.TTS;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
@@ -99,8 +100,17 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
 
     private void OnHeadsetReceive(EntityUid uid, HeadsetComponent component, ref RadioReceiveEvent args)
     {
+        // Sunrise-TTS-Start
+        var actorUid = Transform(uid).ParentUid;
         if (TryComp(Transform(uid).ParentUid, out ActorComponent? actor))
+        {
             _netMan.ServerSendMessage(args.ChatMsg, actor.PlayerSession.Channel);
+            if (actorUid != args.MessageSource && TryComp(args.MessageSource, out TTSComponent? _))
+            {
+                args.Receivers.Add(actorUid);
+            }
+        }
+        // Sunrise-TTS-End
     }
 
     private void OnEmpPulse(EntityUid uid, HeadsetComponent component, ref EmpPulseEvent args)

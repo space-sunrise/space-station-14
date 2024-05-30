@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using Content.Client.Lobby;
 using Content.Shared.CCVar;
 using Content.Shared.Players;
 using Content.Shared.Players.PlayTimeTracking;
@@ -10,6 +11,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.Preferences;
 
 namespace Content.Client.Players.PlayTimeTracking;
 
@@ -21,6 +23,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private readonly IClientPreferencesManager _clientPreferences = default!;
 
     private readonly Dictionary<string, TimeSpan> _roles = new();
     private readonly List<string> _roleBans = new();
@@ -92,6 +95,19 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         var player = _playerManager.LocalSession;
         if (player == null)
             return true;
+
+        // Sunrise-Start
+        if (_clientPreferences.Preferences != null)
+        {
+            var profile = (HumanoidCharacterProfile) _clientPreferences.Preferences.SelectedCharacter;
+
+            if (job.SpeciesBlacklist.Contains(profile.Species))
+            {
+                reason = FormattedMessage.FromUnformatted($"Расса {Loc.GetString($"species-name-{profile.Species.ToLower()}")} не может занимать эту должность. Для спонсоров ограничений нет");
+                return false;
+            }
+        }
+        // Sunrise-End
 
         return CheckRoleTime(job.Requirements, out reason);
     }

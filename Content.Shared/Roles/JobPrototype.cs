@@ -1,4 +1,5 @@
 using Content.Shared.Access;
+using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Roles;
 using Content.Shared.StatusIcon;
@@ -64,6 +65,11 @@ namespace Content.Shared.Roles
         [DataField("canBeAntag")]
         public bool CanBeAntag { get; private set; } = true;
 
+        // Sunrise-Start
+        [DataField("radioBold")]
+        public bool RadioIsBold { get; }
+        // Sunrise-End
+
         /// <summary>
         ///     Whether this job is a head.
         ///     The job system will try to pick heads before other jobs on the same priority level.
@@ -116,6 +122,11 @@ namespace Content.Shared.Roles
 
         [DataField("extendedAccessGroups")]
         public IReadOnlyCollection<ProtoId<AccessGroupPrototype>> ExtendedAccessGroups { get; private set; } = Array.Empty<ProtoId<AccessGroupPrototype>>();
+
+        // Sunrise-Start
+        [DataField("speciesBlacklist", customTypeSerializer: typeof(PrototypeIdListSerializer<SpeciesPrototype>))]
+        public List<string> SpeciesBlacklist = new();
+        // Sunrise-End
     }
 
     /// <summary>

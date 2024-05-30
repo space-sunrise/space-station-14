@@ -221,7 +221,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/security-warden.rsi
   - type: PointLight
-    color: "#ffeead"
+    color: cyan
   - type: PressureProtection
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 1000
@@ -235,7 +235,7 @@
 
 #Captain's Hardsuit
 - type: entity
-  parent: ClothingHeadHardsuitWithLightBase
+  parent: ClothingHeadHardsuitBase
   id: ClothingHeadHelmetHardsuitCap
   name: captain's hardsuit helmet
   description: Special hardsuit helmet, made for the captain of the station.
@@ -262,7 +262,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/engineering-white.rsi
   - type: PointLight
-    color: "#daffad"
+    color: "#e6aa5c"
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -298,7 +298,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/rd.rsi
   - type: PointLight
-    color: "#d6adff"
+    color: "#a4fef4"
   - type: PressureProtection
     highPressureMultiplier: 0.60
     lowPressureMultiplier: 1000
@@ -454,7 +454,7 @@
 
 #Cybersun Juggernaut Hardsuit
 - type: entity
-  parent: ClothingHeadHardsuitBase
+  parent: ClothingHeadHardsuitWithLightBase
   id: ClothingHeadHelmetHardsuitCybersun
   name: cybersun juggernaut helmet
   description: Made of compressed red matter, this helmet was designed in the Tau chromosphere facility.
@@ -464,6 +464,8 @@
     sprite: Clothing/Head/Hardsuits/cybersun.rsi
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/cybersun.rsi
+  - type: PointLight
+    color: red
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
@@ -488,7 +490,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/wizard.rsi
   - type: PointLight
-    color: "#ffadfb"
+    color: "#a4fef4"
   - type: PressureProtection
     highPressureMultiplier: 0.27
     lowPressureMultiplier: 1000
@@ -564,7 +566,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertleader.rsi
   - type: PointLight
-    color: "#addbff"
+    color: cyan
   - type: Armor
     modifiers:
       coefficients:
@@ -601,7 +603,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertengineer.rsi
   - type: PointLight
-    color: "#f4ffad"
+    color: cyan
   - type: Armor
     modifiers:
       coefficients:
@@ -638,7 +640,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertsecurity.rsi
   - type: PointLight
-    color: "#ffadc6"
+    color: cyan
   - type: Armor
     modifiers:
       coefficients:
@@ -687,7 +689,7 @@
       - state: equipped-head-unshaded
         shader: unshaded
   - type: PointLight
-    color: orange
+    color: "#a4fef4"
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -703,7 +705,7 @@
 
 #Deathsquad Hardsuit
 - type: entity
-  parent: ClothingHeadHardsuitBase
+  parent: ClothingHeadHardsuitWithLightBase
   id: ClothingHeadHelmetHardsuitDeathsquad
   name: deathsquad hardsuit helmet
   description: A robust helmet for special operations.
@@ -713,6 +715,8 @@
     sprite: Clothing/Head/Hardsuits/deathsquad.rsi
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/deathsquad.rsi
+  - type: PointLight
+    color: cyan
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
@@ -741,6 +745,8 @@
     sprite: Clothing/Head/Hardsuits/clown.rsi
     equipSound: /Audio/Mecha/mechmove03.ogg
     unequipSound: /Audio/Effects/Emotes/parp1.ogg
+  - type: PointLight
+    color: "#ff3399"
 
 #Mime Hardsuit
 - type: entity

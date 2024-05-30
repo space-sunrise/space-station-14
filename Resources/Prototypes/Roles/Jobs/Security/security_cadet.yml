@@ -5,10 +5,10 @@
   playTimeTracker: JobSecurityCadet
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 36000 #10 hrs
+      time: 18000 #5 hrs # Sunrise-RoleTime
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 54000 #15 hrs
+      time: 36000 #10 hrs # Sunrise-RoleTime
       inverted: true # stop playing intern if you're good at security!
   startingGear: SecurityCadetGear
   icon: "JobIconSecurityCadet"
@@ -24,11 +24,13 @@
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
+  speciesBlacklist:
+  - Vox
 
 - type: startingGear
   id: SecurityCadetGear
   equipment:
-    shoes: ClothingShoesBootsCombatFilled
+    shoes: ClothingShoesBootsJackSec
     outerClothing: ClothingOuterArmorBasic
     id: SecurityCadetPDA
     ears: ClothingHeadsetSecurity

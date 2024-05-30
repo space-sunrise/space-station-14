@@ -207,7 +207,7 @@
       - MagazineBoxRifle
       - MagazineLightRifle
       - MagazineLightRifleEmpty
-      - MagazinePistol 
+      - MagazinePistol
       - MagazinePistolEmpty
       - MagazinePistolSubMachineGun
       - MagazinePistolSubMachineGunEmpty
@@ -267,6 +267,8 @@
     - LargeBeaker
     - Dropper
     - ClothingEyesGlassesChemical
+    - Nanopaste # Sunrise-edit
+    - HandheldRoboAnalyzer # Sunrise-edit
     dynamicRecipes:
       - PowerDrill
       - MiningDrill
@@ -417,6 +419,7 @@
     - ChemMasterMachineCircuitboard
     - CondenserMachineCircuitBoard
     - HotplateMachineCircuitboard
+    - PrinterDocMachineCircuitboard # Sunrise-Printer
     - UniformPrinterMachineCircuitboard
     - FloorGreenCircuit
     - FloorBlueCircuit
@@ -705,7 +708,7 @@
     staticRecipes:
       - BoxLethalshot
       - BoxShotgunFlare
-      - BoxShotgunPractice 
+      - BoxShotgunPractice
       - BoxShotgunSlug
       - ClothingEyesHudSecurity
       - Flash
@@ -721,7 +724,7 @@
       - MagazineBoxRiflePractice
       - MagazineLightRifle
       - MagazineLightRifleEmpty
-      - MagazinePistol 
+      - MagazinePistol
       - MagazinePistolEmpty
       - MagazinePistolSubMachineGun
       - MagazinePistolSubMachineGunEmpty
@@ -833,8 +836,8 @@
         - MagazineBoxRifle
         - MagazineLightRifle
         - MagazineLightRifleEmpty
-        - MagazinePistol 
-        - MagazinePistolEmpty 
+        - MagazinePistol
+        - MagazinePistolEmpty
         - MagazineRifle
         - MagazineRifleEmpty
         - MagazineShotgun
@@ -1054,6 +1057,7 @@
       - ClothingNeckMantleCMO
       - ClothingNeckMantleHOP
       - ClothingNeckMantleHOS
+      - ClothingNeckMantleHOSShoulder
       - ClothingNeckMantleRD
       - ClothingNeckMantleQM
       - ClothingOuterWinterMusician

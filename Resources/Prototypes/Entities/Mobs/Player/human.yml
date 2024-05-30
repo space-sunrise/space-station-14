@@ -14,7 +14,9 @@
     - type: Loadout
       prototypes: [SyndicateOperativeGearExtremelyBasic]
     - type: RandomMetadata
-      nameSegments: [names_death_commando]
+      nameSegments: # Russian-LastNameGender
+      - names_first_male
+      - names_last_male
     - type: NpcFactionMember
       factions:
       - Syndicate

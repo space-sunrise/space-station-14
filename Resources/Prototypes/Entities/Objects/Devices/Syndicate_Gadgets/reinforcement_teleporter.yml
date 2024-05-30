@@ -17,7 +17,7 @@
   - type: GhostRoleMobSpawner
     prototype: MobHumanSyndicateAgent
   - type: EmitSoundOnUse
-    sound: /Audio/Effects/Emotes/parp1.ogg
+    sound: /Audio/Misc/emergency_meeting.ogg
   - type: UseDelay
     delay: 300
 
@@ -44,6 +44,7 @@
   - type: GhostRoleMobSpawner
     prototype: MobMonkeySyndicateAgent
     selectablePrototypes: ["SyndicateMonkey", "SyndicateKobold"]
+
 
 - type: entity
   parent: ReinforcementRadioSyndicateAncestor

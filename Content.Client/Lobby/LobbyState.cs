@@ -11,6 +11,13 @@ using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
+using Content.Client.Changelog;
+using Content.Client.Parallax.Managers;
+using Robust.Shared.ContentPack;
+using Robust.Shared.Serialization.Manager;
+using Robust.Shared.Serialization.Markdown;
+using Robust.Shared.Serialization.Markdown.Mapping;
 
 
 namespace Content.Client.Lobby
@@ -24,6 +31,9 @@ namespace Content.Client.Lobby
         [Dependency] private readonly IUserInterfaceManager _userInterfaceManager = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly IVoteManager _voteManager = default!;
+        [Dependency] private readonly IParallaxManager _parallaxManager = default!;
+        [Dependency] private readonly ISerializationManager _serialization = default!;
+        [Dependency] private readonly IResourceManager _resource = default!;
 
         private ClientGameTicker _gameTicker = default!;
         private ContentAudioSystem _contentAudioSystem = default!;
@@ -49,8 +59,21 @@ namespace Content.Client.Lobby
 
             _voteManager.SetPopupContainer(Lobby.VoteContainer);
             LayoutContainer.SetAnchorPreset(Lobby, LayoutContainer.LayoutPreset.Wide);
-            Lobby.ServerName.Text = _baseClient.GameInfo?.ServerName; //The eye of refactor gazes upon you...
+            // Sunrise-start
+            //Lobby.ServerName.Text = _baseClient.GameInfo?.ServerName; //The eye of refactor gazes upon you...
             UpdateLobbyUi();
+
+            Lobby!.LocalChangelogBody.CleanChangelog();
+
+            var sunriseChangelog = new ResPath("/Changelog/ChangelogSunrise.yml");
+
+            var yamlData = _resource.ContentFileReadYaml(sunriseChangelog);
+
+            var node = yamlData.Documents[0].RootNode.ToDataNodeCast<MappingDataNode>();
+            var changelog = _serialization.Read<ChangelogManager.Changelog>(node, notNullableOverride: true);
+            Lobby!.LocalChangelogBody.PopulateChangelog(changelog);
+
+            // Sunrise-end
 
             Lobby.CharacterPreview.CharacterSetupButton.OnPressed += OnSetupPressed;
             Lobby.ReadyButton.OnPressed += OnReadyPressed;
@@ -147,7 +170,10 @@ namespace Content.Client.Lobby
 
         private void LobbyStatusUpdated()
         {
-            UpdateLobbyBackground();
+            // Sunrise-Start
+            UpdateLobbyaralax();
+            UpdateLobbyImage();
+            // Sunrise-End
             UpdateLobbyUi();
         }
 
@@ -210,18 +236,29 @@ namespace Content.Client.Lobby
             }
         }
 
-        private void UpdateLobbyBackground()
+        // Sunrise-start
+        private void UpdateLobbyaralax()
         {
-            if (_gameTicker.LobbyBackground != null)
+            if (_gameTicker.LobbyParalax != null)
             {
-                Lobby!.Background.Texture = _resourceCache.GetResource<TextureResource>(_gameTicker.LobbyBackground );
+                _parallaxManager.LoadParallaxByName(_gameTicker.LobbyParalax);
+                Lobby!.LobbyParalax = _gameTicker.LobbyParalax;
             }
             else
             {
-                Lobby!.Background.Texture = null;
+                Lobby!.LobbyParalax = "FastSpace";
             }
-
         }
+
+        private void UpdateLobbyImage()
+        {
+            if (_gameTicker.LobbyImage == null)
+                return;
+
+            Lobby!.LobbyImage.SetFromSpriteSpecifier(new SpriteSpecifier.Rsi(new ResPath(_gameTicker.LobbyImage.Path), _gameTicker.LobbyImage.State));
+            Lobby!.LobbyImage.DisplayRect.TextureScale = _gameTicker.LobbyImage.Scale;
+        }
+        // Sunrise-end
 
         private void SetReady(bool newReady)
         {

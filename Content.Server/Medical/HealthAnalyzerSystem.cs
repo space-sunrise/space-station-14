@@ -75,8 +75,19 @@ public sealed class HealthAnalyzerSystem : EntitySystem
     /// </summary>
     private void OnAfterInteract(Entity<HealthAnalyzerComponent> uid, ref AfterInteractEvent args)
     {
-        if (args.Target == null || !args.CanReach || !HasComp<MobStateComponent>(args.Target) || !_cell.HasDrawCharge(uid, user: args.User))
+        if (args.Target == null ||
+            !args.CanReach ||
+            !TryComp<DamageableComponent>(args.Target, out var damageableComponent) ||
+            !HasComp<MobStateComponent>(args.Target) ||
+            !_cell.HasDrawCharge(uid, user: args.User))
             return;
+
+        if (uid.Comp.DamageContainers is not null &&
+            damageableComponent.DamageContainerID is not null &&
+            !uid.Comp.DamageContainers.Contains(damageableComponent.DamageContainerID))
+        {
+            return;
+        }
 
         _audio.PlayPvs(uid.Comp.ScanningBeginSound, uid);
 

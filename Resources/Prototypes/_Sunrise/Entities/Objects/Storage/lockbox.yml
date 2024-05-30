@@ -1,0 +1,35 @@
+- type: entity
+  id: Lockbox
+  parent: BaseStorageItem
+  name: Защищенный чемодан
+  description: Высокозащищенный чемодан предназначеный для хранения важных документов и предметов.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/lockbox.rsi
+    layers:
+    - state: icon
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+  - type: Item
+    size: Ginormous
+  - type: Storage
+    grid:
+    - 0,0,3,3
+    maxItemSize: Large
+  - type: Lock
+  - type: AccessReader
+  - type: Appearance
+  # TODO: Shouldn't this have a different open and closed state...?
+  - type: EntityStorageVisuals
+    stateDoorOpen: icon
+    stateDoorClosed: icon
+
+
+- type: entity
+  parent: Lockbox
+  id: LockboxCaptain
+  name: Защищенный чемодан
+  description: Высокозащищенный чемодан предназначеный для хранения важных документов и предметов.
+  components:
+  - type: AccessReader
+    access: [["Captain"]]

@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "license": null,
+  "copyright": null,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "fat"
+    },
+    {
+      "name": "full"
+    },
+    {
+      "name": "well_fed"
+    },
+    {
+      "name": "fed"
+    },
+    {
+      "name": "hungry"
+    },
+    {
+      "name": "starving",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    }
+  ]
+}

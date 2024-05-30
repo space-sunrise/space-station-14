@@ -6,14 +6,13 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Science
-      time: 36000 #10 hrs
-    - !type:OverallPlaytimeRequirement
-      time: 144000 #40 hrs
+      time: 36000 #10 hrs # Sunrise-RoleTime
   weight: 10
   startingGear: ResearchDirectorGear
   icon: "JobIconResearchDirector"
   requireAdminNotify: true
   supervisors: job-supervisors-captain
+  radioBold: true
   canBeAntag: false
   access:
   - Research
@@ -28,9 +27,13 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
+  speciesBlacklist:
+  - Vox
 
 - type: startingGear
   id: ResearchDirectorGear
   equipment:
     id: RnDPDA
+    pocket1: HandheldRoboAnalyzer
+    pocket2: Nanopaste10
     ears: ClothingHeadsetRD

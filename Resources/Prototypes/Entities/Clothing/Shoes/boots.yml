@@ -20,6 +20,9 @@
     sprite: Clothing/Shoes/Boots/jackboots.rsi
   - type: Clothing
     sprite: Clothing/Shoes/Boots/jackboots.rsi
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepBoots
 
 - type: entity
   parent: ClothingShoesBaseButcherable

@@ -37,6 +37,7 @@
   abstract: true
   components:
     - type: StationArrivals
+      shuttlePath: /Maps/_Sunrise/Shuttles/arrivals.yml # Sunrise-edit
 
 - type: entity
   id: BaseStationGateway
@@ -60,7 +61,7 @@
             - /Maps/Shuttles/trading_outpost.yml
         mining:
           paths:
-          - /Maps/Shuttles/mining.yml
+          - /Maps/_Sunrise/Shuttles/mining_shuttle.yml # Sunrise-edit
         # Spawn last
         ruins:
           hide: true

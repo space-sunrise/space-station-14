@@ -1,6 +1,8 @@
 - type: vendingMachineInventory
   id: VendomatInventory
   startingInventory:
+    HandheldRoboAnalyzer: 4
+    Nanopaste: 4
     RemoteSignaller: 1
     Igniter: 2
     Wirecutter: 1

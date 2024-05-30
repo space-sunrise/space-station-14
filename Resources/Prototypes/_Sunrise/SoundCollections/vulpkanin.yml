@@ -1,0 +1,22 @@
+- type: soundCollection
+  id: VulpkaninGrowls
+  files:
+  - /Audio/_Sunrise/Voice/Vulpikanin/growl1.ogg
+  - /Audio/_Sunrise/Voice/Vulpikanin/growl2.ogg
+  - /Audio/_Sunrise/Voice/Vulpikanin/growl3.ogg
+
+- type: soundCollection
+  id: VulpkaninBark
+  files:
+  - /Audio/_Sunrise/Voice/Vulpikanin/bark.ogg
+
+- type: soundCollection
+  id: VulpkaninHowl
+  files:
+  - /Audio/_Sunrise/Voice/Vulpikanin/howl.ogg
+
+- type: soundCollection
+  id: VulpkaninScreams
+  files:
+  - /Audio/_Sunrise/Voice/Vulpikanin/scream1.ogg
+  - /Audio/_Sunrise/Voice/Vulpikanin/scream2.ogg

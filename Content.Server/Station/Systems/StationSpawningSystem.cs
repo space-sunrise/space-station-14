@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 using Content.Server.Access.Systems;
 using Content.Server.DetailExaminable;
 using Content.Server.Humanoid;
@@ -182,6 +182,12 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         if (prototype?.StartingGear != null)
         {
             var startingGear = _prototypeManager.Index<StartingGearPrototype>(prototype.StartingGear);
+            EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
+        }
+
+        if (species.StartingGear != null)
+        {
+            var startingGear = _prototypeManager.Index<StartingGearPrototype>(species.StartingGear);
             EquipStartingGear(entity.Value, startingGear, raiseEvent: false);
         }
 

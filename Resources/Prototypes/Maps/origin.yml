@@ -27,7 +27,7 @@
             Janitor: [ 3, 3 ]
             Chaplain: [ 2, 2 ]
             Librarian: [ 2, 2 ]
-            Lawyer: [ 2, 2 ]
+            #Lawyer: [ 2, 2 ]
             ServiceWorker: [ 3, 4 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
@@ -63,4 +63,6 @@
             Musician: [ 2, 2 ]
             Boxer: [ 1, 1 ]
             Reporter: [ 1, 1 ]
+            # Sunrise-Roles
+            IAA: [ 1, 1 ]
 

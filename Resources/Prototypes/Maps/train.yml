@@ -51,7 +51,7 @@
             Warden: [ 1, 1 ]
             SecurityOfficer: [ 6, 6 ]
             SecurityCadet: [ 3, 3 ]
-            Lawyer: [ 1, 2 ]
+            #Lawyer: [ 1, 2 ]
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 2, 2 ]
@@ -62,3 +62,5 @@
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
             Borg: [ 2, 2 ]
+            # Sunrise-Roles
+            IAA: [ 1, 1 ]

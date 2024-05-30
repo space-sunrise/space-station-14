@@ -35,9 +35,10 @@
 - type: department
   id: Command
   description: department-Command-description
-  color: "#334E6D"
+  color: "#052EED" # Sunrise-Edit
   roles:
   - Captain
+  - IAA # Sunrise-Edit
   - CentralCommandOfficial
   - ChiefEngineer
   - ChiefMedicalOfficer

@@ -58,6 +58,7 @@
     fuel: 10
     time: 10
   - type: Airlock
+    openUnlitVisible: true
   - type: NavMapDoor
   - type: DoorBolt
   - type: AccessReader

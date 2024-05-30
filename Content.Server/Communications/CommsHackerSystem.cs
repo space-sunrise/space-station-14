@@ -79,7 +79,7 @@ public sealed class CommsHackerSystem : SharedCommsHackerSystem
     public void CallInThreat(NinjaHackingThreatPrototype ninjaHackingThreat)
     {
         _gameTicker.StartGameRule(ninjaHackingThreat.Rule, out _);
-        _chat.DispatchGlobalAnnouncement(Loc.GetString(ninjaHackingThreat.Announcement), playSound: true, colorOverride: Color.Red);
+        _chat.DispatchGlobalAnnouncement(Loc.GetString(ninjaHackingThreat.Announcement), playSound: true, playTts: true, colorOverride: Color.Red);
     }
 }
 

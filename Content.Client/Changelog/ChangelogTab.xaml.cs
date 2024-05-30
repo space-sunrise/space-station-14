@@ -28,6 +28,13 @@ public sealed partial class ChangelogTab : Control
         IoCManager.InjectDependencies(this);
     }
 
+    // Sunrise-Start
+    public void CleanChangelog()
+    {
+        ChangelogBody.Children.Clear();
+    }
+    // Sunrise-End
+
     public void PopulateChangelog(ChangelogManager.Changelog changelog)
     {
         var byDay = changelog.Entries
