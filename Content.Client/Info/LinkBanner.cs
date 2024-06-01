@@ -37,8 +37,9 @@ namespace Content.Client.Info
             AddInfoButton("server-info-forum-button", CCVars.InfoLinksForum);
 
             // Sunrise-Start
+            AddInfoButton("server-info-github-button", CCVars.InfoLinksGithub);
             var creditsButton = new Button {Text = Loc.GetString("server-info-credits-button")};
-            creditsButton.OnPressed += args => new CreditsWindow().Open();
+            creditsButton.OnPressed += _ => new CreditsWindow().Open();
             buttons.AddChild(creditsButton);
             // Sunrise-End
 
