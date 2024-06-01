@@ -45,6 +45,7 @@
         Blunt: 0.30
   - type: Flashable
   - type: Identity
+  - type: ComplexInteraction
   - type: Hands
   - type: MovementSpeedModifier
   - type: MovedByPressure
