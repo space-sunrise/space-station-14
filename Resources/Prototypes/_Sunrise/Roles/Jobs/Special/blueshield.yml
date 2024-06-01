@@ -3,13 +3,13 @@
   name: офицер «синий щит»
   description: Ваша главная задача - защита глав. Помните, вы не офицер службы безопасности.
   playTimeTracker: JobBlueShield
-#  requirements:
-#  - !type:DepartmentTimeRequirement
-#    department: Security
-#    time: 36000 # 10 hrs
-#  - !type:DepartmentTimeRequirement
-#    department: Command
-#    time: 36000 # 10 hrs
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Security
+    time: 36000 # 10 hrs
+  - !type:DepartmentTimeRequirement
+    department: Command
+    time: 36000 # 10 hrs
   startingGear: BlueShieldGear
   icon: JobIconBlueShield
   supervisors: job-supervisors-centcom
