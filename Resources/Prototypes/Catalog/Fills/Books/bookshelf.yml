@@ -23,6 +23,8 @@
         orGroup: BookPool
       - id: BookScientistsGuidebook
         orGroup: BookPool
+      - id: HyperLinkBookCorporateLaw # Sunrise-edit
+        orGroup: BookPool
       - id: BookSecurity
         orGroup: BookPool
       - id: BookHowToKeepStationClean
