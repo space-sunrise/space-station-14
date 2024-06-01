@@ -1,0 +1,44 @@
+- type: loadout
+  id: BlueShieldBackpack
+  equipment: BlueShieldBackpack
+
+- type: startingGear
+  id: BlueShieldBackpack
+  equipment:
+    back: ClothingBackpackBlueShieldFilled
+
+- type: loadout
+  id: BlueShieldSatchel
+  equipment: BlueShieldSatchel
+
+- type: startingGear
+  id: BlueShieldSatchel
+  equipment:
+    back: ClothingBackpackSatchelBlueShieldFilled
+
+- type: loadout
+  id: BlueShieldDuffel
+  equipment: BlueShieldDuffel
+
+- type: startingGear
+  id: BlueShieldDuffel
+  equipment:
+    back: ClothingBackpackDuffelBlueShieldFilled
+
+- type: loadout
+  id: BlueShieldJumpsuit
+  equipment: BlueShieldJumpsuit
+
+- type: startingGear
+  id: BlueShieldJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitBlueShield
+
+- type: loadout
+  id: BlueShieldJumpskirt
+  equipment: BlueShieldJumpskirt
+
+- type: startingGear
+  id: BlueShieldJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtBlueShield

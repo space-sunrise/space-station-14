@@ -19,3 +19,12 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Back/Duffels/ce.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelBlueShield
+  name: вещмешок офицера «синий щит»
+  description: На стиле.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Back/Duffels/blueshield.rsi

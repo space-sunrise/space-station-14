@@ -6,3 +6,10 @@
   - CommonBackpack
   - Trinkets
   - Inventory # _Sunrise-Loadouts
+
+- type: roleLoadout
+  id: JobBlueShield
+  groups:
+  - BlueShieldJumpsuit
+  - BlueShieldBackpack
+  - Trinkets

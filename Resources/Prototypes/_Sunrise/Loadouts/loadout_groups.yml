@@ -13,3 +13,17 @@
   - PsychologistSatchel
   - PsychologistDuffel
 
+- type: loadoutGroup
+  id: BlueShieldBackpack
+  name: Офицер «Синий Щит», рюкзак
+  loadouts:
+  - BlueShieldBackpack
+  - BlueShieldSatchel
+  - BlueShieldDuffel
+
+- type: loadoutGroup
+  id: BlueShieldJumpsuit
+  name: Офицер «Синий Щит», комбинезон
+  loadouts:
+  - BlueShieldJumpsuit
+  - BlueShieldJumpskirt

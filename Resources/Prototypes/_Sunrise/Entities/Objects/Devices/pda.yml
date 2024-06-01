@@ -11,3 +11,27 @@
       borderColor: "#6f6192"
     - type: Icon
       state: pda-lawyer
+
+- type: entity
+  parent: BasePDA
+  id: BlueShieldPDA
+  name: КПК офицера «синий щит»
+  description: Охуенный стиль.
+  components:
+  - type: Pda
+    id: BlueShieldIDCard
+    state: pda-blueshield
+  - type: Icon
+    state: pda-blueshield
+  - type: Sprite
+    sprite: _Sunrise/Objects/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false

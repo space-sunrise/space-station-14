@@ -18,3 +18,27 @@
       item:
       - KukriKnife
 
+- type: entity
+  id: ClothingBeltBlueShieldWebbingFilled
+  parent: ClothingBeltBlueShieldWebbing
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: Handcuffs
+    - id: Handcuffs
+    - id: Stunbaton
+    - id: GrenadeFlashBang
+    - id: TearGasGrenade
+    - id: MedkitCombatFilled
+
+
+- type: entity
+  id: ClothingShoesBootsBlueShieldFilled
+  parent: ClothingShoesBootsBlueShield
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      item:
+      - CombatKnife

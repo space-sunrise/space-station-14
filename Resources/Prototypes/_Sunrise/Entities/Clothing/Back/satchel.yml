@@ -19,3 +19,12 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Back/Satchels/ce.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelBlueShield
+  name: сумка офицера «синий щит»
+  description: На стиле.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Back/Satchels/blueshield.rsi
