@@ -10,6 +10,8 @@
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/basic.rsi
+  - type: DiseaseImmuneClothing
+    prob: 0.25
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/basic.rsi
   - type: ExplosionResistance
