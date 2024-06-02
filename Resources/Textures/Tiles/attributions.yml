@@ -2,131 +2,130 @@
 # Finding individual authors is an unfeasible task. If you can reference the author please do so.
 
 - files: ["tech_maint.png"]
-  license: "CC-BY-SA-3.0"
+  license: "CLA"
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
 
 - files: [ "asteroid_red.png", "asteroid_tile.png", "elevator_shaft.png", "freezer.png", "green_circuit.png", "lino.png", "mono.png", "rock_vault.png", "showroom.png"]
-  license: "CC-BY-SA-3.0"
+  license: "CLA"
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
 
 - files: [ "asteroid.png", "asteroid_dug.png", "asteroid0.png"]
-  license: "CC-BY-SA-3.0"
+  license: "CLA"
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
 
 - files: ["steel.png", "dark.png", "hydro.png", "plating.png", "reinforced.png", "steel_dirty.png", "white.png", "bar.png", "laundry.png", "mime.png", "clown.png", "kitchen.png"]
-  license: "CC-BY-SA-3.0"
+  license: "CLA"
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
 
 - files: ["blue_circuit.png", "cropped_parallax.png", "eighties.png", "gold.png", "grass.png", "ironsand1.png", "ironsand2.png", "ironsand3.png", "ironsand4.png", "junglegrass.png", "lattice.png", "plating.png", "reinforced.png", "silver.png", "snow.png", "wood.png"]
-  license: "CC-BY-SA-3.0"
+  license: "CLA"
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
 
 - files: ["super_reinforced.png"]
-  license: "CC-BY-SA-3.0"
+  license: "CLA"
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
 
 - files: ["asteroid_plating.png, snow_plating.png"]
-  license: "CC-BY-SA-3.0"
+  license: "CLA"
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
 
 - files: ["rglass.png"]
-  license: "CC-BY-SA-3.0"
+  license: "CLA"
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
 
 - files: ["glass.png"]
-  license: "CC0-1.0"
+  license: "CLA"
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
 
 - files: [ "steel_diagonal.png", "steel_mini.png", "steel_offset.png", "steel_pavement.png", "white_diagonal.png", "white_mini.png", "white_offset.png", "white_pavement.png", "white_plastic.png", "dark_diagonal.png", "dark_mini.png", "dark_offset.png", "dark_pavement.png", "dark_plastic.png" ]
-  license: "CC0-1.0"
+  license: "CLA"
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
 
 - files: [ "cafeteria.png", "checker_dark.png" ]
-  license: "CC-BY-SA-3.0"
+  license: "CLA"
   copyright: "Sprited by discord: odlieerr"
-  source: "https://github.com/space-wizards/space-station-14/"
+  source: "https://github.com/space-sunrise/space-station-14"
 
 - files: [ "bar.png", "lime.png", "blue.png", "kitchen.png", "laundry.png", "mime.png", "steel.png", "steel_dirty.png", "steel_diagonal.png", "steel_mini.png", "steel_offset.png", "steel_pavement.png", "white.png", "white_diagonal.png", "white_mini.png", "white_offset.png", "white_pavement.png", "dark.png", "dark_diagonal.png", "dark_mini.png", "dark_offset.png", "dark_pavement.png", "hydro.png", "plastic.png", "dark_plastic.png", "white_plastic.png", "cafeteria.png", "checker_dark.png", "clown.png" ]
-  license: "CC-BY-SA-3.0"
+  license: "CLA"
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
 
 - files: ["arcadeblue.png", "arcadered.png"]
-  license: "CC-BY-SA-3.0"
+  license: "CLA"
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
 
 - files: ["hull", "hull_reinforced.png"]
-  license: "CC-BY-SA-3.0"
+  license: "CLA"
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
 
 - files: ["shuttleblue.png", "shuttleorange.png", "shuttlepurple.png", "shuttlered.png", "shuttlewhite.png", "shuttlegrey.png", "shuttleblack.png"]
-  license: "CC-BY-SA-3.0"
+  license: "CLA"
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
 
 - files: ["deprecated.png"]
-  license: "MIT"
+  license: "CLA"
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
 
 - files: ["arcadeblue2.png", "boxing.png", "carpetclown.png", "carpetoffice.png", "gym.png", "metaldiamond.png"]
-  license: "CC-BY-NC-SA-3.0"
+  license: "CLA"
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
 
 - files: ["cave.png", "cavedrought.png"]
-  license: "CC-BY-NC-SA-3.0"
+  license: "CLA"
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
-
 - files: ["grassdark.png", "grasslight.png", "dirt.png"]
-  license: "CC-BY-SA-3.0"
+  license: "CLA"
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
 
 - files: ["steel_maint.png", "grating_maint.png", "wood_tile.png"]
-  license: "CC-BY-SA-3.0"
+  license: "CLA"
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
 
 - files: ["meat.png"]
-  license: "CC0-1.0"
+  license: "CLA"
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
 
 - files: ["wood_broken.png"]
-  license: "CC-BY-SA-3.0"
+  license: "CLA"
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
 
 - files: ["chromite.png"]
-  license: "CC-BY-NC-SA-3.0"
+  license: "CLA"
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
 
 - files: ["mining_floor.png", "mining_floor_dark.png", "mining_floor_light.png"]
-  license: "CC-BY-SA-3.0"
+  license: "CLA"
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
 
 - files: ["latticeTrain.png"]
-  license: "CC0-1.0"
+  license: "CLA"
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
 
 - files: ["wood_large.png"]
-  license: "CC0-1.0"
+  license: "CLA"
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
