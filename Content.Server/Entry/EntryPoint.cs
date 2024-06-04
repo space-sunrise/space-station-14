@@ -1,4 +1,5 @@
 using Content.Server._Sunrise.GuideGenerator;
+using Content.Server._Sunrise.ServersHub;
 using Content.Server._Sunrise.TTS;
 using Content.Server.Acz;
 using Content.Server.Administration;
@@ -107,6 +108,8 @@ namespace Content.Server.Entry
                 IoCManager.Resolve<TTSManager>().Initialize(); // Sunrise-TTS
                 IoCManager.Resolve<ServerInfoManager>().Initialize();
                 IoCManager.Resolve<ServerApi>().Initialize();
+
+                IoCManager.Resolve<ServersHubManager>().Initialize(); // Sunrise-Hub
 
                 _voteManager.Initialize();
                 _updateManager.Initialize();

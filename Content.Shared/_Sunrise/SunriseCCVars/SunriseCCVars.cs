@@ -90,4 +90,14 @@ public sealed class SunriseCCVars
     /// </summary>
     public static readonly CVarDef<bool> PeacefulRoundEnd =
         CVarDef.Create("game.peaceful_end", true, CVar.SERVERONLY);
+
+    /*
+     * Servers Hub
+     */
+
+    /// <summary>
+    /// Список серверов отображаемых в хабе. Разделяются через запятую.
+    /// </summary>
+    public static readonly CVarDef<string> ServersHubList =
+        CVarDef.Create("servers_hub.urls", "", CVar.SERVERONLY);
 }
