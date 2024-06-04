@@ -28,6 +28,7 @@ namespace Content.Client.Options.UI.Tabs
             RestartSoundsCheckBox.Pressed = _cfg.GetCVar(CCVars.RestartSoundsEnabled);
             EventMusicCheckBox.Pressed = _cfg.GetCVar(CCVars.EventMusicEnabled);
             AdminSoundsCheckBox.Pressed = _cfg.GetCVar(CCVars.AdminSoundsEnabled);
+            TtsClientCheckBox.Pressed = _cfg.GetCVar(SunriseCCVars.TTSClientEnabled);
 
             ApplyButton.OnPressed += OnApplyButtonPressed;
             ResetButton.OnPressed += OnResetButtonPressed;
@@ -45,6 +46,7 @@ namespace Content.Client.Options.UI.Tabs
             RestartSoundsCheckBox.OnToggled += OnRestartSoundsCheckToggled;
             EventMusicCheckBox.OnToggled += OnEventMusicCheckToggled;
             AdminSoundsCheckBox.OnToggled += OnAdminSoundsCheckToggled;
+            TtsClientCheckBox.OnToggled += OnTtsClientCheckToggled;
 
             AmbienceSoundsSlider.MinValue = _cfg.GetCVar(CCVars.MinMaxAmbientSourcesConfigured);
             AmbienceSoundsSlider.MaxValue = _cfg.GetCVar(CCVars.MaxMaxAmbientSourcesConfigured);
@@ -139,6 +141,11 @@ namespace Content.Client.Options.UI.Tabs
             UpdateChanges();
         }
 
+        private void OnTtsClientCheckToggled(BaseButton.ButtonEventArgs args)
+        {
+            UpdateChanges();
+        }
+
         private void OnApplyButtonPressed(BaseButton.ButtonEventArgs args)
         {
             _cfg.SetCVar(CVars.AudioMasterVolume, MasterVolumeSlider.Value / 100f * ContentAudioSystem.MasterVolumeMultiplier);
@@ -159,6 +166,7 @@ namespace Content.Client.Options.UI.Tabs
             _cfg.SetCVar(CCVars.RestartSoundsEnabled, RestartSoundsCheckBox.Pressed);
             _cfg.SetCVar(CCVars.EventMusicEnabled, EventMusicCheckBox.Pressed);
             _cfg.SetCVar(CCVars.AdminSoundsEnabled, AdminSoundsCheckBox.Pressed);
+            _cfg.SetCVar(SunriseCCVars.TTSClientEnabled, TtsClientCheckBox.Pressed);
             _cfg.SaveToFile();
             UpdateChanges();
         }
@@ -186,6 +194,7 @@ namespace Content.Client.Options.UI.Tabs
             RestartSoundsCheckBox.Pressed = _cfg.GetCVar(CCVars.RestartSoundsEnabled);
             EventMusicCheckBox.Pressed = _cfg.GetCVar(CCVars.EventMusicEnabled);
             AdminSoundsCheckBox.Pressed = _cfg.GetCVar(CCVars.AdminSoundsEnabled);
+            TtsClientCheckBox.Pressed = _cfg.GetCVar(SunriseCCVars.TTSClientEnabled);
             UpdateChanges();
         }
 
@@ -216,8 +225,9 @@ namespace Content.Client.Options.UI.Tabs
             var isRestartSoundsSame = RestartSoundsCheckBox.Pressed == _cfg.GetCVar(CCVars.RestartSoundsEnabled);
             var isEventSame = EventMusicCheckBox.Pressed == _cfg.GetCVar(CCVars.EventMusicEnabled);
             var isAdminSoundsSame = AdminSoundsCheckBox.Pressed == _cfg.GetCVar(CCVars.AdminSoundsEnabled);
+            var isTtsClientSame = TtsClientCheckBox.Pressed == _cfg.GetCVar(SunriseCCVars.TTSClientEnabled);
             var isEverythingSame = isMasterVolumeSame && isMidiVolumeSame && isAmbientVolumeSame && isAmbientMusicVolumeSame && isAmbientSoundsSame && isLobbySame && isRestartSoundsSame && isEventSame
-                                   && isAdminSoundsSame && isLobbyVolumeSame && isInterfaceVolumeSame;
+                                   && isAdminSoundsSame && isLobbyVolumeSame && isInterfaceVolumeSame && isTtsClientSame;
             isEverythingSame = isEverythingSame && isTtsRadioVolumeSame && isTtsVolumeSame && isTtsAnnounceVolumeSame; // Sunrise-TTS
             ApplyButton.Disabled = isEverythingSame;
             ResetButton.Disabled = isEverythingSame;
