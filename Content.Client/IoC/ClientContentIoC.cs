@@ -1,4 +1,5 @@
-﻿using Content.Client.Administration.Managers;
+﻿using Content.Client._Sunrise.ServersHub;
+using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
 using Content.Client.Chat.Managers;
 using Content.Client.Clickable;
@@ -50,6 +51,10 @@ namespace Content.Client.IoC
             collection.Register<DocumentParsingManager>();
             collection.Register<ContentReplayPlaybackManager, ContentReplayPlaybackManager>();
             collection.Register<ISharedPlaytimeManager, JobRequirementsManager>();
+
+            // Sunrise
+
+            collection.Register<ServersHubManager>(); // Sunrise-Hub
         }
     }
 }

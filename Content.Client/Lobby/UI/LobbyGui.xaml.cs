@@ -7,6 +7,7 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using System.Numerics;
+using Content.Client._Sunrise.ServersHub;
 using Content.Client.Parallax.Managers;
 using Content.Client.Resources;
 using Robust.Client.Graphics;
@@ -60,6 +61,9 @@ namespace Content.Client.Lobby.UI
             LocalChangelog.PanelOverride = back;
 
             LobbySongPanel.PanelOverride = back;
+
+            ServersHub.PanelOverride = back;
+
             // Sunrise-end
         }
 

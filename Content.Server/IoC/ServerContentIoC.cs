@@ -1,3 +1,4 @@
+using Content.Server._Sunrise.ServersHub;
 using Content.Server._Sunrise.TTS;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
@@ -63,6 +64,8 @@ namespace Content.Server.IoC
             IoCManager.Register<ServerDbEntryManager>();
             IoCManager.Register<ISharedPlaytimeManager, PlayTimeTrackingManager>();
             IoCManager.Register<ServerApi>();
+
+            IoCManager.Register<ServersHubManager>(); // Sunrise-Hub
         }
     }
 }
