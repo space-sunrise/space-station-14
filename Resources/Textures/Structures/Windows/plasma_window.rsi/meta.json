@@ -1,0 +1,46 @@
+{
+    "version": 1,
+    "license": "CC BY-NC-ND",
+    "copyright": "Sprited by discord: odlieerr",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "full"
+        },
+        {
+            "name": "pwindow0",
+            "directions": 4
+        },
+        {
+            "name": "pwindow1",
+            "directions": 4
+        },
+        {
+            "name": "pwindow2",
+            "directions": 4
+        },
+        {
+            "name": "pwindow3",
+            "directions": 4
+        },
+        {
+            "name": "pwindow4",
+            "directions": 4
+        },
+        {
+            "name": "pwindow5",
+            "directions": 4
+        },
+        {
+            "name": "pwindow6",
+            "directions": 4
+        },
+        {
+            "name": "pwindow7",
+            "directions": 4
+        }
+    ]
+}

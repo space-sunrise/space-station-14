@@ -12,6 +12,7 @@
     },
     {
       "name": "grille_diagonal"
+      "directions": 4
     },
     {
       "name": "grille_broken"
