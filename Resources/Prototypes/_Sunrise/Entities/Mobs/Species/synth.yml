@@ -8,6 +8,14 @@
   - MobCombat
   abstract: true
   components:
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 0
+    damageRecovery:
+      types:
+        Asphyxiation: -0
+    hasImmunity: true
   - type: SSDIndicator
   - type: DamageForceSay
   - type: CanHostGuardian
