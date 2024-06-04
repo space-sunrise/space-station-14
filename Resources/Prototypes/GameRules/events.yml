@@ -189,7 +189,6 @@
     weight: 8
     endAudio:
       path: /Audio/Announcements/announce.ogg # Sunrise-edit
-    startDelay: 20
   - type: GasLeakRule
 
 - type: entity
