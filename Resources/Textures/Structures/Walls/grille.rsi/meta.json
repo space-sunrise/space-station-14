@@ -11,7 +11,7 @@
       "name": "grille"
     },
     {
-      "name": "grille_diagonal"
+      "name": "grille_diagonal",
       "directions": 4
     },
     {

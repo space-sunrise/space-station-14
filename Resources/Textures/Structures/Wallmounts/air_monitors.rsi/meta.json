@@ -1,16 +1,28 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from TauCetiClassic at commit https://github.com/TauCetiStation/TauCetiClassic/commit/b7ac5798ae0d411b0cdeaf7efbc4ac86d24b4634, fire_emagged.png edited by github:Morb0, updated by SonicHDC",
+  "copyright": "Taken from TauCetiClassic at commit https://github.com/TauCetiStation/TauCetiClassic/commit/b7ac5798ae0d411b0cdeaf7efbc4ac86d24b4634, fire_emagged.png edited by github:Morb0, Retextured by MIXnikita for SS220",
   "size": {
-    "x": 32,
-    "y": 32
+    "x": 48,
+    "y": 48
   },
   "states": [
     {
       "name": "alarm0",
-	  "directions": 1,
+      "directions": 4,
       "delays": [
+        [
+          2.8,
+          2.8
+        ],
+        [
+          2.8,
+          2.8
+        ],
+        [
+          2.8,
+          2.8
+        ],
         [
           2.8,
           2.8
@@ -19,8 +31,74 @@
     },
     {
       "name": "alarm1",
-	  "directions": 1,
+      "directions": 4,
       "delays": [
+        [
+          0.6,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.6,
+          0.6,
+          0.6
+        ],
+        [
+          0.6,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.6,
+          0.6,
+          0.6
+        ],
+        [
+          0.6,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.6,
+          0.6,
+          0.6
+        ],
         [
           0.6,
           0.2,
@@ -47,8 +125,56 @@
     },
     {
       "name": "alarm2",
-      "directions": 1,
+      "directions": 4,
       "delays": [
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4
+        ],
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4
+        ],
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4
+        ],
         [
           0.2,
           0.2,
@@ -69,11 +195,11 @@
     },
     {
       "name": "alarm_b1",
-      "directions": 1
+      "directions": 4
     },
     {
       "name": "alarm_b2",
-      "directions": 1
+      "directions": 4
     },
     {
       "name": "alarm_bitem",
@@ -81,11 +207,11 @@
     },
     {
       "name": "alarmp",
-      "directions": 1
+      "directions": 4
     },
     {
       "name": "alarmx",
-      "directions": 1
+      "directions": 4
     },
     {
       "name": "auth_off",
@@ -108,20 +234,32 @@
     },
     {
       "name": "fire0",
-      "directions": 1
+      "directions": 4
     },
     {
       "name": "fire_0",
-      "directions": 1
+      "directions": 4
     },
     {
       "name": "fire_1",
-      "directions": 1
+      "directions": 4
     },
     {
       "name": "fire_2",
-      "directions": 1,
+      "directions": 4,
       "delays": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ],
+        [
+          0.5,
+          0.5
+        ],
         [
           0.5,
           0.5
@@ -130,8 +268,20 @@
     },
     {
       "name": "fire_3",
-      "directions": 1,
+      "directions": 4,
       "delays": [
+        [
+          0.3,
+          0.3
+        ],
+        [
+          0.3,
+          0.3
+        ],
+        [
+          0.3,
+          0.3
+        ],
         [
           0.3,
           0.3
@@ -140,24 +290,36 @@
     },
     {
       "name": "fire_b0",
-      "directions": 1
+      "directions": 4
     },
     {
       "name": "fire_b1",
-      "directions": 1
+      "directions": 4
     },
     {
       "name": "fire_b2",
-      "directions": 1
+      "directions": 4
     },
     {
       "name": "fire_bitem",
-      "directions": 1
+      "directions": 4
     },
     {
       "name": "fire_emagged",
-      "directions": 1,
+      "directions": 4,
       "delays": [
+        [
+          0.3,
+          0.3
+        ],
+        [
+          0.3,
+          0.3
+        ],
+        [
+          0.3,
+          0.3
+        ],
         [
           0.3,
           0.3
@@ -166,15 +328,31 @@
     },
     {
       "name": "fire_off",
-      "directions": 1
+      "directions": 4
     },
     {
       "name": "fire_on",
-      "directions": 1,
+      "directions": 4,
       "delays": [
         [
           0.2,
           0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ],
+        [
           0.2,
           0.2,
           0.2,
@@ -184,7 +362,7 @@
     },
     {
       "name": "firex",
-      "directions": 1
+      "directions": 4
     }
   ]
 }
