@@ -40,6 +40,7 @@ public sealed partial class TTSSystem : EntitySystem
     private const int MaxMessageChars = 100 * 2; // same as SingleBubbleCharLimit * 2
     private bool _isEnabled = false;
     private string _voiceId = "Hanson";
+    private List<ICommonSession> _ignoredRecipients = new();
     private string _nukieVoiceId = "Sentrybot";
     public const float WhisperVoiceVolumeModifier = 0.6f; // how far whisper goes in world units
     public const int WhisperVoiceRange = 4; // how far whisper goes in world units
@@ -56,6 +57,7 @@ public sealed partial class TTSSystem : EntitySystem
         SubscribeLocalEvent<AnnouncementSpokeEvent>(OnAnnouncementSpoke);
 
         SubscribeNetworkEvent<RequestPreviewTTSEvent>(OnRequestPreviewTTS);
+        SubscribeNetworkEvent<ClientOptionTTSEvent>(OnClientOptionTTS);
     }
 
     private async void OnRequestPreviewTTS(RequestPreviewTTSEvent ev, EntitySessionEventArgs args)
@@ -70,6 +72,14 @@ public sealed partial class TTSSystem : EntitySystem
             return;
 
         RaiseNetworkEvent(new PlayTTSEvent(soundData), Filter.SinglePlayer(args.SenderSession));
+    }
+
+    private async void OnClientOptionTTS(ClientOptionTTSEvent ev, EntitySessionEventArgs args)
+    {
+        if (ev.Enabled)
+            _ignoredRecipients.Remove(args.SenderSession);
+        else
+            _ignoredRecipients.Add(args.SenderSession);
     }
 
     private void OnRadioReceiveEvent(RadioSpokeEvent args)
@@ -112,13 +122,13 @@ public sealed partial class TTSSystem : EntitySystem
             args.Message.Length > MaxMessageChars * 2 ||
             !GetVoicePrototype(args.Nukie ? _nukieVoiceId : _voiceId, out var protoVoice))
         {
-            RaiseNetworkEvent(new AnnounceTtsEvent(new byte[] { }), args.Source);
+            RaiseNetworkEvent(new AnnounceTtsEvent(new byte[] { }), args.Source.RemovePlayers(_ignoredRecipients));
             return;
         }
 
         var soundData = await GenerateTTS(args.Message, protoVoice.Speaker, isAnnounce: true);
         soundData ??= new byte[] { };
-        RaiseNetworkEvent(new AnnounceTtsEvent(soundData), args.Source);
+        RaiseNetworkEvent(new AnnounceTtsEvent(soundData), args.Source.RemovePlayers(_ignoredRecipients));
     }
 
     private async void OnEntitySpoke(EntityUid uid, TTSComponent component, EntitySpokeEvent args)
@@ -151,7 +161,7 @@ public sealed partial class TTSSystem : EntitySystem
     {
         var soundData = await GenerateTTS(message, speaker);
         if (soundData is null) return;
-        RaiseNetworkEvent(new PlayTTSEvent(soundData, GetNetEntity(uid)), Filter.Pvs(uid));
+        RaiseNetworkEvent(new PlayTTSEvent(soundData, GetNetEntity(uid)), Filter.Pvs(uid).RemovePlayers(_ignoredRecipients));
     }
 
     private async void HandleWhisper(EntityUid uid, string message, string speaker, bool isRadio)
@@ -170,6 +180,9 @@ public sealed partial class TTSSystem : EntitySystem
         {
             if (!session.AttachedEntity.HasValue)
                 continue;
+
+            if (_ignoredRecipients.Contains(session))
+                return;
 
             var xform = xformQuery.GetComponent(session.AttachedEntity.Value);
             var distance = (sourcePos - _xforms.GetWorldPosition(xform, xformQuery)).LengthSquared();
@@ -194,7 +207,7 @@ public sealed partial class TTSSystem : EntitySystem
 
         foreach (var uid in uids)
         {
-            RaiseNetworkEvent(new PlayTTSEvent(soundData, GetNetEntity(uid), true), Filter.Entities(uid));
+            RaiseNetworkEvent(new PlayTTSEvent(soundData, GetNetEntity(uid), true), Filter.Entities(uid).RemovePlayers(_ignoredRecipients));
         }
     }
 
