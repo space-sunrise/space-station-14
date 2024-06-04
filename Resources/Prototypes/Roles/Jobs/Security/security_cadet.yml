@@ -37,3 +37,8 @@
     belt: ClothingBeltSecurityFilled
     pocket1: WeaponPistolMk58
     pocket2: HyperLinkBookCorporateLaw # Sunrise-edit
+  storage:
+    back:
+    - BoxSurvivalSecurity
+    - Flash
+    - MagazinePistol
