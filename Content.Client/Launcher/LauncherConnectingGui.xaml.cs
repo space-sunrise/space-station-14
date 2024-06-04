@@ -170,7 +170,10 @@ namespace Content.Client.Launcher
             Disconnected.Visible = page == LauncherConnecting.Page.Disconnected;
 
             if (page == LauncherConnecting.Page.Disconnected)
+            {
                 DisconnectReason.Text = _state.LastDisconnectReason;
+                ServersHub.Visible = true; // Sunrise-edit
+            }
         }
 
         private void ConnectionStateChanged(ClientConnectionState state)
