@@ -5,8 +5,6 @@ namespace Content.Shared.Construction.Steps
     [DataDefinition]
     public sealed partial class TagConstructionGraphStep : ArbitraryInsertConstructionGraphStep
     {
-        [DataField("tag")]
-        private string? _tag;
 
         public override bool EntityValid(EntityUid uid, IEntityManager entityManager, IComponentFactory compFactory)
         {

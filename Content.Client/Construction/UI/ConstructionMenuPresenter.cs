@@ -65,7 +65,7 @@ namespace Content.Client.Construction.UI
                     else
                         _constructionView.OpenCentered();
 
-                    if(_selected != null)
+                    if (_selected != null)
                         PopulateInfo(_selected);
                 }
                 else
@@ -166,7 +166,9 @@ namespace Content.Client.Construction.UI
 
                 if (!string.IsNullOrEmpty(search))
                 {
-                    if (!recipe.Name.ToLowerInvariant().Contains(search.Trim().ToLowerInvariant()))
+                    // var defaultSearchAttempt = !recipe.Name.ToLowerInvariant().Contains(search.Trim().ToLowerInvariant());
+                    var locSearchAttempt = !GetLocalizationFromID(recipe.ID).ToLowerInvariant().Contains(search.Trim().ToLowerInvariant());
+                    if (locSearchAttempt)
                         continue;
                 }
 
@@ -187,6 +189,11 @@ namespace Content.Client.Construction.UI
             }
 
             // There is apparently no way to set which
+        }
+
+        public static string GetLocalizationFromID(string id, bool desc = false)
+        {
+            return Loc.GetString($"ent-{id.Replace("Fixture", "").Replace("Recipe", "")}{(desc ? ".desc" : "")}");
         }
 
         private void PopulateCategories()
@@ -222,7 +229,8 @@ namespace Content.Client.Construction.UI
         {
             var spriteSys = _systemManager.GetEntitySystem<SpriteSystem>();
             _constructionView.ClearRecipeInfo();
-            _constructionView.SetRecipeInfo(prototype.Name, prototype.Description, spriteSys.Frame0(prototype.Icon), prototype.Type != ConstructionType.Item);
+            _constructionView.SetRecipeInfo(
+                GetLocalizationFromID(prototype.ID), GetLocalizationFromID(prototype.ID, true), spriteSys.Frame0(prototype.Icon), prototype.Type != ConstructionType.Item);
 
             var stepList = _constructionView.RecipeStepList;
             GenerateStepList(prototype, stepList);
@@ -259,7 +267,7 @@ namespace Content.Client.Construction.UI
             return new(itemList)
             {
                 Metadata = recipe,
-                Text = recipe.Name,
+                Text = GetLocalizationFromID(recipe.ID),
                 Icon = recipe.Icon.Frame0(),
                 TooltipEnabled = true,
                 TooltipText = recipe.Description

@@ -1,6 +1,6 @@
 #bureaucracy
 - type: construction
-  id: FilingCabinet
+  id: filingCabinetRecipe
   name: filing cabinet
   description: A cabinet for all your filing needs.
   graph: FilingCabinet
@@ -17,7 +17,7 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: TallCabinet
+  id: filingCabinetTallRecipe
   name: tall cabinet
   description: A cabinet for all your filing needs.
   graph: FilingCabinet
@@ -34,7 +34,7 @@
     - !type:TileNotBlocked
 
 - type: construction
-  id: ChestDrawer
+  id: filingCabinetDrawerRecipe
   name: chest drawer
   description: A small drawer for all your filing needs, Now with wheels!
   graph: FilingCabinet
@@ -44,24 +44,6 @@
   icon:
     sprite: Structures/Storage/cabinets.rsi
     state: chestdrawer
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-# ItemCabinets
-- type: construction
-  id: ShowCase
-  name: showcase
-  description: A sturdy showcase for an expensive exhibit.
-  graph: GlassBox
-  startNode: start
-  targetNode: glassBox
-  category: construction-category-storage
-  icon:
-    sprite: Structures/Storage/glassbox.rsi
-    state: icon
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false

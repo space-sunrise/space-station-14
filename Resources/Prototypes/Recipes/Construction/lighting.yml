@@ -1,6 +1,6 @@
 ﻿- type: construction
   name: cyan light tube
-  id: CyanLight
+  id: LightTubeCrystalCyanRecipe
   graph: CyanLight
   startNode: start
   targetNode: icon
@@ -11,7 +11,7 @@
 
 - type: construction
   name: blue light tube
-  id: BlueLight
+  id: LightTubeCrystalBlueRecipe
   graph: BlueLight
   startNode: start
   targetNode: icon
@@ -22,7 +22,7 @@
 
 - type: construction
   name: pink light tube
-  id: PinkLight
+  id: LightTubeCrystalPinkRecipe
   graph: PinkLight
   startNode: start
   targetNode: icon
@@ -33,7 +33,7 @@
 
 - type: construction
   name: orange light tube
-  id: OrangeLight
+  id: LightTubeCrystalOrangeRecipe
   graph: OrangeLight
   startNode: start
   targetNode: icon
@@ -44,7 +44,7 @@
 
 - type: construction
   name: red light tube
-  id: RedLight
+  id: LightTubeCrystalRedRecipe
   graph: RedLight
   startNode: start
   targetNode: icon
@@ -55,7 +55,7 @@
 
 - type: construction
   name: green light tube
-  id: GreenLight
+  id: LightTubeCrystalGreenRecipe
   graph: GreenLight
   startNode: start
   targetNode: icon

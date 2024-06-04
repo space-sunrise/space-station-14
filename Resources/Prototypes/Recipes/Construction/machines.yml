@@ -1,6 +1,6 @@
 ﻿- type: construction
   name: computer
-  id: Computer
+  id: ComputerFrameRecipe
   graph: Computer
   startNode: start
   targetNode: computer
@@ -45,7 +45,7 @@
 
 - type: construction
   name: light switch
-  id: LightSwitchRecipe
+  id: ApcNetSwitchDirectionalRecipe
   graph: LightSwitchGraph
   startNode: start
   targetNode: LightSwitchNode
@@ -99,7 +99,7 @@
 
 - type: construction
   name: directional light switch
-  id: LightSwitchDirectionalRecipe
+  id: SignalSwitchDirectionalFixture
   graph: LightSwitchDirectionalGraph
   startNode: start
   targetNode: LightSwitchDirectionalNode

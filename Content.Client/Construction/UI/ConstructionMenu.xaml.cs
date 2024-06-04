@@ -85,6 +85,7 @@ namespace Content.Client.Construction.UI
             Recipes.OnItemDeselected += _ => RecipeSelected?.Invoke(this, null);
 
             SearchBar.OnTextChanged += _ => PopulateRecipes?.Invoke(this, (SearchBar.Text, Categories[Category.SelectedId]));
+            /* SearchBar.PlaceHolder = Loc.GetString("construction-menu-title"); */
             Category.OnItemSelected += obj =>
             {
                 Category.SelectId(obj.Id);

@@ -1,7 +1,7 @@
 # SURVEILLANCE
 - type: construction
   name: camera
-  id: camera
+  id: SurveillanceCameraAssemblyRecipe
   graph: SurveillanceCamera
   startNode: start
   targetNode: camera
@@ -49,7 +49,7 @@
 # POWER
 - type: construction
   name: APC
-  id: APC
+  id: BaseAPCRecipe
   graph: APC
   startNode: start
   targetNode: apc
@@ -97,7 +97,7 @@
 
 - type: construction
   name: wallmount substation
-  id: WallmountSubstation
+  id: SubstationWallBasicRecipe
   graph: WallmountSubstation
   startNode: start
   targetNode: substation
@@ -112,7 +112,7 @@
 
 - type: construction
   name: wallmount generator
-  id: WallmountGenerator
+  id: GeneratorWallmountBasicRecipe
   graph: WallmountGenerator
   startNode: start
   targetNode: generator
@@ -127,7 +127,7 @@
 
 - type: construction
   name: wallmount APU
-  id: WallmountGeneratorAPU
+  id: GeneratorWallmountAPURecipe
   graph: WallmountGenerator
   startNode: start
   targetNode: APU
@@ -178,7 +178,7 @@
   targetNode: pipe
   category: construction-category-utilities
   placementMode: SnapgridCenter
-  canBuildInImpassable: false
+  canBuildInImpassable: true
   icon:
     sprite: Structures/Piping/disposal.rsi
     state: conpipe-s

@@ -1,6 +1,6 @@
 ﻿- type: construction
   name: metal rod
-  id: MetalRod
+  id: PartRodMetalRecipe
   graph: MetalRod
   startNode: start
   targetNode: MetalRod

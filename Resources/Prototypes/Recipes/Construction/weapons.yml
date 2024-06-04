@@ -143,7 +143,7 @@
 
 - type: construction
   name: glass shard arrow
-  id: ImprovisedArrow
+  id: ArrowImprovisedRecipe
   graph: ImprovisedArrow
   startNode: start
   targetNode: ImprovisedArrow
@@ -154,7 +154,7 @@
 
 - type: construction
   name: improvised bow
-  id: ImprovisedBow
+  id: BowImprovisedRecipe
   graph: ImprovisedBow
   startNode: start
   targetNode: ImprovisedBow

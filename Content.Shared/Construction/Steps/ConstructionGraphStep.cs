@@ -1,4 +1,5 @@
 ﻿using Content.Shared.Examine;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Construction.Steps
 {

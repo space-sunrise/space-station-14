@@ -54,7 +54,7 @@
 
 - type: construction
   name: wall
-  id: Wall
+  id: WallSolidRecipe
   graph: Girder
   startNode: start
   targetNode: wall
@@ -72,7 +72,7 @@
 
 - type: construction
   name: reinforced wall
-  id: ReinforcedWall
+  id: WallReinforcedRecipe
   graph: Girder
   startNode: start
   targetNode: reinforcedWall
@@ -108,7 +108,7 @@
 # here
 - type: construction
   name: wood wall
-  id: WoodWall
+  id: WallWoodRecipe
   graph: Girder
   startNode: start
   targetNode: woodWall
@@ -126,7 +126,7 @@
 
 - type: construction
   name: uranium wall
-  id: UraniumWall
+  id: WallUraniumRecipe
   graph: Girder
   startNode: start
   targetNode: uraniumWall
@@ -144,7 +144,7 @@
 
 - type: construction
   name: silver wall
-  id: SilverWall
+  id: WallSilverRecipe
   graph: Girder
   startNode: start
   targetNode: silverWall
@@ -162,7 +162,7 @@
 
 - type: construction
   name: plastic wall
-  id: PlasticWall
+  id: WallPlasticRecipe
   graph: Girder
   startNode: start
   targetNode: plasticWall
@@ -180,7 +180,7 @@
 
 - type: construction
   name: plasma wall
-  id: PlasmaWall
+  id: WallPlasmaRecipe
   graph: Girder
   startNode: start
   targetNode: plasmaWall
@@ -198,7 +198,7 @@
 
 - type: construction
   name: gold wall
-  id: GoldWall
+  id: WallGoldRecipe
   graph: Girder
   startNode: start
   targetNode: goldWall
@@ -216,7 +216,7 @@
 
 - type: construction
   name: shuttle wall
-  id: ShuttleWall
+  id: WallShuttleRecipe
   graph: Girder
   startNode: start
   targetNode: shuttleWall
@@ -234,7 +234,7 @@
 
 - type: construction
   name: interior shuttle wall
-  id: InteriorShuttleWall
+  id: WallShuttleInteriorRecipe
   graph: Girder
   startNode: start
   targetNode: shuttleInteriorWall
@@ -252,7 +252,7 @@
 
 - type: construction
   name: diagonal shuttle wall
-  id: DiagonalShuttleWall
+  id: WallShuttleDiagonalRecipe
   graph: Girder
   startNode: start
   targetNode: diagonalshuttleWall
@@ -270,7 +270,7 @@
 
 - type: construction
   name: bananium wall
-  id: ClownWall
+  id: WallClownRecipe
   graph: Girder
   startNode: start
   targetNode: bananiumWall
@@ -288,7 +288,7 @@
 
 - type: construction
   name: meat wall
-  id: MeatWall
+  id: WallMeatRecipe
   graph: Girder
   startNode: start
   targetNode: meatWall
@@ -324,7 +324,7 @@
 
 - type: construction
   name: clockwork grille
-  id: ClockGrille
+  id: ClockworkGrilleRecipe
   graph: ClockGrille
   startNode: start
   targetNode: clockGrille
@@ -796,25 +796,8 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Thin firelock
-  id: FirelockEdge
-  graph: Firelock
-  startNode: start
-  targetNode: FirelockEdge
-  category: construction-category-structures
-  description: This is a firelock - it locks an area when a fire alarm in the area is triggered. Don't get squished!
-  icon:
-    sprite: Structures/Doors/edge_door_hazard.rsi
-    state: closed
-  placementMode: SnapgridCenter
-  objectType: Structure
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
   name: shutter
-  id: Shutters
+  id: ShuttersNormalRecipe
   graph: Shutters
   startNode: start
   targetNode: Shutters
@@ -896,7 +879,7 @@
 
 - type: construction
   name: bananium floor
-  id: FloorBananium
+  id: FloorBananiumEntityRecipe
   graph: FloorBananium
   startNode: start
   targetNode: BananiumFloor
@@ -1020,7 +1003,7 @@
 # Chain link fencing
 - type: construction
   name: chain link fence
-  id: FenceMetal
+  id: FenceMetalStraightRecipe
   graph: FenceMetal
   startNode: start
   targetNode: straight
@@ -1382,7 +1365,7 @@
 
 - type: construction
   name: secure windoor
-  id: SecureWindoor
+  id: WindoorSecureRecipe
   graph: Windoor
   startNode: start
   targetNode: windoorSecure
@@ -1399,7 +1382,7 @@
 
 - type: construction
   name: clockwork windoor
-  id: ClockworkWindoor
+  id: WindoorClockworkRecipe
   graph: Windoor
   startNode: start
   targetNode: windoorClockwork
@@ -1437,7 +1420,7 @@
 
 - type: construction
   name: small wall light
-  id: LightSmallFixture
+  id: PoweredSmallLightEmptyRecipe
   graph: LightFixture
   startNode: start
   targetNode: bulbLight
@@ -1456,7 +1439,7 @@
 
 - type: construction
   name: ground light post
-  id: LightGroundFixture
+  id: PoweredLightPostSmallEmptyRecipe
   graph: LightFixture
   startNode: start
   targetNode: groundLight
@@ -1468,24 +1451,6 @@
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
-  name: strobe light
-  id: LightStrobeFixture
-  graph: LightFixture
-  startNode: start
-  targetNode: strobeLight
-  category: construction-category-structures
-  description: A wall light fixture. Use light bulbs.
-  icon:
-    sprite: Structures/Wallmounts/Lighting/strobe_light.rsi
-    state: base
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: true
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
@@ -1626,6 +1591,23 @@
     - !type:TileNotBlocked
 
 - type: construction
+  name: airtight plastic flaps
+  id: PlasticFlapsAirtight
+  graph: PlasticFlapsGraph
+  startNode: start
+  targetNode: airtightFlaps
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  description: An airtight plastic flap to let items through and keep people out.
+  objectType: Structure
+  canBuildInImpassable: false
+  icon:
+    sprite: Structures/plastic_flaps.rsi
+    state: plasticflaps
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
   name: opaque plastic flaps
   id: PlasticFlapsOpaque
   graph: PlasticFlapsGraph
@@ -1643,8 +1625,25 @@
     - !type:TileNotBlocked
 
 - type: construction
+  name: airtight opaque plastic flaps
+  id: PlasticFlapsAirtightOpaque
+  graph: PlasticFlapsGraph
+  startNode: start
+  targetNode: airtightopaqueFlaps
+  category: construction-category-structures
+  placementMode: SnapgridCenter
+  description: An opaque, airtight plastic flap to let items through and keep people out.
+  objectType: Structure
+  canBuildInImpassable: false
+  icon:
+    sprite: Structures/plastic_flaps.rsi
+    state: plasticflaps
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
   name: bananium clown statue
-  id: BananiumClownStatue
+  id: StatueBananiumClownRecipe
   graph: BananiumStatueClown
   startNode: start
   targetNode: bananiumStatue
@@ -1678,7 +1677,7 @@
 
 - type: construction
   name: bananium altar
-  id: BananiumAltar
+  id: AltarBananiumRecipe
   graph: BananiumAltarGraph
   startNode: start
   targetNode: bananiumAltar

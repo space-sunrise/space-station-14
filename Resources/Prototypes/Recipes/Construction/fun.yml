@@ -1,6 +1,6 @@
 - type: construction
   name: bananium horn
-  id: HornBananium
+  id: BananiumHornRecipe
   graph: BananiumHorn
   startNode: start
   targetNode: bananiumHorn

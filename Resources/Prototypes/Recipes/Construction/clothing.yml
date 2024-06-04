@@ -1,6 +1,6 @@
 - type: construction
   name: clown hardsuit
-  id: ClownHardsuit
+  id: ClothingOuterHardsuitClownRecipe
   graph: ClownHardsuit
   startNode: start
   targetNode: clownHardsuit
@@ -11,7 +11,7 @@
 
 - type: construction
   name: mime hardsuit
-  id: MimeHardsuit
+  id: ClothingOuterHardsuitMimeRecipe
   graph: MimeHardsuit
   startNode: start
   targetNode: mimeHardsuit
@@ -22,7 +22,7 @@
 
 - type: construction
   name: bone armor
-  id: BoneArmor
+  id: ClothingOuterArmorBoneRecipe
   graph: BoneArmor
   startNode: start
   targetNode: armor
@@ -33,7 +33,7 @@
 
 - type: construction
   name: bone helmet
-  id: BoneHelmet
+  id: ClothingHeadHelmetBoneRecipe
   graph: BoneHelmet
   startNode: start
   targetNode: helmet
@@ -44,7 +44,7 @@
 
 - type: construction
   name: banana clown mask
-  id: BananaClownMask
+  id: ClothingMaskClownBananaRecipe
   graph: BananaClownMask
   startNode: start
   targetNode: mask
@@ -55,7 +55,7 @@
 
 - type: construction
   name: banana clown suit
-  id: BananaClownJumpsuit
+  id: ClothingUniformJumpsuitClownBananaRecipe
   graph: BananaClownJumpsuit
   startNode: start
   targetNode: jumpsuit
@@ -66,7 +66,7 @@
 
 - type: construction
   name: banana clown shoes
-  id: BananaClownShoes
+  id: ClothingShoesClownBananaRecipe
   graph: BananaClownShoes
   startNode: start
   targetNode: shoes
@@ -106,15 +106,4 @@
   category: construction-category-clothing
   description: A pair of sunglasses, modified to have a built-in security HUD.
   icon: { sprite: Clothing/Eyes/Glasses/secglasses.rsi, state: icon }
-  objectType: Item
-
-- type: construction
-  name: quiver
-  id: ClothingBeltQuiver
-  graph: Quiver
-  startNode: start
-  targetNode: Quiver
-  category: construction-category-clothing
-  description: Can hold up to 15 arrows, and fits snug around your waist.
-  icon: { sprite: Clothing/Belt/quiver.rsi, state: icon }
   objectType: Item

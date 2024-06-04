@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Client.Construction.UI;
 using Content.Client.Popups;
 using Content.Shared.Construction;
 using Content.Shared.Construction.Prototypes;
@@ -89,7 +90,7 @@ namespace Content.Client.Construction
             {
                 args.PushMarkup(Loc.GetString(
                     "construction-ghost-examine-message",
-                    ("name", component.Prototype.Name)));
+                    ("name", ConstructionMenuPresenter.GetLocalizationFromID(component.Prototype.ID))));
 
                 if (!_prototypeManager.TryIndex(component.Prototype.Graph, out ConstructionGraphPrototype? graph))
                     return;

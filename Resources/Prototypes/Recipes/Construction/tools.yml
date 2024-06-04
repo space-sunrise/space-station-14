@@ -1,6 +1,6 @@
 - type: construction
   name: torch
-  id: LightTorch
+  id: TorchRecipe
   graph: LightTorch
   startNode: start
   targetNode: torch
