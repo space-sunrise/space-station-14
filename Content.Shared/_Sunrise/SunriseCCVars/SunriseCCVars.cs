@@ -37,8 +37,7 @@ public sealed class SunriseCCVars
     /// Option to disable TTS events for client
     /// </summary>
     public static readonly CVarDef<bool> TTSClientEnabled =
-        CVarDef.Create("tts.client_enabled", false, CVar.CLIENTONLY | CVar.ARCHIVE);
-
+        CVarDef.Create("tts.client_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /// <summary>
     /// Default volume setting of TTS sound
