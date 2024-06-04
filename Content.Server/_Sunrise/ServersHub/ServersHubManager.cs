@@ -50,7 +50,21 @@ public sealed partial class ServersHubManager
 
     private void OnServerListChanged(string serverList)
     {
-        _serversList = serverList.Split(',').ToList();
+        var urls = new List<string>();
+
+        foreach (var serverUrl in serverList.Split(','))
+        {
+            try
+            {
+                var uri = new Uri(serverUrl);
+                urls.Add(uri.AbsoluteUri);
+            }
+            catch (UriFormatException)
+            {
+            }
+        }
+
+        _serversList = urls;
     }
 
     // Ахуенный план, надеждный блядь как швейцарские часы нахуй.
@@ -72,10 +86,10 @@ public sealed partial class ServersHubManager
 
     private async Task UpdateServerData()
     {
-        _serverDataList.Clear();
-
         if (_serversList.Count == 0)
             return;
+
+        _serverDataList.Clear();
 
         foreach (var serverUrl in _serversList)
         {
