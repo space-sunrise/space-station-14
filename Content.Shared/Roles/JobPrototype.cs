@@ -126,8 +126,17 @@ namespace Content.Shared.Roles
         public bool Whitelisted;
 
         // Sunrise-Start
+        /// <summary>
+        /// Вот так работает расизм по мнению буржуев
+        /// </summary>
         [DataField("speciesBlacklist", customTypeSerializer: typeof(PrototypeIdListSerializer<SpeciesPrototype>))]
         public List<string> SpeciesBlacklist = new();
+
+        /// <summary>
+        /// Для космической тюрьмы
+        /// </summary>
+        [DataField("alwaysUseSpawner")]
+        public bool AlwaysUseSpawner { get; }
         // Sunrise-End
     }
 
