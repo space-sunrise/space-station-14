@@ -133,6 +133,7 @@
       - id: RubberStampDetective
       - id: HoloprojectorSecurity
       - id: BoxEvidenceMarkers
+      - id: PortableSurveillanceCameraMonitor # Sunrise-edit
 
 - type: entity
   id: ClosetBombFilled
