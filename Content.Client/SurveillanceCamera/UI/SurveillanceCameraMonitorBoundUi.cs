@@ -14,18 +14,34 @@ public sealed class SurveillanceCameraMonitorBoundUserInterface : BoundUserInter
 
     [ViewVariables]
     private EntityUid? _currentCamera;
+    private readonly IEntityManager _entManager; // Sunrise-edit
 
     public SurveillanceCameraMonitorBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
         _eyeLerpingSystem = EntMan.System<EyeLerpingSystem>();
         _surveillanceCameraMonitorSystem = EntMan.System<SurveillanceCameraMonitorSystem>();
+        // Sunrise-start
+        IoCManager.InjectDependencies(this);
+        _entManager = IoCManager.Resolve<IEntityManager>();
+        _eyeLerpingSystem = _entManager.EntitySysManager.GetEntitySystem<EyeLerpingSystem>();
+        _surveillanceCameraMonitorSystem = _entManager.EntitySysManager.GetEntitySystem<SurveillanceCameraMonitorSystem>();
+        // Sunrise-end
     }
 
     protected override void Open()
     {
         base.Open();
 
-        _window = new SurveillanceCameraMonitorWindow();
+        // Sunrise-start
+        EntityUid? gridUid = null;
+
+        if (_entManager.TryGetComponent<TransformComponent>(Owner, out var xform))
+        {
+            gridUid = xform.GridUid;
+        }
+
+        _window = new SurveillanceCameraMonitorWindow(gridUid);
+        // Sunrise-end
 
         if (State != null)
         {
@@ -35,7 +51,6 @@ public sealed class SurveillanceCameraMonitorBoundUserInterface : BoundUserInter
         _window.OpenCentered();
 
         _window.CameraSelected += OnCameraSelected;
-        _window.SubnetOpened += OnSubnetRequest;
         _window.CameraRefresh += OnCameraRefresh;
         _window.SubnetRefresh += OnSubnetRefresh;
         _window.OnClose += Close;
@@ -43,14 +58,9 @@ public sealed class SurveillanceCameraMonitorBoundUserInterface : BoundUserInter
         _window.CameraDisconnect += OnCameraDisconnect;
     }
 
-    private void OnCameraSelected(string address)
+    private void OnCameraSelected(string cameraAddress, string subnetAddress) // Sunrise-edit
     {
-        SendMessage(new SurveillanceCameraMonitorSwitchMessage(address));
-    }
-
-    private void OnSubnetRequest(string subnet)
-    {
-        SendMessage(new SurveillanceCameraMonitorSubnetRequestMessage(subnet));
+        SendMessage(new SurveillanceCameraMonitorSwitchMessage(cameraAddress, subnetAddress)); // Sunrise-edit
     }
 
     private void OnCameraSwitchTimer()
@@ -82,9 +92,11 @@ public sealed class SurveillanceCameraMonitorBoundUserInterface : BoundUserInter
 
         var active = EntMan.GetEntity(cast.ActiveCamera);
 
+        _entManager.TryGetComponent<TransformComponent>(Owner, out var xform); // Sunrise-edit
+
         if (active == null)
         {
-            _window.UpdateState(null, cast.Subnets, cast.ActiveAddress, cast.ActiveSubnet, cast.Cameras);
+            _window.UpdateState(null, cast.ActiveAddress, cast.ActiveCamera); // Sunrise-edit
 
             if (_currentCamera != null)
             {
@@ -109,9 +121,11 @@ public sealed class SurveillanceCameraMonitorBoundUserInterface : BoundUserInter
 
             if (EntMan.TryGetComponent<EyeComponent>(active, out var eye))
             {
-                _window.UpdateState(eye.Eye, cast.Subnets, cast.ActiveAddress, cast.ActiveSubnet, cast.Cameras);
+                _window.UpdateState(eye.Eye, cast.ActiveAddress, cast.ActiveCamera); // Sunrise-edit
             }
         }
+
+        _window.ShowCameras(cast.Cameras, xform?.Coordinates); // Sunrise-edit
     }
 
     protected override void Dispose(bool disposing)

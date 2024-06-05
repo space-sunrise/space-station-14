@@ -49,5 +49,16 @@ namespace Content.Shared.PDA
         public string? JobTitle;
         public string? StationAlertLevel;
         public Color StationAlertColor;
+        public TimeSpan? EvacShuttleTime; // Sunrise-edit
+        public EvacShuttleStatus EvacShuttleStatus; // Sunrise-edit
     }
+
+    // Sunrise-start
+    public enum EvacShuttleStatus
+    {
+        WaitingToCall,
+        WaitingToArrival,
+        WaitingToLaunch
+    }
+    // Sunrise-end
 }
