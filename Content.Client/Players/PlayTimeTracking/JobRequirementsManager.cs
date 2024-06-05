@@ -116,7 +116,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
 
             if (job.SpeciesBlacklist.Contains(profile.Species))
             {
-                reason = FormattedMessage.FromUnformatted($"Расса {Loc.GetString($"species-name-{profile.Species.ToLower()}")} не может занимать эту должность. Для спонсоров ограничений нет");
+                reason = FormattedMessage.FromUnformatted($"Расса {Loc.GetString($"species-name-{profile.Species.Id.ToLower()}")} не может занимать эту должность. Для спонсоров ограничений нет");
                 return false;
             }
         }
