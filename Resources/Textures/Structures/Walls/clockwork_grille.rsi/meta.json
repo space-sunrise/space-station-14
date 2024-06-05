@@ -14,7 +14,7 @@
       "name": "brokenratvargrille"
     },
 	{
-	  "name": "ratvargrille_diagonal"
+	  "name": "ratvargrille_diagonal",
       "directions": 4
 	}
   ]

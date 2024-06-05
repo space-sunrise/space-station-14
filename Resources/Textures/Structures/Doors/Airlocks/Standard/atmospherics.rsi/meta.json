@@ -16,8 +16,7 @@
         "directions": 4
     },
     {
-        "name": "bolted_open_unlit",
-        "directions": 4
+        "name": "bolted_open_unlit"
     },
     {
         "name": "closed",
@@ -453,26 +452,7 @@
         ]
     },
     {
-        "name": "emergency_open_unlit",
-        "directions": 4,
-        "delays": [
-            [
-                1.2,
-                1.2
-            ],
-            [
-                1.2,
-                1.2
-            ],
-            [
-                1.2,
-                1.2
-            ],
-            [
-                1.2,
-                1.2
-            ]
-        ]
+        "name": "emergency_open_unlit"
     }
   ]
 }
