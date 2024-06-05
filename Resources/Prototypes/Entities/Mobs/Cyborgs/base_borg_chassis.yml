@@ -221,8 +221,8 @@
     guides:
       - Cyborgs
   - type: StepTriggerImmune
-#  - type: TTS
-#    voice: TODO add our TTS Voice Sunrise
+  - type: TTS
+    voice: Gman
 
 - type: entity
   abstract: true
