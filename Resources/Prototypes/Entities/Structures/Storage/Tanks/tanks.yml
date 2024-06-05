@@ -24,9 +24,9 @@
     solution: tank
   - type: ReagentTank
     tankType: Fuel
+# Sunrise-edit: Конченая механика
 #  - type: DamageOnToolInteract
-#    tools:
-#    - Welding
+#    tools: Welding
 #    weldingDamage:
 #      types:
 #        Heat: 10
@@ -217,4 +217,3 @@
       fillBaseName: generictank-1-
     - type: ExaminableSolution
       solution: tank
-

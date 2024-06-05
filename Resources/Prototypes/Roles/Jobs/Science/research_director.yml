@@ -37,3 +37,7 @@
     pocket1: HandheldRoboAnalyzer
     pocket2: Nanopaste10
     ears: ClothingHeadsetRD
+  storage:
+    back:
+    - BoxSurvival
+    - Flash

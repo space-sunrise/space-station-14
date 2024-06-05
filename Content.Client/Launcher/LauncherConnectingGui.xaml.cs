@@ -18,7 +18,7 @@ namespace Content.Client.Launcher
     [GenerateTypedNameReferences]
     public sealed partial class LauncherConnectingGui : Control
     {
-        private const float RedialWaitTimeSeconds = 15f;
+        private const float RedialWaitTimeSeconds = 30f; // Sunrise-edit
         private readonly LauncherConnecting _state;
         private float _waitTime;
 
@@ -170,7 +170,10 @@ namespace Content.Client.Launcher
             Disconnected.Visible = page == LauncherConnecting.Page.Disconnected;
 
             if (page == LauncherConnecting.Page.Disconnected)
+            {
                 DisconnectReason.Text = _state.LastDisconnectReason;
+                ServersHub.Visible = true; // Sunrise-edit
+            }
         }
 
         private void ConnectionStateChanged(ClientConnectionState state)

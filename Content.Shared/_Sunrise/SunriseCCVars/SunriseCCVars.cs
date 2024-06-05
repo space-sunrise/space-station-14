@@ -34,6 +34,12 @@ public sealed class SunriseCCVars
         CVarDef.Create("tts.api_timeout", 5, CVar.SERVERONLY | CVar.ARCHIVE);
 
     /// <summary>
+    /// Option to disable TTS events for client
+    /// </summary>
+    public static readonly CVarDef<bool> TTSClientEnabled =
+        CVarDef.Create("tts.client_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
     /// Default volume setting of TTS sound
     /// </summary>
     public static readonly CVarDef<float> TTSVolume =
@@ -90,4 +96,14 @@ public sealed class SunriseCCVars
     /// </summary>
     public static readonly CVarDef<bool> PeacefulRoundEnd =
         CVarDef.Create("game.peaceful_end", true, CVar.SERVERONLY);
+
+    /*
+     * Servers Hub
+     */
+
+    /// <summary>
+    /// Список серверов отображаемых в хабе. Разделяются через запятую.
+    /// </summary>
+    public static readonly CVarDef<string> ServersHubList =
+        CVarDef.Create("servers_hub.urls", "", CVar.SERVERONLY);
 }
