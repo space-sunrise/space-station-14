@@ -15,7 +15,7 @@
     damageRecovery:
       types:
         Asphyxiation: -0
-    hasImmunity: true
+  - type: RespiratorImmunity
   - type: SSDIndicator
   - type: DamageForceSay
   - type: CanHostGuardian
