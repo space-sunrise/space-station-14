@@ -12311,9 +12311,8 @@ entities:
       parent: 8364
   - uid: 20115
     components:
-    - type: MetaData
-      name: Atmos Sci Test Hall
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: 50.5,-40.5
       parent: 8364
   - uid: 20116
