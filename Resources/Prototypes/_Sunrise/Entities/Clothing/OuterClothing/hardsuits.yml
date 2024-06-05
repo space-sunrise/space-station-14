@@ -30,29 +30,3 @@
     damageCoefficient: 0.7
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetCBURNLeader
-    
-#Blueshield Hardsuit
-- type: entity
-  parent: ClothingOuterHardsuitCap
-  id: ClothingOuterHardsuitBlueshield
-  name: blueshield's armored spacesuit
-  description: Armored spacesuit, made for the blueshield.
-  components:
-  - type: Sprite
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/blueshield_hardsuit.rsi
-  - type: Clothing
-    sprite: Backmen/Clothing/OuterClothing/Hardsuits/blueshield_hardsuit.rsi
-  - type: ExplosionResistance
-    damageCoefficient: 0.4
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.7
-        Slash: 0.7
-        Piercing: 0.5
-        Heat: 0.3
-        Radiation: 0.4
-        Caustic: 0.5
-        Stun: 0.4
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitBlueshield

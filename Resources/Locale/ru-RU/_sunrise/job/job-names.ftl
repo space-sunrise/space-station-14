@@ -1,1 +1,0 @@
-job-name-blueshield = Офицер Синий Щит

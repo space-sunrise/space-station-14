@@ -193,9 +193,6 @@
         },
         {
             "name": "Admin"
-        },
-		{
-			"name": "Blueshield"
-		}
+        }
     ]
 }

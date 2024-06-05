@@ -39,19 +39,3 @@
         Shock: 0.1
         Cold: 0.2
         Radiation: 0.2
-        
-#Blueshield Hardsuit
-- type: entity
-  parent: ClothingHeadHelmetHardsuitSecurity
-  id: ClothingHeadHelmetHardsuitBlueshield
-  noSpawn: true
-  name: Blueshield's hardsuit helmet
-  description: Strong hardsuit helmet, made for the blueshield.
-  components:
-  - type: PointLight
-    color: "#daffad"
-  - type: BreathMask
-  - type: Sprite
-    sprite: Backmen/Clothing/Head/Hardsuits/blueshield.rsi
-  - type: Clothing
-    sprite: Backmen/Clothing/Head/Hardsuits/blueshield.rsi

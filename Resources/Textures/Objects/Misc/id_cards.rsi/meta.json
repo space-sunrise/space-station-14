@@ -229,9 +229,6 @@
     {
       "name": "idpilot"
     },
-	{
-		"name": "idblueshield"
-	},
     {
       "name": "gold-inhand-left",
       "directions": 4
@@ -279,6 +276,6 @@
     {
       "name": "green-inhand-right",
       "directions": 4
-    },
+    }
   ]
 }

@@ -1,1 +1,0 @@
-job-description-blueshield = Your task is to protect and save the head and captain, you demonstrate order, courage and firmness at this station.
