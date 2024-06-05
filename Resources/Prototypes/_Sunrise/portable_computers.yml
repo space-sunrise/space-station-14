@@ -26,5 +26,5 @@
     anchored: false
   - type: UserInterface
     interfaces:
-    - key: enum.SurveillanceCameraMonitorUiKey.Key
-      type: SurveillanceCameraMonitorBoundUserInterface
+      enum.SurveillanceCameraMonitorUiKey.Key:
+        type: SurveillanceCameraMonitorBoundUserInterface
