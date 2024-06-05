@@ -363,6 +363,16 @@ namespace Content.Server.RoundEnd
                 SetAutoCallTime();
             }
         }
+
+        // Sunrise-start
+        public TimeSpan TimeToCallShuttle()
+        {
+            var autoCalledBefore = _autoCalledBefore
+                ? _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallExtensionTime)
+                : _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallTime);
+            return AutoCallStartTime + TimeSpan.FromMinutes(autoCalledBefore);
+        }
+        // Sunrise-end
     }
 
     public sealed class RoundEndSystemChangedEvent : EntityEventArgs
