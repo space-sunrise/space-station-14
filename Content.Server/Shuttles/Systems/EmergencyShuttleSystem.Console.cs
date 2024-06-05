@@ -39,6 +39,10 @@ public sealed partial class EmergencyShuttleSystem
     /// </summary>
     private float _consoleAccumulator = float.MinValue;
 
+    // Sunrise-start
+    public float СonsoleAccumulator => _consoleAccumulator;
+    // Sunrise-end
+
     /// <summary>
     /// How long after the transit is over to end the round.
     /// </summary>
