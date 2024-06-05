@@ -34,6 +34,7 @@ ui-options-lobby-music = Lobby & Round-end Music
 ui-options-restart-sounds = Round Restart Sounds
 ui-options-event-music = Event Music
 ui-options-admin-sounds = Play Admin Sounds
+ui-options-tts-enabled = Enable TTS
 ui-options-volume-label = Volume
 ui-options-volume-percent = { TOSTRING($volume, "P0") }
 
