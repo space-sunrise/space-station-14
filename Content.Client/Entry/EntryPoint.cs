@@ -1,3 +1,4 @@
+using Content.Client._Sunrise.ServersHub;
 using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
 using Content.Client.Chat.Managers;
@@ -71,6 +72,7 @@ namespace Content.Client.Entry
         [Dependency] private readonly IReplayLoadManager _replayLoad = default!;
         [Dependency] private readonly ILogManager _logManager = default!;
         [Dependency] private readonly ContentReplayPlaybackManager _replayMan = default!;
+        [Dependency] private readonly ServersHubManager _serversHubManager = default!; // Sunrise-Hub
 
         public override void Init()
         {
@@ -133,6 +135,8 @@ namespace Content.Client.Entry
             _jobRequirements.Initialize();
             _playbackMan.Initialize();
 
+            _serversHubManager.Initialize(); // Sunrise-Hub
+
             //AUTOSCALING default Setup!
             _configManager.SetCVar("interface.resolutionAutoScaleUpperCutoffX", 1080);
             _configManager.SetCVar("interface.resolutionAutoScaleUpperCutoffY", 720);
@@ -153,7 +157,6 @@ namespace Content.Client.Entry
             _parallaxManager.LoadDefaultParallax();
 
             _overlayManager.AddOverlay(new SingularityOverlay());
-            _overlayManager.AddOverlay(new FlashOverlay());
             _overlayManager.AddOverlay(new RadiationPulseOverlay());
             _chatManager.Initialize();
             _clientPreferencesManager.Initialize();

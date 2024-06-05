@@ -1,7 +1,7 @@
-using Content.Server.GameTicking.Components;
 using Content.Server.Spawners.Components;
 using Content.Server.Station.Components;
 using Content.Server.StationEvents.Events;
+using Content.Shared.GameTicking.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 using LateJoinSpawnRuleComponent = Content.Server._Sunrise.StationEvents.Components.LateJoinSpawnRuleComponent;

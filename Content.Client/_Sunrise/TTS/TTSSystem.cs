@@ -43,6 +43,7 @@ public sealed class TTSSystem : EntitySystem
         _cfg.OnValueChanged(SunriseCCVars.TTSVolume, OnTtsVolumeChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.TTSRadioVolume, OnTtsRadioVolumeChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.TTSAnnounceVolume, OnTtsAnnounceVolumeChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.TTSClientEnabled, OnTtsClientOptionChanged, true);
         SubscribeNetworkEvent<PlayTTSEvent>(OnPlayTTS);
         SubscribeNetworkEvent<AnnounceTtsEvent>(OnAnnounceTTSPlay);
     }
@@ -53,6 +54,7 @@ public sealed class TTSSystem : EntitySystem
         _cfg.UnsubValueChanged(SunriseCCVars.TTSVolume, OnTtsVolumeChanged);
         _cfg.UnsubValueChanged(SunriseCCVars.TTSRadioVolume, OnTtsRadioVolumeChanged);
         _cfg.UnsubValueChanged(SunriseCCVars.TTSAnnounceVolume, OnTtsAnnounceVolumeChanged);
+        _cfg.UnsubValueChanged(SunriseCCVars.TTSClientEnabled, OnTtsClientOptionChanged);
         _contentRoot.Dispose();
     }
 
@@ -69,6 +71,11 @@ public sealed class TTSSystem : EntitySystem
     private void OnTtsAnnounceVolumeChanged(float volume)
     {
         _volumeAnnounce = volume;
+    }
+
+    private void OnTtsClientOptionChanged(bool option)
+    {
+        RaiseNetworkEvent(new ClientOptionTTSEvent(option));
     }
 
     private void OnAnnounceTTSPlay(AnnounceTtsEvent ev)
