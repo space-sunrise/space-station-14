@@ -1,0 +1,27 @@
+- type: entity
+  id: LockerBlueShield
+  parent: LockerBaseSecure
+  name: blueshield's locker
+  components:
+  - type: Sprite
+    noRot: true
+    netsync: false
+    sprite: Backmen/Structures/Storage/closet.rsi
+    layers:
+    - state: bs
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: bs_door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.StorageVisualLayers.Lock"]
+      shader: unshaded
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: bs
+    stateDoorOpen: bs_open
+    stateDoorClosed: bs_door
+  - type: AccessReader
+    access: [["Blueshield"]]

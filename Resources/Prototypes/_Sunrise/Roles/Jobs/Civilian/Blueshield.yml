@@ -1,0 +1,59 @@
+- type: job
+  id: Blueshield
+  name: job-name-blueshield
+  description: job-description-blueshield
+  playTimeTracker: JobBlueshield
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 180000 #50 hrs
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 180000 #50 hrs
+    - !type:OverallPlaytimeRequirement
+      time: 900000 #250 hrs
+  startingGear: BlueshieldGear
+  icon: "JobIconBlueshield"
+  supervisors: job-supervisors-service
+  canBeAntag: false
+  setPreference: true
+  access:
+  - Blueshield
+  - Maintenance
+  - Command
+  - Service
+  - External
+  - Brig
+  - Security
+  - Medical
+  extendedAccess:
+  - Hydroponics
+  minBankBalance: 300
+  maxBankBalance: 500
+  wageDepartment: Civilian
+  wage: 80
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: PsionicBonusChance
+        flatBonus: 0.025
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
+  
+- type: startingGear
+  id: BlueshieldGear
+  equipment:
+    jumpsuit: BlueshieldUniformSuit
+    back: ClothingBackpackFilled
+    shoes: ClothingShoesBootsNedoSpetsnaz
+    eyes: ClothingEyesGlassesSunglassesMed
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorBlueshieldCarapace
+    id: BlueshieldPDA
+    ears: ClothingHeadsetAltCommand
+  innerClothingSkirt: BlueshieldUniformSuit
+  satchel: ClothingBackpackSatchelFilled
+  duffelbag: ClothingBackpackDuffelFilled

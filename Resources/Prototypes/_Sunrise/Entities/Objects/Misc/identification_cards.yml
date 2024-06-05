@@ -9,3 +9,15 @@
         - state: idiaa
     - type: PresetIdCard
       job: IAA
+
+- type: entity
+  parent: IDCardStandard
+  id: BlueshieldIDCard
+  name: Blueshield ID Card
+  components:
+    - type: Sprite
+      layers:
+        - state: silver
+        - state: idblueshield
+    - type: PresetIdCard
+      job: Blueshield

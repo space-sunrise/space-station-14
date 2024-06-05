@@ -13,6 +13,7 @@
   color: "#9FED58"
   weight: -10
   roles:
+  - Blueshield        #_sunrise
   - Bartender
   - Borg
   - Botanist
