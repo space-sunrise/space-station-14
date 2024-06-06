@@ -32,9 +32,6 @@
   - type: NpcFactionMember
     factions:
     - NanoTrasen
-  - type: ContentEye
-    targetZoom: 1.1, 1.1
-    maxZoom: 1.1, 1.1
   - type: Respirator
     damage:
       types:
@@ -42,5 +39,4 @@
     damageRecovery:
       types:
         Asphyxiation: -1.0
-  - type: DogVision  # Sunrise-DogVision
 
