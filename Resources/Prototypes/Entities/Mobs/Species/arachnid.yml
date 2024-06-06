@@ -11,6 +11,7 @@
   - type: HumanoidAppearance
     species: Arachnid
   - type: Hunger
+  - type: Carriable
   - type: Thirst
   - type: Sericulture
     action: ActionSericulture

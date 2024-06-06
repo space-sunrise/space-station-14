@@ -45,6 +45,7 @@
     allowedEmotes: ['Squish']
   - type: TypingIndicator
     proto: slime
+  - type: Carriable
   - type: Vocal
     sounds:
       Male: MaleSlime
