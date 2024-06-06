@@ -10,6 +10,7 @@
   - type: Icon
     sprite: _Sunrise/Mobs/Species/Vulpkanin/parts.rsi
     state: full
+  - type: Carriable
   - type: Body
     prototype: Vulpkanin
     requiredLegs: 2

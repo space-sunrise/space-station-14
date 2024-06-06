@@ -20,6 +20,7 @@
   - type: Thieving
     stealthy: true
     stripTimeReduction: 1
+  - type: Carriable
   - type: Sprite
     scale: 0.75, 0.75
   - type: HumanoidAppearance
