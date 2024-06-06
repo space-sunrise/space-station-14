@@ -92,6 +92,8 @@
 
 - type: trait  # Sunrise-DogVision
   id: Colorblindness
-  name: Colorblindness
+  name: trait-colorblindness-name
+  description: trait-colorblindness-desc
+  category: Disabilities
   components:
     - type: DogVision
