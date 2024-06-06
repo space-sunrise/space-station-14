@@ -39,4 +39,5 @@
     damageRecovery:
       types:
         Asphyxiation: -1.0
+  - type: DogVision  # Sunrise-DogVision
 

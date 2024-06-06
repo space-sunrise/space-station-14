@@ -89,3 +89,9 @@
   category: Disabilities
   components:
     - type: Snoring
+
+- type: trait  # Sunrise-DogVision
+  id: Colorblindness
+  name: Colorblindness
+  components:
+    - type: DogVision
