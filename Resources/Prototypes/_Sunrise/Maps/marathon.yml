@@ -13,7 +13,7 @@
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/Shuttles/emergency_rod.yml
+          emergencyShuttlePath: /Maps/_Sunrise/Shuttles/emergency_marathon.yml
         - type: StationJobs
           overflowJobs:
             - Passenger

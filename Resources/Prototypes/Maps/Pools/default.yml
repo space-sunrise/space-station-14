@@ -2,18 +2,8 @@
   id: DefaultMapPool
   maps:
   - SunriseDelta
-  - Atlas
-  - Bagel
-  - Box
-  - Cluster
-  - Core
-  - Fland
-  - Marathon
-  - Meta
-  - Oasis
-  - Omega
-  - Origin
-  - Saltern
-  - Packed
-  - Reach
+  - SunriseBox
+  - SunriseCluster
+  - SunriseFland
+  - SunriseMarathon
   #- Train
