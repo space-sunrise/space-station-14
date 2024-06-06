@@ -1,6 +1,7 @@
 - type: gameMapPool
   id: DefaultMapPool
   maps:
+  - SunriseDelta
   - Atlas
   - Bagel
   - Box
