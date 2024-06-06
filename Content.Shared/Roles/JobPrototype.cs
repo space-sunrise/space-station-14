@@ -70,8 +70,8 @@ namespace Content.Shared.Roles
         // Sunrise-End
 
         /// <summary>
-        ///     Whether this job is a head.
-        ///     The job system will try to pick heads before other jobs on the same priority level.
+        ///     The "weight" or importance of this job. If this number is large, the job system will assign this job
+        ///     before assigning other jobs.
         /// </summary>
         [DataField("weight")]
         public int Weight { get; private set; }
@@ -126,8 +126,17 @@ namespace Content.Shared.Roles
         public bool Whitelisted;
 
         // Sunrise-Start
+        /// <summary>
+        /// Вот так работает расизм по мнению буржуев
+        /// </summary>
         [DataField("speciesBlacklist", customTypeSerializer: typeof(PrototypeIdListSerializer<SpeciesPrototype>))]
         public List<string> SpeciesBlacklist = new();
+
+        /// <summary>
+        /// Для космической тюрьмы
+        /// </summary>
+        [DataField("alwaysUseSpawner")]
+        public bool AlwaysUseSpawner { get; }
         // Sunrise-End
     }
 
