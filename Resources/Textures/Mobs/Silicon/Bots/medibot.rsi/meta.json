@@ -1,15 +1,21 @@
 {
-   "copyright" : "Taken from https://github.com/tgstation/tgstation",
-   "license" : "CC-BY-SA-3.0",
-   "size" : {
-      "x" : 32,
-      "y" : 32
-   },
-   "states" : [
-      {
-         "directions" : 1,
-         "name" : "medibot"
-      }
-   ],
-   "version" : 1
+    "license": "CLA",
+    "copyright": "Sprited by discord: odlieerr",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "directions": 1,
+            "name": "medibot",
+            "delays": [
+                [
+                    0.2,
+                    0.2
+                ]
+            ]
+        }
+    ],
+    "version": 1
 }
