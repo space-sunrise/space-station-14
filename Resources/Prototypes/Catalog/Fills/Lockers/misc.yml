@@ -36,6 +36,9 @@
         prob: 0.05
       - id: BoxMRE
         prob: 0.1
+      - id: CrowbarRed
+      - id: CrowbarRed
+      - id: CrowbarRed
 
 - type: entity
   id: ClosetWallEmergencyFilledRandom
@@ -60,6 +63,9 @@
         prob: 0.05
       - id: BoxMRE
         prob: 0.1
+      - id: CrowbarRed
+      - id: CrowbarRed
+      - id: CrowbarRed
 
 - type: entity
   id: ClosetEmergencyN2FilledRandom
