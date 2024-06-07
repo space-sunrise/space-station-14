@@ -82,6 +82,7 @@
   - SecurityOfficer
   - Detective
   - Warden
+  - Brigmedic  # Sunrise-Brigmedic
 
 - type: department
   id: Science
