@@ -17,7 +17,6 @@
     damageRecovery:
       types:
         Asphyxiation: -1.0
-  - type: Carriable
   - type: Sprite
     noRot: true
     drawdepth: Mobs

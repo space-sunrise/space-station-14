@@ -12,7 +12,6 @@
   - type: Icon
     sprite: Mobs/Species/Moth/parts.rsi
     state: full
-  - type: Carriable
   - type: Body
     prototype: Moth
     requiredLegs: 2

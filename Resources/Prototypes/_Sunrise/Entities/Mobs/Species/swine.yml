@@ -22,7 +22,6 @@
   - type: Body
     prototype: Swine
     requiredLegs: 2
-  - type: Carriable
   - type: Vocal
     sounds:
       Male: UnisexSwine

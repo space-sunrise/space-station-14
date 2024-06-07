@@ -27,7 +27,6 @@
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
   - type: MobState
-  - type: Carriable
   - type: MobThresholds
     thresholds:
       0: Alive

@@ -10,7 +10,6 @@
   - type: Icon
     sprite: Mobs/Species/Gingerbread/parts.rsi
     state: full
-  - type: Carriable
   - type: Body
     prototype: Gingerbread
     requiredLegs: 2
