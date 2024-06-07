@@ -17,6 +17,6 @@ public sealed class AnnounceOnSpawnSystem : EntitySystem
     {
         var message = Loc.GetString(comp.Message);
         var sender = comp.Sender != null ? Loc.GetString(comp.Sender) : "Central Command";
-        _chat.DispatchGlobalAnnouncement(message, sender, playSound: true, announcementSound: comp.Sound, colorOverride: comp.Color);
+        _chat.DispatchGlobalAnnouncement(message, sender, playDefault: true, announcementSound: comp.Sound, colorOverride: comp.Color);
     }
 }

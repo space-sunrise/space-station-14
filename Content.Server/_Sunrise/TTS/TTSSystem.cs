@@ -121,14 +121,11 @@ public sealed partial class TTSSystem : EntitySystem
         if (!_isEnabled ||
             args.Message.Length > MaxMessageChars * 2 ||
             !GetVoicePrototype(args.Nukie ? _nukieVoiceId : _voiceId, out var protoVoice))
-        {
-            RaiseNetworkEvent(new AnnounceTtsEvent(new byte[] { }), args.Source.RemovePlayers(_ignoredRecipients));
             return;
-        }
 
         var soundData = await GenerateTTS(args.Message, protoVoice.Speaker, isAnnounce: true);
-        soundData ??= new byte[] { };
-        RaiseNetworkEvent(new AnnounceTtsEvent(soundData), args.Source.RemovePlayers(_ignoredRecipients));
+        soundData ??= [];
+        RaiseNetworkEvent(new AnnounceTtsEvent(soundData, args.AnnouncementSound), args.Source.RemovePlayers(_ignoredRecipients));
     }
 
     private async void OnEntitySpoke(EntityUid uid, TTSComponent component, EntitySpokeEvent args)
