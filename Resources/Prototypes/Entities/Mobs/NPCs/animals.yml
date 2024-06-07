@@ -2601,6 +2601,7 @@
   - type: Inventory
     speciesId: dog
     templateId: pet
+  - type: DogVision  # Sunrise-DogVision
   - type: InventorySlots
   - type: Strippable
   - type: UserInterface
