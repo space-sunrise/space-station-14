@@ -126,14 +126,20 @@ public sealed class TTSSystem : EntitySystem
 
         var audioParams = AudioParams.Default.WithVolume(volume);
 
-        PlayTTSBytes(ev.Data, GetEntity(ev.SourceUid), audioParams);
+        var entity = GetEntity(ev.SourceUid);
+        PlayTTSBytes(ev.Data, entity, audioParams);
     }
 
     private (EntityUid Entity, AudioComponent Component)? PlayTTSBytes(byte[] data, EntityUid? sourceUid = null, AudioParams? audioParams = null, bool globally = false)
     {
-        _sawmill.Debug($"Play TTS audio {data.Length} bytes from {sourceUid} entity");
         if (data.Length == 0)
             return null;
+
+        // если sourceUid.Value.Id == 0 то значит эта сущность не прогружена на стороне клиента
+        if ((sourceUid == null || sourceUid.Value.Id == 0) && !globally)
+            return null;
+
+        _sawmill.Debug($"Play TTS audio {data.Length} bytes from {sourceUid} entity");
 
         var finalParams = audioParams ?? AudioParams.Default;
 
@@ -152,10 +158,7 @@ public sealed class TTSSystem : EntitySystem
         }
         else
         {
-            if (sourceUid == null)
-                playing = _audio.PlayGlobal(res.AudioStream, finalParams);
-            else
-                playing = _audio.PlayEntity(res.AudioStream, sourceUid.Value, finalParams);
+            playing = sourceUid == null ? null : _audio.PlayEntity(res.AudioStream, sourceUid.Value, finalParams);
         }
 
         _contentRoot.RemoveFile(filePath);
