@@ -1,6 +1,3 @@
-ent-BaseHandheldInstrument = { ent-BaseItem }
-    .desc = That's an instrument.
-    .suffix = { "" }
 ent-SynthesizerInstrument = synthesizer
     .desc = { ent-BaseHandheldInstrument.desc }
     .suffix = { "" }
