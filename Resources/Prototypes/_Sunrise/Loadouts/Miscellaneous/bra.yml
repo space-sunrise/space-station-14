@@ -1,0 +1,8 @@
+- type: loadout
+  id: DefaultBra
+  equipment: DefaultBra
+
+- type: startingGear
+  id: DefaultBra
+  equipment:
+    bra: ClothingBraStrapless

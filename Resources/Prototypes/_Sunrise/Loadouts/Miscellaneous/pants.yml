@@ -1,0 +1,17 @@
+- type: loadout
+  id: DefaultWomanPants
+  equipment: DefaultWomanPants
+
+- type: startingGear
+  id: DefaultWomanPants
+  equipment:
+    pants: ClothingPantsWomanStrapless
+
+- type: loadout
+  id: DefaultManPants
+  equipment: DefaultManPants
+
+- type: startingGear
+  id: DefaultManPants
+  equipment:
+    pants: ClothingPantsManBoxers

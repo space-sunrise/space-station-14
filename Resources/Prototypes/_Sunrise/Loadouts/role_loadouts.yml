@@ -1,8 +1,0 @@
-- type: roleLoadout
-  id: JobIAA
-  groups:
-  - LawyerNeck
-  - LawyerJumpsuit
-  - CommonBackpack
-  - Trinkets
-  - Inventory # _Sunrise-Loadouts

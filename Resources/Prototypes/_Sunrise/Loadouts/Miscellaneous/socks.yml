@@ -1,0 +1,17 @@
+- type: loadout
+  id: DefaultWomanSocks
+  equipment: DefaultWomanSocks
+
+- type: startingGear
+  id: DefaultWomanSocks
+  equipment:
+    socks: ClothingThighWhite
+
+- type: loadout
+  id: DefaultManSocks
+  equipment: DefaultManSocks
+
+- type: startingGear
+  id: DefaultManSocks
+  equipment:
+    socks: ClothingShortWhite
