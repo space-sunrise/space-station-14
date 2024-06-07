@@ -25,13 +25,12 @@ public sealed class AnnounceRule : StationEventSystem<AnnounceRuleComponent>
 
     private void DispatchAnnouncement(EntityUid uid, AnnounceRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
-        if (component.EnableAnnouncement)
+        if (component.AnnouncementText != null)
         {
-            if (component.AnnouncementText != null)
-                _chat.DispatchGlobalAnnouncement(Loc.GetString(component.AnnouncementText), playSound: true, colorOverride: Color.Green);
-
-            if (component.AnnounceAudio != null)
-                Audio.PlayGlobal(component.AnnounceAudio, Filter.Broadcast(), true);
+            if (component.EnableAnnouncement)
+                _chat.DispatchGlobalAnnouncement(Loc.GetString(component.AnnouncementText), announcementSound: component.AnnounceAudio, playTts: true, colorOverride: Color.Green);
+            else
+                _chat.DispatchGlobalAnnouncement(Loc.GetString(component.AnnouncementText), playDefault: true, playTts: true, colorOverride: Color.Green);
         }
         component.TimerCancel = new CancellationToken();
     }
