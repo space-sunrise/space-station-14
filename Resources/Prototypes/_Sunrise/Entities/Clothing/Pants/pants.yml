@@ -1,0 +1,289 @@
+# Мужчина
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsManAssblastusa
+  name: мужские трусы "Assblastusa"
+  description: трусы с уникальным дизайном "Assblastusa" для мужчин.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
+    state: male_assblastusa_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
+    equippedState: male_assblastusa
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsManBoxers
+  name: мужские боксеры
+  description: Комфортные боксеры для мужчин.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
+    state: male_boxers_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
+    equippedState: male_boxers
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsManBriefs
+  name: мужские трусы
+  description: Обычные мужские трусы.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
+    state: male_briefs_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
+    equippedState: male_briefs
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsManCommie
+  name: мужские трусы "Коммуняка"
+  description: трусы с коммунистическим дизайном для мужчин.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
+    state: male_commie_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
+    equippedState: male_commie
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsManHearts
+  name: мужские трусы с сердечками
+  description: трусы с рисунком сердечек для мужчин.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
+    state: male_hearts_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
+    equippedState: male_hearts
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsManKinky
+  name: мужские трусы "Кинки"
+  description: трусы с вызывающим дизайном для мужчин.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
+    state: male_kinky_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
+    equippedState: male_kinky
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsManLongjohns
+  name: мужские теплые трусы
+  description: Теплые длинные трусы для мужчин.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
+    state: male_longjohns_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
+    equippedState: male_longjohns
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsManMankini
+  name: мужской манкини
+  description: Одежда для смелых мужчин.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
+    state: male_mankini_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
+    equippedState: male_mankini
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsManStripe
+  name: мужские полосатые трусы
+  description: трусы с полосатым дизайном для мужчин.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
+    state: male_stripe_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
+    equippedState: male_stripe
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsManUk
+  name: мужские трусы с флагом Великобритании
+  description: трусы с флагом Великобритании для мужчин.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
+    state: male_uk_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
+    equippedState: male_uk
+
+# Женщина
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsWomanNekoWhite
+  name: женские белые трусы с котиками
+  description: трусы с белым цветом и изображением котиков для женщин.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
+    state: female_neko_white_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
+    equippedState: female_neko_white
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsWomanNekoBlack
+  name: женские черные трусы с котиками
+  description: трусы с черным цветом и изображением котиков для женщин.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
+    state: female_neko_black_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
+    equippedState: female_neko_black
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsWomanAssblastusa
+  name: женские трусы "Assblastusa"
+  description: трусы с уникальным дизайном "Assblastusa" для женщин.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
+    state: female_assblastusa_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
+    equippedState: female_assblastusa
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsWomanBikini
+  name: женские бикини
+  description: трусы-бикини для женщин.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
+    state: female_bikini_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
+    equippedState: female_bikini
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsWomanBralette
+  name: женские трусики-бра
+  description: Трусики-бра для женщин.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
+    state: female_bralette_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
+    equippedState: female_bralette
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsWomanCommie
+  name: женские трусы "Коммуняка"
+  description: трусы с коммунистическим дизайном для женщин.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
+    state: female_commie_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
+    equippedState: female_commie
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsWomanKinky
+  name: женские трусы "Кинки"
+  description: трусы с вызывающим дизайном для женщин.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
+    state: female_kinky_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
+    equippedState: female_kinky
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsWomanLace
+  name: женские кружевные трусы
+  description: трусы с кружевным узором для женщин.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
+    state: female_lace_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
+    equippedState: female_lace
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsWomanSport
+  name: женские спортивные трусы
+  description: Удобные и практичные спортивные трусы для женщин.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
+    state: female_sport_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
+    equippedState: female_sport
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsWomanThong
+  name: женские трусики-стринги
+  description: Трусики-стринги для женщин.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
+    state: female_thong_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
+    equippedState: female_thong
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsWomanUk
+  name: женские трусы с флагом Великобритании
+  description: трусы с флагом Великобритании для женщин.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
+    state: female_uk_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
+    equippedState: female_uk
+
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsWomanStrapless
+  name: женские трусы без лямок
+  description: трусы без лямок для женщин.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
+    state: female_strapless_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
+    equippedState: female_strapless

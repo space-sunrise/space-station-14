@@ -31,7 +31,8 @@ namespace Content.Client.Voting.UI
             {
                 ("ui-vote-type-restart", StandardVoteType.Restart, null),
                 ("ui-vote-type-gamemode", StandardVoteType.Preset, null),
-                ("ui-vote-type-map", StandardVoteType.Map, null)
+                //("ui-vote-type-map", StandardVoteType.Map, null)
+                // Sunrise-edit: Голосование за карту автоматическое после конца раунда.
             };
 
         public VoteCallMenu()

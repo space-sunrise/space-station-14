@@ -29,7 +29,9 @@ public sealed partial class GameTicker
         "OutpostStation",
         "TrainStation",
         "CoreStation",
-        "Grass"
+        "Grass",
+        "SillyIsland",
+        "PilgrimAiur"
     ];
 
     [ViewVariables] private LobbyImage? LobbyImage { get; set; }

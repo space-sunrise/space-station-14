@@ -175,21 +175,18 @@ public sealed class AlertLevelSystem : EntitySystem
         var playDefault = false;
         if (playSound)
         {
-            if (detail.Sound != null)
-            {
-                var filter = _stationSystem.GetInOwningStation(station);
-                _audio.PlayGlobal(detail.Sound, filter, true, detail.Sound.Params);
-            }
-            else
-            {
+            if (detail.Sound == null)
                 playDefault = true;
-            }
         }
 
         if (announce)
         {
-            _chatSystem.DispatchStationAnnouncement(station, announcementFull, playSound: playDefault,
-                colorOverride: detail.Color, sender: stationName);
+            _chatSystem.DispatchStationAnnouncement(station,
+                announcementFull,
+                announcementSound: detail.Sound, // Sunrise-edit,
+                playDefault: playDefault,
+                colorOverride: detail.Color,
+                sender: stationName);
         }
 
         RaiseLocalEvent(new AlertLevelChangedEvent(station, level));
