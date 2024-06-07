@@ -1,0 +1,23 @@
+- type: loadout
+  id: DefaultWomanPants
+  equipment: DefaultWomanPants
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+
+- type: startingGear
+  id: DefaultWomanPants
+  equipment:
+    pants: ClothingPantsWomanStrapless
+
+- type: loadout
+  id: DefaultManPants
+  equipment: DefaultManPants
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
+
+- type: startingGear
+  id: DefaultManPants
+  equipment:
+    pants: ClothingPantsManBoxers

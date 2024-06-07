@@ -1,0 +1,155 @@
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingThighWhite
+  name: белые чулки до бедра
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    state: white_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    equippedState: white_thigh
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingThighAce
+  name: чулки до бедра с козырьком
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    state: ace_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    equippedState: ace_thigh
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingThighAsblastusa
+  name: чулки до бедра с логотипом "Assblastusa"
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    state: assblastusa_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    equippedState: assblastusa_thigh
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingThighBee
+  name: чулки до бедра с изображением пчелы
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    state: bee_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    equippedState: bee_thigh
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingThighBlack
+  name: черные чулки до бедра
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    state: black_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    equippedState: black_thigh
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingThighCommie
+  name: чулки до бедра с коммунистическими символами
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    state: commie_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    equippedState: commie_thigh
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingThighFishnet
+  name: чулки до бедра с сетчатым узором
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    state: fishnet_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    equippedState: fishnet_thigh
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingThighRainbow
+  name: радужные чулки до бедра
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    state: rainbow_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    equippedState: rainbow_thigh
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingThighStriped
+  name: полосатые чулки до бедра
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    state: striped_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    equippedState: striped_thigh
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingThighThin
+  name: тонкие чулки до бедра
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    state: thin_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    equippedState: thin_thigh
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingThighTrans
+  name: чулки до бедра с трансфлагом
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    state: trans_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    equippedState: trans_thigh
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingThighUk
+  name: чулки до бедра с изображением британского флага
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    state: uk_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    equippedState: uk_thigh
