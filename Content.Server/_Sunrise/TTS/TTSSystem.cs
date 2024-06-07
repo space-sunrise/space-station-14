@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Threading.Tasks;
 using Content.Server.Chat.Systems;
 using Content.Shared._Sunrise.SunriseCCVars;
@@ -121,14 +122,11 @@ public sealed partial class TTSSystem : EntitySystem
         if (!_isEnabled ||
             args.Message.Length > MaxMessageChars * 2 ||
             !GetVoicePrototype(args.Nukie ? _nukieVoiceId : _voiceId, out var protoVoice))
-        {
-            RaiseNetworkEvent(new AnnounceTtsEvent(new byte[] { }), args.Source.RemovePlayers(_ignoredRecipients));
             return;
-        }
 
         var soundData = await GenerateTTS(args.Message, protoVoice.Speaker, isAnnounce: true);
-        soundData ??= new byte[] { };
-        RaiseNetworkEvent(new AnnounceTtsEvent(soundData), args.Source.RemovePlayers(_ignoredRecipients));
+        soundData ??= [];
+        RaiseNetworkEvent(new AnnounceTtsEvent(soundData, args.AnnouncementSound), args.Source.RemovePlayers(_ignoredRecipients));
     }
 
     private async void OnEntitySpoke(EntityUid uid, TTSComponent component, EntitySpokeEvent args)
@@ -159,9 +157,20 @@ public sealed partial class TTSSystem : EntitySystem
 
     private async void HandleSay(EntityUid uid, string message, string speaker)
     {
+        var recipients = Filter.Pvs(uid, 1F).RemovePlayers(_ignoredRecipients);
+
+        // Если нету получаетей ттса то зачем вообще генерировать его?
+        if (!recipients.Recipients.Any())
+            return;
+
         var soundData = await GenerateTTS(message, speaker);
-        if (soundData is null) return;
-        RaiseNetworkEvent(new PlayTTSEvent(soundData, GetNetEntity(uid)), Filter.Pvs(uid).RemovePlayers(_ignoredRecipients));
+
+        if (soundData is null)
+            return;
+
+        var netEntity = GetNetEntity(uid);
+
+        RaiseNetworkEvent(new PlayTTSEvent(soundData, netEntity), recipients);
     }
 
     private async void HandleWhisper(EntityUid uid, string message, string speaker, bool isRadio)
