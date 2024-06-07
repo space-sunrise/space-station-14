@@ -1,0 +1,155 @@
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingKneeWhite
+  name: белые гольфы
+  description: Белые гольфы - простые белые носки до колена.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    state: white_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    equippedState: white_knee
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingKneeAce
+  name: гольфы с козырьком
+  description: Гольфы с козырьком - носки до колена с добавленным козырьком в верхней части.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    state: ace_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    equippedState: ace_knee
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingKneeAsblastusa
+  name: гольфы с логотипом "Assblastusa"
+  description: Гольфы с логотипом "Assblastusa" - носки до колена с изображением логотипа "Assblastusa".
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    state: assblastusa_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    equippedState: assblastusa_knee
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingKneeBee
+  name: гольфы с пчелой
+  description: Гольфы с пчелой - носки до колена с изображением пчелы.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    state: bee_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    equippedState: bee_knee
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingKneeBlack
+  name: черные гольфы
+  description: Черные гольфы - простые черные носки до колена.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    state: black_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    equippedState: black_knee
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingKneeCommie
+  name: коммунистические гольфы
+  description: Коммунистические гольфы - носки до колена с коммунистическими символами.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    state: commie_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    equippedState: commie_knee
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingKneeFishnet
+  name: гольфы в сетку
+  description: Гольфы в сетку - носки до колена с сетчатым узором.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    state: fishnet_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    equippedState: fishnet_knee
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingKneeRainbow
+  name: радужные гольфы
+  description: Радужные гольфы - носки до колена с радужным узором.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    state: rainbow_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    equippedState: rainbow_knee
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingKneeStriped
+  name: полосатые гольфы
+  description: Полосатые гольфы - носки до колена с полосатым узором.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    state: striped_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    equippedState: striped_knee
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingKneeThin
+  name: тонкие гольфы
+  description: Тонкие гольфы - тонкие носки до колена.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    state: thin_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    equippedState: thin_knee
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingKneeTrans
+  name: гольфы с трансфлагом
+  description: Гольфы с трансфлагом - носки до колена с изображением флага трансгендерной гордости.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    state: trans_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    equippedState: trans_knee
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingKneeUk
+  name: гольфы с британским флагом
+  description: Гольфы с британским флагом - носки до колена с изображением флага Великобритании.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    state: uk_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    equippedState: uk_knee

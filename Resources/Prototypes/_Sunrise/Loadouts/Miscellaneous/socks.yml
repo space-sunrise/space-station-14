@@ -1,0 +1,23 @@
+- type: loadout
+  id: DefaultWomanSocks
+  equipment: DefaultWomanSocks
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+
+- type: startingGear
+  id: DefaultWomanSocks
+  equipment:
+    socks: ClothingThighWhite
+
+- type: loadout
+  id: DefaultManSocks
+  equipment: DefaultManSocks
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
+
+- type: startingGear
+  id: DefaultManSocks
+  equipment:
+    socks: ClothingShortWhite
