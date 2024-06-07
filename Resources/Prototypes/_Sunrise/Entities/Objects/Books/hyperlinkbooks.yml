@@ -16,8 +16,8 @@
 - type: entity
   parent: BaseHyperLinkBook
   id: HyperLinkBookCorporateLaw
-  name: corporate law
-  description: A book of complicated laws for shitsec on station.
+  name: корпоративный закон
+  description: Любимое чтиво щиткюра.
   components:
   - type: Sprite
     sprite: Objects/Misc/books.rsi
