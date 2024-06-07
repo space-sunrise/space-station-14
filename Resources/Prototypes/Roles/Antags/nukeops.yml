@@ -10,6 +10,7 @@
   - !type:DepartmentTimeRequirement
     department: Security
     time: 7200 # 2h # Sunrise-RoleTime
+  guides: [ NuclearOperatives ]
 
 - type: antag
   id: NukeopsMedic
@@ -26,6 +27,7 @@
   - !type:DepartmentTimeRequirement
     department: Security
     time: 18000 # 5h # Sunrise-RoleTime
+  guides: [ NuclearOperatives ]
 
 - type: antag
   id: NukeopsCommander
@@ -40,6 +42,7 @@
     department: Security
     time: 18000 # 5h # Sunrise-RoleTime
   # should be changed to nukie playtime when thats tracked (wyci)
+  guides: [ NuclearOperatives ]
 
 #Nuclear Operative Gear
 - type: startingGear
@@ -103,3 +106,4 @@
   parent: SyndicateOperativeGearFull
   equipment:
     pocket2: BaseUplinkRadio60TC
+
