@@ -1,6 +1,7 @@
 - type: loadoutGroup
   id: Socks
   name: loadout-group-socks
+  minLimit: 0
   loadouts:
   - DefaultWomanSocks
   - DefaultManSocks
@@ -15,6 +16,7 @@
 - type: loadoutGroup
   id: Pants
   name: loadout-group-pants
+  minLimit: 0
   loadouts:
   - DefaultWomanPants
   - DefaultManPants

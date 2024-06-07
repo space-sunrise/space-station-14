@@ -1,6 +1,9 @@
 - type: loadout
   id: DefaultBra
   equipment: DefaultBra
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: DefaultBra
