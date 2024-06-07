@@ -9,3 +9,15 @@
         - state: idiaa
     - type: PresetIdCard
       job: IAA
+
+- type: entity
+  parent: IDCardStandard
+  id: MagistratIDCard
+  name: Magistrate ID Card
+  components:
+    - type: Sprite
+      layers:
+        - state: silver
+        - state: idiaa
+    - type: PresetIdCard
+      job: Magistrat
