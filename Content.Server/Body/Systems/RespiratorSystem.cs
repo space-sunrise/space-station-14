@@ -88,18 +88,13 @@ public sealed class RespiratorSystem : EntitySystem
         var query = EntityQueryEnumerator<RespiratorComponent, BodyComponent>();
         while (query.MoveNext(out var uid, out var respirator, out var body))
         {
-            if (_gameTiming.CurTime < respirator.NextUpdate)
+            if (_gameTiming.CurTime < respirator.NextUpdate || respirator.HasImmunity) // Sunrise-Edit
                 continue;
 
             respirator.NextUpdate += respirator.UpdateInterval;
 
             if (_mobState.IsDead(uid))
                 continue;
-
-            // Sunrise-start
-            if (respirator.HasImmunity)
-                continue;
-            // Sunrise-end
 
             UpdateSaturation(uid, -(float) respirator.UpdateInterval.TotalSeconds, respirator);
 
