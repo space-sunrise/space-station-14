@@ -13,7 +13,7 @@
   color: "#9FED58"
   weight: -10
   roles:
-  - Magistrat
+  - IAA # Sunrise-Edit
   - Bartender
   - Borg
   - Botanist
@@ -38,8 +38,8 @@
   description: department-Command-description
   color: "#052EED" # Sunrise-Edit
   roles:
+  - Magistrat # Sunrise-Edit
   - Captain
-  - IAA # Sunrise-Edit
   - CentralCommandOfficial
   - ChiefEngineer
   - ChiefMedicalOfficer
