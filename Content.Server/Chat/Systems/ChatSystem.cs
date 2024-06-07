@@ -66,7 +66,6 @@ public sealed partial class ChatSystem : SharedChatSystem
     // public const int WhisperMuffledRange = 5; // how far whisper goes at all, in world units
     // Sunrise-TTS-End
     public const string DefaultAnnouncementSound = "/Audio/Announcements/announce.ogg"; // Sunrise-edit
-    public const string NukeAnnouncementSound = "/Audio/Announcements/war.ogg"; // Sunrise-edit
 
     private bool _loocEnabled = true;
     private bool _deadLoocEnabled;
@@ -319,7 +318,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     public void DispatchGlobalAnnouncement(
         string message,
         string sender = "Центральное коммандование", // Sunrise-edit
-        bool playSound = true,
+        bool playDefault = true,
         SoundSpecifier? announcementSound = null,
         bool playTts = true, // Sunrise-edit
         Color? colorOverride = null
@@ -329,20 +328,15 @@ public sealed partial class ChatSystem : SharedChatSystem
         _chatManager.ChatMessageToAll(ChatChannel.Radio, message, wrappedMessage, default, false, true, colorOverride);
 
         // Sunrise-start
-        if (playSound)
+        if (playDefault && announcementSound == null)
         {
-            if (sender == Loc.GetString("comms-console-announcement-title-nukie"))
-            {
-                announcementSound = new SoundPathSpecifier(NukeAnnouncementSound); // Sunrise-edit
-            }
             announcementSound ??= new SoundPathSpecifier(DefaultAnnouncementSound);
-            _audio.PlayGlobal(announcementSound?.GetSound() ?? DefaultAnnouncementSound, Filter.Broadcast(), true, announcementSound?.Params ?? AudioParams.Default.WithVolume(-2f));
         }
 
         if (playTts)
         {
             var nukie = sender == Loc.GetString("comms-console-announcement-title-nukie");
-            var announcementEv = new AnnouncementSpokeEvent(Filter.Broadcast(), message, nukie);
+            var announcementEv = new AnnouncementSpokeEvent(Filter.Broadcast(), message, announcementSound, nukie);
             RaiseLocalEvent(announcementEv);
         }
         // Sunrise-end
@@ -364,9 +358,10 @@ public sealed partial class ChatSystem : SharedChatSystem
         EntityUid source,
         string message,
         string sender = "Центральное коммандование", // Sunrise-edit
-        bool playSound = true, // Sunrise-edit
+        bool playDefault = true, // Sunrise-edit
         bool playTts = true,// Sunrise-edit
-        Color? colorOverride = null)
+        Color? colorOverride = null,
+        SoundSpecifier? announcementSound = null)
     {
         var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message)));
         var station = _stationSystem.GetOwningStation(source);
@@ -384,15 +379,12 @@ public sealed partial class ChatSystem : SharedChatSystem
         _chatManager.ChatMessageToManyFiltered(filter, ChatChannel.Radio, message, wrappedMessage, source, false, true, colorOverride);
 
         // Sunrise-start
-        if (playSound)
-        {
-            var announcementSound = new SoundPathSpecifier(DefaultAnnouncementSound);
-            _audio.PlayGlobal(announcementSound?.GetSound() ?? DefaultAnnouncementSound, Filter.Broadcast(), true, announcementSound?.Params ?? AudioParams.Default.WithVolume(-2f));
-        }
+        if (playDefault && announcementSound == null)
+            announcementSound = new SoundPathSpecifier(DefaultAnnouncementSound);
 
         if (playTts)
         {
-            RaiseLocalEvent(new AnnouncementSpokeEvent(filter, message));
+            RaiseLocalEvent(new AnnouncementSpokeEvent(filter, message, announcementSound));
         }
         // Sunrise-edit
 
@@ -1013,12 +1005,14 @@ public enum ChatTransmitRange : byte
 public sealed class AnnouncementSpokeEvent(
     Filter source,
     string message,
+    SoundSpecifier? announcementSound,
     bool nukie = false)
     : EntityEventArgs
 {
     public readonly Filter Source = source;
     public readonly string Message = message;
     public readonly bool Nukie = nukie;
+    public readonly SoundSpecifier? AnnouncementSound = announcementSound;
 }
 
 public sealed class RadioSpokeEvent(EntityUid source, string message, EntityUid[] receivers) : EntityEventArgs
