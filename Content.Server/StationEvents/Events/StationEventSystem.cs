@@ -42,7 +42,7 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
         AdminLogManager.Add(LogType.EventAnnounced, $"Event added / announced: {ToPrettyString(uid)}");
 
         if (stationEvent.StartAnnouncement != null)
-            ChatSystem.DispatchGlobalAnnouncement(Loc.GetString(stationEvent.StartAnnouncement), playSound: false, colorOverride: stationEvent.StartAnnouncementColor);
+            ChatSystem.DispatchGlobalAnnouncement(Loc.GetString(stationEvent.StartAnnouncement), playDefault: false, colorOverride: stationEvent.StartAnnouncementColor);
 
         Audio.PlayGlobal(stationEvent.StartAudio, Filter.Broadcast(), true);
     }
@@ -78,7 +78,7 @@ public abstract class StationEventSystem<T> : GameRuleSystem<T> where T : ICompo
         AdminLogManager.Add(LogType.EventStopped, $"Event ended: {ToPrettyString(uid)}");
 
         if (stationEvent.EndAnnouncement != null)
-            ChatSystem.DispatchGlobalAnnouncement(Loc.GetString(stationEvent.EndAnnouncement), playSound: false, colorOverride: stationEvent.EndAnnouncementColor);
+            ChatSystem.DispatchGlobalAnnouncement(Loc.GetString(stationEvent.EndAnnouncement), playDefault: false, colorOverride: stationEvent.EndAnnouncementColor);
 
         Audio.PlayGlobal(stationEvent.EndAudio, Filter.Broadcast(), true);
     }

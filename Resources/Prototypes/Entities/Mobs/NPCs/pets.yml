@@ -288,6 +288,7 @@
     spawned:
     - id: FoodMeat
       amount: 2
+  - type: DogVision  # Sunrise-DogVision
   - type: ReplacementAccent
     accent: dog
   - type: InteractionPopup
@@ -370,6 +371,7 @@
     speciesId: dog
     templateId: pet
   - type: InventorySlots
+  - type: DogVision  # Sunrise-DogVision
   - type: Strippable
   - type: UserInterface
     interfaces:

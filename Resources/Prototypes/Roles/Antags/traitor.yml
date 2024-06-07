@@ -7,6 +7,7 @@
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 36000 # 10h # Sunrise-RoleTime
+  guides: [ Traitors ]
 
 # Syndicate Operative Outfit - Monkey
 - type: startingGear
