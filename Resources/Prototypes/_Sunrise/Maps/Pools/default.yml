@@ -1,0 +1,8 @@
+- type: gameMapPool
+  id: SunriseMapPool
+  maps:
+  - SunriseDelta
+  - SunriseBox
+  - SunriseCluster
+  - SunriseFland
+  - SunriseMarathon

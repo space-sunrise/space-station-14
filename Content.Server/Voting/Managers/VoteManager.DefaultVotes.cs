@@ -1,3 +1,4 @@
+using System.Collections.Specialized;
 using System.Linq;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
@@ -57,7 +58,7 @@ namespace Content.Server.Voting.Managers
 
             var ghostVotePercentageRequirement = _cfg.GetCVar(CCVars.VoteRestartGhostPercentage);
             var ghostCount = 0;
-            
+
             foreach (var player in _playerManager.Sessions)
             {
                 _playerManager.UpdateState(player);
@@ -212,7 +213,13 @@ namespace Content.Server.Voting.Managers
 
         private void CreateMapVote(ICommonSession? initiator)
         {
-            var maps = _gameMapManager.CurrentlyEligibleMaps().ToDictionary(map => map, map => map.MapName);
+            var maps = new Dictionary<string, GameMapPrototype>();
+            var eligibleMaps = _gameMapManager.CurrentlyEligibleMaps().ToList();
+            maps.Add(Loc.GetString("ui-vote-secret-map"), _random.Pick(eligibleMaps));
+            foreach (var map in eligibleMaps)
+            {
+                maps.Add(map.MapName, map);
+            }
 
             var alone = _playerManager.PlayerCount == 1 && initiator != null;
             var options = new VoteOptions
@@ -228,7 +235,7 @@ namespace Content.Server.Voting.Managers
 
             foreach (var (k, v) in maps)
             {
-                options.Options.Add((v, k));
+                options.Options.Add((k, v));
             }
 
             WirePresetVoteInitiator(options, initiator);
@@ -238,17 +245,27 @@ namespace Content.Server.Voting.Managers
             vote.OnFinished += (_, args) =>
             {
                 GameMapPrototype picked;
+                string title;
                 if (args.Winner == null)
                 {
                     picked = (GameMapPrototype) _random.Pick(args.Winners);
+                    title = maps.FirstOrDefault(x => x.Value == picked).Key;
                     _chatManager.DispatchServerAnnouncement(
-                        Loc.GetString("ui-vote-map-tie", ("picked", maps[picked])));
+                        Loc.GetString("ui-vote-map-tie", ("picked", title)));
                 }
                 else
                 {
                     picked = (GameMapPrototype) args.Winner;
-                    _chatManager.DispatchServerAnnouncement(
-                        Loc.GetString("ui-vote-map-win", ("winner", maps[picked])));
+                    title = maps.FirstOrDefault(x => x.Value == picked).Key;
+                }
+                if (title == Loc.GetString("ui-vote-secret-map"))
+                {
+                    _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-secret-win"));
+                }
+                else
+                {
+                    _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-map-win",
+                        ("winner", title)));
                 }
 
                 _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Map vote finished: {picked.MapName}");
