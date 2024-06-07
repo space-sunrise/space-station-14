@@ -1,0 +1,90 @@
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingStockingsBlue
+  name: голубые чулки
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/stockings.rsi
+    state: blue_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/stockings.rsi
+    equippedState: stockings_blue
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingStockingsCyan
+  name: голубовато-зелёные чулки
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/stockings.rsi
+    state: cyan_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/stockings.rsi
+    equippedState: stockings_cyan
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingStockingsDpink
+  name: тёмно-розовые чулки
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/stockings.rsi
+    state: dpink_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/stockings.rsi
+    equippedState: stockings_dpink
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingStockingsGreen
+  name: зелёные чулки
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/stockings.rsi
+    state: green_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/stockings.rsi
+    equippedState: stockings_green
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingStockingslpink
+  name: светло-розовые чулки
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/stockings.rsi
+    state: lpink_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/stockings.rsi
+    equippedState: stockings_lpink
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingStockingsOrange
+  name: оранжевые чулки
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/stockings.rsi
+    state: orange_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/stockings.rsi
+    equippedState: stockings_orange
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingStockingsPurple
+  name: фиолетовые чулки
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/stockings.rsi
+    state: purple_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/stockings.rsi
+    equippedState: stockings_purple
