@@ -1,8 +1,18 @@
 - type: gameMapPool
   id: DefaultMapPool
   maps:
-  - SunriseDelta
-  - SunriseBox
-  - SunriseCluster
-  - SunriseFland
-  - SunriseMarathon
+  - Atlas
+  - Bagel
+  - Box
+  - Cluster
+  - Core
+  - Fland
+  - Marathon
+  - Meta
+  - Oasis
+  - Omega
+  - Origin
+  - Saltern
+  - Packed
+  - Reach
+  #- Train
