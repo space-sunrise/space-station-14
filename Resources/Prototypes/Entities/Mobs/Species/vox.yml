@@ -31,7 +31,6 @@
     speechSounds: Vox
   - type: TypingIndicator
     proto: vox
-  - type: Carriable
   - type: Vocal
     sounds:
       Male: UnisexVox
