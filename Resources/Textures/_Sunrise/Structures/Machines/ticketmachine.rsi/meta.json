@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "by Rinary",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "ticketmachine"
+    },
+	{
+	  "name": "ticketmachine_0"
+	},
+	{
+	  "name": "ticketmachine_50"
+	},
+	{
+	  "name": "ticketmachine_100"
+	}
+  ]
+}

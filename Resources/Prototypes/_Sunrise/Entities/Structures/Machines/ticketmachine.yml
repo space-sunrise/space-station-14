@@ -1,0 +1,48 @@
+- type: entity
+  id: TicketMachine
+  parent: [ BaseMachinePowered ]
+  name: Ticket Machine
+  components:
+  - type: Appearance
+  - type: WiresVisuals
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+          - MachineLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: WiresPanel
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/ticketmachine.rsi
+    snapCardinals: true
+    layers:
+    - state: "ticketmachine"
+      map: ["enum.TicketMachineVisualState.inactive"]
+    - state: "ticketmachine_0"
+      map: ["enum.TicketMachineVisualState.ticketmachine_0"]
+    - state: "ticketmachine_50"
+      map: ["enum.TicketMachineVisualState.ticketmachine_50"]
+    - state: "ticketmachine_100"
+      map: ["enum.TicketMachineVisualState.ticketmachine_100"]
+  - type: Transform
+    anchored: true
+  - type: Pullable
+  - type: TicketMachine
