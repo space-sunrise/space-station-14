@@ -1,0 +1,155 @@
+- type: entity
+  parent: ClothingBraStorageBase
+  id: ClothingBraNekoWhite
+  name: женский бюстгальтер "Неко" белый
+  description: Белый бюстгальтер с изображением ушек и хвоста кошки.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/bra.rsi
+    state: female_neko_white_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/bra.rsi
+    equippedState: female_neko_white
+
+- type: entity
+  parent: ClothingBraStorageBase
+  id: ClothingBraNekoBlack
+  name: женский бюстгальтер "Неко" черный
+  description: Черный бюстгальтер с изображением ушек и хвоста кошки.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/bra.rsi
+    state: female_neko_black_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/bra.rsi
+    equippedState: female_neko_black
+
+- type: entity
+  parent: ClothingBraStorageBase
+  id: ClothingBraAssblastusa
+  name: женский бюстгальтер "Эссбластуса"
+  description: Бюстгальтер с уникальным дизайном, вдохновленным космическими мотивами.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/bra.rsi
+    state: female_assblastusa_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/bra.rsi
+    equippedState: female_assblastusa
+
+- type: entity
+  parent: ClothingBraStorageBase
+  id: ClothingBraBikini
+  name: женский бюстгальтер-бикини
+  description: Бюстгальтер с обтягивающим купальником.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/bra.rsi
+    state: female_bikini_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/bra.rsi
+    equippedState: female_bikini
+
+- type: entity
+  parent: ClothingBraStorageBase
+  id: ClothingBraBralette
+  name: женский бра-топ
+  description: Комфортный и стильный бра-топ.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/bra.rsi
+    state: female_bralette_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/bra.rsi
+    equippedState: female_bralette
+
+- type: entity
+  parent: ClothingBraStorageBase
+  id: ClothingBraCommie
+  name: женский бюстгальтер "Комми"
+  description: Бюстгальтер с дизайном, вдохновленным стилем коммунизма.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/bra.rsi
+    state: female_commie_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/bra.rsi
+    equippedState: female_commie
+
+- type: entity
+  parent: ClothingBraStorageBase
+  id: ClothingBraKinky
+  name: женский сексуальный бюстгальтер
+  description: Сексуальный бюстгальтер для особых случаев.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/bra.rsi
+    state: female_kinky_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/bra.rsi
+    equippedState: female_kinky
+
+- type: entity
+  parent: ClothingBraStorageBase
+  id: ClothingBraLace
+  name: женский кружевной бюстгальтер
+  description: Кружевной бюстгальтер для женственного образа.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/bra.rsi
+    state: female_lace_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/bra.rsi
+    equippedState: female_lace
+
+- type: entity
+  parent: ClothingBraStorageBase
+  id: ClothingBraSport
+  name: женский спортивный бюстгальтер
+  description: Удобный и поддерживающий бюстгальтер для занятий спортом.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/bra.rsi
+    state: female_sport_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/bra.rsi
+    equippedState: female_sport
+
+- type: entity
+  parent: ClothingBraStorageBase
+  id: ClothingBraThong
+  name: женский тонкий бюстгальтер
+  description: Тонкий бюстгальтер без лишних деталей.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/bra.rsi
+    state: female_thong_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/bra.rsi
+    equippedState: female_thong
+
+- type: entity
+  parent: ClothingBraStorageBase
+  id: ClothingBraUk
+  name: женский бюстгальтер "Великобритания"
+  description: Бюстгальтер с дизайном, символизирующим Великобританию.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/bra.rsi
+    state: female_uk_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/bra.rsi
+    equippedState: female_uk
+
+- type: entity
+  parent: ClothingBraStorageBase
+  id: ClothingBraStrapless
+  name: женский бюстгальтер без бретелек
+  description: Бюстгальтер без бретелек для невидимости под одеждой.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/bra.rsi
+    state: female_strapless_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/bra.rsi
+    equippedState: female_strapless

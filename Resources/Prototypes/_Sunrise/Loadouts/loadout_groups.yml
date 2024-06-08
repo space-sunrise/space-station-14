@@ -1,17 +1,24 @@
 - type: loadoutGroup
-  id: Inventory
-  name: loadout-group-inventory
+  id: Socks
+  name: loadout-group-socks
   minLimit: 0
-  maxLimit: 5
-  loadouts: []
+  loadouts:
+  - DefaultWomanSocks
+  - DefaultManSocks
 
 - type: loadoutGroup
-  id: PsychologistBackpack
-  name: loadout-group-psychologist-backpack
+  id: Bra
+  name: loadout-group-bra
+  minLimit: 0
   loadouts:
-  - PsychologistBackpack
-  - PsychologistSatchel
-  - PsychologistDuffel
+  - DefaultBra
+
+  id: Pants
+  name: loadout-group-pants
+  minLimit: 0
+  loadouts:
+  - DefaultWomanPants
+  - DefaultManPants
 
 - type: loadoutGroup
   id: BrigmedicBackpack

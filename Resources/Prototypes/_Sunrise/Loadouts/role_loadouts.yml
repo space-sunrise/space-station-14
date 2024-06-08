@@ -5,7 +5,9 @@
   - LawyerJumpsuit
   - CommonBackpack
   - Trinkets
-  - Inventory # _Sunrise-Loadouts
+  - Bra
+  - Pants
+  - Socks
 
 - type: roleLoadout
   id: JobBrigmedic
@@ -13,4 +15,6 @@
   - BrigmedicJumpsuit
   - BrigmedicBackpack
   - Trinkets
-  - Inventory  # _Sunrise-Loadouts
+  - Bra
+  - Pants
+  - Socks
