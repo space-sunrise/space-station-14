@@ -41,3 +41,14 @@
       sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/centcom_admiral.rsi
     - type: Clothing
       sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/centcom_admiral.rsi
+      
+- type: entity
+  parent: ClothingUniformBase
+  id: MagistratUniformSuit
+  name: Костюм магистрата
+  description: Увольте пару срочников!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/jumpsuit/magistratebel.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/jumpsuit/magistratebel.rsi
