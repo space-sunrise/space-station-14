@@ -136,7 +136,7 @@ public sealed class TTSSystem : EntitySystem
             return null;
 
         // если sourceUid.Value.Id == 0 то значит эта сущность не прогружена на стороне клиента
-        if ((sourceUid == null || sourceUid.Value.Id == 0) && !globally)
+        if ((sourceUid != null && sourceUid.Value.Id == 0) && !globally)
             return null;
 
         _sawmill.Debug($"Play TTS audio {data.Length} bytes from {sourceUid} entity");
@@ -158,7 +158,14 @@ public sealed class TTSSystem : EntitySystem
         }
         else
         {
-            playing = sourceUid == null ? null : _audio.PlayEntity(res.AudioStream, sourceUid.Value, finalParams);
+            if (sourceUid != null)
+            {
+                playing = _audio.PlayEntity(res.AudioStream, sourceUid.Value, finalParams);
+            }
+            else
+            {
+                playing = _audio.PlayGlobal(res.AudioStream, finalParams);
+            }
         }
 
         _contentRoot.RemoveFile(filePath);

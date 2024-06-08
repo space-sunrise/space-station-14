@@ -1,0 +1,10 @@
+- type: department
+  id: Law
+  description: department-Law-description
+  color: "#FF5297"
+  weight: -10
+  roles:
+  - Magistrat
+  - IAA
+  - Lawyer
+  
