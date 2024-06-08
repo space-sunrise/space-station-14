@@ -1,3 +1,4 @@
+marking-CatTail = Кошачий хвост
 marking-CatTail-tail_cat_wag = Основной
 marking-CatTailStripes = Кошачий хвост (Полосатый)
 marking-CatTailStripes-tail_cat_wag_stripes_prime = Первичные полосы

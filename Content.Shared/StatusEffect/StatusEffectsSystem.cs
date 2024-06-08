@@ -82,7 +82,10 @@ namespace Content.Shared.StatusEffect
                 var time = effect.Cooldown.Item2 - effect.Cooldown.Item1;
 
                 TryAddStatusEffect(uid, key, time, true, component, effect.Cooldown.Item1);
-                component.ActiveEffects[key].RelevantComponent = effect.RelevantComponent;
+                // Sunrise-edit: В душе не ебу что это за хуйня, но без этой хуйни в конце раунда всё ломается.
+                if (!component.ActiveEffects.TryGetValue(key, out var activeEffect))
+                    return;
+                activeEffect.RelevantComponent = effect.RelevantComponent;
                 // state handling should not add networked components, that is handled separately by the client game state manager.
             }
         }

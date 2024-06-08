@@ -214,10 +214,7 @@ public sealed partial class TTSSystem : EntitySystem
         if (soundData is null)
             return;
 
-        foreach (var uid in uids)
-        {
-            RaiseNetworkEvent(new PlayTTSEvent(soundData, GetNetEntity(uid), true), Filter.Entities(uid).RemovePlayers(_ignoredRecipients));
-        }
+        RaiseNetworkEvent(new PlayTTSEvent(soundData, null, true), Filter.Entities(uids).RemovePlayers(_ignoredRecipients));
     }
 
     // ReSharper disable once InconsistentNaming
