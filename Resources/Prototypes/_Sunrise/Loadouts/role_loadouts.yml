@@ -13,6 +13,12 @@
   id: JobMagistrat
   groups:
   - CommonBackpack
+  - Trinkets
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
   id: JobBrigmedic
   groups:
   - BrigmedicJumpsuit
