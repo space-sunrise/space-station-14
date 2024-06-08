@@ -27,9 +27,7 @@
 - type: startingGear
   id: BrigmedicGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitBrigmedic
     outerClothing: ClothingOuterCoatLabSecurityMedic
-    back: ClothingBackpackBrigmedicFilled
     shoes: ClothingShoesColorRed
     gloves: ClothingHandsGlovesLatex
     eyes: ClothingEyesHudMedSec

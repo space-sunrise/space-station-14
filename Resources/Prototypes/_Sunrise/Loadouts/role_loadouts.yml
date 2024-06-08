@@ -6,3 +6,11 @@
   - CommonBackpack
   - Trinkets
   - Inventory # _Sunrise-Loadouts
+
+- type: roleLoadout
+  id: JobBrigmedic
+  groups:
+  - BrigmedicJumpsuit
+  - BrigmedicBackpack
+  - Trinkets
+  - Inventory  # _Sunrise-Loadouts
