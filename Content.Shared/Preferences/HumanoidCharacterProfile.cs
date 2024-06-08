@@ -653,7 +653,7 @@ namespace Content.Shared.Preferences
                     continue;
                 }
 
-                loadouts.EnsureValid(this, session, collection);
+                loadouts.EnsureValid(this, session, collection, sponsorPrototypes); // Sunrise-Sponsors
             }
 
             foreach (var value in toRemove)
