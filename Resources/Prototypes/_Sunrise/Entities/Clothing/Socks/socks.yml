@@ -1,0 +1,480 @@
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingFishnet
+  name: ажурные колготки
+  description: Красивые ажурные колготки.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/fishnet.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/fishnet.rsi
+    equippedState: fishnet_full
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingKneeWhite
+  name: белые гольфы
+  description: Белые гольфы - простые белые носки до колена.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    state: white_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    equippedState: white_knee
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingKneeAce
+  name: гольфы с козырьком
+  description: Гольфы с козырьком - носки до колена с добавленным козырьком в верхней части.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    state: ace_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    equippedState: ace_knee
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingKneeAsblastusa
+  name: гольфы с логотипом "Assblastusa"
+  description: Гольфы с логотипом "Assblastusa" - носки до колена с изображением логотипа "Assblastusa".
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    state: assblastusa_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    equippedState: assblastusa_knee
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingKneeBee
+  name: гольфы с пчелой
+  description: Гольфы с пчелой - носки до колена с изображением пчелы.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    state: bee_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    equippedState: bee_knee
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingKneeBlack
+  name: черные гольфы
+  description: Черные гольфы - простые черные носки до колена.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    state: black_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    equippedState: black_knee
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingKneeCommie
+  name: коммунистические гольфы
+  description: Коммунистические гольфы - носки до колена с коммунистическими символами.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    state: commie_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    equippedState: commie_knee
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingKneeFishnet
+  name: гольфы в сетку
+  description: Гольфы в сетку - носки до колена с сетчатым узором.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    state: fishnet_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    equippedState: fishnet_knee
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingKneeRainbow
+  name: радужные гольфы
+  description: Радужные гольфы - носки до колена с радужным узором.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    state: rainbow_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    equippedState: rainbow_knee
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingKneeStriped
+  name: полосатые гольфы
+  description: Полосатые гольфы - носки до колена с полосатым узором.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    state: striped_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    equippedState: striped_knee
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingKneeThin
+  name: тонкие гольфы
+  description: Тонкие гольфы - тонкие носки до колена.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    state: thin_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    equippedState: thin_knee
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingKneeTrans
+  name: гольфы с трансфлагом
+  description: Гольфы с трансфлагом - носки до колена с изображением флага трансгендерной гордости.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    state: trans_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    equippedState: trans_knee
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingKneeUk
+  name: гольфы с британским флагом
+  description: Гольфы с британским флагом - носки до колена с изображением флага Великобритании.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    state: uk_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/knee.rsi
+    equippedState: uk_knee
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingNormBlack
+  name: чёрные носки
+  description: Чёрные носки.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/norm.rsi
+    state: black_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/norm.rsi
+    equippedState: black_norm
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingNormWhite
+  name: белые носки
+  description: Белые носки.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/norm.rsi
+    state: white_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/norm.rsi
+    equippedState: white_norm
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingPantyhose
+  name: колготки
+  description: Эластичные колготки для ног.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/pantyhose.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/pantyhose.rsi
+    equippedState: pantyhose
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingShortBlack
+  name: черные короткие носки
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/short.rsi
+    state: black_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/short.rsi
+    equippedState: black_short
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingShortWhite
+  name: белые короткие носки
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/short.rsi
+    state: white_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/short.rsi
+    equippedState: white_short
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingStockingsBlue
+  name: голубые чулки
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/stockings.rsi
+    state: blue_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/stockings.rsi
+    equippedState: stockings_blue
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingStockingsCyan
+  name: голубовато-зелёные чулки
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/stockings.rsi
+    state: cyan_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/stockings.rsi
+    equippedState: stockings_cyan
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingStockingsDpink
+  name: тёмно-розовые чулки
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/stockings.rsi
+    state: dpink_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/stockings.rsi
+    equippedState: stockings_dpink
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingStockingsGreen
+  name: зелёные чулки
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/stockings.rsi
+    state: green_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/stockings.rsi
+    equippedState: stockings_green
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingStockingslpink
+  name: светло-розовые чулки
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/stockings.rsi
+    state: lpink_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/stockings.rsi
+    equippedState: stockings_lpink
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingStockingsOrange
+  name: оранжевые чулки
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/stockings.rsi
+    state: orange_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/stockings.rsi
+    equippedState: stockings_orange
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingStockingsPurple
+  name: фиолетовые чулки
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/stockings.rsi
+    state: purple_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/stockings.rsi
+    equippedState: stockings_purple
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingThighWhite
+  name: белые чулки до бедра
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    state: white_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    equippedState: white_thigh
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingThighAce
+  name: чулки до бедра с козырьком
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    state: ace_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    equippedState: ace_thigh
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingThighAsblastusa
+  name: чулки до бедра с логотипом "Assblastusa"
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    state: assblastusa_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    equippedState: assblastusa_thigh
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingThighBee
+  name: чулки до бедра с изображением пчелы
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    state: bee_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    equippedState: bee_thigh
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingThighBlack
+  name: черные чулки до бедра
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    state: black_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    equippedState: black_thigh
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingThighCommie
+  name: чулки до бедра с коммунистическими символами
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    state: commie_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    equippedState: commie_thigh
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingThighFishnet
+  name: чулки до бедра с сетчатым узором
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    state: fishnet_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    equippedState: fishnet_thigh
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingThighRainbow
+  name: радужные чулки до бедра
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    state: rainbow_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    equippedState: rainbow_thigh
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingThighStriped
+  name: полосатые чулки до бедра
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    state: striped_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    equippedState: striped_thigh
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingThighThin
+  name: тонкие чулки до бедра
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    state: thin_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    equippedState: thin_thigh
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingThighTrans
+  name: чулки до бедра с трансфлагом
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    state: trans_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    equippedState: trans_thigh
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingThighUk
+  name: чулки до бедра с изображением британского флага
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    state: uk_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/thigh.rsi
+    equippedState: uk_thigh
