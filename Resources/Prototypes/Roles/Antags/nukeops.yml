@@ -54,16 +54,13 @@
     eyes: ClothingEyesHudSyndicate
     ears: ClothingHeadsetAltSyndicate
     gloves: ClothingHandsGlovesCombat
-    outerClothing: ClothingOuterHardsuitSyndie
     shoes: ClothingShoesBootsCombatFilled
     id: SyndiPDA
     pocket1: DoubleEmergencyOxygenTankFilled
-    pocket2: BaseUplinkRadio40TC
     belt: ClothingBeltMilitaryWebbing
   storage:
     back:
     - BoxSurvivalSyndicate
-    - WeaponPistolViper
     - PinpointerSyndicateNuclear
     - DeathAcidifierImplanter
 
@@ -74,6 +71,7 @@
   equipment:
     neck: SyndicateWhistle
     outerClothing: ClothingOuterHardsuitSyndieCommander
+    pocket2: CommanderUplinkRadio250TC
   inhand:
     - NukeOpsDeclarationOfWar
 
@@ -83,7 +81,6 @@
   parent: SyndicateOperativeGearFull
   equipment:
     eyes: ClothingEyesHudSyndicateAgent
-    outerClothing: ClothingOuterHardsuitSyndieMedic
     shoes: ClothingShoesBootsMagSyndie
     id: SyndiAgentPDA
     belt: ClothingBeltMilitaryWebbingMedFilled
@@ -94,7 +91,6 @@
     - SawAdvanced
     - Cautery
     - CombatKnife
-    - WeaponPistolViper
     - PinpointerSyndicateNuclear
     - HandheldHealthAnalyzer
     - CombatMedipen

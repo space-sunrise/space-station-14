@@ -1,0 +1,26 @@
+- type: entity
+  parent: [ BaseItem, StorePresetUplink ]
+  id: CommanderUplinkRadio250TC
+  name: аплинк синдиката
+  description: Подозрительно выглядящее старое радио...
+  suffix: 250 ТК, ЯдерныйОперативник
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/communication.rsi
+    layers:
+    - state: old-radio
+  - type: Item
+    sprite: Objects/Devices/communication.rsi
+    heldPrefix: old-radio
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    balance:
+      Telecrystal: 250
+  - type: Tag
+    tags:
+    - NukeOpsUplink
