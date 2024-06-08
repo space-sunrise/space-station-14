@@ -1,6 +1,6 @@
 using Content.Client.GameTicking.Managers;
 using Content.Shared.PDA;
-using Robust.Shared.Utility;
+using Content.Shared._Sunrise.Time;
 using Content.Shared.CartridgeLoader;
 using Content.Client.Message;
 using Robust.Client.UserInterface;
@@ -9,6 +9,7 @@ using Robust.Client.Graphics;
 using Robust.Client.UserInterface.XAML;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Client.PDA
 {
@@ -120,8 +121,8 @@ namespace Content.Client.PDA
 
             StationTimeButton.OnPressed += _ =>
             {
-                var stationTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
-                _clipboard.SetText((stationTime.ToString("hh\\:mm\\:ss")) + " " + (DateTime.UtcNow.AddYears(1000).ToString("dd.MM.yyyy")));
+                var stationTime = _entitySystem.GetEntitySystem<TimeSystem>().GetStationTime();
+                _clipboard.SetText((stationTime));
             };
 
             StationAlertLevelInstructionsButton.OnPressed += _ =>
@@ -171,11 +172,11 @@ namespace Content.Client.PDA
                 ("station", _stationName)));
 
 
-            var stationTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
+            var stationTime = _entitySystem.GetEntitySystem<TimeSystem>().GetStationTime();
 
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
-                ("time", stationTime.ToString("hh\\:mm\\:ss")),
-				 ("date", DateTime.UtcNow.AddYears(1000).ToString("dd.MM.yyyy"))));
+                ("time", stationTime),
+				("date", DateTime.UtcNow.AddYears(1000).ToString("dd.MM.yyyy"))));
 
             // Sunrise-start
             var remaining = TimeSpan.Zero;
@@ -375,10 +376,10 @@ namespace Content.Client.PDA
         {
             base.Draw(handle);
 
-            var stationTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
+            var stationTime = _entitySystem.GetEntitySystem<TimeSystem>().GetStationTime();
 
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
-                ("time", stationTime.ToString("hh\\:mm\\:ss")),
+                ("time", stationTime),
 				("date", DateTime.UtcNow.AddYears(1000).ToString("dd.MM.yyyy"))));
 
             // Sunrise-start
