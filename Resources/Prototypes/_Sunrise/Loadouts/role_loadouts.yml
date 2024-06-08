@@ -13,6 +13,10 @@
   id: JobMagistrat
   groups:
   - CommonBackpack
+  id: JobBrigmedic
+  groups:
+  - BrigmedicJumpsuit
+  - BrigmedicBackpack
   - Trinkets
   - Bra
   - Pants

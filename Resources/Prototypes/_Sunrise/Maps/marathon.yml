@@ -64,3 +64,5 @@
             IAA: [ 1, 1 ]
             Lawyer: [ 2, 2 ]
             Magistrate: [ 1, 1 ]
+            # Sunrise-Roles
+            Brigmedic: [ 1, 1 ]

@@ -13,10 +13,24 @@
   loadouts:
   - DefaultBra
 
-- type: loadoutGroup
   id: Pants
   name: loadout-group-pants
   minLimit: 0
   loadouts:
   - DefaultWomanPants
   - DefaultManPants
+
+- type: loadoutGroup
+  id: BrigmedicBackpack
+  name: loadout-group-brigmedic-backpack
+  loadouts:
+  - BrigmedicBackpack
+  - BrigmedicSatchel
+  - BrigmedicDuffel
+
+- type: loadoutGroup
+  id: BrigmedicJumpsuit
+  name: loadout-group-brigmedic-jumpsuit
+  loadouts:
+  - BrigmedicJumpsuit
+  - BrigmedicJumpskirt
