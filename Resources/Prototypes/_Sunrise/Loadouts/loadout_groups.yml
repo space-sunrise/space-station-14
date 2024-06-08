@@ -13,6 +13,7 @@
   loadouts:
   - DefaultBra
 
+- type: loadoutGroup
   id: Pants
   name: loadout-group-pants
   minLimit: 0
