@@ -8,3 +8,13 @@
   - Bra
   - Pants
   - Socks
+
+- type: roleLoadout
+  id: JobBrigmedic
+  groups:
+  - BrigmedicJumpsuit
+  - BrigmedicBackpack
+  - Trinkets
+  - Bra
+  - Pants
+  - Socks
