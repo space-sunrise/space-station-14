@@ -1,5 +1,5 @@
-<!-- Please read these guidelines before opening your PR: https://docs.spacestation14.io/en/getting-started/pr-guideline -->
-<!-- The text between the arrows are comments - they will not be visible on your PR. -->
+<!-- Пожалуйста прочитайте эту статью перед тем как выложить PR, что-бы избежать лишних правок в процессе осмотра: https://docs.spacestation14.io/en/getting-started/pr-guideline -->
+<!-- Текст в стрелочках являеться коментариями - они не будут видны в вашем PR. -->
 
 ## Кратное описание
 <!-- Что вы предлагаете изминить с помощью своего PR? -->
@@ -20,7 +20,7 @@
 
 **Changelog**
 <!--
-Make players aware of new features and changes that could affect how they play the game by adding a Changelog entry. Please read the Changelog guidelines located at: https://docs.spacestation14.io/en/getting-started/pr-guideline#changelog
+Введите игроков в курс дела, кратко опишите всё что было изменено в этом PR.
 -->
 
 <!--
