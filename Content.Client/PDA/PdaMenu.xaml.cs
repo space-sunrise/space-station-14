@@ -122,9 +122,13 @@ namespace Content.Client.PDA
             StationTimeButton.OnPressed += _ =>
             {
                 var stationTime = _entitySystem.GetEntitySystem<TimeSystem>().GetStationTime();
-                _clipboard.SetText((stationTime));
+                _clipboard.SetText((stationTime.Time.ToString("hh\\:mm\\:ss")));
             };
-
+			StationDateButton.OnPressed += _ =>
+            {
+                var stationDate = _entitySystem.GetEntitySystem<TimeSystem>().GetDate();
+                _clipboard.SetText((stationDate));
+            };
             StationAlertLevelInstructionsButton.OnPressed += _ =>
             {
                 _clipboard.SetText(_instructions);
@@ -173,10 +177,13 @@ namespace Content.Client.PDA
 
 
             var stationTime = _entitySystem.GetEntitySystem<TimeSystem>().GetStationTime();
+			var stationDate = _entitySystem.GetEntitySystem<TimeSystem>().GetDate();
 
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
-                ("time", stationTime),
-				("date", DateTime.UtcNow.AddYears(1000).ToString("dd.MM.yyyy"))));
+                ("time", stationTime.Time.ToString("hh\\:mm\\:ss"))));
+				
+            StationDateLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-date",
+				("date", stationDate)));
 
             // Sunrise-start
             var remaining = TimeSpan.Zero;
@@ -377,10 +384,13 @@ namespace Content.Client.PDA
             base.Draw(handle);
 
             var stationTime = _entitySystem.GetEntitySystem<TimeSystem>().GetStationTime();
+			var stationDate = _entitySystem.GetEntitySystem<TimeSystem>().GetDate();
 
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
-                ("time", stationTime),
-				("date", DateTime.UtcNow.AddYears(1000).ToString("dd.MM.yyyy"))));
+                ("time", stationTime.Time.ToString("hh\\:mm\\:ss"))));
+				
+            StationDateLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-date",
+                ("date", stationDate)));
 
             // Sunrise-start
             var remaining = TimeSpan.Zero;

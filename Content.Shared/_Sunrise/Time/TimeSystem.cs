@@ -38,7 +38,7 @@ namespace Content.Shared._Sunrise.Time
         public string GetDate()
         {
             // please tell me you guys aren't gonna have a 4 week round yet...
-            return Loc.GetString("standard-date", ("date", GetStationTime().Date));
+            return DateTime.UtcNow.AddYears(1000).ToString("dd.MM.yyyy");
         }
     }
 }
