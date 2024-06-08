@@ -4,3 +4,10 @@
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: IAA
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconMagistrat
+  icon:
+    sprite: /Textures/Interface/Misc/job_icons.rsi
+    state: Magistrat
