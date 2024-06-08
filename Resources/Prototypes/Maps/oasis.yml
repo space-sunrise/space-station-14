@@ -51,7 +51,6 @@
             SecurityOfficer: [ 8, 8 ]
             Detective: [ 1, 1 ]
             SecurityCadet: [ 4, 4 ]
-            # Lawyer: [ 3, 3 ]
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]
@@ -63,5 +62,5 @@
             Musician: [ 1, 1 ]
             # Sunrise-Law
             IAA: [ 1, 1 ]
-            Lawyer: [ 1, 1 ]
+            Lawyer: [ 3, 3 ]
             Magistrate: [ 1, 1 ]

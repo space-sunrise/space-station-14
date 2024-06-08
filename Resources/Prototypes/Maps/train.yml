@@ -49,7 +49,6 @@
             Warden: [ 1, 1 ]
             SecurityOfficer: [ 6, 6 ]
             SecurityCadet: [ 3, 3 ]
-            #Lawyer: [ 1, 2 ]
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 2, 2 ]
@@ -62,5 +61,5 @@
             Borg: [ 2, 2 ]
             # Sunrise-Law
             IAA: [ 1, 1 ]
-            Lawyer: [ 1, 1 ]
+            Lawyer: [ 1, 2 ]
             Magistrate: [ 1, 1 ]
