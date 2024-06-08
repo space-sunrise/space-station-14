@@ -121,7 +121,7 @@ namespace Content.Client.PDA
             StationTimeButton.OnPressed += _ =>
             {
                 var stationTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
-                _clipboard.SetText((stationTime.ToString("hh\\:mm\\:ss")));
+                _clipboard.SetText((stationTime.ToString("hh\\:mm\\:ss")) + " " + (DateTime.UtcNow.AddYears(1000).ToString("dd.MM.yyyy")));
             };
 
             StationAlertLevelInstructionsButton.OnPressed += _ =>
@@ -174,7 +174,8 @@ namespace Content.Client.PDA
             var stationTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
 
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
-                ("time", stationTime.ToString("hh\\:mm\\:ss"))));
+                ("time", stationTime.ToString("hh\\:mm\\:ss")),
+				 ("date", DateTime.UtcNow.AddYears(1000).ToString("dd.MM.yyyy"))));
 
             // Sunrise-start
             var remaining = TimeSpan.Zero;
@@ -377,7 +378,8 @@ namespace Content.Client.PDA
             var stationTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
 
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
-                ("time", stationTime.ToString("hh\\:mm\\:ss"))));
+                ("time", stationTime.ToString("hh\\:mm\\:ss")),
+				("date", DateTime.UtcNow.AddYears(1000).ToString("dd.MM.yyyy"))));
 
             // Sunrise-start
             var remaining = TimeSpan.Zero;
