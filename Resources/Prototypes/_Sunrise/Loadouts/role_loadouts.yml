@@ -10,6 +10,9 @@
   - Socks
 
 - type: roleLoadout
+  id: JobMagistrat
+  groups:
+  - CommonBackpack
   id: JobBrigmedic
   groups:
   - BrigmedicJumpsuit
