@@ -38,7 +38,6 @@
   color: "#052EED" # Sunrise-Edit
   roles:
   - Captain
-  - IAA # Sunrise-Edit
   - CentralCommandOfficial
   - ChiefEngineer
   - ChiefMedicalOfficer
