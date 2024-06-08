@@ -24,10 +24,14 @@
 -->
 
 <!--
-Перед выкладыванием/запросом о рассмотрении PR, напишите Changelog вне коментария, а так-же укажите в Resources/Changelog/ChangelogSunrise.yml
-:cl:
+Перед выкладыванием/запросом о рассмотрении PR, напишите Changelog вне коментария.
+Для добавления чейнжлога в Resources/Changelog/ChangelogSunrise.yml используйте скрипт manual_changelog.py который находится в директории Tools. Нужен установленый python.
+Пример команды:
+python .\Tools\manual_changelog.py
+Далее указываете чейнжлог по данному шаблону:
+:cl: VigersRay
 - add: Добавлено веселье!
 - remove: Удалено веселье!
-- tweak:Изменено веселье!
+- tweak: Изменено веселье!
 - fix: Исправлено веселье!
 -->
