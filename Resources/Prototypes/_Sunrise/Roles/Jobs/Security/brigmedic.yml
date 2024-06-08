@@ -9,7 +9,7 @@
       time: 18000
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 7200
+      time: 18000
   startingGear: BrigmedicGear
   icon: "JobIconBrigmedic"
   supervisors: job-supervisors-hos
