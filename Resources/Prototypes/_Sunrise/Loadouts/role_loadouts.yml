@@ -8,3 +8,12 @@
   - Bra
   - Pants
   - Socks
+
+- type: roleLoadout
+  id: JobMagistrat
+  groups:
+  - CommonBackpack
+  - Trinkets
+  - Bra
+  - Pants
+  - Socks
