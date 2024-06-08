@@ -63,5 +63,7 @@
             Musician: [ 1, 1 ]
             Boxer: [ 2, 2 ]
             Reporter: [ 2, 2 ]
-            # Sunrise-Roles
+            # Sunrise-Law
             IAA: [ 1, 1 ]
+            Lawyer: [ 1, 1 ]
+            Magistrate: [ 1, 1 ]

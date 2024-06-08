@@ -64,5 +64,7 @@
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
             Reporter: [ 1, 1 ]
-            # Sunrise-Roles
+            # Sunrise-Law
             IAA: [ 1, 1 ]
+            Lawyer: [ 1, 1 ]
+            Magistrate: [ 1, 1 ]

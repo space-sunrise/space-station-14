@@ -58,5 +58,7 @@
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
             Borg: [ 2, 2 ]
-            # Sunrise-Roles
+            # Sunrise-Law
             IAA: [ 1, 1 ]
+            Lawyer: [ 1, 1 ]
+            Magistrate: [ 1, 1 ]
