@@ -11,6 +11,8 @@
       - state: green
       - state: magistrat
       - state: jobicon
+
+- type: entity
   id: SpawnPointBrigmedic
   parent: SpawnPointJobBase
   name: brigmedic
