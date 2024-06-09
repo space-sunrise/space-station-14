@@ -2,7 +2,6 @@
   id: SunriseFland
   mapName: 'Fland Installation'
   mapPath: /Maps/_Sunrise/Station/fland.yml
-  minPlayers: 40
   stations:
     Fland:
       stationProto: StandardNanotrasenStation

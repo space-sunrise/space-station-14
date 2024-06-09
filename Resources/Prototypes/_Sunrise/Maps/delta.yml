@@ -2,7 +2,6 @@
   id: SunriseDelta
   mapName: 'Delta Station'
   mapPath: /Maps/_Sunrise/Station/delta.yml
-  minPlayers: 40
   stations:
     Delta:
       stationProto: StandardNanotrasenStation
