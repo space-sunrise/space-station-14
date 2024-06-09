@@ -652,9 +652,11 @@ namespace Content.Shared.CCVar
          */
 
         public static readonly CVarDef<int> NPCMaxUpdates =
-            CVarDef.Create("npc.max_updates", 128);
+            CVarDef.Create("npc.max_updates", 512);
 
         public static readonly CVarDef<bool> NPCEnabled = CVarDef.Create("npc.enabled", true);
+
+        public static readonly CVarDef<bool> DisableWithoutPlayers = CVarDef.Create("npc.disable_without_players", true);
 
         /// <summary>
         /// Should NPCs pathfind when steering. For debug purposes.
