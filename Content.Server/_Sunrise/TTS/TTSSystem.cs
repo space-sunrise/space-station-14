@@ -40,17 +40,14 @@ public sealed partial class TTSSystem : EntitySystem
 
     private const int MaxMessageChars = 100 * 2; // same as SingleBubbleCharLimit * 2
     private bool _isEnabled = false;
-    private string _voiceId = "Hanson";
+    private string _defaultAnnounceVoice = "Hanson";
     private List<ICommonSession> _ignoredRecipients = new();
-    private string _nukieVoiceId = "Sentrybot";
     public const float WhisperVoiceVolumeModifier = 0.6f; // how far whisper goes in world units
     public const int WhisperVoiceRange = 4; // how far whisper goes in world units
 
     public override void Initialize()
     {
         _cfg.OnValueChanged(SunriseCCVars.TTSEnabled, v => _isEnabled = v, true);
-        _cfg.OnValueChanged(SunriseCCVars.TTSAnnounceVoiceId, v => _voiceId = v, true);
-        _cfg.OnValueChanged(SunriseCCVars.TTSNukieAnnounceVoiceId, v => _nukieVoiceId = v, true);
 
         SubscribeLocalEvent<TransformSpeechEvent>(OnTransformSpeech);
         SubscribeLocalEvent<TTSComponent, EntitySpokeEvent>(OnEntitySpoke);
@@ -121,7 +118,7 @@ public sealed partial class TTSSystem : EntitySystem
     {
         if (!_isEnabled ||
             args.Message.Length > MaxMessageChars * 2 ||
-            !GetVoicePrototype(args.Nukie ? _nukieVoiceId : _voiceId, out var protoVoice))
+            !GetVoicePrototype(args.AnnounceVoice ?? _defaultAnnounceVoice, out var protoVoice))
             return;
 
         var soundData = await GenerateTTS(args.Message, protoVoice.Speaker, isAnnounce: true);

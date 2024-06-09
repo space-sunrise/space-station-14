@@ -12,6 +12,7 @@
         path: /Audio/_Sunrise/Announcements/centcomm.ogg
         params:
           volume: -4
+      announceVoice: AngryNecoArc # Хи-хи-хи
 
 - type: entity
   parent: BaseComputerShuttle
