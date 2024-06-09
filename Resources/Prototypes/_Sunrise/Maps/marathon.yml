@@ -2,6 +2,7 @@
   id: SunriseMarathon
   mapName: 'Marathon Station'
   mapPath: /Maps/_Sunrise/Station/marathon.yml
+  minPlayers: 0
   stations:
     Marathon:
       stationProto: StandardNanotrasenStation

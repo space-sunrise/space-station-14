@@ -2,6 +2,7 @@
   id: SunriseCluster
   mapName: 'Cluster'
   mapPath: /Maps/_Sunrise/Station/cluster.yml
+  minPlayers: 0
   stations:
     Cluster:
       stationProto: StandardNanotrasenStation
