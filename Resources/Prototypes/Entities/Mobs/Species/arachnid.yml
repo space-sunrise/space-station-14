@@ -127,6 +127,13 @@
         sprite: "Effects/creampie.rsi"
         state: "creampie_arachnid"
         visible: false
+  # Sunrise-start
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSpiderLegs
+      params:
+        volume: -10
+  # Sunrise-end
 
 - type: entity
   parent: BaseSpeciesDummy
