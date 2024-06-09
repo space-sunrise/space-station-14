@@ -184,9 +184,9 @@ namespace Content.Client.Options.UI.Tabs
             AmbientMusicVolumeSlider.Value = _cfg.GetCVar(CCVars.AmbientMusicVolume) * 100f / ContentAudioSystem.AmbientMusicMultiplier;
             LobbyVolumeSlider.Value = _cfg.GetCVar(CCVars.LobbyMusicVolume) * 100f / ContentAudioSystem.LobbyMultiplier;
             InterfaceVolumeSlider.Value = _cfg.GetCVar(CCVars.InterfaceVolume) * 100f / ContentAudioSystem.InterfaceMultiplier;
-            TtsVolumeSlider.Value = _cfg.GetCVar(SunriseCCVars.TTSVolume) * 100f; // Sunrise-TTS
-            TtsRadioVolumeSlider.Value = _cfg.GetCVar(SunriseCCVars.TTSRadioVolume) * 100f; // Sunrise-TTS
-            TtsAnnounceVolumeSlider.Value = _cfg.GetCVar(SunriseCCVars.TTSAnnounceVolume) * 100f; // Sunrise-TTS
+            TtsVolumeSlider.Value = _cfg.GetCVar(SunriseCCVars.TTSVolume) * 100f / ContentAudioSystem.TtsMultiplier; // Sunrise-TTS
+            TtsRadioVolumeSlider.Value = _cfg.GetCVar(SunriseCCVars.TTSRadioVolume) * 100f / ContentAudioSystem.TtsMultiplier; // Sunrise-TTS
+            TtsAnnounceVolumeSlider.Value = _cfg.GetCVar(SunriseCCVars.TTSAnnounceVolume) * 100f / ContentAudioSystem.TtsMultiplier; // Sunrise-TTS
 
             AmbienceSoundsSlider.Value = _cfg.GetCVar(CCVars.MaxAmbientSources);
 

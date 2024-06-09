@@ -39,11 +39,11 @@ public sealed partial class TTSSystem : EntitySystem
 
 
     private const int MaxMessageChars = 100 * 2; // same as SingleBubbleCharLimit * 2
-    private bool _isEnabled = false;
+    private bool _isEnabled;
     private string _defaultAnnounceVoice = "Hanson";
     private List<ICommonSession> _ignoredRecipients = new();
-    public const float WhisperVoiceVolumeModifier = 0.6f; // how far whisper goes in world units
-    public const int WhisperVoiceRange = 4; // how far whisper goes in world units
+    private const float WhisperVoiceVolumeModifier = 0.1f; // how far whisper goes in world units
+    private const int WhisperVoiceRange = 3; // how far whisper goes in world units
 
     public override void Initialize()
     {
