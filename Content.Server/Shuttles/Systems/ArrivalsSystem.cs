@@ -241,7 +241,7 @@ public sealed class ArrivalsSystem : EntitySystem
             {
                 // Warp all players who are still on this shuttle to a spawn point. This doesn't let them return to
                 // arrivals. It also ensures noobs, slow players or AFK players safely leave the shuttle.
-                TryTeleportToMapSpawn(pUid, component.Station, xform);
+                // TryTeleportToMapSpawn(pUid, component.Station, xform);
             }
 
             // Players who have remained at arrivals keep their warp coupon (PendingClockInComponent) for now.
@@ -461,8 +461,8 @@ public sealed class ArrivalsSystem : EntitySystem
 
             while (query.MoveNext(out var sUid, out var comp))
             {
-                SetupShuttle(sUid, comp, 0);
-                SetupShuttle(sUid, comp, _cfgManager.GetCVar(CCVars.ArrivalsCooldown));
+                SetupShuttle(sUid, comp, Destination.Station);
+                SetupShuttle(sUid, comp, Destination.Arrivals);
             }
         }
         else
@@ -488,11 +488,11 @@ public sealed class ArrivalsSystem : EntitySystem
         if (!Enabled)
             return;
 
-        SetupShuttle(uid, component, 0);
-        SetupShuttle(uid, component, _cfgManager.GetCVar(CCVars.ArrivalsCooldown));
+        SetupShuttle(uid, component, Destination.Station);
+        SetupShuttle(uid, component, Destination.Arrivals);
     }
 
-    private void SetupShuttle(EntityUid uid, StationArrivalsComponent component, float delay)
+    private void SetupShuttle(EntityUid uid, StationArrivalsComponent component, Destination destination)
     {
         // if (!Deleted(component.Shuttle))
         //     return;
@@ -508,12 +508,19 @@ public sealed class ArrivalsSystem : EntitySystem
             var arrivalsComp = EnsureComp<ArrivalsShuttleComponent>(shuttleUids[0]);
             arrivalsComp.Station = uid;
             EnsureComp<ProtectedGridComponent>(uid);
-            _shuttles.FTLToDock(shuttleUids[0], shuttleComp, arrivals, hyperspaceTime: RoundStartFTLDuration);
-            arrivalsComp.NextTransfer = _timing.CurTime + TimeSpan.FromSeconds(_cfgManager.GetCVar(CCVars.ArrivalsCooldown) + delay);
+            var target = destination == Destination.Station ? uid : arrivals;
+            _shuttles.FTLToDock(shuttleUids[0], shuttleComp, target, hyperspaceTime: RoundStartFTLDuration, priorityTag: "DockArrivals");
+            arrivalsComp.NextTransfer = _timing.CurTime + TimeSpan.FromSeconds(_cfgManager.GetCVar(CCVars.ArrivalsCooldown));
         }
 
         // Don't start the arrivals shuttle immediately docked so power has a time to stabilise?
         var timer = AddComp<TimedDespawnComponent>(_mapManager.GetMapEntityId(dummyMap));
         timer.Lifetime = 15f;
+    }
+
+    private enum Destination
+    {
+        Station,
+        Arrivals
     }
 }

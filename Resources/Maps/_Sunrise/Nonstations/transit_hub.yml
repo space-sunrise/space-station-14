@@ -32,6 +32,7 @@ entities:
     - type: MetaData
       name: NT-EZ Космопорт FC-742
     - type: Transform
+      rot: 1.5707963267948966 rad
       pos: 0.0859375,-0.05438137
       parent: invalid
     - type: MapGrid
@@ -157,6 +158,14 @@ entities:
             239: -10,7
             240: -10,-7
             247: 17,0
+            597: 27,5
+            598: 27,2
+            599: 27,-2
+            600: 27,-5
+            601: 36,-5
+            602: 36,-2
+            603: 36,2
+            604: 36,5
         - node:
             color: '#FFFFFFFF'
             id: BrickTileSteelEndN
@@ -185,6 +194,14 @@ entities:
             200: 0,7
             237: -3,-7
             238: -3,7
+            593: 21,-2
+            594: 21,-5
+            595: 21,2
+            596: 21,5
+            605: 30,2
+            606: 30,5
+            607: 30,-2
+            608: 30,-5
         - node:
             color: '#DE3A3A96'
             id: BrickTileSteelInnerNe
@@ -242,6 +259,51 @@ entities:
           decals:
             302: 12,10
         - node:
+            color: '#FFFFFFFF'
+            id: BrickTileSteelLineN
+          decals:
+            649: 22,5
+            650: 23,5
+            651: 24,5
+            652: 25,5
+            653: 26,5
+            654: 26,2
+            655: 25,2
+            656: 24,2
+            657: 23,2
+            658: 22,2
+            659: 22,-2
+            660: 23,-2
+            661: 25,-2
+            662: 24,-2
+            663: 26,-2
+            664: 26,-5
+            665: 25,-5
+            666: 24,-5
+            667: 23,-5
+            668: 22,-5
+            669: 31,-5
+            670: 33,-5
+            671: 32,-5
+            672: 34,-5
+            673: 35,-5
+            674: 35,-2
+            675: 33,-2
+            676: 34,-2
+            677: 32,-2
+            678: 31,-2
+            679: 31,2
+            680: 33,2
+            681: 32,2
+            682: 34,2
+            683: 36,2
+            684: 35,2
+            685: 31,5
+            686: 32,5
+            687: 33,5
+            688: 34,5
+            689: 35,5
+        - node:
             color: '#DE3A3A96'
             id: BrickTileSteelLineS
           decals:
@@ -256,6 +318,46 @@ entities:
             15: 23,1
             16: 21,1
             17: 22,1
+            609: 26,2
+            610: 25,2
+            611: 24,2
+            612: 23,2
+            613: 22,2
+            614: 22,-2
+            615: 23,-2
+            616: 24,-2
+            617: 25,-2
+            618: 26,-2
+            619: 26,-5
+            620: 25,-5
+            621: 24,-5
+            622: 22,-5
+            623: 23,-5
+            624: 31,-5
+            625: 32,-5
+            626: 33,-5
+            627: 34,-5
+            628: 35,-5
+            629: 31,-2
+            630: 32,-2
+            631: 33,-2
+            632: 34,-2
+            633: 35,-2
+            634: 35,2
+            635: 34,2
+            636: 33,2
+            637: 32,2
+            638: 31,2
+            639: 31,5
+            640: 32,5
+            641: 33,5
+            642: 34,5
+            643: 35,5
+            644: 26,5
+            645: 24,5
+            646: 23,5
+            647: 22,5
+            648: 25,5
         - node:
             color: '#DE3A3A96'
             id: BrickTileSteelLineW
@@ -12189,7 +12291,7 @@ entities:
       pos: 14.5,-11.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -24617.81
+      secondsUntilStateChange: -25902.277
       state: Opening
   - uid: 1061
     components:
@@ -12198,7 +12300,7 @@ entities:
       pos: 14.5,-9.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -24617.043
+      secondsUntilStateChange: -25901.51
       state: Opening
 - proto: KitchenElectricGrill
   entities:
@@ -12918,56 +13020,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 13.5,13.5
-      parent: 1
-- proto: PoweredLEDLightPostSmall
-  entities:
-  - uid: 3309
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 27.5,0.5
-      parent: 1
-  - uid: 3310
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 21.5,0.5
-      parent: 1
-  - uid: 3311
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 30.5,0.5
-      parent: 1
-  - uid: 3312
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 36.5,0.5
-      parent: 1
-  - uid: 3313
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 24.5,7.5
-      parent: 1
-  - uid: 3314
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 33.5,7.5
-      parent: 1
-  - uid: 3315
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 33.5,-6.5
-      parent: 1
-  - uid: 3316
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 24.5,-6.5
       parent: 1
 - proto: PoweredLEDSmallLight
   entities:
@@ -16422,6 +16474,30 @@ entities:
     components:
     - type: Transform
       pos: 11.5,-10.5
+      parent: 1
+- proto: StatueVenusBlue
+  entities:
+  - uid: 3311
+    components:
+    - type: Transform
+      pos: 21.5,0.5
+      parent: 1
+  - uid: 3312
+    components:
+    - type: Transform
+      pos: 30.5,0.5
+      parent: 1
+- proto: StatueVenusRed
+  entities:
+  - uid: 3309
+    components:
+    - type: Transform
+      pos: 36.5,0.5
+      parent: 1
+  - uid: 3310
+    components:
+    - type: Transform
+      pos: 27.5,0.5
       parent: 1
 - proto: SteelBench
   entities:

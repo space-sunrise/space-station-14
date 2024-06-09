@@ -474,7 +474,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         EnsureComp<ArrivalsSourceComponent>(uids[0]); // Sunrise-Edit
 
         var template = _random.Pick(component.Biomes);
-        _biomes.EnsurePlanet(mapUid, _protoManager.Index<BiomeTemplatePrototype>(template));
+        _biomes.EnsurePlanet(mapUid, _protoManager.Index<BiomeTemplatePrototype>(template), mapLight: component.PlanetLightColor);
 
         component.MapEntity = mapUid;
         component.Entity = uids[0];
