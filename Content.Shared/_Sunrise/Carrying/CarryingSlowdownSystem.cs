@@ -1,7 +1,8 @@
+using Content.Shared.Carrying;
 using Content.Shared.Movement.Systems;
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Carrying
+namespace Content.Shared._Sunrise.Carrying
 {
     public sealed class CarryingSlowdownSystem : EntitySystem
     {

@@ -92,7 +92,6 @@
     horizontalRotation: 90
   - type: HumanoidAppearance
     species: Human
-  - type: Carriable
   - type: SlowOnDamage
     speedModifierThresholds:
       60: 0.7
@@ -245,6 +244,8 @@
   id: BaseMobSpeciesOrganic
   abstract: true
   components:
+  - type: Carriable # Sunrise-edit
+  - type: CanEscapeInventory # Sunrise-edit
   - type: Barotrauma
     damage:
       types:
