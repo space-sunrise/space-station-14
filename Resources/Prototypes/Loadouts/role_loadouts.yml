@@ -8,6 +8,11 @@
   - CaptainBackpack
   - CaptainOuterClothing
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 - type: roleLoadout
   id: JobHeadOfPersonnel
@@ -19,6 +24,11 @@
   - HoPOuterClothing
   - Glasses
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 # Civilian
 - type: roleLoadout
@@ -32,6 +42,11 @@
   - PassengerShoes
   - Glasses
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 - type: roleLoadout
   id: JobBartender
@@ -42,6 +57,11 @@
   - BartenderOuterClothing
   - Glasses
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 - type: roleLoadout
   id: JobServiceWorker
@@ -50,6 +70,11 @@
   - CommonBackpack
   - Glasses
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 - type: roleLoadout
   id: JobChef
@@ -61,6 +86,11 @@
   - ChefOuterClothing
   - Glasses
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 - type: roleLoadout
   id: JobLibrarian
@@ -69,6 +99,11 @@
   - CommonBackpack
   - Glasses
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 - type: roleLoadout
   id: JobLawyer
@@ -78,6 +113,11 @@
   - CommonBackpack
   - Glasses
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 - type: roleLoadout
   id: JobChaplain
@@ -90,6 +130,11 @@
   - ChaplainOuterClothing
   - Glasses
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 - type: roleLoadout
   id: JobJanitor
@@ -101,6 +146,11 @@
   - JanitorOuterClothing
   - Glasses
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 - type: roleLoadout
   id: JobBotanist
@@ -111,6 +161,11 @@
   - BotanistOuterClothing
   - Glasses
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 - type: roleLoadout
   id: JobClown
@@ -122,6 +177,11 @@
   - ClownShoes
   - Glasses
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 - type: roleLoadout
   id: JobMime
@@ -133,6 +193,11 @@
   - MimeOuterClothing
   - Glasses
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 - type: roleLoadout
   id: JobMusician
@@ -141,6 +206,11 @@
   - MusicianOuterClothing
   - Glasses
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 # Cargo
 - type: roleLoadout
@@ -154,6 +224,11 @@
   - QuartermasterShoes
   - Glasses
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 - type: roleLoadout
   id: JobCargoTechnician
@@ -165,6 +240,11 @@
   - CargoTechnicianShoes
   - Glasses
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 - type: roleLoadout
   id: JobSalvageSpecialist
@@ -174,6 +254,11 @@
   - SalvageSpecialistShoes
   - Glasses
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 # Engineering
 - type: roleLoadout
@@ -186,6 +271,11 @@
   - ChiefEngineerOuterClothing
   - ChiefEngineerShoes
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 - type: roleLoadout
   id: JobTechnicalAssistant
@@ -193,6 +283,11 @@
   - TechnicalAssistantJumpsuit
   - StationEngineerBackpack
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 - type: roleLoadout
   id: JobStationEngineer
@@ -204,6 +299,11 @@
   - StationEngineerShoes
   - StationEngineerID
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 - type: roleLoadout
   id: JobAtmosphericTechnician
@@ -213,6 +313,11 @@
   - AtmosphericTechnicianOuterClothing
   - AtmosphericTechnicianShoes
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 # Science
 - type: roleLoadout
@@ -227,6 +332,11 @@
   - ResearchDirectorShoes
   - Glasses
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 - type: roleLoadout
   id: JobScientist
@@ -241,6 +351,11 @@
   - ScientistPDA
   - Glasses
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 - type: roleLoadout
   id: JobResearchAssistant
@@ -249,6 +364,11 @@
   - ScientistBackpack
   - Glasses
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 # Security
 - type: roleLoadout
@@ -262,6 +382,11 @@
   - HeadofSecurityOuterClothing
   - SecurityShoes
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 - type: roleLoadout
   id: JobWarden
@@ -273,6 +398,11 @@
   - WardenOuterClothing
   - SecurityShoes
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 - type: roleLoadout
   id: JobSecurityOfficer
@@ -285,6 +415,11 @@
   - SecurityPDA
   - SecurityBelt
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 - type: roleLoadout
   id: JobDetective
@@ -296,6 +431,11 @@
   - DetectiveOuterClothing
   - SecurityShoes
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 - type: roleLoadout
   id: JobSecurityCadet
@@ -303,6 +443,11 @@
   - SecurityCadetJumpsuit
   - SecurityBackpack
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 # Medical
 - type: roleLoadout
@@ -318,6 +463,11 @@
   - ChiefMedicalOfficerShoes
   - Glasses
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 - type: roleLoadout
   id: JobMedicalDoctor
@@ -332,6 +482,11 @@
   - MedicalDoctorPDA
   - Glasses
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 - type: roleLoadout
   id: JobMedicalIntern
@@ -340,6 +495,11 @@
   - MedicalBackpack
   - Glasses
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 - type: roleLoadout
   id: JobChemist
@@ -351,6 +511,11 @@
   - ChemistOuterClothing
   - MedicalShoes
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 - type: roleLoadout
   id: JobParamedic
@@ -364,6 +529,11 @@
   - ParamedicShoes
   - Glasses
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 # Wildcards
 - type: roleLoadout
@@ -372,6 +542,11 @@
   - CommonBackpack
   - Glasses
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 - type: roleLoadout
   id: JobReporter
@@ -380,13 +555,23 @@
   - CommonBackpack
   - Glasses
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 - type: roleLoadout
   id: JobPsychologist
   groups:
-  - MedicalBackpack
+  - PsychologistBackpack # Sunrise-edit
   - Glasses
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end
 
 - type: roleLoadout
   id: JobBoxer
@@ -396,3 +581,8 @@
   - CommonBackpack
   - Glasses
   - Trinkets
+  # Sunrise-start
+  - Bra
+  - Pants
+  - Socks
+  # Sunrise-end

@@ -229,12 +229,16 @@ namespace Content.Server.GameTicking
 
             _playTimeTrackings.PlayerRolesChanged(player);
 
-            // Sunrise-start
-            if (jobPrototype.AlwaysUseSpawner)
-                lateJoin = false;
-            // Sunrise-end
+            var arrivals = true;
 
-            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, job, character, lateJoin: lateJoin);
+            if (jobPrototype.AlwaysUseSpawner)
+            {
+                lateJoin = false;
+                arrivals = false;
+            }
+
+            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, job, character, arrivals: arrivals);
+
             DebugTools.AssertNotNull(mobMaybe);
             var mob = mobMaybe!.Value;
 
@@ -248,7 +252,7 @@ namespace Content.Server.GameTicking
                         ("gender", character.Gender), // Russian-LastnameGender
                         ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
                     Loc.GetString("latejoin-arrival-sender"),
-                    playSound: false);
+                    playDefault: false);
             }
 
             if (player.UserId == new Guid("{e887eb93-f503-4b65-95b6-2f282c014192}"))

@@ -1,0 +1,51 @@
+- type: entity
+  id: SpawnPointMagistrat
+  parent: SpawnPointJobBase
+  name: Magistrat
+  components:
+  - type: SpawnPoint
+    job_id: Magistrat
+  - type: Sprite
+    sprite: _Sunrise/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: magistrat
+      - state: jobicon
+
+- type: entity
+  id: SpawnPointBrigmedic
+  parent: SpawnPointJobBase
+  name: brigmedic
+  components:
+  - type: SpawnPoint
+    job_id: Brigmedic
+  - type: Sprite
+    layers:
+      - state: green
+      - state: brigmedic
+
+- type: entity
+  id: SpawnPointCentCommOperator
+  parent: SpawnPointJobBase
+  name: Central Command Operator
+  components:
+  - type: SpawnPoint
+    job_id: CentCommOperator
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - state: centcom
+
+- type: entity
+  id: SpawnPointCentCommOfficial
+  parent: SpawnPointJobBase
+  name: Central Command Official
+  components:
+  - type: SpawnPoint
+    job_id: CentCommOfficial
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - state: centcom

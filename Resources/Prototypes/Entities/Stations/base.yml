@@ -80,12 +80,6 @@
           - /Maps/Ruins/whiteship_bluespacejumper.yml
 
 - type: entity
-  id: BaseStationCentcomm
-  abstract: true
-  components:
-    - type: StationCentcomm
-
-- type: entity
   id: BaseStationEvacuation
   abstract: true
   components:
@@ -128,3 +122,39 @@
   abstract: true
   components:
     - type: StationEventEligible # For when someone makes this more granular in the future.
+
+# Sunrise-start
+- type: entity
+  id: BaseCentCommShuttles
+  abstract: true
+  components:
+  - type: GridSpawn
+    groups:
+      shuttles:
+        addComponents:
+        - type: CentCommShuttle
+        paths:
+        - /Maps/_Sunrise/Shuttles/centcom_shuttle.yml
+
+- type: entity
+  id: BaseStationCentComm
+  abstract: true
+  components:
+  - type: StationCentComm
+    station: SunriseCentComm
+    shuttleWhitelist:
+      components:
+      - CentCommShuttle
+      - ErtShuttle
+
+- type: entity
+  id: BaseStationTransitHub
+  abstract: true
+  components:
+  - type: StationTransitHub
+    map: /Maps/_Sunrise/Nonstations/transit_hub.yml
+    biomes:
+    - Grasslands
+    - LowDesert
+    - Snow
+# Sunrise-end

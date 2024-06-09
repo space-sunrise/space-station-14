@@ -29,7 +29,10 @@ public sealed partial class GameTicker
         "OutpostStation",
         "TrainStation",
         "CoreStation",
-        "Grass"
+        // Яркие паралаксы, выглядят прикольно но кому-то мешают.
+        //"Grass",
+        //"SillyIsland",
+        //"PilgrimAiur"
     ];
 
     [ViewVariables] private LobbyImage? LobbyImage { get; set; }

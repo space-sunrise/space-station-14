@@ -4,6 +4,7 @@ using System.Text;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
+using Content.Server.Examine;
 using Content.Server.GameTicking;
 using Content.Server.Speech.Components;
 using Content.Server.Speech.EntitySystems;
@@ -14,6 +15,7 @@ using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Database;
+using Content.Shared.Examine;
 using Content.Shared.Ghost;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
@@ -59,6 +61,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private readonly ReplacementAccentSystem _wordreplacement = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
 
     // Sunrise-TTS-Start: Moved from Server to Shared
     // public const int VoiceRange = 10; // how far voice goes in world units
@@ -66,7 +69,6 @@ public sealed partial class ChatSystem : SharedChatSystem
     // public const int WhisperMuffledRange = 5; // how far whisper goes at all, in world units
     // Sunrise-TTS-End
     public const string DefaultAnnouncementSound = "/Audio/Announcements/announce.ogg"; // Sunrise-edit
-    public const string NukeAnnouncementSound = "/Audio/Announcements/war.ogg"; // Sunrise-edit
 
     private bool _loocEnabled = true;
     private bool _deadLoocEnabled;
@@ -319,7 +321,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     public void DispatchGlobalAnnouncement(
         string message,
         string sender = "Центральное коммандование", // Sunrise-edit
-        bool playSound = true,
+        bool playDefault = true,
         SoundSpecifier? announcementSound = null,
         bool playTts = true, // Sunrise-edit
         Color? colorOverride = null
@@ -329,20 +331,15 @@ public sealed partial class ChatSystem : SharedChatSystem
         _chatManager.ChatMessageToAll(ChatChannel.Radio, message, wrappedMessage, default, false, true, colorOverride);
 
         // Sunrise-start
-        if (playSound)
+        if (playDefault && announcementSound == null)
         {
-            if (sender == Loc.GetString("comms-console-announcement-title-nukie"))
-            {
-                announcementSound = new SoundPathSpecifier(NukeAnnouncementSound); // Sunrise-edit
-            }
             announcementSound ??= new SoundPathSpecifier(DefaultAnnouncementSound);
-            _audio.PlayGlobal(announcementSound?.GetSound() ?? DefaultAnnouncementSound, Filter.Broadcast(), true, announcementSound?.Params ?? AudioParams.Default.WithVolume(-2f));
         }
 
         if (playTts)
         {
             var nukie = sender == Loc.GetString("comms-console-announcement-title-nukie");
-            var announcementEv = new AnnouncementSpokeEvent(Filter.Broadcast(), message, nukie);
+            var announcementEv = new AnnouncementSpokeEvent(Filter.Broadcast(), message, announcementSound, nukie);
             RaiseLocalEvent(announcementEv);
         }
         // Sunrise-end
@@ -364,9 +361,10 @@ public sealed partial class ChatSystem : SharedChatSystem
         EntityUid source,
         string message,
         string sender = "Центральное коммандование", // Sunrise-edit
-        bool playSound = true, // Sunrise-edit
+        bool playDefault = true, // Sunrise-edit
         bool playTts = true,// Sunrise-edit
-        Color? colorOverride = null)
+        Color? colorOverride = null,
+        SoundSpecifier? announcementSound = null)
     {
         var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message)));
         var station = _stationSystem.GetOwningStation(source);
@@ -384,15 +382,12 @@ public sealed partial class ChatSystem : SharedChatSystem
         _chatManager.ChatMessageToManyFiltered(filter, ChatChannel.Radio, message, wrappedMessage, source, false, true, colorOverride);
 
         // Sunrise-start
-        if (playSound)
-        {
-            var announcementSound = new SoundPathSpecifier(DefaultAnnouncementSound);
-            _audio.PlayGlobal(announcementSound?.GetSound() ?? DefaultAnnouncementSound, Filter.Broadcast(), true, announcementSound?.Params ?? AudioParams.Default.WithVolume(-2f));
-        }
+        if (playDefault && announcementSound == null)
+            announcementSound = new SoundPathSpecifier(DefaultAnnouncementSound);
 
         if (playTts)
         {
-            RaiseLocalEvent(new AnnouncementSpokeEvent(filter, message));
+            RaiseLocalEvent(new AnnouncementSpokeEvent(filter, message, announcementSound));
         }
         // Sunrise-edit
 
@@ -534,8 +529,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             if (data.Range <= WhisperClearRange)
                 _chatManager.ChatMessageToOne(ChatChannel.Whisper, message, wrappedMessage, source, false, session.Channel);
             //If listener is too far, they only hear fragments of the message
-            //Collisiongroup.Opaque is not ideal for this use. Preferably, there should be a check specifically with "Can Ent1 see Ent2" in mind
-            else if (_interactionSystem.InRangeUnobstructed(source, listener, WhisperMuffledRange, Shared.Physics.CollisionGroup.Opaque)) //Shared.Physics.CollisionGroup.Opaque
+            else if (_examineSystem.InRangeUnOccluded(source, listener, WhisperMuffledRange))
                 _chatManager.ChatMessageToOne(ChatChannel.Whisper, obfuscatedMessage, wrappedobfuscatedMessage, source, false, session.Channel);
             //If listener is too far and has no line of sight, they can't identify the whisperer's identity
             else
@@ -1013,12 +1007,14 @@ public enum ChatTransmitRange : byte
 public sealed class AnnouncementSpokeEvent(
     Filter source,
     string message,
+    SoundSpecifier? announcementSound,
     bool nukie = false)
     : EntityEventArgs
 {
     public readonly Filter Source = source;
     public readonly string Message = message;
     public readonly bool Nukie = nukie;
+    public readonly SoundSpecifier? AnnouncementSound = announcementSound;
 }
 
 public sealed class RadioSpokeEvent(EntityUid source, string message, EntityUid[] receivers) : EntityEventArgs
