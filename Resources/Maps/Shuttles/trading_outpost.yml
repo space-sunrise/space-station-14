@@ -23,7 +23,7 @@ entities:
   - uid: 2
     components:
     - type: MetaData
-      name: Automated Trade Station
+      name: NTS-221 Торговый аванпост
     - type: Transform
       pos: -2.9375,-1.625
       parent: invalid
