@@ -35,9 +35,9 @@
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
   # Sunrise-Start
-#  - type: InnateItem
-#    instantActions:
-#    - HandheldStationMapUnpowered
+  - type: InnateItem
+    instantActions:
+    - HandheldStationMapUnpowered
   # Sunrise-End
 
 - type: entity
@@ -171,9 +171,9 @@
       collection: FootstepCyborgSpider
       params:
         volume: -15
-#  - type: InnateItem
-#    instantActions:
-#    - HandheldStationMapUnpowered
+  - type: InnateItem
+    instantActions:
+    - HandheldStationMapUnpowered
   # Sunrise-end
 
 - type: entity
@@ -242,9 +242,9 @@
       path: /Audio/Effects/Fluids/watersplash.ogg
       params:
         volume: -5
-#  - type: InnateItem
-#    instantActions:
-#    - HandheldStationMapUnpowered
+  - type: InnateItem
+    instantActions:
+    - HandheldStationMapUnpowered
   # Sunrise-end
 
 - type: entity
@@ -318,11 +318,11 @@
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
     baseSprintSpeed : 5
-#  - type: InnateItem
-#    instantActions:
-#    - HandheldCrewMonitorBorg
-#    worldTargetActions:
-#    - HandheldHealthAnalyzerUnpowered
+  - type: InnateItem
+    instantActions:
+    - HandheldCrewMonitorBorg
+    worldTargetActions:
+    - HandheldHealthAnalyzerUnpowered
   # Sunrise-end
 
 - type: entity
@@ -437,9 +437,9 @@
     - type: MovementSpeedModifier
       baseWalkSpeed : 2.5
       baseSprintSpeed : 3.5
-#    - type: InnateItem
-#      worldTargetActions:
-#      - Emag
+    - type: InnateItem
+      worldTargetActions:
+      - Emag
     # Sunrise-End
 
 - type: entity
@@ -490,10 +490,10 @@
     - type: MovementSpeedModifier
       baseWalkSpeed: 2.5
       baseSprintSpeed: 4.5
-#    - type: InnateItem
-#      worldTargetActions:
-#      - Emag
-#      - HandheldHealthAnalyzerUnpowered
+    - type: InnateItem
+      worldTargetActions:
+      - Emag
+      - HandheldHealthAnalyzerUnpowered
     # Sunrise-End
 
 - type: entity

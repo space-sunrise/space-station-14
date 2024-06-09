@@ -83,9 +83,9 @@
     - CanPilot
     - FootstepSound
     - EmagImmune
-#  - type: InnateItem
-#    instantActions:
-#    - PortableSurveillanceCameraMonitor
+  - type: InnateItem
+    instantActions:
+    - PortableSurveillanceCameraMonitor
 
 - type: entity
   id: BorgChassisSecurityCombat
@@ -184,9 +184,9 @@
     - CanPilot
     - FootstepSound
     - EmagImmune
-#  - type: InnateItem
-#    instantActions:
-#    - PortableSurveillanceCameraMonitor
+  - type: InnateItem
+    instantActions:
+    - PortableSurveillanceCameraMonitor
 
 - type: entity
   id: BorgChassisPeace
@@ -282,9 +282,9 @@
     - CanPilot
     - FootstepSound
     - EmagImmune
-#  - type: InnateItem
-#    instantActions:
-#    - PortableSurveillanceCameraMonitor
+  - type: InnateItem
+    instantActions:
+    - PortableSurveillanceCameraMonitor
 
 - type: entity
   id: BorgChassisClown
@@ -340,9 +340,9 @@
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepClown
-#  - type: InnateItem
-#    instantActions:
-#    - HandheldStationMapUnpowered
+  - type: InnateItem
+    instantActions:
+    - HandheldStationMapUnpowered
 
 - type: entity
   id: BorgChassisSyndicateReaper
@@ -427,9 +427,9 @@
   - type: RandomMetadata
     nameSegments:
     - names_first_reaper
-#  - type: InnateItem
-#    worldTargetActions:
-#    - Emag
+  - type: InnateItem
+    worldTargetActions:
+    - Emag
 
 - type: startingGear
   id: SyndiReaperHardsuitGear
@@ -576,9 +576,10 @@
     - CanPilot
     - FootstepSound
     - EmagImmune
-#  - type: InnateItem
-#    instantActions:
-#    - PortableSurveillanceCameraMonitor
+  - type: InnateItem
+    instantActions:
+    - PortableSurveillanceCameraMonitor
+    - HandheldCrewMonitorBorg
 
 - type: dataset
   id: BorgNamesERT
@@ -700,9 +701,9 @@
   - type: MovementSpeedModifier
     baseWalkSpeed : 1.5
     baseSprintSpeed : 2.5
-#  - type: InnateItem
-#    worldTargetActions:
-#    - Emag
+  - type: InnateItem
+    worldTargetActions:
+    - Emag
 
 - type: dataset
   id: BorgHeavyNames
@@ -796,9 +797,9 @@
   - type: MovementSpeedModifier
     baseWalkSpeed : 3
     baseSprintSpeed : 5
-#  - type: InnateItem
-#    worldTargetActions:
-#    - Emag
+  - type: InnateItem
+    worldTargetActions:
+    - Emag
 
 - type: dataset
   id: BorgScoutNames
