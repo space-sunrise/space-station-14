@@ -1,0 +1,38 @@
+- type: job
+  id: CentCommOfficial
+  name: job-name-centcomoff
+  description: job-description-centcomoff
+  playTimeTracker: JobCentCommOfficial
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Command
+    time: 180000 #50 hrs
+  weight: 30
+  setPreference: true
+  startingGear: CentCommOfficialGear
+  icon: "JobIconNanotrasen"
+  supervisors: job-supervisors-centcom
+  radioBold: true
+  canBeAntag: false
+  alwaysUseSpawner: true
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+  speciesBlacklist:
+  - Vox
+
+- type: startingGear
+  id: CentCommOfficialGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCentcomOfficial
+    shoes: ClothingShoesBootsCombatFilled
+    head: ClothingHeadHatCentcom
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesColorBlack
+    outerClothing: ClothingOuterArmorBasic
+    id: CentcomPDA
+    ears: ClothingHeadsetAltCentCom
+    belt: WeaponPistolN1984
+    pocket1: BoxFolderBlack
+    pocket2: PenCentcom

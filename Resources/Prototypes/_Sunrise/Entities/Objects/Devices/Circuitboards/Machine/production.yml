@@ -6,8 +6,17 @@
   components:
     - type: MachineBoard
       prototype: PrinterDoc
-      requirements:
+      stackRequirements:
         MatterBin: 3
         Manipulator: 1
-      materialRequirements:
         Glass: 1
+
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: CentCommShuttleConsoleCircuitboard
+  name: консоль шаттла ПЦК (консольная плата)
+  description: Плата которая используется для создания консоли шаттла ПЦК.
+  components:
+  - type: ComputerBoard
+    prototype: ComputerShuttleCentComm

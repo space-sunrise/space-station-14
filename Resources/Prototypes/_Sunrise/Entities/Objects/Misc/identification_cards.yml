@@ -21,12 +21,15 @@
         - state: idmagistrat
     - type: PresetIdCard
       job: Magistrat
+
+- type: entity
+  parent: IDCardStandard
   id: BrigmedicIDCard
   name: brigmedic ID card
   components:
   - type: Sprite
     layers:
-    - state: default
-    - state: idbrigmedic
+      - state: default
+      - state: idbrigmedic
   - type: PresetIdCard
     job: Brigmedic

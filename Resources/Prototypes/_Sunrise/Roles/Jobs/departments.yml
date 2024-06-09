@@ -2,9 +2,18 @@
   id: Law
   description: department-Law-description
   color: "#FF5297"
-  weight: -10
+  weight: 80
   roles:
   - Magistrat
   - IAA
   - Lawyer
-  
+
+- type: department
+  id: CentralCommand
+  description: department-CentralCommand-description
+  color: "#048e0f" # Sunrise-Edit
+  weight: 120
+  roles:
+  - CentCommOfficial
+  - CentCommOperator
+  primary: false

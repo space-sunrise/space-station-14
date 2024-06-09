@@ -13,10 +13,32 @@
   id: JobMagistrat
   groups:
   - CommonBackpack
+  - Trinkets
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
   id: JobBrigmedic
   groups:
   - BrigmedicJumpsuit
   - BrigmedicBackpack
+  - Trinkets
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobCentCommOfficial
+  groups:
+  - Trinkets
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobCentCommOperator
+  groups:
   - Trinkets
   - Bra
   - Pants
