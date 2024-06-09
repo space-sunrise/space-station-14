@@ -1,14 +1,14 @@
 - type: job
-  id: CentralCommandOfficial
+  id: CentCommOfficial
   name: job-name-centcomoff
   description: job-description-centcomoff
-  playTimeTracker: JobCentralCommandOfficial
+  playTimeTracker: JobCentCommOfficial
   requirements:
   - !type:DepartmentTimeRequirement
     department: Command
     time: 180000 #50 hrs
   setPreference: true
-  startingGear: CentcomOfficialGear
+  startingGear: CentCommOfficialGear
   icon: "JobIconNanotrasen"
   supervisors: job-supervisors-centcom
   radioBold: true
@@ -22,7 +22,7 @@
   - Vox
 
 - type: startingGear
-  id: CentcomOfficialGear
+  id: CentCommOfficialGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitCentcomOfficial
     shoes: ClothingShoesBootsCombatFilled

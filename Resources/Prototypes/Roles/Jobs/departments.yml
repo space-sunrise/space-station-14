@@ -48,15 +48,6 @@
   weight: 100
 
 - type: department
-  id: CentralCommand
-  description: department-CentralCommand-description
-  color: "#048e0f" # Sunrise-Edit
-  roles:
-  - CentralCommandOfficial
-  - CentralCommandOperator
-  primary: false
-
-- type: department
   id: Engineering
   description: department-Engineering-description
   color: "#EFB341"

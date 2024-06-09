@@ -14,5 +14,5 @@
             prefixCreator: 'TG'
         - type: StationJobs
           availableJobs:
-            CentralCommandOperator: [ 1, 1 ]
-            CentralCommandOfficial: [ 1, 1 ]
+            CentCommOperator: [ 1, 1 ]
+            CentCommOfficial: [ 1, 1 ]

@@ -33088,14 +33088,14 @@ entities:
     - type: Transform
       pos: 7.5,-21.5
       parent: 1668
-- proto: SpawnPointCentralCommandOfficial
+- proto: SpawnPointCentCommOfficial
   entities:
   - uid: 6518
     components:
     - type: Transform
       pos: 0.5,-1.5
       parent: 1668
-- proto: SpawnPointCentralCommandOperator
+- proto: SpawnPointCentCommOperator
   entities:
   - uid: 6517
     components:

@@ -25,12 +25,12 @@
       - state: brigmedic
 
 - type: entity
-  id: SpawnPointCentralCommandOperator
+  id: SpawnPointCentCommOperator
   parent: SpawnPointJobBase
   name: Central Command Operator
   components:
   - type: SpawnPoint
-    job_id: CentralCommandOperator
+    job_id: CentCommOperator
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:
@@ -38,12 +38,12 @@
     - state: centcom
 
 - type: entity
-  id: SpawnPointCentralCommandOfficial
+  id: SpawnPointCentCommOfficial
   parent: SpawnPointJobBase
   name: Central Command Official
   components:
   - type: SpawnPoint
-    job_id: CentralCommandOfficial
+    job_id: CentCommOfficial
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:
