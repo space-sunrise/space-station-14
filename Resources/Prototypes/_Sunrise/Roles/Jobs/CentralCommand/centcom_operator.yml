@@ -1,0 +1,36 @@
+- type: job
+  id: CentralCommandOperator
+  name: job-name-centcomop
+  description: job-description-centcomop
+  playTimeTracker: JobCentralCommandOperator
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Command
+    time: 180000 #50 hrs
+  setPreference: true
+  startingGear: CentcomOperatorGear
+  icon: "JobIconNanotrasen"
+  supervisors: job-supervisors-centcom
+  radioBold: true
+  canBeAntag: false
+  alwaysUseSpawner: true
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+  speciesBlacklist:
+  - Vox
+
+- type: startingGear
+  id: CentcomOperatorGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCentcomAdmiral
+    shoes: ClothingShoesBootsJack
+    head: ClothingHeadCapCentcomNaval
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesCentcomNaval
+    outerClothing: ClothingOuterArmorCentcomCarapace
+    neck: ClothingNeckCloakCentcomAdmiral
+    id: CentcomPDA
+    ears: ClothingHeadsetCentCom
+    pocket1: RubberStampCentcom

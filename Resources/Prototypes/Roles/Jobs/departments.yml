@@ -38,7 +38,6 @@
   color: "#052EED" # Sunrise-Edit
   roles:
   - Captain
-  - CentralCommandOfficial
   - ChiefEngineer
   - ChiefMedicalOfficer
   - HeadOfPersonnel
@@ -47,6 +46,15 @@
   - Quartermaster
   primary: false
   weight: 100
+
+- type: department
+  id: CentralCommand
+  description: department-CentralCommand-description
+  color: "#048e0f" # Sunrise-Edit
+  roles:
+  - CentralCommandOfficial
+  - CentralCommandOperator
+  primary: false
 
 - type: department
   id: Engineering

@@ -1,0 +1,18 @@
+- type: gameMap
+  id: SunriseCentComm
+  mapName: 'Central Command'
+  mapPath: /Maps/_Sunrise/Station/centcomm.yml
+  minPlayers: 10
+  stations:
+    centcomm:
+      stationProto: NanotrasenCentralCommand
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Центральное командование {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: 'TG'
+        - type: StationJobs
+          availableJobs:
+            CentralCommandOperator: [ 1, 1 ]
+            CentralCommandOfficial: [ 1, 1 ]

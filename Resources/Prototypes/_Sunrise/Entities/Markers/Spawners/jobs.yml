@@ -23,3 +23,29 @@
     layers:
       - state: green
       - state: brigmedic
+
+- type: entity
+  id: SpawnPointCentralCommandOperator
+  parent: SpawnPointJobBase
+  name: Central Command Operator
+  components:
+  - type: SpawnPoint
+    job_id: CentralCommandOperator
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - state: centcom
+
+- type: entity
+  id: SpawnPointCentralCommandOfficial
+  parent: SpawnPointJobBase
+  name: Central Command Official
+  components:
+  - type: SpawnPoint
+    job_id: CentralCommandOfficial
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - state: centcom

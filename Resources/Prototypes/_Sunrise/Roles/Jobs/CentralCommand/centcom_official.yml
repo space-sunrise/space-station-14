@@ -3,12 +3,17 @@
   name: job-name-centcomoff
   description: job-description-centcomoff
   playTimeTracker: JobCentralCommandOfficial
-  setPreference: false
-  startingGear: CentcomGear
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Command
+    time: 180000 #50 hrs
+  setPreference: true
+  startingGear: CentcomOfficialGear
   icon: "JobIconNanotrasen"
   supervisors: job-supervisors-centcom
   radioBold: true
   canBeAntag: false
+  alwaysUseSpawner: true
   accessGroups:
   - AllAccess
   access:
@@ -17,7 +22,7 @@
   - Vox
 
 - type: startingGear
-  id: CentcomGear
+  id: CentcomOfficialGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitCentcomOfficial
     shoes: ClothingShoesBootsCombatFilled

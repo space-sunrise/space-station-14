@@ -3,6 +3,9 @@
 
 - type: playTimeTracker
   id: JobMagistrat
-  
+
 - type: playTimeTracker
   id: JobBrigmedic
+
+- type: playTimeTracker
+  id: JobCentralCommandOperator
