@@ -27,9 +27,6 @@ public sealed class TTSSystem : EntitySystem
     private readonly MemoryContentRoot _contentRoot = new();
     private static readonly ResPath Prefix = ResPath.Root / "TTS";
 
-    private const float TtsVolume = 0f;
-    private const float AnnounceVolume = 0f;
-
     private float _volume;
     private float _radioVolume;
     private int _fileIdx;
@@ -101,7 +98,7 @@ public sealed class TTSSystem : EntitySystem
         if (_announcementUid == EntityUid.Invalid)
             _announcementUid = Spawn(null);
 
-        var finalParams = new AudioParams() { Volume = AnnounceVolume + SharedAudioSystem.GainToVolume(_volumeAnnounce) };
+        var finalParams = new AudioParams() { Volume = _volumeAnnounce + SharedAudioSystem.GainToVolume(_volumeAnnounce) };
 
         if (ev.AnnouncementSound != null)
         {
@@ -122,7 +119,7 @@ public sealed class TTSSystem : EntitySystem
         if (volume == 0)
             return;
 
-        volume = TtsVolume + SharedAudioSystem.GainToVolume(volume * ev.VolumeModifier);
+        volume = _volume + SharedAudioSystem.GainToVolume(volume * ev.VolumeModifier);
 
         var audioParams = AudioParams.Default.WithVolume(volume);
 
