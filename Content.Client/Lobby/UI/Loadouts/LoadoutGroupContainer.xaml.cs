@@ -78,7 +78,7 @@ public sealed partial class LoadoutGroupContainer : BoxContainer
             var matchingLoadout = selected.FirstOrDefault(e => e.Prototype == loadoutProto);
             var pressed = matchingLoadout != null;
 
-            var sponsorPrototypes = _sponsors != null && _sponsors.TryGetPrototypes(session.UserId, out var prototypes) ? prototypes.ToArray() : []; // Sunrise-Sponsors
+            var sponsorPrototypes = _sponsors?.GetClientPrototypes().ToArray() ?? [];
             var enabled = loadout.IsValid(profile, session, loadoutProto, collection, sponsorPrototypes, out var reason); // Sunrise-Sponsors
             var loadoutContainer = new LoadoutContainer(loadoutProto, !enabled, reason);
             loadoutContainer.Select.Pressed = pressed;
