@@ -1,3 +1,4 @@
+using Content.Client._Sunrise.Latejoin;
 using Content.Client.Audio;
 using Content.Client.GameTicking.Managers;
 using Content.Client.LateJoin;
@@ -121,7 +122,7 @@ namespace Content.Client.Lobby
                 return;
             }
 
-            new LateJoinGui().OpenCentered();
+            new NFLateJoinGui().OpenCentered(); // Sunrise-Edit
         }
 
         private void OnReadyToggled(BaseButton.ButtonToggledEventArgs args)
