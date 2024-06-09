@@ -7,6 +7,7 @@
   - !type:DepartmentTimeRequirement
     department: Command
     time: 180000 #50 hrs
+  weight: 30
   setPreference: true
   startingGear: CentCommOperatorGear
   icon: "JobIconNanotrasen"
