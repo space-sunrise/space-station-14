@@ -228,6 +228,10 @@
     - CanPilot
     - FootstepSound
     - DoorBumpOpener
+  - type: Paws
+    screamInterval: 3
+    thresholdDamage: 5
+    coughInterval: 5
 
 - type: entity
   save: false
