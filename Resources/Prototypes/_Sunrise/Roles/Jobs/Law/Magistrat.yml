@@ -29,7 +29,6 @@
   - Cargo
   - Salvage
   - Command
-  extendedAccess:
   - Hydroponics
   special:
   - !type:AddImplantSpecial
@@ -37,6 +36,8 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
+  speciesBlacklist:
+  - Vox
 
 - type: startingGear
   id: MagistratGear
