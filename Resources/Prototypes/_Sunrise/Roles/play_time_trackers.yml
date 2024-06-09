@@ -8,7 +8,7 @@
   id: JobBrigmedic
 
 - type: playTimeTracker
-  id: JobCentCommOperator
+  id: JobCentComOfficer
 
 - type: playTimeTracker
   id: JobCentCommOfficial

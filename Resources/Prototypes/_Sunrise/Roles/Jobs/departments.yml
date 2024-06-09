@@ -15,5 +15,5 @@
   weight: 120
   roles:
   - CentCommOfficial
-  - CentCommOperator
+  - CentComOfficer
   primary: false
