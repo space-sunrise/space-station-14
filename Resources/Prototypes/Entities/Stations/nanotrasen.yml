@@ -17,7 +17,6 @@
     - BaseStationArrivals
     - BaseStationGateway
     - BaseStationShuttles
-    - BaseStationCentcomm
     - BaseStationEvacuation
     - BaseStationAlertLevels
     - BaseStationMagnet
@@ -26,6 +25,8 @@
     - BaseStationAllEventsEligible
     - BaseStationNanotrasen
     - BaseRandomStation
+    - BaseStationCentComm
+    - BaseStationTransitHub
   noSpawn: true
   components:
     - type: Transform
@@ -36,6 +37,10 @@
     - BaseStation
     - BaseStationAlertLevels
     - BaseStationNanotrasen
+    - BaseStationRecords
+    - BaseRandomStation
+    - BaseStationJobsSpawning
+    - BaseCentCommShuttles
   noSpawn: true
   components:
     - type: Transform
