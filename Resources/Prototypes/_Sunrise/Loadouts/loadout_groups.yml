@@ -98,3 +98,11 @@
   loadouts:
   - BrigmedicJumpsuit
   - BrigmedicJumpskirt
+
+- type: loadoutGroup
+  id: PsychologistBackpack
+  name: loadout-group-brigmedic-backpack
+  loadouts:
+  - PsychologistBackpack
+  - PsychologistSatchel
+  - PsychologistDuffel
