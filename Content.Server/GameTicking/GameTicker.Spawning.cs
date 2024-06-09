@@ -229,7 +229,16 @@ namespace Content.Server.GameTicking
 
             _playTimeTrackings.PlayerRolesChanged(player);
 
-            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, job, character);
+            var arrivals = true;
+
+            if (jobPrototype.AlwaysUseSpawner)
+            {
+                lateJoin = false;
+                arrivals = false;
+            }
+
+            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, job, character, arrivals: arrivals);
+
             DebugTools.AssertNotNull(mobMaybe);
             var mob = mobMaybe!.Value;
 

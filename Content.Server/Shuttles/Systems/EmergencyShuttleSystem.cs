@@ -100,7 +100,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundCleanup);
         SubscribeLocalEvent<StationEmergencyShuttleComponent, StationPostInitEvent>(OnStationStartup);
         SubscribeLocalEvent<StationTransitHubComponent, ComponentShutdown>(OnCentcommShutdown); // Sunrise-Edit
-        SubscribeLocalEvent<StationTransitHubComponent, MapInitEvent>(OnStationInit); // Sunrise-Edit
+        SubscribeLocalEvent<StationTransitHubComponent, ComponentInit>(OnTransitHubInit); // Sunrise-Edit
 
         SubscribeLocalEvent<EmergencyShuttleComponent, FTLStartedEvent>(OnEmergencyFTL);
         SubscribeLocalEvent<EmergencyShuttleComponent, FTLCompletedEvent>(OnEmergencyFTLComplete);
@@ -207,7 +207,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         if (targetGrid == null)
             return;
 
-        var config = _dock.GetDockingConfig(stationShuttle.EmergencyShuttle.Value, targetGrid.Value, DockTag);
+        var config = _dock.GetDockingConfig(stationShuttle.EmergencyShuttle.Value, targetGrid.Value, DockTag, true);
         if (config == null)
             return;
 
@@ -309,7 +309,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
 
         var xformQuery = GetEntityQuery<TransformComponent>();
 
-        if (_shuttle.TryFTLDock(stationShuttle.EmergencyShuttle.Value, shuttle, targetGrid.Value, DockTag))
+        if (_shuttle.TryFTLDock(stationShuttle.EmergencyShuttle.Value, shuttle, targetGrid.Value, DockTag, true, true)) // Sunrise-Edit
         {
             if (TryComp(targetGrid.Value, out TransformComponent? targetXform))
             {
@@ -353,7 +353,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         }
     }
 
-    private void OnStationInit(EntityUid uid, StationTransitHubComponent component, MapInitEvent args) // Sunrise-Edit
+    private void OnTransitHubInit(EntityUid uid, StationTransitHubComponent component, ComponentInit args) // Sunrise-Edit
     {
         // This is handled on map-init, so that centcomm has finished initializing by the time the StationPostInitEvent
         // gets raised
@@ -471,6 +471,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         Log.Info($"Created transit hub grid {ToPrettyString(uids[0])} on map {ToPrettyString(mapUid)} for station {ToPrettyString(station)}");
 
         EnsureComp<ProtectedGridComponent>(uids[0]);
+        EnsureComp<ArrivalsSourceComponent>(uids[0]); // Sunrise-Edit
 
         var template = _random.Pick(component.Biomes);
         _biomes.EnsurePlanet(mapUid, _protoManager.Index<BiomeTemplatePrototype>(template));
