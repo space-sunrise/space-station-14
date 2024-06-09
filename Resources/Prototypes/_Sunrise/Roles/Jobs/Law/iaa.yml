@@ -5,10 +5,10 @@
   requirements:
   - !type:DepartmentTimeRequirement
     department: Command
-    time: 36000 # Sunrise-RoleTime
+    time: 36000 # 10h Sunrise-RoleTime
   - !type:DepartmentTimeRequirement
     department: Security
-    time: 18000 # Sunrise-RoleTime
+    time: 18000 # 5h Sunrise-RoleTime
   startingGear: IAAGear
   icon: "JobIconIAA"
   supervisors: job-supervisors-centcom

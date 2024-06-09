@@ -6,7 +6,7 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Command
-      time: 180000 #50 hrs
+      time: 108000 #30 hrs
   startingGear: MagistratGear
   icon: "JobIconMagistrat"
   supervisors: job-supervisors-service
@@ -52,6 +52,3 @@
     head: ClothingHeadHatPwig
     pocket1: Flash
     pocket2: ClothingNeckLawyerbadge
-  innerClothingSkirt: MagistratUniformSuit
-  satchel: ClothingBackpackSatchelIAAFilled
-  duffelbag: ClothingBackpackDuffelIAAFilled
