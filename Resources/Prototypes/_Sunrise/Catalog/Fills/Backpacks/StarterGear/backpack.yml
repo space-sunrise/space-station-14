@@ -19,16 +19,6 @@
 
 - type: entity
   noSpawn: true
-  parent: ClothingBackpackBrigmedic
-  id: ClothingBackpackBrigmedicFilled
-  components:
-  - type: StorageFill
-    contents:
-      - id: BoxSurvivalBrigmedic
-      - id: Flash
-
-- type: entity
-  noSpawn: true
   parent: ClothingBackpackSyndie
   id: ClothingBackpackSyndieAJ100Filled
   name: набор AJ-10
@@ -64,4 +54,3 @@
     - id: WeaponSIAR52Biocode
     - id: MagazinePistolSubMachineGunSIAR52
       amount: 2
-
