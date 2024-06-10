@@ -99,6 +99,11 @@ public sealed partial class ServersHubManager
 
             var thisServerUrl = _cfg.GetCVar(CVars.HubServerUrl);
 
+            var canConnect = true;
+
+            if (thisServerUrl != "")
+                canConnect = NormalizeUrl(thisServerUrl) != NormalizeUrl(serverUrl);
+
             var serverName = RestrictedNameRegex.Replace(data.Name, string.Empty);
             _serverDataList.Add(new ServerHubEntry(
                 serverName,
@@ -107,7 +112,7 @@ public sealed partial class ServersHubManager
                 data.Players,
                 data.Soft_Max_Players,
                 $"ss14s://{NormalizeUrl(serverUrl)}",
-                NormalizeUrl(thisServerUrl) != NormalizeUrl(serverUrl)));
+                canConnect));
         }
 
         SendFullPlayerList(_playerManager.Sessions);

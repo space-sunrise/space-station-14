@@ -27,9 +27,14 @@
       sprite: Mobs/Customization/masking_helpers.rsi
       state: unisex_full
       visible: false
-    - map: ["jumpsuit"]
+    # Sunrise-start
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
+    - map: ["bra"]
+    - map: ["pants"]
+    - map: ["socks"]
+    - map: ["jumpsuit"]
+    # Sunrise-end
     - map: ["enum.HumanoidVisualLayers.LHand"]
     - map: ["enum.HumanoidVisualLayers.RHand"]
     - map: [ "gloves" ]
@@ -223,6 +228,10 @@
     - CanPilot
     - FootstepSound
     - DoorBumpOpener
+  - type: Paws
+    screamInterval: 3
+    thresholdDamage: 5
+    coughInterval: 5
 
 - type: entity
   save: false
@@ -235,6 +244,8 @@
   id: BaseMobSpeciesOrganic
   abstract: true
   components:
+  - type: Carriable # Sunrise-edit
+  - type: CanEscapeInventory # Sunrise-edit
   - type: Barotrauma
     damage:
       types:
@@ -321,9 +332,14 @@
       sprite: Mobs/Customization/masking_helpers.rsi
       state: unisex_full
       visible: false
-    - map: ["jumpsuit"]
+    # Sunrise-start
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
+    - map: ["bra"]
+    - map: ["pants"]
+    - map: ["socks"]
+    - map: ["jumpsuit"]
+    # Sunrise-end
     - map: ["enum.HumanoidVisualLayers.LHand"]
     - map: ["enum.HumanoidVisualLayers.RHand"]
     - map: ["enum.HumanoidVisualLayers.Handcuffs"]

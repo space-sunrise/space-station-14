@@ -229,12 +229,16 @@ namespace Content.Server.GameTicking
 
             _playTimeTrackings.PlayerRolesChanged(player);
 
-            // Sunrise-start
-            if (jobPrototype.AlwaysUseSpawner)
-                lateJoin = false;
-            // Sunrise-end
+            var arrivals = true;
 
-            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, job, character, lateJoin: lateJoin);
+            if (jobPrototype.AlwaysUseSpawner)
+            {
+                lateJoin = false;
+                arrivals = false;
+            }
+
+            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, job, character, arrivals: arrivals);
+
             DebugTools.AssertNotNull(mobMaybe);
             var mob = mobMaybe!.Value;
 

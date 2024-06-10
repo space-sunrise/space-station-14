@@ -1,0 +1,55 @@
+- type: job
+  id: Magistrat
+  name: job-name-magistrat
+  description: job-description-magistrat
+  playTimeTracker: JobMagistrat
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 108000 #30 hrs
+  startingGear: MagistratGear
+  icon: "JobIconMagistrat"
+  supervisors: job-supervisors-service
+  canBeAntag: false
+  setPreference: true
+  access:
+  - Magistrat
+  - Bar
+  - Kitchen
+  - Hydroponics
+  - Janitor
+  - Theatre
+  - Chapel
+  - Lawyer
+  - Brig
+  - Security
+  - Medical
+  - Research
+  - Engineering
+  - Cargo
+  - Salvage
+  - Command
+  - Hydroponics
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
+  speciesBlacklist:
+  - Vox
+
+- type: startingGear
+  id: MagistratGear
+  equipment:
+    jumpsuit: MagistratUniformSuit
+    back: ClothingBackpackIAAFilled
+    shoes: ClothingShoesBootsLaceup
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesColorWhite
+    outerClothing: ClothingOuterRobesJudge
+    id: MagistratPDA
+    ears: ClothingHeadsetAltCommand
+    head: ClothingHeadHatPwig
+    pocket1: Flash
+    pocket2: ClothingNeckLawyerbadge

@@ -12,3 +12,32 @@
         path: /Audio/_Sunrise/Announcements/centcomm.ogg
         params:
           volume: -4
+      announceVoice: AngryNecoArc # Хи-хи-хи
+
+- type: entity
+  parent: BaseComputerShuttle
+  id: ComputerShuttleCentComm
+  name: консоль управления шаттлом ПЦК
+  description: Кто прочитал - тот лох.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: supply
+    - map: ["computerLayerKeys"]
+      state: tech_key
+  - type: DroneConsole
+    components:
+    - type: CentCommShuttle
+  - type: RadarConsole
+    maxRange: 512
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#c94242"
+  - type: Computer
+    board: CentCommShuttleConsoleCircuitboard

@@ -16,3 +16,51 @@
       contents:
         - id: BoxSurvivalMedical
         - id: RubberStampPsychologist
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackBrigmedic
+  id: ClothingBackpackBrigmedicFilled
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxSurvivalBrigmedic
+      - id: Flash
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackSyndie
+  id: ClothingBackpackSyndieAJ100Filled
+  name: набор AJ-10
+  description: Включает в себя пистолет-пулемёт AJ-100 и два магазина патрон.
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponAJ100Biocode
+    - id: MagazinePistolSubMachineGun
+      amount: 2
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackSyndie
+  id: ClothingBackpackSyndieDL6902Filled
+  name: набор DL-6902
+  description: Включает в себя пулемёт DL6902 и один магазин патрон.
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponDL6902Biocode
+    - id: MagazineDl6902
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackSyndie
+  id: ClothingBackpackSyndieSIAR52Filled
+  name: набор SIAR-52
+  description: Включает в себя пулемёт SIAR-52 и два магазина патрон.
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSIAR52Biocode
+    - id: MagazinePistolSubMachineGunSIAR52
+      amount: 2

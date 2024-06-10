@@ -47,6 +47,7 @@ entities:
     - type: Fixtures
       fixtures: {}
     - type: OccluderTree
+    - type: ErtShuttle
     - type: Shuttle
     - type: Gravity
       gravityShakeSound: !type:SoundPathSpecifier

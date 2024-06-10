@@ -17,4 +17,10 @@ public interface IServerSponsorsManager : ISharedSponsorsManager
     public bool AllowedRespawn(NetUserId userId);
     public List<ICommonSession> PickPrioritySessions(List<ICommonSession> sessions, string roleId);
     public NetUserId PickRoleSession(HashSet<NetUserId> users, string roleId);
+
+    public bool TryGetPriorityGhostRoles(NetUserId userId, [NotNullWhen(true)] out List<string>? priorityAntags);
+
+    public bool TryGetPriorityAntags(NetUserId userId, [NotNullWhen(true)] out List<string>? priorityAntags);
+
+    public bool TryGetPriorityRoles(NetUserId userId, [NotNullWhen(true)] out List<string>? priorityRoles);
 }

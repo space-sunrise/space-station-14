@@ -81,6 +81,9 @@
       - id: NitrogenTankFilled
         prob: 0.20
         orGroup: EmergencyTankOrRegularTank
+      - id: CrowbarRed
+      - id: CrowbarRed
+      - id: CrowbarRed
 
 - type: entity
   id: ClosetFireFilled
@@ -95,6 +98,10 @@
         - id: OxygenTankFilled
         - id: FireExtinguisher
           prob: 0.25
+        - id: CrowbarRed
+        - id: CrowbarRed
+        - id: CrowbarRed
+
 - type: entity
   id: ClosetWallFireFilledRandom
   parent: ClosetWallFire
@@ -108,6 +115,10 @@
         - id: OxygenTankFilled
         - id: FireExtinguisher
           prob: 0.25
+        - id: CrowbarRed
+        - id: CrowbarRed
+        - id: CrowbarRed
+
 - type: entity
   id: ClosetMaintenanceFilledRandom
   suffix: Filled, Random

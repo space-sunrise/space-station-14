@@ -93,7 +93,7 @@
                     <Control MinSize="8 0" />
                     <Slider Name="TtsVolumeSlider"
                             MinValue="0"
-                            MaxValue="200"
+                            MaxValue="100"
                             HorizontalExpand="True"
                             MinSize="80 0"
                             Rounded="True" />
@@ -106,7 +106,7 @@
                     <Control MinSize="8 0" />
                     <Slider Name="TtsRadioVolumeSlider"
                             MinValue="0"
-                            MaxValue="200"
+                            MaxValue="100"
                             HorizontalExpand="True"
                             MinSize="80 0"
                             Rounded="True" />
@@ -119,7 +119,7 @@
                     <Control MinSize="8 0" />
                     <Slider Name="TtsAnnounceVolumeSlider"
                             MinValue="0"
-                            MaxValue="200"
+                            MaxValue="100"
                             HorizontalExpand="True"
                             MinSize="80 0"
                             Rounded="True" />

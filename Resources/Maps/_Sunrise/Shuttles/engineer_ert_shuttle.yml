@@ -47,6 +47,7 @@ entities:
       fixtures: {}
     - type: OccluderTree
     - type: SpreaderGrid
+    - type: ErtShuttle
     - type: Shuttle
     - type: GridPathfinding
     - type: Gravity
