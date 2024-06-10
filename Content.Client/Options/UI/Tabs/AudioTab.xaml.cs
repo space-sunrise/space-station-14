@@ -156,9 +156,9 @@ namespace Content.Client.Options.UI.Tabs
             _cfg.SetCVar(CCVars.AmbientMusicVolume, AmbientMusicVolumeSlider.Value / 100f * ContentAudioSystem.AmbientMusicMultiplier);
             _cfg.SetCVar(CCVars.LobbyMusicVolume, LobbyVolumeSlider.Value / 100f * ContentAudioSystem.LobbyMultiplier);
             _cfg.SetCVar(CCVars.InterfaceVolume, InterfaceVolumeSlider.Value / 100f * ContentAudioSystem.InterfaceMultiplier);
-            _cfg.SetCVar(SunriseCCVars.TTSVolume, TtsVolumeSlider.Value / 100f); // Sunrise-TTS
-            _cfg.SetCVar(SunriseCCVars.TTSRadioVolume, TtsRadioVolumeSlider.Value / 100f); // Sunrise-TTS
-            _cfg.SetCVar(SunriseCCVars.TTSAnnounceVolume, TtsAnnounceVolumeSlider.Value / 100f); // Sunrise-TTS
+            _cfg.SetCVar(SunriseCCVars.TTSVolume, TtsVolumeSlider.Value / 100f * ContentAudioSystem.TtsMultiplier); // Sunrise-TTS
+            _cfg.SetCVar(SunriseCCVars.TTSRadioVolume, TtsRadioVolumeSlider.Value / 100f * ContentAudioSystem.TtsMultiplier); // Sunrise-TTS
+            _cfg.SetCVar(SunriseCCVars.TTSAnnounceVolume, TtsAnnounceVolumeSlider.Value / 100f * ContentAudioSystem.TtsMultiplier); // Sunrise-TTS
 
             _cfg.SetCVar(CCVars.MaxAmbientSources, (int)AmbienceSoundsSlider.Value);
 
@@ -184,9 +184,9 @@ namespace Content.Client.Options.UI.Tabs
             AmbientMusicVolumeSlider.Value = _cfg.GetCVar(CCVars.AmbientMusicVolume) * 100f / ContentAudioSystem.AmbientMusicMultiplier;
             LobbyVolumeSlider.Value = _cfg.GetCVar(CCVars.LobbyMusicVolume) * 100f / ContentAudioSystem.LobbyMultiplier;
             InterfaceVolumeSlider.Value = _cfg.GetCVar(CCVars.InterfaceVolume) * 100f / ContentAudioSystem.InterfaceMultiplier;
-            TtsVolumeSlider.Value = _cfg.GetCVar(SunriseCCVars.TTSVolume) * 100f; // Sunrise-TTS
-            TtsRadioVolumeSlider.Value = _cfg.GetCVar(SunriseCCVars.TTSRadioVolume) * 100f; // Sunrise-TTS
-            TtsAnnounceVolumeSlider.Value = _cfg.GetCVar(SunriseCCVars.TTSAnnounceVolume) * 100f; // Sunrise-TTS
+            TtsVolumeSlider.Value = _cfg.GetCVar(SunriseCCVars.TTSVolume) * 100f / ContentAudioSystem.TtsMultiplier; // Sunrise-TTS
+            TtsRadioVolumeSlider.Value = _cfg.GetCVar(SunriseCCVars.TTSRadioVolume) * 100f / ContentAudioSystem.TtsMultiplier; // Sunrise-TTS
+            TtsAnnounceVolumeSlider.Value = _cfg.GetCVar(SunriseCCVars.TTSAnnounceVolume) * 100f / ContentAudioSystem.TtsMultiplier; // Sunrise-TTS
 
             AmbienceSoundsSlider.Value = _cfg.GetCVar(CCVars.MaxAmbientSources);
 
@@ -214,11 +214,11 @@ namespace Content.Client.Options.UI.Tabs
             var isInterfaceVolumeSame =
                 Math.Abs(InterfaceVolumeSlider.Value - _cfg.GetCVar(CCVars.InterfaceVolume) * 100f / ContentAudioSystem.InterfaceMultiplier) < 0.01f;
             var isTtsVolumeSame =
-                Math.Abs(TtsVolumeSlider.Value - _cfg.GetCVar(SunriseCCVars.TTSVolume) * 100f) < 0.01f; // Sunrise-TTS
+                Math.Abs(TtsVolumeSlider.Value - _cfg.GetCVar(SunriseCCVars.TTSVolume) * 100f / ContentAudioSystem.TtsMultiplier) < 0.01f; // Sunrise-TTS
             var isTtsRadioVolumeSame =
-                Math.Abs(TtsRadioVolumeSlider.Value - _cfg.GetCVar(SunriseCCVars.TTSRadioVolume) * 100f) < 0.01f; // Sunrise-TTS
+                Math.Abs(TtsRadioVolumeSlider.Value - _cfg.GetCVar(SunriseCCVars.TTSRadioVolume) * 100f / ContentAudioSystem.TtsMultiplier) < 0.01f; // Sunrise-TTS
             var isTtsAnnounceVolumeSame =
-                Math.Abs(TtsAnnounceVolumeSlider.Value - _cfg.GetCVar(SunriseCCVars.TTSAnnounceVolume) * 100f) < 0.01f; // Sunrise-TTS
+                Math.Abs(TtsAnnounceVolumeSlider.Value - _cfg.GetCVar(SunriseCCVars.TTSAnnounceVolume) * 100f / ContentAudioSystem.TtsMultiplier) < 0.01f; // Sunrise-TTS
 
             var isAmbientSoundsSame = (int)AmbienceSoundsSlider.Value == _cfg.GetCVar(CCVars.MaxAmbientSources);
             var isLobbySame = LobbyMusicCheckBox.Pressed == _cfg.GetCVar(CCVars.LobbyMusicEnabled);

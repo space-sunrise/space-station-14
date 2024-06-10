@@ -3,20 +3,106 @@
   name: loadout-group-socks
   minLimit: 0
   loadouts:
-  - DefaultWomanSocks
-  - DefaultManSocks
+  - ThighWhiteSocks
+  - ShortWhiteSocks
+  - FishnetTights
+  - KneeWhiteSocks
+  - KneeAceSocks
+  - KneeAssblastusaSocks
+  - KneeBeeSocks
+  - KneeBlackSocks
+  - KneeCommieSocks
+  - KneeFishnetSocks
+  - KneeRainbowSocks
+  - KneeStripedSocks
+  - KneeThinSocks
+  - KneeTransSocks
+  - KneeUkSocks
+  - NormBlackSocks
+  - NormWhiteSocks
+  - Pantyhose
+  - ShortBlackSocks
+  - StockingsBlue
+  - StockingsCyan
+  - StockingsDpink
+  - StockingsGreen
+  - Stockingslpink
+  - StockingsOrange
+  - StockingsPurple
+  - ThighAceSocks
+  - ThighAsblastusaSocks
+  - ThighBeeSocks
+  - ThighBlackSocks
+  - ThighCommieSocks
+  - ThighRainbowSocks
+  - ThighTransSocks
+  - ThighUkSocks
 
 - type: loadoutGroup
   id: Bra
   name: loadout-group-bra
   minLimit: 0
   loadouts:
-  - DefaultBra
+  - StraplessBra
+  - WhiteNekoBra
+  - BlackNekoBra
+  - AssblastusaBra
+  - BikiniBra
+  - BraletteBra
+  - CommieBra
+  - KinkyBra
+  - LaceBra
+  - SportBra
+  - ThongBra
+  - UkBra
 
 - type: loadoutGroup
   id: Pants
   name: loadout-group-pants
   minLimit: 0
   loadouts:
-  - DefaultWomanPants
-  - DefaultManPants
+  - StraplessWomanPants
+  - BoxersManPants
+  - AssblastusaManPants
+  - BriefsManPants
+  - CommieManPants
+  - HeartsManPants
+  - KinkyManPants
+  - LongjohnsManPants
+  - MankiniManPants
+  - StripeManPants
+  - UkManPants
+  - NekoWhiteWomanPants
+  - NekoBlackWomanPants
+  - AssblastusaWomanPants
+  - BikiniWomanPants
+  - BraletteWomanPants
+  - CommieWomanPants
+  - KinkyWomanPants
+  - LaceWomanPants
+  - SportWomanPants
+  - ThongWomanPants
+  - UkWomanPants
+
+- type: loadoutGroup
+  id: BrigmedicBackpack
+  name: loadout-group-brigmedic-backpack
+  loadouts:
+  - BrigmedicBackpack
+  - BrigmedicSatchel
+  - BrigmedicDuffel
+
+- type: loadoutGroup
+  id: BrigmedicJumpsuit
+  name: loadout-group-brigmedic-jumpsuit
+  loadouts:
+  - BrigmedicJumpsuit
+  - BrigmedicJumpskirt
+
+- type: loadoutGroup
+  id: PsychologistBackpack
+  name: loadout-group-brigmedic-backpack
+  loadouts:
+  - PsychologistBackpack
+  - PsychologistSatchel
+  - PsychologistDuffel

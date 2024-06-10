@@ -9,6 +9,10 @@
 - type: accessLevel
   id: HeadOfPersonnel
   name: id-card-access-level-head-of-personnel
+  
+- type: accessLevel
+  id: Magistrat
+  name: id-card-access-level-magistrat
 
 - type: accessGroup
   id: Command

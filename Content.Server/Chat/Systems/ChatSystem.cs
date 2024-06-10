@@ -4,16 +4,19 @@ using System.Text;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
+using Content.Server.Examine;
 using Content.Server.GameTicking;
 using Content.Server.Speech.Components;
 using Content.Server.Speech.EntitySystems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Shared._Sunrise.TTS;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Database;
+using Content.Shared.Examine;
 using Content.Shared.Ghost;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
@@ -59,6 +62,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private readonly ReplacementAccentSystem _wordreplacement = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
 
     // Sunrise-TTS-Start: Moved from Server to Shared
     // public const int VoiceRange = 10; // how far voice goes in world units
@@ -320,7 +324,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         string sender = "Центральное коммандование", // Sunrise-edit
         bool playDefault = true,
         SoundSpecifier? announcementSound = null,
-        bool playTts = true, // Sunrise-edit
+        bool playTts = true, // Sunrise-edit,
+        string? announceVoice = null,
         Color? colorOverride = null
         )
     {
@@ -335,8 +340,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         if (playTts)
         {
-            var nukie = sender == Loc.GetString("comms-console-announcement-title-nukie");
-            var announcementEv = new AnnouncementSpokeEvent(Filter.Broadcast(), message, announcementSound, nukie);
+            var announcementEv = new AnnouncementSpokeEvent(Filter.Broadcast(), message, announcementSound, announceVoice);
             RaiseLocalEvent(announcementEv);
         }
         // Sunrise-end
@@ -361,6 +365,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         bool playDefault = true, // Sunrise-edit
         bool playTts = true,// Sunrise-edit
         Color? colorOverride = null,
+        string? announceVoice = null,
         SoundSpecifier? announcementSound = null)
     {
         var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message)));
@@ -384,7 +389,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         if (playTts)
         {
-            RaiseLocalEvent(new AnnouncementSpokeEvent(filter, message, announcementSound));
+            RaiseLocalEvent(new AnnouncementSpokeEvent(filter, message, announcementSound, announceVoice));
         }
         // Sunrise-edit
 
@@ -526,8 +531,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             if (data.Range <= WhisperClearRange)
                 _chatManager.ChatMessageToOne(ChatChannel.Whisper, message, wrappedMessage, source, false, session.Channel);
             //If listener is too far, they only hear fragments of the message
-            //Collisiongroup.Opaque is not ideal for this use. Preferably, there should be a check specifically with "Can Ent1 see Ent2" in mind
-            else if (_interactionSystem.InRangeUnobstructed(source, listener, WhisperMuffledRange, Shared.Physics.CollisionGroup.Opaque)) //Shared.Physics.CollisionGroup.Opaque
+            else if (_examineSystem.InRangeUnOccluded(source, listener, WhisperMuffledRange))
                 _chatManager.ChatMessageToOne(ChatChannel.Whisper, obfuscatedMessage, wrappedobfuscatedMessage, source, false, session.Channel);
             //If listener is too far and has no line of sight, they can't identify the whisperer's identity
             else
@@ -1006,12 +1010,12 @@ public sealed class AnnouncementSpokeEvent(
     Filter source,
     string message,
     SoundSpecifier? announcementSound,
-    bool nukie = false)
+    string? announceVoice)
     : EntityEventArgs
 {
     public readonly Filter Source = source;
     public readonly string Message = message;
-    public readonly bool Nukie = nukie;
+    public readonly string? AnnounceVoice = announceVoice;
     public readonly SoundSpecifier? AnnouncementSound = announcementSound;
 }
 

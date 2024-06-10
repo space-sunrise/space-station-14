@@ -38,8 +38,6 @@
   color: "#052EED" # Sunrise-Edit
   roles:
   - Captain
-  - IAA # Sunrise-Edit
-  - CentralCommandOfficial
   - ChiefEngineer
   - ChiefMedicalOfficer
   - HeadOfPersonnel
@@ -82,6 +80,7 @@
   - SecurityOfficer
   - Detective
   - Warden
+  - Brigmedic  # Sunrise-Brigmedic
 
 - type: department
   id: Science

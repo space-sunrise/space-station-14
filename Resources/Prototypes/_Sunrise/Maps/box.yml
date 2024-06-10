@@ -2,21 +2,19 @@
   id: SunriseBox
   mapName: 'Box Station'
   mapPath: /Maps/_Sunrise/Station/box.yml
-  minPlayers: 30
+  minPlayers: 0
   stations:
     Boxstation:
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Box Station {1}'
+          mapNameTemplate: '{0} Бокс {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: 'TG'
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/_Sunrise/Shuttles/emergency_box.yml
         - type: StationJobs
-          overflowJobs:
-            - Passenger
           availableJobs:
             #service
             Captain: [ 1, 1 ]
@@ -51,7 +49,6 @@
             SecurityOfficer: [ 5, 5 ]
             Detective: [ 1, 1 ]
             SecurityCadet: [ 4, 4 ]
-            #Lawyer: [ 2, 2 ]
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]
@@ -62,5 +59,9 @@
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
             # Sunrise-Roles
+            Brigmedic: [ 1, 1 ]
+            # law
             IAA: [ 1, 1 ]
+            Lawyer: [ 2, 2 ]
+            Magistrat: [ 1, 1 ]
 

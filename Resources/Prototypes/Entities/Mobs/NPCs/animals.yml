@@ -2284,6 +2284,13 @@
       groups:
         Brute: -0.07
         Burn: -0.07
+  # Sunrise-start
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSpiderLegs
+      params:
+        volume: -10
+  # Sunrise-end
 
 - type: entity
   name: tarantula

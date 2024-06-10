@@ -48,6 +48,7 @@ entities:
       type: Fixtures
     - type: OccluderTree
     - type: SpreaderGrid
+    - type: ErtShuttle
     - type: Shuttle
     - type: GridPathfinding
     - gravityShakeSound: !type:SoundPathSpecifier

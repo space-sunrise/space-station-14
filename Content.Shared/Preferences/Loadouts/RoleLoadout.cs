@@ -50,11 +50,10 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
     /// <summary>
     /// Ensures all prototypes exist and effects can be applied.
     /// </summary>
-    public void EnsureValid(HumanoidCharacterProfile profile, ICommonSession session, IDependencyCollection collection)
+    public void EnsureValid(HumanoidCharacterProfile profile, ICommonSession session, IDependencyCollection collection, string[] sponsorPrototypes) // Sunrise-Sponsors
     {
         var groupRemove = new ValueList<string>();
         var protoManager = collection.Resolve<IPrototypeManager>();
-        var netManager = collection.Resolve<INetManager>();
 
         if (!protoManager.TryIndex(Role, out var roleProto))
         {
@@ -62,32 +61,33 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
             return;
         }
 
+        // In some instances we might not have picked up a new group for existing data.
+        foreach (var groupProto in roleProto.Groups)
+        {
+            if (SelectedLoadouts.ContainsKey(groupProto))
+                continue;
+
+            // Data will get set below.
+            SelectedLoadouts[groupProto] = new List<Loadout>();
+        }
+
         // Reset points to recalculate.
         Points = roleProto.Points;
 
         foreach (var (group, groupLoadouts) in SelectedLoadouts)
         {
-            // Dump if Group doesn't exist
-            if (!protoManager.TryIndex(group, out var groupProto))
+            // Check the group is even valid for this role.
+            if (!roleProto.Groups.Contains(group))
             {
                 groupRemove.Add(group);
                 continue;
             }
 
-            var groupProtoLoadouts = groupProto.Loadouts;
-            if (collection.TryResolveType<ISharedLoadoutsManager>(out var loadoutsManager) && group.Id == "Inventory")
+            // Dump if Group doesn't exist
+            if (!protoManager.TryIndex(group, out var groupProto))
             {
-                var prototypes = new List<string>();
-                if (netManager.IsClient)
-                {
-                    prototypes = loadoutsManager.GetClientPrototypes();
-                }
-                else if (loadoutsManager.TryGetServerPrototypes(session.UserId, out var protos))
-                {
-                    prototypes = protos;
-                }
-
-                groupProtoLoadouts = prototypes.Select(id => (ProtoId<LoadoutPrototype>)id).ToList();
+                groupRemove.Add(group);
+                continue;
             }
 
             var loadouts = groupLoadouts[..Math.Min(groupLoadouts.Count, groupProto.MaxLimit)];
@@ -111,14 +111,8 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
                     continue;
                 }
 
-                if (!groupProtoLoadouts.Contains(loadout.Prototype))
-                {
-                    loadouts.RemoveAt(i);
-                    continue;
-                }
-
                 // Validate the loadout can be applied (e.g. points).
-                if (!IsValid(profile, session, loadout.Prototype, collection, out _))
+                if (!IsValid(profile, session, loadout.Prototype, collection, sponsorPrototypes, out _)) // Sunrise-Sponsors
                 {
                     loadouts.RemoveAt(i);
                     continue;
@@ -132,9 +126,9 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
             // If you put invalid ones first but that's your fault for not using sensible defaults
             if (loadouts.Count < groupProto.MinLimit)
             {
-                for (var i = 0; i < Math.Min(groupProto.MinLimit, groupProtoLoadouts.Count); i++)
+                for (var i = 0; i < Math.Min(groupProto.MinLimit, groupProto.Loadouts.Count); i++)
                 {
-                    if (!protoManager.TryIndex(groupProtoLoadouts[i], out var loadoutProto))
+                    if (!protoManager.TryIndex(groupProto.Loadouts[i], out var loadoutProto))
                         continue;
 
                     var defaultLoadout = new Loadout()
@@ -145,7 +139,10 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
                     if (loadouts.Contains(defaultLoadout))
                         continue;
 
-                    // Still need to apply the effects even if validation is ignored.
+                    // Not valid so don't default to it anyway.
+                    if (!IsValid(profile, session, defaultLoadout.Prototype, collection, sponsorPrototypes, out _)) // Sunrise-Sponsors
+                        continue;
+
                     loadouts.Add(defaultLoadout);
                     Apply(loadoutProto);
                 }
@@ -171,6 +168,7 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
     /// <summary>
     /// Resets the selected loadouts to default if no data is present.
     /// </summary>
+    /// <param name="force">Clear existing data first</param>
     public void SetDefault(IPrototypeManager protoManager, bool force = false)
     {
         if (force)
@@ -204,7 +202,7 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
     /// <summary>
     /// Returns whether a loadout is valid or not.
     /// </summary>
-    public bool IsValid(HumanoidCharacterProfile profile, ICommonSession session, ProtoId<LoadoutPrototype> loadout, IDependencyCollection collection, [NotNullWhen(false)] out FormattedMessage? reason)
+    public bool IsValid(HumanoidCharacterProfile profile, ICommonSession session, ProtoId<LoadoutPrototype> loadout, IDependencyCollection collection, string[] sponsorPrototypes, [NotNullWhen(false)] out FormattedMessage? reason) // Sunrise-Sponsors
     {
         reason = null;
 
@@ -223,11 +221,19 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
             return false;
         }
 
+        // Sunrise-Sponsots-Start
+        if (loadoutProto.SponsorOnly && !sponsorPrototypes.Contains(loadout.Id))
+        {
+            reason = FormattedMessage.FromUnformatted("Доступно только для спонсоров.");
+            return false;
+        }
+        // Sunrise-Sponsots-End
+
         var valid = true;
 
         foreach (var effect in loadoutProto.Effects)
         {
-            valid = valid && effect.Validate(profile, this, loadoutProto, session, collection, out reason);
+            valid = valid && effect.Validate(profile, this, session, collection, out reason);
         }
 
         return valid;

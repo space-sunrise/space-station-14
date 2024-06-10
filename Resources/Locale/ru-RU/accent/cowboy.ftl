@@ -255,7 +255,6 @@ russian-accent-cowboy-replacement-22 = кутузке
 russian-accent-cowboy-words-23 = ниндзя
 russian-accent-cowboy-replacement-23 = партизан
 russian-accent-cowboy-words-24 = шум
-russian-accent-cowboy-replacement-24 = переполох
 russian-accent-cowboy-words-2401 = нюкеры
 russian-accent-cowboy-words-2402 = оперы
 russian-accent-cowboy-words-2403 = опера
