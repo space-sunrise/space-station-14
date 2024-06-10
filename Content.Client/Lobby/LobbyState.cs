@@ -122,7 +122,7 @@ namespace Content.Client.Lobby
                 return;
             }
 
-            new NFLateJoinGui().OpenCentered(); // Sunrise-Edit
+            new SRLateJoinGui().OpenCentered(); // Sunrise-Edit
         }
 
         private void OnReadyToggled(BaseButton.ButtonToggledEventArgs args)
