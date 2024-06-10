@@ -121,11 +121,6 @@ public sealed class TTSSystem : EntitySystem
 
         volume = SharedAudioSystem.GainToVolume(volume * ev.VolumeModifier);
 
-        Logger.Info($"VolumeModifier: {ev.VolumeModifier}");
-        Logger.Info($"_radioVolume: {_radioVolume}");
-        Logger.Info($"_volume: {_volume}");
-        Logger.Info($"volume: {volume}");
-
         var audioParams = AudioParams.Default.WithVolume(volume);
 
         var entity = GetEntity(ev.SourceUid);
