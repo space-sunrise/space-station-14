@@ -1171,6 +1171,13 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsCentralCommand ]
+  - type: Airlock
+    safety: false
+  - type: Door
+    forcedCrushClose: true
+    crushDamage:
+      types:
+        Blunt: 1000 # А вот нехуй.
 
 - type: entity
   parent: AirlockGlassShuttle
