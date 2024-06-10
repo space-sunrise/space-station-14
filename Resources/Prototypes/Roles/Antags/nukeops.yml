@@ -61,6 +61,7 @@
   storage:
     back:
     - BoxSurvivalSyndicate
+    - WeaponPistolViper
     - PinpointerSyndicateNuclear
     - DeathAcidifierImplanter
 
@@ -91,6 +92,7 @@
     - SawAdvanced
     - Cautery
     - CombatKnife
+    - WeaponPistolViper
     - PinpointerSyndicateNuclear
     - HandheldHealthAnalyzer
     - CombatMedipen
