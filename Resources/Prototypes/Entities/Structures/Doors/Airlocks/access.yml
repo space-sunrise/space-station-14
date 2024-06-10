@@ -1155,6 +1155,15 @@
     tag: DockArrivals
 
 - type: entity
+  parent: AirlockExternalGlassShuttleArrivals
+  id: AirlockExternalGlassShuttleArrivalsLocked
+  suffix: External, Arrivals, Glass, Docking, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsExternal ]
+
+- type: entity
   parent: AirlockGlassShuttle
   id: AirlockExternalGlassShuttleEscape
   suffix: External, Escape 3x4, Glass, Docking
