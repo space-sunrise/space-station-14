@@ -1164,6 +1164,15 @@
       board: [ DoorElectronicsExternal ]
 
 - type: entity
+  parent: AirlockExternalGlassShuttleArrivals
+  id: AirlockExternalGlassShuttleArrivalsLockedCentComm
+  suffix: External, Arrivals, Glass, Docking, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCentralCommand ]
+
+- type: entity
   parent: AirlockGlassShuttle
   id: AirlockExternalGlassShuttleEscape
   suffix: External, Escape 3x4, Glass, Docking

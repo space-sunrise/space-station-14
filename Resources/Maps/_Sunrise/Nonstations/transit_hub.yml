@@ -1683,6 +1683,11 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 39.5,5.5
       parent: 1
+  - uid: 24
+    components:
+    - type: Transform
+      pos: 31.5,-10.5
+      parent: 1
   - uid: 30
     components:
     - type: Transform
@@ -1701,15 +1706,9 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 39.5,3.5
       parent: 1
-  - uid: 2851
-    components:
-    - type: Transform
-      pos: 31.5,-10.5
-      parent: 1
   - uid: 2885
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
       pos: 38.5,-10.5
       parent: 1
   - uid: 2888
@@ -1722,13 +1721,8 @@ entities:
     - type: Transform
       pos: 38.5,11.5
       parent: 1
-- proto: AirlockExternalGlassShuttleArrivals
+- proto: AirlockExternalGlassShuttleArrivalsLockedCentComm
   entities:
-  - uid: 24
-    components:
-    - type: Transform
-      pos: 38.5,-12.5
-      parent: 1
   - uid: 516
     components:
     - type: Transform
@@ -1737,6 +1731,12 @@ entities:
   - uid: 588
     components:
     - type: Transform
+      pos: 38.5,-12.5
+      parent: 1
+  - uid: 2851
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
       pos: 38.5,13.5
       parent: 1
   - uid: 2872
@@ -12291,7 +12291,7 @@ entities:
       pos: 14.5,-11.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -25902.277
+      secondsUntilStateChange: -27526.049
       state: Opening
   - uid: 1061
     components:
@@ -12300,7 +12300,7 @@ entities:
       pos: 14.5,-9.5
       parent: 1
     - type: Door
-      secondsUntilStateChange: -25901.51
+      secondsUntilStateChange: -27525.281
       state: Opening
 - proto: KitchenElectricGrill
   entities:
