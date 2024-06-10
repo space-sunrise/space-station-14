@@ -231,13 +231,15 @@ namespace Content.Server.GameTicking
 
             var arrivals = true;
 
+            // Все появляются в прибытии в начале раунда. Зачем? А мне нравится эта бегающаа орящая толпа.
+            var spawnPointType = SpawnPointType.Arrivals;
             if (jobPrototype.AlwaysUseSpawner)
             {
                 lateJoin = false;
-                arrivals = false;
+                spawnPointType = SpawnPointType.Job;
             }
 
-            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, job, character, arrivals: arrivals);
+            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, job, character, arrivals: arrivals, spawnPointType: spawnPointType);
 
             DebugTools.AssertNotNull(mobMaybe);
             var mob = mobMaybe!.Value;

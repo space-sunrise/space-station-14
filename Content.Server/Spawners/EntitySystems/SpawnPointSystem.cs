@@ -1,4 +1,5 @@
 ﻿using Content.Server.GameTicking;
+using Content.Server.Shuttles.Systems;
 using Content.Server.Spawners.Components;
 using Content.Server.Station.Systems;
 using Robust.Shared.Map;
@@ -12,6 +13,7 @@ public sealed class SpawnPointSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
+    [Dependency] private readonly ArrivalsSystem _arrivals = default!;
 
     public override void Initialize()
     {
@@ -27,10 +29,28 @@ public sealed class SpawnPointSystem : EntitySystem
         var points = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
         var possiblePositions = new List<EntityCoordinates>();
 
-        while ( points.MoveNext(out var uid, out var spawnPoint, out var xform))
+        while (points.MoveNext(out var uid, out var spawnPoint, out var xform))
         {
             if (args.Station != null && _stationSystem.GetOwningStation(uid, xform) != args.Station)
                 continue;
+
+            // Delta-V: Allow setting a desired SpawnPointType
+            if (args.DesiredSpawnPointType != SpawnPointType.Unset)
+            {
+                var isMatchingJob = spawnPoint.SpawnType == SpawnPointType.Job &&
+                                    (args.Job == null || spawnPoint.Job == args.Job.Prototype);
+
+                switch (args.DesiredSpawnPointType)
+                {
+                    case SpawnPointType.Job when isMatchingJob:
+                    case SpawnPointType.LateJoin when spawnPoint.SpawnType == SpawnPointType.LateJoin:
+                    case SpawnPointType.Observer when spawnPoint.SpawnType == SpawnPointType.Observer:
+                        possiblePositions.Add(xform.Coordinates);
+                        break;
+                    default:
+                        continue;
+                }
+            }
 
             if (_gameTicker.RunLevel == GameRunLevel.InRound && spawnPoint.SpawnType == SpawnPointType.LateJoin)
             {
@@ -43,6 +63,11 @@ public sealed class SpawnPointSystem : EntitySystem
             {
                 possiblePositions.Add(xform.Coordinates);
             }
+        }
+
+        if (args.DesiredSpawnPointType == SpawnPointType.Arrivals)
+        {
+            possiblePositions = _arrivals.GetArrivalsSpawnPoints();
         }
 
         if (possiblePositions.Count == 0)
