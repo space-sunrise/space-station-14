@@ -9,14 +9,14 @@ using Robust.Shared.Prototypes;
 namespace Content.Client._Sunrise.Latejoin;
 
 [GenerateTypedNameReferences]
-public sealed partial class NewFrontierLateJoinJobButton : Button
+public sealed partial class SRLateJoinJobButton : Button
 {
     private readonly IPrototypeManager _prototypeManager;
     private readonly ClientGameTicker _gameTicker;
     private readonly NetEntity _station;
     private readonly string _jobId;
 
-    public NewFrontierLateJoinJobButton(NetEntity station, string jobId, ClientGameTicker gameTicker, IPrototypeManager prototypeManager)
+    public SRLateJoinJobButton(NetEntity station, string jobId, ClientGameTicker gameTicker, IPrototypeManager prototypeManager)
     {
         RobustXamlLoader.Load(this);
         _prototypeManager = prototypeManager;
