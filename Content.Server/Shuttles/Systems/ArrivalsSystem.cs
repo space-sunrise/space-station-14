@@ -18,6 +18,8 @@ using Content.Shared.DeviceNetwork;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Parallax.Biomes;
+using Content.Shared.Preferences;
+using Content.Shared.Roles.Jobs;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Tiles;
 using Robust.Server.GameObjects;
@@ -321,6 +323,21 @@ public sealed class ArrivalsSystem : EntitySystem
         }
 
         return possiblePositions;
+    }
+
+    public EntityUid? SpawnPlayersOnArrivals(EntityUid? station, JobComponent? job, HumanoidCharacterProfile? profile)
+    {
+        var possiblePositions = GetArrivalsSpawnPoints();
+
+        var spawnLoc = _random.Pick(possiblePositions);
+
+        var playerMob = _stationSpawning.SpawnPlayerMob(
+            spawnLoc,
+            job,
+            profile,
+            station);
+
+        return playerMob;
     }
 
     public void HandlePlayerSpawning(PlayerSpawningEvent ev)
