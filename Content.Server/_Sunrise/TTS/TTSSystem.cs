@@ -42,7 +42,7 @@ public sealed partial class TTSSystem : EntitySystem
     private bool _isEnabled;
     private string _defaultAnnounceVoice = "Hanson";
     private List<ICommonSession> _ignoredRecipients = new();
-    private const float WhisperVoiceVolumeModifier = 0.1f; // how far whisper goes in world units
+    private const float WhisperVoiceVolumeModifier = 0.6f; // how far whisper goes in world units
     private const int WhisperVoiceRange = 3; // how far whisper goes in world units
 
     public override void Initialize()
@@ -145,7 +145,7 @@ public sealed partial class TTSSystem : EntitySystem
 
         if (args.ObfuscatedMessage != null)
         {
-            HandleWhisper(uid, args.Message, protoVoice.Speaker, args.IsRadio);
+            HandleWhisper(uid, args.Message, protoVoice.Speaker);
             return;
         }
 
@@ -170,7 +170,7 @@ public sealed partial class TTSSystem : EntitySystem
         RaiseNetworkEvent(new PlayTTSEvent(soundData, netEntity), recipients);
     }
 
-    private async void HandleWhisper(EntityUid uid, string message, string speaker, bool isRadio)
+    private async void HandleWhisper(EntityUid uid, string message, string speaker)
     {
         // If it's a whisper into a radio, generate speech without whisper
         // attributes to prevent an additional speech synthesis event
