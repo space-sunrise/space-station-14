@@ -1,4 +1,5 @@
 using Content.Server.Cargo.Components;
+using Content.Server.Cargo.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Station.Events;
 using Robust.Shared.Containers;
@@ -16,8 +17,15 @@ public sealed class StationDontSellingSystems : EntitySystem
         SubscribeLocalEvent<DontSellingGridComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<StationDontSellingGridComponent, StationPostInitEvent>(OnPostInit);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawning);
+        SubscribeLocalEvent<DontSellComponent, PriceCalculationEvent>(OnCalculatePrice);
 
         _priseQuery = GetEntityQuery<StaticPriceComponent>();
+    }
+
+    private void OnCalculatePrice(EntityUid uid, DontSellComponent component, ref PriceCalculationEvent args)
+    {
+        args.Price = 0;
+        args.Handled = true;
     }
 
     private void OnStartup(EntityUid uid, DontSellingGridComponent component, ref ComponentStartup args)
@@ -33,8 +41,7 @@ public sealed class StationDontSellingSystems : EntitySystem
 
     private void DepreciatePrice(EntityUid uid)
     {
-        if (_priseQuery.TryGetComponent(uid, out var priceComponent))
-            priceComponent.Price = 0;
+        EnsureComp<DontSellComponent>(uid);
 
         if (!TryComp<ContainerManagerComponent>(uid, out var containers))
             return;
@@ -53,13 +60,7 @@ public sealed class StationDontSellingSystems : EntitySystem
         if (!HasComp<StationDontSellingGridComponent>(ev.Station))
             return;
 
-        var entities = new HashSet<Entity<StaticPriceComponent>>();
-        _lookup.GetChildEntities(ev.Mob, entities);
-
-        foreach (var entityUid in entities)
-        {
-            DepreciatePrice(entityUid);
-        }
+        DepreciatePrice(ev.Mob);
     }
 
     private void OnPostInit(EntityUid uid, StationDontSellingGridComponent component, ref StationPostInitEvent args)
