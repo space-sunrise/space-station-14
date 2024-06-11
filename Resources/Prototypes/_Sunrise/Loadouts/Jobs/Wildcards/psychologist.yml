@@ -6,7 +6,7 @@
 - type: startingGear
   id: PsychologistBackpack
   equipment:
-    back: ClothingBackpackPsychologistFilled
+    back: ClothingBackpack
 
 - type: loadout
   id: PsychologistSatchel
@@ -15,7 +15,7 @@
 - type: startingGear
   id: PsychologistSatchel
   equipment:
-    back: ClothingBackpackSatchelPsychologistFilled
+    back: ClothingBackpackSatchel
 
 - type: loadout
   id: PsychologistDuffel
@@ -24,4 +24,4 @@
 - type: startingGear
   id: PsychologistDuffel
   equipment:
-    back: ClothingBackpackDuffelPsychologistFilled
+    back: ClothingBackpackDuffel

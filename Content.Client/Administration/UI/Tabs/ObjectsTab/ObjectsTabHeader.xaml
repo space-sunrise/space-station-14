@@ -17,5 +17,11 @@
                ClipText="True"
                Text="{Loc object-tab-entity-id}"
                MouseFilter="Pass"/>
+        <Label Name="EntityTeleportLabel"
+               SizeFlagsStretchRatio="3"
+               HorizontalExpand="True"/>
+        <Label Name="EntityDeleteLabel"
+               SizeFlagsStretchRatio="3"
+               HorizontalExpand="True"/>
     </BoxContainer>
 </Control>

@@ -10,6 +10,7 @@ using Content.Server.Speech.Components;
 using Content.Server.Speech.EntitySystems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Shared._Sunrise.TTS;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
@@ -323,7 +324,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         string sender = "Центральное коммандование", // Sunrise-edit
         bool playDefault = true,
         SoundSpecifier? announcementSound = null,
-        bool playTts = true, // Sunrise-edit
+        bool playTts = true, // Sunrise-edit,
+        string? announceVoice = null,
         Color? colorOverride = null
         )
     {
@@ -338,8 +340,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         if (playTts)
         {
-            var nukie = sender == Loc.GetString("comms-console-announcement-title-nukie");
-            var announcementEv = new AnnouncementSpokeEvent(Filter.Broadcast(), message, announcementSound, nukie);
+            var announcementEv = new AnnouncementSpokeEvent(Filter.Broadcast(), message, announcementSound, announceVoice);
             RaiseLocalEvent(announcementEv);
         }
         // Sunrise-end
@@ -364,6 +365,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         bool playDefault = true, // Sunrise-edit
         bool playTts = true,// Sunrise-edit
         Color? colorOverride = null,
+        string? announceVoice = null,
         SoundSpecifier? announcementSound = null)
     {
         var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message)));
@@ -387,7 +389,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         if (playTts)
         {
-            RaiseLocalEvent(new AnnouncementSpokeEvent(filter, message, announcementSound));
+            RaiseLocalEvent(new AnnouncementSpokeEvent(filter, message, announcementSound, announceVoice));
         }
         // Sunrise-edit
 
@@ -1008,12 +1010,12 @@ public sealed class AnnouncementSpokeEvent(
     Filter source,
     string message,
     SoundSpecifier? announcementSound,
-    bool nukie = false)
+    string? announceVoice)
     : EntityEventArgs
 {
     public readonly Filter Source = source;
     public readonly string Message = message;
-    public readonly bool Nukie = nukie;
+    public readonly string? AnnounceVoice = announceVoice;
     public readonly SoundSpecifier? AnnouncementSound = announcementSound;
 }
 

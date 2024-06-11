@@ -1,0 +1,7 @@
+- type: soundCollection
+  id: FootstepSpiderLegs
+  files:
+  - /Audio/_Sunrise/Footstep/spider/Spider_step1.ogg
+  - /Audio/_Sunrise/Footstep/spider/Spider_step2.ogg
+  - /Audio/_Sunrise/Footstep/spider/Spider_step3.ogg
+  - /Audio/_Sunrise/Footstep/spider/Spider_step4.ogg

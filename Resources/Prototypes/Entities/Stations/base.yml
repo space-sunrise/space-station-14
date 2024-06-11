@@ -148,6 +148,18 @@
       - ErtShuttle
 
 - type: entity
+  id: BaseStationImmortal
+  abstract: true
+  components:
+  - type: StationImmortal
+
+- type: entity
+  id: BaseStationDontSelling
+  abstract: true
+  components:
+  - type: StationDontSellingGrid
+
+- type: entity
   id: BaseStationTransitHub
   abstract: true
   components:
