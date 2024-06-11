@@ -1,5 +1,7 @@
 using System.Numerics;
 using System.Threading;
+using Content.Server._Sunrise.DontSellingGrid;
+using Content.Server._Sunrise.ImmortalGrid;
 using Content.Server._Sunrise.TransitHub;
 using Content.Server.Access.Systems;
 using Content.Server.Administration.Logs;
@@ -130,10 +132,10 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
 
     private void OnCentcommShutdown(EntityUid uid, StationTransitHubComponent component, ComponentShutdown args) // Sunrise-Edit
     {
-        ClearCentcomm(component);
+        ClearTransitHub(component);
     }
 
-    private void ClearCentcomm(StationTransitHubComponent component) // Sunrise-Edit
+    private void ClearTransitHub(StationTransitHubComponent component) // Sunrise-Edit
     {
         QueueDel(component.Entity);
         QueueDel(component.MapEntity);
@@ -441,7 +443,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
             if (!Exists(otherComp.MapEntity) || !Exists(otherComp.Entity))
             {
                 Log.Error($"Discovered invalid centcomm component?");
-                ClearCentcomm(otherComp);
+                ClearTransitHub(otherComp);
                 continue;
             }
 
@@ -472,6 +474,8 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
 
         EnsureComp<ProtectedGridComponent>(uids[0]);
         EnsureComp<ArrivalsSourceComponent>(uids[0]); // Sunrise-Edit
+        EnsureComp<ImmortalGridComponent>(uids[0]); // Sunrise-Edit
+        EnsureComp<DontSellingGridComponent>(uids[0]); // Sunrise-Edit
 
         var template = _random.Pick(component.Biomes);
         _biomes.EnsurePlanet(mapUid, _protoManager.Index<BiomeTemplatePrototype>(template), mapLight: component.PlanetLightColor);
