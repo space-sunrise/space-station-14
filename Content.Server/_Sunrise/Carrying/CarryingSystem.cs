@@ -43,6 +43,7 @@ namespace Content.Server._Sunrise.Carrying
         [Dependency] private readonly PopupSystem _popupSystem = default!;
         [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
         [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
+        [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
 
         public override void Initialize()
         {
@@ -122,10 +123,9 @@ namespace Content.Server._Sunrise.Carrying
             if (!TryComp<VirtualItemComponent>(args.ItemUid, out var virtItem) || !HasComp<CarriableComponent>(virtItem.BlockingEntity))
                 return;
 
-            args.ItemUid = virtItem.BlockingEntity;
-
             var multiplier = MassContest(uid, virtItem.BlockingEntity);
-            args.ThrowStrength = 5f * multiplier;
+
+            _throwingSystem.TryThrow(virtItem.BlockingEntity, args.Direction, 3f * multiplier, uid);
         }
 
         private void OnParentChanged(EntityUid uid, CarryingComponent component, ref EntParentChangedMessage args)
@@ -171,7 +171,7 @@ namespace Content.Server._Sunrise.Carrying
 
             if (_actionBlockerSystem.CanInteract(uid, component.Carrier))
             {
-                _escapeInventorySystem.AttemptEscape(uid, component.Carrier, escape, MassContest(uid, component.Carrier));
+                _escapeInventorySystem.AttemptEscape(uid, component.Carrier, escape, MassContest(component.Carrier, uid));
             }
         }
 

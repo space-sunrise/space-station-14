@@ -245,6 +245,16 @@
       - type: InitialInfectedRole
         prototype: InitialInfected
 
+- type: entity
+  id: GreenshiftAnnouncement
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: AnnounceRule  # Sunrise
+    enableAnnouncement: true
+    announcementText: station-event-greenshift
+    roundStartAnnouncementDelay: 120
+
 # event schedulers
 - type: entity
   id: BasicStationEventScheduler
