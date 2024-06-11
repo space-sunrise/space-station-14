@@ -4,9 +4,9 @@
   color: "#FF5297"
   weight: 80
   roles:
-  - Magistrat
-  - IAA
-  - Lawyer
+    - Magistrat
+    - IAA
+    - Lawyer
 
 - type: department
   id: CentralCommand
@@ -14,6 +14,15 @@
   color: "#048e0f" # Sunrise-Edit
   weight: 120
   roles:
-  - CentCommOfficial
-  - CentCommOperator
+    - CentCommOfficial
+    - CentCommOperator
   primary: false
+
+- type: department # Surnise-Blueshield
+  id: Blueshield
+  description: department-Blueshield-description
+  color: "#05255D"
+  roles:
+    - BlueShield
+  primary: false
+  weight: 50

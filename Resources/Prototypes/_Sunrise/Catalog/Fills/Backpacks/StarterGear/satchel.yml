@@ -26,3 +26,18 @@
     contents:
       - id: BoxSurvivalBrigmedic
       - id: Flash
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackSatchelBlueShield
+  id: ClothingBackpackSatchelBlueShieldFilled
+  components:
+  - type: StorageFill
+    contents:
+    - id: BoxSurvivalSecurity
+    - id: Flash
+    - id: TrackingImplanter
+    - id: TrackingImplanter
+    - id: TrackingImplanter
+    - id: TrackingImplanter
+    - id: ClothingOuterHardsuitBlueshield
