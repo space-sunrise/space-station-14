@@ -3,6 +3,12 @@
 
 - type: playTimeTracker
   id: JobMagistrat
-  
+
 - type: playTimeTracker
   id: JobBrigmedic
+
+- type: playTimeTracker
+  id: JobCentCommOperator
+
+- type: playTimeTracker
+  id: JobCentCommOfficial

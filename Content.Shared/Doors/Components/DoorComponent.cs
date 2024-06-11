@@ -296,6 +296,11 @@ public sealed partial class DoorComponent : Component
 
     [DataField(customTypeSerializer: typeof(ConstantSerializer<DrawDepthTag>))]
     public int ClosedDrawDepth = (int) DrawDepth.DrawDepth.Doors;
+
+    // Sunrise-Start
+    [DataField]
+    public bool ForcedCrushClose = true;
+    // Sunrise-End
 }
 
 [Serializable, NetSerializable]

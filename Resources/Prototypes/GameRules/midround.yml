@@ -26,9 +26,9 @@
     - EscapeThiefShuttleObjective
   - type: AntagRandomObjectives
     sets:
-    - groups: ThiefBigObjectiveGroups
-      prob: 0.7
-      maxPicks: 1
+#    - groups: ThiefBigObjectiveGroups
+#      prob: 0.7
+#      maxPicks: 1 Воры не воруют бесполезные вещи.
     - groups: ThiefObjectiveGroups
       maxPicks: 10
     maxDifficulty: 2.5
@@ -37,8 +37,8 @@
     definitions:
     - prefRoles: [ Thief ]
       maxRange:
-        min: 1
-        max: 3
+        min: 2
+        max: 5 # Воров много
       playerRatio: 1
       lateJoinAdditional: true
       allowNonHumans: true

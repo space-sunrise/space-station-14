@@ -1,6 +1,8 @@
 using Content.Server.UserInterface;
+using Content.Shared._Sunrise.TTS;
 using Content.Shared.Communications;
 using Robust.Shared.Audio;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.Communications
 {
@@ -67,5 +69,10 @@ namespace Content.Server.Communications
         /// </summary>
         [DataField]
         public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/Announcements/announce.ogg");
+
+        // Sunrise-Start
+        [DataField("announceVoice", customTypeSerializer:typeof(PrototypeIdSerializer<TTSVoicePrototype>))]
+        public string AnnounceVoice = "Hanson";
+        // Sunrise-Start
     }
 }

@@ -53,7 +53,6 @@ JobBorg = киборг
 JobBotanist = ботаник
 JobCaptain = капитан
 JobCargoTechnician = грузчик
-JobCentralCommandOfficial = представитель Центком
 JobChaplain = священник
 JobChef = шеф-повар
 JobChemist = химик

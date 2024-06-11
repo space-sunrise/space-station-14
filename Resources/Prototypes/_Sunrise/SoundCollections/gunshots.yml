@@ -1,0 +1,11 @@
+- type: soundCollection
+  id: syndiplasma
+  files:
+  - /Audio/_Sunrise/SyndiGuns/plasma_gun_1.ogg
+  - /Audio/_Sunrise/SyndiGuns/plasma_gun_2.ogg
+
+- type: soundCollection
+  id: usp
+  files:
+  - /Audio/_Sunrise/SyndiGuns/usp_1.ogg
+  - /Audio/_Sunrise/SyndiGuns/usp_2.ogg

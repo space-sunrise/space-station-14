@@ -229,7 +229,22 @@ namespace Content.Server.GameTicking
 
             _playTimeTrackings.PlayerRolesChanged(player);
 
-            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, job, character);
+            // Все появляются в прибытии в начале раунда. Зачем? А мне нравится эта бегающаа орящая толпа.
+            EntityUid? mobMaybe = null;
+            var spawnPointType = SpawnPointType.Arrivals;
+            if (jobPrototype.AlwaysUseSpawner)
+            {
+                lateJoin = false;
+                spawnPointType = SpawnPointType.Job;
+            }
+            else
+            {
+                mobMaybe = _arrivals.SpawnPlayersOnArrivals(station, job, character);
+            }
+
+            if (mobMaybe == null)
+                mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, job, character, spawnPointType: spawnPointType);
+
             DebugTools.AssertNotNull(mobMaybe);
             var mob = mobMaybe!.Value;
 

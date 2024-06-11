@@ -1,57 +1,6 @@
 ﻿Entries:
 - author: metalgearsloth
   changes:
-  - message: Fix some shuttle console stuff surrounding the Map screen.
-    type: Fix
-  id: 6203
-  time: '2024-03-22T01:57:49.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/26305
-- author: nikthechampiongr
-  changes:
-  - message: You can now move again if you stop being pulled while in cuffs.
-    type: Fix
-  id: 6204
-  time: '2024-03-22T01:59:18.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/26312
-- author: lzk228
-  changes:
-  - message: Snoring is now a trait in character preference menu.
-    type: Tweak
-  id: 6205
-  time: '2024-03-22T07:00:57.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/26322
-- author: liltenhead
-  changes:
-  - message: reduced the odds of budget insulated gloves being insulated and increased
-      the damage multipliers on bad gloves.
-    type: Tweak
-  id: 6206
-  time: '2024-03-22T08:20:46.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/26318
-- author: BlitzTheSquishy
-  changes:
-  - message: Irish Coffee recipe adjusted to be more logical
-    type: Tweak
-  id: 6207
-  time: '2024-03-22T08:23:22.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/26327
-- author: SlamBamActionman
-  changes:
-  - message: Space glue/lube tubes can now be used through the right-click menu.
-    type: Tweak
-  id: 6208
-  time: '2024-03-22T09:37:47.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/26002
-- author: RenQ
-  changes:
-  - message: brought back the classic long bedhead as an alternative to the current
-      one.
-    type: Add
-  id: 6209
-  time: '2024-03-22T17:35:40.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/26336
-- author: metalgearsloth
-  changes:
   - message: Fix NPCs getting stuck on railings.
     type: Fix
   id: 6210
@@ -3850,3 +3799,56 @@
   id: 6702
   time: '2024-06-08T18:48:09.0000000+00:00'
   url: https://github.com/space-wizards/space-station-14/pull/28734
+- author: UBlueberry
+  changes:
+  - message: The guidebook has been heavily reorganized to improve convenience for
+      all types of users.
+    type: Tweak
+  id: 6703
+  time: '2024-06-08T23:00:44.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/28603
+- author: Psychpsyo
+  changes:
+  - message: New lobby background art!
+    type: Add
+  id: 6704
+  time: '2024-06-08T23:29:51.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/28724
+- author: AJCM-git
+  changes:
+  - message: When people with less than an hour playing join the game, the guidebook
+      is automatically opened for them.
+    type: Tweak
+  id: 6705
+  time: '2024-06-09T16:26:48.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/28774
+- author: Aeshus
+  changes:
+  - message: Salvage has a comprehensive guide.
+    type: Add
+  - message: Cargo's guide is up-to-date.
+    type: Tweak
+  id: 6706
+  time: '2024-06-09T18:28:46.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/28775
+- author: Zonespace27
+  changes:
+  - message: Fixed a typo under the "Cargonia" header in the glossary.
+    type: Fix
+  id: 6707
+  time: '2024-06-10T13:19:24.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/28818
+- author: EmoGarbage404
+  changes:
+  - message: Fixed drinks page not having a search bar.
+    type: Fix
+  id: 6708
+  time: '2024-06-10T13:20:58.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/28815
+- author: Aquif
+  changes:
+  - message: It is now possible to save after chaining you job unavailable preference.
+    type: Fix
+  id: 6709
+  time: '2024-06-11T02:48:23.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/28839

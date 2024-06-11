@@ -93,7 +93,6 @@
     sprite: _Sunrise/Mobs/Species/Synth/parts.rsi
     state: full
   - type: Stamina
-    critThreshold: 150
   - type: Sprite
     noRot: true
     drawdepth: Mobs
@@ -165,7 +164,7 @@
     canResistFire: true
     damage:
       types:
-        Heat: 0.15 #per second, scales with number of fire 'stacks'
+        Heat: 1 #per second, scales with number of fire 'stacks'
   - type: Temperature
     heatDamageThreshold: 1000
     coldDamageThreshold: 0
@@ -176,7 +175,7 @@
         Cold: 0
     heatDamage:
       types:
-        Heat: 1.5 #per second, scales with temperature & other constants
+        Heat: 1 #per second, scales with temperature & other constants
   - type: HumanoidAppearance
     species: Synth
   - type: Body
@@ -252,7 +251,7 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 5
+        Blunt: 8
   - type: Pullable
   - type: DoAfter
   - type: CreamPied
@@ -298,21 +297,19 @@
     deathPenalty: 0.01 # However they really ought to be living and intact, otherwise they're worth 100x less.
   - type: TTS # Sunrise-TTS
   - type: ContentEye
-# VIXME VIGERS
-#  - type: Carriable # Sunrise-edit
-#  - type: CanEscapeInventory # Sunrise-edit
+  - type: Carriable # Sunrise-edit
+  - type: CanEscapeInventory # Sunrise-edit
   - type: TypingIndicator
     proto: robot
   - type: Unrevivable
   - type: Synth
   - type: Repairable
     doAfterDelay: 3
-    selfRepairPenalty: 1
     damage:
       types:
-        Blunt: -10
-        Slash: -10
-        Piercing: -10
+        Blunt: -5
+        Slash: -5
+        Piercing: -5
   - type: EyeProtection
 
 - type: entity

@@ -2,21 +2,19 @@
   id: SunriseMarathon
   mapName: 'Marathon Station'
   mapPath: /Maps/_Sunrise/Station/marathon.yml
-  minPlayers: 20
+  minPlayers: 0
   stations:
     Marathon:
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Marathon Station {1}'
+          mapNameTemplate: '{0} Марафон {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/_Sunrise/Shuttles/emergency_marathon.yml
         - type: StationJobs
-          overflowJobs:
-            - Passenger
           availableJobs:
             #service
             Captain: [ 1, 1 ]
@@ -60,9 +58,9 @@
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
-            # Sunrise-Law
-            IAA: [ 1, 1 ]
-            Lawyer: [ 2, 2 ]
-            Magistrate: [ 1, 1 ]
             # Sunrise-Roles
             Brigmedic: [ 1, 1 ]
+            # law
+            IAA: [ 1, 1 ]
+            Lawyer: [ 2, 2 ]
+            Magistrat: [ 1, 1 ]
