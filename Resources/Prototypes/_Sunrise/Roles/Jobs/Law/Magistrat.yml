@@ -51,7 +51,7 @@
     id: MagistratPDA
     ears: ClothingHeadsetAltCommand
     head: ClothingHeadHatPwig
-    pocket1: Flash
+    pocket1: RubberStampMagistrat
     pocket2: ClothingNeckLawyerbadge
   storage:
     back:
