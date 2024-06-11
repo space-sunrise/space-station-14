@@ -58,6 +58,7 @@
             Musician: [ 1, 1 ]
             # Sunrise-Roles
             Brigmedic: [ 1, 1 ]
+            BlueShield: [ 1, 1 ]
             # law
             IAA: [ 1, 1 ]
             Lawyer: [ 1, 1 ]
