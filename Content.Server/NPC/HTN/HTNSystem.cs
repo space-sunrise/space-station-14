@@ -10,6 +10,7 @@ using Content.Shared.Administration;
 using Content.Shared.Mobs;
 using Content.Shared.NPC;
 using JetBrains.Annotations;
+using Robust.Server.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -22,6 +23,7 @@ public sealed class HTNSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly NPCSystem _npc = default!;
     [Dependency] private readonly NPCUtilitySystem _utility = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
 
     private readonly JobQueue _planQueue = new(0.004);
 
@@ -142,7 +144,32 @@ public sealed class HTNSystem : EntitySystem
         component.PlanAccumulator = 0f;
     }
 
-    public void UpdateNPC(ref int count, int maxUpdates, float frameTime)
+    private bool AllowNpc(EntityUid uid)
+    {
+        var xform = Transform(uid);
+        var npcCoords = xform.Coordinates.ToMap(EntityManager);
+        var npcMapId = xform.MapID;
+
+        foreach (var playerSession in _playerManager.SessionsDict)
+        {
+            if (playerSession.Value.AttachedEntity == null)
+                continue;
+            var xformPlayer = Transform(playerSession.Value.AttachedEntity.Value);
+            var playerCoords = xformPlayer.Coordinates.ToMap(EntityManager);
+            var playerMapId = xformPlayer.MapID;
+
+            var distance = (npcCoords.Position - playerCoords.Position).Length();
+
+            if (distance < 25f && npcMapId == playerMapId)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public void UpdateNPC(ref int count, int maxUpdates, float frameTime, bool disableWithoutPlayers)
     {
         _planQueue.Process();
         var query = EntityQueryEnumerator<ActiveNPCComponent, HTNComponent>();
@@ -236,7 +263,7 @@ public sealed class HTNSystem : EntitySystem
                 comp.PlanningToken = null;
             }
 
-            Update(comp, frameTime);
+            Update(uid, comp, frameTime, disableWithoutPlayers);
             count++;
         }
     }
@@ -285,7 +312,7 @@ public sealed class HTNSystem : EntitySystem
         throw new NotImplementedException();
     }
 
-    private void Update(HTNComponent component, float frameTime)
+    private void Update(EntityUid uid, HTNComponent component, float frameTime, bool disableWithoutPlayers)
     {
         // If we're not planning then countdown to next one.
         if (component.PlanningJob == null)
@@ -345,6 +372,9 @@ public sealed class HTNSystem : EntitySystem
                         ShutdownPlan(component);
                         break;
                     }
+
+                    if (disableWithoutPlayers && !AllowNpc(uid))
+                        return;
 
                     ConditionalShutdown(component.Plan, currentOperator, blackboard, HTNPlanState.TaskFinished);
                     StartupTask(component.Plan.Tasks[component.Plan.Index], component.Blackboard, component.Plan.Effects[component.Plan.Index]);

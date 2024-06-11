@@ -1,2 +1,2 @@
-ent-MagistratIDCard = ID карта Магистрата
+ent-MagistratIDCard = ID карта магистрата
     .desc = { ent-IDCardStandard.desc }

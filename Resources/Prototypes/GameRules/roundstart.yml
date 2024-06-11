@@ -21,7 +21,7 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.5
+      prob: 0.75 # Воры отличный антаг
 
 - type: entity
   id: DeathMatch31
@@ -244,6 +244,16 @@
       mindComponents:
       - type: InitialInfectedRole
         prototype: InitialInfected
+
+- type: entity
+  id: GreenshiftAnnouncement
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: AnnounceRule  # Sunrise
+    enableAnnouncement: true
+    announcementText: station-event-greenshift
+    roundStartAnnouncementDelay: 120
 
 # event schedulers
 - type: entity

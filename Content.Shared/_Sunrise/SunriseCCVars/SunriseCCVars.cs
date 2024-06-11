@@ -51,12 +51,6 @@ public sealed class SunriseCCVars
     public static readonly CVarDef<float> TTSAnnounceVolume =
         CVarDef.Create("tts.announce_volume", 0.50f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
-    public static readonly CVarDef<string> TTSAnnounceVoiceId =
-        CVarDef.Create("tts.announce_voice", "Hanson", CVar.SERVERONLY | CVar.ARCHIVE);
-
-    public static readonly CVarDef<string> TTSNukieAnnounceVoiceId =
-        CVarDef.Create("tts.nukie_announce_voice", "Sentrybot", CVar.SERVERONLY | CVar.ARCHIVE);
-
     /**
      * Ban Webhook
      */

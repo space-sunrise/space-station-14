@@ -1,2 +1,2 @@
-ent-SpawnPointMagistrat = Магистрат
+ent-SpawnPointMagistrat = магистрат
     .desc = { ent-SpawnPointJobBase.desc }

@@ -1,2 +1,2 @@
-ent-MagistratPDA = КПК Магистрата
+ent-MagistratPDA = КПК магистрата
     .desc = { ent-CaptainPDA.desc }

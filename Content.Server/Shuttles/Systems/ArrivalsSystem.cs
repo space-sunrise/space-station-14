@@ -1,10 +1,11 @@
 using System.Linq;
 using System.Numerics;
+using Content.Server._Sunrise.DontSellingGrid;
+using Content.Server._Sunrise.ImmortalGrid;
 using Content.Server.Administration;
 using Content.Server.DeviceNetwork.Components;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.GameTicking;
-using Content.Server.GameTicking.Events;
 using Content.Server.Parallax;
 using Content.Server.Screens.Components;
 using Content.Server.Shuttles.Components;
@@ -21,7 +22,6 @@ using Content.Shared.Movement.Components;
 using Content.Shared.Parallax.Biomes;
 using Content.Shared.Preferences;
 using Content.Shared.Roles.Jobs;
-using Content.Shared.Salvage;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Tiles;
 using Robust.Server.GameObjects;
@@ -45,9 +45,7 @@ public sealed class ArrivalsSystem : EntitySystem
     [Dependency] private readonly IConsoleHost _console = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly IPrototypeManager _protoManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly BiomeSystem _biomes = default!;
     [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly MapLoaderSystem _loader = default!;
     [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
@@ -69,13 +67,6 @@ public sealed class ArrivalsSystem : EntitySystem
     ///     The first arrival is a little early, to save everyone 10s
     /// </summary>
     private const float RoundStartFTLDuration = 10f;
-
-    private readonly List<ProtoId<BiomeTemplatePrototype>> _arrivalsBiomeOptions = new()
-    {
-        "Grasslands",
-        "LowDesert",
-        "Snow",
-    };
 
     public override void Initialize()
     {
@@ -241,7 +232,7 @@ public sealed class ArrivalsSystem : EntitySystem
             {
                 // Warp all players who are still on this shuttle to a spawn point. This doesn't let them return to
                 // arrivals. It also ensures noobs, slow players or AFK players safely leave the shuttle.
-                TryTeleportToMapSpawn(pUid, component.Station, xform);
+                // TryTeleportToMapSpawn(pUid, component.Station, xform);
             }
 
             // Players who have remained at arrivals keep their warp coupon (PendingClockInComponent) for now.
@@ -304,16 +295,54 @@ public sealed class ArrivalsSystem : EntitySystem
         }
     }
 
+    public List<EntityCoordinates> GetArrivalsSpawnPoints()
+    {
+        TryGetArrivalsSource(out var arrivals);
+        var possiblePositions = new List<EntityCoordinates>();
+
+        if (TryComp(arrivals, out TransformComponent? arrivalsXform))
+        {
+            var mapId = arrivalsXform.MapID;
+
+            var points = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
+
+            while (points.MoveNext(out var uid, out var spawnPoint, out var xform))
+            {
+                if (spawnPoint.SpawnType != SpawnPointType.LateJoin || xform.MapID != mapId)
+                    continue;
+
+                possiblePositions.Add(xform.Coordinates);
+            }
+        }
+
+        return possiblePositions;
+    }
+
+    public EntityUid? SpawnPlayersOnArrivals(EntityUid? station, JobComponent? job, HumanoidCharacterProfile? profile)
+    {
+        var possiblePositions = GetArrivalsSpawnPoints();
+
+        var spawnLoc = _random.Pick(possiblePositions);
+
+        var playerMob = _stationSpawning.SpawnPlayerMob(
+            spawnLoc,
+            job,
+            profile,
+            station);
+
+        return playerMob;
+    }
+
     public void HandlePlayerSpawning(PlayerSpawningEvent ev)
     {
         if (ev.SpawnResult != null)
             return;
 
         // Only works on latejoin even if enabled.
-        if (!Enabled || !ev.Arrivals)
+        if (!Enabled || _ticker.RunLevel != GameRunLevel.InRound)
             return;
 
-        if (!HasComp<StationArrivalsComponent>(ev.Station) && !ev.Arrivals)
+        if (!HasComp<StationArrivalsComponent>(ev.Station))
             return;
 
         TryGetArrivalsSource(out var arrivals);
@@ -461,8 +490,8 @@ public sealed class ArrivalsSystem : EntitySystem
 
             while (query.MoveNext(out var sUid, out var comp))
             {
-                SetupShuttle(sUid, comp, 0);
-                SetupShuttle(sUid, comp, _cfgManager.GetCVar(CCVars.ArrivalsCooldown));
+                SetupShuttle(sUid, comp, Destination.Station);
+                SetupShuttle(sUid, comp, Destination.Arrivals);
             }
         }
         else
@@ -488,11 +517,11 @@ public sealed class ArrivalsSystem : EntitySystem
         if (!Enabled)
             return;
 
-        SetupShuttle(uid, component, 0);
-        SetupShuttle(uid, component, _cfgManager.GetCVar(CCVars.ArrivalsCooldown));
+        SetupShuttle(uid, component, Destination.Station);
+        SetupShuttle(uid, component, Destination.Arrivals);
     }
 
-    private void SetupShuttle(EntityUid uid, StationArrivalsComponent component, float delay)
+    private void SetupShuttle(EntityUid uid, StationArrivalsComponent component, Destination destination)
     {
         // if (!Deleted(component.Shuttle))
         //     return;
@@ -507,13 +536,22 @@ public sealed class ArrivalsSystem : EntitySystem
             var shuttleComp = Comp<ShuttleComponent>(shuttleUids[0]);
             var arrivalsComp = EnsureComp<ArrivalsShuttleComponent>(shuttleUids[0]);
             arrivalsComp.Station = uid;
-            EnsureComp<ProtectedGridComponent>(uid);
-            _shuttles.FTLToDock(shuttleUids[0], shuttleComp, arrivals, hyperspaceTime: RoundStartFTLDuration);
-            arrivalsComp.NextTransfer = _timing.CurTime + TimeSpan.FromSeconds(_cfgManager.GetCVar(CCVars.ArrivalsCooldown) + delay);
+            EnsureComp<ImmortalGridComponent>(shuttleUids[0]); // Sunrise-Edit
+            EnsureComp<DontSellingGridComponent>(shuttleUids[0]); // Sunrise-Edit
+
+            var target = destination == Destination.Station ? uid : arrivals;
+            _shuttles.FTLToDock(shuttleUids[0], shuttleComp, target, hyperspaceTime: RoundStartFTLDuration, priorityTag: "DockArrivals");
+            arrivalsComp.NextTransfer = _timing.CurTime + TimeSpan.FromSeconds(_cfgManager.GetCVar(CCVars.ArrivalsCooldown));
         }
 
         // Don't start the arrivals shuttle immediately docked so power has a time to stabilise?
         var timer = AddComp<TimedDespawnComponent>(_mapManager.GetMapEntityId(dummyMap));
         timer.Lifetime = 15f;
+    }
+
+    private enum Destination
+    {
+        Station,
+        Arrivals
     }
 }

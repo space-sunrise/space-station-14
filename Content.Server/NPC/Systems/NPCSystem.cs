@@ -28,6 +28,8 @@ namespace Content.Server.NPC.Systems
         /// </summary>
         public bool Enabled { get; set; } = true;
 
+        public bool DisableWithoutPlayers { get; set; } = true;
+
         private int _maxUpdates;
 
         private int _count;
@@ -39,6 +41,7 @@ namespace Content.Server.NPC.Systems
 
             Subs.CVar(_configurationManager, CCVars.NPCEnabled, value => Enabled = value, true);
             Subs.CVar(_configurationManager, CCVars.NPCMaxUpdates, obj => _maxUpdates = obj, true);
+            Subs.CVar(_configurationManager, CCVars.DisableWithoutPlayers, obj => DisableWithoutPlayers = obj, true);
         }
 
         public void OnPlayerNPCAttach(EntityUid uid, HTNComponent component, PlayerAttachedEvent args)
@@ -138,7 +141,7 @@ namespace Content.Server.NPC.Systems
 
             _count = 0;
             // Add your system here.
-            _htn.UpdateNPC(ref _count, _maxUpdates, frameTime);
+            _htn.UpdateNPC(ref _count, _maxUpdates, frameTime, DisableWithoutPlayers);
         }
 
         public void OnMobStateChange(EntityUid uid, HTNComponent component, MobStateChangedEvent args)

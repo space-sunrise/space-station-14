@@ -44,7 +44,7 @@
   suffix: Prisoner EVA
   components:
   - type: StorageFill
-    contents:   
+    contents:
         - id: OxygenTankFilled
         - id: ClothingOuterHardsuitEVAPrisoner
         - id: ClothingHeadHelmetEVALarge
@@ -255,7 +255,7 @@
   - type: StorageFill
     contents:
         - id: OxygenTankFilled
-        - id: ClothingOuterHardsuitSyndie
+        - id: ClothingOuterHardsuitSyndieBiocode # Sunrise-Edit
         - id: ClothingShoesBootsMagSyndie
         - id: ClothingMaskGasSyndicate
 
