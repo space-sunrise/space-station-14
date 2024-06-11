@@ -13,7 +13,6 @@ public sealed class SpawnPointSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
-    [Dependency] private readonly ArrivalsSystem _arrivals = default!;
 
     public override void Initialize()
     {
@@ -63,11 +62,6 @@ public sealed class SpawnPointSystem : EntitySystem
             {
                 possiblePositions.Add(xform.Coordinates);
             }
-        }
-
-        if (args.DesiredSpawnPointType == SpawnPointType.Arrivals)
-        {
-            possiblePositions = _arrivals.GetArrivalsSpawnPoints();
         }
 
         if (possiblePositions.Count == 0)
