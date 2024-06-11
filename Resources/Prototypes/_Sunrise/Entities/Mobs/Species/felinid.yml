@@ -8,15 +8,6 @@
   - type: OwOAccent
   - type: Speech
     speechVerb: Felinid
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      25: 0.7
-      50: 0.5
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      75: Critical
-      150: Dead
   - type: Thieving
     stealthy: true
     stripTimeReduction: 1
@@ -55,7 +46,7 @@
   - type: DamageOnHighSpeedImpact
     damage:
       types:
-        Blunt: 25
+        Blunt: 5
     soundHit:
       path: /Audio/Effects/hit_kick.ogg
   - type: Stamina
@@ -68,10 +59,10 @@
   - type: Respirator
     damage:
       types:
-        Asphyxiation: 2.5
+        Asphyxiation: 1.5
     damageRecovery:
       types:
-        Asphyxiation: -2.5
+        Asphyxiation: -1.5
   - type: NpcFactionMember
     factions:
       - NanoTrasen
