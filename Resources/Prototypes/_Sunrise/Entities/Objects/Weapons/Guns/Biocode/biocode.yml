@@ -118,8 +118,6 @@
     - Syndicate
     alertText: Данное оружие биокодировано. Вы не можете его использовать.
 
-# SUNRISE
-
 - type: entity
   parent: WeaponSIAR52
   id: WeaponSIAR52Biocode
