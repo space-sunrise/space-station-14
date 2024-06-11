@@ -9,7 +9,6 @@ namespace Content.Server._Sunrise.DontSellingGrid;
 public sealed class StationDontSellingSystems : EntitySystem
 {
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    private EntityQuery<StaticPriceComponent> _priseQuery;
 
     public override void Initialize()
     {
@@ -18,8 +17,6 @@ public sealed class StationDontSellingSystems : EntitySystem
         SubscribeLocalEvent<StationDontSellingGridComponent, StationPostInitEvent>(OnPostInit);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawning);
         SubscribeLocalEvent<DontSellComponent, PriceCalculationEvent>(OnCalculatePrice);
-
-        _priseQuery = GetEntityQuery<StaticPriceComponent>();
     }
 
     private void OnCalculatePrice(EntityUid uid, DontSellComponent component, ref PriceCalculationEvent args)
