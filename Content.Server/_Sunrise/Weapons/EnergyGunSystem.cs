@@ -1,5 +1,5 @@
 using Content.Server.Popups;
-using Content.Server._Sunrise.Weapons.Ranged.Components;
+using Content.Server.Weapons.Ranged.Components;
 using Content.Shared.Database;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
@@ -11,8 +11,7 @@ using Robust.Shared.Prototypes;
 using System.Linq;
 using System;
 
-namespace Content.Server._Sunrise.Weapons.Ranged.Systems;
-
+namespace Content.Server.Weapons.Ranged.Systems;
 public sealed class EnergyGunSystem : EntitySystem
 {
 	[Dependency] private readonly IPrototypeManager _prototypeManager = default!;

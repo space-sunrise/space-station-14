@@ -35,6 +35,13 @@
     sprite: Objects/Misc/bureaucracy.rsi
     state: folder-sec-doc
 
+- type: stealTargetGroup  # Sunrise-AEG
+  id: WeaponEnergyGunMultiphase
+  name: x-01 multiphase energy gun
+  sprite:
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/multiphase_energygun.rsi
+    state: base
+
 - type: stealTargetGroup
   id: ClothingShoesBootsMagAdv
   name: advanced magboots
