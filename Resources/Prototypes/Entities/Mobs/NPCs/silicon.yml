@@ -292,8 +292,8 @@
     pack: MedibotAds
   - type: AmbientSound
     enabled: true
-    volume: -5
-    range: 14
+    volume: 0
+    range: 8
     sound:
       path: /Audio/_Sunrise/Effects/Flying/medibot.ogg
   - type: Fixtures
