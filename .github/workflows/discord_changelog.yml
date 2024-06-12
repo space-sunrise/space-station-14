@@ -1,4 +1,4 @@
-name: Update changelog
+name: Update discord changelog
 
 concurrency:
   group: publish
