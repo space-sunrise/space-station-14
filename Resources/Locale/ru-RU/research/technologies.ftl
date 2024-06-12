@@ -66,3 +66,6 @@ research-technology-honk-mech = Мех Х.О.Н.К.
 research-technology-advanced-spray = Продвинутые спреи
 research-technology-quantum-fiber-weaving = Плетение квантового волокна
 research-technology-bluespace-cargo-transport = Блюспейс-транспортировка грузов
+research-technology-energy-gun = Энергетическое вооружение
+research-technology-energy-gun-advance = Продвинутое энергетическое вооружение
+research-technology-advance-laser = Военное энергетическое вооружение
