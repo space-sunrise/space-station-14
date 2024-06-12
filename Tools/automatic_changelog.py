@@ -76,6 +76,10 @@ def update_changelog(changelog_file: str, pr_body: str):
         entries_list = entries_list[overflow:]
 
     new_data = {"Entries": entries_list}
+    for key, value in current_data.items():
+        if key != "Entries":
+            new_data[key] = value
+
     with open(changelog_file, "w", encoding="utf-8-sig") as f:
         yaml.safe_dump(new_data, f)
 
