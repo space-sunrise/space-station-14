@@ -1,3 +1,5 @@
+name: Update sunrise changelog
+
 on:
   push:
     branches: [master]
@@ -27,8 +29,9 @@ jobs:
   
       - name: Commit and Push Changes
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git config --global user.name 'VigersRay'
+          git config --global user.email 'VigersRay@gmail.com'
+          git remote set-url origin https://${{ secrets.GH_TOKEN }}@github.com/VigersRay/repository.git
           git add Resources/Changelog/ChangelogSunrise.yml
           git commit -m 'Update changelog from PR #${{ github.event.pull_request.number }}'
-          git push
+          git push HEAD:master
