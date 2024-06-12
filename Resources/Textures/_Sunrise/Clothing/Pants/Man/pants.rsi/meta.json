@@ -38,6 +38,9 @@
             "name": "male_briefs_icon"
         },
         {
+            "name": "male_midway_icon"
+        },
+        {
             "name": "male_stripe",
             "directions": 4
         },
