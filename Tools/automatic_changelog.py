@@ -32,15 +32,20 @@ def parse_changelog(pr_body: str) -> List[dict]:
 
     author = header_match.group(1)
 
-    changelog_entries = []
+    changes = []
     for match in re.finditer(ENTRY_RE, pr_body, re.MULTILINE):
-        changelog_entries.append({
-            'type': match.group(1),
-            'description': match.group(2),
-            'author': author
+        changes.append({
+            'type': match.group(1).capitalize(),
+            'message': match.group(2)
         })
 
-    return changelog_entries
+    if not changes:
+        return []
+
+    return [{
+        'author': author,
+        'changes': changes
+    }]
 
 def update_changelog(changelog_file: str, pr_body: str):
     new_entries = parse_changelog(pr_body)
@@ -58,11 +63,11 @@ def update_changelog(changelog_file: str, pr_body: str):
 
     max_id = max(map(lambda e: e.get("id", 0), entries_list), default=0)
 
-    for entry in new_entries:
+    for new_entry in new_entries:
         max_id += 1
-        entry["id"] = max_id
-        entry["time"] = datetime.datetime.now(datetime.timezone.utc).isoformat()
-        entries_list.append(entry)
+        new_entry["id"] = max_id
+        new_entry["time"] = datetime.datetime.now(datetime.timezone.utc).isoformat()
+        entries_list.append(new_entry)
 
     entries_list.sort(key=lambda e: e["id"])
 
@@ -72,7 +77,7 @@ def update_changelog(changelog_file: str, pr_body: str):
 
     new_data = {"Entries": entries_list}
     with open(changelog_file, "w", encoding="utf-8-sig") as f:
-        yaml.safe_dump(new_data, f)
+        yaml.safe_dump(new_data, f, allow_unicode=True)
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
