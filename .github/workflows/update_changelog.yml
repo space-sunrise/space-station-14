@@ -30,7 +30,7 @@ jobs:
         python-version: '3.x'
 
     - name: Install Dependencies
-      run: pip install pyyaml
+      run: pip install pyyaml request
 
     - name: Extract Changelog from PR
       run: python3 Tools/automatic_changelog.py "Resources/Changelog/ChangelogSunrise.yml" "${{ github.event.pull_request.body }}"
@@ -40,3 +40,9 @@ jobs:
         git add Resources/Changelog/ChangelogSunrise.yml
         git commit -m 'Update changelog from PR #${{ github.event.pull_request.number }}'
         git push
+
+    - name: Publish changelog (Discord)
+      run: Tools/actions_changelogs_since_last_run.py
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        DISCORD_WEBHOOK_URL: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK }}
