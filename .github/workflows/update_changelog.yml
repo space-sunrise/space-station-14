@@ -1,3 +1,5 @@
+name: Update sunrise changelog
+
 on:
   push:
     branches: [master]
@@ -13,22 +15,23 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-
+  
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
-
+  
       - name: Install Dependencies
         run: pip install pyyaml
-
+  
       - name: Extract Changelog from PR
         run: python3 Tools/update_changelog.py "${{ github.event.pull_request.body }}" "Resources/Changelog/ChangelogSunrise.yml"
-
+  
       - name: Commit and Push Changes
         run: |
           git config --global user.name 'VigersRay'
           git config --global user.email 'VigersRay@gmail.com'
+          git remote set-url origin https://${{ secrets.GH_TOKEN }}@github.com/VigersRay/repository.git
           git add Resources/Changelog/ChangelogSunrise.yml
           git commit -m 'Update changelog from PR #${{ github.event.pull_request.number }}'
-          git push https://VigersRay:${{ secrets.GH_TOKEN }}@github.com/VigersRay/${{ github.repository }}.git HEAD:master
+          git push HEAD:master
