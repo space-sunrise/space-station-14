@@ -22,7 +22,7 @@ jobs:
           python-version: '3.x'
 
       - name: Extract Changelog from PR
-        run: python3 Tools/update_changelog.py "${{ github.event.pull_request.body }}" "CHANGELOG.yml"
+        run: python3 Tools/update_changelog.py "${{ github.event.pull_request.body }}" "Resources/Changelog/ChangelogSunrise.yml"
 
       - name: Commit and Push Changes
         run: |
