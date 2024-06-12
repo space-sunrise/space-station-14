@@ -1,3 +1,5 @@
+name: Update changelog
+
 on:
   push:
     branches: [master]
@@ -13,18 +15,18 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-  
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
-  
+
       - name: Install Dependencies
         run: pip install pyyaml
-  
+
       - name: Extract Changelog from PR
         run: python3 Tools/update_changelog.py "${{ github.event.pull_request.body }}" "Resources/Changelog/ChangelogSunrise.yml"
-  
+
       - name: Commit and Push Changes
         run: |
           git config --global user.name 'github-actions[bot]'
