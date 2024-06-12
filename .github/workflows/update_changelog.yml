@@ -13,18 +13,18 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-    
+  
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
-    
+  
       - name: Install Dependencies
         run: pip install pyyaml
-    
+  
       - name: Extract Changelog from PR
         run: python3 Tools/update_changelog.py "${{ github.event.pull_request.body }}" "Resources/Changelog/ChangelogSunrise.yml"
-    
+  
       - name: Commit and Push Changes
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
@@ -33,4 +33,4 @@ jobs:
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add Resources/Changelog/ChangelogSunrise.yml
           git commit -m 'Update changelog from PR #${{ github.event.pull_request.number }}'
-          git push https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git HEAD:master
+          git push https://${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git HEAD:master
