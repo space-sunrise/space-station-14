@@ -33,4 +33,4 @@ jobs:
           git config --global user.email 'VigersRay@gmail.com'
           git add Resources/Changelog/ChangelogSunrise.yml
           git commit -m 'Update changelog from PR #${{ github.event.pull_request.number }}'
-          git push https://VigersRay:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git HEAD:update-changelog-${{ github.run_id }}
+          git push https://VigersRay:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git HEAD:master
