@@ -249,7 +249,7 @@
       path: /Audio/Ambience/Objects/periodic_beep.ogg
 
 - type: entity
-  parent: [MobSiliconBase, ShowMedicalIcons]
+  parent: [MobSiliconBase, ShowMedicalIcons, FlyingMobBase]
   id: MobMedibot
   name: medibot
   description: No substitute for a doctor, but better than nothing.
@@ -275,7 +275,7 @@
         reagent: SpaceDrugs
         quantity: 25
   - type: Sprite
-    sprite: Mobs/Silicon/Bots/medibot.rsi
+    sprite: _Sunrise/Mobs/Silicon/Bots/medibot.rsi
     state: medibot
   - type: HTN
     rootTask:
@@ -283,7 +283,6 @@
   - type: Construction
     graph: MediBot
     node: bot
-  - type: Anchorable
   - type: InteractionPopup
     interactSuccessString: petting-success-medibot
     interactFailureString: petting-failure-medibot
@@ -291,6 +290,23 @@
       path: /Audio/Ambience/Objects/periodic_beep.ogg
   - type: Advertise
     pack: MedibotAds
+  - type: AmbientSound
+    enabled: true
+    volume: -5
+    range: 14
+    sound:
+      path: /Audio/_Sunrise/Effects/Flying/medibot.ogg
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 50
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
 
 - type: entity
   parent: MobSiliconBase
