@@ -36,14 +36,14 @@ def parse_changelog(pr_body: str) -> List[dict]:
     for match in re.finditer(ENTRY_RE, pr_body, re.MULTILINE):
         changes.append({
             'type': match.group(1).capitalize(),
-            'message': match.group(2)
+            'message': match.group(2).strip()
         })
 
     if not changes:
         return []
 
     return [{
-        'author': author,
+        'author': author.strip(),
         'changes': changes
     }]
 
