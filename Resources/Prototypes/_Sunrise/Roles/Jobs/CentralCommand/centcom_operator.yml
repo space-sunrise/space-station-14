@@ -4,9 +4,7 @@
   description: job-description-centcomop
   playTimeTracker: JobCentCommOperator
   requirements:
-  - !type:DepartmentTimeRequirement
-    department: Command
-    time: 180000 #50 hrs
+  - !type:DiscordRoleRequirement
   weight: 30
   setPreference: true
   startingGear: CentCommOperatorGear
