@@ -6,8 +6,8 @@ import re
 import datetime
 from typing import List, Any
 
-MAX_ENTRIES = 500
-HEADER_RE = r"(?::cl:|🆑)\s*(\w+)"
+MAX_ENTRIES = 5000
+HEADER_RE = r"(?::cl:|🆑) *\r?\n(.+)$"
 ENTRY_RE = r"^ *[*-] *(add|remove|tweak|fix): *([^\r\n]*)"
 COMMENT_RE = r"<!--.*?-->|<!--[\s\S]*?-->"
 
