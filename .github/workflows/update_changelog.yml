@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-    
+  
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
@@ -24,13 +24,14 @@ jobs:
   
       - name: Extract Changelog from PR
         run: python3 Tools/update_changelog.py "${{ github.event.pull_request.body }}" "Resources/Changelog/ChangelogSunrise.yml"
-
+  
       - name: Commit and Push Changes
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
         run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git config --global user.name 'VigersRay'
+          git config --global user.email 'VigersRay@gmail.com'
+          git checkout -b update-changelog-${{ github.run_id }}
           git add Resources/Changelog/ChangelogSunrise.yml
           git commit -m 'Update changelog from PR #${{ github.event.pull_request.number }}'
-          git push https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:master
+          git push https://VigersRay:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git HEAD:update-changelog-${{ github.run_id }}
