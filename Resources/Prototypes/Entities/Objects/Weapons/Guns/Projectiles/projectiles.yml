@@ -1064,7 +1064,6 @@
         Heat: 8
     soundHit:
       collection: WeakHit
-    soundForce: true
 
 - type: entity
   name : syndie plasma
@@ -1107,7 +1106,6 @@
         Heat: 20
     soundHit:
       collection: WeakHit
-    soundForce: true
 
 # Sunrise-AEG
 - type: entity
