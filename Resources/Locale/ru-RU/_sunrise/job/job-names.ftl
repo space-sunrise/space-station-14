@@ -1,5 +1,5 @@
 job-name-magistrat = магистрат
-job-name-centcomof = офицер ЦентКом
+job-name-centcomop = оператор Центком
 
 JobCentCommOfficial = представитель Центком
 JobMagistrat = магистрат
