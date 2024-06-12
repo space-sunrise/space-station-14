@@ -7,7 +7,7 @@ import datetime
 from typing import List, Any
 
 MAX_ENTRIES = 500
-HEADER_RE = r"(?::cl:|🆑)\s*(.*)"
+HEADER_RE = r"(?::cl:|🆑)\s*(\w+)"
 ENTRY_RE = r"^ *[*-] *(add|remove|tweak|fix): *(.*)"
 
 class NoDatesSafeLoader(yaml.SafeLoader):
@@ -28,11 +28,14 @@ def parse_changelog(pr_body: str) -> List[dict]:
     if not header_match:
         return []
 
+    author = header_match.group(1)
+
     changelog_entries = []
     for match in re.finditer(ENTRY_RE, pr_body, re.MULTILINE):
         changelog_entries.append({
             'type': match.group(1),
-            'description': match.group(2)
+            'description': match.group(2),
+            'author': author
         })
 
     return changelog_entries
@@ -57,7 +60,6 @@ def update_changelog(changelog_file: str, pr_body: str):
         max_id += 1
         entry["id"] = max_id
         entry["time"] = datetime.datetime.now(datetime.timezone.utc).isoformat()
-        entry["author"] = "VigersRay"  # Update to extract actual author if needed
         entries_list.append(entry)
 
     entries_list.sort(key=lambda e: e["id"])

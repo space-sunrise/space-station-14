@@ -1,4 +1,4 @@
-name: Update changelog
+name: Update sunrise changelog
 
 on:
   push:
@@ -9,28 +9,34 @@ on:
 
 jobs:
   update_changelog:
-    if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true && github.event.commits[0].author.name != 'GitHubActions'
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+        token: ${{ secrets.GH_TOKEN }}
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.x'
+    - name: Configure git
+      run: |
+        git config user.name "GitHubActions"
+        git config user.email "<>"
 
-      - name: Install Dependencies
-        run: pip install pyyaml
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
 
-      - name: Extract Changelog from PR
-        run: python3 Tools/update_changelog.py "${{ github.event.pull_request.body }}" "Resources/Changelog/ChangelogSunrise.yml"
+    - name: Install Dependencies
+      run: pip install pyyaml
 
-      - name: Commit and Push Changes
-        run: |
-          git config --global user.name 'github-actions[bot]'
-          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add Resources/Changelog/ChangelogSunrise.yml
-          git commit -m 'Update changelog from PR #${{ github.event.pull_request.number }}'
-          git push
+    - name: Extract Changelog from PR
+      run: python3 Tools/automatic_changelog.py "Resources/Changelog/ChangelogSunrise.yml" "${{ github.event.pull_request.body }}"
+
+    - name: Commit and Push Changes
+      run: |
+        git add Resources/Changelog/ChangelogSunrise.yml
+        git commit -m 'Update changelog from PR #${{ github.event.pull_request.number }}'
+        git push
