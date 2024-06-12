@@ -74,9 +74,9 @@ def update_changelog(changelog_file: str, pr_body: str):
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print("Usage: update_changelog.py <pr_body> <changelog_file>")
+        print("Usage: update_changelog.py <changelog_file> <pr_body>")
         sys.exit(1)
 
-    pr_body = sys.argv[1]
-    changelog_file = sys.argv[2]
+    changelog_file = sys.argv[1]
+    pr_body = sys.argv[2]
     update_changelog(changelog_file, pr_body)
