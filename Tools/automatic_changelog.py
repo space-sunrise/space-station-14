@@ -9,6 +9,7 @@ from typing import List, Any
 MAX_ENTRIES = 500
 HEADER_RE = r"(?::cl:|🆑)\s*(\w+)"
 ENTRY_RE = r"^ *[*-] *(add|remove|tweak|fix): *(.*)"
+COMMENT_RE = r"<!--.*?-->|<!--[\s\S]*?-->"
 
 class NoDatesSafeLoader(yaml.SafeLoader):
     @classmethod
@@ -24,6 +25,7 @@ class NoDatesSafeLoader(yaml.SafeLoader):
 NoDatesSafeLoader.remove_implicit_resolver('tag:yaml.org,2002:timestamp')
 
 def parse_changelog(pr_body: str) -> List[dict]:
+    pr_body = re.sub(COMMENT_RE, '', pr_body, flags=re.MULTILINE)
     header_match = re.search(HEADER_RE, pr_body, re.MULTILINE)
     if not header_match:
         return []
