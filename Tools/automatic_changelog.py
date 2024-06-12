@@ -8,7 +8,7 @@ from typing import List, Any
 
 MAX_ENTRIES = 500
 HEADER_RE = r"(?::cl:|🆑)\s*(\w+)"
-ENTRY_RE = r"^ *[*-] *(add|remove|tweak|fix): *(.*)"
+ENTRY_RE = r"^ *[*-] *(add|remove|tweak|fix): *([^\r\n]*)"
 COMMENT_RE = r"<!--.*?-->|<!--[\s\S]*?-->"
 
 class NoDatesSafeLoader(yaml.SafeLoader):
@@ -77,7 +77,7 @@ def update_changelog(changelog_file: str, pr_body: str):
 
     new_data = {"Entries": entries_list}
     with open(changelog_file, "w", encoding="utf-8-sig") as f:
-        yaml.safe_dump(new_data, f, allow_unicode=True)
+        yaml.safe_dump(new_data, f)
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
