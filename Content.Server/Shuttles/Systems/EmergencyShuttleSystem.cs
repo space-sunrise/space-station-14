@@ -213,6 +213,11 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         if (config == null)
             return;
 
+        foreach (var configDock in config.Docks)
+        {
+            _dock.Undock((configDock.DockBUid, configDock.DockB));
+        }
+
         RaiseNetworkEvent(new EmergencyShuttlePositionMessage()
         {
             StationUid = GetNetEntity(targetGrid),
