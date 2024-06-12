@@ -125,52 +125,41 @@ def send_discord(content: str):
     response.raise_for_status()
 
 
-def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
+def send_embed_to_discord(embed):
+    data = {
+        "embeds": [embed],
+        "allowed_mentions": {
+            "parse": []
+        }
+    }
+    response = requests.post(DISCORD_WEBHOOK_URL, json=data)
+    response.raise_for_status()
+
+def send_to_discord(entries: Iterable[dict]) -> None:
     if not DISCORD_WEBHOOK_URL:
         print(f"No discord webhook URL found, skipping discord send")
         return
 
-    message_content = io.StringIO()
-    # We need to manually split messages to avoid discord's character limit
-    # With that being said this isn't entirely robust
-    # e.g. a sufficiently large CL breaks it, but that's a future problem
+    last_datetime = fetch_last_message_time(DISCORD_WEBHOOK_URL)
 
-    for name, group in itertools.groupby(entries, lambda x: x["author"]):
-        # Need to split text to avoid discord character limit
-        group_content = io.StringIO()
-        group_content.write(f"**{name}** updated:\n")
+    for entry in entries:
+        author = entry['author']
+        entry_time = datetime.fromisoformat(entry['time'])
 
-        for entry in group:
-            for change in entry["changes"]:
-                emoji = TYPES_TO_EMOJI.get(change['type'], "❓")
+        if entry_time > last_datetime:
+            description = "\n"
+            for change in entry['changes']:
+                change_type = change['type']
                 message = change['message']
-                url = entry.get("url")
-                if url and url.strip():
-                    group_content.write(f"{emoji} [-]({url}) {message}\n")
-                else:
-                    group_content.write(f"{emoji} - {message}\n")
+                description += f"{TYPES_TO_EMOJI.get(change_type, '❓')} {message}\n"
 
-        group_text = group_content.getvalue()
-        message_text = message_content.getvalue()
-        message_length = len(message_text)
-        group_length = len(group_text)
+            embed = {
+                "title": f"Автор: **{author}**",
+                "description": description,
+                "color": 0x3498db
+            }
 
-        # If adding the text would bring it over the group limit then send the message and start a new one
-        if message_length + group_length >= DISCORD_SPLIT_LIMIT:
-            print("Split changelog  and sending to discord")
-            send_discord(message_text)
-
-            # Reset the message
-            message_content = io.StringIO()
-
-        # Flush the group to the message
-        message_content.write(group_text)
-
-    # Clean up anything remaining
-    message_text = message_content.getvalue()
-    if len(message_text) > 0:
-        print("Sending final changelog to discord")
-        send_discord(message_text)
+            send_embed_to_discord(embed)
 
 
 main()
