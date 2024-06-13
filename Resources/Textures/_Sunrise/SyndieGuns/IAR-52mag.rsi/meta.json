@@ -4,8 +4,8 @@
         "x": 32,
         "y": 32
     },
-    "license": "// © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt",
-    "copyright": "SUNRISE",
+    "license": "CLA",
+    "copyright": "© SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt",
     "states": [
         {
             "name": "base"

@@ -14,8 +14,8 @@
   color: "#048e0f" # Sunrise-Edit
   weight: 120
   roles:
-    - CentCommOfficial
-    - CentCommOperator
+  - CentCommOfficial
+  - CentCommOperator
   primary: false
 
 - type: department # Surnise-Blueshield
