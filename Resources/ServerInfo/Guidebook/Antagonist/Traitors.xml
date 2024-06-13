@@ -70,6 +70,10 @@
   <Box>
     <GuideEntityEmbed Entity="BookSecretDocuments" Caption="Секретные Документы"/>
   </Box>
+  - Украсть у Главы Службы Безопасноти [color=#a4885c]X-01 Мультифазный энергетический карабин[/color].
+  <Box>
+    <GuideEntityEmbed Entity="BookSecretDocuments" Caption="Секретные Документы"/>
+  </Box>
   - Украсть у Старшего Инженера [color=#a4885c]Продвинутные Магнитные Сапоги[/color].
   <Box>
     <GuideEntityEmbed Entity="ClothingShoesBootsMagAdv" Caption="Продвинутые Магнитные Сапоги"/>

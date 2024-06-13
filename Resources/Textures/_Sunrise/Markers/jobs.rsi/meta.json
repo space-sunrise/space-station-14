@@ -8,13 +8,16 @@
   },
   "states": [
     {
-      "name": "jobicon"
+        "name": "jobicon"
     },
     {
-      "name": "green"
+        "name": "green"
     },
 	{
-	  "name": "magistrat"
-	}
+	    "name": "magistrat"
+	},
+    {
+        "name": "blueshield"
+    }
   ]
 }

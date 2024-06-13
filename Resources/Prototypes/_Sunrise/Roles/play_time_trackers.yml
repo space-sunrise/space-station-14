@@ -12,3 +12,6 @@
 
 - type: playTimeTracker
   id: JobCentCommOfficial
+
+- type: playTimeTracker
+  id: JobBlueShield

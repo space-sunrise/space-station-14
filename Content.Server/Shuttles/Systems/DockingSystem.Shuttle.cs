@@ -60,14 +60,8 @@ public sealed partial class DockingSystem
                    !shuttleDockXform.Anchored ||
                    !gridDockXform.Anchored))
        {
-           if (ignored)
-           {
-               Undock(gridDock);
-           }
-           else
-           {
+           if (!ignored)
                return false;
-           }
        }
 
        // First, get the station dock's position relative to the shuttle, this is where we rotate it around
@@ -213,10 +207,7 @@ public sealed partial class DockingSystem
                    // Check if there's no intersecting grids (AKA oh god it's docking at cargo).
                    grids.Clear();
                    _mapManager.FindGridsIntersecting(targetGridXform.MapID, dockedBounds, ref grids, includeMap: false);
-                   if (ignored)
-                   {
-                   }
-                   else if (grids.Any(o => o.Owner != targetGrid && o.Owner != targetGridXform.MapUid))
+                   if (grids.Any(o => o.Owner != targetGrid && o.Owner != targetGridXform.MapUid) && !ignored)
                    {
                        continue;
                    }

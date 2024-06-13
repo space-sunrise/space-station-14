@@ -37,12 +37,14 @@ public sealed class ContainerSpawnPointSystem : EntitySystem
                 continue;
             }
 
-            if (_gameTicker.RunLevel == GameRunLevel.InRound && spawnPoint.SpawnType == SpawnPointType.LateJoin)
+            if (_gameTicker.RunLevel == GameRunLevel.InRound &&
+                spawnPoint.SpawnType == SpawnPointType.LateJoin &&
+                args.DesiredSpawnPointType != SpawnPointType.Job)
             {
                 possibleContainers.Add((uid, spawnPoint, container, xform));
             }
 
-            if (_gameTicker.RunLevel != GameRunLevel.InRound &&
+            if ((_gameTicker.RunLevel != GameRunLevel.InRound || args.DesiredSpawnPointType == SpawnPointType.Job) &&
                 spawnPoint.SpawnType == SpawnPointType.Job &&
                 (args.Job == null || spawnPoint.Job == args.Job.Prototype))
             {

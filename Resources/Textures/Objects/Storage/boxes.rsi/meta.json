@@ -35,7 +35,7 @@
             "name": "sechud"
         },
         {
-			"name": "bottle"
+            "name": "bottle"
         },
         {
             "name": "box"
@@ -66,6 +66,9 @@
         },
         {
             "name": "box_olive"
+        },
+        {
+            "name": "box_id"
         },
         {
             "name": "id"
@@ -202,6 +205,9 @@
         },
         {
             "name": "shelluranium"
+        },
+        {
+            "name": "shelltranquilizer"
         },
         {
             "name": "shelltoy"

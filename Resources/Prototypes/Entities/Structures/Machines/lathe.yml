@@ -221,6 +221,10 @@
       - RiotShield
       - SpeedLoaderMagnum
       - SpeedLoaderMagnumEmpty
+      - WeaponEnergyGun       # Sunrise - Energy Gun
+      - WeaponEnergyGunMini   # Sunrise - Miniature Energy Gun
+      - WeaponEnergyGunPistol # Sunrise - PDW-9 Energy Pistol
+      - WeaponGunLaserCarbineAutomatic # Sunrise - IK-60 Laser Carbine
 
 - type: entity
   id: AutolatheHyperConvection
@@ -336,6 +340,7 @@
       - BoxBeanbag
       - BoxShotgunIncendiary
       - BoxShotgunUranium
+      - BoxShellTranquilizer
       - ExplosivePayload
       - GrenadeBlast
       - GrenadeEMP
@@ -363,7 +368,6 @@
       - PowerCageHigh
       - PowerCageMedium
       - PowerCageSmall
-      - ShellTranquilizer
       - SpeedLoaderMagnumIncendiary
       - SpeedLoaderMagnumUranium
       - TelescopicShield
@@ -750,6 +754,7 @@
       - BoxBeanbag
       - BoxShotgunIncendiary
       - BoxShotgunUranium
+      - BoxShellTranquilizer
       - ExplosivePayload
       - FlashPayload
       - GrenadeBlast
@@ -777,7 +782,6 @@
       - PowerCageHigh
       - PowerCageMedium
       - PowerCageSmall
-      - ShellTranquilizer
       - ShuttleGunDusterCircuitboard
       - ShuttleGunFriendshipCircuitboard
       - ShuttleGunPerforatorCircuitboard
@@ -831,6 +835,7 @@
         - BoxLethalshot
         - BoxShotgunFlare
         - BoxShotgunSlug
+        - BoxShellTranquilizer
         - MagazineBoxLightRifle
         - MagazineBoxMagnum
         - MagazineBoxPistol
@@ -844,7 +849,6 @@
         - MagazineShotgun
         - MagazineShotgunEmpty
         - MagazineShotgunSlug
-        - ShellTranquilizer
         - SpeedLoaderMagnum
         - SpeedLoaderMagnumEmpty
     - type: MaterialStorage
