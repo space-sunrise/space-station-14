@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.DetailExaminable;
+using Content.Server.Forensics;
 using Content.Server.GameTicking;
 using Content.Server.Humanoid;
 using Content.Server.Jobs;
@@ -11,11 +12,13 @@ using Content.Server.Preferences.Managers;
 using Content.Server.Roles;
 using Content.Server.Roles.Jobs;
 using Content.Server.Station.Systems;
+using Content.Shared.Clothing;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind.Components;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Objectives.Systems;
 using Content.Shared.Preferences;
+using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
@@ -38,6 +41,8 @@ public sealed class EvilTwinSystem : EntitySystem
     [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
     [Dependency] private readonly TargetObjectiveSystem _target = default!;
     [Dependency] private readonly SharedObjectivesSystem _objectives = default!;
+    [Dependency] private readonly LoadoutSystem _loadoutSystem = default!;
+
 
     [ValidatePrototypeId<AntagPrototype>]
     private const string EvilTwinRole = "EvilTwin";
@@ -49,8 +54,8 @@ public sealed class EvilTwinSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<_Sunrise.EvilTwin.EvilTwinSpawnerComponent, PlayerAttachedEvent>(OnPlayerAttached);
-        SubscribeLocalEvent<_Sunrise.EvilTwin.EvilTwinComponent, MindAddedMessage>(OnMindAdded);
+        SubscribeLocalEvent<EvilTwinSpawnerComponent, PlayerAttachedEvent>(OnPlayerAttached);
+        SubscribeLocalEvent<EvilTwinComponent, MindAddedMessage>(OnMindAdded);
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEnd);
     }
 
@@ -70,9 +75,9 @@ public sealed class EvilTwinSystem : EntitySystem
         }
     }
 
-    private void OnMindAdded(EntityUid uid, _Sunrise.EvilTwin.EvilTwinComponent component, MindAddedMessage args)
+    private void OnMindAdded(EntityUid uid, EvilTwinComponent component, MindAddedMessage args)
     {
-        if (!TryComp<_Sunrise.EvilTwin.EvilTwinComponent>(uid, out var evilTwin) ||
+        if (!TryComp<EvilTwinComponent>(uid, out var evilTwin) ||
             !_mindSystem.TryGetMind(uid, out var mindId, out var mind))
             return;
 
@@ -89,13 +94,13 @@ public sealed class EvilTwinSystem : EntitySystem
 
     private void OnRoundEnd(RoundEndTextAppendEvent ev)
     {
-        var twinsCount = EntityQuery<_Sunrise.EvilTwin.EvilTwinComponent>().Count();
+        var twinsCount = EntityQuery<EvilTwinComponent>().Count();
         if (twinsCount == 0)
             return;
 
         var result = Loc.GetString("evil-twin-round-end-result", ("evil-twin-count", twinsCount));
 
-        var query = EntityQueryEnumerator<_Sunrise.EvilTwin.EvilTwinComponent>();
+        var query = EntityQueryEnumerator<EvilTwinComponent>();
         while (query.MoveNext(out var uid, out var twin))
         {
             if (!_mindSystem.TryGetMind(uid, out var mindId, out var mind))
@@ -218,6 +223,22 @@ public sealed class EvilTwinSystem : EntitySystem
 
         if (_jobSystem.MindTryGetJob(mindId, out _, out var jobProto) && jobProto.StartingGear != null)
         {
+            var jobLoadout = LoadoutSystem.GetJobPrototype(jobProto.ID);
+
+            if (_prototype.TryIndex(jobLoadout, out RoleLoadoutPrototype? roleProto))
+            {
+                pref.Loadouts.TryGetValue(jobLoadout, out var loadout);
+
+                // Set to default if not present
+                if (loadout == null)
+                {
+                    loadout = new RoleLoadout(jobLoadout);
+                    loadout.SetDefault(_prototype);
+                }
+
+                _stationSpawning.EquipRoleLoadout(twinUid, loadout, roleProto);
+            }
+
             if (_prototype.TryIndex<StartingGearPrototype>(jobProto.StartingGear, out var gear))
             {
                 _stationSpawning.EquipStartingGear(twinUid, gear);
@@ -231,7 +252,13 @@ public sealed class EvilTwinSystem : EntitySystem
             }
         }
 
-        EnsureComp<_Sunrise.EvilTwin.EvilTwinComponent>(twinUid).TargetMindId = mindId;
+        if (TryComp<DnaComponent>(target, out var dnaComponent))
+        {
+            var dna = EnsureComp<DnaComponent>(twinUid);
+            dna.DNA = dnaComponent.DNA;
+        }
+
+        EnsureComp<EvilTwinComponent>(twinUid).TargetMindId = mindId;
 
         return twinUid;
     }
