@@ -125,7 +125,7 @@ def send_discord(content: str):
     response.raise_for_status()
 
 
-def send_embed_to_discord(embed):
+def send_embed_discord(embed):
     data = {
         "embeds": [embed],
         "allowed_mentions": {
@@ -135,31 +135,38 @@ def send_embed_to_discord(embed):
     response = requests.post(DISCORD_WEBHOOK_URL, json=data)
     response.raise_for_status()
 
-def send_to_discord(entries: Iterable[dict]) -> None:
+
+def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
     if not DISCORD_WEBHOOK_URL:
         print(f"No discord webhook URL found, skipping discord send")
         return
 
-    last_datetime = fetch_last_message_time(DISCORD_WEBHOOK_URL)
 
-    for entry in entries:
-        author = entry['author']
-        entry_time = datetime.fromisoformat(entry['time'])
+    # We need to manually split messages to avoid discord's character limit
+    # With that being said this isn't entirely robust
+    # e.g. a sufficiently large CL breaks it, but that's a future problem
 
-        if entry_time > last_datetime:
-            description = "\n"
-            for change in entry['changes']:
-                change_type = change['type']
+    for name, group in itertools.groupby(entries, lambda x: x["author"]):
+        # Need to split text to avoid discord character limit
+        group_content = io.StringIO()
+
+        for entry in group:
+            for change in entry["changes"]:
+                emoji = TYPES_TO_EMOJI.get(change['type'], "❓")
                 message = change['message']
-                description += f"{TYPES_TO_EMOJI.get(change_type, '❓')} {message}\n"
+                url = entry.get("url")
+                if url and url.strip():
+                    group_content.write(f"{emoji} [-]({url}) {message}\n")
+                else:
+                    group_content.write(f"{emoji} {message}\n")
 
-            embed = {
-                "title": f"Автор: **{author}**",
-                "description": description,
-                "color": 0x3498db
-            }
+        embed = {
+            "title": f"Автор: **{name}**",
+            "description": group_content,
+            "color": 0x3498db
+        }
 
-            send_embed_to_discord(embed)
-
+        if len(group_content) > 0:
+            send_embed_discord(embed)
 
 main()
