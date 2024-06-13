@@ -53,4 +53,5 @@
     id: BlueShieldIDCard
     state: pda-blueshield
   - type: Icon
+    sprite: _Sunrise/Objects/pda.rsi
     state: pda-blueshield
