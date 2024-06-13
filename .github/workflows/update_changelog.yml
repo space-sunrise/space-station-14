@@ -35,7 +35,10 @@ jobs:
     - name: Extract Changelog from PR
       env:
         DISCORD_WEBHOOK_URL: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK }}
-      run: python3 Tools/automatic_changelog.py "Resources/Changelog/ChangelogSunrise.yml" "${{ github.event.pull_request.body }}"
+      run: |
+        PR_BODY="${{ github.event.pull_request.body }}"
+        PR_BODY_ESCAPED=$(echo "$PR_BODY" | sed 's/"/\\"/g')
+        python3 Tools/automatic_changelog.py "Resources/Changelog/ChangelogSunrise.yml" "$PR_BODY_ESCAPED"
 
     - name: Commit and Push Changes
       run: |

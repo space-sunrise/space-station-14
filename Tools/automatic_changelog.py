@@ -145,7 +145,7 @@ def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print("Usage: update_changelog.py <changelog_file> <pr_body>")
+        print("Usage: automatic_changelog.py <changelog_file> <pr_body>")
         sys.exit(1)
 
     changelog_file = sys.argv[1]
