@@ -345,6 +345,9 @@ public sealed class ArrivalsSystem : EntitySystem
         if (ev.SpawnResult != null)
             return;
 
+        if (ev.DesiredSpawnPointType == SpawnPointType.Job)
+            return;
+
         // Only works on latejoin even if enabled.
         if (!Enabled || _ticker.RunLevel != GameRunLevel.InRound)
             return;
