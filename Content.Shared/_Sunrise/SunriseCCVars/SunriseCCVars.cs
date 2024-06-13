@@ -100,4 +100,14 @@ public sealed class SunriseCCVars
     /// </summary>
     public static readonly CVarDef<string> ServersHubList =
         CVarDef.Create("servers_hub.urls", "", CVar.SERVERONLY);
+
+    /**
+     * Transit hub
+     */
+
+    /// <summary>
+    /// До сколько часов общего наиграного времени игроки будут появляться на станции даже в позднем присоединеии.
+    /// </summary>
+    public static readonly CVarDef<int> ArrivalsMinHours =
+        CVarDef.Create("transithub.arrivals_min_hours", 10, CVar.SERVER | CVar.ARCHIVE);
 }
