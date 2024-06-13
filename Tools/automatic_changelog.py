@@ -4,8 +4,11 @@ import sys
 import yaml
 import re
 import os
+import io
+import itertools
+import requests
 import datetime
-from typing import List, Any
+from typing import List, Any, Iterable
 
 MAX_ENTRIES = 5000
 HEADER_RE = r"(?::cl:|🆑)\s*(.+)$"
