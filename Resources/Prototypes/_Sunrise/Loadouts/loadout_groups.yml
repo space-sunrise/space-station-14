@@ -109,7 +109,7 @@
 
 - type: loadoutGroup
   id: BlueShieldBackpack
-  name: Офицер «Синий Щит», рюкзак
+  name: loadout-group-blueshield-backpack
   loadouts:
   - BlueShieldBackpack
   - BlueShieldSatchel
@@ -117,7 +117,7 @@
 
 - type: loadoutGroup
   id: BlueShieldJumpsuit
-  name: Офицер «Синий Щит», комбинезон
+  name: loadout-group-blueshield-jumpsuit
   loadouts:
   - BlueShieldJumpsuit
   - BlueShieldJumpskirt
