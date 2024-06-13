@@ -32,13 +32,14 @@ jobs:
     - name: Install Dependencies
       run: pip install pyyaml requests
 
+    - name: Save PR Body to File
+      run: echo "${{ github.event.pull_request.body }}" > pr_body.txt
+
     - name: Extract Changelog from PR
       env:
         DISCORD_WEBHOOK_URL: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK }}
       run: |
-        PR_BODY="${{ github.event.pull_request.body }}"
-        PR_BODY_ESCAPED=$(echo "$PR_BODY" | sed 's/"/\\"/g')
-        python3 Tools/automatic_changelog.py "Resources/Changelog/ChangelogSunrise.yml" "$PR_BODY_ESCAPED"
+        python3 Tools/automatic_changelog.py "Resources/Changelog/ChangelogSunrise.yml" "$(cat pr_body.txt)"
 
     - name: Commit and Push Changes
       run: |
