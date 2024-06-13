@@ -51,5 +51,7 @@
     ears: ClothingHeadsetAltCommand
     belt: ClothingBeltBlueShieldWebbingFilled
     gloves: ClothingHandsGlovesCombat
-  inhand:
-    - WeaponDisablerSMG # TODO: заменить это на X-01
+  storage:
+    back:
+    - BoxSurvivalSecurity
+    - Flash

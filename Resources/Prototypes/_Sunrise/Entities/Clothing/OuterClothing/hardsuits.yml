@@ -60,5 +60,3 @@
     damageCoefficient: 0.6
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitBlueshield
-  - type: Item
-    size: Normal
