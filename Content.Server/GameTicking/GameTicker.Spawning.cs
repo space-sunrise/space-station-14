@@ -4,9 +4,11 @@ using System.Numerics;
 using Content.Server.Administration.Managers;
 using Content.Server.GameTicking.Events;
 using Content.Server.Ghost;
+using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Spawners.Components;
 using Content.Server.Speech.Components;
 using Content.Server.Station.Components;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Database;
 using Content.Shared.Mind;
 using Content.Shared.Players;
@@ -28,6 +30,7 @@ namespace Content.Server.GameTicking
     {
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly SharedJobSystem _jobs = default!;
+        [Dependency] private readonly PlayTimeTrackingManager _playTimeTracking = default!;
 
         [ValidatePrototypeId<EntityPrototype>]
         public const string ObserverPrototypeName = "MobObserver";
@@ -229,10 +232,13 @@ namespace Content.Server.GameTicking
 
             _playTimeTrackings.PlayerRolesChanged(player);
 
+            var overall = _playTimeTracking.GetOverallPlaytime(player);
+
             // Все появляются в прибытии в начале раунда. Зачем? А мне нравится эта бегающаа орящая толпа.
+            // Игроки у которых наиграно меньше ArrivalsMinHours часов будут появляеться всегда по спавнеру професии.
             EntityUid? mobMaybe = null;
             var spawnPointType = SpawnPointType.Arrivals;
-            if (jobPrototype.AlwaysUseSpawner)
+            if (jobPrototype.AlwaysUseSpawner || overall < TimeSpan.FromHours(_configurationManager.GetCVar(SunriseCCVars.ArrivalsMinHours)))
             {
                 lateJoin = false;
                 spawnPointType = SpawnPointType.Job;

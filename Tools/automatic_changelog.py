@@ -12,7 +12,7 @@ from typing import List, Any, Iterable
 
 MAX_ENTRIES = 5000
 HEADER_RE = r"(?::cl:|🆑)\s*(.+)$"
-ENTRY_RE = r"^ *[*-] *(add|remove|tweak|fix): *([^\r\n]*)"
+ENTRY_RE = r"^ *[*-] *(add|remove|tweak|fix):(?P<message>.+)"
 COMMENT_RE = r"<!--.*?-->|<!--[\s\S]*?-->"
 
 DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL")
@@ -145,7 +145,7 @@ def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print("Usage: update_changelog.py <changelog_file> <pr_body>")
+        print("Usage: automatic_changelog.py <changelog_file> <pr_body>")
         sys.exit(1)
 
     changelog_file = sys.argv[1]
