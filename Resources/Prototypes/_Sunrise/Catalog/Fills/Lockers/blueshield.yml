@@ -1,0 +1,18 @@
+- type: entity
+  id: LockerBlueshieldFilledHardsuit
+  suffix: Filled, Hardsuit
+  parent: LockerBlueshield
+  components:
+  - type: StorageFill
+    contents:
+      - id: PinpointerNuclear
+      - id: WeaponDisabler
+      - id: ClothingHeadsetAltCommand
+      - id: SpaceCash1000
+      - id: CigarGoldCase
+        prob: 0.25
+      - id: TrackingImplanter
+        amount: 4
+      - id: ClothingOuterHardsuitBlueshield
+      - id: OxygenTankFilled
+      - id: WeaponEnergyGunMultiphase

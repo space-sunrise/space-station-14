@@ -85,3 +85,14 @@
     sprite: _Sunrise/Clothing/Head/Hats/caphat.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hats/caphat.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretBlueShield
+  name: берет офицера «синий щит»
+  description: Синий.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/blueshield.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/blueshield.rsi
