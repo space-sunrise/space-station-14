@@ -273,9 +273,6 @@
       - id: ClothingOuterCoatHoSGreatcoat
       - id: ClothingOuterHardsuitSecurityRed
       - id: ClothingMaskGasSwat
-#      - id: ClothingShoeSlippersDuck: Need more space for style
-#        prob: 0.2
-      - id: WeaponEnergyGunMultiphase  # Sunrise-AEG
       - id: ClothingBeltSecurityFilled
       - id: ClothingHeadsetAltSecurity
       - id: ClothingEyesGlassesSecurity
@@ -315,7 +312,6 @@
       - id: BoxEncryptionKeySecurity
       - id: HoloprojectorSecurity
       - id: BookSecretDocuments
-      - id: WeaponEnergyGunMultiphase  # Sunrise-AEG
 
 - type: entity
   id: LockerFreezerVaultFilled

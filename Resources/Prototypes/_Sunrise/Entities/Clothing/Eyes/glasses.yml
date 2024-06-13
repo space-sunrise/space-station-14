@@ -19,3 +19,29 @@
       sprite: _Sunrise/Clothing/Eyes/Glasses/kim.rsi
     - type: Clothing
       sprite: _Sunrise/Clothing/Eyes/Glasses/kim.rsi
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesGlassesBlueShield
+  name: очки офицера «синий щит»
+  description: Инновационные синие линзы скрывают глаза от световых вспышек и имеют встроенный визор.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Eyes/Glasses/blueshield_sunglasses.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Eyes/Glasses/blueshield_sunglasses.rsi
+  - type: FlashImmunity
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
+  - type: Tag
+    tags:
+    - HudMedical
+  - type: EyeProtection
+    protectionTime: 5

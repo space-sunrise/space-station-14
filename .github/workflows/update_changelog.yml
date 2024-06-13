@@ -30,9 +30,11 @@ jobs:
         python-version: '3.x'
 
     - name: Install Dependencies
-      run: pip install pyyaml
+      run: pip install pyyaml requests
 
     - name: Extract Changelog from PR
+      env:
+        DISCORD_WEBHOOK_URL: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK }}
       run: python3 Tools/automatic_changelog.py "Resources/Changelog/ChangelogSunrise.yml" "${{ github.event.pull_request.body }}"
 
     - name: Commit and Push Changes
