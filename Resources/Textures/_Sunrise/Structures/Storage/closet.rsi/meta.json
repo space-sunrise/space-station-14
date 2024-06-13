@@ -1,0 +1,44 @@
+{
+    "version": 1,
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "copyright": "Taken from tgstation",
+    "license": "CC-BY-SA-3.0",
+    "states": [
+        {
+            "name": "bssecure_door"
+        },
+        {
+            "name": "bssecure"
+        },
+        {
+            "name": "bssecure_open"
+        },
+        {
+            "name": "welded"
+        },
+        {
+            "name": "unlocked"
+        },
+        {
+            "name": "locked"
+        },
+        {
+            "name": "sparking"
+        },
+        {
+            "name": "generic"
+        },
+        {
+            "name": "generic_door"
+        },
+        {
+            "name": "generic_open"
+        },
+        {
+            "name": "generic_icon"
+        }
+    ]
+}
