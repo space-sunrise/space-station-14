@@ -51,12 +51,14 @@ public sealed class SpawnPointSystem : EntitySystem
                 }
             }
 
-            if (_gameTicker.RunLevel == GameRunLevel.InRound && spawnPoint.SpawnType == SpawnPointType.LateJoin)
+            if (_gameTicker.RunLevel == GameRunLevel.InRound &&
+                spawnPoint.SpawnType == SpawnPointType.LateJoin &&
+                args.DesiredSpawnPointType != SpawnPointType.Job)
             {
                 possiblePositions.Add(xform.Coordinates);
             }
 
-            if (_gameTicker.RunLevel != GameRunLevel.InRound &&
+            if ((_gameTicker.RunLevel != GameRunLevel.InRound || args.DesiredSpawnPointType == SpawnPointType.Job) &&
                 spawnPoint.SpawnType == SpawnPointType.Job &&
                 (args.Job == null || spawnPoint.Job == args.Job.Prototype))
             {
