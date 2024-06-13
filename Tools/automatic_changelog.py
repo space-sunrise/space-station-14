@@ -131,13 +131,15 @@ def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
                 else:
                     group_content.write(f"{emoji} {message}\n")
 
+        group_text = group_content.getvalue()
+
         embed = {
             "title": f"Автор: **{name}**",
-            "description": group_content,
+            "description": group_text,
             "color": 0x3498db
         }
 
-        if len(group_content) > 0:
+        if len(group_text) > 0:
             send_embed_discord(embed)
 
 
