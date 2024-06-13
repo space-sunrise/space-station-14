@@ -12,7 +12,7 @@ from typing import List, Any, Iterable
 
 MAX_ENTRIES = 5000
 HEADER_RE = r"(?::cl:|🆑)\s*(.+)$"
-ENTRY_RE = r"^ *[*-] *(add|remove|tweak|fix): *([^\r\n]*)"
+ENTRY_RE = r"^ *[*-] *(add|remove|tweak|fix):(?P<message>.+)"
 COMMENT_RE = r"<!--.*?-->|<!--[\s\S]*?-->"
 
 DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL")
