@@ -29,9 +29,3 @@ trait-snoring-name = Храп
 trait-snoring-desc = Вы храпите во время сна.
 trait-liar-name = Патологический лжец
 trait-liar-desc = Вы с трудом заставляете себя говорить правду. Иногда вы всё равно лжёте.
-
-trait-colorblindness-name = Дальтонизм
-trait-colorblindness-desc = Вы видите мир не так, как все.
-
-trait-OwOAccent-name = Акцент OwO
-trait-OwOAccent-desc = Как же ти хочешь пвосто все бвосить и сказать (・`ω´・)

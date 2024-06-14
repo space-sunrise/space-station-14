@@ -50,9 +50,3 @@ trait-cowboy-desc = You speak with a distinct cowboy accent!
 
 trait-italian-name = Italian accent
 trait-italian-desc = Mamma mia! You seem to have lived in space italy!
-
-trait-colorblindness-name = Color blindness
-trait-colorblindness-desc = You see the world differently than everyone else
-
-trait-OwOAccent-name = OwO accent
-trait-OwOAccent-desc = You just want to UwU
