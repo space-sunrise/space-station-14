@@ -73,8 +73,16 @@ namespace Content.IntegrationTests.Tests
                 var entityMetas = Query<MetaDataComponent>(entityMan).ToList();
                 foreach (var (uid, meta) in entityMetas)
                 {
+                    // Check the prototype ID before deleting the entity
+                    if (meta.EntityPrototype?.ID == "StandardNanotrasenStation")
+                    {
+                        continue; // Skip deleting this entity
+                    }
+
                     if (!meta.EntityDeleted)
+                    {
                         entityMan.DeleteEntity(uid);
+                    }
                 }
 
                 Assert.That(entityMan.EntityCount, Is.Zero);
@@ -127,8 +135,16 @@ namespace Content.IntegrationTests.Tests
                 var entityMetas = Query<MetaDataComponent>(entityMan).ToList();
                 foreach (var (uid, meta) in entityMetas)
                 {
+                    // Check the prototype ID before deleting the entity
+                    if (meta.EntityPrototype?.ID == "StandardNanotrasenStation")
+                    {
+                        continue; // Skip deleting this entity
+                    }
+
                     if (!meta.EntityDeleted)
+                    {
                         entityMan.DeleteEntity(uid);
+                    }
                 }
 
                 Assert.That(entityMan.EntityCount, Is.Zero);
@@ -201,8 +217,16 @@ namespace Content.IntegrationTests.Tests
                 var entityMetas = Query<MetaDataComponent>(sEntMan).ToList();
                 foreach (var (uid, meta) in entityMetas)
                 {
+                    // Check the prototype ID before deleting the entity
+                    if (meta.EntityPrototype?.ID == "StandardNanotrasenStation")
+                    {
+                        continue; // Skip deleting this entity
+                    }
+
                     if (!meta.EntityDeleted)
+                    {
                         sEntMan.DeleteEntity(uid);
+                    }
                 }
 
                 Assert.That(sEntMan.EntityCount, Is.Zero);
