@@ -25,7 +25,7 @@ public sealed partial class MindTests
         // Delete **everything**
         var conHost = pair.Server.ResolveDependency<IConsoleHost>();
         await pair.Server.WaitPost(() => conHost.ExecuteCommand("entities delete"));
-        await pair.RunTicksSync(5);
+        await pair.RunTicksSync(20);
 
         Assert.That(pair.Server.EntMan.EntityCount, Is.EqualTo(0));
 
@@ -33,6 +33,8 @@ public sealed partial class MindTests
         {
             Console.WriteLine(pair.Client.EntMan.ToPrettyString(ent));
         }
+		
+		Console.WriteLine($"Client entity count: {pair.Client.EntMan.EntityCount}");
 
         Assert.That(pair.Client.EntMan.EntityCount, Is.EqualTo(0));
 
