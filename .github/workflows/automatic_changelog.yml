@@ -9,7 +9,7 @@ on:
 
 jobs:
   update_changelog:
-    if: github.event.pull_request.merged == true && github.event.commits[0].author.name != 'GitHubActions'
+    if: github.event.pull_request.merged == true && github.event.commits[0].author.name != 'GitHubActions' && github.repository == 'space-sunrise/space-station-14'
     uses: space-sunrise/space-station-14/.github/workflows/update_changelog.yml@master
     with:
       pr_body: ${{ github.event.pull_request.body }}
