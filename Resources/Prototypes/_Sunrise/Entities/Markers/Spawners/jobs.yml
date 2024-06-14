@@ -25,6 +25,20 @@
       - state: brigmedic
 
 - type: entity
+  id: SpawnPointBlueShield
+  parent: SpawnPointJobBase
+  name: blueshield
+  components:
+  - type: SpawnPoint
+    job_id: BlueShield
+  - type: Sprite
+    sprite: _Sunrise/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: blueshield
+      - state: jobicon
+
+- type: entity
   id: SpawnPointCentCommOperator
   parent: SpawnPointJobBase
   name: Central Command Operator

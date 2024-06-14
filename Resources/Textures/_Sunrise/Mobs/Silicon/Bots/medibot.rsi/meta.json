@@ -12,12 +12,20 @@
             "delays": [
                 [
                     0.2,
+<<<<<<< HEAD
                     0.3,
                     0.2,
                     0.3
+=======
+                    0.2
+>>>>>>> upstream/master
                 ]
             ]
         }
     ],
     "version": 1
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> upstream/master

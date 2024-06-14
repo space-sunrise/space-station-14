@@ -43,7 +43,7 @@
   id: MagistratGear
   equipment:
     jumpsuit: MagistratUniformSuit
-    back: ClothingBackpackIAAFilled
+    back: ClothingBackpack
     shoes: ClothingShoesBootsLaceup
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesColorWhite
@@ -51,5 +51,8 @@
     id: MagistratPDA
     ears: ClothingHeadsetAltCommand
     head: ClothingHeadHatPwig
-    pocket1: Flash
-    pocket2: ClothingNeckLawyerbadge
+  storage:
+    back:
+    - BoxSurvival
+    - RubberStampMagistrat
+    - ClothingNeckLawyerbadge

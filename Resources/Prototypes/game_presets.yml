@@ -43,6 +43,7 @@
   description: greenshift-description
   rules:
   - BasicRoundstartVariation
+  - GreenshiftAnnouncement
 
 - type: gamePreset
   id: Secret

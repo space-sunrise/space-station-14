@@ -6,3 +6,14 @@
       sprite: _Sunrise/Clothing/Shoes/Boots/jackboots_sec.rsi
     - type: Clothing
       sprite: _Sunrise/Clothing/Shoes/Boots/jackboots_sec.rsi
+
+- type: entity
+  parent: ClothingShoesMilitaryBase
+  id: ClothingShoesBootsBlueShield
+  name: ботинки офицера «синий щит»
+  description: Синий или голубой, вот в чём вопрос.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Shoes/Boots/blueshield.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Shoes/Boots/blueshield.rsi

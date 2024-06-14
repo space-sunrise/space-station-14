@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared._Sunrise.Roles;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Roles.Jobs;
 using JetBrains.Annotations;
@@ -220,6 +221,9 @@ namespace Content.Shared.Roles
 
                         return true;
                     }
+                case DiscordRoleRequirement _: // Sunrise-Edit
+                    reason = FormattedMessage.FromMarkup("Для игры на этой роли вы должны получить роль в дискорде.");
+                    return false;
                 default:
                     throw new NotImplementedException();
             }

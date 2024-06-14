@@ -10478,6 +10478,12 @@ entities:
     - type: Transform
       pos: -11.5,0.5
       parent: 8364
+  - uid: 9450
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -19.5,-11.5
+      parent: 8364
   - uid: 15493
     components:
     - type: Transform
@@ -11013,7 +11019,7 @@ entities:
       linkedPorts:
         12469:
         - DoorStatus: Close
-- proto: AirlockExternalGlassShuttleArrivals
+- proto: AirlockExternalGlassShuttleArrivalsLocked
   entities:
   - uid: 606
     components:
@@ -11426,12 +11432,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: -38.5,0.5
       parent: 8364
-  - uid: 11913
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -19.5,-11.5
-      parent: 8364
   - uid: 11980
     components:
     - type: Transform
@@ -11838,6 +11838,12 @@ entities:
       parent: 8364
 - proto: AirlockMaintCommandLocked
   entities:
+  - uid: 11913
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -25.5,-12.5
+      parent: 8364
   - uid: 14187
     components:
     - type: Transform
@@ -12124,12 +12130,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -62.5,-13.5
-      parent: 8364
-  - uid: 14996
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -25.5,-12.5
       parent: 8364
   - uid: 15001
     components:
@@ -15544,6 +15544,11 @@ entities:
     - type: Transform
       pos: -19.5,16.5
       parent: 8364
+  - uid: 20939
+    components:
+    - type: Transform
+      pos: -23.5,-9.5
+      parent: 8364
   - uid: 21210
     components:
     - type: Transform
@@ -15676,6 +15681,14 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 24.5,-27.5
+      parent: 8364
+- proto: BedsheetNT
+  entities:
+  - uid: 20984
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -23.5,-9.5
       parent: 8364
 - proto: BedsheetOrange
   entities:
@@ -71295,6 +71308,14 @@ entities:
     - type: Transform
       pos: 29.484377,-32.156303
       parent: 8364
+- proto: CurtainsBlueOpen
+  entities:
+  - uid: 20985
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -23.5,-9.5
+      parent: 8364
 - proto: d10Dice
   entities:
   - uid: 10852
@@ -80607,6 +80628,11 @@ entities:
     components:
     - type: Transform
       pos: 20.5,4.5
+      parent: 8364
+  - uid: 21115
+    components:
+    - type: Transform
+      pos: -22.5,-9.5
       parent: 8364
 - proto: DresserCaptainFilled
   entities:
@@ -121386,6 +121412,13 @@ entities:
     - type: Transform
       pos: 5.5,-49.5
       parent: 8364
+- proto: LockerBlueshieldFilledHardsuit
+  entities:
+  - uid: 14996
+    components:
+    - type: Transform
+      pos: -21.5,-9.5
+      parent: 8364
 - proto: LockerBoozeFilled
   entities:
   - uid: 1718
@@ -125299,11 +125332,6 @@ entities:
     - type: Transform
       pos: 44.578045,-62.22757
       parent: 8364
-  - uid: 21798
-    components:
-    - type: Transform
-      pos: -22.362862,-11.265691
-      parent: 8364
 - proto: PlushieRGBee
   entities:
   - uid: 5880
@@ -125741,6 +125769,12 @@ entities:
     - type: Transform
       pos: 13.5,-14.5
       parent: 8364
+  - uid: 17387
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -19.5,-13.5
+      parent: 8364
   - uid: 18617
     components:
     - type: Transform
@@ -125908,11 +125942,6 @@ entities:
       parent: 8364
 - proto: PottedPlant0
   entities:
-  - uid: 9450
-    components:
-    - type: Transform
-      pos: -23.5,-9.5
-      parent: 8364
   - uid: 26870
     components:
     - type: Transform
@@ -128290,6 +128319,11 @@ entities:
       parent: 8364
     - type: ApcPowerReceiver
       powerLoad: 0
+  - uid: 18592
+    components:
+    - type: Transform
+      pos: -22.5,-9.5
+      parent: 8364
   - uid: 18619
     components:
     - type: Transform
@@ -128606,6 +128640,12 @@ entities:
       parent: 8364
     - type: ApcPowerReceiver
       powerLoad: 0
+  - uid: 20887
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -24.5,-11.5
+      parent: 8364
   - uid: 20901
     components:
     - type: Transform

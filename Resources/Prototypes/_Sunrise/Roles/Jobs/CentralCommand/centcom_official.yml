@@ -4,11 +4,9 @@
   description: job-description-centcomoff
   playTimeTracker: JobCentCommOfficial
   requirements:
-  - !type:DepartmentTimeRequirement
-    department: Command
-    time: 180000 #50 hrs
+  - !type:DiscordRoleRequirement
   weight: 30
-  setPreference: true
+  setPreference: false
   startingGear: CentCommOfficialGear
   icon: "JobIconNanotrasen"
   supervisors: job-supervisors-centcom

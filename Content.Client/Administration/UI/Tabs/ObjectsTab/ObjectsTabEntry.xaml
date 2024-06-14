@@ -13,5 +13,17 @@
                SizeFlagsStretchRatio="3"
                HorizontalExpand="True"
                ClipText="True"/>
+        <customControls:VSeparator/>
+        <Button Name="TeleportButton"
+                Text="{Loc object-tab-entity-teleport}"
+               SizeFlagsStretchRatio="3"
+               HorizontalExpand="True"
+               ClipText="True"/>
+        <customControls:VSeparator/>
+        <Button Name="DeleteButton"
+                Text="{Loc object-tab-entity-delete}"
+                SizeFlagsStretchRatio="3"
+                HorizontalExpand="True"
+                ClipText="True"/>
     </BoxContainer>
 </PanelContainer>
