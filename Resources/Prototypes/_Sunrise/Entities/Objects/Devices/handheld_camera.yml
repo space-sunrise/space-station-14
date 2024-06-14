@@ -1,0 +1,32 @@
+- type: entity
+  parent: BaseItem
+  id: HandheldCamera
+  name: Body Camera
+  description: Camera
+  components:
+  - type: Item
+    sprite: _Sunrise/Entities/Objects/Devices/handheld_camera.rsi
+  - type: Sprite
+    state: icon
+    sprite: _Sunrise/Entities/Objects/Devices/handheld_camera.rsi
+  - type: Clothing
+    quickEquip: true
+    slots:
+    - neck
+  - type: Eye
+  - type: UserInterface
+    interfaces:
+      enum.SurveillanceCameraSetupUiKey.Camera:
+        type: SurveillanceCameraSetupBoundUi
+  - type: DeviceNetwork
+    deviceNetId: Wired
+    receiveFrequencyId: SurveillanceCameraHandheld
+    transmitFrequencyId: SurveillanceCamera
+  - type: SurveillanceCamera
+    setupAvailableNetworks:
+      - SurveillanceCameraHandheld
+      - SurveillanceCamera
+  - type: SpamEmitSound
+    minInterval: 10
+    maxInterval: 90
+    sound: /Audio/Machines/timer.ogg
