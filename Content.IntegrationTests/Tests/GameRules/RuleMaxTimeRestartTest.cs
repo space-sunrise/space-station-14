@@ -55,13 +55,15 @@ namespace Content.IntegrationTests.Tests.GameRules
             {
                 Assert.That(sGameTicker.RunLevel, Is.EqualTo(GameRunLevel.PostRound));
 				
-				var gameRuleEntities = entityManager.GetEntities<GameRuleComponent>().ToList();
+                var gameRuleEntities = entityManager.GetEntities().ToList()
+                    .Where(e => e.HasComponent<GameRuleComponent>()).ToList();
                 foreach (var entity in gameRuleEntities)
                 {
                     entityManager.DeleteEntity(entity);
                 }
 
-                var activeGameRuleEntities = entityManager.GetEntities<ActiveGameRuleComponent>().ToList();
+                var activeGameRuleEntities = entityManager.GetEntities().ToList()
+                    .Where(e => e.HasComponent<ActiveGameRuleComponent>()).ToList();
                 foreach (var entity in activeGameRuleEntities)
                 {
                     entityManager.DeleteEntity(entity);
