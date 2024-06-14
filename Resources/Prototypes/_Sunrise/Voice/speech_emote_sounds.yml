@@ -15,11 +15,11 @@
       collection: MaleCry
     Whistle:
       collection: Whistles
-    Mews:
+    Mew:
       collection: FelinidMews
     Meow:
       collection: FelinidMeows
-    Hiss:
+    Hisses:
       collection: FelinidHisses
     Purr:
       collection: FelinidPurrs
@@ -43,11 +43,11 @@
       collection: FemaleCry
     Whistle:
       collection: Whistles
-    Mews:
+    Mew:
       collection: FelinidMews
     Meow:
       collection: FelinidMeows
-    Hiss:
+    Hisses:
       collection: FelinidHisses
     Purr:
       collection: FelinidPurrs

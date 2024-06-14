@@ -1,6 +1,6 @@
 # vocal emotes
 - type: emote
-  id: Mews
+  id: Mew
   name: chat-emote-name-mews
   category: Vocal
   chatMessages: [мя!]
@@ -35,7 +35,7 @@
     - мяукает!
 
 - type: emote
-  id: Hiss
+  id: Hisses
   name: chat-emote-name-hisses
   category: Vocal
   chatMessages: [шипит!]
