@@ -5,7 +5,7 @@ on:
 
 jobs:
   labeler:
-    if: github.actor != 'PJBot'
+    if: github.actor != 'GitHubActions'
     permissions:
       contents: read
       pull-requests: write
