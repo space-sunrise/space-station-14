@@ -121,3 +121,10 @@
   loadouts:
   - BlueShieldJumpsuit
   - BlueShieldJumpskirt
+
+- type: loadoutGroup
+  id: Bodycam
+  name: loadout-group-bodycam
+  minLimit: 0
+  loadouts:
+  - Bodycam

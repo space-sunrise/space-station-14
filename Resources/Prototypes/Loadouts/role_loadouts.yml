@@ -381,6 +381,7 @@
   - SecurityBelt
   - HeadofSecurityOuterClothing
   - SecurityShoes
+  - Bodycam
   - Trinkets
   # Sunrise-start
   - Bra
@@ -397,6 +398,7 @@
   - SecurityBelt
   - WardenOuterClothing
   - SecurityShoes
+  - Bodycam
   - Trinkets
   # Sunrise-start
   - Bra
@@ -414,6 +416,7 @@
   - SecurityShoes
   - SecurityPDA
   - SecurityBelt
+  - Bodycam
   - Trinkets
   # Sunrise-start
   - Bra
@@ -429,6 +432,7 @@
   - DetectiveJumpsuit
   - SecurityBackpack
   - DetectiveOuterClothing
+  - Bodycam
   - SecurityShoes
   - Trinkets
   # Sunrise-start
@@ -442,6 +446,7 @@
   groups:
   - SecurityCadetJumpsuit
   - SecurityBackpack
+  - Bodycam
   - Trinkets
   # Sunrise-start
   - Bra
