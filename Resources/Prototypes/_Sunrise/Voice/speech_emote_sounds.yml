@@ -110,9 +110,9 @@
     Growls:
       collection: VulpkaninGrowls
     Howl:
-      collection: VulpkaninHowl
+      collection: VulpkaninHowls
     Bark:
-      collection: VulpkaninBark
+      collection: VulpkaninBarks
 
 - type: emoteSounds
   id: FemaleVulpkanin
@@ -136,9 +136,9 @@
     Growls:
       collection: VulpkaninGrowls
     Howl:
-      collection: VulpkaninHowl
+      collection: VulpkaninHowls
     Bark:
-      collection: VulpkaninBark
+      collection: VulpkaninBarks
 
 - type: emoteSounds
   id: UnisexSwine
