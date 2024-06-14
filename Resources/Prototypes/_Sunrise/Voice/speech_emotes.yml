@@ -16,7 +16,7 @@
     - мя!
 
 - type: emote
-  id: Meows
+  id: Meow
   name: chat-emote-name-meows
   category: Vocal
   chatMessages: [мяу!]
@@ -35,7 +35,7 @@
     - мяукает!
 
 - type: emote
-  id: Hisses
+  id: Hiss
   name: chat-emote-name-hisses
   category: Vocal
   chatMessages: [шипит!]
@@ -51,7 +51,7 @@
   - hissing!
 
 - type: emote
-  id: Purrs
+  id: Purr
   name: chat-emote-name-purrs
   category: Vocal
   chatMessages: [мурчит!]
@@ -64,7 +64,7 @@
     - Purrs!
 
 - type: emote
-  id: Growls
+  id: Growl
   name: chat-emote-name-growls
   category: Vocal
   chatMessages: [рычит!]

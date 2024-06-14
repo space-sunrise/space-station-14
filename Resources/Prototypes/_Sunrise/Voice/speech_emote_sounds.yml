@@ -17,13 +17,13 @@
       collection: Whistles
     Mews:
       collection: FelinidMews
-    Meows:
+    Meow:
       collection: FelinidMeows
-    Hisses:
+    Hiss:
       collection: FelinidHisses
-    Purrs:
+    Purr:
       collection: FelinidPurrs
-    Growls:
+    Growl:
       collection: FelinidGrowls
 
 - type: emoteSounds
@@ -45,13 +45,13 @@
       collection: Whistles
     Mews:
       collection: FelinidMews
-    Meows:
+    Meow:
       collection: FelinidMeows
-    Hisses:
+    Hiss:
       collection: FelinidHisses
-    Purrs:
+    Purr:
       collection: FelinidPurrs
-    Growls:
+    Growl:
       collection: FelinidGrowls
 
 - type: emoteSounds
@@ -107,7 +107,7 @@
       collection: Whistles
     Sigh:
       collection: MaleSigh
-    Growls:
+    Growl:
       collection: VulpkaninGrowls
     Howl:
       collection: VulpkaninHowls
@@ -133,7 +133,7 @@
       collection: Whistles
     Sigh:
       collection: FemaleSigh
-    Growls:
+    Growl:
       collection: VulpkaninGrowls
     Howl:
       collection: VulpkaninHowls
