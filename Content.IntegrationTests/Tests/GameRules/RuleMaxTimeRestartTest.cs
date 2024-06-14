@@ -54,20 +54,6 @@ namespace Content.IntegrationTests.Tests.GameRules
             await server.WaitAssertion(() =>
             {
                 Assert.That(sGameTicker.RunLevel, Is.EqualTo(GameRunLevel.PostRound));
-				
-                var gameRuleEntities = entityManager.GetEntities().ToList()
-                    .Where(e => e.HasComponent<GameRuleComponent>()).ToList();
-                foreach (var entity in gameRuleEntities)
-                {
-                    entityManager.DeleteEntity(entity);
-                }
-
-                var activeGameRuleEntities = entityManager.GetEntities().ToList()
-                    .Where(e => e.HasComponent<ActiveGameRuleComponent>()).ToList();
-                foreach (var entity in activeGameRuleEntities)
-                {
-                    entityManager.DeleteEntity(entity);
-                }
             });
 
             ticks = sGameTiming.TickRate * (int) Math.Ceiling(maxTime.RoundEndDelay.TotalSeconds * 1.1f);
