@@ -67,9 +67,24 @@ public class RadialContainer : LayoutContainer
     {
 
     }
+	
+    private void UpdateRadius()
+    {
+        const float baseRadius = 100f;
+        const float radiusIncrement = 5f;
+
+        var children = ReserveSpaceForHiddenChildren ? Children : Children.Where(x => x.Visible);
+        var childCount = children.Count();
+
+        
+        Radius = baseRadius + (childCount * radiusIncrement);
+    }
+
 
     protected override void Draw(DrawingHandleScreen handle)
     {
+		UpdateRadius();
+		
         var children = ReserveSpaceForHiddenChildren ? Children : Children.Where(x => x.Visible);
         var childCount = children.Count();
 
