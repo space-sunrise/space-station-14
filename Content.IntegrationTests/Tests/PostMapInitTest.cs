@@ -31,7 +31,8 @@ namespace Content.IntegrationTests.Tests
         {
             "CentComm",
             "Dart",
-            "NukieOutpost"
+            "NukieOutpost",
+			"SunriseCentComm"
         };
 
         private static readonly string[] Grids =
@@ -64,7 +65,12 @@ namespace Content.IntegrationTests.Tests
             "Atlas",
             "Reach",
             "Train",
-            "Oasis"
+            "Oasis",
+			"SunriseBox",
+			"SunriseCluster",
+			"SunriseDelta",
+			"SunriseFland",
+			"SunriseMarathon"
         };
 
         /// <summary>
