@@ -1177,7 +1177,7 @@
     forcedCrushClose: true
     crushDamage:
       types:
-        Blunt: 1000 # А вот нехуй.
+        Blunt: 10 # А вот нехуй.
 
 - type: entity
   parent: AirlockGlassShuttle

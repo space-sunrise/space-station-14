@@ -323,50 +323,50 @@ entities:
             color: '#52B4E9FF'
             id: BrickCornerOverlayNE
           decals:
-            1462: -23,24
+            1451: -23,24
         - node:
             color: '#52B4E9FF'
             id: BrickCornerOverlayNW
           decals:
-            1399: -27,24
+            1388: -27,24
         - node:
             color: '#52B4E9FF'
             id: BrickCornerOverlaySE
           decals:
-            1400: -23,20
+            1389: -23,20
         - node:
             color: '#52B4E9FF'
             id: BrickCornerOverlaySW
           decals:
-            1401: -27,20
+            1390: -27,20
         - node:
             color: '#52B4E9FF'
             id: BrickLineOverlayE
           decals:
-            1411: -23,23
-            1412: -23,22
-            1413: -23,21
+            1400: -23,23
+            1401: -23,22
+            1402: -23,21
         - node:
             color: '#52B4E9FF'
             id: BrickLineOverlayN
           decals:
-            1408: -26,24
-            1409: -25,24
-            1410: -24,24
+            1397: -26,24
+            1398: -25,24
+            1399: -24,24
         - node:
             color: '#52B4E9FF'
             id: BrickLineOverlayS
           decals:
-            1402: -26,20
-            1403: -25,20
-            1404: -24,20
+            1391: -26,20
+            1392: -25,20
+            1393: -24,20
         - node:
             color: '#52B4E9FF'
             id: BrickLineOverlayW
           decals:
-            1405: -27,21
-            1406: -27,22
-            1407: -27,23
+            1394: -27,21
+            1395: -27,22
+            1396: -27,23
         - node:
             color: '#FFFFFFFF'
             id: BrickTileDarkBox
@@ -788,9 +788,9 @@ entities:
             color: '#96DAFFFF'
             id: BrickTileWhiteCornerNe
           decals:
-            1430: -12,11
-            1440: -16,16
-            1464: -12,8
+            1419: -12,11
+            1429: -16,16
+            1453: -12,8
         - node:
             color: '#9D9D97FF'
             id: BrickTileWhiteCornerNe
@@ -833,9 +833,9 @@ entities:
             color: '#96DAFFFF'
             id: BrickTileWhiteCornerNw
           decals:
-            1439: -17,16
-            1455: -27,11
-            1463: -22,8
+            1428: -17,16
+            1444: -27,11
+            1452: -22,8
         - node:
             color: '#9D9D97FF'
             id: BrickTileWhiteCornerNw
@@ -883,8 +883,8 @@ entities:
             color: '#96DAFFFF'
             id: BrickTileWhiteCornerSe
           decals:
-            1426: -12,5
-            1474: -12,9
+            1415: -12,5
+            1463: -12,9
         - node:
             color: '#9D9D97FF'
             id: BrickTileWhiteCornerSe
@@ -932,8 +932,8 @@ entities:
             color: '#96DAFFFF'
             id: BrickTileWhiteCornerSw
           decals:
-            1416: -22,5
-            1456: -27,9
+            1405: -22,5
+            1445: -27,9
         - node:
             color: '#9D9D97FF'
             id: BrickTileWhiteCornerSw
@@ -966,7 +966,7 @@ entities:
             color: '#96DAFFFF'
             id: BrickTileWhiteInnerNe
           decals:
-            1434: -16,11
+            1423: -16,11
         - node:
             color: '#9FED5896'
             id: BrickTileWhiteInnerNe
@@ -996,7 +996,7 @@ entities:
             color: '#96DAFFFF'
             id: BrickTileWhiteInnerNw
           decals:
-            1445: -17,11
+            1434: -17,11
         - node:
             color: '#9FED5896'
             id: BrickTileWhiteInnerNw
@@ -1057,13 +1057,13 @@ entities:
             color: '#96DAFFFF'
             id: BrickTileWhiteLineE
           decals:
-            1427: -12,6
-            1428: -12,7
-            1429: -12,10
-            1435: -16,12
-            1436: -16,13
-            1437: -16,14
-            1438: -16,15
+            1416: -12,6
+            1417: -12,7
+            1418: -12,10
+            1424: -16,12
+            1425: -16,13
+            1426: -16,14
+            1427: -16,15
         - node:
             color: '#9D9D97FF'
             id: BrickTileWhiteLineE
@@ -1101,27 +1101,27 @@ entities:
             color: '#96DAFFFF'
             id: BrickTileWhiteLineN
           decals:
-            1431: -13,11
-            1432: -14,11
-            1433: -15,11
-            1446: -18,11
-            1447: -19,11
-            1448: -20,11
-            1449: -21,11
-            1450: -22,11
-            1451: -23,11
-            1452: -24,11
-            1453: -25,11
-            1454: -26,11
-            1465: -21,8
-            1466: -20,8
-            1467: -19,8
-            1468: -18,8
-            1469: -17,8
-            1470: -16,8
-            1471: -15,8
-            1472: -14,8
-            1473: -13,8
+            1420: -13,11
+            1421: -14,11
+            1422: -15,11
+            1435: -18,11
+            1436: -19,11
+            1437: -20,11
+            1438: -21,11
+            1439: -22,11
+            1440: -23,11
+            1441: -24,11
+            1442: -25,11
+            1443: -26,11
+            1454: -21,8
+            1455: -20,8
+            1456: -19,8
+            1457: -18,8
+            1458: -17,8
+            1459: -16,8
+            1460: -15,8
+            1461: -14,8
+            1462: -13,8
         - node:
             color: '#9D9D97FF'
             id: BrickTileWhiteLineN
@@ -1209,29 +1209,29 @@ entities:
             color: '#96DAFFFF'
             id: BrickTileWhiteLineS
           decals:
-            1417: -21,5
-            1418: -20,5
-            1419: -19,5
-            1420: -18,5
-            1421: -17,5
-            1422: -16,5
-            1423: -15,5
-            1424: -14,5
-            1425: -13,5
-            1458: -26,9
-            1459: -25,9
-            1460: -24,9
-            1461: -23,9
-            1475: -22,9
-            1476: -21,9
-            1477: -20,9
-            1478: -19,9
-            1479: -18,9
-            1480: -17,9
-            1481: -16,9
-            1482: -15,9
-            1483: -14,9
-            1484: -13,9
+            1406: -21,5
+            1407: -20,5
+            1408: -19,5
+            1409: -18,5
+            1410: -17,5
+            1411: -16,5
+            1412: -15,5
+            1413: -14,5
+            1414: -13,5
+            1447: -26,9
+            1448: -25,9
+            1449: -24,9
+            1450: -23,9
+            1464: -22,9
+            1465: -21,9
+            1466: -20,9
+            1467: -19,9
+            1468: -18,9
+            1469: -17,9
+            1470: -16,9
+            1471: -15,9
+            1472: -14,9
+            1473: -13,9
         - node:
             color: '#9D9D97FF'
             id: BrickTileWhiteLineS
@@ -1305,13 +1305,13 @@ entities:
             color: '#96DAFFFF'
             id: BrickTileWhiteLineW
           decals:
-            1414: -22,7
-            1415: -22,6
-            1441: -17,15
-            1442: -17,14
-            1443: -17,13
-            1444: -17,12
-            1457: -27,10
+            1403: -22,7
+            1404: -22,6
+            1430: -17,15
+            1431: -17,14
+            1432: -17,13
+            1433: -17,12
+            1446: -27,10
         - node:
             color: '#9D9D97FF'
             id: BrickTileWhiteLineW
@@ -3050,8 +3050,8 @@ entities:
             1163: -40,22
             1164: -40,23
             1198: -6,52
-            1397: -4,-30
-            1398: -4,-29
+            1386: -4,-30
+            1387: -4,-29
         - node:
             color: '#FFFFFFFF'
             id: WarnLineN
@@ -3108,8 +3108,8 @@ entities:
             1196: -8,52
             1321: -12,-53
             1322: -12,-54
-            1395: -2,-30
-            1396: -2,-29
+            1384: -2,-30
+            1385: -2,-29
         - node:
             color: '#FFFFFFFF'
             id: WarnLineW
@@ -29309,18 +29309,6 @@ entities:
     - type: Transform
       pos: -3.5,-22.5
       parent: 1
-- proto: DefaultStationBeaconUnanchored
-  entities:
-  - uid: 12380
-    components:
-    - type: Transform
-      pos: 15.520857,21.423676
-      parent: 1
-    - type: NavMapBeacon
-      color: '#00378993'
-      text: Офис ОСЩ
-    - type: WarpPoint
-      location: Офис ОСЩ
 - proto: DefaultStationBeaconVault
   entities:
   - uid: 12642
@@ -60677,11 +60665,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -23.5,6.5
       parent: 1
-  - uid: 4842
-    components:
-    - type: Transform
-      pos: 16.5,15.5
-      parent: 1
   - uid: 4920
     components:
     - type: Transform
@@ -68214,6 +68197,13 @@ entities:
     components:
     - type: Transform
       pos: 2.5,55.5
+      parent: 1
+- proto: SurveillanceCameraRouterHandheld
+  entities:
+  - uid: 4842
+    components:
+    - type: Transform
+      pos: 16.5,15.5
       parent: 1
 - proto: SurveillanceCameraRouterMedical
   entities:
@@ -80093,7 +80083,7 @@ entities:
   - uid: 5437
     components:
     - type: Transform
-      pos: 16.47756,15.577075
+      pos: 16.467678,13.21789
       parent: 1
 - proto: WeaponLaserCarbine
   entities:

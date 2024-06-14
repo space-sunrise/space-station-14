@@ -24,6 +24,7 @@
   - BrigmedicJumpsuit
   - BrigmedicBackpack
   - Trinkets
+  - Bodycam
   - Bra
   - Pants
   - Socks
@@ -32,6 +33,7 @@
   id: JobCentCommOfficial
   groups:
   - Trinkets
+  - Bodycam
   - Bra
   - Pants
   - Socks
@@ -40,6 +42,7 @@
   id: JobCentCommOperator
   groups:
   - Trinkets
+  - Bodycam
   - Bra
   - Pants
   - Socks
@@ -47,9 +50,10 @@
 - type: roleLoadout
   id: JobBlueShield
   groups:
+  - BlueShieldJumpsuit
+  - BlueShieldBackpack
+  - Bodycam
+  - Trinkets
   - Bra
   - Pants
   - Socks
-  - BlueShieldJumpsuit
-  - BlueShieldBackpack
-  - Trinkets

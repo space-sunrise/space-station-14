@@ -275,7 +275,7 @@
         reagent: SpaceDrugs
         quantity: 25
   - type: Sprite
-    sprite: _Sunrise/Mobs/Silicon/Bots/medibot.rsi
+    sprite: _Sunrise/Mobs/Silicon/Bots/medibot.rsi  # Sunrise-medibot
     state: medibot
   - type: HTN
     rootTask:

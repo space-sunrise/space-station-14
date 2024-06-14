@@ -144827,13 +144827,6 @@ entities:
     - type: Transform
       pos: -15.5,-57.5
       parent: 8364
-- proto: SurveillanceCameraRouterConstructed
-  entities:
-  - uid: 27354
-    components:
-    - type: Transform
-      pos: -15.5,-51.5
-      parent: 8364
 - proto: SurveillanceCameraRouterEngineering
   entities:
   - uid: 27331
@@ -144847,6 +144840,13 @@ entities:
     components:
     - type: Transform
       pos: -11.5,-56.5
+      parent: 8364
+- proto: SurveillanceCameraRouterHandheld
+  entities:
+  - uid: 21140
+    components:
+    - type: Transform
+      pos: -15.5,-51.5
       parent: 8364
 - proto: SurveillanceCameraRouterMedical
   entities:
