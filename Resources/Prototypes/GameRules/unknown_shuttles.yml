@@ -6,7 +6,7 @@
   - type: StationEvent
     startAnnouncement: station-event-unknown-shuttle-incoming
     startAudio:
-      path: /Audio/Announcements/attention.ogg
+      path: /Audio/Announcements/announce.ogg # Sunrise-edit
     weight: 5
     reoccurrenceDelay: 30
     duration: 1
