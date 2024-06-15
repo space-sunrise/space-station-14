@@ -1,13 +1,4 @@
 ﻿Entries:
-- author: Ghagliiarghii
-  changes:
-  - message: Removed Donk Pocket Bounty from Cargo
-    type: Remove
-  - message: Removed Box of Hugs Bounty from Cargo
-    type: Remove
-  id: 6237
-  time: '2024-03-27T21:50:35.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/26481
 - author: Vermidia
   changes:
   - message: Artifact node IDs are now only 3-digits long
@@ -3847,5 +3838,14 @@
       \u0435\u0430\u043B\u0438\u0441\u0442\u0438\u0447\u043D\u043E."
     type: Tweak
   id: 6736
+  time: '2024-06-15T02:24:27.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/125
+- author: pacable
+  changes:
+  - message: "\u041C\u0435\u0434\u0438\u0431\u043E\u0442 \u0442\u0435\u043F\u0435\u0440\
+      \u044C \u043B\u0435\u0442\u0430\u0435\u0442 \u0431\u043E\u043B\u0435\u0435 \u0440\
+      \u0435\u0430\u043B\u0438\u0441\u0442\u0438\u0447\u043D\u043E."
+    type: Tweak
+  id: 6737
   time: '2024-06-15T02:24:27.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/125
