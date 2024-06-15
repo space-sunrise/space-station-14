@@ -135,7 +135,6 @@ def send_embed_discord(embed):
     response = requests.post(DISCORD_WEBHOOK_URL, json=data)
     response.raise_for_status()
 
-
 def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
     if not DISCORD_WEBHOOK_URL:
         print(f"No discord webhook URL found, skipping discord send")
@@ -160,13 +159,15 @@ def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
                 else:
                     group_content.write(f"{emoji} {message}\n")
 
+        content_string = group_content.getvalue()
+
         embed = {
             "title": f"Автор: **{name}**",
-            "description": group_content,
+            "description": content_string,
             "color": 0x3498db
         }
 
-        if len(group_content) > 0:
+        if len(content_string) > 0:
             send_embed_discord(embed)
 
 main()
