@@ -302,7 +302,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         if (_prototypeManager.HasIndex<RoleLoadoutPrototype>(LoadoutSystem.GetJobPrototype(job.ID)))
         {
             var loadout = profile.GetLoadoutOrDefault(LoadoutSystem.GetJobPrototype(job.ID), _playerManager.LocalSession, profile.Species, EntityManager, _prototypeManager, sponsorPrototypes);
-            GiveDummyLoadout(dummy, loadout);
+            GiveDummyLoadout(dummy, loadout, true);
         }
     }
 
@@ -316,19 +316,31 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         return _prototypeManager.Index<JobPrototype>(highPriorityJob.Id ?? SharedGameTicker.FallbackOverflowJob);
     }
 
-    public void GiveDummyLoadout(EntityUid uid, RoleLoadout? roleLoadout)
+    public void GiveDummyLoadout(EntityUid uid, RoleLoadout? roleLoadout, bool outerwear)
     {
         if (roleLoadout == null)
             return;
+
+        var undervearSlots = new List<string> { "bra", "pants", "socks" };
 
         foreach (var group in roleLoadout.SelectedLoadouts.Values)
         {
             foreach (var loadout in group)
             {
+                var wear = true;
                 if (!_prototypeManager.TryIndex(loadout.Prototype, out var loadoutProto))
                     continue;
 
-                _spawn.EquipStartingGear(uid, _prototypeManager.Index(loadoutProto.Equipment));
+                var startingGear = _prototypeManager.Index(loadoutProto.Equipment);
+
+                foreach (var keyValuePair in startingGear.Equipment)
+                {
+                    if (!undervearSlots.Contains(keyValuePair.Key) && !outerwear)
+                        wear = false;
+                }
+
+                if (wear)
+                    _spawn.EquipStartingGear(uid, startingGear);
             }
         }
     }
@@ -418,7 +430,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
 
         _humanoid.LoadProfile(dummyEnt, humanoid);
 
-        if (humanoid != null && jobClothes)
+        if (humanoid != null)
         {
             job ??= GetPreferredJob(humanoid);
             GiveDummyJobClothes(dummyEnt, humanoid, job);
@@ -426,7 +438,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
             if (_prototypeManager.HasIndex<RoleLoadoutPrototype>(LoadoutSystem.GetJobPrototype(job.ID)))
             {
                 var loadout = humanoid.GetLoadoutOrDefault(LoadoutSystem.GetJobPrototype(job.ID), _playerManager.LocalSession, humanoid.Species, EntityManager, _prototypeManager, sponsorPrototypes);
-                GiveDummyLoadout(dummyEnt, loadout);
+                GiveDummyLoadout(dummyEnt, loadout, jobClothes);
             }
         }
 
