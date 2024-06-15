@@ -24,6 +24,7 @@ using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
 using Content.Shared.Station;
 using Content.Shared.StatusIcon;
+using Content.Sunrise.Interfaces.Server;
 using JetBrains.Annotations;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
@@ -53,6 +54,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     [Dependency] private readonly MetaDataSystem _metaSystem = default!;
     [Dependency] private readonly PdaSystem _pdaSystem = default!;
     [Dependency] private readonly SharedAccessSystem _accessSystem = default!;
+    private IServerSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
     private bool _randomizeCharacters;
 
@@ -62,6 +64,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     public override void Initialize()
     {
         base.Initialize();
+        IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
         Subs.CVar(_configurationManager, CCVars.ICRandomCharacters, e => _randomizeCharacters = e, true);
 
         _spawnerCallbacks = new Dictionary<SpawnPriorityPreference, Action<PlayerSpawningEvent>>()
@@ -199,8 +202,19 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             // Set to default if not present
             if (loadout == null)
             {
+                var session = _actors.GetSession(entity);
+
+                string [] sponsorsPrototypes = [];
+                if (_sponsorsManager != null && session != null)
+                {
+                    if (_sponsorsManager.TryGetPrototypes(session.UserId, out var prototypes))
+                    {
+                        sponsorsPrototypes = prototypes.ToArray();
+                    }
+                }
+
                 loadout = new RoleLoadout(jobLoadout);
-                loadout.SetDefault(profile, _actors.GetSession(entity), _prototypeManager);
+                loadout.SetDefault(profile, session, _prototypeManager, sponsorsPrototypes);
             }
 
             EquipRoleLoadout(entity.Value, loadout, roleProto);

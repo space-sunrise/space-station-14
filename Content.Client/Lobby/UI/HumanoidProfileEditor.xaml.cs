@@ -814,6 +814,10 @@ namespace Content.Client.Lobby.UI
                 departments.Add(department);
             }
 
+            // Sunrise-Start
+            var sponsorPrototypes = _sponsorsMgr?.GetClientPrototypes().ToArray() ?? [];
+            // Sunrise-End
+
             departments.Sort(DepartmentUIComparer.Instance);
 
             var items = new[]
@@ -964,7 +968,7 @@ namespace Content.Client.Lobby.UI
                             if (loadout == null)
                             {
                                 loadout = new RoleLoadout(roleLoadoutProto.ID);
-                                loadout.SetDefault(Profile, _playerManager.LocalSession, _prototypeManager);
+                                loadout.SetDefault(Profile, _playerManager.LocalSession, _prototypeManager, sponsorPrototypes);
                             }
 
                             OpenLoadout(job, loadout, roleLoadoutProto);
@@ -1170,6 +1174,7 @@ namespace Content.Client.Lobby.UI
 
             UpdateGenderControls();
             UpdateTTSVoicesControls(); // Sunrise-TTS
+            RefreshLoadouts(); // Sunrise-Sex restrictions
             Markings.SetSex(newSex);
             ReloadPreview();
             SetDirty();

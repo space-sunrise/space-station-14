@@ -168,7 +168,7 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
     /// <summary>
     /// Resets the selected loadouts to default if no data is present.
     /// </summary>
-    public void SetDefault(HumanoidCharacterProfile? profile, ICommonSession? session, IPrototypeManager protoManager, bool force = false)
+    public void SetDefault(HumanoidCharacterProfile? profile, ICommonSession? session, IPrototypeManager protoManager, string[] sponsorPrototypes, bool force = false)
     {
         if (profile == null)
             return;
@@ -194,11 +194,17 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
 
             if (groupProto.MinLimit > 0)
             {
-                // Apply any loadouts we can.
-                for (var j = 0; j < Math.Min(groupProto.MinLimit, groupProto.Loadouts.Count); j++)
+                var validLoadoutsCount = 0;
+                var j = 0;
+
+                // Loop while we need more valid loadouts and we haven't exhausted the list of loadouts
+                while (validLoadoutsCount < groupProto.MinLimit && j < groupProto.Loadouts.Count)
                 {
                     if (!protoManager.TryIndex(groupProto.Loadouts[j], out var loadoutProto))
+                    {
+                        j++;
                         continue;
+                    }
 
                     var defaultLoadout = new Loadout()
                     {
@@ -206,11 +212,17 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
                     };
 
                     // Not valid so don't default to it anyway.
-                    if (!IsValid(profile, session, defaultLoadout.Prototype, collection, out _))
+                    if (!IsValid(profile, session, defaultLoadout.Prototype, collection, sponsorPrototypes, out _))
+                    {
+                        j++; // Move to the next loadout
                         continue;
+                    }
 
                     loadouts.Add(defaultLoadout);
                     Apply(loadoutProto);
+
+                    validLoadoutsCount++;
+                    j++;
                 }
             }
         }
