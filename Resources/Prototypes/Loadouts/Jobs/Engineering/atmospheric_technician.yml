@@ -2,6 +2,9 @@
 - type: loadout
   id: AtmosphericTechnicianJumpsuit
   equipment: AtmosphericTechnicianJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: AtmosphericTechnicianJumpsuit
@@ -11,6 +14,9 @@
 - type: loadout
   id: AtmosphericTechnicianJumpskirt
   equipment: AtmosphericTechnicianJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: AtmosphericTechnicianJumpskirt
@@ -20,6 +26,9 @@
 - type: loadout
   id: AtmosphericTechnicianJumpsuitCasual
   equipment: AtmosphericTechnicianJumpsuitCasual
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: AtmosphericTechnicianJumpsuitCasual

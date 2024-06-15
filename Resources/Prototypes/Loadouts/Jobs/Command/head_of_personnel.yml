@@ -12,6 +12,9 @@
 - type: loadout
   id: HoPJumpsuit
   equipment: HoPJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: HoPJumpsuit
@@ -21,6 +24,9 @@
 - type: loadout
   id: HoPJumpskirt
   equipment: HoPJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: HoPJumpskirt

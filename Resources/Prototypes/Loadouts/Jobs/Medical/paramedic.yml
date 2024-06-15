@@ -12,6 +12,9 @@
 - type: loadout
   id: ParamedicJumpsuit
   equipment: ParamedicJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: ParamedicJumpsuit
@@ -21,6 +24,9 @@
 - type: loadout
   id: ParamedicJumpskirt
   equipment: ParamedicJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: ParamedicJumpskirt

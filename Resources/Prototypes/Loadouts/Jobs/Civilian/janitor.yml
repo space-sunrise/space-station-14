@@ -12,6 +12,9 @@
 - type: loadout
   id: JanitorJumpsuit
   equipment: JanitorJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: JanitorJumpsuit
@@ -21,6 +24,9 @@
 - type: loadout
   id: JanitorJumpskirt
   equipment: JanitorJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: JanitorJumpskirt

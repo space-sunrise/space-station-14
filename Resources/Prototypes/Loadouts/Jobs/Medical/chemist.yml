@@ -2,6 +2,9 @@
 - type: loadout
   id: ChemistJumpsuit
   equipment: ChemistJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: ChemistJumpsuit
@@ -11,6 +14,9 @@
 - type: loadout
   id: ChemistJumpskirt
   equipment: ChemistJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: ChemistJumpskirt

@@ -2,6 +2,9 @@
 - type: loadout
   id: LibrarianJumpsuit
   equipment: LibrarianJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: LibrarianJumpsuit
@@ -11,6 +14,9 @@
 - type: loadout
   id: LibrarianJumpskirt
   equipment: LibrarianJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: LibrarianJumpskirt
@@ -20,6 +26,9 @@
 - type: loadout
   id: CuratorJumpsuit
   equipment: CuratorJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: CuratorJumpsuit
@@ -29,6 +38,9 @@
 - type: loadout
   id: CuratorJumpskirt
   equipment: CuratorJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: CuratorJumpskirt
