@@ -1,4 +1,4 @@
 - type: deviceFrequency
   id: SurveillanceCameraHandheld
-  name: Body camera
+  name: device-frequency-prototype-name-body-camera
   frequency: 1940

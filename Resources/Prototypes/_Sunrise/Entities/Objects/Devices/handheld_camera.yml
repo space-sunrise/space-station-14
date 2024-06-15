@@ -27,6 +27,11 @@
       - SurveillanceCameraHandheld
       - SurveillanceCamera
   - type: SpamEmitSound
-    minInterval: 10
-    maxInterval: 90
-    sound: /Audio/Machines/timer.ogg
+    minInterval: 90
+    maxInterval: 300
+    sound:
+      path: /Audio/Machines/timer.ogg
+      params:
+        volume: -8
+        maxDistance: 10
+        variation: 0.05

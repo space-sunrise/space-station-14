@@ -51,6 +51,7 @@
   id: Engineering
   description: department-Engineering-description
   color: "#EFB341"
+  weight: 10  # Sunrise-weights
   roles:
   - AtmosphericTechnician
   - ChiefEngineer
@@ -95,7 +96,7 @@
   id: Specific
   description: department-Specific-description
   color: "#9FED58"
-  weight: 10
+  weight: 5  # Sunrise-weights
   roles:
   - Boxer
   - Reporter
