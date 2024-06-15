@@ -127,4 +127,24 @@
   name: loadout-group-bodycam
   minLimit: 0
   loadouts:
-  - Bodycam
+  - SecurityBodycam
+
+- type: loadoutGroup
+  id: SecurityTrinkets
+  name: loadout-group-security-trinkets
+  minLimit: 0
+  maxLimit: 3
+  loadouts:
+  - SecurityBodycam
+  - SecurityWhistle
+  - SecurityRadioHandheld
+  - SecurityTourniquet
+  - SecurityWeaponMeleeNeedle
+  - SecurityHoloprojector
+
+- type: loadoutGroup
+  id: CorporateLaw
+  name: loadout-group-corporate-law
+  minLimit: 0
+  loadouts:
+  - CorporateLaw

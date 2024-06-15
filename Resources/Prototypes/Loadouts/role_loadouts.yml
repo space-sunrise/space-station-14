@@ -374,6 +374,7 @@
 - type: roleLoadout
   id: JobHeadOfSecurity
   groups:
+  - SecurityTrinkets  # Sunrise
   - HeadofSecurityHead
   - HeadofSecurityNeck
   - HeadofSecurityJumpsuit
@@ -381,7 +382,6 @@
   - SecurityBelt
   - HeadofSecurityOuterClothing
   - SecurityShoes
-  - Bodycam
   - Trinkets
   # Sunrise-start
   - Bra
@@ -392,13 +392,13 @@
 - type: roleLoadout
   id: JobWarden
   groups:
+  - SecurityTrinkets  # Sunrise
   - WardenHead
   - WardenJumpsuit
   - SecurityBackpack
   - SecurityBelt
   - WardenOuterClothing
   - SecurityShoes
-  - Bodycam
   - Trinkets
   # Sunrise-start
   - Bra
@@ -409,6 +409,7 @@
 - type: roleLoadout
   id: JobSecurityOfficer
   groups:
+  - SecurityTrinkets  # Sunrise
   - SecurityHead
   - SecurityJumpsuit
   - SecurityBackpack
@@ -416,7 +417,6 @@
   - SecurityShoes
   - SecurityPDA
   - SecurityBelt
-  - Bodycam
   - Trinkets
   # Sunrise-start
   - Bra
@@ -427,12 +427,12 @@
 - type: roleLoadout
   id: JobDetective
   groups:
+  - SecurityTrinkets  # Sunrise
   - DetectiveHead
   - DetectiveNeck
   - DetectiveJumpsuit
   - SecurityBackpack
   - DetectiveOuterClothing
-  - Bodycam
   - SecurityShoes
   - Trinkets
   # Sunrise-start
@@ -444,9 +444,9 @@
 - type: roleLoadout
   id: JobSecurityCadet
   groups:
+  - SecurityTrinkets  # Sunrise
   - SecurityCadetJumpsuit
   - SecurityBackpack
-  - Bodycam
   - Trinkets
   # Sunrise-start
   - Bra
