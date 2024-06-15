@@ -883,6 +883,7 @@
   name: loadout-group-security-shoes
   loadouts:
   - CombatBoots
+  - JackBoots
   - SecurityWinterBoots
 
 - type: loadoutGroup
