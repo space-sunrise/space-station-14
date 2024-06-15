@@ -124,50 +124,51 @@ def send_discord(content: str):
     response = requests.post(DISCORD_WEBHOOK_URL, json=body)
     response.raise_for_status()
 
-
-def send_embed_discord(embed):
-    data = {
-        "embeds": [embed],
-        "allowed_mentions": {
-            "parse": []
-        }
+def send_embed_discord(embed: dict) -> None:
+    headers = {
+        "Content-Type": "application/json"
     }
-    response = requests.post(DISCORD_WEBHOOK_URL, json=data)
-    response.raise_for_status()
+
+    payload = {
+        "embeds": [embed]
+    }
+
+    response = requests.post(DISCORD_WEBHOOK_URL, json=payload, headers=headers)
+
+    if response.status_code != 204:
+        print(f"Failed to send message to Discord: {response.status_code} {response.text}")
 
 def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
     if not DISCORD_WEBHOOK_URL:
-        print(f"No discord webhook URL found, skipping discord send")
+        print("No discord webhook URL found, skipping discord send")
         return
 
+    # Sort entries by time, assuming there's a field 'time' in each entry
+    sorted_entries = sorted(entries, key=lambda x: x["time"], reverse=True)
 
-    # We need to manually split messages to avoid discord's character limit
-    # With that being said this isn't entirely robust
-    # e.g. a sufficiently large CL breaks it, but that's a future problem
+    # Need to split text to avoid discord character limit
+    group_content = io.StringIO()
 
-    for name, group in itertools.groupby(entries, lambda x: x["author"]):
-        # Need to split text to avoid discord character limit
-        group_content = io.StringIO()
+    for entry in sorted_entries:
+        for change in entry["changes"]:
+            emoji = TYPES_TO_EMOJI.get(change['type'], "❓")
+            message = change['message']
+            url = entry.get("url")
+            if url and url.strip():
+                group_content.write(f"{emoji} {message} \n[GitHub PR]({url})\n")
+            else:
+                group_content.write(f"{emoji} {message}\n")
 
-        for entry in group:
-            for change in entry["changes"]:
-                emoji = TYPES_TO_EMOJI.get(change['type'], "❓")
-                message = change['message']
-                url = entry.get("url")
-                if url and url.strip():
-                    group_content.write(f"{emoji} [-]({url}) {message}\n")
-                else:
-                    group_content.write(f"{emoji} {message}\n")
+    content_string = group_content.getvalue()
 
-        content_string = group_content.getvalue()
+    embed = {
+        "title": "Changelog",
+        "description": content_string,
+        "color": 0x3498db
+    }
 
-        embed = {
-            "title": f"Автор: **{name}**",
-            "description": content_string,
-            "color": 0x3498db
-        }
+    if len(content_string) > 0:
+        send_embed_discord(embed)
 
-        if len(content_string) > 0:
-            send_embed_discord(embed)
 
 main()
