@@ -15,15 +15,15 @@
       collection: MaleCry
     Whistle:
       collection: Whistles
-    Mews:
+    Mew:
       collection: FelinidMews
-    Meows:
+    Meow:
       collection: FelinidMeows
     Hisses:
       collection: FelinidHisses
-    Purrs:
+    Purr:
       collection: FelinidPurrs
-    Growls:
+    Growl:
       collection: FelinidGrowls
 
 - type: emoteSounds
@@ -43,15 +43,15 @@
       collection: FemaleCry
     Whistle:
       collection: Whistles
-    Mews:
+    Mew:
       collection: FelinidMews
-    Meows:
+    Meow:
       collection: FelinidMeows
     Hisses:
       collection: FelinidHisses
-    Purrs:
+    Purr:
       collection: FelinidPurrs
-    Growls:
+    Growl:
       collection: FelinidGrowls
 
 - type: emoteSounds
@@ -107,12 +107,12 @@
       collection: Whistles
     Sigh:
       collection: MaleSigh
-    Growls:
+    Growl:
       collection: VulpkaninGrowls
     Howl:
-      collection: VulpkaninHowl
+      collection: VulpkaninHowls
     Bark:
-      collection: VulpkaninBark
+      collection: VulpkaninBarks
 
 - type: emoteSounds
   id: FemaleVulpkanin
@@ -133,12 +133,12 @@
       collection: Whistles
     Sigh:
       collection: FemaleSigh
-    Growls:
+    Growl:
       collection: VulpkaninGrowls
     Howl:
-      collection: VulpkaninHowl
+      collection: VulpkaninHowls
     Bark:
-      collection: VulpkaninBark
+      collection: VulpkaninBarks
 
 - type: emoteSounds
   id: UnisexSwine

@@ -91,7 +91,7 @@
   components:
   - type: MachineBoard
     prototype: Pacificator
-    stackRequirements:
+    materialRequirements:
       Capacitor: 4
       MatterBin: 3
       Steel: 5
