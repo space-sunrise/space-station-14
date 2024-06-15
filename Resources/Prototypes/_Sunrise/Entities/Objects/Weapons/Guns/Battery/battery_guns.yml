@@ -248,12 +248,49 @@
     fireRate: 3
     availableModes:
       - SemiAuto
+      - FullAuto
   - type: Battery
     maxCharge: 2000
     startingCharge: 2000
   - type: ProjectileBatteryAmmoProvider
     proto: BulletEnergyGunLaser
     fireCost: 100
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  parent: BaseWeaponBattery
+  id: WeaponIONRifle
+  name: "Ion Rifle"
+  description: ""
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/ion_rifle.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+#  - type: Clothing
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+    selectedMode: SemiAuto
+    fireRate: 0.6
+    avaliableModes:
+    - SemiAuto
+  - type: Battery
+    maxCharge: 4000
+    startingCharge: 4000
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletEMP
+    fireCost: 1000
   - type: MagazineVisuals
     magState: mag
     steps: 5

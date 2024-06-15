@@ -15,5 +15,9 @@ ent-WeaponEnergyGunPistol = Энергетический пистолет PDW-9
 ent-WeaponGunLaserCarbineAutomatic = Лазерный карабин ИК-60
     .desc = Лазерный полуавтоматический карабин на 20 патронов.
 
+ent-WeaponIONRifle = Ионная пушка
+    .desc = Продвинутое оружие, поставляемое отделам Службы Безопасности для борьбы с организованной преступностью.
+
+
 energy-gun-lethal = летал
 energy-gun-disable = обезоруживание
