@@ -143,32 +143,30 @@ def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
         print("No discord webhook URL found, skipping discord send")
         return
 
-    # Sort entries by time, assuming there's a field 'time' in each entry
-    sorted_entries = sorted(entries, key=lambda x: x["time"], reverse=True)
-
-    # Need to split text to avoid discord character limit
-    group_content = io.StringIO()
-
-    for entry in sorted_entries:
-        for change in entry["changes"]:
-            emoji = TYPES_TO_EMOJI.get(change['type'], "❓")
-            message = change['message']
-            url = entry.get("url")
-            if url and url.strip():
-                group_content.write(f"{emoji} {message} \n[GitHub PR]({url})\n")
-            else:
-                group_content.write(f"{emoji} {message}\n")
-
-    content_string = group_content.getvalue()
-
-    embed = {
-        "title": "Changelog",
-        "description": content_string,
-        "color": 0x3498db
-    }
-
-    if len(content_string) > 0:
-        send_embed_discord(embed)
+    for name, group in itertools.groupby(entries, lambda x: x["author"]):
+        # Need to split text to avoid discord character limit
+        group_content = io.StringIO()
+    
+        for entry in group:
+            for change in entry["changes"]:
+                emoji = TYPES_TO_EMOJI.get(change['type'], "❓")
+                message = change['message']
+                url = entry.get("url")
+                if url and url.strip():
+                    group_content.write(f"{emoji} {message} \n[GitHub PR]({url})\n")
+                else:
+                    group_content.write(f"{emoji} {message}\n")
+    
+        content_string = group_content.getvalue()
+    
+        embed = {
+            "title": f"Автор: **{name}**",
+            "description": content_string,
+            "color": 0x3498db
+        }
+    
+        if len(content_string) > 0:
+            send_embed_discord(embed)
 
 
 main()
