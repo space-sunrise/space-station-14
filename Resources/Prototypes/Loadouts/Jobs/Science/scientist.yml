@@ -55,6 +55,9 @@
 - type: loadout
   id: ScientistJumpsuit
   equipment: ScientistJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: ScientistJumpsuit
@@ -64,6 +67,9 @@
 - type: loadout
   id: ScientistJumpskirt
   equipment: ScientistJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: ScientistJumpskirt
@@ -73,6 +79,9 @@
 - type: loadout
   id: RoboticistJumpsuit
   equipment: RoboticistJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: RoboticistJumpsuit
@@ -82,6 +91,9 @@
 - type: loadout
   id: RoboticistJumpskirt
   equipment: RoboticistJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: RoboticistJumpskirt
@@ -94,6 +106,8 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorResearcher
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: SeniorResearcherJumpsuit
@@ -106,6 +120,8 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorResearcher
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: SeniorResearcherJumpskirt

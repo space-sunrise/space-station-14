@@ -28,6 +28,9 @@
 - type: loadout
   id: BlueShieldJumpsuit
   equipment: BlueShieldJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: BlueShieldJumpsuit
@@ -37,6 +40,9 @@
 - type: loadout
   id: BlueShieldJumpskirt
   equipment: BlueShieldJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: BlueShieldJumpskirt

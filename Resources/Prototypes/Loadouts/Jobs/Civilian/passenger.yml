@@ -15,6 +15,8 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: GreyTider
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: GasMask
@@ -26,6 +28,9 @@
 - type: loadout
   id: GreyJumpsuit
   equipment: GreyJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: GreyJumpsuit
@@ -35,6 +40,9 @@
 - type: loadout
   id: GreyJumpskirt
   equipment: GreyJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: GreyJumpskirt
@@ -48,6 +56,8 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: GreyTider
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: RainbowJumpsuit
@@ -61,6 +71,8 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: GreyTider
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: AncientJumpsuit
