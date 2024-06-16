@@ -32,5 +32,8 @@
     id: CentcomPDA
     ears: ClothingHeadsetAltCentCom
     belt: WeaponPistolN1984
-    pocket1: BoxFolderBlack
-    pocket2: PenCentcom
+  storage:
+    back:
+    - BoxSurvival
+    - PenCentcom
+    - BoxFolderBlack

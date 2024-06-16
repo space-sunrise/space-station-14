@@ -128,3 +128,19 @@
   minLimit: 0
   loadouts:
   - Bodycam
+
+- type: loadoutGroup
+  id: CentCommOperatorJumpsuit
+  name: loadout-group-centcomm-operator-jumpsuit
+  loadouts:
+  - CentCommOfficerJumpsuit
+  - CentCommOfficerJumpskirt
+  - CentCommOfficialJumpsuit
+  - CentCommOfficialJumpskirt
+
+- type: loadoutGroup
+  id: CentCommOperatorHats
+  name: loadout-group-centcomm-operator-head-hat
+  loadouts:
+  - HeadHatBeretCentcomNaval
+  - HeadHatCentcomcap
