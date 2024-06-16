@@ -1,0 +1,26 @@
+- type: entity
+  parent: AirlockCommandGlass
+  id: AirlockBlueShieldGlassLocked
+  suffix: BlueShield, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBlueShield ]
+
+- type: entity
+  parent: AirlockMaint
+  id: AirlockMaintBlueShieldLocked
+  suffix: BlueShield, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBlueShield ]
+
+- type: entity
+  parent: AirlockCommand
+  id: AirlockBlueShieldLocked
+  suffix: BlueShield, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBlueShield ]
