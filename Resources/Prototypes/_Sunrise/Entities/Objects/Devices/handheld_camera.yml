@@ -18,11 +18,14 @@
     interfaces:
       enum.SurveillanceCameraSetupUiKey.Camera:
         type: SurveillanceCameraSetupBoundUi
+#      enum.WiresUiKey.Key:
+#        type:WiresBoundUserInterface
   - type: DeviceNetwork
     deviceNetId: Wired
     receiveFrequencyId: SurveillanceCameraHandheld
     transmitFrequencyId: SurveillanceCamera
   - type: SurveillanceCamera
+    networkSet: true
     setupAvailableNetworks:
       - SurveillanceCameraHandheld
       - SurveillanceCamera
