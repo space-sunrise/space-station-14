@@ -1,0 +1,13 @@
+﻿- type: entity
+  id: ElectricChair
+  name: electric chair
+  description: used to execute very bad people
+  parent: ChairBase
+  components:
+  - type: Sprite
+    state: chair
+  - type: ElectricChair
+  - type: TriggerOnSignal
+  - type: DeviceLinkSink
+    ports:
+    - Trigger
