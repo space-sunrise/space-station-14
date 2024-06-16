@@ -104,6 +104,9 @@
 - type: loadout
   id: MedicalDoctorJumpsuit
   equipment: MedicalDoctorJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: MedicalDoctorJumpsuit
@@ -113,6 +116,9 @@
 - type: loadout
   id: MedicalDoctorJumpskirt
   equipment: MedicalDoctorJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: MedicalDoctorJumpskirt
@@ -125,6 +131,8 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorPhysician
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: SeniorPhysicianJumpsuit
@@ -137,6 +145,8 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorPhysician
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: SeniorPhysicianJumpskirt

@@ -26,7 +26,7 @@ public sealed class MeteorSwarmSystem : GameRuleSystem<MeteorSwarmComponent>
         component.WaveCounter = component.Waves.Next(RobustRandom);
 
         if (component.Announcement is { } locId)
-            _chat.DispatchGlobalAnnouncement(Loc.GetString(locId), announcementSound: component.AnnouncementSound, colorOverride: Color.Yellow);
+            _chat.DispatchGlobalAnnouncement(Loc.GetString(locId), announcementSound: component.AnnouncementSound, colorOverride: Color.Gold);
     }
 
     protected override void ActiveTick(EntityUid uid, MeteorSwarmComponent component, GameRuleComponent gameRule, float frameTime)

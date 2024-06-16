@@ -1,6 +1,8 @@
 # Miscellaneous
 loadout-group-trinkets = Безделушки
 loadout-group-glasses = Очки
+loadout-group-backpack = Рюкзак
+
 # Command
 loadout-group-captain-head = Капитан, голова
 loadout-group-captain-jumpsuit = Капитан, комбинезон

@@ -28,6 +28,9 @@
 - type: loadout
   id: ResearchDirectorJumpsuit
   equipment: ResearchDirectorJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: ResearchDirectorJumpsuit
@@ -37,6 +40,9 @@
 - type: loadout
   id: ResearchDirectorJumpskirt
   equipment: ResearchDirectorJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: ResearchDirectorJumpskirt

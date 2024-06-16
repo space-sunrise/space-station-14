@@ -58,6 +58,9 @@
 - type: loadout
   id: ChaplainJumpsuit
   equipment: ChaplainJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: ChaplainJumpsuit
@@ -67,6 +70,9 @@
 - type: loadout
   id: ChaplainJumpskirt
   equipment: ChaplainJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: ChaplainJumpskirt

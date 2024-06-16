@@ -31,16 +31,18 @@ humanoid-profile-editor-preference-backpack = Рюкзак
 humanoid-profile-editor-preference-satchel = Сумка
 humanoid-profile-editor-preference-duffelbag = Вещмешок
 humanoid-profile-editor-guidebook-button-tooltip = Кликните для получения дополнительной информации
+
 # Spawn priority
 humanoid-profile-editor-preference-spawn-priority-none = Нет
 humanoid-profile-editor-preference-spawn-priority-arrivals = Зал прибытия
 humanoid-profile-editor-preference-spawn-priority-cryosleep = Капсула криосна
+
 humanoid-profile-editor-jobs-amount-in-department-tooltip = { $departmentName }
 humanoid-profile-editor-department-jobs-label = { $departmentName }
 humanoid-profile-editor-antags-tab = Антагонисты
 humanoid-profile-editor-antag-preference-yes-button = Да
 humanoid-profile-editor-antag-preference-no-button = Нет
-humanoid-profile-editor-traits-tab = Черты персонажа
+
 humanoid-profile-editor-job-priority-high-button = Высокий
 humanoid-profile-editor-job-priority-medium-button = Средний
 humanoid-profile-editor-job-priority-low-button = Низкий
@@ -48,3 +50,12 @@ humanoid-profile-editor-job-priority-never-button = Никогда
 humanoid-profile-editor-naming-rules-warning = Внимание: Оскорбительные или странные имена и описания могут повлечь за собой беседу с администрацией. Прочитайте \[Правила\].
 humanoid-profile-editor-markings-tab = Черты внешности
 humanoid-profile-editor-flavortext-tab = Описание
+
+# Traits
+humanoid-profile-editor-traits-tab = Черты персонажа
+humanoid-profile-editor-no-traits = Нет доступных черт
+
+humanoid-profile-editor-trait-count-hint = Доступно очков: [{$current}/{$max}]
+
+trait-category-disabilities = Особенности
+trait-category-speech = Особенности речи

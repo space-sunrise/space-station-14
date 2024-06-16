@@ -1,7 +1,7 @@
 - type: loadoutGroup
   id: Socks
   name: loadout-group-socks
-  minLimit: 0
+  minLimit: 1
   loadouts:
   - ThighWhiteSocks
   - ShortWhiteSocks
@@ -41,7 +41,7 @@
 - type: loadoutGroup
   id: Bra
   name: loadout-group-bra
-  minLimit: 0
+  minLimit: 1
   loadouts:
   - StraplessBra
   - WhiteNekoBra
@@ -59,7 +59,7 @@
 - type: loadoutGroup
   id: Pants
   name: loadout-group-pants
-  minLimit: 0
+  minLimit: 1
   loadouts:
   - StraplessWomanPants
   - BoxersManPants

@@ -21,6 +21,9 @@
 - type: loadout
   id: WardenJumpsuit
   equipment: WardenJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: WardenJumpsuit
@@ -30,6 +33,9 @@
 - type: loadout
   id: WardenJumpskirt
   equipment: WardenJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: WardenJumpskirt

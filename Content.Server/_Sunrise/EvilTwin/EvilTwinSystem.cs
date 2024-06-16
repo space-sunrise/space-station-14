@@ -233,7 +233,7 @@ public sealed class EvilTwinSystem : EntitySystem
                 if (loadout == null)
                 {
                     loadout = new RoleLoadout(jobLoadout);
-                    loadout.SetDefault(_prototype);
+                    loadout.SetDefault(pref, null, _prototype, []);
                 }
 
                 _stationSpawning.EquipRoleLoadout(twinUid, loadout, roleProto);

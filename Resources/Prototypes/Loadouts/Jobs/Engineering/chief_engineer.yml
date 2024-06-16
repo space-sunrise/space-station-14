@@ -2,6 +2,9 @@
 - type: loadout
   id: ChiefEngineerJumpsuit
   equipment: ChiefEngineerJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: ChiefEngineerJumpsuit
@@ -11,6 +14,9 @@
 - type: loadout
   id: ChiefEngineerJumpskirt
   equipment: ChiefEngineerJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: ChiefEngineerJumpskirt
@@ -20,6 +26,9 @@
 - type: loadout
   id: ChiefEngineerTurtleneck
   equipment: ChiefEngineerTurtleneck
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: ChiefEngineerTurtleneck
@@ -29,6 +38,9 @@
 - type: loadout
   id: ChiefEngineerTurtleneckSkirt
   equipment: ChiefEngineerTurtleneckSkirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: ChiefEngineerTurtleneckSkirt

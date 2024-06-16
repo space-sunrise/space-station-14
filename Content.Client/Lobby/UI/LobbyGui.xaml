@@ -108,7 +108,7 @@
                         <!-- <Label Margin="8 0 0 0" StyleClasses="LabelHeadingBigger" VAlign="Center"
                                Text="{Loc 'ui-lobby-title'}" /> -->
                         <Label Name="ServerName" Access="Public" StyleClasses="LabelHeadingBigger" VAlign="Center"
-                               HorizontalExpand="True" HorizontalAlignment="Center" Text="Добро пожаловать в ЫЫ14" />
+                               HorizontalExpand="True" HorizontalAlignment="Center" Text="Добро пожаловать на Sunrise" />
                         <!-- Sunrise-end -->
                     </BoxContainer>
                     <!-- Gold line -->

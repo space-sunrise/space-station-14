@@ -21,6 +21,9 @@
 - type: loadout
   id: BartenderJumpsuit
   equipment: BartenderJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: BartenderJumpsuit
@@ -30,6 +33,9 @@
 - type: loadout
   id: BartenderJumpskirt
   equipment: BartenderJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: BartenderJumpskirt
@@ -39,6 +45,9 @@
 - type: loadout
   id: BartenderJumpsuitPurple
   equipment: BartenderJumpsuitPurple
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: BartenderJumpsuitPurple

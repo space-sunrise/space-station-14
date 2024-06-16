@@ -45,6 +45,9 @@
 - type: loadout
   id: SecurityJumpsuit
   equipment: SecurityJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: SecurityJumpsuit
@@ -54,6 +57,9 @@
 - type: loadout
   id: SecurityJumpskirt
   equipment: SecurityJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: SecurityJumpskirt
@@ -63,6 +69,9 @@
 - type: loadout
   id: SecurityJumpsuitGrey
   equipment: SecurityJumpsuitGrey
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: SecurityJumpsuitGrey
@@ -72,6 +81,9 @@
 - type: loadout
   id: SecurityJumpskirtGrey
   equipment: SecurityJumpskirtGrey
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: SecurityJumpskirtGrey
@@ -84,6 +96,8 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorOfficer
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: SeniorOfficerJumpsuit
@@ -96,6 +110,8 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorOfficer
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: SeniorOfficerJumpskirt
@@ -188,13 +204,22 @@
     shoes: ClothingShoesBootsCombatFilled
 
 - type: loadout
+  id: JackBoots
+  equipment: JackBoots
+
+- type: startingGear
+  id: JackBoots
+  equipment:
+    shoes: ClothingShoesBootsJackFilled
+
+- type: loadout
   id: SecurityWinterBoots
   equipment: SecurityWinterBoots
 
 - type: startingGear
   id: SecurityWinterBoots
   equipment:
-    shoes: ClothingShoesBootsWinterSec
+    shoes: ClothingShoesBootsWinterSecFilled
 
 # PDA
 - type: loadout

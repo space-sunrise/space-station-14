@@ -62,6 +62,9 @@
 - type: loadout
   id: StationEngineerJumpsuit
   equipment: StationEngineerJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: StationEngineerJumpsuit
@@ -71,6 +74,9 @@
 - type: loadout
   id: StationEngineerJumpskirt
   equipment: StationEngineerJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: StationEngineerJumpskirt
@@ -80,6 +86,9 @@
 - type: loadout
   id: StationEngineerHazardsuit
   equipment: StationEngineerHazardsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: StationEngineerHazardsuit
@@ -92,6 +101,8 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorEngineering
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: SeniorEngineerJumpsuit
@@ -104,6 +115,8 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorEngineering
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: SeniorEngineerJumpskirt
