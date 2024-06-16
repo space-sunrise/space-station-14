@@ -15,4 +15,3 @@
         - type: StationJobs
           availableJobs:
             CentCommOperator: [ 1, 1 ]
-            CentCommOfficial: [ 1, 1 ]
