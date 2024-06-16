@@ -126,25 +126,35 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
             // If you put invalid ones first but that's your fault for not using sensible defaults
             if (loadouts.Count < groupProto.MinLimit)
             {
-                for (var i = 0; i < Math.Min(groupProto.MinLimit, groupProto.Loadouts.Count); i++)
+                var validLoadoutsCount = 0;
+                var j = 0;
+
+                // Loop while we need more valid loadouts and we haven't exhausted the list of loadouts
+                while (validLoadoutsCount < groupProto.MinLimit && j < groupProto.Loadouts.Count)
                 {
-                    if (!protoManager.TryIndex(groupProto.Loadouts[i], out var loadoutProto))
+                    if (!protoManager.TryIndex(groupProto.Loadouts[j], out var loadoutProto))
+                    {
+                        j++;
                         continue;
+                    }
 
                     var defaultLoadout = new Loadout()
                     {
                         Prototype = loadoutProto.ID,
                     };
 
-                    if (loadouts.Contains(defaultLoadout))
-                        continue;
-
                     // Not valid so don't default to it anyway.
-                    if (!IsValid(profile, session, defaultLoadout.Prototype, collection, sponsorPrototypes, out _)) // Sunrise-Sponsors
+                    if (!IsValid(profile, session, defaultLoadout.Prototype, collection, sponsorPrototypes, out _))
+                    {
+                        j++; // Move to the next loadout
                         continue;
+                    }
 
                     loadouts.Add(defaultLoadout);
                     Apply(loadoutProto);
+
+                    validLoadoutsCount++;
+                    j++;
                 }
             }
 

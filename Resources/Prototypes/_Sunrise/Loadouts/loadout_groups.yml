@@ -123,13 +123,6 @@
   - BlueShieldJumpskirt
 
 - type: loadoutGroup
-  id: Bodycam
-  name: loadout-group-bodycam
-  minLimit: 0
-  loadouts:
-  - SecurityBodycam
-
-- type: loadoutGroup
   id: SecurityTrinkets
   name: loadout-group-security-trinkets
   minLimit: 0
@@ -148,3 +141,19 @@
   minLimit: 0
   loadouts:
   - CorporateLaw
+
+- type: loadoutGroup
+  id: CentCommOperatorJumpsuit
+  name: loadout-group-centcomm-operator-jumpsuit
+  loadouts:
+  - CentCommOfficerJumpsuit
+  - CentCommOfficerJumpskirt
+  - CentCommOfficialJumpsuit
+  - CentCommOfficialJumpskirt
+
+- type: loadoutGroup
+  id: CentCommOperatorHats
+  name: loadout-group-centcomm-operator-head-hat
+  loadouts:
+  - HeadHatBeretCentcomNaval
+  - HeadHatCentcomcap
