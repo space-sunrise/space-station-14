@@ -16,7 +16,7 @@
           emergencyShuttlePath: /Maps/_Sunrise/Shuttles/emergency_delta.yml
         - type: StationJobs
           availableJobs:
-            CargoTechnician: [ 4, 4 ]
+            CargoTechnician: [ 4, 6 ]
             Passenger: [ -1, -1 ]
             Bartender: [ 2, 2 ]
             Botanist: [ 3, 4 ]
@@ -43,19 +43,20 @@
             SalvageSpecialist: [ 3, 3 ]
             Musician: [ 2, 2 ]
             AtmosphericTechnician: [ 2, 3 ]
-            TechnicalAssistant: [ 3, 3 ]
-            ResearchAssistant: [ 3, 3 ]
+            TechnicalAssistant: [ 3, 6 ]
+            ResearchAssistant: [ 3, 6 ]
             Reporter: [ 2, 2 ]
-            MedicalIntern: [ 3, 3 ]
+            MedicalIntern: [ 3, 6 ]
             ServiceWorker: [ 3, 3 ]
-            SecurityCadet: [ 3, 3 ]
+            SecurityCadet: [ 3, 6 ]
             Psychologist: [ 1, 1 ]
             Detective: [ 1, 1 ]
             Paramedic: [ 2, 2 ]
-            Brigmedic: [ 1, 1 ]
             # law
             IAA: [ 1, 1 ]
             Lawyer: [ 2, 2 ]
             Magistrat: [ 1, 1 ]
-            # Blueshield
+            # blueshield
             BlueShield: [ 1, 1 ]
+            # security
+            Brigmedic: [ 1, 1 ]
