@@ -8,7 +8,7 @@
   rules:
     - RampingStationEventScheduler
     - GameRuleMeteorScheduler
-    - BasicRoundstartVariation
+#    - BasicRoundstartVariation
 
 - type: gamePreset
   id: AllAtOnce
@@ -20,7 +20,7 @@
     - Traitor
     - Revolutionary
     - Zombie
-    - RampingStationEventScheduler
+#    - RampingStationEventScheduler
     - GameRuleMeteorScheduler
 
 - type: gamePreset
@@ -34,7 +34,7 @@
   rules:
   - BasicStationEventScheduler
   - GameRuleMeteorScheduler
-  - BasicRoundstartVariation
+#  - BasicRoundstartVariation
 
 - type: gamePreset
   id: Greenshift
@@ -45,7 +45,7 @@
   showInVote: false #4boring4vote
   description: greenshift-description
   rules:
-  - BasicRoundstartVariation
+#  - BasicRoundstartVariation
   - GameRuleMeteorScheduler
   - GreenshiftAnnouncement # Sunrise-Edit
 
@@ -102,7 +102,7 @@
     - SubGamemodesRule
     - BasicStationEventScheduler
     - GameRuleMeteorScheduler
-    - BasicRoundstartVariation
+#    - BasicRoundstartVariation
 
 - type: gamePreset
   id: Deathmatch
@@ -129,7 +129,7 @@
     - SubGamemodesRule
     - BasicStationEventScheduler
     - GameRuleMeteorScheduler
-    - BasicRoundstartVariation
+#    - BasicRoundstartVariation
 
 - type: gamePreset
   id: Revolutionary
@@ -145,7 +145,7 @@
     - SubGamemodesRule
     - BasicStationEventScheduler
     - GameRuleMeteorScheduler
-    - BasicRoundstartVariation
+#    - BasicRoundstartVariation
 
 - type: gamePreset
   id: Zombie
@@ -162,4 +162,4 @@
   - Zombie
   - BasicStationEventScheduler
   - GameRuleMeteorScheduler
-  - BasicRoundstartVariation
+#  - BasicRoundstartVariation
