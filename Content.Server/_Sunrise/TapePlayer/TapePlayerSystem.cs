@@ -75,7 +75,8 @@ public sealed class TapePlayerSystem : SharedTapePlayerSystem
             var audioParams = AudioParams.Default
                 .WithVolume(component.Volume)
                 .WithMaxDistance(component.MaxDistance)
-                .WithRolloffFactor(component.RolloffFactor);
+                .WithRolloffFactor(component.RolloffFactor)
+                .WithLoop(true);
             component.AudioStream = Audio.PlayPvs(musicTapeComponent.Sound, uid, audioParams)?.Entity;
             Dirty(uid, component);
         }
