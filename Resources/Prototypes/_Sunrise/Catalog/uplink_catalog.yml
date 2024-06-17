@@ -69,6 +69,16 @@
       - SurplusBundle
 
 - type: listing
+  id: UplinkBoomboxBundle
+  name: Музыкальный набор синдиката
+  description: Содержит бумбокс синдиката и несколько кассет к нему.
+  productEntity: ClothingBackpackDuffelBoomboxBundle
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkPointless
+
+- type: listing
   id: UplinkClothingBackpackSyndie
   name: Рюкзак Синдиката
   productEntity: ClothingBackpackSyndie

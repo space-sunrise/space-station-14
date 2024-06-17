@@ -1,0 +1,131 @@
+{
+    "version": 1,
+    "license": "CLA",
+    "copyright": "SUNRISE",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "tape1"
+        },
+        {
+            "name": "tape2"
+        },
+        {
+            "name": "tape3"
+        },
+        {
+            "name": "tape4"
+        },
+        {
+            "name": "tape5"
+        },
+        {
+            "name": "tape6-syndi"
+        },
+        {
+            "name": "tape7"
+        },
+        {
+            "name": "tape8"
+        },
+        {
+            "name": "tape9"
+        },
+        {
+            "name": "tape10"
+        },
+        {
+            "name": "tape11-syndi"
+        },
+        {
+            "name": "tape12"
+        },
+        {
+            "name": "tape13"
+        },
+        {
+            "name": "tape14"
+        },
+        {
+            "name": "tape15"
+        },
+        {
+            "name": "tape16"
+        },
+        {
+            "name": "tape17"
+        },
+        {
+            "name": "tape18"
+        },
+        {
+            "name": "tape19-syndi"
+        },
+        {
+            "name": "tape20"
+        },
+        {
+            "name": "tape21"
+        },
+        {
+            "name": "tape22"
+        },
+        {
+            "name": "tape23"
+        },
+        {
+            "name": "tape24"
+        },
+        {
+            "name": "tape25"
+        },
+        {
+            "name": "tape26"
+        },
+        {
+            "name": "tape27"
+        },
+        {
+            "name": "tape28"
+        },
+        {
+            "name": "tape29"
+        },
+        {
+            "name": "tape30"
+        },
+        {
+            "name": "tape31"
+        },
+        {
+            "name": "tape32"
+        },
+        {
+            "name": "tape33"
+        },
+        {
+            "name": "tape34"
+        },
+        {
+            "name": "tape35"
+        },
+        {
+            "name": "tape36"
+        },
+        {
+            "name": "tape37"
+        },
+        {
+            "name": "tape38"
+        },
+        {
+            "name": "tape39"
+        },
+        {
+            "name": "tape40"
+        }
+    ]
+}
