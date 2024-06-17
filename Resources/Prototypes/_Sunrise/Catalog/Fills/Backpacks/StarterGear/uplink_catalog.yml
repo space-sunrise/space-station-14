@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelBoomboxBundle
+  name: syndicate boombox bundle
+  description: "Убивайте со стилем"
+  components:
+  - type: StorageFill
+    contents:
+    - id: BoomboxSyndie
+    - id: MusicTape1
