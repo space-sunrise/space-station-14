@@ -1,0 +1,16 @@
+<ui:FancyWindow xmlns="https://spacestation14.io" xmlns:ui="clr-namespace:Content.Client.UserInterface.Controls"
+                SetSize="400 150" Title="{Loc 'tape-player-menu-title'}" Resizable="False">
+    <BoxContainer Margin="4 0" Orientation="Vertical">
+        <BoxContainer Orientation="Vertical">
+            <Label Name="InsertedTape" Text="{Loc 'tape-player-inserted-tape'}" />
+            <Label Name="SongName" Text="---" />
+            <Slider Name="PlaybackSlider" HorizontalExpand="True" />
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True"
+        VerticalExpand="False" SizeFlagsStretchRatio="1">
+            <Button Name="PlayButton" Text="{Loc 'tape-player-menu-buttonplay'}" />
+            <Button Name="StopButton" Text="{Loc 'tape-player-menu-buttonstop'}" />
+            <Label Name="DurationLabel" Text="00:00 / 00:00" HorizontalAlignment="Right" HorizontalExpand="True"/>
+        </BoxContainer>
+    </BoxContainer>
+</ui:FancyWindow>
