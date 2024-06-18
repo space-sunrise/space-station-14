@@ -138,33 +138,30 @@ def send_embed_discord(embed: dict) -> None:
     if response.status_code != 204:
         print(f"Failed to send message to Discord: {response.status_code} {response.text}")
 
+
 def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
     if not DISCORD_WEBHOOK_URL:
         print("No discord webhook URL found, skipping discord send")
         return
 
-    for name, group in itertools.groupby(entries, lambda x: x["author"]):
-        # Need to split text to avoid discord character limit
-        group_content = io.StringIO()
-    
-        for entry in group:
-            for change in entry["changes"]:
-                emoji = TYPES_TO_EMOJI.get(change['type'], "❓")
-                message = change['message']
-                group_content.write(f"{emoji} {message}\n")
-            url = entry.get("url")
-            if url and url.strip():
-                group_content.write(f"[GitHub PR]({url})")
-    
-        content_string = group_content.getvalue()
-    
+    content_string = io.StringIO()
+
+    for entry in entries:
+        for change in entry["changes"]:
+            emoji = TYPES_TO_EMOJI.get(change['type'], "❓")
+            message = change['message']
+            content_string.write(f"{emoji} {message}\n")
+        url = entry.get("url")
+        if url and url.strip():
+            content_string.write(f"[GitHub PR]({url})\n")
+
         embed = {
-            "title": f"Автор: **{name}**",
-            "description": content_string,
+            "title": f"Автор: **{entry["author"]}**",
+            "description": content_string.getvalue(),
             "color": 0x3498db
         }
     
-        if len(content_string) > 0:
+        if len(content_string.getvalue()) > 0:
             send_embed_discord(embed)
 
 
