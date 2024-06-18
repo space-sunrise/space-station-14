@@ -1,3 +1,4 @@
+// © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 using Content.Shared.Clothing;
 using Robust.Shared.GameStates;
 
@@ -17,13 +18,15 @@ public sealed partial class SpeedModifierOnComponent : Component
     /// <summary>
     /// A multiplier applied to the walk speed.
     /// </summary>
-    [DataField] [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public float WalkModifier = 0.6f;
 
     /// <summary>
     /// A multiplier applied to the sprint speed.
     /// </summary>
-    [DataField] [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public float SprintModifier = 0.6f;
 
     [DataField] public bool TurnedOff;

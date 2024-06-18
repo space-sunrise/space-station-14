@@ -1,3 +1,4 @@
+// © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Doors.Systems;

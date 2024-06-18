@@ -1,3 +1,4 @@
+// © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Chemistry.Components;
@@ -90,11 +91,11 @@ public sealed class VaccinatorSystem : SharedVaccinatorSystem
         List<string> wasProto = new List<string>();
         foreach (var reactant in args.ReagentQuantity)
         {
-            if(_prototypeManager.TryIndex(reactant.Reagent.Prototype, out ReagentPrototype? protoss))
+            if (_prototypeManager.TryIndex(reactant.Reagent.Prototype, out ReagentPrototype? protoss))
             {
-                if(protoss.Group != "Infect")
+                if (protoss.Group != "Infect")
                 {
-                    if(paper != null)
+                    if (paper != null)
                     {
                         EntityManager.DeleteEntity(paper);
                         return;
@@ -113,9 +114,9 @@ public sealed class VaccinatorSystem : SharedVaccinatorSystem
                 var text = new StringBuilder();
                 text.AppendLine("Для изготовления вакцины, требуется:");
                 text.AppendLine();
-                foreach(var r in reactantReactions)
+                foreach (var r in reactantReactions)
                 {
-                    foreach(var reactan in r.Reactants)
+                    foreach (var reactan in r.Reactants)
                     {
                         if (r.MixingCategories == null)
                         {

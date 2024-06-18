@@ -1,3 +1,4 @@
+// © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 using Robust.Shared.Configuration;
 namespace Content.Shared.Ligyb;
 using Robust.Shared.Prototypes;
@@ -22,7 +23,7 @@ public sealed class DiseaseVaccineTimerSystem : SharedSickSystem
     public void OnInit(EntityUid uid, DiseaseVaccineTimerComponent component, ComponentInit args)
     {
         component.ReadyAt = _gameTiming.CurTime + component.delay;
-        if(TryComp<MovementSpeedModifierComponent>(uid, out var speed))
+        if (TryComp<MovementSpeedModifierComponent>(uid, out var speed))
         {
             component.SpeedBefore = speed.BaseSprintSpeed;
             _movementSpeed.ChangeBaseSpeed(uid, speed.BaseWalkSpeed, speed.BaseSprintSpeed / 2, speed.Acceleration, speed);
@@ -30,14 +31,14 @@ public sealed class DiseaseVaccineTimerSystem : SharedSickSystem
     }
     public void OnShut(EntityUid uid, DiseaseVaccineTimerComponent component, ComponentShutdown args)
     {
-        if(component.SpeedBefore != 0)
+        if (component.SpeedBefore != 0)
         {
-            if(TryComp<MovementSpeedModifierComponent>(uid, out var speed))
+            if (TryComp<MovementSpeedModifierComponent>(uid, out var speed))
             {
                 _movementSpeed.ChangeBaseSpeed(uid, speed.BaseWalkSpeed, component.SpeedBefore, speed.Acceleration, speed);
             }
         }
-        
+
     }
     public override void Update(float frameTime)
     {

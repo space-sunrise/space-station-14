@@ -1,3 +1,4 @@
+// © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -57,7 +58,7 @@ public sealed class SickSystem : SharedSickSystem
 
     public void OnShut(EntityUid uid, SickComponent component, ComponentShutdown args)
     {
-        foreach(var emote in EnsureComp<AutoEmoteComponent>(uid).Emotes)
+        foreach (var emote in EnsureComp<AutoEmoteComponent>(uid).Emotes)
         {
             if (emote.Contains("Infected"))
             {
@@ -66,10 +67,10 @@ public sealed class SickSystem : SharedSickSystem
         }
         foreach (var key in component.Symptoms)
         {
-            switch(key)
+            switch (key)
             {
                 case "Narcolepsy":
-                    if(TryComp<SleepyComponent>(uid, out var narc))
+                    if (TryComp<SleepyComponent>(uid, out var narc))
                     {
                         RemComp<SleepyComponent>(uid);
                     }
@@ -85,11 +86,11 @@ public sealed class SickSystem : SharedSickSystem
                     {
                         RemComp<PermanentBlindnessComponent>(uid);
                     }
-                    if(HasComp<BlurryVisionComponent>(uid))
+                    if (HasComp<BlurryVisionComponent>(uid))
                     {
                         RemComp<BlurryVisionComponent>(uid);
                     }
-                    if(HasComp<EyeClosingComponent>(uid))
+                    if (HasComp<EyeClosingComponent>(uid))
                     {
                         RemComp<EyeClosingComponent>(uid);
                     }
@@ -108,7 +109,7 @@ public sealed class SickSystem : SharedSickSystem
                     break;
             }
         }
-            _bloodstream.ChangeBloodReagent(uid, component.BeforeInfectedBloodReagent);
+        _bloodstream.ChangeBloodReagent(uid, component.BeforeInfectedBloodReagent);
     }
     public override void Update(float frameTime)
     {
@@ -134,7 +135,7 @@ public sealed class SickSystem : SharedSickSystem
                 }
                 else
                 {
-                    if(_gameTiming.CurTime >= component.NextStadyAt)
+                    if (_gameTiming.CurTime >= component.NextStadyAt)
                     {
                         component.Stady++;
                         foreach (var emote in EnsureComp<AutoEmoteComponent>(uid).Emotes)
@@ -172,9 +173,9 @@ public sealed class SickSystem : SharedSickSystem
 
     private void UpdateInfection(EntityUid uid, SickComponent component, EntityUid disease, DiseaseRoleComponent diseaseComponent)
     {
-        foreach((var key, (var min, var max)) in diseaseComponent.Symptoms)
+        foreach ((var key, (var min, var max)) in diseaseComponent.Symptoms)
         {
-            if(!component.Symptoms.Contains(key))
+            if (!component.Symptoms.Contains(key))
             {
                 if (component.Stady >= min && component.Stady <= max)
                 {
@@ -198,9 +199,9 @@ public sealed class SickSystem : SharedSickSystem
                             _autoEmote.AddEmote(uid, "InfectedCrying");
                             break;
                         case "Narcolepsy":
-                            if(!HasComp<SleepyComponent>(uid))
+                            if (!HasComp<SleepyComponent>(uid))
                             {
-                                var c= AddComp<SleepyComponent>(uid);
+                                var c = AddComp<SleepyComponent>(uid);
                                 EntityManager.EntitySysManager.GetEntitySystem<SleepySystem>().SetNarcolepsy(uid, new Vector2(10, 30), new Vector2(300, 600), c);
                             }
                             break;
@@ -238,14 +239,15 @@ public sealed class SickSystem : SharedSickSystem
         {
             if (_robustRandom.Prob(0.9f))
             {
-                if(TryComp<DiseaseRoleComponent>(component.owner, out var disease)) {
+                if (TryComp<DiseaseRoleComponent>(component.owner, out var disease))
+                {
                     var kind = SuicideKind.Piercing;
                     if (_prototypeManager.TryIndex<DamageTypePrototype>(kind.ToString(), out var damagePrototype))
                     {
                         _damageableSystem.TryChangeDamage(uid, new(damagePrototype, 0.25f * disease.Lethal), true, origin: uid);
                     }
                 }
-                
+
                 EntityCoordinates start = Transform(uid).Coordinates;
                 foreach (var entity in _lookup.GetEntitiesInRange(uid, 0.7f))
                 {
@@ -277,7 +279,7 @@ public sealed class SickSystem : SharedSickSystem
                 _vomitSystem.Vomit(uid, -30, -20);
             }
         }
-        if(args.Emote.ID == "Insult")
+        if (args.Emote.ID == "Insult")
         {
             if (TryComp<DiseaseRoleComponent>(component.owner, out var disease))
             {

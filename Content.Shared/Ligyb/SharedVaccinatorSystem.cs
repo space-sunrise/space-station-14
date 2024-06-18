@@ -1,3 +1,4 @@
+// © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Interaction;
@@ -164,7 +165,7 @@ public abstract class SharedVaccinatorSystem : EntitySystem
                 }
             }
             _solution.UpdateChemicals(soln.Value, true, reactionMixer);
-             
+
         }
     }
 
