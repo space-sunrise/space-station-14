@@ -25,6 +25,7 @@ public sealed partial class TapePlayerMenu : FancyWindow
     public event Action<bool>? OnPlayPressed;
     public event Action? OnStopPressed;
     public event Action<float>? SetTime;
+    public event Action<float>? SetVolume;
 
     private EntityUid? _audio;
 
@@ -46,6 +47,7 @@ public sealed partial class TapePlayerMenu : FancyWindow
             OnStopPressed?.Invoke();
         };
         PlaybackSlider.OnReleased += PlaybackSliderKeyUp;
+        VolumeSlider.OnReleased += VolumeSliderKeyUp;
 
         SetPlayPauseButton(_audioSystem.IsPlaying(_audio), force: true);
     }
@@ -60,9 +62,20 @@ public sealed partial class TapePlayerMenu : FancyWindow
         _audio = audio;
     }
 
+    public void SetVolumeSlider(float volume)
+    {
+        VolumeSlider.Value = volume;
+    }
+
     private void PlaybackSliderKeyUp(Slider args)
     {
         SetTime?.Invoke(PlaybackSlider.Value);
+        _lockTimer = 0.5f;
+    }
+
+    private void VolumeSliderKeyUp(Slider args)
+    {
+        SetVolume?.Invoke(VolumeSlider.Value / 100f);
         _lockTimer = 0.5f;
     }
 
@@ -99,6 +112,7 @@ public sealed partial class TapePlayerMenu : FancyWindow
         }
 
         PlaybackSlider.Disabled = _lockTimer > 0f;
+        VolumeSlider.Disabled = _lockTimer > 0f;
 
         if (_entManager.TryGetComponent(_audio, out AudioComponent? audio))
         {

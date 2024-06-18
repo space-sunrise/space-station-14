@@ -20,9 +20,9 @@ public sealed partial class TapePlayerComponent : Component
     [DataField(required: true)]
     public ItemSlot TapeSlot = new();
 
-    [DataField]
-    [ViewVariables(VVAccess.ReadWrite)]
-    public float Volume = 10f;
+    [DataField, AutoNetworkedField]
+    [ViewVariables]
+    public float Volume = 0.5f;
 
     [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
@@ -42,6 +42,9 @@ public sealed partial class TapePlayerComponent : Component
     public bool NeedPower;
 
     [DataField]
+    public bool Loop = true;
+
+    [DataField]
     public SoundSpecifier? ButtonSound;
 }
 
@@ -58,6 +61,11 @@ public sealed class TapePlayerStopMessage : BoundUserInterfaceMessage;
 public sealed class TapePlayerSetTimeMessage(float songTime) : BoundUserInterfaceMessage
 {
     public float SongTime { get; } = songTime;
+}
+[Serializable, NetSerializable]
+public sealed class TapePlayerSetVolumeMessage(float volume) : BoundUserInterfaceMessage
+{
+    public float Volume { get; } = volume;
 }
 
 [Serializable, NetSerializable]

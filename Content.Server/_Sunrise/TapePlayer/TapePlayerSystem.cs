@@ -29,6 +29,8 @@ public sealed class TapePlayerSystem : SharedTapePlayerSystem
         SubscribeLocalEvent<TapePlayerComponent, TapePlayerPauseMessage>(OnTapePlayerPause);
         SubscribeLocalEvent<TapePlayerComponent, TapePlayerStopMessage>(OnTapePlayerStop);
         SubscribeLocalEvent<TapePlayerComponent, TapePlayerSetTimeMessage>(OnTapePlayerSetTime);
+        SubscribeLocalEvent<TapePlayerComponent, TapePlayerSetVolumeMessage>(OnTapePlayerSetVolume);
+
 
         SubscribeLocalEvent<TapePlayerComponent, PowerChangedEvent>(OnPowerChanged);
     }
@@ -73,10 +75,10 @@ public sealed class TapePlayerSystem : SharedTapePlayerSystem
             }
 
             var audioParams = AudioParams.Default
-                .WithVolume(component.Volume)
+                .WithVolume(SharedAudioSystem.GainToVolume(component.Volume))
                 .WithMaxDistance(component.MaxDistance)
                 .WithRolloffFactor(component.RolloffFactor)
-                .WithLoop(true);
+                .WithLoop(component.Loop);
             component.AudioStream = Audio.PlayPvs(musicTapeComponent.Sound, uid, audioParams)?.Entity;
             Dirty(uid, component);
         }
@@ -95,6 +97,13 @@ public sealed class TapePlayerSystem : SharedTapePlayerSystem
             var offset = actorComp.PlayerSession.Channel.Ping * 1.5f / 1000f;
             Audio.SetPlaybackPosition(component.AudioStream, args.SongTime + offset);
         }
+    }
+
+    private void OnTapePlayerSetVolume(EntityUid uid, TapePlayerComponent component, TapePlayerSetVolumeMessage args)
+    {
+        component.Volume = args.Volume;
+        Audio.SetVolume(component.AudioStream, SharedAudioSystem.GainToVolume(args.Volume));
+        Dirty(uid, component);
     }
 
     private void OnPowerChanged(Entity<TapePlayerComponent> entity, ref PowerChangedEvent args)
