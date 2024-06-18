@@ -803,6 +803,10 @@
       - WeaponLaserCannon
       - WeaponLaserCarbine
       - WeaponXrayCannon
+      - WeaponEnergyGun       # Sunrise - Energy Gun
+      - WeaponEnergyGunMini   # Sunrise - Miniature Energy Gun
+      - WeaponEnergyGunPistol # Sunrise - PDW-9 Energy Pistol
+      - WeaponGunLaserCarbineAutomatic # Sunrise - IK-60 Laser Carbine
   - type: MaterialStorage
     whitelist:
       tags:
