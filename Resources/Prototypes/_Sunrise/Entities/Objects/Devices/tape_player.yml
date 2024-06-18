@@ -11,7 +11,6 @@
     - state: "off"
       map: ["enum.TapePlayerVisualLayers.Base"]
   - type: TapePlayer
-    volume: -4
     rolloffFactor: 1.2
     maxDistance: 10
     tapeSlot:

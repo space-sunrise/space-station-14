@@ -1,6 +1,7 @@
 using Content.Shared._Sunrise.TapePlayer;
 using Robust.Client.Audio;
 using Robust.Shared.Audio.Components;
+using Robust.Shared.Audio.Systems;
 
 namespace Content.Client._Sunrise.TapePlayer;
 
@@ -42,6 +43,7 @@ public sealed class TapePlayerBoundUserInterface : BoundUserInterface
         };
 
         _menu.SetTime += SetTime;
+        _menu.SetVolume += SetVolume;
         Reload();
     }
 
@@ -54,6 +56,7 @@ public sealed class TapePlayerBoundUserInterface : BoundUserInterface
             return;
 
         _menu.SetAudioStream(tapePlayer.AudioStream);
+        _menu.SetVolumeSlider(tapePlayer.Volume * 100f);
 
         if (_entityManager.TryGetComponent<MusicTapeComponent>(tapePlayer.InsertedTape, out var musicTapeComponent))
         {
@@ -77,13 +80,18 @@ public sealed class TapePlayerBoundUserInterface : BoundUserInterface
         // so it will go BRRRRT
         // Using ping gets us close enough that it SHOULD, MOST OF THE TIME, fall within the 0.1 second tolerance
         // that's still on engine so our playback position never gets corrected.
-        if (EntMan.TryGetComponent(Owner, out TapePlayerComponent? jukebox) &&
-            EntMan.TryGetComponent(jukebox.AudioStream, out AudioComponent? audioComp))
+        if (EntMan.TryGetComponent(Owner, out TapePlayerComponent? tapePlayer) &&
+            EntMan.TryGetComponent(tapePlayer.AudioStream, out AudioComponent? audioComp))
         {
             audioComp.PlaybackPosition = time;
         }
 
         SendMessage(new TapePlayerSetTimeMessage(sentTime));
+    }
+
+    public void SetVolume(float volume)
+    {
+        SendMessage(new TapePlayerSetVolumeMessage(volume));
     }
 
     protected override void Dispose(bool disposing)

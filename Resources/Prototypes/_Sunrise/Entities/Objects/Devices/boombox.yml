@@ -12,7 +12,6 @@
     - state: "off"
       map: ["enum.TapePlayerVisualLayers.Base"]
   - type: TapePlayer
-    volume: -2
     rolloffFactor: 1.2
     maxDistance: 15
   - type: MeleeWeapon
@@ -39,7 +38,6 @@
     - state: "off"
       map: ["enum.TapePlayerVisualLayers.Base"]
   - type: TapePlayer
-    volume: 0
     rolloffFactor: 1
     maxDistance: 20
   - type: MeleeWeapon

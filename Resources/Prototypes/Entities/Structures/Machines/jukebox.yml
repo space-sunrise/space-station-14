@@ -13,7 +13,6 @@
     anchored: true
   # Sunrise-Start
   - type: TapePlayer
-    volume: 10
     rolloffFactor: 1
     maxDistance: 20
     tapeSlot:
