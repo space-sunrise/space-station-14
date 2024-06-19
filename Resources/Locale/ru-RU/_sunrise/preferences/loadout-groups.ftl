@@ -10,3 +10,4 @@ loadout-group-security-trinkets = Безделушки СБ
 loadout-group-corporate-law = Корпоративный Закон
 loadout-group-centcomm-operator-jumpsuit = Униформа ОЦК
 loadout-group-centcomm-operator-head-hat = Головой убор ОЦК
+loadout-group-chief-engineer-backpack = Рюкзак старшего инженера

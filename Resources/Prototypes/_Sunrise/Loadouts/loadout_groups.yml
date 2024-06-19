@@ -164,3 +164,11 @@
   loadouts:
   - HeadHatBeretCentcomNaval
   - HeadHatCentcomcap
+
+- type: loadoutGroup
+  id: ChiefEngineerBackpack
+  name: loadout-group-chief-engineer-backpack
+  loadouts:
+  - ChiefEngineerBackpack
+  - ChiefEngineerSatchel
+  - ChiefEngineerDuffel
