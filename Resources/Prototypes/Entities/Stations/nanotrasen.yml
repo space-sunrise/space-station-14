@@ -25,7 +25,6 @@
     - BaseStationSiliconLawCrewsimov
     - BaseStationAllEventsEligible
     - BaseStationNanotrasen
-    - BaseRandomStation
     # Sunrise-Start
     - BaseStationTransitHub
     - BaseStationDontSelling
@@ -41,7 +40,6 @@
     - BaseStationAlertLevels
     - BaseStationNanotrasen
     - BaseStationRecords
-    - BaseRandomStation
     - BaseStationJobsSpawning
     # Sunrise-Start
     - BaseCentCommShuttles

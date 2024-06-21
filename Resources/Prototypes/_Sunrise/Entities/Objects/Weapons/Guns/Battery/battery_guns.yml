@@ -283,7 +283,7 @@
       path: /Audio/Weapons/Guns/Empty/empty.ogg
     selectedMode: SemiAuto
     fireRate: 0.6
-    avaliableModes:
+    availableModes:
     - SemiAuto
   - type: Battery
     maxCharge: 4000

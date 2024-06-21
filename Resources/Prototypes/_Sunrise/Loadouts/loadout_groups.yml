@@ -138,7 +138,7 @@
 - type: loadoutGroup
   id: SecurityBodycam
   name: loadout-group-bodycam
-  minlimit: 0
+  minLimit: 0
   loadouts:
   - SecurityBodycam
 
