@@ -48,6 +48,9 @@
 - type: loadout
   id: MaidJumpskirt
   equipment: MaidJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaidJanitor
 
 - type: startingGear
   id: MaidJumpskirt
