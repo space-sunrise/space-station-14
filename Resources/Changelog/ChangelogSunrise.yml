@@ -971,3 +971,11 @@
   id: 75
   time: '2024-06-21T02:35:09.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/135
+- author: VigersRay
+  changes:
+  - message: "\u0421\u0442\u0440\u043E\u043A\u0430 \u043F\u043E\u0438\u0441\u043A\u0430\
+      \ \u0432 \u0430\u043F\u043B\u0438\u043D\u043A\u0430\u0445 \u0442\u0435\u043F\
+      \u0435\u0440\u044C \u0440\u0430\u0431\u043E\u0442\u0430\u0435\u0442."
+    type: Fix
+  id: 76
+  time: '2024-06-21T03:24:48.637609+00:00'
