@@ -33,10 +33,14 @@
 
 - type: randomHumanoidSettings
   id: DeathSquad
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Synth
+  - Vulpkanin
+  - Felinid
   parent: EventHumanoidMindShielded
   randomizeName: false
-  speciesBlacklist: # Sunrise-edit
-    - Diona
   components:
     - type: GhostRole
       name: ghost-role-information-Death-Squad-name
@@ -71,6 +75,12 @@
 
 - type: randomHumanoidSettings
   id: ERTLeader
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Synth
+  - Vulpkanin
+  - Felinid
   parent: EventHumanoidMindShielded
   randomizeName: false
   components:
@@ -101,6 +111,12 @@
 
 - type: randomHumanoidSettings
   id: ERTLeaderEVA
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Synth
+  - Vulpkanin
+  - Felinid
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -122,6 +138,12 @@
 
 - type: randomHumanoidSettings
   id: ERTLeaderEVALecter
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Synth
+  - Vulpkanin
+  - Felinid
   parent: ERTLeaderEVA
   components:
     - type: GhostRole
@@ -153,6 +175,12 @@
 
 - type: randomHumanoidSettings
   id: ERTChaplain
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Synth
+  - Vulpkanin
+  - Felinid
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -182,6 +210,12 @@
 
 - type: randomHumanoidSettings
   id: ERTChaplainEVA
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Synth
+  - Vulpkanin
+  - Felinid
   parent: ERTChaplain
   components:
     - type: GhostRole
@@ -213,6 +247,12 @@
 
 - type: randomHumanoidSettings
   id: ERTJanitor
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Synth
+  - Vulpkanin
+  - Felinid
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -242,6 +282,10 @@
 
 - type: randomHumanoidSettings
   id: ERTJanitorEVA
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
   parent: ERTJanitor
   components:
     - type: GhostRole
@@ -273,6 +317,10 @@
 
 - type: randomHumanoidSettings
   id: ERTEngineer
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -302,6 +350,10 @@
 
 - type: randomHumanoidSettings
   id: ERTEngineerEVA
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
   parent: ERTEngineer
   components:
     - type: GhostRole
@@ -335,6 +387,8 @@
   id: ERTSecurity
   speciesBlacklist: # Sunrise-edit
     - Diona
+    - Vox
+    - Felinid
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -364,6 +418,10 @@
 
 - type: randomHumanoidSettings
   id: ERTSecurityEVA
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
   parent: ERTSecurity
   components:
     - type: GhostRole
@@ -385,6 +443,10 @@
 
 - type: randomHumanoidSettings
   id: ERTSecurityEVALecter
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
   parent: ERTSecurityEVA
   components:
     - type: GhostRole
@@ -416,6 +478,9 @@
 
 - type: randomHumanoidSettings
   id: ERTMedical
+  speciesBlacklist: # Sunrise-edit
+  - Vox
+  - Felinid
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -445,6 +510,9 @@
 
 - type: randomHumanoidSettings
   id: ERTMedicalEVA
+  speciesBlacklist: # Sunrise-edit
+  - Vox
+  - Felinid
   parent: ERTMedical
   components:
     - type: GhostRole
@@ -470,9 +538,12 @@
       settings: CBURNAgent
 
 - type: randomHumanoidSettings
-  speciesBlacklist: # Sunrise-edit
-    - Diona
   id: CBURNAgent
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Vulpkanin
+  - Felinid
   parent: EventHumanoidMindShielded
   components:
     - type: Loadout
@@ -502,6 +573,10 @@
 
 - type: randomHumanoidSettings
   id: CentcomOfficial
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
   parent: EventHumanoidMindShielded
   components:
     - type: GhostRole
@@ -529,6 +604,9 @@
 
 - type: randomHumanoidSettings
   id: SyndicateAgent
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Felinid
   components:
     - type: RandomHumanoidAppearance
       randomizeName: false
@@ -547,6 +625,9 @@
 
 - type: randomHumanoidSettings
   id: NukeOp
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Felinid
   components:
     - type: RandomHumanoidAppearance
       randomizeName: false
@@ -831,6 +912,9 @@
 
 - type: randomHumanoidSettings
   id: SyndieDisasterVictim
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Felinid
   parent: EventHumanoid
   components:
     - type: NpcFactionMember
