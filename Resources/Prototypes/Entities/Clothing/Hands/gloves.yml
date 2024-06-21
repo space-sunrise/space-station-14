@@ -6,6 +6,8 @@
   components:
   - type: Sprite
     sprite: Clothing/Hands/Gloves/Boxing/boxingred.rsi
+  - type: DiseaseImmuneClothing
+    prob: 0.2
   - type: Clothing
     sprite: Clothing/Hands/Gloves/Boxing/boxingred.rsi
   - type: StaminaDamageOnHit
@@ -153,6 +155,8 @@
   components:
   - type: Sprite
     sprite: Clothing/Hands/Gloves/nitrile.rsi
+  - type: DiseaseImmuneClothing
+    prob: 0.4
   - type: Clothing
     sprite: Clothing/Hands/Gloves/nitrile.rsi
   - type: Fiber
