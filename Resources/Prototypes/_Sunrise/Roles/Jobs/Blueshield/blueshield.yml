@@ -52,7 +52,3 @@
     ears: ClothingHeadsetAltCommand
     belt: ClothingBeltBlueShieldWebbingFilled
     gloves: ClothingHandsGlovesCombat
-  storage:
-    back:
-    - BoxSurvivalSecurity
-    - Flash
