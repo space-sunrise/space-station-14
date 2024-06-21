@@ -184,7 +184,7 @@
   - ClownShoes
   - Glasses
   - Trinkets
-  - Survival
+  - SurvivalClown
   # Sunrise-start
   - Bra
   - Pants
@@ -281,7 +281,7 @@
   - ChiefEngineerOuterClothing
   - ChiefEngineerShoes
   - Trinkets
-  - Survival
+  - SurvivalExtended
   # Sunrise-start
   - Bra
   - Pants
@@ -294,7 +294,7 @@
   - TechnicalAssistantJumpsuit
   - StationEngineerBackpack
   - Trinkets
-  - Survival
+  - SurvivalExtended
   # Sunrise-start
   - Bra
   - Pants
@@ -311,7 +311,7 @@
   - StationEngineerShoes
   - StationEngineerID
   - Trinkets
-  - Survival
+  - SurvivalExtended
   # Sunrise-start
   - Bra
   - Pants
@@ -326,7 +326,7 @@
   - AtmosphericTechnicianOuterClothing
   - AtmosphericTechnicianShoes
   - Trinkets
-  - Survival
+  - SurvivalExtended
   # Sunrise-start
   - Bra
   - Pants
@@ -400,7 +400,7 @@
   - HeadofSecurityOuterClothing
   - SecurityShoes
   - Trinkets
-  - Survival
+  - SurvivalSecurity
   # Sunrise-start
   - Bra
   - Pants
@@ -418,7 +418,7 @@
   - WardenOuterClothing
   - SecurityShoes
   - Trinkets
-  - Survival
+  - SurvivalSecurity
   # Sunrise-start
   - Bra
   - Pants
@@ -437,7 +437,7 @@
   - SecurityPDA
   - SecurityBelt
   - Trinkets
-  - Survival
+  - SurvivalSecurity
   # Sunrise-start
   - Bra
   - Pants
@@ -455,7 +455,7 @@
   - DetectiveOuterClothing
   - SecurityShoes
   - Trinkets
-  - Survival
+  - SurvivalSecurity
   # Sunrise-start
   - Bra
   - Pants
@@ -469,7 +469,7 @@
   - SecurityCadetJumpsuit
   - SecurityBackpack
   - Trinkets
-  - Survival
+  - SurvivalSecurity
   # Sunrise-start
   - Bra
   - Pants
@@ -490,7 +490,7 @@
   - ChiefMedicalOfficerShoes
   - Glasses
   - Trinkets
-  - Survival
+  - SurvivalMedical
   # Sunrise-start
   - Bra
   - Pants
@@ -510,7 +510,7 @@
   - MedicalDoctorPDA
   - Glasses
   - Trinkets
-  - Survival
+  - SurvivalMedical
   # Sunrise-start
   - Bra
   - Pants
@@ -524,7 +524,7 @@
   - MedicalBackpack
   - Glasses
   - Trinkets
-  - Survival
+  - SurvivalMedical
   # Sunrise-start
   - Bra
   - Pants
@@ -541,7 +541,7 @@
   - ChemistOuterClothing
   - MedicalShoes
   - Trinkets
-  - Survival
+  - SurvivalMedical
   # Sunrise-start
   - Bra
   - Pants
@@ -560,7 +560,7 @@
   - ParamedicShoes
   - Glasses
   - Trinkets
-  - Survival
+  - SurvivalMedical
   # Sunrise-start
   - Bra
   - Pants
