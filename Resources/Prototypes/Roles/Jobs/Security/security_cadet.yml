@@ -39,6 +39,5 @@
     pocket2: HyperLinkBookCorporateLaw # Sunrise-edit
   storage:
     back:
-    - BoxSurvivalSecurity
     - Flash
     - MagazinePistol

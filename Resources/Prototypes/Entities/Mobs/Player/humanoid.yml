@@ -12,7 +12,7 @@
   parent: EventHumanoid
   components:
     - type: MindShield
-    - type: InitialInfectedExempt
+    - type: AntagImmune
 
 ## Death Squad
 
@@ -30,7 +30,6 @@
         - NamesLastMilitary
     - type: RandomHumanoidSpawner
       settings: DeathSquad
-    - type: InitialInfectedExempt
 
 - type: randomHumanoidSettings
   id: DeathSquad
@@ -68,7 +67,6 @@
       - NamesLastMilitary
     - type: RandomHumanoidSpawner
       settings: ERTLeader
-    - type: InitialInfectedExempt
 
 - type: randomHumanoidSettings
   id: ERTLeader
@@ -98,7 +96,6 @@
       state: ertleadereva
     - type: RandomHumanoidSpawner
       settings: ERTLeaderEVA
-    - type: InitialInfectedExempt
 
 - type: randomHumanoidSettings
   id: ERTLeaderEVA
@@ -119,7 +116,6 @@
   components:
     - type: RandomHumanoidSpawner
       settings: ERTLeaderEVALecter
-    - type: InitialInfectedExempt
 
 - type: randomHumanoidSettings
   id: ERTLeaderEVALecter
@@ -457,7 +453,6 @@
       state: cburn
     - type: RandomHumanoidSpawner
       settings: CBURNAgent
-    - type: InitialInfectedExempt
 
 - type: randomHumanoidSettings
   speciesBlacklist: # Sunrise-edit
@@ -476,6 +471,7 @@
       nameSegments:
       - NamesFirstMilitary
       - NamesLastMilitary
+
 ## Central Command
 
 - type: entity
@@ -487,7 +483,6 @@
       state: centcom
     - type: RandomHumanoidSpawner
       settings: CentcomOfficial
-    - type: InitialInfectedExempt
 
 - type: randomHumanoidSettings
   id: CentcomOfficial
