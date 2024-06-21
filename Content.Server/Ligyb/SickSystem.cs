@@ -32,6 +32,8 @@ using Content.Shared.Traits.Assorted;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Item;
 using Content.Shared.Speech.Muting;
+using Content.Shared.Store.Components;
+
 namespace Content.Server.Ligyb;
 public sealed class SickSystem : SharedSickSystem
 {

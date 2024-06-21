@@ -40,7 +40,7 @@
 
 - type: mixingCategory
   id: Vaccinator
-  verbText: Вакцинатор
+  verbText: ent-Vaccinator
   icon:
     sprite: Structures/Machines/Medical/centrifuge.rsi
     state: base

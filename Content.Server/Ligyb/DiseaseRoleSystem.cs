@@ -18,6 +18,7 @@ using Content.Server.Store.Systems;
 using Robust.Shared.Prototypes;
 using Content.Server.Zombies;
 using Content.Shared.FixedPoint;
+using Content.Shared.Store.Components;
 using Content.Shared.Zombies;
 namespace Content.Server.Ligyb;
 
@@ -133,7 +134,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
         }
         return false;
     }
-    
+
     private void OnCough(EntityUid uid, DiseaseRoleComponent component, DiseaseStartCoughEvent args)
     {
         component.Symptoms.Add("Cough", (2, 9999));

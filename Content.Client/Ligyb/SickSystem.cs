@@ -36,8 +36,7 @@ public sealed class SickSystem : EntitySystem
             {
                 if (HasComp<DiseaseRoleComponent>(_playerManager.LocalEntity.Value))
                 {
-                    if (!args.InContainer &&
-                        !_mobState.IsDead(uid) &&
+                    if (!_mobState.IsDead(uid) &&
                         !HasComp<ActiveNPCComponent>(uid) &&
                         TryComp<MindContainerComponent>(uid, out var mindContainer) &&
                         mindContainer.ShowExamineInfo)
