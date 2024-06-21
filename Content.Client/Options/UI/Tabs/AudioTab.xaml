@@ -147,6 +147,7 @@
                 <CheckBox Name="EventMusicCheckBox" Text="{Loc 'ui-options-event-music'}" />
                 <CheckBox Name="AdminSoundsCheckBox" Text="{Loc 'ui-options-admin-sounds'}" />
                 <CheckBox Name="TtsClientCheckBox" Text="{Loc 'ui-options-tts-enabled'}" />
+                <CheckBox Name="TapePlayerClientCheckBox" Text="{Loc 'ui-options-tape-player-enabled'}" />
             </BoxContainer>
         </BoxContainer>
         <controls:StripeBack HasBottomEdge="False" HasMargins="False">

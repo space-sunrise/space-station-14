@@ -110,4 +110,14 @@ public sealed class SunriseCCVars
     /// </summary>
     public static readonly CVarDef<int> ArrivalsMinHours =
         CVarDef.Create("transithub.arrivals_min_hours", 10, CVar.SERVER | CVar.ARCHIVE);
+
+    /**
+     * Tape Player
+     */
+
+    /// <summary>
+    /// Параметр отключения школьников с колонками у клиента.
+    /// </summary>
+    public static readonly CVarDef<bool> TapePlayerClientEnabled =
+        CVarDef.Create("tape_player.client_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 }

@@ -17,6 +17,8 @@ public sealed class TapePlayerSystem : SharedTapePlayerSystem
     [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
     [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
 
+    private readonly List<ICommonSession> _ignoredRecipients = [];
+
     public override void Initialize()
     {
         base.Initialize();
@@ -31,8 +33,16 @@ public sealed class TapePlayerSystem : SharedTapePlayerSystem
         SubscribeLocalEvent<TapePlayerComponent, TapePlayerSetTimeMessage>(OnTapePlayerSetTime);
         SubscribeLocalEvent<TapePlayerComponent, TapePlayerSetVolumeMessage>(OnTapePlayerSetVolume);
 
-
         SubscribeLocalEvent<TapePlayerComponent, PowerChangedEvent>(OnPowerChanged);
+        SubscribeNetworkEvent<ClientOptionTapePlayerEvent>(OnClientOptionTapePlayer);
+    }
+
+    private async void OnClientOptionTapePlayer(ClientOptionTapePlayerEvent ev, EntitySessionEventArgs args)
+    {
+        if (ev.Enabled)
+            _ignoredRecipients.Remove(args.SenderSession);
+        else
+            _ignoredRecipients.Add(args.SenderSession);
     }
 
     private void OnItemInserted(EntityUid uid, TapePlayerComponent component, EntInsertedIntoContainerMessage args)
@@ -74,12 +84,21 @@ public sealed class TapePlayerSystem : SharedTapePlayerSystem
                 return;
             }
 
+            var volume = SharedAudioSystem.GainToVolume(component.Volume) - component.DecreaseVolume;
+
             var audioParams = AudioParams.Default
-                .WithVolume(SharedAudioSystem.GainToVolume(component.Volume))
+                .WithVolume(volume)
                 .WithMaxDistance(component.MaxDistance)
                 .WithRolloffFactor(component.RolloffFactor)
                 .WithLoop(component.Loop);
-            component.AudioStream = Audio.PlayPvs(musicTapeComponent.Sound, uid, audioParams)?.Entity;
+            var filter = Filter.Pvs(uid).RemovePlayers(_ignoredRecipients);
+            var audio = Audio.PlayEntity(
+                musicTapeComponent.Sound,
+                filter,
+                uid,
+                false,
+                audioParams);
+            component.AudioStream = audio.Value.Entity;
             Dirty(uid, component);
         }
     }
@@ -102,7 +121,8 @@ public sealed class TapePlayerSystem : SharedTapePlayerSystem
     private void OnTapePlayerSetVolume(EntityUid uid, TapePlayerComponent component, TapePlayerSetVolumeMessage args)
     {
         component.Volume = args.Volume;
-        Audio.SetVolume(component.AudioStream, SharedAudioSystem.GainToVolume(args.Volume));
+        var volume = SharedAudioSystem.GainToVolume(component.Volume) - component.DecreaseVolume;
+        Audio.SetVolume(component.AudioStream, volume);
         Dirty(uid, component);
     }
 
