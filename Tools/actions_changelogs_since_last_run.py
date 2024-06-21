@@ -144,23 +144,22 @@ def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
         print("No discord webhook URL found, skipping discord send")
         return
 
-    content_string = io.StringIO()
-
     for entry in entries:
+        content_string = io.StringIO()
         for change in entry["changes"]:
             emoji = TYPES_TO_EMOJI.get(change['type'], "❓")
             message = change['message']
             content_string.write(f"{emoji} {message}\n")
         url = entry.get("url")
         if url and url.strip():
-            content_string.write(f"[GitHub PR]({url})\n")
+            content_string.write(f"[GitHub Pull Request]({url})\n")
 
         embed = {
             "title": f"Автор: **{entry["author"]}**",
             "description": content_string.getvalue(),
             "color": 0x3498db
         }
-    
+
         if len(content_string.getvalue()) > 0:
             send_embed_discord(embed)
 
