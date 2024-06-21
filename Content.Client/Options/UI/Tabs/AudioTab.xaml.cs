@@ -29,6 +29,7 @@ namespace Content.Client.Options.UI.Tabs
             EventMusicCheckBox.Pressed = _cfg.GetCVar(CCVars.EventMusicEnabled);
             AdminSoundsCheckBox.Pressed = _cfg.GetCVar(CCVars.AdminSoundsEnabled);
             TtsClientCheckBox.Pressed = _cfg.GetCVar(SunriseCCVars.TTSClientEnabled);
+            TapePlayerClientCheckBox.Pressed = _cfg.GetCVar(SunriseCCVars.TapePlayerClientEnabled);
 
             ApplyButton.OnPressed += OnApplyButtonPressed;
             ResetButton.OnPressed += OnResetButtonPressed;
@@ -47,6 +48,7 @@ namespace Content.Client.Options.UI.Tabs
             EventMusicCheckBox.OnToggled += OnEventMusicCheckToggled;
             AdminSoundsCheckBox.OnToggled += OnAdminSoundsCheckToggled;
             TtsClientCheckBox.OnToggled += OnTtsClientCheckToggled;
+            TapePlayerClientCheckBox.OnToggled += OnTapePlayerClientCheckToggled;
 
             AmbienceSoundsSlider.MinValue = _cfg.GetCVar(CCVars.MinMaxAmbientSourcesConfigured);
             AmbienceSoundsSlider.MaxValue = _cfg.GetCVar(CCVars.MaxMaxAmbientSourcesConfigured);
@@ -146,6 +148,11 @@ namespace Content.Client.Options.UI.Tabs
             UpdateChanges();
         }
 
+        private void OnTapePlayerClientCheckToggled(BaseButton.ButtonEventArgs args)
+        {
+            UpdateChanges();
+        }
+
         private void OnApplyButtonPressed(BaseButton.ButtonEventArgs args)
         {
             _cfg.SetCVar(CVars.AudioMasterVolume, MasterVolumeSlider.Value / 100f * ContentAudioSystem.MasterVolumeMultiplier);
@@ -167,6 +174,7 @@ namespace Content.Client.Options.UI.Tabs
             _cfg.SetCVar(CCVars.EventMusicEnabled, EventMusicCheckBox.Pressed);
             _cfg.SetCVar(CCVars.AdminSoundsEnabled, AdminSoundsCheckBox.Pressed);
             _cfg.SetCVar(SunriseCCVars.TTSClientEnabled, TtsClientCheckBox.Pressed);
+            _cfg.SetCVar(SunriseCCVars.TapePlayerClientEnabled, TapePlayerClientCheckBox.Pressed);
             _cfg.SaveToFile();
             UpdateChanges();
         }
@@ -195,6 +203,7 @@ namespace Content.Client.Options.UI.Tabs
             EventMusicCheckBox.Pressed = _cfg.GetCVar(CCVars.EventMusicEnabled);
             AdminSoundsCheckBox.Pressed = _cfg.GetCVar(CCVars.AdminSoundsEnabled);
             TtsClientCheckBox.Pressed = _cfg.GetCVar(SunriseCCVars.TTSClientEnabled);
+            TapePlayerClientCheckBox.Pressed = _cfg.GetCVar(SunriseCCVars.TapePlayerClientEnabled);
             UpdateChanges();
         }
 
@@ -226,8 +235,9 @@ namespace Content.Client.Options.UI.Tabs
             var isEventSame = EventMusicCheckBox.Pressed == _cfg.GetCVar(CCVars.EventMusicEnabled);
             var isAdminSoundsSame = AdminSoundsCheckBox.Pressed == _cfg.GetCVar(CCVars.AdminSoundsEnabled);
             var isTtsClientSame = TtsClientCheckBox.Pressed == _cfg.GetCVar(SunriseCCVars.TTSClientEnabled);
+            var isTapePlayerClientSame = TapePlayerClientCheckBox.Pressed == _cfg.GetCVar(SunriseCCVars.TapePlayerClientEnabled);
             var isEverythingSame = isMasterVolumeSame && isMidiVolumeSame && isAmbientVolumeSame && isAmbientMusicVolumeSame && isAmbientSoundsSame && isLobbySame && isRestartSoundsSame && isEventSame
-                                   && isAdminSoundsSame && isLobbyVolumeSame && isInterfaceVolumeSame && isTtsClientSame;
+                                   && isAdminSoundsSame && isLobbyVolumeSame && isInterfaceVolumeSame && isTtsClientSame && isTapePlayerClientSame;
             isEverythingSame = isEverythingSame && isTtsRadioVolumeSame && isTtsVolumeSame && isTtsAnnounceVolumeSame; // Sunrise-TTS
             ApplyButton.Disabled = isEverythingSame;
             ResetButton.Disabled = isEverythingSame;

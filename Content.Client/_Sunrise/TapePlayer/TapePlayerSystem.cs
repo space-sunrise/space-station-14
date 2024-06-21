@@ -1,5 +1,7 @@
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared._Sunrise.TapePlayer;
 using Robust.Client.GameObjects;
+using Robust.Shared.Configuration;
 
 namespace Content.Client._Sunrise.TapePlayer
 {
@@ -7,6 +9,7 @@ namespace Content.Client._Sunrise.TapePlayer
     {
         [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
         [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
+        [Dependency] private readonly IConfigurationManager _cfg = default!;
 
         public override void Initialize()
         {
@@ -14,6 +17,18 @@ namespace Content.Client._Sunrise.TapePlayer
             SubscribeLocalEvent<TapePlayerComponent, AppearanceChangeEvent>(OnAppearanceChange);
             SubscribeLocalEvent<TapePlayerComponent, AnimationCompletedEvent>(OnAnimationCompleted);
             SubscribeLocalEvent<TapePlayerComponent, AfterAutoHandleStateEvent>(OnTapePlayerAfterState);
+            _cfg.OnValueChanged(SunriseCCVars.TapePlayerClientEnabled, OnTapePlayerClientOptionChanged, true);
+        }
+
+        public override void Shutdown()
+        {
+            base.Shutdown();
+            _cfg.UnsubValueChanged(SunriseCCVars.TapePlayerClientEnabled, OnTapePlayerClientOptionChanged);
+        }
+
+        private void OnTapePlayerClientOptionChanged(bool option)
+        {
+            RaiseNetworkEvent(new ClientOptionTapePlayerEvent(option));
         }
 
         private void OnTapePlayerAfterState(Entity<TapePlayerComponent> ent, ref AfterAutoHandleStateEvent args)
