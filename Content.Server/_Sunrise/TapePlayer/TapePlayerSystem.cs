@@ -84,8 +84,10 @@ public sealed class TapePlayerSystem : SharedTapePlayerSystem
                 return;
             }
 
+            var volume = SharedAudioSystem.GainToVolume(component.Volume) - component.DecreaseVolume;
+
             var audioParams = AudioParams.Default
-                .WithVolume(SharedAudioSystem.GainToVolume(component.Volume))
+                .WithVolume(volume)
                 .WithMaxDistance(component.MaxDistance)
                 .WithRolloffFactor(component.RolloffFactor)
                 .WithLoop(component.Loop);
@@ -119,7 +121,8 @@ public sealed class TapePlayerSystem : SharedTapePlayerSystem
     private void OnTapePlayerSetVolume(EntityUid uid, TapePlayerComponent component, TapePlayerSetVolumeMessage args)
     {
         component.Volume = args.Volume;
-        Audio.SetVolume(component.AudioStream, SharedAudioSystem.GainToVolume(args.Volume));
+        var volume = SharedAudioSystem.GainToVolume(component.Volume) - component.DecreaseVolume;
+        Audio.SetVolume(component.AudioStream, volume);
         Dirty(uid, component);
     }
 
