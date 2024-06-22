@@ -1,6 +1,6 @@
 using Content.Client.GameTicking.Managers;
 using Content.Shared.PDA;
-using Content.Shared._Sunrise.Time;
+using Content.Client._Sunrise.Time;
 using Content.Shared.CartridgeLoader;
 using Content.Client.Message;
 using Robust.Client.UserInterface;
@@ -122,7 +122,13 @@ namespace Content.Client.PDA
             StationTimeButton.OnPressed += _ =>
             {
                 var stationTime = _entitySystem.GetEntitySystem<TimeSystem>().GetStationTime();
-                _clipboard.SetText($"{stationTime.Date} {stationTime.Time:hh\\:mm\\:ss}");
+                _clipboard.SetText($"{stationTime.Date} {stationTime.Time:hh\\:mm}");
+            };
+
+            StartTimeButton.OnPressed += _ =>
+            {
+                var stationTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
+                _clipboard.SetText((stationTime.ToString("hh\\:mm")));
             };
 			
             StationAlertLevelInstructionsButton.OnPressed += _ =>
@@ -174,9 +180,13 @@ namespace Content.Client.PDA
 
             var stationTime = _entitySystem.GetEntitySystem<TimeSystem>().GetStationTime();
 			var stationDate = _entitySystem.GetEntitySystem<TimeSystem>().GetDate();
+			var startTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
+
+            StartTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-start-time",
+                ("time", startTime.ToString("hh\\:mm"))));
 
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
-                ("time", stationTime.Time.ToString("hh\\:mm\\:ss")), ("date", stationDate)));
+                ("time", stationTime.Time.ToString("hh\\:mm")), ("date", stationDate)));
 
             // Sunrise-start
             var remaining = TimeSpan.Zero;
@@ -378,9 +388,13 @@ namespace Content.Client.PDA
 
             var stationTime = _entitySystem.GetEntitySystem<TimeSystem>().GetStationTime();
 			var stationDate = _entitySystem.GetEntitySystem<TimeSystem>().GetDate();
+			var startTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
+
+            StartTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-start-time",
+                ("time", startTime.ToString("hh\\:mm"))));
 				
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
-                ("time", stationTime.Time.ToString("hh\\:mm\\:ss")), ("date", stationDate)));
+                ("time", stationTime.Time.ToString("hh\\:mm")), ("date", stationDate)));
 
             // Sunrise-start
             var remaining = TimeSpan.Zero;

@@ -3,7 +3,7 @@ using Content.Shared.GameTicking;
 using Robust.Shared.Timing;
 using System;
 
-namespace Content.Shared._Sunrise.Time;
+namespace Content.Client._Sunrise.Time;
 
 public sealed class TimeSystem : EntitySystem
 {
@@ -24,8 +24,7 @@ public sealed class TimeSystem : EntitySystem
 
         public (TimeSpan Time, int Date) GetStationTime()
         {
-            var moscowTime = DateTime.UtcNow + TimeSpan.FromHours(3);
-            var stationTime = moscowTime.TimeOfDay;
+            var stationTime = _timing.CurTime.Subtract(_roundStart).Add(TimeSpan.FromHours(12));
 
             var daysPassed = (int)stationTime.TotalHours / 24;
             stationTime = stationTime.Subtract(TimeSpan.FromHours(daysPassed * 24));
@@ -34,6 +33,12 @@ public sealed class TimeSystem : EntitySystem
 
             return (stationTime, date);
         }
+		
+		public TimeSpan GetCurrentServerTime()
+		{
+			var moscowTime = DateTime.UtcNow + TimeSpan.FromHours(3);
+			return moscowTime.TimeOfDay;
+		}
 
         public string GetDate()
         {

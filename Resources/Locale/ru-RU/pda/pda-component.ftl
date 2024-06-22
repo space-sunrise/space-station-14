@@ -35,7 +35,7 @@ comp-pda-ui-station-alert-level-instructions = Инструкции: [color=whit
 
 comp-pda-ui-station-time = Время и дата: [color=white]{ $time }, { $date }[/color]
 
-comp-pda-ui-server-time = Время сервера: [color=white]{ $time }[/color]
+comp-pda-ui-start-time = Длительность смены: [color=white]{ $time }[/color]
 
 comp-pda-ui-eject-id-button = Извлечь ID
 comp-pda-ui-eject-pen-button = Извлечь ручку

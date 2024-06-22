@@ -34,7 +34,7 @@ comp-pda-ui-station-alert-level-instructions = Instructions: [color=white]{ $ins
 
 comp-pda-ui-station-time = Date and Time: [color=white]{ $time }, { $date }[/color]
 
-comp-pda-ui-server-time = Server time: [color=white]{ $time }[/color]
+comp-pda-ui-start-time = Shift duration: [color=white]{ $time }[/color]
 
 comp-pda-ui-eject-id-button = Eject ID
 
