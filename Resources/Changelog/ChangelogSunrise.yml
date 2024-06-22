@@ -1004,3 +1004,12 @@
   id: 78
   time: '2024-06-22T02:07:00.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/140
+- author: Babaev
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0430 \u043B\u043E\u043A\
+      \u0430\u043B\u0438\u0437\u0430\u0446\u0438\u044F \u0441\u043E\u0432\u0435\u0442\
+      \u043E\u0432."
+    type: Tweak
+  id: 79
+  time: '2024-06-22T09:41:29.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/141
