@@ -124,12 +124,6 @@ namespace Content.Client.PDA
                 var stationTime = _entitySystem.GetEntitySystem<TimeSystem>().GetStationTime();
                 _clipboard.SetText($"{stationTime.Date} {stationTime.Time:hh\\:mm\\:ss}");
             };
-
-            ServerTimeButton.OnPressed += _ =>
-            {
-                var serverTime = _entitySystem.GetEntitySystem<TimeSystem>().GetCurrentServerTime();
-                _clipboard.SetText(serverTime.ToString("hh\\:mm\\:ss"));
-            };
 			
             StationAlertLevelInstructionsButton.OnPressed += _ =>
             {
@@ -182,10 +176,7 @@ namespace Content.Client.PDA
 			var stationDate = _entitySystem.GetEntitySystem<TimeSystem>().GetDate();
 
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
-                ("time", stationTime.Time.ToString("hh\\:mm\\:ss"))));
-				
-            StationDateLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-date",
-				("date", stationDate)));
+                ("time", stationTime.Time.ToString("hh\\:mm\\:ss")), ("date", stationDate)));
 
             // Sunrise-start
             var remaining = TimeSpan.Zero;
@@ -387,10 +378,6 @@ namespace Content.Client.PDA
 
             var stationTime = _entitySystem.GetEntitySystem<TimeSystem>().GetStationTime();
 			var stationDate = _entitySystem.GetEntitySystem<TimeSystem>().GetDate();
-			var serverTime = _entitySystem.GetEntitySystem<TimeSystem>().GetCurrentServerTime();
-
-            ServerTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-server-time",
-                ("time", serverTime.Time.ToString("hh\\:mm\\:ss"))));
 				
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
                 ("time", stationTime.Time.ToString("hh\\:mm\\:ss")), ("date", stationDate)));
