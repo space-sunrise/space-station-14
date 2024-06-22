@@ -1,6 +1,7 @@
 using Content.Shared.Examine;
 using Content.Shared.GameTicking;
 using Robust.Shared.Timing;
+using System;
 
 namespace Content.Shared._Sunrise.Time;
 
@@ -23,7 +24,7 @@ public sealed class TimeSystem : EntitySystem
 
         public (TimeSpan Time, int Date) GetStationTime()
         {
-			var moscowTime = TimeZoneInfo.ConvertTime(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("Russian Standard Time"));
+            var moscowTime = DateTime.UtcNow + TimeSpan.FromHours(3);
             var stationTime = moscowTime.TimeOfDay;
 
             var daysPassed = (int)stationTime.TotalHours / 24;
@@ -34,9 +35,8 @@ public sealed class TimeSystem : EntitySystem
             return (stationTime, date);
         }
 
-    public string GetDate()
-    {
-        var moscowTime = TimeZoneInfo.ConvertTime(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("Russian Standard Time"));
-        return moscowTime.AddYears(1000).ToString("dd.MM.yyyy");
-    }
+        public string GetDate()
+        {
+            return DateTime.Now.AddYears(1000).ToString("dd.MM.yyyy");
+        }
 }
