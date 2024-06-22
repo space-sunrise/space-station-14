@@ -21,24 +21,25 @@ namespace Content.Shared._Sunrise.Time
             _roundStart = ev.RoundStartTimeSpan;
         }
 
-        public (TimeSpan Time, int Date) GetStationTime()
+        public (TimeSpan Time) GetStationTime()
         {
             var stationTime = _timing.CurTime.Subtract(_roundStart).Add(TimeSpan.FromHours(12));
 
-            var date = 13;
-            while (stationTime.TotalHours >= 24)
-            {
-                stationTime.Subtract(TimeSpan.FromHours(24));
-                date = date + 1;
-            }
-
-            return (stationTime, date);
+            stationTime = stationTime.Subtract(TimeSpan.FromHours(daysPassed * 24));
+			
+            return (stationTime);
+        }
+		
+        public TimeSpan GetCurrentServerTime()
+        {
+            var moscowTime = TimeZoneInfo.ConvertTime(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("Russian Standard Time"));
+            return moscowTime.TimeOfDay;
         }
 
         public string GetDate()
         {
-            // please tell me you guys aren't gonna have a 4 week round yet...
-            return DateTime.UtcNow.AddYears(1000).ToString("dd.MM.yyyy");
+            var moscowTime = TimeZoneInfo.ConvertTime(DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("Russian Standard Time"));
+            return moscowTime.AddYears(1000).ToString("dd.MM.yyyy");
         }
     }
 }
