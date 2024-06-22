@@ -309,7 +309,6 @@
   - StationEngineerBackpack
   - StationEngineerOuterClothing
   - StationEngineerShoes
-  - StationEngineerID
   - Trinkets
   - SurvivalExtended
   # Sunrise-start
@@ -363,7 +362,6 @@
   - ScientistOuterClothing
   - ScientistGloves
   - ScientistShoes
-  - ScientistPDA
   - Glasses
   - Trinkets
   - Survival
@@ -434,7 +432,6 @@
   - SecurityBackpack
   - SecurityOuterClothing
   - SecurityShoes
-  - SecurityPDA
   - SecurityBelt
   - Trinkets
   - SurvivalSecurity
@@ -507,7 +504,6 @@
   - MedicalBackpack
   - MedicalDoctorOuterClothing
   - MedicalShoes
-  - MedicalDoctorPDA
   - Glasses
   - Trinkets
   - SurvivalMedical

@@ -90,33 +90,33 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtSecGrey
 
-- type: loadout
-  id: SeniorOfficerJumpsuit
-  equipment: SeniorOfficerJumpsuit
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: SeniorOfficer
-  - !type:GroupLoadoutEffect
-    proto: MaleMoment
+# - type: loadout
+#   id: SeniorOfficerJumpsuit
+#   equipment: SeniorOfficerJumpsuit
+#   effects:
+#   - !type:GroupLoadoutEffect
+#     proto: SeniorOfficer
+#   - !type:GroupLoadoutEffect
+#     proto: MaleMoment
 
-- type: startingGear
-  id: SeniorOfficerJumpsuit
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitSeniorOfficer
+# - type: startingGear
+#   id: SeniorOfficerJumpsuit
+#   equipment:
+#     jumpsuit: ClothingUniformJumpsuitSeniorOfficer
 
-- type: loadout
-  id: SeniorOfficerJumpskirt
-  equipment: SeniorOfficerJumpskirt
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: SeniorOfficer
-  - !type:GroupLoadoutEffect
-    proto: WomanMoment
+# - type: loadout
+#   id: SeniorOfficerJumpskirt
+#   equipment: SeniorOfficerJumpskirt
+#   effects:
+#   - !type:GroupLoadoutEffect
+#     proto: SeniorOfficer
+#   - !type:GroupLoadoutEffect
+#     proto: WomanMoment
 
-- type: startingGear
-  id: SeniorOfficerJumpskirt
-  equipment:
-    jumpsuit: ClothingUniformJumpskirtSeniorOfficer
+# - type: startingGear
+#   id: SeniorOfficerJumpskirt
+#   equipment:
+#     jumpsuit: ClothingUniformJumpskirtSeniorOfficer
 
 # Back
 - type: loadout
@@ -220,25 +220,3 @@
   id: SecurityWinterBoots
   equipment:
     shoes: ClothingShoesBootsWinterSecFilled
-
-# PDA
-- type: loadout
-  id: SecurityPDA
-  equipment: SecurityPDA
-
-- type: startingGear
-  id: SecurityPDA
-  equipment:
-    id: SecurityPDA
-
-- type: loadout
-  id: SeniorOfficerPDA
-  equipment: SeniorOfficerPDA
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: SeniorOfficer
-
-- type: startingGear
-  id: SeniorOfficerPDA
-  equipment:
-    id: SeniorOfficerPDA

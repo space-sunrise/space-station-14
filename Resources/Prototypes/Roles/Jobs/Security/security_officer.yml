@@ -30,6 +30,7 @@
     eyes: ClothingEyesGlassesSecurity
     ears: ClothingHeadsetSecurity
     pocket1: WeaponPistolMk58
+    id: SecurityPDA
   storage:
     back:
     - Flash
