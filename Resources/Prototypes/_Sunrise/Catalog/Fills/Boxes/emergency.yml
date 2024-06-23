@@ -10,7 +10,14 @@
       - id: ClothingMaskBreathMedicalSecurity
       - id: EmergencyOxygenTankFilled
       - id: EmergencyMedipen
-      - id: EmergencyMedipen
+      - id: GlowstickRed
+        orGroup: Glowstick
+      - id: GlowstickPurple
+        orGroup: Glowstick
+      - id: GlowstickYellow
+        orGroup: Glowstick
+      - id: GlowstickBlue
+        orGroup: Glowstick
       - id: FoodSnackNutribrick
       - id: DrinkWaterBottleFull
   - type: Sprite
@@ -23,12 +30,19 @@
   parent: BoxCardboard
   id: BoxSurvivalSynth
   description: It's a box with basic internals inside.
-  suffix: Cyborg
   components:
   - type: StorageFill
     contents:
-      - id: WelderMini
+      - id: Welder
       - id: CableApcStack
+      - id: GlowstickRed
+        orGroup: Glowstick
+      - id: GlowstickPurple
+        orGroup: Glowstick
+      - id: GlowstickYellow
+        orGroup: Glowstick
+      - id: GlowstickBlue
+        orGroup: Glowstick
   - type: Sprite
     layers:
       - state: box_science
