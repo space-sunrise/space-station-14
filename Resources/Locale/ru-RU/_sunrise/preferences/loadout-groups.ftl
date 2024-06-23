@@ -15,3 +15,6 @@ loadout-group-senior-researcher-jumpsuit = Униформа ведущего у�
 loadout-group-senior-physician-jumpsuit = Униформа ведущего врача
 loadout-group-senior-engineer-jumpsuit = Униформа ведущего инженера
 loadout-group-chief-engineer-backpack = Старший инженер, рюкзак
+loadout-group-roboticist-head = Робототехник, головной убор
+loadout-group-roboticist-jumpsuit = Робототехник, комбинезон
+loadout-group-roboticist-outerclothing = Робототехник, верхняя одежда

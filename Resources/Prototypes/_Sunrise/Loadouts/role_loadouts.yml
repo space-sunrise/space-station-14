@@ -123,3 +123,18 @@
   - Bra
   - Pants
   - Socks
+
+- type: roleLoadout
+  id: JobRoboticist
+  groups:
+  - RoboticistHead
+  - ScientistNeck
+  - RoboticistJumpsuit
+  - RoboticistOuterClothing
+  - ScientistBackpack
+  - ScientistShoes
+  - Survival
+  - Trinkets
+  - Bra
+  - Pants
+  - Socks

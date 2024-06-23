@@ -363,7 +363,6 @@
 - type: roleLoadout
   id: JobScientist
   groups:
-  - ScientistHead
   - ScientistNeck
   - ScientistJumpsuit
   - ScientistBackpack

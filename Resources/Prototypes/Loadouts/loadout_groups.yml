@@ -750,15 +750,6 @@
   - ScienceWinterBoots
 
 - type: loadoutGroup
-  id: ScientistHead
-  name: loadout-group-scientist-head
-  minLimit: 0
-  loadouts:
-# - RoboticistCap Sunrise-Edit: только для роли робототеха
-  - SkullBandana
-# - ScientificBeret Sunrise-Edit: только для роли ведущего ученого
-
-- type: loadoutGroup
   id: ScientistNeck
   name: loadout-group-scientist-neck
   minLimit: 0
@@ -771,8 +762,6 @@
   loadouts:
   - ScientistJumpsuit
   - ScientistJumpskirt
-  - RoboticistJumpsuit
-  - RoboticistJumpskirt
 
 - type: loadoutGroup
   id: ScientistBackpack
@@ -790,8 +779,6 @@
   - RegularLabCoat
   - ScienceLabCoat
   - ScienceWintercoat
-  - RoboticistLabCoat
-  - RoboticistWintercoat
 
 - type: loadoutGroup
   id: ScientistShoes
@@ -808,7 +795,6 @@
   loadouts:
   - LatexGloves
   - PurpleGloves
-  - RobohandsGloves
 
 - type: loadoutGroup
   id: ResearchAssistantJumpsuit
