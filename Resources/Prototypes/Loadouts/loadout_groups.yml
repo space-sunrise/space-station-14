@@ -41,6 +41,7 @@
   name: loadout-group-survival-basic
   hidden: true
   loadouts:
+  - EmergencyCyborg  # Sunrise-Synth
   - EmergencyNitrogen
   - EmergencyOxygen
 

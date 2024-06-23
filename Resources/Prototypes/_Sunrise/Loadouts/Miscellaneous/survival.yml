@@ -1,0 +1,19 @@
+- type: loadoutEffectGroup
+  id: CyborgLike
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Synth
+
+- type: loadout
+  id: EmergencyCyborg
+  equipment: EmergencyCyborg
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: CyborgLike
+
+- type: startingGear
+  id: EmergencyCyborg
+  storage:
+    back:
+    - BoxSurvivalCyborg

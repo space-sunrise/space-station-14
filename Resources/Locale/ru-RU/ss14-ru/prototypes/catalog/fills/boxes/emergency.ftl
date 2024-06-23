@@ -37,3 +37,6 @@ ent-BoxSurvivalSyndicateNitrogen = { ent-BoxSurvivalSyndicate }
 ent-BoxSurvivalBrigmedic = { ent-BoxSurvivalMedical }
     .desc = Коробка с базовым набором для выживания. Солгасно дополнительной этикетке, содержит 2 экстренных медипена.
     .suffix = Бригмедик
+ent-BoxSurvivalCyborg = { ent-BoxSurvival }
+    .desc = { ent-BoxSurvival.desc }
+    .suffix = Киборг
