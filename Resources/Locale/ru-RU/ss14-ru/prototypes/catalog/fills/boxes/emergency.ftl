@@ -39,4 +39,3 @@ ent-BoxSurvivalBrigmedic = { ent-BoxSurvivalMedical }
     .suffix = Бригмедик
 ent-BoxSurvivalSynth = аварийный ремонтный набор
     .desc = Коробка с базовым набором для ремонта.
-    .suffix = Киборг
