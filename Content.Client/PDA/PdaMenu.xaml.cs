@@ -122,7 +122,8 @@ namespace Content.Client.PDA
             StationTimeButton.OnPressed += _ =>
             {
                 var stationTime = _entitySystem.GetEntitySystem<TimeSystem>().GetStationTime();
-                _clipboard.SetText($"{stationTime.Date} {stationTime.Time:hh\\:mm}");
+                var stationDate = _entitySystem.GetEntitySystem<TimeSystem>().GetDate();
+                _clipboard.SetText($"{stationDate} {stationTime.Time:hh:mm}");
             };
 
             StartTimeButton.OnPressed += _ =>
@@ -130,7 +131,17 @@ namespace Content.Client.PDA
                 var stationTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
                 _clipboard.SetText((stationTime.ToString("hh\\:mm")));
             };
-			
+
+            ShuttleTimeButton.OnPressed += _ =>
+            {
+                var remaining = TimeSpan.Zero;
+
+                if (_evacShuttleTime != null)
+                    remaining = TimeSpan.FromSeconds(Math.Max((_evacShuttleTime.Value - _gameTiming.CurTime).TotalSeconds, 0));
+
+                _clipboard.SetText(remaining.ToString(@"hh\:mm\:ss"));
+            };
+
             StationAlertLevelInstructionsButton.OnPressed += _ =>
             {
                 _clipboard.SetText(_instructions);
@@ -392,7 +403,7 @@ namespace Content.Client.PDA
 
             StartTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-start-time",
                 ("time", startTime.ToString("hh\\:mm"))));
-				
+
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
                 ("time", stationTime.Time.ToString("hh\\:mm")), ("date", stationDate)));
 
