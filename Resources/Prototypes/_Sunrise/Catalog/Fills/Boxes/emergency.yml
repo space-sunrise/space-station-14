@@ -21,15 +21,15 @@
 - type: entity
   name: survival box
   parent: BoxCardboard
-  id: BoxSurvivalCyborg
+  id: BoxSurvivalSynth
   description: It's a box with basic internals inside.
   suffix: Cyborg
   components:
   - type: StorageFill
     contents:
-      - id: Welder
+      - id: WelderMini
       - id: CableApcStack
   - type: Sprite
     layers:
-      - state: internals
-      - state: emergencytank
+      - state: box_science
+      - state: flare
