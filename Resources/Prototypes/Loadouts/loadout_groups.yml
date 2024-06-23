@@ -762,8 +762,6 @@
   loadouts:
   - ScientistJumpsuit
   - ScientistJumpskirt
-  - RoboticistJumpsuit
-  - RoboticistJumpskirt
 
 - type: loadoutGroup
   id: ScientistBackpack
@@ -781,8 +779,6 @@
   - RegularLabCoat
   - ScienceLabCoat
   - ScienceWintercoat
-  - RoboticistLabCoat
-  - RoboticistWintercoat
 
 - type: loadoutGroup
   id: ScientistShoes
