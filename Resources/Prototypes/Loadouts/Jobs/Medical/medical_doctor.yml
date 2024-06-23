@@ -1,22 +1,22 @@
-# Senior Time
-- type: loadoutEffectGroup
-  id: SeniorPhysician
-  effects:
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:RoleTimeRequirement
-      role: JobChemist
-      time: 36000 # 10 hrs Sunrise-RoleTime
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:RoleTimeRequirement
-      role: JobMedicalDoctor
-      time: 36000 # 10 hrs Sunrise-RoleTime
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:DepartmentTimeRequirement
-      department: Medical
-      time: 108000 # 30 hrs Sunrise-RoleTime
+# # Senior Time
+# - type: loadoutEffectGroup
+#   id: SeniorPhysician
+#   effects:
+#   - !type:JobRequirementLoadoutEffect
+#     requirement:
+#       !type:RoleTimeRequirement
+#       role: JobChemist
+#       time: 36000 # 10 hrs Sunrise-RoleTime
+#   - !type:JobRequirementLoadoutEffect
+#     requirement:
+#       !type:RoleTimeRequirement
+#       role: JobMedicalDoctor
+#       time: 36000 # 10 hrs Sunrise-RoleTime
+#   - !type:JobRequirementLoadoutEffect
+#     requirement:
+#       !type:DepartmentTimeRequirement
+#       department: Medical
+#       time: 108000 # 30 hrs Sunrise-RoleTime
 
 # Other Timers
 
@@ -125,33 +125,33 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtMedicalDoctor
 
-- type: loadout
-  id: SeniorPhysicianJumpsuit
-  equipment: SeniorPhysicianJumpsuit
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: SeniorPhysician
-  - !type:GroupLoadoutEffect
-    proto: MaleMoment
+# - type: loadout
+#   id: SeniorPhysicianJumpsuit
+#   equipment: SeniorPhysicianJumpsuit
+#   effects:
+#   - !type:GroupLoadoutEffect
+#     proto: SeniorPhysician
+#   - !type:GroupLoadoutEffect
+#     proto: MaleMoment
 
-- type: startingGear
-  id: SeniorPhysicianJumpsuit
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitSeniorPhysician
+# - type: startingGear
+#   id: SeniorPhysicianJumpsuit
+#   equipment:
+#     jumpsuit: ClothingUniformJumpsuitSeniorPhysician
 
-- type: loadout
-  id: SeniorPhysicianJumpskirt
-  equipment: SeniorPhysicianJumpskirt
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: SeniorPhysician
-  - !type:GroupLoadoutEffect
-    proto: WomanMoment
+# - type: loadout
+#   id: SeniorPhysicianJumpskirt
+#   equipment: SeniorPhysicianJumpskirt
+#   effects:
+#   - !type:GroupLoadoutEffect
+#     proto: SeniorPhysician
+#   - !type:GroupLoadoutEffect
+#     proto: WomanMoment
 
-- type: startingGear
-  id: SeniorPhysicianJumpskirt
-  equipment:
-    jumpsuit: ClothingUniformJumpskirtSeniorPhysician
+# - type: startingGear
+#   id: SeniorPhysicianJumpskirt
+#   equipment:
+#     jumpsuit: ClothingUniformJumpskirtSeniorPhysician
 
 - type: loadout
   id: MedicalBlueScrubs
