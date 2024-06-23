@@ -39,8 +39,6 @@
 - type: loadoutGroup
   id: Survival
   name: loadout-group-survival-basic
-  minLimit: 1
-  maxLimit: 1
   hidden: true
   loadouts:
   - EmergencyNitrogen
@@ -412,8 +410,6 @@
 - type: loadoutGroup
   id: SurvivalClown
   name: loadout-group-survival-clown
-  minLimit: 2
-  maxLimit: 2
   hidden: true
   loadouts:
   - EmergencyNitrogenClown
@@ -725,8 +721,6 @@
 - type: loadoutGroup
   id: SurvivalExtended
   name: loadout-group-survival-extended
-  minLimit: 2
-  maxLimit: 2
   hidden: true
   loadouts:
   - EmergencyNitrogenExtended
@@ -986,8 +980,6 @@
 - type: loadoutGroup
   id: SurvivalSecurity
   name: loadout-group-survival-security
-  minLimit: 2
-  maxLimit: 2
   hidden: true
   loadouts:
   - EmergencyNitrogenSecurity
@@ -1157,8 +1149,6 @@
 - type: loadoutGroup
   id: SurvivalMedical
   name: loadout-group-survival-medical
-  minLimit: 2
-  maxLimit: 2
   hidden: true
   loadouts:
   - EmergencyNitrogenMedical
@@ -1192,8 +1182,6 @@
 - type: loadoutGroup
   id: SurvivalSyndicate
   name: loadout-group-survival-syndicate
-  minLimit: 2
-  maxLimit: 2
   hidden: true
   loadouts:
   - EmergencyNitrogenSyndicate

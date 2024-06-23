@@ -251,7 +251,11 @@
       path: /Audio/Ambience/Objects/periodic_beep.ogg
 
 - type: entity
-  parent: [MobSiliconBase, ShowMedicalIcons, FlyingMobBase]
+  parent:
+  - MobSiliconBase
+  - ShowMedicalIcons
+  - StripableInventoryBase
+  - FlyingMobBase
   id: MobMedibot
   name: medibot
   description: No substitute for a doctor, but better than nothing.
@@ -292,6 +296,9 @@
       path: /Audio/Ambience/Objects/periodic_beep.ogg
   - type: Advertise
     pack: MedibotAds
+  - type: Inventory
+    templateId: medibot
+  # Sunrise-Start
   - type: AmbientSound
     enabled: true
     volume: 0
@@ -309,19 +316,16 @@
         - FlyingMobMask
         layer:
         - FlyingMobLayer
+  # Sunrise-End
 
 - type: entity
-  parent: MobSiliconBase
+  parent:
+  - MobSiliconBase
+  - StripableInventoryBase
   id: MobMimeBot
   name: mimebot
   description: Why not give mimebot a friendly wave.
   components:
-  - type: InventorySlots
-  - type: Strippable
-  - type: UserInterface
-    interfaces:
-      enum.StrippingUiKey.Key:
-        type: StrippableBoundUserInterface
   - type: Sprite
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
