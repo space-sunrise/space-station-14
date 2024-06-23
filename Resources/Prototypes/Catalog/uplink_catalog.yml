@@ -1706,6 +1706,7 @@
     whitelist:
     - Zookeeper
     - Scientist
+    - SeniorResearcher  # Sunrise-Senior
     - ResearchDirector
     - Chef
 

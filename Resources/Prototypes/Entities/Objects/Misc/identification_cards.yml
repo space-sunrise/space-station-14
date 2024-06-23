@@ -637,6 +637,11 @@
     - JobIconSecurityCadet
     - JobIconZookeeper
     - JobIconVisitor
+    - JobIconBrigmedic  # Sunrise-Roles
+    - JobIconSeniorPhysician  # Sunrise-Senior
+    - JobIconSeniorOfficer  # Sunrise-Senior
+    - JobIconSeniorEngineer  # Sunrise-Senior
+    - JobIconSeniorResearcher  # Sunrise-Senior
   - type: ActivatableUI
     key: enum.AgentIDCardUiKey.Key
     inHandsOnly: true
@@ -800,6 +805,8 @@
     layers:
     - state: default
     - state: idseniorengineer
+  - type: PresetIdCard  # Sunrise-Senior
+    job: SeniorEngineer  # Sunrise-Senior
 
 - type: entity
   parent: ResearchIDCard
@@ -810,6 +817,8 @@
     layers:
     - state: default
     - state: idseniorresearcher
+  - type: PresetIdCard  # Sunrise-Senior
+    job: SeniorResearcher  # Sunrise-Senior
 
 - type: entity
   parent: MedicalIDCard
@@ -820,6 +829,8 @@
     layers:
     - state: default
     - state: idseniorphysician
+  - type: PresetIdCard  # Sunrise-Senior
+    job: SeniorPhysician  # Sunrise-Senior
 
 - type: entity
   parent: SecurityIDCard
@@ -830,6 +841,8 @@
     layers:
     - state: default
     - state: idseniorofficer
+  - type: PresetIdCard  # Sunrise-Senior
+    job: SeniorOfficer  # Sunrise-Senior
 
 - type: entity
   parent: IDCardStandard
