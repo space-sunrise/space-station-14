@@ -604,14 +604,6 @@
 
 # Engineering
 - type: loadoutGroup
-  id: ChiefEngineerHead
-  name: loadout-group-chief-engineer-head
-  minLimit: 0
-  loadouts:
-  - ChiefEngineerHead
-  - ChiefEngineerBeret
-
-- type: loadoutGroup
   id: ChiefEngineerJumpsuit
   name: loadout-group-chief-engineer-jumpsuit
   loadouts:
@@ -728,13 +720,6 @@
 
 # Science
 - type: loadoutGroup
-  id: ResearchDirectorHead
-  name: loadout-group-research-director-head
-  minLimit: 0
-  loadouts:
-  - ResearchDirectorBeret
-
-- type: loadoutGroup
   id: ResearchDirectorNeck
   name: loadout-group-research-director-neck
   minLimit: 0
@@ -769,9 +754,9 @@
   name: loadout-group-scientist-head
   minLimit: 0
   loadouts:
-  - RoboticistCap
+# - RoboticistCap Sunrise-Edit: только для роли робототеха
   - SkullBandana
-  - ScientificBeret
+# - ScientificBeret Sunrise-Edit: только для роли ведущего ученого
 
 - type: loadoutGroup
   id: ScientistNeck

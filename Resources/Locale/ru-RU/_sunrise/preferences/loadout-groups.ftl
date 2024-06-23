@@ -14,3 +14,4 @@ loadout-group-senior-officer-jumpsuit = Униформа инструктора 
 loadout-group-senior-researcher-jumpsuit = Униформа ведущего учёного
 loadout-group-senior-physician-jumpsuit = Униформа ведущего врача
 loadout-group-senior-engineer-jumpsuit = Униформа ведущего инженера
+loadout-group-chief-engineer-backpack = Старший инженер, рюкзак

@@ -100,14 +100,6 @@
   - BrigmedicJumpskirt
 
 - type: loadoutGroup
-  id: PsychologistBackpack
-  name: loadout-group-brigmedic-backpack
-  loadouts:
-  - PsychologistBackpack
-  - PsychologistSatchel
-  - PsychologistDuffel
-
-- type: loadoutGroup
   id: BlueShieldBackpack
   name: loadout-group-blueshield-backpack
   loadouts:

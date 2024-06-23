@@ -284,7 +284,6 @@
 - type: roleLoadout
   id: JobChiefEngineer
   groups:
-  - ChiefEngineerHead
   - ChiefEngineerJumpsuit
   - ChiefEngineerBackpack # Sunrise-Edit
   - ChiefEngineerNeck
@@ -319,7 +318,6 @@
   - StationEngineerBackpack
   - StationEngineerOuterClothing
   - StationEngineerShoes
-  - StationEngineerID
   - SurvivalExtended
   - Trinkets
   # Sunrise-start
@@ -347,7 +345,6 @@
 - type: roleLoadout
   id: JobResearchDirector
   groups:
-  - ResearchDirectorHead
   - ResearchDirectorNeck
   - ResearchDirectorJumpsuit
   - ScientistBackpack
@@ -605,7 +602,7 @@
 - type: roleLoadout
   id: JobPsychologist
   groups:
-  - PsychologistBackpack # Sunrise-edit
+  - CommonBackpack # Sunrise-edit
   - Glasses
   - Survival
   - Trinkets
