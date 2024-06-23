@@ -95,6 +95,7 @@
   - SeniorResearcher  # Sunrise-Senior
   - Scientist
   - ResearchAssistant
+  - Roboticist  # Sunrise-Edit
 
 - type: department
   id: Specific

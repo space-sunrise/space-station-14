@@ -35,7 +35,7 @@
   parent: BasePDA
   id: BlueShieldPDA
   name: КПК офицера «синий щит»
-  description: Охуенный стиль.
+  description: КПК для геев.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/pda.rsi
@@ -55,3 +55,24 @@
   - type: Icon
     sprite: _Sunrise/Objects/pda.rsi
     state: pda-blueshield
+
+- type: entity
+  parent: BasePDA
+  id: RoboticistPDA
+  name: КПК робототехника
+  description: Он покрыт чем-то липким.
+  components:
+  - type: Pda
+    id: RoboticistIDCard
+    state: pda-roboticist
+  - type: PdaBorderColor
+    borderColor: "#d7d7d0"
+    accentVColor: "#8900c9"
+  - type: Icon
+    state: pda-roboticist
+  - type: HealthAnalyzer
+    scanningEndSound:
+      path: "/Audio/Items/Medical/healthscanner.ogg"
+    damageContainers:
+    - Synth
+    - Silicon

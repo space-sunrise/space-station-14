@@ -6,6 +6,7 @@ job-name-senior-engineer = ведущий инженер
 job-name-senior-researcher = ведущий учёный
 job-name-senior-physician = ведущий врач
 job-name-senior-officer = инструктор СБ
+job-name-roboticist = робототехник
 
 # Перевод трекеров времени
 JobCentCommOfficial = представитель Центком
@@ -14,3 +15,4 @@ JobSeniorEngineer = ведущий инженер
 JobSeniorOfficer = инструктор СБ
 JobSeniorPhysician = ведущий врач
 JobSeniorResearcher = ведущий учёный
+JobRoboticist = робототехник
