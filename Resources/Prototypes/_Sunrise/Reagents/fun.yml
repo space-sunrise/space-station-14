@@ -1,17 +1,17 @@
 - type: reagent
   id: Aphrodesiac
-  name: reagent-name-aphrodesiac  # TODO: this
+  name: reagent-name-aphrodesiac
   group: Special
-  desc: reagent-desc-aphrodesiac  # TODO: this
-  physicalDesc: reagent-physical-desc-love  # TODO: add dis shii
-  flavor: # TODO: THIS
-  color: "#B100C8"
+  desc: reagent-desc-aphrodesiac
+  physicalDesc: reagent-physical-desc-aphrodesiac
+  flavor: funny
+  color: "#FF00E8"
   metabolisms:
     Poison:
       effects:
       - !type:PopupMessage
         type: Local
-        messages: [ "love-effect1", "love-effect2" ]
+        messages: [ "aphrodesiac-effect1", "aphrodesiac-effect2" ]
         probability: 0.1
       - !type:LoveEffect
         effectPower: 2

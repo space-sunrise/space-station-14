@@ -1,5 +1,5 @@
 using Content.Shared.Chemistry.Reagent;
-using Content.Shared.Abilities;
+using Content.Shared._Sunrise.Aphrodesiac;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Chemistry.ReagentEffects;
@@ -17,7 +17,7 @@ public sealed partial class LoveEffect : ReagentEffect
 
         effectPower *= args.Scale;
 
-        var loveVisionSys = args.EntityManager.EntitySysManager.GetEntitySystem<SharedLoveSystem>();
+        var loveVisionSys = args.EntityManager.EntitySysManager.GetEntitySystem<SharedAphrodesiacSystem>();
         loveVisionSys.TryApplyLoveenness(args.SolutionEntity, effectPower);
     }
 }

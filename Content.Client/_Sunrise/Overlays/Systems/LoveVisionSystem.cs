@@ -1,10 +1,10 @@
-using Content.Shared.Abilities;
+using Content.Shared._Sunrise.Aphrodesiac;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Player;
 
-namespace Content.Client._Sunrise.Overlays;
+namespace Content.Client._Sunrise.LoveVision;
 public sealed class LoveVisionSystem : EntitySystem
 {
     [Dependency] private readonly IPlayerManager _player = default!;

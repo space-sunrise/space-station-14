@@ -2,10 +2,10 @@ using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
-using Content.Shared.Abilities;
+using Content.Shared._Sunrise.Aphrodesiac;
 using System.Numerics;
 
-namespace Content.Client._Sunrise.Overlays;
+namespace Content.Client._Sunrise.LoveVision;
 
 public sealed class LoveVisionOverlay : Overlay
 {
@@ -26,7 +26,7 @@ public sealed class LoveVisionOverlay : Overlay
     {
         if (ScreenTexture == null)
             return;
-        if (_playerManager.LocalPlayer?.ControlledEntity is not { Valid: true } player)
+        if (_playerManager.LocalSession?.AttachedEntity is not { Valid: true } player)
             return;
         if (!_entityManager.HasComponent<LoveVisionComponent>(player))
             return;

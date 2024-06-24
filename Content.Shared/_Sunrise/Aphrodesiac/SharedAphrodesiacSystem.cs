@@ -2,12 +2,12 @@ using Content.Shared.Speech.EntitySystems;
 using Content.Shared.StatusEffect;
 using Content.Shared.Traits.Assorted;
 
-namespace Content.Shared.Abilities;
+namespace Content.Shared._Sunrise.Aphrodesiac;
 
-public abstract class SharedLoveSystem : EntitySystem
+public abstract class SharedAphrodesiacSystem : EntitySystem
 {
     [ValidatePrototypeId<StatusEffectPrototype>]
-    public const string LoveKey = "Love";
+    public const string LoveKey = "LoveEffect";
 
     [Dependency] private readonly StatusEffectsSystem _statusEffectsSystem = default!;
 
