@@ -121,15 +121,15 @@ namespace Content.Client.PDA
 
             StationTimeButton.OnPressed += _ =>
             {
-                var stationTime = _entitySystem.GetEntitySystem<TimeSystem>().GetStationTime();
+                var stationTime = _entitySystem.GetEntitySystem<TimeSystem>().GetTime();
                 var stationDate = _entitySystem.GetEntitySystem<TimeSystem>().GetDate();
-                _clipboard.SetText($"{stationDate} {stationTime.Time:hh:mm}");
+                _clipboard.SetText($"{stationTime.ToString("hh\\:mm")} {stationDate}");
             };
 
             StartTimeButton.OnPressed += _ =>
             {
                 var stationTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
-                _clipboard.SetText((stationTime.ToString("hh\\:mm")));
+                _clipboard.SetText(stationTime.ToString("hh\\:mm"));
             };
 
             ShuttleTimeButton.OnPressed += _ =>
@@ -189,7 +189,7 @@ namespace Content.Client.PDA
                 ("station", _stationName)));
 
 
-            var stationTime = _entitySystem.GetEntitySystem<TimeSystem>().GetStationTime();
+            var stationTime = _entitySystem.GetEntitySystem<TimeSystem>().GetTime();
 			var stationDate = _entitySystem.GetEntitySystem<TimeSystem>().GetDate();
 			var startTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
 
@@ -197,7 +197,7 @@ namespace Content.Client.PDA
                 ("time", startTime.ToString("hh\\:mm"))));
 
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
-                ("time", stationTime.Time.ToString("hh\\:mm")), ("date", stationDate)));
+                ("time", stationTime.ToString("hh\\:mm")), ("date", stationDate)));
 
             // Sunrise-start
             var remaining = TimeSpan.Zero;
@@ -397,7 +397,7 @@ namespace Content.Client.PDA
         {
             base.Draw(handle);
 
-            var stationTime = _entitySystem.GetEntitySystem<TimeSystem>().GetStationTime();
+            var stationTime = _entitySystem.GetEntitySystem<TimeSystem>().GetTime();
 			var stationDate = _entitySystem.GetEntitySystem<TimeSystem>().GetDate();
 			var startTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
 
@@ -405,7 +405,7 @@ namespace Content.Client.PDA
                 ("time", startTime.ToString("hh\\:mm"))));
 
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
-                ("time", stationTime.Time.ToString("hh\\:mm")), ("date", stationDate)));
+                ("time", stationTime.ToString("hh\\:mm")), ("date", stationDate)));
 
             // Sunrise-start
             var remaining = TimeSpan.Zero;
@@ -416,7 +416,7 @@ namespace Content.Client.PDA
             var statusText = EvacShuttleTitle(_evacShuttleStatus);
 
             ShuttleTimeLabel.SetMarkup(Loc.GetString(statusText,
-                ("time", remaining.ToString("hh\\:mm\\:ss"))));
+                ("time", remaining.ToString("hh\\:mm"))));
             // Sunrise-end
         }
     }
