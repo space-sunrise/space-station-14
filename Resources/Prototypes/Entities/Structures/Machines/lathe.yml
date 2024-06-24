@@ -554,7 +554,7 @@
     runningState: fab-active
     staticRecipes:
     - MMI
-    - PositronicBrain
+    - Boris
     - SciFlash
     - BorgModuleCable
     - BorgModuleFireExtinguisher
