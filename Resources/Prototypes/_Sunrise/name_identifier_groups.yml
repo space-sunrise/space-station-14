@@ -1,0 +1,11 @@
+﻿- type: nameIdentifierGroup
+  id: Boris
+  prefix: БОРИС
+  minValue: 10
+  maxValue: 99
+
+- type: nameIdentifierGroup
+  id: Sofia
+  prefix: СОФИЯ
+  minValue: 10
+  maxValue: 99
