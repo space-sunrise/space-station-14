@@ -58,10 +58,18 @@
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
-            # Sunrise-Roles
+            # Sunrise-Security
             Brigmedic: [ 1, 1 ]
+            # Sunrise-BlueShield
             BlueShield: [ 1, 1 ]
-            # law
+            # Sunrise-Law
             IAA: [ 1, 1 ]
             Lawyer: [ 2, 2 ]
             Magistrat: [ 1, 1 ]
+            # Sunrise-Senior
+            SeniorEngineer: [ 1, 1 ]
+            SeniorPhysician: [ 1, 1 ]
+            SeniorResearcher: [ 1, 1 ]
+            SeniorOfficer: [ 1, 1 ]
+            # Sunrise-Science
+            Roboticist: [ 2, 2 ]

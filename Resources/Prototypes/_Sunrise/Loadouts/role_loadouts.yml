@@ -66,3 +66,75 @@
   - Bra
   - Pants
   - Socks
+
+- type: roleLoadout
+  id: JobSeniorOfficer
+  groups:
+  - SeniorOfficerJumpsuit
+  - SecurityBackpack
+  - SecurityBelt
+  - SecurityTrinkets
+  - SecurityOuterClothing
+  - SecurityShoes
+  - SurvivalSecurity
+  - Trinkets
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobSeniorResearcher
+  groups:
+  - SeniorResearcherJumpsuit
+  - ScientistBackpack
+  - ScientistGloves
+  - ScientistShoes
+  - Glasses
+  - Survival
+  - Trinkets
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobSeniorPhysician
+  groups:
+  - SeniorPhysicianJumpsuit
+  - MedicalBackpack
+  - MedicalGloves
+  - MedicalMask
+  - MedicalShoes
+  - SurvivalMedical
+  - Trinkets
+  - Glasses
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobSeniorEngineer
+  groups:
+  - SeniorEngineerJumpsuit
+  - StationEngineerBackpack
+  - StationEngineerOuterClothing
+  - StationEngineerShoes
+  - SurvivalExtended
+  - Trinkets
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobRoboticist
+  groups:
+  - RoboticistHead
+  - ScientistNeck
+  - RoboticistJumpsuit
+  - RoboticistOuterClothing
+  - ScientistBackpack
+  - ScientistShoes
+  - Survival
+  - Trinkets
+  - Bra
+  - Pants
+  - Socks

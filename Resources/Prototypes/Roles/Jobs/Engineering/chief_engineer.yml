@@ -39,6 +39,7 @@
   id: ChiefEngineerGear
   equipment:
     id: CEPDA
+    head: ClothingHeadHatHardhatWhite
     eyes: ClothingEyesGlassesMeson
     ears: ClothingHeadsetCE
     belt: ClothingBeltUtilityEngineering

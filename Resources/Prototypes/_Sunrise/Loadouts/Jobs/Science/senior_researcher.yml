@@ -1,0 +1,23 @@
+- type: loadout
+  id: JumpsuitSeniorResearcher
+  equipment: JumpsuitSeniorResearcher
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
+
+- type: startingGear
+  id: JumpsuitSeniorResearcher
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSeniorResearcher
+
+- type: loadout
+  id: JumpskirtSeniorResearcher
+  equipment: JumpskirtSeniorResearcher
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+
+- type: startingGear
+  id: JumpskirtSeniorResearcher
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSeniorResearcher
