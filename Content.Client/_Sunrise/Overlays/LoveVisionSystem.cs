@@ -37,13 +37,13 @@ public sealed class LoveVisionSystem : EntitySystem
 
     private void OnLoveVisionInit(EntityUid uid, LoveVisionComponent component, ComponentInit args)
     {
-        if (_player.LocalPlayer?.ControlledEntity == uid)
+        if (_player.LocalSession?.AttachedEntity == uid)
             _overlayMan.AddOverlay(_overlay);
     }
 
     private void OnLoveVisionShutdown(EntityUid uid, LoveVisionComponent component, ComponentShutdown args)
     {
-        if (_player.LocalPlayer?.ControlledEntity == uid)
+        if (_player.LocalSession?.AttachedEntity == uid)
         {
             _overlayMan.RemoveOverlay(_overlay);
         }
