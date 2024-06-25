@@ -29,6 +29,7 @@
     # Sunrise-Start
     - BaseStationTransitHub
     - BaseStationDontSelling
+    - BaseStationSpacePrison
     # Sunrise-End
   noSpawn: true
   components:

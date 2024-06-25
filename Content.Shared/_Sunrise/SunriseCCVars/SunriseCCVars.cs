@@ -110,4 +110,11 @@ public sealed class SunriseCCVars
     /// </summary>
     public static readonly CVarDef<int> ArrivalsMinHours =
         CVarDef.Create("transithub.arrivals_min_hours", 10, CVar.SERVER | CVar.ARCHIVE);
+
+    /*
+     * Space Prison
+     */
+
+    public static readonly CVarDef<int> MinPlayersSpacePrison =
+        CVarDef.Create("space_prison.min_players", 0, CVar.SERVERONLY);
 }

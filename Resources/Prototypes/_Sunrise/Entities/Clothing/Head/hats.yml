@@ -96,3 +96,36 @@
     sprite: _Sunrise/Clothing/Head/Hats/blueshield.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hats/blueshield.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadPrisonGuard
+  name: головной убор охраны кт
+  description: Дарует полную неприкосновенность при лишении других людей ОПРС, достоинства или уважения.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/prisonguard.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/prisonguard.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretPrisonGuard
+  name: берет охраны кт
+  description: Почему не красный?
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/prisonguard_beret.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/prisonguard_beret.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadCapPrisonGuard
+  name: кепка охраны кт
+  description: Почему не красный?
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/cap.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/cap.rsi

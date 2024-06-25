@@ -128,3 +128,34 @@
   minLimit: 0
   loadouts:
   - Bodycam
+
+- type: loadoutGroup
+  id: SecurityGuardJumpsuit
+  name: loadout-group-security-guard-jumpsuit
+  loadouts:
+  - SecurityGuardJumpsuit
+  - SecurityGuardJumpskirt
+
+- type: loadoutGroup
+  id: PrisonerJumpsuit
+  name: loadout-group-prisoner-jumpsuit
+  loadouts:
+  - PrisonerJumpsuit
+  - PrisonerJumpskirt
+
+- type: loadoutGroup
+  id: PrisonGuardBackpack
+  name: loadout-group-prison-guard-backpack
+  loadouts:
+  - PrisonGuardBackpack
+  - PrisonGuardSatchel
+  - PrisonGuardDuffel
+
+- type: loadoutGroup
+  id: PrisonGuardHead
+  name: loadout-group-prison-guard-head
+  minLimit: 0
+  loadouts:
+  - HeadHatBeretPrisonGuard
+  - HeadPrisonGuard
+  - HeadCapPrisonGuard
