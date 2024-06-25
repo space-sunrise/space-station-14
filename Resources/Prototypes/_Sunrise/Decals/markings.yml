@@ -2,26 +2,26 @@
   id: LoadingArrow
   tags: ["station", "markings"]
   sprite:
-    sprite: Decals/markings.rsi
+    sprite: _Sunrise/Decals/markings.rsi
     state: loading_arrow
     
 - type: decal
   id: LoadingLine
   tags: ["station", "markings"]
   sprite:
-    sprite: Decals/markings.rsi
+    sprite: _Sunrise/Decals/markings.rsi
     state: loading_line
 
 - type: decal
   id: LoadingArrowGreyscale
   tags: ["station", "markings"]
   sprite:
-    sprite: Decals/markings.rsi
+    sprite: _Sunrise/Decals/markings.rsi
     state: loading_arrow_greyscale
     
 - type: decal
   id: LoadingLineGreyscale
   tags: ["station", "markings"]
   sprite:
-    sprite: Decals/markings.rsi
+    sprite: _Sunrise/Decals/markings.rsi
     state: loading_line_greyscale
