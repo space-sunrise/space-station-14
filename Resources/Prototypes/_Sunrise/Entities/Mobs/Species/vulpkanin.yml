@@ -16,7 +16,10 @@
   - type: Inventory
     speciesId: reptilian
   - type: VulpaAccent
-
+  - type: FootPrints
+    leftBarePrint: "footprint-left-bare-vulp"
+    rightBarePrint: "footprint-right-bare-vulp"
+  # Sunrise-end
 
 - type: entity
   save: false

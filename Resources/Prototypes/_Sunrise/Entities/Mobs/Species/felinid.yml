@@ -83,6 +83,9 @@
       - !type:Emote
         emote: Hisses
         showInChat: true
+  - type: FootPrints
+    leftBarePrint: "footprint-left-bare-dwarf"
+    rightBarePrint: "footprint-right-bare-dwarf"
 
 - type: entity
   save: false
