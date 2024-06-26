@@ -45,6 +45,9 @@
       amount: 10
   - type: Stamina
     critThreshold: 200
+  - type: FootPrints
+    leftBarePrint: "footprint-left-bare-swine"
+    rightBarePrint: "footprint-right-bare-swine"
 
 - type: entity
   save: false
