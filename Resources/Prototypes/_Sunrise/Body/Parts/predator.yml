@@ -1,0 +1,118 @@
+# © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
+- type: entity
+  id: PartPredator
+  parent: [BaseItem, BasePart]
+  name: "голова яутжи"
+  abstract: true
+  components:
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 3
+      - ReagentId: FluorosulfuricAcidHumanoidXeno
+        Quantity: 10
+
+- type: entity
+  id: TorsoPredator
+  name: "торс яутжи"
+  parent: [PartPredator, BaseTorso]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi/
+    state: "torso_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 10
+      - ReagentId: FluorosulfuricAcidHumanoidXeno
+        Quantity: 20
+
+- type: entity
+  id: HeadPredator
+  name: "голова яутжи"
+  parent: [PartPredator, BaseHead]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi/
+    state: "head_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 5
+      - ReagentId: FluorosulfuricAcidHumanoidXeno
+        Quantity: 10
+
+- type: entity
+  id: LeftArmPredator
+  name: "левая рука яутжи"
+  parent: [PartPredator, BaseLeftArm]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi/
+    state: "l_arm"
+
+- type: entity
+  id: RightArmPredator
+  name: "правая рука яутжи"
+  parent: [PartPredator, BaseRightArm]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi/
+    state: "r_arm"
+
+- type: entity
+  id: LeftHandPredator
+  name: "левая кисть яутжи"
+  parent: [PartPredator, BaseLeftHand]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi/
+    state: "l_hand"
+
+- type: entity
+  id: RightHandPredator
+  name: "правая кисть яутжи"
+  parent: [PartPredator, BaseRightHand]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi/
+    state: "r_hand"
+
+- type: entity
+  id: LeftLegPredator
+  name: "левая нога яутжи"
+  parent: [PartPredator, BaseLeftLeg]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi/
+    state: "l_leg"
+
+- type: entity
+  id: RightLegPredator
+  name: "правая нога нога уятжи"
+  parent: [PartPredator, BaseRightLeg]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi/
+    state: "r_leg"
+
+- type: entity
+  id: LeftFootPredator
+  name: "левая стопа яутжи"
+  parent: [PartPredator, BaseLeftFoot]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi/
+    state: "l_foot"
+
+- type: entity
+  id: RightFootPredator
+  name: "правая стопа яутжи"
+  parent: [PartPredator, BaseRightFoot]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi/
+    state: "r_foot"
