@@ -8,7 +8,7 @@
   markingLimits: MobHumanoidXenoMarkingLimits
   dollPrototype: MobXenoDummy
   skinColoration: TintedHues
-  sponsorOnly: false
+  sponsorOnly: true
 
 - type: speciesBaseSprites
   id: MobHumanoidXenoSprites
