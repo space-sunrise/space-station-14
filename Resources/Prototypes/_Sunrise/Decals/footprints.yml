@@ -1,3 +1,33 @@
+#swine
+- type: decal
+  id: footprint-left-bare-swine
+  tags: ["footprint"]
+  sprite:
+    sprite: Effects/footprints.rsi
+    state: footprint-left-bare-swine
+
+- type: decal
+  id: footprint-right-bare-swine
+  tags: ["footprint"]
+  sprite:
+    sprite: Effects/footprints.rsi
+    state: footprint-right-bare-swine
+
+#vulp
+- type: decal
+  id: footprint-left-bare-vulp
+  tags: ["footprint"]
+  sprite:
+    sprite: Effects/footprints.rsi
+    state: footprint-left-bare-vulp
+
+- type: decal
+  id: footprint-right-bare-vulp
+  tags: ["footprint"]
+  sprite:
+    sprite: Effects/footprints.rsi
+    state: footprint-right-bare-vulp
+
 #diona
 - type: decal
   id: footprint-left-bare-diona
