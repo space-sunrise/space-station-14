@@ -147,6 +147,7 @@
     - Pacified
     - StaminaModifier
     - Flashed
+    - LoveEffect  # Sunrise-Aphrodesiac
   - type: Reflect
     enabled: false
     reflectProb: 0
