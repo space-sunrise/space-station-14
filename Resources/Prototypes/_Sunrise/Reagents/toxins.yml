@@ -61,9 +61,9 @@
 
 - type: reagent
   id: FluorosulfuricAcidPredator
-  name: кровь хищника
+  name: reagent-name-predator-acid
   group: Toxins
-  desc: Мм-м... Мерзость.
+  desc: reagent-desc-predator-acid
   flavor: terrible
   color: "#008000"
   physicalDesc: reagent-physical-desc-strong-smelling
