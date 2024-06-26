@@ -4,8 +4,6 @@
   name: gas mask
   description: A face-covering mask that can be connected to an air supply.
   components:
-  - type: DiseaseImmuneClothing
-    prob: 0.35
   - type: Sprite
     sprite: Clothing/Mask/gas.rsi
   - type: Clothing
@@ -276,8 +274,6 @@
   components:
   - type: Sprite
     sprite: Clothing/Mask/sterile.rsi
-  - type: DiseaseImmuneClothing
-    prob: 0.4
   - type: Clothing
     sprite: Clothing/Mask/sterile.rsi
   - type: IngestionBlocker
