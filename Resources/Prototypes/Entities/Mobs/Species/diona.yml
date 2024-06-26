@@ -101,6 +101,11 @@
     actionPrototype: DionaGibAction
     allowedStates:
     - Dead
+  # Sunrise-start
+  - type: FootPrints
+    leftBarePrint: "footprint-left-bare-diona"
+    rightBarePrint: "footprint-right-bare-diona"
+  # Sunrise-end
 
 - type: entity
   parent: BaseSpeciesDummy

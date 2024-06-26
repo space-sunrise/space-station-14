@@ -244,6 +244,7 @@
   components:
   - type: Carriable # Sunrise-edit
   - type: CanEscapeInventory # Sunrise-edit
+  - type: FootPrints # Sunrise-edit
   - type: Barotrauma
     damage:
       types:
