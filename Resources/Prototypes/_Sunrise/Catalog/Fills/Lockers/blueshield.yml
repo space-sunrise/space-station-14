@@ -43,5 +43,3 @@
     - id: MagazineRifle
       amount: 2
     - id: WeaponEnergyGunMultiphase
-  - type: AccessReader
-    access: [["BlueShield"]]
