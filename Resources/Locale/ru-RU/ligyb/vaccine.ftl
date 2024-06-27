@@ -1,4 +1,7 @@
 reagent-name-disease-blood = мутная кровь
+reagent-description-disease-bad-physical-desc = мерзкое
+reagent-description-disease-strange-physical-desc = странное
+mixing-verb-vaccinator = вакцинатор
 reagent-description-disease-blood = очень странная жидкость. Напоминает кровь
 reagent-name-disease-blood-reagent = заражённая жидкость
 reagent-name-notready-vaccine = вирусин

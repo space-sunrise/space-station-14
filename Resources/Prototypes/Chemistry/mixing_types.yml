@@ -40,10 +40,10 @@
 
 - type: mixingCategory
   id: Vaccinator
-  verbText: Вакцинатор
+  verbText: mixing-verb-vaccinator
   icon:
-    sprite: Structures/Machines/Medical/centrifuge.rsi
-    state: base
+    sprite: Structures/Machines/vaccinator.rsi
+    state: icon
 
 - type: mixingCategory
   id: Electrolysis

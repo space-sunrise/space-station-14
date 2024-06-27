@@ -20,7 +20,6 @@
   noSpawn: true
   components:
   - type: InstantAction
-    id: ActionDiseaseSneeze
     itemIconStyle: NoItem
     icon:
       sprite: Ligyb/disease.rsi
