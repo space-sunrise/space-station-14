@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 // © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
-using Content.Shared.CCVar;
-=======
->>>>>>> master
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC;

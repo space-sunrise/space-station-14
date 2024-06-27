@@ -1,12 +1,4 @@
-<<<<<<< HEAD
 // © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
-using Content.Shared.Actions;
-using Content.Shared.DoAfter;
-using Content.Shared.Doors.Systems;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Map;
-=======
->>>>>>> master
 using Robust.Shared.Random;
 using Content.Shared.Humanoid;
 
@@ -37,34 +29,9 @@ public abstract class SharedDiseaseRoleSystem : EntitySystem
         prob = Math.Max(Math.Min(prob, 0), 1);
         if (_robustRandom.Prob(prob))
         {
-<<<<<<< HEAD
-            ev.Handled = true;
-
-            if (!TryComp<HumanoidAppearanceComponent>(ev.Target, out var body))
-                return;
-            if (HasComp<DiseaseImmuneComponent>(ev.Target)) return;
-            if (HasComp<SickComponent>(ev.Target)) return;
-            var prob = comp.BaseInfectChance;
-            if (TryComp<DiseaseTempImmuneComponent>(ev.Target, out var immune))
-            {
-                prob -= immune.Prob;
-
-            }
-            if (prob < 0) prob = 0;
-            if (prob > 1) prob = 1;
-            if (_robustRandom.Prob(prob))
-            {
-                var comps = AddComp<SickComponent>(ev.Target);
-                comps.owner = ev.Performer;
-
-                comp.Infected.Add(ev.Target);
-
-            }
-=======
             var comps = AddComp<SickComponent>(ev.Target);
             comps.owner = ev.Performer;
             comp.Infected.Add(ev.Target);
->>>>>>> master
         }
     }
 }

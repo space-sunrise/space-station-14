@@ -1,11 +1,4 @@
-<<<<<<< HEAD
 // © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
-using Content.Server.Body.Systems;
-using Content.Server.Chat.Systems;
-using Content.Server.Doors.Systems;
-using Content.Server.Weapons.Ranged.Systems;
-=======
->>>>>>> master
 using Content.Shared.Actions;
 using Robust.Shared.Random;
 using Content.Shared.Ligyb;
@@ -45,7 +38,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
 
     private void OnLethal(EntityUid uid, DiseaseRoleComponent component, DiseaseAddLethalEvent args)
     {
-        if(!TryRemoveMoney(uid, 15))
+        if (!TryRemoveMoney(uid, 15))
         {
             _popup.PopupEntity($"Вам не хватает очков эволюции", uid, uid);
             return;
@@ -108,7 +101,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
     {
         if (TryComp<DiseaseRoleComponent>(args.Performer, out var component))
         {
-            if(component.FreeInfects > 0)
+            if (component.FreeInfects > 0)
             {
                 component.FreeInfects--;
                 OnInfect(args, 1);
@@ -174,7 +167,8 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
                     }, uid);
                     _store.UpdateUserInterface(uid, uid, store);
                     return true;
-                } else
+                }
+                else
                 {
                     return false;
                 }
