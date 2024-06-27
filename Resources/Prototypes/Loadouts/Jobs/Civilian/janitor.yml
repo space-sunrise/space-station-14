@@ -52,7 +52,7 @@
 - type: startingGear
   id: MaidJumpskirt
   equipment:
-    jumpsuit: ClothingUniformJumpskirtJanimaid
+    jumpsuit: ClothingUniformJumpskirtElegantMaid
 # Sunrise-end
 
 # Gloves
