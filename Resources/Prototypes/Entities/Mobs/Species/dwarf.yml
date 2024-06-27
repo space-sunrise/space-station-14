@@ -56,11 +56,6 @@
     hideLayersOnEquip:
     - Hair
     - Snout
-  # Sunrise-start
-  - type: FootPrints
-    leftBarePrint: "footprint-left-bare-dwarf"
-    rightBarePrint: "footprint-right-bare-dwarf"
-  # Sunrise-end
 
 - type: entity
   parent: BaseSpeciesDummy
