@@ -17,6 +17,7 @@
     - BaseStationArrivals
     - BaseStationGateway
     - BaseStationShuttles
+    - BaseStationCentComm # Sunrise-Edit
     - BaseStationEvacuation
     - BaseStationAlertLevels
     - BaseStationMagnet
@@ -24,8 +25,6 @@
     - BaseStationSiliconLawCrewsimov
     - BaseStationAllEventsEligible
     - BaseStationNanotrasen
-    - BaseRandomStation
-    - BaseStationCentComm
     # Sunrise-Start
     - BaseStationTransitHub
     - BaseStationDontSelling
@@ -41,7 +40,6 @@
     - BaseStationAlertLevels
     - BaseStationNanotrasen
     - BaseStationRecords
-    - BaseRandomStation
     - BaseStationJobsSpawning
     # Sunrise-Start
     - BaseCentCommShuttles

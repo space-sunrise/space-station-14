@@ -8,5 +8,5 @@
 public sealed partial class GloveHeatResistanceComponent : Component
 {
     [DataField("heatResistance")]
-    public int HeatResistance = 323;
+    public float HeatResistance = 323;
 }

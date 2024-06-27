@@ -10,10 +10,40 @@
       - id: ClothingMaskBreathMedicalSecurity
       - id: EmergencyOxygenTankFilled
       - id: EmergencyMedipen
-      - id: EmergencyMedipen
+      - id: GlowstickRed
+        orGroup: Glowstick
+      - id: GlowstickPurple
+        orGroup: Glowstick
+      - id: GlowstickYellow
+        orGroup: Glowstick
+      - id: GlowstickBlue
+        orGroup: Glowstick
       - id: FoodSnackNutribrick
       - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
       - state: internals
       - state: emergencytank
+
+- type: entity
+  name: survival box
+  parent: BoxCardboard
+  id: BoxSurvivalSynth
+  description: It's a box with basic internals inside.
+  components:
+  - type: StorageFill
+    contents:
+      - id: Welder
+      - id: CableApcStack
+      - id: GlowstickRed
+        orGroup: Glowstick
+      - id: GlowstickPurple
+        orGroup: Glowstick
+      - id: GlowstickYellow
+        orGroup: Glowstick
+      - id: GlowstickBlue
+        orGroup: Glowstick
+  - type: Sprite
+    layers:
+      - state: box_science
+      - state: flare

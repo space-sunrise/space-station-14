@@ -1,0 +1,216 @@
+# © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
+- type: entity
+  id: BasePredatorOrganUnGibbable
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Predator/organs.rsi
+  - type: Organ
+  - type: Food
+  - type: Extractable
+    grindableSolutionName: organ
+  - type: SolutionContainerManager
+    solutions:
+      organ:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: FluorosulfuricAcidPredator
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+      - people
+  - type: Tag
+    tags:
+      - Meat
+
+- type: entity
+  id: BasePredatorOrgan
+  parent: BasePredatorOrganUnGibbable
+  abstract: true
+  components:
+  - type: Gibbable
+
+- type: entity
+  id: OrganPredatorBrain
+  parent: BasePredatorOrgan
+  name: мозг
+  description: Нексус чужеродного разума. Мысли, которых вы не хотите знать.
+  components:
+  - type: Sprite
+    state: brain
+  - type: Organ
+  - type: Input
+    context: "ghost"
+  - type: Brain
+  - type: InputMover
+  - type: Examiner
+  - type: BlockMovement
+  - type: BadFood
+  - type: Tag
+    tags:
+      - Meat
+  - type: SolutionContainerManager
+    solutions:
+      organ:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: GreyMatter
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - people
+
+- type: entity
+  id: OrganPredatorTongue
+  parent: BasePredatorOrgan
+  name: язык
+  description: Длинный и гибкий.
+  components:
+  - type: Sprite
+    state: tongue
+
+- type: entity
+  id: OrganPredatorAppendix
+  parent: BasePredatorOrgan
+  name: аппендикс
+  description: Эволюционный привет из прошлого.
+  components:
+  - type: Sprite
+    layers:
+    - state: appendix
+    - state: appendix-inflamed
+      visible: false
+
+- type: entity
+  id: OrganPredatorEars
+  parent: BasePredatorOrgan
+  name: уши
+  description: Сверхчувствительные локаторы. Слышат ваши страхи.
+  components:
+  - type: Sprite
+    state: ears
+
+- type: entity
+  id: OrganPredatorLungs
+  parent: BasePredatorOrgan
+  name: легкие
+  description: Фильтруют кислород из атмосферы и направляют его в кровь, где он используется как переносчик электронов.
+  components:
+  - type: Sprite
+    layers:
+      - state: lung-l
+      - state: lung-r
+  - type: Lung
+  - type: Metabolizer
+    removeEmpty: true
+    solutionOnBody: false
+    solution: "Lung"
+    metabolizerTypes: [ Human ]
+    groups:
+    - id: Gas
+      rateModifier: 100.0
+  - type: SolutionContainerManager
+    solutions:
+      organ:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+      Lung:
+        maxVol: 100.0
+        canReact: false
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: FluorosulfuricAcidPredator
+          Quantity: 5
+
+- type: entity
+  id: OrganPredatorHeart
+  parent: BasePredatorOrgan
+  name: сердце яутжи
+  description: Мощный орган, перекачивающий кислую кровь сквозь жесткие ткани и обеспечивающий невероятную выносливость и силу каждому яутже.
+  components:
+  - type: Sprite
+    state: heart-on
+  - type: Metabolizer
+    maxReagents: 2
+    metabolizerTypes: [Human]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic
+
+- type: entity
+  id: OrganPredatorStomach
+  parent: BasePredatorOrgan
+  name: желудок
+  description: Прожорливая яма.
+  components:
+  - type: Sprite
+    state: stomach
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 50
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: FluorosulfuricAcidPredator
+          Quantity: 5
+  - type: Stomach
+  - type: Metabolizer
+    maxReagents: 3
+    metabolizerTypes: [Human]
+    groups:
+    - id: Food
+    - id: Drink
+
+- type: entity
+  id: OrganPredatorLiver
+  parent: BasePredatorOrgan
+  name: печень
+  description: Мощный детоксикатор, с легкостью нейтрализующий опасные вещества.
+  components:
+  - type: Sprite
+    state: liver
+  - type: Metabolizer
+    maxReagents: 1
+    metabolizerTypes: [Human]
+    groups:
+    - id: Alcohol
+      rateModifier: 0.1
+
+- type: entity
+  id: OrganPredatorKidneys
+  parent: BasePredatorOrgan
+  name: почки
+  description: Парные фильтры, безжалостно выводящие всё лишнее.
+  components:
+  - type: Sprite
+    layers:
+      - state: kidney-l
+      - state: kidney-r
+  - type: Metabolizer
+    maxReagents: 5
+    metabolizerTypes: [Human]
+    removeEmpty: true
+
+- type: entity
+  id: OrganPredatorEyes
+  parent: BasePredatorOrgan
+  name: глаза
+  description: Я тебя вижу!
+  components:
+  - type: Sprite
+    layers:
+      - state: eyeball-l
+      - state: eyeball-r

@@ -35,7 +35,7 @@ public sealed class BluespaceAnomalySystem : EntitySystem
         var xform = xformQuery.GetComponent(uid);
         var range = component.MaxShuffleRadius * args.Severity * args.PowerModifier;
         var mobs = new HashSet<Entity<MobStateComponent>>();
-        _lookup.GetEntitiesInRange(xform.Coordinates, range, mobs);
+        _lookup.GetEntitiesInRange(xform.Coordinates, range, mobs, LookupFlags.Uncontained);
         var allEnts = new ValueList<EntityUid>(mobs.Select(m => m.Owner)) { uid };
         var coords = new ValueList<Vector2>();
         foreach (var ent in allEnts)
@@ -59,7 +59,7 @@ public sealed class BluespaceAnomalySystem : EntitySystem
         var radius = component.SupercriticalTeleportRadius * args.PowerModifier;
         var gridBounds = new Box2(mapPos - new Vector2(radius, radius), mapPos + new Vector2(radius, radius));
         var mobs = new HashSet<Entity<MobStateComponent>>();
-        _lookup.GetEntitiesInRange(xform.Coordinates, component.MaxShuffleRadius, mobs);
+        _lookup.GetEntitiesInRange(xform.Coordinates, component.MaxShuffleRadius, mobs, LookupFlags.Uncontained);
         foreach (var comp in mobs)
         {
             var ent = comp.Owner;

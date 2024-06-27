@@ -15,8 +15,6 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: GreyTider
-  - !type:GroupLoadoutEffect
-    proto: MaleMoment
 
 - type: startingGear
   id: GasMask

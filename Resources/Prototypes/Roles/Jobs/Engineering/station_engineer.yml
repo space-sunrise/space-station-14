@@ -23,6 +23,7 @@
     eyes: ClothingEyesGlassesMeson
     belt: ClothingBeltUtilityEngineering
     ears: ClothingHeadsetEngineering
-  storage:
-    back:
-    - BoxSurvivalEngineering
+    id: EngineerPDA
+  #storage:
+    #back:
+    #- Stuff

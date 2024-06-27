@@ -1,0 +1,19 @@
+- type: loadoutEffectGroup
+  id: Synth
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Synth
+
+- type: loadout
+  id: EmergencySynth
+  equipment: EmergencySynth
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: Synth
+
+- type: startingGear
+  id: EmergencySynth
+  storage:
+    back:
+    - BoxSurvivalSynth

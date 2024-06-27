@@ -173,3 +173,22 @@
       collection: Whistles
   params:
     variation: 0.125
+
+- type: emoteSounds
+  id: XenoHumanoid
+  sound:
+    collection: HumanoidXenoScreams
+  params:
+    variation: 0.125
+
+- type: emoteSounds
+  id: Predator
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: PredatorScreams
+    Sigh:
+      collection: PredatorSigh
+    Laugh:
+      collection: PredatorLaugh

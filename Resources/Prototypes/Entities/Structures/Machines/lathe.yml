@@ -196,6 +196,8 @@
       - WeaponCapacitorRechargerCircuitboard
       - HandheldStationMap
       - ClothingHeadHatWelding
+      - WetFloorSign
+      - ClothingHeadHatCone
   - type: EmagLatheRecipes
     emagStaticRecipes:
       - BoxLethalshot
@@ -552,7 +554,7 @@
     runningState: fab-active
     staticRecipes:
     - MMI
-    - PositronicBrain
+    - Boris
     - SciFlash
     - BorgModuleCable
     - BorgModuleFireExtinguisher

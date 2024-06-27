@@ -4,7 +4,7 @@
         <BoxContainer Orientation="Vertical">
             <Label Name="InsertedTape" Text="{Loc 'tape-player-menu-inserted-tape'}" />
             <BoxContainer Orientation="Horizontal">
-                <Label Name="SongName" Text="---" MaxWidth="200" ClipText="True"/>
+                <Label Name="SongName" Text="---" MaxWidth="280" RectClipContent="True"/>
                 <Label Name="DurationLabel" Text="00:00 / 00:00" HorizontalAlignment="Right" HorizontalExpand="True"/>
             </BoxContainer>
             <Slider Name="PlaybackSlider" HorizontalExpand="True" />

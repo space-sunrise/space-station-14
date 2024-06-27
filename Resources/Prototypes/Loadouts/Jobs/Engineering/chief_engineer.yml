@@ -47,20 +47,6 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtChiefEngineerTurtle
 
-# Head
-- type: loadout
-  id: ChiefEngineerHead
-  equipment: ChiefEngineerHead
-
-- type: startingGear
-  id: ChiefEngineerHead
-  equipment:
-    head: ClothingHeadHatHardhatWhite
-
-- type: loadout
-  id: ChiefEngineerBeret
-  equipment: EngineeringBeret
-
 # Neck
 - type: loadout
   id: ChiefEngineerCloak

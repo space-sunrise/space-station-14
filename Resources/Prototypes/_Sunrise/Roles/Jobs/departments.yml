@@ -20,7 +20,7 @@
 - type: department # Surnise-Blueshield
   id: Blueshield
   description: department-Blueshield-description
-  color: "#05255D"
+  color: "#1A2AAA"
   roles:
     - BlueShield
   primary: false
