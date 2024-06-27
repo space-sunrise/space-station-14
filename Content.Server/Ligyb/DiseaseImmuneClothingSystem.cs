@@ -25,7 +25,7 @@ public sealed class DiseaseImmuneClothingSystem : EntitySystem
         if (!isCorrectSlot)
             return;
 
-        EnsureComp<DiseaseTempImmuneComponent>(args.Equipee).Prob += component.prob;
+        EnsureComp<DiseaseTempImmuneComponent>(args.Equipee).Prob += component.Prob;
         if (Comp<DiseaseTempImmuneComponent>(args.Equipee).Prob > 1) Comp<DiseaseTempImmuneComponent>(args.Equipee).Prob = 1;
 
         component.IsActive = true;
@@ -36,7 +36,7 @@ public sealed class DiseaseImmuneClothingSystem : EntitySystem
         if (!component.IsActive)
             return;
 
-        EnsureComp<DiseaseTempImmuneComponent>(args.Equipee).Prob -= component.prob;
+        EnsureComp<DiseaseTempImmuneComponent>(args.Equipee).Prob -= component.Prob;
         if (Comp<DiseaseTempImmuneComponent>(args.Equipee).Prob < 0) Comp<DiseaseTempImmuneComponent>(args.Equipee).Prob = 0;
 
         component.IsActive = false;
@@ -48,7 +48,7 @@ public sealed class DiseaseImmuneClothingSystem : EntitySystem
             return;
 
         var examineMarkup = new FormattedMessage();
-        examineMarkup.AddMarkup($"Защищает от заражения на {Convert.ToInt32(component.prob*100)}%");
+        examineMarkup.TryAddMarkup($"Защищает от заражения на {Convert.ToInt32(component.Prob*100)}%", out var _);
 
         _examine.AddDetailedExamineVerb(args, component, examineMarkup,
             "Стерильность", "/Textures/Interface/VerbIcons/dot.svg.192dpi.png",

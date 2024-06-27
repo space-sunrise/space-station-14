@@ -1,4 +1,3 @@
-using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.Ligyb;
@@ -8,7 +7,6 @@ using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
 using Content.Shared.Interaction.Events;
 using Robust.Server.GameObjects;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Content.Shared.Humanoid;
@@ -22,15 +20,14 @@ using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage;
 using Content.Server.Emoting.Systems;
 using Content.Server.Speech.EntitySystems;
-using Content.Shared.Mobs.Systems;
 using Content.Shared.FixedPoint;
 using Content.Server.Medical;
 using Content.Server.Traits.Assorted;
-using Content.Server.Speech.Muting;
 using Content.Shared.Traits.Assorted;
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Item;
 using Content.Shared.Speech.Muting;
+using Content.Server.Xenoarchaeology.XenoArtifacts.Triggers.Components;
 namespace Content.Server.Ligyb;
 public sealed class SickSystem : SharedSickSystem
 {
@@ -57,7 +54,7 @@ public sealed class SickSystem : SharedSickSystem
 
     public void OnShut(EntityUid uid, SickComponent component, ComponentShutdown args)
     {
-        foreach(var emote in EnsureComp<AutoEmoteComponent>(uid).Emotes)
+        foreach (var emote in EnsureComp<AutoEmoteComponent>(uid).Emotes)
         {
             if (emote.Contains("Infected"))
             {
@@ -66,10 +63,10 @@ public sealed class SickSystem : SharedSickSystem
         }
         foreach (var key in component.Symptoms)
         {
-            switch(key)
+            switch (key)
             {
                 case "Narcolepsy":
-                    if(TryComp<SleepyComponent>(uid, out var narc))
+                    if (TryComp<SleepyComponent>(uid, out var narc))
                     {
                         RemComp<SleepyComponent>(uid);
                     }
@@ -85,11 +82,11 @@ public sealed class SickSystem : SharedSickSystem
                     {
                         RemComp<PermanentBlindnessComponent>(uid);
                     }
-                    if(HasComp<BlurryVisionComponent>(uid))
+                    if (HasComp<BlurryVisionComponent>(uid))
                     {
                         RemComp<BlurryVisionComponent>(uid);
                     }
-                    if(HasComp<EyeClosingComponent>(uid))
+                    if (HasComp<EyeClosingComponent>(uid))
                     {
                         RemComp<EyeClosingComponent>(uid);
                     }
@@ -108,7 +105,7 @@ public sealed class SickSystem : SharedSickSystem
                     break;
             }
         }
-            _bloodstream.ChangeBloodReagent(uid, component.BeforeInfectedBloodReagent);
+        _bloodstream.ChangeBloodReagent(uid, component.BeforeInfectedBloodReagent);
     }
     public override void Update(float frameTime)
     {
@@ -134,7 +131,7 @@ public sealed class SickSystem : SharedSickSystem
                 }
                 else
                 {
-                    if(_gameTiming.CurTime >= component.NextStadyAt)
+                    if (_gameTiming.CurTime >= component.NextStadyAt)
                     {
                         component.Stady++;
                         foreach (var emote in EnsureComp<AutoEmoteComponent>(uid).Emotes)
@@ -172,9 +169,9 @@ public sealed class SickSystem : SharedSickSystem
 
     private void UpdateInfection(EntityUid uid, SickComponent component, EntityUid disease, DiseaseRoleComponent diseaseComponent)
     {
-        foreach((var key, (var min, var max)) in diseaseComponent.Symptoms)
+        foreach ((var key, (var min, var max)) in diseaseComponent.Symptoms)
         {
-            if(!component.Symptoms.Contains(key))
+            if (!component.Symptoms.Contains(key))
             {
                 if (component.Stady >= min && component.Stady <= max)
                 {
@@ -198,9 +195,9 @@ public sealed class SickSystem : SharedSickSystem
                             _autoEmote.AddEmote(uid, "InfectedCrying");
                             break;
                         case "Narcolepsy":
-                            if(!HasComp<SleepyComponent>(uid))
+                            if (!HasComp<SleepyComponent>(uid))
                             {
-                                var c= AddComp<SleepyComponent>(uid);
+                                var c = AddComp<SleepyComponent>(uid);
                                 EntityManager.EntitySysManager.GetEntitySystem<SleepySystem>().SetNarcolepsy(uid, new Vector2(10, 30), new Vector2(300, 600), c);
                             }
                             break;
@@ -211,7 +208,7 @@ public sealed class SickSystem : SharedSickSystem
                             EnsureComp<PermanentBlindnessComponent>(uid);
                             break;
                         case "Slowness":
-                            var ss = EnsureComp<SpeedModifierOnComponent>(uid);
+                            EnsureComp<SpeedModifierOnComponent>(uid);
                             break;
                         case "Bleed":
                             EnsureComp<MinimumBleedComponent>(uid);
@@ -230,64 +227,61 @@ public sealed class SickSystem : SharedSickSystem
         if (args.Handled)
             return;
         args.Handled = true;
-        if (args.Emote.ID == "Headache")
+        switch (args.Emote.ID)
         {
-            _popupSystem.PopupEntity("Вы чувствуете лёгкую головную боль.", uid, uid, PopupType.Small);
-        }
-        if (args.Emote.ID == "Cough")
-        {
-            if (_robustRandom.Prob(0.9f))
-            {
-                if(TryComp<DiseaseRoleComponent>(component.owner, out var disease)) {
-                    var kind = SuicideKind.Piercing;
+            case "Headache":
+                _popupSystem.PopupEntity("Вы чувствуете лёгкую головную боль.", uid, uid, PopupType.Small);
+                break;
+            case "Cough":
+                if (_robustRandom.Prob(0.9f))
+                {
+                    if (TryComp<DiseaseRoleComponent>(component.owner, out var disease)) {
+                        var kind = SuicideKind.Piercing;
+                        if (_prototypeManager.TryIndex<DamageTypePrototype>(kind.ToString(), out var damagePrototype))
+                        {
+                            _damageableSystem.TryChangeDamage(uid, new(damagePrototype, 0.25f * disease.Lethal), true, origin: uid);
+                        }
+                    }
+                    EntityCoordinates start = Transform(uid).Coordinates;
+                    foreach (var entity in _lookup.GetEntitiesInRange(uid, 0.7f))
+                    {
+                        if (HasComp<HumanoidAppearanceComponent>(entity) && !HasComp<SickComponent>(entity) && !HasComp<DiseaseImmuneComponent>(entity))
+                        {
+                            OnInfected(entity, component.owner, Comp<DiseaseRoleComponent>(component.owner).CoughInfectChance);
+                        }
+                    }
+                }
+                break;
+            case "Sneeze":
+                if (_robustRandom.Prob(0.9f))
+                {
+                    EntityCoordinates start = Transform(uid).Coordinates;
+                    foreach (var entity in _lookup.GetEntitiesInRange(uid, 1.2f))
+                    {
+                        if (HasComp<HumanoidAppearanceComponent>(entity) && !HasComp<SickComponent>(entity) && !HasComp<DiseaseImmuneComponent>(entity))
+                        {
+                            OnInfected(entity, component.owner, Comp<DiseaseRoleComponent>(component.owner).CoughInfectChance);
+                        }
+                    }
+                }
+                break;
+            case "Vomit":
+                if (_robustRandom.Prob(0.4f))
+                {
+                    _vomitSystem.Vomit(uid, -30, -20);
+                }
+                break;
+            case "Insult":
+                if (TryComp<DiseaseRoleComponent>(component.owner, out var dis))
+                {
+                    _stun.TryParalyze(uid, TimeSpan.FromSeconds(5), false);
+                    var kind = SuicideKind.Shock;
                     if (_prototypeManager.TryIndex<DamageTypePrototype>(kind.ToString(), out var damagePrototype))
                     {
-                        _damageableSystem.TryChangeDamage(uid, new(damagePrototype, 0.25f * disease.Lethal), true, origin: uid);
+                        _damageableSystem.TryChangeDamage(uid, new(damagePrototype, 0.35f * dis.Lethal), true, origin: uid);
                     }
                 }
-                
-                EntityCoordinates start = Transform(uid).Coordinates;
-                foreach (var entity in _lookup.GetEntitiesInRange(uid, 0.7f))
-                {
-                    if (HasComp<HumanoidAppearanceComponent>(entity) && !HasComp<SickComponent>(entity) && !HasComp<DiseaseImmuneComponent>(entity))
-                    {
-                        OnInfected(entity, component.owner, Comp<DiseaseRoleComponent>(component.owner).CoughInfectChance);
-                    }
-                }
-            }
-        }
-        if (args.Emote.ID == "Sneeze")
-        {
-            if (_robustRandom.Prob(0.9f))
-            {
-                EntityCoordinates start = Transform(uid).Coordinates;
-                foreach (var entity in _lookup.GetEntitiesInRange(uid, 1.2f))
-                {
-                    if (HasComp<HumanoidAppearanceComponent>(entity) && !HasComp<SickComponent>(entity) && !HasComp<DiseaseImmuneComponent>(entity))
-                    {
-                        OnInfected(entity, component.owner, Comp<DiseaseRoleComponent>(component.owner).CoughInfectChance);
-                    }
-                }
-            }
-        }
-        if (args.Emote.ID == "Vomit")
-        {
-            if (_robustRandom.Prob(0.4f))
-            {
-                _vomitSystem.Vomit(uid, -30, -20);
-            }
-        }
-        if(args.Emote.ID == "Insult")
-        {
-            if (TryComp<DiseaseRoleComponent>(component.owner, out var disease))
-            {
-                _stun.TryParalyze(uid, TimeSpan.FromSeconds(5), false);
-                var kind = SuicideKind.Shock;
-                if (_prototypeManager.TryIndex<DamageTypePrototype>(kind.ToString(), out var damagePrototype))
-                {
-                    _damageableSystem.TryChangeDamage(uid, new(damagePrototype, 0.35f * disease.Lethal), true, origin: uid);
-                }
-            }
+                break;
         }
     }
 }

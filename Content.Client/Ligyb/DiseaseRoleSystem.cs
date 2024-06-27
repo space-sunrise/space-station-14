@@ -1,10 +1,3 @@
-using Content.Shared.Actions;
-using Content.Shared.DoAfter;
-using Content.Shared.Doors.Systems;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Map;
-using Robust.Shared.Random;
-using Robust.Shared.Serialization.Manager;
 using Content.Shared.Humanoid;
 using Content.Shared.Ligyb;
 namespace Content.Client.Ligyb;

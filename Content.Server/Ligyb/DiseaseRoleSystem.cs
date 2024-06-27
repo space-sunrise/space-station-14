@@ -1,34 +1,22 @@
-using Content.Server.Body.Systems;
-using Content.Server.Chat.Systems;
-using Content.Server.Doors.Systems;
-using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Actions;
-using Content.Shared.DoAfter;
-using Content.Shared.Doors.Systems;
-using Robust.Server.GameObjects;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Map;
 using Robust.Shared.Random;
-using Robust.Shared.Serialization.Manager;
 using Content.Shared.Ligyb;
-using Content.Server.Actions;
 using Content.Server.Store.Components;
 using Content.Server.Store.Systems;
 using Robust.Shared.Prototypes;
-using Content.Server.Zombies;
 using Content.Shared.FixedPoint;
-using Content.Shared.Zombies;
+using Content.Shared.Popups;
 namespace Content.Server.Ligyb;
 
 public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly ActionsSystem _action = default!;
     [Dependency] private readonly StoreSystem _store = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
 
-    [ValidatePrototypeId<EntityPrototype>]
-    private const string DiseaseShopId = "ActionDiseaseShop";
+
+    [ValidatePrototypeId<EntityPrototype>] private const string DiseaseShopId = "ActionDiseaseShop";
 
     public override void Initialize()
     {
@@ -37,19 +25,74 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
         SubscribeLocalEvent<DiseaseRoleComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<DiseaseRoleComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<DiseaseRoleComponent, DiseaseShopActionEvent>(OnShop);
-        SubscribeLocalEvent<DiseaseRoleComponent, DiseaseStartCoughEvent>(OnCough);
-        SubscribeLocalEvent<DiseaseRoleComponent, DiseaseStartSneezeEvent>(OnSneeze);
-        SubscribeLocalEvent<DiseaseRoleComponent, DiseaseStartVomitEvent>(OnVomit);
-        SubscribeLocalEvent<DiseaseRoleComponent, DiseaseStartCryingEvent>(OnCrying);
-        SubscribeLocalEvent<DiseaseRoleComponent, DiseaseZombieEvent>(OnZombie);
-        SubscribeLocalEvent<DiseaseRoleComponent, DiseaseNarcolepsyEvent>(OnNarcolepsy);
-        SubscribeLocalEvent<DiseaseRoleComponent, DiseaseMutedEvent>(OnMuted);
-        SubscribeLocalEvent<DiseaseRoleComponent, DiseaseSlownessEvent>(OnSlowness);
-        SubscribeLocalEvent<DiseaseRoleComponent, DiseaseBleedEvent>(OnBleed);
-        SubscribeLocalEvent<DiseaseRoleComponent, DiseaseBlindnessEvent>(OnBlindness);
-        SubscribeLocalEvent<DiseaseRoleComponent, DiseaseInsultEvent>(OnInsult);
+        SubscribeLocalEvent<DiseaseRoleComponent, DiseaseAddSymptomEvent>(OnAddSymptom);
         SubscribeLocalEvent<InfectEvent>(OnInfects);
 
+        SubscribeLocalEvent<DiseaseRoleComponent, DiseaseAddBaseChanceEvent>(OnBaseChance);
+        SubscribeLocalEvent<DiseaseRoleComponent, DiseaseAddCoughChanceEvent>(OnCoughChance);
+        SubscribeLocalEvent<DiseaseRoleComponent, DiseaseAddLethalEvent>(OnLethal);
+        SubscribeLocalEvent<DiseaseRoleComponent, DiseaseAddShieldEvent>(OnShield);
+    }
+
+
+    private void OnLethal(EntityUid uid, DiseaseRoleComponent component, DiseaseAddLethalEvent args)
+    {
+        if(!TryRemoveMoney(uid, 15))
+        {
+            _popup.PopupEntity($"Вам не хватает очков эволюции", uid, uid);
+            return;
+        }
+        component.Lethal += 1;
+        if (component.Lethal >= 5)
+        {
+            _actionsSystem.RemoveAction(uid, args.Action);
+        }
+    }
+
+    private void OnShield(EntityUid uid, DiseaseRoleComponent component, DiseaseAddShieldEvent args)
+    {
+        if (!TryRemoveMoney(uid, 15))
+        {
+            _popup.PopupEntity($"Вам не хватает очков эволюции", uid, uid);
+            return;
+        }
+        component.Shield += 1;
+        if (component.Shield >= 6)
+        {
+            _actionsSystem.RemoveAction(uid, args.Action);
+        }
+    }
+
+    private void OnBaseChance(EntityUid uid, DiseaseRoleComponent component, DiseaseAddBaseChanceEvent args)
+    {
+        if (!TryRemoveMoney(uid, 20))
+        {
+            _popup.PopupEntity($"Вам не хватает очков эволюции", uid, uid);
+            return;
+        }
+        if (component.BaseInfectChance < 0.9f)
+            component.BaseInfectChance += 0.1f;
+        else
+        {
+            component.BaseInfectChance = 1;
+            _actionsSystem.RemoveAction(uid, args.Action);
+        }
+    }
+
+    private void OnCoughChance(EntityUid uid, DiseaseRoleComponent component, DiseaseAddCoughChanceEvent args)
+    {
+        if (!TryRemoveMoney(uid, 15))
+        {
+            _popup.PopupEntity($"Вам не хватает очков эволюции", uid, uid);
+            return;
+        }
+        if (component.CoughInfectChance < 0.85f)
+            component.CoughInfectChance += 0.05f;
+        else
+        {
+            component.CoughInfectChance = 1;
+            _actionsSystem.RemoveAction(uid, args.Action);
+        }
     }
 
 
@@ -60,10 +103,9 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
             if(component.FreeInfects > 0)
             {
                 component.FreeInfects--;
-                OnInfect(args);
-                return;
+                OnInfect(args, 1);
             }
-            if (TryRemoveMoney(args.Performer, component.InfectCost))
+            else if (TryRemoveMoney(args.Performer, component.InfectCost))
             {
                 OnInfect(args);
             }
@@ -85,7 +127,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
 
     private void OnMapInit(EntityUid uid, DiseaseRoleComponent component, MapInitEvent args)
     {
-        _action.AddAction(uid, ref component.Action, DiseaseShopId);
+        _actionsSystem.AddAction(uid, DiseaseShopId);
     }
 
     private void OnShop(EntityUid uid, DiseaseRoleComponent component, DiseaseShopActionEvent args)
@@ -118,7 +160,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
             {
                 if (store.Balance[diseaseComp.CurrencyPrototype] >= value)
                 {
-                    bool f = _store.TryAddCurrency(new Dictionary<string, FixedPoint2>
+                    _store.TryAddCurrency(new Dictionary<string, FixedPoint2>
                     {
                         {diseaseComp.CurrencyPrototype, -value}
                     }, uid);
@@ -132,69 +174,25 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
         }
         return false;
     }
-    
-    private void OnCough(EntityUid uid, DiseaseRoleComponent component, DiseaseStartCoughEvent args)
+
+    private void OnAddSymptom(EntityUid uid, DiseaseRoleComponent component, DiseaseAddSymptomEvent args)
     {
-        component.Symptoms.Add("Cough", (2, 9999));
+        component.Symptoms.Add(args.Symptom, (args.MinLevel, args.MaxLevel));
+        _actionsSystem.RemoveAction(uid, args.Action);
     }
 
-    private void OnSneeze(EntityUid uid, DiseaseRoleComponent component, DiseaseStartSneezeEvent args)
-    {
-        //component.Sneeze = true;
-        component.Symptoms.Add("Sneeze", (3, 9999));
-    }
-
-    private void OnVomit(EntityUid uid, DiseaseRoleComponent component, DiseaseStartVomitEvent args)
-    {
-        component.Symptoms.Add("Vomit", (3, 9999));
-    }
-
-    private void OnCrying(EntityUid uid, DiseaseRoleComponent component, DiseaseStartCryingEvent args)
-    {
-        component.Symptoms.Add("Crying", (0, 9999));
-    }
-
-    private void OnNarcolepsy(EntityUid uid, DiseaseRoleComponent component, DiseaseNarcolepsyEvent args)
-    {
-        component.Symptoms.Add("Narcolepsy", (3, 9999));
-    }
-
-    private void OnMuted(EntityUid uid, DiseaseRoleComponent component, DiseaseMutedEvent args)
-    {
-        component.Symptoms.Add("Muted", (4, 9999));
-    }
-
-    private void OnSlowness(EntityUid uid, DiseaseRoleComponent component, DiseaseSlownessEvent args)
-    {
-        component.Symptoms.Add("Slowness", (2, 9999));
-    }
-    private void OnBleed(EntityUid uid, DiseaseRoleComponent component, DiseaseBleedEvent args)
-    {
-        component.Symptoms.Add("Bleed", (3, 9999));
-    }
-    private void OnBlindness(EntityUid uid, DiseaseRoleComponent component, DiseaseBlindnessEvent args)
-    {
-        component.Symptoms.Add("Blindness", (4, 9999));
-    }
-    private void OnInsult(EntityUid uid, DiseaseRoleComponent component, DiseaseInsultEvent args)
-    {
-        component.Symptoms.Add("Insult", (2, 9999));
-    }
-
-
-
-    private void OnZombie(EntityUid uid, DiseaseRoleComponent component, DiseaseZombieEvent args)
-    {
-        var inf = component.Infected.ToArray();
-        foreach(EntityUid infected in inf)
-        {
-            if (_random.Prob(0.8f)) {
-                RemComp<SickComponent>(infected);
-                component.Infected.Remove(infected);
-                EnsureComp<ZombifyOnDeathComponent>(infected);
-                EnsureComp<PendingZombieComponent>(infected);
-            }
-        }
-    }
+    //private void OnZombie(EntityUid uid, DiseaseRoleComponent component, DiseaseZombieEvent args)
+    //{
+    //    var inf = component.Infected.ToArray();
+    //    foreach(EntityUid infected in inf)
+    //    {
+    //        if (_random.Prob(0.8f)) {
+    //            RemComp<SickComponent>(infected);
+    //            component.Infected.Remove(infected);
+    //            EnsureComp<ZombifyOnDeathComponent>(infected);
+    //            EnsureComp<PendingZombieComponent>(infected);
+    //        }
+    //    }
+    //}
 
 }

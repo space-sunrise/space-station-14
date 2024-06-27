@@ -1,11 +1,5 @@
-using Robust.Shared.Configuration;
 namespace Content.Shared.Ligyb;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Map;
-using Robust.Shared.Random;
-using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 
@@ -21,7 +15,7 @@ public sealed class DiseaseVaccineTimerSystem : SharedSickSystem
     }
     public void OnInit(EntityUid uid, DiseaseVaccineTimerComponent component, ComponentInit args)
     {
-        component.ReadyAt = _gameTiming.CurTime + component.delay;
+        component.ReadyAt = _gameTiming.CurTime + component.Delay;
         if(TryComp<MovementSpeedModifierComponent>(uid, out var speed))
         {
             component.SpeedBefore = speed.BaseSprintSpeed;

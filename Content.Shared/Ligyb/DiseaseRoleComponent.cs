@@ -1,12 +1,7 @@
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Dictionary;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
-using System.Numerics;
-using Content.Shared.FixedPoint;
 using Content.Shared.Store;
-using Content.Shared.Whitelist;
-using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes;
 using Content.Shared.Chemistry.Reagent;
 namespace Content.Shared.Ligyb;
 
@@ -37,9 +32,6 @@ public sealed partial class DiseaseRoleComponent : Component
     [DataField] public int Lethal = 0;
     [DataField] public int Shield = 1;
 
-    /// <summary>
-    /// The blood reagent to give the infected. In case you want infected that bleed milk, or something.
-    /// </summary>
     [DataField("newBloodReagent", customTypeSerializer: typeof(PrototypeIdSerializer<ReagentPrototype>))]
     public string NewBloodReagent = "ZombieBlood";
 }

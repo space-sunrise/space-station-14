@@ -3,7 +3,8 @@
   name: listing-disease-cough-name
   description: listing-disease-cough-description
   icon: { sprite: /Textures/Ligyb/disease.rsi, state: cough }
-  productEvent: !type:DiseaseStartCoughEvent
+  raiseProductEventOnUser: true
+  productAction: ActionDiseaseCough
   cost:
     DiseasePoints: 15
   categories:
@@ -17,7 +18,7 @@
   name: listing-disease-sneeze-name
   description: listing-disease-sneeze-description
   icon: { sprite: /Textures/Ligyb/disease.rsi, state: sneeze }
-  productEvent: !type:DiseaseStartSneezeEvent
+  productAction: ActionDiseaseSneeze
   cost:
     DiseasePoints: 20
   categories:
@@ -31,7 +32,7 @@
   name: listing-disease-vomit-name
   description: listing-disease-vomit-description
   icon: { sprite: /Textures/Ligyb/disease.rsi, state: vomit }
-  productEvent: !type:DiseaseStartVomitEvent
+  productAction: ActionDiseaseVomit
   cost:
     DiseasePoints: 25
   categories:
@@ -45,7 +46,7 @@
   name: listing-disease-narcolepsy-name
   description: listing-disease-narcolepsy-description
   icon: { sprite: /Textures/Ligyb/disease.rsi, state: narcolepsy }
-  productEvent: !type:DiseaseNarcolepsyEvent
+  productAction: ActionDiseaseNarcolepsy
   cost:
     DiseasePoints: 20
   categories:
@@ -59,7 +60,7 @@
   name: listing-disease-cry-name
   description: listing-disease-cry-description
   icon: { sprite: /Textures/Ligyb/disease.rsi, state: sob }
-  productEvent: !type:DiseaseStartCryingEvent
+  productAction: ActionDiseaseCrying
   cost:
     DiseasePoints: 10
   categories:
@@ -68,70 +69,12 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
-
-
-- type: listing
-  id: BaseChance
-  name: listing-disease-base-chance-name
-  description: listing-disease-base-chance-description
-  icon: { sprite: /Textures/Ligyb/disease.rsi, state: baseChance }
-  productEvent: !type:DiseaseAddBaseChanceEvent
-  cost:
-    DiseasePoints: 20
-  categories:
-  - DiseaseEvolutionCategory
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 4
-
-- type: listing
-  id: CoughChance
-  name: listing-disease-infect-chance-name
-  description: listing-disease-infect-chance-description
-  icon: { sprite: /Textures/Ligyb/disease.rsi, state: coughChance }
-  productEvent: !type:DiseaseAddBaseChanceEvent
-  cost:
-    DiseasePoints: 15
-  categories:
-  - DiseaseEvolutionCategory
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 8
-
-- type: listing
-  id: Shield
-  name: listing-disease-shield-name
-  description: listing-disease-shield-description
-  icon: { sprite: /Textures/Ligyb/disease.rsi, state: shield }
-  productEvent: !type:DiseaseAddShieldEvent
-  cost:
-    DiseasePoints: 15
-  categories:
-  - DiseaseEvolutionCategory
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 5
-
-- type: listing
-  id: Lethal
-  name: listing-disease-lethal-name
-  description: listing-disease-lethal-description
-  icon: { sprite: /Textures/Ligyb/disease.rsi, state: lethal }
-  productEvent: !type:DiseaseAddLethalEvent
-  cost:
-    DiseasePoints: 15
-  categories:
-  - DiseaseEvolutionCategory
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 5
-
 - type: listing
   id: Muted
   name: listing-disease-muted-name
   description: listing-disease-muted-description
   icon: { sprite: /Textures/Ligyb/disease.rsi, state: muted }
-  productEvent: !type:DiseaseMutedEvent
+  productAction: ActionDiseaseMuted
   cost:
     DiseasePoints: 25
   categories:
@@ -145,7 +88,7 @@
   name: listing-disease-slowness-name
   description: listing-disease-slowness-description
   icon: { sprite: /Textures/Ligyb/disease.rsi, state: slowness }
-  productEvent: !type:DiseaseSlownessEvent
+  productAction: ActionDiseaseSlowness
   cost:
     DiseasePoints: 15
   categories:
@@ -159,7 +102,7 @@
   name: listing-disease-bleed-name
   description: listing-disease-bleed-description
   icon: { sprite: /Textures/Ligyb/disease.rsi, state: bleed }
-  productEvent: !type:DiseaseBleedEvent
+  productAction: ActionDiseaseBleed
   cost:
     DiseasePoints: 30
   categories:
@@ -173,7 +116,7 @@
   name: listing-disease-blindness-name
   description: listing-disease-blindness-description
   icon: { sprite: /Textures/Ligyb/disease.rsi, state: blindness }
-  productEvent: !type:DiseaseBlindnessEvent
+  productAction: ActionDiseaseBlindness
   cost:
     DiseasePoints: 40
   categories:
@@ -186,8 +129,8 @@
   id: Insult
   name: listing-disease-insult-name
   description: listing-disease-insult-description
-  icon: { sprite: /Textures/Ligyb/disease.rsi, state: blindness }
-  productEvent: !type:DiseaseInsultEvent
+  icon: { sprite: /Textures/Ligyb/disease.rsi, state: lethal }
+  productAction: ActionDiseaseInsult
   cost:
     DiseasePoints: 20
   categories:

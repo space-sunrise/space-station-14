@@ -1,9 +1,6 @@
-using Content.Server.Zombies;
 using Content.Shared.Chemistry.Reagent;
-using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Content.Shared.Ligyb;
-using Content.Server.Spawners.Components;
 public sealed partial class CureDiseaseInfection : ReagentEffect
 {
     [DataField]
@@ -27,7 +24,7 @@ public sealed partial class CureDiseaseInfection : ReagentEffect
             {
                 var comp = entityManager.EnsureComponent<DiseaseVaccineTimerComponent>(args.SolutionEntity);
                 comp.Immune = Innoculate;
-                comp.delay = TimeSpan.FromMinutes(2) + TimeSpan.FromSeconds(disease.Shield * 30);
+                comp.Delay = TimeSpan.FromMinutes(2) + TimeSpan.FromSeconds(disease.Shield * 30);
             }
         }
     }

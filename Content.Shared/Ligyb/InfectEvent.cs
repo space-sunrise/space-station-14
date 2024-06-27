@@ -70,82 +70,28 @@ public sealed partial class DiseaseBuyEvent : EntityEventArgs
     }
 }
 
-[Serializable, NetSerializable]
-public sealed partial class DiseaseStartCoughEvent : EntityEventArgs
+
+public sealed partial class DiseaseAddSymptomEvent : InstantActionEvent
 {
+    [DataField] public string Symptom;
+    [DataField] public int MinLevel = 0;
+    [DataField] public int MaxLevel = 9999;
 }
 
 
-[Serializable, NetSerializable]
-public sealed partial class DiseaseStartSneezeEvent : EntityEventArgs
+public sealed partial class DiseaseAddBaseChanceEvent : InstantActionEvent
 {
 }
 
-[Serializable, NetSerializable]
-public sealed partial class DiseaseStartVomitEvent : EntityEventArgs
+public sealed partial class DiseaseAddCoughChanceEvent : InstantActionEvent
 {
 }
 
-[Serializable, NetSerializable]
-public sealed partial class DiseaseZombieEvent : EntityEventArgs
+public sealed partial class DiseaseAddLethalEvent : InstantActionEvent
 {
 }
 
-
-[Serializable, NetSerializable]
-public sealed partial class DiseaseStartCryingEvent : EntityEventArgs
-{
-}
-
-
-
-[Serializable, NetSerializable]
-public sealed partial class DiseaseAddBaseChanceEvent : EntityEventArgs
-{
-}
-
-[Serializable, NetSerializable]
-public sealed partial class DiseaseAddCoughChanceEvent : EntityEventArgs
-{
-}
-
-[Serializable, NetSerializable]
-public sealed partial class DiseaseAddLethalEvent : EntityEventArgs
-{
-}
-
-[Serializable, NetSerializable]
-public sealed partial class DiseaseAddShieldEvent : EntityEventArgs
-{
-}
-
-[Serializable, NetSerializable]
-public sealed partial class DiseaseNarcolepsyEvent : EntityEventArgs
-{
-}
-
-[Serializable, NetSerializable]
-public sealed partial class DiseaseMutedEvent : EntityEventArgs
-{
-}
-
-[Serializable, NetSerializable]
-public sealed partial class DiseaseSlownessEvent : EntityEventArgs
-{
-}
-
-[Serializable, NetSerializable]
-public sealed partial class DiseaseBleedEvent : EntityEventArgs
-{
-}
-
-[Serializable, NetSerializable]
-public sealed partial class DiseaseBlindnessEvent : EntityEventArgs
-{
-}
-
-[Serializable, NetSerializable]
-public sealed partial class DiseaseInsultEvent : EntityEventArgs
+public sealed partial class DiseaseAddShieldEvent : InstantActionEvent
 {
 }
 
