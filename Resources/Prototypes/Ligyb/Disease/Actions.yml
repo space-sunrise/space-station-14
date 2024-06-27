@@ -12,8 +12,6 @@
       - HumanoidAppearance
     canTargetSelf: false
     interactOnMiss: false
-    #sound: !type:SoundPathSpecifier
-      #path: /Audio/Magic/disintegrate.ogg
     icon:
       sprite: Ligyb/disease.rsi
       state: action
@@ -30,3 +28,55 @@
       sprite: Ligyb/disease.rsi
       state: shop
     event: !type:DiseaseShopActionEvent
+
+- type: entity
+  id: ActionDiseaseBaseChance
+  name: listing-disease-base-chance-name
+  description: listing-disease-base-chance-description
+  noSpawn: true
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: Ligyb/disease.rsi
+      state: baseChance
+    event: !type:DiseaseAddBaseChanceEvent
+
+- type: entity
+  id: ActionDiseaseInfectChance
+  name: listing-disease-infect-chance-name
+  description: listing-disease-infect-chance-description
+  noSpawn: true
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: Ligyb/disease.rsi
+      state: coughChance
+    event: !type:DiseaseAddCoughChanceEvent
+
+- type: entity
+  id: ActionDiseaseShield
+  name: listing-disease-shield-name
+  description: listing-disease-shield-description
+  noSpawn: true
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: Ligyb/disease.rsi
+      state: shield
+    event: !type:DiseaseAddShieldEvent
+
+- type: entity
+  id: ActionDiseaseLethal
+  name: listing-disease-lethal-name
+  description: listing-disease-lethal-description
+  noSpawn: true
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: Ligyb/disease.rsi
+      state: lethal
+    event: !type:DiseaseAddLethalEvent

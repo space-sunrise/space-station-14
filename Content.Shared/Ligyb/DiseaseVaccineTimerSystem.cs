@@ -1,12 +1,10 @@
+<<<<<<< HEAD
 // © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 using Robust.Shared.Configuration;
+=======
+>>>>>>> master
 namespace Content.Shared.Ligyb;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Map;
-using Robust.Shared.Random;
-using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 
@@ -22,8 +20,13 @@ public sealed class DiseaseVaccineTimerSystem : SharedSickSystem
     }
     public void OnInit(EntityUid uid, DiseaseVaccineTimerComponent component, ComponentInit args)
     {
+<<<<<<< HEAD
         component.ReadyAt = _gameTiming.CurTime + component.delay;
         if (TryComp<MovementSpeedModifierComponent>(uid, out var speed))
+=======
+        component.ReadyAt = _gameTiming.CurTime + component.Delay;
+        if(TryComp<MovementSpeedModifierComponent>(uid, out var speed))
+>>>>>>> master
         {
             component.SpeedBefore = speed.BaseSprintSpeed;
             _movementSpeed.ChangeBaseSpeed(uid, speed.BaseWalkSpeed, speed.BaseSprintSpeed / 2, speed.Acceleration, speed);

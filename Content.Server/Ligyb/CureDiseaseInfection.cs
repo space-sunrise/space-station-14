@@ -1,10 +1,11 @@
+<<<<<<< HEAD
 // © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 using Content.Server.Zombies;
+=======
+>>>>>>> master
 using Content.Shared.Chemistry.Reagent;
-using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 using Content.Shared.Ligyb;
-using Content.Server.Spawners.Components;
 public sealed partial class CureDiseaseInfection : ReagentEffect
 {
     [DataField]
@@ -28,7 +29,7 @@ public sealed partial class CureDiseaseInfection : ReagentEffect
             {
                 var comp = entityManager.EnsureComponent<DiseaseVaccineTimerComponent>(args.SolutionEntity);
                 comp.Immune = Innoculate;
-                comp.delay = TimeSpan.FromMinutes(2) + TimeSpan.FromSeconds(disease.Shield * 30);
+                comp.Delay = TimeSpan.FromMinutes(2) + TimeSpan.FromSeconds(disease.Shield * 30);
             }
         }
     }

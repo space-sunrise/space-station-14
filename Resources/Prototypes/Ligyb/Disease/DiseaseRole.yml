@@ -51,7 +51,7 @@
     description: ghostrole-disease-description
   - type: GhostTakeoverAvailable
   - type: PointLight
-    color: MediumPurple
+    color: "#3A6041"
     radius: 2
     softness: 1
   - type: UserInterface
@@ -72,6 +72,10 @@
   - type: DiseaseRole
     actions:
       ActionInfect: -1
+      ActionDiseaseBaseChance: -1
+      ActionDiseaseInfectChance: -1
+      ActionDiseaseShield: -1
+      ActionDiseaseLethal: -1
 
 - type: statusIcon
   id: SickIcon
