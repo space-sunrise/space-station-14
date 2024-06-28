@@ -59,6 +59,11 @@ namespace Content.Server._Sunrise.StationGoal
             }
         }
 
+        public bool SendStationGoal(EntityUid? ent, ProtoId<StationGoalPrototype> goal)
+        {
+            return SendStationGoal(ent, _prototypeManager.Index(goal));
+        }
+
         public bool SendStationGoal(EntityUid? ent, StationGoalPrototype goal)
         {
             if (ent is null)
