@@ -10,6 +10,8 @@ ui-options-apply = Применить
 ui-options-reset-all = Сбросить всё
 ui-options-default = По-умолчанию
 
+ui-options-value-percent = { TOSTRING($value, "P0") }
+
 # Misc/General menu
 
 ui-options-discordrich = Включить Discord Rich Presence
@@ -36,6 +38,7 @@ ui-options-admin-sounds = Музыка админов
 ui-options-tts-enabled = TextToSpeach интеграция
 ui-options-tape-player-enabled = Школьники с колонками
 ui-options-volume-label = Громкость
+
 ui-options-volume-percent = { TOSTRING($volume, "P0") }
 
 ## Graphics menu
