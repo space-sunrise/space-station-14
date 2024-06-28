@@ -67,4 +67,10 @@
             Magistrat: [ 1, 1 ]
             # Sunrise-Science
             Roboticist: [ 1, 1 ]
-
+        - type: StationGoal
+          goals:
+          - Shuttle
+          - SolarPanels
+          - Artifacts
+          - Bank
+          - Zoo
