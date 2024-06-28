@@ -12,8 +12,6 @@ ui-options-reset-all = Сбросить всё
 ui-options-default = По-умолчанию
 ui-options-value-percent = { TOSTRING($value, "P0") }
 
-ui-options-value-percent = { TOSTRING($value, "P0") }
-
 # Misc/General menu
 
 ui-options-discordrich = Включить Discord Rich Presence
