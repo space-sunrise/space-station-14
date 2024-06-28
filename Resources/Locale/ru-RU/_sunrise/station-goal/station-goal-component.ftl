@@ -205,7 +205,7 @@ station-goal-delta-xeno-repair =
 
     =============================================
                                 ⠀[italic]Место для печатей[/italic]
-station-goal-delta-xeno-repair =
+station-goal-delta-ambusol =
     [color=#1b487e]███░███░░░░██░░░░[/color]
    ⠀[color=#1b487e]░██░████░░░██░░░░[/color]      [head=3]Документ[/head]
    ⠀[color=#1b487e]░░█░██░██░░██░█░░[/color]               [head=3]NanoTrasen[/head]
