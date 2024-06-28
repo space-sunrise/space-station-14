@@ -1,6 +1,8 @@
 - type: vendingMachineInventory
   id: SecDrobeInventory
   startingInventory:
+    HandheldCamera: 5  # Sunrise-bodycam
+    HyperLinkBookCorporateLaw: 3  # Sunrise-Hyperlink
     ClothingBackpackSecurity: 3
     ClothingBackpackSatchelSecurity: 3
     ClothingBackpackDuffelSecurity: 3
@@ -9,7 +11,6 @@
     ClothingHeadHatBeretSecurity: 3
     ClothingHeadHatSecsoft: 3
     ClothingHeadBandRed: 3
-    HandheldCamera: 3  # Sunrise-bodycam
     ClothingHandsGlovesColorBlack: 3
     ClothingHandsGlovesFingerless: 3
     ClothingUniformJumpskirtSec: 3
