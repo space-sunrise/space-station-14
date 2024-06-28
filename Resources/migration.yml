@@ -356,5 +356,9 @@ ClothingOuterCoatInspector: ClothingOuterCoatDetectiveLoadout
 FloorTileItemReinforced: PartRodMetal1
 
 
+#2024-06-25
+BookChefGaming: BookHowToCookForFortySpaceman
+
+
 # Sunrise migrations
 AirlockExternalGlassShuttleArrivals: AirlockExternalGlassShuttleArrivalsLocked
