@@ -1225,11 +1225,11 @@
 
 #Airtight hatch
 
-- type: entity
-  parent: AirlockHatch
-  id: AirlockHatchSyndicate
-  suffix: Syndicate, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsSyndicateAgent ]
+#- type: entity edited by Sunrise, look _Sunrise/Entityes/Structures/Doors/
+#  parent: AirlockHatch
+#  id: AirlockHatchSyndicate
+#  suffix: Syndicate, Locked
+#  components:
+#  - type: ContainerFill
+#    containers:
+#      board: [ DoorElectronicsSyndicateAgent ]
