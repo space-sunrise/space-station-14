@@ -36,7 +36,7 @@
       access: [["CentralCommand"]]
       
 - type: entity
-  parent: AirlockHatchMaint
+  parent: AirlockHatchMaintenance
   id: AirlockHatchMaintenanceLocked
   name: Maintenance Hatch
   suffix: Maint, Locked
