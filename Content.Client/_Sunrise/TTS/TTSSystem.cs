@@ -103,7 +103,8 @@ public sealed class TTSSystem : EntitySystem
         if (_announcementUid == EntityUid.Invalid)
             _announcementUid = Spawn(null);
 
-        var finalParams = new AudioParams() { Volume = SharedAudioSystem.GainToVolume(_volumeAnnounce) };
+        var volume = SharedAudioSystem.GainToVolume(_volumeAnnounce);
+        var finalParams = AudioParams.Default.WithVolume(volume);
 
         if (ev.AnnouncementSound != null)
         {
