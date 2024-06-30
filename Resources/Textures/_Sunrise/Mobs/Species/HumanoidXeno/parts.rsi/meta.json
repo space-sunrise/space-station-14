@@ -59,7 +59,8 @@
       "directions": 4
     },
 	{
-	  "name": "full"
+	  "name": "megafull",
+	  "directions": 4
 	}
   ]
 }
