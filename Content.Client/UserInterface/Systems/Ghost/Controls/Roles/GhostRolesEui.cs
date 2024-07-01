@@ -17,8 +17,12 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
         private GhostRoleRulesWindow? _windowRules = null;
         private uint _windowRulesId = 0;
 
+        private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
+
         public GhostRolesEui()
         {
+            IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
+
             _window = new GhostRolesWindow();
 
             _window.OnRoleRequestButtonClicked += info =>
@@ -84,7 +88,6 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
             var sysManager = entityManager.EntitySysManager;
             var spriteSystem = sysManager.GetEntitySystem<SpriteSystem>();
             var requirementsManager = IoCManager.Resolve<JobRequirementsManager>();
-            IoCManager.Instance!.TryResolveType<ISharedSponsorsManager>(out var sponsors);
 
             var groupedRoles = ghostState.GhostRoles.GroupBy(
                 role => (role.Name, role.Description, role.Requirements, role.PrototypeId));
@@ -95,19 +98,15 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
                 bool hasAccess = true;
                 FormattedMessage? reason;
 
-                // Sunrise-Sponsors-Start
-                if (!requirementsManager.CheckRoleTime(group.Key.Requirements, out reason) &&
-                    sponsors != null &&
-                    sponsors.GetClientPrototypes().Contains(group.Key.PrototypeId))
-                {
-                    hasAccess = false;
-                }
-                // Sunrise-Sponsors-End
-
                 if (!requirementsManager.CheckRoleTime(group.Key.Requirements, out reason))
                 {
                     hasAccess = false;
                 }
+
+                // Sunrise-Sponsors-Start
+                if (_sponsorsManager != null && _sponsorsManager.GetClientPrototypes().Contains(group.Key.PrototypeId))
+                    hasAccess = true;
+                // Sunrise-Sponsors-End
 
                 _window.AddEntry(name, description, hasAccess, reason, group, spriteSystem);
             }
