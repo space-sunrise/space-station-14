@@ -134,7 +134,7 @@ public sealed class TTSManager
 
     public async Task<byte[]?> ConvertTextToSpeechRadio(string speaker, string text)
     {
-        WantedAnnounceCount.Inc();
+        WantedRadioCount.Inc();
         var soundData = await ConvertTextToSpeech(speaker, text, "radio");
         if (soundData == null)
             return null;
