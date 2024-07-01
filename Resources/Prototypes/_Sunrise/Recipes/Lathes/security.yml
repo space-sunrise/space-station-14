@@ -78,7 +78,7 @@
   materials:
     Plastic: 10
     Steel: 5
-    
+
 - type: latheRecipe
   id: MagazineBoxPistolRubber
   result: MagazineBoxPistolRubber
@@ -87,7 +87,7 @@
   materials:
     Steel: 350
     Plastic: 300
-    
+
 - type: latheRecipe
   id: MagazineBoxMagnumRubber
   result: MagazineBoxMagnumRubber
@@ -96,7 +96,7 @@
   materials:
     Steel: 350
     Plastic: 300
-    
+
 - type: latheRecipe
   id: MagazineBoxRifleRubber
   result: MagazineBoxRifleRubber
@@ -105,9 +105,18 @@
   materials:
     Steel: 350
     Plastic: 600
-    
+
 - type: latheRecipe
   id: MagazineBoxLightRifleRubber
+  result: MagazineBoxLightRifleRubber
+  category: Ammo
+  completetime: 5
+  materials:
+    Steel: 350
+    Plastic: 600
+
+- type: latheRecipe
+  id: ShellShotgunBeanbag
   result: MagazineBoxLightRifleRubber
   category: Ammo
   completetime: 5
