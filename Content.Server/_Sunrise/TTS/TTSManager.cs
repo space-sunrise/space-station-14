@@ -136,8 +136,6 @@ public sealed class TTSManager
     {
         WantedRadioCount.Inc();
         var soundData = await ConvertTextToSpeech(speaker, text, "radio");
-        if (soundData == null)
-            return null;
 
         return soundData;
     }
@@ -146,8 +144,6 @@ public sealed class TTSManager
     {
         WantedAnnounceCount.Inc();
         var soundData = await ConvertTextToSpeech(speaker, text, "announce");
-        if (soundData == null)
-            return null;
 
         return soundData;
     }
