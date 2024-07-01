@@ -341,6 +341,16 @@
       - DeviceQuantumSpinInverter
   - type: EmagLatheRecipes
     emagDynamicRecipes:
+#Sunrise-edit start
+      - CartridgePistolRubber
+      - CartridgeMagnumRubber
+      - CartridgeRifleRubber
+      - CartridgeLightRifleRubber
+      - MagazineBoxPistolRubber
+      - MagazineBoxMagnumRubber
+      - MagazineBoxRifleRubber
+      - MagazineBoxLightRifleRubber
+#Sunrise-edit end
       - BoxBeanbag
       - BoxShotgunIncendiary
       - BoxShotgunUranium
@@ -601,6 +611,16 @@
     - HeadBorgService
     - TorsoBorgService
     dynamicRecipes:
+#Sunrise-edit start
+    - CartridgeLightRifleRubber
+    - CartridgeMagnumRubber
+    - CartridgePistolRubber
+    - CartridgeRifleRubber
+    - MagazineBoxLightRifleRubber
+    - MagazineBoxMagnumRubber
+    - MagazineBoxPistolRubber
+    - MagazineBoxRifleRubber
+#Sunrise-edit end
     - ProximitySensor
     - BorgModuleLightReplacer
     - BorgModuleAdvancedCleaning
