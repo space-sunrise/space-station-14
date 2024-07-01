@@ -220,11 +220,11 @@
 - type: entity
   parent: BaseSubstation
   id: SubstationBasic
-  suffix: Basic, 2.5MJ
+  suffix: Basic, 7.5MJ  # Sunrise-edit
   components:
   - type: Battery
-    maxCharge: 2500000
-    startingCharge: 2500000
+    maxCharge: 7500000  # Sunrise-edit
+    startingCharge: 7500000  # Sunrise-edit
 
 - type: entity
   parent: SubstationBasic
