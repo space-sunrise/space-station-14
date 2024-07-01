@@ -54,7 +54,7 @@ public sealed class ReagentEntry
             ? Color.Black
             : Color.White).ToHex();
 
-        Metabolisms = proto.Metabolisms?.ToDictionary(x => x.Key.Id, x => new ReagentEffectsEntry(x.Value));
+        Metabolisms = proto.Metabolisms?.ToDictionary(x => x.Key.Id, x => new ReagentEffectsEntry());
         // Wiki-End
     }
 }
