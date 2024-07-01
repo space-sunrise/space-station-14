@@ -55,4 +55,4 @@
     soundHit:
       path: /Audio/Weapons/Guns/Hits/snap.ogg
   - type: StaminaDamageOnCollide
-    damage: 13 # 8 hits to stun sounds reasonable
+    damage: 12 # 9 hits to stun sounds reasonable
