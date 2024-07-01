@@ -15,8 +15,8 @@ namespace Content.Shared.Administration
         bool Connected,
         bool ActiveThisRound,
         TimeSpan? OverallPlaytime,
-        bool IsSponsor,
-        string? SponsorTitle)
+        bool IsSponsor, // Sunrise-Sponsors
+        string? SponsorTitle)  // Sunrise-Sponsors
     {
         private string? _playtimeString;
 

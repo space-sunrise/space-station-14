@@ -252,6 +252,7 @@ namespace Content.Server.Administration.Systems
                 overallPlaytime = playTime;
             }
 
+            // Sunrise-Sponsors-Start
             var isSponsor = false;
             var sponsorTitle = "";
             if (_sponsorsManager != null)
@@ -260,8 +261,19 @@ namespace Content.Server.Administration.Systems
                 _sponsorsManager.TryGetOocTitle(data.UserId, out sponsorTitle);
             }
 
-            return new PlayerInfo(name, entityName, identityName, startingRole, antag, GetNetEntity(session?.AttachedEntity), data.UserId,
-                connected, _roundActivePlayers.Contains(data.UserId), overallPlaytime, isSponsor, sponsorTitle);
+            return new PlayerInfo(name,
+                entityName,
+                identityName,
+                startingRole,
+                antag,
+                GetNetEntity(session?.AttachedEntity),
+                data.UserId,
+                connected,
+                _roundActivePlayers.Contains(data.UserId),
+                overallPlaytime,
+                isSponsor,
+                sponsorTitle);
+            // Sunrise-Sponsors-End
         }
 
         private void OnPanicBunkerChanged(bool enabled)
