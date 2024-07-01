@@ -134,9 +134,6 @@ public sealed partial class SpeciesPrototype : IPrototype
     /// </summary>
     [DataField]
     public int MaxAge = 120;
-
-    [DataField]
-    public ProtoId<StartingGearPrototype>? StartingGear;
 }
 
 public enum SpeciesNaming : byte

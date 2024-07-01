@@ -15,6 +15,7 @@
   - type: TapePlayer
     rolloffFactor: 1
     maxDistance: 20
+    decreaseVolume: 0
     tapeSlot:
       insertSound: /Audio/_Sunrise/TapePlayer/insert_tape.ogg
       ejectSound: /Audio/_Sunrise/TapePlayer/eject_tape.ogg

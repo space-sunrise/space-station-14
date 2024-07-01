@@ -6,6 +6,7 @@ using Content.Shared.Ghost.Roles;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Shared.Utility;
+using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
 {
@@ -83,15 +84,25 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
             var sysManager = entityManager.EntitySysManager;
             var spriteSystem = sysManager.GetEntitySystem<SpriteSystem>();
             var requirementsManager = IoCManager.Resolve<JobRequirementsManager>();
+            IoCManager.Instance!.TryResolveType<ISharedSponsorsManager>(out var sponsors);
 
             var groupedRoles = ghostState.GhostRoles.GroupBy(
-                role => (role.Name, role.Description, role.Requirements));
+                role => (role.Name, role.Description, role.Requirements, role.PrototypeId));
             foreach (var group in groupedRoles)
             {
                 var name = group.Key.Name;
                 var description = group.Key.Description;
                 bool hasAccess = true;
                 FormattedMessage? reason;
+
+                // Sunrise-Sponsors-Start
+                if (!requirementsManager.CheckRoleTime(group.Key.Requirements, out reason) &&
+                    sponsors != null &&
+                    sponsors.GetClientPrototypes().Contains(group.Key.PrototypeId))
+                {
+                    hasAccess = false;
+                }
+                // Sunrise-Sponsors-End
 
                 if (!requirementsManager.CheckRoleTime(group.Key.Requirements, out reason))
                 {

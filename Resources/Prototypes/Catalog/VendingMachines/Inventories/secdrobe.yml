@@ -2,6 +2,7 @@
   id: SecDrobeInventory
   startingInventory:
     HandheldCamera: 6  # Sunrise-bodycam
+    HyperLinkBookCorporateLaw: 3  # Sunrise-Hyperlink
     ClothingBackpackSecurity: 3
     ClothingBackpackSatchelSecurity: 3
     ClothingBackpackDuffelSecurity: 3

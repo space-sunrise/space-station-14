@@ -34,6 +34,8 @@
   id: GunSafeBlueShield
   name: blue shield safe
   components:
+  - type: AccessReader
+    access: [["BlueShield"]]
   - type: StorageFill
     contents:
     - id: WeaponRifleLecter

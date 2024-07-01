@@ -32,7 +32,7 @@ public sealed class FactionWeaponBlockerSystem : EntitySystem
         if (component.CanUse)
             return;
 
-        args.Cancel();
+        args.Cancelled = true;
     }
 
     private void OnFactionWeaponBlockerHandleState(EntityUid uid, FactionWeaponBlockerComponent component, ref ComponentHandleState args)

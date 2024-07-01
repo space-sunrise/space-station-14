@@ -18,6 +18,7 @@
   id: ScientistGear
   equipment:
     ears: ClothingHeadsetScience
-  storage:
-    back:
-    - BoxSurvival
+    id: SciencePDA
+  #storage:
+    #back:
+    #- Stuff

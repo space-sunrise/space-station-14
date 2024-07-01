@@ -1,0 +1,141 @@
+# © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
+- type: species
+  id: Predator
+  name: Яутжа
+  roundStart: true
+  prototype: MobPredator
+  sprites: MobPredatorSprites
+  markingLimits: MobPredatorMarkingLimits
+  dollPrototype: MobPredatorDummy
+  skinColoration: None
+  sponsorOnly: true
+
+- type: speciesBaseSprites
+  id: MobPredatorSprites
+  sprites:
+    Head: MobPredatorHead
+    Chest: MobPredatorTorso
+    LArm: MobPredatorLArm
+    RArm: MobPredatorRArm
+    LHand: MobPredatorLHand
+    RHand: MobPredatorRHand
+    LLeg: MobPredatorLLeg
+    RLeg: MobPredatorRLeg
+    LFoot: MobPredatorLFoot
+    RFoot: MobPredatorRFoot
+
+- type: markingPoints
+  id: MobPredatorMarkingLimits
+  points:
+    Hair:
+      points: 0
+      required: false
+    FacialHair:
+      points: 0
+      required: false
+    Tail:
+      points: 0
+      required: false
+    HeadTop:
+      points: 0
+      required: false
+    Chest:
+      points: 0
+      required: false
+    Legs:
+      points: 0
+      required: false
+    Arms:
+      points: 0
+      required: false
+
+- type: humanoidBaseSprite
+  id: MobPredatorAnyMarking
+
+- type: humanoidBaseSprite
+  id: MobPredatorMarkingMatchSkin
+  markingsMatchSkin: true
+
+- type: humanoidBaseSprite
+  id: MobPredatorHead
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobPredatorHeadMale
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobPredatorHeadFemale
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+    state: head_f
+
+- type: humanoidBaseSprite
+  id: MobPredatorTorso
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobPredatorTorsoMale
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobPredatorTorsoFemale
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+    state: torso_f
+
+- type: humanoidBaseSprite
+  id: MobPredatorLLeg
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+    state: l_leg
+
+- type: humanoidBaseSprite
+  id: MobPredatorLArm
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+    state: l_arm
+
+- type: humanoidBaseSprite
+  id: MobPredatorLHand
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+    state: l_hand
+
+- type: humanoidBaseSprite
+  id: MobPredatorLFoot
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+    state: l_foot
+
+- type: humanoidBaseSprite
+  id: MobPredatorRLeg
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+    state: r_leg
+
+- type: humanoidBaseSprite
+  id: MobPredatorRArm
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+    state: r_arm
+
+- type: humanoidBaseSprite
+  id: MobPredatorRHand
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+    state: r_hand
+
+- type: humanoidBaseSprite
+  id: MobPredatorRFoot
+  baseSprite:
+    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+    state: r_foot

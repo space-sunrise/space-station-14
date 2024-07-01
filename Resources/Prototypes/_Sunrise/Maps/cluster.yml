@@ -57,10 +57,20 @@
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
-            # Sunrise-Roles
-            Brigmedic: [ 1, 1 ]
+            # Sunrise-Blueshield
             BlueShield: [ 1, 1 ]
-            # law
+            # Sunrise-Security
+            Brigmedic: [ 1, 1 ]
+            # Sunrise-Law
             IAA: [ 1, 1 ]
             Lawyer: [ 1, 1 ]
-
+            Magistrat: [ 1, 1 ]
+            # Sunrise-Science
+            Roboticist: [ 1, 1 ]
+        - type: StationGoal
+          goals:
+          - Shuttle
+          - SolarPanels
+          - Artifacts
+          - Bank
+          - Zoo

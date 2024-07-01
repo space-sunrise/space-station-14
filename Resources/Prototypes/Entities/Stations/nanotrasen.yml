@@ -17,6 +17,7 @@
     - BaseStationArrivals
     - BaseStationGateway
     - BaseStationShuttles
+    - BaseStationCentComm # Sunrise-Edit
     - BaseStationEvacuation
     - BaseStationAlertLevels
     - BaseStationMagnet
@@ -24,11 +25,10 @@
     - BaseStationSiliconLawCrewsimov
     - BaseStationAllEventsEligible
     - BaseStationNanotrasen
-    - BaseRandomStation
-    - BaseStationCentComm
     # Sunrise-Start
     - BaseStationTransitHub
     - BaseStationDontSelling
+    - BaseStationGoal
     # Sunrise-End
   noSpawn: true
   components:
@@ -41,7 +41,6 @@
     - BaseStationAlertLevels
     - BaseStationNanotrasen
     - BaseStationRecords
-    - BaseRandomStation
     - BaseStationJobsSpawning
     # Sunrise-Start
     - BaseCentCommShuttles

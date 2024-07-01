@@ -11,3 +11,6 @@ ent-ReinforcementRadioSyndicateMonkeyNukeops = { ent-ReinforcementRadioSyndicate
 ent-ReinforcementRadioSyndicateCyborgAssault = радио подкрепления штурмового киборга Синдиката
     .desc = Призовите хорошо вооружённого штурмового киборга, немедленно!
     .suffix = Ядерные оперативники
+ent-ReinforcementRadioSyndicateSyndiCat = телепорт подкрепления Синдикота
+    .desc = Призывает на помощь верного дрессированного кота с микробомбой.
+    .suffix = Ядерные оперативники

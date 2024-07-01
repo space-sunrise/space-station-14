@@ -1,7 +1,7 @@
 - type: job
   id: BlueShield
-  name: офицер «синий щит»
-  description: Ваша главная задача - защита глав. Помните, вы не офицер службы безопасности.
+  name: job-name-blueshield
+  description: job-description-blueshield
   playTimeTracker: JobBlueShield
   requirements:
     - !type:DepartmentTimeRequirement
@@ -52,7 +52,3 @@
     ears: ClothingHeadsetAltCommand
     belt: ClothingBeltBlueShieldWebbingFilled
     gloves: ClothingHandsGlovesCombat
-  storage:
-    back:
-    - BoxSurvivalSecurity
-    - Flash

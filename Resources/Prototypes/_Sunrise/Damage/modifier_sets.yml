@@ -25,3 +25,14 @@
     Piercing: 0.75
     Cold: 0.5
     Heat: 0.5
+
+- type: damageModifierSet
+  id: Predator
+  coefficients:
+    Blunt: 0.9
+    Slash: 0.9
+    Piercing: 0.9
+    Heat: 0.9
+    Shock: 0.9
+    Cold: 0.9
+    Poison: 0.8

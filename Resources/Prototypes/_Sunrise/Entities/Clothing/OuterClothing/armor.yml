@@ -8,6 +8,9 @@
       sprite: _Sunrise/Clothing/OuterClothing/Armor/centcom_naval_carapace.rsi
     - type: Clothing
       sprite: _Sunrise/Clothing/OuterClothing/Armor/centcom_naval_carapace.rsi
+    - type: ClothingSpeedModifier
+      walkModifier: 1
+      sprintModifier: 1
     - type: Armor
       modifiers:
         coefficients:
