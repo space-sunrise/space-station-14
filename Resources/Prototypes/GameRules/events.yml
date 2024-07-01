@@ -458,7 +458,8 @@
     maxOccurrences: 1 # can only happen once per round
     startAnnouncement: station-event-communication-interception
     startAudio:
-      path: /Audio/Announcements/announce.ogg # Sunrise-TTS
+      path: /Audio/Announcements/intercept.ogg
+    duration: null # the rule has to last the whole round not 1 second
   - type: AlertLevelInterceptionRule
   - type: AntagSelection
     definitions:

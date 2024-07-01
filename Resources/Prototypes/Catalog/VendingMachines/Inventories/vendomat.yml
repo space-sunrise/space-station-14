@@ -1,14 +1,14 @@
 - type: vendingMachineInventory
   id: VendomatInventory
   startingInventory:
-    HandheldRoboAnalyzer: 4
-    Nanopaste: 4
-    RemoteSignaller: 1
+    HandheldRoboAnalyzer: 6  # Sunrise-edit
+    Nanopaste: 6  # Sunrise-edit
+    RemoteSignaller: 2  # Sunrise-edit
     Igniter: 2
-    Wirecutter: 1
-    CableApcStack: 2
-    FlashlightLantern: 2
+    Wirecutter: 2  # Sunrise-edit
+    CableApcStack: 4  # Sunrise-edit
+    FlashlightLantern: 4  # Sunrise-edit
     PowerCellSmallPrinted: 3
-    MatterBinStockPart: 4
-    CapacitorStockPart: 4
-    MicroManipulatorStockPart: 4
+    MatterBinStockPart: 8  # Sunrise-edit
+    CapacitorStockPart: 8  # Sunrise-edit
+    MicroManipulatorStockPart: 8  # Sunrise-edit

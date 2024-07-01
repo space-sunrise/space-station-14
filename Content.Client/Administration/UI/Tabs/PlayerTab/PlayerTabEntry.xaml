@@ -5,12 +5,12 @@
                   HorizontalExpand="True"
                   SeparationOverride="4">
         <Label Name="UsernameLabel"
-               SizeFlagsStretchRatio="3"
+               SizeFlagsStretchRatio="2"
                HorizontalExpand="True"
                ClipText="True"/>
         <customControls:VSeparator/>
         <Label Name="CharacterLabel"
-               SizeFlagsStretchRatio="3"
+               SizeFlagsStretchRatio="2"
                HorizontalExpand="True"
                ClipText="True"/>
         <customControls:VSeparator/>
@@ -19,6 +19,13 @@
                HorizontalExpand="True"
                ClipText="True"/>
         <customControls:VSeparator/>
+        <!-- Sunrise-Sponsors-Start -->
+        <Label Name="SponsorLabel"
+               SizeFlagsStretchRatio="2"
+               HorizontalExpand="True"
+               ClipText="True"/>
+        <customControls:VSeparator/>
+        <!-- Sunrise-Sponsors-End -->
         <Label Name="AntagonistLabel"
                SizeFlagsStretchRatio="1"
                HorizontalExpand="True"

@@ -3,7 +3,8 @@ using System.Text.Json.Serialization;
 using Content.Server._Sunrise.GuideGenerator;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Chemistry.Reagent;
-using ReagentEffectsEntry = Content.Server._Sunrise.GuideGenerator.ReagentEffectsEntry;
+using Content.Shared.EntityEffects;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.GuideGenerator;
 
@@ -53,7 +54,7 @@ public sealed class ReagentEntry
             ? Color.Black
             : Color.White).ToHex();
 
-        Metabolisms = proto.Metabolisms?.ToDictionary(x => x.Key.Id, x => new ReagentEffectsEntry(x.Value));
+        Metabolisms = proto.Metabolisms?.ToDictionary(x => x.Key.Id, x => new ReagentEffectsEntry());
         // Wiki-End
     }
 }
@@ -90,7 +91,9 @@ public sealed class ReactionEntry
 
     [JsonIgnore]
     // Wiki-End
-    public List<ReagentEffect> Effects { get; }
+
+    [JsonPropertyName("effects")]
+    public List<EntityEffect> Effects { get; }
 
     public ReactionEntry(ReactionPrototype proto)
     {

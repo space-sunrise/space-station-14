@@ -22,6 +22,7 @@ public sealed partial class PlayerTabEntry : PanelContainer
         CharacterLabel.Text = player.CharacterName;
         if (player.IdentityName != player.CharacterName)
             CharacterLabel.Text += $" [{player.IdentityName}]";
+        SponsorLabel.Text = player.IsSponsor ? player.SponsorTitle : ""; // Sunrise-Sponsors
         AntagonistLabel.Text = Loc.GetString(player.Antag ? "player-tab-is-antag-yes" : "player-tab-is-antag-no");
         BackgroundColorPanel.PanelOverride = styleBoxFlat;
         OverallPlaytimeLabel.Text = player.PlaytimeString;

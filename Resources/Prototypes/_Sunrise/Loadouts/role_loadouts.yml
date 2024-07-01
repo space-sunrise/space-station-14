@@ -25,9 +25,9 @@
   groups:
   - BrigmedicJumpsuit
   - BrigmedicBackpack
+  - SurvivalSecurity
   - Trinkets
   - SecurityTrinkets
-  - SurvivalSecurity
   - Bra
   - Pants
   - Socks
@@ -38,7 +38,6 @@
   - CentCommOperatorJumpsuit
   - CentCommOperatorHats
   - Trinkets
-  - SecurityBodycam
   - Survival
   - Bra
   - Pants
@@ -73,11 +72,11 @@
   - SeniorOfficerJumpsuit
   - SecurityBackpack
   - SecurityBelt
-  - SecurityTrinkets
   - SecurityOuterClothing
   - SecurityShoes
   - SurvivalSecurity
   - Trinkets
+  - SecurityTrinkets
   - Bra
   - Pants
   - Socks

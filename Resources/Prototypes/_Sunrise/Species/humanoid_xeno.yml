@@ -15,7 +15,7 @@
   sprites:
     Head: MobHumanoidXenoHead
     Chest: MobHumanoidXenoTorso
-    Tail: MobHumanoidAnyMarking # Corvax-Sponsors
+    Tail: MobHumanoidAnyMarking
     LArm: MobHumanoidXenoLArm
     RArm: MobHumanoidXenoRArm
     LHand: MobHumanoidXenoLHand
