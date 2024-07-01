@@ -12,14 +12,13 @@ using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared.Mind;
-using Content.Sunrise.Interfaces.Server;
-using Content.Sunrise.Interfaces.Shared;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
+using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Server.Chat.Managers
 {
@@ -46,7 +45,7 @@ namespace Content.Server.Chat.Managers
         [Dependency] private readonly INetConfigurationManager _netConfigManager = default!;
         [Dependency] private readonly IEntityManager _entityManager = default!;
         [Dependency] private readonly PlayerRateLimitManager _rateLimitManager = default!;
-        private IServerSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
+        private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
         /// <summary>
         /// The maximum length a player-sent message can be sent

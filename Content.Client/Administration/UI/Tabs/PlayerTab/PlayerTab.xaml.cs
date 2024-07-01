@@ -196,6 +196,7 @@ namespace Content.Client.Administration.UI.Tabs.PlayerTab
                 Header.Username => Compare(x.Username, y.Username),
                 Header.Character => Compare(x.CharacterName, y.CharacterName),
                 Header.Job => Compare(x.StartingJob, y.StartingJob),
+                Header.Sponsor => string.Compare(x.SponsorTitle!, y.SponsorTitle, StringComparison.Ordinal),
                 Header.Antagonist => x.Antag.CompareTo(y.Antag),
                 Header.Playtime => TimeSpan.Compare(x.OverallPlaytime ?? default, y.OverallPlaytime ?? default),
                 _ => 1
