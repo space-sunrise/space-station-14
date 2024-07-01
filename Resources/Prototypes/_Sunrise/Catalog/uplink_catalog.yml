@@ -221,7 +221,7 @@
   name: uplink-core-extraction-toolbox-name
   description: uplink-core-extraction-toolbox-desc
   icon:
-    sprite: Objects/Misc/nuke_core_container.rsi
+    sprite: _Sunrise/Objects/Misc/nuke_core_container.rsi
     state: closed
   productEntity: ToolboxSyndicateFilledCoreExtraction
   categories:

@@ -46,7 +46,7 @@
   id: PlutoniumCore
   name: plutonium core
   sprite:
-    sprite: Objects/Misc/plutonium_core.rsi
+    sprite: _Sunrise/Objects/Misc/plutonium_core.rsi
     state: icon
 
 - type: stealTargetGroup
