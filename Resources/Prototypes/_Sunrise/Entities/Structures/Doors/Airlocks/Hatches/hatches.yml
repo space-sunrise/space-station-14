@@ -1,5 +1,5 @@
 - type: entity
-  id: AirlockHatchMaint
+  id: AirlockHatchMaintenance
   parent: HighSecDoor
   name: Maintenance Hatch
   description: Protects maintenance tunnels.
@@ -12,14 +12,14 @@
     time: 10
     
 - type: entity
-  id: AirlockHatchCentcomm
+  id: AirlockHatch
   parent: HighSecDoor
-  name: CentCom Hatch
+  name: Hatch
   description: Keeps the bad out and keeps the good in.
   placement:
     mode: SnapgridCenter
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Doors/Airlocks/Hatches/centcom_hatch.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Hatches/hatch.rsi
   - type: Weldable
     time: 10

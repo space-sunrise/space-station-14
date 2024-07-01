@@ -1,4 +1,4 @@
-ent-AirlockHatchCentcomm = Шлюз ЦК
+ent-AirlockHatchCentcomm = Герметичный шлюз
     .desc = Удерживает плохих снаружи, а хороших внутри.
-ent-AirlockHatchMaint = Технический Шлюз ЦК
+ent-AirlockHatchMaint = Технический герметичный шлюз
     .desc = Защищает Тех.Тонели в безопасности.
