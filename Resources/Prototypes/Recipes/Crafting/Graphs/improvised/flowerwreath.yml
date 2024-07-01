@@ -7,17 +7,17 @@
         - to: flowerwreath
           steps:
             - tag: Flower
-              name: flower
+              name: цветок  # Sunrise-recipes
               icon:
                 sprite: Objects/Specific/Hydroponics/poppy.rsi
                 state: produce
             - tag: Flower
-              name: flower
+              name: цветок  # Sunrise-recipes
               icon:
                 sprite: Objects/Specific/Hydroponics/poppy.rsi
                 state: produce
             - tag: Ambrosia
-              name: ambrosia
+              name: амброзию  # Sunrise-recipes
               icon:
                 sprite: Objects/Specific/Hydroponics/ambrosia_vulgaris.rsi
                 state: produce

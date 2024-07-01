@@ -12,9 +12,9 @@
     - state: "off"
       map: ["enum.TapePlayerVisualLayers.Base"]
   - type: TapePlayer
-    rolloffFactor: 2
-    maxDistance: 10
-    decreaseVolume: 5
+    rolloffFactor: 1.5
+    maxDistance: 15
+    decreaseVolume: 2.5
   - type: MeleeWeapon
     attackRate: 0.75
     damage:

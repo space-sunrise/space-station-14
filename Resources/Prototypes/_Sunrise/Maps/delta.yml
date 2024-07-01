@@ -67,3 +67,16 @@
             SeniorOfficer: [ 1, 1 ]
             # Sunrise-Science
             Roboticist: [ 2, 2 ]
+        - type: StationGoal
+          goals:
+          - Shuttle
+          - Singularity
+          - SolarPanels
+          - Artifacts
+          - Bank
+          - Zoo
+          - MiningOutpost
+          - Tesla
+          - VirusZombie
+          - XenobiologyRepair
+          - VirusologyAmbusol
