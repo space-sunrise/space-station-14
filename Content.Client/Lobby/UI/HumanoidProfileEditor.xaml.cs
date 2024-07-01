@@ -615,8 +615,8 @@ namespace Content.Client.Lobby.UI
                 if (_species[i].SponsorOnly && _sponsorsMgr != null &&
                     !_sponsorsMgr.GetClientPrototypes().Contains(_species[i].ID))
                 {
-                    VoiceButton.SetItemDisabled(VoiceButton.GetIdx(i), true);
-                    VoiceButton.SetItemText(VoiceButton.GetIdx(i), $"{name} [СПОНСОР]"); // Sunrise-edit
+                    SpeciesButton.SetItemDisabled(SpeciesButton.GetIdx(i), true);
+                    SpeciesButton.SetItemText(SpeciesButton.GetIdx(i), $"{name} [СПОНСОР]"); // Sunrise-edit
                 }
                 // Sunrise-Sponsors-End
             }
