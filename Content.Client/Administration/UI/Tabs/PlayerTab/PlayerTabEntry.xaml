@@ -1,37 +1,39 @@
-﻿<ContainerButton xmlns="https://spacestation14.io"
-                 xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls">
-    <PanelContainer Name="BackgroundColorPanel"/>
+﻿<PanelContainer xmlns="https://spacestation14.io"
+                xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
+                Name="BackgroundColorPanel">
     <BoxContainer Orientation="Horizontal"
                   HorizontalExpand="True"
                   SeparationOverride="4">
         <Label Name="UsernameLabel"
-               SizeFlagsStretchRatio="5"
-               HorizontalExpand="True"
-               ClipText="True"/>
-        <customControls:VSeparator/>
-        <Label Name="CharacterLabel"
-               SizeFlagsStretchRatio="4"
-               HorizontalExpand="True"
-               ClipText="True"/>
-        <customControls:VSeparator/>
-        <Label Name="JobLabel"
-               SizeFlagsStretchRatio="4"
-               HorizontalExpand="True"
-               ClipText="True"/>
-        <customControls:VSeparator/>
-        <Label Name="SponsorLabel"
-               SizeFlagsStretchRatio="5"
-               HorizontalExpand="True"
-               ClipText="True"/>
-        <customControls:VSeparator/>
-        <Label Name="AntagonistLabel"
                SizeFlagsStretchRatio="2"
                HorizontalExpand="True"
                ClipText="True"/>
         <customControls:VSeparator/>
+        <Label Name="CharacterLabel"
+               SizeFlagsStretchRatio="2"
+               HorizontalExpand="True"
+               ClipText="True"/>
+        <customControls:VSeparator/>
+        <Label Name="JobLabel"
+               SizeFlagsStretchRatio="2"
+               HorizontalExpand="True"
+               ClipText="True"/>
+        <customControls:VSeparator/>
+        <!-- Sunrise-Sponsors-Start -->
+        <Label Name="SponsorLabel"
+               SizeFlagsStretchRatio="2"
+               HorizontalExpand="True"
+               ClipText="True"/>
+        <customControls:VSeparator/>
+        <!-- Sunrise-Sponsors-End -->
+        <Label Name="AntagonistLabel"
+               SizeFlagsStretchRatio="1"
+               HorizontalExpand="True"
+               ClipText="True"/>
+        <customControls:VSeparator/>
         <Label Name="OverallPlaytimeLabel"
-               SizeFlagsStretchRatio="4"
+               SizeFlagsStretchRatio="1"
                HorizontalExpand="True"
                ClipText="True"/>
     </BoxContainer>
-</ContainerButton>
+</PanelContainer>

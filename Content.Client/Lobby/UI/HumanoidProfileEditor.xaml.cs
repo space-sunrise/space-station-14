@@ -650,8 +650,10 @@ namespace Content.Client.Lobby.UI
                 selector.Setup(items, title, 300, description, guides: antag.Guides); // Sunrise-edit
                 selector.Select(Profile?.AntagPreferences.Contains(antag.ID) == true ? 0 : 1);
 
+                // Sunrise-Sponsors-Start
                 var requirements = _entManager.System<SharedRoleSystem>().GetAntagRequirement(antag);
-                if (!_requirements.CheckRoleTime(requirements, out var reason))
+                if (!_requirements.CheckRoleTime(requirements, out var reason) &&
+                    _sponsorsMgr != null && !_sponsorsMgr.GetClientPrototypes().Contains(antag.ID))
                 {
                     selector.LockRequirements(reason);
                     Profile = Profile?.WithAntagPreference(antag.ID, false);
@@ -661,6 +663,7 @@ namespace Content.Client.Lobby.UI
                 {
                     selector.UnlockRequirements();
                 }
+                // Sunrise-Sponsors-End
 
                 selector.OnSelected += preference =>
                 {
@@ -1550,7 +1553,17 @@ namespace Content.Client.Lobby.UI
 
         private void RandomizeEverything()
         {
-            Profile = HumanoidCharacterProfile.Random();
+            // Sunrise-Sponsors-Start
+            var ignoredSpecies = new HashSet<string>();
+            foreach (var speciesPrototype in _prototypeManager.EnumeratePrototypes<SpeciesPrototype>())
+            {
+                if (speciesPrototype.SponsorOnly &&
+                    _sponsorsMgr != null &&
+                    !_sponsorsMgr.GetClientPrototypes().Contains(speciesPrototype.ID))
+                    ignoredSpecies.Add(speciesPrototype.ID);
+            }
+            Profile = HumanoidCharacterProfile.Random(ignoredSpecies);
+            // Sunrise-Sponsors-End
             SetProfile(Profile, CharacterSlot);
             SetDirty();
         }

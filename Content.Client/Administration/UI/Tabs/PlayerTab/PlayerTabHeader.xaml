@@ -5,45 +5,48 @@
                   HorizontalExpand="True"
                   SeparationOverride="4">
         <Label Name="UsernameLabel"
-               SizeFlagsStretchRatio="5"
+               SizeFlagsStretchRatio="2"
                HorizontalExpand="True"
                ClipText="True"
                Text="{Loc player-tab-username}"
                MouseFilter="Pass"/>
         <cc:VSeparator/>
         <Label Name="CharacterLabel"
-               SizeFlagsStretchRatio="4"
+               SizeFlagsStretchRatio="2"
                HorizontalExpand="True"
                ClipText="True"
                Text="{Loc player-tab-character}"
                MouseFilter="Pass"/>
         <cc:VSeparator/>
         <Label Name="JobLabel"
-               SizeFlagsStretchRatio="4"
+               SizeFlagsStretchRatio="2"
                HorizontalExpand="True"
                ClipText="True"
                Text="{Loc player-tab-job}"
                MouseFilter="Pass"/>
         <cc:VSeparator/>
+        <!-- Sunrise-Sponsors-Start -->
         <Label Name="SponsorLabel"
-               SizeFlagsStretchRatio="5"
+               SizeFlagsStretchRatio="2"
                HorizontalExpand="True"
                ClipText="True"
                Text="{Loc player-tab-sponsor}"
                MouseFilter="Pass"/>
         <cc:VSeparator/>
+        <!-- Sunrise-Sponsors-End -->
         <Label Name="AntagonistLabel"
-               SizeFlagsStretchRatio="2"
+               SizeFlagsStretchRatio="1"
                HorizontalExpand="True"
                ClipText="True"
                Text="{Loc player-tab-antagonist}"
                MouseFilter="Pass"/>
         <cc:VSeparator/>
         <Label Name="PlaytimeLabel"
-               SizeFlagsStretchRatio="4"
+               SizeFlagsStretchRatio="1"
                HorizontalExpand="True"
                ClipText="True"
                Text="{Loc player-tab-playtime}"
-               MouseFilter="Pass"/>
+               MouseFilter="Pass"
+               ToolTip="{Loc player-tab-entry-tooltip}"/>
     </BoxContainer>
 </Control>

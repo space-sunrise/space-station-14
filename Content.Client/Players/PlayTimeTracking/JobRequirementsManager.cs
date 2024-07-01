@@ -33,6 +33,8 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
 
     private ISawmill _sawmill = default!;
 
+    private ISharedSponsorsManager? _sponsorsMgr;  // Sunrise-Sponsors
+
     public event Action? Updated;
 
     public void Initialize()
@@ -45,6 +47,8 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         _net.RegisterNetMessage<MsgJobWhitelist>(RxJobWhitelist);
 
         _client.RunLevelChanged += ClientOnRunLevelChanged;
+
+        IoCManager.Instance!.TryResolveType(out _sponsorsMgr);  // Sunrise-Sponsors
     }
 
     private void ClientOnRunLevelChanged(object? sender, RunLevelChangedEventArgs e)
@@ -109,6 +113,11 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         var player = _playerManager.LocalSession;
         if (player == null)
             return true;
+
+        // Sunrise-Sponsors-Start
+        if (_sponsorsMgr != null && _sponsorsMgr.GetClientPrototypes().Contains(job.ID))
+            return true;
+        // Sunrise-Sponsors-End
 
         // Sunrise-Start
         if (_clientPreferences.Preferences != null)

@@ -18,7 +18,7 @@ public sealed partial class PlayerTabHeader : Control
         UsernameLabel.OnKeyBindDown += UsernameClicked;
         CharacterLabel.OnKeyBindDown += CharacterClicked;
         JobLabel.OnKeyBindDown += JobClicked;
-        SponsorLabel.OnKeyBindDown += SponsorClicked;
+        SponsorLabel.OnKeyBindDown += SponsorClicked; // Sunrise-Sponsors
         AntagonistLabel.OnKeyBindDown += AntagonistClicked;
         PlaytimeLabel.OnKeyBindDown += PlaytimeClicked;
     }
@@ -29,8 +29,8 @@ public sealed partial class PlayerTabHeader : Control
         {
             Header.Username => UsernameLabel,
             Header.Character => CharacterLabel,
-            Header.Job => JobLabel, // Sunrise-Sponsors
-            Header.Sponsor => SponsorLabel,
+            Header.Job => JobLabel,
+            Header.Sponsor => SponsorLabel, // Sunrise-Sponsors
             Header.Antagonist => AntagonistLabel,
             Header.Playtime => PlaytimeLabel,
             _ => throw new ArgumentOutOfRangeException(nameof(header), header, null)
@@ -42,7 +42,7 @@ public sealed partial class PlayerTabHeader : Control
         UsernameLabel.Text = Loc.GetString("player-tab-username");
         CharacterLabel.Text = Loc.GetString("player-tab-character");
         JobLabel.Text = Loc.GetString("player-tab-job");
-        SponsorLabel.Text = Loc.GetString("player-tab-sponsor");  // Sunrise-Sponsors
+        SponsorLabel.Text = Loc.GetString("player-tab-sponsor"); // Sunrise-Sponsors
         AntagonistLabel.Text = Loc.GetString("player-tab-antagonist");
         PlaytimeLabel.Text = Loc.GetString("player-tab-playtime");
     }
@@ -73,17 +73,17 @@ public sealed partial class PlayerTabHeader : Control
         HeaderClicked(args, Header.Job);
     }
 
+    private void AntagonistClicked(GUIBoundKeyEventArgs args)
+    {
+        HeaderClicked(args, Header.Antagonist);
+    }
+
     // Sunrise-Sponsors-Start
     private void SponsorClicked(GUIBoundKeyEventArgs args)
     {
         HeaderClicked(args, Header.Sponsor);
     }
     // Sunrise-Sponsors-End
-
-    private void AntagonistClicked(GUIBoundKeyEventArgs args)
-    {
-        HeaderClicked(args, Header.Antagonist);
-    }
 
     private void PlaytimeClicked(GUIBoundKeyEventArgs args)
     {
