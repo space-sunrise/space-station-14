@@ -27,7 +27,7 @@
       
 #Hatches
 - type: entity
-  parent: AirlockHatchCentcomm
+  parent: AirlockHatch
   id: AirlockHatchCentcommLocked
   name: CentCom Hatch
   suffix: CentCom, Locked
@@ -36,8 +36,8 @@
       access: [["CentralCommand"]]
       
 - type: entity
-  parent: AirlockHatchMaint
-  id: AirlockHatchMaintLocked
+  parent: AirlockHatchMaintenance
+  id: AirlockHatchMaintenanceLocked
   name: Maintenance Hatch
   suffix: Maint, Locked
   components:
@@ -45,7 +45,7 @@
       access: [["Maintenance"]]
       
 - type: entity
-  parent: AirlockHatchCentcomm
+  parent: AirlockHatch
   id: AirlockHatchSyndicateLocked
   name: Syndicate Hatch
   suffix: Syndicate, Locked

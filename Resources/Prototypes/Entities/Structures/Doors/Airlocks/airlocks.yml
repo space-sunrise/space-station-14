@@ -137,21 +137,25 @@
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/centcomm.rsi
 
-- type: entity
-  parent: Airlock
-  id: AirlockHatch
-  name: airtight hatch
-  components:
-  - type: Sprite
-    sprite: Structures/Doors/Airlocks/Standard/hatch.rsi
+# edited by Sunrise, view in _Sunrise\Entities\Structures\Doors    
+#    
+#- type: entity
+#  parent: Airlock
+#  id: AirlockHatch
+#  name: airtight hatch
+#  components:
+#  - type: Sprite
+#    sprite: Structures/Doors/Airlocks/Standard/hatch.rsi
 
-- type: entity
-  parent: Airlock
-  id: AirlockHatchMaintenance
-  name: maintenance hatch
-  components:
-  - type: Sprite
-    sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
+#- type: entity
+#  parent: Airlock
+#  id: AirlockHatchMaintenance
+#  name: maintenance hatch
+#  components:
+#  - type: Sprite
+#    sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
+#
+#end
 
 # Glass
 - type: entity
