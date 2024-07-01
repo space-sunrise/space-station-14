@@ -118,6 +118,25 @@ namespace Content.Client.Administration.UI.Tabs.PlayerTab
 
             UpdateHeaderSymbols();
 
+            // Sunrise-Sponsors-Start
+            var antagCount = 0;
+            var sponsorCount = 0;
+            foreach (var player in sortedPlayers)
+            {
+                if (!_showDisconnected && !player.Connected)
+                    continue;
+
+                if (player.Antag)
+                    antagCount += 1;
+
+                if (player.IsSponsor)
+                    sponsorCount += 1;
+            }
+
+            SponsorCount.Text = $"Спонсоры: {sponsorCount}";
+            AntagCount.Text = $"Антаги: {antagCount}";
+            // Sunrise-Sponsors-End
+
             SearchList.PopulateList(sortedPlayers.Select(info => new PlayerListData(info,
                     $"{info.Username} {info.CharacterName} {info.IdentityName} {info.StartingJob}"))
                 .ToList());
@@ -196,6 +215,7 @@ namespace Content.Client.Administration.UI.Tabs.PlayerTab
                 Header.Username => Compare(x.Username, y.Username),
                 Header.Character => Compare(x.CharacterName, y.CharacterName),
                 Header.Job => Compare(x.StartingJob, y.StartingJob),
+                Header.Sponsor => string.Compare(x.SponsorTitle!, y.SponsorTitle, StringComparison.Ordinal), // Sunrise-Sponsors
                 Header.Antagonist => x.Antag.CompareTo(y.Antag),
                 Header.Playtime => TimeSpan.Compare(x.OverallPlaytime ?? default, y.OverallPlaytime ?? default),
                 _ => 1

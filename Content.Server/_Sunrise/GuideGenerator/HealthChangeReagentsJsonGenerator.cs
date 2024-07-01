@@ -1,9 +1,9 @@
+using Content.Shared.Chemistry.Reagent;
+using Robust.Shared.Prototypes;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
-using Content.Server.Chemistry.ReagentEffects;
-using Content.Shared.Chemistry.Reagent;
-using Robust.Shared.Prototypes;
+using Content.Server.EntityEffects.Effects;
 
 namespace Content.Server._Sunrise.GuideGenerator;
 public sealed class HealthChangeReagentsJsonGenerator

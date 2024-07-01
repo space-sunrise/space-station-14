@@ -13,6 +13,3 @@ ent-BoxHug = box of hugs
     .suffix = Emergency
 ent-BoxSurvivalSyndicate = extended-capacity survival box
     .desc = It's a box with basic internals inside. This one is labelled to contain an extended-capacity tank.
-ent-BoxSurvivalBrigmedic = survival box
-    .desc = It's a box with basic internals inside. This one contains to extra medipens.
-    .suffix = Brimedic

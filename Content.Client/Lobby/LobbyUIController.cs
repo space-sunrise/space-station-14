@@ -15,7 +15,6 @@ using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Content.Shared.Traits;
-using Content.Sunrise.Interfaces.Client;
 using Robust.Client.Player;
 using Robust.Client.ResourceManagement;
 using Robust.Client.State;
@@ -25,6 +24,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Client.Lobby;
 
@@ -47,7 +47,7 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
 
     private CharacterSetupGui? _characterSetup;
     private HumanoidProfileEditor? _profileEditor;
-    private IClientSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
+    private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
     /// <summary>
     /// This is the characher preview panel in the chat. This should only update if their character updates.

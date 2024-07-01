@@ -1,34 +1,7 @@
 - type: entity
   name: survival box
   parent: BoxCardboard
-  id: BoxSurvivalBrigmedic
-  description: It's a box with basic internals inside.
-  suffix: Medical
-  components:
-  - type: StorageFill
-    contents:
-      - id: ClothingMaskBreathMedicalSecurity
-      - id: EmergencyOxygenTankFilled
-      - id: EmergencyMedipen
-      - id: GlowstickRed
-        orGroup: Glowstick
-      - id: GlowstickPurple
-        orGroup: Glowstick
-      - id: GlowstickYellow
-        orGroup: Glowstick
-      - id: GlowstickBlue
-        orGroup: Glowstick
-      - id: FoodSnackNutribrick
-      - id: DrinkWaterBottleFull
-  - type: Sprite
-    layers:
-      - state: internals
-      - state: emergencytank
-
-- type: entity
-  name: survival box
-  parent: BoxCardboard
-  id: BoxSurvivalSynth
+  id: BoxRepairSynth
   description: It's a box with basic internals inside.
   components:
   - type: StorageFill
@@ -47,3 +20,184 @@
     layers:
       - state: box_science
       - state: flare
+
+- type: entity
+  name: survival box
+  parent: BoxCardboard
+  id: BoxHugSynth
+  description: It's a box with basic internals inside.
+  components:
+  - type: Sprite
+    layers:
+    - state: box_hug
+    - state: heart
+  - type: Item
+    heldPrefix: hug
+  - type: Tag
+    tags:
+    - BoxHug
+  - type: StorageFill
+    contents:
+    - id: Welder
+    - id: CableApcStack
+    - id: GlowstickRed
+      orGroup: Glowstick
+    - id: GlowstickPurple
+      orGroup: Glowstick
+    - id: GlowstickYellow
+      orGroup: Glowstick
+    - id: GlowstickBlue
+      orGroup: Glowstick
+
+- type: entity
+  name: survival box
+  parent: BoxCardboard
+  id: BoxRepairSecurity
+  description: It's a box with basic internals inside.
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingMaskGasSecurity
+    - id: Welder
+    - id: CableApcStack
+    - id: GlowstickRed
+      orGroup: Glowstick
+    - id: GlowstickPurple
+      orGroup: Glowstick
+    - id: GlowstickYellow
+      orGroup: Glowstick
+    - id: GlowstickBlue
+      orGroup: Glowstick
+  - type: Sprite
+    layers:
+    - state: box_science
+    - state: flare
+
+- type: entity
+  name: survival box
+  parent: BoxCardboard
+  id: BoxRepairSyndicate
+  description: It's a box with basic internals inside.
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingMaskGasSyndicate
+    - id: Welder
+    - id: CableApcStack
+    - id: GlowstickRed
+      orGroup: Glowstick
+    - id: GlowstickPurple
+      orGroup: Glowstick
+    - id: GlowstickYellow
+      orGroup: Glowstick
+    - id: GlowstickBlue
+      orGroup: Glowstick
+    - id: ClothingMaskGasSecurity
+  - type: Sprite
+    layers:
+    - state: box_science
+    - state: flare
+
+# Without Gas
+
+- type: entity
+  parent: BoxSurvival
+  id: BoxSurvivalWithoutGas
+  suffix: Standard withoutGas
+  components:
+  - type: StorageFill
+    contents:
+    - id: EmergencyMedipen
+    - id: GlowstickRed
+      orGroup: Glowstick
+    - id: GlowstickPurple
+      orGroup: Glowstick
+    - id: GlowstickYellow
+      orGroup: Glowstick
+    - id: GlowstickBlue
+      orGroup: Glowstick
+    - id: FoodSnackNutribrick
+    - id: DrinkWaterBottleFull
+  - type: Label
+    currentLabel: без балона
+
+- type: entity
+  parent: BoxCardboard
+  id: BoxHugWithoutGas
+  name: box of hugs
+  description: A special box for sensitive people.
+  suffix: Emergency
+  components:
+  - type: Sprite
+    layers:
+    - state: box_hug
+    - state: heart
+  - type: Item
+    heldPrefix: hug
+  - type: StorageFill
+    contents:
+    - id: EmergencyMedipen
+    - id: GlowstickRed
+      orGroup: Glowstick
+    - id: GlowstickPurple
+      orGroup: Glowstick
+    - id: GlowstickYellow
+      orGroup: Glowstick
+    - id: GlowstickBlue
+      orGroup: Glowstick
+    - id: FoodSnackNutribrick
+    - id: DrinkWaterBottleFull
+  - type: Tag
+    tags:
+    - BoxHug
+
+- type: entity
+  parent: BoxCardboard
+  id: BoxSurvivalSecurityWithoutGas
+  name: survival box
+  description: It's a box with basic internals inside.
+  suffix: Security
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingMaskGasSecurity
+    - id: EmergencyMedipen
+    - id: GlowstickRed
+      orGroup: Glowstick
+    - id: GlowstickPurple
+      orGroup: Glowstick
+    - id: GlowstickYellow
+      orGroup: Glowstick
+    - id: GlowstickBlue
+      orGroup: Glowstick
+    - id: FoodSnackNutribrick
+    - id: DrinkWaterBottleFull
+  - type: Sprite
+    layers:
+    - state: internals
+    - state: emergencytank
+
+- type: entity
+  parent: BoxCardboard
+  id: BoxSurvivalSyndicateWithoutGas
+  name: extended-capacity survival box
+  description: It's a box with basic internals inside. This one is labelled to contain an extended-capacity tank.
+  suffix: Syndicate
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingMaskGasSyndicate
+    - id: EmergencyMedipen
+    - id: GlowstickRed
+      orGroup: Glowstick
+    - id: GlowstickPurple
+      orGroup: Glowstick
+    - id: GlowstickYellow
+      orGroup: Glowstick
+    - id: GlowstickBlue
+      orGroup: Glowstick
+    - id: FoodSnackNutribrick
+  - type: Sprite
+    layers:
+    - state: internals
+    - state: extendedtank

@@ -4,12 +4,18 @@
          xmlns:co="clr-namespace:Content.Client.UserInterface.Controls">
     <BoxContainer Orientation="Vertical">
         <BoxContainer Orientation="Horizontal">
-            <Label Name="PlayerCount" HorizontalExpand="True" Text="{Loc player-tab-player-count}" />
+            <Label Name="PlayerCount" HorizontalExpand="True" Text="{Loc Player Count}" SizeFlagsStretchRatio="0.15"/>
+            <!-- Sunrise-Sponsors-Start -->
+            <Label Name="SponsorCount" HorizontalExpand="True" SizeFlagsStretchRatio="0.15"
+                   Text="{Loc Player Count}" />
+            <Label Name="AntagCount" HorizontalExpand="True" SizeFlagsStretchRatio="0.15"
+                   Text="{Loc Player Count}" />
+            <!-- Sunrise-Sponsors-End -->
             <LineEdit Name="SearchLineEdit" HorizontalExpand="True"
-                      PlaceHolder="{Loc player-tab-filter-line-edit-placeholder}" />
+                      PlaceHolder="{Loc player-tab-filter-line-edit-placeholder}" SizeFlagsStretchRatio="0.25"/>
             <Button Name="ShowDisconnectedButton" HorizontalExpand="True"
-                    Text="{Loc player-tab-show-disconnected}" ToggleMode="True" />
-            <Button Name="OverlayButton" HorizontalExpand="True" Text="{Loc player-tab-overlay}" ToggleMode="True" />
+                    Text="{Loc player-tab-show-disconnected}" ToggleMode="True"  SizeFlagsStretchRatio="0.25"/>
+            <Button Name="OverlayButton" HorizontalExpand="True" Text="{Loc player-tab-overlay}" ToggleMode="True"  SizeFlagsStretchRatio="0.25"/>
         </BoxContainer>
         <Control MinSize="0 5"/>
         <pt:PlayerTabHeader Name="ListHeader"/>
