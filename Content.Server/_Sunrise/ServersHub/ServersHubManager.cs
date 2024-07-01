@@ -84,20 +84,6 @@ public sealed partial class ServersHubManager
         }
     }
 
-    private void Update(FrameEventArgs frameEventArgs)
-    {
-        ServerUpTime.Set(_uptimeStopwatch.Elapsed.TotalSeconds);
-
-        _modLoader.BroadcastUpdate(ModUpdateLevel.FramePreEngine, frameEventArgs);
-
-        _watchdogApi.Heartbeat();
-        _hubManager.Heartbeat();
-
-        _modLoader.BroadcastUpdate(ModUpdateLevel.FramePostEngine, frameEventArgs);
-
-        _metricsManager.FrameUpdate();
-    }
-
     private async Task UpdateServerData()
     {
         if (_serversList.Count == 0)
