@@ -608,6 +608,17 @@ namespace Content.Client.Lobby.UI
                 {
                     SpeciesButton.SelectId(i);
                 }
+
+                // Sunrise-Sponsors-Start
+                if (_sponsorsMgr is null)
+                    continue;
+                if (_species[i].SponsorOnly && _sponsorsMgr != null &&
+                    !_sponsorsMgr.GetClientPrototypes().Contains(_species[i].ID))
+                {
+                    VoiceButton.SetItemDisabled(VoiceButton.GetIdx(i), true);
+                    VoiceButton.SetItemText(VoiceButton.GetIdx(i), $"{name} [СПОНСОР]"); // Sunrise-edit
+                }
+                // Sunrise-Sponsors-End
             }
 
             // If our species isn't available then reset it to default.
