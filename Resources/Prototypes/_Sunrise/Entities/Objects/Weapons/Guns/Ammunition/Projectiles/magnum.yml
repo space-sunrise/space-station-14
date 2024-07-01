@@ -9,4 +9,4 @@
       types:
         Blunt: 3
   - type: StaminaDamageOnCollide
-    damage: 35 # 3 hits to stun cuz revolver
+    damage: 23 # 5 hits to stun cuz revolver
