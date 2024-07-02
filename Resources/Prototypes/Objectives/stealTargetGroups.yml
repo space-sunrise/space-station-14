@@ -85,7 +85,7 @@
     state: icon
 
 - type: stealTargetGroup
-  id: WeaponAntiqueLaser
+  id: WeaponAntiqueLaserBiocode  # Sunrise-edit
   name: antique laser pistol
   sprite:
     sprite: Objects/Weapons/Guns/Battery/antiquelasergun.rsi

@@ -277,7 +277,7 @@
   id: CaptainGunStealObjective
   components:
   - type: StealCondition
-    stealGroup: WeaponAntiqueLaser
+    stealGroup: WeaponAntiqueLaserBiocode  # Sunrise-edit
     owner: job-name-captain
 
 - type: entity

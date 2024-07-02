@@ -183,3 +183,13 @@
     factions:
     - Syndicate
     alertText: Данное оружие биокодировано. Вы не можете его использовать.
+
+- type: entity
+  parent: WeaponAntiqueLaser
+  id: WeaponAntiqueLaserBiocode
+  suffix: BIOCODE
+  components:
+  - type: FactionWeaponBlocker
+    factions:
+    - NanoTrasen
+    alertText: Данное оружие биокодировано. Вы не можете его использовать.

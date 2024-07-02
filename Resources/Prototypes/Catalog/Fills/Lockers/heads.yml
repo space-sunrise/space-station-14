@@ -46,7 +46,7 @@
       - id: ClothingBeltSheathFilled
       - id: DoorRemoteCommand
       - id: RubberStampCaptain
-      - id: WeaponAntiqueLaser
+      - id: WeaponAntiqueLaserBiocode  # Sunrise-edit
       - id: JetpackCaptainFilled
       - id: MedalCase
 
@@ -72,7 +72,7 @@
       - id: ClothingBeltSheathFilled
       - id: DoorRemoteCommand
       - id: RubberStampCaptain
-      - id: WeaponAntiqueLaser
+      - id: WeaponAntiqueLaserBiocode  # Sunrise-edit
       - id: JetpackCaptainFilled
       - id: MedalCase
       - id: ClothingHeadCaptainHat

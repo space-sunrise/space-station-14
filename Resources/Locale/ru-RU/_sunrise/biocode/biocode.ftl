@@ -30,3 +30,6 @@ ent-ClothingOuterHardsuitSyndieCommanderBiocode = { ent-ClothingOuterHardsuitSyn
     .desc = { ent-ClothingOuterHardsuitSyndieCommander.desc }
 ent-ClothingOuterHardsuitJuggernautBiocode = { ent-ClothingOuterHardsuitJuggernaut }
     .desc = { ent-ClothingOuterHardsuitJuggernaut.desc }
+ent-WeaponAntiqueLaserBiocode = { ent-WeaponAntiqueLaser }
+    .desc = { ent-WeaponAntiqueLaser }
+    .suffix = Пистолет, BIOCODE
