@@ -1022,7 +1022,7 @@ namespace Content.Client.Lobby.UI
 
             _loadoutWindow = new LoadoutWindow(Profile, roleLoadout, roleLoadoutProto, _playerManager.LocalSession, collection, _sponsorsMgr)
             {
-                Title = jobProto?.ID + "-loadout",
+                Title = Loc.GetString($"{jobProto?.ID}-loadout"),
             };
 
             // Refresh the buttons etc.

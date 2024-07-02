@@ -35,8 +35,8 @@ ui-options-lobby-music = Музыка в лобби
 ui-options-restart-sounds = Звуки перезапуска раунда
 ui-options-event-music = Музыка событий
 ui-options-admin-sounds = Музыка админов
-ui-options-tts-enabled = TextToSpeach интеграция
-ui-options-tape-player-enabled = Школьники с колонками
+ui-options-tts-enabled = TTS интеграция
+ui-options-tape-player-enabled = Школьники с колонками (Нужен рестарт раунда)
 ui-options-volume-label = Громкость
 
 ui-options-volume-percent = { TOSTRING($volume, "P0") }
