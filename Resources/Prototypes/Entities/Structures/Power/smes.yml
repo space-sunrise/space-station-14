@@ -95,11 +95,11 @@
 - type: entity
   parent: BaseSMES
   id: SMESBasic
-  suffix: Basic, 24MW  # Sunrise-edit
+  suffix: Basic, 8MW
   components:
   - type: Battery
-    maxCharge: 24000000  # Sunrise-edit
-    startingCharge: 24000000  # Sunrise-edit
+    maxCharge: 8000000
+    startingCharge: 8000000
 
 - type: entity
   parent: SMESBasic
