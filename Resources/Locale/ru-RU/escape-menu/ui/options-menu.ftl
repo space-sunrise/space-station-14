@@ -10,6 +10,7 @@ ui-options-tab-misc = Основные
 ui-options-apply = Сохранить и применить
 ui-options-reset-all = Сброс изменений
 ui-options-default = Сброс к настройкам по умолчанию
+
 ui-options-value-percent = { TOSTRING($value, "P0") }
 
 # Misc/General menu
