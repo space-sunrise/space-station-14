@@ -109,7 +109,7 @@ public sealed class SunriseCCVars
     /// До сколько часов общего наиграного времени игроки будут появляться на станции даже в позднем присоединеии.
     /// </summary>
     public static readonly CVarDef<int> ArrivalsMinHours =
-        CVarDef.Create("transithub.arrivals_min_hours", 10, CVar.SERVER | CVar.ARCHIVE);
+        CVarDef.Create("transithub.arrivals_min_hours", 20, CVar.SERVER | CVar.ARCHIVE);
 
     /**
      * Tape Player
