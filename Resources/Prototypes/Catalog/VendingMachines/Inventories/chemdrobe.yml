@@ -1,15 +1,15 @@
 - type: vendingMachineInventory
   id: ChemDrobeInventory
   startingInventory:
-    ClothingUniformJumpsuitChemistry: 3  # Sunrise-edit
-    ClothingUniformJumpskirtChemistry: 3  # Sunrise-edit
-    ClothingOuterCoatLabChem: 3  # Sunrise-edit
-    ClothingShoesColorWhite: 3  # Sunrise-edit
-    ClothingBackpackChemistry: 3  # Sunrise-edit
-    ClothingBackpackSatchelChemistry: 3  # Sunrise-edit
-    ClothingBackpackDuffelChemistry: 4  # Sunrise-edit
-    ChemBag: 4  # Sunrise-edit
-    ClothingBeltMedical: 4  # Sunrise-edit
-    ClothingHandsGlovesLatex: 4  # Sunrise-edit
-    ClothingHeadsetMedical: 4  # Sunrise-edit
-    ClothingOuterWinterChem: 4  # Sunrise-edit
+    ClothingUniformJumpsuitChemistry: 2
+    ClothingUniformJumpskirtChemistry: 2
+    ClothingOuterCoatLabChem: 2
+    ClothingShoesColorWhite: 2
+    ClothingBackpackChemistry: 2
+    ClothingBackpackSatchelChemistry: 2
+    ClothingBackpackDuffelChemistry: 2
+    ChemBag: 2
+    ClothingBeltMedical: 2
+    ClothingHandsGlovesLatex: 2
+    ClothingHeadsetMedical: 2
+    ClothingOuterWinterChem: 2

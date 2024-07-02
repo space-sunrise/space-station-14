@@ -2,24 +2,24 @@
   id: SecTechInventory
   startingInventory:
     SecurityWhistle: 5
-    Handcuffs: 12  # Sunrise-edit
-    GrenadeFlashBang: 8  # Sunrise-edit
-    TearGasGrenade: 8  # Sunrise-edit
-    ClusterBangFull: 4  # Sunrise-edit
-    GrenadeStinger: 8  # Sunrise-edit
-    Flash: 10  # Sunrise-edit
-    Tourniquet: 10  # Sunrise-edit
-    FlashlightSeclite: 10  # Sunrise-edit
-    ClothingEyesGlassesSunglasses: 4  # Sunrise-edit
-    ClothingEyesHudSecurity: 4  # Sunrise-edit
-    ClothingEyesEyepatchHudSecurity: 4  # Sunrise-edit
+    Handcuffs: 8
+    GrenadeFlashBang: 4
+    TearGasGrenade: 4
+    ClusterBangFull: 2
+    GrenadeStinger: 4
+    Flash: 5
+    Tourniquet: 5
+    FlashlightSeclite: 5
+    ClothingEyesGlassesSunglasses: 2
+    ClothingEyesHudSecurity: 2
+    ClothingEyesEyepatchHudSecurity: 2
     ClothingBeltSecurityWebbing: 5
-    CombatKnife: 6  # Sunrise-edit
-    Zipties: 12  # Sunrise-edit
-    RiotShield: 4  # Sunrise-edit
-    RiotLaserShield: 4  # Sunrise-edit
-    RiotBulletShield: 4  # Sunrise-edit
-    RadioHandheldSecurity: 8  # Sunrise-edit
+    CombatKnife: 3
+    Zipties: 12
+    RiotShield: 2
+    RiotLaserShield: 2
+    RiotBulletShield: 2
+    RadioHandheldSecurity: 5
   # security officers need to follow a diet regimen!
   contrabandInventory:
     FoodDonutHomer: 12

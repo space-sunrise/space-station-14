@@ -1,17 +1,17 @@
 - type: vendingMachineInventory
   id: CargoDrobeInventory
   startingInventory:
-    ClothingBackpackCargo: 6  # Sunrise-edit
-    ClothingBackpackSatchelCargo: 6  # Sunrise-edit
-    ClothingBackpackDuffelCargo: 6  # Sunrise-edit
-    ClothingUniformJumpsuitCargo: 5  # Sunrise-edit
-    ClothingUniformJumpskirtCargo: 5  # Sunrise-edit
-    ClothingShoesColorBlack: 5  # Sunrise-edit
-    ClothingHandsGlovesFingerless: 6  # Sunrise-edit
-    ClothingHeadHatCargosoft: 6  # Sunrise-edit
-    ClothingHeadBandBrown: 6  # Sunrise-edit
-    ClothingHeadsetCargo: 9  # Sunrise-edit
-    ClothingOuterWinterCargo: 4  # Sunrise-edit
-    ClothingOuterWinterMiner: 4  # Sunrise-edit
-    ClothingNeckScarfStripedBrown: 6  # Sunrise-edit
-    ClothingShoesBootsWinterCargo: 4  # Sunrise-edit
+    ClothingBackpackCargo: 3
+    ClothingBackpackSatchelCargo: 3
+    ClothingBackpackDuffelCargo: 3
+    ClothingUniformJumpsuitCargo: 3
+    ClothingUniformJumpskirtCargo: 3
+    ClothingShoesColorBlack: 3
+    ClothingHandsGlovesFingerless: 3
+    ClothingHeadHatCargosoft: 3
+    ClothingHeadBandBrown: 3
+    ClothingHeadsetCargo: 3
+    ClothingOuterWinterCargo: 2
+    ClothingOuterWinterMiner: 2
+    ClothingNeckScarfStripedBrown: 3
+    ClothingShoesBootsWinterCargo: 2

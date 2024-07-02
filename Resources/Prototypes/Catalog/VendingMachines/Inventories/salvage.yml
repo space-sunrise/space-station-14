@@ -1,15 +1,15 @@
 ﻿- type: vendingMachineInventory
   id: SalvageEquipmentInventory
   startingInventory:
-    Crowbar: 4  # Sunrise-edit
-    Pickaxe: 6  # Sunrise-edit
-    OreBag: 6  # Sunrise-edit
-    Flare: 6  # Sunrise-edit
-    FlashlightLantern: 4  # Sunrise-edit
-    Floodlight: 4  # Sunrise-edit
-    HandheldGPSBasic: 4  # Sunrise-edit
-    RadioHandheld: 4  # Sunrise-edit
-    WeaponProtoKineticAccelerator: 6  # Sunrise-edit
-    SeismicCharge: 4  # Sunrise-edit
+    Crowbar: 2
+    Pickaxe: 4
+    OreBag: 4
+    Flare: 4
+    FlashlightLantern: 2
+    Floodlight: 2
+    HandheldGPSBasic: 2
+    RadioHandheld: 2
+    WeaponProtoKineticAccelerator: 4
+    SeismicCharge: 2
     FultonBeacon: 1
-    Fulton: 4  # Sunrise-edit
+    Fulton: 2

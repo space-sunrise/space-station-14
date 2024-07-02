@@ -1,19 +1,19 @@
 - type: vendingMachineInventory
   id: BarDrobeInventory
   startingInventory:
-    ClothingHeadHatBowlerHat: 4  # Sunrise-edit
-    ClothingHeadHatTophat: 4  # Sunrise-edit
-    ClothingEyesHudBeer: 3  # Sunrise-edit
-    ClothingEyesEyepatchHudBeer: 3  # Sunrise-edit
-    ClothingHeadsetService: 5  # Sunrise-edit
-    ClothingOuterApronBar: 4  # Sunrise-edit
-    ClothingOuterWinterBar: 4  # Sunrise-edit
-    ClothingUniformJumpsuitBartender: 4  # Sunrise-edit
-    ClothingUniformJumpskirtBartender: 4  # Sunrise-edit
-    ClothingUniformJumpsuitBartenderPurple: 4  # Sunrise-edit
-    ClothingShoesColorBlack: 4  # Sunrise-edit
-    ClothingOuterArmorBasicSlim: 4  # Sunrise-edit
-    ClothingOuterVest: 4  # Sunrise-edit
-    ClothingBeltBandolier: 4  # Sunrise-edit
-    ClothingEyesGlassesSunglasses: 4  # Sunrise-edit
+    ClothingHeadHatBowlerHat: 2
+    ClothingHeadHatTophat: 2
+    ClothingEyesHudBeer: 2
+    ClothingEyesEyepatchHudBeer: 2
+    ClothingHeadsetService: 2
+    ClothingOuterApronBar: 2
+    ClothingOuterWinterBar: 2
+    ClothingUniformJumpsuitBartender: 2
+    ClothingUniformJumpskirtBartender: 2
+    ClothingUniformJumpsuitBartenderPurple: 2
+    ClothingShoesColorBlack: 2
+    ClothingOuterArmorBasicSlim: 2
+    ClothingOuterVest: 2
+    ClothingBeltBandolier: 2
+    ClothingEyesGlassesSunglasses: 2
 

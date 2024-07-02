@@ -1,41 +1,41 @@
 - type: vendingMachineInventory
   id: MegaSeedServitorInventory
   startingInventory:
-    AloeSeeds: 4  # Sunrise-edit
-    AmbrosiaVulgarisSeeds: 4  # Sunrise-edit
-    AppleSeeds: 8  # Sunrise-edit
-    BananaSeeds: 8  # Sunrise-edit
-    CarrotSeeds: 8  # Sunrise-edit
-    CabbageSeeds: 8  # Sunrise-edit
-    ChanterelleSeeds: 8  # Sunrise-edit
-    ChiliSeeds: 8  # Sunrise-edit
-    CornSeeds: 8  # Sunrise-edit
-    EggplantSeeds: 8  # Sunrise-edit
-    EggySeeds: 8  # Sunrise-edit
-    GalaxythistleSeeds: 4  # Sunrise-edit
-    GarlicSeeds: 4  # Sunrise-edit
-    GrapeSeeds: 8  # Sunrise-edit
-    LemonSeeds: 8  # Sunrise-edit
-    LimeSeeds: 8  # Sunrise-edit
-    PineappleSeeds: 5  # Sunrise-edit
-    LingzhiSeeds: 4  # Sunrise-edit
-    OatSeeds: 8  # Sunrise-edit
-    OnionSeeds: 8  # Sunrise-edit
-    OnionRedSeeds: 8  # Sunrise-edit
-    OrangeSeeds: 8  # Sunrise-edit
-    PoppySeeds: 4  # Sunrise-edit
-    PotatoSeeds: 8  # Sunrise-edit
-    PumpkinSeeds: 8  # Sunrise-edit
-    RiceSeeds: 8  # Sunrise-edit
-    SoybeanSeeds: 8  # Sunrise-edit
-    SugarcaneSeeds: 8  # Sunrise-edit
-    TomatoSeeds: 8  # Sunrise-edit
-    TowercapSeeds: 8  # Sunrise-edit
-    WheatSeeds: 8  # Sunrise-edit
-    WatermelonSeeds: 8  # Sunrise-edit
-    CocoaSeeds: 4  # Sunrise-edit
-    BerrySeeds: 8  # Sunrise-edit
-    PeaSeeds: 8  # Sunrise-edit
-    CottonSeeds: 8  # Sunrise-edit
+    AloeSeeds: 3
+    AmbrosiaVulgarisSeeds: 3
+    AppleSeeds: 5
+    BananaSeeds: 5
+    CarrotSeeds: 5
+    CabbageSeeds: 5
+    ChanterelleSeeds: 5
+    ChiliSeeds: 5
+    CornSeeds: 5
+    EggplantSeeds: 5
+    EggySeeds: 5
+    GalaxythistleSeeds: 3
+    GarlicSeeds: 3
+    GrapeSeeds: 5
+    LemonSeeds: 5
+    LimeSeeds: 5
+    PineappleSeeds: 4
+    LingzhiSeeds: 3
+    OatSeeds: 5
+    OnionSeeds: 5
+    OnionRedSeeds: 5
+    OrangeSeeds: 5
+    PoppySeeds: 3
+    PotatoSeeds: 5
+    PumpkinSeeds: 5
+    RiceSeeds: 5
+    SoybeanSeeds: 5
+    SugarcaneSeeds: 5
+    TomatoSeeds: 5
+    TowercapSeeds: 5
+    WheatSeeds: 5
+    WatermelonSeeds: 5
+    CocoaSeeds: 3
+    BerrySeeds: 5
+    PeaSeeds: 5
+    CottonSeeds: 5
   emaggedInventory:
     FlyAmanitaSeeds: 1

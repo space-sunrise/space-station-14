@@ -1,25 +1,25 @@
 - type: vendingMachineInventory
   id: LawDrobeInventory
   startingInventory:
-    ClothingUniformJumpsuitLawyerBlue: 2  # Sunrise-edit
-    ClothingUniformJumpskirtLawyerBlue: 2  # Sunrise-edit
-    ClothingUniformJumpsuitLawyerPurple: 2  # Sunrise-edit
-    ClothingUniformJumpskirtLawyerPurple: 2  # Sunrise-edit
-    ClothingUniformJumpsuitLawyerRed: 2  # Sunrise-edit
-    ClothingUniformJumpskirtLawyerRed: 2  # Sunrise-edit
-    ClothingUniformJumpsuitLawyerBlack: 2  # Sunrise-edit
-    ClothingUniformJumpskirtLawyerBlack: 2  # Sunrise-edit
-    ClothingUniformJumpsuitLawyerGood: 2  # Sunrise-edit
-    ClothingUniformJumpskirtLawyerGood: 2  # Sunrise-edit
-    ClothingShoesBootsLaceup: 4  # Sunrise-edit
+    ClothingUniformJumpsuitLawyerBlue: 1
+    ClothingUniformJumpskirtLawyerBlue: 1
+    ClothingUniformJumpsuitLawyerPurple: 1
+    ClothingUniformJumpskirtLawyerPurple: 1
+    ClothingUniformJumpsuitLawyerRed: 1
+    ClothingUniformJumpskirtLawyerRed: 1
+    ClothingUniformJumpsuitLawyerBlack: 1
+    ClothingUniformJumpskirtLawyerBlack: 1
+    ClothingUniformJumpsuitLawyerGood: 1
+    ClothingUniformJumpskirtLawyerGood: 1
+    ClothingShoesBootsLaceup: 2
     ClothingHeadsetIAA: 2
-    ClothingNeckLawyerbadge: 4  # Sunrise-edit
-    BriefcaseBrown: 4  # Sunrise-edit
-    ClothingHandsGlovesColorWhite: 2  # Sunrise-edit
-    ClothingHandsGlovesColorGray: 2  # Sunrise-edit
-    ClothingHandsGlovesColorBlack: 2  # Sunrise-edit
-    ClothingHandsGlovesColorRed: 2  # Sunrise-edit
-    ClothingHandsGlovesColorBlue: 2  # Sunrise-edit
+    ClothingNeckLawyerbadge: 2
+    BriefcaseBrown: 2
+    ClothingHandsGlovesColorWhite: 1
+    ClothingHandsGlovesColorGray: 1
+    ClothingHandsGlovesColorBlack: 1
+    ClothingHandsGlovesColorRed: 1
+    ClothingHandsGlovesColorBlue: 1
     ClothingHeadHatBowlerHat: 1
     ClothingHeadHatOutlawHat: 1
     ClothingHeadHatTophat: 1
