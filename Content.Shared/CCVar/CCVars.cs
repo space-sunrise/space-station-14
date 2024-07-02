@@ -418,7 +418,7 @@ namespace Content.Shared.CCVar
         /// Defaults to 2 minutes.
         /// </summary>
         public static readonly CVarDef<float> RoundRestartTime =
-            CVarDef.Create("game.round_restart_time", 120f, CVar.SERVERONLY);
+            CVarDef.Create("game.round_restart_time", 240f, CVar.SERVERONLY);
 
         /// <summary>
         /// The prototype to use for secret weights.
