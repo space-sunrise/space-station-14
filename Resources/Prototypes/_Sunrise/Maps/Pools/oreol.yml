@@ -1,8 +1,0 @@
-- type: gameMapPool
-  id: SunriseOreolMapPool
-  maps:
-  - SunriseDelta
-  - SunriseBox
-  - SunriseCluster
-  - SunriseFland
-  - SunriseMarathon
