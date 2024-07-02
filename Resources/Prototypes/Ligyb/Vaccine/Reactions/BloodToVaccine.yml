@@ -1,0 +1,38 @@
+- type: reaction
+  id: NotReadyVaccineFirst
+  reactants:
+    Dylovene:
+      amount: 2
+    Ammonia:
+      amount: 3
+    DiseaseBloodFirst:
+      amount: 15
+  products:
+    Blood: 15
+    NotReadyVaccine: 5
+
+- type: reaction
+  id: NotReadyVaccineSecond
+  reactants:
+    Dylovene:
+      amount: 2
+    Leporazine:
+      amount: 6
+    DiseaseBloodSecond:
+      amount: 15
+  products:
+    Blood: 15
+    NotReadyVaccine: 8
+
+- type: reaction
+  id: NotReadyVaccineThird
+  reactants:
+    Lipozine:
+      amount: 3
+    Leporazine:
+      amount: 3
+    DiseaseBloodThird:
+      amount: 15
+  products:
+    Blood: 15
+    NotReadyVaccine: 6
