@@ -2,7 +2,7 @@
   id: SunriseBox
   mapName: 'Box Station'
   mapPath: /Maps/_Sunrise/Station/box.yml
-  minPlayers: 30
+  minPlayers: 0
   stations:
     Boxstation:
       stationProto: StandardNanotrasenStation
