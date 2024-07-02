@@ -24,6 +24,7 @@
     outerClothing: ClothingOuterCoatRobo
     id: RoboticistPDA
     gloves: ClothingHandsGlovesRobohands
+    eyes: ClothingEyesGlassesWelding
     belt: ClothingBeltUtilityEngineering
     ears: ClothingHeadsetRobotics
     pocket1: Nanopaste
