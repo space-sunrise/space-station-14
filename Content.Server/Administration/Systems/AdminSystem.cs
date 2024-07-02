@@ -30,6 +30,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Server.Administration.Systems
 {
@@ -62,6 +63,8 @@ namespace Content.Server.Administration.Systems
         private readonly HashSet<NetUserId> _roundActivePlayers = new();
         public readonly PanicBunkerStatus PanicBunker = new();
         public readonly BabyJailStatus BabyJail = new();
+
+        private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
         public override void Initialize()
         {
@@ -96,6 +99,8 @@ namespace Content.Server.Administration.Systems
             SubscribeLocalEvent<RoleAddedEvent>(OnRoleEvent);
             SubscribeLocalEvent<RoleRemovedEvent>(OnRoleEvent);
             SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
+
+            IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
         }
 
         private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev)
@@ -247,8 +252,28 @@ namespace Content.Server.Administration.Systems
                 overallPlaytime = playTime;
             }
 
-            return new PlayerInfo(name, entityName, identityName, startingRole, antag, GetNetEntity(session?.AttachedEntity), data.UserId,
-                connected, _roundActivePlayers.Contains(data.UserId), overallPlaytime);
+            // Sunrise-Sponsors-Start
+            var isSponsor = false;
+            var sponsorTitle = "";
+            if (_sponsorsManager != null)
+            {
+                isSponsor = _sponsorsManager.IsSponsor(data.UserId);
+                _sponsorsManager.TryGetOocTitle(data.UserId, out sponsorTitle);
+            }
+
+            return new PlayerInfo(name,
+                entityName,
+                identityName,
+                startingRole,
+                antag,
+                GetNetEntity(session?.AttachedEntity),
+                data.UserId,
+                connected,
+                _roundActivePlayers.Contains(data.UserId),
+                overallPlaytime,
+                isSponsor,
+                sponsorTitle);
+            // Sunrise-Sponsors-End
         }
 
         private void OnPanicBunkerChanged(bool enabled)

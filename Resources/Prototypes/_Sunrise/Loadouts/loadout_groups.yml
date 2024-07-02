@@ -128,13 +128,6 @@
   - SecurityHoloprojector
 
 - type: loadoutGroup
-  id: SecurityBodycam
-  name: loadout-group-bodycam
-  minLimit: 0
-  loadouts:
-  - SecurityBodycam
-
-- type: loadoutGroup
   id: CorporateLaw
   name: loadout-group-corporate-law
   minLimit: 0

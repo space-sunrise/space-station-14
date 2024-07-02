@@ -6,6 +6,7 @@ using Content.Shared.Ghost.Roles;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Shared.Utility;
+using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
 {
@@ -16,8 +17,12 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
         private GhostRoleRulesWindow? _windowRules = null;
         private uint _windowRulesId = 0;
 
+        private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
+
         public GhostRolesEui()
         {
+            IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
+
             _window = new GhostRolesWindow();
 
             _window.OnRoleRequestButtonClicked += info =>
@@ -85,7 +90,7 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
             var requirementsManager = IoCManager.Resolve<JobRequirementsManager>();
 
             var groupedRoles = ghostState.GhostRoles.GroupBy(
-                role => (role.Name, role.Description, role.Requirements));
+                role => (role.Name, role.Description, role.Requirements, role.PrototypeId));
             foreach (var group in groupedRoles)
             {
                 var name = group.Key.Name;
@@ -97,6 +102,11 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
                 {
                     hasAccess = false;
                 }
+
+                // Sunrise-Sponsors-Start
+                if (_sponsorsManager != null && _sponsorsManager.GetClientPrototypes().Contains(group.Key.PrototypeId))
+                    hasAccess = true;
+                // Sunrise-Sponsors-End
 
                 _window.AddEntry(name, description, hasAccess, reason, group, spriteSystem);
             }

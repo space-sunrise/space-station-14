@@ -534,6 +534,7 @@ namespace Content.Server.Ghost.Roles
                 if (metaQuery.GetComponent(uid).EntityPaused)
                     continue;
 
+                var prototypeId = metaQuery.GetComponent(uid).EntityPrototype!.ID; // Sunrise-Sponsors
 
                 var kind = GhostRoleKind.FirstComeFirstServe;
                 GhostRoleRaffleComponent? raffle = null;
@@ -560,6 +561,7 @@ namespace Content.Server.Ghost.Roles
                 roles.Add(new GhostRoleInfo
                 {
                     Identifier = id,
+                    PrototypeId = prototypeId,
                     Name = role.RoleName,
                     Description = role.RoleDescription,
                     Rules = role.RoleRules,

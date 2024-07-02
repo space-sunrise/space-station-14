@@ -10,13 +10,13 @@ using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Sunrise.Interfaces.Server;
-using Content.Sunrise.Interfaces.Shared;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
+using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 /*
  * TODO: Remove baby jail code once a more mature gateway process is established. This code is only being issued as a stopgap to help with potential tiding in the immediate future.
@@ -57,7 +57,7 @@ namespace Content.Server.Connection
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly ILogManager _logManager = default!;
         [Dependency] private readonly IChatManager _chatManager = default!;
-        private IServerSponsorsManager? _sponsorsMgr; // Sunrise-Sponsors
+        private ISharedSponsorsManager? _sponsorsMgr; // Sunrise-Sponsors
 
         private readonly Dictionary<NetUserId, TimeSpan> _temporaryBypasses = [];
         private ISawmill _sawmill = default!;

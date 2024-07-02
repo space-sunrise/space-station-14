@@ -44,8 +44,8 @@
     id: HoSPDA
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltSecurity
-    pocket1: WeaponPistolMk58
+    pocket1: WeaponPistolMk58Nonlethal # Sunrise-Edit
   storage:
     back:
     - Flash
-    - MagazinePistol
+    #- MagazinePistol # Sunrise-Edit
