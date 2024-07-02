@@ -8,7 +8,7 @@ ChiefMedicalOfficer-loadout = Снаряжение главного врача
 HeadOfSecurity-loadout = Снаряжение главы сб
 Quartermaster-loadout = Снаряжение квартирмейстра
 ResearchDirector-loadout = Снаряжение научного руководителя
-// Legal Department
+// Law
 IAA-loadout = Снаряжение агента внутренних дел
 Lawyer-loadout = Снаряжение юриста
 Magistrate-loadout = Снаряжение магистрата
