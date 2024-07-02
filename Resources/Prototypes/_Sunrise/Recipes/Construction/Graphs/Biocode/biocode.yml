@@ -1,0 +1,185 @@
+# Weapons
+
+- type: constructionGraph
+  id: EnergySwordNoBiocode
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: nobiocode
+          steps:
+            - tool: Screwing
+              doAfter: 30
+    - node: nobiocode
+      entity: EnergySword
+
+- type: constructionGraph
+  id: EnergySwordBiocode
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: biocode
+          steps:
+            - tool: Screwing
+              doAfter: 30
+    - node: biocode
+      entity: EnergySwordBiocode
+
+- type: constructionGraph
+  id: EnergySwordDoubleNoBiocode
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: nobiocode
+          steps:
+            - tool: Screwing
+              doAfter: 30
+    - node: nobiocode
+      entity: EnergySwordDouble
+
+- type: constructionGraph
+  id: EnergySwordDoubleBiocode
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: biocode
+          steps:
+            - tool: Screwing
+              doAfter: 30
+    - node: biocode
+      entity: EnergySwordDoubleBiocode
+
+# Clothing
+
+- type: constructionGraph
+  id: ClothingOuterHardsuitSyndieNoBiocode
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: nobiocode
+          steps:
+            - tool: Screwing
+              doAfter: 45
+    - node: nobiocode
+      entity: ClothingOuterHardsuitSyndie
+
+- type: constructionGraph
+  id: ClothingOuterHardsuitSyndieBiocode
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: biocode
+          steps:
+            - tool: Screwing
+              doAfter: 45
+    - node: biocode
+      entity: ClothingOuterHardsuitSyndie
+
+- type: constructionGraph
+  id: ClothingOuterHardsuitSyndieMedicNoBiocode
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: nobiocode
+          steps:
+            - tool: Screwing
+              doAfter: 45
+    - node: nobiocode
+      entity: ClothingOuterHardsuitSyndieMedic
+
+- type: constructionGraph
+  id: ClothingOuterHardsuitSyndieMedicBiocode
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: biocode
+          steps:
+            - tool: Screwing
+              doAfter: 45
+    - node: biocode
+      entity: ClothingOuterHardsuitSyndieMedic
+
+- type: constructionGraph
+  id: ClothingOuterHardsuitSyndieEliteNoBiocode
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: nobiocode
+          steps:
+            - tool: Screwing
+              doAfter: 45
+    - node: nobiocode
+      entity: ClothingOuterHardsuitSyndieElite
+
+- type: constructionGraph
+  id: ClothingOuterHardsuitSyndieEliteBiocode
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: biocode
+          steps:
+            - tool: Screwing
+              doAfter: 45
+    - node: biocode
+      entity: ClothingOuterHardsuitSyndieElite
+
+- type: constructionGraph
+  id: ClothingOuterHardsuitSyndieCommanderNoBiocode
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: nobiocode
+          steps:
+            - tool: Screwing
+              doAfter: 45
+    - node: nobiocode
+      entity: ClothingOuterHardsuitSyndieCommander
+
+- type: constructionGraph
+  id: ClothingOuterHardsuitSyndieCommanderBiocode
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: biocode
+          steps:
+            - tool: Screwing
+              doAfter: 45
+    - node: biocode
+      entity: ClothingOuterHardsuitSyndieCommander
+
+- type: constructionGraph
+  id: ClothingOuterHardsuitSyndieJuggernautNoBiocode
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: nobiocode
+          steps:
+            - tool: Screwing
+              doAfter: 45
+    - node: nobiocode
+      entity: ClothingOuterHardsuitSyndieJuggernaut
+
+- type: constructionGraph
+  id: ClothingOuterHardsuitSyndieJuggernautBiocode
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: biocode
+          steps:
+            - tool: Screwing
+              doAfter: 45
+    - node: biocode
+      entity: ClothingOuterHardsuitSyndieJuggernaut

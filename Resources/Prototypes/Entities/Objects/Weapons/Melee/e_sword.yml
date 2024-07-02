@@ -80,6 +80,11 @@
     enabled: false
   - type: IgnitionSource
     temperature: 700
+  # Sunrise-start
+  - type: Construction
+    graph: EnergySwordBiocode
+    node: start
+  # Sunrise-end
 
 - type: entity
   name: pen
@@ -282,3 +287,8 @@
       right:
       - state: inhand-right-blade
         shader: unshaded
+  # Sunrise-start
+  - type: Construction
+    graph: EnergySwordDoubleNoBiocode
+    node: start
+  # Sunrise-end

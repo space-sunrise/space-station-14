@@ -10,6 +10,9 @@
       path: "/Audio/Effects/beep1.ogg"
       params:
         volume: 15
+  - type: Construction
+    graph: ClothingOuterHardsuitSyndieNoBiocode
+    node: start
 
 - type: entity
   parent: ClothingOuterHardsuitSyndieMedic
@@ -23,6 +26,9 @@
       path: "/Audio/Effects/beep1.ogg"
       params:
         volume: 15
+  - type: Construction
+    graph: ClothingOuterHardsuitSyndieMedicNoBiocode
+    node: start
 
 - type: entity
   parent: ClothingOuterHardsuitSyndieElite
@@ -36,6 +42,9 @@
       path: "/Audio/Effects/beep1.ogg"
       params:
         volume: 15
+  - type: Construction
+    graph: ClothingOuterHardsuitSyndieEliteNoBiocode
+    node: start
 
 - type: entity
   parent: ClothingOuterHardsuitSyndieCommander
@@ -49,6 +58,9 @@
       path: "/Audio/Effects/beep1.ogg"
       params:
         volume: 15
+  - type: Construction
+    graph: ClothingOuterHardsuitSyndieCommanderNoBiocode
+    node: start
 
 - type: entity
   parent: ClothingOuterHardsuitJuggernaut
@@ -62,3 +74,6 @@
       path: "/Audio/Effects/beep1.ogg"
       params:
         volume: 15
+  - type: Construction
+    graph: ClothingOuterHardsuitJuggernautNoBiocode
+    node: start

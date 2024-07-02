@@ -509,6 +509,11 @@
     - MonkeyWearable
     - Hardsuit
     - WhitelistChameleon
+  # Sunrise-start
+  - type: Construction
+    graph: ClothingOuterHardsuitSyndieBiocode
+    node: start
+  # Sunrise-end
 
 # Syndicate Medic Hardsuit
 - type: entity
@@ -527,6 +532,11 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
+  # Sunrise-start
+  - type: Construction
+    graph: ClothingOuterHardsuitSyndieMedicBiocode
+    node: start
+  # Sunrise-end
 
 #Syndicate Elite Hardsuit
 - type: entity
@@ -565,6 +575,11 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieElite
+  # Sunrise-start
+  - type: Construction
+    graph: ClothingOuterHardsuitSyndieEliteBiocode
+    node: start
+  # Sunrise-end
 
 #Syndicate Commander Hardsuit
 - type: entity
@@ -597,6 +612,11 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieCommander
+  # Sunrise-start
+  - type: Construction
+    graph: ClothingOuterHardsuitSyndieCommanderBiocode
+    node: start
+  # Sunrise-end
 
 #Cybersun Juggernaut Hardsuit
 - type: entity
@@ -629,6 +649,11 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitCybersun
+  # Sunrise-start
+  - type: Construction
+    graph: ClothingOuterHardsuitSyndieJuggernautBiocode
+    node: start
+  # Sunrise-end
 
 #Wizard Hardsuit
 - type: entity

@@ -107,6 +107,9 @@
     factions:
     - Syndicate
     alertText: Данное оружие биокодировано. Вы не можете его использовать.
+  - type: Construction
+    graph: EnergySwordDoubleNoBiocode
+    node: start
 
 - type: entity
   parent: EnergySword
@@ -117,6 +120,9 @@
     factions:
     - Syndicate
     alertText: Данное оружие биокодировано. Вы не можете его использовать.
+  - type: Construction
+    graph: EnergySwordNoBiocode
+    node: start
 
 - type: entity
   parent: WeaponSIAR52
