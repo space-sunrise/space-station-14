@@ -79,7 +79,7 @@ public sealed class SunriseCCVars
      */
 
     public static readonly CVarDef<bool> GodModeRoundEnd =
-        CVarDef.Create("game.godmode_end", true, CVar.SERVERONLY);
+        CVarDef.Create("game.godmode_end", false, CVar.SERVERONLY);
 
     /*
      * Peaceful Round End
