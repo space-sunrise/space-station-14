@@ -46,4 +46,14 @@ Roboticist-loadout = Снаряжение робототехника
 Scientist-loadout = Снаряжение учёного
 SeniorResearcher-loadout = Снаряжение ведущего учёного
 // Service
+Bartender-loadout = Снаряжение бармена
+Botanist-loadout = Снаряжение ботаника
+Chaplain-loadout = Снаряжение священника
+Chef-loadout = Снаряжение шеф-повара
 Clown-loadout = Снаряжение клоуна
+Janitor-loadout = Снаряжение уборщика
+Librarian-loadout = Снаряжение библиотекаря
+Mime-loadout = Снаряжение мима
+Musician-loadout = Снаряжение музыканта
+Passenger-loadout = Снаряжение пассажира
+ServiceWorker-loadout = Снаряжение сервисного работника
