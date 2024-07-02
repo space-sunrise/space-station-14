@@ -1,4 +1,4 @@
-// CentCom
+# Centcomm
 CentCommOperator-loadout = Снаряжение оператора Центком
 // Command
 Captain-loadout = Снаряжение капитана
