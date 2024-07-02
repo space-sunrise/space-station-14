@@ -118,6 +118,10 @@
     price: 750
   - type: StealTarget
     stealGroup: WeaponEnergyGunMultiphase
+  - type: FactionWeaponBlocker
+    factions:
+    - NanoTrasen
+    alertText: Данное оружие биокодировано. Вы не можете его использовать.
 
 - type: entity
   name: miniature energy gun
