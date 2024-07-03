@@ -37,7 +37,7 @@
         Blunt: 0
   - type: Telescopicbaton
   - type: StaminaDamageOnHit
-    damage: 18
+    damage: 10
   - type: UseDelay
     delay: 0.4
   - type: Item
@@ -52,4 +52,4 @@
       right:
         - state: on-inhand-right
   - type: StaticPrice
-    price: 150
+    price: 100
