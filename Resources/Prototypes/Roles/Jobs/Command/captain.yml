@@ -45,4 +45,5 @@
   storage:
     back:
     - Flash
+    - Telebaton
     # - StationCharter
