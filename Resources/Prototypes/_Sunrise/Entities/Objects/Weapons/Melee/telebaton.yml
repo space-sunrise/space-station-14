@@ -27,7 +27,7 @@
   - type: ItemToggleMeleeWeapon
     activatedDamage:
       types:
-        Blunt: 6
+        Blunt: 3
     deactivatedSecret: true
   - type: MeleeWeapon
     attackRate: 1.5
