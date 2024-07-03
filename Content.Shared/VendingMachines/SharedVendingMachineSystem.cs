@@ -1,12 +1,12 @@
-using Content.Shared.Emag.Components;
-using Robust.Shared.Prototypes;
 using System.Linq;
 using Content.Shared.DoAfter;
+using Content.Shared.Emag.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
+using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Shared.VendingMachines;
@@ -19,6 +19,7 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] protected readonly SharedPopupSystem Popup = default!;
     [Dependency] protected readonly IRobustRandom Randomizer = default!;
+    [Dependency] protected readonly ISharedPlayerManager SharedPlayerSystem = default!;
 
     public override void Initialize()
     {
@@ -33,7 +34,8 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
     }
 
     public void RestockInventoryFromPrototype(EntityUid uid,
-        VendingMachineComponent? component = null, float restockQuality = 1f)
+        VendingMachineComponent? component = null,
+        float restockQuality = 1f)
     {
         if (!Resolve(uid, ref component))
         {
@@ -43,9 +45,30 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
         if (!PrototypeManager.TryIndex(component.PackPrototypeId, out VendingMachineInventoryPrototype? packPrototype))
             return;
 
-        AddInventoryFromPrototype(uid, packPrototype.StartingInventory, InventoryType.Regular, component, restockQuality);
-        AddInventoryFromPrototype(uid, packPrototype.EmaggedInventory, InventoryType.Emagged, component, restockQuality);
-        AddInventoryFromPrototype(uid, packPrototype.ContrabandInventory, InventoryType.Contraband, component, restockQuality);
+        FillPlayerCount(component);
+
+        AddInventoryFromPrototype(uid,
+            packPrototype.StartingInventory,
+            InventoryType.Regular,
+            component,
+            restockQuality);
+        AddInventoryFromPrototype(uid,
+            packPrototype.EmaggedInventory,
+            InventoryType.Emagged,
+            component,
+            restockQuality);
+        AddInventoryFromPrototype(uid,
+            packPrototype.ContrabandInventory,
+            InventoryType.Contraband,
+            component,
+            restockQuality);
+    }
+
+    private void FillPlayerCount(VendingMachineComponent component)
+    {
+        if (component.StartingPlayerCount != 0)
+            return;
+        component.StartingPlayerCount = SharedPlayerSystem.GetAllPlayerData().Count();
     }
 
     /// <summary>
@@ -72,7 +95,8 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
         return inventory;
     }
 
-    public List<VendingMachineInventoryEntry> GetAvailableInventory(EntityUid uid, VendingMachineComponent? component = null)
+    public List<VendingMachineInventoryEntry> GetAvailableInventory(EntityUid uid,
+        VendingMachineComponent? component = null)
     {
         if (!Resolve(uid, ref component))
             return new();
@@ -80,9 +104,11 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
         return GetAllInventory(uid, component).Where(_ => _.Amount > 0).ToList();
     }
 
-    private void AddInventoryFromPrototype(EntityUid uid, Dictionary<string, uint>? entries,
+    private void AddInventoryFromPrototype(EntityUid uid,
+        Dictionary<string, uint>? entries,
         InventoryType type,
-        VendingMachineComponent? component = null, float restockQuality = 1.0f)
+        VendingMachineComponent? component = null,
+        float restockQuality = 1.0f)
     {
         if (!Resolve(uid, ref component) || entries == null)
         {
@@ -117,6 +143,10 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
                 {
                     restock = (uint) Math.Floor(amount * result / chanceOfMissingStock);
                 }
+
+                // Sunrise-start
+                restock = (uint) Math.Floor(amount + component.StartingPlayerCount * component.PlayerCountModifier);
+                // Sunrise-end
 
                 if (inventory.TryGetValue(id, out var entry))
                     // Prevent a machine's stock from going over three times

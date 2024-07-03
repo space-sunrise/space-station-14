@@ -1,14 +1,14 @@
 - type: vendingMachineInventory
   id: ChefDrobeInventory
   startingInventory:
-    ClothingHeadsetService: 4  # Sunrise-edit
-    ClothingOuterApronChef: 5  # Sunrise-edit
-    ClothingOuterWinterChef: 4  # Sunrise-edit
-    ClothingOuterJacketChef: 2  # Sunrise-edit
-    ClothingUniformJumpsuitChef: 2  # Sunrise-edit
-    ClothingMaskItalianMoustache: 4  # Sunrise-edit
-    ClothingUniformJumpskirtChef:  4  # Sunrise-edit
-    ClothingHeadHatChef: 4  # Sunrise-edit
-    ClothingShoesColorBlack: 4  # Sunrise-edit
-    ClothingShoesChef: 4  # Sunrise-edit
-    ClothingBeltChef: 4  # Sunrise-edit
+    ClothingHeadsetService: 2
+    ClothingOuterApronChef: 3
+    ClothingOuterWinterChef: 2
+    ClothingOuterJacketChef: 1
+    ClothingUniformJumpsuitChef: 1
+    ClothingMaskItalianMoustache: 2
+    ClothingUniformJumpskirtChef:  2
+    ClothingHeadHatChef: 2
+    ClothingShoesColorBlack: 2
+    ClothingShoesChef: 2
+    ClothingBeltChef: 2

@@ -1,12 +1,12 @@
 - type: vendingMachineInventory
   id: GetmoreChocolateCorpInventory
   startingInventory:
-    FoodSnackRaisins: 6  # Sunrise-edit
-    FoodSnackChocolate: 6  # Sunrise-edit
-    FoodSnackCnDs: 6  # Sunrise-edit
-    FoodSnackPistachios: 6  # Sunrise-edit
-    FoodSnackSus: 6  # Sunrise-edit
-    FoodSnackSemki: 6  # Sunrise-edit
+    FoodSnackRaisins: 3
+    FoodSnackChocolate: 3
+    FoodSnackCnDs: 3
+    FoodSnackPistachios: 3
+    FoodSnackSus: 3
+    FoodSnackSemki: 3
   emaggedInventory:
     FoodSnackSyndi: 3
 

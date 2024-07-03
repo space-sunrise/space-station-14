@@ -33039,7 +33039,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 19.5,-24.5
       parent: 1668
-- proto: SMESBasic
+- proto: SMESExtended
   entities:
   - uid: 327
     components:
@@ -33254,7 +33254,7 @@ entities:
     - type: Transform
       pos: 4.4667654,19.499214
       parent: 1668
-- proto: SubstationBasic
+- proto: SubstationExtended
   entities:
   - uid: 1130
     components:

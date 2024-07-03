@@ -115324,7 +115324,7 @@ entities:
     - type: Transform
       pos: -10.5,-9.5
       parent: 30
-- proto: SMESBasic
+- proto: SMESExtended
   entities:
   - uid: 5472
     components:
@@ -118001,7 +118001,7 @@ entities:
     - type: ContainerContainer
       containers:
         cell_slot: !type:ContainerSlot {}
-- proto: SubstationBasic
+- proto: SubstationExtended
   entities:
   - uid: 1414
     components:

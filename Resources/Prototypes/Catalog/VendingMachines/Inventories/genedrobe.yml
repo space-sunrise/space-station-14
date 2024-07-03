@@ -1,11 +1,11 @@
 - type: vendingMachineInventory
   id: GeneDrobeInventory
   startingInventory:
-    ClothingUniformJumpsuitGenetics: 3  # Sunrise-edit
-    ClothingUniformJumpskirtGenetics: 3  # Sunrise-edit
-    ClothingShoesColorWhite: 3  # Sunrise-edit
-    ClothingOuterCoatLabGene: 3  # Sunrise-edit
-    ClothingOuterWinterGen: 3  # Sunrise-edit
-    ClothingBackpackGenetics: 3  # Sunrise-edit
-    ClothingBackpackSatchelGenetics: 3  # Sunrise-edit
-    ClothingBackpackDuffelGenetics: 3  # Sunrise-edit
+    ClothingUniformJumpsuitGenetics: 2
+    ClothingUniformJumpskirtGenetics: 2
+    ClothingShoesColorWhite: 2
+    ClothingOuterCoatLabGene: 2
+    ClothingOuterWinterGen: 2
+    ClothingBackpackGenetics: 2
+    ClothingBackpackSatchelGenetics: 2
+    ClothingBackpackDuffelGenetics: 2

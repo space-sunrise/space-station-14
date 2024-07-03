@@ -66519,7 +66519,7 @@ entities:
     - type: Transform
       pos: 18.5,-0.5
       parent: 1
-- proto: SMESBasic
+- proto: SMESExtended
   entities:
   - uid: 1097
     components:
@@ -67724,7 +67724,7 @@ entities:
     - type: Transform
       pos: 19.622953,15.5812435
       parent: 1
-- proto: SubstationBasic
+- proto: SubstationExtended
   entities:
   - uid: 1469
     components:

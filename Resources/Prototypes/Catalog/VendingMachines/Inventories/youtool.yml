@@ -1,18 +1,18 @@
 - type: vendingMachineInventory
   id: YouToolInventory
   startingInventory:
-    CableApcStack: 8  # Sunrise-edit
-    Crowbar: 8  # Sunrise-edit
-    Welder: 5  # Sunrise-edit
-    Wirecutter: 5  # Sunrise-edit
-    Wrench: 5  # Sunrise-edit
-    Screwdriver: 5  # Sunrise-edit
-    trayScanner: 5  # Sunrise-edit
-    NetworkConfigurator: 5  # Sunrise-edit
-    GasAnalyzer: 5  # Sunrise-edit
-    FlashlightLantern: 8  # Sunrise-edit
-    ClothingHandsGlovesColorYellowBudget: 5  # Sunrise-edit
-    SprayPainter: 5  # Sunrise-edit
+    CableApcStack: 5
+    Crowbar: 5
+    Welder: 2
+    Wirecutter: 3
+    Wrench: 3
+    Screwdriver: 3
+    trayScanner: 3
+    NetworkConfigurator: 3
+    GasAnalyzer: 3
+    FlashlightLantern: 5
+    ClothingHandsGlovesColorYellowBudget: 3
+    SprayPainter: 3
   # Some engineer forgot to take the multitool out the youtool when working on it, happens.
   contrabandInventory:
     Multitool: 1

@@ -1,9 +1,9 @@
 - type: vendingMachineInventory
   id: SciDrobeInventory
   startingInventory:
-    ClothingBackpackScience: 6  # Sunrise-edit
-    ClothingBackpackSatchelScience: 6  # Sunrise-edit
-    ClothingBackpackDuffelScience: 6  # Sunrise-edit
+    ClothingBackpackScience: 3
+    ClothingBackpackSatchelScience: 3
+    ClothingBackpackDuffelScience: 3
     ClothingUniformJumpsuitScientist: 3
     ClothingUniformJumpskirtScientist: 3
     ClothingUniformJumpsuitScientistFormal: 3

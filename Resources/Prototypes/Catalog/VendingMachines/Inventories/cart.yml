@@ -1,16 +1,16 @@
 - type: vendingMachineInventory
   id: PTechInventory
   startingInventory:
-    PassengerPDA: 10  # Sunrise-edit
-    ClearPDA: 10  # Sunrise-edit
-    PassengerIDCard: 10  # Sunrise-edit
-    ClothingHeadsetGrey: 10  # Sunrise-edit
-    RubberStampApproved: 2  # Sunrise-edit
-    RubberStampDenied: 2  # Sunrise-edit
-    Paper: 20  # Sunrise-edit
-    EncryptionKeyCargo: 5  # Sunrise-edit
-    EncryptionKeyEngineering: 5  # Sunrise-edit
-    EncryptionKeyMedical: 5  # Sunrise-edit
-    EncryptionKeyScience: 5  # Sunrise-edit
-    EncryptionKeySecurity: 3  # Sunrise-edit
-    EncryptionKeyService: 6  # Sunrise-edit
+    PassengerPDA: 5
+    ClearPDA: 5
+    PassengerIDCard: 5
+    ClothingHeadsetGrey: 5
+    RubberStampApproved: 1
+    RubberStampDenied: 1
+    Paper: 10
+    EncryptionKeyCargo: 2
+    EncryptionKeyEngineering: 2
+    EncryptionKeyMedical: 2
+    EncryptionKeyScience: 2
+    EncryptionKeySecurity: 1
+    EncryptionKeyService: 3
