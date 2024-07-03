@@ -18,7 +18,7 @@
   - type: ItemToggleDisarmMalus
     activatedDisarmMalus: 0.6
   - type: Sprite
-    sprite: Objects/Weapons/Melee/telebaton.rsi
+    sprite: _Sunrise/Objects/Weapons/Melee/telebaton.rsi
     layers:
     - state: telebaton_off
     - state: telebaton_on
@@ -41,7 +41,7 @@
   - type: UseDelay
     delay: 0.4
   - type: Item
-    sprite: Objects/Weapons/Melee/telebaton.rsi
+    sprite: _Sunrise/Objects/Weapons/Melee/telebaton.rsi
     size: Small
   - type: Appearance
   - type: ToggleableLightVisuals

@@ -8,6 +8,5 @@ namespace Content.Server.Stunnable.Components;
 [Access(typeof(SharedTelescopicbatonSystem))]
 public sealed partial class TelescopicbatonComponent : Component
 {
-    [DataField("sparksSound")]
-    public SoundSpecifier SparksSound = new SoundCollectionSpecifier("sparks");
+	
 }
