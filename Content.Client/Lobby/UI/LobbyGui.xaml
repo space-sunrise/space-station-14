@@ -39,7 +39,7 @@
                                        Align="Left"
                                        FontColorOverride="{x:Static maths:Color.DarkGray}"
                                        StyleClasses="LabelBig" HorizontalExpand="True" />
-                                <cc:UICommandButton Command="ghostroles" Name="ObserveButton" Access="Public"
+                                <cc:UICommandButton Command="ghostroles" Name="GhostRolesButton" Access="Public"
                                                     Text="{Loc 'Роли призраков'}"
                                                     StyleClasses="ButtonBig"
                                                     Disabled="True"
