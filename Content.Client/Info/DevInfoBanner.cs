@@ -1,5 +1,6 @@
 ﻿using Content.Client.Changelog;
 using Content.Client.Credits;
+using Content.Client.UserInterface.Systems.EscapeMenu;
 using Content.Shared.CCVar;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
@@ -30,9 +31,23 @@ namespace Content.Client.Info
                 buttons.AddChild(reportButton);
             }
 
+            // Sunrise-Start
+            var github = cfg.GetCVar(CCVars.InfoLinksGithub);
+            if (bugReport != "")
+            {
+                var githubButton = new Button {Text = Loc.GetString("server-info-github-button")};
+                githubButton.OnPressed += _ => uriOpener.OpenUri(github);
+                buttons.AddChild(githubButton);
+            }
+            // Sunrise-End
+
             var creditsButton = new Button {Text = Loc.GetString("server-info-credits-button")};
             creditsButton.OnPressed += args => new CreditsWindow().Open();
             buttons.AddChild(creditsButton);
+
+            var changelogButton = new ChangelogButton();
+            changelogButton.OnPressed += args => UserInterfaceManager.GetUIController<ChangelogUIController>().ToggleWindow();
+            buttons.AddChild(changelogButton);
         }
     }
 }

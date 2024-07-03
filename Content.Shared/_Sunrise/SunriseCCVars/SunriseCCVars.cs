@@ -120,4 +120,20 @@ public sealed class SunriseCCVars
     /// </summary>
     public static readonly CVarDef<bool> TapePlayerClientEnabled =
         CVarDef.Create("tape_player.client_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /**
+     * Lobby
+     */
+
+    public static readonly CVarDef<string> LobbyBackground =
+        CVarDef.Create("lobby.background", "Paralax", CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> ShowLobbyChangelog =
+        CVarDef.Create("lobby.changelog", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> ShowLobbyServersHub =
+        CVarDef.Create("lobby.servers_hub", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<float> LobbyOpacity =
+        CVarDef.Create("lobby.lobby_opacity", 0.75f, CVar.CLIENTONLY | CVar.ARCHIVE);
 }

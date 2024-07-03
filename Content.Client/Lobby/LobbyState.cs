@@ -137,6 +137,7 @@ namespace Content.Client.Lobby
                 Lobby!.StartTime.Text = string.Empty;
                 var roundTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
                 Lobby!.StationTime.Text = Loc.GetString("lobby-state-player-status-round-time", ("hours", roundTime.Hours), ("minutes", roundTime.Minutes));
+                Lobby!.StartTime.Text = Loc.GetString("lobby-state-player-status-round-time", ("hours", roundTime.Hours), ("minutes", roundTime.Minutes));
                 return;
             }
 
@@ -175,6 +176,7 @@ namespace Content.Client.Lobby
             UpdateLobbyaralax();
             UpdateLobbyImage();
             // Sunrise-End
+            UpdateLobbyBackground();
             UpdateLobbyUi();
         }
 
@@ -261,6 +263,19 @@ namespace Content.Client.Lobby
         }
         // Sunrise-end
 
+        private void UpdateLobbyBackground()
+        {
+            if (_gameTicker.LobbyBackground != null)
+            {
+                Lobby!.Background.Texture = _resourceCache.GetResource<TextureResource>(_gameTicker.LobbyBackground );
+            }
+            else
+            {
+                Lobby!.Background.Texture = null;
+            }
+
+        }
+
         private void SetReady(bool newReady)
         {
             if (_gameTicker.IsGameStarted)
@@ -271,4 +286,10 @@ namespace Content.Client.Lobby
             _consoleHost.ExecuteCommand($"toggleready {newReady}");
         }
     }
+}
+
+public enum LobbyBackgroundType
+{
+    Paralax,
+    Art
 }
