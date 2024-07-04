@@ -5,10 +5,11 @@ using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Content.Shared._Sunrise.VendingMachines;  // Sunrise
+using Content.Shared._Sunrise.VendingMachines;
+using Robust.Client.Player;
+using Robust.Shared.Player; // Sunrise
 
 namespace Content.Shared.VendingMachines;
 
@@ -20,7 +21,7 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] protected readonly SharedPopupSystem Popup = default!;
     [Dependency] protected readonly IRobustRandom Randomizer = default!;
-    [Dependency] protected readonly ISharedPlayerManager SharedPlayerSystem = default!;
+    [Dependency] private readonly ISharedPlayerManager _player = default!;
 
     public override void Initialize()
     {
@@ -138,7 +139,10 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
 
                 // Sunrise-start
                 if (TryComp<PlayerCountDependentStockComponent>(uid, out var dependentStockComponent))
-                    restock = (uint) Math.Floor(amount + Math.Pow(SharedPlayerSystem.GetAllPlayerData().Count(), 0.8f) * dependentStockComponent.Coefficient);
+                {
+                    restock = (uint) Math.Floor(
+                        amount + Math.Pow(_player.PlayerCount, 0.8f) * dependentStockComponent.Coefficient);
+                }
                 // Sunrise-end
 
                 if (inventory.TryGetValue(id, out var entry))
