@@ -2,6 +2,8 @@
 
 - type: randomHumanoidSettings
   id: EventHumanoid
+  speciesBlacklist: # Sunrise-edit
+  - Vox
   components:
     - type: RandomHumanoidAppearance
       randomizeName: false
@@ -606,6 +608,7 @@
   id: SyndicateAgent
   speciesBlacklist: # Sunrise-edit
   - Diona
+  - Vox
   - Felinid
   components:
     - type: RandomHumanoidAppearance
@@ -627,6 +630,7 @@
   id: NukeOp
   speciesBlacklist: # Sunrise-edit
   - Diona
+  - Vox
   - Felinid
   components:
     - type: RandomHumanoidAppearance
@@ -915,6 +919,7 @@
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Felinid
+  - Vox
   parent: EventHumanoid
   components:
     - type: NpcFactionMember
