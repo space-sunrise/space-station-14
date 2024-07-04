@@ -43,7 +43,6 @@
   loadouts:
   - EmergencyNitrogen
   - EmergencyOxygen
-  - EmergencySynth # Sunrise-Edit
   - EmergencyWithoutGas  # Sunrise-Edit
 
 # Command
@@ -417,7 +416,6 @@
   - EmergencyNitrogenClown
   - EmergencyOxygenClown
   - EmergencyWithoutGasClown # Sunrise-Edit
-  - EmergencySynthClown # Sunrise-Edit
 
 - type: loadoutGroup
   id: MimeHead
@@ -722,7 +720,6 @@
   - EmergencyNitrogenExtended
   - EmergencyOxygenExtended
   - EmergencyWithoutGasExtended # Sunrise-Edit
-  - EmergencySynthExtended # Sunrise-Edit
 
 # Science
 - type: loadoutGroup
@@ -962,7 +959,6 @@
   - EmergencyNitrogenSecurity
   - EmergencyOxygenSecurity
   - EmergencyWithoutGasSecurity # Sunrise-Edit
-  - EmergencySynthSecurity # Sunrise-Edit
 
 # Medical
 - type: loadoutGroup
@@ -1132,7 +1128,6 @@
   loadouts:
   - EmergencyNitrogenMedical
   - EmergencyOxygenMedical
-  - EmergencySynthMedical # Sunrise-Edit
   - EmergencyWithoutGasMedical # Sunrise-Edit
 
 # Wildcards
@@ -1167,5 +1162,4 @@
   loadouts:
   - EmergencyNitrogenSyndicate
   - EmergencyOxygenSyndicate
-  - EmergencySynthSyndicate # Sunrise-Edit
   - EmergencyWithoutGasSyndicate # Sunrise-Edit
