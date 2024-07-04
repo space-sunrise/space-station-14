@@ -36,13 +36,6 @@ namespace Content.Client.Info
             AddInfoButton("server-info-wiki-button", CCVars.InfoLinksWiki);
             AddInfoButton("server-info-forum-button", CCVars.InfoLinksForum);
 
-            // Sunrise-Start
-            AddInfoButton("server-info-github-button", CCVars.InfoLinksGithub);
-            var creditsButton = new Button {Text = Loc.GetString("server-info-credits-button")};
-            creditsButton.OnPressed += _ => new CreditsWindow().Open();
-            buttons.AddChild(creditsButton);
-            // Sunrise-End
-
             var guidebookController = UserInterfaceManager.GetUIController<GuidebookUIController>();
             var guidebookButton = new Button() { Text = Loc.GetString("server-info-guidebook-button") };
             guidebookButton.OnPressed += _ =>
@@ -50,10 +43,6 @@ namespace Content.Client.Info
                 guidebookController.ToggleGuidebook();
             };
             buttons.AddChild(guidebookButton);
-
-            var changelogButton = new ChangelogButton();
-            changelogButton.OnPressed += args => UserInterfaceManager.GetUIController<ChangelogUIController>().ToggleWindow();
-            buttons.AddChild(changelogButton);
 
             void AddInfoButton(string loc, CVarDef<string> cVar)
             {

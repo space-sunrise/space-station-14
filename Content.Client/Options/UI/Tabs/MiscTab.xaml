@@ -9,6 +9,14 @@
                        StyleClasses="LabelKeyText"/>
                 <ui:OptionDropDown Name="DropDownHudTheme" Title="{Loc 'ui-options-hud-theme'}" />
                 <ui:OptionDropDown Name="DropDownHudLayout" Title="{Loc 'ui-options-hud-layout'}" />
+                <!-- Sunrise-Start -->
+                <Label Text="{Loc 'ui-options-general-lobby'}"
+                       StyleClasses="LabelKeyText"/>
+                <ui:OptionDropDown Name="DropDownLobbyBackground" Title="{Loc 'ui-options-lobby-background'}" />
+                <CheckBox Name="ShowLobbyChangelog" Text="{Loc 'ui-options-show-lobby-changelog'}" />
+                <CheckBox Name="ShowLobbyServersHub" Text="{Loc 'ui-options-show-lobby-servers-hub'}" />
+                <ui:OptionSlider Name="LobbyOpacitySlider" Title="{Loc 'ui-options-lobby-opacity'}" />
+                <!-- Sunrise-End -->
                 <Label Text="{Loc 'ui-options-general-discord'}"
                        StyleClasses="LabelKeyText"/>
                 <CheckBox Name="DiscordRich" Text="{Loc 'ui-options-discordrich'}" />
