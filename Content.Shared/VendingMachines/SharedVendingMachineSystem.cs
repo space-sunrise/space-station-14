@@ -8,6 +8,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Shared._Sunrise.VendingMachines;  // Sunrise
 
 namespace Content.Shared.VendingMachines;
 
@@ -45,8 +46,6 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
         if (!PrototypeManager.TryIndex(component.PackPrototypeId, out VendingMachineInventoryPrototype? packPrototype))
             return;
 
-        FillPlayerCount(component);
-
         AddInventoryFromPrototype(uid,
             packPrototype.StartingInventory,
             InventoryType.Regular,
@@ -62,13 +61,6 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
             InventoryType.Contraband,
             component,
             restockQuality);
-    }
-
-    private void FillPlayerCount(VendingMachineComponent component)
-    {
-        if (component.StartingPlayerCount != 0)
-            return;
-        component.StartingPlayerCount = SharedPlayerSystem.GetAllPlayerData().Count();
     }
 
     /// <summary>
@@ -145,7 +137,8 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
                 }
 
                 // Sunrise-start
-                restock = (uint) Math.Floor(amount + component.StartingPlayerCount * component.PlayerCountModifier);
+                if (TryComp<PlayerCountDependentStockComponent>(uid, out var dependentStockComponent))
+                    restock = (uint) Math.Floor(amount + Math.Pow(SharedPlayerSystem.GetAllPlayerData().Count(), 0.8f) * dependentStockComponent.Coefficient);
                 // Sunrise-end
 
                 if (inventory.TryGetValue(id, out var entry))
