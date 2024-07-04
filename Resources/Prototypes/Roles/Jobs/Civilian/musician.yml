@@ -13,6 +13,9 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: MikuDay
     prototype: BoxPerformer
+  - !type:AddComponentSpecial
+    components:
+    - type: AutoCryostorage  # Sunrise-Cryo
 
 - type: startingGear
   id: MusicianGear

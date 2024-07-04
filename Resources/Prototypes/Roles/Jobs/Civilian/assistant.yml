@@ -8,6 +8,10 @@
   supervisors: job-supervisors-everyone
   access:
   - Maintenance
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: AutoCryostorage  # Sunrise-Cryo
 
 - type: startingGear
   id: PassengerGear

@@ -18,6 +18,10 @@
   - Maintenance
   - Engineering
   - External
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: AutoCryostorage  # Sunrise-Cryo
 
 - type: startingGear
   id: TechnicalAssistantGear

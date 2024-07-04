@@ -14,6 +14,9 @@
   - !type:GiveItemOnHolidaySpecial
     holiday: GarbageDay
     prototype: WeaponRevolverInspector
+  - !type:AddComponentSpecial
+    components:
+    - type: AutoCryostorage  # Sunrise-Cryo
 
 - type: startingGear
   id: JanitorGear

@@ -31,6 +31,7 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
+      - type: AutoCryostorage  # Sunrise-Cryo
   speciesBlacklist:
   - Vox
 

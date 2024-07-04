@@ -17,6 +17,10 @@
   extendedAccess:
   - Kitchen
   - Hydroponics
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: AutoCryostorage  # Sunrise-Cryo
 
 - type: startingGear
   id: BartenderGear

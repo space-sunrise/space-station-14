@@ -16,6 +16,10 @@
   - External
   extendedAccess:
   - Atmospherics
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: AutoCryostorage  # Sunrise-Cryo
 
 - type: startingGear
   id: StationEngineerGear

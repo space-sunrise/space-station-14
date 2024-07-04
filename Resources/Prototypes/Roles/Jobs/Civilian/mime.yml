@@ -17,6 +17,7 @@
     components:
     - type: MimePowers
     - type: FrenchAccent
+    - type: AutoCryostorage  # Sunrise-Cryo
 
 - type: startingGear
   id: MimeGear

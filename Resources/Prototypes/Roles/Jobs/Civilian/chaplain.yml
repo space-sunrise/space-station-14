@@ -12,6 +12,7 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: AutoCryostorage  # Sunrise-Cryo
     - type: BibleUser #Lets them heal with bibles
 
 - type: startingGear

@@ -9,6 +9,10 @@
   access:
   - Service
   - Maintenance
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: AutoCryostorage  # Sunrise-Cryo
 
 - type: startingGear
   id: LibrarianGear
