@@ -5,11 +5,10 @@ using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Content.Shared._Sunrise.VendingMachines;
-using Robust.Client.Player;
-using Robust.Shared.Player; // Sunrise
+using Content.Shared._Sunrise.VendingMachines; // Sunrise
 
 namespace Content.Shared.VendingMachines;
 
