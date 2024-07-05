@@ -51,9 +51,9 @@
     modifiers:
       coefficients:
         Blunt: 0.6
-        Slash: 0.5
-        Piercing: 0.5
-        Heat: 0.8
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.4  # У ОСЩ пушка с тепловым уроном, следовательно броник должен защищать от лазеров
         Radiation: 0.25
         Caustic: 0.6
   - type: ExplosionResistance
