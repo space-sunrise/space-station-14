@@ -15,6 +15,8 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Client.Changelog;
 using Content.Client.Parallax.Managers;
+using Content.Shared._Sunrise.SunriseCCVars;
+using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Serialization.Markdown;
@@ -25,7 +27,6 @@ namespace Content.Client.Lobby
 {
     public sealed class LobbyState : Robust.Client.State.State
     {
-        [Dependency] private readonly IBaseClient _baseClient = default!;
         [Dependency] private readonly IClientConsoleHost _consoleHost = default!;
         [Dependency] private readonly IEntityManager _entityManager = default!;
         [Dependency] private readonly IResourceCache _resourceCache = default!;
@@ -33,8 +34,6 @@ namespace Content.Client.Lobby
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly IVoteManager _voteManager = default!;
         [Dependency] private readonly IParallaxManager _parallaxManager = default!;
-        [Dependency] private readonly ISerializationManager _serialization = default!;
-        [Dependency] private readonly IResourceManager _resource = default!;
 
         private ClientGameTicker _gameTicker = default!;
         private ContentAudioSystem _contentAudioSystem = default!;
@@ -63,16 +62,6 @@ namespace Content.Client.Lobby
             // Sunrise-start
             //Lobby.ServerName.Text = _baseClient.GameInfo?.ServerName; //The eye of refactor gazes upon you...
             UpdateLobbyUi();
-
-            Lobby!.LocalChangelogBody.CleanChangelog();
-
-            var sunriseChangelog = new ResPath("/Changelog/ChangelogSunrise.yml");
-
-            var yamlData = _resource.ContentFileReadYaml(sunriseChangelog);
-
-            var node = yamlData.Documents[0].RootNode.ToDataNodeCast<MappingDataNode>();
-            var changelog = _serialization.Read<ChangelogManager.Changelog>(node, notNullableOverride: true);
-            Lobby!.LocalChangelogBody.PopulateChangelog(changelog);
 
             // Sunrise-end
 
@@ -134,10 +123,8 @@ namespace Content.Client.Lobby
         {
             if (_gameTicker.IsGameStarted)
             {
-                Lobby!.StartTime.Text = string.Empty;
                 var roundTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
                 Lobby!.StationTime.Text = Loc.GetString("lobby-state-player-status-round-time", ("hours", roundTime.Hours), ("minutes", roundTime.Minutes));
-                Lobby!.StartTime.Text = Loc.GetString("lobby-state-player-status-round-time", ("hours", roundTime.Hours), ("minutes", roundTime.Minutes));
                 return;
             }
 
@@ -150,7 +137,7 @@ namespace Content.Client.Lobby
             }
             else if (_gameTicker.StartTime < _gameTiming.CurTime)
             {
-                Lobby!.StartTime.Text = Loc.GetString("lobby-state-soon");
+                Lobby!.StationTime.Text = Loc.GetString("lobby-state-soon");
                 return;
             }
             else
@@ -167,7 +154,7 @@ namespace Content.Client.Lobby
                 }
             }
 
-            Lobby!.StartTime.Text = Loc.GetString("lobby-state-round-start-countdown-text", ("timeLeft", text));
+            Lobby!.StationTime.Text = Loc.GetString("lobby-state-round-start-countdown-text", ("timeLeft", text));
         }
 
         private void LobbyStatusUpdated()
@@ -193,15 +180,16 @@ namespace Content.Client.Lobby
                 Lobby!.ReadyButton.ToggleMode = false;
                 Lobby!.ReadyButton.Pressed = false;
                 Lobby!.ObserveButton.Disabled = false;
+                Lobby!.GhostRolesButton.Disabled = false;
             }
             else
             {
-                Lobby!.StartTime.Text = string.Empty;
                 Lobby!.ReadyButton.Text = Loc.GetString(Lobby!.ReadyButton.Pressed ? "lobby-state-player-status-ready": "lobby-state-player-status-not-ready");
                 Lobby!.ReadyButton.ToggleMode = true;
                 Lobby!.ReadyButton.Disabled = false;
                 Lobby!.ReadyButton.Pressed = _gameTicker.AreWeReady;
                 Lobby!.ObserveButton.Disabled = true;
+                Lobby!.GhostRolesButton.Disabled = true;
             }
 
             if (_gameTicker.ServerInfoBlob != null)

@@ -51,8 +51,6 @@ public sealed partial class MiscTab : Control
             lobbyBackgroundEntries.Add(new OptionDropDownCVar<string>.ValueOption(layout.ToString()!, layout.ToString()!));
         }
         Control.AddOptionDropDown(SunriseCCVars.LobbyBackground, DropDownLobbyBackground, lobbyBackgroundEntries);
-        Control.AddOptionCheckBox(SunriseCCVars.ShowLobbyChangelog, ShowLobbyChangelog);
-        Control.AddOptionCheckBox(SunriseCCVars.ShowLobbyServersHub, ShowLobbyServersHub);
         Control.AddOptionPercentSlider(SunriseCCVars.LobbyOpacity, LobbyOpacitySlider);
         // Sunrise-End
 
