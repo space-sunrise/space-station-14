@@ -1452,3 +1452,21 @@
   id: 110
   time: '2024-07-05T07:22:45.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/175
+- author: pacable
+  changes:
+  - message: "\u0418\u0441\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0430 \u0447\u0435\
+      \u0440\u0442\u0430 \u043E\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0438\u044F\
+      \ \u0430\u043A\u0446\u0435\u043D\u0442\u0430"
+    type: Fix
+  - message: "\u0412\u043E\u043A\u0441\u044B \u0431\u043E\u043B\u044C\u0448\u0435\
+      \ \u043D\u0435 \u043C\u043E\u0433\u0443\u0442 \u043F\u043E\u044F\u0432\u0438\
+      \u0442\u044C\u0441\u044F \u043A\u0430\u043A \u0433\u043E\u0441\u0442 \u0440\u043E\
+      \u043B\u044C"
+    type: Tweak
+  - message: "\u0421\u043A\u0430\u0444\u0430\u043D\u0434\u0440 \u0431\u0440\u0438\u0433\
+      \u043C\u0435\u0434\u0438\u043A\u0430 \u0431\u044B\u043B \u0443\u043B\u0443\u0447\
+      \u0448\u0435\u043D"
+    type: Tweak
+  id: 111
+  time: '2024-07-05T10:44:44.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/174
