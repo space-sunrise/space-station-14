@@ -1,4 +1,6 @@
+using System.Linq;
 using Content.Client._Sunrise.Latejoin;
+using Content.Client._Sunrise.ServersHub;
 using Content.Client.Audio;
 using Content.Client.GameTicking.Managers;
 using Content.Client.LateJoin;
@@ -15,6 +17,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Client.Changelog;
 using Content.Client.Parallax.Managers;
+using Content.Shared._Sunrise.ServersHub;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
@@ -34,6 +37,9 @@ namespace Content.Client.Lobby
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly IVoteManager _voteManager = default!;
         [Dependency] private readonly IParallaxManager _parallaxManager = default!;
+        [Dependency] private readonly ISerializationManager _serialization = default!;
+        [Dependency] private readonly IResourceManager _resource = default!;
+        [Dependency] private readonly ServersHubManager _serversHubManager = default!;
 
         private ClientGameTicker _gameTicker = default!;
         private ContentAudioSystem _contentAudioSystem = default!;
@@ -63,6 +69,16 @@ namespace Content.Client.Lobby
             //Lobby.ServerName.Text = _baseClient.GameInfo?.ServerName; //The eye of refactor gazes upon you...
             UpdateLobbyUi();
 
+            Lobby!.LocalChangelogBody.CleanChangelog();
+
+            var sunriseChangelog = new ResPath("/Changelog/ChangelogSunrise.yml");
+
+            var yamlData = _resource.ContentFileReadYaml(sunriseChangelog);
+
+            var node = yamlData.Documents[0].RootNode.ToDataNodeCast<MappingDataNode>();
+            var changelog = _serialization.Read<ChangelogManager.Changelog>(node, notNullableOverride: true);
+            Lobby!.LocalChangelogBody.PopulateChangelog(changelog);
+
             // Sunrise-end
 
             Lobby.CharacterPreview.CharacterSetupButton.OnPressed += OnSetupPressed;
@@ -72,6 +88,8 @@ namespace Content.Client.Lobby
             _gameTicker.InfoBlobUpdated += UpdateLobbyUi;
             _gameTicker.LobbyStatusUpdated += LobbyStatusUpdated;
             _gameTicker.LobbyLateJoinStatusUpdated += LobbyLateJoinStatusUpdated;
+
+            _serversHubManager.ServersDataListChanged += RefreshServersHubHeader;
         }
 
         protected override void Shutdown()
@@ -90,6 +108,15 @@ namespace Content.Client.Lobby
             Lobby!.ReadyButton.OnToggled -= OnReadyToggled;
 
             Lobby = null;
+
+            _serversHubManager.ServersDataListChanged -= RefreshServersHubHeader;
+        }
+
+        private void RefreshServersHubHeader(List<ServerHubEntry> servers)
+        {
+            var totalPlayers = _serversHubManager.ServersDataList.Sum(server => server.CurrentPlayers);
+            var maxPlayers = _serversHubManager.ServersDataList.Sum(server => server.MaxPlayers);
+            Lobby!.ServersHubHeaderLabel.Text = $"Сейчас играет: {totalPlayers}/{maxPlayers}";
         }
 
         public void SwitchState(LobbyGui.LobbyGuiState state)

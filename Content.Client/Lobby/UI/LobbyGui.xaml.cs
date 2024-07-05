@@ -70,6 +70,22 @@ namespace Content.Client.Lobby.UI
                 CharacterInfoContent.Visible = !CharacterInfoContent.Visible;
             };
 
+            ServersHubHeader.OnKeyBindUp += args =>
+            {
+                if (args.Function != EngineKeyFunctions.Use)
+                    return;
+
+                ServersHubContent.Visible = !ServersHubContent.Visible;
+            };
+
+            ChangelogHeader.OnKeyBindUp += args =>
+            {
+                if (args.Function != EngineKeyFunctions.Use)
+                    return;
+
+                ChangelogContent.Visible = !ChangelogContent.Visible;
+            };
+
             // Sunrise-start
             Offset = new Vector2(_random.Next(0, 1000), _random.Next(0, 1000));
 
@@ -84,15 +100,13 @@ namespace Content.Client.Lobby.UI
             };
             _back.SetPatchMargin(StyleBox.Margin.All, 10);
 
-            CenterTopSide.PanelOverride = _back;
+            LeftTopPanel.PanelOverride = _back;
 
             RightTopPanel.PanelOverride = _back;
 
-            CharacterInfoPanel.PanelOverride = _back;
+            RightBottomPanel.PanelOverride = _back;
 
-            ChatPanel.PanelOverride = _back;
-
-            ServerInfoPanel.PanelOverride = _back;
+            LeftBottomPanel.PanelOverride = _back;
 
             LeftTopPanel.PanelOverride = _back;
 
