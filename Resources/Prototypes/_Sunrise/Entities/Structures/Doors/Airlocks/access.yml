@@ -73,6 +73,8 @@
     - type: AccessReader
       access: [["SyndicateAgent"]]
 
+# Code equipment
+
 - type: entity
   parent: AirlockGlassShuttle
   id: AirlockExternalGlassShuttleGamma
