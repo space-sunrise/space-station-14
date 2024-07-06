@@ -4,6 +4,7 @@ using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.GameTicking;
+using Content.Server.Pinpointer;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
@@ -18,6 +19,7 @@ using Robust.Shared.Console;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Server._Sunrise.Shuttles;
 
@@ -28,6 +30,8 @@ public sealed class CodeEquipmentSystem : EntitySystem
     [Dependency] private readonly ShuttleSystem _shuttles = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly NavMapSystem _nav = default!;
+
     public override void Initialize()
     {
         SubscribeLocalEvent<CodeEquipmentComponent, StationPostInitEvent>(OnStationPostInit);
@@ -76,8 +80,9 @@ public sealed class CodeEquipmentSystem : EntitySystem
     {
         if (comp.EnableDockAnnouncement)
         {
+            var xform = Transform(uid);
             _chat.DispatchGlobalAnnouncement(
-                Loc.GetString(comp.DockAnnounceMessage),
+                Loc.GetString(comp.DockAnnounceMessage, ("location", FormattedMessage.RemoveMarkup(_nav.GetNearestBeaconString((uid, xform))))),
                 colorOverride: Color.PaleVioletRed,
                 announceVoice: "Azir");
         }
