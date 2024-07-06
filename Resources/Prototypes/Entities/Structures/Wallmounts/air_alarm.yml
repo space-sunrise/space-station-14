@@ -1,7 +1,7 @@
 - type: entity
   id: AirAlarm
-  name: air alarm
-  description: An air alarm. Alarms... air?
+  name: воздушная сигнализация # Sunrise-recipes
+  description: Воздушная сигнализация. Сигнализация... воздуха? # Sunrise-recipes
   placement:
     mode: SnapgridCenter
     snap:
@@ -112,8 +112,8 @@
 
 - type: entity
   id: AirAlarmAssembly
-  name: air alarm assembly
-  description: An air alarm. Doesn't look like it'll be alarming air any time soon.
+  name: корпус воздушной сигнализации # Sunrise-recipes
+  description: Воздушная сигнализация. Не похоже что в ближайшее время она подаст сигнал. # Sunrise-recipes
   placement:
     mode: SnapgridCenter
     snap:

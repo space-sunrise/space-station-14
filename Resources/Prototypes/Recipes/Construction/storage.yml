@@ -1,8 +1,8 @@
 #bureaucracy
 - type: construction
   id: FilingCabinet
-  name: filing cabinet
-  description: A cabinet for all your filing needs.
+  name: картотечный шкаф # Sunrise-recipes
+  description: Шкаф для хранения документов. # Sunrise-recipes
   graph: FilingCabinet
   startNode: start
   targetNode: filingCabinet
@@ -18,8 +18,8 @@
 
 - type: construction
   id: TallCabinet
-  name: tall cabinet
-  description: A cabinet for all your filing needs.
+  name: высокий шкаф # Sunrise-recipes
+  description: Шкаф для хранения документов. # Sunrise-recipes
   graph: FilingCabinet
   startNode: start
   targetNode: tallCabinet
@@ -35,8 +35,8 @@
 
 - type: construction
   id: ChestDrawer
-  name: chest drawer
-  description: A small drawer for all your filing needs, Now with wheels!
+  name: комод # Sunrise-recipes
+  description: Маленький шкафчик для хранения предметов. Теперь на колёсиках! # Sunrise-recipes
   graph: FilingCabinet
   startNode: start
   targetNode: chestDrawer
@@ -53,8 +53,8 @@
 # ItemCabinets
 - type: construction
   id: ShowCase
-  name: showcase
-  description: A sturdy showcase for an expensive exhibit.
+  name: короба
+  description: Неостеклённая витрина для дорогостоящего экспоната.
   graph: GlassBox
   startNode: start
   targetNode: glassBox

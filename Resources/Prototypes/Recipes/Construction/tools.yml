@@ -1,43 +1,43 @@
 - type: construction
-  name: torch
+  name: факел # Sunrise-recipes
   id: LightTorch
   graph: LightTorch
   startNode: start
   targetNode: torch
   category: construction-category-tools
-  description: A torch fashioned from some wood.
+  description: Сделанный из дерева факел. # Sunrise-recipes
   icon: { sprite: Objects/Misc/torch.rsi, state: icon }
   objectType: Item
 
 - type: construction
-  name: logic gate
+  name: логический элемент # Sunrise-recipes
   id: LogicGate
   graph: LogicGate
   startNode: start
   targetNode: logic_gate
   category: construction-category-tools
-  description: A binary logic gate for signals.
+  description: Логический элемент с двумя портами на вход и одним на выход, можно изменить логическую операцию с помощью отвёртки. # Sunrise-recipes
   icon: { sprite: Objects/Devices/gates.rsi, state: or_icon }
   objectType: Item
 
 - type: construction
-  name: edge detector
+  name: детектор сигнала # Sunrise-recipes
   id: EdgeDetector
   graph: LogicGate
   startNode: start
   targetNode: edge_detector
   category: construction-category-tools
-  description: An edge detector for signals.
+  description: Определяет уровень сигнала и разделяет его. Устройство игнорирует импульсные сигналы. # Sunrise-recipes
   icon: { sprite: Objects/Devices/gates.rsi, state: edge_detector }
   objectType: Item
 
 - type: construction
-  name: power sensor
+  name: датчик питания # Sunrise-recipes
   id: PowerSensor
   graph: LogicGate
   startNode: start
   targetNode: power_sensor
   category: construction-category-tools
-  description: A power network checking device for signals.
+  description: Генерирует сигналы в ответ на изменение напряжения в сети. Может циклически переключаться между напряжениями кабеля. # Sunrise-recipes
   icon: { sprite: Objects/Devices/gates.rsi, state: power_sensor }
   objectType: Item

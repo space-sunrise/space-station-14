@@ -1,120 +1,120 @@
 - type: construction
-  name: clown hardsuit
+  name: скафандр клоуна # Sunrise-recipes
   id: ClownHardsuit
   graph: ClownHardsuit
   startNode: start
   targetNode: clownHardsuit
   category: construction-category-clothing
-  description: A modified hardsuit fit for a clown.
+  description: Самодельный клоунский скафандр. # Sunrise-recipes
   icon: { sprite: Clothing/OuterClothing/Hardsuits/clown.rsi, state: icon }
   objectType: Item
 
 - type: construction
-  name: mime hardsuit
+  name: скафандр мима # Sunrise-recipes
   id: MimeHardsuit
   graph: MimeHardsuit
   startNode: start
   targetNode: mimeHardsuit
   category: construction-category-clothing
-  description: A modified hardsuit fit for a mime.
+  description: Самодельный мимский скафандр. # Sunrise-recipes
   icon: { sprite: Clothing/OuterClothing/Hardsuits/mime.rsi, state: icon }
   objectType: Item
 
 - type: construction
-  name: bone armor
+  name: костяной доспех # Sunrise-recipes
   id: BoneArmor
   graph: BoneArmor
   startNode: start
   targetNode: armor
   category: construction-category-clothing
-  description: Armor made of bones.
+  description: Сидит на вас как вторая кожа. # Sunrise-recipes
   icon: { sprite: Clothing/OuterClothing/Armor/bone_armor.rsi, state: icon }
   objectType: Item
 
 - type: construction
-  name: bone helmet
+  name: костяной шлем # Sunrise-recipes
   id: BoneHelmet
   graph: BoneHelmet
   startNode: start
   targetNode: helmet
   category: construction-category-clothing
-  description: Helmet made of bones.
+  description: Круто выглядящий шлем, сделанный из черепов ваших врагов. # Sunrise-recipes
   icon: { sprite: Clothing/Head/Helmets/bone_helmet.rsi, state: icon }
   objectType: Item
 
 - type: construction
-  name: banana clown mask
+  name: банановые маска клоуна # Sunrise-recipes
   id: BananaClownMask
   graph: BananaClownMask
   startNode: start
   targetNode: mask
   category: construction-category-clothing
-  description: A clown mask upgraded with banana peels.
+  description: Лицевой атрибут настоящего приколиста. Клоун неполноценен без своих парика и маски. # Sunrise-recipes
   icon: { sprite: Clothing/Mask/clown_banana.rsi, state: icon }
   objectType: Item
 
 - type: construction
-  name: banana clown suit
+  name: банановый костюм клоуна # Sunrise-recipes
   id: BananaClownJumpsuit
   graph: BananaClownJumpsuit
   startNode: start
   targetNode: jumpsuit
   category: construction-category-clothing
-  description: A clown suit upgraded with banana peels.
+  description: ХОНК! # Sunrise-recipes
   icon: { sprite: Clothing/Uniforms/Jumpsuit/clown_banana.rsi, state: icon }
   objectType: Item
 
 - type: construction
-  name: banana clown shoes
+  name: банановые клоунские туфли # Sunrise-recipes
   id: BananaClownShoes
   graph: BananaClownShoes
   startNode: start
   targetNode: shoes
   category: construction-category-clothing
-  description: A pair of clown shoes upgraded with banana peels.
+  description: Когда юмор и обувь выходят на новый уровень абсурда. # Sunrise-recipes
   icon: { sprite: Clothing/Shoes/Specific/clown_banana.rsi, state: icon }
   objectType: Item
 
 - type: construction
-  name: medsec hud
+  name: мед-охранный визор # Sunrise-recipes
   id: ClothingEyesHudMedSec
   graph: HudMedSec
   startNode: start
   targetNode: medsecHud
   category: construction-category-clothing
-  description: Two huds joined by arms
+  description: Окуляр с индикатором на стекле, напоминающий сочетание визора охраны с медицинским. # Sunrise-recipes
   icon: { sprite: Clothing/Eyes/Hud/medsec.rsi, state: icon }
   objectType: Item
 
 - type: construction
-  name: ducky slippers
+  name: тапки-уточки # Sunrise-recipes
   id: ClothingShoeSlippersDuck
   graph: ClothingShoeSlippersDuck
   startNode: start
   targetNode: shoes
   category: construction-category-clothing
-  description: Comfy, yet haunted by the ghosts of ducks you fed bread to as a child.
+  description: Удобные, но преследуемые призраками уток, которых вы кормили хлебом в детстве. # Sunrise-recipes
   icon: { sprite: Clothing/Shoes/Misc/duck-slippers.rsi, state: icon }
   objectType: Item
 
 - type: construction
-  name: security glasses
+  name: очки охраны # Sunrise-recipes
   id: ClothingEyesGlassesSecurity
   graph: GlassesSecHUD
   startNode: start
   targetNode: glassesSec
   category: construction-category-clothing
-  description: A pair of sunglasses, modified to have a built-in security HUD.
+  description: Модернизированные солнцезащитные очки с функцией защиты от вспышек и визором СБ. # Sunrise-recipes
   icon: { sprite: Clothing/Eyes/Glasses/secglasses.rsi, state: icon }
   objectType: Item
 
 - type: construction
-  name: quiver
+  name: колчан # Sunrise-recipes
   id: ClothingBeltQuiver
   graph: Quiver
   startNode: start
   targetNode: Quiver
   category: construction-category-clothing
-  description: Can hold up to 15 arrows, and fits snug around your waist.
+  description: Вмещает до 15 стрел и плотно прилегает к поясу. # Sunrise-recipes
   icon: { sprite: Clothing/Belt/quiver.rsi, state: icon }
   objectType: Item

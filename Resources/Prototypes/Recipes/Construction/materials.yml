@@ -1,5 +1,5 @@
 ﻿- type: construction
-  name: metal rod
+  name: металлический стержень # Sunrise-recipes
   id: MetalRod
   graph: MetalRod
   startNode: start
@@ -10,8 +10,8 @@
   objectType: Item
 
 - type: construction
-  name: reinforced glass
-  description: A reinforced sheet of glass.
+  name: бронестекло # Sunrise-recipes
+  description: Лист армированного стекла. # Sunrise-recipes
   id: SheetRGlass
   graph: Glass
   startNode: start
@@ -21,8 +21,8 @@
   objectType: Item
 
 - type: construction
-  name: clockwork glass
-  description: A brass-reinforced sheet of glass.
+  name: заводное стекло # Sunrise-recipes
+  description: Лист укреплённного латунью стекла, в основном используемый любителями часовых механизмов и остатками культа Ратвара. # Sunrise-recipes
   id: SheetClockworkGlass
   graph: Glass
   startNode: start
@@ -32,8 +32,8 @@
   objectType: Item
 
 - type: construction
-  name: plasma glass
-  description: A sheet of translucent plasma.
+  name: плазменное стекло # Sunrise-recipes
+  description: Лист полупрозрачной плазмы. # Sunrise-recipes
   id: SheetPGlass
   graph: Glass
   startNode: start
@@ -43,8 +43,8 @@
   objectType: Item
 
 - type: construction
-  name: reinforced plasma glass
-  description: A reinforced sheet of translucent plasma.
+  name: плазменное бронестекло # Sunrise-recipes
+  description: Лист армированной полупрозрачной плазмы. # Sunrise-recipes
   id: SheetRPGlass
   graph: Glass
   startNode: start
@@ -54,8 +54,8 @@
   objectType: Item
 
 - type: construction
-  name: reinforced plasma glass
-  description: A reinforced sheet of translucent plasma.
+  name: плазменное бронестекло # Sunrise-recipes
+  description: Лист армированной полупрозрачной плазмы. # Sunrise-recipes
   id: SheetRPGlass0
   graph: Glass
   startNode: start
@@ -65,8 +65,8 @@
   objectType: Item
 
 - type: construction
-  name: reinforced plasma glass
-  description: A reinforced sheet of translucent plasma.
+  name: плазменное бронестекло # Sunrise-recipes
+  description: Лист армированной полупрозрачной плазмы. # Sunrise-recipes
   id: SheetRPGlass1
   graph: Glass
   startNode: start
@@ -76,19 +76,19 @@
   objectType: Item
 
 - type: construction
-  name: durathread
+  name: дюраткань # Sunrise-recipes
   id: MaterialDurathread
   graph: Durathread
   startNode: start
   targetNode: MaterialDurathread
   category: construction-category-materials
-  description: A high-quality thread used to make durable clothes.
+  description: Сырьё. Используется для создание одежды. # Sunrise-recipes
   icon: { sprite: Objects/Materials/materials.rsi, state: durathread }
   objectType: Item
 
 - type: construction
-  name: uranium glass
-  description: A sheet of uranium glass.
+  name: урановое стекло # Sunrise-recipes
+  description: Лист уранового стекла. # Sunrise-recipes
   id: SheetUGlass
   graph: Glass
   startNode: start
@@ -98,8 +98,8 @@
   objectType: Item
 
 - type: construction
-  name: reinforced uranium glass
-  description: A reinforced sheet of uranium glass.
+  name: урановое бронестекло # Sunrise-recipes
+  description: Лист армированного уранового стекла. # Sunrise-recipes
   id: SheetRUGlass
   graph: Glass
   startNode: start
@@ -109,8 +109,8 @@
   objectType: Item
 
 - type: construction
-  name: reinforced uranium glass
-  description: A reinforced sheet of uranium glass.
+  name: урановое бронестекло # Sunrise-recipes
+  description: Лист армированного уранового стекла. # Sunrise-recipes
   id: SheetRUGlass0
   graph: Glass
   startNode: start
@@ -120,8 +120,8 @@
   objectType: Item
 
 - type: construction
-  name: reinforced uranium glass
-  description: A reinforced sheet of uranium glass.
+  name: урановое бронестекло # Sunrise-recipes
+  description: Лист армированного уранового стекла. # Sunrise-recipes
   id: SheetRUGlass1
   graph: Glass
   startNode: start

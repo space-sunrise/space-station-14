@@ -1,10 +1,10 @@
 - type: construction
-  name: bananium horn
+  name: бананиумовый клаксон # Sunrise-recipes
   id: HornBananium
   graph: BananiumHorn
   startNode: start
   targetNode: bananiumHorn
   category: construction-category-weapons
-  description: An air horn made from bananium.
+  description: Клаксон, сделанный из бананиума. # Sunrise-recipes
   icon: { sprite: Objects/Fun/bananiumhorn.rsi, state: icon }
   objectType: Item
