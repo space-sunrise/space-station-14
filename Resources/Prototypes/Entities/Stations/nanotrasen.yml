@@ -29,6 +29,7 @@
     - BaseStationTransitHub
     - BaseStationDontSelling
     - BaseStationGoal
+    - BaseStationGammaArmory
     # Sunrise-End
   noSpawn: true
   components:

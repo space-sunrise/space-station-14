@@ -59,3 +59,9 @@
     - MiningOutpost
     - Tesla
     - VirusZombie
+
+- type: entity
+  id: BaseStationGammaArmory
+  abstract: true
+  components:
+    - type: CodeEquipment
