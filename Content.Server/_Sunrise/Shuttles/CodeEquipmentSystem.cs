@@ -1,9 +1,6 @@
 ﻿using Content.Server._Sunrise.ImmortalGrid;
 using Content.Server.AlertLevel;
-using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
-using Content.Server.DeviceNetwork.Systems;
-using Content.Server.GameTicking;
 using Content.Server.Pinpointer;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
@@ -14,11 +11,7 @@ using Content.Server.Station.Systems;
 using Content.Shared.Shuttles.Components;
 using Robust.Server.GameObjects;
 using Robust.Server.Maps;
-using Robust.Shared.Configuration;
-using Robust.Shared.Console;
 using Robust.Shared.Map;
-using Robust.Shared.Random;
-using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
 namespace Content.Server._Sunrise.Shuttles;
