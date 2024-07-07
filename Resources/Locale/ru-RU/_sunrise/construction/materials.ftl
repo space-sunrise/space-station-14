@@ -22,3 +22,5 @@ recipe-SheetRUGlass0-name = урановое бронестекло
 recipe-SheetRUGlass0-description = Лист армированного уранового стекла.
 recipe-SheetRUGlass1-name = урановое бронестекло
 recipe-SheetRUGlass1-description = Лист армированного уранового стекла.
+recipe-SilkWovenCloth-name = Ткань
+recipe-SilkWovenCloth-description = Сырьё

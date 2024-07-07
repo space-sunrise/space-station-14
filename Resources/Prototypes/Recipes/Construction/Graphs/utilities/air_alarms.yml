@@ -37,7 +37,7 @@
       steps:
       - tag: AirAlarmElectronics
         store: board
-        name: "air alarm electronics"
+        name: микросхема воздушной сигнализации
         icon:
           sprite: "Objects/Misc/module.rsi"
           state: "door_electronics" # /tg/ uses the same sprite, right?

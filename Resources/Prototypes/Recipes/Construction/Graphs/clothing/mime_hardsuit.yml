@@ -10,31 +10,31 @@
               amount: 5
               doAfter: 1
             - tag: SuitEVA
-              name: An EVA suit
+              name: скафандр EVA
               icon:
                 sprite: Clothing/OuterClothing/Suits/eva.rsi
                 state: icon
               doAfter: 1
             - tag: HelmetEVA
-              name: An EVA helmet
+              name: шлем EVA
               icon:
                 sprite: Clothing/Head/Helmets/eva.rsi
                 state: icon
               doAfter: 1
             - tag: CrayonRed
-              name: red crayon
+              name: красный мелок
               icon:
                 sprite: Objects/Fun/crayons.rsi
                 state: red
               doAfter: 1
             - tag: CrayonBlack
-              name: black crayon
+              name: чёрный мелок
               icon:
                 sprite: Objects/Fun/crayons.rsi
                 state: black
               doAfter: 1
             - tag: MimeBelt
-              name: suspenders
+              name: подтяжки
               icon:
                 sprite: Clothing/Belt/suspenders.rsi
                 state: icon
