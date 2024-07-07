@@ -22,6 +22,5 @@ namespace Content.Shared.Construction
         public string Localization { get; set; } = string.Empty;
         public (string, object)[]? Arguments { get; set; } = null;
         public SpriteSpecifier? Icon { get; set; } = null;
-        public string? NameLocalization { get; set; }
     }
 }
