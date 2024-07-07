@@ -1,0 +1,14 @@
+recipe-ClownHardsuit-name = скафандр клоуна
+recipe-MimeHardsuit-name = скафандр мима
+recipe-BoneArmor-name = костяной доспех
+recipe-BoneHelmet-name = костяной шлем
+recipe-BananaClownMask-name = банановые маска и парик клоуна
+recipe-BananaClownJumpsuit-name = банановый костюм клоуна
+recipe-BananaClownShoes-name = банановые клоунские туфли
+recipe-ClothingShoeSlippersDuck-name = тапки-уточки
+recipe-ClothingEyesHudMedSec-name = мед-охранный визор
+recipe-ClothingBeltQuiver-name = колчан
+recipe-ClothingEyesGlassesSecurity-name = очки охраны
+recipe-ghost_sheet-name = простыня-призрак
+recipe-strawHat-name = соломенная шляпа
+recipe-flowerwreath-name = цветочный венок
