@@ -13,6 +13,7 @@
                    ClipText="True"/>
             <customControls:VSeparator/>
             <Label Name="PlayersCountLabel"
+                   MinWidth="60"
                    SizeFlagsStretchRatio="1"
                    HorizontalExpand="True"
                    Align="Right"
@@ -21,7 +22,7 @@
             <Button Name="ConnectButton"
                     Text="Подключиться"
                     SizeFlagsStretchRatio="3"
-                    MinWidth="180"/>
+                    MinWidth="130"/>
             <customControls:VSeparator/>
         </BoxContainer>
         <customControls:HSeparator/>

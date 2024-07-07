@@ -53,11 +53,11 @@ namespace Content.Server.GameTicking
 
             var stationNames = new StringBuilder();
             var query =
-                EntityQueryEnumerator<StationJobsComponent, StationSpawningComponent, MetaDataComponent>();
+                EntityQueryEnumerator<StationJobsComponent, StationSpawningComponent, StationEventEligibleComponent, MetaDataComponent>();
 
             var foundOne = false;
 
-            while (query.MoveNext(out _, out _, out var meta))
+            while (query.MoveNext(out _, out _, out _, out var meta))
             {
                 foundOne = true;
                 if (stationNames.Length > 0)

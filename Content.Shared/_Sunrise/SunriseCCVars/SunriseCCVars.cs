@@ -121,19 +121,19 @@ public sealed class SunriseCCVars
     public static readonly CVarDef<bool> TapePlayerClientEnabled =
         CVarDef.Create("tape_player.client_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
+    /// <summary>
+    /// Link to boosty to show in the launcher.
+    /// </summary>
+    public static readonly CVarDef<string> InfoLinksDonate =
+        CVarDef.Create("infolinks.donate", "", CVar.SERVER | CVar.REPLICATED);
+
     /**
      * Lobby
      */
 
     public static readonly CVarDef<string> LobbyBackground =
-        CVarDef.Create("lobby.background", "Paralax", CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    public static readonly CVarDef<bool> ShowLobbyChangelog =
-        CVarDef.Create("lobby.changelog", true, CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    public static readonly CVarDef<bool> ShowLobbyServersHub =
-        CVarDef.Create("lobby.servers_hub", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+        CVarDef.Create("lobby.background", "Art", CVar.CLIENTONLY | CVar.ARCHIVE);
 
     public static readonly CVarDef<float> LobbyOpacity =
-        CVarDef.Create("lobby.lobby_opacity", 0.75f, CVar.CLIENTONLY | CVar.ARCHIVE);
+        CVarDef.Create("lobby.lobby_opacity", 0.90f, CVar.CLIENTONLY | CVar.ARCHIVE);
 }
