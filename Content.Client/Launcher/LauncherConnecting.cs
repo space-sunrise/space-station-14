@@ -1,4 +1,5 @@
 using System;
+using Content.Client._Sunrise.ServersHub;
 using Robust.Client;
 using Robust.Client.UserInterface;
 using Robust.Shared.Configuration;
@@ -19,6 +20,7 @@ namespace Content.Client.Launcher
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
+        [Dependency] private readonly ServersHubManager _serversHubManager = default!;
 
         private LauncherConnectingGui? _control;
 
@@ -58,7 +60,7 @@ namespace Content.Client.Launcher
 
         protected override void Startup()
         {
-            _control = new LauncherConnectingGui(this, _random, _prototypeManager, _cfg);
+            _control = new LauncherConnectingGui(this, _random, _prototypeManager, _cfg, _serversHubManager);
 
             _userInterfaceManager.StateRoot.AddChild(_control);
 

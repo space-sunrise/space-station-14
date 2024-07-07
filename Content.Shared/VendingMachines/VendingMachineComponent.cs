@@ -192,14 +192,6 @@ namespace Content.Shared.VendingMachines
         public bool LoopDenyAnimation = true;
 
         #endregion
-
-        // Sunrise-start
-        [DataField("startingPlayerCount")]
-        public int StartingPlayerCount = 0;
-
-        [DataField("playerCountModifier")]
-        public double PlayerCountModifier = 0.1; // +1 предмет за 10 онлайна на момент создания автомата
-        // Sunrise-end
     }
 
     [Serializable, NetSerializable]

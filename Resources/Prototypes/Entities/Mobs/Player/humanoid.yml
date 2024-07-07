@@ -2,6 +2,8 @@
 
 - type: randomHumanoidSettings
   id: EventHumanoid
+  speciesBlacklist: # Sunrise-edit
+  - Vox
   components:
     - type: RandomHumanoidAppearance
       randomizeName: false
@@ -36,7 +38,6 @@
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Vox
-  - Synth
   - Vulpkanin
   - Felinid
   parent: EventHumanoidMindShielded
@@ -78,7 +79,6 @@
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Vox
-  - Synth
   - Vulpkanin
   - Felinid
   parent: EventHumanoidMindShielded
@@ -114,7 +114,6 @@
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Vox
-  - Synth
   - Vulpkanin
   - Felinid
   parent: ERTLeader
@@ -141,7 +140,6 @@
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Vox
-  - Synth
   - Vulpkanin
   - Felinid
   parent: ERTLeaderEVA
@@ -178,7 +176,6 @@
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Vox
-  - Synth
   - Vulpkanin
   - Felinid
   parent: ERTLeader
@@ -213,7 +210,6 @@
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Vox
-  - Synth
   - Vulpkanin
   - Felinid
   parent: ERTChaplain
@@ -250,7 +246,6 @@
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Vox
-  - Synth
   - Vulpkanin
   - Felinid
   parent: ERTLeader
@@ -606,6 +601,7 @@
   id: SyndicateAgent
   speciesBlacklist: # Sunrise-edit
   - Diona
+  - Vox
   - Felinid
   components:
     - type: RandomHumanoidAppearance
@@ -627,6 +623,7 @@
   id: NukeOp
   speciesBlacklist: # Sunrise-edit
   - Diona
+  - Vox
   - Felinid
   components:
     - type: RandomHumanoidAppearance
@@ -915,6 +912,7 @@
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Felinid
+  - Vox
   parent: EventHumanoid
   components:
     - type: NpcFactionMember

@@ -1,5 +1,7 @@
+using System.Linq;
 using Content.Shared._Sunrise.ServersHub;
 using Robust.Shared.Network;
+using Robust.Shared.Timing;
 
 namespace Content.Client._Sunrise.ServersHub;
 
@@ -26,6 +28,9 @@ public partial class ServersHubManager
         _menu = new ServersHubUi();
         _menu.OnClose += _menu.Close;
         _menu.OpenCentered();
+        var totalPlayers = ServersDataList.Sum(server => server.CurrentPlayers);
+        var maxPlayers = ServersDataList.Sum(server => server.MaxPlayers);
+        _menu!.RefreshHeader(totalPlayers, maxPlayers);
     }
 
     private void OnServersDataChanged(MsgFullServerHubList msg)
@@ -34,5 +39,8 @@ public partial class ServersHubManager
         // и его можно было отобразить после отключения или бана.
         ServersDataList = msg.ServersHubEntries;
         ServersDataListChanged?.Invoke(ServersDataList);
+        var totalPlayers = ServersDataList.Sum(server => server.CurrentPlayers);
+        var maxPlayers = ServersDataList.Sum(server => server.MaxPlayers);
+        _menu!.RefreshHeader(totalPlayers, maxPlayers);
     }
 }

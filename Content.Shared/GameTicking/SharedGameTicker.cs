@@ -91,16 +91,18 @@ namespace Content.Shared.GameTicking
         public string? LobbyParalax { get; }
         public LobbyImage? LobbyImage { get; }
         // Sunrise-End
+        public string? LobbyBackground { get; }
         public bool YouAreReady { get; }
         // UTC.
         public TimeSpan StartTime { get; }
         public TimeSpan RoundStartTimeSpan { get; }
         public bool Paused { get; }
 
-        public TickerLobbyStatusEvent(bool isRoundStarted, string? lobbyParalax, LobbyImage? lobbyImage, bool youAreReady, TimeSpan startTime, TimeSpan preloadTime, TimeSpan roundStartTimeSpan, bool paused)
+        public TickerLobbyStatusEvent(bool isRoundStarted, string? lobbyBackground, string? lobbyParalax, LobbyImage? lobbyImage, bool youAreReady, TimeSpan startTime, TimeSpan preloadTime, TimeSpan roundStartTimeSpan, bool paused)
         {
             IsRoundStarted = isRoundStarted;
             // Sunrise-Start
+            LobbyBackground = lobbyBackground;
             LobbyParalax = lobbyParalax;
             LobbyImage = lobbyImage;
             // Sunrise-End

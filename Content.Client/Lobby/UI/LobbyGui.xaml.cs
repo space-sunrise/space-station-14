@@ -10,8 +10,11 @@ using System.Numerics;
 using Content.Client._Sunrise.ServersHub;
 using Content.Client.Parallax.Managers;
 using Content.Client.Resources;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
+using Robust.Shared.Configuration;
+using Robust.Shared.Input;
 
 namespace Content.Client.Lobby.UI
 {
@@ -24,21 +27,64 @@ namespace Content.Client.Lobby.UI
         [Dependency] private readonly IParallaxManager _parallaxManager = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly IResourceCache _resourceCache = default!;
+        [Dependency] private readonly IConfigurationManager _configurationManager = default!;
 
         public string LobbyParalax = "FastSpace"; // Sunrise-edit
-        [ViewVariables(VVAccess.ReadWrite)] public Vector2 Offset { get; set; }// Sunrise-edit
+        [ViewVariables(VVAccess.ReadWrite)] public Vector2 Offset { get; set; } // Sunrise-edit
+
+        private readonly StyleBoxTexture _back;
 
         public LobbyGui()
         {
             RobustXamlLoader.Load(this);
             IoCManager.InjectDependencies(this);
             SetAnchorPreset(MainContainer, LayoutPreset.Wide);
-            SetAnchorPreset(LogoContainer, LayoutPreset.Wide); // Sunrise-edit
+            SetAnchorPreset(Background, LayoutPreset.Wide);
 
             LobbySong.SetMarkup(Loc.GetString("lobby-state-song-no-song-text"));
 
             LeaveButton.OnPressed += _ => _consoleHost.ExecuteCommand("disconnect");
             OptionsButton.OnPressed += _ => UserInterfaceManager.GetUIController<OptionsUIController>().ToggleWindow();
+
+            ChatHeader.OnKeyBindUp += args =>
+            {
+                if (args.Function != EngineKeyFunctions.Use)
+                    return;
+
+                ChatContent.Visible = !ChatContent.Visible;
+            };
+
+            ServerInfoHeader.OnKeyBindUp += args =>
+            {
+                if (args.Function != EngineKeyFunctions.Use)
+                    return;
+
+                ServerInfoContent.Visible = !ServerInfoContent.Visible;
+            };
+
+            CharacterInfoHeader.OnKeyBindUp += args =>
+            {
+                if (args.Function != EngineKeyFunctions.Use)
+                    return;
+
+                CharacterInfoContent.Visible = !CharacterInfoContent.Visible;
+            };
+
+            ServersHubHeader.OnKeyBindUp += args =>
+            {
+                if (args.Function != EngineKeyFunctions.Use)
+                    return;
+
+                ServersHubContent.Visible = !ServersHubContent.Visible;
+            };
+
+            ChangelogHeader.OnKeyBindUp += args =>
+            {
+                if (args.Function != EngineKeyFunctions.Use)
+                    return;
+
+                ChangelogContent.Visible = !ChangelogContent.Visible;
+            };
 
             // Sunrise-start
             Offset = new Vector2(_random.Next(0, 1000), _random.Next(0, 1000));
@@ -47,25 +93,71 @@ namespace Content.Client.Lobby.UI
             RectClipContent = true;
 
             var panelTex = _resourceCache.GetTexture("/Textures/Interface/Nano/button.svg.96dpi.png");
-            var back = new StyleBoxTexture
+            _back = new StyleBoxTexture
             {
                 Texture = panelTex,
-                Modulate = new Color(37, 37, 42).WithAlpha(0.5f)
+                Modulate = new Color(37, 37, 42),
             };
-            back.SetPatchMargin(StyleBox.Margin.All, 10);
+            _back.SetPatchMargin(StyleBox.Margin.All, 10);
 
-            LeftSideTop.PanelOverride = back;
+            LeftTopPanel.PanelOverride = _back;
 
-            RightSide.PanelOverride = back;
+            RightTopPanel.PanelOverride = _back;
 
-            LocalChangelog.PanelOverride = back;
+            RightBottomPanel.PanelOverride = _back;
 
-            LobbySongPanel.PanelOverride = back;
+            LeftBottomPanel.PanelOverride = _back;
 
-            ServersHub.PanelOverride = back;
+            LeftTopPanel.PanelOverride = _back;
 
+            LobbySongPanel.PanelOverride = _back;
+
+            _configurationManager.OnValueChanged(SunriseCCVars.LobbyOpacity, OnLobbyOpacityChanged);
+            _configurationManager.OnValueChanged(SunriseCCVars.LobbyBackground, OnLobbyBackgroundChanged);
+
+            SetLobbyOpacity(_configurationManager.GetCVar(SunriseCCVars.LobbyOpacity));
+            SetLobbyBackgroundType(_configurationManager.GetCVar(SunriseCCVars.LobbyBackground));
+
+            Chat.SetChatOpacity();
             // Sunrise-end
         }
+
+        private void OnLobbyBackgroundChanged(string lobbyBackgroundString)
+        {
+            SetLobbyBackgroundType(lobbyBackgroundString);
+        }
+
+        private void SetLobbyBackgroundType(string lobbyBackgroundString)
+        {
+            if (!Enum.TryParse(lobbyBackgroundString, out LobbyBackgroundType lobbyBackgroundTypeString))
+            {
+                lobbyBackgroundTypeString = default;
+            }
+
+            switch (lobbyBackgroundTypeString)
+            {
+                case LobbyBackgroundType.Paralax:
+                    LobbyImage.Visible = true;
+                    Background.Visible = false;
+                    break;
+                case LobbyBackgroundType.Art:
+                    LobbyImage.Visible = false;
+                    Background.Visible = true;
+                    break;
+            }
+        }
+
+        // Sunrise-Start
+        private void OnLobbyOpacityChanged(float opacity)
+        {
+            SetLobbyOpacity(opacity);
+        }
+
+        private void SetLobbyOpacity(float opacity)
+        {
+            _back.Modulate = new Color(37, 37, 42).WithAlpha(opacity);
+        }
+        // Sunrise-End
 
         public void SwitchState(LobbyGuiState state)
         {
@@ -76,18 +168,9 @@ namespace Content.Client.Lobby.UI
             {
                 case LobbyGuiState.Default:
                     DefaultState.Visible = true;
-                    RightSide.Visible = true;
                     break;
                 case LobbyGuiState.CharacterSetup:
                     CharacterSetupState.Visible = true;
-
-                    var actualWidth = (float) UserInterfaceManager.RootControl.PixelWidth;
-                    var setupWidth = (float) LeftSide.PixelWidth;
-
-                    if (1 - (setupWidth / actualWidth) > 0.30)
-                    {
-                        RightSide.Visible = false;
-                    }
 
                     UserInterfaceManager.GetUIController<LobbyUIController>().ReloadCharacterSetup();
 
