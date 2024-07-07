@@ -54,6 +54,12 @@
             </PanelContainer>
             <PanelContainer StyleClasses="AngleRect" HorizontalExpand="True" Margin="0 10 0 0" Visible="False" Name="ServersHub" MinWidth="600" MinHeight="220">
                 <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" Margin="3 3 3 3">
+                    <controls:StripeBack>
+                        <BoxContainer Orientation="Horizontal">
+                            <Label HorizontalExpand="True" Text="Сейчас играет: 0/0" Name="ServersHubHeaderLabel" VAlign="Center"
+                                   StyleClasses="LabelHeading" Align="Center"/>
+                        </BoxContainer>
+                    </controls:StripeBack>
                     <ScrollContainer VerticalExpand="True" HScrollEnabled="False" HorizontalExpand="True">
                         <serversHub:ServersHub Name="ServersHubBody" Access="Public" />
                     </ScrollContainer>

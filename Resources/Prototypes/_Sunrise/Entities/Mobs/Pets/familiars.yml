@@ -35,7 +35,7 @@
     spawned:
     - id: FoodMeat
       amount: 2
-    - id: BookChefGaming  # Типо разделали, и получите гайд на шефа :D
+    - id: BookHowToCookForFortySpaceman  # Типо разделали, и получите гайд на шефа :D
   - type: InteractionPopup
     successChance: 0.3
     interactSuccessString: petting-success-goose  # Я хз как это описать
@@ -61,7 +61,7 @@
     - VimPilot
   - type: Access
     tags:
-    - Library
+    - Service
   - type: MindContainer
     showExamineInfo: true
   - type: NpcFactionMember

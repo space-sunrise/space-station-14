@@ -1,20 +1,20 @@
 - type: vendingMachineInventory
   id: NutriMaxInventory
   startingInventory:
-    HydroponicsToolSpade: 8  # Sunrise-edit
-    HydroponicsToolMiniHoe: 8  # Sunrise-edit
-    HydroponicsToolClippers: 8  # Sunrise-edit
-    HydroponicsToolScythe: 8  # Sunrise-edit
-    HydroponicsToolHatchet: 8  # Sunrise-edit
-    Dropper: 8  # Sunrise-edit
-    PlantBag: 5  # Sunrise-edit
+    HydroponicsToolSpade: 4
+    HydroponicsToolMiniHoe: 4
+    HydroponicsToolClippers: 4
+    HydroponicsToolScythe: 4
+    HydroponicsToolHatchet: 4
+    Dropper: 4
+    PlantBag: 3
     PlantBGoneSpray: 20
     WeedSpray: 20
     PestSpray: 20
     Syringe: 5
-    RobustHarvestChemistryBottle: 5  # Sunrise-edit
-    EZNutrientChemistryBottle: 5  # Sunrise-edit
-    Bucket: 5  # Sunrise-edit
+    RobustHarvestChemistryBottle: 3
+    EZNutrientChemistryBottle: 3
+    Bucket: 3
     DiseaseSwab: 20
     #TO DO:
     #plant analyzer

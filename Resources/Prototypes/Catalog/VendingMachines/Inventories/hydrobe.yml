@@ -1,15 +1,15 @@
 - type: vendingMachineInventory
   id: HyDrobeInventory
   startingInventory:
-    ClothingBackpackHydroponics: 4  # Sunrise-edit
-    ClothingBackpackSatchelHydroponics: 4  # Sunrise-edit
-    ClothingBackpackDuffelHydroponics: 4  # Sunrise-edit
-    ClothingOuterApronBotanist: 4  # Sunrise-edit
-    ClothingUniformOveralls: 6  # Sunrise-edit
-    ClothingUniformJumpsuitHydroponics: 6  # Sunrise-edit
-    ClothingUniformJumpskirtHydroponics: 6  # Sunrise-edit
-    ClothingNeckScarfStripedGreen: 6  # Sunrise-edit
-    ClothingHeadBandBotany: 6  # Sunrise-edit
-    ClothingHeadsetService: 4  # Sunrise-edit
-    ClothingOuterWinterHydro: 4  # Sunrise-edit
+    ClothingBackpackHydroponics: 2
+    ClothingBackpackSatchelHydroponics: 2
+    ClothingBackpackDuffelHydroponics: 2
+    ClothingOuterApronBotanist: 2
+    ClothingUniformOveralls: 3
+    ClothingUniformJumpsuitHydroponics: 3
+    ClothingUniformJumpskirtHydroponics: 3
+    ClothingNeckScarfStripedGreen: 3
+    ClothingHeadBandBotany: 3
+    ClothingHeadsetService: 2
+    ClothingOuterWinterHydro: 2
 

@@ -1,15 +1,15 @@
 - type: vendingMachineInventory
   id: AtmosDrobeInventory
   startingInventory:
-    ClothingBackpackDuffelAtmospherics: 6  # Sunrise-edit
-    ClothingBackpackSatchelAtmospherics: 6  # Sunrise-edit
-    ClothingBackpackAtmospherics: 6  # Sunrise-edit
-    ClothingUniformJumpsuitAtmos: 5  # Sunrise-edit
-    ClothingUniformJumpskirtAtmos: 5  # Sunrise-edit
-    ClothingUniformJumpsuitAtmosCasual: 5  # Sunrise-edit
-    ClothingShoesColorWhite: 5  # Sunrise-edit
-    ClothingHeadsetEngineering: 4  # Sunrise-edit
-    ClothingHeadHelmetFire: 4  # Sunrise-edit
-    ClothingOuterSuitFire: 4  # Sunrise-edit
-    ClothingOuterWinterAtmos: 4  # Sunrise-edit
-    ClothingNeckScarfStripedLightBlue: 6  # Sunrise-edit
+    ClothingBackpackDuffelAtmospherics: 2
+    ClothingBackpackSatchelAtmospherics: 2
+    ClothingBackpackAtmospherics: 2
+    ClothingUniformJumpsuitAtmos: 3
+    ClothingUniformJumpskirtAtmos: 3
+    ClothingUniformJumpsuitAtmosCasual: 3
+    ClothingShoesColorWhite: 3
+    ClothingHeadsetEngineering: 2
+    ClothingHeadHelmetFire: 2
+    ClothingOuterSuitFire: 2
+    ClothingOuterWinterAtmos: 2
+    ClothingNeckScarfStripedLightBlue: 3

@@ -4,7 +4,7 @@
   components:
   - type: GridSpawn
     groups:
-      shuttles:
+      shuttles: !type:GridSpawnGroup
         addComponents:
         - type: CentCommShuttle
         paths:

@@ -1,11 +1,11 @@
 - type: vendingMachineInventory
   id: EngiVendInventory
   startingInventory:
-    ClothingEyesGlassesMeson: 8  # Sunrise-edit
+    ClothingEyesGlassesMeson: 4
     ClothingHeadHatWelding: 6
-    Multitool: 6  # Sunrise-edit
+    Multitool: 4
     NetworkConfigurator: 5
-    PowerCellMedium: 10  # Sunrise-edit
-    ClothingHandsGlovesColorYellow: 8  # Sunrise-edit
+    PowerCellMedium: 5
+    ClothingHandsGlovesColorYellow: 6
     BoxInflatable: 2
     ClothingHeadHatCone: 4

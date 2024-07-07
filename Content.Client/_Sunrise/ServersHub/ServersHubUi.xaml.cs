@@ -13,4 +13,9 @@ public sealed partial class ServersHubUi : DefaultWindow
 
         // Я не ебу что тут вообще еще должно быть, вся логика один хуй лежит внутри Control
     }
+
+    public void RefreshHeader(int totalPlayers, int maxPlayers)
+    {
+        ServersHubHeaderLabel.Text = $"Сейчас играет: {totalPlayers}/{maxPlayers}";
+    }
 }

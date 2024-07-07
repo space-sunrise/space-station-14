@@ -141210,7 +141210,7 @@ entities:
     - type: Transform
       pos: -3.5,51.5
       parent: 8364
-- proto: SMESBasic
+- proto: SMESExtended
   entities:
   - uid: 865
     components:
@@ -144069,7 +144069,7 @@ entities:
     - type: Transform
       pos: 62.5,-33.5
       parent: 8364
-- proto: SubstationBasic
+- proto: SubstationExtended
   entities:
   - uid: 1666
     components:

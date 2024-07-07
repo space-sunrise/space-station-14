@@ -1,27 +1,27 @@
 ﻿- type: vendingMachineInventory
   id: DinnerwareInventory
   startingInventory:
-    ButchCleaver: 2  # Sunrise-edit
-    KitchenKnife: 10  # Sunrise-edit
-    RollingPin: 8  # Sunrise-edit
-    Spoon: 8  # Sunrise-edit
-    Fork: 8  # Sunrise-edit
-    PairedChopsticks: 8  # Sunrise-edit
-    FoodBowlBig: 15  # Sunrise-edit
-    FoodPlate: 15  # Sunrise-edit
-    FoodPlateSmall: 15  # Sunrise-edit
-    FoodPlateTin: 10  # Sunrise-edit
-    FoodKebabSkewer: 10  # Sunrise-edit
-    DrinkGlass: 10  # Sunrise-edit
-    Beaker: 10  # Sunrise-edit
-    LargeBeaker: 10  # Sunrise-edit
-    DrinkMug: 10  # Sunrise-edit
-    DrinkMugBlack: 6  # Sunrise-edit
-    DrinkMugBlue: 6  # Sunrise-edit
-    DrinkMugGreen: 6  # Sunrise-edit
-    DrinkMugHeart: 3  # Sunrise-edit
-    DrinkMugMetal: 6  # Sunrise-edit
-    DrinkMugMoebius: 2  # Sunrise-edit
-    DrinkMugOne: 2  # Sunrise-edit
-    DrinkMugRainbow: 3  # Sunrise-edit
-    DrinkMugRed: 3  # Sunrise-edit
+    ButchCleaver: 1
+    KitchenKnife: 5
+    RollingPin: 4
+    Spoon: 4
+    Fork: 4
+    PairedChopsticks: 4
+    FoodBowlBig: 10
+    FoodPlate: 10
+    FoodPlateSmall: 10
+    FoodPlateTin: 5
+    FoodKebabSkewer: 5
+    DrinkGlass: 5
+    Beaker: 5
+    LargeBeaker: 5
+    DrinkMug: 5
+    DrinkMugBlack: 2
+    DrinkMugBlue: 2
+    DrinkMugGreen: 2
+    DrinkMugHeart: 1
+    DrinkMugMetal: 2
+    DrinkMugMoebius: 1
+    DrinkMugOne: 1
+    DrinkMugRainbow: 2
+    DrinkMugRed: 2

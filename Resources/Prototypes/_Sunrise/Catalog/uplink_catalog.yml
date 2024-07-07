@@ -6,7 +6,23 @@
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: pellets }
   productEntity: MagazineShotgun
   cost:
-    Telecrystal: 4
+    Telecrystal: 3
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: UplinkMagazineShotgunIncendiary
+  name: uplink-magazine-shotgun-name
+  description: uplink-magazine-shotgun-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: slug }
+  productEntity: MagazineShotgun
+  cost:
+    Telecrystal: 3
   categories:
   - UplinkAmmo
   conditions:
@@ -221,7 +237,7 @@
   name: uplink-core-extraction-toolbox-name
   description: uplink-core-extraction-toolbox-desc
   icon:
-    sprite: Objects/Misc/nuke_core_container.rsi
+    sprite: _Sunrise/Objects/Misc/nuke_core_container.rsi
     state: closed
   productEntity: ToolboxSyndicateFilledCoreExtraction
   categories:

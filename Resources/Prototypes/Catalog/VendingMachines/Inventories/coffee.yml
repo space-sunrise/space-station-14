@@ -1,10 +1,10 @@
 ﻿- type: vendingMachineInventory
   id: HotDrinksMachineInventory
   startingInventory:
-    DrinkHotCoffee: 10  # Sunrise-edit
-    DrinkCafeLatte: 10  # Sunrise-edit
-    DrinkTeacup: 10  # Sunrise-edit
-    DrinkGreenTea: 10  # Sunrise-edit
-    DrinkHotCoco: 10  # Sunrise-edit
+    DrinkHotCoffee: 5
+    DrinkCafeLatte: 5
+    DrinkTeacup: 5
+    DrinkGreenTea: 5
+    DrinkHotCoco: 5
   emaggedInventory:
     DrinkNothing: 2

@@ -200,8 +200,9 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
     {
         return component.Powered &&
                component.Enabled &&
-               HasComp<BodyComponent>(victim) &&
-               HasComp<EmaggedComponent>(uid);
+               HasComp<BodyComponent>(victim); //&&
+               // HasComp<EmaggedComponent>(uid);
+               // Вы реально хотите сказать что огромный шредер не должен гибать людей без емага? Да будет мясо
     }
 
     /// <summary>
