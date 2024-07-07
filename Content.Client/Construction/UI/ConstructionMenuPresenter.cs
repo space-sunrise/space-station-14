@@ -261,7 +261,7 @@ namespace Content.Client.Construction.UI
             _constructionView.ClearRecipeInfo();
 
             _constructionView.SetRecipeInfo(
-                prototype.Name, prototype.Description, spriteSys.Frame0(prototype.Icon),
+                prototype.ID, spriteSys.Frame0(prototype.Icon),
                 prototype.Type != ConstructionType.Item,
                 !_favoritedRecipes.Contains(prototype));
 
@@ -300,7 +300,7 @@ namespace Content.Client.Construction.UI
             return new(itemList)
             {
                 Metadata = recipe,
-                Text = recipe.Name,
+                Text = Loc.GetString($"recipe-{recipe.ID}-name"),
                 Icon = recipe.Icon.Frame0(),
                 TooltipEnabled = true,
                 TooltipText = recipe.Description
