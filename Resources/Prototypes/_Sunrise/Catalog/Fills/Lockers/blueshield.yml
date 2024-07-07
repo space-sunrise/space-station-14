@@ -11,6 +11,7 @@
         prob: 0.25
       - id: TrackingImplanter
         amount: 5
+      - id: ClothingNeckCloakBlueshield
 
 - type: entity
   id: LockerBlueshieldFilledHardsuit
@@ -28,6 +29,7 @@
     - id: ClothingOuterHardsuitBlueshield
     - id: OxygenTankFilled
     - id: ClothingMaskGas
+    - id: ClothingNeckCloakBlueshield
 
 - type: entity
   parent: GunSafe

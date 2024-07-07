@@ -15,3 +15,12 @@
   components:
     - type: Sprite
       sprite: _Sunrise/Clothing/Neck/Cloaks/admiral.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakBlueshield
+  name: blueshield's cloak
+  description: A vibrant blue cape with gold stitching, worn by Nanotrasen best bodyguards.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Cloaks/blueshield_cloak.rsi
