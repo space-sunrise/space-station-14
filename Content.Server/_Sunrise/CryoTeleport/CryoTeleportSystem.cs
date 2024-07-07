@@ -88,8 +88,8 @@ public sealed class CryoTeleportSystem : EntitySystem
 
     private void OnStationInitialized(StationInitializedEvent ev)
     {
-        // if (FindCryo(ev.Station, Transform(ev.Station)) == null)
-        //     return;  // Ни одного крио на станции
+        if (FindCryo(ev.Station, Transform(ev.Station)) == null)
+            return;  // Ни одного крио на станции
         EnsureComp<StationCryoTeleportComponent>(ev.Station);
     }
 
