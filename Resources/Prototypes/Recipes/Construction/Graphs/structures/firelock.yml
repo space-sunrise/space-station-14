@@ -50,7 +50,7 @@
           steps:
             - tag: FirelockElectronics
               store: board
-              name: Firelock Electronics
+              name: микросхема пожарного шлюза
               icon:
                 sprite: "Objects/Misc/module.rsi"
                 state: "mainboard"

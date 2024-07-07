@@ -45,7 +45,7 @@
               anchored: true
           steps:
             - component: DoorElectronics
-              name: Door Electronics
+              name: микросхема шлюза
               icon:
                 sprite: "Objects/Misc/module.rsi"
                 state: "door_electronics"

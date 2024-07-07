@@ -47,7 +47,7 @@
           steps:
             - tag: DoorElectronics
               store: board
-              name: Door Electronics
+              name: микросхема шлюза
               icon:
                 sprite: "Objects/Misc/module.rsi"
                 state: "door_electronics"
