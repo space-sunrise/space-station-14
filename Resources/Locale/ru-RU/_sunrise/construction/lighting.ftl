@@ -1,0 +1,12 @@
+recipe-CyanLight-name =
+recipe-CyanLight-description =
+recipe-BlueLight-name =
+recipe-BlueLight-description =
+recipe-PinkLight-name =
+recipe-PinkLight-description =
+recipe-OrangeLight-name =
+recipe-OrangeLight-description =
+recipe-RedLight-name =
+recipe-RedLight-description =
+recipe-GreenLight-name =
+recipe-GreenLight-description =
