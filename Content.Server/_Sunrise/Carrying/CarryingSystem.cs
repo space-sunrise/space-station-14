@@ -274,13 +274,40 @@ namespace Content.Server._Sunrise.Carrying
 
         public void DropCarried(EntityUid carrier, EntityUid carried)
         {
-            RemComp<CarryingComponent>(carrier); // get rid of this first so we don't recusrively fire that event
+            // Проверка наличия TransformComponent у carrier
+            if (!EntityManager.TryGetComponent<TransformComponent>(carrier, out var carrierTransform))
+            {
+                Logger.ErrorS("carrying", $"Carrier entity {carrier} does not have a TransformComponent");
+                throw new KeyNotFoundException($"Entity {carrier} does not have a component of type TransformComponent");
+            }
+
+            // Проверка наличия TransformComponent у carried
+            if (!EntityManager.TryGetComponent<TransformComponent>(carried, out var carriedTransform))
+            {
+                Logger.ErrorS("carrying", $"Carried entity {carried} does not have a TransformComponent");
+                throw new KeyNotFoundException($"Entity {carried} does not have a component of type TransformComponent");
+            }
+
+            // Удаление компонентов
+            RemComp<CarryingComponent>(carrier); // get rid of this first so we don't recursively fire that event
             RemComp<CarryingSlowdownComponent>(carrier);
             RemComp<BeingCarriedComponent>(carried);
             RemComp<KnockedDownComponent>(carried);
+
+            // Обновление состояний и вызов методов
             _actionBlockerSystem.UpdateCanMove(carried);
             _virtualItemSystem.DeleteInHandsMatching(carrier, carried);
-            Transform(carried).AttachToGridOrMap();
+
+            // Проверка и вызов AttachToGridOrMap
+            if (carriedTransform != null)
+            {
+                carriedTransform.AttachToGridOrMap();
+            }
+            else
+            {
+               Logger.ErrorS("carrying", $"Failed to attach carried entity {carried} to grid or map because TransformComponent is missing");
+            }
+
             _standingState.Stand(carried);
             _movementSpeed.RefreshMovementSpeedModifiers(carrier);
         }
