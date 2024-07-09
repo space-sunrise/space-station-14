@@ -24,7 +24,7 @@
           steps:
             - component: ComputerBoard
               store: board
-              name: любую консольную плату
+              name: any computer circuit board
               icon:
                 sprite: "Objects/Misc/module.rsi"
                 state: "id_mod"

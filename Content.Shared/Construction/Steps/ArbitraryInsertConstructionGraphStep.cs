@@ -39,7 +39,8 @@ namespace Content.Shared.Construction.Steps
                 {
                     if (item.TryGetComponent<TagComponent>(out var entityTag) && entityManager.System<TagSystem>().HasTag(entityTag, Tag))
                     {
-                        nameLocale = item.Name;
+                        var formattedName = item.Name.Replace(" ", "-");
+                        nameLocale = Loc.GetString($"material-{formattedName}-name");
                         break;
                     }
                 }
@@ -50,7 +51,6 @@ namespace Content.Shared.Construction.Steps
                 Localization = "construction-presenter-arbitrary-step",
                 Arguments = new (string, object)[] { ("name", nameLocale ?? Name) },
                 Icon = Icon,
-                NameLocalization = nameLocale,
             };
         }
     }

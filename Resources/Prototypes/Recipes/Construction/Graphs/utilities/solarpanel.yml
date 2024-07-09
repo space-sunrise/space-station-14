@@ -7,7 +7,7 @@
         - to: solarassembly
           steps:
             - tag: SolarAssemblyFlatpack
-              name: упаковка каркаса солнечной панели
+              name: Solar Assembly Parts
               icon:
                 sprite: Objects/Devices/flatpack.rsi
                 state: solar-assembly-part
