@@ -39,8 +39,8 @@ namespace Content.Shared.Construction.Steps
                 {
                     if (item.TryGetComponent<TagComponent>(out var entityTag) && entityManager.System<TagSystem>().HasTag(entityTag, Tag))
                     {
-                        var formattedName = item.Name.Replace(" ", "-");
-                        nameLocale = Loc.GetString($"material-{formattedName}-name");
+                        var formattedName = item.Name.Replace(" ", "-").ToLower();
+                        nameLocale = item.Name;
                         break;
                     }
                 }
