@@ -7,13 +7,13 @@
         - to: glassesSec
           steps:
             - tag: Sunglasses
-              name: солнцезащитные очки
+              name: sun glasses
               icon:
                 sprite: Clothing/Eyes/Glasses/sunglasses.rsi
                 state: icon
               doAfter: 5
             - tag: HudSecurity
-              name: визор охраны
+              name: security hud
               icon:
                 sprite: Clothing/Eyes/Hud/sec.rsi
                 state: icon

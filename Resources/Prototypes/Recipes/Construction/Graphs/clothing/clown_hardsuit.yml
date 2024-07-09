@@ -10,37 +10,37 @@
               amount: 5
               doAfter: 1
             - tag: SuitEVA
-              name: скафандр EVA
+              name: An EVA suit
               icon:
                 sprite: Clothing/OuterClothing/Suits/eva.rsi
                 state: icon
               doAfter: 1
             - tag: HelmetEVA
-              name: шлем EVA
+              name: An EVA helmet
               icon:
                 sprite: Clothing/Head/Helmets/eva.rsi
                 state: icon
               doAfter: 1
             - tag: CrayonPurple
-              name: фиолетовый мелок
+              name: purple crayon
               icon:
                 sprite: Objects/Fun/crayons.rsi
                 state: purple
               doAfter: 1
             - tag: CrayonRed
-              name: красный мелок
+              name: red crayon
               icon:
                 sprite: Objects/Fun/crayons.rsi
                 state: red
               doAfter: 1
             - tag: CrayonYellow
-              name: жёлтый мелок
+              name: yellow crayon
               icon:
                 sprite: Objects/Fun/crayons.rsi
                 state: yellow
               doAfter: 1
             - tag: ClownRecorder
-              name: клоунский диктофон
+              name: clown recorder
               icon:
                 sprite: Objects/Fun/clownrecorder.rsi
                 state: icon

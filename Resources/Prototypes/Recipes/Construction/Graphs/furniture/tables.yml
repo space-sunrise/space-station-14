@@ -215,7 +215,7 @@
         - to: TableFancyBlack
           steps: 
             - tag: CarpetBlack
-              name: чёрный ковёр
+              name: black carpet
               icon:
                 sprite: Objects/Tiles/tile.rsi
                 state: carpet-black
@@ -223,7 +223,7 @@
         - to: TableFancyBlue
           steps: 
             - tag: CarpetBlue
-              name: синий ковёр
+              name: blue carpet
               icon:
                 sprite: Objects/Tiles/tile.rsi
                 state: carpet-blue
@@ -231,7 +231,7 @@
         - to: TableFancyCyan
           steps: 
             - tag: CarpetCyan
-              name: голубой ковёр
+              name: cyan carpet
               icon:
                 sprite: Objects/Tiles/tile.rsi
                 state: carpet-cyan
@@ -239,7 +239,7 @@
         - to: TableFancyGreen
           steps: 
             - tag: CarpetGreen
-              name: зелёный ковёр
+              name: green carpet
               icon:
                 sprite: Objects/Tiles/tile.rsi
                 state: carpet-green
@@ -247,7 +247,7 @@
         - to: TableFancyOrange
           steps: 
             - tag: CarpetOrange
-              name: оранжевый ковёр
+              name: orange carpet
               icon:
                 sprite: Objects/Tiles/tile.rsi
                 state: carpet-orange
@@ -255,7 +255,7 @@
         - to: TableFancyPurple
           steps: 
             - tag: CarpetPurple
-              name: фиолетовый ковёр
+              name: purple carpet
               icon:
                 sprite: Objects/Tiles/tile.rsi
                 state: carpet-purple
@@ -263,7 +263,7 @@
         - to: TableFancyPink
           steps: 
             - tag: CarpetPink
-              name: розовый ковёр
+              name: pink carpet
               icon:
                 sprite: Objects/Tiles/tile.rsi
                 state: carpet-pink
@@ -271,7 +271,7 @@
         - to: TableFancyRed
           steps: 
             - tag: CarpetRed
-              name: красный ковёр
+              name: red carpet
               icon:
                 sprite: Objects/Tiles/tile.rsi
                 state: carpet-red
@@ -279,7 +279,7 @@
         - to: TableFancyWhite
           steps: 
             - tag: CarpetWhite
-              name: белый ковёр
+              name: white carpet
               icon:
                 sprite: Objects/Tiles/tile.rsi
                 state: carpet-white
