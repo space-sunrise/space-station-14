@@ -44,11 +44,13 @@ namespace Content.Shared.Construction.Steps
                     }
                 }
             }
+			
+			var formattedName = Name.Replace(" ", "-").ToLower();
 
             return new ConstructionGuideEntry
             {
                 Localization = "construction-presenter-arbitrary-step",
-                Arguments = new (string, object)[] { ("name", nameLocale ?? Name) },
+                Arguments = new (string, object)[] { ("name", nameLocale ?? Loc.GetString($"material-{formattedName}-name")) },
                 Icon = Icon,
             };
         }

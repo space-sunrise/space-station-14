@@ -110,3 +110,5 @@ recipe-honkbot-name = хонкбот
 recipe-honkbot-description = Ужасающе.
 recipe-cleanbot-name = чистобот
 recipe-cleanbot-description = Ужас автоматизации теперь угрожает и космическим уборщикам.
+recipe-medibot-name = медбрат помощник
+recipe-medibot-description = Мне кажеться он завернул не в ту галактику? Или у меня глюки. Во всяком случае он явно не плохой.
