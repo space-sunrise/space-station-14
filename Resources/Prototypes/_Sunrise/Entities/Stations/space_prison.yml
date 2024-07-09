@@ -4,16 +4,8 @@
   components:
   - type: SpacePrisonStation
     stations:
-    - AlterosPrison
+    # - AlterosPrison not ready for planets yet
     - SunrisePrison
-#    bioms:
-#    - Grasslands
-#    - LowDesert
-#    - Snow
-#    - Asteroid
-#    - Caves
-#    - Shadow
-#    - Lava
 
 - type: biomeTemplate
   id: Something

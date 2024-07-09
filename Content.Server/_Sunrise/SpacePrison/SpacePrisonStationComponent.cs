@@ -19,6 +19,7 @@ public sealed partial class SpacePrisonStationComponent : Component
     public EntityUid Entity = EntityUid.Invalid;
 
     [DataField(customTypeSerializer: typeof(PrototypeIdListSerializer<BiomeTemplatePrototype>))]
-    public List<string> Bioms = new() { "Grasslands", "LowDesert", "Snow", "Asteroid", "Caves", "Shadow", "Lava", "Continental" }
+    public List<string> Bioms = new()
+        { "Grasslands", "LowDesert", "Snow", "Asteroid", "Caves", "Shadow", "Lava", "Continental" };
 
 }

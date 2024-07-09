@@ -1,7 +1,7 @@
 - type: gameMap
   id: SunrisePrison
   mapName: 'Incisoare B28'
-  mapPath: /Maps/_Sunrise/sunrise_prison.yml
+  mapPath: /Maps/_Sunrise/sunrise_planetary_prison.yml
   minPlayers: 0
   stations:
     SunrisePrison:
