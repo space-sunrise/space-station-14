@@ -174,10 +174,14 @@ namespace Content.Client.Construction.UI
                 || _playerManager.LocalEntity == null
                 || _whitelistSystem.IsWhitelistFail(recipe.EntityWhitelist, _playerManager.LocalEntity.Value))
                     continue;
+				
+                var recipeName = recipe.Name.ToLowerInvariant();
+                var localizedRecipeName = Loc.GetString($"recipe-{recipe.ID}-name").ToLowerInvariant();
 
                 if (!string.IsNullOrEmpty(search))
                 {
-                    if (!recipe.Name.ToLowerInvariant().Contains(search.Trim().ToLowerInvariant()))
+                    var searchLower = search.Trim().ToLowerInvariant();
+                    if (!recipeName.Contains(searchLower) && !localizedRecipeName.Contains(searchLower))
                         continue;
                 }
 
