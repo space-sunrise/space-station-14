@@ -176,7 +176,7 @@ namespace Content.Client.Construction.UI
                     continue;
 				
                 var recipeName = recipe.Name.ToLowerInvariant();
-                var localizedRecipeName = Loc.GetString($"recipe-{recipe.ID}-name").ToLowerInvariant();1
+                var localizedRecipeName = Loc.GetString($"recipe-{recipe.ID}-name").ToLowerInvariant();
 
                 if (!string.IsNullOrEmpty(search))
                 {
