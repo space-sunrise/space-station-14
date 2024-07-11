@@ -14,7 +14,9 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: NT-УБОРЩИК
+      name: ОБР-УБОРЩИК
+    - type: ShuttleNameGenerator
+      enableFragments: false
     - type: Transform
       pos: -2.5438004,3.3412552
       parent: invalid

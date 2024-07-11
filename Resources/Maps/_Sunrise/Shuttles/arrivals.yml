@@ -16,7 +16,8 @@ entities:
   - uid: 292
     components:
     - type: MetaData
-      name: NT-Arrivals 1101
+      name: Arrivals
+    - type: ShuttleNameGenerator
     - type: Transform
       parent: invalid
     - type: MapGrid

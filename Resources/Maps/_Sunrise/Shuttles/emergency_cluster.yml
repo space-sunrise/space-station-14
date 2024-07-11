@@ -21,7 +21,8 @@ entities:
   - uid: 2
     components:
     - type: MetaData
-      name: NT Evac Transit
+      name: Evac Cluster
+    - type: ShuttleNameGenerator
     - type: Transform
       pos: -4.3957214,6.3308363
       parent: invalid

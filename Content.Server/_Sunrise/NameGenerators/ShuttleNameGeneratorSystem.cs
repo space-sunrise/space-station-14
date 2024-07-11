@@ -24,6 +24,13 @@ public sealed class ShuttleNameGeneratorSystem : EntitySystem
             return;
 
         var prefix = _random.Pick(_prototypeManager.Index(component.NameFragments).Values);
-        _meta.SetEntityName(uid, $"{prefix}-{metaDataComponent.EntityName} {Math.Ceiling(_random.NextFloat(1f, 10f) * 100)}", metaDataComponent, false);
+        _meta.SetEntityName(
+            uid,
+            (component.EnableFragments ? component.FactionIdentificator + prefix + " - " : component.FactionIdentificator + (component.HasIdentificator ? "" : " ")) +
+            metaDataComponent.EntityName.Trim() +
+            " " +
+            Math.Ceiling(_random.NextFloat(1f, 10f) * 100),
+            metaDataComponent,
+            false);
     }
 }
