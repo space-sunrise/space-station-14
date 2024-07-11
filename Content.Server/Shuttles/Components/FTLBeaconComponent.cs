@@ -6,5 +6,6 @@ namespace Content.Server.Shuttles.Components;
 [RegisterComponent]
 public sealed partial class FTLBeaconComponent : Component
 {
-    public bool BlockRotate = false;
+    [DataField]
+    public bool BlockRotate;
 }

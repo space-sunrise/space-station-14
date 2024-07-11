@@ -211,7 +211,7 @@
 
 - type: loadoutGroup
   id: PrisonGuardJumpsuit
-  name: loadout-group-security-guard-jumpsuit
+  name: loadout-group-prison-guard-jumpsuit
   loadouts:
   - PrisonGuardJumpsuit
   - PrisonGuardJumpskirt

@@ -15,8 +15,6 @@
             !type:NanotrasenNameGenerator
             prefixCreator: 'TG'
         - type: StationJobs
-          overflowJobs:
-            - Prisoner
           availableJobs:
             HeadOfPrison: [ 1, 1 ]
             PrisonWorker: [ 3, 3 ]

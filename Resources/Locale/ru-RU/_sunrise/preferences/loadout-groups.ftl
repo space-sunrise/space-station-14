@@ -20,3 +20,7 @@ loadout-group-roboticist-jumpsuit = Робототехник, комбинезо
 loadout-group-roboticist-outerclothing = Робототехник, верхняя одежда
 loadout-group-security-pilot-backpack = Пилот СБ, рюкзак
 loadout-group-security-pilot-jumpsuit = Пилот СБ, комбинезон
+loadout-group-prison-guard-jumpsuit = Охранник, комбинезон
+loadout-group-prison-guard-backpack = Охранник, рюкзак
+loadout-group-prison-guard-head = Охранник, головной убор
+loadout-group-prisoner-jumpsuit = Заключенный, комбинезон
