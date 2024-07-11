@@ -23,7 +23,8 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: NT Evac Box
+      name: Evac Box
+    - type: ShuttleNameGenerator
     - type: Transform
       pos: 0.06253052,0.58707
       parent: invalid
