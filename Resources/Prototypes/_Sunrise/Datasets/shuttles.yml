@@ -1,0 +1,10 @@
+﻿- type: dataset
+  id: ru_shuttle_prefixes
+  values:
+  - NT
+  - WH
+  - TM
+  - BR
+  - SS
+  - NTAS
+  - NTMS
