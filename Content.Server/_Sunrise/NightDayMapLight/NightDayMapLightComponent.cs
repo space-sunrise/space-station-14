@@ -13,6 +13,6 @@ namespace Content.Server._Sunrise.NightDayMapLight
 
         [ViewVariables]
         [DataField]
-        public float DayDuration = 60;
+        public float DayDuration = 1200;
     }
 }
