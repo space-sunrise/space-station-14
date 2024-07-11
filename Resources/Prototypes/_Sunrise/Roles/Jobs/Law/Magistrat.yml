@@ -53,6 +53,5 @@
     head: ClothingHeadHatPwig
   storage:
     back:
-    - BoxSurvival
     - RubberStampMagistrat
     - ClothingNeckLawyerbadge

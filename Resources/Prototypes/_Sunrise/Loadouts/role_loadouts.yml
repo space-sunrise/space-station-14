@@ -5,6 +5,7 @@
   - LawyerJumpsuit
   - CommonBackpack
   - Trinkets
+  - Survival
   - Bra
   - Pants
   - Socks
@@ -14,6 +15,7 @@
   groups:
   - CommonBackpack
   - Trinkets
+  - Survival
   - Bra
   - Pants
   - Socks
@@ -23,8 +25,9 @@
   groups:
   - BrigmedicJumpsuit
   - BrigmedicBackpack
+  - SurvivalSecurity
   - Trinkets
-  - Bodycam
+  - SecurityTrinkets
   - Bra
   - Pants
   - Socks
@@ -32,8 +35,10 @@
 - type: roleLoadout
   id: JobCentCommOfficial
   groups:
+  - CentCommOperatorJumpsuit
+  - CentCommOperatorHats
   - Trinkets
-  - Bodycam
+  - Survival
   - Bra
   - Pants
   - Socks
@@ -41,8 +46,10 @@
 - type: roleLoadout
   id: JobCentCommOperator
   groups:
+  - CentCommOperatorJumpsuit
+  - CentCommOperatorHats
   - Trinkets
-  - Bodycam
+  - Survival
   - Bra
   - Pants
   - Socks
@@ -52,7 +59,79 @@
   groups:
   - BlueShieldJumpsuit
   - BlueShieldBackpack
-  - Bodycam
+  - Trinkets
+  - Survival
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobSeniorOfficer
+  groups:
+  - SeniorOfficerJumpsuit
+  - SecurityBackpack
+  - SecurityBelt
+  - SecurityOuterClothing
+  - SecurityShoes
+  - SurvivalSecurity
+  - Trinkets
+  - SecurityTrinkets
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobSeniorResearcher
+  groups:
+  - SeniorResearcherJumpsuit
+  - ScientistBackpack
+  - ScientistGloves
+  - ScientistShoes
+  - Glasses
+  - Survival
+  - Trinkets
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobSeniorPhysician
+  groups:
+  - SeniorPhysicianJumpsuit
+  - MedicalBackpack
+  - MedicalGloves
+  - MedicalMask
+  - MedicalShoes
+  - SurvivalMedical
+  - Trinkets
+  - Glasses
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobSeniorEngineer
+  groups:
+  - SeniorEngineerJumpsuit
+  - StationEngineerBackpack
+  - StationEngineerOuterClothing
+  - StationEngineerShoes
+  - SurvivalExtended
+  - Trinkets
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobRoboticist
+  groups:
+  - RoboticistHead
+  - ScientistNeck
+  - RoboticistJumpsuit
+  - RoboticistOuterClothing
+  - ScientistBackpack
+  - ScientistShoes
+  - Survival
   - Trinkets
   - Bra
   - Pants

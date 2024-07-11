@@ -1,0 +1,12 @@
+- type: entity
+  id: AphrodesiacChemistryBottle
+  name: aphrodesiac bottle
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Aphrodesiac
+          Quantity: 30

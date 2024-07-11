@@ -28,10 +28,10 @@
   id: SecurityOfficerGear
   equipment:
     eyes: ClothingEyesGlassesSecurity
+    id: SecurityPDA
     ears: ClothingHeadsetSecurity
-    pocket1: WeaponPistolMk58
+    pocket1: WeaponPistolMk58Nonlethal # Sunrise-Edit
   storage:
     back:
-    - BoxSurvivalSecurity
     - Flash
-    - MagazinePistol
+    #- MagazinePistol # Sunrise-Edit

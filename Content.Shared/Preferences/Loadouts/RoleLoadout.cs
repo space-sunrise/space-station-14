@@ -126,9 +126,12 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
             // If you put invalid ones first but that's your fault for not using sensible defaults
             if (loadouts.Count < groupProto.MinLimit)
             {
-                for (var i = 0; i < Math.Min(groupProto.MinLimit, groupProto.Loadouts.Count); i++)
+                foreach (var protoId in groupProto.Loadouts)
                 {
-                    if (!protoManager.TryIndex(groupProto.Loadouts[i], out var loadoutProto))
+                    if (loadouts.Count >= groupProto.MinLimit)
+                        break;
+
+                    if (!protoManager.TryIndex(protoId, out var loadoutProto))
                         continue;
 
                     var defaultLoadout = new Loadout()
@@ -140,7 +143,7 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
                         continue;
 
                     // Not valid so don't default to it anyway.
-                    if (!IsValid(profile, session, defaultLoadout.Prototype, collection, sponsorPrototypes, out _)) // Sunrise-Sponsors
+                    if (!IsValid(profile, session, defaultLoadout.Prototype, collection, sponsorPrototypes, out _))
                         continue;
 
                     loadouts.Add(defaultLoadout);
@@ -194,17 +197,15 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
 
             if (groupProto.MinLimit > 0)
             {
-                var validLoadoutsCount = 0;
-                var j = 0;
-
-                // Loop while we need more valid loadouts and we haven't exhausted the list of loadouts
-                while (validLoadoutsCount < groupProto.MinLimit && j < groupProto.Loadouts.Count)
+                // Apply any loadouts we can.
+                foreach (var protoId in groupProto.Loadouts)
                 {
-                    if (!protoManager.TryIndex(groupProto.Loadouts[j], out var loadoutProto))
-                    {
-                        j++;
+                    // Reached the limit, time to stop
+                    if (loadouts.Count >= groupProto.MinLimit)
+                        break;
+
+                    if (!protoManager.TryIndex(protoId, out var loadoutProto))
                         continue;
-                    }
 
                     var defaultLoadout = new Loadout()
                     {
@@ -213,16 +214,10 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
 
                     // Not valid so don't default to it anyway.
                     if (!IsValid(profile, session, defaultLoadout.Prototype, collection, sponsorPrototypes, out _))
-                    {
-                        j++; // Move to the next loadout
                         continue;
-                    }
 
                     loadouts.Add(defaultLoadout);
                     Apply(loadoutProto);
-
-                    validLoadoutsCount++;
-                    j++;
                 }
             }
         }

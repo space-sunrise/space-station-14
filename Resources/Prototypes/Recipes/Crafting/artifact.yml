@@ -1,12 +1,12 @@
 ﻿- type: construction
-  name: alien artifact
+  name: инопланетный артефакт  # Sunrise-recipes
   id: Artifact
   graph: Artifact
   startNode: start
   targetNode: done
   category: construction-category-misc
   objectType: Item
-  description: A strange alien artifact
+  description: Странный инопланетный артефакт  # Sunrise-recipes
   icon:
     sprite: Objects/Specific/Xenoarchaeology/item_artifacts.rsi
     state: ano01

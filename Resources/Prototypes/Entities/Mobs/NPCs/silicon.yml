@@ -158,6 +158,7 @@
     makeSentient: true
     name: ghost-role-information-honkbot-name
     description: ghost-role-information-honkbot-description
+    rules: ghost-role-information-freeagent-rules
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
@@ -185,6 +186,7 @@
     makeSentient: true
     name: ghost-role-information-jonkbot-name
     description: ghost-role-information-jonkbot-description
+    rules: ghost-role-information-freeagent-rules
     raffle:
       settings: default
   - type: InteractionPopup
@@ -249,7 +251,11 @@
       path: /Audio/Ambience/Objects/periodic_beep.ogg
 
 - type: entity
-  parent: [MobSiliconBase, ShowMedicalIcons, FlyingMobBase]
+  parent:
+  - MobSiliconBase
+  - ShowMedicalIcons
+  - StripableInventoryBase
+  - FlyingMobBase
   id: MobMedibot
   name: medibot
   description: No substitute for a doctor, but better than nothing.
@@ -290,6 +296,9 @@
       path: /Audio/Ambience/Objects/periodic_beep.ogg
   - type: Advertise
     pack: MedibotAds
+  - type: Inventory
+    templateId: medibot
+  # Sunrise-Start
   - type: AmbientSound
     enabled: true
     volume: 0
@@ -307,19 +316,16 @@
         - FlyingMobMask
         layer:
         - FlyingMobLayer
+  # Sunrise-End
 
 - type: entity
-  parent: MobSiliconBase
+  parent:
+  - MobSiliconBase
+  - StripableInventoryBase
   id: MobMimeBot
   name: mimebot
   description: Why not give mimebot a friendly wave.
   components:
-  - type: InventorySlots
-  - type: Strippable
-  - type: UserInterface
-    interfaces:
-      enum.StrippingUiKey.Key:
-        type: StrippableBoundUserInterface
   - type: Sprite
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
@@ -333,6 +339,7 @@
     makeSentient: true
     name: ghost-role-information-mimebot-name
     description: ghost-role-information-mimebot-description
+    rules: ghost-role-information-freeagent-rules
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
@@ -352,10 +359,18 @@
     sprite: Mobs/Silicon/Bots/supplybot.rsi
     layers:
     - state: supplybot
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: supplybot-moving
+    noMovementLayers:
+      movement:
+        state: supplybot
   - type: GhostRole
     makeSentient: true
     name: ghost-role-information-supplybot-name
     description: ghost-role-information-supplybot-description
+    rules: ghost-role-information-nonantagonist-rules
     raffle:
       settings: default
   - type: GhostTakeoverAvailable

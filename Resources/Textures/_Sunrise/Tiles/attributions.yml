@@ -1,0 +1,7 @@
+# Attempted to keep the files in alphabetical order so its easier to audit.
+# Finding individual authors is an unfeasible task. If you can reference the author please do so.
+
+- files: ["light-fancy-wood.png"]
+  license: "CLA"
+  copyright: "Taked from ParadiseSS13"
+  source: "https://github.com/space-sunrise/space-station-14"

@@ -1,4 +1,5 @@
 using Content.Client.UserInterface.Systems.Chat.Controls;
+using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Input;
 using Robust.Client.Audio;
@@ -8,6 +9,7 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Audio;
+using Robust.Shared.Configuration;
 using Robust.Shared.Input;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
@@ -22,6 +24,7 @@ public partial class ChatBox : UIWidget
 {
     private readonly ChatUIController _controller;
     private readonly IEntityManager _entManager;
+    private readonly IConfigurationManager _configurationManager;
 
     public bool Main { get; set; }
 
@@ -31,6 +34,7 @@ public partial class ChatBox : UIWidget
     {
         RobustXamlLoader.Load(this);
         _entManager = IoCManager.Resolve<IEntityManager>();
+        _configurationManager = IoCManager.Resolve<IConfigurationManager>();
 
         ChatInput.Input.OnTextEntered += OnTextEntered;
         ChatInput.Input.OnKeyBindDown += OnInputKeyBindDown;
@@ -41,6 +45,11 @@ public partial class ChatBox : UIWidget
         _controller = UserInterfaceManager.GetUIController<ChatUIController>();
         _controller.MessageAdded += OnMessageAdded;
         _controller.RegisterChat(this);
+    }
+
+    public void SetChatOpacity()
+    {
+        _controller.SetChatWindowOpacity(_configurationManager.GetCVar(CCVars.ChatWindowOpacity));
     }
 
     private void OnTextEntered(LineEditEventArgs args)

@@ -45,11 +45,6 @@ namespace Content.Client._Sunrise.ServersHub
 
             ServersList.PopulateList(sortedServers.Select(info => new ServerListData(info))
                 .ToList());
-
-            var totalPlayers = servers.Sum(server => server.CurrentPlayers);
-            var maxPlayers = servers.Sum(server => server.MaxPlayers);
-            // Очень круто показывать общее количество игроков со всех серверов, сразу видно какой проект бальшой.
-            TotalPlayers.Text = $"Сейчас играет: {totalPlayers}/{maxPlayers}";
         }
 
         private int Compare(ServerHubEntry x, ServerHubEntry y)

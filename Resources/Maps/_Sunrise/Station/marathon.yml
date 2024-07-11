@@ -9298,6 +9298,14 @@ entities:
     - type: Transform
       pos: -10.5,15.5
       parent: 30
+- proto: AirlockBlueShieldLocked
+  entities:
+  - uid: 1052
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -37.5,10.5
+      parent: 30
 - proto: AirlockBrigGlassLocked
   entities:
   - uid: 556
@@ -9581,12 +9589,6 @@ entities:
       parent: 30
 - proto: AirlockCommandLocked
   entities:
-  - uid: 1089
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -37.5,10.5
-      parent: 30
   - uid: 1794
     components:
     - type: Transform
@@ -10860,7 +10862,7 @@ entities:
       pos: -27.5,18.5
       parent: 30
     - type: Door
-      secondsUntilStateChange: -535.0326
+      secondsUntilStateChange: -626.3288
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -54878,6 +54880,14 @@ entities:
     - type: Transform
       pos: -2.5,9.5
       parent: 30
+- proto: DefaultStationBeaconBlueShield
+  entities:
+  - uid: 1086
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -40.5,10.5
+      parent: 30
 - proto: DefaultStationBeaconBotany
   entities:
   - uid: 20535
@@ -96263,6 +96273,13 @@ entities:
     - type: Transform
       pos: -10.5,-19.5
       parent: 30
+- proto: GunSafeBlueShield
+  entities:
+  - uid: 1089
+    components:
+    - type: Transform
+      pos: -38.5,9.5
+      parent: 30
 - proto: GunSafeDisabler
   entities:
   - uid: 726
@@ -98826,10 +98843,10 @@ entities:
         - 0
 - proto: LockerBlueshieldFilledHardsuit
   entities:
-  - uid: 1052
+  - uid: 1087
     components:
     - type: Transform
-      pos: -38.5,9.5
+      pos: -39.5,9.5
       parent: 30
 - proto: LockerBoozeFilled
   entities:
@@ -115307,7 +115324,7 @@ entities:
     - type: Transform
       pos: -10.5,-9.5
       parent: 30
-- proto: SMESBasic
+- proto: SMESExtended
   entities:
   - uid: 5472
     components:
@@ -117984,7 +118001,7 @@ entities:
     - type: ContainerContainer
       containers:
         cell_slot: !type:ContainerSlot {}
-- proto: SubstationBasic
+- proto: SubstationExtended
   entities:
   - uid: 1414
     components:
@@ -121022,12 +121039,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -39.5,11.5
-      parent: 30
-  - uid: 1086
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -39.5,9.5
       parent: 30
   - uid: 1741
     components:
@@ -137933,6 +137944,12 @@ entities:
       parent: 30
     - type: Physics
       canCollide: False
+  - uid: 14844
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -41.5,12.5
+      parent: 30
 - proto: WardrobeBlackFilled
   entities:
   - uid: 9942
@@ -138553,11 +138570,6 @@ entities:
       parent: 30
 - proto: WeaponCapacitorRecharger
   entities:
-  - uid: 1087
-    components:
-    - type: Transform
-      pos: -39.5,9.5
-      parent: 30
   - uid: 1924
     components:
     - type: Transform

@@ -42,6 +42,13 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/multiphase_energygun.rsi
     state: base
 
+- type: stealTargetGroup  # Sunrise-Nuke
+  id: PlutoniumCore
+  name: plutonium core
+  sprite:
+    sprite: _Sunrise/Objects/Misc/plutonium_core.rsi
+    state: icon
+
 - type: stealTargetGroup
   id: ClothingShoesBootsMagAdv
   name: advanced magboots

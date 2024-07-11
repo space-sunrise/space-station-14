@@ -100,14 +100,6 @@
   - BrigmedicJumpskirt
 
 - type: loadoutGroup
-  id: PsychologistBackpack
-  name: loadout-group-brigmedic-backpack
-  loadouts:
-  - PsychologistBackpack
-  - PsychologistSatchel
-  - PsychologistDuffel
-
-- type: loadoutGroup
   id: BlueShieldBackpack
   name: loadout-group-blueshield-backpack
   loadouts:
@@ -123,11 +115,99 @@
   - BlueShieldJumpskirt
 
 - type: loadoutGroup
-  id: Bodycam
-  name: loadout-group-bodycam
+  id: SecurityTrinkets
+  name: loadout-group-security-trinkets
+  minLimit: 0
+  maxLimit: 3
+  loadouts:
+  - SecurityBodycam
+  - SecurityWhistle
+  - SecurityRadioHandheld
+  - SecurityTourniquet
+  - SecurityWeaponMeleeNeedle
+  - SecurityHoloprojector
+
+- type: loadoutGroup
+  id: CorporateLaw
+  name: loadout-group-corporate-law
   minLimit: 0
   loadouts:
-  - Bodycam
+  - CorporateLaw
+
+- type: loadoutGroup
+  id: CentCommOperatorJumpsuit
+  name: loadout-group-centcomm-operator-jumpsuit
+  loadouts:
+  - CentCommOfficerJumpsuit
+  - CentCommOfficerJumpskirt
+  - CentCommOfficialJumpsuit
+  - CentCommOfficialJumpskirt
+
+- type: loadoutGroup
+  id: CentCommOperatorHats
+  name: loadout-group-centcomm-operator-head-hat
+  loadouts:
+  - HeadHatBeretCentcomNaval
+  - HeadHatCentcomcap
+
+- type: loadoutGroup
+  id: ChiefEngineerBackpack
+  name: loadout-group-chief-engineer-backpack
+  loadouts:
+  - ChiefEngineerBackpack
+  - ChiefEngineerSatchel
+  - ChiefEngineerDuffel
+
+- type: loadoutGroup
+  id: SeniorOfficerJumpsuit
+  name: loadout-group-senior-officer-jumpsuit
+  loadouts:
+  - JumpsuitSeniorOfficer
+  - JumpskirtSeniorOfficer
+
+- type: loadoutGroup
+  id: SeniorResearcherJumpsuit
+  name: loadout-group-senior-researcher-jumpsuit
+  loadouts:
+  - JumpsuitSeniorResearcher
+  - JumpskirtSeniorResearcher
+
+- type: loadoutGroup
+  id: SeniorPhysicianJumpsuit
+  name: loadout-group-senior-physician-jumpsuit
+  loadouts:
+  - JumpsuitSeniorPhysician
+  - JumpskirtSeniorPhysician
+
+- type: loadoutGroup
+  id: SeniorEngineerJumpsuit
+  name: loadout-group-senior-engineer-jumpsuit
+  loadouts:
+  - JumpsuitSeniorEngineer
+  - JumpskirtSeniorEngineer
+
+- type: loadoutGroup
+  id: RoboticistJumpsuit
+  name: loadout-group-roboticist-jumpsuit
+  loadouts:
+  - RoboticistJumpsuit
+  - RoboticistJumpskirt
+
+- type: loadoutGroup
+  id: RoboticistOuterClothing
+  name: loadout-group-roboticist-outerclothing
+  minLimit: 0
+  loadouts:
+  - RoboticistLabCoat
+  - RoboticistWintercoat
+
+- type: loadoutGroup
+  id: RoboticistHead
+  name: loadout-group-roboticist-head
+  minLimit: 0
+  loadouts:
+  - RoboticistCap
+  - SkullBandana
 
 - type: loadoutGroup
   id: SecurityGuardJumpsuit

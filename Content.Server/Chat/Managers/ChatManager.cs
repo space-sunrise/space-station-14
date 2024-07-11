@@ -5,21 +5,20 @@ using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
 using Content.Server.MoMMI;
+using Content.Server.Players.RateLimiting;
 using Content.Server.Preferences.Managers;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Database;
 using Content.Shared.Mind;
-using Content.Sunrise.Interfaces.Server;
-using Content.Sunrise.Interfaces.Shared;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Replays;
-using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Server.Chat.Managers
 {
@@ -45,9 +44,8 @@ namespace Content.Server.Chat.Managers
         [Dependency] private readonly IConfigurationManager _configurationManager = default!;
         [Dependency] private readonly INetConfigurationManager _netConfigManager = default!;
         [Dependency] private readonly IEntityManager _entityManager = default!;
-        [Dependency] private readonly IGameTiming _gameTiming = default!;
-        [Dependency] private readonly IPlayerManager _playerManager = default!;
-        private IServerSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
+        [Dependency] private readonly PlayerRateLimitManager _rateLimitManager = default!;
+        private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
         /// <summary>
         /// The maximum length a player-sent message can be sent
@@ -68,7 +66,7 @@ namespace Content.Server.Chat.Managers
             _configurationManager.OnValueChanged(CCVars.OocEnabled, OnOocEnabledChanged, true);
             _configurationManager.OnValueChanged(CCVars.AdminOocEnabled, OnAdminOocEnabledChanged, true);
 
-            _playerManager.PlayerStatusChanged += PlayerStatusChanged;
+            RegisterRateLimits();
         }
 
         private void OnOocEnabledChanged(bool val)
@@ -210,7 +208,7 @@ namespace Content.Server.Chat.Managers
         /// <param name="type">The type of message.</param>
         public void TrySendOOCMessage(ICommonSession player, string message, OOCChatType type)
         {
-            if (!HandleRateLimit(player))
+            if (HandleRateLimit(player) != RateLimitStatus.Allowed)
                 return;
 
             // Check if message exceeds the character limit

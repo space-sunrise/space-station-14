@@ -45,3 +45,20 @@
     - HudMedical
   - type: EyeProtection
     protectionTime: 5
+
+- type: entity
+  parent: ClothingEyesBase
+  id: ClothingEyesGlassesWelding
+  name: Welding glasses
+  description: That's a welding goggles. It is a small item. Protects the eyes from welders.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Eyes/Glasses/weldglasses.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Eyes/Glasses/weldglasses.rsi
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+  - type: Tag
+    tags:
+    - HamsterWearable

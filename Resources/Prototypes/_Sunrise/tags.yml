@@ -3,3 +3,12 @@
 
 - type: Tag
   id: SunriseUplink
+
+- type: Tag
+  id: PlutoniumCore
+
+- type: Tag
+  id: Predator
+
+- type: Tag
+  id: HumanoidXeno

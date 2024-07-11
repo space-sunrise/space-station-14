@@ -13,3 +13,15 @@
     heldPrefix: silver
   - type: PresetIdCard
     job: BlueShield
+
+- type: entity
+  parent: IDCardStandard
+  id: RoboticistIDCard
+  name: ID карта робототехника
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idroboticist
+  - type: PresetIdCard
+    job: Roboticist

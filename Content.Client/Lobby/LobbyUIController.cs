@@ -15,7 +15,6 @@ using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Content.Shared.Traits;
-using Content.Sunrise.Interfaces.Client;
 using Robust.Client.Player;
 using Robust.Client.ResourceManagement;
 using Robust.Client.State;
@@ -25,6 +24,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Client.Lobby;
 
@@ -47,7 +47,8 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
 
     private CharacterSetupGui? _characterSetup;
     private HumanoidProfileEditor? _profileEditor;
-    private IClientSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
+    private CharacterSetupGuiSavePanel? _savePanel;
+    private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
     /// <summary>
     /// This is the characher preview panel in the chat. This should only update if their character updates.
@@ -217,6 +218,46 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         ReloadCharacterSetup();
     }
 
+    private void CloseProfileEditor()
+    {
+        if (_profileEditor == null)
+            return;
+
+        _profileEditor.SetProfile(null, null);
+        _profileEditor.Visible = false;
+
+        if (_stateManager.CurrentState is LobbyState lobbyGui)
+        {
+            lobbyGui.SwitchState(LobbyGui.LobbyGuiState.Default);
+        }
+    }
+
+    private void OpenSavePanel()
+    {
+        if (_savePanel is { IsOpen: true })
+            return;
+
+        _savePanel = new CharacterSetupGuiSavePanel();
+
+        _savePanel.SaveButton.OnPressed += _ =>
+        {
+            SaveProfile();
+
+            _savePanel.Close();
+
+            CloseProfileEditor();
+        };
+
+        _savePanel.NoSaveButton.OnPressed += _ =>
+        {
+            _savePanel.Close();
+
+            CloseProfileEditor();
+        };
+
+        _savePanel.OpenCentered();
+    }
+
     private (CharacterSetupGui, HumanoidProfileEditor) EnsureGui()
     {
         if (_characterSetup != null && _profileEditor != null)
@@ -239,18 +280,20 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
 
         _profileEditor.OnOpenGuidebook += _guide.OpenHelp;
 
-        _characterSetup = new CharacterSetupGui(EntityManager, _prototypeManager, _resourceCache, _preferencesManager, _profileEditor);
+        _characterSetup = new CharacterSetupGui(EntityManager, _prototypeManager, _resourceCache, _preferencesManager, _profileEditor, _configurationManager);
 
         _characterSetup.CloseButton.OnPressed += _ =>
         {
-            // Reset sliders etc.
-            _profileEditor.SetProfile(null, null);
-            _profileEditor.Visible = false;
-
-            if (_stateManager.CurrentState is LobbyState lobbyGui)
+            // Open the save panel if we have unsaved changes.
+            if (_profileEditor.Profile != null && _profileEditor.IsDirty)
             {
-                lobbyGui.SwitchState(LobbyGui.LobbyGuiState.Default);
+                OpenSavePanel();
+
+                return;
             }
+
+            // Reset sliders etc.
+            CloseProfileEditor();
         };
 
         _profileEditor.Save += SaveProfile;

@@ -1,0 +1,71 @@
+- type: entity
+  parent: [ SimpleMobBase, MobCombat ]
+  id: MobBook
+  name: Фолиант
+  description: Ожившая книга-мимик, охраняющая библиотечные знания.
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4
+    baseSprintSpeed: 5.5
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: dogbook
+      sprite: _Sunrise/Mobs/Pets/dogbook.rsi
+  - type: Speech
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 10
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: dogbook
+      Dead:
+        Base: dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 2
+    - id: BookHowToCookForFortySpaceman  # Типо разделали, и получите гайд на шефа :D
+  - type: InteractionPopup
+    successChance: 0.3
+    interactSuccessString: petting-success-goose  # Я хз как это описать
+    interactSuccessSpawn: EffectHearts
+    interactFailureString: petting-failure-goat
+    interactSuccessSound:
+      path: /Audio/Animals/fox11.ogg
+  - type: GhostRole
+    makeSentient: true
+    allowMovement: true
+    allowSpeech: true
+    name: Фолиант
+    description: Помогайте своему библиотекарю просвящать эту станцию.
+    rules: Вы разумная книга-мимик. Помогайте своему хозяину скрасить жизнь, просвящайте всех на станции.
+  - type: GhostTakeoverAvailable
+  - type: Grammar
+    attributes:
+      gender: male  # ОН фолиант
+      proper: true
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - VimPilot
+  - type: Access
+    tags:
+    - Service
+  - type: MindContainer
+    showExamineInfo: true
+  - type: NpcFactionMember
+    factions:
+    - PetsNT
+  - type: Alerts
+  - type: Familiar

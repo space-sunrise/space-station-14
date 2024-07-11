@@ -55,40 +55,6 @@
       collection: FelinidGrowls
 
 - type: emoteSounds
-  id: UnisexSynth
-  params:
-    variation: 0.125
-  sounds:
-    Scream:
-      collection: SynthScreams
-    Laugh:
-      collection: MaleLaugh
-    Sneeze:
-      collection: MaleSneezes
-    Cough:
-      collection: MaleCoughs
-    CatMeow:
-      collection: CatMeows
-    CatHisses:
-      collection: CatHisses
-    MonkeyScreeches:
-      collection: MonkeyScreeches
-    RobotBeep:
-      collection: RobotBeeps
-    Yawn:
-      collection: MaleYawn
-    Snore:
-      collection: Snores
-    Honk:
-      collection: BikeHorn
-    Sigh:
-      collection: MaleSigh
-    Crying:
-      collection: MaleCry
-    Whistle:
-      collection: Whistles
-
-- type: emoteSounds
   id: MaleVulpkanin
   params:
     variation: 0.125
@@ -173,3 +139,22 @@
       collection: Whistles
   params:
     variation: 0.125
+
+- type: emoteSounds
+  id: XenoHumanoid
+  sound:
+    collection: HumanoidXenoScreams
+  params:
+    variation: 0.125
+
+- type: emoteSounds
+  id: Predator
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: PredatorScreams
+    Sigh:
+      collection: PredatorSigh
+    Laugh:
+      collection: PredatorLaugh

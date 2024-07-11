@@ -196,6 +196,8 @@
       - WeaponCapacitorRechargerCircuitboard
       - HandheldStationMap
       - ClothingHeadHatWelding
+      - WetFloorSign
+      - ClothingHeadHatCone
   - type: EmagLatheRecipes
     emagStaticRecipes:
       - BoxLethalshot
@@ -339,6 +341,16 @@
       - DeviceQuantumSpinInverter
   - type: EmagLatheRecipes
     emagDynamicRecipes:
+#Sunrise-edit start
+      - CartridgePistolRubber
+      - CartridgeMagnumRubber
+      - CartridgeRifleRubber
+      - CartridgeLightRifleRubber
+      - MagazineBoxPistolRubber
+      - MagazineBoxMagnumRubber
+      - MagazineBoxRifleRubber
+      - MagazineBoxLightRifleRubber
+#Sunrise-edit end
       - BoxBeanbag
       - BoxShotgunIncendiary
       - BoxShotgunUranium
@@ -552,7 +564,7 @@
     runningState: fab-active
     staticRecipes:
     - MMI
-    - PositronicBrain
+    - Boris
     - SciFlash
     - BorgModuleCable
     - BorgModuleFireExtinguisher
@@ -599,6 +611,16 @@
     - HeadBorgService
     - TorsoBorgService
     dynamicRecipes:
+#Sunrise-edit start
+    - CartridgeLightRifleRubber
+    - CartridgeMagnumRubber
+    - CartridgePistolRubber
+    - CartridgeRifleRubber
+    - MagazineBoxLightRifleRubber
+    - MagazineBoxMagnumRubber
+    - MagazineBoxPistolRubber
+    - MagazineBoxRifleRubber
+#Sunrise-edit end
     - ProximitySensor
     - BorgModuleLightReplacer
     - BorgModuleAdvancedCleaning
@@ -803,6 +825,10 @@
       - WeaponLaserCannon
       - WeaponLaserCarbine
       - WeaponXrayCannon
+      - WeaponEnergyGun       # Sunrise - Energy Gun
+      - WeaponEnergyGunMini   # Sunrise - Miniature Energy Gun
+      - WeaponEnergyGunPistol # Sunrise - PDW-9 Energy Pistol
+      - WeaponGunLaserCarbineAutomatic # Sunrise - IK-60 Laser Carbine
   - type: MaterialStorage
     whitelist:
       tags:

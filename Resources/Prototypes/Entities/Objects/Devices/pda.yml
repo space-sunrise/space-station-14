@@ -109,6 +109,9 @@
   id: BaseMedicalPDA
   abstract: true
   components:
+  - type: ItemToggle
+    toggleLight: false
+    onUse: false
   - type: HealthAnalyzer
     scanDelay: 1
     scanningEndSound:
@@ -390,6 +393,11 @@
     borderColor: "#858585"
   - type: Icon
     state: pda-library
+  # Sunrise-start
+  - type: Summonable
+    requiresBibleUser: false
+    specialItem: SpawnPointGhostFoliant
+  # Sunrise-end
 
 - type: entity
   parent: BasePDA
@@ -667,6 +675,7 @@
     scanDelay: 0
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
+    notificationsEnabled: false
     preinstalled:
       - CrewManifestCartridge
       - NotekeeperCartridge

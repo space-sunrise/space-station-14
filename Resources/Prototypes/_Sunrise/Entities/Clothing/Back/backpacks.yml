@@ -36,8 +36,8 @@
 - type: entity
   parent: ClothingBackpack
   id: ClothingBackpackBlueShield
-  name: рюкзак офицера «синий щит»
-  description: На стиле.
+  name: blue shield's backpack
+  description: Superior.
   components:
     - type: Sprite
       sprite: _Sunrise/Clothing/Back/Backpacks/blueshield.rsi

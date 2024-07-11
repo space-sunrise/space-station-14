@@ -13440,6 +13440,16 @@ entities:
     - type: Transform
       pos: -12.447352,-72.425316
       parent: 8364
+  - uid: 21345
+    components:
+    - type: Transform
+      pos: -12.645218,-72.45986
+      parent: 8364
+  - uid: 21346
+    components:
+    - type: Transform
+      pos: -12.328812,-72.45986
+      parent: 8364
 - proto: AnomalyScanner
   entities:
   - uid: 2172
@@ -14649,6 +14659,34 @@ entities:
     components:
     - type: Transform
       pos: -40.5,-49.5
+      parent: 8364
+  - uid: 21144
+    components:
+    - type: Transform
+      pos: -68.5,-17.5
+      parent: 8364
+  - uid: 21246
+    components:
+    - type: Transform
+      pos: -75.5,-17.5
+      parent: 8364
+  - uid: 21279
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -79.5,-13.5
+      parent: 8364
+  - uid: 21336
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -81.5,-4.5
+      parent: 8364
+  - uid: 21343
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -81.5,9.5
       parent: 8364
   - uid: 27622
     components:
@@ -70288,6 +70326,11 @@ entities:
     - type: Transform
       pos: -11.5,-72.5
       parent: 8364
+  - uid: 21344
+    components:
+    - type: Transform
+      pos: -10.5,-72.5
+      parent: 8364
 - proto: CrateEngineeringCableBulk
   entities:
   - uid: 9423
@@ -71496,6 +71539,13 @@ entities:
     components:
     - type: Transform
       pos: 23.5,-6.5
+      parent: 8364
+- proto: DefaultStationBeaconBlueShield
+  entities:
+  - uid: 21348
+    components:
+    - type: Transform
+      pos: -22.5,-11.5
       parent: 8364
 - proto: DefaultStationBeaconBotany
   entities:
@@ -120118,6 +120168,13 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,44.5
       parent: 8364
+- proto: GunSafeBlueShield
+  entities:
+  - uid: 21347
+    components:
+    - type: Transform
+      pos: -23.5,-13.5
+      parent: 8364
 - proto: GunSafeDisabler
   entities:
   - uid: 6253
@@ -128662,6 +128719,12 @@ entities:
       parent: 8364
     - type: ApcPowerReceiver
       powerLoad: 0
+  - uid: 21268
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -78.5,-14.5
+      parent: 8364
   - uid: 21330
     components:
     - type: Transform
@@ -141147,7 +141210,7 @@ entities:
     - type: Transform
       pos: -3.5,51.5
       parent: 8364
-- proto: SMESBasic
+- proto: SMESExtended
   entities:
   - uid: 865
     components:
@@ -144006,7 +144069,7 @@ entities:
     - type: Transform
       pos: 62.5,-33.5
       parent: 8364
-- proto: SubstationBasic
+- proto: SubstationExtended
   entities:
   - uid: 1666
     components:

@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.EUI;
+using Content.Server.GameTicking;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Ghost.Roles.Events;
 using Content.Server.Ghost.Roles.Raffles;
@@ -48,6 +49,7 @@ namespace Content.Server.Ghost.Roles
         [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly PopupSystem _popupSystem = default!;
         [Dependency] private readonly IPrototypeManager _prototype = default!;
+        [Dependency] private readonly GameTicker _gameTicker = default!;
 
         private uint _nextRoleIdentifier;
         private bool _needsUpdateGhostRoleCount = true;
@@ -117,9 +119,12 @@ namespace Content.Server.Ghost.Roles
 
         public void OpenEui(ICommonSession session)
         {
-            if (session.AttachedEntity is not { Valid: true } attached ||
-                !EntityManager.HasComponent<GhostComponent>(attached))
+            if (!_gameTicker.PlayerGameStatuses.TryGetValue(session.UserId, out var status))
                 return;
+
+             if ((session.AttachedEntity is not { Valid: true } attached ||
+                 !EntityManager.HasComponent<GhostComponent>(attached)) && status != PlayerGameStatus.NotReadyToPlay)
+                 return;
 
             if (_openUis.ContainsKey(session))
                 CloseEui(session);
@@ -266,8 +271,11 @@ namespace Content.Server.Ghost.Roles
             if (player.Status != SessionStatus.InGame)
                 return false;
 
+            if (!_gameTicker.PlayerGameStatuses.TryGetValue(player.UserId, out var status))
+                return false;
+
             // can't win if you are no longer a ghost (e.g. if you returned to your body)
-            if (player.AttachedEntity == null || !HasComp<GhostComponent>(player.AttachedEntity))
+            if ((player.AttachedEntity == null || !HasComp<GhostComponent>(player.AttachedEntity)) && status != PlayerGameStatus.NotReadyToPlay)
                 return false;
 
             if (Takeover(player, identifier))
@@ -470,6 +478,9 @@ namespace Content.Server.Ghost.Roles
             if (!_ghostRoles.TryGetValue(identifier, out var role))
                 return false;
 
+            if (_gameTicker.PlayerGameStatuses.TryGetValue(player.UserId, out var status) && status == PlayerGameStatus.NotReadyToPlay)
+                _gameTicker.PlayerJoinGame(player);
+
             var ev = new TakeGhostRoleEvent(player);
             RaiseLocalEvent(role, ref ev);
 
@@ -534,6 +545,7 @@ namespace Content.Server.Ghost.Roles
                 if (metaQuery.GetComponent(uid).EntityPaused)
                     continue;
 
+                var prototypeId = metaQuery.GetComponent(uid).EntityPrototype!.ID; // Sunrise-Sponsors
 
                 var kind = GhostRoleKind.FirstComeFirstServe;
                 GhostRoleRaffleComponent? raffle = null;
@@ -560,6 +572,7 @@ namespace Content.Server.Ghost.Roles
                 roles.Add(new GhostRoleInfo
                 {
                     Identifier = id,
+                    PrototypeId = prototypeId,
                     Name = role.RoleName,
                     Description = role.RoleDescription,
                     Rules = role.RoleRules,

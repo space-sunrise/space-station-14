@@ -5421,6 +5421,14 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 33.5,-10.5
       parent: 1
+- proto: AirlockBlueShieldLocked
+  entities:
+  - uid: 2344
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 18.5,21.5
+      parent: 1
 - proto: AirlockBrigGlassLocked
   entities:
   - uid: 2351
@@ -5577,12 +5585,6 @@ entities:
       parent: 1
 - proto: AirlockCommandLocked
   entities:
-  - uid: 2344
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 18.5,21.5
-      parent: 1
   - uid: 3309
     components:
     - type: Transform
@@ -22644,11 +22646,6 @@ entities:
     - type: Transform
       pos: 15.5,20.5
       parent: 1
-  - uid: 11806
-    components:
-    - type: Transform
-      pos: 16.5,20.5
-      parent: 1
   - uid: 11833
     components:
     - type: Transform
@@ -22663,6 +22660,16 @@ entities:
     components:
     - type: Transform
       pos: 17.5,21.5
+      parent: 1
+  - uid: 12498
+    components:
+    - type: Transform
+      pos: 17.5,20.5
+      parent: 1
+  - uid: 12532
+    components:
+    - type: Transform
+      pos: 16.5,20.5
       parent: 1
 - proto: CarpetGreen
   entities:
@@ -29065,6 +29072,13 @@ entities:
     components:
     - type: Transform
       pos: 1.5,6.5
+      parent: 1
+- proto: DefaultStationBeaconBlueShield
+  entities:
+  - uid: 12380
+    components:
+    - type: Transform
+      pos: 15.5,21.5
       parent: 1
 - proto: DefaultStationBeaconBotany
   entities:
@@ -55054,6 +55068,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: -26.5,-30.5
       parent: 1
+- proto: GunSafeBlueShield
+  entities:
+  - uid: 11806
+    components:
+    - type: Transform
+      pos: 16.5,20.5
+      parent: 1
 - proto: Handcuffs
   entities:
   - uid: 5063
@@ -61333,11 +61354,6 @@ entities:
     - type: Transform
       pos: 7.5,27.5
       parent: 1
-  - uid: 11997
-    components:
-    - type: Transform
-      pos: 14.5,19.5
-      parent: 1
   - uid: 12106
     components:
     - type: Transform
@@ -61497,6 +61513,11 @@ entities:
     - type: Transform
       pos: -29.5,-5.5
       parent: 1
+  - uid: 11997
+    components:
+    - type: Transform
+      pos: 13.5,19.5
+      parent: 1
   - uid: 11998
     components:
     - type: Transform
@@ -61526,6 +61547,11 @@ entities:
     components:
     - type: Transform
       pos: -38.5,20.5
+      parent: 1
+  - uid: 12533
+    components:
+    - type: Transform
+      pos: 17.5,19.5
       parent: 1
 - proto: RandomSoap
   entities:
@@ -66493,7 +66519,7 @@ entities:
     - type: Transform
       pos: 18.5,-0.5
       parent: 1
-- proto: SMESBasic
+- proto: SMESExtended
   entities:
   - uid: 1097
     components:
@@ -67698,7 +67724,7 @@ entities:
     - type: Transform
       pos: 19.622953,15.5812435
       parent: 1
-- proto: SubstationBasic
+- proto: SubstationExtended
   entities:
   - uid: 1469
     components:

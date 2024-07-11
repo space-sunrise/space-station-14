@@ -1,33 +1,33 @@
 - type: construction
   id: ClosetSteel
-  name: closet
+  name: шкаф  # Sunrise-recipes
   graph: ClosetSteel
   startNode: start
   targetNode: done
   category: construction-category-storage
-  description: A tall steel box that cannot be locked.
+  description: Высокий стальной ящик, который нельзя запереть.  # Sunrise-recipes
   icon: { sprite: Structures/Storage/closet.rsi, state: generic_icon }
   objectType: Structure
 
 - type: construction
   id: ClosetSteelSecure
-  name: secure closet
+  name: надёжный шкаф  # Sunrise-recipes
   graph: ClosetSteelSecure
   startNode: start
   targetNode: done
   category: construction-category-storage
-  description: A tall steel box that can be locked.
+  description: Высокий стальной ящик, который можно запереть.  # Sunrise-recipes
   icon: { sprite: Structures/Storage/closet.rsi, state: secure_icon }
   objectType: Structure
 
 - type: construction
   id: ClosetWall
-  name: wall closet
+  name: настенный шкаф  # Sunrise-recipes
   graph: ClosetWall
   startNode: start
   targetNode: done
   category: construction-category-storage
-  description: A standard-issue Nanotrasen storage unit, now on walls.
+  description: Стандартное хранилище Nanotrasen, теперь на стенах.  # Sunrise-recipes
   icon: { sprite: Structures/Storage/wall_locker.rsi, state: generic_icon }
   objectType: Structure
   placementMode: SnapgridCenter

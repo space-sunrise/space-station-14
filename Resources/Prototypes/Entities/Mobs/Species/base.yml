@@ -4,6 +4,7 @@
   - BaseMob
   - MobDamageable
   - MobCombat
+  - StripableInventoryBase
   id: BaseMobSpecies
   abstract: true
   components:
@@ -146,9 +147,7 @@
     - Pacified
     - StaminaModifier
     - Flashed
-  - type: Reflect
-    enabled: false
-    reflectProb: 0
+    - LoveEffect  # Sunrise-Aphrodesiac
   - type: Body
     prototype: Human
     requiredLegs: 2
@@ -157,8 +156,6 @@
   - type: Hands
   - type: ComplexInteraction
   - type: Internals
-  - type: Inventory
-  - type: InventorySlots
   - type: FloatingVisuals
   - type: Climbing
   - type: Cuffable
@@ -196,7 +193,6 @@
     - NanoTrasen
   - type: CreamPied
   - type: Stripping
-  - type: Strippable
   - type: UserInterface
     interfaces:
       enum.VoiceMaskUIKey.Key:
@@ -301,12 +297,11 @@
 - type: entity
   save: false
   id: BaseSpeciesDummy
+  parent: InventoryBase
   abstract: true
   components:
   - type: Hands
   - type: ComplexInteraction
-  - type: Inventory
-  - type: InventorySlots
   - type: ContainerContainer
   - type: Icon
     sprite: Mobs/Species/Human/parts.rsi

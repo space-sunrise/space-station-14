@@ -89,6 +89,8 @@ public sealed partial class ServersHubManager
         if (_serversList.Count == 0)
             return;
 
+        _cfg.SetCVar(CVars.ResourceUploadingLimitMb, 0f);
+
         _serverDataList.Clear();
 
         foreach (var serverUrl in _serversList)

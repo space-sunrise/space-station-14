@@ -1,8 +1,0 @@
-- type: loadout
-  id: Bodycam
-  equipment: Bodycam
-
-- type: startingGear
-  id: Bodycam
-  equipment:
-    neck: HandheldCamera
