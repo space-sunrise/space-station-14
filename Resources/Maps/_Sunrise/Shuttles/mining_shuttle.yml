@@ -14,8 +14,7 @@ entities:
   - uid: 181
     components:
     - type: MetaData
-      name:  "Рудокоп"
-    - type: ShuttleNameGenerator
+      name: NTMS-632 "Рудокоп"
     - type: Transform
       pos: 2.2710133,-2.4148211
       parent: invalid

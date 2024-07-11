@@ -14,8 +14,7 @@ entities:
   - uid: 7656
     components:
     - type: MetaData
-      name: ПЦК
-    - type: ShuttleNameGenerator
+      name: NT-ПЦК
     - type: Transform
       parent: invalid
     - type: MapGrid

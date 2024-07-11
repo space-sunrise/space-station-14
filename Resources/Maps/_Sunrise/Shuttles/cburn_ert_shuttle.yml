@@ -13,8 +13,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: РХБЗЗ
-    - type: ShuttleNameGenerator
+      name: NT-РХБЗЗ
     - type: Transform
       pos: -0.5625,-0.4375
       parent: invalid

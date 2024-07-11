@@ -17,8 +17,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: МЕД
-    - type: ShuttleNameGenerator
+      name: NT-МЕД
     - type: Transform
       pos: 0.5350957,0.3933836
       parent: invalid

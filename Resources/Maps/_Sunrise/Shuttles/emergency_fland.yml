@@ -21,8 +21,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: Evac Fland
-    - type: ShuttleNameGenerator
+      name: NT Evac Delta
     - type: Transform
       pos: -0.5625,0.671875
       parent: invalid

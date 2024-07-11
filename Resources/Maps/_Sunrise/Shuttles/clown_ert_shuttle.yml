@@ -16,8 +16,6 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: КЛОУНЫ
-    - type: ShuttleNameGenerator
     - pos: -0.3806655,-0.32506984
       parent: invalid
       type: Transform

@@ -14,8 +14,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: ИНЖЕНЕР
-    - type: ShuttleNameGenerator
+      name: NT-ИНЖЕНЕР
     - type: Transform
       pos: -0.5550377,-0.5550377
       parent: invalid

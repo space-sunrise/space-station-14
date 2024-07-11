@@ -15,8 +15,7 @@ entities:
   - uid: 325
     components:
     - type: MetaData
-      name: ДЕДЫ
-    - type: ShuttleNameGenerator
+      name: NT-ДЕДЫ
     - type: Transform
       pos: 0.5638949,0.47865233
       parent: invalid
