@@ -81,7 +81,7 @@
                                 <serversHub:ServersHub Name="ServersHubBody" Access="Public" HorizontalExpand="True" VerticalExpand="True" />
                             </BoxContainer>
                         </BoxContainer>
-                        <BoxContainer Orientation="Vertical" VerticalExpand="True" MaxWidth="480" VerticalAlignment="Top">
+                        <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalAlignment="Stretch" MaxWidth="530" VerticalAlignment="Top">
                             <controls:StripeBack VerticalAlignment="Top">
                                 <BoxContainer Orientation="Horizontal" Name="ChangelogHeader" MouseFilter="Pass">
                                     <Label HorizontalExpand="True" Text="{Loc 'changelog-sunrise-window-title'}"
