@@ -64,7 +64,7 @@
                               Access="Public" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 8" />
             </BoxContainer>
             <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" VerticalAlignment="Bottom" HorizontalAlignment="Left">
-                <PanelContainer Name="LeftBottomPanel" StyleClasses="AngleRect" VerticalExpand="True" SetWidth="500"
+                <PanelContainer Name="LeftBottomPanel" StyleClasses="AngleRect" VerticalExpand="True" MinWidth="550"
                                 VerticalAlignment="Bottom" HorizontalExpand="True">
                     <BoxContainer Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
                                   HorizontalExpand="True">
