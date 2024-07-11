@@ -27,9 +27,9 @@
   weight: 50
 
 - type: department
-  id: Prison
+  id: PlanetPrison
   sort: 0
-  description: department-Prison-description
+  description: department-PlanetPrison-description
   color: "#9f4000"
   roles:
   - HeadOfPrison

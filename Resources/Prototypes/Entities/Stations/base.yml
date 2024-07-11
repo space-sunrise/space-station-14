@@ -56,6 +56,11 @@
         mining: !type:GridSpawnGroup
           paths:
           - /Maps/_Sunrise/Shuttles/mining_shuttle.yml # Sunrise-edit
+          nameGrid: false
+        security: !type:GridSpawnGroup
+          paths:
+          - /Maps/_Sunrise/Shuttles/security.yml # Sunrise-edit
+          nameGrid: false
         # Spawn last
         ruins: !type:GridSpawnGroup
           hide: true

@@ -365,3 +365,4 @@ IntercomAssesmbly: IntercomAssembly
 
 # Sunrise migrations
 AirlockExternalGlassShuttleArrivals: AirlockExternalGlassShuttleArrivalsLocked
+AirlockHatchSyndicate: AirlockHatchSyndicateLocked

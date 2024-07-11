@@ -8,7 +8,37 @@
     },
     "states": [
         {
+            "name": "EngineerBorg"
+        },
+        {
+            "name": "JanitorBorg"
+        },
+        {
+            "name": "MedicalBorg"
+        },
+        {
+            "name": "MinerBorg"
+        },
+        {
+            "name": "ServiceBorg"
+        },
+        {
+            "name": "SecurityBorg"
+        },
+        {
+            "name": "PeaceBorg"
+        },
+        {
+            "name": "ClownBorg"
+        },
+        {
+            "name": "SecurityPilot"
+        },
+        {
             "name": "BlueShield"
+        },
+        {
+            "name": "SecurityCombatBorg"
         },
         {
             "name": "PrisonPilot"

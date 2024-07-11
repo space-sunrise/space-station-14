@@ -67,3 +67,10 @@
   icon:
     sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
     state: PrisonWorker
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconSecurityPilot
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: SecurityPilot

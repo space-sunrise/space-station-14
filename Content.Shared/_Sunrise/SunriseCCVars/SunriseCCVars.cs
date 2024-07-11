@@ -138,9 +138,9 @@ public sealed class SunriseCCVars
         CVarDef.Create("lobby.lobby_opacity", 0.90f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /*
-     * Space Prison
+     * Planet Prison
      */
 
-    public static readonly CVarDef<int> MinPlayersSpacePrison =
-        CVarDef.Create("space_prison.min_players", 0, CVar.SERVERONLY);
+    public static readonly CVarDef<int> MinPlayersPlanetPrison =
+        CVarDef.Create("planet_prison.min_players", 0, CVar.SERVERONLY);
 }

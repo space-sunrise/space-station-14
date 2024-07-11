@@ -210,11 +210,11 @@
   - SkullBandana
 
 - type: loadoutGroup
-  id: SecurityGuardJumpsuit
+  id: PrisonGuardJumpsuit
   name: loadout-group-security-guard-jumpsuit
   loadouts:
-  - SecurityGuardJumpsuit
-  - SecurityGuardJumpskirt
+  - PrisonGuardJumpsuit
+  - PrisonGuardJumpskirt
 
 - type: loadoutGroup
   id: PrisonerJumpsuit
@@ -239,3 +239,10 @@
   - HeadHatBeretPrisonGuard
   - HeadPrisonGuard
   - HeadCapPrisonGuard
+
+- type: loadoutGroup
+  id: SecurityPilotJumpsuit
+  name: loadout-group-security-pilot-jumpsuit
+  loadouts:
+  - SecurityPilotJumpsuit
+  - SecurityPilotJumpskirt

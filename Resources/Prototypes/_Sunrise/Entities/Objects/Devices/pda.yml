@@ -142,3 +142,18 @@
     damageContainers:
     - Synth
     - Silicon
+
+- type: entity
+  parent: BasePDA
+  id: SecurityPilotPDA
+  name: КПК пилота службы безопастности
+  description: Нахуя нам пилот?
+  components:
+  - type: Pda
+    id: SecurityPilotIDCard
+    state: pda-seniorofficer
+  - type: PdaBorderColor
+    borderColor: "#A32D26"
+    accentVColor: "#DFDFDF"
+  - type: Icon
+    state: pda-seniorofficer

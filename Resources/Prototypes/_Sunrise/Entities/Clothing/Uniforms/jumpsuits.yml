@@ -85,3 +85,14 @@
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/guard.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/guard.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitPilot
+  name: Комбинезон пилота Службы Безопасности
+  description: Легкий комбинезон, рекомендуемый 9 пилотами НТ из 10.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/pilotjumpsuit.rsi
+  - type: Clothing
+    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/pilotjumpsuit.rsi
