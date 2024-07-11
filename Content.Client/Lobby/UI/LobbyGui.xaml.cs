@@ -14,6 +14,7 @@ using Content.Shared._Sunrise.SunriseCCVars;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Shared.Configuration;
+using Robust.Shared.Input;
 
 namespace Content.Client.Lobby.UI
 {
@@ -45,6 +46,46 @@ namespace Content.Client.Lobby.UI
             LeaveButton.OnPressed += _ => _consoleHost.ExecuteCommand("disconnect");
             OptionsButton.OnPressed += _ => UserInterfaceManager.GetUIController<OptionsUIController>().ToggleWindow();
 
+            ChatHeader.OnKeyBindUp += args =>
+            {
+                if (args.Function != EngineKeyFunctions.Use)
+                    return;
+
+                ChatContent.Visible = !ChatContent.Visible;
+            };
+
+            ServerInfoHeader.OnKeyBindUp += args =>
+            {
+                if (args.Function != EngineKeyFunctions.Use)
+                    return;
+
+                ServerInfoContent.Visible = !ServerInfoContent.Visible;
+            };
+
+            CharacterInfoHeader.OnKeyBindUp += args =>
+            {
+                if (args.Function != EngineKeyFunctions.Use)
+                    return;
+
+                CharacterInfoContent.Visible = !CharacterInfoContent.Visible;
+            };
+
+            ServersHubHeader.OnKeyBindUp += args =>
+            {
+                if (args.Function != EngineKeyFunctions.Use)
+                    return;
+
+                ServersHubContent.Visible = !ServersHubContent.Visible;
+            };
+
+            ChangelogHeader.OnKeyBindUp += args =>
+            {
+                if (args.Function != EngineKeyFunctions.Use)
+                    return;
+
+                ChangelogContent.Visible = !ChangelogContent.Visible;
+            };
+
             // Sunrise-start
             Offset = new Vector2(_random.Next(0, 1000), _random.Next(0, 1000));
 
@@ -59,29 +100,23 @@ namespace Content.Client.Lobby.UI
             };
             _back.SetPatchMargin(StyleBox.Margin.All, 10);
 
-            CenterTopSide.PanelOverride = _back;
+            LeftTopPanel.PanelOverride = _back;
 
-            LocalChangelog.PanelOverride = _back;
+            RightTopPanel.PanelOverride = _back;
 
-            BottomSide.PanelOverride = _back;
+            RightBottomPanel.PanelOverride = _back;
 
-            LocalChangelog.PanelOverride = _back;
+            LeftBottomPanel.PanelOverride = _back;
+
+            LeftTopPanel.PanelOverride = _back;
 
             LobbySongPanel.PanelOverride = _back;
 
-            ReadyPanel.PanelOverride = _back;
-
-            ServersHub.PanelOverride = _back;
-
             _configurationManager.OnValueChanged(SunriseCCVars.LobbyOpacity, OnLobbyOpacityChanged);
-            _configurationManager.OnValueChanged(SunriseCCVars.ShowLobbyChangelog, OnShowLobbyChangelogChanged);
-            _configurationManager.OnValueChanged(SunriseCCVars.ShowLobbyServersHub, OnShowLobbyServersHubChanged);
             _configurationManager.OnValueChanged(SunriseCCVars.LobbyBackground, OnLobbyBackgroundChanged);
 
             SetLobbyOpacity(_configurationManager.GetCVar(SunriseCCVars.LobbyOpacity));
             SetLobbyBackgroundType(_configurationManager.GetCVar(SunriseCCVars.LobbyBackground));
-            SetVisiblyLobbyChangelog(_configurationManager.GetCVar(SunriseCCVars.ShowLobbyChangelog));
-            SetVisiblyLobbyServersHub(_configurationManager.GetCVar(SunriseCCVars.ShowLobbyServersHub));
 
             Chat.SetChatOpacity();
             // Sunrise-end
@@ -121,26 +156,6 @@ namespace Content.Client.Lobby.UI
         private void SetLobbyOpacity(float opacity)
         {
             _back.Modulate = new Color(37, 37, 42).WithAlpha(opacity);
-        }
-
-        private void OnShowLobbyChangelogChanged(bool show)
-        {
-            SetVisiblyLobbyChangelog(show);
-        }
-
-        private void SetVisiblyLobbyChangelog(bool show)
-        {
-            LocalChangelog.Visible = show;
-        }
-
-        private void OnShowLobbyServersHubChanged(bool show)
-        {
-            SetVisiblyLobbyServersHub(show);
-        }
-
-        private void SetVisiblyLobbyServersHub(bool show)
-        {
-            ServersHub.Visible = show;
         }
         // Sunrise-End
 
