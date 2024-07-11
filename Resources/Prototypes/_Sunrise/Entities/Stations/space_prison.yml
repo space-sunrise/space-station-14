@@ -1,0 +1,33 @@
+﻿- type: entity
+  id: BaseStationSpacePrison
+  abstract: true
+  components:
+  - type: SpacePrisonStation
+    stations:
+    # - AlterosPrison not ready for planets yet
+    - SunrisePrison
+
+- type: biomeTemplate
+  id: Something
+  components:
+  - type: SpacePrisonStation
+    bioms:
+    - Grasslands
+    - LowDesert
+    - Snow
+    - Asteroid
+    - Caves
+    - Shadow
+    - Lava
+
+- type: entity
+  id: NanotrasenPrison
+  parent:
+  - BaseStation
+  - BaseStationJobsSpawning
+  - BaseStationRecords
+  - BaseStationNanotrasen
+  - BaseStationSiliconLawCrewsimov
+  noSpawn: true
+  components:
+  - type: Transform

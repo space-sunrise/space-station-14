@@ -136,3 +136,60 @@
   - Bra
   - Pants
   - Socks
+
+- type: roleLoadout
+  id: JobPrisonEngineer
+  groups:
+  - StationEngineerHead
+  - StationEngineerJumpsuit
+  - StationEngineerBackpack
+  - StationEngineerOuterClothing
+  - StationEngineerShoes
+  - StationEngineerID
+  - Trinkets
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobPrisonPilot
+  groups:
+  - SecurityHead
+  - SecurityJumpsuit
+  - SecurityBackpack
+  - SecurityShoes
+  - Trinkets
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobPrisonWorker
+  groups:
+  - BartenderJumpsuit
+  - CommonBackpack
+  - Trinkets
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobPrisoner
+  groups:
+  - PrisonerJumpsuit
+  - Trinkets
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobPrisonGuard
+  groups:
+  - SecurityGuardJumpsuit
+  - Trinkets
+  - Bra
+  - Pants
+  - Socks
+  - SecurityShoes
+  - PrisonGuardBackpack
+  - PrisonGuardHead

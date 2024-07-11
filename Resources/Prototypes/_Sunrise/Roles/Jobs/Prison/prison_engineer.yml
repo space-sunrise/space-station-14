@@ -1,0 +1,19 @@
+﻿- type: job
+  id: PrisonEngineer
+  name: job-name-prison-engineer
+  description: job-description-prison-engineer
+  playTimeTracker: JobPrisonEngineer
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 7200 # 2 hrs
+  alwaysUseSpawner: true
+  canBeAntag: false
+  startingGear: StationEngineerGear
+  icon: "JobIconPrisonEngineer"
+  supervisors: job-supervisors-head-of-prison
+  access:
+  - Maintenance
+  - Engineering
+  - External
+  - Atmospherics
