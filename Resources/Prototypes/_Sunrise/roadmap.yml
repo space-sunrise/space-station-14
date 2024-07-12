@@ -126,7 +126,7 @@
         diseases:
           name: Болезни
           desc: Ну типа да.
-          state: Partial
+          state: Planned
         ai:
           name: ИИ
           desc: Ну типа да.
@@ -136,7 +136,7 @@
           desc: Ну типа да.
           state: Planned
         plasmamens:
-          name: Плазмамены
+          name: Раса плазмаменов
           desc: Ну типа да.
           state: Planned
     ThirdVersion:
