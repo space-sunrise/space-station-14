@@ -7,12 +7,12 @@ public sealed partial class CodeEquipmentComponent : Component
 {
     public List<EntityUid> Shuttles = [];
 
-    [DataField("shuttlePath")]
-    public ResPath ShuttlePath = new("Maps/_Sunrise/Shuttles/gamma_armory.yml");
+    [DataField(required: true)]
+    public ResPath ShuttlePath;
 
-    [DataField]
-    public string TargetCode = "gamma";
+    [DataField(required: true)]
+    public string TargetCode;
 
-    [DataField]
-    public string PriorityTag = "DockGamma";
+    [DataField(required: true)]
+    public string PriorityTag;
 }
