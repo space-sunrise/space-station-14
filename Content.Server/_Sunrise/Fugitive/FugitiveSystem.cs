@@ -94,16 +94,21 @@ namespace Content.Server._Sunrise.Fugitive
             return wasSent;
         }
 
+        public FugitiveRuleComponent GetFugitiveRule()
+        {
+            var planetPrisonRule = EntityQuery<FugitiveRuleComponent>().FirstOrDefault();
+            if (planetPrisonRule != null)
+                return planetPrisonRule;
+
+            _gameTicker.StartGameRule(GameRule, out var ruleEntity);
+            planetPrisonRule = Comp<FugitiveRuleComponent>(ruleEntity);
+
+            return planetPrisonRule;
+        }
+
         private void OnMindAdded(EntityUid uid, FugitiveComponent component, MindAddedMessage args)
         {
-            var fugitiveRule = EntityQuery<FugitiveRuleComponent>().FirstOrDefault();
-            if (fugitiveRule == null)
-            {
-                //todo fuck me this shit is awful
-                //no i wont fuck you, erp is against rules
-                _gameTicker.StartGameRule(GameRule, out var ruleEntity);
-                fugitiveRule = Comp<FugitiveRuleComponent>(ruleEntity);
-            }
+            var fugitiveRule = GetFugitiveRule();
 
             if (!_mindSystem.TryGetMind(uid, out var mindId, out var mind))
             {
@@ -123,7 +128,7 @@ namespace Content.Server._Sunrise.Fugitive
 
             _roleSystem.MindAddRole(mindId, new FugitiveRoleComponent
             {
-                PrototypeId = AntagRole
+                PrototypeId = AntagRole,
             });
 
             if (_mindSystem.TryGetSession(mind, out var session))

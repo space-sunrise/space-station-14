@@ -16,7 +16,7 @@ namespace Content.Server._Sunrise.PlanetPrison
         private const string EscapeObjective = "PlanetPrisonerEscapeObjective";
         private const string GameRule = "PlanetPrison";
 
-        private const float EscapeDistance = 200f;
+        private const float EscapeDistance = 150f;
 
         public TimeSpan NextTick = TimeSpan.Zero;
         public TimeSpan RefreshCooldown = TimeSpan.FromSeconds(5);
