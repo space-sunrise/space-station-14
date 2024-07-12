@@ -93,7 +93,7 @@
   id: Nukeops
   components:
   - type: GameRule
-    minPlayers: 20
+    minPlayers: 50 # Sunrise-edit
   - type: LoadMapRule
     gameMap: NukieOutpost
   - type: AntagSelection
