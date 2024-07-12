@@ -32,6 +32,7 @@
     - BaseStationGoal
     - BaseStationGammaArmory
     - BaseStationAntagsTargets
+    - BaseStationCryoTeleport
     # Sunrise-End
   noSpawn: true
   components:
@@ -49,6 +50,7 @@
     - BaseCentCommShuttles
     - BaseStationImmortal
     - BaseStationDontSelling
+    - BaseStationCryoTeleport
     # Sunrise-End
   noSpawn: true
   components:

@@ -1,20 +1,7 @@
-﻿using System.Globalization;
-using Content.Server.Bed.Cryostorage;
-using Content.Server.Body.Components;
-using Content.Server.Chat.Systems;
-using Content.Server.Database;
+﻿using Content.Server.Bed.Cryostorage;
 using Content.Server.GameTicking;
-using Content.Server.Objectives.Components;
-using Content.Server.Station.Components;
-using Content.Server.Station.Systems;
-using Content.Server.StationRecords;
-using Content.Server.StationRecords.Systems;
 using Content.Shared.Bed.Cryostorage;
 using Content.Shared.Mind;
-using Content.Shared.Mobs;
-using Content.Shared.Objectives.Systems;
-using Content.Shared.StationRecords;
-using FastAccessors;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
@@ -26,21 +13,15 @@ namespace Content.Server._Sunrise.CryoTeleport;
 /// </summary>
 public sealed class CryoTeleportSystem : EntitySystem
 {
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly StationJobsSystem _stationJobs = default!;
     [Dependency] private readonly CryostorageSystem _cryostorage = default!;
-    [Dependency] private readonly SharedObjectivesSystem _objectives = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly StationRecordsSystem _stationRecords = default!;
     [Dependency] private readonly IEntityManager _entity = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<StationInitializedEvent>(OnStationInitialized);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnCompleteSpawn);
         // SubscribeLocalEvent<CryoTeleportTargetComponent, BeingGibbedEvent>(OnGibbed);
         SubscribeLocalEvent<CryoTeleportTargetComponent, PlayerDetachedEvent>(OnPlayerDetached);
@@ -52,8 +33,6 @@ public sealed class CryoTeleportSystem : EntitySystem
         var query = AllEntityQuery<CryoTeleportTargetComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            // Log.Info($"uid: {uid}, comp: {comp.Station}");
-
             if (comp.Station == null)
                 continue;
 
@@ -84,13 +63,6 @@ public sealed class CryoTeleportSystem : EntitySystem
                 _cryostorage.HandleEnterCryostorage((uid, containedComp), mindComponent.UserId);
             }
         }
-    }
-
-    private void OnStationInitialized(StationInitializedEvent ev)
-    {
-        if (FindCryo(ev.Station, Transform(ev.Station)) == null)
-            return;  // Ни одного крио на станции
-        EnsureComp<StationCryoTeleportComponent>(ev.Station);
     }
 
     private void OnCompleteSpawn(PlayerSpawnCompleteEvent ev)
