@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Server._Sunrise.Station;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Station.Components;
@@ -36,8 +37,17 @@ public sealed class MeteorSwarmSystem : GameRuleSystem<MeteorSwarmComponent>
 
         component.NextWaveTime += TimeSpan.FromSeconds(component.WaveCooldown.Next(RobustRandom));
 
+        var stations = _station.GetStations();
 
-        if (_station.GetStations().Count == 0)
+        var validStations = new List<EntityUid>();
+
+        foreach (var entityUid in stations)
+        {
+            if (HasComp<StationMeteorSwarmTargetComponent>(entityUid))
+                validStations.Add(entityUid);
+        }
+
+        if (validStations.Count == 0)
             return;
 
         var station = RobustRandom.Pick(_station.GetStations());

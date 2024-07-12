@@ -116,3 +116,9 @@
   abstract: true
   components:
   - type: StationCryoTeleport
+
+- type: entity
+  id: BaseStationMeteorSwarmTarget
+  abstract: true
+  components:
+  - type: StationMeteorSwarmTargetComponent
