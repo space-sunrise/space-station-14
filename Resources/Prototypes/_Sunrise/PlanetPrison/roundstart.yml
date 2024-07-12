@@ -1,0 +1,6 @@
+- type: entity
+  id: PlanetPrison
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: PlanetPrisonRule

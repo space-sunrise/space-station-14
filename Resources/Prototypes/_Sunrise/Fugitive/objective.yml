@@ -1,0 +1,25 @@
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseFugitiveObjective
+  components:
+  - type: Objective
+    issuer: syndicate
+  - type: RoleRequirement
+    roles:
+      components:
+      - FugitiveRole
+
+- type: entity
+  noSpawn: true
+  parent: [BaseFugitiveObjective, BaseLivingObjective]
+  id: FugitiveEscapeShuttleObjective
+  name: Улететь на эвакуационном шаттле
+  description: Вы как-то сумели сбежать из тюрьмы на космическую станцию, вам необходимо улететь со станции на эвакуационном шаттле в космопорт.
+  components:
+  - type: Objective
+    difficulty: 1.0
+    icon:
+      sprite: Structures/Furniture/chairs.rsi
+      state: shuttle
+  - type: EscapeShuttleCondition

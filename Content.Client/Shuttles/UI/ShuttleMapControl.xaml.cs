@@ -559,6 +559,8 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
 
     private bool TryGetBeacon(IEnumerable<IMapObject> mapObjects, Matrix3x2 mapTransform, Vector2 mousePos, UIBox2i area, out ShuttleBeaconObject foundBeacon, out Vector2 foundLocalPos)
     {
+        Logger.Info("TryGetBeacon");
+
         // In pixels
         const float BeaconSnapRange = 32f;
         float nearestValue = float.MaxValue;
@@ -579,6 +581,8 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
             if (!_shuttles.CanFTLBeacon(beaconObj.Coordinates))
                 continue;
 
+            Logger.Info("Can FTL Beacon");
+
             var position = Vector2.Transform(beaconCoords.Position, mapTransform);
             var localPos = ScalePosition(position with {Y = -position.Y});
 
@@ -586,13 +590,18 @@ public sealed partial class ShuttleMapControl : BaseShuttleControl
             if (!area.Contains(localPos.Floored()))
                 continue;
 
+            Logger.Info("area contains localPos.Floored()");
+
             var distance = (localPos - mousePos).Length();
 
             if (distance > BeaconSnapRange * UIScale ||
                 distance > nearestValue)
             {
+                Logger.Info("distance > BeaconSnapRange");
                 continue;
             }
+
+            Logger.Info("Found beacon");
 
             foundLocalPos = localPos;
             nearestValue = distance;

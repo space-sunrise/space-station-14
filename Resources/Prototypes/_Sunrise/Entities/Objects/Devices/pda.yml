@@ -58,6 +58,72 @@
 
 - type: entity
   parent: BasePDA
+  id: PrisonerPDA
+  name: ПДА заключенного
+  description: В цвет робы для полного комплекта.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/pda.rsi
+  - type: Pda
+    id: PrisonerIDCard
+    state: pda-space-prison-prisoner
+  - type: Icon
+    sprite: _Sunrise/Objects/pda.rsi
+    state: pda-space-prison-prisoner
+
+- type: entity
+  parent: BasePDA
+  id: GuardPDA
+  name: ПДА тюремного охранника
+  description: Изогнутый и потертый, но каждая царапина - свидетельство непрерывной борьбы за безопасность.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/pda.rsi
+  - type: Pda
+    id: GuardIDCard
+    state: pda-space-prison-guardian
+  - type: Icon
+    sprite: _Sunrise/Objects/pda.rsi
+    state: pda-space-prison-guardian
+
+- type: entity
+  parent: BasePDA
+  id: PrisonPilotPDA
+  name: КПК тюремного пилота
+  description: Блестящий и технологичный, словно его только что вытащили из кокпита.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/pda.rsi
+  - type: Pda
+    id: PrisonPilotIDCard
+    state: pda-space-prison-pilot
+  - type: PdaBorderColor
+    borderColor: "#A32D26"
+    accentVColor: "#DFDFDF"
+  - type: Icon
+    sprite: _Sunrise/Objects/pda.rsi
+    state: pda-space-prison-pilot
+
+- type: entity
+  parent: BasePDA
+  id: HeadOfPrisonPDA
+  name: КПК начальника тюрьмы
+  description: Имеет вид престижного инструмента власти, но немного поцарапанный от постоянных срочных вызовов.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/pda.rsi
+  - type: Pda
+    id: HeadOfPrisonIDCard
+    state: pda-space-prison-boss
+  - type: PdaBorderColor
+    borderColor: "#A32D26"
+    accentHColor: "#447987"
+  - type: Icon
+    sprite: _Sunrise/Objects/pda.rsi
+    state: pda-space-prison-boss
+
+- type: entity
+  parent: BasePDA
   id: RoboticistPDA
   name: КПК робототехника
   description: Он покрыт чем-то липким.
@@ -76,3 +142,18 @@
     damageContainers:
     - Synth
     - Silicon
+
+- type: entity
+  parent: BasePDA
+  id: SecurityPilotPDA
+  name: КПК пилота службы безопастности
+  description: Нахуя нам пилот?
+  components:
+  - type: Pda
+    id: SecurityPilotIDCard
+    state: pda-seniorofficer
+  - type: PdaBorderColor
+    borderColor: "#A32D26"
+    accentVColor: "#DFDFDF"
+  - type: Icon
+    state: pda-seniorofficer

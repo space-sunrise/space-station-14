@@ -1,0 +1,23 @@
+- type: loadout
+  id: SecurityPilotJumpsuit
+  equipment: SecurityPilotJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
+
+- type: startingGear
+  id: SecurityPilotJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPilot
+
+- type: loadout
+  id: SecurityPilotJumpskirt
+  equipment: SecurityPilotJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+
+- type: startingGear
+  id: SecurityPilotJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPilot

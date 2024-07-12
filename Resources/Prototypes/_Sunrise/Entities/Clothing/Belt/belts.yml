@@ -8,3 +8,20 @@
     sprite: _Sunrise/Clothing/Belt/blueshield_webbing.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Belt/blueshield_webbing.rsi
+
+- type: entity
+  id: ClothingBeltPrisonGuardianFilled
+  parent: ClothingBeltSecurity
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: GrenadeFlashBang
+    - id: TearGasGrenade
+    - id: Stunbaton
+    - id: Handcuffs
+    - id: Handcuffs
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Belt/prison_guardian.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Belt/prison_guardian.rsi
