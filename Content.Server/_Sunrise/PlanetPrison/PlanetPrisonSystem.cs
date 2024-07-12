@@ -39,7 +39,7 @@ namespace Content.Server._Sunrise.PlanetPrison
         private void OnObjectivesTextPrepend(EntityUid uid, PlanetPrisonRuleComponent comp, ref ObjectivesTextPrependEvent args)
         {
             var planetPrisonRule = GetPlanetPrisonRule();
-            args.Text += Loc.GetString("planet-prison-round-end-result", ("count", planetPrisonRule.PrisonersMinds.Count));
+            args.Text += Loc.GetString("planet-prison-round-end-result", ("count", planetPrisonRule.EscapedPrisoners.Count));
         }
 
         private void OnObjectivesTextGetInfo(EntityUid uid, PlanetPrisonRuleComponent comp, ref ObjectivesTextGetInfoEvent args)
