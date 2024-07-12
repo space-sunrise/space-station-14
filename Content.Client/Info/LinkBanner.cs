@@ -51,7 +51,6 @@ namespace Content.Client.Info
 
             var roadmapButton = new Button
             {
-                Disabled = true,
                 Text = Loc.GetString("server-info-roadmap-button"),
                 StyleClasses = { StyleBase.ButtonCaution },
             };
