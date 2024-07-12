@@ -36434,11 +36434,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 101.00975,71.297386
       parent: 2
-  - uid: 20140
-    components:
-    - type: Transform
-      pos: 45.433666,88.04792
-      parent: 2
   - uid: 20161
     components:
     - type: Transform
@@ -36490,12 +36485,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 99.5,71.5
-      parent: 2
-  - uid: 20162
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 66.5,120.5
       parent: 2
 - proto: ComputerCrewMonitoring
   entities:
@@ -36585,14 +36574,6 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 22.5,-14.5
-      parent: 2
-- proto: ComputerShuttle
-  entities:
-  - uid: 14930
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 113.5,71.5
       parent: 2
 - proto: ComputerShuttlePrison
   entities:
@@ -64439,6 +64420,11 @@ entities:
     components:
     - type: Transform
       pos: 116.5,72.5
+      parent: 2
+  - uid: 15759
+    components:
+    - type: Transform
+      pos: 66.5,122.5
       parent: 2
 - proto: MailingUnit
   entities:
@@ -102237,6 +102223,11 @@ entities:
       parent: 2
 - proto: SalvageMobSpawner75
   entities:
+  - uid: 14930
+    components:
+    - type: Transform
+      pos: 45.5,88.5
+      parent: 2
   - uid: 20093
     components:
     - type: Transform
@@ -103844,13 +103835,6 @@ entities:
     components:
     - type: Transform
       pos: 46.5,112.5
-      parent: 2
-- proto: SpawnMobSyndicateFootsoldierPilot
-  entities:
-  - uid: 15759
-    components:
-    - type: Transform
-      pos: 45.5,88.5
       parent: 2
 - proto: SpawnPointHeadOfPrison
   entities:
@@ -126225,6 +126209,11 @@ entities:
     components:
     - type: Transform
       pos: 62.5,121.5
+      parent: 2
+  - uid: 20140
+    components:
+    - type: Transform
+      pos: 38.5,46.5
       parent: 2
   - uid: 20160
     components:
