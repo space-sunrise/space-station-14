@@ -104,3 +104,9 @@
   components:
   - type: AlertLevel
     alertLevelPrototype: stationPrisonAlerts
+
+- type: entity
+  id: BaseStationAntagsTargets
+  abstract: true
+  components:
+  - type: StationAntagsTargetsComponent

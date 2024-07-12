@@ -31,6 +31,7 @@
     - BaseStationPlanetPrison
     - BaseStationGoal
     - BaseStationGammaArmory
+    - BaseStationAntagsTargets
     # Sunrise-End
   noSpawn: true
   components:

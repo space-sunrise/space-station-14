@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Linq;
 using System.Numerics;
+using Content.Server._Sunrise.Station;
 using Content.Server.Administration.Managers;
 using Content.Server.GameTicking.Events;
 using Content.Server.Ghost;
@@ -23,6 +24,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Server._Sunrise.TraitorTarget; // Sunrise-Edit
 
 namespace Content.Server.GameTicking
 {
@@ -253,6 +255,11 @@ namespace Content.Server.GameTicking
 
             DebugTools.AssertNotNull(mobMaybe);
             var mob = mobMaybe!.Value;
+
+            // Sunrise-Start
+            if (HasComp<StationAntagsTargetsComponent>(station))
+                EntityManager.AddComponent<AntagTargetComponent>(mob);
+            // Sunrise-End
 
             _mind.TransferTo(newMind, mob);
 
