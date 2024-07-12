@@ -9,7 +9,7 @@
         - type: CentCommShuttle
         paths:
         - /Maps/_Sunrise/Shuttles/centcom_shuttle.yml
-        nameGrid: true
+        nameGrid: false
 
 - type: entity
   id: BaseStationCentComm
