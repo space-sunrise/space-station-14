@@ -2,7 +2,7 @@
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 
-namespace Content.Client._CM14.Roadmap;
+namespace Content.Client._Sunrise.Roadmap;
 
 [GenerateTypedNameReferences]
 public sealed partial class RoadmapVersionHeader : BoxContainer

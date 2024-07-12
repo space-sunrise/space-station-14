@@ -1,7 +1,7 @@
 ﻿using Content.Client.Lobby;
 using Robust.Client.UserInterface.Controllers;
 
-namespace Content.Client._CM14.Roadmap;
+namespace Content.Client._Sunrise.Roadmap;
 
 public sealed class RoadmapUIController : UIController, IOnStateEntered<LobbyState>
 {

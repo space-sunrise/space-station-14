@@ -1,7 +1,7 @@
-﻿<controls:RoadmapItem
+﻿<roadmap:RoadmapItem
     xmlns="https://spacestation14.io"
-    xmlns:controls="clr-namespace:Content.Client._CM14.Roadmap"
     xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    xmlns:roadmap="clr-namespace:Content.Client._Sunrise.Roadmap"
     Margin="0 0 0 10"
     MaxWidth="275">
     <BoxContainer Orientation="Horizontal" SeparationOverride="0">
@@ -18,4 +18,4 @@
             </PanelContainer.PanelOverride>
         </PanelContainer>
     </BoxContainer>
-</controls:RoadmapItem>
+</roadmap:RoadmapItem>

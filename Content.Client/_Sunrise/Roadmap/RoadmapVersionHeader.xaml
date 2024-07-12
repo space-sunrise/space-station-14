@@ -1,6 +1,6 @@
-﻿<controls:RoadmapVersionHeader
+<controls:RoadmapVersionHeader
     xmlns="https://spacestation14.io"
-    xmlns:controls="clr-namespace:Content.Client._CM14.Roadmap"
+    xmlns:controls="clr-namespace:Content.Client._Sunrise.Roadmap"
     xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
     Orientation="Horizontal"
     Margin="0 0 0 15">

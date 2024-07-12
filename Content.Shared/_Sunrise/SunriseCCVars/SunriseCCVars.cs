@@ -136,4 +136,11 @@ public sealed class SunriseCCVars
 
     public static readonly CVarDef<float> LobbyOpacity =
         CVarDef.Create("lobby.lobby_opacity", 0.90f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /**
+     * Roadmap
+     */
+
+    public static readonly CVarDef<string> RoadmapId =
+        CVarDef.Create("roadmap.id", "SunriseRoadmap");
 }
