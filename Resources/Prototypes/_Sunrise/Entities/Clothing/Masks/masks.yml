@@ -1,0 +1,12 @@
+- type: entity
+  parent: ClothingMaskGas
+  id: ClothingMaskGasPilot
+  description: Противогаз выполенный в стиле масок пилотов 21-го века.
+  name: Противогаз пилота Службы Безопасности
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _Sunrise/Entities/Clothing/Mask/pilotmask.rsi
+  - type: Clothing
+    sprite: _Sunrise/Entities/Clothing/Mask/pilotmask.rsi

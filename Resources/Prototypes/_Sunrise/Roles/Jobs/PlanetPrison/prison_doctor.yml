@@ -1,0 +1,18 @@
+﻿- type: job
+  id: PrisonDoctor
+  name: job-name-prison-doctor
+  description: job-description-prison-doctor
+  playTimeTracker: JobPrisonDoctor
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 7200 # 2 hrs
+  alwaysUseSpawner: true
+  canBeAntag: false
+  startingGear: DoctorGear
+  icon: "JobIconPrisonDoctor"
+  supervisors: job-supervisors-head-of-prison
+  access:
+  - Medical
+  - Maintenance
+  - Chemistry

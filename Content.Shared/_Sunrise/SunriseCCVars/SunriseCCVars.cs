@@ -89,7 +89,7 @@ public sealed class SunriseCCVars
     /// Making everyone a pacifist at the end of a round.
     /// </summary>
     public static readonly CVarDef<bool> PeacefulRoundEnd =
-        CVarDef.Create("game.peaceful_end", true, CVar.SERVERONLY);
+        CVarDef.Create("game.peaceful_end", false, CVar.SERVERONLY);
 
     /*
      * Servers Hub
@@ -120,4 +120,35 @@ public sealed class SunriseCCVars
     /// </summary>
     public static readonly CVarDef<bool> TapePlayerClientEnabled =
         CVarDef.Create("tape_player.client_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /// <summary>
+    /// Link to boosty to show in the launcher.
+    /// </summary>
+    public static readonly CVarDef<string> InfoLinksDonate =
+        CVarDef.Create("infolinks.donate", "", CVar.SERVER | CVar.REPLICATED);
+
+    /**
+     * Lobby
+     */
+
+    public static readonly CVarDef<string> LobbyBackground =
+        CVarDef.Create("lobby.background", "Art", CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<float> LobbyOpacity =
+        CVarDef.Create("lobby.lobby_opacity", 0.90f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /*
+     * Planet Prison
+     */
+
+    public static readonly CVarDef<int> MinPlayersPlanetPrison =
+        CVarDef.Create("planet_prison.min_players", 0, CVar.SERVERONLY);
+
+    /**
+     * Roadmap
+     */
+
+    public static readonly CVarDef<string> RoadmapId =
+        CVarDef.Create("roadmap.id", "SunriseRoadmap");
+
 }

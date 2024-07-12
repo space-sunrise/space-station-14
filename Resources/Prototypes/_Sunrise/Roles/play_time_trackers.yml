@@ -30,3 +30,30 @@
 
 - type: playTimeTracker
   id: JobRoboticist
+
+- type: playTimeTracker
+  id: JobSecurityPilot
+
+- type: playTimeTracker
+  id: JobPrisonChef
+
+- type: playTimeTracker
+  id: JobPrisonWorker
+
+- type: playTimeTracker
+  id: JobPrisonGuard
+
+- type: playTimeTracker
+  id: JobPrisonPilot
+
+- type: playTimeTracker
+  id: JobPrisonDoctor
+
+- type: playTimeTracker
+  id: JobHeadOfPrison
+
+- type: playTimeTracker
+  id: JobPrisoner
+
+- type: playTimeTracker
+  id: JobPrisonEngineer

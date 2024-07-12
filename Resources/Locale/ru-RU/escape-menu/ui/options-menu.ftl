@@ -21,6 +21,7 @@ ui-options-general-cursor = Курсор
 ui-options-general-speech = Речь
 ui-options-general-storage = Инвентарь
 ui-options-general-accessibility = Доступность
+ui-options-general-lobby = Лобби
 
 ## Audio menu
 
@@ -38,8 +39,6 @@ ui-options-admin-sounds = Музыка админов
 ui-options-tts-enabled = TTS интеграция
 ui-options-tape-player-enabled = Школьники с колонками (Нужен рестарт раунда)
 ui-options-volume-label = Громкость
-
-ui-options-volume-percent = { TOSTRING($volume, "P0") }
 ui-options-display-label = Дисплей
 ui-options-quality-label = Качество
 ui-options-misc-label = Разное
@@ -47,6 +46,10 @@ ui-options-interface-label = Интерфейс
 
 ## Graphics menu
 
+ui-options-lobby-opacity = Прозрачность лобби
+ui-options-lobby-background = Фон лобби
+ui-options-show-lobby-changelog = Показывать чейнжлог в лобби
+ui-options-show-lobby-servers-hub = Показывать хаб серверов в лобби
 ui-options-show-held-item = Показать удерживаемый элемент рядом с курсором
 ui-options-show-combat-mode-indicators = Показать индикатор боевого режима рядом с курсором
 ui-options-opaque-storage-window = Непрозрачность окна хранилища
@@ -257,6 +260,4 @@ ui-options-enable-color-name = Цветные имена персонажей
 ui-options-colorblind-friendly = Режим для дальтоников
 ui-options-reduced-motion = Снижение интенсивности визуальных эффектов
 ui-options-chat-window-opacity = Прозрачность окна чата
-ui-options-chat-window-opacity-percent = { TOSTRING($opacity, "P0") }
 ui-options-screen-shake-intensity = Интенсивность дрожания экрана
-ui-options-screen-shake-percent = { TOSTRING($intensity, "P0") }

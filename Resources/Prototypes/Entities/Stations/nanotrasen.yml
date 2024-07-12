@@ -28,6 +28,7 @@
     # Sunrise-Start
     - BaseStationTransitHub
     - BaseStationDontSelling
+    - BaseStationPlanetPrison
     - BaseStationGoal
     - BaseStationGammaArmory
     # Sunrise-End

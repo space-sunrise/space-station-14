@@ -51,12 +51,43 @@
     modifiers:
       coefficients:
         Blunt: 0.6
-        Slash: 0.5
-        Piercing: 0.5
-        Heat: 0.8
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.4  # У ОСЩ пушка с тепловым уроном, следовательно броник должен защищать от лазеров
         Radiation: 0.25
         Caustic: 0.6
   - type: ExplosionResistance
     damageCoefficient: 0.6
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitBlueshield
+
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitPilot
+  name: Скафандр пилота Службы Безопасности
+  description: Облегченная версия скафандра Службы безопасности, обеспечивает хорошую подвижность, но меньшую защиту.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Clothing/Hardsuits/pilothardsuit.rsi
+  - type: Clothing
+    sprite: _Sunrise/Entities/Clothing/Hardsuits/pilothardsuit.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.5
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.7
+        Piercing: 0.7
+        Caustic: 0.8
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitPilot
+  - type: Item
+    size: Normal

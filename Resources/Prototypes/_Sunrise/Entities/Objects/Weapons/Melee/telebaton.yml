@@ -15,8 +15,10 @@
         volume: -5
   - type: ItemToggleSize
     activatedSize: Normal
-  - type: ItemToggleDisarmMalus
-    activatedDisarmMalus: 0.6
+    activatedShape:
+    - 0,0,0,2
+  - type: DisarmMalus
+    malus: 0.225
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Melee/telebaton.rsi
     layers:
@@ -37,12 +39,14 @@
         Blunt: 0
   - type: Telescopicbaton
   - type: StaminaDamageOnHit
-    damage: 10
+    damage: 20
   - type: UseDelay
     delay: 0.4
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Melee/telebaton.rsi
     size: Small
+    shape:
+    - 0,0,0,0
   - type: Appearance
   - type: ToggleableLightVisuals
     spriteLayer: blade

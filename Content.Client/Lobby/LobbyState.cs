@@ -1,4 +1,6 @@
+using System.Linq;
 using Content.Client._Sunrise.Latejoin;
+using Content.Client._Sunrise.ServersHub;
 using Content.Client.Audio;
 using Content.Client.GameTicking.Managers;
 using Content.Client.LateJoin;
@@ -15,6 +17,9 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Client.Changelog;
 using Content.Client.Parallax.Managers;
+using Content.Shared._Sunrise.ServersHub;
+using Content.Shared._Sunrise.SunriseCCVars;
+using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Serialization.Markdown;
@@ -25,7 +30,6 @@ namespace Content.Client.Lobby
 {
     public sealed class LobbyState : Robust.Client.State.State
     {
-        [Dependency] private readonly IBaseClient _baseClient = default!;
         [Dependency] private readonly IClientConsoleHost _consoleHost = default!;
         [Dependency] private readonly IEntityManager _entityManager = default!;
         [Dependency] private readonly IResourceCache _resourceCache = default!;
@@ -35,6 +39,7 @@ namespace Content.Client.Lobby
         [Dependency] private readonly IParallaxManager _parallaxManager = default!;
         [Dependency] private readonly ISerializationManager _serialization = default!;
         [Dependency] private readonly IResourceManager _resource = default!;
+        [Dependency] private readonly ServersHubManager _serversHubManager = default!;
 
         private ClientGameTicker _gameTicker = default!;
         private ContentAudioSystem _contentAudioSystem = default!;
@@ -83,6 +88,8 @@ namespace Content.Client.Lobby
             _gameTicker.InfoBlobUpdated += UpdateLobbyUi;
             _gameTicker.LobbyStatusUpdated += LobbyStatusUpdated;
             _gameTicker.LobbyLateJoinStatusUpdated += LobbyLateJoinStatusUpdated;
+
+            _serversHubManager.ServersDataListChanged += RefreshServersHubHeader;
         }
 
         protected override void Shutdown()
@@ -101,6 +108,15 @@ namespace Content.Client.Lobby
             Lobby!.ReadyButton.OnToggled -= OnReadyToggled;
 
             Lobby = null;
+
+            _serversHubManager.ServersDataListChanged -= RefreshServersHubHeader;
+        }
+
+        private void RefreshServersHubHeader(List<ServerHubEntry> servers)
+        {
+            var totalPlayers = _serversHubManager.ServersDataList.Sum(server => server.CurrentPlayers);
+            var maxPlayers = _serversHubManager.ServersDataList.Sum(server => server.MaxPlayers);
+            Lobby!.ServersHubHeaderLabel.Text = $"Сейчас играет: {totalPlayers}/{maxPlayers}";
         }
 
         public void SwitchState(LobbyGui.LobbyGuiState state)
@@ -134,7 +150,6 @@ namespace Content.Client.Lobby
         {
             if (_gameTicker.IsGameStarted)
             {
-                Lobby!.StartTime.Text = string.Empty;
                 var roundTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
                 Lobby!.StationTime.Text = Loc.GetString("lobby-state-player-status-round-time", ("hours", roundTime.Hours), ("minutes", roundTime.Minutes));
                 return;
@@ -149,7 +164,7 @@ namespace Content.Client.Lobby
             }
             else if (_gameTicker.StartTime < _gameTiming.CurTime)
             {
-                Lobby!.StartTime.Text = Loc.GetString("lobby-state-soon");
+                Lobby!.StationTime.Text = Loc.GetString("lobby-state-soon");
                 return;
             }
             else
@@ -166,7 +181,7 @@ namespace Content.Client.Lobby
                 }
             }
 
-            Lobby!.StartTime.Text = Loc.GetString("lobby-state-round-start-countdown-text", ("timeLeft", text));
+            Lobby!.StationTime.Text = Loc.GetString("lobby-state-round-start-countdown-text", ("timeLeft", text));
         }
 
         private void LobbyStatusUpdated()
@@ -175,6 +190,7 @@ namespace Content.Client.Lobby
             UpdateLobbyaralax();
             UpdateLobbyImage();
             // Sunrise-End
+            UpdateLobbyBackground();
             UpdateLobbyUi();
         }
 
@@ -191,15 +207,16 @@ namespace Content.Client.Lobby
                 Lobby!.ReadyButton.ToggleMode = false;
                 Lobby!.ReadyButton.Pressed = false;
                 Lobby!.ObserveButton.Disabled = false;
+                Lobby!.GhostRolesButton.Disabled = false;
             }
             else
             {
-                Lobby!.StartTime.Text = string.Empty;
                 Lobby!.ReadyButton.Text = Loc.GetString(Lobby!.ReadyButton.Pressed ? "lobby-state-player-status-ready": "lobby-state-player-status-not-ready");
                 Lobby!.ReadyButton.ToggleMode = true;
                 Lobby!.ReadyButton.Disabled = false;
                 Lobby!.ReadyButton.Pressed = _gameTicker.AreWeReady;
                 Lobby!.ObserveButton.Disabled = true;
+                Lobby!.GhostRolesButton.Disabled = true;
             }
 
             if (_gameTicker.ServerInfoBlob != null)
@@ -261,6 +278,19 @@ namespace Content.Client.Lobby
         }
         // Sunrise-end
 
+        private void UpdateLobbyBackground()
+        {
+            if (_gameTicker.LobbyBackground != null)
+            {
+                Lobby!.Background.Texture = _resourceCache.GetResource<TextureResource>(_gameTicker.LobbyBackground );
+            }
+            else
+            {
+                Lobby!.Background.Texture = null;
+            }
+
+        }
+
         private void SetReady(bool newReady)
         {
             if (_gameTicker.IsGameStarted)
@@ -271,4 +301,10 @@ namespace Content.Client.Lobby
             _consoleHost.ExecuteCommand($"toggleready {newReady}");
         }
     }
+}
+
+public enum LobbyBackgroundType
+{
+    Paralax,
+    Art
 }

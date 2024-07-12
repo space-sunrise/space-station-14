@@ -257,7 +257,7 @@ public sealed class ChatUIController : UIController
         SetChatWindowOpacity(opacity);
     }
 
-    private void SetChatWindowOpacity(float opacity)
+    public void SetChatWindowOpacity(float opacity)
     {
         var chatBox = UIManager.ActiveScreen?.GetWidget<ChatBox>() ?? UIManager.ActiveScreen?.GetWidget<ResizableChatBox>();
 

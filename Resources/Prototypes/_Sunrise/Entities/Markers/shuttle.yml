@@ -1,0 +1,9 @@
+- type: entity
+  id: FTLPointShuttle
+  parent: MarkerBase
+  name: Посадочная площадка
+  components:
+    - type: FTLBeacon
+      blockRotate: true
+    - type: Sprite
+      state: pink

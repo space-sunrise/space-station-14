@@ -1,3 +1,4 @@
+using Content.Shared._Sunrise.Shuttles;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
@@ -18,7 +19,7 @@ public abstract partial class SharedShuttleSystem : EntitySystem
     [Dependency] protected readonly SharedTransformSystem XformSystem = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
 
-    public const float FTLRange = 512f;
+    public const float FTLRange = 256f;
     public const float FTLBufferRange = 8f;
 
     private EntityQuery<MapGridComponent> _gridQuery;
@@ -151,7 +152,7 @@ public abstract partial class SharedShuttleSystem : EntitySystem
     {
         // Only beacons parented to map supported.
         var coordinates = GetCoordinates(nCoordinates);
-        return HasComp<MapComponent>(coordinates.EntityId);
+        return HasComp<MapGridComponent>(coordinates.EntityId); // Sunrise-Edit
     }
 
     public float GetFTLRange(EntityUid shuttleUid) => FTLRange;
@@ -193,6 +194,12 @@ public abstract partial class SharedShuttleSystem : EntitySystem
             return false;
         }
 
+        // Sunrise-Start
+        // Запрет летать по планете туда сюда
+        if (shuttleXform.MapID == mapCoordinates.MapId)
+            return false;
+        // Sunrise-End
+
         // Check exclusion zones.
         // This needs to be passed in manually due to PVS.
         if (exclusionZones != null)
@@ -220,6 +227,11 @@ public abstract partial class SharedShuttleSystem : EntitySystem
         {
             if (grid.Owner == shuttleUid)
                 continue;
+
+            // Sunrise-Start
+            if (HasComp<IgnoreFtlCheckComponent>(grid))
+                continue;
+            // Sunrise-End
 
             return false;
         }

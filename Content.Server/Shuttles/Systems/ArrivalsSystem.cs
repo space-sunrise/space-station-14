@@ -248,7 +248,7 @@ public sealed class ArrivalsSystem : EntitySystem
             {
                 // Warp all players who are still on this shuttle to a spawn point. This doesn't let them return to
                 // arrivals. It also ensures noobs, slow players or AFK players safely leave the shuttle.
-                // TryTeleportToMapSpawn(pUid, component.Station, xform);
+                TryTeleportToMapSpawn(pUid, component.Station, xform);
             }
 
             // Players who have remained at arrivals keep their warp coupon (PendingClockInComponent) for now.
@@ -340,7 +340,7 @@ public sealed class ArrivalsSystem : EntitySystem
     public EntityUid? SpawnPlayersOnArrivals(EntityUid? station, JobComponent? job, HumanoidCharacterProfile? profile)
     {
         var possiblePositions = GetArrivalsSpawnPoints();
-		
+
 		if (possiblePositions == null || possiblePositions.Count == 0)
 		{
 			Logger.Error("No valid arrival points found!");

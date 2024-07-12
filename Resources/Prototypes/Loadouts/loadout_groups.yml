@@ -37,13 +37,22 @@
   - GlassesJensen
 
 - type: loadoutGroup
+  id: GroupTankHarness
+  name: loadout-group-tank-harness
+  minLimit: 1
+  hidden: true
+  loadouts:
+  - LoadoutTankHarness
+
+- type: loadoutGroup
   id: Survival
   name: loadout-group-survival-basic
+  minLimit: 3
   hidden: true
   loadouts:
   - EmergencyNitrogen
   - EmergencyOxygen
-  - EmergencySynth # Sunrise-Edit
+  - LoadoutSpeciesEVANitrogen
   - EmergencyWithoutGas  # Sunrise-Edit
 
 # Command
@@ -412,12 +421,13 @@
 - type: loadoutGroup
   id: SurvivalClown
   name: loadout-group-survival-clown
+  minLimit: 2
   hidden: true
   loadouts:
   - EmergencyNitrogenClown
   - EmergencyOxygenClown
+  - LoadoutSpeciesEVANitrogen
   - EmergencyWithoutGasClown # Sunrise-Edit
-  - EmergencySynthClown # Sunrise-Edit
 
 - type: loadoutGroup
   id: MimeHead
@@ -717,12 +727,13 @@
 - type: loadoutGroup
   id: SurvivalExtended
   name: loadout-group-survival-extended
+  minLimit: 2
   hidden: true
   loadouts:
   - EmergencyNitrogenExtended
   - EmergencyOxygenExtended
+  - LoadoutSpeciesEVANitrogen
   - EmergencyWithoutGasExtended # Sunrise-Edit
-  - EmergencySynthExtended # Sunrise-Edit
 
 # Science
 - type: loadoutGroup
@@ -957,12 +968,13 @@
 - type: loadoutGroup
   id: SurvivalSecurity
   name: loadout-group-survival-security
+  minLimit: 2
   hidden: true
   loadouts:
   - EmergencyNitrogenSecurity
   - EmergencyOxygenSecurity
+  - LoadoutSpeciesEVANitrogen
   - EmergencyWithoutGasSecurity # Sunrise-Edit
-  - EmergencySynthSecurity # Sunrise-Edit
 
 # Medical
 - type: loadoutGroup
@@ -1128,11 +1140,12 @@
 - type: loadoutGroup
   id: SurvivalMedical
   name: loadout-group-survival-medical
+  minLimit: 2
   hidden: true
   loadouts:
   - EmergencyNitrogenMedical
   - EmergencyOxygenMedical
-  - EmergencySynthMedical # Sunrise-Edit
+  - LoadoutSpeciesEVANitrogen
   - EmergencyWithoutGasMedical # Sunrise-Edit
 
 # Wildcards
@@ -1163,9 +1176,37 @@
 - type: loadoutGroup
   id: SurvivalSyndicate
   name: loadout-group-survival-syndicate
+  minLimit: 2
   hidden: true
   loadouts:
   - EmergencyNitrogenSyndicate
   - EmergencyOxygenSyndicate
-  - EmergencySynthSyndicate # Sunrise-Edit
+  - LoadoutSpeciesEVANitrogen
   - EmergencyWithoutGasSyndicate # Sunrise-Edit
+
+- type: loadoutGroup
+  id: GroupSpeciesBreathTool
+  name: loadout-group-breath-tool
+  minLimit: 1
+  maxLimit: 1
+  hidden: true
+  loadouts:
+  - LoadoutSpeciesBreathTool
+
+- type: loadoutGroup
+  id: GroupSpeciesBreathToolMedical
+  name: loadout-group-breath-tool
+  minLimit: 1
+  maxLimit: 1
+  hidden: true
+  loadouts:
+  - LoadoutSpeciesBreathToolMedical
+
+- type: loadoutGroup
+  id: GroupSpeciesBreathToolSecurity
+  name: loadout-group-breath-tool
+  minLimit: 1
+  maxLimit: 1
+  hidden: true
+  loadouts:
+  - LoadoutSpeciesBreathToolSecurity

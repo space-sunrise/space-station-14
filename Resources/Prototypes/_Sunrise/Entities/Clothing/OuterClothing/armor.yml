@@ -37,7 +37,7 @@
         Blunt: 0.6
         Slash: 0.6
         Piercing: 0.6
-        Heat: 0.7
+        Heat: 0.4  # У ОСЩ пушка с тепловым уроном, следовательно броник должен защищать от лазеров
   - type: ExplosionResistance
     damageCoefficient: 0.80
   - type: Item

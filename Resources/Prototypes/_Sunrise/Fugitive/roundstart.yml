@@ -1,0 +1,6 @@
+- type: entity
+  id: Fugitive
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: FugitiveRule

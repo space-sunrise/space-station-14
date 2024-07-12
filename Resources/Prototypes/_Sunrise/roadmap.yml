@@ -1,0 +1,148 @@
+- type: roadmapVersions
+  id: SunriseRoadmap
+  versions:
+    FirstVersion:
+      name: Лето
+      goals:
+        fugitive:
+          name: Беглец
+          desc: Ну типа да.
+          state: Complete
+        planet_prison:
+          name: Планетарная тюрьма
+          desc: Тюрьма на планете работающая как отдельная станция.
+          state: Partial
+        smart_viruse:
+          name: Разумная болезнь
+          desc: Ну типа да.
+          state: Partial
+        cyborg_update:
+          name: Станционные борги
+          desc: Ну типа да.
+          state: Partial
+        collective_mind:
+          name: Коллективный разум
+          desc: Ну типа да.
+          state: InProgress
+        blob:
+          name: Блоб
+          desc: Ну типа да.
+          state: InProgress
+        assault_ops:
+          name: Диверсионый отряд
+          desc: Ну типа да.
+          state: InProgress
+        ert_call:
+          name: Консоль вызова ОБР
+          desc: Ну типа да.
+          state: InProgress
+        vent_crawling:
+          name: Передвижение по вентиляции
+          desc: Ну типа да.
+          state: InProgress
+        flesh_cult:
+          name: Культ плоти
+          desc: Ну типа да.
+          state: InProgress
+        blood_cult:
+          name: Культ крови (Нар`Си)
+          desc: Ну типа да.
+          state: InProgress
+        ipc:
+          name: КПБ
+          desc: Ну типа да.
+          state: InProgress
+        economy:
+          name: Экономика
+          desc: Ну типа да.
+          state: InProgress
+        cargo_rework:
+          name: Реворк карго
+          desc: Ну типа да.
+          state: InProgress
+        new_guns:
+          name: Расширение огнестрела
+          desc: Ну типа да.
+          state: InProgress
+        new_maps:
+          name: Новые карты
+          desc: Ну типа да.
+          state: InProgress
+        arena:
+          name: Арена для призраков
+          desc: Ну типа да.
+          state: Planned
+        limbo:
+          name: Лимбо
+          desc: Ну типа да.
+          state: Planned
+        syndicate_cyborgs:
+          name: Новые борги синдиката
+          desc: Ну типа да.
+          state: Planned
+    SecondVersion:
+      name: Осень
+      goals:
+        mail:
+          name: Почта
+          desc: Ну типа да.
+          state: InProgress
+        borer:
+          name: Мозговой червь
+          desc: Ну типа да.
+          state: Planned
+        lavaland:
+          name: Лаваленд
+          desc: Ну типа да.
+          state: Planned
+        angels:
+          name: Раса ангелов
+          desc: Ну типа да.
+          state: Planned
+        impids:
+          name: Раса импидов
+          desc: Ну типа да.
+          state: Planned
+        skills:
+          name: Система навыков
+          desc: Ну типа да.
+          state: Planned
+        space_fight:
+          name: Режим космической битвы
+          desc: Ну типа да.
+          state: Planned
+        spider_terror:
+          name: Пауки ужаса
+          desc: Ну типа да.
+          state: Planned
+        wizards:
+          name: Режим магов
+          desc: Ну типа да.
+          state: Planned
+        morph:
+          name: Морф
+          desc: Ну типа да.
+          state: Planned
+        diseases:
+          name: Болезни
+          desc: Ну типа да.
+          state: Planned
+        ai:
+          name: ИИ
+          desc: Ну типа да.
+          state: Planned
+        mech:
+          name: Мехи
+          desc: Ну типа да.
+          state: Planned
+        plasmamens:
+          name: Раса плазмаменов
+          desc: Ну типа да.
+          state: Planned
+    ThirdVersion:
+      name: Зима
+      goals:
+        ratvar:
+          name: Культ Ратвара
+          desc: Ну типа да.
+          state: Planned
