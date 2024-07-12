@@ -2,6 +2,7 @@ using System.Numerics;
 using System.Threading;
 using Content.Server._Sunrise.DontSellingGrid;
 using Content.Server._Sunrise.ImmortalGrid;
+using Content.Server._Sunrise.NightDayMapLight;
 using Content.Server._Sunrise.TransitHub;
 using Content.Server.Access.Systems;
 using Content.Server.Administration.Logs;
@@ -474,6 +475,8 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
             QueueDel(mapUid);
             return;
         }
+
+        EnsureComp<NightDayMapLightComponent>(mapUid);
 
         Log.Info($"Created transit hub grid {ToPrettyString(uids[0])} on map {ToPrettyString(mapUid)} for station {ToPrettyString(station)}");
 
