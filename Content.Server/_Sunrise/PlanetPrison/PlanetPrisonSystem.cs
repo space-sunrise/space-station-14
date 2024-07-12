@@ -57,7 +57,7 @@ namespace Content.Server._Sunrise.PlanetPrison
 
             var planetPrisonRule = GetPlanetPrisonRule();
             var planetPrisonStation = EntityQuery<PlanetPrisonStationComponent>().FirstOrDefault();
-            if (planetPrisonStation == null)
+            if (planetPrisonStation == null || planetPrisonStation.PrisonGrid == EntityUid.Invalid)
                 return;
             var xformPrison = Transform(planetPrisonStation.PrisonGrid);
             var prisonPosition = _transformSystem.GetMapCoordinates(xformPrison);

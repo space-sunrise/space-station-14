@@ -109,7 +109,7 @@
   id: BaseStationAntagsTargets
   abstract: true
   components:
-  - type: StationAntagsTargetsComponent
+  - type: StationAntagsTargets
 
 - type: entity
   id: BaseStationCryoTeleport

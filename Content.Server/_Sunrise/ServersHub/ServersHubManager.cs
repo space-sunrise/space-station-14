@@ -143,7 +143,7 @@ public sealed partial class ServersHubManager
 
         if (!resp.IsSuccessStatusCode)
         {
-            _sawmill.Error("Auth server returned bad response {StatusCode}!", resp.StatusCode);
+            _sawmill.Error("SS14 server returned bad response {StatusCode}!", resp.StatusCode);
             return null;
         }
 

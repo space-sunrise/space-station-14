@@ -1,7 +1,9 @@
 ﻿using Content.Server.Bed.Cryostorage;
 using Content.Server.GameTicking;
+using Content.Server.Station.Components;
+using Content.Server.Station.Systems;
 using Content.Shared.Bed.Cryostorage;
-using Content.Shared.Mind;
+using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
@@ -14,10 +16,14 @@ namespace Content.Server._Sunrise.CryoTeleport;
 public sealed class CryoTeleportSystem : EntitySystem
 {
     [Dependency] private readonly CryostorageSystem _cryostorage = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly IEntityManager _entity = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private readonly TransformSystem _transformSystem = default!;
+
+    public TimeSpan NextTick = TimeSpan.Zero;
+    public TimeSpan RefreshCooldown = TimeSpan.FromSeconds(5);
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -30,38 +36,51 @@ public sealed class CryoTeleportSystem : EntitySystem
 
     public override void Update(float delay)
     {
+        if (NextTick > _timing.CurTime)
+            return;
+
+        NextTick += RefreshCooldown;
+
         var query = AllEntityQuery<CryoTeleportTargetComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
             if (comp.Station == null)
                 continue;
 
-            if (!TryComp<StationCryoTeleportComponent>(comp.Station, out var stationCryoTeleportComponent))
-                continue;
-
             if (comp.ExitTime == null)
                 continue;
 
-            if (_timing.CurTime - comp.ExitTime >= stationCryoTeleportComponent.TransferDelay)
-            {
-                if (HasComp<CryostorageContainedComponent>(uid))
-                    continue;
+            if (!TryComp<StationCryoTeleportComponent>(comp.Station, out var stationCryoTeleportComponent) ||
+                !TryComp<StationDataComponent>(comp.Station, out var stationData))
+                continue;
 
-                var containedComp = AddComp<CryostorageContainedComponent>(uid);
+            var stationGrid = _stationSystem.GetLargestGrid(stationData);
 
-                containedComp.Cryostorage = FindCryo(comp.Station.Value, Transform(uid));
-                containedComp.GracePeriodEndTime = _timing.CurTime;
+            if (stationGrid == null)
+                continue;
 
-                _mind.TryGetMind(uid, out var _, out var mindComponent);
+            if (!(_timing.CurTime - comp.ExitTime >= stationCryoTeleportComponent.TransferDelay))
+                continue;
 
-                if (mindComponent == null)
-                    continue;
+            var cryoStorage = FindCryoStorage(Transform(stationGrid.Value));
 
-                _entity.SpawnEntity(stationCryoTeleportComponent.PortalPrototype, Transform(uid).Coordinates);
-                _audio.PlayPvs(stationCryoTeleportComponent.TransferSound, Transform(uid).Coordinates);
+            if (cryoStorage == null)
+                continue;
 
-                _cryostorage.HandleEnterCryostorage((uid, containedComp), mindComponent.UserId);
-            }
+            if (HasComp<CryostorageContainedComponent>(uid))
+                continue;
+
+            var containedComp = AddComp<CryostorageContainedComponent>(uid);
+
+            containedComp.Cryostorage = cryoStorage.Value;
+            containedComp.GracePeriodEndTime = _timing.CurTime;
+
+            var portalCoordinates = _transformSystem.GetMapCoordinates(Transform(uid));
+
+            var portal = _entity.SpawnEntity(stationCryoTeleportComponent.PortalPrototype, portalCoordinates);
+            _audio.PlayPvs(stationCryoTeleportComponent.TransferSound, portal);
+
+            _cryostorage.HandleEnterCryostorage((uid, containedComp), comp.UserId);
         }
     }
 
@@ -87,6 +106,7 @@ public sealed class CryoTeleportSystem : EntitySystem
     private void OnPlayerAttached(EntityUid uid, CryoTeleportTargetComponent comp, PlayerAttachedEvent ev)
     {
         comp.ExitTime = null;
+        comp.UserId = ev.Player.UserId;
     }
 
     // private void OnGibbed(EntityUid uid, CryoTeleportTargetComponent comp, BeingGibbedEvent ev)
@@ -153,15 +173,12 @@ public sealed class CryoTeleportSystem : EntitySystem
     //     );
     // }
 
-    private EntityUid? FindCryo(EntityUid station, TransformComponent entityXform)
+    private EntityUid? FindCryoStorage(TransformComponent stationGridTransform)
     {
-        var query = AllEntityQuery<CryostorageComponent>();
-        while (query.MoveNext(out var cryoUid, out var cryostorageComponent))
+        var query = AllEntityQuery<CryostorageComponent, TransformComponent>();
+        while (query.MoveNext(out var cryoUid, out _, out var cryoTransform))
         {
-            if (!TryComp<TransformComponent>(cryoUid, out var cryoTransform))
-                return null;
-
-            if (entityXform.MapUid != cryoTransform.MapUid)
+            if (stationGridTransform.MapUid != cryoTransform.MapUid)
                 continue;
 
             return cryoUid;

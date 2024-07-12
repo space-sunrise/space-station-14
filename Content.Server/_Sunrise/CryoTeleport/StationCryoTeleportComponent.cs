@@ -1,5 +1,4 @@
 ﻿using Robust.Shared.Audio;
-using Robust.Shared.Network;
 
 namespace Content.Server._Sunrise.CryoTeleport;
 
