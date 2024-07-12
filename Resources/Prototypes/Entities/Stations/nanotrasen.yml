@@ -30,6 +30,7 @@
     - BaseStationDontSelling
     - BaseStationPlanetPrison
     - BaseStationGoal
+    - BaseStationGammaArmory
     # Sunrise-End
   noSpawn: true
   components:
