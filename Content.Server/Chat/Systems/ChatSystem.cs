@@ -322,7 +322,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     /// <param name="colorOverride">Optional color for the announcement message</param>
     public void DispatchGlobalAnnouncement(
         string message,
-        string sender = "Центральное коммандование", // Sunrise-edit
+        string? sender = null,
         bool playDefault = true,
         SoundSpecifier? announcementSound = null,
         bool playTts = true, // Sunrise-edit,
@@ -330,6 +330,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         Color? colorOverride = null
         )
     {
+        sender ??= Loc.GetString("chat-manager-sender-announcement");
+
         var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message)));
         _chatManager.ChatMessageToAll(ChatChannel.Radio, message, wrappedMessage, default, false, true, colorOverride);
 
@@ -362,13 +364,15 @@ public sealed partial class ChatSystem : SharedChatSystem
     public void DispatchStationAnnouncement(
         EntityUid source,
         string message,
-        string sender = "Центральное коммандование", // Sunrise-edit
+        string? sender = null,
         bool playDefault = true, // Sunrise-edit
-        bool playTts = true,// Sunrise-edit
+        bool playTts = true, // Sunrise-edit
         Color? colorOverride = null,
         string? announceVoice = null,
         SoundSpecifier? announcementSound = null)
     {
+        sender ??= Loc.GetString("chat-manager-sender-announcement");
+
         var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message)));
         var station = _stationSystem.GetOwningStation(source);
 
