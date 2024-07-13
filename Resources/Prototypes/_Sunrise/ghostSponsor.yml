@@ -129,3 +129,53 @@
     scale: 0.8,0.8
     layers:
     - state: mega_legion
+
+# L
+
+- type: ghostTheme
+  id: YellowSponsorObserver
+  components:
+  - type: Sprite
+    noRot: true
+    overrideContainerOcclusion: true
+    drawdepth: Ghosts
+    sprite: _Sunrise/Mobs/Ghosts/yellow_ghost_human.rsi
+    color: "#fff8"
+    layers:
+    - state: animated
+
+- type: ghostTheme
+  id: PinkSponsorObserver
+  components:
+  - type: Sprite
+    noRot: true
+    overrideContainerOcclusion: true
+    drawdepth: Ghosts
+    sprite: _Sunrise/Mobs/Ghosts/pink_ghost_human.rsi
+    color: "#fff8"
+    layers:
+    - state: animated
+
+- type: ghostTheme
+  id: PurpleSponsorObserver
+  components:
+  - type: Sprite
+    noRot: true
+    overrideContainerOcclusion: true
+    drawdepth: Ghosts
+    sprite: _Sunrise/Mobs/Ghosts/purple_ghost_human.rsi
+    color: "#fff8"
+    layers:
+    - state: animated
+
+- type: ghostTheme
+  id: RedSponsorObserver
+  components:
+  - type: Sprite
+    noRot: true
+    overrideContainerOcclusion: true
+    drawdepth: Ghosts
+    sprite: _Sunrise/Mobs/Ghosts/red_ghost_human.rsi
+    color: "#fff8"
+    layers:
+    - state: animated
