@@ -121,4 +121,4 @@
   id: BaseStationMeteorSwarmTarget
   abstract: true
   components:
-  - type: StationMeteorSwarmTargetComponent
+  - type: StationMeteorSwarmTarget
