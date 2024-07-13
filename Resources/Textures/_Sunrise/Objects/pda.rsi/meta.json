@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CLA",
-    "copyright": "SUNRISE",
+    "copyright": "© SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt",
     "size": {
         "x": 32,
         "y": 32
@@ -33,6 +33,18 @@
         },
         {
             "name": "pda-blueshield"
+        },
+        {
+            "name": "pda-space-prison-boss"
+        },
+        {
+            "name": "pda-space-prison-guardian"
+        },
+        {
+            "name": "pda-space-prison-pilot"
+        },
+        {
+            "name": "pda-space-prison-prisoner"
         }
     ]
 }

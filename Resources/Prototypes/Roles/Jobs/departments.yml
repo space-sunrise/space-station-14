@@ -85,6 +85,7 @@
   - Detective
   - Warden
   - Brigmedic  # Sunrise-Brigmedic
+  - SecurityPilot # Sunrise-SecurityPilot
 
 - type: department
   id: Science

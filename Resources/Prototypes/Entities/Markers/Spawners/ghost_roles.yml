@@ -194,10 +194,9 @@
       state: alive
 
 - type: entity
+  noSpawn: true
+  parent: BaseAntagSpawner
   id: SpawnPointGhostSpaceNinja
-  name: ghost role spawn point
-  suffix: space ninja
-  parent: MarkerBase
   components:
   - type: GhostRole
     name: ghost-role-information-space-ninja-name
@@ -211,8 +210,6 @@
       time: 36000 #10 hrs # Sunrise-RoleTime
     raffle:
       settings: default
-  - type: GhostRoleMobSpawner
-    prototype: MobHumanSpaceNinja
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:

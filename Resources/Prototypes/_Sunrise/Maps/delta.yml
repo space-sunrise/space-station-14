@@ -2,6 +2,8 @@
   id: SunriseDelta
   mapName: 'Delta Station'
   mapPath: /Maps/_Sunrise/Station/delta.yml
+  maxRandomOffset: 0
+  randomRotation: false
   minPlayers: 40
   stations:
     Delta:
@@ -29,6 +31,7 @@
             HeadOfPersonnel: [ 1, 1 ]
             ChiefEngineer: [ 1, 1 ]
             StationEngineer: [ 5, 5 ]
+            SeniorEngineer: [ 1, 1 ]
             ChiefMedicalOfficer: [ 1, 1 ]
             MedicalDoctor: [ 5, 5 ]
             Chemist: [ 2, 2 ]
@@ -36,6 +39,7 @@
             Scientist: [ 6, 6 ]
             HeadOfSecurity: [ 1, 1 ]
             SecurityOfficer: [ 6, 6 ]
+            SecurityPilot: [ 1, 1 ]
             Chaplain: [ 1, 1 ]
             Warden: [ 1, 1 ]
             Librarian: [ 1, 1 ]
@@ -61,7 +65,6 @@
             # Sunrise-Security
             Brigmedic: [ 1, 1 ]
             # Sunrise-Senior
-            SeniorEngineer: [ 1, 1 ]
             SeniorPhysician: [ 1, 1 ]
             SeniorResearcher: [ 1, 1 ]
             SeniorOfficer: [ 1, 1 ]

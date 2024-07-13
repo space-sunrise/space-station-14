@@ -64,7 +64,7 @@
                               Access="Public" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 8" />
             </BoxContainer>
             <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" VerticalAlignment="Bottom" HorizontalAlignment="Left">
-                <PanelContainer Name="LeftBottomPanel" StyleClasses="AngleRect" VerticalExpand="True" SetWidth="500"
+                <PanelContainer Name="LeftBottomPanel" StyleClasses="AngleRect" VerticalExpand="True" MinWidth="550"
                                 VerticalAlignment="Bottom" HorizontalExpand="True">
                     <BoxContainer Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
                                   HorizontalExpand="True">
@@ -81,7 +81,7 @@
                                 <serversHub:ServersHub Name="ServersHubBody" Access="Public" HorizontalExpand="True" VerticalExpand="True" />
                             </BoxContainer>
                         </BoxContainer>
-                        <BoxContainer Orientation="Vertical" VerticalExpand="True" MaxWidth="480" VerticalAlignment="Top">
+                        <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalAlignment="Stretch" MaxWidth="530" VerticalAlignment="Top">
                             <controls:StripeBack VerticalAlignment="Top">
                                 <BoxContainer Orientation="Horizontal" Name="ChangelogHeader" MouseFilter="Pass">
                                     <Label HorizontalExpand="True" Text="{Loc 'changelog-sunrise-window-title'}"

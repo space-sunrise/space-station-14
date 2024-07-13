@@ -39,8 +39,6 @@ ui-options-admin-sounds = Музыка админов
 ui-options-tts-enabled = TTS интеграция
 ui-options-tape-player-enabled = Школьники с колонками (Нужен рестарт раунда)
 ui-options-volume-label = Громкость
-
-ui-options-volume-percent = { TOSTRING($volume, "P0") }
 ui-options-display-label = Дисплей
 ui-options-quality-label = Качество
 ui-options-misc-label = Разное
@@ -262,6 +260,4 @@ ui-options-enable-color-name = Цветные имена персонажей
 ui-options-colorblind-friendly = Режим для дальтоников
 ui-options-reduced-motion = Снижение интенсивности визуальных эффектов
 ui-options-chat-window-opacity = Прозрачность окна чата
-ui-options-chat-window-opacity-percent = { TOSTRING($opacity, "P0") }
 ui-options-screen-shake-intensity = Интенсивность дрожания экрана
-ui-options-screen-shake-percent = { TOSTRING($intensity, "P0") }
