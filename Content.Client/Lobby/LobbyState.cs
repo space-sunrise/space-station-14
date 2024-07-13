@@ -19,7 +19,7 @@ using Content.Client.Changelog;
 using Content.Client.Parallax.Managers;
 using Content.Shared._Sunrise.ServersHub;
 using Content.Shared._Sunrise.SunriseCCVars;
-using Microsoft.Extensions.Configuration;
+using Robust.Shared.Configuration;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Serialization.Manager;
