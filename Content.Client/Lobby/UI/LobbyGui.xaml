@@ -68,7 +68,7 @@
                                 VerticalAlignment="Bottom" HorizontalExpand="True">
                     <BoxContainer Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
                                   HorizontalExpand="True">
-                        <BoxContainer Orientation="Vertical" VerticalExpand="True" VerticalAlignment="Top">
+                        <BoxContainer Orientation="Vertical" Name="ServersHubBox" VerticalExpand="True" VerticalAlignment="Top" Access="Public">
                             <controls:StripeBack>
                                 <BoxContainer Orientation="Horizontal" Name="ServersHubHeader" MouseFilter="Pass" >
                                     <Label HorizontalExpand="True" Name="ServersHubHeaderLabel" Access="Public"
@@ -84,7 +84,7 @@
                         <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalAlignment="Stretch" MaxWidth="530" VerticalAlignment="Top">
                             <controls:StripeBack VerticalAlignment="Top">
                                 <BoxContainer Orientation="Horizontal" Name="ChangelogHeader" MouseFilter="Pass">
-                                    <Label HorizontalExpand="True" Text="{Loc 'changelog-sunrise-window-title'}"
+                                    <Label HorizontalExpand="True" Text="{Loc 'changelog-lobby-window-title'}"
                                            VAlign="Center" StyleClasses="LabelHeading" Align="Center"/>
                                 </BoxContainer>
                             </controls:StripeBack>

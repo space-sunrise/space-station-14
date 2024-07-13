@@ -95,6 +95,9 @@ public sealed class SunriseCCVars
      * Servers Hub
      */
 
+    public static readonly CVarDef<bool> ServersHubEnable =
+        CVarDef.Create("servers_hub.enable", true, CVar.SERVER | CVar.REPLICATED);
+
     /// <summary>
     /// Список серверов отображаемых в хабе. Разделяются через запятую.
     /// </summary>
@@ -150,5 +153,12 @@ public sealed class SunriseCCVars
 
     public static readonly CVarDef<string> RoadmapId =
         CVarDef.Create("roadmap.id", "SunriseRoadmap");
+
+    /**
+     * Lobby Changelog
+     */
+
+    public static readonly CVarDef<string> LobbyChangelogs =
+        CVarDef.Create("lobby_changelog.id", "ChangelogSunrise.yml,Changelog.yml", CVar.SERVER | CVar.REPLICATED);
 
 }
