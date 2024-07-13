@@ -12,3 +12,26 @@
       - state: tip
         map: [ "enum.AmmoVisualLayers.Tip" ]
         color: "#43c4f7"
+
+- type: entity
+  id: SUNRISECM14CartridgeRocket20
+  parent: BaseCartridge
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - SUNRISECM14CartridgeRocket20
+  - type: Sprite
+    netsync: false
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: relsotrone-combat
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: SpentAmmoVisuals
+    state: relsotrone-combat
+  - type: CartridgeAmmo
+    deleteOnSpawn: true
+    proto: SUNRISECM14BulletRocket20
+  - type: Appearance
+  - type: StaticPrice
+    price: 10

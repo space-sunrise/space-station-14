@@ -22,3 +22,510 @@
         whitelist:
           tags:
             - CartridgeRifle
+
+- type: entity
+  name: AKMS
+  parent: BaseWeaponRifle
+  id: SUNRISECM14WeaponAKMSRifle
+  components:
+  - type: Sprite
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/akms/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/akms/tiny.rsi
+  - type: Item
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/akms/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -43
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    fireRate: 10
+    soundGunshot:
+      collection: ak47
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifle
+        insertSound: /Audio/_SUNRISE_CM14/Guns/Rifles/AK/ak_reload.ogg
+        ejectSound: /Audio/_SUNRISE_CM14/Guns/Rifles/AK/ak_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineRifle
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeRifle  # 762x39
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeRifle  # 762x39
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 1.3
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/_SUNRISE_CM14/Guns/Rifles/AK/ak_cocked.ogg
+
+- type: entity
+  name: AK74-U
+  parent: BaseWeaponRifle
+  id: SUNRISECM14WeaponRifleAKSU
+  components:
+  - type: Sprite
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/ak74u.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -43
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    fireRate: 5
+    soundGunshot:
+      collection: ak47
+  - type: ChamberMagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: SUNRISECM14MagazineAK
+        insertSound: /Audio/_SUNRISE_CM14/Guns/Rifles/AK/ak_reload.ogg
+        ejectSound: /Audio/_SUNRISE_CM14/Guns/Rifles/AK/ak_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - SUNRISECM14MagazineAK
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifle  # 762x39
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeLightRifle  # 762x39
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.5
+
+- type: entity
+  name: Famas
+  parent: BaseWeaponRifle
+  id: SUNRISECM14WeaponRifleFamas
+  components:
+  - type: Sprite
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/famas/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/famas/tiny.rsi
+  - type: Item
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/famas/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -43
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    soundGunshot:
+      collection: famas
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: SUNRISECM14MagazineFamas
+        insertSound: /Audio/_SUNRISE_CM14/Guns/Rifles/Famas/famas_reload.ogg
+        ejectSound: /Audio/_SUNRISE_CM14/Guns/Rifles/Famas/famas_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - SUNRISECM14MagazineFamas
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol  # 556
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol  # 556
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 1.5
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/_SUNRISE_CM14/Guns/Rifles/Famas/famas_cocked.ogg
+
+- type: entity
+  name: G-36
+  parent: BaseWeaponRifle
+  id: SUNRISECM14WeaponRifleG36
+  components:
+  - type: Sprite
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/g36/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/g36/tiny.rsi
+  - type: Item
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/g36/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -43
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    soundGunshot:
+      path: /Audio/_SUNRISE_CM14/Guns/Rifles/g36/g36_shot.ogg
+    soundv31:
+      path: /Audio/_SUNRISE_CM14/Guns/Snipers/Different/v31.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: SUNRISECM14MagazineG36
+        insertSound: /Audio/_SUNRISE_CM14/Guns/Snipers/Different/reload.ogg
+        ejectSound: /Audio/_SUNRISE_CM14/Guns/Snipers/Different/unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - SUNRISECM14MagazineG36
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol  # 556
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol  # 556
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 1.3
+
+- type: entity
+  name: M-28
+  parent: BaseWeaponRifle
+  id: SUNRISECM14WeaponRifleM28
+  components:
+  - type: Sprite
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/m28/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/m28/tiny.rsi
+  - type: Item
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/m28/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -43
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    soundGunshot:
+      path: /Audio/_SUNRISE_CM14/Guns/Rifles/m28/m28.ogg
+    soundv31:
+      path: /Audio/_SUNRISE_CM14/Guns/Rifles/m28/m28_v31.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: SUNRISECM14MagazineM28
+        insertSound: /Audio/_SUNRISE_CM14/Guns/Rifles/m28/m28_reload.ogg
+        ejectSound: /Audio/_SUNRISE_CM14/Guns/Rifles/m28/m28_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - SUNRISECM14MagazineM28
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol  # 556
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol  # 556
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 1.5
+
+- type: entity
+  name: AR-18
+  parent: BaseWeaponRifle
+  id: SUNRISECM14WeaponRifleAR18
+  components:
+  - type: Sprite
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/ar18/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Sunrise/Entities/Objects/Weapons/Gunsx64/Rifles/ar18/tiny.rsi
+  - type: Item
+    sprite: _Sunrise/Entities/Objects/Weapons/Gunsx64/Rifles/ar18/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -43
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    soundGunshot:
+      path: /Audio/_SUNRISE_CM14/Guns/Rifles/ar18/ar18_shot.ogg
+    soundv31:
+      path: /Audio/_SUNRISE_CM14/Guns/Snipers/Different/v31.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: SUNRISECM14MagazineAR18
+        insertSound: /Audio/_SUNRISE_CM14/Guns/Snipers/Different/reload.ogg
+        ejectSound: /Audio/_SUNRISE_CM14/Guns/Snipers/Different/unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - SUNRISECM14MagazineAR18
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol  # 556
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgePistol  # 556
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 1.3
+
+- type: entity
+  name: M16A4
+  parent: BaseWeaponRifle
+  id: SUNRISECM14WeaponRifleM16A4
+  components:
+  - type: Sprite
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/m16a4/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/m16a4/tiny.rsi
+  - type: Item
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/m16a4/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -43
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    fireRate: 10
+    soundGunshot:
+      path: /Audio/_SUNRISE_CM14/Guns/Rifles/m16a4/m16a4_shot.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifle
+        insertSound: /Audio/_SUNRISE_CM14/Guns/Rifles/m16a4/m16a4_reload.ogg
+        ejectSound: /Audio/_SUNRISE_CM14/Guns/Rifles/m16a4/m16a4_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineRifle
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifle  # 556
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeLightRifle  # 556
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 1.5
+
+- type: entity
+  name: STG 44
+  parent: BaseWeaponRifle
+  id: SUNRISECM14WeaponSTG44
+  components:
+  - type: Sprite
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/stg44/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/stg44/tiny.rsi
+  - type: Item
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/stg44/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -43
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    fireRate: 5.25
+    soundGunshot:
+      collection: ak47
+  - type: ChamberMagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: SUNRISECM14MagazineSTG44
+        insertSound: /Audio/_SUNRISE_CM14/Guns/Rifles/AK/ak_reload.ogg
+        ejectSound: /Audio/_SUNRISE_CM14/Guns/Rifles/AK/ak_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - SUNRISECM14MagazineSTG44
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifle  # 762x39
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeLightRifle  # 762x39
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 1.3
+
+- type: entity
+  name: V-31 assault rifle
+  parent: BaseWeaponRifle
+  id: SUNRISECM14WeaponRifleV31
+  components:
+  - type: Sprite
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/v31/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/v31/tiny.rsi
+  - type: Item
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/v31/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -43
+  - type: Gun
+    fireRate: 3.5
+    minAngle: 24
+    maxAngle: 45
+    soundGunshot:
+      path: /Audio/_SUNRISE_CM14/Guns/Rifles/v31/v31_shot.ogg
+      params:
+        volume: -2
+  - type: ChamberMagazineAmmoProvider
+    autoEject: true
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: SUNRISECM14MagazineV31
+        insertSound: /Audio/_SUNRISE_CM14/Guns/Rifles/v31/v31_reload.ogg
+        ejectSound: /Audio/_SUNRISE_CM14/Guns/Rifles/v31/v31_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - SUNRISECM14MagazineV31
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 1.3

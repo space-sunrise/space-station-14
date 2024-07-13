@@ -11,3 +11,37 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: SUNRISECM14MagazineV31
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+    - SUNRISECM14MagazineV31
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    capacity: 40
+    proto: SUNRISECM14CartridgeRocket20
+    whitelist:
+      tags:
+      - SUNRISECM14CartridgeRocket20
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Item
+    size: Small
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Magazines/v31.rsi
+  - type: Sprite
+    netsync: false
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Magazines/v31.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance

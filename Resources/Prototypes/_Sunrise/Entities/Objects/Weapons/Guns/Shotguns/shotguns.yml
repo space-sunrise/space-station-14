@@ -1,0 +1,116 @@
+- type: entity
+  name: XM1014
+  parent: BaseWeaponShotgun
+  id: SUNRISECM14WeaponXM1014
+  components:
+  - type: Sprite
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Shotguns/XM1014/big.rsi
+  - type: Item
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Shotguns/XM1014/tiny.rsi
+  - type: Clothing
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Shotguns/XM1014/tiny.rsi
+  - type: BallisticAmmoProvider
+    capacity: 10
+  - type: Wieldable
+  - type: UseDelay
+    delay: 1.3
+  - type: GunRequiresWield
+  - type: Gun
+    fireRate: 1
+    soundGunshot:
+      path: /Audio/_SUNRISE_CM14/Guns/Shotguns/XM1014/xm1014_shot.ogg # SUNRISE sounds
+
+- type: entity
+  name: Paladin pump shotgun
+  parent: BaseWeaponShotgun
+  id: SUNRISECM14WeaponShotgunPaladin12
+  components:
+  - type: Sprite
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Shotguns/paladin-12/big.rsi
+  - type: Item
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Shotguns/paladin-12/tiny.rsi
+  - type: Clothing
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Shotguns/paladin-12/tiny.rsi
+  - type: BallisticAmmoProvider
+    capacity: 10
+    soundRack:
+      path: /Audio/_SUNRISE_CM14/Guns/Shotguns/Different/pump.ogg
+    soundInsert:
+      path: /Audio/_SUNRISE_CM14/Guns/Shotguns/Different/insert.ogg
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.1
+  - type: GunRequiresWield
+  - type: Gun
+    fireRate: 2.5
+    soundGunshot:
+      path: /Audio/_SUNRISE_CM14/Guns/Shotguns/paladin_12/paladin12_shot.ogg
+      params:
+        volume: 1
+
+- type: entity
+  name: Spas-12
+  parent: BaseWeaponShotgun
+  id: SUNRISECM14WeaponShotgunSPAS12
+  components:
+  - type: Sprite
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Shotguns/spas_12/big.rsi
+  - type: Item
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Shotguns/spas_12/tiny.rsi
+  - type: Clothing
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Shotguns/spas_12/tiny.rsi
+  - type: BallisticAmmoProvider
+    capacity: 10
+  - type: Wieldable
+  - type: UseDelay
+    delay: 1.3
+  - type: GunRequiresWield
+  - type: Gun
+    fireRate: 1
+    soundGunshot:
+      path: /Audio/_SUNRISE_CM14/Guns/Shotguns/spas_12/spas12_shot.ogg
+
+- type: entity
+  name: Trenchgun L-4034
+  parent: BaseWeaponShotgun
+  id: SUNRISECM14WeaponShotgunTrenchgun4034
+  components:
+  - type: Sprite
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Shotguns/trenchgun_l_4034/big.rsi
+  - type: Item
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Shotguns/trenchgun_l_4034/tiny.rsi
+  - type: Clothing
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Shotguns/trenchgun_l_4034/tiny.rsi
+  - type: BallisticAmmoProvider
+    capacity: 10
+    soundRack:
+      path: /Audio/_SUNRISE_CM14/Guns/Shotguns/trenchgun_l4034/trenchgun_l4034_pump.ogg
+    soundInsert:
+      path: /Audio/_SUNRISE_CM14/Guns/Shotguns/Different/insert.ogg
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.8
+  - type: GunRequiresWield
+  - type: Gun
+    fireRate: 2
+
+- type: entity
+  name: Zauer
+  parent: WeaponShotgunBulldog
+  id: SUNRISECM14WeaponShotgunZauer
+  components:
+  - type: Sprite
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Shotguns/zauer/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Shotguns/zauer/tiny.rsi
+  - type: Clothing
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Shotguns/zauer/tiny.rsi
+  - type: Wieldable
+  - type: UseDelay
+    delay: 1.3
+  - type: GunRequiresWield

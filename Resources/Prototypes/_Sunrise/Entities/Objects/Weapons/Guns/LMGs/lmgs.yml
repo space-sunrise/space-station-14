@@ -1,0 +1,182 @@
+- type: entity
+  name: MG-60
+  parent: BaseWeaponLightMachineGun
+  id: SUNRISECM14WeaponLightMachineGunMG60
+  components:
+  - type: Sprite
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/LMGs/mg60/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/LMGs/mg60/tiny.rsi
+  - type: Item
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/LMGs/mg60/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -20
+    maxAngle: -80
+  - type: Gun
+    minAngle: 30
+    maxAngle: 100
+    fireRate: 5
+    soundGunshot:
+      path: /Audio/_SUNRISE_CM14/Guns/LMGs/shot.ogg
+      params:
+        volume: 1
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: SUNRISECM14MagazineLightMachineGunMG60
+        insertSound: /Audio/_SUNRISE_CM14/Guns/LMGs/reload.ogg
+        ejectSound: /Audio/_SUNRISE_CM14/Guns/LMGs/unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - SUNRISECM14MagazineLightMachineGunMG60
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifle  # 762x39
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeLightRifle  # 762x39
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 1.9
+  - type: GunRequiresWield
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/_SUNRISE_CM14/Guns/LMGs/cocked.ogg
+
+- type: entity
+  name: RPD
+  parent: BaseWeaponLightMachineGun
+  id: SUNRISECM14WeaponLightMachineGunRPD
+  components:
+  - type: Sprite
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/LMGs/rpd/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/LMGs/rpd/tiny.rsi
+  - type: Item
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/LMGs/rpd/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -30
+    maxAngle: -45
+  - type: Gun
+    minAngle: 40
+    maxAngle: 60
+    fireRate: 5
+    soundGunshot:
+      path: /Audio/_SUNRISE_CM14/Guns/LMGs/shot.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: SUNRISECM14MagazineRPD
+        insertSound: /Audio/_SUNRISE_CM14/Guns/LMGs/reload.ogg
+        ejectSound: /Audio/_SUNRISE_CM14/Guns/LMGs/unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - SUNRISECM14MagazineRPD
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifle  # 762x39
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeLightRifle  # 762x39
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 1.9
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/_SUNRISE_CM14/Guns/LMGs/cocked.ogg
+
+- type: entity
+  name: MG-42
+  parent: BaseWeaponLightMachineGun
+  id: SUNRISECM14WeaponMachineGunMG42
+  components:
+  - type: Sprite
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/LMGs/mg42/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/LMGs/mg42/tiny.rsi
+  - type: Item
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/LMGs/mg42/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -20
+    maxAngle: -80
+  - type: Gun
+    minAngle: 30
+    maxAngle: 100
+    fireRate: 5
+    soundGunshot:
+      path: /Audio/_SUNRISE_CM14/Guns/LMGs/shot.ogg
+      params:
+        volume: -3
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineMachineGunMG42
+        insertSound: /Audio/_SUNRISE_CM14/Guns/LMGs/reload.ogg
+        ejectSound: /Audio/_SUNRISE_CM14/Guns/LMGs/unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineMachineGunMG42
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifle  # 762x39
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeLightRifle  # 762x39
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 1.9
+  - type: GunRequiresWield
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/_SUNRISE_CM14/Guns/LMGs/cocked.ogg

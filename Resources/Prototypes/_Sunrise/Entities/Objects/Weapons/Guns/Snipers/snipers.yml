@@ -1,0 +1,231 @@
+- type: entity
+  name: Dragunov
+  parent: BaseWeaponRifle
+  id: SUNRISECM14WeaponSniperDragunov
+  components:
+  - type: Sprite
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Snipers/dragunov/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Snipers/dragunov/tiny.rsi
+  - type: Item
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Snipers/dragunov/tiny.rsi
+  - type: GunWieldBonus
+    fireRate: 1
+    minAngle: -23
+    maxAngle: -44
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    minAngle: 24
+    maxAngle: 45
+    fireRate: 1.25
+    soundGunshot:
+      path: /Audio/_SUNRISE_CM14/Guns/Snipers/Dragunov/dragunov_shot.ogg
+      params:
+        volume: -1
+  - type: BallisticAmmoProvider
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/_SUNRISE_CM14/Guns/Snipers/Dragunov/dragunov_cocked.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: SUNRISECM14MagazineDragunov
+        insertSound: /Audio/_SUNRISE_CM14/Guns/Snipers/Dragunov/dragunov_reload.ogg
+        ejectSound: /Audio/_SUNRISE_CM14/Guns/Snipers/Dragunov/dragunov_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - SUNRISECM14MagazineDragunov
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeMagnum  # 762x54
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeMagnum  # 762x54
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+      ballistic-ammo: !type:Container
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 1.5
+  - type: ZoomableGun
+
+- type: entity
+  name: BR-64
+  parent: BaseWeaponRifle
+  id: SUNRISECM14WeaponRifleBR64
+  components:
+  - type: Sprite
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Snipers/br-64/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Snipers/br-64/tiny.rsi
+  - type: Item
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Snipers/br-64/tiny.rsi
+  - type: GunWieldBonus
+    fireRate: 1
+    minAngle: -23
+    maxAngle: -43
+  - type: Gun
+    fireRate: 1.25
+    minAngle: 24
+    maxAngle: 45
+    soundGunshot:
+      path: /Audio/_SUNRISE_CM14/Guns/Snipers/SR-64/SR64_shot.ogg
+      params:
+        volume: -3
+    soundEmpty:
+      path: /Audio/_SUNRISE_CM14/Guns/Snipers/Different/empty.ogg
+  - type: MagazineAmmoProvider
+  - type: ChamberMagazineAmmoProvider
+    autoEject: true
+    boltClosed: null
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: SUNRISECM14MagazineBR64
+        insertSound: /Audio/_SUNRISE_CM14/Guns/Snipers/Different/reload.ogg
+        ejectSound: /Audio/_SUNRISE_CM14/Guns/Snipers/Different/unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - SUNRISECM14MagazineBR64
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 1.3
+  - type: ZoomableGun
+
+- type: entity
+  name: SR-127 Bauer bolt action rifle
+  parent: BaseWeaponRifle
+  id: SUNRISECM14WeaponRifleBauer127
+  components:
+  - type: Sprite
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Snipers/bauer127/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Snipers/bauer127/tiny.rsi
+  - type: Item
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Snipers/bauer127/tiny.rsi
+  - type: GunWieldBonus
+    fireRate: 1
+    minAngle: -23
+    maxAngle: -43
+  - type: Gun
+    fireRate: 1.25
+    minAngle: 24
+    maxAngle: 45
+    soundGunshot:
+      path: /Audio/_SUNRISE_CM14/Guns/Snipers/Bauer127/bauer127_shot.ogg
+      params:
+        volume: -1
+    soundEmpty:
+      path: /Audio/_SUNRISE_CM14/Guns/Snipers/Different/empty.ogg
+  - type: ChamberMagazineAmmoProvider
+  - type: BallisticAmmoProvider
+    soundRack:
+      path: /Audio/_SUNRISE_CM14/Guns/Snipers/Bauer127/bauer127_bolt.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: SUNRISECM14MagazineBauer127
+        insertSound: /Audio/_SUNRISE_CM14/Guns/Snipers/Different/reload.ogg
+        ejectSound: /Audio/_SUNRISE_CM14/Guns/Snipers/Different/unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - SUNRISECM14MagazineBauer127
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+      ballistic-ammo: !type:Container
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: GunRequiresWield
+  - type: Wieldable
+  - type: UseDelay
+    delay: 1.3
+  - type: ZoomableGun
+
+- type: entity
+  name: M1 Garand
+  parent: BaseWeaponSniper
+  id: SUNRISECM14WeaponSniperGarand
+  components:
+  - type: Sprite
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Snipers/garand/big.rsi
+  - type: Clothing
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Snipers/garand/tiny.rsi
+  - type: Item
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Snipers/garand/tiny.rsi
+  - type: Gun
+    fireRate: 0.8
+    soundGunshot:
+      path: /Audio/_SUNRISE_CM14/Guns/Snipers/garand/garand.ogg
+      params:
+        volume: 4
+    soundEmpty:
+      path: /Audio/_SUNRISE_CM14/Guns/Snipers/garand/garand_empty.ogg
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.8
+  - type: GunRequiresWield
+  - type: ZoomableGun
+
+- type: entity
+  name: Kardashev-Mosin
+  parent: BaseWeaponSniper
+  id: SUNRISECM14WeaponSniperMosinNew
+  components:
+  - type: Sprite
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Snipers/mosin/big.rsi
+  - type: Clothing
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Snipers/mosin/tiny.rsi
+  - type: Item
+    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Snipers/mosin/tiny.rsi
+  - type: Gun
+    fireRate: 0.8
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.8
+  - type: GunRequiresWield
+  - type: ZoomableGun

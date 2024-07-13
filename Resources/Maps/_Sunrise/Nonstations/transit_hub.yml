@@ -20073,7 +20073,7 @@ entities:
     - type: Transform
       pos: 8.51783,7.583647
       parent: 1
-- proto: WeaponRifleLecter
+- proto: SUNRISECM14WeaponRifleM16A4
   entities:
   - uid: 1625
     components:

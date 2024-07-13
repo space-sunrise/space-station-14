@@ -1,0 +1,11 @@
+- type: entity
+  id: ActionTakeAim
+  name: Take Aim
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _SUNRISE_CM14/actions.rsi
+      state: take_aim
+    event: !type:TakeAimActionEvent
+    useDelay: 0.4

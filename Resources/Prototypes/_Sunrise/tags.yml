@@ -15,3 +15,105 @@
 
 - type: Tag
   id: DockGamma
+
+# Catridges:
+
+- type: Tag
+  id: SUNRISECM14CartridgeRifleMachine
+
+- type: Tag
+  id: SUNRISECM14FireThrowerBall
+
+- type: Tag
+  id: SUNRISECM14PowerpackMinigunMG100
+
+- type: Tag
+  id: SUNRISECM14CartridgeRocket20
+
+# Magazines:
+- type: Tag
+  id: SUNRISECM14MagazineM28
+
+- type: Tag
+  id: SUNRISECM14MagazineDragunov
+
+- type: Tag
+  id: SUNRISECM14MagazineBR64
+
+- type: Tag
+  id: SUNRISECM14MagazineBauer127
+
+- type: Tag
+  id: SUNRISECM14MagazineAK
+
+- type: Tag
+  id: SUNRISECM14MagazineFamas
+
+- type: Tag
+  id: SUNRISECM14MagazineG36
+
+- type: Tag
+  id: SUNRISECM14MagazineAR18
+
+- type: Tag
+  id: SUNRISECM14MagazineP90
+
+- type: Tag
+  id: SUNRISECM14MagazineMP38
+
+- type: Tag
+  id: SUNRISECM14MagazineMP7
+
+- type: Tag
+  id: SUNRISECM14MagazineMP5
+
+- type: Tag
+  id: SUNRISECM14MagazineScorpion
+
+- type: Tag
+  id: SUNRISECM14MagazineNewVector
+
+- type: Tag
+  id: SUNRISECM14MagazineRPD
+
+- type: Tag
+  id: MagazineMachineGunMG42
+
+- type: Tag
+  id: SUNRISECM14MagazineLightMachineGunMG60
+
+- type: Tag
+  id: SUNRISECM14MagazineVP70
+
+- type: Tag
+  id: SUNRISECM14MagazineDeagle
+
+- type: Tag
+  id: SUNRISECM14MagazineGlock22
+
+- type: Tag
+  id: SUNRISECM14MagazineHIBrowning
+
+- type: Tag
+  id: SUNRISECM14MagazineACP14
+
+- type: Tag
+  id: SUNRISECM14FuelTankFlamethrower
+
+- type: Tag
+  id: SUNRISECM14NoSpinOnThrow
+
+- type: Tag
+  id: SUNRISECM14MagazineM16A4
+
+- type: Tag
+  id: SUNRISECM14MagazineSTG44
+
+- type: Tag
+  id: SUNRISECM14MagazineV31
+
+- type: Tag
+  id: SUNRISECM14PowerpackFlame
+
+- type: Tag
+  id: SUNRISECM14MagazinePPSH41

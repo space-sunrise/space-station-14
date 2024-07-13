@@ -56446,7 +56446,7 @@ entities:
     - type: Transform
       pos: 18.77011,15.612514
       parent: 1
-- proto: MagazinePistolSubMachineGunTopMounted
+- proto: MagazinePistolSubMachineGun
   entities:
   - uid: 5386
     components:
@@ -79819,7 +79819,7 @@ entities:
     - type: Transform
       pos: 11.5,8.5
       parent: 1
-- proto: WeaponDisabler
+- proto: WeaponEnergyGunMini
   entities:
   - uid: 5324
     components:
@@ -79841,7 +79841,7 @@ entities:
     - type: Transform
       pos: 16.467678,13.21789
       parent: 1
-- proto: WeaponLaserCarbine
+- proto: WeaponEnergyGun
   entities:
   - uid: 5424
     components:
@@ -79853,7 +79853,7 @@ entities:
     - type: Transform
       pos: 38.375,13.58497
       parent: 1
-- proto: WeaponPistolMk58
+- proto: SUNRISECM14WeaponPistolG22
   entities:
   - uid: 5396
     components:
@@ -79870,14 +79870,14 @@ entities:
     - type: Transform
       pos: 37.546875,13.55372
       parent: 1
-- proto: WeaponRifleLecter
+- proto: SUNRISECM14WeaponRifleM16A4
   entities:
   - uid: 5431
     components:
     - type: Transform
       pos: 38.533405,11.484736
       parent: 1
-- proto: WeaponShotgunKammerer
+- proto: SUNRISECM14WeaponShotgunTrenchgun4034
   entities:
   - uid: 5426
     components:
@@ -79889,7 +79889,7 @@ entities:
     - type: Transform
       pos: 38.54903,12.330601
       parent: 1
-- proto: WeaponSubMachineGunDrozd
+- proto: SUNRISECM14WeaponSubMachineGunNewVector
   entities:
   - uid: 5310
     components:
@@ -79901,7 +79901,7 @@ entities:
     - type: Transform
       pos: 36.546875,13.694345
       parent: 1
-- proto: WeaponSubMachineGunWt550
+- proto: SUNRISECM14WeaponSubMachineGunMP38
   entities:
   - uid: 5385
     components:

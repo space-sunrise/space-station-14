@@ -120039,7 +120039,7 @@ entities:
     - type: Transform
       pos: -23.5,-13.5
       parent: 8364
-- proto: GunSafeDisabler
+- proto: GunSafeEnergyGunMini
   entities:
   - uid: 6253
     components:
@@ -120051,21 +120051,21 @@ entities:
     - type: Transform
       pos: 0.5,33.5
       parent: 8364
-- proto: GunSafeRifleLecter
+- proto: GunSafeRifleM16A4
   entities:
   - uid: 9177
     components:
     - type: Transform
       pos: 0.5,37.5
       parent: 8364
-- proto: GunSafeShotgunKammerer
+- proto: GunSafeShotgunTrenchgun4034
   entities:
   - uid: 9170
     components:
     - type: Transform
       pos: -0.5,37.5
       parent: 8364
-- proto: GunSafeSubMachineGunDrozd
+- proto: GunSafeSubMachineGunVector
   entities:
   - uid: 9235
     components:
@@ -122789,7 +122789,7 @@ entities:
     - type: Transform
       pos: -52.5,5.5
       parent: 8364
-- proto: MagazinePistolSubMachineGunTopMounted
+- proto: MagazinePistolSubMachineGun
   entities:
   - uid: 534
     components:
@@ -169409,7 +169409,7 @@ entities:
     - type: Transform
       pos: -2.5,38.5
       parent: 8364
-- proto: WeaponDisabler
+- proto: WeaponEnergyGunMini
   entities:
   - uid: 8819
     components:
@@ -169480,7 +169480,7 @@ entities:
     - type: Transform
       pos: 21.462696,34.988297
       parent: 8364
-- proto: WeaponSubMachineGunWt550
+- proto: SUNRISECM14WeaponSubMachineGunMP38
   entities:
   - uid: 536
     components:

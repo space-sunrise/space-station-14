@@ -1,0 +1,41 @@
+- type: soundCollection
+  id: SUNRISECM14EearthGovernmentMachineGunShot
+  files:
+  - /Audio/_SUNRISE_CM14/Guns/Laser/EG_MG_1.ogg
+  - /Audio/_SUNRISE_CM14/Guns/Laser/EG_MG_2.ogg
+
+- type: soundCollection
+  id: ak47
+  files:
+  - /Audio/_SUNRISE_CM14/Guns/Rifles/AK/ak47-1.ogg
+  - /Audio/_SUNRISE_CM14/Guns/Rifles/AK/ak47-2.ogg
+
+- type: soundCollection
+  id: famas
+  files:
+  - /Audio/_SUNRISE_CM14/Guns/Rifles/Famas/famas-1.ogg
+  - /Audio/_SUNRISE_CM14/Guns/Rifles/Famas/famas-2.ogg
+
+- type: soundCollection
+  id: mp5
+  files:
+  - /Audio/_SUNRISE_CM14/Guns/SMGs/mp5/mp5_shot_1.ogg
+  - /Audio/_SUNRISE_CM14/Guns/SMGs/mp5/mp5_shot_2.ogg
+
+- type: soundCollection
+  id: deagle
+  files:
+  - /Audio/_SUNRISE_CM14/Guns/Pistols/deagle/deagle_shot_1.ogg
+  - /Audio/_SUNRISE_CM14/Guns/Pistols/deagle/deagle_shot_2.ogg
+
+- type: soundCollection
+  id: glock22
+  files:
+  - /Audio/_SUNRISE_CM14/Guns/Pistols/glock22/glock22_shot_1.ogg
+  - /Audio/_SUNRISE_CM14/Guns/Pistols/glock22/glock22_shot_2.ogg
+
+- type: soundCollection
+  id: galil
+  files:
+    - /Audio/_SUNRISE_CM14/Guns/Rifles/galil/galil-1.ogg
+    - /Audio/_SUNRISE_CM14/Guns/Rifles/galil/galil-2.ogg
