@@ -1,11 +1,14 @@
 using System.Linq;
+using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Mind;
 using Content.Server.Objectives;
+using Content.Shared.Database;
 using Content.Shared.Mind.Components;
 using Content.Shared.Roles;
 using Robust.Server.GameObjects;
+using Robust.Shared.Network;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.PlanetPrison
@@ -27,6 +30,7 @@ namespace Content.Server._Sunrise.PlanetPrison
         [Dependency] private readonly GameTicker _gameTicker = default!;
         [Dependency] private readonly TransformSystem _transformSystem = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
+        [Dependency] private readonly BanManager _banManager = default!;
 
         public override void Initialize()
         {
@@ -67,13 +71,29 @@ namespace Content.Server._Sunrise.PlanetPrison
             while (query.MoveNext(out var prisoner, out _, out var xform))
             {
                 var prisonerPosition = _transformSystem.GetMapCoordinates(xform);
-
-                if (prisonerPosition.MapId != planetPrisonStation.MapId)
+                if (!_mindSystem.TryGetMind(prisoner, out var mindId, out var mind))
+                {
                     continue;
+                }
+
+                if (prisonerPosition.MapId != planetPrisonStation.MapId && mind.UserId != null)
+                {
+                    // А вот нехуй играть не по правилам
+                    _banManager.CreateServerBan(mind.UserId.Value,
+                        null,
+                        null,
+                        null,
+                        null,
+                        3600,
+                        NoteSeverity.Medium,
+                        "Автоматический бан. Покинул планету тюрьмы за заключенного.");
+                    QueueDel(prisoner);
+                    continue;
+                }
 
                 var distance = (prisonerPosition.Position - prisonPosition.Position).Length();
 
-                if (!(distance > EscapeDistance) || !_mindSystem.TryGetMind(prisoner, out var mindId, out var mind))
+                if (!(distance > EscapeDistance))
                     continue;
 
                 if (planetPrisonRule.EscapedPrisoners.Contains(mindId))
@@ -130,7 +150,7 @@ namespace Content.Server._Sunrise.PlanetPrison
 
             if (_mindSystem.TryGetSession(mind, out var session))
             {
-                _chatManager.DispatchServerMessage(session, Loc.GetString("fugitive-role-greeting"));
+                _chatManager.DispatchServerMessage(session, Loc.GetString("planet-prisoner-role-greeting"));
             }
 
             _mindSystem.TryAddObjective(mindId, mind, EscapeObjective);
