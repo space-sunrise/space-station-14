@@ -30,7 +30,7 @@ namespace Content.Server._Sunrise.PlanetPrison
         [Dependency] private readonly GameTicker _gameTicker = default!;
         [Dependency] private readonly TransformSystem _transformSystem = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
-        [Dependency] private readonly BanManager _banManager = default!;
+        [Dependency] private readonly IBanManager _banManager = default!;
 
         public override void Initialize()
         {
