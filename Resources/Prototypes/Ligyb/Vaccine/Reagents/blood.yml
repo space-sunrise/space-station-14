@@ -1,0 +1,95 @@
+- type: reagent
+  id: DiseaseBloodFirst
+  name: reagent-name-disease-blood
+  group: Infect
+  desc: reagent-description-disease-blood
+  physicalDesc: reagent-description-disease-bad-physical-desc
+  flavor: bitter
+  color: "#722222"
+  slippery: false
+  metabolisms:
+    Drink:
+      # Disgusting!
+      effects:
+      - !type:SatiateThirst
+        factor: -0.5
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 4
+      - !type:ChemVomit
+        probability: 0.25
+
+- type: reagent
+  id: DiseaseBloodSecond
+  name: reagent-name-disease-blood
+  group: Infect
+  desc: reagent-description-disease-blood
+  physicalDesc: reagent-description-disease-bad-physical-desc
+  flavor: bitter
+  color: "#733333"
+  slippery: false
+  metabolisms:
+    Drink:
+      # Disgusting!
+      effects:
+      - !type:SatiateThirst
+        factor: -0.5
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 4
+      - !type:ChemVomit
+        probability: 0.25
+
+- type: reagent
+  id: DiseaseBloodThird
+  name: reagent-name-disease-blood
+  group: Infect
+  desc: reagent-description-disease-blood
+  physicalDesc: reagent-description-disease-bad-physical-desc
+  flavor: bitter
+  color: "#815131"
+  slippery: false
+  metabolisms:
+    Drink:
+      # Disgusting!
+      effects:
+      - !type:SatiateThirst
+        factor: -0.5
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 4
+      - !type:ChemVomit
+        probability: 0.88
+
+- type: reagent
+  id: DiseaseBloodReagent
+  name: reagent-name-disease-blood-reagent
+  group: Biological
+  desc: reagent-description-disease-blood
+  physicalDesc: reagent-description-disease-bad-physical-desc
+  flavor: bitter
+  color: "#737373"
+  slippery: false
+  metabolisms:
+    Drink:
+      # Disgusting!
+      effects:
+      - !type:SatiateThirst
+        factor: -0.5
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 8
+      - !type:ChemVomit
+        probability: 1

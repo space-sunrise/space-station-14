@@ -18,6 +18,21 @@
   - type: DiseaseMachineVisuals
     idleState: icon
     runningState: running
+  - type: Vaccinator
+    mixDuration: 10
+    mixingSound:
+      path: /Audio/Machines/spinning.ogg
+      params:
+        volume: -4
+  - type: ReactionMixer
+    reactionTypes:
+    - Vaccinator
+  - type: ItemSlots
+    slots:
+      mixer:
+        whitelist:
+          tags:
+            - CentrifugeCompatible
   - type: Machine
     board: VaccinatorMachineCircuitboard
   - type: ContainerContainer
