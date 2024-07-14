@@ -15,6 +15,7 @@ using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Shared.Configuration;
 using Robust.Shared.Input;
+using Content.Shared._Sunrise.SunriseCCVars;  // Sunrise
 
 namespace Content.Client.Lobby.UI
 {
@@ -121,6 +122,8 @@ namespace Content.Client.Lobby.UI
             SetServersHubEnable(_configurationManager.GetCVar(SunriseCCVars.ServersHubEnable));
 
             Chat.SetChatOpacity();
+
+            ServerName.Text = $"Добро пожаловать в {_configurationManager.GetCVar(SunriseCCVars.ServerName)}";
             // Sunrise-end
         }
 
