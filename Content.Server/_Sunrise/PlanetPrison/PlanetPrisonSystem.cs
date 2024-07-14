@@ -76,17 +76,9 @@ namespace Content.Server._Sunrise.PlanetPrison
                     continue;
                 }
 
-                if (prisonerPosition.MapId != planetPrisonStation.MapId && mind.UserId != null)
+                if (prisonerPosition.MapId != planetPrisonStation.MapId)
                 {
                     // А вот нехуй играть не по правилам
-                    _banManager.CreateServerBan(mind.UserId.Value,
-                        null,
-                        null,
-                        null,
-                        null,
-                        3600,
-                        NoteSeverity.Medium,
-                        "Автоматический бан. Покинул планету тюрьмы за заключенного.");
                     QueueDel(prisoner);
                     continue;
                 }
@@ -102,6 +94,10 @@ namespace Content.Server._Sunrise.PlanetPrison
                 // Не ну а чо
                 QueueDel(prisoner);
                 planetPrisonRule.EscapedPrisoners.Add(mindId);
+                if (mind.Session != null)
+                {
+                    _gameTicker.Respawn(mind.Session);
+                }
             }
         }
 

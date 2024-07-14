@@ -4,10 +4,10 @@
   name: special operations officer cap
   description: The NanoTrasen gold-engraved special cap of the higher ranks, which has long gone through more than one blitzkrieg...
   components:
-    - type: Sprite
-      sprite: _Sunrise/Clothing/Head/Hats/centcom_officer_black.rsi
-    - type: Clothing
-      sprite: _Sunrise/Clothing/Head/Hats/centcom_officer_black.rsi
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/centcom_officer_black.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/centcom_officer_black.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -15,10 +15,10 @@
   name: naval cap
   description: A cap worn by those in the Nanotrasen Navy.
   components:
-    - type: Sprite
-      sprite: _Sunrise/Clothing/Head/Hats/centcom_naval_cap.rsi
-    - type: Clothing
-      sprite: _Sunrise/Clothing/Head/Hats/centcom_naval_cap.rsi
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/centcom_naval_cap.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/centcom_naval_cap.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -26,10 +26,10 @@
   name: naval beret
   description: A beret worn by those in the Nanotrasen Navy.
   components:
-    - type: Sprite
-      sprite: _Sunrise/Clothing/Head/Hats/centcom_naval_beret.rsi
-    - type: Clothing
-      sprite: _Sunrise/Clothing/Head/Hats/centcom_naval_beret.rsi
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/centcom_naval_beret.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/centcom_naval_beret.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -37,10 +37,10 @@
   name: leader beret
   description: A blue beret made of durathread with a genuine golden badge, denoting its owner as a Leader of ERT.
   components:
-    - type: Sprite
-      sprite: _Sunrise/Clothing/Head/Hats/ERT_leader_beret.rsi
-    - type: Clothing
-      sprite: _Sunrise/Clothing/Head/Hats/ERT_leader_beret.rsi
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/ERT_leader_beret.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/ERT_leader_beret.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -48,10 +48,10 @@
   name: head of security cap
   description: The robust standard-issue cap of the Head of Security. For showing the officers who's in charge.
   components:
-    - type: Sprite
-      sprite: _Sunrise/Clothing/Head/Hats/hoshat.rsi
-    - type: Clothing
-      sprite: _Sunrise/Clothing/Head/Hats/hoshat.rsi
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/hoshat.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/hoshat.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -59,10 +59,10 @@
   name: warden's police hat
   description: It's a special blue hat issued to the Warden of a security force.
   components:
-    - type: Sprite
-      sprite: _Sunrise/Clothing/Head/Hats/warden_alt.rsi
-    - type: Clothing
-      sprite: _Sunrise/Clothing/Head/Hats/warden_alt.rsi
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/warden_alt.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/warden_alt.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -70,10 +70,10 @@
   name: security medic beret
   description: A robust beret with the medical insignia emblazoned on it. Uses reinforced fabric to offer sufficient protection.
   components:
-    - type: Sprite
-      sprite: _Sunrise/Clothing/Head/Hats/beret_security_medic.rsi
-    - type: Clothing
-      sprite: _Sunrise/Clothing/Head/Hats/beret_security_medic.rsi
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/beret_security_medic.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/beret_security_medic.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -129,3 +129,118 @@
     sprite: _Sunrise/Clothing/Head/Hats/cap.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hats/cap.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatIAA
+  noSpawn: true
+  name: загадочная шляпа
+  description: Шляпа в чёрно-белом стиле. Напоминает секретных агентов из фильмов и сериалов.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Clothing/Head/Hats/iaahat.rsi
+  - type: Clothing
+    sprite: _Sunrise/Entities/Clothing/Head/Hats/iaahat.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatCapUSSPBlack
+  name: старая кожаная фуражка СССП
+  description: Чёрная фуражка с серым козырьком.
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Clothing/Head/Hats/ussp.rsi
+  - type: Clothing
+    sprite: _Sunrise/Entities/Clothing/Head/Hats/ussp.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatCapLeatherHoS
+  name: кожаная фуражка главы службы безопасности
+  description: Довольно старая вещь для этих времён, навевающая старые воспоминания...
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Clothing/Head/Hats/hoscap.rsi
+  - type: Clothing
+    sprite: _Sunrise/Entities/Clothing/Head/Hats/hoscap.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatMagicRD
+  noSpawn: true
+  name: фуражка научного руководителя
+  description: В ней вам не страшен ни плазменный дождь, ни кислота, капающая из вентиляции. Презентабельный вид причёски останется под защитой науки.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Clothing/Head/Hats/rdhat.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+        shader: unshaded
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatCapQM
+  noSpawn: true
+  name: шляпа капитана утилятов
+  description: "Шляпа изображена в классическом пиратском стиле и представляется в стандартном для карго отдела цвете. На шляпе написано: АР! Три Кинетических Ускорителя мне в рот и... *остальная часть надписи затëрта*"
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Clothing/Head/Hats/qmhat.rsi
+  - type: Clothing
+    sprite: _Sunrise/Entities/Clothing/Head/Hats/qmhat.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatHOP
+  noSpawn: true
+  name: фуражка главы персонала
+  description: Тёмно-синяя фуражка с позолоченным рантом. Козырек дает отблеск грамотности и внимательности носителя.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Clothing/Head/Hats/hophat.rsi
+  - type: Clothing
+    sprite: _Sunrise/Entities/Clothing/Head/Hats/hophat.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadEliteCaptainCap
+  noSpawn: true
+  name: федора капитана
+  description: синяя федора с золотой лентой.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Clothing/Head/Hats/cptcap.rsi
+  - type: Clothing
+    sprite: _Sunrise/Entities/Clothing/Head/Hats/cptcap.rsi
+
+- type: entity
+  parent: ClothingHeadHatHardhatBase
+  id: ClothingSpecialHeadHatHardhatCMO
+  noSpawn: true
+  name: медицинская шапочка главного врача
+  description: Стерильная шапочка с фонариком.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Clothing/Head/Hats/cmospecialhat.rsi
+  - type: Clothing
+    sprite: _Sunrise/Entities/Clothing/Head/Hats/cmospecialhat.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatCapCMO
+  noSpawn: true
+  name: медицинский берет
+  description: Белый берет с красным крестом на центральной части.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Clothing/Head/Hats/cmohat.rsi
+  - type: Clothing
+    sprite: _Sunrise/Entities/Clothing/Head/Hats/cmohat.rsi

@@ -92,6 +92,46 @@ public sealed class SunriseCCVars
         CVarDef.Create("game.peaceful_end", false, CVar.SERVERONLY);
 
     /*
+     * Queue
+     */
+
+    public static readonly CVarDef<bool>
+        QueueEnabled = CVarDef.Create("queue.enabled", false, CVar.SERVERONLY);
+
+    /*
+     *  Sponsor API
+     */
+
+    public static readonly CVarDef<string> SponsorsApiUrl =
+        CVarDef.Create("sponsor.api_url", "", CVar.SERVERONLY);
+
+    /*
+     *  Greetings
+     */
+
+    public static readonly CVarDef<bool> GreetingsEnable =
+        CVarDef.Create("greetings.enable", true);
+
+    public static readonly CVarDef<string> GreetingsMessage =
+        CVarDef.Create("greetings.message", "Привет");
+
+    public static readonly CVarDef<string> GreetingsAuthor =
+        CVarDef.Create("greetings.author", "Сервер");
+
+    /*
+     * New Life
+     */
+
+    public static readonly CVarDef<bool> NewLifeEnable =
+        CVarDef.Create("newlife.enable", true, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<bool> NewLifeSponsorOnly =
+        CVarDef.Create("newlife.sponsor_only", false, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<int> NewLifeTimeout =
+        CVarDef.Create("newlife.timeout", 30, CVar.SERVERONLY);
+
+    /*
      * Servers Hub
      */
 
