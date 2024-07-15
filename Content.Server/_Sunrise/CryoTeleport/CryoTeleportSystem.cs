@@ -3,6 +3,8 @@ using Content.Server.GameTicking;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Bed.Cryostorage;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
@@ -41,13 +43,16 @@ public sealed class CryoTeleportSystem : EntitySystem
 
         NextTick += RefreshCooldown;
 
-        var query = AllEntityQuery<CryoTeleportTargetComponent>();
-        while (query.MoveNext(out var uid, out var comp))
+        var query = AllEntityQuery<CryoTeleportTargetComponent, MobStateComponent>();
+        while (query.MoveNext(out var uid, out var comp, out var mobStateComponent))
         {
             if (comp.Station == null)
                 continue;
 
             if (comp.ExitTime == null)
+                continue;
+
+            if (mobStateComponent.CurrentState != MobState.Alive)
                 continue;
 
             if (!TryComp<StationCryoTeleportComponent>(comp.Station, out var stationCryoTeleportComponent) ||

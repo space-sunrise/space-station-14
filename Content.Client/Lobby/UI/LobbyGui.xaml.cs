@@ -15,6 +15,7 @@ using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
 using Robust.Shared.Configuration;
 using Robust.Shared.Input;
+using Content.Shared._Sunrise.SunriseCCVars;  // Sunrise
 
 namespace Content.Client.Lobby.UI
 {
@@ -114,12 +115,26 @@ namespace Content.Client.Lobby.UI
 
             _configurationManager.OnValueChanged(SunriseCCVars.LobbyOpacity, OnLobbyOpacityChanged);
             _configurationManager.OnValueChanged(SunriseCCVars.LobbyBackground, OnLobbyBackgroundChanged);
+            _configurationManager.OnValueChanged(SunriseCCVars.ServersHubEnable, OnServersHubEnableChanged);
 
             SetLobbyOpacity(_configurationManager.GetCVar(SunriseCCVars.LobbyOpacity));
             SetLobbyBackgroundType(_configurationManager.GetCVar(SunriseCCVars.LobbyBackground));
+            SetServersHubEnable(_configurationManager.GetCVar(SunriseCCVars.ServersHubEnable));
 
             Chat.SetChatOpacity();
+
+            ServerName.Text = $"Добро пожаловать в {_configurationManager.GetCVar(SunriseCCVars.ServerName)}";
             // Sunrise-end
+        }
+
+        private void OnServersHubEnableChanged(bool enable)
+        {
+            SetServersHubEnable(enable);
+        }
+
+        private void SetServersHubEnable(bool enable)
+        {
+            ServersHubBox.Visible = enable;
         }
 
         private void OnLobbyBackgroundChanged(string lobbyBackgroundString)

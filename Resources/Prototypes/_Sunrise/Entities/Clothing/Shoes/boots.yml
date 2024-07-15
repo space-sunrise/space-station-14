@@ -2,10 +2,10 @@
   parent: ClothingShoesBootsJack
   id: ClothingShoesBootsJackSec
   components:
-    - type: Sprite
-      sprite: _Sunrise/Clothing/Shoes/Boots/jackboots_sec.rsi
-    - type: Clothing
-      sprite: _Sunrise/Clothing/Shoes/Boots/jackboots_sec.rsi
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Shoes/Boots/jackboots_sec.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Shoes/Boots/jackboots_sec.rsi
 
 - type: entity
   parent: ClothingShoesMilitaryBase
@@ -28,3 +28,27 @@
     sprite: _Sunrise/Clothing/Shoes/Boots/prisoner.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Shoes/Boots/prisoner.rsi
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesUSSPBlack
+  name: кожаные ботинки СССП
+  description: Старая вещица, прямиком из СССП.
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Clothing/Shoes/ussp.rsi
+  - type: Clothing
+    sprite: _Sunrise/Entities/Clothing/Shoes/ussp.rsi
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  noSpawn: true
+  id: ClothingShoesEliteCaptain
+  name: капитанские ботинки
+  description: Конструкция ботинок имеет смягчающий эффект который даёт комфорт капитанского уровня.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Clothing/Shoes/cptshoes.rsi
+  - type: Clothing
+    sprite: _Sunrise/Entities/Clothing/Shoes/cptshoes.rsi

@@ -26,9 +26,6 @@
             "name": "tape6"
         },
         {
-            "name": "tape6-syndi"
-        },
-        {
             "name": "tape7"
         },
         {
@@ -40,11 +37,8 @@
         {
             "name": "tape10"
         },
-		{
-			"name": "unused_tape11"
-		},
         {
-            "name": "tape11-syndi"
+            "name": "tape11"
         },
         {
             "name": "tape12"
@@ -68,7 +62,7 @@
             "name": "tape18"
         },
         {
-            "name": "tape19-syndi"
+            "name": "tape19"
         },
         {
             "name": "tape20"
@@ -132,6 +126,15 @@
         },
         {
             "name": "tape40"
+        },
+        {
+            "name": "syndi_tape1"
+        },
+        {
+            "name": "syndi_tape2"
+        },
+        {
+            "name": "syndi_tape3"
         }
     ]
 }

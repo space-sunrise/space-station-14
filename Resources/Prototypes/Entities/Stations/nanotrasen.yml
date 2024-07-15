@@ -33,6 +33,7 @@
     - BaseStationGammaArmory
     - BaseStationAntagsTargets
     - BaseStationCryoTeleport
+    - BaseStationMeteorSwarmTarget
     # Sunrise-End
   noSpawn: true
   components:

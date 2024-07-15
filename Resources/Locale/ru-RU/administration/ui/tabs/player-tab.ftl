@@ -8,5 +8,5 @@ player-tab-show-disconnected = Показать отключившихся
 player-tab-overlay = Оверлей
 player-tab-entry-tooltip = Игровое время отображается как дни:часы:минуты.
 
-# Sunrise-edit
+# Sunrise-Sponsors
 player-tab-sponsor = Спонсор
