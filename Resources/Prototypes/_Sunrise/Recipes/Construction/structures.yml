@@ -1,0 +1,17 @@
+- type: construction
+  name: fan-tiny
+  id: FanTiny
+  graph: AtmosDeviceFanTiny
+  startNode: start
+  targetNode: fantiny
+  category: construction-category-structures
+  description: A large structural assembly made out of metal.
+  icon:
+    sprite: Structures/Piping/Atmospherics/tinyfan.rsi
+    state: icon
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked

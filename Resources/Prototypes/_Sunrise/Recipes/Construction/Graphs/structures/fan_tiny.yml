@@ -1,0 +1,26 @@
+- type: constructionGraph
+  id: AtmosDeviceFanTiny
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: fantiny
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 1
+              
+    - node: fantiny
+      entity: AtmosDeviceFanTiny
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:DeleteEntity
+          steps:
+            - tool: Screwing
+              doAfter: 2

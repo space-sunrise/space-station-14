@@ -192,3 +192,5 @@ recipe-BananiumAltar-name = бананиумовый алтарь
 recipe-BananiumAltar-description = Бананиумовый алтарь, посвящённый Хонкоматери.
 recipe-SolidSecretDoor-name = потайная дверь
 recipe-SolidSecretDoor-description = Потайная дверь в стене.
+recipe-FanTiny-name = маленький вентилятор
+recipe-FanTiny-description = Маленький вентилятор, создающий лёгкий поток воздуха.
