@@ -11,7 +11,7 @@ namespace Content.Server._Sunrise.CryoTeleport;
 public sealed partial class StationCryoTeleportComponent : Component
 {
     [DataField]
-    public TimeSpan TransferDelay = TimeSpan.FromSeconds(1); // 10 минут
+    public TimeSpan TransferDelay = TimeSpan.FromMinutes(10); // 10 минут
 
     [DataField]
     public string PortalPrototype = "PortalCryo";
