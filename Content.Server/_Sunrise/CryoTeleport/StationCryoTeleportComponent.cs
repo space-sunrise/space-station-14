@@ -1,4 +1,6 @@
 ﻿using Robust.Shared.Audio;
+using Robust.Shared.Network;
+using Robust.Shared.Player;
 
 namespace Content.Server._Sunrise.CryoTeleport;
 
@@ -9,7 +11,7 @@ namespace Content.Server._Sunrise.CryoTeleport;
 public sealed partial class StationCryoTeleportComponent : Component
 {
     [DataField]
-    public TimeSpan TransferDelay = TimeSpan.FromSeconds(300); // 5 минут
+    public TimeSpan TransferDelay = TimeSpan.FromMinutes(5); // 5 минут
 
     [DataField]
     public string PortalPrototype = "PortalCryo";
