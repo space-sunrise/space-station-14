@@ -25,6 +25,3 @@
   - type: Tag
     tags:
       - SpreaderIgnore
-  - type: Construction
-    graph: AtmosDeviceFanTiny
-    node: fantiny
