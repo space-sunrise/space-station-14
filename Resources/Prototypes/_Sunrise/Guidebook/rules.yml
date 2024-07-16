@@ -41,7 +41,7 @@
 - type: guideEntry
   id: RuleSR5
   name: Правило 5
-  ruleEntry: true 
+  ruleEntry: true
   priority: 5
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/CoreRules/RuleSR5.xml"
 

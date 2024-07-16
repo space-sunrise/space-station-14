@@ -24,6 +24,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Server._Sunrise.NewLife; // Sunrise-NewLife
 using Content.Server._Sunrise.TraitorTarget; // Sunrise-Edit
 
 namespace Content.Server.GameTicking
@@ -33,6 +34,7 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly SharedJobSystem _jobs = default!;
         [Dependency] private readonly PlayTimeTrackingManager _playTimeTracking = default!;
+        [Dependency] private readonly NewLifeSystem _newLifeSystem = default!; // Sunrise-NewLife
 
         [ValidatePrototypeId<EntityPrototype>]
         public const string ObserverPrototypeName = "MobObserver";
@@ -134,7 +136,8 @@ namespace Content.Server.GameTicking
             EntityUid station,
             string? jobId = null,
             bool lateJoin = true,
-            bool silent = false)
+            bool silent = false,
+            bool canBeAntag = true) // Sunrise-Edit
         {
             var character = GetPlayerProfile(player);
 
@@ -150,7 +153,7 @@ namespace Content.Server.GameTicking
                     return;
             }
 
-            SpawnPlayer(player, character, station, jobId, lateJoin, silent);
+            SpawnPlayer(player, character, station, jobId, lateJoin, silent, canBeAntag); // Sunrise-Edit
         }
 
         private void SpawnPlayer(ICommonSession player,
@@ -158,7 +161,8 @@ namespace Content.Server.GameTicking
             EntityUid station,
             string? jobId = null,
             bool lateJoin = true,
-            bool silent = false)
+            bool silent = false,
+            bool canBeAntag = true) // Sunrise-Edit
         {
             // Can't spawn players with a dummy ticker!
             if (DummyTicker)
@@ -179,6 +183,11 @@ namespace Content.Server.GameTicking
                 JoinAsObserver(player);
                 return;
             }
+
+            // Sunrise-NewLife-Start
+            _newLifeSystem.AddUsedCharactersForRespawn(player.UserId, _prefsManager.GetPreferences(player.UserId).SelectedCharacterIndex);
+            _newLifeSystem.SetNextAllowRespawn(player.UserId, _gameTiming.CurTime + TimeSpan.FromMinutes(_newLifeSystem.NewLifeTimeout));
+            // Sunrise-NewLife-End
 
             // We raise this event to allow other systems to handle spawning this player themselves. (e.g. late-join wizard, etc)
             var bev = new PlayerBeforeSpawnEvent(player, character, jobId, lateJoin, station);
@@ -327,7 +336,8 @@ namespace Content.Server.GameTicking
                 lateJoin,
                 PlayersJoinedRoundNormally,
                 station,
-                character);
+                character,
+                canBeAntag); // Sunrise-Edit
             RaiseLocalEvent(mob, aev, true);
         }
 
@@ -349,7 +359,7 @@ namespace Content.Server.GameTicking
         /// <param name="station">The station they're spawning on</param>
         /// <param name="jobId">An optional job for them to spawn as</param>
         /// <param name="silent">Whether or not the player should be greeted upon joining</param>
-        public void MakeJoinGame(ICommonSession player, EntityUid station, string? jobId = null, bool silent = false)
+        public void MakeJoinGame(ICommonSession player, EntityUid station, string? jobId = null, bool silent = false, bool canBeAntag = true) // Sunrise-Edit
         {
             if (!_playerGameStatuses.ContainsKey(player.UserId))
                 return;
@@ -357,7 +367,7 @@ namespace Content.Server.GameTicking
             if (!_userDb.IsLoadComplete(player))
                 return;
 
-            SpawnPlayer(player, station, jobId, silent: silent);
+            SpawnPlayer(player, station, jobId, silent: silent, canBeAntag: canBeAntag); // Sunrise-Edit
         }
 
         /// <summary>
@@ -525,6 +535,7 @@ namespace Content.Server.GameTicking
         public bool LateJoin { get; }
         public EntityUid Station { get; }
         public HumanoidCharacterProfile Profile { get; }
+        public bool CanBeAntag { get; } // Sunrise-Sponsor
 
         // Ex. If this is the 27th person to join, this will be 27.
         public int JoinOrder { get; }
@@ -535,7 +546,8 @@ namespace Content.Server.GameTicking
             bool lateJoin,
             int joinOrder,
             EntityUid station,
-            HumanoidCharacterProfile profile)
+            HumanoidCharacterProfile profile,
+            bool canBeAntag) // Sunrise-Sponsor
         {
             Mob = mob;
             Player = player;
@@ -544,6 +556,7 @@ namespace Content.Server.GameTicking
             Station = station;
             Profile = profile;
             JoinOrder = joinOrder;
+            CanBeAntag = canBeAntag; // Sunrise-Sponsor
         }
     }
 }

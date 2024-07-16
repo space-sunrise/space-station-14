@@ -22,6 +22,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Server.Administration.Systems
 {
@@ -39,6 +40,7 @@ namespace Content.Server.Administration.Systems
         [Dependency] private readonly SharedMindSystem _minds = default!;
         [Dependency] private readonly IAfkManager _afkManager = default!;
         [Dependency] private readonly PlayerRateLimitManager _rateLimit = default!;
+        private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
         [GeneratedRegex(@"^https://discord\.com/api/webhooks/(\d+)/((?!.*/).*)$")]
         private static partial Regex DiscordRegex();
@@ -93,6 +95,8 @@ namespace Content.Server.Administration.Systems
                     CVarLimitCount = CCVars.AhelpRateLimitCount,
                     PlayerLimitedAction = PlayerRateLimitedAction
                 });
+
+            IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
         }
 
         private void PlayerRateLimitedAction(ICommonSession obj)
@@ -420,15 +424,30 @@ namespace Content.Server.Administration.Systems
 
             var escapedText = FormattedMessage.EscapeText(message.Text);
 
+            // Sunrise-Sponsors-Start
             string bwoinkText;
 
             if (senderAdmin is not null && senderAdmin.Flags == AdminFlags.Adminhelp) // Mentor. Not full admin. That's why it's colored differently.
             {
-                bwoinkText = $"[color=purple]{senderSession.Name}[/color]";
+                bwoinkText = $"[color=purple]\\[{senderAdmin.Title}\\]{senderSession.Name}[/color]";
             }
             else if (senderAdmin is not null && senderAdmin.HasFlag(AdminFlags.Adminhelp))
             {
-                bwoinkText = $"[color=red]{senderSession.Name}[/color]";
+                bwoinkText = $"[color=red]\\[{senderAdmin.Title}\\] {senderSession.Name}[/color]";
+            }
+            else if (_sponsorsManager != null)
+            {
+                _sponsorsManager.TryGetOocColor(message.UserId, out var oocColor);
+                _sponsorsManager.TryGetOocTitle(message.UserId, out var oocTitle);
+                var sponsorTitle = oocTitle is null ? "" : $"\\[{oocTitle}\\]";
+                if (oocColor != null)
+                {
+                    bwoinkText = $"[color={oocColor.Value.ToHex()}]{sponsorTitle} {senderSession.Name}[/color]";
+                }
+                else
+                {
+                    bwoinkText = $"{sponsorTitle} {senderSession.Name}";
+                }
             }
             else
             {
@@ -440,6 +459,7 @@ namespace Content.Server.Administration.Systems
             // If it's not an admin / admin chooses to keep the sound then play it.
             var playSound = !senderAHelpAdmin || message.PlaySound;
             var msg = new BwoinkTextMessage(message.UserId, senderSession.UserId, bwoinkText, playSound: playSound);
+            // Sunrise-Sponsors-End
 
             LogBwoink(msg);
 
@@ -517,7 +537,8 @@ namespace Content.Server.Administration.Systems
                 .ToList();
         }
 
-        private IList<INetChannel> GetTargetAdmins()
+        // Returns all online admins with AHelp access
+        public IList<INetChannel> GetTargetAdmins()
         {
             return _adminManager.ActiveAdmins
                 .Where(p => _adminManager.GetAdminData(p)?.HasFlag(AdminFlags.Adminhelp) ?? false)

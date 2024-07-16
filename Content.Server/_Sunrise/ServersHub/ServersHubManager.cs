@@ -27,6 +27,8 @@ public sealed partial class ServersHubManager
 
     private List<string> _serversList = new();
 
+    private bool _enable;
+
     private readonly HttpClient _httpClient = new();
     private ISawmill _sawmill = default!;
 
@@ -42,10 +44,16 @@ public sealed partial class ServersHubManager
         _sawmill = _logManager.GetSawmill("serversHub");
 
         _cfg.OnValueChanged(SunriseCCVars.ServersHubList, OnServerListChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.ServersHubEnable, OnServersHubEnableChanged, true);
 
         Task.Run(async () => await PeriodicUpdateServerData(_cts.Token));
 
         _netMgr.RegisterNetMessage<MsgFullServerHubList>();
+    }
+
+    private void OnServersHubEnableChanged(bool enable)
+    {
+        _enable = enable;
     }
 
     private void OnServerListChanged(string serverList)
@@ -86,6 +94,9 @@ public sealed partial class ServersHubManager
 
     private async Task UpdateServerData()
     {
+        if (!_enable)
+            return;
+
         if (_serversList.Count == 0)
             return;
 

@@ -4,10 +4,10 @@
   name: superstar cop uniform
   description: Flare cut trousers and a dirty shirt that might have been classy before someone took a piss in the armpits. It's the dress of a superstar.
   components:
-    - type: Sprite
-      sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/disco.rsi
-    - type: Clothing
-      sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/disco.rsi
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/disco.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/disco.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -15,10 +15,10 @@
   name: aerostatic suit
   description: A crisp and well-pressed suit; professional, comfortable and curiously authoritative.
   components:
-    - type: Sprite
-      sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/kim.rsi
-    - type: Clothing
-      sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/kim.rsi
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/kim.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/kim.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -26,10 +26,10 @@
   name: special operations officer uniform
   description: Special Operations Officer uniform, nothing like that. Although... If you have time to read this, it's too late...
   components:
-    - type: Sprite
-      sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/centcom_officer_black.rsi
-    - type: Clothing
-      sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/centcom_officer_black.rsi
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/centcom_officer_black.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/centcom_officer_black.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -96,3 +96,51 @@
     sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/pilotjumpsuit.rsi
   - type: Clothing
     sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/pilotjumpsuit.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitIAA
+  noSpawn: true
+  name: рубашка с галстуком
+  description: остюм из льняной белой рубашки с синим галстуком и брюк. Выглядит роскошно.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/iaa.rsi
+  - type: Clothing
+    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/iaa.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitHoSOld
+  name: старый комбинезон главы службы безопасности
+  description: Довольно старая вещь для этих времён, навевающая старые воспоминания...
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/hos.rsi
+  - type: Clothing
+    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/hos.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitUSSPBlack
+  name: старый комбинезон СССП
+  description: Старая вещица, прямиком из СССП.
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/ussp.rsi
+  - type: Clothing
+    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/ussp.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSkeleton
+  name: комбинезон скелета
+  description: Черный комбинезон с напечатанным на нем белым узором из костей. Жуть!
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/skeleton.rsi
+  - type: Clothing
+    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/skeleton.rsi
