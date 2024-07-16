@@ -1707,3 +1707,12 @@
   id: 127
   time: '2024-07-15T15:02:13.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/199
+- author: pacable
+  changes:
+  - message: "\u0418\u0441\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u043E \u043E\u0442\
+      \u0441\u0443\u0442\u0441\u0442\u0432\u0438\u0435 \u043C\u0430\u0439\u043D\u0434\
+      \u0449\u0438\u043B\u0434\u0430 \u0443 \u041E\u0426\u041A"
+    type: Fix
+  id: 128
+  time: '2024-07-16T16:13:45.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/205
