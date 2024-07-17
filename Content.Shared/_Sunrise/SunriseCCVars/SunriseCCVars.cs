@@ -92,8 +92,51 @@ public sealed class SunriseCCVars
         CVarDef.Create("game.peaceful_end", false, CVar.SERVERONLY);
 
     /*
+     * Queue
+     */
+
+    public static readonly CVarDef<bool>
+        QueueEnabled = CVarDef.Create("queue.enabled", false, CVar.SERVERONLY);
+
+    /*
+     *  Sponsor API
+     */
+
+    public static readonly CVarDef<string> SponsorsApiUrl =
+        CVarDef.Create("sponsor.api_url", "", CVar.SERVERONLY);
+
+    /*
+     *  Greetings
+     */
+
+    public static readonly CVarDef<bool> GreetingsEnable =
+        CVarDef.Create("greetings.enable", true);
+
+    public static readonly CVarDef<string> GreetingsMessage =
+        CVarDef.Create("greetings.message", "Привет");
+
+    public static readonly CVarDef<string> GreetingsAuthor =
+        CVarDef.Create("greetings.author", "Сервер");
+
+    /*
+     * New Life
+     */
+
+    public static readonly CVarDef<bool> NewLifeEnable =
+        CVarDef.Create("newlife.enable", true, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<bool> NewLifeSponsorOnly =
+        CVarDef.Create("newlife.sponsor_only", false, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<int> NewLifeTimeout =
+        CVarDef.Create("newlife.timeout", 30, CVar.SERVERONLY);
+
+    /*
      * Servers Hub
      */
+
+    public static readonly CVarDef<bool> ServersHubEnable =
+        CVarDef.Create("servers_hub.enable", true, CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     /// Список серверов отображаемых в хабе. Разделяются через запятую.
@@ -136,4 +179,28 @@ public sealed class SunriseCCVars
 
     public static readonly CVarDef<float> LobbyOpacity =
         CVarDef.Create("lobby.lobby_opacity", 0.90f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<string> ServerName = CVarDef.Create("lobby.server_name", "SS14", CVar.REPLICATED);
+
+    /*
+     * Planet Prison
+     */
+
+    public static readonly CVarDef<int> MinPlayersPlanetPrison =
+        CVarDef.Create("planet_prison.min_players", 60, CVar.SERVERONLY);
+
+    /**
+     * Roadmap
+     */
+
+    public static readonly CVarDef<string> RoadmapId =
+        CVarDef.Create("roadmap.id", "SunriseRoadmap");
+
+    /**
+     * Lobby Changelog
+     */
+
+    public static readonly CVarDef<string> LobbyChangelogs =
+        CVarDef.Create("lobby_changelog.id", "ChangelogSunrise.yml,Changelog.yml", CVar.SERVER | CVar.REPLICATED);
+
 }

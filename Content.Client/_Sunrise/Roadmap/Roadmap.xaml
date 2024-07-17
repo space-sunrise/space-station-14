@@ -1,0 +1,8 @@
+<Control xmlns="https://spacestation14.io">
+    <ScrollContainer>
+        <BoxContainer Orientation="Vertical">
+            <RichTextLabel Name="Header" Access="Public" Margin="0 15 0 10" />
+            <BoxContainer Name="Versions" Access="Public" Orientation="Horizontal"/>
+        </BoxContainer>
+    </ScrollContainer>
+</Control>

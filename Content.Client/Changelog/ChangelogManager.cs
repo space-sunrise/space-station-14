@@ -120,6 +120,38 @@ namespace Content.Client.Changelog
             });
         }
 
+        public Changelog MergeChangelogs(List<Changelog> changelogs)
+        {
+            var combinedChangelog = new Changelog();
+
+            foreach (var changelog in changelogs)
+            {
+                // Объединение списков записей
+                combinedChangelog.Entries.AddRange(changelog.Entries);
+
+                // Объединение свойств
+                if (!string.IsNullOrEmpty(changelog.Name))
+                {
+                    combinedChangelog.Name = changelog.Name;
+                }
+
+                if (changelog.AdminOnly)
+                {
+                    combinedChangelog.AdminOnly = true;
+                }
+
+                if (changelog.Order > combinedChangelog.Order)
+                {
+                    combinedChangelog.Order = changelog.Order;
+                }
+            }
+
+            // Упорядочивание по времени
+            combinedChangelog.Entries = combinedChangelog.Entries.OrderBy(entry => entry.Time).ToList();
+
+            return combinedChangelog;
+        }
+
         public void PostInject()
         {
             _sawmill = _logManager.GetSawmill(SawmillName);

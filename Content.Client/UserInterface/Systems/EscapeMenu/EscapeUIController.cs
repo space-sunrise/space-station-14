@@ -1,7 +1,9 @@
-﻿using Content.Client.Gameplay;
+﻿using Content.Client._Sunrise.Roadmap;
+using Content.Client.Gameplay;
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Client.UserInterface.Systems.Info;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
 using JetBrains.Annotations;
 using Robust.Client.Console;
@@ -69,6 +71,12 @@ public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayS
             _changelog.ToggleWindow();
         };
 
+        _escapeWindow.RoadmapButton.OnPressed += _ =>
+        {
+            CloseEscapeWindow();
+            UIManager.GetUIController<RoadmapUIController>().ToggleRoadmap();
+        };
+
         _escapeWindow.RulesButton.OnPressed += _ =>
         {
             CloseEscapeWindow();
@@ -93,6 +101,13 @@ public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayS
             _console.ExecuteCommand("quit");
         };
 
+        // Sunrise-start
+        _escapeWindow.DonateButton.OnPressed += _ =>
+        {
+            _uri.OpenUri(_cfg.GetCVar(SunriseCCVars.InfoLinksDonate));
+        };
+        // Sunrise-end
+
         _escapeWindow.WikiButton.OnPressed += _ =>
         {
             _uri.OpenUri(_cfg.GetCVar(CCVars.InfoLinksWiki));
@@ -105,6 +120,8 @@ public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayS
 
         // Hide wiki button if we don't have a link for it.
         _escapeWindow.WikiButton.Visible = _cfg.GetCVar(CCVars.InfoLinksWiki) != "";
+
+        _escapeWindow.DonateButton.Visible = _cfg.GetCVar(SunriseCCVars.InfoLinksDonate) != ""; // Sunrise-Sponsors
 
         CommandBinds.Builder
             .Bind(EngineKeyFunctions.EscapeMenu,

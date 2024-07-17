@@ -26,5 +26,24 @@
   name: сумка офицера «синий щит»
   description: На стиле.
   components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Satchels/blueshield.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelPrisonGuard
+  name: сумка сотрудника кт
+  description: На стиле.
+  components:
     - type: Sprite
-      sprite: _Sunrise/Clothing/Back/Satchels/blueshield.rsi
+      sprite: _Sunrise/Clothing/Back/Satchels/guard.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackSatchelHoS
+  name: сумка главы службы безопасности
+  description: Стильная чёрная кожаная сумка.
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Clothing/Back/Satchels/hos.rsi

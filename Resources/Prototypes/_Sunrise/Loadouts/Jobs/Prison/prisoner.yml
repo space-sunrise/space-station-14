@@ -1,0 +1,23 @@
+﻿- type: loadout
+  id: PrisonerJumpsuit
+  equipment: PrisonerJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
+
+- type: startingGear
+  id: PrisonerJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisonerGrey
+
+- type: loadout
+  id: PrisonerJumpskirt
+  equipment: PrisonerJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+
+- type: startingGear
+  id: PrisonerJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisonerGrey

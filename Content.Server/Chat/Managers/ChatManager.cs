@@ -259,12 +259,18 @@ namespace Content.Server.Chat.Managers
                 wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message", ("patronColor", patronColor),("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
             }
 
-            // Sunrise-Sponsors-Start
-            if (_sponsorsManager != null && _sponsorsManager.TryGetOocColor(player.UserId, out var oocColor))
+            // Sunrise-start
+            if (_sponsorsManager != null && _sponsorsManager.TryGetOocColor(player.UserId, out var oocColor) && _sponsorsManager.TryGetOocTitle(player.UserId, out var sponsorTitle))
             {
-                wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message", ("patronColor", oocColor),("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
+                wrappedMessage = Loc.GetString("chat-manager-send-ooc-patron-wrap-message", ("patronColor", oocColor), ("patronTitle", $"\\[{sponsorTitle}\\] "),("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
             }
-            // Sunrise-Sponsors-End
+
+            var data = _adminManager.GetAdminData(player);
+            if (data != null && data.Title != null)
+            {
+                wrappedMessage = Loc.GetString("chat-manager-send-ooc-admin-wrap-message", ("patronTitle", $"\\[{data.Title}\\] "),("playerName", player.Name), ("message", FormattedMessage.EscapeText(message)));
+            }
+            // Sunrise-end
 
             //TODO: player.Name color, this will need to change the structure of the MsgChatMessage
             ChatMessageToAll(ChatChannel.OOC, message, wrappedMessage, EntityUid.Invalid, hideChat: false, recordReplay: true, colorOverride: colorOverride, author: player.UserId);

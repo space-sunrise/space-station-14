@@ -11,7 +11,6 @@
         Manipulator: 1
         Glass: 1
 
-
 - type: entity
   parent: BaseComputerCircuitboard
   id: CentCommShuttleConsoleCircuitboard
@@ -20,3 +19,30 @@
   components:
   - type: ComputerBoard
     prototype: ComputerShuttleCentComm
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: PrisonShuttleConsoleCircuitboard
+  name: консоль тюремного шаттла (консольная плата)
+  description: Плата которая используется для создания консоли тюремного шаттла.
+  components:
+  - type: ComputerBoard
+    prototype: ComputerShuttlePrison
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: PrisonCommsComputerCircuitboard
+  name: консоль связи тюрьмы (консольная плата)
+  description: Плата которая используется для создания консоли связи тюрьмы.
+  components:
+  - type: ComputerBoard
+    prototype: PrisonComputerComms
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: SecurityShuttleConsoleCircuitboard
+  name: консоль шаттла службы безопастности (консольная плата)
+  description: Плата которая используется для создания консоли шаттла службы безопастности.
+  components:
+  - type: ComputerBoard
+    prototype: ComputerShuttleSecurity

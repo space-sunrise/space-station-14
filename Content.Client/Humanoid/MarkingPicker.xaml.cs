@@ -229,7 +229,10 @@ public sealed partial class MarkingPicker : Control
             item.Metadata = marking;
             // Sunrise-Sponsors-Start
             if (marking.SponsorOnly && _sponsorsManager != null)
+            {
                 item.Disabled = !_sponsorsManager.GetClientPrototypes().Contains(marking.ID);
+                item.Text = $"{GetMarkingName(marking)} [СПОНСОР] ";
+            }
             // Sunrise-Sponsors-End
         }
 

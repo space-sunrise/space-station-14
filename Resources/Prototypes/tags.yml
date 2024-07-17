@@ -545,7 +545,7 @@
 - type: Tag
   id: DrinkSpaceGlue
 
-- type: Tag 
+- type: Tag
   id: Dropper
 
 - type: Tag
@@ -1106,6 +1106,9 @@
   id: SalvageExperiment
 
 - type: Tag
+  id: Scarf
+
+- type: Tag
   id: Screwdriver
 
 - type: Tag
@@ -1346,5 +1349,8 @@
 
 - type: Tag
   id: WriteIgnoreStamps
+
+- type: Tag
+  id: SolarAssemblyFlatpack
 
 # ALPHABETICAL

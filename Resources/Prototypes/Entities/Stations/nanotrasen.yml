@@ -28,7 +28,12 @@
     # Sunrise-Start
     - BaseStationTransitHub
     - BaseStationDontSelling
+    - BaseStationPlanetPrison
     - BaseStationGoal
+    - BaseStationGammaArmory
+    - BaseStationAntagsTargets
+    - BaseStationCryoTeleport
+    - BaseStationMeteorSwarmTarget
     # Sunrise-End
   noSpawn: true
   components:
@@ -46,6 +51,7 @@
     - BaseCentCommShuttles
     - BaseStationImmortal
     - BaseStationDontSelling
+    - BaseStationCryoTeleport
     # Sunrise-End
   noSpawn: true
   components:

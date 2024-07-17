@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server._Sunrise.TraitorTarget;
 using Content.Server.DetailExaminable;
 using Content.Server.Forensics;
 using Content.Server.GameTicking;
@@ -41,8 +42,6 @@ public sealed class EvilTwinSystem : EntitySystem
     [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
     [Dependency] private readonly TargetObjectiveSystem _target = default!;
     [Dependency] private readonly SharedObjectivesSystem _objectives = default!;
-    [Dependency] private readonly LoadoutSystem _loadoutSystem = default!;
-
 
     [ValidatePrototypeId<AntagPrototype>]
     private const string EvilTwinRole = "EvilTwin";
@@ -59,7 +58,7 @@ public sealed class EvilTwinSystem : EntitySystem
         SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEnd);
     }
 
-    private void OnPlayerAttached(EntityUid uid, _Sunrise.EvilTwin.EvilTwinSpawnerComponent component, PlayerAttachedEvent args)
+    private void OnPlayerAttached(EntityUid uid, EvilTwinSpawnerComponent component, PlayerAttachedEvent args)
     {
         if (TryGetEligibleHumanoid(out var targetUid))
         {
@@ -88,8 +87,8 @@ public sealed class EvilTwinSystem : EntitySystem
         _roleSystem.MindAddRole(mindId, role, mind);
         _mindSystem.TryAddObjective(mindId, mind, EscapeObjective);
         _mindSystem.TryAddObjective(mindId, mind, KillObjective);
-        if (_mindSystem.TryGetObjectiveComp<TargetObjectiveComponent>(uid, out var obj)) // Sunrise-edit
-            _target.SetTarget(uid, evilTwin.TargetMindId, obj); // Sunrise-edit
+        if (_mindSystem.TryGetObjectiveComp<TargetObjectiveComponent>(uid, out var obj))
+            _target.SetTarget(uid, evilTwin.TargetMindId, obj);
     }
 
     private void OnRoundEnd(RoundEndTextAppendEvent ev)
@@ -176,17 +175,15 @@ public sealed class EvilTwinSystem : EntitySystem
     /// <returns>false if not found</returns>
     private bool TryGetEligibleHumanoid([NotNullWhen(true)] out EntityUid? uid)
     {
-        var targets = EntityQuery<ActorComponent, HumanoidAppearanceComponent>().ToList();
+        var targets = EntityQuery<ActorComponent, AntagTargetComponent, HumanoidAppearanceComponent>().ToList();
         _random.Shuffle(targets);
-        foreach (var (actor, _) in targets)
+        foreach (var (actor, _, _) in targets)
         {
             if (!_mindSystem.TryGetMind(actor.PlayerSession, out var mindId, out var mind) || mind.OwnedEntity == null)
                 continue;
 
             if (!_jobSystem.MindTryGetJob(mindId, out _, out _))
                 continue;
-
-            // There was check for nukeops or evil twin, but ist it will be fun?
 
             uid = mind.OwnedEntity;
             return true;
@@ -229,7 +226,6 @@ public sealed class EvilTwinSystem : EntitySystem
             {
                 pref.Loadouts.TryGetValue(jobLoadout, out var loadout);
 
-                // Set to default if not present
                 if (loadout == null)
                 {
                     loadout = new RoleLoadout(jobLoadout);
