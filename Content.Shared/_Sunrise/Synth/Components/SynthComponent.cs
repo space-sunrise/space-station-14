@@ -32,6 +32,12 @@ public sealed partial class SynthComponent : Component
 
     [DataField("sparkSound")]
     public SoundSpecifier SparkSound = new SoundCollectionSpecifier("sparks", AudioParams.Default.WithVolume(10f));
+    
+    [DataField("extendSound")]
+    public SoundSpecifier ExtendSound = new SoundPathSpecifier("/Audio/Effects/toilet_seat_down.ogg");
+    
+    [DataField("unextendSound")]
+    public SoundSpecifier UnextendSound = new SoundPathSpecifier("/Audio/Effects/toilet_seat_down.ogg");
 
     [DataField("powerDrainDelay")]
     public float PowerDrainDelay = 2;

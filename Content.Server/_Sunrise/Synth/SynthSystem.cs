@@ -24,6 +24,7 @@ using Content.Shared.Stunnable;
 using Content.Shared.Synth.Components;
 using Content.Shared.Synth.EntitySystems;
 using Content.Shared.Verbs;
+using Robust.Shared.Utility;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
@@ -110,10 +111,12 @@ public sealed class SynthSystem : SharedSynthSystem
         if (component.WiresExtended)
         {
             _popup.PopupEntity(Loc.GetString("synth-wires-extended"), args.Performer, args.Performer, PopupType.Medium);
+            _audioSystem.PlayPredicted(component.ExtendSound, uid, uid);
         }
         else
         {
             _popup.PopupEntity(Loc.GetString("synth-wires-cleared"), args.Performer, args.Performer, PopupType.Medium);
+            _audioSystem.PlayPredicted(component.UnextendSound, uid, uid);
         }
     }
 
@@ -189,6 +192,7 @@ public sealed class SynthSystem : SharedSynthSystem
                 OnDrain(uid, args.User, synthComponent);
             },
             Text = Loc.GetString("synth-drain-verb"),
+            Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/smite.svg.192dpi.png")),
             Priority = 1
         };
         
