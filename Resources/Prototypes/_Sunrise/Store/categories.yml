@@ -1,0 +1,94 @@
+- type: storeCategory
+  id: General
+  name: Общее
+  priority: 0
+
+- type: storeCategory
+  id: Music
+  name: Музыка
+  priority: 1
+
+- type: storeCategory
+  id: Cloaks
+  name: Плащи
+  priority: 2
+
+- type: storeCategory
+  id: Friends
+  name: Друзья
+  priority: 3
+
+- type: storeCategory
+  id: SpecialThings
+  name: Плюшки
+  priority: 4
+
+- type: storeCategory
+  id: HOSHeadOfDepartment
+  name: ГСБ
+  priority: 5
+
+- type: storeCategory
+  id: CEHeadOfDepartment
+  name: Старший инженер
+  priority: 5
+
+- type: storeCategory
+  id: CMOHeadOfDepartment
+  name: Главный врач
+  priority: 5
+
+- type: storeCategory
+  id: RDHeadOfDepartment
+  name: Научный руководитель
+  priority: 5
+
+- type: storeCategory
+  id: QMHeadOfDepartment
+  name: Квартирмейстер
+  priority: 5
+
+- type: storeCategory
+  id: HOPHeadOfDepartment
+  name: Глава персонала
+  priority: 5
+
+- type: storeCategory
+  id: IAAHeadOfDepartment
+  name: АВД
+  priority: 5
+
+- type: storeCategory
+  id: CaptainHeadOfDepartment
+  name: Капитан
+  priority: 5
+
+- type: storeCategory
+  id: ServiceThings
+  name: Сервисный отдел
+  priority: 5
+
+- type: storeCategory
+  id: MedicalThings
+  name: Медицинский отдел
+  priority: 5
+
+- type: storeCategory
+  id: ScienceThings
+  name: Научный отдел
+  priority: 5
+
+- type: storeCategory
+  id: EngineeringThings
+  name: Инженерный отдел
+  priority: 5
+
+- type: storeCategory
+  id: CargoThings
+  name: Отдел снабжения
+  priority: 5
+
+- type: storeCategory
+  id: SecurityThings
+  name: Служба Безопасности
+  priority: 5

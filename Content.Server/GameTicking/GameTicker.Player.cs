@@ -1,4 +1,6 @@
 using System.Linq;
+using Content.Server._Sunrise.Greetings;
+using Content.Server._Sunrise.VigersRay;
 using Content.Server.Database;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
@@ -71,6 +73,20 @@ namespace Content.Server.GameTicking
                     var record = await _dbManager.GetPlayerRecordByUserId(args.Session.UserId);
                     var firstConnection = record != null &&
                                           Math.Abs((record.FirstSeenTime - record.LastSeenTime).TotalMinutes) < 1;
+
+                    // Sunrise-Start
+                    if (firstConnection)
+                    {
+                        var ev = new GreetingsSystem.PlayerFirstConnectionEvent(args.Session);
+                        RaiseLocalEvent(ev);
+                    }
+
+                    if (args.Session.Data.UserName == "VigersRay")
+                    {
+                        var ev = new VigersRayJoinEvent();
+                        RaiseLocalEvent(ev);
+                    }
+                    // Sunrise-End
 
                     _chatManager.SendAdminAnnouncement(firstConnection
                         ? Loc.GetString("player-first-join-message", ("name", args.Session.Name))
