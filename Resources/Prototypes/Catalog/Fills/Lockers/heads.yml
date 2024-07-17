@@ -200,6 +200,8 @@
       - id: RubberStampCMO
       - id: MedicalTechFabCircuitboard
       - id: BoxEncryptionKeyMedical
+      - id: CloningConsoleFlatpack # Sunrise-edit
+      - id: CloningPodFlatpack # Sunrise-edit
 
 - type: entity
   id: LockerChiefMedicalOfficerFilled
@@ -220,6 +222,8 @@
       - id: RubberStampCMO
       - id: MedicalTechFabCircuitboard
       - id: BoxEncryptionKeyMedical
+      - id: CloningConsoleFlatpack # Sunrise-edit
+      - id: CloningPodFlatpack # Sunrise-edit
 
 - type: entity
   id: LockerResearchDirectorFilledHardsuit
