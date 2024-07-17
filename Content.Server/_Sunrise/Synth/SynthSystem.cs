@@ -71,11 +71,13 @@ public sealed class SynthSystem : SharedSynthSystem
         SubscribeLocalEvent<SynthComponent, SynthChangeScreenActionEvent>(OnSynthChangeScreen);
         SubscribeLocalEvent<SynthComponent, SynthScreenPrototypeSelectedMessage>(OnSynthScreenSelected);
         SubscribeLocalEvent<SynthComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<SynthComponent, SynthDrainWiresActionEvent>(OnDrainWires);
     }
 
     private void OnMapInit(EntityUid uid, SynthComponent component, MapInitEvent args)
     {
         _action.AddAction(uid, "SynthChangeScreen");
+        _action.AddAction(uid, "SynthDrainWires");
     }
 
     private void TryOpenUi(EntityUid uid, EntityUid user, SynthComponent? component = null)
@@ -99,6 +101,20 @@ public sealed class SynthSystem : SharedSynthSystem
     private void OnSynthScreenSelected(EntityUid uid, SynthComponent component, SynthScreenPrototypeSelectedMessage args)
     {
         _sharedHuApp.SetMarkingId(uid, MarkingCategories.Snout, 0, args.SelectedId);
+    }
+
+    private void OnDrainWires(EntityUid uid, SynthComponent component, SynthDrainWiresActionEvent args)
+    {
+        component.WiresExtended = !component.WiresExtended;
+    
+        if (component.WiresExtended)
+        {
+            _popup.PopupEntity(Loc.GetString("synth-wires-extended"), args.Performer, args.Performer, PopupType.Medium);
+        }
+        else
+        {
+            _popup.PopupEntity(Loc.GetString("synth-wires-cleared"), args.Performer, args.Performer, PopupType.Medium);
+        }
     }
 
     private void UpdateUi(EntityUid uid, SynthComponent? component = null)
@@ -157,20 +173,25 @@ public sealed class SynthSystem : SharedSynthSystem
 
     private void AddDrainVerb(EntityUid uid, ApcComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
-        if (!TryComp<SynthComponent>(args.User, out var robotPowerComponent))
+        if (!TryComp<SynthComponent>(args.User, out var synthComponent))
             return;
 
-        if (!HasComp<PowerNetworkBatteryComponent>(uid))
+        if (!synthComponent.WiresExtended)
             return;
 
-        if (TryComp<TransformComponent>(uid, out var transformComponent) && !transformComponent.Anchored)
+        if (synthComponent.Energy >= synthComponent.MaxEnergy)
             return;
 
         AlternativeVerb verb = new()
         {
-            Act = () => OnDrain(uid, args.User, robotPowerComponent),
-            Text = Loc.GetString("Зарядиться")
+            Act = () =>
+            {
+                OnDrain(uid, args.User, synthComponent);
+            },
+            Text = Loc.GetString("synth-drain-verb"),
+            Priority = 1
         };
+        
         args.Verbs.Add(verb);
     }
 
@@ -178,13 +199,13 @@ public sealed class SynthSystem : SharedSynthSystem
     {
         if (!_interactionSystem.InRangeUnobstructed(user, uid, 1.25f))
         {
-            _popup.PopupEntity("Слишком далеко", user);
+            _popup.PopupEntity(Loc.GetString("robot-drain-too-far"), user);
             return;
         }
 
         if (!TryGetBattery(user, out var battery, out var batteryComponent))
         {
-            _popup.PopupEntity("Не обнаружена батарея", user);
+            _popup.PopupEntity(Loc.GetString("robot-drain-battery-none"), user);
             return;
         }
 

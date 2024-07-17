@@ -11,3 +11,9 @@ robot-drain-desc = Вы можете зарядить свою батарею о
 species-name-synth = КПБ
 reagent-name-motor-oil = Моторное масло
 reagent-desc-motor-oil = Ну масло как масло ёпт.
+
+synth-wires-extended = Провода выдвинуты
+synth-wires-cleared = Провода убраны
+synth-drain-verb = Зарядиться
+robot-drain-battery-none = Батарея не обнаружена
+robot-drain-too-far = Слишком далеко

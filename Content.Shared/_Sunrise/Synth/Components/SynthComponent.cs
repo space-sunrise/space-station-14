@@ -35,6 +35,9 @@ public sealed partial class SynthComponent : Component
 
     [DataField("powerDrainDelay")]
     public float PowerDrainDelay = 2;
+    
+    [DataField("wiresExtended")]
+    public bool WiresExtended = false;
 
     [ViewVariables(VVAccess.ReadWrite)]
     public DamageSpecifier EmpDamage = new()
@@ -95,4 +98,9 @@ public sealed class SynthScreenPrototypeSelectedMessage(string selectedId) : Bou
 public sealed partial class SynthChangeScreenActionEvent : InstantActionEvent
 {
 
+}
+
+public sealed partial class SynthDrainWiresActionEvent : InstantActionEvent
+{
+    
 }
