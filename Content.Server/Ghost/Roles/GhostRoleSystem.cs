@@ -32,6 +32,7 @@ using Robust.Shared.Utility;
 using Content.Server.Popups;
 using Content.Shared.Verbs;
 using Robust.Shared.Collections;
+using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Server.Ghost.Roles
 {
@@ -50,6 +51,7 @@ namespace Content.Server.Ghost.Roles
         [Dependency] private readonly PopupSystem _popupSystem = default!;
         [Dependency] private readonly IPrototypeManager _prototype = default!;
         [Dependency] private readonly GameTicker _gameTicker = default!;
+        private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
         private uint _nextRoleIdentifier;
         private bool _needsUpdateGhostRoleCount = true;
@@ -83,6 +85,8 @@ namespace Content.Server.Ghost.Roles
             SubscribeLocalEvent<GhostTakeoverAvailableComponent, TakeGhostRoleEvent>(OnTakeoverTakeRole);
             SubscribeLocalEvent<GhostRoleMobSpawnerComponent, GetVerbsEvent<Verb>>(OnVerb);
             _playerManager.PlayerStatusChanged += PlayerStatusChanged;
+
+            IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
         }
 
         private void OnMobStateChanged(Entity<GhostTakeoverAvailableComponent> component, ref MobStateChangedEvent args)
@@ -241,9 +245,28 @@ namespace Content.Server.Ghost.Roles
                 var foundWinner = false;
                 var deciderPrototype = _prototype.Index(ghostRole.RaffleConfig.Decider);
 
+                // Sunrise-Sponsors-Start
+                var priorityMembers = new HashSet<ICommonSession>();
+                if (_sponsorsManager != null)
+                {
+                    foreach (var member in raffle.CurrentMembers)
+                    {
+                        if (!_sponsorsManager.TryGetPriorityGhostRoles(member.UserId, out var priorityGhostRoles))
+                            continue;
+
+                        if (priorityGhostRoles.Contains(meta.EntityPrototype!.ID))
+                        {
+                            priorityMembers.Add(member);
+                        }
+                    }
+                }
+
+                var participants = priorityMembers.Count > 0 ? priorityMembers : raffle.CurrentMembers;
+                // Sunrise-Sponsors-End
+
                 // use the ghost role's chosen winner picker to find a winner
                 deciderPrototype.Decider.PickWinner(
-                    raffle.CurrentMembers.AsEnumerable(),
+                    participants.AsEnumerable(),
                     session =>
                     {
                         var success = TryTakeover(session, raffle.Identifier);

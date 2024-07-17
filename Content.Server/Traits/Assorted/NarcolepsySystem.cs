@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.StatusEffect;
 using Robust.Shared.Random;
@@ -60,4 +61,17 @@ public sealed class NarcolepsySystem : EntitySystem
                 TimeSpan.FromSeconds(duration), false);
         }
     }
+
+    // Sunrise-Start
+    public void SetTime(EntityUid uid, Vector2 timeBetween, Vector2 duration, NarcolepsyComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+        {
+            return;
+        }
+        component.TimeBetweenIncidents = timeBetween;
+        component.DurationOfIncident = duration;
+        Dirty(uid, component);
+    }
+    // Sunrise-End
 }

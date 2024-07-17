@@ -2,7 +2,7 @@
   id: PortalCryo
   components:
   - type: Transform
-    anchored: False
+    anchored: True
   - type: InteractionOutline
   - type: Clickable
   - type: Physics

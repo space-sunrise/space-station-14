@@ -1,2 +1,2 @@
 changelog-tab-title-ChangelogSunrise = Обновления Sunrise
-changelog-sunrise-window-title = Sunrise Changelog
+changelog-lobby-window-title = Changelog
