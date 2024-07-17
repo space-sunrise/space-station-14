@@ -36,8 +36,8 @@ public sealed class ActionsAddedTest
         Assert.That(cEntMan.EntityExists(clientEnt));
         Assert.That(sEntMan.HasComponent<ActionsComponent>(serverEnt));
         Assert.That(cEntMan.HasComponent<ActionsComponent>(clientEnt));
-        Assert.That(sEntMan.HasComponent<CombatModeComponent>(serverEnt), Is.False);
-        Assert.That(cEntMan.HasComponent<CombatModeComponent>(clientEnt), Is.False);
+        Assert.That(sEntMan.HasComponent<CombatModeComponent>(serverEnt));
+        Assert.That(cEntMan.HasComponent<CombatModeComponent>(clientEnt));
 
         var sComp = sEntMan.GetComponent<ActionsComponent>(serverEnt);
         var cComp = cEntMan.GetComponent<ActionsComponent>(clientEnt);
