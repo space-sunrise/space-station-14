@@ -3,6 +3,11 @@
   id: Mew
   name: chat-emote-name-mews
   category: Vocal
+  whitelist:
+    requireAll: true
+    components:
+    - Felinid
+    - Vocal
   chatMessages: [мя!]
   chatTriggers:
     - mew
@@ -19,6 +24,11 @@
   id: Meow
   name: chat-emote-name-meows
   category: Vocal
+  whitelist:
+    requireAll: true
+    components:
+    - Felinid
+    - Vocal
   chatMessages: [мяу!]
   chatTriggers:
     - Meows
@@ -38,6 +48,11 @@
   id: Hisses
   name: chat-emote-name-hisses
   category: Vocal
+  whitelist:
+    requireAll: true
+    components:
+    - Felinid
+    - Vocal
   chatMessages: [шипит!]
   chatTriggers:
   - шипит
@@ -54,6 +69,11 @@
   id: Purr
   name: chat-emote-name-purrs
   category: Vocal
+  whitelist:
+    requireAll: true
+    components:
+    - Felinid
+    - Vocal
   chatMessages: [мурчит!]
   chatTriggers:
     - мурчит
@@ -67,6 +87,11 @@
   id: Growl
   name: chat-emote-name-growls
   category: Vocal
+  whitelist:
+    requireAll: true
+    components:
+    - Vulpkanin
+    - Vocal
   chatMessages: [рычит!]
   chatTriggers:
   - рычит
@@ -80,8 +105,20 @@
   id: Bark
   name: chat-emote-name-bark
   category: Vocal
-  chatMessages: [barks.]
+  whitelist:
+    requireAll: true
+    components:
+    - Vulpkanin
+    - Vocal
+  chatMessages: [лает.]
   chatTriggers:
+  - гав
+  - гав.
+  - гав!
+  - лает
+  - лаять
+  - лает!
+  - лает.
   - bark.
   - bark!
   - barks.
@@ -94,8 +131,19 @@
   id: Howl
   name: chat-emote-name-howl
   category: Vocal
-  chatMessages: [howls.]
+  whitelist:
+    requireAll: true
+    components:
+    - Vulpkanin
+    - Vocal
+  chatMessages: [воет.]
   chatTriggers:
+  - выть
+  - воет
+  - воет!
+  - воет.
+  - выть.
+  - выть!
   - howl.
   - howl!
   - howls.
@@ -107,7 +155,21 @@
   id: Oink
   name: chat-emote-name-oink
   category: Vocal
+  whitelist:
+    requireAll: true
+    components:
+    - Swine
+    - Vocal
   chatMessages: [хрю!]
   chatTriggers:
+  - хрюкает.
+  - хрюкает!
+  - хрюкать.
+  - хрюкать!
+  - хрюкать
+  - хрю.
+  - хрю!
   - хрю
   - хряк.
+  - хряк
+  - хряк!
