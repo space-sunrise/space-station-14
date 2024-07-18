@@ -25,12 +25,6 @@
   sponsorOnly: true
 
 - type: ttsVoice
-  id: Mykyta
-  name: tts-voice-name-mykyta
-  sex: Male
-  speaker: mykyta
-
-- type: ttsVoice
   id: Glados
   name: tts-voice-name-glados
   sex: Female
@@ -831,6 +825,7 @@
   sex: Female
   speaker: zenobianoke
   roundStart: true
+  sponsorOnly: true
 
 - type: ttsVoice
   id: GladwinMoon
