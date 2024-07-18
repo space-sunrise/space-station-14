@@ -17,12 +17,12 @@
         - type: StationJobs
           availableJobs:
             HeadOfPrison: [ 1, 1 ]
-            PrisonWorker: [ 3, 3 ]
+            PrisonWorker: [ 3, 5 ]
             PrisonPilot: [ 1, 1 ]
-            PrisonChef: [ 1, 2 ]
-            PrisonDoctor: [ 2, 3 ]
-            PrisonEngineer: [ 2, 3 ]
-            PrisonGuard: [ 6, 12 ]
+            PrisonChef: [ 2, 4 ]
+            PrisonDoctor: [ 3, 5 ]
+            PrisonEngineer: [ 3, 5 ]
+            PrisonGuard: [ 12, 24 ]
             Prisoner: [ 0, 0 ]
         - type: OtherJobsTakenRequirement
           targetJob: PrisonGuard
