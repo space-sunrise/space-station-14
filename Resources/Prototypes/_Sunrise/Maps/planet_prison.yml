@@ -23,4 +23,8 @@
             PrisonDoctor: [ 2, 3 ]
             PrisonEngineer: [ 2, 3 ]
             PrisonGuard: [ 6, 12 ]
-            Prisoner: [ 6, 8 ]
+            Prisoner: [ 0, 0 ]
+        - type: OtherJobsTakenRequirement
+          targetJob: PrisonGuard
+          adjustJob: Prisoner
+          coefficient: 1
