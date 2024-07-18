@@ -16,6 +16,7 @@
   requireAdminNotify: true
   supervisors: job-supervisors-captain
   radioBold: true
+  displayWeight: 70  # Sunrise
   canBeAntag: false
   access:
   - Maintenance

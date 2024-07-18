@@ -12,6 +12,7 @@
   canBeAntag: false
   icon: "JobIconPrisonGuard"
   supervisors: job-supervisors-head-of-prison
+  displayWeight: 90
   access:
   - Security
   - Brig

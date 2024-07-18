@@ -11,6 +11,7 @@
   icon: JobIconSecurityPilot
   supervisors: job-supervisors-hos
   canBeAntag: false
+  displayWeight: 50
   speciesBlacklist:
   - Vox
   access:

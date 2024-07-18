@@ -14,6 +14,7 @@
   icon: JobIconBlueShield
   supervisors: job-supervisors-centcom
   canBeAntag: false
+  radioBold: true
   access:
     - Command
     - Bar

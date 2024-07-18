@@ -7,6 +7,7 @@
     - !type:OverallPlaytimeRequirement
       time: 216000 #60 hrs
   canBeAntag: false
+  displayWeight: -10  # Sunrise
   icon: JobIconBorg
   supervisors: job-supervisors-rd
   jobEntity: PlayerBorgGeneric
