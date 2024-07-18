@@ -1,8 +1,5 @@
-﻿using Content.Server.Chat.Systems;
-using Content.Server.Pinpointer;
-using Content.Server.Shuttles.Components;
+﻿using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
-using Content.Server.Station.Systems;
 using Robust.Server.GameObjects;
 using Robust.Server.Maps;
 using Robust.Shared.Map;
@@ -15,10 +12,10 @@ namespace Content.Server._Sunrise.RoundStartFtl;
 /// </summary>
 public sealed class RoundStartFtlSystem : EntitySystem
 {
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly MapLoaderSystem _loader = default!;
     [Dependency] private readonly ShuttleSystem _shuttles = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly MapSystem _map = default!;
 
     public override void Initialize()
     {
@@ -27,8 +24,9 @@ public sealed class RoundStartFtlSystem : EntitySystem
 
     private void OnMapInit(EntityUid targetUid, RoundstartFtlTargetComponent ftlTargetComponent, MapInitEvent args)
     {
-        var mapId = _mapManager.CreateMap();
-        if (!_loader.TryLoad(mapId,
+        var mapUid = _map.CreateMap();
+        var xformMap = Transform(mapUid);
+        if (!_loader.TryLoad(xformMap.MapID,
                 ftlTargetComponent.Path,
                 out var rootUids,
                 new MapLoadOptions()
@@ -45,5 +43,6 @@ public sealed class RoundStartFtlSystem : EntitySystem
         var targetCoordinates = new EntityCoordinates(xform.MapUid!.Value, _transform.GetWorldPosition(xform)).Offset(Angle.Zero.RotateVec(-shuttlePhysics.LocalCenter));
         _shuttles.FTLToCoordinates(rootUids[0], shuttleComp, targetCoordinates, Angle.Zero, 0, 0);
         Log.Debug($"onmapinit, ftlsuccessful: {rootUids[0]}, {targetCoordinates}");
+        QueueDel(mapUid);
     }
 }

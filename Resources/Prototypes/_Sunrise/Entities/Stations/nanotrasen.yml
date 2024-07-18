@@ -6,7 +6,6 @@
   - BaseStationRecords
   - BaseStationNanotrasen
   - BaseStationSiliconLawCrewsimov
-#  - BasePrisonStationShuttles
   - PrisonStationAlertLevels
   noSpawn: true
   components:

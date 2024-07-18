@@ -71,17 +71,6 @@
       priorityTag: DockGamma
 
 - type: entity
-  id: BasePrisonStationShuttles
-  abstract: true
-  components:
-  - type: GridSpawn
-    groups:
-      shuttles: !type:GridSpawnGroup
-        paths:
-        - /Maps/_Sunrise/Shuttles/prison.yml
-        nameGrid: false
-
-- type: entity
   id: BaseStationPlanetPrison
   abstract: true
   components:

@@ -45240,8 +45240,15 @@ entities:
     - type: Transform
       pos: 117.5,-5.5
       parent: 2
-    - type: RoundstartFtlTarget
-      path: "/Maps/_Sunrise/Shuttles/prison.yml"
+- proto: FTLPointShuttlePrisonSpawn
+  entities:
+  - uid: 14361
+    components:
+    - type: MetaData
+      name: Посадочная площадка Охраны
+    - type: Transform
+      pos: 117.5,-5.5
+      parent: 2
   - uid: 20457
     components:
     - type: MetaData
