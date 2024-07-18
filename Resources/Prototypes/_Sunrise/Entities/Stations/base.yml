@@ -112,12 +112,6 @@
   - type: StationAntagsTargets
 
 - type: entity
-  id: BaseStationCryoTeleport
-  abstract: true
-  components:
-  - type: StationCryoTeleport
-
-- type: entity
   id: BaseStationMeteorSwarmTarget
   abstract: true
   components:
