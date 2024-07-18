@@ -1,6 +1,7 @@
 ﻿- type: guideEntry
   id: FSRuleset
   name: guide-entry-rules
+  ruleEntry: true
   text: "/ServerInfo/Guidebook/ServerRules/FrontierRules.xml"
 
 - type: guideEntry
