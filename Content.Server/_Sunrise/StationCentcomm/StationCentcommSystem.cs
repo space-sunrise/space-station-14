@@ -81,9 +81,5 @@ public sealed partial class StationCentCommSystem : EntitySystem
                 _sawmill.Warning("No Centcomm map found, skipping setup.");
             }
         }
-        else
-        {
-            _sawmill.Error("Component.Station is null, cannot proceed with Centcomm setup.");
-        }
     }
 }
