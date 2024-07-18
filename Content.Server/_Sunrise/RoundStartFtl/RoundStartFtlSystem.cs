@@ -43,7 +43,7 @@ public sealed class RoundStartFtlSystem : EntitySystem
         if (!TryComp(rootUids[0], out PhysicsComponent? shuttlePhysics))
             return;
         var targetCoordinates = new EntityCoordinates(xform.MapUid!.Value, _transform.GetWorldPosition(xform)).Offset(Angle.Zero.RotateVec(-shuttlePhysics.LocalCenter));
-        _shuttles.FTLToCoordinates(rootUids[0], shuttleComp, targetCoordinates, Angle.Zero);
+        _shuttles.FTLToCoordinates(rootUids[0], shuttleComp, targetCoordinates, Angle.Zero, 0, 0);
         Log.Debug($"onmapinit, ftlsuccessful: {rootUids[0]}, {targetCoordinates}");
     }
 }
