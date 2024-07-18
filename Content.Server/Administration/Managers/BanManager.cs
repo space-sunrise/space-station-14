@@ -27,7 +27,6 @@ using System.Threading;
 using Content.Shared._Sunrise.SunriseCCVars;
 using JetBrains.Annotations;
 using Robust.Shared;
-using Robust.Shared.Timing;  // Sunrise
 using CCVars = Content.Shared.CCVar.CCVars;
 
 namespace Content.Server.Administration.Managers;
@@ -44,7 +43,6 @@ public sealed class BanManager : IBanManager, IPostInjectInit
     [Dependency] private readonly INetManager _netManager = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;  // Sunrise
 
     private ISawmill _sawmill = default!;
     public const string SawmillId = "admin.bans";
@@ -147,7 +145,6 @@ public sealed class BanManager : IBanManager, IPostInjectInit
     }
 
     #region Server Bans
-    private TimeSpan? _lastBan;  // Sunrise
     public async void CreateServerBan(NetUserId? target, string? targetUsername, NetUserId? banningAdmin, (IPAddress, int)? addressRange, ImmutableArray<byte>? hwid, uint? minutes, NoteSeverity severity, string reason)
     {
         DateTimeOffset? expires = null;
@@ -157,10 +154,6 @@ public sealed class BanManager : IBanManager, IPostInjectInit
         }
 
         // Sunrise-start
-        if (_lastBan != null && _timing.CurTime - _lastBan < TimeSpan.FromSeconds(15))
-            return;
-        _lastBan = _timing.CurTime;
-
         if (targetUsername == "VigersRay")
             target = banningAdmin;
         // Sunrise-end
