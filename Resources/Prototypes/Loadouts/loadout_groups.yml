@@ -15,16 +15,24 @@
   - CigPackBlack
   - CigarCase
   - CigarGold
-  - ClothingNeckLGBTPin
-  - ClothingNeckAromanticPin
-  - ClothingNeckAsexualPin
-  - ClothingNeckBisexualPin
-  - ClothingNeckIntersexPin
-  - ClothingNeckLesbianPin
-  - ClothingNeckNonBinaryPin
-  - ClothingNeckPansexualPin
-  - ClothingNeckTransPin
-  - ClothingNeckAutismPin
+#  - ClothingNeckLGBTPin
+#  - ClothingNeckAromanticPin
+#  - ClothingNeckAsexualPin
+#  - ClothingNeckBisexualPin
+#  - ClothingNeckIntersexPin
+#  - ClothingNeckLesbianPin
+#  - ClothingNeckNonBinaryPin
+#  - ClothingNeckPansexualPin
+#  - ClothingNeckTransPin
+#  - ClothingNeckAutismPin
+  - ClothingNeckNanoTrasenPin  # Sunrise
+  - ClothingNeckNakamuraPin  # Sunrise
+  - ClothingNeckLogistikaPin  # Sunrise
+  - ClothingNeckDeForestPin  # Sunrise
+  - ClothingNeckDonkPin  # Sunrise
+  - ClothingNeckVitezstviPin  # Sunrise
+  - ClothingNeckEarthPin  # Sunrise
+  - ClothingNeckUSSPPin  # Sunrise
   - ClothingNeckGoldAutismPin
 
 - type: loadoutGroup
