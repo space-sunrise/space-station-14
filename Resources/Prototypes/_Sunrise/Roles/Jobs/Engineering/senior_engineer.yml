@@ -17,6 +17,7 @@
   startingGear: SeniorEngineerGear
   icon: "JobIconSeniorEngineer"
   supervisors: job-supervisors-ce
+  displayWeight: 30
   access:
   - Maintenance
   - Engineering

@@ -8,6 +8,7 @@
   canBeAntag: false
   icon: "JobIconPrisoner"
   supervisors: job-supervisors-security
+  displayWeight: 0
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 28800 # 8h

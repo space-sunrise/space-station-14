@@ -45240,6 +45240,8 @@ entities:
     - type: Transform
       pos: 117.5,-5.5
       parent: 2
+    - type: RoundstartFtlTarget
+      path: "/Maps/_Sunrise/Shuttles/prison.yml"
   - uid: 20457
     components:
     - type: MetaData
@@ -108020,11 +108022,6 @@ entities:
     - type: Transform
       pos: -9.5,10.5
       parent: 2
-  - uid: 13381
-    components:
-    - type: Transform
-      pos: 9.5,48.5
-      parent: 2
 - proto: SpawnPointPrisonGuard
   entities:
   - uid: 13382
@@ -129646,7 +129643,7 @@ entities:
     - type: Transform
       pos: -48.5,-15.5
       parent: 2
-- proto: XenoAISpawner
+- proto: SpawnMobOreCrab
   entities:
   - uid: 1200
     components:

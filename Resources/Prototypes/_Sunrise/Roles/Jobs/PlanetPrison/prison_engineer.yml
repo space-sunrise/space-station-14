@@ -12,6 +12,7 @@
   startingGear: StationEngineerGear
   icon: "JobIconPrisonEngineer"
   supervisors: job-supervisors-head-of-prison
+  displayWeight: 70
   access:
   - Maintenance
   - Engineering

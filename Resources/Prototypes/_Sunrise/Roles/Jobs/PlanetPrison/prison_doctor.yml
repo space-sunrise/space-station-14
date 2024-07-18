@@ -12,6 +12,7 @@
   startingGear: DoctorGear
   icon: "JobIconPrisonDoctor"
   supervisors: job-supervisors-head-of-prison
+  displayWeight: 60
   access:
   - Medical
   - Maintenance

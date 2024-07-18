@@ -12,6 +12,8 @@
   supervisors: job-supervisors-service
   canBeAntag: false
   setPreference: true
+  radioBold: true
+  displayWeight: 75
   access:
   - Magistrat
   - Bar

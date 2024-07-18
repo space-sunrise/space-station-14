@@ -17,6 +17,8 @@
   supervisors: job-supervisors-centcom
   canBeAntag: false
   alwaysUseSpawner: true
+  radioBold: true
+  displayWeight: 100
   accessGroups:
   - AllAccess
   special:
