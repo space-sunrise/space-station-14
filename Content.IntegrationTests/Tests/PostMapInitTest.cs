@@ -32,7 +32,10 @@ namespace Content.IntegrationTests.Tests
             "CentComm",
             "Dart",
             "NukieOutpost",
-			"SunriseCentComm"
+			"SunriseCentComm",
+            "AlterosPrison",
+            "PlanetPrison",
+            "SunrisePrison"
         };
 
         private static readonly string[] Grids =
@@ -70,7 +73,11 @@ namespace Content.IntegrationTests.Tests
 			"SunriseCluster",
 			"SunriseDelta",
 			"SunriseFland",
-			"SunriseMarathon"
+			"SunriseMarathon",
+            "SunriseCentComm",
+            "AlterosPrison",
+            "PlanetPrison",
+            "SunrisePrison"
         };
 
         /// <summary>
