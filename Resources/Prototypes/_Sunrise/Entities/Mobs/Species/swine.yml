@@ -14,6 +14,7 @@
   - type: Speech
     speechSounds: Swine
     speechVerb: Swine
+    allowedEmotes: ['Oink']
   - type: MobThresholds
     thresholds:
       0: Alive

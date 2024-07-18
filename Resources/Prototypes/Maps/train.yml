@@ -60,6 +60,6 @@
             Musician: [ 1, 1 ]
             Borg: [ 2, 2 ]
             # Sunrise-Law
-            IAA: [ 1, 1 ]
-            Lawyer: [ 1, 2 ]
-            Magistrat: [ 1, 1 ]
+            #IAA: [ 1, 1 ]
+            #Lawyer: [ 1, 2 ]
+            #Magistrat: [ 1, 1 ]

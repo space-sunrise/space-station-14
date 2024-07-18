@@ -117,10 +117,6 @@
       collection: MaleSneezes
     Cough:
       collection: MaleCoughs
-    CatMeow:
-      collection: CatMeows
-    CatHisses:
-      collection: CatHisses
     MonkeyScreeches:
       collection: MonkeyScreeches
     RobotBeep:

@@ -8,6 +8,7 @@
   - type: OwOAccent
   - type: Speech
     speechVerb: Felinid
+    allowedEmotes: ['Mew', 'Meow', 'Hisses', 'Purr']
   - type: Thieving
     stealthy: true
     stripTimeReduction: 1
