@@ -30,14 +30,22 @@ public sealed class CryoTeleportSystem : EntitySystem
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly TransformSystem _transformSystem = default!;
     [Dependency] private readonly IPlayerManager _playerMan = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
+    private bool _enable;
     public TimeSpan NextTick = TimeSpan.Zero;
     public TimeSpan RefreshCooldown = TimeSpan.FromSeconds(5);
     public override void Initialize()
     {
+        _cfg.OnValueChanged(SunriseCCVars.CryoTeleportEnable, OnCryoTeleportEnableChanged, true);
+
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnCompleteSpawn);
         _playerMan.PlayerStatusChanged += OnSessionStatus;
+    }
+
+    private void OnCryoTeleportEnableChanged(bool enable)
+    {
+        _enable = enable;
     }
 
     public override void Update(float delay)
@@ -47,7 +55,7 @@ public sealed class CryoTeleportSystem : EntitySystem
 
         NextTick += RefreshCooldown;
 
-        if (!_configurationManager.GetCVar(SunriseCCVars.EnableCryoteleport))
+        if (!_enable)
             return;
 
         var query = AllEntityQuery<CryoTeleportTargetComponent, MobStateComponent>();
@@ -98,11 +106,12 @@ public sealed class CryoTeleportSystem : EntitySystem
 
     private void OnCompleteSpawn(PlayerSpawnCompleteEvent ev)
     {
-        if (!_configurationManager.GetCVar(SunriseCCVars.EnableCryoteleport))
+        if (!_enable)
             return;
 
         if (!TryComp<StationCryoTeleportComponent>(ev.Station, out var cryoTeleportComponent))
             return;
+
         if (ev.JobId == null)
             return;
 
@@ -116,7 +125,7 @@ public sealed class CryoTeleportSystem : EntitySystem
 
     private void OnSessionStatus(object? sender, SessionStatusEventArgs args)
     {
-        if (!_configurationManager.GetCVar(SunriseCCVars.EnableCryoteleport))
+        if (!_enable)
             return;
 
         if (!TryComp<CryoTeleportTargetComponent>(args.Session.AttachedEntity, out var comp))

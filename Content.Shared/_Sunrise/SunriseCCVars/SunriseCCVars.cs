@@ -207,6 +207,6 @@ public sealed class SunriseCCVars
      * Cryoteleport
      */
 
-    public static readonly CVarDef<bool> EnableCryoteleport =
-        CVarDef.Create("station.enablecryoteleport", false, CVar.SERVERONLY);
+    public static readonly CVarDef<bool> CryoTeleportEnable =
+        CVarDef.Create("cryo_teleport.enable", false, CVar.SERVERONLY);
 }
