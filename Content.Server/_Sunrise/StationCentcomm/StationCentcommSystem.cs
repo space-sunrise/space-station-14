@@ -65,19 +65,25 @@ public sealed partial class StationCentCommSystem : EntitySystem
         var mapId = _mapManager.CreateMap();
         _mapManager.AddUninitializedMap(mapId);
         component.MapId = mapId;
-
-        if (_prototypeManager.TryIndex<GameMapPrototype>(component.Station, out var gameMap))
+        if (component.Station != null)
         {
-            _gameTicker.LoadGameMap(gameMap, mapId, null);
+            if (_prototypeManager.TryIndex<GameMapPrototype>(component.Station, out var gameMap))
+            {
+                _gameTicker.LoadGameMap(gameMap, mapId, null);
 
-             if (_shuttle.TryAddFTLDestination(mapId, true, out var ftlDestination))
-                 ftlDestination.Whitelist = component.ShuttleWhitelist;
+                if (_shuttle.TryAddFTLDestination(mapId, true, out var ftlDestination))
+                    ftlDestination.Whitelist = component.ShuttleWhitelist;
 
-             _map.InitializeMap(mapId);
+                _map.InitializeMap(mapId);
+            }
+            else
+            {
+                _sawmill.Warning("No Centcomm map found, skipping setup.");
+            }
         }
         else
         {
-            _sawmill.Warning("No Centcomm map found, skipping setup.");
+            _sawmill.Error("Component.Station is null, cannot proceed with Centcomm setup.");
         }
     }
 }
