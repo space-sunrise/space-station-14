@@ -917,12 +917,10 @@
 
 - type: randomHumanoidSettings
   id: SyndieDisasterVictim
+  parent: EventHumanoid
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Felinid
-  - Vox
-  parent: EventHumanoid
-  speciesBlacklist:
   - Vox
   components:
     - type: NpcFactionMember
