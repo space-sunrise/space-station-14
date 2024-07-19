@@ -6,7 +6,6 @@
   roles:
     - Magistrat
     - IAA
-    - Lawyer
 
 - type: department
   id: CentralCommand
@@ -17,10 +16,10 @@
   - CentCommOperator
   primary: false
 
-- type: department # Surnise-Blueshield
-  id: Blueshield
-  description: department-Blueshield-description
-  color: "#005bfb"  # Иначе плохо видно
+- type: department # Surnise-CentComm Representatives
+  id: CentCommRepresentatives
+  description: department-CentCommRepresentatives-description
+  color: "#005bfb" # Иначе плохо видно
   roles:
     - BlueShield
   primary: false
