@@ -260,15 +260,9 @@ public sealed partial class ChatSystem
         {"vigers ray","Господь"},
         {"vigersray","Господь"},
         {"вига","Господь"},
-        // дауны момент
-        {"кс кс кс",""},
-        {"кс кс",""},
-        {"кс",""},
-        {"уву",""},
-        {"uwu",""},
+        //
         {"увы","К сожалению"},
         {"увыв","К сожалению"},
-        {"пострекочь",""},
     };
 
     public string ReplaceWords(string message)
