@@ -293,6 +293,7 @@
         Asphyxiation: -1.0
   - type: FireVisuals
     alternateState: Standing
+  - type: LayingDown # Sunrise-edit
 
 - type: entity
   save: false
