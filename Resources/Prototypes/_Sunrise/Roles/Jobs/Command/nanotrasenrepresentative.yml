@@ -41,8 +41,7 @@
   id: NanoTrasenRepresentativeGear
   equipment:
     shoes: ClothingShoesBootsLaceup
-    eyes: ClothingEyesGlassesBlueShield
+    eyes: ClothingEyesSunGlassesHudSkill
     head: ClothingHeadHatCapNtrep
-    outerClothing: ClothingOuterArmorBlueShield
     id: BlueShieldPDA
     ears: ClothingHeadsetAltCommand
