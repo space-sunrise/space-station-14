@@ -1,0 +1,47 @@
+- type: loadout
+  id: NanoTrasenRepresentativeJumpsuit
+  equipment: NanoTrasenRepresentativeJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
+
+- type: startingGear
+  id: NanoTrasenRepresentativeJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitNtrep
+
+- type: loadout
+  id: NanoTrasenRepresentativeJumpskirt
+  equipment: NanoTrasenRepresentativeJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+
+- type: startingGear
+  id: NanoTrasenRepresentativeJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtNtrep
+
+- type: loadout
+  id: NanoTrasenRepresentativeCoat
+  equipment: NanoTrasenRepresentativeCoat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
+
+- type: startingGear
+  id: NanoTrasenRepresentativeCoat
+  equipment:
+    jumpsuit: ClothingOuterCoatNtrep
+
+- type: loadout
+  id: NanoTrasenRepresentativeCoatOpen
+  equipment: NanoTrasenRepresentativeCoatOpen
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+
+- type: startingGear
+  id: NanoTrasenRepresentativeCoatOpen
+  equipment:
+    jumpsuit: ClothingOuterCoatNtrepOpen
