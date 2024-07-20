@@ -1831,3 +1831,11 @@
   id: 135
   time: '2024-07-18T22:16:30.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/221
+- author: Babaev
+  changes:
+  - message: "\u0423\u0434\u0430\u043B\u0435\u043D\u0430 \u0441\u0435\u043A\u0440\u0435\
+      \u0442\u043D\u0430\u044F \u0446\u0435\u043B\u044C."
+    type: Remove
+  id: 136
+  time: '2024-07-20T10:46:58.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/227
