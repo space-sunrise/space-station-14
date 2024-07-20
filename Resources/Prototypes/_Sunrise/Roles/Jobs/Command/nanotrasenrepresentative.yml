@@ -42,9 +42,7 @@
   equipment:
     shoes: ClothingShoesBootsLaceup
     eyes: ClothingEyesGlassesBlueShield
-    head: ClothingHeadHatBeretBlueShield
+    head: ClothingHeadHatCapNtrep
     outerClothing: ClothingOuterArmorBlueShield
     id: BlueShieldPDA
     ears: ClothingHeadsetAltCommand
-    belt: ClothingBeltBlueShieldWebbingFilled
-    gloves: ClothingHandsGlovesCombat
