@@ -55,6 +55,17 @@
 
 - type: entity
   parent: ClothingUniformBase
+  id: IAAUniformSuit
+  name: Костюм агента внутренних дел
+  description: Костюм настоящего агента!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/iaa.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/iaa.rsi
+
+- type: entity
+  parent: ClothingUniformBase
   id: ClothingUniformJumpsuitBlueShield
   name: комбинезон офицера «синий щит»
   description: На стиле.
