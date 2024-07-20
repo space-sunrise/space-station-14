@@ -40,7 +40,7 @@
 - type: startingGear
   id: NanoTrasenRepresentativeGear
   equipment:
-    shoes: ClothingShoesBootsBlueShieldFilled
+    shoes: ClothingShoesBootsLaceup
     eyes: ClothingEyesGlassesBlueShield
     head: ClothingHeadHatBeretBlueShield
     outerClothing: ClothingOuterArmorBlueShield
