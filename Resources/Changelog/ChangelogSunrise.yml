@@ -1859,3 +1859,11 @@
   id: 138
   time: '2024-07-20T15:01:50.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/229
+- author: Odleer
+  changes:
+  - message: "\u041E\u0431\u043D\u043E\u0432\u043B\u0435\u043D\u0430 \u0441\u0442\u0430\
+      \u043D\u0446\u0438\u044F \u0414\u0435\u043B\u044C\u0442\u0430."
+    type: Tweak
+  id: 139
+  time: '2024-07-20T15:09:30.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/226
