@@ -44,15 +44,6 @@
   lockBoxPrototypeId: LockboxCaptain
 
 - type: stationGoal
-  id: VirusZombie
-  text: station-goal-virus
-  lockBoxPrototypeId: LockboxCaptain
-  extraItems:
-    - SyringeRomerolNT
-    - SyringeRomerolNT
-    - SyringeRomerolNT
-
-- type: stationGoal
   id: VirusologyAmbusol
   text: station-goal-delta-ambusol
   lockBoxPrototypeId: LockboxCaptain

@@ -59,7 +59,6 @@
     - Zoo
     - MiningOutpost
     - Tesla
-    - VirusZombie
 
 - type: entity
   id: BaseStationGammaArmory
