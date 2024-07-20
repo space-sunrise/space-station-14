@@ -25,23 +25,17 @@
 - type: loadout
   id: NanoTrasenRepresentativeCoat
   equipment: NanoTrasenRepresentativeCoat
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: MaleMoment
 
 - type: startingGear
   id: NanoTrasenRepresentativeCoat
   equipment:
-    jumpsuit: ClothingOuterCoatNtrep
+    outerClothing: ClothingOuterCoatNtrep
 
 - type: loadout
   id: NanoTrasenRepresentativeCoatOpen
   equipment: NanoTrasenRepresentativeCoatOpen
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: WomanMoment
 
 - type: startingGear
   id: NanoTrasenRepresentativeCoatOpen
   equipment:
-    jumpsuit: ClothingOuterCoatNtrepOpen
+    outerClothing: ClothingOuterCoatNtrepOpen

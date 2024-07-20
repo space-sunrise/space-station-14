@@ -8,6 +8,28 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/kim.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/kim.rsi
+    
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterCoatNtrep
+  name: nt representive jacket
+  description: A fancy black jacket, standart issue to Nanotrasen Representives.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/ntrep.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/ntrep.rsi
+    
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterCoatNtrepOpen
+  name: opened nt representive jacket
+  description: A fancy black jacket, standart issue to Nanotrasen Representives.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/ntrep_open.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/ntrep_open.rsi
 
 - type: entity
   parent: ClothingOuterBase

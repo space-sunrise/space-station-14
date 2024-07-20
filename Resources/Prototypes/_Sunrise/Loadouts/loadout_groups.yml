@@ -108,9 +108,10 @@
   - NanoTrasenRepresentativeJumpskirt
   
 - type: loadoutGroup
-  id: NanoTrasenRepresentativeCoat
-  name: loadout-group-nanotrasenrepresentative-coat
+  id: NanoTrasenRepresentativeOuterClothing
+  name: loadout-group-nanotrasenrepresentative-outerclothing
   minLimit: 1
+  maxLimit: 1
   loadouts:
   - NanoTrasenRepresentativeCoat
   - NanoTrasenRepresentativeCoatOpen
