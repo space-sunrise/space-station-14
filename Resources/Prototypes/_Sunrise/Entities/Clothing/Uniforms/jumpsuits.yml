@@ -71,9 +71,9 @@
   description: That suit that is better not to see.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/ntrep_formal.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/ntrepformal.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/ntrep_formal.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/ntrepformal.rsi
 
 - type: entity
   parent: ClothingUniformBase
