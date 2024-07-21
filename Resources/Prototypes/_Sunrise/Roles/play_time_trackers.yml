@@ -17,7 +17,7 @@
   id: JobBlueShield
   
 - type: playTimeTracker
-  id: NanoTrasenRepresentative
+  id: JobNanoTrasenRepresentative
 
 - type: playTimeTracker
   id: JobSeniorEngineer
