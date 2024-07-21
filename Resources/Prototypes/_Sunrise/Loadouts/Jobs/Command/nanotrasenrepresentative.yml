@@ -1,3 +1,4 @@
+#Uniforms
 - type: loadout
   id: NanoTrasenRepresentativeJumpsuit
   equipment: NanoTrasenRepresentativeJumpsuit
@@ -9,6 +10,18 @@
   id: NanoTrasenRepresentativeJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitNtrep
+    
+- type: loadout
+  id: NanoTrasenRepresentativeJumpsuitFormal
+  equipment: NanoTrasenRepresentativeJumpsuitFormal
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
+
+- type: startingGear
+  id: NanoTrasenRepresentativeJumpsuitFormal
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitNtrepFormal
 
 - type: loadout
   id: NanoTrasenRepresentativeJumpskirt
@@ -22,6 +35,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtNtrep
 
+#outerClothing
 - type: loadout
   id: NanoTrasenRepresentativeCoat
   equipment: NanoTrasenRepresentativeCoat

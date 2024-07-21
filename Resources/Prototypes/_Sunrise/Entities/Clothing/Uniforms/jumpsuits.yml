@@ -63,6 +63,17 @@
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/ntrep.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/ntrep.rsi
+    
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitNtrepFormal
+  name: nt representive formal suit
+  description: That suit that is better not to see.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/ntrep_formal.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/ntrep_formal.rsi
 
 - type: entity
   parent: ClothingUniformBase
