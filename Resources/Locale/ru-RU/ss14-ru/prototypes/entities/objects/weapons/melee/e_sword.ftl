@@ -1,5 +1,7 @@
 ent-EnergySword = энергетический меч
     .desc = Очень громкий и опасный меч с лучом чистой, концентрированной плазмы. Разрезает небронированные объекты как масло.
+ent-EnergyDaggerLoud = energy dagger
+    .desc = A not as loud and dangerous dagger with a beam made of pure, concentrated plasma. This one is completely undisguised.
 ent-EnergyDagger = ручка
     .desc = Ручка с чёрными чернилами.
     .suffix = Энергокинжал
