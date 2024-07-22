@@ -16,6 +16,7 @@ job-name-prison-worker = тюремный разнорабочий
 job-name-prison-guard = тюремный охранник
 job-name-prisoner = заключенный
 job-name-security-pilot = пилот СБ
+job-name-ntrep = Представитель NanoTrasen
 
 # Перевод трекеров времени
 JobCentCommOfficial = представитель Центком
@@ -34,3 +35,4 @@ JobPrisonPilot = тюремный пилот
 JobPrisonWorker = тюремный разнорабочий
 JobPrisoner = заключенный
 JobSecurityPilot = пилот СБ
+JobNanoTrasenRepresentative = Представитель NanoTrasen

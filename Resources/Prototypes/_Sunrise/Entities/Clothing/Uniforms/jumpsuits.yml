@@ -55,6 +55,28 @@
 
 - type: entity
   parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitNtrep
+  name: nt representive suit
+  description: That suit that is better not to see.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/ntrep.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/ntrep.rsi
+    
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitNtrepFormal
+  name: nt representive formal suit
+  description: That suit that is better not to see.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/ntrepformal.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/ntrepformal.rsi
+
+- type: entity
+  parent: ClothingUniformBase
   id: ClothingUniformJumpsuitBlueShield
   name: комбинезон офицера «синий щит»
   description: На стиле.
@@ -102,7 +124,7 @@
   id: ClothingUniformJumpsuitIAA
   noSpawn: true
   name: рубашка с галстуком
-  description: остюм из льняной белой рубашки с синим галстуком и брюк. Выглядит роскошно.
+  description: Костюм из льняной белой рубашки с синим галстуком и брюк. Выглядит роскошно.
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/iaa.rsi

@@ -244,3 +244,15 @@
     sprite: _Sunrise/Entities/Clothing/Head/Hats/cmohat.rsi
   - type: Clothing
     sprite: _Sunrise/Entities/Clothing/Head/Hats/cmohat.rsi
+    
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatCapNtrep
+  noSpawn: true
+  name: nt representive cap
+  description: The cap of justice over command!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/ntrep.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/ntrep.rsi
