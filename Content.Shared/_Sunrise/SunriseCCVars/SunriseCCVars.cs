@@ -148,16 +148,6 @@ public sealed class SunriseCCVars
         CVarDef.Create("servers_hub.urls", "", CVar.SERVERONLY);
 
     /**
-     * Transit hub
-     */
-
-    /// <summary>
-    /// До сколько часов общего наиграного времени игроки будут появляться на станции даже в позднем присоединеии.
-    /// </summary>
-    public static readonly CVarDef<int> ArrivalsMinHours =
-        CVarDef.Create("transithub.arrivals_min_hours", 20, CVar.SERVER | CVar.ARCHIVE);
-
-    /**
      * Tape Player
      */
 

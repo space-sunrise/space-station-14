@@ -337,28 +337,6 @@ public sealed class ArrivalsSystem : EntitySystem
         return possiblePositions;
     }
 
-    public EntityUid? SpawnPlayersOnArrivals(EntityUid? station, JobComponent? job, HumanoidCharacterProfile? profile)
-    {
-        var possiblePositions = GetArrivalsSpawnPoints();
-
-		if (possiblePositions == null || possiblePositions.Count == 0)
-		{
-			Logger.Error("No valid arrival points found!");
-			return null;
-		}
-
-
-        var spawnLoc = _random.Pick(possiblePositions);
-
-        var playerMob = _stationSpawning.SpawnPlayerMob(
-            spawnLoc,
-            job,
-            profile,
-            station);
-
-        return playerMob;
-    }
-
     public void HandlePlayerSpawning(PlayerSpawningEvent ev)
     {
         if (ev.SpawnResult != null)
