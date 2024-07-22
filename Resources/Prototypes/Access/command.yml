@@ -22,6 +22,7 @@
   - HeadOfPersonnel
   - Cryogenics
   - BlueShield
+  - Ntrep
 
 - type: accessLevel
   id: EmergencyShuttleRepealAll
