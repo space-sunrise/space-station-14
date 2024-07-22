@@ -248,7 +248,6 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatCapNtrep
-  noSpawn: true
   name: nt representive cap
   description: The cap of justice over command!
   components:
