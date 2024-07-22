@@ -17,7 +17,8 @@
     - BaseStationArrivals
     - BaseStationGateway
     - BaseStationShuttles
-    - BaseStationCentComm # Sunrise-Edit
+    # Нету смысла пока не будет консоли отправки ОБР
+    #- BaseStationCentComm # Sunrise-Edit
     - BaseStationEvacuation
     - BaseStationAlertLevels
     - BaseStationMagnet
