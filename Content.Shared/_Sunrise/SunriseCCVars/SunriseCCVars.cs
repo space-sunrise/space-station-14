@@ -68,11 +68,11 @@ public sealed class SunriseCCVars
     public static readonly CVarDef<string> DiscordAuthApiUrl =
         CVarDef.Create("discord_auth.api_url", "", CVar.SERVERONLY);
 
+    public static readonly CVarDef<string> DiscordAuthApiToken =
+        CVarDef.Create("discord_auth.api_token", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
     public static readonly CVarDef<bool> DiscordAuthCheckMember =
         CVarDef.Create("discord_auth.check_member", false, CVar.SERVERONLY);
-
-    public static readonly CVarDef<string> DiscordAuthApiKey =
-        CVarDef.Create("discord_auth.api_key", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
 
     /*
      * GodMode RoundEnd
@@ -102,8 +102,11 @@ public sealed class SunriseCCVars
      *  Sponsor API
      */
 
-    public static readonly CVarDef<string> SponsorsApiUrl =
+    public static readonly CVarDef<string> SponsorApiUrl =
         CVarDef.Create("sponsor.api_url", "", CVar.SERVERONLY);
+
+    public static readonly CVarDef<string> SponsorApiToken =
+        CVarDef.Create("sponsor.api_token", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
 
     /*
      *  Greetings
@@ -129,7 +132,7 @@ public sealed class SunriseCCVars
         CVarDef.Create("newlife.sponsor_only", false, CVar.SERVER | CVar.REPLICATED);
 
     public static readonly CVarDef<int> NewLifeTimeout =
-        CVarDef.Create("newlife.timeout", 30, CVar.SERVERONLY);
+        CVarDef.Create("newlife.timeout", 5, CVar.SERVERONLY);
 
     /*
      * Servers Hub
@@ -200,8 +203,8 @@ public sealed class SunriseCCVars
      * Lobby Changelog
      */
 
-    public static readonly CVarDef<string> LobbyChangelogs =
-        CVarDef.Create("lobby_changelog.id", "ChangelogSunrise.yml,Changelog.yml", CVar.SERVER | CVar.REPLICATED);
+    public static readonly CVarDef<string> LobbyChangelogsList =
+        CVarDef.Create("lobby_changelog.list", "ChangelogSunrise.yml,Changelog.yml", CVar.SERVER | CVar.REPLICATED);
 
     /*
      * Cryoteleport
