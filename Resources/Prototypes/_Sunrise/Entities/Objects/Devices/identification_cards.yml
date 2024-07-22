@@ -77,7 +77,7 @@
 - type: entity
   parent: IDCardStandard
   id: PrisonerIDCard
-  name: prisoner ID card
+  name: ID карта тюремного заключённого
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Misc/id_cards.rsi
@@ -90,7 +90,7 @@
 - type: entity
   parent: IDCardStandard
   id: GuardIDCard
-  name: guard ID card
+  name: ID карта тюремного охранника
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Misc/id_cards.rsi

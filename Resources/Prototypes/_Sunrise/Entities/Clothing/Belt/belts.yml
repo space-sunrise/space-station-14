@@ -10,8 +10,10 @@
     sprite: _Sunrise/Clothing/Belt/blueshield_webbing.rsi
 
 - type: entity
-  id: ClothingBeltPrisonGuardianFilled
   parent: ClothingBeltSecurity
+  id: ClothingBeltPrisonGuardianFilled
+  name: пояс службы безопасности
+  description: Пояс службы безопасности, но оранжевый!
   suffix: Filled
   components:
   - type: StorageFill

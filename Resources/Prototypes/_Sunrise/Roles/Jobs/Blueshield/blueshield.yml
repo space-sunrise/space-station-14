@@ -52,3 +52,44 @@
     ears: ClothingHeadsetAltCommand
     belt: ClothingBeltBlueShieldWebbingFilled
     gloves: ClothingHandsGlovesCombat
+
+# ОСЩ для ПЦК
+- type: startingGear
+  id: BlueShieldHardsuitGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitBlueShield
+    belt: ClothingBeltBlueShieldWebbingFilled
+    back: ClothingBackpackBlueShield
+    mask: ClothingMaskGasSecurity
+    head: ClothingHeadHatBeretBlueShield
+    eyes: ClothingEyesGlassesBlueShield
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitBlueshield
+    shoes: ClothingShoesBootsBlueShieldFilled
+    id: BlueShieldPDA
+    ears: ClothingHeadsetAltCommand
+    pocket1: MagazineRifle
+    pocket2: MagazineRifle
+    suitstorage: AirTankFilled
+  inhand:
+    - WeaponRifleLecter
+
+- type: startingGear
+  id: BlueShieldArmorGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitBlueShield
+    belt: ClothingBeltBlueShieldWebbingFilled
+    back: ClothingBackpackBlueShield
+    mask: ClothingMaskGasSecurity
+    head: ClothingHeadHatBeretBlueShield
+    eyes: ClothingEyesGlassesBlueShield
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorBlueShield
+    shoes: ClothingShoesBootsBlueShieldFilled
+    id: BlueShieldPDA
+    ears: ClothingHeadsetAltCommand
+    pocket1: MagazineRifle
+    pocket2: MagazineRifle
+    suitstorage: AirTankFilled
+  inhand:
+    - WeaponRifleLecter
