@@ -5,11 +5,11 @@
   playTimeTracker: JobHeadOfPrison
   requirements:
   - !type:RoleTimeRequirement
-    role: JobWarden
-    time: 18000 #5 hrs # Sunrise-RoleTime
+    role: JobHeadOfSecurity
+    time: 36000 #10 hrs # Sunrise-RoleTime
   - !type:DepartmentTimeRequirement
     department: Security
-    time: 54000 #15 hrs # Sunrise-RoleTime
+    time: 108000 #30 hrs # Sunrise-RoleTime
   weight: 10
   startingGear: HeadOfPrisonGear
   icon: "JobIconHeadOfPrison"

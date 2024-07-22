@@ -17,14 +17,14 @@
         - type: StationJobs
           availableJobs:
             HeadOfPrison: [ 1, 1 ]
-            PrisonWorker: [ 3, 5 ]
+            #PrisonWorker: [ 3, 5 ] Увы
             PrisonPilot: [ 1, 1 ]
-            PrisonChef: [ 2, 4 ]
-            PrisonDoctor: [ 3, 5 ]
-            PrisonEngineer: [ 3, 5 ]
-            PrisonGuard: [ 12, 24 ]
-            Prisoner: [ 0, 0 ]
+            #PrisonChef: [ 2, 4 ] Увы
+            PrisonDoctor: [ 2, 4 ]
+            #PrisonEngineer: [ 3, 5 ] Увы
+            PrisonGuard: [ 10, 16 ]
+            Prisoner: [ 2, 4 ]
         - type: OtherJobsTakenRequirement
           targetJob: PrisonGuard
           adjustJob: Prisoner
-          coefficient: 1
+          coefficient: 2
