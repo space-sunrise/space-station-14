@@ -12,6 +12,9 @@
   supervisors: job-supervisors-centcom
   canBeAntag: false
   access:
+    - Armory
+    - Cryogenics
+    - Lawyer
     - Command
     - Bar
     - Service
