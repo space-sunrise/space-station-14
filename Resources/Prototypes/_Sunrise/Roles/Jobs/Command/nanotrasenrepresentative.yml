@@ -45,3 +45,8 @@
     head: ClothingHeadHatCapNtrep
     id: NanoTrasenRepresentativePDA
     ears: ClothingHeadsetAltCommand
+    pocket1: FlippoEngravedLighter
+  storage:
+    back:
+    - RubberStampNtrep
+    - CaneNT
