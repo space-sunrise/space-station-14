@@ -50,7 +50,7 @@ public sealed partial class VoiceMaskNameChangeWindow : FancyWindow
         AddVerbs();
     }
 
-    private void ReloadVerbs(IPrototypeManager proto)
+    public void ReloadVerbs(IPrototypeManager proto)
     {
         foreach (var verb in proto.EnumeratePrototypes<SpeechVerbPrototype>())
         {

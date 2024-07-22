@@ -31,11 +31,8 @@ namespace Content.IntegrationTests.Tests
         {
             "CentComm",
             "Dart",
-            "NukieOutpost",
-			"SunriseCentComm",
-            "AlterosPrison",
+            "SunriseCentComm",
             "PlanetPrison",
-            "SunrisePrison"
         };
 
         private static readonly string[] Grids =
@@ -58,7 +55,6 @@ namespace Content.IntegrationTests.Tests
             "Bagel",
             "Origin",
             "CentComm",
-            "NukieOutpost",
             "Box",
             "Europa",
             "Saltern",

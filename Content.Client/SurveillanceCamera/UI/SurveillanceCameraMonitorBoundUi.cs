@@ -1,6 +1,7 @@
 using Content.Client.Eye;
 using Content.Shared.SurveillanceCamera;
 using Robust.Client.GameObjects;
+using Robust.Client.UserInterface;
 
 namespace Content.Client.SurveillanceCamera.UI;
 
@@ -39,21 +40,13 @@ public sealed class SurveillanceCameraMonitorBoundUserInterface : BoundUserInter
         {
             gridUid = xform.GridUid;
         }
-
-        _window = new SurveillanceCameraMonitorWindow(gridUid);
         // Sunrise-end
 
-        if (State != null)
-        {
-            UpdateState(State);
-        }
-
-        _window.OpenCentered();
+        _window = this.CreateWindow<SurveillanceCameraMonitorWindow>();
 
         _window.CameraSelected += OnCameraSelected;
         _window.CameraRefresh += OnCameraRefresh;
         _window.SubnetRefresh += OnSubnetRefresh;
-        _window.OnClose += Close;
         _window.CameraSwitchTimer += OnCameraSwitchTimer;
         _window.CameraDisconnect += OnCameraDisconnect;
     }
