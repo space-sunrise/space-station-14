@@ -559,8 +559,13 @@ public sealed class BanManager : IBanManager, IPostInjectInit
     DateTime.UtcNow,
     TimeZoneInfo.FindSystemTimeZoneById("Russian Standard Time"));
 
-        var adminDiscordId = await _discordAuth.GetDiscordUserId(banDef.BanningAdmin);
-        var targetDiscordId = await _discordAuth.GetDiscordUserId(banDef.UserId);
+        string? adminDiscordId = null;
+        string? targetDiscordId = null;
+        if (_discordAuth != null)
+        {
+            adminDiscordId = await _discordAuth.GetDiscordUserId(banDef.BanningAdmin);
+            targetDiscordId = await _discordAuth.GetDiscordUserId(banDef.UserId);
+        }
 
         var adminLink = "";
         var targetLink = "";

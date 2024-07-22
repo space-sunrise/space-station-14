@@ -22,7 +22,7 @@ public sealed partial class VoiceMaskNameChangeWindow : FancyWindow
 
     private string? _verb;
 
-    public VoiceMaskNameChangeWindow(IPrototypeManager proto)
+    public VoiceMaskNameChangeWindow()
     {
         RobustXamlLoader.Load(this);
 
@@ -37,13 +37,13 @@ public sealed partial class VoiceMaskNameChangeWindow : FancyWindow
             SpeechVerbSelector.SelectId(args.Id);
         };
 
-        ReloadVerbs(proto);
+        ReloadVerbs(IoCManager.Resolve<IPrototypeManager>());
 
         // Sunrise-TTS-Start
         if (IoCManager.Resolve<IConfigurationManager>().GetCVar(SunriseCCVars.TTSEnabled))
         {
             TTSContainer.Visible = true;
-            ReloadVoices(proto);
+            ReloadVoices(IoCManager.Resolve<IPrototypeManager>());
         }
         // Sunrise-TTS-End
 
