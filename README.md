@@ -13,7 +13,8 @@
 # Space Station 14 - SUNRISE
 
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/y/space-sunrise/space-station-14)
-![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/space-sunrise/space-station-14)
+![GitHub Issues](https://img.shields.io/github/issues/space-sunrise/space-station-14)
+![GitHub Pull Requests](https://img.shields.io/github/issues-pr-closed/space-sunrise/space-station-14)
 
 </div>
 
