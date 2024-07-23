@@ -41,11 +41,11 @@ namespace Content.Shared.Construction.Steps
                     {
                         if(item.Name == "левая рука киборга-официанта")
                         {
-                            nameLocale = "левая рука киборга"
+                            nameLocale = "левая рука киборга";
                         }
                         else if(item.Name == "голова киборга-уборщика")
                         {
-                            nameLocale = "голова киборга"
+                            nameLocale = "голова киборга";
                         }
                         else
                         {

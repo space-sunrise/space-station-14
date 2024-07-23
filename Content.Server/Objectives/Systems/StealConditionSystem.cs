@@ -75,12 +75,12 @@ public sealed class StealConditionSystem : EntitySystem
         var group = _proto.Index(condition.Comp.StealGroup);
 
         var title =condition.Comp.OwnerText == null
-            ? Loc.GetString(condition.Comp.ObjectiveNoOwnerText, ("itemName", group.Name))
-            : Loc.GetString(condition.Comp.ObjectiveText, ("owner", Loc.GetString(condition.Comp.OwnerText)), ("itemName", group.Name));
+            ? Loc.GetString(condition.Comp.ObjectiveNoOwnerText, ("itemName", Loc.GetString($"ent-{group.Name.Replace(" ", string.Empty)}")))
+            : Loc.GetString(condition.Comp.ObjectiveText, ("owner", Loc.GetString(condition.Comp.OwnerText)), ("itemName", Loc.GetString($"ent-{group.Name.Replace(" ", string.Empty)}")));
 
         var description = condition.Comp.CollectionSize > 1
-            ? Loc.GetString(condition.Comp.DescriptionMultiplyText, ("itemName", group.Name), ("count", condition.Comp.CollectionSize))
-            : Loc.GetString(condition.Comp.DescriptionText, ("itemName", group.Name));
+            ? Loc.GetString(condition.Comp.DescriptionMultiplyText, ("itemName", Loc.GetString($"ent-{group.Name.Replace(" ", string.Empty)}")), ("count", condition.Comp.CollectionSize))
+            : Loc.GetString(condition.Comp.DescriptionText, ("itemName", Loc.GetString($"ent-{group.Name.Replace(" ", string.Empty)}")));
 
         _metaData.SetEntityName(condition.Owner, title, args.Meta);
         _metaData.SetEntityDescription(condition.Owner, description, args.Meta);
