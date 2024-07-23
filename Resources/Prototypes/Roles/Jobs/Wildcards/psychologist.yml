@@ -6,6 +6,7 @@
   startingGear: PsychologistGear
   icon: "JobIconPsychologist"
   supervisors: job-supervisors-cmo
+  displayWeight: 10  # Sunrise
   access:
   - Medical
   - Maintenance
@@ -19,3 +20,6 @@
     shoes: ClothingShoesLeather
     id: PsychologistPDA
     ears: ClothingHeadsetMedical
+  storage:
+    back:
+    - RubberStampPsychologist

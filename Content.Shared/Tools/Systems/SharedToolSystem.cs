@@ -12,6 +12,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
+using BlockedToolComponent = Content.Shared._Sunrise.BlockedTool.BlockedToolComponent;
 
 namespace Content.Shared.Tools.Systems;
 
@@ -24,7 +25,7 @@ public abstract partial class SharedToolSystem : EntitySystem
     [Dependency] private   readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private   readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] protected readonly SharedInteractionSystem InteractionSystem = default!;
-    [Dependency] protected readonly SharedItemToggleSystem ItemToggle = default!;
+    [Dependency] protected readonly ItemToggleSystem ItemToggle = default!;
     [Dependency] private   readonly SharedMapSystem _maps = default!;
     [Dependency] private   readonly SharedPopupSystem _popup = default!;
     [Dependency] protected readonly SharedSolutionContainerSystem SolutionContainerSystem = default!;
@@ -50,7 +51,13 @@ public abstract partial class SharedToolSystem : EntitySystem
         ev.DoAfter = args.DoAfter;
 
         if (args.OriginalTarget != null)
+        {
+            // Sunrise-Start
+            if (HasComp<BlockedToolComponent>(GetEntity(args.OriginalTarget.Value)))
+                return;
+            // Sunrise-End
             RaiseLocalEvent(GetEntity(args.OriginalTarget.Value), (object) ev);
+        }
         else
             RaiseLocalEvent((object) ev);
     }
@@ -217,7 +224,7 @@ public abstract partial class SharedToolSystem : EntitySystem
             return false;
 
         // check if the tool allows being used
-        var beforeAttempt = new ToolUseAttemptEvent(user);
+        var beforeAttempt = new ToolUseAttemptEvent(user, fuel);
         RaiseLocalEvent(tool, beforeAttempt);
         if (beforeAttempt.Cancelled)
             return false;
@@ -271,6 +278,11 @@ public abstract partial class SharedToolSystem : EntitySystem
 
             return new ToolDoAfterEvent(Fuel, evClone, OriginalTarget);
         }
+
+        public override bool IsDuplicate(DoAfterEvent other)
+        {
+            return other is ToolDoAfterEvent toolDoAfter && WrappedEvent.IsDuplicate(toolDoAfter.WrappedEvent);
+        }
     }
 
     [Serializable, NetSerializable]
@@ -296,4 +308,3 @@ public abstract partial class SharedToolSystem : EntitySystem
 public sealed partial class CableCuttingFinishedEvent : SimpleDoAfterEvent;
 
 #endregion
-

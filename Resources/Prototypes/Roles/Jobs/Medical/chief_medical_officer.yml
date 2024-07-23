@@ -19,6 +19,7 @@
   supervisors: job-supervisors-captain
   radioBold: true
   canBeAntag: false
+  displayWeight: 60  # Sunrise
   access:
   - Medical
   - Command
@@ -42,3 +43,7 @@
     id: CMOPDA
     ears: ClothingHeadsetCMO
     belt: ClothingBeltMedicalFilled
+  storage:
+    back:
+    - Flash
+    - Telebaton

@@ -36,6 +36,9 @@
         prob: 0.05
       - id: BoxMRE
         prob: 0.1
+      - id: CrowbarRed
+      - id: CrowbarRed
+      - id: CrowbarRed
 
 - type: entity
   id: ClosetWallEmergencyFilledRandom
@@ -60,6 +63,9 @@
         prob: 0.05
       - id: BoxMRE
         prob: 0.1
+      - id: CrowbarRed
+      - id: CrowbarRed
+      - id: CrowbarRed
 
 - type: entity
   id: ClosetEmergencyN2FilledRandom
@@ -75,6 +81,9 @@
       - id: NitrogenTankFilled
         prob: 0.20
         orGroup: EmergencyTankOrRegularTank
+      - id: CrowbarRed
+      - id: CrowbarRed
+      - id: CrowbarRed
 
 - type: entity
   id: ClosetFireFilled
@@ -89,6 +98,10 @@
         - id: OxygenTankFilled
         - id: FireExtinguisher
           prob: 0.25
+        - id: CrowbarRed
+        - id: CrowbarRed
+        - id: CrowbarRed
+
 - type: entity
   id: ClosetWallFireFilledRandom
   parent: ClosetWallFire
@@ -102,6 +115,10 @@
         - id: OxygenTankFilled
         - id: FireExtinguisher
           prob: 0.25
+        - id: CrowbarRed
+        - id: CrowbarRed
+        - id: CrowbarRed
+
 - type: entity
   id: ClosetMaintenanceFilledRandom
   suffix: Filled, Random
@@ -169,6 +186,8 @@
         - id: DrinkSpaceLube
           prob: 0.20
         - id: BarberScissors
+          prob: 0.05
+        - id: Wristwatch
           prob: 0.05
         - id: BookRandomStory
           prob: 0.1

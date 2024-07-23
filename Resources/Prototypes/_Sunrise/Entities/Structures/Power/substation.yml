@@ -1,0 +1,10 @@
+- type: entity
+  parent: BaseSubstation
+  id: SubstationExtended
+  name: подстанция
+  description: Понижает напряжение подаваемого в него электричества.
+  suffix: Увеличенный, 7.5MJ
+  components:
+  - type: Battery
+    maxCharge: 7500000
+    startingCharge: 7500000

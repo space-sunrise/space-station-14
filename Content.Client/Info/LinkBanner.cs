@@ -1,5 +1,6 @@
-﻿using Content.Client.Changelog;
-using Content.Client.Credits;
+using Content.Client._Sunrise.Roadmap;
+using Content.Client.Changelog;
+using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Systems.EscapeMenu;
 using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Shared.CCVar;
@@ -20,7 +21,7 @@ namespace Content.Client.Info
         {
             var buttons = new BoxContainer
             {
-                Orientation = LayoutOrientation.Horizontal
+                Orientation = LayoutOrientation.Horizontal,
             };
             AddChild(buttons);
 
@@ -36,13 +37,6 @@ namespace Content.Client.Info
             AddInfoButton("server-info-wiki-button", CCVars.InfoLinksWiki);
             AddInfoButton("server-info-forum-button", CCVars.InfoLinksForum);
 
-            // Sunrise-Start
-            AddInfoButton("server-info-github-button", CCVars.InfoLinksGithub);
-            var creditsButton = new Button {Text = Loc.GetString("server-info-credits-button")};
-            creditsButton.OnPressed += _ => new CreditsWindow().Open();
-            buttons.AddChild(creditsButton);
-            // Sunrise-End
-
             var guidebookController = UserInterfaceManager.GetUIController<GuidebookUIController>();
             var guidebookButton = new Button() { Text = Loc.GetString("server-info-guidebook-button") };
             guidebookButton.OnPressed += _ =>
@@ -54,6 +48,24 @@ namespace Content.Client.Info
             var changelogButton = new ChangelogButton();
             changelogButton.OnPressed += args => UserInterfaceManager.GetUIController<ChangelogUIController>().ToggleWindow();
             buttons.AddChild(changelogButton);
+
+            var roadmapButton = new Button
+            {
+                Text = Loc.GetString("server-info-roadmap-button"),
+                StyleClasses = { StyleBase.ButtonCaution },
+            };
+            // Sunrise-Start
+            roadmapButton.OnPressed += _ => UserInterfaceManager.GetUIController<RoadmapUIController>().ToggleRoadmap();
+            buttons.AddChild(roadmapButton);
+
+            var donateButton = new Button
+            {
+                Text = Loc.GetString("server-info-donate-button"),
+                Disabled = true,
+            };
+            //donateButton.OnPressed += args =>
+            buttons.AddChild(donateButton);
+            // Sunrise-End
 
             void AddInfoButton(string loc, CVarDef<string> cVar)
             {

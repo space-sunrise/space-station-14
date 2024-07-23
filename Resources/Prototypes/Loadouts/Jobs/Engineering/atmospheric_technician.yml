@@ -2,6 +2,9 @@
 - type: loadout
   id: AtmosphericTechnicianJumpsuit
   equipment: AtmosphericTechnicianJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: AtmosphericTechnicianJumpsuit
@@ -11,6 +14,9 @@
 - type: loadout
   id: AtmosphericTechnicianJumpskirt
   equipment: AtmosphericTechnicianJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: AtmosphericTechnicianJumpskirt
@@ -20,6 +26,9 @@
 - type: loadout
   id: AtmosphericTechnicianJumpsuitCasual
   equipment: AtmosphericTechnicianJumpsuitCasual
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: AtmosphericTechnicianJumpsuitCasual
@@ -34,7 +43,7 @@
 - type: startingGear
   id: AtmosphericTechnicianBackpack
   equipment:
-    back: ClothingBackpackAtmosphericsFilled
+    back: ClothingBackpackAtmospherics
 
 - type: loadout
   id: AtmosphericTechnicianSatchel
@@ -43,7 +52,7 @@
 - type: startingGear
   id: AtmosphericTechnicianSatchel
   equipment:
-    back: ClothingBackpackSatchelAtmosphericsFilled
+    back: ClothingBackpackSatchelAtmospherics
 
 - type: loadout
   id: AtmosphericTechnicianDuffel
@@ -52,7 +61,7 @@
 - type: startingGear
   id: AtmosphericTechnicianDuffel
   equipment:
-    back: ClothingBackpackDuffelAtmosphericsFilled
+    back: ClothingBackpackDuffelAtmospherics
 
 # OuterClothing
 - type: loadout

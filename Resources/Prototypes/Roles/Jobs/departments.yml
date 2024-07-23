@@ -38,14 +38,13 @@
   color: "#052EED" # Sunrise-Edit
   roles:
   - Captain
-  - IAA # Sunrise-Edit
-  - CentralCommandOfficial
   - ChiefEngineer
   - ChiefMedicalOfficer
   - HeadOfPersonnel
   - HeadOfSecurity
   - ResearchDirector
   - Quartermaster
+  - NanoTrasenRepresentative  #Sunrise-Edit
   primary: false
   weight: 100
 
@@ -53,9 +52,11 @@
   id: Engineering
   description: department-Engineering-description
   color: "#EFB341"
+  weight: 10  # Sunrise-weights
   roles:
   - AtmosphericTechnician
   - ChiefEngineer
+  - SeniorEngineer  # Sunrise-Senior
   - StationEngineer
   - TechnicalAssistant
 
@@ -66,6 +67,7 @@
   roles:
   - Chemist
   - ChiefMedicalOfficer
+  - SeniorPhysician  # Sunrise-Senior
   - MedicalDoctor
   - MedicalIntern
   - Psychologist
@@ -78,10 +80,13 @@
   weight: 20
   roles:
   - HeadOfSecurity
+  - SeniorOfficer  # Sunrise-Senior
   - SecurityCadet
   - SecurityOfficer
   - Detective
   - Warden
+  - Brigmedic  # Sunrise-Brigmedic
+  - SecurityPilot # Sunrise-SecurityPilot
 
 - type: department
   id: Science
@@ -89,14 +94,16 @@
   color: "#D381C9"
   roles:
   - ResearchDirector
+  - SeniorResearcher  # Sunrise-Senior
   - Scientist
   - ResearchAssistant
+  - Roboticist  # Sunrise-Edit
 
 - type: department
   id: Specific
   description: department-Specific-description
   color: "#9FED58"
-  weight: 10
+  weight: 5  # Sunrise-weights
   roles:
   - Boxer
   - Reporter

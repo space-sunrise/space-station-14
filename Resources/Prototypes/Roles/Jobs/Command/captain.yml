@@ -23,6 +23,7 @@
   supervisors: job-supervisors-centcom
   radioBold: true
   canBeAntag: false
+  displayWeight: 100  # Sunrise
   accessGroups:
   - AllAccess
   special:
@@ -42,3 +43,8 @@
     gloves: ClothingHandsGlovesCaptain
     id: CaptainPDA
     ears: ClothingHeadsetAltCommand
+  storage:
+    back:
+    - Flash
+    - Telebaton
+    # - StationCharter

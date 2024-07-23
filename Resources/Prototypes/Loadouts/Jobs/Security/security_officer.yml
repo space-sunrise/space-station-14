@@ -1,18 +1,3 @@
-# Senior Time
-- type: loadoutEffectGroup
-  id: SeniorOfficer
-  effects:
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:RoleTimeRequirement
-      role: JobWarden
-      time: 36000 # 10 hrs Sunrise-RoleTime
-  - !type:JobRequirementLoadoutEffect
-    requirement:
-      !type:DepartmentTimeRequirement
-      department: Security
-      time: 216000 # 60 hrs
-
 # Head
 - type: loadout
   id: SecurityHelmet
@@ -45,6 +30,9 @@
 - type: loadout
   id: SecurityJumpsuit
   equipment: SecurityJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: SecurityJumpsuit
@@ -54,6 +42,9 @@
 - type: loadout
   id: SecurityJumpskirt
   equipment: SecurityJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: SecurityJumpskirt
@@ -63,6 +54,9 @@
 - type: loadout
   id: SecurityJumpsuitGrey
   equipment: SecurityJumpsuitGrey
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: SecurityJumpsuitGrey
@@ -72,35 +66,14 @@
 - type: loadout
   id: SecurityJumpskirtGrey
   equipment: SecurityJumpskirtGrey
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: SecurityJumpskirtGrey
   equipment:
     jumpsuit: ClothingUniformJumpskirtSecGrey
-
-- type: loadout
-  id: SeniorOfficerJumpsuit
-  equipment: SeniorOfficerJumpsuit
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: SeniorOfficer
-
-- type: startingGear
-  id: SeniorOfficerJumpsuit
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitSeniorOfficer
-
-- type: loadout
-  id: SeniorOfficerJumpskirt
-  equipment: SeniorOfficerJumpskirt
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: SeniorOfficer
-
-- type: startingGear
-  id: SeniorOfficerJumpskirt
-  equipment:
-    jumpsuit: ClothingUniformJumpskirtSeniorOfficer
 
 # Back
 - type: loadout
@@ -110,7 +83,7 @@
 - type: startingGear
   id: SecurityBackpack
   equipment:
-    back: ClothingBackpackSecurityFilled
+    back: ClothingBackpackSecurity
 
 - type: loadout
   id: SecuritySatchel
@@ -119,7 +92,7 @@
 - type: startingGear
   id: SecuritySatchel
   equipment:
-    back: ClothingBackpackSatchelSecurityFilled
+    back: ClothingBackpackSatchelSecurity
 
 - type: loadout
   id: SecurityDuffel
@@ -128,7 +101,7 @@
 - type: startingGear
   id: SecurityDuffel
   equipment:
-    back: ClothingBackpackDuffelSecurityFilled
+    back: ClothingBackpackDuffelSecurity
 
 # Belt
 - type: loadout
@@ -188,32 +161,19 @@
     shoes: ClothingShoesBootsCombatFilled
 
 - type: loadout
+  id: JackBoots
+  equipment: JackBoots
+
+- type: startingGear
+  id: JackBoots
+  equipment:
+    shoes: ClothingShoesBootsJackFilled
+
+- type: loadout
   id: SecurityWinterBoots
   equipment: SecurityWinterBoots
 
 - type: startingGear
   id: SecurityWinterBoots
   equipment:
-    shoes: ClothingShoesBootsWinterSec
-
-# PDA
-- type: loadout
-  id: SecurityPDA
-  equipment: SecurityPDA
-
-- type: startingGear
-  id: SecurityPDA
-  equipment:
-    id: SecurityPDA
-
-- type: loadout
-  id: SeniorOfficerPDA
-  equipment: SeniorOfficerPDA
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: SeniorOfficer
-
-- type: startingGear
-  id: SeniorOfficerPDA
-  equipment:
-    id: SeniorOfficerPDA
+    shoes: ClothingShoesBootsWinterSecFilled

@@ -5,6 +5,8 @@ using Content.Shared.PDA;
 using Content.Server.Store.Components;
 using Content.Shared.FixedPoint;
 using Content.Shared.Store;
+using Content.Shared.Store.Components;
+using Content.Shared.Tag;
 
 namespace Content.Server.Traitor.Uplink
 {
@@ -13,21 +15,10 @@ namespace Content.Server.Traitor.Uplink
         [Dependency] private readonly InventorySystem _inventorySystem = default!;
         [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
         [Dependency] private readonly StoreSystem _store = default!;
+        [Dependency] private readonly TagSystem _tagSystem = default!;
 
         [ValidatePrototypeId<CurrencyPrototype>]
         public const string TelecrystalCurrencyPrototype = "Telecrystal";
-
-        /// <summary>
-        ///     Gets the amount of TC on an "uplink"
-        ///     Mostly just here for legacy systems based on uplink.
-        /// </summary>
-        /// <param name="component"></param>
-        /// <returns>the amount of TC</returns>
-        public int GetTCBalance(StoreComponent component)
-        {
-            FixedPoint2? tcBalance = component.Balance.GetValueOrDefault(TelecrystalCurrencyPrototype);
-            return tcBalance?.Int() ?? 0;
-        }
 
         /// <summary>
         /// Adds an uplink to the target
@@ -37,7 +28,7 @@ namespace Content.Server.Traitor.Uplink
         /// <param name="uplinkPresetId">The id of the storepreset</param>
         /// <param name="uplinkEntity">The entity that will actually have the uplink functionality. Defaults to the PDA if null.</param>
         /// <returns>Whether or not the uplink was added successfully</returns>
-        public bool AddUplink(EntityUid user, FixedPoint2? balance, string uplinkPresetId = "StorePresetUplink", EntityUid? uplinkEntity = null)
+        public bool AddUplink(EntityUid user, FixedPoint2? balance, EntityUid? uplinkEntity = null)
         {
             // Try to find target item
             if (uplinkEntity == null)
@@ -47,11 +38,10 @@ namespace Content.Server.Traitor.Uplink
                     return false;
             }
 
+            EnsureComp<UplinkComponent>(uplinkEntity.Value);
             var store = EnsureComp<StoreComponent>(uplinkEntity.Value);
-            _store.InitializeFromPreset(uplinkPresetId, uplinkEntity.Value, store);
             store.AccountOwner = user;
             store.Balance.Clear();
-
             if (balance != null)
             {
                 store.Balance.Clear();
@@ -76,6 +66,11 @@ namespace Content.Server.Traitor.Uplink
                 {
                     if (!pdaUid.ContainedEntity.HasValue) continue;
 
+                    // Sunrtise-Start
+                    if (_tagSystem.HasTag(pdaUid.ContainedEntity.Value, "SunriseUplink"))
+                        continue;
+                    // Sunrtise-End
+
                     if (HasComp<PdaComponent>(pdaUid.ContainedEntity.Value) || HasComp<StoreComponent>(pdaUid.ContainedEntity.Value))
                         return pdaUid.ContainedEntity.Value;
                 }
@@ -84,11 +79,42 @@ namespace Content.Server.Traitor.Uplink
             // Also check hands
             foreach (var item in _handsSystem.EnumerateHeld(user))
             {
+                // Sunrtise-Start
+                if (_tagSystem.HasTag(item, "SunriseUplink"))
+                    continue;
+                // Sunrtise-End
+
                 if (HasComp<PdaComponent>(item) || HasComp<StoreComponent>(item))
                     return item;
             }
 
             return null;
         }
+
+        // Sunrtise-Start
+        public EntityUid? FindUplinkByTag(EntityUid user, string tag)
+        {
+            // Try to find PDA in inventory
+            if (_inventorySystem.TryGetContainerSlotEnumerator(user, out var containerSlotEnumerator))
+            {
+                while (containerSlotEnumerator.MoveNext(out var uplinkUid))
+                {
+                    if (!uplinkUid.ContainedEntity.HasValue) continue;
+
+                    if (_tagSystem.HasTag(uplinkUid.ContainedEntity.Value, tag))
+                        return uplinkUid.ContainedEntity.Value;
+                }
+            }
+
+            // Also check hands
+            foreach (var item in _handsSystem.EnumerateHeld(user))
+            {
+                if (_tagSystem.HasTag(item, tag))
+                    return item;
+            }
+
+            return null;
+        }
+        // Sunrtise-End
     }
 }

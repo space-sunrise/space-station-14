@@ -1,0 +1,6 @@
+- type: entity
+  save: false
+  parent: BaseMobHumanoidXeno
+  id: MobHumanoidXeno
+  name: Ксеноморф
+

@@ -26,6 +26,9 @@
 - type: loadout
   id: GreyJumpsuit
   equipment: GreyJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: GreyJumpsuit
@@ -35,6 +38,9 @@
 - type: loadout
   id: GreyJumpskirt
   equipment: GreyJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: GreyJumpskirt
@@ -48,6 +54,8 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: GreyTider
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: RainbowJumpsuit
@@ -61,6 +69,8 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: GreyTider
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: AncientJumpsuit
@@ -75,7 +85,7 @@
 - type: startingGear
   id: CommonBackpack
   equipment:
-    back: ClothingBackpackFilled
+    back: ClothingBackpack
 
 - type: loadout
   id: CommonSatchel
@@ -84,7 +94,7 @@
 - type: startingGear
   id: CommonSatchel
   equipment:
-    back: ClothingBackpackSatchelFilled
+    back: ClothingBackpackSatchel
 
 - type: loadout
   id: CommonDuffel
@@ -93,7 +103,7 @@
 - type: startingGear
   id: CommonDuffel
   equipment:
-    back: ClothingBackpackDuffelFilled
+    back: ClothingBackpackDuffel
 
 # Gloves
 - type: loadout

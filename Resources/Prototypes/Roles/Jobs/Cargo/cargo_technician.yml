@@ -6,6 +6,7 @@
   startingGear: CargoTechGear
   icon: "JobIconCargoTechnician"
   supervisors: job-supervisors-qm
+  displayWeight: 0  # Sunrise
   access:
   - Cargo
   - Maintenance
@@ -18,3 +19,6 @@
     id: CargoPDA
     ears: ClothingHeadsetCargo
     pocket1: AppraisalTool
+  #storage:
+    #back:
+    #- Stuff

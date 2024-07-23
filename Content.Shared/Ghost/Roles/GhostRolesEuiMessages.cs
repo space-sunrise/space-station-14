@@ -8,9 +8,15 @@ namespace Content.Shared.Ghost.Roles
     public struct GhostRoleInfo
     {
         public uint Identifier { get; set; }
+        public string PrototypeId { get; set; } // Sunrise-Sponsors
         public string Name { get; set; }
         public string Description { get; set; }
         public string Rules { get; set; }
+
+        // TODO ROLE TIMERS
+        // Actually make use of / enforce this requirement?
+        // Why is this even here.
+        // Move to ghost role prototype & respect CCvars.GameRoleTimerOverride
         public HashSet<JobRequirement>? Requirements { get; set; }
 
         /// <inheritdoc cref="GhostRoleKind"/>

@@ -1,4 +1,5 @@
 using Content.Server._Sunrise.GuideGenerator;
+using Content.Server._Sunrise.ServersHub;
 using Content.Server._Sunrise.TTS;
 using Content.Server.Acz;
 using Content.Server.Administration;
@@ -16,7 +17,10 @@ using Content.Server.Info;
 using Content.Server.IoC;
 using Content.Server.Maps;
 using Content.Server.NodeContainer.NodeGroups;
+using Content.Server.Players;
+using Content.Server.Players.JobWhitelist;
 using Content.Server.Players.PlayTimeTracking;
+using Content.Server.Players.RateLimiting;
 using Content.Server.Preferences.Managers;
 using Content.Server.ServerInfo;
 using Content.Server.ServerUpdates;
@@ -69,7 +73,6 @@ namespace Content.Server.Entry
             factory.RegisterIgnore(IgnoredComponents.List);
 
             prototypes.RegisterIgnore("parallax");
-            prototypes.RegisterIgnore("guideEntry");
 
             ServerContentIoC.Register();
 
@@ -107,9 +110,13 @@ namespace Content.Server.Entry
                 IoCManager.Resolve<ServerInfoManager>().Initialize();
                 IoCManager.Resolve<ServerApi>().Initialize();
 
+                IoCManager.Resolve<ServersHubManager>().Initialize(); // Sunrise-Hub
+
                 _voteManager.Initialize();
                 _updateManager.Initialize();
                 _playTimeTracking.Initialize();
+                IoCManager.Resolve<JobWhitelistManager>().Initialize();
+                IoCManager.Resolve<PlayerRateLimitManager>().Initialize();
             }
         }
 

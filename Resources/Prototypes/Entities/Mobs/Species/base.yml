@@ -4,6 +4,7 @@
   - BaseMob
   - MobDamageable
   - MobCombat
+  - StripableInventoryBase
   id: BaseMobSpecies
   abstract: true
   components:
@@ -27,9 +28,14 @@
       sprite: Mobs/Customization/masking_helpers.rsi
       state: unisex_full
       visible: false
-    - map: ["jumpsuit"]
+    # Sunrise-start
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
+    - map: ["bra"]
+    - map: ["pants"]
+    - map: ["socks"]
+    - map: ["jumpsuit"]
+    # Sunrise-end
     - map: ["enum.HumanoidVisualLayers.LHand"]
     - map: ["enum.HumanoidVisualLayers.RHand"]
     - map: [ "gloves" ]
@@ -140,9 +146,8 @@
     - TemporaryBlindness
     - Pacified
     - StaminaModifier
-  - type: Reflect
-    enabled: false
-    reflectProb: 0
+    - Flashed
+    - LoveEffect  # Sunrise-Aphrodesiac
   - type: Body
     prototype: Human
     requiredLegs: 2
@@ -151,8 +156,6 @@
   - type: Hands
   - type: ComplexInteraction
   - type: Internals
-  - type: Inventory
-  - type: InventorySlots
   - type: FloatingVisuals
   - type: Climbing
   - type: Cuffable
@@ -190,7 +193,6 @@
     - NanoTrasen
   - type: CreamPied
   - type: Stripping
-  - type: Strippable
   - type: UserInterface
     interfaces:
       enum.VoiceMaskUIKey.Key:
@@ -222,6 +224,10 @@
     - CanPilot
     - FootstepSound
     - DoorBumpOpener
+  - type: Paws
+    screamInterval: 3
+    thresholdDamage: 5
+    coughInterval: 5
 
 - type: entity
   save: false
@@ -234,7 +240,8 @@
   id: BaseMobSpeciesOrganic
   abstract: true
   components:
-  - type: Flashable
+  - type: Carriable # Sunrise-edit
+  - type: CanEscapeInventory # Sunrise-edit
   - type: Barotrauma
     damage:
       types:
@@ -249,24 +256,7 @@
         Heat: -0.07
       groups:
         Brute: -0.07
-  # Organs
-  - type: StatusEffects
-    allowed:
-    - Stun
-    - KnockedDown
-    - SlowedDown
-    - Stutter
-    - SeeingRainbows
-    - Electrocution
-    - ForcedSleep
-    - TemporaryBlindness
-    - Drunk
-    - SlurredSpeech
-    - RatvarianLanguage
-    - PressureImmunity
-    - Muted
-    - Pacified
-    - StaminaModifier
+
   - type: Blindable
   # Other
   - type: Temperature
@@ -307,12 +297,11 @@
 - type: entity
   save: false
   id: BaseSpeciesDummy
+  parent: InventoryBase
   abstract: true
   components:
   - type: Hands
   - type: ComplexInteraction
-  - type: Inventory
-  - type: InventorySlots
   - type: ContainerContainer
   - type: Icon
     sprite: Mobs/Species/Human/parts.rsi
@@ -338,9 +327,14 @@
       sprite: Mobs/Customization/masking_helpers.rsi
       state: unisex_full
       visible: false
-    - map: ["jumpsuit"]
+    # Sunrise-start
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
+    - map: ["bra"]
+    - map: ["pants"]
+    - map: ["socks"]
+    - map: ["jumpsuit"]
+    # Sunrise-end
     - map: ["enum.HumanoidVisualLayers.LHand"]
     - map: ["enum.HumanoidVisualLayers.RHand"]
     - map: ["enum.HumanoidVisualLayers.Handcuffs"]

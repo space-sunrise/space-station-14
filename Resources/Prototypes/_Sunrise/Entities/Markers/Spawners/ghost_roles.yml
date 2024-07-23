@@ -1,19 +1,23 @@
 ﻿- type: entity
-  id: SpawnPointEvilTwin
-  name: evil twin spawn point
+  id: SpawnPointGhostFoliant
+  name: ghost role spawn point
+  suffix: Foliant
   parent: MarkerBase
   components:
-    - type: EvilTwinSpawner
-    - type: GhostRole
-      name: Злой двойник
-      description: Вы - злой двойник какой-то другой персоны.
-      rules: |
-        Старайтесь действовать скрытно, никто не должен прознать о подмене!
-        Действуйте от лица вашего оригинала, хитрите, подставляйте, запутывайте.
-    - type: GhostTakeoverAvailable
-    - type: Sprite
-      sprite: Markers/jobs.rsi
-      layers:
-        - state: green
-        - sprite: Mobs/Ghosts/ghost_human.rsi
-          state: icon
+  - type: GhostRole
+    makeSentient: true
+    allowMovement: true
+    allowSpeech: true
+    name: Фолиант
+    description: Помогайте своему библиотекарю просвящать эту станцию.
+    rules: Вы разумная книга-мимик. Помогайте своему хозяину скрасить жизнь, просвящайте всех на станции.
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: MobBook
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+      - sprite: _Sunrise/Mobs/Pets/dogbook.rsi
+        state: dogbook

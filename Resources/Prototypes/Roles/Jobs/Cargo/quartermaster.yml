@@ -16,6 +16,7 @@
   supervisors: job-supervisors-captain
   radioBold: true
   canBeAntag: false
+  displayWeight: 40  # Sunrise
   access:
   - Cargo
   - Salvage
@@ -40,3 +41,6 @@
     ears: ClothingHeadsetQM
     belt: BoxFolderClipboard
     pocket1: AppraisalTool
+  storage:
+    back:
+    - Flash

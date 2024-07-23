@@ -12,6 +12,7 @@
   startingGear: ParamedicGear
   icon: "JobIconParamedic"
   supervisors: job-supervisors-cmo
+  displayWeight: 25  # Sunrise
   access:
   - Medical
   - Maintenance
@@ -24,3 +25,6 @@
     id: ParamedicPDA
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalEMTFilled
+  storage:
+    back:
+    - EmergencyRollerBedSpawnFolded

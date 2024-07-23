@@ -22,6 +22,9 @@
 - type: loadout
   id: ChefJumpsuit
   equipment: ChefJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: ChefJumpsuit
@@ -31,6 +34,9 @@
 - type: loadout
   id: ChefJumpskirt
   equipment: ChefJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: ChefJumpskirt

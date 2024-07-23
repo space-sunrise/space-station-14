@@ -19,11 +19,11 @@
     - Silicon
     damage:
       types:
-        Heat: -15
-        Shock: -15
-        Blunt: -15
-        Slash: -15
-        Piercing: -15
+        Heat: -10
+        Shock: -10
+        Blunt: -10
+        Slash: -10
+        Piercing: -10
     healingBeginSound:
       path: "/Audio/Items/Medical/ointment_begin.ogg"
     healingEndSound:

@@ -21,6 +21,9 @@
 - type: loadout
   id: BotanistJumpsuit
   equipment: BotanistJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: BotanistJumpsuit
@@ -30,6 +33,9 @@
 - type: loadout
   id: BotanistJumpskirt
   equipment: BotanistJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: BotanistJumpskirt
@@ -39,6 +45,9 @@
 - type: loadout
   id: BotanistOveralls
   equipment: BotanistOveralls
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: BotanistOveralls
@@ -53,7 +62,7 @@
 - type: startingGear
   id: BotanistBackpack
   equipment:
-    back: ClothingBackpackHydroponicsFilled
+    back: ClothingBackpackHydroponics
 
 - type: loadout
   id: BotanistSatchel
@@ -62,7 +71,7 @@
 - type: startingGear
   id: BotanistSatchel
   equipment:
-    back: ClothingBackpackSatchelHydroponicsFilled
+    back: ClothingBackpackSatchelHydroponics
 
 - type: loadout
   id: BotanistDuffel
@@ -71,7 +80,7 @@
 - type: startingGear
   id: BotanistDuffel
   equipment:
-    back: ClothingBackpackDuffelHydroponicsFilled
+    back: ClothingBackpackDuffelHydroponics
 
 # Outer clothing
 - type: loadout

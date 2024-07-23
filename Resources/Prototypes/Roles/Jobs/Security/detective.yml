@@ -11,6 +11,7 @@
   icon: "JobIconDetective"
   supervisors: job-supervisors-hos
   canBeAntag: false
+  displayWeight: 20  # Sunrise
   access:
   - Security
   - Brig
@@ -30,3 +31,8 @@
     id: DetectivePDA
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltHolsterFilled
+  storage:
+    back:
+    - Flash
+    - ForensicPad
+    - ForensicScanner

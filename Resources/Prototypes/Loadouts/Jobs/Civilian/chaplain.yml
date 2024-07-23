@@ -58,6 +58,9 @@
 - type: loadout
   id: ChaplainJumpsuit
   equipment: ChaplainJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: ChaplainJumpsuit
@@ -67,6 +70,9 @@
 - type: loadout
   id: ChaplainJumpskirt
   equipment: ChaplainJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: ChaplainJumpskirt
@@ -90,34 +96,6 @@
   id: ChaplainRobesLight
   equipment:
     jumpsuit: ClothingUniformJumpsuitMonasticRobeLight
-
-# Back
-- type: loadout
-  id: ChaplainBackpack
-  equipment: ChaplainBackpack
-
-- type: startingGear
-  id: ChaplainBackpack
-  equipment:
-    back: ClothingBackpackChaplainFilled
-
-- type: loadout
-  id: ChaplainSatchel
-  equipment: ChaplainSatchel
-
-- type: startingGear
-  id: ChaplainSatchel
-  equipment:
-    back: ClothingBackpackSatchelChaplainFilled
-
-- type: loadout
-  id: ChaplainDuffel
-  equipment: ChaplainDuffel
-
-- type: startingGear
-  id: ChaplainDuffel
-  equipment:
-    back: ClothingBackpackDuffelChaplainFilled
 
 # Neck
 - type: loadout

@@ -55,6 +55,7 @@ public abstract class SharedStorageSystem : EntitySystem
     [Dependency] protected readonly SharedTransformSystem TransformSystem = default!;
     [Dependency] private   readonly SharedUserInterfaceSystem _ui = default!;
     [Dependency] protected readonly UseDelaySystem UseDelay = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
 
     private EntityQuery<ItemComponent> _itemQuery;
     private EntityQuery<StackComponent> _stackQuery;
@@ -95,6 +96,7 @@ public abstract class SharedStorageSystem : EntitySystem
             subs.Event<BoundUIClosedEvent>(OnBoundUIClosed);
         });
 
+        SubscribeLocalEvent<StorageComponent, ComponentRemove>(OnRemove);
         SubscribeLocalEvent<StorageComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<StorageComponent, GetVerbsEvent<ActivationVerb>>(AddUiVerb);
         SubscribeLocalEvent<StorageComponent, ComponentGetState>(OnStorageGetState);
@@ -130,6 +132,11 @@ public abstract class SharedStorageSystem : EntitySystem
             .Register<SharedStorageSystem>();
 
         UpdatePrototypeCache();
+    }
+
+    private void OnRemove(Entity<StorageComponent> entity, ref ComponentRemove args)
+    {
+        _ui.CloseUi(entity.Owner, StorageComponent.StorageUiKey.Key);
     }
 
     private void OnMapInit(Entity<StorageComponent> entity, ref MapInitEvent args)
@@ -297,7 +304,7 @@ public abstract class SharedStorageSystem : EntitySystem
             return;
 
         // prevent spamming bag open / honkerton honk sound
-        silent |= TryComp<UseDelayComponent>(uid, out var useDelay) && UseDelay.IsDelayed((uid, useDelay));
+        silent |= TryComp<UseDelayComponent>(uid, out var useDelay) && UseDelay.IsDelayed((uid, useDelay), id: OpenUiUseDelayID);
         if (!CanInteract(entity, (uid, storageComp), silent: silent))
             return;
 
@@ -307,7 +314,7 @@ public abstract class SharedStorageSystem : EntitySystem
                 Audio.PlayPredicted(storageComp.StorageOpenSound, uid, entity);
 
             if (useDelay != null)
-                UseDelay.TryResetDelay((uid, useDelay));
+                UseDelay.TryResetDelay((uid, useDelay), id: OpenUiUseDelayID);
         }
 
         _ui.OpenUi(uid, StorageComponent.StorageUiKey.Key, entity);
@@ -799,7 +806,11 @@ public abstract class SharedStorageSystem : EntitySystem
         _appearance.SetData(uid, StorageVisuals.Capacity, capacity, appearance);
         _appearance.SetData(uid, StorageVisuals.Open, isOpen, appearance);
         _appearance.SetData(uid, SharedBagOpenVisuals.BagState, isOpen ? SharedBagState.Open : SharedBagState.Closed, appearance);
-        _appearance.SetData(uid, StackVisuals.Hide, !isOpen, appearance);
+
+        // HideClosedStackVisuals true sets the StackVisuals.Hide to the open state of the storage.
+        // This is for containers that only show their contents when open. (e.g. donut boxes)
+        if (storage.HideStackVisualsWhenClosed)
+            _appearance.SetData(uid, StackVisuals.Hide, !isOpen, appearance);
     }
 
     /// <summary>
@@ -860,13 +871,8 @@ public abstract class SharedStorageSystem : EntitySystem
             return false;
         }
 
-        if (storageComp.Whitelist?.IsValid(insertEnt, EntityManager) == false)
-        {
-            reason = "comp-storage-invalid-container";
-            return false;
-        }
-
-        if (storageComp.Blacklist?.IsValid(insertEnt, EntityManager) == true)
+        if (_whitelistSystem.IsWhitelistFail(storageComp.Whitelist, insertEnt) ||
+            _whitelistSystem.IsBlacklistPass(storageComp.Blacklist, insertEnt))
         {
             reason = "comp-storage-invalid-container";
             return false;
@@ -1388,7 +1394,12 @@ public abstract class SharedStorageSystem : EntitySystem
 
         // If we specify a max item size, use that
         if (uid.Comp.MaxItemSize != null)
-            return _prototype.Index(uid.Comp.MaxItemSize.Value);
+        {
+            if (_prototype.TryIndex(uid.Comp.MaxItemSize.Value, out var proto))
+                return proto;
+
+            Log.Error($"{ToPrettyString(uid.Owner)} tried to get invalid item size prototype: {uid.Comp.MaxItemSize.Value}. Stack trace:\\n{Environment.StackTrace}");
+        }
 
         if (!_itemQuery.TryGetComponent(uid, out var item))
             return _defaultStorageMaxItemSize;

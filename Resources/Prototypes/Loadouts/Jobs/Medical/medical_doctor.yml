@@ -31,17 +31,17 @@
 
 # Head
 
-- type: loadout
-  id: SeniorPhysicianBeret
-  equipment: SeniorPhysicianBeret
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: SeniorPhysician
+# - type: loadout
+#   id: SeniorPhysicianBeret
+#   equipment: SeniorPhysicianBeret
+#   effects:
+#   - !type:GroupLoadoutEffect
+#     proto: SeniorPhysician
 
-- type: startingGear
-  id: SeniorPhysicianBeret
-  equipment:
-    head: ClothingHeadHatBeretSeniorPhysician
+# - type: startingGear
+#   id: SeniorPhysicianBeret
+#   equipment:
+#     head: ClothingHeadHatBeretSeniorPhysician
 
 - type: loadout
   id: MedicalHeadMirror
@@ -104,6 +104,9 @@
 - type: loadout
   id: MedicalDoctorJumpsuit
   equipment: MedicalDoctorJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: MedicalDoctorJumpsuit
@@ -113,6 +116,9 @@
 - type: loadout
   id: MedicalDoctorJumpskirt
   equipment: MedicalDoctorJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: MedicalDoctorJumpskirt
@@ -125,6 +131,8 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorPhysician
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: SeniorPhysicianJumpsuit
@@ -137,6 +145,8 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: SeniorPhysician
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: SeniorPhysicianJumpskirt
@@ -178,7 +188,7 @@
 - type: startingGear
   id: MedicalDoctorBackpack
   equipment:
-    back: ClothingBackpackMedicalFilled
+    back: ClothingBackpackMedical
 
 - type: loadout
   id: MedicalDoctorSatchel
@@ -187,7 +197,7 @@
 - type: startingGear
   id: MedicalDoctorSatchel
   equipment:
-    back: ClothingBackpackSatchelMedicalFilled
+    back: ClothingBackpackSatchelMedical
 
 - type: loadout
   id: MedicalDoctorDuffel
@@ -196,7 +206,7 @@
 - type: startingGear
   id: MedicalDoctorDuffel
   equipment:
-    back: ClothingBackpackDuffelMedicalFilled
+    back: ClothingBackpackDuffelMedical
 
 # OuterClothing
 - type: loadout
@@ -208,18 +218,6 @@
   equipment:
     outerClothing: ClothingOuterWinterMed
 
-- type: loadout
-  id: SeniorPhysicianLabCoat
-  equipment: SeniorPhysicianLabCoat
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: SeniorPhysician
-
-- type: startingGear
-  id: SeniorPhysicianLabCoat
-  equipment:
-    outerClothing: ClothingOuterCoatLabSeniorPhysician
-
 # Shoes
 - type: loadout
   id: MedicalWinterBoots
@@ -229,28 +227,6 @@
   id: MedicalWinterBoots
   equipment:
     shoes: ClothingShoesBootsWinterMed
-
-# ID
-- type: loadout
-  id: MedicalDoctorPDA
-  equipment: MedicalDoctorPDA
-
-- type: startingGear
-  id: MedicalDoctorPDA
-  equipment:
-    id: MedicalPDA
-
-- type: loadout
-  id: SeniorPhysicianPDA
-  equipment: SeniorPhysicianPDA
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: SeniorPhysician
-
-- type: startingGear
-  id: SeniorPhysicianPDA
-  equipment:
-    id: SeniorPhysicianPDA
 
 # Gloves
 - type: loadout

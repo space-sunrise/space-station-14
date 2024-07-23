@@ -58,6 +58,9 @@
 - type: loadout
   id: MimeJumpsuit
   equipment: MimeJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: MimeJumpsuit
@@ -67,6 +70,9 @@
 - type: loadout
   id: MimeJumpskirt
   equipment: MimeJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: MimeJumpskirt
@@ -81,7 +87,7 @@
 - type: startingGear
   id: MimeBackpack
   equipment:
-    back: ClothingBackpackMimeFilled
+    back: ClothingBackpackMime
 
 - type: loadout
   id: MimeSatchel
@@ -90,7 +96,7 @@
 - type: startingGear
   id: MimeSatchel
   equipment:
-    back: ClothingBackpackSatchelMimeFilled
+    back: ClothingBackpackSatchelMime
 
 - type: loadout
   id: MimeDuffel
@@ -99,7 +105,7 @@
 - type: startingGear
   id: MimeDuffel
   equipment:
-    back: ClothingBackpackDuffelMimeFilled
+    back: ClothingBackpackDuffelMime
 
 # Outerclothing
 - type: loadout

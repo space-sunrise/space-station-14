@@ -12,6 +12,9 @@
 - type: loadout
   id: CargoTechnicianJumpsuit
   equipment: CargoTechnicianJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: CargoTechnicianJumpsuit
@@ -21,6 +24,9 @@
 - type: loadout
   id: CargoTechnicianJumpskirt
   equipment: CargoTechnicianJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: CargoTechnicianJumpskirt
@@ -35,7 +41,7 @@
 - type: startingGear
   id: CargoTechnicianBackpack
   equipment:
-    back: ClothingBackpackCargoFilled
+    back: ClothingBackpackCargo
 
 - type: loadout
   id: CargoTechnicianSatchel
@@ -44,7 +50,7 @@
 - type: startingGear
   id: CargoTechnicianSatchel
   equipment:
-    back: ClothingBackpackSatchelCargoFilled
+    back: ClothingBackpackSatchelCargo
 
 - type: loadout
   id: CargoTechnicianDuffel
@@ -53,7 +59,7 @@
 - type: startingGear
   id: CargoTechnicianDuffel
   equipment:
-    back: ClothingBackpackDuffelCargoFilled
+    back: ClothingBackpackDuffelCargo
 
 # OuterClothing
 - type: loadout

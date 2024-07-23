@@ -16,7 +16,7 @@
   id: DetectiveFedoraGrey
   equipment:
     head: ClothingHeadHatFedoraGrey
-  
+
 # Neck
 - type: loadout
   id: DetectiveTie
@@ -31,6 +31,9 @@
 - type: loadout
   id: DetectiveJumpsuit
   equipment: DetectiveJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: DetectiveJumpsuit
@@ -40,6 +43,9 @@
 - type: loadout
   id: DetectiveJumpskirt
   equipment: DetectiveJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: DetectiveJumpskirt
@@ -49,6 +55,9 @@
 - type: loadout
   id: NoirJumpsuit
   equipment: NoirJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: NoirJumpsuit
@@ -58,39 +67,14 @@
 - type: loadout
   id: NoirJumpskirt
   equipment: NoirJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: NoirJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtDetectiveGrey
-
-# Back
-- type: loadout
-  id: DetectiveBackpack
-  equipment: DetectiveBackpack
-
-- type: startingGear
-  id: DetectiveBackpack
-  equipment:
-    back: ClothingBackpackSecurityFilledDetective
-
-- type: loadout
-  id: DetectiveSatchel
-  equipment: DetectiveSatchel
-
-- type: startingGear
-  id: DetectiveSatchel
-  equipment:
-    back: ClothingBackpackSatchelSecurityFilledDetective
-
-- type: loadout
-  id: DetectiveDuffel
-  equipment: DetectiveDuffel
-
-- type: startingGear
-  id: DetectiveDuffel
-  equipment:
-    back: ClothingBackpackDuffelSecurityFilledDetective
 
 # OuterClothing
 - type: loadout

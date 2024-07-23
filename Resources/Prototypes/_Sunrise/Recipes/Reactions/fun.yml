@@ -1,0 +1,9 @@
+- type: reaction
+  id: Aphrodesiac
+  reactants:
+    Omnizine:
+      amount: 2
+    Leporazine:
+      amount: 3
+  products:
+    Aphrodesiac: 5

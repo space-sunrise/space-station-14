@@ -1,9 +1,11 @@
 using System.Linq;
+using System.Numerics;
+using Content.Server._Sunrise.DontSellingGrid;
+using Content.Server._Sunrise.ImmortalGrid;
 using Content.Server.Administration;
 using Content.Server.DeviceNetwork.Components;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.GameTicking;
-using Content.Server.GameTicking.Events;
 using Content.Server.Parallax;
 using Content.Server.Screens.Components;
 using Content.Server.Shuttles.Components;
@@ -14,11 +16,13 @@ using Content.Server.Station.Events;
 using Content.Server.Station.Systems;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
+using Content.Shared.Damage.Components;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Parallax.Biomes;
-using Content.Shared.Salvage;
+using Content.Shared.Preferences;
+using Content.Shared.Roles.Jobs;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Tiles;
 using Robust.Server.GameObjects;
@@ -42,9 +46,7 @@ public sealed class ArrivalsSystem : EntitySystem
     [Dependency] private readonly IConsoleHost _console = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly IPrototypeManager _protoManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly BiomeSystem _biomes = default!;
     [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly MapLoaderSystem _loader = default!;
     [Dependency] private readonly DeviceNetworkSystem _deviceNetworkSystem = default!;
@@ -63,16 +65,19 @@ public sealed class ArrivalsSystem : EntitySystem
     public bool Enabled { get; private set; }
 
     /// <summary>
+    /// Flags if all players must arrive via the Arrivals system, or if they can spawn in other ways.
+    /// </summary>
+    public bool Forced { get; private set; }
+
+    /// <summary>
+    /// Flags if all players spawning at the departure terminal have godmode until they leave the terminal.
+    /// </summary>
+    public bool ArrivalsGodmode { get; private set; }
+
+    /// <summary>
     ///     The first arrival is a little early, to save everyone 10s
     /// </summary>
     private const float RoundStartFTLDuration = 10f;
-
-    private readonly List<ProtoId<BiomeTemplatePrototype>> _arrivalsBiomeOptions = new()
-    {
-        "Grasslands",
-        "LowDesert",
-        "Snow",
-    };
 
     public override void Initialize()
     {
@@ -83,7 +88,6 @@ public sealed class ArrivalsSystem : EntitySystem
         SubscribeLocalEvent<ArrivalsShuttleComponent, ComponentStartup>(OnShuttleStartup);
         SubscribeLocalEvent<ArrivalsShuttleComponent, FTLTagEvent>(OnShuttleTag);
 
-        SubscribeLocalEvent<RoundStartingEvent>(OnRoundStarting);
         SubscribeLocalEvent<ArrivalsShuttleComponent, FTLStartedEvent>(OnArrivalsFTL);
         SubscribeLocalEvent<ArrivalsShuttleComponent, FTLCompletedEvent>(OnArrivalsDocked);
 
@@ -93,7 +97,12 @@ public sealed class ArrivalsSystem : EntitySystem
 
         // Don't invoke immediately as it will get set in the natural course of things.
         Enabled = _cfgManager.GetCVar(CCVars.ArrivalsShuttles);
-        Subs.CVar(_cfgManager, CCVars.ArrivalsShuttles, SetArrivals);
+        Forced = _cfgManager.GetCVar(CCVars.ForceArrivals);
+        ArrivalsGodmode = _cfgManager.GetCVar(CCVars.GodmodeArrivals);
+
+        _cfgManager.OnValueChanged(CCVars.ArrivalsShuttles, SetArrivals);
+        _cfgManager.OnValueChanged(CCVars.ForceArrivals, b => Forced = b);
+        _cfgManager.OnValueChanged(CCVars.GodmodeArrivals, b => ArrivalsGodmode = b);
 
         // Command so admins can set these for funsies
         _console.RegisterCommand("arrivals", ArrivalsCommand, ArrivalsCompletion);
@@ -151,7 +160,7 @@ public sealed class ArrivalsSystem : EntitySystem
                 var query = AllEntityQuery<PendingClockInComponent, TransformComponent>();
                 var spawnPoints = EntityQuery<SpawnPointComponent, TransformComponent>().ToList();
 
-                TryGetArrivals(out var arrivalsUid);
+                TryGetArrivalsSource(out var arrivalsUid);
 
                 while (query.MoveNext(out var uid, out _, out var pendingXform))
                 {
@@ -182,7 +191,7 @@ public sealed class ArrivalsSystem : EntitySystem
     /// </summary>
     private void OnArrivalsFTL(EntityUid shuttleUid, ArrivalsShuttleComponent component, ref FTLStartedEvent args)
     {
-        if (!TryGetArrivals(out EntityUid arrivals))
+        if (!TryGetArrivalsSource(out EntityUid arrivals))
             return;
 
         if (TryComp<DeviceNetworkComponent>(shuttleUid, out var netComp))
@@ -249,6 +258,9 @@ public sealed class ArrivalsSystem : EntitySystem
             // The player has successfully left arrivals and is also not on the shuttle. Remove their warp coupon.
             RemCompDeferred<PendingClockInComponent>(pUid);
             RemCompDeferred<AutoOrientComponent>(pUid);
+
+            if (ArrivalsGodmode)
+                RemCompDeferred<GodmodeComponent>(pUid);
         }
     }
 
@@ -277,7 +289,7 @@ public sealed class ArrivalsSystem : EntitySystem
         foreach (var (ent, xform) in toDump)
         {
             var rotation = xform.LocalRotation;
-            _transform.SetCoordinates(ent, new EntityCoordinates(args.FromMapUid!.Value, args.FTLFrom.Transform(xform.LocalPosition)));
+            _transform.SetCoordinates(ent, new EntityCoordinates(args.FromMapUid!.Value, Vector2.Transform(xform.LocalPosition, args.FTLFrom)));
             _transform.SetWorldRotation(ent, args.FromRotation + rotation);
         }
     }
@@ -302,26 +314,17 @@ public sealed class ArrivalsSystem : EntitySystem
         }
     }
 
-    public void HandlePlayerSpawning(PlayerSpawningEvent ev)
+    public List<EntityCoordinates> GetArrivalsSpawnPoints()
     {
-        if (ev.SpawnResult != null)
-            return;
-
-        // Only works on latejoin even if enabled.
-        if (!Enabled || _ticker.RunLevel != GameRunLevel.InRound)
-            return;
-
-        if (!HasComp<StationArrivalsComponent>(ev.Station))
-            return;
-
-        TryGetArrivals(out var arrivals);
+        TryGetArrivalsSource(out var arrivals);
+        var possiblePositions = new List<EntityCoordinates>();
 
         if (TryComp(arrivals, out TransformComponent? arrivalsXform))
         {
             var mapId = arrivalsXform.MapID;
 
             var points = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
-            var possiblePositions = new List<EntityCoordinates>();
+
             while (points.MoveNext(out var uid, out var spawnPoint, out var xform))
             {
                 if (spawnPoint.SpawnType != SpawnPointType.LateJoin || xform.MapID != mapId)
@@ -329,20 +332,59 @@ public sealed class ArrivalsSystem : EntitySystem
 
                 possiblePositions.Add(xform.Coordinates);
             }
-
-            if (possiblePositions.Count > 0)
-            {
-                var spawnLoc = _random.Pick(possiblePositions);
-                ev.SpawnResult = _stationSpawning.SpawnPlayerMob(
-                    spawnLoc,
-                    ev.Job,
-                    ev.HumanoidCharacterProfile,
-                    ev.Station);
-
-                EnsureComp<PendingClockInComponent>(ev.SpawnResult.Value);
-                EnsureComp<AutoOrientComponent>(ev.SpawnResult.Value);
-            }
         }
+
+        return possiblePositions;
+    }
+
+    public void HandlePlayerSpawning(PlayerSpawningEvent ev)
+    {
+        if (ev.SpawnResult != null)
+            return;
+
+        if (ev.DesiredSpawnPointType == SpawnPointType.Job)
+            return;
+
+        // Only works on latejoin even if enabled.
+        if (!Enabled || !Forced && _ticker.RunLevel != GameRunLevel.InRound)
+            return;
+
+        if (!HasComp<StationArrivalsComponent>(ev.Station))
+            return;
+
+        TryGetArrivalsSource(out var arrivals);
+
+        if (!TryComp(arrivals, out TransformComponent? arrivalsXform))
+            return;
+
+        var mapId = arrivalsXform.MapID;
+
+        var points = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
+        var possiblePositions = new List<EntityCoordinates>();
+        while (points.MoveNext(out var uid, out var spawnPoint, out var xform))
+        {
+            if (spawnPoint.SpawnType != SpawnPointType.LateJoin || xform.MapID != mapId)
+                continue;
+
+            possiblePositions.Add(xform.Coordinates);
+        }
+
+        if (possiblePositions.Count <= 0)
+            return;
+
+        var spawnLoc = _random.Pick(possiblePositions);
+        ev.SpawnResult = _stationSpawning.SpawnPlayerMob(
+            spawnLoc,
+            ev.Job,
+            ev.HumanoidCharacterProfile,
+            ev.Station);
+
+        EnsureComp<PendingClockInComponent>(ev.SpawnResult.Value);
+        EnsureComp<AutoOrientComponent>(ev.SpawnResult.Value);
+
+        // If you're forced to spawn, you're invincible until you leave wherever you were forced to spawn.
+        if (ArrivalsGodmode)
+            EnsureComp<GodmodeComponent>(ev.SpawnResult.Value);
     }
 
     private bool TryTeleportToMapSpawn(EntityUid player, EntityUid stationId, TransformComponent? transform = null)
@@ -379,11 +421,11 @@ public sealed class ArrivalsSystem : EntitySystem
         EnsureComp<PreventPilotComponent>(uid);
     }
 
-    private bool TryGetArrivals(out EntityUid uid)
+    private bool TryGetArrivalsSource(out EntityUid uid)
     {
-        var arrivalsQuery = EntityQueryEnumerator<ArrivalsSourceComponent>();
+        var arrivalsSourceQuery = EntityQueryEnumerator<ArrivalsSourceComponent>();
 
-        while (arrivalsQuery.MoveNext(out uid, out _))
+        while (arrivalsSourceQuery.MoveNext(out uid, out _))
         {
             return true;
         }
@@ -411,9 +453,9 @@ public sealed class ArrivalsSystem : EntitySystem
 
         var query = EntityQueryEnumerator<ArrivalsShuttleComponent, ShuttleComponent, TransformComponent>();
         var curTime = _timing.CurTime;
-        TryGetArrivals(out var arrivals);
+        TryGetArrivalsSource(out var arrivalsSource);
 
-        if (TryComp(arrivals, out TransformComponent? arrivalsXform))
+        if (TryComp(arrivalsSource, out TransformComponent? arrivalsXform))
         {
             while (query.MoveNext(out var uid, out var comp, out var shuttle, out var xform))
             {
@@ -425,8 +467,8 @@ public sealed class ArrivalsSystem : EntitySystem
                 // Go back to arrivals source
                 if (xform.MapUid != arrivalsXform.MapUid)
                 {
-                    if (arrivals.IsValid())
-                        _shuttles.FTLToDock(uid, shuttle, arrivals);
+                    if (arrivalsSource.IsValid())
+                        _shuttles.FTLToDock(uid, shuttle, arrivalsSource, priorityTag: "DockArrivals");
 
                     comp.NextArrivalsTime = _timing.CurTime + TimeSpan.FromSeconds(tripTime);
                 }
@@ -436,7 +478,7 @@ public sealed class ArrivalsSystem : EntitySystem
                     var targetGrid = _station.GetLargestGrid(data);
 
                     if (targetGrid != null)
-                        _shuttles.FTLToDock(uid, shuttle, targetGrid.Value);
+                        _shuttles.FTLToDock(uid, shuttle, targetGrid.Value, priorityTag: "DockArrivals", ignored: true);
 
                     // The ArrivalsCooldown includes the trip there, so we only need to add the time taken for
                     // the trip back.
@@ -449,68 +491,18 @@ public sealed class ArrivalsSystem : EntitySystem
         }
     }
 
-    private void OnRoundStarting(RoundStartingEvent ev)
-    {
-        // Setup arrivals station
-        if (!Enabled)
-            return;
-
-        SetupArrivalsStation();
-    }
-
-    private void SetupArrivalsStation()
-    {
-        var mapId = _mapManager.CreateMap();
-        var mapUid = _mapManager.GetMapEntityId(mapId);
-        _mapManager.AddUninitializedMap(mapId);
-
-        if (!_loader.TryLoad(mapId, _cfgManager.GetCVar(CCVars.ArrivalsMap), out var uids))
-        {
-            return;
-        }
-
-        foreach (var id in uids)
-        {
-            EnsureComp<ArrivalsSourceComponent>(id);
-            EnsureComp<ProtectedGridComponent>(id);
-            EnsureComp<PreventPilotComponent>(id);
-        }
-
-        // Setup planet arrivals if relevant
-        if (_cfgManager.GetCVar(CCVars.ArrivalsPlanet))
-        {
-            var template = _random.Pick(_arrivalsBiomeOptions);
-            _biomes.EnsurePlanet(mapUid, _protoManager.Index(template));
-            var restricted = new RestrictedRangeComponent
-            {
-                Range = 32f
-            };
-            AddComp(mapUid, restricted);
-        }
-
-        _mapManager.DoMapInitialize(mapId);
-
-        // Handle roundstart stations.
-        var query = AllEntityQuery<StationArrivalsComponent>();
-
-        while (query.MoveNext(out var uid, out var comp))
-        {
-            SetupShuttle(uid, comp);
-        }
-    }
-
     private void SetArrivals(bool obj)
     {
         Enabled = obj;
 
         if (Enabled)
         {
-            SetupArrivalsStation();
             var query = AllEntityQuery<StationArrivalsComponent>();
 
             while (query.MoveNext(out var sUid, out var comp))
             {
-                SetupShuttle(sUid, comp);
+                SetupShuttle(sUid, comp, Destination.Station);
+                SetupShuttle(sUid, comp, Destination.Arrivals);
             }
         }
         else
@@ -536,32 +528,41 @@ public sealed class ArrivalsSystem : EntitySystem
         if (!Enabled)
             return;
 
-        // If it's a latespawn station then this will fail but that's okey
-        SetupShuttle(uid, component);
+        SetupShuttle(uid, component, Destination.Station);
+        SetupShuttle(uid, component, Destination.Arrivals);
     }
 
-    private void SetupShuttle(EntityUid uid, StationArrivalsComponent component)
+    private void SetupShuttle(EntityUid uid, StationArrivalsComponent component, Destination destination)
     {
-        if (!Deleted(component.Shuttle))
-            return;
+        // if (!Deleted(component.Shuttle))
+        //     return;
 
         // Spawn arrivals on a dummy map then dock it to the source.
         var dummyMap = _mapManager.CreateMap();
 
-        if (TryGetArrivals(out var arrivals) &&
+        if (TryGetArrivalsSource(out var arrivals) &&
             _loader.TryLoad(dummyMap, component.ShuttlePath.ToString(), out var shuttleUids))
         {
-            component.Shuttle = shuttleUids[0];
-            var shuttleComp = Comp<ShuttleComponent>(component.Shuttle);
-            var arrivalsComp = EnsureComp<ArrivalsShuttleComponent>(component.Shuttle);
+            component.Shuttles.Add(shuttleUids[0]);
+            var shuttleComp = Comp<ShuttleComponent>(shuttleUids[0]);
+            var arrivalsComp = EnsureComp<ArrivalsShuttleComponent>(shuttleUids[0]);
             arrivalsComp.Station = uid;
-            EnsureComp<ProtectedGridComponent>(uid);
-            _shuttles.FTLToDock(component.Shuttle, shuttleComp, arrivals, hyperspaceTime: RoundStartFTLDuration);
+            EnsureComp<ImmortalGridComponent>(shuttleUids[0]); // Sunrise-Edit
+            EnsureComp<DontSellingGridComponent>(shuttleUids[0]); // Sunrise-Edit
+
+            var target = destination == Destination.Station ? uid : arrivals;
+            _shuttles.FTLToDock(shuttleUids[0], shuttleComp, target, hyperspaceTime: RoundStartFTLDuration, priorityTag: "DockArrivals");
             arrivalsComp.NextTransfer = _timing.CurTime + TimeSpan.FromSeconds(_cfgManager.GetCVar(CCVars.ArrivalsCooldown));
         }
 
         // Don't start the arrivals shuttle immediately docked so power has a time to stabilise?
         var timer = AddComp<TimedDespawnComponent>(_mapManager.GetMapEntityId(dummyMap));
         timer.Lifetime = 15f;
+    }
+
+    private enum Destination
+    {
+        Station,
+        Arrivals
     }
 }

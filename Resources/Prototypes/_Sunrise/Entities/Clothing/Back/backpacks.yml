@@ -4,12 +4,12 @@
   name: army backpack
   description: A spacious backpack with lots of pockets, worn by military structures.
   components:
-  - type: Sprite
-    sprite: _Sunrise/Back/Backpacks/military.rsi
-  - type: Storage
-    grid:
-    - 0,0,6,3 # TODO: Change this
-    maxItemSize: Huge
+    - type: Sprite
+      sprite: _Sunrise/Back/Backpacks/military.rsi
+    - type: Storage
+      grid:
+        - 0,0,6,3 # TODO: Change this
+      maxItemSize: Huge
 
 - type: entity
   parent: ClothingBackpack
@@ -17,12 +17,12 @@
   name: death squadron backpack
   description: A spacious backpack using bluespace technology.
   components:
-  - type: Sprite
-    sprite: _Sunrise/Back/Backpacks/deathsquad-backpack.rsi
-  - type: Storage
-    grid:
-    - 0,0,6,3 # TODO: Change this
-    maxItemSize: Huge
+    - type: Sprite
+      sprite: _Sunrise/Back/Backpacks/deathsquad-backpack.rsi
+    - type: Storage
+      grid:
+        - 0,0,6,3 # TODO: Change this
+      maxItemSize: Huge
 
 - type: entity
   parent: ClothingBackpack
@@ -30,5 +30,23 @@
   name: chief engineer backpack
   description: Technicially progressive backpack.
   components:
+    - type: Sprite
+      sprite: _Sunrise/Back/Backpacks/ce.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackBlueShield
+  name: blue shield's backpack
+  description: Superior.
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Clothing/Back/Backpacks/blueshield.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackPrisonGuard
+  name: рюкзак сотрудника кт
+  description: На стиле.
+  components:
   - type: Sprite
-    sprite: _Sunrise/Back/Backpacks/ce.rsi
+    sprite: _Sunrise/Clothing/Back/Backpacks/guard.rsi

@@ -1,0 +1,21 @@
+﻿- type: entity
+  parent: GunSafe
+  id: GunSafeIonRifle
+  name: ion rifle safe
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponIONRifle
+
+- type: entity
+  parent: GunSafe
+  id: GunSafeRPGNanotrasen
+  name: RPG safe
+  components:
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: StorageFill
+    contents:
+    - id: WeaponLauncherRocketNT
+    - id: CartridgeRocketNT
+      amount: 4

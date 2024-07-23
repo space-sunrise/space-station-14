@@ -2,6 +2,9 @@
 - type: loadout
   id: ChiefEngineerJumpsuit
   equipment: ChiefEngineerJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: ChiefEngineerJumpsuit
@@ -11,6 +14,9 @@
 - type: loadout
   id: ChiefEngineerJumpskirt
   equipment: ChiefEngineerJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: ChiefEngineerJumpskirt
@@ -20,6 +26,9 @@
 - type: loadout
   id: ChiefEngineerTurtleneck
   equipment: ChiefEngineerTurtleneck
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: ChiefEngineerTurtleneck
@@ -29,25 +38,14 @@
 - type: loadout
   id: ChiefEngineerTurtleneckSkirt
   equipment: ChiefEngineerTurtleneckSkirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: ChiefEngineerTurtleneckSkirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtChiefEngineerTurtle
-
-# Head
-- type: loadout
-  id: ChiefEngineerHead
-  equipment: ChiefEngineerHead
-
-- type: startingGear
-  id: ChiefEngineerHead
-  equipment:
-    head: ClothingHeadHatHardhatWhite
-
-- type: loadout
-  id: ChiefEngineerBeret
-  equipment: EngineeringBeret
 
 # Neck
 - type: loadout
@@ -67,34 +65,6 @@
   id: ChiefEngineerMantle
   equipment:
     neck: ClothingNeckMantleCE
-
-# Back
-- type: loadout
-  id: ChiefEngineerBackpack
-  equipment: ChiefEngineerBackpack
-
-- type: startingGear
-  id: ChiefEngineerBackpack
-  equipment:
-    back: ClothingBackpackChiefEngineerFilled
-
-- type: loadout
-  id: ChiefEngineerSatchel
-  equipment: ChiefEngineerSatchel
-
-- type: startingGear
-  id: ChiefEngineerSatchel
-  equipment:
-    back: ClothingBackpackSatchelChiefEngineerFilled
-
-- type: loadout
-  id: ChiefEngineerDuffel
-  equipment: ChiefEngineerDuffel
-
-- type: startingGear
-  id: ChiefEngineerDuffel
-  equipment:
-    back: ClothingBackpackDuffelChiefEngineerFilled
 
 # OuterClothing
 - type: loadout

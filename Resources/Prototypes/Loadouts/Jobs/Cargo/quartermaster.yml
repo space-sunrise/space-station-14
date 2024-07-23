@@ -2,6 +2,9 @@
 - type: loadout
   id: QuartermasterJumpsuit
   equipment: QuartermasterJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: QuartermasterJumpsuit
@@ -11,6 +14,9 @@
 - type: loadout
   id: QuartermasterJumpskirt
   equipment: QuartermasterJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: QuartermasterJumpskirt
@@ -20,6 +26,9 @@
 - type: loadout
   id: QuartermasterTurtleneck
   equipment: QuartermasterTurtleneck
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: QuartermasterTurtleneck
@@ -29,6 +38,9 @@
 - type: loadout
   id: QuartermasterTurtleneckSkirt
   equipment: QuartermasterTurtleneckSkirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: QuartermasterTurtleneckSkirt
@@ -38,6 +50,9 @@
 - type: loadout
   id: QuartermasterFormalSuit
   equipment: QuartermasterFormalSuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: QuartermasterFormalSuit
@@ -81,34 +96,6 @@
   id: QuartermasterMantle
   equipment:
     neck: ClothingNeckMantleQM
-
-# Back
-- type: loadout
-  id: QuartermasterBackpack
-  equipment: QuartermasterBackpack
-
-- type: startingGear
-  id: QuartermasterBackpack
-  equipment:
-    back: ClothingBackpackQuartermasterFilled
-
-- type: loadout
-  id: QuartermasterSatchel
-  equipment: QuartermasterSatchel
-
-- type: startingGear
-  id: QuartermasterSatchel
-  equipment:
-    back: ClothingBackpackSatchelQuartermasterFilled
-
-- type: loadout
-  id: QuartermasterDuffel
-  equipment: QuartermasterDuffel
-
-- type: startingGear
-  id: QuartermasterDuffel
-  equipment:
-    back: ClothingBackpackDuffelQuartermasterFilled
 
 # OuterClothing
 - type: loadout

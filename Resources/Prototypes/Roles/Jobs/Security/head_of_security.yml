@@ -17,6 +17,7 @@
   supervisors: job-supervisors-captain
   radioBold: true
   canBeAntag: false
+  displayWeight: 80  # Sunrise
   access:
   - HeadOfSecurity
   - Command
@@ -44,4 +45,8 @@
     id: HoSPDA
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltSecurity
-    pocket1: WeaponPistolMk58
+    pocket1: WeaponPistolMk58Nonlethal # Sunrise-Edit
+  storage:
+    back:
+    - Flash
+    #- MagazinePistol # Sunrise-Edit

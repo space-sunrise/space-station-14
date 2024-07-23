@@ -1,18 +1,10 @@
 - type: entity
-  noSpawn: true
-  parent: ClothingBackpackDuffel
-  id: ClothingBackpackDuffelIAAFilled
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelBoomboxBundle
+  name: syndicate boombox bundle
+  description: "Убивайте со стилем"
   components:
-    - type: StorageFill
-      contents:
-        - id: BoxSurvival
-
-- type: entity
-  noSpawn: true
-  parent: ClothingBackpackDuffelMedical
-  id: ClothingBackpackDuffelPsychologistFilled
-  components:
-    - type: StorageFill
-      contents:
-        - id: BoxSurvivalMedical
-        - id: RubberStampPsychologist
+  - type: StorageFill
+    contents:
+    - id: BoomboxSyndie
+    - id: MusicTape1

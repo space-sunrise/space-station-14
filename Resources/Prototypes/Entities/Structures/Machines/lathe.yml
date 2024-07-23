@@ -196,11 +196,14 @@
       - WeaponCapacitorRechargerCircuitboard
       - HandheldStationMap
       - ClothingHeadHatWelding
+      - WetFloorSign
+      - ClothingHeadHatCone
   - type: EmagLatheRecipes
     emagStaticRecipes:
       - BoxLethalshot
       - BoxShotgunFlare
       - BoxShotgunSlug
+      - CombatKnife
       - MagazineBoxLightRifle
       - MagazineBoxMagnum
       - MagazineBoxPistol
@@ -221,6 +224,10 @@
       - RiotShield
       - SpeedLoaderMagnum
       - SpeedLoaderMagnumEmpty
+      - WeaponEnergyGun       # Sunrise - Energy Gun
+      - WeaponEnergyGunMini   # Sunrise - Miniature Energy Gun
+      - WeaponEnergyGunPistol # Sunrise - PDW-9 Energy Pistol
+      - WeaponGunLaserCarbineAutomatic # Sunrise - IK-60 Laser Carbine
 
 - type: entity
   id: AutolatheHyperConvection
@@ -309,6 +316,7 @@
       - WeaponGauntletGorilla
       - SynthesizerInstrument
       - ClothingShoesBootsMagSci
+      - ClothingShoesBootsMoon
       - ClothingShoesBootsSpeed
       - NodeScanner
       - HolofanProjector
@@ -333,9 +341,20 @@
       - DeviceQuantumSpinInverter
   - type: EmagLatheRecipes
     emagDynamicRecipes:
+#Sunrise-edit start
+      - CartridgePistolRubber
+      - CartridgeMagnumRubber
+      - CartridgeRifleRubber
+      - CartridgeLightRifleRubber
+      - MagazineBoxPistolRubber
+      - MagazineBoxMagnumRubber
+      - MagazineBoxRifleRubber
+      - MagazineBoxLightRifleRubber
+#Sunrise-edit end
       - BoxBeanbag
       - BoxShotgunIncendiary
       - BoxShotgunUranium
+      - BoxShellTranquilizer
       - ExplosivePayload
       - GrenadeBlast
       - GrenadeEMP
@@ -363,7 +382,6 @@
       - PowerCageHigh
       - PowerCageMedium
       - PowerCageSmall
-      - ShellTranquilizer
       - SpeedLoaderMagnumIncendiary
       - SpeedLoaderMagnumUranium
       - TelescopicShield
@@ -511,6 +529,7 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: RequireProjectileTarget
 
 - type: entity
   id: CircuitImprinterHyperConvection
@@ -545,7 +564,7 @@
     runningState: fab-active
     staticRecipes:
     - MMI
-    - PositronicBrain
+    - Boris
     - SciFlash
     - BorgModuleCable
     - BorgModuleFireExtinguisher
@@ -592,6 +611,16 @@
     - HeadBorgService
     - TorsoBorgService
     dynamicRecipes:
+#Sunrise-edit start
+    - CartridgeLightRifleRubber
+    - CartridgeMagnumRubber
+    - CartridgePistolRubber
+    - CartridgeRifleRubber
+    - MagazineBoxLightRifleRubber
+    - MagazineBoxMagnumRubber
+    - MagazineBoxPistolRubber
+    - MagazineBoxRifleRubber
+#Sunrise-edit end
     - ProximitySensor
     - BorgModuleLightReplacer
     - BorgModuleAdvancedCleaning
@@ -711,6 +740,7 @@
       - BoxShotgunPractice
       - BoxShotgunSlug
       - ClothingEyesHudSecurity
+      - CombatKnife
       - Flash
       - ForensicPad
       - Handcuffs
@@ -749,6 +779,7 @@
       - BoxBeanbag
       - BoxShotgunIncendiary
       - BoxShotgunUranium
+      - BoxShellTranquilizer
       - ExplosivePayload
       - FlashPayload
       - GrenadeBlast
@@ -776,7 +807,6 @@
       - PowerCageHigh
       - PowerCageMedium
       - PowerCageSmall
-      - ShellTranquilizer
       - ShuttleGunDusterCircuitboard
       - ShuttleGunFriendshipCircuitboard
       - ShuttleGunPerforatorCircuitboard
@@ -795,6 +825,10 @@
       - WeaponLaserCannon
       - WeaponLaserCarbine
       - WeaponXrayCannon
+      - WeaponEnergyGun       # Sunrise - Energy Gun
+      - WeaponEnergyGunMini   # Sunrise - Miniature Energy Gun
+      - WeaponEnergyGunPistol # Sunrise - PDW-9 Energy Pistol
+      - WeaponGunLaserCarbineAutomatic # Sunrise - IK-60 Laser Carbine
   - type: MaterialStorage
     whitelist:
       tags:
@@ -830,6 +864,7 @@
         - BoxLethalshot
         - BoxShotgunFlare
         - BoxShotgunSlug
+        - BoxShellTranquilizer
         - MagazineBoxLightRifle
         - MagazineBoxMagnum
         - MagazineBoxPistol
@@ -843,7 +878,6 @@
         - MagazineShotgun
         - MagazineShotgunEmpty
         - MagazineShotgunSlug
-        - ShellTranquilizer
         - SpeedLoaderMagnum
         - SpeedLoaderMagnumEmpty
     - type: MaterialStorage
@@ -1173,6 +1207,7 @@
         - IngotGold30
         - IngotSilver30
         - MaterialBananium10
+        - MaterialDiamond
 
 - type: entity
   parent: OreProcessor

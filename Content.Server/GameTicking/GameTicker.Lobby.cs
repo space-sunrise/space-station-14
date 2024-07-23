@@ -53,11 +53,11 @@ namespace Content.Server.GameTicking
 
             var stationNames = new StringBuilder();
             var query =
-                EntityQueryEnumerator<StationJobsComponent, StationSpawningComponent, MetaDataComponent>();
+                EntityQueryEnumerator<StationJobsComponent, StationSpawningComponent, StationEventEligibleComponent, MetaDataComponent>();
 
             var foundOne = false;
 
-            while (query.MoveNext(out _, out _, out var meta))
+            while (query.MoveNext(out _, out _, out _, out var meta))
             {
                 foundOne = true;
                 if (stationNames.Length > 0)
@@ -94,7 +94,7 @@ namespace Content.Server.GameTicking
         private TickerLobbyStatusEvent GetStatusMsg(ICommonSession session)
         {
             _playerGameStatuses.TryGetValue(session.UserId, out var status);
-            return new TickerLobbyStatusEvent(RunLevel != GameRunLevel.PreRoundLobby, LobbyParalax, LobbyImage, status == PlayerGameStatus.ReadyToPlay, _roundStartTime, RoundPreloadTime, RoundStartTimeSpan, Paused); // Sunrise-edit
+            return new TickerLobbyStatusEvent(RunLevel != GameRunLevel.PreRoundLobby, LobbyBackground, LobbyParalax, LobbyImage, status == PlayerGameStatus.ReadyToPlay, _roundStartTime, RoundPreloadTime, RoundStartTimeSpan, Paused); // Sunrise-edit
         }
 
         private void SendStatusToAll()

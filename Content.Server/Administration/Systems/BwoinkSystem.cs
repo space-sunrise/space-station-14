@@ -9,6 +9,7 @@ using Content.Server.Administration.Managers;
 using Content.Server.Afk;
 using Content.Server.Discord;
 using Content.Server.GameTicking;
+using Content.Server.Players.RateLimiting;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Mind;
@@ -21,12 +22,15 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Server.Administration.Systems
 {
     [UsedImplicitly]
     public sealed partial class BwoinkSystem : SharedBwoinkSystem
     {
+        private const string RateLimitKey = "AdminHelp";
+
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly IConfigurationManager _config = default!;
@@ -35,6 +39,8 @@ namespace Content.Server.Administration.Systems
         [Dependency] private readonly GameTicker _gameTicker = default!;
         [Dependency] private readonly SharedMindSystem _minds = default!;
         [Dependency] private readonly IAfkManager _afkManager = default!;
+        [Dependency] private readonly PlayerRateLimitManager _rateLimit = default!;
+        private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
         [GeneratedRegex(@"^https://discord\.com/api/webhooks/(\d+)/((?!.*/).*)$")]
         private static partial Regex DiscordRegex();
@@ -80,6 +86,24 @@ namespace Content.Server.Administration.Systems
 
             SubscribeLocalEvent<GameRunLevelChangedEvent>(OnGameRunLevelChanged);
             SubscribeNetworkEvent<BwoinkClientTypingUpdated>(OnClientTypingUpdated);
+
+            _rateLimit.Register(
+                RateLimitKey,
+                new RateLimitRegistration
+                {
+                    CVarLimitPeriodLength = CCVars.AhelpRateLimitPeriod,
+                    CVarLimitCount = CCVars.AhelpRateLimitCount,
+                    PlayerLimitedAction = PlayerRateLimitedAction
+                });
+
+            IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
+        }
+
+        private void PlayerRateLimitedAction(ICommonSession obj)
+        {
+            RaiseNetworkEvent(
+                new BwoinkTextMessage(obj.UserId, default, Loc.GetString("bwoink-system-rate-limited"), playSound: false),
+                obj.Channel);
         }
 
         private void OnOverrideChanged(string obj)
@@ -395,17 +419,35 @@ namespace Content.Server.Administration.Systems
                 return;
             }
 
+            if (_rateLimit.CountAction(eventArgs.SenderSession, RateLimitKey) != RateLimitStatus.Allowed)
+                return;
+
             var escapedText = FormattedMessage.EscapeText(message.Text);
 
+            // Sunrise-Sponsors-Start
             string bwoinkText;
 
             if (senderAdmin is not null && senderAdmin.Flags == AdminFlags.Adminhelp) // Mentor. Not full admin. That's why it's colored differently.
             {
-                bwoinkText = $"[color=purple]{senderSession.Name}[/color]";
+                bwoinkText = $"[color=purple]\\[{senderAdmin.Title}\\]{senderSession.Name}[/color]";
             }
             else if (senderAdmin is not null && senderAdmin.HasFlag(AdminFlags.Adminhelp))
             {
-                bwoinkText = $"[color=red]{senderSession.Name}[/color]";
+                bwoinkText = $"[color=red]\\[{senderAdmin.Title}\\] {senderSession.Name}[/color]";
+            }
+            else if (_sponsorsManager != null)
+            {
+                _sponsorsManager.TryGetOocColor(message.UserId, out var oocColor);
+                _sponsorsManager.TryGetOocTitle(message.UserId, out var oocTitle);
+                var sponsorTitle = oocTitle is null ? "" : $"\\[{oocTitle}\\]";
+                if (oocColor != null)
+                {
+                    bwoinkText = $"[color={oocColor.Value.ToHex()}]{sponsorTitle} {senderSession.Name}[/color]";
+                }
+                else
+                {
+                    bwoinkText = $"{sponsorTitle} {senderSession.Name}";
+                }
             }
             else
             {
@@ -417,6 +459,7 @@ namespace Content.Server.Administration.Systems
             // If it's not an admin / admin chooses to keep the sound then play it.
             var playSound = !senderAHelpAdmin || message.PlaySound;
             var msg = new BwoinkTextMessage(message.UserId, senderSession.UserId, bwoinkText, playSound: playSound);
+            // Sunrise-Sponsors-End
 
             LogBwoink(msg);
 
@@ -494,7 +537,8 @@ namespace Content.Server.Administration.Systems
                 .ToList();
         }
 
-        private IList<INetChannel> GetTargetAdmins()
+        // Returns all online admins with AHelp access
+        public IList<INetChannel> GetTargetAdmins()
         {
             return _adminManager.ActiveAdmins
                 .Where(p => _adminManager.GetAdminData(p)?.HasFlag(AdminFlags.Adminhelp) ?? false)

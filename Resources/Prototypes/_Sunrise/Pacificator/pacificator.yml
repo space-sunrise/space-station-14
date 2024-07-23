@@ -1,0 +1,99 @@
+- type: entity
+  id: Pacificator
+  parent: BaseMachinePowered
+  name: генератор пацифизма
+  description: Делает всех разумных существ в радиусе действия пацифистами.
+  placement:
+    mode: AlignTileAny
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/gravity_generator_mini.rsi
+    snapCardinals: true
+    layers:
+    - state: on
+      map: ["enum.GravityGeneratorVisualLayers.Base"]
+    - sprite: Structures/Machines/gravity_generator_core.rsi
+      state: activated
+      shader: unshaded
+      map: ["enum.GravityGeneratorVisualLayers.Core"]
+      scale: "0.4,0.4"
+      offset: "0,0.2"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 3125
+        mask:
+        - LargeMobMask
+        layer:
+        - WallLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MachineFrameDestroyed:
+            min: 1
+            max: 1
+  - type: Machine
+    board: PacificatorCircuitboard
+  - type: Pacificator
+    range: 128
+    idlePower: 15
+    activePower: 500
+    lightRadiusMin: 0.75
+    lightRadiusMax: 2.5
+  - type: StaticPrice
+    price: 5000
+  - type: UserInterface
+    interfaces:
+      enum.PacificatorUiKey.Key:
+        type: PacificatorBoundUserInterface
+  - type: Appearance
+  - type: PointLight
+    radius: 2.5
+    energy: 0.5
+    # Gravity generator is a large machine, not casting shadows is fine within the radius set above.
+    castShadows: false
+    color: "#a8ffd9"
+  - type: Repairable
+    fuelCost: 10
+    doAfterDelay: 5
+  - type: ExtensionCableReceiver
+  - type: Physics
+    bodyType: Static
+  - type: Transform
+    anchored: true
+  - type: ApcPowerReceiver
+    powerLoad: 500
+  - type: AmbientSound
+    enabled: false
+    volume: -6
+    range: 7
+    sound:
+      path: /Audio/Ambience/Objects/gravity_gen_hum.ogg
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: PacificatorCircuitboard
+  name: генератор пацифизма (машинная плата)
+  description:
+  components:
+  - type: MachineBoard
+    prototype: Pacificator
+    stackRequirements:
+      Capacitor: 4
+      MatterBin: 3
+      Steel: 5
+      CableHV: 5
+      Uranium: 2

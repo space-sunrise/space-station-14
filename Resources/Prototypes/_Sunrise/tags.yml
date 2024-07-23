@@ -1,2 +1,17 @@
 - type: Tag
   id: Nanopaste
+
+- type: Tag
+  id: SunriseUplink
+
+- type: Tag
+  id: PlutoniumCore
+
+- type: Tag
+  id: Predator
+
+- type: Tag
+  id: HumanoidXeno
+
+- type: Tag
+  id: DockGamma

@@ -1,3 +1,23 @@
+# Sunrise-start
+- type: loadoutEffectGroup
+  id: MaidJanitor
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobJanitor
+      time: 72000 # 20 hrs
+# Sunrise-end
+
+- type: loadoutEffectGroup
+  id: SeniorJanitorial
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobJanitor
+      time: 187200 #52 hrs (1 hour per week for 1 year)
+
 # Head
 - type: loadout
   id: JanitorHead
@@ -12,6 +32,9 @@
 - type: loadout
   id: JanitorJumpsuit
   equipment: JanitorJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: JanitorJumpsuit
@@ -21,11 +44,28 @@
 - type: loadout
   id: JanitorJumpskirt
   equipment: JanitorJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: JanitorJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtJanitor
+
+# Sunrise-start
+- type: loadout
+  id: MaidJumpskirt
+  equipment: MaidJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaidJanitor
+
+- type: startingGear
+  id: MaidJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtElegantMaid
+# Sunrise-end
 
 # Gloves
 - type: loadout
@@ -64,3 +104,17 @@
   id: JanitorWintercoat
   equipment:
     outerClothing: ClothingOuterWinterJani
+
+# Misc
+- type: loadout
+  id: JanitorGoldenPlunger
+  equipment: JanitorGoldenPlunger
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorJanitorial
+
+- type: startingGear
+  id: JanitorGoldenPlunger
+  storage:
+    back:
+    - GoldenPlunger

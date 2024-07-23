@@ -57,6 +57,11 @@ namespace Content.Client.Administration.UI.Bwoink
             {
                 var sb = new StringBuilder();
 
+                // Alteros-Sponsors-start
+                if (info.IsSponsor)
+                    sb.Append("★");
+                // Alteros-Sponsors-end
+
                 if (info.Connected)
                     sb.Append('●');
                 else
@@ -75,7 +80,7 @@ namespace Content.Client.Administration.UI.Bwoink
                 if (info.Antag && info.ActiveThisRound)
                     sb.Append(new Rune(0x1F5E1)); // 🗡
 
-                if (info.OverallPlaytime <= TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.NewPlayerThreshold)))
+                if (info.OverallPlaytime <= TimeSpan.FromMinutes(_cfg.GetCVar(CCVars.NewPlayerThreshold)))
                     sb.Append(new Rune(0x23F2)); // ⏲
 
                 sb.AppendFormat("\"{0}\"", text);
@@ -226,7 +231,7 @@ namespace Content.Client.Administration.UI.Bwoink
             if (pl.Antag)
                 sb.Append(new Rune(0x1F5E1)); // 🗡
 
-            if (pl.OverallPlaytime <= TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.NewPlayerThreshold)))
+            if (pl.OverallPlaytime <= TimeSpan.FromMinutes(_cfg.GetCVar(CCVars.NewPlayerThreshold)))
                 sb.Append(new Rune(0x23F2)); // ⏲
 
             sb.AppendFormat("\"{0}\"", pl.CharacterName);
@@ -243,9 +248,9 @@ namespace Content.Client.Administration.UI.Bwoink
         {
             UpdateButtons();
 
+            AHelpHelper.HideAllPanels();
             if (ch != null)
             {
-                AHelpHelper.HideAllPanels();
                 var panel = AHelpHelper.EnsurePanel(ch.Value);
                 panel.Visible = true;
             }

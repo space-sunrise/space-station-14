@@ -12,6 +12,7 @@
   icon: "JobIconResearchAssistant"
   supervisors: job-supervisors-science
   canBeAntag: false
+  displayWeight: 0  # Sunrise
   access:
   - Research
   - Maintenance
@@ -23,3 +24,6 @@
     id: ResearchAssistantPDA
     ears: ClothingHeadsetScience
     pocket2: BookScientistsGuidebook
+  #storage:
+    #back:
+    #- Stuff

@@ -1,0 +1,164 @@
+- type: roadmapVersions
+  id: SunriseRoadmap
+  versions:
+    FirstVersion:
+      name: Лето
+      goals:
+        fugitive:
+          name: Беглец
+          desc: Сбежавший заключенный, цель которого - выжить.
+          state: Complete
+        planet_prison:
+          name: Планетарная тюрьма
+          desc: Тюрьма на планете работающая как отдельная станция.
+          state: Partial
+        smart_viruse:
+          name: Разумная болезнь
+          desc: Антагонист, цель которого заразить станцию болезнью.
+          state: Partial
+        cyborg_update:
+          name: Станционные борги
+          desc: Новые борги.
+          state: Partial
+        collective_mind:
+          name: Коллективный разум
+          desc: Система позволяющая общяться некоторым созданиям между собой если он у них есть.
+          state: InProgress
+        blob:
+          name: Блоб
+          desc: Антагонист цель которого поглотить и тем самым уничтожить станцию.
+          state: InProgress
+        assault_ops:
+          name: Диверсионый отряд
+          desc: Ну типа да.
+          state: InProgress
+        ert_call:
+          name: Консоль вызова ОБР
+          desc: Консоль с помощью которой можно вызвать обр.
+          state: InProgress
+        vent_crawling:
+          name: Передвижение по вентиляции
+          desc: Возможность мелким существам и разным антагонистами передвигаться по вентиляционной системе.
+          state: InProgress
+        flesh_cult:
+          name: Культ плоти
+          desc: Культ плоти цель которого уничтожить станцию.
+          state: InProgress
+        blood_cult:
+          name: Культ крови (Нар`Си)
+          desc: Культ который идёт за богом Нар`Си, цель культа призвать своего покровителя который позже уничтожит станцию.
+          state: InProgress
+        ipc:
+          name: КПБ
+          desc: Расса разумных машин, в переработке.
+          state: InProgress
+        economy:
+          name: Экономика
+          desc: Добавление денег, зарплаты, почта будет давать деньги а вендоматы будут брать деньги за еду.
+          state: InProgress
+        cargo_rework:
+          name: Реворк карго
+          desc: Переработка карго, будет убрана торговая станция, добавлены телепады и поддоны на станцию.
+          state: InProgress
+        new_guns:
+          name: Расширение огнестрела
+          desc: Добавление разннобразного огнестрельного вооружения(а как-же огнемёт?).
+          state: InProgress
+        new_maps:
+          name: Новые карты
+          desc: Маппинг новых карт, таких как обновление Дельты и новые карты.
+          state: InProgress
+        arena:
+          name: Арена для призраков
+          desc: Арена где призраки могут занять своё время что-бы не летать по станции в ожидании конца раунда.
+          state: Planned
+        limbo:
+          name: Лимбо
+          desc: Отдельный мирок для призраков где нет правил.
+          state: Planned
+        syndicate_cyborgs:
+          name: Новые борги синдиката
+          desc: Более продвинутые и полезные борги синдиката.
+          state: Planned
+        taypan: # А как правильно то нахуй?
+          name: Тайпан
+          desc: Отдельная станция синдиката с своими задачами на смену.
+          state: Planned
+        fully_translating:
+          name: Полный перевод всего
+          desc: перевод всех вещей, меню. С целью упростить геймплей.
+          state: Planned
+        events_update:
+          name: Обновление событий
+          desc: добавление новых событий, улучшение старых, изменение шансов и других параметров.
+          state: Planned
+    SecondVersion:
+      name: Осень
+      goals:
+        mail:
+          name: Почта
+          desc: Отправка поссылок в разные части станции за которые станция будет получать деньги.
+          state: InProgress
+        borer:
+          name: Мозговой червь
+          desc: Антагонист залазящий в мозги живых существ и захватывающий их разум.
+          state: Planned
+        lavaland:
+          name: Лаваленд
+          desc: Отдельное измерение где шахтёры будут добывать ресурсы для станции.
+          state: Planned
+        angels:
+          name: Раса ангелов
+          desc: Ну типа да.
+          state: Planned
+        impids:
+          name: Раса импидов
+          desc: Ну типа да.
+          state: Planned
+        skills:
+          name: Система навыков
+          desc: Система не позволяющая сделать то или инное действие если у вас нет определённого навыка.
+          state: Planned
+        space_fight:
+          name: Режим космической битвы
+          desc: Ну типа да.
+          state: Planned
+        spider_terror:
+          name: Пауки ужаса
+          desc: Ну типа да.
+          state: Planned
+        wizards:
+          name: Режим магов
+          desc: Ну типа да.
+          state: Planned
+        morph:
+          name: Морф
+          desc: Ну типа да.
+          state: Planned
+        diseases:
+          name: Болезни
+          desc: Оживление вирусологии, вы сможете реально получить спид, как соник.
+          state: Planned
+        ai:
+          name: ИИ
+          desc: Новая профессия искуственного интелекта нацеленная на помощь станции в уничтожении самих себя?
+          state: Planned
+        mech:
+          name: Мехи
+          desc: Ну типа да.
+          state: Planned
+        plasmamens:
+          name: Раса плазмаменов
+          desc: Раса крутых плазменных чувачков.
+          state: Planned
+        centcomm_update:
+          name: Обновление ЦК
+          desc: Обновление карты центрального коммандования и возможное обновление ролей.
+          state: Planned
+    ThirdVersion:
+      name: Зима
+      goals:
+        ratvar:
+          name: Культ Ратвара
+          desc: Культ поклоняющийся механическому богу.
+          state: Planned

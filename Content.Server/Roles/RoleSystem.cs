@@ -1,3 +1,6 @@
+using Content.Server._Sunrise.EvilTwin;
+using Content.Server._Sunrise.Fugitive;
+using Content.Server._Sunrise.PlanetPrison;
 using Content.Shared.Roles;
 
 namespace Content.Server.Roles;
@@ -18,6 +21,11 @@ public sealed class RoleSystem : SharedRoleSystem
         SubscribeAntagEvents<TraitorRoleComponent>();
         SubscribeAntagEvents<ZombieRoleComponent>();
         SubscribeAntagEvents<ThiefRoleComponent>();
+        // Sunrise-start
+        SubscribeAntagEvents<FugitiveRoleComponent>();
+        SubscribeAntagEvents<PlanetPrisonerRoleComponent>();
+        SubscribeAntagEvents<EvilTwinRoleComponent>();
+        // Sunrise-end
     }
 
     public string? MindGetBriefing(EntityUid? mindId)

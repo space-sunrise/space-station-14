@@ -2,6 +2,9 @@
 - type: loadout
   id: ChiefMedicalOfficerJumpsuit
   equipment: ChiefMedicalOfficerJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: ChiefMedicalOfficerJumpsuit
@@ -11,6 +14,9 @@
 - type: loadout
   id: ChiefMedicalOfficerJumpskirt
   equipment: ChiefMedicalOfficerJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: ChiefMedicalOfficerJumpskirt
@@ -20,6 +26,9 @@
 - type: loadout
   id: ChiefMedicalOfficerTurtleneckJumpsuit
   equipment: ChiefMedicalOfficerTurtleneckJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: ChiefMedicalOfficerTurtleneckJumpsuit
@@ -29,6 +38,9 @@
 - type: loadout
   id: ChiefMedicalOfficerTurtleneckJumpskirt
   equipment: ChiefMedicalOfficerTurtleneckJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: ChiefMedicalOfficerTurtleneckJumpskirt
@@ -72,34 +84,6 @@
   id: ChiefMedicalOfficerMantle
   equipment:
     neck: ClothingNeckMantleCMO
-
-# Back
-- type: loadout
-  id: ChiefMedicalOfficerBackpack
-  equipment: ChiefMedicalOfficerBackpack
-
-- type: startingGear
-  id: ChiefMedicalOfficerBackpack
-  equipment:
-    back: ClothingBackpackCMOFilled
-
-- type: loadout
-  id: ChiefMedicalOfficerSatchel
-  equipment: ChiefMedicalOfficerSatchel
-
-- type: startingGear
-  id: ChiefMedicalOfficerSatchel
-  equipment:
-    back: ClothingBackpackSatchelCMOFilled
-
-- type: loadout
-  id: ChiefMedicalOfficerDuffel
-  equipment: ChiefMedicalOfficerDuffel
-
-- type: startingGear
-  id: ChiefMedicalOfficerDuffel
-  equipment:
-    back: ClothingBackpackDuffelCMOFilled
 
 # Outer clothing
 - type: loadout

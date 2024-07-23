@@ -14,6 +14,7 @@
   supervisors: job-supervisors-captain
   radioBold: true
   canBeAntag: false
+  displayWeight: 50  # Sunrise
   access:
   - Research
   - Command
@@ -37,3 +38,7 @@
     pocket1: HandheldRoboAnalyzer
     pocket2: Nanopaste10
     ears: ClothingHeadsetRD
+  storage:
+    back:
+    - Flash
+    - Telebaton

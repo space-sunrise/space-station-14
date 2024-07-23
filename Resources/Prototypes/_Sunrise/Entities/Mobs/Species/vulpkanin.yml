@@ -5,6 +5,9 @@
   id: BaseMobVulpkanin
   abstract: true
   components:
+  - type: Speech
+    speechVerb: Vulpkanin
+    allowedEmotes: ['Growl', 'Bark', 'Howl']
   - type: HumanoidAppearance
     species: Vulpkanin
   - type: Icon

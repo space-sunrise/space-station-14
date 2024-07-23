@@ -16,6 +16,7 @@
   requireAdminNotify: true
   supervisors: job-supervisors-captain
   radioBold: true
+  displayWeight: 70  # Sunrise
   canBeAntag: false
   access:
   - Maintenance
@@ -39,6 +40,11 @@
   id: ChiefEngineerGear
   equipment:
     id: CEPDA
+    head: ClothingHeadHatHardhatWhite
     eyes: ClothingEyesGlassesMeson
     ears: ClothingHeadsetCE
     belt: ClothingBeltUtilityEngineering
+  storage:
+    back:
+    - Flash
+    - Telebaton

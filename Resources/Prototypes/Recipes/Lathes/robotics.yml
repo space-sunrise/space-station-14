@@ -346,8 +346,8 @@
     Gold: 200
 
 - type: latheRecipe
-  id: PositronicBrain
-  result: PositronicBrain
+  id: Boris
+  result: Boris
   category: Robotics
   completetime: 3
   materials:

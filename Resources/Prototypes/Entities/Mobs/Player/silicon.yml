@@ -6,7 +6,7 @@
   - type: ContainerFill
     containers:
       borg_brain:
-        - PositronicBrain
+        - Boris
       borg_module:
         - BorgModuleTool
   - type: ItemSlots
@@ -41,7 +41,7 @@
   - type: ContainerFill
     containers:
       borg_brain:
-        - PositronicBrain
+        - Sofia
       borg_module:
         - BorgModuleOperative
         - BorgModuleL6C

@@ -10,6 +10,7 @@
   startingGear: AtmosphericTechnicianGear
   icon: "JobIconAtmosphericTechnician"
   supervisors: job-supervisors-ce
+  displayWeight: 20  # Sunrise
   access:
   - Maintenance
   - Engineering
@@ -23,3 +24,6 @@
     id: AtmosPDA
     belt: ClothingBeltUtilityEngineering
     ears: ClothingHeadsetEngineering
+  #storage:
+    #back:
+    #- Stuff

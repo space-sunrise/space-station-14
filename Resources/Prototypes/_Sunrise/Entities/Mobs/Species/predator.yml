@@ -1,0 +1,47 @@
+# © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: BaseMobPredator
+  name: Urist McPredator
+  abstract: true
+  components:
+  - type: Hunger
+  - type: Icon # It will not have an icon in the adminspawn menu without this. Body parts seem fine for whatever reason.
+    sprite: _Sunrise/Mobs/Species/Predator/parts.rsi
+    state: full
+  - type: Thirst
+  - type: Perishable
+  - type: HumanoidAppearance
+    species: Predator
+  - type: Sprite
+    scale: 1.05, 1.13
+  - type: Vocal
+    sounds:
+      Male: Predator
+      Female: Predator
+      Unsexed: Predator
+  - type: TypingIndicator
+    proto: alien
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Predator
+  - type: Tag
+    tags:
+      - Predator
+      - CanPilot
+      - FootstepSound
+      - DoorBumpOpener
+  - type: Bloodstream
+    bloodReagent: FluorosulfuricAcidPredator
+  - type: DamageVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#008000"
+  - type: Body
+    prototype: Predator
+
+- type: entity
+  parent: BaseSpeciesDummy
+  id: MobPredatorDummy
+  noSpawn: true

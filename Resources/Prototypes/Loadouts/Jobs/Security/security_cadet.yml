@@ -2,6 +2,9 @@
 - type: loadout
   id: RedJumpsuit
   equipment: RedJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: RedJumpsuit
@@ -11,6 +14,9 @@
 - type: loadout
   id: RedJumpskirt
   equipment: RedJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: RedJumpskirt

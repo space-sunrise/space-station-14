@@ -1,0 +1,23 @@
+{
+    "copyright": "Sprited by discord: odlieerr",
+	"license": "CLA",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "directions": 1,
+            "name": "medibot",
+            "delays": [
+                [
+                    0.2,
+                    0.3,
+                    0.2,
+                    0.3
+                ]
+            ]
+        }
+    ],
+    "version": 1
+}

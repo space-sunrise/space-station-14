@@ -160,12 +160,18 @@ namespace Content.Server.GameTicking
             // whereas the command can also be used on an existing map.
             var loadOpts = loadOptions ?? new MapLoadOptions();
 
+            if (map.MaxRandomOffset != 0f)
+                loadOpts.Offset = _robustRandom.NextVector2(map.MaxRandomOffset);
+
+            if (map.RandomRotation)
+                loadOpts.Rotation = _robustRandom.NextAngle();
+
             var ev = new PreGameMapLoad(targetMapId, map, loadOpts);
             RaiseLocalEvent(ev);
 
             var gridIds = _map.LoadMap(targetMapId, ev.GameMap.MapPath.ToString(), ev.Options);
 
-            _metaData.SetEntityName(_mapManager.GetMapEntityId(targetMapId), $"station map - {map.MapName}");
+            _metaData.SetEntityName(_mapManager.GetMapEntityId(targetMapId), map.MapName);
 
             var gridUids = gridIds.ToList();
             RaiseLocalEvent(new PostGameMapLoad(map, targetMapId, gridUids, stationName));
@@ -239,7 +245,7 @@ namespace Content.Server.GameTicking
                 HumanoidCharacterProfile profile;
                 if (_prefsManager.TryGetCachedPreferences(userId, out var preferences))
                 {
-                    profile = (HumanoidCharacterProfile) preferences.GetProfile(preferences.SelectedCharacterIndex);
+                    profile = (HumanoidCharacterProfile) preferences.SelectedCharacter;
                 }
                 else
                 {
@@ -359,6 +365,7 @@ namespace Content.Server.GameTicking
             var listOfPlayerInfo = new List<RoundEndMessageEvent.RoundEndPlayerInfo>();
             // Grab the great big book of all the Minds, we'll need them for this.
             var allMinds = EntityQueryEnumerator<MindComponent>();
+            var pvsOverride = _configurationManager.GetCVar(CCVars.RoundEndPVSOverrides);
             while (allMinds.MoveNext(out var mindId, out var mind))
             {
                 // TODO don't list redundant observer roles?
@@ -389,7 +396,7 @@ namespace Content.Server.GameTicking
                 else if (mind.CurrentEntity != null && TryName(mind.CurrentEntity.Value, out var icName))
                     playerIcName = icName;
 
-                if (TryGetEntity(mind.OriginalOwnedEntity, out var entity))
+                if (TryGetEntity(mind.OriginalOwnedEntity, out var entity) && pvsOverride)
                 {
                     _pvsOverride.AddGlobalOverride(GetNetEntity(entity.Value), recursive: true);
                 }
@@ -494,6 +501,7 @@ namespace Content.Server.GameTicking
             // Sunrise-Start
             RandomizeLobbyParalax();
             RandomizeLobbyImage();
+            RandomizeLobbyBackground();
             // Sunrise-End
             ResettingCleanup();
             IncrementRoundNumber();
@@ -620,11 +628,6 @@ namespace Content.Server.GameTicking
             }
         }
 
-        public TimeSpan RoundDuration()
-        {
-            return _gameTiming.CurTime.Subtract(RoundStartTimeSpan);
-        }
-
         private void AnnounceRound()
         {
             if (CurrentPreset == null) return;
@@ -637,7 +640,7 @@ namespace Content.Server.GameTicking
             var proto = _robustRandom.Pick(options);
 
             if (proto.Message != null)
-                _chatSystem.DispatchGlobalAnnouncement(Loc.GetString(proto.Message), playSound: true, playTts: false);
+                _chatSystem.DispatchGlobalAnnouncement(Loc.GetString(proto.Message), playDefault: true, playTts: false);
 
             if (proto.Sound != null)
                 _audio.PlayGlobal(proto.Sound, Filter.Broadcast(), true);

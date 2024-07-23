@@ -1,0 +1,38 @@
+﻿- type: job
+  id: HeadOfPrison
+  name: job-name-head-of-prison
+  description: job-description-head-of-prison
+  playTimeTracker: JobHeadOfPrison
+  requirements:
+  - !type:RoleTimeRequirement
+    role: JobHeadOfSecurity
+    time: 36000 #10 hrs # Sunrise-RoleTime
+  - !type:DepartmentTimeRequirement
+    department: Security
+    time: 108000 #30 hrs # Sunrise-RoleTime
+  weight: 10
+  startingGear: HeadOfPrisonGear
+  icon: "JobIconHeadOfPrison"
+  requireAdminNotify: true
+  supervisors: job-supervisors-centcom
+  canBeAntag: false
+  alwaysUseSpawner: true
+  radioBold: true
+  displayWeight: 100
+  accessGroups:
+  - AllAccess
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  speciesBlacklist:
+  - Vox
+
+- type: startingGear
+  id: HeadOfPrisonGear
+  equipment:
+    eyes: ClothingEyesGlassesSecurity
+    id: HeadOfPrisonPDA
+    gloves: ClothingHandsGlovesCombat
+    ears: ClothingHeadsetAltSecurity
+    belt: ClothingBeltPrisonGuardianFilled
+    pocket1: WeaponPistolMk58Nonlethal

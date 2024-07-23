@@ -13,3 +13,30 @@
     - type: Sprite
       sprite: _Sunrise/Structures/Furniture/chairs.rsi
       state: carp
+
+- type: entity
+  name: comfy brown chair
+  id: ComfyBrownChair
+  parent: ChairBase
+  description: It looks comfy.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Furniture/chairs.rsi
+    state: comfy-brown
+# TODO:    
+#  - type: Construction
+#    graph: Seat
+#    node: chairComfyBrown
+    
+- type: entity
+  name: grey office chair
+  id: ChairOfficeGrey
+  parent: ChairOfficeLight
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Furniture/chairs.rsi
+    state: office-grey
+# TODO: 
+#  - type: Construction
+#    graph: Seat
+#    node: chairOfficeDark

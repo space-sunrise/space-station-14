@@ -14,11 +14,15 @@
   - type: Speech
     speechSounds: Swine
     speechVerb: Swine
+    allowedEmotes: ['Oink']
   - type: MobThresholds
     thresholds:
       0: Alive
       100: Critical
       200: Dead
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 4.0
+    baseWalkSpeed: 3.0
   - type: Body
     prototype: Swine
     requiredLegs: 2

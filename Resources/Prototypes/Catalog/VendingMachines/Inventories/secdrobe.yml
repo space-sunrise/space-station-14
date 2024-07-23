@@ -9,6 +9,7 @@
     ClothingHeadHatBeretSecurity: 3
     ClothingHeadHatSecsoft: 3
     ClothingHeadBandRed: 3
+    HandheldCamera: 3  # Sunrise-bodycam
     ClothingHandsGlovesColorBlack: 3
     ClothingHandsGlovesFingerless: 3
     ClothingUniformJumpskirtSec: 3
@@ -19,7 +20,7 @@
     ClothingOuterWinterSec: 2
     ClothingOuterArmorBasic: 2
     ClothingNeckScarfStripedRed: 3
-    ClothingOuterArmorBasicSlim: 2 
+    ClothingOuterArmorBasicSlim: 2
     ClothingEyesBlindfold: 1
     ClothingShoesBootsCombat: 1
     ClothingShoesBootsWinterSec: 2

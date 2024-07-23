@@ -22,4 +22,9 @@ public sealed partial class LoadoutPrototype : IPrototype
     /// </summary>
     [DataField]
     public List<LoadoutEffect> Effects = new();
+
+    // Sunrise-Sponsors-Start
+    [DataField]
+    public bool SponsorOnly;
+    // Sunrise-Sponsors-End
 }

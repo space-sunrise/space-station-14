@@ -1,0 +1,252 @@
+# For the Buldog
+- type: listing
+  id: UplinkMagazineShotgun
+  name: uplink-magazine-shotgun-name
+  description: uplink-magazine-shotgun-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: pellets }
+  productEntity: MagazineShotgun
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: UplinkMagazineShotgunIncendiary
+  name: uplink-magazine-shotgun-name
+  description: uplink-magazine-shotgun-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: slug }
+  productEntity: MagazineShotgun
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+
+# For the LMG
+- type: listing
+  id: UplinkMagazineLightRifleBox
+  name: uplink-magazine-lmg-name
+  description: uplink-magazine-lmg-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi, state: icon }
+  productEntity: MagazineLightRifleBox
+  cost:
+    Telecrystal: 8
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+
+# For the China-Lake
+- type: listing
+  id: UplinkGrenadeFrag
+  name: uplink-grenade-frag-name
+  description: uplink-grenade-frag-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: frag }
+  productEntity: GrenadeFrag
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: UplinkGrenadeBlast
+  name: uplink-grenade-blast-name
+  description: uplink-grenade-blast-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: blast }
+  productEntity: GrenadeBlast
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: UplinkBoomboxBundle
+  name: Музыкальный набор синдиката
+  description: Содержит бумбокс синдиката и несколько кассет к нему.
+  productEntity: ClothingBackpackDuffelBoomboxBundle
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkPointless
+
+- type: listing
+  id: UplinkClothingBackpackSyndie
+  name: Рюкзак Синдиката
+  productEntity: ClothingBackpackSyndie
+  cost:
+    Telecrystal: 5
+  categories:
+  - UplinkWearables
+
+- type: listing
+  id: UplinkClothingBackpackSyndieAJ100Filled
+  name: Набор ПП AJ-100
+  productEntity: ClothingBackpackSyndieAJ100Filled
+  description: Включает в себя пистолет-пулемёт AJ-100 и два магазина патрон.
+  icon: { sprite: _Sunrise/SyndieGuns/AJ-100.rsi, state: icon }
+  cost:
+    Telecrystal: 25
+  categories:
+  - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkWeaponSyndieLaserPistol
+  name: SAM-300
+  productEntity: WeaponSyndieLaserPistolBiocode
+  icon: { sprite: _Sunrise/SyndieGuns/syndielaserpistol.rsi, state: icon }
+  cost:
+    Telecrystal: 20
+  categories:
+  - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkClothingBackpackSyndieDL6902Filled
+  name: Набор DL6902
+  productEntity: ClothingBackpackSyndieDL6902Filled
+  description: Включает в себя пулемёт DL6902 и один магазин патрон.
+  icon: { sprite: _Sunrise/SyndieGuns/DL6902.rsi, state: icon }
+  cost:
+    Telecrystal: 50
+  categories:
+  - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkClothingBackpackSyndieSIAR52Filled
+  name: Набор SIAR-52
+  productEntity: ClothingBackpackSyndieSIAR52Filled
+  description: Включает в себя пулемёт SIAR-52 и два магазина патрон.
+  icon: { sprite: _Sunrise/SyndieGuns/IAR-52.rsi, state: icon }
+  cost:
+    Telecrystal: 25
+  categories:
+  - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkWeaponLaserMinigun
+  name: UVL-21 «Виверна»
+  productEntity: WeaponLaserMinigunBiocode
+  icon: { sprite: _Sunrise/SyndieGuns/laserminigun.rsi, state: icon }
+  cost:
+    Telecrystal: 50
+  categories:
+  - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkWeaponSyndieLaserGun
+  name: S-13 «Чёрная мамба»
+  productEntity: WeaponSyndieLaserGunBiocode
+  icon: { sprite: _Sunrise/SyndieGuns/syndielasergun.rsi, state: icon }
+  cost:
+    Telecrystal: 40
+  categories:
+  - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkHardsuitSyndieCommander
+  name: uplink-hardsuit-syndie-commander-name
+  description: uplink-hardsuit-syndie-commander-desc
+  icon: { sprite: /Textures/Clothing/OuterClothing/Hardsuits/syndiecommander.rsi, state: icon }
+  productEntity: ClothingOuterHardsuitSyndieCommanderBiocode
+  cost:
+    Telecrystal: 10
+  categories:
+  - UplinkWearables
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkHardsuitSyndieMedic
+  name: uplink-hardsuit-syndie-medic-name
+  description: uplink-hardsuit-syndie-medic-desc
+  icon: { sprite: /Textures/Clothing/OuterClothing/Hardsuits/syndiemedic.rsi, state: icon }
+  productEntity: ClothingOuterHardsuitSyndieMedicBiocode
+  cost:
+    Telecrystal: 10
+  categories:
+  - UplinkWearables
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+# Objective-specific
+- type: listing
+  id: UplinkCoreExtractionToolbox
+  name: uplink-core-extraction-toolbox-name
+  description: uplink-core-extraction-toolbox-desc
+  icon:
+    sprite: _Sunrise/Objects/Misc/nuke_core_container.rsi
+    state: closed
+  productEntity: ToolboxSyndicateFilledCoreExtraction
+  categories:
+  - UplinkObjectives
+  conditions:
+  - !type:ObjectiveUnlockCondition
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle

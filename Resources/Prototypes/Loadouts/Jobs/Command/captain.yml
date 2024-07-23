@@ -2,6 +2,9 @@
 - type: loadout
   id: CaptainJumpsuit
   equipment: CaptainJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: CaptainJumpsuit
@@ -11,6 +14,9 @@
 - type: loadout
   id: CaptainJumpskirt
   equipment: CaptainJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: CaptainJumpskirt
@@ -20,6 +26,9 @@
 - type: loadout
   id: CaptainFormalSuit
   equipment: CaptainFormalSuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
 
 - type: startingGear
   id: CaptainFormalSuit
@@ -29,6 +38,9 @@
 - type: loadout
   id: CaptainFormalSkirt
   equipment: CaptainFormalSkirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
 
 - type: startingGear
   id: CaptainFormalSkirt
@@ -63,7 +75,7 @@
   id: CaptainCloak
   equipment:
     neck: ClothingNeckCloakCap
-  
+
 - type: loadout
   id: CaptainCloakFormal
   equipment: CaptainCloakFormal
@@ -90,7 +102,7 @@
 - type: startingGear
   id: CaptainBackpack
   equipment:
-    back: ClothingBackpackCaptainFilled
+    back: ClothingBackpackCaptain
 
 - type: loadout
   id: CaptainSatchel
@@ -99,7 +111,7 @@
 - type: startingGear
   id: CaptainSatchel
   equipment:
-    back: ClothingBackpackSatchelCaptainFilled
+    back: ClothingBackpackSatchelCaptain
 
 - type: loadout
   id: CaptainDuffel
@@ -108,7 +120,7 @@
 - type: startingGear
   id: CaptainDuffel
   equipment:
-    back: ClothingBackpackDuffelCaptainFilled
+    back: ClothingBackpackDuffelCaptain
 
 # Outer clothing
 - type: loadout

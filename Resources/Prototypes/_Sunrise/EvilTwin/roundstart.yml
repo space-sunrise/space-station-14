@@ -1,0 +1,6 @@
+- type: entity
+  id: EvilTwin
+  parent: BaseGameRule
+  noSpawn: true
+  components:
+  - type: EvilTwinRule

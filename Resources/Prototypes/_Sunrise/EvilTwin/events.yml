@@ -1,0 +1,11 @@
+﻿- type: entity
+  parent: BaseGameRule
+  id: EvilTwinSpawn
+  noSpawn: true
+  components:
+  - type: StationEvent
+    minimumPlayers: 2
+    weight: 10
+    duration: 1
+  - type: LateJoinSpawnRule
+    prototype: SpawnPointEvilTwin

@@ -1,0 +1,12 @@
+- type: entity
+  id: NanotrasenPrison
+  parent:
+  - BaseStation
+  - BaseStationJobsSpawning
+  - BaseStationRecords
+  - BaseStationNanotrasen
+  - BaseStationSiliconLawCrewsimov
+  - PrisonStationAlertLevels
+  noSpawn: true
+  components:
+  - type: Transform

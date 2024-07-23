@@ -1,0 +1,89 @@
+﻿- type: loadout
+  id: SecurityBodycam
+  equipment: SecurityBodycam
+
+- type: startingGear
+  id: SecurityBodycam
+  storage:
+    back:
+    - HandheldCamera
+
+- type: loadout
+  id: SecurityWhistle
+  equipment: SecurityWhistle
+
+- type: startingGear
+  id: SecurityWhistle
+  storage:
+    back:
+    - SecurityWhistle
+
+- type: loadout
+  id: SecurityRadioHandheld
+  equipment: SecurityRadioHandheld
+
+- type: startingGear
+  id: SecurityRadioHandheld
+  storage:
+    back:
+    - RadioHandheldSecurity
+
+- type: loadout
+  id: SecurityTourniquet
+  equipment: SecurityTourniquet
+
+- type: startingGear
+  id: SecurityTourniquet
+  storage:
+    back:
+    - Tourniquet
+
+- type: loadout
+  id: SecurityGrenadeStinger
+  equipment: SecurityGrenadeStinger
+
+- type: startingGear
+  id: SecurityGrenadeStinger
+  storage:
+    belt:
+    - GrenadeStinger
+
+- type: loadout
+  id: SecurityClusterBangFull
+  equipment: SecurityClusterBangFull
+
+- type: startingGear
+  id: SecurityClusterBangFull
+  storage:
+    belt:
+    - ClusterBangFull
+
+- type: loadout
+  id: SecurityTearGasGrenade
+  equipment: SecurityTearGasGrenade
+
+- type: startingGear
+  id: SecurityTearGasGrenade
+  storage:
+    belt:
+    - TearGasGrenade
+
+- type: loadout
+  id: SecurityWeaponMeleeNeedle
+  equipment: SecurityWeaponMeleeNeedle
+
+- type: startingGear
+  id: SecurityWeaponMeleeNeedle
+  storage:
+    back:
+    - WeaponMeleeNeedle
+
+- type: loadout
+  id: SecurityHoloprojector
+  equipment: SecurityHoloprojector
+
+- type: startingGear
+  id: SecurityHoloprojector
+  storage:
+    back:
+    - HoloprojectorSecurity

@@ -1,3 +1,5 @@
+using System.Linq;
+using Content.Server._Sunrise.TraitorTarget;
 using Content.Server.Objectives.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Shared.CCVar;
@@ -55,6 +57,15 @@ public sealed class KillPersonConditionSystem : EntitySystem
 
         // no other humans to kill
         var allHumans = _mind.GetAliveHumansExcept(args.MindId);
+
+        // Sunrise-Start
+        foreach (var entityUid in allHumans.ToList())
+        {
+            if (!HasComp<AntagTargetComponent>(entityUid))
+                allHumans.Remove(entityUid);
+        }
+        // Sunrise-End
+
         if (allHumans.Count == 0)
         {
             args.Cancelled = true;
@@ -79,6 +90,13 @@ public sealed class KillPersonConditionSystem : EntitySystem
 
         // no other humans to kill
         var allHumans = _mind.GetAliveHumansExcept(args.MindId);
+
+        foreach (var entityUid in allHumans.ToList())
+        {
+            if (!HasComp<AntagTargetComponent>(entityUid))
+                allHumans.Remove(entityUid);
+        }
+
         if (allHumans.Count == 0)
         {
             args.Cancelled = true;
