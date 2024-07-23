@@ -5,6 +5,7 @@ using Content.Shared.CharacterInfo;
 using Content.Shared.Objectives;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Objectives.Systems;
+using Robust.Shared.Localization;
 
 namespace Content.Server.CharacterInfo;
 
@@ -31,7 +32,7 @@ public sealed class CharacterInfoSystem : EntitySystem
         var entity = args.SenderSession.AttachedEntity.Value;
 
         var objectives = new Dictionary<string, List<ObjectiveInfo>>();
-        var jobTitle = "No Profession";
+        var jobTitle = Loc.GetString("characterinfo-job-title");
         string? briefing = null;
         if (_minds.TryGetMind(entity, out var mindId, out var mind))
         {

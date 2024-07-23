@@ -35,13 +35,20 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls
                 .Select(w =>
                 {
                     var name = w.IsWarpPoint
-                        ? Loc.GetString("ghost-target-window-current-button", ("name", w.DisplayName))
-                        : w.DisplayName;
+                        ? Loc.GetString("ghost-target-window-current-button", ("name", GetLocalizedName(w.DisplayName)))
+                        : GetLocalizedName(w.DisplayName);
 
                     return (name, w.Entity);
                 })
                 .ToList();
         }
+        
+        private string GetLocalizedName(string displayName)
+        {
+            var locationKey = $"location-{displayName.Replace(" ", "-").ToLower()}";
+            var localizedName = Loc.GetString(locationKey);
+            return localizedName == locationKey ? displayName : localizedName;
+        } 
 
         public void Populate()
         {

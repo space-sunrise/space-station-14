@@ -1,0 +1,1 @@
+characterinfo-job-title = Нет Профессии
