@@ -45,7 +45,7 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls
         
         private string GetLocalizedName(string displayName)
         {
-            var locationKey = $"location-{displayName.Replace(" ", "-").ToLower()}";
+            var locationKey = $"location-{displayName.Replace(" ", "-").ToLower().Replace("'", "-")}";
             var localizedName = Loc.GetString(locationKey);
             return localizedName == locationKey ? displayName : localizedName;
         } 
