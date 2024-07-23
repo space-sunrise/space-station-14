@@ -38,7 +38,7 @@ namespace Content.Shared.Cargo.Prototypes
 
                 if (IoCManager.Resolve<IPrototypeManager>().TryIndex(Product, out EntityPrototype? prototype))
                 {
-                    _name = Loc.GetString($"cargoproduct-name-{prototype.Name.ToLower().Replace(" ", "-")}");
+                    _name = prototype.Name;
                 }
 
                 return _name;
@@ -58,7 +58,7 @@ namespace Content.Shared.Cargo.Prototypes
 
                 if (IoCManager.Resolve<IPrototypeManager>().TryIndex(Product, out EntityPrototype? prototype))
                 {
-                    _description = Loc.GetString($"cargoproduct-description-{prototype.Name.ToLower().Replace(" ", "-")}");
+                    _description = prototype.Description;
                 }
 
                 return _description;

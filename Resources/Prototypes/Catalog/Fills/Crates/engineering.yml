@@ -209,8 +209,8 @@
 - type: entity
   id: CrateEngineeringSpaceHeater
   parent: CrateEngineering
-  name: space heater crate
-  description: Contains a space heater for climate control.
+  name: ящик с термостатом
+  description: Содержит термостат для климат контроля.
   components:
   - type: StorageFill
     contents:
