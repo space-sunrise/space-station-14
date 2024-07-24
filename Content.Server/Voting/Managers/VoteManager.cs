@@ -209,7 +209,7 @@ namespace Content.Server.Voting.Managers
             var start = _timing.RealTime;
             var end = start + options.Duration;
             var reg = new VoteReg(id, entries, options.Title, options.InitiatorText,
-                options.InitiatorPlayer, start, end);
+                options.InitiatorPlayer, start, end, options.Hide); // Sunrise-Edit
 
             var handle = new VoteHandle(this, reg);
 
@@ -251,6 +251,7 @@ namespace Content.Server.Voting.Managers
                 msg.VoteInitiator = v.InitiatorText;
                 msg.StartTime = v.StartTime;
                 msg.EndTime = v.EndTime;
+                msg.Hide = v.Hide;
             }
 
             if (v.CastVotes.TryGetValue(player, out var cast))
@@ -441,6 +442,7 @@ namespace Content.Server.Voting.Managers
             public readonly string InitiatorText;
             public readonly TimeSpan StartTime;
             public readonly TimeSpan EndTime;
+            public readonly bool Hide;
             public readonly HashSet<ICommonSession> VotesDirty = new();
 
             public bool Cancelled;
@@ -452,7 +454,7 @@ namespace Content.Server.Voting.Managers
             public ICommonSession? Initiator { get; }
 
             public VoteReg(int id, VoteEntry[] entries, string title, string initiatorText,
-                ICommonSession? initiator, TimeSpan start, TimeSpan end)
+                ICommonSession? initiator, TimeSpan start, TimeSpan end, bool hide)
             {
                 Id = id;
                 Entries = entries;
@@ -461,6 +463,7 @@ namespace Content.Server.Voting.Managers
                 Initiator = initiator;
                 StartTime = start;
                 EndTime = end;
+                Hide = hide;
             }
         }
 

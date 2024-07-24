@@ -6,6 +6,33 @@
   - SilentGreenshift
   name: event-title
   showInVote: false
+  hide: false
   description: event-description
   rules:
+  - BasicRoundstartVariation
+
+- type: gamePreset
+  id: Extra
+  alias:
+  - extra
+  name: extended-title
+  showInVote: true
+  hide: false
+  description: extra-description
+  rules:
+  - BasicStationEventScheduler
+  - GameRuleMeteorScheduler
+  - BasicRoundstartVariation
+
+- type: gamePreset
+  id: SecretExtra #For Admin Use: Runs Extended but shows "Secret" in lobby.
+  alias:
+  - secretextra
+  name: secret-title
+  showInVote: false #Admin Use
+  hide: false
+  description: secret-description
+  rules:
+  - BasicStationEventScheduler
+  - GameRuleMeteorScheduler
   - BasicRoundstartVariation
