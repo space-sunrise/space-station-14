@@ -337,11 +337,11 @@
       tags:
         - SUNRISECM14MagazineVP70
     - type: BallisticAmmoProvider
-      proto: CartridgeLightRifle  # 57x28
+      proto: CartridgePistol  # 57x28
       mayTransfer: true
       whitelist:
         tags:
-          - CartridgeLightRifle  # 57x28
+          - CartridgePistol  # 57x28
       capacity: 16
     - type: Item
       size: Small
@@ -371,10 +371,10 @@
     - SUNRISECM14MagazineGlock22
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgeLightRifle  # 57x28
+    proto: CartridgePistol  # 57x28
     whitelist:
       tags:
-      - CartridgeLightRifle  # 57x28
+      - CartridgePistol  # 57x28
     capacity: 15
   - type: Item
     size: Small
@@ -404,10 +404,10 @@
     - SUNRISECM14MagazineHIBrowning
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgeLightRifle  # 57x28
+    proto: CartridgePistol  # 57x28
     whitelist:
       tags:
-      - CartridgeLightRifle  # 57x28
+      - CartridgePistol  # 57x28
     capacity: 15
   - type: Item
     size: Small
@@ -437,10 +437,10 @@
     - SUNRISECM14MagazineACP14
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgeLightRifle  # 57x28
+    proto: CartridgePistol  # 57x28
     whitelist:
       tags:
-      - CartridgeLightRifle  # 57x28
+      - CartridgePistol  # 57x28
     capacity: 15
   - type: Item
     size: Small

@@ -70,13 +70,14 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistol
+        startingItem: SUNRISECM14MagazineVP70
         insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_unload.ogg
         priority: 2
         whitelist:
           tags:
           - MagazinePistol
+          - SUNRISECM14MagazineVP70
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistol
@@ -116,13 +117,14 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistol
+        startingItem: SUNRISECM14MagazineGlock22
         insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_unload.ogg
         priority: 2
         whitelist:
           tags:
           - MagazinePistol
+          - SUNRISECM14MagazineGlock22
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistol
@@ -165,13 +167,14 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistolRubber
+        startingItem: SUNRISECM14MagazineGlock22
         insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_unload.ogg
         priority: 2
         whitelist:
           tags:
           - MagazinePistol
+          - SUNRISECM14MagazineGlock22
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistol
@@ -215,13 +218,14 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistol
+        startingItem: SUNRISECM14MagazineHIBrowning
         insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_unload.ogg
         priority: 2
         whitelist:
           tags:
           - MagazinePistol
+          - SUNRISECM14MagazineHIBrowning
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistol
@@ -260,13 +264,14 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistol
+        startingItem: SUNRISECM14MagazineACP14
         insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_unload.ogg
         priority: 2
         whitelist:
           tags:
           - MagazinePistol
+          - SUNRISECM14MagazineACP14
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistol
