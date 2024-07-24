@@ -20,7 +20,7 @@
   - type: Gun
     minAngle: 30
     maxAngle: 100
-    fireRate: 5
+    fireRate: 9
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/shot.ogg
       params:
@@ -36,6 +36,7 @@
         whitelist:
           tags:
           - SUNRISECM14MagazineLightMachineGunMG60
+          - MagazineLightRifle
       gun_chamber:
         name: Chamber
         startingItem: CartridgeLightRifle  # 762x39
@@ -82,7 +83,7 @@
   - type: Gun
     minAngle: 40
     maxAngle: 60
-    fireRate: 5
+    fireRate: 8
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/shot.ogg
   - type: ItemSlots
@@ -96,6 +97,7 @@
         whitelist:
           tags:
           - SUNRISECM14MagazineRPD
+          - MagazineLightRifle
       gun_chamber:
         name: Chamber
         startingItem: CartridgeLightRifle  # 762x39
@@ -141,7 +143,7 @@
   - type: Gun
     minAngle: 30
     maxAngle: 100
-    fireRate: 5
+    fireRate: 8
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/shot.ogg
       params:
@@ -157,6 +159,7 @@
         whitelist:
           tags:
           - MagazineMachineGunMG42
+          - MagazineLightRifle
       gun_chamber:
         name: Chamber
         startingItem: CartridgeLightRifle  # 762x39

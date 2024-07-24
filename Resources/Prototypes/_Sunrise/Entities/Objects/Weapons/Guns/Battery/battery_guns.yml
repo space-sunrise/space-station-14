@@ -391,15 +391,16 @@
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/Battery/EG_C/tiny.rsi
     size: Large
   - type: GunWieldBonus
-    minAngle: 20
-    maxAngle: 40
+    minAngle: -23
+    maxAngle: -43
   - type: Gun
-    minAngle: -25
-    maxAngle: -45
+    minAngle: 33
+    maxAngle: 50
     fireRate: 3
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+    - FullAuto
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Laser/EG_C.ogg
       params:
@@ -446,12 +447,13 @@
     angleDecay: 16
     fireRate: 3.6
     selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
     soundGunshot:
       collection: SUNRISECM14EearthGovernmentMachineGunShot
       params:
         volume: -1
-    availableModes:
-    - FullAuto
   - type: MagazineVisuals
     magState: mag
     steps: 3
@@ -495,6 +497,7 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+    - FullAuto
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Laser/EG_XR.ogg
   - type: MagazineVisuals
@@ -539,6 +542,7 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+    - FullAuto
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Laser/EG_Sniper.ogg
   - type: MagazineVisuals

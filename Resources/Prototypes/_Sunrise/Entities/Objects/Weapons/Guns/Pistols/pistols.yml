@@ -105,7 +105,6 @@
   - type: Item
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/Pistols/glock22/tiny.rsi
   - type: Gun
-    fireRate: 7
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
@@ -155,7 +154,6 @@
   - type: Item
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/Pistols/glock22/tiny.rsi
   - type: Gun
-    fireRate: 7
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto

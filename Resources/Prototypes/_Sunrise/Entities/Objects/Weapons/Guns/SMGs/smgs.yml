@@ -68,7 +68,7 @@
   - type: Gun
     minAngle: 43
     maxAngle: 60
-    fireRate: 10
+    fireRate: 6
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/p90_shot.ogg
       params:

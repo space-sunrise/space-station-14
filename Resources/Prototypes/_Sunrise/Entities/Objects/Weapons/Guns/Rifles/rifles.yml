@@ -45,27 +45,27 @@
   - type: Gun
     minAngle: 24
     maxAngle: 45
-    fireRate: 10
+    fireRate: 5  # 10 в секунду - реалистично. 5, так как сс14
     soundGunshot:
       collection: ak47
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRifle
+        startingItem: MagazineLightRifle
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
         priority: 2
         whitelist:
           tags:
-            - MagazineRifle
+            - MagazineLightRifle
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeRifle  # 762x39
+        startingItem: CartridgeLightRifle  # 762x39
         priority: 1
         whitelist:
           tags:
-            - CartridgeRifle  # 762x39
+            - CartridgeLightRifle  # 762x39
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -108,20 +108,20 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: SUNRISECM14MagazineAK
+        startingItem: MagazineLightRifle
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
         priority: 2
         whitelist:
           tags:
-            - SUNRISECM14MagazineAK
+          - MagazineLightRifle
       gun_chamber:
         name: Chamber
         startingItem: CartridgeLightRifle  # 762x39
         priority: 1
         whitelist:
           tags:
-            - CartridgeLightRifle  # 762x39
+          - CartridgeLightRifle  # 762x39
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -170,6 +170,7 @@
         whitelist:
           tags:
             - SUNRISECM14MagazineFamas
+            - MagazinePistolSubMachineGun
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistol  # 556
@@ -230,6 +231,7 @@
         whitelist:
           tags:
             - SUNRISECM14MagazineG36
+            - MagazinePistolSubMachineGun
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistol  # 556
@@ -287,6 +289,7 @@
         whitelist:
           tags:
             - SUNRISECM14MagazineM28
+            - MagazinePistolSubMachineGun
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistol  # 556
@@ -344,6 +347,7 @@
         whitelist:
           tags:
           - SUNRISECM14MagazineAR18
+          - MagazinePistolSubMachineGun
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistol  # 556
@@ -386,20 +390,20 @@
   - type: Gun
     minAngle: 24
     maxAngle: 45
-    fireRate: 10
+    fireRate: 5
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/m16a4/m16a4_shot.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRifle
-        insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/m16a4/m16a4_reload.ogg
-        ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/m16a4/m16a4_unload.ogg
+        startingItem: MagazineLightRifle
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
         priority: 2
         whitelist:
           tags:
-          - MagazineRifle
+          - MagazineLightRifle
       gun_chamber:
         name: Chamber
         startingItem: CartridgeLightRifle  # 556
@@ -457,6 +461,7 @@
         whitelist:
           tags:
           - SUNRISECM14MagazineSTG44
+          - MagazineLightRifle
       gun_chamber:
         name: Chamber
         startingItem: CartridgeLightRifle  # 762x39
