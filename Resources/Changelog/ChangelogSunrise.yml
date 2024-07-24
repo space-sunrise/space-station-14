@@ -1970,3 +1970,12 @@
     type: Tweak
   id: 148
   time: '2024-07-24T21:52:12.464539+00:00'
+- author: VigersRay
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0430 \u0441\u0442\u0430\
+      \u0442\u0438\u0441\u0442\u0438\u043A\u0430 \u043A\u043E\u043D\u0446\u0430 \u0440\
+      \u0430\u0443\u043D\u0434\u0430."
+    type: Add
+  id: 149
+  time: '2024-07-24T23:01:01.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/239
