@@ -1,21 +1,26 @@
 <Document>
-  # Space Law: Restricted Gear
-  - \[ERT/Central Command\] ERT and central command clothing
-  - \[Command\] Command clothing
-  - \[Security\] Security clothing
-  - \[Security\] Less than lethal and non-lethal weapons, excluding disablers and beanbag shotguns
-  - \[Security/Command\] Disablers
-  - \[Security/Bartender\] Beanbag shotguns
-  - \[Security\] Flash technology, excluding handheld flashes
-  - \[Security/Science/Command\] Handheld flashes
-  - \[Security\] Helmets and shields
-  - \[Security/Command/Bartender\] Protective vests and chest rigs
-  - \[Security/Command\] Restraining gear
-  - \[Security/Command\] Security HUDs
-  - \[Engineering\] Engineering goggles
-  - \[None\] Improvised less lethal and non-lethal weaponry
-  - \[None\] Unauthorized PDA software
-  - \[None\] Syndicate clothing
-  - \[None\] Syndicate equipment, excluding communication equipment
-  - \[Security\] Syndicate communication equipment
+  # Корпоротивный закон:
+  # Запрещённое обмундерование
+  Здесь описаны вещи которые могут иметь те или инные лица.
+  
+  
+  - \[ОБР/Центральное коммандование\] Одежда ОБР или Центрального коммандования
+  - \[Коммандование\] Одежда коммандования
+  - \[СБ\] Одежда службы безопасности
+  - \[СБ\] летальное и нелетальное оружие, исключая станнеры и дробовики с резиновыми пулями
+  - \[СБ/Коммандование\] Станнеры
+  - \[СБ/Бармен\] Дробовики с резиновыми пулями
+  - \[СБ\] Технология ослепления, исключая вспышки
+  - \[СБ/РНД/Коммандование\] Вспышки
+  - \[СБ\] Каски и щиты
+  - \[СБ/Коммандование/Бармен\] Защитные жилеты и нагрудные разгрузки
+  - \[СБ/Коммандование\] Снаряжение для удержания
+  - \[СБ/Коммандование\] HUD-очки Службы безопасности
+  - \[Инженеры\] Инженерные очки
+  - \[Робототехник\] Сварочные очки
+  - \[Никто\] Improvised less lethal and non-lethal weaponry
+  - \[Никто\] Неавторизированное устройство ПДА
+  - \[Никто\] Одежда синдиката
+  - \[Никто\] Вещи синдиката, исключая коммуникационные средства
+  - \[СБ\] Коммуникационные средства синдиката
 </Document>
