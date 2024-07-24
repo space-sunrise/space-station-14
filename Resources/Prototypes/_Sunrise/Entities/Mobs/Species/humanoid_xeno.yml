@@ -46,6 +46,18 @@
       Brute:
         sprite: Mobs/Effects/brute_damage.rsi
         color: "#44944A"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 200
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
   - type: Sprite
     scale: 1.1, 1.2
     layers:
