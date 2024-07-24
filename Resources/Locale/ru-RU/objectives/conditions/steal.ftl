@@ -9,11 +9,16 @@ objective-condition-thief-animal-description = { CAPITALIZE($itemName) } ста�
 objective-condition-thief-multiply-description = Мне нужно собрать { $count } { $itemName } и увезти их с собой.
 
 
-ent-requisitiondigi-board = цифровой планшет заявок
-ent-hyposprey = гипоспрей
-ent-experimentalresearchhardsuit = скафандр научного руководителя
-ent-handteleporter = ручной телепорт
-ent-handheldcrewmonitor = портативный монитор экипажа
-ent-emergencysecurityorders = чрезвычайные приказы по безопасности
-ent-advancedmagboots = продвинутые магнитные сапоги
-ent-prime-cutcorgimeat = первосортное мясо корги
+objective-requisitiondigi-board = цифровой планшет заявок
+objective-hyposprey = гипоспрей
+objective-experimentalresearchhardsuit = скафандр научного руководителя
+objective-handteleporter = ручной телепорт
+objective-handheldcrewmonitor = портативный монитор экипажа
+objective-emergencysecurityorders = чрезвычайные приказы по безопасности
+objective-advancedmagboots = продвинутые магнитные сапоги
+objective-prime-cutcorgimeat = первосортное мясо корги
+objective-captainidcard = ID карта капитана
+objective-captainsjetpack = джетпак капитана
+objective-antiquelaserpistol = антикварный лазерный пистолет
+objective-nuclearauthenticationdisk = диск ядерной авторизации
+objective-plutoniumcore = Плутониевое ядро
