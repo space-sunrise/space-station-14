@@ -53,9 +53,9 @@
   id: SUNRISECM14WeaponPistolVP78
   components:
   - type: Sprite
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Pistols/vp78/big.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Pistols/vp78/big.rsi
   - type: Item
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Pistols/vp78/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Pistols/vp78/tiny.rsi
   - type: Gun
     selectedMode: FullAuto
     availableModes:
@@ -63,16 +63,16 @@
     - Burst
     - FullAuto
     soundGunshot:
-      path: /Audio/_SUNRISE_CM14/Guns/Pistols/vp70_shot.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_shot.ogg
     soundEmpty:
-      path: /Audio/_SUNRISE_CM14/Guns/Pistols/vp70_empty.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_empty.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
         startingItem: MagazinePistol
-        insertSound: /Audio/_SUNRISE_CM14/Guns/Pistols/vp70_reload.ogg
-        ejectSound: /Audio/_SUNRISE_CM14/Guns/Pistols/vp70_unload.ogg
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_unload.ogg
         priority: 2
         whitelist:
           tags:
@@ -101,9 +101,9 @@
   suffix: Lethal
   components:
   - type: Sprite
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Pistols/glock22/big.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Pistols/glock22/big.rsi
   - type: Item
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Pistols/glock22/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Pistols/glock22/tiny.rsi
   - type: Gun
     fireRate: 7
     selectedMode: SemiAuto
@@ -118,8 +118,8 @@
       gun_magazine:
         name: Magazine
         startingItem: MagazinePistol
-        insertSound: /Audio/_SUNRISE_CM14/Guns/Pistols/glock22/glock22_reload.ogg
-        ejectSound: /Audio/_SUNRISE_CM14/Guns/Pistols/glock22/glock22_unload.ogg
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_unload.ogg
         priority: 2
         whitelist:
           tags:
@@ -141,7 +141,7 @@
       gun_chamber: !type:ContainerSlot
   - type: ChamberMagazineAmmoProvider
     soundRack:
-      path: /Audio/_SUNRISE_CM14/Guns/Pistols/glock22/glock22_cocked.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_cocked.ogg
 
 
 - type: entity
@@ -151,9 +151,9 @@
   suffix: NonLethal
   components:
   - type: Sprite
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Pistols/glock22/big.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Pistols/glock22/big.rsi
   - type: Item
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Pistols/glock22/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Pistols/glock22/tiny.rsi
   - type: Gun
     fireRate: 7
     selectedMode: SemiAuto
@@ -168,8 +168,8 @@
       gun_magazine:
         name: Magazine
         startingItem: MagazinePistolRubber
-        insertSound: /Audio/_SUNRISE_CM14/Guns/Pistols/glock22/glock22_reload.ogg
-        ejectSound: /Audio/_SUNRISE_CM14/Guns/Pistols/glock22/glock22_unload.ogg
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_unload.ogg
         priority: 2
         whitelist:
           tags:
@@ -191,7 +191,7 @@
       gun_chamber: !type:ContainerSlot
   - type: ChamberMagazineAmmoProvider
     soundRack:
-      path: /Audio/_SUNRISE_CM14/Guns/Pistols/glock22/glock22_cocked.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_cocked.ogg
 
 
 - type: entity
@@ -200,9 +200,9 @@
   id: SUNRISECM14WeaponPistolHIB88M4
   components:
   - type: Sprite
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Pistols/hi_browning/big.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Pistols/hi_browning/big.rsi
   - type: Item
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Pistols/hi_browning/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Pistols/hi_browning/tiny.rsi
   - type: Gun
     selectedMode: SemiAuto
     availableModes:
@@ -210,16 +210,16 @@
     - Burst
     - FullAuto
     soundGunshot:
-      path: /Audio/_SUNRISE_CM14/Guns/Pistols/vp70_shot.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_shot.ogg
     soundEmpty:
-      path: /Audio/_SUNRISE_CM14/Guns/Pistols/vp70_empty.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_empty.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
         startingItem: MagazinePistol
-        insertSound: /Audio/_SUNRISE_CM14/Guns/Pistols/vp70_reload.ogg
-        ejectSound: /Audio/_SUNRISE_CM14/Guns/Pistols/vp70_unload.ogg
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_unload.ogg
         priority: 2
         whitelist:
           tags:
@@ -246,9 +246,9 @@
   id: SUNRISECM14WeaponPistolACP14
   components:
   - type: Sprite
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Pistols/acp14/big.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Pistols/acp14/big.rsi
   - type: Item
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Pistols/acp14/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Pistols/acp14/tiny.rsi
   - type: Gun
     selectedMode: SemiAuto
     availableModes:
@@ -263,8 +263,8 @@
       gun_magazine:
         name: Magazine
         startingItem: MagazinePistol
-        insertSound: /Audio/_SUNRISE_CM14/Guns/Pistols/glock22/glock22_reload.ogg
-        ejectSound: /Audio/_SUNRISE_CM14/Guns/Pistols/glock22/glock22_unload.ogg
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_unload.ogg
         priority: 2
         whitelist:
           tags:
@@ -291,11 +291,11 @@
   id: SUNRISECM14WeaponRevolverMatebaNew
   components:
   - type: Sprite
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Pistols/mateba/big.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Pistols/mateba/big.rsi
   - type: Clothing
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Pistols/mateba/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Pistols/mateba/tiny.rsi
   - type: Item
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Pistols/mateba/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Pistols/mateba/tiny.rsi
   - type: Gun
     fireRate: 3
     soundGunshot:
@@ -307,9 +307,9 @@
   id: SUNRISECM14WeaponPistolDeagle
   components:
   - type: Sprite
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Pistols/deagle/big.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Pistols/deagle/big.rsi
   - type: Item
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Pistols/deagle/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Pistols/deagle/tiny.rsi
   - type: Gun
     selectedMode: SemiAuto
     availableModes:
@@ -320,14 +320,14 @@
       params:
         volume: 100
     soundEmpty:
-      path: /Audio/_SUNRISE_CM14/Guns/Pistols/deagle/deagle_empty.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/deagle/deagle_empty.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
         startingItem: SUNRISECM14MagazineDeagle
-        insertSound: /Audio/_SUNRISE_CM14/Guns/Pistols/deagle/deagle_reload.ogg
-        ejectSound: /Audio/_SUNRISE_CM14/Guns/Pistols/deagle/deagle_unload.ogg
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/deagle/deagle_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/deagle/deagle_unload.ogg
         priority: 2
         whitelist:
           tags:

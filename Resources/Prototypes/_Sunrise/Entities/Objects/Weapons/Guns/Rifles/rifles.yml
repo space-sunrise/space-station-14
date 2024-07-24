@@ -29,16 +29,16 @@
   id: SUNRISECM14WeaponAKMSRifle
   components:
   - type: Sprite
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/akms/big.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/akms/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/akms/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/akms/tiny.rsi
   - type: Item
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/akms/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/akms/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -43
@@ -53,8 +53,8 @@
       gun_magazine:
         name: Magazine
         startingItem: MagazineRifle
-        insertSound: /Audio/_SUNRISE_CM14/Guns/Rifles/AK/ak_reload.ogg
-        ejectSound: /Audio/_SUNRISE_CM14/Guns/Rifles/AK/ak_unload.ogg
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
         priority: 2
         whitelist:
           tags:
@@ -80,7 +80,7 @@
     delay: 1.3
   - type: ChamberMagazineAmmoProvider
     soundRack:
-      path: /Audio/_SUNRISE_CM14/Guns/Rifles/AK/ak_cocked.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_cocked.ogg
 
 - type: entity
   name: AK74-U
@@ -88,7 +88,7 @@
   id: SUNRISECM14WeaponRifleAKSU
   components:
   - type: Sprite
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/ak74u.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/ak74u.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -109,8 +109,8 @@
       gun_magazine:
         name: Magazine
         startingItem: SUNRISECM14MagazineAK
-        insertSound: /Audio/_SUNRISE_CM14/Guns/Rifles/AK/ak_reload.ogg
-        ejectSound: /Audio/_SUNRISE_CM14/Guns/Rifles/AK/ak_unload.ogg
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
         priority: 2
         whitelist:
           tags:
@@ -141,16 +141,16 @@
   id: SUNRISECM14WeaponRifleFamas
   components:
   - type: Sprite
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/famas/big.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/famas/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/famas/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/famas/tiny.rsi
   - type: Item
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/famas/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/famas/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -43
@@ -164,8 +164,8 @@
       gun_magazine:
         name: Magazine
         startingItem: SUNRISECM14MagazineFamas
-        insertSound: /Audio/_SUNRISE_CM14/Guns/Rifles/Famas/famas_reload.ogg
-        ejectSound: /Audio/_SUNRISE_CM14/Guns/Rifles/Famas/famas_unload.ogg
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/Famas/famas_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/Famas/famas_unload.ogg
         priority: 2
         whitelist:
           tags:
@@ -191,7 +191,7 @@
     delay: 1.5
   - type: ChamberMagazineAmmoProvider
     soundRack:
-      path: /Audio/_SUNRISE_CM14/Guns/Rifles/Famas/famas_cocked.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/Famas/famas_cocked.ogg
 
 - type: entity
   name: G-36
@@ -199,16 +199,16 @@
   id: SUNRISECM14WeaponRifleG36
   components:
   - type: Sprite
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/g36/big.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/g36/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/g36/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/g36/tiny.rsi
   - type: Item
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/g36/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/g36/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -43
@@ -216,16 +216,16 @@
     minAngle: 24
     maxAngle: 45
     soundGunshot:
-      path: /Audio/_SUNRISE_CM14/Guns/Rifles/g36/g36_shot.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/g36/g36_shot.ogg
     soundv31:
-      path: /Audio/_SUNRISE_CM14/Guns/Snipers/Different/v31.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/v31.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
         startingItem: SUNRISECM14MagazineG36
-        insertSound: /Audio/_SUNRISE_CM14/Guns/Snipers/Different/reload.ogg
-        ejectSound: /Audio/_SUNRISE_CM14/Guns/Snipers/Different/unload.ogg
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/unload.ogg
         priority: 2
         whitelist:
           tags:
@@ -256,16 +256,16 @@
   id: SUNRISECM14WeaponRifleM28
   components:
   - type: Sprite
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/m28/big.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/m28/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/m28/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/m28/tiny.rsi
   - type: Item
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/m28/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/m28/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -43
@@ -273,16 +273,16 @@
     minAngle: 24
     maxAngle: 45
     soundGunshot:
-      path: /Audio/_SUNRISE_CM14/Guns/Rifles/m28/m28.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/m28/m28.ogg
     soundv31:
-      path: /Audio/_SUNRISE_CM14/Guns/Rifles/m28/m28_v31.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/m28/m28_v31.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
         startingItem: SUNRISECM14MagazineM28
-        insertSound: /Audio/_SUNRISE_CM14/Guns/Rifles/m28/m28_reload.ogg
-        ejectSound: /Audio/_SUNRISE_CM14/Guns/Rifles/m28/m28_unload.ogg
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/m28/m28_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/m28/m28_unload.ogg
         priority: 2
         whitelist:
           tags:
@@ -313,7 +313,7 @@
   id: SUNRISECM14WeaponRifleAR18
   components:
   - type: Sprite
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/ar18/big.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/ar18/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -330,16 +330,16 @@
     minAngle: 24
     maxAngle: 45
     soundGunshot:
-      path: /Audio/_SUNRISE_CM14/Guns/Rifles/ar18/ar18_shot.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/ar18/ar18_shot.ogg
     soundv31:
-      path: /Audio/_SUNRISE_CM14/Guns/Snipers/Different/v31.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/v31.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
         startingItem: SUNRISECM14MagazineAR18
-        insertSound: /Audio/_SUNRISE_CM14/Guns/Snipers/Different/reload.ogg
-        ejectSound: /Audio/_SUNRISE_CM14/Guns/Snipers/Different/unload.ogg
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/unload.ogg
         priority: 2
         whitelist:
           tags:
@@ -370,16 +370,16 @@
   id: SUNRISECM14WeaponRifleM16A4
   components:
   - type: Sprite
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/m16a4/big.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/m16a4/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/m16a4/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/m16a4/tiny.rsi
   - type: Item
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/m16a4/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/m16a4/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -43
@@ -388,14 +388,14 @@
     maxAngle: 45
     fireRate: 10
     soundGunshot:
-      path: /Audio/_SUNRISE_CM14/Guns/Rifles/m16a4/m16a4_shot.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/m16a4/m16a4_shot.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
         startingItem: MagazineRifle
-        insertSound: /Audio/_SUNRISE_CM14/Guns/Rifles/m16a4/m16a4_reload.ogg
-        ejectSound: /Audio/_SUNRISE_CM14/Guns/Rifles/m16a4/m16a4_unload.ogg
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/m16a4/m16a4_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/m16a4/m16a4_unload.ogg
         priority: 2
         whitelist:
           tags:
@@ -426,16 +426,16 @@
   id: SUNRISECM14WeaponSTG44
   components:
   - type: Sprite
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/stg44/big.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/stg44/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/stg44/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/stg44/tiny.rsi
   - type: Item
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/stg44/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/stg44/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -43
@@ -451,8 +451,8 @@
       gun_magazine:
         name: Magazine
         startingItem: SUNRISECM14MagazineSTG44
-        insertSound: /Audio/_SUNRISE_CM14/Guns/Rifles/AK/ak_reload.ogg
-        ejectSound: /Audio/_SUNRISE_CM14/Guns/Rifles/AK/ak_unload.ogg
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
         priority: 2
         whitelist:
           tags:
@@ -483,16 +483,16 @@
   id: SUNRISECM14WeaponRifleV31
   components:
   - type: Sprite
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/v31/big.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/v31/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/v31/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/v31/tiny.rsi
   - type: Item
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Rifles/v31/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/v31/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -43
@@ -501,7 +501,7 @@
     minAngle: 24
     maxAngle: 45
     soundGunshot:
-      path: /Audio/_SUNRISE_CM14/Guns/Rifles/v31/v31_shot.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/v31/v31_shot.ogg
       params:
         volume: -2
   - type: ChamberMagazineAmmoProvider
@@ -511,8 +511,8 @@
       gun_magazine:
         name: Magazine
         startingItem: SUNRISECM14MagazineV31
-        insertSound: /Audio/_SUNRISE_CM14/Guns/Rifles/v31/v31_reload.ogg
-        ejectSound: /Audio/_SUNRISE_CM14/Guns/Rifles/v31/v31_unload.ogg
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/v31/v31_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/v31/v31_unload.ogg
         priority: 2
         whitelist:
           tags:

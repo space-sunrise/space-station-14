@@ -56,7 +56,7 @@
   id: SUNRISECM14WeaponSubMachineGunP90
   components:
   - type: Sprite
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/SMGs/p90.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/p90.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -70,7 +70,7 @@
     maxAngle: 60
     fireRate: 10
     soundGunshot:
-      path: /Audio/_SUNRISE_CM14/Guns/SMGs/p90_shot.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/SMGs/p90_shot.ogg
       params:
         volume: -1
   - type: ItemSlots
@@ -78,8 +78,8 @@
       gun_magazine:
         name: Magazine
         startingItem: SUNRISECM14MagazineP90
-        insertSound: /Audio/_SUNRISE_CM14/Guns/SMGs/p90_reload.ogg
-        ejectSound: /Audio/_SUNRISE_CM14/Guns/SMGs/p90_unload.ogg
+        insertSound: /Audio/_Sunrise/Weapons/Guns/SMGs/p90_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/SMGs/p90_unload.ogg
         priority: 2
         whitelist:
           tags:
@@ -101,7 +101,7 @@
     delay: 0.5
   - type: ChamberMagazineAmmoProvider
     soundRack:
-      path: /Audio/_SUNRISE_CM14/Guns/SMGs/p90_cocked.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/SMGs/p90_cocked.ogg
 
 - type: entity
   name: MP-38
@@ -109,16 +109,16 @@
   id: SUNRISECM14WeaponSubMachineGunMP38
   components:
   - type: Sprite
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/SMGs/mp38/big.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/mp38/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/SMGs/mp38/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/mp38/tiny.rsi
   - type: Item
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/SMGs/mp38/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/mp38/tiny.rsi
   - type: GunWieldBonus
     minAngle: -22
     maxAngle: -28
@@ -127,14 +127,14 @@
     maxAngle: 45
     fireRate: 5
     soundGunshot:
-      path: /Audio/_SUNRISE_CM14/Guns/SMGs/mp38/mp38_shot.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
         startingItem: MagazinePistolSubMachineGun
-        insertSound: /Audio/_SUNRISE_CM14/Guns/SMGs/mp38/mp38_reload.ogg
-        ejectSound: /Audio/_SUNRISE_CM14/Guns/SMGs/mp38/mp38_unload.ogg
+        insertSound: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_unload.ogg
         priority: 2
         whitelist:
           tags:
@@ -161,16 +161,16 @@
   id: SUNRISECM14WeaponSubMachineGunMP7
   components:
   - type: Sprite
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/SMGs/mp7/big.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/mp7/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/SMGs/mp7/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/mp7/tiny.rsi
   - type: Item
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/SMGs/mp7/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/mp7/tiny.rsi
   - type: GunWieldBonus
     minAngle: -22
     maxAngle: -28
@@ -179,14 +179,14 @@
     maxAngle: 45
     fireRate: 8
     soundGunshot:
-      path: /Audio/_SUNRISE_CM14/Guns/Rifles/mp7/mp7_shot.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/mp7/mp7_shot.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
         startingItem: SUNRISECM14MagazineMP7
-        insertSound: /Audio/_SUNRISE_CM14/Guns/Rifles/mp7/mp7_reload.ogg
-        ejectSound: /Audio/_SUNRISE_CM14/Guns/Rifles/mp7/mp7_unload.ogg
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/mp7/mp7_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/mp7/mp7_unload.ogg
         priority: 2
         whitelist:
           tags:
@@ -213,16 +213,16 @@
   id: SUNRISECM14WeaponSubMachineGunMP5
   components:
   - type: Sprite
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/SMGs/mp5/big.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/mp5/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/SMGs/mp5/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/mp5/tiny.rsi
   - type: Item
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/SMGs/mp5/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/mp5/tiny.rsi
   - type: GunWieldBonus
     minAngle: -22
     maxAngle: -28
@@ -239,8 +239,8 @@
       gun_magazine:
         name: Magazine
         startingItem: SUNRISECM14MagazineMP5
-        insertSound: /Audio/_SUNRISE_CM14/Guns/SMGs/mp5/mp5_reload.ogg
-        ejectSound: /Audio/_SUNRISE_CM14/Guns/SMGs/mp5/mp5_unload.ogg
+        insertSound: /Audio/_Sunrise/Weapons/Guns/SMGs/mp5/mp5_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/SMGs/mp5/mp5_unload.ogg
         priority: 2
         whitelist:
           tags:
@@ -262,7 +262,7 @@
     delay: 0.5
   - type: ChamberMagazineAmmoProvider
     soundRack:
-      path: /Audio/_SUNRISE_CM14/Guns/SMGs/mp5/mp5_cocked.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp5/mp5_cocked.ogg
 
 - type: entity
   name: Scorpion VZ-61
@@ -270,7 +270,7 @@
   id: SUNRISECM14WeaponSubMachineGunSkorpion
   components:
   - type: Sprite
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/SMGs/skorpion.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/skorpion.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -281,7 +281,7 @@
     maxAngle: 56
     fireRate: 7
     soundGunshot:
-      path: /Audio/_SUNRISE_CM14/Guns/SMGs/scorpion/scorpion_shot.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/SMGs/scorpion/scorpion_shot.ogg
   - type: Clothing
     slots:
     - Pocket
@@ -290,8 +290,8 @@
       gun_magazine:
         name: Magazine
         startingItem: MagazinePistolSubMachineGunRubber
-        insertSound: /Audio/_SUNRISE_CM14/Guns/SMGs/scorpion/scorpion_reload.ogg
-        ejectSound: /Audio/_SUNRISE_CM14/Guns/SMGs/scorpion/scorpion_unload.ogg
+        insertSound: /Audio/_Sunrise/Weapons/Guns/SMGs/scorpion/scorpion_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/SMGs/scorpion/scorpion_unload.ogg
         priority: 2
         whitelist:
           tags:
@@ -315,16 +315,16 @@
   id: SUNRISECM14WeaponSubMachineGunNewVector
   components:
   - type: Sprite
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/SMGs/vector/big.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/vector/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/SMGs/vector/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/vector/tiny.rsi
   - type: Item
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/SMGs/vector/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/vector/tiny.rsi
   - type: GunWieldBonus
     minAngle: -22
     maxAngle: -28
@@ -333,14 +333,14 @@
     maxAngle: 45
     fireRate: 14
     soundGunshot:
-      path: /Audio/_SUNRISE_CM14/Guns/SMGs/new_vector/vector_shot.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/SMGs/new_vector/vector_shot.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
         startingItem: MagazinePistolSubMachineGun
-        insertSound: /Audio/_SUNRISE_CM14/Guns/SMGs/new_vector/new_vector_reload.ogg
-        ejectSound: /Audio/_SUNRISE_CM14/Guns/SMGs/new_vector/new_vector_unload.ogg
+        insertSound: /Audio/_Sunrise/Weapons/Guns/SMGs/new_vector/new_vector_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/SMGs/new_vector/new_vector_unload.ogg
         priority: 2
         whitelist:
           tags:
@@ -367,16 +367,16 @@
   id: SUNRISECM14WeaponSubMachineGunPPSH41
   components:
   - type: Sprite
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/SMGs/ppsh41/big.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/ppsh41/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/SMGs/ppsh41/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/ppsh41/tiny.rsi
   - type: Item
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/SMGs/ppsh41/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/ppsh41/tiny.rsi
   - type: GunWieldBonus
     minAngle: -22
     maxAngle: -28
@@ -385,18 +385,18 @@
     maxAngle: 45
     fireRate: 6.5
     soundGunshot:
-      path: /Audio/_SUNRISE_CM14/Guns/SMGs/ppsh41/ppsh_shot.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/SMGs/ppsh41/ppsh_shot.ogg
       params:
         volume: -1
     soundEmpty:
-      path: /Audio/_SUNRISE_CM14/Guns/SMGs/ppsh41/ppsh_empty.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/SMGs/ppsh41/ppsh_empty.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
         startingItem: SUNRISECM14MagazinePPSH41
-        insertSound: /Audio/_SUNRISE_CM14/Guns/SMGs/ppsh41/ppsh_reload.ogg
-        ejectSound: /Audio/_SUNRISE_CM14/Guns/SMGs/ppsh41/ppsh_unload.ogg
+        insertSound: /Audio/_Sunrise/Weapons/Guns/SMGs/ppsh41/ppsh_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/SMGs/ppsh41/ppsh_unload.ogg
         priority: 2
         whitelist:
           tags:

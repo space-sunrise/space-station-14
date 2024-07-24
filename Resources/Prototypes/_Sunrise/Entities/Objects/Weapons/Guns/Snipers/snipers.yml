@@ -4,16 +4,16 @@
   id: SUNRISECM14WeaponSniperDragunov
   components:
   - type: Sprite
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Snipers/dragunov/big.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Snipers/dragunov/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Snipers/dragunov/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Snipers/dragunov/tiny.rsi
   - type: Item
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Snipers/dragunov/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Snipers/dragunov/tiny.rsi
   - type: GunWieldBonus
     fireRate: 1
     minAngle: -23
@@ -26,20 +26,20 @@
     maxAngle: 45
     fireRate: 1.25
     soundGunshot:
-      path: /Audio/_SUNRISE_CM14/Guns/Snipers/Dragunov/dragunov_shot.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Snipers/Dragunov/dragunov_shot.ogg
       params:
         volume: -1
   - type: BallisticAmmoProvider
   - type: ChamberMagazineAmmoProvider
     soundRack:
-      path: /Audio/_SUNRISE_CM14/Guns/Snipers/Dragunov/dragunov_cocked.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Snipers/Dragunov/dragunov_cocked.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
         startingItem: SUNRISECM14MagazineDragunov
-        insertSound: /Audio/_SUNRISE_CM14/Guns/Snipers/Dragunov/dragunov_reload.ogg
-        ejectSound: /Audio/_SUNRISE_CM14/Guns/Snipers/Dragunov/dragunov_unload.ogg
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Snipers/Dragunov/dragunov_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Snipers/Dragunov/dragunov_unload.ogg
         priority: 2
         whitelist:
           tags:
@@ -72,16 +72,16 @@
   id: SUNRISECM14WeaponRifleBR64
   components:
   - type: Sprite
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Snipers/br-64/big.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Snipers/br-64/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Snipers/br-64/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Snipers/br-64/tiny.rsi
   - type: Item
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Snipers/br-64/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Snipers/br-64/tiny.rsi
   - type: GunWieldBonus
     fireRate: 1
     minAngle: -23
@@ -91,11 +91,11 @@
     minAngle: 24
     maxAngle: 45
     soundGunshot:
-      path: /Audio/_SUNRISE_CM14/Guns/Snipers/SR-64/SR64_shot.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Snipers/SR-64/SR64_shot.ogg
       params:
         volume: -3
     soundEmpty:
-      path: /Audio/_SUNRISE_CM14/Guns/Snipers/Different/empty.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/empty.ogg
   - type: MagazineAmmoProvider
   - type: ChamberMagazineAmmoProvider
     autoEject: true
@@ -105,8 +105,8 @@
       gun_magazine:
         name: Magazine
         startingItem: SUNRISECM14MagazineBR64
-        insertSound: /Audio/_SUNRISE_CM14/Guns/Snipers/Different/reload.ogg
-        ejectSound: /Audio/_SUNRISE_CM14/Guns/Snipers/Different/unload.ogg
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/unload.ogg
         priority: 2
         whitelist:
           tags:
@@ -131,16 +131,16 @@
   id: SUNRISECM14WeaponRifleBauer127
   components:
   - type: Sprite
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Snipers/bauer127/big.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Snipers/bauer127/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Snipers/bauer127/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Snipers/bauer127/tiny.rsi
   - type: Item
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Snipers/bauer127/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Snipers/bauer127/tiny.rsi
   - type: GunWieldBonus
     fireRate: 1
     minAngle: -23
@@ -150,22 +150,22 @@
     minAngle: 24
     maxAngle: 45
     soundGunshot:
-      path: /Audio/_SUNRISE_CM14/Guns/Snipers/Bauer127/bauer127_shot.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Snipers/Bauer127/bauer127_shot.ogg
       params:
         volume: -1
     soundEmpty:
-      path: /Audio/_SUNRISE_CM14/Guns/Snipers/Different/empty.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/empty.ogg
   - type: ChamberMagazineAmmoProvider
   - type: BallisticAmmoProvider
     soundRack:
-      path: /Audio/_SUNRISE_CM14/Guns/Snipers/Bauer127/bauer127_bolt.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Snipers/Bauer127/bauer127_bolt.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
         startingItem: SUNRISECM14MagazineBauer127
-        insertSound: /Audio/_SUNRISE_CM14/Guns/Snipers/Different/reload.ogg
-        ejectSound: /Audio/_SUNRISE_CM14/Guns/Snipers/Different/unload.ogg
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/unload.ogg
         priority: 2
         whitelist:
           tags:
@@ -192,19 +192,19 @@
   id: SUNRISECM14WeaponSniperGarand
   components:
   - type: Sprite
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Snipers/garand/big.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Snipers/garand/big.rsi
   - type: Clothing
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Snipers/garand/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Snipers/garand/tiny.rsi
   - type: Item
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Snipers/garand/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Snipers/garand/tiny.rsi
   - type: Gun
     fireRate: 0.8
     soundGunshot:
-      path: /Audio/_SUNRISE_CM14/Guns/Snipers/garand/garand.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Snipers/garand/garand.ogg
       params:
         volume: 4
     soundEmpty:
-      path: /Audio/_SUNRISE_CM14/Guns/Snipers/garand/garand_empty.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Snipers/garand/garand_empty.ogg
   - type: Wieldable
   - type: UseDelay
     delay: 0.8
@@ -217,11 +217,11 @@
   id: SUNRISECM14WeaponSniperMosinNew
   components:
   - type: Sprite
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Snipers/mosin/big.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Snipers/mosin/big.rsi
   - type: Clothing
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Snipers/mosin/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Snipers/mosin/tiny.rsi
   - type: Item
-    sprite: _SUNRISE_CM14/Entities/Objects/Weapons/Guns/Snipers/mosin/tiny.rsi
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Snipers/mosin/tiny.rsi
   - type: Gun
     fireRate: 0.8
   - type: Wieldable
