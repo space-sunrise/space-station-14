@@ -22,7 +22,7 @@
             #PrisonChef: [ 2, 4 ] Увы
             PrisonDoctor: [ 2, 4 ]
             #PrisonEngineer: [ 3, 5 ] Увы
-            PrisonGuard: [ 10, 16 ]
+            PrisonGuard: [ -1, -1 ]
             Prisoner: [ 2, 4 ]
         - type: OtherJobsTakenRequirement
           targetJob: PrisonGuard
