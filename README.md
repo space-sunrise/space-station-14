@@ -28,7 +28,7 @@ Space Station 14 — это ролевая игра, вдохновлённая 
 <!---
 ТУТ ИЗМЕНИТЬ НА СВОЁ АПИ С САЙТА repobeats.axiom.co  СЕЙЧАС ЭТО СТАТИСТИКА МОЕГО РЕПОЗИТОРИЯ!!!!!!!!!!!!!!!!!!!!
 --->
-![Статистика активности](https://repobeats.axiom.co/api/embed/4b571efc250497453ec50bb02a6f2ca21a316c18.svg "Repobeats analytics image")
+![Alt](https://repobeats.axiom.co/api/embed/49651d1b93eecc08e01f1a268a917343cf661fc8.svg "Repobeats analytics image")
 
 ## Участники проекта
 
