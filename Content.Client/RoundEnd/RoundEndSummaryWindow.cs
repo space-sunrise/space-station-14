@@ -1,9 +1,12 @@
 using System.Linq;
 using System.Numerics;
+using Content.Client._Sunrise.StatsBoard;
 using Content.Client.Message;
+using Content.Shared._Sunrise.StatsBoard;
 using Content.Shared.GameTicking;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
+using Robust.Shared.Player;
 using Robust.Shared.Utility;
 using static Robust.Client.UserInterface.Controls.BoxContainer;
 
@@ -12,14 +15,16 @@ namespace Content.Client.RoundEnd
     public sealed class RoundEndSummaryWindow : DefaultWindow
     {
         private readonly IEntityManager _entityManager;
+        private readonly ISharedPlayerManager _playerManager;
         public int RoundId;
 
         public RoundEndSummaryWindow(string gm, string roundEnd, TimeSpan roundTimeSpan, int roundId,
-            RoundEndMessageEvent.RoundEndPlayerInfo[] info, IEntityManager entityManager)
+            RoundEndMessageEvent.RoundEndPlayerInfo[] info, string roundEndStats, StatisticEntry[] statisticEntries, IEntityManager entityManager, ISharedPlayerManager playerManager) // Sunrise-Edit
         {
             _entityManager = entityManager;
+            _playerManager = playerManager; // Sunrise-Edit
 
-            MinSize = SetSize = new Vector2(520, 580);
+            MinSize = SetSize = new Vector2(700, 600); // Sunrise-Edit
 
             Title = Loc.GetString("round-end-summary-window-title");
 
@@ -31,6 +36,8 @@ namespace Content.Client.RoundEnd
 
             RoundId = roundId;
             var roundEndTabs = new TabContainer();
+            roundEndTabs.AddChild(MakeRoundEndStatsTab(roundEndStats)); // Sunrise-End
+            roundEndTabs.AddChild(MakeRoundEndMyStatsTab(statisticEntries)); // Sunrise-End
             roundEndTabs.AddChild(MakeRoundEndSummaryTab(gm, roundEnd, roundTimeSpan, roundId));
             roundEndTabs.AddChild(MakePlayerManifestTab(info));
 
@@ -166,6 +173,77 @@ namespace Content.Client.RoundEnd
 
             return playerManifestTab;
         }
+
+        // Sunrise-Start
+        private BoxContainer MakeRoundEndStatsTab(string stats)
+        {
+            var roundEndSummaryTab = new BoxContainer
+            {
+                Orientation = LayoutOrientation.Vertical,
+                Name = Loc.GetString("round-end-summary-window-stats-tab-title")
+            };
+
+            var roundEndSummaryContainerScrollbox = new ScrollContainer
+            {
+                VerticalExpand = true,
+                Margin = new Thickness(10)
+            };
+            var roundEndSummaryContainer = new BoxContainer
+            {
+                Orientation = LayoutOrientation.Vertical
+            };
+
+            //Round end text
+            if (!string.IsNullOrEmpty(stats))
+            {
+                var statsLabel = new RichTextLabel();
+                statsLabel.SetMarkup(stats);
+                roundEndSummaryContainer.AddChild(statsLabel);
+            }
+
+            roundEndSummaryContainerScrollbox.AddChild(roundEndSummaryContainer);
+            roundEndSummaryTab.AddChild(roundEndSummaryContainerScrollbox);
+
+            return roundEndSummaryTab;
+        }
+
+        private BoxContainer MakeRoundEndMyStatsTab(StatisticEntry[] statisticEntries)
+        {
+            var roundEndSummaryTab = new BoxContainer
+            {
+                Orientation = LayoutOrientation.Vertical,
+                Name = Loc.GetString("round-end-summary-window-my-stats-tab-title")
+            };
+
+            var roundEndSummaryContainerScrollbox = new ScrollContainer
+            {
+                VerticalExpand = true,
+                Margin = new Thickness(10),
+            };
+
+            var statsEntries = new StatsEntries();
+            foreach (var statisticEntry in statisticEntries)
+            {
+                if (statisticEntry.FirstActor != _playerManager.LocalSession!.UserId)
+                    continue;
+
+                var statsEntry = new StatsEntry(statisticEntry.Name, statisticEntry.TotalTakeDamage,
+                    statisticEntry.TotalTakeHeal, statisticEntry.TotalInflictedDamage,
+                    statisticEntry.TotalInflictedHeal, statisticEntry.SlippedCount,
+                    statisticEntry.CreamedCount, statisticEntry.DoorEmagedCount, statisticEntry.ElectrocutedCount,
+                    statisticEntry.CuffedCount, statisticEntry.AbsorbedPuddleCount, statisticEntry.SpentTk ?? 0,
+                    statisticEntry.DeadCount, statisticEntry.HumanoidKillCount, statisticEntry.KilledMouseCount,
+                    statisticEntry.CuffedTime, statisticEntry.SpaceTime, statisticEntry.SleepTime,
+                    statisticEntry.IsInteractedCaptainCard ? "Да" : "Нет");
+                statsEntries.AddEntry(statsEntry);
+            }
+
+            roundEndSummaryContainerScrollbox.AddChild(statsEntries);
+            roundEndSummaryTab.AddChild(roundEndSummaryContainerScrollbox);
+
+            return roundEndSummaryTab;
+        }
+        // Sunrise-End
     }
 
 }
