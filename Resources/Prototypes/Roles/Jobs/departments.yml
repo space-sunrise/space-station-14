@@ -44,7 +44,7 @@
   - HeadOfSecurity
   - ResearchDirector
   - Quartermaster
-  - NanoTrasenRepresentative  #Sunrise-Edit
+#  - NanoTrasenRepresentative  #Sunrise-Edit
   primary: false
   weight: 100
 
