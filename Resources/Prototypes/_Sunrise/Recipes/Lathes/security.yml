@@ -275,7 +275,7 @@
   category: Ammo
   completetime: 5
   materials:
-    Steel: 295
+    Steel: 250
 
 - type: latheRecipe
   id: MagazineGlock22
@@ -283,7 +283,7 @@
   category: Ammo
   completetime: 5
   materials:
-    Steel: 295
+    Steel: 250
 
 - type: latheRecipe
   id: MagazineVP70
@@ -291,7 +291,7 @@
   category: Ammo
   completetime: 5
   materials:
-    Steel: 295
+    Steel: 250
 
 - type: latheRecipe
   id: MagazineHIBrowning
@@ -299,7 +299,7 @@
   category: Ammo
   completetime: 5
   materials:
-    Steel: 295
+    Steel: 250
 
 - type: latheRecipe
   id: MagazineDeagle
