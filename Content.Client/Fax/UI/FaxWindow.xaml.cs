@@ -40,8 +40,16 @@ public sealed partial class FaxWindow : DefaultWindow
     {
         CopyButton.Disabled = !state.CanCopy;
         SendButton.Disabled = !state.CanSend;
-        FromLabel.Text = Loc.GetString($"fax-label-{Regex.Replace(state.DeviceName, @"[*?!'%\s]", string.Empty).ToLower()}");
-
+        var Localekey = $"fax-label-{Regex.Replace(state.DeviceName, @"[*?!'%\s]", string.Empty).ToLower()}"
+        if Loc.GetString($"fax-label-{Regex.Replace(state.DeviceName, @"[*?!'%\s]", string.Empty).ToLower()}") == Localekey
+        {
+            FromLabel.Text = state.DeviceName;
+        }
+        else
+        {
+            FromLabel.Text = Loc.GetString($"fax-label-{Regex.Replace(state.DeviceName, @"[*?!'%\s]", string.Empty).ToLower()}");
+        }
+        
         if (state.IsPaperInserted)
         {
             PaperStatusLabel.FontColorOverride = Color.Green;
@@ -87,7 +95,15 @@ public sealed partial class FaxWindow : DefaultWindow
 
     private int AddPeerSelect(string name, string address)
     {
-        var loc = Loc.GetString($"fax-label-{Regex.Replace(name, @"[*?!'%\s]", string.Empty).ToLower()}");
+        var Localekey = $"fax-label-{Regex.Replace(name, @"[*?!'%\s]", string.Empty).ToLower()}"
+        if Loc.GetString($"fax-label-{Regex.Replace(name, @"[*?!'%\s]", string.Empty).ToLower()}"); == Localekey
+        {
+            var loc = name
+        }
+        else
+        {
+            var loc = Loc.GetString($"fax-label-{Regex.Replace(name, @"[*?!'%\s]", string.Empty).ToLower()}");
+        }
         PeerSelector.AddItem(loc);
         PeerSelector.SetItemMetadata(PeerSelector.ItemCount - 1, address);
         return PeerSelector.ItemCount - 1;
