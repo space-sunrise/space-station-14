@@ -123,3 +123,188 @@
   materials:
     Steel: 350
     Plastic: 600
+
+- type: latheRecipe
+  id: MagazineM16A4
+  result: SUNRISECM14MagazineM16A4
+  category: Ammo
+  completetime: 5
+  materials:
+    Steel: 325
+
+- type: latheRecipe
+  id: MagazineLightMachineGunMG60
+  result: SUNRISECM14MagazineLightMachineGunMG60
+  category: Ammo
+  completetime: 5
+  materials:
+    Steel: 4525
+
+- type: latheRecipe
+  id: MagazinePPSH41
+  result: SUNRISECM14MagazinePPSH41
+  category: Ammo
+  completetime: 5
+  materials:
+    Steel: 1303
+
+- type: latheRecipe
+  id: MagazineRPD
+  result: SUNRISECM14MagazineRPD
+  category: Ammo
+  completetime: 5
+  materials:
+    Steel: 1465
+
+- type: latheRecipe
+  id: MagazineNewVector
+  result: SUNRISECM14MagazineNewVector
+  category: Ammo
+  completetime: 5
+  materials:
+    Steel: 835
+
+- type: latheRecipe
+  id: MagazineMP38
+  result: SUNRISECM14MagazineMP38
+  category: Ammo
+  completetime: 5
+  materials:
+    Steel: 835
+
+- type: latheRecipe
+  id: MagazineMP5
+  result: SUNRISECM14MagazineMP5
+  category: Ammo
+  completetime: 5
+  materials:
+    Steel: 835
+
+- type: latheRecipe
+  id: MagazineMP7
+  result: SUNRISECM14MagazineMP7
+  category: Ammo
+  completetime: 5
+  materials:
+    Steel: 835
+
+- type: latheRecipe
+  id: MagazineP90
+  result: SUNRISECM14MagazineP90
+  category: Ammo
+  completetime: 5
+  materials:
+    Steel: 1645
+
+- type: latheRecipe
+  id: MagazineScorpion
+  result: SUNRISECM14MagazineScorpion
+  category: Ammo
+  completetime: 5
+  materials:
+    Steel: 835
+
+- type: latheRecipe
+  id: MagazineAK
+  result: SUNRISECM14MagazineAK
+  category: Ammo
+  completetime: 5
+  materials:
+    Steel: 565
+
+- type: latheRecipe
+  id: MagazineAR18
+  result: SUNRISECM14MagazineAR18
+  category: Ammo
+  completetime: 5
+  materials:
+    Steel: 325
+
+- type: latheRecipe
+  id: MagazineG36
+  result: SUNRISECM14MagazineG36
+  category: Ammo
+  completetime: 5
+  materials:
+    Steel: 325
+
+- type: latheRecipe
+  id: MagazineM28
+  result: SUNRISECM14MagazineM28
+  category: Ammo
+  completetime: 5
+  materials:
+    Steel: 325
+
+- type: latheRecipe
+  id: MagazineFamas
+  result: SUNRISECM14MagazineFamas
+  category: Ammo
+  completetime: 5
+  materials:
+    Steel: 325
+
+- type: latheRecipe
+  id: MagazineBR64
+  result: SUNRISECM14MagazineBR64
+  category: Ammo
+  completetime: 5
+  materials:
+    Steel: 505
+
+- type: latheRecipe
+  id: MagazineDragunov
+  result: SUNRISECM14MagazineDragunov
+  category: Ammo
+  completetime: 5
+  materials:
+    Steel: 505
+
+- type: latheRecipe
+  id: MagazineV31
+  result: SUNRISECM14MagazineV31
+  category: Ammo
+  completetime: 5
+  materials:
+    Steel: 985
+    Plastic: 600
+
+- type: latheRecipe
+  id: MagazineACP14
+  result: SUNRISECM14MagazineACP14
+  category: Ammo
+  completetime: 5
+  materials:
+    Steel: 295
+
+- type: latheRecipe
+  id: MagazineGlock22
+  result: SUNRISECM14MagazineGlock22
+  category: Ammo
+  completetime: 5
+  materials:
+    Steel: 295
+
+- type: latheRecipe
+  id: MagazineVP70
+  result: SUNRISECM14MagazineVP70
+  category: Ammo
+  completetime: 5
+  materials:
+    Steel: 295
+
+- type: latheRecipe
+  id: MagazineHIBrowning
+  result: SUNRISECM14MagazineHIBrowning
+  category: Ammo
+  completetime: 5
+  materials:
+    Steel: 295
+
+- type: latheRecipe
+  id: MagazineDeagle
+  result: SUNRISECM14MagazineDeagle
+  category: Ammo
+  completetime: 5
+  materials:
+    Steel: 193
