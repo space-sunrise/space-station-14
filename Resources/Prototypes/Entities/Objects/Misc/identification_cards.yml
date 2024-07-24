@@ -641,6 +641,7 @@
     - JobIconSeniorPhysician  # Sunrise-Senior
     - JobIconSeniorOfficer  # Sunrise-Senior
     - JobIconSeniorEngineer  # Sunrise-Senior
+    - JobIconBarber  # SunriseRoles
     - JobIconSeniorResearcher  # Sunrise-Senior
   - type: ActivatableUI
     key: enum.AgentIDCardUiKey.Key

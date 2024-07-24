@@ -63,7 +63,7 @@
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/ntrep.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/ntrep.rsi
-    
+
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitNtrepFormal
@@ -166,3 +166,14 @@
     sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/skeleton.rsi
   - type: Clothing
     sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/skeleton.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitBarber
+  name: комбинезон цирюльника
+  description: Как же он хорош.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/barber.rsi
+  - type: Clothing
+    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/barber.rsi

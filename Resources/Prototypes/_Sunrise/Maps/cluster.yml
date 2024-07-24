@@ -69,6 +69,8 @@
             IAA: [ 1, 1 ]
             Lawyer: [ 1, 1 ]
             Magistrat: [ 1, 1 ]
+            # Sunrise-Civillian
+            Barber: [ 1, 1 ]
         - type: StationGoal
           goals:
           - Shuttle

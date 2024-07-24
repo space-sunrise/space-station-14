@@ -31,6 +31,7 @@
   - Visitor
   - Zookeeper
   - ServiceWorker
+  - Barber
 
 - type: department
   id: Command
@@ -109,4 +110,5 @@
   - Reporter
   - Zookeeper
   - Psychologist
+  - Barber  # Sunrise-Roles
   primary: false

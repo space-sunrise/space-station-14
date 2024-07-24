@@ -1,12 +1,15 @@
 using System.Linq;
 using Content.Server.DoAfter;
 using Content.Server.Humanoid;
+using Content.Shared.Buckle.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Interaction;
 using Content.Shared.MagicMirror;
+using Robust.Packaging.AssetProcessing;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.MagicMirror;
 
@@ -56,7 +59,20 @@ public sealed class MagicMirrorSystem : SharedMagicMirrorSystem
             Marking = message.Marking,
         };
 
-        _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, message.Actor, component.SelectSlotTime, doAfter, uid, target: target, used: uid)
+        // Sunrise-start
+        var time = component.AddSlotTime;
+        if (TryComp<BuckleComponent>(component.Target, out var buckleComponent))
+        {
+            if (buckleComponent.BuckledTo != null)
+            {
+                var proto = Prototype(buckleComponent.BuckledTo.Value);
+                if (proto is { ID: "ChairBarber" })
+                    time *= 0.5f;
+            }
+        }
+
+        _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, message.Actor, time, doAfter, uid, target: target, used: uid)
+        // Sunrise-end
         {
             DistanceThreshold = SharedInteractionSystem.InteractionRange,
             BreakOnDamage = true,
@@ -112,7 +128,22 @@ public sealed class MagicMirrorSystem : SharedMagicMirrorSystem
             Colors = message.Colors,
         };
 
-        _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, message.Actor, component.ChangeSlotTime, doAfter, uid, target: target, used: uid)
+        // Sunrise-start
+        var time = component.AddSlotTime;
+
+        Log.Debug($"id: {component.Target}");
+        if (TryComp<BuckleComponent>(component.Target, out var buckleComponent))
+        {
+            if (buckleComponent.BuckledTo != null)
+            {
+                var proto = Prototype(buckleComponent.BuckledTo.Value);
+                if (proto is { ID: "ChairBarber" })
+                    time *= 0.5f;
+            }
+        }
+
+        _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, message.Actor, time, doAfter, uid, target: target, used: uid)
+        // Sunrise-end
         {
             BreakOnDamage = true,
             BreakOnMove = true,
@@ -165,7 +196,22 @@ public sealed class MagicMirrorSystem : SharedMagicMirrorSystem
             Slot = message.Slot,
         };
 
-        _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, message.Actor, component.RemoveSlotTime, doAfter, uid, target: target, used: uid)
+        // Sunrise-start
+        var time = component.AddSlotTime;
+
+        Log.Debug($"id: {component.Target}");
+        if (TryComp<BuckleComponent>(component.Target, out var buckleComponent))
+        {
+            if (buckleComponent.BuckledTo != null)
+            {
+                var proto = Prototype(buckleComponent.BuckledTo.Value);
+                if (proto is { ID: "ChairBarber" })
+                    time *= 0.5f;
+            }
+        }
+
+        _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, message.Actor, time, doAfter, uid, target: target, used: uid)
+        // Sunrise-end
         {
             DistanceThreshold = SharedInteractionSystem.InteractionRange,
             BreakOnDamage = true,
@@ -218,7 +264,22 @@ public sealed class MagicMirrorSystem : SharedMagicMirrorSystem
             Category = message.Category,
         };
 
-        _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, message.Actor, component.AddSlotTime, doAfter, uid, target: component.Target.Value, used: uid)
+        // Sunrise-start
+        var time = component.AddSlotTime;
+
+        Log.Debug($"id: {component.Target}");
+        if (TryComp<BuckleComponent>(component.Target, out var buckleComponent))
+        {
+            if (buckleComponent.BuckledTo != null)
+            {
+                var proto = Prototype(buckleComponent.BuckledTo.Value);
+                if (proto is { ID: "ChairBarber" })
+                    time *= 0.5f;
+            }
+        }
+
+        _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, message.Actor, time, doAfter, uid, target: component.Target.Value, used: uid)
+        // Sunrise-end
         {
             BreakOnDamage = true,
             BreakOnMove = true,

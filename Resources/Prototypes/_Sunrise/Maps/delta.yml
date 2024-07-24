@@ -71,6 +71,8 @@
             SeniorOfficer: [ 1, 1 ]
             # Sunrise-Science
             Roboticist: [ 2, 2 ]
+            # Sunrise-Civillian
+            Barber: [ 1, 1 ]
         - type: StationGoal
           goals:
           - Shuttle
