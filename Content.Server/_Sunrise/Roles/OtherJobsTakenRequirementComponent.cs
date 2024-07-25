@@ -11,14 +11,12 @@ namespace Content.Server._Sunrise.Roles;
 [RegisterComponent]
 public sealed partial class OtherJobsTakenRequirementComponent : Component
 {
-    [DataField("targetJob", customTypeSerializer: typeof(PrototypeIdSerializer<JobPrototype>))]
+    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<JobPrototype>))]
     public string TargetJob;
 
-    [DataField("adjustJob", customTypeSerializer: typeof(PrototypeIdSerializer<JobPrototype>))]
+    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<JobPrototype>))]
     public string AdjustJob;
 
-    [DataField("coefficient")]
-    public int Coefficient;
-
-    public int Accumulator = 0;
+    [DataField]
+    public int Modifier = 1;
 }

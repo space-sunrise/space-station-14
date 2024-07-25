@@ -5,13 +5,9 @@
   id: MobFelinidBase
   abstract: true
   components:
-  - type: OwOAccent
   - type: Speech
     speechVerb: Felinid
     allowedEmotes: ['Mew', 'Meow', 'Hisses', 'Purr']
-  - type: Thieving
-    stealthy: true
-    stripTimeReduction: 1
   - type: Sprite
     scale: 0.75, 0.75
   - type: HumanoidAppearance
@@ -21,8 +17,8 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.30
-        density: 80
+          radius: 0.25
+        density: 50
         restitution: 0.0
         mask:
         - MobMask
@@ -33,6 +29,15 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Felinid
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Critical
+      100: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      30: 0.7
+      40: 0.5
   - type: MeleeWeapon
     hidden: true
     soundHit:
@@ -51,7 +56,7 @@
     soundHit:
       path: /Audio/Effects/hit_kick.ogg
   - type: Stamina
-    critThreshold: 55
+    critThreshold: 50
   - type: Vocal
     sounds:
       Male: MaleFelinid
@@ -84,6 +89,9 @@
       - !type:Emote
         emote: Hisses
         showInChat: true
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 4.0
+    baseWalkSpeed: 2.0
 
 - type: entity
   save: false

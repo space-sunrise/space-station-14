@@ -15,6 +15,18 @@
     species: Predator
   - type: Sprite
     scale: 1.05, 1.13
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 200
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
   - type: Vocal
     sounds:
       Male: Predator

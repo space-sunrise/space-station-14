@@ -466,6 +466,12 @@ namespace Content.Shared.Cuffs
 
             _container.Insert(handcuff, component.Container);
             UpdateHeldItems(target, handcuff, component);
+
+            // Sunrise-Start
+            var ev = new CuffedEvent(user, target);
+            RaiseLocalEvent(target, ref ev);
+            // Sunrise-End
+
             return true;
         }
 

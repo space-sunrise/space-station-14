@@ -36,11 +36,11 @@
     left hand:
       part: LeftHandHuman
     right leg:
-      part: RightLegFelinid
+      part: RightLegHuman
       connections:
       - right foot
     left leg:
-      part: LeftLegFelinid
+      part: LeftLegHuman
       connections:
       - left foot
     right foot:

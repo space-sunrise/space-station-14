@@ -48,7 +48,7 @@ public sealed class EvilTwinSystem : EntitySystem
     [Dependency] private readonly SharedSubdermalImplantSystem _subdermalImplant = default!;
 
     [ValidatePrototypeId<EntityPrototype>]
-    private const string GameRule = "Fugitive";
+    private const string GameRule = "EvilTwin";
     [ValidatePrototypeId<AntagPrototype>]
     private const string EvilTwinRole = "EvilTwin";
     [ValidatePrototypeId<EntityPrototype>]

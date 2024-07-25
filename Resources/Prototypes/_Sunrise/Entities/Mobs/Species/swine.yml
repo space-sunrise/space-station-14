@@ -7,7 +7,8 @@
   - type: HumanoidAppearance
     species: Swine
   - type: Hunger
-    baseDecayRate: 0.02
+    baseDecayRate: 0.03
+  - type: Thirst
   - type: Icon
     sprite: _Sunrise/Mobs/Species/Swine/parts.rsi
     state: full
@@ -20,9 +21,18 @@
       0: Alive
       100: Critical
       200: Dead
-  - type: MovementSpeedModifier
-    baseSprintSpeed: 4.0
-    baseWalkSpeed: 3.0
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 250
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
   - type: Body
     prototype: Swine
     requiredLegs: 2
@@ -35,17 +45,11 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Swine
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      50: 0.8
-      75: 0.9
   - type: Butcherable
     butcheringType: Spike # TODO human.
     spawned:
     - id: FoodMeat
-      amount: 10
-  - type: Stamina
-    critThreshold: 200
+      amount: 5
 
 - type: entity
   save: false

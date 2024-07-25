@@ -3,8 +3,9 @@
   alias:
     - survival
   name: survival-title
-  showInVote: false # secret
+  showInVote: true
   description: survival-description
+  hide: true
   rules:
     - RampingStationEventScheduler
     - GameRuleMeteorScheduler
@@ -14,7 +15,8 @@
   id: AllAtOnce
   name: all-at-once-title
   description: all-at-once-description
-  showInVote: false
+  showInVote: true
+  hide: true
   rules:
     - Nukeops
     - Traitor
@@ -24,25 +26,13 @@
     - GameRuleMeteorScheduler
 
 - type: gamePreset
-  id: Extended
-  alias:
-  - extended
-  - shittersafari
-  name: extended-title
-  showInVote: false #2boring2vote
-  description: extended-description
-  rules:
-  - BasicStationEventScheduler
-  - GameRuleMeteorScheduler
-  - BasicRoundstartVariation
-
-- type: gamePreset
   id: Greenshift
   alias:
   - greenshift
   - shittersafarideluxeedition
   name: greenshift-title
-  showInVote: false #4boring4vote
+  showInVote: true
+  hide: false
   description: greenshift-description
   rules:
   - BasicRoundstartVariation
@@ -56,19 +46,9 @@
   name: secret-title
   showInVote: true
   description: secret-description
+  hide: false
   rules:
     - Secret
-
-- type: gamePreset
-  id: SecretExtended #For Admin Use: Runs Extended but shows "Secret" in lobby.
-  alias:
-    - secretextended
-  name: secret-title
-  showInVote: false #Admin Use
-  description: secret-description
-  rules:
-    - BasicStationEventScheduler
-    - GameRuleMeteorScheduler
 
 - type: gamePreset
   id: SecretGreenshift #For Admin Use: Runs Greenshift but shows "Secret" in lobby.
@@ -95,7 +75,8 @@
     - traitor
   name: traitor-title
   description: traitor-description
-  showInVote: false
+  showInVote: true
+  hide: true
   rules:
     - Traitor
     - SubGamemodesRule
@@ -112,6 +93,7 @@
   description: death-match-description
   maxPlayers: 15
   showInVote: true
+  hide: true
   supportedMaps: DeathMatchMapPool
   rules:
     - DeathMatch31
@@ -122,7 +104,8 @@
     - nukeops
   name: nukeops-title
   description: nukeops-description
-  showInVote: false
+  showInVote: true
+  hide: true
   rules:
     - Nukeops
     - SubGamemodesRule
@@ -138,7 +121,8 @@
     - revolutionaries
   name: rev-title
   description: rev-description
-  showInVote: false
+  showInVote: true
+  hide: true
   rules:
     - Revolutionary
     - SubGamemodesRule
@@ -156,7 +140,8 @@
   - zomber
   name: zombie-title
   description: zombie-description
-  showInVote: false
+  showInVote: true
+  hide: true
   rules:
   - Zombie
   - BasicStationEventScheduler
