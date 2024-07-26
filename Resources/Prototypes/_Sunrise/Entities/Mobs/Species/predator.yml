@@ -56,4 +56,4 @@
 - type: entity
   parent: BaseSpeciesDummy
   id: MobPredatorDummy
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
