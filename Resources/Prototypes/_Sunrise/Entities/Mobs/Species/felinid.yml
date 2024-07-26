@@ -18,7 +18,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.25
+          radius: 0.20
         density: 50
         restitution: 0.0
         mask:
@@ -39,18 +39,6 @@
     speedModifierThresholds:
       30: 0.7
       40: 0.5
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.25
-        density: 50
-        restitution: 0.0
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
   - type: MeleeWeapon
     hidden: true
     soundHit:
