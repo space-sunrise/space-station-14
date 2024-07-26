@@ -515,6 +515,7 @@ namespace Content.Server.GameTicking
             ResettingCleanup();
             IncrementRoundNumber();
             SendRoundStartingDiscordMessage();
+            _statsBoardSystem.CleanEntries(); // Sunrise-Edit
 
             if (!LobbyEnabled)
             {
