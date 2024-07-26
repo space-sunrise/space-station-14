@@ -11,7 +11,7 @@
       - EvilTwinRole
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: [BaseEvilTwinObjective, BaseLivingObjective]
   id: EscapeShuttleTwinObjective
   name: Улететь на эвакуационном шаттле
@@ -25,7 +25,7 @@
     - type: EscapeShuttleCondition
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: [BaseEvilTwinObjective, BaseKillObjective]
   id: KillTwinObjective
   name: Устранить оригинал

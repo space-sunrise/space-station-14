@@ -1,5 +1,4 @@
 using Content.Server.Speech.Components;
-using Robust.Shared.Random;
 
 namespace Content.Server.Speech.EntitySystems
 {
@@ -8,8 +7,23 @@ namespace Content.Server.Speech.EntitySystems
         private static readonly IReadOnlyDictionary<string, string> SpecialWords = new Dictionary<string, string>()
         {
             { "you", "wu" },
+            { "You", "Wu"},
+            { "cute", "kawaii" },
+            { "Cute", "Kawaii" },
+            { "cat", "kitty" },
+            { "Cat", "Kitty" },
+            { "kiss", "mwah" },
+            { "Kiss", "Mwah" },
+            { "good", "guwd" },
+            { "Good", "Guwd" },
+            { "no", "nuu" },
+            { "No", "Nuu" },
             { "ты", "ти" }, // Russian-Localization
+            { "Ты", "Ти" },
+            { "маленький", "мавенки" },
+            { "Маленький", "Мавенки" },
         };
+
 
         public override void Initialize()
         {

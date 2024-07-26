@@ -100,6 +100,7 @@ public sealed class StatsBoardSystem : EntitySystem
 
         if (!TryComp<MetaDataComponent>(ev.Item, out var metaDataComponent))
             return;
+
         if (metaDataComponent.EntityPrototype == null)
             return;
         switch (metaDataComponent.EntityPrototype.ID)
@@ -116,7 +117,7 @@ public sealed class StatsBoardSystem : EntitySystem
         if (!_statisticEntries.TryGetValue(uid, out var value))
             return;
 
-        _statisticEntries[uid].CuffedCount += 1;
+        value.CuffedCount += 1;
         if (_clownCuffed.clown != null)
             return;
         if (!HasComp<ClumsyComponent>(uid))
@@ -132,13 +133,13 @@ public sealed class StatsBoardSystem : EntitySystem
 
         if (ev.Currency != "Telecrystal")
             return;
-        if (_statisticEntries[uid].SpentTk == null)
+        if (value.SpentTk == null)
         {
-            _statisticEntries[uid].SpentTk = ev.Cost.Int();
+            value.SpentTk = ev.Cost.Int();
         }
         else
         {
-            _statisticEntries[uid].SpentTk += ev.Cost.Int();
+            value.SpentTk += ev.Cost.Int();
         }
     }
 
@@ -147,7 +148,7 @@ public sealed class StatsBoardSystem : EntitySystem
         if (!_statisticEntries.TryGetValue(uid, out var value))
             return;
 
-        _statisticEntries[uid].ElectrocutedCount += 1;
+        value.ElectrocutedCount += 1;
     }
 
     private void OnDoorEmagged(EntityUid uid, ActorComponent comp, ref DoorEmaggedEvent ev)
@@ -155,7 +156,7 @@ public sealed class StatsBoardSystem : EntitySystem
         if (!_statisticEntries.TryGetValue(uid, out var value))
             return;
 
-        _statisticEntries[uid].DoorEmagedCount += 1;
+        value.DoorEmagedCount += 1;
     }
 
     private void OnInteractionAttempt(EntityUid uid, ActorComponent comp, InteractionAttemptEvent args)
@@ -170,9 +171,9 @@ public sealed class StatsBoardSystem : EntitySystem
         var entityPrototype = MetaData(args.Target.Value).EntityPrototype;
         if (entityPrototype is not { ID: "CaptainIDCard" })
             return;
-        if (_statisticEntries[uid].IsInteractedCaptainCard)
+        if (value.IsInteractedCaptainCard)
             return;
-        _statisticEntries[uid].IsInteractedCaptainCard = true;
+        value.IsInteractedCaptainCard = true;
     }
 
     private void OnCreamedEvent(EntityUid uid, ActorComponent comp, ref CreamedEvent ev)
@@ -180,7 +181,7 @@ public sealed class StatsBoardSystem : EntitySystem
         if (!_statisticEntries.TryGetValue(uid, out var value))
             return;
 
-        _statisticEntries[uid].CreamedCount += 1;
+        value.CreamedCount += 1;
     }
 
     private void OnMobStateChanged(EntityUid uid, ActorComponent comp, MobStateChangedEvent args)
@@ -192,7 +193,7 @@ public sealed class StatsBoardSystem : EntitySystem
         {
             case MobState.Dead:
             {
-                _statisticEntries[uid].DeadCount += 1;
+                value.DeadCount += 1;
 
                 EntityUid? origin = null;
                 if (args.Origin != null)
@@ -215,13 +216,16 @@ public sealed class StatsBoardSystem : EntitySystem
                         _hamsterKiller = origin.Value;
                     }
 
+                    if (!_statisticEntries.TryGetValue(origin.Value, out var originEntry))
+                        return;
+
                     if (_tagSystem.HasTag(uid, "Mouse"))
                     {
-                        _statisticEntries[origin.Value].KilledMouseCount += 1;
+                        originEntry.KilledMouseCount += 1;
                     }
 
                     if (HasComp<HumanoidAppearanceComponent>(uid))
-                        _statisticEntries[origin.Value].HumanoidKillCount += 1;
+                        originEntry.HumanoidKillCount += 1;
                 }
 
                 break;
@@ -279,7 +283,7 @@ public sealed class StatsBoardSystem : EntitySystem
             return;
 
         if (HasComp<HumanoidAppearanceComponent>(uid))
-            _statisticEntries[uid].SlippedCount += 1;
+            value.SlippedCount += 1;
     }
 
     private StationBankAccountComponent? GetBankAccount(EntityUid? uid)
@@ -303,14 +307,14 @@ public sealed class StatsBoardSystem : EntitySystem
 
             if (TryComp<TransformComponent>(ent, out var transformComponent) &&
                 transformComponent.GridUid == null && HasComp<HumanoidAppearanceComponent>(ent))
-                _statisticEntries[ent].SpaceTime += TimeSpan.FromSeconds(frameTime);
+                value.SpaceTime += TimeSpan.FromSeconds(frameTime);
 
             if (TryComp<CuffableComponent>(ent, out var cuffableComponent) &&
                 !cuffableComponent.CanStillInteract)
-                _statisticEntries[ent].CuffedTime += TimeSpan.FromSeconds(frameTime);
+                value.CuffedTime += TimeSpan.FromSeconds(frameTime);
 
             if (HasComp<SleepingComponent>(ent))
-                _statisticEntries[ent].SleepTime += TimeSpan.FromSeconds(frameTime);
+                value.SleepTime += TimeSpan.FromSeconds(frameTime);
         }
     }
 
@@ -503,16 +507,14 @@ public sealed class StatsBoardSystem : EntitySystem
         if (_firstMurder.victim != null)
         {
             var victimUsername = TryGetUsername(_firstMurder.victim.Value);
-            var victimName = TryGetName(_firstMurder.victim.Value,
-                _statisticEntries[_firstMurder.victim.Value].Name);
+            var victimName = TryGetName(_firstMurder.victim.Value);
             var victimUsernameColor = victimUsername != null ? $" ([color=gray]{victimUsername}[/color])" : "";
             result += $"\nПервая жертва станции - [color=white]{victimName}[/color]{victimUsernameColor}.";
             result += $"\nВремя смерти - [color=yellow]{_firstMurder.time.ToString("hh\\:mm\\:ss")}[/color].";
             if (_firstMurder.killer != null)
             {
                 var killerUsername = TryGetUsername(_firstMurder.killer.Value);
-                var killerName = TryGetName(_firstMurder.killer.Value,
-                    _statisticEntries[_firstMurder.killer.Value].Name);
+                var killerName = TryGetName(_firstMurder.killer.Value);
                 var killerUsernameColor = killerUsername != null ? $" ([color=gray]{killerUsername}[/color])" : "";
                 result +=
                     $"\nУбийца - [color=white]{killerName}[/color]{killerUsernameColor}.";
@@ -531,8 +533,7 @@ public sealed class StatsBoardSystem : EntitySystem
         if (mostSlippedCharacter != null && maxSlippedCount > 1)
         {
             var username = TryGetUsername(mostSlippedCharacter.Value);
-            var name = TryGetName(mostSlippedCharacter.Value,
-                _statisticEntries[mostSlippedCharacter.Value].Name);
+            var name = TryGetName(mostSlippedCharacter.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
             result +=
                 $"\nБольше всех раз поскользнулся [color=white]{name}[/color]{usernameColor} - [color=white]{maxSlippedCount}[/color].";
@@ -546,8 +547,7 @@ public sealed class StatsBoardSystem : EntitySystem
         if (mostDeadCharacter != null && maxDeadCount > 1)
         {
             var username = TryGetUsername(mostDeadCharacter.Value);
-            var name = TryGetName(mostDeadCharacter.Value,
-                _statisticEntries[mostDeadCharacter.Value].Name);
+            var name = TryGetName(mostDeadCharacter.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
             result +=
                 $"\nБольше всего раз умирал [color=white]{name}[/color]{usernameColor}, а именно [color=white]{maxDeadCount}[/color] раз.";
@@ -561,8 +561,7 @@ public sealed class StatsBoardSystem : EntitySystem
         if (mostDoorEmagedCharacter != null)
         {
             var username = TryGetUsername(mostDoorEmagedCharacter.Value);
-            var name = TryGetName(mostDoorEmagedCharacter.Value,
-                _statisticEntries[mostDoorEmagedCharacter.Value].Name);
+            var name = TryGetName(mostDoorEmagedCharacter.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
             result +=
                 $"\nБольше всего шлюзов емагнул - [color=white]{name}[/color]{usernameColor} - [color=white]{maxDoorEmagedCount}[/color] раз.";
@@ -581,8 +580,7 @@ public sealed class StatsBoardSystem : EntitySystem
         if (mostKillsMiceCharacter != null && maxKillsMice > 1)
         {
             var username = TryGetUsername(mostKillsMiceCharacter.Value);
-            var name = TryGetName(mostKillsMiceCharacter.Value,
-                _statisticEntries[mostKillsMiceCharacter.Value].Name);
+            var name = TryGetName(mostKillsMiceCharacter.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
             result += $"\n{name}[/color]{usernameColor} устроил геноцид, убив [color=white]{maxKillsMice}[/color] мышей.";
         }
@@ -590,8 +588,7 @@ public sealed class StatsBoardSystem : EntitySystem
         if (_hamsterKiller != null)
         {
             var username = TryGetUsername(_hamsterKiller.Value);
-            var name = TryGetName(_hamsterKiller.Value,
-                _statisticEntries[_hamsterKiller.Value].Name);
+            var name = TryGetName(_hamsterKiller.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
             result +=
                 $"\nУбийцей гамлета был [color=white]{name}[/color]{usernameColor}.";
@@ -605,8 +602,7 @@ public sealed class StatsBoardSystem : EntitySystem
         if (playerWithLongestCuffedTime != null)
         {
             var username = TryGetUsername(playerWithLongestCuffedTime.Value);
-            var name = TryGetName(playerWithLongestCuffedTime.Value,
-                _statisticEntries[playerWithLongestCuffedTime.Value].Name);
+            var name = TryGetName(playerWithLongestCuffedTime.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
             result +=
                 $"\nБольше всего времени в наручниках провёл [color=white]{name}[/color]{usernameColor} - [color=yellow]{maxCuffedTime.ToString("hh\\:mm\\:ss")}[/color].";
@@ -620,8 +616,7 @@ public sealed class StatsBoardSystem : EntitySystem
         if (playerWithLongestSleepTime != null)
         {
             var username = TryGetUsername(playerWithLongestSleepTime.Value);
-            var name = TryGetName(playerWithLongestSleepTime.Value,
-                _statisticEntries[playerWithLongestSleepTime.Value].Name);
+            var name = TryGetName(playerWithLongestSleepTime.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
             result += $"\nГлавной соней станции оказался [color=white]{name}[/color]{usernameColor}.";
             result += $"\nОн спал на протяжении [color=yellow]{maxSleepTime.ToString("hh\\:mm\\:ss")}[/color].";
@@ -630,8 +625,7 @@ public sealed class StatsBoardSystem : EntitySystem
         if (playerWithLongestSpaceTime != null)
         {
             var username = TryGetUsername(playerWithLongestSpaceTime.Value);
-            var name = TryGetName(playerWithLongestSpaceTime.Value,
-                _statisticEntries[playerWithLongestSpaceTime.Value].Name);
+            var name = TryGetName(playerWithLongestSpaceTime.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
             result +=
                 $"\nБольше всего времени в космосе провел [color=white]{name}[/color]{usernameColor} - [color=yellow]{maxSpaceTime.ToString("hh\\:mm\\:ss")}[/color].";
@@ -640,8 +634,7 @@ public sealed class StatsBoardSystem : EntitySystem
         if (_clownCuffed.clown != null && _clownCuffed.time != null)
         {
             var username = TryGetUsername(_clownCuffed.clown.Value);
-            var name = TryGetName(_clownCuffed.clown.Value,
-                _statisticEntries[_clownCuffed.clown.Value].Name);
+            var name = TryGetName(_clownCuffed.clown.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
             result +=
                 $"\nКлоун [color=white]{name}[/color]{usernameColor} был закован всего спустя [color=yellow]{_clownCuffed.time.Value.ToString("hh\\:mm\\:ss")}[/color].";
@@ -655,8 +648,7 @@ public sealed class StatsBoardSystem : EntitySystem
         if (playerWithMostInflictedHeal != null)
         {
             var username = TryGetUsername(playerWithMostInflictedHeal.Value);
-            var name = TryGetName(playerWithMostInflictedHeal.Value,
-                _statisticEntries[playerWithMostInflictedHeal.Value].Name);
+            var name = TryGetName(playerWithMostInflictedHeal.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
             result +=
                 $"\nБольше всего урона игрокам вылечил [color=white]{name}[/color]{usernameColor} - [color=white]{maxInflictedHeal}[/color].";
@@ -670,8 +662,7 @@ public sealed class StatsBoardSystem : EntitySystem
         if (playerWithMostInflictedDamage != null)
         {
             var username = TryGetUsername(playerWithMostInflictedDamage.Value);
-            var name = TryGetName(playerWithMostInflictedDamage.Value,
-                _statisticEntries[playerWithMostInflictedDamage.Value].Name);
+            var name = TryGetName(playerWithMostInflictedDamage.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
             result +=
                 $"\nБольше всего урона нанес [color=white]{name}[/color]{usernameColor} - [color=white]{maxInflictedDamage}[/color].";
@@ -680,8 +671,7 @@ public sealed class StatsBoardSystem : EntitySystem
         if (playerWithMinSpentTk != null)
         {
             var username = TryGetUsername(playerWithMinSpentTk.Value);
-            var name = TryGetName(playerWithMinSpentTk.Value,
-                _statisticEntries[playerWithMinSpentTk.Value].Name);
+            var name = TryGetName(playerWithMinSpentTk.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
             result +=
                 $"\nМеньше всего телекристалов потратил [color=white]{name}[/color]{usernameColor} - [color=white]{minSpentTk}[/color]ТК.";
@@ -690,8 +680,7 @@ public sealed class StatsBoardSystem : EntitySystem
         if (playerWithMaxHumKills != null && maxHumKillCount > 1)
         {
             var username = TryGetUsername(playerWithMaxHumKills.Value);
-            var name = TryGetName(playerWithMaxHumKills.Value,
-                _statisticEntries[playerWithMaxHumKills.Value].Name);
+            var name = TryGetName(playerWithMaxHumKills.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
             result += $"\nНастоящим маньяком в этой смене был [color=white]{name}[/color]{usernameColor}.";
             result += $"\nОн убил [color=white]{maxHumKillCount}[/color] гуманоидов.";
@@ -700,8 +689,7 @@ public sealed class StatsBoardSystem : EntitySystem
         if (playerWithMaxDamage != null)
         {
             var username = TryGetUsername(playerWithMaxDamage.Value);
-            var name = TryGetName(playerWithMaxDamage.Value,
-                _statisticEntries[playerWithMaxDamage.Value].Name);
+            var name = TryGetName(playerWithMaxDamage.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
             result +=
                 $"\nБольше всего урона получил [color=white]{name}[/color]{usernameColor} - [color=white]{maxTakeDamage}[/color]. Вот бедняга.";
@@ -715,8 +703,7 @@ public sealed class StatsBoardSystem : EntitySystem
         if (playerWithMostPuddleAbsorb != null && maxPuddleAbsorb > 1)
         {
             var username = TryGetUsername(playerWithMostPuddleAbsorb.Value);
-            var name = TryGetName(playerWithMostPuddleAbsorb.Value,
-                _statisticEntries[playerWithMostPuddleAbsorb.Value].Name);
+            var name = TryGetName(playerWithMostPuddleAbsorb.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
             result +=
                 $"\nБольше всего луж было убрано благодаря [color=white]{name}[/color]{usernameColor} - [color=white]{maxPuddleAbsorb}[/color].";
@@ -749,8 +736,14 @@ public sealed class StatsBoardSystem : EntitySystem
         return username;
     }
 
-    private string TryGetName(EntityUid uid, string savedName)
+    private string TryGetName(EntityUid uid)
     {
-        return TryComp<MetaDataComponent>(uid, out var metaDataComponent) ? metaDataComponent.EntityName : savedName;
+        if (_statisticEntries.TryGetValue(uid, out var value))
+            return value.Name;
+
+        if (TryComp<MetaDataComponent>(uid, out var metaDataComponent))
+            return metaDataComponent.EntityName;
+
+        return "Кто это блядь?";
     }
 }

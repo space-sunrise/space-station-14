@@ -1,7 +1,7 @@
 ﻿- type: entity
   parent: BaseGameRule
   id: FugitiveSpawn
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
     weight: 10

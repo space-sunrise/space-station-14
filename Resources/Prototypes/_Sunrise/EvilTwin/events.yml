@@ -1,7 +1,7 @@
 ﻿- type: entity
   parent: BaseGameRule
   id: EvilTwinSpawn
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
     minimumPlayers: 2

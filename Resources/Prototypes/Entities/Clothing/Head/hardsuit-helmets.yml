@@ -63,6 +63,8 @@
     coefficient: 0.005
   - type: FireProtection
     reduction: 0.2
+  - type: EyeProtection
+  - type: FlashImmunity
 
 #Engineering Hardsuit
 - type: entity
@@ -80,6 +82,8 @@
   - type: PressureProtection
     highPressureMultiplier: 0.1
     lowPressureMultiplier: 1000
+  - type: EyeProtection
+  - type: FlashImmunity
 
 #Spationaut Hardsuit
 - type: entity
@@ -138,7 +142,7 @@
 - type: entity
   parent: ClothingHeadHardsuitBase
   id: ClothingHeadHelmetHardsuitMaxim
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: salvager maxim helmet
   description: A predication of decay washes over your mind.
   components:
@@ -180,6 +184,7 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: FlashImmunity
 
 #Brigmedic Hardsuit
 - type: entity
@@ -206,6 +211,7 @@
   - type: PressureProtection
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
+  - type: FlashImmunity
 
 #Warden's Hardsuit
 - type: entity
@@ -230,6 +236,7 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: FlashImmunity
 
 #Captain's Hardsuit
 - type: entity
@@ -264,6 +271,8 @@
     lowPressureMultiplier: 1000
   - type: FireProtection
     reduction: 0.2
+  - type: EyeProtection
+  - type: FlashImmunity
 
 #Chief Medical Officer's Hardsuit
 - type: entity
@@ -322,6 +331,7 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: FlashImmunity
 
 #Luxury Mining Hardsuit
 - type: entity
@@ -558,6 +568,7 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: FlashImmunity
 
 #ERT Chaplain Hardsuit
 - type: entity
@@ -572,6 +583,7 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertchaplain.rsi
   - type: PointLight
     color: "#ffffff"
+  - type: FlashImmunity
 
 #ERT Engineer Hardsuit
 - type: entity
@@ -593,6 +605,8 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: FlashImmunity
+  - type: EyeProtection
 
 #ERT Medical Hardsuit
 - type: entity
@@ -607,6 +621,7 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertmedical.rsi
   - type: PointLight
     color: "#adffec"
+  - type: FlashImmunity
 
 #ERT Security Hardsuit
 - type: entity
@@ -628,6 +643,7 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: FlashImmunity
 
 #ERT Janitor Hardsuit
 - type: entity
@@ -642,6 +658,7 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertjanitor.rsi
   - type: PointLight
     color: "#cbadff"
+  - type: FlashImmunity
 
 #CBURN Hardsuit
 - type: entity
@@ -709,6 +726,8 @@
         Heat: 0.80
         Radiation: 0.80
         Caustic: 0.95
+  - type: FlashImmunity
+  - type: EyeProtection
 
 #MISC. HARDSUITS
 #Clown Hardsuit
