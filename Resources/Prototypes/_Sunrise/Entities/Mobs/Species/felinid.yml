@@ -10,7 +10,7 @@
     speechVerb: Felinid
     allowedEmotes: ['Mew', 'Meow', 'Hisses', 'Purr']
   - type: Sprite
-    scale: 0.75, 0.75
+    scale: 0.95, 0.95
   - type: HumanoidAppearance
     species: Felinid
   - type: Fixtures
