@@ -556,6 +556,9 @@
 
 - type: Tag
   id: Ectoplasm
+  
+- type: Tag
+  id: EnergySwordBiocode
 
 - type: Tag
   id: Egg

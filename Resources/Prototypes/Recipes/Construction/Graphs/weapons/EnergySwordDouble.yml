@@ -1,0 +1,23 @@
+- type: constructionGraph
+  id: EnergySwordDoubleGraph
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: DoubleEnergySwordNode
+          steps:
+            - tag: EnergySwordBiocode
+              icon:
+                sprite: Objects/Weapons/Melee/e_sword.rsi
+                state: e_sword
+              name: Энергетический меч
+            - tag: EnergySwordBiocode
+              icon:
+                sprite: Objects/Weapons/Melee/e_sword.rsi
+                state: e_sword
+              name: Энергетический меч
+            - material: Cable
+              amount: 10
+              doAfter: 4
+    - node: DoubleEnergySwordNode
+      entity: EnergySwordDoubleBiocode
