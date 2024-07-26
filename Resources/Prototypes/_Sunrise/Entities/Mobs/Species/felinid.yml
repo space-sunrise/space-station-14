@@ -13,18 +13,6 @@
     scale: 0.75, 0.75
   - type: HumanoidAppearance
     species: Felinid
-  - type: Fixtures
-    fixtures: # TODO: This needs a second fixture just for mob collisions.
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.20
-        density: 50
-        restitution: 0.0
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
   - type: Body
     prototype: Felinid
   - type: Damageable
