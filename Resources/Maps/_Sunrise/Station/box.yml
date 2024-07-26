@@ -8546,8 +8546,8 @@ entities:
           id: docking46345
           localAnchorB: -0.5,-1
           localAnchorA: -66.5,22
-          damping: 42.400917
-          stiffness: 380.58975
+          damping: 42.400925
+          stiffness: 380.5898
     - type: OccluderTree
     - type: Shuttle
     - type: RadiationGridResistance
@@ -38130,6 +38130,11 @@ entities:
     components:
     - type: Transform
       pos: -21.5,25.5
+      parent: 8364
+  - uid: 21361
+    components:
+    - type: Transform
+      pos: 26.5,14.5
       parent: 8364
   - uid: 21452
     components:
@@ -123206,6 +123211,25 @@ entities:
       rot: 0.0004530529258772731 rad
       pos: 74.7369,-19.349794
       parent: 8364
+- proto: MigrationVendingMachineKink
+  entities:
+  - uid: 21359
+    components:
+    - type: Transform
+      pos: 23.5,15.5
+      parent: 8364
+  - uid: 21360
+    components:
+    - type: Transform
+      pos: 10.5,12.5
+      parent: 8364
+- proto: MigrationVendingMachinePants
+  entities:
+  - uid: 21358
+    components:
+    - type: Transform
+      pos: 22.5,15.5
+      parent: 8364
 - proto: Mirror
   entities:
   - uid: 6260
@@ -126156,14 +126180,6 @@ entities:
     components:
     - type: Transform
       pos: 12.5,-11.5
-      parent: 8364
-    - type: ContainerContainer
-      containers:
-        stash: !type:ContainerSlot {}
-  - uid: 6560
-    components:
-    - type: Transform
-      pos: 27.5,15.5
       parent: 8364
     - type: ContainerContainer
       containers:
@@ -139364,7 +139380,7 @@ entities:
     - type: Transform
       pos: 4.5,34.5
       parent: 8364
-- proto: SignAtmosMinsky
+- proto: SignAtmos
   entities:
   - uid: 22926
     components:
@@ -139433,17 +139449,15 @@ entities:
       parent: 8364
 - proto: SignChem
   entities:
-  - uid: 18609
-    components:
-    - type: Transform
-      pos: 23.5,-16.5
-      parent: 8364
-- proto: SignChemistry1
-  entities:
   - uid: 8023
     components:
     - type: Transform
       pos: 18.5,-23.5
+      parent: 8364
+  - uid: 18609
+    components:
+    - type: Transform
+      pos: 23.5,-16.5
       parent: 8364
 - proto: SignCloning
   entities:
@@ -139783,13 +139797,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 17.490667,-11.707433
       parent: 8364
-- proto: SignDrones
-  entities:
-  - uid: 21495
-    components:
-    - type: Transform
-      pos: -51.5,-3.5
-      parent: 8364
 - proto: SignElectricalMed
   entities:
   - uid: 764
@@ -139938,7 +139945,7 @@ entities:
     - type: Transform
       pos: -8.5,-28.5
       parent: 8364
-- proto: SignHydro3
+- proto: SignHydro1
   entities:
   - uid: 13393
     components:
@@ -140014,6 +140021,13 @@ entities:
     components:
     - type: Transform
       pos: -18.5,-16.5
+      parent: 8364
+- proto: SignMaterials
+  entities:
+  - uid: 21495
+    components:
+    - type: Transform
+      pos: -51.5,-3.5
       parent: 8364
 - proto: SignMedical
   entities:
@@ -140211,15 +140225,13 @@ entities:
     - type: Transform
       pos: 64.5,-25.5
       parent: 8364
-- proto: SignScience1
+- proto: SignScience
   entities:
   - uid: 11319
     components:
     - type: Transform
       pos: 72.5,-15.5
       parent: 8364
-- proto: SignScience2
-  entities:
   - uid: 21761
     components:
     - type: Transform
@@ -140550,17 +140562,15 @@ entities:
       parent: 8364
 - proto: SignToxins
   entities:
-  - uid: 5296
-    components:
-    - type: Transform
-      pos: 64.5,-34.5
-      parent: 8364
-- proto: SignToxins2
-  entities:
   - uid: 5295
     components:
     - type: Transform
       pos: 69.5,-43.5
+      parent: 8364
+  - uid: 5296
+    components:
+    - type: Transform
+      pos: 64.5,-34.5
       parent: 8364
 - proto: SignVirology
   entities:
@@ -149043,8 +149053,6 @@ entities:
     - type: Transform
       pos: 29.5,-0.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineAtmosDrobe
   entities:
   - uid: 22972
@@ -149052,8 +149060,6 @@ entities:
     - type: Transform
       pos: 5.5,-46.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineBooze
   entities:
   - uid: 13252
@@ -149061,22 +149067,16 @@ entities:
     - type: Transform
       pos: -38.5,18.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 14098
     components:
     - type: Transform
       pos: 12.5,-17.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 19154
     components:
     - type: Transform
       pos: 31.5,-3.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineCargoDrobe
   entities:
   - uid: 10200
@@ -149084,8 +149084,6 @@ entities:
     - type: Transform
       pos: -30.5,-22.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineCart
   entities:
   - uid: 6452
@@ -149093,8 +149091,6 @@ entities:
     - type: Transform
       pos: -8.5,-21.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineChang
   entities:
   - uid: 5238
@@ -149102,15 +149098,11 @@ entities:
     - type: Transform
       pos: 57.5,-37.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 17860
     components:
     - type: Transform
       pos: 44.5,-31.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineChapel
   entities:
   - uid: 11147
@@ -149118,8 +149110,6 @@ entities:
     - type: Transform
       pos: 63.5,3.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineChefDrobe
   entities:
   - uid: 7068
@@ -149127,8 +149117,6 @@ entities:
     - type: Transform
       pos: 33.5,-4.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineChefvend
   entities:
   - uid: 10449
@@ -149136,8 +149124,6 @@ entities:
     - type: Transform
       pos: 35.5,-2.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineChemDrobe
   entities:
   - uid: 16331
@@ -149145,8 +149131,6 @@ entities:
     - type: Transform
       pos: 21.5,-27.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineChemicals
   entities:
   - uid: 17152
@@ -149154,8 +149138,6 @@ entities:
     - type: Transform
       pos: 22.5,-21.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineCigs
   entities:
   - uid: 940
@@ -149163,71 +149145,51 @@ entities:
     - type: Transform
       pos: -13.5,-12.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 5231
     components:
     - type: Transform
       pos: 68.5,-47.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 5594
     components:
     - type: Transform
       pos: 16.5,39.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 5690
     components:
     - type: Transform
       pos: 5.5,-12.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 12244
     components:
     - type: Transform
       pos: -38.5,5.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 12710
     components:
     - type: Transform
       pos: -55.5,-0.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 14096
     components:
     - type: Transform
       pos: -54.5,-8.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 14233
     components:
     - type: Transform
       pos: -38.5,-4.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 14561
     components:
     - type: Transform
       pos: -18.5,-9.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 21327
     components:
     - type: Transform
       pos: 53.5,-37.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineClothing
   entities:
   - uid: 6924
@@ -149235,15 +149197,11 @@ entities:
     - type: Transform
       pos: 21.5,15.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 14232
     components:
     - type: Transform
       pos: -39.5,-4.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineCoffee
   entities:
   - uid: 5232
@@ -149251,50 +149209,36 @@ entities:
     - type: Transform
       pos: 68.5,-43.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 8465
     components:
     - type: Transform
       pos: 15.5,19.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 10826
     components:
     - type: Transform
       pos: 55.5,-10.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 12463
     components:
     - type: Transform
       pos: -74.5,8.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 17894
     components:
     - type: Transform
       pos: 44.5,-32.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 18745
     components:
     - type: Transform
       pos: 9.5,-51.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 21744
     components:
     - type: Transform
       pos: -32.5,-72.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineCola
   entities:
   - uid: 6451
@@ -149302,15 +149246,11 @@ entities:
     - type: Transform
       pos: 7.5,0.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 14564
     components:
     - type: Transform
       pos: -18.5,-10.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineCondiments
   entities:
   - uid: 6958
@@ -149318,8 +149258,6 @@ entities:
     - type: Transform
       pos: 26.5,-3.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineCuraDrobe
   entities:
   - uid: 14548
@@ -149327,8 +149265,6 @@ entities:
     - type: Transform
       pos: 61.5,-2.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineDetDrobe
   entities:
   - uid: 9419
@@ -149336,8 +149272,6 @@ entities:
     - type: Transform
       pos: -8.5,16.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineDinnerware
   entities:
   - uid: 19772
@@ -149345,8 +149279,6 @@ entities:
     - type: Transform
       pos: 35.5,-4.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineDiscount
   entities:
   - uid: 12690
@@ -149354,8 +149286,6 @@ entities:
     - type: Transform
       pos: -71.5,-16.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineDonut
   entities:
   - uid: 11797
@@ -149363,15 +149293,11 @@ entities:
     - type: Transform
       pos: 82.5,-1.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 21790
     components:
     - type: Transform
       pos: 6.5,33.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineEngiDrobe
   entities:
   - uid: 9189
@@ -149379,8 +149305,6 @@ entities:
     - type: Transform
       pos: 0.5,-66.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineEngivend
   entities:
   - uid: 16557
@@ -149388,8 +149312,6 @@ entities:
     - type: Transform
       pos: 6.5,-59.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineGames
   entities:
   - uid: 15379
@@ -149397,8 +149319,6 @@ entities:
     - type: Transform
       pos: 53.5,2.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineGeneDrobe
   entities:
   - uid: 1906
@@ -149406,8 +149326,6 @@ entities:
     - type: Transform
       pos: 44.5,-22.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineHappyHonk
   entities:
   - uid: 10646
@@ -149415,8 +149333,6 @@ entities:
     - type: Transform
       pos: 35.5,0.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineHydrobe
   entities:
   - uid: 6534
@@ -149424,8 +149340,6 @@ entities:
     - type: Transform
       pos: 49.5,1.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineJaniDrobe
   entities:
   - uid: 4517
@@ -149433,8 +149347,6 @@ entities:
     - type: Transform
       pos: 3.5,-33.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineLawDrobe
   entities:
   - uid: 9416
@@ -149442,8 +149354,6 @@ entities:
     - type: Transform
       pos: -10.5,13.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineMedical
   entities:
   - uid: 5211
@@ -149451,29 +149361,21 @@ entities:
     - type: Transform
       pos: 41.5,-31.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 16753
     components:
     - type: Transform
       pos: 38.5,-26.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 19093
     components:
     - type: Transform
       pos: 18.5,-24.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 19275
     components:
     - type: Transform
       pos: 47.5,-55.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineMediDrobe
   entities:
   - uid: 18322
@@ -149481,8 +149383,6 @@ entities:
     - type: Transform
       pos: 45.5,-22.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineNutri
   entities:
   - uid: 10715
@@ -149490,8 +149390,6 @@ entities:
     - type: Transform
       pos: 45.5,-6.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineRoboDrobe
   entities:
   - uid: 11316
@@ -149499,8 +149397,6 @@ entities:
     - type: Transform
       pos: 63.5,-24.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineRobotics
   entities:
   - uid: 11912
@@ -149508,8 +149404,6 @@ entities:
     - type: Transform
       pos: 56.5,-24.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineSalvage
   entities:
   - uid: 21793
@@ -149517,8 +149411,6 @@ entities:
     - type: Transform
       pos: -27.5,-29.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineSciDrobe
   entities:
   - uid: 5503
@@ -149526,8 +149418,6 @@ entities:
     - type: Transform
       pos: 74.5,-28.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineSec
   entities:
   - uid: 9074
@@ -149535,8 +149425,6 @@ entities:
     - type: Transform
       pos: 6.5,38.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineSecDrobe
   entities:
   - uid: 2943
@@ -149544,22 +149432,16 @@ entities:
     - type: Transform
       pos: -60.5,5.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 9142
     components:
     - type: Transform
       pos: 6.5,39.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 17677
     components:
     - type: Transform
       pos: -21.5,-31.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineSeeds
   entities:
   - uid: 10713
@@ -149567,8 +149449,6 @@ entities:
     - type: Transform
       pos: 46.5,-6.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineSeedsUnlocked
   entities:
   - uid: 9113
@@ -149576,8 +149456,6 @@ entities:
     - type: Transform
       pos: 4.5,51.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineSnack
   entities:
   - uid: 6450
@@ -149585,15 +149463,11 @@ entities:
     - type: Transform
       pos: 7.5,1.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 12473
     components:
     - type: Transform
       pos: -73.5,-3.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineSovietSoda
   entities:
   - uid: 21642
@@ -149601,15 +149475,11 @@ entities:
     - type: Transform
       pos: 61.5,19.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 26548
     components:
     - type: Transform
       pos: -24.5,45.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineSustenance
   entities:
   - uid: 8757
@@ -149617,8 +149487,6 @@ entities:
     - type: Transform
       pos: 3.5,51.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineTankDispenserEngineering
   entities:
   - uid: 22806
@@ -149626,8 +149494,6 @@ entities:
     - type: Transform
       pos: 63.5,-33.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineTankDispenserEVA
   entities:
   - uid: 5507
@@ -149635,36 +149501,26 @@ entities:
     - type: Transform
       pos: 75.5,-43.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 14610
     components:
     - type: Transform
       pos: -28.5,-29.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 20910
     components:
     - type: Transform
       pos: 4.5,-44.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 26809
     components:
     - type: Transform
       pos: -8.5,9.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 27402
     components:
     - type: Transform
       pos: 8.5,-77.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineTheater
   entities:
   - uid: 6688
@@ -149672,8 +149528,6 @@ entities:
     - type: Transform
       pos: 22.5,6.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineVendomat
   entities:
   - uid: 12246
@@ -149681,15 +149535,11 @@ entities:
     - type: Transform
       pos: -46.5,5.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 16127
     components:
     - type: Transform
       pos: -3.5,-39.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineViroDrobe
   entities:
   - uid: 18643
@@ -149697,8 +149547,6 @@ entities:
     - type: Transform
       pos: 37.5,-53.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineWallMedical
   entities:
   - uid: 19016
@@ -149706,24 +149554,18 @@ entities:
     - type: Transform
       pos: 34.5,-33.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineWinter
   entities:
+  - uid: 6560
+    components:
+    - type: Transform
+      pos: 27.5,15.5
+      parent: 8364
   - uid: 10466
     components:
     - type: Transform
       pos: -40.5,-4.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
-  - uid: 27533
-    components:
-    - type: Transform
-      pos: 22.5,15.5
-      parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: VendingMachineYouTool
   entities:
   - uid: 12245
@@ -149731,22 +149573,16 @@ entities:
     - type: Transform
       pos: -37.5,5.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 16558
     components:
     - type: Transform
       pos: 5.5,-59.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
   - uid: 27437
     components:
     - type: Transform
       pos: 6.5,-65.5
       parent: 8364
-    - type: VendingMachine
-      startingPlayerCount: 1
 - proto: WallmountTelescreen
   entities:
   - uid: 8441

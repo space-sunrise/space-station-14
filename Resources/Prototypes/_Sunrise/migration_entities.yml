@@ -1,0 +1,28 @@
+﻿# This is used to migrate different vending machines for other builds without remapping
+# Используется для миграции различных автоматов под другие билды чтобы не ремапить
+
+- type: entity
+  id: BaseMigration
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    layers:
+    - sprite: Objects/Fun/mech_figurines.rsi
+      state: gygax
+  - type: Marker
+  - type: Clickable
+  - type: InteractionOutline
+
+- type: entity
+  name: "Migration [DO NOT DELETE]"
+  parent: BaseMigration
+  id: MigrationVendingMachineKink
+
+- type: entity
+  name: "Migration [DO NOT DELETE]"
+  parent: BaseMigration
+  id: MigrationVendingMachinePants
