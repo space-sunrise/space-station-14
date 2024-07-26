@@ -4,7 +4,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Sunrise.StatsBoard;
 
 [Serializable, NetSerializable]
-public sealed partial class StatisticEntry(string name, NetUserId userId)
+public sealed partial class SharedStatisticEntry(string name, NetUserId userId)
 {
     public string Name { get; set; } = name;
     public NetUserId FirstActor { get; set; } = userId;
