@@ -36,7 +36,7 @@
     - BaseStationCryoTeleport
     - BaseStationMeteorSwarmTarget
     # Sunrise-End
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: Transform
 
@@ -54,7 +54,7 @@
     - BaseStationDontSelling
     - BaseStationCryoTeleport
     # Sunrise-End
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: Transform
 
@@ -65,6 +65,6 @@
   - BaseStationJobsSpawning
   - BaseStationRecords
   - BaseStationNanotrasen
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: Transform
