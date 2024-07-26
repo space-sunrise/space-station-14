@@ -1,28 +1,4 @@
 ﻿Entries:
-- author: Plykiya
-  changes:
-  - message: You can now pick up Smile and put them in your bag.
-    type: Add
-  id: 6483
-  time: '2024-04-29T02:44:54.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/27458
-- author: Beck Thompson, CoffeePoweredPHD
-  changes:
-  - message: Fixed infinite reagent duplication glitch with toilets and drains.
-    type: Fix
-  - message: Dirty water toilets now function correctly as toilets.
-    type: Fix
-  id: 6484
-  time: '2024-04-29T03:08:41.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/27446
-- author: Nopey
-  changes:
-  - message: Many more items can now be recycled, including mops, medkits, and stun
-      batons.
-    type: Tweak
-  id: 6485
-  time: '2024-04-29T03:36:11.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/24435
 - author: Hanzdegloker
   changes:
   - message: '"Denied" and "Approved" stamps are now guaranteed to appear in the lockers
@@ -3783,3 +3759,28 @@
   id: 6982
   time: '2024-07-25T23:37:54.0000000+00:00'
   url: https://github.com/space-wizards/space-station-14/pull/30173
+- author: Cojoke-dot
+  changes:
+  - message: Engineering goggles and other similar-looking eyewear now help block
+      identity.
+    type: Tweak
+  - message: Radiation suit's hood now blocks identity.
+    type: Fix
+  id: 6983
+  time: '2024-07-26T05:26:05.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/30305
+- author: Moomoobeef
+  changes:
+  - message: Some radio channel colors have been tweaked in order to be more easily
+      distinguishable.
+    type: Tweak
+  id: 6984
+  time: '2024-07-26T06:47:20.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/30133
+- author: Errant
+  changes:
+  - message: Replay ghosts now actually spawn on the proper station, take two.
+    type: Fix
+  id: 6985
+  time: '2024-07-26T12:59:43.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/30273
