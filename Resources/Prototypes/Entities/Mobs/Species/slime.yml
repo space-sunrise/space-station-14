@@ -104,7 +104,7 @@
   - type: Respirator
     damage:
       types:
-        Asphyxiation: 0.2
+        Asphyxiation: 0.5 # Sunrise-Casual
     damageRecovery:
       types:
         Asphyxiation: -1.0
