@@ -2286,6 +2286,9 @@
       collection: FootstepSpiderLegs
       params:
         volume: -10
+  - type: CollectiveMind
+    minds:
+    - Arachnids
   # Sunrise-end
 
 - type: entity
@@ -3311,6 +3314,9 @@
     reformTime: 10
     popupText: diona-reform-attempt
     reformPrototype: MobDionaReformed
+  - type: CollectiveMind
+    minds:
+    - Dioneas
 
 - type: entity
   parent: MobDionaNymph

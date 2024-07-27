@@ -123,6 +123,9 @@
       collection: FootstepSpiderLegs
       params:
         volume: -10
+  - type: CollectiveMind
+    minds:
+    - Arachnids
   # Sunrise-end
 
 - type: entity

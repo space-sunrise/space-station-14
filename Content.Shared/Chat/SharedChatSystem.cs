@@ -1,4 +1,5 @@
 using System.Collections.Frozen;
+using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared.Popups;
 using Content.Shared.Radio;
 using Content.Shared.Speech;
@@ -22,6 +23,7 @@ public abstract class SharedChatSystem : EntitySystem
     public const char AdminPrefix = ']';
     public const char WhisperPrefix = ',';
     public const char DefaultChannelKey = 'р'; // Russian-Localization
+    public const char CollectiveMindPrefix = '+'; // Sunrise-Edit
     // Sunrise-TTS-Start
     public const int VoiceRange = 10; // how far voice goes in world units
     public const int WhisperClearRange = 2; // how far whisper goes while still being understandable, in world units
@@ -44,18 +46,25 @@ public abstract class SharedChatSystem : EntitySystem
     /// </summary>
     private FrozenDictionary<char, RadioChannelPrototype> _keyCodes = default!;
 
+    private FrozenDictionary<char, CollectiveMindPrototype> _mindKeyCodes = default!; // Sunrise-Edit
+
     public override void Initialize()
     {
         base.Initialize();
         DebugTools.Assert(_prototypeManager.HasIndex<RadioChannelPrototype>(CommonChannel));
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypeReload);
         CacheRadios();
+        CacheCollectiveMinds(); // Sunrise-Edit
     }
 
     protected virtual void OnPrototypeReload(PrototypesReloadedEventArgs obj)
     {
         if (obj.WasModified<RadioChannelPrototype>())
             CacheRadios();
+        // Sunrise-Start
+        if (obj.WasModified<CollectiveMindPrototype>())
+            CacheCollectiveMinds();
+        // Sunrise-End
     }
 
     private void CacheRadios()
@@ -63,6 +72,15 @@ public abstract class SharedChatSystem : EntitySystem
         _keyCodes = _prototypeManager.EnumeratePrototypes<RadioChannelPrototype>()
             .ToFrozenDictionary(x => x.KeyCode);
     }
+
+    // Sunrise-Start
+    private void CacheCollectiveMinds()
+    {
+        _prototypeManager.PrototypesReloaded -= OnPrototypeReload;
+        _mindKeyCodes = _prototypeManager.EnumeratePrototypes<CollectiveMindPrototype>()
+            .ToFrozenDictionary(x => x.KeyCode);
+    }
+    // Sunrise-End
 
     /// <summary>
     ///     Attempts to find an applicable <see cref="SpeechVerbPrototype"/> for a speaking entity's message.
@@ -151,6 +169,45 @@ public abstract class SharedChatSystem : EntitySystem
 
         return true;
     }
+
+    // Sunrise-Start
+    public bool TryProccessCollectiveMindMessage(
+        EntityUid source,
+        string input,
+        out string output,
+        out CollectiveMindPrototype? channel,
+        bool quiet = false)
+    {
+        output = input.Trim();
+        channel = null;
+
+        if (input.Length == 0)
+            return false;
+
+        if (!input.StartsWith(CollectiveMindPrefix))
+            return false;
+
+        if (input.Length < 2 || char.IsWhiteSpace(input[1]))
+        {
+            output = SanitizeMessageCapital(input[1..].TrimStart());
+            if (!quiet)
+                _popup.PopupEntity(Loc.GetString("chat-manager-no-radio-key"), source, source);
+            return true;
+        }
+
+        var channelKey = input[1];
+        channelKey = char.ToLower(channelKey);
+        output = SanitizeMessageCapital(input[2..].TrimStart());
+
+        if (_mindKeyCodes.TryGetValue(channelKey, out channel) || quiet)
+            return true;
+
+        var msg = Loc.GetString("chat-manager-no-such-channel", ("key", channelKey));
+        _popup.PopupEntity(msg, source, source);
+
+        return false;
+    }
+    // Sunrise-End
 
     public string SanitizeMessageCapital(string message)
     {
