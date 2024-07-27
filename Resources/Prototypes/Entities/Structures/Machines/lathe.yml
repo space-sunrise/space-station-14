@@ -564,7 +564,7 @@
     runningState: fab-active
     staticRecipes:
     - MMI
-    - Boris
+    - Boris # Sunrise-Edit
     - SciFlash
     - BorgModuleCable
     - BorgModuleFireExtinguisher

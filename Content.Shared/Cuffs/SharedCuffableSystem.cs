@@ -466,6 +466,22 @@ namespace Content.Shared.Cuffs
             return true;
         }
 
+        // Sunrise-Start
+        public bool TryCuffingNow(EntityUid user, EntityUid target, EntityUid handcuff,
+            HandcuffComponent? handcuffComponent = null, CuffableComponent? cuffable = null)
+        {
+            if (!Resolve(handcuff, ref handcuffComponent) || !Resolve(target, ref cuffable, false))
+                return false;
+
+            if (!TryAddNewCuffs(target, user, handcuff, cuffable))
+                return false;
+
+            handcuffComponent.Used = true;
+            _audio.PlayPvs(handcuffComponent.EndCuffSound, handcuff);
+            return true;
+        }
+        // Sunrise-End
+
         /// <returns>False if the target entity isn't cuffable.</returns>
         public bool TryCuffing(EntityUid user, EntityUid target, EntityUid handcuff, HandcuffComponent? handcuffComponent = null, CuffableComponent? cuffable = null)
         {

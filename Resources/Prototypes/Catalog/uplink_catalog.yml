@@ -931,21 +931,22 @@
         tags:
           - NukeOpsUplink
 
-- type: listing
-  id: UplinkReinforcementRadioSyndicateCyborgAssault
-  name:  uplink-reinforcement-radio-cyborg-assault-name
-  description: uplink-reinforcement-radio-cyborg-assault-desc
-  productEntity: ReinforcementRadioSyndicateCyborgAssault
-  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-borg-assault }
-  cost:
-    Telecrystal: 65
-  categories:
-    - UplinkAllies
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - NukeOpsUplink
+# Move to _Sunrise
+#- type: listing
+#  id: UplinkReinforcementRadioSyndicateCyborgAssault
+#  name:  uplink-reinforcement-radio-cyborg-assault-name
+#  description: uplink-reinforcement-radio-cyborg-assault-desc
+#  productEntity: ReinforcementRadioSyndicateCyborgAssault
+#  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-borg-assault }
+#  cost:
+#    Telecrystal: 65
+#  categories:
+#    - UplinkAllies
+#  conditions:
+#    - !type:StoreWhitelistCondition
+#      whitelist:
+#        tags:
+#          - NukeOpsUplink
 
 - type: listing
   id: UplinkReinforcementRadioSyndicateAncestor

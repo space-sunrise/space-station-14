@@ -1,3 +1,4 @@
+using Content.Shared._Sunrise.Abilities;
 using Content.Shared.Alert;
 using Content.Shared.Inventory;
 using Content.Shared.Movement.Components;
@@ -28,6 +29,11 @@ namespace Content.Shared.Gravity
 
             if (TryComp<MovementIgnoreGravityComponent>(uid, out var ignoreGravityComponent))
                 return ignoreGravityComponent.Weightless;
+
+            // Sunrise-Start
+            if (TryComp<BorgMagbootsComponent>(uid, out var borgMagbootsComponent) && borgMagbootsComponent.On)
+                return false;
+            // Sunrise-End
 
             var ev = new IsWeightlessEvent(uid);
             RaiseLocalEvent(uid, ref ev);

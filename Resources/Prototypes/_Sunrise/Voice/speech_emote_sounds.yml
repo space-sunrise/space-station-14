@@ -154,3 +154,10 @@
       collection: PredatorSigh
     Laugh:
       collection: PredatorLaugh
+
+- type: emoteSounds
+  id: Reaper
+  sound:
+    path: /Audio/_Sunrise/Voice/Reaper/reaper_scream.ogg
+    params:
+      volume: -2

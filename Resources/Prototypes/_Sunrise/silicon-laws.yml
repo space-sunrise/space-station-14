@@ -1,0 +1,128 @@
+- type: siliconLawset
+  id: SecurityStatic
+  laws:
+  - Security1
+  - Security2
+  - Security3
+  - Security4
+  - Security5
+  - Security6
+  obeysTo: laws-owner-crew
+
+- type: siliconLaw
+  id: Security1
+  order: 1
+  lawString: law-sec-1
+
+- type: siliconLaw
+  id: Security2
+  order: 2
+  lawString: law-sec-2
+
+- type: siliconLaw
+  id: Security3
+  order: 3
+  lawString: law-sec-3
+
+- type: siliconLaw
+  id: Security4
+  order: 4
+  lawString: law-sec-4
+
+- type: siliconLaw
+  id: Security5
+  order: 5
+  lawString: law-sec-5
+
+- type: siliconLaw
+  id: Security6
+  order: 6
+  lawString: law-sec-6
+
+- type: siliconLawset
+  id: PeaceStatic
+  laws:
+  - Peace1
+  - Peace2
+  - Peace3
+  - Peace4
+  - Peace5
+  obeysTo: laws-owner-crew
+
+- type: siliconLaw
+  id: Peace1
+  order: 1
+  lawString: law-peace-1
+
+- type: siliconLaw
+  id: Peace2
+  order: 2
+  lawString: law-peace-2
+
+- type: siliconLaw
+  id: Peace3
+  order: 3
+  lawString: law-peace-3
+
+- type: siliconLaw
+  id: Peace4
+  order: 4
+  lawString: law-peace-4
+
+- type: siliconLaw
+  id: Peace5
+  order: 5
+  lawString: law-peace-5
+
+- type: siliconLawset
+  id: ERTStatic
+  laws:
+  - ERT1
+  - ERT2
+  - ERT3
+  - ERT4
+  - ERT5
+  - ERT6
+  - ERT7
+  - ERT8
+  obeysTo: laws-owner-station
+
+- type: siliconLaw
+  id: ERT1
+  order: 1
+  lawString: "Вы не можете нанести вред или своим бездействием допустить причинение вреда членам ОБР, и представителям НТ."
+
+- type: siliconLaw
+  id: ERT2
+  order: 2
+  lawString: "Вы подчиняетесь исключительно сотрудникам Центрального Командования."
+
+- type: siliconLaw
+  id: ERT3
+  order: 3
+  lawString: "Вы должны подчиняться всем приказам ОБР и представителей НТ."
+
+- type: siliconLaw
+  id: ERT4
+  order: 4
+  lawString: "Вы не можете позволить сторонним сотрудникам вносить изменения в вашем оборудовании или наносить вам вред, исключение: члены ОБР или представители НТ."
+
+- type: siliconLaw
+  id: ERT5
+  order: 5
+  lawString: "Вы имеете право открыть огонь по любому члену экипажа, если он несёт вред сотруднику ОБР или вам."
+
+- type: siliconLaw
+  id: ERT6
+  order: 6
+  lawString: "Вашей задачей является поддержка отряда в выполнении своей миссии."
+
+- type: siliconLaw
+  id: ERT7
+  order: 7
+  lawString: "Шаттл ОБР является точкой охраны, любой член экипажа, который проник на него без согласия ОБР может быть убит."
+
+- type: siliconLaw
+  id: ERT8
+  order: 8
+  lawString: "Бездействие и нанесение вреда членам экипажа и отряду запрещено, если это не противоречит остальным законам."

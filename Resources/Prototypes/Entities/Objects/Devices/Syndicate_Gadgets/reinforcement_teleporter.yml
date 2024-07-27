@@ -92,18 +92,19 @@
   - type: EmitSoundOnUse
     sound: /Audio/Animals/cat_meow.ogg
 
-- type: entity
-  parent: ReinforcementRadio
-  id: ReinforcementRadioSyndicateCyborgAssault # Reinforcement radio exclusive to nukeops uplink
-  name: syndicate assault cyborg reinforcement radio
-  description: Call in a well armed assault cyborg, instantly!
-  suffix: NukeOps
-  components:
-    - type: GhostRole
-      name: ghost-role-information-syndie-assaultborg-name
-      description: ghost-role-information-syndie-assaultborg-description
-      rules: ghost-role-information-silicon-rules
-      raffle:
-        settings: default
-    - type: GhostRoleMobSpawner
-      prototype: PlayerBorgSyndicateAssaultBattery
+# Move to _Sunrise
+#- type: entity
+#  parent: ReinforcementRadio
+#  id: ReinforcementRadioSyndicateCyborgAssault # Reinforcement radio exclusive to nukeops uplink
+#  name: syndicate assault cyborg reinforcement radio
+#  description: Call in a well armed assault cyborg, instantly!
+#  suffix: NukeOps
+#  components:
+#    - type: GhostRole
+#      name: ghost-role-information-syndie-assaultborg-name
+#      description: ghost-role-information-syndie-assaultborg-description
+#      rules: ghost-role-information-silicon-rules
+#      raffle:
+#        settings: default
+#    - type: GhostRoleMobSpawner
+#      prototype: PlayerBorgSyndicateAssaultBattery
