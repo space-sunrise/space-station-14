@@ -214,16 +214,3 @@
   icon:
     sprite: Objects/Weapons/Bombs/pipebomb.rsi
     state: icon
-    
-- type: construction
-  name: DoubleEnergySword  # Sunrise-recipes
-  id: DoubleEnergySword
-  graph: EnergySwordDoubleGraph
-  startNode: start
-  targetNode: DoubleEnergySwordNode
-  category: construction-category-weapons
-  description: DoubleEnergySword  # Sunrise-recipes
-  icon:
-    sprite: Objects/Weapons/Melee/e_sword_double.rsi
-    state: icon
-  objectType: Item
