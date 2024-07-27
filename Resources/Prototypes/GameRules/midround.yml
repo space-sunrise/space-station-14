@@ -18,14 +18,14 @@
     agentName: thief-round-end-agent-name
     definitions:
     - prefRoles: [ Thief ]
-      max: 15
-      playerRatio: 13
+      max: 15 # Sunrise-Edit
+      playerRatio: 13 # Sunrise-Edit
       lateJoinAdditional: true
       allowNonHumans: true
       multiAntagSetting: NotExclusive
       startingGear: ThiefGear
 #      components:
-#      - type: Pacified # Воры не терпилы
+#      - type: Pacified # Sunrise-Edit: Воры не терпилы
       mindComponents:
       - type: ThiefRole
         prototype: Thief
