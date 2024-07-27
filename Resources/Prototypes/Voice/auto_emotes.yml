@@ -3,7 +3,7 @@
   id: ZombieGroan
   emote: Scream
   interval: 5.0
-  chance: 0.1
+  chance: 0.8 # Sunrise-Edit
   withChat: false
 # Cluwne
 - type: autoEmote
