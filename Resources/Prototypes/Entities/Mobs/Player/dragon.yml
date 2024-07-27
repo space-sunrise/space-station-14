@@ -139,6 +139,11 @@
     tags:
     - CannotSuicide
     - DoorBumpOpener
+  # Sunrise-Start
+  - type: CollectiveMind
+    minds:
+    - Carp
+  # Sunrise-End
 
 - type: entity
   parent: BaseMobDragon
