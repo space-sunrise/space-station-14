@@ -159,9 +159,9 @@
   - type: Gun
     fireRate: 4
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
+      collection: usp # Sunrise-Edit
       params:
-        volume: -14
+        volume: 10
     availableModes:
     - SemiAuto
   - type: ItemSlots
@@ -208,7 +208,9 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+      collection: glock18 # Sunrise-Edit
+      params:
+        volume: 10
 
 - type: entity
   name: N1984
