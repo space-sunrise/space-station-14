@@ -6,7 +6,7 @@
       edges:
         - to: DoubleEnergySwordNode
           steps:
-            - tag: EnergySwordBiocode
+            - tag: EnergySword
               doAfter: 2
 
     - node: DoubleEnergySwordNode

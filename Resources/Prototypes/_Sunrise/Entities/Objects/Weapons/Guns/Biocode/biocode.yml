@@ -109,7 +109,7 @@
     alertText: Данное оружие биокодировано. Вы не можете его использовать.
   - type: Construction
     graph: EnergySwordDoubleGraph
-    node: EnergySwordDoubleBiocode
+    node: DoubleEnergySwordNode
 
 - type: entity
   parent: EnergySword
@@ -122,7 +122,7 @@
     alertText: Данное оружие биокодировано. Вы не можете его использовать.
   - type: Tag
     tags:
-    - EnergySwordBiocode
+    - EnergySword
   - type: Construction
     graph: EnergySwordDoubleGraph
     node: start
