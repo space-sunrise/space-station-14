@@ -25,7 +25,9 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+      collection: xm1014 # Sunrise-Edit
+      params:
+        volume: 10
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: BallisticAmmoProvider
@@ -73,7 +75,9 @@
     availableModes:
     - FullAuto
     soundGunshot:
-      path: /Audio/_Sunrise/Weapons/Guns/Gunshots/shotgun_auto.ogg
+      collection: xm1014 # Sunrise-Edit
+      params:
+        volume: 10
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: ItemSlots
@@ -117,6 +121,10 @@
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
     fireRate: 2
+    soundGunshot:
+      collection: m3 # Sunrise-Edit
+      params:
+        volume: 10
   - type: BallisticAmmoProvider
     capacity: 2
   - type: Construction
@@ -150,7 +158,9 @@
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
     soundGunshot:
-      path: /Audio/_Sunrise/Weapons/Guns/Gunshots/shotgun_metal.ogg
+      collection: xm1014 # Sunrise-Edit
+      params:
+        volume: 10
 
 - type: entity
   parent: WeaponShotgunEnforcer
@@ -161,7 +171,9 @@
     proto: ShellShotgunBeanbag
   - type: Gun
     soundGunshot:
-      path: /Audio/_Sunrise/Weapons/Guns/Gunshots/shotgun_metal.ogg
+      collection: xm1014 # Sunrise-Edit
+      params:
+        volume: 10
 
 - type: entity
   name: Kammerer
@@ -186,7 +198,9 @@
     - WeaponShotgunKammerer
   - type: Gun
     soundGunshot:
-      path: /Audio/_Sunrise/Weapons/Guns/Gunshots/shotgun_alt.ogg
+      collection: m3 # Sunrise-Edit
+      params:
+        volume: 10
 
 - type: entity
   name: sawn-off shotgun
@@ -204,7 +218,9 @@
   - type: Gun
     fireRate: 4
     soundGunshot:
-      path: /Audio/_Sunrise/Weapons/Guns/Gunshots/shotgun_sawed.ogg
+      collection: m3 # Sunrise-Edit
+      params:
+        volume: 10
   - type: BallisticAmmoProvider
     capacity: 2
   - type: Construction
@@ -242,7 +258,9 @@
   - type: Gun
     fireRate: 4
     soundGunshot:
-      path: /Audio/_Sunrise/Weapons/Guns/Gunshots/shotgun_pipe.ogg
+      collection: m3 # Sunrise-Edit
+      params:
+        volume: 10
   - type: BallisticAmmoProvider
     capacity: 1
   - type: Construction
@@ -291,6 +309,10 @@
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
     fireRate: 4 #No reason to stifle the firerate since you have to manually reload every time anyways.
+    soundGunshot:
+      collection: m3 # Sunrise-Edit
+      params:
+        volume: 10
   - type: BallisticAmmoProvider
     capacity: 1
     proto: null

@@ -28,7 +28,9 @@
     availableModes:
       - FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/lmg.ogg
+      collection: m249 # Sunrise-Edit
+      params:
+        volume: 10
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: ChamberMagazineAmmoProvider
@@ -97,7 +99,9 @@
       availableModes:
         - FullAuto
       soundGunshot:
-        path: /Audio/Weapons/Guns/Gunshots/lmg.ogg
+        collection: m249 # Sunrise-Edit
+        params:
+          volume: 10
       soundEmpty:
         path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
     - type: Sprite

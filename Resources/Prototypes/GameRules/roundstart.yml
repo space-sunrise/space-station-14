@@ -161,7 +161,7 @@
   - type: AntagRandomObjectives
     sets:
     - groups: TraitorObjectiveGroups
-    maxDifficulty: 5
+    maxDifficulty: 10 # Sunrise-Edit
   - type: AntagSelection
     agentName: traitor-round-end-agent-name
 
@@ -177,7 +177,7 @@
   - type: AntagSelection
     definitions:
     - prefRoles: [ Traitor ]
-      max: 8
+      max: 12 # Sunrise-Edit
       playerRatio: 10
       blacklist:
         components:

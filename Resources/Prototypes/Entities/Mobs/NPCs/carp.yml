@@ -79,6 +79,11 @@
       interactFailureString: petting-failure-carp
       interactFailureSound:
         path: /Audio/Effects/bite.ogg
+    # Sunrise-Start
+    - type: CollectiveMind
+      minds:
+      - Carp
+    # Sunrise-End
 
 - type: entity
   parent: BaseMobCarp

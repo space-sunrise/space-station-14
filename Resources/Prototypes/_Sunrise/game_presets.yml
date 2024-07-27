@@ -15,7 +15,7 @@
   id: Extra
   alias:
   - extra
-  name: extended-title
+  name: extra-title
   showInVote: true
   hide: false
   description: extra-description

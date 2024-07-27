@@ -67,7 +67,6 @@ namespace Content.IntegrationTests.Tests
             "Train",
             "Oasis",
 			"SunriseBox",
-			"SunriseCluster",
 			"SunriseDelta",
 			"SunriseFland",
 			"SunriseMarathon",
