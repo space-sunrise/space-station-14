@@ -4,7 +4,7 @@
   mapPath: /Maps/_Sunrise/Station/origin.yml
   maxRandomOffset: 0
   randomRotation: false
-  minPlayers: 30
+  minPlayers: 0
   stations:
     Origin:
       stationProto: StandardNanotrasenStation
