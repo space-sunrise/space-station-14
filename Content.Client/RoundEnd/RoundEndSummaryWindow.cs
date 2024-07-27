@@ -19,7 +19,7 @@ namespace Content.Client.RoundEnd
         public int RoundId;
 
         public RoundEndSummaryWindow(string gm, string roundEnd, TimeSpan roundTimeSpan, int roundId,
-            RoundEndMessageEvent.RoundEndPlayerInfo[] info, string roundEndStats, StatisticEntry[] statisticEntries, IEntityManager entityManager, ISharedPlayerManager playerManager) // Sunrise-Edit
+            RoundEndMessageEvent.RoundEndPlayerInfo[] info, string roundEndStats, SharedStatisticEntry[] statisticEntries, IEntityManager entityManager, ISharedPlayerManager playerManager) // Sunrise-Edit
         {
             _entityManager = entityManager;
             _playerManager = playerManager; // Sunrise-Edit
@@ -207,7 +207,7 @@ namespace Content.Client.RoundEnd
             return roundEndSummaryTab;
         }
 
-        private BoxContainer MakeRoundEndMyStatsTab(StatisticEntry[] statisticEntries)
+        private BoxContainer MakeRoundEndMyStatsTab(SharedStatisticEntry[] statisticEntries)
         {
             var roundEndSummaryTab = new BoxContainer
             {

@@ -9,3 +9,23 @@
   prefix: СОФИЯ
   minValue: 10
   maxValue: 99
+
+- type: nameIdentifierGroup
+  id: SyndieSecRobot
+  prefix: GRX-ATK
+  fullName: true
+  minValue: 10000
+  maxValue: 99999
+
+- type: nameIdentifierGroup
+  id: SyndieMedRobot
+  prefix: GRX-MED
+  fullName: true
+  minValue: 10000
+  maxValue: 99999
+
+- type: nameIdentifierGroup
+  id: SyndieReaperRobot
+  prefix: Жнец
+  minValue: 10000
+  maxValue: 99999

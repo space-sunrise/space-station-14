@@ -43,7 +43,6 @@
   id: ClothingBackpackSatchelHoS
   name: сумка главы службы безопасности
   description: Стильная чёрная кожаная сумка.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Clothing/Back/Satchels/hos.rsi

@@ -4,7 +4,7 @@
   mapPath: /Maps/_Sunrise/Station/origin.yml
   maxRandomOffset: 0
   randomRotation: false
-  minPlayers: 30
+  minPlayers: 0
   stations:
     Origin:
       stationProto: StandardNanotrasenStation
@@ -49,7 +49,6 @@
             Scientist: [ 6, 6 ]
             Roboticist: [ 2, 2 ]
             ResearchAssistant: [ -1, -1 ]
-            Borg: [ 2, 2 ]
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
@@ -76,3 +75,14 @@
             IAA: [ 1, 1 ]
             Lawyer: [ 2, 2 ]
             Magistrat: [ 1, 1 ]
+            # silicon
+            Borg: [ 2, 2 ]
+            MedicalBorg: [ 4, 4 ]
+            EngineerBorg: [ 2, 2 ]
+            MinerBorg: [ 2, 2 ]
+            JanitorBorg: [ 2, 2 ]
+            ServiceBorg: [ 2, 2 ]
+            ClownBorg: [ 2, 2 ]
+            PeaceBorg: [ 2, 2 ]
+            SecurityBorg: [ 4, 4 ]
+            SecurityCombatBorg: [ 2, 2 ]

@@ -1,6 +1,6 @@
 - type: entity
   id: PlanetPrison
   parent: BaseGameRule
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: PlanetPrisonRule

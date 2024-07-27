@@ -29,6 +29,11 @@ public sealed partial class EntityTargetActionComponent : BaseTargetActionCompon
     /// Whether this action considers the user as a valid target entity when using this action.
     /// </summary>
     [DataField("canTargetSelf")] public bool CanTargetSelf = true;
+
+    // Sunrise-Start
+    [DataField("ignoreContainer")]
+    public bool IgnoreContainer;
+    // Sunrise-End
 }
 
 [Serializable, NetSerializable]
@@ -36,10 +41,12 @@ public sealed class EntityTargetActionComponentState : BaseActionComponentState
 {
     public EntityWhitelist? Whitelist;
     public bool CanTargetSelf;
+    public bool IgnoreContainer; // Sunrise-Edit
 
     public EntityTargetActionComponentState(EntityTargetActionComponent component, IEntityManager entManager) : base(component, entManager)
     {
         Whitelist = component.Whitelist;
         CanTargetSelf = component.CanTargetSelf;
+        IgnoreContainer = component.IgnoreContainer; // Sunrise-Edit
     }
 }

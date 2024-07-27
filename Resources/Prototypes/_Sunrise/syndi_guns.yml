@@ -126,7 +126,9 @@
     availableModes:
       - FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/gun_sentry.ogg
+      collection: m249
+      params:
+        volume: 10
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: MagazineVisuals
@@ -262,7 +264,7 @@
     fireRate: 4
     selectedMode: SemiAuto
     soundGunshot:
-      path: /Audio/_Sunrise/SyndiGuns/plasma_pistol_1.ogg
+      collection: plasma_pistol
     availableModes:
       - SemiAuto
       - FullAuto
@@ -302,7 +304,7 @@
     fireRate: 4.75
     selectedMode: FullAuto
     soundGunshot:
-      collection: syndiplasma
+      collection: syndi_plasma
       params:
         volume: -1
     availableModes:
@@ -342,7 +344,7 @@
     fireRate: 1.1
     selectedMode: SemiAuto
     soundGunshot:
-      path: /Audio/_Sunrise/SyndiGuns/red_mamba.ogg
+      collection: red_mamba
       params:
         volume: 5
     availableModes:

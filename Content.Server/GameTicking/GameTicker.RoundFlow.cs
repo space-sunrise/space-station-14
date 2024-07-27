@@ -21,6 +21,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Server.StatsBoard;
+using Content.Shared._Sunrise.StatsBoard;
 
 namespace Content.Server.GameTicking
 {
@@ -433,6 +434,7 @@ namespace Content.Server.GameTicking
             // Sunrise-Start
             var roundStats = _statsBoardSystem.GetRoundStats();
             var statisticEntries = _statsBoardSystem.GetStatisticEntries();
+            var sharedEntries = statisticEntries.Select(entry => _statsBoardSystem.ConvertToSharedStatisticEntry(entry)).ToArray();
             // Sunrise-End
 
             var roundEndMessageEvent = new RoundEndMessageEvent(
@@ -443,7 +445,7 @@ namespace Content.Server.GameTicking
                 listOfPlayerInfoFinal.Length,
                 listOfPlayerInfoFinal,
                 roundStats, // Sunrise-Edit
-                statisticEntries, // Sunrise-Edit
+                sharedEntries, // Sunrise-Edit
                 sound
             );
             RaiseNetworkEvent(roundEndMessageEvent);

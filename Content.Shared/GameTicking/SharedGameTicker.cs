@@ -200,7 +200,7 @@ namespace Content.Shared.GameTicking
         public int PlayerCount { get; }
         public RoundEndPlayerInfo[] AllPlayersEndInfo { get; }
         public string RoundEndStats { get; } // Sunrise-Edit
-        public StatisticEntry[] StatisticEntries { get; } // Sunrise-Edit
+        public SharedStatisticEntry[] StatisticEntries { get; } // Sunrise-Edit
 
         /// <summary>
         /// Sound gets networked due to how entity lifecycle works between client / server and to avoid clipping.
@@ -215,7 +215,7 @@ namespace Content.Shared.GameTicking
             int playerCount,
             RoundEndPlayerInfo[] allPlayersEndInfo,
             string roundEndStats, // Sunrise-Edit
-            StatisticEntry[] statisticEntries, // Sunrise-Edit
+            SharedStatisticEntry[] statisticEntries, // Sunrise-Edit
             string? restartSound)
         {
             GamemodeTitle = gamemodeTitle;

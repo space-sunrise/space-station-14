@@ -931,7 +931,8 @@ namespace Content.Shared.Interaction
             EntityUid target,
             EntityCoordinates clickLocation,
             bool checkCanInteract = true,
-            bool checkCanUse = true)
+            bool checkCanUse = true,
+            bool needHand = true) // Sunrise-Edit
         {
             if (checkCanInteract && !_actionBlockerSystem.CanInteract(user, target))
                 return;
@@ -956,18 +957,18 @@ namespace Content.Shared.Interaction
             if (interactUsingEvent.Handled)
                 return;
 
-            InteractDoAfter(user, used, target, clickLocation, canReach: true);
+            InteractDoAfter(user, used, target, clickLocation, canReach: true, needHand); // Sunrise-Edit
         }
 
         /// <summary>
         ///     Used when clicking on an entity resulted in no other interaction. Used for low-priority interactions.
         /// </summary>
-        public void InteractDoAfter(EntityUid user, EntityUid used, EntityUid? target, EntityCoordinates clickLocation, bool canReach)
+        public void InteractDoAfter(EntityUid user, EntityUid used, EntityUid? target, EntityCoordinates clickLocation, bool canReach, bool needHand = true) // Sunrise-Edit
         {
             if (target is { Valid: false })
                 target = null;
 
-            var afterInteractEvent = new AfterInteractEvent(user, used, target, clickLocation, canReach);
+            var afterInteractEvent = new AfterInteractEvent(user, used, target, clickLocation, canReach, needHand); // Sunrise-Edit
             RaiseLocalEvent(used, afterInteractEvent);
             DoContactInteraction(user, used, afterInteractEvent);
             if (canReach)
