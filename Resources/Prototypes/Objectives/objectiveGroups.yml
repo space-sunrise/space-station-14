@@ -12,7 +12,7 @@
   weights:
     CaptainIDStealObjective: 1
     CMOHyposprayStealObjective: 1
-    CMOCrewMonitorStealObjective: 1
+    #CMOCrewMonitorStealObjective: 1 # Sunrise-Edit
     RDHardsuitStealObjective: 1
     MagbootsStealObjective: 1
     CorgiMeatStealObjective: 1

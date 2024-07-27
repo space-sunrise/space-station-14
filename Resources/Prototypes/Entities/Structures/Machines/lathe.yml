@@ -916,6 +916,7 @@
       - HandLabeler
       - Defibrillator
       - HandheldHealthAnalyzer
+      - HandheldCrewMonitor # Sunrise-Edit
       - ClothingHandsGlovesLatex
       - ClothingHandsGlovesNitrile
       - ClothingMaskSterile
