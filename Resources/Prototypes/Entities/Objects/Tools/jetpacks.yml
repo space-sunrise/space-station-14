@@ -267,6 +267,14 @@
       - Back
       - suitStorage
       - Belt
+  # Sunrise-Start
+  - type: GasRegeneration
+    airRegenerate:
+      volume: 5
+      temperature: 293.15
+      moles:
+      - 0.0008
+  # Sunrise-End
 
 # Filled void
 - type: entity

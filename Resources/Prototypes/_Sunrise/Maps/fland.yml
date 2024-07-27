@@ -46,7 +46,6 @@
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 5, 5 ]
             ResearchAssistant: [ -1, -1 ]
-            Borg: [ 2, 2 ]
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
@@ -78,3 +77,14 @@
             SeniorOfficer: [ 1, 1 ]
             # Sunrise-Science
             Roboticist: [ 2, 2 ]
+            # silicon
+            Borg: [ 2, 2 ]
+            MedicalBorg: [ 4, 4 ]
+            EngineerBorg: [ 2, 2 ]
+            MinerBorg: [ 2, 2 ]
+            JanitorBorg: [ 2, 2 ]
+            ServiceBorg: [ 2, 2 ]
+            ClownBorg: [ 2, 2 ]
+            PeaceBorg: [ 2, 2 ]
+            SecurityBorg: [ 4, 4 ]
+            SecurityCombatBorg: [ 2, 2 ]
