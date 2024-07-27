@@ -31,7 +31,6 @@
   id: ClothingBeltHoS
   name: пояс службы безопасности
   description: Пояс службы безопасности, но из качественного материала.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Clothing/Belt/hos.rsi
@@ -65,7 +64,6 @@
 - type: entity
   parent: ClothingBeltMedical
   id: ClothingBeltMedicalCMO
-  noSpawn: true
   name: медицинский пояс главного врача
   description: Стерильный пояс со множеством карманов под таблетки и другие лекарства, подчёркивающий, что лечить нужно со стилем.
   components:

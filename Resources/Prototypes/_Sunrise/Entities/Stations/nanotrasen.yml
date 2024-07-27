@@ -7,6 +7,6 @@
   - BaseStationNanotrasen
   - BaseStationSiliconLawCrewsimov
   - PrisonStationAlertLevels
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Transform

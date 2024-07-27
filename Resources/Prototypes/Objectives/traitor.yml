@@ -297,7 +297,7 @@
 # Station
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: BaseTraitorStealObjective
   id: PlutoniumCoreStealObjective
   components:

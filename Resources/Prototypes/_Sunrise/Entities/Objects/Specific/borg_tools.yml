@@ -3,7 +3,7 @@
   id: PowerCellRobotTool
   name: robot tool power cell
   description: A small cell that self recharges. Used in robot tools.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: BatterySelfRecharger
     autoRecharge: true
@@ -14,7 +14,7 @@
   parent: WeaponDisabler
   id: WeaponDisablerBorg
   description: A self-defense weapon that exhausts organic targets, weakening them until they collapse.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: BatterySelfRecharger
     autoRecharge: true
@@ -25,7 +25,7 @@
   parent: Stunbaton
   id: StunbatonBorg
   description: A stun baton for incapacitating people with. Actively harming with this is considered bad tone.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: BatterySelfRecharger
     autoRecharge: true
@@ -36,7 +36,7 @@
   id: HoloprojectorSecurityBorg
   name: holobarrier robot projector
   description: Creates a solid but fragile holographic barrier.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: ItemSlots
     slots:
@@ -50,7 +50,7 @@
   parent: BaseWeaponBatterySmall
   id: WeaponLaserBorg
   description: This laser for security robot.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   #- type: AlterLevelGunBlocker #FIXMEVIGERS
   - type: Item
@@ -83,7 +83,7 @@
   parent: Flash
   id: FlashBorg
   description: An ultrabright flashbulb with a trigger, which causes the victim to be dazed and lose their eyesight for a moment. Useless when burnt out.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Melee/flash.rsi
@@ -105,7 +105,7 @@
   parent: BaseItem
   description: A borg version of hypospray that automatically regenerates epinephrine.
   id: HyposprayBorgStandard
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Specific/Medical/hypospray.rsi
@@ -133,7 +133,7 @@
   id: HyposprayBorgPeace
   name: pax cyborg hypospray
   description: A cyborg version of hypospray that automatically regenerates pax.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -151,7 +151,7 @@
   id: HyposprayBorgMedical
   name: medical robot hypospray
   description: A hypospray that can switch through several reagents.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionContainerManager
     solutions:
@@ -182,7 +182,7 @@
   id: WeaponProtoKineticAcceleratorBorg
   parent: WeaponProtoKineticAcceleratorBase
   description: Fires low-damage kinetic bolts at a short range.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
@@ -208,7 +208,7 @@
   id: HyposprayBorgSyndi
   name: gorlax robot hypospray
   description: A hypospray that can switch through several reagents.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Specific/Medical/syndihypo.rsi
@@ -239,7 +239,7 @@
   id: HolofanProjectorBorg
   name: holofan robot projector
   description: Stop suicidal passengers from killing everyone during atmos emergencies.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: HolosignProjector
     signProto: HoloFan
@@ -261,7 +261,7 @@
   name: machine gun borg
   id: LightMachineGunBorg
   parent: BaseItem
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   description:
   components:
   - type: Sprite
@@ -307,7 +307,7 @@
   parent: WeaponLauncherChinaLake
   id: WeaponLauncherChinaLakeBorg
   description: PLOOP
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Gun
     fireRate: 1
@@ -335,7 +335,7 @@
   name: fire extinguisher borg
   description: fire extinguisher borg
   parent: FireExtinguisher
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: SolutionRegeneration
       solution: spray
@@ -349,7 +349,7 @@
   name: space cleaner
   description: BLAM!-brand non-foaming space cleaner!
   parent: SprayBottleSpaceCleaner
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: SolutionRegeneration
     solution: spray
@@ -362,7 +362,7 @@
   name: borg crowbar
   parent: Crowbar
   id: CrowbarBorg
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Tools/items_cyborg.rsi
@@ -372,7 +372,7 @@
   name: borg wrench
   parent: Wrench
   id: WrenchBorg
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Tools/items_cyborg.rsi
@@ -382,7 +382,7 @@
   name: borg screwdriver
   parent: BaseItem
   id: ScrewdriverBorg
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Tools/items_cyborg.rsi
@@ -415,7 +415,7 @@
   name: borg wirecutter
   parent: BaseItem
   id: WirecutterBorg
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Tools/items_cyborg.rsi
@@ -453,7 +453,7 @@
   name: borg welder
   parent: Welder
   id: WelderBorg
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Tools/items_cyborg.rsi
@@ -614,7 +614,7 @@
   name: Гипоспрей киборга диверсанта
   parent: BaseItem
   id: HyposprayBorgSyndie
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Specific/Medical/hypospray.rsi
@@ -674,7 +674,7 @@
   id: HandheldCrewMonitorBorg
   name: handheld robot crew monitor
   description: A hand-held crew monitor that runs off of your own power cells, which displays the status of the crew suit sensors.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: ItemSlots
     slots:

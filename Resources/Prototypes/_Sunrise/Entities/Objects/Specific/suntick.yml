@@ -2,7 +2,7 @@
   name: Сантики
   parent: BaseItem
   id: Suntick
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   suffix: 20 ST
   description: Невероятно привлекательные и прекрасные монетки, которые открывают двери в мир маленького милого магазинчика.
   components:
@@ -27,7 +27,7 @@
   parent: Suntick
   id: Suntick1
   suffix: 1 ST
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: Сантик
   description: Невероятно привлекательные и прекрасные монетки, которые открывают двери в мир маленького милого магазинчика.
   components:
@@ -38,7 +38,7 @@
   parent: Suntick
   id: Suntick5
   suffix: 5 ST
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: Сантик
   description: Невероятно привлекательные и прекрасные монетки, которые открывают двери в мир маленького милого магазинчика.
   components:
@@ -48,7 +48,7 @@
 - type: entity
   parent: Suntick
   id: Suntick10
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   suffix: 10 ST
   name: Сантик
   description: Невероятно привлекательные и прекрасные монетки, которые открывают двери в мир маленького милого магазинчика.
