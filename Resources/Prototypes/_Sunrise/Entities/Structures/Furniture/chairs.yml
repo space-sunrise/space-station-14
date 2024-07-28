@@ -42,7 +42,7 @@
 #    node: chairOfficeDark
 
 - type: entity
-  name: кресло парихмахера
+  name: кресло парикмахера
   parent: StoolBase
   id: ChairBarber
   components:

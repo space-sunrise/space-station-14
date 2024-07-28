@@ -180,7 +180,7 @@
 - type: entity
   parent: BasePDA
   id: BarberPDA
-  name: КПК парихмахера
+  name: КПК парикмахера
   components:
   - type: Pda
     id: BarberIDCard

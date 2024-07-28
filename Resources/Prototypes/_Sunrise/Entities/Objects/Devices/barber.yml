@@ -1,7 +1,7 @@
 ﻿- type: entity
   id: BarberRazor
   name: Электробритва
-  description: Используется парихмахерами для изменения прически
+  description: Используется парикмахерами для изменения прически
   parent: BaseItem
   components:
   - type: Sprite
@@ -29,7 +29,7 @@
   id: BaseBarberHairDye
   abstract: true
   parent: BaseItem
-  description: Используется парихмахерами для изменения цвета прически.
+  description: Используется парикмахерами для изменения цвета прически.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Misc/hairdyebottle.rsi

@@ -224,7 +224,7 @@
 - type: entity
   id: SpawnPointBarber
   parent: SpawnPointJobBase
-  name: Парихмахер
+  name: парикмахер
   components:
   - type: SpawnPoint
     job_id: Barber
