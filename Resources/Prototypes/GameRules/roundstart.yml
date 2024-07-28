@@ -73,7 +73,7 @@
   parent: BaseGameRule
   id: BaseNukeopsRule
   components:
-  - type: RandomMetadata #this generates the random operation name cuz it's cool. 
+  - type: RandomMetadata #this generates the random operation name cuz it's cool.
     nameSegments:
     - operationPrefix
     - operationSuffix
@@ -161,7 +161,7 @@
   - type: AntagRandomObjectives
     sets:
     - groups: TraitorObjectiveGroups
-    maxDifficulty: 5
+    maxDifficulty: 10 # Sunrise-Edit
   - type: AntagSelection
     agentName: traitor-round-end-agent-name
 
@@ -177,7 +177,7 @@
   - type: AntagSelection
     definitions:
     - prefRoles: [ Traitor ]
-      max: 8
+      max: 12 # Sunrise-Edit
       playerRatio: 10
       blacklist:
         components:
@@ -258,7 +258,7 @@
 - type: entity
   id: GreenshiftAnnouncement
   parent: BaseGameRule
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: AnnounceRule  # Sunrise
     enableAnnouncement: true

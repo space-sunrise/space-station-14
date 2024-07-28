@@ -65,6 +65,7 @@ namespace Content.Client.Actions
 
             component.Whitelist = state.Whitelist;
             component.CanTargetSelf = state.CanTargetSelf;
+            component.IgnoreContainer = state.IgnoreContainer; // Sunrise-Edit
             BaseHandleState<EntityTargetActionComponent>(uid, component, state);
         }
 

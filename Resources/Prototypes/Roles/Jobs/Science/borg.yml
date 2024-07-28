@@ -5,7 +5,7 @@
   playTimeTracker: JobBorg
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 216000 #60 hrs
+      time: 21600 #6 hrs # Sunrise-Edit
   canBeAntag: false
   displayWeight: -10  # Sunrise
   icon: JobIconBorg

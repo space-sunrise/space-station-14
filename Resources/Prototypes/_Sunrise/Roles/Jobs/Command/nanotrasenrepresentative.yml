@@ -12,6 +12,9 @@
   supervisors: job-supervisors-centcom
   canBeAntag: false
   access:
+    - Armory
+    - Cryogenics
+    - Lawyer
     - Command
     - Bar
     - Service
@@ -33,6 +36,7 @@
     - Atmospherics
     - Cargo
     - Medical
+    - Ntrep
   special:
     - !type:AddImplantSpecial
       implants: [MindShieldImplant]
@@ -45,3 +49,8 @@
     head: ClothingHeadHatCapNtrep
     id: NanoTrasenRepresentativePDA
     ears: ClothingHeadsetAltCommand
+    pocket1: FlippoEngravedLighter
+  storage:
+    back:
+    - RubberStampNtrep
+    - CaneNT

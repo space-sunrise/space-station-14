@@ -1,7 +1,7 @@
 - type: entity
   parent: BaseSunriseUplink
   id: FishStationUplink40
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: Портативный магазин «Рыбаплинк»
   description: Имеет широкий ассортимент товаров для всех вкусов и предпочтений - от удивительных ручных изделий и уникальных сувениров до современной техники и модных аксессуаров.
   suffix: 40
@@ -20,7 +20,7 @@
 - type: entity
   parent: BaseSunriseUplink
   id: FishStationUplink80
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: Портативный магазин «Рыбаплинк»
   description: Имеет широкий ассортимент товаров для всех вкусов и предпочтений - от удивительных ручных изделий и уникальных сувениров до современной техники и модных аксессуаров.
   suffix: 80
@@ -39,7 +39,7 @@
 - type: entity
   parent: BaseSunriseUplink
   id: FishStationUplink100
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: Портативный магазин «Рыбаплинк»
   description: Имеет широкий ассортимент товаров для всех вкусов и предпочтений - от удивительных ручных изделий и уникальных сувениров до современной техники и модных аксессуаров.
   suffix: 100

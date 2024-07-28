@@ -38,3 +38,16 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Misc/stamps.rsi
     state: stamp-magistrat
+
+- type: entity
+  name: NT representative's rubber stamp
+  parent: RubberStampBase
+  id: RubberStampNtrep
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-ntrep
+    stampedColor: "#fcc032"
+    stampState: "paper_stamp-ntrep"
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/stamps.rsi
+    state: stamp-ntrep

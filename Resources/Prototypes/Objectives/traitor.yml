@@ -156,12 +156,13 @@
   - type: StealCondition
     stealGroup: Hypospray
 
-- type: entity
-  parent: BaseCMOStealObjective
-  id: CMOCrewMonitorStealObjective
-  components:
-  - type: StealCondition
-    stealGroup: HandheldCrewMonitor
+# Sunrise-Edit
+#- type: entity
+#  parent: BaseCMOStealObjective
+#  id: CMOCrewMonitorStealObjective
+#  components:
+#  - type: StealCondition
+#    stealGroup: HandheldCrewMonitor
 
 ## rd
 
@@ -297,7 +298,7 @@
 # Station
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: BaseTraitorStealObjective
   id: PlutoniumCoreStealObjective
   components:

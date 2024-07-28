@@ -29,11 +29,6 @@ public sealed class OtherJobsTakenRequirementSystem : EntitySystem
         if (jobsTakenRequirementComponent.TargetJob != args.JobId)
             return;
 
-        jobsTakenRequirementComponent.Accumulator++;
-        if (jobsTakenRequirementComponent.Accumulator >= jobsTakenRequirementComponent.Coefficient)
-        {
-            jobsTakenRequirementComponent.Accumulator = 0;
-            _jobsSystem.TryAdjustJobSlot(args.Station, jobsTakenRequirementComponent.AdjustJob, 1, true);
-        }
+        _jobsSystem.TryAdjustJobSlot(args.Station, jobsTakenRequirementComponent.AdjustJob, jobsTakenRequirementComponent.Modifier, true);
     }
 }

@@ -916,11 +916,11 @@
           - NukeOpsUplink
 
 - type: listing
-  id: UplinkReinforcementRadioSyndicateNukeops # Version for Nukeops that spawns an agent with the NukeOperative component.
-  name: uplink-reinforcement-radio-name
+  id: UplinkReinforcementRadioSyndicateNukeops # Version for Nukeops that spawns another nuclear operative without the uplink.
+  name: uplink-reinforcement-radio-nukeops-name
   description: uplink-reinforcement-radio-nukeops-desc
   productEntity: ReinforcementRadioSyndicateNukeops
-  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-urist }
+  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-nukeop }
   cost:
     Telecrystal: 35
   categories:
@@ -931,21 +931,22 @@
         tags:
           - NukeOpsUplink
 
-- type: listing
-  id: UplinkReinforcementRadioSyndicateCyborgAssault
-  name:  uplink-reinforcement-radio-cyborg-assault-name
-  description: uplink-reinforcement-radio-cyborg-assault-desc
-  productEntity: ReinforcementRadioSyndicateCyborgAssault
-  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-borg-assault }
-  cost:
-    Telecrystal: 65
-  categories:
-    - UplinkAllies
-  conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - NukeOpsUplink
+# Move to _Sunrise
+#- type: listing
+#  id: UplinkReinforcementRadioSyndicateCyborgAssault
+#  name:  uplink-reinforcement-radio-cyborg-assault-name
+#  description: uplink-reinforcement-radio-cyborg-assault-desc
+#  productEntity: ReinforcementRadioSyndicateCyborgAssault
+#  icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-borg-assault }
+#  cost:
+#    Telecrystal: 65
+#  categories:
+#    - UplinkAllies
+#  conditions:
+#    - !type:StoreWhitelistCondition
+#      whitelist:
+#        tags:
+#          - NukeOpsUplink
 
 - type: listing
   id: UplinkReinforcementRadioSyndicateAncestor

@@ -47,6 +47,7 @@
         whitelist:
           tags:
             - MagazinePistol
+        whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistol
@@ -90,6 +91,7 @@
           tags:
             - MagazinePistol
             - MagazinePistolHighCapacity
+        whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistol
@@ -157,9 +159,9 @@
   - type: Gun
     fireRate: 4
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/silenced.ogg
+      collection: usp # Sunrise-Edit
       params:
-        volume: -14
+        volume: 10
     availableModes:
     - SemiAuto
   - type: ItemSlots
@@ -173,6 +175,7 @@
         whitelist:
           tags:
             - MagazinePistolCaselessRifle
+        whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
         startingItem: CartridgeCaselessRifle
@@ -205,7 +208,9 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/mk58.ogg
+      collection: glock18 # Sunrise-Edit
+      params:
+        volume: 10
 
 - type: entity
   name: N1984
@@ -243,6 +248,7 @@
         whitelist:
           tags:
             - MagazineMagnum
+        whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
         startingItem: CartridgeMagnum

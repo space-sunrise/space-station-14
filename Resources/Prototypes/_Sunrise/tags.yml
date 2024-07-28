@@ -15,3 +15,9 @@
 
 - type: Tag
   id: DockGamma
+
+- type: Tag
+  id: BorgModuleSecurity
+
+- type: Tag
+  id: BorgModuleERT
