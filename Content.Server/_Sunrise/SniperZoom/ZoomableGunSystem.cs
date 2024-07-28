@@ -10,7 +10,7 @@ using Content.Shared.Wieldable;
 namespace Content.Server._Sunrise.SniperZoom;
 
 /// <summary>
-/// This handles...
+/// Система для зума снайперок и другого оружия.
 /// </summary>
 public sealed class ZoomableGunSystem : EntitySystem
 {
