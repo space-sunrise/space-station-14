@@ -1,0 +1,21 @@
+- type: entity
+  id: ZombieJump
+  noSpawn: true
+  components:
+  - type: WorldTargetAction
+    useDelay: 15
+    icon: _Sunrise/Zombie/Actions/test.png # TODO: Спрайты
+    itemIconStyle: NoItem
+    checkCanAccess: false
+    range: 200
+    event: !type:ZombieJumpActionEvent
+
+- type: entity
+  id: ZombieFlair
+  noSpawn: true
+  components:
+  - type: InstantAction
+    useDelay: 15
+    icon: _Sunrise/Zombie/Actions/test.png # TODO: Спрайты
+    itemIconStyle: NoItem
+    event: !type:ZombieFlairActionEvent

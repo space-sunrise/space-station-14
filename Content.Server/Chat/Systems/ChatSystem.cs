@@ -11,7 +11,7 @@ using Content.Server.Speech.Components;
 using Content.Server.Speech.EntitySystems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
-using Content.Shared._Sunrise.TTS;
+using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
@@ -25,6 +25,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Players;
 using Content.Shared.Radio;
 using Content.Shared.Speech;
+using Content.Shared.Sunrise.CollectiveMind;
 using Content.Shared.Whitelist;
 using Robust.Server.Player;
 using Robust.Shared.Audio;
@@ -60,7 +61,6 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private readonly ReplacementAccentSystem _wordreplacement = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
@@ -248,6 +248,17 @@ public sealed partial class ChatSystem : SharedChatSystem
             }
         }
 
+        // Sunrise-Start
+        if (desiredType == InGameICChatType.CollectiveMind)
+        {
+            if (TryProccessCollectiveMindMessage(source, message, out var modMessage, out var channel))
+            {
+                SendCollectiveMindChat(source, modMessage, channel);
+                return;
+            }
+        }
+        // Sunrise-End
+
         // Otherwise, send whatever type.
         switch (desiredType)
         {
@@ -404,6 +415,70 @@ public sealed partial class ChatSystem : SharedChatSystem
     #endregion
 
     #region Private API
+
+    // Sunrise-Start
+    private void SendCollectiveMindChat(EntityUid source, string message, CollectiveMindPrototype? collectiveMind)
+    {
+        if (_mobStateSystem.IsDead(source))
+            return;
+
+        if (collectiveMind == null || message == "")
+            return;
+
+        if (!TryComp<CollectiveMindComponent>(source, out var sourseCollectiveMindComp))
+            return;
+
+        if (!sourseCollectiveMindComp.Minds.Contains(collectiveMind.ID))
+            return;
+
+        var clients = Filter.Empty();
+        var mindQuery = EntityQueryEnumerator<CollectiveMindComponent, ActorComponent>();
+        while (mindQuery.MoveNext(out var uid, out var collectMindComp, out var actorComp))
+        {
+            if (_mobStateSystem.IsDead(uid))
+                continue;
+
+            if (collectMindComp.Minds.Contains(collectiveMind.ID))
+            {
+                clients.AddPlayer(actorComp.PlayerSession);
+            }
+        }
+
+        var admins = _adminManager.ActiveAdmins
+            .Select(p => p.ConnectedClient);
+        string messageWrap;
+        string adminMessageWrap;
+
+        messageWrap = Loc.GetString("collective-mind-chat-wrap-message",
+            ("message", message),
+            ("channel", collectiveMind.LocalizedName));
+
+        adminMessageWrap = Loc.GetString("collective-mind-chat-wrap-message-admin",
+            ("source", source),
+            ("message", message),
+            ("channel", collectiveMind.LocalizedName));
+
+        _adminLogger.Add(LogType.Chat, LogImpact.Low, $"CollectiveMind chat from {ToPrettyString(source):Player}: {message}");
+
+        _chatManager.ChatMessageToManyFiltered(clients,
+            ChatChannel.CollectiveMind,
+            message,
+            messageWrap,
+            source,
+            false,
+            true,
+            collectiveMind.Color);
+
+        _chatManager.ChatMessageToMany(ChatChannel.CollectiveMind,
+            message,
+            adminMessageWrap,
+            source,
+            false,
+            true,
+            admins,
+            collectiveMind.Color);
+    }
+    // Sunrise-End
 
     private void SendEntitySpeak(
         EntityUid source,
@@ -744,7 +819,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     private string SanitizeInGameICMessage(EntityUid source, string message, out string? emoteStr, bool capitalize = true, bool punctuate = false, bool capitalizeTheWordI = true)
     {
         var newMessage = message.Trim();
-        newMessage = ReplaceWords(newMessage); // Sunrise-TTS
+        newMessage = ReplaceWords(newMessage); // Sunrise-Edit
         newMessage = SanitizeMessageReplaceWords(newMessage);
 
         if (capitalize)
@@ -984,6 +1059,7 @@ public enum InGameICChatType : byte
     Speak,
     Emote,
     Whisper, // Sunrise-TTS
+    CollectiveMind, // Sunrise-Edit
 }
 
 /// <summary>

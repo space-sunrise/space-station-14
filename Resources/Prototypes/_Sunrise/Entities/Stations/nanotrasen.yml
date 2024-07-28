@@ -6,8 +6,7 @@
   - BaseStationRecords
   - BaseStationNanotrasen
   - BaseStationSiliconLawCrewsimov
-  - BasePrisonStationShuttles
   - PrisonStationAlertLevels
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Transform

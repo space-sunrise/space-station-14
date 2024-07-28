@@ -11,6 +11,40 @@
 
 - type: entity
   parent: ClothingOuterBase
+  id: ClothingOuterCoatNtrep
+  name: nt representive jacket
+  description: A fancy black jacket, standart issue to Nanotrasen Representives.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/ntrep.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/ntrep.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.8
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterCoatNtrepOpen
+  name: opened nt representive jacket
+  description: A fancy black jacket, standart issue to Nanotrasen Representives.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/ntrep_open.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/ntrep_open.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.8
+
+- type: entity
+  parent: ClothingOuterBase
   id: ClothingOuterDiscoAssBlazer
   name: disco ass blazer
   description: Looks like someone skinned this blazer off some long extinct disco-animal. It has an enigmatic white rectangle on the back and the right sleeve.
@@ -23,7 +57,6 @@
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatCEOvercoatWhite
-  noSpawn: true
   name: пальто старшего инженера
   description: Пальто Старшего Инженера. Роскошное пальто с позолоченными вставками, делающие вид, что защищает вас от каких-либо угроз.
   components:
@@ -35,7 +68,6 @@
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatCMOOvercoat
-  noSpawn: true
   name: лабораторный халат главного врача
   description: На 99% состоит из Нитрила.
   components:
@@ -47,7 +79,6 @@
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatCaptainOvercoat
-  noSpawn: true
   name: капитанская шинель
   description: Селанная специально под замеры действующего капитана и сделанный лучшими швеями NanoTrasen.
   components:
@@ -70,7 +101,6 @@
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterEliteCoatHOP
-  noSpawn: true
   name: шинель главы персонала
   description: Удобное приталенная шинель тёмно-синего цвета с кожаными ремнями. На плечах видны декоративные погоны.
   components:
@@ -82,7 +112,6 @@
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatHOSOvercoatBlack
-  noSpawn: true
   name: бронированная шинель
   description: Чёрная шинель с красными полосками, серебряными заклепками и золотой бляшкой.
   components:
@@ -101,7 +130,6 @@
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatIAA
-  noSpawn: true
   name: пиджак агента внутренних дел
   description: Чёрный пиджак строгого тона с позолоченным креплением под значок. От него веет запахом чернил для ручек и бюрократией.
   components:
@@ -113,7 +141,6 @@
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatQM
-  noSpawn: true
   name: теплое пальто
   description: Удобное пальто созданное из лёгкой ткани дикого лиаруса, место обитания которого является лавовая планета №468, позволяет придерживаться стиля современных времён.
   components:
@@ -125,7 +152,6 @@
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatLabResearchDirector
-  noSpawn: true
   name: халат научного руководителя
   description: Плотный халат, защищающий своего носителя от струи кислоты и плавленой плазмы. Имеет фиолетовые и голубые ленты на плечах и поясе.
   components:
@@ -143,7 +169,6 @@
   id: ClothingOuterCoatHoSOvercoat
   name: бронированная шинель
   description: Довольно старая вещь для этих времён, навевающая старые воспоминания...
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Clothing/OuterClothing/hos_overcoat.rsi
@@ -162,7 +187,6 @@
   id: ClothingOuterCoatUSSPOvercoatBlack
   name: бронированная шинель СССП
   description: Старая вещица, прямиком из СССП.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Clothing/OuterClothing/ussp.rsi
@@ -174,7 +198,6 @@
   id: ClothingOuterAtmosianBomberJacket
   name: куртка-бомбер атмосианина
   description: Плотная, поношенная куртка-бомбер атмосианина.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Clothing/OuterClothing/atmosian.rsi

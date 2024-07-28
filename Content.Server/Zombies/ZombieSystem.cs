@@ -16,6 +16,8 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.NameModifier.EntitySystems;
 using Content.Shared.Popups;
+using Content.Shared.Stunnable;
+using Content.Shared.Throwing;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Zombies;
 using Robust.Shared.Prototypes;
@@ -38,6 +40,10 @@ namespace Content.Server.Zombies
         [Dependency] private readonly MobStateSystem _mobState = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly NameModifierSystem _nameMod = default!;
+        [Dependency] private readonly ChatSystem _chatSystem = default!;
+        [Dependency] private readonly ThrowingSystem _throwing = default!;
+        [Dependency] private readonly ActionsSystem _action = default!;
+        [Dependency] private readonly SharedStunSystem _stun = default!;
 
         public const SlotFlags ProtectiveSlots =
             SlotFlags.FEET |
@@ -68,7 +74,61 @@ namespace Content.Server.Zombies
             SubscribeLocalEvent<IncurableZombieComponent, MapInitEvent>(OnPendingMapInit);
 
             SubscribeLocalEvent<ZombifyOnDeathComponent, MobStateChangedEvent>(OnDamageChanged);
+
+            // Sunnrise-Start
+            SubscribeLocalEvent<ZombieComponent, ZombieJumpActionEvent>(OnJump);
+            SubscribeLocalEvent<ZombieComponent, ZombieFlairActionEvent>(OnFlair);
+            SubscribeLocalEvent<ZombieComponent, ThrowDoHitEvent>(OnThrowDoHit);
+            // Sunnrise-End
         }
+
+        // Sunnrise-Start
+        private void OnThrowDoHit(EntityUid uid, ZombieComponent component, ThrowDoHitEvent args)
+        {
+            if (_mobState.IsDead(uid))
+                return;
+            if (HasComp<ZombieComponent>(args.Target) || HasComp<PendingZombieComponent>(args.Target))
+                return;
+            if (!_mobState.IsAlive(args.Target))
+                return;
+
+            _stun.TryParalyze(args.Target, TimeSpan.FromSeconds(component.ParalyzeTime), false);
+            _damageable.TryChangeDamage(args.Target, component.Damage, origin: args.Thrown);
+        }
+
+        private void OnFlair(EntityUid uid, ZombieComponent component, ZombieFlairActionEvent args)
+        {
+            if (args.Handled)
+                return;
+
+            _popup.PopupEntity("Мне было лень это делать, напишите админам, пускай скажут вам где выжившие.",
+                uid, uid, PopupType.LargeCaution);
+
+            args.Handled = true;
+        }
+
+        private void OnJump(EntityUid uid, ZombieComponent component, ZombieJumpActionEvent args)
+        {
+            if (args.Handled)
+                return;
+
+            // TODO: Проверка?
+            // if ()
+            // {
+            //     _popup.PopupEntity(Loc.GetString("ни магу"),
+            //         uid, uid, PopupType.LargeCaution);
+            //     return;
+            // }
+
+            args.Handled = true;
+            var xform = Transform(uid);
+            var mapCoords = args.Target.ToMap(EntityManager);
+            var direction = mapCoords.Position - xform.MapPosition.Position;
+
+            _throwing.TryThrow(uid, direction, 7F, uid, 10F);
+            _chatSystem.TryEmoteWithChat(uid, "ZombieGroan");
+        }
+        // Sunnrise-End
 
         private void OnPendingMapInit(EntityUid uid, IncurableZombieComponent component, MapInitEvent args)
         {
@@ -153,6 +213,11 @@ namespace Content.Server.Zombies
             if (component.EmoteSoundsId == null)
                 return;
             _protoManager.TryIndex(component.EmoteSoundsId, out component.EmoteSounds);
+
+            // Sunnrise-Start
+            _action.AddAction(uid, component.ActionJumpId);
+            _action.AddAction(uid, component.ActionFlairId);
+            // Sunnrise-End
         }
 
         private void OnEmote(EntityUid uid, ZombieComponent component, ref EmoteEvent args)

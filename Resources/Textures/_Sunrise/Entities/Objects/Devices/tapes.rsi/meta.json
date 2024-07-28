@@ -135,6 +135,15 @@
         },
         {
             "name": "syndi_tape3"
+        },
+        {
+            "name": "syndi_tape4"
+        },
+        {
+            "name": "syndi_tape5"
+        },
+        {
+            "name": "syndi_tape6"
         }
     ]
 }

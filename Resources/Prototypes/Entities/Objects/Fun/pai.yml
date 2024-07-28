@@ -16,11 +16,9 @@
       enum.InstrumentUiKey.Key:
         type: InstrumentBoundUserInterface
         requireInputValidation: false
-      enum.StationMapUiKey.Key:
-        type: UntrackedStationMapBoundUserInterface
-        requireInputValidation: false
   - type: Sprite
     sprite: Objects/Fun/pai.rsi
+    #noRot: true
     layers:
     - state: pai-base
     - state: pai-off-overlay
@@ -30,6 +28,8 @@
     context: "human"
   - type: PAI
   - type: BlockMovement
+    blockInteractionAttempt: false
+    blockUseAttempt: false
   - type: ToggleableGhostRole
     examineTextMindPresent: pai-system-pai-installed
     examineTextMindSearching: pai-system-still-searching
@@ -55,8 +55,6 @@
   - type: Actions
   - type: TypingIndicator
     proto: robot
-#  - type: TTS
-#    voice: TODO add our TTS Voice Sunrise
   - type: Speech
     speechVerb: Robotic
     speechSounds: Pai
@@ -74,7 +72,18 @@
           Off: { state: pai-off-overlay }
           Searching: { state: pai-searching-overlay }
           On: { state: pai-on-overlay }
-  - type: StationMap
+  # Sunrise-Edit
+  - type: TTS
+    voice: FactCore
+  - type: InnateItem
+    instantActions:
+    - PortableSurveillanceCameraMonitor
+    - HandheldStationMapUnpowered
+    - HandheldCrewMonitorBorg
+    worldTargetActions:
+    - HandheldHealthAnalyzerUnpowered
+  - type: BorgBrain
+  # Sunrise-End
 
 - type: entity
   parent: PersonalAI
@@ -107,6 +116,12 @@
           Off: { state: syndicate-pai-off-overlay }
           Searching: { state: syndicate-pai-searching-overlay }
           On: { state: syndicate-pai-on-overlay }
+  # Sunrise-Edit
+  - type: InnateItem
+    worldTargetActions:
+    - Emag
+    - HandheldHealthAnalyzerUnpowered
+  # Sunrise-End
 
 - type: entity
   parent: PersonalAI

@@ -1,0 +1,69 @@
+- type: entity
+  parent: ReinforcementRadio
+  id: ReinforcementRadioSyndicateCyborgMedical
+  name: syndicate medical cyborg reinforcement radio
+  description: Call in a well armed assault cyborg, instantly!
+  suffix: NukeOps
+  components:
+  - type: GhostRole
+    name: Медицинский борг синдиката
+    description: Смерть НТ.
+    rules: Normal syndicate antagonist rules apply. Work with whoever called you in, and don't harm them.
+  - type: GhostRoleMobSpawner
+    prototype: PlayerBorgSyndicateMedicalBattery
+
+- type: entity
+  parent: ReinforcementRadio
+  id: ReinforcementRadioSyndicateCyborgReaper
+  name: syndicate reaper cyborg reinforcement radio
+  description: Call in a well armed assault cyborg, instantly!
+  suffix: NukeOps
+  components:
+  - type: GhostRole
+    name: Борг синдиката "Жнец"
+    description: Смерть НТ.
+    rules: Normal syndicate antagonist rules apply. Work with whoever called you in, and don't harm them.
+  - type: GhostRoleMobSpawner
+    prototype: PlayerBorgSyndicateReaperBattery
+
+- type: entity
+  parent: ReinforcementRadio
+  id: ReinforcementRadioSyndicateCyborgAssault
+  name: syndicate assault cyborg reinforcement radio
+  description: Call in a well armed assault cyborg, instantly!
+  suffix: NukeOps
+  components:
+  - type: GhostRole
+    name: Syndicate Assault Cyborg
+    description: Nuclear operatives needs reinforcements. You, a cold silicon killing machine, will help them.
+    rules: Normal syndicate antagonist rules apply. Work with whoever called you in, and don't harm them.
+  - type: GhostRoleMobSpawner
+    prototype: PlayerBorgSyndicateAssaultBattery
+
+- type: entity
+  parent: ReinforcementRadio
+  id: ReinforcementRadioSyndicateCyborgHeavy
+  name: syndicate heavy cyborg reinforcement radio
+  description: Call in a well armed assault cyborg, instantly!
+  suffix: NukeOps
+  components:
+  - type: GhostRole
+    name: Тяжелый боевой борг синдиката
+    description: Смерть НТ.
+    rules: Normal syndicate antagonist rules apply. Work with whoever called you in, and don't harm them.
+  - type: GhostRoleMobSpawner
+    prototype: PlayerBorgHeavySyndicateCombatBattery
+
+- type: entity
+  parent: ReinforcementRadio
+  id: ReinforcementRadioSyndicateCyborgSpider
+  name: syndicate spider cyborg reinforcement radio
+  description: Call in a well armed assault cyborg, instantly!
+  suffix: NukeOps
+  components:
+  - type: GhostRole
+    name: Диверсионный борг синдиката
+    description: Смерть НТ.
+    rules: Normal syndicate antagonist rules apply. Work with whoever called you in, and don't harm them.
+  - type: GhostRoleMobSpawner
+    prototype: PlayerBorgSpiderSyndicateBattery

@@ -127,4 +127,15 @@
     heldPrefix: silver
   - type: PresetIdCard
     job: HeadOfPrison
+    
+- type: entity
+  parent: IDCardStandard
+  id: NanoTrasenRepresentativeIDCard
+  name: NanoTrasen Representative ID Card
+  components:
+  - type: Sprite
+    layers:
+    - state: ert_commander
+  - type: PresetIdCard
+    job: NanoTrasenRepresentative
 

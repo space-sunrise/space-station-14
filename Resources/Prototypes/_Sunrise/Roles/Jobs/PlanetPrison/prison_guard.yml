@@ -6,12 +6,13 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 18000 #5 hrs # Sunrise-RoleTime
+      time: 1600 #1 hrs
   startingGear: PrisonGuardGear
   alwaysUseSpawner: true
   canBeAntag: false
   icon: "JobIconPrisonGuard"
   supervisors: job-supervisors-head-of-prison
+  displayWeight: 90
   access:
   - Security
   - Brig

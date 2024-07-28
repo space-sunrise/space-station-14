@@ -11,7 +11,7 @@
       - PlanetPrisonerRole
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: [BasePlanetPrisonerObjective, BaseLivingObjective]
   id: PlanetPrisonerEscapeObjective
   name: Сбежать с планетарной тюрьмы.

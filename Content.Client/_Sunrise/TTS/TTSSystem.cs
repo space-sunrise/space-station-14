@@ -20,6 +20,7 @@ public sealed class TTSSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IResourceManager _res = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private readonly SharedAudioSystem _sharedAudio = default!;
     [Dependency] private readonly IResourceCache _resourceCache = default!;
     [Dependency] private readonly IDependencyCollection _dependencyCollection = default!;
 
@@ -31,10 +32,15 @@ public sealed class TTSSystem : EntitySystem
     private float _radioVolume;
     private int _fileIdx;
     private float _volumeAnnounce;
-    private EntityUid _announcementUid = EntityUid.Invalid;
 
-    private Queue<AnnounceTtsEvent> _announceQueue = new();
+    private Queue<QueuedTts> _ttsQueue = new();
     private (EntityUid Entity, AudioComponent Component)? _currentPlaying;
+
+    public sealed class QueuedTts(byte[] data, SoundSpecifier? announcementSound = null)
+    {
+        public byte[] Data = data;
+        public SoundSpecifier? AnnouncementSound = announcementSound;
+    }
 
     public override void Initialize()
     {
@@ -58,7 +64,7 @@ public sealed class TTSSystem : EntitySystem
         _contentRoot.Dispose();
     }
 
-    public void RequestPreviewTTS(string voiceId)
+    public void RequestPreviewTts(string voiceId)
     {
         RaiseNetworkEvent(new RequestPreviewTTSEvent(voiceId));
     }
@@ -88,29 +94,28 @@ public sealed class TTSSystem : EntitySystem
         if (_volumeAnnounce == 0)
             return;
 
-        _announceQueue.Enqueue(ev);
+        var entry = new QueuedTts(ev.Data, ev.AnnouncementSound);
+
+        _ttsQueue.Enqueue(entry);
     }
 
     private void PlayNextInQueue()
     {
-        if (_announceQueue.Count == 0)
+        if (_ttsQueue.Count == 0)
         {
             return;
         }
 
-        var ev = _announceQueue.Dequeue();
-
-        if (_announcementUid == EntityUid.Invalid)
-            _announcementUid = Spawn(null);
+        var entry = _ttsQueue.Dequeue();
 
         var volume = SharedAudioSystem.GainToVolume(_volumeAnnounce);
         var finalParams = AudioParams.Default.WithVolume(volume);
 
-        if (ev.AnnouncementSound != null)
+        if (entry.AnnouncementSound != null)
         {
-            _currentPlaying = _audio.PlayGlobal(ev.AnnouncementSound, _announcementUid, finalParams.AddVolume(-5f));
+            _currentPlaying = _audio.PlayGlobal(_sharedAudio.GetSound(entry.AnnouncementSound), new EntityUid(), finalParams.AddVolume(-5f));
         }
-        _currentPlaying = PlayTTSBytes(ev.Data, _announcementUid, finalParams, true);
+        _currentPlaying = PlayTTSBytes(entry.Data, null, finalParams, true);
     }
 
     private void OnPlayTTS(PlayTTSEvent ev)
@@ -119,6 +124,14 @@ public sealed class TTSSystem : EntitySystem
 
         if (volume == 0)
             return;
+
+        if (ev.IsRadio)
+        {
+            var entry = new QueuedTts(ev.Data);
+
+            _ttsQueue.Enqueue(entry);
+            return;
+        }
 
         volume = SharedAudioSystem.GainToVolume(volume * ev.VolumeModifier);
 

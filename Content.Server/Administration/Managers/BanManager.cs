@@ -28,6 +28,7 @@ using Content.Shared._Sunrise.SunriseCCVars;
 using JetBrains.Annotations;
 using Robust.Shared;
 using CCVars = Content.Shared.CCVar.CCVars;
+using Content.Sunrise.Interfaces.Server; // Sunrise-Edit
 
 namespace Content.Server.Administration.Managers;
 
@@ -44,6 +45,8 @@ public sealed class BanManager : IBanManager, IPostInjectInit
     [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
 
+    private IServerDiscordAuthManager? _discordAuth; // Sunrise-Edit
+
     private ISawmill _sawmill = default!;
     public const string SawmillId = "admin.bans";
     public const string JobPrefix = "Job:";
@@ -54,8 +57,6 @@ public sealed class BanManager : IBanManager, IPostInjectInit
     private WebhookData? _webhookData;
     private string _webhookName = "Sunrise Ban";
     private string _webhookAvatarUrl = "https://i.ibb.co/WfGqKtG/avatar.png";
-    private string _apiUrl = string.Empty;
-    private string _apiKey = string.Empty;
     // Sunrise-end
 
     private readonly Dictionary<NetUserId, HashSet<ServerRoleBanDef>> _cachedRoleBans = new();
@@ -68,8 +69,8 @@ public sealed class BanManager : IBanManager, IPostInjectInit
         // Sunrise-start
         _config.OnValueChanged(SunriseCCVars.DiscordBanWebhook, OnWebhookChanged, true);
         _config.OnValueChanged(CVars.GameHostName, OnServerNameChanged, true);
-        _cfg.OnValueChanged(SunriseCCVars.DiscordAuthApiUrl, v => _apiUrl = v, true);
-        _cfg.OnValueChanged(SunriseCCVars.DiscordAuthApiKey, v => _apiKey = v, true);
+
+        IoCManager.Instance!.TryResolveType(out _discordAuth);
         // Sunrise-end
     }
 
@@ -425,8 +426,13 @@ public sealed class BanManager : IBanManager, IPostInjectInit
         foreach (var role in roles)
             rolesString += $"\n> `{role}`";
 
-        var adminDiscordId = await GetDiscordUserId(banDef.BanningAdmin);
-        var targetDiscordId = await GetDiscordUserId(banDef.UserId);
+        string? adminDiscordId = null;
+        string? targetDiscordId = null;
+        if (_discordAuth != null)
+        {
+            adminDiscordId = await _discordAuth.GetDiscordUserId(banDef.BanningAdmin);
+            targetDiscordId = await _discordAuth.GetDiscordUserId(banDef.UserId);
+        }
 
         var adminLink = "";
         var targetLink = "";
@@ -530,29 +536,6 @@ public sealed class BanManager : IBanManager, IPostInjectInit
             };
     }
 
-    public async Task<string?> GetDiscordUserId(NetUserId? userId, CancellationToken cancel = default)
-    {
-        if (_apiUrl == string.Empty)
-            return null;
-
-        _sawmill.Debug($"Player {userId} check Discord username");
-
-        var requestUrl = $"{_apiUrl}/get_discord_user/?user_id={WebUtility.UrlEncode(userId.ToString())}&key={_apiKey}";
-        var response = await _httpClient.GetAsync(requestUrl, cancel);
-        if (response.StatusCode == HttpStatusCode.NotFound)
-        {
-            return null;
-        }
-        if (!response.IsSuccessStatusCode)
-        {
-            var content = await response.Content.ReadAsStringAsync();
-            throw new Exception($"Verification API returned bad status code: {response.StatusCode}\nResponse: {content}");
-        }
-
-        var data = await response.Content.ReadFromJsonAsync<DiscordUserResponse>(cancellationToken: cancel);
-        return data!.UserId;
-    }
-
     private async Task<WebhookPayload> GenerateBanPayload(ServerBanDef banDef, uint? minutes = null)
     {
         var hwidString = banDef.HWId != null
@@ -576,8 +559,13 @@ public sealed class BanManager : IBanManager, IPostInjectInit
     DateTime.UtcNow,
     TimeZoneInfo.FindSystemTimeZoneById("Russian Standard Time"));
 
-        var adminDiscordId = await GetDiscordUserId(banDef.BanningAdmin);
-        var targetDiscordId = await GetDiscordUserId(banDef.UserId);
+        string? adminDiscordId = null;
+        string? targetDiscordId = null;
+        if (_discordAuth != null)
+        {
+            adminDiscordId = await _discordAuth.GetDiscordUserId(banDef.BanningAdmin);
+            targetDiscordId = await _discordAuth.GetDiscordUserId(banDef.UserId);
+        }
 
         var adminLink = "";
         var targetLink = "";

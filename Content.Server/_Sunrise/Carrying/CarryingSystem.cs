@@ -44,6 +44,7 @@ namespace Content.Server._Sunrise.Carrying
         [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
         [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
         [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
+        [Dependency] private readonly IEntityManager _entityManager = default!;
 
         public override void Initialize()
         {
@@ -273,14 +274,21 @@ namespace Content.Server._Sunrise.Carrying
         }
 
         public void DropCarried(EntityUid carrier, EntityUid carried)
-        {
+        {            
             RemComp<CarryingComponent>(carrier); // get rid of this first so we don't recusrively fire that event
             RemComp<CarryingSlowdownComponent>(carrier);
             RemComp<BeingCarriedComponent>(carried);
             RemComp<KnockedDownComponent>(carried);
             _actionBlockerSystem.UpdateCanMove(carried);
             _virtualItemSystem.DeleteInHandsMatching(carrier, carried);
-            Transform(carried).AttachToGridOrMap();
+            if (_entityManager.TryGetComponent<TransformComponent>(carried, out var transformComponent))
+            {
+                transformComponent.AttachToGridOrMap();
+            }
+            else
+            {
+                Console.WriteLine($"TransformComponent отсутствует у сущности {carried}.");
+            }
             _standingState.Stand(carried);
             _movementSpeed.RefreshMovementSpeedModifiers(carrier);
         }

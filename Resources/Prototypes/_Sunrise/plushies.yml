@@ -3,7 +3,6 @@
   parent: BasePlushie
   name: Декус-Киурз
   description: Унатх, которого никто не ждет.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -14,7 +13,6 @@
   parent: BasePlushie
   name: Неизвестный
   description: Плюшевый, вежливый мужчина с утончёнными вкусом и усами.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -25,7 +23,6 @@
   parent: BasePlushie
   name: Тереза Шарапова
   description: Плюшевый глава персонала, он вас бесит.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -36,7 +33,6 @@
   parent: BasePlushie
   name: Ясли Чунканжук
   description: Плюшевая оранжевая лиса в форме офицера.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -47,7 +43,6 @@
   parent: BasePlushie
   name: Роберт Крапивин
   description: Плюшевая игрушка смотрителя в странной синей форме.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -58,7 +53,6 @@
   parent: BasePlushie
   name: Анатолий Бобров
   description: Плюшевый утилизатор с дыркой в скафандре.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -69,7 +63,6 @@
   parent: BasePlushie
   name: Каин Де Ла Мейс
   description: Плюшевый командир ядерных оперативников. Очень страшный.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -80,7 +73,6 @@
   parent: BasePlushie
   name: Артём Спирин младший
   description: Плюшевая игрушка начальника штаба центрального командования. В руке видна записка об отказе.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -91,7 +83,6 @@
   parent: BasePlushie
   name: Виктория Гофмана
   description: Плюшевый уборщик с кровью из носа и электрогитарой.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -102,7 +93,6 @@
   parent: BasePlushie
   name: Артём Спирин старший
   description: Плюшевый, сильно запылившийся учёный.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -113,7 +103,6 @@
   parent: BasePlushie
   name: Акепа Грязнов
   description: Плюшевый мужественный дворф в водолазке оператора центрального командования.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -124,7 +113,6 @@
   parent: BasePlushie
   name: Вуиар Тэриякин
   description: Плюшевая игрушка Капитана с зелёными волосами цвета капусты.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -135,7 +123,6 @@
   parent: BasePlushie
   name: Марианна Брагина
   description: Очень милая плюшевая игрушка атмосферного техника.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -146,7 +133,6 @@
   parent: BasePlushie
   name: Дракоша
   description: Плюшевая игрушка дракона-гумонойда с коричневой чешуйкой.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -157,7 +143,6 @@
   parent: BasePlushie
   name: Пуро
   description: Плюшевая игрушка вульпы с  белой маской на лице.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -168,7 +153,6 @@
   parent: BasePlushie
   name: Рудольф Фон-Вяйнер
   description: Плюшевая игрушка старшего инженера с пурпурными как плазма волосами.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -179,7 +163,6 @@
   parent: BasePlushie
   name: TR-263
   description: Роботизированный Раптор. Не стоит совать свои руки к его плюшевой морде. Все же знают чем это обычно заканчивается?
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -190,7 +173,6 @@
   parent: BasePlushie
   name: Комиссар
   description: Комиссар — cупер-спец по расследованию плюшевых нарушений. Самое грозное и мягкое правосудие в плюшевой вселенной.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -201,7 +183,6 @@
   parent: BasePlushie
   name: Подлый жулик
   description: Некоторые называют его плохим, другие говорят что он худший, но все мы знаем кто он.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -212,7 +193,6 @@
   parent: BasePlushie
   name: Лураш-Ма
   description: Пускай его чешуя черна, но помыслы его чисты! И не спрашивайте, откуда у него гипоручка и зачем ему в ней ноктюрин!
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -223,7 +203,6 @@
   parent: BasePlushie
   name: Гентухв Анмимиш
   description: Великий воин клана зелёного робаста. Был ранен в колено и вынужден приостановить свой путь в ваших мягких или не очень руках. Катана в комплект не входит.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -234,7 +213,6 @@
   parent: BasePlushie
   name: Кондрат Серан
   description: Ходят легенды, что рыжий Серан успешно завершил много дел и закрыл себе офис юриста из-за нового указа НТ. В тёмном уголке живёт, шёлковую нить плетёт, он тайком сюда забрался, строить новый дом собрался.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -245,7 +223,6 @@
   parent: BasePlushie
   name: Дарт Вейдер
   description: Давным давно, в далёкой-далёкой галактике...
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -256,7 +233,6 @@
   parent: BasePlushie
   name: Узо-Кур-Петаксай
   description: Серый унатх одетый в одеяние так называймого "Арбитора". Достаточно добрый Мастер.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -267,7 +243,6 @@
   parent: BasePlushie
   name: Роман Фильченков
   description: Самый известный квадратный плюш на плюшевом свете!
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -278,7 +253,6 @@
   parent: BasePlushie
   name: Конрадра Алексеева
   description: Пусть эта молодая девушка с длинными голубыми волосами, красными глазами и любовью к пиву и Корпорации NanoTrasen продолжает свое приключение, привнося в мир свою уникальность и радость жизни.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -289,7 +263,6 @@
   parent: BasePlushie
   name: Игорь
   description: "Плюшевый медвежёнок в чёрной толстовке с капюшоном. Не спрашивайте его почему Vim лучше. На этикетке написано: \"I use Arch btw\""
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -300,7 +273,6 @@
   parent: BasePlushie
   name: Хаски Хаскович
   description: Антропорформая Серая-белая собака в синем костюме и лаймовыми ботинками.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -311,7 +283,6 @@
   parent: BasePlushie
   name: Ах-Вадюмиек
   description: Обычный фиолетовый ящер, который любит технические туннели и рыть-копать землю.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -322,7 +293,6 @@
   parent: BasePlushie
   name: Нанати
   description: Нааа, пушистая и вкусно пахнущая игрушка.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -333,7 +303,6 @@
   parent: BasePlushie
   name: Скаут-птица
   description: "Птица красного цвета. На этикетке написано: \"I'm Scout main and Scout gaming\""
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -344,7 +313,6 @@
   parent: BasePlushie
   name: Кириешка
   description: Кот-человек.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -355,7 +323,6 @@
   parent: BasePlushie
   name: Аллан Хаскович
   description: Подозрительный тип.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -366,7 +333,6 @@
   parent: BasePlushie
   name: Спиффо
   description: Этот маленький енот сделает все, чтобы вы УМЕРЛИ от зомби!
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -377,7 +343,6 @@
   parent: BasePlushie
   name: Кирпичный Джим
   description: На удивление... похож на кирпич. Веет силой бюрократии.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -387,7 +352,6 @@
   id: PlushieThirtySixBig
   name: Большой Кирпичный Джим
   description: Кирпич-гигачад. Очень большой. Веет силой бюрократии.
-  noSpawn: true
   components:
   - type: Clickable
   - type: InteractionOutline
@@ -455,7 +419,6 @@
   parent: BasePlushie
   name: V.O.R.T.E.X.
   description: Говорят, что там где лежит эта игрушка, всегда есть свет, но мы в это не верим.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -466,7 +429,6 @@
   parent: BasePlushie
   name: Дань Хэн Пожиратель Луны
   description: Облачный дракон. Воспрянь!
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -477,7 +439,6 @@
   parent: BasePlushie
   name: Невезучий детектив Ричард Рид
   description: Почетно проиграл в русскую рулетку с самим с собой... 17 раз....
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -488,7 +449,6 @@
   parent: BasePlushie
   name: Капитан Тартарус
   description: В кармане картинка с виселицей и подписью "спс за кибербуллинг", адресовано "Элику"
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -499,7 +459,6 @@
   parent: BasePlushie
   name: Капитан Эмили
   description: Капитан Эмили Филл, обычно при виде её кричат что-то вроде "ААА, ЖЕНИЩНА", но при виде игрушки кричат только "ААА ФУРРИ"
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi
@@ -510,7 +469,6 @@
   parent: BasePlushie
   name: Плюшевый Крестоносец
   description: Deus vult! Ave maria!
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/plushies.rsi

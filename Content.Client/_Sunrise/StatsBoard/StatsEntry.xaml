@@ -1,0 +1,14 @@
+<BoxContainer xmlns="https://spacestation14.io"
+              Margin="10 10 10 0"
+              HorizontalExpand="True"
+              Visible="True">
+    <PanelContainer StyleClasses="AngleRect" HorizontalExpand="True">
+        <BoxContainer Orientation="Vertical" HorizontalExpand="True" HorizontalAlignment="Left">
+            <BoxContainer Orientation="Horizontal" >
+                <Label Text="Персонаж: " StyleClasses="LabelKeyText"/>
+                <RichTextLabel Name="NameLabel"/>
+            </BoxContainer>
+            <RichTextLabel Name="StatsLabel"/>
+        </BoxContainer>
+    </PanelContainer>
+</BoxContainer>

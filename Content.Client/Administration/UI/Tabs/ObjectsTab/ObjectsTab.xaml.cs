@@ -15,7 +15,6 @@ namespace Content.Client.Administration.UI.Tabs.ObjectsTab;
 public sealed partial class ObjectsTab : Control
 {
     [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IClientConsoleHost _console = default!;
 
     private readonly Color _altColor = Color.FromHex("#292B38");

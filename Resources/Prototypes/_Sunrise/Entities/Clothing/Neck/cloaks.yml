@@ -19,7 +19,6 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakHOSCloak
-  noSpawn: true
   name: плащ главы службы безопасности
   description: Чёрно-красный плащ ГСБ, символизирует безопасность и жестокость.
   components:
@@ -30,7 +29,6 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakResearchDirector
-  noSpawn: true
   name: плащ светилы науки
   description: Фиолетовый плащ с изображенной спиралью ДНК, демонстрирует ваше всезнание и феноменальность.
   components:
@@ -41,7 +39,6 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingEliteNeckCloakCaptain
-  noSpawn: true
   name: плащ капитана
   description: Большое количество 24 коратного золота, позволяет понять ваш статус издалека.
   components:
@@ -52,7 +49,6 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckEliteCloakCECloak
-  noSpawn: true
   name: плащ старшего инженера
   description: Увесистый, но очень роскошный белый плащ с золотыми лентами. На обратной стороне имеется маленькая этикетка "Поменяйте топливо в ДАМ".
   components:
@@ -63,7 +59,6 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakIAACloak
-  noSpawn: true
   name: плащ агента внутренних дел
   description: Темная накидка на голову из флисовой ткани. Эффектно сочетается с общим стилем агента внутренних дел.
   components:
@@ -74,7 +69,6 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCMOCloak
-  noSpawn: true
   name: плащ главного врача
   description: Его получают только лучшие из лучших. Человек который его носит спас не одну сотню жизней.
   components:
@@ -85,7 +79,6 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakQM
-  noSpawn: true
   name: плащ квартирмейстера
   description: Плащ, готовый пройти с вами сквозь кровь, боль, маты, ксеноморфов или чего-то по экзотичнее. Подчёркивает богатства владельца большим выточенным алмазом, пока вы не узнаете что это ширпотреб.
   components:
@@ -96,7 +89,6 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakHOPCloak
-  noSpawn: true
   name: плащ главы персонала
   description: Плащ Главы персонала. Голубой, с золотыми вставками плащ, напоминающий, кто тут Босс.
   components:
@@ -107,7 +99,6 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakBlackSec
-  noSpawn: true
   name: плащ службы безопасности
   description: Чёрный и загадочный.
   components:
@@ -126,7 +117,6 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakDarthHOSCloak
-  noSpawn: true
   name: мантия Темного Лорда.
   description: Символическая и способная вызвать трепет всем вокруг мантия, которая идеально отображает мрачное величие её владельца.
   components:
@@ -139,7 +129,6 @@
   id: ClothingNeckCloakWhite
   name: наплечник офицера Республиканской армии
   description: Элемент снаряжениия элитного солдата в звании офицера.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Clothing/Neck/Cloaks/securityofficer.rsi
@@ -150,7 +139,6 @@
   id: ClothingNeckCloakAlpha
   name: плащ Альфа
   description: Плащ, который позволял прятаться от врагов так же успешно, как и оперативнику прятаться от своих заслуг.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Clothing/Neck/Cloaks/alpha.rsi
@@ -161,7 +149,6 @@
   id: ClothingNeckCloakLima
   name: плащ Лима
   description: Плащ, который позволял прятаться от врагов так же успешно, как и оперативнику прятаться от своих заслуг.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Clothing/Neck/Cloaks/lima.rsi
@@ -172,7 +159,6 @@
   id: ClothingNeckCloakDelta
   name: плащ Дельта
   description: Плащ, который позволял прятаться от врагов так же успешно, как и оперативнику прятаться от своих заслуг.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Clothing/Neck/Cloaks/delta.rsi
@@ -183,7 +169,6 @@
   id: ClothingNeckCloakEcho
   name: плащ Эхо
   description: Плащ, который позволял прятаться от врагов так же успешно, как и оперативнику прятаться от своих заслуг.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Clothing/Neck/Cloaks/echo.rsi
@@ -194,7 +179,6 @@
   id: ClothingNecRepublicBodyguard
   name: мантия Императорского Стража
   description: Элитное обмундирование Императорского Стража.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Clothing/Neck/Cloaks/republicbodyguard.rsi
@@ -206,7 +190,6 @@
   parent: ClothingNeckBase
   id: ClothingNeckKailoRen
   name: чёрная накидка
-  noSpawn: true
   description: Символическая и способная вызывать трепет и страх. Идеально подчеркивает мрачное великие своего владельца.
   components:
   - type: Sprite
@@ -220,7 +203,6 @@
   id: ClothingCloakGamer
   name: легендарный плащ геймера
   description: Его носят самые опытные профессиональные геймеры.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Clothing/Neck/Cloaks/gamer.rsi
@@ -230,7 +212,6 @@
   id: ClothingCloakAtmosian
   name: плащ атмосианина
   description: Плащ легендарного атмосианина.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Clothing/Neck/Cloaks/atmosian.rsi

@@ -4,12 +4,14 @@ using Content.Server.GameTicking;
 using Content.Server.Mind;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Bed.Cryostorage;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
@@ -28,13 +30,22 @@ public sealed class CryoTeleportSystem : EntitySystem
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly TransformSystem _transformSystem = default!;
     [Dependency] private readonly IPlayerManager _playerMan = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
+    private bool _enable;
     public TimeSpan NextTick = TimeSpan.Zero;
     public TimeSpan RefreshCooldown = TimeSpan.FromSeconds(5);
     public override void Initialize()
     {
+        _cfg.OnValueChanged(SunriseCCVars.CryoTeleportEnable, OnCryoTeleportEnableChanged, true);
+
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnCompleteSpawn);
         _playerMan.PlayerStatusChanged += OnSessionStatus;
+    }
+
+    private void OnCryoTeleportEnableChanged(bool enable)
+    {
+        _enable = enable;
     }
 
     public override void Update(float delay)
@@ -43,6 +54,9 @@ public sealed class CryoTeleportSystem : EntitySystem
             return;
 
         NextTick += RefreshCooldown;
+
+        if (!_enable)
+            return;
 
         var query = AllEntityQuery<CryoTeleportTargetComponent, MobStateComponent>();
         while (query.MoveNext(out var uid, out var comp, out var mobStateComponent))
@@ -92,8 +106,12 @@ public sealed class CryoTeleportSystem : EntitySystem
 
     private void OnCompleteSpawn(PlayerSpawnCompleteEvent ev)
     {
+        if (!_enable)
+            return;
+
         if (!TryComp<StationCryoTeleportComponent>(ev.Station, out var cryoTeleportComponent))
             return;
+
         if (ev.JobId == null)
             return;
 
@@ -107,6 +125,9 @@ public sealed class CryoTeleportSystem : EntitySystem
 
     private void OnSessionStatus(object? sender, SessionStatusEventArgs args)
     {
+        if (!_enable)
+            return;
+
         if (!TryComp<CryoTeleportTargetComponent>(args.Session.AttachedEntity, out var comp))
             return;
 

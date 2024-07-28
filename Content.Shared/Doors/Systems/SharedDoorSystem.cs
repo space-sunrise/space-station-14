@@ -146,6 +146,10 @@ public abstract partial class SharedDoorSystem : EntitySystem
             return;
         Audio.PlayPredicted(door.SparkSound, uid, args.UserUid, AudioParams.Default.WithVolume(8));
         args.Handled = true;
+        // Sunrise-Start
+        var emagged = new DoorEmaggedEvent(args.UserUid);
+        RaiseLocalEvent(args.UserUid, ref emagged);
+        // Sunrise-End
     }
 
     #region StateManagement
@@ -806,3 +810,8 @@ public abstract partial class SharedDoorSystem : EntitySystem
     }
     #endregion
 }
+
+// Sunrise-Start
+[ByRefEvent]
+public readonly record struct DoorEmaggedEvent(EntityUid UserUid);
+// Sunrise-End

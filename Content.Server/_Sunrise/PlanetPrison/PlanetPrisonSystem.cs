@@ -1,36 +1,37 @@
 using System.Linq;
-using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Mind;
 using Content.Server.Objectives;
-using Content.Shared.Database;
+using Content.Server.Roles;
+using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Roles;
 using Robust.Server.GameObjects;
-using Robust.Shared.Network;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.PlanetPrison
 {
     public sealed class PlanetPrisonSystem : EntitySystem
     {
-        private const string AntagRole = "PlanetPrisoner";
-        private const string EscapeObjective = "PlanetPrisonerEscapeObjective";
-        private const string GameRule = "PlanetPrison";
-
-        private const float EscapeDistance = 150f;
-
-        public TimeSpan NextTick = TimeSpan.Zero;
-        public TimeSpan RefreshCooldown = TimeSpan.FromSeconds(5);
-
         [Dependency] private readonly MindSystem _mindSystem = default!;
-        [Dependency] private readonly IChatManager _chatManager = default!;
         [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
         [Dependency] private readonly GameTicker _gameTicker = default!;
         [Dependency] private readonly TransformSystem _transformSystem = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
-        [Dependency] private readonly IBanManager _banManager = default!;
+
+        [ValidatePrototypeId<AntagPrototype>]
+        private const string AntagRole = "PlanetPrisoner";
+        [ValidatePrototypeId<EntityPrototype>]
+        private const string EscapeObjective = "PlanetPrisonerEscapeObjective";
+        [ValidatePrototypeId<EntityPrototype>]
+        private const string GameRule = "PlanetPrison";
+
+        private const float EscapeDistance = 175f;
+
+        public TimeSpan NextTick = TimeSpan.Zero;
+        public TimeSpan RefreshCooldown = TimeSpan.FromSeconds(5);
 
         public override void Initialize()
         {
@@ -38,6 +39,16 @@ namespace Content.Server._Sunrise.PlanetPrison
             SubscribeLocalEvent<PlanetPrisonerComponent, MindAddedMessage>(OnMindAdded);
             SubscribeLocalEvent<PlanetPrisonRuleComponent, ObjectivesTextGetInfoEvent>(OnObjectivesTextGetInfo);
             SubscribeLocalEvent<PlanetPrisonRuleComponent, ObjectivesTextPrependEvent>(OnObjectivesTextPrepend);
+            SubscribeLocalEvent<PlanetPrisonerRoleComponent, GetBriefingEvent>(OnGetBriefing);
+        }
+
+        private void OnGetBriefing(EntityUid uid, PlanetPrisonerRoleComponent component, ref GetBriefingEvent args)
+        {
+            if (!TryComp<MindComponent>(uid, out var mind) || mind.OwnedEntity == null)
+                return;
+            if (HasComp<PlanetPrisonerRoleComponent>(uid)) // don't show both briefings
+                return;
+            args.Append(Loc.GetString("planet-prisoner-role-greeting"));
         }
 
         private void OnObjectivesTextPrepend(EntityUid uid, PlanetPrisonRuleComponent comp, ref ObjectivesTextPrependEvent args)
@@ -143,11 +154,6 @@ namespace Content.Server._Sunrise.PlanetPrison
             {
                 PrototypeId = AntagRole,
             });
-
-            if (_mindSystem.TryGetSession(mind, out var session))
-            {
-                _chatManager.DispatchServerMessage(session, Loc.GetString("planet-prisoner-role-greeting"));
-            }
 
             _mindSystem.TryAddObjective(mindId, mind, EscapeObjective);
 

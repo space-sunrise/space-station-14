@@ -8,6 +8,8 @@
   supervisors: job-supervisors-head-of-prison
   alwaysUseSpawner: true
   canBeAntag: false
+  setPreference: false
+  displayWeight: 40
   access:
   - Service
   - Maintenance
