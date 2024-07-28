@@ -68,14 +68,24 @@ ent-BorgModuleSyndicateCombat = боевой модуль киборга син�
     .desc = { ent-BaseBorgModule.desc }
 
 ent-ReinforcementRadioSyndicateCyborgSpider = радио подкрепления киборга-диверсанта
+    .suffix = Ядерные оперативники
     .desc = { ent-ReinforcementRadioSyndicateCyborgAssault.desc }
 ent-ReinforcementRadioSyndicateCyborgHeavy = радио подкрепления тяжёлого боевого киборга
-    .suffic = Ядерные оперативники
+    .suffix = Ядерные оперативники
     .desc = { ent-ReinforcementRadioSyndicateCyborgSpider.desc }
-    ent-ReinforcementRadioSyndicateCyborgMedical = радио подкрепления медицинского киборга
+ent-ReinforcementRadioSyndicateCyborgMedical = радио подкрепления мед.киборга
+    .suffix = Ядерные оперативники
     .desc = { ent-ReinforcementRadioSyndicateCyborgSpider.desc }
+ent-ReinforcementRadioSyndicateCyborgReaper = радио подкрепления киборга-жнеца
+    .suffix = Ядерные оперативники
+    .desc = { ent-ReinforcementRadioSyndicateCyborgSpider.desc }
+ent-ReinforcementRadioSyndicateAncestor = радио подкрепления предка
+    .desc = Вызывает на подмогу специально обученного предка на ваш выбор для помощи вам.
+ent-ReinforcementRadioSyndicateAncestorNukeops = радио подкрепления предка
+    .suffix = Ядерные оперативники
+    .desc = { ent-ReinforcementRadioSyndicateAncestor.desc }
 
-ent-PlayerBorgSyndicateReaperBattery = syndicate reaper cyborg
+ent-PlayerBorgSyndicateReaperBattery = киборг-жнец синдиката
     .suffix = Батарея, Инструменты
     .desc = { ent-BorgChassisGeneric.desc }
 ent-BorgChassisSyndicateReaper = { ent-PlayerBorgSyndicateReaperBattery }
