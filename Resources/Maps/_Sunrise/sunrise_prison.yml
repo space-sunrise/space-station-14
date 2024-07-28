@@ -49357,14 +49357,14 @@ entities:
     - type: Transform
       pos: 38.5,70.5
       parent: 2
-- proto: GunSafeEnergyGunMini
+- proto: GunSafeDisabler
   entities:
   - uid: 7072
     components:
     - type: Transform
       pos: 15.5,-10.5
       parent: 2
-- proto: GunSafeRifleM16A4
+- proto: GunSafeRifleLecter
   entities:
   - uid: 735
     components:
@@ -97866,7 +97866,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 82.5,4.5
       parent: 2
-- proto: WeaponEnergyGunMini
+- proto: WeaponDisabler
   entities:
   - uid: 15556
     components:
@@ -97934,7 +97934,7 @@ entities:
     - type: Transform
       pos: 85.46081,-16.284866
       parent: 2
-- proto: WeaponEnergyGun
+- proto: WeaponLaserCarbine
   entities:
   - uid: 15568
     components:
@@ -98015,7 +98015,7 @@ entities:
     - type: Transform
       pos: 98.35489,5.5269833
       parent: 2
-- proto: WeaponPistolG22
+- proto: WeaponPistolMk58
   entities:
   - uid: 13795
     components:
