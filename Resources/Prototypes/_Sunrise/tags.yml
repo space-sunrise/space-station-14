@@ -19,101 +19,101 @@
 # Catridges:
 
 - type: Tag
-  id: SUNRISECM14CartridgeRifleMachine
+  id: CartridgeRifleMachine
 
 - type: Tag
-  id: SUNRISECM14FireThrowerBall
+  id: FireThrowerBall
 
 - type: Tag
-  id: SUNRISECM14PowerpackMinigunMG100
+  id: PowerpackMinigunMG100
 
 - type: Tag
-  id: SUNRISECM14CartridgeRocket20
+  id: CartridgeRocket20
 
 # Magazines:
 - type: Tag
-  id: SUNRISECM14MagazineM28
+  id: MagazineM28
 
 - type: Tag
-  id: SUNRISECM14MagazineDragunov
+  id: MagazineDragunov
 
 - type: Tag
-  id: SUNRISECM14MagazineBR64
+  id: MagazineBR64
 
 - type: Tag
-  id: SUNRISECM14MagazineBauer127
+  id: MagazineBauer127
 
 - type: Tag
-  id: SUNRISECM14MagazineAK
+  id: MagazineAK
 
 - type: Tag
-  id: SUNRISECM14MagazineFamas
+  id: MagazineFamas
 
 - type: Tag
-  id: SUNRISECM14MagazineG36
+  id: MagazineG36
 
 - type: Tag
-  id: SUNRISECM14MagazineAR18
+  id: MagazineAR18
 
 - type: Tag
-  id: SUNRISECM14MagazineP90
+  id: MagazineP90
 
 - type: Tag
-  id: SUNRISECM14MagazineMP38
+  id: MagazineMP38
 
 - type: Tag
-  id: SUNRISECM14MagazineMP7
+  id: MagazineMP7
 
 - type: Tag
-  id: SUNRISECM14MagazineMP5
+  id: MagazineMP5
 
 - type: Tag
-  id: SUNRISECM14MagazineScorpion
+  id: MagazineScorpion
 
 - type: Tag
-  id: SUNRISECM14MagazineNewVector
+  id: MagazineNewVector
 
 - type: Tag
-  id: SUNRISECM14MagazineRPD
+  id: MagazineRPD
 
 - type: Tag
   id: MagazineMachineGunMG42
 
 - type: Tag
-  id: SUNRISECM14MagazineLightMachineGunMG60
+  id: MagazineLightMachineGunMG60
 
 - type: Tag
-  id: SUNRISECM14MagazineVP70
+  id: MagazineVP70
 
 - type: Tag
-  id: SUNRISECM14MagazineDeagle
+  id: MagazineDeagle
 
 - type: Tag
-  id: SUNRISECM14MagazineGlock22
+  id: MagazineGlock22
 
 - type: Tag
-  id: SUNRISECM14MagazineHIBrowning
+  id: MagazineHIBrowning
 
 - type: Tag
-  id: SUNRISECM14MagazineACP14
+  id: MagazineACP14
 
 - type: Tag
-  id: SUNRISECM14FuelTankFlamethrower
+  id: FuelTankFlamethrower
 
 - type: Tag
-  id: SUNRISECM14NoSpinOnThrow
+  id: NoSpinOnThrow
 
 - type: Tag
-  id: SUNRISECM14MagazineM16A4
+  id: MagazineM16A4
 
 - type: Tag
-  id: SUNRISECM14MagazineSTG44
+  id: MagazineSTG44
 
 - type: Tag
-  id: SUNRISECM14MagazineV31
+  id: MagazineV31
 
 - type: Tag
-  id: SUNRISECM14PowerpackFlame
+  id: PowerpackFlame
 
 - type: Tag
-  id: SUNRISECM14MagazinePPSH41
+  id: MagazinePPSH41

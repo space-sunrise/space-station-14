@@ -53,7 +53,7 @@
 - type: entity
   name: P-90
   parent: BaseWeaponSubMachineGun
-  id: SUNRISECM14WeaponSubMachineGunP90
+  id: WeaponSubMachineGunP90
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/p90.rsi
@@ -77,13 +77,13 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: SUNRISECM14MagazineP90
+        startingItem: MagazineP90
         insertSound: /Audio/_Sunrise/Weapons/Guns/SMGs/p90_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/SMGs/p90_unload.ogg
         priority: 2
         whitelist:
           tags:
-          - SUNRISECM14MagazineP90
+          - MagazineP90
       gun_chamber:
         name: Chamber
         startingItem: CartridgeLightRifle  # 57x28
@@ -106,7 +106,7 @@
 - type: entity
   name: MP-38
   parent: BaseWeaponSubMachineGun
-  id: SUNRISECM14WeaponSubMachineGunMP38
+  id: WeaponSubMachineGunMP38
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/mp38/big.rsi
@@ -158,7 +158,7 @@
 - type: entity
   name: MP7
   parent: BaseWeaponSubMachineGun
-  id: SUNRISECM14WeaponSubMachineGunMP7
+  id: WeaponSubMachineGunMP7
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/mp7/big.rsi
@@ -184,13 +184,13 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: SUNRISECM14MagazineMP7
+        startingItem: MagazineMP7
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/mp7/mp7_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/mp7/mp7_unload.ogg
         priority: 2
         whitelist:
           tags:
-          - SUNRISECM14MagazineMP7
+          - MagazineMP7
       gun_chamber:
         name: Chamber
         startingItem: CartridgeLightRifle  # 57x28
@@ -210,7 +210,7 @@
 - type: entity
   name: MP5
   parent: BaseWeaponSubMachineGun
-  id: SUNRISECM14WeaponSubMachineGunMP5
+  id: WeaponSubMachineGunMP5
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/mp5/big.rsi
@@ -238,13 +238,13 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: SUNRISECM14MagazineMP5
+        startingItem: MagazineMP5
         insertSound: /Audio/_Sunrise/Weapons/Guns/SMGs/mp5/mp5_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/SMGs/mp5/mp5_unload.ogg
         priority: 2
         whitelist:
           tags:
-          - SUNRISECM14MagazineMP5
+          - MagazineMP5
       gun_chamber:
         name: Chamber
         startingItem: CartridgeLightRifle  # 57x28
@@ -267,7 +267,7 @@
 - type: entity
   name: Scorpion VZ-61
   parent: BaseWeaponSubMachineGun
-  id: SUNRISECM14WeaponSubMachineGunSkorpion
+  id: WeaponSubMachineGunSkorpion
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/skorpion.rsi
@@ -312,7 +312,7 @@
 - type: entity
   name: New Vector
   parent: BaseWeaponSubMachineGun
-  id: SUNRISECM14WeaponSubMachineGunNewVector
+  id: WeaponSubMachineGunNewVector
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/vector/big.rsi
@@ -364,7 +364,7 @@
 - type: entity
   name: PPSH-41
   parent: BaseWeaponSubMachineGun
-  id: SUNRISECM14WeaponSubMachineGunPPSH41
+  id: WeaponSubMachineGunPPSH41
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/ppsh41/big.rsi
@@ -394,13 +394,13 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: SUNRISECM14MagazinePPSH41
+        startingItem: MagazinePPSH41
         insertSound: /Audio/_Sunrise/Weapons/Guns/SMGs/ppsh41/ppsh_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/SMGs/ppsh41/ppsh_unload.ogg
         priority: 2
         whitelist:
           tags:
-          - SUNRISECM14MagazinePPSH41
+          - MagazinePPSH41
       gun_chamber:
         name: Chamber
         startingItem: CartridgeLightRifle  # 57x28

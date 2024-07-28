@@ -14,13 +14,13 @@
         color: "#43c4f7"
 
 - type: entity
-  id: SUNRISECM14CartridgeRocket20
+  id: CartridgeRocket20
   parent: BaseCartridge
   components:
   - type: Tag
     tags:
     - Cartridge
-    - SUNRISECM14CartridgeRocket20
+    - CartridgeRocket20
   - type: Sprite
     netsync: false
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
@@ -31,7 +31,7 @@
     state: relsotrone-combat
   - type: CartridgeAmmo
     deleteOnSpawn: true
-    proto: SUNRISECM14BulletRocket20
+    proto: BulletRocket20
   - type: Appearance
   - type: StaticPrice
     price: 10

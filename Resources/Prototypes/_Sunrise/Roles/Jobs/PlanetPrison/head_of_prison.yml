@@ -33,5 +33,5 @@
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltSecurity
     belt: ClothingBeltPrisonGuardianFilled
-    pocket1: SUNRISECM14WeaponPistolDeagle
-    pocket2: SUNRISECM14MagazineDeagle
+    pocket1: WeaponPistolDeagle
+    pocket2: MagazineDeagle

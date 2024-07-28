@@ -1,7 +1,7 @@
 - type: entity
   name: MG-60
   parent: BaseWeaponLightMachineGun
-  id: SUNRISECM14WeaponLightMachineGunMG60
+  id: WeaponLightMachineGunMG60
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/LMGs/mg60/big.rsi
@@ -29,13 +29,13 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: SUNRISECM14MagazineLightMachineGunMG60
+        startingItem: MagazineLightMachineGunMG60
         insertSound: /Audio/_Sunrise/Weapons/Guns/LMGs/reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/LMGs/unload.ogg
         priority: 2
         whitelist:
           tags:
-          - SUNRISECM14MagazineLightMachineGunMG60
+          - MagazineLightMachineGunMG60
           - MagazineLightRifle
       gun_chamber:
         name: Chamber
@@ -64,7 +64,7 @@
 - type: entity
   name: RPD
   parent: BaseWeaponLightMachineGun
-  id: SUNRISECM14WeaponLightMachineGunRPD
+  id: WeaponLightMachineGunRPD
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/LMGs/rpd/big.rsi
@@ -90,13 +90,13 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: SUNRISECM14MagazineRPD
+        startingItem: MagazineRPD
         insertSound: /Audio/_Sunrise/Weapons/Guns/LMGs/reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/LMGs/unload.ogg
         priority: 2
         whitelist:
           tags:
-          - SUNRISECM14MagazineRPD
+          - MagazineRPD
           - MagazineLightRifle
       gun_chamber:
         name: Chamber
@@ -124,7 +124,7 @@
 - type: entity
   name: MG-42
   parent: BaseWeaponLightMachineGun
-  id: SUNRISECM14WeaponMachineGunMG42
+  id: WeaponMachineGunMG42
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/LMGs/mg42/big.rsi

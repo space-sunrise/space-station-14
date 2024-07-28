@@ -12,7 +12,7 @@
 - type: entity
   noSpawn: true
   parent: BaseBulletTrigger
-  id: SUNRISECM14BulletRocket20
+  id: BulletRocket20
   name: bullet (рельсотрон)
   components:
   - type: Projectile

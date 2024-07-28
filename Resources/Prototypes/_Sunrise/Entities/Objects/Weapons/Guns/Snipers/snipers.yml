@@ -1,7 +1,7 @@
 - type: entity
   name: Dragunov
   parent: BaseWeaponRifle
-  id: SUNRISECM14WeaponSniperDragunov
+  id: WeaponSniperDragunov
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/Snipers/dragunov/big.rsi
@@ -37,13 +37,13 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: SUNRISECM14MagazineDragunov
+        startingItem: MagazineDragunov
         insertSound: /Audio/_Sunrise/Weapons/Guns/Snipers/Dragunov/dragunov_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Snipers/Dragunov/dragunov_unload.ogg
         priority: 2
         whitelist:
           tags:
-            - SUNRISECM14MagazineDragunov
+            - MagazineDragunov
       gun_chamber:
         name: Chamber
         startingItem: CartridgeMagnum  # 762x54
@@ -69,7 +69,7 @@
 - type: entity
   name: BR-64
   parent: BaseWeaponRifle
-  id: SUNRISECM14WeaponRifleBR64
+  id: WeaponRifleBR64
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/Snipers/br-64/big.rsi
@@ -104,13 +104,13 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: SUNRISECM14MagazineBR64
+        startingItem: MagazineBR64
         insertSound: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/unload.ogg
         priority: 2
         whitelist:
           tags:
-            - SUNRISECM14MagazineBR64
+            - MagazineBR64
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -128,7 +128,7 @@
 - type: entity
   name: SR-127 Bauer bolt action rifle
   parent: BaseWeaponRifle
-  id: SUNRISECM14WeaponRifleBauer127
+  id: WeaponRifleBauer127
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/Snipers/bauer127/big.rsi
@@ -163,13 +163,13 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: SUNRISECM14MagazineBauer127
+        startingItem: MagazineBauer127
         insertSound: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/unload.ogg
         priority: 2
         whitelist:
           tags:
-            - SUNRISECM14MagazineBauer127
+            - MagazineBauer127
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -189,7 +189,7 @@
 - type: entity
   name: M1 Garand
   parent: BaseWeaponSniper
-  id: SUNRISECM14WeaponSniperGarand
+  id: WeaponSniperGarand
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/Snipers/garand/big.rsi
@@ -214,7 +214,7 @@
 - type: entity
   name: Kardashev-Mosin
   parent: BaseWeaponSniper
-  id: SUNRISECM14WeaponSniperMosinNew
+  id: WeaponSniperMosinNew
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/Snipers/mosin/big.rsi

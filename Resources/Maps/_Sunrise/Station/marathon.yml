@@ -138518,7 +138518,7 @@ entities:
     - type: Transform
       pos: -38.316597,60.345554
       parent: 30
-- proto: SUNRISECM14WeaponShotgunTrenchgun4034
+- proto: WeaponShotgunTrenchgun4034
   entities:
   - uid: 1978
     components:
@@ -138544,7 +138544,7 @@ entities:
     - type: Transform
       pos: -41.445473,54.621906
       parent: 30
-- proto: SUNRISECM14WeaponSubMachineGunMP38
+- proto: WeaponSubMachineGunMP38
   entities:
   - uid: 2000
     components:

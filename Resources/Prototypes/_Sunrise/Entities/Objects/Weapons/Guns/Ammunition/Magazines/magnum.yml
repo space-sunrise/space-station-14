@@ -27,13 +27,13 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: SUNRISECM14MagazineDeagle
+  id: MagazineDeagle
   name: Deagle magazine
   parent: BaseItem
   components:
     - type: Tag
       tags:
-        - SUNRISECM14MagazineDeagle
+        - MagazineDeagle
     - type: BallisticAmmoProvider
       mayTransfer: true
       proto: CartridgeMagnum  # 050

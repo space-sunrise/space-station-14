@@ -27,13 +27,13 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: SUNRISECM14MagazineFamas
+  id: MagazineFamas
   name: Famas magazine
   parent: BaseItem
   components:
   - type: Tag
     tags:
-      - SUNRISECM14MagazineFamas
+      - MagazineFamas
   - type: Item
     size: Small
   - type: BallisticAmmoProvider
@@ -60,13 +60,13 @@
   - type: Appearance
 
 - type: entity
-  id: SUNRISECM14MagazineG36
+  id: MagazineG36
   name: G36 magazine
   parent: BaseItem
   components:
   - type: Tag
     tags:
-      - SUNRISECM14MagazineG36
+      - MagazineG36
   - type: Item
     size: Small
   - type: BallisticAmmoProvider
@@ -93,13 +93,13 @@
   - type: Appearance
 
 - type: entity
-  id: SUNRISECM14MagazineM28
+  id: MagazineM28
   name: M28 magazine
   parent: BaseItem
   components:
   - type: Tag
     tags:
-      - SUNRISECM14MagazineM28
+      - MagazineM28
   - type: Item
     size: Small
   - type: BallisticAmmoProvider
@@ -126,13 +126,13 @@
   - type: Appearance
 
 - type: entity
-  id: SUNRISECM14MagazineAR18
+  id: MagazineAR18
   name: AR18 magazine
   parent: BaseItem
   components:
   - type: Tag
     tags:
-    - SUNRISECM14MagazineAR18
+    - MagazineAR18
   - type: Item
     size: Small
   - type: BallisticAmmoProvider
@@ -159,13 +159,13 @@
   - type: Appearance
 
 - type: entity
-  id: SUNRISECM14MagazineM16A4
+  id: MagazineM16A4
   name: M16A4 magazine
   parent: BaseItem
   components:
   - type: Tag
     tags:
-    - SUNRISECM14MagazineM16A4
+    - MagazineM16A4
   - type: Item
     size: Small
   - type: BallisticAmmoProvider

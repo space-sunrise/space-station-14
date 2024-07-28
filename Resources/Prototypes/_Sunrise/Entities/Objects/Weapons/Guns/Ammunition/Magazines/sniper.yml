@@ -1,12 +1,12 @@
 - type: entity
-  id: SUNRISECM14MagazineDragunov
+  id: MagazineDragunov
   name: Dragunov magazine
   description: Standart USSP type of heavy magazines.
   parent: BaseItem
   components:
   - type: Tag
     tags:
-      - SUNRISECM14MagazineDragunov
+      - MagazineDragunov
   - type: BallisticAmmoProvider
     mayTransfer: true
     capacity: 20
@@ -36,14 +36,14 @@
 
 
 - type: entity
-  id: SUNRISECM14MagazineBR64
+  id: MagazineBR64
   name: BR64 magazine
   description: Standart EarthGov type of heavy magazines.
   parent: BaseItem
   components:
   - type: Tag
     tags:
-      - SUNRISECM14MagazineBR64
+      - MagazineBR64
   - type: BallisticAmmoProvider
     mayTransfer: true
     capacity: 20
@@ -72,14 +72,14 @@
   - type: Appearance
 
 - type: entity
-  id: SUNRISECM14MagazineBauer127
+  id: MagazineBauer127
   name: Bauer127 magazine
   description: Standart EarthGov type of heavy magazines.
   parent: BaseItem
   components:
   - type: Tag
     tags:
-      - SUNRISECM14MagazineBauer127
+      - MagazineBauer127
   - type: BallisticAmmoProvider
     mayTransfer: true
     capacity: 10

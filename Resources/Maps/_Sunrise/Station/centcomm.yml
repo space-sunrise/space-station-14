@@ -41479,7 +41479,7 @@ entities:
     - type: Transform
       pos: 8.51666,29.42835
       parent: 1668
-- proto: SUNRISECM14WeaponSubMachineGunMP38
+- proto: WeaponSubMachineGunMP38
   entities:
   - uid: 3895
     components:

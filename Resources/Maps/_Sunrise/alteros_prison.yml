@@ -133574,7 +133574,7 @@ entities:
     - type: Transform
       pos: 10.0783,88.85413
       parent: 2
-- proto: SUNRISECM14WeaponPistolG22
+- proto: WeaponPistolG22
   entities:
   - uid: 10733
     components:
@@ -133604,7 +133604,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: SUNRISECM14WeaponShotgunTrenchgun4034
+- proto: WeaponShotgunTrenchgun4034
   entities:
   - uid: 14615
     components:
@@ -133631,7 +133631,7 @@ entities:
     - type: Transform
       pos: -1.4873736,-23.787447
       parent: 2
-- proto: SUNRISECM14WeaponSubMachineGunNewVector
+- proto: WeaponSubMachineGunNewVector
   entities:
   - uid: 485
     components:

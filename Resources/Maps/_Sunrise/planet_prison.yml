@@ -125021,7 +125021,7 @@ entities:
     - type: Transform
       pos: 98.35489,5.5269833
       parent: 2
-- proto: SUNRISECM14WeaponPistolG22
+- proto: WeaponPistolG22
   entities:
   - uid: 13795
     components:

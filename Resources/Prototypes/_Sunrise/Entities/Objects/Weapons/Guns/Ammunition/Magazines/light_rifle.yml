@@ -13,13 +13,13 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: SUNRISECM14MagazineAK
+  id: MagazineAK
   name: Universal AK magazne
   parent: BaseItem
   components:
   - type: Tag
     tags:
-      - SUNRISECM14MagazineAK
+      - MagazineAK
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:
@@ -46,13 +46,13 @@
   - type: Appearance
 
 - type: entity
-  id: SUNRISECM14MagazineP90
+  id: MagazineP90
   name: P90 magazine
   parent: BaseItem
   components:
   - type: Tag
     tags:
-    - SUNRISECM14MagazineP90
+    - MagazineP90
   - type: BallisticAmmoProvider
     mayTransfer: true
     proto: CartridgeLightRifle  # 57x28
@@ -79,13 +79,13 @@
   - type: Appearance
 
 - type: entity
-  id: SUNRISECM14MagazineMP38
+  id: MagazineMP38
   name: MP38 magazine
   parent: BaseItem
   components:
   - type: Tag
     tags:
-    - SUNRISECM14MagazineMP38
+    - MagazineMP38
   - type: BallisticAmmoProvider
     mayTransfer: true
     proto: CartridgeLightRifle  # 57x28
@@ -112,13 +112,13 @@
   - type: Appearance
 
 - type: entity
-  id: SUNRISECM14MagazineMP7
+  id: MagazineMP7
   name: MP7 magazine
   parent: BaseItem
   components:
   - type: Tag
     tags:
-    - SUNRISECM14MagazineMP7
+    - MagazineMP7
   - type: BallisticAmmoProvider
     mayTransfer: true
     proto: CartridgeLightRifle  # 57x28
@@ -145,13 +145,13 @@
   - type: Appearance
 
 - type: entity
-  id: SUNRISECM14MagazineMP5
+  id: MagazineMP5
   name: MP5 magazine
   parent: BaseItem
   components:
   - type: Tag
     tags:
-    - SUNRISECM14MagazineMP5
+    - MagazineMP5
   - type: BallisticAmmoProvider
     mayTransfer: true
     proto: CartridgeLightRifle  # 57x28
@@ -178,13 +178,13 @@
   - type: Appearance
 
 - type: entity
-  id: SUNRISECM14MagazineScorpion
+  id: MagazineScorpion
   name: Scorpion magazine
   parent: BaseItem
   components:
   - type: Tag
     tags:
-    - SUNRISECM14MagazineScorpion
+    - MagazineScorpion
   - type: BallisticAmmoProvider
     mayTransfer: true
     proto: CartridgeLightRifle  # 57x28
@@ -211,13 +211,13 @@
   - type: Appearance
 
 - type: entity
-  id: SUNRISECM14MagazineNewVector
+  id: MagazineNewVector
   name: New Vector magazine
   parent: BaseItem
   components:
   - type: Tag
     tags:
-    - SUNRISECM14MagazineNewVector
+    - MagazineNewVector
   - type: BallisticAmmoProvider
     mayTransfer: true
     proto: CartridgeLightRifle  # 57x28
@@ -244,13 +244,13 @@
   - type: Appearance
 
 - type: entity
-  id: SUNRISECM14MagazineRPD
+  id: MagazineRPD
   name: RPD magazine
   parent: BaseMagazineLightRifle
   components:
   - type: Tag
     tags:
-    - SUNRISECM14MagazineRPD
+    - MagazineRPD
   - type: BallisticAmmoProvider
     proto: CartridgeLightRifle  # 762x39
     capacity: 80
@@ -296,13 +296,13 @@
   - type: Appearance
 
 - type: entity
-  id: SUNRISECM14MagazineLightMachineGunMG60
+  id: MagazineLightMachineGunMG60
   name: MG60 magazine
   parent: BaseItem
   components:
   - type: Tag
     tags:
-    - SUNRISECM14MagazineLightMachineGunMG60
+    - MagazineLightMachineGunMG60
   - type: BallisticAmmoProvider
     mayTransfer: true
     proto: CartridgeLightRifle  # 762x39
@@ -329,13 +329,13 @@
   - type: Appearance
 
 - type: entity
-  id: SUNRISECM14MagazineVP70
+  id: MagazineVP70
   name: VP70 magazine
   parent: BaseItem
   components:
     - type: Tag
       tags:
-        - SUNRISECM14MagazineVP70
+        - MagazineVP70
     - type: BallisticAmmoProvider
       proto: CartridgePistol  # 57x28
       mayTransfer: true
@@ -362,13 +362,13 @@
     - type: Appearance
 
 - type: entity
-  id: SUNRISECM14MagazineGlock22
+  id: MagazineGlock22
   name: Glock22 magazine
   parent: BaseItem
   components:
   - type: Tag
     tags:
-    - SUNRISECM14MagazineGlock22
+    - MagazineGlock22
   - type: BallisticAmmoProvider
     mayTransfer: true
     proto: CartridgePistol  # 57x28
@@ -395,13 +395,13 @@
   - type: Appearance
 
 - type: entity
-  id: SUNRISECM14MagazineHIBrowning
+  id: MagazineHIBrowning
   name: HI Browning magazine
   parent: BaseItem
   components:
   - type: Tag
     tags:
-    - SUNRISECM14MagazineHIBrowning
+    - MagazineHIBrowning
   - type: BallisticAmmoProvider
     mayTransfer: true
     proto: CartridgePistol  # 57x28
@@ -428,13 +428,13 @@
   - type: Appearance
 
 - type: entity
-  id: SUNRISECM14MagazineACP14
+  id: MagazineACP14
   name: ACP14 magazine
   parent: BaseItem
   components:
   - type: Tag
     tags:
-    - SUNRISECM14MagazineACP14
+    - MagazineACP14
   - type: BallisticAmmoProvider
     mayTransfer: true
     proto: CartridgePistol  # 57x28
@@ -461,13 +461,13 @@
   - type: Appearance
 
 - type: entity
-  id: SUNRISECM14MagazinePPSH41
+  id: MagazinePPSH41
   name: PPSH magazine
   parent: BaseItem
   components:
   - type: Tag
     tags:
-    - SUNRISECM14MagazinePPSH41
+    - MagazinePPSH41
   - type: BallisticAmmoProvider
     mayTransfer: true
     proto: CartridgeLightRifle  # 57x28
@@ -494,13 +494,13 @@
   - type: Appearance
 
 - type: entity
-  id: SUNRISECM14MagazineSTG44
+  id: MagazineSTG44
   name: STG44 magazine
   parent: BaseItem
   components:
   - type: Tag
     tags:
-    - SUNRISECM14MagazineSTG44
+    - MagazineSTG44
   - type: BallisticAmmoProvider
     mayTransfer: true
     whitelist:

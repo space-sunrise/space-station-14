@@ -33,4 +33,4 @@
     outerClothing: ClothingOuterCoatPilot
     id: SecurityPilotPDA
     ears: ClothingHeadsetSecurity
-    pocket1: SUNRISECM14WeaponPistolG22NonLethal
+    pocket1: WeaponPistolG22NonLethal

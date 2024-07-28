@@ -26,7 +26,7 @@
 - type: entity
   name: AKMS
   parent: BaseWeaponRifle
-  id: SUNRISECM14WeaponAKMSRifle
+  id: WeaponAKMSRifle
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/akms/big.rsi
@@ -85,7 +85,7 @@
 - type: entity
   name: AK74-U
   parent: BaseWeaponRifle
-  id: SUNRISECM14WeaponRifleAKSU
+  id: WeaponRifleAKSU
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/ak74u.rsi
@@ -138,7 +138,7 @@
 - type: entity
   name: Famas
   parent: BaseWeaponRifle
-  id: SUNRISECM14WeaponRifleFamas
+  id: WeaponRifleFamas
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/famas/big.rsi
@@ -163,13 +163,13 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: SUNRISECM14MagazineFamas
+        startingItem: MagazineFamas
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/Famas/famas_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/Famas/famas_unload.ogg
         priority: 2
         whitelist:
           tags:
-            - SUNRISECM14MagazineFamas
+            - MagazineFamas
             - MagazinePistolSubMachineGun
       gun_chamber:
         name: Chamber
@@ -197,7 +197,7 @@
 - type: entity
   name: G-36
   parent: BaseWeaponRifle
-  id: SUNRISECM14WeaponRifleG36
+  id: WeaponRifleG36
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/g36/big.rsi
@@ -224,13 +224,13 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: SUNRISECM14MagazineG36
+        startingItem: MagazineG36
         insertSound: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/unload.ogg
         priority: 2
         whitelist:
           tags:
-            - SUNRISECM14MagazineG36
+            - MagazineG36
             - MagazinePistolSubMachineGun
       gun_chamber:
         name: Chamber
@@ -255,7 +255,7 @@
 - type: entity
   name: M-28
   parent: BaseWeaponRifle
-  id: SUNRISECM14WeaponRifleM28
+  id: WeaponRifleM28
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/m28/big.rsi
@@ -282,13 +282,13 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: SUNRISECM14MagazineM28
+        startingItem: MagazineM28
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/m28/m28_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/m28/m28_unload.ogg
         priority: 2
         whitelist:
           tags:
-            - SUNRISECM14MagazineM28
+            - MagazineM28
             - MagazinePistolSubMachineGun
       gun_chamber:
         name: Chamber
@@ -313,7 +313,7 @@
 - type: entity
   name: AR-18
   parent: BaseWeaponRifle
-  id: SUNRISECM14WeaponRifleAR18
+  id: WeaponRifleAR18
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/ar18/big.rsi
@@ -340,13 +340,13 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: SUNRISECM14MagazineAR18
+        startingItem: MagazineAR18
         insertSound: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/unload.ogg
         priority: 2
         whitelist:
           tags:
-          - SUNRISECM14MagazineAR18
+          - MagazineAR18
           - MagazinePistolSubMachineGun
       gun_chamber:
         name: Chamber
@@ -371,7 +371,7 @@
 - type: entity
   name: M16A4
   parent: BaseWeaponRifle
-  id: SUNRISECM14WeaponRifleM16A4
+  id: WeaponRifleM16A4
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/m16a4/big.rsi
@@ -427,7 +427,7 @@
 - type: entity
   name: STG 44
   parent: BaseWeaponRifle
-  id: SUNRISECM14WeaponSTG44
+  id: WeaponSTG44
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/stg44/big.rsi
@@ -454,13 +454,13 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: SUNRISECM14MagazineSTG44
+        startingItem: MagazineSTG44
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
         priority: 2
         whitelist:
           tags:
-          - SUNRISECM14MagazineSTG44
+          - MagazineSTG44
           - MagazineLightRifle
       gun_chamber:
         name: Chamber
@@ -485,7 +485,7 @@
 - type: entity
   name: V-31 assault rifle
   parent: BaseWeaponRifle
-  id: SUNRISECM14WeaponRifleV31
+  id: WeaponRifleV31
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/v31/big.rsi
@@ -515,13 +515,13 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: SUNRISECM14MagazineV31
+        startingItem: MagazineV31
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/v31/v31_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/v31/v31_unload.ogg
         priority: 2
         whitelist:
           tags:
-          - SUNRISECM14MagazineV31
+          - MagazineV31
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot

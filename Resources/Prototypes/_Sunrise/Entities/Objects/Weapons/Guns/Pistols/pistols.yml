@@ -50,7 +50,7 @@
 - type: entity
   name: combat pistol VP-70
   parent: BaseWeaponPistol
-  id: SUNRISECM14WeaponPistolVP78
+  id: WeaponPistolVP78
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/Pistols/vp78/big.rsi
@@ -70,14 +70,14 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: SUNRISECM14MagazineVP70
+        startingItem: MagazineVP70
         insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_unload.ogg
         priority: 2
         whitelist:
           tags:
           - MagazinePistol
-          - SUNRISECM14MagazineVP70
+          - MagazineVP70
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistol
@@ -98,7 +98,7 @@
 - type: entity
   name: Glock-22
   parent: BaseWeaponPistol
-  id: SUNRISECM14WeaponPistolG22
+  id: WeaponPistolG22
   suffix: Lethal
   components:
   - type: Sprite
@@ -117,14 +117,14 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: SUNRISECM14MagazineGlock22
+        startingItem: MagazineGlock22
         insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_unload.ogg
         priority: 2
         whitelist:
           tags:
           - MagazinePistol
-          - SUNRISECM14MagazineGlock22
+          - MagazineGlock22
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistol
@@ -148,7 +148,7 @@
 - type: entity
   name: Glock-22
   parent: BaseWeaponPistol
-  id: SUNRISECM14WeaponPistolG22NonLethal
+  id: WeaponPistolG22NonLethal
   suffix: NonLethal
   components:
   - type: Sprite
@@ -167,14 +167,14 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: SUNRISECM14MagazineGlock22
+        startingItem: MagazineGlock22
         insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_unload.ogg
         priority: 2
         whitelist:
           tags:
           - MagazinePistol
-          - SUNRISECM14MagazineGlock22
+          - MagazineGlock22
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistol
@@ -198,7 +198,7 @@
 - type: entity
   name: HI Browning-88 M4
   parent: BaseWeaponPistol
-  id: SUNRISECM14WeaponPistolHIB88M4
+  id: WeaponPistolHIB88M4
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/Pistols/hi_browning/big.rsi
@@ -218,14 +218,14 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: SUNRISECM14MagazineHIBrowning
+        startingItem: MagazineHIBrowning
         insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_unload.ogg
         priority: 2
         whitelist:
           tags:
           - MagazinePistol
-          - SUNRISECM14MagazineHIBrowning
+          - MagazineHIBrowning
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistol
@@ -245,7 +245,7 @@
 - type: entity
   name: ACP-14
   parent: BaseWeaponPistol
-  id: SUNRISECM14WeaponPistolACP14
+  id: WeaponPistolACP14
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/Pistols/acp14/big.rsi
@@ -264,14 +264,14 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: SUNRISECM14MagazineACP14
+        startingItem: MagazineACP14
         insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_unload.ogg
         priority: 2
         whitelist:
           tags:
           - MagazinePistol
-          - SUNRISECM14MagazineACP14
+          - MagazineACP14
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistol
@@ -291,7 +291,7 @@
 - type: entity
   name: Mateba
   parent: BaseWeaponRevolver
-  id: SUNRISECM14WeaponRevolverMatebaNew
+  id: WeaponRevolverMatebaNew
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/Pistols/mateba/big.rsi
@@ -307,7 +307,7 @@
 - type: entity
   name: Desert Eagle
   parent: BaseWeaponPistol
-  id: SUNRISECM14WeaponPistolDeagle
+  id: WeaponPistolDeagle
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/Pistols/deagle/big.rsi
@@ -328,14 +328,14 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: SUNRISECM14MagazineDeagle
+        startingItem: MagazineDeagle
         insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/deagle/deagle_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/deagle/deagle_unload.ogg
         priority: 2
         whitelist:
           tags:
           - MagazineMagnum
-          - SUNRISECM14MagazineDeagle
+          - MagazineDeagle
       gun_chamber:
         name: Chamber
         startingItem: CartridgeMagnum

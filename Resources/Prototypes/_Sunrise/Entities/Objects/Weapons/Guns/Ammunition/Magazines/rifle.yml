@@ -13,19 +13,19 @@
       map: ["enum.GunVisualLayers.Mag"]
 
 - type: entity
-  id: SUNRISECM14MagazineV31
+  id: MagazineV31
   parent: BaseItem
   components:
   - type: Tag
     tags:
-    - SUNRISECM14MagazineV31
+    - MagazineV31
   - type: BallisticAmmoProvider
     mayTransfer: true
     capacity: 40
-    proto: SUNRISECM14CartridgeRocket20
+    proto: CartridgeRocket20
     whitelist:
       tags:
-      - SUNRISECM14CartridgeRocket20
+      - CartridgeRocket20
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container

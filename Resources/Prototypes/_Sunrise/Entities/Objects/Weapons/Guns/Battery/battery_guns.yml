@@ -306,7 +306,7 @@
 - type: entity
   name: EarthGov laser pistol
   parent: BaseWeaponBatterySmall
-  id: SUNRISECM14WeaponEarthGovLaserPistol
+  id: WeaponEarthGovLaserPistol
   components:
   - type: Gun
     soundGunshot:
@@ -331,7 +331,7 @@
 - type: entity
   name: EarthGov laser rifle
   parent: BaseWeaponBattery
-  id: SUNRISECM14WeaponEarthGovLaserRifle
+  id: WeaponEarthGovLaserRifle
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/Battery/EG_R/big.rsi
@@ -375,7 +375,7 @@
 - type: entity
   name: EarthGov laser carbine
   parent: BaseWeaponBattery
-  id: SUNRISECM14WeaponEarthGovLaserCarbine
+  id: WeaponEarthGovLaserCarbine
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/Battery/EG_C/big.rsi
@@ -422,7 +422,7 @@
 - type: entity
   name: EarthGov laser machine gun
   parent: BaseWeaponBattery
-  id: SUNRISECM14WeaponEarthGovLaserMG
+  id: WeaponEarthGovLaserMG
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/Battery/EG_MG/big.rsi
@@ -451,7 +451,7 @@
     - SemiAuto
     - FullAuto
     soundGunshot:
-      collection: SUNRISECM14EearthGovernmentMachineGunShot
+      collection: EearthGovernmentMachineGunShot
       params:
         volume: -1
   - type: MagazineVisuals
@@ -471,7 +471,7 @@
 - type: entity
   name: EarthGov Experemental X-Ray
   parent: BaseWeaponBattery
-  id: SUNRISECM14WeaponEarthGovXRay
+  id: WeaponEarthGovXRay
   suffix: SUNRISE14CM
   description: Earth Government Experemental x-ray weapon, it looks like it emits radiation.
   components:
@@ -517,7 +517,7 @@
 - type: entity
   name: EarthGov heavy laser rifle
   parent: BaseWeaponBattery
-  id: SUNRISECM14WeaponEarthGovLaserSniper
+  id: WeaponEarthGovLaserSniper
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Objects/Weapons/Guns/Battery/EG_Sniper/big.rsi

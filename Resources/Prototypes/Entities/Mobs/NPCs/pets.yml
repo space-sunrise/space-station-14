@@ -730,8 +730,8 @@
   - type: MeleeWeapon
     damage:
       types:
-        Blunt: 1
-        Caustic: 1
+        Blunt: 3  # Sunrise-edit
+        Caustic: 3  # Sunrise-edit
   - type: MultiHandedItem
   - type: Item
     size: Huge
@@ -749,6 +749,29 @@
       gender: female
   - type: TTS
     voice: Neco
+  - type: InteractionPopup
+    interactDelay: 0.5
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound: /Audio/Animals/cat_meow.ogg
+    successChance: 1
+  - type: Puller
+    needsHands: false
+  - type: SmileSlime
+    messages:
+    - goodfeeling-artifact-1
+    - goodfeeling-artifact-2
+    - goodfeeling-artifact-3
+    - goodfeeling-artifact-4
+    - goodfeeling-artifact-5
+    - goodfeeling-artifact-6
+    - goodfeeling-artifact-7
+    - goodfeeling-artifact-8
+    - goodfeeling-artifact-9
+    - goodfeeling-artifact-10
+    - goodfeeling-artifact-11
+    - goodfeeling-artifact-12
+    - goodfeeling-artifact-13
+    - goodfeeling-artifact-14
 
 - type: entity
   name: Pun Pun
