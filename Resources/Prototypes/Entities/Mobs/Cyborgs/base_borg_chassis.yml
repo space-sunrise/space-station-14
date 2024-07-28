@@ -102,7 +102,13 @@
         Blunt: -15
         Slash: -15
         Piercing: -15
+    allowSelfRepair: false
   - type: BorgChassis
+  - type: LockingWhitelist
+    blacklist:
+      components:
+      - BorgChassis
+      - RoboticsConsole
   - type: WiresPanel
   - type: ActivatableUIRequiresPanel
   - type: NameIdentifier
@@ -117,7 +123,9 @@
     cellSlotId: cell_slot
     fitsInCharger: true
   - type: ItemToggle
+    activated: false # gets activated when a mind is added
     onUse: false # no item-borg toggling sorry
+    toggleLight: false
   - type: AccessToggle
   # TODO: refactor movement to just be based on toggle like speedboots but for the boots themselves
   # TODO: or just have sentient speedboots be fast idk
@@ -159,6 +167,7 @@
   - type: LockedWiresPanel
   - type: Damageable
     damageContainer: Silicon
+    damageModifierSet: Silicon # Sunrise-Edit
   - type: Destructible
     thresholds:
     - trigger:
@@ -226,8 +235,14 @@
     guides:
       - Cyborgs
   - type: StepTriggerImmune
-#  - type: TTS
-#    voice: TODO add our TTS Voice Sunrise
+  # Sunrise-start
+  - type: TTS
+    voice: FactCore
+  - type: Climbing
+  - type: BorgMagboots
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  # Sunrise-end
 
 - type: entity
   abstract: true
@@ -267,12 +282,34 @@
     - NanoTrasen
   - type: Access
     enabled: false
-    groups:
-    - AllAccess
+    # Sunrise-Start
+    tags:
+    - EmergencyShuttleRepealAll
+    - Command
+    - Lawyer
+    - Engineering
+    - Medical
+    - Salvage
+    - Cargo
+    - Research
+    - Service
+    - Maintenance
+    - External
+    - Janitor
+    - Theatre
+    - Bar
+    - Chemistry
+    - Kitchen
+    - Chapel
+    - Hydroponics
+    - Atmospherics
+  # Sunrise-End
   - type: AccessReader
     access: [["Command"], ["Research"]]
   - type: ShowJobIcons
   - type: ShowMindShieldIcons
+  - type: BorgCrewManifestViewer # Sunrise-Edit
+
 
 - type: entity
   id: BaseBorgChassisSyndicate
@@ -304,5 +341,57 @@
   - type: Vocal
     sounds:
       Unsexed: UnisexSiliconSyndicate
+  # Sunrise-start
   - type: PointLight
-    color: "#dd200b"
+    color: "#f51e0f"
+    radius: 6
+    energy: 3
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Critical
+      300: Dead
+    stateAlertDict:
+      Alive: BorgHealth
+      Critical: BorgCrit
+      Dead: BorgDead
+    showOverlays: false
+    allowRevives: true
+  - type: FlashImmunity
+  - type: TypingIndicator
+    proto: syndibot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 175
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Machines/warning_buzzer.ogg
+          params:
+            volume: 5
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:EmptyContainersBehaviour
+        containers:
+        - borg_brain
+        - borg_module
+        - cell_slot
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - CanPilot
+    - FootstepSound
+    - EmagImmune
+  # Sunrise-end

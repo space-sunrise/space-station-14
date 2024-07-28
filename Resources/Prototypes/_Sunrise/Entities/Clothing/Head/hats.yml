@@ -133,7 +133,6 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatIAA
-  noSpawn: true
   name: загадочная шляпа
   description: Шляпа в чёрно-белом стиле. Напоминает секретных агентов из фильмов и сериалов.
   components:
@@ -147,7 +146,6 @@
   id: ClothingHeadHatCapUSSPBlack
   name: старая кожаная фуражка СССП
   description: Чёрная фуражка с серым козырьком.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Clothing/Head/Hats/ussp.rsi
@@ -159,7 +157,6 @@
   id: ClothingHeadHatCapLeatherHoS
   name: кожаная фуражка главы службы безопасности
   description: Довольно старая вещь для этих времён, навевающая старые воспоминания...
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Clothing/Head/Hats/hoscap.rsi
@@ -169,7 +166,6 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatMagicRD
-  noSpawn: true
   name: фуражка научного руководителя
   description: В ней вам не страшен ни плазменный дождь, ни кислота, капающая из вентиляции. Презентабельный вид причёски останется под защитой науки.
   components:
@@ -188,7 +184,6 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatCapQM
-  noSpawn: true
   name: шляпа капитана утилятов
   description: "Шляпа изображена в классическом пиратском стиле и представляется в стандартном для карго отдела цвете. На шляпе написано: АР! Три Кинетических Ускорителя мне в рот и... *остальная часть надписи затëрта*"
   components:
@@ -200,7 +195,6 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatHOP
-  noSpawn: true
   name: фуражка главы персонала
   description: Тёмно-синяя фуражка с позолоченным рантом. Козырек дает отблеск грамотности и внимательности носителя.
   components:
@@ -212,7 +206,6 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadEliteCaptainCap
-  noSpawn: true
   name: федора капитана
   description: синяя федора с золотой лентой.
   components:
@@ -224,7 +217,6 @@
 - type: entity
   parent: ClothingHeadHatHardhatBase
   id: ClothingSpecialHeadHatHardhatCMO
-  noSpawn: true
   name: медицинская шапочка главного врача
   description: Стерильная шапочка с фонариком.
   components:
@@ -236,7 +228,6 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatCapCMO
-  noSpawn: true
   name: медицинский берет
   description: Белый берет с красным крестом на центральной части.
   components:
@@ -244,3 +235,14 @@
     sprite: _Sunrise/Entities/Clothing/Head/Hats/cmohat.rsi
   - type: Clothing
     sprite: _Sunrise/Entities/Clothing/Head/Hats/cmohat.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatCapNtrep
+  name: nt representive cap
+  description: The cap of justice over command!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/ntrep.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/ntrep.rsi

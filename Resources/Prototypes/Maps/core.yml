@@ -63,6 +63,6 @@
             Boxer: [ 2, 2 ]
             Reporter: [ 2, 2 ]
             # Sunrise-Law
-            IAA: [ 1, 1 ]
-            Lawyer: [ 1, 1 ]
-            Magistrat: [ 1, 1 ]
+            #IAA: [ 1, 1 ]
+            #Lawyer: [ 1, 1 ]
+            #Magistrat: [ 1, 1 ]

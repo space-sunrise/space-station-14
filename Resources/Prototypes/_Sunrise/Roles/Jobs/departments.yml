@@ -20,7 +20,7 @@
 - type: department # Surnise-Blueshield
   id: Blueshield
   description: department-Blueshield-description
-  color: "#1A2AAA"
+  color: "#005bfb"  # Иначе плохо видно
   roles:
     - BlueShield
   primary: false
@@ -40,3 +40,20 @@
   - PrisonEngineer
   - PrisonGuard
   - Prisoner
+
+- type: department
+  id: Silicon
+  sort: 0
+  description: department-Silicon-description
+  color: "#8D9AAC"
+  roles:
+  - Borg
+  - MedicalBorg
+  - EngineerBorg
+  - MinerBorg
+  - JanitorBorg
+  - ServiceBorg
+  - SecurityBorg
+  - ClownBorg
+  - PeaceBorg
+  primary: false

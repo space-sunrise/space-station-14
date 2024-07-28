@@ -151,10 +151,6 @@
       collection: MaleSneezes
     Cough:
       collection: MaleCoughs
-    CatMeow:
-      collection: CatMeows
-    CatHisses:
-      collection: CatHisses
     MonkeyScreeches:
       collection: MonkeyScreeches
     RobotBeep:
@@ -192,3 +188,10 @@
       collection: PredatorSigh
     Laugh:
       collection: PredatorLaugh
+
+- type: emoteSounds
+  id: Reaper
+  sound:
+    path: /Audio/_Sunrise/Voice/Reaper/reaper_scream.ogg
+    params:
+      volume: -2

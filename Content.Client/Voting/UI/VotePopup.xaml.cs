@@ -54,7 +54,13 @@ namespace Content.Client.Voting.UI
             for (var i = 0; i < _voteButtons.Length; i++)
             {
                 var entry = _vote.Entries[i];
-                _voteButtons[i].Text = Loc.GetString("ui-vote-button", ("text", entry.Text), ("votes", entry.Votes));
+
+                // Sunrise-Start
+                if (_vote.Hide)
+                    _voteButtons[i].Text = Loc.GetString("ui-vote-hide-button", ("text", entry.Text));
+                else
+                    _voteButtons[i].Text = Loc.GetString("ui-vote-button", ("text", entry.Text), ("votes", entry.Votes));
+                // Sunrise-End
 
                 if (_vote.OurVote == i)
                     _voteButtons[i].Pressed = true;

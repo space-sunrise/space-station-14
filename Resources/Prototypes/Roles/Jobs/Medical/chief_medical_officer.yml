@@ -19,6 +19,7 @@
   supervisors: job-supervisors-captain
   radioBold: true
   canBeAntag: false
+  displayWeight: 60  # Sunrise
   access:
   - Medical
   - Command

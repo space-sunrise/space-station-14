@@ -172,12 +172,23 @@ public sealed partial class StoreSystem
             component.BalanceSpent.TryAdd(currency, FixedPoint2.Zero);
 
             component.BalanceSpent[currency] += value;
+
+            // Sunrise-Start
+            var ev = new SubtractCashEvent(buyer, currency, value);
+            RaiseLocalEvent(buyer, ref ev);
+            // Sunrise-End
         }
 
         //spawn entity
         if (listing.ProductEntity != null)
         {
             var product = Spawn(listing.ProductEntity, Transform(buyer).Coordinates);
+
+            // Sunrise-Start
+            var ev = new ItemPurchasedEvent(buyer);
+            RaiseLocalEvent(product, ref ev);
+            // Sunrise-End
+
             _hands.PickupOrDrop(buyer, product);
 
             HandleRefundComp(uid, component, product);

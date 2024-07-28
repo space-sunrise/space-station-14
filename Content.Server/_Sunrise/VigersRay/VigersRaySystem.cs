@@ -48,8 +48,9 @@ public sealed class VigersRaySystem : EntitySystem
     {
         _chatManager.DispatchServerAnnouncement("VigersRay ушел", Color.Green);
 
-         var audio = AudioParams.Default;
-         _audioSystem.PlayGlobal("/Audio/_Sunrise/leave.ogg", Filter.Broadcast(), false, audio.WithVolume(10));
+         // Увы
+         //var audio = AudioParams.Default;
+         //_audioSystem.PlayGlobal("/Audio/_Sunrise/leave.ogg", Filter.Broadcast(), false, audio.WithVolume(10));
     }
 
     private void OnVigersRayJoin(VigersRayJoinEvent args)
@@ -65,14 +66,15 @@ public sealed class VigersRaySystem : EntitySystem
         var statusEffectQuery = EntityQueryEnumerator<StatusEffectsComponent>();
         while (statusEffectQuery.MoveNext(out var ent, out var comp))
         {
-            _stunSystem.TryParalyze(ent, TimeSpan.FromSeconds(10), true);
-            _jittering.DoJitter(ent, TimeSpan.FromSeconds(10), true);
+            _stunSystem.TryParalyze(ent, TimeSpan.FromSeconds(5), true);
+            _jittering.DoJitter(ent, TimeSpan.FromSeconds(15), true);
             _stuttering.DoStutter(ent, TimeSpan.FromSeconds(30), true);
         }
 
-        var audio = AudioParams.Default;
-        _audioSystem.PlayGlobal("/Audio/_Sunrise/stab.ogg", Filter.Broadcast(), false, audio.WithVolume(10));
-        _audioSystem.PlayGlobal("/Audio/_Sunrise/night.ogg", Filter.Broadcast(), false, audio.WithVolume(10));
+        // Увы
+        //var audio = AudioParams.Default;
+        //_audioSystem.PlayGlobal("/Audio/_Sunrise/stab.ogg", Filter.Broadcast(), false, audio.WithVolume(10));
+        //_audioSystem.PlayGlobal("/Audio/_Sunrise/night.ogg", Filter.Broadcast(), false, audio.WithVolume(10));
     }
 
     private const float CheckDelay = 10;

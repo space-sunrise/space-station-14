@@ -9,9 +9,11 @@
       time: 7200 # 2 hrs
   alwaysUseSpawner: true
   canBeAntag: false
+  setPreference: false
   startingGear: StationEngineerGear
   icon: "JobIconPrisonEngineer"
   supervisors: job-supervisors-head-of-prison
+  displayWeight: 70
   access:
   - Maintenance
   - Engineering

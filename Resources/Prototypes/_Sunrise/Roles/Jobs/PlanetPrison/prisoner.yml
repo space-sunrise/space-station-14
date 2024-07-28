@@ -8,9 +8,7 @@
   canBeAntag: false
   icon: "JobIconPrisoner"
   supervisors: job-supervisors-security
-  requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 28800 # 8h
+  displayWeight: 0
   special:
     - !type:AddImplantSpecial
       implants: [ TrackingImplant ]

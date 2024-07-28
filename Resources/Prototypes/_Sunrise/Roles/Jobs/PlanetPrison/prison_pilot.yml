@@ -6,12 +6,13 @@
   requirements:
   - !type:DepartmentTimeRequirement
     department: Security
-    time: 36000 #10 hrs # Sunrise-RoleTime
+    time: 18000 #5 hrs
   startingGear: PrisonPilotGear
   icon: "JobIconPrisonPilot"
   alwaysUseSpawner: true
   supervisors: job-supervisors-head-of-prison
   canBeAntag: false
+  displayWeight: 80
   access:
   - Security
   - Brig

@@ -2,7 +2,7 @@
 - type: entity
   parent: BaseItem
   id: BaseSunriseUplink
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Item
     size: Small
@@ -53,7 +53,7 @@
 - type: entity
   parent: BaseSunriseUplink
   id: SunriseUplink40
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: портативный магазин Санрайз
   description: Имеет широкий ассортимент товаров для всех вкусов и предпочтений - от удивительных ручных изделий и уникальных сувениров до современной техники и модных аксессуаров.
   suffix: 40
@@ -66,7 +66,7 @@
 - type: entity
   parent: BaseSunriseUplink
   id: SunriseUplink80
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: портативный магазин Санрайз
   description: Имеет широкий ассортимент товаров для всех вкусов и предпочтений - от удивительных ручных изделий и уникальных сувениров до современной техники и модных аксессуаров.
   suffix: 80
@@ -79,7 +79,7 @@
 - type: entity
   parent: BaseSunriseUplink
   id: SunriseUplink100
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: портативный магазин Санрайз
   description: Имеет широкий ассортимент товаров для всех вкусов и предпочтений - от удивительных ручных изделий и уникальных сувениров до современной техники и модных аксессуаров.
   suffix: 100

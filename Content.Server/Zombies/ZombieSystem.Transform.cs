@@ -9,7 +9,6 @@ using Content.Server.Inventory;
 using Content.Server.Mind;
 using Content.Server.Mind.Commands;
 using Content.Server.NPC;
-using Content.Server.NPC.Components;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
 using Content.Server.Roles;
@@ -20,15 +19,13 @@ using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Damage;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
-using Content.Shared.CombatMode.Pacification;
+using Content.Shared.Cuffs.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
-using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Systems;
-using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Nutrition.AnimalHusbandry;
 using Content.Shared.Nutrition.Components;
@@ -39,6 +36,8 @@ using Content.Shared.Zombies;
 using Content.Shared.Prying.Components;
 using Content.Shared.Traits.Assorted;
 using Robust.Shared.Audio.Systems;
+using Content.Shared.Ghost.Roles.Components;
+using Content.Shared.Sunrise.CollectiveMind;
 
 namespace Content.Server.Zombies
 {
@@ -130,9 +129,22 @@ namespace Content.Server.Zombies
             melee.Animation = zombiecomp.AttackAnimation;
             melee.WideAnimation = zombiecomp.AttackAnimation;
             melee.AltDisarm = false;
-            melee.Range = 1.2f;
-            melee.Angle = 0.0f;
+            melee.Range = 1.5f; // Sunrise-Edit
+            melee.Angle = 45.0f;
             melee.HitSound = zombiecomp.BiteSound;
+
+            // Sunrise-Start
+            RemComp<CuffableComponent>(target);
+
+            var collectiveMindComponent = EnsureComp<CollectiveMindComponent>(target);
+            foreach (var collectiveMind in collectiveMindComponent.Minds.ToArray())
+            {
+                collectiveMindComponent.Minds.Remove(collectiveMind);
+            }
+
+            if (!collectiveMindComponent.Minds.Contains("Zombie"))
+                collectiveMindComponent.Minds.Add("Zombie");
+            // Sunrise-End
 
             if (mobState.CurrentState == MobState.Alive)
             {
@@ -172,16 +184,16 @@ namespace Content.Server.Zombies
                 {
                     DamageDict = new()
                     {
-                        { "Slash", 13 },
-                        { "Piercing", 7 },
-                        { "Structural", 10 }
+                        { "Slash", 15 },
+                        { "Piercing", 15 },
+                        { "Structural", 150 } // Sunrise-Edit
                     }
                 };
                 melee.Damage = dspec;
 
                 // humanoid zombies get to pry open doors and shit
                 var pryComp = EnsureComp<PryingComponent>(target);
-                pryComp.SpeedModifier = 0.75f;
+                pryComp.SpeedModifier = 10.00f; // Sunrise-Edit
                 pryComp.PryPowered = true;
                 pryComp.Force = true;
 

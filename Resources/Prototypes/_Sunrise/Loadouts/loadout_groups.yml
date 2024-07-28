@@ -98,6 +98,24 @@
   loadouts:
   - BrigmedicJumpsuit
   - BrigmedicJumpskirt
+  
+- type: loadoutGroup
+  id: NanoTrasenRepresentativeJumpsuit
+  name: loadout-group-nanotrasenrepresentative-jumpsuit
+  minLimit: 1
+  loadouts:
+  - NanoTrasenRepresentativeJumpsuit
+  - NanoTrasenRepresentativeJumpskirt
+  - NanoTrasenRepresentativeJumpsuitFormal
+  
+- type: loadoutGroup
+  id: NanoTrasenRepresentativeOuterClothing
+  name: loadout-group-nanotrasenrepresentative-outerclothing
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - NanoTrasenRepresentativeCoat
+  - NanoTrasenRepresentativeCoatOpen
 
 - type: loadoutGroup
   id: BlueShieldBackpack

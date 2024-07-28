@@ -1,0 +1,20 @@
+- type: soundCollection
+  id: FootstepCyborgLegs
+  files:
+  - /Audio/_Sunrise/Cyborg/robot_legs1.ogg
+  - /Audio/_Sunrise/Cyborg/robot_legs2.ogg
+  - /Audio/_Sunrise/Cyborg/robot_legs3.ogg
+  - /Audio/_Sunrise/Cyborg/robot_legs4.ogg
+
+- type: soundCollection
+  id: FootstepCyborgSpider
+  files:
+  - /Audio/_Sunrise/Cyborg/robot_spider1.ogg
+  - /Audio/_Sunrise/Cyborg/robot_spider2.ogg
+  - /Audio/_Sunrise/Cyborg/robot_spider3.ogg
+
+- type: soundCollection
+  id: Footstep2CyborgLegs
+  files:
+    - /Audio/_Sunrise/Cyborg/robot_legs_2_1.ogg
+    - /Audio/_Sunrise/Cyborg/robot_legs_2_2.ogg

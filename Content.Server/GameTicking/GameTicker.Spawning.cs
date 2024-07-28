@@ -243,24 +243,14 @@ namespace Content.Server.GameTicking
 
             _playTimeTrackings.PlayerRolesChanged(player);
 
-            var overall = _playTimeTracking.GetOverallPlaytime(player);
-
-            // Все появляются в прибытии в начале раунда. Зачем? А мне нравится эта бегающаа орящая толпа.
-            // Игроки у которых наиграно меньше ArrivalsMinHours часов будут появляеться всегда по спавнеру професии.
-            EntityUid? mobMaybe = null;
-            var spawnPointType = SpawnPointType.Arrivals;
-            if (jobPrototype.AlwaysUseSpawner || overall < TimeSpan.FromHours(_configurationManager.GetCVar(SunriseCCVars.ArrivalsMinHours)))
+            var spawnPointType = SpawnPointType.LateJoin;
+            if (jobPrototype.AlwaysUseSpawner)
             {
                 lateJoin = false;
                 spawnPointType = SpawnPointType.Job;
             }
-            else
-            {
-                mobMaybe = _arrivals.SpawnPlayersOnArrivals(station, job, character);
-            }
 
-            if (mobMaybe == null)
-                mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, job, character, spawnPointType: spawnPointType);
+            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, job, character, spawnPointType: spawnPointType);
 
             DebugTools.AssertNotNull(mobMaybe);
             var mob = mobMaybe!.Value;

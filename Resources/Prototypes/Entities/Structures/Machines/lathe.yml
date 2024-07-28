@@ -564,7 +564,7 @@
     runningState: fab-active
     staticRecipes:
     - MMI
-    - Boris
+    - Boris # Sunrise-Edit
     - SciFlash
     - BorgModuleCable
     - BorgModuleFireExtinguisher
@@ -916,6 +916,7 @@
       - HandLabeler
       - Defibrillator
       - HandheldHealthAnalyzer
+      - HandheldCrewMonitor # Sunrise-Edit
       - ClothingHandsGlovesLatex
       - ClothingHandsGlovesNitrile
       - ClothingMaskSterile

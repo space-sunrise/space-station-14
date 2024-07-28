@@ -17,24 +17,12 @@
   speaker: biden
   sponsorOnly: true
 
-#- type: ttsVoice
-#  id: Ddr2
-#  name: tts-voice-name-ddr2
-#  sex: Male
-#  speaker: ddr2
-
 - type: ttsVoice
   id: Papa
   name: tts-voice-name-papa
   sex: Male
   speaker: papa
   sponsorOnly: true
-
-- type: ttsVoice
-  id: Mykyta
-  name: tts-voice-name-mykyta
-  sex: Male
-  speaker: mykyta
 
 - type: ttsVoice
   id: Glados
@@ -44,12 +32,11 @@
   roundStart: false
 
 - type: ttsVoice
-  id: Sentrybot
+  id: Sentrybot # borg
   name: tts-voice-name-sentrybot
   sex: Male
   speaker: sentrybot
   roundStart: false
-  # borgVoice: true
 
 - type: ttsVoice
   id: Mana
@@ -76,28 +63,25 @@
   speaker: amina
 
 - type: ttsVoice
-  id: AdventureCore
+  id: AdventureCore # borg
   name: tts-voice-name-adventure-core
   sex: Male
   speaker: adventure_core
   roundStart: false
-  # borgVoice: true
 
 - type: ttsVoice
-  id: SpaceCore
+  id: SpaceCore # borg
   name: tts-voice-name-space-core
   sex: Male
   speaker: space_core
   roundStart: false
-  # borgVoice: true
 
 - type: ttsVoice
-  id: FactCore
+  id: FactCore # borg
   name: tts-voice-name-fact-core
   sex: Male
   speaker: fact_core
   roundStart: false
-  # borgVoice: true
 
 - type: ttsVoice
   id: Kleiner
@@ -208,12 +192,11 @@
   speaker: sheogorath
 
 - type: ttsVoice
-  id: TurretFloor
+  id: TurretFloor # borg
   name: tts-voice-name-turret-floor
   sex: Female
   speaker: turret_floor
   roundStart: false
-  # borgVoice: true
 
 - type: ttsVoice
   id: Cirilla
@@ -405,12 +388,11 @@
   speaker: v_female
 
 - type: ttsVoice
-  id: OfficerEnclave
+  id: OfficerEnclave # borg
   name: tts-voice-name-officer-enclave
   sex: Male
   speaker: officer_enclave
   roundStart: false
-  # borgVoice: true
 
 - type: ttsVoice
   id: Richardson
@@ -634,4 +616,248 @@
   name: tts-voice-name-villager
   sex: Male
   speaker: villager
-  roundStart: false # ROBOT???
+  roundStart: false # LRP
+
+- type: ttsVoice
+  id: Dobakin
+  name: tts-voice-name-dbkn2
+  sex: Male
+  speaker: dbkn2
+  roundStart: true
+
+- type: ttsVoice
+  id: MoiraBrown
+  name: tts-voice-name-moira-brown
+  sex: Female
+  speaker: moira_brown
+  roundStart: true
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: RobertMaccready
+  name: tts-voice-name-robert-maccready
+  sex: Male
+  speaker: robert_maccready
+  roundStart: true
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Threedog
+  name: tts-voice-name-threedog
+  sex: Male
+  speaker: threedog
+  roundStart: true
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: ThreedogRadio
+  name: tts-voice-name-threedog-radio
+  sex: Male
+  speaker: threedog_radio
+  roundStart: true
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Romka
+  name: tts-voice-name-romka
+  sex: Male
+  speaker: romka
+  roundStart: true
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: BorisPetrovFatherTB
+  name: tts-voice-name-boris-petrov-father-tb
+  sex: Male
+  speaker: boris_petrov_father_tb
+  roundStart: true
+
+- type: ttsVoice
+  id: KarinaPetrovaTB
+  name: tts-voice-name-karina-petrova-tb
+  sex: Female
+  speaker: karina_petrova_tb
+  roundStart: true
+
+- type: ttsVoice
+  id: KateSmirnovaTB
+  name: tts-voice-name-kate-smirnovatb
+  sex: Female
+  speaker: kate_smirnova_tb
+  roundStart: true
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: SemenBaburinTB
+  name: tts-voice-name-semen-baburin-tb
+  sex: Male
+  speaker: semen_baburin_tb
+  roundStart: true
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: TihonovTB
+  name: tts-voice-name-tihonov-tb
+  sex: Male
+  speaker: tihonov_tb
+  roundStart: true
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: FemaleCommander
+  name: tts-voice-name-female-commander
+  sex: Female
+  speaker: female_commander
+  roundStart: true
+
+- type: ttsVoice
+  id: LordHarkon
+  name: tts-voice-name-lord-harkon
+  sex: Male
+  speaker: lord_harkon
+  roundStart: true
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Serana
+  name: tts-voice-name-serana
+  sex: Female
+  speaker: serana
+  roundStart: true
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Myron
+  name: tts-voice-name-myron
+  sex: Male
+  speaker: myron
+  roundStart: true
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: MarratorD3
+  name: tts-voice-name-narrator-d3
+  sex: Male
+  speaker: narrator_d3
+  roundStart: true
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: UtherHS
+  name: tts-voice-name-uther-hs
+  sex: Male
+  speaker: uther_hs
+  roundStart: true
+
+- type: ttsVoice
+  id: Tosh
+  name: tts-voice-name-tosh
+  sex: Male
+  speaker: tosh
+  roundStart: true
+
+- type: ttsVoice
+  id: Tychus
+  name: tts-voice-name-tychus
+  sex: Male
+  speaker: tychus
+  roundStart: true
+
+- type: ttsVoice
+  id: AmitTakkar
+  name: tts-voice-name-amitkakkar
+  sex: Male
+  speaker: amitkakkar
+  roundStart: true
+
+- type: ttsVoice
+  id: EleazarFig
+  name: tts-voice-name-eleazarfig
+  sex: Male
+  speaker: eleazarfig
+  roundStart: true
+
+- type: ttsVoice
+  id: ErnieLark
+  name: tts-voice-name-ernielark
+  sex: Male
+  speaker: ernielark
+  roundStart: true
+
+- type: ttsVoice
+  id: IgnatiaFlootravel
+  name: tts-voice-name-ignatiaflootravel
+  sex: Female
+  speaker: ignatiaflootravel
+  roundStart: true
+
+- type: ttsVoice
+  id: Lodgok
+  name: tts-voice-name-lodgok
+  sex: Male
+  speaker: lodgok
+  roundStart: true
+
+- type: ttsVoice
+  id: PhineasBlack
+  name: tts-voice-name-phineasblack
+  sex: Male
+  speaker: phineasblack
+  roundStart: true
+
+- type: ttsVoice
+  id: Ranrak
+  name: tts-voice-name-ranrak
+  sex: Male
+  speaker: ranrak
+  roundStart: true
+
+- type: ttsVoice
+  id: VictorRookwood
+  name: tts-voice-name-victorrookwood
+  sex: Male
+  speaker: victorrookwood
+  roundStart: true
+
+- type: ttsVoice
+  id: ZenobiaNoke
+  name: tts-voice-name-zenobianoke
+  sex: Female
+  speaker: zenobianoke
+  roundStart: true
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: GladwinMoon
+  name: tts-voice-name-gladwinmoon
+  sex: Male
+  speaker: gladwinmoon
+  roundStart: true
+
+- type: ttsVoice
+  id: MatildaWeasley
+  name: tts-voice-name-matildaweasley
+  sex: Female
+  speaker: matildaweasley
+  roundStart: true
+
+- type: ttsVoice
+  id: NatsaiOnai
+  name: tts-voice-name-natsaionai
+  sex: Female
+  speaker: natsaionai
+  roundStart: true
+
+- type: ttsVoice
+  id: OminisGaunt
+  name: tts-voice-name-ominisgaunt
+  sex: Male
+  speaker: ominisgaunt
+  roundStart: true
+
+- type: ttsVoice
+  id: PoppyWweeting
+  name: tts-voice-name-poppysweeting
+  sex: Female
+  speaker: poppysweeting
+  roundStart: true

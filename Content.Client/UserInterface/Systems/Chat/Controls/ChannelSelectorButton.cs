@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared.Chat;
 
 namespace Content.Client.UserInterface.Systems.Chat.Controls;
@@ -68,9 +69,24 @@ public sealed class ChannelSelectorButton : ChatPopupButton<ChannelSelectorPopup
         };
     }
 
-    public void UpdateChannelSelectButton(ChatSelectChannel channel, Shared.Radio.RadioChannelPrototype? radio)
+    // Sunrise-Start
+    public void UpdateChannelSelectButton(ChatSelectChannel channel, Shared.Radio.RadioChannelPrototype? radio, CollectiveMindPrototype? collectiveMind)
     {
-        Text = radio != null ? Loc.GetString(radio.Name) : ChannelSelectorName(channel);
-        Modulate = radio?.Color ?? ChannelSelectColor(channel);
+        if (radio != null)
+        {
+            Text = Loc.GetString(radio.Name);
+            Modulate = radio?.Color ?? ChannelSelectColor(channel);
+        }
+        else if (collectiveMind != null)
+        {
+            Text = Loc.GetString(collectiveMind.Name);
+            Modulate = collectiveMind.Color;
+        }
+        else
+        {
+            Text = ChannelSelectorName(channel);
+            Modulate = ChannelSelectColor(channel);
+        }
     }
+    // Sunrise-End
 }

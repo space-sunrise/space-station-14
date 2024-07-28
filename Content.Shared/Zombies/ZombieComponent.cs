@@ -2,6 +2,7 @@ using Content.Shared.Antag;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
+using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
 using Content.Shared.Roles;
 using Content.Shared.StatusIcon;
@@ -20,17 +21,17 @@ public sealed partial class ZombieComponent : Component
     /// The baseline infection chance you have if you are completely nude
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    public float MaxZombieInfectionChance = 0.80f;
+    public float MaxZombieInfectionChance = 1.00f;
 
     /// <summary>
     /// The minimum infection chance possible. This is simply to prevent
     /// being invincible by bundling up.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    public float MinZombieInfectionChance = 0.25f;
+    public float MinZombieInfectionChance = 0.6f; // Sunrise-Edit
 
     [ViewVariables(VVAccess.ReadWrite)]
-    public float ZombieMovementSpeedDebuff = 0.70f;
+    public float ZombieMovementSpeedBuff = 1.3f; // Sunrise-Edit
 
     /// <summary>
     /// The skin color of the zombie
@@ -99,9 +100,9 @@ public sealed partial class ZombieComponent : Component
     {
         DamageDict = new ()
         {
-            { "Blunt", -0.4 },
-            { "Slash", -0.2 },
-            { "Piercing", -0.2 },
+            { "Blunt", -2.5 }, // Sunrise-Edit
+            { "Slash", -2.5 }, // Sunrise-Edit
+            { "Piercing", -2.5 }, // Sunrise-Edit
             { "Heat", -0.02 },
             { "Shock", -0.02 }
         }
@@ -111,7 +112,7 @@ public sealed partial class ZombieComponent : Component
     /// A multiplier applied to <see cref="PassiveHealing"/> when the entity is in critical condition.
     /// </summary>
     [DataField("passiveHealingCritMultiplier")]
-    public float PassiveHealingCritMultiplier = 2f;
+    public float PassiveHealingCritMultiplier = 5f; // Sunrise-Edit
 
     /// <summary>
     /// Healing given when a zombie bites a living being.
@@ -121,9 +122,9 @@ public sealed partial class ZombieComponent : Component
     {
         DamageDict = new()
         {
-            { "Blunt", -2 },
-            { "Slash", -2 },
-            { "Piercing", -2 }
+            { "Blunt", -5 }, // Sunrise-Edit
+            { "Slash", -5 }, // Sunrise-Edit
+            { "Piercing", -5 } // Sunrise-Edit
         }
     };
 
@@ -150,4 +151,24 @@ public sealed partial class ZombieComponent : Component
     /// </summary>
     [DataField("newBloodReagent", customTypeSerializer: typeof(PrototypeIdSerializer<ReagentPrototype>))]
     public string NewBloodReagent = "ZombieBlood";
+
+    // Sunrise-Start
+    [DataField("actionJumpId", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    public string ActionJumpId = "ZombieJump";
+
+    [DataField("actionFlairId", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    public string ActionFlairId = "ZombieFlair";
+
+    [DataField]
+    public float ParalyzeTime = 5f;
+
+    [DataField]
+    public DamageSpecifier Damage = new()
+    {
+        DamageDict = new Dictionary<string, FixedPoint2>
+        {
+            { "Slash", 30 },
+        },
+    };
+    // Sunrise-End
 }

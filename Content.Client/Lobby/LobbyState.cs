@@ -74,7 +74,7 @@ namespace Content.Client.Lobby
 
             Lobby!.LocalChangelogBody.CleanChangelog();
 
-            var lobbyChangelogs = _cfg.GetCVar(SunriseCCVars.LobbyChangelogs).Split(',');
+            var lobbyChangelogs = _cfg.GetCVar(SunriseCCVars.LobbyChangelogsList).Split(',');
 
             var changelogs = new List<ChangelogManager.Changelog>();
             foreach (var lobbyChangelog in lobbyChangelogs)

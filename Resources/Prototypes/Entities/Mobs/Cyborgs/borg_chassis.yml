@@ -34,6 +34,11 @@
     interactFailureString: petting-failure-generic-cyborg
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
+  # Sunrise-Start
+  - type: InnateItem
+    instantActions:
+    - HandheldStationMapUnpowered
+  # Sunrise-End
 
 - type: entity
   id: BorgChassisMining
@@ -60,7 +65,7 @@
       movement:
         state: miner
   - type: BorgChassis
-    maxModules: 4
+    maxModules: 5 # Sunrise-Edit
     moduleWhitelist:
       tags:
       - BorgModuleGeneric
@@ -95,6 +100,16 @@
     interactFailureString: petting-failure-salvage-cyborg
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
+  # Sunrise-start
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepCyborgSpider
+      params:
+        volume: -15
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2.5
+    baseSprintSpeed : 3.5
+  # Sunrise-end
 
 - type: entity
   id: BorgChassisEngineer
@@ -113,7 +128,7 @@
       map: ["light"]
       visible: false
   - type: BorgChassis
-    maxModules: 4
+    maxModules: 5 # Sunrise-Edit
     moduleWhitelist:
       tags:
       - BorgModuleGeneric
@@ -148,6 +163,18 @@
     interactFailureString: petting-failure-engineer-cyborg
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
+  # Sunrise-start
+  - type: TTS
+    voice: AdventureCore
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepCyborgSpider
+      params:
+        volume: -15
+  - type: InnateItem
+    instantActions:
+    - HandheldStationMapUnpowered
+  # Sunrise-end
 
 - type: entity
   id: BorgChassisJanitor
@@ -209,6 +236,16 @@
     interactFailureString: petting-failure-janitor-cyborg
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
+  # Sunrise-start
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Effects/Fluids/watersplash.ogg
+      params:
+        volume: -5
+  - type: InnateItem
+    instantActions:
+    - HandheldStationMapUnpowered
+  # Sunrise-end
 
 - type: entity
   id: BorgChassisMedical
@@ -235,7 +272,7 @@
       movement:
         state: medical
   - type: BorgChassis
-    maxModules: 4
+    maxModules: 5 # Sunrise-Edit
     moduleWhitelist:
       tags:
       - BorgModuleGeneric
@@ -265,6 +302,7 @@
     access: [["Medical"], ["Command"], ["Research"]]
   - type: Inventory
     templateId: borgDutch
+  - type: SolutionScanner
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepHoverBorg
@@ -273,8 +311,19 @@
     interactFailureString: petting-failure-medical-cyborg
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
-  - type: TTS # Sunrise-Edit
-    voice: FactCore # Sunrise-Edit
+  # Sunrise-start
+  - type: TTS
+    voice: TurretFloor
+  - type: FabricateCandy
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 5
+  - type: InnateItem
+    instantActions:
+    - HandheldCrewMonitorBorg
+    worldTargetActions:
+    - HandheldHealthAnalyzerUnpowered
+  # Sunrise-end
 
 - type: entity
   id: BorgChassisService
@@ -362,10 +411,40 @@
       interactFailureString: petting-failure-syndicate-cyborg
       interactSuccessSound:
         path: /Audio/Ambience/Objects/periodic_beep.ogg
+    # Sunrise-Start
+    - type: PointLight
+      color: "#dd200b"
+    - type: TriggerOnMobstateChange
+      preventSuicide: true
+      mobState:
+      - Critical
+    - type: OnUseTimerTrigger
+      delay: 3
+      initialBeepDelay: 0
+      beepInterval: 3
+      beepSound: /Audio/Effects/PowerSink/charge_fire.ogg
+    - type: ExplodeOnTrigger
+    - type: GibOnTrigger
+      deleteItems: true
+    - type: Explosive
+      explosionType: Default
+      totalIntensity: 3500
+      intensitySlope: 15
+      maxIntensity: 70
+      canCreateVacuum: true
+    - type: TTS
+      voice: Sentrybot
+    - type: MovementSpeedModifier
+      baseWalkSpeed : 2.5
+      baseSprintSpeed : 3.5
+    - type: InnateItem
+      worldTargetActions:
+      - Emag
+    # Sunrise-End
 
 - type: entity
   id: BorgChassisSyndicateMedical
-  parent: BaseBorgChassisSyndicate
+  parent: [BaseBorgChassisSyndicate, ShowMedicalIcons]
   name: syndicate medical cyborg
   description: A combat medical cyborg. Has limited offensive potential, but makes more than up for it with its support capabilities.
   components:
@@ -399,6 +478,23 @@
       interactFailureString: petting-failure-syndicate-cyborg
       interactSuccessSound:
         path: /Audio/Ambience/Objects/periodic_beep.ogg
+    - type: SolutionScanner
+    - type: FootstepModifier
+      footstepSoundCollection:
+        collection: FootstepHoverBorg
+        params:
+          volume: -6
+    # Sunrise-Start
+    - type: TTS
+      voice: Sentrybot
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2.5
+      baseSprintSpeed: 4.5
+    - type: InnateItem
+      worldTargetActions:
+      - Emag
+      - HandheldHealthAnalyzerUnpowered
+    # Sunrise-End
 
 - type: entity
   id: BorgChassisSyndicateSaboteur

@@ -55,6 +55,28 @@
 
 - type: entity
   parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitNtrep
+  name: nt representive suit
+  description: That suit that is better not to see.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/ntrep.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/ntrep.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitNtrepFormal
+  name: nt representive formal suit
+  description: That suit that is better not to see.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/ntrepformal.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/ntrepformal.rsi
+
+- type: entity
+  parent: ClothingUniformBase
   id: ClothingUniformJumpsuitBlueShield
   name: комбинезон офицера «синий щит»
   description: На стиле.
@@ -100,9 +122,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitIAA
-  noSpawn: true
   name: рубашка с галстуком
-  description: остюм из льняной белой рубашки с синим галстуком и брюк. Выглядит роскошно.
+  description: Костюм из льняной белой рубашки с синим галстуком и брюк. Выглядит роскошно.
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/iaa.rsi
@@ -114,7 +135,6 @@
   id: ClothingUniformJumpsuitHoSOld
   name: старый комбинезон главы службы безопасности
   description: Довольно старая вещь для этих времён, навевающая старые воспоминания...
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/hos.rsi
@@ -126,7 +146,6 @@
   id: ClothingUniformJumpsuitUSSPBlack
   name: старый комбинезон СССП
   description: Старая вещица, прямиком из СССП.
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/ussp.rsi
@@ -138,7 +157,6 @@
   id: ClothingUniformJumpsuitSkeleton
   name: комбинезон скелета
   description: Черный комбинезон с напечатанным на нем белым узором из костей. Жуть!
-  noSpawn: true
   components:
   - type: Sprite
     sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/skeleton.rsi

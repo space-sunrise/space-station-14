@@ -12,6 +12,7 @@
   icon: "JobIconResearchAssistant"
   supervisors: job-supervisors-science
   canBeAntag: false
+  displayWeight: 0  # Sunrise
   access:
   - Research
   - Maintenance

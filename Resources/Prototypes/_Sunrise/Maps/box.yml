@@ -4,7 +4,7 @@
   mapPath: /Maps/_Sunrise/Station/box.yml
   maxRandomOffset: 0
   randomRotation: false
-  minPlayers: 30
+  minPlayers: 0
   stations:
     Boxstation:
       stationProto: StandardNanotrasenStation
@@ -21,34 +21,34 @@
             #service
             Captain: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
+            # NanoTrasenRepresentative: [ 1, 1 ]
             Bartender: [ 2, 2 ]
             Botanist: [ 3, 3 ]
             Chef: [ 2, 2 ]
             Janitor: [ 2, 2 ]
             Chaplain: [ 1, 1 ]
             Librarian: [ 1, 1 ]
-            ServiceWorker: [ 2, 2 ]
+            ServiceWorker: [ -1, -1 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
             SeniorEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 3, 3 ]
             StationEngineer: [ 5, 5 ]
-            TechnicalAssistant: [ 4, 4 ]
+            TechnicalAssistant: [ -1, -1 ]
             #medical
             ChiefMedicalOfficer: [ 1, 1 ]
             SeniorPhysician: [ 1, 1 ]
             Chemist: [ 2, 3 ]
             MedicalDoctor: [ 4, 4 ]
             Paramedic: [ 1, 1 ]
-            MedicalIntern: [ 4, 4 ]
+            MedicalIntern: [ -1, -1 ]
             Psychologist: [ 1, 1 ]
             #science
             ResearchDirector: [ 1, 1 ]
             SeniorResearcher: [ 1, 1 ]
             Scientist: [ 5, 5 ]
-            ResearchAssistant: [ 4, 4 ]
+            ResearchAssistant: [ -1, -1 ]
             Roboticist: [ 2, 2 ]
-            Borg: [ 2, 2 ]
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
@@ -57,7 +57,7 @@
             Brigmedic: [ 1, 1 ]
             SecurityPilot: [ 1, 1 ]
             SecurityOfficer: [ 5, 5 ]
-            SecurityCadet: [ 4, 4 ]
+            SecurityCadet: [ -1, -1 ]
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]
@@ -73,3 +73,14 @@
             IAA: [ 1, 1 ]
             Lawyer: [ 2, 2 ]
             Magistrat: [ 1, 1 ]
+            # silicon
+            Borg: [ 2, 2 ]
+            MedicalBorg: [ 4, 4 ]
+            EngineerBorg: [ 2, 2 ]
+            MinerBorg: [ 2, 2 ]
+            JanitorBorg: [ 2, 2 ]
+            ServiceBorg: [ 2, 2 ]
+            ClownBorg: [ 2, 2 ]
+            PeaceBorg: [ 2, 2 ]
+            SecurityBorg: [ 4, 4 ]
+            SecurityCombatBorg: [ 2, 2 ]

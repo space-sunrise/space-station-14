@@ -18,7 +18,6 @@ public sealed partial class StationJobsSystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IBanManager _banManager = default!;
-    [Dependency] private readonly PlayTimeTrackingSystem _playTime = default!;
     private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
     private Dictionary<int, HashSet<string>> _jobsByWeight = default!;
