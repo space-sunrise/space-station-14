@@ -180,7 +180,7 @@
 - type: entity
   parent: BasePDA
   id: BarberPDA
-  name: КПК цирюльника
+  name: КПК парихмахера
   components:
   - type: Pda
     id: BarberIDCard

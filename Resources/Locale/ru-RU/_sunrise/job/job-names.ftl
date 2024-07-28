@@ -17,7 +17,7 @@ job-name-prison-guard = тюремный охранник
 job-name-prisoner = заключенный
 job-name-security-pilot = пилот СБ
 job-name-ntrep = Представитель NanoTrasen
-job-name-barber = Цирюльникъ
+job-name-barber = Парихмахер
 
 # Перевод трекеров времени
 JobCentCommOfficial = представитель Центком

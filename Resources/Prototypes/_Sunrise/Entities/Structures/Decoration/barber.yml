@@ -1,6 +1,6 @@
 ﻿- type: entity
   id: BarberPole
-  name: жезл цирюльника
+  name: жезл парихмахера
   description: Сине-красно-белый вертящийся цилиндр у забугорных парикмахеров.
   components:
   - type: Sprite

@@ -170,7 +170,7 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitBarber
-  name: комбинезон цирюльника
+  name: комбинезон парихмахера
   description: Как же он хорош.
   components:
   - type: Sprite

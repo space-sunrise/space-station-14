@@ -127,7 +127,7 @@
     heldPrefix: silver
   - type: PresetIdCard
     job: HeadOfPrison
-    
+
 - type: entity
   parent: IDCardStandard
   id: NanoTrasenRepresentativeIDCard
@@ -142,7 +142,7 @@
 - type: entity
   parent: IDCardStandard
   id: BarberIDCard
-  name: ID карта цирюльника
+  name: ID карта парихмахера
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Misc/id_cards.rsi
