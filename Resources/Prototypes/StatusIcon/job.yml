@@ -382,10 +382,3 @@
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: Admin
-
-- type: statusIcon
-  parent: JobIcon
-  id: JobIconBarber
-  icon:
-    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
-    state: Barber
