@@ -1,0 +1,30 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+            Title="{Loc 'new-life-gui-window-title'}"
+            SetSize="550 350"
+            Resizable="False">
+    <BoxContainer Orientation="Vertical" VerticalExpand="True" Margin="5 5 5 5">
+        <Label Text="{Loc 'new-life-gui-character-rules_title'}" StyleClasses="LabelKeyText" HorizontalAlignment="Center"/>
+        <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalAlignment="Center" Margin="0 10 0 0">
+            <Label Text="{Loc 'new-life-gui-character-rule1'}" HorizontalAlignment="Center"/>
+            <Label Text="{Loc 'new-life-gui-character-rule2'}" HorizontalAlignment="Center"/>
+            <Label Text="{Loc 'new-life-gui-character-rule3'}" HorizontalAlignment="Center"/>
+        </BoxContainer>
+        <GridContainer Columns="2"
+                       HorizontalAlignment="Center"
+                       VerticalExpand="True"
+                       VerticalAlignment="Top"
+                       Margin="0 10 0 0">
+            <Label Text="{Loc 'new-life-gui-character-selector'}" StyleClasses="LabelKeyText"/>
+            <OptionButton Name="CharacterSelector" />
+            <Label Text="{Loc 'new-life-gui-station-selector'}" StyleClasses="LabelKeyText"/>
+            <OptionButton Name="StationSelector" StyleClasses="OpenRight" Access="Public" HorizontalAlignment="Center"/>
+            <Label Text="{Loc 'new-life-gui-role-selector'}" StyleClasses="LabelKeyText"/>
+            <OptionButton Name="RoleSelector" />
+        </GridContainer>
+        <BoxContainer Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10 0 0">
+            <Label Name="NextRespawnLabelTitle" Text="{Loc 'new-life-gui-available-via'}" StyleClasses="LabelKeyText" />
+            <Label Name="NextRespawnLabel"/>
+        </BoxContainer>
+        <Button Name="Spawn" Text="{Loc 'new-life-gui-button'}" Access="Public" Margin="0 10 0 0" />
+    </BoxContainer>
+</DefaultWindow>

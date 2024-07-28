@@ -10,6 +10,7 @@
   startingGear: ChemistGear
   icon: "JobIconChemist"
   supervisors: job-supervisors-cmo
+  displayWeight: 30  # Sunrise
   access:
   - Medical
   - Chemistry

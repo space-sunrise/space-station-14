@@ -18,3 +18,122 @@
   icon:
     sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
     state: BlueShield
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconHeadOfPrison
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: HeadOfPrison
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconPrisonChef
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: PrisonChef
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconPrisonDoctor
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: PrisonDoctor
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconPrisonEngineer
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: PrisonEngineer
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconPrisonGuard
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: PrisonGuard
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconPrisonPilot
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: PrisonPilot
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconPrisonWorker
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: PrisonWorker
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconSecurityPilot
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: SecurityPilot
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconServiceBorg
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: ServiceBorg
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconEngineerBorg
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: EngineerBorg
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconJanitorBorg
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: JanitorBorg
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconMedicalBorg
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: MedicalBorg
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconMinerBorg
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: MinerBorg
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconSecurityBorg
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: SecurityBorg
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconSecurityCombatBorg
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: SecurityCombatBorg
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconPeaceBorg
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: PeaceBorg
+
+- type: statusIcon
+  parent: JobIcon
+  id: JobIconClownBorg
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: ClownBorg

@@ -543,9 +543,12 @@
   id: DrinkCan
 
 - type: Tag
+  id: DrinkGlass
+
+- type: Tag
   id: DrinkSpaceGlue
 
-- type: Tag 
+- type: Tag
   id: Dropper
 
 - type: Tag
@@ -763,6 +766,9 @@
 
 - type: Tag
   id: Igniter
+
+- type: Tag
+  id: Ingredient
 
 - type: Tag #Drop this innate tool instead of deleting it.
   id: InnateDontDelete
@@ -1106,6 +1112,9 @@
   id: SalvageExperiment
 
 - type: Tag
+  id: Scarf
+
+- type: Tag
   id: Screwdriver
 
 - type: Tag
@@ -1346,5 +1355,8 @@
 
 - type: Tag
   id: WriteIgnoreStamps
+
+- type: Tag
+  id: SolarAssemblyFlatpack
 
 # ALPHABETICAL

@@ -29,11 +29,82 @@
   - type: DroneConsole
     components:
     - type: CentCommShuttle
-  - type: RadarConsole
-    maxRange: 512
   - type: PointLight
     radius: 1.5
     energy: 1.6
     color: "#c94242"
   - type: Computer
     board: CentCommShuttleConsoleCircuitboard
+
+- type: entity
+  parent: BaseComputerShuttle
+  id: ComputerShuttlePrison
+  name: консоль управления тюремным шаттлом
+  description: Что не ясно? Не пытайся меня открутить ебанат.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: supply
+    - map: ["computerLayerKeys"]
+      state: tech_key
+  - type: DroneConsole
+    components:
+    - type: PrisonShuttle
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#c94242"
+  - type: Computer
+    board: PrisonShuttleConsoleCircuitboard
+
+- type: entity
+  parent: ComputerComms
+  id: PrisonComputerComms
+  name: консоль связи тюрьмы
+  description: This can be used for various important functions. Still under development.
+  components:
+  - type: AccessReader
+    access: [[ "Security" ]]
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-prison
+    canShuttle: false
+    announceVoice: Voljin
+    global: false
+  - type: Computer
+    board: PrisonCommsComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#3556cc"
+
+- type: entity
+  parent: BaseComputerShuttle
+  id: ComputerShuttleSecurity
+  name: консоль управления шатлом службы безопастности
+  description: Что не ясно? Не пытайся меня открутить ебанат.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: supply
+    - map: ["computerLayerKeys"]
+      state: tech_key
+  - type: DroneConsole
+    components:
+    - type: SecurityShuttle
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#c94242"
+  - type: Computer
+    board: SecurityShuttleConsoleCircuitboard
+  - type: Anchorable

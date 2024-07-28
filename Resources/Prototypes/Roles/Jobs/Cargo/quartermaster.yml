@@ -16,6 +16,7 @@
   supervisors: job-supervisors-captain
   radioBold: true
   canBeAntag: false
+  displayWeight: 40  # Sunrise
   access:
   - Cargo
   - Salvage

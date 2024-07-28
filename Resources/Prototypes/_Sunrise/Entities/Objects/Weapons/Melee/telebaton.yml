@@ -17,8 +17,8 @@
     activatedSize: Normal
     activatedShape:
     - 0,0,0,2
-  - type: ItemToggleDisarmMalus
-    activatedDisarmMalus: 0.6
+  - type: DisarmMalus
+    malus: 0.225
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Melee/telebaton.rsi
     layers:

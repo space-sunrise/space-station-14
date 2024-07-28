@@ -119,3 +119,14 @@
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.8
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatPilot
+  name: Куртка пилота Службы Безопасности
+  description: Стильная куртка для настоящего аса.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Clothing/OuterClothing/pilotcoat.rsi
+  - type: Clothing
+    sprite: _Sunrise/Entities/Clothing/OuterClothing/pilotcoat.rsi

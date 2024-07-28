@@ -1,0 +1,77 @@
+﻿- type: loadout
+  id: PrisonGuardJumpsuit
+  equipment: PrisonGuardJumpsuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
+
+- type: startingGear
+  id: PrisonGuardJumpsuit
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisonGuard
+
+- type: loadout
+  id: PrisonGuardJumpskirt
+  equipment: PrisonGuardJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+
+- type: startingGear
+  id: PrisonGuardJumpskirt
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtGuard
+
+- type: loadout
+  id: PrisonGuardBackpack
+  equipment: PrisonGuardBackpack
+
+- type: startingGear
+  id: PrisonGuardBackpack
+  equipment:
+    back: ClothingBackpackPrisonGuard
+
+- type: loadout
+  id: PrisonGuardSatchel
+  equipment: PrisonGuardSatchel
+
+- type: startingGear
+  id: PrisonGuardSatchel
+  equipment:
+    back: ClothingBackpackSatchelPrisonGuard
+
+- type: loadout
+  id: PrisonGuardDuffel
+  equipment: PrisonGuardDuffel
+
+- type: startingGear
+  id: PrisonGuardDuffel
+  equipment:
+    back: ClothingBackpackDuffelPrisonGuard
+
+- type: loadout
+  id: HeadHatBeretPrisonGuard
+  equipment: HeadHatBeretPrisonGuard
+
+- type: startingGear
+  id: HeadHatBeretPrisonGuard
+  equipment:
+    head: ClothingHeadHatBeretPrisonGuard
+
+- type: loadout
+  id: HeadPrisonGuard
+  equipment: HeadPrisonGuard
+
+- type: startingGear
+  id: HeadPrisonGuard
+  equipment:
+    head: ClothingHeadPrisonGuard
+
+- type: loadout
+  id: HeadCapPrisonGuard
+  equipment: HeadCapPrisonGuard
+
+- type: startingGear
+  id: HeadCapPrisonGuard
+  equipment:
+    head: ClothingHeadCapPrisonGuard

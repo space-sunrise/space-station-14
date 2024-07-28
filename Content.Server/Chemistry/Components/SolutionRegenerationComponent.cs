@@ -1,5 +1,7 @@
 using Content.Server.Chemistry.EntitySystems;
+using Content.Server.Sunrise.SolutionRegenerationSwitcher;
 using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Server.Chemistry.Components;
@@ -8,7 +10,7 @@ namespace Content.Server.Chemistry.Components;
 /// Passively increases a solution's quantity of a reagent.
 /// </summary>
 [RegisterComponent, AutoGenerateComponentPause]
-[Access(typeof(SolutionRegenerationSystem))]
+[Access(typeof(SolutionRegenerationSystem), typeof(SolutionRegenerationSwitcherSystem))] // Sunrise-Edit
 public sealed partial class SolutionRegenerationComponent : Component
 {
     /// <summary>
@@ -41,4 +43,12 @@ public sealed partial class SolutionRegenerationComponent : Component
     [DataField("nextChargeTime", customTypeSerializer: typeof(TimeOffsetSerializer)), ViewVariables(VVAccess.ReadWrite)]
     [AutoPausedField]
     public TimeSpan NextRegenTime = TimeSpan.FromSeconds(0);
+
+    // Sunrise-start
+    public void ChangeGenerated(ReagentQuantity reagent)
+    {
+        Generated.RemoveAllSolution();
+        Generated.AddReagent(reagent);
+    }
+    // Sunrise-end
 }

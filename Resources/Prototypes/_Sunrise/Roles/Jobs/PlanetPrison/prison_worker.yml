@@ -1,0 +1,19 @@
+﻿- type: job
+  id: PrisonWorker
+  name: job-name-prison-worker
+  description: job-description-prison-worker
+  playTimeTracker: JobPrisonWorker
+  startingGear: ServiceWorkerGear
+  icon: "JobIconPrisonWorker"
+  supervisors: job-supervisors-head-of-prison
+  alwaysUseSpawner: true
+  canBeAntag: false
+  setPreference: false
+  displayWeight: 40
+  access:
+  - Service
+  - Maintenance
+  - Janitor
+  - Bar
+  - Hydroponics
+  - Kitchen

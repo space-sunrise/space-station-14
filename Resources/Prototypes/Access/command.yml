@@ -22,6 +22,8 @@
   - HeadOfPersonnel
   - Cryogenics
   - BlueShield
+  - Magistrat
+  - Ntrep
 
 - type: accessLevel
   id: EmergencyShuttleRepealAll

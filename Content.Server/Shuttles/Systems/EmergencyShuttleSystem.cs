@@ -2,6 +2,7 @@ using System.Numerics;
 using System.Threading;
 using Content.Server._Sunrise.DontSellingGrid;
 using Content.Server._Sunrise.ImmortalGrid;
+using Content.Server._Sunrise.NightDayMapLight;
 using Content.Server._Sunrise.TransitHub;
 using Content.Server.Access.Systems;
 using Content.Server.Administration.Logs;
@@ -475,12 +476,14 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
             return;
         }
 
+        EnsureComp<NightDayMapLightComponent>(mapUid);
+
         Log.Info($"Created transit hub grid {ToPrettyString(uids[0])} on map {ToPrettyString(mapUid)} for station {ToPrettyString(station)}");
 
         EnsureComp<ProtectedGridComponent>(uids[0]);
-        EnsureComp<ArrivalsSourceComponent>(uids[0]); // Sunrise-Edit
-        EnsureComp<ImmortalGridComponent>(uids[0]); // Sunrise-Edit
-        EnsureComp<DontSellingGridComponent>(uids[0]); // Sunrise-Edit
+        //EnsureComp<ArrivalsSourceComponent>(uids[0]); // Sunrise-Edit
+        //EnsureComp<ImmortalGridComponent>(uids[0]); // Sunrise-Edit
+        //EnsureComp<DontSellingGridComponent>(uids[0]); // Sunrise-Edit
 
         var template = _random.Pick(component.Biomes);
         _biomes.EnsurePlanet(mapUid, _protoManager.Index<BiomeTemplatePrototype>(template), mapLight: component.PlanetLightColor);

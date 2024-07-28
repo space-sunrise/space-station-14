@@ -1,0 +1,47 @@
+﻿- type: job
+  id: PrisonPilot
+  name: job-name-prison-pilot
+  description: job-description-prison-pilot
+  playTimeTracker: JobPrisonPilot
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Security
+    time: 18000 #5 hrs
+  startingGear: PrisonPilotGear
+  icon: "JobIconPrisonPilot"
+  alwaysUseSpawner: true
+  supervisors: job-supervisors-head-of-prison
+  canBeAntag: false
+  displayWeight: 80
+  access:
+  - Security
+  - Brig
+  - Maintenance
+  - Service
+  - External
+  - Chemistry
+  - Medical
+  - Engineering
+  - Atmospherics
+  - Janitor
+  - Bar
+  - Hydroponics
+  - Kitchen
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  speciesBlacklist:
+  - Vox
+
+- type: startingGear
+  id: PrisonPilotGear
+  equipment:
+    mask: ClothingMaskGasPilot
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesColorGray
+    head: ClothingHeadHelmetPilot
+    outerClothing: ClothingOuterCoatPilot
+    id: PrisonPilotPDA
+    ears: ClothingHeadsetSecurity
+    belt: ClothingBeltPrisonGuardianFilled
+    pocket1: WeaponPistolMk58Nonlethal

@@ -155,7 +155,8 @@ namespace Content.Client.Voting
                 {
                     Entries = message.Options
                         .Select(c => new VoteEntry(c.name))
-                        .ToArray()
+                        .ToArray(),
+                    Hide = message.Hide // Sunrise-Edit
                 };
 
                 existingVote = vote;
@@ -245,6 +246,7 @@ namespace Content.Client.Voting
             public string Initiator = "";
             public int? OurVote;
             public int Id;
+            public bool Hide; // Sunrise-Edit
 
             public ActiveVote(int voteId)
             {

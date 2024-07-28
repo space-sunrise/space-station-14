@@ -195,7 +195,10 @@ public sealed partial class SingleMarkingPicker : BoxContainer
             item.Metadata = marking.ID;
             // Sunrise-Sponsors-Start
             if (marking.SponsorOnly && _sponsorsManager != null)
+            {
                 item.Disabled = !_sponsorsManager.GetClientPrototypes().Contains(marking.ID);
+                item.Text = $"{GetMarkingName(marking)} [СПОНСОР] ";
+            }
             // Sunrise-Sponsors-End
 
             if (_markings[Slot].MarkingId == id)

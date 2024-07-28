@@ -68,12 +68,20 @@ namespace Content.Server.GameTicking
 
             if (!foundOne)
             {
-                stationNames.Append(_gameMapManager.GetSelectedMap()?.MapName ??
-                                    Loc.GetString("game-ticker-no-map-selected"));
+                stationNames.Append(Loc.GetString("game-ticker-no-map-selected")); // Sunrise-Edit
             }
 
             var gmTitle = Loc.GetString(preset.ModeTitle);
             var desc = Loc.GetString(preset.Description);
+
+            // Sunrise-Start
+            if (preset.Hide)
+            {
+                gmTitle = "Скрыт";
+                desc = "Игровой режим скрыт.";
+            }
+            // Sunrise-End
+
             return Loc.GetString(
                 RunLevel == GameRunLevel.PreRoundLobby
                     ? "game-ticker-get-info-preround-text"

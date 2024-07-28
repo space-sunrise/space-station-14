@@ -166,6 +166,14 @@ public sealed partial class StoreSystem : EntitySystem
     }
 }
 
+// Sunrise-Start
+[ByRefEvent]
+public readonly record struct ItemPurchasedEvent(EntityUid Purchaser);
+
+[ByRefEvent]
+public readonly record struct SubtractCashEvent(EntityUid Purchaser, string Currency, FixedPoint2 Cost);
+// Sunrise-End
+
 public sealed class CurrencyInsertAttemptEvent : CancellableEntityEventArgs
 {
     public readonly EntityUid User;

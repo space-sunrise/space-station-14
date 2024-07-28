@@ -17,8 +17,6 @@
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: '14'
-        - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/Shuttles/emergency_transit.yml
         - type: StationJobs
           availableJobs:
             #service
@@ -63,6 +61,6 @@
             Musician: [ 1, 1 ]
             Reporter: [ 1, 1 ]
             # Sunrise-Law
-            IAA: [ 1, 1 ]
-            Lawyer: [ 1, 1 ]
-            Magistrat: [ 1, 1 ]
+            #IAA: [ 1, 1 ]
+            #Lawyer: [ 1, 1 ]
+            #Magistrat: [ 1, 1 ]

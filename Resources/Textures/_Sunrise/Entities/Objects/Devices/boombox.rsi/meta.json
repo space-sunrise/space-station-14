@@ -1,4 +1,4 @@
-{
+﻿{
     "version": 1,
     "license": "CLA",
     "copyright": "SUNRISE",
@@ -7,6 +7,9 @@
         "y": 32
     },
     "states": [
+        {
+            "name": "icon"
+        },
         {
             "name": "on"
         },

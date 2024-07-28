@@ -248,7 +248,7 @@ public sealed class ArrivalsSystem : EntitySystem
             {
                 // Warp all players who are still on this shuttle to a spawn point. This doesn't let them return to
                 // arrivals. It also ensures noobs, slow players or AFK players safely leave the shuttle.
-                // TryTeleportToMapSpawn(pUid, component.Station, xform);
+                TryTeleportToMapSpawn(pUid, component.Station, xform);
             }
 
             // Players who have remained at arrivals keep their warp coupon (PendingClockInComponent) for now.
@@ -312,51 +312,6 @@ public sealed class ArrivalsSystem : EntitySystem
         {
             DumpChildren(child, ref args, toDump);
         }
-    }
-
-    public List<EntityCoordinates> GetArrivalsSpawnPoints()
-    {
-        TryGetArrivalsSource(out var arrivals);
-        var possiblePositions = new List<EntityCoordinates>();
-
-        if (TryComp(arrivals, out TransformComponent? arrivalsXform))
-        {
-            var mapId = arrivalsXform.MapID;
-
-            var points = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
-
-            while (points.MoveNext(out var uid, out var spawnPoint, out var xform))
-            {
-                if (spawnPoint.SpawnType != SpawnPointType.LateJoin || xform.MapID != mapId)
-                    continue;
-
-                possiblePositions.Add(xform.Coordinates);
-            }
-        }
-
-        return possiblePositions;
-    }
-
-    public EntityUid? SpawnPlayersOnArrivals(EntityUid? station, JobComponent? job, HumanoidCharacterProfile? profile)
-    {
-        var possiblePositions = GetArrivalsSpawnPoints();
-		
-		if (possiblePositions == null || possiblePositions.Count == 0)
-		{
-			Logger.Error("No valid arrival points found!");
-			return null;
-		}
-
-
-        var spawnLoc = _random.Pick(possiblePositions);
-
-        var playerMob = _stationSpawning.SpawnPlayerMob(
-            spawnLoc,
-            job,
-            profile,
-            station);
-
-        return playerMob;
     }
 
     public void HandlePlayerSpawning(PlayerSpawningEvent ev)
