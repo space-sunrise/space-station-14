@@ -109,7 +109,6 @@ namespace Content.Server.Zombies
             if (args.Handled)
                 return;
 
-            bool found;
             var zombieXform = Transform(uid);
             EntityUid? nearestUid = default!;
             TransformComponent? nearestXform = default!;
