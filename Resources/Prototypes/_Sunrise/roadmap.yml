@@ -11,19 +11,23 @@
         planet_prison:
           name: Планетарная тюрьма
           desc: Тюрьма на планете работающая как отдельная станция.
-          state: Partial
+          state: Complete
+        cyborg_update:
+          name: Станционные борги
+          desc: Новые борги.
+          state: Complete
+        collective_mind:
+          name: Коллективный разум
+          desc: Система позволяющая общяться некоторым созданиям между собой если он у них есть.
+          state: Complete
+        syndicate_cyborgs:
+          name: Новые борги синдиката
+          desc: Более продвинутые и полезные борги синдиката.
+          state: Complete
         smart_viruse:
           name: Разумная болезнь
           desc: Антагонист, цель которого заразить станцию болезнью.
           state: Partial
-        cyborg_update:
-          name: Станционные борги
-          desc: Новые борги.
-          state: Partial
-        collective_mind:
-          name: Коллективный разум
-          desc: Система позволяющая общяться некоторым созданиям между собой если он у них есть.
-          state: InProgress
         blob:
           name: Блоб
           desc: Антагонист цель которого поглотить и тем самым уничтожить станцию.
@@ -75,10 +79,6 @@
         limbo:
           name: Лимбо
           desc: Отдельный мирок для призраков где нет правил.
-          state: Planned
-        syndicate_cyborgs:
-          name: Новые борги синдиката
-          desc: Более продвинутые и полезные борги синдиката.
           state: Planned
         taypan: # А как правильно то нахуй?
           name: Тайпан
