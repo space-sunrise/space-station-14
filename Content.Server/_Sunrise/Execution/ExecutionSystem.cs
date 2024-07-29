@@ -117,6 +117,9 @@ public sealed class ExecutionSystem : EntitySystem
 
     private bool CanExecuteWithAny(EntityUid weapon, EntityUid victim, EntityUid attacker)
     {
+        if (attacker != victim)
+            return false;
+
         // No point executing someone if they can't take damage
         if (!TryComp<DamageableComponent>(victim, out var damage))
             return false;
@@ -143,6 +146,9 @@ public sealed class ExecutionSystem : EntitySystem
 
     private bool CanExecuteWithMelee(EntityUid weapon, EntityUid victim, EntityUid user)
     {
+        if (user != victim)
+            return false;
+
         if (!CanExecuteWithAny(weapon, victim, user)) return false;
 
         // We must be able to actually hurt people with the weapon
@@ -154,6 +160,9 @@ public sealed class ExecutionSystem : EntitySystem
 
     private bool CanExecuteWithGun(EntityUid weapon, EntityUid victim, EntityUid user)
     {
+        if (user != victim)
+            return false;
+
         if (!CanExecuteWithAny(weapon, victim, user)) return false;
 
         // We must be able to actually fire the gun
