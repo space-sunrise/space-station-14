@@ -5,9 +5,9 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Decoration/barberpole.rsi
-    drawdepth: Mobs
     layers:
     - state: barberpole
 #      shader: unshaded
   - type: Transform
     anchored: true
+  - type: Clickable
