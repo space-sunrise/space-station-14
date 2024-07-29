@@ -118,3 +118,15 @@
     sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/ntrep.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/ntrep.rsi
+
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtBarber
+  name: платье парикмахера
+  description: Как же он хорош.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpskirt/barber.rsi
+  - type: Clothing
+    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpskirt/barber.rsi

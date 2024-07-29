@@ -35,6 +35,7 @@
   - JanitorBorg # Sunrise-Edit
   - ServiceBorg # Sunrise-Edit
   - ClownBorg # Sunrise-Edit
+  - Barber # Sunrise-Roles
 
 - type: department
   id: Command
@@ -117,4 +118,5 @@
   - Reporter
   - Zookeeper
   - Psychologist
+  - Barber  # Sunrise-Roles
   primary: false

@@ -23,6 +23,8 @@
       - Atmospherics
       - Bar
       - Brig
+      - BlueShield  # Sunrise
+      - Barber  # Sunrise
       - Detective
       - Captain
       - Cargo
@@ -91,6 +93,8 @@
     - Atmospherics
     - Bar
     - Brig
+    - Blueshield  # Sunrise
+    - Barber  # Sunrise
     - Detective
     - Captain
     - Cargo

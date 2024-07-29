@@ -157,7 +157,7 @@
     accentVColor: "#DFDFDF"
   - type: Icon
     state: pda-seniorofficer
-    
+
 - type: entity
   parent: CaptainPDA
   id: NanoTrasenRepresentativePDA
@@ -176,3 +176,14 @@
     borderColor: "#7C5D00"
   - type: Icon
     state: pda-captain
+
+- type: entity
+  parent: BasePDA
+  id: BarberPDA
+  name: КПК парикмахера
+  components:
+  - type: Pda
+    id: BarberIDCard
+    state: pda-bartender
+  - type: Icon
+    state: pda-bartender  # он достаточно нейтральный, мне лень рисовать отдельный кпк для него
