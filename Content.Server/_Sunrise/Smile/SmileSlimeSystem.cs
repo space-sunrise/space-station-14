@@ -15,6 +15,7 @@ using Content.Shared.Actions;
 using Content.Shared.Body.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Zombies;
 
 namespace Content.Server._Sunrise.Smile;
 
@@ -42,6 +43,7 @@ public sealed class SmileSlimeSystem : EntitySystem
         SubscribeLocalEvent<SmileSlimeComponent, SmileLoveActionEvent>(OnLoveAction);
         SubscribeLocalEvent<SmileSlimeComponent, ComponentShutdown>(OnCompShutdown);
         SubscribeLocalEvent<SmileSlimeComponent, SmileLoveDoAfterEvent>(OnDoAfter);
+        SubscribeLocalEvent<SmileSlimeComponent, EntityZombifiedEvent>(OnZombified);
     }
 
     private void OnMapInit(EntityUid uid, SmileSlimeComponent comp, MapInitEvent args)
@@ -50,6 +52,11 @@ public sealed class SmileSlimeSystem : EntitySystem
     }
 
     private void OnCompShutdown(EntityUid uid, SmileSlimeComponent comp, ComponentShutdown args)
+    {
+        _actions.RemoveAction(uid, comp.ActionEntity);
+    }
+
+    private void OnZombified(EntityUid uid, SmileSlimeComponent comp, EntityZombifiedEvent args)
     {
         _actions.RemoveAction(uid, comp.ActionEntity);
     }
@@ -108,6 +115,8 @@ public sealed class SmileSlimeSystem : EntitySystem
         var query = AllEntityQuery<SmileSlimeComponent>();
         while (query.MoveNext(out var slimeUid, out var smileSlimeComponent))
         {
+            if (HasComp<ZombieComponent>(slimeUid))
+                continue;
             foreach (var entity in _entityLookup.GetEntitiesInRange(slimeUid, 2f))
             {
                 if (HasComp<SmileSlimeComponent>(entity))
