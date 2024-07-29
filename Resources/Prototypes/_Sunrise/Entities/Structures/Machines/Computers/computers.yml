@@ -14,7 +14,7 @@
   parent: BaseComputerShuttle
   id: ComputerShuttleCentComm
   name: консоль управления шаттлом ПЦК
-  description: Кто прочитал - тот лох.
+  description: Консоль для удаленного управления шаттлом Представителя Центрального Командования.
   components:
   - type: Sprite
     layers:
@@ -23,9 +23,9 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: supply
+      state: eris_control  # оно красивое
     - map: ["computerLayerKeys"]
-      state: tech_key
+      state: security_key  # оно красивое
   - type: DroneConsole
     components:
     - type: CentCommShuttle
@@ -40,7 +40,7 @@
   parent: BaseComputerShuttle
   id: ComputerShuttlePrison
   name: консоль управления тюремным шаттлом
-  description: Что не ясно? Не пытайся меня открутить ебанат.
+  description: Консоль для удаленного управления тюремным шаттлом.
   components:
   - type: Sprite
     layers:
@@ -49,9 +49,9 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: supply
+      state: eris_control  # оно красивое
     - map: ["computerLayerKeys"]
-      state: tech_key
+      state: security_key  # оно красивое
   - type: DroneConsole
     components:
     - type: PrisonShuttle
@@ -66,7 +66,7 @@
   parent: ComputerComms
   id: PrisonComputerComms
   name: консоль связи тюрьмы
-  description: This can be used for various important functions. Still under development.
+  description: Консоль для контроля над объявлениями в космической тюрьме.
   components:
   - type: AccessReader
     access: [[ "Security" ]]
@@ -85,8 +85,8 @@
 - type: entity
   parent: BaseComputerShuttle
   id: ComputerShuttleSecurity
-  name: консоль управления шатлом службы безопастности
-  description: Что не ясно? Не пытайся меня открутить ебанат.
+  name: консоль управления шаттлом службы безопасности
+  description: Консоль для удаленного управления шаттлом службы безопасности.
   components:
   - type: Sprite
     layers:
@@ -95,9 +95,9 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: supply
+      state: eris_control  # оно красивое
     - map: ["computerLayerKeys"]
-      state: tech_key
+      state: security_key  # оно красивое
   - type: DroneConsole
     components:
     - type: SecurityShuttle
