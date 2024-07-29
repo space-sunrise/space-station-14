@@ -98,7 +98,7 @@
   loadouts:
   - BrigmedicJumpsuit
   - BrigmedicJumpskirt
-  
+
 - type: loadoutGroup
   id: NanoTrasenRepresentativeJumpsuit
   name: loadout-group-nanotrasenrepresentative-jumpsuit
@@ -107,7 +107,7 @@
   - NanoTrasenRepresentativeJumpsuit
   - NanoTrasenRepresentativeJumpskirt
   - NanoTrasenRepresentativeJumpsuitFormal
-  
+
 - type: loadoutGroup
   id: NanoTrasenRepresentativeOuterClothing
   name: loadout-group-nanotrasenrepresentative-outerclothing
@@ -131,6 +131,13 @@
   loadouts:
   - BlueShieldJumpsuit
   - BlueShieldJumpskirt
+
+- type: loadoutGroup
+  id: BarberJumpsuit
+  name: loadout-group-barber-jumpsuit
+  loadouts:
+  - BarberJumpsuit
+  - BarberJumpskirt
 
 - type: loadoutGroup
   id: SecurityTrinkets

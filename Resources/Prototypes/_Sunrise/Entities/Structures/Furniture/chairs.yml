@@ -23,11 +23,11 @@
   - type: Sprite
     sprite: _Sunrise/Structures/Furniture/chairs.rsi
     state: comfy-brown
-# TODO:    
+# TODO:
 #  - type: Construction
 #    graph: Seat
 #    node: chairComfyBrown
-    
+
 - type: entity
   name: grey office chair
   id: ChairOfficeGrey
@@ -36,7 +36,16 @@
   - type: Sprite
     sprite: _Sunrise/Structures/Furniture/chairs.rsi
     state: office-grey
-# TODO: 
+# TODO:
 #  - type: Construction
 #    graph: Seat
 #    node: chairOfficeDark
+
+- type: entity
+  name: кресло парикмахера
+  parent: StoolBase
+  id: ChairBarber
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Furniture/chairs.rsi
+    state: barber

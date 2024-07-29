@@ -87,3 +87,6 @@
 
 - type: playTimeTracker
   id: JobClownBorg
+
+- type: playTimeTracker
+  id: JobBarber

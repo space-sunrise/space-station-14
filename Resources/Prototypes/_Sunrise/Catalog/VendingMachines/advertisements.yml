@@ -1,0 +1,5 @@
+﻿- type: localizedDataset
+  id: BarberAds
+  values:
+    prefix: advertisement-barber-
+    count: 10
