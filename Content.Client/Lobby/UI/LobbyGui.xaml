@@ -24,7 +24,7 @@
                 <PanelContainer Name="LeftTopPanel" StyleClasses="AngleRect" >
                     <BoxContainer Orientation="Vertical" HorizontalExpand="True" HorizontalAlignment="Center" VerticalAlignment="Top">
                         <Label Name="ServerName" Access="Public" StyleClasses="LabelHeadingBigger" VAlign="Center"
-                               HorizontalExpand="True" HorizontalAlignment="Center" Text="Добро пожаловать на Sunrise" />
+                               HorizontalExpand="True" HorizontalAlignment="Center" Text="Добро пожаловать в SS14" />
                         <controls:HLine Color="{x:Static style:StyleNano.NanoGold}" Thickness="2" />
                         <info:LinkBanner Name="LinkBanner" HorizontalAlignment="Center"
                                          Margin="3 3 3 3" />
@@ -68,7 +68,7 @@
                                 VerticalAlignment="Bottom" HorizontalExpand="True">
                     <BoxContainer Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
                                   HorizontalExpand="True">
-                        <BoxContainer Orientation="Vertical" VerticalExpand="True" VerticalAlignment="Top">
+                        <BoxContainer Orientation="Vertical" Name="ServersHubBox" VerticalExpand="True" VerticalAlignment="Top" Access="Public">
                             <controls:StripeBack>
                                 <BoxContainer Orientation="Horizontal" Name="ServersHubHeader" MouseFilter="Pass" >
                                     <Label HorizontalExpand="True" Name="ServersHubHeaderLabel" Access="Public"
@@ -84,7 +84,7 @@
                         <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalAlignment="Stretch" MaxWidth="530" VerticalAlignment="Top">
                             <controls:StripeBack VerticalAlignment="Top">
                                 <BoxContainer Orientation="Horizontal" Name="ChangelogHeader" MouseFilter="Pass">
-                                    <Label HorizontalExpand="True" Text="{Loc 'changelog-sunrise-window-title'}"
+                                    <Label HorizontalExpand="True" Text="{Loc 'changelog-lobby-window-title'}"
                                            VAlign="Center" StyleClasses="LabelHeading" Align="Center"/>
                                 </BoxContainer>
                             </controls:StripeBack>

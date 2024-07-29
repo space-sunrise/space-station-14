@@ -69,7 +69,9 @@
     range: 7
   - type: SoundOnTrigger
     sound:
-      path: "/Audio/Effects/flash_bang.ogg"
+      path: "/Audio/_Sunrise/flashbang.ogg" # Sunrise-Edit
+      params:
+        volume: 20
   - type: DeleteOnTrigger
   - type: SpawnOnTrigger
     proto: GrenadeFlashEffect
@@ -83,7 +85,7 @@
 
 - type: entity
   id: GrenadeFlashEffect
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: PointLight
       enabled: true
@@ -121,11 +123,11 @@
         volume: 12
 
 - type: entity
-  name: Self Destruct
+  name: self destruct
   description: Go out on your own terms!
   parent: GrenadeBase
   id: SelfDestructSeq
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: ExplodeOnTrigger
   - type: Explosive
@@ -380,10 +382,13 @@
   - type: Sprite
     sprite: Objects/Weapons/Grenades/smoke.rsi
   - type: SmokeOnTrigger
-    duration: 30
+    duration: 45 # Sunrise-Edit
     spreadAmount: 50
   - type: SoundOnTrigger
-    sound: /Audio/Items/smoke_grenade_smoke.ogg
+    sound:
+      path: /Audio/_Sunrise/sg_explode.ogg # Sunrise-Edit
+      params:
+        volume: 15
   - type: DeleteOnTrigger
   - type: TimerTriggerVisuals
     primingSound:

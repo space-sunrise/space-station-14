@@ -8,9 +8,9 @@
     - EscapeThiefShuttleObjective
   - type: AntagRandomObjectives
     sets:
-#    - groups: ThiefBigObjectiveGroups
-#      prob: 0.7
-#      maxPicks: 1 Воры не воруют бесполезные вещи.
+    - groups: ThiefBigObjectiveGroups
+      prob: 0.7
+      maxPicks: 1
     - groups: ThiefObjectiveGroups
       maxPicks: 10
     maxDifficulty: 2.5
@@ -18,14 +18,14 @@
     agentName: thief-round-end-agent-name
     definitions:
     - prefRoles: [ Thief ]
-      max: 5
-      playerRatio: 15
+      max: 15 # Sunrise-Edit
+      playerRatio: 13 # Sunrise-Edit
       lateJoinAdditional: true
       allowNonHumans: true
       multiAntagSetting: NotExclusive
       startingGear: ThiefGear
 #      components:
-#      - type: Pacified # Воры не терпилы
+#      - type: Pacified # Sunrise-Edit: Воры не терпилы
       mindComponents:
       - type: ThiefRole
         prototype: Thief

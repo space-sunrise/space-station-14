@@ -250,3 +250,84 @@
     blacklist:
       components:
       - SurplusBundle
+
+- type: listing
+  id: UplinkReinforcementRadioSyndicateCyborgAssault
+  name: Телепорт подкрепления боевого борга синдиката
+  description: Отправляет вам в поддержку борга синдиката.
+  productEntity: ReinforcementRadioSyndicateCyborgAssault
+  icon: { sprite: Mobs/Silicon/chassis.rsi, state: synd_sec }
+  cost:
+    Telecrystal: 50
+  categories:
+  - UplinkAllies
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkReinforcementRadioSyndicateCyborgHeavy
+  name:  Телепорт подкрепления тяжелого боевого борга синдиката
+  description: Отправляет вам в поддержку борга синдиката.
+  productEntity: ReinforcementRadioSyndicateCyborgHeavy
+  icon: { sprite: _Sunrise/Mobs/Silicon/heavy_syndicate_borg.rsi, state: heavy }
+  cost:
+    Telecrystal: 100
+  categories:
+  - UplinkAllies
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkReinforcementRadioSyndicateCyborgSpider
+  name: Телепорт подкрепления диверсионного боевого борга синдиката
+  description: Отправляет вам в поддержку борга синдиката.
+  productEntity: ReinforcementRadioSyndicateCyborgSpider
+  icon: { sprite: _Sunrise/Mobs/Silicon/chassis.rsi, state: spider }
+  cost:
+    Telecrystal: 50
+  categories:
+  - UplinkAllies
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkReinforcementRadioSyndicateCyborgMedical
+  name: Телепорт подкрепления медицинского борга синдиката
+  description: Отправляет вам в поддержку борга синдиката.
+  productEntity: ReinforcementRadioSyndicateCyborgMedical
+  icon: { sprite: Mobs/Silicon/chassis.rsi, state: synd_medical }
+  cost:
+    Telecrystal: 50
+  categories:
+  - UplinkAllies
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkReinforcementRadioSyndicateCyborgReaper
+  name: Телепорт подкрепления борга синдиката "Жнец"
+  description: Отправляет вам в поддержку борга синдиката.
+  productEntity: ReinforcementRadioSyndicateCyborgReaper
+  icon: { sprite: _Sunrise/Mobs/Silicon/chassis.rsi, state: syndi_reaper }
+  cost:
+    Telecrystal: 50
+  categories:
+  - UplinkAllies
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+

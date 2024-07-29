@@ -46,6 +46,18 @@
       Brute:
         sprite: Mobs/Effects/brute_damage.rsi
         color: "#44944A"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 200
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
   - type: Sprite
     scale: 1.1, 1.2
     layers:
@@ -59,13 +71,11 @@
     - shader: StencilClear
       sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
       state:
-    # Sunrise-start
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
     - map: ["bra"]
     - map: ["pants"]
     - map: ["socks"]
-    # Sunrise-end
     - map: ["jumpsuit"]
     - map: ["enum.HumanoidVisualLayers.LHand"]
     - map: ["enum.HumanoidVisualLayers.RHand"]
@@ -115,11 +125,14 @@
       - CanPilot
       - FootstepSound
       - DoorBumpOpener
+  - type: CollectiveMind
+    minds:
+    - Xeno
 
 - type: entity
   parent: BaseSpeciesDummy
   id: MobXenoDummy
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: HumanoidAppearance
     species: HumanoidXeno

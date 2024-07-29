@@ -11,6 +11,7 @@
   icon: "JobIconDetective"
   supervisors: job-supervisors-hos
   canBeAntag: false
+  displayWeight: 20  # Sunrise
   access:
   - Security
   - Brig

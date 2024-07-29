@@ -23,6 +23,7 @@
   supervisors: job-supervisors-centcom
   radioBold: true
   canBeAntag: false
+  displayWeight: 100  # Sunrise
   accessGroups:
   - AllAccess
   special:

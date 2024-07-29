@@ -1,12 +1,13 @@
 using System.Linq;
-using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.Fax;
 using Content.Server.GameTicking;
 using Content.Server.Mind;
 using Content.Server.Objectives;
+using Content.Server.Roles;
 using Content.Shared.Fax.Components;
 using Content.Shared.Humanoid;
+using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Paper;
@@ -20,20 +21,21 @@ namespace Content.Server._Sunrise.Fugitive
 {
     public sealed class FugitiveSystem : EntitySystem
     {
-        private const string AntagRole = "Fugitive";
-        private const string EscapeObjective = "FugitiveEscapeShuttleObjective";
-        private const string GameRule = "Fugitive";
-
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly ChatSystem _chat = default!;
         [Dependency] private readonly MindSystem _mindSystem = default!;
         [Dependency] private readonly FaxSystem _faxSystem = default!;
-        [Dependency] private readonly IChatManager _chatManager = default!;
         [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
         [Dependency] private readonly GameTicker _gameTicker = default!;
 
+        [ValidatePrototypeId<AntagPrototype>]
+        private const string AntagRole = "Fugitive";
+        [ValidatePrototypeId<EntityPrototype>]
+        private const string EscapeObjective = "FugitiveEscapeShuttleObjective";
+        [ValidatePrototypeId<EntityPrototype>]
+        private const string GameRule = "Fugitive";
 
         public override void Initialize()
         {
@@ -41,6 +43,16 @@ namespace Content.Server._Sunrise.Fugitive
             SubscribeLocalEvent<FugitiveComponent, MindAddedMessage>(OnMindAdded);
 
             SubscribeLocalEvent<FugitiveRuleComponent, ObjectivesTextGetInfoEvent>(OnObjectivesTextGetInfo);
+            SubscribeLocalEvent<FugitiveRoleComponent, GetBriefingEvent>(OnGetBriefing);
+        }
+
+        private void OnGetBriefing(EntityUid uid, FugitiveRoleComponent component, ref GetBriefingEvent args)
+        {
+            if (!TryComp<MindComponent>(uid, out var mind) || mind.OwnedEntity == null)
+                return;
+            if (HasComp<FugitiveRoleComponent>(uid)) // don't show both briefings
+                return;
+            args.Append(Loc.GetString("fugitive-role-greeting"));
         }
 
         private void OnObjectivesTextGetInfo(EntityUid uid, FugitiveRuleComponent comp, ref ObjectivesTextGetInfoEvent args)
@@ -131,16 +143,10 @@ namespace Content.Server._Sunrise.Fugitive
                 PrototypeId = AntagRole,
             });
 
-            if (_mindSystem.TryGetSession(mind, out var session))
-            {
-                _chatManager.DispatchServerMessage(session, Loc.GetString("fugitive-role-greeting"));
-            }
-
             _mindSystem.TryAddObjective(mindId, mind, EscapeObjective);
 
             fugitiveRule.FugitiveMinds.Add((mindId, Name(uid)));
 
-            // workaround seperate shitcode moment
             _movementSpeed.RefreshMovementSpeedModifiers(uid);
         }
 

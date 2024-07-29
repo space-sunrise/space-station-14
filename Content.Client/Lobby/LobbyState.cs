@@ -20,6 +20,7 @@ using Content.Client.Parallax.Managers;
 using Content.Shared._Sunrise.ServersHub;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Robust.Shared.Configuration;
+using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Serialization.Markdown;
@@ -40,6 +41,8 @@ namespace Content.Client.Lobby
         [Dependency] private readonly ISerializationManager _serialization = default!;
         [Dependency] private readonly IResourceManager _resource = default!;
         [Dependency] private readonly ServersHubManager _serversHubManager = default!;
+        [Dependency] private readonly ChangelogManager _changelogManager = default!;
+        [Dependency] private readonly IConfigurationManager _cfg = default!;
 
         private ClientGameTicker _gameTicker = default!;
         private ContentAudioSystem _contentAudioSystem = default!;
@@ -71,13 +74,20 @@ namespace Content.Client.Lobby
 
             Lobby!.LocalChangelogBody.CleanChangelog();
 
-            var sunriseChangelog = new ResPath("/Changelog/ChangelogSunrise.yml");
+            var lobbyChangelogs = _cfg.GetCVar(SunriseCCVars.LobbyChangelogsList).Split(',');
 
-            var yamlData = _resource.ContentFileReadYaml(sunriseChangelog);
+            var changelogs = new List<ChangelogManager.Changelog>();
+            foreach (var lobbyChangelog in lobbyChangelogs)
+            {
+                var yamlData = _resource.ContentFileReadYaml(new ResPath($"/Changelog/{lobbyChangelog}"));
 
-            var node = yamlData.Documents[0].RootNode.ToDataNodeCast<MappingDataNode>();
-            var changelog = _serialization.Read<ChangelogManager.Changelog>(node, notNullableOverride: true);
-            Lobby!.LocalChangelogBody.PopulateChangelog(changelog);
+                var node = yamlData.Documents[0].RootNode.ToDataNodeCast<MappingDataNode>();
+                var changelog = _serialization.Read<ChangelogManager.Changelog>(node, notNullableOverride: true);
+                changelogs.Add(changelog);
+            }
+            var combinedChangelog = _changelogManager.MergeChangelogs(changelogs);
+
+            Lobby!.LocalChangelogBody.PopulateChangelog(combinedChangelog);
 
             // Sunrise-end
 

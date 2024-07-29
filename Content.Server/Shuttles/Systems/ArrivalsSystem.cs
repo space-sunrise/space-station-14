@@ -314,51 +314,6 @@ public sealed class ArrivalsSystem : EntitySystem
         }
     }
 
-    public List<EntityCoordinates> GetArrivalsSpawnPoints()
-    {
-        TryGetArrivalsSource(out var arrivals);
-        var possiblePositions = new List<EntityCoordinates>();
-
-        if (TryComp(arrivals, out TransformComponent? arrivalsXform))
-        {
-            var mapId = arrivalsXform.MapID;
-
-            var points = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
-
-            while (points.MoveNext(out var uid, out var spawnPoint, out var xform))
-            {
-                if (spawnPoint.SpawnType != SpawnPointType.LateJoin || xform.MapID != mapId)
-                    continue;
-
-                possiblePositions.Add(xform.Coordinates);
-            }
-        }
-
-        return possiblePositions;
-    }
-
-    public EntityUid? SpawnPlayersOnArrivals(EntityUid? station, JobComponent? job, HumanoidCharacterProfile? profile)
-    {
-        var possiblePositions = GetArrivalsSpawnPoints();
-
-		if (possiblePositions == null || possiblePositions.Count == 0)
-		{
-			Logger.Error("No valid arrival points found!");
-			return null;
-		}
-
-
-        var spawnLoc = _random.Pick(possiblePositions);
-
-        var playerMob = _stationSpawning.SpawnPlayerMob(
-            spawnLoc,
-            job,
-            profile,
-            station);
-
-        return playerMob;
-    }
-
     public void HandlePlayerSpawning(PlayerSpawningEvent ev)
     {
         if (ev.SpawnResult != null)

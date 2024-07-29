@@ -323,6 +323,11 @@ public sealed class AbsorbentSystem : SharedAbsorbentSystem
 
         _melee.DoLunge(user, used, Angle.Zero, localPos, null, false);
 
+        // Sunrise-Start
+        var ev = new AbsorberPudleEvent(user);
+        RaiseLocalEvent(user, ref ev);
+        // Sunrise-End
+
         return true;
     }
 }

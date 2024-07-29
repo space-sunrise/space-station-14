@@ -1,7 +1,7 @@
 - type: entity
   parent: ClothingHeadHardsuitWithLightBase
   id: ClothingHeadHelmetCBURNLeader
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: cburn commander helmet
   description: A pressure resistant and fireproof hood worn by special cleanup units.
   components:
@@ -45,7 +45,7 @@
 - type: entity
   parent: ClothingHeadHardsuitWithLightBase
   id: ClothingHeadHelmetHardsuitBlueshield
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: шлем скафандра офицера «синий щит»
   description: Синий.
   components:
@@ -68,6 +68,7 @@
 - type: entity
   parent: ClothingHeadHardsuitWithLightBase
   id: ClothingHeadHelmetHardsuitPilot
+  categories: [ HideSpawnMenu ]
   name: Шлем скафандра пилота Службы Безопасности
   description: Футуристичный шлем с отличным обзором.
   components:

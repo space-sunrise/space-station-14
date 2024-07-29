@@ -22,7 +22,7 @@
             Captain: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
             Bartender: [ 2, 2 ]
-            Botanist: [ 4, 4 ]
+            Botanist: [ 3, 3 ]
             Chef: [ 2, 2 ]
             Janitor: [ 3, 3 ]
             Chaplain: [ 1, 1 ]
@@ -60,4 +60,6 @@
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
             # Sunrise-Law
-            IAA: [ 1, 1 ]
+            #IAA: [ 1, 1 ]
+            #Lawyer: [ 1, 1 ]
+            #Magistrat: [ 1, 1 ]

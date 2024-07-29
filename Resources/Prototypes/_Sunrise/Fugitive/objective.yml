@@ -11,7 +11,7 @@
       - FugitiveRole
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: [BaseFugitiveObjective, BaseLivingObjective]
   id: FugitiveEscapeShuttleObjective
   name: Улететь на эвакуационном шаттле

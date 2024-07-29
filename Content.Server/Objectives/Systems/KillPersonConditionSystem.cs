@@ -3,7 +3,11 @@ using Content.Server._Sunrise.TraitorTarget;
 using Content.Server.Objectives.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Shared.CCVar;
+using Content.Shared.Humanoid;
 using Content.Shared.Mind;
+using Content.Shared.Mind.Components;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Roles.Jobs;
 using Robust.Shared.Configuration;
@@ -22,6 +26,7 @@ public sealed class KillPersonConditionSystem : EntitySystem
     [Dependency] private readonly SharedJobSystem _job = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly TargetObjectiveSystem _target = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
 
     public override void Initialize()
     {
@@ -56,15 +61,7 @@ public sealed class KillPersonConditionSystem : EntitySystem
             return;
 
         // no other humans to kill
-        var allHumans = _mind.GetAliveHumansExcept(args.MindId);
-
-        // Sunrise-Start
-        foreach (var entityUid in allHumans.ToList())
-        {
-            if (!HasComp<AntagTargetComponent>(entityUid))
-                allHumans.Remove(entityUid);
-        }
-        // Sunrise-End
+        var allHumans = GetAliveTargetsExcept(args.MindId);
 
         if (allHumans.Count == 0)
         {
@@ -89,13 +86,7 @@ public sealed class KillPersonConditionSystem : EntitySystem
             return;
 
         // no other humans to kill
-        var allHumans = _mind.GetAliveHumansExcept(args.MindId);
-
-        foreach (var entityUid in allHumans.ToList())
-        {
-            if (!HasComp<AntagTargetComponent>(entityUid))
-                allHumans.Remove(entityUid);
-        }
+        var allHumans = GetAliveTargetsExcept(args.MindId);
 
         if (allHumans.Count == 0)
         {
@@ -145,5 +136,26 @@ public sealed class KillPersonConditionSystem : EntitySystem
 
         // if evac is still here and target hasn't boarded, show 50% to give you an indicator that you are doing good
         return _emergencyShuttle.EmergencyShuttleArrived ? 0.5f : 0f;
+    }
+
+    public List<EntityUid> GetAliveTargetsExcept(EntityUid exclude)
+    {
+        var mindQuery = EntityQuery<MindComponent>();
+
+        var allTargets = new List<EntityUid>();
+        // HumanoidAppearanceComponent is used to prevent mice, pAIs, etc from being chosen
+        var query = EntityQueryEnumerator<MindContainerComponent, MobStateComponent, AntagTargetComponent, HumanoidAppearanceComponent>();
+        while (query.MoveNext(out var uid, out var mc, out var mobState, out _, out _))
+        {
+            // the player needs to have a mind and not be the excluded one
+            if (mc.Mind == null || mc.Mind == exclude)
+                continue;
+
+            // the player has to be alive
+            if (_mobState.IsAlive(uid, mobState))
+                allTargets.Add(mc.Mind.Value);
+        }
+
+        return allTargets;
     }
 }

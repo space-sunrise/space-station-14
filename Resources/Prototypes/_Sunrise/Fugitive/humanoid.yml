@@ -2,7 +2,7 @@
   parent: MobHuman
   id: MobHumanFugitive
   name: Fugitive
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: Loadout
       prototypes: [FugitiveStartingGear]

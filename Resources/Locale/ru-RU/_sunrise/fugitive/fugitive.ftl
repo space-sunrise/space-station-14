@@ -17,13 +17,4 @@ fugitive-report-age = ВОЗРАСТ: {$age}
 fugitive-report-last-line = Данный человек в розыске по всему сектору; предпочтительно живым.
 
 fugitive-round-end-name = беглец
-
 fugitive-role-greeting = Вы заключенный сбежавший с тюрьмы - ваша задача сбежать на эвакуационном шаттле.
-
-fugitive-user-was-a-fugitive = [color=gray]{$user}[/color] был беглецом.
-fugitive-user-was-a-fugitive-named = [color=White]{$name}[/color] ([color=gray]{$user}[/color]) был беглецом.
-fugitive-was-a-fugitive-named = [color=White]{$name}[/color] был беглецом.
-
-fugitive-user-was-a-fugitive-with-objectives = [color=gray]{$user}[/color] был беглецом и имел следующие цели:
-fugitive-user-was-a-fugitive-with-objectives-named = [color=White]{$name}[/color] ([color=gray]{$user}[/color]) был беглецом и имел следующие цели:
-fugitive-was-a-fugitive-with-objectives-named = [color=White]{$name}[/color] был беглецом и имел следующие цели:

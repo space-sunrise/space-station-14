@@ -1,10 +1,18 @@
-﻿using Content.Server.Bed.Cryostorage;
+﻿using System.Linq;
+using Content.Server.Bed.Cryostorage;
 using Content.Server.GameTicking;
+using Content.Server.Mind;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Bed.Cryostorage;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Robust.Server.GameObjects;
+using Robust.Server.Player;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Configuration;
+using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
@@ -21,17 +29,23 @@ public sealed class CryoTeleportSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly TransformSystem _transformSystem = default!;
+    [Dependency] private readonly IPlayerManager _playerMan = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
+    private bool _enable;
     public TimeSpan NextTick = TimeSpan.Zero;
     public TimeSpan RefreshCooldown = TimeSpan.FromSeconds(5);
-
-    /// <inheritdoc/>
     public override void Initialize()
     {
+        _cfg.OnValueChanged(SunriseCCVars.CryoTeleportEnable, OnCryoTeleportEnableChanged, true);
+
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnCompleteSpawn);
-        // SubscribeLocalEvent<CryoTeleportTargetComponent, BeingGibbedEvent>(OnGibbed);
-        SubscribeLocalEvent<CryoTeleportTargetComponent, PlayerDetachedEvent>(OnPlayerDetached);
-        SubscribeLocalEvent<CryoTeleportTargetComponent, PlayerAttachedEvent>(OnPlayerAttached);
+        _playerMan.PlayerStatusChanged += OnSessionStatus;
+    }
+
+    private void OnCryoTeleportEnableChanged(bool enable)
+    {
+        _enable = enable;
     }
 
     public override void Update(float delay)
@@ -41,13 +55,19 @@ public sealed class CryoTeleportSystem : EntitySystem
 
         NextTick += RefreshCooldown;
 
-        var query = AllEntityQuery<CryoTeleportTargetComponent>();
-        while (query.MoveNext(out var uid, out var comp))
+        if (!_enable)
+            return;
+
+        var query = AllEntityQuery<CryoTeleportTargetComponent, MobStateComponent>();
+        while (query.MoveNext(out var uid, out var comp, out var mobStateComponent))
         {
             if (comp.Station == null)
                 continue;
 
             if (comp.ExitTime == null)
+                continue;
+
+            if (mobStateComponent.CurrentState != MobState.Alive)
                 continue;
 
             if (!TryComp<StationCryoTeleportComponent>(comp.Station, out var stationCryoTeleportComponent) ||
@@ -86,8 +106,12 @@ public sealed class CryoTeleportSystem : EntitySystem
 
     private void OnCompleteSpawn(PlayerSpawnCompleteEvent ev)
     {
+        if (!_enable)
+            return;
+
         if (!TryComp<StationCryoTeleportComponent>(ev.Station, out var cryoTeleportComponent))
             return;
+
         if (ev.JobId == null)
             return;
 
@@ -96,82 +120,28 @@ public sealed class CryoTeleportSystem : EntitySystem
 
         var cryoTeleportTargetComponent = EnsureComp<CryoTeleportTargetComponent>(ev.Player.AttachedEntity.Value);
         cryoTeleportTargetComponent.Station = ev.Station;
+        cryoTeleportTargetComponent.UserId = ev.Player.UserId;
     }
 
-    private void OnPlayerDetached(EntityUid uid, CryoTeleportTargetComponent comp, PlayerDetachedEvent ev)
+    private void OnSessionStatus(object? sender, SessionStatusEventArgs args)
     {
-        comp.ExitTime = _timing.CurTime;
-    }
+        if (!_enable)
+            return;
 
-    private void OnPlayerAttached(EntityUid uid, CryoTeleportTargetComponent comp, PlayerAttachedEvent ev)
-    {
-        comp.ExitTime = null;
-        comp.UserId = ev.Player.UserId;
-    }
+        if (!TryComp<CryoTeleportTargetComponent>(args.Session.AttachedEntity, out var comp))
+            return;
 
-    // private void OnGibbed(EntityUid uid, CryoTeleportTargetComponent comp, BeingGibbedEvent ev)
-    // {
-    //     if (comp.Station == null)
-    //         return;
-    //
-    //     if (!TryComp<TransformComponent>(uid, out var entityXform))
-    //         return;
-    //
-    //     if (!TryComp<StationCryoTeleportComponent>(comp.Station, out var stationCryoTeleportComponent))
-    //         return;
-    //
-    //     // var stationJobsComponent = Comp<StationJobsComponent>(comp.Station.Value);
-    //     _mind.TryGetMind(uid, out var mindId, out var mindComp);
-    //
-    //     if (mindComp == null)
-    //     {
-    //         Log.Error($"mindComp null");
-    //         return;
-    //     }
-    //
-    //     if (mindComp.UserId == null)
-    //         return;
-    //
-    //     foreach (var uniqueStation in _station.GetStationsSet())
-    //     {
-    //         if (!TryComp<StationJobsComponent>(uniqueStation, out var stationJobs))
-    //             continue;
-    //
-    //         if (!_stationJobs.TryGetPlayerJobs(uniqueStation, mindComp.UserId.Value, out var jobs, stationJobs))
-    //             continue;
-    //
-    //         foreach (var job in jobs)
-    //         {
-    //             _stationJobs.TryAdjustJobSlot(uniqueStation, job, 1, clamp: true);
-    //         }
-    //
-    //         _stationJobs.TryRemovePlayerJobs(uniqueStation, mindComp.UserId.Value, stationJobs);
-    //     }
-    //
-    //     if (!TryComp<StationRecordsComponent>(comp.Station, out var stationRecords))
-    //         return;
-    //
-    //     var jobName = Loc.GetString("earlyleave-cryo-job-unknown");
-    //     var recordId = _stationRecords.GetRecordByName(comp.Station.Value, Name(uid));
-    //     if (recordId != null)
-    //     {
-    //         var key = new StationRecordKey(recordId.Value, comp.Station.Value);
-    //         if (_stationRecords.TryGetRecord<GeneralStationRecord>(key, out var entry, stationRecords))
-    //             jobName = entry.JobTitle;
-    //
-    //         _stationRecords.RemoveRecord(key, stationRecords);
-    //     }
-    //
-    //     _chat.DispatchStationAnnouncement(comp.Station.Value,
-    //         Loc.GetString(
-    //             "earlyleave-cryo-announcement",
-    //             ("character", Name(uid)),
-    //             ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))
-    //         ),
-    //         Loc.GetString("earlyleave-cryo-sender"),
-    //         playDefault: false
-    //     );
-    // }
+        if (args.Session.Status == SessionStatus.Disconnected && comp.ExitTime == null)
+        {
+            comp.ExitTime = _timing.CurTime;
+        }
+        else if (args.Session.Status == SessionStatus.Connected)
+        {
+            comp.ExitTime = null;
+        }
+
+        comp.UserId = args.Session.UserId;
+    }
 
     private EntityUid? FindCryoStorage(TransformComponent stationGridTransform)
     {

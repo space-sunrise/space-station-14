@@ -1,0 +1,77 @@
+#Knight_of_the_Sun:
+- type: sponsorLoadout
+  id: SunriseUplink40Loadout
+  equipment: SunriseUplink40
+
+- type: startingGear
+  id: SunriseUplink40
+  storage:
+    back:
+    - SunriseUplink40
+
+#Sun:
+- type: sponsorLoadout
+  id: SunriseUplink80Loadout
+  equipment: SunriseUplink80
+
+- type: startingGear
+  id: SunriseUplink80
+  storage:
+    back:
+    - SunriseUplink80
+
+#Endless_Summer
+- type: sponsorLoadout
+  id: SunriseUplink100Loadout
+  equipment: SunriseUplink100
+
+- type: startingGear
+  id: SunriseUplink100
+  storage:
+    back:
+    - SunriseUplink100
+
+#Badge
+- type: sponsorLoadout
+  id: SunriseBadgeLoadout
+  equipment: ClothingNeckSunriseBadge
+
+- type: startingGear
+  id: ClothingNeckSunriseBadge
+  equipment:
+    neck: ClothingNeckSunriseBadge
+
+# FISHSTATION UPLINKS:
+
+# first level?
+- type: sponsorLoadout
+  id: FishStationUplink40Loadout
+  equipment: FishStationUplink40
+
+- type: startingGear
+  id: FishStationUplink40
+  storage:
+    back:
+    - FishStationUplink40
+
+# second level?
+- type: sponsorLoadout
+  id: FishStationUplink80Loadout
+  equipment: FishStationUplink80
+
+- type: startingGear
+  id: FishStationUplink80
+  storage:
+    back:
+    - FishStationUplink80
+
+# third level?
+- type: sponsorLoadout
+  id: FishStationUplink100Loadout
+  equipment: FishStationUplink100
+
+- type: startingGear
+  id: FishStationUplink100
+  storage:
+    back:
+    - FishStationUplink100

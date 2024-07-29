@@ -1,6 +1,7 @@
 - type: guideEntry
   id: SunriseRuleset
   name: guide-entry-rules
+  ruleEntry: true
   text: "/ServerInfo/Guidebook/ServerRules/SunriseRules.xml"
 
 - type: guideEntry
@@ -41,7 +42,7 @@
 - type: guideEntry
   id: RuleSR5
   name: Правило 5
-  ruleEntry: true 
+  ruleEntry: true
   priority: 5
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/CoreRules/RuleSR5.xml"
 

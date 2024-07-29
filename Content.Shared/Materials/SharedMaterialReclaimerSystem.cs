@@ -198,11 +198,11 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
     /// </summary>
     public bool CanGib(EntityUid uid, EntityUid victim, MaterialReclaimerComponent component)
     {
-        return component.Powered &&
-               component.Enabled &&
-               HasComp<BodyComponent>(victim); //&&
-               // HasComp<EmaggedComponent>(uid);
-               // Вы реально хотите сказать что огромный шредер не должен гибать людей без емага? Да будет мясо
+        return false; // Ради казуалов.
+        // return component.Powered &&
+        //        component.Enabled &&
+        //        HasComp<BodyComponent>(victim) &&
+        //        HasComp<EmaggedComponent>(uid);
     }
 
     /// <summary>

@@ -24,3 +24,5 @@ loadout-group-prison-guard-jumpsuit = Охранник, комбинезон
 loadout-group-prison-guard-backpack = Охранник, рюкзак
 loadout-group-prison-guard-head = Охранник, головной убор
 loadout-group-prisoner-jumpsuit = Заключенный, комбинезон
+loadout-group-nanotrasenrepresentative-outerclothing = Представитель NT, верхняя одежда
+loadout-group-nanotrasenrepresentative-jumpsuit = Представитель NT, комбинезон

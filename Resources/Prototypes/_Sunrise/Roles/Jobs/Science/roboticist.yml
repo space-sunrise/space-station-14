@@ -13,6 +13,7 @@
   startingGear: RoboticistGear
   icon: JobIconRoboticist
   supervisors: job-supervisors-rd
+  displayWeight: 30
   access:
     - Research
     - Maintenance

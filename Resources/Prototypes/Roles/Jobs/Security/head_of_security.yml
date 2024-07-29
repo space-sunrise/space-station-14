@@ -17,6 +17,7 @@
   supervisors: job-supervisors-captain
   radioBold: true
   canBeAntag: false
+  displayWeight: 80  # Sunrise
   access:
   - HeadOfSecurity
   - Command

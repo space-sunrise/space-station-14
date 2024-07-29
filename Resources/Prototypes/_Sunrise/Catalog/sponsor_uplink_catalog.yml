@@ -1,0 +1,3105 @@
+# Общее
+- type: listing
+  id: UplinkSunrisePresentRandom
+  name: Подарок
+  productEntity: PresentRandom
+  cost:
+    Suntick: 10
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseMaterialHideCorgi
+  name: Шкура корги
+  productEntity: MaterialHideCorgi
+  cost:
+    Suntick: 15
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseSkub
+  name: Скаб
+  productEntity: Skub
+  cost:
+    Suntick: 10
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseClothingHeadHatSkub
+  name: Шапка скаба
+  productEntity: ClothingHeadHatSkub
+  cost:
+    Suntick: 10
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseClothingOuterSkub
+  name: Костюм скаба
+  productEntity: ClothingOuterSkub
+  cost:
+    Suntick: 15
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseClothingUniformJumpsuitSkeleton
+  name: Комбинезон скелета
+  productEntity: ClothingUniformJumpsuitSkeleton
+  cost:
+    Suntick: 12
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseClothingHandsWatchDivine
+  name: Божественные часы
+  productEntity: ClothingHandsWatchDivine
+  cost:
+    Suntick: 10
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseClothingMaskSkull
+  name: Саска черепа
+  productEntity: ClothingMaskSkull
+  cost:
+    Suntick: 4
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseSynthesizerInstrument
+  name: Музыкальный синтезатор
+  productEntity: SynthesizerInstrument
+  cost:
+    Suntick: 20
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseToySword
+  name: Игрушечный меч
+  productEntity: ToySword
+  cost:
+    Suntick: 6
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+#- type: listing
+#  id: UplinkSunriseNukeDiskFake
+#  name: Поддельный диск ядерной авторизации
+#  productEntity: NukeDiskFake
+#  cost:
+#    Suntick: 30
+#  categories:
+#  - General
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+
+- type: listing
+  id: UplinkSunriseRevolverCapGun
+  name: Игрушечный пистолет
+  productEntity: RevolverCapGun
+  cost:
+    Suntick: 10
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+#- type: listing
+#  id: UplinkSunriseRevolverCapGunFake
+#  name: Игрушечный пистолет
+#  productEntity: RevolverCapGunFake
+#  cost:
+#    Suntick: 10
+#  categories:
+#  - General
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+
+- type: listing
+  id: UplinkSunriseFoamCutlass
+  name: Игрушечная абордажная сабля
+  productEntity: FoamCutlass
+  cost:
+    Suntick: 6
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseMrChips
+  name: Мистер Чипс
+  productEntity: MrChips
+  cost:
+    Suntick: 4
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseMrDips
+  name: Мистер Дипс
+  productEntity: MrDips
+  cost:
+    Suntick: 4
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseBeachBall
+  name: Пляжный мяч
+  productEntity: BeachBall
+  cost:
+    Suntick: 3
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseToyHammer
+  name: Резиновый молоток
+  productEntity: ToyHammer
+  cost:
+    Suntick: 3
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseClothingHeadHatMagician
+  name: Цилиндр фокусника
+  productEntity: ClothingHeadHatMagician
+  cost:
+    Suntick: 6
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseCrazyGlue
+  name: Тюбик сумашедшего клея
+  productEntity: CrazyGlue
+  cost:
+    Suntick: 8
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlasticBanana
+  name: Банан
+  productEntity: PlasticBanana
+  cost:
+    Suntick: 4
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseWhoopieCushion
+  name: Подушка-пердушка
+  productEntity: WhoopieCushion
+  cost:
+    Suntick: 6
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseRGBStaff
+  name: RGB посох
+  productEntity: RGBStaff
+  cost:
+    Suntick: 15
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlunger
+  name: Вантуз
+  productEntity: Plunger
+  cost:
+    Suntick: 5
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseMaterialHideBear
+  name: Медвежья шкура
+  productEntity: MaterialHideBear
+  cost:
+    Suntick: 10
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseClothingHeadHatWatermelon
+  name: Арбузный шлем
+  productEntity: ClothingHeadHatWatermelon
+  cost:
+    Suntick: 3
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseBookSpaceEncyclopedia
+  name: Космическая энциклопедия
+  productEntity: BookSpaceEncyclopedia
+  cost:
+    Suntick: 10
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseCigarCase
+  name: Портсигар
+  productEntity: CigarCase
+  cost:
+    Suntick: 5
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseCigarGoldCase
+  name: Премиум портсигар
+  productEntity: CigarGoldCase
+  cost:
+    Suntick: 10
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseCrayonRainbow
+  name: Радужный мелок
+  productEntity: CrayonRainbow
+  cost:
+    Suntick: 15
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseClothingUniformColorJumpskirtRainbow
+  name: Радужная юбка-комбинезон
+  productEntity: ClothingUniformColorJumpskirtRainbow
+  cost:
+    Suntick: 10
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseClothingUniformColorRainbow
+  name: Радужный комбинезон
+  productEntity: ClothingUniformColorRainbow
+  cost:
+    Suntick: 10
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseBedsheetRainbow
+  name: Радужный комбинезон
+  productEntity: BedsheetRainbow
+  cost:
+    Suntick: 10
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseSpeedLoaderCap
+  name: Зарядник пистонов
+  productEntity: SpeedLoaderCap
+  cost:
+    Suntick: 10
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseBoxCartridgeCap
+  name: Коробка пистонов
+  productEntity: BoxCartridgeCap
+  cost:
+    Suntick: 30
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseClothingHeadHatFlowerWreath
+  name: Цветочный венок
+  productEntity: ClothingHeadHatFlowerWreath
+  cost:
+    Suntick: 10
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseClothingNeckBling
+  name: Побрякушки
+  productEntity: ClothingNeckBling
+  cost:
+    Suntick: 10
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseClothingNeckCloakMoth
+  name: Плащ моли
+  productEntity: ClothingNeckCloakMoth
+  cost:
+    Suntick: 10
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseClothingHeadHatHoodMoth
+  name: Маска моли
+  productEntity: ClothingHeadHatHoodMoth
+  cost:
+    Suntick: 5
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseClothingNeckSunriseBadge
+  name: Значок Санрайзосексуалов
+  productEntity: ClothingNeckSunriseBadge
+  cost:
+    Suntick: 100
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseBoxMRE
+  name: И.Р.П.
+  productEntity: BoxMRE
+  cost:
+    Suntick: 5
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseFlippoLighter
+  name: Зажигалка флиппо
+  productEntity: FlippoLighter
+  cost:
+    Suntick: 5
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseClothingOuterCoatBomber
+  name: Куртка-бомбер
+  productEntity: ClothingOuterCoatBomber
+  cost:
+    Suntick: 5
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseDrinkVodkaBottleFull
+  name: Бутылка водки
+  productEntity: DrinkVodkaBottleFull
+  cost:
+    Suntick: 3
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseFoodTinMRE
+  name: Мясная консерва
+  productEntity: FoodTinMRE
+  cost:
+    Suntick: 3
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+
+- type: listing
+  id: UplinkSunriseFoodTinBeans
+  name: Консервированная фасоль
+  productEntity: FoodTinBeans
+  cost:
+    Suntick: 3
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+
+- type: listing
+  id: UplinkSunriseFoodTinPeachesMaint
+  name: Техтуннельные персики
+  productEntity: FoodTinPeachesMaint
+  cost:
+    Suntick: 3
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+
+- type: listing
+  id: UplinkSunriseDrinkWhiskeyBottleFull
+  name: Особый запас дядюшки Гита
+  productEntity: DrinkWhiskeyBottleFull
+  cost:
+    Suntick: 3
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseDrinkRumBottleFull
+  name: Кубинский пряный ром капитана Пита
+  productEntity: DrinkRumBottleFull
+  cost:
+    Suntick: 3
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseDrinkBeerBottleFull
+  name: Пиво
+  productEntity: DrinkBeerBottleFull
+  cost:
+    Suntick: 3
+  categories:
+  - General
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+
+#- type: listing
+#  id: UplinkSunriseClothingOuterHardsuitBasic
+#  name: Базовый скафандр
+#  productEntity: ClothingOuterHardsuitBasic
+#  cost:
+#    Suntick: 20
+#  categories:
+#  - General
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+
+#- type: listing
+#  id: UplinkSunriseClothingHeadHelmetHardsuitBasic
+#  name: Базовый шлем скафандра
+#  productEntity: ClothingHeadHelmetHardsuitBasic
+#  cost:
+#    Suntick: 5
+#  categories:
+#  - General
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+
+#- type: listing
+#  id: UplinkSunrisePowerCellHyper
+#  name: Батарея гипер ёмкости
+#  productEntity: PowerCellHyper
+#  cost:
+#    Suntick: 30
+#  categories:
+#  - General
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+
+#- type: listing
+#  id: UplinkSunrisePowerCellAntiqueProto
+#  name: Прототип древней батареи
+#  productEntity: PowerCellAntiqueProto
+#  cost:
+#    Suntick: 45
+#  categories:
+#  - General
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+
+# Плащи:
+- type: listing
+  id: UplinkSunriseClothingNeckCloakAlpha
+  name: Плащ Альфа
+  productEntity: ClothingNeckCloakAlpha
+  cost:
+    Suntick: 15
+  categories:
+  - Cloaks
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseClothingNeckCloakLima
+  name: Плащ Лима
+  productEntity: ClothingNeckCloakLima
+  cost:
+    Suntick: 15
+  categories:
+  - Cloaks
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseClothingNeckCloakDelta
+  name: Плащ Дельта
+  productEntity: ClothingNeckCloakDelta
+  cost:
+    Suntick: 15
+  categories:
+  - Cloaks
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseClothingNeckCloakEcho
+  name: Плащ Эхо
+  productEntity: ClothingNeckCloakEcho
+  cost:
+    Suntick: 15
+  categories:
+  - Cloaks
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseClothingNeckCloakGoliathCloak
+  name: Плащ голиафа
+  productEntity: ClothingNeckCloakGoliathCloak
+  cost:
+    Suntick: 15
+  categories:
+  - Cloaks
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseClothingNeckCloakTrans
+  name: Плащ вампира
+  productEntity: ClothingNeckCloakTrans
+  cost:
+    Suntick: 15
+  categories:
+  - Cloaks
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseClothingNeckCloakHerald
+  name: Плащ герольда
+  productEntity: ClothingNeckCloakHerald
+  cost:
+    Suntick: 15
+  categories:
+  - Cloaks
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseClothingNeckCloakVoid
+  name: Плащ пустоты
+  productEntity: ClothingNeckCloakVoid
+  cost:
+    Suntick: 15
+  categories:
+  - Cloaks
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseClothingCloakGamer
+  name: Легендарный плащ геймера
+  productEntity: ClothingCloakGamer
+  cost:
+    Suntick: 35
+  categories:
+  - Cloaks
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+# Инженерный отдел
+- type: listing
+  id: UplinkSunriseHolofanProjector
+  name: Атмос голопроектор
+  productEntity: HolofanProjector
+  cost:
+    Suntick: 9
+  categories:
+  - EngineeringThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Engineering
+
+- type: listing
+  id: UplinkSunriseWelderExperimental
+  name: Эксперементальный сварочный аппарат
+  productEntity: WelderExperimental
+  cost:
+    Suntick: 15
+  categories:
+  - EngineeringThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Engineering
+
+- type: listing
+  id: UplinkSunriseJawsOfLife
+  name: Челюсти жизни
+  productEntity: JawsOfLife
+  cost:
+    Suntick: 25
+  categories:
+  - EngineeringThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Engineering
+
+- type: listing
+  id: UplinkSunrisePowerDrill
+  name: Электродрель
+  productEntity: PowerDrill
+  cost:
+    Suntick: 15
+  categories:
+  - EngineeringThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Engineering
+
+- type: listing
+  id: UplinkSunriseRCDAmmo
+  name: Катридж РСУ
+  productEntity: RCDAmmo
+  cost:
+    Suntick: 10
+  categories:
+  - EngineeringThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Engineering
+
+- type: listing
+  id: UplinkSunriseRCD
+  name: РСУ
+  productEntity: RCD
+  cost:
+    Suntick: 30
+  categories:
+  - EngineeringThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Engineering
+
+- type: listing
+  id: UplinkSunriseOmnitool
+  name: Омнитул
+  productEntity: Omnitool
+  cost:
+    Suntick: 30
+  categories:
+  - EngineeringThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Engineering
+
+- type: listing
+  id: UplinkSunriseClothingOuterAtmosianBomberJacket
+  name: Куртка-бомбер атмосианина
+  productEntity: ClothingOuterAtmosianBomberJacket
+  cost:
+    Suntick: 10
+  categories:
+  - EngineeringThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Engineering
+
+- type: listing
+  id: UplinkSunriseClothingMaskGasAtmosian
+  name: Противогаз атмосианина
+  productEntity: ClothingMaskGasAtmosian
+  cost:
+    Suntick: 10
+  categories:
+  - EngineeringThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Engineering
+
+- type: listing
+  id: UplinkSunriseClothingCloakAtmosian
+  name: Плащ атмосианина
+  productEntity: ClothingCloakAtmosian
+  cost:
+    Suntick: 15
+  categories:
+  - EngineeringThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Engineering
+
+#- type: listing
+#  id: UplinkSunriseAmeJar
+#  name: Топливный бак ДАМ
+#  productEntity: AmeJar
+#  cost:
+#    Suntick: 5
+#  categories:
+#  - EngineeringThings
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+#  - !type:BuyerDepartmentCondition
+#    whitelist:
+#    - Engineering
+
+#- type: listing
+#  id: UplinkSunriseJetpackVoidFilled
+#  name: Пустотный джетпак
+#  productEntity: JetpackVoidFilled
+#  cost:
+#    Suntick: 25
+#  categories:
+#  - EngineeringThings
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+#  - !type:BuyerDepartmentCondition
+#    whitelist:
+#    - Engineering
+
+- type: listing
+  id: UplinkSunriseSheetGlass
+  name: Стекло (30 шт)
+  productEntity: SheetGlass
+  cost:
+    Suntick: 5
+  categories:
+  - EngineeringThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Engineering
+
+- type: listing
+  id: UplinkSunriseDoubleEmergencyOxygenTankFilled
+  name: Двойной аварийный кислородный баллон
+  productEntity: DoubleEmergencyOxygenTankFilled
+  cost:
+    Suntick: 5
+  categories:
+  - EngineeringThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Engineering
+
+- type: listing
+  id: UplinkSunriseDoubleEmergencyNitrogenTankFilled
+  name: Двойной аварийный азотный баллон
+  productEntity: DoubleEmergencyNitrogenTankFilled
+  cost:
+    Suntick: 5
+  categories:
+  - EngineeringThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Engineering
+
+#- type: listing
+#  id: UplinkSunriseSheetPlasma
+#  name: Плазма (30 шт)
+#  productEntity: SheetPlasma
+#  cost:
+#    Suntick: 10
+#  categories:
+#  - EngineeringThings
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+
+#- type: listing
+#  id: UplinkSunriseSheetUranium
+#  name: Уран (30 шт)
+#  productEntity: SheetUranium
+#  cost:
+#    Suntick: 10
+#  categories:
+#  - EngineeringThings
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+
+# Старший Инженер
+- type: listing
+  id: UplinkSunriseClothingMaskGasCE
+  name: Противогаз старшего инженера
+  productEntity: ClothingMaskGasCE
+  cost:
+    Suntick: 8
+  categories:
+  - CEHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - ChiefEngineer
+
+- type: listing
+  id: UplinkSunriseClothingOuterCoatCEOvercoatWhite
+  name: Пальто старшего инженера
+  productEntity: ClothingOuterCoatCEOvercoatWhite
+  cost:
+    Suntick: 15
+  categories:
+  - CEHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - ChiefEngineer
+
+- type: listing
+  id: UplinkSunriseClothingNeckEliteCloakCECloak
+  name: Плащ старшего инженера
+  productEntity: ClothingNeckEliteCloakCECloak
+  cost:
+    Suntick: 15
+  categories:
+  - CEHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - ChiefEngineer
+
+- type: listing
+  id: UplinkSunriseBookEngineersHandbook
+  name: Справочник инженера
+  productEntity: BookEngineersHandbook
+  cost:
+    Suntick: 8
+  categories:
+  - CEHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - ChiefEngineer
+
+# АВД:
+- type: listing
+  id: UplinkSunriseClothingMaskIAA
+  name: Элитный противогаз
+  productEntity: ClothingMaskIAA
+  cost:
+    Suntick: 10
+  categories:
+  - IAAHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - IAA
+
+- type: listing
+  id: UplinkSunriseClothingHeadHatIAA
+  name: Загадочная шляпа
+  productEntity: ClothingHeadHatIAA
+  cost:
+    Suntick: 10
+  categories:
+  - IAAHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - IAA
+
+- type: listing
+  id: UplinkSunriseClothingOuterCoatIAA
+  name: Пиджак агента внутренних дел
+  productEntity: ClothingOuterCoatIAA
+  cost:
+    Suntick: 15
+  categories:
+  - IAAHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - IAA
+
+- type: listing
+  id: UplinkSunriseClothingUniformJumpsuitIAA
+  name: Рубашка с галстуком
+  productEntity: ClothingUniformJumpsuitIAA
+  cost:
+    Suntick: 10
+  categories:
+  - IAAHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - IAA
+
+- type: listing
+  id: UplinkSunriseClothingNeckCloakIAACloak
+  name: плащ агента внутренних дел
+  productEntity: ClothingNeckCloakIAACloak
+  cost:
+    Suntick: 15
+  categories:
+  - IAAHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - IAA
+
+# Плюшевые игрушки:
+- type: listing
+  id: UplinkSunrisePlushieOne
+  name: Декус-Киурз
+  productEntity: PlushieOne
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieTwo
+  name: Неизвестный
+  productEntity: PlushieTwo
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieThree
+  name: Тереза Шарапова
+  productEntity: PlushieThree
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieFour
+  name: Ясли Чунканжук
+  productEntity: PlushieFour
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieFive
+  name: Роберт Крапивин
+  productEntity: PlushieFive
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieSix
+  name: Анатолий Бобров
+  productEntity: PlushieSix
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieSeven
+  name: Каин Де Ла Мейс
+  productEntity: PlushieSeven
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieEight
+  name: Артём Спирин младший
+  productEntity: PlushieEight
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieNine
+  name: Виктория Гофмана
+  productEntity: PlushieNine
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieTen
+  name: Артём Спирин старший
+  productEntity: PlushieTen
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieEleven
+  name: Акепа Грязнов
+  productEntity: PlushieEleven
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieTwelve
+  name: Вуиар Тэриякин
+  productEntity: PlushieTwelve
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieThirteen
+  name: Марианна Брагина
+  productEntity: PlushieThirteen
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieFourteen
+  name: Дракоша
+  productEntity: PlushieFourteen
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieFifteen
+  name: Пуро
+  productEntity: PlushieFifteen
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieSixteen
+  name: Рудольф Фон-Вяйнер
+  productEntity: PlushieSixteen
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieSeventeen
+  name: TR-263
+  productEntity: PlushieSeventeen
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieEighteen
+  name: Комиссар
+  productEntity: PlushieEighteen
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieNineteen
+  name: Подлый жулик
+  productEntity: PlushieNineteen
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieTwenty
+  name: Лураш-Ма
+  productEntity: PlushieTwenty
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieTwentyOne
+  name: Гентухв Анмимиш
+  productEntity: PlushieTwentyOne
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieTwentyTwo
+  name: Кондрат Серан
+  productEntity: PlushieTwentyTwo
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieTwentyThree
+  name: Дарт Вейдер
+  productEntity: PlushieTwentyThree
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieTwentyFour
+  name: Узо-Кур-Петаксай
+  productEntity: PlushieTwentyFour
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieTwentyFive
+  name: Роман Фильченков
+  productEntity: PlushieTwentyFive
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieTwentySix
+  name: Конрадра Алексеева
+  productEntity: PlushieTwentySix
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieTwentySeven
+  name: Игорь
+  productEntity: PlushieTwentySeven
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieTwentyEight
+  name: Хаски Хаскович
+  productEntity: PlushieTwentyEight
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieTwentyNine
+  name: Ах-Вадюмиек
+  productEntity: PlushieTwentyNine
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieThirty
+  name: Нанати
+  productEntity: PlushieThirty
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieThirtyOne
+  name: Скаут-птица
+  productEntity: PlushieThirtyOne
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieThirtyTwo
+  name: Кириешка
+  productEntity: PlushieThirtyTwo
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieThirtyThree
+  name: Аллан Хаскович
+  productEntity: PlushieThirtyThree
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieThirtyFour
+  name: Спиффо
+  productEntity: PlushieThirtyFour
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieThirtyFive
+  name: Кирпичный Джим
+  productEntity: PlushieThirtyFive
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieThirtySixBig
+  name: Кирпичный Джим
+  productEntity: PlushieThirtySixBig
+  cost:
+    Suntick: 12
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieThirtySeven
+  name: V.O.R.T.E.X.
+  productEntity: PlushieThirtySeven
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieThirtyEight
+  name: Дань Хэн Пожиратель Луны
+  productEntity: PlushieThirtyEight
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieRichardDetective
+  productEntity: PlushieRichardDetective
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieCaptainTartarus
+  productEntity: PlushieCaptainTartarus
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieCaptainEmily
+  productEntity: PlushieCaptainEmily
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieCrusader
+  productEntity: PlushieCrusader
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+# ГСБ:
+- type: listing
+  id: UplinkSunriseClothingMaskGasSwat
+  name: Противогаз спецназа
+  productEntity: ClothingMaskGasSwat
+  cost:
+    Suntick: 10
+  categories:
+  - HOSHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - HeadOfSecurity
+
+- type: listing
+  id: UplinkSunriseClothingHandsGlovesLeatherHoS
+  name: Кожаные перчатки
+  productEntity: ClothingHandsGlovesLeatherHoS
+  cost:
+    Suntick: 8
+  categories:
+  - HOSHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - HeadOfSecurity
+
+- type: listing
+  id: UplinkSunriseClothingOuterCoatHOSOvercoatBlack
+  name: Бронированная шинель
+  productEntity: ClothingOuterCoatHOSOvercoatBlack
+  cost:
+    Suntick: 15
+  categories:
+  - HOSHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - HeadOfSecurity
+
+- type: listing
+  id: UplinkSunriseClothingBackpackSatchelHoS
+  name: Сумка главы службы безопасности
+  productEntity: ClothingBackpackSatchelHoS
+  cost:
+    Suntick: 12
+  categories:
+  - HOSHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - HeadOfSecurity
+
+- type: listing
+  id: UplinkSunriseClothingShoesUSSPBlack
+  name: Кожаные ботинки СССП
+  productEntity: ClothingShoesUSSPBlack
+  cost:
+    Suntick: 7
+  categories:
+  - HOSHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - HeadOfSecurity
+
+- type: listing
+  id: UplinkSunriseClothingOuterCoatHoSOvercoat
+  name: Бронированная шинель
+  productEntity: ClothingOuterCoatHoSOvercoat
+  cost:
+    Suntick: 15
+  categories:
+  - HOSHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - HeadOfSecurity
+
+- type: listing
+  id: UplinkSunriseClothingOuterCoatUSSPOvercoatBlack
+  name: Бронированная шинель СССП
+  productEntity: ClothingOuterCoatUSSPOvercoatBlack
+  cost:
+    Suntick: 15
+  categories:
+  - HOSHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - HeadOfSecurity
+
+- type: listing
+  id: UplinkSunriseClothingUniformJumpsuitHoSOld
+  name: Старый комбинезон главы службы безопасности
+  productEntity: ClothingUniformJumpsuitHoSOld
+  cost:
+    Suntick: 10
+  categories:
+  - HOSHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - HeadOfSecurity
+
+- type: listing
+  id: UplinkSunriseClothingUniformJumpsuitUSSPBlack
+  name: Старый комбинезон СССП
+  productEntity: ClothingUniformJumpsuitUSSPBlack
+  cost:
+    Suntick: 10
+  categories:
+  - HOSHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - HeadOfSecurity
+
+- type: listing
+  id: UplinkSunriseClothingBeltHoS
+  name: Пояс службы безопасности
+  productEntity: ClothingBeltHoS
+  cost:
+    Suntick: 12
+  categories:
+  - HOSHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - HeadOfSecurity
+
+- type: listing
+  id: UplinkSunriseClothingHeadHatCapUSSPBlack
+  name: Старая кожаная фуражка СССП
+  productEntity: ClothingHeadHatCapUSSPBlack
+  cost:
+    Suntick: 8
+  categories:
+  - HOSHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - HeadOfSecurity
+
+- type: listing
+  id: UplinkSunriseClothingHeadHatCapLeatherHoS
+  name: Кожаная фуражка главы службы безопасности
+  productEntity: ClothingHeadHatCapLeatherHoS
+  cost:
+    Suntick: 8
+  categories:
+  - HOSHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - HeadOfSecurity
+
+- type: listing
+  id: UplinkSunriseClothingNeckCloakHOSCloak
+  name: Плащ главы службы безопасности
+  productEntity: ClothingNeckCloakHOSCloak
+  cost:
+    Suntick: 15
+  categories:
+  - HOSHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - HeadOfSecurity
+
+# Науч. рук:
+- type: listing
+  id: UplinkSunriseClothingBreathMaskRD
+  name: Противогаз с фиолетовым визором
+  productEntity: ClothingBreathMaskRD
+  cost:
+    Suntick: 10
+  categories:
+  - RDHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - ResearchDirector
+
+- type: listing
+  id: UplinkSunriseClothingHeadHatMagicRD
+  name: Фуражка научного руководителя
+  productEntity: ClothingHeadHatMagicRD
+  cost:
+    Suntick: 10
+  categories:
+  - RDHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - ResearchDirector
+
+- type: listing
+  id: UplinkSunriseClothingOuterCoatLabResearchDirector
+  name: Халат научного руководителя
+  productEntity: ClothingOuterCoatLabResearchDirector
+  cost:
+    Suntick: 15
+  categories:
+  - RDHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - ResearchDirector
+
+- type: listing
+  id: UplinkSunriseClothingNeckCloakResearchDirector
+  name: Плащ светилы науки
+  productEntity: ClothingNeckCloakResearchDirector
+  cost:
+    Suntick: 15
+  categories:
+  - RDHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - ResearchDirector
+
+# Капитан:
+- type: listing
+  id: UplinkSunriseClothingEliteMaskGasCaptain
+  name: Противогаз капитана
+  productEntity: ClothingEliteMaskGasCaptain
+  cost:
+    Suntick: 10
+  categories:
+  - CaptainHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - Captain
+
+- type: listing
+  id: UplinkSunriseClothingHeadEliteCaptainCap
+  name: Федора капитана
+  productEntity: ClothingHeadEliteCaptainCap
+  cost:
+    Suntick: 10
+  categories:
+  - CaptainHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - Captain
+
+- type: listing
+  id: UplinkSunriseClothingOuterCoatCaptainOvercoat
+  name: Капитанская шинель
+  productEntity: ClothingOuterCoatCaptainOvercoat
+  cost:
+    Suntick: 15
+  categories:
+  - CaptainHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - Captain
+
+- type: listing
+  id: UplinkSunriseClothingEliteNeckCloakCaptain
+  name: Плащ капитана
+  productEntity: ClothingEliteNeckCloakCaptain
+  cost:
+    Suntick: 15
+  categories:
+  - CaptainHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - Captain
+
+- type: listing
+  id: UplinkSunriseClothingShoesEliteCaptain
+  name: Капитанские ботинки
+  productEntity: ClothingShoesEliteCaptain
+  cost:
+    Suntick: 10
+  categories:
+  - CaptainHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - Captain
+
+# Главврач:
+- type: listing
+  id: UplinkSunriseClothingBreathMaskCMO
+  name: Медицинский респиратор
+  productEntity: ClothingBreathMaskCMO
+  cost:
+    Suntick: 8
+  categories:
+  - CMOHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - ChiefMedicalOfficer
+
+- type: listing
+  id: UplinkSunriseClothingBeltMedicalCMO
+  name: Медицинский пояс главного врача
+  productEntity: ClothingBeltMedicalCMO
+  cost:
+    Suntick: 5
+  categories:
+  - CMOHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - ChiefMedicalOfficer
+
+- type: listing
+  id: UplinkSunriseClothingOuterCoatCMOOvercoat
+  name: Лабораторный халат главного врача
+  productEntity: ClothingOuterCoatCMOOvercoat
+  cost:
+    Suntick: 15
+  categories:
+  - CMOHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - ChiefMedicalOfficer
+
+- type: listing
+  id: UplinkSunriseClothingNeckCMOCloak
+  name: Плащ главного врача
+  productEntity: ClothingNeckCMOCloak
+  cost:
+    Suntick: 15
+  categories:
+  - CMOHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - ChiefMedicalOfficer
+
+- type: listing
+  id: UplinkSunriseClothingSpecialHeadHatHardhatCMO
+  name: Медицинская шапочка главного врача
+  productEntity: ClothingSpecialHeadHatHardhatCMO
+  cost:
+    Suntick: 10
+  categories:
+  - CMOHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - ChiefMedicalOfficer
+
+- type: listing
+  id: UplinkSunriseClothingHeadHatCapCMO
+  name: Медицинский берет
+  productEntity: ClothingHeadHatCapCMO
+  cost:
+    Suntick: 10
+  categories:
+  - CMOHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - ChiefMedicalOfficer
+
+# Глава персонала:
+- type: listing
+  id: UplinkSunriseClothingEliteMaskGasHOP
+  name: Противогаз главы персонала
+  productEntity: ClothingEliteMaskGasHOP
+  cost:
+    Suntick: 10
+  categories:
+  - HOPHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - HeadOfPersonnel
+
+- type: listing
+  id: UplinkSunriseClothingHeadHatHOP
+  name: Фуражка главы персонала
+  productEntity: ClothingHeadHatHOP
+  cost:
+    Suntick: 10
+  categories:
+  - HOPHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - HeadOfPersonnel
+
+- type: listing
+  id: UplinkSunriseClothingOuterEliteCoatHOP
+  name: Шинель главы персонала
+  productEntity: ClothingOuterEliteCoatHOP
+  cost:
+    Suntick: 15
+  categories:
+  - HOPHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - HeadOfPersonnel
+
+- type: listing
+  id: UplinkSunriseClothingNeckCloakHOPCloak
+  name: Плащ главы персонала
+  productEntity: ClothingNeckCloakHOPCloak
+  cost:
+    Suntick: 15
+  categories:
+  - HOPHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - HeadOfPersonnel
+
+# Отдел СБ:
+- type: listing
+  id: UplinkSunriseTelescopicShield
+  name: Телескопический щит
+  productEntity: TelescopicShield
+  cost:
+    Suntick: 25
+  categories:
+  - SecurityThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Security
+
+- type: listing
+  id: UplinkSunriseClothingMaskIAA2
+  name: Элитный противогаз
+  productEntity: ClothingMaskIAA
+  cost:
+    Suntick: 10
+  categories:
+  - SecurityThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Security
+
+- type: listing
+  id: UplinkSunriseClothingNeckCloakBlackSec
+  name: Плащ службы безопасности
+  productEntity: ClothingNeckCloakBlackSec
+  cost:
+    Suntick: 15
+  categories:
+  - SecurityThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Security
+
+- type: listing
+  id: UplinkSunriseWeaponDisabler
+  name: Станнер
+  productEntity: WeaponDisabler
+  cost:
+    Suntick: 10
+  categories:
+  - SecurityThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Security
+
+- type: listing
+  id: UplinkSunriseClothingOuterArmorBulletproof
+  name: Пуленепробиваемый жилет
+  productEntity: ClothingOuterArmorBulletproof
+  cost:
+    Suntick: 10
+  categories:
+  - SecurityThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Security
+
+- type: listing
+  id: UplinkSunriseMedkitFilled
+  name: Аптечка первой помощи
+  productEntity: MedkitFilled
+  cost:
+    Suntick: 15
+  categories:
+  - SecurityThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Security
+
+#- type: listing
+#  id: UplinkSunriseClothingHandsGlovesCombat
+#  name: Боевые перчатки
+#  productEntity: ClothingHandsGlovesCombat
+#  cost:
+#    Suntick: 20
+#  categories:
+#  - SecurityThings
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+#  - !type:BuyerDepartmentCondition
+#    whitelist:
+#    - Security
+
+#- type: listing
+#  id: UplinkSunriseCombatMedipen
+#  name: Боевой медипен
+#  productEntity: CombatMedipen
+#  cost:
+#    Suntick: 10
+#  categories:
+#  - SecurityThings
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+#  - !type:BuyerDepartmentCondition
+#    whitelist:
+#    - Security
+
+- type: listing
+  id: UplinkSunriseMagazineBoxPistol
+  name: Коробка патронов (.35 авто)
+  productEntity: MagazineBoxPistol
+  cost:
+    Suntick: 30
+  categories:
+  - SecurityThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Security
+
+- type: listing
+  id: UplinkSunriseBoxBodyBag
+  name: Коробка мешков для тел
+  productEntity: BoxBodyBag
+  cost:
+    Suntick: 5
+  categories:
+  - SecurityThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Security
+
+# Квартирмейстер
+- type: listing
+  id: UplinkSunriseClothingBreathMaskQM
+  name: Противогаз куратора
+  productEntity: ClothingBreathMaskQM
+  cost:
+    Suntick: 10
+  categories:
+  - QMHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - Quartermaster
+
+- type: listing
+  id: UplinkSunriseClothingHeadHatCapQM
+  name: Шляпа капитана утилятов
+  productEntity: ClothingHeadHatCapQM
+  cost:
+    Suntick: 10
+  categories:
+  - QMHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - Quartermaster
+
+- type: listing
+  id: UplinkSunriseClothingOuterCoatQM
+  name: Теплое пальто
+  productEntity: ClothingOuterCoatQM
+  cost:
+    Suntick: 15
+  categories:
+  - QMHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - Quartermaster
+
+- type: listing
+  id: UplinkSunriseClothingNeckCloakQM
+  name: Плащ квартирмейстера
+  productEntity: ClothingNeckCloakQM
+  cost:
+    Suntick: 15
+  categories:
+  - QMHeadOfDepartment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerJobCondition
+    whitelist:
+    - Quartermaster
+
+# Медицинский отдел
+- type: listing
+  id: UplinkSunriseCryostasisBeaker
+  name: Криостазисная мензурка
+  productEntity: CryostasisBeaker
+  cost:
+    Suntick: 15
+  categories:
+  - MedicalThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Medical
+
+#- type: listing
+#  id: UplinkSunriseEphedrineChemistryBottle
+#  name: Эфедрин
+#  productEntity: EphedrineChemistryBottle
+#  cost:
+#    Suntick: 10
+#  categories:
+#  - MedicalThings
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+
+- type: listing
+  id: UplinkSunriseMedicatedSuture
+  name: Медицинская нить (10 шт)
+  productEntity: MedicatedSuture
+  cost:
+    Suntick: 10
+  categories:
+  - MedicalThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Medical
+
+- type: listing
+  id: UplinkSunrisePillCanisterDermaline
+  name: Баночка с дермалином
+  productEntity: PillCanisterDermaline
+  cost:
+    Suntick: 15
+  categories:
+  - MedicalThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Medical
+
+- type: listing
+  id: UplinkSunrisePillCanisterBicaridine
+  name: Баночка с бикаридином
+  productEntity: PillCanisterBicaridine
+  cost:
+    Suntick: 15
+  categories:
+  - MedicalThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Medical
+
+- type: listing
+  id: UplinkSunriseClothingBreathMaskCMO2
+  name: Медицинский респиратор
+  productEntity: ClothingBreathMaskCMO
+  cost:
+    Suntick: 8
+  categories:
+  - MedicalThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Medical
+
+- type: listing
+  id: UplinkSunriseSyringeBluespace
+  name: Блюспейс-шприц
+  productEntity: SyringeBluespace
+  cost:
+    Suntick: 10
+  categories:
+  - MedicalThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Medical
+
+- type: listing
+  id: UplinkSunriseRegenerativeMesh
+  name: Регенеративная сеть (10 шт)
+  productEntity: RegenerativeMesh
+  cost:
+    Suntick: 10
+  categories:
+  - MedicalThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Medical
+
+- type: listing
+  id: UplinkSunriseClothingHandsGlovesNitrile
+  name: Нитриловые перчатки
+  productEntity: ClothingHandsGlovesNitrile
+  cost:
+    Suntick: 5
+  categories:
+  - MedicalThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Medical
+
+- type: listing
+  id: UplinkSunriseEmergencyMedipen
+  name: Экстренный медипен
+  productEntity: EmergencyMedipen
+  cost:
+    Suntick: 5
+  categories:
+  - MedicalThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Medical
+
+- type: listing
+  id: UplinkSunriseAntiPoisonMedipen
+  name: Автоинъектор противоядия
+  productEntity: AntiPoisonMedipen
+  cost:
+    Suntick: 5
+  categories:
+  - MedicalThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Medical
+
+- type: listing
+  id: UplinkSunriseBruteAutoInjector
+  name: Автоинъектор мех-повреждений
+  productEntity: BruteAutoInjector
+  cost:
+    Suntick: 5
+  categories:
+  - MedicalThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Medical
+
+- type: listing
+  id: UplinkSunriseRadAutoInjector
+  name: Автоинъектор рад-повреждений
+  productEntity: RadAutoInjector
+  cost:
+    Suntick: 5
+  categories:
+  - MedicalThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Medical
+
+- type: listing
+  id: UplinkSunriseBurnAutoInjector
+  name: Автоинъектор физ-повреждений
+  productEntity: BurnAutoInjector
+  cost:
+    Suntick: 5
+  categories:
+  - MedicalThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Medical
+
+- type: listing
+  id: UplinkSunrisePillCanisterDylovene
+  name: Баночка для таблеток (диловен)
+  productEntity: PillCanisterDylovene
+  cost:
+    Suntick: 8
+  categories:
+  - MedicalThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Medical
+
+- type: listing
+  id: UplinkSunrisePillCanisterHyronalin
+  name: Баночка для таблеток (хироналин)
+  productEntity: PillCanisterHyronalin
+  cost:
+    Suntick: 10
+  categories:
+  - MedicalThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Medical
+
+- type: listing
+  id: UplinkSunrisePillCanisterDexalin
+  name: Баночка для таблеток (дексалин)
+  productEntity: PillCanisterDexalin
+  cost:
+    Suntick: 10
+  categories:
+  - MedicalThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Medical
+
+- type: listing
+  id: UplinkSunriseBloodpack
+  name: Пакет крови (10 шт)
+  productEntity: Bloodpack
+  cost:
+    Suntick: 10
+  categories:
+  - MedicalThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Medical
+
+- type: listing
+  id: UplinkSunriseGauze
+  name: Марлевый бинт (10 шт)
+  productEntity: Gauze
+  cost:
+    Suntick: 10
+  categories:
+  - MedicalThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Medical
+
+# Научный отдел:
+- type: listing
+  id: UplinkSunriseBookScientistsGuidebook
+  name: Справочник учёного
+  productEntity: BookScientistsGuidebook
+  cost:
+    Suntick: 8
+  categories:
+  - ScienceThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Science
+
+- type: listing
+  id: UplinkSunriseResearchDisk5000
+  name: Диск исследовательских очков (5000)
+  productEntity: ResearchDisk5000
+  cost:
+    Suntick: 15
+  categories:
+  - ScienceThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Science
+
+#- type: listing
+#  id: UplinkSunriseClothingHandsGlovesColorYellow
+#  name: Изолированные перчатки
+#  productEntity: ClothingHandsGlovesColorYellow
+#  cost:
+#    Suntick: 10
+#  categories:
+#  - ScienceThings
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+#  - !type:BuyerDepartmentCondition
+#    whitelist:
+#    - Science
+
+- type: listing
+  id: UplinkSunriseClothingShoesBootsMag
+  name: Магнитные сапоги
+  productEntity: ClothingShoesBootsMag
+  cost:
+    Suntick: 10
+  categories:
+  - ScienceThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Science
+
+# Сервисный отдел
+- type: listing
+  id: UplinkSunriseFoodCartCold
+  name: Тележка холодной еды
+  productEntity: FoodCartCold
+  cost:
+    Suntick: 20
+  categories:
+  - ServiceThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Civilian
+
+- type: listing
+  id: UplinkSunriseJanitorialTrolley
+  name: Тележка уборщика
+  productEntity: JanitorialTrolley
+  cost:
+    Suntick: 20
+  categories:
+  - ServiceThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Civilian
+
+- type: listing
+  id: UplinkSunriseFoodCartHot
+  name: Тележка горячей еды
+  productEntity: FoodCartHot
+  cost:
+    Suntick: 25
+  categories:
+  - ServiceThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Civilian
+
+- type: listing
+  id: UplinkSunriseDrinkNukieCan
+  name: Нюка робаст
+  productEntity: DrinkNukieCan
+  cost:
+    Suntick: 16
+  categories:
+  - ServiceThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Civilian
+
+#- type: listing
+#  id: UplinkSunriseMuteToxinChemistryBottle
+#  name: Токсин немоты
+#  productEntity: MuteToxinChemistryBottle
+#  cost:
+#    Suntick: 16
+#  categories:
+#  - ServiceThings
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+
+- type: listing
+  id: UplinkSunriseUnstableMutagenChemistryBottle
+  name: Нестабильный мутаген
+  productEntity: UnstableMutagenChemistryBottle
+  cost:
+    Suntick: 16
+  categories:
+  - ServiceThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Civilian
+
+- type: listing
+  id: UplinkSunriseRobustHarvestChemistryBottle
+  name: Robust harvest
+  productEntity: RobustHarvestChemistryBottle
+  cost:
+    Suntick: 8
+  categories:
+  - ServiceThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 4
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Civilian
+
+- type: listing
+  id: UplinkSunriseVendingMachineRestockBooze
+  name: Набор пополнения АлкоМат
+  productEntity: VendingMachineRestockBooze
+  cost:
+    Suntick: 15
+  categories:
+  - ServiceThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 4
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Civilian
+
+- type: listing
+  id: UplinkSunriseVendingMachineRestockChefvend
+  name: Набор пополнения ШефВенд
+  productEntity: VendingMachineRestockChefvend
+  cost:
+    Suntick: 15
+  categories:
+  - ServiceThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Civilian
+
+- type: listing
+  id: UplinkSunriseBoxLightMixed
+  name: Коробка смешанных лампочек
+  productEntity: BoxLightMixed
+  cost:
+    Suntick: 10
+  categories:
+  - ServiceThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Civilian
+
+- type: listing
+  id: UplinkSunriseSprayBottleSpaceCleaner
+  name: Космический очиститель
+  productEntity: SprayBottleSpaceCleaner
+  cost:
+    Suntick: 3
+  categories:
+  - ServiceThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Civilian
+
+- type: listing
+  id: UplinkSunriseMousetrap
+  name: Мышеловка
+  productEntity: Mousetrap
+  cost:
+    Suntick: 5
+  categories:
+  - ServiceThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Civilian
+
+- type: listing
+  id: UplinkSunriseAdvMopItem
+  name: Продвинутая швабра
+  productEntity: AdvMopItem
+  cost:
+    Suntick: 20
+  categories:
+  - ServiceThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Civilian
+
+- type: listing
+  id: UplinkSunriseTrashBagBlue
+  name: Мешок для мусора
+  productEntity: TrashBagBlue
+  cost:
+    Suntick: 3
+  categories:
+  - ServiceThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Civilian
+
+# Отдел карго:
+#- type: listing
+#  id: UplinkSunriseCargoTelepad
+#  name: Грузовой телепад
+#  productEntity: CargoTelepad
+#  cost:
+#    Suntick: 30
+#  categories:
+#  - CargoThings
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+
+#- type: listing
+#  id: UplinkSunriseVehicleKeyATV
+#  name: Ключ от квадрацикла
+#  productEntity: VehicleKeyATV
+#  cost:
+#    Suntick: 10
+#  categories:
+#  - CargoThings
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+
+- type: listing
+  id: UplinkSunriseAppraisalTool
+  name: Оценочный инструмент
+  productEntity: AppraisalTool
+  cost:
+    Suntick: 5
+  categories:
+  - CargoThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Cargo
+
+- type: listing
+  id: UplinkSunriseClothingBeltUtilityFilled
+  name: Пояс для инструментов
+  productEntity: ClothingBeltUtilityFilled
+  cost:
+    Suntick: 10
+  categories:
+  - CargoThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Cargo
+
+- type: listing
+  id: UplinkSunriseClothingShoesBootsWork
+  name: Рабочие ботинки
+  productEntity: ClothingShoesBootsWork
+  cost:
+    Suntick: 1
+  categories:
+  - CargoThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Cargo
+
+- type: listing
+  id: UplinkSunriseClothingOuterVestHazard
+  name: Светоотражающий жилет
+  productEntity: ClothingOuterVestHazard
+  cost:
+    Suntick: 2
+  categories:
+  - CargoThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Cargo
+
+- type: listing
+  id: UplinkSunriseClothingHeadHatHardhatYellow
+  name: Желтая рабочая каска
+  productEntity: ClothingHeadHatHardhatYellow
+  cost:
+    Suntick: 2
+  categories:
+  - CargoThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyerDepartmentCondition
+    whitelist:
+    - Cargo
+
+# Друзья
+- type: listing
+  id: UplinkSunriseMobHamster
+  name: Хомяк
+  productEntity: MobHamster
+  cost:
+    Suntick: 15
+  categories:
+  - Friends
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+#- type: listing
+#  id: UplinkSunriseMobSlimesPet
+#  name: Смайл
+#  productEntity: MobSlimesPet
+#  cost:
+#    Suntick: 35
+#  categories:
+#  - Friends
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+
+- type: listing
+  id: UplinkSunriseMobHonkBot
+  name: Хонкбот
+  productEntity: MobHonkBot
+  cost:
+    Suntick: 45
+  categories:
+  - Friends
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseMobCatSpace
+  name: Космическая кошка
+  productEntity: MobCatSpace
+  cost:
+    Suntick: 25
+  categories:
+  - Friends
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseMobCockroach
+  name: Таракан
+  productEntity: MobCockroach
+  cost:
+    Suntick: 3
+  categories:
+  - Friends
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+
+- type: listing
+  id: UplinkSunriseMobMothroach
+  name: Таракан
+  productEntity: MobMothroach
+  cost:
+    Suntick: 3
+  categories:
+  - Friends
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+
+- type: listing
+  id: UplinkSunrisePlayerBorgGeneric
+  name: Борг
+  productEntity: PlayerBorgGeneric
+  cost:
+    Suntick: 100
+  categories:
+  - Friends
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseBoombox
+  name: Бумбокс
+  icon: { sprite: _Sunrise/icons.rsi, state: boombox }
+  productEntity: Boombox
+  cost:
+    Suntick: 45
+  categories:
+  - Music
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunriseTapePlayer
+  name: Магнитофон
+  productEntity: TapePlayer
+  icon: { sprite: _Sunrise/icons.rsi, state: tape_player }
+  cost:
+    Suntick: 25
+  categories:
+  - Music
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1

@@ -1,5 +1,4 @@
 - type: entity
-  noSpawn: true
   parent: ClothingBackpackSyndie
   id: ClothingBackpackSyndieAJ100Filled
   name: набор AJ-10
@@ -12,7 +11,6 @@
       amount: 2
 
 - type: entity
-  noSpawn: true
   parent: ClothingBackpackSyndie
   id: ClothingBackpackSyndieDL6902Filled
   name: набор DL-6902
@@ -24,7 +22,6 @@
     - id: MagazineDl6902
 
 - type: entity
-  noSpawn: true
   parent: ClothingBackpackSyndie
   id: ClothingBackpackSyndieSIAR52Filled
   name: набор SIAR-52
