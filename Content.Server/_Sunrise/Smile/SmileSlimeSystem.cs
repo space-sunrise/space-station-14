@@ -76,7 +76,9 @@ public sealed class SmileSlimeSystem : EntitySystem
             CancelDuplicate = true,
         };
 
-        var targetXform = Transform(args.Target);
+        if (!TryComp<TransformComponent>(args.Target, out var targetXform))
+            return;
+
         _audio.PlayPvs(comp.SoundSpecifier, targetXform.Coordinates);
         _entMan.SpawnEntity("EffectHearts", targetXform.Coordinates);
         _popupSystem.PopupEntity(
@@ -98,7 +100,9 @@ public sealed class SmileSlimeSystem : EntitySystem
         if (args.Target == null)
             return;
 
-        var targetXform = Transform(args.Target.Value);
+        if (!TryComp<TransformComponent>(args.Target.Value, out var targetXform))
+            return;
+
         _entMan.SpawnEntity("EffectHearts", targetXform.Coordinates);
         _audio.PlayPvs(comp.SoundSpecifier, targetXform.Coordinates);
         _damageableSystem.TryChangeDamage(args.Target, comp.DamageSpecifier, true, false);
