@@ -1,7 +1,7 @@
 - type: entity
   id: ActionRevenantLock
   name: Lock Airlock
-  descreption: Costs 60 Essence.
+  description: Costs 60 Essence.
   components:
   - type: InstantAction
     icon: _Sunrise/Interface/Actions/lock.png
