@@ -204,6 +204,11 @@
     fiberMaterial: fibers-leather
     fiberColor: fibers-black
   - type: FingerprintMask
+  # Sunrise-start
+  - type: Insulated
+  - type: GloveHeatResistance
+    heatResistance: 1400
+  # Sunrise-end
 
 - type: entity
   parent: [ClothingHandsBase, BaseToggleClothing]
