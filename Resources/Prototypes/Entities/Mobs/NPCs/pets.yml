@@ -764,8 +764,8 @@
     affectionPopupText: "smile-affection-popup"
     damageSpecifier:
       groups:
-        Brute: -15
-        Burn: -10
+        Brute: -5
+        Burn: -5
       types:
         Bloodloss: -5
     messages:
