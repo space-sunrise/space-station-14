@@ -67,9 +67,7 @@
   - type: Gun
     fireRate: 5
     soundGunshot:
-      collection: ak47 # Sunrise-Edit
-      params:
-        volume: 10
+      path: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
@@ -163,9 +161,7 @@
     sprite: Objects/Weapons/Guns/Rifles/lecter.rsi
   - type: Gun
     soundGunshot:
-      collection: galil # Sunrise-Edit
-      params:
-        volume: 10
+      path: /Audio/Weapons/Guns/Gunshots/ltrifle.ogg
   - type: ItemSlots
     slots:
       gun_magazine:

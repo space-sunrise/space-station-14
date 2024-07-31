@@ -63,17 +63,6 @@
       - CartridgeAntiMateriel
     capacity: 5
     proto: CartridgeAntiMateriel
-  # Sunrise-Start
-  - type: Gun
-    fireRate: 0.75
-    selectedMode: SemiAuto
-    availableModes:
-    - SemiAuto
-    soundGunshot:
-      collection: awp
-      params:
-        volume: 10
-    # Sunrise-End
 
 - type: entity
   name: musket

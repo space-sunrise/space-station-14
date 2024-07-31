@@ -69,9 +69,7 @@
     range: 7
   - type: SoundOnTrigger
     sound:
-      path: "/Audio/_Sunrise/flashbang.ogg" # Sunrise-Edit
-      params:
-        volume: 20
+      path: "/Audio/Effects/flash_bang.ogg"
   - type: DeleteOnTrigger
   - type: SpawnOnTrigger
     proto: GrenadeFlashEffect
@@ -382,13 +380,10 @@
   - type: Sprite
     sprite: Objects/Weapons/Grenades/smoke.rsi
   - type: SmokeOnTrigger
-    duration: 45 # Sunrise-Edit
+    duration: 30
     spreadAmount: 50
   - type: SoundOnTrigger
-    sound:
-      path: /Audio/_Sunrise/sg_explode.ogg # Sunrise-Edit
-      params:
-        volume: 15
+    sound: /Audio/Items/smoke_grenade_smoke.ogg
   - type: DeleteOnTrigger
   - type: TimerTriggerVisuals
     primingSound:
