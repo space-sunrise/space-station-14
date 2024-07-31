@@ -1,0 +1,18 @@
+﻿- type: entity
+  id: LockerPilotFilledHardsuit
+  suffix: Filled, Hardsuit
+  parent: LockerPilot
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponGunLaserCarbineAutomatic  # Не удалять, это табельное оружие пилота
+    - id: ClothingHeadsetSecurity
+    - id: WeaponDisabler
+    - id: CigarGoldCase
+      prob: 0.25
+    - id: ClothingOuterHardsuitPilot
+    - id: OxygenTankFilled
+    - id: ClothingMaskGasPilot
+    - id: ComputerShuttleSecurity
+    - id: ClothingShoesBootsMag
+    - id: ClothingHandsGlovesCombat
