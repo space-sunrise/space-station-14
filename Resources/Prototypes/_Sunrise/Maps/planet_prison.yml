@@ -24,8 +24,6 @@
             #PrisonEngineer: [ 1, 2 ] Увы
             PrisonGuard: [ -1, -1 ]
             Prisoner: [ 2, 2 ]
-            # silicon
-            SecurityBorg: [ 2, 2 ]
         - type: OtherJobsTakenRequirement
           targetJob: PrisonGuard
           adjustJob: Prisoner
