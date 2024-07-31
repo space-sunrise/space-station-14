@@ -143,6 +143,7 @@
   parent: IDCardStandard
   id: BarberIDCard
   name: ID карта парикмахера
+  description: Карта, необходимая для доступа в различные области станции.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Misc/id_cards.rsi

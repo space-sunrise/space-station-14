@@ -16,7 +16,6 @@
     shoes: ClothingShoesColorBlack
     id: BarberPDA
     ears: ClothingHeadsetService
-    jumpsuit: ClothingUniformJumpsuitBarber
   storage:
     back:
     - BarberRazor
