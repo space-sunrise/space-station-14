@@ -31,7 +31,7 @@ public sealed partial class ZombieComponent : Component
     public float MinZombieInfectionChance = 0.6f; // Sunrise-Edit
 
     [ViewVariables(VVAccess.ReadWrite)]
-    public float ZombieMovementSpeedBuff = 1f; // Sunrise-Edit
+    public float ZombieMovementSpeedBuff = 1.05f; // Sunrise-Edit
 
     /// <summary>
     /// The skin color of the zombie
@@ -104,7 +104,7 @@ public sealed partial class ZombieComponent : Component
             { "Slash", -5 }, // Sunrise-Edit
             { "Piercing", -5 }, // Sunrise-Edit
             { "Heat", -0.02 },
-            { "Shock", -0.02 }
+            { "Shock", -0.02 },
         }
     };
 
@@ -124,7 +124,7 @@ public sealed partial class ZombieComponent : Component
         {
             { "Blunt", -5 }, // Sunrise-Edit
             { "Slash", -5 }, // Sunrise-Edit
-            { "Piercing", -5 } // Sunrise-Edit
+            { "Piercing", -5 }, // Sunrise-Edit
         }
     };
 
@@ -176,9 +176,6 @@ public sealed partial class ZombieComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan? LastThrowHit;
-
-    [DataField]
-    public TimeSpan ThrowHitDelay = TimeSpan.Zero();
 
     [DataField]
     public float MaxThrow = 10f;

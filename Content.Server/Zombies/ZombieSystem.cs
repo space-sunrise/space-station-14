@@ -1,11 +1,11 @@
 using System.Linq;
-using System.Text.RegularExpressions;  // Sunrise
+using System.Text.RegularExpressions;
 using Content.Server.Actions;
 using Content.Server.Body.Systems;
 using Content.Server.Chat;
 using Content.Server.Chat.Systems;
 using Content.Server.Emoting.Systems;
-using Content.Server.Pinpointer;  // Sunrise
+using Content.Server.Pinpointer;
 using Content.Server.Speech.EntitySystems;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Cloning;
@@ -22,7 +22,6 @@ using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Zombies;
-using Robust.Server.GameObjects;  // Sunrise
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -48,7 +47,6 @@ namespace Content.Server.Zombies
         [Dependency] private readonly ActionsSystem _action = default!;
         [Dependency] private readonly SharedStunSystem _stun = default!;
         [Dependency] private readonly NavMapSystem _navMap = default!; // Sunrise-Zombies
-        [Dependency] private readonly TransformSystem _transform = default!; // Sunrise-Zombies
 
         public const SlotFlags ProtectiveSlots =
             SlotFlags.FEET |
@@ -96,9 +94,6 @@ namespace Content.Server.Zombies
                 return;
             if (!_mobState.IsAlive(args.Target))
                 return;
-            if (_timing.CurTime - component.LastThrowHit < component.ThrowHitDelay)
-                return;
-            component.LastThrowHit = _timing.CurTime;
 
             _stun.TryParalyze(args.Target, TimeSpan.FromSeconds(component.ParalyzeTime), false);
             _damageable.TryChangeDamage(args.Target, component.Damage, origin: args.Thrown);
@@ -132,7 +127,6 @@ namespace Content.Server.Zombies
                 {
                     nearestUid = targetUid;
                     minDistance = distance;
-                    nearestXform = xform;
                 }
             }
 
