@@ -383,5 +383,3 @@ SignHydro3: SignHydro1
 AirlockExternalGlassShuttleArrivals: AirlockExternalGlassShuttleArrivalsLocked
 AirlockHatchSyndicate: AirlockHatchSyndicateLocked
 SurveillanceCameraWirelessRouterBase: SurveillanceCameraWirelessRouterConstructed
-RandomSpawner: null # casual
-RandomSpawner100: null # casual
