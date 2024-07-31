@@ -178,7 +178,7 @@ public sealed partial class ZombieComponent : Component
     public TimeSpan? LastThrowHit;
 
     [DataField]
-    public TimeSpan ThrowHitDelay = TimeSpan.FromSeconds(15);
+    public TimeSpan ThrowHitDelay = TimeSpan.Zero();
 
     [DataField]
     public float MaxThrow = 10f;
@@ -187,6 +187,6 @@ public sealed partial class ZombieComponent : Component
     /// Зомби не должны чувствовать очень далеко.
     /// </summary>
     [DataField]
-    public float MaxFlairDistance = 300f;
+    public float MaxFlairDistance = 500f;
     // Sunrise-End
 }
