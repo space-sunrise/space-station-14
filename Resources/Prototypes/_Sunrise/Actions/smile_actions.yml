@@ -7,7 +7,7 @@
   - type: EntityTargetAction
     range: 3
     targetingIndicator: true
-    useDelay: 10
+    useDelay: 30
     icon: Effects/hearts.rsi/hearts.png
     whitelist:
       components:
