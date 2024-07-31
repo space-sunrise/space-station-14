@@ -1,9 +1,11 @@
 using System.Linq;
+using System.Text.RegularExpressions;  // Sunrise
 using Content.Server.Actions;
 using Content.Server.Body.Systems;
 using Content.Server.Chat;
 using Content.Server.Chat.Systems;
 using Content.Server.Emoting.Systems;
+using Content.Server.Pinpointer;  // Sunrise
 using Content.Server.Speech.EntitySystems;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Cloning;
@@ -20,6 +22,7 @@ using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Zombies;
+using Robust.Server.GameObjects;  // Sunrise
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -44,6 +47,8 @@ namespace Content.Server.Zombies
         [Dependency] private readonly ThrowingSystem _throwing = default!;
         [Dependency] private readonly ActionsSystem _action = default!;
         [Dependency] private readonly SharedStunSystem _stun = default!;
+        [Dependency] private readonly NavMapSystem _navMap = default!; // Sunrise-Zombies
+        [Dependency] private readonly TransformSystem _transform = default!; // Sunrise-Zombies
 
         public const SlotFlags ProtectiveSlots =
             SlotFlags.FEET |
@@ -91,6 +96,9 @@ namespace Content.Server.Zombies
                 return;
             if (!_mobState.IsAlive(args.Target))
                 return;
+            if (_timing.CurTime - component.LastThrowHit < component.ThrowHitDelay)
+                return;
+            component.LastThrowHit = _timing.CurTime;
 
             _stun.TryParalyze(args.Target, TimeSpan.FromSeconds(component.ParalyzeTime), false);
             _damageable.TryChangeDamage(args.Target, component.Damage, origin: args.Thrown);
@@ -101,10 +109,52 @@ namespace Content.Server.Zombies
             if (args.Handled)
                 return;
 
-            _popup.PopupEntity("Мне было лень это делать, напишите админам, пускай скажут вам где выжившие.",
-                uid, uid, PopupType.LargeCaution);
+            var zombieXform = Transform(uid);
+            EntityUid? nearestUid = default!;
+            TransformComponent? nearestXform = default!;
+            float? minDistance = null;
+            var query = AllEntityQuery<HumanoidAppearanceComponent>();
+            while (query.MoveNext(out var targetUid, out var humanoidAppearanceComponent))
+            {
+                // Зомби не должны чувствовать тех, у кого иммунитет к ним.
+                if (HasComp<ZombieComponent>(targetUid) || HasComp<ZombieImmuneComponent>(targetUid))
+                    continue;
+                var xform = Transform(targetUid);
+
+                // Почему бы и нет, оптимизация наху
+                var distance = Math.Abs(zombieXform.Coordinates.X - xform.Coordinates.X) +
+                               Math.Abs(zombieXform.Coordinates.Y - xform.Coordinates.Y);
+
+                if (distance > component.MaxFlairDistance)
+                    continue;
+
+                if (minDistance == null || nearestUid == null || minDistance > distance)
+                {
+                    nearestUid = targetUid;
+                    minDistance = distance;
+                    nearestXform = xform;
+                }
+            }
+
+            if (nearestUid == null || nearestUid == default!)
+            {
+                _popup.PopupEntity($"Ближайших выживших не найдено.", uid, uid, PopupType.LargeCaution);
+            }
+            else
+            {
+                _popup.PopupEntity($"Ближайший выживший находится {RemoveColorTags(_navMap.GetNearestBeaconString(nearestUid.Value))}", uid, uid, PopupType.LargeCaution);
+            }
 
             args.Handled = true;
+        }
+
+        private string RemoveColorTags(string input)
+        {
+            // Регулярное выражение для поиска тэгов [color=...] и [/color]
+            var pattern = @"\[\s*\/?\s*color(?:=[^\]]*)?\]";
+            // Заменяем найденные тэги на пустую строку
+            var result = Regex.Replace(input, pattern, string.Empty, RegexOptions.IgnoreCase);
+            return result;
         }
 
         private void OnJump(EntityUid uid, ZombieComponent component, ZombieJumpActionEvent args)
@@ -124,6 +174,11 @@ namespace Content.Server.Zombies
             var xform = Transform(uid);
             var mapCoords = args.Target.ToMap(EntityManager);
             var direction = mapCoords.Position - xform.MapPosition.Position;
+
+            if (direction.Length() > component.MaxThrow)
+            {
+                direction = direction.Normalized() * component.MaxThrow;
+            }
 
             _throwing.TryThrow(uid, direction, 7F, uid, 10F);
             _chatSystem.TryEmoteWithChat(uid, "ZombieGroan");
