@@ -127,7 +127,7 @@
     heldPrefix: silver
   - type: PresetIdCard
     job: HeadOfPrison
-    
+
 - type: entity
   parent: IDCardStandard
   id: NanoTrasenRepresentativeIDCard
@@ -139,3 +139,16 @@
   - type: PresetIdCard
     job: NanoTrasenRepresentative
 
+- type: entity
+  parent: IDCardStandard
+  id: BarberIDCard
+  name: ID карта парикмахера
+  description: Карта, необходимая для доступа в различные области станции.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: idbarber
+  - type: PresetIdCard
+    job: Barber

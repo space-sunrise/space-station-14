@@ -226,6 +226,9 @@
         },
         {
             "name": "vials"
+        },
+        {
+            "name": "envelope"
         }
     ]
 }

@@ -186,7 +186,7 @@ namespace Content.Server.Zombies
                     {
                         { "Slash", 15 },
                         { "Piercing", 15 },
-                        { "Structural", 150 } // Sunrise-Edit
+                        { "Structural", 15 } // Sunrise-Edit
                     }
                 };
                 melee.Damage = dspec;

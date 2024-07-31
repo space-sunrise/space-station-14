@@ -82,6 +82,8 @@
             PeaceBorg: [ 2, 2 ]
             SecurityBorg: [ 4, 4 ]
             SecurityCombatBorg: [ 2, 2 ]
+            # Sunrise-Civillian
+            Barber: [ 1, 1 ]
         - type: StationGoal
           goals:
           - Shuttle

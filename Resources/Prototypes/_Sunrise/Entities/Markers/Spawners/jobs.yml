@@ -220,3 +220,16 @@
     layers:
       - state: green
       - state: seniorofficer
+
+- type: entity
+  id: SpawnPointBarber
+  parent: SpawnPointJobBase
+  name: парикмахер
+  components:
+  - type: SpawnPoint
+    job_id: Barber
+  - type: Sprite
+    sprite: _Sunrise/Markers/jobs.rsi
+    layers:
+    - state: green
+    - state: barber

@@ -953,7 +953,7 @@ namespace Content.Shared.Interaction
             RaiseLocalEvent(target, interactUsingEvent, true);
             DoContactInteraction(user, used, interactUsingEvent);
             DoContactInteraction(user, target, interactUsingEvent);
-            DoContactInteraction(used, target, interactUsingEvent);
+            // Contact interactions are currently only used for forensics, so we don't raise used -> target
             if (interactUsingEvent.Handled)
                 return;
 
@@ -974,7 +974,7 @@ namespace Content.Shared.Interaction
             if (canReach)
             {
                 DoContactInteraction(user, target, afterInteractEvent);
-                DoContactInteraction(used, target, afterInteractEvent);
+                // Contact interactions are currently only used for forensics, so we don't raise used -> target
             }
 
             if (afterInteractEvent.Handled)
@@ -990,7 +990,7 @@ namespace Content.Shared.Interaction
             if (canReach)
             {
                 DoContactInteraction(user, target, afterInteractUsingEvent);
-                DoContactInteraction(used, target, afterInteractUsingEvent);
+                // Contact interactions are currently only used for forensics, so we don't raise used -> target
             }
         }
 

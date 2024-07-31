@@ -57,11 +57,16 @@
     - map: [ "enum.HumanoidVisualLayers.LArm" ]
     - map: [ "enum.HumanoidVisualLayers.RLeg" ]
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-    - map: [ "jumpsuit" ]
     - map: [ "enum.HumanoidVisualLayers.LFoot" ]
     - map: [ "enum.HumanoidVisualLayers.RFoot" ]
     - map: [ "enum.HumanoidVisualLayers.LHand" ]
     - map: [ "enum.HumanoidVisualLayers.RHand" ]
+    # Sunrise-start
+    - map: ["bra"]
+    - map: ["pants"]
+    - map: ["socks"]
+    - map: ["jumpsuit"]
+    # Sunrise-end
     - map: [ "gloves" ]
     - map: [ "shoes" ]
     - map: [ "ears" ]

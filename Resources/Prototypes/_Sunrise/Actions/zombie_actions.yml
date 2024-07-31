@@ -1,10 +1,10 @@
 - type: entity
   id: ZombieJump
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: WorldTargetAction
     useDelay: 15
-    icon: _Sunrise/Zombie/Actions/test.png # TODO: Спрайты
+    icon: _Sunrise/Zombie/Actions/jump.png
     itemIconStyle: NoItem
     checkCanAccess: false
     range: 200
@@ -12,10 +12,10 @@
 
 - type: entity
   id: ZombieFlair
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
-    useDelay: 15
-    icon: _Sunrise/Zombie/Actions/test.png # TODO: Спрайты
+    useDelay: 5
+    icon: _Sunrise/Zombie/Actions/the_look.png
     itemIconStyle: NoItem
     event: !type:ZombieFlairActionEvent

@@ -8,6 +8,17 @@
     },
     "states": [
         {
+            "name": "default"
+        },
+        {
+            "name": "default-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "default-inhand-right",
+            "directions": 4
+        },
+        {
             "name": "silver"
         },
         {
@@ -17,6 +28,9 @@
         {
             "name": "silver-inhand-right",
             "directions": 4
+        },
+        {
+            "name": "idbarber"
         },
         {
             "name": "idblueshield"

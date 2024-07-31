@@ -39,6 +39,21 @@
         },
         {
             "name": "generic_icon"
+        },
+        {
+            "name": "cardboard"
+        },
+        {
+            "name": "cardboard_open"
+        },
+        {
+            "name": "pilot_door"
+        },
+        {
+            "name": "pilot"
+        },
+        {
+            "name": "pilot_open"
         }
     ]
 }

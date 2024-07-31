@@ -290,3 +290,15 @@
   - Bra
   - Pants
   - Socks
+
+- type: roleLoadout
+  id: JobBarber
+  groups:
+  - BarberJumpsuit
+  - CommonBackpack
+  - Trinkets
+  - Survival
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks

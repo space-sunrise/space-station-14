@@ -162,3 +162,14 @@
     sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/skeleton.rsi
   - type: Clothing
     sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/skeleton.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitBarber
+  name: костюм парикмахера
+  description: Как же он хорош.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/barber.rsi
+  - type: Clothing
+    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/barber.rsi
