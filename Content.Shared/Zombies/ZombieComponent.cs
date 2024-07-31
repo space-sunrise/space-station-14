@@ -122,9 +122,9 @@ public sealed partial class ZombieComponent : Component
     {
         DamageDict = new()
         {
-            { "Blunt", -2 }, // Sunrise-Edit
-            { "Slash", -2 }, // Sunrise-Edit
-            { "Piercing", -2 } // Sunrise-Edit
+            { "Blunt", -5 }, // Sunrise-Edit
+            { "Slash", -5 }, // Sunrise-Edit
+            { "Piercing", -5 } // Sunrise-Edit
         }
     };
 
