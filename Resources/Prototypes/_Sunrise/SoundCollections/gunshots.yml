@@ -94,11 +94,11 @@
 - type: soundCollection
   id: EearthGovernmentMachineGunShot
   files:
-  - /Audio/_Sunrise/Weapons/Guns/Laser/EG_MG_1.ogg
-  - /Audio/_Sunrise/Weapons/Guns/Laser/EG_MG_2.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/rEG_MG_1.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/rEG_MG_2.ogg
 
 - type: soundCollection
   id: glock22
   files:
-  - /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_shot_1.ogg
-  - /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_shot_2.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/glock22_shot_1.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/glock22_shot_2.ogg
