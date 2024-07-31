@@ -2205,3 +2205,16 @@
   id: 161
   time: '2024-07-31T00:37:20.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/257
+- author: Babaev
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0430 \u043D\u043E\u0432\
+      \u0430\u044F \u0441\u043F\u043E\u0441\u043E\u0431\u043D\u043E\u0441\u0442\u044C\
+      \ \u0440\u0435\u0432\u0435\u043D\u0430\u043D\u0442\u0443, \u043F\u043E\u0437\
+      \u0432\u043E\u043B\u044F\u044E\u0449\u0430\u044F \u0431\u043E\u043B\u0442\u0438\
+      \u0440\u043E\u0432\u0430\u0442\u044C \u043D\u0430\u0445\u043E\u0434\u044F\u0449\
+      \u0438\u0435\u0441\u044F \u043F\u043E\u0431\u043B\u0438\u0437\u043E\u0441\u0442\
+      \u0438 \u0448\u043B\u044E\u0437\u044B."
+    type: Add
+  id: 162
+  time: '2024-07-31T00:38:25.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/261
