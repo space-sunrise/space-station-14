@@ -1,6 +1,6 @@
 - type: entity
   id: ZombieJump
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: WorldTargetAction
     useDelay: 15
@@ -12,7 +12,7 @@
 
 - type: entity
   id: ZombieFlair
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     useDelay: 5

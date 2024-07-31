@@ -2,7 +2,7 @@
   id: SmileAffection
   name: Обнимашки
   description: Смайл обнимается с целью, восстанавливая ей некоторое количество здоровья.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: EntityTargetAction
     range: 3
