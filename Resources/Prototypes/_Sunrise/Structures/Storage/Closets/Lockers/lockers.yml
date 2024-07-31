@@ -16,6 +16,6 @@
     damageCoefficient: 0.5
   - type: StorageFill
     contents:
-    - id: WeaponLauncherRocketNT
+    - id: WeaponLauncherRL5  # Версия РПГ с другим спрайтом и требующая использовать 2 руки для стрельбы
     - id: CartridgeRocketNT
       amount: 4

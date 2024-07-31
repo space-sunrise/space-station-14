@@ -21,3 +21,105 @@
 
 - type: Tag
   id: BorgModuleERT
+
+# Catridges:
+
+- type: Tag
+  id: CartridgeRifleMachine
+
+- type: Tag
+  id: FireThrowerBall
+
+- type: Tag
+  id: PowerpackMinigunMG100
+
+- type: Tag
+  id: CartridgeRocket20
+
+# Magazines:
+- type: Tag
+  id: MagazineM28
+
+- type: Tag
+  id: MagazineDragunov
+
+- type: Tag
+  id: MagazineBR64
+
+- type: Tag
+  id: MagazineBauer127
+
+- type: Tag
+  id: MagazineAK
+
+- type: Tag
+  id: MagazineFamas
+
+- type: Tag
+  id: MagazineG36
+
+- type: Tag
+  id: MagazineAR18
+
+- type: Tag
+  id: MagazineP90
+
+- type: Tag
+  id: MagazineMP38
+
+- type: Tag
+  id: MagazineMP7
+
+- type: Tag
+  id: MagazineMP5
+
+- type: Tag
+  id: MagazineScorpion
+
+- type: Tag
+  id: MagazineNewVector
+
+- type: Tag
+  id: MagazineRPD
+
+- type: Tag
+  id: MagazineMachineGunMG42
+
+- type: Tag
+  id: MagazineLightMachineGunMG60
+
+- type: Tag
+  id: MagazineVP70
+
+- type: Tag
+  id: MagazineDeagle
+
+- type: Tag
+  id: MagazineGlock22
+
+- type: Tag
+  id: MagazineHIBrowning
+
+- type: Tag
+  id: MagazineACP14
+
+- type: Tag
+  id: FuelTankFlamethrower
+
+- type: Tag
+  id: NoSpinOnThrow
+
+- type: Tag
+  id: MagazineM16A4
+
+- type: Tag
+  id: MagazineSTG44
+
+- type: Tag
+  id: MagazineV31
+
+- type: Tag
+  id: PowerpackFlame
+
+- type: Tag
+  id: MagazinePPSH41

@@ -37,7 +37,7 @@
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltSecurityFilled
     pocket1: HyperLinkBookCorporateLaw # Sunrise-edit
-    pocket2: WeaponPistolMk58Nonlethal # Sunrise-Edit
+    pocket2: WeaponPistolG22NonLethal # Sunrise-Edit
   storage:
     back:
     - Flash
