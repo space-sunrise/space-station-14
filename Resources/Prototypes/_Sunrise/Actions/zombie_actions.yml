@@ -15,7 +15,7 @@
   noSpawn: true
   components:
   - type: InstantAction
-    useDelay: 15
+    useDelay: 5
     icon: _Sunrise/Zombie/Actions/the_look.png
     itemIconStyle: NoItem
     event: !type:ZombieFlairActionEvent
