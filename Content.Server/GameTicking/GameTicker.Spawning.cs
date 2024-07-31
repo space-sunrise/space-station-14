@@ -243,7 +243,7 @@ namespace Content.Server.GameTicking
 
             _playTimeTrackings.PlayerRolesChanged(player);
 
-            var spawnPointType = SpawnPointType.LateJoin;
+            var spawnPointType = SpawnPointType.Unset;
             if (jobPrototype.AlwaysUseSpawner)
             {
                 lateJoin = false;
