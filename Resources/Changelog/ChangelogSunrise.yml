@@ -2184,3 +2184,14 @@
   id: 159
   time: '2024-07-29T03:29:11.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/244
+- author: pacable
+  changes:
+  - message: "\u0422\u0435\u043F\u0435\u0440\u044C \u0440\u043E\u0431\u043E\u0440\u0443\
+      \u043A\u0438\u0435 \u043F\u0435\u0440\u0447\u0430\u0442\u043A\u0438 \u0437\u0430\
+      \u0449\u0438\u0449\u0430\u044E\u0442 \u043E\u0442 \u044D\u043B\u0435\u043A\u0442\
+      \u0440\u0438\u0447\u0435\u0441\u0442\u0432\u0430 \u0438 \u0442\u0435\u043F\u043B\
+      \u0430."
+    type: Fix
+  id: 160
+  time: '2024-07-31T00:35:43.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/254
