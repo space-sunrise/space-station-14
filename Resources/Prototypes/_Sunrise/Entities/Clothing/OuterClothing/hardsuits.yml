@@ -89,5 +89,3 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPilot
-  - type: Item
-    size: Normal

@@ -27,7 +27,7 @@
       amount: 5
     - id: ClothingOuterHardsuitBlueshield
     - id: OxygenTankFilled
-    - id: ClothingMaskGas
+    - id: ClothingMaskBreathMedicalSecurity
 
 - type: entity
   parent: GunSafe

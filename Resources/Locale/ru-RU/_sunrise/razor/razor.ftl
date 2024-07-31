@@ -1,1 +1,1 @@
-﻿razor-window-title = Электробритва
+﻿razor-window-title = Изменить прическу
