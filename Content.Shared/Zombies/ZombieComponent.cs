@@ -31,7 +31,7 @@ public sealed partial class ZombieComponent : Component
     public float MinZombieInfectionChance = 0.6f; // Sunrise-Edit
 
     [ViewVariables(VVAccess.ReadWrite)]
-    public float ZombieMovementSpeedBuff = 1.3f; // Sunrise-Edit
+    public float ZombieMovementSpeedBuff = 1.05f; // Sunrise-Edit
 
     /// <summary>
     /// The skin color of the zombie
@@ -100,11 +100,11 @@ public sealed partial class ZombieComponent : Component
     {
         DamageDict = new ()
         {
-            { "Blunt", -2.5 }, // Sunrise-Edit
-            { "Slash", -2.5 }, // Sunrise-Edit
-            { "Piercing", -2.5 }, // Sunrise-Edit
+            { "Blunt", -5 }, // Sunrise-Edit
+            { "Slash", -5 }, // Sunrise-Edit
+            { "Piercing", -5 }, // Sunrise-Edit
             { "Heat", -0.02 },
-            { "Shock", -0.02 }
+            { "Shock", -0.02 },
         }
     };
 
@@ -112,7 +112,7 @@ public sealed partial class ZombieComponent : Component
     /// A multiplier applied to <see cref="PassiveHealing"/> when the entity is in critical condition.
     /// </summary>
     [DataField("passiveHealingCritMultiplier")]
-    public float PassiveHealingCritMultiplier = 5f; // Sunrise-Edit
+    public float PassiveHealingCritMultiplier = 2f; // Sunrise-Edit
 
     /// <summary>
     /// Healing given when a zombie bites a living being.
@@ -124,7 +124,7 @@ public sealed partial class ZombieComponent : Component
         {
             { "Blunt", -5 }, // Sunrise-Edit
             { "Slash", -5 }, // Sunrise-Edit
-            { "Piercing", -5 } // Sunrise-Edit
+            { "Piercing", -5 }, // Sunrise-Edit
         }
     };
 
@@ -170,5 +170,20 @@ public sealed partial class ZombieComponent : Component
             { "Slash", 30 },
         },
     };
+
+    /// <summary>
+    /// Нельзя пролететь через толпу и всех переубивать
+    /// </summary>
+    [DataField]
+    public TimeSpan? LastThrowHit;
+
+    [DataField]
+    public float MaxThrow = 10f;
+
+    /// <summary>
+    /// Зомби не должны чувствовать очень далеко.
+    /// </summary>
+    [DataField]
+    public float MaxFlairDistance = 500f;
     // Sunrise-End
 }

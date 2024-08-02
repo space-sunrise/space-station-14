@@ -1,0 +1,122 @@
+﻿- type: entity
+  id: BarberRazor
+  name: Электробритва
+  description: Используется парикмахерами для изменения прически
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/razor.rsi
+    state: item
+  - type: Razor
+    changeHairSound: "/Audio/_Sunrise/Items/razor.ogg"
+  - type: ActivatableUI
+    key: enum.RazorUiKey.Key
+    inHandsOnly: true
+    requireActiveHand: true
+  - type: UserInterface
+    interfaces:
+      enum.RazorUiKey.Key:
+        type: RazorBoundUserInterface
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1.5
+    damage:
+      types:
+        Slash: 6
+    soundHit:
+      path: "/Audio/_Sunrise/Items/razor.ogg"
+      params:
+        volume: 10
+
+- type: entity
+  id: BaseBarberHairDye
+  abstract: true
+  parent: BaseItem
+  description: Используется парикмахерами для изменения цвета прически.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/hairdyebottle.rsi
+    layers:
+    - state: item
+    - state: overlay
+      color: "#000000"
+  - type: HairDyer
+    targetColor: "#000000"
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 2
+    damage:
+      types:
+        Blunt: 2
+    soundHit:
+      path: "/Audio/Weapons/pierce.ogg"
+
+- type: entity
+  id: BarberHairDyeBlue
+  name: Синий краситель для волос
+  parent: BaseBarberHairDye
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/hairdyebottle.rsi
+    layers:
+    - state: item
+    - state: overlay
+      color: "#0000FF"
+  - type: HairDyer
+    targetColor: "#0000FF"
+
+- type: entity
+  id: BarberHairDyeRed
+  name: Красный краситель для волос
+  parent: BaseBarberHairDye
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/hairdyebottle.rsi
+    layers:
+    - state: item
+    - state: overlay
+      color: "#FF0000"
+  - type: HairDyer
+    targetColor: "#FF0000"
+
+- type: entity
+  id: BarberHairDyeGreen
+  name: Зеленый краситель для волос
+  parent: BaseBarberHairDye
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/hairdyebottle.rsi
+    layers:
+    - state: item
+    - state: overlay
+      color: "#00FF00"
+  - type: HairDyer
+    targetColor: "#00FF00"
+
+- type: entity
+  id: BarberHairDyeLight
+  name: Светлый краситель для волос
+  parent: BaseBarberHairDye
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/hairdyebottle.rsi
+    layers:
+    - state: item
+    - state: overlay
+      color: "#FFFFFF"
+  - type: HairDyer
+    targetColor: "#FFFFFF"
+
+- type: entity
+  id: BarberHairDyeDark
+  name: Тёмный краситель для волос
+  parent: BaseBarberHairDye
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/hairdyebottle.rsi
+    layers:
+    - state: item
+    - state: overlay
+      color: "#000000"
+  - type: HairDyer
+    targetColor: "#000000"

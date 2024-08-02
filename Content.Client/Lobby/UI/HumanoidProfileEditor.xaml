@@ -38,6 +38,8 @@
                             <Button Name="ResetButton" Disabled="True" Text="{Loc 'humanoid-profile-editor-reset-button'}"/>
                             <Button Name="ImportButton" Text="{Loc 'humanoid-profile-editor-import-button'}"/>
                             <Button Name="ExportButton" Text="{Loc 'humanoid-profile-editor-export-button'}"/>
+                            <Button Name="ExportImageButton" Text="{Loc 'humanoid-profile-editor-export-image-button'}"/>
+                            <Button Name="OpenImagesButton" Text="{Loc 'humanoid-profile-editor-open-image-button'}"/>
                         </BoxContainer>
                     </ui:HighlightedContainer>
                 </BoxContainer>
@@ -84,12 +86,11 @@
                                     <Button Name="ShowClothes" Pressed="True" ToggleMode="True" Text="{Loc 'humanoid-profile-editor-clothing-show'}" HorizontalAlignment="Right" />
                                 </BoxContainer>
                                 <!-- Spawn Priority -->
-                                <!-- SunriseEdit -->
-                                <!--<BoxContainer HorizontalExpand="True">
+                                <BoxContainer HorizontalExpand="True">
                                     <Label Text="{Loc 'humanoid-profile-editor-spawn-priority-label'}" />
                                     <Control HorizontalExpand="True"/>
                                     <OptionButton Name="SpawnPriorityButton" HorizontalAlignment="Right" />
-                                </BoxContainer> -->
+                                </BoxContainer>
                                 <!-- Sunrise-TTS-Start -->
                                 <BoxContainer HorizontalExpand="True" Visible="False" Name="TTSContainer">
                                     <Label Text="{Loc 'humanoid-profile-editor-voice-label'}" />

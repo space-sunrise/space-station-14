@@ -20,6 +20,10 @@ public sealed class ContainerSpawnPointSystem : EntitySystem
         if (args.SpawnResult != null)
             return;
 
+        // DeltaV - Ignore these two desired spawn types
+        if (args.DesiredSpawnPointType is SpawnPointType.Observer or SpawnPointType.LateJoin)
+            return;
+
         var query = EntityQueryEnumerator<ContainerSpawnPointComponent, ContainerManagerComponent, TransformComponent>();
         var possibleContainers = new List<Entity<ContainerSpawnPointComponent, ContainerManagerComponent, TransformComponent>>();
 

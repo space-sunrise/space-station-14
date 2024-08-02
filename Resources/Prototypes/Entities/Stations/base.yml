@@ -62,12 +62,7 @@
           - /Maps/_Sunrise/Shuttles/security.yml # Sunrise-edit
           nameGrid: false
 # Слишком большая нагрузка ради 3 человек
-#        ruins: !type:GridSpawnGroup
-#          hide: true
-#          nameGrid: true
-#          minCount: 2
-#          maxCount: 2
-#          stationGrid: false
+#        security: !type:GridSpawnGroup
 #          paths:
 #          - /Maps/Ruins/chunked_tcomms.yml
 #          - /Maps/Ruins/biodome_satellite.yml
@@ -80,7 +75,8 @@
 #          - /Maps/Ruins/whiteship_bluespacejumper.yml
 # Ебейшие лаги и куча гридов
 #        vgroid: !type:DungeonSpawnGroup
-#          minimumDistance: 1000
+#          minimumDistance: 400
+#          maximumDistance: 450
 #          nameDataset: names_borer
 #          stationGrid: false
 #          addComponents:

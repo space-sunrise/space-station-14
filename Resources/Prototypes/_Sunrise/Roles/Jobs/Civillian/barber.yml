@@ -1,0 +1,21 @@
+- type: job
+  id: Barber
+  name: job-name-barber
+  description: job-description-barber
+  playTimeTracker: JobBarber
+  startingGear: BarberGear
+  icon: "JobIconBarber"
+  supervisors: job-supervisors-hop
+  access:
+  - Barber
+  - Maintenance
+
+- type: startingGear
+  id: BarberGear
+  equipment:
+    shoes: ClothingShoesColorBlack
+    id: BarberPDA
+    ears: ClothingHeadsetService
+  storage:
+    back:
+    - BarberRazor
