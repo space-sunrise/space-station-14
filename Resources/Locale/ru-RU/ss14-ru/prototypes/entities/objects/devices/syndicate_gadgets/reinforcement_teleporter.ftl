@@ -1,5 +1,5 @@
-ent-ReinforcementRadio = syndicate reinforcement radio
-    .desc = Call in a syndicate agent of questionable quality, instantly! Only basic equipment provided.
+ent-ReinforcementRadio = радио подкрепления Синдиката
+    .desc = Призовите на помощь агента Синдиката сомнительного качества, мгновенно! Предоставляется только базовое снаряжение.
 ent-ReinforcementRadioSyndicate = радио подкрепления синдиката
     .desc = Призовите на помощь агента Синдиката сомнительного качества, мгновенно! Предоставляется только базовое снаряжение.
 ent-ReinforcementRadioSyndicateNukeops = { ent-ReinforcementRadioSyndicate }

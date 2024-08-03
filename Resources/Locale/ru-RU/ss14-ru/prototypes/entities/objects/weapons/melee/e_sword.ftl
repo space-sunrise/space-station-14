@@ -13,5 +13,5 @@ ent-EnergyCutlass = абордажная энергосабля
 ent-EnergySwordDouble = двухклинковый энергетический меч
     .desc = Стажеры из командования Синдиката решили, что одного клинка на энергетическом мече недостаточно. Его можно хранить в кармане.
 ent-CyborgEnergySwordDouble = { ent-EnergySwordDouble }
-    .desc = Syndicate Command Interns thought that having one blade on the energy sword was not enough. Specially designed for syndicate cyborgs.
-    .suffix = One-Handed, For Borgs
+    .desc = Интерны Командования Синдиката решили, что одного лезвия на энергетическом мече недостаточно. Специальная разработка для киборгов Синдиката.
+    .suffix = Одноручное, Для боргов
