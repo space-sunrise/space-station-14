@@ -33,6 +33,10 @@ public static class ServerPackaging
 
     private static readonly List<string> ServerContentAssemblies = new()
     {
+        // Sunrise-Start
+        "Content.Sunrise.Interfaces.Shared",
+        "Content.Sunrise.Interfaces.Server",
+        // Sunrise-End
         "Content.Server.Database",
         "Content.Server",
         "Content.Shared",
