@@ -4,7 +4,7 @@
   equipment:
     head: ClothingHeadHatBeretEngineering
 
-- type: startingGear
+- type: loadout
   id: StationEngineerHardhatYellow
   equipment:
     head: ClothingHeadHatHardhatYellow

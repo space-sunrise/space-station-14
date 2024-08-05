@@ -1,23 +1,9 @@
 ﻿- type: loadout
   id: BarberJumpsuit
-  equipment: BarberJumpsuit
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: MaleMoment
-
-- type: startingGear
-  id: BarberJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitBarber
 
 - type: loadout
-  id: BarberJumpskirt
-  equipment: BarberJumpskirt
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: WomanMoment
-
-- type: startingGear
   id: BarberJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtBarber

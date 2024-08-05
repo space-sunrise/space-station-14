@@ -379,9 +379,8 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
                     continue;
 
                 // Sunrtise-Start
-                var startingGear = _prototypeManager.Index(loadoutProto.Equipment);
 
-                foreach (var keyValuePair in startingGear.Equipment)
+                foreach (var keyValuePair in loadoutProto.Equipment)
                 {
                     if (!undervearSlots.Contains(keyValuePair.Key) && !outerwear)
                         wear = false;

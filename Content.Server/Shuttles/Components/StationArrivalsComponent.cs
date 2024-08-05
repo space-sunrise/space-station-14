@@ -9,7 +9,8 @@ namespace Content.Server.Shuttles.Components;
 [RegisterComponent, Access(typeof(ArrivalsSystem))]
 public sealed partial class StationArrivalsComponent : Component
 {
-    public List<EntityUid> Shuttles = [];
+    [DataField("shuttle")]
+    public EntityUid Shuttle;
 
     [DataField("shuttlePath")] public ResPath ShuttlePath = new("/Maps/Shuttles/arrivals.yml");
 }

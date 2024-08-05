@@ -1,50 +1,24 @@
 - type: loadout
   id: BrigmedicBackpack
-  equipment: BrigmedicBackpack
-
-- type: startingGear
-  id: BrigmedicBackpack
   equipment:
     back: ClothingBackpackBrigmedic
 
 - type: loadout
-  id: BrigmedicDuffel
-  equipment: BrigmedicDuffel
-
-- type: startingGear
   id: BrigmedicDuffel
   equipment:
     back: ClothingBackpackDuffelBrigmedic
 
 - type: loadout
   id: BrigmedicSatchel
-  equipment: BrigmedicSatchel
-
-- type: startingGear
-  id: BrigmedicSatchel
   equipment:
     back: ClothingBackpackSatchelBrigmedic
 
 - type: loadout
   id: BrigmedicJumpsuit
-  equipment: BrigmedicJumpsuit
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: MaleMoment
-
-- type: startingGear
-  id: BrigmedicJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitBrigmedic
 
 - type: loadout
-  id: BrigmedicJumpskirt
-  equipment: BrigmedicJumpskirt
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: WomanMoment
-
-- type: startingGear
   id: BrigmedicJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtBrigmedic

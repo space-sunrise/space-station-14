@@ -1,6 +1,6 @@
 ﻿- type: loadout
   id: SecurityBodycam
-  equipment: SecurityBodycam
+  startingGear: SecurityBodycam
 
 - type: startingGear
   id: SecurityBodycam
@@ -10,7 +10,7 @@
 
 - type: loadout
   id: SecurityWhistle
-  equipment: SecurityWhistle
+  startingGear: SecurityWhistle
 
 - type: startingGear
   id: SecurityWhistle
@@ -20,7 +20,7 @@
 
 - type: loadout
   id: SecurityRadioHandheld
-  equipment: SecurityRadioHandheld
+  startingGear: SecurityRadioHandheld
 
 - type: startingGear
   id: SecurityRadioHandheld
@@ -30,7 +30,7 @@
 
 - type: loadout
   id: SecurityTourniquet
-  equipment: SecurityTourniquet
+  startingGear: SecurityTourniquet
 
 - type: startingGear
   id: SecurityTourniquet
@@ -40,7 +40,7 @@
 
 - type: loadout
   id: SecurityGrenadeStinger
-  equipment: SecurityGrenadeStinger
+  startingGear: SecurityGrenadeStinger
 
 - type: startingGear
   id: SecurityGrenadeStinger
@@ -50,7 +50,7 @@
 
 - type: loadout
   id: SecurityClusterBangFull
-  equipment: SecurityClusterBangFull
+  startingGear: SecurityClusterBangFull
 
 - type: startingGear
   id: SecurityClusterBangFull
@@ -60,7 +60,7 @@
 
 - type: loadout
   id: SecurityTearGasGrenade
-  equipment: SecurityTearGasGrenade
+  startingGear: SecurityTearGasGrenade
 
 - type: startingGear
   id: SecurityTearGasGrenade
@@ -70,7 +70,7 @@
 
 - type: loadout
   id: SecurityWeaponMeleeNeedle
-  equipment: SecurityWeaponMeleeNeedle
+  startingGear: SecurityWeaponMeleeNeedle
 
 - type: startingGear
   id: SecurityWeaponMeleeNeedle
@@ -80,7 +80,7 @@
 
 - type: loadout
   id: SecurityHoloprojector
-  equipment: SecurityHoloprojector
+  startingGear: SecurityHoloprojector
 
 - type: startingGear
   id: SecurityHoloprojector
