@@ -500,6 +500,7 @@
     startAudio:
       path: /Audio/Announcements/announce.ogg # Sunrise-edit
     duration: null # the rule has to last the whole round not 1 second
+    occursDuringRoundEnd: false
   - type: AlertLevelInterceptionRule
   - type: AntagSelection
     definitions:
