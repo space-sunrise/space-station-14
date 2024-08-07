@@ -37,10 +37,18 @@ public sealed class TTSSystem : EntitySystem
     private (EntityUid Entity, AudioComponent Component)? _currentPlaying;
     private static readonly AudioResource EmptyAudioResource = new();
 
-    public sealed class QueuedTts(byte[] data, SoundSpecifier? announcementSound = null)
+    public sealed class QueuedTts(byte[] data, TtsType ttsType, SoundSpecifier? announcementSound = null)
     {
         public byte[] Data = data;
         public SoundSpecifier? AnnouncementSound = announcementSound;
+        public TtsType TtsType = ttsType;
+    }
+
+    public enum TtsType
+    {
+        Voice,
+        Radio,
+        Announce
     }
 
     public override void Initialize()
@@ -98,7 +106,7 @@ public sealed class TTSSystem : EntitySystem
         if (_volumeAnnounce == 0)
             return;
 
-        var entry = new QueuedTts(ev.Data, ev.AnnouncementSound);
+        var entry = new QueuedTts(ev.Data, TtsType.Announce, ev.AnnouncementSound);
 
         _ttsQueue.Enqueue(entry);
     }
@@ -112,8 +120,21 @@ public sealed class TTSSystem : EntitySystem
 
         var entry = _ttsQueue.Dequeue();
 
-        var volume = SharedAudioSystem.GainToVolume(_volumeAnnounce);
-        var finalParams = AudioParams.Default.WithVolume(volume);
+        var volume = 0f;
+        switch (entry.TtsType)
+        {
+            case TtsType.Radio:
+                volume = _radioVolume;
+                break;
+            case TtsType.Announce:
+                volume = _volumeAnnounce;
+                break;
+            case TtsType.Voice:
+                volume = _volume;
+                break;
+        }
+
+        var finalParams = AudioParams.Default.WithVolume(SharedAudioSystem.GainToVolume(volume));
 
         if (entry.AnnouncementSound != null)
         {
@@ -131,7 +152,7 @@ public sealed class TTSSystem : EntitySystem
 
         if (ev.IsRadio)
         {
-            var entry = new QueuedTts(ev.Data);
+            var entry = new QueuedTts(ev.Data, TtsType.Radio);
 
             _ttsQueue.Enqueue(entry);
             return;
