@@ -25,7 +25,7 @@ public sealed class TTSSystem : EntitySystem
     [Dependency] private readonly IDependencyCollection _dependencyCollection = default!;
 
     private ISawmill _sawmill = default!;
-    private readonly MemoryContentRoot _contentRoot = new();
+    private static readonly MemoryContentRoot ContentRoot = new();
     private static readonly ResPath Prefix = ResPath.Root / "TTS";
 
     private float _volume;
@@ -33,8 +33,9 @@ public sealed class TTSSystem : EntitySystem
     private int _fileIdx;
     private float _volumeAnnounce;
 
-    private Queue<QueuedTts> _ttsQueue = new();
+    private readonly Queue<QueuedTts> _ttsQueue = new();
     private (EntityUid Entity, AudioComponent Component)? _currentPlaying;
+    private static readonly AudioResource EmptyAudioResource = new();
 
     public sealed class QueuedTts(byte[] data, SoundSpecifier? announcementSound = null)
     {
@@ -45,7 +46,7 @@ public sealed class TTSSystem : EntitySystem
     public override void Initialize()
     {
         _sawmill = Logger.GetSawmill("tts");
-        _res.AddRoot(Prefix, _contentRoot);
+        _res.AddRoot(Prefix, ContentRoot);
         _cfg.OnValueChanged(SunriseCCVars.TTSVolume, OnTtsVolumeChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.TTSRadioVolume, OnTtsRadioVolumeChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.TTSAnnounceVolume, OnTtsAnnounceVolumeChanged, true);
@@ -61,7 +62,10 @@ public sealed class TTSSystem : EntitySystem
         _cfg.UnsubValueChanged(SunriseCCVars.TTSRadioVolume, OnTtsRadioVolumeChanged);
         _cfg.UnsubValueChanged(SunriseCCVars.TTSAnnounceVolume, OnTtsAnnounceVolumeChanged);
         _cfg.UnsubValueChanged(SunriseCCVars.TTSClientEnabled, OnTtsClientOptionChanged);
-        _contentRoot.Dispose();
+
+        ContentRoot.Clear();
+        _currentPlaying = null;
+        _ttsQueue.Clear();
     }
 
     public void RequestPreviewTts(string voiceId)
@@ -147,7 +151,7 @@ public sealed class TTSSystem : EntitySystem
             return null;
 
         // если sourceUid.Value.Id == 0 то значит эта сущность не прогружена на стороне клиента
-        if ((sourceUid != null && sourceUid.Value.Id == 0) && !globally)
+        if (sourceUid is { Id: 0 } && !globally)
             return null;
 
         _sawmill.Debug($"Play TTS audio {data.Length} bytes from {sourceUid} entity");
@@ -155,10 +159,20 @@ public sealed class TTSSystem : EntitySystem
         var finalParams = audioParams ?? AudioParams.Default;
 
         var filePath = new ResPath($"{_fileIdx}.ogg");
-        _contentRoot.AddOrUpdateFile(filePath, data);
+        ContentRoot.AddOrUpdateFile(filePath, data);
 
         var res = new AudioResource();
         res.Load(_dependencyCollection, Prefix / filePath);
+        try
+        {
+            ContentRoot.AddOrUpdateFile(filePath, data);
+        }
+        catch (Exception ex)
+        {
+            _sawmill.Error($"Failed to add or update file: {ex.Message}");
+            _fileIdx++;
+            return null;
+        }
         _resourceCache.CacheResource(Prefix / filePath, res);
 
         (EntityUid Entity, AudioComponent Component)? playing;
@@ -179,10 +193,18 @@ public sealed class TTSSystem : EntitySystem
             }
         }
 
-        _contentRoot.RemoveFile(filePath);
+        RemoveFileCursed(filePath);
 
         _fileIdx++;
         return playing;
+    }
+
+    private void RemoveFileCursed(ResPath resPath)
+    {
+        ContentRoot.RemoveFile(resPath);
+
+        // Push old audio out of the cache to save memory. It is cursed, but should work.
+        _resourceCache.CacheResource(Prefix / resPath, EmptyAudioResource);
     }
 
     public override void Update(float frameTime)
