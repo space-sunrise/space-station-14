@@ -54,4 +54,3 @@ ent-BoxSurvivalSecurityWithoutGas = { ent-BoxSurvival }
 ent-BoxSurvivalSyndicateWithoutGas = { ent-BoxSurvival }
     .desc = { ent-BoxSurvival.desc }
     .suffix = Без балона
-

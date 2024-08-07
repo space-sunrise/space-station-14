@@ -1,0 +1,10 @@
+ent-CentcomComputerComms = centcom communications computer
+    .desc = { ent-ComputerComms.desc }
+ent-ComputerShuttleCentComm = консоль управления шаттлом ПЦК
+    .desc = Кто прочитал - тот лох.
+ent-ComputerShuttlePrison = консоль управления тюремным шаттлом
+    .desc = Что не ясно? Не пытайся меня открутить ебанат.
+ent-PrisonComputerComms = консоль связи тюрьмы
+    .desc = This can be used for various important functions. Still under development.
+ent-ComputerShuttleSecurity = консоль управления шатлом службы безопастности
+    .desc = Что не ясно? Не пытайся меня открутить ебанат.

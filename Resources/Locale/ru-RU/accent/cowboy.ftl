@@ -196,7 +196,6 @@ accent-cowboy-words-98 = yelled
 accent-cowboy-replacement-98 = hollered
 accent-cowboy-words-99 = yelling
 accent-cowboy-replacement-99 = hollering
-
 russian-accent-cowboy-words-1 = алкоголь
 russian-accent-cowboy-replacement-1 = огненная вода
 russian-accent-cowboy-words-2 = алкоголя

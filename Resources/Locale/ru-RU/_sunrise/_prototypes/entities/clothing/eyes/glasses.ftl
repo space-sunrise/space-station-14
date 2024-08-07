@@ -1,0 +1,10 @@
+ent-ClothingEyesSalesman = colored glasses
+    .desc = A pair of glasses with uniquely colored lenses. The frame is inscribed with 'Best Salesman 1997'.
+ent-ClothingEyesBinoclardLenses = binoclard lenses
+    .desc = Shows you know how to sew a lapel and center a back vent.
+ent-ClothingEyesGlassesBlueShield = очки офицера «синий щит»
+    .desc = Инновационные синие линзы скрывают глаза от световых вспышек и имеют встроенный визор.
+ent-ClothingEyesGlassesWelding = Сварочные Очки
+    .desc = Это сварочные очки. Это небольшой предмет. Защищает глаза от сварщиков.
+ent-ClothingEyesSunGlassesHudSkill = солнечные очки умений
+    .desc = Очки с встроенным HUD умений, показывающим историю трудовой деятельности ближайших членов экипажа NT.

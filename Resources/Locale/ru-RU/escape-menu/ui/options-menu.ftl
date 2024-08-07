@@ -167,6 +167,7 @@ ui-options-function-focus-dead-chat-window = Писать в чат (Мёртв�
 ui-options-function-focus-console-chat-window = Писать в чат (Консоль)
 ui-options-function-cycle-chat-channel-forward = Переключение каналов чата (Вперёд)
 ui-options-function-cycle-chat-channel-backward = Переключение каналов чата (Назад)
+ui-options-function-open-emotes-menu = Открыть меню эмоций
 ui-options-function-open-character-menu = Открыть меню персонажа
 ui-options-function-open-context-menu = Открыть контекстное меню
 ui-options-function-open-crafting-menu = Открыть меню строительства

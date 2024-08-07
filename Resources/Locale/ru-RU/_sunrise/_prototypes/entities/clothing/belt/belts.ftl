@@ -1,0 +1,11 @@
+ent-ClothingBeltBlueShieldWebbing = рпс офицера «синий щит»
+    .desc = Голубой?!
+ent-ClothingBeltPrisonGuardianFilled = { ent-ClothingBeltSecurity }
+    .suffix = Filled
+    .desc = { ent-ClothingBeltSecurity.desc }
+ent-ClothingBeltHoS = пояс службы безопасности
+    .desc = Пояс службы безопасности, но из качественного материала.
+ent-ClothingBeltMedicalCMO = медицинский пояс главного врача
+    .desc = Стерильный пояс со множеством карманов под таблетки и другие лекарства, подчёркивающий, что лечить нужно со стилем.
+ent-ClothingBeltReaperWebbing = chest rig
+    .desc = A set of tactical webbing worn by Syndicate boarding parties.

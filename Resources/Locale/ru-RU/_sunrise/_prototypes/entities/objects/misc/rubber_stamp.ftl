@@ -1,0 +1,12 @@
+ent-RubberStampIAA = internal affairs agent's rubber stamp
+    .suffix = DO NOT MAP
+    .desc = { ent-RubberStampBase.desc }
+ent-RubberStampPsychologist = psychologist's rubber stamp
+    .suffix = DO NOT MAP
+    .desc = { ent-RubberStampBase.desc }
+ent-RubberStampMagistrat = печать магистрата
+    .desc = { ent-RubberStampBase.desc }
+ent-RubberStampNtrep = печать представителя NT
+    .suffix = НЕ МАППИТЬ
+    .desc = { ent-RubberStampBase.desc }
+stamp-component-stamped-name-ntrep = Представитель NT
