@@ -1,33 +1,22 @@
-ent-PartVulpkanin = fox body part
-
-  .desc = { ent-['BaseItem', 'BasePart'].desc }
-ent-TorsoVulpkanin = fox torso
-
-  .desc = { ent-['PartVulpkanin', 'BaseTorso'].desc }
-ent-HeadVulpkanin = fox head
-
-  .desc = { ent-['PartVulpkanin', 'BaseHead'].desc }
-ent-LeftArmVulpkanin = left fox arm
-
-  .desc = { ent-['PartVulpkanin', 'BaseLeftArm'].desc }
-ent-RightArmVulpkanin = right fox arm
-
-  .desc = { ent-['PartVulpkanin', 'BaseRightArm'].desc }
-ent-LeftHandVulpkanin = left fox hand
-
-  .desc = { ent-['PartVulpkanin', 'BaseLeftHand'].desc }
-ent-RightHandVulpkanin = right fox hand
-
-  .desc = { ent-['PartVulpkanin', 'BaseRightHand'].desc }
-ent-LeftLegVulpkanin = left fox leg
-
-  .desc = { ent-['PartVulpkanin', 'BaseLeftLeg'].desc }
-ent-RightLegVulpkanin = right fox leg
-
-  .desc = { ent-['PartVulpkanin', 'BaseRightLeg'].desc }
-ent-LeftFootVulpkanin = left fox foot
-
-  .desc = { ent-['PartVulpkanin', 'BaseLeftFoot'].desc }
-ent-RightFootVulpkanin = right fox foot
-
-  .desc = { ent-['PartVulpkanin', 'BaseRightFoot'].desc }
+ent-PartVulpkanin = часть тела вульпканина
+    .desc = { ent-BasePart.desc }
+ent-TorsoVulpkanin = туловище вульпканина
+    .desc = { ent-PartVulpkanin.desc }
+ent-HeadVulpkanin = голова вульпканина
+    .desc = { ent-PartVulpkanin.desc }
+ent-LeftArmVulpkanin = левая рука вульпканина
+    .desc = { ent-PartVulpkanin.desc }
+ent-RightArmVulpkanin = правая рука вульпканина
+    .desc = { ent-PartVulpkanin.desc }
+ent-LeftHandVulpkanin = левая кисть вульпканина
+    .desc = { ent-PartVulpkanin.desc }
+ent-RightHandVulpkanin = правая кисть вульпканина
+    .desc = { ent-PartVulpkanin.desc }
+ent-LeftLegVulpkanin = левая нога вульпканина
+    .desc = { ent-PartVulpkanin.desc }
+ent-RightLegVulpkanin = правая нога вульпканина
+    .desc = { ent-PartVulpkanin.desc }
+ent-LeftFootVulpkanin = левая стопа вульпканина
+    .desc = { ent-PartVulpkanin.desc }
+ent-RightFootVulpkanin = правая стопа вульпканина
+    .desc = { ent-PartVulpkanin.desc }

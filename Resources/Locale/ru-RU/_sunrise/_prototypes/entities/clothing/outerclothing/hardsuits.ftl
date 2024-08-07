@@ -1,5 +1,5 @@
-ent-ClothingOuterHardsuitCBURNLeader = CBURN commander exosuit
-    .desc = A lightweight yet strong exosuit used for special cleanup operations.
+ent-ClothingOuterHardsuitCBURNLeader = экзокостюм командира отряда РХБЗЗ
+    .desc = Легковесный но прочный экзокостюм, который используют специальные подразделения зачистки.
 ent-ClothingOuterHardsuitBlueshield = скафандр офицера «синий щит»
     .desc = Крепкий и надёжныый, как и его владелец.
 ent-ClothingOuterHardsuitPilot = Скафандр пилота Службы Безопасности

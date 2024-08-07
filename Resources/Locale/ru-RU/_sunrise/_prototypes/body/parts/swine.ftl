@@ -1,33 +1,22 @@
-ent-PartSwine = swine body part
-
-  .desc = { ent-['BaseItem', 'BasePart'].desc }
-ent-TorsoSwine = swine torso
-
-  .desc = { ent-['PartSwine', 'BaseTorso'].desc }
-ent-HeadSwine = swine head
-
-  .desc = { ent-['PartSwine', 'BaseHead'].desc }
-ent-LeftArmSwine = left swine arm
-
-  .desc = { ent-['PartSwine', 'BaseLeftArm'].desc }
-ent-RightArmSwine = right swine arm
-
-  .desc = { ent-['PartSwine', 'BaseRightArm'].desc }
-ent-LeftHandSwine = left swine hand
-
-  .desc = { ent-['PartSwine', 'BaseLeftHand'].desc }
-ent-RightHandSwine = right swine hand
-
-  .desc = { ent-['PartSwine', 'BaseRightHand'].desc }
-ent-LeftLegSwine = left swine leg
-
-  .desc = { ent-['PartSwine', 'BaseLeftLeg'].desc }
-ent-RightLegSwine = right swine leg
-
-  .desc = { ent-['PartSwine', 'BaseRightLeg'].desc }
-ent-LeftFootSwine = left swine foot
-
-  .desc = { ent-['PartSwine', 'BaseLeftFoot'].desc }
-ent-RightFootSwine = right swine foot
-
-  .desc = { ent-['PartSwine', 'BaseRightFoot'].desc }
+ent-PartSwine = Свинячья часть тела
+  .desc = { ent-BasePart.desc }
+ent-TorsoSwine = Свинячий торс
+  .desc = { ent-BaseTorso.desc }
+ent-HeadSwine = Свинячья голова
+  .desc = { ent-BaseHead.desc }
+ent-LeftArmSwine = Левая свинячья рука
+  .desc = { ent-BaseLeftArm.desc }
+ent-RightArmSwine = Правая свинячья рука
+  .desc = { ent-BaseRightArm.desc }
+ent-LeftHandSwine = Левая свинячья рука (кисть)
+  .desc = { ent-BaseLeftHand.desc }
+ent-RightHandSwine = Правая свинячья рука (кисть)
+  .desc = { ent-BaseRightHand.desc }
+ent-LeftLegSwine = Левая свинячья нога
+  .desc = { ent-BaseLeftLeg.desc }
+ent-RightLegSwine = Правая свинячья нога
+  .desc = { ent-BaseRightLeg.desc }
+ent-LeftFootSwine = Лвая свинячья стопа
+  .desc = { ent-BaseLeftFoot.desc }
+ent-RightFootSwine = Правая свинячья стопа
+  .desc = { ent-BaseRightFoot.desc }

@@ -1,49 +1,34 @@
 ent-BorgCombatModuleERT = Оружейный модуль киборга ОБР
-
-  .desc = { ent-['BaseBorgModuleERT', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModuleERT.desc }
 ent-BorgModuleERTNlethal = Нелетальный модуль киборга ОБР
-
-  .desc = { ent-['BaseBorgModuleERT', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModuleERT.desc }
 ent-BorgToolModuleERT = Инструментальный модуль киборга ОБР
-
-  .desc = { ent-['BaseBorgModuleERT', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModuleERT.desc }
 ent-BorgHeavyModuleSyndicateCombat = Оружейный модуль тяжёлого киборга Синдиката
-
-  .desc = { ent-['BaseBorgModuleSyndicate', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModuleSyndicate.desc }
 ent-BorgScoutModuleSyndicateCombat = Защитный модуль киборга диверсанта Синдиката
-
-  .desc = { ent-['BaseBorgModuleSyndicate', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModuleSyndicate.desc }
 ent-BorgScoutModuleSyndicateTool = Продвинутый инструментальный модуль киборга диверсанта Синдиката
-
-  .desc = { ent-['BaseBorgModuleSyndicate', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModuleSyndicate.desc }
 ent-BaseBorgModuleSecurity = { ent-BaseBorgModule }
-    .desc = { ent-BaseBorgModule.desc }
+  .desc = { ent-BaseBorgModule.desc }
 ent-BaseBorgModuleERT = { ent-BaseBorgModule }
-    .desc = { ent-BaseBorgModule.desc }
-ent-BorgModuleStun = stuh cyborg module
-
-  .desc = { ent-['BaseBorgModuleSecurity', 'BaseProviderBorgModule'].desc }
-ent-BorgModuleCombat = combat cyborg module
-
-  .desc = { ent-['BaseBorgModuleSecurity', 'BaseProviderBorgModule'].desc }
-ent-BorgModulePeace = peace cyborg module
-
-  .desc = { ent-['BaseBorgModuleSecurity', 'BaseProviderBorgModule'].desc }
-ent-BorgModuleMiningCombat = combat mining cyborg module
-
-  .desc = { ent-['BaseBorgModuleCargo', 'BaseProviderBorgModule'].desc }
-ent-BorgModuleJetpack = jetpack cyborg module
-
-  .desc = { ent-['BaseBorgModuleCargo', 'BaseProviderBorgModule'].desc }
-ent-BorgModuleSyndicateGeneric = cleaning cyborg module
-
-  .desc = { ent-['BaseBorgModuleSyndicate', 'BaseProviderBorgModule'].desc }
-ent-BorgModuleSyndicateMedical = medical syndicate module
-
-  .desc = { ent-['BaseBorgModuleSyndicate', 'BaseProviderBorgModule'].desc }
-ent-BorgModuleSyndicateCombat = combat syndicate cyborg module
-
-  .desc = { ent-['BaseBorgModuleSyndicate', 'BaseProviderBorgModule'].desc }
-ent-BorgModuleStandart = fire extinguisher cyborg module
-
-  .desc = { ent-['BaseBorgModule', 'BaseProviderBorgModule'].desc }
+  .desc = { ent-BaseBorgModule.desc }
+ent-BorgModuleStun = Модуль киборга-стунера
+  .desc = { ent-BaseBorgModuleSecurity.desc }
+ent-BorgModuleCombat = Модуль киборга-комбата
+  .desc = { ent-BaseBorgModuleSecurity.desc }
+ent-BorgModulePeace = Модуль киборга-миротворца
+  .desc = { ent-BaseBorgModuleSecurity.desc }
+ent-BorgModuleMiningCombat = Модуль киборга для боевых горных работ
+  .desc = { ent-BaseBorgModuleCargo.desc }
+ent-BorgModuleJetpack = Модуль киборга с реактивным ранцем
+  .desc = { ent-BaseBorgModuleCargo.desc }
+ent-BorgModuleSyndicateGeneric = Модуль киборга для уборки
+  .desc = { ent-BaseBorgModuleSyndicate.desc }
+ent-BorgModuleSyndicateMedical = Медицинский модуль киборга Синдиката
+  .desc = { ent-BaseBorgModuleSyndicate.desc }
+ent-BorgModuleSyndicateCombat = Боевой модуль киборга Синдиката
+  .desc = { ent-BaseBorgModuleSyndicate.desc }
+ent-BorgModuleStandart = Модуль киборга-огнетушителя
+  .desc = { ent-BaseBorgModule.desc }
