@@ -678,7 +678,7 @@ namespace Content.Client.Lobby.UI
 
                 // Sunrise-Sponsors-Start
                 var requirements = _entManager.System<SharedRoleSystem>().GetAntagRequirement(antag);
-                if (!_requirements.CheckRoleTime(requirements, out var reason) &&
+                if (!_requirements.CheckRoleRequirements(requirements, (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter, out var reason) &&
                     _sponsorsMgr != null && !_sponsorsMgr.GetClientPrototypes().Contains(antag.ID))
                 {
                     selector.LockRequirements(reason);
@@ -939,7 +939,7 @@ namespace Content.Client.Lobby.UI
                     icon.Texture = jobIcon.Icon.Frame0();
                     selector.Setup(items, job.LocalizedName, 200, job.LocalizedDescription, icon, job.Guides);
 
-                    if (!_requirements.IsAllowed(job, out var reason))
+                    if (!_requirements.IsAllowed(job, (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter, out var reason))
                     {
                         selector.LockRequirements(reason);
                     }

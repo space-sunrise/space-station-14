@@ -233,7 +233,8 @@
   - type: Emoting
   - type: GuideHelp
     guides:
-      - Cyborgs
+    - Cyborgs
+    - Robotics
   - type: StepTriggerImmune
   # Sunrise-start
   - type: TTS

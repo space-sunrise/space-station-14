@@ -1,48 +1,20 @@
 # Jumpsuit
 - type: loadout
   id: ChiefEngineerJumpsuit
-  equipment: ChiefEngineerJumpsuit
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: MaleMoment
-
-- type: startingGear
-  id: ChiefEngineerJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitChiefEngineer
 
 - type: loadout
-  id: ChiefEngineerJumpskirt
-  equipment: ChiefEngineerJumpskirt
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: WomanMoment
-
-- type: startingGear
   id: ChiefEngineerJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtChiefEngineer
 
 - type: loadout
   id: ChiefEngineerTurtleneck
-  equipment: ChiefEngineerTurtleneck
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: MaleMoment
-
-- type: startingGear
-  id: ChiefEngineerTurtleneck
   equipment:
     jumpsuit: ClothingUniformJumpsuitChiefEngineerTurtle
 
 - type: loadout
-  id: ChiefEngineerTurtleneckSkirt
-  equipment: ChiefEngineerTurtleneckSkirt
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: WomanMoment
-
-- type: startingGear
   id: ChiefEngineerTurtleneckSkirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtChiefEngineerTurtle
@@ -50,18 +22,10 @@
 # Neck
 - type: loadout
   id: ChiefEngineerCloak
-  equipment: ChiefEngineerCloak
-
-- type: startingGear
-  id: ChiefEngineerCloak
   equipment:
     neck: ClothingNeckCloakCe
 
 - type: loadout
-  id: ChiefEngineerMantle
-  equipment: ChiefEngineerMantle
-
-- type: startingGear
   id: ChiefEngineerMantle
   equipment:
     neck: ClothingNeckMantleCE
@@ -69,19 +33,11 @@
 # OuterClothing
 - type: loadout
   id: ChiefEngineerWintercoat
-  equipment: ChiefEngineerWintercoat
-
-- type: startingGear
-  id: ChiefEngineerWintercoat
   equipment:
     outerClothing: ClothingOuterWinterCE
 
 # Shoes
 - type: loadout
-  id: BrownShoes
-  equipment: BrownShoes
-
-- type: startingGear
   id: BrownShoes
   equipment:
     shoes: ClothingShoesColorBrown

@@ -1,23 +1,9 @@
 - type: loadout
   id: JumpsuitSeniorOfficer
-  equipment: JumpsuitSeniorOfficer
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: MaleMoment
-
-- type: startingGear
-  id: JumpsuitSeniorOfficer
   equipment:
     jumpsuit: ClothingUniformJumpsuitSeniorOfficer
 
 - type: loadout
-  id: JumpskirtSeniorOfficer
-  equipment: JumpskirtSeniorOfficer
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: WomanMoment
-
-- type: startingGear
   id: JumpskirtSeniorOfficer
   equipment:
     jumpsuit: ClothingUniformJumpskirtSeniorOfficer
