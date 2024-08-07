@@ -1,0 +1,8 @@
+marking-TattooVoxHeartLeftArm-heart_l_arm = Татуировка, левая рука (Сердце, Вокс)
+marking-TattooVoxHeartLeftArm = Татуировка, левая рука (Сердце, Вокс)
+marking-TattooVoxHeartRightArm-heart_r_arm = Татуировка, правая рука (Сердце, Вокс)
+marking-TattooVoxHeartRightArm = Татуировка, правая рука (Сердце, Вокс)
+marking-TattooVoxHiveChest-hive_s = Татуировка, грудь (Улей, Вокс)
+marking-TattooVoxHiveChest = Татуировка, грудь (Улей, Вокс)
+marking-TattooVoxNightlingChest-nightling_s = Татуировка, грудь (Найтлинг, Вокс)
+marking-TattooVoxNightlingChest = Татуировка, грудь (Найтлинг, Вокс)
