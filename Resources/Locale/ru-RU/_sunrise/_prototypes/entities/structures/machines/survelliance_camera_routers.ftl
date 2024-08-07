@@ -1,3 +1,3 @@
-ent-SurveillanceCameraRouterHandheld = Camerahelds
-    .suffix = Handheld
+ent-SurveillanceCameraRouterHandheld = { ent-SurveillanceCameraRouterBase }
+    .suffix = Бодикамеры
     .desc = { ent-SurveillanceCameraRouterBase.desc }

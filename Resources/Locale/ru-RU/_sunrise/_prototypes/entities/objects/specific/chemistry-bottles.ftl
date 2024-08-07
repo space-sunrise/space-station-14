@@ -1,2 +1,2 @@
-ent-AphrodesiacChemistryBottle = aphrodesiac bottle
+ent-AphrodesiacChemistryBottle = бутылочка афродезиака
     .desc = { ent-BaseChemistryBottleFilled.desc }

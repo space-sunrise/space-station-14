@@ -1,5 +1,5 @@
-ent-PrinterDocMachineCircuitboard = document printer machine board
-    .desc = A machine printed circuit board for an document printer
+ent-PrinterDocMachineCircuitboard = принтер документов (машинная плата)
+    .desc = Машинная плата принтера документов.
 ent-CentCommShuttleConsoleCircuitboard = консоль шаттла ПЦК (консольная плата)
     .desc = Плата которая используется для создания консоли шаттла ПЦК.
 ent-PrisonShuttleConsoleCircuitboard = консоль тюремного шаттла (консольная плата)

@@ -1,4 +1,4 @@
-ent-CentcomComputerComms = centcom communications computer
+ent-CentcomComputerComms = консоль связи Центком
     .desc = { ent-ComputerComms.desc }
 ent-ComputerShuttleCentComm = консоль управления шаттлом ПЦК
     .desc = Кто прочитал - тот лох.

@@ -1,2 +1,2 @@
-ent-Sofia = syndicate robotic brain
-    .desc = { ent-Boris.desc }
+ent-Sofia = роботический мозг синдиката
+    .desc = Искусственный мозг, способной к банальной интелектуальной активности.

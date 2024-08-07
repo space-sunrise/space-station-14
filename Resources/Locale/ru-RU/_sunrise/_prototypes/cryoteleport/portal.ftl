@@ -1,2 +1,2 @@
-ent-PortalCryo = { "" }
-    .desc = { "" }
+ent-PortalCryo = { ent-BasePortal }
+    .desc = { ent-BasePortal.desc }

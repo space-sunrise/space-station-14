@@ -1,7 +1,7 @@
-ent-ClothingEyesSalesman = colored glasses
-    .desc = A pair of glasses with uniquely colored lenses. The frame is inscribed with 'Best Salesman 1997'.
-ent-ClothingEyesBinoclardLenses = binoclard lenses
-    .desc = Shows you know how to sew a lapel and center a back vent.
+ent-ClothingEyesSalesman = цветные очки
+    .desc = Пара очков с уникальными цветными линзами. На оправе надпись "Лучший продавец 1997".
+ent-ClothingEyesBinoclardLenses = бинокулярные линзы
+    .desc = Показывает, что вы умеете и пришивать лацкан и центрировать заднее вентиляционное отверстие.
 ent-ClothingEyesGlassesBlueShield = очки офицера «синий щит»
     .desc = Инновационные синие линзы скрывают глаза от световых вспышек и имеют встроенный визор.
 ent-ClothingEyesGlassesWelding = Сварочные Очки

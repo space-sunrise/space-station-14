@@ -1,2 +1,2 @@
-ent-Telebaton = telebaton
-    .desc = A compact yet robust personal defense weapon.
+ent-Telebaton = Телескопическая дубинка
+    .desc = Компактное защитное вооружение персонала НТ.

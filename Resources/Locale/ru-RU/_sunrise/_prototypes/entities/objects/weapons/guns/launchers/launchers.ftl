@@ -1,3 +1,3 @@
-ent-WeaponLauncherRocketNT = RPG-7
-    .desc = A modified ancient rocket-propelled grenade launcher.
+ent-WeaponLauncherRocketNT = { ent-WeaponLauncherRocket }
+    .desc = { ent-WeaponLauncherRocket.desc }
     .suffix = NT

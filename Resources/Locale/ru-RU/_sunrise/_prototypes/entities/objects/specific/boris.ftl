@@ -1,2 +1,2 @@
-ent-Boris = robotic brain
-    .desc = { ent-BaseItem.desc }
+ent-Boris = роботический мозг
+    .desc = Искусственный мозг, способной к банальной интелектуальной активности.

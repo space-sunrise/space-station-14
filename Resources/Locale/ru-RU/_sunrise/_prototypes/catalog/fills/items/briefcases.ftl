@@ -1,3 +1,3 @@
 ent-BriefcaseIAAFilled = { ent-BriefcaseBrown }
-    .suffix = IAA
+    .suffix = АВД
     .desc = { ent-BriefcaseBrown.desc }

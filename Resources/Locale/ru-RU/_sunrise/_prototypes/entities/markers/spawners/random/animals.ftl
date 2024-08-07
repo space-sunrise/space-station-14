@@ -1,4 +1,4 @@
-ent-AnimalRandomSpawner = random animal spawner
+ent-AnimalRandomSpawner = спавнер случайное животное
     .desc = { ent-MarkerBase.desc }
 ent-CarpSpawnerMundane = NPC Carp Spawner
     .suffix = 100
