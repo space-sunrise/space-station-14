@@ -25,7 +25,8 @@
         Slash: 6
     soundHit:
       path: "/Audio/_Sunrise/Items/razor.ogg"
-      volume: 100
+      params:
+        volume: 10
 
 - type: entity
   id: BaseBarberHairDye

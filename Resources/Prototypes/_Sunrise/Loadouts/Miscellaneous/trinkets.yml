@@ -1,7 +1,7 @@
 # Pins
 - type: loadout
   id: ClothingNeckNanoTrasenPin
-  equipment: ClothingNeckNanoTrasenPin
+  startingGear: ClothingNeckNanoTrasenPin
 
 - type: startingGear
   id: ClothingNeckNanoTrasenPin
@@ -11,7 +11,7 @@
 
 - type: loadout
   id: ClothingNeckNakamuraPin
-  equipment: ClothingNeckNakamuraPin
+  startingGear: ClothingNeckNakamuraPin
 
 - type: startingGear
   id: ClothingNeckNakamuraPin
@@ -21,7 +21,7 @@
 
 - type: loadout
   id: ClothingNeckLogistikaPin
-  equipment: ClothingNeckLogistikaPin
+  startingGear: ClothingNeckLogistikaPin
 
 - type: startingGear
   id: ClothingNeckLogistikaPin
@@ -31,7 +31,7 @@
 
 - type: loadout
   id: ClothingNeckDeForestPin
-  equipment: ClothingNeckDeForestPin
+  startingGear: ClothingNeckDeForestPin
 
 - type: startingGear
   id: ClothingNeckDeForestPin
@@ -41,7 +41,7 @@
 
 - type: loadout
   id: ClothingNeckDonkPin
-  equipment: ClothingNeckDonkPin
+  startingGear: ClothingNeckDonkPin
 
 - type: startingGear
   id: ClothingNeckDonkPin
@@ -51,7 +51,7 @@
 
 - type: loadout
   id: ClothingNeckVitezstviPin
-  equipment: ClothingNeckVitezstviPin
+  startingGear: ClothingNeckVitezstviPin
 
 - type: startingGear
   id: ClothingNeckVitezstviPin
@@ -61,7 +61,7 @@
 
 - type: loadout
   id: ClothingNeckEarthPin
-  equipment: ClothingNeckEarthPin
+  startingGear: ClothingNeckEarthPin
 
 - type: startingGear
   id: ClothingNeckEarthPin
@@ -71,7 +71,7 @@
 
 - type: loadout
   id: ClothingNeckUSSPPin
-  equipment: ClothingNeckUSSPPin
+  startingGear: ClothingNeckUSSPPin
 
 - type: startingGear
   id: ClothingNeckUSSPPin

@@ -24,6 +24,11 @@ namespace Content.Client.Launcher
         private readonly LauncherConnecting _state;
         private float _waitTime;
 
+        // Sunrise-Start
+        private int _currentConnectAttempt;
+        private const int ConnectAttempts = 3;
+        // Sunrise-End
+
         // Pressing reconnect will redial instead of simply reconnecting.
         private bool _redial;
 
@@ -93,6 +98,15 @@ namespace Content.Client.Launcher
 
         private void ConnectFailReasonChanged(string? reason)
         {
+            // Sunrise-Start
+            if (_currentConnectAttempt < ConnectAttempts)
+            {
+                _state.RetryConnect();
+                _currentConnectAttempt += 1;
+                return;
+            }
+            // Sunrise-End
+
             ConnectFailReason.SetMessage(reason == null
                 ? ""
                 : Loc.GetString("connecting-fail-reason", ("reason", reason)));
@@ -192,6 +206,11 @@ namespace Content.Client.Launcher
         private void ConnectionStateChanged(ClientConnectionState state)
         {
             ConnectStatus.Text = Loc.GetString($"connecting-state-{state}");
+
+            // Sunrise-Start
+            if (state == ClientConnectionState.Connected)
+                _currentConnectAttempt = 0;
+            // Sunrise-End
         }
     }
 }

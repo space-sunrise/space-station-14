@@ -1,5 +1,6 @@
 - type: department
   id: Law
+  name: department-Law
   description: department-Law-description
   color: "#FF5297"
   weight: 80
@@ -10,6 +11,7 @@
 
 - type: department
   id: CentralCommand
+  name: department-CentralCommand
   description: department-CentralCommand-description
   color: "#048e0f" # Sunrise-Edit
   weight: 120
@@ -19,6 +21,7 @@
 
 - type: department # Surnise-Blueshield
   id: Blueshield
+  name: department-Blueshield
   description: department-Blueshield-description
   color: "#005bfb"  # Иначе плохо видно
   roles:
@@ -29,6 +32,7 @@
 - type: department
   id: PlanetPrison
   sort: 0
+  name: department-PlanetPrison
   description: department-PlanetPrison-description
   color: "#9f4000"
   roles:
@@ -44,6 +48,7 @@
 - type: department
   id: Silicon
   sort: 0
+  name: department-Silicon
   description: department-Silicon-description
   color: "#8D9AAC"
   roles:

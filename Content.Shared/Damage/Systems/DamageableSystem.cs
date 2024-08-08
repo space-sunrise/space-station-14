@@ -32,6 +32,8 @@ namespace Content.Shared.Damage
         private EntityQuery<MindContainerComponent> _mindContainerQuery;
 
         public float Variance = 0.15f; // Sunrise-Edit
+        public float DamageModifier = 1f; // Sunrise-Edit
+        public float HealModifier = 1f; // Sunrise-Edit
 
         public override void Initialize()
         {
@@ -45,7 +47,9 @@ namespace Content.Shared.Damage
             _damageableQuery = GetEntityQuery<DamageableComponent>();
             _mindContainerQuery = GetEntityQuery<MindContainerComponent>();
 
-            _configurationManager.OnValueChanged(SunriseCCVars.DamageVariance, UpdateVariance); // Sunrise-Edit
+            _configurationManager.OnValueChanged(SunriseCCVars.DamageVariance, UpdateVariance, true); // Sunrise-Edit
+            _configurationManager.OnValueChanged(SunriseCCVars.DamageModifier, UpdateDamageModifier, true); // Sunrise-Edit
+            _configurationManager.OnValueChanged(SunriseCCVars.HealModifier, UpdateHealModifier, true); // Sunrise-Edit
         }
 
         /// <summary>
@@ -154,8 +158,10 @@ namespace Content.Shared.Damage
                 return null;
 
             // Sunrise-Start
-            var multiplier = 1f + Variance - _random.NextFloat(0, Variance * 2f);
-            damage *= multiplier;
+            damage = DamageSpecifier.ApplyModifier(damage, DamageModifier, HealModifier);
+
+            var varianceMultiplier = 1f + Variance - _random.NextFloat(0, Variance * 2f);
+            damage *= varianceMultiplier;
             // Sunrise-End
 
             // Apply resistances
@@ -297,9 +303,19 @@ namespace Content.Shared.Damage
         }
 
         // Sunrise-Start
-        private void UpdateVariance(float variance)
+        private void UpdateVariance(float value)
         {
-            Variance = variance;
+            Variance = value;
+        }
+
+        private void UpdateHealModifier(float value)
+        {
+            HealModifier = value;
+        }
+
+        private void UpdateDamageModifier(float value)
+        {
+            DamageModifier = value;
         }
         // Sunrise-End
     }

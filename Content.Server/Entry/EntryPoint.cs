@@ -46,6 +46,7 @@ namespace Content.Server.Entry
         private EuiManager _euiManager = default!;
         private IVoteManager _voteManager = default!;
         private ServerUpdateManager _updateManager = default!;
+        private ServersHubManager _serversHubManager = default!; // Sunrise-Edit
         private PlayTimeTrackingManager? _playTimeTracking;
         private IEntitySystemManager? _sysMan;
         private IServerDbManager? _dbManager;
@@ -92,6 +93,7 @@ namespace Content.Server.Entry
                 _euiManager = IoCManager.Resolve<EuiManager>();
                 _voteManager = IoCManager.Resolve<IVoteManager>();
                 _updateManager = IoCManager.Resolve<ServerUpdateManager>();
+                _serversHubManager = IoCManager.Resolve<ServersHubManager>(); // Sunrise-Edit
                 _playTimeTracking = IoCManager.Resolve<PlayTimeTrackingManager>();
                 _sysMan = IoCManager.Resolve<IEntitySystemManager>();
                 _dbManager = IoCManager.Resolve<IServerDbManager>();
@@ -181,6 +183,7 @@ namespace Content.Server.Entry
                 case ModUpdateLevel.FramePostEngine:
                     _updateManager.Update();
                     _playTimeTracking?.Update();
+                    _serversHubManager.Update(); // Sunrise-Edit
                     break;
             }
         }

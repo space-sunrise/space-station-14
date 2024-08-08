@@ -1,154 +1,106 @@
 - type: loadout
   id: StraplessBra
-  equipment: BraStrapless
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: BraStrapless
   equipment:
     bra: ClothingBraStrapless
 
 - type: loadout
   id: WhiteNekoBra
-  equipment: BraNekoWhite
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: BraNekoWhite
   equipment:
     bra: ClothingBraNekoWhite
 
 - type: loadout
   id: BlackNekoBra
-  equipment: BraNekoBlack
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: BraNekoBlack
   equipment:
     bra: ClothingBraNekoBlack
 
 - type: loadout
   id: AssblastusaBra
-  equipment: BraAssblastusa
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: BraAssblastusa
   equipment:
     bra: ClothingBraAssblastusa
 
 - type: loadout
   id: BikiniBra
-  equipment: BraBikini
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: BraBikini
   equipment:
     bra: ClothingBraBikini
 
 - type: loadout
   id: BraletteBra
-  equipment: BraBralette
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: BraBralette
   equipment:
     bra: ClothingBraBralette
 
 - type: loadout
   id: CommieBra
-  equipment: BraCommie
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: BraCommie
   equipment:
     bra: ClothingBraCommie
 
 - type: loadout
   id: KinkyBra
-  equipment: BraKinky
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: BraKinky
   equipment:
     bra: ClothingBraKinky
 
 - type: loadout
   id: LaceBra
-  equipment: BraLace
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: BraLace
   equipment:
     bra: ClothingBraLace
 
 - type: loadout
   id: SportBra
-  equipment: BraSport
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: BraSport
   equipment:
     bra: ClothingBraSport
 
 - type: loadout
   id: ThongBra
-  equipment: BraThong
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: BraThong
   equipment:
     bra: ClothingBraThong
 
 - type: loadout
   id: UkBra
-  equipment: BraUk
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: BraUk
   equipment:
     bra: ClothingBraUk

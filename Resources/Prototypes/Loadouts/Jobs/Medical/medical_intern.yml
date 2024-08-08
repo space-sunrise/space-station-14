@@ -1,24 +1,10 @@
 # Jumpsuit
 - type: loadout
   id: WhiteJumpsuit
-  equipment: WhiteJumpsuit
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: MaleMoment
-
-- type: startingGear
-  id: WhiteJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorWhite
 
 - type: loadout
-  id: WhiteJumpskirt
-  equipment: WhiteJumpskirt
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: WomanMoment
-
-- type: startingGear
   id: WhiteJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtColorWhite

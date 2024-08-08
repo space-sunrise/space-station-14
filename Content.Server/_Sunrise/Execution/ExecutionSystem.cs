@@ -336,7 +336,12 @@ public sealed class ExecutionSystem : EntitySystem
                 prototype.TryGetComponent<ProjectileComponent>(out var projectileA, _componentFactory); // sloth forgive me
                 if (projectileA != null)
                 {
-                    damage = projectileA.Damage * cartridge.Count;
+                    damage = projectileA.Damage;
+                }
+                prototype.TryGetComponent<ProjectileSpreadComponent>(out var projectilespreaderA, _componentFactory);
+                if (projectilespreaderA != null)
+                {
+                    damage *= projectilespreaderA.Count;
                 }
 
                 // Expend the cartridge
