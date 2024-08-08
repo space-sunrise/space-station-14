@@ -19,6 +19,7 @@ using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Stealth.Components;
 using Content.Shared.Damage.Components;
 using Content.Server.Radio.Components;
+using Content.Shared.Sunrise.CollectiveMind;
 
 namespace Content.Server.Changeling;
 
@@ -605,11 +606,9 @@ public sealed partial class ChangelingSystem : EntitySystem
         }
 
         EnsureComp<HivemindComponent>(uid);
-        var reciever = EnsureComp<IntrinsicRadioReceiverComponent>(uid);
-        var transmitter = EnsureComp<IntrinsicRadioTransmitterComponent>(uid);
-        var radio = EnsureComp<ActiveRadioComponent>(uid);
-        radio.Channels = new() { "Hivemind" };
-        transmitter.Channels = new() { "Hivemind" };
+        var collectiveMindComponent = EnsureComp<CollectiveMindComponent>(uid);
+        if (!collectiveMindComponent.Minds.Contains("Changeling"))
+            collectiveMindComponent.Minds.Add("Changeling");
 
         _popup.PopupEntity(Loc.GetString("changeling-hivemind-start"), uid, uid);
     }
