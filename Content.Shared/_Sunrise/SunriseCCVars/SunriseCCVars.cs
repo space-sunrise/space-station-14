@@ -213,4 +213,9 @@ public sealed class SunriseCCVars
     public static readonly CVarDef<float> DamageVariance =
         CVarDef.Create("damage.variance", 0.15f, CVar.SERVER | CVar.REPLICATED);
 
+    public static readonly CVarDef<float> DamageModifier =
+        CVarDef.Create("damage.damage_modifier", 0.5f, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<float> HealModifier =
+        CVarDef.Create("damage.heal_modifier", 2f, CVar.SERVER | CVar.REPLICATED);
 }
