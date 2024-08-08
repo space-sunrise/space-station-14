@@ -171,7 +171,7 @@ public sealed partial class RazorSingleMarkingPicker : BoxContainer
             if (marking.SponsorOnly)
             {
                 item.Disabled = false;
-                item.Text = $"{GetMarkingName(marking)} [СПОНСОР] ";
+                item.Text = Loc.GetString("sponsor-marking", ("name", GetMarkingName(marking)));
             }
 
             if (_markings[Slot].MarkingId == id)

@@ -631,7 +631,7 @@ namespace Content.Client.Lobby.UI
                     !_sponsorsMgr.GetClientPrototypes().Contains(_species[i].ID))
                 {
                     SpeciesButton.SetItemDisabled(SpeciesButton.GetIdx(i), true);
-                    SpeciesButton.SetItemText(SpeciesButton.GetIdx(i), $"{name} [СПОНСОР]"); // Sunrise-edit
+                    SpeciesButton.SetItemText(SpeciesButton.GetIdx(i), Loc.GetString("sponsor-marking", ("name", name)); // Sunrise-edit
                 }
                 // Sunrise-Sponsors-End
             }

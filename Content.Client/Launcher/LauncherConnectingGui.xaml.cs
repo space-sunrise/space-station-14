@@ -75,7 +75,7 @@ namespace Content.Client.Launcher
         {
             var totalPlayers = servers.Sum(server => server.CurrentPlayers);
             var maxPlayers = servers.Sum(server => server.MaxPlayers);
-            ServersHubHeaderLabel.Text = $"Сейчас играет: {totalPlayers}/{maxPlayers}";
+            ServersHubHeaderLabel.Text = Loc.GetString("currently-playing-players", ("total", totalPlayers), ("max", maxPlayers));
         }
 
         // Just button, there's only one at once anyways :)
