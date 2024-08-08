@@ -26,8 +26,6 @@
     - SemiAuto
     soundGunshot:
       collection: xm1014 # Sunrise-Edit
-      params:
-        volume: 10
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: BallisticAmmoProvider
@@ -76,8 +74,6 @@
     - FullAuto
     soundGunshot:
       collection: xm1014 # Sunrise-Edit
-      params:
-        volume: 10
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: ItemSlots
@@ -123,8 +119,6 @@
     fireRate: 2
     soundGunshot:
       collection: m3 # Sunrise-Edit
-      params:
-        volume: 10
   - type: BallisticAmmoProvider
     capacity: 2
   - type: Construction
@@ -159,8 +153,6 @@
   - type: Gun
     soundGunshot:
       collection: xm1014 # Sunrise-Edit
-      params:
-        volume: 10
 
 - type: entity
   parent: WeaponShotgunEnforcer
@@ -172,8 +164,6 @@
   - type: Gun
     soundGunshot:
       collection: xm1014 # Sunrise-Edit
-      params:
-        volume: 10
 
 - type: entity
   name: Kammerer
@@ -199,8 +189,6 @@
   - type: Gun
     soundGunshot:
       collection: m3 # Sunrise-Edit
-      params:
-        volume: 10
 
 - type: entity
   name: sawn-off shotgun
@@ -219,8 +207,6 @@
     fireRate: 4
     soundGunshot:
       collection: m3 # Sunrise-Edit
-      params:
-        volume: 10
   - type: BallisticAmmoProvider
     capacity: 2
   - type: Construction
@@ -259,8 +245,6 @@
     fireRate: 4
     soundGunshot:
       collection: m3 # Sunrise-Edit
-      params:
-        volume: 10
   - type: BallisticAmmoProvider
     capacity: 1
   - type: Construction
@@ -311,8 +295,6 @@
     fireRate: 4 #No reason to stifle the firerate since you have to manually reload every time anyways.
     soundGunshot:
       collection: m3 # Sunrise-Edit
-      params:
-        volume: 10
   - type: BallisticAmmoProvider
     capacity: 1
     proto: null

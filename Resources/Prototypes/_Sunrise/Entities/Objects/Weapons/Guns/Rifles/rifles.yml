@@ -218,8 +218,6 @@
     maxAngle: 45
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/g36/g36_shot.ogg
-    soundv31:
-      path: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/v31.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -276,8 +274,6 @@
     maxAngle: 45
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/m28/m28.ogg
-    soundv31:
-      path: /Audio/_Sunrise/Weapons/Guns/Rifles/m28/m28_v31.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -334,8 +330,6 @@
     maxAngle: 45
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/ar18/ar18_shot.ogg
-    soundv31:
-      path: /Audio/_Sunrise/Weapons/Guns/Snipers/Different/v31.ogg
   - type: ItemSlots
     slots:
       gun_magazine:

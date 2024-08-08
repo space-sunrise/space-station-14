@@ -94,8 +94,8 @@
 - type: soundCollection
   id: EearthGovernmentMachineGunShot
   files:
-  - /Audio/_Sunrise/Weapons/Guns/Gunshots/rEG_MG_1.ogg
-  - /Audio/_Sunrise/Weapons/Guns/Gunshots/rEG_MG_2.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/EG_MG_1.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/EG_MG_2.ogg
 
 - type: soundCollection
   id: glock22

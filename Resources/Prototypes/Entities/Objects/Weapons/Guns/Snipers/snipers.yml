@@ -71,8 +71,6 @@
     - SemiAuto
     soundGunshot:
       collection: awp
-      params:
-        volume: 10
     # Sunrise-End
 
 - type: entity

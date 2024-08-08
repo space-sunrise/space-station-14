@@ -1,7 +1,5 @@
 ent-PowerpackMinigunMG100 = силовой агрегат (.30 мм)
     .desc = { ent-BaseItem.desc }
-ent-WeaponEarthGovLaserSniper = Лазерная снайперская винтовка землянина
-    .desc = Лазерная снайперская винтовка стандартного выпуска правительства Земли, используемая армией и полицией.
 ent-WeaponEarthGovLaserMG = Лазерный пулемет землянина
     .desc = Лазерный пулемет стандартного выпуска правительства Земли, используемый армией. Тяжелый и смертоносный.
 ent-WeaponEarthGovLaserCarbine = Лазерный карабин землянина
@@ -127,7 +125,6 @@ ent-Cartridge57x28 = патрон (5.7x28 мм)
 ent-Cartridge062 = патрон (.62 мм)
 ent-Cartridge556RifleMachine = патрон (5.62 мм)
 ent-Cartridge556 = патрон (5.56 мм)
-ent-CartridgeAntiMateriel = патрон (.60 мм)
 ent-Cartridge762x39 = патрон (.30 мм)
 ent-Cartridge762x54 = патрон (7.62x54 мм)
 ent-Cartridge050 = патрон (.50 мм)
