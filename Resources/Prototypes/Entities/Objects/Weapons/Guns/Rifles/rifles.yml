@@ -68,8 +68,6 @@
     fireRate: 5
     soundGunshot:
       collection: ak47 # Sunrise-Edit
-      params:
-        volume: 10
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
@@ -164,8 +162,6 @@
   - type: Gun
     soundGunshot:
       collection: galil # Sunrise-Edit
-      params:
-        volume: 10
   - type: ItemSlots
     slots:
       gun_magazine:

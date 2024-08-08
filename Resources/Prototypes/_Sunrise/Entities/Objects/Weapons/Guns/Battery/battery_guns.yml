@@ -300,3 +300,262 @@
     zeroVisible: true
   - type: Appearance
   - type: EmpImmune
+
+# Sunrise Colonial Marines
+
+- type: entity
+  name: EarthGov laser pistol
+  parent: BaseWeaponBatterySmall
+  id: WeaponEarthGovLaserPistol
+  components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Laser/EG_Pistol.ogg
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Battery/EG_P.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-2
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLaser
+    fireCost: 62.5
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  name: EarthGov laser rifle
+  parent: BaseWeaponBattery
+  id: WeaponEarthGovLaserRifle
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Battery/EG_R/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-2
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Battery/EG_R/tiny.rsi
+  - type: Item
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Battery/EG_R/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -44
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    fireRate: 3
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Laser/EG_R.ogg
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: true
+  - type: Battery
+    maxCharge: 1500
+    startingCharge: 1500
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLaser
+    fireCost: 50
+  - type: Wieldable
+  - type: UseDelay
+    delay: 1.5
+
+- type: entity
+  name: EarthGov laser carbine
+  parent: BaseWeaponBattery
+  id: WeaponEarthGovLaserCarbine
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Battery/EG_C/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-2
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Battery/EG_C/tiny.rsi
+  - type: Item
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Battery/EG_C/tiny.rsi
+    size: Large
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -43
+  - type: Gun
+    minAngle: 33
+    maxAngle: 50
+    fireRate: 3
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Laser/EG_C.ogg
+      params:
+        volume: -1
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: true
+  - type: Battery
+    maxCharge: 2000
+    startingCharge: 2000
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLaser
+    fireCost: 50
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.5
+
+- type: entity
+  name: EarthGov laser machine gun
+  parent: BaseWeaponBattery
+  id: WeaponEarthGovLaserMG
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Battery/EG_MG/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-2
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Battery/EG_MG/tiny.rsi
+  - type: Item
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Battery/EG_MG/tiny.rsi
+    size: Huge
+  - type: GunWieldBonus
+    minAngle: -12
+    maxAngle: -18
+  - type: Gun
+    minAngle: 16
+    maxAngle: 14
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 3.6
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      collection: EearthGovernmentMachineGunShot
+      params:
+        volume: -1
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: true
+  - type: Battery
+    maxCharge: 7500
+    startingCharge: 7500
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLaser
+    fireCost: 50
+  - type: Wieldable
+  - type: UseDelay
+    delay: 2.5
+
+- type: entity
+  name: EarthGov Experemental X-Ray
+  parent: BaseWeaponBattery
+  id: WeaponEarthGovXRay
+  suffix: SUNRISE14CM
+  description: Earth Government Experemental x-ray weapon, it looks like it emits radiation.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Battery/EGE_XR/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-5
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Battery/EGE_XR/tiny.rsi
+  - type: Item
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Battery/EGE_XR/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -44
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    fireRate: 3
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Laser/EG_XR.ogg
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: true
+  - type: Battery
+    maxCharge: 1500
+    startingCharge: 1500
+  - type: HitscanBatteryAmmoProvider
+    proto: XrayLaser
+    fireCost: 100
+  - type: Wieldable
+  - type: UseDelay
+    delay: 2.5
+
+- type: entity
+  name: EarthGov heavy laser rifle
+  parent: BaseWeaponBattery
+  id: WeaponEarthGovLaserSniper
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Battery/EG_Sniper/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-2
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Battery/EG_Sniper/tiny.rsi
+  - type: Item
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Battery/EG_Sniper/tiny.rsi
+  - type: GunRequiresWield
+  - type: GunWieldBonus
+    minAngle: -93
+    maxAngle: -94
+  - type: Gun
+    minAngle: 94
+    maxAngle: 95
+    fireRate: 1.5
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Laser/EG_Sniper.ogg
+  - type: MagazineVisuals
+    magState: mag
+    steps: 3
+    zeroVisible: true
+  - type: Battery
+    maxCharge: 1500
+    startingCharge: 1500
+  - type: HitscanBatteryAmmoProvider
+    proto: RedHeavyLaser
+    fireCost: 100
+  - type: Wieldable
+  - type: UseDelay
+    delay: 2.5
+  - type: ZoomableGun

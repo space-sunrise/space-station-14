@@ -11,3 +11,517 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineAK
+  name: Universal AK magazne
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineAK
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeLightRifle  # 762x39
+    proto: CartridgeLightRifle  # 762x39
+    capacity: 30
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/rifle_machine.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineP90
+  name: P90 magazine
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+    - MagazineP90
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgeLightRifle  # 57x28
+    whitelist:
+      tags:
+      - CartridgeLightRifle  # 57x28
+    capacity: 50
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/p90.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineMP38
+  name: MP38 magazine
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+    - MagazineMP38
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgeLightRifle  # 57x28
+    whitelist:
+      tags:
+      - CartridgeLightRifle  # 57x28
+    capacity: 45
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/mp38.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineMP7
+  name: MP7 magazine
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+    - MagazineMP7
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgeLightRifle  # 57x28
+    whitelist:
+      tags:
+      - CartridgeLightRifle  # 57x28
+    capacity: 45
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/mp7.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineMP5
+  name: MP5 magazine
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+    - MagazineMP5
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgeLightRifle  # 57x28
+    whitelist:
+      tags:
+      - CartridgeLightRifle  # 57x28
+    capacity: 45
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/mp5.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineScorpion
+  name: Scorpion magazine
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+    - MagazineScorpion
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgeLightRifle  # 57x28
+    whitelist:
+      tags:
+      - CartridgeLightRifle  # 57x28
+    capacity: 45
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/scorpion.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineNewVector
+  name: New Vector magazine
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+    - MagazineNewVector
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgeLightRifle  # 57x28
+    whitelist:
+      tags:
+      - CartridgeLightRifle  # 57x28
+    capacity: 45
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/new_vector.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineRPD
+  name: RPD magazine
+  parent: BaseMagazineLightRifle
+  components:
+  - type: Tag
+    tags:
+    - MagazineRPD
+  - type: BallisticAmmoProvider
+    proto: CartridgeLightRifle  # 762x39
+    capacity: 80
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/pk_box.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 7
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineMachineGunMG42
+  name: MG42 magazine
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+    - MagazineMachineGunMG42
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgeLightRifle  # 762x39
+    whitelist:
+      tags:
+      - CartridgeLightRifle  # 762x39
+    capacity: 250
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/mg42.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineLightMachineGunMG60
+  name: MG60 magazine
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+    - MagazineLightMachineGunMG60
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgeLightRifle  # 762x39
+    whitelist:
+      tags:
+      - CartridgeLightRifle  # 762x39
+    capacity: 250
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/mg60.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineVP70
+  name: VP70 magazine
+  parent: BaseItem
+  components:
+    - type: Tag
+      tags:
+        - MagazineVP70
+    - type: BallisticAmmoProvider
+      proto: CartridgePistol  # 57x28
+      mayTransfer: true
+      whitelist:
+        tags:
+          - CartridgePistol  # 57x28
+      capacity: 16
+    - type: Item
+      size: Small
+    - type: ContainerContainer
+      containers:
+        ballistic-ammo: !type:Container
+    - type: Sprite
+      sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/vp70.rsi
+      layers:
+        - state: base
+          map: ["enum.GunVisualLayers.Base"]
+        - state: mag-1
+          map: ["enum.GunVisualLayers.Mag"]
+    - type: MagazineVisuals
+      magState: mag
+      steps: 6
+      zeroVisible: false
+    - type: Appearance
+
+- type: entity
+  id: MagazineGlock22
+  name: Glock22 magazine
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+    - MagazineGlock22
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgePistol  # 57x28
+    whitelist:
+      tags:
+      - CartridgePistol  # 57x28
+    capacity: 15
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/glock22.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineHIBrowning
+  name: HI Browning magazine
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+    - MagazineHIBrowning
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgePistol  # 57x28
+    whitelist:
+      tags:
+      - CartridgePistol  # 57x28
+    capacity: 15
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/hi_browning.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineACP14
+  name: ACP14 magazine
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+    - MagazineACP14
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgePistol  # 57x28
+    whitelist:
+      tags:
+      - CartridgePistol  # 57x28
+    capacity: 15
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/acp14.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazinePPSH41
+  name: PPSH magazine
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+    - MagazinePPSH41
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgeLightRifle  # 57x28
+    whitelist:
+      tags:
+      - CartridgeLightRifle  # 57x28
+    capacity: 71
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/ppsh41.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineSTG44
+  name: STG44 magazine
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+    - MagazineSTG44
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+      - CartridgeLightRifle  # 762x39
+    proto: CartridgeLightRifle  # 762x39
+    capacity: 30
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/stg44.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance

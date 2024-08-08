@@ -784,6 +784,31 @@
       - WeaponDisablerPractice
       - WeaponLaserCarbinePractice
       - Zipties
+    # Sunrise-start
+      - MagazineM16A4
+      - MagazineLightMachineGunMG60
+      - MagazinePPSH41
+      - MagazineRPD
+      - MagazineNewVector
+      - MagazineMP38
+      - MagazineMP5
+      - MagazineMP7
+      - MagazineP90
+      - MagazineScorpion
+      - MagazineAK
+      - MagazineAR18
+      - MagazineG36
+      - MagazineM28
+      - MagazineFamas
+      - MagazineBR64
+      - MagazineDragunov
+      - MagazineV31
+      - MagazineACP14
+      - MagazineGlock22
+      - MagazineVP70
+      - MagazineHIBrowning
+      - MagazineDeagle
+    # Sunrise-end
     dynamicRecipes:
       - BoxBeanbag
       - BoxShotgunIncendiary

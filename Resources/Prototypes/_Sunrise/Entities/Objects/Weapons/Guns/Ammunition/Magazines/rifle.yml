@@ -11,3 +11,37 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineV31
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+    - MagazineV31
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    capacity: 40
+    proto: CartridgeRocket20
+    whitelist:
+      tags:
+      - CartridgeRocket20
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Item
+    size: Small
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/v31.rsi
+  - type: Sprite
+    netsync: false
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/v31.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance

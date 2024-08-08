@@ -25,3 +25,168 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineFamas
+  name: Famas magazine
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineFamas
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgePistol  # 556
+    whitelist:
+      tags:
+        - CartridgePistol  # 556
+    capacity: 25
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/famas.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineG36
+  name: G36 magazine
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineG36
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgePistol  # 556
+    whitelist:
+      tags:
+        - CartridgePistol  # 556
+    capacity: 25
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/g36.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineM28
+  name: M28 magazine
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineM28
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgePistol  # 556
+    whitelist:
+      tags:
+        - CartridgePistol  # 556
+    capacity: 25
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/m28.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineAR18
+  name: AR18 magazine
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+    - MagazineAR18
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgePistol  # 556
+    whitelist:
+      tags:
+      - CartridgePistol  # 556
+    capacity: 25
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/ar18.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineM16A4
+  name: M16A4 magazine
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+    - MagazineM16A4
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgePistol  # 556
+    whitelist:
+      tags:
+      - CartridgePistol  # 556
+    capacity: 25
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/m16a4.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
