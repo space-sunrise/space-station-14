@@ -79,6 +79,12 @@ public sealed class PopupUIController : UIController, IOnStateEntered<GameplaySt
                 font = _largeFont;
                 color = Color.Red;
                 break;
+            // Sunrise-Start
+            case PopupType.LargeGreen:
+                font = _largeFont;
+                color = Color.LightGreen;
+                break;
+            // Sunrise-End
         }
 
         var dimensions = handle.GetDimensions(font, popup.Text, scale);

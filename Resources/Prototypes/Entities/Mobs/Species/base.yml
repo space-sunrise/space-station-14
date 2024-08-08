@@ -173,6 +173,7 @@
   - type: Dna
   - type: MindContainer
     showExamineInfo: true
+  - type: CanEnterCryostorage
   - type: InteractionPopup
     successChance: 1
     interactSuccessString: hugging-success-generic
@@ -192,6 +193,8 @@
         type: HumanoidMarkingModifierBoundUserInterface
       enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
   - type: Puller
   - type: Speech
     speechSounds: Alto
@@ -215,10 +218,12 @@
     - CanPilot
     - FootstepSound
     - DoorBumpOpener
+  # Sunrise-Start
   - type: Paws
     screamInterval: 3
     thresholdDamage: 5
     coughInterval: 5
+  # Sunrise-End
 
 - type: entity
   save: false
@@ -231,8 +236,10 @@
   id: BaseMobSpeciesOrganic
   abstract: true
   components:
-  - type: Carriable # Sunrise-edit
-  - type: CanEscapeInventory # Sunrise-edit
+  # Sunrise-Start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-End
   - type: Barotrauma
     damage:
       types:
@@ -354,6 +361,7 @@
   - type: Body
     prototype: Human
     requiredLegs: 2
+  - type: Absorbable
   - type: UserInterface
     interfaces:
       enum.HumanoidMarkingModifierKey.Key: # sure, this can go here too

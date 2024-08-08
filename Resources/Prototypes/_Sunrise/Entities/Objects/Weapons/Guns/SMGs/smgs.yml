@@ -49,3 +49,370 @@
         whitelist:
           tags:
             - CartridgeMagnum
+
+- type: entity
+  name: P-90
+  parent: BaseWeaponSubMachineGun
+  id: WeaponSubMachineGunP90
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/p90.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: GunWieldBonus
+    minAngle: -23
+    maxAngle: -43
+  - type: Gun
+    minAngle: 43
+    maxAngle: 60
+    fireRate: 6
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/SMGs/p90_shot.ogg
+      params:
+        volume: -1
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineP90
+        insertSound: /Audio/_Sunrise/Weapons/Guns/SMGs/p90_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/SMGs/p90_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineP90
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifle  # 57x28
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeLightRifle  # 57x28
+  - type: MagazineVisuals
+    magState: mag
+    steps: 6
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.5
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/_Sunrise/Weapons/Guns/SMGs/p90_cocked.ogg
+
+- type: entity
+  name: MP-38
+  parent: BaseWeaponSubMachineGun
+  id: WeaponSubMachineGunMP38
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/mp38/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/mp38/tiny.rsi
+  - type: Item
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/mp38/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -22
+    maxAngle: -28
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    fireRate: 5
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistolSubMachineGun
+        insertSound: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazinePistolSubMachineGun
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgePistol
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.8
+
+- type: entity
+  name: MP7
+  parent: BaseWeaponSubMachineGun
+  id: WeaponSubMachineGunMP7
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/mp7/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/mp7/tiny.rsi
+  - type: Item
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/mp7/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -22
+    maxAngle: -28
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    fireRate: 8
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/mp7/mp7_shot.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineMP7
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/mp7/mp7_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/mp7/mp7_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineMP7
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifle  # 57x28
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeLightRifle  # 57x28
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.5
+
+- type: entity
+  name: MP5
+  parent: BaseWeaponSubMachineGun
+  id: WeaponSubMachineGunMP5
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/mp5/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/mp5/tiny.rsi
+  - type: Item
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/mp5/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -22
+    maxAngle: -28
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    fireRate: 6
+    soundGunshot:
+      collection: mp5
+      params:
+        volume: -1
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineMP5
+        insertSound: /Audio/_Sunrise/Weapons/Guns/SMGs/mp5/mp5_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/SMGs/mp5/mp5_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineMP5
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifle  # 57x28
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeLightRifle  # 57x28
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.5
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp5/mp5_cocked.ogg
+
+- type: entity
+  name: Scorpion VZ-61
+  parent: BaseWeaponSubMachineGun
+  id: WeaponSubMachineGunSkorpion
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/skorpion.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    minAngle: 2
+    maxAngle: 56
+    fireRate: 7
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/SMGs/scorpion/scorpion_shot.ogg
+  - type: Clothing
+    slots:
+    - Pocket
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistolSubMachineGunRubber
+        insertSound: /Audio/_Sunrise/Weapons/Guns/SMGs/scorpion/scorpion_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/SMGs/scorpion/scorpion_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazinePistolSubMachineGun
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistolRubber  # 57x28
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgePistol  # 57x28
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  name: New Vector
+  parent: BaseWeaponSubMachineGun
+  id: WeaponSubMachineGunNewVector
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/vector/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/vector/tiny.rsi
+  - type: Item
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/vector/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -22
+    maxAngle: -28
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    fireRate: 14
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/SMGs/new_vector/vector_shot.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistolSubMachineGun
+        insertSound: /Audio/_Sunrise/Weapons/Guns/SMGs/new_vector/new_vector_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/SMGs/new_vector/new_vector_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazinePistolSubMachineGun
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol  # 57x28
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgePistol  # 57x28
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.8
+
+- type: entity
+  name: PPSH-41
+  parent: BaseWeaponSubMachineGun
+  id: WeaponSubMachineGunPPSH41
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/ppsh41/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/ppsh41/tiny.rsi
+  - type: Item
+    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/ppsh41/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -22
+    maxAngle: -28
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    fireRate: 6.5
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/SMGs/ppsh41/ppsh_shot.ogg
+      params:
+        volume: -1
+    soundEmpty:
+      path: /Audio/_Sunrise/Weapons/Guns/SMGs/ppsh41/ppsh_empty.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePPSH41
+        insertSound: /Audio/_Sunrise/Weapons/Guns/SMGs/ppsh41/ppsh_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/SMGs/ppsh41/ppsh_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazinePPSH41
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifle  # 57x28
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeLightRifle  # 57x28
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 1.3

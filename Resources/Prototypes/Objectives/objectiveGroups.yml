@@ -34,8 +34,8 @@
   id: TraitorObjectiveGroupState
   weights:
     EscapeShuttleObjective: 1
-    DieObjective: 0.05
-    HijackShuttleObjective: 0.02 # Hijack
+    DieObjective: 0.02 # Скучная задача на самом деле.
+    #HijackShuttleObjective: 0.02 # Нам незачем разрешать рдм в не рдм режиме.
 
 - type: weightedRandom
   id: TraitorObjectiveGroupSocial
@@ -117,4 +117,5 @@
   id: ThiefObjectiveGroupEscape
   weights:
     EscapeThiefShuttleObjective: 1
-#Changeling, crew, wizard, when you code it...
+
+#Crew, wizard, when you code it...

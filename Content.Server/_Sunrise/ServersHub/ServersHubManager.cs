@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
@@ -13,6 +12,7 @@ using Robust.Shared;
 using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.ServersHub;
 
@@ -22,6 +22,7 @@ public sealed partial class ServersHubManager
     [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IServerNetManager _netMgr = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     private readonly List<ServerHubEntry> _serverDataList = new();
 
@@ -32,10 +33,10 @@ public sealed partial class ServersHubManager
     private readonly HttpClient _httpClient = new();
     private ISawmill _sawmill = default!;
 
-    private CancellationTokenSource _cts = new();
+    public TimeSpan NextTick = TimeSpan.Zero;
 
     // Не уверен что надо так часто это делать.
-    private readonly TimeSpan _updateRate = TimeSpan.FromSeconds(15);
+    private readonly TimeSpan _updateRate = TimeSpan.FromSeconds(5);
 
     private static readonly Regex RestrictedNameRegex = ServerNameRegex();
 
@@ -45,8 +46,6 @@ public sealed partial class ServersHubManager
 
         _cfg.OnValueChanged(SunriseCCVars.ServersHubList, OnServerListChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.ServersHubEnable, OnServersHubEnableChanged, true);
-
-        Task.Run(async () => await PeriodicUpdateServerData(_cts.Token));
 
         _netMgr.RegisterNetMessage<MsgFullServerHubList>();
     }
@@ -75,32 +74,23 @@ public sealed partial class ServersHubManager
         _serversList = urls;
     }
 
-    // Ахуенный план, надеждный блядь как швейцарские часы нахуй.
-    private async Task PeriodicUpdateServerData(CancellationToken token)
+    public void Update()
     {
-        try
-        {
-            while (!token.IsCancellationRequested)
-            {
-                await UpdateServerData();
-                await Task.Delay(_updateRate, token);
-            }
-        }
-        catch (TaskCanceledException)
-        {
-            _sawmill.Info($"Task was cancelled");
-        }
+        if (NextTick > _timing.CurTime)
+            return;
+
+        NextTick += _updateRate;
+
+        UpdateServerData();
     }
 
-    private async Task UpdateServerData()
+    private async void UpdateServerData()
     {
         if (!_enable)
             return;
 
         if (_serversList.Count == 0)
             return;
-
-        _cfg.SetCVar(CVars.ResourceUploadingLimitMb, 0f);
 
         _serverDataList.Clear();
 
@@ -176,22 +166,16 @@ public sealed partial class ServersHubManager
         string? Preset,
         string? Round_Start_Time);
 
-    private void SendFullPlayerList(ICommonSession[] sessions)
+    private void SendFullPlayerList(IEnumerable<ICommonSession> sessions)
     {
-        var netMsg = new MsgFullServerHubList();
-        netMsg.ServersHubEntries = _serverDataList;
+        var netMsg = new MsgFullServerHubList
+        {
+            ServersHubEntries = _serverDataList,
+        };
 
         foreach (var session in sessions)
         {
-            try
-            {
-                _netMgr.ServerSendMessage(netMsg, session.Channel);
-            }
-            catch (Exception ex)
-            {
-                // Без данного Exception любые ошибки будут происходить абсолютно незаметно потому что вызывается это в асинхронном таске.
-                _sawmill.Error($"Failed to send event to {session.Name}: {ex}");
-            }
+            _netMgr.ServerSendMessage(netMsg, session.Channel);
         }
     }
 

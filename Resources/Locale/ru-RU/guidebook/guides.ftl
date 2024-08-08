@@ -71,6 +71,7 @@ guide-entry-species = Расы
 guide-entry-antagonists = Антагонисты
 guide-entry-nuclear-operatives = Ядерные оперативники
 guide-entry-traitors = Предатели
+guide-entry-changelings = Генокрад
 guide-entry-zombies = Зомби
 guide-entry-revolutionaries = Революционеры
 guide-entry-minor-antagonists = Малые антагонисты

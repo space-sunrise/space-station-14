@@ -5,6 +5,7 @@
   id: MobFelinidBase
   abstract: true
   components:
+  - type: Absorbable
   - type: OwOAccent
   - type: Speech
     speechVerb: Felinid
