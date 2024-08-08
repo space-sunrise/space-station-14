@@ -1,0 +1,814 @@
+- type: entity
+  id: BorgChassisSecurity
+  parent: BaseBorgChassisNT
+  name: security cyborg
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Silicon/chassis.rsi
+    layers:
+    - state: sec
+    - state: sec_e_r
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: sec_l
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: FlashImmunity
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: BorgCuffed
+  - type: BorgTransponder
+    sprite:
+      sprite: _Sunrise/Mobs/Silicon/chassis.rsi
+      state: sec
+    name: security combat cyborg
+  - type: BorgChassis
+    maxModules: 4
+    moduleWhitelist:
+      tags:
+      - BorgModuleGeneric
+      - BorgModuleSecurity
+    hasMindState: sec_e
+    noMindState: sec_e_r
+  - type: Construction
+    node: security
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Security
+    - Binary
+    - Common
+    - Science
+  - type: ActiveRadio
+    channels:
+    - Security
+    - Binary
+    - Common
+    - Science
+  - type: AccessReader
+    access: [["Security"], ["Command"]]
+  - type: SiliconLawProvider
+    laws: SecurityStatic
+  - type: TTS
+    voice: Sentrybot
+  - type: Access
+    enabled: false
+    tags:
+    - EmergencyShuttleRepealAll
+    - Command
+    - Lawyer
+    - Engineering
+    - Medical
+    - Salvage
+    - Cargo
+    - Research
+    - Service
+    - Maintenance
+    - Brig
+    - Security
+    - External
+    - Janitor
+    - Theatre
+    - Bar
+    - Chemistry
+    - Kitchen
+    - Chapel
+    - Hydroponics
+    - Atmospherics
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - CanPilot
+    - FootstepSound
+    - EmagImmune
+  - type: InnateItem
+    instantActions:
+    - PortableSurveillanceCameraMonitor
+
+- type: entity
+  id: BorgChassisSecurityCombat
+  parent: BaseBorgChassisNT
+  name: security combat cyborg
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Silicon/chassis.rsi
+    layers:
+    - state: sec_mk2
+    - state: sec_mk2_e_r
+      map: [ "enum.BorgVisualLayers.Light" ]
+      shader: unshaded
+      visible: false
+    - state: sec_mk2_l
+      shader: unshaded
+      map: [ "light" ]
+      visible: false
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepCyborgSpider
+      params:
+        volume: -15
+  - type: BorgCuffed
+  - type: FlashImmunity
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: BorgTransponder
+    sprite:
+      sprite: _Sunrise/Mobs/Silicon/chassis.rsi
+      state: sec_mk2
+    name: security combat cyborg
+  - type: BorgChassis
+    maxModules: 4
+    moduleWhitelist:
+      tags:
+      - BorgModuleGeneric
+      - BorgModuleSecurity
+    hasMindState: sec_mk2_e
+    noMindState: sec_mk2_e_r
+  - type: Construction
+    node: securitycombat
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Security
+    - Binary
+    - Common
+    - Science
+  - type: ActiveRadio
+    channels:
+    - Security
+    - Binary
+    - Common
+    - Science
+  - type: AccessReader
+    access: [["Security"], ["Command"]]
+  - type: SiliconLawProvider
+    laws: SecurityStatic
+  - type: TTS
+    voice: Sentrybot
+  - type: PointLight
+    color: "#a4daff"
+    radius: 6
+    energy: 3
+  - type: Access
+    enabled: false
+    tags:
+    - EmergencyShuttleRepealAll
+    - Command
+    - Lawyer
+    - Engineering
+    - Medical
+    - Salvage
+    - Cargo
+    - Research
+    - Service
+    - Maintenance
+    - Brig
+    - Security
+    - External
+    - Janitor
+    - Theatre
+    - Bar
+    - Chemistry
+    - Kitchen
+    - Chapel
+    - Hydroponics
+    - Atmospherics
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2.5
+    baseSprintSpeed : 3.5
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - CanPilot
+    - FootstepSound
+    - EmagImmune
+  - type: InnateItem
+    instantActions:
+    - PortableSurveillanceCameraMonitor
+
+- type: entity
+  id: BorgChassisPeace
+  parent: BaseBorgChassisNT
+  name: peace cyborg
+  components:
+  - type: Sprite
+    layers:
+    - state: peace
+    - state: peace_e_r
+      map: [ "enum.BorgVisualLayers.Light" ]
+      shader: unshaded
+      visible: false
+    - state: peace_l
+      shader: unshaded
+      map: [ "light" ]
+      visible: false
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: SiliconLawProvider
+    laws: PeaceStatic
+  - type: Pacified
+  - type: FlashImmunity
+  - type: FabricateCookie
+    сookieList:
+    - FoodBakedCookieOatmeal
+    - FoodBakedCookieRaisin
+    - FoodBakedCookie
+    - FoodBakedCookieSugar
+    - FoodSnackCookieFortune
+  - type: BorgTransponder
+    sprite:
+      sprite: Mobs/Silicon/chassis.rsi
+      state: peace
+    name: peace cyborg
+  - type: BorgChassis
+    maxModules: 4
+    moduleWhitelist:
+      tags:
+      - BorgModuleGeneric
+      - BorgModuleSecurity
+    hasMindState: peace_e
+    noMindState: peace_e_r
+  - type: Construction
+    node: peace
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Security
+    - Binary
+    - Common
+    - Science
+  - type: ActiveRadio
+    channels:
+    - Security
+    - Binary
+    - Common
+    - Science
+  - type: AccessReader
+    access: [["Security"], ["Command"], ["Research"]]
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepCyborgSpider
+      params:
+        volume: -15
+  - type: Access
+    enabled: false
+    tags:
+    - EmergencyShuttleRepealAll
+    - Command
+    - Lawyer
+    - Engineering
+    - Medical
+    - Salvage
+    - Cargo
+    - Research
+    - Service
+    - Maintenance
+    - Brig
+    - Security
+    - External
+    - Janitor
+    - Theatre
+    - Bar
+    - Chemistry
+    - Kitchen
+    - Chapel
+    - Hydroponics
+    - Atmospherics
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - CanPilot
+    - FootstepSound
+    - EmagImmune
+  - type: InnateItem
+    instantActions:
+    - PortableSurveillanceCameraMonitor
+
+- type: entity
+  id: BorgChassisClown
+  parent: BaseBorgChassisNT
+  name: clown cyborg
+  components:
+  - type: Sprite
+    layers:
+    - state: clown
+    - state: clown_e_r
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: clown_l
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: FabricateSoap
+    soapList:
+    - Soap
+    - SoapNT
+    - SoapDeluxe
+    - SoapHomemade
+  - type: BorgTransponder
+    sprite:
+      sprite: Mobs/Silicon/chassis.rsi
+      state: clown
+    name: clown cyborg
+  - type: BorgChassis
+    maxModules: 4
+    moduleWhitelist:
+      tags:
+      - BorgModuleGeneric
+      - BorgModuleService
+    hasMindState: clown_e
+    noMindState: clown_e_r
+  - type: Construction
+    node: clown
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Service
+    - Binary
+    - Common
+    - Science
+  - type: ActiveRadio
+    channels:
+    - Service
+    - Binary
+    - Common
+    - Science
+  - type: AccessReader
+    access: [["Service"], ["Command"], ["Research"]]
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepClown
+  - type: InnateItem
+    instantActions:
+    - HandheldStationMapUnpowered
+
+- type: entity
+  id: BorgChassisSyndicateReaper
+  parent: BaseBorgChassisSyndicate
+  name: syndicate reaper cyborg
+  components:
+  - type: Construction
+    node: syndicate_reaper
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Silicon/chassis.rsi # Sunrise Resprite
+    layers:
+    - state: syndi_reaper
+    - state: syndi_reaper_e_r
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: syndi_reaper_l
+      shader: unshaded
+      map: ["light"]
+      visible: false
+    - map: ["jumpsuit"]
+    - map: [ "belt" ]
+    - map: [ "id" ]
+    - map: [ "neck" ]
+    - map: [ "back" ]
+    - map: [ "head" ]
+    - map: [ "pocket1" ]
+    - map: [ "pocket2" ]
+  - type: BorgChassis
+    maxModules: 4
+    moduleWhitelist:
+      tags:
+      - BorgModuleSyndicate
+    hasMindState: syndi_reaper_e
+    noMindState: syndi_reaper_e_r
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Syndicate
+    - Binary
+  - type: ActiveRadio
+    channels:
+    - Syndicate
+    - Binary
+  - type: TTS
+    voice: Sentrybot
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Critical
+    - Dead
+  - type: NameIdentifier
+    group: SyndieReaperRobot
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: syndi_reaper
+      Critical:
+        Base: syndi_reaper_critical
+      Dead:
+        Base: syndi_reaper_dead
+  - type: PointLight
+    color: green
+    radius: 6
+    energy: 3
+  - type: Inventory
+    templateId: reaper
+  - type: InventorySlots
+  - type: Body
+    prototype: Reaper
+  - type: Hands
+    showInHands: true
+  - type: Loadout
+    prototypes: [SyndiReaperHardsuitGear]
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: Footstep2CyborgLegs
+      params:
+        volume: -15
+  - type: Vocal
+    sounds:
+      Unsexed: Reaper
+  - type: RandomMetadata
+    nameSegments:
+    - names_first_reaper
+  - type: InnateItem
+    worldTargetActions:
+    - Emag
+
+- type: startingGear
+  id: SyndiReaperHardsuitGear
+  equipment:
+    belt: ClothingBeltReaperWebbing
+
+- type: entity
+  id: BorgChassisERT
+  parent: BaseBorgChassisNT
+  name: Боевой киборг ОБР
+  description: Боевой робот НТ, разработанный для поддержки ОБР в выполнении боевых задач.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Silicon/chassis.rsi
+    layers:
+    - state: ert_borg
+    - state: ert_borg_e_r
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: ert_borg_l
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepCyborgSpider
+      params:
+        volume: -15
+  - type: FlashImmunity
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
+  - type: ShowCriminalRecordIcons
+  - type: GhostRole
+    makeSentient: true
+    allowMovement: true
+    name: Боевой киборг ОБР
+    description: Слава НТ!.
+    rules: Подчиняйтес ОБР и Центральному Командованию.
+  - type: GhostTakeoverAvailable
+  - type: Construction
+    node: ertcombat
+  - type: BorgTransponder
+    sprite:
+      sprite: _Sunrise/Mobs/Silicon/chassis.rsi
+      state: ert_borg
+    name: clown cyborg
+  - type: BorgChassis
+    maxModules: 4
+    moduleWhitelist:
+      tags:
+      - BorgModuleERT
+    hasMindState: ert_borg_e
+    noMindState: ert_borg_e_r
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Security
+    - Binary
+    - Common
+    - Science
+    - Command
+    - CentCom
+  - type: ActiveRadio
+    channels:
+    - Security
+    - Binary
+    - Common
+    - Science
+    - Command
+    - CentCom
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Critical
+      300: Dead
+  - type: AccessReader
+    access: [["Security"], ["Command"], ["Research"]]
+  - type: SiliconLawProvider
+    laws: ERTStatic
+  - type: PointLight
+    color: "#9efce0"
+    radius: 6
+    energy: 4
+  - type: TTS
+    voice: Sentrybot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 175
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Machines/warning_buzzer.ogg
+          params:
+            volume: 5
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:EmptyContainersBehaviour
+        containers:
+        - borg_brain
+        - borg_module
+        - cell_slot
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Access
+    enabled: false
+    tags:
+    - EmergencyShuttleRepealAll
+    - Command
+    - Lawyer
+    - Engineering
+    - Medical
+    - Salvage
+    - Cargo
+    - Research
+    - Service
+    - Maintenance
+    - Brig
+    - Security
+    - External
+    - Janitor
+    - Theatre
+    - Bar
+    - Chemistry
+    - Kitchen
+    - Chapel
+    - Hydroponics
+    - Atmospherics
+  - type: RandomMetadata
+    nameSegments:
+    - BorgNamesERT
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2.5
+    baseSprintSpeed : 4
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - CanPilot
+    - FootstepSound
+    - EmagImmune
+  - type: InnateItem
+    instantActions:
+    - PortableSurveillanceCameraMonitor
+    - HandheldCrewMonitorBorg
+
+- type: dataset
+  id: BorgNamesERT
+  values:
+  - Хал 900
+  - Ева
+  - Прайм
+  - Джет
+  - Арнольд
+  - Систэм
+  - Вавилон
+  - Логан
+  - Гэбриэл
+
+- type: entity
+  id: BorgChassisSyndicateHeavy
+  parent: BaseBorgChassisSyndicate
+  name: Тяжёлый боевой киборг Синдиката
+  description: Модернизированная версия боевого киборга Синдиката, оборудованный тяжёлым оружием и крепким корпусом.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Silicon/heavy_syndicate_borg.rsi
+    layers:
+    - state: heavy
+    - state: heavy_e_r
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: heavy_l
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: Construction
+    node: syndicate_heavy
+  - type: BorgTransponder
+    sprite:
+      sprite: _Sunrise/Mobs/Silicon/heavy_syndicate_borg.rsi
+      state: heavy
+    name: Тяжёлый боевой киборг Синдиката
+  - type: BorgChassis
+    maxModules: 4
+    moduleWhitelist:
+      tags:
+      - BorgModuleSyndicate
+    hasMindState: heavy_e
+    noMindState: heavy_e_r
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Syndicate
+    - Binary
+  - type: ActiveRadio
+    channels:
+    - Syndicate
+    - Binary
+  - type: TriggerOnMobstateChange
+    preventSuicide: true
+    mobState:
+    - Critical
+  - type: OnUseTimerTrigger
+    delay: 3
+    initialBeepDelay: 0
+    beepInterval: 3
+    beepSound: /Audio/Effects/PowerSink/charge_fire.ogg
+  - type: ExplodeOnTrigger
+  - type: GibOnTrigger
+    deleteItems: true
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 5500
+    intensitySlope: 15
+    maxIntensity: 70
+    canCreateVacuum: true
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      400: Critical
+      500: Dead
+  - type: PointLight
+    color: "#f51e0f"
+    radius: 9
+    energy: 6
+  - type: TTS
+    voice: Sentrybot
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 350
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Machines/warning_buzzer.ogg
+          params:
+            volume: 5
+    - trigger:
+        !type:DamageTrigger
+        damage: 700
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:EmptyContainersBehaviour
+        containers:
+        - borg_brain
+        - borg_module
+        - cell_slot
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: RandomHumanoidAppearance
+    randomizeName: False
+  - type: RandomMetadata
+    nameSegments:
+    - BorgHeavyNames
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepCyborgSpider
+      params:
+        volume: -5
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 1.5
+    baseSprintSpeed : 2.5
+  - type: InnateItem
+    worldTargetActions:
+    - Emag
+
+- type: dataset
+  id: BorgHeavyNames
+  values:
+  - Разрушитель
+  - Судный день
+  - Большой Карл
+  - Танк
+  - Страйкер
+  - Трак
+  - Титан
+  - Кронос
+  - Инфильтратор
+
+
+- type: entity
+  id: BorgChassisSyndicateSpider
+  parent: BaseBorgChassisSyndicate
+  name: Киборг диверсант Синдиката
+  description: Маленький робот Синдиката, разработанный для Диверсионного Отряда, оснащён всем необходимым для крупного саботажа.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Silicon/chassis.rsi
+    layers:
+    - state: spider
+    - state: spider_e_r
+      map: [ "enum.BorgVisualLayers.Light" ]
+      shader: unshaded
+      visible: false
+    - state: spider_l
+      shader: unshaded
+      map: [ "light" ]
+      visible: false
+  - type: GhostTakeoverAvailable
+  - type: Construction
+    node: syndicate_spider
+  - type: BorgTransponder
+    sprite:
+      sprite: _Sunrise/Mobs/Silicon/chassis.rsi
+      state: spider
+    name: Киборг диверсант Синдиката
+  - type: BorgChassis
+    maxModules: 4
+    moduleWhitelist:
+      tags:
+      - BorgModuleSyndicate
+    hasMindState: spider_e
+    noMindState: spider_e_r
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Syndicate
+    - Binary
+  - type: ActiveRadio
+    channels:
+    - Syndicate
+    - Binary
+  - type: TriggerOnMobstateChange
+    preventSuicide: true
+    mobState:
+    - Critical
+  - type: OnUseTimerTrigger
+    delay: 3
+    initialBeepDelay: 0
+    beepInterval: 3
+    beepSound: /Audio/Effects/PowerSink/charge_fire.ogg
+  - type: ExplodeOnTrigger
+  - type: GibOnTrigger
+    deleteItems: true
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 500
+    intensitySlope: 15
+    maxIntensity: 30
+    canCreateVacuum: true
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      200: Dead
+  - type: PointLight
+    color: "#f51e0f"
+    radius: 2
+    energy: 2
+  - type: TTS
+    voice: Sentrybot
+  - type: RandomHumanoidAppearance
+    randomizeName: False
+  - type: RandomMetadata
+    nameSegments:
+    - BorgScoutNames
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 5
+  - type: InnateItem
+    worldTargetActions:
+    - Emag
+
+- type: dataset
+  id: BorgScoutNames
+  values:
+  - UNO-3
+  - Рейдер
+  - Бродяга
+  - Чип
+  - НОВА
+  - С-14
+  - Омега
+  - Пиксель

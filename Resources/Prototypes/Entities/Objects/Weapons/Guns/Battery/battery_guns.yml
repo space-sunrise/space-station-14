@@ -220,6 +220,7 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+  - type: EmpImmune  # Sunrise-EMP
   - type: HitscanBatteryAmmoProvider
     proto: RedLaser
     fireCost: 62.5
@@ -258,6 +259,7 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: EmpImmune  # Sunrise-EMP
   - type: HitscanBatteryAmmoProvider
     proto: Pulse
     fireCost: 200
@@ -289,6 +291,7 @@
       - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: EmpImmune  # Sunrise-EMP
   - type: HitscanBatteryAmmoProvider
     proto: Pulse
     fireCost: 200
@@ -316,6 +319,7 @@
     fireRate: 1.5
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: EmpImmune
   - type: HitscanBatteryAmmoProvider
     proto: Pulse
     fireCost: 100

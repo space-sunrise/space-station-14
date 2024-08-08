@@ -12,9 +12,8 @@
   weights:
     CaptainIDStealObjective: 1
     CMOHyposprayStealObjective: 1
-    CMOCrewMonitorStealObjective: 1
+    #CMOCrewMonitorStealObjective: 1 # Sunrise-Edit
     RDHardsuitStealObjective: 1
-    NukeDiskStealObjective: 1
     MagbootsStealObjective: 1
     CorgiMeatStealObjective: 1
     ClipboardStealObjective: 1
@@ -22,6 +21,8 @@
     CaptainJetpackStealObjective: 0.5
     HandTeleporterStealObjective: 0.5
     SecretDocumentsStealObjective: 0.5
+    PlutoniumCoreStealObjective: 0.5
+    NukeDiskStealObjective: 0.25
 
 - type: weightedRandom
   id: TraitorObjectiveGroupKill
@@ -33,8 +34,8 @@
   id: TraitorObjectiveGroupState
   weights:
     EscapeShuttleObjective: 1
-    DieObjective: 0.05
-    #HijackShuttleObjective: 0.02
+    DieObjective: 0.02 # Скучная задача на самом деле.
+    #HijackShuttleObjective: 0.02 # Нам незачем разрешать рдм в не рдм режиме.
 
 - type: weightedRandom
   id: TraitorObjectiveGroupSocial

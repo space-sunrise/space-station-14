@@ -1,0 +1,17 @@
+- type: reagent
+  id: Aphrodesiac
+  name: reagent-name-aphrodesiac
+  group: Special
+  desc: reagent-desc-aphrodesiac
+  physicalDesc: reagent-physical-desc-aphrodesiac
+  flavor: funny
+  color: "#FF00E8"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:PopupMessage
+        type: Local
+        messages: [ "aphrodesiac-effect1", "aphrodesiac-effect2" ]
+        probability: 0.1
+      - !type:LoveEffect
+        effectPower: 2

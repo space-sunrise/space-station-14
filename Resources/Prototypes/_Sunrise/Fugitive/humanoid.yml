@@ -1,0 +1,32 @@
+- type: entity
+  parent: MobHuman
+  id: MobHumanFugitive
+  name: Fugitive
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Loadout
+      prototypes: [FugitiveStartingGear]
+    - type: Fugitive
+    - type: FugitiveCountdown
+    - type: RandomHumanoidAppearance
+
+- type: entity
+  id: SpawnPointGhostFugitive
+  name: Fugitive
+  suffix: DONTMAP, fugitive
+  parent: MarkerBase
+  components:
+    - type: FugitiveSpawner
+    - type: GhostRole
+      name: ghost-role-information-fugitive-name
+      description: ghost-role-information-fugitive-description
+      rules: ghost-role-information-freeagent-rules
+      requirements:
+        - !type:OverallPlaytimeRequirement
+          time: 7200 # 2 hrs
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - state: prisoner
+    - type: GhostTakeoverAvailable

@@ -22,6 +22,8 @@
   icon: "JobIconQuarterMaster"
   supervisors: job-supervisors-captain
   canBeAntag: false
+  radioBold: true # Sunrise-Edit
+  displayWeight: 40  # Sunrise-Edit
   access:
   - Cargo
   - Salvage
@@ -36,6 +38,8 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
+  speciesBlacklist:
+  - Vox # Sunrise-Edit
 
 - type: startingGear
   id: QuartermasterGear

@@ -142,6 +142,8 @@
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
+  - type: TTS
+    voice: Tracer
 
 - type: entity
   name: geras

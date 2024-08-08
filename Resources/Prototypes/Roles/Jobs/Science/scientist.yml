@@ -6,10 +6,11 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Science
-      time: 14400 #4 hrs
+      time: 7200 #2 hrs # Sunrise-RoleTime
   startingGear: ScientistGear
   icon: "JobIconScientist"
   supervisors: job-supervisors-rd
+  displayWeight: 10  # Sunrise
   access:
   - Research
   - Maintenance
@@ -18,6 +19,7 @@
   id: ScientistGear
   equipment:
     ears: ClothingHeadsetScience
+    id: SciencePDA
   #storage:
     #back:
     #- Stuff

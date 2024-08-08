@@ -19,7 +19,8 @@
       - id: DoorRemoteArmory
       - id: ClothingOuterHardsuitWarden
       - id: HoloprojectorSecurity
-      - id: BookSpaceLaw
+      - id: HyperLinkBookCorporateLaw
+      - id: HandheldCriminalRecordsMonitor  # Sunrise-CriminalRecords
 
 - type: entity
   id: LockerWardenFilled
@@ -30,6 +31,7 @@
     contents:
       - id: FlashlightSeclite
       - id: WeaponDisabler
+      - id: ClothingHeadHatCapWardenAlt
       - id: ClothingBeltSecurityFilled
       - id: Flash
       - id: ClothingEyesGlassesSecurity
@@ -38,10 +40,12 @@
       - id: ClothingShoesBootsJack
       - id: ClothingOuterCoatWarden
       - id: ClothingOuterWinterWarden
+      - id: ClothingOuterCoatWardenAlt
       - id: RubberStampWarden
       - id: DoorRemoteArmory
       - id: HoloprojectorSecurity
-      - id: BookSpaceLaw
+      - id: HyperLinkBookCorporateLaw
+      - id: HandheldCriminalRecordsMonitor  # Sunrise-CriminalRecords
 
 - type: entity
   id: LockerSecurityFilled
@@ -66,9 +70,11 @@
       - id: ClothingShoesBootsJack
       - id: WeaponMeleeNeedle
         prob: 0.1
+      - id: ClothingOuterCoatSecurityOvercoat
+        prob: 0.2
       - id: HoloprojectorSecurity
         prob: 0.6
-      - id: BookSpaceLaw
+      - id: HyperLinkBookCorporateLaw
         prob: 0.5
 
 - type: entity
@@ -82,7 +88,7 @@
       - id: WeaponDisabler
       - id: TrackingImplanter
         amount: 2
-      - id: ClothingOuterHardsuitBrigmedic
+      - id: ClothingOuterHardsuitBrigmedicSunrise  # Sunrise-edit
       - id: BoxSterileMask
       - id: ClothingHeadHatBeretBrigmedic
       - id: ClothingOuterCoatAMG
@@ -105,6 +111,11 @@
         prob: 0.7
       - id: ClothingNeckCloakMoth #bzzz Moth-pocalypse
         prob: 0.15
+      - id: ClothingHeadHelmetSecurityMedic
+      - id: ClothingOuterVestSecurityMedic
+        prob: 0.5
+      - id: ClothingOuterCoatLabSecurityMedic
+        prob: 0.5
 
 - type: entity
   id: LockerDetectiveFilled
@@ -129,6 +140,7 @@
       - id: HoloprojectorSecurity
       - id: BoxEvidenceMarkers
       - id: HandLabeler
+      - id: PortableSurveillanceCameraMonitor # Sunrise-edit
 
 - type: entity
   id: ClosetBombFilled

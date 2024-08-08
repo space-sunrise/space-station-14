@@ -109,6 +109,8 @@
   - type: StepTriggerImmune
   - type: NoSlip
   - type: Insulated
+  - type: TTS
+    voice: FactCore # Sunrise-TTS
 
 - type: entity
   parent: MobSiliconBase
@@ -253,6 +255,7 @@
   - MobSiliconBase
   - ShowMedicalIcons
   - StripableInventoryBase
+  - FlyingMobBase
   id: MobMedibot
   name: medibot
   description: No substitute for a doctor, but better than nothing.
@@ -278,7 +281,7 @@
         reagent: SpaceDrugs
         quantity: 25
   - type: Sprite
-    sprite: Mobs/Silicon/Bots/medibot.rsi
+    sprite: _Sunrise/Mobs/Silicon/Bots/medibot.rsi  # Sunrise-medibot
     state: medibot
   - type: HTN
     rootTask:
@@ -286,7 +289,6 @@
   - type: Construction
     graph: MediBot
     node: bot
-  - type: Anchorable
   - type: InteractionPopup
     interactSuccessString: petting-success-medibot
     interactFailureString: petting-failure-medibot
@@ -296,6 +298,25 @@
     pack: MedibotAds
   - type: Inventory
     templateId: medibot
+  # Sunrise-Start
+  - type: AmbientSound
+    enabled: true
+    volume: 0
+    range: 8
+    sound:
+      path: /Audio/_Sunrise/Effects/Flying/medibot.ogg
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 50
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  # Sunrise-End
 
 - type: entity
   parent:

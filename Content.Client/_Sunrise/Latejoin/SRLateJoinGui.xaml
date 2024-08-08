@@ -1,0 +1,25 @@
+<controls:FancyWindow
+                 xmlns="https://spacestation14.io"
+                 xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+                 xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                 xmlns:latejoin="clr-namespace:Content.Client._Sunrise.Latejoin"
+                 Title="{Loc 'late-join-gui-title'}"
+                 MinSize="800 500">
+    <BoxContainer Orientation="Horizontal">
+        <ScrollContainer SizeFlagsStretchRatio="1" HorizontalExpand="True">
+            <BoxContainer Orientation="Vertical" Margin="4 4" HorizontalExpand="True" SizeFlagsStretchRatio="1">
+                <latejoin:StationsListControl Name="StationSelection" VerticalExpand="True"/>
+            </BoxContainer>
+        </ScrollContainer>
+        <cc:VSeparator StyleClasses="LowDivider"/>
+        <ScrollContainer  SizeFlagsStretchRatio="1" HorizontalExpand="True">
+            <BoxContainer Name="JobList" Orientation="Vertical" Margin="4 4" HorizontalExpand="True" SizeFlagsStretchRatio="1">
+                <Button Name="CrewManifestButton" Text="Crew Manifest" HorizontalAlignment="Center" Visible="False"/>
+            </BoxContainer>
+        </ScrollContainer>
+        <!--<cc:VSeparator StyleClasses="LowDivider"/>
+        <BoxContainer Orientation="Vertical" Margin="4 4" HorizontalExpand="True" SizeFlagsStretchRatio="2">
+            <RichTextLabel Name="ShipDescription"/>
+        </BoxContainer>-->
+    </BoxContainer>
+</controls:FancyWindow>

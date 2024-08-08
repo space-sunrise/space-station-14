@@ -2300,6 +2300,16 @@
       groups:
         Brute: -0.07
         Burn: -0.07
+  # Sunrise-start
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSpiderLegs
+      params:
+        volume: -10
+  - type: CollectiveMind
+    minds:
+    - Arachnids
+  # Sunrise-end
 
 - type: entity
   name: tarantula
@@ -2607,6 +2617,7 @@
   - type: Inventory
     speciesId: dog
     templateId: pet
+  - type: DogVision  # Sunrise-DogVision
   - type: DamageStateVisuals
     states:
       Alive:
@@ -3323,6 +3334,9 @@
     reformTime: 10
     popupText: diona-reform-attempt
     reformPrototype: MobDionaReformed
+  - type: CollectiveMind
+    minds:
+    - Dioneas
 
 - type: entity
   parent: MobDionaNymph

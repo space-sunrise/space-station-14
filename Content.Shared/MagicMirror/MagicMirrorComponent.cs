@@ -23,25 +23,25 @@ public sealed partial class MagicMirrorComponent : Component
     /// Do after time to add a new slot, adding hair to a person
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public TimeSpan AddSlotTime = TimeSpan.FromSeconds(7);
+    public TimeSpan AddSlotTime = TimeSpan.FromSeconds(10);  // Sunrise-edit
 
     /// <summary>
     /// Do after time to remove a slot, removing hair from a person
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public TimeSpan RemoveSlotTime = TimeSpan.FromSeconds(7);
+    public TimeSpan RemoveSlotTime = TimeSpan.FromSeconds(8);  // Sunrise-edit
 
     /// <summary>
     /// Do after time to change a person's hairstyle
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public TimeSpan SelectSlotTime = TimeSpan.FromSeconds(7);
+    public TimeSpan SelectSlotTime = TimeSpan.FromSeconds(6);  // Sunrise-edit
 
     /// <summary>
     /// Do after time to change a person's hair color
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public TimeSpan ChangeSlotTime = TimeSpan.FromSeconds(7);
+    public TimeSpan ChangeSlotTime = TimeSpan.FromSeconds(4);  // Sunrise-edit
 
     /// <summary>
     /// Sound emitted when slots are changed

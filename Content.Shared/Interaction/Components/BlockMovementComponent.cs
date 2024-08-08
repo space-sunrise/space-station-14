@@ -8,5 +8,8 @@ namespace Content.Shared.Interaction.Components;
 [RegisterComponent, NetworkedComponent]
 public sealed partial class BlockMovementComponent : Component
 {
-
+    // Sunrise-Start
+    [DataField("blockInteractionAttempt")] public bool BlockInteractionAttempt = true;
+    [DataField("blockUseAttempt")] public bool BlockUseAttempt = true;
+    // Sunrise-Edit
 }

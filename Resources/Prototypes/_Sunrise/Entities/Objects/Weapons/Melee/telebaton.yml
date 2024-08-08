@@ -1,0 +1,59 @@
+- type: entity
+  id: Telebaton
+  name: telebaton
+  parent: BaseItem
+  description: A compact yet robust personal defense weapon.
+  components:
+  - type: ItemToggle
+    soundActivate:
+      path: /Audio/Weapons/telescopicon.ogg
+      params:
+        volume: -5
+    soundDeactivate:
+      path: /Audio/Weapons/telescopicoff.ogg
+      params:
+        volume: -5
+  - type: ItemToggleSize
+    activatedSize: Normal
+    activatedShape:
+    - 0,0,0,2
+  - type: DisarmMalus
+    malus: 0.225
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Melee/telebaton.rsi
+    layers:
+    - state: telebaton_off
+    - state: telebaton_on
+      visible: false
+      map: [ "blade" ]
+  - type: ItemToggleMeleeWeapon
+    activatedDamage:
+      types:
+        Blunt: 3
+    deactivatedSecret: true
+  - type: MeleeWeapon
+    attackRate: 1.5
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 0
+  - type: Telescopicbaton
+  - type: StaminaDamageOnHit
+    damage: 20
+  - type: UseDelay
+    delay: 0.4
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Melee/telebaton.rsi
+    size: Small
+    shape:
+    - 0,0,0,0
+  - type: Appearance
+  - type: ToggleableLightVisuals
+    spriteLayer: blade
+    inhandVisuals:
+      left:
+        - state: on-inhand-left
+      right:
+        - state: on-inhand-right
+  - type: StaticPrice
+    price: 100

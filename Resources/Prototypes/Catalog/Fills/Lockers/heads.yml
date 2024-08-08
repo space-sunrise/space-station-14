@@ -20,6 +20,7 @@
       - id: RubberStampApproved
       - id: ClothingHeadsetAltCargo
       - id: BoxEncryptionKeyCargo
+      - id: PrinterDocFlatpack # Sunrise-Printer
 
 - type: entity
   id: LockerCaptainFilledHardsuit
@@ -74,6 +75,8 @@
       - id: WeaponAntiqueLaser
       - id: JetpackCaptainFilled
       - id: MedalCase
+      - id: ClothingHeadCaptainHat
+      - id: ClothingOuterCoatCaptain
 
 - type: entity
   id: LockerCaptainFilledNoLaser
@@ -127,7 +130,9 @@
       - id: BoxEncryptionKeyService
       - id: ClothingBackpackIan
         prob: 0.5
+      - id: ClothingOuterCoatHOP
       - id: AccessConfigurator
+      - id: PrinterDocFlatpack # Sunrise-Printer
 
 - type: entity
   id: LockerChiefEngineerFilledHardsuit
@@ -261,8 +266,11 @@
   - type: StorageFill
     contents:
       - id: WeaponDisabler
+      - id: ClothingHeadHatCapHoS
+        prob: 0.5
       - id: ClothingOuterCoatHoSTrench
       - id: ClothingMaskNeckGaiter
+      - id: ClothingOuterCoatHoSGreatcoat
       - id: ClothingOuterHardsuitSecurityRed
       - id: ClothingMaskGasSwat
       - id: ClothingBeltSecurityFilled
@@ -278,7 +286,7 @@
       - id: BoxEncryptionKeySecurity
       - id: HoloprojectorSecurity
       - id: BookSecretDocuments
-      - id: BookSpaceLaw
+      - id: HyperLinkBookCorporateLaw
 
 - type: entity
   id: LockerHeadOfSecurityFilled
@@ -288,8 +296,11 @@
   - type: StorageFill
     contents:
       - id: WeaponDisabler
+      - id: ClothingHeadHatCapHoS
+        prob: 0.5
       - id: ClothingOuterCoatHoSTrench
       - id: ClothingMaskNeckGaiter
+      - id: ClothingOuterCoatHoSGreatcoat
       - id: ClothingBeltSecurityFilled
       - id: ClothingHeadsetAltSecurity
       - id: ClothingEyesGlassesSecurity
@@ -302,7 +313,7 @@
       - id: BoxEncryptionKeySecurity
       - id: HoloprojectorSecurity
       - id: BookSecretDocuments
-      - id: BookSpaceLaw
+      - id: HyperLinkBookCorporateLaw
 
 - type: entity
   id: LockerFreezerVaultFilled

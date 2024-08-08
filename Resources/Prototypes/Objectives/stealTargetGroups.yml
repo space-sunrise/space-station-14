@@ -7,12 +7,13 @@
     sprite: Objects/Specific/Medical/hypospray.rsi
     state: hypo
 
-- type: stealTargetGroup
-  id: HandheldCrewMonitor
-  name: handheld crew monitor
-  sprite:
-    sprite: Objects/Specific/Medical/handheldcrewmonitor.rsi
-    state: scanner
+# Sunrise-Edit
+#- type: stealTargetGroup
+#  id: HandheldCrewMonitor
+#  name: handheld crew monitor
+#  sprite:
+#    sprite: Objects/Specific/Medical/handheldcrewmonitor.rsi
+#    state: scanner
 
 - type: stealTargetGroup
   id: ClothingOuterHardsuitRd
@@ -34,6 +35,20 @@
   sprite:
     sprite: Objects/Misc/bureaucracy.rsi
     state: folder-sec-doc
+
+- type: stealTargetGroup  # Sunrise-AEG
+  id: WeaponEnergyGunMultiphase
+  name: x-01 multiphase energy gun
+  sprite:
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/multiphase_energygun.rsi
+    state: base
+
+- type: stealTargetGroup  # Sunrise-Nuke
+  id: PlutoniumCore
+  name: plutonium core
+  sprite:
+    sprite: _Sunrise/Objects/Misc/plutonium_core.rsi
+    state: icon
 
 - type: stealTargetGroup
   id: ClothingShoesBootsMagAdv

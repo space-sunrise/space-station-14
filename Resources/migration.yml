@@ -380,3 +380,9 @@ SignHydro3: SignHydro1
 
 # 2024-07-27
 LogicGate: LogicGateOr
+
+# Sunrise migrations
+AirlockExternalGlassShuttleArrivals: AirlockExternalGlassShuttleArrivalsLocked
+AirlockHatchSyndicate: AirlockHatchSyndicateLocked
+SurveillanceCameraWirelessRouterBase: SurveillanceCameraWirelessRouterConstructed
+CryogenicSleepUnitSpawner: CryogenicSleepUnitSpawnerLateJoin

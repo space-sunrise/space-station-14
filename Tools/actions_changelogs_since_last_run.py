@@ -21,10 +21,10 @@ GITHUB_TOKEN      = os.environ["GITHUB_TOKEN"]
 DISCORD_SPLIT_LIMIT = 2000
 DISCORD_WEBHOOK_URL = os.environ.get("DISCORD_WEBHOOK_URL")
 
-CHANGELOG_FILE = "Resources/Changelog/Changelog.yml"
+CHANGELOG_FILE = "Resources/Changelog/ChangelogSunrise.yml"
 
 TYPES_TO_EMOJI = {
-    "Fix":    "🐛",
+    "Fix":    "🪛",
     "Add":    "🆕",
     "Remove": "❌",
     "Tweak":  "⚒️"
@@ -42,9 +42,15 @@ def main():
     session.headers["X-GitHub-Api-Version"] = "2022-11-28"
 
     most_recent = get_most_recent_workflow(session)
+
+    if most_recent is None:
+        print("No successful publish jobs found.")
+        return
+
     last_sha = most_recent['head_commit']['id']
     print(f"Last successful publish job was {most_recent['id']}: {last_sha}")
     last_changelog = yaml.safe_load(get_last_changelog(session, last_sha))
+
     with open(CHANGELOG_FILE, "r") as f:
         cur_changelog = yaml.safe_load(f)
 
@@ -124,53 +130,44 @@ def send_discord(content: str):
     response = requests.post(DISCORD_WEBHOOK_URL, json=body)
     response.raise_for_status()
 
+def send_embed_discord(embed: dict) -> None:
+    headers = {
+        "Content-Type": "application/json"
+    }
+
+    payload = {
+        "embeds": [embed]
+    }
+
+    response = requests.post(DISCORD_WEBHOOK_URL, json=payload, headers=headers)
+
+    if response.status_code != 204:
+        print(f"Failed to send message to Discord: {response.status_code} {response.text}")
+
 
 def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
     if not DISCORD_WEBHOOK_URL:
-        print(f"No discord webhook URL found, skipping discord send")
+        print("No discord webhook URL found, skipping discord send")
         return
 
-    message_content = io.StringIO()
-    # We need to manually split messages to avoid discord's character limit
-    # With that being said this isn't entirely robust
-    # e.g. a sufficiently large CL breaks it, but that's a future problem
+    for entry in entries:
+        content_string = io.StringIO()
+        for change in entry["changes"]:
+            emoji = TYPES_TO_EMOJI.get(change['type'], "❓")
+            message = change['message']
+            content_string.write(f"{emoji} {message}\n")
+        url = entry.get("url")
+        if url and url.strip():
+            content_string.write(f"[GitHub Pull Request]({url})\n")
 
-    for name, group in itertools.groupby(entries, lambda x: x["author"]):
-        # Need to split text to avoid discord character limit
-        group_content = io.StringIO()
-        group_content.write(f"**{name}** updated:\n")
+        embed = {
+            "title": f"Автор: **{entry["author"]}**",
+            "description": content_string.getvalue(),
+            "color": 0x3498db
+        }
 
-        for entry in group:
-            for change in entry["changes"]:
-                emoji = TYPES_TO_EMOJI.get(change['type'], "❓")
-                message = change['message']
-                url = entry.get("url")
-                if url and url.strip():
-                    group_content.write(f"{emoji} [-]({url}) {message}\n")
-                else:
-                    group_content.write(f"{emoji} - {message}\n")
-
-        group_text = group_content.getvalue()
-        message_text = message_content.getvalue()
-        message_length = len(message_text)
-        group_length = len(group_text)
-
-        # If adding the text would bring it over the group limit then send the message and start a new one
-        if message_length + group_length >= DISCORD_SPLIT_LIMIT:
-            print("Split changelog  and sending to discord")
-            send_discord(message_text)
-
-            # Reset the message
-            message_content = io.StringIO()
-
-        # Flush the group to the message
-        message_content.write(group_text)
-    
-    # Clean up anything remaining
-    message_text = message_content.getvalue()
-    if len(message_text) > 0:
-        print("Sending final changelog to discord")
-        send_discord(message_text)
+        if len(content_string.getvalue()) > 0:
+            send_embed_discord(embed)
 
 
 main()

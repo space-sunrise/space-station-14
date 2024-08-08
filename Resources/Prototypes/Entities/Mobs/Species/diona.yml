@@ -108,6 +108,11 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+  # Sunrise-Start
+  - type: CollectiveMind
+    minds:
+    - Dioneas
+  # Sunrise-End
 
 - type: entity
   parent: BaseSpeciesDummy

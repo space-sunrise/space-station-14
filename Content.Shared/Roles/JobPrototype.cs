@@ -1,9 +1,11 @@
 using Content.Shared.Access;
 using Content.Shared.Guidebook;
+using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.StatusIcon;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 
 namespace Content.Shared.Roles
 {
@@ -62,6 +64,11 @@ namespace Content.Shared.Roles
 
         [DataField("canBeAntag")]
         public bool CanBeAntag { get; private set; } = true;
+
+        // Sunrise-Start
+        [DataField("radioBold")]
+        public bool RadioIsBold { get; }
+        // Sunrise-End
 
         /// <summary>
         ///     The "weight" or importance of this job. If this number is large, the job system will assign this job
@@ -125,6 +132,20 @@ namespace Content.Shared.Roles
         /// </summary>
         [DataField]
         public List<ProtoId<GuideEntryPrototype>>? Guides;
+
+        // Sunrise-Start
+        /// <summary>
+        /// Вот так работает расизм по мнению буржуев
+        /// </summary>
+        [DataField("speciesBlacklist", customTypeSerializer: typeof(PrototypeIdListSerializer<SpeciesPrototype>))]
+        public List<string> SpeciesBlacklist = new();
+
+        /// <summary>
+        /// Для космической тюрьмы
+        /// </summary>
+        [DataField("alwaysUseSpawner")]
+        public bool AlwaysUseSpawner { get; }
+        // Sunrise-End
     }
 
     /// <summary>

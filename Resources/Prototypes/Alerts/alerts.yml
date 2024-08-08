@@ -192,10 +192,12 @@
     state: health3
   - sprite: /Textures/Interface/Alerts/human_alive.rsi
     state: health4
+  - sprite: /Textures/Interface/Alerts/human_alive.rsi
+    state: health5
   name: alerts-health-name
   description: alerts-health-desc
   minSeverity: 0
-  maxSeverity: 4
+  maxSeverity: 5
 
 - type: alert
   id: BorgHealth

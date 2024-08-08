@@ -13,6 +13,8 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.Preferences;
+using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Client.Players.PlayTimeTracking;
 
@@ -24,12 +26,15 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private readonly IClientPreferencesManager _clientPreferences = default!;
 
     private readonly Dictionary<string, TimeSpan> _roles = new();
     private readonly List<string> _roleBans = new();
     private readonly List<string> _jobWhitelists = new();
 
     private ISawmill _sawmill = default!;
+
+    private ISharedSponsorsManager? _sponsorsMgr;  // Sunrise-Sponsors
 
     public event Action? Updated;
 
@@ -43,6 +48,8 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         _net.RegisterNetMessage<MsgJobWhitelist>(RxJobWhitelist);
 
         _client.RunLevelChanged += ClientOnRunLevelChanged;
+
+        IoCManager.Instance!.TryResolveType(out _sponsorsMgr);  // Sunrise-Sponsors
     }
 
     private void ClientOnRunLevelChanged(object? sender, RunLevelChangedEventArgs e)
@@ -107,6 +114,22 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         var player = _playerManager.LocalSession;
         if (player == null)
             return true;
+
+        // Sunrise-Sponsors-Start
+        if (_sponsorsMgr != null && _sponsorsMgr.GetClientPrototypes().Contains(job.ID))
+            return true;
+        // Sunrise-Sponsors-End
+
+        // Sunrise-Start
+        if (profile != null)
+        {
+            if (job.SpeciesBlacklist.Contains(profile.Species))
+            {
+                reason = FormattedMessage.FromUnformatted($"Расса {Loc.GetString($"species-name-{profile.Species.Id.ToLower()}")} не может занимать эту должность. Для спонсоров ограничений нет");
+                return false;
+            }
+        }
+        // Sunrise-End
 
         return CheckRoleRequirements(job, profile, out reason);
     }

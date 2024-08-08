@@ -6,6 +6,7 @@ using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
 using Content.Shared.Item.ItemToggle.Components;
+using Content.Shared.Popups;
 using Content.Shared.Tools.Components;
 
 namespace Content.Shared.Tools.Systems;
@@ -102,10 +103,19 @@ public abstract partial class SharedToolSystem
             return;
 
         if (TryComp(target, out ReagentTankComponent? tank)
+            && TryComp(entity, out ItemToggleComponent? itemToggleComponent) // Sunrise-Edit
             && tank.TankType == ReagentTankType.Fuel
             && SolutionContainerSystem.TryGetDrainableSolution(target, out var targetSoln, out var targetSolution)
             && SolutionContainerSystem.TryGetSolution(entity.Owner, entity.Comp.FuelSolutionName, out var solutionComp, out var welderSolution))
         {
+            // Sunrise-Start
+            if (itemToggleComponent.Activated)
+            {
+                _popup.PopupCursor(Loc.GetString("welder-component-cant-refill-when-lit"),
+                    args.User, PopupType.MediumCaution);
+                return;
+            }
+            // Sunrise-End
             var trans = FixedPoint2.Min(welderSolution.AvailableVolume, targetSolution.Volume);
             if (trans > 0)
             {

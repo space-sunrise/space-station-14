@@ -5,6 +5,7 @@
   minLimit: 0
   maxLimit: 3
   loadouts:
+  - CorporateLaw # Sunrise-edit
   - PlushieLizard
   - PlushieSpaceLizard
   - Lighter
@@ -14,6 +15,14 @@
   - CigPackBlack
   - CigarCase
   - CigarGold
+  - ClothingNeckNanoTrasenPin  # Sunrise
+  - ClothingNeckNakamuraPin  # Sunrise
+  - ClothingNeckLogistikaPin  # Sunrise
+  - ClothingNeckDeForestPin  # Sunrise
+  - ClothingNeckDonkPin  # Sunrise
+  - ClothingNeckVitezstviPin  # Sunrise
+  - ClothingNeckEarthPin  # Sunrise
+  - ClothingNeckUSSPPin  # Sunrise
   - ClothingNeckLGBTPin
   - ClothingNeckAromanticPin
   - ClothingNeckAsexualPin
@@ -51,6 +60,7 @@
   loadouts:
   - EmergencyNitrogen
   - EmergencyOxygen
+  - EmergencyWithoutGas  # Sunrise-Edit
   - LoadoutSpeciesVoxNitrogen
 
 - type: loadoutGroup
@@ -330,6 +340,7 @@
   loadouts:
   - JanitorJumpsuit
   - JanitorJumpskirt
+  - MaidJumpskirt
 
 - type: loadoutGroup
   id: JanitorGloves
@@ -432,6 +443,7 @@
   - EmergencyNitrogenClown
   - EmergencyOxygenClown
   - LoadoutSpeciesVoxNitrogen
+  - EmergencyWithoutGasClown # Sunrise-Edit
 
 - type: loadoutGroup
   id: MimeHead
@@ -622,14 +634,6 @@
 
 # Engineering
 - type: loadoutGroup
-  id: ChiefEngineerHead
-  name: loadout-group-chief-engineer-head
-  minLimit: 0
-  loadouts:
-  - ChiefEngineerHead
-  - ChiefEngineerBeret
-
-- type: loadoutGroup
   id: ChiefEngineerJumpsuit
   name: loadout-group-chief-engineer-jumpsuit
   loadouts:
@@ -674,7 +678,6 @@
   - StationEngineerHardhatYellow
   - StationEngineerHardhatOrange
   - StationEngineerHardhatRed
-  - SeniorEngineerBeret
 
 - type: loadoutGroup
   id: StationEngineerJumpsuit
@@ -683,8 +686,6 @@
   - StationEngineerJumpsuit
   - StationEngineerJumpskirt
   - StationEngineerHazardsuit
-  - SeniorEngineerJumpsuit
-  - SeniorEngineerJumpskirt
 
 - type: loadoutGroup
   id: StationEngineerBackpack
@@ -708,13 +709,6 @@
   loadouts:
   - WorkBoots
   - EngineeringWinterBoots
-
-- type: loadoutGroup
-  id: StationEngineerID
-  name: loadout-group-station-engineer-id
-  loadouts:
-  - StationEngineerPDA
-  - SeniorEngineerPDA
 
 - type: loadoutGroup
   id: AtmosphericTechnicianJumpsuit
@@ -755,15 +749,9 @@
   - EmergencyNitrogenExtended
   - EmergencyOxygenExtended
   - LoadoutSpeciesVoxNitrogen
+  - EmergencyWithoutGasExtended # Sunrise-Edit
 
 # Science
-- type: loadoutGroup
-  id: ResearchDirectorHead
-  name: loadout-group-research-director-head
-  minLimit: 0
-  loadouts:
-  - ResearchDirectorBeret
-
 - type: loadoutGroup
   id: ResearchDirectorNeck
   name: loadout-group-research-director-neck
@@ -795,15 +783,6 @@
   - ScienceWinterBoots
 
 - type: loadoutGroup
-  id: ScientistHead
-  name: loadout-group-scientist-head
-  minLimit: 0
-  loadouts:
-  - RoboticistCap
-  - SkullBandana
-  - ScientificBeret
-
-- type: loadoutGroup
   id: ScientistNeck
   name: loadout-group-scientist-neck
   minLimit: 0
@@ -816,10 +795,6 @@
   loadouts:
   - ScientistJumpsuit
   - ScientistJumpskirt
-  - RoboticistJumpsuit
-  - RoboticistJumpskirt
-  - SeniorResearcherJumpsuit
-  - SeniorResearcherJumpskirt
 
 - type: loadoutGroup
   id: ScientistBackpack
@@ -837,9 +812,6 @@
   - RegularLabCoat
   - ScienceLabCoat
   - ScienceWintercoat
-  - RoboticistLabCoat
-  - RoboticistWintercoat
-  - SeniorResearcherLabCoat
 
 - type: loadoutGroup
   id: ScientistShoes
@@ -856,14 +828,6 @@
   loadouts:
   - LatexGloves
   - PurpleGloves
-  - RobohandsGloves
-
-- type: loadoutGroup
-  id: ScientistPDA
-  name: loadout-group-scientist-id
-  loadouts:
-  - ScientistPDA
-  - SeniorResearcherPDA
 
 - type: loadoutGroup
   id: ResearchAssistantJumpsuit
@@ -946,8 +910,6 @@
   - SecurityJumpskirt
   - SecurityJumpsuitGrey
   - SecurityJumpskirtGrey
-  - SeniorOfficerJumpsuit
-  - SeniorOfficerJumpskirt
 
 - type: loadoutGroup
   id: SecurityBackpack
@@ -979,13 +941,6 @@
   - CombatBoots
   - JackBoots
   - SecurityWinterBoots
-
-- type: loadoutGroup
-  id: SecurityPDA
-  name: loadout-group-security-id
-  loadouts:
-  - SecurityPDA
-  - SeniorOfficerPDA
 
 - type: loadoutGroup
   id: DetectiveHead
@@ -1035,6 +990,7 @@
   - EmergencyNitrogenSecurity
   - EmergencyOxygenSecurity
   - LoadoutSpeciesVoxNitrogen
+  - EmergencyWithoutGasSecurity # Sunrise-Edit
 
 # Medical
 - type: loadoutGroup
@@ -1083,7 +1039,6 @@
   minLimit: 0
   loadouts:
   - MedicalBeret
-  - SeniorPhysicianBeret
   - MedicalHeadMirror
   - BlueSurgeryCap
   - GreenSurgeryCap
@@ -1096,8 +1051,6 @@
   loadouts:
   - MedicalDoctorJumpsuit
   - MedicalDoctorJumpskirt
-  - SeniorPhysicianJumpsuit
-  - SeniorPhysicianJumpskirt
   - MedicalBlueScrubs
   - MedicalGreenScrubs
   - MedicalPurpleScrubs
@@ -1109,7 +1062,6 @@
   loadouts:
   - RegularLabCoat
   - MedicalDoctorWintercoat
-  - SeniorPhysicianLabCoat
 
 - type: loadoutGroup
   id: MedicalBackpack
@@ -1125,13 +1077,6 @@
   loadouts:
   - WhiteShoes
   - MedicalWinterBoots
-
-- type: loadoutGroup
-  id: MedicalDoctorPDA
-  name: loadout-group-medical-doctor-id
-  loadouts:
-  - MedicalDoctorPDA
-  - SeniorPhysicianPDA
 
 - type: loadoutGroup
   id: MedicalGloves
@@ -1217,6 +1162,7 @@
   - EmergencyNitrogenMedical
   - EmergencyOxygenMedical
   - LoadoutSpeciesVoxNitrogen
+  - EmergencyWithoutGasMedical # Sunrise-Edit
 
 # Wildcards
 - type: loadoutGroup
@@ -1252,6 +1198,7 @@
   - EmergencyNitrogenSyndicate
   - EmergencyOxygenSyndicate
   - LoadoutSpeciesVoxNitrogen
+  - EmergencyWithoutGasSyndicate # Sunrise-Edit
 
 - type: loadoutGroup
   id: GroupSpeciesBreathTool

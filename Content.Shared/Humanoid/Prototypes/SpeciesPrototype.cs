@@ -1,3 +1,4 @@
+using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
@@ -31,6 +32,14 @@ public sealed partial class SpeciesPrototype : IPrototype
     /// </summary>
     [DataField(required: true)]
     public bool RoundStart { get; private set; } = false;
+
+    // Sunrise-Sponsors-Start
+    /// <summary>
+    /// Whether the species is available only for sponsors
+    /// </summary>
+    [DataField]
+    public bool SponsorOnly { get; private set; } = false;
+    // Sunrise-Sponsors-End
 
     // The below two are to avoid fetching information about the species from the entity
     // prototype.
@@ -87,8 +96,13 @@ public sealed partial class SpeciesPrototype : IPrototype
     [DataField]
     public string FemaleFirstNames { get; private set; } = "names_first_female";
 
+    // Russian-LastnameGender-Start: Split lastname field by gender
     [DataField]
-    public string LastNames { get; private set; } = "names_last";
+    public string MaleLastNames { get; private set; } = "names_last_male";
+
+    [DataField]
+    public string FemaleLastNames { get; private set; } = "names_last_female";
+    // Russian-LastnameGender-End
 
     [DataField]
     public SpeciesNaming Naming { get; private set; } = SpeciesNaming.FirstLast;
@@ -128,4 +142,5 @@ public enum SpeciesNaming : byte
     FirstLast,
     FirstDashFirst,
     TheFirstofLast,
+    OnlyFirst // Sunrise-Edit
 }

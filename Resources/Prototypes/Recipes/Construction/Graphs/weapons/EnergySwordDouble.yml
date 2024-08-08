@@ -1,0 +1,25 @@
+- type: constructionGraph
+  id: EnergySwordDoubleGraph
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: DoubleEnergySwordNode
+          steps:
+            - tag: EnergySword
+              doAfter: 2
+
+    - node: DoubleEnergySwordNode
+      entity: EnergySwordDoubleBiocode
+      edges:
+      - to: deconstruct
+        steps:
+        - tool: Screwing
+          doAfter: 2
+    
+    - node: deconstruct
+      actions:
+        - !type:GivePrototype
+          prototype: EnergySwordBiocode
+          amount: 2
+        - !type:DeleteEntity

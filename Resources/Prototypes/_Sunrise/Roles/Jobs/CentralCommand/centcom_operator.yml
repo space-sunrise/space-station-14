@@ -1,0 +1,38 @@
+- type: job
+  id: CentCommOperator
+  name: job-name-centcomop
+  description: job-description-centcomop
+  playTimeTracker: JobCentCommOperator
+  requirements:
+  - !type:DiscordRoleRequirement
+  weight: 30
+  setPreference: true
+  startingGear: CentCommOperatorGear
+  icon: "JobIconNanotrasen"
+  supervisors: job-supervisors-centcom
+  radioBold: true
+  canBeAntag: false
+  alwaysUseSpawner: true
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+  speciesBlacklist:
+  - Vox
+  special:
+  - !type:AddImplantSpecial
+    implants: [MindShieldImplant]
+
+- type: startingGear
+  id: CentCommOperatorGear
+  equipment:
+    shoes: ClothingShoesBootsCombatFilled
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesColorBlack
+    outerClothing: ClothingOuterArmorBasic
+    id: CentcomPDA
+    ears: ClothingHeadsetCentCom
+    belt: WeaponPistolN1984
+  storage:
+    back:
+    - RubberStampCentcom

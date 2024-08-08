@@ -26,6 +26,8 @@
   - type: HealthAnalyzer
     scanningEndSound:
       path: "/Audio/Items/Medical/healthscanner.ogg"
+    damageContainers:
+      - Biological
   - type: Tag
     tags:
       - DiscreteHealthAnalyzer

@@ -117,7 +117,7 @@
     - CableApcStackLingering10
     - CableMVStackLingering10
     - CableHVStackLingering10
-    - Wirecutter
+    - WirecutterBorg # Sunrise-Edit
     - trayScanner
 
 - type: entity
@@ -172,12 +172,12 @@
     - state: icon-tools
   - type: ItemBorgModule
     items:
-    - Crowbar
-    - Wrench
-    - Screwdriver
-    - Wirecutter
+    - CrowbarBorg # Sunrise-Edit
+    - WrenchBorg # Sunrise-Edit
+    - ScrewdriverBorg # Sunrise-Edit
+    - WirecutterBorg # Sunrise-Edit
     - Multitool
-    - WelderIndustrial
+    - WelderBorg # Sunrise-Edit
 
 # cargo modules
 - type: entity
@@ -237,7 +237,7 @@
   - type: ItemBorgModule
     items:
     - Omnitool
-    - WelderExperimental
+    - WelderBorg # Sunrise-Edit
     - NetworkConfigurator
     - RemoteSignaller
     - GasAnalyzer
@@ -285,8 +285,8 @@
   - type: ItemBorgModule
     items:
     - LightReplacer
-    - Crowbar
-    - Screwdriver
+    - CrowbarBorg # Sunrise-Edit
+    - ScrewdriverBorg # Sunrise-Edit
 
 - type: entity
   id: BorgModuleCleaning
@@ -315,8 +315,8 @@
   - type: ItemBorgModule
     items:
     - AdvMopItem
-    - HoloprojectorBorg
-    - SprayBottleSpaceCleaner
+    - HoloprojectorJanitorBorg # Sunrise-Edit
+    - SprayBottleSpaceCleanerBorg # Sunrise-Edit
     - Dropper
     - TrashBag
 
@@ -346,7 +346,6 @@
     - state: icon-treatment
   - type: ItemBorgModule
     items:
-    - HandheldHealthAnalyzerUnpowered
     - Brutepack10Lingering
     - Ointment10Lingering
     - Gauze10Lingering
@@ -377,11 +376,7 @@
     - state: icon-chemist
   - type: ItemBorgModule
     items:
-    - HandheldHealthAnalyzerUnpowered
-    - Beaker
-    - Beaker
-    - BorgDropper
-    - BorgHypo
+    - HyposprayBorgMedical # Sunrise-Edit
 
 # science modules
 # todo: if science ever gets their own custom robot, add more "sci" modules.

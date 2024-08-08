@@ -25,6 +25,8 @@
   requireAdminNotify: true
   supervisors: job-supervisors-captain
   canBeAntag: false
+  radioBold: true # Sunrise-Edit
+  displayWeight: 60 # Sunrise-Edit
   access:
   - Medical
   - Command
@@ -39,6 +41,8 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
+  speciesBlacklist:
+  - Vox # Sunrise-Edit
 
 - type: startingGear
   id: CMOGear
@@ -49,3 +53,4 @@
   storage:
     back:
     - Flash
+    - Telebaton # Sunrise-Edit

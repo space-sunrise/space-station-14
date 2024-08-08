@@ -1,5 +1,7 @@
+using Content.Shared.Damage.Prototypes;
 using Robust.Shared.Audio;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 
 namespace Content.Server.Medical.Components;
 
@@ -55,4 +57,7 @@ public sealed partial class HealthAnalyzerComponent : Component
     /// </summary>
     [DataField]
     public SoundSpecifier? ScanningEndSound;
+
+    [DataField("damageContainers", customTypeSerializer: typeof(PrototypeIdListSerializer<DamageContainerPrototype>))]
+    public List<string>? DamageContainers;
 }

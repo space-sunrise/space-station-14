@@ -226,6 +226,10 @@
       - RiotShield
       - SpeedLoaderMagnum
       - SpeedLoaderMagnumEmpty
+      - WeaponEnergyGun       # Sunrise - Energy Gun
+      - WeaponEnergyGunMini   # Sunrise - Miniature Energy Gun
+      - WeaponEnergyGunPistol # Sunrise - PDW-9 Energy Pistol
+      - WeaponGunLaserCarbineAutomatic # Sunrise - IK-60 Laser Carbine
 
 - type: entity
   id: AutolatheHyperConvection
@@ -274,6 +278,8 @@
     - LargeBeaker
     - Dropper
     - ClothingEyesGlassesChemical
+    - Nanopaste # Sunrise-edit
+    - HandheldRoboAnalyzer # Sunrise-edit
     dynamicRecipes:
       - PowerDrill
       - MiningDrill
@@ -339,6 +345,16 @@
       - DeviceQuantumSpinInverter
   - type: EmagLatheRecipes
     emagDynamicRecipes:
+#Sunrise-edit start
+      - CartridgePistolRubber
+      - CartridgeMagnumRubber
+      - CartridgeRifleRubber
+      - CartridgeLightRifleRubber
+      - MagazineBoxPistolRubber
+      - MagazineBoxMagnumRubber
+      - MagazineBoxRifleRubber
+      - MagazineBoxLightRifleRubber
+#Sunrise-edit end
       - BoxBeanbag
       - BoxShotgunIncendiary
       - BoxShotgunUranium
@@ -425,6 +441,7 @@
     - ChemMasterMachineCircuitboard
     - CondenserMachineCircuitBoard
     - HotplateMachineCircuitboard
+    - PrinterDocMachineCircuitboard # Sunrise-Printer
     - UniformPrinterMachineCircuitboard
     - FloorGreenCircuit
     - FloorBlueCircuit
@@ -552,7 +569,7 @@
     runningState: fab-active
     staticRecipes:
     - MMI
-    - PositronicBrain
+    - Boris # Sunrise-Edit
     - SciFlash
     - BorgModuleCable
     - BorgModuleFireExtinguisher
@@ -599,6 +616,16 @@
     - HeadBorgService
     - TorsoBorgService
     dynamicRecipes:
+#Sunrise-edit start
+    - CartridgeLightRifleRubber
+    - CartridgeMagnumRubber
+    - CartridgePistolRubber
+    - CartridgeRifleRubber
+    - MagazineBoxLightRifleRubber
+    - MagazineBoxMagnumRubber
+    - MagazineBoxPistolRubber
+    - MagazineBoxRifleRubber
+#Sunrise-edit end
     - ProximitySensor
     - BorgModuleLightReplacer
     - BorgModuleAdvancedCleaning
@@ -757,6 +784,31 @@
       - WeaponDisablerPractice
       - WeaponLaserCarbinePractice
       - Zipties
+    # Sunrise-start
+      - MagazineM16A4
+      - MagazineLightMachineGunMG60
+      - MagazinePPSH41
+      - MagazineRPD
+      - MagazineNewVector
+      - MagazineMP38
+      - MagazineMP5
+      - MagazineMP7
+      - MagazineP90
+      - MagazineScorpion
+      - MagazineAK
+      - MagazineAR18
+      - MagazineG36
+      - MagazineM28
+      - MagazineFamas
+      - MagazineBR64
+      - MagazineDragunov
+      - MagazineV31
+      - MagazineACP14
+      - MagazineGlock22
+      - MagazineVP70
+      - MagazineHIBrowning
+      - MagazineDeagle
+    # Sunrise-end
     dynamicRecipes:
       - BoxBeanbag
       - BoxShotgunIncendiary
@@ -807,6 +859,10 @@
       - WeaponLaserCannon
       - WeaponLaserCarbine
       - WeaponXrayCannon
+      - WeaponEnergyGun       # Sunrise - Energy Gun
+      - WeaponEnergyGunMini   # Sunrise - Miniature Energy Gun
+      - WeaponEnergyGunPistol # Sunrise - PDW-9 Energy Pistol
+      - WeaponGunLaserCarbineAutomatic # Sunrise - IK-60 Laser Carbine
   - type: MaterialStorage
     whitelist:
       tags:
@@ -894,6 +950,7 @@
       - HandLabeler
       - Defibrillator
       - HandheldHealthAnalyzer
+      - HandheldCrewMonitor # Sunrise-Edit
       - ClothingHandsGlovesLatex
       - ClothingHandsGlovesNitrile
       - ClothingMaskSterile
@@ -1069,6 +1126,7 @@
       - ClothingNeckMantleCMO
       - ClothingNeckMantleHOP
       - ClothingNeckMantleHOS
+      - ClothingNeckMantleHOSShoulder
       - ClothingNeckMantleRD
       - ClothingNeckMantleQM
       - ClothingOuterWinterMusician

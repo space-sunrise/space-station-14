@@ -1,0 +1,80 @@
+# Pins
+- type: loadout
+  id: ClothingNeckNanoTrasenPin
+  startingGear: ClothingNeckNanoTrasenPin
+
+- type: startingGear
+  id: ClothingNeckNanoTrasenPin
+  storage:
+    back:
+    - ClothingNeckNanoTrasenPin
+
+- type: loadout
+  id: ClothingNeckNakamuraPin
+  startingGear: ClothingNeckNakamuraPin
+
+- type: startingGear
+  id: ClothingNeckNakamuraPin
+  storage:
+    back:
+    - ClothingNeckNakamuraPin
+
+- type: loadout
+  id: ClothingNeckLogistikaPin
+  startingGear: ClothingNeckLogistikaPin
+
+- type: startingGear
+  id: ClothingNeckLogistikaPin
+  storage:
+    back:
+    - ClothingNeckLogistikaPin
+
+- type: loadout
+  id: ClothingNeckDeForestPin
+  startingGear: ClothingNeckDeForestPin
+
+- type: startingGear
+  id: ClothingNeckDeForestPin
+  storage:
+    back:
+    - ClothingNeckDeForestPin
+
+- type: loadout
+  id: ClothingNeckDonkPin
+  startingGear: ClothingNeckDonkPin
+
+- type: startingGear
+  id: ClothingNeckDonkPin
+  storage:
+    back:
+    - ClothingNeckDonkPin
+
+- type: loadout
+  id: ClothingNeckVitezstviPin
+  startingGear: ClothingNeckVitezstviPin
+
+- type: startingGear
+  id: ClothingNeckVitezstviPin
+  storage:
+    back:
+    - ClothingNeckVitezstviPin
+
+- type: loadout
+  id: ClothingNeckEarthPin
+  startingGear: ClothingNeckEarthPin
+
+- type: startingGear
+  id: ClothingNeckEarthPin
+  storage:
+    back:
+    - ClothingNeckEarthPin
+
+- type: loadout
+  id: ClothingNeckUSSPPin
+  startingGear: ClothingNeckUSSPPin
+
+- type: startingGear
+  id: ClothingNeckUSSPPin
+  storage:
+    back:
+    - ClothingNeckUSSPPin

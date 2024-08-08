@@ -22,6 +22,8 @@
   icon: "JobIconChiefEngineer"
   requireAdminNotify: true
   supervisors: job-supervisors-captain
+  radioBold: true # Sunrise-Edit
+  displayWeight: 70 # Sunrise-Edit
   canBeAntag: false
   access:
   - Maintenance
@@ -38,14 +40,18 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
+  speciesBlacklist:
+  - Vox # Sunrise-Edit
 
 - type: startingGear
   id: ChiefEngineerGear
   equipment:
     id: CEPDA
+    head: ClothingHeadHatHardhatWhite # Sunrise-Edit
     eyes: ClothingEyesGlassesMeson
     ears: ClothingHeadsetCE
     belt: ClothingBeltUtilityEngineering
   storage:
     back:
     - Flash
+    - Telebaton # Sunrise-Edit

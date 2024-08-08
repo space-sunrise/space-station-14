@@ -31,7 +31,9 @@ namespace Content.IntegrationTests.Tests
         private static readonly string[] NoSpawnMaps =
         {
             "CentComm",
-            "Dart"
+            "Dart",
+            "SunriseCentComm",
+            "PlanetPrison",
         };
 
         private static readonly string[] Grids =
@@ -63,7 +65,15 @@ namespace Content.IntegrationTests.Tests
             "Atlas",
             "Reach",
             "Train",
-            "Oasis"
+            "Oasis",
+			"SunriseBox",
+			"SunriseDelta",
+			"SunriseFland",
+			"SunriseMarathon",
+            "SunriseCentComm",
+            "AlterosPrison",
+            "PlanetPrison",
+            "SunrisePrison"
         };
 
         /// <summary>

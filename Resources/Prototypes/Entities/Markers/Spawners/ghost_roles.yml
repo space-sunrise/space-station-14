@@ -19,6 +19,9 @@
     name: ghost-role-information-rat-king-name
     description: ghost-role-information-rat-king-description
     rules: ghost-role-information-freeagent-rules
+    requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 36000 #10 hrs # Sunrise-RoleTime
     raffle:
       settings: default
   - type: GhostRoleMobSpawner
@@ -101,6 +104,14 @@
     name: ghost-role-information-loneop-name
     description: ghost-role-information-loneop-description
     rules: ghost-role-information-loneop-rules
+    requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 54000 #15 hrs # Sunrise-RoleTime
+    - !type:OverallPlaytimeRequirement
+      time: 90000 #25 hrs # Sunrise-RoleTime
+    raffle:
+      settings: default
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:
@@ -116,6 +127,14 @@
   - type: GhostRole
     name: roles-antag-nuclear-operative-commander-name
     description: roles-antag-nuclear-operative-commander-objective
+    requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 36000 # 10h # Sunrise-RoleTime
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000 # 5h # Sunrise-RoleTime
+    raffle:
+      settings: default
 
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
@@ -125,6 +144,17 @@
   - type: GhostRole
     name: roles-antag-nuclear-operative-agent-name
     description: roles-antag-nuclear-operative-agent-objective
+    requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 36000 # 10h # Sunrise-RoleTime
+    - !type:RoleTimeRequirement
+      role: JobChemist
+      time: 18000 # 5h # Sunrise-RoleTime
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000 # 5h # Sunrise-RoleTime
+    raffle:
+      settings: default
 
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
@@ -134,6 +164,14 @@
   - type: GhostRole
     name: roles-antag-nuclear-operative-name
     description: roles-antag-nuclear-operative-objective
+    requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 36000 # 10h # Sunrise-RoleTime
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 7200 # 2h # Sunrise-RoleTime
+    raffle:
+      settings: default
 
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
@@ -144,6 +182,11 @@
     name: ghost-role-information-space-dragon-name
     description: ghost-role-information-space-dragon-description
     rules: ghost-role-information-space-dragon-rules
+    requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 36000 #10 hrs # Sunrise-RoleTime
+    raffle:
+      settings: default
   - type: Sprite
     layers:
     - state: green
@@ -159,6 +202,12 @@
     name: ghost-role-information-space-ninja-name
     description: ghost-role-information-space-ninja-description
     rules: ghost-role-information-antagonist-rules
+    requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000 #5 hrs # Sunrise-RoleTime
+    - !type:OverallPlaytimeRequirement
+      time: 36000 #10 hrs # Sunrise-RoleTime
     raffle:
       settings: default
   - type: Sprite

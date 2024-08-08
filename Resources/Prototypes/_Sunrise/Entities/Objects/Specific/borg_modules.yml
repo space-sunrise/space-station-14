@@ -1,0 +1,237 @@
+- type: entity
+  id: BorgCombatModuleERT
+  parent: [ BaseBorgModuleERT, BaseProviderBorgModule ]
+  name: Оружейный модуль киборга ОБР
+  components:
+  - type: Sprite
+    layers:
+    - state: NT
+    - state: icon-NT
+  - type: ItemBorgModule
+    items:
+    - WeaponPulseCarbineBorg
+    - WeaponPulseCarbineBorg
+    - PinpointerNuclear
+
+- type: entity
+  id: BorgModuleERTNlethal
+  parent: [ BaseBorgModuleERT, BaseProviderBorgModule ]
+  name: Нелетальный модуль киборга ОБР
+  components:
+  - type: Sprite
+    layers:
+    - state: NT
+    - state: icon-NT
+  - type: ItemBorgModule
+    items:
+    - StunbatonBorg
+    - WeaponDisablerSMGBorg
+    - FlashBorg
+
+- type: entity
+  id: BorgToolModuleERT
+  parent: [ BaseBorgModuleERT, BaseProviderBorgModule ]
+  name: Инструментальный модуль киборга ОБР
+  components:
+  - type: Sprite
+    layers:
+    - state: NT
+    - state: icon-NT
+  - type: ItemBorgModule
+    items:
+    - JawsOfLife
+
+- type: entity
+  id: BorgHeavyModuleSyndicateCombat
+  parent: [ BaseBorgModuleSyndicate, BaseProviderBorgModule ]
+  name: Оружейный модуль тяжёлого киборга Синдиката
+  components:
+  - type: Sprite
+    layers:
+    - state: syndicate
+    - state: icon-syndicate
+  - type: ItemBorgModule
+    items:
+    - DL6902Borg
+    - WeaponLauncherChinaLakeBorg
+
+- type: entity
+  id: BorgScoutModuleSyndicateCombat
+  parent: [ BaseBorgModuleSyndicate, BaseProviderBorgModule ]
+  name: Защитный модуль киборга диверсанта Синдиката
+  components:
+  - type: Sprite
+    layers:
+    - state: syndicate
+    - state: icon-syndicate
+  - type: ItemBorgModule
+    items:
+    - WeaponIAR52Borg
+    - CombatKnife
+    - HyposprayBorgSyndie
+
+- type: entity
+  id: BorgScoutModuleSyndicateTool
+  parent: [ BaseBorgModuleSyndicate, BaseProviderBorgModule ]
+  name: Продвинутый инструментальный модуль киборга диверсанта Синдиката
+  components:
+  - type: Sprite
+    layers:
+    - state: syndicate
+    - state: icon-syndicate
+  - type: ItemBorgModule
+    items:
+    - RadioJammerBorg
+    - JetpackVoidFilled
+    - trayScanner
+    - WelderExperimental
+    - Multitool
+    - PowerDrill
+
+- type: entity
+  id: BaseBorgModuleSecurity
+  parent: BaseBorgModule
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - BorgModuleSecurity
+
+- type: entity
+  id: BaseBorgModuleERT
+  parent: BaseBorgModule
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - BorgModuleERT
+
+- type: entity
+  id: BorgModuleStun
+  parent: [ BaseBorgModuleSecurity, BaseProviderBorgModule ]
+  name: stuh cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: security
+    - state: icon-stuh
+  - type: ItemBorgModule
+    items:
+    - WeaponDisablerBorg
+    - StunbatonBorg
+    - FlashBorg
+
+- type: entity
+  id: BorgModuleCombat
+  parent: [ BaseBorgModuleSecurity, BaseProviderBorgModule ]
+  name: combat cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: security
+    - state: icon-combat
+  - type: ItemBorgModule
+    items:
+    - Truncheon
+    - WeaponLaserBorg
+    - WeaponLaserBorg
+    - HoloprojectorSecurityBorg
+
+- type: entity
+  id: BorgModulePeace
+  parent: [ BaseBorgModuleSecurity, BaseProviderBorgModule ]
+  name: peace cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: security
+    - state: icon-peace
+  - type: ItemBorgModule
+    items:
+    - FlashBorg
+    - HyposprayBorgPeace
+
+- type: entity
+  id: BorgModuleMiningCombat
+  parent: [ BaseBorgModuleCargo, BaseProviderBorgModule ]
+  name: combat mining cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: cargo
+    - state: icon-mining
+  - type: ItemBorgModule
+    items:
+    - WeaponProtoKineticAcceleratorBorg
+    - WeaponCrusherDagger
+
+- type: entity
+  id: BorgModuleJetpack
+  parent: [ BaseBorgModuleCargo, BaseProviderBorgModule ]
+  name: jetpack cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: cargo
+    - state: icon-mining
+  - type: ItemBorgModule
+    items:
+    - JetpackVoidFilled
+
+- type: entity
+  id: BorgModuleSyndicateGeneric
+  parent: [ BaseBorgModuleSyndicate, BaseProviderBorgModule ]
+  name: cleaning cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: syndicate
+    - state: icon-syndicate
+  - type: ItemBorgModule
+    items:
+    - SyndicateJawsOfLife
+    - PinpointerNuclear
+
+- type: entity
+  id: BorgModuleSyndicateMedical
+  parent: [ BaseBorgModuleSyndicate, BaseProviderBorgModule ]
+  name: medical syndicate module
+  components:
+  - type: Sprite
+    layers:
+    - state: syndicate
+    - state: icon-syndicate-treatment
+  - type: ItemBorgModule
+    items:
+    - SawAdvanced
+    - HyposprayBorgSyndi
+    - DefibrillatorOneHandedUnpowered
+
+- type: entity
+  id: BorgModuleSyndicateCombat
+  parent: [ BaseBorgModuleSyndicate, BaseProviderBorgModule ]
+  name: combat syndicate cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: syndicate
+    - state: icon-syndicate
+  - type: ItemBorgModule
+    items:
+    - EnergySword
+    - LightMachineGunBorg
+
+- type: entity
+  id: BorgModuleStandart
+  parent: [ BaseBorgModule, BaseProviderBorgModule ]
+  name: fire extinguisher cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: generic
+    - state: icon-fire-extinguisher
+  - type: ItemBorgModule
+    items:
+    - CrowbarBorg
+    - FireExtinguisherBorg
+    - HyposprayBorgStandard

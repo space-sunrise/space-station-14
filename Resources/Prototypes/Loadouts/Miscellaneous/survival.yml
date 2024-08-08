@@ -18,6 +18,10 @@
     - Human
     - Moth
     - Reptilian
+    - Swine # Sunrise-Edit
+    - Felinid # Sunrise-Edit
+    - Vulpkanin # Sunrise-Edit
+    - Predator # Sunrise-Edit
 
 - type: loadoutEffectGroup
   id: EffectSpeciesVox

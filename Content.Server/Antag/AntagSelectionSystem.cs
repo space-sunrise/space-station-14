@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Antag.Components;
 using Content.Server.Chat.Managers;
@@ -32,6 +33,9 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Shared.Roles;
+using Robust.Shared.Prototypes;
+using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Server.Antag;
 
@@ -51,6 +55,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
     // arbitrary random number to give late joining some mild interest.
     public const float LateJoinRandomChance = 0.5f;
@@ -67,6 +73,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         SubscribeLocalEvent<RulePlayerSpawningEvent>(OnPlayerSpawning);
         SubscribeLocalEvent<RulePlayerJobsAssignedEvent>(OnJobsAssigned);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnSpawnComplete);
+
+        IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
     }
 
     private void OnTakeGhostRole(Entity<GhostRoleAntagSpawnerComponent> ent, ref TakeGhostRoleEvent args)
@@ -124,6 +132,11 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     {
         if (!args.LateJoin)
             return;
+
+        // Sunrise-Start
+        if (!args.CanBeAntag)
+            return;
+        // Sunrise-End
 
         // TODO: this really doesn't handle multiple latejoin definitions well
         // eventually this should probably store the players per definition with some kind of unique identifier.
@@ -186,9 +199,19 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         if (component.SelectionsComplete)
             return;
 
+        // Sunrise-Start
         var players = _playerManager.Sessions
-            .Where(x => GameTicker.PlayerGameStatuses[x.UserId] == PlayerGameStatus.JoinedGame)
+            .Where(x =>
+            {
+                // Try to get the PlayerGameStatus for the current player's UserId
+                if (GameTicker.PlayerGameStatuses.TryGetValue(x.UserId, out var status))
+                {
+                    return status == PlayerGameStatus.JoinedGame;
+                }
+                return false;
+            })
             .ToList();
+        // Sunrise-End
 
         ChooseAntags((uid, component), players, midround: true);
     }
@@ -235,11 +258,10 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             var session = (ICommonSession?)null;
             if (picking)
             {
-                if (!playerPool.TryPickAndTake(RobustRandom, out session) && noSpawner)
-                {
-                    Log.Warning($"Couldn't pick a player for {ToPrettyString(ent):rule}, no longer choosing antags for this definition");
+                // Sunrise-Sponsors-Start
+                if (!TryPickAntagSession(playerPool.List, def.PrefRoles, out session))
                     break;
-                }
+                // Sunrise-Sponsors-End
 
                 if (session != null && ent.Comp.SelectedSessions.Contains(session))
                 {
@@ -250,6 +272,38 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
             MakeAntag(ent, session, def);
         }
+    }
+
+    public bool TryPickAntagSession(List<List<ICommonSession>> orderedPools, List<ProtoId<AntagPrototype>> prefRoles, [NotNullWhen(true)] out ICommonSession? session)
+    {
+        session = null;
+
+        foreach (var prefRole in prefRoles)
+        {
+            foreach (var commonSessions in orderedPools[..2])
+            {
+                if (_sponsorsManager == null)
+                    continue;
+
+                var prioritySessions = _sponsorsManager.PickPrioritySessions(commonSessions, prefRole);
+                if (prioritySessions.Count == 0)
+                    continue;
+
+                session = _random.PickAndTake(prioritySessions);
+                return true;
+            }
+        }
+
+        foreach (var pool in orderedPools)
+        {
+            if (pool.Count == 0)
+                continue;
+
+            session = _random.PickAndTake(pool);
+            break;
+        }
+
+        return session != null;
     }
 
     /// <summary>

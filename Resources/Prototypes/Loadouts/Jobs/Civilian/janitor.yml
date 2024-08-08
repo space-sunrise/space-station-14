@@ -1,3 +1,14 @@
+# Sunrise-start
+- type: loadoutEffectGroup
+  id: MaidJanitor
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobJanitor
+      time: 72000 # 20 hrs
+# Sunrise-end
+
 - type: loadoutEffectGroup
   id: SeniorJanitorial
   effects:
@@ -23,6 +34,16 @@
   id: JanitorJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtJanitor
+
+# Sunrise-start
+- type: loadout
+  id: MaidJumpskirt
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaidJanitor
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtElegantMaid
+# Sunrise-end
 
 # Gloves
 - type: loadout

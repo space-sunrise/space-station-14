@@ -503,6 +503,11 @@ public abstract class SharedActionsSystem : EntitySystem
             return distance <= action.Range;
         }
 
+        // Sunrise-Start
+        if (action.IgnoreContainer)
+            return true;
+        // Sunrise-End
+
         return _interactionSystem.InRangeAndAccessible(user, target, range: action.Range);
     }
 

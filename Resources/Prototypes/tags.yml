@@ -548,7 +548,7 @@
 - type: Tag
   id: DrinkSpaceGlue
 
-- type: Tag 
+- type: Tag
   id: Dropper
 
 - type: Tag
@@ -556,6 +556,9 @@
 
 - type: Tag
   id: Ectoplasm
+  
+- type: Tag
+  id: EnergySword
 
 - type: Tag
   id: Egg
@@ -1355,5 +1358,8 @@
 
 - type: Tag
   id: WriteIgnoreStamps
+
+- type: Tag
+  id: SolarAssemblyFlatpack
 
 # ALPHABETICAL

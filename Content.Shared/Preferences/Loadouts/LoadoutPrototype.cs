@@ -38,4 +38,9 @@ public sealed partial class LoadoutPrototype : IPrototype, IEquipmentLoadout
     /// <inheritdoc />
     [DataField]
     public Dictionary<string, List<EntProtoId>> Storage { get; set; } = new();
+
+    // Sunrise-Sponsors-Start
+    [DataField]
+    public bool SponsorOnly;
+    // Sunrise-Sponsors-End
 }

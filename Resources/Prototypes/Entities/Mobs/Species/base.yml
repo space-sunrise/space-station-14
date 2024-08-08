@@ -18,9 +18,14 @@
     - map: [ "enum.HumanoidVisualLayers.LArm" ]
     - map: [ "enum.HumanoidVisualLayers.RLeg" ]
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-    - map: ["jumpsuit"]
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
+    # Sunrise-start
+    - map: ["bra"]
+    - map: ["pants"]
+    - map: ["socks"]
+    - map: ["jumpsuit"]
+    # Sunrise-end
     - map: ["enum.HumanoidVisualLayers.LHand"]
     - map: ["enum.HumanoidVisualLayers.RHand"]
     - map: [ "gloves" ]
@@ -134,6 +139,7 @@
     - Flashed
     - RadiationProtection
     - Drowsiness
+    - LoveEffect  # Sunrise-Aphrodesiac
   - type: Body
     prototype: Human
     requiredLegs: 2
@@ -212,6 +218,12 @@
     - CanPilot
     - FootstepSound
     - DoorBumpOpener
+  # Sunrise-Start
+  - type: Paws
+    screamInterval: 3
+    thresholdDamage: 5
+    coughInterval: 5
+  # Sunrise-End
 
 - type: entity
   save: false
@@ -224,6 +236,10 @@
   id: BaseMobSpeciesOrganic
   abstract: true
   components:
+  # Sunrise-Start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-End
   - type: Barotrauma
     damage:
       types:
@@ -306,9 +322,14 @@
     - map: [ "enum.HumanoidVisualLayers.LArm" ]
     - map: [ "enum.HumanoidVisualLayers.RLeg" ]
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-    - map: ["jumpsuit"]
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
+    # Sunrise-start
+    - map: ["bra"]
+    - map: ["pants"]
+    - map: ["socks"]
+    - map: ["jumpsuit"]
+    # Sunrise-end
     - map: ["enum.HumanoidVisualLayers.LHand"]
     - map: ["enum.HumanoidVisualLayers.RHand"]
     - map: ["enum.HumanoidVisualLayers.Handcuffs"]

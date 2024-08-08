@@ -21,7 +21,7 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.5
+      prob: 0.85 # Воры отличный антаг
 
 - type: entity
   id: DeathMatch31
@@ -73,7 +73,7 @@
   parent: BaseGameRule
   id: BaseNukeopsRule
   components:
-  - type: RandomMetadata #this generates the random operation name cuz it's cool. 
+  - type: RandomMetadata #this generates the random operation name cuz it's cool.
     nameSegments:
     - operationPrefix
     - operationSuffix
@@ -93,7 +93,7 @@
   id: Nukeops
   components:
   - type: GameRule
-    minPlayers: 20
+    minPlayers: 50 # Sunrise-edit
   - type: LoadMapRule
     mapPath: /Maps/Nonstations/nukieplanet.yml
   - type: AntagSelection
@@ -167,7 +167,7 @@
   - type: AntagRandomObjectives
     sets:
     - groups: TraitorObjectiveGroups
-    maxDifficulty: 5
+    maxDifficulty: 10 # Sunrise-Edit
   - type: AntagSelection
     agentName: traitor-round-end-agent-name
 
@@ -183,7 +183,7 @@
   - type: AntagSelection
     definitions:
     - prefRoles: [ Traitor ]
-      max: 8
+      max: 12 # Sunrise-Edit
       playerRatio: 10
       blacklist:
         components:
@@ -260,6 +260,16 @@
       mindComponents:
       - type: InitialInfectedRole
         prototype: InitialInfected
+
+- type: entity
+  id: GreenshiftAnnouncement
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: AnnounceRule  # Sunrise
+    enableAnnouncement: true
+    announcementText: station-event-greenshift
+    roundStartAnnouncementDelay: 120
 
 # event schedulers
 - type: entity

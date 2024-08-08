@@ -1,0 +1,8 @@
+- type: damageContainer
+  id: Synth
+  supportedGroups:
+  - Brute
+  supportedTypes:
+  - Heat
+  - Shock
+  - Caustic

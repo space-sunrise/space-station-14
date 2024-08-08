@@ -23,6 +23,8 @@
         orGroup: BookPool
       - id: BookScientistsGuidebook
         orGroup: BookPool
+      - id: HyperLinkBookCorporateLaw # Sunrise-edit
+        orGroup: BookPool
       - id: BookSecurity
         orGroup: BookPool
       - id: BookHowToKeepStationClean
@@ -35,7 +37,7 @@
         orGroup: BookPool
       - id: BookChemicalCompendium
         orGroup: BookPool
-      - id: BookSpaceLaw
+      - id: HyperLinkBookCorporateLaw
         orGroup: BookPool
       - id: BookNarsieLegend
         prob: 0.1

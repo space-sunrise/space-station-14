@@ -155,6 +155,31 @@ public abstract class SharedIdCardSystem : EntitySystem
         return true;
     }
 
+    // Sunrise-Start
+    public bool TryChangeJobColor(EntityUid uid, string? jobColor, bool boldRadio = false, IdCardComponent? id = null, EntityUid? player = null)
+    {
+        if (!Resolve(uid, ref id))
+            return false;
+
+        if (id.JobColor == jobColor && id.RadioBold == boldRadio)
+            return true;
+
+        id.JobColor = jobColor;
+        id.RadioBold = boldRadio;
+        UpdateEntityName(uid, id);
+
+        if (player != null)
+        {
+            _adminLogger.Add(LogType.Identity, LogImpact.Low,
+                $"{ToPrettyString(player.Value):player} has changed the job color of {ToPrettyString(uid):entity} to {jobColor} ");
+        }
+
+        Dirty(uid, id);
+
+        return true;
+    }
+    // Sunrise-End
+
     /// <summary>
     /// Attempts to change the full name of a card.
     /// Returns true/false.

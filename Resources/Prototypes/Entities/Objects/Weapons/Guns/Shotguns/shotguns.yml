@@ -25,7 +25,7 @@
     availableModes:
     - SemiAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+      collection: xm1014 # Sunrise-Edit
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: BallisticAmmoProvider
@@ -73,7 +73,7 @@
     availableModes:
     - FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
+      collection: xm1014 # Sunrise-Edit
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: ItemSlots
@@ -117,6 +117,8 @@
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
     fireRate: 2
+    soundGunshot:
+      collection: m3 # Sunrise-Edit
   - type: BallisticAmmoProvider
     capacity: 2
   - type: Construction
@@ -148,6 +150,9 @@
     sprite: Objects/Weapons/Guns/Shotguns/enforcer_inhands_64x.rsi
   - type: BallisticAmmoProvider
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
+  - type: Gun
+    soundGunshot:
+      collection: xm1014 # Sunrise-Edit
 
 - type: entity
   parent: WeaponShotgunEnforcer
@@ -156,6 +161,9 @@
   components:
   - type: BallisticAmmoProvider
     proto: ShellShotgunBeanbag
+  - type: Gun
+    soundGunshot:
+      collection: xm1014 # Sunrise-Edit
 
 - type: entity
   name: Kammerer
@@ -178,6 +186,9 @@
   - type: Tag
     tags:
     - WeaponShotgunKammerer
+  - type: Gun
+    soundGunshot:
+      collection: m3 # Sunrise-Edit
 
 - type: entity
   name: sawn-off shotgun
@@ -194,6 +205,8 @@
     sprite: Objects/Weapons/Guns/Shotguns/sawn_inhands_64x.rsi
   - type: Gun
     fireRate: 4
+    soundGunshot:
+      collection: m3 # Sunrise-Edit
   - type: BallisticAmmoProvider
     capacity: 2
   - type: Construction
@@ -230,6 +243,8 @@
     sprite: Objects/Weapons/Guns/Shotguns/hm_pistol.rsi
   - type: Gun
     fireRate: 4
+    soundGunshot:
+      collection: m3 # Sunrise-Edit
   - type: BallisticAmmoProvider
     capacity: 1
   - type: Construction
@@ -278,6 +293,8 @@
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
     fireRate: 4 #No reason to stifle the firerate since you have to manually reload every time anyways.
+    soundGunshot:
+      collection: m3 # Sunrise-Edit
   - type: BallisticAmmoProvider
     capacity: 1
     proto: null

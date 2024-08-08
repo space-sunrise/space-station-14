@@ -1,0 +1,53 @@
+- type: stationGoal
+  id: Shuttle
+  text: station-goal-shuttle
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: Singularity
+  text: station-goal-singularity
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: SolarPanels
+  text: station-goal-solar-panels
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: Artifacts
+  text: station-goal-artifacts
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: Bank
+  text: station-goal-bank
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: Zoo
+  text: station-goal-zoo
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: MiningOutpost
+  text: station-goal-mining-outpost
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: Tesla
+  text: station-goal-tesla
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: XenobiologyRepair
+  text: station-goal-delta-xeno-repair
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: VirusologyAmbusol
+  text: station-goal-delta-ambusol
+  lockBoxPrototypeId: LockboxCaptain
+  extraItems:
+    - PillRomerol
+    - PillRomerol
+    - PillRomerol

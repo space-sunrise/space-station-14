@@ -1,0 +1,93 @@
+- type: entity
+  save: false
+  name: Urist McFelinid
+  parent: BaseMobHuman
+  id: MobFelinidBase
+  abstract: true
+  components:
+  - type: OwOAccent
+  - type: Speech
+    speechVerb: Felinid
+    allowedEmotes: ['Mew', 'Meow', 'Hisses', 'Purr']
+  - type: Sprite
+    scale: 0.75, 0.75
+  - type: HumanoidAppearance
+    species: Felinid
+  - type: Body
+    prototype: Felinid
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Felinid
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Critical
+      100: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      30: 0.7
+      40: 0.5
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      collection: Punch
+    angle: 30
+    animation: WeaponArcClaw
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 1
+        Slash: 2
+  - type: DamageOnHighSpeedImpact
+    damage:
+      types:
+        Blunt: 5
+    soundHit:
+      path: /Audio/Effects/hit_kick.ogg
+  - type: Stamina
+    critThreshold: 50
+  - type: Vocal
+    sounds:
+      Male: MaleFelinid
+      Female: FemaleFelinid
+      Unsexed: MaleFelinid
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 1.5
+    damageRecovery:
+      types:
+        Asphyxiation: -1.5
+  - type: NpcFactionMember
+    factions:
+      - NanoTrasen
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: hugging-success-generic
+    interactSuccessSound: /Audio/Effects/thudswoosh.ogg
+    messagePerceivedByOthers: hugging-success-generic-others
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+    reactions:
+    - reagents: [ Water, SpaceCleaner ]
+      methods: [ Touch ]
+      effects:
+      - !type:WashCreamPieReaction
+      - !type:Emote
+        emote: Hisses
+        showInChat: true
+  - type: MovementSpeedModifier
+    baseSprintSpeed: 4.0
+    baseWalkSpeed: 2.0
+
+- type: entity
+  save: false
+  name: Urist McHands
+  parent: MobHumanDummy
+  id: MobFelinidDummy
+  categories: [ HideSpawnMenu ]
+  description: A dummy felinid meant to be used in character setup.
+
+#Nya~~

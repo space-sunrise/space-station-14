@@ -8,6 +8,7 @@ using Content.Server.Emp;
 using Content.Server.Ghost;
 using Content.Server.Light.Components;
 using Content.Server.Power.Components;
+using Content.Server.Temperature.Components;
 using Content.Shared.Audio;
 using Content.Shared.Damage;
 using Content.Shared.Database;
@@ -111,9 +112,15 @@ namespace Content.Server.Light.EntitySystems
             if (EntityManager.TryGetComponent(bulbUid.Value, out LightBulbComponent? lightBulb))
             {
                 // get users heat resistance
-                var res = int.MinValue;
+                var res = float.MinValue;
+                if (EntityManager.TryGetComponent(userUid, out TemperatureComponent? temperatureComponent))
+                {
+                    res = temperatureComponent.HeatDamageThreshold;
+                }
+
                 if (_inventory.TryGetSlotEntity(userUid, "gloves", out var slotEntity) &&
-                    TryComp<GloveHeatResistanceComponent>(slotEntity, out var gloves))
+                    TryComp<GloveHeatResistanceComponent>(slotEntity, out var gloves) &&
+                    gloves.HeatResistance > res)
                 {
                     res = gloves.HeatResistance;
                 }

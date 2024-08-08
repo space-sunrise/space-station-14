@@ -7,6 +7,7 @@
   - CargoTechnician
   - Quartermaster
   - SalvageSpecialist
+  - MinerBorg # Sunrise-Edit
 
 - type: department
   id: Civilian
@@ -33,21 +34,25 @@
   - Visitor
   - Zookeeper
   - ServiceWorker
+  - JanitorBorg # Sunrise-Edit
+  - ServiceBorg # Sunrise-Edit
+  - ClownBorg # Sunrise-Edit
+  - Barber # Sunrise-Roles
 
 - type: department
   id: Command
   name: department-Command
   description: department-Command-description
-  color: "#334E6D"
+  color: "#052EED" # Sunrise-Edit
   roles:
   - Captain
-  - CentralCommandOfficial
   - ChiefEngineer
   - ChiefMedicalOfficer
   - HeadOfPersonnel
   - HeadOfSecurity
   - ResearchDirector
   - Quartermaster
+#  - NanoTrasenRepresentative  #Sunrise-Edit
   primary: false
   weight: 100
 
@@ -56,11 +61,14 @@
   name: department-Engineering
   description: department-Engineering-description
   color: "#EFB341"
+  weight: 10  # Sunrise-weights
   roles:
   - AtmosphericTechnician
   - ChiefEngineer
+  - SeniorEngineer  # Sunrise-Senior
   - StationEngineer
   - TechnicalAssistant
+  - EngineerBorg # Sunrise-Edit
 
 - type: department
   id: Medical
@@ -70,10 +78,12 @@
   roles:
   - Chemist
   - ChiefMedicalOfficer
+  - SeniorPhysician  # Sunrise-Senior
   - MedicalDoctor
   - MedicalIntern
   - Psychologist
   - Paramedic
+  - MedicalBorg # Sunrise-Edit
 
 - type: department
   id: Security
@@ -83,10 +93,15 @@
   weight: 20
   roles:
   - HeadOfSecurity
+  - SeniorOfficer  # Sunrise-Senior
   - SecurityCadet
   - SecurityOfficer
   - Detective
   - Warden
+  - Brigmedic  # Sunrise-Brigmedic
+  - SecurityPilot # Sunrise-SecurityPilot
+  - SecurityBorg # Sunrise-Edit
+  - SecurityCombatBorg # Sunrise-Edit
 
 - type: department
   id: Science
@@ -95,18 +110,21 @@
   color: "#D381C9"
   roles:
   - ResearchDirector
+  - SeniorResearcher  # Sunrise-Senior
   - Scientist
   - ResearchAssistant
+  - Roboticist  # Sunrise-Edit
 
 - type: department
   id: Specific
   name: department-Specific
   description: department-Specific-description
   color: "#9FED58"
-  weight: 10
+  weight: 5  # Sunrise-weights
   roles:
   - Boxer
   - Reporter
   - Zookeeper
   - Psychologist
+  - Barber  # Sunrise-Roles
   primary: false

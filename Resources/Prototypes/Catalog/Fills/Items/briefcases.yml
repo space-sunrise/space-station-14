@@ -21,7 +21,7 @@
     - 0,0,6,3
   - type: StorageFill
     contents:
-      - id: WeaponSniperHristov
+      - id: WeaponSniperHristovBiocode # Sunrise-edit
       - id: MagazineBoxAntiMateriel
       - id: ClothingNeckTieRed
       - id: ClothingHandsGlovesLatex

@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Server._Sunrise.Station;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Station.Components;
@@ -6,11 +7,9 @@ using Content.Server.Station.Systems;
 using Content.Server.StationEvents.Components;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Random.Helpers;
-using Robust.Server.Audio;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
-using Robust.Shared.Player;
 using Robust.Shared.Random;
 
 namespace Content.Server.StationEvents.Events;
@@ -18,7 +17,6 @@ namespace Content.Server.StationEvents.Events;
 public sealed class MeteorSwarmSystem : GameRuleSystem<MeteorSwarmComponent>
 {
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly StationSystem _station = default!;
 
@@ -29,8 +27,7 @@ public sealed class MeteorSwarmSystem : GameRuleSystem<MeteorSwarmComponent>
         component.WaveCounter = component.Waves.Next(RobustRandom);
 
         if (component.Announcement is { } locId)
-            _chat.DispatchGlobalAnnouncement(Loc.GetString(locId), playSound: false, colorOverride: Color.Gold);
-        _audio.PlayGlobal(component.AnnouncementSound, Filter.Broadcast(), true);
+            _chat.DispatchGlobalAnnouncement(Loc.GetString(locId), announcementSound: component.AnnouncementSound, colorOverride: Color.Gold);
     }
 
     protected override void ActiveTick(EntityUid uid, MeteorSwarmComponent component, GameRuleComponent gameRule, float frameTime)
@@ -40,11 +37,20 @@ public sealed class MeteorSwarmSystem : GameRuleSystem<MeteorSwarmComponent>
 
         component.NextWaveTime += TimeSpan.FromSeconds(component.WaveCooldown.Next(RobustRandom));
 
+        var stations = _station.GetStations();
 
-        if (_station.GetStations().Count == 0)
+        var validStations = new List<EntityUid>();
+
+        foreach (var entityUid in stations)
+        {
+            if (HasComp<StationMeteorSwarmTargetComponent>(entityUid))
+                validStations.Add(entityUid);
+        }
+
+        if (validStations.Count == 0)
             return;
 
-        var station = RobustRandom.Pick(_station.GetStations());
+        var station = RobustRandom.Pick(validStations);
         if (_station.GetLargestGrid(Comp<StationDataComponent>(station)) is not { } grid)
             return;
 

@@ -1,0 +1,111 @@
+- type: entity
+  parent: AirlockCommandGlass
+  id: AirlockBlueShieldGlassLocked
+  suffix: BlueShield, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBlueShield ]
+
+- type: entity
+  parent: AirlockMaint
+  id: AirlockMaintBlueShieldLocked
+  suffix: BlueShield, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBlueShield ]
+
+- type: entity
+  parent: AirlockCommand
+  id: AirlockBlueShieldLocked
+  suffix: BlueShield, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsBlueShield ]
+      
+- type: entity
+  parent: AirlockCommandGlass
+  id: AirlockNtrepGlassLocked
+  suffix: Ntrep, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNtrep ]
+
+- type: entity
+  parent: AirlockMaint
+  id: AirlockMaintNtrepLocked
+  suffix: Ntrep, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNtrep ]
+
+- type: entity
+  parent: AirlockCommand
+  id: AirlockNrepLocked
+  suffix: Ntrep, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsNtrep ]
+
+#Hatches
+- type: entity
+  parent: AirlockHatch
+  id: AirlockHatchCentcommLocked
+  name: CentCom Hatch
+  suffix: CentCom, Locked
+  components:
+    - type: AccessReader
+      access: [["CentralCommand"]]
+
+- type: entity
+  parent: AirlockHatchMaintenance
+  id: AirlockHatchMaintenanceLocked
+  name: Maintenance Hatch
+  suffix: Maint, Locked
+  components:
+    - type: AccessReader
+      access: [["Maintenance"]]
+
+- type: entity
+  parent: AirlockHatch
+  id: AirlockHatchSyndicateLocked
+  name: Syndicate Hatch
+  suffix: Syndicate, Locked
+  components:
+    - type: AccessReader
+      access: [["SyndicateAgent"]]
+
+#DoubleAirlocks
+
+- type: entity
+  parent: DoubleGlassAirlock
+  id: DoubleGlassAirlockCentcomLocked
+  name: Double Glass Airlock
+  suffix: CentCom, Locked
+  components:
+    - type: AccessReader
+      access: [["CentralCommand"]]
+
+- type: entity
+  parent: DoubleGlassAirlock
+  id: DoubleGlassAirlockSyndicateLocked
+  name: Double Glass Airlock
+  suffix: Syndicate, Locked
+  components:
+    - type: AccessReader
+      access: [["SyndicateAgent"]]
+
+# Code equipment
+
+- type: entity
+  parent: AirlockGlassShuttle
+  id: AirlockExternalGlassShuttleGamma
+  suffix: External, Gamma, Glass, Docking
+  components:
+  - type: PriorityDock
+    tag: DockGamma

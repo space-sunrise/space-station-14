@@ -72,7 +72,7 @@
   - type: Gun
     fireRate: 10
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+      collection: ump45 # Sunrise-Edit
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -108,7 +108,7 @@
     - Burst
     - FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/c-20r.ogg
+      collection: aug # Sunrise-Edit
   - type: ChamberMagazineAmmoProvider
     autoEject: true
   - type: MagazineVisuals
@@ -143,7 +143,9 @@
       fireRate: 6
       selectedMode: FullAuto
       soundGunshot:
-        path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+        collection: famas # Sunrise-Edit
+        params:
+          volume: 10
       availableModes:
         - FullAuto
     - type: ItemSlots
@@ -191,7 +193,7 @@
     fireRate: 6
     selectedMode: FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+      collection: mp5 # Sunrise-Edit
     availableModes:
     - FullAuto
   - type: ItemSlots

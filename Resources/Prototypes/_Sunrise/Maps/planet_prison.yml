@@ -1,0 +1,30 @@
+- type: gameMap
+  id: PlanetPrison
+  mapName: 'Planet Prison'
+  mapPath: /Maps/_Sunrise/planet_prison.yml
+  maxRandomOffset: 0
+  randomRotation: false
+  minPlayers: 0
+  stations:
+    PlanetPrison:
+      stationProto: NanotrasenPrison
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Планетарная тюрьма {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: 'TG'
+        - type: StationJobs
+          availableJobs:
+            HeadOfPrison: [ 1, 1 ]
+            PrisonPilot: [ 1, 1 ]
+            PrisonDoctor: [ 1, 2 ]
+            #PrisonChef: [ 1, 2 ] Увы
+            #PrisonWorker: [ 1, 2 ] Увы
+            #PrisonEngineer: [ 1, 2 ] Увы
+            PrisonGuard: [ -1, -1 ]
+            Prisoner: [ 2, 2 ]
+        - type: OtherJobsTakenRequirement
+          targetJob: PrisonGuard
+          adjustJob: Prisoner
+          modifier: 2

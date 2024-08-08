@@ -14,7 +14,9 @@ namespace Content.Shared.Administration
         NetUserId SessionId,
         bool Connected,
         bool ActiveThisRound,
-        TimeSpan? OverallPlaytime)
+        TimeSpan? OverallPlaytime,
+        bool IsSponsor, // Sunrise-Sponsors
+        string? SponsorTitle)  // Sunrise-Sponsors
     {
         private string? _playtimeString;
 

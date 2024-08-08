@@ -3,6 +3,9 @@
   name: job-name-clown
   description: job-description-clown
   playTimeTracker: JobClown
+  requirements:
+  - !type:OverallPlaytimeRequirement
+      time: 18000 #5 hrs # Sunrise-RoleTime
   startingGear: ClownGear
   icon: "JobIconClown"
   supervisors: job-supervisors-hop

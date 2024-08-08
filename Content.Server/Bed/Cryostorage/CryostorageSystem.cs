@@ -241,7 +241,7 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
                 ("character", name),
                 ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))
             ), Loc.GetString("earlyleave-cryo-sender"),
-            playDefaultSound: false
+            playDefault: false
         );
     }
 

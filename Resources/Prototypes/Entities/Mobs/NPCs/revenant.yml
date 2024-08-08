@@ -40,6 +40,8 @@
   - type: Examiner
   - type: NoSlip
   - type: Actions
+  - type: TTS
+    voice: HermaeusMora
   - type: Eye
     drawFov: false
     visMask:
@@ -88,9 +90,9 @@
     - StolenEssence
   - type: RandomMetadata
     nameSegments:
-    - The
+#    - The
     - RevenantType
-    - of
+#    - of
     - RevenantAdjective
     - RevenantTheme
   - type: Speech

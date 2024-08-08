@@ -1,0 +1,28 @@
+- type: entity
+  parent: ClothingHeadHelmetBasic
+  id: ClothingHeadHelmetSecurityMedic
+  name: security medic helmet
+  description: A standard issue combat helmet for security medics. Has decent tensile strength and armor. Keep your head down.
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Clothing/Head/Helmets/security_medic.rsi
+    - type: Clothing
+      sprite: _Sunrise/Clothing/Head/Helmets/security_medic.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetPilot
+  name: Шлем пилота Службы Безопасности
+  description: Толстый шлем пилота, обеспечивающий хорошую защиту головы.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Clothing/Head/Hats/pilothelmet.rsi
+  - type: Clothing
+    sprite: _Sunrise/Entities/Clothing/Head/Hats/pilothelmet.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
