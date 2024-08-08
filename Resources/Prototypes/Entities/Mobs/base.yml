@@ -45,7 +45,10 @@
   - type: StatusIcon
   - type: RequireProjectileTarget
     active: False
-  - type: TTS # Sunrise-TTS
+  # Sunrise-Start
+  - type: TTS
+  - type: DamageOverlay
+  # Sunrise-End
 
 # Used for mobs that have health and can take damage.
 - type: entity

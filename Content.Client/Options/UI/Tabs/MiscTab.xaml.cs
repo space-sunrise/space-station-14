@@ -52,6 +52,7 @@ public sealed partial class MiscTab : Control
         }
         Control.AddOptionDropDown(SunriseCCVars.LobbyBackground, DropDownLobbyBackground, lobbyBackgroundEntries);
         Control.AddOptionPercentSlider(SunriseCCVars.LobbyOpacity, LobbyOpacitySlider);
+        Control.AddOptionCheckBox(SunriseCCVars.DamageOverlay, DamageOverlayCheckBox);
         // Sunrise-End
 
         Control.AddOptionCheckBox(CVars.DiscordEnabled, DiscordRich);

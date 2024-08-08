@@ -216,10 +216,12 @@
     - CanPilot
     - FootstepSound
     - DoorBumpOpener
+  # Sunrise-Start
   - type: Paws
     screamInterval: 3
     thresholdDamage: 5
     coughInterval: 5
+  # Sunrise-End
 
 - type: entity
   save: false
@@ -232,8 +234,10 @@
   id: BaseMobSpeciesOrganic
   abstract: true
   components:
-  - type: Carriable # Sunrise-edit
-  - type: CanEscapeInventory # Sunrise-edit
+  # Sunrise-Start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-End
   - type: Barotrauma
     damage:
       types:

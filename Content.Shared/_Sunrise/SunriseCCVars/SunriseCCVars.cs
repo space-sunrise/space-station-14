@@ -204,8 +204,11 @@ public sealed class SunriseCCVars
         CVarDef.Create("cryo_teleport.enable", false, CVar.SERVERONLY);
 
     /*
-     * Damage variance
+     * Damage
      */
+
+    public static readonly CVarDef<bool> DamageOverlay =
+        CVarDef.Create("damage.overlay", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     public static readonly CVarDef<float> DamageVariance =
         CVarDef.Create("damage.variance", 0.15f, CVar.SERVER | CVar.REPLICATED);
