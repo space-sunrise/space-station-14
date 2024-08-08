@@ -22,6 +22,8 @@
     rules:
     - id: Thief
       prob: 0.85 # Воры отличный антаг
+    - id: Changeling
+      prob: 0.50
 
 - type: entity
   id: DeathMatch31

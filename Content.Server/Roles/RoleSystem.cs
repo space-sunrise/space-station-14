@@ -21,6 +21,7 @@ public sealed class RoleSystem : SharedRoleSystem
         SubscribeAntagEvents<TraitorRoleComponent>();
         SubscribeAntagEvents<ZombieRoleComponent>();
         SubscribeAntagEvents<ThiefRoleComponent>();
+        SubscribeAntagEvents<ChangelingRoleComponent>();
         // Sunrise-start
         SubscribeAntagEvents<FugitiveRoleComponent>();
         SubscribeAntagEvents<PlanetPrisonerRoleComponent>();

@@ -5,6 +5,7 @@
   id: BaseMobVulpkanin
   abstract: true
   components:
+  - type: Absorbable
   - type: Speech
     speechVerb: Vulpkanin
     allowedEmotes: ['Growl', 'Bark', 'Howl']
