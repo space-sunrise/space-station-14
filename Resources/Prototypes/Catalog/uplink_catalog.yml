@@ -50,7 +50,7 @@
   icon: { sprite: /Textures/Objects/Weapons/Melee/e_sword.rsi, state: icon }
   productEntity: EnergySwordBiocode # Sunrise-edit
   cost:
-    Telecrystal: 8
+    Telecrystal: 12
   categories:
   - UplinkWeaponry
 
