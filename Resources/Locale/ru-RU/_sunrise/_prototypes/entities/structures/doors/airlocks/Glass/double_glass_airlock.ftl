@@ -1,2 +1,2 @@
-ent-DoubleGlassAirlock = Double Glass Airlock
-    .desc = It opens, it closes, and maybe crushes you, but it bigger than normal door.
+ent-DoubleGlassAirlock = Двойной стеклянный шлюз
+    .desc = { ent-AirlockGlass.desc }

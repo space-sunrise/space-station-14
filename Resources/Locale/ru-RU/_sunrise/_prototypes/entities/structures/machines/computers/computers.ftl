@@ -5,6 +5,6 @@ ent-ComputerShuttleCentComm = консоль управления шаттлом
 ent-ComputerShuttlePrison = консоль управления тюремным шаттлом
     .desc = Что не ясно? Не пытайся меня открутить ебанат.
 ent-PrisonComputerComms = консоль связи тюрьмы
-    .desc = This can be used for various important functions. Still under development.
+    .desc = Может использоваться для различных важных функций. Всё ещё находится в разработке.
 ent-ComputerShuttleSecurity = консоль управления шатлом службы безопастности
     .desc = Что не ясно? Не пытайся меня открутить ебанат.
