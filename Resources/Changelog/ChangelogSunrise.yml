@@ -2365,3 +2365,11 @@
   id: 173
   time: '2024-08-08T06:28:44.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/268
+- author: Rinary
+  changes:
+  - message: "\u0418\u0441\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u044B \u0441\u0443\
+      \u043C\u043A\u0438 \u041E\u0421\u0429"
+    type: Fix
+  id: 174
+  time: '2024-08-09T01:16:10.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/269
