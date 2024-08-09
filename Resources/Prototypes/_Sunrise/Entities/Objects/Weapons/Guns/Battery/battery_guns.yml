@@ -370,7 +370,7 @@
     fireCost: 50
   - type: Wieldable
   - type: UseDelay
-    delay: 1.5
+    delay: 0.5
 
 - type: entity
   name: EarthGov laser carbine
@@ -466,7 +466,7 @@
     fireCost: 50
   - type: Wieldable
   - type: UseDelay
-    delay: 2.5
+    delay: 0.5
 
 - type: entity
   name: EarthGov Experemental X-Ray
@@ -512,7 +512,7 @@
     fireCost: 100
   - type: Wieldable
   - type: UseDelay
-    delay: 2.5
+    delay: 0.5
 
 - type: entity
   name: EarthGov heavy laser rifle
@@ -557,5 +557,5 @@
     fireCost: 100
   - type: Wieldable
   - type: UseDelay
-    delay: 2.5
+    delay: 0.5
   - type: ZoomableGun
