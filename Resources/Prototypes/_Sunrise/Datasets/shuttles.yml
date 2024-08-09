@@ -1,0 +1,12 @@
+﻿- type: dataset
+  id: ru_shuttle_prefixes
+  values:
+  - WH
+  - TM
+  - BR
+  - SS
+  - AS
+  - ABC
+  - GTA
+  - NF
+  - LR

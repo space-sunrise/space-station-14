@@ -21,7 +21,8 @@ entities:
   - uid: 410
     components:
     - type: MetaData
-      name: NT Evac Gamma 591
+      name: Evac Delta
+    - type: ShuttleNameGenerator
     - type: Transform
       pos: 2.2710133,-2.4148211
       parent: invalid

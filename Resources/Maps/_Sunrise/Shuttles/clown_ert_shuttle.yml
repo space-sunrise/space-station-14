@@ -16,6 +16,9 @@ entities:
   - uid: 1
     components:
     - type: MetaData
+      name: ОБР-КЛОУНЫ
+    - type: ShuttleNameGenerator
+      enableFragments: false
     - pos: -0.3806655,-0.32506984
       parent: invalid
       type: Transform
