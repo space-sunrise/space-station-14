@@ -26,10 +26,10 @@ nuke-user-interface-second-status-await-disk = ОЖИДАНИЕ ДИСКА
 nuke-user-interface-second-status-time = ВРЕМЯ: { $time }
 nuke-user-interface-second-status-current-code = КОД: { $code }
 nuke-user-interface-second-status-cooldown-time = ОЖИДАНИЕ: { $time }
-nuke-label-nanotrasen = NT-{ $serial }
+nuke-label-nanotrasen = НТ-{ $serial }
 # do you even need this one? It's more funnier to say that
 # the Syndicate stole a NT nuke
-nuke-label-syndicate = SYN-{ $serial }
+nuke-label-syndicate = СИН-{ $serial }
 
 # Codes
 

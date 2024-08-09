@@ -69,7 +69,7 @@ ban-panel-permanent = Постоянный
 ban-panel-ip-hwid-tooltip = Оставьте пустым и установите флажок ниже, чтобы использовать данные последнего подключения
 ban-panel-severity = Тяжесть:
 # Ban string
-server-ban-string = { $admin } created a { $severity } severity server ban that expires { $expires } for [{ $name }, { $ip }, { $hwid }], with reason: { $reason }
+server-ban-string = { $admin } создал бан на сервере с уровнем строгости { $severity }, который истекает { $expires } для [{ $name }, { $ip }, { $hwid }], с причиной: { $reason }
 ban-panel-erase = Стереть сообщения в чате и игрока из раунда
 server-ban-string-never = никогда
 server-ban-string-no-pii = { $admin } установил серверный бан { $severity } тяжести, который истечёт { $expires } у { $name } с причиной: { $reason }

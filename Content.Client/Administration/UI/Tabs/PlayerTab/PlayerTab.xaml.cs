@@ -133,8 +133,8 @@ namespace Content.Client.Administration.UI.Tabs.PlayerTab
                     sponsorCount += 1;
             }
 
-            SponsorCount.Text = $"Спонсоры: {sponsorCount}";
-            AntagCount.Text = $"Антаги: {antagCount}";
+            SponsorCount.Text = Loc.GetString("player-tab-sponsor-count", ("count", sponsorCount));
+            AntagCount.Text = Loc.GetString("player-tab-antag-count", ("count", antagCount));
             // Sunrise-Sponsors-End
 
             SearchList.PopulateList(sortedPlayers.Select(info => new PlayerListData(info,

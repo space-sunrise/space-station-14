@@ -6,4 +6,4 @@ removetag-command-description = Удалить тег у выбранной су
 removetag-command-help = Использование: removetag <entity uid> <tag>
 removetag-command-success = Тег { $tag } был удалён у { $target }.
 removetag-command-fail = Не удалость удалить тег { $tag } у { $target }.
-tag-command-arg-tag = Tag
+tag-command-arg-tag = Тег

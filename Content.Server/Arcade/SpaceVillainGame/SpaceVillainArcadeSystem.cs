@@ -84,7 +84,7 @@ public sealed partial class SpaceVillainArcadeSystem : EntitySystem
                 component.Game.ExecutePlayerAction(uid, msg.PlayerAction, component);
                 // Any sort of gameplay action counts
                 if (TryComp<SpeakOnUIClosedComponent>(uid, out var speakComponent))
-                    _speakOnUIClosed.TrySetFlag((uid, speakComponent));
+                    _speakOnUIClosed.TrySetFlag(uid, speakComponent);
                 break;
             case PlayerAction.NewGame:
                 _audioSystem.PlayPvs(component.NewGameSound, uid, AudioParams.Default.WithVolume(-4f));

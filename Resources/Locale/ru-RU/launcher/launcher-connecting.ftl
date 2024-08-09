@@ -17,5 +17,6 @@ connecting-fail-reason =
 connecting-state-NotConnecting = Не подключён
 connecting-state-ResolvingHost = Определение хоста
 connecting-state-EstablishingConnection = Установка соединения
-connecting-state-Handshake = Handshake
+connecting-state-Handshake = Подключение
 connecting-state-Connected = Подключён
+currently-playing-players = Сейчас играет: { $total }/{ $maxPlayers }

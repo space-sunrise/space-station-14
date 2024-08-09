@@ -35,7 +35,7 @@ replay-menu-select-title = Выбрать повтор
 # Replay related verbs
 replay-verb-spectate = Наблюдать
 # command
-cmd-replay-spectate-help = replay_spectate [сущность (опционально)]
+cmd-replay-spectate-help = Использование: replay_spectate [сущность (опционально)]
 cmd-replay-spectate-desc = Прикрепляет или открепляет локального игрока к заданному uid сущности.
 cmd-replay-spectate-hint = Опциональный EntityUid
 cmd-replay-toggleui-desc = Переключение пользовательского интерфейса управления воспроизведением.

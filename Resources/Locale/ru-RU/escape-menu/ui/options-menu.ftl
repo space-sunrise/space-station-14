@@ -16,7 +16,7 @@ ui-options-value-percent = { TOSTRING($value, "P0") }
 
 ui-options-discordrich = Включить Discord Rich Presence
 ui-options-general-ui-style = Стиль UI
-ui-options-general-discord = Discord
+ui-options-general-discord = Дискорд
 ui-options-general-cursor = Курсор
 ui-options-general-speech = Речь
 ui-options-general-storage = Инвентарь
@@ -82,7 +82,7 @@ ui-options-hud-theme-minimalist = Минимализм
 ui-options-hud-theme-ashen = Пепел
 ui-options-vp-stretch = Растянуть изображение для соответствия окну игры
 ui-options-vp-scale = Фиксированный масштаб окна игры:
-ui-options-vp-scale-value = x{ $scale }
+ui-options-vp-scale-value = х{ $scale }
 ui-options-vp-integer-scaling = Использовать целочисленное масштабирование (может вызывать появление чёрных полос/обрезания)
 ui-options-vp-integer-scaling-tooltip =
     Если эта опция включена, область просмотра будет масштабироваться,
@@ -167,6 +167,7 @@ ui-options-function-focus-dead-chat-window = Писать в чат (Мёртв�
 ui-options-function-focus-console-chat-window = Писать в чат (Консоль)
 ui-options-function-cycle-chat-channel-forward = Переключение каналов чата (Вперёд)
 ui-options-function-cycle-chat-channel-backward = Переключение каналов чата (Назад)
+ui-options-function-open-emotes-menu = Открыть меню эмоций
 ui-options-function-open-character-menu = Открыть меню персонажа
 ui-options-function-open-context-menu = Открыть контекстное меню
 ui-options-function-open-crafting-menu = Открыть меню строительства

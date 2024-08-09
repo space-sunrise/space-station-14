@@ -197,7 +197,7 @@ public sealed partial class SingleMarkingPicker : BoxContainer
             if (marking.SponsorOnly && _sponsorsManager != null)
             {
                 item.Disabled = !_sponsorsManager.GetClientPrototypes().Contains(marking.ID);
-                item.Text = $"{GetMarkingName(marking)} [СПОНСОР] ";
+                item.Text = Loc.GetString("sponsor-marking", ("name", GetMarkingName(marking)));
             }
             // Sunrise-Sponsors-End
 

@@ -4,7 +4,7 @@
 # Mostly help + error messages.
 
 invoke-verb-command-description = Вызывает verb с заданным именем на сущности, с сущностью игрока
-invoke-verb-command-help = invokeverb <playerUid | "self"> <targetUid> <verbName | "interaction" | "activation" | "alternative">
+invoke-verb-command-help = Использование: invokeverb <playerUid | "self"> <targetUid> <verbName | "interaction" | "activation" | "alternative">
 invoke-verb-command-invalid-args = invokeverb принимает 2 аргумента.
 invoke-verb-command-invalid-player-uid = uid игрока не может быть проанализирован, или "self" не было пройдено.
 invoke-verb-command-invalid-target-uid = Целевой uid не может быть проанализирован.

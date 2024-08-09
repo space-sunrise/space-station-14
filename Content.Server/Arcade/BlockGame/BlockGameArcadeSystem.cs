@@ -109,7 +109,7 @@ public sealed class BlockGameArcadeSystem : EntitySystem
         }
 
         if (TryComp<SpeakOnUIClosedComponent>(uid, out var speakComponent))
-            _speakOnUIClosed.TrySetFlag((uid, speakComponent));
+            _speakOnUIClosed.TrySetFlag(uid, speakComponent);
 
         component.Game.ProcessInput(msg.PlayerAction);
     }

@@ -1,3 +1,5 @@
+uplink-core-extraction-toolbox-name = Набор инструментов для извлечения ядра
+uplink-core-extraction-toolbox-desc = Ящик с инструментами, в котором есть все необходимое для извлечения плутониевого сердечника ядерной бомбы. Инструкции в комплект не входят.
 uplink-magazine-shotgun-name = Барабан (.50 дробь).
 uplink-magazine-shotgun-desc = Барабан на 8 выстрелов для дробовика. Совместим с "Бульдогом".
 uplink-magazine-lmg-name = Коробка патронов (.30 винтовочные)

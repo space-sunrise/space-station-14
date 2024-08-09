@@ -1,5 +1,5 @@
 cmd-dungen-desc = Процедурно генерирует подземелье с заданными пресетом, местоположением и сидом. Заспавнится в космосе, если MapId не имеет MapGridComponent.
-cmd-dungen-help = dungen <MapId> <DungeonPreset> <PosX> <PosY> [seed]
+cmd-dungen-help = Использование: dungen <MapId> <DungeonPreset> <PosX> <PosY> [seed]
 cmd-dungen-arg-count = Требуется 4 аргумента.
 cmd-dungen-map-parse = Не удалось спарсить MapId.
 cmd-dungen-mapgrid = Не удалось найти MapGrid.
@@ -13,7 +13,7 @@ cmd-dungen-hint-posx = Координата X
 cmd-dungen-hint-posy = Координата Y
 cmd-dungen-hint-seed = [Seed]
 cmd-dungen_preset_vis-desc = Генерирует тайловое превью пресета подземелья.
-cmd-dungen_preset_vis-help = dungen_preset_vis <mapid> <preset>
+cmd-dungen_preset_vis-help = Использование: dungen_preset_vis <mapid> <preset>
 cmd-dungen_pack_vis-success = Успешно
 cmd-dungen_pack_vis-desc = Генерирует тайловое превью группы подземелий.
-cmd-dungen_pack_vis-help = dungen_pack_vis <mapid> <pack>
+cmd-dungen_pack_vis-help = Использование: dungen_pack_vis <mapid> <pack>

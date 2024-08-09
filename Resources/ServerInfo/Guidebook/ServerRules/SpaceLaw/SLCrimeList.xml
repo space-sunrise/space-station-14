@@ -1,23 +1,25 @@
 <Document>
-  # Space Law: Crime Listing
-  Crime codes are organized by a Category Code (_-xx) which is a collection of non-stackable crimes on a row, prefixed
-  by the Severity Number (X-__).
+  # Корпоративный закон: 
+  # Справочник статей
+ Коды преступлений организованы по Категорийному Коду (_-xx), 
+ \nкоторый представляет собой набор не накапливаемых преступлений в строке, предваряемых Номером Тяжести (X-__).
 
   ## Quick Crime Guide
   <Table Columns="6">
     <ColorBox>
-      <Box>
-        1-XX - Minor
+      <Box HorizontalAlignment="Center" VerticalAlignment="Stretch" Margin="2">
+        1XX
+        Лёгкие нарушения
       </Box>
     </ColorBox>
     <ColorBox>
       <Box>
-        2-XX - Moderate
+        2XX \n Средние нарушения
       </Box>
     </ColorBox>
     <ColorBox>
       <Box>
-        3-XX - Major
+        3XX \n Тяжкие нарушения
       </Box>
     </ColorBox>
     <ColorBox>

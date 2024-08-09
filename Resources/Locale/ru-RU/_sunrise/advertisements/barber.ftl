@@ -1,4 +1,4 @@
-﻿advertisement-barber-1 = Вам новый стиль? Без проблем, машинка в деле!
+advertisement-barber-1 = Вам новый стиль? Без проблем, машинка в деле!
 advertisement-barber-2 = Хотите быть как звезда? Наши ножницы знают секрет!
 advertisement-barber-3 = Легкий взмах, и вы на обложке журнала.
 advertisement-barber-4 = Никаких лишних движений — только стиль!

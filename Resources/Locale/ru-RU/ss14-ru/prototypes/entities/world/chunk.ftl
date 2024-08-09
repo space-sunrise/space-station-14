@@ -1,4 +1,4 @@
-ent-WorldChunk = World Chunk
+ent-WorldChunk = Чанк Мира
     .desc =
-        It's rude to stare.
-        It's also a bit odd you're looking at the abstract representation of the grid of reality.
+        Неприлично пялиться.
+        Также немного странно, что вы смотрите на абстрактное представление сетки реальности.

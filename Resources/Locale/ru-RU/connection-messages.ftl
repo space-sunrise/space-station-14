@@ -41,7 +41,7 @@ panic-bunker-account-reason-overall =
         [few] минуты
        *[other] минут
     }.
-baby-jail-account-denied = This server is a newbie server, intended for new players and those who want to help them. New connections by accounts that are too old or are not on a whitelist are not accepted. Check out some other servers and see everything Space Station 14 has to offer. Have fun!
-baby-jail-account-denied-reason = This server is a newbie server, intended for new players and those who want to help them. New connections by accounts that are too old or are not on a whitelist are not accepted. Check out some other servers and see everything Space Station 14 has to offer. Have fun! Reason: "{ $reason }"
-baby-jail-account-reason-account = Your Space Station 14 account is too old. It must be younger than { $minutes } minutes
-baby-jail-account-reason-overall = Your overall playtime on the server must be younger than { $minutes } $minutes
+baby-jail-account-denied = Этот сервер предназначен для новичков и тех, кто хочет им помочь. Новые подключения от учетных записей, которые слишком старые или не находятся в белом списке, не принимаются. Попробуйте другие серверы и узнайте, что еще может предложить Space Station 14. Удачи!
+baby-jail-account-denied-reason = Этот сервер предназначен для новичков и тех, кто хочет им помочь. Новые подключения от учетных записей, которые слишком старые или не находятся в белом списке, не принимаются. Попробуйте другие серверы и узнайте, что еще может предложить Space Station 14. Удачи! Причина: "{ $reason }"
+baby-jail-account-reason-account = Ваша учетная запись Space Station 14 слишком старая. Она должна быть моложе { $minutes } минут.
+baby-jail-account-reason-overall = Ваше общее время игры на сервере должно быть меньше { $minutes } минут.

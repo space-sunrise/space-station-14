@@ -9,7 +9,7 @@ gravity-generator-window-title = Генератор гравитации
 
 gravity-generator-window-status = Состояние:
 gravity-generator-window-power = Питание:
-gravity-generator-window-eta = ETA:
+gravity-generator-window-eta = ЕТА:
 gravity-generator-window-charge = Заряд:
 
 ## UI statuses

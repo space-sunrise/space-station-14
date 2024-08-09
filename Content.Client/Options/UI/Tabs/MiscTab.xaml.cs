@@ -9,6 +9,7 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Localization;
 
 namespace Content.Client.Options.UI.Tabs;
 
@@ -34,7 +35,8 @@ public sealed partial class MiscTab : Control
         var layoutEntries = new List<OptionDropDownCVar<string>.ValueOption>();
         foreach (var layout in Enum.GetValues(typeof(ScreenType)))
         {
-            layoutEntries.Add(new OptionDropDownCVar<string>.ValueOption(layout.ToString()!, layout.ToString()!));
+            var layoutloc = Loc.GetString($"layout-{layout.ToString()!.ToLower()!}");
+            layoutEntries.Add(new OptionDropDownCVar<string>.ValueOption(layoutloc.ToString()!, layoutloc.ToString()!));
         }
 
         // Channel can be null in replays so.
@@ -48,7 +50,8 @@ public sealed partial class MiscTab : Control
         var lobbyBackgroundEntries = new List<OptionDropDownCVar<string>.ValueOption>();
         foreach (var layout in Enum.GetValues(typeof(LobbyBackgroundType)))
         {
-            lobbyBackgroundEntries.Add(new OptionDropDownCVar<string>.ValueOption(layout.ToString()!, layout.ToString()!));
+            var layoutloc = Loc.GetString($"layout-{layout.ToString()!.ToLower()!}");
+            lobbyBackgroundEntries.Add(new OptionDropDownCVar<string>.ValueOption(layoutloc.ToString()!, layoutloc.ToString()!));
         }
         Control.AddOptionDropDown(SunriseCCVars.LobbyBackground, DropDownLobbyBackground, lobbyBackgroundEntries);
         Control.AddOptionPercentSlider(SunriseCCVars.LobbyOpacity, LobbyOpacitySlider);

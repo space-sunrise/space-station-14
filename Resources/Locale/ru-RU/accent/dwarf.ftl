@@ -281,5 +281,5 @@ accent-dwarf-words-146 = даун
 accent-dwarf-words-replace-146 = обалдуй
 accent-dwarf-words-147 = СБ
 accent-dwarf-words-replace-147 = стража
-accent-dwarf-words-148 = a
-accent-dwarf-words-replace-148 = ae
+accent-dwarf-words-148 = а
+accent-dwarf-words-replace-148 = ае

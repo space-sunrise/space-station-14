@@ -1,7 +1,6 @@
 marking-VulpHeadSlash = Голова Вульпканина
 marking-VulpHeadTiger = Голова Вульпканина (Тигр)
 marking-VulpHeadTigerFace = Голова Вульпканина (Тигриное лицо)
-
 marking-VulpEar = Уши Вульпканина
 marking-VulpEarCoyote = Уши Вульпканина (Койот)
 marking-VulpEarDalmatian = Уши Вульпканина (Далматин)
@@ -15,7 +14,6 @@ marking-VulpEarShock = Уни Вульпканина (Узкие)
 marking-VulpEarTajaran = Уши Вульпканина (Таджаран)
 marking-VulpEarTerrier = Уши Вульпканина (Терьер)
 marking-VulpEarWolf = Уши Вульпканина (Волк)
-
 marking-VulpSnout = Морда Вульпканина
 marking-VulpSnoutAlt = Морда Вульпканина (альтернативная)
 marking-VulpSnoutBlaze = Морда Вульпканина (Пятно)
@@ -26,19 +24,15 @@ marking-VulpSnoutPatch = Морда Вульпканина (Патч)
 marking-VulpSnoutSharp = Морда Вульпканина (Щетина)
 marking-VulpSnoutSwift = Морда Вульпканина (Скулы)
 marking-VulpSnoutVulpine = Морда Вульпканина (Лисья)
-
 marking-VulpBellyCrest = Живот Вульпканина (Гребень)
 marking-VulpBellyFox = Живот Вульпканина (Лиса)
 marking-VulpBellyFull = Живот Вульпканина (Полный)
-
 marking-VulpPointsCrestArms = Лапы Вульпканина (Локоть)
 marking-VulpPointsFadeArms = Лапы Вульпканина (Плавный Переход)
 marking-VulpPointsSharpArms = Лапы Вульпканина (Затемнение)
-
 marking-VulpPointsCrestLegs = Ноги Вульпканина
 marking-VulpPointsFadeLegs = Ноги Вульпканина (Плавный Переход)
 marking-VulpPointsSharpLegs = Ноги Вульпканина (Затемнение)
-
 marking-VulpTail = Хвост Вульпканина
 marking-VulpTailAlt = Хвост Вульпканина (Альтернативный)
 marking-VulpTailAltTip = Хвост Вульпканина (Альтернативный, Кончик)
@@ -52,7 +46,7 @@ marking-VulpTailFennec = Хвост Вульпканина (Фенек)
 marking-VulpTailFluffy = Хвост Вульпканина (Пушистый)
 marking-VulpTailFox = Хвост Вульпканина (Лиса)
 marking-VulpTailFox2 = Хвост Вульпканина (Лиса, второй вариант
-marking-VulpTailFox3 =Хвост Вульпканина (Лиса, третий вариант)
+marking-VulpTailFox3 = Хвост Вульпканина (Лиса, третий вариант)
 marking-VulpTailFoxTip = Хвост Вульпканина (Лиса, Кончик)
 marking-VulpTailFoxWag = Хвост Вульпканина (Лиса, Виляющий)
 marking-VulpTailFoxWagTip = Хвост Вульпканина (Лиса, Виляющий, Кончик)
@@ -63,6 +57,5 @@ marking-VulpTailOtie = Хвост Вульпканина (Оти)
 marking-VulpTailTip = Хвост Вульпканина (Кончик)
 marking-VulpTailWag = Хвост Вульпканина (Виляющий)
 marking-VulpTailWagTip = Хвост Вульпканина (Виляющий, Кончик)
-
 marking-VulpPointsFeet = Лапы Вульпканина
 marking-VulpPointsHands = Руки Вульпканина

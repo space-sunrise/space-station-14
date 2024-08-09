@@ -8,5 +8,3 @@ reagent-effect-guidebook-love =
         [1] Вызывает
        *[other] вызывают
     } измененное состояние сознания.
-ent-AphrodesiacChemistryBottle = бутылочка афродезиака
-    .desc = { ent-BaseChemistryBottleFilled.desc }
