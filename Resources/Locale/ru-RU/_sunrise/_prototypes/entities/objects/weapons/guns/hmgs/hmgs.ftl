@@ -1,6 +1,6 @@
-ent-WeaponMinigunMG100 = MG-100 Vindicator Minigun
+ent-WeaponMinigunMG100 = MG-100 Vindicator Миниган
+    .desc = Шестизарядный ротационный пулемёт, последнее слово в портативной огневой мощи, способный стрелять высокоскоростными бронебойными пулями, он, несомненно, произведёт впечатление. Если вы не убьёте всех своих друзей им, вы можете использовать систему стабилизации Powerpack для точной стрельбы, но вы будете двигаться невероятно медленно.
+ent-PowerpackMinigunMG100 = силовой агрегат (.30 мм)
     .desc = { ent-BaseItem.desc }
-ent-PowerpackMinigunMG100 = { ent-BasePowerpackMG100 }
-    .desc = { ent-BasePowerpackMG100.desc }
 ent-BasePowerpackMG100 = { ent-BaseItem }
     .desc = { ent-BaseItem.desc }

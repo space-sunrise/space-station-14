@@ -148,7 +148,3 @@ ent-VendingMachineChemicals = ХимкоМат
     .desc = Вероятно, не кофемашина.
 ent-VendingMachineChemicalsSyndicate = СиндиСоки
     .desc = Надеюсь, не из свежевыжатых синдикатовцев?
-ent-VendingMachineCoffeeMigrateUnderwear = Лучшие горячие напитки Солнечной
-    .desc = Подаются кипящими, чтобы оставались горячими всю смену!
-ent-VendingMachineDonutMigrateKinko = Monkin' Donuts
-    .desc = Автомат пончиков, предоставленный компанией Robust Industries, LLC.

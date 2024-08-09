@@ -1,6 +1,6 @@
-ent-MagazineDragunov = Dragunov magazine
-    .desc = Standart USSP type of heavy magazines.
-ent-MagazineBR64 = BR64 magazine
-    .desc = Standart EarthGov type of heavy magazines.
-ent-MagazineBauer127 = Bauer127 magazine
-    .desc = Standart EarthGov type of heavy magazines.
+ent-MagazineDragunov = магазин винтовки Драгунов
+    .desc = Использует патроны калибра 7.62 мм.
+ent-MagazineBR64 = магазин винтовки BR-64
+    .desc = Использует патроны калибра .45 мм.
+ent-MagazineBauer127 = магазин Bauer-127
+    .desc = Использует патроны калибра .60 мм.
