@@ -1,6 +1,6 @@
 ent-MuzzleFlashEffect = { "" }
     .desc = { "" }
-ent-BaseBullet = BaseBullet
+ent-BaseBullet = стандартная пуля
     .desc = Если вы можете видеть это, вы вероятно мертвы!
 ent-BaseBulletTrigger = { ent-BaseBullet }
     .desc = { ent-BaseBullet.desc }
@@ -10,7 +10,7 @@ ent-BaseBulletIncendiary = базовая пуля зажигательная
     .desc = { ent-BaseBullet.desc }
 ent-BaseBulletAP = базовая пуля бронебойная
     .desc = { ent-BaseBullet.desc }
-ent-BaseBulletUranium = base bullet uranium
+ent-BaseBulletUranium = стандартная урановая пуля
     .desc = { ent-BaseBullet.desc }
 ent-BulletTaser = заряд тазера
     .desc = { ent-BaseBullet.desc }
