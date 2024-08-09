@@ -1,9 +1,9 @@
 ent-ClothingShoesBootsJackSecFilled = { ent-ClothingShoesBootsJackSec }
-    .suffix = Filled
+    .suffix = Заполнен
     .desc = { ent-ClothingShoesBootsJackSec.desc }
 ent-ClothingBeltBlueShieldWebbingFilled = { ent-ClothingBeltBlueShieldWebbing }
-    .suffix = Filled
+    .suffix = Заполнен
     .desc = { ent-ClothingBeltBlueShieldWebbing.desc }
 ent-ClothingShoesBootsBlueShieldFilled = { ent-ClothingShoesBootsBlueShield }
-    .suffix = Filled
+    .suffix = Заполнен
     .desc = { ent-ClothingShoesBootsBlueShield.desc }

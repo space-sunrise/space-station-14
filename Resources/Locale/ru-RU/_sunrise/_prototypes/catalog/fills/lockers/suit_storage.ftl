@@ -1,3 +1,3 @@
 ent-SuitStorageBlueShield = { ent-SuitStorageBase }
-    .suffix = BlueShield
+    .suffix = ОСЩ
     .desc = { ent-SuitStorageBase.desc }

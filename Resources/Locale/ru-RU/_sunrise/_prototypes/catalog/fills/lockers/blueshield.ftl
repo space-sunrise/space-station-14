@@ -1,8 +1,8 @@
 ent-LockerBlueshieldFilled = { ent-LockerBlueshield }
-    .suffix = Filled
+    .suffix = Заполнен
     .desc = { ent-LockerBlueshield.desc }
 ent-LockerBlueshieldFilledHardsuit = { ent-LockerBlueshield }
-    .suffix = Filled, Hardsuit
+    .suffix = Заполнен, Скафандр
     .desc = { ent-LockerBlueshield.desc }
-ent-GunSafeBlueShield = blue shield safe
+ent-GunSafeBlueShield = сейф офицера "синий щит"
     .desc = { ent-GunSafe.desc }

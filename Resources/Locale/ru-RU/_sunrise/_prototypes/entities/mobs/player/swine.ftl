@@ -1,2 +1,2 @@
-ent-MobSwine = Urist McPig
+ent-MobSwine = Урист МакСвинья
     .desc = { ent-BaseMobSwine.desc }

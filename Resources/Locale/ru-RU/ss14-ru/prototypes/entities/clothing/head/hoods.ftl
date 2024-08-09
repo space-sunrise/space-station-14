@@ -106,4 +106,3 @@ ent-ClothingHeadHatHoodWinterColorWhite = Белый капюшон зимней
     .desc = { ent-ClothingHeadHatHoodWinterBase.desc }
 ent-ClothingHeadHatHoodWinterColorYellow = Желтый капюшон зимней куртки
     .desc = { ent-ClothingHeadHatHoodWinterBase.desc }
-

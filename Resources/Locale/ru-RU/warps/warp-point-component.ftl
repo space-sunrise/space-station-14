@@ -1,5 +1,4 @@
 warp-point-component-on-examine-success = ID данной локации: { $location }
-
 #locations
 location-nuke-disk = Ядерный диск
 location-nuclear-bomb = Ядерная боеголовка

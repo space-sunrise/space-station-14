@@ -1,4 +1,4 @@
-ent-BaseMobSwine = Urist McPig
+ent-BaseMobSwine = Урист МакСвинья
     .desc = { ent-BaseMobSpeciesOrganic.desc }
-ent-MobSwineDummy = Urist McHands
-    .desc = A dummy swine meant to be used in character setup.
+ent-MobSwineDummy = Урист МакХендс
+    .desc = Манекен свиньи, предназначенный для использования в настройке персонажа.

@@ -1,3 +1,3 @@
-ent-SpawnPointGhostFoliant = ghost role spawn point
-    .suffix = Foliant
+ent-SpawnPointGhostFoliant = точка спавна призрачной роли
+    .suffix = Фолиант
     .desc = { ent-MarkerBase.desc }

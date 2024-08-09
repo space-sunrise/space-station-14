@@ -22,9 +22,8 @@ fax-machine-ui-paper-inserted = Бумага в лотке
 fax-machine-ui-paper-not-inserted = Нет бумаги
 fax-machine-chat-notify = Получено новое сообщение с "{ $fax }" факса
 fax-machine-printed-paper-name = распечатанная бумага
-
 fax-lable-err = ОШИБКА*?*%!
-fax-label-captain= Кабинет капитана
+fax-label-captain = Кабинет капитана
 fax-label-captainoffice = Кабинет капитана
 fax-label-captainsoffice = Кабинет капитана
 fax-label-captainsquarters = Кабинет капитана

@@ -1,4 +1,4 @@
-ent-WeaponPistolMk58Nonlethal = МК 58
+ent-WeaponPistolMk58Nonlethal = MK58
     .desc = Дешёвый и распространённый пистолет, производимый дочерней компанией Nanotrasen. Использует патроны калибра .35 авто.
     .suffix = Пистолет, Не летальный
 ent-WeaponPistolN1984Nonlethal = N1984

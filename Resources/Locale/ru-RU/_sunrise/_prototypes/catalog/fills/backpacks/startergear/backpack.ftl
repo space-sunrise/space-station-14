@@ -2,8 +2,6 @@ ent-ClothingBackpackIAAFilled = { ent-ClothingBackpack }
     .desc = { ent-ClothingBackpack.desc }
 ent-ClothingBackpackPsychologistFilled = { ent-ClothingBackpackMedical }
     .desc = { ent-ClothingBackpackMedical.desc }
-
-
 ent-ClothingBackpackSyndieAJ100Filled = набор AJ-10
     .desc = Включает в себя пистолет-пулемёт AJ-100 и два магазина патрон.
 ent-ClothingBackpackSyndieDL6902Filled = набор DL-6902

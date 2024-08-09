@@ -1,2 +1,2 @@
-ent-RandomRockSpawner = Mining Rock Spawner
+ent-RandomRockSpawner = Спавнер горной породы
     .desc = { ent-MarkerBase.desc }

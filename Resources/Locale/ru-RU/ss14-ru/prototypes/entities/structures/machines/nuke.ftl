@@ -1,5 +1,5 @@
 ent-BaseNuclearBomb = ядерная боеголовка
-  .desc = Вам, вероятно, не стоит оставаться здесь, чтобы проверить, запущена ли она.
+    .desc = Вам, вероятно, не стоит оставаться здесь, чтобы проверить, запущена ли она.
 ent-NuclearBomb = { ent-BaseNuclearBomb }
     .desc = { ent-BaseNuclearBomb.desc }
 ent-NuclearBombUnanchored = { ent-NuclearBomb }

@@ -46,4 +46,4 @@ ent-ClothingEyesEyepatchHudBeerFlipped = пивной монокуляр
 ent-ClothingEyesEyepatchHudDiag = диагностический моновизор
     .desc = Окуляр с индикатором на стекле, способный анализировать целостность и состояние роботов и экзокостюмов. Сделан из си-боргия.
 ent-ClothingEyesEyepatchHudDiagFlipped = { ent-ClothingEyesEyepatchHudDiag }
-  .desc = { ent-ClothingEyesEyepatchHudDiag.desc }
+    .desc = { ent-ClothingEyesEyepatchHudDiag.desc }

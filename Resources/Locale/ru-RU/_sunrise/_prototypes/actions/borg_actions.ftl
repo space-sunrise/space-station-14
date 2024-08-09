@@ -10,5 +10,5 @@ ent-FabricateCookie = Произвести Печенье
     .desc = Создать печенье, которому будет рад каждый.
 ent-FabricateSoap = Произвести мыло
     .desc = Создать мыло, которому будет мало кто рад.
-ent-ActionViewCrewManifest = View Crew Manifest
-    .desc = View the View crew manifest station.
+ent-ActionViewCrewManifest = Просмотреть списка экипажа
+    .desc = Открывает список экипажа станции.

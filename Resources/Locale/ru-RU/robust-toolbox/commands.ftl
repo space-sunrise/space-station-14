@@ -209,13 +209,13 @@ cmd-chunkinfo-help = Использование: chunkinfo
 cmd-rldshader-desc = Перезагружает все шейдеры.
 cmd-rldshader-help = Использование: rldshader
 cmd-cldbglyr-desc = Переключает слои отладки FOV и освещения.
-cmd-cldbglyr-help = 
+cmd-cldbglyr-help =
     Использование: cldbglyr <layer>: Переключить <layer>
     cldbglyr: Выключить все слои
 cmd-key-info-desc = Выводит информацию о клавише.
 cmd-key-info-help = Использование: keyinfo <Key>
 cmd-bind-desc = Привязывает комбинацию клавиш к команде ввода.
-cmd-bind-help = 
+cmd-bind-help =
     Использование: bind { cmd-bind-arg-key } { cmd-bind-arg-mode } { cmd-bind-arg-command }
     Обратите внимание, что это НЕ сохраняет привязки автоматически. Используйте команду 'svbind' для сохранения конфигурации привязок.
 cmd-bind-arg-key = <KeyName>
@@ -274,12 +274,12 @@ cmd-addviewc-help = Использование: addview <entityUid>
 cmd-removeview-desc = Позволяет отписаться от отображения сущности для отладки.
 cmd-removeview-help = Использование: removeview <entityUid>
 cmd-loglevel-desc = Изменяет уровень логирования для указанного sawmill.
-cmd-loglevel-help = 
+cmd-loglevel-help =
     Использование: loglevel <sawmill> <level>
     sawmill: Метка, предшествующая сообщениям журнала. Для которой вы устанавливаете уровень.
     level: Уровень журнала. Должен соответствовать одному из значений перечисления LogLevel.
 cmd-testlog-desc = Записывает тестовый журнал в sawmill.
-cmd-testlog-help = 
+cmd-testlog-help =
     Использование: testlog <sawmill> <level> <message>
     sawmill: Метка, предшествующая зарегистрированному сообщению.
     level: Уровень журнала. Должен соответствовать одному из значений перечисления LogLevel.
@@ -294,7 +294,6 @@ cmd-forall-desc = Выполняет команду для всех сущнос
 cmd-forall-help = Использование: forall <bql query> do <command...>
 cmd-delete-desc = Удаляет сущность с указанным ID.
 cmd-delete-help = Использование: delete <entity UID>
-
 # System commands
 cmd-showtime-desc = Показывает время сервера.
 cmd-showtime-help = Использование: showtime

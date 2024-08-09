@@ -1,9 +1,9 @@
 ent-Nanopaste = нанопаста
-    .suffix = Full
+    .suffix = Полная
     .desc = { ent-BaseHealingItem.desc }
 ent-Nanopaste1 = { ent-Nanopaste }
-    .suffix = Single
+    .suffix = Одиночная
     .desc = { ent-Nanopaste.desc }
 ent-Nanopaste10 = { ent-Nanopaste }
-    .suffix = Full
+    .suffix = Полная
     .desc = { ent-Nanopaste.desc }
