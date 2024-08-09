@@ -127337,7 +127337,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 115.3729,72.07151
       parent: 2
-- proto: WeaponDisabler
+- proto: WeaponEnergyGunMini
   entities:
   - uid: 15556
     components:
@@ -127405,7 +127405,7 @@ entities:
     - type: Transform
       pos: 85.46081,-16.284866
       parent: 2
-- proto: WeaponLaserCarbine
+- proto: WeaponEarthGovLaserCarbine
   entities:
   - uid: 15568
     components:
@@ -127486,7 +127486,7 @@ entities:
     - type: Transform
       pos: 98.35489,5.5269833
       parent: 2
-- proto: WeaponPistolMk58
+- proto: WeaponPistolACP14
   entities:
   - uid: 13795
     components:

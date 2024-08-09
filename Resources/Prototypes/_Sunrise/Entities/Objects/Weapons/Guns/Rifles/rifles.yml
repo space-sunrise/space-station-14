@@ -45,7 +45,7 @@
   - type: Gun
     minAngle: 24
     maxAngle: 45
-    fireRate: 5  # 10 в секунду - реалистично. 5, так как сс14
+    fireRate: 7  # 10 в секунду - реалистично. 5, так как сс14
     soundGunshot:
       collection: ak47
   - type: ItemSlots
@@ -157,6 +157,7 @@
   - type: Gun
     minAngle: 24
     maxAngle: 45
+    fireRate: 7
     soundGunshot:
       collection: famas
   - type: ItemSlots
@@ -216,6 +217,7 @@
   - type: Gun
     minAngle: 24
     maxAngle: 45
+    fireRate: 6
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/g36/g36_shot.ogg
   - type: ItemSlots
@@ -272,6 +274,7 @@
   - type: Gun
     minAngle: 24
     maxAngle: 45
+    fireRate: 6
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/m28/m28.ogg
   - type: ItemSlots
@@ -328,6 +331,7 @@
   - type: Gun
     minAngle: 24
     maxAngle: 45
+    fireRate: 6
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/ar18/ar18_shot.ogg
   - type: ItemSlots
@@ -384,20 +388,21 @@
   - type: Gun
     minAngle: 24
     maxAngle: 45
-    fireRate: 5
+    fireRate: 6
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/m16a4/m16a4_shot.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineLightRifle
+        startingItem: MagazineM16A4
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
         priority: 2
         whitelist:
           tags:
           - MagazineLightRifle
+          - MagazineM16A4
       gun_chamber:
         name: Chamber
         startingItem: CartridgeLightRifle  # 556
