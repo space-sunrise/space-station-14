@@ -1,5 +1,5 @@
-ent-LootSpawnerIndustrialFluff = industrial fluff spawner
+ent-LootSpawnerIndustrialFluff = спавнер промышленного мусора
     .desc = { ent-MarkerBase.desc }
-ent-LootSpawnerIndustrial = industrial loot spawner
-    .suffix = Tools + Materials
+ent-LootSpawnerIndustrial = спавнер промышленных ресурсов
+    .suffix = Инструменты + Материалы
     .desc = { ent-MarkerBase.desc }
