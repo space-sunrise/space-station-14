@@ -1,2 +1,2 @@
-ent-GuidebookChangelingFluff = guidebook changeling
-    .desc = you shouldn't be seeing this normally.
+ent-GuidebookChangelingFluff = руководство по ченджлингу
+    .desc = В нормальных условиях вы не должны это видеть.
