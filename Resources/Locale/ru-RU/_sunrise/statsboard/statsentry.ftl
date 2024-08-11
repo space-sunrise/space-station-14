@@ -1,0 +1,1 @@
+statsentry-character = Персонаж: 

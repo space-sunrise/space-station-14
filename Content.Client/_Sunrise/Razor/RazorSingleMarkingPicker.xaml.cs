@@ -224,7 +224,7 @@ public sealed partial class RazorSingleMarkingPicker : BoxContainer
 
         for (var i = 0; i < PointsUsed; i++)
         {
-            SlotSelector.AddItem($"Слот {i + 1}", i);
+            SlotSelector.AddItem(Loc.GetString("slot-marking", ("name", i + 1)), i);
 
             if (i == _slot)
             {

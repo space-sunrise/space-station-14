@@ -20,7 +20,7 @@
                    ClipText="True"/>
             <customControls:VSeparator/>
             <Button Name="ConnectButton"
-                    Text="Подключиться"
+                    Text="{Loc 'serverhub-connect'}"
                     SizeFlagsStretchRatio="3"
                     MinWidth="145"/>
             <customControls:VSeparator/>
