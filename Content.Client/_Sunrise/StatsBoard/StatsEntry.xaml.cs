@@ -21,11 +21,11 @@ public sealed partial class StatsEntry : BoxContainer
         var statsText = "";
 
         if (takeDamage > 0)
-            statsText += $"Получил урона: {takeDamage}\n";
+            statsText += Loc.GetString("statsentry-dmg", ("name", takeDamage));
         if (takeHeal > 0)
-            statsText += $"Получил лечения: {takeHeal}\n";
+            statsText += Loc.GetString("statsentry-heal", ("name", takeHeal));
         if (inflictedDamage > 0)
-            statsText += $"Нанес урона: {inflictedDamage}\n";
+            statsText += Loc.GetString("statsentry-inf-dmg", ("name", inflictedDamage));
         if (inflictedHeal > 0)
             statsText += $"Вылечил урона: {inflictedHeal}\n";
         if (slippedCount > 0)
