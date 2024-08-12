@@ -49,13 +49,13 @@ public sealed partial class StatsEntry : BoxContainer
         if (killedMouseCount > 0)
             statsText += Loc.GetString("statsentry-mouse-kill-cnt", ("name", killedMouseCount));
         if (cuffedTime > TimeSpan.Zero)
-            statsText += Loc.GetString("statsentry-cuff-time", ("name", cuffedTime.ToString("hh\\:mm\\:ss"));
+            statsText += Loc.GetString("statsentry-cuff-time", ("name", cuffedTime.ToString("hh\\:mm\\:ss")));
         if (spaceTime > TimeSpan.Zero)
-            statsText += Loc.GetString("statsentry-space-time", ("name", spaceTime.ToString("hh\\:mm\\:ss"));
+            statsText += Loc.GetString("statsentry-space-time", ("name", spaceTime.ToString("hh\\:mm\\:ss")));
         if (sleepTime > TimeSpan.Zero)
-            statsText += Loc.GetString("statsentry-sleep-time", ("name", sleepTime.ToString("hh\\:mm\\:ss"));
+            statsText += Loc.GetString("statsentry-sleep-time", ("name", sleepTime.ToString("hh\\:mm\\:ss")));
 
-        statsText += Loc.GetString("statsentry-int-cc", ("name", interactedCaptainCard);
+        statsText += Loc.GetString("statsentry-int-cc", ("name", interactedCaptainCard));
 
         StatsLabel.SetMarkup($"{statsText}");
     }
