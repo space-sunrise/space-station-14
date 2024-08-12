@@ -55,7 +55,7 @@ public sealed partial class StatsEntry : BoxContainer
         if (sleepTime > TimeSpan.Zero)
             statsText += Loc.GetString("statsentry-sleep-time", ("name", sleepTime.ToString("hh\\:mm\\:ss"));
 
-        statsText += $"Трогал карту капитана: {interactedCaptainCard}";
+        statsText += Loc.GetString("statsentry-int-cc", ("name", interactedCaptainCard);
 
         StatsLabel.SetMarkup($"{statsText}");
     }

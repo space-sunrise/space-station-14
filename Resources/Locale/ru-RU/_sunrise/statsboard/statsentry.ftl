@@ -16,3 +16,4 @@ statsentry-mouse-kill-cnt = Убито мышей { $name }\n
 statsentry-cuff-time = Был в наручниках [color=yellow]{ $name )}[/color]\n
 statsentry-space-time = Был в космосе [color=yellow]{ $name }[/color]\n
 statsentry-sleep-time = Проспал [color=yellow]{ $name }[/color]\n
+statsentry-int-cc = Трогал карту капитана: { $name }
