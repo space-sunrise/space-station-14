@@ -1,0 +1,11 @@
+﻿- type: entity
+  parent: BaseGameRule
+  id: DiseaseSpawn
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    minimumPlayers: 40
+    weight: 10
+    duration: 1
+  - type: LateJoinSpawnRule
+    prototype: MobDisease
