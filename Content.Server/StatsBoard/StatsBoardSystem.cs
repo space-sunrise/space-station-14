@@ -26,6 +26,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Robust.Shared.Localization;
 
 namespace Content.Server.StatsBoard;
 
@@ -504,7 +505,7 @@ public sealed class StatsBoardSystem : EntitySystem
             }
         }
 
-        result += "На станции были представители таких рас:";
+        result += Loc.GetString("statsentry-species-entry");
         foreach (var speciesEntry in roundSpecies)
         {
             var species = speciesEntry.Key;
@@ -516,12 +517,12 @@ public sealed class StatsBoardSystem : EntitySystem
                 mostPopularSpecies = species;
             }
 
-            result += $"\n[bold][color=white]{Loc.GetString(species)}[/color][/bold] в количестве [color=white]{count}[/color].";
+            result += $"\n[bold][color=white]{Loc.GetString(species)}[/color][/bold] {Loc.GetString('statsentry-in-count')} [color=white]{count}[/color].";
         }
 
         if (mostPopularSpecies != null)
         {
-            result += $"\nСамой распространённой расой стал [color=white]{Loc.GetString(mostPopularSpecies)}[/color].";
+            result += Loc.GetString("statsentry-mst-pop-species", ("name", Loc.GetString(mostPopularSpecies)));
         }
 
         var station = _station.GetStations().FirstOrDefault();
