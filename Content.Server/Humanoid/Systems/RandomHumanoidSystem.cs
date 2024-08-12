@@ -45,12 +45,6 @@ public sealed class RandomHumanoidSystem : EntitySystem
         var speciesProto = _prototypeManager.Index<SpeciesPrototype>(profile.Species);
         var humanoid = EntityManager.CreateEntityUninitialized(speciesProto.Prototype, coordinates);
 
-        if (speciesProto.StartingGear != null)
-        {
-            var startingGear = _prototypeManager.Index<StartingGearPrototype>(speciesProto.StartingGear);
-            _stationSpawning.EquipStartingGear(humanoid, startingGear, raiseEvent: false);
-        }
-
         _metaData.SetEntityName(humanoid, prototype.RandomizeName ? profile.Name : name);
 
         _humanoid.LoadProfile(humanoid, profile);
@@ -59,8 +53,7 @@ public sealed class RandomHumanoidSystem : EntitySystem
         {
             foreach (var entry in prototype.Components.Values)
             {
-                var comp = (Component) _serialization.CreateCopy(entry.Component, notNullableOverride: true);
-                comp.Owner = humanoid; // This .owner must survive for now.
+                var comp = (Component)_serialization.CreateCopy(entry.Component, notNullableOverride: true);
                 EntityManager.RemoveComponent(humanoid, comp.GetType());
                 EntityManager.AddComponent(humanoid, comp);
             }

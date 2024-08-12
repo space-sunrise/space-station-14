@@ -1,16 +1,20 @@
 using System.Numerics;
+using Content.Shared._Sunrise.StatsBoard;
 using Content.Shared.Roles;
 using Robust.Shared.Network;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Replays;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.Markdown.Mapping;
 using Robust.Shared.Serialization.Markdown.Value;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.GameTicking
 {
     public abstract class SharedGameTicker : EntitySystem
     {
         [Dependency] private readonly IReplayRecordingManager _replay = default!;
+        [Dependency] private readonly IGameTiming _gameTiming = default!;
 
         // See ideally these would be pulled from the job definition or something.
         // But this is easier, and at least it isn't hardcoded.
@@ -40,6 +44,11 @@ namespace Content.Shared.GameTicking
         private void OnRecordingStart(MappingDataNode metadata, List<object> events)
         {
             metadata["roundId"] = new ValueDataNode(RoundId.ToString());
+        }
+
+        public TimeSpan RoundDuration()
+        {
+            return _gameTiming.CurTime.Subtract(RoundStartTimeSpan);
         }
     }
 
@@ -83,16 +92,18 @@ namespace Content.Shared.GameTicking
         public string? LobbyParalax { get; }
         public LobbyImage? LobbyImage { get; }
         // Sunrise-End
+        public string? LobbyBackground { get; }
         public bool YouAreReady { get; }
         // UTC.
         public TimeSpan StartTime { get; }
         public TimeSpan RoundStartTimeSpan { get; }
         public bool Paused { get; }
 
-        public TickerLobbyStatusEvent(bool isRoundStarted, string? lobbyParalax, LobbyImage? lobbyImage, bool youAreReady, TimeSpan startTime, TimeSpan preloadTime, TimeSpan roundStartTimeSpan, bool paused)
+        public TickerLobbyStatusEvent(bool isRoundStarted, string? lobbyBackground, string? lobbyParalax, LobbyImage? lobbyImage, bool youAreReady, TimeSpan startTime, TimeSpan preloadTime, TimeSpan roundStartTimeSpan, bool paused)
         {
             IsRoundStarted = isRoundStarted;
             // Sunrise-Start
+            LobbyBackground = lobbyBackground;
             LobbyParalax = lobbyParalax;
             LobbyImage = lobbyImage;
             // Sunrise-End
@@ -135,19 +146,17 @@ namespace Content.Shared.GameTicking
     }
 
     [Serializable, NetSerializable]
-    public sealed class TickerJobsAvailableEvent : EntityEventArgs
+    public sealed class TickerJobsAvailableEvent(
+        Dictionary<NetEntity, string> stationNames,
+        Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> jobsAvailableByStation)
+        : EntityEventArgs
     {
         /// <summary>
         /// The Status of the Player in the lobby (ready, observer, ...)
         /// </summary>
-        public Dictionary<NetEntity, Dictionary<string, uint?>> JobsAvailableByStation { get; }
-        public Dictionary<NetEntity, string> StationNames { get; }
+        public Dictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> JobsAvailableByStation { get; } = jobsAvailableByStation;
 
-        public TickerJobsAvailableEvent(Dictionary<NetEntity, string> stationNames, Dictionary<NetEntity, Dictionary<string, uint?>> jobsAvailableByStation)
-        {
-            StationNames = stationNames;
-            JobsAvailableByStation = jobsAvailableByStation;
-        }
+        public Dictionary<NetEntity, string> StationNames { get; } = stationNames;
     }
 
     [Serializable, NetSerializable, DataDefinition]
@@ -190,6 +199,8 @@ namespace Content.Shared.GameTicking
         public int RoundId { get; }
         public int PlayerCount { get; }
         public RoundEndPlayerInfo[] AllPlayersEndInfo { get; }
+        public string RoundEndStats { get; } // Sunrise-Edit
+        public SharedStatisticEntry[] StatisticEntries { get; } // Sunrise-Edit
 
         /// <summary>
         /// Sound gets networked due to how entity lifecycle works between client / server and to avoid clipping.
@@ -203,6 +214,8 @@ namespace Content.Shared.GameTicking
             int roundId,
             int playerCount,
             RoundEndPlayerInfo[] allPlayersEndInfo,
+            string roundEndStats, // Sunrise-Edit
+            SharedStatisticEntry[] statisticEntries, // Sunrise-Edit
             string? restartSound)
         {
             GamemodeTitle = gamemodeTitle;
@@ -211,6 +224,8 @@ namespace Content.Shared.GameTicking
             RoundId = roundId;
             PlayerCount = playerCount;
             AllPlayersEndInfo = allPlayersEndInfo;
+            RoundEndStats = roundEndStats; // Sunrise-Edit
+            StatisticEntries = statisticEntries; // Sunrise-Edit
             RestartSound = restartSound;
         }
     }

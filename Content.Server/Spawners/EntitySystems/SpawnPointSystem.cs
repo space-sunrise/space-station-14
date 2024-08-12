@@ -1,4 +1,5 @@
 ﻿using Content.Server.GameTicking;
+using Content.Server.Shuttles.Systems;
 using Content.Server.Spawners.Components;
 using Content.Server.Station.Systems;
 using Robust.Shared.Map;
@@ -27,23 +28,57 @@ public sealed class SpawnPointSystem : EntitySystem
         var points = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
         var possiblePositions = new List<EntityCoordinates>();
 
-        while ( points.MoveNext(out var uid, out var spawnPoint, out var xform))
+        while (points.MoveNext(out var uid, out var spawnPoint, out var xform))
         {
             if (args.Station != null && _stationSystem.GetOwningStation(uid, xform) != args.Station)
                 continue;
 
-            if (_gameTicker.RunLevel == GameRunLevel.InRound && spawnPoint.SpawnType == SpawnPointType.LateJoin)
+            // Delta-V: Allow setting a desired SpawnPointType
+            if (args.DesiredSpawnPointType != SpawnPointType.Unset)
+            {
+                var isMatchingJob = spawnPoint.SpawnType == SpawnPointType.Job &&
+                                    (args.Job == null || spawnPoint.Job == args.Job.Prototype);
+
+                switch (args.DesiredSpawnPointType)
+                {
+                    case SpawnPointType.Job when isMatchingJob:
+                    case SpawnPointType.LateJoin when spawnPoint.SpawnType == SpawnPointType.LateJoin:
+                    case SpawnPointType.Observer when spawnPoint.SpawnType == SpawnPointType.Observer:
+                        possiblePositions.Add(xform.Coordinates);
+                        break;
+                    default:
+                        continue;
+                }
+            }
+
+            if (_gameTicker.RunLevel == GameRunLevel.InRound &&
+                spawnPoint.SpawnType == SpawnPointType.LateJoin &&
+                args.DesiredSpawnPointType != SpawnPointType.Job)
             {
                 possiblePositions.Add(xform.Coordinates);
             }
 
-            if (_gameTicker.RunLevel != GameRunLevel.InRound &&
+            if ((_gameTicker.RunLevel != GameRunLevel.InRound || args.DesiredSpawnPointType == SpawnPointType.Job) &&
                 spawnPoint.SpawnType == SpawnPointType.Job &&
-                (args.Job == null || spawnPoint.Job?.ID == args.Job.Prototype))
+                (args.Job == null || spawnPoint.Job == args.Job.Prototype))
             {
                 possiblePositions.Add(xform.Coordinates);
             }
         }
+
+        // Sunrise-Start
+        if (possiblePositions.Count == 0)
+        {
+            var points3 = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
+            while (points3.MoveNext(out var uid, out var spawnPoint, out var xform))
+            {
+                if (spawnPoint.SpawnType != SpawnPointType.LateJoin)
+                    continue;
+                if (_stationSystem.GetOwningStation(uid, xform) == args.Station)
+                    possiblePositions.Add(xform.Coordinates);
+            }
+        }
+        // Sunrise-End
 
         if (possiblePositions.Count == 0)
         {

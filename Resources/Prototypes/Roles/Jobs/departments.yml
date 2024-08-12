@@ -1,14 +1,17 @@
 - type: department
   id: Cargo
+  name: department-Cargo
   description: department-Cargo-description
   color: "#A46106"
   roles:
   - CargoTechnician
   - Quartermaster
   - SalvageSpecialist
+  - MinerBorg # Sunrise-Edit
 
 - type: department
   id: Civilian
+  name: department-Civilian
   description: department-Civilian-description
   color: "#9FED58"
   weight: -10
@@ -31,75 +34,97 @@
   - Visitor
   - Zookeeper
   - ServiceWorker
+  - JanitorBorg # Sunrise-Edit
+  - ServiceBorg # Sunrise-Edit
+  - ClownBorg # Sunrise-Edit
+  - Barber # Sunrise-Roles
 
 - type: department
   id: Command
+  name: department-Command
   description: department-Command-description
   color: "#052EED" # Sunrise-Edit
   roles:
   - Captain
-  - IAA # Sunrise-Edit
-  - CentralCommandOfficial
   - ChiefEngineer
   - ChiefMedicalOfficer
   - HeadOfPersonnel
   - HeadOfSecurity
   - ResearchDirector
   - Quartermaster
+#  - NanoTrasenRepresentative  #Sunrise-Edit
   primary: false
   weight: 100
 
 - type: department
   id: Engineering
+  name: department-Engineering
   description: department-Engineering-description
   color: "#EFB341"
+  weight: 10  # Sunrise-weights
   roles:
   - AtmosphericTechnician
   - ChiefEngineer
+  - SeniorEngineer  # Sunrise-Senior
   - StationEngineer
   - TechnicalAssistant
+  - EngineerBorg # Sunrise-Edit
 
 - type: department
   id: Medical
+  name: department-Medical
   description: department-Medical-description
   color: "#52B4E9"
   roles:
   - Chemist
   - ChiefMedicalOfficer
+  - SeniorPhysician  # Sunrise-Senior
   - MedicalDoctor
   - MedicalIntern
   - Psychologist
   - Paramedic
+  - MedicalBorg # Sunrise-Edit
 
 - type: department
   id: Security
+  name: department-Security
   description: department-Security-description
   color: "#DE3A3A"
   weight: 20
   roles:
   - HeadOfSecurity
+  - SeniorOfficer  # Sunrise-Senior
   - SecurityCadet
   - SecurityOfficer
   - Detective
   - Warden
+  - Brigmedic  # Sunrise-Brigmedic
+  - SecurityPilot # Sunrise-SecurityPilot
+  - SecurityBorg # Sunrise-Edit
+  - SecurityCombatBorg # Sunrise-Edit
 
 - type: department
   id: Science
+  name: department-Science
   description: department-Science-description
   color: "#D381C9"
   roles:
   - ResearchDirector
+  - SeniorResearcher  # Sunrise-Senior
   - Scientist
   - ResearchAssistant
+  - Roboticist  # Sunrise-Edit
 
 - type: department
   id: Specific
+  name: department-Specific
   description: department-Specific-description
   color: "#9FED58"
-  weight: 10
+  weight: 5  # Sunrise-weights
   roles:
   - Boxer
   - Reporter
   - Zookeeper
   - Psychologist
+  - Barber  # Sunrise-Roles
   primary: false

@@ -10,6 +10,7 @@
   startingGear: DoctorGear
   icon: "JobIconMedicalDoctor"
   supervisors: job-supervisors-cmo
+  displayWeight: 20  # Sunrise
   access:
   - Medical
   - Maintenance
@@ -21,3 +22,7 @@
   equipment:
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalFilled
+    id: MedicalPDA
+  #storage:
+    #back:
+    #- Stuff

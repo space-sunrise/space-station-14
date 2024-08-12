@@ -1,4 +1,5 @@
 using System.Threading;
+using Content.Server._Sunrise.TransitHub;
 using Content.Server.Administration.Logs;
 using Content.Server.AlertLevel;
 using Content.Shared.CCVar;
@@ -106,15 +107,14 @@ namespace Content.Server.RoundEnd
             return targetGrid == null ? null : Transform(targetGrid.Value).MapUid;
         }
 
-        /// <summary>
-        ///     Attempts to get centcomm's MapUid
-        /// </summary>
-        public EntityUid? GetCentcomm()
+        // Sunrise-Start
+        public EntityUid? GetTransitHub()
         {
-            AllEntityQuery<StationCentcommComponent>().MoveNext(out var centcomm);
+            AllEntityQuery<StationTransitHubComponent>().MoveNext(out var transitHub);
 
-            return centcomm == null ? null : centcomm.MapEntity;
+            return transitHub == null ? null : transitHub.MapEntity;
         }
+        // Sunrise-End
 
         public bool CanCallOrRecall()
         {
@@ -204,7 +204,7 @@ namespace Content.Server.RoundEnd
                 var payload = new NetworkPayload
                 {
                     [ShuttleTimerMasks.ShuttleMap] = shuttle,
-                    [ShuttleTimerMasks.SourceMap] = GetCentcomm(),
+                    [ShuttleTimerMasks.SourceMap] = GetTransitHub(), // Sunrise-Edit
                     [ShuttleTimerMasks.DestMap] = GetStation(),
                     [ShuttleTimerMasks.ShuttleTime] = countdownTime,
                     [ShuttleTimerMasks.SourceTime] = countdownTime + TimeSpan.FromSeconds(_shuttle.TransitTime + _cfg.GetCVar(CCVars.EmergencyShuttleDockTime)),
@@ -248,7 +248,7 @@ namespace Content.Server.RoundEnd
                 var payload = new NetworkPayload
                 {
                     [ShuttleTimerMasks.ShuttleMap] = shuttle,
-                    [ShuttleTimerMasks.SourceMap] = GetCentcomm(),
+                    [ShuttleTimerMasks.SourceMap] = GetTransitHub(), // Sunrsie-Edit
                     [ShuttleTimerMasks.DestMap] = GetStation(),
                     [ShuttleTimerMasks.ShuttleTime] = zero,
                     [ShuttleTimerMasks.SourceTime] = zero,
@@ -363,6 +363,16 @@ namespace Content.Server.RoundEnd
                 SetAutoCallTime();
             }
         }
+
+        // Sunrise-start
+        public TimeSpan TimeToCallShuttle()
+        {
+            var autoCalledBefore = _autoCalledBefore
+                ? _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallExtensionTime)
+                : _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallTime);
+            return AutoCallStartTime + TimeSpan.FromMinutes(autoCalledBefore);
+        }
+        // Sunrise-end
     }
 
     public sealed class RoundEndSystemChangedEvent : EntityEventArgs

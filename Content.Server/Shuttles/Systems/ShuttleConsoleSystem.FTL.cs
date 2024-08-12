@@ -55,7 +55,15 @@ public sealed partial class ShuttleConsoleSystem
             return;
         }
 
+        // Sunrise-Start
+        if (!TryComp<FTLBeaconComponent>(beaconEnt, out var beaconComponent))
+            return;
         var angle = args.Angle.Reduced();
+        if (beaconComponent.BlockRotate)
+        {
+            angle = Angle.Zero;
+        }
+        // Sunrise-End
         var targetCoordinates = new EntityCoordinates(targetXform.MapUid!.Value, _transform.GetWorldPosition(targetXform));
 
         ConsoleFTL(ent, targetCoordinates, angle, targetXform.MapID);

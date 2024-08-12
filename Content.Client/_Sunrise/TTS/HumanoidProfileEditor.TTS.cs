@@ -2,13 +2,11 @@
 using Content.Client._Sunrise.TTS;
 using Content.Shared._Sunrise.TTS;
 using Content.Shared.Preferences;
-using Content.Sunrise.Interfaces.Shared;
 
 namespace Content.Client.Lobby.UI;
 
 public sealed partial class HumanoidProfileEditor
 {
-    private ISharedSponsorsManager? _sponsorsMgr;
     private List<TTSVoicePrototype> _voiceList = new();
 
     private void InitializeVoice()
@@ -25,12 +23,10 @@ public sealed partial class HumanoidProfileEditor
             SetVoice(_voiceList[args.Id].ID);
         };
 
-        VoicePlayButton.OnPressed += _ => PlayPreviewTTS();
-
-        IoCManager.Instance!.TryResolveType(out _sponsorsMgr);
+        VoicePlayButton.OnPressed += _ => PlayPreviewTts();
     }
 
-    private void UpdateTTSVoicesControls()
+    private void UpdateTtsVoicesControls()
     {
         if (Profile is null)
             return;
@@ -52,12 +48,12 @@ public sealed partial class HumanoidProfileEditor
 
             if (_sponsorsMgr is null)
                 continue;
-            if (voice.SponsorOnly && _sponsorsMgr != null &&
-                !_sponsorsMgr.GetClientPrototypes().Contains(voice.ID))
-            {
-                VoiceButton.SetItemDisabled(VoiceButton.GetIdx(i), true);
-                VoiceButton.SetItemText(VoiceButton.GetIdx(i), $"{name} [СПОНСОР]"); // Sunrise-edit
-            }
+            if (!voice.SponsorOnly || _sponsorsMgr == null ||
+                _sponsorsMgr.GetClientPrototypes().Contains(voice.ID))
+                continue;
+
+            VoiceButton.SetItemDisabled(VoiceButton.GetIdx(i), true);
+            VoiceButton.SetItemText(VoiceButton.GetIdx(i), $"{name} [СПОНСОР]"); // Sunrise-edit
         }
 
         var voiceChoiceId = _voiceList.FindIndex(x => x.ID == Profile.Voice);
@@ -68,11 +64,11 @@ public sealed partial class HumanoidProfileEditor
         }
     }
 
-    private void PlayPreviewTTS()
+    private void PlayPreviewTts()
     {
         if (Profile is null)
             return;
 
-        _entManager.System<TTSSystem>().RequestPreviewTTS(Profile.Voice);
+        _entManager.System<TTSSystem>().RequestPreviewTts(Profile.Voice);
     }
 }

@@ -10,17 +10,17 @@
         icon:
           sprite: Structures/Piping/Atmospherics/pipe.rsi
           state: pipeStraight
-        name: pipe
+        name: трубу  # Sunrise-recipes
       - tag: ModularReceiver
         icon:
           sprite: Objects/Misc/modular_receiver.rsi
           state: icon
-        name: modular receiver
+        name: модульный ресивер  # Sunrise-recipes
       - tag: RifleStock
         icon:
           sprite: Objects/Misc/rifle_stock.rsi
           state: icon
-        name: rifle stock
+        name: ложе винтовки  # Sunrise-recipes
       - material: Cloth
         amount: 3
         doAfter: 10

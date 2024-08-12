@@ -133,14 +133,14 @@ def main():
 
     args = parser.parse_args()
 
-    infile = open(args.infile, 'r')
+    infile = open(args.infile, 'r', encoding="utf-8-sig")
     cl = load_changelog(infile)
     infile.close()
 
     parse_github_pull_request(cl, stdin)
     prune_entries(cl)
 
-    outfile = open(args.outfile, 'w')
+    outfile = open(args.outfile, 'w', encoding="utf-8-sig")
     save_changelog(cl, outfile)
     outfile.close()
 

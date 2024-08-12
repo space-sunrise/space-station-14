@@ -24,16 +24,16 @@
     solution: tank
   - type: ReagentTank
     tankType: Fuel
+# Sunrise-edit: Конченая механика
 #  - type: DamageOnToolInteract
-#    tools:
-#    - Welding
+#    tools: Welding
 #    weldingDamage:
 #      types:
 #        Heat: 10
   - type: PacifismDangerousAttack
   - type: Explosive
     explosionType: Default
-    totalIntensity: 120 # ~ 5 tile radius
+    totalIntensity: 60 # Mediocre explosion. Not enough to do any meaningful structural damage to anything other then windows, provided you're only using one tank.
 
 - type: entity
   id: WeldingFuelTankFull
@@ -75,7 +75,7 @@
         maxVol: 5000
   - type: Explosive
     explosionType: Default
-    totalIntensity: 140
+    totalIntensity: 120
 
 # Water
 
@@ -217,4 +217,3 @@
       fillBaseName: generictank-1-
     - type: ExaminableSolution
       solution: tank
-

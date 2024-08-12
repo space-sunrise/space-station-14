@@ -31,6 +31,7 @@
         friction: 0.2
   - type: EmbeddableProjectile
     sound: /Audio/Weapons/star_hit.ogg
+  - type: LandAtCursor
   - type: DamageOtherOnHit
     damage:
       types:
@@ -48,5 +49,18 @@
   components:
   # prevent ninja crashing server + filling bag with 20 stars to instakill a single person
   # also limits the crew's use
+  - type: TimedDespawn
+    lifetime: 30
+
+- type: entity
+  parent: ThrowingStar
+  id: ThrowingStarChangeling
+  name: bone shard
+  components:
+  - type: Sprite
+    sprite: Changeling/bone_shard.rsi
+    layers:
+    - state: icon
+      map: ["base"]
   - type: TimedDespawn
     lifetime: 30

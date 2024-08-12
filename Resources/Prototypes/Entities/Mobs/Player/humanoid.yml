@@ -2,6 +2,8 @@
 
 - type: randomHumanoidSettings
   id: EventHumanoid
+  speciesBlacklist: # Sunrise-edit
+  - Vox
   components:
     - type: RandomHumanoidAppearance
       randomizeName: false
@@ -12,7 +14,7 @@
   parent: EventHumanoid
   components:
     - type: MindShield
-    - type: InitialInfectedExempt
+    - type: AntagImmune
 
 ## Death Squad
 
@@ -30,22 +32,26 @@
         - NamesLastMilitary
     - type: RandomHumanoidSpawner
       settings: DeathSquad
-    - type: InitialInfectedExempt
 
 - type: randomHumanoidSettings
   id: DeathSquad
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Vulpkanin
+  - Felinid
   parent: EventHumanoidMindShielded
   randomizeName: false
-  speciesBlacklist: # Sunrise-edit
-    - Diona
   components:
     - type: GhostRole
       name: ghost-role-information-Death-Squad-name
       description: ghost-role-information-Death-Squad-description
+      rules: ghost-role-information-Death-Squad-rules
       raffle:
         settings: short
     - type: Loadout
       prototypes: [ DeathSquadGear ]
+      roleLoadout: [ RoleSurvivalEVA ]
     - type: RandomMetadata
       nameSegments:
         - NamesFirstMilitaryLeader
@@ -68,20 +74,26 @@
       - NamesLastMilitary
     - type: RandomHumanoidSpawner
       settings: ERTLeader
-    - type: InitialInfectedExempt
 
 - type: randomHumanoidSettings
   id: ERTLeader
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Vulpkanin
+  - Felinid
   parent: EventHumanoidMindShielded
   randomizeName: false
   components:
     - type: GhostRole
       name: ghost-role-information-ert-leader-name
       description: ghost-role-information-ert-leader-description
+      rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
     - type: Loadout
       prototypes: [ ERTLeaderGear ]
+      roleLoadout: [ RoleSurvivalExtended ]
     - type: RandomMetadata
       nameSegments:
       - NamesFirstMilitaryLeader
@@ -98,19 +110,25 @@
       state: ertleadereva
     - type: RandomHumanoidSpawner
       settings: ERTLeaderEVA
-    - type: InitialInfectedExempt
 
 - type: randomHumanoidSettings
   id: ERTLeaderEVA
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Vulpkanin
+  - Felinid
   parent: ERTLeader
   components:
     - type: GhostRole
       name: ghost-role-information-ert-leader-name
       description: ghost-role-information-ert-leader-description
+      rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
     - type: Loadout
       prototypes: [ ERTLeaderGearEVA ]
+      roleLoadout: [ RoleSurvivalEVA ]
 
 - type: entity
   id: RandomHumanoidSpawnerERTLeaderEVALecter
@@ -119,19 +137,25 @@
   components:
     - type: RandomHumanoidSpawner
       settings: ERTLeaderEVALecter
-    - type: InitialInfectedExempt
 
 - type: randomHumanoidSettings
   id: ERTLeaderEVALecter
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Vulpkanin
+  - Felinid
   parent: ERTLeaderEVA
   components:
     - type: GhostRole
       name: ghost-role-information-ert-leader-name
       description: ghost-role-information-ert-leader-description
+      rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
     - type: Loadout
       prototypes: [ ERTLeaderGearEVALecter ]
+      roleLoadout: [ RoleSurvivalEVA ]
 
 ## ERT Chaplain
 
@@ -153,11 +177,17 @@
 
 - type: randomHumanoidSettings
   id: ERTChaplain
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Vulpkanin
+  - Felinid
   parent: ERTLeader
   components:
     - type: GhostRole
       name: ghost-role-information-ert-chaplain-name
       description: ghost-role-information-ert-chaplain-description
+      rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
     - type: RandomMetadata
@@ -166,6 +196,7 @@
       - NamesLastMilitary
     - type: Loadout
       prototypes: [ ERTChaplainGear ]
+      roleLoadout: [ RoleSurvivalExtended ]
 
 - type: entity
   id: RandomHumanoidSpawnerERTChaplainEVA
@@ -181,15 +212,22 @@
 
 - type: randomHumanoidSettings
   id: ERTChaplainEVA
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Vulpkanin
+  - Felinid
   parent: ERTChaplain
   components:
     - type: GhostRole
       name: ghost-role-information-ert-chaplain-name
       description: ghost-role-information-ert-chaplain-description
+      rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
     - type: Loadout
       prototypes: [ ERTChaplainGearEVA ]
+      roleLoadout: [ RoleSurvivalEVA ]
 
 ## ERT Janitor
 
@@ -211,11 +249,17 @@
 
 - type: randomHumanoidSettings
   id: ERTJanitor
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Vulpkanin
+  - Felinid
   parent: ERTLeader
   components:
     - type: GhostRole
       name: ghost-role-information-ert-janitor-name
       description: ghost-role-information-ert-janitor-description
+      rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
     - type: RandomMetadata
@@ -224,6 +268,7 @@
       - NamesLastMilitary
     - type: Loadout
       prototypes: [ ERTJanitorGear ]
+      roleLoadout: [ RoleSurvivalExtended ]
 
 - type: entity
   id: RandomHumanoidSpawnerERTJanitorEVA
@@ -239,15 +284,21 @@
 
 - type: randomHumanoidSettings
   id: ERTJanitorEVA
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
   parent: ERTJanitor
   components:
     - type: GhostRole
       name: ghost-role-information-ert-janitor-name
       description: ghost-role-information-ert-janitor-description
+      rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
     - type: Loadout
       prototypes: [ ERTJanitorGearEVA ]
+      roleLoadout: [ RoleSurvivalEVA ]
 
 ## ERT Engineer
 
@@ -269,11 +320,16 @@
 
 - type: randomHumanoidSettings
   id: ERTEngineer
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
   parent: ERTLeader
   components:
     - type: GhostRole
       name: ghost-role-information-ert-engineer-name
       description: ghost-role-information-ert-engineer-description
+      rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
     - type: RandomMetadata
@@ -282,6 +338,7 @@
       - NamesLastMilitary
     - type: Loadout
       prototypes: [ ERTEngineerGear ]
+      roleLoadout: [ RoleSurvivalExtended ]
 
 - type: entity
   id: RandomHumanoidSpawnerERTEngineerEVA
@@ -297,15 +354,21 @@
 
 - type: randomHumanoidSettings
   id: ERTEngineerEVA
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
   parent: ERTEngineer
   components:
     - type: GhostRole
       name: ghost-role-information-ert-engineer-name
       description: ghost-role-information-ert-engineer-description
+      rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
     - type: Loadout
       prototypes: [ ERTEngineerGearEVA ]
+      roleLoadout: [ RoleSurvivalEVA ]
 
 ## ERT Security
 
@@ -329,11 +392,14 @@
   id: ERTSecurity
   speciesBlacklist: # Sunrise-edit
     - Diona
+    - Vox
+    - Felinid
   parent: ERTLeader
   components:
     - type: GhostRole
       name: ghost-role-information-ert-security-name
       description: ghost-role-information-ert-security-description
+      rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
     - type: RandomMetadata
@@ -342,6 +408,7 @@
       - NamesLastMilitary
     - type: Loadout
       prototypes: [ ERTSecurityGear ]
+      roleLoadout: [ RoleSurvivalExtended ]
 
 - type: entity
   id: RandomHumanoidSpawnerERTSecurityEVA
@@ -357,15 +424,21 @@
 
 - type: randomHumanoidSettings
   id: ERTSecurityEVA
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
   parent: ERTSecurity
   components:
     - type: GhostRole
       name: ghost-role-information-ert-security-name
       description: ghost-role-information-ert-security-description
+      rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
     - type: Loadout
       prototypes: [ ERTSecurityGearEVA ]
+      roleLoadout: [ RoleSurvivalEVA ]
 
 - type: entity
   id: RandomHumanoidSpawnerERTSecurityEVALecter
@@ -377,15 +450,21 @@
 
 - type: randomHumanoidSettings
   id: ERTSecurityEVALecter
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
   parent: ERTSecurityEVA
   components:
     - type: GhostRole
       name: ghost-role-information-ert-security-name
       description: ghost-role-information-ert-security-description
+      rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
     - type: Loadout
       prototypes: [ ERTSecurityGearEVALecter ]
+      roleLoadout: [ RoleSurvivalEVA ]
 
 ## ERT Medic
 
@@ -407,11 +486,15 @@
 
 - type: randomHumanoidSettings
   id: ERTMedical
+  speciesBlacklist: # Sunrise-edit
+  - Vox
+  - Felinid
   parent: ERTLeader
   components:
     - type: GhostRole
       name: ghost-role-information-ert-medical-name
       description: ghost-role-information-ert-medical-description
+      rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
     - type: RandomMetadata
@@ -420,6 +503,7 @@
       - NamesLastMilitary
     - type: Loadout
       prototypes: [ ERTMedicalGear ]
+      roleLoadout: [ RoleSurvivalExtended ]
 
 - type: entity
   id: RandomHumanoidSpawnerERTMedicalEVA
@@ -435,15 +519,20 @@
 
 - type: randomHumanoidSettings
   id: ERTMedicalEVA
+  speciesBlacklist: # Sunrise-edit
+  - Vox
+  - Felinid
   parent: ERTMedical
   components:
     - type: GhostRole
       name: ghost-role-information-ert-medical-name
       description: ghost-role-information-ert-medical-description
+      rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
     - type: Loadout
       prototypes: [ ERTMedicalGearEVA ]
+      roleLoadout: [ RoleSurvivalEVA ]
 
 ## CBURN
 
@@ -457,25 +546,30 @@
       state: cburn
     - type: RandomHumanoidSpawner
       settings: CBURNAgent
-    - type: InitialInfectedExempt
 
 - type: randomHumanoidSettings
-  speciesBlacklist: # Sunrise-edit
-    - Diona
   id: CBURNAgent
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Vulpkanin
+  - Felinid
   parent: EventHumanoidMindShielded
   components:
     - type: Loadout
       prototypes: [CBURNGear]
+      roleLoadout: [ RoleSurvivalEVA ]
     - type: GhostRole
       name: ghost-role-information-cburn-agent-name
       description: ghost-role-information-cburn-agent-description
+      rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
     - type: RandomMetadata
       nameSegments:
       - NamesFirstMilitary
       - NamesLastMilitary
+
 ## Central Command
 
 - type: entity
@@ -487,19 +581,24 @@
       state: centcom
     - type: RandomHumanoidSpawner
       settings: CentcomOfficial
-    - type: InitialInfectedExempt
 
 - type: randomHumanoidSettings
   id: CentcomOfficial
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
   parent: EventHumanoidMindShielded
   components:
     - type: GhostRole
       name: ghost-role-information-centcom-official-name
       description: ghost-role-information-centcom-official-description
+      rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: default
     - type: Loadout
-      prototypes: [ CentcomGear ]
+      prototypes: [ CentCommOfficialGear ] # Sunrise-Edit
+      roleLoadout: [ RoleSurvivalStandard ]
 
 ## Syndicate
 
@@ -517,11 +616,16 @@
 
 - type: randomHumanoidSettings
   id: SyndicateAgent
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
   components:
     - type: RandomHumanoidAppearance
       randomizeName: false
     - type: Loadout
       prototypes: [SyndicateOperativeGearExtremelyBasic]
+      roleLoadout: [ RoleSurvivalSyndicate ]
 
 - type: entity
   id: RandomHumanoidSpawnerNukeOp
@@ -535,6 +639,10 @@
 
 - type: randomHumanoidSettings
   id: NukeOp
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
   components:
     - type: RandomHumanoidAppearance
       randomizeName: false
@@ -563,6 +671,7 @@
     - type: GhostRole
       name: ghost-role-information-cluwne-name
       description: ghost-role-information-cluwne-description
+      rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: default
     - type: Cluwne
@@ -604,11 +713,13 @@
     - type: GhostRole
       name: ghost-role-information-lost-cargo-technical-name
       description: ghost-role-information-lost-cargo-technical-description
-      rules: ghost-role-information-lost-cargo-technical-rules
+      rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
     - type: Loadout
       prototypes: [ LostCargoTechGearSuit, LostCargoTechGearCoat ]
+      roleLoadout: [ RoleSurvivalStandard ]
+
 
 # Clown troupe
 
@@ -655,11 +766,12 @@
     - type: GhostRole
       name: ghost-role-information-clown-troupe-name
       description: ghost-role-information-clown-troupe-description
-      rules: ghost-role-information-clown-troupe-rules
+      rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
     - type: Loadout
       prototypes: [ ClownTroupe ]
+      roleLoadout: [ RoleSurvivalStandard ]
     - type: RandomMetadata
       nameSegments:
       - names_clown
@@ -671,6 +783,7 @@
   components:
     - type: Loadout
       prototypes: [ BananaClown ]
+      roleLoadout: [ RoleSurvivalStandard ]
 
 # Traveling exotic chef
 
@@ -705,11 +818,12 @@
     - type: GhostRole
       name: ghost-role-information-traveling-chef-name
       description: ghost-role-information-traveling-chef-description
-      rules: ghost-role-information-traveling-chef-rules
+      rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
     - type: Loadout
       prototypes: [ TravelingChef ]
+      roleLoadout: [ RoleSurvivalStandard ]
 
 # Disaster victim
 
@@ -765,7 +879,7 @@
     - type: GhostRole
       name: ghost-role-information-disaster-victim-name
       description: ghost-role-information-disaster-victim-description
-      rules: ghost-role-information-disaster-victim-rules
+      rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: default
 
@@ -775,6 +889,7 @@
   components:
     - type: Loadout
       prototypes: [ DisasterVictimRD, DisasterVictimRDAlt ]
+      roleLoadout: [ RoleSurvivalStandard ]
 
 - type: randomHumanoidSettings
   id: DisasterVictimCMO
@@ -782,6 +897,7 @@
   components:
     - type: Loadout
       prototypes: [ DisasterVictimCMO, DisasterVictimCMOAlt ]
+      roleLoadout: [ RoleSurvivalMedical ]
 
 - type: randomHumanoidSettings
   id: DisasterVictimCaptain
@@ -789,6 +905,7 @@
   components:
     - type: Loadout
       prototypes: [ DisasterVictimCaptain, DisasterVictimCaptainAlt ]
+      roleLoadout: [ RoleSurvivalStandard ]
 
 # Syndie Disaster Victim
 
@@ -819,6 +936,10 @@
 - type: randomHumanoidSettings
   id: SyndieDisasterVictim
   parent: EventHumanoid
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Felinid
+  - Vox
   components:
     - type: NpcFactionMember
       factions:
@@ -826,8 +947,9 @@
     - type: GhostRole
       name: ghost-role-information-syndie-disaster-victim-name
       description: ghost-role-information-syndie-disaster-victim-description
-      rules: ghost-role-information-syndie-disaster-victim-rules
+      rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
     - type: Loadout
       prototypes: [ SyndicateOperativeGearCivilian ]
+      roleLoadout: [ RoleSurvivalStandard ]

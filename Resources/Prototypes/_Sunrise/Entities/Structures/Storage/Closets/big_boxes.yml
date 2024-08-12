@@ -1,0 +1,23 @@
+﻿- type: entity
+  id: BarberBigBox
+  name: картонная коробка
+  description: Картонная коробка для хранения вещей.
+  parent: BaseBigBox
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _Sunrise/Structures/Storage/closet.rsi
+    layers:
+    - state: cardboard
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: cardboard_open
+      map: ["enum.StorageVisualLayers.Door"]
+  - type: InteractionOutline
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]

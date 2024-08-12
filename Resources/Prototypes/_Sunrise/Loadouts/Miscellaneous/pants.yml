@@ -1,0 +1,197 @@
+# Для тяночек
+- type: loadout
+  id: StraplessWomanPants
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    pants: ClothingPantsWomanStrapless
+
+- type: loadout
+  id: NekoWhiteWomanPants
+  sponsorOnly: true
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    pants: ClothingPantsWomanNekoWhite
+
+- type: loadout
+  id: NekoBlackWomanPants
+  sponsorOnly: true
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    pants: ClothingPantsWomanNekoBlack
+
+- type: loadout
+  id: AssblastusaWomanPants
+  sponsorOnly: true
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    pants: ClothingPantsWomanAssblastusa
+
+- type: loadout
+  id: BikiniWomanPants
+  sponsorOnly: true
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    pants: ClothingPantsWomanBikini
+
+- type: loadout
+  id: BraletteWomanPants
+  sponsorOnly: true
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    pants: ClothingPantsWomanBralette
+
+- type: loadout
+  id: CommieWomanPants
+  sponsorOnly: true
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    pants: ClothingPantsWomanCommie
+
+- type: loadout
+  id: KinkyWomanPants
+  sponsorOnly: true
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    pants: ClothingPantsWomanKinky
+
+- type: loadout
+  id: LaceWomanPants
+  sponsorOnly: true
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    pants: ClothingPantsWomanLace
+
+- type: loadout
+  id: SportWomanPants
+  sponsorOnly: true
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    pants: ClothingPantsWomanSport
+
+- type: loadout
+  id: ThongWomanPants
+  sponsorOnly: true
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    pants: ClothingPantsWomanThong
+
+- type: loadout
+  id: UkWomanPants
+  sponsorOnly: true
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    pants: ClothingPantsWomanUk
+
+# Для мужиков
+- type: loadout
+  id: BoxersManPants
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
+  equipment:
+    pants: ClothingPantsManBoxers
+
+- type: loadout
+  id: AssblastusaManPants
+  sponsorOnly: true
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
+  equipment:
+    pants: ClothingPantsManAssblastusa
+
+- type: loadout
+  id: BriefsManPants
+  sponsorOnly: true
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
+  equipment:
+    pants: ClothingPantsManBriefs
+
+- type: loadout
+  id: CommieManPants
+  sponsorOnly: true
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
+  equipment:
+    pants: ClothingPantsManCommie
+
+- type: loadout
+  id: HeartsManPants
+  sponsorOnly: true
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
+  equipment:
+    pants: ClothingPantsManHearts
+
+- type: loadout
+  id: KinkyManPants
+  sponsorOnly: true
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
+  equipment:
+    pants: ClothingPantsManKinky
+
+- type: loadout
+  id: LongjohnsManPants
+  sponsorOnly: true
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
+  equipment:
+    pants: ClothingPantsManLongjohns
+
+- type: loadout
+  id: MankiniManPants
+  sponsorOnly: true
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
+  equipment:
+    pants: ClothingPantsManMankini
+
+- type: loadout
+  id: StripeManPants
+  sponsorOnly: true
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
+  equipment:
+    pants: ClothingPantsManStripe
+
+- type: loadout
+  id: UkManPants
+  sponsorOnly: true
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MaleMoment
+  equipment:
+    pants: ClothingPantsManUk

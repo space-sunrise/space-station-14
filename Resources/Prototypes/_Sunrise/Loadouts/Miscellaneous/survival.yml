@@ -1,0 +1,92 @@
+# Without Gas
+
+- type: loadoutEffectGroup
+  id: NoBreather
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - HumanoidXeno
+
+# Basic
+- type: loadout
+  id: EmergencyWithoutGas
+  startingGear: EmergencyWithoutGas
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NoBreather
+
+- type: startingGear
+  id: EmergencyWithoutGas
+  storage:
+    back:
+    - BoxSurvivalWithoutGas
+
+# Clown
+- type: loadout
+  id: EmergencyWithoutGasClown
+  startingGear: EmergencyWithoutGasClown
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NoBreather
+
+- type: startingGear
+  id: EmergencyWithoutGasClown
+  storage:
+    back:
+    - BoxHugWithoutGas
+
+# Engineering / Extended
+- type: loadout
+  id: EmergencyWithoutGasExtended
+  startingGear: EmergencyWithoutGasExtended
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NoBreather
+
+- type: startingGear
+  id: EmergencyWithoutGasExtended
+  storage:
+    back:
+    - BoxSurvivalWithoutGas
+
+# Medical
+- type: loadout
+  id: EmergencyWithoutGasMedical
+  startingGear: EmergencyWithoutGasMedical
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NoBreather
+
+- type: startingGear
+  id: EmergencyWithoutGasMedical
+  storage:
+    back:
+    - BoxSurvivalWithoutGas
+
+# Security
+- type: loadout
+  id: EmergencyWithoutGasSecurity
+  startingGear: EmergencyWithoutGasSecurity
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NoBreather
+
+- type: startingGear
+  id: EmergencyWithoutGasSecurity
+  storage:
+    back:
+    - BoxSurvivalSecurityWithoutGas
+
+# Syndicate
+- type: loadout
+  id: EmergencyWithoutGasSyndicate
+  startingGear: EmergencyWithoutGasSyndicate
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NoBreather
+
+- type: startingGear
+  id: EmergencyWithoutGasSyndicate
+  storage:
+    back:
+    - BoxSurvivalSyndicateWithoutGas

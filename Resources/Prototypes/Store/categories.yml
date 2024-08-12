@@ -89,8 +89,29 @@
   name: store-category-pointless
   priority: 10
 
+- type: storeCategory
+  id: UplinkObjectives
+  name: store-category-objectives
+  priority: 11
+
 #revenant
 - type: storeCategory
   id: RevenantAbilities
   name: store-category-abilities
 
+# changeling
+
+- type: storeCategory
+  id: ChangelingAbilityCombat
+  name: store-ling-category-combat
+  priority: 0
+
+- type: storeCategory
+  id: ChangelingAbilitySting
+  name: store-ling-category-sting
+  priority: 1
+
+- type: storeCategory
+  id: ChangelingAbilityUtility
+  name: store-ling-category-utility
+  priority: 2

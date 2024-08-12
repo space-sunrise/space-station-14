@@ -3,8 +3,10 @@
   startingInventory:
     ClothingEyesGlassesMeson: 4
     ClothingHeadHatWelding: 6
+    ClothingEyesGlassesWelding: 3 #Sunrise-weld
     Multitool: 4
     NetworkConfigurator: 5
     PowerCellMedium: 5
     ClothingHandsGlovesColorYellow: 6
     BoxInflatable: 2
+    ClothingHeadHatCone: 4

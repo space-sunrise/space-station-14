@@ -17,7 +17,8 @@
     - BaseStationArrivals
     - BaseStationGateway
     - BaseStationShuttles
-    - BaseStationCentcomm
+    # Нету смысла пока не будет консоли отправки ОБР
+    #- BaseStationCentComm # Sunrise-Edit
     - BaseStationEvacuation
     - BaseStationAlertLevels
     - BaseStationMagnet
@@ -25,8 +26,17 @@
     - BaseStationSiliconLawCrewsimov
     - BaseStationAllEventsEligible
     - BaseStationNanotrasen
-    - BaseRandomStation
-  noSpawn: true
+    # Sunrise-Start
+    - BaseStationTransitHub
+    - BaseStationDontSelling
+    - BaseStationPlanetPrison
+    - BaseStationGoal
+    - BaseStationGammaArmory
+    - BaseStationAntagsTargets
+    - BaseStationCryoTeleport
+    - BaseStationMeteorSwarmTarget
+    # Sunrise-End
+  categories: [ HideSpawnMenu ]
   components:
     - type: Transform
 
@@ -36,7 +46,15 @@
     - BaseStation
     - BaseStationAlertLevels
     - BaseStationNanotrasen
-  noSpawn: true
+    - BaseStationRecords
+    - BaseStationJobsSpawning
+    # Sunrise-Start
+    - BaseCentCommShuttles
+    - BaseStationImmortal
+    - BaseStationDontSelling
+    - BaseStationCryoTeleport
+    # Sunrise-End
+  categories: [ HideSpawnMenu ]
   components:
     - type: Transform
 
@@ -47,6 +65,6 @@
   - BaseStationJobsSpawning
   - BaseStationRecords
   - BaseStationNanotrasen
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: Transform

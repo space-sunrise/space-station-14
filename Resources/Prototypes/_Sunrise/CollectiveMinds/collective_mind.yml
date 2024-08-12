@@ -1,0 +1,47 @@
+- type: collectiveMind
+  id: Xeno
+  name: collective-mind-xeno
+  keycode: 'к'
+  color: "#00ff40"
+
+- type: collectiveMind
+  id: Blob
+  name: collective-mind-blob
+  keycode: 'б'
+  color: "#66f263"
+
+- type: collectiveMind
+  id: FleshCult
+  name: collective-mind-flesh-cult
+  keycode: 'п'
+  color: "#ff2676"
+
+- type: collectiveMind
+  id: Dioneas
+  name: collective-mind-dioneas
+  keycode: 'д'
+  color: "#0f6b1e"
+
+- type: collectiveMind
+  id: Arachnids
+  name: collective-mind-arachnids
+  keycode: 'а'
+  color: "#706d0d"
+
+- type: collectiveMind
+  id: Carp
+  name: collective-mind-carp
+  keycode: 'р'
+  color: "#787878"
+
+- type: collectiveMind
+  id: Zombie
+  name: collective-mind-zombie
+  keycode: 'з'
+  color: "#508053"
+
+- type: collectiveMind
+  id: Changeling
+  name: collective-mind-changeling
+  keycode: 'г'
+  color: "#ff75a8"

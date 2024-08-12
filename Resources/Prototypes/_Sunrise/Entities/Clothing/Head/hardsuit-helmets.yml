@@ -1,7 +1,7 @@
 - type: entity
   parent: ClothingHeadHardsuitWithLightBase
   id: ClothingHeadHelmetCBURNLeader
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: cburn commander helmet
   description: A pressure resistant and fireproof hood worn by special cleanup units.
   components:
@@ -39,3 +39,53 @@
         Shock: 0.1
         Cold: 0.2
         Radiation: 0.2
+
+# Blueshield Hardsuit
+
+- type: entity
+  parent: ClothingHeadHardsuitWithLightBase
+  id: ClothingHeadHelmetHardsuitBlueshield
+  categories: [ HideSpawnMenu ]
+  name: шлем скафандра офицера «синий щит»
+  description: Синий.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/hardsuits/blueshield.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/hardsuits/blueshield.rsi
+  - type: PointLight
+    color: "#adeeff"
+  - type: PressureProtection
+    highPressureMultiplier: 0.45
+    lowPressureMultiplier: 10000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+
+- type: entity
+  parent: ClothingHeadHardsuitWithLightBase
+  id: ClothingHeadHelmetHardsuitPilot
+  categories: [ HideSpawnMenu ]
+  name: Шлем скафандра пилота Службы Безопасности
+  description: Футуристичный шлем с отличным обзором.
+  components:
+  - type: BreathMask
+  - type: Sprite
+    sprite: _Sunrise/Entities/Clothing/Head/Hardsuit/pilothardsuithelmet.rsi
+  - type: Clothing
+    sprite: _Sunrise/Entities/Clothing/Head/Hardsuit/pilothardsuithelmet.rsi
+  - type: PointLight
+    color: cyan
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95

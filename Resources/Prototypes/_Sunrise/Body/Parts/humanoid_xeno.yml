@@ -1,0 +1,183 @@
+# © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
+- type: entity
+  id: PartHumanoidXeno
+  parent: BaseItem
+  name: "правая рука ксеноморфа"
+  abstract: true
+  components:
+  - type: Damageable
+    damageContainer: Biological
+  - type: BodyPart
+  - type: ContainerContainer
+    containers:
+      bodypart: !type:Container
+        ents: []
+  - type: Tag
+    tags:
+      - Trash
+
+- type: entity
+  id: TorsoHumanoidXeno
+  name: "торс ксеноморфа"
+  parent: PartHumanoidXeno
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: "torso_m"
+  - type: Icon
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: "torso_m"
+  - type: BodyPart
+    partType: Torso
+
+- type: entity
+  id: HeadHumanoidXeno
+  name: "голова ксеноморфа"
+  parent: PartHumanoidXeno
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: "head_m"
+  - type: Icon
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: "head_m"
+  - type: BodyPart
+    partType: Head
+    vital: true
+  - type: Input
+    context: "ghost"
+  - type: Tag
+    tags:
+      - Head
+
+- type: entity
+  id: LeftArmHumanoidXeno
+  name: "левая рука ксеноморфа"
+  parent: PartHumanoidXeno
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: "l_arm"
+  - type: Icon
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: "l_arm"
+  - type: BodyPart
+    partType: Arm
+    symmetry: Left
+
+- type: entity
+  id: RightArmHumanoidXeno
+  name: "правая рука ксеноморфа"
+  parent: PartHumanoidXeno
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: "r_arm"
+  - type: Icon
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: "r_arm"
+  - type: BodyPart
+    partType: Arm
+    symmetry: Right
+
+- type: entity
+  id: LeftHandHumanoidXeno
+  name: "левая кисть ксеноморфа"
+  parent: PartHumanoidXeno
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: "l_hand"
+  - type: Icon
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: "l_hand"
+  - type: BodyPart
+    partType: Hand
+    symmetry: Left
+
+- type: entity
+  id: RightHandHumanoidXeno
+  name: "правая кисть ксеноморфа"
+  parent: PartHumanoidXeno
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: "r_hand"
+  - type: Icon
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: "r_hand"
+  - type: BodyPart
+    partType: Hand
+    symmetry: Right
+
+- type: entity
+  id: LeftLegHumanoidXeno
+  name: "левая нога ксеноморфа"
+  parent: PartHumanoidXeno
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: "l_leg"
+  - type: Icon
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: "l_leg"
+  - type: BodyPart
+    partType: Leg
+    symmetry: Left
+  - type: MovementBodyPart
+
+- type: entity
+  id: RightLegHumanoidXeno
+  name: "правая нога ксеноморфа"
+  parent: PartHumanoidXeno
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: "r_leg"
+  - type: Icon
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: "r_leg"
+  - type: BodyPart
+    partType: Leg
+    symmetry: Right
+  - type: MovementBodyPart
+
+- type: entity
+  id: LeftFootHumanoidXeno
+  name: "левая стопа ксеноморфа"
+  parent: PartHumanoidXeno
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: "l_foot"
+  - type: Icon
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: "l_foot"
+  - type: BodyPart
+    partType: Foot
+    symmetry: Left
+
+- type: entity
+  id: RightFootHumanoidXeno
+  name: "правая стопа ксеноморфа"
+  parent: PartHumanoidXeno
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: "r_foot"
+  - type: Icon
+    sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
+    state: "r_foot"
+  - type: BodyPart
+    partType: Foot
+    symmetry: Right

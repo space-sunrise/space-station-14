@@ -1,13 +1,25 @@
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: [BaseTraitorObjective, BaseLivingObjective]
   id: HijackShuttleObjective
   name: Hijack emergency shuttle
   description: Leave on the shuttle free and clear of the loyal Nanotrasen crew on board. Use ANY methods available to you. Syndicate agents, Nanotrasen enemies, and handcuffed hostages may remain alive on the shuttle. Ignore assistance from anyone other than a support agent.
   components:
     - type: Objective
-      difficulty: 5 #Hijacker don't help anyone else
+      difficulty: 5
       icon:
         sprite: Objects/Tools/emag.rsi
         state: icon
     - type: HijackShuttleCondition
+
+- type: entity
+  parent: BaseTraitorStealObjective
+  id: MultiphaseEnergygunStealObjective
+  components:
+  - type: Objective
+    difficulty: 3
+  - type: NotJobRequirement
+    job: BlueShield
+  - type: StealCondition
+    stealGroup: WeaponEnergyGunMultiphase
+    owner: офицер "Синий Щит"

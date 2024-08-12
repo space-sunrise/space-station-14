@@ -41,6 +41,7 @@
         whitelist:
           tags:
             - MagazinePistolSubMachineGun
+        whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistol
@@ -71,7 +72,7 @@
   - type: Gun
     fireRate: 10
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+      collection: ump45 # Sunrise-Edit
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -94,19 +95,20 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/SMGs/c20r.rsi
   - type: Wieldable
+    unwieldOnUse: false
   - type: GunWieldBonus
     minAngle: -19
     maxAngle: -16
   - type: Gun
     minAngle: 21
-    maxAngle: 32 
+    maxAngle: 32
     shotsPerBurst: 5
     availableModes:
     - SemiAuto
     - Burst
     - FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/c-20r.ogg
+      collection: aug # Sunrise-Edit
   - type: ChamberMagazineAmmoProvider
     autoEject: true
   - type: MagazineVisuals
@@ -131,6 +133,7 @@
     - type: Clothing
       sprite: Objects/Weapons/Guns/SMGs/drozd.rsi
     - type: Wieldable
+      unwieldOnUse: false
     - type: GunWieldBonus
       minAngle: -19
       maxAngle: -16
@@ -140,7 +143,9 @@
       fireRate: 6
       selectedMode: FullAuto
       soundGunshot:
-        path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+        collection: famas # Sunrise-Edit
+        params:
+          volume: 10
       availableModes:
         - FullAuto
     - type: ItemSlots
@@ -154,6 +159,7 @@
           whitelist:
             tags:
               - MagazinePistolSubMachineGun
+          whitelistFailPopup: gun-magazine-whitelist-fail
         gun_chamber:
           name: Chamber
           startingItem: CartridgePistol
@@ -187,7 +193,7 @@
     fireRate: 6
     selectedMode: FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+      collection: mp5 # Sunrise-Edit
     availableModes:
     - FullAuto
   - type: ItemSlots
@@ -208,6 +214,7 @@
         whitelist:
           tags:
             - CartridgeMagnum
+        whitelistFailPopup: gun-magazine-whitelist-fail
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -260,6 +267,7 @@
         whitelist:
           tags:
             - MagazinePistolSubMachineGunTopMounted
+        whitelistFailPopup: gun-magazine-whitelist-fail
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistol

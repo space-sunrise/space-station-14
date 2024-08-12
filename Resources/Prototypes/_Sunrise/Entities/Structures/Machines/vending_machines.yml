@@ -1,0 +1,26 @@
+﻿- type: entity
+  parent: VendingMachine
+  id: VendingMachineBarber
+  name: парикмахерВенд
+  description: Тут вы можете купить предметы, чтоб починить испорченную прическу.
+  components:
+  - type: VendingMachine
+    pack: BarberInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+  - type: Advertise
+    pack: BarberAds
+  - type: SpeakOnUIClosed
+    pack: GenericVendGoodbyes
+  - type: Speech
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/VendingMachines/barbervend.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]

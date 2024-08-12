@@ -273,10 +273,6 @@
       - id: ClothingOuterCoatHoSGreatcoat
       - id: ClothingOuterHardsuitSecurityRed
       - id: ClothingMaskGasSwat
-#      - id: ClothingShoeSlippersDuck: Need more space for style
-#        prob: 0.2
-      - id: DrinkVacuumFlask
-        prob: 0.8
       - id: ClothingBeltSecurityFilled
       - id: ClothingHeadsetAltSecurity
       - id: ClothingEyesGlassesSecurity
@@ -290,6 +286,7 @@
       - id: BoxEncryptionKeySecurity
       - id: HoloprojectorSecurity
       - id: BookSecretDocuments
+      - id: HyperLinkBookCorporateLaw
 
 - type: entity
   id: LockerHeadOfSecurityFilled
@@ -316,6 +313,7 @@
       - id: BoxEncryptionKeySecurity
       - id: HoloprojectorSecurity
       - id: BookSecretDocuments
+      - id: HyperLinkBookCorporateLaw
 
 - type: entity
   id: LockerFreezerVaultFilled

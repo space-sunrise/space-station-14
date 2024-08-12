@@ -176,6 +176,9 @@
             "name": "HeadRevolutionary"
         },
         {
+            "name": "Magistrat"
+        },
+        {
             "name": "MindShield",
             "delays":
             [
@@ -193,6 +196,9 @@
         },
         {
             "name": "Admin"
+        },
+        {
+            "name": "Changeling"
         }
     ]
 }

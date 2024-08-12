@@ -1,0 +1,37 @@
+- type: job
+  id: SecurityPilot
+  name: job-name-security-pilot
+  description: job-description-security-pilot
+  playTimeTracker: JobSecurityPilot
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000 # 5 hrs
+  startingGear: SecurityPilotGear
+  icon: JobIconSecurityPilot
+  supervisors: job-supervisors-hos
+  canBeAntag: false
+  displayWeight: 50
+  speciesBlacklist:
+  - Vox
+  access:
+  - Security
+  - Brig
+  - Maintenance
+  - Service
+  - External
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+
+- type: startingGear
+  id: SecurityPilotGear
+  equipment:
+    mask: ClothingMaskGasPilot
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesColorGray
+    head: ClothingHeadHelmetPilot
+    outerClothing: ClothingOuterCoatPilot
+    id: SecurityPilotPDA
+    ears: ClothingHeadsetSecurity
+    pocket1: WeaponPistolG22NonLethal

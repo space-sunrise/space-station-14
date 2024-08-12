@@ -10,6 +10,7 @@
   icon: "JobIconShaftMiner"
   startingGear: SalvageSpecialistGear
   supervisors: job-supervisors-qm
+  displayWeight: 10  # Sunrise
   access:
   - Cargo
   - Salvage
@@ -22,3 +23,6 @@
     jumpsuit: ClothingUniformJumpsuitSalvageSpecialist
     id: SalvagePDA
     ears: ClothingHeadsetCargo
+  #storage:
+    #back:
+    #- Stuff

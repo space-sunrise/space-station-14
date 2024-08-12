@@ -15,15 +15,15 @@
       collection: MaleCry
     Whistle:
       collection: Whistles
-    Mews:
+    Mew:
       collection: FelinidMews
-    Meows:
+    Meow:
       collection: FelinidMeows
     Hisses:
       collection: FelinidHisses
-    Purrs:
+    Purr:
       collection: FelinidPurrs
-    Growls:
+    Growl:
       collection: FelinidGrowls
 
 - type: emoteSounds
@@ -43,50 +43,16 @@
       collection: FemaleCry
     Whistle:
       collection: Whistles
-    Mews:
+    Mew:
       collection: FelinidMews
-    Meows:
+    Meow:
       collection: FelinidMeows
     Hisses:
       collection: FelinidHisses
-    Purrs:
+    Purr:
       collection: FelinidPurrs
-    Growls:
+    Growl:
       collection: FelinidGrowls
-
-- type: emoteSounds
-  id: UnisexSynth
-  params:
-    variation: 0.125
-  sounds:
-    Scream:
-      collection: SynthScreams
-    Laugh:
-      collection: MaleLaugh
-    Sneeze:
-      collection: MaleSneezes
-    Cough:
-      collection: MaleCoughs
-    CatMeow:
-      collection: CatMeows
-    CatHisses:
-      collection: CatHisses
-    MonkeyScreeches:
-      collection: MonkeyScreeches
-    RobotBeep:
-      collection: RobotBeeps
-    Yawn:
-      collection: MaleYawn
-    Snore:
-      collection: Snores
-    Honk:
-      collection: BikeHorn
-    Sigh:
-      collection: MaleSigh
-    Crying:
-      collection: MaleCry
-    Whistle:
-      collection: Whistles
 
 - type: emoteSounds
   id: MaleVulpkanin
@@ -107,12 +73,12 @@
       collection: Whistles
     Sigh:
       collection: MaleSigh
-    Growls:
+    Growl:
       collection: VulpkaninGrowls
     Howl:
-      collection: VulpkaninHowl
+      collection: VulpkaninHowls
     Bark:
-      collection: VulpkaninBark
+      collection: VulpkaninBarks
 
 - type: emoteSounds
   id: FemaleVulpkanin
@@ -133,12 +99,12 @@
       collection: Whistles
     Sigh:
       collection: FemaleSigh
-    Growls:
+    Growl:
       collection: VulpkaninGrowls
     Howl:
-      collection: VulpkaninHowl
+      collection: VulpkaninHowls
     Bark:
-      collection: VulpkaninBark
+      collection: VulpkaninBarks
 
 - type: emoteSounds
   id: UnisexSwine
@@ -151,10 +117,6 @@
       collection: MaleSneezes
     Cough:
       collection: MaleCoughs
-    CatMeow:
-      collection: CatMeows
-    CatHisses:
-      collection: CatHisses
     MonkeyScreeches:
       collection: MonkeyScreeches
     RobotBeep:
@@ -173,3 +135,29 @@
       collection: Whistles
   params:
     variation: 0.125
+
+- type: emoteSounds
+  id: XenoHumanoid
+  sound:
+    collection: HumanoidXenoScreams
+  params:
+    variation: 0.125
+
+- type: emoteSounds
+  id: Predator
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: PredatorScreams
+    Sigh:
+      collection: PredatorSigh
+    Laugh:
+      collection: PredatorLaugh
+
+- type: emoteSounds
+  id: Reaper
+  sound:
+    path: /Audio/_Sunrise/Voice/Reaper/reaper_scream.ogg
+    params:
+      volume: -2

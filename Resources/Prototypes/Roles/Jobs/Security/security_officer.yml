@@ -11,6 +11,7 @@
   icon: "JobIconSecurityOfficer"
   supervisors: job-supervisors-hos
   canBeAntag: false
+  displayWeight: 10
   access:
   - Security
   - Brig
@@ -28,5 +29,10 @@
   id: SecurityOfficerGear
   equipment:
     eyes: ClothingEyesGlassesSecurity
+    id: SecurityPDA
     ears: ClothingHeadsetSecurity
-    pocket1: WeaponPistolMk58
+    pocket1: WeaponPistolG22NonLethal # Sunrise-Edit
+  storage:
+    back:
+    - Flash
+    #- MagazinePistol # Sunrise-Edit

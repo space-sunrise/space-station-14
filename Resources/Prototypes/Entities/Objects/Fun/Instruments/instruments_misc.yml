@@ -57,11 +57,12 @@
     program: 124
   - type: Item
     size: Small
-  - type: Prayable
-    sentMessage: prayer-popup-notify-centcom-sent
-    notifiactionPrefix: prayer-chat-notify-centcom
-    verb: prayer-verbs-call
-    verbImage: null
+# Лютая ЛРП механика
+#  - type: Prayable
+#    sentMessage: prayer-popup-notify-centcom-sent
+#    notificationPrefix: prayer-chat-notify-centcom
+#    verb: prayer-verbs-call
+#    verbImage: null
 
 - type: entity
   parent: PhoneInstrument
@@ -74,7 +75,7 @@
     state: icon
   - type: Prayable
     sentMessage: prayer-popup-notify-syndicate-sent
-    notifiactionPrefix: prayer-chat-notify-syndicate
+    notificationPrefix: prayer-chat-notify-syndicate
 
 - type: entity
   parent: BaseHandheldInstrument
@@ -162,8 +163,6 @@
     sound:
        path: /Audio/Items/bikehorn.ogg
   - type: Slippery
-    paralyzeTime: 4
-    launchForwardsMultiplier: 1.5
   - type: StepTrigger
   - type: CollisionWake
     enabled: false
@@ -185,6 +184,6 @@
         - ItemMask
   - type: Prayable
     sentMessage: prayer-popup-notify-honkmother-sent
-    notifiactionPrefix: prayer-chat-notify-honkmother
+    notificationPrefix: prayer-chat-notify-honkmother
     verb: prayer-verbs-call
     verbImage: null

@@ -7,6 +7,7 @@ using Content.Server.Storage.Components;
 using Content.Server.Light.Components;
 using Content.Server.Ghost;
 using Robust.Shared.Physics;
+using Content.Shared.Doors.Components; // Sunrise-Edit
 using Content.Shared.Throwing;
 using Content.Server.Storage.EntitySystems;
 using Content.Shared.Interaction;
@@ -28,6 +29,8 @@ using Content.Shared.Revenant.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Utility;
 using Robust.Shared.Map.Components;
+using Content.Shared.Whitelist;
+using Content.Server.Doors.Systems; // Sunrise-Edit
 
 namespace Content.Server.Revenant.EntitySystems;
 
@@ -40,6 +43,9 @@ public sealed partial class RevenantSystem
     [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
     [Dependency] private readonly GhostSystem _ghost = default!;
     [Dependency] private readonly TileSystem _tile = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+    [Dependency] private readonly DoorSystem _doorSystem = default!; // Sunrise-Edit
 
     private void InitializeAbilities()
     {
@@ -51,6 +57,7 @@ public sealed partial class RevenantSystem
         SubscribeLocalEvent<RevenantComponent, RevenantOverloadLightsActionEvent>(OnOverloadLightsAction);
         SubscribeLocalEvent<RevenantComponent, RevenantBlightActionEvent>(OnBlightAction);
         SubscribeLocalEvent<RevenantComponent, RevenantMalfunctionActionEvent>(OnMalfunctionAction);
+        SubscribeLocalEvent<RevenantComponent, RevenantLockActionEvent>(OnLockAction); // Sunrise-Edit
     }
 
     private void OnInteract(EntityUid uid, RevenantComponent component, UserActivateInWorldEvent args)
@@ -225,7 +232,7 @@ public sealed partial class RevenantSystem
         var xform = Transform(uid);
         if (!TryComp<MapGridComponent>(xform.GridUid, out var map))
             return;
-        var tiles = map.GetTilesIntersecting(Box2.CenteredAround(xform.WorldPosition,
+        var tiles = map.GetTilesIntersecting(Box2.CenteredAround(_transformSystem.GetWorldPosition(xform),
             new Vector2(component.DefileRadius * 2, component.DefileRadius))).ToArray();
 
         _random.Shuffle(tiles);
@@ -246,7 +253,7 @@ public sealed partial class RevenantSystem
         foreach (var ent in lookup)
         {
             //break windows
-            if (tags.HasComponent(ent) && _tag.HasAnyTag(ent, "Window"))
+            if (tags.HasComponent(ent) && _tag.HasTag(ent, "Window"))
             {
                 //hardcoded damage specifiers til i die.
                 var dspec = new DamageSpecifier();
@@ -319,6 +326,28 @@ public sealed partial class RevenantSystem
         // TODO: When disease refactor is in.
     }
 
+    // Sunrise-Start
+    private void OnLockAction(EntityUid uid, RevenantComponent component, RevenantLockActionEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!TryUseAbility(uid, component, component.MalfunctionCost, component.LockDebuffs))
+
+        args.Handled = true;
+
+        foreach (var ent in _lookup.GetEntitiesInRange(uid, component.MalfunctionRadius))
+        {
+            if (TryComp<DoorComponent>(ent, out var doorComp) && TryComp<DoorBoltComponent>(ent, out var boltsComp))
+            {
+                if (!boltsComp.BoltWireCut)
+
+                    _doorSystem.SetBoltsDown((ent, boltsComp), true, uid);
+            }
+        }
+    }
+    // Sunrise-End
+
     private void OnMalfunctionAction(EntityUid uid, RevenantComponent component, RevenantMalfunctionActionEvent args)
     {
         if (args.Handled)
@@ -331,10 +360,8 @@ public sealed partial class RevenantSystem
 
         foreach (var ent in _lookup.GetEntitiesInRange(uid, component.MalfunctionRadius))
         {
-            if (component.MalfunctionWhitelist?.IsValid(ent, EntityManager) == false)
-                continue;
-
-            if (component.MalfunctionBlacklist?.IsValid(ent, EntityManager) == true)
+            if (_whitelistSystem.IsWhitelistFail(component.MalfunctionWhitelist, ent) ||
+                _whitelistSystem.IsBlacklistPass(component.MalfunctionBlacklist, ent))
                 continue;
 
             _emag.DoEmagEffect(uid, ent); //it does not emag itself. adorable.

@@ -144,5 +144,6 @@
       - id: ClothingHeadsetMedical
       - id: ClothingMaskSterile
       - id: HandheldGPSBasic
+      - id: HandheldCrewMonitor # Sunrise-Edit
       - id: MedkitFilled
         prob: 0.3

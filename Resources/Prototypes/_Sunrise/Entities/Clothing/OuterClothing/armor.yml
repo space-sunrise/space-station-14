@@ -8,6 +8,9 @@
       sprite: _Sunrise/Clothing/OuterClothing/Armor/centcom_naval_carapace.rsi
     - type: Clothing
       sprite: _Sunrise/Clothing/OuterClothing/Armor/centcom_naval_carapace.rsi
+    - type: ClothingSpeedModifier
+      walkModifier: 1
+      sprintModifier: 1
     - type: Armor
       modifiers:
         coefficients:
@@ -17,3 +20,25 @@
           Heat: 0.5
     - type: ExplosionResistance
       damageCoefficient: 0.65
+
+- type: entity
+  parent: ClothingOuterArmorBasic
+  id: ClothingOuterArmorBlueShield
+  name: бронежилет офицера «синий щит»
+  description: Синий и прочный.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/blueshield.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/blueshield.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Heat: 0.4  # У ОСЩ пушка с тепловым уроном, следовательно броник должен защищать от лазеров
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
+  - type: Item
+    size: Normal

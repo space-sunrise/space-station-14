@@ -36,112 +36,118 @@ public sealed partial class ChangelogTab : Control
     // Sunrise-End
 
     public void PopulateChangelog(ChangelogManager.Changelog changelog)
+{
+    var byDay = changelog.Entries
+        .GroupBy(e => e.Time.ToLocalTime().Date)
+        .OrderByDescending(c => c.Key);
+
+    var hasRead = changelog.Name != MainChangelogName ||
+                  _changelog.MaxId <= _changelog.LastReadId;
+
+    foreach (var dayEntries in byDay)
     {
-        var byDay = changelog.Entries
-            .GroupBy(e => e.Time.ToLocalTime().Date)
-            .OrderByDescending(c => c.Key);
+        var day = dayEntries.Key;
 
-        var hasRead = changelog.Name != MainChangelogName ||
-                      _changelog.MaxId <= _changelog.LastReadId;
-
-        foreach (var dayEntries in byDay)
-        {
-            var day = dayEntries.Key;
-
-            var groupedEntries = dayEntries
-                .GroupBy(c => (c.Author, Read: c.Id <= _changelog.LastReadId))
-                .OrderBy(c => c.Key.Read)
-                .ThenBy(c => c.Key.Author);
-
-            string dayNice;
-            var today = DateTime.Today;
-            if (day == today)
-                dayNice = Loc.GetString("changelog-today");
-            else if (day == today.AddDays(-1))
-                dayNice = Loc.GetString("changelog-yesterday");
-            else
-                dayNice = day.ToShortDateString();
-
-            ChangelogBody.AddChild(new Label
+        var groupedEntries = dayEntries
+            .GroupBy(c => c.Id <= _changelog.LastReadId)
+            .OrderBy(g => g.Key)
+            .Select(g => new
             {
-                Text = dayNice,
-                StyleClasses = { StyleBase.StyleClassLabelHeading },
-                Margin = new Thickness(4, 6, 0, 0)
+                g.Key,
+                Entries = g.OrderByDescending(e => e.Time) // Сортировка по времени в убывающем порядке
             });
 
-            var first = true;
+        string dayNice;
+        var today = DateTime.Today;
+        if (day == today)
+            dayNice = Loc.GetString("changelog-today");
+        else if (day == today.AddDays(-1))
+            dayNice = Loc.GetString("changelog-yesterday");
+        else
+            dayNice = day.ToShortDateString();
 
-            foreach (var groupedEntry in groupedEntries)
+        ChangelogBody.AddChild(new Label
+        {
+            Text = dayNice,
+            StyleClasses = { StyleBase.StyleClassLabelHeading },
+            Margin = new Thickness(4, 6, 0, 0)
+        });
+
+        var first = true;
+
+        foreach (var groupedEntry in groupedEntries)
+        {
+            var read = groupedEntry.Key;
+
+            if (!first)
             {
-                var (author, read) = groupedEntry.Key;
+                ChangelogBody.AddChild(new Control { Margin = new Thickness(4) });
+            }
 
-                if (!first)
+            if (read && !hasRead)
+            {
+                hasRead = true;
+
+                var upArrow =
+                    _resourceCache.GetTexture("/Textures/Interface/Changelog/up_arrow.svg.192dpi.png");
+
+                var readDivider = new BoxContainer
                 {
-                    ChangelogBody.AddChild(new Control { Margin = new Thickness(4) });
-                }
+                    Orientation = LayoutOrientation.Vertical
+                };
 
-                if (read && !hasRead)
+                var hBox = new BoxContainer
                 {
-                    hasRead = true;
-
-                    var upArrow =
-                        _resourceCache.GetTexture("/Textures/Interface/Changelog/up_arrow.svg.192dpi.png");
-
-                    var readDivider = new BoxContainer
+                    Orientation = LayoutOrientation.Horizontal,
+                    HorizontalAlignment = HAlignment.Center,
+                    Children =
                     {
-                        Orientation = LayoutOrientation.Vertical
-                    };
-
-                    var hBox = new BoxContainer
-                    {
-                        Orientation = LayoutOrientation.Horizontal,
-                        HorizontalAlignment = HAlignment.Center,
-                        Children =
+                        new TextureRect
                         {
-                            new TextureRect
-                            {
-                                Texture = upArrow,
-                                ModulateSelfOverride = Color.FromHex("#888"),
-                                TextureScale = new Vector2(0.5f, 0.5f),
-                                Margin = new Thickness(4, 3),
-                                VerticalAlignment = VAlignment.Bottom
-                            },
-                            new Label
-                            {
-                                Align = Label.AlignMode.Center,
-                                Text = Loc.GetString("changelog-new-changes"),
-                                FontColorOverride = Color.FromHex("#888"),
-                            },
-                            new TextureRect
-                            {
-                                Texture = upArrow,
-                                ModulateSelfOverride = Color.FromHex("#888"),
-                                TextureScale = new Vector2(0.5f, 0.5f),
-                                Margin = new Thickness(4, 3),
-                                VerticalAlignment = VAlignment.Bottom
-                            }
+                            Texture = upArrow,
+                            ModulateSelfOverride = Color.FromHex("#888"),
+                            TextureScale = new Vector2(0.5f, 0.5f),
+                            Margin = new Thickness(4, 3),
+                            VerticalAlignment = VAlignment.Bottom
+                        },
+                        new Label
+                        {
+                            Align = Label.AlignMode.Center,
+                            Text = Loc.GetString("changelog-new-changes"),
+                            FontColorOverride = Color.FromHex("#888"),
+                        },
+                        new TextureRect
+                        {
+                            Texture = upArrow,
+                            ModulateSelfOverride = Color.FromHex("#888"),
+                            TextureScale = new Vector2(0.5f, 0.5f),
+                            Margin = new Thickness(4, 3),
+                            VerticalAlignment = VAlignment.Bottom
                         }
-                    };
+                    }
+                };
 
-                    readDivider.AddChild(hBox);
-                    readDivider.AddChild(new PanelContainer { StyleClasses = { StyleBase.ClassLowDivider } });
-                    ChangelogBody.AddChild(readDivider);
+                readDivider.AddChild(hBox);
+                readDivider.AddChild(new PanelContainer { StyleClasses = { StyleBase.ClassLowDivider } });
+                ChangelogBody.AddChild(readDivider);
 
-                    if (first)
-                        readDivider.SetPositionInParent(ChangelogBody.ChildCount - 2);
-                }
+                if (first)
+                    readDivider.SetPositionInParent(ChangelogBody.ChildCount - 2);
+            }
 
-                first = false;
+            first = false;
 
+            foreach (var changeEntry in groupedEntry.Entries)
+            {
                 var authorLabel = new RichTextLabel
                 {
                     Margin = new Thickness(6, 0, 0, 0),
                 };
                 authorLabel.SetMessage(
-                    FormattedMessage.FromMarkup(Loc.GetString("changelog-author-changed", ("author", author))));
+                    FormattedMessage.FromMarkup(Loc.GetString("changelog-author-changed", ("author", changeEntry.Author))));
                 ChangelogBody.AddChild(authorLabel);
 
-                foreach (var change in groupedEntry.SelectMany(c => c.Changes))
+                foreach (var change in changeEntry.Changes)
                 {
                     var text = new RichTextLabel();
                     text.SetMessage(FormattedMessage.FromMarkup(change.Message));
@@ -159,6 +165,7 @@ public sealed partial class ChangelogTab : Control
             }
         }
     }
+}
 
     private TextureRect GetIcon(ChangelogLineType type)
     {

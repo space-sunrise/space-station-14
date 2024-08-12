@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Threading.Tasks;
 using Content.Server.Chat.Systems;
 using Content.Shared._Sunrise.SunriseCCVars;
@@ -38,17 +39,15 @@ public sealed partial class TTSSystem : EntitySystem
 
 
     private const int MaxMessageChars = 100 * 2; // same as SingleBubbleCharLimit * 2
-    private bool _isEnabled = false;
-    private string _voiceId = "Hanson";
-    private string _nukieVoiceId = "Sentrybot";
-    public const float WhisperVoiceVolumeModifier = 0.6f; // how far whisper goes in world units
-    public const int WhisperVoiceRange = 4; // how far whisper goes in world units
+    private bool _isEnabled;
+    private string _defaultAnnounceVoice = "Hanson";
+    private List<ICommonSession> _ignoredRecipients = new();
+    private const float WhisperVoiceVolumeModifier = 0.6f; // how far whisper goes in world units
+    private const int WhisperVoiceRange = 3; // how far whisper goes in world units
 
     public override void Initialize()
     {
         _cfg.OnValueChanged(SunriseCCVars.TTSEnabled, v => _isEnabled = v, true);
-        _cfg.OnValueChanged(SunriseCCVars.TTSAnnounceVoiceId, v => _voiceId = v, true);
-        _cfg.OnValueChanged(SunriseCCVars.TTSNukieAnnounceVoiceId, v => _nukieVoiceId = v, true);
 
         SubscribeLocalEvent<TransformSpeechEvent>(OnTransformSpeech);
         SubscribeLocalEvent<TTSComponent, EntitySpokeEvent>(OnEntitySpoke);
@@ -56,6 +55,7 @@ public sealed partial class TTSSystem : EntitySystem
         SubscribeLocalEvent<AnnouncementSpokeEvent>(OnAnnouncementSpoke);
 
         SubscribeNetworkEvent<RequestPreviewTTSEvent>(OnRequestPreviewTTS);
+        SubscribeNetworkEvent<ClientOptionTTSEvent>(OnClientOptionTTS);
     }
 
     private async void OnRequestPreviewTTS(RequestPreviewTTSEvent ev, EntitySessionEventArgs args)
@@ -70,6 +70,14 @@ public sealed partial class TTSSystem : EntitySystem
             return;
 
         RaiseNetworkEvent(new PlayTTSEvent(soundData), Filter.SinglePlayer(args.SenderSession));
+    }
+
+    private async void OnClientOptionTTS(ClientOptionTTSEvent ev, EntitySessionEventArgs args)
+    {
+        if (ev.Enabled)
+            _ignoredRecipients.Remove(args.SenderSession);
+        else
+            _ignoredRecipients.Add(args.SenderSession);
     }
 
     private void OnRadioReceiveEvent(RadioSpokeEvent args)
@@ -110,15 +118,12 @@ public sealed partial class TTSSystem : EntitySystem
     {
         if (!_isEnabled ||
             args.Message.Length > MaxMessageChars * 2 ||
-            !GetVoicePrototype(args.Nukie ? _nukieVoiceId : _voiceId, out var protoVoice))
-        {
-            RaiseNetworkEvent(new AnnounceTtsEvent(new byte[] { }), args.Source);
+            !GetVoicePrototype(args.AnnounceVoice ?? _defaultAnnounceVoice, out var protoVoice))
             return;
-        }
 
         var soundData = await GenerateTTS(args.Message, protoVoice.Speaker, isAnnounce: true);
-        soundData ??= new byte[] { };
-        RaiseNetworkEvent(new AnnounceTtsEvent(soundData), args.Source);
+        soundData ??= [];
+        RaiseNetworkEvent(new AnnounceTtsEvent(soundData, args.AnnouncementSound), args.Source.RemovePlayers(_ignoredRecipients));
     }
 
     private async void OnEntitySpoke(EntityUid uid, TTSComponent component, EntitySpokeEvent args)
@@ -140,7 +145,7 @@ public sealed partial class TTSSystem : EntitySystem
 
         if (args.ObfuscatedMessage != null)
         {
-            HandleWhisper(uid, args.Message, protoVoice.Speaker, args.IsRadio);
+            HandleWhisper(uid, args.Message, protoVoice.Speaker);
             return;
         }
 
@@ -149,12 +154,23 @@ public sealed partial class TTSSystem : EntitySystem
 
     private async void HandleSay(EntityUid uid, string message, string speaker)
     {
+        var recipients = Filter.Pvs(uid, 1F).RemovePlayers(_ignoredRecipients);
+
+        // Если нету получаетей ттса то зачем вообще генерировать его?
+        if (!recipients.Recipients.Any())
+            return;
+
         var soundData = await GenerateTTS(message, speaker);
-        if (soundData is null) return;
-        RaiseNetworkEvent(new PlayTTSEvent(soundData, GetNetEntity(uid)), Filter.Pvs(uid));
+
+        if (soundData is null)
+            return;
+
+        var netEntity = GetNetEntity(uid);
+
+        RaiseNetworkEvent(new PlayTTSEvent(soundData, netEntity), recipients);
     }
 
-    private async void HandleWhisper(EntityUid uid, string message, string speaker, bool isRadio)
+    private async void HandleWhisper(EntityUid uid, string message, string speaker)
     {
         // If it's a whisper into a radio, generate speech without whisper
         // attributes to prevent an additional speech synthesis event
@@ -170,6 +186,9 @@ public sealed partial class TTSSystem : EntitySystem
         {
             if (!session.AttachedEntity.HasValue)
                 continue;
+
+            if (_ignoredRecipients.Contains(session))
+                return;
 
             var xform = xformQuery.GetComponent(session.AttachedEntity.Value);
             var distance = (sourcePos - _xforms.GetWorldPosition(xform, xformQuery)).LengthSquared();
@@ -192,10 +211,7 @@ public sealed partial class TTSSystem : EntitySystem
         if (soundData is null)
             return;
 
-        foreach (var uid in uids)
-        {
-            RaiseNetworkEvent(new PlayTTSEvent(soundData, GetNetEntity(uid), true), Filter.Entities(uid));
-        }
+        RaiseNetworkEvent(new PlayTTSEvent(soundData, null, true), Filter.Entities(uids).RemovePlayers(_ignoredRecipients));
     }
 
     // ReSharper disable once InconsistentNaming

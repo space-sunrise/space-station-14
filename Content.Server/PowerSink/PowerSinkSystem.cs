@@ -129,7 +129,7 @@ namespace Content.Server.PowerSink
             _chat.DispatchStationAnnouncement(
                 station.Value,
                 Loc.GetString("powersink-immiment-explosion-announcement"),
-                playSound: true,
+                playDefault: true,
                 colorOverride: Color.Yellow
             );
         }

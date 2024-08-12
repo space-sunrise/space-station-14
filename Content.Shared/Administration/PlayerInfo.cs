@@ -14,9 +14,13 @@ namespace Content.Shared.Administration
         NetUserId SessionId,
         bool Connected,
         bool ActiveThisRound,
-        TimeSpan? OverallPlaytime)
+        TimeSpan? OverallPlaytime,
+        bool IsSponsor, // Sunrise-Sponsors
+        string? SponsorTitle)  // Sunrise-Sponsors
     {
         private string? _playtimeString;
+
+        public bool IsPinned { get; set; }
 
         public string PlaytimeString => _playtimeString ??=
             OverallPlaytime?.ToString("%d':'hh':'mm") ?? Loc.GetString("generic-unknown-title");
