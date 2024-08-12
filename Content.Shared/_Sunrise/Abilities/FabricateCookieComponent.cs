@@ -8,7 +8,7 @@ namespace Content.Shared._Sunrise.Abilities;
 public sealed partial class FabricateCookieComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("сookieList")]
+    [DataField("cookieList")]
     public List<string> CookieList = new()
     {
         "FoodBakedCookieOatmeal"

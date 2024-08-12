@@ -39,7 +39,7 @@ namespace Content.Shared.Construction.Steps
                 {
                     if (item.TryGetComponent<TagComponent>(out var entityTag) && entityManager.System<TagSystem>().HasTag(entityTag, Tag))
                     {
-                        if(item.Name == "левая рука киборга-официанта")
+                        if(item.Name == "левая рука киборга-официанта") //костыль так как лень фиксить по другому, хд
                         {
                             nameLocale = "левая рука киборга";
                         }
