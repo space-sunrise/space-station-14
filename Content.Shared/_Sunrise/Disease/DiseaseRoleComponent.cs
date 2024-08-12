@@ -33,6 +33,8 @@ public sealed partial class DiseaseRoleComponent : Component
     [DataField] public int Lethal = 0;
     [DataField] public int Shield = 1;
 
+    [DataField] public int SickOfAllTime = 0;
+
     [DataField("newBloodReagent", customTypeSerializer: typeof(PrototypeIdSerializer<ReagentPrototype>))]
     public string NewBloodReagent = "ZombieBlood";
 }

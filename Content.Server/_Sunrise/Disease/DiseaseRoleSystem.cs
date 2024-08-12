@@ -2,15 +2,15 @@
 using Content.Shared.Actions;
 using Robust.Shared.Random;
 using Content.Shared._Sunrise.Disease;
-using Content.Server.Store.Components;
 using Content.Server.Store.Systems;
 using Robust.Shared.Prototypes;
 using Content.Shared.FixedPoint;
 using Content.Shared.Popups;
 using Content.Shared.Store.Components;
 using Content.Server.Objectives;
-using Content.Server.Objectives.Components;
-using Content.Server.Objectives.Systems;
+using Content.Server.GameTicking;
+using Content.Shared.Random.Helpers;
+
 namespace Content.Server._Sunrise.Disease;
 
 public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
@@ -38,8 +38,35 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
         SubscribeLocalEvent<DiseaseRoleComponent, DiseaseAddLethalEvent>(OnLethal);
         SubscribeLocalEvent<DiseaseRoleComponent, DiseaseAddShieldEvent>(OnShield);
         SubscribeLocalEvent<DiseaseRuleComponent, ObjectivesTextGetInfoEvent>(OnObjectivesTextGetInfo);
+        SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndText);
     }
 
+
+    private void OnRoundEndText(RoundEndTextAppendEvent ev)
+    {
+        var sick = EntityQueryEnumerator<SickComponent>();
+        var immune = EntityQueryEnumerator<DiseaseImmuneComponent>();
+        var disease = EntityQueryEnumerator<DiseaseRoleComponent>();
+        int infected = 0;
+        int immuned = 0;
+        int infects = 0;
+        while (sick.MoveNext(out _))
+        {
+            infects++;
+        }
+        while (immune.MoveNext(out _))
+        {
+            immuned++;
+        }
+        while (disease.MoveNext(out var comp))
+        {
+            infected = comp.SickOfAllTime;
+        }
+        ev.AddLine(Loc.GetString("disease-round-end-result"));
+        ev.AddLine(Loc.GetString("disease-round-end-result-infected", ("count", infected)));
+        ev.AddLine(Loc.GetString("disease-round-end-result-infects", ("count", infects)));
+        ev.AddLine(Loc.GetString("disease-round-end-result-immuned", ("count", immuned)));
+    }
     private void OnObjectivesTextGetInfo(EntityUid uid, DiseaseRuleComponent comp, ref ObjectivesTextGetInfoEvent args)
     {
         args.Minds = comp.DiseasesMinds;

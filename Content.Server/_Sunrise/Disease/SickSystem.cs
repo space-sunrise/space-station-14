@@ -127,6 +127,7 @@ public sealed class SickSystem : SharedSickSystem
                     _bloodstream.ChangeBloodReagent(uid, diseaseComp.NewBloodReagent);
 
                     RaiseNetworkEvent(new ClientInfectEvent(GetNetEntity(uid), GetNetEntity(component.owner)));
+                    diseaseComp.SickOfAllTime++;
                     AddMoney(uid, 5);
 
                     component.Inited = true;
