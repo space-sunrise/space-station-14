@@ -2,7 +2,8 @@
 using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.Prototypes;
 using Content.Shared.Ligyb;
-public sealed partial class CureDiseaseInfection : ReagentEffect
+using Content.Shared.EntityEffects;
+public sealed partial class CureDiseaseInfection : EntityEffect
 {
     [DataField]
     public bool Innoculate;
@@ -15,15 +16,15 @@ public sealed partial class CureDiseaseInfection : ReagentEffect
         return "окей";
     }
 
-    public override void Effect(ReagentEffectArgs args)
+    public override void Effect(EntityEffectBaseArgs args)
     {
         var entityManager = args.EntityManager;
-        if (!entityManager.HasComponent<SickComponent>(args.SolutionEntity)) return;
-        if (entityManager.TryGetComponent<SickComponent>(args.SolutionEntity, out var sick))
+        if (!entityManager.HasComponent<SickComponent>(args.TargetEntity)) return;
+        if (entityManager.TryGetComponent<SickComponent>(args.TargetEntity, out var sick))
         {
             if (entityManager.TryGetComponent<DiseaseRoleComponent>(sick.owner, out var disease))
             {
-                var comp = entityManager.EnsureComponent<DiseaseVaccineTimerComponent>(args.SolutionEntity);
+                var comp = entityManager.EnsureComponent<DiseaseVaccineTimerComponent>(args.TargetEntity);
                 comp.Immune = Innoculate;
                 comp.Delay = TimeSpan.FromMinutes(2) + TimeSpan.FromSeconds(disease.Shield * 30);
             }

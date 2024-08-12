@@ -1,23 +1,7 @@
 // © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 using Content.Shared.Actions;
-using Content.Shared.Store;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Serialization;
-using System.Linq;
-using Content.Shared.Administration.Logs;
-using Content.Shared.Damage.Prototypes;
-using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
-using Content.Shared.Mind.Components;
-using Content.Shared.Mobs.Components;
-using Content.Shared.Mobs.Systems;
-using Content.Shared.Radiation.Events;
-using Content.Shared.Rejuvenate;
-using Robust.Shared.GameStates;
-using Robust.Shared.Network;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
-
 namespace Content.Shared.Ligyb;
 
 public sealed partial class InfectEvent : EntityTargetActionEvent

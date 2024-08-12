@@ -10,7 +10,7 @@ using Robust.Shared.Timing;
 using System.Collections.Frozen;
 using Content.Shared.Paper;
 using Robust.Shared.Utility;
-using static Content.Shared.Paper.SharedPaperComponent;
+using static Content.Shared.Paper.PaperComponent;
 using Robust.Shared.Prototypes;
 using System.Linq;
 using Robust.Shared.Serialization;

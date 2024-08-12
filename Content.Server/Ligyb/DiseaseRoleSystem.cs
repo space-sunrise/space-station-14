@@ -7,6 +7,7 @@ using Content.Server.Store.Systems;
 using Robust.Shared.Prototypes;
 using Content.Shared.FixedPoint;
 using Content.Shared.Popups;
+using Content.Shared.Store.Components;
 namespace Content.Server.Ligyb;
 
 public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem

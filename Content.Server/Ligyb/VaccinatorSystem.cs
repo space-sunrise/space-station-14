@@ -15,7 +15,7 @@ using Robust.Shared.Timing;
 using System.Collections.Frozen;
 using Content.Shared.Paper;
 using Robust.Shared.Utility;
-using static Content.Shared.Paper.SharedPaperComponent;
+using static Content.Shared.Paper.PaperComponent;
 using Robust.Shared.Prototypes;
 using System.Linq;
 using Robust.Shared.Serialization;
@@ -127,8 +127,10 @@ public sealed class VaccinatorSystem : SharedVaccinatorSystem
                     }
                 }
                 text.AppendLine("После чего положить полученную жидкость в вакцинатор, добавив одну каплю крови здорового человека.");
-
-                _paperSystem.SetContent(printed, text.ToString());
+                if(TryComp<PaperComponent>(printed, out var paperComp))
+                {
+                    _paperSystem.SetContent((printed, paperComp), text.ToString());
+                }
             }
         }
     }
