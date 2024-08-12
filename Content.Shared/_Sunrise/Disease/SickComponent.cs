@@ -3,7 +3,7 @@ using Content.Shared.StatusIcon;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Shared.Ligyb;
+namespace Content.Shared._Sunrise.Disease;
 
 [RegisterComponent]
 public sealed partial class SickComponent : Component

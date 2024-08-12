@@ -1,7 +1,7 @@
 // © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.Prototypes;
-using Content.Shared.Ligyb;
+using Content.Shared._Sunrise.Disease;
 using Content.Shared.EntityEffects;
 public sealed partial class CureDiseaseInfection : EntityEffect
 {

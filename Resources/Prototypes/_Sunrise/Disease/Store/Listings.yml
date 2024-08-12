@@ -6,7 +6,7 @@
   raiseProductEventOnUser: true
   productAction: ActionDiseaseCough
   cost:
-    DiseasePoints: 15
+    DiseasePoints: 0
   categories:
   - DiseaseInfectCategory
   conditions:

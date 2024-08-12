@@ -5,7 +5,10 @@
   components:
   - type: StationEvent
     minimumPlayers: 40
-    weight: 10
+    weight: 5
     duration: 1
+    earliestStart: 30
+    reoccurrenceDelay: 20
   - type: LateJoinSpawnRule
     prototype: MobDisease
+

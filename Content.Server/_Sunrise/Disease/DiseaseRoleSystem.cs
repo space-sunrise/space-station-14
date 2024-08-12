@@ -1,14 +1,17 @@
 // © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 using Content.Shared.Actions;
 using Robust.Shared.Random;
-using Content.Shared.Ligyb;
+using Content.Shared._Sunrise.Disease;
 using Content.Server.Store.Components;
 using Content.Server.Store.Systems;
 using Robust.Shared.Prototypes;
 using Content.Shared.FixedPoint;
 using Content.Shared.Popups;
 using Content.Shared.Store.Components;
-namespace Content.Server.Ligyb;
+using Content.Server.Objectives;
+using Content.Server.Objectives.Components;
+using Content.Server.Objectives.Systems;
+namespace Content.Server._Sunrise.Disease;
 
 public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
 {
@@ -34,6 +37,13 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
         SubscribeLocalEvent<DiseaseRoleComponent, DiseaseAddCoughChanceEvent>(OnCoughChance);
         SubscribeLocalEvent<DiseaseRoleComponent, DiseaseAddLethalEvent>(OnLethal);
         SubscribeLocalEvent<DiseaseRoleComponent, DiseaseAddShieldEvent>(OnShield);
+        SubscribeLocalEvent<DiseaseRuleComponent, ObjectivesTextGetInfoEvent>(OnObjectivesTextGetInfo);
+    }
+
+    private void OnObjectivesTextGetInfo(EntityUid uid, DiseaseRuleComponent comp, ref ObjectivesTextGetInfoEvent args)
+    {
+        args.Minds = comp.DiseasesMinds;
+        args.AgentName = "разумная болезнь";
     }
 
 
@@ -129,7 +139,7 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
 
     private void OnMapInit(EntityUid uid, DiseaseRoleComponent component, MapInitEvent args)
     {
-        _actionsSystem.AddAction(uid, DiseaseShopId);
+        _actionsSystem.AddAction(uid, DiseaseShopId, uid);
     }
 
     private void OnShop(EntityUid uid, DiseaseRoleComponent component, DiseaseShopActionEvent args)
@@ -180,7 +190,10 @@ public sealed class DiseaseRoleSystem : SharedDiseaseRoleSystem
 
     private void OnAddSymptom(EntityUid uid, DiseaseRoleComponent component, DiseaseAddSymptomEvent args)
     {
-        component.Symptoms.Add(args.Symptom, (args.MinLevel, args.MaxLevel));
+        if (!component.Symptoms.ContainsKey(args.Symptom))
+        {
+            component.Symptoms.Add(args.Symptom, (args.MinLevel, args.MaxLevel));
+        }
         _actionsSystem.RemoveAction(uid, args.Action);
     }
 

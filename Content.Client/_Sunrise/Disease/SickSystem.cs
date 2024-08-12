@@ -6,8 +6,9 @@ using Content.Shared.StatusIcon;
 using Content.Shared.StatusIcon.Components;
 using Robust.Client.Player;
 using Robust.Shared.Prototypes;
-using Content.Shared.Ligyb;
-namespace Content.Client.Ligyb;
+using Content.Shared._Sunrise.Disease;
+using Content.Shared.Ghost;
+namespace Content.Client._Sunrise.Disease;
 public sealed class SickSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototype = default!;
@@ -32,7 +33,7 @@ public sealed class SickSystem : EntitySystem
         {
             if (_playerManager.LocalEntity != null)
             {
-                if (HasComp<DiseaseRoleComponent>(_playerManager.LocalEntity.Value))
+                if (HasComp<DiseaseRoleComponent>(_playerManager.LocalEntity.Value) || HasComp<GhostComponent>(_playerManager.LocalEntity.Value))
                 {
                     if (!_mobState.IsDead(uid) &&
                         !HasComp<ActiveNPCComponent>(uid) &&

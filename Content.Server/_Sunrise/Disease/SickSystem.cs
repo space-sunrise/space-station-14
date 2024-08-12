@@ -1,7 +1,7 @@
 // © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Content.Shared.Ligyb;
+using Content.Shared._Sunrise.Disease;
 using System.Numerics;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
@@ -29,7 +29,7 @@ using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Item;
 using Content.Shared.Speech.Muting;
 using Content.Shared.Store.Components;
-namespace Content.Server.Ligyb;
+namespace Content.Server._Sunrise.Disease;
 public sealed class SickSystem : SharedSickSystem
 {
     [Dependency] private readonly AutoEmoteSystem _autoEmote = default!;
@@ -43,6 +43,7 @@ public sealed class SickSystem : SharedSickSystem
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
     private EntityLookupSystem _lookup => _entityManager.System<EntityLookupSystem>();
     public override void Initialize()
     {
@@ -227,7 +228,7 @@ public sealed class SickSystem : SharedSickSystem
     {
         if (args.Handled)
             return;
-        args.Handled = true;
+        if (!component.Symptoms.Contains(args.Emote.ID)) return;
         switch (args.Emote.ID)
         {
             case "Headache":
@@ -243,13 +244,16 @@ public sealed class SickSystem : SharedSickSystem
                         {
                             _damageableSystem.TryChangeDamage(uid, new(damagePrototype, 0.25f * disease.Lethal), true, origin: uid);
                         }
-                    }
-                    EntityCoordinates start = Transform(uid).Coordinates;
-                    foreach (var entity in _lookup.GetEntitiesInRange(uid, 0.7f))
-                    {
-                        if (HasComp<HumanoidAppearanceComponent>(entity) && !HasComp<SickComponent>(entity) && !HasComp<DiseaseImmuneComponent>(entity))
+
+                        foreach (var entity in _lookup.GetEntitiesInRange(uid, 0.7f))
                         {
-                            OnInfected(entity, component.owner, Comp<DiseaseRoleComponent>(component.owner).CoughInfectChance);
+                            if (_robustRandom.Prob(disease.CoughInfectChance))
+                            {
+                                if (HasComp<HumanoidAppearanceComponent>(entity) && !HasComp<SickComponent>(entity) && !HasComp<DiseaseImmuneComponent>(entity))
+                                {
+                                    OnInfected(entity, component.owner, Comp<DiseaseRoleComponent>(component.owner).CoughInfectChance);
+                                }
+                            }
                         }
                     }
                 }
@@ -257,12 +261,17 @@ public sealed class SickSystem : SharedSickSystem
             case "Sneeze":
                 if (_robustRandom.Prob(0.9f))
                 {
-                    EntityCoordinates start = Transform(uid).Coordinates;
-                    foreach (var entity in _lookup.GetEntitiesInRange(uid, 1.2f))
+                    if (TryComp<DiseaseRoleComponent>(component.owner, out var disease))
                     {
-                        if (HasComp<HumanoidAppearanceComponent>(entity) && !HasComp<SickComponent>(entity) && !HasComp<DiseaseImmuneComponent>(entity))
+                        foreach (var entity in _lookup.GetEntitiesInRange(uid, 1.2f))
                         {
-                            OnInfected(entity, component.owner, Comp<DiseaseRoleComponent>(component.owner).CoughInfectChance);
+                            if (_robustRandom.Prob(disease.CoughInfectChance))
+                            {
+                                if (HasComp<HumanoidAppearanceComponent>(entity) && !HasComp<SickComponent>(entity) && !HasComp<DiseaseImmuneComponent>(entity))
+                                {
+                                    OnInfected(entity, component.owner, Comp<DiseaseRoleComponent>(component.owner).CoughInfectChance);
+                                }
+                            }
                         }
                     }
                 }

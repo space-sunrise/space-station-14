@@ -2,7 +2,7 @@
 using Content.Shared.Actions;
 using Robust.Shared.Serialization;
 using Content.Shared.Inventory;
-namespace Content.Shared.Ligyb;
+namespace Content.Shared._Sunrise.Disease;
 
 public sealed partial class InfectEvent : EntityTargetActionEvent
 {

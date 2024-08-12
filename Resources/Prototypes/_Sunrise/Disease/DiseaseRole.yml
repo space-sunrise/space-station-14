@@ -1,6 +1,6 @@
 - type: entity
   id: MobDisease
-  name: Разумный вирус
+  name: разумная болезнь
   description: plague inc 2.0
   components:
   - type: MindContainer
@@ -49,9 +49,18 @@
     makeSentient: true
     name: ghostrole-disease-name
     description: ghostrole-disease-description
+    requirements:
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 7200 #2 hrs
+    - !type:OverallPlaytimeRequirement
+      time: 18000 #5 hrs
+    raffle:
+      settings: default
+
   - type: GhostTakeoverAvailable
   - type: PointLight
-    color: "#3A6041"
+    color: "#52964F"
     radius: 2
     softness: 1
   - type: UserInterface

@@ -1,11 +1,11 @@
 // © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 using Content.Shared.Clothing.Components;
 using Content.Shared.Inventory.Events;
-using Content.Shared.Ligyb;
+using Content.Shared._Sunrise.Disease;
 using Content.Shared.Examine;
 using Content.Shared.Verbs;
 using Robust.Shared.Utility;
-namespace Content.Server.Ligyb;
+namespace Content.Server._Sunrise.Disease;
 
 public sealed class DiseaseImmuneClothingSystem : EntitySystem
 {
@@ -49,7 +49,7 @@ public sealed class DiseaseImmuneClothingSystem : EntitySystem
             return;
 
         var examineMarkup = new FormattedMessage();
-        examineMarkup.TryAddMarkup($"Защищает от заражения на {Convert.ToInt32(component.Prob*100)}%", out var _);
+        examineMarkup.TryAddMarkup($"Защищает от заражения на {Convert.ToInt32(component.Prob * 100)}%", out var _);
 
         _examine.AddDetailedExamineVerb(args, component, examineMarkup,
             "Стерильность", "/Textures/Interface/VerbIcons/dot.svg.192dpi.png",

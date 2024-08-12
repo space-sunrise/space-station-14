@@ -2,7 +2,7 @@
 using Robust.Shared.Random;
 using Content.Shared.Humanoid;
 
-namespace Content.Shared.Ligyb;
+namespace Content.Shared._Sunrise.Disease;
 
 public abstract class SharedDiseaseRoleSystem : EntitySystem
 {

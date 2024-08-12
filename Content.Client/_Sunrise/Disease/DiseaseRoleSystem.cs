@@ -1,6 +1,6 @@
 using Content.Shared.Humanoid;
-using Content.Shared.Ligyb;
-namespace Content.Client.Ligyb;
+using Content.Shared._Sunrise.Disease;
+namespace Content.Client._Sunrise.Disease;
 
 public sealed class DiseaseRoleSystem : EntitySystem
 {
@@ -24,7 +24,7 @@ public sealed class DiseaseRoleSystem : EntitySystem
         var sick = EnsureComp<SickComponent>(target);
         sick.owner = performer;
         sick.Inited = true;
-        if(TryComp<DiseaseRoleComponent>(performer, out var comp))
+        if (TryComp<DiseaseRoleComponent>(performer, out var comp))
         {
             comp.Infected.Add(target);
         }

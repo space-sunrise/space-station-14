@@ -4,7 +4,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Content.Shared.Store;
 using Content.Shared.Chemistry.Reagent;
-namespace Content.Shared.Ligyb;
+namespace Content.Shared._Sunrise.Disease;
 
 [RegisterComponent]
 public sealed partial class DiseaseRoleComponent : Component

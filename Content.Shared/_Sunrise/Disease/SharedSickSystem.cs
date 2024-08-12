@@ -8,14 +8,14 @@ using Content.Shared.StatusIcon;
 using Content.Shared.StatusIcon.Components;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
-using Content.Shared.Ligyb;
-namespace Content.Shared.Ligyb;
+using Content.Shared._Sunrise.Disease;
+namespace Content.Shared._Sunrise.Disease;
 using Content.Shared.Drunk;
 using Content.Shared.StatusEffect;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using Content.Shared.Ligyb;
+using Content.Shared._Sunrise.Disease;
 using Robust.Shared.Random;
 public abstract class SharedSickSystem : EntitySystem
 {
