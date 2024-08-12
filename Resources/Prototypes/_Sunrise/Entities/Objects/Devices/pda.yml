@@ -89,8 +89,7 @@
 - type: entity
   parent: BasePDA
   id: PrisonEngineerPDA
-  name: КПК тюремного инженера
-  description: Как у обычного, но лучше.
+  name: ПДА тюремного инженера
   components:
   - type: Pda
     id: PrisonEngineeringIDCard

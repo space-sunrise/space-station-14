@@ -25,7 +25,7 @@
     eyes: ClothingEyesGlassesMeson
     belt: ClothingBeltUtilityEngineering
     ears: ClothingHeadsetJEngineering
-    id: EngineerPDA
+    id: PrisonEngineerPDA
   storage:
     back:
     - Flash
