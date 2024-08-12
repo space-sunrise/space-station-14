@@ -505,7 +505,7 @@ public sealed class StatsBoardSystem : EntitySystem
             }
         }
 
-        result += Loc.GetString("statsentry-species-entry");
+        result += Loc.GetString("statsentry-species-entry-name");
         foreach (var speciesEntry in roundSpecies)
         {
             var species = speciesEntry.Key;
@@ -517,7 +517,7 @@ public sealed class StatsBoardSystem : EntitySystem
                 mostPopularSpecies = species;
             }
 
-            result += $"\n[bold][color=white]{Loc.GetString(species)}[/color][/bold] {Loc.GetString('statsentry-in-count')} [color=white]{count}[/color].";
+            result += Loc.GetString("statsentry-species-entry", ("name", Loc.GetString(species)));
         }
 
         if (mostPopularSpecies != null)

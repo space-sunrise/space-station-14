@@ -18,6 +18,6 @@ statsentry-space-time = Был в космосе [color=yellow]{ $name }[/color]
 statsentry-sleep-time = Проспал [color=yellow]{ $name }[/color]\n
 statsentry-int-cc = Трогал карту капитана: { $name }
 
-statsentry-species-entry = На станции были представители таких рас:
-statsentry-in-count = В количестве
+statsentry-species-entry-name = На станции были представители таких рас:
+statsentry-species-entry = \n[bold][color=white]{ $name }[/color][/bold] в количестве [color=white]{count}[/color].
 statsentry-mst-pop-species = \nСамой распространённой расой стал [color=white]{ $name }[/color].
