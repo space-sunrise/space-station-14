@@ -19,7 +19,7 @@ statsentry-sleep-time = Проспал [color=yellow]{ $name }[/color]\n
 statsentry-int-cc = Трогал карту капитана: { $name }
 
 statsentry-species-entry-name = На станции были представители таких рас:
-statsentry-species-entry = \n[bold][color=white]{ $name }[/color][/bold] в количестве [color=white]{count}[/color].
+statsentry-species-entry = \n[bold][color=white]{ $name }[/color][/bold] в количестве [color=white]{ $count }[/color].
 statsentry-mst-pop-species = \nСамой распространённой расой стал [color=white]{ $name }[/color].
 statsentry-bank-balance = \nПод конец смены баланс карго составил [color=white]{ $balance }[/color] кредитов.
 statsentry-firth-murder = \nПервая жертва станции - [color=white]{ $name }[/color]{ $username }.
@@ -39,3 +39,6 @@ statsentry-hamster-killer = \nУбийцей гамлета был [color=white]
 statsentry-total-cuffed-count = \nИгроки были закованы [color=white]{ $count }[/color] раз.
 statsentry-player-with-longest-cuffed-time = \nБольше всего времени в наручниках провёл [color=white]{ $name }[/color]{ $username } - [color=yellow]{ $time }[/color].
 statsentry-total-sleep-time = \nОбщее время сна игроков составило [color=yellow]{ $time }[/color].
+statsentry-player-with-longest-sleep-time = \nГлавной соней станции оказался [color=white]{ $name }[/color]{ $username }.
+statsentry-player-with-longest-sleep-time-time = \nОн спал на протяжении [color=yellow]{ $time }[/color].
+statsentry-player-with-longest-space-time = \nБольше всего времени в космосе провел [color=white]{ $name }[/color]{ $usernameColor } - [color=yellow]{ $time }[/color].

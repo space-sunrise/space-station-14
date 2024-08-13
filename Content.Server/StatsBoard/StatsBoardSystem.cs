@@ -561,7 +561,7 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(mostSlippedCharacter.Value);
             var name = TryGetName(mostSlippedCharacter.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result += Loc.GetString("statsentry-most-slipped", ("name" name), ("username", usernameColor), ("count", maxSlippedCount));
+            result += Loc.GetString("statsentry-most-slipped", ("name", name), ("username", usernameColor), ("count", maxSlippedCount));
         }
 
         if (totalCreampied >= 1)
@@ -639,8 +639,8 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(playerWithLongestSleepTime.Value);
             var name = TryGetName(playerWithLongestSleepTime.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result += $"\nГлавной соней станции оказался [color=white]{name}[/color]{usernameColor}.";
-            result += $"\nОн спал на протяжении [color=yellow]{maxSleepTime.ToString("hh\\:mm\\:ss")}[/color].";
+            result += Loc.GetString("statsentry-player-with-longest-sleep-time", ("name", name), ("username", usernameColor));
+            result += Loc.GetString("statsentry-player-with-longest-sleep-time-time", ("time", maxSleepTime.ToString("hh\\:mm\\:ss")));
         }
 
         if (playerWithLongestSpaceTime != null)
@@ -648,8 +648,7 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(playerWithLongestSpaceTime.Value);
             var name = TryGetName(playerWithLongestSpaceTime.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result +=
-                $"\nБольше всего времени в космосе провел [color=white]{name}[/color]{usernameColor} - [color=yellow]{maxSpaceTime.ToString("hh\\:mm\\:ss")}[/color].";
+            result += Loc.GetString("statsentry-player-with-longest-space-time", ("name", name), ("username", usernameColor), ("time", maxSpaceTime.ToString("hh\\:mm\\:ss")));
         }
 
         if (_clownCuffed.clown != null && _clownCuffed.time != null)
