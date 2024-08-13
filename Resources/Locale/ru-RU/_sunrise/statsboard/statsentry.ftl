@@ -21,3 +21,9 @@ statsentry-int-cc = Трогал карту капитана: { $name }
 statsentry-species-entry-name = На станции были представители таких рас:
 statsentry-species-entry = \n[bold][color=white]{ $name }[/color][/bold] в количестве [color=white]{count}[/color].
 statsentry-mst-pop-species = \nСамой распространённой расой стал [color=white]{ $name }[/color].
+statsentry-bank-balance = \nПод конец смены баланс карго составил [color=white]{ $balance }[/color] кредитов.
+statsentry-firth-murder = \nПервая жертва станции - [color=white]{ $name }[/color]{ $color }.
+statsentry-firth-murder-time = \nВремя смерти - [color=yellow]{ $time }[/color].
+statsentry-firth-murder-killer = \nУбийца - [color=white]{ $name }[/color]{ $color }.
+statsentry-firth-murder-killer-none = \nСмерть наступила при неизвестных обстоятельствах.
+statsentry-total-slipped = \nИгроки в этой смене поскользнулись [color=white]{ $count }[/color] раз.

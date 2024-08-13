@@ -529,32 +529,31 @@ public sealed class StatsBoardSystem : EntitySystem
         var bank = GetBankAccount(station);
 
         if (bank != null)
-            result += $"\nПод конец смены баланс карго составил [color=white]{bank.Balance}[/color] кредитов.";
+            result += Loc.GetString("statsentry-bank-balance", ("balance", bank.Balance));
 
         if (_firstMurder.victim != null)
         {
             var victimUsername = TryGetUsername(_firstMurder.victim.Value);
             var victimName = TryGetName(_firstMurder.victim.Value);
             var victimUsernameColor = victimUsername != null ? $" ([color=gray]{victimUsername}[/color])" : "";
-            result += $"\nПервая жертва станции - [color=white]{victimName}[/color]{victimUsernameColor}.";
-            result += $"\nВремя смерти - [color=yellow]{_firstMurder.time.ToString("hh\\:mm\\:ss")}[/color].";
+            result += Loc.GetString("statsentry-firth-murder", ("name", victimName), ("color", victimUsernameColor));
+            result += Loc.GetString("statsentry-firth-murder-time", ("time", _firstMurder.time.ToString("hh\\:mm\\:ss")));
             if (_firstMurder.killer != null)
             {
                 var killerUsername = TryGetUsername(_firstMurder.killer.Value);
                 var killerName = TryGetName(_firstMurder.killer.Value);
                 var killerUsernameColor = killerUsername != null ? $" ([color=gray]{killerUsername}[/color])" : "";
-                result +=
-                    $"\nУбийца - [color=white]{killerName}[/color]{killerUsernameColor}.";
+                result += Loc.GetString("statsentry-firth-murder-killer", ("name", killerName), ("color", killerUsernameColor));
             }
             else
             {
-                result += "\nСмерть наступила при неизвестных обстоятельствах.";
+                Loc.GetString("statsentry-firth-murder-killer-none");
             }
         }
 
         if (totalSlipped >= 1)
         {
-            result += $"\nИгроки в этой смене поскользнулись [color=white]{totalSlipped}[/color] раз.";
+            result += Loc.GetString("statsentry-total-slipped", ("count", totalSlipped));
         }
 
         if (mostSlippedCharacter != null && maxSlippedCount > 1)
