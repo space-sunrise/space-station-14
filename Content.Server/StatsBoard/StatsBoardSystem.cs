@@ -669,7 +669,7 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(playerWithMostInflictedHeal.Value);
             var name = TryGetName(playerWithMostInflictedHeal.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result += Loc.GetString("statsentry-player-with-most-infected-heal", ("name" name), ("username", usernameColor), ("count", maxInflictedHeal)) + "\n";
+            result += Loc.GetString("statsentry-player-with-most-infected-heal", ("name", name), ("username", usernameColor), ("count", maxInflictedHeal)) + "\n";
         }
 
         if (totalDamage >= 1)
@@ -682,7 +682,7 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(playerWithMostInflictedDamage.Value);
             var name = TryGetName(playerWithMostInflictedDamage.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result += Loc.GetString("statsentry-player-with-most-infected-damage", ("name" name), ("username", usernameColor), ("count", maxInflictedDamage)) + "\n";
+            result += Loc.GetString("statsentry-player-with-most-infected-damage", ("name", name), ("username", usernameColor), ("count", maxInflictedDamage)) + "\n";
         }
 
         if (playerWithMinSpentTk != null)
