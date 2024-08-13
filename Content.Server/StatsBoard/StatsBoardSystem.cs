@@ -698,8 +698,8 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(playerWithMaxHumKills.Value);
             var name = TryGetName(playerWithMaxHumKills.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result += $"\nНастоящим маньяком в этой смене был [color=white]{name}[/color]{usernameColor}.";
-            result += $"\nОн убил [color=white]{maxHumKillCount}[/color] гуманоидов.";
+            result += Loc.GetString("statsentry-player-with-max-hum-kills", ("name", name), ("username", usernameColor)) + "\n";
+            result += Loc.GetString("statsentry-player-with-max-hum-kills-count", ("count", maxHumKillCount)) + "\n";
         }
 
         if (playerWithMaxDamage != null)
@@ -707,13 +707,12 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(playerWithMaxDamage.Value);
             var name = TryGetName(playerWithMaxDamage.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result +=
-                $"\nБольше всего урона получил [color=white]{name}[/color]{usernameColor} - [color=white]{maxTakeDamage}[/color]. Вот бедняга.";
+            result += Loc.GetString("statsentry-player-with-max-damage", ("name", name), ("username", usernameColor), ("count", maxTakeDamage)) + "\n";
         }
 
         if (totalAbsorbedPuddle >= 1)
         {
-            result += $"\nИгроками было убрано [color=white]{totalAbsorbedPuddle}[/color] луж.";
+            result += Loc.GetString("statsentry-total-absorbed-puddle", ("count", totalAbsorbedPuddle)) + "\n";
         }
 
         if (playerWithMostPuddleAbsorb != null && maxPuddleAbsorb > 1)
@@ -721,21 +720,20 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(playerWithMostPuddleAbsorb.Value);
             var name = TryGetName(playerWithMostPuddleAbsorb.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result +=
-                $"\nБольше всего луж было убрано благодаря [color=white]{name}[/color]{usernameColor} - [color=white]{maxPuddleAbsorb}[/color].";
+            result += Loc.GetString("statsentry-player-with-most-puddle-absorb", ("name", name), ("username", usernameColor), ("count", maxPuddleAbsorb)) + "\n";
         }
 
         if (totalCaptainCardInteracted >= 1)
         {
-            result += $"\nКарта капитана побывала у [color=white]{totalCaptainCardInteracted}[/color] игроков.";
+            result += Loc.GetString("statsentry-total-captain-card-interacted", ("count", totalCaptainCardInteracted)) + "\n";
         }
 
         if (totalElectrocutedCount >= 1)
         {
-            result += $"\nИгроки были шокированы [color=white]{totalElectrocutedCount}[/color] раз.";
+            result += Loc.GetString("statsentry-total-electrocuted-count", ("count", totalElectrocutedCount)) + "\n";
         }
-
-        result += "\n";
+        
+        //убрал пробельчик, так как всё равно он есть при добавлении ласт строчки
 
         return result;
     }

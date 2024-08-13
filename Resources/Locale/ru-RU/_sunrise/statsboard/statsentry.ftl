@@ -48,3 +48,10 @@ statsentry-player-with-most-infected-heal = Больше всего урона �
 statsentry-total-damage = Всего игроками было получено [color=white]{ $count }[/color] урона.
 statsentry-player-with-most-infected-damage = Больше всего урона нанес [color=white]{ $name }[/color]{ $username } - [color=white]{ $count }[/color].
 statsentry-player-with-min-spent-tk = Меньше всего телекристалов потратил [color=white]{ $name }[/color]{ $username } - [color=white]{ $count }[/color]ТК.
+statsentry-player-with-max-hum-kills = Настоящим маньяком в этой смене был [color=white]{ $name }[/color]{ $username }.
+statsentry-player-with-max-hum-kills-count = Он убил [color=white]{ $count }[/color] гуманоидов.
+statsentry-player-with-max-damage = Больше всего урона получил [color=white]{ $name }[/color]{ $username } - [color=white]{ $count }[/color]. Вот бедняга.
+statsentry-total-absorbed-puddle = Игроками было убрано [color=white]{ $count }[/color] луж.
+statsentry-player-with-most-puddle-absorb = Больше всего луж было убрано благодаря [color=white]{ $name }[/color]{ $username } - [color=white]{ $count }[/color].
+statsentry-total-captain-card-interacted = Карта капитана побывала у [color=white]{ $count }[/color] игроков.
+statsentry-total-electrocuted-count = Игроки были шокированы [color=white]{ $count }[/color] раз.
