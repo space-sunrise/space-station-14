@@ -561,13 +561,12 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(mostSlippedCharacter.Value);
             var name = TryGetName(mostSlippedCharacter.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result +=
-                $"\nБольше всех раз поскользнулся [color=white]{name}[/color]{usernameColor} - [color=white]{maxSlippedCount}[/color].";
+            result += Loc.GetString("statsentry-most-slipped", ("name" name), ("color", usernameColor), ("count", maxSlippedCount));
         }
 
         if (totalCreampied >= 1)
         {
-            result += $"\nВсего кремировано игроков: {totalCreampied}.";
+            result += Loc.GetString("statsentry-total-creampied", ("count", totalCreampied));
         }
 
         if (mostDeadCharacter != null && maxDeadCount > 1)
@@ -575,13 +574,12 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(mostDeadCharacter.Value);
             var name = TryGetName(mostDeadCharacter.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result +=
-                $"\nБольше всего раз умирал [color=white]{name}[/color]{usernameColor}, а именно [color=white]{maxDeadCount}[/color] раз.";
+            result += Loc.GetString("statsentry-most-dead", ("name", name), ("color", usernameColor), ("count", maxDeadCount));
         }
 
         if (totalDoorEmaged >= 1)
         {
-            result += $"\nШлюзы были емагнуты [color=white]{totalDoorEmaged}[/color] раз.";
+            result += Loc.GetString("statsentry-total-door-emaged", ("count", totalDoorEmaged));
         }
 
         if (mostDoorEmagedCharacter != null)
@@ -589,8 +587,7 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(mostDoorEmagedCharacter.Value);
             var name = TryGetName(mostDoorEmagedCharacter.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result +=
-                $"\nБольше всего шлюзов емагнул - [color=white]{name}[/color]{usernameColor} - [color=white]{maxDoorEmagedCount}[/color] раз.";
+            result += $"\nБольше всего шлюзов емагнул - [color=white]{name}[/color]{usernameColor} - [color=white]{maxDoorEmagedCount}[/color] раз.";
         }
 
         if (_jointCreated >= 1)

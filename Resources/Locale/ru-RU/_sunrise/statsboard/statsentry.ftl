@@ -27,3 +27,7 @@ statsentry-firth-murder-time = \nВремя смерти - [color=yellow]{ $time
 statsentry-firth-murder-killer = \nУбийца - [color=white]{ $name }[/color]{ $color }.
 statsentry-firth-murder-killer-none = \nСмерть наступила при неизвестных обстоятельствах.
 statsentry-total-slipped = \nИгроки в этой смене поскользнулись [color=white]{ $count }[/color] раз.
+statsentry-most-slipped = \nБольше всех раз поскользнулся [color=white]{ $name }[/color]{ $color } - [color=white]{ $count }[/color].
+statsentry-total-creampied = \nВсего кремировано игроков: { $total }.
+statsentry-most-dead = \nБольше всего раз умирал [color=white]{ $name }[/color]{ $color}, а именно [color=white]{ $count }[/color] раз.
+statsentry-total-door-emaged = \nШлюзы были емагнуты [color=white]{ $count }[/color] раз.
