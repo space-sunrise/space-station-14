@@ -13,7 +13,7 @@
     pack: BarberAds
   - type: AccessReader
     breakOnEmag: true
-    access: [["Barber"]]
+    access: [["Barber", "Service"]]
   - type: SpeakOnUIClosed
     pack: GenericVendGoodbyes
   - type: Speech
