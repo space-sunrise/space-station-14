@@ -536,14 +536,14 @@ public sealed class StatsBoardSystem : EntitySystem
             var victimUsername = TryGetUsername(_firstMurder.victim.Value);
             var victimName = TryGetName(_firstMurder.victim.Value);
             var victimUsernameColor = victimUsername != null ? $" ([color=gray]{victimUsername}[/color])" : "";
-            result += Loc.GetString("statsentry-firth-murder", ("name", victimName), ("color", victimUsernameColor));
+            result += Loc.GetString("statsentry-firth-murder", ("name", victimName), ("username", victimUsernameColor));
             result += Loc.GetString("statsentry-firth-murder-time", ("time", _firstMurder.time.ToString("hh\\:mm\\:ss")));
             if (_firstMurder.killer != null)
             {
                 var killerUsername = TryGetUsername(_firstMurder.killer.Value);
                 var killerName = TryGetName(_firstMurder.killer.Value);
                 var killerUsernameColor = killerUsername != null ? $" ([color=gray]{killerUsername}[/color])" : "";
-                result += Loc.GetString("statsentry-firth-murder-killer", ("name", killerName), ("color", killerUsernameColor));
+                result += Loc.GetString("statsentry-firth-murder-killer", ("name", killerName), ("username", killerUsernameColor));
             }
             else
             {
@@ -561,7 +561,7 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(mostSlippedCharacter.Value);
             var name = TryGetName(mostSlippedCharacter.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result += Loc.GetString("statsentry-most-slipped", ("name" name), ("color", usernameColor), ("count", maxSlippedCount));
+            result += Loc.GetString("statsentry-most-slipped", ("name" name), ("username", usernameColor), ("count", maxSlippedCount));
         }
 
         if (totalCreampied >= 1)
@@ -574,7 +574,7 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(mostDeadCharacter.Value);
             var name = TryGetName(mostDeadCharacter.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result += Loc.GetString("statsentry-most-dead", ("name", name), ("color", usernameColor), ("count", maxDeadCount));
+            result += Loc.GetString("statsentry-most-dead", ("name", name), ("username", usernameColor), ("count", maxDeadCount));
         }
 
         if (totalDoorEmaged >= 1)
@@ -587,17 +587,17 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(mostDoorEmagedCharacter.Value);
             var name = TryGetName(mostDoorEmagedCharacter.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result += $"\nБольше всего шлюзов емагнул - [color=white]{name}[/color]{usernameColor} - [color=white]{maxDoorEmagedCount}[/color] раз.";
+            result += Loc.GetString("statsentry-most-door-emaged-character", ("name", name), ("username", usernameColor), ("count", maxDoorEmagedCount));
         }
 
         if (_jointCreated >= 1)
         {
-            result += $"\nБыло скручено [color=white]{_jointCreated}[/color] косяков.";
+            result += Loc.GetString("statsentry-joint-created", ("count", _jointCreated));
         }
 
         if (totalKilledMice >= 1)
         {
-            result += $"\nБыло убито [color=white]{totalKilledMice}[/color] мышей.";
+            result += Loc.GetString("statsentry-total-killed-mice", ("count", totalKilledMice));
         }
 
         if (mostKillsMiceCharacter != null && maxKillsMice > 1)
@@ -605,7 +605,7 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(mostKillsMiceCharacter.Value);
             var name = TryGetName(mostKillsMiceCharacter.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result += $"\n{name}[/color]{usernameColor} устроил геноцид, убив [color=white]{maxKillsMice}[/color] мышей.";
+            result += Loc.GetString("statsentry-most-kills-mice-character", ("name", name), ("username", usernameColor), ("count", maxKillsMice));
         }
 
         if (_hamsterKiller != null)
@@ -613,13 +613,12 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(_hamsterKiller.Value);
             var name = TryGetName(_hamsterKiller.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result +=
-                $"\nУбийцей гамлета был [color=white]{name}[/color]{usernameColor}.";
+            result += Loc.GetString("statsentry-hamster-killer", ("name", name), ("username", usernameColor));
         }
 
         if (totalCuffedCount >= 1)
         {
-            result += $"\nИгроки были закованы [color=white]{totalCuffedCount}[/color] раз.";
+            result += Loc.GetString("statsentry-total-cuffed-count", ("count", totalCuffedCount));
         }
 
         if (playerWithLongestCuffedTime != null)
@@ -627,13 +626,12 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(playerWithLongestCuffedTime.Value);
             var name = TryGetName(playerWithLongestCuffedTime.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result +=
-                $"\nБольше всего времени в наручниках провёл [color=white]{name}[/color]{usernameColor} - [color=yellow]{maxCuffedTime.ToString("hh\\:mm\\:ss")}[/color].";
+            result += Loc.GetString("statsentry-player-with-longest-cuffed-time", ("name", name), ("username", usernameColor), ("time", maxCuffedTime.ToString("hh\\:mm\\:ss")));
         }
 
         if (totalSleepTime > TimeSpan.Zero)
         {
-            result += $"\nОбщее время сна игроков составило [color=yellow]{totalSleepTime.ToString("hh\\:mm\\:ss")}[/color].";
+            result += Loc.GetString("statsentry-total-sleep-time", ("time", totalSleepTime.ToString("hh\\:mm\\:ss")));
         }
 
         if (playerWithLongestSleepTime != null)
