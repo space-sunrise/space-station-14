@@ -53,6 +53,7 @@
   - Cargo
   - Atmospherics
   - Medical
+  - Barber  # Sunrise-edit
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
