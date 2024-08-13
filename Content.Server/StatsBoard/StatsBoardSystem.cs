@@ -656,13 +656,12 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(_clownCuffed.clown.Value);
             var name = TryGetName(_clownCuffed.clown.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result +=
-                $"\nКлоун [color=white]{name}[/color]{usernameColor} был закован всего спустя [color=yellow]{_clownCuffed.time.Value.ToString("hh\\:mm\\:ss")}[/color].";
+            result += Loc.GetString("statsentry-clown-cuffed", ("name", name), ("username", usernameColor), ("time", _clownCuffed.time.Value.ToString("hh\\:mm\\:ss"))) + "\n";
         }
 
         if (totalHeal >= 1)
         {
-            result += $"\nВсего игроками было излечено [color=white]{totalHeal}[/color] урона.";
+            result += Loc.GetString("statsentry-total-heal", ("count", totalHeal)) + "\n";
         }
 
         if (playerWithMostInflictedHeal != null)
@@ -670,13 +669,12 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(playerWithMostInflictedHeal.Value);
             var name = TryGetName(playerWithMostInflictedHeal.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result +=
-                $"\nБольше всего урона игрокам вылечил [color=white]{name}[/color]{usernameColor} - [color=white]{maxInflictedHeal}[/color].";
+            result += Loc.GetString("statsentry-player-with-most-infected-heal", ("name" name), ("username", usernameColor), ("count", maxInflictedHeal)) + "\n";
         }
 
         if (totalDamage >= 1)
         {
-            result += $"\nВсего игроками было получено [color=white]{totalDamage}[/color] урона.";
+            result += Loc.GetString("statsentry-total-damage", ("count", totalDamage)) + "\n";
         }
 
         if (playerWithMostInflictedDamage != null)
@@ -684,8 +682,7 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(playerWithMostInflictedDamage.Value);
             var name = TryGetName(playerWithMostInflictedDamage.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result +=
-                $"\nБольше всего урона нанес [color=white]{name}[/color]{usernameColor} - [color=white]{maxInflictedDamage}[/color].";
+            result += Loc.GetString("statsentry-player-with-most-infected-damage", ("name" name), ("username", usernameColor), ("count", maxInflictedDamage)) + "\n";
         }
 
         if (playerWithMinSpentTk != null)
@@ -693,8 +690,7 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(playerWithMinSpentTk.Value);
             var name = TryGetName(playerWithMinSpentTk.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result +=
-                $"\nМеньше всего телекристалов потратил [color=white]{name}[/color]{usernameColor} - [color=white]{minSpentTk}[/color]ТК.";
+            result += Loc.GetString("statsentry-player-with-min-spent-tk", ("name", name), ("username", usernameColor), ("count", minSpentTk)) + "\n";
         }
 
         if (playerWithMaxHumKills != null && maxHumKillCount > 1)
