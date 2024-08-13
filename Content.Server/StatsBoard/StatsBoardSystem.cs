@@ -517,7 +517,7 @@ public sealed class StatsBoardSystem : EntitySystem
                 mostPopularSpecies = species;
             }
 
-            result += Loc.GetString("statsentry-species-entry", ("name", Loc.GetString(species)));
+            result += Loc.GetString("statsentry-species-entry", ("name", Loc.GetString(species)), ("count", count));
         }
 
         if (mostPopularSpecies != null)
