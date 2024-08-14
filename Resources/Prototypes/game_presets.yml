@@ -172,7 +172,6 @@
     - dm
   name: death-match-title
   description: death-match-description
-  maxPlayers: 15
   showInVote: true
   hide: true # Sunrise-Edit
   supportedMaps: DeathMatchMapPool
