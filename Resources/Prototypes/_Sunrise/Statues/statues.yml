@@ -1,5 +1,6 @@
 - type: entity
   id: StatueFurukai
+  parent: BaseStructure
   name: statue furukai
   description:
   components:
@@ -12,6 +13,7 @@
 
 - type: entity
   id: StatueDude
+  parent: BaseStructure
   name: statue dude
   description:
   components:
@@ -24,6 +26,7 @@
 
 - type: entity
   id: StatueFrank
+  parent: BaseStructure
   name: statue frank
   description:
   components:
@@ -36,6 +39,7 @@
 
 - type: entity
   id: StatueMooniverse
+  parent: BaseStructure
   name: statue mooniverse
   description:
   components:
@@ -48,6 +52,7 @@
 
 - type: entity
   id: StatueRib
+  parent: BaseStructure
   name: statue rib
   description:
   components:
