@@ -95,8 +95,7 @@ namespace Content.Server.GameTicking
             var spawnableStations = GetSpawnableStations();
             var assignedJobs = _stationJobs.AssignJobs(profiles, spawnableStations);
 
-            // Sunrise-Edit: Так как у нас неограничены не только пассажиры а и другие роли это не работает корректно, отправляя игроков играть за охранников КТ.
-            //_stationJobs.AssignOverflowJobs(ref assignedJobs, playerNetIds, profiles, spawnableStations);
+            _stationJobs.AssignOverflowJobs(ref assignedJobs, playerNetIds, profiles, spawnableStations);
 
             // Calculate extended access for stations.
             var stationJobCounts = spawnableStations.ToDictionary(e => e, _ => 0);

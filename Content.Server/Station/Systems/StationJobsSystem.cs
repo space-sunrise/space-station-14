@@ -375,8 +375,10 @@ public sealed partial class StationJobsSystem : EntitySystem
     {
         if (!Resolve(station, ref stationJobs))
             throw new ArgumentException("Tried to use a non-station entity as a station!", nameof(station));
-
-        return stationJobs.OverflowJobs;
+        
+        //return stationJobs.OverflowJobs;
+        // Sunrise-Edit: Так как у нас неограничены не только пассажиры а и другие роли это не работает корректно, отправляя игроков играть за охранников КТ.
+        return new HashSet<ProtoId<JobPrototype>>();
     }
 
     /// <summary>
