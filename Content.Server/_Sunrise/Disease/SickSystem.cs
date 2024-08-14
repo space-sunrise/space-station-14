@@ -43,8 +43,7 @@ public sealed class SickSystem : SharedSickSystem
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    private EntityLookupSystem _lookup => _entityManager.System<EntityLookupSystem>();
+    private EntityLookupSystem Lookup => _entityManager.System<EntityLookupSystem>();
     public override void Initialize()
     {
         base.Initialize();
@@ -240,13 +239,12 @@ public sealed class SickSystem : SharedSickSystem
                 {
                     if (TryComp<DiseaseRoleComponent>(component.owner, out var disease))
                     {
-                        var kind = SuicideKind.Piercing;
-                        if (_prototypeManager.TryIndex<DamageTypePrototype>(kind.ToString(), out var damagePrototype))
+                        if (_prototypeManager.TryIndex<DamageTypePrototype>("Piercing", out var damagePrototype))
                         {
                             _damageableSystem.TryChangeDamage(uid, new(damagePrototype, 0.25f * disease.Lethal), true, origin: uid);
                         }
 
-                        foreach (var entity in _lookup.GetEntitiesInRange(uid, 0.7f))
+                        foreach (var entity in Lookup.GetEntitiesInRange(uid, 0.7f))
                         {
                             if (_robustRandom.Prob(disease.CoughInfectChance))
                             {
@@ -264,7 +262,7 @@ public sealed class SickSystem : SharedSickSystem
                 {
                     if (TryComp<DiseaseRoleComponent>(component.owner, out var disease))
                     {
-                        foreach (var entity in _lookup.GetEntitiesInRange(uid, 1.2f))
+                        foreach (var entity in Lookup.GetEntitiesInRange(uid, 1.2f))
                         {
                             if (_robustRandom.Prob(disease.CoughInfectChance))
                             {
@@ -287,8 +285,7 @@ public sealed class SickSystem : SharedSickSystem
                 if (TryComp<DiseaseRoleComponent>(component.owner, out var dis))
                 {
                     _stun.TryParalyze(uid, TimeSpan.FromSeconds(5), false);
-                    var kind = SuicideKind.Shock;
-                    if (_prototypeManager.TryIndex<DamageTypePrototype>(kind.ToString(), out var damagePrototype))
+                    if (_prototypeManager.TryIndex<DamageTypePrototype>("Shock", out var damagePrototype))
                     {
                         _damageableSystem.TryChangeDamage(uid, new(damagePrototype, 0.35f * dis.Lethal), true, origin: uid);
                     }
