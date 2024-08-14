@@ -11,6 +11,9 @@
     normalState: normal-unshaded
   - type: Advertise
     pack: BarberAds
+  - type: AccessReader
+    breakOnEmag: true
+    access: [["Barber", "Service"]]
   - type: SpeakOnUIClosed
     pack: GenericVendGoodbyes
   - type: Speech

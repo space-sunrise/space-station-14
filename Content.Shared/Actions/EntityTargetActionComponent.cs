@@ -29,11 +29,6 @@ public sealed partial class EntityTargetActionComponent : BaseTargetActionCompon
     /// Whether this action considers the user as a valid target entity when using this action.
     /// </summary>
     [DataField("canTargetSelf")] public bool CanTargetSelf = true;
-
-    // Sunrise-Start
-    [DataField("ignoreContainer")]
-    public bool IgnoreContainer;
-    // Sunrise-End
 }
 
 [Serializable, NetSerializable]

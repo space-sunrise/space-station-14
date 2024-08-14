@@ -1,7 +1,7 @@
 ﻿- type: job
-  id: Prisoner
-  name: job-name-prisoner
-  description: job-description-prisoner
+  id: PlanetPrisoner
+  name: job-name-planet-prisoner
+  description: job-description-planet-prisoner
   playTimeTracker: JobPrisoner
   startingGear: PrisonerGear
   alwaysUseSpawner: true

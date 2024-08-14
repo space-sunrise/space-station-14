@@ -1,4 +1,6 @@
-﻿using Content.Shared._Sunrise.Razor;
+﻿// © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt;
+
+using Content.Shared._Sunrise.Razor;
 using Content.Shared.DoAfter;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
@@ -10,14 +12,13 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Sunrise.Razor;
 
 /// <summary>
-/// Система для электробритвы - копия ножниц с вайлдберрис. Она не может менять цвет!! (шок)
+/// Система для электробритвы - копия ножниц с вайлдберрис. Бритва не может менять цвет волос!
 /// </summary>
 public abstract class SharedRazorSystem : EntitySystem
 {
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _uiSystem = default!;
 
-    /// <inheritdoc/>
     public override void Initialize()
     {
         base.Initialize();
