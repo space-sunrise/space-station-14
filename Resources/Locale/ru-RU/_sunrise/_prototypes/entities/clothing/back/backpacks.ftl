@@ -1,3 +1,5 @@
+ent-ClothingBackpackSyndie = Рюкзак Синдиката
+    .desc = Рюкзак оперативника с повышенной вместительностью.
 ent-ClothingMilitaryBackpack = армейский рюкзак
     .desc = Вместительный рюкзак с множеством карманов, который носят военные структуры.
 ent-ClothingDeathSquadronBackpack = рюкзак эскадрона смерти
