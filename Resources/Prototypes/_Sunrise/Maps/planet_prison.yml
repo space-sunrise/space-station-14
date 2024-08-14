@@ -23,8 +23,8 @@
             #PrisonWorker: [ 1, 2 ] Увы
             #PrisonEngineer: [ 1, 2 ] Увы
             PrisonGuard: [ -1, -1 ]
-            Prisoner: [ 2, 2 ]
+            PlanetPrisoner: [ 2, 2 ]
         - type: OtherJobsTakenRequirement
           targetJob: PrisonGuard
-          adjustJob: Prisoner
-          modifier: 2
+          adjustJob: PlanetPrisoner
+          modifier: 1

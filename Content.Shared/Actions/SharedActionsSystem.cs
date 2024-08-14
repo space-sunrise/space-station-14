@@ -615,7 +615,8 @@ public abstract class SharedActionsSystem : EntitySystem
             comp.CheckCanInteract,
             comp.CanTargetSelf,
             comp.CheckCanAccess,
-            comp.Range);
+            comp.Range,
+            comp.IgnoreContainer);
 
         var worldValidated
             = ValidateWorldTargetBase(user, coords, comp.CheckCanInteract, comp.CheckCanAccess, comp.Range);

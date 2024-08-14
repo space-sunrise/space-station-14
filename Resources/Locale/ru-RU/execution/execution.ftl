@@ -1,5 +1,5 @@
-execution-verb-name = Execute
-execution-verb-message = Use your weapon to execute someone.
+execution-verb-name = Казнить
+execution-verb-message = Использовать ваше оружие чтоб казнить кого-либо.
 
 # All the below localisation strings have access to the following variables
 # attacker (the person committing the execution)

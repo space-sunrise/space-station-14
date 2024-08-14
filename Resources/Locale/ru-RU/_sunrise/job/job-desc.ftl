@@ -8,6 +8,7 @@ job-description-senior-officer = Обучите новых кадетов осн
 job-description-blueshield = Ваша главная задача - защита глав. Помните, вы не офицер службы безопасности.
 job-description-roboticist = Занимайтесь созданием киборгов, мехов и чините их.
 job-description-head-of-prison = Управляйте лучшим местом на планете.
+job-description-planet-prisoner = Ну типа вы зек.
 job-description-prison-chef = Готовьте еду для заключенных и персонала тюрьмы.
 job-description-prison-doctor = Лечите побитых заключенных.
 job-description-prison-engineer = Обеспечивайте функционирование тюрьмы.
