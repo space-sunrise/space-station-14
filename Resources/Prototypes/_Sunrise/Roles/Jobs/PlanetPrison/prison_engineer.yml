@@ -6,7 +6,7 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Engineering
-      time: 72000 # 20 hrs
+      time: 36000 # 10 hrs
   alwaysUseSpawner: true
   canBeAntag: false
   startingGear: PrisonEngineerGear
