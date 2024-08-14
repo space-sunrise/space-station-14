@@ -21,7 +21,7 @@
             PrisonDoctor: [ 1, 2 ]
             #PrisonChef: [ 1, 2 ] Увы
             #PrisonWorker: [ 1, 2 ] Увы
-            #PrisonEngineer: [ 1, 2 ] Увы
+            PrisonEngineer: [ 1, 2 ] 
             PrisonGuard: [ -1, -1 ]
             PlanetPrisoner: [ 2, 2 ]
         - type: OtherJobsTakenRequirement
