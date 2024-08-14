@@ -2521,3 +2521,12 @@
     type: Fix
   id: 184
   time: '2024-08-14T21:26:14.019969+00:00'
+- author: Rinary
+  changes:
+  - message: "\u0418\u0441\u043F\u0440\u0430\u0432\u043B\u0435\u043D \u0444\u043E\u043D\
+      \u0430\u0440\u044C \u0443 \u0432\u0441\u0435\u0445 \u0431\u043E\u0440\u0433\u043E\
+      \u0432"
+    type: Fix
+  id: 185
+  time: '2024-08-14T21:27:51.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/279
