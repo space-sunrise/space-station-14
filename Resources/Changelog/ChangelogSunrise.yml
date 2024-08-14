@@ -2536,3 +2536,13 @@
   id: 185
   time: '2024-08-14T21:27:51.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/279
+- author: VigersRay
+  changes:
+  - message: "\u0414\u0432\u043E\u0439\u043D\u0438\u043A\u0430\u043C \u043A\u043E\u0440\
+      \u0440\u0435\u043A\u0442\u043D\u043E \u0432\u044B\u0434\u0430\u0435\u0442\u0441\
+      \u044F \u043C\u0430\u0439\u043D\u0448\u0438\u043B\u0434 \u0435\u0441\u043B\u0438\
+      \ \u044D\u0442\u043E \u043D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C\u043E\
+      ."
+    type: Fix
+  id: 186
+  time: '2024-08-14T22:22:22.093120+00:00'
