@@ -213,15 +213,7 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
             playTimes = new Dictionary<string, TimeSpan>();
         }
 
-        // Sunrise-Sponsors-Start
-        if (_sponsorsManager != null && _sponsorsManager.TryGetPrototypes(player.UserId, out var prototypes))
-        {
-            if (prototypes.Contains(role))
-                return true;
-        }
-        // Sunrise-Sponsors-End
-
-        return JobRequirements.TryRequirementsMet(job, playTimes, out _, EntityManager, _prototypes, (HumanoidCharacterProfile?) _preferencesManager.GetPreferences(player.UserId).SelectedCharacter);
+        return JobRequirements.TryRequirementsMet(job, playTimes, out _, EntityManager, _prototypes, (HumanoidCharacterProfile?) _preferencesManager.GetPreferences(player.UserId).SelectedCharacter, _sponsorsManager);
     }
 
     public HashSet<ProtoId<JobPrototype>> GetDisallowedJobs(ICommonSession player)
@@ -238,7 +230,7 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
 
         foreach (var job in _prototypes.EnumeratePrototypes<JobPrototype>())
         {
-            if (JobRequirements.TryRequirementsMet(job, playTimes, out _, EntityManager, _prototypes, (HumanoidCharacterProfile?) _preferencesManager.GetPreferences(player.UserId).SelectedCharacter))
+            if (JobRequirements.TryRequirementsMet(job, playTimes, out _, EntityManager, _prototypes, (HumanoidCharacterProfile?) _preferencesManager.GetPreferences(player.UserId).SelectedCharacter, _sponsorsManager)) // Sunrise-Edit
                 roles.Add(job.ID);
         }
 
@@ -262,18 +254,10 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
         {
 
             if (_prototypes.TryIndex(jobs[i], out var job)
-                && JobRequirements.TryRequirementsMet(job, playTimes, out _, EntityManager, _prototypes, (HumanoidCharacterProfile?) _preferencesManager.GetPreferences(userId).SelectedCharacter))
+                && JobRequirements.TryRequirementsMet(job, playTimes, out _, EntityManager, _prototypes, (HumanoidCharacterProfile?) _preferencesManager.GetPreferences(userId).SelectedCharacter, _sponsorsManager)) // Sunrise-Edit
             {
                 continue;
             }
-
-            // Sunrise-Sponsors-Start
-            if (_sponsorsManager != null && _sponsorsManager.TryGetPrototypes(player.UserId, out var prototypes))
-            {
-                if (prototypes.Contains(jobs[i]))
-                    continue;
-            }
-            // Sunrise-Sponsors-End
 
             jobs.RemoveSwap(i);
             i--;

@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Roles;
+using Content.Sunrise.Interfaces.Shared;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -27,6 +28,8 @@ public sealed partial class JobRequirementLoadoutEffect : LoadoutEffect
         var playtimes = manager.GetPlayTimes(session);
         return Requirement.Check(collection.Resolve<IEntityManager>(),
             collection.Resolve<IPrototypeManager>(),
+            null,
+            null,
             profile,
             playtimes,
             out reason);

@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Preferences;
+using Content.Sunrise.Interfaces.Shared;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -25,11 +26,19 @@ public sealed partial class DepartmentTimeRequirement : JobRequirement
 
     public override bool Check(IEntityManager entManager,
         IPrototypeManager protoManager,
+        ISharedSponsorsManager? sponsorsManager, // Sunrise-Edit
+        string? protoId, // Sunrise-Edit
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan> playTimes,
         [NotNullWhen(false)] out FormattedMessage? reason)
     {
         reason = new FormattedMessage();
+
+        // Sunrise-Sponsors-Start
+        if (sponsorsManager != null && protoId != null && sponsorsManager.GetClientPrototypes().Contains(protoId))
+            return true;
+        // Sunrise-Sponsors-End
+
         var playtime = TimeSpan.Zero;
 
         // Check all jobs' departments

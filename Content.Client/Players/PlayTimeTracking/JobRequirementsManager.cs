@@ -13,7 +13,6 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Content.Shared.Preferences;
 using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Client.Players.PlayTimeTracking;
@@ -115,11 +114,6 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         if (player == null)
             return true;
 
-        // Sunrise-Sponsors-Start
-        if (_sponsorsMgr != null && _sponsorsMgr.GetClientPrototypes().Contains(job.ID))
-            return true;
-        // Sunrise-Sponsors-End
-
         // Sunrise-Start
         if (profile != null)
         {
@@ -137,10 +131,10 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     public bool CheckRoleRequirements(JobPrototype job, HumanoidCharacterProfile? profile, [NotNullWhen(false)] out FormattedMessage? reason)
     {
         var reqs = _entManager.System<SharedRoleSystem>().GetJobRequirement(job);
-        return CheckRoleRequirements(reqs, profile, out reason);
+        return CheckRoleRequirements(reqs, job.ID, profile, out reason); // Sunrise-Edit
     }
 
-    public bool CheckRoleRequirements(HashSet<JobRequirement>? requirements, HumanoidCharacterProfile? profile, [NotNullWhen(false)] out FormattedMessage? reason)
+    public bool CheckRoleRequirements(HashSet<JobRequirement>? requirements, string protoId, HumanoidCharacterProfile? profile, [NotNullWhen(false)] out FormattedMessage? reason) // Sunrise-Edit
     {
         reason = null;
 
@@ -150,7 +144,7 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         var reasons = new List<string>();
         foreach (var requirement in requirements)
         {
-            if (requirement.Check(_entManager, _prototypes, profile, _roles, out var jobReason))
+            if (requirement.Check(_entManager, _prototypes, _sponsorsMgr, protoId, profile, _roles, out var jobReason)) // Sunrise-Edit
                 continue;
 
             reasons.Add(jobReason.ToMarkup());

@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
+using Content.Sunrise.Interfaces.Shared;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -21,6 +22,8 @@ public sealed partial class SpeciesRequirement : JobRequirement
 
     public override bool Check(IEntityManager entManager,
         IPrototypeManager protoManager,
+        ISharedSponsorsManager? sponsorsManager, // Sunrise-Edit
+        string? protoId, // Sunrise-Edit
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan> playTimes,
         [NotNullWhen(false)] out FormattedMessage? reason)

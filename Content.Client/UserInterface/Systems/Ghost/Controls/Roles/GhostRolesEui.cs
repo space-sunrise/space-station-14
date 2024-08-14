@@ -98,15 +98,10 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
                 bool hasAccess = true;
                 FormattedMessage? reason;
 
-                if (!requirementsManager.CheckRoleRequirements(group.Key.Requirements, null, out reason))
+                if (!requirementsManager.CheckRoleRequirements(group.Key.Requirements, group.Key.PrototypeId, null, out reason)) // Sunrise-Edit
                 {
                     hasAccess = false;
                 }
-
-                // Sunrise-Sponsors-Start
-                if (_sponsorsManager != null && _sponsorsManager.GetClientPrototypes().Contains(group.Key.PrototypeId))
-                    hasAccess = true;
-                // Sunrise-Sponsors-End
 
                 _window.AddEntry(name, description, hasAccess, reason, group, spriteSystem);
             }
