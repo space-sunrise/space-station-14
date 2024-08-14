@@ -1,4 +1,4 @@
-statsentry-character = Персонаж: 
+statsentry-character = Персонаж:
 statsentry-dmg = Получил урона: { $name }\n
 statsentry-heal = Получил лечения: { $name }\n
 statsentry-inf-dmg = Нанес урона: { $name }\n
@@ -17,7 +17,6 @@ statsentry-cuff-time = Был в наручниках [color=yellow]{ $name }[/c
 statsentry-space-time = Был в космосе [color=yellow]{ $name }[/color]\n
 statsentry-sleep-time = Проспал [color=yellow]{ $name }[/color]\n
 statsentry-int-cc = Трогал карту капитана: { $name }
-
 statsentry-species-entry-name = На станции были представители таких рас:
 statsentry-species-entry = [bold][color=white]{ $name }[/color][/bold] в количестве [color=white]{ $count }[/color].
 statsentry-mst-pop-species = Самой распространённой расой стал [color=white]{ $name }[/color].
@@ -42,7 +41,7 @@ statsentry-total-sleep-time = Общее время сна игроков сос
 statsentry-player-with-longest-sleep-time = Главной соней станции оказался [color=white]{ $name }[/color]{ $username }.
 statsentry-player-with-longest-sleep-time-time = Он спал на протяжении [color=yellow]{ $time }[/color].
 statsentry-player-with-longest-space-time = Больше всего времени в космосе провел [color=white]{ $name }[/color]{ $username } - [color=yellow]{ $time }[/color].
-statsentry-clown-cuffed =  Клоун [color=white]{ $name }[/color]{ $username } был закован всего спустя [color=yellow]{ $time }[/color].
+statsentry-clown-cuffed = Клоун [color=white]{ $name }[/color]{ $username } был закован всего спустя [color=yellow]{ $time }[/color].
 statsentry-total-heal = Всего игроками было излечено [color=white]{ $count }[/color] урона.
 statsentry-player-with-most-infected-heal = Больше всего урона игрокам вылечил [color=white]{ $name }[/color]{ $username } - [color=white]{ $count }[/color].
 statsentry-total-damage = Всего игроками было получено [color=white]{ $count }[/color] урона.

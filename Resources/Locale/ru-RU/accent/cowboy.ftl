@@ -198,9 +198,3 @@ accent-cowboy-words-99 = кричал
 accent-cowboy-replacement-99 = закричал
 accent-cowboy-words-100 = кричащий
 accent-cowboy-replacement-100 = кричащий
-
-
-
-
-
-
