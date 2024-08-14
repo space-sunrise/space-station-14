@@ -150,12 +150,12 @@
     - state: seniorofficer
 
 - type: entity
-  id: SpawnPointPrisoner
+  id: SpawnPointPlanetPrisoner
   parent: SpawnPointJobBase
-  name: заключенный
+  name: заключенный ПТ
   components:
   - type: SpawnPoint
-    job_id: Prisoner
+    job_id: PlanetPrisoner
   - type: Sprite
     layers:
     - state: green

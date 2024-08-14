@@ -11,7 +11,8 @@
 # Head
 - type: loadout
   id: ResearchDirectorBeret
-  startingGear: ScientificBeret
+  equipment:
+    head: ClothingHeadHatBeretRND
 
 # Neck
 - type: loadout

@@ -262,5 +262,5 @@
   - Changeling
   - SubGamemodesRule
   - BasicStationEventScheduler
-  - GameRuleMeteorScheduler
+  - MeteorSwarmScheduler
   - BasicRoundstartVariation

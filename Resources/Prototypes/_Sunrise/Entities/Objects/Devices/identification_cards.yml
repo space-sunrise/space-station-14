@@ -37,7 +37,7 @@
     - state: idsecurityofficer
   - type: PresetIdCard
     job: SecurityPilot
-    
+
 - type: entity
   parent: IDCardStandard
   id: PrisonEngineeringIDCard
@@ -97,7 +97,7 @@
     - state: prisoner-space-prison
     - state: idprisoner-space-prison
   - type: PresetIdCard
-    job: Prisoner
+    job: PlanetPrisoner
 
 - type: entity
   parent: IDCardStandard
