@@ -416,3 +416,165 @@
   - type: Wieldable
   - type: UseDelay
     delay: 1.3
+
+- type: entity
+  name: MS-42
+  parent: BaseWeaponSubMachineGun
+  id: WeaponAMS-42
+  description: Более совершенная версия Лектера.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/SyndieGuns/MS-42.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Sunrise/SyndieGuns/MS-42.rsi
+  - type: Gun
+    minAngle: 10
+    maxAngle: 15
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 6
+    selectedMode: FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rifle2.ogg
+    availableModes:
+    - FullAuto
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -8
+    maxAngle: -13
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifle
+        insertSound: /Audio/Weapons/Guns/MagIn/rifle_load.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/sfrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineRifle
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeRifle
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeRifle
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  
+- type: entity
+  name: AJ-100
+  parent: BaseWeaponSubMachineGun
+  id: WeaponAJ100
+  description: Высокоскорострельный ПП, оборудован универсальным разъёмом для других типов пистолетных магазинов.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/SyndieGuns/AJ-100.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Sunrise/SyndieGuns/AJ-100.rsi
+  - type: Gun
+    minAngle: 8
+    maxAngle: 8
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 7.4
+    selectedMode: FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+    availableModes:
+    - FullAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistolSubMachineGunSIAR52
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineCaselessRifle
+          - MagazinePistolSubMachineGun
+          - MagazinePistol
+          - MagazinePistolHighCapacity
+          - MagazinePistolCaselessRifle
+          - MagazineMagnumSubMachineGun
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeCaselessRifle
+          - CartridgePistol
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  
+- type: entity
+  name: Пистолет-пулёмет SIAR-52
+  parent: BaseWeaponSubMachineGun
+  id: WeaponSIAR52
+  description: Высокоскорострельный ПП, оборудован интегрированым глушителем.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/SyndieGuns/IAR-52.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Sunrise/SyndieGuns/IAR-52.rsi
+  - type: Gun
+    minAngle: 4
+    maxAngle: 4
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 6.5
+    selectedMode: FullAuto
+    soundGunshot:
+      collection: usp # SUNRISE new gun sounds
+      params:
+        volume: 10
+    availableModes:
+    - FullAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistolSubMachineGunSIAR52
+        insertSound: /Audio/Weapons/Guns/MagIn/lmg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/lmg_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineCaselessRifle
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeCaselessRifle
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeCaselessRifle
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance

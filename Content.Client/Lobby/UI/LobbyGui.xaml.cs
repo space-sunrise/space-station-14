@@ -123,7 +123,7 @@ namespace Content.Client.Lobby.UI
 
             Chat.SetChatOpacity();
 
-            ServerName.Text = $"Добро пожаловать в {_configurationManager.GetCVar(SunriseCCVars.ServerName)}";
+            ServerName.Text = Loc.GetString("ui-lobby-cfgwelcome", ("name", _configurationManager.GetCVar(SunriseCCVars.ServerName)));
             // Sunrise-end
         }
 

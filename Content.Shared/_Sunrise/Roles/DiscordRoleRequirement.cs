@@ -5,6 +5,7 @@ using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
+using Robust.Shared.Localization;
 
 namespace Content.Shared._Sunrise.Roles;
 
@@ -23,7 +24,7 @@ public sealed partial class DiscordRoleRequirement : JobRequirement
         if (profile is null)
             return true;
 
-        reason = FormattedMessage.FromMarkupPermissive("Для игры на данной роли вам необходимо получить роль в дискорде.");
+        reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-timer-discord"));
         return false;
     }
 }

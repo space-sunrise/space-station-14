@@ -9,7 +9,6 @@ surveillance-camera-monitor-ui-status-disconnected = Отключено
 surveillance-camera-monitor-ui-no-subnets = Нет подсетей
 surveillance-camera-setup = Настроить
 surveillance-camera-setup-ui-set = Установить
-
 # Sunrise-Edit
 surveillance-camera-monitor-ui-flavor-left = Не смотрите в душевую капитана
 surveillance-camera-monitor-ui-flavor-right = v1.2

@@ -96,12 +96,14 @@
     - Science
   - type: ZombieImmune
   - type: Repairable
+    # Sunrise-Start
     doAfterDelay: 3
     damage:
       types:
         Blunt: -15
         Slash: -15
         Piercing: -15
+    # Sunrise-End
     allowSelfRepair: false
   - type: BorgChassis
   - type: LockingWhitelist
@@ -236,6 +238,10 @@
     - Cyborgs
     - Robotics
   - type: StepTriggerImmune
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Heat: 10 # capable of touching light bulbs and stoves without feeling pain!
   # Sunrise-start
   - type: TTS
     voice: FactCore

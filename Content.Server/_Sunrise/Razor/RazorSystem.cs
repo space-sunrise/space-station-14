@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿// © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt;
+
+using System.Linq;
 using Content.Server.DoAfter;
 using Content.Server.Humanoid;
 using Content.Shared.Buckle.Components;
@@ -13,7 +15,6 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.Razor;
 
-/// <inheritdoc/>
 public sealed class RazorSystem : SharedRazorSystem
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -21,7 +22,6 @@ public sealed class RazorSystem : SharedRazorSystem
     [Dependency] private readonly MarkingManager _markings = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
 
-    /// <inheritdoc/>
     public override void Initialize()
     {
         base.Initialize();
