@@ -173,7 +173,7 @@ public sealed partial class RazorSingleMarkingPicker : BoxContainer
             if (marking.SponsorOnly)
             {
                 item.Disabled = false;
-                item.Text = $"{GetMarkingName(marking)} [СПОНСОР] ";
+                item.Text = Loc.GetString("sponsor-marking", ("name", GetMarkingName(marking)));
             }
 
             if (_markings[Slot].MarkingId == id)
@@ -226,7 +226,7 @@ public sealed partial class RazorSingleMarkingPicker : BoxContainer
 
         for (var i = 0; i < PointsUsed; i++)
         {
-            SlotSelector.AddItem($"Слот {i + 1}", i);
+            SlotSelector.AddItem(Loc.GetString("slot-marking", ("name", i + 1)), i);
 
             if (i == _slot)
             {

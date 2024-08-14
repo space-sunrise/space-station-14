@@ -212,7 +212,7 @@
   - type: Pacified
   - type: FlashImmunity
   - type: FabricateCookie
-    сookieList:
+    cookieList:
     - FoodBakedCookieOatmeal
     - FoodBakedCookieRaisin
     - FoodBakedCookie

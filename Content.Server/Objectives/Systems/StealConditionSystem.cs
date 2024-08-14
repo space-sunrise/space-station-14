@@ -1,3 +1,5 @@
+using System.Text.RegularExpressions; //Sunrise-Edit
+using Robust.Shared.Log; //Sunrise-Edit
 using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Components.Targets;
 using Content.Shared.Mind;
@@ -73,13 +75,20 @@ public sealed class StealConditionSystem : EntitySystem
     {
         var group = _proto.Index(condition.Comp.StealGroup);
 
+        //Sunrise-Start
+        var locale = $"objective-{Regex.Replace(group.Name, @"[*?!'%\s]", string.Empty).ToLower()}";
+        if (Loc.GetString($"objective-{Regex.Replace(group.Name, @"[*?!'%\s]", string.Empty).ToLower()}") == locale)
+        {
+            Logger.Error($"Steal item objective-{Regex.Replace(group.Name, @"[*?!'%\s]", string.Empty).ToLower()} doesn't have locale");
+        }
         var title =condition.Comp.OwnerText == null
-            ? Loc.GetString(condition.Comp.ObjectiveNoOwnerText, ("itemName", group.Name))
-            : Loc.GetString(condition.Comp.ObjectiveText, ("owner", Loc.GetString(condition.Comp.OwnerText)), ("itemName", group.Name));
+            ? Loc.GetString(condition.Comp.ObjectiveNoOwnerText, ("itemName", Loc.GetString($"objective-{Regex.Replace(group.Name, @"[*?!'%\s]", string.Empty).ToLower()}")))
+            : Loc.GetString(condition.Comp.ObjectiveText, ("owner", Loc.GetString(condition.Comp.OwnerText)), ("itemName", Loc.GetString($"objective-{Regex.Replace(group.Name, @"[*?!'%\s]", string.Empty).ToLower()}")));
 
         var description = condition.Comp.CollectionSize > 1
-            ? Loc.GetString(condition.Comp.DescriptionMultiplyText, ("itemName", group.Name), ("count", condition.Comp.CollectionSize))
-            : Loc.GetString(condition.Comp.DescriptionText, ("itemName", group.Name));
+            ? Loc.GetString(condition.Comp.DescriptionMultiplyText, ("itemName", Loc.GetString($"objective-{Regex.Replace(group.Name, @"[*?!'%\s]", string.Empty).ToLower()}")), ("count", condition.Comp.CollectionSize))
+            : Loc.GetString(condition.Comp.DescriptionText, ("itemName", Loc.GetString($"objective-{Regex.Replace(group.Name, @"[*?!'%\s]", string.Empty).ToLower()}")));
+        //Sunrise-End
 
         _metaData.SetEntityName(condition.Owner, title, args.Meta);
         _metaData.SetEntityDescription(condition.Owner, description, args.Meta);

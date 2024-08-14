@@ -25,6 +25,7 @@ research-technology-mechanized-treatment = Механизированная по
 research-technology-bluespace-chemistry = Блюспейс-химия
 research-technology-salvage-weapons = Утилизаторское оружие
 research-technology-draconic-munitions = Драконьи боеприпасы
+research-technology-nonlethal-ammunition = Не летальная аммуниция
 research-technology-uranium-munitions = Урановые боеприпасы
 research-technology-explosive-technology = Взрывчатые вещества
 research-technology-weaponized-laser-manipulation = Манипулирование лазерным оружием

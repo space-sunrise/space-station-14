@@ -65,6 +65,7 @@ JobBotanist = ботаник
 JobCaptain = капитан
 JobCargoTechnician = грузчик
 JobChaplain = священник
+JobCentralCommandOfficial = представитель Центком
 JobChef = шеф-повар
 JobChemist = химик
 JobChiefEngineer = старший инженер

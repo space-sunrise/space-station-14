@@ -234,7 +234,7 @@ namespace Content.Client.RoundEnd
                     statisticEntry.CuffedCount, statisticEntry.AbsorbedPuddleCount, statisticEntry.SpentTk ?? 0,
                     statisticEntry.DeadCount, statisticEntry.HumanoidKillCount, statisticEntry.KilledMouseCount,
                     statisticEntry.CuffedTime, statisticEntry.SpaceTime, statisticEntry.SleepTime,
-                    statisticEntry.IsInteractedCaptainCard ? "Да" : "Нет");
+                    statisticEntry.IsInteractedCaptainCard ? Loc.GetString("accept-cloning-window-accept-button") : Loc.GetString("accept-cloning-window-deny-button"));
                 statsEntries.AddEntry(statsEntry);
             }
 

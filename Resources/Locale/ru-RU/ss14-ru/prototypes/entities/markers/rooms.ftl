@@ -1,3 +1,3 @@
 ent-BaseRoomMarker = маркер комнаты
-    .suffix = Weh
+    .suffix = Хах
     .desc = { ent-MarkerBase.desc }
