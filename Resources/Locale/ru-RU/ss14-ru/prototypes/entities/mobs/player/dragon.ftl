@@ -2,6 +2,7 @@ ent-BaseMobDragon = космический дракон
     .desc = Летающий левиафан, имеющий мало общего с космическими карпами.
 ent-MobDragon = { ent-BaseMobDragon }
     .desc = { ent-BaseMobDragon.desc }
+    .suffix = Никакой роли и целей
 ent-DragonsBreathGun = драконье лёгкое
     .desc = Для драконьего дыхания.
 ent-MobDragonDungeon = { ent-BaseMobDragon }

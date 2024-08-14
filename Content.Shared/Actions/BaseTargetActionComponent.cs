@@ -40,4 +40,9 @@ public abstract partial class BaseTargetActionComponent : BaseActionComponent
     ///     over lay in place of the currently held item "held item".
     /// </summary>
     [DataField("targetingIndicator")] public bool TargetingIndicator = true;
+
+    // Sunrise-Start
+    [DataField("ignoreContainer")]
+    public bool IgnoreContainer;
+    // Sunrise-End
 }

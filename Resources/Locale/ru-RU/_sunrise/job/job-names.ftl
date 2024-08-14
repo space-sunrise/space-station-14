@@ -6,7 +6,6 @@ job-name-senior-engineer = ведущий инженер
 job-name-senior-researcher = ведущий учёный
 job-name-senior-physician = ведущий врач
 job-name-senior-officer = инструктор СБ
-job-name-roboticist = робототехник
 job-name-head-of-prison = начальник тюрьмы
 job-name-prison-chef = тюремный повар
 job-name-prison-doctor = тюремный доктор
@@ -14,7 +13,7 @@ job-name-prison-engineer = тюремный инженер
 job-name-prison-pilot = тюремный пилот
 job-name-prison-worker = тюремный разнорабочий
 job-name-prison-guard = тюремный охранник
-job-name-prisoner = заключенный
+job-name-planet-prisoner = заключенный ПТ
 job-name-security-pilot = пилот СБ
 job-name-ntrep = Представитель NanoTrasen
 job-name-medical-borg = медицинский киборг
@@ -27,7 +26,6 @@ job-name-sec-combat-borg = боевой киборг СБ
 job-name-peace-borg = миротворец
 job-name-clown-borg = клоун киборг
 job-name-barber = Парихмахер
-
 # Перевод трекеров времени
 JobCentCommOfficial = представитель Центком
 JobMagistrat = магистрат

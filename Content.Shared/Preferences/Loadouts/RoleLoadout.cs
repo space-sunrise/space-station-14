@@ -9,6 +9,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
+using Robust.Shared.Localization;
 
 namespace Content.Shared.Preferences.Loadouts;
 
@@ -248,7 +249,7 @@ public sealed partial class RoleLoadout : IEquatable<RoleLoadout>
         // Sunrise-Sponsots-Start
         if (loadoutProto.SponsorOnly && !sponsorPrototypes.Contains(loadout.Id))
         {
-            reason = FormattedMessage.FromUnformatted("Доступно только для спонсоров.");
+            reason = FormattedMessage.FromUnformatted(Loc.GetString("loadout-sponsor-only"));
             return false;
         }
         // Sunrise-Sponsots-End

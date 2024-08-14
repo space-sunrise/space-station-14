@@ -2,7 +2,6 @@
   id: DoubleGlassAirlock
   parent: AirlockGlass
   name: Double Glass Airlock
-  description: It opens, it closes, and maybe crushes you, but it bigger than normal door.
   components:
   - type: MeleeSound
     soundGroups:

@@ -39,3 +39,9 @@
   name: collective-mind-zombie
   keycode: 'з'
   color: "#508053"
+
+- type: collectiveMind
+  id: Changeling
+  name: collective-mind-changeling
+  keycode: 'г'
+  color: "#ff75a8"

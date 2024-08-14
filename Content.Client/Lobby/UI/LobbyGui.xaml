@@ -24,7 +24,7 @@
                 <PanelContainer Name="LeftTopPanel" StyleClasses="AngleRect" >
                     <BoxContainer Orientation="Vertical" HorizontalExpand="True" HorizontalAlignment="Center" VerticalAlignment="Top">
                         <Label Name="ServerName" Access="Public" StyleClasses="LabelHeadingBigger" VAlign="Center"
-                               HorizontalExpand="True" HorizontalAlignment="Center" Text="Добро пожаловать в SS14" />
+                               HorizontalExpand="True" HorizontalAlignment="Center" Text="{Loc 'ui-lobby-welcome'}" />
                         <controls:HLine Color="{x:Static style:StyleNano.NanoGold}" Thickness="2" />
                         <info:LinkBanner Name="LinkBanner" HorizontalAlignment="Center"
                                          Margin="3 3 3 3" />
@@ -53,7 +53,7 @@
                                                   Access="Public"
                                                   HorizontalExpand="True"
                                                   HorizontalAlignment="Stretch"
-                                                  Text="{Loc 'Роли призраков'}"
+                                                  Text="{Loc 'ghost-roles-window-title'}"
                                                   StyleClasses="ButtonBig"
                                                   MinWidth="200" />
                             </BoxContainer>
@@ -147,7 +147,7 @@
                         <BoxContainer Orientation="Vertical" HorizontalExpand="True" >
                             <controls:StripeBack Name="ChatHeader" MouseFilter="Pass">
                                 <BoxContainer Orientation="Horizontal">
-                                    <Label HorizontalExpand="True" Text="{Loc 'Чат'}"
+                                    <Label HorizontalExpand="True" Text="{Loc 'hud-chatbox-channel-Chat'}"
                                            VAlign="Center" StyleClasses="LabelHeading" Align="Center"/>
                                 </BoxContainer>
                             </controls:StripeBack>

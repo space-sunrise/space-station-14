@@ -1,5 +1,7 @@
 ent-BasePlushie = { ent-BaseItem }
     .desc = { ent-BaseItem.desc }
+ent-PlushieThrongler = The Throngler plushie
+    .desc = A stuffed toy to remind cargo techs of what they can no longer have.
 ent-PlushieGhost = плюшевый призрак
     .desc = Начало вашей собственной БАНДЫ ПРИЗРАКОВ!
 ent-PlushieGhostRevenant = плюшевый ревенант
@@ -71,7 +73,7 @@ ent-FoamWeaponBase = { ent-BaseItem }
     .desc = { ent-BaseItem.desc }
 ent-FoamCrossbow = поролоновый арбалет
     .desc = Целясь этим в офицеров, будьте готовы словить свинца.
-ent-ToyGunBase = ToyGunBase
+ent-ToyGunBase = стандартное игрушечное оружие
     .desc = Дерзай — налетай, целься и стреляй.
 ent-RevolverCapGun = игрушечный пистолет
     .desc = Выглядит почти как настоящий! От 8 лет и старше.

@@ -1,2 +1,2 @@
-ent-BaseSign = base sign
+ent-BaseSign = стандартная вывеска
     .desc = { "" }
