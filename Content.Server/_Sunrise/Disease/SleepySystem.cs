@@ -1,4 +1,4 @@
-using System.Numerics;
+// © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 using Content.Shared.Bed.Sleep;
 using Content.Shared.StatusEffect;
 using Robust.Shared.Random;
@@ -6,30 +6,25 @@ using System.Numerics;
 
 namespace Content.Server.Traits.Assorted;
 
-/// <summary>
-/// This handles narcolepsy, causing the affected to fall asleep uncontrollably at a random interval.
-/// </summary>
-public sealed class NarcolepsySystem : EntitySystem
+public sealed class SleepySystem : EntitySystem
 {
     [ValidatePrototypeId<StatusEffectPrototype>]
     private const string StatusEffectKey = "ForcedSleep"; // Same one used by N2O and other sleep chems.
 
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-
-    /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<NarcolepsyComponent, ComponentStartup>(SetupNarcolepsy);
+        SubscribeLocalEvent<SleepyComponent, ComponentStartup>(SetupNarcolepsy);
     }
 
-    private void SetupNarcolepsy(EntityUid uid, NarcolepsyComponent component, ComponentStartup args)
+    private void SetupNarcolepsy(EntityUid uid, SleepyComponent component, ComponentStartup args)
     {
         component.NextIncidentTime =
             _random.NextFloat(component.TimeBetweenIncidents.X, component.TimeBetweenIncidents.Y);
     }
 
-    public void AdjustNarcolepsyTimer(EntityUid uid, int TimerReset, NarcolepsyComponent? narcolepsy = null)
+    public void AdjustNarcolepsyTimer(EntityUid uid, int TimerReset, SleepyComponent? narcolepsy = null)
     {
         if (!Resolve(uid, ref narcolepsy, false))
             return;
@@ -37,7 +32,7 @@ public sealed class NarcolepsySystem : EntitySystem
         narcolepsy.NextIncidentTime = TimerReset;
     }
 
-    public void SetNarcolepsy(EntityUid uid, Vector2 timeBetweenIncidents, Vector2 durationOfIncident, NarcolepsyComponent? narcolepsy = null)
+    public void SetNarcolepsy(EntityUid uid, Vector2 timeBetweenIncidents, Vector2 durationOfIncident, SleepyComponent? narcolepsy = null)
     {
         if (!Resolve(uid, ref narcolepsy, false))
             return;
@@ -49,7 +44,7 @@ public sealed class NarcolepsySystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<NarcolepsyComponent>();
+        var query = EntityQueryEnumerator<SleepyComponent>();
         while (query.MoveNext(out var uid, out var narcolepsy))
         {
             narcolepsy.NextIncidentTime -= frameTime;
@@ -66,21 +61,8 @@ public sealed class NarcolepsySystem : EntitySystem
             // Make sure the sleep time doesn't cut into the time to next incident.
             narcolepsy.NextIncidentTime += duration;
 
-            _statusEffects.TryAddStatusEffect<ForcedSleepingComponent>(uid, StatusEffectKey,
+            _statusEffects.TryAddStatusEffect<SleepingComponent>(uid, StatusEffectKey,
                 TimeSpan.FromSeconds(duration), false);
         }
     }
-
-    // Sunrise-Start
-    public void SetTime(EntityUid uid, Vector2 timeBetween, Vector2 duration, NarcolepsyComponent? component = null)
-    {
-        if (!Resolve(uid, ref component))
-        {
-            return;
-        }
-        component.TimeBetweenIncidents = timeBetween;
-        component.DurationOfIncident = duration;
-        Dirty(uid, component);
-    }
-    // Sunrise-End
 }

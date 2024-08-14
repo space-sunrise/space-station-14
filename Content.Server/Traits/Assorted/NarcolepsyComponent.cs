@@ -1,4 +1,4 @@
-﻿using System.Numerics;
+using System.Numerics;
 
 namespace Content.Server.Traits.Assorted;
 
@@ -12,13 +12,13 @@ public sealed partial class NarcolepsyComponent : Component
     /// The random time between incidents, (min, max).
     /// </summary>
     [DataField("timeBetweenIncidents", required: true)]
-    public Vector2 TimeBetweenIncidents { get; set; } // Sunrise-Edit
+    public Vector2 TimeBetweenIncidents = new Vector2(300, 600);
 
     /// <summary>
     /// The duration of incidents, (min, max).
     /// </summary>
     [DataField("durationOfIncident", required: true)]
-    public Vector2 DurationOfIncident { get; set; } // Sunrise-Edit
+    public Vector2 DurationOfIncident = new Vector2(10, 30);
 
     public float NextIncidentTime;
 }
