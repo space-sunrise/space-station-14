@@ -1,5 +1,16 @@
 - type: entity
   parent: ClothingBeltStorageBase
+  id: ClothingBeltSyndieWebbing
+  name: РПС Синдиката
+  description: Довольно вместительное хранилище для боеприпасов.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/SyndieGuns/syndieRPS.rsi
+  - type: Clothing
+    sprite: _Sunrise/SyndieGuns/syndieRPS.rsi
+
+- type: entity
+  parent: ClothingBeltStorageBase
   id: ClothingBeltBlueShieldWebbing
   name: рпс офицера «синий щит»
   description: Голубой?!
