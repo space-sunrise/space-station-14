@@ -4,9 +4,9 @@
   description: job-description-prison-pilot
   playTimeTracker: JobPrisonPilot
   requirements:
-  - !type:DepartmentTimeRequirement
-    department: Security
-    time: 18000 #5 hrs
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000 #5 hrs
   startingGear: PrisonPilotGear
   icon: "JobIconPrisonPilot"
   alwaysUseSpawner: true

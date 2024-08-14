@@ -1,4 +1,4 @@
-ent-BaseWeaponSniper = BaseWeaponSniper
+ent-BaseWeaponSniper = Стандартная Винтовка
     .desc = Дерзай — налетай, целься и стреляй.
 ent-WeaponSniperMosin = Кардашёв-Мосин
     .desc = Оружие охоты, или бесконечной окопной войны. Использует патроны калибра .30 винтовочный.

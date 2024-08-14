@@ -1,0 +1,9 @@
+plant-attribute-growth = возраст
+plant-attribute-water = уровень воды
+plant-attribute-weeds = уровень сорняков
+plant-attribute-toxins = уровень токсинов
+plant-attribute-nutrition = уровень питательных веществ
+plant-attribute-mutation-level = уровень мутаций
+plant-attribute-pests = уровень вредителей
+plant-attribute-mutation-mod = модификатор мутаций
+plant-attribute-health = здоровье

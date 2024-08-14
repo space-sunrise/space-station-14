@@ -18,6 +18,7 @@ hud-chatbox-select-channel-CollectiveMind = Коллективный разум
 hud-chatbox-channel-Admin = Админ Разное
 hud-chatbox-channel-AdminAlert = Админ Уведомления
 hud-chatbox-channel-AdminChat = Админ Чат
+hud-chatbox-channel-Chat = Чат
 hud-chatbox-channel-Dead = Мёртвые
 hud-chatbox-channel-Emotes = Эмоции
 hud-chatbox-channel-Local = Рядом

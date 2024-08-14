@@ -37,6 +37,18 @@
     - state: idsecurityofficer
   - type: PresetIdCard
     job: SecurityPilot
+    
+- type: entity
+  parent: IDCardStandard
+  id: PrisonEngineeringIDCard
+  name: ID карта тюремного инженера
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idstationengineer
+  - type: PresetIdCard
+    job: PrisonEngineer
 
 - type: entity
   parent: IDCardStandard

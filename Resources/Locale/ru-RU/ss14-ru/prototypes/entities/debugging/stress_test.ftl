@@ -1,3 +1,3 @@
 ent-StressTest = стресс тест
-    .suffix = DEBUG
+    .suffix = ДЕБАГ
     .desc = { "" }

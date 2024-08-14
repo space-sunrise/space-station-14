@@ -1,2 +1,2 @@
-ent-TraitorDMRedemptionMachine = traitor deathmatch pda redemption machine
-    .desc = Put someone else's PDA into this to get telecrystals.
+ent-TraitorDMRedemptionMachine = машина для обмена ПДА в режиме Traitor Deathmatch
+    .desc = Вставьте чужой ПДА в эту машину, чтобы получить телекристаллы.
