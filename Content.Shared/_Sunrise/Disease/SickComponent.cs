@@ -14,7 +14,7 @@ public sealed partial class SickComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("icon", customTypeSerializer: typeof(PrototypeIdSerializer<StatusIconPrototype>))]
-    public string Icon = "SickIcon";
+    public string Icon = "SmartDiseaseIcon";
 
     [DataField("inited")]
     public bool Inited = false;

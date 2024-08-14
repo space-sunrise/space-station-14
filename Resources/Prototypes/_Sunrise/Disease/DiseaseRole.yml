@@ -86,8 +86,8 @@
       ActionDiseaseShield: -1
       ActionDiseaseLethal: -1
 
-- type: factionIcon
-  id: SickIcon
+- type: sickIcon
+  id: SmartDiseaseIcon
   icon:
     sprite: /Textures/Ligyb/disease.rsi
     state: sick
