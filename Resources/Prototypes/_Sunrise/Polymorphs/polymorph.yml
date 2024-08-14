@@ -1,0 +1,8 @@
+- type: polymorph
+  id: PermanentlyMonkey
+  configuration:
+    entity: MobMonkey
+    forced: true
+    inventory: Transfer
+    revertOnCrit: false
+    revertOnDeath: false
