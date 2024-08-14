@@ -9,7 +9,7 @@
       time: 7200 # 2 hrs
   alwaysUseSpawner: true
   canBeAntag: false
-  startingGear: JEngineerGear
+  startingGear: PrisonEngineerGear
   icon: "JobIconPrisonEngineer"
   supervisors: job-supervisors-head-of-prison
   displayWeight: 70
@@ -20,7 +20,7 @@
   - Atmospherics
 
 - type: startingGear
-  id: JEngineerGear
+  id: PrisonEngineerGear
   equipment:
     eyes: ClothingEyesGlassesMeson
     belt: ClothingBeltUtilityEngineering
