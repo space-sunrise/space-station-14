@@ -52,6 +52,26 @@
             ]
         },
         {
+            "name": "station_intact"
+        },
+        {
+            "name": "station_intact_fade_red"
+            "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
+        },
+        {
             "name": "summary_nukefail"
         },
         {
