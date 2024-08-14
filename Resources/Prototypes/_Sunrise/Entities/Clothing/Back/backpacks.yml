@@ -1,5 +1,18 @@
 - type: entity
   parent: ClothingBackpack
+  id: ClothingBackpackSyndie
+  name: Рюкзак Синдиката
+  description: Рюкзак оперативника с повышенной вместительностью.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/SyndieGuns/syndiebackpack.rsi
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,7,4
+
+- type: entity
+  parent: ClothingBackpack
   id: ClothingMilitaryBackpack
   name: army backpack
   description: A spacious backpack with lots of pockets, worn by military structures.
