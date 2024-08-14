@@ -1,5 +1,5 @@
-using System.Text.RegularExpressions;
-using Robust.Shared.Log;
+using System.Text.RegularExpressions; //Sunrise-Edit
+using Robust.Shared.Log; //Sunrise-Edit
 using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Components.Targets;
 using Content.Shared.Mind;
@@ -75,6 +75,7 @@ public sealed class StealConditionSystem : EntitySystem
     {
         var group = _proto.Index(condition.Comp.StealGroup);
 
+        //Sunrise-Start
         var locale = $"objective-{Regex.Replace(group.Name, @"[*?!'%\s]", string.Empty).ToLower()}";
         if (Loc.GetString($"objective-{Regex.Replace(group.Name, @"[*?!'%\s]", string.Empty).ToLower()}") == locale)
         {
@@ -87,6 +88,7 @@ public sealed class StealConditionSystem : EntitySystem
         var description = condition.Comp.CollectionSize > 1
             ? Loc.GetString(condition.Comp.DescriptionMultiplyText, ("itemName", Loc.GetString($"objective-{Regex.Replace(group.Name, @"[*?!'%\s]", string.Empty).ToLower()}")), ("count", condition.Comp.CollectionSize))
             : Loc.GetString(condition.Comp.DescriptionText, ("itemName", Loc.GetString($"objective-{Regex.Replace(group.Name, @"[*?!'%\s]", string.Empty).ToLower()}")));
+        //Sunrise-End
 
         _metaData.SetEntityName(condition.Owner, title, args.Meta);
         _metaData.SetEntityDescription(condition.Owner, description, args.Meta);

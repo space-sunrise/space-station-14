@@ -39,6 +39,7 @@ namespace Content.Shared.Construction.Steps
                 {
                     if (item.TryGetComponent<TagComponent>(out var entityTag) && entityManager.System<TagSystem>().HasTag(entityTag, Tag))
                     {
+                        //Sunrise-start
                         if(item.Name == "левая рука киборга-официанта") //костыль так как лень фиксить по другому, хд
                         {
                             nameLocale = "левая рука киборга";
@@ -49,8 +50,9 @@ namespace Content.Shared.Construction.Steps
                         }
                         else
                         {
-                        nameLocale = item.Name;
+                            nameLocale = item.Name;
                         }
+                        //Sunrise-End
                         break;
                     }
                 }

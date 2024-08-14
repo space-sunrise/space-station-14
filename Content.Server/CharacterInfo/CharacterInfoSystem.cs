@@ -5,7 +5,6 @@ using Content.Shared.CharacterInfo;
 using Content.Shared.Objectives;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Objectives.Systems;
-using Robust.Shared.Localization;
 
 namespace Content.Server.CharacterInfo;
 

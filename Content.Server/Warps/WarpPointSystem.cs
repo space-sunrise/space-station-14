@@ -1,6 +1,6 @@
 using Content.Shared.Examine;
 using Content.Shared.Ghost;
-using Robust.Shared.Localization;
+using Robust.Shared.Localization; //Sunrise-Edit
 
 namespace Content.Server.Warps;
 
@@ -17,6 +17,7 @@ public sealed class WarpPointSystem : EntitySystem
         if (!HasComp<GhostComponent>(args.Examiner))
             return;
         
+        //Sunrise-Start
         var locationKey = component.Location;
         
         if (locationKey != null)
@@ -28,5 +29,6 @@ public sealed class WarpPointSystem : EntitySystem
         {
             args.PushText(Loc.GetString("warp-point-component-on-examine-success", ("location", "<null>")));
         }
+        //Sunrise-End
     }
 }

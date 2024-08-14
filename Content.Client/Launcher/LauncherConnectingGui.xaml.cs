@@ -75,7 +75,7 @@ namespace Content.Client.Launcher
         {
             var totalPlayers = servers.Sum(server => server.CurrentPlayers);
             var maxPlayers = servers.Sum(server => server.MaxPlayers);
-            ServersHubHeaderLabel.Text = Loc.GetString("currently-playing-players", ("total", totalPlayers), ("max", maxPlayers));
+            ServersHubHeaderLabel.Text = Loc.GetString("currently-playing-players", ("total", totalPlayers), ("max", maxPlayers)); //Sunrise-Edit
         }
 
         // Just button, there's only one at once anyways :)
