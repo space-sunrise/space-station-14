@@ -66,6 +66,7 @@ namespace Content.IntegrationTests.Tests
             "Reach",
             "Train",
             "Oasis",
+            "Cog",
 			"SunriseBox",
 			"SunriseDelta",
 			"SunriseFland",
