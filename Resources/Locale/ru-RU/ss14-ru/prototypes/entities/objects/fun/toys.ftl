@@ -1,7 +1,7 @@
 ent-BasePlushie = { ent-BaseItem }
     .desc = { ent-BaseItem.desc }
-ent-PlushieThrongler = The Throngler plushie
-    .desc = A stuffed toy to remind cargo techs of what they can no longer have.
+ent-PlushieThrongler = Плюшевый Тронглер
+    .desc = Мягкая игрушка, напоминающая техникам грузового отдела о том, что они больше не могут этого иметь.
 ent-PlushieGhost = плюшевый призрак
     .desc = Начало вашей собственной БАНДЫ ПРИЗРАКОВ!
 ent-PlushieGhostRevenant = плюшевый ревенант
