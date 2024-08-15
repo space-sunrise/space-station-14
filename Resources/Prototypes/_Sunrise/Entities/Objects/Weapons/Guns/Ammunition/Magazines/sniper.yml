@@ -47,10 +47,10 @@
   - type: BallisticAmmoProvider
     mayTransfer: true
     capacity: 20
-    proto: CartridgeMagnum  # 062
+    proto: CartridgeAntiMateriel  # 062
     whitelist:
       tags:
-        - CartridgeMagnum  # 062
+        - CartridgeAntiMateriel  # 062
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container

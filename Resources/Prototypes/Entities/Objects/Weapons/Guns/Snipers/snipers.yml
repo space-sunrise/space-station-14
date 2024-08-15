@@ -35,6 +35,7 @@
     containers:
       ballistic-ammo: !type:Container
         ents: []
+  - type: ZoomableGun
   - type: StaticPrice
     price: 500
 

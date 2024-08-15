@@ -123179,7 +123179,7 @@ entities:
     - type: Transform
       pos: -52.5,5.5
       parent: 8364
-- proto: MagazinePistolSubMachineGunTopMounted
+- proto: MagazineM16A4
   entities:
   - uid: 534
     components:
@@ -169224,7 +169224,7 @@ entities:
     - type: Transform
       pos: -2.5,38.5
       parent: 8364
-- proto: WeaponDisabler
+- proto: WeaponEnergyGunMini
   entities:
   - uid: 8819
     components:
@@ -169295,7 +169295,7 @@ entities:
     - type: Transform
       pos: 21.462696,34.988297
       parent: 8364
-- proto: WeaponSubMachineGunWt550
+- proto: WeaponRifleM16A4
   entities:
   - uid: 536
     components:

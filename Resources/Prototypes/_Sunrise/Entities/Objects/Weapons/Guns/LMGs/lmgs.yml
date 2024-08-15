@@ -55,7 +55,7 @@
   - type: Appearance
   - type: Wieldable
   - type: UseDelay
-    delay: 1.9
+    delay: 0.5
   - type: GunRequiresWield
   - type: ChamberMagazineAmmoProvider
     soundRack:
@@ -116,7 +116,7 @@
   - type: Appearance
   - type: Wieldable
   - type: UseDelay
-    delay: 1.9
+    delay: 0.5
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/cocked.ogg
@@ -178,7 +178,7 @@
   - type: Appearance
   - type: Wieldable
   - type: UseDelay
-    delay: 1.9
+    delay: 0.5
   - type: GunRequiresWield
   - type: ChamberMagazineAmmoProvider
     soundRack:
