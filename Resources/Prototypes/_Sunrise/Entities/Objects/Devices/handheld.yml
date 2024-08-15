@@ -5,10 +5,10 @@
   description: Camera
   components:
   - type: Item
-    sprite: _Sunrise/Entities/Objects/Devices/handheld_camera.rsi
+    sprite: _Sunrise/Objects/Devices/handheld_camera.rsi
   - type: Sprite
     state: icon
-    sprite: _Sunrise/Entities/Objects/Devices/handheld_camera.rsi
+    sprite: _Sunrise/Objects/Devices/handheld_camera.rsi
   - type: Clothing
     quickEquip: true
     slots:
@@ -46,7 +46,7 @@
   parent: BaseHandheldComputer
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Devices/portable_camera_viewer.rsi
+    sprite: _Sunrise/Objects/Devices/portable_camera_viewer.rsi
     state: icon
   - type: Item
     size: Normal
@@ -72,7 +72,7 @@
   description: A hand-held cyborg scaner.
   components:
   - type: Sprite
-    sprite: _Sunrise/roboanalyzer.rsi
+    sprite: _Sunrise/Objects/Devices/roboanalyzer.rsi
     state: icon
     layers:
     - state: icon

@@ -13,7 +13,7 @@
     canTargetSelf: false
     interactOnMiss: false
     icon:
-      sprite: Ligyb/disease.rsi
+      sprite: _Sunrise/Actions/disease.rsi
       state: action
     event: !type:InfectEvent
 
@@ -25,7 +25,7 @@
   components:
   - type: InstantAction
     icon:
-      sprite: Ligyb/disease.rsi
+      sprite: _Sunrise/Actions/disease.rsi
       state: shop
     event: !type:DiseaseShopActionEvent
 
@@ -38,7 +38,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: Ligyb/disease.rsi
+      sprite: _Sunrise/Actions/disease.rsi
       state: baseChance
     event: !type:DiseaseAddBaseChanceEvent
 
@@ -51,7 +51,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: Ligyb/disease.rsi
+      sprite: _Sunrise/Actions/disease.rsi
       state: coughChance
     event: !type:DiseaseAddCoughChanceEvent
 
@@ -64,7 +64,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: Ligyb/disease.rsi
+      sprite: _Sunrise/Actions/disease.rsi
       state: shield
     event: !type:DiseaseAddShieldEvent
 
@@ -77,6 +77,6 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: Ligyb/disease.rsi
+      sprite: _Sunrise/Actions/disease.rsi
       state: lethal
     event: !type:DiseaseAddLethalEvent

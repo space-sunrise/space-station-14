@@ -38,16 +38,16 @@
   id: WeaponLauncherRL5
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/HMGs/rpg/big.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/HMGs/rpg/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/HMGs/rpg/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/HMGs/rpg/tiny.rsi
   - type: Item
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/HMGs/rpg/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/HMGs/rpg/tiny.rsi
   - type: Gun
     fireRate: 0.5
     soundGunshot:
@@ -76,14 +76,14 @@
   id: WeaponGrenadeLauncherGL70
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/HMGs/gl-64/big.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/HMGs/gl-64/big.rsi
     layers:
     - state: icon
       map: ["enum.GunVisualLayers.Base"]
   - type: Clothing
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/HMGs/gl-64/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/HMGs/gl-64/tiny.rsi
   - type: Item
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/HMGs/gl-64/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/HMGs/gl-64/tiny.rsi
   - type: AmmoCounter
   - type: Gun
     fireRate: 1

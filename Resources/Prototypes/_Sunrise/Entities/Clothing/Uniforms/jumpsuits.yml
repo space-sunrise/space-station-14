@@ -115,9 +115,9 @@
   description: Легкий комбинезон, рекомендуемый 9 пилотами НТ из 10.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/pilotjumpsuit.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/pilotjumpsuit.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/pilotjumpsuit.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/pilotjumpsuit.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -126,9 +126,9 @@
   description: Костюм из льняной белой рубашки с синим галстуком и брюк. Выглядит роскошно.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/iaa.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/iaa.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/iaa.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/iaa.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -137,9 +137,9 @@
   description: Довольно старая вещь для этих времён, навевающая старые воспоминания...
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/hos.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/hos.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/hos.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/hos.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -148,9 +148,9 @@
   description: Старая вещица, прямиком из СССП.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/ussp.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/ussp.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/ussp.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/ussp.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -159,9 +159,9 @@
   description: Черный комбинезон с напечатанным на нем белым узором из костей. Жуть!
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/skeleton.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/skeleton.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/skeleton.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/skeleton.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -170,6 +170,6 @@
   description: Как же он хорош.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/barber.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/barber.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpsuit/barber.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/barber.rsi

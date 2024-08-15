@@ -2,7 +2,7 @@
   id: Cough
   name: listing-disease-cough-name
   description: listing-disease-cough-description
-  icon: { sprite: /Textures/Ligyb/disease.rsi, state: cough }
+  icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: cough }
   raiseProductEventOnUser: true
   productAction: ActionDiseaseCough
   cost:
@@ -17,7 +17,7 @@
   id: Sneeze
   name: listing-disease-sneeze-name
   description: listing-disease-sneeze-description
-  icon: { sprite: /Textures/Ligyb/disease.rsi, state: sneeze }
+  icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: sneeze }
   productAction: ActionDiseaseSneeze
   cost:
     DiseasePoints: 20
@@ -31,7 +31,7 @@
   id: Vomit
   name: listing-disease-vomit-name
   description: listing-disease-vomit-description
-  icon: { sprite: /Textures/Ligyb/disease.rsi, state: vomit }
+  icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: vomit }
   productAction: ActionDiseaseVomit
   cost:
     DiseasePoints: 25
@@ -45,7 +45,7 @@
   id: Narcolepsy
   name: listing-disease-narcolepsy-name
   description: listing-disease-narcolepsy-description
-  icon: { sprite: /Textures/Ligyb/disease.rsi, state: narcolepsy }
+  icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: narcolepsy }
   productAction: ActionDiseaseNarcolepsy
   cost:
     DiseasePoints: 20
@@ -59,7 +59,7 @@
   id: Crying
   name: listing-disease-cry-name
   description: listing-disease-cry-description
-  icon: { sprite: /Textures/Ligyb/disease.rsi, state: sob }
+  icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: sob }
   productAction: ActionDiseaseCrying
   cost:
     DiseasePoints: 10
@@ -73,7 +73,7 @@
   id: Muted
   name: listing-disease-muted-name
   description: listing-disease-muted-description
-  icon: { sprite: /Textures/Ligyb/disease.rsi, state: muted }
+  icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: muted }
   productAction: ActionDiseaseMuted
   cost:
     DiseasePoints: 25
@@ -87,7 +87,7 @@
   id: Slowness
   name: listing-disease-slowness-name
   description: listing-disease-slowness-description
-  icon: { sprite: /Textures/Ligyb/disease.rsi, state: slowness }
+  icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: slowness }
   productAction: ActionDiseaseSlowness
   cost:
     DiseasePoints: 15
@@ -101,7 +101,7 @@
   id: Bleed
   name: listing-disease-bleed-name
   description: listing-disease-bleed-description
-  icon: { sprite: /Textures/Ligyb/disease.rsi, state: bleed }
+  icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: bleed }
   productAction: ActionDiseaseBleed
   cost:
     DiseasePoints: 30
@@ -115,7 +115,7 @@
   id: Blindness
   name: listing-disease-blindness-name
   description: listing-disease-blindness-description
-  icon: { sprite: /Textures/Ligyb/disease.rsi, state: blindness }
+  icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: blindness }
   productAction: ActionDiseaseBlindness
   cost:
     DiseasePoints: 40
@@ -129,7 +129,7 @@
   id: Insult
   name: listing-disease-insult-name
   description: listing-disease-insult-description
-  icon: { sprite: /Textures/Ligyb/disease.rsi, state: lethal }
+  icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: lethal }
   productAction: ActionDiseaseInsult
   cost:
     DiseasePoints: 20

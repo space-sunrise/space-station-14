@@ -137,9 +137,9 @@
   description: Шляпа в чёрно-белом стиле. Напоминает секретных агентов из фильмов и сериалов.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Head/Hats/iaahat.rsi
+    sprite: _Sunrise/Clothing/Head/Hats/iaahat.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/Head/Hats/iaahat.rsi
+    sprite: _Sunrise/Clothing/Head/Hats/iaahat.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -148,9 +148,9 @@
   description: Чёрная фуражка с серым козырьком.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Head/Hats/ussp.rsi
+    sprite: _Sunrise/Clothing/Head/Hats/ussp.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/Head/Hats/ussp.rsi
+    sprite: _Sunrise/Clothing/Head/Hats/ussp.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -159,9 +159,9 @@
   description: Довольно старая вещь для этих времён, навевающая старые воспоминания...
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Head/Hats/hoscap.rsi
+    sprite: _Sunrise/Clothing/Head/Hats/hoscap.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/Head/Hats/hoscap.rsi
+    sprite: _Sunrise/Clothing/Head/Hats/hoscap.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -170,7 +170,7 @@
   description: В ней вам не страшен ни плазменный дождь, ни кислота, капающая из вентиляции. Презентабельный вид причёски останется под защитой науки.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Head/Hats/rdhat.rsi
+    sprite: _Sunrise/Clothing/Head/Hats/rdhat.rsi
     layers:
     - state: icon
     - state: icon-unshaded
@@ -188,9 +188,9 @@
   description: "Шляпа изображена в классическом пиратском стиле и представляется в стандартном для карго отдела цвете. На шляпе написано: АР! Три Кинетических Ускорителя мне в рот и... *остальная часть надписи затëрта*"
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Head/Hats/qmhat.rsi
+    sprite: _Sunrise/Clothing/Head/Hats/qmhat.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/Head/Hats/qmhat.rsi
+    sprite: _Sunrise/Clothing/Head/Hats/qmhat.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -199,9 +199,9 @@
   description: Тёмно-синяя фуражка с позолоченным рантом. Козырек дает отблеск грамотности и внимательности носителя.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Head/Hats/hophat.rsi
+    sprite: _Sunrise/Clothing/Head/Hats/hophat.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/Head/Hats/hophat.rsi
+    sprite: _Sunrise/Clothing/Head/Hats/hophat.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -210,9 +210,9 @@
   description: синяя федора с золотой лентой.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Head/Hats/cptcap.rsi
+    sprite: _Sunrise/Clothing/Head/Hats/cptcap.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/Head/Hats/cptcap.rsi
+    sprite: _Sunrise/Clothing/Head/Hats/cptcap.rsi
 
 - type: entity
   parent: ClothingHeadHatHardhatBase
@@ -221,9 +221,9 @@
   description: Стерильная шапочка с фонариком.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Head/Hats/cmospecialhat.rsi
+    sprite: _Sunrise/Clothing/Head/Hats/cmospecialhat.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/Head/Hats/cmospecialhat.rsi
+    sprite: _Sunrise/Clothing/Head/Hats/cmospecialhat.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -232,9 +232,9 @@
   description: Белый берет с красным крестом на центральной части.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Head/Hats/cmohat.rsi
+    sprite: _Sunrise/Clothing/Head/Hats/cmohat.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/Head/Hats/cmohat.rsi
+    sprite: _Sunrise/Clothing/Head/Hats/cmohat.rsi
 
 - type: entity
   parent: ClothingHeadBase
