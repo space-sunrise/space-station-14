@@ -27,6 +27,11 @@ public sealed partial class DiscordRoleRequirement : JobRequirement
         if (profile is null)
             return true;
 
+        // Sunrise-Sponsors-Start
+        if (sponsorsManager != null && protoId != null && sponsorsManager.GetClientPrototypes().Contains(protoId))
+            return true;
+        // Sunrise-Sponsors-End
+
         reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-timer-discord"));
         return false;
     }
