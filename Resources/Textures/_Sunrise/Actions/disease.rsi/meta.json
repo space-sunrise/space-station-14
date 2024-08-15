@@ -8,16 +8,7 @@
     },
     "states": [
         {
-            "name": "icon"
-        },
-        {
-            "name": "idle"
-        },
-        {
             "name": "action"
-        },
-        {
-            "name": "sick"
         },
         {
             "name": "shop"
