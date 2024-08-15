@@ -76,7 +76,7 @@ public sealed class StealConditionSystem : EntitySystem
         var group = _proto.Index(condition.Comp.StealGroup);
 
         //Sunrise-Start
-        var locale = $"objective-{Regex.Replace(group.Name, @"[*?!'%\s]", string.Empty).ToLower()";
+        var locale = $"objective-{Regex.Replace(group.Name, @"[*?!'%\s]", string.Empty).ToLower()}";
         if (Loc.GetString(locale) == locale)
         {
             Logger.Error($"Steal item {locale} doesn't have locale");
