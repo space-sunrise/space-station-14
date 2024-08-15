@@ -6,11 +6,11 @@ execution-verb-message = Использовать ваше оружие чтоб
 # victim (the person being executed)
 # weapon (the weapon used for the execution)
 
-execution-popup-melee-initial-internal = Вы готовите { THE($weapon) } против горла { $victim }.
-execution-popup-melee-initial-external = { $attacker } готовит { POSS-ADJ($attacker) } { $weapon } против горла { $victim }.
+execution-popup-melee-initial-internal = Вы приставляете { THE($weapon) } против горла { $victim }.
+execution-popup-melee-initial-external = { $attacker } приставляет { POSS-ADJ($attacker) } { $weapon } против горла { $victim }.
 execution-popup-melee-complete-internal = Вы перерезаете горло { $victim }!
 execution-popup-melee-complete-external = { $attacker } перерезает горло { $victim }!
-execution-popup-self-initial-internal = Вы готовите { THE($weapon) } против собственного горла.
-execution-popup-self-initial-external = { $attacker } готовит { POSS-ADJ($attacker) } { $weapon } против своего горла.
+execution-popup-self-initial-internal = Вы приставляете { THE($weapon) } против собственного горла.
+execution-popup-self-initial-external = { $attacker } приставляет { POSS-ADJ($attacker) } { $weapon } против своего горла.
 execution-popup-self-complete-internal = Вы перерезаете себе горло!
 execution-popup-self-complete-external = { $attacker } перерезает себе горло!
