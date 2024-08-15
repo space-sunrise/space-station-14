@@ -5,7 +5,7 @@
   description: Унатх, которого никто не ждет.
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: plushie-ce
 
 - type: entity
@@ -15,7 +15,7 @@
   description: Плюшевый, вежливый мужчина с утончёнными вкусом и усами.
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: plushie-atmos
 
 - type: entity
@@ -25,7 +25,7 @@
   description: Плюшевый глава персонала, он вас бесит.
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: plushie-hop
 
 - type: entity
@@ -35,7 +35,7 @@
   description: Плюшевая оранжевая лиса в форме офицера.
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: plushie-secvulp
 
 - type: entity
@@ -45,7 +45,7 @@
   description: Плюшевая игрушка смотрителя в странной синей форме.
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: plushie-warden
 
 - type: entity
@@ -55,7 +55,7 @@
   description: Плюшевый утилизатор с дыркой в скафандре.
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: plushie-util
 
 - type: entity
@@ -65,7 +65,7 @@
   description: Плюшевый командир ядерных оперативников. Очень страшный.
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: plushie-nukeleader
 
 - type: entity
@@ -75,7 +75,7 @@
   description: Плюшевая игрушка начальника штаба центрального командования. В руке видна записка об отказе.
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: plushie-nhc
 
 - type: entity
@@ -85,7 +85,7 @@
   description: Плюшевый уборщик с кровью из носа и электрогитарой.
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: plushie-janitor
 
 - type: entity
@@ -95,7 +95,7 @@
   description: Плюшевый, сильно запылившийся учёный.
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: plushie-doctor
 
 - type: entity
@@ -105,7 +105,7 @@
   description: Плюшевый мужественный дворф в водолазке оператора центрального командования.
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: plushie-cc
 
 - type: entity
@@ -115,7 +115,7 @@
   description: Плюшевая игрушка Капитана с зелёными волосами цвета капусты.
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: plushie-capitan
 
 - type: entity
@@ -125,7 +125,7 @@
   description: Очень милая плюшевая игрушка атмосферного техника.
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: plushie-atmos2
 
 - type: entity
@@ -135,7 +135,7 @@
   description: Плюшевая игрушка дракона-гумонойда с коричневой чешуйкой.
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: plushie-dragon
 
 - type: entity
@@ -145,7 +145,7 @@
   description: Плюшевая игрушка вульпы с  белой маской на лице.
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: plushie-doctorvulp
 
 - type: entity
@@ -155,7 +155,7 @@
   description: Плюшевая игрушка старшего инженера с пурпурными как плазма волосами.
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: RudolfAsp
 
 - type: entity
@@ -165,7 +165,7 @@
   description: Роботизированный Раптор. Не стоит совать свои руки к его плюшевой морде. Все же знают чем это обычно заканчивается?
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: raptor-trs
 
 - type: entity
@@ -175,7 +175,7 @@
   description: Комиссар — cупер-спец по расследованию плюшевых нарушений. Самое грозное и мягкое правосудие в плюшевой вселенной.
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: commisar-trs
 
 - type: entity
@@ -185,7 +185,7 @@
   description: Некоторые называют его плохим, другие говорят что он худший, но все мы знаем кто он.
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: radik-sh
 
 - type: entity
@@ -195,7 +195,7 @@
   description: Пускай его чешуя черна, но помыслы его чисты! И не спрашивайте, откуда у него гипоручка и зачем ему в ней ноктюрин!
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: Lurash-MaASP
 
 - type: entity
@@ -205,7 +205,7 @@
   description: Великий воин клана зелёного робаста. Был ранен в колено и вынужден приостановить свой путь в ваших мягких или не очень руках. Катана в комплект не входит.
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: Gentuhv-UnminishASP
 
 - type: entity
@@ -215,7 +215,7 @@
   description: Ходят легенды, что рыжий Серан успешно завершил много дел и закрыл себе офис юриста из-за нового указа НТ. В тёмном уголке живёт, шёлковую нить плетёт, он тайком сюда забрался, строить новый дом собрался.
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: condrat-trs
 
 - type: entity
@@ -225,7 +225,7 @@
   description: Давным давно, в далёкой-далёкой галактике...
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: dart-trs
 
 - type: entity
@@ -235,7 +235,7 @@
   description: Серый унатх одетый в одеяние так называймого "Арбитора". Достаточно добрый Мастер.
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: Uzo-kur
 
 - type: entity
@@ -245,7 +245,7 @@
   description: Самый известный квадратный плюш на плюшевом свете!
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: roman-fill
 
 - type: entity
@@ -255,7 +255,7 @@
   description: Пусть эта молодая девушка с длинными голубыми волосами, красными глазами и любовью к пиву и Корпорации NanoTrasen продолжает свое приключение, привнося в мир свою уникальность и радость жизни.
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: konrada-alex
 
 - type: entity
@@ -265,7 +265,7 @@
   description: "Плюшевый медвежёнок в чёрной толстовке с капюшоном. Не спрашивайте его почему Vim лучше. На этикетке написано: \"I use Arch btw\""
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: igor
 
 - type: entity
@@ -275,7 +275,7 @@
   description: Антропорформая Серая-белая собака в синем костюме и лаймовыми ботинками.
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: husky
 
 - type: entity
@@ -285,7 +285,7 @@
   description: Обычный фиолетовый ящер, который любит технические туннели и рыть-копать землю.
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: ah-vadimiek
 
 - type: entity
@@ -295,7 +295,7 @@
   description: Нааа, пушистая и вкусно пахнущая игрушка.
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: nanati
 
 - type: entity
@@ -305,7 +305,7 @@
   description: "Птица красного цвета. На этикетке написано: \"I'm Scout main and Scout gaming\""
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: scaut
 
 - type: entity
@@ -315,7 +315,7 @@
   description: Кот-человек.
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: kirieshka
 
 - type: entity
@@ -325,7 +325,7 @@
   description: Подозрительный тип.
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: allan-haskovich
 
 - type: entity
@@ -335,7 +335,7 @@
   description: Этот маленький енот сделает все, чтобы вы УМЕРЛИ от зомби!
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: spiffo
 
 - type: entity
@@ -345,7 +345,7 @@
   description: На удивление... похож на кирпич. Веет силой бюрократии.
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: brisck_trs
 
 - type: entity
@@ -410,7 +410,7 @@
   - type: Sprite
     drawdepth: Items
     noRot: false
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     scale: 2.5, 2.5
     state: brisck_trs
 
@@ -421,7 +421,7 @@
   description: Говорят, что там где лежит эта игрушка, всегда есть свет, но мы в это не верим.
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: vortex
 
 - type: entity
@@ -431,7 +431,7 @@
   description: Облачный дракон. Воспрянь!
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: vampire
 
 - type: entity
@@ -441,7 +441,7 @@
   description: Почетно проиграл в русскую рулетку с самим с собой... 17 раз....
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: richard_detective
 
 - type: entity
@@ -451,7 +451,7 @@
   description: В кармане картинка с виселицей и подписью "спс за кибербуллинг", адресовано "Элику"
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: captain_tartarus
 
 - type: entity
@@ -461,7 +461,7 @@
   description: Капитан Эмили Филл, обычно при виде её кричат что-то вроде "ААА, ЖЕНИЩНА", но при виде игрушки кричат только "ААА ФУРРИ"
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: captain_emily
 
 - type: entity
@@ -471,5 +471,5 @@
   description: Deus vult! Ave maria!
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     state: crusader

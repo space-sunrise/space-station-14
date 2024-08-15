@@ -74,9 +74,9 @@
   components:
   - type: BreathMask
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Head/Hardsuit/pilothardsuithelmet.rsi
+    sprite: _Sunrise/Clothing/Head/Hardsuit/pilothardsuithelmet.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/Head/Hardsuit/pilothardsuithelmet.rsi
+    sprite: _Sunrise/Clothing/Head/Hardsuit/pilothardsuithelmet.rsi
   - type: PointLight
     color: cyan
   - type: PressureProtection

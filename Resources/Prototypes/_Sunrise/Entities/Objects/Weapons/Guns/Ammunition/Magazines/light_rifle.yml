@@ -33,7 +33,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/rifle_machine.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/rifle_machine.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -66,7 +66,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/mp38.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/mp38.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -99,7 +99,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/scorpion.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/scorpion.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -132,7 +132,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/new_vector.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/new_vector.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -184,7 +184,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/mg42.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/mg42.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -217,7 +217,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/mg60.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/mg60.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -250,7 +250,7 @@
       containers:
         ballistic-ammo: !type:Container
     - type: Sprite
-      sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/vp70.rsi
+      sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/vp70.rsi
       layers:
         - state: base
           map: ["enum.GunVisualLayers.Base"]
@@ -283,7 +283,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/glock22.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/glock22.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -316,7 +316,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/hi_browning.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/hi_browning.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -349,7 +349,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/acp14.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/acp14.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -382,7 +382,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/stg44.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/stg44.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -407,13 +407,13 @@
     capacity: 200
   - type: Item
   - type: Sprite
-    sprite: _Sunrise/SyndieGuns/Dl6902mag.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Dl6902mag.rsi
   - type: MagazineVisuals
     magState: mag
     steps: 8
     zeroVisible: false
   - type: Appearance
-  
+
 - type: entity
   id: MagazinePistolSubMachineGunSIAR52
   name: "Расширенный магазин (безгильзовые)"
@@ -431,7 +431,7 @@
     capacity: 35
   - type: Item
   - type: Sprite
-    sprite: _Sunrise/SyndieGuns/IAR-52mag.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/IAR-52mag.rsi
   - type: MagazineVisuals
     magState: mag
     steps: 8

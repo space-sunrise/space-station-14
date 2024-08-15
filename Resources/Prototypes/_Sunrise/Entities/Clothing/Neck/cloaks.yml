@@ -23,7 +23,7 @@
   description: Чёрно-красный плащ ГСБ, символизирует безопасность и жестокость.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Neck/Cloaks/hoscloak.rsi
+    sprite: _Sunrise/Clothing/Neck/Cloaks/hoscloak.rsi
     state: icon
 
 - type: entity
@@ -33,7 +33,7 @@
   description: Фиолетовый плащ с изображенной спиралью ДНК, демонстрирует ваше всезнание и феноменальность.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Neck/Cloaks/rd.rsi
+    sprite: _Sunrise/Clothing/Neck/Cloaks/rd.rsi
     state: icon
 
 - type: entity
@@ -43,7 +43,7 @@
   description: Большое количество 24 коратного золота, позволяет понять ваш статус издалека.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Neck/Cloaks/cptcloak.rsi
+    sprite: _Sunrise/Clothing/Neck/Cloaks/cptcloak.rsi
     state: icon
 
 - type: entity
@@ -53,7 +53,7 @@
   description: Увесистый, но очень роскошный белый плащ с золотыми лентами. На обратной стороне имеется маленькая этикетка "Поменяйте топливо в ДАМ".
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Neck/Cloaks/cecloak.rsi
+    sprite: _Sunrise/Clothing/Neck/Cloaks/cecloak.rsi
     state: icon
 
 - type: entity
@@ -63,7 +63,7 @@
   description: Темная накидка на голову из флисовой ткани. Эффектно сочетается с общим стилем агента внутренних дел.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Neck/Cloaks/iaa.rsi
+    sprite: _Sunrise/Clothing/Neck/Cloaks/iaa.rsi
     state: icon
 
 - type: entity
@@ -73,7 +73,7 @@
   description: Его получают только лучшие из лучших. Человек который его носит спас не одну сотню жизней.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Neck/Cloaks/cmocloak.rsi
+    sprite: _Sunrise/Clothing/Neck/Cloaks/cmocloak.rsi
     state: icon
 
 - type: entity
@@ -83,7 +83,7 @@
   description: Плащ, готовый пройти с вами сквозь кровь, боль, маты, ксеноморфов или чего-то по экзотичнее. Подчёркивает богатства владельца большим выточенным алмазом, пока вы не узнаете что это ширпотреб.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Neck/Cloaks/qmcloak.rsi
+    sprite: _Sunrise/Clothing/Neck/Cloaks/qmcloak.rsi
     state: icon
 
 - type: entity
@@ -93,7 +93,7 @@
   description: Плащ Главы персонала. Голубой, с золотыми вставками плащ, напоминающий, кто тут Босс.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Neck/Cloaks/hopcloak.rsi
+    sprite: _Sunrise/Clothing/Neck/Cloaks/hopcloak.rsi
     state: icon
 
 - type: entity
@@ -103,7 +103,7 @@
   description: Чёрный и загадочный.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Neck/Cloaks/blackcloak.rsi
+    sprite: _Sunrise/Clothing/Neck/Cloaks/blackcloak.rsi
     state: icon
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodBlackCloak
@@ -121,7 +121,7 @@
   description: Символическая и способная вызвать трепет всем вокруг мантия, которая идеально отображает мрачное величие её владельца.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Neck/Cloaks/darth-hos.rsi
+    sprite: _Sunrise/Clothing/Neck/Cloaks/darth-hos.rsi
     state: icon
 
 - type: entity
@@ -131,7 +131,7 @@
   description: Элемент снаряжениия элитного солдата в звании офицера.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Neck/Cloaks/securityofficer.rsi
+    sprite: _Sunrise/Clothing/Neck/Cloaks/securityofficer.rsi
     state: icon
 
 - type: entity
@@ -141,7 +141,7 @@
   description: Плащ, который позволял прятаться от врагов так же успешно, как и оперативнику прятаться от своих заслуг.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Neck/Cloaks/alpha.rsi
+    sprite: _Sunrise/Clothing/Neck/Cloaks/alpha.rsi
     state: icon
 
 - type: entity
@@ -151,7 +151,7 @@
   description: Плащ, который позволял прятаться от врагов так же успешно, как и оперативнику прятаться от своих заслуг.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Neck/Cloaks/lima.rsi
+    sprite: _Sunrise/Clothing/Neck/Cloaks/lima.rsi
     state: icon
 
 - type: entity
@@ -161,7 +161,7 @@
   description: Плащ, который позволял прятаться от врагов так же успешно, как и оперативнику прятаться от своих заслуг.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Neck/Cloaks/delta.rsi
+    sprite: _Sunrise/Clothing/Neck/Cloaks/delta.rsi
     state: icon
 
 - type: entity
@@ -171,7 +171,7 @@
   description: Плащ, который позволял прятаться от врагов так же успешно, как и оперативнику прятаться от своих заслуг.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Neck/Cloaks/echo.rsi
+    sprite: _Sunrise/Clothing/Neck/Cloaks/echo.rsi
     state: icon
 
 - type: entity
@@ -181,10 +181,10 @@
   description: Элитное обмундирование Императорского Стража.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Neck/Cloaks/republicbodyguard.rsi
+    sprite: _Sunrise/Clothing/Neck/Cloaks/republicbodyguard.rsi
     state: icon
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/Neck/Cloaks/republicbodyguard.rsi
+    sprite: _Sunrise/Clothing/Neck/Cloaks/republicbodyguard.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -193,10 +193,10 @@
   description: Символическая и способная вызывать трепет и страх. Идеально подчеркивает мрачное великие своего владельца.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Neck/Cloaks/kailo_ren.rsi
+    sprite: _Sunrise/Clothing/Neck/Cloaks/kailo_ren.rsi
     state: icon
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/Neck/Cloaks/kailo_ren.rsi
+    sprite: _Sunrise/Clothing/Neck/Cloaks/kailo_ren.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -205,7 +205,7 @@
   description: Его носят самые опытные профессиональные геймеры.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Neck/Cloaks/gamer.rsi
+    sprite: _Sunrise/Clothing/Neck/Cloaks/gamer.rsi
 
 - type: entity
   parent: ClothingNeckBase
@@ -214,4 +214,4 @@
   description: Плащ легендарного атмосианина.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Neck/Cloaks/atmosian.rsi
+    sprite: _Sunrise/Clothing/Neck/Cloaks/atmosian.rsi

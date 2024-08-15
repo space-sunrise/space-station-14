@@ -29,6 +29,6 @@
   description: Стильные чёрные кожаные перчатки.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Hands/Gloves/hos.rsi
+    sprite: _Sunrise/Clothing/Hands/Gloves/hos.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/Hands/Gloves/hos.rsi
+    sprite: _Sunrise/Clothing/Hands/Gloves/hos.rsi

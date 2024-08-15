@@ -7,7 +7,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: Ligyb/disease.rsi
+      sprite: _Sunrise/Actions/disease.rsi
       state: cough
     event: !type:DiseaseAddSymptomEvent
       symptom: "Cough"
@@ -22,7 +22,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: Ligyb/disease.rsi
+      sprite: _Sunrise/Actions/disease.rsi
       state: sneeze
     event: !type:DiseaseAddSymptomEvent
       symptom: "Sneeze"
@@ -37,7 +37,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: Ligyb/disease.rsi
+      sprite: _Sunrise/Actions/disease.rsi
       state: vomit
     event: !type:DiseaseAddSymptomEvent
       symptom: "Vomit"
@@ -52,7 +52,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: Ligyb/disease.rsi
+      sprite: _Sunrise/Actions/disease.rsi
       state: narcolepsy
     event: !type:DiseaseAddSymptomEvent
       symptom: "Narcolepsy"
@@ -67,7 +67,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: Ligyb/disease.rsi
+      sprite: _Sunrise/Actions/disease.rsi
       state: sob
     event: !type:DiseaseAddSymptomEvent
       symptom: "Crying"
@@ -82,7 +82,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: Ligyb/disease.rsi
+      sprite: _Sunrise/Actions/disease.rsi
       state: muted
     event: !type:DiseaseAddSymptomEvent
       symptom: "Muted"
@@ -97,7 +97,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: Ligyb/disease.rsi
+      sprite: _Sunrise/Actions/disease.rsi
       state: slowness
     event: !type:DiseaseAddSymptomEvent
       symptom: "Slowness"
@@ -112,7 +112,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: Ligyb/disease.rsi
+      sprite: _Sunrise/Actions/disease.rsi
       state: bleed
     event: !type:DiseaseAddSymptomEvent
       symptom: "Bleed"
@@ -127,7 +127,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: Ligyb/disease.rsi
+      sprite: _Sunrise/Actions/disease.rsi
       state: blindness
     event: !type:DiseaseAddSymptomEvent
       symptom: "Blindness"
@@ -142,7 +142,7 @@
   - type: InstantAction
     itemIconStyle: NoItem
     icon:
-      sprite: Ligyb/disease.rsi
+      sprite: _Sunrise/Actions/disease.rsi
       state: lethal
     event: !type:DiseaseAddSymptomEvent
       symptom: "Insult"

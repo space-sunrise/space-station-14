@@ -3,14 +3,14 @@
   layers:
     - texture:
         !type:ImageParallaxTextureSource
-        path: "/Textures/_Sunrise/Parallax/PilgrimAiurWaterTile.png"
+        path: "/Textures/_Sunrise/Parallaxes/PilgrimAiurWaterTile.png"
       slowness: 0.1
       scrolling: "-0.05, -0.05"
       tiled: true
       shader: ""
     - texture:
         !type:ImageParallaxTextureSource
-        path: "/Textures/_Sunrise/Parallax/PilgrimAiurWaterTile.png"
+        path: "/Textures/_Sunrise/Parallaxes/PilgrimAiurWaterTile.png"
       slowness: 0
       scrolling: "-0.08, 0"
       tiled: true
@@ -18,7 +18,7 @@
   layersLQ:
     - texture:
         !type:ImageParallaxTextureSource
-        path: "/Textures/_Sunrise/Parallax/PilgrimAiurWaterTile.png"
+        path: "/Textures/_Sunrise/Parallaxes/PilgrimAiurWaterTile.png"
       slowness: 0
       scrolling: "-0.1, 0"
       tiled: true

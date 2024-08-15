@@ -8,9 +8,9 @@
   components:
   - type: Item
     size: Small
-    sprite: _Sunrise/Entities/Objects/Devices/fishstation_uplink.rsi
+    sprite: _Sunrise/Objects/Devices/fishstation_uplink.rsi
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Devices/fishstation_uplink.rsi
+    sprite: _Sunrise/Objects/Devices/fishstation_uplink.rsi
     layers:
     - state: icon-on
   - type: Store
@@ -27,9 +27,9 @@
   components:
   - type: Item
     size: Small
-    sprite: _Sunrise/Entities/Objects/Devices/fishstation_uplink.rsi
+    sprite: _Sunrise/Objects/Devices/fishstation_uplink.rsi
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Devices/fishstation_uplink.rsi
+    sprite: _Sunrise/Objects/Devices/fishstation_uplink.rsi
     layers:
     - state: icon-on
   - type: Store
@@ -46,9 +46,9 @@
   components:
   - type: Item
     size: Small
-    sprite: _Sunrise/Entities/Objects/Devices/fishstation_uplink.rsi
+    sprite: _Sunrise/Objects/Devices/fishstation_uplink.rsi
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Devices/fishstation_uplink.rsi
+    sprite: _Sunrise/Objects/Devices/fishstation_uplink.rsi
     layers:
     - state: icon-on
   - type: Store

@@ -23,7 +23,7 @@
     - CartridgeRocket20
   - type: Sprite
     netsync: false
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
     layers:
     - state: relsotrone-combat
       map: ["enum.AmmoVisualLayers.Base"]

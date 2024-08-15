@@ -61,9 +61,9 @@
   description: Пальто Старшего Инженера. Роскошное пальто с позолоченными вставками, делающие вид, что защищает вас от каких-либо угроз.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/OuterClothing/cecoat.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/cecoat.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/OuterClothing/cecoat.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/cecoat.rsi
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -72,9 +72,9 @@
   description: На 99% состоит из Нитрила.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/OuterClothing/cmo.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/cmo.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/OuterClothing/cmo.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/cmo.rsi
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -83,9 +83,9 @@
   description: Селанная специально под замеры действующего капитана и сделанный лучшими швеями NanoTrasen.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/OuterClothing/cpt.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/cpt.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/OuterClothing/cpt.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/cpt.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -105,9 +105,9 @@
   description: Удобное приталенная шинель тёмно-синего цвета с кожаными ремнями. На плечах видны декоративные погоны.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/OuterClothing/hopcoat.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/hopcoat.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/OuterClothing/hopcoat.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/hopcoat.rsi
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -116,9 +116,9 @@
   description: Чёрная шинель с красными полосками, серебряными заклепками и золотой бляшкой.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/OuterClothing/hos_coat.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/hos_coat.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/OuterClothing/hos_coat.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/hos_coat.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -134,9 +134,9 @@
   description: Чёрный пиджак строгого тона с позолоченным креплением под значок. От него веет запахом чернил для ручек и бюрократией.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/OuterClothing/iaacoat.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/iaacoat.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/OuterClothing/iaacoat.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/iaacoat.rsi
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -145,9 +145,9 @@
   description: Удобное пальто созданное из лёгкой ткани дикого лиаруса, место обитания которого является лавовая планета №468, позволяет придерживаться стиля современных времён.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/OuterClothing/qmcoat.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/qmcoat.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/OuterClothing/qmcoat.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/qmcoat.rsi
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -156,9 +156,9 @@
   description: Плотный халат, защищающий своего носителя от струи кислоты и плавленой плазмы. Имеет фиолетовые и голубые ленты на плечах и поясе.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/OuterClothing/rd_coat.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/rd_coat.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/OuterClothing/rd_coat.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/rd_coat.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -171,9 +171,9 @@
   description: Довольно старая вещь для этих времён, навевающая старые воспоминания...
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/OuterClothing/hos_overcoat.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/hos_overcoat.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/OuterClothing/hos_overcoat.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/hos_overcoat.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -189,9 +189,9 @@
   description: Старая вещица, прямиком из СССП.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/OuterClothing/ussp.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/ussp.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/OuterClothing/ussp.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/ussp.rsi
 
 - type: entity
   parent: ClothingOuterBase
@@ -200,6 +200,6 @@
   description: Плотная, поношенная куртка-бомбер атмосианина.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/OuterClothing/atmosian.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/atmosian.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/OuterClothing/atmosian.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/atmosian.rsi

@@ -997,7 +997,7 @@
       params:
         volume: 5
   - type: Sprite
-    sprite: _Sunrise/SyndieGuns/red_projectile.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/red_projectile.rsi
     layers:
     - state: omnilaser
       shader: unshaded
@@ -1039,7 +1039,7 @@
       params:
         volume: 5
   - type: Sprite
-    sprite: _Sunrise/SyndieGuns/red_projectile.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/red_projectile.rsi
     layers:
     - state: omnilaser
       shader: unshaded
@@ -1081,7 +1081,7 @@
       params:
         volume: 5
   - type: Sprite
-    sprite: _Sunrise/SyndieGuns/big_red_projectile.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/big_red_projectile.rsi
     layers:
     - state: omnilaser
       shader: unshaded

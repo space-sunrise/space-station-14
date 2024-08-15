@@ -14,7 +14,7 @@
   - type: Sprite
     noRot: true
     drawdepth: Ghosts
-    sprite: Ligyb/disease.rsi
+    sprite: _Sunrise/Mobs/Aliens/disease.rsi
     layers:
     - state: idle
   - type: Clickable
@@ -89,7 +89,7 @@
 - type: sickIcon
   id: SmartDiseaseIcon
   icon:
-    sprite: /Textures/Ligyb/disease.rsi
+    sprite: _Sunrise/Mobs/Aliens/disease.rsi
     state: sick
   priority: 2
 

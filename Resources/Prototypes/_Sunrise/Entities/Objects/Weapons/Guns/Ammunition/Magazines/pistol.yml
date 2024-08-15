@@ -47,7 +47,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/p90.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/p90.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -80,7 +80,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/mp7.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/mp7.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -113,7 +113,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/mp5.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/mp5.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -146,7 +146,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/ppsh41.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/ppsh41.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]

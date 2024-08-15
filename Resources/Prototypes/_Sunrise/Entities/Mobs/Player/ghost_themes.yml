@@ -53,7 +53,7 @@
     noRot: true
     overrideContainerOcclusion: true
     drawdepth: Ghosts
-    sprite: _Sunrise/narsie.rsi
+    sprite: _Sunrise/Mobs/Aliens/narsie.rsi
     scale: 0.15,0.15
     layers:
     - state: narsie
@@ -65,7 +65,7 @@
     noRot: true
     overrideContainerOcclusion: true
     drawdepth: Ghosts
-    sprite: _Sunrise/narsie.rsi
+    sprite: _Sunrise/Mobs/Aliens/narsie.rsi
     scale: 0.15,0.15
     layers:
     - state: kha'rin
@@ -77,7 +77,7 @@
     noRot: true
     overrideContainerOcclusion: true
     drawdepth: Ghosts
-    sprite: _Sunrise/narsie.rsi
+    sprite: _Sunrise/Mobs/Aliens/narsie.rsi
     scale: 0.15,0.15
     layers:
     - state: legion
@@ -89,7 +89,7 @@
     noRot: true
     overrideContainerOcclusion: true
     drawdepth: Ghosts
-    sprite: _Sunrise/narsie.rsi
+    sprite: _Sunrise/Mobs/Aliens/narsie.rsi
     scale: 0.15,0.15
     layers:
     - state: narbee
@@ -101,7 +101,7 @@
     noRot: true
     overrideContainerOcclusion: true
     drawdepth: Ghosts
-    sprite: _Sunrise/narsie.rsi
+    sprite: _Sunrise/Mobs/Aliens/narsie.rsi
     scale: 0.15,0.15
     layers:
     - state: reaper
@@ -113,7 +113,7 @@
     noRot: true
     overrideContainerOcclusion: true
     drawdepth: Ghosts
-    sprite: _Sunrise/96x96megafauna.rsi
+    sprite: _Sunrise/Mobs/Aliens/96x96megafauna.rsi
     scale: 0.8,0.8
     layers:
     - state: bubblegum
@@ -125,7 +125,7 @@
     noRot: true
     overrideContainerOcclusion: true
     drawdepth: Ghosts
-    sprite: _Sunrise/96x96megafauna.rsi
+    sprite: _Sunrise/Mobs/Aliens/96x96megafauna.rsi
     scale: 0.8,0.8
     layers:
     - state: mega_legion
