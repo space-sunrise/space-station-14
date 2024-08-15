@@ -27,7 +27,7 @@
   - type: Appearance
   - type: Wieldable
   - type: UseDelay
-    delay: 2.3
+    delay: 0.5
   - type: GunRequiresWield
 
 - type: entity

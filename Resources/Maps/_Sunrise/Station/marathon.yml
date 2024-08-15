@@ -100165,7 +100165,7 @@ entities:
     - type: Transform
       pos: -20.370735,-69.56265
       parent: 30
-- proto: MagazinePistolSubMachineGunTopMounted
+- proto: MagazineM16A4
   entities:
   - uid: 1999
     components:
@@ -138193,7 +138193,7 @@ entities:
       parent: 30
     - type: Physics
       canCollide: False
-- proto: WeaponDisabler
+- proto: WeaponEnergyGunMini
   entities:
   - uid: 1563
     components:
@@ -138259,7 +138259,7 @@ entities:
     - type: Transform
       pos: -38.316597,60.345554
       parent: 30
-- proto: WeaponShotgunKammerer
+- proto: WeaponShotgunTrenchgun4034
   entities:
   - uid: 1978
     components:
@@ -138285,7 +138285,7 @@ entities:
     - type: Transform
       pos: -41.445473,54.621906
       parent: 30
-- proto: WeaponSubMachineGunWt550
+- proto: WeaponRifleM16A4
   entities:
   - uid: 2000
     components:

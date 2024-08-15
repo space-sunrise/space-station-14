@@ -3771,7 +3771,7 @@ entities:
     - type: Transform
       pos: 0.5,-5.5
       parent: 44868
-- proto: WeaponLaserCarbine
+- proto: WeaponEarthGovLaserCarbine
   entities:
   - uid: 44971
     components:
