@@ -31,10 +31,10 @@
       ballistic-ammo: !type:Container
   - type: Item
     size: Small
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/v31.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Magazines/v31.rsi
   - type: Sprite
     netsync: false
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/v31.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Magazines/v31.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]

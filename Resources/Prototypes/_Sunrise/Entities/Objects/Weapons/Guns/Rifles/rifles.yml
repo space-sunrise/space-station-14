@@ -29,16 +29,16 @@
   id: WeaponAKMSRifle
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/akms/big.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/akms/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/akms/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/akms/tiny.rsi
   - type: Item
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/akms/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/akms/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -43
@@ -88,7 +88,7 @@
   id: WeaponRifleAKSU
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/ak74u.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ak74u.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -141,16 +141,16 @@
   id: WeaponRifleFamas
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/famas/big.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/famas/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/famas/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/famas/tiny.rsi
   - type: Item
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/famas/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/famas/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -43
@@ -200,16 +200,16 @@
   id: WeaponRifleG36
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/g36/big.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/g36/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/g36/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/g36/tiny.rsi
   - type: Item
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/g36/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/g36/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -43
@@ -256,16 +256,16 @@
   id: WeaponRifleM28
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/m28/big.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/m28/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/m28/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/m28/tiny.rsi
   - type: Item
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/m28/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/m28/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -43
@@ -312,16 +312,16 @@
   id: WeaponRifleAR18
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/ar18/big.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ar18/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Sunrise/Entities/Objects/Weapons/Gunsx64/Rifles/ar18/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Gunsx64/Rifles/ar18/tiny.rsi
   - type: Item
-    sprite: _Sunrise/Entities/Objects/Weapons/Gunsx64/Rifles/ar18/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Gunsx64/Rifles/ar18/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -43
@@ -368,16 +368,16 @@
   id: WeaponRifleM16A4
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/m16a4/big.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/m16a4/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/m16a4/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/m16a4/tiny.rsi
   - type: Item
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/m16a4/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/m16a4/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -43
@@ -424,16 +424,16 @@
   id: WeaponSTG44
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/stg44/big.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/stg44/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/stg44/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/stg44/tiny.rsi
   - type: Item
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/stg44/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/stg44/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -43
@@ -482,16 +482,16 @@
   id: WeaponRifleV31
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/v31/big.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/v31/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/v31/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/v31/tiny.rsi
   - type: Item
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Rifles/v31/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/v31/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
     maxAngle: -43
