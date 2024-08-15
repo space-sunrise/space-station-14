@@ -19,4 +19,3 @@ connecting-state-ResolvingHost = Определение хоста
 connecting-state-EstablishingConnection = Установка соединения
 connecting-state-Handshake = Подключение
 connecting-state-Connected = Подключён
-currently-playing-players = Сейчас играет: { $total }/{ $maxPlayers }
