@@ -80,7 +80,7 @@ public sealed class StealConditionSystem : EntitySystem
         if (Loc.GetString(locale) == locale)
         {
             Logger.Error($"Steal item {locale} doesn't have locale");
-            var locale = group.Name
+            var locale = group.Name;
         }
         var title =condition.Comp.OwnerText == null
             ? Loc.GetString(condition.Comp.ObjectiveNoOwnerText, ("itemName", Loc.GetString(locale)))
