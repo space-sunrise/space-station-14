@@ -537,7 +537,7 @@
   description: Тяжёлый пулемёт Cybersun киборга с расширенным магазином.
   components:
   - type: Sprite
-    sprite: _Sunrise/SyndieGuns/DL6902.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/DL6902.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -576,7 +576,7 @@
   description: Высокоскорострельный ПП, оборудован универсальным разъёмом для других типов пистолетных магазинов.
   components:
   - type: Sprite
-    sprite: _Sunrise/SyndieGuns/IAR-52.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/IAR-52.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]

@@ -539,7 +539,7 @@
     capacity: 200
   - type: Item
   - type: Sprite
-    sprite: _Sunrise/SyndieGuns/Dl6902mag.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazine/Dl6902mag.rsi
   - type: MagazineVisuals
     magState: mag
     steps: 8
@@ -563,7 +563,7 @@
     capacity: 35
   - type: Item
   - type: Sprite
-    sprite: _Sunrise/SyndieGuns/IAR-52mag.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazine/IAR-52mag.rsi
   - type: MagazineVisuals
     magState: mag
     steps: 8

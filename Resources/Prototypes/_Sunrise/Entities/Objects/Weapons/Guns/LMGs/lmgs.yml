@@ -191,7 +191,7 @@
   description: Тяжёлый пулемёт Cybersun.
   components:
   - type: Sprite
-    sprite: _Sunrise/SyndieGuns/DL6902.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/DL6902.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]

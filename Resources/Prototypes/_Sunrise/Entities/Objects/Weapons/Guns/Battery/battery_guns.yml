@@ -567,7 +567,7 @@
   description: Модернизированный «Лектер», переделаный под плазменый энергомодуль.
   components:
   - type: Sprite
-    sprite: _Sunrise/SyndieGuns/syndielasergun.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/syndielasergun.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -575,10 +575,10 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Item
-    sprite: _Sunrise/SyndieGuns/syndielasergun.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/syndielasergun.rsi
     size: Huge
   - type: Clothing
-    sprite: _Sunrise/SyndieGuns/syndielasergun.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/syndielasergun.rsi
   - type: Gun
     minAngle: 20
     maxAngle: 30
@@ -610,7 +610,7 @@
   description: Лазерный пистолет Синдиката, разработанный на базе пистолета капитана НТ.
   components:
   - type: Sprite
-    sprite: _Sunrise/SyndieGuns/syndielaserpistol.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/syndielaserpistol.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -618,10 +618,10 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Item
-    sprite: _Sunrise/SyndieGuns/syndielaserpistol.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/syndielaserpistol.rsi
     size: Small
   - type: Clothing
-    sprite: _Sunrise/SyndieGuns/syndielaserpistol.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/syndielaserpistol.rsi
   - type: Gun
     minAngle: 5
     maxAngle: 9
@@ -652,7 +652,7 @@
     slots:
     - Back
   - type: Sprite
-    sprite: _Sunrise/SyndieGuns/laserminigun.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/laserminigun.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -660,7 +660,7 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Item
-    sprite: _Sunrise/SyndieGuns/laserminigun.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/laserminigun.rsi
     size: Huge
   - type: Gun
     minAngle: 8

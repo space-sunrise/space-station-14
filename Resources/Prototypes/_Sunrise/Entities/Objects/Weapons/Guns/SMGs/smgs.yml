@@ -424,14 +424,14 @@
   description: Более совершенная версия Лектера.
   components:
   - type: Sprite
-    sprite: _Sunrise/SyndieGuns/MS-42.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/MS-42.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Sunrise/SyndieGuns/MS-42.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/MS-42.rsi
   - type: Gun
     minAngle: 10
     maxAngle: 15
@@ -478,14 +478,14 @@
   description: Высокоскорострельный ПП, оборудован универсальным разъёмом для других типов пистолетных магазинов.
   components:
   - type: Sprite
-    sprite: _Sunrise/SyndieGuns/AJ-100.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/AJ-100.rsi
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Sunrise/SyndieGuns/AJ-100.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/AJ-100.rsi
   - type: Gun
     minAngle: 8
     maxAngle: 8
@@ -534,14 +534,14 @@
   description: Высокоскорострельный ПП, оборудован интегрированым глушителем.
   components:
   - type: Sprite
-    sprite: _Sunrise/SyndieGuns/IAR-52.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/IAR-52.rsi
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Sunrise/SyndieGuns/IAR-52.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/IAR-52.rsi
   - type: Gun
     minAngle: 4
     maxAngle: 4
