@@ -1,4 +1,4 @@
-ent-RandomSmokables = random smokable spawner
+ent-RandomSmokables = генератор случайных курительных изделий
     .desc = { ent-MarkerBase.desc }
-ent-RandomSoakedCigarette = random soaked cigarette spawner
+ent-RandomSoakedCigarette = генератор случайных пропитанных сигарет
     .desc = { ent-MarkerBase.desc }
