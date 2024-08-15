@@ -79,7 +79,7 @@ public sealed class StealConditionSystem : EntitySystem
         var locale = $"objective-{Regex.Replace(group.Name, @"[*?!'%\s]", string.Empty).ToLower()}";
         if (Loc.GetString(locale) == locale)
         {
-            Logger.Error($"Steal item {objective-{Regex.Replace(group.Name, @"[*?!'%\s]", string.Empty).ToLower()}} doesn't have locale");
+            Logger.Error($"Steal item objective-{Regex.Replace(group.Name, @"[*?!'%\s]", string.Empty).ToLower()} doesn't have locale");
             locale = group.Name;
         }
         var title =condition.Comp.OwnerText == null
