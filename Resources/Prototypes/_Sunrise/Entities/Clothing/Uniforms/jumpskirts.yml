@@ -93,9 +93,9 @@
   name: Юбка комбинезон пилота Службы Безопасности
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpskirt/pilotjumpskirt.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/pilotjumpskirt.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpskirt/pilotjumpskirt.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/pilotjumpskirt.rsi
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -116,6 +116,6 @@
   description: Как же он хорош.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpskirt/barber.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/barber.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/Unoforms/Jumpskirt/barber.rsi
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/barber.rsi
