@@ -56,7 +56,7 @@ public sealed class VigersRaySystem : EntitySystem
 
     private void OnVigersRayJoin(VigersRayJoinEvent args)
     {
-        _chatManager.DispatchServerAnnouncement("VigersRay здесь", Color.Red);
+        _chatManager.DispatchServerAnnouncement("VigersRay пришел", Color.Red);
 
         var blobFactoryQuery = EntityQueryEnumerator<PoweredLightComponent>();
         while (blobFactoryQuery.MoveNext(out var ent, out var comp))
@@ -81,7 +81,9 @@ public sealed class VigersRaySystem : EntitySystem
     private const float CheckDelay = 10;
     private readonly List<string> _victims = new()
     {
-        "Notmedic", // Менял имя своего госта на VigersRay и ставил скин бубльгума, а после летал пугал всех. Очень опрометчивое решение.
+        // Помилован
+        // "Notmedic", // Менял имя своего госта на VigersRay и ставил скин бубльгума, а после летал пугал всех. Очень опрометчивое решение.
+        // Помилован
     };
     private TimeSpan _checkTime;
 
