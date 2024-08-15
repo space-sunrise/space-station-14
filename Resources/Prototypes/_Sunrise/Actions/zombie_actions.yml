@@ -4,7 +4,9 @@
   components:
   - type: WorldTargetAction
     useDelay: 15
-    icon: _Sunrise/Zombie/Actions/jump.png
+    icon:
+      sprite: _Sunrise/Actions/zombie.rsi
+      state: jump
     itemIconStyle: NoItem
     checkCanAccess: false
     range: 200
@@ -16,6 +18,8 @@
   components:
   - type: InstantAction
     useDelay: 5
-    icon: _Sunrise/Zombie/Actions/the_look.png
+    icon:
+      sprite: _Sunrise/Actions/zombie.rsi
+      state: the_look
     itemIconStyle: NoItem
     event: !type:ZombieFlairActionEvent

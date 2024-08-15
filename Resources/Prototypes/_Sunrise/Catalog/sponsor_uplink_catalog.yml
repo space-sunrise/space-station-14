@@ -3081,7 +3081,7 @@
 - type: listing
   id: UplinkSunriseBoombox
   name: Бумбокс
-  icon: { sprite: _Sunrise/icons.rsi, state: boombox }
+  icon: { sprite: _Sunrise/Interface/Misc/icons.rsi, state: boombox }
   productEntity: Boombox
   cost:
     Suntick: 45
@@ -3095,7 +3095,7 @@
   id: UplinkSunriseTapePlayer
   name: Магнитофон
   productEntity: TapePlayer
-  icon: { sprite: _Sunrise/icons.rsi, state: tape_player }
+  icon: { sprite: _Sunrise/Interface/Misc/icons.rsi, state: tape_player }
   cost:
     Suntick: 25
   categories:

@@ -38,7 +38,7 @@
   description: КПК для геев.
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/pda.rsi
+    sprite: _Sunrise/Objects/Devices/pda.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
     - state: "light_overlay"
@@ -53,7 +53,7 @@
     id: BlueShieldIDCard
     state: pda-blueshield
   - type: Icon
-    sprite: _Sunrise/Objects/pda.rsi
+    sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-blueshield
 
 - type: entity
@@ -63,12 +63,12 @@
   description: В цвет робы для полного комплекта.
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/pda.rsi
+    sprite: _Sunrise/Objects/Devices/pda.rsi
   - type: Pda
     id: PrisonerIDCard
     state: pda-space-prison-prisoner
   - type: Icon
-    sprite: _Sunrise/Objects/pda.rsi
+    sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-space-prison-prisoner
 
 - type: entity
@@ -78,12 +78,12 @@
   description: Изогнутый и потертый, но каждая царапина - свидетельство непрерывной борьбы за безопасность.
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/pda.rsi
+    sprite: _Sunrise/Objects/Devices/pda.rsi
   - type: Pda
     id: GuardIDCard
     state: pda-space-prison-guardian
   - type: Icon
-    sprite: _Sunrise/Objects/pda.rsi
+    sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-space-prison-guardian
 
 - type: entity
@@ -107,7 +107,7 @@
   description: Блестящий и технологичный, словно его только что вытащили из кокпита.
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/pda.rsi
+    sprite: _Sunrise/Objects/Devices/pda.rsi
   - type: Pda
     id: PrisonPilotIDCard
     state: pda-space-prison-pilot
@@ -115,7 +115,7 @@
     borderColor: "#A32D26"
     accentVColor: "#DFDFDF"
   - type: Icon
-    sprite: _Sunrise/Objects/pda.rsi
+    sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-space-prison-pilot
 
 - type: entity
@@ -125,7 +125,7 @@
   description: Имеет вид престижного инструмента власти, но немного поцарапанный от постоянных срочных вызовов.
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/pda.rsi
+    sprite: _Sunrise/Objects/Devices/pda.rsi
   - type: Pda
     id: HeadOfPrisonIDCard
     state: pda-space-prison-boss
@@ -133,7 +133,7 @@
     borderColor: "#A32D26"
     accentHColor: "#447987"
   - type: Icon
-    sprite: _Sunrise/Objects/pda.rsi
+    sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-space-prison-boss
 
 - type: entity
