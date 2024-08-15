@@ -53,7 +53,7 @@
   id: UplinkMagazinePistolSubMachineGunSIAR52
   name: Магазин ПП (.25 безгильзовый)
   description: Магазин ПП на 30 патронов. Совместим с SIAR-52.
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazine/IAR-52mag.rsi, state: base }
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/IAR-52mag.rsi, state: base }
   productEntity: MagazinePistolSubMachineGunSIAR52
   cost:
     Telecrystal: 3
