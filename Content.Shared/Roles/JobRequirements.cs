@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Preferences;
-using Content.Sunrise.Interfaces.Shared;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
@@ -16,7 +15,7 @@ public static class JobRequirements
         IEntityManager entManager,
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile,
-        ISharedSponsorsManager? sponsorsManager) // Sunrise-Edit
+        string[] sponsorPrototypes) // Sunrise-Sponsors
     {
         var sys = entManager.System<SharedRoleSystem>();
         var requirements = sys.GetJobRequirement(job);
@@ -26,7 +25,7 @@ public static class JobRequirements
 
         foreach (var requirement in requirements)
         {
-            if (!requirement.Check(entManager, protoManager, sponsorsManager, job.ID, profile, playTimes, out reason)) // Sunrise-Edit
+            if (!requirement.Check(entManager, protoManager, profile, playTimes, job.ID, sponsorPrototypes, out reason)) // Sunrise-Sponsors
                 return false;
         }
 
@@ -47,9 +46,9 @@ public abstract partial class JobRequirement
     public abstract bool Check(
         IEntityManager entManager,
         IPrototypeManager protoManager,
-        ISharedSponsorsManager? sponsorsManager, // Sunrise-Edit
-        string? protoId, // Sunrise-Edit
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan> playTimes,
+        string? protoId, // Sunrise-Sponsors
+        string[] sponsorPrototypes, // Sunrise-Sponsors
         [NotNullWhen(false)] out FormattedMessage? reason);
 }

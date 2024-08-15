@@ -860,6 +860,7 @@
       - WeaponLaserCannon
       - WeaponLaserCarbine
       - WeaponXrayCannon
+      - ClothingBackpackElectropack
       - WeaponEnergyGun       # Sunrise - Energy Gun
       - WeaponEnergyGunMini   # Sunrise - Miniature Energy Gun
       - WeaponEnergyGunPistol # Sunrise - PDW-9 Energy Pistol

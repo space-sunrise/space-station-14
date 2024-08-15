@@ -67,7 +67,7 @@
   - type: Appearance
   - type: Wieldable
   - type: UseDelay
-    delay: 0.8
+    delay: 0.5
   - type: GunRequiresWield
 
 - type: entity
@@ -109,5 +109,5 @@
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
   - type: Wieldable
   - type: UseDelay
-    delay: 1.3
+    delay: 0.5
   - type: GunRequiresWield

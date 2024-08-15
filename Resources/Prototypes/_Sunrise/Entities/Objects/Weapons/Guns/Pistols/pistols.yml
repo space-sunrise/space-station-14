@@ -144,7 +144,6 @@
     soundRack:
       path: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_cocked.ogg
 
-
 - type: entity
   name: Glock-22
   parent: BaseWeaponPistol

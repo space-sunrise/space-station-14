@@ -1,12 +1,11 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
-using Content.Sunrise.Interfaces.Shared;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
-using Robust.Shared.Localization;
 
 namespace Content.Shared._Sunrise.Roles;
 
@@ -16,16 +15,21 @@ public sealed partial class DiscordRoleRequirement : JobRequirement
 {
     public override bool Check(IEntityManager entManager,
         IPrototypeManager protoManager,
-        ISharedSponsorsManager? sponsorsManager, // Sunrise-Edit
-        string? protoId, // Sunrise-Edit
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan> playTimes,
+        string? protoId, // Sunrise-Edit
+        string[] sponsorPrototypes, // Sunrise-Edit
         [NotNullWhen(false)] out FormattedMessage? reason)
     {
         reason = new FormattedMessage();
 
         if (profile is null)
             return true;
+
+        // Sunrise-Sponsors-Start
+        if (sponsorPrototypes.Contains(protoId))
+            return true;
+        // Sunrise-Sponsors-End
 
         reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-timer-discord"));
         return false;

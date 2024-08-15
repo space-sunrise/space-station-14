@@ -141,10 +141,12 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         if (requirements == null || !_cfg.GetCVar(CCVars.GameRoleTimers))
             return true;
 
+        var sponsorPrototypes = _sponsorsMgr?.GetClientPrototypes().ToArray() ?? []; // Sunrise-Sponsors
+
         var reasons = new List<string>();
         foreach (var requirement in requirements)
         {
-            if (requirement.Check(_entManager, _prototypes, _sponsorsMgr, protoId, profile, _roles, out var jobReason)) // Sunrise-Edit
+            if (requirement.Check(_entManager, _prototypes, profile, _roles, protoId, sponsorPrototypes, out var jobReason)) // Sunrise-Sponsors
                 continue;
 
             reasons.Add(jobReason.ToMarkup());

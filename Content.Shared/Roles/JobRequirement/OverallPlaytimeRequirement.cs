@@ -1,7 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Preferences;
-using Content.Sunrise.Interfaces.Shared;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -19,16 +19,16 @@ public sealed partial class OverallPlaytimeRequirement : JobRequirement
 
     public override bool Check(IEntityManager entManager,
         IPrototypeManager protoManager,
-        ISharedSponsorsManager? sponsorsManager, // Sunrise-Edit
-        string? protoId, // Sunrise-Edit
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan> playTimes,
+        string? protoId, // Sunrise-Sponsors
+        string[] sponsorPrototypes, // Sunrise-Sponsors
         [NotNullWhen(false)] out FormattedMessage? reason)
     {
         reason = new FormattedMessage();
 
         // Sunrise-Sponsors-Start
-        if (sponsorsManager != null && protoId != null && sponsorsManager.GetClientPrototypes().Contains(protoId))
+        if (sponsorPrototypes.Contains(protoId))
             return true;
         // Sunrise-Sponsors-End
 
