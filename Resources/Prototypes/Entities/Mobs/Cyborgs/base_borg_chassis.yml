@@ -314,7 +314,6 @@
   - type: AccessReader
     access: [["Command"], ["Research"]]
   - type: ShowJobIcons
-  - type: ShowMindShieldIcons
   - type: BorgCrewManifestViewer # Sunrise-Edit
 
 
@@ -354,7 +353,6 @@
     radius: 6
     energy: 3
   - type: ShowJobIcons
-  - type: ShowMindShieldIcons
   - type: ShowCriminalRecordIcons
   - type: MobThresholds
     thresholds:
