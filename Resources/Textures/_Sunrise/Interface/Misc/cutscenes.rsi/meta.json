@@ -8,7 +8,7 @@
     },
     "states": [
         {
-            "name": "nuke"
+            "name": "nuke",
             "delays": [
                 [
                     1,
@@ -18,7 +18,7 @@
             ]
         },
         {
-            "name": "station_explode_fade_red"
+            "name": "station_explode_fade_red",
             "delays": [
                 [
                     0.1,
