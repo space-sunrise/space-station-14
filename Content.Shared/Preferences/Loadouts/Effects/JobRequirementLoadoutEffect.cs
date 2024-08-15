@@ -24,14 +24,23 @@ public sealed partial class JobRequirementLoadoutEffect : LoadoutEffect
             return true;
         }
 
+        // Sunrise-Sponsors-Start
+        string[] sponsorPrototypes = [];
+        if (collection.TryResolveType<ISharedSponsorsManager>(out var sponsorsManager))
+        {
+            sponsorPrototypes = sponsorsManager?.GetClientPrototypes().ToArray() ?? [];
+        }
+        // Sunrise-Sponsors-End
+
         var manager = collection.Resolve<ISharedPlaytimeManager>();
         var playtimes = manager.GetPlayTimes(session);
+
         return Requirement.Check(collection.Resolve<IEntityManager>(),
             collection.Resolve<IPrototypeManager>(),
-            null,
-            null,
             profile,
             playtimes,
+            null, // Sunrise-Sponsors
+            sponsorPrototypes, // Sunrise-Sponsors
             out reason);
     }
 }

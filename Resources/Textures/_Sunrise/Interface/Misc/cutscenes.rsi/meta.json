@@ -1,6 +1,6 @@
 {
     "version": 1,
-    "license": "CLA",
+    "license": "CC-BY-SA-3.0",
     "copyright": "Спизжено из SS13 Paradise",
     "size": {
         "x": 8,
@@ -8,7 +8,7 @@
     },
     "states": [
         {
-            "name": "nuke"
+            "name": "nuke",
             "delays": [
                 [
                     1,
@@ -18,7 +18,7 @@
             ]
         },
         {
-            "name": "station_explode_fade_red"
+            "name": "station_explode_fade_red",
             "delays": [
                 [
                     0.1,
@@ -55,7 +55,7 @@
             "name": "station_intact"
         },
         {
-            "name": "station_intact_fade_red"
+            "name": "station_intact_fade_red",
             "delays": [
                 [
                     0.1,
