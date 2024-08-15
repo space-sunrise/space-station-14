@@ -32,7 +32,7 @@
     sprite: _Sunrise/Clothing/Eyes/Glasses/blueshield_sunglasses.rsi
   - type: FlashImmunity
   - type: ShowJobIcons
-  - type: ShowMindShieldIcons
+#  - type: ShowMindShieldIcons
   - type: ShowCriminalRecordIcons
   - type: ShowHealthBars
     damageContainers:
@@ -75,7 +75,7 @@
     sprite: _Sunrise/Clothing/Eyes/Glasses/sunhudskill.rsi
   - type: FlashImmunity
   - type: ShowJobIcons
-  - type: ShowMindShieldIcons
+#  - type: ShowMindShieldIcons
   - type: ShowCriminalRecordIcons
   - type: Tag
     tags:
