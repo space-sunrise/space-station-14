@@ -6,7 +6,7 @@ namespace Content.Shared._Sunrise.GhostTheme;
 
 public sealed partial class GhostThemeComponent: Component
 {
-    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField,
-     DataField("ghostTheme")]
+    [ViewVariables(VVAccess.ReadOnly)]
+    [DataField, AutoNetworkedField]
     public string? GhostTheme;
 }

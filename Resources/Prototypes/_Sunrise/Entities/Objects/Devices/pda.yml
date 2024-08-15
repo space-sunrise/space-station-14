@@ -88,6 +88,20 @@
 
 - type: entity
   parent: BasePDA
+  id: PrisonEngineerPDA
+  name: ПДА тюремного инженера
+  components:
+  - type: Pda
+    id: PrisonEngineeringIDCard
+    state: pda-engineer
+  - type: PdaBorderColor
+    borderColor: "#949137"
+    accentVColor: "#A32D26"
+  - type: Icon
+    state: pda-engineer
+
+- type: entity
+  parent: BasePDA
   id: PrisonPilotPDA
   name: КПК тюремного пилота
   description: Блестящий и технологичный, словно его только что вытащили из кокпита.

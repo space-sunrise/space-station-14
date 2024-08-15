@@ -40,6 +40,18 @@
 
 - type: entity
   parent: IDCardStandard
+  id: PrisonEngineeringIDCard
+  name: ID карта тюремного инженера
+  components:
+  - type: Sprite
+    layers:
+    - state: default
+    - state: idstationengineer
+  - type: PresetIdCard
+    job: PrisonEngineer
+
+- type: entity
+  parent: IDCardStandard
   id: IAAIDCard
   name: internal affairs agent ID card
   components:
@@ -85,7 +97,7 @@
     - state: prisoner-space-prison
     - state: idprisoner-space-prison
   - type: PresetIdCard
-    job: Prisoner
+    job: PlanetPrisoner
 
 - type: entity
   parent: IDCardStandard

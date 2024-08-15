@@ -11,6 +11,7 @@ power-monitoring-window-total-battery-usage = Общее использован�
 power-monitoring-window-total-sources = Общая выработка генератора
 power-monitoring-window-total-loads = Общая нагрузка сети
 power-monitoring-window-show-cable-networks = Отображения электросетей различного вольтажа
+power-monitoring-window-button-value = { $value } В
 power-monitoring-window-show-hv-cable = Высокого
 power-monitoring-window-show-mv-cable = Среднего
 power-monitoring-window-show-lv-cable = Низкового

@@ -5,14 +5,14 @@
                   HorizontalExpand="True"
                   SeparationOverride="4">
         <Label Name="ObjectNameLabel"
-               SizeFlagsStretchRatio="3"
+               SizeFlagsStretchRatio="5"
                HorizontalExpand="True"
                ClipText="True"
                Text="{Loc object-tab-object-name}"
                MouseFilter="Pass"/>
         <cc:VSeparator/>
         <Label Name="EntityIDLabel"
-               SizeFlagsStretchRatio="3"
+               SizeFlagsStretchRatio="5"
                HorizontalExpand="True"
                ClipText="True"
                Text="{Loc object-tab-entity-id}"

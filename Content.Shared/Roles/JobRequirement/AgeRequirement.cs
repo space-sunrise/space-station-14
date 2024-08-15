@@ -21,6 +21,8 @@ public sealed partial class AgeRequirement : JobRequirement
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan> playTimes,
+        string? protoId, // Sunrise-Sponsors
+        string[] sponsorPrototypes, // Sunrise-Sponsors
         [NotNullWhen(false)] out FormattedMessage? reason)
     {
         reason = new FormattedMessage();
@@ -33,7 +35,7 @@ public sealed partial class AgeRequirement : JobRequirement
             reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-timer-age-to-young",
                 ("age", RequiredAge)));
 
-            if (profile.Age <= RequiredAge)
+            if (profile.Age < RequiredAge)
                 return false;
         }
         else
@@ -41,7 +43,7 @@ public sealed partial class AgeRequirement : JobRequirement
             reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-timer-age-to-old",
                 ("age", RequiredAge)));
 
-            if (profile.Age >= RequiredAge)
+            if (profile.Age > RequiredAge)
                 return false;
         }
 

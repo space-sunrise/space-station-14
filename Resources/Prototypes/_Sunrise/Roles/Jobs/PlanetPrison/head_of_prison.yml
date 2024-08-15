@@ -10,6 +10,8 @@
   - !type:DepartmentTimeRequirement
     department: Security
     time: 108000 #30 hrs # Sunrise-RoleTime
+  - !type:AgeRequirement
+    requiredAge: 40 # Sunrise-Edit
   weight: 10
   startingGear: HeadOfPrisonGear
   icon: "JobIconHeadOfPrison"
