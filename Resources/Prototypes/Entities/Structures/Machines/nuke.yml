@@ -1,6 +1,6 @@
 - type: entity
   abstract: true  # Sunrise-Nuke
-  parent: [BaseStructure, StructureWheeled]
+  parent: [BaseStructure, StructureWheeled, BaseMajorContraband]
   id: BaseNuclearBomb
   name: nuclear fission explosive
   components:
@@ -185,7 +185,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.45
-        density: 255 
+        density: 255
         mask:
         - MachineMask
         layer:
