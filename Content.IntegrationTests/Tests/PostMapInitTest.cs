@@ -68,9 +68,7 @@ namespace Content.IntegrationTests.Tests
 			"SunriseFland",
 			"SunriseMarathon",
             "SunriseCentComm",
-            "AlterosPrison",
             "PlanetPrison",
-            "SunrisePrison"
         };
 
         /// <summary>
