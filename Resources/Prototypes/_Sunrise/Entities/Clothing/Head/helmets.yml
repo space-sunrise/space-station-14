@@ -16,9 +16,9 @@
   description: Толстый шлем пилота, обеспечивающий хорошую защиту головы.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Head/Hats/pilothelmet.rsi
+    sprite: _Sunrise/Clothing/Head/Hats/pilothelmet.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/Head/Hats/pilothelmet.rsi
+    sprite: _Sunrise/Clothing/Head/Hats/pilothelmet.rsi
   - type: Armor
     modifiers:
       coefficients:

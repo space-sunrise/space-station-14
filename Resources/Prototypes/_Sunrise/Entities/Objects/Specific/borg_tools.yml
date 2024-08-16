@@ -56,7 +56,7 @@
   - type: Item
     size: Large
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Tools/items_cyborg.rsi
+    sprite: _Sunrise/Objects/Tools/items_cyborg.rsi
     layers:
     - state: laser_cyborg
       map: ["enum.GunVisualLayers.Base"]
@@ -365,7 +365,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Tools/items_cyborg.rsi
+    sprite: _Sunrise/Objects/Tools/items_cyborg.rsi
     state: crowbar_cyborg
 
 - type: entity
@@ -375,7 +375,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Tools/items_cyborg.rsi
+    sprite: _Sunrise/Objects/Tools/items_cyborg.rsi
     state: wrench_cyborg
 
 - type: entity
@@ -385,7 +385,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Tools/items_cyborg.rsi
+    sprite: _Sunrise/Objects/Tools/items_cyborg.rsi
     state: screwdriver_cyborg
   - type: Tag
     tags:
@@ -418,7 +418,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Tools/items_cyborg.rsi
+    sprite: _Sunrise/Objects/Tools/items_cyborg.rsi
     state: wirecutters_cyborg
   - type: EmitSoundOnLand
     sound:
@@ -456,7 +456,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Tools/items_cyborg.rsi
+    sprite: _Sunrise/Objects/Tools/items_cyborg.rsi
     layers:
     - state: indwelder_cyborg
     - state: indwelder_cyborg-on
@@ -537,7 +537,7 @@
   description: Тяжёлый пулемёт Cybersun киборга с расширенным магазином.
   components:
   - type: Sprite
-    sprite: _Sunrise/SyndieGuns/DL6902.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/DL6902.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -576,7 +576,7 @@
   description: Высокоскорострельный ПП, оборудован универсальным разъёмом для других типов пистолетных магазинов.
   components:
   - type: Sprite
-    sprite: _Sunrise/SyndieGuns/IAR-52.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/IAR-52.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]

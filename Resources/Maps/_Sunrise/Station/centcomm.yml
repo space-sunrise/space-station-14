@@ -27533,7 +27533,7 @@ entities:
     - type: Transform
       pos: 6.5,-9.5
       parent: 1668
-- proto: MagazinePistolSubMachineGunTopMounted
+- proto: MagazineM16A4
   entities:
   - uid: 3896
     components:
@@ -41380,7 +41380,7 @@ entities:
     - type: Transform
       pos: 24.5,-9.5
       parent: 1668
-- proto: WeaponDisabler
+- proto: WeaponEnergyGunMini
   entities:
   - uid: 4697
     components:
@@ -41443,7 +41443,7 @@ entities:
     - type: Transform
       pos: 13.481927,32.663063
       parent: 1668
-- proto: WeaponRevolverMateba
+- proto: WeaponRevolverMatebaNew
   entities:
   - uid: 1436
     components:
@@ -41465,7 +41465,7 @@ entities:
     - type: Transform
       pos: 16.628334,30.272438
       parent: 1668
-- proto: WeaponSniperHristov
+- proto: WeaponRifleBR64
   entities:
   - uid: 3138
     components:
@@ -41479,7 +41479,7 @@ entities:
     - type: Transform
       pos: 8.51666,29.42835
       parent: 1668
-- proto: WeaponSubMachineGunWt550
+- proto: WeaponRifleM16A4
   entities:
   - uid: 3895
     components:

@@ -5,7 +5,7 @@
   description: Рюкзак оперативника с повышенной вместительностью.
   components:
   - type: Sprite
-    sprite: _Sunrise/SyndieGuns/syndiebackpack.rsi
+    sprite: _Sunrise/Clothing/Back/Backpacks/syndiebackpack.rsi
   - type: Storage
     maxItemSize: Huge
     grid:
@@ -18,7 +18,7 @@
   description: A spacious backpack with lots of pockets, worn by military structures.
   components:
     - type: Sprite
-      sprite: _Sunrise/Back/Backpacks/military.rsi
+      sprite: _Sunrise/Clothing/Back/Backpacks/military.rsi
     - type: Storage
       grid:
         - 0,0,6,3 # TODO: Change this
@@ -31,7 +31,7 @@
   description: A spacious backpack using bluespace technology.
   components:
     - type: Sprite
-      sprite: _Sunrise/Back/Backpacks/deathsquad-backpack.rsi
+      sprite: _Sunrise/Clothing/Back/Backpacks/deathsquad-backpack.rsi
     - type: Storage
       grid:
         - 0,0,6,3 # TODO: Change this
@@ -44,7 +44,7 @@
   description: Technicially progressive backpack.
   components:
     - type: Sprite
-      sprite: _Sunrise/Back/Backpacks/ce.rsi
+      sprite: _Sunrise/Clothing/Back/Backpacks/ce.rsi
 
 - type: entity
   parent: ClothingBackpack

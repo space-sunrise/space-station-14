@@ -51,18 +51,14 @@ namespace Content.IntegrationTests.Tests
             "Fland",
             "Meta",
             "Packed",
-            "Cluster",
             "Omega",
             "Bagel",
-            "Origin",
             "CentComm",
             "Box",
-            "Europa",
-            "Saltern",
             "Core",
             "Marathon",
             "MeteorArena",
-            "Atlas",
+            "Saltern",
             "Reach",
             "Train",
             "Oasis",
@@ -72,9 +68,7 @@ namespace Content.IntegrationTests.Tests
 			"SunriseFland",
 			"SunriseMarathon",
             "SunriseCentComm",
-            "AlterosPrison",
             "PlanetPrison",
-            "SunrisePrison"
         };
 
         /// <summary>

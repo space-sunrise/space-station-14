@@ -33,7 +33,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/rifle_machine.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/rifle_machine.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -42,39 +42,6 @@
   - type: MagazineVisuals
     magState: mag
     steps: 2
-    zeroVisible: false
-  - type: Appearance
-
-- type: entity
-  id: MagazineP90
-  name: P90 magazine
-  parent: BaseItem
-  components:
-  - type: Tag
-    tags:
-    - MagazineP90
-  - type: BallisticAmmoProvider
-    mayTransfer: true
-    proto: CartridgeLightRifle  # 57x28
-    whitelist:
-      tags:
-      - CartridgeLightRifle  # 57x28
-    capacity: 50
-  - type: Item
-    size: Small
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-  - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/p90.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: MagazineVisuals
-    magState: mag
-    steps: 6
     zeroVisible: false
   - type: Appearance
 
@@ -99,73 +66,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/mp38.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: MagazineVisuals
-    magState: mag
-    steps: 2
-    zeroVisible: false
-  - type: Appearance
-
-- type: entity
-  id: MagazineMP7
-  name: MP7 magazine
-  parent: BaseItem
-  components:
-  - type: Tag
-    tags:
-    - MagazineMP7
-  - type: BallisticAmmoProvider
-    mayTransfer: true
-    proto: CartridgeLightRifle  # 57x28
-    whitelist:
-      tags:
-      - CartridgeLightRifle  # 57x28
-    capacity: 45
-  - type: Item
-    size: Small
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-  - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/mp7.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: MagazineVisuals
-    magState: mag
-    steps: 2
-    zeroVisible: false
-  - type: Appearance
-
-- type: entity
-  id: MagazineMP5
-  name: MP5 magazine
-  parent: BaseItem
-  components:
-  - type: Tag
-    tags:
-    - MagazineMP5
-  - type: BallisticAmmoProvider
-    mayTransfer: true
-    proto: CartridgeLightRifle  # 57x28
-    whitelist:
-      tags:
-      - CartridgeLightRifle  # 57x28
-    capacity: 45
-  - type: Item
-    size: Small
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-  - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/mp5.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/mp38.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -198,7 +99,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/scorpion.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/scorpion.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -231,7 +132,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/new_vector.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/new_vector.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -283,7 +184,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/mg42.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/mg42.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -316,7 +217,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/mg60.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/mg60.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -349,7 +250,7 @@
       containers:
         ballistic-ammo: !type:Container
     - type: Sprite
-      sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/vp70.rsi
+      sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/vp70.rsi
       layers:
         - state: base
           map: ["enum.GunVisualLayers.Base"]
@@ -382,7 +283,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/glock22.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/glock22.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -415,7 +316,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/hi_browning.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/hi_browning.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -448,7 +349,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/acp14.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/acp14.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -457,39 +358,6 @@
   - type: MagazineVisuals
     magState: mag
     steps: 6
-    zeroVisible: false
-  - type: Appearance
-
-- type: entity
-  id: MagazinePPSH41
-  name: PPSH magazine
-  parent: BaseItem
-  components:
-  - type: Tag
-    tags:
-    - MagazinePPSH41
-  - type: BallisticAmmoProvider
-    mayTransfer: true
-    proto: CartridgeLightRifle  # 57x28
-    whitelist:
-      tags:
-      - CartridgeLightRifle  # 57x28
-    capacity: 71
-  - type: Item
-    size: Small
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-  - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/ppsh41.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: MagazineVisuals
-    magState: mag
-    steps: 2
     zeroVisible: false
   - type: Appearance
 
@@ -514,7 +382,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/stg44.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/stg44.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -539,13 +407,13 @@
     capacity: 200
   - type: Item
   - type: Sprite
-    sprite: _Sunrise/SyndieGuns/Dl6902mag.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Dl6902mag.rsi
   - type: MagazineVisuals
     magState: mag
     steps: 8
     zeroVisible: false
   - type: Appearance
-  
+
 - type: entity
   id: MagazinePistolSubMachineGunSIAR52
   name: "Расширенный магазин (безгильзовые)"
@@ -563,7 +431,7 @@
     capacity: 35
   - type: Item
   - type: Sprite
-    sprite: _Sunrise/SyndieGuns/IAR-52mag.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/IAR-52mag.rsi
   - type: MagazineVisuals
     magState: mag
     steps: 8

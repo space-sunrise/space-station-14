@@ -5,8 +5,8 @@
   description: Фирменный значок Санрайз.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Neck/Misc/sunrisebadge.rsi
+    sprite: _Sunrise/Clothing/Neck/Misc/sunrisebadge.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/Neck/Misc/sunrisebadge.rsi
+    sprite: _Sunrise/Clothing/Neck/Misc/sunrisebadge.rsi
   - type: TypingIndicatorClothing
     proto: sun

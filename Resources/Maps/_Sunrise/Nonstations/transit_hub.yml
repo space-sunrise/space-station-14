@@ -20056,7 +20056,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 13.5,12.5
       parent: 1
-- proto: WeaponLaserCannon
+- proto: WeaponEarthGovLaserSniper
   entities:
   - uid: 106
     components:
@@ -20073,7 +20073,7 @@ entities:
     - type: Transform
       pos: 8.51783,7.583647
       parent: 1
-- proto: WeaponRifleLecter
+- proto: WeaponRifleFamas
   entities:
   - uid: 1625
     components:

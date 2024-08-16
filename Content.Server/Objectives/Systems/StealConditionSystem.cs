@@ -77,17 +77,18 @@ public sealed class StealConditionSystem : EntitySystem
 
         //Sunrise-Start
         var locale = $"objective-{Regex.Replace(group.Name, @"[*?!'%\s]", string.Empty).ToLower()}";
-        if (Loc.GetString($"objective-{Regex.Replace(group.Name, @"[*?!'%\s]", string.Empty).ToLower()}") == locale)
+        if (Loc.GetString(locale) == locale)
         {
             Logger.Error($"Steal item objective-{Regex.Replace(group.Name, @"[*?!'%\s]", string.Empty).ToLower()} doesn't have locale");
+            locale = group.Name;
         }
         var title =condition.Comp.OwnerText == null
-            ? Loc.GetString(condition.Comp.ObjectiveNoOwnerText, ("itemName", Loc.GetString($"objective-{Regex.Replace(group.Name, @"[*?!'%\s]", string.Empty).ToLower()}")))
-            : Loc.GetString(condition.Comp.ObjectiveText, ("owner", Loc.GetString(condition.Comp.OwnerText)), ("itemName", Loc.GetString($"objective-{Regex.Replace(group.Name, @"[*?!'%\s]", string.Empty).ToLower()}")));
+            ? Loc.GetString(condition.Comp.ObjectiveNoOwnerText, ("itemName", Loc.GetString(locale)))
+            : Loc.GetString(condition.Comp.ObjectiveText, ("owner", Loc.GetString(condition.Comp.OwnerText)), ("itemName", Loc.GetString(locale)));
 
         var description = condition.Comp.CollectionSize > 1
-            ? Loc.GetString(condition.Comp.DescriptionMultiplyText, ("itemName", Loc.GetString($"objective-{Regex.Replace(group.Name, @"[*?!'%\s]", string.Empty).ToLower()}")), ("count", condition.Comp.CollectionSize))
-            : Loc.GetString(condition.Comp.DescriptionText, ("itemName", Loc.GetString($"objective-{Regex.Replace(group.Name, @"[*?!'%\s]", string.Empty).ToLower()}")));
+            ? Loc.GetString(condition.Comp.DescriptionMultiplyText, ("itemName", Loc.GetString(locale)), ("count", condition.Comp.CollectionSize))
+            : Loc.GetString(condition.Comp.DescriptionText, ("itemName", Loc.GetString(locale)));
         //Sunrise-End
 
         _metaData.SetEntityName(condition.Owner, title, args.Meta);

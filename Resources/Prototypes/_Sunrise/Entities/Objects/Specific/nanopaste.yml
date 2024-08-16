@@ -9,7 +9,7 @@
     tags:
     - Nanopaste
   - type: Sprite
-    sprite: _Sunrise/nanopaste.rsi
+    sprite: _Sunrise/Objects/Misc/nanopaste.rsi
     state: icon
   - type: Item
     heldPrefix: nanopaste

@@ -7,10 +7,10 @@
   description: Невероятно привлекательные и прекрасные монетки, которые открывают двери в мир маленького милого магазинчика.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Specific/Donate/suntick.rsi
+    sprite: _Sunrise/Objects/Specific/Donate/suntick.rsi
     state: telecrystal
   - type: Item
-    sprite: _Sunrise/Entities/Objects/Specific/Donate/suntick.rsi
+    sprite: _Sunrise/Objects/Specific/Donate/suntick.rsi
     size: Tiny
   - type: Stack
     count: 20

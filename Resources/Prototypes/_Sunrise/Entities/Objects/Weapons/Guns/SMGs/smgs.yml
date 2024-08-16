@@ -56,7 +56,7 @@
   id: WeaponSubMachineGunP90
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/p90.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/p90.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -86,11 +86,11 @@
           - MagazineP90
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifle  # 57x28
+        startingItem: CartridgePistol
         priority: 1
         whitelist:
           tags:
-          - CartridgeLightRifle  # 57x28
+          - CartridgePistol
   - type: MagazineVisuals
     magState: mag
     steps: 6
@@ -109,16 +109,16 @@
   id: WeaponSubMachineGunMP38
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/mp38/big.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp38/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/mp38/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp38/tiny.rsi
   - type: Item
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/mp38/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp38/tiny.rsi
   - type: GunWieldBonus
     minAngle: -22
     maxAngle: -28
@@ -153,7 +153,7 @@
   - type: Appearance
   - type: Wieldable
   - type: UseDelay
-    delay: 0.8
+    delay: 0.5
 
 - type: entity
   name: MP7
@@ -161,16 +161,16 @@
   id: WeaponSubMachineGunMP7
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/mp7/big.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp7/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/mp7/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp7/tiny.rsi
   - type: Item
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/mp7/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp7/tiny.rsi
   - type: GunWieldBonus
     minAngle: -22
     maxAngle: -28
@@ -191,13 +191,14 @@
         whitelist:
           tags:
           - MagazineMP7
+          - MagazinePistolSubMachineGun
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifle  # 57x28
+        startingItem: CartridgePistol
         priority: 1
         whitelist:
           tags:
-          - CartridgeLightRifle  # 57x28
+          - CartridgePistol
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -213,16 +214,16 @@
   id: WeaponSubMachineGunMP5
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/mp5/big.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp5/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/mp5/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp5/tiny.rsi
   - type: Item
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/mp5/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp5/tiny.rsi
   - type: GunWieldBonus
     minAngle: -22
     maxAngle: -28
@@ -245,13 +246,14 @@
         whitelist:
           tags:
           - MagazineMP5
+          - MagazinePistolSubMachineGun
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifle  # 57x28
+        startingItem: CartridgePistol
         priority: 1
         whitelist:
           tags:
-          - CartridgeLightRifle  # 57x28
+          - CartridgePistol
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -270,7 +272,7 @@
   id: WeaponSubMachineGunSkorpion
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/skorpion.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/skorpion.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -315,23 +317,23 @@
   id: WeaponSubMachineGunNewVector
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/vector/big.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/vector/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/vector/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/vector/tiny.rsi
   - type: Item
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/vector/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/vector/tiny.rsi
   - type: GunWieldBonus
     minAngle: -22
     maxAngle: -28
   - type: Gun
     minAngle: 24
     maxAngle: 45
-    fireRate: 14
+    fireRate: 7
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/new_vector/vector_shot.ogg
   - type: ItemSlots
@@ -359,7 +361,7 @@
   - type: Appearance
   - type: Wieldable
   - type: UseDelay
-    delay: 0.8
+    delay: 0.5
 
 - type: entity
   name: PPSH-41
@@ -367,16 +369,16 @@
   id: WeaponSubMachineGunPPSH41
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/ppsh41/big.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/ppsh41/big.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/ppsh41/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/ppsh41/tiny.rsi
   - type: Item
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/SMGs/ppsh41/tiny.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/ppsh41/tiny.rsi
   - type: GunWieldBonus
     minAngle: -22
     maxAngle: -28
@@ -403,11 +405,11 @@
           - MagazinePPSH41
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifle  # 57x28
+        startingItem: CartridgePistol
         priority: 1
         whitelist:
           tags:
-          - CartridgeLightRifle  # 57x28
+          - CartridgePistol
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -415,7 +417,7 @@
   - type: Appearance
   - type: Wieldable
   - type: UseDelay
-    delay: 1.3
+    delay: 0.5
 
 - type: entity
   name: MS-42
@@ -424,14 +426,14 @@
   description: Более совершенная версия Лектера.
   components:
   - type: Sprite
-    sprite: _Sunrise/SyndieGuns/MS-42.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/MS-42.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Sunrise/SyndieGuns/MS-42.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/MS-42.rsi
   - type: Gun
     minAngle: 10
     maxAngle: 15
@@ -470,7 +472,7 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
-  
+
 - type: entity
   name: AJ-100
   parent: BaseWeaponSubMachineGun
@@ -478,14 +480,14 @@
   description: Высокоскорострельный ПП, оборудован универсальным разъёмом для других типов пистолетных магазинов.
   components:
   - type: Sprite
-    sprite: _Sunrise/SyndieGuns/AJ-100.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/AJ-100.rsi
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Sunrise/SyndieGuns/AJ-100.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/AJ-100.rsi
   - type: Gun
     minAngle: 8
     maxAngle: 8
@@ -526,7 +528,7 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
-  
+
 - type: entity
   name: Пистолет-пулёмет SIAR-52
   parent: BaseWeaponSubMachineGun
@@ -534,14 +536,14 @@
   description: Высокоскорострельный ПП, оборудован интегрированым глушителем.
   components:
   - type: Sprite
-    sprite: _Sunrise/SyndieGuns/IAR-52.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/IAR-52.rsi
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: _Sunrise/SyndieGuns/IAR-52.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/IAR-52.rsi
   - type: Gun
     minAngle: 4
     maxAngle: 4

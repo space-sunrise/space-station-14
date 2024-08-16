@@ -19,10 +19,10 @@
       ballistic-ammo: !type:Container
   - type: Item
     size: Small
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/Rifle/dragunov_mag.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/dragunov_mag.rsi
   - type: Sprite
     netsync: false
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/Rifle/dragunov_mag.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/dragunov_mag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -47,19 +47,19 @@
   - type: BallisticAmmoProvider
     mayTransfer: true
     capacity: 20
-    proto: CartridgeMagnum  # 062
+    proto: CartridgeAntiMateriel  # 062
     whitelist:
       tags:
-        - CartridgeMagnum  # 062
+        - CartridgeAntiMateriel  # 062
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
   - type: Item
     size: Small
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/Rifle/br64_mag.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/br64_mag.rsi
   - type: Sprite
     netsync: false
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/Rifle/br64_mag.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/br64_mag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -92,10 +92,10 @@
       ballistic-ammo: !type:Container
   - type: Item
     size: Small
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/Rifle/sr127_mag.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/sr127_mag.rsi
   - type: Sprite
     netsync: false
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/Rifle/sr127_mag.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/sr127_mag.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]

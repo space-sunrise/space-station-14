@@ -1,0 +1,126 @@
+- type: entity
+  parent: BaseItem
+  id: Boris
+  name: robotic brain
+  description:
+  components:
+  - type: Organ
+  - type: Brain
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/boris.rsi
+    layers:
+    - state: boris_blank
+      map: ["base"]
+  - type: Input
+    context: "ghost"
+  - type: BlockMovement
+  - type: ToggleableGhostRole
+    examineTextMindPresent: boris-installed
+    examineTextMindSearching: boris-still-searching
+    examineTextNoMind: boris-off
+    beginSearchingText: boris-searching
+    roleName: boris-role-name
+    roleDescription: boris-role-description
+    roleRules: ghost-role-information-silicon-rules
+    wipeVerbText: boris-wipe-device-verb-text
+    wipeVerbPopup: boris-wiped-device
+    stopSearchVerbText: boris-stop-searching-verb-text
+    stopSearchVerbPopup: boris-stopped-searching
+  - type: Examiner
+  - type: BorgBrain
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Common
+  - type: NameIdentifier
+    group: Boris
+  - type: DoAfter
+  - type: Actions
+  - type: TypingIndicator
+    proto: robot
+  - type: Speech
+    speechSounds: Pai
+  - type: MobState
+    allowedStates:
+    - Alive
+  - type: Appearance
+  - type: Tag
+    tags:
+    - CannotSuicide
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableGhostRoleVisuals.Status:
+        base:
+          Off: { state: boris_blank }
+          Searching: { state: boris_recharging }
+          On: { state: boris }
+  - type: GuideHelp
+    guides:
+    - Cyborgs
+
+- type: entity
+  parent: Boris
+  id: Sofia
+  name: syndicate robotic brain
+  description:
+  components:
+  - type: Organ
+  - type: Brain
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/sofia.rsi
+    layers:
+    - state: sofia_blank
+      map: ["base"]
+  - type: Input
+    context: "ghost"
+  - type: BlockMovement
+  - type: ToggleableGhostRole
+    examineTextMindPresent: sofia-installed
+    examineTextMindSearching: sofia-still-searching
+    examineTextNoMind: sofia-off
+    beginSearchingText: sofia-searching
+    roleName: sofia-role-name
+    roleDescription: sofia-role-description
+    roleRules: ghost-role-information-silicon-rules
+    wipeVerbText: sofia-wipe-device-verb-text
+    wipeVerbPopup: sofia-wiped-device
+    stopSearchVerbText: sofia-stop-searching-verb-text
+    stopSearchVerbPopup: sofia-stopped-searching
+  - type: Examiner
+  - type: BorgBrain
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Syndicate
+  - type: ActiveRadio
+    channels:
+    - Syndicate
+  - type: NameIdentifier
+    group: Sofia
+  - type: DoAfter
+  - type: Actions
+  - type: TypingIndicator
+    proto: robot
+  - type: Speech
+    speechSounds: Pai
+  - type: MobState
+    allowedStates:
+    - Alive
+  - type: Appearance
+  - type: Tag
+    tags:
+    - CannotSuicide
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableGhostRoleVisuals.Status:
+        base:
+          Off: { state: sofia_blank }
+          Searching: { state: sofia_recharging }
+          On: { state: sofia }
+  - type: GuideHelp
+    guides:
+    - Cyborgs

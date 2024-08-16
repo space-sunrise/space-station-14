@@ -5,7 +5,7 @@
   description: A large duffel bag for holding any army goods.
   components:
     - type: Sprite
-      sprite: _Sunrise/Back/Duffels/military.rsi
+      sprite: _Sunrise/Clothing/Back/Duffels/military.rsi
     - type: Storage
       grid:
         - 0,0,6,3 # TODO: Change this
@@ -18,7 +18,7 @@
   description: A large duffel bag for all instruments you need to create singularity.
   components:
     - type: Sprite
-      sprite: _Sunrise/Back/Duffels/ce.rsi
+      sprite: _Sunrise/Clothing/Back/Duffels/ce.rsi
 
 - type: entity
   parent: ClothingBackpackDuffel

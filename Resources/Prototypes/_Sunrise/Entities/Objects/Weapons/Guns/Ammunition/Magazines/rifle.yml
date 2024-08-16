@@ -31,10 +31,175 @@
       ballistic-ammo: !type:Container
   - type: Item
     size: Small
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/v31.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/v31.rsi
   - type: Sprite
     netsync: false
-    sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/v31.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/v31.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineFamas
+  name: Famas magazine
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+    - MagazineFamas
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgeRifle
+    whitelist:
+      tags:
+      - CartridgeRifle
+    capacity: 25
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/famas.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineG36
+  name: G36 magazine
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+    - MagazineG36
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgeRifle
+    whitelist:
+      tags:
+      - CartridgeRifle
+    capacity: 25
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/g36.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineM28
+  name: M28 magazine
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+    - MagazineM28
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgeRifle  # 556
+    whitelist:
+      tags:
+      - CartridgeRifle  # 556
+    capacity: 25
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/m28.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineAR18
+  name: AR18 magazine
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+    - MagazineAR18
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgeRifle  # 556
+    whitelist:
+      tags:
+      - CartridgeRifle  # 556
+    capacity: 25
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/ar18.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineM16A4
+  name: M16A4 magazine
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+    - MagazineM16A4
+  - type: Item
+    size: Small
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    proto: CartridgeLightRifle  # 556
+    whitelist:
+      tags:
+      - CartridgeLightRifle  # 556
+    capacity: 25
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/m16a4.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]

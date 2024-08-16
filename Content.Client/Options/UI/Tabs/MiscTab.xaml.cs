@@ -36,8 +36,8 @@ public sealed partial class MiscTab : Control
         foreach (var layout in Enum.GetValues(typeof(ScreenType)))
         {
             //Sunrise-Start
-            var layoutloc = Loc.GetString($"layout-{layout.ToString()!.ToLower()!}");
-            layoutEntries.Add(new OptionDropDownCVar<string>.ValueOption(layoutloc.ToString()!, layoutloc.ToString()!));
+            var layoutLoc = Loc.GetString($"layout-{layout.ToString()!.ToLower()}");
+            layoutEntries.Add(new OptionDropDownCVar<string>.ValueOption(layout.ToString()!, layoutLoc));
             //Sunrise-End
         }
 
@@ -52,8 +52,8 @@ public sealed partial class MiscTab : Control
         var lobbyBackgroundEntries = new List<OptionDropDownCVar<string>.ValueOption>();
         foreach (var layout in Enum.GetValues(typeof(LobbyBackgroundType)))
         {
-            var layoutloc = Loc.GetString($"layout-{layout.ToString()!.ToLower()!}");
-            lobbyBackgroundEntries.Add(new OptionDropDownCVar<string>.ValueOption(layoutloc.ToString()!, layoutloc.ToString()!));
+            var layoutLoc = Loc.GetString($"layout-{layout.ToString()!.ToLower()}");
+            lobbyBackgroundEntries.Add(new OptionDropDownCVar<string>.ValueOption(layout.ToString()!, layoutLoc));
         }
         Control.AddOptionDropDown(SunriseCCVars.LobbyBackground, DropDownLobbyBackground, lobbyBackgroundEntries);
         Control.AddOptionPercentSlider(SunriseCCVars.LobbyOpacity, LobbyOpacitySlider);

@@ -377,7 +377,9 @@ public sealed partial class ChatSystem : SharedChatSystem
         string message,
         EntityUid? source = null,
         string? sender = null,
-        bool playSound = true,
+        bool playDefault = true, // Sunrise-edit
+        bool playTts = true, // Sunrise-edit
+        string? announceVoice = null,  // Sunrise-edit
         SoundSpecifier? announcementSound = null,
         Color? colorOverride = null)
     {
@@ -385,10 +387,15 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message)));
         _chatManager.ChatMessageToManyFiltered(filter, ChatChannel.Radio, message, wrappedMessage, source ?? default, false, true, colorOverride);
-        if (playSound)
+        // Sunrise-start
+        if (playDefault && announcementSound == null)
+            announcementSound = new SoundPathSpecifier(DefaultAnnouncementSound);
+
+        if (playTts)
         {
-            _audio.PlayGlobal(announcementSound?.ToString() ?? DefaultAnnouncementSound, filter, true, AudioParams.Default.WithVolume(-2f));
+            RaiseLocalEvent(new AnnouncementSpokeEvent(filter, wrappedMessage, announcementSound, announceVoice));
         }
+        // Sunrise-edit
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Station Announcement from {sender}: {message}");
     }
 
@@ -409,7 +416,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         bool playDefault = true, // Sunrise-edit
         bool playTts = true, // Sunrise-edit
         Color? colorOverride = null,
-        string? announceVoice = null,
+        string? announceVoice = null,  // Sunrise-edit
         SoundSpecifier? announcementSound = null)
     {
         sender ??= Loc.GetString("chat-manager-sender-announcement");

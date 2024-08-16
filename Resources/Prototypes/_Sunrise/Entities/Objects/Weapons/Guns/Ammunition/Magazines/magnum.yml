@@ -47,7 +47,7 @@
       containers:
         ballistic-ammo: !type:Container
     - type: Sprite
-      sprite: _Sunrise/Entities/Objects/Weapons/Guns/Magazines/deagle.rsi
+      sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/deagle.rsi
       layers:
         - state: base
           map: ["enum.GunVisualLayers.Base"]

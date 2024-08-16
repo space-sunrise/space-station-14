@@ -68,9 +68,9 @@
   description: Облегченная версия скафандра Службы безопасности, обеспечивает хорошую подвижность, но меньшую защиту.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Hardsuits/pilothardsuit.rsi
+    sprite: _Sunrise/Clothing/Hardsuits/pilothardsuit.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/Hardsuits/pilothardsuit.rsi
+    sprite: _Sunrise/Clothing/Hardsuits/pilothardsuit.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
