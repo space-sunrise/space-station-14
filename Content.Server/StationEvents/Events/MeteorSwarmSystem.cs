@@ -31,7 +31,7 @@ public sealed class MeteorSwarmSystem : GameRuleSystem<MeteorSwarmComponent>
         Filter allPlayersInGame = Filter.Empty().AddWhere(GameTicker.UserHasJoinedGame);
 
         if (component.Announcement is { } locId)
-            _chat.DispatchFilteredAnnouncement(allPlayersInGame, Loc.GetString(locId), playSound: false, colorOverride: Color.Gold);
+            _chat.DispatchFilteredAnnouncement(allPlayersInGame, Loc.GetString(locId), playDefault: false, colorOverride: Color.Gold);
 
         // Sunrise-Edit
         // _audio.PlayGlobal(component.AnnouncementSound, allPlayersInGame, true);
