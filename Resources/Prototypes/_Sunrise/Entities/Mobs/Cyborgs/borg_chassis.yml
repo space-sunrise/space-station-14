@@ -17,7 +17,7 @@
       visible: false
   - type: FlashImmunity
   - type: ShowJobIcons
-  - type: ShowMindShieldIcons
+#  - type: ShowMindShieldIcons Sunrise-Edit
   - type: ShowCriminalRecordIcons
   - type: BorgCuffed
   - type: BorgTransponder
@@ -112,7 +112,7 @@
   - type: BorgCuffed
   - type: FlashImmunity
   - type: ShowJobIcons
-  - type: ShowMindShieldIcons
+#  - type: ShowMindShieldIcons Sunrise-Edit
   - type: ShowCriminalRecordIcons
   - type: BorgTransponder
     sprite:
@@ -205,7 +205,7 @@
       map: [ "light" ]
       visible: false
   - type: ShowJobIcons
-  - type: ShowMindShieldIcons
+#  - type: ShowMindShieldIcons Sunrise-Edit
   - type: ShowCriminalRecordIcons
   - type: SiliconLawProvider
     laws: PeaceStatic
@@ -461,7 +461,7 @@
         volume: -15
   - type: FlashImmunity
   - type: ShowJobIcons
-  - type: ShowMindShieldIcons
+#  - type: ShowMindShieldIcons Sunrise-Edit
   - type: ShowCriminalRecordIcons
   - type: GhostRole
     makeSentient: true
