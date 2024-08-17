@@ -4,7 +4,7 @@
   parent: BaseSoda
   desc: reagent-desc-fourteen-loko-plus
   physicalDesc: reagent-physical-desc-fizzy
-  flavor: fourteenlokosodaplus
+  flavor: fourteen_loko_soda_plus
   color: "#fcf6de"
   metabolisms:
     Drink:
