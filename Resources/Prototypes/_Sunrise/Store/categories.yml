@@ -92,3 +92,21 @@
   id: SecurityThings
   name: Служба Безопасности
   priority: 5
+  
+- type: storeCategory
+  id: DiseaseInfectCategory
+  name: shop-disease-category-infect
+
+- type: storeCategory
+  id: DiseaseSymptomsCategory
+  name: shop-disease-category-symptoms
+
+- type: storeCategory
+  id: DiseaseEvolutionCategory
+  name: shop-disease-category-evolution
+
+
+- type: currency
+  id: DiseasePoints
+  displayName: shop-disease-currency
+  canWithdraw: false

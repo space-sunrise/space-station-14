@@ -1,0 +1,236 @@
+- type: entity
+  id: ActionInfect
+  name: action-disease-infect-name
+  description: action-disease-infect-description
+  noSpawn: true
+  components:
+  - type: EntityTargetAction
+    useDelay: 1
+    itemIconStyle: BigAction
+    whitelist:
+      components:
+      - HumanoidAppearance
+    canTargetSelf: false
+    interactOnMiss: false
+    icon:
+      sprite: _Sunrise/Actions/disease.rsi
+      state: action
+    event: !type:InfectEvent
+
+- type: entity
+  id: ActionDiseaseShop
+  name: action-disease-shop-name
+  description: action-disease-shop-description
+  noSpawn: true
+  components:
+  - type: InstantAction
+    icon:
+      sprite: _Sunrise/Actions/disease.rsi
+      state: shop
+    event: !type:DiseaseShopActionEvent
+
+- type: entity
+  id: ActionDiseaseBaseChance
+  name: listing-disease-base-chance-name
+  description: listing-disease-base-chance-description
+  noSpawn: true
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Sunrise/Actions/disease.rsi
+      state: baseChance
+    event: !type:DiseaseAddBaseChanceEvent
+
+- type: entity
+  id: ActionDiseaseInfectChance
+  name: listing-disease-infect-chance-name
+  description: listing-disease-infect-chance-description
+  noSpawn: true
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Sunrise/Actions/disease.rsi
+      state: coughChance
+    event: !type:DiseaseAddCoughChanceEvent
+
+- type: entity
+  id: ActionDiseaseShield
+  name: listing-disease-shield-name
+  description: listing-disease-shield-description
+  noSpawn: true
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Sunrise/Actions/disease.rsi
+      state: shield
+    event: !type:DiseaseAddShieldEvent
+
+- type: entity
+  id: ActionDiseaseLethal
+  name: listing-disease-lethal-name
+  description: listing-disease-lethal-description
+  noSpawn: true
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Sunrise/Actions/disease.rsi
+      state: lethal
+    event: !type:DiseaseAddLethalEvent
+    
+#Store
+
+- type: entity
+  id: ActionDiseaseCough
+  name: listing-disease-cough-name
+  description: listing-disease-cough-description
+  noSpawn: true
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Sunrise/Actions/disease.rsi
+      state: cough
+    event: !type:DiseaseAddSymptomEvent
+      symptom: "Cough"
+      minLevel: 2
+
+- type: entity
+  id: ActionDiseaseSneeze
+  name: listing-disease-sneeze-name
+  description: listing-disease-sneeze-description
+  noSpawn: true
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Sunrise/Actions/disease.rsi
+      state: sneeze
+    event: !type:DiseaseAddSymptomEvent
+      symptom: "Sneeze"
+      minLevel: 3
+
+- type: entity
+  id: ActionDiseaseVomit
+  name: listing-disease-vomit-name
+  description: listing-disease-vomit-description
+  noSpawn: true
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Sunrise/Actions/disease.rsi
+      state: vomit
+    event: !type:DiseaseAddSymptomEvent
+      symptom: "Vomit"
+      minLevel: 3
+
+- type: entity
+  id: ActionDiseaseNarcolepsy
+  name: listing-disease-narcolepsy-name
+  description: listing-disease-narcolepsy-description
+  noSpawn: true
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Sunrise/Actions/disease.rsi
+      state: narcolepsy
+    event: !type:DiseaseAddSymptomEvent
+      symptom: "Narcolepsy"
+      minLevel: 3
+
+- type: entity
+  id: ActionDiseaseCrying
+  name: listing-disease-cry-name
+  description: listing-disease-cry-description
+  noSpawn: true
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Sunrise/Actions/disease.rsi
+      state: sob
+    event: !type:DiseaseAddSymptomEvent
+      symptom: "Crying"
+      minLevel: 0
+
+- type: entity
+  id: ActionDiseaseMuted
+  name: listing-disease-muted-name
+  description: listing-disease-muted-description
+  noSpawn: true
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Sunrise/Actions/disease.rsi
+      state: muted
+    event: !type:DiseaseAddSymptomEvent
+      symptom: "Muted"
+      minLevel: 4
+
+- type: entity
+  id: ActionDiseaseSlowness
+  name: listing-disease-slowness-name
+  description: listing-disease-slowness-description
+  noSpawn: true
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Sunrise/Actions/disease.rsi
+      state: slowness
+    event: !type:DiseaseAddSymptomEvent
+      symptom: "Slowness"
+      minLevel: 2
+
+- type: entity
+  id: ActionDiseaseBleed
+  name: listing-disease-bleed-name
+  description: listing-disease-bleed-description
+  noSpawn: true
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Sunrise/Actions/disease.rsi
+      state: bleed
+    event: !type:DiseaseAddSymptomEvent
+      symptom: "Bleed"
+      minLevel: 3
+
+- type: entity
+  id: ActionDiseaseBlindness
+  name: listing-disease-blindness-name
+  description: listing-disease-blindness-description
+  noSpawn: true
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Sunrise/Actions/disease.rsi
+      state: blindness
+    event: !type:DiseaseAddSymptomEvent
+      symptom: "Blindness"
+      minLevel: 4
+
+- type: entity
+  id: ActionDiseaseInsult
+  name: listing-disease-insult-name
+  description: listing-disease-insult-description
+  noSpawn: true
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Sunrise/Actions/disease.rsi
+      state: lethal
+    event: !type:DiseaseAddSymptomEvent
+      symptom: "Insult"
+      minLevel: 2
+
+

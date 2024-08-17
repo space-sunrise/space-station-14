@@ -173,7 +173,8 @@ public sealed class SunriseCCVars
     public static readonly CVarDef<float> LobbyOpacity =
         CVarDef.Create("lobby.lobby_opacity", 0.90f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
-    public static readonly CVarDef<string> ServerName = CVarDef.Create("lobby.server_name", "SS14", CVar.REPLICATED);
+    public static readonly CVarDef<string> ServerName = 
+        CVarDef.Create("lobby.server_name", "SS14", CVar.SERVER | CVar.REPLICATED);
 
     /*
      * Planet Prison
