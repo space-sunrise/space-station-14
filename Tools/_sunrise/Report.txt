@@ -1,37 +1,4 @@
 
-Проверка локализации:
-Не переведённая строка "ent-ActionDiseaseCough" в "_sunrise\_prototypes\disease\store\Actions.ftl", строка 1: ent-ActionDiseaseCough = listing-disease-cough-name
-Не переведённая строка ".desc" в "_sunrise\_prototypes\disease\store\Actions.ftl", строка 2: .desc = listing-disease-cough-description
-Не переведённая строка "ent-ActionDiseaseSneeze" в "_sunrise\_prototypes\disease\store\Actions.ftl", строка 3: ent-ActionDiseaseSneeze = listing-disease-sneeze-name
-Не переведённая строка ".desc" в "_sunrise\_prototypes\disease\store\Actions.ftl", строка 4: .desc = listing-disease-sneeze-description
-Не переведённая строка "ent-ActionDiseaseVomit" в "_sunrise\_prototypes\disease\store\Actions.ftl", строка 5: ent-ActionDiseaseVomit = listing-disease-vomit-name
-Не переведённая строка ".desc" в "_sunrise\_prototypes\disease\store\Actions.ftl", строка 6: .desc = listing-disease-vomit-description
-Не переведённая строка "ent-ActionDiseaseNarcolepsy" в "_sunrise\_prototypes\disease\store\Actions.ftl", строка 7: ent-ActionDiseaseNarcolepsy = listing-disease-narcolepsy-name
-Не переведённая строка ".desc" в "_sunrise\_prototypes\disease\store\Actions.ftl", строка 8: .desc = listing-disease-narcolepsy-description
-Не переведённая строка "ent-ActionDiseaseCrying" в "_sunrise\_prototypes\disease\store\Actions.ftl", строка 9: ent-ActionDiseaseCrying = listing-disease-cry-name
-Не переведённая строка ".desc" в "_sunrise\_prototypes\disease\store\Actions.ftl", строка 10: .desc = listing-disease-cry-description
-Не переведённая строка "ent-ActionDiseaseMuted" в "_sunrise\_prototypes\disease\store\Actions.ftl", строка 11: ent-ActionDiseaseMuted = listing-disease-muted-name
-Не переведённая строка ".desc" в "_sunrise\_prototypes\disease\store\Actions.ftl", строка 12: .desc = listing-disease-muted-description
-Не переведённая строка "ent-ActionDiseaseSlowness" в "_sunrise\_prototypes\disease\store\Actions.ftl", строка 13: ent-ActionDiseaseSlowness = listing-disease-slowness-name
-Не переведённая строка ".desc" в "_sunrise\_prototypes\disease\store\Actions.ftl", строка 14: .desc = listing-disease-slowness-description
-Не переведённая строка "ent-ActionDiseaseBleed" в "_sunrise\_prototypes\disease\store\Actions.ftl", строка 15: ent-ActionDiseaseBleed = listing-disease-bleed-name
-Не переведённая строка ".desc" в "_sunrise\_prototypes\disease\store\Actions.ftl", строка 16: .desc = listing-disease-bleed-description
-Не переведённая строка "ent-ActionDiseaseBlindness" в "_sunrise\_prototypes\disease\store\Actions.ftl", строка 17: ent-ActionDiseaseBlindness = listing-disease-blindness-name
-Не переведённая строка ".desc" в "_sunrise\_prototypes\disease\store\Actions.ftl", строка 18: .desc = listing-disease-blindness-description
-Не переведённая строка "ent-ActionDiseaseInsult" в "_sunrise\_prototypes\disease\store\Actions.ftl", строка 19: ent-ActionDiseaseInsult = listing-disease-insult-name
-Не переведённая строка ".desc" в "_sunrise\_prototypes\disease\store\Actions.ftl", строка 20: .desc = listing-disease-insult-description
-Не переведённая строка "ent-DrinkFourteenLokoPlusCan" в "_sunrise\_prototypes\entities\objects\consumable\drinks\drinks_cans.ftl", строка 1: ent-DrinkFourteenLokoPlusCan = Fourteen Loko Plus can
-Не переведённая строка ".desc" в "_sunrise\_prototypes\entities\objects\consumable\drinks\drinks_cans.ftl", строка 2: .desc = A remake of the popular drink Fourteen Loko. But just like the original, drink responsibly.
-Не переведённая строка "ent-DrinkLukin" в "_sunrise\_prototypes\entities\objects\consumable\drinks\drinks_cans.ftl", строка 3: ent-DrinkLukin = Lukin's drink
-Не переведённая строка ".desc" в "_sunrise\_prototypes\entities\objects\consumable\drinks\drinks_cans.ftl", строка 4: .desc = Brother Lukin's not very famous alcoholic drink. It has medicinal properties to heal bodily harm, but don't drink too much.
-Не переведённая строка "ent-FoodSnackMaysonEnergy" в "_sunrise\_prototypes\entities\objects\consumable\food\snacks.ftl", строка 1: ent-FoodSnackMaysonEnergy = menergy bar
-Не переведённая строка ".desc" в "_sunrise\_prototypes\entities\objects\consumable\food\snacks.ftl", строка 2: .desc = Mayson's energy bar
-Не переведённая строка "ent-FoodSnackMaysonEnergyBar" в "_sunrise\_prototypes\entities\objects\consumable\food\snacks.ftl", строка 3: ent-FoodSnackMaysonEnergyBar = menergy bar
-Не переведённая строка ".desc" в "_sunrise\_prototypes\entities\objects\consumable\food\snacks.ftl", строка 4: .desc = Mayson's energy bar
-Не переведённая строка "ent-FoodPacketMaysonEnergyTrash" в "_sunrise\_prototypes\entities\objects\consumable\food\snacks.ftl", строка 5: ent-FoodPacketMaysonEnergyTrash = energybar wrapper
-Не переведённая строка "ent-Boris" в "_sunrise\_prototypes\entities\objects\specific\borg_brains.ftl", строка 1: ent-Boris = robotic brain
-Не переведённая строка "ent-Sofia" в "_sunrise\_prototypes\entities\objects\specific\borg_brains.ftl", строка 3: ent-Sofia = syndicate robotic brain
-
 Проверка прототипов:
 Строка с русскими символами в "name_identifier_groups.yml", строка 4: prefix: ОБ # Sunrise-Localization
 Строка с русскими символами в "name_identifier_groups.yml", строка 8: prefix: КБ # Sunrise-Localization
@@ -11430,13 +11397,6 @@
 Строка с русскими символами в "_Sunrise\Decals\crayons.yml", строка 114: - type: decal # Ы
 Строка с русскими символами в "_Sunrise\Decals\crayons.yml", строка 121: - type: decal # Ж
 Строка с русскими символами в "_Sunrise\Decals\crayons.yml", строка 128: - type: decal # З
-Строка с русскими символами в "_Sunrise\Disease\DiseaseRole.yml", строка 3: name: разумная болезнь
-Строка с русскими символами в "_Sunrise\Disease\Emotes\Emotes.yml", строка 3: name: Тошнота
-Строка с русскими символами в "_Sunrise\Disease\Emotes\Emotes.yml", строка 5: chatMessages: [тошнитыы]
-Строка с русскими символами в "_Sunrise\Disease\Emotes\Emotes.yml", строка 9: name: Головная боль
-Строка с русскими символами в "_Sunrise\Disease\Emotes\Emotes.yml", строка 11: chatMessages: [голова болитыы]
-Строка с русскими символами в "_Sunrise\Disease\Emotes\Emotes.yml", строка 15: name: Инсульт
-Строка с русскими символами в "_Sunrise\Disease\Emotes\Emotes.yml", строка 17: chatMessages: [инсультыы]
 Строка с русскими символами в "_Sunrise\Entities\Clothing\Back\backpacks.yml", строка 4: name: Рюкзак Синдиката
 Строка с русскими символами в "_Sunrise\Entities\Clothing\Back\backpacks.yml", строка 5: description: Рюкзак оперативника с повышенной вместительностью.
 Строка с русскими символами в "_Sunrise\Entities\Clothing\Back\backpacks.yml", строка 61: name: рюкзак сотрудника кт
@@ -11810,6 +11770,10 @@
 Строка с русскими символами в "_Sunrise\Entities\Mobs\Pets\familiars.yml", строка 51: description: Помогайте своему библиотекарю просвящать эту станцию.
 Строка с русскими символами в "_Sunrise\Entities\Mobs\Pets\familiars.yml", строка 52: rules: Вы разумная книга-мимик. Помогайте своему хозяину скрасить жизнь, просвящайте всех на станции.
 Строка с русскими символами в "_Sunrise\Entities\Mobs\Pets\familiars.yml", строка 56: gender: male  # ОН фолиант
+Строка с русскими символами в "_Sunrise\Entities\Mobs\Player\eviltwin.yml", строка 8: name: Злой двойник
+Строка с русскими символами в "_Sunrise\Entities\Mobs\Player\eviltwin.yml", строка 9: description: Вы - злой двойник какой-то другой персоны.
+Строка с русскими символами в "_Sunrise\Entities\Mobs\Player\eviltwin.yml", строка 11: Старайтесь действовать скрытно, никто не должен прознать о подмене!
+Строка с русскими символами в "_Sunrise\Entities\Mobs\Player\eviltwin.yml", строка 12: Действуйте от лица вашего оригинала, хитрите, подставляйте, запутывайте.
 Строка с русскими символами в "_Sunrise\Entities\Mobs\Player\humanoid_xeno.yml", строка 5: name: Ксеноморф
 Строка с русскими символами в "_Sunrise\Entities\Mobs\Player\predator.yml", строка 5: name: Хищник
 Строка с русскими символами в "_Sunrise\Entities\Objects\Books\hyperlinkbooks.yml", строка 19: name: корпоративный закон
@@ -12036,6 +12000,9 @@
 Строка с русскими символами в "_Sunrise\Entities\Structures\Decoration\barber.yml", строка 3: name: жезл парикмахера
 Строка с русскими символами в "_Sunrise\Entities\Structures\Decoration\barber.yml", строка 4: description: Сине-красно-белый вертящийся цилиндр у забугорных парикмахеров.
 Строка с русскими символами в "_Sunrise\Entities\Structures\Furniture\chairs.yml", строка 45: name: кресло парикмахера
+Строка с русскими символами в "_Sunrise\Entities\Structures\Machines\pacificator.yml", строка 4: name: генератор пацифизма
+Строка с русскими символами в "_Sunrise\Entities\Structures\Machines\pacificator.yml", строка 5: description: Делает всех разумных существ в радиусе действия пацифистами.
+Строка с русскими символами в "_Sunrise\Entities\Structures\Machines\pacificator.yml", строка 89: name: генератор пацифизма (машинная плата)
 Строка с русскими символами в "_Sunrise\Entities\Structures\Machines\vending_machines.yml", строка 4: name: парикмахерВенд
 Строка с русскими символами в "_Sunrise\Entities\Structures\Machines\vending_machines.yml", строка 5: description: Тут вы можете купить предметы, чтоб починить испорченную прическу.
 Строка с русскими символами в "_Sunrise\Entities\Structures\Machines\Computers\computers.yml", строка 16: name: консоль управления шаттлом ПЦК
@@ -12063,16 +12030,6 @@
 Строка с русскими символами в "_Sunrise\Entities\Structures\Storage\Closets\Lockers\lockers.yml", строка 4: name: шкаф офицера "Синий Щит"
 Строка с русскими символами в "_Sunrise\Entities\Structures\Storage\Closets\Lockers\lockers.yml", строка 31: name: шкаф пилота
 Строка с русскими символами в "_Sunrise\Entities\Structures\Storage\Closets\Lockers\lockers.yml", строка 73: - id: WeaponLauncherRL5  # Версия РПГ с другим спрайтом и требующая использовать 2 руки для стрельбы
-Строка с русскими символами в "_Sunrise\EvilTwin\humanoid.yml", строка 8: name: Злой двойник
-Строка с русскими символами в "_Sunrise\EvilTwin\humanoid.yml", строка 9: description: Вы - злой двойник какой-то другой персоны.
-Строка с русскими символами в "_Sunrise\EvilTwin\humanoid.yml", строка 11: Старайтесь действовать скрытно, никто не должен прознать о подмене!
-Строка с русскими символами в "_Sunrise\EvilTwin\humanoid.yml", строка 12: Действуйте от лица вашего оригинала, хитрите, подставляйте, запутывайте.
-Строка с русскими символами в "_Sunrise\EvilTwin\objective.yml", строка 17: name: Улететь на эвакуационном шаттле
-Строка с русскими символами в "_Sunrise\EvilTwin\objective.yml", строка 18: description: Успешно заменив свою цель улетите со станции.
-Строка с русскими символами в "_Sunrise\EvilTwin\objective.yml", строка 31: name: Устранить оригинал
-Строка с русскими символами в "_Sunrise\EvilTwin\objective.yml", строка 32: description: Устраните оригинал и замените его.
-Строка с русскими символами в "_Sunrise\Fugitive\objective.yml", строка 17: name: Улететь на эвакуационном шаттле
-Строка с русскими символами в "_Sunrise\Fugitive\objective.yml", строка 18: description: Вы как-то сумели сбежать из тюрьмы на космическую станцию, вам необходимо улететь со станции на эвакуационном шаттле в космопорт.
 Строка с русскими символами в "_Sunrise\Guidebook\rules.yml", строка 9: name: Правило 0
 Строка с русскими символами в "_Sunrise\Guidebook\rules.yml", строка 16: name: Правило 1
 Строка с русскими символами в "_Sunrise\Guidebook\rules.yml", строка 23: name: Правило 2
@@ -12161,12 +12118,16 @@
 Строка с русскими символами в "_Sunrise\Maps\planet_prison.yml", строка 13: mapNameTemplate: '{0} Планетарная тюрьма {1}'
 Строка с русскими символами в "_Sunrise\Maps\planet_prison.yml", строка 22: #PrisonChef: [ 1, 2 ] Увы
 Строка с русскими символами в "_Sunrise\Maps\planet_prison.yml", строка 23: #PrisonWorker: [ 1, 2 ] Увы
+Строка с русскими символами в "_Sunrise\Objectives\eviltwin.yml", строка 17: name: Улететь на эвакуационном шаттле
+Строка с русскими символами в "_Sunrise\Objectives\eviltwin.yml", строка 18: description: Успешно заменив свою цель улетите со станции.
+Строка с русскими символами в "_Sunrise\Objectives\eviltwin.yml", строка 31: name: Устранить оригинал
+Строка с русскими символами в "_Sunrise\Objectives\eviltwin.yml", строка 32: description: Устраните оригинал и замените его.
+Строка с русскими символами в "_Sunrise\Objectives\fugitive.yml", строка 17: name: Улететь на эвакуационном шаттле
+Строка с русскими символами в "_Sunrise\Objectives\fugitive.yml", строка 18: description: Вы как-то сумели сбежать из тюрьмы на космическую станцию, вам необходимо улететь со станции на эвакуационном шаттле в космопорт.
 Строка с русскими символами в "_Sunrise\Objectives\traitorObjectives.yml", строка 25: owner: офицер "Синий Щит"
-Строка с русскими символами в "_Sunrise\Pacificator\pacificator.yml", строка 4: name: генератор пацифизма
-Строка с русскими символами в "_Sunrise\Pacificator\pacificator.yml", строка 5: description: Делает всех разумных существ в радиусе действия пацифистами.
-Строка с русскими символами в "_Sunrise\Pacificator\pacificator.yml", строка 89: name: генератор пацифизма (машинная плата)
 Строка с русскими символами в "_Sunrise\PlanetPrison\objective.yml", строка 17: name: Сбежать с планетарной тюрьмы.
 Строка с русскими символами в "_Sunrise\PlanetPrison\objective.yml", строка 18: description: Вам нужно выбраться из комплекса содержания и убежать как можно дальше, возможно вам удастся скрыться.
+Строка с русскими символами в "_Sunrise\Roles\Antags\disease.yml", строка 3: name: разумная болезнь
 Строка с русскими символами в "_Sunrise\Roles\Jobs\departments.yml", строка 26: color: "#005bfb"  # Иначе плохо видно
 Строка с русскими символами в "_Sunrise\Roles\Jobs\PlanetPrison\prison_guard.yml", строка 43: pocket1: WeaponSubMachineGunSkorpion  # Почему бы и нет, ппшка на резине
 Строка с русскими символами в "_Sunrise\Species\humanoid_xeno.yml", строка 4: name: Ксеноморф
@@ -12242,3 +12203,9 @@
 Строка с русскими символами в "_Sunrise\Voice\speech_emotes.yml", строка 189: - хряк.
 Строка с русскими символами в "_Sunrise\Voice\speech_emotes.yml", строка 190: - хряк
 Строка с русскими символами в "_Sunrise\Voice\speech_emotes.yml", строка 191: - хряк!
+Строка с русскими символами в "_Sunrise\Voice\speech_emotes.yml", строка 195: name: Тошнота
+Строка с русскими символами в "_Sunrise\Voice\speech_emotes.yml", строка 197: chatMessages: [тошнитыы]
+Строка с русскими символами в "_Sunrise\Voice\speech_emotes.yml", строка 201: name: Головная боль
+Строка с русскими символами в "_Sunrise\Voice\speech_emotes.yml", строка 203: chatMessages: [голова болитыы]
+Строка с русскими символами в "_Sunrise\Voice\speech_emotes.yml", строка 207: name: Инсульт
+Строка с русскими символами в "_Sunrise\Voice\speech_emotes.yml", строка 209: chatMessages: [инсультыы]

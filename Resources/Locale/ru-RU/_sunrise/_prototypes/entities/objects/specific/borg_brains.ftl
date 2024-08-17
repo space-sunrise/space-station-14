@@ -1,4 +1,4 @@
-ent-Boris = robotic brain
-    .desc = { ent-BaseItem.desc }
-ent-Sofia = syndicate robotic brain
-    .desc = { ent-Boris.desc }
+ent-Boris = роботический мозг
+    .desc = Искусственный мозг, способной к банальной интелектуальной активности.
+ent-Sofia = роботический мозг синдиката
+    .desc = Искусственный мозг, способной к банальной интелектуальной активности.
