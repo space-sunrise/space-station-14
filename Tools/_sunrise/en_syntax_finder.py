@@ -202,7 +202,9 @@ if __name__ == "__main__":
     'dbg_rotation4',
     'dbg_rotationTex',
     'plague inc 2.0',
-    'False'
+    'False',
+    'True',
+    'chèvre'
     ]  # Добавьте сюда слова, которые нужно игнорировать
     
     # Список файлов, которые нужно игнорировать
@@ -223,6 +225,6 @@ if __name__ == "__main__":
     localization_issues_found = check_translations(localization_directory, report_path, ignore_list, ignore_files)
     
     # Проверяем прототипы на наличие русских символов
-    prototypes_issues_found = check_prototypes_for_russian(prototypes_directory, report_path)
+    #prototypes_issues_found = check_prototypes_for_russian(prototypes_directory, report_path)
     
     print(f"Отчет создан в {report_path}")

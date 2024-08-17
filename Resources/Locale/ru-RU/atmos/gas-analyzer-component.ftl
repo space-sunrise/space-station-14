@@ -1,6 +1,6 @@
 ## Entity
 
-gas-analyzer-object-out-of-range = The object went out of range.
+gas-analyzer-object-out-of-range = Объект вышел за пределы зоны обнаружения.
 gas-analyzer-component-player-cannot-reach-message = Вы не можете туда достать.
 gas-analyzer-shutoff = Газоанализатор выключается.
 
