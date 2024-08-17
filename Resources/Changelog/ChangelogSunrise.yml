@@ -2675,3 +2675,14 @@
   id: 196
   time: '2024-08-17T13:48:02.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/290
+- author: Rinary1
+  changes:
+  - message: "\u0410\u043A\u0442\u0443\u0430\u043B\u0438\u0437\u0438\u0440\u043E\u0432\
+      \u0430\u043D \u043F\u0435\u0440\u0435\u0432\u043E\u0434"
+    type: Tweak
+  - message: "\u0418\u0441\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0430 \u0441\u0443\
+      \u043C\u043A\u0430 \u043E\u0441\u0449"
+    type: Fix
+  id: 197
+  time: '2024-08-17T21:28:18.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/296
