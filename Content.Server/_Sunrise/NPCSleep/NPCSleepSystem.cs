@@ -6,6 +6,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC;
 using Robust.Server.Player;
 using Robust.Shared.Configuration;
+using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
 namespace Content.Server._Sunrise.NPCSleep;
@@ -54,6 +55,9 @@ public sealed partial class NPCSleepSystem : EntitySystem
         {
             if (!_mobStateSystem.IsAlive(uid))
                 continue;
+
+            if (HasComp<ActorComponent>(uid))
+                return;
 
             if (AllowNpc(uid))
             {
