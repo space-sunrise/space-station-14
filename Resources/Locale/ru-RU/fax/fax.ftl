@@ -28,6 +28,7 @@ fax-label-captainoffice = Кабинет капитана
 fax-label-captainsoffice = Кабинет капитана
 fax-label-captainsquarters = Кабинет капитана
 fax-label-centralcommand = Центральное коммандование
+fax-label-centcomm = Центральное коммандование
 fax-label-hop = Глава персонала
 fax-label-hopoffice = Глава персонала
 fax-label-hopfax = Глава персонала
