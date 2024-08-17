@@ -14,11 +14,11 @@
     Narcotic:
       effects:
       - !type:MovespeedModifier
-        walkSpeedModifier: 1.2
-        sprintSpeedModifier: 1.2
+        walkSpeedModifier: 1.16
+        sprintSpeedModifier: 1.16
     Poison:
       effects:
       - !type:HealthChange
         damage:
           types:
-            Poison: 1.5
+            Poison: 1.4
