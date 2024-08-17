@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Server.Administration;
 using Content.Server.Chat.Managers;
+using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Radio.Components;
 using Content.Server.Roles;
@@ -38,7 +39,9 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
     [Dependency] private readonly SharedStunSystem _stunSystem = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly SharedRoleSystem _roles = default!;
-
+    //sunrise-edit-start
+    [Dependency] private readonly ChatSystem _chatSystem = default!;
+    //sunrise-edit-end
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -165,6 +168,9 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         EnsureEmaggedRole(uid, component);
 
         _stunSystem.TryParalyze(uid, component.StunTime, true);
+        //sunrise-edit-start
+        _chatSystem.TrySendInGameICMessage(uid, Loc.GetString("borg-emagged-message"), InGameICChatType.Emote, false, isFormatted: true);
+        //sunrise-edit-end
 
         if (!_mind.TryGetMind(uid, out var mindId, out _))
             return;

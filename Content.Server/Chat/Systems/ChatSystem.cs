@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using Content.Server._Sunrise.Chat; //sunrise-edit
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
@@ -150,9 +151,10 @@ public sealed partial class ChatSystem : SharedChatSystem
         IConsoleShell? shell = null,
         ICommonSession? player = null, string? nameOverride = null,
         bool checkRadioPrefix = true,
-        bool ignoreActionBlocker = false)
+        bool ignoreActionBlocker = false,
+        bool isFormatted = false) // sunrise-edit
     {
-        TrySendInGameICMessage(source, message, desiredType, hideChat ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal, hideLog, shell, player, nameOverride, checkRadioPrefix, ignoreActionBlocker);
+        TrySendInGameICMessage(source, message, desiredType, hideChat ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal, hideLog, shell, player, nameOverride, checkRadioPrefix, ignoreActionBlocker, isFormatted); //sunrise-edit
     }
 
     /// <summary>
@@ -176,7 +178,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         ICommonSession? player = null,
         string? nameOverride = null,
         bool checkRadioPrefix = true,
-        bool ignoreActionBlocker = false
+        bool ignoreActionBlocker = false,
+        bool isFormatted = false //sunrise-edit
         )
     {
         if (HasComp<GhostComponent>(source))
@@ -231,7 +234,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         // Was there an emote in the message? If so, send it.
         if (player != null && emoteStr != message && emoteStr != null)
         {
-            SendEntityEmote(source, emoteStr, range, nameOverride, ignoreActionBlocker);
+            SendEntityEmote(source, emoteStr, range, nameOverride, ignoreActionBlocker, isFormatted); //sunrise-edit
         }
 
         // This can happen if the entire string is sanitized out.
@@ -243,7 +246,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         {
             if (TryProccessRadioMessage(source, message, out var modMessage, out var channel))
             {
-                SendEntityWhisper(source, modMessage, range, channel, nameOverride, hideLog, ignoreActionBlocker);
+                SendEntityWhisper(source, modMessage, range, channel, nameOverride, hideLog, ignoreActionBlocker, isFormatted); //sunrise-edit
                 return;
             }
         }
@@ -263,13 +266,13 @@ public sealed partial class ChatSystem : SharedChatSystem
         switch (desiredType)
         {
             case InGameICChatType.Speak:
-                SendEntitySpeak(source, message, range, nameOverride, hideLog, ignoreActionBlocker);
+                SendEntitySpeak(source, message, range, nameOverride, hideLog, ignoreActionBlocker, isFormatted); //sunrise-edit-hg
                 break;
             case InGameICChatType.Whisper:
-                SendEntityWhisper(source, message, range, null, nameOverride, hideLog, ignoreActionBlocker);
+                SendEntityWhisper(source, message, range, null, nameOverride, hideLog, ignoreActionBlocker, isFormatted); // sunrise-edit
                 break;
             case InGameICChatType.Emote:
-                SendEntityEmote(source, message, range, nameOverride, hideLog: hideLog, ignoreActionBlocker: ignoreActionBlocker);
+                SendEntityEmote(source, message, range, nameOverride, hideLog: hideLog, ignoreActionBlocker: ignoreActionBlocker, isFormatted: isFormatted); //sunrise-edit
                 break;
         }
     }
@@ -523,7 +526,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         ChatTransmitRange range,
         string? nameOverride,
         bool hideLog = false,
-        bool ignoreActionBlocker = false
+        bool ignoreActionBlocker = false,
+        bool isFormatted = false //sunrise-edit
         )
     {
         if (!_actionBlocker.CanSpeak(source) && !ignoreActionBlocker)
@@ -553,13 +557,13 @@ public sealed partial class ChatSystem : SharedChatSystem
         }
 
         name = FormattedMessage.EscapeText(name);
-
+        if (HasComp<CanFormatMessagesComponent>(source)) isFormatted = true; //sunrise-edit
         var wrappedMessage = Loc.GetString(speech.Bold ? "chat-manager-entity-say-bold-wrap-message" : "chat-manager-entity-say-wrap-message",
             ("entityName", name),
             ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
             ("fontType", speech.FontId),
             ("fontSize", speech.FontSize),
-            ("message", FormattedMessage.EscapeText(message)));
+            ("message", isFormatted ? message : FormattedMessage.EscapeText(message))); //sunrise-edit
 
         SendInVoiceRange(ChatChannel.Local, message, wrappedMessage, source, range);
 
@@ -596,7 +600,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         RadioChannelPrototype? channel,
         string? nameOverride,
         bool hideLog = false,
-        bool ignoreActionBlocker = false
+        bool ignoreActionBlocker = false,
+        bool isFormatted = false //sunrise-edit
         )
     {
         if (!_actionBlocker.CanSpeak(source) && !ignoreActionBlocker)
@@ -623,15 +628,15 @@ public sealed partial class ChatSystem : SharedChatSystem
             name = nameEv.Name;
         }
         name = FormattedMessage.EscapeText(name);
-
+        if (HasComp<CanFormatMessagesComponent>(source)) isFormatted = true; //sunrise-edit
         var wrappedMessage = Loc.GetString("chat-manager-entity-whisper-wrap-message",
-            ("entityName", name), ("message", FormattedMessage.EscapeText(message)));
+            ("entityName", name), ("message", isFormatted ? message : FormattedMessage.EscapeText(message))); //sunrise-edit
 
         var wrappedobfuscatedMessage = Loc.GetString("chat-manager-entity-whisper-wrap-message",
-            ("entityName", nameIdentity), ("message", FormattedMessage.EscapeText(obfuscatedMessage)));
+            ("entityName", nameIdentity), ("message", isFormatted ? obfuscatedMessage : FormattedMessage.EscapeText(obfuscatedMessage))); //sunrise-edit
 
         var wrappedUnknownMessage = Loc.GetString("chat-manager-entity-whisper-unknown-wrap-message",
-            ("message", FormattedMessage.EscapeText(obfuscatedMessage)));
+            ("message", isFormatted ? obfuscatedMessage : FormattedMessage.EscapeText(obfuscatedMessage))); //sunrise-edit
 
 
         foreach (var (session, data) in GetRecipients(source, WhisperMuffledRange))
@@ -686,7 +691,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         bool hideLog = false,
         bool checkEmote = true,
         bool ignoreActionBlocker = false,
-        NetUserId? author = null
+        NetUserId? author = null,
+        bool isFormatted = false //sunrise-edit
         )
     {
         if (!_actionBlocker.CanEmote(source) && !ignoreActionBlocker)
@@ -695,16 +701,16 @@ public sealed partial class ChatSystem : SharedChatSystem
         // get the entity's apparent name (if no override provided).
         var ent = Identity.Entity(source, EntityManager);
         string name = FormattedMessage.EscapeText(nameOverride ?? Name(ent));
-
+        if (HasComp<CanFormatMessagesComponent>(source)) isFormatted = true; //sunrise-edit
         // Emotes use Identity.Name, since it doesn't actually involve your voice at all.
         var wrappedMessage = Loc.GetString("chat-manager-entity-me-wrap-message",
-            ("entityName", name),
+            ("entityName", isFormatted ? "" : name), //sunrise-edit
             ("entity", ent),
-            ("message", FormattedMessage.RemoveMarkup(action)));
+            ("message", isFormatted ? action : FormattedMessage.RemoveMarkup(action))); //sunrise-edit
 
         if (checkEmote)
             TryEmoteChatInput(source, action);
-        SendInVoiceRange(ChatChannel.Emotes, action, wrappedMessage, source, range, author);
+        SendInVoiceRange(ChatChannel.Emotes, action, wrappedMessage, source, isFormatted ? ChatTransmitRange.HideChat : range, author); //sunrise-edit
         if (!hideLog)
             if (name != Name(source))
                 _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Emote from {ToPrettyString(source):user} as {name}: {action}");
