@@ -1,6 +1,0 @@
-- type: entity
-  id: DiseaseRule
-  parent: BaseGameRule
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: DiseaseRule
