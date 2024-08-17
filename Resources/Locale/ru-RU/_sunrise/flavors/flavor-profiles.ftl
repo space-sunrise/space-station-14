@@ -1,1 +1,1 @@
-flavor-complex-fourteen-loko-soda-plus = как говно
+flavor-complex-fourteen-loko-soda-plus = как бунт в тюрьме
