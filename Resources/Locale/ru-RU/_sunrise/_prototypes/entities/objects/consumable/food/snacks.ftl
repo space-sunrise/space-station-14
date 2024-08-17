@@ -1,6 +1,6 @@
-ent-FoodSnackMaysonEnergy = menergy bar
-    .desc = Mayson's energy bar
-ent-FoodSnackMaysonEnergyBar = menergy bar
-    .desc = Mayson's energy bar
+ent-FoodSnackMaysonEnergy = энергетический батончик Мэйсона
+    .desc = Энергетический батончик состоящий из натуральных химикатов!
+ent-FoodSnackMaysonEnergyBar = энергетический батончик Мэйсона
+    .desc = Энергетический батончик состоящий из натуральных химикатов!
 ent-FoodPacketMaysonEnergyTrash = energybar wrapper
     .desc = { ent-FoodPacketTrash.desc }

@@ -212,8 +212,8 @@ if __name__ == "__main__":
     script_dir = os.path.dirname(os.path.abspath(__file__))
     
     # Устанавливаем корневую директорию и файл отчета
-    localization_directory = os.path.join(script_dir, '../../../Resources/Locale/ru-RU')
-    prototypes_directory = os.path.join(script_dir, '../../../Resources/Prototypes')
+    localization_directory = os.path.join(script_dir, '../../Resources/Locale/ru-RU')
+    prototypes_directory = os.path.join(script_dir, '../../Resources/Prototypes')
     report_path = os.path.join(script_dir, 'Report.txt')
     
     # Создаём/очищаем файл отчёта
