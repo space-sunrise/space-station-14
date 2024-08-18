@@ -1,0 +1,9 @@
+- type: loadout
+  id: JumpsuitPathologist
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSeniorPhysician
+
+- type: loadout
+  id: JumpskirtPathologist
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSeniorPhysician

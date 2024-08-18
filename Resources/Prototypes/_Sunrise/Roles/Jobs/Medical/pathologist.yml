@@ -2,7 +2,7 @@
   id: Pathologist
   name: job-name-pathologist
   description: job-description-pathologist
-  playTimeTracker: JobMorgueAttendant
+  playTimeTracker: JobPathologist
   requirements:
     - !type:RoleTimeRequirement
     - !type:RoleTimeRequirement
@@ -23,8 +23,9 @@
 - type: startingGear
   id: PathologistGear
   equipment:
-    head: ClothingHeadHatBeretSeniorPhysician
+    head: ClothingHeadHatSurgcapBlue
     id: SeniorPhysicianPDA
     ears: ClothingHeadsetMedical
-    belt: ClothingBeltMedicalFilled
-    outerClothing: ClothingOuterCoatLabSeniorPhysician
+    belt: ClothingBeltMedical
+    outerClothing: ClothingOuterCoatLab
+    shoes: ClothingShoesColorWhite

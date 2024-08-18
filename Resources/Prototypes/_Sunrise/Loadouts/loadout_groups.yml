@@ -205,6 +205,13 @@
   - JumpskirtSeniorPhysician
 
 - type: loadoutGroup
+  id: PathologistJumpsuit
+  name: loadout-group-pathologist-jumpsuit
+  loadouts:
+  - JumpsuitPathologist
+  - JumpskirtPathologist
+
+- type: loadoutGroup
   id: SeniorEngineerJumpsuit
   name: loadout-group-senior-engineer-jumpsuit
   loadouts:

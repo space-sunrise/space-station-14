@@ -117,6 +117,22 @@
   - Bra
   - Pants
   - Socks
+  
+- type: roleLoadout
+  id: JobPathologist
+  groups:
+  - PathologistJumpsuit
+  - MedicalBackpack
+  - MedicalGloves
+  - MedicalMask
+  - MedicalShoes
+  - SurvivalMedical
+  - Trinkets
+  - Glasses
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
 
 - type: roleLoadout
   id: JobSeniorEngineer
