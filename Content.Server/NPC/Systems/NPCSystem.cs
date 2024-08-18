@@ -2,13 +2,10 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Server.NPC.Components;
 using Content.Server.NPC.HTN;
 using Content.Shared.CCVar;
-using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC;
-using Content.Shared.NPC.Systems;
-using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 
@@ -28,8 +25,6 @@ namespace Content.Server.NPC.Systems
         /// </summary>
         public bool Enabled { get; set; } = true;
 
-        public bool DisableWithoutPlayers { get; set; } = true;
-
         private int _maxUpdates;
 
         private int _count;
@@ -41,7 +36,6 @@ namespace Content.Server.NPC.Systems
 
             Subs.CVar(_configurationManager, CCVars.NPCEnabled, value => Enabled = value, true);
             Subs.CVar(_configurationManager, CCVars.NPCMaxUpdates, obj => _maxUpdates = obj, true);
-            Subs.CVar(_configurationManager, CCVars.DisableWithoutPlayers, obj => DisableWithoutPlayers = obj, true);
         }
 
         public void OnPlayerNPCAttach(EntityUid uid, HTNComponent component, PlayerAttachedEvent args)
@@ -141,7 +135,7 @@ namespace Content.Server.NPC.Systems
 
             _count = 0;
             // Add your system here.
-            _htn.UpdateNPC(ref _count, _maxUpdates, frameTime, DisableWithoutPlayers);
+            _htn.UpdateNPC(ref _count, _maxUpdates, frameTime);
         }
 
         public void OnMobStateChange(EntityUid uid, HTNComponent component, MobStateChangedEvent args)

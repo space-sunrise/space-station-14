@@ -27,3 +27,38 @@
       shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineMayson
+  name: MaysonMil & YanLu corp
+  description: A vending machine containing products of the company "MaysonMil & YanLu".
+  components:
+  - type: VendingMachine
+    pack: MaysonYanInventory
+    dispenseOnHitChance: 0.25
+    dispenseOnHitThreshold: 2
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    initialStockQuality: 0.33
+  - type: Advertise
+    pack: DiscountDansAds
+  - type: SpeakOnUIClosed
+    pack: DiscountDansGoodbyes
+  - type: Speech
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/VendingMachines/mayson.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - texture: Structures/Machines/VendingMachines/maintenance_panel.png
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#6148c7"
+  - type: PlayerCountDependentStock  # Sunrise-vend

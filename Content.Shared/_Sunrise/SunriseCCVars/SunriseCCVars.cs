@@ -173,7 +173,8 @@ public sealed class SunriseCCVars
     public static readonly CVarDef<float> LobbyOpacity =
         CVarDef.Create("lobby.lobby_opacity", 0.90f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
-    public static readonly CVarDef<string> ServerName = CVarDef.Create("lobby.server_name", "SS14", CVar.REPLICATED);
+    public static readonly CVarDef<string> ServerName = 
+        CVarDef.Create("lobby.server_name", "SS14", CVar.SERVER | CVar.REPLICATED);
 
     /*
      * Planet Prison
@@ -218,4 +219,12 @@ public sealed class SunriseCCVars
 
     public static readonly CVarDef<float> HealModifier =
         CVarDef.Create("damage.heal_modifier", 2f, CVar.SERVER | CVar.REPLICATED);
+
+    /*
+     * NPCs
+     */
+
+    public static readonly CVarDef<bool> NPCDisableWithoutPlayers = CVarDef.Create("npc.disable_without_players", true);
+
+    public static readonly CVarDef<float> NPCDisableDistance = CVarDef.Create("npc.disable_distance", 15f);
 }

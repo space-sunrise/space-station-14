@@ -1,0 +1,20 @@
+- type: entity
+  id: DiseaseRule
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: DiseaseRule
+
+- type: entity
+  id: Fugitive
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: FugitiveRule
+
+- type: entity
+  id: EvilTwin
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EvilTwinRule

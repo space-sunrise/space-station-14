@@ -1,0 +1,37 @@
+- type: entity
+  parent: DrinkCanBaseFull
+  id: DrinkFourteenLokoPlusCan
+  name: Fourteen Loko Plus can
+  description: A remake of the popular drink Fourteen Loko. But just like the original, drink responsibly.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: FourteenLokoPlus
+          Quantity: 30
+  - type: Sprite
+    sprite: _Sunrise/Objects/Consumable/Drinks/fourteen_loko_plus.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Consumable/Drinks/fourteen_loko_plus.rsi
+    
+- type: entity
+  parent: DrinkCanBaseFull
+  id: DrinkLukin
+  name: Lukin's drink
+  description: Brother Lukin's not very famous alcoholic drink. It has medicinal properties to heal bodily harm, but don't drink too much.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Aloe
+          Quantity: 16
+        - ReagentId: Bicaridine
+          Quantity: 14
+  - type: Sprite
+    sprite: _Sunrise/Objects/Consumable/Drinks/lukins_drink.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Consumable/Drinks/lukins_drink.rsi

@@ -9,7 +9,6 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Localization; //Sunrise-Edit
 
 namespace Content.Client.Options.UI.Tabs;
 
@@ -35,10 +34,7 @@ public sealed partial class MiscTab : Control
         var layoutEntries = new List<OptionDropDownCVar<string>.ValueOption>();
         foreach (var layout in Enum.GetValues(typeof(ScreenType)))
         {
-            //Sunrise-Start
-            var layoutLoc = Loc.GetString($"layout-{layout.ToString()!.ToLower()}");
-            layoutEntries.Add(new OptionDropDownCVar<string>.ValueOption(layout.ToString()!, layoutLoc));
-            //Sunrise-End
+            layoutEntries.Add(new OptionDropDownCVar<string>.ValueOption(layout.ToString()!, Loc.GetString($"ui-options-hud-layout-{layout.ToString()!.ToLower()}")));
         }
 
         // Channel can be null in replays so.

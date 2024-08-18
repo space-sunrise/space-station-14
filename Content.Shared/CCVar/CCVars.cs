@@ -191,7 +191,7 @@ namespace Content.Shared.CCVar
         ///     Prototype to use for map pool.
         /// </summary>
         public static readonly CVarDef<string>
-            GameMapPool = CVarDef.Create("game.map_pool", "DefaultMapPool", CVar.SERVERONLY);
+            GameMapPool = CVarDef.Create("game.map_pool", "SunriseMapPool", CVar.SERVERONLY); // Sunrise-Edit
 
         /// <summary>
         /// The depth of the queue used to calculate which map is next in rotation.
@@ -398,13 +398,13 @@ namespace Content.Shared.CCVar
         /// The prototype to use for secret weights.
         /// </summary>
         public static readonly CVarDef<string> SecretWeightPrototype =
-            CVarDef.Create("game.secret_weight_prototype", "Secret", CVar.SERVERONLY);
+            CVarDef.Create("game.secret_weight_prototype", "SunriseSecret", CVar.SERVERONLY); // Sunrise-Edit
 
         /// <summary>
         /// The id of the sound collection to randomly choose a sound from and play when the round ends.
         /// </summary>
         public static readonly CVarDef<string> RoundEndSoundCollection =
-            CVarDef.Create("game.round_end_sound_collection", "RoundEnd", CVar.SERVERONLY);
+            CVarDef.Create("game.round_end_sound_collection", "SunriseRoundEnd", CVar.SERVERONLY); // Sunrise-Edit
 
         /// <summary>
         /// Whether or not to add every player as a global override to PVS at round end.
@@ -713,8 +713,6 @@ namespace Content.Shared.CCVar
             CVarDef.Create("npc.max_updates", 512);
 
         public static readonly CVarDef<bool> NPCEnabled = CVarDef.Create("npc.enabled", true);
-
-        public static readonly CVarDef<bool> DisableWithoutPlayers = CVarDef.Create("npc.disable_without_players", true);
 
         /// <summary>
         /// Should NPCs pathfind when steering. For debug purposes.

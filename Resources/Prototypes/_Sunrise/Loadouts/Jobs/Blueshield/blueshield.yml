@@ -11,7 +11,7 @@
 - type: loadout
   id: BlueShieldDuffel
   equipment:
-    jumpsuit: ClothingBackpackDuffelBlueShield
+    back: ClothingBackpackDuffelBlueShield
 
 - type: loadout
   id: BlueShieldJumpskirt
