@@ -57,7 +57,7 @@ public sealed partial class NPCSleepSystem : EntitySystem
                 continue;
 
             if (HasComp<ActorComponent>(uid))
-                return;
+                continue;
 
             if (AllowNpc(uid))
             {
