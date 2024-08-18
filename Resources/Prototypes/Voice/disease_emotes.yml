@@ -19,6 +19,13 @@
   chatTriggers:
     - cough
     - coughs
+    - coughed
+    - cough.
+    - coughs.
+    - coughed.
+    - cough!
+    - coughs!
+    - coughed!
     # Russian-Localization-Start
     - кашель
     - кашляет

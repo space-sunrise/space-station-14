@@ -116,6 +116,10 @@
             "name": "deathsposal"
         },
         {
+            "name": "direction_atmos",
+            "directions": 4
+        },
+        {
             "name": "direction_bar",
             "directions": 4
         },
