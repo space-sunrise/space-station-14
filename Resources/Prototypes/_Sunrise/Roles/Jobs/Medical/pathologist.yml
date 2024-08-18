@@ -1,7 +1,7 @@
 - type: job
-  id: SeniorPhysician
-  name: job-name-morgue-attendant
-  description: job-description-morgue-attendant
+  id: Pathologist
+  name: job-name-pathologist
+  description: job-description-pathologist
   playTimeTracker: JobMorgueAttendant
   requirements:
     - !type:RoleTimeRequirement
@@ -10,9 +10,9 @@
       time: 21600 #6 hrs
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 216000 # 60 hrs
-  startingGear: MorgueAttendantGear
-  icon: "JobIconMorgueAttendant"
+      time: 108000 # 30 hrs
+  startingGear: PathologistGear
+  icon: "JobIconPathologist"
   supervisors: job-supervisors-cmo
   displayWeight: 35
   access:
@@ -21,7 +21,7 @@
   - Chemistry
 
 - type: startingGear
-  id: MorgueAttendantGear
+  id: PathologistGear
   equipment:
     head: ClothingHeadHatBeretSeniorPhysician
     id: SeniorPhysicianPDA
