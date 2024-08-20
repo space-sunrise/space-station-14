@@ -41,8 +41,8 @@
     agentName: changeling-roundend-name
     definitions:
     - prefRoles: [ Changeling ]
-      max: 5
-      playerRatio: 10
+      max: 3
+      playerRatio: 15
       lateJoinAdditional: true
       mindComponents:
       - type: ChangelingRole
