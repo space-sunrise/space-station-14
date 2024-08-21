@@ -1644,6 +1644,17 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
+- type: listing
+  id: UplinkSunrisePlushieGenok
+  productEntity: PlushieGenok
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
 # ГСБ:
 - type: listing
   id: UplinkSunriseClothingMaskGasSwat

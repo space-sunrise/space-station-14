@@ -5,7 +5,7 @@
   description: Тихая и скромная игрушка с яркими волосами, идеально подходит для работы в библиотеке. От неё пахнет переписчиком
   components:
   - type: Sprite
-    sprite: _Sunrise/plushies.rsi
+    sprite: _Sunrise/Objects/Fun/toys.rsi
     layers:
     - state: genok-librarian-shaded
     - state: genok-librarian-unshaded
