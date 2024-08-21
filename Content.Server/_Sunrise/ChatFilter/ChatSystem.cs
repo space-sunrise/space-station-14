@@ -263,6 +263,9 @@ public sealed partial class ChatSystem
         //
         {"увы","К сожалению"},
         {"увыв","К сожалению"},
+        {"кэп", "капитан"},
+        {"гсб", "глава службы безопасности"},
+        {"авд", "агент внутренних дел"},
     };
 
     public string ReplaceWords(string message)
