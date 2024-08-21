@@ -16,6 +16,12 @@
   - Engineering
   - External
   - Atmospherics
+  # Sunrise-Start
+  canBeAntag: false
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  # Sunrise-End
 
 - type: startingGear
   id: AtmosphericTechnicianGear
