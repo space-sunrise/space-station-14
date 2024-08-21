@@ -308,3 +308,13 @@
   completetime: 5
   materials:
     Steel: 193
+
+- type: latheRecipe
+  id: ClothingHeadHelmetPubg
+  result: ClothingHeadHelmetPubg
+  category: Weapons
+  completetime: 8
+  materials:
+    Steel: 3000
+    Glass: 1500
+    Plastic: 300
