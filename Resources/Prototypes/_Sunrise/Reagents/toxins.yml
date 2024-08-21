@@ -22,7 +22,7 @@
         ignoreResistances: false
         damage:
           types:
-            Caustic: 0.3
+            Caustic: 0.2
       - !type:Emote
         conditions:
         - !type:HasTag
@@ -41,7 +41,7 @@
           invert: true
         damage:
           types:
-            Caustic: 6
+            Caustic: 1
       - !type:PopupMessage
         conditions:
         - !type:HasTag
@@ -82,7 +82,7 @@
           ignoreResistances: false
           damage:
             types:
-              Caustic: 5
+              Caustic: 1
         - !type:Emote
           conditions:
           - !type:HasTag
@@ -100,7 +100,7 @@
             invert: true
           damage:
             types:
-              Caustic: 10
+              Caustic: 3
         - !type:PopupMessage
           conditions:
           - !type:HasTag
