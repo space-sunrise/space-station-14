@@ -26,3 +26,14 @@
         Slash: 0.85
         Piercing: 0.85
         Heat: 0.85
+
+- type: entity
+  parent: ClothingHeadHelmetSwat
+  id: ClothingHeadHelmetPubg
+  name:
+  description:
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Helmets/tfhelm.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Helmets/tfhelm.rsi
