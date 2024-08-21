@@ -19,7 +19,7 @@ ent-FlippoLighterSunriseCmo = { ent-FlippoLighterSunriseBase } ГВ
 ent-FlippoLighterSunriseQm = { ent-FlippoLighterSunriseBase } КМ
     .desc = { ent-FlippoLighter.desc }
 
-ent-FlippoLighterSunriseQm = { ent-FlippoLighterSunriseBase } ГП
+ent-FlippoLighterSunriseHop = { ent-FlippoLighterSunriseBase } ГП
     .desc = { ent-FlippoLighter.desc }
 
 ent-FlippoLighterSunriseNt = { ent-FlippoLighterSunriseBase } НТ

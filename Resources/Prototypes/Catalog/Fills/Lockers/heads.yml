@@ -17,6 +17,7 @@
     - id: RubberStampDenied
     - id: RubberStampQm
     - id: SalvageShuttleConsoleCircuitboard
+    - id: FlippoLighterSunriseQm  # Sunrise-Flippo
 
 - type: entity
   id: LockerQuarterMasterFilled
@@ -49,6 +50,7 @@
     - id: RubberStampCaptain
     - id: SpaceCash1000
     - id: WeaponDisabler
+    - id: FlippoLighterSunriseCap  # Sunrise-Flippo
 
 # No laser table + Laser table
 - type: entityTable
@@ -131,6 +133,7 @@
     - id: RubberStampDenied
     - id: RubberStampHop
     - id: WeaponDisabler
+    - id: FlippoLighterSunriseHop  # Sunrise-Flippo
 
 - type: entity
   id: LockerHeadOfPersonnelFilled
@@ -159,6 +162,7 @@
     - id: RCD
     - id: RCDAmmo
     - id: RubberStampCE
+    - id: FlippoLighterSunriseCe  # Sunrise-Flippo
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -216,6 +220,7 @@
     - id: MedicalTechFabCircuitboard
     - id: MedkitFilled
     - id: RubberStampCMO
+    - id: FlippoLighterSunriseCmo  # Sunrise-Flippos
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -267,6 +272,7 @@
     - id: ProtolatheMachineCircuitboard
     - id: ResearchComputerCircuitboard
     - id: RubberStampRd
+    - id: FlippoLighterSunriseRd  # Sunrise-Flippo
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -324,6 +330,7 @@
     - id: RubberStampHos
     - id: SecurityTechFabCircuitboard
     - id: WeaponDisabler
+    - id: FlippoLighterSunriseHos  # Sunrise-Flippo
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
