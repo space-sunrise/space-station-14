@@ -10,9 +10,4 @@ public sealed partial class BlockMovementComponent : Component
 {
     [DataField]
     public bool BlockInteraction = true;
-
-    // Sunrise-Start
-    [DataField("blockInteractionAttempt")] public bool BlockInteractionAttempt = true;
-    [DataField("blockUseAttempt")] public bool BlockUseAttempt = true;
-    // Sunrise-Edit
 }

@@ -31,8 +31,7 @@
     context: "human"
   - type: PAI
   - type: BlockMovement
-    blockInteractionAttempt: false
-    blockUseAttempt: false
+    blockInteraction: false
   - type: ToggleableGhostRole
     examineTextMindPresent: pai-system-pai-installed
     examineTextMindSearching: pai-system-still-searching

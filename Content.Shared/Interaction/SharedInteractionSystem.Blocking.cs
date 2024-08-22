@@ -43,11 +43,9 @@ public partial class SharedInteractionSystem
     private void CancelEvent(EntityUid uid, BlockMovementComponent component, CancellableEntityEventArgs args)
     {
         // Sunrise-Start
-        if (!component.BlockUseAttempt)
-            return;
+        if (component.BlockInteraction)
+            args.Cancel();
         // Sunrise-End
-
-        args.Cancel();
     }
 
     private void OnBlockingStartup(EntityUid uid, BlockMovementComponent component, ComponentStartup args)
