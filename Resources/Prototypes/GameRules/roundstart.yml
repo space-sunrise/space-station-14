@@ -140,7 +140,7 @@
     - prefRoles: [ Nukeops ]
       fallbackRoles: [ NukeopsCommander, NukeopsMedic ]
       spawnerPrototype: SpawnPointNukeopsOperative
-      max: 3
+      max: 5  # Sunrise-edit
       playerRatio: 10
       startingGear: SyndicateOperativeGearFull
       roleLoadout:
@@ -326,8 +326,8 @@
       tableId: SpaceTrafficControlTable
 
 - type: entity
-  id: SpaceTrafficControlFriendlyEventScheduler 
-  parent: BaseGameRule                  
+  id: SpaceTrafficControlFriendlyEventScheduler
+  parent: BaseGameRule
   components:
   - type: BasicStationEventScheduler
     minimumTimeUntilFirstEvent: 1200 # 20 mins

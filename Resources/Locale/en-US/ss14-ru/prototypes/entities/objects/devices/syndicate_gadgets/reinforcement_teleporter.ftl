@@ -10,6 +10,3 @@ ent-ReinforcementRadioSyndicateAncestor = syndicate genetic ancestor reinforceme
 ent-ReinforcementRadioSyndicateAncestorNukeops = { ent-ReinforcementRadioSyndicateAncestor }
     .suffix = NukeOps
     .desc = { ent-ReinforcementRadioSyndicateAncestor.desc }
-ent-ReinforcementRadioSyndicateCyborgAssault = syndicate assault cyborg reinforcement radio
-    .desc = Call in a well armed assault cyborg, instantly!
-    .suffix = NukeOps

@@ -1,0 +1,237 @@
+﻿- type: entity
+  abstract: true
+  parent: BaseItem
+  id: FlippoLighterSunriseBase
+  name: зажигалка флиппо
+  description: Надёжная металлическая зажигалка, рассчитанная на длительный срок службы.
+#  suffix: Sunrise-Flippo
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/zippos.rsi
+    layers:
+    - state: zippo
+      map: ["base"]
+    - state: zippoon
+      map: ["open"]
+      visible: false
+      shader: unshaded
+  - type: ItemToggle
+    predictable: false
+    soundActivate:
+      path: /Audio/Items/Lighters/zippo_open.ogg
+      params:
+        volume: -5
+    soundDeactivate:
+      path: /Audio/Items/Lighters/zippo_close.ogg
+      params:
+        volume: -5
+  - type: ItemToggleMeleeWeapon
+    activatedDamage:
+      types:
+        Heat: 1
+  - type: ItemToggleSize
+    activatedSize: Small
+  - type: ItemToggleHot
+  - type: Item
+    size: Tiny
+    sprite: Objects/Tools/lighters.rsi
+    heldPrefix: zippo
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleVisuals.Toggled:
+        open:
+          True: { visible: true }
+          False: { visible: false }
+        base:
+          True: { visible: false }
+          False: { visible: true }
+  - type: SolutionContainerManager
+    solutions:
+      Welder:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 12
+        maxVol: 12
+  - type: Welder
+    fuelConsumption: 0.01
+    fuelLitCost: 0.1
+    tankSafe: true
+  - type: ToggleableLightVisuals
+    spriteLayer: lighter_flame
+    inhandVisuals:
+      left:
+      - state: zippo-inhand-left-flame
+        shader: unshaded
+      right:
+      - state: zippo-inhand-right-flame
+        shader: unshaded
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    damage:
+      types:
+        Blunt: 1
+  - type: PointLight
+    enabled: false
+    netsync: false
+    radius: 1.2
+    color: orange
+  - type: UseDelay
+  - type: IgnitionSource
+    ignited: false
+
+- type: entity
+  parent: FlippoLighterSunriseBase
+  id: FlippoLighterSunriseCe
+  components:
+  - type: Sprite
+    layers:
+    - state: zippo_ce
+      map: ["base"]
+    - state: zippo_ce_on
+      map: ["open"]
+      visible: false
+      shader: unshaded
+
+- type: entity
+  parent: FlippoLighterSunriseBase
+  id: FlippoLighterSunriseCmo
+  components:
+  - type: Sprite
+    layers:
+    - state: zippo_cmo
+      map: ["base"]
+    - state: zippo_cmo_on
+      map: ["open"]
+      visible: false
+      shader: unshaded
+
+- type: entity
+  parent: FlippoLighterSunriseBase
+  id: FlippoLighterSunriseCap
+  components:
+  - type: Sprite
+    layers:
+    - state: zippo_cap
+      map: ["base"]
+    - state: zippo_cap_on
+      map: ["open"]
+      visible: false
+      shader: unshaded
+
+- type: entity
+  parent: FlippoLighterSunriseBase
+  id: FlippoLighterSunriseHos
+  components:
+  - type: Sprite
+    layers:
+    - state: zippo_hos
+      map: ["base"]
+    - state: zippo_hos_on
+      map: ["open"]
+      visible: false
+      shader: unshaded
+
+- type: entity
+  parent: FlippoLighterSunriseBase
+  id: FlippoLighterSunriseQm
+  components:
+  - type: Sprite
+    layers:
+    - state: zippo_qm
+      map: ["base"]
+    - state: zippo_qm_on
+      map: ["open"]
+      visible: false
+      shader: unshaded
+
+- type: entity
+  parent: FlippoLighterSunriseBase
+  id: FlippoLighterSunriseRd
+  components:
+  - type: Sprite
+    layers:
+    - state: zippo_rd
+      map: ["base"]
+    - state: zippo_rd_on
+      map: ["open"]
+      visible: false
+      shader: unshaded
+
+- type: entity
+  parent: FlippoLighterSunriseBase
+  id: FlippoLighterSunriseHop
+  components:
+  - type: Sprite
+    layers:
+    - state: zippo_hop
+      map: ["base"]
+    - state: zippo_hop_on
+      map: ["open"]
+      visible: false
+      shader: unshaded
+
+- type: entity
+  parent: FlippoLighterSunriseBase
+  id: FlippoLighterSunriseNt
+  components:
+  - type: Sprite
+    layers:
+    - state: zippo_nt_off
+      map: ["base"]
+    - state: zippo_nt_on
+      map: ["open"]
+      visible: false
+      shader: unshaded
+
+- type: entity
+  parent: FlippoLighterSunriseBase
+  id: FlippoLighterSunriseGonzo
+  components:
+  - type: Sprite
+    layers:
+    - state: gonzozippo
+      map: ["base"]
+    - state: gonzozippoon
+      map: ["open"]
+      visible: false
+      shader: unshaded
+
+- type: entity
+  parent: FlippoLighterSunriseBase
+  id: FlippoLighterSunriseContractor
+  components:
+  - type: Sprite
+    layers:
+    - state: contractorzippo
+      map: ["base"]
+    - state: contractorzippoon
+      map: ["open"]
+      visible: false
+      shader: unshaded
+
+- type: entity
+  parent: FlippoLighterSunriseBase
+  id: FlippoLighterSunriseBlack
+  components:
+  - type: Sprite
+    layers:
+    - state: blackzippo
+      map: ["base"]
+    - state: blackzippoon
+      map: ["open"]
+      visible: false
+      shader: unshaded
+
+- type: entity
+  parent: FlippoLighterSunriseBase
+  id: FlippoLighterSunriseBlue
+  components:
+  - type: Sprite
+    layers:
+    - state: bluezippo
+      map: ["base"]
+    - state: bluezippoon
+      map: ["open"]
+      visible: false
+      shader: unshaded

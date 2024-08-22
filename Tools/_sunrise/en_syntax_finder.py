@@ -208,7 +208,7 @@ if __name__ == "__main__":
     ]  # Добавьте сюда слова, которые нужно игнорировать
     
     # Список файлов, которые нужно игнорировать
-    ignore_files = ['italian.ftl', 'popup.ftl', 'controls.ftl', 'input.ftl', 'speech-chatsan.ftl', 'speech-liar.ftl', 'russian.ftl']  # Добавьте сюда имена файлов, которые нужно игнорировать
+    ignore_files = ['italian.ftl', 'popup.ftl', 'controls.ftl', 'input.ftl', 'speech-chatsan.ftl', 'speech-liar.ftl', 'russian.ftl', 'german.ftl']  # Добавьте сюда имена файлов, которые нужно игнорировать
     
     # Получаем директорию, где находится скрипт
     script_dir = os.path.dirname(os.path.abspath(__file__))
