@@ -51,6 +51,9 @@ namespace Content.Server.Repairable
                 ("target", uid),
                 ("tool", args.Used!));
             _popup.PopupEntity(str, uid, args.User);
+
+            var ev = new RepairedEvent((uid, component), args.User);
+            RaiseLocalEvent(uid, ref ev);
         }
 
         // Sunrise-start
@@ -108,4 +111,13 @@ namespace Content.Server.Repairable
             return Math.Max(modifier, 1);
         }
     }
+
+    /// <summary>
+    /// Event raised on an entity when its successfully repaired.
+    /// </summary>
+    /// <param name="Ent"></param>
+    /// <param name="User"></param>
+    [ByRefEvent]
+    public readonly record struct RepairedEvent(Entity<RepairableComponent> Ent, EntityUid User);
+
 }

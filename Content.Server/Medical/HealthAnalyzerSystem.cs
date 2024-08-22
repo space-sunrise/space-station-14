@@ -83,17 +83,17 @@ public sealed class HealthAnalyzerSystem : EntitySystem
     {
         if (args.Target == null ||
             !args.CanReach ||
-            !TryComp<DamageableComponent>(args.Target, out var damageableComponent) ||
+            !TryComp<DamageableComponent>(args.Target, out var damageableComponent) || // Sunrise-Edit
             !HasComp<MobStateComponent>(args.Target) ||
             !_cell.HasDrawCharge(uid, user: args.User))
             return;
 
+        // Sunrise-Start
         if (uid.Comp.DamageContainers is not null &&
             damageableComponent.DamageContainerID is not null &&
             !uid.Comp.DamageContainers.Contains(damageableComponent.DamageContainerID))
-        {
             return;
-        }
+        // Sunrise-End
 
         _audio.PlayPvs(uid.Comp.ScanningBeginSound, uid);
 
@@ -103,7 +103,7 @@ public sealed class HealthAnalyzerSystem : EntitySystem
             BreakOnMove = true,
         });
 
-        if (args.Target == args.User || doAfterCancelled)
+        if (args.Target == args.User || doAfterCancelled || uid.Comp.Silent)
             return;
 
         var msg = Loc.GetString("health-analyzer-popup-scan-target", ("user", Identity.Entity(args.User, EntityManager)));
