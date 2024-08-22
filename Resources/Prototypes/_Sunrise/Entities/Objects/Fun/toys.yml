@@ -473,3 +473,19 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
     state: crusader
+
+- type: entity
+  id: PlushieGenok
+  parent: BasePlushie
+  name: Плюшевая библиотекарша
+  description: Тихая и скромная игрушка с яркими волосами, идеально подходит для работы в библиотеке. От неё пахнет переписчиком
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    layers:
+    - state: genok-librarian-shaded
+    - state: genok-librarian-unshaded
+      shader: unshaded
+  - type: PointLight
+    radius: 1.5
+    color: "#00CCFF"
