@@ -200,6 +200,7 @@
       - ClothingHeadHatWelding
       - WetFloorSign
       - ClothingHeadHatCone
+      - ClothingHeadHelmetPubgMore  # Sunrise-edit
   - type: EmagLatheRecipes
     emagStaticRecipes:
       - BoxLethalshot
@@ -809,6 +810,7 @@
       - MagazineVP70
       - MagazineHIBrowning
       - MagazineDeagle
+      - ClothingHeadHelmetPubg
     # Sunrise-end
     dynamicRecipes:
       - BoxBeanbag

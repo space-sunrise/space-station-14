@@ -1,0 +1,15 @@
+﻿# ладно...
+
+#- type: constructionGraph
+#  id: helmetpubg
+#  start: start
+#  graph:
+#  - node: start
+#    edges:
+#    - to: hhelmetpubg
+#      steps:
+#      - material: Steel
+#        amount: 30
+#        doAfter: 30
+#  - node: hhelmetpubg
+#    entity: ClothingHeadHelmetPubg
