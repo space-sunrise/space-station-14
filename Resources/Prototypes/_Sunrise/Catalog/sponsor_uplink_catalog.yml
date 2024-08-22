@@ -1679,6 +1679,17 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
+- type: listing
+  id: UplinkSunrisePlushieMegane
+  productEntity: PlushieMegane
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
 # ГСБ:
 - type: listing
   id: UplinkSunriseClothingMaskGasSwat
