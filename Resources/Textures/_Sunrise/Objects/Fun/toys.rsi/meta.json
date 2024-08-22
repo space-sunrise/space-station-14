@@ -152,6 +152,9 @@
         },
         {
             "name": "genok-librarian-shaded"
+        },
+        {
+            "name": "richard_industries"
         }
     ]
 }
