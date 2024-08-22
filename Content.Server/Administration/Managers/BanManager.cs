@@ -80,13 +80,20 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         _userDbData.AddOnLoadPlayer(CachePlayerData);
         _userDbData.AddOnPlayerDisconnect(ClearPlayerData);
 
-        // Sunrise-start
+        // Sunrise-Start
         _cfg.OnValueChanged(SunriseCCVars.DiscordBanWebhook, OnWebhookChanged, true);
         _cfg.OnValueChanged(CVars.GameHostName, OnServerNameChanged, true);
 
         IoCManager.Instance!.TryResolveType(out _discordAuth);
-        // Sunrise-end
+        // Sunrise-End
     }
+
+    // Sunrise-Start
+    private void OnServerNameChanged(string obj)
+    {
+        _serverName = obj;
+    }
+    // Sunrise-End
 
     private async Task CachePlayerData(ICommonSession player, CancellationToken cancel)
     {
