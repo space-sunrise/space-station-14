@@ -3,12 +3,14 @@
   name: tts-voice-name-charlotte
   sex: Female
   speaker: charlotte
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Bebey
   name: tts-voice-name-bebey
   sex: Male
   speaker: bebey
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Biden
@@ -16,6 +18,7 @@
   sex: Male
   speaker: biden
   sponsorOnly: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Papa
@@ -23,6 +26,7 @@
   sex: Male
   speaker: papa
   sponsorOnly: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Glados
@@ -30,6 +34,7 @@
   sex: Female
   speaker: glados
   roundStart: false
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Sentrybot # borg
@@ -37,30 +42,35 @@
   sex: Male
   speaker: sentrybot
   roundStart: false
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Mana
   name: tts-voice-name-mana
   sex: Female
   speaker: mana
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Soldier
   name: tts-voice-name-soldier
   sex: Male
   speaker: soldier
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Planya
   name: tts-voice-name-planya
   sex: Female
   speaker: planya
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Amina
   name: tts-voice-name-amina
   sex: Female
   speaker: amina
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: AdventureCore # borg
@@ -68,6 +78,7 @@
   sex: Male
   speaker: adventure_core
   roundStart: false
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: SpaceCore # borg
@@ -75,6 +86,7 @@
   sex: Male
   speaker: space_core
   roundStart: false
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: FactCore # borg
@@ -82,114 +94,133 @@
   sex: Male
   speaker: fact_core
   roundStart: false
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Kleiner
   name: tts-voice-name-kleiner
   sex: Male
   speaker: kleiner
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Dbkn
   name: tts-voice-name-dbkn
   sex: Male
   speaker: dbkn
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Neco
   name: tts-voice-name-neco
   sex: Female
   speaker: neco
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Gman
   name: tts-voice-name-gman
   sex: Male
   speaker: gman
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Obama
   name: tts-voice-name-obama
   sex: Male
   speaker: obama
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Trump
   name: tts-voice-name-trump
   sex: Male
   speaker: trump
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Briman
   name: tts-voice-name-briman
   sex: Male
   speaker: briman
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: FatherGrigori
   name: tts-voice-name-father-grigori
   sex: Male
   speaker: father_grigori
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Vance
   name: tts-voice-name-vance
   sex: Male
   speaker: vance
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Barni
   name: tts-voice-name-barni
   sex: Male
   speaker: barni
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Alyx
   name: tts-voice-name-alyx
   sex: Female
   speaker: alyx
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Mossman
   name: tts-voice-name-mossman
   sex: Female
   speaker: mossman
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Bandit
   name: tts-voice-name-bandit
   sex: Male
   speaker: bandit
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Geralt
   name: tts-voice-name-geralt
   sex: Male
   speaker: geralt
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Triss
   name: tts-voice-name-triss
   sex: Female
   speaker: triss
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: KodlakWhiteMane
   name: tts-voice-name-kodlak-white-mane
   sex: Male
   speaker: kodlakwhitemane
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Cicero
   name: tts-voice-name-cicero
   sex: Male
   speaker: cicero
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Sheogorath
   name: tts-voice-name-sheogorath
   sex: Male
   speaker: sheogorath
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: TurretFloor # borg
@@ -197,6 +228,7 @@
   sex: Female
   speaker: turret_floor
   roundStart: false
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Cirilla
@@ -204,96 +236,112 @@
   sex: Female
   speaker: cirilla
   sponsorOnly: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Lambert
   name: tts-voice-name-lambert
   sex: Male
   speaker: lambert
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Polina
   name: tts-voice-name-polina
   sex: Female
   speaker: polina
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Arthas
   name: tts-voice-name-arthas
   sex: Male
   speaker: arthas
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Xrenoid
   name: tts-voice-name-xrenoid
   sex: Male
   speaker: xrenoid
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Azir
   name: tts-voice-name-azir
   sex: Male
   speaker: azir
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Caitlyn
   name: tts-voice-name-caitlyn
   sex: Female
   speaker: caitlyn
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Ekko
   name: tts-voice-name-ekko
   sex: Male
   speaker: ekko
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Twitch
   name: tts-voice-name-twitch
   sex: Male
   speaker: twitch
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Strelok
   name: tts-voice-name-strelok
   sex: Male
   speaker: strelok
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Ziggs
   name: tts-voice-name-ziggs
   sex: Male
   speaker: ziggs
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Tracer
   name: tts-voice-name-tracer
   sex: Female
   speaker: tracer
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Illidan
   name: tts-voice-name-illidan
   sex: Male
   speaker: illidan
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Rexxar
   name: tts-voice-name-rexxar
   sex: Male
   speaker: rexxar
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Voljin
   name: tts-voice-name-voljin
   sex: Male
   speaker: voljin
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Forester
   name: tts-voice-name-forester
   sex: Male
   speaker: forester
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Sidorovich
@@ -301,6 +349,7 @@
   sex: Male
   speaker: sidorovich
   sponsorOnly: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: TfEngineer
@@ -308,6 +357,7 @@
   sex: Male
   speaker: engineer
   sponsorOnly: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: TfHeavy
@@ -315,6 +365,7 @@
   sex: Male
   speaker: heavy
   sponsorOnly: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: TfMedic
@@ -322,6 +373,7 @@
   sex: Male
   speaker: medic
   sponsorOnly: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: TfSniper
@@ -329,6 +381,7 @@
   sex: Male
   speaker: sniper
   sponsorOnly: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: TfSpy
@@ -336,6 +389,7 @@
   sex: Male
   speaker: spy
   sponsorOnly: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: TfDemoman
@@ -343,24 +397,28 @@
   sex: Male
   speaker: demoman
   sponsorOnly: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Valtos
   name: tts-voice-name-valtos
   sex: Female
   speaker: valtos
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Khajiit
   name: tts-voice-name-khajiit
   sex: Male
   speaker: khajiit
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Punisher
   name: tts-voice-name-punisher
   sex: Male
   speaker: punisher
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Johnny
@@ -368,24 +426,28 @@
   sex: Male
   speaker: johnny
   sponsorOnly: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Panam
   name: tts-voice-name-panam
   sex: Female
   speaker: panam
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Dornan
   name: tts-voice-name-dornan
   sex: Male
   speaker: dornan
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: VFemale
   name: tts-voice-name-v-female
   sex: Female
   speaker: v_female
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: OfficerEnclave # borg
@@ -393,18 +455,21 @@
   sex: Male
   speaker: officer_enclave
   roundStart: false
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Richardson
   name: tts-voice-name-richardson
   sex: Male
   speaker: richardson
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Elenwen
   name: tts-voice-name-elenwen
   sex: Female
   speaker: elenwen
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: EmperorTit
@@ -412,6 +477,7 @@
   sex: Male
   speaker: emperor
   sponsorOnly: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: GuardSkyrim
@@ -419,12 +485,14 @@
   sex: Male
   speaker: guard
   sponsorOnly: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Hagraven
   name: tts-voice-name-hagraven
   sex: Male
   speaker: hagraven
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: HermaeusMora
@@ -432,6 +500,7 @@
   sex: Male
   speaker: hermaeus_mora
   sponsorOnly: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Nord
@@ -439,6 +508,7 @@
   sex: Male
   speaker: nord
   sponsorOnly: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Ulfric
@@ -446,6 +516,7 @@
   sex: Male
   speaker: ulfric
   sponsorOnly: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: GoodThalya
@@ -453,12 +524,14 @@
   sex: Female
   speaker: good_thalya
   sponsorOnly: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Cerys
   name: tts-voice-name-cerys
   sex: Female
   speaker: cerys
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Judy
@@ -466,150 +539,175 @@
   sex: Female
   speaker: judy
   sponsorOnly: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Mitch
   name: tts-voice-name-mitch
   sex: Male
   speaker: mitch
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Skippy
   name: tts-voice-name-skippy
   sex: Male
   speaker: skippy
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Butch
   name: tts-voice-name-butch
   sex: Male
   speaker: butch
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Marcus
   name: tts-voice-name-marcus
   sex: Male
   speaker: marcus
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Sulik
   name: tts-voice-name-sulik
   sex: Male
   speaker: sulik
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Astrid
   name: tts-voice-name-astrid
   sex: Female
   speaker: astrid
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Maven
   name: tts-voice-name-maven
   sex: Female
   speaker: maven
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Nazir
   name: tts-voice-name-nazir
   sex: Male
   speaker: nazir
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Jackie
   name: tts-voice-name-jackie
   sex: Male
   speaker: jackie
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: EvilThalya
   name: tts-voice-name-evil-thalya
   sex: Female
   speaker: evil_thalya
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: PostalDude
   name: tts-voice-name-dude
   sex: Male
   speaker: dude
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Anduin
   name: tts-voice-name-anduin
   sex: Male
   speaker: anduin
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Brukan
   name: tts-voice-name-brukan
   sex: Male
   speaker: brukan
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Puchkow
   name: tts-voice-name-puchkow
   sex: Male
   speaker: puchkow
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Moriarti
   name: tts-voice-name-moriarti
   sex: Male
   speaker: moriarti
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: NecoArcTwo
   name: tts-voice-name-neco-arc-two
   sex: Female
   speaker: neco_arc_2
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: AngryNecoArc
   name: tts-voice-name-angry-neco-arc
   sex: Female
   speaker: angry_neco_arc
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Squidward
   name: tts-voice-name-squidward
   sex: Male
   speaker: squidward
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Garrosh
   name: tts-voice-name-garrosh
   sex: Male
   speaker: garrosh
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Jaina
   name: tts-voice-name-jaina
   sex: Female
   speaker: jaina
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Adjutant
   name: tts-voice-name-adjutant
   sex: Female
   speaker: adjutant
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Hanson
   name: tts-voice-name-hanson
   sex: Female
   speaker: hanson
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Bralik
   name: tts-voice-name-bralik
   sex: Male
   speaker: bralik
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Horner
   name: tts-voice-name-horner
   sex: Male
   speaker: horner
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Villager
@@ -617,6 +715,7 @@
   sex: Male
   speaker: villager
   roundStart: false # LRP
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Dobakin
@@ -624,6 +723,7 @@
   sex: Male
   speaker: dbkn2
   roundStart: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: MoiraBrown
@@ -632,6 +732,7 @@
   speaker: moira_brown
   roundStart: true
   sponsorOnly: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: RobertMaccready
@@ -640,6 +741,7 @@
   speaker: robert_maccready
   roundStart: true
   sponsorOnly: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Threedog
@@ -648,6 +750,7 @@
   speaker: threedog
   roundStart: true
   sponsorOnly: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: ThreedogRadio
@@ -656,6 +759,7 @@
   speaker: threedog_radio
   roundStart: true
   sponsorOnly: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Romka
@@ -664,6 +768,7 @@
   speaker: romka
   roundStart: true
   sponsorOnly: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: BorisPetrovFatherTB
@@ -671,6 +776,7 @@
   sex: Male
   speaker: boris_petrov_father_tb
   roundStart: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: KarinaPetrovaTB
@@ -678,6 +784,7 @@
   sex: Female
   speaker: karina_petrova_tb
   roundStart: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: KateSmirnovaTB
@@ -686,6 +793,7 @@
   speaker: kate_smirnova_tb
   roundStart: true
   sponsorOnly: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: SemenBaburinTB
@@ -694,6 +802,7 @@
   speaker: semen_baburin_tb
   roundStart: true
   sponsorOnly: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: TihonovTB
@@ -702,6 +811,7 @@
   speaker: tihonov_tb
   roundStart: true
   sponsorOnly: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: FemaleCommander
@@ -709,6 +819,7 @@
   sex: Female
   speaker: female_commander
   roundStart: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: LordHarkon
@@ -717,6 +828,7 @@
   speaker: lord_harkon
   roundStart: true
   sponsorOnly: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Serana
@@ -725,6 +837,7 @@
   speaker: serana
   roundStart: true
   sponsorOnly: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Myron
@@ -733,6 +846,7 @@
   speaker: myron
   roundStart: true
   sponsorOnly: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: MarratorD3
@@ -741,6 +855,7 @@
   speaker: narrator_d3
   roundStart: true
   sponsorOnly: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: UtherHS
@@ -748,6 +863,7 @@
   sex: Male
   speaker: uther_hs
   roundStart: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Tosh
@@ -755,6 +871,7 @@
   sex: Male
   speaker: tosh
   roundStart: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Tychus
@@ -762,6 +879,7 @@
   sex: Male
   speaker: tychus
   roundStart: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: AmitTakkar
@@ -769,6 +887,7 @@
   sex: Male
   speaker: amitkakkar
   roundStart: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: EleazarFig
@@ -776,6 +895,7 @@
   sex: Male
   speaker: eleazarfig
   roundStart: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: ErnieLark
@@ -783,6 +903,7 @@
   sex: Male
   speaker: ernielark
   roundStart: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: IgnatiaFlootravel
@@ -790,6 +911,7 @@
   sex: Female
   speaker: ignatiaflootravel
   roundStart: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Lodgok
@@ -797,6 +919,7 @@
   sex: Male
   speaker: lodgok
   roundStart: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: PhineasBlack
@@ -804,6 +927,7 @@
   sex: Male
   speaker: phineasblack
   roundStart: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: Ranrak
@@ -811,6 +935,7 @@
   sex: Male
   speaker: ranrak
   roundStart: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: VictorRookwood
@@ -818,6 +943,7 @@
   sex: Male
   speaker: victorrookwood
   roundStart: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: ZenobiaNoke
@@ -826,6 +952,7 @@
   speaker: zenobianoke
   roundStart: true
   sponsorOnly: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: GladwinMoon
@@ -833,6 +960,7 @@
   sex: Male
   speaker: gladwinmoon
   roundStart: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: MatildaWeasley
@@ -840,6 +968,7 @@
   sex: Female
   speaker: matildaweasley
   roundStart: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: NatsaiOnai
@@ -847,6 +976,7 @@
   sex: Female
   speaker: natsaionai
   roundStart: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: OminisGaunt
@@ -854,6 +984,7 @@
   sex: Male
   speaker: ominisgaunt
   roundStart: true
+  provider: ntts.fdev.team
 
 - type: ttsVoice
   id: PoppyWweeting
@@ -861,3 +992,4 @@
   sex: Female
   speaker: poppysweeting
   roundStart: true
+  provider: ntts.fdev.team
