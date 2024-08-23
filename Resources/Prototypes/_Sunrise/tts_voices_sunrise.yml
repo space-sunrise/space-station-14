@@ -5,6 +5,7 @@
   speaker: minkir
   roundStart: true
   provider: sunrise
+  sponsorOnly: true
 
 - type: ttsVoice
   id: Jirinovskiy
@@ -13,6 +14,7 @@
   speaker: jirinovskiy
   roundStart: true
   provider: sunrise
+  sponsorOnly: true
 
 - type: ttsVoice
   id: MaksimPoltavskiy
@@ -21,22 +23,25 @@
   speaker: maksim_poltavskiy
   roundStart: true
   provider: sunrise
+  sponsorOnly: true
 
 - type: ttsVoice
   id: PortalGlados
   name: tts-voice-name-hl2-glados
   sex: Male
   speaker: portal_glados
-  roundStart: false
+  roundStart: false # for borgs
   provider: sunrise
+  sponsorOnly: true
 
 - type: ttsVoice
   id: Navalniy
   name: tts-voice-name-navalniy
   sex: Male
   speaker: navalniy
-  roundStart: true
+  roundStart: false # yes
   provider: sunrise
+  sponsorOnly: true
 
 - type: ttsVoice
   id: SBSquidward
@@ -45,6 +50,7 @@
   speaker: sb_squidward
   roundStart: true
   provider: sunrise
+  sponsorOnly: true
 
 - type: ttsVoice
   id: TemplarAssasin
@@ -53,6 +59,7 @@
   speaker: templar_assasin
   roundStart: false # maybe for borgs...
   provider: sunrise
+  sponsorOnly: true
 
 - type: ttsVoice
   id: Brejnev
@@ -61,6 +68,7 @@
   speaker: brejnev
   roundStart: true
   provider: sunrise
+  sponsorOnly: true
 
 - type: ttsVoice
   id: HL2Kleiner
@@ -69,6 +77,7 @@
   speaker: hl2_kleiner
   roundStart: true
   provider: sunrise
+  sponsorOnly: true
 
 - type: ttsVoice
   id: TF2Medic
@@ -77,6 +86,7 @@
   speaker: tf2_medic
   roundStart: true
   provider: sunrise
+  sponsorOnly: true
 
 - type: ttsVoice
   id: Livsey
@@ -85,6 +95,7 @@
   speaker: livsey
   roundStart: true
   provider: sunrise
+  sponsorOnly: true
 
 - type: ttsVoice
   id: HL2Barni
@@ -93,6 +104,7 @@
   speaker: hl2_barni
   roundStart: true
   provider: sunrise
+  sponsorOnly: true
 
 - type: ttsVoice
   id: HL2Gman
@@ -101,6 +113,7 @@
   speaker: hl2_gman
   roundStart: true
   provider: sunrise
+  sponsorOnly: true
 
 - type: ttsVoice
   id: Losyash
@@ -109,6 +122,7 @@
   speaker: losyash
   roundStart: true
   provider: sunrise
+  sponsorOnly: true
 
 - type: ttsVoice
   id: HL2FatherGrigori
@@ -117,6 +131,7 @@
   speaker: hl2_father_grigori
   roundStart: true
   provider: sunrise
+  sponsorOnly: true
 
 - type: ttsVoice
   id: Kopatich
@@ -125,6 +140,7 @@
   speaker: kopatich
   roundStart: true
   provider: sunrise
+  sponsorOnly: true
 
 - type: ttsVoice
   id: StalkerSidorovich
@@ -133,3 +149,4 @@
   speaker: stalker_sidorovich
   roundStart: true
   provider: sunrise
+  sponsorOnly: true

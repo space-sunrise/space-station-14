@@ -1,14 +1,13 @@
 tts-voice-name-minkir = (NEW) [SS14] Минкир
 tts-voice-name-jirinovskiy = (NEW) [Политик] Жириновский
 tts-voice-name-maksim-poltavskiy = (NEW) [Диктор] Максим Полтавский
-tts-voice-name-shrek = (NEW) [Шрек] Огр
 tts-voice-name-navalniy = (NEW) [Политик] Навальный
 tts-voice-name-sb-squidward = (NEW) [Спанч Боб] Сквидвард V2
 tts-voice-name-templar-assasin = (NEW) [DOTA 2] Темплар Ассасин
 tts-voice-name-brejnev = (NEW) [Президент] Брежнев
 tts-voice-name-hl2-kleiner = (NEW) [Half-Life 2] Доктор Кляйнер V2
 tts-voice-name-tf2-medic = (NEW) [Team Fortress 2] Медик V2
-tts-voice-name-livsey = (NEW) Ливси
+tts-voice-name-livsey = (NEW) [Остров Сокровищ] Ливси
 tts-voice-name-hl2-barni = (NEW) [Half-Life 2] Барни V2
 tts-voice-name-hl2-gman = (NEW) [Half-Life 2] GMan V2
 tts-voice-name-losyash = (NEW) [Смешарики] Лосяш
