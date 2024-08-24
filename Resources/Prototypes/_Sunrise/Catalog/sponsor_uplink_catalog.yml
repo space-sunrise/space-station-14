@@ -1680,7 +1680,7 @@
     stock: 1
 
 - type: listing
-  id: UplinkSunrisePlushieGenok
+  id: UplinkSunrisePlushieFrizko
   productEntity: PlushieFrizko
   cost:
     Suntick: 4
@@ -1691,7 +1691,7 @@
     stock: 1
 
 - type: listing
-  id: UplinkSunrisePlushieGenok
+  id: UplinkSunrisePlushieMiron
   productEntity: PlushieMiron
   cost:
     Suntick: 4
@@ -1702,7 +1702,7 @@
     stock: 1
 
 - type: listing
-  id: UplinkSunrisePlushieGenok
+  id: UplinkSunrisePlushieBublegum
   productEntity: PlushieBublegum
   cost:
     Suntick: 4
