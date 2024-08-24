@@ -11,7 +11,7 @@
       requiredAge: 40 # Sunrise-Edit
   startingGear: MagistratGear
   icon: "JobIconMagistrat"
-  supervisors: job-supervisors-service
+  supervisors: job-supervisors-centcom
   canBeAntag: false
   setPreference: true
   radioBold: true
