@@ -193,7 +193,7 @@ public sealed partial class ZombieSystem
 
             // humanoid zombies get to pry open doors and shit
             var pryComp = EnsureComp<PryingComponent>(target);
-            pryComp.SpeedModifier = 7.00f; // Sunrise-Edit
+            pryComp.SpeedModifier = 0.75f; // Sunrise-Edit
             pryComp.PryPowered = true;
             pryComp.Force = true;
 
