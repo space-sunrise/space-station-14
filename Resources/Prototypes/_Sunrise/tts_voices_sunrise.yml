@@ -84,7 +84,7 @@
   name: tts-voice-name-livsey
   sex: Male
   speaker: livsey
-  roundStart: true
+  roundStart: false # устаревший способ обучения моделей
   provider: sunrise
   sponsorOnly: true
 
