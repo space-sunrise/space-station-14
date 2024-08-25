@@ -1,7 +1,7 @@
 ﻿- type: ttsVoice
   id: Minkir
   name: tts-voice-name-minkir
-  sex: Female
+  sex: Male
   speaker: minkir
   roundStart: true
   provider: sunrise
@@ -12,7 +12,7 @@
   name: tts-voice-name-jirinovskiy
   sex: Male
   speaker: jirinovskiy
-  roundStart: true
+  roundStart: false # надо переобучить
   provider: sunrise
   sponsorOnly: true
 
@@ -31,15 +31,6 @@
   sex: Male
   speaker: portal_glados
   roundStart: false # for borgs
-  provider: sunrise
-  sponsorOnly: true
-
-- type: ttsVoice
-  id: Navalniy
-  name: tts-voice-name-navalniy
-  sex: Male
-  speaker: navalniy
-  roundStart: false # yes
   provider: sunrise
   sponsorOnly: true
 
@@ -147,6 +138,15 @@
   name: tts-voice-name-stalker-sidorovich
   sex: Male
   speaker: stalker_sidorovich
+  roundStart: true
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Livsey2
+  name: tts-voice-name-livsey
+  sex: Male
+  speaker: livsey_2
   roundStart: true
   provider: sunrise
   sponsorOnly: true
