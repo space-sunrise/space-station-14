@@ -94,6 +94,11 @@
     guides:
     - Botany
     - Chemicals
+  # Sunrise-start
+  - type: Tag
+    tags:
+    - NoPaint
+  # Sunrise-end
 
 - type: entity
   parent: hydroponicsTray

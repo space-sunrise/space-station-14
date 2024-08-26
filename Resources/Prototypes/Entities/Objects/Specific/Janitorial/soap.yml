@@ -60,6 +60,7 @@
     solution: soap
   - type: DeleteOnSolutionEmpty
     solution: soap
+  - type: PaintRemover  # Sunrise-edit
   - type: FlavorProfile
     flavors:
       - clean

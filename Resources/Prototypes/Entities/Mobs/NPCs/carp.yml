@@ -73,6 +73,7 @@
       tags:
         - Carp
         - DoorBumpOpener
+        - NoPaint
     - type: ReplacementAccent
       accent: genericAggressive
     - type: Speech
