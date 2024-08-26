@@ -1,3 +1,3 @@
-ent-WeaponBaguette = baguette
+ent-WeaponBaguette = багет
     .desc = Bon appétit!
-    .suffix = Weapon
+    .suffix = Оружие

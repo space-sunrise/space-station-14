@@ -1,4 +1,4 @@
-ent-DoubleGlassAirlock = Double Glass Airlock
-    .desc = { ent-AirlockGlass.desc }
-ent-TripleGlassAirlock = Triple Glass Airlock
-    .desc = It opens, it closes, and maybe crushes you, but it bigger than normal door.
+ent-DoubleGlassAirlock = Двойной стеклянный шлюз
+    .desc = Он открывается, закрывается и может вас раздавить, но он больше обычной двери.
+ent-TripleGlassAirlock = Тройной стеклянный шлюз
+    .desc = Он открывается, закрывается и может вас раздавить, но он намного больше обычной двери.
