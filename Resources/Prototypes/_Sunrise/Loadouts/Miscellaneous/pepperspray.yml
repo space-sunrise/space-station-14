@@ -1,0 +1,27 @@
+﻿- type: loadoutGroup
+  id: GroupPepperSprayCarriers
+  name: Спрей от насильников
+  minLimit: 1
+  hidden: true
+  loadouts:
+  - PepperSpray
+
+- type: loadoutEffectGroup
+  id: PepperSprayCarriers
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Felinid
+
+- type: loadout
+  id: PepperSpray
+  startingGear: PepperSpray
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: PepperSprayCarriers
+
+- type: startingGear
+  id: PepperSpray
+  storage:
+    back:
+    - PepperSprayBottleRed
