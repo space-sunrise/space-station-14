@@ -100,7 +100,7 @@ namespace Content.Client.Administration.UI.ManageSolutions
 
             AddButton.Text = Loc.GetString("admin-add-reagent-window-add",
                 ("quantity", _quantitySpin.Value.ToString("F2")),
-                ("reagent", Loc.GetString($"reagent-name-{_selectedReagent.ID.ToLower()}")));
+                ("reagent", _selectedReagent.LocalizedName));
 
             AddButton.Disabled = false;
         }
@@ -114,22 +114,18 @@ namespace Content.Client.Administration.UI.ManageSolutions
             foreach (var reagent in _prototypeManager.EnumeratePrototypes<ReagentPrototype>())
             {
                 
-                var localizedReagentName = Loc.GetString($"reagent-name-{reagent.ID.ToLower()}").ToLowerInvariant();
+                var localizedReagentName = reagent.LocalizedName;
                 
                 if (!string.IsNullOrEmpty(filter) && !reagent.ID.ToLowerInvariant().Contains(filter) && !localizedReagentName.Contains(filter))
                 {
                     continue;
                 }
                 
-                if (localizedReagentName.Contains("reagent-name"))
-                {
-                    localizedReagentName = reagent.ID;
-                }
 
                 ItemList.Item regentItem = new(ReagentList)
                 {
                     Metadata = reagent,
-                    Text = localizedReagentName
+                    Text = reagent.LocalizedName
                 };
 
                 ReagentList.Add(regentItem);
