@@ -1,6 +1,6 @@
 ﻿- type: loadoutGroup
   id: GroupPepperSprayCarriers
-  name: Спрей от насильников
+  name: loadout-group-pepper-spray
   minLimit: 1
   hidden: true
   loadouts:
