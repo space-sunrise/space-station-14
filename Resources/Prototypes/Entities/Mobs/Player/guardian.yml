@@ -109,7 +109,7 @@
     - type: Tag
       tags:
         - CannotSuicide
-        - NoPaint
+        - NoPaint  # Sunrise-edit
 
 # From the uplink injector
 - type: entity
@@ -227,7 +227,7 @@
       tags:
         - CannotSuicide
         - FootstepSound
-        - NoPaint
+        - NoPaint  # Sunrise-edit
     - type: Inventory
       templateId: holoclown
     - type: Hands

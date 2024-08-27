@@ -15,7 +15,7 @@
   - type: Tag
     tags:
     - Sheet
-    - NoPaint
+    - NoPaint  # Sunrise-edit
   - type: Material
   - type: Damageable
     damageContainer: Inorganic

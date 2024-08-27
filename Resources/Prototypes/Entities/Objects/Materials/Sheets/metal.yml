@@ -15,7 +15,7 @@
     tags:
     - Sheet
     - Metal
-    - NoPaint
+    - NoPaint  # Sunrise-edit
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
