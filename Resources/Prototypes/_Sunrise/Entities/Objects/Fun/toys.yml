@@ -497,7 +497,8 @@
   - type: MeleeWeapon
     soundHit:
       collection: PlushieVulpkaninGrowls
-      volume: 100
+      params:
+        volume: 100
   - type: EmitSoundOnTrigger
     sound:
       collection: PlushieVulpkaninGrowls
