@@ -8,6 +8,8 @@ role-timer-age-to-old = Ваш персонаж должен быть молож
 role-timer-age-to-young = Ваш персонаж должен быть старше [color=yellow]{ $age }[/color] для этой роли.
 role-timer-whitelisted-species = Ваш персонаж должен быть одной из следующих рас для этой роли:
 role-timer-blacklisted-species = Ваш персонаж не должен быть одной из следующих рас для этой роли:
+role-timer-whitelisted-traits = Your character must have one of the following traits:
+role-timer-blacklisted-traits = Your character must not have any of the following traits:
 role-timer-locked = Закрыто (наведите курсор для подробностей)
 role-timer-department-unknown = Неизвестный отдел
 role-ban = Эта должность для вас заблокирована.

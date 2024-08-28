@@ -396,7 +396,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         if (playTts)
         {
-            RaiseLocalEvent(new AnnouncementSpokeEvent(filter, wrappedMessage, announcementSound, announceVoice));
+            RaiseLocalEvent(new AnnouncementSpokeEvent(filter, message, announcementSound, announceVoice));
         }
         // Sunrise-edit
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Station Announcement from {sender}: {message}");

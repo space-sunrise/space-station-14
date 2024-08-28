@@ -1,1 +1,1 @@
-loadout-sponsor-only = [color=yellow]Доступно только спонсорам.[/color]
+loadout-sponsor-only = Доступно только спонсорам.

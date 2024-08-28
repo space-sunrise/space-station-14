@@ -287,6 +287,13 @@
       - id: DrinkMopwataBottleRandom
       - id: LidSalami
         weight: 0.05
+      # Sunrise-start
+      - id: SprayPaintBlue
+      - id: SprayPaintRed
+      - id: SprayPaintGreen
+      - id: SprayPaintOrange
+      - id: DeathPaint
+      # Sunrise-end
 
 - type: entity
   name: Maint Loot Spawner

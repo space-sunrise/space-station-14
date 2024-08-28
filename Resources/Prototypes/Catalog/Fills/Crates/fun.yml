@@ -322,12 +322,20 @@
       - id: CrazyGlue
         amount: 2
       - id: PlasticBanana
+      # Sunrise-start
+      - id: FunnyPaint
+        orGroup: Paint
+        prob: 0.5
+      - id: FunnyPaintYellow
+        orGroup: Paint
+        prob: 0.5
+      # Sunrise-end
       - id: WhoopieCushion
       - id: ToyHammer
       - id: MrChips
         orGroup: GiftPool
       - id: MrDips
-        orGroup: Giftpool
+        orGroup: GiftPool
       - id: RevolverCapGun
       - id: BalloonNT
       - id: ClothingShoesClownLarge

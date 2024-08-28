@@ -65,7 +65,7 @@ public sealed partial class TTSSystem : EntitySystem
             return;
 
         var previewText = _rng.Pick(_sampleText);
-        var soundData = await GenerateTTS(previewText, protoVoice.Speaker);
+        var soundData = await GenerateTTS(previewText, protoVoice);
         if (soundData is null)
             return;
 
@@ -101,7 +101,7 @@ public sealed partial class TTSSystem : EntitySystem
             return;
         }
 
-        HandleRadio(args.Receivers, args.Message, protoVoice.Speaker);
+        HandleRadio(args.Receivers, args.Message, protoVoice);
     }
 
     private bool GetVoicePrototype(string voiceId, [NotNullWhen(true)] out TTSVoicePrototype? voicePrototype)
@@ -121,7 +121,7 @@ public sealed partial class TTSSystem : EntitySystem
             !GetVoicePrototype(args.AnnounceVoice ?? _defaultAnnounceVoice, out var protoVoice))
             return;
 
-        var soundData = await GenerateTTS(args.Message, protoVoice.Speaker, isAnnounce: true);
+        var soundData = await GenerateTTS(args.Message, protoVoice, isAnnounce: true);
         soundData ??= [];
         RaiseNetworkEvent(new AnnounceTtsEvent(soundData, args.AnnouncementSound), args.Source.RemovePlayers(_ignoredRecipients));
     }
@@ -145,14 +145,14 @@ public sealed partial class TTSSystem : EntitySystem
 
         if (args.ObfuscatedMessage != null)
         {
-            HandleWhisper(uid, args.Message, protoVoice.Speaker);
+            HandleWhisper(uid, args.Message, protoVoice);
             return;
         }
 
-        HandleSay(uid, args.Message, protoVoice.Speaker);
+        HandleSay(uid, args.Message, protoVoice);
     }
 
-    private async void HandleSay(EntityUid uid, string message, string speaker)
+    private async void HandleSay(EntityUid uid, string message, TTSVoicePrototype voicePrototype)
     {
         var recipients = Filter.Pvs(uid, 1F).RemovePlayers(_ignoredRecipients);
 
@@ -160,7 +160,7 @@ public sealed partial class TTSSystem : EntitySystem
         if (!recipients.Recipients.Any())
             return;
 
-        var soundData = await GenerateTTS(message, speaker);
+        var soundData = await GenerateTTS(message, voicePrototype);
 
         if (soundData is null)
             return;
@@ -170,11 +170,11 @@ public sealed partial class TTSSystem : EntitySystem
         RaiseNetworkEvent(new PlayTTSEvent(soundData, netEntity), recipients);
     }
 
-    private async void HandleWhisper(EntityUid uid, string message, string speaker)
+    private async void HandleWhisper(EntityUid uid, string message, TTSVoicePrototype voicePrototype)
     {
         // If it's a whisper into a radio, generate speech without whisper
         // attributes to prevent an additional speech synthesis event
-        var soundData = await GenerateTTS(message, speaker);
+        var soundData = await GenerateTTS(message, voicePrototype);
         if (soundData is null)
             return;
 
@@ -205,9 +205,9 @@ public sealed partial class TTSSystem : EntitySystem
         }
     }
 
-    private async void HandleRadio(EntityUid[] uids, string message, string speaker)
+    private async void HandleRadio(EntityUid[] uids, string message, TTSVoicePrototype voicePrototype)
     {
-        var soundData = await GenerateTTS(message, speaker, isRadio: true);
+        var soundData = await GenerateTTS(message, voicePrototype, isRadio: true);
         if (soundData is null)
             return;
 
@@ -215,7 +215,7 @@ public sealed partial class TTSSystem : EntitySystem
     }
 
     // ReSharper disable once InconsistentNaming
-    private async Task<byte[]?> GenerateTTS(string text, string speaker, bool isRadio = false, bool isAnnounce = false)
+    private async Task<byte[]?> GenerateTTS(string text, TTSVoicePrototype voicePrototype, bool isRadio = false, bool isAnnounce = false)
     {
         try
         {
@@ -226,15 +226,15 @@ public sealed partial class TTSSystem : EntitySystem
 
             if (isRadio)
             {
-                return await _ttsManager.ConvertTextToSpeechRadio(speaker, textSanitized);
+                return await _ttsManager.ConvertTextToSpeechRadio(voicePrototype, textSanitized);
             }
 
             if (isAnnounce)
             {
-                return await _ttsManager.ConvertTextToSpeechAnnounce(speaker, textSanitized);
+                return await _ttsManager.ConvertTextToSpeechAnnounce(voicePrototype, textSanitized);
             }
 
-            return await _ttsManager.ConvertTextToSpeech(speaker, textSanitized);
+            return await _ttsManager.ConvertTextToSpeech(voicePrototype, textSanitized);
         }
         catch (Exception e)
         {

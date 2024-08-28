@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using Content.Shared._Sunrise.SunriseCCVars;
+using Content.Shared._Sunrise.TTS;
 using Prometheus;
 using Robust.Shared.Configuration;
 
@@ -41,34 +42,34 @@ public sealed class TTSManager
 
     private ISawmill _sawmill = default!;
     private string _apiUrl = string.Empty;
-    private string _apiToken = string.Empty;
 
     public void Initialize()
     {
         _sawmill = Logger.GetSawmill("tts");
-        _cfg.OnValueChanged(SunriseCCVars.TTSApiUrl, v => _apiUrl = v, true);
-        _cfg.OnValueChanged(SunriseCCVars.TTSApiToken, v =>
-        {
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", v);
-            _apiToken = v;
-        }, true);
+        _cfg.OnValueChanged(SunriseCCVars.TTSApiUrl, OnApiUrlChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.TTSApiToken, OnApiTokenChanged, true);
     }
 
-    /// <summary>
-    /// Generates audio with passed text by API
-    /// </summary>
-    /// <param name="speaker">Identifier of speaker</param>
-    /// <param name="text">SSML formatted text</param>
-    /// <returns>OGG audio bytes or null if failed</returns>
-    public async Task<byte[]?> ConvertTextToSpeech(string speaker, string text, string? effect = null)
+    private void OnApiUrlChanged(string value)
+    {
+        _apiUrl = value;
+    }
+
+    private void OnApiTokenChanged(string value)
+    {
+        _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", value);
+    }
+
+    public async Task<byte[]?> ConvertTextToSpeech(TTSVoicePrototype voicePrototype, string text, string? effect = null)
     {
         WantedCount.Inc();
-        _sawmill.Verbose($"Generate new audio for '{text}' speech by '{speaker}' speaker");
+        _sawmill.Verbose($"Generate new audio for '{text}' speech by '{voicePrototype.Speaker}' speaker");
 
         var body = new GenerateVoiceRequest
         {
             Text = text,
-            Speaker = speaker,
+            Speaker = voicePrototype.Speaker,
+            Provider = voicePrototype.Provider,
             // Pitch = pitch,
             // Rate = rate,
             Effect = effect
@@ -96,7 +97,7 @@ public sealed class TTSManager
 
             var soundData = await response.Content.ReadAsByteArrayAsync(cts.Token);
 
-            _sawmill.Debug($"Generated new audio for '{text}' speech by '{speaker}' speaker ({soundData.Length} bytes)");
+            _sawmill.Debug($"Generated new audio for '{text}' speech by '{voicePrototype.Speaker}' speaker ({soundData.Length} bytes)");
             RequestTimings.WithLabels("Success").Observe((DateTime.UtcNow - reqTime).TotalSeconds);
 
             return soundData;
@@ -104,13 +105,13 @@ public sealed class TTSManager
         catch (TaskCanceledException)
         {
             RequestTimings.WithLabels("Timeout").Observe((DateTime.UtcNow - reqTime).TotalSeconds);
-            _sawmill.Error($"Timeout of request generation new audio for '{text}' speech by '{speaker}' speaker");
+            _sawmill.Error($"Timeout of request generation new audio for '{text}' speech by '{voicePrototype.Speaker}' speaker");
             return null;
         }
         catch (Exception e)
         {
             RequestTimings.WithLabels("Error").Observe((DateTime.UtcNow - reqTime).TotalSeconds);
-            _sawmill.Error($"Failed of request generation new sound for '{text}' speech by '{speaker}' speaker\n{e}");
+            _sawmill.Error($"Failed of request generation new sound for '{text}' speech by '{voicePrototype.Speaker}' speaker\n{e}");
             return null;
         }
     }
@@ -119,6 +120,7 @@ public sealed class TTSManager
     {
         var uriBuilder = new UriBuilder(url);
         var query = HttpUtility.ParseQueryString(uriBuilder.Query);
+        query["provider"] = body.Provider;
         query["speaker"] = body.Speaker;
         query["text"] = body.Text;
         query["pitch"] = body.Pitch;
@@ -132,18 +134,18 @@ public sealed class TTSManager
         return uriBuilder.ToString();
     }
 
-    public async Task<byte[]?> ConvertTextToSpeechRadio(string speaker, string text)
+    public async Task<byte[]?> ConvertTextToSpeechRadio(TTSVoicePrototype voicePrototype, string text)
     {
         WantedRadioCount.Inc();
-        var soundData = await ConvertTextToSpeech(speaker, text, "radio");
+        var soundData = await ConvertTextToSpeech(voicePrototype, text, "radio");
 
         return soundData;
     }
 
-    public async Task<byte[]?> ConvertTextToSpeechAnnounce(string speaker, string text)
+    public async Task<byte[]?> ConvertTextToSpeechAnnounce(TTSVoicePrototype voicePrototype, string text)
     {
         WantedAnnounceCount.Inc();
-        var soundData = await ConvertTextToSpeech(speaker, text, "announce");
+        var soundData = await ConvertTextToSpeech(voicePrototype, text, "announce");
 
         return soundData;
     }
@@ -155,6 +157,9 @@ public sealed class TTSManager
 
         [JsonPropertyName("speaker")]
         public string Speaker { get; set; } = default!;
+
+        [JsonPropertyName("provider")]
+        public string Provider { get; set; } = default!;
 
         [JsonPropertyName("pitch")]
         public string Pitch { get; set; } = default!;

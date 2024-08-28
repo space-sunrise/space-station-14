@@ -1,0 +1,9 @@
+- type: entity
+  id: OrganTajaranStomach
+  parent: OrganAnimalStomach
+  noSpawn: true
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 50

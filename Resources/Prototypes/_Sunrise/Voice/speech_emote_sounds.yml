@@ -25,6 +25,12 @@
       collection: FelinidPurrs
     Growl:
       collection: FelinidGrowls
+    # Sunrise-start
+    Otryjka:
+      collection: Otryjka
+      params:
+        volume: -12
+    # Sunrise-end
 
 - type: emoteSounds
   id: FemaleFelinid
@@ -79,6 +85,12 @@
       collection: VulpkaninHowls
     Bark:
       collection: VulpkaninBarks
+    # Sunrise-start
+    Otryjka:
+      collection: Otryjka
+      params:
+        volume: -12
+    # Sunrise-end
 
 - type: emoteSounds
   id: FemaleVulpkanin
@@ -133,6 +145,12 @@
       collection: MaleCry
     Whistle:
       collection: Whistles
+    # Sunrise-start
+    Otryjka:
+      collection: Otryjka
+      params:
+        volume: -12
+    # Sunrise-end
   params:
     variation: 0.125
 

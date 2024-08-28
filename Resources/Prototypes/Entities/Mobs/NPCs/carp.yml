@@ -73,6 +73,7 @@
       tags:
         - Carp
         - DoorBumpOpener
+        - NoPaint  # Sunrise-edit
     - type: ReplacementAccent
       accent: genericAggressive
     - type: Speech

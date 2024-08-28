@@ -25,6 +25,11 @@
         behaviors:
           - !type:DoActsBehavior
             acts: [ "Destruction" ]
+  # Sunrise-start
+  - type: Tag
+    tags:
+      - NoPaint
+  # Sunrise-end
 
 - type: entity
   id: HoloFan
