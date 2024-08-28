@@ -68,6 +68,11 @@
       - state: inhand-right-blade
         shader: unshaded
   - type: Reflect
+  # Sunrise-start
+  - type: Tag
+    tags:
+    - NoPaint
+  # Sunrise-end
   - type: IgnitionSource
     temperature: 700
 
@@ -222,6 +227,7 @@
   - type: Tag
     tags:
     - Write
+    - NoPaint  # Sunrise-edit
 
 - type: entity
   parent: [BaseItem, BaseSyndicateContraband]

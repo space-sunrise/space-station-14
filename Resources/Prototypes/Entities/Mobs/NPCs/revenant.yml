@@ -97,3 +97,8 @@
     - RevenantTheme
   - type: Speech
     speechVerb: Ghost
+  # Sunrise-start
+  - type: Tag
+    tags:
+      - NoPaint
+  # Sunrise-end

@@ -149,6 +149,13 @@
     children:
     - id: StrangePill
       prob: 0.20
+    # Sunrise-start
+    # Spray paints
+    - id: DeathPaint
+      prob: 0.05
+    - id: DeathPaintTwo
+      prob: 0.05
+    # Sunrise-end
     # Tools
     - !type:NestedSelector
       tableId: MaintToolsTable
