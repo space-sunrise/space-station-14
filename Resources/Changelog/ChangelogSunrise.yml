@@ -2888,3 +2888,11 @@
   id: 215
   time: '2024-08-28T15:21:02.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/312
+- author: VigersRay
+  changes:
+  - message: "\u0411\u043E\u0440\u0433\u0438 \u0431\u043E\u043B\u044C\u0448\u0435\
+      \ \u043D\u0435 \u043C\u043E\u0433\u0443\u0442 \u0445\u043E\u0434\u0438\u0442\
+      \u044C \u043F\u043E \u043A\u043E\u0441\u043C\u043E\u0441\u0443."
+    type: Fix
+  id: 216
+  time: '2024-08-28T17:17:38.354000+00:00'
