@@ -6,7 +6,7 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 18000 #5 hrs
+      time: 7200 #2 hrs
   startingGear: PrisonGuardGear
   alwaysUseSpawner: true
   canBeAntag: false
