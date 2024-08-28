@@ -1,7 +1,13 @@
 health-analyzer-window-no-patient-data-text = Нет данных о пациенте.
 health-analyzer-window-entity-unknown-text = неизвестно
+health-analyzer-window-entity-unknown-species-text = Не гуманоид
+health-analyzer-window-entity-unknown-value-text = N/A
+health-analyzer-window-entity-alive-text = Жив
+health-analyzer-window-entity-dead-text = Мёртв
+health-analyzer-window-entity-critical-text = Критическое состояние
 health-analyzer-window-entity-health-text = Состояние { $entityName }:
 health-analyzer-window-entity-temperature-text = Температура: { $temperature }
+health-analyzer-window-entity-status-text = Статус:
 health-analyzer-window-entity-blood-level-text = Уровень крови: { $bloodLevel }
 health-analyzer-window-entity-bleeding-text = У пациента кровотечение!
 health-analyzer-window-entity-damage-total-text = Общие повреждения: { $amount }

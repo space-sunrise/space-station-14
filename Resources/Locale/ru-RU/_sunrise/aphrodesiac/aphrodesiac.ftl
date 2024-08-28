@@ -8,5 +8,4 @@ reagent-effect-guidebook-love =
         [1] Вызывает
        *[other] вызывают
     } измененное состояние сознания.
-
 reagent-beepskysmash-effect1 = Бипски наносит удар!

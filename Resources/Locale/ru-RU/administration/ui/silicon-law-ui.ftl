@@ -8,3 +8,4 @@ silicon-law-ui-delete = Удалить
 silicon-law-ui-check-corrupted = Испорченный закон
 silicon-law-ui-check-corrupted-tooltip = Если идентификатор закона должен быть установлен как "испорченный", символы перемешиваются.
 silicon-law-ui-placeholder = Введите текст здесь что-бы изменить закон...
+silicon-laws-updated = Обновленные законы

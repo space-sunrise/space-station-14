@@ -1,22 +1,22 @@
 <Document>
-  # Minor Antagonists
+  # Незначительные Антагонисты
 
-  Most if not all Minor Antagonists are ghost-controlled roles that gives dead people new ways to cause chaos around the station. They are spawned by random events.
+  Большинство, если не все, из незначительных антагонистов - это роли, управляемые призраками, которые дают умершим новые способы создать хаос на станции. Они появляются в результате случайных событий.
 
-  # Revenant
+  # Ревенант
 
   <Box>
     <GuideEntityEmbed Entity="MobRevenant"/>
   </Box>
 
-  Revenants are ethereal beings made of ectoplasm that haunt the crew and steal [color=cyan]life essence[/color] from them.
-  - Your essence is your very own [bold]life force[/bold]. Taking damage reduces your essence.
-  - Essence is also spent to use [bold]abilities[/bold].
-  - To gain essence you first [bold]inspect[/bold] various souls for their worth. More worthy souls grant more essence. Then you must [bold]siphon[/bold] it either when the victim is crit, dead or asleep.
-  - [bold]Stolen essence[/bold] is used to purchase new abilities to incapacitate the crew easier.
-  - You are [bold]vulnerable[/bold] to attacks when you siphon a soul or use an ability. You can tell when you are vulnerable when you have a [italic]"Corporeal"[/italic] status effect.
+  Ревенанты — это эфирные существа, состоящие из эктоплазмы, которые преследуют экипаж и крадут [color=cyan]жизненную эссенцию[/color].
+  - Ваша эссенция — это ваша собственная [bold]жизненная сила[/bold]. Получение урона уменьшает количество эссенции.
+  - Эссенция также тратится на использование [bold]способностей[/bold].
+  - Чтобы получить эссенцию, сначала необходимо [bold]изучить[/bold] различные души для оценки их ценности. Более ценные души дают больше эссенции. Затем необходимо [bold]поглотить[/bold] её, когда жертва находится в критическом состоянии, мертва или спит.
+  - [bold]Украденная эссенция[/bold] используется для приобретения новых способностей, чтобы легче было выводить экипаж из строя.
+  - Вы [bold]уязвимы[/bold] для атак, когда поглащаете душу или используете способность. Вы можете определить, что вы уязвимы, если у вас есть статус [italic]"Материальность"[/italic].
 
-  # Rat King
+  # Крысиный Король
 
   <Box>
     <GuideEntityEmbed Entity="MobRatServant" Caption=""/>
@@ -26,15 +26,15 @@
     <GuideEntityEmbed Entity="MobRatServant" Caption=""/>
   </Box>
 
-  Rat Kings are abnormally large rodents capable of [color=cyan]raising huge rat armies[/color] by eating equally huge amounts of food.
-  - You have several abilities that come at the cost of your [bold]hunger[/bold].
-  - One ability is summoning [color=cyan]Rat Servants[/color] who you can [bold]command[/bold] to stay in place, follow you, attack a target of your choice or attack indiscriminately.
-  - You can conjure a cloud of [color=#77b58e]ammonia[/color], which is mildly poisonous to humans but heals rats.
-  - You can also [italic]"Rummage"[/italic] through any disposal unit by using the context menu. Use this to find [bold]scraps of food[/bold] to grow your army.
-  - Besides your abilities, you are [bold]stronger[/bold] than most other animals. You and your servants are capable of speech and you're both small enough to fit under airlocks and tables.
-  - [bold]Your underlings are still very fragile![/bold] Beware of spacings, explosions and the buisness end of a melee weapon.
+  Крысиный Король — это аномально большой грызун, способный [color=cyan]поднимать огромные армии крыс[/color] благодаря поеданию больших количеств пищи.
+  - У вас есть несколько способностей, которые зависят от вашего [bold]голода[/bold].
+  - Одна из способностей — призыв [color=cyan]Крыс-слуг[/color], которыми вы можете [bold]командовать[/bold] оставаться на месте, следовать за вами, атаковать выбранную цель или атаковать всех подряд.
+  - Вы можете создать облако [color=#77b58e]аммиака[/color], которое слегка ядовито для людей, но лечит крыс.
+  - Вы также можете [italic]"Рыться"[/italic] в любом мусоропроводе, используя контекстное меню. Используйте это, чтобы находить [bold]остатки пищи[/bold] и увеличивать свою армию.
+  - Помимо своих способностей, вы [bold]сильнее[/bold] большинства других животных. Вы и ваши слуги способны разговаривать, и вы оба достаточно малы, чтобы пролезть под воздушные шлюзы и столы.
+  - [bold]Ваши подчинённые всё равно очень хрупкие![/bold] Остерегайтесь разгерметизаций, взрывов и ударов оружием ближнего боя.
 
-  # Space Dragon
+  # Космический Дракон
 
   <Box>
     <GuideEntityEmbed Entity="MobCarp" Caption=""/>
@@ -44,23 +44,23 @@
     <GuideEntityEmbed Entity="MobCarp" Caption=""/>
   </Box>
 
-  Space Dragons is are giant extradimensional fish that [color=cyan]create rifts and eat crew.[/color]
-  - Dragons have powerful jaws to [bold]devour[/bold] infrastructure such as doors, windows, and walls.
-  - Your [color=orange]dragon's breath[/color] is a flaming projectile which travels a straight flight path, exploding multiple times and igniting things along the way. Be careful, your carps are not immune to this!
-  - You have the ability to summon [bold]carp rifts[/bold] that periodically spawn [bold]space carp[/bold]. There can be 3 rifts active at any given time.
-  - Rifts charge up energy over a period of 5 minutes and are [bold]vulnerable[/bold] during this time.  After 5 minutes, it becomes invulnerable and will continue summoning carp as long as the dragon lives.
-  - You'll suffer a [bold]temporary debilitating feedback effect[/bold] if one of your rifts are destroyed before it's done charging.
-  - If a period of five minutes passes since your spawn or since the last time a rift was charging, [bold]you'll disappear.[/bold]
-  - Dragons who have the maximum of 3 fully charged rifts will [bold]never disappear[/bold], but they are still mortal.
+  Космические Драконы — это гигантские внеземные рыбы, которые [color=cyan]создают разломы и поедают экипаж.[/color]
+  - Драконы обладают мощными челюстями, способными [bold]поглощать[/bold] инфраструктуру, такую как двери, окна и стены.
+  - Ваше [color=orange]дыхание дракона[/color] — это огненный снаряд, который летит по прямой траектории, взрываясь несколько раз и поджигая всё на своём пути. Будьте осторожны, ваши карпы не защищены от этого!
+  - Вы можете призывать [bold]разломы карпов[/bold], которые периодически порождают [bold]космических карпов[/bold]. Одновременно может быть активировано до 3 разломов.
+  - Разломы накапливают энергию в течение 5 минут и [bold]уязвимы[/bold] в это время. После 5 минут они становятся неуязвимыми и продолжают порождать карпов, пока жив дракон.
+  - Вы получите [bold]временный ослабляющий эффект отката[/bold], если один из ваших разломов будет уничтожен до завершения зарядки.
+  - Если пройдет пять минут с момента вашего появления или с последнего раза, когда разлом заряжался, [bold]вы исчезнете.[/bold]
+  - Драконы, у которых максимальное количество полностью заряженных разломов, [bold]никогда не исчезнут[/bold], но они всё равно смертны.
 
-  # Slimes and Spiders
+  # Слизни и Пауки
 
   <Box>
     <GuideEntityEmbed Entity="MobAdultSlimesBlueAngry" Caption=""/>
     <GuideEntityEmbed Entity="MobGiantSpiderAngry" Caption=""/>
   </Box>
 
-  Slimes and spiders have no remarkable features, but will [color=cyan]infest the station[/color] from time to time regardless. Both will give chase and attack anything they see.
-  - Slimes may deal extra [bold]cellular or posion damage[/bold], based upon their color. Water hurts them just as it would hurt a slime person.
-  - Spiders can lay [bold]webs[/bold], which non-spiders have a hard time moving through. They can easily be destroyed with a blade.
+  Слизни и пауки не имеют выдающихся особенностей, но всё равно могут [color=cyan]захватить станцию[/color] время от времени. Оба будут преследовать и атаковать всё, что увидят.
+  - Слизни могут наносить дополнительный [bold]клеточный или ядовитый урон[/bold], в зависимости от их цвета. Вода причиняет им боль так же, как и слизням.
+  - Пауки могут плести [bold]паутины[/bold], через которые не паукам сложно передвигаться. Их можно легко уничтожить лезвием.
 </Document>
