@@ -27,4 +27,4 @@ loadout-group-prison-guard-head = Охранник, головной убор
 loadout-group-prisoner-jumpsuit = Заключенный, комбинезон
 loadout-group-nanotrasenrepresentative-outerclothing = Представитель NT, верхняя одежда
 loadout-group-nanotrasenrepresentative-jumpsuit = Представитель NT, комбинезон
-loadout-group-pepper-spray = Спрей от насильников
+loadout-group-pepper-spray = Перцовка
