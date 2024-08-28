@@ -21,7 +21,7 @@
   Они также изготовлены из самых качественных [bold]голографических хамелеоновых волокон[/bold], которые вам удалось украсть, но, хотя они могут принимать вид изолирующих перчаток, вам все равно нужно будет найти настоящие, чтобы не обжечь руки.
 
   <Box>
-    <GuideEntityEmbed Entity="ClothingHandsChameleonThief" Caption="your thieving gloves"/>
+    <GuideEntityEmbed Entity="ClothingHandsChameleonThief" Caption="ваши воровские перчатки"/>
   </Box>
 
   ## Инструменты ремесла
@@ -40,15 +40,15 @@
   Примите решение в безопасном месте, так как ящик с инструментами растворится, а снаряжение окажется у вас под ногами.
 
   <Box>
-    <GuideEntityEmbed Entity="StorageImplanter" Caption="Anatomy"/>
-    <GuideEntityEmbed Entity="C4" Caption="Breacher"/>
-    <GuideEntityEmbed Entity="ChameleonProjector" Caption="Chameleon"/>
-    <GuideEntityEmbed Entity="EncryptionKeyStationMaster" Caption="Communicator"/>
+    <GuideEntityEmbed Entity="StorageImplanter" Caption="Анатомия"/>
+    <GuideEntityEmbed Entity="C4" Caption="Взломщик"/>
+    <GuideEntityEmbed Entity="ChameleonProjector" Caption="Хамелеон"/>
+    <GuideEntityEmbed Entity="EncryptionKeyStationMaster" Caption="Коммуникатор"/>
   </Box>
   <Box>
-    <GuideEntityEmbed Entity="NitrousOxideTank" Caption="Sleeper"/>
-    <GuideEntityEmbed Entity="Emag" Caption="Smuggler"/>
-    <GuideEntityEmbed Entity="Telecrystal" Caption="Syndie"/>
+    <GuideEntityEmbed Entity="NitrousOxideTank" Caption="Усыпитель"/>
+    <GuideEntityEmbed Entity="Emag" Caption="Контрабандист"/>
+    <GuideEntityEmbed Entity="Telecrystal" Caption="Синдикат"/>
   </Box>
 
   ## Изюминка коллекции
@@ -63,10 +63,10 @@
   Среди того, что вы можете захотеть украсть, могут быть:
   
   <Box>
-   <GuideEntityEmbed Entity="ToyFigurineGreytider" Caption="Figurines"/>
-   <GuideEntityEmbed Entity="PassengerIDCard" Caption="ID cards"/>
-   <GuideEntityEmbed Entity="ChemDispenser" Caption="Structures"/>
-   <GuideEntityEmbed Entity="MobCorgiIan" Caption="Animals/Pets"/>
+   <GuideEntityEmbed Entity="ToyFigurineGreytider" Caption="Фигурки"/>
+   <GuideEntityEmbed Entity="PassengerIDCard" Caption="ID-карты"/>
+   <GuideEntityEmbed Entity="ChemDispenser" Caption="Структуры"/>
+   <GuideEntityEmbed Entity="MobCorgiIan" Caption="Животные/Питомцы"/>
   </Box>
   
 </Document>
