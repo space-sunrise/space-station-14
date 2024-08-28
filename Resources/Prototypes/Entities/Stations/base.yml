@@ -61,8 +61,9 @@
           paths:
           - /Maps/_Sunrise/Shuttles/security.yml # Sunrise-edit
           nameGrid: false
+
 # Слишком большая нагрузка ради 3 человек
-#        security: !type:GridSpawnGroup
+#        ruins: !type:GridSpawnGroup
 #          paths:
 #          - /Maps/Ruins/chunked_tcomms.yml
 #          - /Maps/Ruins/biodome_satellite.yml
@@ -75,8 +76,8 @@
 #          - /Maps/Ruins/whiteship_bluespacejumper.yml
 # Ебейшие лаги и куча гридов
 #        vgroid: !type:DungeonSpawnGroup
-#          minimumDistance: 400
-#          maximumDistance: 450
+#          minimumDistance: 300
+#          maximumDistance: 350
 #          nameDataset: names_borer
 #          stationGrid: false
 #          addComponents:
@@ -85,6 +86,13 @@
 #            inherent: true
 #          protos:
 #          - VGRoid
+
+# Sunrise-Edit: Вынесено в _Sunrise
+#- type: entity
+#  id: BaseStationCentcomm
+#  abstract: true
+#  components:
+#    - type: StationCentcomm
 
 - type: entity
   id: BaseStationEvacuation

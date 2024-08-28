@@ -491,6 +491,16 @@
     color: "#00CCFF"
 
 - type: entity
+  id: PlushieMegane
+  parent: BasePlushie
+  name: Пропавший Ричард Рид
+  description: Тело не найдено, значит его никогда и не было. Последнее, что слышали очевидцы это начальные гитарные рифы песни «(Don’t Fear) The Reaper», вам не стоит в это лезть.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: richard_industries
+
+- type: entity
   abstract: true
   id: EmitVulpGrowl
   components:
