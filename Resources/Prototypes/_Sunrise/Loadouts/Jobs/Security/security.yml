@@ -16,7 +16,7 @@
   id: PeppersprayBlue
   storage:
     back:
-    - PeppersprayBottleBlue
+    - PepperSprayBottleBlue
 
 - type: loadout
   id: SecurityWhistle
