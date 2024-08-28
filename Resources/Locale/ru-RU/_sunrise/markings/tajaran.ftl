@@ -6,7 +6,6 @@ marking-Belly3 = Живот 3
 marking-Belly3-belly3 = Живот
 marking-Belly4 = Живот 4
 marking-Belly4-chest = Живот
-
 marking-BodyStripes = Окрас табби
 marking-BodyStripes-stripes_body = Табби
 marking-BodyBlots = Окрас черепахи
@@ -15,7 +14,6 @@ marking-patch2 = Окрас пятен
 marking-patch2-patch = Пятна
 marking-BodySkeleton = Рисунок скелета
 marking-BodySkeleton-skeleton_body = Скелет
-
 marking-TailWingler1 = Полосы (хвост)
 marking-TailWingler1-wingler_1 = Полосы
 marking-TailWingler2 = Полосы 2 (хвост)
@@ -30,7 +28,6 @@ marking-TailSkeleton = Рисунок скелета (хвост)
 marking-TailSkeleton-tail_skeleton = Скелет
 marking-TailFluffy = Пушистый (хвост)
 marking-TailFluffy-tail_fluffy = Хвост
-
 marking-Head1 = Ушки
 marking-Head1-outears = Наружное ухо
 marking-Head1-inears = Внутреннее ухо
@@ -50,12 +47,10 @@ marking-HeadRacoon = Окрас енота
 marking-HeadRacoon-raccoon-head = Окрас
 marking-HeadMane = Грива
 marking-HeadMane-mane_head = Грива
-
 marking-Head4 = Морда (ушки)
 marking-Head4-muzzleinears = Морда и ушки
 marking-Head2 = Морда
 marking-Head2-muzzle = Морда
-
 marking-FacialHairBeard = Борода
 marking-FacialHairCheeks = Бакенбарды
 marking-FacialHairMustache = Усы
