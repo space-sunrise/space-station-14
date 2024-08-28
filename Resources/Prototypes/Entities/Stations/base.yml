@@ -61,6 +61,7 @@
           paths:
           - /Maps/_Sunrise/Shuttles/security.yml # Sunrise-edit
           nameGrid: false
+
 # Слишком большая нагрузка ради 3 человек
 #        ruins: !type:GridSpawnGroup
 #          paths:

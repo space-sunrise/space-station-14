@@ -57,6 +57,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
      */
 
     [Dependency] private readonly IAdminLogManager _logger = default!;
+    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IAdminManager _admin = default!;
     [Dependency] private readonly IConfigurationManager _configManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -466,9 +467,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         }
 
         // Sunrise-start
-        var mapId = _mapManager.CreateMap();
-        var mapUid = _mapManager.GetMapEntityId(mapId);
-        _mapManager.AddUninitializedMap(mapId);
+        var mapUid = _mapSystem.CreateMap(out var mapId, runMapInit: false);
 
         if (!_loader.TryLoad(mapId, component.Map.ToString(), out var uids) || uids.Count != 1)
         {

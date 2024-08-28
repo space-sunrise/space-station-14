@@ -1,7 +1,7 @@
 tts-voice-name-charlotte = [Ютубер] Шарлотта
 tts-voice-name-bebey = [Стример] Бэбэй
 tts-voice-name-biden = [Президент США] Байден
-tts-voice-name-papa = [Президент РФ] Папич
+tts-voice-name-papa = [Миллиардер] Папич
 tts-voice-name-glados = [Portal] Гладос
 tts-voice-name-sentrybot = [Fallout 2] Сентрибот
 tts-voice-name-mana = [Ютубер] Мана
@@ -52,7 +52,7 @@ tts-voice-name-sulik = [Fallout 2] Сулик
 tts-voice-name-skippy = [Cyberpunk 2077] Скиппи
 tts-voice-name-nord = [Skyrim] Норд
 tts-voice-name-mitch = [Cyberpunk 2077] Митч Андерсон
-tts-voice-name-marcus = [ Fallout 2] Маркус
+tts-voice-name-marcus = [Fallout 2] Маркус
 tts-voice-name-judy = [Cyberpunk 2077] Джуди
 tts-voice-name-hermaeus-mora = [Skyrim] Хермеус Мора
 tts-voice-name-tf-engineer = [Team Fortress 2] Инженер

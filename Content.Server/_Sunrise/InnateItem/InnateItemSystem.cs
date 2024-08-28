@@ -59,7 +59,7 @@ namespace Content.Server._Sunrise.InnateItem
             action.IgnoreContainer = true;
             if (TryComp<ActivatableUIComponent>(uid, out var activatableUIComponent))
             {
-                activatableUIComponent.RequireHands = false;
+                activatableUIComponent.RequiresComplex = false;
                 activatableUIComponent.InHandsOnly = false;
                 activatableUIComponent.RequireActiveHand = false;
                 Dirty(uid, activatableUIComponent);
@@ -75,7 +75,7 @@ namespace Content.Server._Sunrise.InnateItem
             action.CheckCanInteract = false;
             if (TryComp<ActivatableUIComponent>(uid, out var activatableUIComponent))
             {
-                activatableUIComponent.RequireHands = false;
+                activatableUIComponent.RequiresComplex = false;
                 activatableUIComponent.InHandsOnly = false;
                 activatableUIComponent.RequireActiveHand = false;
                 Dirty(uid, activatableUIComponent);
