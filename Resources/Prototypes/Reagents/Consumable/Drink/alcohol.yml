@@ -678,6 +678,15 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.15
+      # Sunrise-start
+      - !type:Paralyze
+        paralyzeTime: 1
+      - !type:PopupMessage
+        messages: [ "reagent-beepskysmash-effect1" ]
+        type: Pvs
+        visualType: LargeCaution
+        probability: 0.8
+      # Sunrise-end
   fizziness: 0.3
 
 - type: reagent
