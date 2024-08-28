@@ -1,6 +1,6 @@
 # Name
-loadout-name-edit-label = Custom name
-loadout-name-edit-tooltip = 32 characters max. If no name is specified a random one may be chosen for you.
+loadout-name-edit-label = Пользовательское имя
+loadout-name-edit-tooltip = Максимум 32 символа. Если имя не указано, может быть выбрано случайное имя.
 # Restrictions
 loadout-restrictions = Ограничения
 loadouts-min-limit = Мин. кол-во: { $count }

@@ -1,15 +1,12 @@
 ent-AirSensorVoxBase = { ent-AirSensorBase }
-    .suffix = Vox Atmosphere
+    .suffix = Атмосфера Воксов
     .desc = { ent-AirSensorBase.desc }
-ent-AirSensorVox = { ent-['AirSensorVoxBase', 'AirSensor'] }
-
-  .desc = { ent-['AirSensorVoxBase', 'AirSensor'].desc }
-ent-GasVentPumpVox = { ent-['AirSensorVoxBase', 'GasVentPump'] }
-
-  .desc = { ent-['AirSensorVoxBase', 'GasVentPump'].desc }
-ent-GasVentScrubberVox = { ent-['AirSensorVoxBase', 'GasVentScrubber'] }
-
-  .desc = { ent-['AirSensorVoxBase', 'GasVentScrubber'].desc }
+ent-AirSensorVox = { ent-AirSensorVoxBase }
+  .desc = { ent-AirSensorVoxBase.desc }
+ent-GasVentPumpVox = { ent-AirSensorVoxBase }
+  .desc = { ent-AirSensorVoxBase.desc }
+ent-GasVentScrubberVox = { ent-AirSensorVoxBase }
+  .desc = { ent-AirSensorVoxBase.desc }
 ent-AirAlarmVox = { ent-AirAlarm }
-    .suffix = Vox Atmosphere, auto mode disabled
+    .suffix = Атмосфера Воксов, авто-мод выключен
     .desc = { ent-AirAlarm.desc }

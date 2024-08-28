@@ -1,5 +1,3 @@
-ent-CrateFunSprayPaints = ящик с краской
-    .desc = Ящик, содержащий несколько баллончиков с краской
 paint-success = { THE($target) } был покрашен!
 paint-failure = Нельзя покрыть { THE($target) } краской!
 paint-failure-painted = { THE($target) } уже покрыт краской!

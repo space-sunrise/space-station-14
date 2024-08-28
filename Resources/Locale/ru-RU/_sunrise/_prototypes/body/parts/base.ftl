@@ -1,2 +1,2 @@
-ent-BaseTail = tail
+ent-BaseTail = хвост
     .desc = { ent-BasePart.desc }

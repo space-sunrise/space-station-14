@@ -21,9 +21,9 @@ figurines-mime-5 = ................
 figurines-musician-1 = Never gonna give you up!
 figurines-musician-2 = Never gonna let you down!
 figurines-boxer-1 = Первое правило бойцовского клуба...
-figurines-boxer-2 = We settle this in the ring, alright?
-figurines-boxer-3 = I. AM. THE. CHAMPION!!
-figurines-boxer-4 = Don't look at me, he was shot, not punched.
+figurines-boxer-2 = Мы решим это на ринге, хорошо?
+figurines-boxer-3 = Я. ЕСТЬ. ЧЕМПИОН!!
+figurines-boxer-4 = Не смотри на меня, его застрелили, а не ударили.
 
 # figurines-boxer-
 

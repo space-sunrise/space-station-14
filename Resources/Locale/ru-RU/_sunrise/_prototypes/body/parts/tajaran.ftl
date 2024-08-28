@@ -1,36 +1,24 @@
-ent-PartTajaran = tajaran body part
-
-  .desc = { ent-['BaseItem', 'BasePart'].desc }
+ent-PartTajaran = часть тела таяра
+  .desc = { ent-BasePart.desc }
 ent-TorsoTajaran = тело таяра
-
-  .desc = { ent-['PartTajaran', 'BaseTorso'].desc }
+  .desc = { ent-BaseTorso.desc }
 ent-HeadTajaran = голова таяра
-
-  .desc = { ent-['PartTajaran', 'BaseHead'].desc }
+  .desc = { ent-BaseHead.desc }
 ent-LeftArmTajaran = левая рука таяра
-
-  .desc = { ent-['PartTajaran', 'BaseLeftArm'].desc }
+  .desc = { ent-BaseLeftArm.desc }
 ent-RightArmTajaran = правая рука таяра
-
-  .desc = { ent-['PartTajaran', 'BaseRightArm'].desc }
+  .desc = { ent-BaseRightArm.desc }
 ent-LeftHandTajaran = левая кисть таяра
-
-  .desc = { ent-['PartTajaran', 'BaseLeftHand'].desc }
+  .desc = { ent-BaseLeftHand.desc }
 ent-RightHandTajaran = правая кисть таяра
-
-  .desc = { ent-['PartTajaran', 'BaseRightHand'].desc }
+  .desc = { ent-BaseRightHand.desc }
 ent-TailTajaran = хвост таяра
-
-  .desc = { ent-['PartTajaran', 'BaseTail'].desc }
+  .desc = { ent-BaseTail.desc }
 ent-LeftLegTajaran = левая нога таяра
-
-  .desc = { ent-['PartTajaran', 'BaseLeftLeg'].desc }
+  .desc = { ent-BaseLeftLeg.desc }
 ent-RightLegTajaran = правая нога таяра
-
-  .desc = { ent-['PartTajaran', 'BaseRightLeg'].desc }
+  .desc = { ent-BaseRightLeg.desc }
 ent-LeftFootTajaran = левая ступня таяра
-
-  .desc = { ent-['PartTajaran', 'BaseLeftFoot'].desc }
+  .desc = { ent-BaseLeftFoot.desc }
 ent-RightFootTajaran = правая ступня таяра
-
-  .desc = { ent-['PartTajaran', 'BaseRightFoot'].desc }
+  .desc = { ent-BaseRightFoot.desc }
