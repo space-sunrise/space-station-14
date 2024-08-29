@@ -51,3 +51,48 @@
     - PillRomerol
     - PillRomerol
     - PillRomerol
+
+- type: stationGoal
+  id: Containment
+  text: station-goal-containment
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: WeaponsSecurity
+  text: station-goal-weapon-sec
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: MaintsRepair
+  text: station-goal-maints-repair
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: DormsBuild
+  text: station-goal-dorms-build
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: BattleShuttle
+  text: station-goal-battle-shuttle
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: Transit
+  text: station-goal-transit-time
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: NukeRoom
+  text: station-goal-nuke-room
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: Permabrig
+  text: station-goal-permabrig
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: Farm
+  text: station-goal-farm
+  lockBoxPrototypeId: LockboxCaptain
