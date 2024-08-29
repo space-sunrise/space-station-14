@@ -18,8 +18,6 @@
     interfaces:
       enum.SurveillanceCameraSetupUiKey.Camera:
         type: SurveillanceCameraSetupBoundUi
-#      enum.WiresUiKey.Key:
-#        type:WiresBoundUserInterface
   - type: DeviceNetwork
     deviceNetId: Wired
     receiveFrequencyId: SurveillanceCameraHandheld
@@ -110,7 +108,7 @@
   - type: GuideHelp
     guides:
     - Robotics
-    
+
 - type: entity
   id: HandheldRoboAnalyzerEmpty
   parent: HandheldRoboAnalyzer
@@ -120,7 +118,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        
+
 - type: entity
   name: hand-held criminal records monitor
   suffix: DO NOT MAP
