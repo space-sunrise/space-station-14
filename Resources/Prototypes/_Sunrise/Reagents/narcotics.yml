@@ -1,8 +1,8 @@
 - type: reagent
   id: Desoantizyne
-  name: Desoantizyne
+  name: reagent-name-desoantizyne
   group: Narcotics
-  desc: Desoantizyne - best drug to everybody, but it is soo....
+  desc: reagent-desc-desoantizyne
   physicalDesc: reagent-physical-desc-powdery
   flavor: bitter
   color: "#BFAC05"
