@@ -45,4 +45,4 @@
       - !type:ResetNarcolepsy
         conditions:
         - !type:ReagentThreshold
-          min: 30
+          min: 5
