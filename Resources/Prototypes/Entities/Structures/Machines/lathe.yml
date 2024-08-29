@@ -201,6 +201,7 @@
       - WetFloorSign
       - ClothingHeadHatCone
       - ClothingHeadHelmetPubgMore  # Sunrise-edit
+
   - type: EmagLatheRecipes
     emagStaticRecipes:
       - BoxLethalshot
