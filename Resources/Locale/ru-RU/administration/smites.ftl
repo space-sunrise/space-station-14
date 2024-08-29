@@ -13,6 +13,7 @@ admin-smite-stomach-removal-self = Вы ощущаете пустоту в же�
 admin-smite-run-walk-swap-prompt = Для бега вы должны нажать Shift!
 admin-smite-super-speed-prompt = Вы двигаетесь почти со скоростью звука!
 admin-smite-lung-removal-self = Вы не можете вдохнуть!
+admin-smite-terminate-prompt = I'll be back
 
 ## Smite names
 
