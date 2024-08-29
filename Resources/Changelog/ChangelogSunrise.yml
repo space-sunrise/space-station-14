@@ -2941,3 +2941,12 @@
   id: 220
   time: '2024-08-28T19:28:37.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/327
+- author: pacable
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u043E 9 \u043D\u043E\
+      \u0432\u044B\u0445 \u0446\u0435\u043B\u0435\u0439 \u0441\u0442\u0430\u043D\u0446\
+      \u0438\u0438."
+    type: Add
+  id: 221
+  time: '2024-08-29T12:55:58.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/330
