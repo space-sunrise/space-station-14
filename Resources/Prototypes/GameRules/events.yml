@@ -395,7 +395,7 @@
     duration: 1
     earliestStart: 30
     minimumPlayers: 20
-  - type: RandomSpawnRule
+  - type: LateJoinSpawnRule
     prototype: SpawnPointGhostTerminator
 
 - type: entity
