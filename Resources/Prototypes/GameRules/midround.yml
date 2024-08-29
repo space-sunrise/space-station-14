@@ -47,3 +47,14 @@
       mindComponents:
       - type: ChangelingRole
         prototype: Changeling
+
+- type: entity
+  noSpawn: true
+  parent: BaseGameRule
+  id: Exterminator
+  components:
+  - type: GenericAntagRule
+    agentName: terminator-round-end-agent-name
+    objectives:
+    - TerminateObjective
+    - ShutDownObjective
