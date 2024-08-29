@@ -1,12 +1,12 @@
 - type: reaction
   id: Ipecac
   reactants:
-  Potassium:
-     amount: 1
-  Nitrogen:
-	amount: 1
-  Ammonia: 
-	amount: 1
+    Potassium:
+      amount: 1
+    Nitrogen:
+      amount: 1
+    Ammonia:
+      amount: 1
   products:
     Ipecac: 2
 
@@ -665,7 +665,7 @@
     Haloperidol: 5
 
 - type: reaction
-  id: Obdolbossium
+  id: Desoantizyne
   reactants:
     Potassium:
       amount: 4
@@ -677,5 +677,5 @@
       amount: 3
     Iodine: 4
   products: 
-    Obdolbossium: 0.7
+    Desoantizyne: 0.75
 
