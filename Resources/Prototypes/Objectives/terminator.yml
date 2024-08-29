@@ -5,7 +5,7 @@
   components:
   - type: Objective
     difficulty: 1
-    issuer: susnet
+    issuer: objective-issuer-susnet
   - type: RoleRequirement
     roles:
       components:
