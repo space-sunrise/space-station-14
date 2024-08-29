@@ -1,16 +1,4 @@
 - type: reaction
-  id: Ipecac
-  reactants:
-    Potassium:
-      amount: 1
-    Nitrogen:
-      amount: 1
-    Ammonia:
-      amount: 1
-  products:
-    Ipecac: 2
-
-- type: reaction
   id: Dylovene
   reactants:
     Silicon:
@@ -159,6 +147,17 @@
   products:
     Inaprovaline: 3
 
+- type: reaction
+  id: Ipecac
+  reactants:
+    Potassium:
+      amount: 1
+    Nitrogen:
+      amount: 1
+    Ammonia:
+      amount: 1
+  products:
+    Ipecac: 2
 
 - type: reaction
   id: TranexamicAcid
@@ -663,19 +662,3 @@
       amount: 1
   products:
     Haloperidol: 5
-
-- type: reaction
-  id: Desoantizyne
-  reactants:
-    Potassium:
-      amount: 4
-    Nitrogen:
-      amount: 1
-    Ephedrine:
-      amount: 5
-    Razorium:
-      amount: 3
-    Iodine: 4
-  products: 
-    Desoantizyne: 0.75
-
