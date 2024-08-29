@@ -10899,7 +10899,7 @@ entities:
       pos: -27.5,18.5
       parent: 30
     - type: Door
-      secondsUntilStateChange: -2115.7212
+      secondsUntilStateChange: -2205.4229
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -53509,26 +53509,6 @@ entities:
     - type: Transform
       pos: -22.5,-68.5
       parent: 30
-  - uid: 20279
-    components:
-    - type: Transform
-      pos: -6.5,76.5
-      parent: 30
-  - uid: 20280
-    components:
-    - type: Transform
-      pos: -4.5,76.5
-      parent: 30
-  - uid: 20281
-    components:
-    - type: Transform
-      pos: -5.5,76.5
-      parent: 30
-  - uid: 20283
-    components:
-    - type: Transform
-      pos: 4.5,76.5
-      parent: 30
 - proto: ComputerId
   entities:
   - uid: 5032
@@ -53581,6 +53561,11 @@ entities:
       parent: 30
 - proto: ComputerPowerMonitoring
   entities:
+  - uid: 4393
+    components:
+    - type: Transform
+      pos: -6.5,76.5
+      parent: 30
   - uid: 5800
     components:
     - type: Transform
@@ -53668,6 +53653,11 @@ entities:
     components:
     - type: Transform
       pos: -5.5,-38.5
+      parent: 30
+  - uid: 15272
+    components:
+    - type: Transform
+      pos: -4.5,76.5
       parent: 30
   - uid: 15966
     components:
@@ -54712,14 +54702,6 @@ entities:
     - type: Transform
       pos: -27.5,-7.5
       parent: 30
-- proto: CryogenicSleepUnitSpawner
-  entities:
-  - uid: 13665
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 29.5,42.5
-      parent: 30
 - proto: CryogenicSleepUnitSpawnerLateJoin
   entities:
   - uid: 9041
@@ -54727,6 +54709,12 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 29.5,41.5
+      parent: 30
+  - uid: 13665
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 29.5,42.5
       parent: 30
 - proto: CryoPod
   entities:
@@ -60897,10 +60885,10 @@ entities:
     components:
     - type: Transform
       parent: 759
-    - type: Physics
-      canCollide: False
     - type: Tag
       tags: []
+    - type: Physics
+      canCollide: False
 - proto: DrinkMilkCarton
   entities:
   - uid: 448
@@ -100404,13 +100392,6 @@ entities:
     - type: Transform
       pos: -24.501097,-36.300484
       parent: 30
-- proto: MaterialReclaimer
-  entities:
-  - uid: 4393
-    components:
-    - type: Transform
-      pos: 30.5,-7.5
-      parent: 30
 - proto: MaterialWoodPlank
   entities:
   - uid: 15132
@@ -102028,6 +102009,13 @@ entities:
     components:
     - type: Transform
       pos: 39.5,12.5
+      parent: 30
+- proto: PlayerStationAi
+  entities:
+  - uid: 15990
+    components:
+    - type: Transform
+      pos: -0.5,82.5
       parent: 30
 - proto: PlushieCarp
   entities:
@@ -116949,6 +116937,18 @@ entities:
     - type: Transform
       pos: -16.5,-16.5
       parent: 30
+- proto: StationAiUploadComputer
+  entities:
+  - uid: 15273
+    components:
+    - type: Transform
+      pos: 4.5,76.5
+      parent: 30
+  - uid: 15979
+    components:
+    - type: Transform
+      pos: -5.5,76.5
+      parent: 30
 - proto: StationMap
   entities:
   - uid: 4418
@@ -122009,13 +122009,6 @@ entities:
     components:
     - type: Transform
       pos: -29.484652,-57.340546
-      parent: 30
-- proto: ToyAi
-  entities:
-  - uid: 20307
-    components:
-    - type: Transform
-      pos: -0.49299335,82.64046
       parent: 30
 - proto: ToyFigurineSpaceDragon
   entities:
@@ -138193,28 +138186,6 @@ entities:
       parent: 30
     - type: Physics
       canCollide: False
-- proto: WeaponEnergyGunMini
-  entities:
-  - uid: 1563
-    components:
-    - type: Transform
-      pos: -32.77784,56.587643
-      parent: 30
-  - uid: 1989
-    components:
-    - type: Transform
-      pos: -32.762215,56.697018
-      parent: 30
-  - uid: 1991
-    components:
-    - type: Transform
-      pos: -32.77784,56.462643
-      parent: 30
-  - uid: 2029
-    components:
-    - type: Transform
-      pos: -41.54827,49.578175
-      parent: 30
 - proto: WeaponDisablerPractice
   entities:
   - uid: 19811
@@ -138252,12 +138223,41 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
+- proto: WeaponEnergyGunMini
+  entities:
+  - uid: 1563
+    components:
+    - type: Transform
+      pos: -32.77784,56.587643
+      parent: 30
+  - uid: 1989
+    components:
+    - type: Transform
+      pos: -32.762215,56.697018
+      parent: 30
+  - uid: 1991
+    components:
+    - type: Transform
+      pos: -32.77784,56.462643
+      parent: 30
+  - uid: 2029
+    components:
+    - type: Transform
+      pos: -41.54827,49.578175
+      parent: 30
 - proto: WeaponLaserCarbinePractice
   entities:
   - uid: 22315
     components:
     - type: Transform
       pos: -38.316597,60.345554
+      parent: 30
+- proto: WeaponRifleM16A4
+  entities:
+  - uid: 2000
+    components:
+    - type: Transform
+      pos: -22.590364,53.546127
       parent: 30
 - proto: WeaponShotgunTrenchgun4034
   entities:
@@ -138285,45 +138285,46 @@ entities:
     - type: Transform
       pos: -41.445473,54.621906
       parent: 30
-- proto: WeaponRifleM16A4
+- proto: WeaponTurretHostile
   entities:
-  - uid: 2000
+  - uid: 15991
     components:
     - type: Transform
-      pos: -22.590364,53.546127
+      rot: 3.141592653589793 rad
+      pos: 3.5,79.5
+      parent: 30
+  - uid: 15992
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -4.5,79.5
+      parent: 30
+  - uid: 15993
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -5.5,83.5
+      parent: 30
+  - uid: 16139
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -4.5,87.5
+      parent: 30
+  - uid: 16166
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,87.5
+      parent: 30
+  - uid: 16167
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 4.5,83.5
       parent: 30
 - proto: WeaponTurretSyndicateBroken
   entities:
-  - uid: 22089
-    components:
-    - type: Transform
-      pos: -4.5,79.5
-      parent: 30
-  - uid: 22090
-    components:
-    - type: Transform
-      pos: 3.5,79.5
-      parent: 30
-  - uid: 22091
-    components:
-    - type: Transform
-      pos: 4.5,83.5
-      parent: 30
-  - uid: 22092
-    components:
-    - type: Transform
-      pos: 3.5,87.5
-      parent: 30
-  - uid: 22093
-    components:
-    - type: Transform
-      pos: -4.5,87.5
-      parent: 30
-  - uid: 22094
-    components:
-    - type: Transform
-      pos: -5.5,83.5
-      parent: 30
   - uid: 22095
     components:
     - type: Transform
