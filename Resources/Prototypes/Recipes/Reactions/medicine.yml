@@ -1,4 +1,16 @@
 - type: reaction
+  id: Ipecac
+  reactants:
+  Potassium:
+     amount: 1
+  Nitrogen:
+	amount: 1
+  Ammonia: 
+	amount: 1
+  products:
+    Ipecac: 2
+
+- type: reaction
   id: Dylovene
   reactants:
     Silicon:

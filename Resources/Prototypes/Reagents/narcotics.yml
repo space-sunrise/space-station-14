@@ -463,10 +463,10 @@
         refresh: false
 
 - type: reagent
-  id: Obdolbossium
-  name: Obdolbossium
+  id: Desoantizyne
+  name: Desoantizyne
   group: Narcotics
-  desc: Obdolbossium - best drug to everybody, but he is soo....
+  desc: Desoantizyne - best drug to everybody, but it is soo....
   physicalDesc: reagent-physical-desc-powdery
   flavor: bitter
   color: "#BFAC05"
