@@ -1,6 +1,6 @@
 terminator-round-end-agent-name = НТ-800
 
-objective-issuer-susnet = [color=#d64119]Сасnet[/color]
+objective-issuer-susnet = [color=#d64119]Susnet[/color]
 
 terminator-role-greeting =
     Вы - терминатор, неумолимый убийца, посланный в прошлое, чтобы обеспечить наше будущее.
