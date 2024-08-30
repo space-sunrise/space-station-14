@@ -74368,7 +74368,7 @@ entities:
       pos: 33.5,16.5
       parent: 8364
     - type: Door
-      secondsUntilStateChange: -50757.727
+      secondsUntilStateChange: -51313.125
       state: Opening
   - uid: 20544
     components:
@@ -149261,6 +149261,23 @@ entities:
       - SurveillanceCameraCommand
       nameSet: True
       id: Show Room
+  - uid: 28224
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -32.5,-0.5
+      parent: 8364
+  - uid: 28233
+    components:
+    - type: Transform
+      pos: -11.5,-17.5
+      parent: 8364
+  - uid: 28234
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -6.5,-14.5
+      parent: 8364
 - proto: SurveillanceCameraEngineering
   entities:
   - uid: 101
@@ -149307,6 +149324,12 @@ entities:
       - SurveillanceCameraEngineering
       nameSet: True
       id: Atmos Canister Storage
+  - uid: 10455
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -13.5,-63.5
+      parent: 8364
   - uid: 14631
     components:
     - type: Transform
@@ -149558,6 +149581,105 @@ entities:
       parent: 8364
     - type: SurveillanceCamera
       id: Kitchen
+  - uid: 28210
+    components:
+    - type: Transform
+      pos: -4.5,-31.5
+      parent: 8364
+  - uid: 28211
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 0.5,-36.5
+      parent: 8364
+  - uid: 28212
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 16.5,-19.5
+      parent: 8364
+  - uid: 28213
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 16.5,-4.5
+      parent: 8364
+  - uid: 28222
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -18.5,-0.5
+      parent: 8364
+  - uid: 28223
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -9.5,-0.5
+      parent: 8364
+  - uid: 28225
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -72.5,10.5
+      parent: 8364
+  - uid: 28226
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -63.5,6.5
+      parent: 8364
+  - uid: 28227
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -63.5,-8.5
+      parent: 8364
+  - uid: 28228
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -72.5,-13.5
+      parent: 8364
+  - uid: 28229
+    components:
+    - type: Transform
+      pos: -76.5,-5.5
+      parent: 8364
+  - uid: 28230
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -51.5,-0.5
+      parent: 8364
+  - uid: 28231
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -42.5,-0.5
+      parent: 8364
+  - uid: 28232
+    components:
+    - type: Transform
+      pos: -40.5,-9.5
+      parent: 8364
+  - uid: 28240
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 18.5,4.5
+      parent: 8364
+  - uid: 28241
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 27.5,14.5
+      parent: 8364
+  - uid: 28242
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 37.5,15.5
+      parent: 8364
 - proto: SurveillanceCameraMedical
   entities:
   - uid: 234
@@ -149694,6 +149816,12 @@ entities:
       parent: 8364
     - type: SurveillanceCamera
       id: Medbay Lobby
+  - uid: 28216
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 35.5,-19.5
+      parent: 8364
 - proto: SurveillanceCameraRouterCommand
   entities:
   - uid: 27338
@@ -149985,6 +150113,29 @@ entities:
       - SurveillanceCameraSecurity
       nameSet: True
       id: Perma Entryway
+  - uid: 28217
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 78.5,-1.5
+      parent: 8364
+  - uid: 28237
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -11.5,30.5
+      parent: 8364
+  - uid: 28238
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 18.5,33.5
+      parent: 8364
+  - uid: 28239
+    components:
+    - type: Transform
+      pos: 16.5,40.5
+      parent: 8364
 - proto: SurveillanceCameraService
   entities:
   - uid: 27582
@@ -149998,6 +150149,34 @@ entities:
       - SurveillanceCameraService
       nameSet: True
       id: Janitor Closet
+  - uid: 28214
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 22.5,-2.5
+      parent: 8364
+  - uid: 28215
+    components:
+    - type: Transform
+      pos: 26.5,-10.5
+      parent: 8364
+  - uid: 28218
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 72.5,4.5
+      parent: 8364
+  - uid: 28235
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 58.5,2.5
+      parent: 8364
+  - uid: 28236
+    components:
+    - type: Transform
+      pos: 7.5,26.5
+      parent: 8364
 - proto: SurveillanceCameraSupply
   entities:
   - uid: 41
@@ -150032,6 +150211,23 @@ entities:
       - SurveillanceCameraSupply
       nameSet: True
       id: Salvage Bay
+  - uid: 28219
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -19.5,-21.5
+      parent: 8364
+  - uid: 28220
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -38.5,-20.5
+      parent: 8364
+  - uid: 28221
+    components:
+    - type: Transform
+      pos: -40.5,-31.5
+      parent: 8364
 - proto: SurveillanceCameraWirelessRouterEntertainment
   entities:
   - uid: 27339
