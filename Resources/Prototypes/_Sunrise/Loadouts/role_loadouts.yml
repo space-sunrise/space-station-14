@@ -7,7 +7,6 @@
   - Trinkets
   - Survival
   - GroupSpeciesBreathTool
-  - GroupPepperSprayCarriers
   - Bra
   - Pants
   - Socks
@@ -19,7 +18,6 @@
   - Trinkets
   - Survival
   - GroupSpeciesBreathTool
-  - GroupPepperSprayCarriers
   - Bra
   - Pants
   - Socks
@@ -33,7 +31,6 @@
   - Trinkets
   - SecurityTrinkets
   - GroupSpeciesBreathTool
-  - GroupPepperSprayCarriers
   - Bra
   - Pants
   - Socks
@@ -46,7 +43,6 @@
   - Trinkets
   - Survival
   - GroupSpeciesBreathTool
-  - GroupPepperSprayCarriers
   - Bra
   - Pants
   - Socks
@@ -59,7 +55,6 @@
   - Trinkets
   - Survival
   - GroupSpeciesBreathTool
-  - GroupPepperSprayCarriers
   - Bra
   - Pants
   - Socks
@@ -72,7 +67,6 @@
   - Trinkets
   - Survival
   - GroupSpeciesBreathTool
-  - GroupPepperSprayCarriers
   - Bra
   - Pants
   - Socks
@@ -89,7 +83,6 @@
   - Trinkets
   - SecurityTrinkets
   - GroupSpeciesBreathTool
-  - GroupPepperSprayCarriers
   - Bra
   - Pants
   - Socks
@@ -105,7 +98,6 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  - GroupPepperSprayCarriers
   - Bra
   - Pants
   - Socks
@@ -122,7 +114,6 @@
   - Trinkets
   - Glasses
   - GroupSpeciesBreathTool
-  - GroupPepperSprayCarriers
   - Bra
   - Pants
   - Socks
@@ -137,7 +128,6 @@
   - SurvivalExtended
   - Trinkets
   - GroupSpeciesBreathTool
-  - GroupPepperSprayCarriers
   - Bra
   - Pants
   - Socks
@@ -154,7 +144,6 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  - GroupPepperSprayCarriers
   - Bra
   - Pants
   - Socks
@@ -170,7 +159,6 @@
   - Trinkets
   - SurvivalExtended
   - GroupSpeciesBreathTool
-  - GroupPepperSprayCarriers
   - Bra
   - Pants
   - Socks
@@ -185,7 +173,6 @@
   - SecurityTrinkets
   - SurvivalSecurity
   - GroupSpeciesBreathTool
-  - GroupPepperSprayCarriers
   - Bra
   - Pants
   - Socks
@@ -198,7 +185,6 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  - GroupPepperSprayCarriers
   - Bra
   - Pants
   - Socks
@@ -214,7 +200,6 @@
   - Trinkets
   - SecurityTrinkets
   - GroupSpeciesBreathTool
-  - GroupPepperSprayCarriers
   - Bra
   - Pants
   - Socks
@@ -229,7 +214,6 @@
   - Trinkets
   - SecurityTrinkets
   - GroupSpeciesBreathTool
-  - GroupPepperSprayCarriers
   - Bra
   - Pants
   - Socks
@@ -247,7 +231,6 @@
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
-  - GroupPepperSprayCarriers
   - Bra
   - Pants
   - Socks
@@ -267,7 +250,6 @@
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical
-  - GroupPepperSprayCarriers
   - Bra
   - Pants
   - Socks
@@ -283,7 +265,6 @@
   - Trinkets
   - SecurityTrinkets
   - GroupSpeciesBreathToolSecurity
-  - GroupPepperSprayCarriers
   - Bra
   - Pants
   - Socks
@@ -297,7 +278,6 @@
   - Trinkets
   - Survival
   - GroupSpeciesBreathTool
-  - GroupPepperSprayCarriers
   - Bra
   - Pants
   - Socks
@@ -310,7 +290,6 @@
   - Trinkets
   - Survival
   - GroupSpeciesBreathTool
-  - GroupPepperSprayCarriers
   - Bra
   - Pants
   - Socks
@@ -320,7 +299,6 @@
   groups:
   - PrisonerJumpsuit
   - GroupSpeciesBreathTool
-  - GroupPepperSprayCarriers
   - Bra
   - Pants
   - Socks
