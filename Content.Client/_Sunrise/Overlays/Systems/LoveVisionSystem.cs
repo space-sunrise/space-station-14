@@ -12,6 +12,8 @@ public sealed class LoveVisionSystem : EntitySystem
 
     private LoveVisionOverlay _overlay = default!;
 
+    public static string LoveVisionKey = "LoveEffect";
+
     public override void Initialize()
     {
         base.Initialize();
