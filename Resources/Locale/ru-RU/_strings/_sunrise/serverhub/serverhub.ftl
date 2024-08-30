@@ -1,3 +1,4 @@
+server-hub-title = Хаб серверов
 serverhub-info = Режим: { $mode } | Станция: { $station }
 serverhub-connect = Подключиться
 serverhub-here = Вы уже здесь
