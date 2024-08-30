@@ -43,16 +43,18 @@
   id: BaseStationShuttles
   abstract: true
   components:
-    - type: StationCargoShuttle
-      path: /Maps/Shuttles/cargo.yml
+# Sunrise-Edit: Карго не нужен шаттл без трейдпоста.
+#    - type: StationCargoShuttle
+#      path: /Maps/Shuttles/cargo.yml
     - type: GridSpawn
       groups:
-        trade: !type:GridSpawnGroup
-          addComponents:
-            - type: ProtectedGrid
-            - type: TradeStation
-          paths:
-            - /Maps/Shuttles/trading_outpost.yml
+# Sunrise-Edit: Трейдпост теперь на станции.
+#        trade: !type:GridSpawnGroup
+#          addComponents:
+#            - type: ProtectedGrid
+#            - type: TradeStation
+#          paths:
+#            - /Maps/Shuttles/trading_outpost.yml
         mining: !type:GridSpawnGroup
           paths:
           - /Maps/_Sunrise/Shuttles/mining_shuttle.yml # Sunrise-edit
@@ -61,8 +63,7 @@
           paths:
           - /Maps/_Sunrise/Shuttles/security.yml # Sunrise-edit
           nameGrid: false
-
-# Слишком большая нагрузка ради 3 человек
+# Sunrise-Edit: Слишком большая нагрузка ради 3 человек
 #        ruins: !type:GridSpawnGroup
 #          paths:
 #          - /Maps/Ruins/chunked_tcomms.yml

@@ -10,6 +10,7 @@ using Content.Shared.Cargo.Prototypes;
 using Content.Shared.Database;
 using Content.Shared.Interaction;
 using Content.Shared.Paper;
+using Robust.Shared.Audio;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -109,7 +110,7 @@ namespace Content.Server.Cargo.Systems
             if (!_accessReaderSystem.IsAllowed(player, uid))
             {
                 ConsolePopup(args.Actor, Loc.GetString("cargo-console-order-not-allowed"));
-                PlayDenySound(uid, component);
+                PlayDenySound(uid, component.ErrorSound);
                 return;
             }
 
@@ -121,7 +122,7 @@ namespace Content.Server.Cargo.Systems
                 !TryGetOrderDatabase(station, out var orderDatabase))
             {
                 ConsolePopup(args.Actor, Loc.GetString("cargo-console-station-not-found"));
-                PlayDenySound(uid, component);
+                PlayDenySound(uid, component.ErrorSound); // Sunrise-Edit
                 return;
             }
 
@@ -136,7 +137,7 @@ namespace Content.Server.Cargo.Systems
             if (!_protoMan.HasIndex<EntityPrototype>(order.ProductId))
             {
                 ConsolePopup(args.Actor, Loc.GetString("cargo-console-invalid-product"));
-                PlayDenySound(uid, component);
+                PlayDenySound(uid, component.ErrorSound); // Sunrise-Edit
                 return;
             }
 
@@ -147,7 +148,7 @@ namespace Content.Server.Cargo.Systems
             if (amount >= capacity)
             {
                 ConsolePopup(args.Actor, Loc.GetString("cargo-console-too-many"));
-                PlayDenySound(uid, component);
+                PlayDenySound(uid, component.ErrorSound); // Sunrise-Edit
                 return;
             }
 
@@ -158,7 +159,7 @@ namespace Content.Server.Cargo.Systems
             {
                 order.OrderQuantity = cappedAmount;
                 ConsolePopup(args.Actor, Loc.GetString("cargo-console-snip-snip"));
-                PlayDenySound(uid, component);
+                PlayDenySound(uid, component.ErrorSound); // Sunrise-Edit
             }
 
             var cost = order.Price * order.OrderQuantity;
@@ -167,7 +168,7 @@ namespace Content.Server.Cargo.Systems
             if (cost > bank.Balance)
             {
                 ConsolePopup(args.Actor, Loc.GetString("cargo-console-insufficient-funds", ("cost", cost)));
-                PlayDenySound(uid, component);
+                PlayDenySound(uid, component.ErrorSound); // Sunrise-Edit
                 return;
             }
 
@@ -186,7 +187,7 @@ namespace Content.Server.Cargo.Systems
                 if (ev.FulfillmentEntity == null)
                 {
                     ConsolePopup(args.Actor, Loc.GetString("cargo-console-unfulfilled"));
-                    PlayDenySound(uid, component);
+                    PlayDenySound(uid, component.ErrorSound); // Sunrise-Edit
                     return;
                 }
             }
@@ -213,27 +214,27 @@ namespace Content.Server.Cargo.Systems
 
         private EntityUid? TryFulfillOrder(Entity<StationDataComponent> stationData, CargoOrderData order, StationCargoOrderDatabaseComponent orderDatabase)
         {
-            // No slots at the trade station
-            _listEnts.Clear();
-            GetTradeStations(stationData, ref _listEnts);
+            // Sunrise-Edit
+            //_listEnts.Clear();
+            //GetTradeStations(stationData, ref _listEnts);
             EntityUid? tradeDestination = null;
 
             // Try to fulfill from any station where possible, if the pad is not occupied.
-            foreach (var trade in _listEnts)
+            foreach (var gridUid in stationData.Comp.Grids) // Sunrise-Edit
             {
-                var tradePads = GetCargoPallets(trade, BuySellType.Buy);
+                var tradePads = GetCargoPallets(gridUid, BuySellType.Buy); // Sunrise-Edit
                 _random.Shuffle(tradePads);
 
-                var freePads = GetFreeCargoPallets(trade, tradePads);
+                var freePads = GetFreeCargoPallets(gridUid, tradePads); // Sunrise-Edit
                 if (freePads.Count >= order.OrderQuantity) //check if the station has enough free pallets
                 {
                     foreach (var pad in freePads)
                     {
-                        var coordinates = new EntityCoordinates(trade, pad.Transform.LocalPosition);
+                        var coordinates = new EntityCoordinates(gridUid, pad.Transform.LocalPosition); // Sunrise-Edit
 
                         if (FulfillOrder(order, coordinates, orderDatabase.PrinterOutput))
                         {
-                            tradeDestination = trade;
+                            tradeDestination = gridUid; // Sunrise-Edit
                             order.NumDispatched++;
                             if (order.OrderQuantity <= order.NumDispatched) //Spawn a crate on free pellets until the order is fulfilled.
                                 break;
@@ -295,7 +296,7 @@ namespace Content.Server.Cargo.Systems
 
             if (!TryAddOrder(stationUid.Value, data, orderDatabase))
             {
-                PlayDenySound(uid, component);
+                PlayDenySound(uid, component.ErrorSound); // Sunrise-Edit
                 return;
             }
 
@@ -345,9 +346,9 @@ namespace Content.Server.Cargo.Systems
             _popup.PopupCursor(text, actor);
         }
 
-        private void PlayDenySound(EntityUid uid, CargoOrderConsoleComponent component)
+        private void PlayDenySound(EntityUid uid, SoundSpecifier errorSound) // Sunrise-Edit
         {
-            _audio.PlayPvs(_audio.GetSound(component.ErrorSound), uid);
+            _audio.PlayPvs(_audio.GetSound(errorSound), uid); // Sunrise-Edit
         }
 
         private static CargoOrderData GetOrderData(CargoConsoleAddOrderMessage args, CargoProductPrototype cargoProduct, int id)

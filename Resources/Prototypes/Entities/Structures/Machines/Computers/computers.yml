@@ -754,7 +754,7 @@
     energy: 1.6
     color: "#b89f25"
   - type: AccessReader
-    access: [["Cargo"]]
+    access: [["Quartermaster"], ["HeadOfPersonnel"]] # Sunrise-Edit
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: BasicDevice
@@ -1002,6 +1002,10 @@
     radius: 1.5
     energy: 1.6
     color: "#b89f25"
+  # Sunrise-Start
+  - type: AccessReader
+    access: [ [ "Quartermaster" ], [ "HeadOfPersonnel" ] ]
+  # Sunrise-End
   - type: GuideHelp
     guides:
     - Cargo

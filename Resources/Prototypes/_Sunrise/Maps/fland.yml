@@ -16,8 +16,6 @@
             prefixCreator: 'B'
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/_Sunrise/Shuttles/emergency_fland.yml
-        - type: StationCargoShuttle
-          path: /Maps/Shuttles/cargo_fland.yml
         - type: StationJobs
           availableJobs:
             #service
