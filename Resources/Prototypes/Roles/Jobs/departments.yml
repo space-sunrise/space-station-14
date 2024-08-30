@@ -123,14 +123,14 @@
   roles:
   - StationAi
   - Borg
-  - MedicalBorg
-  - EngineerBorg
-  - MinerBorg
-  - JanitorBorg
-  - ServiceBorg
-  - SecurityBorg
-  - ClownBorg
-  - PeaceBorg
+  - MedicalBorg # Sunrise-Edit
+  - EngineerBorg # Sunrise-Edit
+  - MinerBorg # Sunrise-Edit
+  - JanitorBorg # Sunrise-Edit
+  - ServiceBorg # Sunrise-Edit
+  - SecurityBorg # Sunrise-Edit
+  - ClownBorg # Sunrise-Edit
+  - PeaceBorg # Sunrise-Edit
   primary: false
 
 - type: department
