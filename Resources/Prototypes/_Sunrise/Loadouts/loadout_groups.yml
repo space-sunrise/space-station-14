@@ -146,6 +146,7 @@
   maxLimit: 3
   loadouts:
   - SecurityBodycam
+  - SecurityPepperspray
   - SecurityWhistle
   - SecurityRadioHandheld
   - SecurityTourniquet

@@ -376,6 +376,34 @@
   color: "#96a8b5"
   boilingPoint: 255.0
   meltingPoint: 36.0
+  # Sunrise-start
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:GenericStatusEffect
+        key: TemporaryBlindness
+        component: TemporaryBlindness
+        time: 5.0
+      - !type:PopupMessage
+        type: Local
+        visualType: MediumCaution
+        probability: 0.03
+        messages:
+        - norepinephricacid-effect-eye-disconnect
+        - norepinephricacid-effect-eye-pain
+        - norepinephricacid-effect-darkness
+        - norepinephricacid-effect-blindness
+      - !type:HealthChange
+        scaleByQuantity: false
+        ignoreResistances: false
+        damage:
+          types:
+            Heat: 1
+      - !type:Emote
+        emote: Scream
+        probability: 0.2
+  # Sunrise-end
   metabolisms:
     Narcotic:
       effects:

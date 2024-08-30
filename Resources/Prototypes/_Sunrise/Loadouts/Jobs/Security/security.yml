@@ -9,6 +9,16 @@
     - HandheldCamera
 
 - type: loadout
+  id: SecurityPepperspray
+  startingGear: PeppersprayBlue
+
+- type: startingGear
+  id: PeppersprayBlue
+  storage:
+    back:
+    - PepperSprayBottleBlue
+
+- type: loadout
   id: SecurityWhistle
   startingGear: SecurityWhistle
 
