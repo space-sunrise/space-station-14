@@ -35,15 +35,20 @@ class YAMLExtractor:
             ru_fluent_file_path = self.create_ru_fluent_file(en_fluent_file_path)
 
     def get_serialized_fluent_from_yaml_elements(self, yaml_elements):
-        fluent_serialized_messages = list(
-                map(lambda el: FluentSerializedMessage.from_yaml_element(el.id, el.name, FluentAstAttributeFactory.from_yaml_element(el), el.parent_id), yaml_elements)
-            )
-        fluent_exist_serialized_messages = list(filter(lambda m: m, fluent_serialized_messages))
+        fluent_serialized_messages = []
 
-        if not len(fluent_exist_serialized_messages):
+        for el in yaml_elements:
+            if isinstance(el.parent_id, list):
+                el.parent_id = el.parent_id[0]
+
+            fluent_message = FluentSerializedMessage.from_yaml_element(el.id, el.name, FluentAstAttributeFactory.from_yaml_element(el), el.parent_id)
+            if fluent_message:
+                fluent_serialized_messages.append(fluent_message)
+
+        if not fluent_serialized_messages:
             return None
 
-        return '\n'.join(fluent_exist_serialized_messages)
+        return '\n'.join(fluent_serialized_messages)
 
     def create_en_fluent_file(self, relative_parent_dir, file_name, file_data):
         en_new_dir_path = os.path.join(project.en_locale_prototypes_dir_path, relative_parent_dir)

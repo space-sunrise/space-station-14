@@ -46,3 +46,6 @@ ent-ClothingHeadHelmetBone = bone helmet
     .desc = Cool-looking helmet made of skull of your enemies.
 ent-ClothingHeadHelmetPodWars = ironclad II helmet
     .desc = An ironclad II helmet, a relic of the pod wars.
+ent-ChangelingClothingHeadHelmet = chitinous helmet
+    .desc = An all-consuming chitinous mass of armor.
+    .suffix = Unremoveable

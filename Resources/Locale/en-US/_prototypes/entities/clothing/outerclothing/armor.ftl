@@ -31,3 +31,6 @@ ent-ClothingOuterArmorBone = bone armor
     .desc = Sits on you like a second skin.
 ent-ClothingOuterArmorPodWars = ironclad II armor
     .desc = A repurposed suit of ironclad II armor, a relic of the pod wars.
+ent-ChangelingClothingOuterArmor = chitinous armor
+    .desc = An all-consuming chitinous mass of armor.
+    .suffix = Unremoveable

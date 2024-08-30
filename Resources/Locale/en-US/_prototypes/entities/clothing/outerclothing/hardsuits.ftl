@@ -69,3 +69,6 @@ ent-ClothingOuterHardsuitMime = mime hardsuit
     .desc = A custom-made mime hardsuit.
 ent-ClothingOuterHardsuitSanta = Santa's hardsuit
     .desc = A festive, cheerful hardsuit that protects the jolly gift-giver while on sleighrides in space. Offers some resistance against asteroid strikes.
+ent-ChangelingClothingOuterHardsuit = organic space suit
+    .desc = A spaceworthy biomass of pressure and temperature resistant tissue.
+    .suffix = Unremoveable
