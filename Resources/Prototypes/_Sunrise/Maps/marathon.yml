@@ -90,3 +90,24 @@
             SecurityCombatBorg: [ 2, 2 ]
             # Sunrise-Civillian
             Barber: [ 1, 1 ]
+        - type: StationGoal
+          goals:
+          - Shuttle
+          - Singularity
+          - SolarPanels
+          - Artifacts
+          - Bank
+          - Zoo
+          - MiningOutpost
+          - Tesla
+          - XenobiologyRepair
+          - VirusologyAmbusol
+          - Containment
+          - WeaponsSecurity
+          - MaintsRepair
+          - DormsBuild
+          - BattleShuttle
+          - Transit
+          - NukeRoom
+          - Permabrig
+          - Farm

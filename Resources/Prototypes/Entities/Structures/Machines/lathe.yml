@@ -201,6 +201,7 @@
       - WetFloorSign
       - ClothingHeadHatCone
       - ClothingHeadHelmetPubgMore  # Sunrise-edit
+
   - type: EmagLatheRecipes
     emagStaticRecipes:
       - BoxLethalshot
@@ -512,8 +513,6 @@
       - PortableGeneratorPacmanMachineCircuitboard
       - PortableGeneratorSuperPacmanMachineCircuitboard
       - PortableGeneratorJrPacmanMachineCircuitboard
-      - WallmountGeneratorElectronics
-      - WallmountGeneratorAPUElectronics
       - WallmountSubstationElectronics
       - PowerCageRechargerCircuitboard
       - EmitterCircuitboard

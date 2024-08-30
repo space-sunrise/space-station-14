@@ -386,6 +386,19 @@
     doorToggleChancePerSecond: 0.001
 
 - type: entity
+  parent: BaseGameRule
+  id: TerminatorSpawn
+  noSpawn: true
+  components:
+  - type: StationEvent
+    weight: 8
+    duration: 1
+    earliestStart: 30
+    minimumPlayers: 20
+  - type: LateJoinSpawnRule
+    prototype: SpawnPointGhostTerminator
+
+- type: entity
   id: VentClog
   parent: BaseStationEventLongDelay
   components:

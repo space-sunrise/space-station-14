@@ -20,7 +20,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.20
-        density: 100
+        density: 150
         restitution: 0.0
         mask:
         - MobMask
