@@ -7,38 +7,47 @@ namespace Content.Client._Sunrise.ServersHub;
 public partial class ServersHubManager
 {
     [Dependency] private readonly IClientNetManager _netManager = default!;
-    [Dependency] protected readonly IUserInterfaceManager UIManager = default!;
+    [Dependency] private readonly IUserInterfaceManager UIManager = default!;
 
     public event Action<List<ServerHubEntry>>? ServersDataListChanged;
 
     public List<ServerHubEntry> ServersDataList = [];
 
-    private ServersHubUi? _window;
+    private ServersHubUi _serversHubUi = default!;
 
     public void Initialize()
     {
         _netManager.RegisterNetMessage<MsgFullServerHubList>(OnServersDataChanged);
     }
 
-    public void ToggleWindow()
+    public void OpenWindow()
     {
         EnsureWindow();
 
-        if (_window!.IsOpen)
-        {
-            _window.Close();
-        }
-        else
-        {
-            _window.OpenCentered();
-        }
+        _serversHubUi.OpenCentered();
+        _serversHubUi.MoveToFront();
     }
 
     private void EnsureWindow()
     {
-        if (_window is { Disposed: false })
+        if (_serversHubUi is { Disposed: false })
             return;
-        _window = UIManager.CreateWindow<ServersHubUi>();
+
+        _serversHubUi = UIManager.CreateWindow<ServersHubUi>();
+    }
+
+    public void ToggleWindow()
+    {
+        EnsureWindow();
+
+        if (_serversHubUi.IsOpen)
+        {
+            _serversHubUi.Close();
+        }
+        else
+        {
+            OpenWindow();
+        }
     }
 
     private void OnServersDataChanged(MsgFullServerHubList msg)
@@ -47,6 +56,5 @@ public partial class ServersHubManager
         // и его можно было отобразить после отключения или бана.
         ServersDataList = msg.ServersHubEntries;
         ServersDataListChanged?.Invoke(ServersDataList);
-        _window!.RefreshHeader();
     }
 }

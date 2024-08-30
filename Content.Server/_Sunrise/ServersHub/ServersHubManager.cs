@@ -107,7 +107,7 @@ public sealed partial class ServersHubManager
             if (thisServerUrl != "")
                 canConnect = NormalizeUrl(thisServerUrl) != NormalizeUrl(serverUrl);
 
-            var serverName = RestrictedNameRegex.Replace(data.Name, string.Empty);
+            var serverName = RestrictedNameRegex.Replace(data.Short_Name ?? data.Name, string.Empty);
             _serverDataList.Add(new ServerHubEntry(
                 serverName,
                 data.Map ?? "",
@@ -137,20 +137,29 @@ public sealed partial class ServersHubManager
 
     private async Task<ServerDataResponse?> RefreshServerData(string url, CancellationToken cancel = default)
     {
-        using var resp = await _httpClient.GetAsync($"{url}/status", cancel);
-
-        if (resp.StatusCode == HttpStatusCode.NotFound)
-            return null;
-
-        if (!resp.IsSuccessStatusCode)
+        try
         {
-            _sawmill.Error("SS14 server returned bad response {StatusCode}!", resp.StatusCode);
-            return null;
+            using var resp = await _httpClient.GetAsync($"{url}/status", cancel);
+
+            if (resp.StatusCode == HttpStatusCode.NotFound)
+                return null;
+
+            if (!resp.IsSuccessStatusCode)
+            {
+                _sawmill.Error("SS14 server returned bad response {StatusCode}!", resp.StatusCode);
+                return null;
+            }
+
+            var responseData = await resp.Content.ReadFromJsonAsync<ServerDataResponse>(cancellationToken: cancel);
+
+            return responseData;
+        }
+        catch (HttpRequestException e)
+        {
+            _sawmill.Error("Failed to send ping to watchdog:\n{0}", e);
         }
 
-        var responseData = await resp.Content.ReadFromJsonAsync<ServerDataResponse>(cancellationToken: cancel);
-
-        return responseData;
+        return null;
     }
 
     // Я в душе не ебу почему без _ оно не хочет парсить некоторые строки с json, но кому не похуй?
@@ -164,7 +173,8 @@ public sealed partial class ServersHubManager
         bool Panic_Bunker,
         int Run_Level,
         string? Preset,
-        string? Round_Start_Time);
+        string? Round_Start_Time,
+        string? Short_Name);
 
     private void SendFullPlayerList(IEnumerable<ICommonSession> sessions)
     {

@@ -147,6 +147,13 @@ public sealed class SunriseCCVars
     public static readonly CVarDef<string> ServersHubList =
         CVarDef.Create("servers_hub.urls", "", CVar.SERVERONLY);
 
+    /// <summary>
+    /// Простое название сервера для отображения в хабе.
+    /// </summary>
+
+    public static readonly CVarDef<string> ServersHubShortName =
+        CVarDef.Create("servers_hub.short_name", "SS14 SERVER", CVar.SERVERONLY);
+
     /**
      * Tape Player
      */
