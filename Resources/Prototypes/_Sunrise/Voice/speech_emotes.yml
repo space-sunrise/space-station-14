@@ -207,22 +207,3 @@
   name: Инсульт
   category: Vocal
   chatMessages: [инсультыы]
-
-- type: emote
-  id: Otryjka
-  name: Отрыжка
-  category: Vocal
-  chatMessages: ["рыгает"]
-  whitelist:
-    components:
-    - Vocal
-  blacklist:
-    components:
-    - BorgChassis
-  chatTriggers:
-  - рыгает.
-  - рыг.
-  - рыгает!
-  - рыг!
-  - рыгает
-  - рыг
