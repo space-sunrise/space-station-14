@@ -1,7 +1,6 @@
 import typing
 
 from fluent.syntax import ast, FluentParser, FluentSerializer
-from lokalisemodels import LokaliseKey
 from pydash import py_
 
 
@@ -114,38 +113,6 @@ class FluentSerializedMessage:
             return full_message
 
         return cls.to_serialized_message(message)
-
-    @classmethod
-    def from_lokalise_keys(cls, keys: typing.List[LokaliseKey]):
-        attributes_keys = list(filter(lambda k: k.is_attr, keys))
-        attributes = list(map(lambda k: FluentAstAttribute(id='.{name}'.format(name=k.get_key_last_name(k.key_name)),
-                                                           value=FluentSerializedMessage.get_attr(k, k.get_key_last_name(k.key_name)), parent_key=k.get_parent_key()),
-                              attributes_keys))
-        attributes_group = py_.group_by(attributes, 'parent_key')
-
-        serialized_message = ''
-        for key in keys:
-            if key.is_attr:
-                continue
-            key_name = key.get_key_last_name(key.key_name)
-            key_value = key.get_translation('ru').data['translation']
-            key_attributes = []
-
-            if len(attributes_group):
-                k = f'{key.get_key_base_name(key.key_name)}.{key_name}'
-                key_attributes = attributes_group[k] if k in attributes_group else []
-
-            message = key.serialize_message()
-            full_message = cls.from_yaml_element(key_name, key_value, key_attributes, key.get_parent_key(), True)
-
-            if full_message:
-                serialized_message = serialized_message + '\n' + full_message
-            elif message:
-                serialized_message = serialized_message + '\n' + message
-            else:
-                raise Exception('Что-то пошло не так')
-
-        return serialized_message
 
     @staticmethod
     def get_attr(k, name, parent_id = None):

@@ -1,0 +1,16 @@
+ent-BorgChassisSecurity = security cyborg
+    .desc = { ent-BaseBorgChassisNT.desc }
+ent-BorgChassisSecurityCombat = security combat cyborg
+    .desc = { ent-BaseBorgChassisNT.desc }
+ent-BorgChassisPeace = peace cyborg
+    .desc = { ent-BaseBorgChassisNT.desc }
+ent-BorgChassisClown = clown cyborg
+    .desc = { ent-BaseBorgChassisNT.desc }
+ent-BorgChassisSyndicateReaper = syndicate reaper cyborg
+    .desc = { ent-BaseBorgChassisSyndicate.desc }
+ent-BorgChassisERT = Боевой киборг ОБР
+    .desc = Боевой робот НТ, разработанный для поддержки ОБР в выполнении боевых задач.
+ent-BorgChassisSyndicateHeavy = Тяжёлый боевой киборг Синдиката
+    .desc = Модернизированная версия боевого киборга Синдиката, оборудованный тяжёлым оружием и крепким корпусом.
+ent-BorgChassisSyndicateSpider = Киборг диверсант Синдиката
+    .desc = Маленький робот Синдиката, разработанный для Диверсионного Отряда, оснащён всем необходимым для крупного саботажа.

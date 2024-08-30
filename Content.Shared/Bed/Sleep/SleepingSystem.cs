@@ -61,6 +61,7 @@ public sealed partial class SleepingSystem : EntitySystem
 
         SubscribeLocalEvent<ForcedSleepingComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<SleepingComponent, UnbuckleAttemptEvent>(OnUnbuckleAttempt);
+        SubscribeLocalEvent<SleepingComponent, ComponentShutdown>(OnSleepingShutdown);
     }
 
     private void OnUnbuckleAttempt(Entity<SleepingComponent> ent, ref UnbuckleAttemptEvent args)
@@ -92,6 +93,10 @@ public sealed partial class SleepingSystem : EntitySystem
     /// </summary>
     private void OnSleepStateChanged(Entity<MobStateComponent> ent, ref SleepStateChangedEvent args)
     {
+        
+            
+        
+        
         if (args.FellAsleep)
         {
             // Expiring status effects would remove the components needed for sleeping
@@ -100,6 +105,15 @@ public sealed partial class SleepingSystem : EntitySystem
 
             EnsureComp<StunnedComponent>(ent);
             EnsureComp<KnockedDownComponent>(ent);
+                
+            if (TryComp<SleepingComponent>(ent, out var sleepingComp))
+            {
+                var wakeAction = sleepingComp.WakeAction;   
+
+                _actionsSystem.AddAction(ent, ref wakeAction, WakeActionId, ent);
+
+                _actionsSystem.SetCooldown(wakeAction, _gameTiming.CurTime, _gameTiming.CurTime + TimeSpan.FromSeconds(2f));
+            }
 
             if (TryComp<SleepEmitSoundComponent>(ent, out var sleepSound))
             {
@@ -120,6 +134,10 @@ public sealed partial class SleepingSystem : EntitySystem
         RemComp<StunnedComponent>(ent);
         RemComp<KnockedDownComponent>(ent);
         RemComp<SpamEmitSoundComponent>(ent);
+        if (TryComp<SleepingComponent>(ent, out var sleepingComponent))
+        {
+            _actionsSystem.RemoveAction(ent, sleepingComponent.WakeAction);
+        }
     }
 
     private void OnMapInit(Entity<SleepingComponent> ent, ref MapInitEvent args)
@@ -127,10 +145,10 @@ public sealed partial class SleepingSystem : EntitySystem
         var ev = new SleepStateChangedEvent(true);
         RaiseLocalEvent(ent, ref ev);
         _blindableSystem.UpdateIsBlind(ent.Owner);
-        _actionsSystem.AddAction(ent, ref ent.Comp.WakeAction, WakeActionId, ent);
+        //_actionsSystem.AddAction(ent, ref ent.Comp.WakeAction, WakeActionId, ent);
 
         // TODO remove hardcoded time.
-        _actionsSystem.SetCooldown(ent.Comp.WakeAction, _gameTiming.CurTime, _gameTiming.CurTime + TimeSpan.FromSeconds(2f));
+        //_actionsSystem.SetCooldown(ent.Comp.WakeAction, _gameTiming.CurTime, _gameTiming.CurTime + TimeSpan.FromSeconds(2f));
     }
 
     private void OnSpeakAttempt(Entity<SleepingComponent> ent, ref SpeakAttemptEvent args)
@@ -239,13 +257,25 @@ public sealed partial class SleepingSystem : EntitySystem
 
     private void Wake(Entity<SleepingComponent> ent)
     {
+        if (TryComp<SleepingComponent>(ent, out var sleepingComp))
+        {
+            _actionsSystem.RemoveAction(ent, sleepingComp.WakeAction);
+        }
+        
         RemComp<SleepingComponent>(ent);
-        _actionsSystem.RemoveAction(ent, ent.Comp.WakeAction);
 
         var ev = new SleepStateChangedEvent(false);
         RaiseLocalEvent(ent, ref ev);
 
         _blindableSystem.UpdateIsBlind(ent.Owner);
+    }
+
+    private void OnSleepingShutdown(Entity<SleepingComponent> ent, ref ComponentShutdown args)
+    {
+        if (TryComp<SleepingComponent>(ent, out var sleepingComp))
+        {
+            _actionsSystem.RemoveAction(ent, sleepingComp.WakeAction);
+        }
     }
 
     /// <summary>
