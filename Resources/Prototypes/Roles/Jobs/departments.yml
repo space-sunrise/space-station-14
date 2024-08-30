@@ -17,7 +17,6 @@
   weight: -10
   roles:
   - Bartender
-  - Borg
   - Botanist
   - Boxer
   - Chaplain
@@ -114,6 +113,25 @@
   - Scientist
   - ResearchAssistant
   - Roboticist  # Sunrise-Edit
+
+- type: department
+  id: Silicon
+  sort: 0
+  name: department-Silicon
+  description: department-Silicon-description
+  color: "#D381C9"
+  roles:
+  - StationAi
+  - Borg
+  - MedicalBorg # Sunrise-Edit
+  - EngineerBorg # Sunrise-Edit
+  - MinerBorg # Sunrise-Edit
+  - JanitorBorg # Sunrise-Edit
+  - ServiceBorg # Sunrise-Edit
+  - SecurityBorg # Sunrise-Edit
+  - ClownBorg # Sunrise-Edit
+  - PeaceBorg # Sunrise-Edit
+  primary: false
 
 - type: department
   id: Specific

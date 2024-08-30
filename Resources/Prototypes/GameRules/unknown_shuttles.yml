@@ -4,7 +4,7 @@
   id: UnknownShuttlesFriendlyTable
   table: !type:AllSelector # we need to pass a list of rules, since rules have further restrictions to consider via StationEventComp
     children:
-    - id: UnknownShuttleCargoLost
+    #- id: UnknownShuttleCargoLost # Sunrise-Edit
     - id: UnknownShuttleTravelingCuisine
     - id: UnknownShuttleDisasterEvacPod
     - id: UnknownShuttleHonki
@@ -38,12 +38,13 @@
   - type: RuleGrids
   - type: LoadMapRule
 
-- type: entity
-  parent: BaseUnknownShuttleRule
-  id: UnknownShuttleCargoLost
-  components:
-  - type: LoadMapRule
-    preloadedGrid: ShuttleCargoLost
+# Sunrise-Edit
+#- type: entity
+#  parent: BaseUnknownShuttleRule
+#  id: UnknownShuttleCargoLost
+#  components:
+#  - type: LoadMapRule
+#    preloadedGrid: ShuttleCargoLost
 
 - type: entity
   parent: BaseUnknownShuttleRule

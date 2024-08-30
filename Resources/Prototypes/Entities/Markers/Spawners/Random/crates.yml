@@ -45,6 +45,7 @@
         - CrateMaterialPlastic
         - CrateMaterialWood
         - CrateMaterialPlasteel
+        - CrateFunSprayPaints  # Sunrise-edit
         - CrateFunArtSupplies
         - CrateEngineeringCableLV
         - CrateEngineeringCableMV

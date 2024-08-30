@@ -1,4 +1,7 @@
 - type: Tag
+  id: NoPaint
+
+- type: Tag
   id: Nanopaste
 
 - type: Tag
@@ -123,6 +126,6 @@
 
 - type: Tag
   id: MagazinePPSH41
-  
+
 - type: Tag
   id: MagazineDl6902

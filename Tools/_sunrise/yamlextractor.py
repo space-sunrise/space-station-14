@@ -35,32 +35,28 @@ class YAMLExtractor:
             ru_fluent_file_path = self.create_ru_fluent_file(en_fluent_file_path)
 
     def get_serialized_fluent_from_yaml_elements(self, yaml_elements):
-        fluent_serialized_messages = list(
-                map(lambda el: FluentSerializedMessage.from_yaml_element(el.id, el.name, FluentAstAttributeFactory.from_yaml_element(el), el.parent_id), yaml_elements)
-            )
-        fluent_exist_serialized_messages = list(filter(lambda m: m, fluent_serialized_messages))
+        fluent_serialized_messages = []
 
-        if not len(fluent_exist_serialized_messages):
+        for el in yaml_elements:
+            if isinstance(el.parent_id, list):
+                el.parent_id = el.parent_id[0]
+
+            fluent_message = FluentSerializedMessage.from_yaml_element(el.id, el.name, FluentAstAttributeFactory.from_yaml_element(el), el.parent_id)
+            if fluent_message:
+                fluent_serialized_messages.append(fluent_message)
+
+        if not fluent_serialized_messages:
             return None
 
-        return '\n'.join(fluent_exist_serialized_messages)
+        return '\n'.join(fluent_serialized_messages)
 
     def create_en_fluent_file(self, relative_parent_dir, file_name, file_data):
-        # Проверяем, если информация берется из директории _Sunrise
-        if '_sunrise' in relative_parent_dir:
-            # Создаем путь для сохранения в en-US/_sunrise/_prototypes
-            en_new_dir_path = os.path.join(project.en_locale_dir_path, '_sunrise', '_prototypes', relative_parent_dir.replace('_sunrise', '').strip(os.sep))
-        else:
-            # Обычный путь сохранения
-            en_new_dir_path = os.path.join(project.en_locale_prototypes_dir_path, relative_parent_dir)
-        
-        # Убедимся, что директория существует
+        en_new_dir_path = os.path.join(project.en_locale_prototypes_dir_path, relative_parent_dir)
+
         os.makedirs(en_new_dir_path, exist_ok=True)
-        
-        # Формируем полный путь к файлу
+
         en_fluent_file_path = os.path.join(en_new_dir_path, f'{file_name}.ftl')
-        
-        # Сохраняем файл
+
         en_fluent_file = FluentFile(en_fluent_file_path)
         en_fluent_file.save_data(file_data)
         
@@ -69,14 +65,8 @@ class YAMLExtractor:
         return en_fluent_file.full_path
 
     def create_ru_fluent_file(self, en_analog_file_path):
-        if '_sunrise' in en_analog_file_path.lower():
-            # Если уже есть _sunrise, просто заменяем en-US на ru-RU
-            ru_file_full_path = en_analog_file_path.replace('en-US', 'ru-RU')
-        else:
-            # Обычный путь сохранения
-            ru_file_full_path = en_analog_file_path.replace('en-US', 'ru-RU')
+        ru_file_full_path = en_analog_file_path.replace('en-US', 'ru-RU')
 
-        # Убедимся, что директория существует
         os.makedirs(os.path.dirname(ru_file_full_path), exist_ok=True)
 
         if os.path.isfile(ru_file_full_path):

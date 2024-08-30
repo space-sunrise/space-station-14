@@ -489,3 +489,68 @@
   - type: PointLight
     radius: 1.5
     color: "#00CCFF"
+
+- type: entity
+  id: PlushieMegane
+  parent: BasePlushie
+  name: Пропавший Ричард Рид
+  description: Тело не найдено, значит его никогда и не было. Последнее, что слышали очевидцы это начальные гитарные рифы песни «(Don’t Fear) The Reaper», вам не стоит в это лезть.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: richard_industries
+
+- type: entity
+  abstract: true
+  id: EmitVulpGrowl
+  components:
+  - type: MeleeWeapon
+    soundHit:
+      collection: PlushieVulpkaninGrowls
+      params:
+        volume: 100
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: PlushieVulpkaninGrowls
+  - type: EmitSoundOnCollide
+    sound:
+      collection: PlushieVulpkaninGrowls
+  - type: EmitSoundOnUse
+    sound:
+      collection: PlushieVulpkaninGrowls
+  - type: EmitSoundOnLand
+    sound:
+      collection: PlushieVulpkaninGrowls
+  - type: EmitSoundOnActivate
+    sound:
+      collection: PlushieVulpkaninGrowls
+
+- type: entity
+  id: PlushieFrizko
+  parent: [ EmitVulpGrowl, BasePlushie ]
+  name: Плюшевая Юстас Лауда
+  description: Плюшевая игрушка психологши, которая серьёзно относится к своей работе. На бирке написано "Я ем вульпят"
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-frizko
+
+- type: entity
+  id: PlushieMiron
+  parent: [ EmitVulpGrowl, BasePlushie ]
+  name: Плюшевый Мирон Потапов
+  description: Плюшевая игрушка ветерана медицинского отдела, готового делиться опытом с другими. На бирке указано "Изготовлен из натуральных химикатов"
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-miron
+
+- type: entity
+  id: PlushieBublegum
+  parent: BasePlushie
+  name: Плюшевый Бубльгум
+  description: Милая игрушка ужасающего чудовища из глубин лаваленда. Она не способна вам навредить
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-bublegum

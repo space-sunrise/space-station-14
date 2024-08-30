@@ -16,8 +16,6 @@
             prefixCreator: 'B'
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/_Sunrise/Shuttles/emergency_fland.yml
-        - type: StationCargoShuttle
-          path: /Maps/Shuttles/cargo_fland.yml
         - type: StationJobs
           availableJobs:
             #service
@@ -78,6 +76,7 @@
             # Sunrise-Science
             Roboticist: [ 2, 2 ]
             # silicon
+            StationAi: [ 1, 1 ]
             Borg: [ 2, 2 ]
             MedicalBorg: [ 4, 4 ]
             EngineerBorg: [ 2, 2 ]
@@ -90,3 +89,24 @@
             SecurityCombatBorg: [ 2, 2 ]
             # Sunrise-Civillian
             Barber: [ 1, 1 ]
+        - type: StationGoal
+          goals:
+          - Shuttle
+          - Singularity
+          - SolarPanels
+          - Artifacts
+          - Bank
+          - Zoo
+          - MiningOutpost
+          - Tesla
+          - XenobiologyRepair
+          - VirusologyAmbusol
+          - Containment
+          - WeaponsSecurity
+          - MaintsRepair
+          - DormsBuild
+          - BattleShuttle
+          - Transit
+          - NukeRoom
+          - Permabrig
+          - Farm

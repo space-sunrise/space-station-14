@@ -400,17 +400,3 @@
   sprite:
     sprite: Mobs/Animals/crab.rsi
     state: crab
-
-- type: stealTargetGroup  # Sunrise-AEG
-  id: WeaponEnergyGunMultiphase
-  name: x-01 multiphase energy gun
-  sprite:
-    sprite: _Sunrise/Objects/Weapons/Guns/Battery/multiphase_energygun.rsi
-    state: base
-
-- type: stealTargetGroup  # Sunrise-Nuke
-  id: PlutoniumCore
-  name: plutonium core
-  sprite:
-    sprite: _Sunrise/Objects/Misc/plutonium_core.rsi
-    state: icon

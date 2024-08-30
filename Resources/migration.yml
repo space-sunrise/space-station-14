@@ -404,6 +404,9 @@ FoodMeatHawaiianKebab: FoodKebabSkewer
 FoodMeatKebab: FoodKebabSkewer
 FoodMeatFiestaKebab: FoodKebabSkewer
 
+#2024-08-14
+ClothingBeltSuspenders: ClothingBeltSuspendersRed
+
 # 2024-08-19
 ClothingNeckShockCollar: ClothingBackpackElectropack
 
@@ -427,3 +430,5 @@ WeaponRifleM90GrenadeLauncher: WeaponRifleM28
 WeaponShotgunEnforcer: WeaponShotgunSPAS12
 WeaponShotgunKammerer: WeaponShotgunTrenchgun4034
 WeaponSubMachineGunDrozd: WeaponSubMachineGunMP7
+ComputerCargoShuttle: null
+ComputerShuttleCargo: null

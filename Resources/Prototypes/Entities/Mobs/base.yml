@@ -41,14 +41,19 @@
   - type: CameraRecoil
   - type: MindContainer
   - type: MovementSpeedModifier
-  - type: Polymorphable
-  - type: StatusIcon
   - type: RequireProjectileTarget
     active: False
   # Sunrise-Start
   - type: TTS
   - type: DamageOverlay
   # Sunrise-End
+
+- type: entity
+  save: false
+  id: MobPolymorphable
+  abstract: true
+  components:
+  - type: Polymorphable
 
 # Used for mobs that have health and can take damage.
 - type: entity

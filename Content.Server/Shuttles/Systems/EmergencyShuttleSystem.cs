@@ -57,11 +57,12 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
      */
 
     [Dependency] private readonly IAdminLogManager _logger = default!;
+    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IAdminManager _admin = default!;
     [Dependency] private readonly IConfigurationManager _configManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly AccessReaderSystem _reader = default!;
     [Dependency] private readonly ChatSystem _chatSystem = default!;
     [Dependency] private readonly CommunicationsConsoleSystem _commsConsole = default!;
@@ -71,6 +72,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
     [Dependency] private readonly IdCardSystem _idSystem = default!;
     [Dependency] private readonly NavMapSystem _navMap = default!;
     [Dependency] private readonly MapLoaderSystem _map = default!;
+    [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -242,7 +244,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
             {
                 [ShuttleTimerMasks.ShuttleMap] = uid,
                 [ShuttleTimerMasks.SourceMap] = args.FromMapUid,
-                [ShuttleTimerMasks.DestMap] = args.TargetCoordinates.GetMapUid(_entityManager),
+                [ShuttleTimerMasks.DestMap] = _transformSystem.GetMap(args.TargetCoordinates),
                 [ShuttleTimerMasks.ShuttleTime] = ftlTime,
                 [ShuttleTimerMasks.SourceTime] = ftlTime,
                 [ShuttleTimerMasks.DestTime] = ftlTime
@@ -323,7 +325,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
             {
                 var angle = _dock.GetAngle(stationShuttle.EmergencyShuttle.Value, xform, targetGrid.Value, targetXform, xformQuery);
                 var direction = ContentLocalizationManager.FormatDirection(angle.GetDir());
-                var location = FormattedMessage.RemoveMarkup(_navMap.GetNearestBeaconString((stationShuttle.EmergencyShuttle.Value, xform)));
+                var location = FormattedMessage.RemoveMarkupPermissive(_navMap.GetNearestBeaconString((stationShuttle.EmergencyShuttle.Value, xform)));
                 _chatSystem.DispatchStationAnnouncement(stationUid, Loc.GetString("emergency-shuttle-docked", ("time", $"{_consoleAccumulator:0}"), ("direction", direction), ("location", location)), playDefault: false);
             }
 
@@ -352,8 +354,8 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
             {
                 var angle = _dock.GetAngle(stationShuttle.EmergencyShuttle.Value, xform, targetGrid.Value, targetXform, xformQuery);
                 var direction = ContentLocalizationManager.FormatDirection(angle.GetDir());
-                var location = FormattedMessage.RemoveMarkup(_navMap.GetNearestBeaconString((stationShuttle.EmergencyShuttle.Value, xform)));
-                _chatSystem.DispatchStationAnnouncement(stationUid, Loc.GetString("emergency-shuttle-nearby", ("time", $"{_consoleAccumulator:0}"), ("direction", direction), ("location", location)), announcementSound: announcementSound); // Sunrise-Edit
+                var location = FormattedMessage.RemoveMarkupPermissive(_navMap.GetNearestBeaconString((stationShuttle.EmergencyShuttle.Value, xform)));
+                _chatSystem.DispatchStationAnnouncement(stationUid, Loc.GetString("emergency-shuttle-nearby", ("time", $"{_consoleAccumulator:0}"), ("direction", direction), ("location", location)), playDefault: false, announcementSound: announcementSound); // Sunrise-Edit
             }
 
             _logger.Add(LogType.EmergencyShuttle, LogImpact.High, $"Emergency shuttle {ToPrettyString(stationUid)} unable to find a valid docking port for {ToPrettyString(stationUid)}");
@@ -432,7 +434,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
 
     private void AddTransitHub(EntityUid station, StationTransitHubComponent component) // Sunrise-Edit
     {
-        DebugTools.Assert(LifeStage(station)>= EntityLifeStage.MapInitialized);
+        DebugTools.Assert(LifeStage(station) >= EntityLifeStage.MapInitialized);
         if (component.MapEntity != null || component.Entity != null)
         {
             Log.Warning("Attempted to re-add an existing centcomm map.");
@@ -465,9 +467,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         }
 
         // Sunrise-start
-        var mapId = _mapManager.CreateMap();
-        var mapUid = _mapManager.GetMapEntityId(mapId);
-        _mapManager.AddUninitializedMap(mapId);
+        var mapUid = _mapSystem.CreateMap(out var mapId, runMapInit: false);
 
         if (!_loader.TryLoad(mapId, component.Map.ToString(), out var uids) || uids.Count != 1)
         {
@@ -481,10 +481,6 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         Log.Info($"Created transit hub grid {ToPrettyString(uids[0])} on map {ToPrettyString(mapUid)} for station {ToPrettyString(station)}");
 
         EnsureComp<ProtectedGridComponent>(uids[0]);
-        //EnsureComp<ArrivalsSourceComponent>(uids[0]); // Sunrise-Edit
-        //EnsureComp<ImmortalGridComponent>(uids[0]); // Sunrise-Edit
-        //EnsureComp<DontSellingGridComponent>(uids[0]); // Sunrise-Edit
-
         var template = _random.Pick(component.Biomes);
         _biomes.EnsurePlanet(mapUid, _protoManager.Index<BiomeTemplatePrototype>(template), mapLight: component.PlanetLightColor);
 
@@ -519,7 +515,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         if (!_emergencyShuttleEnabled)
             return;
 
-        if (ent.Comp1.EmergencyShuttle != null )
+        if (ent.Comp1.EmergencyShuttle != null)
         {
             if (Exists(ent.Comp1.EmergencyShuttle))
             {

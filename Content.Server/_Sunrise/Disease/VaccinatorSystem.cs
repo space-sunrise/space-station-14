@@ -22,6 +22,8 @@ using Robust.Shared.Serialization;
 using Content.Shared.Chemistry.Reagent;
 using System.Linq;
 using System.Text;
+using Content.Shared.Power;
+
 namespace Content.Server.Chemistry.EntitySystems;
 
 /// <inheritdoc/>

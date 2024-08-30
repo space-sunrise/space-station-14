@@ -566,7 +566,7 @@ public sealed class StatsBoardSystem : EntitySystem
 
         if (totalCreampied >= 1)
         {
-            result += Loc.GetString("statsentry-total-creampied", ("count", totalCreampied)) + "\n";
+            result += Loc.GetString("statsentry-total-creampied", ("total", totalCreampied)) + "\n";
         }
 
         if (mostDeadCharacter != null && maxDeadCount > 1)
