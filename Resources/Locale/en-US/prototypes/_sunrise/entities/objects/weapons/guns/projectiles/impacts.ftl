@@ -1,0 +1,2 @@
+ent-BulletImpactEffectSyndiPlasma = { "" }
+    .desc = { "" }
