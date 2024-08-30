@@ -86,15 +86,6 @@ ent-BulletEnergyGunLaser = энергетический болт
     .desc = { ent-BaseBullet.desc }
 ent-BulletRocketNT = ракета
     .desc = { ent-BaseBulletTrigger.desc }
-ent-BulletLaserSpread = wide laser barrage
-    .desc = { "" }
-ent-BulletLaserHeavy = heavy laser bolt
-    .desc = { "" }
-ent-BulletLaserHeavySpread = narrow laser barrage
-    .desc = { "" }
-ent-BulletDisablerSmgSpread = disabling laser barrage
-    .desc = { "" }
-    
 ent-BulletLaserSpread = широкий лазерный обстрел
   .desc = { "" }
 ent-BulletLaserHeavy = тяжелый лазерный болт
