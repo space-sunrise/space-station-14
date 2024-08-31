@@ -27,12 +27,12 @@
 
 - type: reagent
   id: HonkPower
-  name: мощь хонка
+  name: reagent-name-honkpower
   group: Toxins
-  desc: хохохонк
-  flavor: как смех хонкоматери
+  desc: reagent-desc-honkpower
+  flavor: reagent-flavor-honkpower
   color: "#F0E68C"
-  physicalDesc: дрожащее
+  physicalDesc: reagent-physical-desc-honkpower
   recognizable: false
   slippery: true
   metabolisms:

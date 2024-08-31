@@ -189,9 +189,7 @@
   parent: ToySword
   components:
   - type: Wieldable
-    wieldTime: 0
   - type: EnergySword
-    isSharp: false
     colorOptions:
       - DodgerBlue
   - type: Sprite
@@ -262,9 +260,6 @@
       collection: RadiationPulse
       params:
         volume: 5
-    anomalyContactDamage:
-      types:
-        Radiation: -1
   - type: AmbientSound
     range: 5
     volume: -5
