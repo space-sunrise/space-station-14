@@ -29,7 +29,7 @@
   provider: ntts.fdev.team
 
 - type: ttsVoice
-  id: Glados
+  id: Glados # borg
   name: tts-voice-name-glados
   sex: Female
   speaker: glados
@@ -1001,6 +1001,7 @@
   speaker: sophronia_franklin
   roundStart: true
   provider: ntts.fdev.team
+  sponsorOnly: true
 
 - type: ttsVoice
   id: SironaRyan
@@ -1046,24 +1047,24 @@
   id: GenericGoblinC
   name: tts-voice-name-generic-goblin-c
   sex: Male
-  speaker: mister_handy_fl3
+  speaker: generic_goblin_c
   roundStart: true
   provider: ntts.fdev.team
 
 - type: ttsVoice
-  id: MisterHandyFL3
+  id: MisterHandyFL3 # borg
   name: tts-voice-name-mister-handy-fl3
   sex: Male
   speaker: mister_handy_fl3
-  roundStart: true
+  roundStart: false
   provider: ntts.fdev.team
 
 - type: ttsVoice
-  id: MisterGutsyFL3
+  id: MisterGutsyFL3 # borg
   name: tts-voice-name-mister-gutsy-fl3
   sex: Male
   speaker: mister_gutsy_fl3
-  roundStart: true
+  roundStart: false
   provider: ntts.fdev.team
 
 - type: ttsVoice
@@ -1073,6 +1074,7 @@
   speaker: jericho_fl3
   roundStart: true
   provider: ntts.fdev.team
+  sponsorOnly: true
 
 - type: ttsVoice
   id: ElderLyonsFL3
@@ -1081,6 +1083,7 @@
   speaker: elder_lyons_fl3
   roundStart: true
   provider: ntts.fdev.team
+  sponsorOnly: true
 
 - type: ttsVoice
   id: SarahLyonsFL3
@@ -1097,6 +1100,7 @@
   speaker: colin_moriarty_fl3
   roundStart: true
   provider: ntts.fdev.team
+  sponsorOnly: true
 
 - type: ttsVoice
   id: KovirNobleman
@@ -1123,11 +1127,11 @@
   provider: ntts.fdev.team
 
 - type: ttsVoice
-  id: Brendan
+  id: Brendan # borg
   name: tts-voice-name-brendan
   sex: Male
   speaker: brendan
-  roundStart: true
+  roundStart: false
   provider: ntts.fdev.team
 
 - type: ttsVoice
@@ -1145,6 +1149,7 @@
   speaker: oswald_forrest
   roundStart: true
   provider: ntts.fdev.team
+  sponsorOnly: true
 
 - type: ttsVoice
   id: Steve
