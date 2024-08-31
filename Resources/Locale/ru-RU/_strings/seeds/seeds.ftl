@@ -128,3 +128,5 @@ seeds-pyrotton-name = пирохлопок
 seeds-pyrotton-display-name = куст пирохлопка
 seeds-capfruit-name = капфрут
 seeds-capfruit-display-name = дерево капфрута
+seeds-cherry-name = вишня
+seeds-cherry-display-name = вишневое дерево

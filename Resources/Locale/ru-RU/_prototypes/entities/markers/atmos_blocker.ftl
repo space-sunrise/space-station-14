@@ -16,3 +16,6 @@ ent-AtmosFixInstantPlasmaFireMarker = метка исправления атмо
 ent-AtmosFixFreezerMarker = метка исправления атмоса
     .desc = Изменяет температуру воздуха на 235K, предоставляя возможность морозильнику настроиться с небольшой погрешностью.
     .suffix = Морозильная камера
+ent-AtmosFixVoxMarker = { ent-AtmosFixNitrogenMarker }
+    .desc = Азот @ 101 kPa, 20C
+    .suffix = Атмосфера Воксов

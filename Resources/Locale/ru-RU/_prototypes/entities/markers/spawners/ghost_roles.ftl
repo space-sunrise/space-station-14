@@ -24,3 +24,5 @@ ent-SpawnPointGhostDragon = { ent-BaseAntagSpawner }
     .desc = { ent-BaseAntagSpawner.desc }
 ent-SpawnPointGhostSpaceNinja = { ent-BaseAntagSpawner }
     .desc = { ent-BaseAntagSpawner.desc }
+ent-SpawnPointGhostTerminator = точка спавна терминатора
+    .desc = { ent-MarkerBase.desc }

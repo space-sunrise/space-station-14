@@ -1,3 +1,5 @@
+ent-BaseMeleeWeaponEnergy = { ent-BaseItem }
+    .desc = { ent-BaseItem.desc }
 ent-EnergySword = энергетический меч
     .desc = Очень громкий и опасный меч с лучом чистой, концентрированной плазмы. Разрезает небронированные объекты как масло.
 ent-EnergyDaggerLoud = энергокинжал

@@ -53,3 +53,5 @@ ent-RubberStampDenied = печать ОТКАЗАНО
 ent-RubberStampDetective = печать детектива
     .suffix = НЕ МАППИТЬ
     .desc = { ent-RubberStampBase.desc }
+ent-RubberStampGreytide = штамп грейтайда
+    .desc = Резиновый штамп для пометки важных документов. Т tide захлестывает вас, стоит только взглянуть на него...

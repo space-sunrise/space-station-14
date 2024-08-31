@@ -46,3 +46,6 @@ ent-ClothingHeadHelmetBone = костяной шлем
     .desc = Круто выглядящий шлем, сделанный из черепов ваших врагов.
 ent-ClothingHeadHelmetPodWars = шлем Броненосец II
     .desc = Шлем Броненосец II, реликвия войн подов.
+ent-ChangelingClothingHeadHelmet = хитиновый шлем
+    .desc = Всеобъемлющая хитиновая масса брони.
+    .suffix = Неснимаемая

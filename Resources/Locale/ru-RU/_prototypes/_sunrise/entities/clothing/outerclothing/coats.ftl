@@ -14,3 +14,7 @@ ent-ClothingOuterCoatHOP = куртка главы персонала
     .desc = Деловая куртка главы персонала для создания профессионального вида.
 ent-ClothingOuterCoatPilot = Куртка пилота Службы Безопасности
     .desc = Стильная куртка для настоящего аса.
+ent-ClothingOuterCoatNtrep = пиджак представителя NT
+    .desc = Элегантная черная куртка, стандартный атрибут представителей Nanotrasen.
+ent-ClothingOuterCoatNtrepOpen = растёгнутый пиджак представителя NT
+    .desc = { ent-ClothingOuterStorageFoldableBaseOpened.desc }
