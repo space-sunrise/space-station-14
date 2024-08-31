@@ -51,10 +51,6 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls
             var localizedName = Loc.GetString(locationKey);
             if (localizedName == locationKey)
             {
-                if (locationKey != "location--" || locationKey != "location-")
-                {
-                    Logger.Warning($"Failed to find localization with ID: {locationKey} and name: {displayName}");
-                }
                 localizedName = displayName;
             }
             return localizedName;
