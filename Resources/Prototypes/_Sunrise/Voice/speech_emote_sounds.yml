@@ -161,3 +161,11 @@
     path: /Audio/_Sunrise/Voice/Reaper/reaper_scream.ogg
     params:
       volume: -2
+
+- type: emoteSounds
+  id: ClownGoblin
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: ClownGoblinScream
