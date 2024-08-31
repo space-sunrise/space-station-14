@@ -63,12 +63,14 @@
                 <BoxContainer Orientation="Vertical" SeparationOverride="4" Name="VoteContainer"
                               Access="Public" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0 8" />
             </BoxContainer>
-            <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True"
+                          VerticalAlignment="Bottom" HorizontalAlignment="Left">
                 <PanelContainer Name="LeftBottomPanel" StyleClasses="AngleRect" VerticalExpand="True" MinWidth="550"
                                 VerticalAlignment="Bottom" HorizontalExpand="True">
-                    <BoxContainer Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"
-                                  HorizontalExpand="True">
-                        <BoxContainer Orientation="Vertical" Name="ServersHubBox" VerticalExpand="True" VerticalAlignment="Top" Access="Public">
+                    <BoxContainer Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+                                  HorizontalExpand="True" VerticalExpand="True">
+                        <BoxContainer Orientation="Vertical" Name="ServersHubBox" VerticalExpand="True"
+                                      VerticalAlignment="Bottom" Access="Public">
                             <controls:StripeBack>
                                 <BoxContainer Orientation="Horizontal" Name="ServersHubHeader" MouseFilter="Pass" >
                                     <Label HorizontalExpand="True" Name="ServersHubHeaderLabel" Access="Public"
@@ -76,21 +78,29 @@
                                            Align="Center"/>
                                 </BoxContainer>
                             </controls:StripeBack>
-                            <BoxContainer Orientation="Vertical" Name="ServersHubContent" HorizontalExpand="True" VerticalExpand="True"
-                                          HorizontalAlignment="Stretch" VerticalAlignment="Bottom" MinHeight="150">
-                                <serversHub:ServersHub Name="ServersHubBody" Access="Public" HorizontalExpand="True" VerticalExpand="True" />
+                            <BoxContainer Orientation="Vertical" Name="ServersHubContent" HorizontalExpand="True"
+                                          VerticalExpand="True"
+                                          HorizontalAlignment="Stretch" VerticalAlignment="Top" MinHeight="150">
+                                <serversHub:ServersHub Name="ServersHubBody" Access="Public" HorizontalExpand="True"
+                                                       VerticalExpand="True" />
                             </BoxContainer>
                         </BoxContainer>
-                        <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalAlignment="Stretch" MaxWidth="530" VerticalAlignment="Top">
-                            <controls:StripeBack VerticalAlignment="Top">
-                                <BoxContainer Orientation="Horizontal" Name="ChangelogHeader" MouseFilter="Pass">
-                                    <Label HorizontalExpand="True" Text="{Loc 'changelog-lobby-window-title'}"
-                                           VAlign="Center" StyleClasses="LabelHeading" Align="Center"/>
+                        <BoxContainer Orientation="Vertical" Name="ChangelogBox" VerticalExpand="True" HorizontalAlignment="Stretch"
+                                      MaxWidth="530" VerticalAlignment="Bottom">
+                            <BoxContainer Orientation="Vertical" VerticalExpand="True" VerticalAlignment="Stretch">
+                                <controls:StripeBack VerticalAlignment="Top">
+                                    <BoxContainer Orientation="Horizontal" Name="ChangelogHeader" MouseFilter="Pass">
+                                        <Label HorizontalExpand="True" Text="{Loc 'changelog-lobby-window-title'}"
+                                               VAlign="Center" StyleClasses="LabelHeading" Align="Center"/>
+                                    </BoxContainer>
+                                </controls:StripeBack>
+                                <BoxContainer Orientation="Vertical" MinHeight="200" MaxHeight="250" Name="ChangelogContent" VerticalExpand="True"
+                                              HorizontalAlignment="Stretch" VerticalAlignment="Top" >
+                                    <changelog:ChangelogTab Name="LocalChangelogBody"
+                                                            RectClipContent="True" Access="Public"
+                                                            VerticalExpand="True" VerticalAlignment="Stretch"
+                                                            MinHeight="200" MaxHeight="250"/>
                                 </BoxContainer>
-                            </controls:StripeBack>
-                            <BoxContainer Orientation="Vertical" Name="ChangelogContent"
-                                          HorizontalAlignment="Stretch" VerticalAlignment="Top" MinHeight="200">
-                                <changelog:ChangelogTab Name="LocalChangelogBody" RectClipContent="True" Access="Public" VerticalExpand="True" />
                             </BoxContainer>
                         </BoxContainer>
                     </BoxContainer>
@@ -102,22 +112,20 @@
                 </PanelContainer>
             </BoxContainer>
             <BoxContainer Orientation="Vertical" HorizontalExpand="True" HorizontalAlignment="Right">
-                <PanelContainer Name="RightTopPanel" StyleClasses="AngleRect" VerticalAlignment="Top">
-                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True"
-                                  HorizontalAlignment="Right" SizeFlagsStretchRatio="1">
-                        <Button Name="AHelpButton" Access="Public" Text="{Loc 'ui-lobby-ahelp-button'}"
-                                StyleClasses="ButtonBig"/>
-                        <vote:VoteCallMenuButton Name="CallVoteButton" StyleClasses="ButtonBig" />
-                        <Button Name="OptionsButton" Access="Public" Text="{Loc 'ui-lobby-options-button'}"
-                                StyleClasses="ButtonBig"/>
-                        <Button Name="LeaveButton" Access="Public" Text="{Loc 'ui-lobby-leave-button'}"
-                                StyleClasses="ButtonBig"/>
-                    </BoxContainer>
-                </PanelContainer>
-                <PanelContainer Name="RightBottomPanel" MinWidth="500" StyleClasses="AngleRect" VerticalExpand="True"
-                                VerticalAlignment="Bottom" HorizontalExpand="True">
-                    <BoxContainer Orientation="Vertical" HorizontalExpand="True">
-                        <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+                <PanelContainer Name="RightPanel" MinWidth="500" StyleClasses="AngleRect" VerticalExpand="True"
+                                VerticalAlignment="Stretch" HorizontalExpand="True">
+                    <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" VerticalAlignment="Top">
+                        <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="3 3 3 3"
+                                      HorizontalAlignment="Right" SizeFlagsStretchRatio="1">
+                            <Button Name="AHelpButton" Access="Public" Text="{Loc 'ui-lobby-ahelp-button'}"
+                                    StyleClasses="ButtonBig"/>
+                            <vote:VoteCallMenuButton Name="CallVoteButton" StyleClasses="ButtonBig" />
+                            <Button Name="OptionsButton" Access="Public" Text="{Loc 'ui-lobby-options-button'}"
+                                    StyleClasses="ButtonBig"/>
+                            <Button Name="LeaveButton" Access="Public" Text="{Loc 'ui-lobby-leave-button'}"
+                                    StyleClasses="ButtonBig"/>
+                        </BoxContainer>
+                        <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalAlignment="Top">
                             <controls:StripeBack>
                                 <BoxContainer Orientation="Horizontal" Name="ServerInfoHeader" MouseFilter="Pass">
                                     <Label HorizontalExpand="True" Text="{Loc 'ui-lobby-server-info-block'}"
@@ -132,27 +140,27 @@
                             </BoxContainer>
                         </BoxContainer>
                         <BoxContainer Orientation="Vertical" HorizontalExpand="True" HorizontalAlignment="Stretch"
-                                      VerticalExpand="True" >
+                                      VerticalExpand="True" VerticalAlignment="Top" >
                             <controls:StripeBack Name="CharacterInfoHeader" MouseFilter="Pass">
                                 <BoxContainer Orientation="Horizontal">
                                     <Label HorizontalExpand="True" Text="{Loc 'lobby-character-preview-panel-header'}"
                                            VAlign="Center" StyleClasses="LabelHeading" Align="Center"/>
                                 </BoxContainer>
                             </controls:StripeBack>
-                            <BoxContainer Orientation="Vertical" Name="CharacterInfoContent">
+                            <BoxContainer Orientation="Vertical" Name="CharacterInfoContent" MinHeight="180">
                                 <lobbyUi:LobbyCharacterPreviewPanel Name="CharacterPreview" HorizontalExpand="True"
                                                                     HorizontalAlignment="Stretch" Access="Public" />
                             </BoxContainer>
                         </BoxContainer>
-                        <BoxContainer Orientation="Vertical" HorizontalExpand="True" >
+                        <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" VerticalAlignment="Top">
                             <controls:StripeBack Name="ChatHeader" MouseFilter="Pass">
                                 <BoxContainer Orientation="Horizontal">
                                     <Label HorizontalExpand="True" Text="{Loc 'hud-chatbox-channel-Chat'}"
                                            VAlign="Center" StyleClasses="LabelHeading" Align="Center"/>
                                 </BoxContainer>
                             </controls:StripeBack>
-                            <BoxContainer Name="ChatContent" HorizontalExpand="True">
-                                <widgets:ChatBox Name="Chat" Access="Public" MinWidth="300" MinHeight="300" HorizontalExpand="True" VerticalExpand="True" Margin="3 3 3 3" />
+                            <BoxContainer Name="ChatContent" MinHeight="450" MaxHeight="450" HorizontalExpand="True" VerticalExpand="True" VerticalAlignment="Top">
+                                <widgets:ChatBox Name="Chat" MinHeight="450" MaxHeight="450" VerticalAlignment="Top" Access="Public" HorizontalExpand="True" VerticalExpand="True" Margin="3 3 3 3" />
                             </BoxContainer>
                         </BoxContainer>
                     </BoxContainer>

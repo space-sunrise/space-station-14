@@ -104,9 +104,7 @@ namespace Content.Client.Lobby.UI
 
             LeftTopPanel.PanelOverride = _back;
 
-            RightTopPanel.PanelOverride = _back;
-
-            RightBottomPanel.PanelOverride = _back;
+            RightPanel.PanelOverride = _back;
 
             LeftBottomPanel.PanelOverride = _back;
 
