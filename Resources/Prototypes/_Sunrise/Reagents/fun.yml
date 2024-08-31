@@ -30,7 +30,7 @@
   name: reagent-name-honkpower
   group: Toxins
   desc: reagent-desc-honkpower
-  flavor: reagent-flavor-honkpower
+  flavor: funny
   color: "#F0E68C"
   physicalDesc: reagent-physical-desc-honkpower
   recognizable: false
