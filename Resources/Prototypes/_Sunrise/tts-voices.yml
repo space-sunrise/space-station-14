@@ -987,7 +987,7 @@
   provider: ntts.fdev.team
 
 - type: ttsVoice
-  id: PoppyWweeting
+  id: PoppySweeting
   name: tts-voice-name-poppysweeting
   sex: Female
   speaker: poppysweeting
