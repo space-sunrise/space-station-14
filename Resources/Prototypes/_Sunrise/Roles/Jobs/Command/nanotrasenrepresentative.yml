@@ -8,7 +8,7 @@
       department: Command
       time: 62000 # 20 hrs
     - !type:AgeRequirement
-      requiredAge: 40 # Sunrise-Edit
+      requiredAge: 45 # Sunrise-Edit
   startingGear: NanoTrasenRepresentativeGear
   icon: JobIconNanotrasen
   supervisors: job-supervisors-centcom
@@ -24,7 +24,7 @@
   - Tajaran
   - Felinid
   - Predator
-  - Swine
+  - HumanoidXeno
   access:
     - Armory
     - Cryogenics
