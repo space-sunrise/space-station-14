@@ -25,7 +25,7 @@ job-name-sec-borg = киборг СБ
 job-name-sec-combat-borg = боевой киборг СБ
 job-name-peace-borg = миротворец
 job-name-clown-borg = клоун киборг
-job-name-barber = парихмахер
+job-name-barber = парикмахер
 # Перевод трекеров времени
 JobCentCommOfficial = представитель Центком
 JobMagistrat = магистрат
