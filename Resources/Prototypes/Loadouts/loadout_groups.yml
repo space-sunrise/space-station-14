@@ -23,6 +23,7 @@
   - ClothingNeckVitezstviPin  # Sunrise
   - ClothingNeckEarthPin  # Sunrise
   - ClothingNeckUSSPPin  # Sunrise
+  - ClothingNeckReedIndustriesPin  # Sunrise
   - ClothingNeckLGBTPin
   - ClothingNeckAromanticPin
   - ClothingNeckAsexualPin
@@ -500,7 +501,7 @@
   loadouts:
   - MimeSuspendersRed
   - MimeSuspendersBlack
-  
+
 - type: loadoutGroup
   id: SurvivalMime
   name: loadout-group-survival-mime

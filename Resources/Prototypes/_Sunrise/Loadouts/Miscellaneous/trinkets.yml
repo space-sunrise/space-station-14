@@ -78,3 +78,13 @@
   storage:
     back:
     - ClothingNeckUSSPPin
+
+- type: loadout
+  id: ClothingNeckReedIndustriesPin
+  startingGear: ClothingNeckReedIndustriesPin
+
+- type: startingGear
+  id: ClothingNeckReedIndustriesPin
+  storage:
+    back:
+    - ClothingNeckReedIndustriesPin
