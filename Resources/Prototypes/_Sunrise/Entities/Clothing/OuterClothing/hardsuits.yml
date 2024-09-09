@@ -62,6 +62,18 @@
     clothingPrototype: ClothingHeadHelmetHardsuitBlueshield
 
 - type: entity
+  parent: ClothingOuterHardsuitSecurity
+  id: ClothingOuterHardsuitSecuritySunrise
+  suffix: SUNRISE
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/hardsuits/secoff.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/hardsuits/secoff.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSecuritySunrise
+
+- type: entity
   parent: ClothingOuterHardsuitBase
   id: ClothingOuterHardsuitPilot
   name: Скафандр пилота Службы Безопасности
