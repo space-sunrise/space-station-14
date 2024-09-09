@@ -11,7 +11,7 @@
     department: Security
     time: 18000 # 5h Sunrise-RoleTime
   - !type:AgeRequirement
-    requiredAge: 35 # Sunrise-Edit
+    requiredAge: 18 # Sunrise-Edit
   startingGear: IAAGear
   icon: "JobIconIAA"
   supervisors: job-supervisors-magistrate
