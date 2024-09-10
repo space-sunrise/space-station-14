@@ -69,3 +69,11 @@
   - type: Sprite
     sprite: _Sunrise/Structures/Furniture/potted_plants.rsi
     state: plant-8
+
+- type: entity
+  id: PottedPlantAlt9
+  parent: PottedPlantBase
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Furniture/potted_plants.rsi
+    state: plant-9
