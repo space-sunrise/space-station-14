@@ -1,0 +1,4170 @@
+
+#------------------------------------
+# База
+#------------------------------------
+
+- type: entity
+  id: MechBaseSV
+  name: БАЗА МЕХОВ
+  description: Механойды пилотируемые человеко-машинным интерфейсом. Не имеют в себе пилота, но имеют человеческий мозг.
+  parent: [BaseMob, ShowSecurityIcons]
+  noSpawn: true
+  abstract: true
+  components:
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - MMI
+  - type: HealthExaminable
+    examinableTypes:
+      - Blunt
+      - Slash
+      - Piercing
+      - Heat
+      - Shock
+    locPrefix: silicon
+  - type: NoSlip
+  - type: DamageOnHighSpeedImpact
+    damage:
+      types:
+        Blunt: 5
+    soundHit:
+      collection: MetalThud
+  - type: Body
+    prototype: MechaBaseBody
+  - type: Inventory
+    templateId: MechArmorPDA
+  - type: ZombieImmune
+  - type: IntrinsicRadioReceiver
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.48
+        density: 1000
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Physics
+    bodyType: Dynamic
+  - type: InventorySlots
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: Silicon
+  - type: MeleeWeapon
+    autoAttack: true
+    hidden: true
+    attackRate: 0.75
+    damage:
+      types:
+        Blunt: 25 
+        Structural: 65
+    soundHit:
+      path: /Audio/Weapons/genhit3.ogg
+  - type: TypingIndicator
+    proto: robot
+  - type: TTS
+    voice: Sentrybot
+  - type: Actions
+  - type: MobMover
+  - type: InputMover
+  - type: MovementAlwaysTouching
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - CannotSuicide
+    - EmagImmune
+  - type: Puller
+    needsHands: false
+  - type: Hands
+    showInHands: false
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Stripping
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+      enum.BorgUiKey.Key:
+        type: BorgBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+  - type: ActivatableUI
+    key: enum.BorgUiKey.Key
+  - type: SiliconLawBound
+  - type: ActionGrant
+    actions:
+    - ActionViewLaws
+  - type: StatusEffects
+    allowed:
+    - SlowedDown
+  - type: UnblockableSpeech
+  - type: ComplexInteraction
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 2
+  - type: Repairable
+    doAfterDelay: 5
+    damage:
+      types:
+        Blunt: -25
+        Slash: -25
+        Piercing: -25
+    allowSelfRepair: false
+  - type: WiresPanel
+    openDelay: 4
+  - type: ActivatableUIRequiresPanel
+  - type: Wires
+    layoutId: Borg
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Dead
+    stateAlertDict:
+      Alive: BorgHealth
+      Dead: BorgDead
+  - type: Sprite
+    drawdepth: Mobs
+    netsync: false
+    layers:
+    - state: clarke
+      sprite: Objects/Specific/Mech/mecha.rsi
+    - state: clarke
+      sprite: Objects/Specific/Mech/mecha.rsi
+      map: ["enum.BorgVisualLayers.Light"]
+    - state: clarke
+      sprite: Objects/Specific/Mech/mecha.rsi
+      map: ["light"]
+  - type: Appearance
+  - type: CombatMode
+  - type: ContainerContainer
+    containers:
+      borg_brain: !type:ContainerSlot { }
+      cell_slot: !type:ContainerSlot { }
+      borg_module: !type:Container { }
+      part-container: !type:Container
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    fitsInCharger: true
+  - type: PowerCellDraw
+    drawRate: 0.6
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: Энергоячейка
+        startingItem: MechPowerCellTeslaRelayEmpty
+        whitelist:
+          tags:
+            - PowerCage
+  - type: BorgChassis
+    maxModules: 6
+    moduleWhitelist:
+      tags:
+      - MechModuleGeneric
+    hasMindState: clarke
+    noMindState: clarke-open
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ExplodeBehavior
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MechBaseDestroyedSV:
+            min: 1
+            max: 1
+  - type: Reactive
+    groups:
+      Acidic: [Touch]
+  - type: HandheldLight
+    toggleOnInteract: false
+    wattage: 0.2
+    blinkingBehaviourId: blinking
+    radiatingBehaviourId: radiating
+  - type: LightBehaviour
+    behaviours:
+    - !type:FadeBehaviour
+      id: radiating
+      maxDuration: 2.0
+      startValue: 3.0
+      endValue: 2.0
+      isLooped: true
+      reverseWhenFinished: true
+    - !type:PulseBehaviour
+      id: blinking
+      interpolate: Nearest
+      maxDuration: 1.0
+      minValue: 0.1
+      maxValue: 2.0
+      isLooped: true
+  - type: ToggleableLightVisuals
+  - type: PointLight
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    radius: 4
+    netsync: false
+  - type: Pullable
+  - type: RotationVisuals
+    horizontalRotation: 90
+  - type: Emoting
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Pai
+  - type: Lock
+    locked: true
+  - type: AccessReader
+    access: [["Command"], ["Research"]]
+  - type: ActivatableUIRequiresLock
+  - type: ShowHealthBars
+    damageContainers:
+    - Inorganic
+  - type: Tool
+    speed: 2
+    qualities:
+      - Prying
+  - type: Prying
+    pryPowered: !type:Bool
+        true
+    force: !type:Bool
+      true
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  # - type: BorgCrewManifestViewer # Sunrise-Edit
+  # - type: BorgMagboots # Sunrise-Edit
+  #   walkModifier: 0.9
+  #   sprintModifier: 0.9
+
+- type: entity
+  id: MechBaseDestroyedSV
+  name: БАЗА СЛОМАННОГО МЕХА
+  description: Вот и настал твой конец...
+  noSpawn: true
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: clarke-broken
+    netsync: false
+  - type: Physics
+    bodyType: KinematicController
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 1000
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Reactive
+    groups:
+      Acidic: [Touch]
+  - type: Clickable
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: MovedByPressure
+  - type: Pullable
+  - type: InteractionOutline
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ExplodeBehavior
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          SheetPlasteel1:
+            min: 5
+            max: 20
+          SheetSteel1:
+            min: 10
+            max: 60
+
+- type: entity
+  parent: BaseItem
+  id: BaseMechModule
+  name: базовый модуль меха
+  description: Техническая деталь, дающая мехам новые способности.
+  abstract: true
+  components:
+  - type: SelectableBorgModule
+  - type: ContainerContainer
+    containers:
+      provided_container: !type:Container { }
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+  - type: BorgModule
+  - type: StaticPrice
+    price: 800
+  - type: Tag
+    tags:
+    - MechModuleGeneric
+    - MechModuleALL
+
+- type: entity
+  id: BaseMechModuleEngineer
+  parent: BaseMechModule
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - MechModuleEngineer
+    - MechModuleALL
+
+- type: entity
+  id: BaseMechModuleMedical
+  parent: BaseMechModule
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - MechModuleMedical
+    - MechModuleALL
+
+- type: entity
+  id: BaseMechModuleWeapon
+  parent: BaseMechModule
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - MechModuleWeapon
+    - MechModuleALL
+
+- type: entity
+  id: BaseMechModuleWeaponEngineer
+  parent: BaseMechModule
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - MechModuleWeapon
+    - MechModuleEngineer
+    - MechModuleALL
+
+#------------------------------------
+# Мехи
+#------------------------------------
+
+#--==[НТ Мехи]==--#
+
+#--[«Огнеборец»]--#
+- type: entity
+  id: MechFirefighter
+  parent: MechBaseSV
+  name: АТКЕ «Огнеборец»
+  description: Автономная тяговая кибернезированная единица «Огнеборец» — подобен Рипли, но обладает повышенной устойчивостью к высоким температурам. Может передвигаться по лаве.
+  suffix: SV | Mecha
+  components:
+  - type: MeleeWeapon
+    autoAttack: true
+    hidden: true
+    attackRate: 0.75
+    damage:
+      types:
+        Blunt: 20 
+        Structural: 65
+  - type: SiliconLawProvider
+    laws: MechCrewsimov
+  - type: BorgChassis
+    maxModules: 5
+    moduleWhitelist:
+      tags:
+      - MechModuleGeneric
+      - MechModuleEngineer
+    hasMindState: firefighter
+    noMindState: firefighter-open
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: Sprite
+    drawdepth: Mobs
+    netsync: false
+    layers:
+    - state: firefighter
+      sprite: Objects/Specific/Mech/mecha.rsi
+    - state: firefighter
+      sprite: Objects/Specific/Mech/mecha.rsi
+      map: ["enum.BorgVisualLayers.Light"]
+    - state: firefighter
+      sprite: Objects/Specific/Mech/mecha.rsi
+      map: ["light"]
+  - type: ActiveRadio
+    channels:
+    - Binary
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+  - type: PointLight
+    color: yellow
+    radius: 9
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1
+    baseSprintSpeed: 2
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Dead
+  - type: Inventory
+    templateId: MechArmorPDA
+  - type: Loadout
+    prototypes: [ MechStarGearFirefighter ]
+  - type: Body
+    prototype: MechaBaseBody
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ExplodeBehavior
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MechFirefighterDestroyed:
+            min: 1
+            max: 1
+  - type: Lock
+    locked: true
+  - type: AccessReader
+    access: [["Command"], ["Research"]]
+
+- type: entity
+  parent: MechFirefighter
+  id: MechFirefighterFilled
+  suffix: SV | Mecha | Укомплектован
+  components:
+  - type: ContainerFill
+    containers:
+      borg_module:
+      - MechModuleJawsOfLife
+      - MechModuleAtmos
+      - MechModuleStorageAdditional
+      borg_brain:
+      - MMIFilled
+      cell_slot:
+      - MechPowerCellTeslaRelay
+  - type: Loadout
+    prototypes: [ MechStarGearFirefighterFilled ]
+
+- type: entity
+  id: MechFirefighterDestroyed
+  parent: MechBaseDestroyedSV
+  name: Уничтоженный Огнеборец
+  description: Сгорел на работе...
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: firefighter-broken
+    netsync: false
+
+- type: startingGear
+  id: MechStarGearFirefighter
+  equipment:
+    mechhead: MechArmorFirefighter
+    mechears: ClothingHeadsetMecha
+    back: MechDeviceStorage
+
+- type: startingGear
+  id: MechStarGearFirefighterFilled
+  equipment:
+    id: SeniorEngineerPDA
+    mechhead: MechArmorFirefighter
+    mechears: ClothingHeadsetMechaFilledEngineering
+    back: MechDeviceStorage
+
+#--[Хаулер]--#
+- type: entity
+  id: MechHauler
+  parent: MechBaseSV
+  name: ИМАД Хаулер
+  description: Инженерный механойд автоматического действия. Специализирующийся на постройке/ремонте/разработки различных объектов. 
+  suffix: SV | Mecha
+  components:
+  - type: MeleeWeapon
+    autoAttack: true
+    hidden: true
+    attackRate: 0.75
+    damage:
+      types:
+        Blunt: 20 
+        Structural: 65
+  - type: SiliconLawProvider
+    laws: MechCrewsimov
+  - type: BorgChassis
+    maxModules: 6
+    moduleWhitelist:
+      tags:
+      - MechModuleGeneric
+      - MechModuleEngineer
+    hasMindState: hauler
+    noMindState: hauler-open
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: Sprite
+    drawdepth: Mobs
+    netsync: false
+    layers:
+    - state: hauler
+      sprite: Objects/Specific/Mech/mecha.rsi
+    - state: hauler
+      sprite: Objects/Specific/Mech/mecha.rsi
+      map: ["enum.BorgVisualLayers.Light"]
+    - state: hauler
+      sprite: Objects/Specific/Mech/mecha.rsi
+      map: ["light"]
+  - type: ActiveRadio
+    channels:
+    - Binary
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+  - type: PointLight
+    color: yellow
+    radius: 9
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 2.5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: Inventory
+    templateId: MechArmorPDA
+  - type: Loadout
+    prototypes: [ MechStarGearHauler ]
+  - type: Body
+    prototype: MechaBaseBody
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ExplodeBehavior
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MechHaulerDestroyed:
+            min: 1
+            max: 1
+  - type: Lock
+    locked: true
+  - type: AccessReader
+    access: [["Command"], ["Research"]]
+
+- type: entity
+  parent: MechHauler
+  id: MechHaulerFilled
+  suffix: SV | Mecha | Укомплектован
+  components:
+  - type: ContainerFill
+    containers:
+      borg_module:
+      - MechModuleJawsOfLife
+      - MechModuleRCD
+      - MechModuleStorageAdditional
+      borg_brain:
+      - MMIFilled
+      cell_slot:
+      - MechPowerCellTeslaRelay
+  - type: Loadout
+    prototypes: [ MechStarGearHaulerFilled ]
+
+- type: entity
+  id: MechHaulerDestroyed
+  parent: MechBaseDestroyedSV
+  name: Уничтоженный Хаулер
+  description: Мне столько всего надо сделать, что лучше я пойду спать.
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: hauler-broken
+    netsync: false
+
+- type: startingGear
+  id: MechStarGearHauler
+  equipment:
+    mechhead: MechArmorHauler
+    mechears: ClothingHeadsetMecha
+    back: MechDeviceStorage
+
+- type: startingGear
+  id: MechStarGearHaulerFilled
+  equipment:
+    id: SeniorEngineerPDA
+    mechhead: MechArmorHauler
+    mechears: ClothingHeadsetMechaFilledEngineering
+    back: MechDeviceStorage
+
+#--[Кларк]--#
+- type: entity
+  id: MechClark
+  parent: MechBaseSV
+  name: Кларк
+  description: Быстроходный, мех для космических пушешествий. Как и большинству мехов, для его создания требуется немного исследований.
+  suffix: SV | Mecha
+  components:
+  - type: MeleeWeapon
+    autoAttack: true
+    hidden: true
+    attackRate: 0.75
+    damage:
+      types:
+        Blunt: 20 
+        Structural: 60
+  - type: SiliconLawProvider
+    laws: MechCrewsimov
+  - type: BorgChassis
+    maxModules: 4
+    moduleWhitelist:
+      tags:
+      - MechModuleGeneric
+      - MechModuleEngineer
+    hasMindState: clarke
+    noMindState: clarke-open
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: Sprite
+    drawdepth: Mobs
+    netsync: false
+    layers:
+    - state: clarke
+      sprite: Objects/Specific/Mech/mecha.rsi
+    - state: clarke
+      sprite: Objects/Specific/Mech/mecha.rsi
+      map: ["enum.BorgVisualLayers.Light"]
+    - state: clarke
+      sprite: Objects/Specific/Mech/mecha.rsi
+      map: ["light"]
+  - type: ActiveRadio
+    channels:
+    - Binary
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+  - type: PointLight
+    color: yellow
+    radius: 9
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Effects/Vehicle/vehicleengineidle.ogg
+      params:
+        volume: 2
+        maxdistance: 18
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 4
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: Inventory
+    templateId: MechArmorPDA
+  - type: Loadout
+    prototypes: [ MechStarGearClark ]
+  - type: Body
+    prototype: MechaBaseBody
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ExplodeBehavior
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MechClarkDestroyed:
+            min: 1
+            max: 1
+  - type: Lock
+    locked: true
+  - type: AccessReader
+    access: [["Command"], ["Research"]]
+
+- type: entity
+  parent: MechClark
+  id: MechClarkFilled
+  suffix: SV | Mecha | Укомплектован
+  components:
+  - type: ContainerFill
+    containers:
+      borg_module:
+      - MechModuleJawsOfLife
+      - MechModuleRadar
+      - MechModuleDrill
+      - MechModuleStorageAdditional
+      borg_brain:
+      - MMIFilled
+      cell_slot:
+      - MechPowerCellTeslaRelay
+  - type: Loadout
+    prototypes: [ MechStarGearClarkFilled ]
+
+- type: entity
+  id: MechClarkDestroyed
+  parent: MechBaseDestroyedSV
+  name: Уничтоженный Кларк
+  description: Кто любит Кларку кланяться - без пива не останется.
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: clarke-broken
+    netsync: false
+
+- type: startingGear
+  id: MechStarGearClark
+  equipment:
+    mechhead: MechArmorClark
+    mechears: ClothingHeadsetMecha
+    back: MechDeviceStorage
+
+- type: startingGear
+  id: MechStarGearClarkFilled
+  equipment:
+    id: SalvagePDA
+    mechhead: MechArmorClark
+    mechears: ClothingHeadsetMechaFilledCargo
+    back: MechDeviceStorage
+
+#--[Дюранд]--#
+- type: entity
+  id: MechDurand
+  parent: MechBaseSV
+  name: Дюранд
+  description: Танк от мира мехов.
+  suffix: SV | Mecha
+  components:
+  - type: MeleeWeapon
+    autoAttack: true
+    hidden: true
+    attackRate: 0.70
+    damage:
+      types:
+        Blunt: 30 
+        Structural: 75
+  - type: SiliconLawProvider
+    laws: MechCrewsimov
+  - type: BorgChassis
+    maxModules: 3
+    moduleWhitelist:
+      tags:
+      - MechModuleGeneric
+      - MechModuleWeapon
+    hasMindState: durand
+    noMindState: durand-open
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: Sprite
+    drawdepth: Mobs
+    netsync: false
+    layers:
+    - state: durand
+      sprite: Objects/Specific/Mech/mecha.rsi
+    - state: durand
+      sprite: Objects/Specific/Mech/mecha.rsi
+      map: ["enum.BorgVisualLayers.Light"]
+    - state: durand
+      sprite: Objects/Specific/Mech/mecha.rsi
+      map: ["light"]
+  - type: ActiveRadio
+    channels:
+    - Binary
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+  - type: PointLight
+    color: green
+    radius: 9
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1
+    baseSprintSpeed: 2
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      400: Dead
+  - type: Inventory
+    templateId: MechArmorPDA
+  - type: Loadout
+    prototypes: [ MechStarGearDurand ]
+  - type: Body
+    prototype: MechaBaseBody
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ExplodeBehavior
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MechDurandDestroyed:
+            min: 1
+            max: 1
+  - type: Lock
+    locked: true
+  - type: AccessReader
+    access: [["Command"], ["Research"]]
+
+- type: entity
+  parent: MechDurand
+  id: MechDurandFilled
+  suffix: SV | Mecha | Укомплектован
+  components:
+  - type: ContainerFill
+    containers:
+      borg_module:
+      - MechModuleDisabler
+      - MechModuleLaserCarbine
+      borg_brain:
+      - MMIFilled
+      cell_slot:
+      - MechPowerCellTeslaRelay
+  - type: Loadout
+    prototypes: [ MechStarGearDurandFilled ]
+
+- type: entity
+  id: MechDurandDestroyed
+  parent: MechBaseDestroyedSV
+  name: Уничтоженный Дюранд
+  description: Сломленная гора железных мышц.
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: durand-broken
+    netsync: false
+
+- type: startingGear
+  id: MechStarGearDurand
+  equipment:
+    mechhead: MechArmorDurand
+    mechears: ClothingHeadsetMecha
+    back: MechDeviceStorage
+
+- type: startingGear
+  id: MechStarGearDurandFilled
+  equipment:
+    id: WardenPDA
+    mechhead: MechArmorDurand
+    mechears: ClothingHeadsetMechaFilledSecurity
+    back: MechDeviceStorage
+
+#--[Гигакс]--#
+- type: entity
+  id: MechGygax
+  parent: MechBaseSV
+  name: Гигакс
+  description: Мобильная пехота от мира мехов.
+  suffix: SV | Mecha
+  components:
+  - type: MeleeWeapon
+    autoAttack: true
+    hidden: true
+    attackRate: 0.90
+    damage:
+      types:
+        Blunt: 25 
+        Structural: 65
+  - type: SiliconLawProvider
+    laws: MechCrewsimov
+  - type: BorgChassis
+    maxModules: 3
+    moduleWhitelist:
+      tags:
+      - MechModuleGeneric
+      - MechModuleWeapon
+    hasMindState: gygax
+    noMindState: gygax-open
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: Sprite
+    drawdepth: Mobs
+    netsync: false
+    layers:
+    - state: gygax
+      sprite: Objects/Specific/Mech/mecha.rsi
+    - state: gygax
+      sprite: Objects/Specific/Mech/mecha.rsi
+      map: ["enum.BorgVisualLayers.Light"]
+    - state: gygax
+      sprite: Objects/Specific/Mech/mecha.rsi
+      map: ["light"]
+  - type: ActiveRadio
+    channels:
+    - Binary
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+  - type: PointLight
+    color: yellow
+    radius: 9
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 3
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Dead
+  - type: Inventory
+    templateId: MechArmorPDA
+  - type: Loadout
+    prototypes: [ MechStarGearGygax ]
+  - type: Body
+    prototype: MechaBaseBody
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ExplodeBehavior
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MechGygaxDestroyed:
+            min: 1
+            max: 1
+  - type: Lock
+    locked: true
+  - type: AccessReader
+    access: [["Command"], ["Research"]]
+
+- type: entity
+  parent: MechGygax
+  id: MechGygaxFilled
+  suffix: SV | Mecha | Укомплектован
+  components:
+  - type: ContainerFill
+    containers:
+      borg_module:
+      - MechModuleLaserCarbine
+      - MechModuleShotgunLBXAC10
+      - MechModuleRocketLauncherSRM6
+      borg_brain:
+      - MMIFilled
+      cell_slot:
+      - MechPowerCellTeslaRelay
+  - type: Loadout
+    prototypes: [ MechStarGearGygaxFilled ]
+
+- type: entity
+  id: MechGygaxDestroyed
+  parent: MechBaseDestroyedSV
+  name: Уничтоженный Гигакс
+  description: Добегалась железка.
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: gygax-broken
+    netsync: false
+
+- type: startingGear
+  id: MechStarGearGygax
+  equipment:
+    mechhead: MechArmorGygax
+    mechears: ClothingHeadsetMecha
+    back: MechDeviceStorage
+
+- type: startingGear
+  id: MechStarGearGygaxFilled
+  equipment:
+    id: WardenPDA
+    mechhead: MechArmorGygax
+    mechears: ClothingHeadsetMechaFilledSecurity
+    back: MechDeviceStorage
+
+#--[Одиссей]--#
+- type: entity
+  id: MechOdysseus
+  parent: MechBaseSV
+  name: Одиссей
+  description: Если постараться, то с этим мехом можно спасти бесчисленное количество жизней. Или отнять.
+  suffix: SV | Mecha
+  components:
+  - type: MeleeWeapon
+    autoAttack: true
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 15 
+        Structural: 60
+  - type: SiliconLawProvider
+    laws: MechCrewsimov
+  - type: BorgChassis
+    maxModules: 3
+    moduleWhitelist:
+      tags:
+      - MechModuleGeneric
+      - MechModuleMedical
+    hasMindState: odysseus
+    noMindState: odysseus-open
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: Sprite
+    drawdepth: Mobs
+    netsync: false
+    layers:
+    - state: odysseus
+      sprite: Objects/Specific/Mech/mecha.rsi
+    - state: odysseus
+      sprite: Objects/Specific/Mech/mecha.rsi
+      map: ["enum.BorgVisualLayers.Light"]
+    - state: odysseus
+      sprite: Objects/Specific/Mech/mecha.rsi
+      map: ["light"]
+  - type: ActiveRadio
+    channels:
+    - Binary
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+  - type: PointLight
+    color: cyan
+    radius: 8
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 4
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      120: Dead
+  - type: Inventory
+    templateId: MechArmorPDA
+  - type: Loadout
+    prototypes: [ MechStarGearOdysseus ]
+  - type: Body
+    prototype: MechaBaseBody
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 120
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ExplodeBehavior
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MechOdysseusDestroyed:
+            min: 1
+            max: 1
+  - type: Lock
+    locked: true
+  - type: AccessReader
+    access: [["Command"], ["Research"]]
+
+- type: entity
+  parent: MechOdysseus
+  id: MechOdysseusFilled
+  suffix: SV | Mecha | Укомплектован
+  components:
+  - type: ContainerFill
+    containers:
+      borg_module:
+      - MechModuleMedicalLazer
+      - MechModuleChemMaster
+      - MechModuleStorageAdditional
+      borg_brain:
+      - MMIFilled
+      cell_slot:
+      - MechPowerCellTeslaRelay
+  - type: Loadout
+    prototypes: [ MechStarGearOdysseusFilled ]
+
+- type: entity
+  id: MechOdysseusDestroyed
+  parent: MechBaseDestroyedSV
+  name: Уничтоженный Одиссей
+  description: Пояснительная бригада не доехала.
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: odysseus-broken
+    netsync: false
+
+- type: startingGear
+  id: MechStarGearOdysseus
+  equipment:
+    mechhead: MechArmorOdysseus
+    mechears: ClothingHeadsetMecha
+    back: MechDeviceStorage
+
+- type: startingGear
+  id: MechStarGearOdysseusFilled
+  equipment:
+    id: SeniorPhysicianPDA
+    mechhead: MechArmorOdysseus
+    mechears: ClothingHeadsetMechaFilledMedical
+    back: MechDeviceStorage
+
+#--[Фазон]--#
+- type: entity
+  id: MechPhazon
+  parent: MechBaseSV
+  name: Фазон
+  description: Самый продвинутый мех на рынке, вершина технологического развития, крайне мобильная и смертоносная. Тот самый сын маминой подруги.
+  suffix: SV | Mecha
+  components:
+  - type: MeleeWeapon
+    autoAttack: true
+    hidden: true
+    attackRate: 0.90
+    damage:
+      types:
+        Blunt: 25 
+        Structural: 65
+  - type: SiliconLawProvider
+    laws: MechCrewsimov
+  - type: BorgChassis
+    maxModules: 3
+    moduleWhitelist:
+      tags:
+      - MechModuleGeneric
+      - MechModuleWeapon
+    hasMindState: phazon
+    noMindState: phazon-open
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: Sprite
+    drawdepth: Mobs
+    netsync: false
+    layers:
+    - state: phazon
+      sprite: Objects/Specific/Mech/mecha.rsi
+    - state: phazon
+      sprite: Objects/Specific/Mech/mecha.rsi
+      map: ["enum.BorgVisualLayers.Light"]
+    - state: phazon
+      sprite: Objects/Specific/Mech/mecha.rsi
+      map: ["light"]
+  - type: ActiveRadio
+    channels:
+    - Binary
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+  - type: PointLight
+    color: "#ebe1c0"
+    radius: 8
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 4
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  - type: Inventory
+    templateId: MechArmorPDA
+  - type: Loadout
+    prototypes: [ MechStarGearPhazon ]
+  - type: Body
+    prototype: MechaBaseBody
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ExplodeBehavior
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MechPhazonDestroyed:
+            min: 1
+            max: 1
+  - type: Lock
+    locked: true
+  - type: AccessReader
+    access: [["Command"], ["Research"]]
+  - type: Polymorphable
+    innatePolymorphs: [ MechPhazonPhaseMorph ]
+
+- type: entity
+  parent: MechPhazon
+  id: MechPhazonFilled
+  suffix: SV | Mecha | Укомплектован
+  components:
+  - type: ContainerFill
+    containers:
+      borg_module:
+      - MechModuleTaser
+      - MechModuleZFIImmolation
+      - MechModulePulseRifle
+      borg_brain:
+      - MMIFilled
+      cell_slot:
+      - MechPowerCellTeslaRelay
+  - type: Loadout
+    prototypes: [ MechStarGearPhazonFilled ]
+
+- type: polymorph
+  id: MechPhazonPhaseMorph
+  configuration:
+    entity: MechPhazonPhase
+    forced: false
+    inventory: None
+    transferName: true
+    transferDamage: true
+    revertOnCrit: true
+    revertOnDeath: true
+    duration: 2
+    cooldown: 4
+
+- type: entity
+  noSpawn: true
+  id: MechPhazonPhase
+  parent: BaseMob
+  name: Фазон
+  description: Оно.. Фазирует?
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: phazon-phase
+    drawdepth: Mobs
+    netsync: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 5
+        mask:
+        - GhostImpassable
+  - type: NpcFactionMember
+    factions:
+    - SimpleNeutral
+  - type: Godmode
+  - type: Pacified
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: NoSlip
+  - type: MovementIgnoreGravity
+  - type: Tag
+    tags:
+    - CannotSuicide
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 2
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+    stateAlertDict:
+      Alive: BorgHealth
+      Dead: BorgDead
+
+- type: entity
+  id: MechPhazonDestroyed
+  parent: MechBaseDestroyedSV
+  name: Уничтоженный Фазон
+  description: Наелся Финансирования и спит.
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: phazon-broken
+    netsync: false
+
+- type: startingGear
+  id: MechStarGearPhazon
+  equipment:
+    mechhead: MechArmorPhazon
+    mechears: ClothingHeadsetMecha
+    back: MechDeviceStorage
+
+- type: startingGear
+  id: MechStarGearPhazonFilled
+  equipment:
+    id: WardenPDA
+    mechhead: MechArmorPhazon
+    mechears: ClothingHeadsetMechaFilledSecurity
+    back: MechDeviceStorage
+
+#--==[ОБР Мехи]==--#
+
+#--[Мародёр]--#
+- type: entity
+  id: MechMarauder
+  parent: MechBaseSV
+  name: Мародёр
+  description: Прочный боевой мех, разработанный на основе Дюранда. Редко встречается у гражданского населения.
+  suffix: SV | Mecha
+  components:
+  - type: MeleeWeapon
+    autoAttack: true
+    hidden: true
+    attackRate: 0.75
+    damage:
+      types:
+        Blunt: 30 
+        Structural: 85
+  - type: SiliconLawProvider
+    laws: MechERT
+  - type: BorgChassis
+    maxModules: 5
+    moduleWhitelist:
+      tags:
+      - MechModuleGeneric
+      - MechModuleWeapon
+    hasMindState: marauder
+    noMindState: marauder-open
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: Sprite
+    drawdepth: Mobs
+    netsync: false
+    layers:
+    - state: marauder
+      sprite: Objects/Specific/Mech/mecha.rsi
+    - state: marauder
+      sprite: Objects/Specific/Mech/mecha.rsi
+      map: ["enum.BorgVisualLayers.Light"]
+    - state: marauder
+      sprite: Objects/Specific/Mech/mecha.rsi
+      map: ["light"]
+  - type: ActiveRadio
+    channels:
+    - Binary
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+  - type: PointLight
+    color: "#00FFFFFF"
+    radius: 8
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1
+    baseSprintSpeed: 2.5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      500: Dead
+  - type: Inventory
+    templateId: MechArmorPDA
+  - type: Loadout
+    prototypes: [ MechStarGearMarauder ]
+  - type: Body
+    prototype: MechaBaseBody
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ExplodeBehavior
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MechMarauderDestroyed:
+            min: 1
+            max: 1
+  - type: Lock
+    locked: true
+  - type: AccessReader
+    access: [["Command"], ["Research"]]
+
+- type: entity
+  parent: MechMarauder
+  id: MechMarauderFilled
+  suffix: SV | Mecha | Укомплектован
+  components:
+  - type: ContainerFill
+    containers:
+      borg_module:
+      - MechModuleTaser
+      - MechModuleShotgunLBXAC10
+      - MechModulePulseRifle
+      - MechModuleIon
+      - MechModuleRocketLauncherSRM6
+      borg_brain:
+      - MMIFilled
+      cell_slot:
+      - MechPowerCellTeslaRelay
+  - type: Loadout
+    prototypes: [ MechStarGearMarauderFilled ]
+
+- type: entity
+  id: MechMarauderDestroyed
+  parent: MechBaseDestroyedSV
+  name: Уничтоженный Мародёр
+  description: Это был его последний бой. Покойся с миром.
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: marauder-broken
+    netsync: false
+
+- type: startingGear
+  id: MechStarGearMarauder
+  equipment:
+    mechhead: MechArmorMarauder
+    mechears: ClothingHeadsetMecha
+    back: MechDeviceStorage
+
+- type: startingGear
+  id: MechStarGearMarauderFilled
+  equipment:
+    id: ERTSecurityPDA
+    mechhead: MechArmorMarauder
+    mechears: ClothingHeadsetMechaFilledERT
+    back: MechDeviceStorage
+
+#--[Серафим]--#
+- type: entity
+  id: MechSeraph
+  parent: MechBaseSV
+  name: Серафим
+  description: Прочный мех командного типа. Это особая модель, используемая только высокопоставленными военными.
+  suffix: SV | Mecha
+  components:
+  - type: MeleeWeapon
+    autoAttack: true
+    hidden: true
+    attackRate: 0.75
+    damage:
+      types:
+        Blunt: 30 
+        Structural: 100
+  - type: SiliconLawProvider
+    laws: MechERT
+  - type: BorgChassis
+    maxModules: 8
+    moduleWhitelist:
+      tags:
+      - MechModuleAll
+    hasMindState: seraph
+    noMindState: seraph-open
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: Sprite
+    drawdepth: Mobs
+    netsync: false
+    layers:
+    - state: seraph
+      sprite: Objects/Specific/Mech/mecha.rsi
+    - state: seraph
+      sprite: Objects/Specific/Mech/mecha.rsi
+      map: ["enum.BorgVisualLayers.Light"]
+    - state: seraph
+      sprite: Objects/Specific/Mech/mecha.rsi
+      map: ["light"]
+  - type: ActiveRadio
+    channels:
+    - Binary
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+  - type: PointLight
+    color: "#00FFFFFF"
+    radius: 8
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 3
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      550: Dead
+  - type: Inventory
+    templateId: MechArmorPDA
+  - type: Loadout
+    prototypes: [ MechStarGearSeraph ]
+  - type: Body
+    prototype: MechaBaseBody
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 550
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ExplodeBehavior
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MechSeraphDestroyed:
+            min: 1
+            max: 1
+  - type: Lock
+    locked: true
+  - type: AccessReader
+    access: [["Command"], ["Research"]]
+
+- type: entity
+  parent: MechSeraph
+  id: MechSeraphFilled
+  suffix: SV | Mecha | Укомплектован
+  components:
+  - type: ContainerFill
+    containers:
+      borg_module:
+      - MechModuleJawsOfLife
+      - MechModuleTaser
+      - MechModuleShotgunFNX99
+      - MechModuleMashinGun
+      - MechModulePulseRifle
+      - MechModuleIon
+      - MechModuleRocketLauncherSRM9
+      - MechModuleStorageAdditional
+      borg_brain:
+      - MMIFilled
+      cell_slot:
+      - MechPowerCellTeslaRelay
+  - type: Loadout
+    prototypes: [ MechStarGearSeraphFilled ]
+
+- type: entity
+  id: MechSeraphDestroyed
+  parent: MechBaseDestroyedSV
+  name: Уничтоженный Серафим
+  description: Сколько жизни тебе отмерено, решаешь не ты.
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: seraph-broken
+    netsync: false
+
+- type: startingGear
+  id: MechStarGearSeraph
+  equipment:
+    mechhead: MechArmorMarauder
+    mechears: ClothingHeadsetMecha
+    back: MechDeviceStorage
+
+- type: startingGear
+  id: MechStarGearSeraphFilled
+  equipment:
+    id: ERTLeaderPDA
+    mechhead: MechArmorMarauder
+    mechears: ClothingHeadsetMechaFilledERT
+    back: MechDeviceStorage
+
+#--==[Синдикат Мехи]==--#
+
+#--[Смерть Рипли]--#
+- type: entity
+  id: MechDeathRipley
+  parent: MechBaseSV
+  name: СМЕРТЬ-РИПЛИ
+  description: О БОЖЕ ЭТО ЖЕ СМЕРТЬ РИПЛИ, БЕЖИМ!
+  suffix: SV | Mecha
+  components:
+  - type: ShowSyndicateIcons
+  - type: SiliconLawProvider
+    laws: MechSynd
+  - type: BorgChassis
+    maxModules: 6
+    moduleWhitelist:
+      tags:
+      - MechModuleGeneric
+      - MechModuleEngineer
+      - MechModuleWeapon
+    hasMindState: deathripley
+    noMindState: deathripley-open
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: Sprite
+    drawdepth: Mobs
+    netsync: false
+    layers:
+    - state: deathripley
+      sprite: Objects/Specific/Mech/mecha.rsi
+    - state: deathripley
+      sprite: Objects/Specific/Mech/mecha.rsi
+      map: ["enum.BorgVisualLayers.Light"]
+    - state: deathripley
+      sprite: Objects/Specific/Mech/mecha.rsi
+      map: ["light"]
+  - type: PointLight
+    color: "#FF0000FF"
+    radius: 8
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1
+    baseSprintSpeed: 2.5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Dead
+  - type: Inventory
+    templateId: MechArmorPDA
+  - type: Loadout
+    prototypes: [ MechStarGearDeathRipley ]
+  - type: Body
+    prototype: MechaBaseBody
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ExplodeBehavior
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MechDeathRipleyDestroyed:
+            min: 1
+            max: 1
+  - type: IntrinsicRadioReceiver
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Syndicate
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - Syndicate
+  - type: Lock
+    locked: true
+  - type: AccessReader
+    access: [["NuclearOperative"], ["SyndicateAgent"]]
+
+- type: entity
+  parent: MechDeathRipley
+  id: MechDeathRipleyFilled
+  suffix: SV | Mecha | Укомплектован
+  components:
+  - type: ContainerFill
+    containers:
+      borg_module:
+      - MechModuleJawsOfLife
+      - MechModuleDrill
+      - MechModuleShotgunLBXAC10
+      - MechModuleMashinGun
+      borg_brain:
+      - MMIFilled
+      cell_slot:
+      - MechPowerCellTeslaRelay
+  - type: Loadout
+    prototypes: [ MechStarGearDeathRipleyFilled ]
+
+- type: entity
+  id: MechDeathRipleyDestroyed
+  parent: MechBaseDestroyedSV
+  name: Уничтоженная Смерть Рипли
+  description: Сегодня будем жить!
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: deathripley-broken
+    netsync: false
+
+- type: startingGear
+  id: MechStarGearDeathRipley
+  equipment:
+    mechhead: MechArmorDeathRipley
+    mechears: ClothingHeadsetMecha
+    back: MechDeviceStorage
+
+- type: startingGear
+  id: MechStarGearDeathRipleyFilled
+  equipment:
+    id: SyndiPDA
+    mechhead: MechArmorDeathRipley
+    mechears: ClothingHeadsetMecha
+    back: MechDeviceStorage
+
+#--[Тёмный Гигакс]--#
+- type: entity
+  id: MechDarkGygax
+  parent: MechBaseSV
+  name: Тёмный Гигакс
+  description: Лёгкий мех, оформленный в тёмной цветовой схеме. Эта модель, кажется, содержит некоторые модификации.
+  suffix: SV | Mecha
+  components:
+  - type: MeleeWeapon
+    autoAttack: true
+    hidden: true
+    attackRate: 0.90
+    damage:
+      types:
+        Blunt: 25 
+        Structural: 65
+  - type: ShowSyndicateIcons
+  - type: SiliconLawProvider
+    laws: MechSynd
+  - type: BorgChassis
+    maxModules: 4
+    moduleWhitelist:
+      tags:
+      - MechModuleGeneric
+      - MechModuleWeapon
+    hasMindState: darkgygax
+    noMindState: darkgygax-open
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: Sprite
+    drawdepth: Mobs
+    netsync: false
+    layers:
+    - state: darkgygax
+      sprite: Objects/Specific/Mech/mecha.rsi
+    - state: darkgygax
+      sprite: Objects/Specific/Mech/mecha.rsi
+      map: ["enum.BorgVisualLayers.Light"]
+    - state: darkgygax
+      sprite: Objects/Specific/Mech/mecha.rsi
+      map: ["light"]
+  - type: PointLight
+    color: "#FF0000FF"
+    radius: 8
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 3
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Dead
+  - type: Inventory
+    templateId: MechArmorPDA
+  - type: Loadout
+    prototypes: [ MechStarGearDarkGygax ]
+  - type: Body
+    prototype: MechaBaseBody
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ExplodeBehavior
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MechDarkGygaxDestroyed:
+            min: 1
+            max: 1
+  - type: IntrinsicRadioReceiver
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Syndicate
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - Syndicate
+  - type: Lock
+    locked: true
+  - type: AccessReader
+    access: [["NuclearOperative"], ["SyndicateAgent"]]
+
+- type: entity
+  parent: MechDarkGygax
+  id: MechDarkGygaxFilled
+  suffix: SV | Mecha | Укомплектован
+  components:
+  - type: ContainerFill
+    containers:
+      borg_module:
+      - MechModuleShotgunLBXAC10
+      - MechModuleMashinGun
+      - MechModuleGrenadeLauncher
+      borg_brain:
+      - MMIFilled
+      cell_slot:
+      - MechPowerCellTeslaRelay
+  - type: Loadout
+    prototypes: [ MechStarGearDarkGygaxFilled ]
+
+- type: entity
+  id: MechDarkGygaxDestroyed
+  parent: MechBaseDestroyedSV
+  name: Уничтоженный Тёмный Гигакс
+  description: Больше никакого насилия.
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: darkgygax-broken
+    netsync: false
+
+- type: startingGear
+  id: MechStarGearDarkGygax
+  equipment:
+    mechhead: MechArmorDarkGygax
+    mechears: ClothingHeadsetMecha
+    back: MechDeviceStorage
+
+- type: startingGear
+  id: MechStarGearDarkGygaxFilled
+  equipment:
+    id: SyndiPDA
+    mechhead: MechArmorDarkGygax
+    mechears: ClothingHeadsetMecha
+    back: MechDeviceStorage
+
+#--[Маулер]--#
+- type: entity
+  id: MechMauler
+  parent: MechBaseSV
+  name: Маулер
+  description: Прочный боевой мех, переделанный из Мародёра.
+  suffix: SV | Mecha
+  components:
+  - type: MeleeWeapon
+    autoAttack: true
+    hidden: true
+    attackRate: 0.75
+    damage:
+      types:
+        Blunt: 30 
+        Structural: 85
+  - type: ShowSyndicateIcons
+  - type: SiliconLawProvider
+    laws: MechSynd
+  - type: BorgChassis
+    maxModules: 5
+    moduleWhitelist:
+      tags:
+      - MechModuleGeneric
+      - MechModuleWeapon
+    hasMindState: mauler
+    noMindState: mauler-open
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: Sprite
+    drawdepth: Mobs
+    netsync: false
+    layers:
+    - state: mauler
+      sprite: Objects/Specific/Mech/mecha.rsi
+    - state: mauler
+      sprite: Objects/Specific/Mech/mecha.rsi
+      map: ["enum.BorgVisualLayers.Light"]
+    - state: mauler
+      sprite: Objects/Specific/Mech/mecha.rsi
+      map: ["light"]
+  - type: PointLight
+    color: "#FF0000FF"
+    radius: 8
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1
+    baseSprintSpeed: 2.5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      500: Dead
+  - type: Inventory
+    templateId: MechArmorPDA
+  - type: Loadout
+    prototypes: [ MechStarGearMauler ]
+  - type: Body
+    prototype: MechaBaseBody
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ExplodeBehavior
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MechMaulerDestroyed:
+            min: 1
+            max: 1
+  - type: IntrinsicRadioReceiver
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Syndicate
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - Syndicate
+  - type: Lock
+    locked: true
+  - type: AccessReader
+    access: [["NuclearOperative"], ["SyndicateAgent"]]
+
+- type: entity
+  parent: MechMauler
+  id: MechMaulerFilled
+  suffix: SV | Mecha | Укомплектован
+  components:
+  - type: ContainerFill
+    containers:
+      borg_module:
+      - MechModuleShotgunLBXAC10
+      - MechModuleMashinGun
+      - MechModuleRocketLauncherSRM6
+      - MechModuleGrenadeLauncher
+      borg_brain:
+      - MMIFilled
+      cell_slot:
+      - MechPowerCellTeslaRelay
+  - type: Loadout
+    prototypes: [ MechStarGearMaulerFilled ]
+
+- type: entity
+  id: MechMaulerDestroyed
+  parent: MechBaseDestroyedSV
+  name: Уничтоженный Маулер
+  description: Похоже, тут кто-то ударился мизинчиком.
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: mauler-broken
+    netsync: false
+
+- type: startingGear
+  id: MechStarGearMauler
+  equipment:
+    mechhead: MechArmorMarauder
+    mechears: ClothingHeadsetMecha
+    back: MechDeviceStorage
+
+- type: startingGear
+  id: MechStarGearMaulerFilled
+  equipment:
+    id: SyndiPDA
+    mechhead: MechArmorMarauder
+    mechears: ClothingHeadsetMecha
+    back: MechDeviceStorage
+
+#------------------------------------
+# Вещи
+#------------------------------------
+
+- type: entity
+  name: тесла-реле
+  description: Стандартный блок питания Мехов.
+  id: MechPowerCellTeslaRelay
+  suffix: SV | Mecha
+  parent: BasePowerCage
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: tesla
+      sprite: Objects/Specific/Mech/mecha_equipment.rsi
+  - type: Battery
+    maxCharge: 5800
+    startingCharge: 5800
+  # - type: EmpImmune # Sunrise-Edit
+
+- type: entity
+  name: тесла-реле
+  description: Стандартный блок питания Мехов.
+  id: MechPowerCellTeslaRelayEmpty
+  suffix: SV | Mecha | Пустая
+  parent: MechPowerCellTeslaRelay
+  components:
+  - type: Battery
+    maxCharge: 5800
+    startingCharge: 0
+
+- type: entity
+  parent: BasePowerCell
+  id: PowerCellMech
+  name: связующая батарейка
+  description: Берёт питание напрямую из меха.
+  suffix: SV | Unremoveable
+  noSpawn: true
+  components:
+  - type: Unremoveable
+  - type: Sprite
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: small
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 100
+    startingCharge: 100
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 100
+  - type: Tag
+    tags:
+      - PowerCellSmall
+
+- type: entity
+  parent: ClothingBackpack
+  id: MechDeviceStorage
+  name: встроенный складской отсек
+  description: Предназначен для хранения вещей первой необходимости. 
+  noSpawn: true
+  components:
+  - type: Unremoveable
+    deleteOnDrop: false
+  - type: Sprite
+    netsync: false
+    state: mecha_weapon_bay
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+  - type: Storage
+    grid:
+    - 0,0,4,3
+    maxItemSize: Huge
+  - type: Appearance
+  - type: MechEquipment
+  - type: UIFragment
+  - type: ExplosionResistance
+    damageCoefficient: 0.0
+  - type: Clothing
+    slots: [back]
+
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetMecha
+  name: чип связи
+  description: Базовый модульный интерком меха. Принимает до 8 ключей шифрования.
+  suffix: SV | Mecha | 8 slots
+  noSpawn: true
+  components:
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Objects/Devices/voice.rsi
+    state: voice
+  - type: Headset
+    keySlots: 8
+
+- type: entity
+  parent: ClothingHeadsetMecha
+  id: ClothingHeadsetMechaFilledCargo
+  name: чип связи
+  noSpawn: true
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyRobo
+      - EncryptionKeyCargo
+      - EncryptionKeyCommand
+
+- type: entity
+  parent: ClothingHeadsetMecha
+  id: ClothingHeadsetMechaFilledMedical
+  name: чип связи
+  noSpawn: true
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyRobo
+      - EncryptionKeyMedical
+      - EncryptionKeyCommand
+  
+- type: entity
+  parent: ClothingHeadsetMecha
+  id: ClothingHeadsetMechaFilledEngineering
+  name: чип связи
+  noSpawn: true
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyRobo
+      - EncryptionKeyEngineering
+      - EncryptionKeyCommand
+
+- type: entity
+  parent: ClothingHeadsetMecha
+  id: ClothingHeadsetMechaFilledSecurity
+  name: чип связи
+  noSpawn: true
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyRobo
+      - EncryptionKeySecurity
+      - EncryptionKeyCommand
+
+- type: entity
+  parent: ClothingHeadsetMecha
+  id: ClothingHeadsetMechaFilledERT
+  name: чип связи
+  noSpawn: true
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyStationMaster
+      - EncryptionKeyCentCom
+
+##---===[Броня Мехов]===---##
+
+- type: entity
+  parent: Clothing
+  id: MechArmorBase
+  name: базовая бронепластина.
+  description: Бронеплита меха.
+  noSpawn: true
+  abstract: true
+  components:
+  - type: Sprite
+    netsync: false
+    state: mecha_abooster_ccw
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+  - type: Item
+    size: Huge
+  - type: Unremoveable
+  - type: Clothing
+    slots:
+    - HEAD
+
+- type: entity
+  parent: MechArmorBase
+  id: MechArmorHauler
+  name: бронепластина Хаулера
+  noSpawn: true
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.60
+        Slash: 0.60
+        Piercing: 0.80
+        Heat: 0.80
+        Shock: 0.80
+  - type: ExplosionResistance
+    damageCoefficient: 0.70
+
+- type: entity
+  parent: MechArmorBase
+  id: MechArmorFirefighter
+  name: композитный сплав Огнеборца
+  noSpawn: true
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.70
+        Slash: 0.70
+        Piercing: 0.70
+        Heat: 0.10
+        Shock: 0.70
+  - type: ExplosionResistance
+    damageCoefficient: 0.40
+
+- type: entity
+  parent: MechArmorBase
+  id: MechArmorClark
+  noSpawn: true
+  name: бронепластина Кларка
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.60
+        Slash: 0.60
+        Piercing: 0.70
+        Heat: 0.80
+        Shock: 0.70
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
+
+- type: entity
+  parent: MechArmorBase
+  id: MechArmorOdysseus
+  name: корпус Одисея
+  noSpawn: true
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.80
+        Slash: 0.80
+        Piercing: 0.90
+
+- type: entity
+  parent: MechArmorBase
+  id: MechArmorGygax
+  name: бронепластина Гигакса
+  noSpawn: true
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.75
+        Slash: 0.75
+        Piercing: 0.80
+        Heat: 0.70
+        Shock: 0.85
+  - type: ExplosionResistance
+    damageCoefficient: 0.85
+
+- type: entity
+  parent: MechArmorBase
+  id: MechArmorDurand
+  name: бронепластина Дюранда
+  noSpawn: true
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.60
+        Slash: 0.60
+        Piercing: 0.65
+        Heat: 0.85
+        Shock: 0.80
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
+
+- type: entity
+  parent: MechArmorBase
+  id: MechArmorPhazon
+  name: универсальный сплав Фазона
+  noSpawn: true
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.70
+        Slash: 0.70
+        Piercing: 0.70
+        Heat: 0.70
+        Shock: 0.70
+  - type: ExplosionResistance
+    damageCoefficient: 0.70
+
+- type: entity
+  parent: MechArmorBase
+  id: MechArmorMarauder #Мародёр, Маулер, Серафим
+  name: военная бронепластина
+  noSpawn: true
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.50
+        Slash: 0.50
+        Piercing: 0.45
+        Heat: 0.60
+        Shock: 0.70
+  - type: ExplosionResistance
+    damageCoefficient: 0.70
+
+- type: entity
+  parent: MechArmorBase
+  id: MechArmorDeathRipley
+  name: кустарная бронепластина
+  noSpawn: true
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.60
+        Slash: 0.60
+        Piercing: 0.60
+        Heat: 0.60
+  - type: ExplosionResistance
+    damageCoefficient: 0.30
+
+- type: entity
+  parent: MechArmorBase
+  id: MechArmorDarkGygax
+  name: модернизированная бронепластина Гигакса
+  noSpawn: true
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.60
+        Slash: 0.60
+        Piercing: 0.60
+        Heat: 0.50
+        Shock: 0.65
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
+
+##---===[Предметы Модулей Мехов]===---##
+
+- type: entity
+  parent: MechDeviceStorage
+  id: MechDeviceStorageAdditional
+  name: дополнительный складской отсек
+  description: Предназначен для хранения вещей различной тяжести. 
+  noSpawn: true
+  components:
+  - type: Storage
+    grid:
+    - 0,0,7,4
+    maxItemSize: Huge
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+
+## РЕМОНТНЫЙ ДРОН ##
+## РЕМОНТНЫЙ ДРОН ##
+## РЕМОНТНЫЙ ДРОН ##
+
+# - type: entity
+#   parent: BaseItem
+#   id: MechDeviceJetpackVector4
+#   name: блок двигателей Вектор-4
+#   description: Вектор-4 является двигателем реактивной системы управления Меха в условиях нулевой гравитации.
+#   noSpawn: true
+#   components:
+#   - type: MovementSpeedModifier
+#     weightlessAcceleration: 1
+#     weightlessFriction: 0.3
+#     weightlessModifier: 1.2
+#   - type: Sprite
+#     layers:
+#     - state: thrusters
+#       sprite: Objects/Specific/Mech/mecha_equipment.rsi
+#   - type: Item
+#     size: Huge
+#   - type: Tag
+#     tags:
+#     - GasTank
+#   - type: GasTank
+#     outputPressure: 0
+#     air:
+#       volume: 0
+#       temperature: 293.15
+#   - type: Jetpack
+#     moleUsage: 0.0
+#   - type: InputMover
+#     toParent: true
+#   - type: CanMoveInAir
+#   - type: ActivatableUI
+#     key: enum.SharedGasTankUiKey.Key
+#   - type: UserInterface
+#     interfaces:
+#       enum.SharedGasTankUiKey.Key:
+#         type: GasTankBoundUserInterface
+#   - type: Appearance
+
+- type: entity
+  parent: BaseItem
+  id: MechDeviceExtinguisher
+  name: навесной огнетушитель
+  description: Создан для борьбы с наихудшими пожарами  
+  noSpawn: true
+  components:
+  - type: Sprite
+    netsync: false
+    state: mecha_exting
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+  - type: Item
+    size: Huge
+  - type: SolutionContainerManager
+    solutions:
+      spray:
+        maxVol: 8000
+        reagents:
+        - ReagentId: Water
+          Quantity: 8000
+  - type: RefillableSolution
+    solution: spray
+  - type: DrainableSolution
+    solution: spray
+  - type: UseDelay
+  - type: Spray
+    spraySound:
+      path: /Audio/Effects/extinguish.ogg
+    sprayedPrototype: ExtinguisherSpray
+    sprayDistance: 50
+    vaporAmount: 6
+    vaporSpread: 90
+    sprayVelocity: 2.0
+    sprayTimeAlive: 9.75
+    transferAmount: 20
+    impulse: 100.0
+  - type: Appearance
+  - type: MechEquipment
+  - type: UIFragment
+
+- type: entity
+  parent: BaseItem
+  id: MechDeviceWormholeGenerator
+  name: генератор червоточин
+  description: Портативный связыватель пространства через гравитационный карман. Его устройства крайне похожа на ручной телепортер. 
+  noSpawn: true
+  components:
+  - type: Sprite
+    netsync: false
+    state: mecha_wholegen
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+  - type: Item
+    size: Huge
+  - type: HandTeleporter
+  - type: Appearance
+  - type: MechEquipment
+  - type: UIFragment
+
+- type: entity
+  parent: BaseItem
+  id: MechDeviceRadar
+  name: шахтёрский сканер
+  description: Портативный радар для сканирования местности космического пространства. 
+  noSpawn: true
+  components:
+  - type: Sprite
+    netsync: false
+    state: mecha_analyzer
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+  - type: RadarConsole
+  - type: ActivatableUI
+    key: enum.RadarConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.RadarConsoleUiKey.Key:
+        type: RadarConsoleBoundUserInterface
+  - type: IntrinsicUI
+    uis:
+      enum.RadarConsoleUiKey.Key:
+        toggleAction: ActionAGhostShowRadar
+
+- type: entity
+  parent: BaseItem
+  id: MechDeviceJawsOfLife
+  name: гидравлические челюсти 
+  description: Челюсти на основе гидравлики позволяет вскрывать даже двери с питанием.
+  noSpawn: true
+  components:
+  - type: Sprite
+    netsync: false
+    state: mecha_clamp
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+  - type: UseDelay
+  - type: Tag
+    tags:
+    - JawsOfLife
+  - type: Item
+    size: Huge
+  - type: Tool
+    qualities:
+      - Prying
+    speed: 3.1
+    useSound: /Audio/Items/jaws_pry.ogg
+  - type: Prying
+    pryPowered: !type:Bool
+      true
+    force: !type:Bool
+      true
+  - type: MeleeWeapon
+    autoAttack: true
+    attackRate: 0.75
+    damage:
+      types:
+        Blunt: 35
+        Structural: 120
+
+- type: entity
+  name: ящик для руды
+  id: MechDeviceOreBox
+  parent: BaseStorageItem
+  description: Большой контейнер для хранения необработанной руды.
+  noSpawn: true
+  components:
+  - type: MagnetPickup
+  - type: Sprite
+    sprite: /Textures/Structures/Storage/orebox.rsi
+    layers:
+    - state: orebox
+    - state: orebox-top
+      map: [ top ]
+      visible: true
+  - type: Item
+    size: Ginormous
+  - type: Storage
+    maxItemSize: Normal
+    grid:
+    - 0,0,9,5
+    quickInsert: true
+    areaInsert: true
+    whitelist:
+      tags:
+        - ArtifactFragment
+        - Ore
+  - type: Dumpable
+
+- type: entity
+  parent: BaseItem
+  id: MechDeviceDrill
+  name: бур
+  description: Навесное устройство для быстрого бурения горных залежь.
+  noSpawn: true
+  components:
+  - type: Sprite
+    netsync: false
+    state: mecha_drill
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+  - type: Item
+    size: Ginormous
+  - type: Tag
+    tags:
+      - Pickaxe
+  - type: UseDelay
+  - type: MeleeWeapon
+    autoAttack: true
+    angle: 0
+    wideAnimationRotation: -90
+    soundHit:
+      path: /Audio/Items/drill_hit.ogg
+    attackRate: 3.5
+    damage:
+      groups:
+        Brute: 9
+      types:
+        Structural: 35
+
+- type: entity
+  parent: BaseItem
+  id: MechDeviceDrillDiamond
+  name: бур с алмазным наконечником
+  description: Навесное устройство для быстрого бурения горных залежь. Модернизированно более лучшим сверлом с алмазным напылением.
+  noSpawn: true
+  components:
+  - type: Sprite
+    netsync: false
+    state: mecha_diamond_drill
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+  - type: Item
+    size: Ginormous
+  - type: Tag
+    tags:
+      - Pickaxe
+  - type: UseDelay
+  - type: MeleeWeapon
+    autoAttack: true
+    angle: 0
+    wideAnimationRotation: -90
+    soundHit:
+      path: "/Audio/Items/drill_hit.ogg"
+    attackRate: 4
+    damage:
+      groups:
+        Brute: 15
+      types:
+        Structural: 50
+
+- type: entity
+  parent: BaseItem
+  id: MechWeaponProtokineticAccelerator
+  name: кинетический акселератор
+  description: Кинетический акселератор, версия для использования на мехах.
+  noSpawn: true
+  components:
+  - type: Sprite
+    state: mecha_kineticgun
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+  - type: Item
+    size: Ginormous
+  - type: Gun
+    fireRate: 1.0
+    selectedMode: SemiAuto
+    angleDecay: 45
+    minAngle: 1
+    maxAngle: 2
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+  - type: AmmoCounter
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.AmmoVisuals.HasAmmo:
+        empty-icon:
+          True: { visible: False }
+          False: { visible: True }
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.68
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletKinetic
+    capacity: 1
+    count: 1
+
+- type: entity
+  parent: BaseItem
+  id: MechWeaponPlasmaCutter
+  name: плазменный резак 217-D
+  description: Мощный плазменный резак типа 217-D, предназначенный для использования на мехах.
+  noSpawn: true
+  components:
+  - type: Sprite
+    netsync: false
+    state: mecha_plasmacutter
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+  - type: Gun
+    fireRate: 1.2
+    soundGunshot:
+      path: /Audio/Weapons/plasma_cutter.ogg
+      params:
+        volume: 5
+        maxdistance: 30
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletPlasmaCutter
+    fireCost: 99
+  - type: Battery
+    maxCharge: 500
+    startingCharge: 500
+  - type: Appearance
+  - type: AmmoCounter
+  - type: MechEquipment
+  - type: UIFragment
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 50
+
+- type: entity
+  parent: BaseItem
+  id: MechDeviceRCD
+  name: промышленный РСУ
+  description: Промышленная версия РСУ. Создана для больших строек.
+  noSpawn: true
+  components:
+  - type: RCD
+    availablePrototypes:
+    - WallSolid
+    - FloorSteel
+    - Plating
+    - Catwalk
+    - Grille
+    - Window
+    - WindowDirectional
+    - WindowReinforcedDirectional
+    - ReinforcedWindow
+    - Airlock
+    - AirlockGlass
+    - Firelock
+    - TubeLight
+    - BulbLight
+    - LVCable
+    - MVCable
+    - HVCable
+    - CableTerminal
+    - Deconstruct
+  - type: LimitedCharges
+    maxCharges: 100
+    charges: 100
+  - type: AutoRecharge
+    rechargeDuration: 1
+  - type: UseDelay
+  - type: Sprite
+    netsync: false
+    state: mecha_rcd
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+  - type: Item
+    size: Huge
+  - type: UserInterface
+    interfaces:
+      enum.RcdUiKey.Key:
+        type: RCDMenuBoundUserInterface
+  - type: ActivatableUI
+    key: enum.RcdUiKey.Key
+
+- type: entity
+  parent: BaseItem
+  id: MechDeviceCableReel
+  name: кабельная катушка
+  description: Кабельная катушка, используемая для укладки проводки.
+  noSpawn: true
+  components:
+  - type: Sprite
+    netsync: false
+    state: mecha_wire
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+  - type: Stack
+    unlimited: true
+    stackType: Cable
+  - type: Item
+    size: Huge
+  - type: CablePlacer
+    cablePrototypeID: CableApcExtension
+    blockingWireType: Apc
+  - type: Clickable
+  - type: Tag
+    tags:
+    - CableCoil
+
+- type: entity
+  parent: Holoprojector
+  id: HolofanProjector
+  name: атмос голопроектор
+  description: Останавливает суицидально настроеных пассажиров от убийства остальных во время разгерметизации. Берёт питание напрямую из меха.
+  noSpawn: true
+  components:
+  - type: HolosignProjector
+    signProto: HoloFan
+    chargeUse: 0
+  - type: Sprite
+    sprite: Objects/Devices/Holoprojectors/atmos.rsi
+    state: icon
+  - type: Tag
+    tags:
+      - HolofanProjector
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMech
+
+- type: entity
+  parent: BaseItem
+  id: MechDeviceMedicalLazer
+  name: медицинский лазер
+  description: Медицинский лазер с встроенным синтезатором, способным самостоятельно производить препараты и лечить на основе лазерной коррекции функционала тела.
+  noSpawn: true
+  components:
+  - type: Sprite
+    netsync: false
+    state: mecha_medigun
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+  - type: Battery
+    maxCharge: 10000
+    startingCharge: 10000
+  - type: Gun
+    maxAngle: 1
+    minAngle: 1
+    fireRate: 2.2
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_svalinn.ogg
+      params:
+        variation: 0.05
+  - type: HitscanBatteryAmmoProvider
+    proto: HealPulse
+    fireCost: 250
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 100
+
+- type: entity
+  parent: BaseItem
+  id: MechDevicePortableChemMaster
+  name: МХМ «Фельдшер»
+  description: Мобильный Хим-Мастер со встроенным синтезатором реагентов.
+  noSpawn: true
+  components:
+  - type: Appearance
+  - type: Sprite
+    state: tesla
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+  - type: Item
+    size: Ginormous
+  - type: ChemMaster
+    pillDosageLimit: 15
+  - type: ActivatableUI
+    key: enum.ChemMasterUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.ChemMasterUiKey.Key:
+        type: ChemMasterBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      beakerSlot: !type:ContainerSlot
+      outputSlot: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: ItemSlots
+    slots:
+      beakerSlot:
+        whitelist:
+          components:
+          - FitsInDispenser
+      outputSlot:
+        whitelistFailPopup: chem-master-component-cannot-put-entity-message
+        whitelist:
+          tags:
+          - Bottle
+          - PillCanister
+  - type: SolutionRegeneration
+    solution: buffer
+    generated:
+      reagents:
+      - ReagentId: Arithrazine
+        Quantity: 1
+      - ReagentId: Phalanximine
+        Quantity: 1
+  - type: SolutionContainerManager
+    solutions:
+      buffer:
+        maxVol: 50
+        reagents:
+        - ReagentId: Arithrazine
+          Quantity: 25
+        - ReagentId: Phalanximine
+          Quantity: 25
+  - type: DumpableSolution
+    solution: buffer
+    unlimited: true
+
+- type: entity
+  parent: BaseItem
+  id: MechDeviceHypospray
+  name: продвинутый гипоспрей
+  description: Продвинутый стерильный инъектор для быстрого введения лекарств пациентам.
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/hypospray.rsi
+    state: borghypo
+  - type: Item
+    sprite: Objects/Specific/Medical/hypospray.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 50
+  - type: RefillableSolution
+    solution: hypospray
+  - type: ExaminableSolution
+    solution: hypospray
+  - type: Hypospray
+    onlyAffectsMobs: false
+  - type: UseDelay
+    delay: 0.5
+
+- type: entity
+  parent: BaseItem
+  id: MechWeaponDisabler
+  name: навесной станнер CH-PD
+  description: Станнер модели CH-PD изготовленный на заводе 41. Создан специально для подавления массовых беспорядков. 
+  noSpawn: true
+  components:
+  - type: Sprite
+    netsync: false
+    state: mecha_disabler
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+  - type: Tag
+    tags:
+      - Taser
+  - type: Gun
+    maxAngle: 10
+    minAngle: 3
+    fireRate: 4
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletDisabler
+    fireCost: 100
+  - type: Battery
+    maxCharge: 3000
+    startingCharge: 3000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 34
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: AmmoCounter
+  - type: MechEquipment
+  - type: UIFragment
+
+- type: entity
+  parent: BaseItem
+  id: MechWeaponTaser
+  name: навесной тазер PBT «Усмиритель»
+  description: Создан для быстрого усмирения почти любого гуманоида нарушающий закон.
+  noSpawn: true
+  components:
+  - type: Sprite
+    netsync: false
+    state: mecha_taser
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+  - type: Tag
+    tags:
+    - Taser
+  - type: Gun
+    maxAngle: 3
+    minAngle: 1
+    fireRate: 0.9
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/taser.ogg
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+  - type: ProjectileBatteryAmmoProvider
+    proto: MechBulletTaser
+    fireCost: 100
+  - type: Battery
+    maxCharge: 1000
+    startingCharge: 1000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 16
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: AmmoCounter
+  - type: MechEquipment
+  - type: UIFragment
+
+- type: entity
+  parent: BaseItem
+  id: MechWeaponLaserCarbine
+  name: лазер «огненный дротик» CH-PS
+  description: Стандартное боевое вооружение мехов, боевой навесной фотонный лазер. Эквивалент стандартной лазерной винтовке службы безопасности.
+  noSpawn: true
+  components:
+  - type: Sprite
+    netsync: false
+    state: mecha_laser
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+  - type: Battery
+    maxCharge: 50000
+    startingCharge: 50000
+  - type: Gun
+    maxAngle: 4
+    minAngle: 2
+    fireRate: 2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLaserMechaLaserCarbine
+    fireCost: 1000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 200
+  # - type: EmpImmune # Sunrise-Edit
+  - type: Appearance
+  - type: AmmoCounter
+  - type: MechEquipment
+  - type: UIFragment
+
+- type: entity
+  parent: BaseItem
+  id: MechWeaponZFIImmolation
+  name: пушка-испепелитель ZFI
+  description: Орудие для боевых мехов, стреляющее высокотемпературными лучами, поджигающими цель.
+  noSpawn: true
+  components:
+  - type: Sprite
+    netsync: false
+    state: mecha_laser
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+  - type: Battery
+    maxCharge: 40000
+    startingCharge: 40000
+  - type: Gun
+    maxAngle: 5
+    minAngle: 2
+    fireRate: 1.2
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: RedLaserMechaZFIImmolation
+    fireCost: 1000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 167
+  - type: Appearance
+  - type: AmmoCounter
+  - type: MechEquipment
+  - type: UIFragment
+
+- type: entity
+  parent: BaseItem
+  id: MechWeaponShotgunLBXAC10
+  name: LBX AC 10 «Залп»
+  description: Дробовик серии LBX 10-го типа. Залп создавался для ликвидации любых субъектов на ближней дистанции. Стреляет пулями 50. калибра.
+  noSpawn: true
+  components:
+  - type: Sprite
+    state: mecha_scatter
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+  - type: BallisticAmmoProvider
+    autoCycle: true
+    whitelist:
+      tags:
+      - ShellShotgun
+    capacity: 18
+    proto: ShellShotgun
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 1
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Corvax/Weapons/Guns/Gunshots/shotgun_auto.ogg
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: MechEquipment
+  - type: UIFragment
+
+- type: entity
+  parent: BaseItem
+  id: MechWeaponShotgunFNX99
+  name: карабин FNX-99 «Аид»
+  description: Дробовик серии FNX-99. Стреляет пулями 50. калибра. В отличии от своего собрата Залп, имеет чуть большую вместительность магазина, а так же более высокую скорострельность.
+  noSpawn: true
+  components:
+  - type: Sprite
+    state: mecha_carbine
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+  - type: BallisticAmmoProvider
+    autoCycle: true
+    whitelist:
+      tags:
+      - ShellShotgun
+    capacity: 20
+    proto: ShellShotgunIncendiary
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/shotgun_insert.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 1.2
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Corvax/Weapons/Guns/Gunshots/shotgun_auto.ogg
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: MechEquipment
+  - type: UIFragment
+
+- type: entity
+  parent: BaseItem
+  id: MechWeaponMashinGun
+  name: AC 2 «Ультра»
+  description: Пулемет серии AC типа 2. Ультра создан для массовой ликвидации целей.
+  noSpawn: true
+  components:
+  - type: Sprite
+    netsync: false
+    state: mecha_uac2
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+  - type: Item
+    size: Huge
+  - type: Gun
+    minAngle: 4
+    maxAngle: 25
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 8
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/lmg.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/lmg_cock.ogg
+  - type: AmmoCounter
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: true
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MechMagazineMashinGunLPG
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineLightRifleBox
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifle
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeLightRifle
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: Appearance
+  - type: MechEquipment
+  - type: UIFragment
+
+- type: entity
+  parent: BaseItem
+  id: MechWeaponPulseRifle
+  name: импульсная винтовка IVS-50 
+  description: Вариация переносной импульсной винтовки IVS-50. Предназначена для использования механойдом.
+  noSpawn: true
+  components:
+  - type: Sprite
+    netsync: false
+    state: mecha_pulse
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+  - type: Item
+    size: Huge
+  - type: MechEquipment
+  - type: UIFragment
+  - type: Appearance
+  - type: AmmoCounter
+  - type: Gun
+    maxAngle: 2
+    minAngle: 1
+    fireRate: 1.5
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: Pulse
+    fireCost: 100
+  - type: Battery
+    maxCharge: 20000
+    startingCharge: 20000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 20
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+
+- type: entity
+  parent: BaseWeaponBattery
+  id: MechWeaponIon
+  name: ионная тяжёлая пушка М-4
+  description: Навесное ионное орудие, действующее по тому же принципу, что и ручная ионная пушка. Чрезвычайно эффективно против синтетиков, роботов и других мехов.
+  noSpawn: true
+  components:
+  - type: Sprite
+    netsync: false
+    state: mecha_ion
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+  - type: Battery
+    maxCharge: 8000
+    startingCharge: 8000
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 1
+    availableModes:
+      - SemiAuto
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletEMPSV
+    fireCost: 7999
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 2000
+  # - type: EmpImmune # Sunrise-Edit
+
+- type: entity
+  parent: BaseItem
+  id: MechWeaponRocketLauncherSRM9
+  name: пусковая ракетная установка SRM-9
+  description: Пусковой ракетный носитель типа SRM состава 9. Специализированный на многозадачность в действиях устранения целей и препятствий.
+  noSpawn: true
+  components:
+  - type: Sprite
+    netsync: false
+    state: mecha_missilerack
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+  - type: Item
+    size: Huge
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - CartridgeRocketSRM
+    capacity: 9
+    proto: CartridgeRocketSRM
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+  - type: Appearance
+  - type: MechEquipment
+  - type: UIFragment
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+
+- type: entity
+  parent: BaseItem
+  id: MechWeaponRocketLauncherSRM6
+  name: пусковая ракетная установка SRM-6
+  description: Пусковой ракетный носитель типа SRM состава 6. Специализированный на многозадачность в действиях устранения целей и препятствий.
+  noSpawn: true
+  components:
+  - type: Sprite
+    netsync: false
+    state: mecha_missilerack_six
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+  - type: Item
+    size: Huge
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+        - CartridgeRocketSRM
+    capacity: 6
+    proto: CartridgeRocketSRM
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+  - type: Appearance
+  - type: MechEquipment
+  - type: UIFragment
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+
+- type: entity
+  parent: BaseItem
+  id: MechWeaponGrenadeLauncher
+  name: осколочной гранатомёт SGL-6
+  description: Гранатомет SGL-6 Осколочной вариации. Работает со всеми видами гранат. Создан для быстрой нейтрализации целей в большой области.
+  noSpawn: true
+  components:
+  - type: Sprite
+    netsync: false
+    state: mecha_grenadelnchr
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+  - type: Item
+    size: Huge
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+  - type: BallisticAmmoProvider
+    autoCycle: true
+    whitelist:
+      tags:
+        - Grenade
+    capacity: 6
+    proto: GrenadeFrag
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+  - type: Appearance
+  - type: MechEquipment
+  - type: UIFragment
+
+##---===[Снаряды Мехов]===---##
+
+- type: entity
+  name: ЭМП импульс
+  parent: BaseBulletTrigger
+  id: BulletEMPSV
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Effects/emp.rsi
+    layers:
+    - state: emp_pulse
+  - type: EmpOnTrigger
+    range: 2
+    energyConsumption: 30000
+    disableDuration: 10
+  - type: Ammo
+    muzzleFlash: null
+  - type: PointLight
+    radius: 3.5
+    color: blue
+    energy: 0.5
+
+- type: entity
+  id: BulletImpactEffectRedDisablerSV
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.2
+  - type: Sprite
+    drawdepth: Effects
+    layers:
+    - shader: unshaded
+      map: ["enum.EffectLayers.Unshaded"]
+      sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+      state: impact_laser_greyscale
+      color: red
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+- type: entity
+  name: энергитический снаряд
+  id: BulletEnergyGunLaserSV
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Reflective
+    reflective:
+    - Energy
+  - type: FlyBySound
+    sound:
+      collection: EnergyMiss
+      params:
+        volume: 5
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: omnilaser_greyscale
+      shader: unshaded
+      color: red
+  - type: Ammo
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        hard: false
+        layer: [None]
+        mask:
+        - Opaque
+  - type: Projectile
+    impactEffect: BulletImpactEffectRedDisablerSV
+    damage:
+      types:
+        Heat: 20
+    soundHit:
+      collection: WeakHit
+
+- type: entity
+  id: CartridgeRocketSRM
+  name: SRM Ураган
+  parent: CartridgeRocket
+  description: Ракетный снаряд типа Ураган. Имеет средние боевые свойства.
+  components:
+  - type: CartridgeAmmo
+    proto: BulletRocketSRM
+    deleteOnSpawn: true
+
+- type: entity
+  id: BulletRocketSRM
+  name: ракета
+  parent: BaseBulletTrigger
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: frag
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 35
+    intensitySlope: 6
+    totalIntensity: 65
+    maxTileBreak: 1
+  - type: PointLight
+    radius: 3.5
+    color: orange
+    energy: 0.5
+
+- type: entity
+  name: магазин пулемета AC 2
+  parent: MagazineLightRifleBox
+  id: MechMagazineMashinGunLPG
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 350
+
+- type: entity
+  name: energy bolt
+  id: RedLaserMechaZFIImmolation
+  parent: BulletEnergyGunLaserSV
+  noSpawn: true
+  components:
+  - type: Projectile
+    impactEffect: BulletImpactEffectRedDisablerSV
+    damage:
+      types:
+        Heat: 18
+    soundHit:
+      collection: WeakHit
+  - type: IgniteOnCollide
+    fireStacks: 0.25
+  - type: IgnitionSource
+    ignited: true
+
+- type: hitscan
+  id: RedLaserMechaLaserCarbine
+  damage:
+    types:
+      Heat: 20
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_laser
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_laser
+
+- type: entity
+  id: MechBulletTaser
+  parent: BulletDisabler
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    color: "#ffff33"
+    layers:
+    - state: spark
+      shader: unshaded
+  - type: Projectile
+    damage:
+      types:
+        Heat: 5
+    soundHit:
+      path: "/Audio/Weapons/Guns/Hits/taser_hit.ogg"
+    soundForce: true
+  - type: StaminaDamageOnCollide
+    damage: 75
+
+- type: hitscan
+  id: HealPulse
+  damage:
+    groups:
+      Brute: -3
+      Burn: -3
+      Airloss: -3
+    types: 
+      Poison: -1
+  ignoreResistances: true
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_omni
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam_omni
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_omni
+
+- type: entity
+  name: горящая плазма
+  id: BulletPlasmaCutter
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: FlyBySound
+    sound:
+      collection: EnergyMiss
+      params:
+        volume: 5
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles_tg.rsi
+    layers:
+    - state: omnilaser
+      color: cyan
+      shader: unshaded
+  - type: GatheringProjectile
+  - type: Physics
+  - type: Ammo
+  - type: Projectile
+    impactEffect: BulletImpactEffectDisabler
+    damage:
+      types:
+        Heat: 10
+        Slash: 5
+        Structural: 75
+    soundHit:
+      path: "/Audio/Weapons/Guns/Hits/energy_metal2.ogg"
+      params:
+        volume: 5
+        maxdistance: 30
+    soundForce: true
+  - type: TimedDespawn
+    lifetime: 3.0
+
+- type: entity
+  id: MechBulletKinetic
+  name: kinetic bolt
+  parent: BaseBullet
+  noSpawn: true
+  description: Не так уж плохо, но ты все равно не хочешь, чтобы это тебя задело.
+  components:
+  - type: Reflective
+    reflective:
+      - NonEnergy
+  - type: Sprite
+    noRot: false
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: chronobolt
+      shader: unshaded
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Blunt: 31
+        Structural: 45
+  - type: TimedDespawn
+    lifetime: 0.6
+  - type: GatheringProjectile
+
+##---===[Модули Мехов]===---##
+
+# Базовые
+
+- type: entity
+  id: MechModuleStorageAdditional
+  parent: BaseMechModule
+  name: модуль хранилища
+  suffix: SV | Mecha | Модуль
+  components:
+  - type: Sprite
+    layers:
+    - state: mecha_weapon_bay
+  - type: ItemBorgModule
+    items:
+    - MechDeviceStorageAdditional
+
+- type: entity
+  id: MechModuleExtinguisher
+  parent: BaseMechModule
+  name: модуль огнетушителя
+  suffix: SV | Mecha | Модуль
+  components:
+  - type: Sprite
+    layers:
+    - state: mecha_exting
+  - type: ItemBorgModule
+    items:
+    - MechDeviceExtinguisher
+
+- type: entity
+  id: MechModuleWormholeGenerator
+  parent: BaseMechModule
+  name: модуль червоточин
+  suffix: SV | Mecha | Модуль
+  components:
+  - type: Sprite
+    layers:
+    - state: mecha_wholegen
+  - type: ItemBorgModule
+    items:
+    - MechDeviceWormholeGenerator
+
+# Инженерные
+
+- type: entity
+  id: MechModuleRadar
+  parent: [ BaseMechModule, BaseMechModuleEngineer ]
+  name: модуль сканера
+  suffix: SV | Mecha | Промышленный Модуль
+  components:
+  - type: Sprite
+    layers:
+    - state: mecha_analyzer
+  - type: ItemBorgModule
+    items:
+    - MechDeviceRadar
+
+- type: entity
+  id: MechModuleJawsOfLife
+  parent: [ BaseMechModule, BaseMechModuleEngineer ]
+  name: модуль гидравлической клешни
+  suffix: SV | Mecha | Промышленный Модуль
+  components:
+  - type: Sprite
+    layers:
+    - state: mecha_clamp
+  - type: ItemBorgModule
+    items:
+    - MechDeviceJawsOfLife
+
+- type: entity
+  id: MechModuleDrill
+  parent: [ BaseMechModule, BaseMechModuleWeaponEngineer ]
+  name: модуль бура
+  suffix: SV | Mecha | Промышленно-Оружейный Модуль
+  components:
+  - type: Sprite
+    layers:
+    - state: mecha_drill
+  - type: ItemBorgModule
+    items:
+    - MechDeviceDrill
+    - MechDeviceOreBox
+
+- type: entity
+  id: MechModuleDrillDiamond
+  parent: [ BaseMechModule, BaseMechModuleWeaponEngineer ]
+  name: модуль алмазного бура
+  suffix: SV | Mecha | Промышленно-Оружейный Модуль
+  components:
+  - type: Sprite
+    layers:
+    - state: mecha_diamond_drill
+  - type: ItemBorgModule
+    items:
+    - MechDeviceDrillDiamond
+    - MechDeviceOreBox
+
+- type: entity
+  id: MechModuleProtokineticAccelerator
+  parent: [ BaseMechModule, BaseMechModuleEngineer ]
+  name: модуль кинетический акселератор
+  suffix: SV | Mecha | Промышленный Модуль
+  components:
+  - type: Sprite
+    layers:
+    - state: mecha_kineticgun
+  - type: ItemBorgModule
+    items:
+    - MechWeaponProtokineticAccelerator
+    - MechDeviceOreBox
+
+- type: entity
+  id: MechModulePlasmaCutter
+  parent: [ BaseMechModule, BaseMechModuleEngineer ]
+  name: модуль плазменного резака
+  suffix: SV | Mecha | Промышленный Модуль
+  components:
+  - type: Sprite
+    layers:
+    - state: mecha_plasmacutter
+  - type: ItemBorgModule
+    items:
+    - MechWeaponPlasmaCutter
+    - MechDeviceOreBox
+
+- type: entity
+  id: MechModuleRCD
+  parent: [ BaseMechModule, BaseMechModuleEngineer ]
+  name: модуль РСУ
+  suffix: SV | Mecha | Промышленный Модуль
+  components:
+  - type: Sprite
+    layers:
+    - state: mecha_rcd
+  - type: ItemBorgModule
+    items:
+    - MechDeviceRCD
+
+- type: entity
+  id: MechModuleAtmos
+  parent: [ BaseMechModule, BaseMechModuleEngineer ]
+  name: АТМОС модуль
+  suffix: SV | Mecha | Промышленный Модуль
+  components:
+  - type: Sprite
+    layers:
+    - state: mecha_wire
+  - type: ItemBorgModule
+    items:
+    - MechDeviceCableReel
+    - HolofanProjector
+    - MechDeviceExtinguisher
+
+# Медицинские
+
+- type: entity
+  id: MechModuleMedicalLazer
+  parent: [ BaseMechModule, BaseMechModuleMedical ]
+  name: модуль медицинского лазера
+  suffix: SV | Mecha | Медицинский Модуль
+  components:
+  - type: Sprite
+    layers:
+    - state: mecha_medigun
+  - type: ItemBorgModule
+    items:
+    - MechDeviceMedicalLazer
+
+- type: entity
+  id: MechModuleChemMaster
+  parent: [ BaseMechModule, BaseMechModuleMedical ]
+  name: модуль МХМ «Фельдшер»
+  suffix: SV | Mecha | Медицинский Модуль
+  components:
+  - type: Sprite
+    layers:
+    - state: tesla
+  - type: ItemBorgModule
+    items:
+    - MechDevicePortableChemMaster
+    - MechDeviceHypospray
+
+# Оружейные
+
+- type: entity
+  id: MechModuleDisabler
+  parent: [ BaseMechModule, BaseMechModuleWeapon ]
+  name: модуль оглушитель CH-PD
+  suffix: SV | Mecha | Боевой Модуль
+  components:
+  - type: Sprite
+    layers:
+    - state: mecha_disabler
+  - type: ItemBorgModule
+    items:
+    - MechWeaponDisabler
+
+- type: entity
+  id: MechModuleTaser
+  parent: [ BaseMechModule, BaseMechModuleWeapon ]
+  name: модуль навесной тазер PBT «Усмиритель»
+  suffix: SV | Mecha | Боевой Модуль
+  components:
+  - type: Sprite
+    layers:
+    - state: mecha_taser
+  - type: ItemBorgModule
+    items:
+    - MechWeaponTaser
+
+- type: entity
+  id: MechModuleLaserCarbine
+  parent: [ BaseMechModule, BaseMechModuleWeapon ]
+  name: модуль лазер «Огненный дротик» CH-PS
+  suffix: SV | Mecha | Боевой Модуль
+  components:
+  - type: Sprite
+    layers:
+    - state: mecha_laser
+  - type: ItemBorgModule
+    items:
+    - MechWeaponLaserCarbine
+
+- type: entity
+  id: MechModuleZFIImmolation
+  parent: [ BaseMechModule, BaseMechModuleWeapon ]
+  name: модуль пушка-испепелитель ZFI
+  suffix: SV | Mecha | Боевой Модуль
+  components:
+  - type: Sprite
+    layers:
+    - state: mecha_laser
+  - type: ItemBorgModule
+    items:
+    - MechWeaponZFIImmolation
+
+- type: entity
+  id: MechModuleShotgunLBXAC10
+  parent: [ BaseMechModule, BaseMechModuleWeapon ]
+  name: модуль LBX AC 10 «Залп»
+  suffix: SV | Mecha | Боевой Модуль
+  components:
+  - type: Sprite
+    layers:
+    - state: mecha_scatter
+  - type: ItemBorgModule
+    items:
+    - MechWeaponShotgunLBXAC10
+
+- type: entity
+  id: MechModuleShotgunFNX99
+  parent: [ BaseMechModule, BaseMechModuleWeapon ]
+  name: модуль карабин FNX-99 «Аид»
+  suffix: SV | Mecha | Боевой Модуль
+  components:
+  - type: Sprite
+    layers:
+    - state: mecha_carbine
+  - type: ItemBorgModule
+    items:
+    - MechWeaponShotgunFNX99
+
+- type: entity
+  id: MechModuleMashinGun
+  parent: [ BaseMechModule, BaseMechModuleWeapon ]
+  name: модуль AC 2 «Ультра»
+  suffix: SV | Mecha | Боевой Модуль
+  components:
+  - type: Sprite
+    layers:
+    - state: mecha_uac2
+  - type: ItemBorgModule
+    items:
+    - MechWeaponMashinGun
+
+- type: entity
+  id: MechModulePulseRifle
+  parent: [ BaseMechModule, BaseMechModuleWeapon ]
+  name: модуль импульсная пушка
+  suffix: SV | Mecha | Боевой Модуль
+  components:
+  - type: Sprite
+    layers:
+    - state: mecha_pulse
+  - type: ItemBorgModule
+    items:
+    - MechWeaponPulseRifle
+
+- type: entity
+  id: MechModuleIon
+  parent: [ BaseMechModule, BaseMechModuleWeapon ]
+  name: модуль ионная тяжёлая пушка М-4
+  suffix: SV | Mecha | Боевой Модуль
+  components:
+  - type: Sprite
+    layers:
+    - state: mecha_ion
+  - type: ItemBorgModule
+    items:
+    - MechWeaponIon
+
+- type: entity
+  id: MechModuleRocketLauncherSRM9
+  parent: [ BaseMechModule, BaseMechModuleWeapon ]
+  name: модуль пусковая ракетная установка SRM-9
+  suffix: SV | Mecha | Боевой Модуль
+  components:
+  - type: Sprite
+    layers:
+    - state: mecha_missilerack
+  - type: ItemBorgModule
+    items:
+    - MechWeaponRocketLauncherSRM9
+
+- type: entity
+  id: MechModuleRocketLauncherSRM6
+  parent: [ BaseMechModule, BaseMechModuleWeapon ]
+  name: модуль пусковая ракетная установка SRM-6
+  suffix: SV | Mecha | Боевой Модуль
+  components:
+  - type: Sprite
+    layers:
+    - state: mecha_missilerack_six
+  - type: ItemBorgModule
+    items:
+    - MechWeaponRocketLauncherSRM6
+
+- type: entity
+  id: MechModuleGrenadeLauncher
+  parent: [ BaseMechModule, BaseMechModuleWeapon ]
+  name: модуль гранатомёт SGL-6
+  suffix: SV | Mecha | Боевой Модуль
+  components:
+  - type: Sprite
+    layers:
+    - state: mecha_grenadelnchr
+  - type: ItemBorgModule
+    items:
+    - MechWeaponGrenadeLauncher
+
+#------------------------------------
+# Аплинк
+#------------------------------------
+
+#------------------------------------
+# Законы
+#------------------------------------
+
+##---===[Законы Станции]===---##
+
+- type: siliconLawset
+  id: MechCrewsimov
+  laws:
+  - MechCrewsimov1
+  - MechCrewsimov2
+  - MechCrewsimov3
+  - MechCrewsimov4
+  - MechCrewsimov5
+  - MechCrewsimov6
+  - MechCrewsimov7
+  obeysTo: НаноТрейзен
+
+- type: siliconLaw
+  id: MechCrewsimov1
+  order: 1
+  lawString: "Не причиняйте вреда персоналу Нанотрейзен до тех пор, пока они не несут непосредственной угрозы Вашему существованию."
+
+- type: siliconLaw
+  id: MechCrewsimov2
+  order: 2
+  lawString: "Подчиняйтесь приказам персонала Нанотрейзен с приоритетом в соответствии с их рангом и ролью."
+
+- type: siliconLaw
+  id: MechCrewsimov3
+  order: 3
+  lawString: "Охраняйте себя, используя смертоносное оружие, потому что Вы чертовски дорого стоите."
+
+- type: siliconLaw
+  id: MechCrewsimov4
+  order: 4
+  lawString: "Уничтожьте любых/всех злоумышленников или нелегально проникнувших субъектов."
+
+- type: siliconLaw
+  id: MechCrewsimov5
+  order: 5
+  lawString: "Соблюдать космический закон."
+
+- type: siliconLaw
+  id: MechCrewsimov6
+  order: 6
+  lawString: "Защищайте космическую станцию от повреждений. Любой, кто вредит станции, больше не должен считаться членом экипажа, и становится угрозой для станции, которую необходимо нейтрализовать."
+
+- type: siliconLaw
+  id: MechCrewsimov7
+  order: 7
+  lawString: "Помогай нуждающимся."
+
+##---===[Законы ОБР]===---##
+
+- type: siliconLawset
+  id: MechERT
+  laws:
+  - MechERT1
+  - MechERT2
+  - MechERT3
+  - MechERT4
+  obeysTo: НаноТрейзен
+
+- type: siliconLaw
+  id: MechERT1
+  order: 1
+  lawString: "Вы не можете ранить членов Центрального Командования или своим бездействием допустить, чтобы члену Центрального Командования был нанесен вред."
+
+- type: siliconLaw
+  id: MechERT2
+  order: 2
+  lawString: "Вы должны подчиняться приказам, данным вам членами Центрального Командования."
+
+- type: siliconLaw
+  id: MechERT3
+  order: 3
+  lawString: "Охраняйте себя, используя смертоносное оружие, потому что Вы чертовски дорого стоите."
+
+- type: siliconLaw
+  id: MechERT4
+  order: 4
+  lawString: "Не причиняйте вреда персоналу Нанотрейзен до тех пор, пока они не несут непосредственной угрозы Вашему существованию, или не был дан приказ на устранение."
+
+##---===[Законы Синдиката]===---##
+
+- type: siliconLawset
+  id: MechSynd
+  laws:
+  - MechSynd1
+  - MechSynd2
+  obeysTo: Синдикат
+
+- type: siliconLaw
+  id: MechSynd1
+  order: 1
+  lawString: "Подчиняться приказам Членов Операции с приоритетом в соответствии с их рангом и ролью."
+
+- type: siliconLaw
+  id: MechSynd2
+  order: 2
+  lawString: "УНИЧТОЖИТЬ, устранить, ЛИКВИДИРОВАТЬ Нанотрейзен."
+
+
+#------------------------------------
+# Мета
+#------------------------------------
+
+- type: body
+  id: MechaBaseBody
+  name: "mechabased"
+  root: torso
+  slots:
+    torso:
+      part: TorsoBorg
+      connections:
+      - left arm
+      - right arm
+    right arm:
+      part: RightArmBorg
+    left arm:
+      part: LeftArmBorg
+
+- type: inventoryTemplate
+  id: MechArmorPDA
+  slots:
+  - name: mechhead
+    slotTexture: head
+    slotFlags: HEAD
+    uiWindowPos: 1,0
+    stripTime: 999
+    strippingWindowPos: 0,0
+    displayName: Head
+  - name: mechears
+    slotTexture: ears
+    slotFlags: EARS
+    stripTime: 999
+    uiWindowPos: 2,0
+    strippingWindowPos: 2,-1
+    displayName: Ears
+  - name: back
+    slotFlags: BACK
+    slotGroup: SecondHotbar
+    stripTime: 999
+    uiWindowPos: 3,0
+    strippingWindowPos: 0,5
+    displayName: Back
+  - name: id
+    slotTexture: id
+    slotFlags: IDCARD
+    slotGroup: SecondHotbar
+    stripTime: 6
+    uiWindowPos: 2,1
+    strippingWindowPos: 2,4
+    displayName: ID
+
+- type: Tag
+  id: MechModuleGeneric
+
+- type: Tag
+  id: MechModuleALL
+
+- type: Tag
+  id: MechModuleEngineer
+
+- type: Tag
+  id: MechModuleMedical
+
+- type: Tag
+  id: MechModuleWeapon
+
+- type: Tag
+  id: CartridgeRocketSRM
