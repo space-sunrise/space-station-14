@@ -442,3 +442,6 @@ uplink-backpack-syndicate-desc = Lightweight explosion-proof a backpack for hold
 
 uplink-combat-bakery-name = Combat Bakery Kit
 uplink-combat-bakery-desc = A kit of clandestine baked weapons. Contains a baguette which a skilled mime could use as a sword and a pair of throwing croissants. Once the job is done, eat the evidence.
+
+uplink-syndicate-teleporter-name = Hand syndicate teleporter
+uplink-syndicate-teleporter-desc = An experimental hand teleporting device. Teleports its owner forward in a small area. Be careful not to end up in the wall.
