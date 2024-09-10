@@ -248,10 +248,10 @@
       true
     useSound:
       path: /Audio/Items/crowbar.ogg
-  # - type: BorgCrewManifestViewer # Sunrise-Edit
-  # - type: BorgMagboots # Sunrise-Edit
-  #   walkModifier: 0.9
-  #   sprintModifier: 0.9
+  - type: BorgCrewManifestViewer # Sunrise-Edit
+  - type: BorgMagboots # Sunrise-Edit
+    walkModifier: 0.9
+    sprintModifier: 0.9
 
 - type: entity
   id: MechBaseDestroyedSV
@@ -2048,7 +2048,7 @@
   - type: Battery
     maxCharge: 5800
     startingCharge: 5800
-  # - type: EmpImmune # Sunrise-Edit
+  - type: EmpImmune # Sunrise-Edit
 
 - type: entity
   name: тесла-реле
@@ -2509,6 +2509,8 @@
     state: mecha_analyzer
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
   - type: RadarConsole
+    maxRange: 256
+    followEntity: true
   - type: ActivatableUI
     key: enum.RadarConsoleUiKey.Key
   - type: UserInterface
@@ -3039,7 +3041,7 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 200
-  # - type: EmpImmune # Sunrise-Edit
+  - type: EmpImmune # Sunrise-Edit
   - type: Appearance
   - type: AmmoCounter
   - type: MechEquipment
@@ -3107,7 +3109,9 @@
     availableModes:
     - FullAuto
     soundGunshot:
-      path: /Audio/Corvax/Weapons/Guns/Gunshots/shotgun_auto.ogg
+      collection: xm1014 # Sunrise-Edit
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -3143,7 +3147,9 @@
     availableModes:
     - FullAuto
     soundGunshot:
-      path: /Audio/Corvax/Weapons/Guns/Gunshots/shotgun_auto.ogg
+      collection: xm1014 # Sunrise-Edit
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -3281,7 +3287,7 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 2000
-  # - type: EmpImmune # Sunrise-Edit
+  - type: EmpImmune # Sunrise-Edit
 
 - type: entity
   parent: BaseItem
@@ -3549,6 +3555,7 @@
 - type: entity
   id: MechBulletTaser
   parent: BulletDisabler
+  noSpawn: true
   components:
   - type: Sprite
     noRot: true
@@ -3565,7 +3572,7 @@
       path: "/Audio/Weapons/Guns/Hits/taser_hit.ogg"
     soundForce: true
   - type: StaminaDamageOnCollide
-    damage: 75
+    damage: 80
 
 - type: hitscan
   id: HealPulse
