@@ -76,19 +76,13 @@ public sealed class StealConditionSystem : EntitySystem
         var group = _proto.Index(condition.Comp.StealGroup);
 
         //Sunrise-Start
-        var locale = $"objective-{Regex.Replace(group.Name, @"[*?!'%\s]", string.Empty).ToLower()}";
-        if (Loc.GetString(locale) == locale)
-        {
-            Logger.Error($"Steal item objective-{Regex.Replace(group.Name, @"[*?!'%\s]", string.Empty).ToLower()} doesn't have locale");
-            locale = group.Name;
-        }
         var title =condition.Comp.OwnerText == null
-            ? Loc.GetString(condition.Comp.ObjectiveNoOwnerText, ("itemName", Loc.GetString(locale)))
-            : Loc.GetString(condition.Comp.ObjectiveText, ("owner", Loc.GetString(condition.Comp.OwnerText)), ("itemName", Loc.GetString(locale)));
+            ? Loc.GetString(condition.Comp.ObjectiveNoOwnerText, ("itemName", group.LocalizedName))
+            : Loc.GetString(condition.Comp.ObjectiveText, ("owner", Loc.GetString(condition.Comp.OwnerText)), ("itemName", group.LocalizedName));
 
         var description = condition.Comp.CollectionSize > 1
-            ? Loc.GetString(condition.Comp.DescriptionMultiplyText, ("itemName", Loc.GetString(locale)), ("count", condition.Comp.CollectionSize))
-            : Loc.GetString(condition.Comp.DescriptionText, ("itemName", Loc.GetString(locale)));
+            ? Loc.GetString(condition.Comp.DescriptionMultiplyText, ("itemName", group.LocalizedName), ("count", condition.Comp.CollectionSize))
+            : Loc.GetString(condition.Comp.DescriptionText, ("itemName", group.LocalizedName));
         //Sunrise-End
 
         _metaData.SetEntityName(condition.Owner, title, args.Meta);
