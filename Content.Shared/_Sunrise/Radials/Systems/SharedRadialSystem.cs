@@ -82,9 +82,7 @@ public abstract class SharedRadialSystem : EntitySystem
                 // their sprite.
 
                 if (TryComp(@using, out VirtualItemComponent? pull))
-                {
                     @using = pull.BlockingEntity;
-                }
             }
 
             // TODO: fix this garbage and use proper generics or reflection or something else, not this.

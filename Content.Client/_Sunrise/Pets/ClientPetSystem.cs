@@ -3,7 +3,6 @@
 namespace Content.Client._Sunrise.Pets;
 
 public sealed class ClientPetSystem : EntitySystem
-
 {
     public void RaiseFuckingEvent(EntityUid pet, PetBaseEvent args)
     {
