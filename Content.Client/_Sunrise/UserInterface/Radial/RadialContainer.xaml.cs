@@ -20,6 +20,8 @@ namespace Content.Client._Sunrise.UserInterface.Radial;
 
 public sealed class RadialContainerCommandTest : LocalizedCommands
 {
+    [Dependency] private readonly IRobustRandom _robustRandom = default!;
+
     public override string Command => "radialtest";
 
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
@@ -28,13 +30,12 @@ public sealed class RadialContainerCommandTest : LocalizedCommands
         {
             "Testovый туултип. Здесь можете расписать разную инфу о кнопке/действии",
             "Из окна дуло. Штирлиц закрыл окно. Дуло исчезло.",
-            "Негры пидорасы Негры пидорасы Негры пидорасы Негры пидорасы"
         };
         var radial = new RadialContainer();
         for (int i = 0; i < 8; i++)
         {
             var testButton = radial.AddButton("Action " + i, "/Textures/Interface/emotions.svg.192dpi.png");
-            testButton.Tooltip = tips[IoCManager.Resolve<IRobustRandom>().Next(0, 2)];
+            testButton.Tooltip = tips[_robustRandom.Next(0, 2)];
             testButton.Controller.OnPressed += (_) => { Logger.Debug("Press gay"); };
         }
 
@@ -49,6 +50,11 @@ public sealed class RadialContainerCommandTest : LocalizedCommands
 [GenerateTypedNameReferences, Virtual]
 public partial class RadialContainer : Control
 {
+    [Dependency] private readonly IResourceCache _resourceCache = default!;
+    [Dependency] private readonly IEyeManager _eyeManager = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
+
     private EntityUid? _attachedEntity;
     private bool _isAttached = false;
 
@@ -113,10 +119,12 @@ public partial class RadialContainer : Control
     public void OpenCentered()
     {
         AddToRoot();
+
         if (Parent != null)
             LayoutContainer.SetPosition(this, (Parent.Size/2) - (this.Size/2));
         else
             LayoutContainer.SetPosition(this, (UserInterfaceManager.MainViewport.Size/2) - (this.Size/2));
+
         UpdateButtons();
     }
 
@@ -125,9 +133,12 @@ public partial class RadialContainer : Control
     public void OpenCenteredAt(Vector2 position)
     {
         AddToRoot();
+
         if (Parent == null)
             return;
+
         LayoutContainer.SetPosition(this, (Parent.Size * position) - (this.Size/2));
+
         UpdateButtons();
     }
 
@@ -140,8 +151,10 @@ public partial class RadialContainer : Control
             return;
 
         AddToRoot();
+
         _attachedEntity = uid;
         _isAttached = true;
+
         UpdateButtons();
     }
 
@@ -150,22 +163,28 @@ public partial class RadialContainer : Control
     /// </summary>
     public void OpenAttachedLocalPlayer()
     {
-        var localPlayer = IoCManager.Resolve<IPlayerManager>().LocalPlayer;
+        var localPlayer = _playerManager.LocalSession;
+
         if (localPlayer == null)
             return;
 
         AddToRoot();
-        _attachedEntity = localPlayer.ControlledEntity;
+
+        _attachedEntity = localPlayer.AttachedEntity;
         _isAttached = true;
+
         UpdateButtons();
     }
 
     public void Close(bool canDispose = true)
     {
         Parent?.RemoveChild(this);
+
         Visible = false;
         _isOpened = false;
+
         Closed?.Invoke();
+
         if (canDispose)
             Dispose();
     }
@@ -174,10 +193,10 @@ public partial class RadialContainer : Control
     {
         var button = new RadialButton();
         button.Content = action;
-        button.Controller.TextureNormal = IoCManager.Resolve<IResourceCache>().GetTexture(_backgroundTexture);
+        button.Controller.TextureNormal = _resourceCache.GetTexture(_backgroundTexture);
 
         if (texture != null)
-            button.BackgroundTexture.Texture = IoCManager.Resolve<IResourceCache>().GetTexture(texture);
+            button.BackgroundTexture.Texture = _resourceCache.GetTexture(texture);
 
         Layout.AddChild(button);
 
@@ -188,7 +207,7 @@ public partial class RadialContainer : Control
     {
         var button = new RadialButton();
         button.Content = action;
-        button.Controller.TextureNormal = IoCManager.Resolve<IResourceCache>().GetTexture(_backgroundTexture);
+        button.Controller.TextureNormal = _resourceCache.GetTexture(_backgroundTexture);
 
         if (texture != null)
             button.BackgroundTexture.Texture = texture;
@@ -220,6 +239,7 @@ public partial class RadialContainer : Control
             var button = (RadialButton)child;
             button.ButtonSize = _normalSize;
             stepAngle += angleDegrees;
+
             var pos = GetPointFromPolar(stepAngle, distance);
             PlayRadialAnimation(button, pos, MoveAnimationKey);
 
@@ -301,6 +321,7 @@ public partial class RadialContainer : Control
 
         if (stopKey != null && button.HasRunningAnimation(stopKey))
             button.StopAnimation(stopKey);
+
         if (!button.HasRunningAnimation(playKey))
             button.PlayAnimation(anim, playKey);
     }
@@ -326,25 +347,22 @@ public partial class RadialContainer : Control
 
         base.FrameUpdate(args);
 
-        var entityManager = IoCManager.Resolve<IEntityManager>();
-        var eyeManager = IoCManager.Resolve<IEyeManager>();
-
-        if (entityManager.Deleted(_attachedEntity))
+        if (_entityManager.Deleted(_attachedEntity))
         {
             Timer.Spawn(0, Die);
             return;
         }
 
-        if (!entityManager.TryGetComponent<TransformComponent>(_attachedEntity, out var xform) || xform.MapID != eyeManager.CurrentMap)
-        {
+        if (!_entityManager.TryGetComponent<TransformComponent>(_attachedEntity, out var xform) || xform.MapID != _eyeManager.CurrentMap)
             return;
-        }
 
-        var localPlayer = IoCManager.Resolve<IPlayerManager>().LocalPlayer;
-        if (localPlayer == null)
+        var session = _playerManager.LocalSession;
+
+        if (session == null)
             return;
+
         // Check distance beetween entities
-        if (entityManager.TryGetComponent<TransformComponent>(localPlayer.ControlledEntity, out var myxform))
+        if (_entityManager.TryGetComponent<TransformComponent>(session.AttachedEntity, out var myxform))
         {
             var onePoint = xform.WorldPosition;
             var twoPoint = myxform.WorldPosition;
@@ -357,13 +375,14 @@ public partial class RadialContainer : Control
             }
         }
 
-        var offset = (-eyeManager.CurrentEye.Rotation).ToWorldVec() * -VerticalOffset;
+        var offset = (-_eyeManager.CurrentEye.Rotation).ToWorldVec() * -VerticalOffset;
         var worldPos = xform.WorldPosition + offset;
 
-        var lowerCenter = eyeManager.WorldToScreen(worldPos) / UIScale;
+        var lowerCenter = _eyeManager.WorldToScreen(worldPos) / UIScale;
         var screenPos = lowerCenter - new Vector2(DesiredSize.X / 2, DesiredSize.Y / 2);
         // Round to nearest 0.5
         screenPos = (screenPos * 2).Rounded() / 2;
+
         LayoutContainer.SetPosition(this, screenPos);
     }
 
@@ -399,9 +418,7 @@ public partial class RadialContainer : Control
     private Font GetFont(Control element)
     {
         if (element.TryGetStyleProperty<Font>("font", out var font))
-        {
             return font;
-        }
 
         return UserInterfaceManager.ThemeDefaults.DefaultFont;
     }
