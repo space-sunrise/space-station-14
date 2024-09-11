@@ -40,14 +40,14 @@ public abstract class SharedRadialSystem : EntitySystem
         /// </summary>
         public SortedSet<Radial> GetLocalRadials(EntityUid target, EntityUid user, Type type, bool force = false)
         {
-            return GetLocalRadials(target, user, new List<Type>() { type }, force);
+            return GetLocalRadials(target, user, new HashSet<Type>() { type }, force);
         }
 
         /// <summary>
         ///     Raises a number of events in order to get all verbs of the given type(s) defined in local systems. This
         ///     does not request verbs from the server.
         /// </summary>
-        public SortedSet<Radial> GetLocalRadials(EntityUid target, EntityUid user, List<Type> types, bool force = false)
+        public SortedSet<Radial> GetLocalRadials(EntityUid target, EntityUid user, HashSet<Type> types, bool force = false)
         {
             SortedSet<Radial> radials = new();
 

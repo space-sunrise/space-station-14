@@ -27,18 +27,19 @@ public sealed class RadialSystem : SharedRadialSystem
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly IEyeManager _eyeManager = default!;
 
     /// <summary>
     ///     When a user right clicks somewhere, how large is the box we use to get entities for the context menu?
     /// </summary>
     public const float EntityMenuLookupSize = 0.25f;
 
-    [Dependency] private readonly IEyeManager _eyeManager = default!;
-
     /// <summary>
     ///     These flags determine what entities the user can see on the context menu.
     /// </summary>
     public MenuVisibility Visibility;
+
+    private const string HideTag = "HideContextMenu";
 
     public Action<RadialsResponseEvent>? OnRadialsResponse;
 
@@ -123,19 +124,15 @@ public sealed class RadialSystem : SharedRadialSystem
         // remove any invisible entities
         if ((visibility & MenuVisibility.Invisible) == 0)
         {
-            var spriteQuery = GetEntityQuery<SpriteComponent>();
-            var tagQuery = GetEntityQuery<TagComponent>();
-
             for (var i = entities.Count - 1; i >= 0; i--)
             {
                 var entity = entities[i];
 
-                if (!spriteQuery.TryGetComponent(entity, out var spriteComponent) ||
-                    !spriteComponent.Visible ||
-                    _tagSystem.HasTag(entity, "HideContextMenu"))
-                {
+                if (!TryComp<SpriteComponent>(entity, out var sprite))
+                    continue;
+
+                if (!sprite.Visible || _tagSystem.HasTag(entity, HideTag))
                     entities.RemoveSwap(i);
-                }
             }
         }
 
@@ -171,7 +168,7 @@ public sealed class RadialSystem : SharedRadialSystem
     /// </summary>
     public SortedSet<Radial> GetRadials(EntityUid target, EntityUid user, Type type, bool force = false)
     {
-        return GetRadials(target, user, new List<Type>() { type }, force);
+        return GetRadials(target, user, new HashSet<Type>() { type }, force);
     }
 
     /// <summary>
@@ -181,13 +178,11 @@ public sealed class RadialSystem : SharedRadialSystem
     public SortedSet<Radial> GetRadials(
         EntityUid target,
         EntityUid user,
-        List<Type> verbTypes,
+        HashSet<Type> verbTypes,
         bool force = false)
     {
         if (!IsClientSide(target))
-        {
             RaiseNetworkEvent(new RequestServerRadialsEvent(GetNetEntity(target), verbTypes, adminRequest: force));
-        }
 
         // Some admin menu interactions will try get verbs for entities that have not yet been sent to the player.
         if (!Exists(target))

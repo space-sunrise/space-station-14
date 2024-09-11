@@ -95,7 +95,7 @@ namespace Content.Shared._Sunrise.Radials;
         ///     something (list of all classes that inherit from Verb). Currently used for networking (apparently Type
         ///     is not serializable?), and resolving console commands.
         /// </remarks>
-        public static List<Type> RadialTypes = new()
+        public static HashSet<Type> RadialTypes = new()
         {
             typeof(Radial),
             typeof(InteractionRadial),

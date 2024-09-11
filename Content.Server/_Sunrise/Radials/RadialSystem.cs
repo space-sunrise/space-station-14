@@ -17,25 +17,29 @@ public sealed class RadialSystem : SharedRadialSystem
         [Dependency] private readonly PopupSystem _popupSystem = default!;
         [Dependency] private readonly IAdminManager _adminMgr = default!;
 
+        private ISawmill _sawmill = default!;
+
         public override void Initialize()
         {
             base.Initialize();
+
             SubscribeNetworkEvent<RequestServerRadialsEvent>(HandleRadialRequest);
         }
 
         private void HandleRadialRequest(RequestServerRadialsEvent args, EntitySessionEventArgs eventArgs)
         {
             var player = eventArgs.SenderSession;
+            var playerEntity = GetEntity(args.EntityUid);
 
-            if (!EntityManager.EntityExists(GetEntity(args.EntityUid)))
+            if (!Exists(playerEntity))
             {
-                Logger.Warning($"{nameof(HandleRadialRequest)} called on a non-existent entity with id {args.EntityUid} by player {player}.");
+                _sawmill.Warning($"{nameof(HandleRadialRequest)} called on a non-existent entity with id {args.EntityUid} by player {player}.");
                 return;
             }
 
             if (player.AttachedEntity is not {} attached)
             {
-                Logger.Warning($"{nameof(HandleRadialRequest)} called by player {player} with no attached entity.");
+                _sawmill.Warning($"{nameof(HandleRadialRequest)} called by player {player} with no attached entity.");
                 return;
             }
 
@@ -45,7 +49,7 @@ public sealed class RadialSystem : SharedRadialSystem
 
             var force = args.AdminRequest && _adminMgr.HasAdminFlag(eventArgs.SenderSession, AdminFlags.Admin);
 
-            List<Type> radialsTypes = new();
+            HashSet<Type> radialsTypes = new();
             foreach (var key in args.RadialTypes)
             {
                 var type = Radial.RadialTypes.FirstOrDefault(x => x.Name == key);
@@ -53,12 +57,13 @@ public sealed class RadialSystem : SharedRadialSystem
                 if (type != null)
                     radialsTypes.Add(type);
                 else
-                    Logger.Error($"Unknown verb type received: {key}");
+                    _sawmill.Error($"Unknown verb type received: {key}");
             }
 
             var response =
-                new RadialsResponseEvent(args.EntityUid, GetLocalRadials(GetEntity(args.EntityUid), attached, radialsTypes, force));
-            RaiseNetworkEvent(response, player.ConnectedClient);
+                new RadialsResponseEvent(args.EntityUid, GetLocalRadials(playerEntity, attached, radialsTypes, force));
+
+            RaiseNetworkEvent(response, player);
         }
 
         /// <summary>
