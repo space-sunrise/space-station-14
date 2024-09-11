@@ -1,7 +1,6 @@
 ﻿- type: petControl
   id: Follow
   name: Следовать
-  category: Actions
   sprite:
     sprite: Mobs/Animals/mouse.rsi
     state: splat-0
@@ -11,7 +10,6 @@
 - type: petControl
   id: Stay
   name: Стоять
-  category: Actions
   sprite:
     sprite: Mobs/Animals/mouse.rsi
     state: splat-0

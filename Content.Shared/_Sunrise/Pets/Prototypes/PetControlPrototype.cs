@@ -15,9 +15,6 @@ public sealed partial class PetControlPrototype : IPrototype
     [DataField(required: true)]
     public PetBaseEvent Event = default!;
 
-    [DataField]
-    public string Category = "Undefined";
-
-    [DataField]
-    public SpriteSpecifier? Sprite;
+    [DataField(required: true)]
+    public SpriteSpecifier Sprite = default!;
 }

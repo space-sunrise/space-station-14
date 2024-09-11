@@ -25,9 +25,6 @@ public sealed partial class PettableOnInteractComponent : Component
 
     [DataField, AutoNetworkedField]
     public HashSet<ProtoId<PetControlPrototype>> AvailableControls = new();
-
-    [DataField(required: true), AutoNetworkedField]
-    public HashSet<ProtoId<PetControlCategoryPrototype>> AvailableCategoryControls = default!;
 }
 
 /// <summary>
