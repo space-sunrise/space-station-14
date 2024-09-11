@@ -1,0 +1,18 @@
+﻿# Прототип поведения ИИ для питомцев. Как у короля крыс, только без агрессивных приказов.
+
+- type: htnCompound
+  id: PetCompound
+  branches:
+  - preconditions:
+    - !type:HasOrdersPrecondition
+      orders: enum.PetOrderType.Stay
+    tasks:
+    - !type:HTNCompoundTask
+      task: IdleCompound
+  - preconditions:
+    - !type:HasOrdersPrecondition
+      orders: enum.PetOrderType.Follow
+    tasks:
+    - !type:HTNCompoundTask
+      task: FollowCompound
+

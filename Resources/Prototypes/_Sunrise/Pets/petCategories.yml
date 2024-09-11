@@ -1,0 +1,5 @@
+﻿- type: petControlCategory
+  id: Actions
+  sprite:
+    sprite: Mobs/Animals/mouse.rsi
+    state: splat-0
