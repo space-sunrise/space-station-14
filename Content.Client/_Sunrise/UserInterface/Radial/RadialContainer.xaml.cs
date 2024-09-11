@@ -56,9 +56,9 @@ public partial class RadialContainer : Control
     [Dependency] private readonly IPlayerManager _playerManager = default!;
 
     private EntityUid? _attachedEntity;
-    private bool _isAttached = false;
+    private bool _isAttached;
 
-    private bool _isOpened = false;
+    private bool _isOpened;
 
     private Vector2 _focusSize = new (64, 64);
     private Vector2 _normalSize = new (50, 50);
@@ -103,7 +103,7 @@ public partial class RadialContainer : Control
     public float VerticalOffset = 0.0f;
     public float DistanceAvaible = 10.0f;
 
-    public RadialContainer() : base()
+    public RadialContainer()
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
