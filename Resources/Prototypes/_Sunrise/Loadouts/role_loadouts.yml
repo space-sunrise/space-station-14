@@ -302,3 +302,17 @@
   - Bra
   - Pants
   - Socks
+
+- type: roleLoadout
+  id: JobAdjutant
+  groups:
+  - AdjutantJumpsuit
+  - AdjutantOuterClothing
+  - AdjutantBackpack
+  - AdjutantHead
+  - Trinkets
+  - Survival
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks

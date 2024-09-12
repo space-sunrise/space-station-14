@@ -30,3 +30,5 @@ ent-ClothingUniformJumpskirtNtrep = юбка-костюм представите
     .desc = Эту юбку-костюм лучше не видеть.
 ent-ClothingUniformJumpskirtBarber = платье парикмахера
     .desc = Как же он хорош.
+ent-ClothingUniformJumpskirtAdjutant = юбка-комбинезон адъютанта
+    .desc = Сшито на совесть из дышащей ткани, что позволит вам быть на ногах всю смену.

@@ -10,3 +10,5 @@ ent-ClothingBackpackBlueShield = рюкзак офицера «синий щит
     .desc = На стиле.
 ent-ClothingBackpackPrisonGuard = рюкзак сотрудника кт
     .desc = На стиле.
+ent-ClothingBackpackAdjutant = рюкзак адъютанта
+    .desc = Преимущественно состоит из мультифор, перетянутых нитками.

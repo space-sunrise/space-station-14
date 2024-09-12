@@ -28,7 +28,7 @@
         - EncryptionKeyCommand
     - type: Sprite
       sprite: Clothing/Ears/Headsets/servicesecurity.rsi
-      
+
 - type: entity
   parent: ClothingHeadset
   id: ClothingHeadsetJEngineering
@@ -45,7 +45,7 @@
     sprite: Clothing/Ears/Headsets/engineering.rsi
   - type: Clothing
     sprite: Clothing/Ears/Headsets/engineering.rsi
-          
+
 - type: entity
   parent: ClothingHeadset
   id: ClothingHeadsetLawyer
@@ -59,3 +59,19 @@
         - EncryptionKeyCommon
     - type: Sprite
       sprite: Clothing/Ears/Headsets/servicesecurity.rsi
+
+- type: entity
+  parent: [ClothingHeadset, BaseCommandContraband]
+  id: ClothingHeadsetAdjutant
+  name: adjutant headset
+  description: A headset for adjutant.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyCommand
+  - type: Sprite
+    sprite: Clothing/Ears/Headsets/command.rsi
+  - type: Clothing
+    sprite: Clothing/Ears/Headsets/command.rsi

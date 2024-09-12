@@ -53,3 +53,4 @@ JobSecurityBorg = киборг СБ
 JobSecurityCombatBorg = боевой киборг СБ
 JobPeaceBorg = миротворец
 JobClownBorg = клоун киборг
+job-name-adjutant = адъютант

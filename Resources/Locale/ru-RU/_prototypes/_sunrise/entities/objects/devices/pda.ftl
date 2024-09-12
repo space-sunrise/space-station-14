@@ -22,3 +22,5 @@ ent-NanoTrasenRepresentativePDA = КПК представителя NT
     .desc = { ent-CaptainPDA.desc }
 ent-BarberPDA = КПК парикмахера
     .desc = { ent-BasePDA.desc }
+ent-AdjutantPDA = КПК адъютанта
+    .desc = В нём очень не хватает функции монитора камер.

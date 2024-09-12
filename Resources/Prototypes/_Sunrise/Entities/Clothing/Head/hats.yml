@@ -246,3 +246,36 @@
     sprite: _Sunrise/Clothing/Head/Hats/ntrep.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hats/ntrep.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretAdjutant
+  name: adjutant beret
+  description: Awarded by passing difficult qualification tests and is a matter of extreme pride.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/adjutant_beret.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/adjutant_beret.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatGarrisonCapAdjutant
+  name: adjutant garrisoncap
+  description: A little cotton cap that's just about to fall off his head.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/garrisoncap_adj.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/garrisoncap_adj.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatCapAdjutant
+  name: adjutant cap
+  description: Blue and white, suspiciously reminiscent of the captain's.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/adjcap.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/adjcap.rsi

@@ -130,7 +130,7 @@
     sprite: _Sunrise/Clothing/OuterClothing/pilotcoat.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/pilotcoat.rsi
-    
+
 - type: entity
   parent: ClothingOuterStorageFoldableBase
   id: ClothingOuterCoatNtrep
@@ -152,3 +152,14 @@
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatNtrep]
   id: ClothingOuterCoatNtrepOpen
   name: nt representive jacket
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatAdjutant
+  name: adjutant's winter jacket
+  description: heavy jacket made of 'synthetic' animal fur.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/adjutantcoat.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/adjutantcoat.rsi
