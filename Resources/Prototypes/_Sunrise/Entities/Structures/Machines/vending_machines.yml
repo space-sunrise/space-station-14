@@ -66,8 +66,8 @@
 - type: entity
   parent: VendingMachine
   id: VendingMachineClown
-  name: ХохохонкерсВенд
-  description: Тут ты получишь порцию хонка! Удиви станцию.
+  name: HohohonkersVend
+  description: Get your honk fix here! Surprise the station with HohohonkersVend — the ultimate machine for hilarious pranks. Hack it, and you'll unlock something special!
   components:
   - type: VendingMachine
     pack: HohohonkersInventory
