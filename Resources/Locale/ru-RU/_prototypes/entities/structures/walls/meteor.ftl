@@ -27,4 +27,3 @@ ent-MeteorRockUranium = { ent-MeteorRock }
 ent-MeteorRockBananium = { ent-MeteorRock }
     .desc = Жила, богатая бананием.
     .suffix = Бананиум
-
