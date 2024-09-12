@@ -123,7 +123,7 @@
     icon: _Sunrise/Interface/AdminActions/communications.png
     iconOn: _Sunrise/Interface/AdminActions/communications.png
     keywords: [ "AI", "console", "interface" ]
-    priority: -10
+    priority: -4
     event: !type:ToggleIntrinsicUIEvent { key: enum.CommunicationsConsoleUiKey.Key }
 
 - type: entity
@@ -135,7 +135,7 @@
     icon: _Sunrise/Interface/AdminActions/radar.png
     iconOn: _Sunrise/Interface/AdminActions/radar.png
     keywords: [ "AI", "console", "interface" ]
-    priority: -10
+    priority: -7
     event: !type:ToggleIntrinsicUIEvent { key: enum.RadarConsoleUiKey.Key }
 
 - type: entity
@@ -159,7 +159,7 @@
     icon: _Sunrise/Interface/AdminActions/monitoring.png
     iconOn: _Sunrise/Interface/AdminActions/monitoring.png
     keywords: [ "AI", "console", "interface" ]
-    priority: -10
+    priority: -9
     event: !type:ToggleIntrinsicUIEvent { key: enum.CrewMonitoringUIKey.Key }
 
 - type: entity
@@ -171,5 +171,5 @@
     icon: _Sunrise/Interface/AdminActions/records.png
     iconOn: _Sunrise/Interface/AdminActions/records.png
     keywords: [ "AI", "console", "interface" ]
-    priority: -10
+    priority: -8
     event: !type:ToggleIntrinsicUIEvent { key: enum.GeneralStationRecordConsoleKey.Key }
