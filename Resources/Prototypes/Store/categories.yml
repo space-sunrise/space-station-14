@@ -115,3 +115,10 @@
   id: ChangelingAbilityUtility
   name: store-ling-category-utility
   priority: 2
+  
+# uplink discounts
+  
+- type: storeCategory
+  id: DiscountedItems
+  name: store-discounted-items
+  priority: 200

@@ -9,6 +9,7 @@
     ClothingHeadHatBeretSecurity: 3
     ClothingHeadHatSecsoft: 3
     ClothingHeadBandRed: 3
+    ClothingMaskNeckGaiterRed: 3
     HandheldCamera: 3  # Sunrise-Edit
     PepperSprayBottleBlue: 2  # Sunrise-Edit
     ClothingHandsGlovesColorBlack: 3
@@ -25,6 +26,7 @@
     ClothingEyesBlindfold: 1
     ClothingShoesBootsCombat: 1
     ClothingShoesBootsWinterSec: 2
+    ClothingHeadHelmetJustice: 1
     ClothingShoesBootsCowboyBlack: 1 # Sunrise-Edit
     ClothingHeadHatCowboyBlack: 1 # Sunrise-Edit
   contrabandInventory:

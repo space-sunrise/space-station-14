@@ -79,7 +79,8 @@ public sealed partial class NPCSleepSystem : EntitySystem
     private bool AllowNpc(EntityUid uid)
     {
         var xform = Transform(uid);
-        var npcCoords = xform.Coordinates.ToMap(EntityManager);
+        var transformSystem = EntitySystem.Get<SharedTransformSystem>();
+        var npcCoords = xform.Coordinates.ToMap(EntityManager, transformSystem);
         var npcMapId = xform.MapID;
 
         foreach (var playerSession in _playerManager.SessionsDict)
@@ -93,7 +94,7 @@ public sealed partial class NPCSleepSystem : EntitySystem
             if (npcMapId != playerMapId)
                 continue;
 
-            var playerCoords = xformPlayer.Coordinates.ToMap(EntityManager);
+            var playerCoords = xformPlayer.Coordinates.ToMap(EntityManager, transformSystem);
 
             var distance = (npcCoords.Position - playerCoords.Position).Length();
 

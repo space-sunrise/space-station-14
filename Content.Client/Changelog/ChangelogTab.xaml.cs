@@ -150,7 +150,7 @@ public sealed partial class ChangelogTab : Control
                 foreach (var change in changeEntry.Changes)
                 {
                     var text = new RichTextLabel();
-                    text.SetMessage(FormattedMessage.FromMarkup(change.Message));
+                    text.SetMessage(FormattedMessage.FromMarkupOrThrow(change.Message));
                     ChangelogBody.AddChild(new BoxContainer
                     {
                         Orientation = LayoutOrientation.Horizontal,

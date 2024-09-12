@@ -485,7 +485,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         }
 
         var admins = _adminManager.ActiveAdmins
-            .Select(p => p.ConnectedClient);
+            .Select(p => p.Channel);
         string messageWrap;
         string adminMessageWrap;
 
@@ -607,7 +607,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (!_actionBlocker.CanSpeak(source) && !ignoreActionBlocker)
             return;
 
-        var message = TransformSpeech(source, FormattedMessage.RemoveMarkup(originalMessage));
+        var message = TransformSpeech(source, FormattedMessage.RemoveMarkupOrThrow(originalMessage));
         if (message.Length == 0)
             return;
 
