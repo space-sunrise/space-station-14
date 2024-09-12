@@ -71,6 +71,7 @@ food-sequence-content-capfruit = капфрут
 food-sequence-content-berries = ягоды
 food-sequence-content-spacemans-trumpet = космический духовой инструмент
 food-sequence-content-cherry = вишня
+food-sequence-content-snail = улитка
 #Burger
 food-sequence-burger-gen = { $content }бургер
 food-sequence-burger-suffix = бургер

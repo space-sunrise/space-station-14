@@ -1,3 +1,3 @@
 ent-TelecomServerFilledLaw = { ent-TelecomServer }
-    .suffix = Command
+    .suffix = Коммандование
     .desc = { ent-TelecomServer.desc }

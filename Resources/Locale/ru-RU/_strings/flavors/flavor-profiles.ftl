@@ -48,8 +48,9 @@ flavor-base-alkaline = щёлочно
 flavor-base-holy = свято
 flavor-base-horrible = ужасно
 # lmao
-flavor-base-terrible = ужасающе
+flavor-base-terrible = ужасно
 flavor-base-mindful = разумно
+flavor-base-chewy = жевательно
 
 # Complex flavors. Put a flavor here when you want something that's more
 # specific.
@@ -178,6 +179,8 @@ flavor-complex-violets = как фиалки
 flavor-complex-pyrotton = как горящий рот
 flavor-complex-mothballs = как нафталиновые шарики
 flavor-complex-paint-thinner = как растворитель для краски
+flavor-complex-paper = как кашеобразная мякоть
+flavor-complex-compressed-meat = как спрессованное мясо
 flavor-complex-alcohol = как алкоголь
 flavor-complex-soda = как газировка
 flavor-complex-juice = как сок

@@ -29,7 +29,6 @@ network-configurator-ui-count-label =
         [few] устройства
        *[other] устройств
     }.
-    
 network-configurator-name-set = Установить
 network-configurator-name-add = Добавить
 network-configurator-name-edit = Изменить

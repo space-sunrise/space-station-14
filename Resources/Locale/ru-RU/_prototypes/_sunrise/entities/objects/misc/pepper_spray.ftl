@@ -6,5 +6,5 @@ ent-PepperSprayBottleGreen = { ent-BasePepperSpray }
     .desc = { ent-BasePepperSpray.desc }
 ent-PepperSprayBottleBlue = { ent-BasePepperSpray }
     .desc = { ent-BasePepperSpray.desc }
-ent-PepperSpray = pepper spray
+ent-PepperSpray = перцовый баллончик
     .desc = { ent-Vapor.desc }
