@@ -38,23 +38,23 @@
   - ClownBorg # Sunrise-Edit
   - Barber # Sunrise-Roles
 
-- type: department
-  id: CentralCommand
-  name: department-CentralCommand
-  description: department-CentralCommand-description
-  color: "#0c344d"
-  roles:
-  - CentralCommandOfficial
-  - CBURN
-  - ERTLeader
-  - ERTChaplain
-  - ERTJanitor
-  - ERTMedical
-  - ERTSecurity
-  - ERTEngineer
-  - DeathSquad
-  editorHidden: true
-  weight: 120
+#- type: department
+#  id: CentralCommand
+#  name: department-CentralCommand
+#  description: department-CentralCommand-description
+#  color: "#0c344d"
+#  roles:
+#  - CentralCommandOfficial
+#  - CBURN
+#  - ERTLeader
+#  - ERTChaplain
+#  - ERTJanitor
+#  - ERTMedical
+#  - ERTSecurity
+#  - ERTEngineer
+#  - DeathSquad
+#  editorHidden: true
+#  weight: 120
 
 - type: department
   id: Command
