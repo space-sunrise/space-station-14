@@ -458,20 +458,20 @@
 #    layers:
 #    - state: default
 #    - state: idbrigmedic
-
-- type: entity
-  parent: IDCardStandard
-  id: CentcomIDCard
-  name: command officer ID card
-  components:
-  - type: Sprite
-    layers:
-    - state: centcom
-    - state: idcentcom
-  - type: Item
-    heldPrefix: blue
-  - type: PresetIdCard
-    job: CentralCommandOfficial
+#
+#- type: entity
+#  parent: IDCardStandard
+#  id: CentcomIDCard
+#  name: command officer ID card
+#  components:
+#  - type: Sprite
+#    layers:
+#    - state: centcom
+#    - state: idcentcom
+#  - type: Item
+#    heldPrefix: blue
+#  - type: PresetIdCard
+#    job: CentralCommandOfficial
 
 - type: entity
   parent: IDCardStandard
