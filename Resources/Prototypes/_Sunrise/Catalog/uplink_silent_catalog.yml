@@ -227,6 +227,19 @@
   categories:
   - UplinkChemicals
   
+- type: listing
+  id: UplinkPolytrinicAcidChemistryBottle
+  name: uplink-polytrinic-acid-chemistry-bottle-name
+  description: uplink-polytrinic-acid-chemistry-bottle-desc
+  productEntity: PolytrinicAcidChemistryBottle
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 4
+  cost:
+    Telecrystal: 8
+  categories:
+  - UplinkChemicals
+  
 # Wearables
 
 - type: listing
