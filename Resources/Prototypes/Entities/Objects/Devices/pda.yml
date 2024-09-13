@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: [ BaseItem, StorePresetUplink ] #PDA's have uplinks so they have to inherit the data.
+  parent: [ BaseItem, StorePresetUplinkSilent ] #PDA's have uplinks so they have to inherit the data. Sunrise-silentAgents
   id: BasePDA
   name: PDA
   description: Personal Data Assistant.
