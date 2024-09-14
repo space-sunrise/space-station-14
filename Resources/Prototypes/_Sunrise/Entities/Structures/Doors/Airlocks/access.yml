@@ -149,7 +149,7 @@
   parent: WindoorSecureSecurityLocked
   id: WindoorDSOLocked
   suffix: SV | ДСО
-  name: армированное раздвижное окно
+  name: раздвижное бронеокно
   description: Это и прочное окно, и раздвижная дверь. Вот это да!
   components:
   - type: ContainerFill
