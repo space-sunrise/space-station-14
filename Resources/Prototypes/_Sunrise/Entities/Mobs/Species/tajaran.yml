@@ -56,7 +56,7 @@
       80: Critical
       200: Dead
   - type: Inventory
-    speciesId: reptilian
+    speciesId: human
 
 - type: entity
   save: false
