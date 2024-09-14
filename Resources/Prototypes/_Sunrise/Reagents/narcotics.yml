@@ -1,0 +1,113 @@
+- type: reagent
+  id: ExperimentalStimulantsSV
+  name: Эксперементальные стимуляторы
+  group: Narcotics
+  desc: Мощнейший стимулятор без побочных эффектов вообще.
+  physicalDesc: reagent-physical-desc-exhilarating
+  flavor: bottledlightning
+  color: "#AE0101"
+  boilingPoint: 212.0
+  meltingPoint: 170.0
+  metabolisms:
+    Narcotic:
+      metabolismRate: 0.25 # lasts for 4 minutes instead of 5
+      effects:
+      - !type:MovespeedModifier # nyoom
+        conditions:
+        walkSpeedModifier: 1.1
+        sprintSpeedModifier: 1.1
+      - !type:GenericStatusEffect
+        conditions:
+        key: Stun
+        time: 2
+        type: Remove
+      - !type:GenericStatusEffect
+        conditions:
+        key: KnockedDown
+        time: 2
+        type: Remove
+      - !type:GenericStatusEffect
+        conditions:
+        key: ForcedSleep
+        component: ForcedSleeping
+        refresh: false
+        type: Remove
+    Medicine:
+      metabolismRate: 0.25
+      effects:
+        - !type:ModifyBleedAmount
+          amount: -1.5
+        - !type:ModifyBloodLevel
+          amount: 50
+        - !type:ResetNarcolepsy
+        - !type:HealthChange
+          conditions:
+          damage:
+            groups:
+              Brute: -2
+              Burn: -2
+              Toxin: -2
+              Airloss: -2        
+        - !type:AdjustReagent
+          conditions:
+          - !type:ReagentThreshold
+            reagent: Nocturine
+            min: 1
+          reagent: Nocturine
+          amount: -10
+        - !type:AdjustReagent
+          conditions:
+          - !type:ReagentThreshold
+            reagent: Lexorin
+            min: 1
+          reagent: Lexorin
+          amount: -10
+        - !type:AdjustReagent
+          conditions:
+          - !type:ReagentThreshold
+            reagent: ChloralHydrate
+            min: 1
+          reagent: ChloralHydrate
+          amount: -10
+        - !type:AdjustReagent
+          conditions:
+          - !type:ReagentThreshold
+            reagent: Amatoxin
+            min: 1
+          reagent: Amatoxin
+          amount: -10
+        - !type:AdjustReagent
+          conditions:
+          - !type:ReagentThreshold
+            reagent: Barozine
+            min: 20
+          reagent: Barozine
+          amount: -10
+        - !type:AdjustReagent
+          conditions:
+          - !type:ReagentThreshold
+            reagent: Leporazine
+            min: 10
+          reagent: Leporazine
+          amount: -10
+        - !type:AdjustReagent
+          conditions:
+          - !type:ReagentThreshold
+            reagent: Pax
+            min: 1
+          reagent: Pax
+          amount: -10
+        - !type:AdjustReagent ##Sunrise
+          conditions:
+          - !type:ReagentThreshold
+            reagent: FluorosulfuricAcidPredator 
+            min: 1
+          reagent: FluorosulfuricAcidPredator
+          amount: -10
+        - !type:AdjustReagent ##Sunrise
+          conditions:
+          - !type:ReagentThreshold
+            reagent: FluorosulfuricAcidHumanoidXeno 
+            min: 1
+          reagent: FluorosulfuricAcidHumanoidXeno
+          amount: -10

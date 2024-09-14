@@ -1,0 +1,294 @@
+#------------------------------------
+# Форма
+#------------------------------------
+
+- type: entity
+  parent: ClothingHeadsetAltCentCom
+  id: ClothingHeadsetAltDSO
+  name: полноразмерная гарнитура ДСО
+  description: Модифицированный модульный интерком, надеваемый на голову. Принимает ключи шифрования.
+  suffix: SV | ДСО
+  components:
+  - type: Headset
+  - type: EncryptionKeyHolder
+    keySlots: 5
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyEpsilon
+      - EncryptionKeyCentCom
+      - EncryptionKeyStationMaster
+
+- type: entity
+  parent: [ClothingEyesGlassesCommand, ShowSecurityIcons]
+  id: ClothingEyesGlassesSunglassesHUDDSO
+  name: солнцезащитные очки ДСО
+  description: Солнцезащитные Очки Сил Специальных Операций, ничего такого. Вряд-ли найдёшь подобные на чёрном рынке...
+  suffix: SV | ДСО, HUD
+  components:
+  - type: SolutionScanner
+  - type: EyeProtection
+  - type: FlashImmunity 
+
+- type: entity
+  parent: ClothingShoesCentcomBlack
+  id: ClothingShoesCentcomBlackDSO
+  name: обувь офицера специальных операций
+  description: Кожаная, чёрная, высококачественная обувь, вряд-ли найти подобные на чёрном рынке...
+  suffix: SV | ДСО, NoSlip
+  components:
+  - type: NoSlip
+
+- type: entity
+  parent: [ ClothingUniformJumpsuitCentcomOfficerBlack, BaseMajorContraband ]
+  id: ClothingUniformJumpsuitCentcomOfficerBlackDSO
+  name: униформа офицера специальных операций
+  description: Чёрная униформа Офицера Специальных Операций, ничего такого. Хотя... Если у вас есть время читать это, то уже поздно...
+  suffix: SV | ДСО, Armored
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+
+- type: entity
+  parent: [ ClothingOuterCoatSpaceAsshole, BaseMajorContraband ]
+  id: ClothingOuterCoatSpaceAssholeDSO
+  name: офицерская куртка
+  description: Укрепленная куртка, способная защитить вас почти от чего-угодно. Носитель этого или отъявленный головорез, либо очень важная фигура.
+  suffix: SV | ДСО
+  components:
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,3,5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+        Caustic: 0.9
+        Radiation: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+  - type: GroupExamine
+
+- type: entity
+  parent: ClothingBeltHolster
+  id: ClothingBeltHolsterDSO
+  name: расширенная плечевая кобура
+  description: 'Расширенная кобура для ношения револьвера и боеприпасов. ВНИМАНИЕ: Только для крутых.'
+  suffix: SV | ДСО
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/holster.rsi
+  - type: Clothing
+    sprite: Clothing/Belt/holster.rsi
+  - type: Storage
+    grid:
+    - 0,0,5,3
+
+- type: entity
+  noSpawn: true
+  parent: [ ClothingOuterHardsuitDeathsquad, BaseMajorContraband ]
+  id: ClothingOuterHardsuitDeathsquadUnremoveableSV
+  name: скафандр эскадрона смерти
+  description: Продвинутый бронекостюм, применяемый спецназом в специальных операциях.
+  suffix: SV | ДСО, Unremoveable
+  components:
+  - type: Unremoveable
+  - type: FactionClothingBlocker
+    factions:
+    - DeathSquadron
+    beepSound:
+      path: "/Audio/Effects/beep1.ogg"
+      params:
+        volume: 15
+
+- type: entity
+  noSpawn: true
+  parent: [ ClothingUniformJumpsuitDeathSquad, BaseMajorContraband ]
+  id: ClothingUniformJumpsuitDeathSquadUnremoveableSV
+  name: униформа Эскадрона смерти
+  description: Усовершенствованный бронированный комбинезон, используемый спецподразделениями при проведении специальных операций.
+  suffix: SV | ДСО, Unremoveable
+  components:
+  - type: Unremoveable
+
+- type: entity
+  id: JetpackDeathSquadron
+  parent: [ BaseJetpack, BaseMajorContraband ]
+  name: ранец эскадрона смерти
+  suffix: SV | ДСО
+  description: Усовершенствованный миниатюрный реактивный ранец, используемый спецподразделениями при проведении специальных операций в космосе.
+  components:
+    - type: Item
+      sprite: Objects/Tanks/Jetpacks/mini.rsi
+    - type: Sprite
+      sprite: Objects/Tanks/Jetpacks/mini.rsi
+    - type: Clothing
+      slots:
+        - Back
+        - suitStorage
+    - type: GasTank
+      outputPressure: 42.6
+      air:
+        volume: 35
+        temperature: 293.15
+        moles:
+          - 5.15 # oxygen
+          - 5.15 # nitrogen
+
+- type: entity
+  parent: [ ClothingHandsBase, BaseMajorContraband ]
+  id: ClothingHandsGlovesPowergloveDSOActive
+  name: силовые перчатки
+  description: Настоящие силовые перчатки, благодаря которым даже неподготовленный боец способен крушить стены.
+  suffix: SV | ДСО, Рабочие
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/powerglove.rsi
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/powerglove.rsi
+  - type: Fiber
+    fiberMaterial: fibers-nanomachines
+  - type: FingerprintMask
+  - type: Insulated
+  - type: StaminaDamageOnHit
+    damage: 25
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 20
+        Structural: 35
+  - type: FactionWeaponBlocker
+    factions:
+    - DeathSquadron
+    alertText: Данные перчатки биокодированы. Вы не можете их использовать.
+
+- type: entity
+  parent: [ ClothingShoesBootsMag, BaseMajorContraband ]
+  id: ClothingShoesBootsMagDSO
+  name: боевые ботинки ДСО
+  description: Специальные гравитационные ботинки, разработанные для спец подразделений ДСО со специальной магнитной подошвой.
+  suffix: SV | ДСО
+  components:
+  - type: Sprite
+    sprite: Clothing/Shoes/Boots/moonboots.rsi
+    state: icon
+  - type: Clothing
+    sprite: Clothing/Shoes/Boots/moonboots.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.5
+
+#------------------------------------
+# Заполненное
+#------------------------------------
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBeltHolsterDSO
+  id: ClothingBeltHolsterDSOFilled
+  name: расширенная плечевая кобура
+  description: 'Расширенная кобура для ношения револьвера и боеприпасов. ВНИМАНИЕ: Только для крутых.'
+  suffix: SV | ДСО
+  components:
+  - type: Sprite
+    sprite: Clothing/Belt/holster.rsi
+  - type: Clothing
+    sprite: Clothing/Belt/holster.rsi
+  - type: Storage
+    grid:
+    - 0,0,5,3
+  - type: StorageFill
+    contents:
+      - id: Handcuffs
+        amount: 5
+      - id: WeaponRevolverMateba
+      - id: SpeedLoaderMagnum
+      - id: SpeedLoaderMagnum
+      - id: MagazineBoxMagnum
+
+- type: entity
+  noSpawn: true
+  name: штурмовой пояс
+  description: Тактический штурмовой пояс.
+  parent: ClothingBeltAssault
+  id: ClothingBeltAssaultFilledSV
+  suffix: SV | ДСО
+  components:
+  - type: StorageFill
+    contents:
+      - id: Handcuffs
+        amount: 4
+      - id: WeaponTaserDSO
+      - id: StunbatonDSO
+
+- type: entity
+  noSpawn: true
+  name: сумка хранения
+  description: Сумка, открывающаяся в локальный карман блюспейса.
+  parent: ClothingBackpackSatchelHolding
+  id: ClothingBackpackSatchelHoldingFilledSV
+  suffix: SV | ДСО
+  components:
+    - type: Item
+      size: Ginormous
+    - type: Storage
+      maxItemSize: Ginormous
+    - type: StorageFill
+      contents:
+        - id: BoxMRE
+        - id: RCDExperimental
+        - id: MedkitAdvancedFilled
+        - id: ToolDebug
+        - id: WelderExperimental
+        - id: CombatKnifeTac
+        - id: BattleMedipenExtDSO
+          amount: 3
+        - id: BattleMedipenDSO
+          amount: 2
+        - id: JetpackDeathSquadron
+        - id: WeaponPulseRifleDeathsquadDSO
+
+- type: entity
+  noSpawn: true
+  name: рюкзак эскадрона смерти
+  description: Вместительный рюкзак использующий технологию БлюСпейс.
+  parent: ClothingDeathSquadronBackpack
+  id: ClothingDeathSquadronBackpackFilledSV
+  suffix: SV | ДСО, Unremoveable
+  components:
+    - type: Item
+      size: Ginormous
+    - type: Storage
+      maxItemSize: Huge
+      grid:
+      - 0,0,12,6
+    - type: Unremoveable
+    - type: StorageFill
+      contents:
+        - id: RCDExperimental
+        - id: ToolDebug
+        - id: WelderExperimental
+        - id: BattleMedipenExtDSO
+          amount: 2
+        - id: C4
+          amount: 4
+        - id: MagazineShotgunExtInc
+          amount: 5
+        - id: MagazineShotgunExt
+          amount: 5
+        - id: WeaponShotgunBulldogDSO
+        - id: WeaponPulseRifleDeathsquadDSO
+        - id: EnergySwordDoubleDeathsquadDSO
+        - id: EnergyShield
+        - id: PinpointerNuclear

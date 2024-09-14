@@ -233,3 +233,58 @@
     layers:
     - state: green
     - state: barber
+
+#DeathSquadSpawnMarker
+
+- type: entity
+  name: спавнер оперативника Эскадрона Смерти
+  id: SpawnMobHumanDeathsquad
+  parent: MarkerBase
+  suffix: SV | ДСО
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: icon
+      sprite: Clothing/OuterClothing/Hardsuits/deathsquad.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobHumanDeathsquad
+
+- type: entity
+  name: спавнер Лидера Эскадрона Смерти
+  id: SpawnMobHumanDeathsquadLeader
+  parent: MarkerBase
+  suffix: SV | ДСО
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+    - state: icon
+      sprite: Clothing/OuterClothing/Hardsuits/deathsquad.rsi
+  - type: ConditionalSpawner
+    prototypes:
+    - MobHumanDeathsquadLeader
+
+- type: entity
+  name: одноразовый маркер спавна Дедов по сигналу
+  id: SpawnTriggerMobHumanDeathsquad
+  parent: MarkerBase
+  suffix: SV | ДСО
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - state: icon
+      sprite: Clothing/OuterClothing/Hardsuits/deathsquad.rsi
+  - type: DeviceLinkSink
+    ports:
+    - Trigger  
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+  - type: TriggerOnSignal
+  - type: DeleteOnTrigger
+  - type: SpawnOnTrigger
+    proto: MobHumanDeathsquad

@@ -13,3 +13,21 @@
   components:
   - type: AccessReader
     access: [["Ntrep"]]
+
+- type: entity
+  name: микросхема шлюза
+  parent: DoorElectronics
+  id: DoorElectronicsHDSOLocked
+  suffix: SV | ДСО, командование ДСО
+  components:
+  - type: AccessReader
+    access: [["HDSO"]]
+
+- type: entity
+  name: микросхема шлюза
+  parent: DoorElectronics
+  id: DoorElectronicsDSOLocked
+  suffix: SV | ДСО
+  components:
+  - type: AccessReader
+    access: [["DSO"]]

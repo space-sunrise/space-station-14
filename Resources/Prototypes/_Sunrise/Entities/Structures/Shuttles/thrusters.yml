@@ -61,3 +61,30 @@
       shader: unshaded
       visible: false
       offset: 0.5, 2.5
+
+- type: entity
+  id: ThrusterDSO
+  name: ракетный двигатель
+  description: Ускоритель, позволяющий шаттлу передвигаться.
+  parent: Thruster
+  suffix: SV | ДСО
+  components:
+  - type: Thruster
+    thrust: 220
+    requireSpace: false
+  - type: AccessReader
+    access: [["DSO"]]
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: StrongMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 350
+      behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak 

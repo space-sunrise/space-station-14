@@ -7,6 +7,7 @@
     - PetsNT
     - Zombie
     - Revolutionary
+    - DeathSquadron #Sunrise-Edit
 
 - type: npcFaction
   id: NanoTrasen
@@ -42,6 +43,7 @@
   - PetsNT
   - Zombie
   - Revolutionary
+  - DeathSquadron #Sunrise-Edit
 
 - type: npcFaction
   id: SimpleNeutral
@@ -54,6 +56,7 @@
   - Xeno
   - PetsNT
   - Zombie
+  - DeathSquadron #Sunrise-Edit
 
 - type: npcFaction
   id: Xeno
@@ -64,6 +67,7 @@
   - PetsNT
   - Zombie
   - Revolutionary
+  - DeathSquadron #Sunrise-Edit
 
 - type: npcFaction
   id: Zombie
@@ -75,6 +79,7 @@
   - Passive
   - PetsNT
   - Revolutionary
+  - DeathSquadron #Sunrise-Edit
 
 - type: npcFaction
   id: Revolutionary
@@ -83,6 +88,7 @@
   - Zombie
   - SimpleHostile
   - Dragon
+  - DeathSquadron #Sunrise-Edit
 
 - type: npcFaction
   id: Changeling
@@ -91,3 +97,17 @@
   - Syndicate
   - Zombie
   - Revolutionary
+  - DeathSquadron #Sunrise-Edit
+
+- type: npcFaction #Sunrise-Edit
+  id: DeathSquadron
+  hostile:
+  - NanoTrasen
+  - Syndicate
+  - Xeno
+  - PetsNT
+  - Zombie
+  - Dragon
+  - Revolutionary
+  - SimpleHostile
+  - Passive

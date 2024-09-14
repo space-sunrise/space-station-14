@@ -12,3 +12,19 @@
       layers:
       - state: crypt_silver
       - state: nano_label
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyEpsilon
+  name: ключ шифрования ДСО
+  description: Изношенный временем ключ шифрования. Лучше бы тебе не знать о чём там говорят.
+  suffix: SV | ДСО
+  components:
+  - type: EncryptionKey
+    channels:
+    - epsilon
+    defaultChannel: epsilon
+  - type: Sprite
+    layers:
+    - state: crypt_rusted
+    - state: com_label

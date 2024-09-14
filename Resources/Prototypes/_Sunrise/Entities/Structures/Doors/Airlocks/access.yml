@@ -109,3 +109,49 @@
   components:
   - type: PriorityDock
     tag: DockGamma
+
+# DeathSquad
+
+- type: entity
+  parent: HighSecDoor
+  name: бронированная дверь
+  description: Удерживает плохих снаружи, а хороших внутри.
+  id: HighSecHDSOLocked
+  suffix: SV | ДСО, командование ДСО
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsHDSOLocked ]
+
+- type: entity
+  parent: HighSecDoor
+  name: бронированная дверь
+  description: Удерживает плохих снаружи, а хороших внутри.
+  id: HighSecDSOLocked
+  suffix: SV | ДСО
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsDSOLocked ]
+
+- type: entity
+  parent: AirlockCommandGlass
+  id: AirlockDSOLocked
+  suffix: SV | ДСО
+  name: стеклянный шлюз
+  description: Он открывается, он закрывается, и он может вас раздавить.
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsDSOLocked ]
+
+- type: entity
+  parent: WindoorSecureSecurityLocked
+  id: WindoorDSOLocked
+  suffix: SV | ДСО
+  name: армированное раздвижное окно
+  description: Это и прочное окно, и раздвижная дверь. Вот это да!
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsDSOLocked ]

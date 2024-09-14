@@ -4,3 +4,11 @@
   keycode: "ю"
   frequency: 1780
   color: "#ff178b"
+
+- type: radioChannel
+  id: epsilon
+  name: Эпсилон
+  keycode: 'э'
+  frequency: 8451
+  color: "#9400D3"
+  longRange: true

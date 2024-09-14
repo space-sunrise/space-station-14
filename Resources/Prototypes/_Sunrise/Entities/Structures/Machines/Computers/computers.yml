@@ -108,3 +108,22 @@
   - type: Computer
     board: SecurityShuttleConsoleCircuitboard
   - type: Anchorable
+
+- type: entity
+  parent: ComputerComms
+  id: ComputerCommsDSO
+  name: консоль связи ДСО
+  description: Консоль, используемая для подачи объявлений на весь сектор, изменения уровня угрозы и вызова эвакуационного шаттла.
+  suffix: SV | ДСО
+  components:
+  - type: AccessReader
+    access: [[ "HDSO" ]]
+  - type: CommunicationsConsole
+    title: Департамент Специальных Операций
+    global: true
+    color: "DarkViolet"
+    sound:
+      path: /Audio/Misc/notice2.ogg
+      params:
+        volume: -4
+    announceVoice: OfficerEnclave

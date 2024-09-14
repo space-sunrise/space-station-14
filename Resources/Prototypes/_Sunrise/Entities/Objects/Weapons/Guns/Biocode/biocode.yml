@@ -186,3 +186,60 @@
     factions:
     - Syndicate
     alertText: Данное оружие биокодировано. Вы не можете его использовать.
+
+#DeathSquad
+- type: entity
+  name: импульсная винтовка
+  parent: WeaponPulseRifle
+  id: WeaponPulseRifleDeathsquadDSO
+  description: Оружие, почти столь же печально известное, как и его пользователи.
+  suffix: SV | ДСО
+  components:
+  - type: DisarmMalus
+    malus: 0
+  - type: FactionWeaponBlocker
+    factions:
+    - DeathSquadron
+    alertText: Данное оружие биокодировано. Вы не можете его использовать.
+
+- type: entity
+  name: бульдог
+  parent: WeaponShotgunBulldog
+  id: WeaponShotgunBulldogDSO
+  description: Магазинный дробовик, предназначенный для ведения ближнего боя. Использует патроны калибра .50 ружейный.
+  suffix: SV | ДСО
+  components:
+  - type: DisarmMalus
+    malus: 0
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineShotgunExtInc
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineShotgun
+        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+  - type: FactionWeaponBlocker
+    factions:
+    - DeathSquadron
+    alertText: Данное оружие биокодировано. Вы не можете его использовать.
+
+- type: entity
+  parent: WeaponTaser
+  id: WeaponTaserDSO
+  name: тазер ДСО
+  description: Электрошокер большой мощности, используемый Департаментом Специальных Операций как для самозащиты, так и для пыток.
+  suffix: SV | ДСО
+  components:
+  - type: DisarmMalus
+    malus: 0
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 100
+  - type: FactionWeaponBlocker
+    factions:
+    - DeathSquadron
+    alertText: Данное оружие биокодировано. Вы не можете его использовать.
