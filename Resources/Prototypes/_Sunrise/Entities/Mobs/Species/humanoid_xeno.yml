@@ -116,7 +116,7 @@
     prototype: HumanoidXeno
     requiredLegs: 2
   - type: Inventory
-    speciesId: reptilian
+    speciesId: human
     templateId: humanoidxeno
   - type: HumanoidAppearance
     species: HumanoidXeno
