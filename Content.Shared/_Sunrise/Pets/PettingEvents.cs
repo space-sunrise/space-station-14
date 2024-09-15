@@ -1,6 +1,4 @@
-﻿using Content.Shared._Sunrise.Pets.Prototypes;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization;
+﻿using Robust.Shared.Serialization;
 
 namespace Content.Shared._Sunrise.Pets;
 
@@ -19,7 +17,11 @@ public sealed class PetMasterChanged: HandledEntityEventArgs
 #endregion
 
 #region Control events
-
+/// <summary>
+/// Базовый ивент, используемый для управления питомцем.
+/// Содержит поле Entity, которое должно содержать EntityUid самого питомца.
+/// Это нужно, так как ивенты отправляются как NetworkedEvent и не содержат фильтрации по компонентам
+/// </summary>
 [Serializable, NetSerializable]
 public abstract class PetBaseEvent : EntityEventArgs
 {
@@ -37,6 +39,7 @@ public abstract class PetBaseEvent : EntityEventArgs
 /// Ивент, вызываемый при двух случаях:
 /// 1. При нажатии на кнопку в категории смены поведения питомца
 /// 2. При приручении
+/// Сообщает о смене приказа для ИИ питомца.
 /// </summary>
 [Serializable, NetSerializable, DataDefinition]
 public sealed partial class PetSetAILogicEvent : PetBaseEvent
@@ -51,6 +54,43 @@ public sealed partial class PetSetAILogicEvent : PetBaseEvent
         Order = order;
     }
 }
+
+/// <summary>
+/// Ивент, вызываемый при нажатии на кнопку в управлении питомцем.
+/// Сообщает о переключении возможности призрака вселиться в игрока.
+/// </summary>
+[Serializable, NetSerializable, DataDefinition]
+public sealed partial class PetSetGhostAvaliable : PetBaseEvent
+{
+    [DataField]
+    public bool Enable;
+
+    public PetSetGhostAvaliable() {}
+
+    public PetSetGhostAvaliable(bool enable)
+    {
+        Enable = enable;
+    }
+}
+
+/// <summary>
+/// Ивент, вызываемый при нажатии кнопки переименования питомца в меню управления питомца.
+/// Сообщает, что питомцу требутеся сменить имя на переданное в ивенте.
+/// </summary>
+[Serializable, NetSerializable, DataDefinition]
+public sealed partial class PetSetName : PetBaseEvent
+{
+    public string Name = default!;
+
+    public PetSetName() {}
+
+    public PetSetName(string name)
+    {
+        Name = name;
+    }
+}
+
+
 #endregion
 
 #region Enums
@@ -62,5 +102,4 @@ public enum PetControlUiKey : byte
 {
     Key
 }
-
 #endregion
