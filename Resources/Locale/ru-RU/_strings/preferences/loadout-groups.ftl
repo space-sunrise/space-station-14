@@ -14,6 +14,7 @@ loadout-group-survival-syndicate = Github заставил меня переве
 loadout-group-breath-tool = Расозависимое дыхательное снаряжение
 loadout-group-tank-harness = Расозависимое снаряжение для выживания
 loadout-group-EVA-tank = Расозависимый газовый баллон
+loadout-group-pocket-tank-double = Рассово-специфический двойной аварийный баллон в пакете
 loadout-group-survival-mime = Аварийный запас мима
 # Command
 loadout-group-captain-head = Капитан, голова
