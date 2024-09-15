@@ -2,4 +2,4 @@ custom-vote-webhook-name = Проведено кастомное голосов�
 custom-vote-webhook-footer = Сервер: { $serverName }, Раунд: { $roundId } { $runLevel }
 custom-vote-webhook-cancelled = **Голосование Отменено**
 custom-vote-webhook-option-pending = TBD
-custom-vote-webhook-option-cancelled = N/A
+custom-vote-webhook-option-cancelled = Н/Д
