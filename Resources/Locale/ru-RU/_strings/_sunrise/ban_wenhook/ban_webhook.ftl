@@ -24,7 +24,7 @@ server-time-ban-string =
     > **Дискорд:** { $adminLink }
     
     > **Выдан:** { $TimeNow }
-    > **Истечет:** { $expiresString }
+    > **Истечёт:** { $expiresString }
     
     > **Причина:** { $reason }
     
@@ -54,7 +54,7 @@ server-role-ban-string =
     > **Дискорд:** { $adminLink }
     
     > **Выдан:** { $TimeNow }
-    > **Истечет:** { $expiresString }
+    > **Истечёт:** { $expiresString }
     
     > **Роли:** { $roles }
     

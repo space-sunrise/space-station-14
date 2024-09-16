@@ -1,7 +1,7 @@
 statsentry-character = Персонаж:
 statsentry-dmg = Получил урона: { $name }\n
 statsentry-heal = Получил лечения: { $name }\n
-statsentry-inf-dmg = Нанес урона: { $name }\n
+statsentry-inf-dmg = Нанёс урона: { $name }\n
 statsentry-inf-heal = Вылечил урона: { $name }\n
 statsentry-slp-cnt = Подскользнулся { $name } раз\n
 statsentry-crm-cnt = Кремирован { $name } раз\n
@@ -40,12 +40,12 @@ statsentry-player-with-longest-cuffed-time = Больше всего време�
 statsentry-total-sleep-time = Общее время сна игроков составило [color=yellow]{ $time }[/color].
 statsentry-player-with-longest-sleep-time = Главной соней станции оказался [color=white]{ $name }[/color]{ $username }.
 statsentry-player-with-longest-sleep-time-time = Он спал на протяжении [color=yellow]{ $time }[/color].
-statsentry-player-with-longest-space-time = Больше всего времени в космосе провел [color=white]{ $name }[/color]{ $username } - [color=yellow]{ $time }[/color].
+statsentry-player-with-longest-space-time = Больше всего времени в космосе провёл [color=white]{ $name }[/color]{ $username } - [color=yellow]{ $time }[/color].
 statsentry-clown-cuffed = Клоун [color=white]{ $name }[/color]{ $username } был закован всего спустя [color=yellow]{ $time }[/color].
 statsentry-total-heal = Всего игроками было излечено [color=white]{ $count }[/color] урона.
 statsentry-player-with-most-infected-heal = Больше всего урона игрокам вылечил [color=white]{ $name }[/color]{ $username } - [color=white]{ $count }[/color].
 statsentry-total-damage = Всего игроками было получено [color=white]{ $count }[/color] урона.
-statsentry-player-with-most-infected-damage = Больше всего урона нанес [color=white]{ $name }[/color]{ $username } - [color=white]{ $count }[/color].
+statsentry-player-with-most-infected-damage = Больше всего урона нанёс [color=white]{ $name }[/color]{ $username } - [color=white]{ $count }[/color].
 statsentry-player-with-min-spent-tk = Меньше всего телекристалов потратил [color=white]{ $name }[/color]{ $username } - [color=white]{ $count }[/color]ТК.
 statsentry-player-with-max-hum-kills = Настоящим маньяком в этой смене был [color=white]{ $name }[/color]{ $username }.
 statsentry-player-with-max-hum-kills-count = Он убил [color=white]{ $count }[/color] гуманоидов.
