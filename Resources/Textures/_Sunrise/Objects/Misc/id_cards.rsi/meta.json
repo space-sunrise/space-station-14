@@ -11,6 +11,14 @@
             "name": "default"
         },
         {
+            "name": "adj-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "adj-inhand-right",
+            "directions": 4
+        },
+        {
             "name": "default-inhand-left",
             "directions": 4
         },
@@ -28,6 +36,9 @@
         {
             "name": "silver-inhand-right",
             "directions": 4
+        },
+        {
+            "name": "idadjutant"
         },
         {
             "name": "idbarber"

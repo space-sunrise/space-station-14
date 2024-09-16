@@ -28,3 +28,7 @@ loadout-group-prisoner-jumpsuit = Заключённый, комбинезон
 loadout-group-nanotrasenrepresentative-outerclothing = Представитель NT, верхняя одежда
 loadout-group-nanotrasenrepresentative-jumpsuit = Представитель NT, комбинезон
 loadout-group-pepper-spray = Перцовый баллончик
+loadout-group-adj-jumpsuit = Адъютант, комбинезон
+loadout-group-adj-backpack = Адъютант, рюкзак
+loadout-group-adj-head = Адъютант, головной убор
+loadout-group-adj-outerClothing = Адъютант, верхняя одежда

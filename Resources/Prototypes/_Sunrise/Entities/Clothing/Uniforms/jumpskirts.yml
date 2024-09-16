@@ -119,3 +119,14 @@
     sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/barber.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/barber.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtAdjutant
+  name: adjutant jumpskirt
+  description: Sewn to perfection with breathable fabric that will keep you on your feet for your entire shift.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/adjutant.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/adjutant.rsi

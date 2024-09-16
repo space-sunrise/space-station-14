@@ -1,0 +1,52 @@
+- type: job
+  id: Adjutant
+  name: job-name-adjutant
+  description: job-description-adjutant
+  playTimeTracker: JobAdjutant
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 18000 # 5 hrs
+    - !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 18000 # 5 hrs
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 18000 # 5 hrs
+  startingGear: AdjutantGear
+  icon: JobIconAdjutant
+  supervisors: job-supervisors-command
+  canBeAntag: false
+  access:
+    - Command
+    - Bar
+    - Service
+    - Maintenance
+    - Janitor
+    - Theatre
+    - Kitchen
+    - Chapel
+    - Hydroponics
+    - Engineering
+    - Research
+    - Brig
+    - Cargo
+    - Medical
+    - Barber
+  special:
+    - !type:AddImplantSpecial
+      implants: [MindShieldImplant]
+
+- type: startingGear
+  id: AdjutantGear
+  equipment:
+    shoes: ClothingShoesBootsLaceup
+    eyes: ClothingEyesGlassesSunglasses
+    id: AdjutantPDA
+    ears: ClothingHeadsetAdjutant
+    neck: ClothingNeckMantleAdjutant
+  storage:
+    back:
+    - Flash
+    - Telebaton
+    - RubberStampAdj

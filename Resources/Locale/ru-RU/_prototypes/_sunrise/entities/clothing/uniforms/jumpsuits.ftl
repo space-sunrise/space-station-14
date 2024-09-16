@@ -38,3 +38,5 @@ ent-ClothingUniformJumpsuitSkeleton = комбинезон скелета
     .desc = Чёрный комбинезон с напечатанным на нем белым узором из костей. Жуть!
 ent-ClothingUniformJumpsuitBarber = костюм парикмахера
     .desc = Как же он хорош.
+ent-ClothingUniformJumpsuitAdjutant = комбинезон адъютанта
+    .desc = Сшито на совесть из дышащей ткани, что позволит вам быть на ногах всю смену.

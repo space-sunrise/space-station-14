@@ -90,3 +90,6 @@
 
 - type: playTimeTracker
   id: JobBarber
+
+- type: playTimeTracker
+  id: JobAdjutant
