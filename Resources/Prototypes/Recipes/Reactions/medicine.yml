@@ -1,16 +1,4 @@
 - type: reaction
-  id: Ipecac
-  reactants:
-    Potassium:
-      amount: 1
-    Nitrogen:
-      amount: 1
-    Ammonia:
-      amount: 1
-  products:
-    Ipecac: 2
-
-- type: reaction
   id: Dylovene
   reactants:
     Silicon:
@@ -159,6 +147,17 @@
   products:
     Inaprovaline: 3
 
+- type: reaction
+  id: Ipecac
+  reactants:
+    Potassium:
+      amount: 1
+    Nitrogen:
+      amount: 1
+    Ammonia:
+      amount: 1
+  products:
+    Ipecac: 2
 
 - type: reaction
   id: TranexamicAcid
@@ -562,7 +561,7 @@
   id: Opporozidone
   minTemp: 400 #Maybe if a method of reducing reagent temp exists one day, this could be -50
   reactants:
-    Cognizine:
+    Cognizine: 
       amount: 1
     Plasma:
       amount: 2
@@ -663,4 +662,3 @@
       amount: 1
   products:
     Haloperidol: 5
-

@@ -1,2 +1,2 @@
-reagent-name-desoantizyne = Дезоантизин
-reagent-desc-desoantizyne = Дезоантизин - лучшее лекарство для всех, но оно очень...
+reagent-name-desoantizyne = РґРµР·РѕР°РЅС‚РёР·РёРЅ
+reagent-desc-desoantizyne = Р”РµР·РѕР°РЅС‚РёР·РёРЅ - Р»СѓС‡С€РµРµ Р»РµРєР°СЂСЃС‚РІРѕ РґР»СЏ РІСЃРµС…, РЅРѕ РѕРЅРѕ РѕС‡РµРЅСЊ...@@ -0,0 +1,2 @@
