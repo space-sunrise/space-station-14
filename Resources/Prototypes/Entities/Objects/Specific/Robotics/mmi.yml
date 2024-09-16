@@ -95,16 +95,7 @@
 #      job: Borg
     - type: BlockMovement
     - type: Examiner
-# Sunrise-Edit
-#    - type: BorgBrain
-#    - type: IntrinsicRadioReceiver
-#    - type: IntrinsicRadioTransmitter
-#      channels:
-#      - Binary
-#    - type: ActiveRadio
-#      channels:
-#      - Binary
-#      - Common
+
     - type: NameIdentifier
       group: PositronicBrain
     - type: DoAfter
