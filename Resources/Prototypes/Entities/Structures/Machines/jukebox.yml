@@ -43,8 +43,14 @@
   - type: ActivatableUIRequiresPower
   - type: UserInterface
     interfaces:
-      enum.TapePlayerUiKey.Key: # Sunrise-Edit
-        type: TapePlayerBoundUserInterface # Sunrise-Edit
+        enum.TapePlayerUiKey.Key: # Sunrise-Edit
+          type: TapePlayerBoundUserInterface # Sunrise-Edit
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+  - type: WiresPanel
+  - type: Wires
+    boardName: wires-board-name-jukebox
+    layoutId: Jukebox
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic

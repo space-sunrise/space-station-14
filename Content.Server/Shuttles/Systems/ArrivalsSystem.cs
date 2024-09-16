@@ -337,6 +337,8 @@ public sealed class ArrivalsSystem : EntitySystem
         if (ev.SpawnResult != null)
             return;
 
+        // We use arrivals as the default spawn so don't check for job prio.
+        
         // Sunrise-Start
         if (ev.DesiredSpawnPointType == SpawnPointType.Job)
             return;

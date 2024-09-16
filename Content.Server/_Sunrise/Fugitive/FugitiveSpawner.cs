@@ -61,7 +61,14 @@ namespace Content.Server._Sunrise.Fugitive
             if (!TryComp<MapGridComponent>(xform.GridUid, out var map))
                 return;
             var currentTile = map.GetTileRef(xform.Coordinates);
-            _tile.PryTile(currentTile);
+            if (currentTile != null)
+            {
+                _tile.PryTile(currentTile);
+            }
+            else
+            {
+                return;
+            }
 
             if (!_mindSystem.TryGetMind(args.Player.UserId, out var mindId, out var mind))
                 return;

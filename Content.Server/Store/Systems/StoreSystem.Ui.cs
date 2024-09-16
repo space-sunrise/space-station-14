@@ -180,13 +180,13 @@ public sealed partial class StoreSystem
             var ev = new SubtractCashEvent(buyer, currency, amount);
             RaiseLocalEvent(buyer, ref ev);
             // Sunrise-End
-        }
-
+       
+ }
         //spawn entity
         if (listing.ProductEntity != null)
         {
             var product = Spawn(listing.ProductEntity, Transform(buyer).Coordinates);
-
+            
             // Sunrise-Start
             var ev = new ItemPurchasedEvent(buyer);
             RaiseLocalEvent(product, ref ev);

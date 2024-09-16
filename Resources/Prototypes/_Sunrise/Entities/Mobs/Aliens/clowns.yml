@@ -1,0 +1,242 @@
+- type: entity
+  parent: SimpleMobBase
+  id: MobClownGoblin
+  name: clown goblin
+  description: A small walking mask with clown shoes. You want to honk its nose!
+  components:
+  - type: ComplexInteraction
+  - type: TTS
+    voice: Soldier
+  - type: Hunger
+    baseDecayRate: 0
+  - type: Thirst
+    baseDecayRate: 0
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    makeSentient: true
+    allowSpeech: true
+    allowMovement: true
+    name: клоун гоблин
+    description: Ужасное создание, которое поклоняется творцу...
+  - type: Speech
+    speechSounds: BikeHorn
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Sunrise/Mobs/Aliens/clown_goblin.rsi
+    state: goblin
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      170: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 170
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ClothingShoesClown:
+            min: 1
+            max: 1
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ClothingMaskClown:
+            min: 1
+            max: 1
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 100
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobLayer
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3.5
+    baseSprintSpeed : 5
+  - type: Appearance
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - FootstepSound
+    - DoorBumpOpener
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 0.25
+    damageRecovery:
+      types:
+        Asphyxiation: -0.25
+  - type: Barotrauma
+    damage:
+      types:
+        Blunt: 0.1
+  - type: Bloodstream
+    bloodMaxVolume: 50
+    bloodReagent: Honk
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepClown
+  - type: CombatMode
+  - type: MeleeWeapon
+    attackRate: 2
+    damage:
+      types:
+        Blunt: 0.5
+    soundHit:
+      collection: BikeHorn
+    animation: WeaponArcFist
+  - type: StaminaDamageOnHit
+    damage: 1
+  - type: Vocal
+    sounds:
+      Male: ClownGoblin
+      Female: ClownGoblin
+      Unsexed: ClownGoblin
+  - type: IntrinsicRadioReceiver
+  - type: ActiveRadio
+    channels:
+    - Common
+    - Service
+    globalReceive: true
+  - type: Eye
+  - type: Hands
+  - type: Puller
+    needsHands: false
+  - type: PressureImmunity
+  - type: NoSlip
+  - type: MovementAlwaysTouching
+  - type: Body
+    prototype: SVBodyDoubleClown
+  - type: InventorySlots
+  - type: Inventory
+    templateId: clowngoblin
+  - type: SleepEmitSound
+    snore: /Audio/Voice/Misc/silly_snore.ogg
+    interval: 10
+    
+- type: entity
+  parent: [ BaseSimpleMob, MobCombat, MobBloodstream, MobFlammable ]
+  id: MobClownHulk
+  name: clown champion
+  description: A BiG JoKe! Just try crossing him, and he'll cross you in his HuGe ShOeS.
+  components:
+  - type: ComplexInteraction
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Aliens/hulk.rsi
+    state: Champion_of_Honk
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: Critical
+      350: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      150: 0.9
+      200: 0.8
+      230: 0.7
+  - type: RotationVisuals
+    defaultRotation: 90
+    horizontalRotation: 90
+  - type: Stamina
+    critThreshold: 350
+  - type: Physics
+    bodyType: Dynamic
+  - type: SleepEmitSound
+    snore: /Audio/Voice/Misc/silly_snore.ogg
+    interval: 10
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.48
+        density: 1000
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobState
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 4
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: Appearance
+  - type: TTS
+    voice: Ziggs
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 0.25
+    damageRecovery:
+      types:
+        Asphyxiation: -0.25
+  - type: Barotrauma
+    damage:
+      types:
+        Blunt: 0.0
+  - type: Bloodstream
+    bloodMaxVolume: 300
+    bloodReagent: Honk
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepClown
+  - type: CombatMode
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 1
+    attackRate: 1
+    soundHit:
+      collection: GenericHit
+    damage:
+      types:
+        Blunt: 15
+        Structural: 65
+    animation: WeaponArcFist
+    wideAnimation: WeaponArcFist
+  - type: StaminaDamageOnHit
+    damage: 30
+  - type: IntrinsicRadioReceiver
+  - type: FloatingVisuals
+  - type: AlwaysRevolutionaryConvertible
+  - type: Hands
+  - type: Puller
+  - type: FlashImmunity
+  - type: PressureImmunity
+  - type: NoSlip
+  - type: MovementAlwaysTouching
+  - type: Stripping
+  - type: Strippable
+  - type: Body
+    prototype: SVBodyDoubleClown
+  - type: InventorySlots
+  - type: Inventory
+    templateId: clownhulk
+  - type: Tool
+    speedModifier: 5
+    qualities:
+      - Prying
+  - type: Prying
+    pryPowered: !type:Bool
+      true
+    force: !type:Bool
+      true
+    useSound:
+      path: /Audio/Items/crowbar.ogg

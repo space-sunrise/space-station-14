@@ -70,3 +70,6 @@ ent-ClothingHeadHelmetHardsuitMime = шлем скафандра мима
     .desc = Шлем скафандра мима.
 ent-ClothingHeadHelmetHardsuitSanta = шлем скафандра Санты
     .desc = Празднично выглядящий шлем скафандра обеспечивает весёлому дарителю подарков защиту в среде с низким давлением.
+ent-ChangelingClothingHeadHelmetHardsuit = органический космический шлем
+    .desc = Космическая биомасса из ткани, устойчива к давлению и температуре.
+    .suffix = Неснимаемый
