@@ -60,16 +60,3 @@
   - type: StorageFill
     contents:
     - id: WeaponIONRifle
-
-- type: entity
-  parent: GunSafe
-  id: GunSafeRPGNanotrasen
-  name: RPG safe
-  components:
-  - type: ExplosionResistance
-    damageCoefficient: 0.5
-  - type: StorageFill
-    contents:
-    - id: WeaponLauncherRL5  # Версия РПГ с другим спрайтом и требующая использовать 2 руки для стрельбы
-    - id: CartridgeRocketNT
-      amount: 4
