@@ -60,7 +60,7 @@
 
 - type: entity
   id: DoubleGlassAirlockAtmospherics
-  parent: DoubleGlassAirlock, AirlockAtmosphericsLocked
+  parent: [ DoubleGlassAirlock, AirlockAtmosphericsLocked ]
   name: double atmos glass airlock
   components:
   - type: Sprite
@@ -68,7 +68,7 @@
 
 - type: entity
   id: DoubleGlassAirlockCargo
-  parent: DoubleGlassAirlock, AirlockCargoLocked
+  parent: [ DoubleGlassAirlock, AirlockCargoLocked ]
   name: double cargo glass airlock
   components:
   - type: Sprite
@@ -76,7 +76,7 @@
 
 - type: entity
   id: DoubleGlassAirlockChemistry
-  parent: DoubleGlassAirlock, AirlockChemistryLocked
+  parent: [ DoubleGlassAirlock, AirlockChemistryLocked ]
   name: double chemistry glass airlock
   components:
   - type: Sprite
@@ -84,7 +84,7 @@
 
 - type: entity
   id: DoubleGlassAirlockCommand
-  parent: DoubleGlassAirlock, AirlockCommandLocked
+  parent: [ DoubleGlassAirlock, AirlockCommandLocked ]
   name: double command glass airlock
   components:
   - type: Sprite
@@ -92,7 +92,7 @@
 
 - type: entity
   id: DoubleGlassAirlockCentralCommand
-  parent: DoubleGlassAirlock, AirlockCentralCommandLocked
+  parent: [ DoubleGlassAirlock, AirlockCentralCommandLocked ]
   name: double central command glass airlock
   components:
   - type: Sprite
@@ -100,7 +100,7 @@
 
 - type: entity
   id: DoubleGlassAirlockEngineering
-  parent: DoubleGlassAirlock, AirlockEngineeringLocked
+  parent: [ DoubleGlassAirlock, AirlockEngineeringLocked ]
   name: double engineering glass airlock
   components:
   - type: Sprite
@@ -108,7 +108,7 @@
 
 - type: entity
   id: DoubleGlassAirlockMaint
-  parent: DoubleGlassAirlock, AirlockMaintLocked
+  parent: [ DoubleGlassAirlock, AirlockMaintLocked ]
   name: double maint glass airlock
   components:
   - type: Sprite
@@ -116,7 +116,7 @@
 
 - type: entity
   id: DoubleGlassAirlockMedical
-  parent: DoubleGlassAirlock, AirlockMedicalLocked
+  parent: [ DoubleGlassAirlock, AirlockMedicalLocked ]
   name: double medical glass airlock
   components:
   - type: Sprite
@@ -124,7 +124,7 @@
 
 - type: entity
   id: DoubleGlassAirlockScience
-  parent: DoubleGlassAirlock, AirlockScienceLocked
+  parent: [ DoubleGlassAirlock, AirlockScienceLocked ]
   name: double science glass airlock
   components:
   - type: Sprite
@@ -132,7 +132,7 @@
 
 - type: entity
   id: DoubleGlassAirlockSecurity
-  parent: DoubleGlassAirlock, AirlockSecurityLocked
+  parent: [ DoubleGlassAirlock, AirlockSecurityLocked ]
   name: double security glass airlock
   components:
   - type: Sprite
@@ -140,7 +140,7 @@
 
 - type: entity
   id: DoubleGlassAirlockVirology
-  parent: DoubleGlassAirlock, AirlockVirologyLocked
+  parent: [ DoubleGlassAirlock, AirlockVirologyLocked ]
   name: double virology glass airlock
   components:
   - type: Sprite
@@ -150,7 +150,7 @@
 
 - type: entity
   id: TripleGlassAirlockAtmospherics
-  parent: TripleGlassAirlock, AirlockAtmosphericsLocked
+  parent: [ TripleGlassAirlock, AirlockAtmosphericsLocked ]
   name: triple atmospherics glass airlock
   components:
   - type: Sprite
@@ -158,7 +158,7 @@
 
 - type: entity
   id: TripleGlassAirlockBasic
-  parent: TripleGlassAirlock, AirlockServiceLocked
+  parent: [ TripleGlassAirlock, AirlockServiceLocked ]
   name: triple basic glass airlock
   components:
   - type: Sprite
@@ -166,7 +166,7 @@
 
 - type: entity
   id: TripleGlassAirlockCargo
-  parent: TripleGlassAirlock, AirlockCargoLocked
+  parent: [ TripleGlassAirlock, AirlockCargoLocked ]
   name: triple cargo glass airlock
   components:
   - type: Sprite
@@ -174,7 +174,7 @@
 
 - type: entity
   id: TripleGlassAirlockCentcomm
-  parent: TripleGlassAirlock, AirlockCentralCommandLocked
+  parent: [ TripleGlassAirlock, AirlockCentralCommandLocked ]
   name: triple centcomm glass airlock
   components:
   - type: Sprite
@@ -182,7 +182,7 @@
 
 - type: entity
   id: TripleGlassAirlockChemistry
-  parent: TripleGlassAirlock, AirlockChemistryLocked
+  parent: [ TripleGlassAirlock, AirlockChemistryLocked ]
   name: triple chemistry glass airlock
   components:
   - type: Sprite
@@ -190,7 +190,7 @@
 
 - type: entity
   id: TripleGlassAirlockCommand
-  parent: TripleGlassAirlock, AirlockCommandLocked
+  parent: [ TripleGlassAirlock, AirlockCommandLocked ]
   name: triple command glass airlock
   components:
   - type: Sprite
@@ -198,7 +198,7 @@
 
 - type: entity
   id: TripleGlassAirlockEngineering
-  parent: TripleGlassAirlock, AirlockEngineeringLocked
+  parent: [ TripleGlassAirlock, AirlockEngineeringLocked ]
   name: triple engineering glass airlock
   components:
   - type: Sprite
@@ -206,7 +206,7 @@
 
 - type: entity
   id: TripleGlassAirlock1
-  parent: TripleGlassAirlock
+  parent: [ TripleGlassAirlock ]
   name: triple glass airlock
   components:
   - type: Sprite
@@ -214,7 +214,7 @@
 
 - type: entity
   id: TripleGlassAirlockMaint
-  parent: TripleGlassAirlock, AirlockMaintLocked
+  parent: [ TripleGlassAirlock, AirlockMaintLocked ]
   name: triple maint glass airlock
   components:
   - type: Sprite
@@ -222,7 +222,7 @@
 
 - type: entity
   id: TripleGlassAirlockMedical
-  parent: TripleGlassAirlock, AirlockMedicalLocked
+  parent: [ TripleGlassAirlock, AirlockMedicalLocked ]
   name: triple medical glass airlock
   components:
   - type: Sprite
@@ -230,7 +230,7 @@
 
 - type: entity
   id: TripleGlassAirlockScience
-  parent: TripleGlassAirlock, AirlockScienceLocked
+  parent: [ TripleGlassAirlock, AirlockScienceLocked ]
   name: triple science glass airlock
   components:
   - type: Sprite
@@ -238,7 +238,7 @@
 
 - type: entity
   id: TripleGlassAirlockSecurity
-  parent: TripleGlassAirlock, AirlockSecurityLocked
+  parent: [ TripleGlassAirlock, AirlockSecurityLocked ]
   name: triple security glass airlock
   components:
   - type: Sprite
@@ -246,7 +246,7 @@
 
 - type: entity
   id: TripleGlassAirlockVirology
-  parent: TripleGlassAirlock, AirlockVirologyLocked
+  parent: [ TripleGlassAirlock, AirlockVirologyLocked ]
   name: triple virology glass airlock
   components:
   - type: Sprite
