@@ -164,3 +164,17 @@
     - state: idbarber
   - type: PresetIdCard
     job: Barber
+
+- type: entity
+  parent: IDCardStandard
+  id: AdjutantIDCard
+  name: adjutant ID card
+  description: Adjutant ID card.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: default
+    - state: idadjutant
+  - type: PresetIdCard
+    job: Adjutant

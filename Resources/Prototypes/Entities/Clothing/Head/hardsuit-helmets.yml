@@ -60,11 +60,12 @@
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
   - type: TemperatureProtection
-    coefficient: 0.005
+    heatingCoefficient: 0.005
+    coolingCoefficient: 0.005
   - type: FireProtection
     reduction: 0.2
-  - type: EyeProtection
-  - type: FlashImmunity
+  - type: EyeProtection # Sunrise-Edit
+  - type: FlashImmunity # Sunrise-Edit
 
 #Engineering Hardsuit
 - type: entity
@@ -82,8 +83,8 @@
   - type: PressureProtection
     highPressureMultiplier: 0.1
     lowPressureMultiplier: 1000
-  - type: EyeProtection
-  - type: FlashImmunity
+  - type: EyeProtection # Sunrise-Edit
+  - type: FlashImmunity # Sunrise-Edit
 
 #Spationaut Hardsuit
 - type: entity
@@ -184,7 +185,7 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-  - type: FlashImmunity
+  - type: FlashImmunity # Sunrise-Edit
 
 #Brigmedic Hardsuit
 - type: entity
@@ -211,7 +212,7 @@
   - type: PressureProtection
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
-  - type: FlashImmunity
+  - type: FlashImmunity # Sunrise-Edit
 
 #Warden's Hardsuit
 - type: entity
@@ -225,7 +226,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/security-warden.rsi
   - type: PointLight
-    color: cyan
+    color: cyan # Sunrise-Edit
   - type: PressureProtection
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 1000
@@ -236,11 +237,11 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-  - type: FlashImmunity
+  - type: FlashImmunity # Sunrise-Edit
 
 #Captain's Hardsuit
 - type: entity
-  parent: ClothingHeadHardsuitBase
+  parent: ClothingHeadHardsuitBase # Sunrise-Edit
   id: ClothingHeadHelmetHardsuitCap
   name: captain's hardsuit helmet
   description: Special hardsuit helmet, made for the captain of the station.
@@ -265,14 +266,14 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/engineering-white.rsi
   - type: PointLight
-    color: "#e6aa5c"
+    color: "#e6aa5c" # Sunrise-Edit
   - type: PressureProtection
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
   - type: FireProtection
     reduction: 0.2
-  - type: EyeProtection
-  - type: FlashImmunity
+  - type: EyeProtection # Sunrise-Edit
+  - type: FlashImmunity # Sunrise-Edit
 
 #Chief Medical Officer's Hardsuit
 - type: entity
@@ -303,7 +304,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/rd.rsi
   - type: PointLight
-    color: "#a4fef4"
+    color: "#a4fef4" # Sunrise-Edit
   - type: PressureProtection
     highPressureMultiplier: 0.60
     lowPressureMultiplier: 1000
@@ -331,7 +332,7 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-  - type: FlashImmunity
+  - type: FlashImmunity # Sunrise-Edit
 
 #Luxury Mining Hardsuit
 - type: entity
@@ -417,7 +418,8 @@
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
   - type: TemperatureProtection
-    coefficient: 0.005
+    heatingCoefficient: 0.005
+    coolingCoefficient: 0.005
   - type: FireProtection
     reduction: 0.2
   - type: Armor
@@ -550,7 +552,7 @@
 #CENTCOMM / ERT HARDSUITS
 #ERT Leader Hardsuit
 - type: entity
-  parent: ClothingHeadHelmetHardsuitSyndieCommander
+  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndieCommander ]
   id: ClothingHeadHelmetHardsuitERTLeader
   name: ERT leader hardsuit helmet
   description: A special hardsuit helmet worn by members of an emergency response team.
@@ -560,7 +562,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertleader.rsi
   - type: PointLight
-    color: cyan
+    color: cyan # Sunrise-Edit
   - type: Armor
     modifiers:
       coefficients:
@@ -568,11 +570,11 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-  - type: FlashImmunity
+  - type: FlashImmunity # Sunrise-Edit
 
 #ERT Chaplain Hardsuit
 - type: entity
-  parent: ClothingHeadHelmetHardsuitSyndie
+  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]
   id: ClothingHeadHelmetHardsuitERTChaplain
   name: ERT chaplain hardsuit helmet
   description: A special hardsuit helmet worn by members of an emergency response team.
@@ -583,11 +585,11 @@
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertchaplain.rsi
   - type: PointLight
     color: "#ffffff"
-  - type: FlashImmunity
+  - type: FlashImmunity # Sunrise-Edit
 
 #ERT Engineer Hardsuit
 - type: entity
-  parent: ClothingHeadHelmetHardsuitSyndie
+  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]
   id: ClothingHeadHelmetHardsuitERTEngineer
   name: ERT engineer hardsuit helmet
   description: A special hardsuit helmet worn by members of an emergency response team.
@@ -597,7 +599,7 @@
   - type: Clothing
     sprite: Clothing/Head/Hardsuits/ERThelmets/ertengineer.rsi
   - type: PointLight
-    color: cyan
+    color: cyan # Sunrise-Edit
   - type: Armor
     modifiers:
       coefficients:
@@ -605,12 +607,12 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-  - type: FlashImmunity
-  - type: EyeProtection
+  - type: FlashImmunity # Sunrise-Edit
+  - type: EyeProtection # Sunrise-Edit
 
 #ERT Medical Hardsuit
 - type: entity
-  parent: ClothingHeadHelmetHardsuitSyndieElite
+  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndieElite ]
   id: ClothingHeadHelmetHardsuitERTMedical
   name: ERT medic hardsuit helmet
   description: A special hardsuit helmet worn by members of an emergency response team.
@@ -625,7 +627,7 @@
 
 #ERT Security Hardsuit
 - type: entity
-  parent: ClothingHeadHelmetHardsuitSyndie
+  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]
   id: ClothingHeadHelmetHardsuitERTSecurity
   name: ERT security hardsuit helmet
   description: A special hardsuit helmet worn by members of an emergency response team.
@@ -647,7 +649,7 @@
 
 #ERT Janitor Hardsuit
 - type: entity
-  parent: ClothingHeadHelmetHardsuitSyndie
+  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]
   id: ClothingHeadHelmetHardsuitERTJanitor
   name: ERT janitor hardsuit helmet
   description: A special hardsuit helmet worn by members of an emergency response team.
@@ -662,7 +664,7 @@
 
 #CBURN Hardsuit
 - type: entity
-  parent: ClothingHeadHardsuitWithLightBase
+  parent: [ BaseCentcommContraband, ClothingHeadHardsuitWithLightBase ]
   id: ClothingHeadHelmetCBURN
   name: CBURN exosuit helmet
   description: A pressure resistant and fireproof hood worn by special cleanup units.
@@ -689,7 +691,8 @@
     highPressureMultiplier: 0.08
     lowPressureMultiplier: 1000
   - type: TemperatureProtection
-    coefficient: 0.005
+    heatingCoefficient: 0.005
+    coolingCoefficient: 0.005
   - type: Armor
     modifiers:
       coefficients:
@@ -700,7 +703,7 @@
 
 #Deathsquad Hardsuit
 - type: entity
-  parent: ClothingHeadHardsuitWithLightBase
+  parent: [ BaseCentcommContraband, ClothingHeadHardsuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitDeathsquad
   name: deathsquad hardsuit helmet
   description: A robust helmet for special operations.

@@ -9,17 +9,6 @@
     - IAA
     - Lawyer
 
-- type: department
-  id: CentralCommand
-  name: department-CentralCommand
-  description: department-CentralCommand-description
-  color: "#048e0f" # Sunrise-Edit
-  roles:
-  - CentCommOperator
-  editorHidden: true
-  weight: 120
-  primary: false
-
 - type: department # Surnise-Blueshield
   id: Blueshield
   name: department-Blueshield

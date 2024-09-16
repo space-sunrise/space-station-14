@@ -18,3 +18,5 @@ ent-ClothingOuterCoatNtrep = пиджак представителя NT
     .desc = Элегантная черная куртка, стандартный атрибут представителей Nanotrasen.
 ent-ClothingOuterCoatNtrepOpen = растёгнутый пиджак представителя NT
     .desc = { ent-ClothingOuterStorageFoldableBaseOpened.desc }
+ent-ClothingOuterCoatAdjutant = зимняя куртка адъютанта
+    .desc = Тяжёлая куртка из 'синтетического' меха животных.

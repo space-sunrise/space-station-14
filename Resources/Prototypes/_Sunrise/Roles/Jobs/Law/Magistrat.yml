@@ -7,8 +7,6 @@
     - !type:DepartmentTimeRequirement
       department: Command
       time: 108000 #30 hrs
-    - !type:AgeRequirement
-      requiredAge: 40 # Sunrise-Edit
   startingGear: MagistratGear
   icon: "JobIconMagistrat"
   supervisors: job-supervisors-centcom

@@ -262,9 +262,8 @@ namespace Content.Server._Sunrise.Carrying
                 _pullingSystem.TryStopPull(carried, pullable, carrier);
 
             Transform(carrier).AttachToGridOrMap();
-            Transform(carried).AttachToGridOrMap();
             Transform(carried).Coordinates = Transform(carrier).Coordinates;
-            Transform(carried).AttachParent(Transform(carrier));
+            Transform(carried).AttachParent(carrier);
             _virtualItemSystem.TrySpawnVirtualItemInHand(carried, carrier);
             _virtualItemSystem.TrySpawnVirtualItemInHand(carried, carrier);
             var carryingComp = EnsureComp<CarryingComponent>(carrier);
@@ -279,7 +278,7 @@ namespace Content.Server._Sunrise.Carrying
         }
 
         public void DropCarried(EntityUid carrier, EntityUid carried)
-        {            
+        {
             RemComp<CarryingComponent>(carrier); // get rid of this first so we don't recusrively fire that event
             RemComp<CarryingSlowdownComponent>(carrier);
             RemComp<BeingCarriedComponent>(carried);

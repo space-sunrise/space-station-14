@@ -101,6 +101,7 @@ public sealed class AdminSystem : EntitySystem
         SubscribeLocalEvent<RoleAddedEvent>(OnRoleEvent);
         SubscribeLocalEvent<RoleRemovedEvent>(OnRoleEvent);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
+        SubscribeLocalEvent<ActorComponent, EntityRenamedEvent>(OnPlayerRenamed);
 
         IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
     }
@@ -127,6 +128,11 @@ public sealed class AdminSystem : EntitySystem
         {
             RaiseNetworkEvent(updateEv, admin.Channel);
         }
+    }
+
+    private void OnPlayerRenamed(Entity<ActorComponent> ent, ref EntityRenamedEvent args)
+    {
+        UpdatePlayerList(ent.Comp.PlayerSession);
     }
 
     public void UpdatePlayerList(ICommonSession player)

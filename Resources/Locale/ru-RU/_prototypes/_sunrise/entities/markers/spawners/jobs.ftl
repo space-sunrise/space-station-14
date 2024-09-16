@@ -38,3 +38,5 @@ ent-SpawnPointSeniorOfficer = инструктор СБ
     .desc = { ent-SpawnPointJobBase.desc }
 ent-SpawnPointBarber = парикмахер
     .desc = { ent-SpawnPointJobBase.desc }
+ent-SpawnPointAdjutant = адъютант
+    .desc = { ent-SpawnPointJobBase.desc }

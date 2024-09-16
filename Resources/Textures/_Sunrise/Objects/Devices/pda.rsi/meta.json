@@ -29,7 +29,11 @@
             "name": "light_overlay"
         },
         {
-            "name": "equipped-IDCARD"
+            "name": "equipped-IDCARD",
+            "directions": 4
+        },
+        {
+            "name": "pda-adj"
         },
         {
             "name": "pda-blueshield"

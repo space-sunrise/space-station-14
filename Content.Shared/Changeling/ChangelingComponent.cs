@@ -49,6 +49,14 @@ public sealed partial class ChangelingComponent : Component
 
     public bool IsInLesserForm = false;
 
+    public bool StealthEnabled = false;
+
+    [DataField]
+    public float StealthDrain = 1.5f;
+
+    [DataField]
+    public float StasisDrain = 0.2f;
+
 
     public Dictionary<string, EntityUid?> Equipment = new();
 
@@ -56,13 +64,13 @@ public sealed partial class ChangelingComponent : Component
     ///     Amount of biomass changeling currently has.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float Biomass = 30f;
+    public float Biomass = 50f;
 
     /// <summary>
     ///     Maximum amount of biomass a changeling can have.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float MaxBiomass = 30f;
+    public float MaxBiomass = 50f;
 
     /// <summary>
     ///     How much biomass should be removed per cycle.

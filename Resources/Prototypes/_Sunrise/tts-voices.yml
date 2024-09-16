@@ -29,7 +29,7 @@
   provider: ntts.fdev.team
 
 - type: ttsVoice
-  id: Glados
+  id: Glados # borg
   name: tts-voice-name-glados
   sex: Female
   speaker: glados
@@ -987,9 +987,174 @@
   provider: ntts.fdev.team
 
 - type: ttsVoice
-  id: PoppyWweeting
+  id: PoppySweeting
   name: tts-voice-name-poppysweeting
   sex: Female
   speaker: poppysweeting
+  roundStart: true
+  provider: ntts.fdev.team
+
+- type: ttsVoice
+  id: SophroniaFranklin
+  name: tts-voice-name-sophronia-franklin
+  sex: Female
+  speaker: sophronia_franklin
+  roundStart: true
+  provider: ntts.fdev.team
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: SironaRyan
+  name: tts-voice-name-sirona-ryan
+  sex: Female
+  speaker: sirona_ryan
+  roundStart: true
+  provider: ntts.fdev.team
+
+- type: ttsVoice
+  id: SamanthaDale
+  name: tts-voice-name-samantha-dale
+  sex: Female
+  speaker: samantha_dale
+  roundStart: true
+  provider: ntts.fdev.team
+
+- type: ttsVoice
+  id: AbrahamRonen
+  name: tts-voice-name-abraham-ronen
+  sex: Male
+  speaker: abraham_ronen
+  roundStart: true
+  provider: ntts.fdev.team
+
+- type: ttsVoice
+  id: AesopSharp
+  name: tts-voice-name-aesop-sharp
+  sex: Male
+  speaker: aesop_sharp
+  roundStart: true
+  provider: ntts.fdev.team
+
+- type: ttsVoice
+  id: DinahHecat
+  name: tts-voice-name-dinah-hecat
+  sex: Female
+  speaker: dinah_hecat
+  roundStart: true
+  provider: ntts.fdev.team
+
+- type: ttsVoice
+  id: GenericGoblinC
+  name: tts-voice-name-generic-goblin-c
+  sex: Male
+  speaker: generic_goblin_c
+  roundStart: true
+  provider: ntts.fdev.team
+
+- type: ttsVoice
+  id: MisterHandyFL3 # borg
+  name: tts-voice-name-mister-handy-fl3
+  sex: Male
+  speaker: mister_handy_fl3
+  roundStart: false
+  provider: ntts.fdev.team
+
+- type: ttsVoice
+  id: MisterGutsyFL3 # borg
+  name: tts-voice-name-mister-gutsy-fl3
+  sex: Male
+  speaker: mister_gutsy_fl3
+  roundStart: false
+  provider: ntts.fdev.team
+
+- type: ttsVoice
+  id: JerichoFL3
+  name: tts-voice-name-jericho-fl3
+  sex: Male
+  speaker: jericho_fl3
+  roundStart: true
+  provider: ntts.fdev.team
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: ElderLyonsFL3
+  name: tts-voice-name-elder-lyons-fl3
+  sex: Male
+  speaker: elder_lyons_fl3
+  roundStart: true
+  provider: ntts.fdev.team
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: SarahLyonsFL3
+  name: tts-voice-name-sarah-lyons-fl3
+  sex: Female
+  speaker: sarah_lyons_fl3
+  roundStart: true
+  provider: ntts.fdev.team
+
+- type: ttsVoice
+  id: ColinMoriartyFL1
+  name: tts-voice-name-colin-moriarty-fl3
+  sex: Male
+  speaker: colin_moriarty_fl3
+  roundStart: true
+  provider: ntts.fdev.team
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: KovirNobleman
+  name: tts-voice-name-kovir-nobleman
+  sex: Male
+  speaker: kovir_nobleman
+  roundStart: true
+  provider: ntts.fdev.team
+
+- type: ttsVoice
+  id: ZoltanChivay
+  name: tts-voice-name-zoltan-chivay
+  sex: Male
+  speaker: zoltan_chivay
+  roundStart: true
+  provider: ntts.fdev.team
+
+- type: ttsVoice
+  id: Maiko
+  name: tts-voice-name-maiko
+  sex: Female
+  speaker: maiko
+  roundStart: true
+  provider: ntts.fdev.team
+
+- type: ttsVoice
+  id: Brendan # borg
+  name: tts-voice-name-brendan
+  sex: Male
+  speaker: brendan
+  roundStart: false
+  provider: ntts.fdev.team
+
+- type: ttsVoice
+  id: NancyHartley
+  name: tts-voice-name-nancy-hartley
+  sex: Female
+  speaker: nancy_hartley
+  roundStart: true
+  provider: ntts.fdev.team
+
+- type: ttsVoice
+  id: OswaldForrest
+  name: tts-voice-name-oswald-forrest
+  sex: Male
+  speaker: oswald_forrest
+  roundStart: true
+  provider: ntts.fdev.team
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Steve
+  name: tts-voice-name-steve
+  sex: Male
+  speaker: steve
   roundStart: true
   provider: ntts.fdev.team

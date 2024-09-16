@@ -43,6 +43,8 @@
 #  parent: BaseUnknownShuttleRule
 #  id: UnknownShuttleCargoLost
 #  components:
+#  - type: StationEvent
+#    maxOccurrences: 2 # should be the same as [copies] in shuttle_incoming_event.yml
 #  - type: LoadMapRule
 #    preloadedGrid: ShuttleCargoLost
 
