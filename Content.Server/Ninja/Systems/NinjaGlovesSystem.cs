@@ -49,7 +49,6 @@ public sealed class NinjaGlovesSystem : SharedNinjaGlovesSystem
         {
             var ev = new NinjaBatteryChangedEvent(battery.Value, suit);
             RaiseLocalEvent(user, ref ev);
-            RaiseLocalEvent(suit, ref ev);
         }
     }
 }

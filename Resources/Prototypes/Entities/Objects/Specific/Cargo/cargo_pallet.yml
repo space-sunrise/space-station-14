@@ -30,7 +30,7 @@
     - sprite: Structures/catwalk.rsi
       state: catwalk_preview
   - type: Damageable
-    damageContainer: StructuralInorganic
+    damageContainer: Inorganic
     damageModifierSet: Metallic
 # Sunrise-Edit
 #  - type: Destructible

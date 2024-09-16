@@ -25,15 +25,7 @@ public sealed partial class DefaultGameScreen : InGameScreen
 
         Chat.OnResized += ChatOnResized;
         Chat.OnChatResizeFinish += ChatOnResizeFinish;
-
-        MainViewport.OnResized += ResizeActionContainer;
-        Inventory.OnResized += ResizeActionContainer;
-    }
-
-    private void ResizeActionContainer()
-    {
-        float indent = Inventory.Size.Y + TopBar.Size.Y + 40;
-        Actions.ActionsContainer.MaxGridHeight = MainViewport.Size.Y - indent;
+        Actions.ActionsContainer.Columns = 1;
     }
 
     private void ChatOnResizeFinish(Vector2 _)

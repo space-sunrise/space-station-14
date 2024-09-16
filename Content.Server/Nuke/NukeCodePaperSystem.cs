@@ -124,7 +124,7 @@ namespace Content.Server.Nuke
                 }
 
                 codesMessage.PushNewline();
-                codesMessage.AddMarkupOrThrow(Loc.GetString("nuke-codes-list", ("name", MetaData(nukeUid).EntityName), ("code", nuke.Code)));
+                codesMessage.AddMarkup(Loc.GetString("nuke-codes-list", ("name", MetaData(nukeUid).EntityName), ("code", nuke.Code)));
                 break;
             }
 

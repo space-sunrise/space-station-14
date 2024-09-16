@@ -109,7 +109,7 @@ public partial class ChatBox : UIWidget
     {
         var formatted = new FormattedMessage(3);
         formatted.PushColor(color);
-        formatted.AddMarkupOrThrow(message);
+        formatted.AddMarkup(message);
         formatted.Pop();
         Contents.AddMessage(formatted);
     }

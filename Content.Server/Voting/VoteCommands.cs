@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Net.Http;
 using System.Text.Json;
 using System.Text.Json.Nodes;
 using Content.Server.Administration;
@@ -11,10 +12,10 @@ using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Voting;
-using Robust.Server;
+using Robust.Server.Player;
+using Robust.Shared;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
-using Robust.Shared.Utility;
 
 namespace Content.Server.Voting
 {
@@ -66,23 +67,27 @@ namespace Content.Server.Voting
     }
 
     [AdminCommand(AdminFlags.Moderator)]
-    public sealed class CreateCustomCommand : LocalizedEntityCommands
+    public sealed class CreateCustomCommand : IConsoleCommand
     {
-        [Dependency] private readonly IVoteManager _voteManager = default!;
         [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+        [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly DiscordWebhook _discord = default!;
-        [Dependency] private readonly GameTicker _gameTicker = default!;
-        [Dependency] private readonly IBaseServer _baseServer = default!;
-        [Dependency] private readonly IChatManager _chatManager = default!;
 
         private ISawmill _sawmill = default!;
 
         private const int MaxArgCount = 10;
 
-        public override string Command => "customvote";
+        public string Command => "customvote";
+        public string Description => Loc.GetString("cmd-customvote-desc");
+        public string Help => Loc.GetString("cmd-customvote-help");
 
-        public override void Execute(IConsoleShell shell, string argStr, string[] args)
+        // Webhook stuff
+        private string _webhookUrl = string.Empty;
+        private ulong _webhookId;
+        private WebhookIdentifier? _webhookIdentifier;
+
+        public void Execute(IConsoleShell shell, string argStr, string[] args)
         {
             _sawmill = Logger.GetSawmill("vote");
 
@@ -93,6 +98,8 @@ namespace Content.Server.Voting
             }
 
             var title = args[0];
+
+            var mgr = IoCManager.Resolve<IVoteManager>();
 
             var options = new VoteOptions
             {
@@ -105,6 +112,41 @@ namespace Content.Server.Voting
                 options.Options.Add((args[i], i));
             }
 
+            // Set up the webhook payload
+            string _serverName = _cfg.GetCVar(CVars.GameHostName);
+            _webhookUrl = _cfg.GetCVar(CCVars.DiscordVoteWebhook);
+
+
+            var _gameTicker = _entitySystem.GetEntitySystem<GameTicker>();
+
+            var payload = new WebhookPayload()
+            {
+                Username = Loc.GetString("custom-vote-webhook-name"),
+                Embeds = new List<WebhookEmbed>
+                {
+                    new()
+                    {
+                        Title = $"{shell.Player}",
+                        Color = 13438992,
+                        Description = options.Title,
+                        Footer = new WebhookEmbedFooter
+                        {
+                            Text = $"{_serverName} {_gameTicker.RoundId} {_gameTicker.RunLevel}",
+                        },
+
+                        Fields = new List<WebhookEmbedField> {},
+                    },
+                },
+            };
+
+            foreach (var voteOption in options.Options)
+            {
+                var NewVote = new WebhookEmbedField() { Name = voteOption.text,  Value = "0"};
+                payload.Embeds[0].Fields.Add(NewVote);
+            }
+
+            WebhookMessage(payload);
+
             options.SetInitiatorOrServer(shell.Player);
 
             if (shell.Player != null)
@@ -112,34 +154,38 @@ namespace Content.Server.Voting
             else
                 _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Initiated a custom vote: {options.Title} - {string.Join("; ", options.Options.Select(x => x.text))}");
 
-            var vote = _voteManager.CreateVote(options);
-
-            var webhookState = CreateWebhookIfConfigured(options);
+            var vote = mgr.CreateVote(options);
 
             vote.OnFinished += (_, eventArgs) =>
             {
+                var chatMgr = IoCManager.Resolve<IChatManager>();
                 if (eventArgs.Winner == null)
                 {
                     var ties = string.Join(", ", eventArgs.Winners.Select(c => args[(int) c]));
                     _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Custom vote {options.Title} finished as tie: {ties}");
-                    _chatManager.DispatchServerAnnouncement(Loc.GetString("cmd-customvote-on-finished-tie", ("ties", ties)));
+                    chatMgr.DispatchServerAnnouncement(Loc.GetString("cmd-customvote-on-finished-tie",("ties", ties)));
                 }
                 else
                 {
                     _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Custom vote {options.Title} finished: {args[(int) eventArgs.Winner]}");
-                    _chatManager.DispatchServerAnnouncement(Loc.GetString("cmd-customvote-on-finished-win", ("winner", args[(int) eventArgs.Winner])));
+                    chatMgr.DispatchServerAnnouncement(Loc.GetString("cmd-customvote-on-finished-win",("winner", args[(int) eventArgs.Winner])));
                 }
 
-                UpdateWebhookIfConfigured(webhookState, eventArgs);
-            };
+                for (int i = 0; i < eventArgs.Votes.Count; i++)
+                {
+                    var oldName = payload.Embeds[0].Fields[i].Name;
+                    var newValue = eventArgs.Votes[i].ToString();
+                    var newEmbed = payload.Embeds[0];
+                    newEmbed.Color = 2353993;
+                    payload.Embeds[0] = newEmbed;
+                    payload.Embeds[0].Fields[i] = new WebhookEmbedField() { Name = oldName, Value = newValue, Inline =  true};
+                }
 
-            vote.OnCancelled += _ =>
-            {
-                UpdateCancelledWebhookIfConfigured(webhookState);
+                WebhookMessage(payload, _webhookId);
             };
         }
 
-        public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
+        public CompletionResult GetCompletion(IConsoleShell shell, string[] args)
         {
             if (args.Length == 1)
                 return CompletionResult.FromHint(Loc.GetString("cmd-customvote-arg-title"));
@@ -151,159 +197,39 @@ namespace Content.Server.Voting
             return CompletionResult.FromHint(Loc.GetString("cmd-customvote-arg-option-n", ("n", n)));
         }
 
-        private WebhookState? CreateWebhookIfConfigured(VoteOptions voteOptions)
-        {
-            // All this webhook code is complete garbage.
-            // I tried to clean it up somewhat, at least to fix the glaring bugs in it.
-            // Jesus christ man what is with our code review process.
-
-            var webhookUrl = _cfg.GetCVar(CCVars.DiscordVoteWebhook);
-            if (string.IsNullOrEmpty(webhookUrl))
-                return null;
-
-            // Set up the webhook payload
-            var serverName = _baseServer.ServerName;
-
-            var fields = new List<WebhookEmbedField>();
-
-            foreach (var voteOption in voteOptions.Options)
-            {
-                var newVote = new WebhookEmbedField
-                {
-                    Name = voteOption.text,
-                    Value = Loc.GetString("custom-vote-webhook-option-pending")
-                };
-                fields.Add(newVote);
-            }
-
-            var runLevel = Loc.GetString($"game-run-level-{_gameTicker.RunLevel}");
-
-            var payload = new WebhookPayload()
-            {
-                Username = Loc.GetString("custom-vote-webhook-name"),
-                Embeds = new List<WebhookEmbed>
-                {
-                    new()
-                    {
-                        Title = voteOptions.InitiatorText,
-                        Color = 13438992, // #CD1010
-                        Description = voteOptions.Title,
-                        Footer = new WebhookEmbedFooter
-                        {
-                            Text = Loc.GetString(
-                                "custom-vote-webhook-footer",
-                                ("serverName", serverName),
-                                ("roundId", _gameTicker.RoundId),
-                                ("runLevel", runLevel)),
-                        },
-
-                        Fields = fields,
-                    },
-                },
-            };
-
-            var state = new WebhookState
-            {
-                WebhookUrl = webhookUrl,
-                Payload = payload,
-            };
-
-            CreateWebhookMessage(state, payload);
-
-            return state;
-        }
-
-        private void UpdateWebhookIfConfigured(WebhookState? state, VoteFinishedEventArgs finished)
-        {
-            if (state == null)
-                return;
-
-            var embed = state.Payload.Embeds![0];
-            embed.Color = 2353993; // #23EB49
-
-            for (var i = 0; i < finished.Votes.Count; i++)
-            {
-                var oldName = embed.Fields[i].Name;
-                var newValue = finished.Votes[i].ToString();
-                embed.Fields[i] = new WebhookEmbedField { Name = oldName, Value = newValue, Inline =  true};
-            }
-
-            state.Payload.Embeds[0] = embed;
-
-            UpdateWebhookMessage(state, state.Payload, state.MessageId);
-        }
-
-        private void UpdateCancelledWebhookIfConfigured(WebhookState? state)
-        {
-            if (state == null)
-                return;
-
-            var embed = state.Payload.Embeds![0];
-            embed.Color = 13356304; // #CBCD10
-            embed.Description += "\n\n" + Loc.GetString("custom-vote-webhook-cancelled");
-
-            for (var i = 0; i < embed.Fields.Count; i++)
-            {
-                var oldName = embed.Fields[i].Name;
-                embed.Fields[i] = new WebhookEmbedField { Name = oldName, Value = Loc.GetString("custom-vote-webhook-option-cancelled"), Inline =  true};
-            }
-
-            state.Payload.Embeds[0] = embed;
-
-            UpdateWebhookMessage(state, state.Payload, state.MessageId);
-        }
-
         // Sends the payload's message.
-        private async void CreateWebhookMessage(WebhookState state, WebhookPayload payload)
+        private async void WebhookMessage(WebhookPayload payload)
         {
-            try
-            {
-                if (await _discord.GetWebhook(state.WebhookUrl) is not { } identifier)
-                    return;
+            if (string.IsNullOrEmpty(_webhookUrl))
+                return;
 
-                state.Identifier = identifier.ToIdentifier();
+            if (await _discord.GetWebhook(_webhookUrl) is not { } identifier)
+                return;
 
-                _sawmill.Debug(JsonSerializer.Serialize(payload));
+            _webhookIdentifier = identifier.ToIdentifier();
 
-                var request = await _discord.CreateMessage(identifier.ToIdentifier(), payload);
-                var content = await request.Content.ReadAsStringAsync();
-                state.MessageId = ulong.Parse(JsonNode.Parse(content)?["id"]!.GetValue<string>()!);
-            }
-            catch (Exception e)
-            {
-                _sawmill.Error($"Error while sending vote webhook to Discord: {e}");
-            }
+            _sawmill.Debug(JsonSerializer.Serialize(payload));
+
+            var request = await _discord.CreateMessage(_webhookIdentifier.Value, payload);
+            var content = await request.Content.ReadAsStringAsync();
+            _webhookId = ulong.Parse(JsonNode.Parse(content)?["id"]!.GetValue<string>()!);
         }
 
         // Edits a pre-existing payload message, given an ID
-        private async void UpdateWebhookMessage(WebhookState state, WebhookPayload payload, ulong id)
+        private async void WebhookMessage(WebhookPayload payload, ulong id)
         {
-            if (state.MessageId == 0)
-            {
-                _sawmill.Warning("Failed to deliver update to custom vote webhook: message ID was zero. This likely indicates a previous connection error sending the original message.");
+            if (string.IsNullOrEmpty(_webhookUrl))
                 return;
-            }
 
-            DebugTools.Assert(state.Identifier != default);
+            if (await _discord.GetWebhook(_webhookUrl) is not { } identifier)
+                return;
 
-            try
-            {
-                await _discord.EditMessage(state.Identifier, id, payload);
-            }
-            catch (Exception e)
-            {
-                _sawmill.Error($"Error while updating vote webhook on Discord: {e}");
-            }
-        }
+            _webhookIdentifier = identifier.ToIdentifier();
 
-        private sealed class WebhookState
-        {
-            public required string WebhookUrl;
-            public required WebhookPayload Payload;
-            public WebhookIdentifier Identifier;
-            public ulong MessageId;
+            var request = await _discord.EditMessage(_webhookIdentifier.Value, id, payload);
         }
     }
+
 
     [AnyCommand]
     public sealed class VoteCommand : IConsoleCommand

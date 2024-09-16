@@ -155,7 +155,7 @@ public sealed partial class GuideReagentReaction : BoxContainer, ISearchableCont
         var i = 0;
         foreach (var (product, amount) in reagents.OrderByDescending(p => p.Value))
         {
-            msg.AddMarkupOrThrow(Loc.GetString("guidebook-reagent-recipes-reagent-display",
+            msg.AddMarkup(Loc.GetString("guidebook-reagent-recipes-reagent-display",
                 ("reagent", protoMan.Index<ReagentPrototype>(product).LocalizedName), ("ratio", amount)));
             i++;
             if (i < reagentCount)

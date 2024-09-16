@@ -16,7 +16,7 @@
       layers:
         - state: station_map_broken
     - type: Damageable
-      damageContainer: StructuralInorganic
+      damageContainer: Inorganic
     - type: Destructible
       thresholds:
         - trigger:

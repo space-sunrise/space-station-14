@@ -30,8 +30,8 @@
       map: [ "enum.CargoTelepadLayers.Beam" ]
       shader: unshaded
   - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
   - type: DeviceNetwork
     deviceNetId: Wireless
     receiveFrequencyId: BasicDevice

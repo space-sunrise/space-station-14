@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Server.Access.Systems;
 using Content.Server.Administration.Logs;
 using Content.Server.CartridgeLoader;
 using Content.Server.CartridgeLoader.Cartridges;
@@ -18,7 +19,6 @@ using Content.Shared.MassMedia.Systems;
 using Content.Shared.Popups;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
-using Content.Shared.IdentityManagement;
 using Robust.Shared.Timing;
 
 namespace Content.Server.MassMedia.Systems;
@@ -36,6 +36,7 @@ public sealed class NewsSystem : SharedNewsSystem
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly AccessReaderSystem _accessReader = default!;
+    [Dependency] private readonly IdCardSystem _idCardSystem = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
 
     public override void Initialize()
@@ -51,8 +52,6 @@ public sealed class NewsSystem : SharedNewsSystem
             subs.Event<NewsWriterDeleteMessage>(OnWriteUiDeleteMessage);
             subs.Event<NewsWriterArticlesRequestMessage>(OnRequestArticlesUiMessage);
             subs.Event<NewsWriterPublishMessage>(OnWriteUiPublishMessage);
-            subs.Event<NewsWriterSaveDraftMessage>(OnNewsWriterDraftUpdatedMessage);
-            subs.Event<NewsWriterRequestDraftMessage>(OnRequestArticleDraftMessage);
         });
 
         // News reader
@@ -142,9 +141,9 @@ public sealed class NewsSystem : SharedNewsSystem
         ent.Comp.PublishEnabled = false;
         ent.Comp.NextPublish = _timing.CurTime + TimeSpan.FromSeconds(ent.Comp.PublishCooldown);
 
-        var tryGetIdentityShortInfoEvent = new TryGetIdentityShortInfoEvent(ent, msg.Actor);
-        RaiseLocalEvent(tryGetIdentityShortInfoEvent);
-        string? authorName = tryGetIdentityShortInfoEvent.Title;
+        string? authorName = null;
+        if (_idCardSystem.TryFindIdCard(msg.Actor, out var idCard))
+            authorName = idCard.Comp.FullName;
 
         var title = msg.Title.Trim();
         var content = msg.Content.Trim();
@@ -258,7 +257,7 @@ public sealed class NewsSystem : SharedNewsSystem
         if (!TryGetArticles(ent, out var articles))
             return;
 
-        var state = new NewsWriterBoundUserInterfaceState(articles.ToArray(), ent.Comp.PublishEnabled, ent.Comp.NextPublish, ent.Comp.DraftTitle, ent.Comp.DraftContent);
+        var state = new NewsWriterBoundUserInterfaceState(articles.ToArray(), ent.Comp.PublishEnabled, ent.Comp.NextPublish);
         _ui.SetUiState(ent.Owner, NewsWriterUiKey.Key, state);
     }
 
@@ -320,14 +319,4 @@ public sealed class NewsSystem : SharedNewsSystem
         return true;
     }
 
-    private void OnNewsWriterDraftUpdatedMessage(Entity<NewsWriterComponent> ent, ref NewsWriterSaveDraftMessage args)
-    {
-        ent.Comp.DraftTitle = args.DraftTitle;
-        ent.Comp.DraftContent = args.DraftContent;
-    }
-
-    private void OnRequestArticleDraftMessage(Entity<NewsWriterComponent> ent, ref NewsWriterRequestDraftMessage msg)
-    {
-        UpdateWriterUi(ent);
-    }
 }

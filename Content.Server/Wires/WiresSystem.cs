@@ -387,7 +387,11 @@ public sealed class WiresSystem : SharedWiresSystem
 
     private void OnWiresActionMessage(EntityUid uid, WiresComponent component, WiresActionMessage args)
     {
-        var player = args.Actor;
+        if (args.Actor == null)
+        {
+            return;
+        }
+        var player = (EntityUid) args.Actor;
 
         if (!EntityManager.TryGetComponent(player, out HandsComponent? handsComponent))
         {

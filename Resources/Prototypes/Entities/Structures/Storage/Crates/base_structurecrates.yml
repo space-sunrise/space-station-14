@@ -77,9 +77,6 @@
       whitelist:
         components:
         - Paper
-      blacklist:
-        tags:
-        - Book
   - type: ContainerContainer
     containers:
       entity_storage: !type:Container

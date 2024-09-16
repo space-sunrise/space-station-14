@@ -9,7 +9,7 @@
     state: dresser
   - type: Damageable
     damageModifierSet: Wood
-    damageContainer: StructuralInorganic
+    damageContainer: Inorganic
   - type: Destructible
     thresholds:
     - trigger:

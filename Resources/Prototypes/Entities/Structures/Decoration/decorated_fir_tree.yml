@@ -19,7 +19,7 @@
     autoRot: true
     offset: "0, 0.6"
   - type: Damageable
-    damageContainer: StructuralInorganic
+    damageContainer: Inorganic
     damageModifierSet: Wood
   - type: Destructible
     thresholds:

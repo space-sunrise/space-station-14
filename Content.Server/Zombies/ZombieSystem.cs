@@ -166,8 +166,7 @@ namespace Content.Server.Zombies
 
             args.Handled = true;
             var xform = Transform(uid);
-            var transformSystem = EntitySystem.Get<SharedTransformSystem>();
-            var mapCoords = args.Target.ToMap(EntityManager, transformSystem);
+            var mapCoords = args.Target.ToMap(EntityManager);
             var direction = mapCoords.Position - xform.MapPosition.Position;
 
             if (direction.Length() > component.MaxThrow)

@@ -63,11 +63,6 @@ namespace Content.Shared.Cargo
             Reason = reason;
         }
 
-        public void SetApproverData(string? approver)
-        {
-            Approver = approver;
-        }
-
         public void SetApproverData(string? fullName, string? jobTitle)
         {
             var sb = new StringBuilder();

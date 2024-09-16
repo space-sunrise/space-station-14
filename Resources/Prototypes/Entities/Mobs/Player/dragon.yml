@@ -106,7 +106,6 @@
     - Pacified
     - RadiationProtection
     - Drowsiness
-    - Adrenaline
   - type: Temperature
     heatDamageThreshold: 800
   - type: Metabolizer
@@ -252,4 +251,3 @@
     priority: 2
     checkCanAccess: false
     range: 0
-    itemIconStyle: BigAction

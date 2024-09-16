@@ -4,7 +4,6 @@
   name: SmartFridge
   description: A refrigerated storage unit for keeping items cold and fresh.
   components:
-  - type: StationAiWhitelist
   - type: Advertise
     pack: SmartFridgeAds
   - type: Speech
@@ -85,7 +84,7 @@
         sound:
           collection: MetalBreak
   - type: Damageable
-    damageContainer: StructuralInorganic
+    damageContainer: Inorganic
     damageModifierSet: Metallic
   - type: DamageOnHighSpeedImpact
     damage:

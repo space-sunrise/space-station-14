@@ -46,8 +46,8 @@
   components:
   - type: Appearance
   - type: EntityStorageVisuals
-    stateBaseClosed: n2
-    stateDoorOpen: n2_open
+    stateBaseClosed: fire
+    stateDoorOpen: fire_open
     stateDoorClosed: n2_door
 
 # Fire safety closet

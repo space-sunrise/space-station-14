@@ -69,7 +69,7 @@
     damageOverlay:
       sprite: Structures/Storage/glassbox.rsi
   - type: Damageable
-    damageContainer: StructuralInorganic
+    damageContainer: Inorganic
     damageModifierSet: Glass
   - type: MeleeSound
     soundGroups:

@@ -10,7 +10,7 @@
     - type: WirelessNetworkConnection
       range: 200
     - type: Damageable
-      damageContainer: StructuralInorganic
+      damageContainer: Inorganic
       damageModifierSet: Metallic
     - type: Rotatable
       rotateWhileAnchored: true

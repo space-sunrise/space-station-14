@@ -15,7 +15,7 @@
     energy: 3
     color: "#FFC90C"
   - type: Damageable
-    damageContainer: StructuralInorganic
+    damageContainer: Inorganic
     damageModifierSet: Wood
   - type: Destructible
     thresholds:

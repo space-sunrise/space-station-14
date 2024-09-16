@@ -206,7 +206,6 @@
     items:
     - MiningDrill
     - Shovel
-    - MineralScannerUnpowered
     - OreBag
     - Crowbar
     - RadioHandheld

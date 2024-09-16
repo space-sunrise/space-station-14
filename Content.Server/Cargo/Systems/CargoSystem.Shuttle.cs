@@ -67,6 +67,11 @@ public sealed partial class CargoSystem
 
     private void OnPalletUIOpen(EntityUid uid, CargoPalletConsoleComponent component, BoundUIOpenedEvent args)
     {
+        var player = args.Actor;
+
+        if (player == null)
+            return;
+
         UpdatePalletConsoleInterface(uid);
     }
 
@@ -80,6 +85,11 @@ public sealed partial class CargoSystem
 
     private void OnPalletAppraise(EntityUid uid, CargoPalletConsoleComponent component, CargoPalletAppraiseMessage args)
     {
+        var player = args.Actor;
+
+        if (player == null)
+            return;
+
         UpdatePalletConsoleInterface(uid);
     }
 

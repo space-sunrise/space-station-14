@@ -44,7 +44,7 @@
     lockTime: 5
     unlockTime: 5
   - type: Damageable
-    damageContainer: StructuralInorganic
+    damageContainer: Inorganic
     damageModifierSet: Metallic
   - type: Destructible
     thresholds:

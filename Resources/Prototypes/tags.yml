@@ -205,9 +205,6 @@
   id: BorgServiceTorso
 
 - type: Tag
-  id: Bot
-
-- type: Tag
   id: BotanyHatchet
 
 - type: Tag
@@ -224,9 +221,6 @@
 
 - type: Tag
   id: BoxHug
-
-- type: Tag
-  id: Brain
 
 - type: Tag
   id: BrassInstrument
@@ -250,16 +244,10 @@
   id: Bucket
 
 - type: Tag
-  id: Burger
-
-- type: Tag
   id: BulletFoam
 
 - type: Tag
   id: Burnt
-
-- type: Tag
-  id: Bun
 
 - type: Tag
   id: BypassDropChecks
@@ -379,9 +367,6 @@
 - type: Tag
   id: Chicken
 
-- type: Tag
-  id: Cheese
-
 # Allowed to control someone wearing a Chef's hat if inside their hat.
 - type: Tag
   id: ChefPilot
@@ -457,9 +442,6 @@
 
 - type: Tag
   id: Cow
-
-- type: Tag
-  id: Crab
 
 - type: Tag
   id: Crayon
@@ -843,9 +825,6 @@
   id: Lemon
 
 - type: Tag
-  id: LightBulb
-
-- type: Tag
   id: Lime
 
 - type: Tag
@@ -1160,18 +1139,6 @@
   id: SecBeltEquip
 
 - type: Tag
-  id: SecurePlasmaWindoor
-
-- type: Tag
-  id: SecureUraniumWindoor
-
-- type: Tag
-  id: SecureWindoor
-
-- type: Tag  
-  id: SecurityHelmet
-
-- type: Tag
   id: SecwayKeys
 
 - type: Tag
@@ -1292,9 +1259,6 @@
   id: TabletopBoard
 
 - type: Tag
-  id: Taco
-
-- type: Tag
   id: TabletopPiece
 
 - type: Tag
@@ -1347,9 +1311,6 @@
 
 - type: Tag
   id: Vegetable
-
-- type: Tag
-  id: VGRoidInterior
 
 - type: Tag
   id: VimPilot

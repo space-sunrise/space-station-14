@@ -140,7 +140,6 @@
     - Flashed
     - RadiationProtection
     - Drowsiness
-    - Adrenaline
     - LoveEffect  # Sunrise-Aphrodesiac
   - type: Body
     prototype: Human

@@ -124,7 +124,3 @@
     snapCardinals: true
   - type: Machine
     board: SyndicateMicrowaveMachineCircuitboard
-  - type: FoodRecipeProvider
-    providedRecipes:
-    - RecipeBaguetteSword
-    - RecipeThrowingCroissant

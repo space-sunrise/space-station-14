@@ -168,7 +168,7 @@
     replacementTiles:
     - FloorMetalFoam
   - type: Damageable
-    damageContainer: StructuralInorganic
+    damageContainer: Inorganic
     damageModifierSet: Metallic
   - type: Destructible
     thresholds:

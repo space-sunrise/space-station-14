@@ -1,10 +1,9 @@
 - type: entity
   parent: BaseComputer
   id: ComputerAlert
-  name: atmospheric alerts computer
-  description: Used to access the station's atmospheric automated alert system.
+  name: alerts computer
+  description: Used to access the station's automated alert system.
   components:
-  - type: StationAiWhitelist
   - type: Computer
     board: AlertsComputerCircuitboard
   - type: Sprite
@@ -14,33 +13,9 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: alert-0
+      state: alert-2
     - map: ["computerLayerKeys"]
       state: atmos_key
-  - type: GenericVisualizer
-    visuals:
-      enum.ComputerVisuals.Powered:
-        computerLayerScreen:
-          True: { visible: true, shader: unshaded }
-          False: { visible: false }
-        computerLayerKeys:
-          True: { visible: true, shader: unshaded }
-          False: { visible: true, shader: shaded }   
-      enum.AtmosAlertsComputerVisuals.ComputerLayerScreen:
-        computerLayerScreen:
-          0: { state: alert-0 }
-          1: { state: alert-0 }
-          2: { state: alert-1 }
-          3: { state: alert-2 }
-          4: { state: alert-2 }
-  - type: AtmosAlertsComputer
-  - type: ActivatableUI
-    singleUser: true
-    key: enum.AtmosAlertsComputerUiKey.Key
-  - type: UserInterface
-    interfaces:
-        enum.AtmosAlertsComputerUiKey.Key:
-            type: AtmosAlertsComputerBoundUserInterface
 
 - type: entity
   parent: BaseComputer
@@ -185,12 +160,41 @@
     stealGroup: CargoShuttleConsoleCircuitboard
 
 - type: entity
+  parent: BaseComputerShuttle
+  id: ComputerShuttleSalvage
+  name: salvage shuttle console
+  description: Used to pilot the salvage shuttle.
+  components:
+    - type: Sprite
+      layers:
+        - map: ["computerLayerBody"]
+          state: computer
+        - map: ["computerLayerKeyboard"]
+          state: generic_keyboard
+        - map: ["computerLayerScreen"]
+          state: shuttle
+        - map: ["computerLayerKeys"]
+          state: generic_keys
+    - type: DroneConsole
+      components:
+        - type: SalvageShuttle
+    - type: RadarConsole
+      maxRange: 256
+    - type: PointLight
+      radius: 1.5
+      energy: 1.6
+      color: "#43ccb5"
+    - type: Computer
+      board: SalvageShuttleConsoleCircuitboard
+    - type: StealTarget
+      stealGroup: SalvageShuttleConsoleCircuitboard
+
+- type: entity
   parent: BaseComputer
   id: ComputerIFF
   name: IFF computer
   description: Allows you to control the IFF characteristics of this vessel.
   components:
-  - type: StationAiWhitelist
   - type: IFFConsole
   - type: Sprite
     layers:
@@ -238,7 +242,6 @@
   name: power monitoring computer
   description: It monitors power levels across the station.
   components:
-  - type: StationAiWhitelist
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]
@@ -277,7 +280,6 @@
   name: medical records computer
   description: This can be used to check medical records.
   components:
-  - type: StationAiWhitelist
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]
@@ -301,7 +303,6 @@
   name: criminal records computer
   description: This can be used to check criminal records. Only security can modify them.
   components:
-  - type: StationAiWhitelist
   - type: CriminalRecordsConsole
   - type: UserInterface
     interfaces:
@@ -337,7 +338,6 @@
   name: station records computer
   description: This can be used to check station records.
   components:
-  - type: StationAiWhitelist
   - type: GeneralStationRecordConsole
   - type: UserInterface
     interfaces:
@@ -361,7 +361,6 @@
   name: crew monitoring console
   description: Used to monitor active health sensors built into most of the crew's uniforms.
   components:
-  - type: StationAiWhitelist
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]
@@ -397,7 +396,6 @@
   name: R&D computer
   description: A computer used to interface with R&D tools.
   components:
-  - type: StationAiWhitelist
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]
@@ -442,7 +440,6 @@
   name: analysis console
   description: A computer used to interface with the artifact analyzer.
   components:
-  - type: StationAiWhitelist
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]
@@ -489,7 +486,6 @@
   name: ID card computer
   description: Terminal for programming Nanotrasen employee ID cards to access parts of the station.
   components:
-  - type: StationAiWhitelist
   - type: IdCardConsole
     privilegedIdSlot:
       name: id-card-console-privileged-id
@@ -549,7 +545,6 @@
   name: body scanner computer
   description: A body scanner.
   components:
-  - type: StationAiWhitelist
   - type: ApcPowerReceiver
     powerLoad: 500
   - type: Computer
@@ -595,8 +590,8 @@
     energy: 1.6
     color: "#3c5eb5"
   - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
+    damageContainer: Inorganic
+    damageModifierSet: StrongMetallic
 
 - type: entity
   parent: ComputerComms
@@ -636,7 +631,6 @@
   name: solar control computer
   description: A controller for solar panel arrays.
   components:
-  - type: StationAiWhitelist
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]
@@ -667,7 +661,6 @@
   name: mass scanner computer
   description: A computer for detecting nearby bodies, displaying them by position and mass.
   components:
-  - type: StationAiWhitelist
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]
@@ -698,7 +691,6 @@
   name: cargo shuttle computer
   description: Used to order the shuttle.
   components:
-  - type: StationAiWhitelist
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]
@@ -734,7 +726,6 @@
   name: cargo request computer
   description: Used to order supplies and approve requests.
   components:
-  - type: StationAiWhitelist
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]
@@ -783,7 +774,6 @@
   name: cargo bounty computer
   description: Used to manage currently active bounties.
   components:
-  - type: StationAiWhitelist
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]
@@ -820,7 +810,6 @@
   name: cloning console computer
   description: The centerpiece of the cloning system, medicine's greatest accomplishment. It has lots of ports and wires.
   components:
-  - type: StationAiWhitelist
   - type: CloningConsole
   - type: DeviceList
   - type: DeviceNetwork
@@ -858,8 +847,8 @@
     speechVerb: Robotic
     speechSounds: Pai
   - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
+    damageContainer: Inorganic
+    damageModifierSet: StrongMetallic
   - type: GuideHelp
     guides:
     - Cloning
@@ -870,7 +859,6 @@
   name: salvage expeditions computer
   description: Used to accept salvage missions, if you're tough enough.
   components:
-    - type: StationAiWhitelist
     - type: Sprite
       layers:
         - map: ["computerLayerBody"]
@@ -988,7 +976,6 @@
   name: cargo sale computer
   description: Used to sell goods loaded onto cargo pallets.
   components:
-  - type: StationAiWhitelist
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]
@@ -1029,7 +1016,6 @@
   name: news manager console
   description: Write your message to the world!
   components:
-  - type: StationAiWhitelist
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]
@@ -1105,7 +1091,6 @@
   name: robotics control console
   description: Used to remotely monitor, disable and destroy the station's cyborgs.
   components:
-  - type: StationAiWhitelist
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]
@@ -1157,8 +1142,6 @@
       state: generic_keys
   - type: ApcPowerReceiver
     powerLoad: 1000
-  - type: Computer
-    board: StationAiUploadCircuitboard
   - type: AccessReader
     access: [ [ "ResearchDirector" ] ]
   - type: Lock
@@ -1176,7 +1159,6 @@
         name: circuit-holder
         insertSuccessPopup: silicon-laws-updated
         whitelist:
-          requireAll: true
           components:
           - SiliconLawProvider
           - Item

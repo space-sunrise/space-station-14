@@ -23,7 +23,7 @@
     anchored: true
   - type: Damageable
     damageModifierSet: Wood
-    damageContainer: StructuralInorganic
+    damageContainer: Inorganic
   - type: Destructible
     thresholds:
     - trigger:

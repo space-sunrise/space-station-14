@@ -200,8 +200,7 @@ public sealed class IonStormRule : StationEventSystem<IonStormRuleComponent>
         {
             0 => threats,
             1 => crew1,
-            2 => objects,
-            _ => throw new IndexOutOfRangeException(),
+            2 => objects
         };
         var crewAll = RobustRandom.Prob(0.5f) ? crew2 : Loc.GetString("ion-storm-crew");
         var objectsThreats = RobustRandom.Prob(0.5f) ? objects : threats;

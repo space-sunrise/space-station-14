@@ -31,7 +31,6 @@
         state: rock_asteroid_north
       - map: [ "enum.EdgeLayer.West" ]
         state: rock_asteroid_west
-  - type: MiningScannerViewable
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Rock
@@ -71,7 +70,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_asteroid_west
         - state: rock_coal
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: AsteroidRockGold
@@ -94,7 +92,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_asteroid_west
         - state: rock_gold
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: AsteroidRockDiamond
@@ -117,7 +114,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_asteroid_west
         - state: rock_diamond
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: AsteroidRockPlasma
@@ -140,7 +136,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_asteroid_west
         - state: rock_phoron
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: AsteroidRockQuartz
@@ -163,7 +158,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_asteroid_west
         - state: rock_quartz
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: AsteroidRockQuartzCrab
@@ -186,7 +180,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_asteroid_west
         - state: rock_quartz
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: AsteroidRockSilver
@@ -209,7 +202,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_asteroid_west
         - state: rock_silver
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: AsteroidRockSilverCrab
@@ -242,7 +234,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_asteroid_west
         - state: rock_tin
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: AsteroidRockTinCrab
@@ -274,7 +265,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_asteroid_west
         - state: rock_uranium
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: AsteroidRockUraniumCrab
@@ -306,7 +296,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_asteroid_west
         - state: rock_bananium
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: AsteroidRockSalt
@@ -329,7 +318,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_asteroid_west
         - state: rock_salt
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: AsteroidRockArtifactFragment
@@ -352,7 +340,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_asteroid_west
         - state: rock_artifact_fragment
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: AsteroidRockMining
@@ -425,7 +412,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: ironrock_west
         - state: rock_coal
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: IronRockGold
@@ -448,7 +434,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: ironrock_west
         - state: rock_gold
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: IronRockPlasma
@@ -471,7 +456,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: ironrock_west
         - state: rock_phoron
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: IronRockQuartz
@@ -494,7 +478,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: ironrock_west
         - state: rock_quartz
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: IronRockSilver
@@ -517,7 +500,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: ironrock_west
         - state: rock_silver
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: IronRockIron
@@ -540,7 +522,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: ironrock_west
         - state: rock_tin
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: IronRockUranium
@@ -563,7 +544,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: ironrock_west
         - state: rock_uranium
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: IronRockBananium
@@ -586,7 +566,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: ironrock_west
         - state: rock_bananium
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: IronRockSalt
@@ -609,7 +588,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: ironrock_west
         - state: rock_salt
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: IronRockArtifactFragment
@@ -632,7 +610,6 @@
     - map: [ "enum.EdgeLayer.West" ]
       state: ironrock_west
     - state: rock_artifact_fragment
-      map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: IronRockDiamond
@@ -655,7 +632,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: ironrock_west
         - state: rock_diamond
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 # Rocks and ore veins
 - type: entity
@@ -672,7 +648,7 @@
         tags:
           - Pickaxe
     - type: Damageable
-      damageContainer: StructuralInorganic
+      damageContainer: Inorganic
       damageModifierSet: Metallic
     - type: Destructible
       thresholds:
@@ -688,7 +664,6 @@
     - type: Icon
       sprite: Structures/Walls/rock.rsi
       state: rock
-    - type: MiningScannerViewable
     - type: SmoothEdge
     - type: Sprite
       sprite: Structures/Walls/rock.rsi
@@ -732,7 +707,6 @@
       - map: [ "enum.EdgeLayer.West" ]
         state: rock_west
       - state: rock_coal
-        map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockGold
@@ -762,7 +736,6 @@
       - map: [ "enum.EdgeLayer.West" ]
         state: rock_west
       - state: rock_gold
-        map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockDiamond
@@ -785,7 +758,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_west
         - state: rock_diamond
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockPlasma
@@ -815,7 +787,6 @@
       - map: [ "enum.EdgeLayer.West" ]
         state: rock_west
       - state: rock_phoron
-        map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockQuartz
@@ -845,7 +816,6 @@
       - map: [ "enum.EdgeLayer.West" ]
         state: rock_west
       - state: rock_quartz
-        map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockSilver
@@ -875,7 +845,6 @@
       - map: [ "enum.EdgeLayer.West" ]
         state: rock_west
       - state: rock_silver
-        map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 # Yes I know it drops steel but we may get smelting at some point
 - type: entity
@@ -906,7 +875,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_west
         - state: rock_tin
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockUranium
@@ -936,7 +904,6 @@
       - map: [ "enum.EdgeLayer.West" ]
         state: rock_west
       - state: rock_uranium
-        map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 
 - type: entity
@@ -967,7 +934,6 @@
       - map: [ "enum.EdgeLayer.West" ]
         state: rock_west
       - state: rock_bananium
-        map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockArtifactFragment
@@ -997,7 +963,6 @@
       - map: [ "enum.EdgeLayer.West" ]
         state: rock_west
       - state: rock_artifact_fragment
-        map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockSalt
@@ -1027,7 +992,6 @@
       - map: [ "enum.EdgeLayer.West" ]
         state: rock_west
       - state: rock_salt
-        map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 # Basalt variants
 - type: entity
@@ -1072,7 +1036,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_wall_west
         - state: rock_coal
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockBasaltGold
@@ -1095,7 +1058,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_wall_west
         - state: rock_gold
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockBasaltDiamond
@@ -1118,7 +1080,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_wall_west
         - state: rock_diamond
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockBasaltPlasma
@@ -1141,7 +1102,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_wall_west
         - state: rock_phoron
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockBasaltQuartz
@@ -1164,7 +1124,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_wall_west
         - state: rock_quartz
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockBasaltSilver
@@ -1187,7 +1146,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_wall_west
         - state: rock_silver
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockBasaltTin
@@ -1210,7 +1168,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_wall_west
         - state: rock_tin
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockBasaltUranium
@@ -1233,7 +1190,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_wall_west
         - state: rock_uranium
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 
 - type: entity
@@ -1257,7 +1213,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_wall_west
         - state: rock_bananium
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockBasaltArtifactFragment
@@ -1280,7 +1235,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_wall_west
         - state: rock_artifact_fragment
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockBasaltSalt
@@ -1303,7 +1257,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_wall_west
         - state: rock_salt
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 # Snow variants
 - type: entity
@@ -1348,7 +1301,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_snow_west
         - state: rock_coal
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockSnowGold
@@ -1371,7 +1323,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_snow_west
         - state: rock_gold
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockSnowDiamond
@@ -1394,7 +1345,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_snow_west
         - state: rock_diamond
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockSnowPlasma
@@ -1417,7 +1367,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_snow_west
         - state: rock_phoron
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockSnowQuartz
@@ -1440,7 +1389,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_snow_west
         - state: rock_quartz
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockSnowSilver
@@ -1463,7 +1411,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_snow_west
         - state: rock_silver
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockSnowTin
@@ -1486,7 +1433,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_snow_west
         - state: rock_tin
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockSnowUranium
@@ -1509,7 +1455,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_snow_west
         - state: rock_uranium
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 
 - type: entity
@@ -1533,7 +1478,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_snow_west
         - state: rock_bananium
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockSnowArtifactFragment
@@ -1556,7 +1500,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_snow_west
         - state: rock_artifact_fragment
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockSnowSalt
@@ -1579,7 +1522,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_snow_west
         - state: rock_salt
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 # Sand variants
 - type: entity
@@ -1624,7 +1566,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_sand_west
         - state: rock_coal
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockSandGold
@@ -1647,7 +1588,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_sand_west
         - state: rock_gold
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockSandDiamond
@@ -1670,7 +1610,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_sand_west
         - state: rock_diamond
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockSandPlasma
@@ -1693,7 +1632,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_sand_west
         - state: rock_phoron
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockSandQuartz
@@ -1716,7 +1654,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_sand_west
         - state: rock_quartz
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockSandSilver
@@ -1739,7 +1676,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_sand_west
         - state: rock_silver
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockSandTin
@@ -1762,7 +1698,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_sand_west
         - state: rock_tin
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockSandUranium
@@ -1785,7 +1720,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_sand_west
         - state: rock_uranium
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockSandBananium
@@ -1808,7 +1742,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_sand_west
         - state: rock_bananium
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockSandArtifactFragment
@@ -1831,7 +1764,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_sand_west
         - state: rock_artifact_fragment
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockSandSalt
@@ -1854,7 +1786,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_sand_west
         - state: rock_salt
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 # Chromite variants
 - type: entity
@@ -1899,7 +1830,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_chromite_west
         - state: rock_coal
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockChromiteGold
@@ -1922,7 +1852,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_chromite_west
         - state: rock_gold
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockChromiteDiamond
@@ -1945,7 +1874,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_chromite_west
         - state: rock_diamond
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockChromitePlasma
@@ -1968,7 +1896,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_chromite_west
         - state: rock_phoron
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockChromiteQuartz
@@ -1991,7 +1918,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_chromite_west
         - state: rock_quartz
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockChromiteSilver
@@ -2014,7 +1940,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_chromite_west
         - state: rock_silver
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockChromiteTin
@@ -2037,7 +1962,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_chromite_west
         - state: rock_tin
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockChromiteUranium
@@ -2060,7 +1984,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_chromite_west
         - state: rock_uranium
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 
 - type: entity
@@ -2084,7 +2007,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_chromite_west
         - state: rock_bananium
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockChromiteArtifactFragment
@@ -2107,7 +2029,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_chromite_west
         - state: rock_artifact_fragment
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockChromiteSalt
@@ -2130,7 +2051,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_chromite_west
         - state: rock_salt
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 # Andesite variants
 - type: entity
@@ -2175,7 +2095,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_andesite_west
         - state: rock_coal
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockAndesiteGold
@@ -2198,7 +2117,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_andesite_west
         - state: rock_gold
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockAndesiteDiamond
@@ -2221,7 +2139,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_andesite_west
         - state: rock_diamond
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockAndesitePlasma
@@ -2244,7 +2161,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_andesite_west
         - state: rock_phoron
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockAndesiteQuartz
@@ -2267,7 +2183,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_andesite_west
         - state: rock_quartz
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockAndesiteSilver
@@ -2290,7 +2205,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_andesite_west
         - state: rock_silver
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockAndesiteTin
@@ -2313,7 +2227,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_andesite_west
         - state: rock_tin
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockAndesiteUranium
@@ -2336,7 +2249,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_andesite_west
         - state: rock_uranium
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 
 - type: entity
@@ -2360,7 +2272,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_andesite_west
         - state: rock_bananium
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockAndesiteArtifactFragment
@@ -2383,7 +2294,6 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_andesite_west
         - state: rock_artifact_fragment
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockAndesiteSalt
@@ -2406,4 +2316,3 @@
         - map: [ "enum.EdgeLayer.West" ]
           state: rock_andesite_west
         - state: rock_salt
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]

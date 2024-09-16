@@ -31,7 +31,7 @@
     containers:
       - clonepod-bodyContainer
   - type: Damageable
-    damageContainer: StructuralInorganic
+    damageContainer: Inorganic
     damageModifierSet: StrongMetallic
   - type: Destructible
     thresholds:

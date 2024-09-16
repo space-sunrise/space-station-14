@@ -264,7 +264,7 @@ namespace Content.Server._Sunrise.Carrying
             Transform(carrier).AttachToGridOrMap();
             Transform(carried).AttachToGridOrMap();
             Transform(carried).Coordinates = Transform(carrier).Coordinates;
-            Transform(carried).AttachParent(carrier);
+            Transform(carried).AttachParent(Transform(carrier));
             _virtualItemSystem.TrySpawnVirtualItemInHand(carried, carrier);
             _virtualItemSystem.TrySpawnVirtualItemInHand(carried, carrier);
             var carryingComp = EnsureComp<CarryingComponent>(carrier);

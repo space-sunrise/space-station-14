@@ -18,7 +18,7 @@
   - type: Transform
     anchored: true
   - type: Damageable
-    damageContainer: StructuralInorganic
+    damageContainer: Inorganic
     damageModifierSet: FlimsyMetallic
   - type: Destructible
     thresholds:

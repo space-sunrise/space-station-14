@@ -17,7 +17,7 @@
     fillBaseName: book
   - type: Damageable
     damageModifierSet: Wood
-    damageContainer: StructuralInorganic
+    damageContainer: Inorganic
   - type: Destructible
     thresholds:
     - trigger:

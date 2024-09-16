@@ -11,10 +11,11 @@
 <GuideEntityEmbed Entity="Nettle"/>
 </Box>
 
-<GuideReagentGroupEmbed Group="Botanical"/>
+<GuideReagentEmbed Reagent="Ammonia"/>
+<GuideReagentEmbed Reagent="Diethylamine"/>
+<GuideReagentEmbed Reagent="EZNutrient"/>
+<GuideReagentEmbed Reagent="Left4Zed"/>
+<GuideReagentEmbed Reagent="RobustHarvest"/>
 <GuideReagentEmbed Reagent="UnstableMutagen"/>
-<GuideReagentEmbed Reagent="Cryoxadone"/>
-<GuideReagentEmbed Reagent="Dylovene"/>
-<GuideReagentEmbed Reagent="Phalanximine"/>
 
 </Document>

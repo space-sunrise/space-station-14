@@ -20,7 +20,7 @@
         layer:
         - WallLayer
   - type: Damageable
-    damageContainer: StructuralInorganic
+    damageContainer: Inorganic
     damageModifierSet: Inflatable
   - type: Destructible
     thresholds:
@@ -68,7 +68,7 @@
     closeSound:
       path: /Audio/Misc/zip.ogg
   - type: Damageable
-    damageContainer: StructuralInorganic
+    damageContainer: Inorganic
     damageModifierSet: Inflatable
   - type: Destructible
     thresholds:

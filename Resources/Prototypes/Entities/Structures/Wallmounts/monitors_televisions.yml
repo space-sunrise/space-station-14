@@ -60,7 +60,7 @@
           - WallLayer
   - type: WallMount
   - type: Damageable
-    damageContainer: StructuralInorganic
+    damageContainer: Inorganic
     damageModifierSet: Metallic
   - type: Destructible
     thresholds:

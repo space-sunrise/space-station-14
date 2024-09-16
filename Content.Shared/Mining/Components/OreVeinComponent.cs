@@ -1,7 +1,8 @@
+using Content.Shared.Mining;
 using Content.Shared.Random;
-using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Shared.Mining.Components;
+namespace Content.Server.Mining.Components;
 
 /// <summary>
 /// Defines an entity that will drop a random ore after being destroyed.
@@ -13,19 +14,19 @@ public sealed partial class OreVeinComponent : Component
     /// How often an entity will be seeded with ore. Note: the amount of ore
     /// that is dropped is dependent on the ore prototype. <see crefalso="OrePrototype"/>
     /// </summary>
-    [DataField]
+    [DataField("oreChance")]
     public float OreChance = 0.1f;
 
     /// <summary>
     /// The weighted random prototype used for determining what ore will be dropped.
     /// </summary>
-    [DataField]
-    public ProtoId<WeightedRandomOrePrototype>? OreRarityPrototypeId;
+    [DataField("oreRarityPrototypeId", customTypeSerializer: typeof(PrototypeIdSerializer<WeightedRandomOrePrototype>))]
+    public string? OreRarityPrototypeId;
 
     /// <summary>
     /// The ore that this entity holds.
     /// If set in the prototype, it will not be overriden.
     /// </summary>
-    [DataField]
-    public ProtoId<OrePrototype>? CurrentOre;
+    [DataField("currentOre", customTypeSerializer: typeof(PrototypeIdSerializer<OrePrototype>)), ViewVariables(VVAccess.ReadWrite)]
+    public string? CurrentOre;
 }

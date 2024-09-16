@@ -26,7 +26,7 @@
       - state: wardingtower-unshaded
         shader: unshaded
   - type: Damageable
-    damageContainer: StructuralInorganic
+    damageContainer: Inorganic
     damageModifierSet: Metallic
   - type: Physics
     bodyType: Static

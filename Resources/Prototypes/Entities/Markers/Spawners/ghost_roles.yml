@@ -83,7 +83,7 @@
   parent: MarkerBase
   components:
   - type: GhostRole
-    rules: ghost-role-information-rules-default-team-antagonist
+    rules: ghost-role-information-nukeop-rules
     raffle:
       settings: default
   - type: GhostRoleMobSpawner
@@ -103,7 +103,7 @@
   - type: GhostRole
     name: ghost-role-information-loneop-name
     description: ghost-role-information-loneop-description
-    rules: ghost-role-information-rules-default-solo-antagonist
+    rules: ghost-role-information-loneop-rules
     requirements:
     - !type:DepartmentTimeRequirement
       department: Security
@@ -127,7 +127,6 @@
   - type: GhostRole
     name: roles-antag-nuclear-operative-commander-name
     description: roles-antag-nuclear-operative-commander-objective
-    rules: ghost-role-information-rules-default-team-antagonist
     requirements:
     - !type:OverallPlaytimeRequirement
       time: 36000 # 10h # Sunrise-RoleTime
@@ -145,7 +144,6 @@
   - type: GhostRole
     name: roles-antag-nuclear-operative-agent-name
     description: roles-antag-nuclear-operative-agent-objective
-    rules: ghost-role-information-rules-default-team-antagonist
     requirements:
     - !type:OverallPlaytimeRequirement
       time: 36000 # 10h # Sunrise-RoleTime
@@ -166,7 +164,6 @@
   - type: GhostRole
     name: roles-antag-nuclear-operative-name
     description: roles-antag-nuclear-operative-objective
-    rules: ghost-role-information-rules-default-team-antagonist
     requirements:
     - !type:OverallPlaytimeRequirement
       time: 36000 # 10h # Sunrise-RoleTime

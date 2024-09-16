@@ -13,7 +13,6 @@ using Robust.Server.Audio;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
-using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -58,17 +57,10 @@ namespace Content.Server._Sunrise.Fugitive
             _stun.TryParalyze(fugitive, TimeSpan.FromSeconds(2), false);
             _audioSystem.PlayPvs(component.SpawnSoundPath, uid, AudioParams.Default.WithVolume(-6f));
 
-            if (!TryComp<MapGridComponent>(xform.GridUid, out var map))
+            if (!_mapManager.TryGetGrid(xform.GridUid, out var map))
                 return;
             var currentTile = map.GetTileRef(xform.Coordinates);
-            if (currentTile != null)
-            {
-                _tile.PryTile(currentTile);
-            }
-            else
-            {
-                return;
-            }
+            _tile.PryTile(currentTile);
 
             if (!_mindSystem.TryGetMind(args.Player.UserId, out var mindId, out var mind))
                 return;

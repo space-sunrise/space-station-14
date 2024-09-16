@@ -180,7 +180,7 @@ namespace Content.Client.Chat.UI
             var msg = new FormattedMessage();
             if (fontColor != null)
                 msg.PushColor(fontColor.Value);
-            msg.AddMarkupOrThrow(message);
+            msg.AddMarkup(message);
             return msg;
         }
 

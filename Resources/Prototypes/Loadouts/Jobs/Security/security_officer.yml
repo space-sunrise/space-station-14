@@ -40,11 +40,6 @@
   equipment:
     head: ClothingHeadHatBeretSecurity
 
-- type: loadout
-  id: TrooperHat
-  equipment:
-    head: ClothingHeadHatSecurityTrooper
-
 # Jumpsuit
 - type: loadout
   id: SecurityJumpsuit
@@ -65,11 +60,6 @@
   id: SecurityJumpskirtGrey
   equipment:
     jumpsuit: ClothingUniformJumpskirtSecGrey
-
-- type: loadout
-  id: TrooperUniform
-  equipment: 
-    jumpsuit: ClothingUniformSecurityTrooper
 
 # Sunrise-Edit
 #- type: loadout

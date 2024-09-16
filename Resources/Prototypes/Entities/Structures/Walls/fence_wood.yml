@@ -21,7 +21,7 @@
   - type: Transform
     anchored: true
   - type: Damageable
-    damageContainer: StructuralInorganic
+    damageContainer: Inorganic
     damageModifierSet: Wood
   - type: RCDDeconstructable
     cost: 2

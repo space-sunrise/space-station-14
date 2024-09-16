@@ -1,5 +1,4 @@
 using Content.Shared.Gravity;
-using Content.Shared.Power;
 using Robust.Client.GameObjects;
 
 namespace Content.Client.Gravity;
@@ -22,7 +21,7 @@ public sealed partial class GravitySystem : SharedGravitySystem
         if (args.Sprite == null)
             return;
 
-        if (_appearanceSystem.TryGetData<PowerChargeStatus>(uid, PowerChargeVisuals.State, out var state, args.Component))
+        if (_appearanceSystem.TryGetData<GravityGeneratorStatus>(uid, GravityGeneratorVisuals.State, out var state, args.Component))
         {
             if (comp.SpriteMap.TryGetValue(state, out var spriteState))
             {
@@ -31,7 +30,7 @@ public sealed partial class GravitySystem : SharedGravitySystem
             }
         }
 
-        if (_appearanceSystem.TryGetData<float>(uid, PowerChargeVisuals.Charge, out var charge, args.Component))
+        if (_appearanceSystem.TryGetData<float>(uid, GravityGeneratorVisuals.Charge, out var charge, args.Component))
         {
             var layer = args.Sprite.LayerMapGet(GravityGeneratorVisualLayers.Core);
             switch (charge)

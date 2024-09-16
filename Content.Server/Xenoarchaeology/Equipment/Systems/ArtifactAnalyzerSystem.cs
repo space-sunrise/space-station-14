@@ -304,15 +304,15 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
 
         var n = component.LastAnalyzedNode;
 
-        msg.AddMarkupOrThrow(Loc.GetString("analysis-console-info-id", ("id", n.Id)));
+        msg.AddMarkup(Loc.GetString("analysis-console-info-id", ("id", n.Id)));
         msg.PushNewline();
-        msg.AddMarkupOrThrow(Loc.GetString("analysis-console-info-depth", ("depth", n.Depth)));
+        msg.AddMarkup(Loc.GetString("analysis-console-info-depth", ("depth", n.Depth)));
         msg.PushNewline();
 
         var activated = n.Triggered
             ? "analysis-console-info-triggered-true"
             : "analysis-console-info-triggered-false";
-        msg.AddMarkupOrThrow(Loc.GetString(activated));
+        msg.AddMarkup(Loc.GetString(activated));
         msg.PushNewline();
 
         msg.PushNewline();
@@ -321,7 +321,7 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
         var triggerProto = _prototype.Index<ArtifactTriggerPrototype>(n.Trigger);
         if (triggerProto.TriggerHint != null)
         {
-            msg.AddMarkupOrThrow(Loc.GetString("analysis-console-info-trigger",
+            msg.AddMarkup(Loc.GetString("analysis-console-info-trigger",
                 ("trigger", Loc.GetString(triggerProto.TriggerHint))) + "\n");
             needSecondNewline = true;
         }
@@ -329,7 +329,7 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
         var effectproto = _prototype.Index<ArtifactEffectPrototype>(n.Effect);
         if (effectproto.EffectHint != null)
         {
-            msg.AddMarkupOrThrow(Loc.GetString("analysis-console-info-effect",
+            msg.AddMarkup(Loc.GetString("analysis-console-info-effect",
                 ("effect", Loc.GetString(effectproto.EffectHint))) + "\n");
             needSecondNewline = true;
         }
@@ -337,11 +337,11 @@ public sealed class ArtifactAnalyzerSystem : EntitySystem
         if (needSecondNewline)
             msg.PushNewline();
 
-        msg.AddMarkupOrThrow(Loc.GetString("analysis-console-info-edges", ("edges", n.Edges.Count)));
+        msg.AddMarkup(Loc.GetString("analysis-console-info-edges", ("edges", n.Edges.Count)));
         msg.PushNewline();
 
         if (component.LastAnalyzerPointValue != null)
-            msg.AddMarkupOrThrow(Loc.GetString("analysis-console-info-value", ("value", component.LastAnalyzerPointValue)));
+            msg.AddMarkup(Loc.GetString("analysis-console-info-value", ("value", component.LastAnalyzerPointValue)));
 
         return msg;
     }

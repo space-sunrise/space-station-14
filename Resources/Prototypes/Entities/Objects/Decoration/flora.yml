@@ -57,7 +57,7 @@
         layer:
         - WallLayer
   - type: Damageable
-    damageContainer: StructuralInorganic
+    damageContainer: Inorganic
     damageModifierSet: Wood
   - type: MeleeSound
     soundGroups:

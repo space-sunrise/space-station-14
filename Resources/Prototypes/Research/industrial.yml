@@ -11,7 +11,7 @@
   cost: 7500
   recipeUnlocks:
   - MiningDrill
-  - MineralScannerEmpty
+  - WeaponGrapplingGun
   - BorgModuleMining
   - BorgModuleGrapplingGun
   - OreProcessorIndustrialMachineCircuitboard
@@ -151,8 +151,6 @@
   - HellfireFreezerMachineCircuitBoard
   - PortableScrubberMachineCircuitBoard
   - HolofanProjector
-  technologyPrerequisites:
-  - AtmosphericTech
 
 - type: technology
   id: AdvancedToolsTechnology
@@ -182,7 +180,6 @@
   recipeUnlocks:
     - OreBagOfHolding
     - MiningDrillDiamond
-    - AdvancedMineralScannerEmpty
 
 # Tier 3
 
