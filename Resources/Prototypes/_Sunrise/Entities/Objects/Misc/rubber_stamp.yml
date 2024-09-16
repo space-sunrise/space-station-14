@@ -51,3 +51,16 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Misc/stamps.rsi
     state: stamp-ntrep
+
+- type: entity
+  name: Adjutant's rubber stamp
+  parent: RubberStampBase
+  id: RubberStampAdj
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-adj
+    stampedColor: "#3681bb"
+    stampState: "paper_stamp-cap"
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/stamps.rsi
+    state: stamp-adj

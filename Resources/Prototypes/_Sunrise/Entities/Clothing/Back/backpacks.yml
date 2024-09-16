@@ -63,3 +63,12 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Back/Backpacks/guard.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackAdjutant
+  name: adjutant backpack
+  description: Predominantly composed of multiforaments tied together with threads.
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Clothing/Back/Backpacks/adjutant.rsi

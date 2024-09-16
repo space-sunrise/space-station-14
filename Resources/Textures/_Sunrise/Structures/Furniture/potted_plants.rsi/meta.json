@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from Skyrat-tg at https://github.com/Skyrat-SS13/Skyrat-tg/blob/692fef2ac49465fe269aa4168920a79d64ffd4ea/modular_skyrat/modules/aesthetics/plants/plants.dmi",
+  "copyright": "Taken from Skyrat-tg at https://github.com/Skyrat-SS13/Skyrat-tg/blob/692fef2ac49465fe269aa4168920a79d64ffd4ea/modular_skyrat/modules/aesthetics/plants/plants.dmi, plant-9 sprited by discord: @Makao",
   "size": {
     "x": 32,
     "y": 32
@@ -81,6 +81,9 @@
           0.1
         ]
       ]
+    },
+    {
+      "name": "plant-9"
     }
   ]
 }

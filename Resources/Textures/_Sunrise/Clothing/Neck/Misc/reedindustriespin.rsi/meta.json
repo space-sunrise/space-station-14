@@ -1,0 +1,19 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made by megane, discrod (mikudaayoo), for SUNRISE",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+  
+    "states": [
+      {
+        "name": "reedpin-equipped",
+        "directions": 4
+      },
+      {
+        "name": "reedpin"
+      }
+    ]
+  }

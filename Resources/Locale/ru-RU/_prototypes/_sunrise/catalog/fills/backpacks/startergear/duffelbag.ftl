@@ -3,4 +3,4 @@ ent-ClothingBackpackDuffelIAAFilled = { ent-ClothingBackpackDuffel }
 ent-ClothingBackpackDuffelPsychologistFilled = { ent-ClothingBackpackDuffelMedical }
     .desc = { ent-ClothingBackpackDuffelMedical.desc }
 ent-ClothingBackpackDuffelBoomboxBundle = набор Синдиката с бумбоксом
-    .desc = Убивайте со стилем
+    .desc = Убивайте со стилем.

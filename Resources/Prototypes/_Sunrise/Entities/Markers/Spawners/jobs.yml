@@ -234,6 +234,19 @@
     - state: green
     - state: barber
 
+- type: entity
+  id: SpawnPointAdjutant
+  parent: SpawnPointJobBase
+  name: adjutant
+  components:
+  - type: SpawnPoint
+    job_id: Adjutant
+  - type: Sprite
+    sprite: _Sunrise/Markers/jobs.rsi
+    layers:
+    - state: green
+    - state: adjutant
+
 #DeathSquadSpawnMarker
 
 - type: entity

@@ -52,6 +52,7 @@
   - ResearchDirector
   - Quartermaster
   - NanoTrasenRepresentative  #Sunrise-Edit
+  - Adjutant  #Sunrise-edit
   primary: false
   weight: 100
 

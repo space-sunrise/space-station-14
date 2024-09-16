@@ -1,4 +1,4 @@
-ent-ClothingBackpackSyndie = Рюкзак Синдиката
+ent-ClothingBackpackSyndie = рюкзак Синдиката
     .desc = Рюкзак оперативника с повышенной вместительностью.
 ent-ClothingMilitaryBackpack = армейский рюкзак
     .desc = Вместительный рюкзак с множеством карманов, который носят военные структуры.
@@ -10,3 +10,5 @@ ent-ClothingBackpackBlueShield = рюкзак офицера «синий щит
     .desc = На стиле.
 ent-ClothingBackpackPrisonGuard = рюкзак сотрудника кт
     .desc = На стиле.
+ent-ClothingBackpackAdjutant = рюкзак адъютанта
+    .desc = Преимущественно состоит из мультифор, перетянутых нитками.

@@ -1,2 +1,2 @@
-ent-ClothingNeckSunriseBadge = Значок Санрайзосексуалов
+ent-ClothingNeckSunriseBadge = значок Санрайзосексуалов
     .desc = Фирменный значок Санрайз.

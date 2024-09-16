@@ -432,3 +432,6 @@ WeaponShotgunKammerer: WeaponShotgunTrenchgun4034
 WeaponSubMachineGunDrozd: WeaponSubMachineGunMP7
 ComputerCargoShuttle: null
 ComputerShuttleCargo: null
+ClothingOuterHardsuitSecurity: ClothingOuterHardsuitSecuritySunrise
+ClothingHeadHelmetHardsuitSecurity: ClothingHeadHelmetHardsuitSecuritySunrise
+EffectHearts: null
