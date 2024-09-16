@@ -150,3 +150,21 @@
   roundStart: true
   provider: sunrise
   sponsorOnly: true
+
+- type: ttsVoice
+  id: SCP049 # DON'T USE
+  name: tts-voice-name-scp-049
+  sex: Male
+  speaker: scp_049
+  roundStart: false
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: SCP079 # DON'T USE
+  name: tts-voice-name-scp-079
+  sex: Male
+  speaker: scp_079
+  roundStart: false
+  provider: sunrise
+  sponsorOnly: true
