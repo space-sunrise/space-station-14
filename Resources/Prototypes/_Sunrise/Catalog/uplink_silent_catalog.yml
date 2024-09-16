@@ -13,19 +13,6 @@
   categories:
   - UplinkWeaponrySilent
 
-- type: listing
-  id: SilentUplinkRevolverPython
-  name: uplink-revolver-python-name
-  description: uplink-revolver-python-desc
-  productEntity: WeaponRevolverPythonAPBiocode
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 4
-  cost:
-    Telecrystal: 8 # Originally was 13 TC but was not used due to high cost
-  categories:
-  - UplinkWeaponrySilent
-
 # Inbuilt suppressor so it's sneaky + more expensive.
 - type: listing
   id: SilentUplinkPistolCobra
@@ -103,18 +90,6 @@
   productEntity: MagazinePistolCaselessRifle
   cost:
     Telecrystal: 1
-  categories:
-  - UplinkAmmoSilent
-
-# For the Python
-- type: listing
-  id: SilentUplinkSpeedLoaderMagnumAP
-  name: uplink-speedloader-magnum-name
-  description: uplink-speedloader-magnu-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi, state: icon }
-  productEntity: SpeedLoaderMagnumAP
-  cost:
-    Telecrystal: 3
   categories:
   - UplinkAmmoSilent
 
@@ -401,3 +376,149 @@
     Telecrystal: 2
   categories:
     - UplinkWearablesSilent
+    
+# Disruption
+
+- type: listing
+  id: SilentUplinkEmag
+  name: uplink-emag-name
+  description: uplink-emag-desc
+  productEntity: Emag
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 5
+  cost:
+    Telecrystal: 8
+  categories:
+  - UplinkDisruptionSilent
+
+- type: listing
+  id: SilentUplinkRadioJammer
+  name: uplink-radio-jammer-name
+  description: uplink-radio-jammer-desc
+  productEntity: RadioJammer
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkDisruptionSilent
+
+- type: listing
+  id: SilentUplinkSyndicateWeaponModule
+  name: uplink-syndicate-weapon-module-name
+  description: uplink-syndicate-weapon-module-desc
+  productEntity: BorgModuleSyndicateWeapon
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 3
+  cost:
+    Telecrystal: 5
+  categories:
+  - UplinkDisruptionSilent
+
+- type: listing
+  id: SilentUplinkSyndicateMartyrModule
+  name: uplink-syndicate-martyr-module-name
+  description: uplink-syndicate-martyr-module-desc
+  productEntity: BorgModuleMartyr
+  icon: { sprite: /Textures/Objects/Specific/Robotics/borgmodule.rsi, state: syndicateborgbomb }
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 4
+  categories:
+    - UplinkDisruptionSilent
+
+- type: listing
+  id: SilentUplinkSoapSyndie
+  name: uplink-soap-name
+  description: uplink-soap-desc
+  productEntity: SoapSyndie
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkDisruptionSilent
+
+- type: listing
+  id: SilentUplinkSlipocalypseClusterSoap
+  name: uplink-slipocalypse-clustersoap-name
+  description: uplink-slipocalypse-clustersoap-desc
+  productEntity: SlipocalypseClusterSoap
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkDisruptionSilent
+
+- type: listing
+  id: SilentUplinkToolbox
+  name: uplink-toolbox-name
+  description: uplink-toolbox-desc
+  productEntity: ToolboxSyndicateFilled
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkDisruptionSilent
+
+- type: listing
+  id: SilentUplinkSyndicateJawsOfLife
+  name: uplink-syndicate-jaws-of-life-name
+  description: uplink-syndicate-jaws-of-life-desc
+  productEntity: SyndicateJawsOfLife
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkDisruptionSilent
+
+- type: listing
+  id: SilentUplinkDuffelSurgery
+  name: uplink-duffel-surgery-name
+  description: uplink-duffel-surgery-desc
+  productEntity: ClothingBackpackDuffelSyndicateFilledMedical
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkDisruptionSilent
+
+- type: listing
+  id: SilentUplinkPowerSink
+  name: uplink-power-sink-name
+  description: uplink-power-sink-desc
+  productEntity: PowerSink
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 4
+  cost:
+    Telecrystal: 8
+  categories:
+  - UplinkDisruptionSilent
+  conditions:
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+          
+- type: listing
+  id: SilentUplinkTeleporter
+  name: uplink-syndicate-teleporter-name
+  description: uplink-syndicate-teleporter-desc
+  icon: { sprite: Objects/Devices/syndicate_teleporter.rsi, state: icon}
+  productEntity: SyndicateTeleporter
+  cost:
+    Telecrystal: 12
+  categories:
+  - UplinkDisruptionSilent

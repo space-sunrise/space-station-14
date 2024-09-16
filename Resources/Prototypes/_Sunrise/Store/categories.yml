@@ -132,3 +132,8 @@
   id: UplinkWearablesSilent
   name: store-category-wearables
   priority: 3
+  
+- type: storeCategory
+  id: UplinkDisruptionSilent
+  name: store-category-disruption
+  priority: 6
