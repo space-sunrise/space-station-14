@@ -44,7 +44,8 @@
   description: department-CentralCommand-description
   color: "#0c344d"
   roles:
-  - CentralCommandOfficial
+  - CentCommOperator # Sunrise-Edit
+  - CentCommOfficial # Sunrise-Edit
   - CBURN
   - ERTLeader
   - ERTChaplain
@@ -69,7 +70,6 @@
   - HeadOfSecurity
   - ResearchDirector
   - Quartermaster
-  - CentralCommandOfficial
   - CBURN
   - ERTLeader
   - ERTChaplain
@@ -78,6 +78,7 @@
   - ERTSecurity
   - ERTEngineer
   - DeathSquad
+  - CentCommOfficial
   - NanoTrasenRepresentative  #Sunrise-Edit
   - Adjutant  #Sunrise-edit
   primary: false

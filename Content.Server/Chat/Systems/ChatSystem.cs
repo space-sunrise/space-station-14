@@ -485,7 +485,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         }
 
         var admins = _adminManager.ActiveAdmins
-            .Select(p => p.ConnectedClient);
+            .Select(p => p.Channel);
         string messageWrap;
         string adminMessageWrap;
 

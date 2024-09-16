@@ -26,6 +26,7 @@
     wipeVerbPopup: boris-wiped-device
     stopSearchVerbText: boris-stop-searching-verb-text
     stopSearchVerbPopup: boris-stopped-searching
+    job: Borg
   - type: Examiner
   - type: BorgBrain
   - type: IntrinsicRadioReceiver
@@ -90,6 +91,7 @@
     wipeVerbPopup: sofia-wiped-device
     stopSearchVerbText: sofia-stop-searching-verb-text
     stopSearchVerbPopup: sofia-stopped-searching
+    job: Borg
   - type: Examiner
   - type: BorgBrain
   - type: IntrinsicRadioReceiver

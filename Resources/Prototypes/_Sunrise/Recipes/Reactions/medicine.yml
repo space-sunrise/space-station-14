@@ -9,6 +9,7 @@
       amount: 5
     Razorium:
       amount: 3
-    Iodine: 4
-  products: 
+    Iodine:
+      amount: 4
+  products:
     Desoantizyne: 0.7

@@ -369,7 +369,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
             _chatSystem.DispatchStationAnnouncement(
                 result.Station,
                 Loc.GetString("emergency-shuttle-good-luck"),
-                playDefaultSound: false);
+                playDefault: false);
 
             // TODO: Need filter extensions or something don't blame me.
             return;
@@ -414,7 +414,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
             {
                 [ShuttleTimerMasks.ShuttleMap] = shuttle,
                 [ShuttleTimerMasks.SourceMap] = targetXform.MapUid,
-                [ShuttleTimerMasks.DestMap] = _roundEnd.GetCentcomm(),
+                [ShuttleTimerMasks.DestMap] = _roundEnd.GetTransitHub(),
                 [ShuttleTimerMasks.ShuttleTime] = time,
                 [ShuttleTimerMasks.SourceTime] = time,
                 [ShuttleTimerMasks.DestTime] = time + TimeSpan.FromSeconds(TransitTime),
