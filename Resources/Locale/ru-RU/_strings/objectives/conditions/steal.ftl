@@ -7,16 +7,3 @@ objective-condition-steal-Ian = корги главы персонала
 objective-condition-thief-description = { CAPITALIZE($itemName) } станет отличным пополнением моей коллекции!
 objective-condition-thief-animal-description = { CAPITALIZE($itemName) } станет отличным пополнением моей коллекции! Главное - живым.
 objective-condition-thief-multiply-description = Мне нужно собрать { $count } { $itemName } и увезти их с собой.
-
-# steal objectives
-
-ent-AnimalTropico = Тропико
-ent-AnimalMorty = Морти
-ent-AnimalShiva = Шива
-ent-AnimalIan = Иан
-ent-AnimalWalter = Уолтер
-ent-AnimalMcGriff = МакГрифф
-ent-AnimalNamedCat = Бингус
-ent-DoorRemote = Пульт от шлюзов
-ent-IDCard = ID карты
-ent-Stamp = Печати
