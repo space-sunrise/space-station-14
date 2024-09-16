@@ -72,10 +72,14 @@
                         <BoxContainer Orientation="Vertical" Name="ServersHubBox" VerticalExpand="True"
                                       VerticalAlignment="Bottom" Access="Public">
                             <controls:StripeBack>
-                                <BoxContainer Orientation="Horizontal" Name="ServersHubHeader" MouseFilter="Pass" >
+                                <BoxContainer Orientation="Horizontal" Name="ServersHubHeader" >
                                     <Label HorizontalExpand="True" Name="ServersHubHeaderLabel" Access="Public"
                                            Text="Сейчас играет: 0/0" VAlign="Center" StyleClasses="LabelHeading"
                                            Align="Center"/>
+                                    <TextureRect Name="ServersHubHider" VerticalAlignment="Center" SetSize="25 25"
+                                                 Stretch="KeepAspectCentered" Margin="5 1" MouseFilter="Pass"
+                                                 HorizontalAlignment="Right" Access="Public">
+                                    </TextureRect>
                                 </BoxContainer>
                             </controls:StripeBack>
                             <BoxContainer Orientation="Vertical" Name="ServersHubContent" HorizontalExpand="True"
@@ -89,9 +93,13 @@
                                       MaxWidth="530" VerticalAlignment="Bottom">
                             <BoxContainer Orientation="Vertical" VerticalExpand="True" VerticalAlignment="Stretch">
                                 <controls:StripeBack VerticalAlignment="Top">
-                                    <BoxContainer Orientation="Horizontal" Name="ChangelogHeader" MouseFilter="Pass">
+                                    <BoxContainer Orientation="Horizontal" Name="ChangelogHeader">
                                         <Label HorizontalExpand="True" Text="{Loc 'changelog-lobby-window-title'}"
                                                VAlign="Center" StyleClasses="LabelHeading" Align="Center"/>
+                                        <TextureRect Name="ChangelogHider" VerticalAlignment="Center" SetSize="25 25"
+                                                     Stretch="KeepAspectCentered" Margin="5 1" MouseFilter="Pass"
+                                                     HorizontalAlignment="Right" Access="Public">
+                                        </TextureRect>
                                     </BoxContainer>
                                 </controls:StripeBack>
                                 <BoxContainer Orientation="Vertical" MinHeight="200" MaxHeight="250" Name="ChangelogContent" VerticalExpand="True"
@@ -114,7 +122,8 @@
             <BoxContainer Orientation="Vertical" HorizontalExpand="True" HorizontalAlignment="Right">
                 <PanelContainer Name="RightPanel" MinWidth="500" StyleClasses="AngleRect" VerticalExpand="True"
                                 VerticalAlignment="Stretch" HorizontalExpand="True">
-                    <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" VerticalAlignment="Top">
+                    <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True"
+                                  VerticalAlignment="Stretch" SeparationOverride="4">
                         <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="3 3 3 3"
                                       HorizontalAlignment="Right" SizeFlagsStretchRatio="1">
                             <Button Name="AHelpButton" Access="Public" Text="{Loc 'ui-lobby-ahelp-button'}"
@@ -125,11 +134,16 @@
                             <Button Name="LeaveButton" Access="Public" Text="{Loc 'ui-lobby-leave-button'}"
                                     StyleClasses="ButtonBig"/>
                         </BoxContainer>
-                        <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalAlignment="Top">
+                        <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalAlignment="Top"
+                                      SizeFlagsStretchRatio="2">
                             <controls:StripeBack>
-                                <BoxContainer Orientation="Horizontal" Name="ServerInfoHeader" MouseFilter="Pass">
+                                <BoxContainer Orientation="Horizontal" Name="ServerInfoHeader">
                                     <Label HorizontalExpand="True" Text="{Loc 'ui-lobby-server-info-block'}"
                                            VAlign="Center" StyleClasses="LabelHeading" Align="Center"/>
+                                    <TextureRect Name="ServerInfoHider" VerticalAlignment="Center" SetSize="25 25"
+                                                 Stretch="KeepAspectCentered" Margin="5 1" MouseFilter="Pass"
+                                                 HorizontalAlignment="Right" Access="Public">
+                                    </TextureRect>
                                 </BoxContainer>
                             </controls:StripeBack>
                             <BoxContainer Orientation="Vertical" Name="ServerInfoContent" >
@@ -140,11 +154,15 @@
                             </BoxContainer>
                         </BoxContainer>
                         <BoxContainer Orientation="Vertical" HorizontalExpand="True" HorizontalAlignment="Stretch"
-                                      VerticalExpand="True" VerticalAlignment="Top" >
-                            <controls:StripeBack Name="CharacterInfoHeader" MouseFilter="Pass">
+                                      VerticalAlignment="Top" SizeFlagsStretchRatio="2">
+                            <controls:StripeBack Name="CharacterInfoHeader">
                                 <BoxContainer Orientation="Horizontal">
                                     <Label HorizontalExpand="True" Text="{Loc 'lobby-character-preview-panel-header'}"
                                            VAlign="Center" StyleClasses="LabelHeading" Align="Center"/>
+                                    <TextureRect Name="CharacterInfoHider" VerticalAlignment="Center" SetSize="25 25"
+                                                 Stretch="KeepAspectCentered" Margin="5 1" MouseFilter="Pass"
+                                                 HorizontalAlignment="Right" Access="Public">
+                                    </TextureRect>
                                 </BoxContainer>
                             </controls:StripeBack>
                             <BoxContainer Orientation="Vertical" Name="CharacterInfoContent" MinHeight="180">
@@ -152,15 +170,23 @@
                                                                     HorizontalAlignment="Stretch" Access="Public" />
                             </BoxContainer>
                         </BoxContainer>
-                        <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" VerticalAlignment="Top">
-                            <controls:StripeBack Name="ChatHeader" MouseFilter="Pass">
+                        <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True"
+                                      VerticalAlignment="Stretch" SizeFlagsStretchRatio="5">
+                            <controls:StripeBack Name="ChatHeader">
                                 <BoxContainer Orientation="Horizontal">
                                     <Label HorizontalExpand="True" Text="{Loc 'hud-chatbox-channel-Chat'}"
                                            VAlign="Center" StyleClasses="LabelHeading" Align="Center"/>
+                                    <TextureRect Name="ChatHider" VerticalAlignment="Center" SetSize="25 25"
+                                                 Stretch="KeepAspectCentered" Margin="5 1" MouseFilter="Pass"
+                                                 HorizontalAlignment="Right" Access="Public">
+                                    </TextureRect>
                                 </BoxContainer>
                             </controls:StripeBack>
-                            <BoxContainer Name="ChatContent" MinHeight="450" MaxHeight="450" HorizontalExpand="True" VerticalExpand="True" VerticalAlignment="Top">
-                                <widgets:ChatBox Name="Chat" MinHeight="450" MaxHeight="450" VerticalAlignment="Top" Access="Public" HorizontalExpand="True" VerticalExpand="True" Margin="3 3 3 3" />
+                            <BoxContainer Name="ChatContent" VerticalAlignment="Stretch" HorizontalExpand="True"
+                                          VerticalExpand="True">
+                                <widgets:ChatBox Name="Chat" VerticalAlignment="Stretch"
+                                                 Access="Public" HorizontalExpand="True" VerticalExpand="True"
+                                                 Margin="3 3 3 3"/>
                             </BoxContainer>
                         </BoxContainer>
                     </BoxContainer>
