@@ -11,6 +11,8 @@ steal-target-groups-jetpack-captain-filled = капитанский джетпа
 steal-target-groups-weapon-antique-laser = антикварный лазерный пистолет
 steal-target-groups-nuke-disk = диск ядерной аутентификации
 steal-target-groups-weapon-energy-shot-gun = энергетический дробовик
+steal-target-groups-multiphase = X-01 мультифазный энергетический карабин
+steal-target-groups-plutonium = плутониевое ядро
 # Thief Collection
 steal-target-groups-figurines = фигурка
 steal-target-groups-heads-cloaks = часы глав
