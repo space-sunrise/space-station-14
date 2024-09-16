@@ -9,6 +9,7 @@ using Robust.Shared.Timing;
 using System.Numerics;
 using Content.Client.Parallax.Managers;
 using Content.Client.Resources;
+using Content.Client.Stylesheets;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
@@ -135,6 +136,7 @@ namespace Content.Client.Lobby.UI
             // Sunrise-end
         }
 
+        // Sunrise-Start
         private void LoadIcons()
         {
             if (!TryGetStyleProperty(StylePropertyIconExpanded, out IconExpanded))
@@ -150,6 +152,11 @@ namespace Content.Client.Lobby.UI
             ServerInfoHider.Texture = ServerInfoContent.Visible ? IconExpanded : IconCollapsed;
             CharacterInfoHider.Texture = CharacterInfoContent.Visible ? IconExpanded : IconCollapsed;
             ChatHider.Texture = ChatContent.Visible ? IconExpanded : IconCollapsed;
+            ServersHubHider.Modulate = StyleNano.NanoGold;
+            ChangelogHider.Modulate = StyleNano.NanoGold;
+            ServerInfoHider.Modulate = StyleNano.NanoGold;
+            CharacterInfoHider.Modulate = StyleNano.NanoGold;
+            ChatHider.Modulate = StyleNano.NanoGold;
         }
 
         private void OnServersHubEnableChanged(bool enable)
@@ -186,8 +193,8 @@ namespace Content.Client.Lobby.UI
                     break;
             }
         }
+        // Sunrise-End
 
-        // Sunrise-Start
         private void OnLobbyOpacityChanged(float opacity)
         {
             SetLobbyOpacity(opacity);
