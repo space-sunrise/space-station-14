@@ -1,0 +1,101 @@
+- type: entity
+  id: MechFirefighter
+  parent: BaseMech
+  name: АТКЕ «Огнеборец»
+  description: Автономная тяговая кибернезированная единица «Огнеборец» — подобен Рипли, но обладает повышенной устойчивостью к высоким температурам. Может передвигаться по лаве.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/mecha.rsi
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: firefighter
+  - type: Mech
+    baseState: firefighter
+    openState: firefighter-open
+    brokenState: firefighter-broken
+    mechToPilotDamageMultiplier: 0.75
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 20 # Сила удара увеличена в связи с скоростью
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1
+    baseSprintSpeed: 2
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 800
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: start
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+    
+- type: entity
+  id: MechFirefighterBattery
+  parent: MechFirefighter
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCellHigh
+      
+- type: entity
+  id: MechHauler
+  parent: BaseMech
+  name: ИМАД Хаулер
+  description: Инженерный механойд автоматического действия. Специализирующийся на постройке/ремонте/разработки различных объектов. 
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/mecha.rsi
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: hauler
+  - type: Mech
+    baseState: hauler
+    openState: hauler-open
+    brokenState: hauler-broken
+    mechToPilotDamageMultiplier: 0.75
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 0.75
+    damage:
+      types:
+        Blunt: 20 
+        Structural: 65
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 3.4
+        
+- type: entity
+  id: MechHaulerBattery
+  parent: MechHauler
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCellHigh
