@@ -3,6 +3,7 @@
   parent:
   - BaseMob
   - MobDamageable
+  - MobPolymorphable
   - MobCombat
   - StripableInventoryBase
   id: BaseMobSpecies
@@ -18,19 +19,9 @@
     - map: [ "enum.HumanoidVisualLayers.LArm" ]
     - map: [ "enum.HumanoidVisualLayers.RLeg" ]
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-    - shader: StencilClear
-      sprite: Mobs/Species/Human/parts.rsi #PJB on stencil clear being on the left leg: "...this is 'fine'" -https://github.com/space-wizards/space-station-14/pull/12217#issuecomment-1291677115
-      # its fine, but its still very stupid that it has to be done like this instead of allowing sprites to just directly insert a stencil clear.
-      # sprite refactor when
-      state: l_leg
-    - shader: StencilMask
-      map: ["enum.HumanoidVisualLayers.StencilMask"]
-      sprite: Mobs/Customization/masking_helpers.rsi
-      state: unisex_full
-      visible: false
-    # Sunrise-start
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
+    # Sunrise-start
     - map: ["bra"]
     - map: ["pants"]
     - map: ["socks"]
@@ -147,10 +138,10 @@
     - Pacified
     - StaminaModifier
     - Flashed
+    - RadiationProtection
+    - Drowsiness
+    - Adrenaline
     - LoveEffect  # Sunrise-Aphrodesiac
-  - type: Reflect
-    enabled: false
-    reflectProb: 0
   - type: Body
     prototype: Human
     requiredLegs: 2
@@ -181,10 +172,10 @@
   - type: SleepEmitSound
   - type: SSDIndicator
   - type: StandingState
-  - type: Fingerprint
   - type: Dna
   - type: MindContainer
     showExamineInfo: true
+  - type: CanEnterCryostorage
   - type: InteractionPopup
     successChance: 1
     interactSuccessString: hugging-success-generic
@@ -204,6 +195,8 @@
         type: HumanoidMarkingModifierBoundUserInterface
       enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
   - type: Puller
   - type: Speech
     speechSounds: Alto
@@ -227,10 +220,12 @@
     - CanPilot
     - FootstepSound
     - DoorBumpOpener
+  # Sunrise-Start
   - type: Paws
     screamInterval: 3
     thresholdDamage: 5
     coughInterval: 5
+  # Sunrise-End
 
 - type: entity
   save: false
@@ -243,8 +238,10 @@
   id: BaseMobSpeciesOrganic
   abstract: true
   components:
-  - type: Carriable # Sunrise-edit
-  - type: CanEscapeInventory # Sunrise-edit
+  # Sunrise-Start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-End
   - type: Barotrauma
     damage:
       types:
@@ -259,7 +256,7 @@
         Heat: -0.07
       groups:
         Brute: -0.07
-
+  - type: Fingerprint
   - type: Blindable
   # Other
   - type: Temperature
@@ -273,6 +270,11 @@
     heatDamage:
       types:
         Heat: 1.5 #per second, scales with temperature & other constants
+  - type: TemperatureSpeed
+    thresholds:
+      293: 0.8
+      280: 0.6
+      260: 0.4
   - type: ThermalRegulator
     metabolismHeat: 800
     radiatedHeat: 100
@@ -322,17 +324,9 @@
     - map: [ "enum.HumanoidVisualLayers.LArm" ]
     - map: [ "enum.HumanoidVisualLayers.RLeg" ]
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-    - shader: StencilClear
-      sprite: Mobs/Species/Human/parts.rsi
-      state: l_leg
-    - shader: StencilMask
-      map: ["enum.HumanoidVisualLayers.StencilMask"]
-      sprite: Mobs/Customization/masking_helpers.rsi
-      state: unisex_full
-      visible: false
-    # Sunrise-start
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
+    # Sunrise-start
     - map: ["bra"]
     - map: ["pants"]
     - map: ["socks"]
@@ -369,6 +363,7 @@
   - type: Body
     prototype: Human
     requiredLegs: 2
+  - type: Absorbable
   - type: UserInterface
     interfaces:
       enum.HumanoidMarkingModifierKey.Key: # sure, this can go here too

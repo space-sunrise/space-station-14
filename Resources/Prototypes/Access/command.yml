@@ -21,7 +21,9 @@
   - Captain
   - HeadOfPersonnel
   - Cryogenics
-  - BlueShield
+  - BlueShield  # Sunrise-edit
+  - Magistrat  # Sunrise-edit
+  - Ntrep  # Sunrise-edit
 
 - type: accessLevel
   id: EmergencyShuttleRepealAll

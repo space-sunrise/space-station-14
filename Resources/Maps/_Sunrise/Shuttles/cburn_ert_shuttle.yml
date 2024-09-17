@@ -1800,7 +1800,7 @@ entities:
     - type: Transform
       pos: 2.5,0.5
       parent: 1
-- proto: WeaponLaserCannon
+- proto: WeaponEarthGovLaserSniper
   entities:
   - uid: 166
     components:

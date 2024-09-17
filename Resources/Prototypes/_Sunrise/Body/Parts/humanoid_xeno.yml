@@ -132,8 +132,6 @@
     partType: Leg
     symmetry: Left
   - type: MovementBodyPart
-    walkSpeed : 2.7
-    sprintSpeed : 4.5
 
 - type: entity
   id: RightLegHumanoidXeno
@@ -151,8 +149,6 @@
     partType: Leg
     symmetry: Right
   - type: MovementBodyPart
-    walkSpeed : 2.7
-    sprintSpeed : 4.5
 
 - type: entity
   id: LeftFootHumanoidXeno

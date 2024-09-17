@@ -678,6 +678,15 @@
       - !type:AdjustReagent
         reagent: Ethanol
         amount: 0.15
+      # Sunrise-start
+      - !type:Paralyze
+        paralyzeTime: 1
+      - !type:PopupMessage
+        messages: [ "reagent-beepskysmash-effect1" ]
+        type: Pvs
+        visualType: LargeCaution
+        probability: 0.8
+      # Sunrise-end
   fizziness: 0.3
 
 - type: reagent
@@ -1795,6 +1804,10 @@
         - !type:AdjustReagent
           reagent: Theobromine
           amount: 0.05
+        - !type:GenericStatusEffect
+          key: Drowsiness
+          time: 1.0
+          type: Remove
   fizziness: 0.25
 
 - type: reagent
@@ -1822,6 +1835,10 @@
         - !type:AdjustReagent
           reagent: Theobromine
           amount: 0.05
+        - !type:GenericStatusEffect
+          key: Drowsiness
+          time: 1.0
+          type: Remove
   fizziness: 0.15
 
 - type: reagent
@@ -1849,6 +1866,10 @@
         - !type:AdjustReagent
           reagent: Theobromine
           amount: 0.05
+        - !type:GenericStatusEffect
+          key: Drowsiness
+          time: 1.0
+          type: Remove
   fizziness: 0.15
 
 - type: reagent
@@ -1876,6 +1897,10 @@
         - !type:AdjustReagent
           reagent: Theobromine
           amount: 0.05
+        - !type:GenericStatusEffect
+          key: Drowsiness
+          time: 1.0
+          type: Remove
   fizziness: 0.25
 
 - type: reagent
@@ -1903,6 +1928,10 @@
         - !type:AdjustReagent
           reagent: Theobromine
           amount: 0.05
+        - !type:GenericStatusEffect
+          key: Drowsiness
+          time: 1.0
+          type: Remove
   fizziness: 0.15
 
 - type: reagent
@@ -1930,4 +1959,8 @@
         - !type:AdjustReagent
           reagent: Theobromine
           amount: 0.05
+        - !type:GenericStatusEffect
+          key: Drowsiness
+          time: 1.0
+          type: Remove
   fizziness: 0.25

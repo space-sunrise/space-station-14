@@ -2,7 +2,7 @@
   id: BulletAcid2
   name: acid spit
   parent: BaseBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: Projectile
       damage:
@@ -20,7 +20,7 @@
   name: EMP impulse
   parent: BaseBulletTrigger
   id: BulletEMP
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Effects/emp.rsi
@@ -42,7 +42,7 @@
   id: BaseBulletRubber
   name: base bullet rubber
   parent: BaseBullet
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi

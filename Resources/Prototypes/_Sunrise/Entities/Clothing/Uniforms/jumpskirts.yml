@@ -45,17 +45,6 @@
 
 - type: entity
   parent: ClothingUniformSkirtBase
-  id: ClothingUniformJumpskirtPsychologist
-  name: psychologist suitskirt
-  description: I don't lose things. I place things in locations which later elude me.
-  components:
-    - type: Sprite
-      sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/psychologist.rsi
-    - type: Clothing
-      sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/psychologist.rsi
-
-- type: entity
-  parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtSchool
   name: school skirt
   description: Stylish and comfortable school skirt.
@@ -75,3 +64,69 @@
     sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/blueshield.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/blueshield.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtPrisonerGrey
+  name: юбка-комбинезон заключенной
+  description: Почему она не оранжевая?
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/prisoner.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/prisoner.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtGuard
+  name: юбка-комбинезон охраны
+  description: Почему она не красная?
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/guard.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/guard.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtPilot
+  name: Юбка комбинезон пилота Службы Безопасности
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/pilotjumpskirt.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/pilotjumpskirt.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtNtrep
+  name: nt representive skirt
+  description: That skirt that is better not to see.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/ntrep.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/ntrep.rsi
+
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtBarber
+  name: платье парикмахера
+  description: Как же он хорош.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/barber.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/barber.rsi
+
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtAdjutant
+  name: adjutant jumpskirt
+  description: Sewn to perfection with breathable fabric that will keep you on your feet for your entire shift.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/adjutant.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/adjutant.rsi

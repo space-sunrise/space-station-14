@@ -27,8 +27,5 @@
     <ProjectReference Include="..\Content.Shared\Content.Shared.csproj" />
     <ProjectReference Include="..\Sunrise\Content.Sunrise.Interfaces.Server\Content.Sunrise.Interfaces.Server.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Objectives\Interfaces\" />
-  </ItemGroup>
   <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets" />
 </Project>

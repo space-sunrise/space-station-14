@@ -14,6 +14,7 @@
   icon: "JobIconSecurityCadet"
   supervisors: job-supervisors-security
   canBeAntag: false
+  displayWeight: 0  # Sunrise
   access:
   - Security
   - Brig
@@ -30,13 +31,13 @@
 - type: startingGear
   id: SecurityCadetGear
   equipment:
-    shoes: ClothingShoesBootsJackSec
+    shoes: ClothingShoesBootsJackFilled
     outerClothing: ClothingOuterArmorBasic
     id: SecurityCadetPDA
     ears: ClothingHeadsetSecurity
     belt: ClothingBeltSecurityFilled
     pocket1: HyperLinkBookCorporateLaw # Sunrise-edit
-    pocket2: WeaponPistolMk58Nonlethal # Sunrise-Edit
+    pocket2: WeaponPistolG22NonLethal # Sunrise-Edit
   storage:
     back:
     - Flash

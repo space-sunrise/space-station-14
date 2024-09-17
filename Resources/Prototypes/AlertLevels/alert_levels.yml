@@ -39,7 +39,7 @@
       announcement: alert-level-gamma-announcement
       selectable: false
       sound:
-        path: /Audio/Misc/siren.ogg
+        path: /Audio/_Sunrise/Misc/siren.ogg # Sunrise-Edit
         params:
           volume: -2
       disableSelection: true

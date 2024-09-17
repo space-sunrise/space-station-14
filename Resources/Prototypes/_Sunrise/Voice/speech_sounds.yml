@@ -17,6 +17,15 @@
     path: /Audio/_Sunrise/Voice/Talk/pig_exclaim.ogg
 
 - type: speechSounds
+  id: BikeHorn
+  saySound:
+    path: /Audio/Items/bikehorn.ogg
+  askSound:
+    path: /Audio/Items/brokenbikehorn.ogg
+  exclaimSound:
+    path: /Audio/Items/desk_bell_ring.ogg
+
+- type: speechSounds
   id: elitesaid
   saySound:
     path: /Audio/_Sunrise/StarWars/elitesaid.ogg
@@ -24,7 +33,6 @@
     path: /Audio/_Sunrise/StarWars/elitesaid.ogg
   exclaimSound:
     path: /Audio/_Sunrise/StarWars/elitesaid.ogg
-
 
 - type: speechSounds
   id: ERTVoice

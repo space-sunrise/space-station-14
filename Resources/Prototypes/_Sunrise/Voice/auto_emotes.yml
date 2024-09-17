@@ -1,0 +1,41 @@
+- type: autoEmote
+  id: InfectedCough
+  emote: Cough
+  interval: 8.0
+  chance: 0.15
+  withChat: true
+
+- type: autoEmote
+  id: InfectedSneeze
+  emote: Sneeze
+  interval: 13.0
+  chance: 0.1
+  withChat: true
+
+- type: autoEmote
+  id: InfectedVomit
+  emote: Vomit
+  interval: 23.0
+  chance: 0.1
+  withChat: false
+
+- type: autoEmote
+  id: InfectedCrying
+  emote: Crying
+  interval: 12
+  chance: 0.08
+  withChat: true
+
+- type: autoEmote
+  id: InfectedHeadache
+  emote: Headache
+  interval: 12
+  chance: 0.5
+  withChat: false
+
+- type: autoEmote
+  id: InfectedInsult
+  emote: Insult
+  interval: 16
+  chance: 0.3
+  withChat: false

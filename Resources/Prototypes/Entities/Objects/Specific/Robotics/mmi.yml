@@ -47,7 +47,8 @@
   - type: Appearance
   - type: GuideHelp
     guides:
-      - Cyborgs
+    - Cyborgs
+    - Robotics
 
 - type: entity
   parent: MMI
@@ -77,8 +78,8 @@
       - state: posibrain
         map: ["base"]
     - type: Input
-      context: "ghost" # Sunrise-Edit
-    - type: BlockMovement
+      context: ghost # Sunrise-Edit
+# Sunrise-Edit
 #    - type: ToggleableGhostRole
 #      examineTextMindPresent: positronic-brain-installed
 #      examineTextMindSearching: positronic-brain-still-searching
@@ -91,7 +92,10 @@
 #      wipeVerbPopup: positronic-brain-wiped-device
 #      stopSearchVerbText: positronic-brain-stop-searching-verb-text
 #      stopSearchVerbPopup: positronic-brain-stopped-searching
+#      job: Borg
+    - type: BlockMovement
     - type: Examiner
+
     - type: NameIdentifier
       group: PositronicBrain
     - type: DoAfter
@@ -117,3 +121,4 @@
     - type: GuideHelp
       guides:
       - Cyborgs
+      - Robotics

@@ -1,0 +1,109 @@
+- type: entity
+  id: MagazineDragunov
+  name: Dragunov magazine
+  description: Standart USSP type of heavy magazines.
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineDragunov
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    capacity: 20
+    proto: CartridgeMagnum  # 762x54
+    whitelist:
+      tags:
+        - CartridgeMagnum  # 762x54
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Item
+    size: Small
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/dragunov_mag.rsi
+  - type: Sprite
+    netsync: false
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/dragunov_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+
+- type: entity
+  id: MagazineBR64
+  name: BR64 magazine
+  description: Standart EarthGov type of heavy magazines.
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineBR64
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    capacity: 20
+    proto: CartridgeAntiMateriel  # 062
+    whitelist:
+      tags:
+        - CartridgeAntiMateriel  # 062
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Item
+    size: Small
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/br64_mag.rsi
+  - type: Sprite
+    netsync: false
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/br64_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: MagazineBauer127
+  name: Bauer127 magazine
+  description: Standart EarthGov type of heavy magazines.
+  parent: BaseItem
+  components:
+  - type: Tag
+    tags:
+      - MagazineBauer127
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    capacity: 10
+    proto: CartridgeAntiMateriel  # AntiMateriel
+    whitelist:
+      tags:
+        - CartridgeAntiMateriel  # AntiMateriel
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Item
+    size: Small
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/sr127_mag.rsi
+  - type: Sprite
+    netsync: false
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/sr127_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+

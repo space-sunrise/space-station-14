@@ -13,6 +13,7 @@
   startingGear: RoboticistGear
   icon: JobIconRoboticist
   supervisors: job-supervisors-rd
+  displayWeight: 30
   access:
     - Research
     - Maintenance
@@ -24,6 +25,7 @@
     outerClothing: ClothingOuterCoatRobo
     id: RoboticistPDA
     gloves: ClothingHandsGlovesRobohands
+    eyes: ClothingEyesGlassesWelding
     belt: ClothingBeltUtilityEngineering
     ears: ClothingHeadsetRobotics
     pocket1: Nanopaste

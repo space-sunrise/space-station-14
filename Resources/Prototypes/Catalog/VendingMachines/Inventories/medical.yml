@@ -1,12 +1,12 @@
 - type: vendingMachineInventory
   id: NanoMedPlusInventory
   startingInventory:
-    HandheldHealthAnalyzer: 5  # Sunrise-edit
-    Brutepack: 15  # Sunrise-edit
-    Ointment: 15  # Sunrise-edit
-    Bloodpack: 15  # Sunrise-edit
-    EpinephrineChemistryBottle: 5  # Sunrise-edit
-    Syringe: 10  # Sunrise-edit
-    ClothingEyesHudMedical: 4  # Sunrise-edit
-    ClothingEyesEyepatchHudMedical: 4  # Sunrise-edit
+    HandheldHealthAnalyzer: 3
+    Brutepack: 5
+    Ointment: 5
+    Bloodpack: 5
+    EpinephrineChemistryBottle: 3
+    Syringe: 5
+    ClothingEyesHudMedical: 2
+    ClothingEyesEyepatchHudMedical: 2
 

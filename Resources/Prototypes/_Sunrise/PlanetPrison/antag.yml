@@ -1,0 +1,9 @@
+- type: antag
+  id: PlanetPrisoner
+  name: roles-antag-planet-prisoner-name
+  antagonist: true
+  setPreference: false
+  objective: roles-antag-planet-prisoner-objective
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 7200 # 2h

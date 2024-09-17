@@ -1,0 +1,107 @@
+﻿- type: entity
+  parent: BaseItem
+  id: BasePepperSpray
+  name: перцовый баллончик
+  description: Баллончик с очень едкой жижей внутри.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/pepperspray.rsi
+  - type: SolutionContainerManager
+    solutions:
+      spray:
+        maxVol: 40
+        reagents:
+        - ReagentId: TearGas
+          Quantity: 40
+  - type: DrainableSolution
+    solution: spray
+  - type: UseDelay
+  - type: Spray
+    transferAmount: 5
+    pushbackAmount: 30
+    spraySound:
+      path: /Audio/Effects/spray.ogg
+    sprayedPrototype: PepperSpray
+    vaporAmount: 3
+    vaporSpread: 90
+    sprayVelocity: 2.0
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 2
+    damage:
+      types:
+        Blunt: 4
+    soundHit:
+      path: /Audio/Weapons/smash.ogg
+  - type: Tool
+    qualities:
+    - Rolling
+    speedModifier: 0.7
+  - type: ItemToggle
+    soundActivate:
+      path: /Audio/Machines/button.ogg
+      params:
+        variation: 0.125
+        volume: -4
+    soundDeactivate:
+      path: /Audio/Machines/button.ogg
+      params:
+        variation: 0.125
+        volume: -4
+  - type: ToggleVerb
+    text: fire-extinguisher-component-verb-text
+  - type: SpraySafety
+  - type: Appearance
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 20
+      Plastic: 20
+
+- type: entity
+  parent: BasePepperSpray
+  id: PepperSprayBottleRed
+  components:
+  - type: Sprite
+    layers:
+    - state: item
+    - state: overlay
+      color: "#FF0000"
+
+- type: entity
+  parent: BasePepperSpray
+  id: PepperSprayBottleGreen
+  components:
+  - type: Sprite
+    layers:
+    - state: item
+    - state: overlay
+      color: "#00FF00"
+
+- type: entity
+  parent: BasePepperSpray
+  id: PepperSprayBottleBlue
+  components:
+  - type: Sprite
+    layers:
+    - state: item
+    - state: overlay
+      color: "#0000FF"
+
+- type: entity
+  name: pepper spray
+  id: PepperSpray
+  parent: Vapor
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Effects/pepperSpray.rsi
+    layers:
+    - state: spray
+      map: [ "enum.VaporVisualLayers.Base" ]
+  - type: Physics
+    bodyType: Dynamic
+  - type: Appearance
+  - type: VaporVisuals
+    animationTime: 0.4
+    animationState: spray

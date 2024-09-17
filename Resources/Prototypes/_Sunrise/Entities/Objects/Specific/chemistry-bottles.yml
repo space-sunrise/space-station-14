@@ -10,3 +10,18 @@
         reagents:
         - ReagentId: Aphrodesiac
           Quantity: 30
+
+- type: entity
+  id: PolytrinicAcidChemistryBottle
+  suffix: polytrinic acid
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: reagent-name-polytrinic-acid
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: PolytrinicAcid
+          Quantity: 30

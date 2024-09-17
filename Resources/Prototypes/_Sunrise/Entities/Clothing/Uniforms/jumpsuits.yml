@@ -4,10 +4,10 @@
   name: superstar cop uniform
   description: Flare cut trousers and a dirty shirt that might have been classy before someone took a piss in the armpits. It's the dress of a superstar.
   components:
-    - type: Sprite
-      sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/disco.rsi
-    - type: Clothing
-      sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/disco.rsi
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/disco.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/disco.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -15,10 +15,10 @@
   name: aerostatic suit
   description: A crisp and well-pressed suit; professional, comfortable and curiously authoritative.
   components:
-    - type: Sprite
-      sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/kim.rsi
-    - type: Clothing
-      sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/kim.rsi
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/kim.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/kim.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -26,10 +26,10 @@
   name: special operations officer uniform
   description: Special Operations Officer uniform, nothing like that. Although... If you have time to read this, it's too late...
   components:
-    - type: Sprite
-      sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/centcom_officer_black.rsi
-    - type: Clothing
-      sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/centcom_officer_black.rsi
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/centcom_officer_black.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/centcom_officer_black.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -55,6 +55,28 @@
 
 - type: entity
   parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitNtrep
+  name: nt representive suit
+  description: That suit that is better not to see.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/ntrep.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/ntrep.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitNtrepFormal
+  name: nt representive formal suit
+  description: That suit that is better not to see.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/ntrepformal.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/ntrepformal.rsi
+
+- type: entity
+  parent: ClothingUniformBase
   id: ClothingUniformJumpsuitBlueShield
   name: комбинезон офицера «синий щит»
   description: На стиле.
@@ -63,6 +85,128 @@
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/blueshield.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/blueshield.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitPrisonerGrey
+  name: комбинезон заключенного
+  description: Почему он не оранжевый?
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/prisoner.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/prisoner.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitPrisonGuard
+  name: комбинезон охранника
+  description: Почему он не красный?
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/guard.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/guard.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitPilot
+  name: Комбинезон пилота Службы Безопасности
+  description: Легкий комбинезон, рекомендуемый 9 пилотами НТ из 10.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/pilotjumpsuit.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/pilotjumpsuit.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitIAA
+  name: рубашка с галстуком
+  description: Костюм из льняной белой рубашки с синим галстуком и брюк. Выглядит роскошно.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/iaa.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/iaa.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitHoSOld
+  name: старый комбинезон главы службы безопасности
+  description: Довольно старая вещь для этих времён, навевающая старые воспоминания...
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/hos.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/hos.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitUSSPBlack
+  name: старый комбинезон СССП
+  description: Старая вещица, прямиком из СССП.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/ussp.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/ussp.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSkeleton
+  name: комбинезон скелета
+  description: Черный комбинезон с напечатанным на нем белым узором из костей. Жуть!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/skeleton.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/skeleton.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitBarber
+  name: костюм парикмахера
+  description: Как же он хорош.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/barber.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/barber.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitAdjutant
+  name: adjutant jumpsuit
+  description: Sewn to perfection with breathable fabric that will keep you on your feet for your entire shift.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adjutant.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adjutant.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitAdidasBlack
+  name: чёрная спортивка СССП
+  description: Отлично сшитый комплект штанов, футболки и ветровки. Имеет отличительные особенности в две полосы, именной принт "Красный Серп".
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas-black.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas-black.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitAdidasWhite
+  name: белая спортивка СССП
+  description: Белый вариант популярной спортивной формы олимпийцев СССП, имеет две чёрные полосы на каждой части комплекта. Модно, стильно и ярко!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas-white.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas-white.rsi
+
 
 - type: entity
   parent: ClothingUniformBase

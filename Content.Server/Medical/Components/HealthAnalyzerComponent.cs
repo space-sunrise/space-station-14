@@ -1,5 +1,5 @@
-using Content.Shared.Damage.Prototypes;
 using Robust.Shared.Audio;
+using Content.Shared.Damage.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 
@@ -8,6 +8,9 @@ namespace Content.Server.Medical.Components;
 /// <summary>
 /// After scanning, retrieves the target Uid to use with its related UI.
 /// </summary>
+/// <remarks>
+/// Requires <c>ItemToggleComponent</c>.
+/// </remarks>
 [RegisterComponent, AutoGenerateComponentPause]
 [Access(typeof(HealthAnalyzerSystem), typeof(CryoPodSystem))]
 public sealed partial class HealthAnalyzerComponent : Component
@@ -54,6 +57,12 @@ public sealed partial class HealthAnalyzerComponent : Component
     /// </summary>
     [DataField]
     public SoundSpecifier? ScanningEndSound;
+
+    /// <summary>
+    /// Whether to show up the popup
+    /// </summary>
+    [DataField]
+    public bool Silent;
 
     [DataField("damageContainers", customTypeSerializer: typeof(PrototypeIdListSerializer<DamageContainerPrototype>))]
     public List<string>? DamageContainers;

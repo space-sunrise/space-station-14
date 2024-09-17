@@ -1,10 +1,10 @@
 - type: vendingMachineInventory
   id: SustenanceInventory
   startingInventory:
-    DrinkMREFlask: 6  # Sunrise-edit
-    FoodSnackNutribrick: 15  # Sunrise-edit
-    FoodSnackMREBrownie: 15  # Sunrise-edit
-    FoodCondimentPacketKetchup: 6  # Sunrise-edit
+    DrinkMREFlask: 3
+    FoodSnackNutribrick: 5
+    FoodSnackMREBrownie: 5
+    FoodCondimentPacketKetchup: 5
   emaggedInventory:
     KitchenKnife: 2
     ClothingMaskBreath: 3

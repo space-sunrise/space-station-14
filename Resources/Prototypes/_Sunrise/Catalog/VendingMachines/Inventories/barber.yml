@@ -1,0 +1,9 @@
+﻿- type: vendingMachineInventory
+  id: BarberInventory
+  startingInventory:
+    BarberRazor: 2
+    BarberHairDyeBlue: 3
+    BarberHairDyeRed: 3
+    BarberHairDyeGreen: 3
+    BarberHairDyeLight: 3
+    BarberHairDyeDark: 3

@@ -11,10 +11,16 @@
       "name": "stamp-psychologist"
     },
     {
+      "name": "stamp-adj"
+    },
+    {
       "name": "stamp-iaa"
     },
     {
       "name": "stamp-magistrat"
+    },
+    {
+      "name": "stamp-ntrep"
     }
   ]
 }

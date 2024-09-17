@@ -1,8 +1,8 @@
 - type: vendingMachineInventory
   id: NanoMedInventory
   startingInventory:
-    Brutepack: 8  # Sunrise-edit
-    Ointment: 8  # Sunrise-edit
-    Bloodpack: 8  # Sunrise-edit
-    EpinephrineChemistryBottle: 5  # Sunrise-edit
-    Syringe: 5  # Sunrise-edit
+    Brutepack: 3
+    Ointment: 3
+    Bloodpack: 3
+    EpinephrineChemistryBottle: 3
+    Syringe: 3

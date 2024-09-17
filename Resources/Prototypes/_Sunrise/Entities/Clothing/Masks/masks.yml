@@ -1,0 +1,131 @@
+- type: entity
+  parent: ClothingMaskGas
+  id: ClothingMaskGasPilot
+  description: Противогаз выполенный в стиле масок пилотов 21-го века.
+  name: Противогаз пилота Службы Безопасности
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/pilotmask.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/pilotmask.rsi
+
+- type: entity
+  parent: ClothingMaskGas
+  id: ClothingMaskGasAtmosian
+  name: противогаз атмосианина
+  description: Улучшенный противогаз, используемый атмосианинами. Огнеупорный!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/atmosian.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/atmosian.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.80
+
+- type: entity
+  parent: ClothingMaskBase
+  id: ClothingMaskSkull
+  name: маска черепа
+  description: Зловещая маска черепа.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/death.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/death.rsi
+  - type: BreathMask
+
+- type: entity
+  parent: ClothingMaskGasAtmos
+  id: ClothingBreathMaskRD
+  name: противогаз с фиолетовым визором
+  description: Специальный противогаз главы научно-исследовательского отдела. Имеет ярко-фиолетовый визор из плазменного стекла, через который искать аномалии и вдыхать фрезор будет куда интереснее.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/rdmask.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/rdmask.rsi
+  - type: BreathMask
+  - type: IngestionBlocker
+
+- type: entity
+  parent: ClothingMaskGasExplorer
+  id: ClothingBreathMaskQM
+  name: противогаз куратора
+  description: Пока другие работают, ты смотришь на них и наслаждаешься жизнью. Сделана специально для квартирмейстеров, позволяя более удобно проводить время, не обращая внимания на то, как что-то ест вашего работника.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/qmmask.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/qmmask.rsi
+  - type: BreathMask
+  - type: IngestionBlocker
+
+- type: entity
+  parent: ClothingMaskGasAtmos
+  id: ClothingMaskIAA
+  name: Элитный противогаз
+  description: Черный противогаз с позолоченным элементом над визором из прочного стекла. Вы не обязаны дышать с подсудимыми одним воздухом. Защищает от вспышек.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/iaamask.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/iaamask.rsi
+  - type: BreathMask
+  - type: IngestionBlocker
+  - type: FlashImmunity
+
+- type: entity
+  parent: ClothingMaskGasAtmos
+  id: ClothingEliteMaskGasHOP
+  name: Противогаз главы персонала
+  description: Надежный противогаз выполненный в тематическом тёмно-синем цвете. В нём вас будет страшиться весь сервисный отдел.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/hopmask.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/hopmask.rsi
+  - type: BreathMask
+  - type: IngestionBlocker
+
+- type: entity
+  parent: ClothingMaskGasAtmos
+  id: ClothingEliteMaskGasCaptain
+  name: Противогаз капитана
+  description: Сквозь янтарное стекло ситуация на станции кажется менее ужасной.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/cptmask.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/cptmask.rsi
+  - type: BreathMask
+  - type: IngestionBlocker
+
+- type: entity
+  parent: ClothingMaskGasAtmos
+  id: ClothingBreathMaskCMO
+  name: Медицинский респиратор
+  description: Качественный респиратор.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/cmomask.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/cmomask.rsi
+  - type: BreathMask
+  - type: IngestionBlocker
+
+- type: entity
+  parent: ClothingMaskGasAtmos
+  id: ClothingMaskGasCE
+  name: противогаз старшего инженера
+  description: Очень прочный и стильный белый противогаз с зеленой полосой на лобной части. Позволит исправить последствия работы атмосферных техников с купленными дипломами.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/cemask.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/cemask.rsi
+  - type: BreathMask
+  - type: IngestionBlocker

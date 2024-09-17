@@ -1,24 +1,24 @@
 - type: vendingMachineInventory
   id: PietyVendInventory
   startingInventory:
-    ClothingUniformJumpsuitChaplain: 4  # Sunrise-edit
-    ClothingUniformJumpskirtChaplain: 4  # Sunrise-edit
-    ClothingUniformJumpsuitMonasticRobeDark: 2  # Sunrise-edit
-    ClothingUniformJumpsuitMonasticRobeLight: 2  # Sunrise-edit
-    ClothingNeckStoleChaplain: 2  # Sunrise-edit
-    ClothingOuterHoodieChaplain: 2  # Sunrise-edit
-    ClothingOuterHoodieBlack: 2  # Sunrise-edit
-    ClothingHeadHatHoodNunHood: 2  # Sunrise-edit
-    ClothingOuterNunRobe: 2  # Sunrise-edit
-    ClothingHeadHatFez: 2  # Sunrise-edit
-    ClothingHeadHatPlaguedoctor: 2  # Sunrise-edit
-    ClothingHeadHatWitch: 2  # Sunrise-edit
-    ClothingHeadHatWitch1: 2  # Sunrise-edit
-    ClothingOuterPlagueSuit: 2  # Sunrise-edit
-    ClothingMaskPlague: 2  # Sunrise-edit
-    ClothingHeadsetService: 4  # Sunrise-edit
-    BoxCandle: 4  # Sunrise-edit
-    BoxCandleSmall: 4  # Sunrise-edit
+    ClothingUniformJumpsuitChaplain: 2
+    ClothingUniformJumpskirtChaplain: 2
+    ClothingUniformJumpsuitMonasticRobeDark: 1
+    ClothingUniformJumpsuitMonasticRobeLight: 1
+    ClothingNeckStoleChaplain: 1
+    ClothingOuterHoodieChaplain: 1
+    ClothingOuterHoodieBlack: 1
+    ClothingHeadHatHoodNunHood: 1
+    ClothingOuterNunRobe: 1
+    ClothingHeadHatFez: 1
+    ClothingHeadHatPlaguedoctor: 1
+    ClothingHeadHatWitch: 1
+    ClothingHeadHatWitch1: 1
+    ClothingOuterPlagueSuit: 1
+    ClothingMaskPlague: 1
+    ClothingHeadsetService: 2
+    BoxCandle: 2
+    BoxCandleSmall: 2
     Urn: 5
   emaggedInventory:
     ClothingOuterArmorCult: 1

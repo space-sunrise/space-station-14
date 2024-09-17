@@ -1,22 +1,23 @@
 - type: vendingMachineInventory
   id: ChefvendInventory
   startingInventory:
-    ReagentContainerFlour: 6  # Sunrise-edit
-    ReagentContainerCornmeal: 6  # Sunrise-edit
-    ReagentContainerSugar: 6  # Sunrise-edit
-    ReagentContainerRice: 6  # Sunrise-edit
-    FoodCondimentPacketSalt: 8  # Sunrise-edit
-    FoodCondimentBottleEnzyme: 6  # Sunrise-edit
-    FoodCondimentBottleHotsauce: 2  # Sunrise-edit
-    FoodCondimentBottleKetchup: 2  # Sunrise-edit
-    FoodCondimentBottleBBQ: 2  # Sunrise-edit
-    FoodCondimentBottleVinegar: 6  # Sunrise-edit
-    ReagentContainerOliveoil: 6  # Sunrise-edit
-    ReagentContainerMayo: 2  # Sunrise-edit
-    VariantCubeBox: 2  # Sunrise-edit
-    FoodContainerEgg: 2  # Sunrise-edit
-    DrinkMilkCarton: 6  # Sunrise-edit
-    DrinkSoyMilkCarton: 2  # Sunrise-edit
-    FoodButter: 8  # Sunrise-edit
-    FoodCheese: 2  # Sunrise-edit
-    FoodMeat: 12  # Sunrise-edit
+    ReagentContainerFlour: 2
+    ReagentContainerCornmeal: 2
+    ReagentContainerSugar: 2
+    ReagentContainerRice: 2
+    FoodCondimentPacketSalt: 4
+    FoodCondimentBottleEnzyme: 2
+    FoodCondimentBottleHotsauce: 1
+    FoodCondimentBottleKetchup: 1
+    FoodCondimentBottleBBQ: 1
+    FoodCondimentBottleVinegar: 2
+    ReagentContainerOliveoil: 2
+    ReagentContainerMayo: 1
+    VariantCubeBox: 1
+    FoodContainerEgg: 1
+    DrinkMilkCarton: 2
+    DrinkSoyMilkCarton: 1
+    FoodButter: 3
+    FoodCheese: 1
+    FoodMeat: 6
+

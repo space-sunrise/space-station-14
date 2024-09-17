@@ -1,16 +1,15 @@
 using System.Linq;
 using Content.Server.Administration;
 using Content.Server.Chat.Managers;
+using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Radio.Components;
 using Content.Server.Roles;
 using Content.Server.Station.Systems;
-using Content.Shared.Actions;
 using Content.Shared.Administration;
 using Content.Shared.Chat;
 using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
-using Content.Shared.Examine;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Roles;
@@ -19,6 +18,7 @@ using Content.Shared.Silicons.Laws.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Wires;
 using Robust.Server.GameObjects;
+using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Toolshed;
@@ -31,19 +31,18 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
     [Dependency] private readonly SharedStunSystem _stunSystem = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly SharedRoleSystem _roles = default!;
-
+    //sunrise-edit-start
+    [Dependency] private readonly ChatSystem _chatSystem = default!;
+    //sunrise-edit-end
     /// <inheritdoc/>
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<SiliconLawBoundComponent, ComponentShutdown>(OnComponentShutdown);
         SubscribeLocalEvent<SiliconLawBoundComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<SiliconLawBoundComponent, MindAddedMessage>(OnMindAdded);
         SubscribeLocalEvent<SiliconLawBoundComponent, ToggleLawsScreenEvent>(OnToggleLawsScreen);
@@ -57,15 +56,8 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         SubscribeLocalEvent<EmagSiliconLawComponent, MindRemovedMessage>(OnEmagMindRemoved);
     }
 
-    private void OnComponentShutdown(EntityUid uid, SiliconLawBoundComponent component, ComponentShutdown args)
-    {
-        if (component.ViewLawsActionEntity != null)
-            _actions.RemoveAction(uid, component.ViewLawsActionEntity);
-    }
-
     private void OnMapInit(EntityUid uid, SiliconLawBoundComponent component, MapInitEvent args)
     {
-        _actions.AddAction(uid, ref component.ViewLawsActionEntity, component.ViewLawsAction);
         GetLaws(uid, component);
     }
 
@@ -91,7 +83,7 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
 
     private void OnBoundUIOpened(EntityUid uid, SiliconLawBoundComponent component, BoundUIOpenedEvent args)
     {
-        _entityManager.TryGetComponent<IntrinsicRadioTransmitterComponent>(uid, out var intrinsicRadio);
+        TryComp(uid, out IntrinsicRadioTransmitterComponent? intrinsicRadio);
         var radioChannels = intrinsicRadio?.Channels;
 
         var state = new SiliconLawBuiState(GetLaws(uid).Laws, radioChannels);
@@ -164,6 +156,9 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         EnsureEmaggedRole(uid, component);
 
         _stunSystem.TryParalyze(uid, component.StunTime, true);
+        //sunrise-edit-start
+        _chatSystem.TrySendInGameICMessage(uid, Loc.GetString("borg-emagged-message"), InGameICChatType.Emote, false, isFormatted: true);
+        //sunrise-edit-end
 
         if (!_mind.TryGetMind(uid, out var mindId, out _))
             return;
@@ -263,9 +258,9 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
     /// <summary>
     /// Extract all the laws from a lawset's prototype ids.
     /// </summary>
-    public SiliconLawset GetLawset(string lawset)
+    public SiliconLawset GetLawset(ProtoId<SiliconLawsetPrototype> lawset)
     {
-        var proto = _prototype.Index<SiliconLawsetPrototype>(lawset);
+        var proto = _prototype.Index(lawset);
         var laws = new SiliconLawset()
         {
             Laws = new List<SiliconLaw>(proto.Laws.Count)
@@ -277,6 +272,36 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         laws.ObeysTo = proto.ObeysTo;
 
         return laws;
+    }
+
+    /// <summary>
+    /// Set the laws of a silicon entity while notifying the player.
+    /// </summary>
+    public void SetLaws(List<SiliconLaw> newLaws, EntityUid target)
+    {
+        if (!TryComp<SiliconLawProviderComponent>(target, out var component))
+            return;
+
+        if (component.Lawset == null)
+            component.Lawset = new SiliconLawset();
+
+        component.Lawset.Laws = newLaws;
+        NotifyLawsChanged(target);
+    }
+
+    protected override void OnUpdaterInsert(Entity<SiliconLawUpdaterComponent> ent, ref EntInsertedIntoContainerMessage args)
+    {
+        // TODO: Prediction dump this
+        if (!TryComp(args.Entity, out SiliconLawProviderComponent? provider))
+            return;
+
+        var lawset = GetLawset(provider.Laws).Laws;
+        var query = EntityManager.CompRegistryQueryEnumerator(ent.Comp.Components);
+
+        while (query.MoveNext(out var update))
+        {
+            SetLaws(lawset, update);
+        }
     }
 }
 

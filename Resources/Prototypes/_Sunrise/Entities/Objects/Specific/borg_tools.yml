@@ -1,0 +1,684 @@
+﻿- type: entity
+  parent: PowerCellMedium
+  id: PowerCellRobotTool
+  name: robot tool power cell
+  description: A small cell that self recharges. Used in robot tools.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 4
+
+- type: entity
+  name: robot disabler
+  parent: WeaponDisabler
+  id: WeaponDisablerBorg
+  description: A self-defense weapon that exhausts organic targets, weakening them until they collapse.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 10
+
+- type: entity
+  name: robot stun baton
+  parent: Stunbaton
+  id: StunbatonBorg
+  description: A stun baton for incapacitating people with. Actively harming with this is considered bad tone.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 10
+
+- type: entity
+  parent: HoloprojectorSecurity
+  id: HoloprojectorSecurityBorg
+  name: holobarrier robot projector
+  description: Creates a solid but fragile holographic barrier.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellRobotTool
+        locked: true
+
+- type: entity
+  name: robot laser gun
+  parent: BaseWeaponBatterySmall
+  id: WeaponLaserBorg
+  description: This laser for security robot.
+  categories: [ HideSpawnMenu ]
+  components:
+  #- type: AlterLevelGunBlocker #FIXMEVIGERS
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/items_cyborg.rsi
+    layers:
+    - state: laser_cyborg
+      map: ["enum.GunVisualLayers.Base"]
+    - state: laser_cyborg-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: RedLaser
+    fireCost: 100
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 20
+  - type: MagazineVisuals
+    magState: laser_cyborg
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  name: flash robot
+  parent: Flash
+  id: FlashBorg
+  description: An ultrabright flashbulb with a trigger, which causes the victim to be dazed and lose their eyesight for a moment. Useless when burnt out.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/flash.rsi
+    layers:
+    - state: burnt
+      map: [ "enum.FlashVisuals.BaseLayer" ]
+    - state: flashing
+      map: [ "enum.FlashVisuals.LightLayer" ]
+      visible: false
+      shader: unshaded
+  - type: LimitedCharges
+    maxCharges: 10
+    charges: 10
+  - type: AutoRecharge
+    rechargeDuration: 30
+
+- type: entity
+  name: epinephrine robot hypospray
+  parent: BaseItem
+  description: A borg version of hypospray that automatically regenerates epinephrine.
+  id: HyposprayBorgStandard
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/hypospray.rsi
+    state: borghypo
+  - type: Item
+    sprite: Objects/Specific/Medical/hypospray.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 15
+  - type: SolutionRegeneration
+    solution: hypospray
+    generated:
+      reagents:
+      - ReagentId: Epinephrine
+        Quantity: 0.1
+  - type: ExaminableSolution
+    solution: hypospray
+  - type: Hypospray
+    onlyAffectsMobs: false
+    injectOnly: true
+
+- type: entity
+  parent: HyposprayBorgStandard
+  id: HyposprayBorgPeace
+  name: pax cyborg hypospray
+  description: A cyborg version of hypospray that automatically regenerates pax.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 30
+  - type: SolutionRegeneration
+    solution: hypospray
+    generated:
+      reagents:
+      - ReagentId: Pax
+        Quantity: 0.05
+
+- type: entity
+  parent: HyposprayBorgStandard
+  id: HyposprayBorgMedical
+  name: medical robot hypospray
+  description: A hypospray that can switch through several reagents.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 30
+  - type: SolutionRegeneration
+    solution: hypospray
+    generated:
+      reagents:
+      - ReagentId: DexalinPlus
+        Quantity: 2
+  - type: SolutionRegenerationSwitcher
+    options:
+    - ReagentId: DexalinPlus
+      Quantity: 2
+    - ReagentId: Tricordrazine
+      Quantity: 2
+    - ReagentId: Dylovene
+      Quantity: 2
+    - ReagentId: Bicaridine
+      Quantity: 2
+    - ReagentId: Dermaline
+      Quantity: 2
+
+
+- type: entity
+  name: proto-kinetic robot accelerator
+  id: WeaponProtoKineticAcceleratorBorg
+  parent: WeaponProtoKineticAcceleratorBase
+  description: Fires low-damage kinetic bolts at a short range.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Basic/kinetic_accelerator.rsi
+    layers:
+    - state: icon
+    - state: animation-icon
+      visible: false
+      map: [ "empty-icon" ]
+  - type: Gun
+    fireRate: 0.5
+    selectedMode: SemiAuto
+    angleDecay: 45
+    minAngle: 2
+    maxAngle: 2
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/kinetic_accel.ogg
+
+
+- type: entity
+  parent: HyposprayBorgStandard
+  id: HyposprayBorgSyndi
+  name: gorlax robot hypospray
+  description: A hypospray that can switch through several reagents.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/syndihypo.rsi
+    state: hypo
+  - type: Item
+    sprite: Objects/Specific/Medical/syndihypo.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 20
+  - type: SolutionRegeneration
+    solution: hypospray
+    generated:
+      reagents:
+      - ReagentId: Ephedrine
+        Quantity: 2
+  - type: SolutionRegenerationSwitcher
+    options:
+    - ReagentId: Ephedrine
+      Quantity: 2
+    - ReagentId: Omnizine
+      Quantity: 2
+    - ReagentId: DexalinPlus
+      Quantity: 2
+
+- type: entity
+  parent: Holoprojector
+  id: HolofanProjectorBorg
+  name: holofan robot projector
+  description: Stop suicidal passengers from killing everyone during atmos emergencies.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: HolosignProjector
+    signProto: HoloFan
+    chargeUse: 120
+  - type: Sprite
+    sprite: Objects/Devices/Holoprojectors/atmos.rsi
+    state: icon
+  - type: Tag
+    tags:
+    - HolofanProjector
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellRobotTool
+        locked: true
+
+- type: entity
+  name: machine gun borg
+  id: LightMachineGunBorg
+  parent: BaseItem
+  categories: [ HideSpawnMenu ]
+  description:
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/LMGs/l6.rsi
+    layers:
+    - state: icon
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    sprite: Objects/Weapons/Guns/LMGs/l6.rsi
+  - type: Gun
+    minAngle: 4
+    maxAngle: 20
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 8
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      collection: m249
+      params:
+        volume: 10
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+  - type: Appearance
+  - type: BallisticAmmoProvider
+    proto: CartridgeLightRifle
+    capacity: 200
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: UseDelay
+    delay: 1
+
+
+- type: entity
+  name: robot china lake
+  parent: WeaponLauncherChinaLake
+  id: WeaponLauncherChinaLakeBorg
+  description: PLOOP
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Gun
+    fireRate: 1
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - Grenade
+    capacity: 10
+    proto: GrenadeFrag
+    soundInsert:
+      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  id: FireExtinguisherBorg
+  name: fire extinguisher borg
+  description: fire extinguisher borg
+  parent: FireExtinguisher
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: SolutionRegeneration
+      solution: spray
+      generated:
+        reagents:
+        - ReagentId: Water
+          Quantity: 2
+
+- type: entity
+  id: SprayBottleSpaceCleanerBorg
+  name: space cleaner
+  description: BLAM!-brand non-foaming space cleaner!
+  parent: SprayBottleSpaceCleaner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: SolutionRegeneration
+    solution: spray
+    generated:
+      reagents:
+      - ReagentId: SpaceCleaner
+        Quantity: 2
+
+- type: entity
+  name: borg crowbar
+  parent: Crowbar
+  id: CrowbarBorg
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/items_cyborg.rsi
+    state: crowbar_cyborg
+
+- type: entity
+  name: borg wrench
+  parent: Wrench
+  id: WrenchBorg
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/items_cyborg.rsi
+    state: wrench_cyborg
+
+- type: entity
+  name: borg screwdriver
+  parent: BaseItem
+  id: ScrewdriverBorg
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/items_cyborg.rsi
+    state: screwdriver_cyborg
+  - type: Tag
+    tags:
+    - Screwdriver
+  - type: Item
+    storedRotation: -90
+  - type: MeleeWeapon
+    wideAnimationRotation: -90
+    attackRate: 1
+    damage:
+      types:
+        Piercing: 6
+    soundHit:
+      path: "/Audio/Weapons/bladeslice.ogg"
+  - type: Tool
+    qualities:
+    - Screwing
+    useSound:
+      collection: Screwdriver
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
+  - type: StaticPrice
+    price: 50
+
+- type: entity
+  name: borg wirecutter
+  parent: BaseItem
+  id: WirecutterBorg
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/items_cyborg.rsi
+    state: wirecutters_cyborg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Items/wirecutter_drop.ogg
+  - type: Tag
+    tags:
+    - PlantSampleTaker
+    - Wirecutter
+  - type: MeleeWeapon
+    wideAnimationRotation: -90
+    damage:
+      types:
+        Piercing: 2
+    attackRate: 2 #open and close that shit on their arm like hell! because you sure aren't doing any damage with this
+    soundHit:
+      path: "/Audio/Items/wirecutter.ogg"
+  - type: Tool
+    qualities:
+    - Cutting
+    useSound:
+      path: /Audio/Items/wirecutter.ogg
+  - type: Item
+    storedRotation: -90
+  - type: ToolTileCompatible
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
+  - type: StaticPrice
+    price: 50
+
+- type: entity
+  name: borg welder
+  parent: Welder
+  id: WelderBorg
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/items_cyborg.rsi
+    layers:
+    - state: indwelder_cyborg
+    - state: indwelder_cyborg-on
+      visible: false
+      shader: unshaded
+      map: ["enum.ToggleVisuals.Layer"]
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      Welder:
+        reagents:
+        - ReagentId: WeldingFuel
+          Quantity: 500
+        maxVol: 500
+
+- type: entity
+  name: станер пулемет киборга
+  parent: WeaponDisablerSMG
+  id: WeaponDisablerSMGBorg
+  components:
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 30
+
+- type: entity
+  name: Импульстное оружие Киборга
+  parent: BaseWeaponBattery
+  id: WeaponPulseCarbineBorg
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 1.5
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: PulseERTBorg
+    fireCost: 200
+  - type: Battery
+    maxCharge: 5000
+    startingCharge: 5000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 30
+
+- type: hitscan
+  id: PulseERTBorg
+  damage:
+    types:
+      Heat: 17
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_blue
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam_blue
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_blue
+
+- type: entity
+  name: DL6902 киборга
+  id: DL6902Borg
+  parent: BaseItem
+  description: Тяжёлый пулемёт Cybersun киборга с расширенным магазином.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/LMGs/DL6902.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-3
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    minAngle: 10
+    maxAngle: 15
+    fireRate: 6
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      collection: m249
+      params:
+        volume: 10
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+  - type: Appearance
+  - type: BallisticAmmoProvider
+    proto: CartridgeLightRifle
+    capacity: 500
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: [ ]
+
+- type: entity
+  name: IAR-52 киборга
+  parent: BaseItem
+  id: WeaponIAR52Borg
+  description: Высокоскорострельный ПП, оборудован универсальным разъёмом для других типов пистолетных магазинов.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/IAR-52.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    minAngle: 12
+    maxAngle: 20
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 10
+    selectedMode: FullAuto
+    soundGunshot:
+      collection: m249
+      params:
+        volume: 10
+    availableModes:
+    - FullAuto
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: BallisticAmmoProvider
+    proto: CartridgeCaselessRifle
+    capacity: 100
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: [ ]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  name: Гипоспрей киборга диверсанта
+  parent: BaseItem
+  id: HyposprayBorgSyndie
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/hypospray.rsi
+    state: borghypo_s
+  - type: Item
+    sprite: Objects/Specific/Medical/hypospray.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 20
+  - type: SolutionRegeneration
+    solution: hypospray
+    generated:
+      reagents:
+      - ReagentId: Nocturine
+        Quantity: 0.2
+  - type: ExaminableSolution
+    solution: hypospray
+  - type: Hypospray
+    onlyAffectsMobs: false
+
+- type: entity
+  name: Глушитель связи диверсанта
+  parent: BaseItem
+  id: RadioJammerBorg
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/jammer.rsi
+    state: jammer
+  - type: RadioJammer
+    settings:
+    - wattage: 1
+      range: 2.5
+      message: radio-jammer-component-set-message-low
+      name: radio-jammer-component-setting-low
+    - wattage: 2
+      range: 6
+      message: radio-jammer-component-set-message-medium
+      name: radio-jammer-component-setting-medium
+    - wattage: 12
+      range: 12
+      message: radio-jammer-component-set-message-high
+      name: radio-jammer-component-setting-high
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMicroreactor
+
+- type: entity
+  parent: HandheldCrewMonitor
+  id: HandheldCrewMonitorBorg
+  name: handheld robot crew monitor
+  description: A hand-held crew monitor that runs off of your own power cells, which displays the status of the crew suit sensors.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellRobotTool
+        locked: true

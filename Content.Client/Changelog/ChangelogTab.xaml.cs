@@ -144,13 +144,13 @@ public sealed partial class ChangelogTab : Control
                     Margin = new Thickness(6, 0, 0, 0),
                 };
                 authorLabel.SetMessage(
-                    FormattedMessage.FromMarkup(Loc.GetString("changelog-author-changed", ("author", changeEntry.Author))));
+                    FormattedMessage.FromMarkupOrThrow(Loc.GetString("changelog-author-changed", ("author", changeEntry.Author))));
                 ChangelogBody.AddChild(authorLabel);
 
                 foreach (var change in changeEntry.Changes)
                 {
                     var text = new RichTextLabel();
-                    text.SetMessage(FormattedMessage.FromMarkup(change.Message));
+                    text.SetMessage(FormattedMessage.FromMarkupOrThrow(change.Message));
                     ChangelogBody.AddChild(new BoxContainer
                     {
                         Orientation = LayoutOrientation.Horizontal,

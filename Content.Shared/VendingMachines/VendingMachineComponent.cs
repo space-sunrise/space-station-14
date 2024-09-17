@@ -5,6 +5,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Component = Robust.Shared.GameObjects.Component;
 
 namespace Content.Shared.VendingMachines
 {
@@ -14,7 +15,9 @@ namespace Content.Shared.VendingMachines
         /// <summary>
         /// PrototypeID for the vending machine's inventory, see <see cref="VendingMachineInventoryPrototype"/>
         /// </summary>
-        [DataField("pack", customTypeSerializer: typeof(PrototypeIdSerializer<VendingMachineInventoryPrototype>), required: true)]
+        [DataField("pack",
+            customTypeSerializer: typeof(PrototypeIdSerializer<VendingMachineInventoryPrototype>),
+            required: true)]
         public string PackPrototypeId = string.Empty;
 
         /// <summary>
@@ -136,6 +139,7 @@ namespace Content.Shared.VendingMachines
         public TimeSpan NextEmpEject = TimeSpan.Zero;
 
         #region Client Visuals
+
         /// <summary>
         /// RSI state for when the vending machine is unpowered.
         /// Will be displayed on the layer <see cref="VendingMachineVisualLayers.Base"/>
@@ -186,6 +190,7 @@ namespace Content.Shared.VendingMachines
         /// </summary>
         [DataField("loopDeny")]
         public bool LoopDenyAnimation = true;
+
         #endregion
     }
 
@@ -194,10 +199,13 @@ namespace Content.Shared.VendingMachines
     {
         [ViewVariables(VVAccess.ReadWrite)]
         public InventoryType Type;
+
         [ViewVariables(VVAccess.ReadWrite)]
         public string ID;
+
         [ViewVariables(VVAccess.ReadWrite)]
         public uint Amount;
+
         public VendingMachineInventoryEntry(InventoryType type, string id, uint amount)
         {
             Type = type;
@@ -236,10 +244,12 @@ namespace Content.Shared.VendingMachines
         /// Off / Broken. The other layers will overlay this if the machine is on.
         /// </summary>
         Base,
+
         /// <summary>
         /// Normal / Deny / Eject
         /// </summary>
         BaseUnshaded,
+
         /// <summary>
         /// Screens that are persistent (where the machine is not off or broken)
         /// </summary>
@@ -261,6 +271,5 @@ namespace Content.Shared.VendingMachines
 
     public sealed partial class VendingMachineSelfDispenseEvent : InstantActionEvent
     {
-
     };
 }

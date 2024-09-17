@@ -1,14 +1,14 @@
 ﻿- type: vendingMachineInventory
   id: SpaceUpInventory
   startingInventory:
-    DrinkSpaceUpCan: 12
-    DrinkSpaceMountainWindCan: 12
-    DrinkGrapeCan: 6
-    DrinkRootBeerCan: 6
-    DrinkIcedTeaCan: 6
-    DrinkSolDryCan: 6
-    DrinkLemonLimeCan: 6
-    DrinkFourteenLokoCan: 6
+    DrinkSpaceUpCan: 3
+    DrinkSpaceMountainWindCan: 3
+    DrinkGrapeCan: 2
+    DrinkRootBeerCan: 2
+    DrinkIcedTeaCan: 2
+    DrinkSolDryCan: 2
+    DrinkLemonLimeCan: 2
+    DrinkFourteenLokoCan: 2
   emaggedInventory:
     DrinkNukieCan: 2
     DrinkChangelingStingCan: 2

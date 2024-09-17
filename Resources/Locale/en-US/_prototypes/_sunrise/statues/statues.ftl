@@ -1,0 +1,10 @@
+ent-StatueFurukai = statue furukai
+    .desc = { ent-BaseStructure.desc }
+ent-StatueDude = statue dude
+    .desc = { ent-BaseStructure.desc }
+ent-StatueFrank = statue frank
+    .desc = { ent-BaseStructure.desc }
+ent-StatueMooniverse = statue mooniverse
+    .desc = { ent-BaseStructure.desc }
+ent-StatueRib = statue rib
+    .desc = { ent-BaseStructure.desc }

@@ -38,7 +38,7 @@
   description: КПК для геев.
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/pda.rsi
+    sprite: _Sunrise/Objects/Devices/pda.rsi
     layers:
     - map: [ "enum.PdaVisualLayers.Base" ]
     - state: "light_overlay"
@@ -53,8 +53,88 @@
     id: BlueShieldIDCard
     state: pda-blueshield
   - type: Icon
-    sprite: _Sunrise/Objects/pda.rsi
+    sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-blueshield
+
+- type: entity
+  parent: BasePDA
+  id: PrisonerPDA
+  name: ПДА заключенного
+  description: В цвет робы для полного комплекта.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+  - type: Pda
+    id: PrisonerIDCard
+    state: pda-space-prison-prisoner
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-space-prison-prisoner
+
+- type: entity
+  parent: BasePDA
+  id: GuardPDA
+  name: ПДА тюремного охранника
+  description: Изогнутый и потертый, но каждая царапина - свидетельство непрерывной борьбы за безопасность.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+  - type: Pda
+    id: GuardIDCard
+    state: pda-space-prison-guardian
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-space-prison-guardian
+
+- type: entity
+  parent: BasePDA
+  id: PrisonEngineerPDA
+  name: ПДА тюремного инженера
+  components:
+  - type: Pda
+    id: PrisonEngineeringIDCard
+    state: pda-engineer
+  - type: PdaBorderColor
+    borderColor: "#949137"
+    accentVColor: "#A32D26"
+  - type: Icon
+    state: pda-engineer
+
+- type: entity
+  parent: BasePDA
+  id: PrisonPilotPDA
+  name: КПК тюремного пилота
+  description: Блестящий и технологичный, словно его только что вытащили из кокпита.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+  - type: Pda
+    id: PrisonPilotIDCard
+    state: pda-space-prison-pilot
+  - type: PdaBorderColor
+    borderColor: "#A32D26"
+    accentVColor: "#DFDFDF"
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-space-prison-pilot
+
+- type: entity
+  parent: BasePDA
+  id: HeadOfPrisonPDA
+  name: КПК начальника тюрьмы
+  description: Имеет вид престижного инструмента власти, но немного поцарапанный от постоянных срочных вызовов.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+  - type: Pda
+    id: HeadOfPrisonIDCard
+    state: pda-space-prison-boss
+  - type: PdaBorderColor
+    borderColor: "#A32D26"
+    accentHColor: "#447987"
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-space-prison-boss
 
 - type: entity
   parent: BasePDA
@@ -76,3 +156,76 @@
     damageContainers:
     - Synth
     - Silicon
+
+- type: entity
+  parent: BasePDA
+  id: SecurityPilotPDA
+  name: КПК пилота службы безопастности
+  description: Нахуя нам пилот?
+  components:
+  - type: Pda
+    id: SecurityPilotIDCard
+    state: pda-seniorofficer
+  - type: PdaBorderColor
+    borderColor: "#A32D26"
+    accentVColor: "#DFDFDF"
+  - type: Icon
+    state: pda-seniorofficer
+
+- type: entity
+  parent: CaptainPDA
+  id: NanoTrasenRepresentativePDA
+  name: NanoTrasenRepresentative PDA
+  components:
+  - type: Pda
+    id: NanoTrasenRepresentativeIDCard
+    state: pda-captain
+    penSlot:
+      startingItem: Pen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: PdaBorderColor
+    borderColor: "#7C5D00"
+  - type: Icon
+    state: pda-captain
+
+- type: entity
+  parent: BasePDA
+  id: BarberPDA
+  name: КПК парикмахера
+  components:
+  - type: Pda
+    id: BarberIDCard
+    state: pda-bartender
+  - type: Icon
+    state: pda-bartender  # он достаточно нейтральный, мне лень рисовать отдельный кпк для него
+
+- type: entity
+  parent: BasePDA
+  id: AdjutantPDA
+  name: adjuntant PDA
+  description: It sorely lacks the camera monitor function.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Pda
+    id: AdjutantIDCard
+    state: pda-adj
+  - type: PdaBorderColor
+    borderColor: "#A32D26"
+    accentVColor: "#DFDFDF"
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-adj

@@ -43,7 +43,7 @@
 
       - tool: Screwing
         doAfter: 0.5
-    
+
     - to: engineer
       steps:
       - assemblyId: engineer
@@ -179,6 +179,62 @@
       - tool: Screwing
         doAfter: 0.5
 
+    # Sunrise-Start
+    - to: peace
+      steps:
+      - assemblyId: peace
+        guideString: borg-construction-guide-string
+
+      - material: Cable
+        amount: 1
+        doAfter: 1
+        store: part-container
+
+      - component: Flash
+        name: flash
+        store: part-container
+        icon:
+          sprite: Objects/Weapons/Melee/flash.rsi
+          state: flash
+
+      - component: Flash
+        name: second flash
+        store: part-container
+        icon:
+          sprite: Objects/Weapons/Melee/flash.rsi
+          state: flash
+
+      - tool: Screwing
+        doAfter: 0.5
+
+    - to: clown
+      steps:
+      - assemblyId: clown
+        guideString: borg-construction-guide-string
+
+      - material: Cable
+        amount: 1
+        doAfter: 1
+        store: part-container
+
+      - component: Flash
+        name: flash
+        store: part-container
+        icon:
+          sprite: Objects/Weapons/Melee/flash.rsi
+          state: flash
+
+      - component: Flash
+        name: second flash
+        store: part-container
+        icon:
+          sprite: Objects/Weapons/Melee/flash.rsi
+          state: flash
+
+      - tool: Screwing
+        doAfter: 0.5
+    # Sunrise-End
+
   - node: cyborg
     entity: BorgChassisGeneric
 
@@ -205,3 +261,29 @@
 
   - node: syndicatesaboteur
     entity: BorgChassisSyndicateSaboteur
+
+# Sunrise-Start
+  - node: security
+    entity: BorgChassisSecurity
+
+  - node: securitycombat
+    entity: BorgChassisSecurityCombat
+
+  - node: ertcombat
+    entity: BorgChassisERT
+
+  - node: peace
+    entity: BorgChassisPeace
+
+  - node: clown
+    entity: BorgChassisClown
+
+  - node: syndicate_reaper
+    entity: BorgChassisSyndicateReaper
+
+  - node: syndicate_heavy
+    entity: BorgChassisSyndicateHeavy
+
+  - node: syndicate_spider
+    entity: BorgChassisSyndicateSpider
+# Sunrise-End

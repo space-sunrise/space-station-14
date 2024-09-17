@@ -1,0 +1,15 @@
+ent-HandheldCamera = Body Camera
+    .desc = Camera
+ent-PortableSurveillanceCameraMonitor = портативный монитор камер
+    .desc = Позволяет вам в любом месте смотреть за экипажем.
+ent-HandheldRoboAnalyzer = cyborg analyzer
+    .desc = A hand-held cyborg scaner.
+ent-HandheldRoboAnalyzerEmpty = { ent-HandheldRoboAnalyzer }
+    .suffix = Empty
+    .desc = { ent-HandheldRoboAnalyzer.desc }
+ent-HandheldCriminalRecordsMonitor = hand-held criminal records monitor
+    .desc = A hand-held crew monitor displaying the status of wanted persons on station.
+    .suffix = DO NOT MAP
+ent-HandheldCriminalRecordsMonitorEmpty = { ent-HandheldCriminalRecordsMonitor }
+    .suffix = Empty
+    .desc = { ent-HandheldCriminalRecordsMonitor.desc }

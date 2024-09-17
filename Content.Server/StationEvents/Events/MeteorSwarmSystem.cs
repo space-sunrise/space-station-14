@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Server._Sunrise.Station;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking.Rules;
 using Content.Server.Station.Components;
@@ -9,6 +10,7 @@ using Content.Shared.Random.Helpers;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Player;
 using Robust.Shared.Random;
 
 namespace Content.Server.StationEvents.Events;
@@ -25,8 +27,14 @@ public sealed class MeteorSwarmSystem : GameRuleSystem<MeteorSwarmComponent>
 
         component.WaveCounter = component.Waves.Next(RobustRandom);
 
+        // we don't want to send to players who aren't in game (i.e. in the lobby)
+        Filter allPlayersInGame = Filter.Empty().AddWhere(GameTicker.UserHasJoinedGame);
+
         if (component.Announcement is { } locId)
-            _chat.DispatchGlobalAnnouncement(Loc.GetString(locId), announcementSound: component.AnnouncementSound, colorOverride: Color.Gold);
+            _chat.DispatchFilteredAnnouncement(allPlayersInGame, Loc.GetString(locId), playDefault: false, colorOverride: Color.Gold);
+
+        // Sunrise-Edit
+        // _audio.PlayGlobal(component.AnnouncementSound, allPlayersInGame, true);
     }
 
     protected override void ActiveTick(EntityUid uid, MeteorSwarmComponent component, GameRuleComponent gameRule, float frameTime)
@@ -36,11 +44,20 @@ public sealed class MeteorSwarmSystem : GameRuleSystem<MeteorSwarmComponent>
 
         component.NextWaveTime += TimeSpan.FromSeconds(component.WaveCooldown.Next(RobustRandom));
 
+        var stations = _station.GetStations();
 
-        if (_station.GetStations().Count == 0)
+        var validStations = new List<EntityUid>();
+
+        foreach (var entityUid in stations)
+        {
+            if (HasComp<StationMeteorSwarmTargetComponent>(entityUid))
+                validStations.Add(entityUid);
+        }
+
+        if (validStations.Count == 0)
             return;
 
-        var station = RobustRandom.Pick(_station.GetStations());
+        var station = RobustRandom.Pick(validStations);
         if (_station.GetLargestGrid(Comp<StationDataComponent>(station)) is not { } grid)
             return;
 

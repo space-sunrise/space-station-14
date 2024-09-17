@@ -16,6 +16,7 @@
   startingGear: SeniorPhysicianGear
   icon: "JobIconSeniorPhysician"
   supervisors: job-supervisors-cmo
+  displayWeight: 35
   access:
   - Medical
   - Maintenance

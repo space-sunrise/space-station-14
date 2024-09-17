@@ -66,6 +66,20 @@ public sealed class SpawnPointSystem : EntitySystem
             }
         }
 
+        // Sunrise-Start
+        if (possiblePositions.Count == 0)
+        {
+            var points3 = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
+            while (points3.MoveNext(out var uid, out var spawnPoint, out var xform))
+            {
+                if (spawnPoint.SpawnType != SpawnPointType.LateJoin)
+                    continue;
+                if (_stationSystem.GetOwningStation(uid, xform) == args.Station)
+                    possiblePositions.Add(xform.Coordinates);
+            }
+        }
+        // Sunrise-End
+
         if (possiblePositions.Count == 0)
         {
             // Ok we've still not returned, but we need to put them /somewhere/.

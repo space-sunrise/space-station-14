@@ -1,0 +1,14 @@
+ent-BarberRazor = Электробритва
+    .desc = Используется парикмахерами для изменения прически
+ent-BaseBarberHairDye = { ent-BaseItem }
+    .desc = Используется парикмахерами для изменения цвета прически.
+ent-BarberHairDyeBlue = Синий краситель для волос
+    .desc = { ent-BaseBarberHairDye.desc }
+ent-BarberHairDyeRed = Красный краситель для волос
+    .desc = { ent-BaseBarberHairDye.desc }
+ent-BarberHairDyeGreen = Зеленый краситель для волос
+    .desc = { ent-BaseBarberHairDye.desc }
+ent-BarberHairDyeLight = Светлый краситель для волос
+    .desc = { ent-BaseBarberHairDye.desc }
+ent-BarberHairDyeDark = Тёмный краситель для волос
+    .desc = { ent-BaseBarberHairDye.desc }

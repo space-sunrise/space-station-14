@@ -1,0 +1,9 @@
+- type: entity
+  id: ActionRevenantLock
+  name: Lock Airlock
+  description: Costs 60 Essence.
+  components:
+  - type: InstantAction
+    icon: _Sunrise/Interface/Actions/lock.png
+    event: !type:RevenantLockActionEvent
+    useDelay: 25

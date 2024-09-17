@@ -250,6 +250,16 @@ public sealed partial class ChatSystem
         {"пендосом","нехорошим человеком"},
         {"пендосы","нехорошие люди"},
         {"пиндосы","нехорошие люди"},
+        // VigersRay момент
+        {"вигерс","Господь"},
+        {"вигерсрей","Господь"},
+        {"виджерс","Господь"},
+        {"vigers","Господь"},
+        {"нигерс","Господь"},
+        {"хуигерс","Господь"},
+        {"vigers ray","Господь"},
+        {"vigersray","Господь"},
+        {"вига","Господь"},
     };
 
     public string ReplaceWords(string message)
@@ -259,11 +269,19 @@ public sealed partial class ChatSystem
 
         return Regex.Replace(message, "\\b(\\w+)\\b", match =>
         {
-            bool isUpperCase = match.Value.All(Char.IsUpper);
+            string word = match.Value;
+            bool isUpperCase = word.All(Char.IsUpper);
+            bool isCapitalized = char.IsUpper(word[0]) && word.Skip(1).All(char.IsLower);
 
             if (SlangReplace.TryGetValue(match.Value.ToLower(), out var replacement))
-                return isUpperCase ? replacement.ToUpper() : replacement;
-            return match.Value;
+            {
+                if (isUpperCase)
+                    return replacement.ToUpper();
+                if (isCapitalized)
+                    return char.ToUpper(replacement[0]) + replacement.Substring(1);
+                return replacement;
+            }
+            return word;
         });
     }
 }

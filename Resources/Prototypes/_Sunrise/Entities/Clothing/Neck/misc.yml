@@ -1,0 +1,12 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckSunriseBadge
+  name: Значок Санрайзосексуалов
+  description: Фирменный значок Санрайз.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Misc/sunrisebadge.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Misc/sunrisebadge.rsi
+  - type: TypingIndicatorClothing
+    proto: sun

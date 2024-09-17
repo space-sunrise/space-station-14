@@ -1,0 +1,18 @@
+﻿- type: entity
+  id: SmileAffection
+  name: Обнимашки
+  description: Смайл обнимается с целью, восстанавливая ей некоторое количество здоровья.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTargetAction
+    range: 3
+    targetingIndicator: true
+    useDelay: 30
+    icon: Effects/hearts.rsi/hearts.png
+    whitelist:
+      components:
+      - Body
+    canTargetSelf: false
+    interactOnMiss: false
+    ignoreContainer: true
+    event: !type:SmileLoveActionEvent

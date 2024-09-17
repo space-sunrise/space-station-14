@@ -86,6 +86,29 @@
       gender: female
 
 - type: entity
+  name: real mouse
+  parent: MobCorgiIan
+  id: MobCorgiMouse
+  description: It's 100% a real hungry mouse.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: real_mouse
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: real_mouse
+      Critical:
+        Base: real_mouse_dead
+      Dead:
+        Base: real_mouse_dead
+  - type: Grammar
+    attributes:
+      proper: true
+      gender: female
+
+- type: entity
   name: Puppy Ian
   parent: MobCorgiPuppy
   id: MobCorgiIanPup
@@ -100,6 +123,8 @@
     - id: FoodMeatCorgi
       amount: 2
     - id: MaterialHideCorgi
+  - type: StealTarget
+    stealGroup: AnimalIan
 
 - type: entity
   name: Runtime
@@ -121,6 +146,8 @@
     tags:
     - CannotSuicide
     - VimPilot
+  - type: StealTarget
+    stealGroup: AnimalNamedCat
 
 - type: entity
   name: Exception
@@ -139,6 +166,8 @@
     tags:
     - CannotSuicide
     - VimPilot
+  - type: StealTarget
+    stealGroup: AnimalNamedCat
 
 - type: entity
   name: Floppa
@@ -164,6 +193,8 @@
     tags:
     - CannotSuicide
     - VimPilot
+  - type: StealTarget
+    stealGroup: AnimalNamedCat
 
 - type: entity
   name: Bandito
@@ -235,7 +266,7 @@
     - CannotSuicide
     - VimPilot
   - type: StealTarget
-    stealGroup: AnimalBingus
+    stealGroup: AnimalNamedCat
 
 - type: entity
   name: McGriff
@@ -579,6 +610,10 @@
     - Hamster
     - VimPilot
     - ChefPilot
+  - type: FlavorProfile
+    flavors:
+    - meaty
+    - sadness
 
 - type: entity
   name: Shiva
@@ -730,10 +765,11 @@
   - type: MeleeWeapon
     damage:
       types:
-        Blunt: 1
-        Caustic: 1
+        Blunt: 3  # Sunrise-edit
+        Caustic: 3  # Sunrise-edit
   - type: MultiHandedItem
   - type: Item
+    sprite: Mobs/Pets/smile.rsi
     size: Huge
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-slime
@@ -749,6 +785,41 @@
       gender: female
   - type: TTS
     voice: Neco
+  # Sunrise-start
+  - type: InteractionPopup
+    interactDelay: 0.5
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound: /Audio/Animals/cat_meow.ogg
+    successChance: 1
+  - type: Puller
+    needsHands: false
+  - type: SmileSlime
+    action: SmileAffection
+    soundSpecifier: /Audio/Animals/cat_meow.ogg
+    actionTime: 5
+    affectionPopupText: "smile-affection-popup"
+    damageSpecifier:
+      groups:
+        Brute: -5
+        Burn: -5
+      types:
+        Bloodloss: -5
+    messages:
+    - goodfeeling-artifact-1
+    - goodfeeling-artifact-2
+    - goodfeeling-artifact-3
+    - goodfeeling-artifact-4
+    - goodfeeling-artifact-5
+    - goodfeeling-artifact-6
+    - goodfeeling-artifact-7
+    - goodfeeling-artifact-8
+    - goodfeeling-artifact-9
+    - goodfeeling-artifact-10
+    - goodfeeling-artifact-11
+    - goodfeeling-artifact-12
+    - goodfeeling-artifact-13
+    - goodfeeling-artifact-14
+  # Sunrise-end
 
 - type: entity
   name: Pun Pun

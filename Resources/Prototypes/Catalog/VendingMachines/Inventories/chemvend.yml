@@ -1,27 +1,27 @@
 - type: vendingMachineInventory
   id: ChemVendInventory
   startingInventory:
-    Jug: 12  # Sunrise-edit
-    JugAluminium: 4  # Sunrise-edit
-    JugCarbon: 4  # Sunrise-edit
-    JugChlorine: 4  # Sunrise-edit
-    JugCopper: 4  # Sunrise-edit
-    JugEthanol: 4  # Sunrise-edit
-    JugFluorine: 4  # Sunrise-edit
-    JugHydrogen: 4  # Sunrise-edit
-    JugIodine: 4  # Sunrise-edit
-    JugIron: 4  # Sunrise-edit
-    JugLithium: 4  # Sunrise-edit
-    JugMercury: 4  # Sunrise-edit
-    JugNitrogen: 4  # Sunrise-edit
-    JugOxygen: 4  # Sunrise-edit
-    JugPhosphorus: 4  # Sunrise-edit
-    JugPotassium: 4  # Sunrise-edit
-    JugRadium: 4  # Sunrise-edit
-    JugSilicon: 4  # Sunrise-edit
-    JugSodium: 4  # Sunrise-edit
-    JugSugar: 4  # Sunrise-edit
-    JugSulfur: 4  # Sunrise-edit
+    Jug: 4
+    JugAluminium: 2
+    JugCarbon: 4
+    JugChlorine: 1
+    JugCopper: 2
+    JugEthanol: 2
+    JugFluorine: 1
+    JugHydrogen: 3
+    JugIodine: 1
+    JugIron: 2
+    JugLithium: 2
+    JugMercury: 1
+    JugNitrogen: 3
+    JugOxygen: 3
+    JugPhosphorus: 1
+    JugPotassium: 2
+    JugRadium: 1
+    JugSilicon: 2
+    JugSodium: 2
+    JugSugar: 3
+    JugSulfur: 1
   emaggedInventory:
     ToxinChemistryBottle: 1
 

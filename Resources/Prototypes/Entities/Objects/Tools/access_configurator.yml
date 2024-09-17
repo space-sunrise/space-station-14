@@ -48,6 +48,10 @@
       - Security
       - Service
       - Theatre
+      - BlueShield # Sunrise
+      - Ntrep # Sunrise
+      - Magistrat # Sunrise
+      - Barber  # Sunrise
       privilegedIdSlot:
         name: id-card-console-privileged-id
         ejectSound: /Audio/Machines/id_swipe.ogg
@@ -66,7 +70,7 @@
           type: AccessOverriderBoundUserInterface
     - type: ActivatableUI
       key: enum.AccessOverriderUiKey.Key
-      requireHands: true
+      requiresComplex: true
       requireActiveHand: false
       singleUser: true
     - type: ItemSlots
@@ -119,6 +123,10 @@
     - CentralCommand
     - NuclearOperative
     - SyndicateAgent
+    - BlueShield # Sunrise
+    - Ntrep # Sunrise
+    - Magistrat # Sunrise
+    - Barber  # Sunrise
     privilegedIdSlot:
       name: id-card-console-privileged-id
       ejectSound: /Audio/Machines/id_swipe.ogg

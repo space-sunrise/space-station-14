@@ -16,6 +16,7 @@ using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Emp;
 using Content.Shared.Popups;
+using Content.Shared.Power;
 using Content.Shared.Throwing;
 using Content.Shared.UserInterface;
 using Content.Shared.VendingMachines;
@@ -293,7 +294,7 @@ namespace Content.Server.VendingMachines
             vendComponent.ThrowNextItem = throwItem;
 
             if (TryComp(uid, out SpeakOnUIClosedComponent? speakComponent))
-                _speakOnUIClosed.TrySetFlag((uid, speakComponent));
+                _speakOnUIClosed.TrySetFlag(uid, speakComponent);
 
             entry.Amount--;
             UpdateVendingMachineInterfaceState(uid, vendComponent);

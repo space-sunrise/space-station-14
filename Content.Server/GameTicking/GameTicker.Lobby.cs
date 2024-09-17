@@ -53,11 +53,11 @@ namespace Content.Server.GameTicking
 
             var stationNames = new StringBuilder();
             var query =
-                EntityQueryEnumerator<StationJobsComponent, StationSpawningComponent, MetaDataComponent>();
+                EntityQueryEnumerator<StationJobsComponent, StationSpawningComponent, StationEventEligibleComponent, MetaDataComponent>();
 
             var foundOne = false;
 
-            while (query.MoveNext(out _, out _, out var meta))
+            while (query.MoveNext(out _, out _, out _, out var meta))
             {
                 foundOne = true;
                 if (stationNames.Length > 0)
@@ -68,12 +68,20 @@ namespace Content.Server.GameTicking
 
             if (!foundOne)
             {
-                stationNames.Append(_gameMapManager.GetSelectedMap()?.MapName ??
-                                    Loc.GetString("game-ticker-no-map-selected"));
+                stationNames.Append(Loc.GetString("game-ticker-no-map-selected")); // Sunrise-Edit
             }
 
             var gmTitle = Loc.GetString(preset.ModeTitle);
             var desc = Loc.GetString(preset.Description);
+
+            // Sunrise-Start
+            if (preset.Hide)
+            {
+                gmTitle = "Скрыт";
+                desc = "Игровой режим скрыт.";
+            }
+            // Sunrise-End
+
             return Loc.GetString(
                 RunLevel == GameRunLevel.PreRoundLobby
                     ? "game-ticker-get-info-preround-text"
@@ -94,7 +102,7 @@ namespace Content.Server.GameTicking
         private TickerLobbyStatusEvent GetStatusMsg(ICommonSession session)
         {
             _playerGameStatuses.TryGetValue(session.UserId, out var status);
-            return new TickerLobbyStatusEvent(RunLevel != GameRunLevel.PreRoundLobby, LobbyParalax, LobbyImage, status == PlayerGameStatus.ReadyToPlay, _roundStartTime, RoundPreloadTime, RoundStartTimeSpan, Paused); // Sunrise-edit
+            return new TickerLobbyStatusEvent(RunLevel != GameRunLevel.PreRoundLobby, LobbyBackground, LobbyParalax, LobbyImage, status == PlayerGameStatus.ReadyToPlay, _roundStartTime, RoundPreloadTime, RoundStartTimeSpan, Paused); // Sunrise-edit
         }
 
         private void SendStatusToAll()
@@ -178,6 +186,18 @@ namespace Content.Server.GameTicking
             RaiseNetworkEvent(GetStatusMsg(player), player.Channel);
             // update server info to reflect new ready count
             UpdateInfoText();
+        }
+
+        public bool UserHasJoinedGame(ICommonSession session)
+            => UserHasJoinedGame(session.UserId);
+
+        public bool UserHasJoinedGame(NetUserId userId)
+        {
+            // Sunrise-Edit: Я не понимаю почему, но PlayerGameStatuses[userId] может вернуть ошибку.
+            if (!PlayerGameStatuses.TryGetValue(userId, out var status))
+                return false;
+
+            return status == PlayerGameStatus.JoinedGame;
         }
     }
 }

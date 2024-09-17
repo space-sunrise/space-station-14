@@ -55,40 +55,6 @@
       collection: FelinidGrowls
 
 - type: emoteSounds
-  id: UnisexSynth
-  params:
-    variation: 0.125
-  sounds:
-    Scream:
-      collection: SynthScreams
-    Laugh:
-      collection: MaleLaugh
-    Sneeze:
-      collection: MaleSneezes
-    Cough:
-      collection: MaleCoughs
-    CatMeow:
-      collection: CatMeows
-    CatHisses:
-      collection: CatHisses
-    MonkeyScreeches:
-      collection: MonkeyScreeches
-    RobotBeep:
-      collection: RobotBeeps
-    Yawn:
-      collection: MaleYawn
-    Snore:
-      collection: Snores
-    Honk:
-      collection: BikeHorn
-    Sigh:
-      collection: MaleSigh
-    Crying:
-      collection: MaleCry
-    Whistle:
-      collection: Whistles
-
-- type: emoteSounds
   id: MaleVulpkanin
   params:
     variation: 0.125
@@ -151,10 +117,6 @@
       collection: MaleSneezes
     Cough:
       collection: MaleCoughs
-    CatMeow:
-      collection: CatMeows
-    CatHisses:
-      collection: CatHisses
     MonkeyScreeches:
       collection: MonkeyScreeches
     RobotBeep:
@@ -194,12 +156,27 @@
       collection: PredatorLaugh
 
 - type: emoteSounds
-  id: dsscream
+  id: Reaper
+  sound:
+    path: /Audio/_Sunrise/Voice/Reaper/reaper_scream.ogg
+    params:
+      volume: -2
+
+- type: emoteSounds
+  id: ClownGoblin
   params:
     variation: 0.125
   sounds:
     Scream:
-      collection: DeathSquadScream
+      collection: ClownGoblinScream
+
+- type: emoteSounds # I know how bad it is...
+  id: dsscream      # I've added new emote only to change
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: DeathSquadScream # This thing
     Laugh:
       collection: MaleLaugh
     Sneeze:

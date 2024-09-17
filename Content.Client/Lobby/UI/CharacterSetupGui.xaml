@@ -4,7 +4,7 @@
          xmlns:style="clr-namespace:Content.Client.Stylesheets"
          VerticalExpand="True">
     <Control>
-        <PanelContainer Name="BackgroundPanel" />
+        <PanelContainer Name="BackgroundPanel" StyleClasses="AngleRect"/>
         <BoxContainer Orientation="Vertical" SeparationOverride="0">
             <BoxContainer Orientation="Horizontal" MinSize="0 40">
                 <Label Text="{Loc 'character-setup-gui-character-setup-label'}"

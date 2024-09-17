@@ -1,0 +1,21 @@
+- type: entity
+  id: FTLPointShuttle
+  parent: MarkerBase
+  name: Посадочная площадка
+  components:
+    - type: FTLBeacon
+      blockRotate: true
+    - type: Sprite
+      state: pink
+
+- type: entity
+  id: FTLPointShuttlePrisonSpawn
+  parent: MarkerBase
+  name: Посадочная площадка (спавн тюремный шаттл)
+  components:
+  - type: FTLBeacon
+    blockRotate: true
+  - type: Sprite
+    state: pink
+  - type: RoundstartFtlTarget
+    path: "/Maps/_Sunrise/Shuttles/prison.yml"

@@ -1,96 +1,3 @@
-# SYNTH
-
-- type: loadoutEffectGroup
-  id: Synth
-  effects:
-  - !type:SpeciesLoadoutEffect
-    species:
-    - Synth
-
-# Basic
-- type: loadout
-  id: EmergencySynth
-  equipment: EmergencySynth
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: Synth
-
-- type: startingGear
-  id: EmergencySynth
-  storage:
-    back:
-    - BoxRepairSynth
-
-# Clown
-- type: loadout
-  id: EmergencySynthClown
-  equipment: EmergencySynthClown
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: Synth
-
-- type: startingGear
-  id: EmergencySynthClown
-  storage:
-    back:
-    - BoxHugSynth
-
-# Engineering / Extended
-- type: loadout
-  id: EmergencySynthExtended
-  equipment: EmergencySynthExtended
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: Synth
-
-- type: startingGear
-  id: EmergencySynthExtended
-  storage:
-    back:
-    - BoxRepairSynth
-
-# Medical
-- type: loadout
-  id: EmergencySynthMedical
-  equipment: EmergencySynthMedical
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: Synth
-
-- type: startingGear
-  id: EmergencySynthMedical
-  storage:
-    back:
-    - BoxRepairSynth
-
-# Security
-- type: loadout
-  id: EmergencySynthSecurity
-  equipment: EmergencySynthSecurity
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: Synth
-
-- type: startingGear
-  id: EmergencySynthSecurity
-  storage:
-    back:
-    - BoxRepairSecurity
-
-# Syndicate
-- type: loadout
-  id: EmergencySynthSyndicate
-  equipment: EmergencySynthSyndicate
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: Synth
-
-- type: startingGear
-  id: EmergencySynthSyndicate
-  storage:
-    back:
-    - BoxRepairSyndicate
-
 # Without Gas
 
 - type: loadoutEffectGroup
@@ -103,7 +10,7 @@
 # Basic
 - type: loadout
   id: EmergencyWithoutGas
-  equipment: EmergencyWithoutGas
+  startingGear: EmergencyWithoutGas
   effects:
   - !type:GroupLoadoutEffect
     proto: NoBreather
@@ -117,7 +24,7 @@
 # Clown
 - type: loadout
   id: EmergencyWithoutGasClown
-  equipment: EmergencyWithoutGasClown
+  startingGear: EmergencyWithoutGasClown
   effects:
   - !type:GroupLoadoutEffect
     proto: NoBreather
@@ -131,7 +38,7 @@
 # Engineering / Extended
 - type: loadout
   id: EmergencyWithoutGasExtended
-  equipment: EmergencyWithoutGasExtended
+  startingGear: EmergencyWithoutGasExtended
   effects:
   - !type:GroupLoadoutEffect
     proto: NoBreather
@@ -145,7 +52,7 @@
 # Medical
 - type: loadout
   id: EmergencyWithoutGasMedical
-  equipment: EmergencyWithoutGasMedical
+  startingGear: EmergencyWithoutGasMedical
   effects:
   - !type:GroupLoadoutEffect
     proto: NoBreather
@@ -159,7 +66,7 @@
 # Security
 - type: loadout
   id: EmergencyWithoutGasSecurity
-  equipment: EmergencyWithoutGasSecurity
+  startingGear: EmergencyWithoutGasSecurity
   effects:
   - !type:GroupLoadoutEffect
     proto: NoBreather
@@ -173,7 +80,7 @@
 # Syndicate
 - type: loadout
   id: EmergencyWithoutGasSyndicate
-  equipment: EmergencyWithoutGasSyndicate
+  startingGear: EmergencyWithoutGasSyndicate
   effects:
   - !type:GroupLoadoutEffect
     proto: NoBreather

@@ -100,6 +100,24 @@
   - BrigmedicJumpskirt
 
 - type: loadoutGroup
+  id: NanoTrasenRepresentativeJumpsuit
+  name: loadout-group-nanotrasenrepresentative-jumpsuit
+  minLimit: 1
+  loadouts:
+  - NanoTrasenRepresentativeJumpsuit
+  - NanoTrasenRepresentativeJumpskirt
+  - NanoTrasenRepresentativeJumpsuitFormal
+
+- type: loadoutGroup
+  id: NanoTrasenRepresentativeOuterClothing
+  name: loadout-group-nanotrasenrepresentative-outerclothing
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - NanoTrasenRepresentativeCoat
+  - NanoTrasenRepresentativeCoatOpen
+
+- type: loadoutGroup
   id: BlueShieldBackpack
   name: loadout-group-blueshield-backpack
   loadouts:
@@ -115,12 +133,20 @@
   - BlueShieldJumpskirt
 
 - type: loadoutGroup
+  id: BarberJumpsuit
+  name: loadout-group-barber-jumpsuit
+  loadouts:
+  - BarberJumpsuit
+  - BarberJumpskirt
+
+- type: loadoutGroup
   id: SecurityTrinkets
   name: loadout-group-security-trinkets
   minLimit: 0
   maxLimit: 3
   loadouts:
   - SecurityBodycam
+  - SecurityPepperspray
   - SecurityWhistle
   - SecurityRadioHandheld
   - SecurityTourniquet
@@ -208,3 +234,70 @@
   loadouts:
   - RoboticistCap
   - SkullBandana
+
+- type: loadoutGroup
+  id: PrisonGuardJumpsuit
+  name: loadout-group-prison-guard-jumpsuit
+  loadouts:
+  - PrisonGuardJumpsuit
+  - PrisonGuardJumpskirt
+
+- type: loadoutGroup
+  id: PrisonerJumpsuit
+  name: loadout-group-prisoner-jumpsuit
+  loadouts:
+  - PrisonerJumpsuit
+  - PrisonerJumpskirt
+
+- type: loadoutGroup
+  id: PrisonGuardBackpack
+  name: loadout-group-prison-guard-backpack
+  loadouts:
+  - PrisonGuardBackpack
+  - PrisonGuardSatchel
+  - PrisonGuardDuffel
+
+- type: loadoutGroup
+  id: PrisonGuardHead
+  name: loadout-group-prison-guard-head
+  minLimit: 0
+  loadouts:
+  - HeadHatBeretPrisonGuard
+  - HeadPrisonGuard
+  - HeadCapPrisonGuard
+
+- type: loadoutGroup
+  id: SecurityPilotJumpsuit
+  name: loadout-group-security-pilot-jumpsuit
+  loadouts:
+  - SecurityPilotJumpsuit
+  - SecurityPilotJumpskirt
+
+- type: loadoutGroup
+  id: AdjutantJumpsuit
+  name: loadout-group-adj-jumpsuit
+  loadouts:
+  - AdjutantJumpsuit
+  - AdjutantJumpskirt
+
+- type: loadoutGroup
+  id: AdjutantBackpack
+  name: loadout-group-adj-backpack
+  loadouts:
+  - AdjutantBackpack
+  - AdjutantSatchel
+  - AdjutantDuffel
+
+- type: loadoutGroup
+  id: AdjutantHead
+  name: loadout-group-adj-head
+  loadouts:
+  - AdjutantCap
+  - AdjutantBeret
+  - AdjutantGarrisonCap
+
+- type: loadoutGroup
+  id: AdjutantOuterClothing
+  name: loadout-group-adj-outerClothing
+  loadouts:
+  - AdjutantCoat

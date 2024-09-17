@@ -8,6 +8,7 @@ using Robust.Shared.IoC;
 using Robust.Shared.Localization;
 using Robust.Shared.Maths;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Client.Voting.UI
 {
@@ -48,13 +49,19 @@ namespace Content.Client.Voting.UI
 
         public void UpdateData()
         {
-            VoteTitle.Text = _vote.Title;
+            VoteTitle.SetMessage(FormattedMessage.FromUnformatted(_vote.Title));
             VoteCaller.Text = Loc.GetString("ui-vote-created", ("initiator", _vote.Initiator));
 
             for (var i = 0; i < _voteButtons.Length; i++)
             {
                 var entry = _vote.Entries[i];
-                _voteButtons[i].Text = Loc.GetString("ui-vote-button", ("text", entry.Text), ("votes", entry.Votes));
+
+                // Sunrise-Start
+                if (_vote.Hide)
+                    _voteButtons[i].Text = Loc.GetString("ui-vote-hide-button", ("text", entry.Text));
+                else
+                    _voteButtons[i].Text = Loc.GetString("ui-vote-button", ("text", entry.Text), ("votes", entry.Votes));
+                // Sunrise-End
 
                 if (_vote.OurVote == i)
                     _voteButtons[i].Pressed = true;

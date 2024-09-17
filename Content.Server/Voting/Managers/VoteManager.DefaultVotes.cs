@@ -101,7 +101,8 @@ namespace Content.Server.Voting.Managers
                     Duration = alone
                         ? TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerAlone))
                         : TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerRestart)),
-                    InitiatorTimeout = TimeSpan.FromMinutes(5)
+                    InitiatorTimeout = TimeSpan.FromMinutes(5),
+                    Hide = true, // Sunrise-Edit
                 };
 
                 if (alone)
@@ -175,7 +176,8 @@ namespace Content.Server.Voting.Managers
                 Title = Loc.GetString("ui-vote-gamemode-title"),
                 Duration = alone
                     ? TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerAlone))
-                    : TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerPreset))
+                    : TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerPreset)),
+                Hide = true
             };
 
             if (alone)
@@ -197,13 +199,13 @@ namespace Content.Server.Voting.Managers
                 {
                     picked = (string) _random.Pick(args.Winners);
                     _chatManager.DispatchServerAnnouncement(
-                        Loc.GetString("ui-vote-gamemode-tie", ("picked", Loc.GetString(presets[picked]))));
+                        Loc.GetString("ui-vote-gamemode-tie")); // Sunrise-Edit
                 }
                 else
                 {
                     picked = (string) args.Winner;
                     _chatManager.DispatchServerAnnouncement(
-                        Loc.GetString("ui-vote-gamemode-win", ("winner", Loc.GetString(presets[picked]))));
+                        Loc.GetString("ui-vote-gamemode-win")); // Sunrise-Edit
                 }
                 _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Preset vote finished: {picked}");
                 var ticker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
@@ -227,7 +229,8 @@ namespace Content.Server.Voting.Managers
                 Title = Loc.GetString("ui-vote-map-title"),
                 Duration = alone
                     ? TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerAlone))
-                    : TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerMap))
+                    : TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerMap)),
+                Hide = true // Sunrise-Edit
             };
 
             if (alone)
@@ -245,28 +248,17 @@ namespace Content.Server.Voting.Managers
             vote.OnFinished += (_, args) =>
             {
                 GameMapPrototype picked;
-                string title;
                 if (args.Winner == null)
                 {
                     picked = (GameMapPrototype) _random.Pick(args.Winners);
-                    title = maps.FirstOrDefault(x => x.Value == picked).Key;
                     _chatManager.DispatchServerAnnouncement(
-                        Loc.GetString("ui-vote-map-tie", ("picked", title)));
+                        Loc.GetString("ui-vote-map-tie"));
                 }
                 else
                 {
                     picked = (GameMapPrototype) args.Winner;
-                    title = maps.FirstOrDefault(x => x.Value == picked).Key;
                 }
-                if (title == Loc.GetString("ui-vote-secret-map"))
-                {
-                    _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-secret-win"));
-                }
-                else
-                {
-                    _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-map-win",
-                        ("winner", title)));
-                }
+                _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-map-win")); // Sunrise-Edit
 
                 _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Map vote finished: {picked.MapName}");
                 var ticker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();

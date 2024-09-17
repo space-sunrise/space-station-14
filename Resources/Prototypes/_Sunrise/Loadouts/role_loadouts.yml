@@ -6,6 +6,7 @@
   - CommonBackpack
   - Trinkets
   - Survival
+  - GroupSpeciesBreathTool
   - Bra
   - Pants
   - Socks
@@ -16,6 +17,7 @@
   - CommonBackpack
   - Trinkets
   - Survival
+  - GroupSpeciesBreathTool
   - Bra
   - Pants
   - Socks
@@ -28,6 +30,7 @@
   - SurvivalSecurity
   - Trinkets
   - SecurityTrinkets
+  - GroupSpeciesBreathTool
   - Bra
   - Pants
   - Socks
@@ -39,6 +42,7 @@
   - CentCommOperatorHats
   - Trinkets
   - Survival
+  - GroupSpeciesBreathTool
   - Bra
   - Pants
   - Socks
@@ -50,6 +54,7 @@
   - CentCommOperatorHats
   - Trinkets
   - Survival
+  - GroupSpeciesBreathTool
   - Bra
   - Pants
   - Socks
@@ -61,6 +66,7 @@
   - BlueShieldBackpack
   - Trinkets
   - Survival
+  - GroupSpeciesBreathTool
   - Bra
   - Pants
   - Socks
@@ -76,6 +82,7 @@
   - SurvivalSecurity
   - Trinkets
   - SecurityTrinkets
+  - GroupSpeciesBreathTool
   - Bra
   - Pants
   - Socks
@@ -90,6 +97,7 @@
   - Glasses
   - Survival
   - Trinkets
+  - GroupSpeciesBreathTool
   - Bra
   - Pants
   - Socks
@@ -105,6 +113,7 @@
   - SurvivalMedical
   - Trinkets
   - Glasses
+  - GroupSpeciesBreathTool
   - Bra
   - Pants
   - Socks
@@ -118,6 +127,7 @@
   - StationEngineerShoes
   - SurvivalExtended
   - Trinkets
+  - GroupSpeciesBreathTool
   - Bra
   - Pants
   - Socks
@@ -133,6 +143,176 @@
   - ScientistShoes
   - Survival
   - Trinkets
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobPrisonEngineer
+  groups:
+  - StationEngineerHead
+  - StationEngineerJumpsuit
+  - StationEngineerBackpack
+  - StationEngineerOuterClothing
+  - StationEngineerShoes
+  - Trinkets
+  - SurvivalExtended
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobPrisonPilot
+  groups:
+  - PrisonGuardJumpsuit
+  - PrisonGuardBackpack
+  - SecurityShoes
+  - Trinkets
+  - SecurityTrinkets
+  - SurvivalSecurity
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobPrisonWorker
+  groups:
+  - BartenderJumpsuit
+  - CommonBackpack
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobPrisonGuard
+  groups:
+  - PrisonGuardHead
+  - PrisonGuardJumpsuit
+  - PrisonGuardBackpack
+  - SecurityShoes
+  - SurvivalSecurity
+  - Trinkets
+  - SecurityTrinkets
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobSecurityPilot
+  groups:
+  - SecurityPilotJumpsuit
+  - SecurityBackpack
+  - SecurityShoes
+  - SurvivalSecurity
+  - Trinkets
+  - SecurityTrinkets
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobPrisonChef
+  groups:
+  - GroupTankHarness
+  - ChefHead
+  - ChefMask
+  - ChefJumpsuit
+  - CommonBackpack
+  - ChefOuterClothing
+  - Glasses
+  - Survival
+  - Trinkets
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobPrisonDoctor
+  groups:
+  - GroupTankHarness
+  - MedicalDoctorHead
+  - MedicalMask
+  - MedicalDoctorJumpsuit
+  - MedicalGloves
+  - MedicalBackpack
+  - MedicalDoctorOuterClothing
+  - MedicalShoes
+  - Glasses
+  - SurvivalMedical
+  - Trinkets
+  - GroupSpeciesBreathToolMedical
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobHeadOfPrison
+  groups:
+  - PrisonGuardHead
+  - PrisonGuardJumpsuit
+  - PrisonGuardBackpack
+  - SecurityShoes
+  - SurvivalSecurity
+  - Trinkets
+  - SecurityTrinkets
+  - GroupSpeciesBreathToolSecurity
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobNanoTrasenRepresentative
+  groups:
+  - NanoTrasenRepresentativeJumpsuit
+  - NanoTrasenRepresentativeOuterClothing
+  - CommonBackpack
+  - Trinkets
+  - Survival
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobBarber
+  groups:
+  - BarberJumpsuit
+  - CommonBackpack
+  - Trinkets
+  - Survival
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobPlanetPrisoner
+  groups:
+  - PrisonerJumpsuit
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobAdjutant
+  groups:
+  - AdjutantJumpsuit
+  - AdjutantOuterClothing
+  - AdjutantBackpack
+  - AdjutantHead
+  - Trinkets
+  - Survival
+  - GroupSpeciesBreathTool
   - Bra
   - Pants
   - Socks

@@ -133,11 +133,6 @@ namespace Content.Server.Preferences.Managers
                 return;
             }
 
-            if (slot < 0 || slot >= GetMaxUserCharacterSlots(userId)) // Sunrise-Sponsors
-            {
-                return;
-            }
-
             var curPrefs = prefsData.Prefs!;
 
             // If they try to delete the slot they have selected then we switch to another one.
@@ -233,6 +228,10 @@ namespace Content.Server.Preferences.Managers
             {
                 MaxCharacterSlots = GetMaxUserCharacterSlots(session.UserId) // Sunrise-Sponsors
             };
+            // Sunrise-Start
+            if (msg.Preferences.SelectedCharacterIndex > GetMaxUserCharacterSlots(session.UserId))
+                msg.Preferences.SelectedCharacterIndex = prefsData.Prefs.Characters.FirstOrDefault().Key;
+            // Sunrise-End
             _netManager.ServerSendMessage(msg, session.Channel);
         }
 
@@ -246,7 +245,7 @@ namespace Content.Server.Preferences.Managers
             return _cachedPlayerPrefs.ContainsKey(session.UserId);
         }
 
-        // Sunrise-Sponsors-Start: Calculate total available users slots with sponsors
+        // Sunrise-Sponsors-Start
         private int GetMaxUserCharacterSlots(NetUserId userId)
         {
             var maxSlots = _cfg.GetCVar(CCVars.GameMaxCharacterSlots);
@@ -276,7 +275,6 @@ namespace Content.Server.Preferences.Managers
 
         /// <summary>
         /// Retrieves preferences for the given username from storage.
-        /// Creates and saves default preferences if they are not found, then returns them.
         /// </summary>
         public PlayerPreferences GetPreferences(NetUserId userId)
         {
@@ -291,7 +289,6 @@ namespace Content.Server.Preferences.Managers
 
         /// <summary>
         /// Retrieves preferences for the given username from storage or returns null.
-        /// Creates and saves default preferences if they are not found, then returns them.
         /// </summary>
         public PlayerPreferences? GetPreferencesOrNull(NetUserId? userId)
         {

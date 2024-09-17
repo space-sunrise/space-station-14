@@ -24,9 +24,9 @@ namespace Content.Server.Station.Systems;
 public sealed partial class StationJobsSystem : EntitySystem
 {
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
+    [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -56,7 +56,7 @@ public sealed partial class StationJobsSystem : EntitySystem
         if (_availableJobsDirty)
         {
             _cachedAvailableJobs = GenerateJobsAvailableEvent();
-            RaiseNetworkEvent(_cachedAvailableJobs, Filter.Empty().AddPlayers(_playerManager.Sessions));
+            RaiseNetworkEvent(_cachedAvailableJobs, Filter.Empty().AddPlayers(_player.Sessions));
             _availableJobsDirty = false;
         }
     }
@@ -375,8 +375,10 @@ public sealed partial class StationJobsSystem : EntitySystem
     {
         if (!Resolve(station, ref stationJobs))
             throw new ArgumentException("Tried to use a non-station entity as a station!", nameof(station));
-
-        return stationJobs.OverflowJobs;
+        
+        //return stationJobs.OverflowJobs;
+        // Sunrise-Edit: Так как у нас неограничены не только пассажиры а и другие роли это не работает корректно, отправляя игроков играть за охранников КТ.
+        return new HashSet<ProtoId<JobPrototype>>();
     }
 
     /// <summary>

@@ -55,7 +55,15 @@ public sealed partial class ShuttleConsoleSystem
             return;
         }
 
+        // Sunrise-Start
+        if (!TryComp<FTLBeaconComponent>(beaconEnt, out var beaconComponent))
+            return;
         var angle = args.Angle.Reduced();
+        if (beaconComponent.BlockRotate)
+        {
+            angle = Angle.Zero;
+        }
+        // Sunrise-End
         var targetCoordinates = new EntityCoordinates(targetXform.MapUid!.Value, _transform.GetWorldPosition(targetXform));
 
         ConsoleFTL(ent, targetCoordinates, angle, targetXform.MapID);
@@ -63,7 +71,7 @@ public sealed partial class ShuttleConsoleSystem
 
     private void OnPositionFTLMessage(Entity<ShuttleConsoleComponent> entity, ref ShuttleConsoleFTLPositionMessage args)
     {
-        var mapUid = _mapManager.GetMapEntityId(args.Coordinates.MapId);
+        var mapUid = _mapSystem.GetMap(args.Coordinates.MapId);
 
         // If it's beacons only block all position messages.
         if (!Exists(mapUid) || _shuttle.IsBeaconMap(mapUid))

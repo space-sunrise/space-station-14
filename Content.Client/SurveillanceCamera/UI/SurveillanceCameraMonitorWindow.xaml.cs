@@ -35,7 +35,9 @@ public sealed partial class SurveillanceCameraMonitorWindow : FancyWindow
     private Texture? _blipTexture; // Sunrise-edit
     private NetEntity? _trackedEntity; // Sunrise-edit
 
-    public SurveillanceCameraMonitorWindow(EntityUid? mapUid)
+    public EntityUid Entity;
+
+    public SurveillanceCameraMonitorWindow()
     {
         RobustXamlLoader.Load(this);
 
@@ -65,14 +67,21 @@ public sealed partial class SurveillanceCameraMonitorWindow : FancyWindow
 
         // Sunrise-start
         NavMap.TrackedEntitySelectedAction += SetTrackedEntityFromNavMap;
-
         _entManager = IoCManager.Resolve<IEntityManager>();
+        // Sunrise-end
+    }
 
-        if (_entManager.TryGetComponent<TransformComponent>(mapUid, out var xform))
+    public void SetEntity(EntityUid uid)
+    {
+        Entity = uid;
+
+        // Pass owner to nav map
+        NavMap.Owner = uid;
+
+        if (_entManager.TryGetComponent<TransformComponent>(uid, out var xform))
             NavMap.MapUid = xform.GridUid;
         else
             NavMap.Visible = false;
-        // Sunrise-end
     }
 
     // Sunrise-start

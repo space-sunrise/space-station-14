@@ -10,6 +10,7 @@
   startingGear: AtmosphericTechnicianGear
   icon: "JobIconAtmosphericTechnician"
   supervisors: job-supervisors-ce
+  displayWeight: 20  # Sunrise
   access:
   - Maintenance
   - Engineering

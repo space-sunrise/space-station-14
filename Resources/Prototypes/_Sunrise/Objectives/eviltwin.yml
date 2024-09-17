@@ -1,23 +1,35 @@
 ﻿- type: entity
-  noSpawn: true
-  parent: [BaseTraitorObjective, BaseLivingObjective]
+  abstract: true
+  parent: BaseObjective
+  id: BaseEvilTwinObjective
+  components:
+  - type: Objective
+    issuer: EvilTwinCorp
+  - type: RoleRequirement
+    roles:
+      components:
+      - EvilTwinRole
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: [BaseEvilTwinObjective, BaseLivingObjective]
   id: EscapeShuttleTwinObjective
-  name: Escape to centcom alive and unrestrained.
-  description: Continue your covert implementation already on Centcom.
+  name: Улететь на эвакуационном шаттле
+  description: Успешно заменив свою цель улетите со станции.
   components:
     - type: Objective
-      difficulty: 1.3
+      difficulty: 1.0
       icon:
         sprite: Structures/Furniture/chairs.rsi
         state: shuttle
     - type: EscapeShuttleCondition
 
 - type: entity
-  noSpawn: true
-  parent: [BaseTraitorObjective, BaseKillObjective]
+  categories: [ HideSpawnMenu ]
+  parent: [BaseEvilTwinObjective, BaseKillObjective]
   id: KillTwinObjective
-  name: Kill original persona.
-  description: Kill your original persona and take his place.
+  name: Устранить оригинал
+  description: Устраните оригинал и замените его.
   components:
     - type: Objective
       difficulty: 1.75

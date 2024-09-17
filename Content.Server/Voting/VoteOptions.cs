@@ -33,6 +33,8 @@ namespace Content.Server.Voting
         /// </summary>
         public TimeSpan? InitiatorTimeout { get; set; }
 
+        public bool Hide { get; set; } = true; // Sunrise-Edit
+
         /// <summary>
         ///     The options of the vote. Each entry is a tuple of the player-shown text,
         ///     and a data object that can be used to keep track of options later.

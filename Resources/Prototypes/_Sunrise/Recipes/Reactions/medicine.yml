@@ -1,0 +1,15 @@
+- type: reaction
+  id: Desoantizyne
+  reactants:
+    Potassium:
+      amount: 4
+    Nitrogen:
+      amount: 1
+    Ephedrine:
+      amount: 5
+    Razorium:
+      amount: 3
+    Iodine:
+      amount: 4
+  products:
+    Desoantizyne: 0.7

@@ -1,0 +1,11 @@
+shuttle-timer-eta = ПРИБ
+shuttle-timer-etd = ОТБ
+shuttle-timer-shuttle-time = Время шаттла
+shuttle-timer-source-time = Время отправления
+shuttle-timer-dest-time = Время назначения
+shuttle-timer-shuttle-map = Карта шаттла
+shuttle-timer-source-map = Карта отправления
+shuttle-timer-dest-map = Карта назначения
+shuttle-timer-docked = Пристыкован
+shuttle-timer-bye = Пока!
+shuttle-timer-kill = УБЕЙ

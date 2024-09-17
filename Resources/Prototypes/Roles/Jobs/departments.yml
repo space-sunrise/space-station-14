@@ -1,20 +1,22 @@
 - type: department
   id: Cargo
+  name: department-Cargo
   description: department-Cargo-description
   color: "#A46106"
   roles:
   - CargoTechnician
   - Quartermaster
   - SalvageSpecialist
+  - MinerBorg # Sunrise-Edit
 
 - type: department
   id: Civilian
+  name: department-Civilian
   description: department-Civilian-description
   color: "#9FED58"
   weight: -10
   roles:
   - Bartender
-  - Borg
   - Botanist
   - Boxer
   - Chaplain
@@ -31,9 +33,33 @@
   - Visitor
   - Zookeeper
   - ServiceWorker
+  - JanitorBorg # Sunrise-Edit
+  - ServiceBorg # Sunrise-Edit
+  - ClownBorg # Sunrise-Edit
+  - Barber # Sunrise-Roles
+
+- type: department
+  id: CentralCommand
+  name: department-CentralCommand
+  description: department-CentralCommand-description
+  color: "#0c344d"
+  roles:
+  - CentCommOperator # Sunrise-Edit
+  - CentCommOfficial # Sunrise-Edit
+  - CBURN
+  - ERTLeader
+  - ERTChaplain
+  - ERTJanitor
+  - ERTMedical
+  - ERTSecurity
+  - ERTEngineer
+  - DeathSquad
+  editorHidden: true
+  weight: 120
 
 - type: department
   id: Command
+  name: department-Command
   description: department-Command-description
   color: "#052EED" # Sunrise-Edit
   roles:
@@ -44,11 +70,23 @@
   - HeadOfSecurity
   - ResearchDirector
   - Quartermaster
+  - CBURN
+  - ERTLeader
+  - ERTChaplain
+  - ERTJanitor
+  - ERTMedical
+  - ERTSecurity
+  - ERTEngineer
+  - DeathSquad
+  - CentCommOfficial
+  - NanoTrasenRepresentative  #Sunrise-Edit
+  - Adjutant  #Sunrise-edit
   primary: false
   weight: 100
 
 - type: department
   id: Engineering
+  name: department-Engineering
   description: department-Engineering-description
   color: "#EFB341"
   weight: 10  # Sunrise-weights
@@ -58,9 +96,11 @@
   - SeniorEngineer  # Sunrise-Senior
   - StationEngineer
   - TechnicalAssistant
+  - EngineerBorg # Sunrise-Edit
 
 - type: department
   id: Medical
+  name: department-Medical
   description: department-Medical-description
   color: "#52B4E9"
   roles:
@@ -71,9 +111,11 @@
   - MedicalIntern
   - Psychologist
   - Paramedic
+  - MedicalBorg # Sunrise-Edit
 
 - type: department
   id: Security
+  name: department-Security
   description: department-Security-description
   color: "#DE3A3A"
   weight: 20
@@ -85,9 +127,13 @@
   - Detective
   - Warden
   - Brigmedic  # Sunrise-Brigmedic
+  - SecurityPilot # Sunrise-SecurityPilot
+  - SecurityBorg # Sunrise-Edit
+  - SecurityCombatBorg # Sunrise-Edit
 
 - type: department
   id: Science
+  name: department-Science
   description: department-Science-description
   color: "#D381C9"
   roles:
@@ -98,7 +144,27 @@
   - Roboticist  # Sunrise-Edit
 
 - type: department
+  id: Silicon
+  sort: 0
+  name: department-Silicon
+  description: department-Silicon-description
+  color: "#D381C9"
+  roles:
+  - StationAi
+  - Borg
+  - MedicalBorg # Sunrise-Edit
+  - EngineerBorg # Sunrise-Edit
+  - MinerBorg # Sunrise-Edit
+  - JanitorBorg # Sunrise-Edit
+  - ServiceBorg # Sunrise-Edit
+  - SecurityBorg # Sunrise-Edit
+  - ClownBorg # Sunrise-Edit
+  - PeaceBorg # Sunrise-Edit
+  primary: false
+
+- type: department
   id: Specific
+  name: department-Specific
   description: department-Specific-description
   color: "#9FED58"
   weight: 5  # Sunrise-weights
@@ -107,4 +173,5 @@
   - Reporter
   - Zookeeper
   - Psychologist
+  - Barber  # Sunrise-Roles
   primary: false

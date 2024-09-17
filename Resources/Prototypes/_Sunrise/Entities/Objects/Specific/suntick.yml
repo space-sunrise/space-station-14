@@ -1,0 +1,57 @@
+- type: entity
+  name: Сантики
+  parent: BaseItem
+  id: Suntick
+  categories: [ HideSpawnMenu ]
+  suffix: 20 ST
+  description: Невероятно привлекательные и прекрасные монетки, которые открывают двери в мир маленького милого магазинчика.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Donate/suntick.rsi
+    state: telecrystal
+  - type: Item
+    sprite: _Sunrise/Objects/Specific/Donate/suntick.rsi
+    size: Tiny
+  - type: Stack
+    count: 20
+    stackType: Suntick
+  - type: StaticPrice
+    price: 0
+  - type: StackPrice
+    price: 200
+  - type: Currency
+    price:
+      Suntick: 1
+
+- type: entity
+  parent: Suntick
+  id: Suntick1
+  suffix: 1 ST
+  categories: [ HideSpawnMenu ]
+  name: Сантик
+  description: Невероятно привлекательные и прекрасные монетки, которые открывают двери в мир маленького милого магазинчика.
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: Suntick
+  id: Suntick5
+  suffix: 5 ST
+  categories: [ HideSpawnMenu ]
+  name: Сантик
+  description: Невероятно привлекательные и прекрасные монетки, которые открывают двери в мир маленького милого магазинчика.
+  components:
+  - type: Stack
+    count: 5
+
+- type: entity
+  parent: Suntick
+  id: Suntick10
+  categories: [ HideSpawnMenu ]
+  suffix: 10 ST
+  name: Сантик
+  description: Невероятно привлекательные и прекрасные монетки, которые открывают двери в мир маленького милого магазинчика.
+  components:
+  - type: Stack
+    count: 10

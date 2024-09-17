@@ -1,0 +1,11 @@
+- type: entity
+  id: ActionTakeAim
+  name: Включить прицеливание
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: _Sunrise/Actions/gun_actions.rsi
+      state: take_aim
+    event: !type:TakeAimActionEvent
+    useDelay: 0.4

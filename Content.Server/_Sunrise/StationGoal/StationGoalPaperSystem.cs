@@ -116,14 +116,14 @@ namespace Content.Server._Sunrise.StationGoal
             if (!TryComp<PaperComponent>(printed, out var paper))
                 return printed;
 
-            _paperSystem.SetContent(printed, printout.Content);
+            _paperSystem.SetContent((printed, paper), printout.Content);
 
             if (printout.StampState == null)
                 return printed;
 
             foreach (var stamp in printout.StampedBy)
             {
-                _paperSystem.TryStamp(printed, stamp, printout.StampState);
+                _paperSystem.TryStamp((printed, paper), stamp, printout.StampState);
             }
 
             return printed;

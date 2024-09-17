@@ -13,6 +13,20 @@
       - state: jobicon
 
 - type: entity
+  id: SpawnPointNtrep
+  parent: SpawnPointJobBase
+  name: NanoTrasen Representative
+  components:
+  - type: SpawnPoint
+    job_id: NanoTrasenRepresentative
+  - type: Sprite
+    sprite: _Sunrise/Markers/jobs.rsi
+    layers:
+      - state: green
+      - state: ntrep
+      - state: jobicon
+
+- type: entity
   id: SpawnPointBrigmedic
   parent: SpawnPointJobBase
   name: brigmedic
@@ -65,6 +79,101 @@
     - state: centcom
 
 - type: entity
+  id: SpawnPointHeadOfPrison
+  parent: SpawnPointJobBase
+  name: начальник тюрьмы
+  components:
+  - type: SpawnPoint
+    job_id: HeadOfPrison
+  - type: Sprite
+    layers:
+    - state: green
+    - state: hos
+
+- type: entity
+  id: SpawnPointPrisonChef
+  parent: SpawnPointJobBase
+  name: тюремный шеф-повар
+  components:
+  - type: SpawnPoint
+    job_id: PrisonChef
+  - type: Sprite
+    layers:
+    - state: green
+    - state: chef
+
+- type: entity
+  id: SpawnPointPrisonDoctor
+  parent: SpawnPointJobBase
+  name: тюремный доктор
+  components:
+  - type: SpawnPoint
+    job_id: PrisonDoctor
+  - type: Sprite
+    layers:
+    - state: green
+    - state: doctor
+
+- type: entity
+  id: SpawnPointPrisonEngineer
+  parent: SpawnPointJobBase
+  name: тюремный инженер
+  components:
+  - type: SpawnPoint
+    job_id: PrisonEngineer
+  - type: Sprite
+    layers:
+    - state: green
+    - state: engineer
+
+- type: entity
+  id: SpawnPointPrisonGuard
+  parent: SpawnPointJobBase
+  name: охранник
+  components:
+  - type: SpawnPoint
+    job_id: PrisonGuard
+  - type: Sprite
+    layers:
+    - state: green
+
+- type: entity
+  id: SpawnPointPrisonPilot
+  parent: SpawnPointJobBase
+  name: тюремный пилот
+  components:
+  - type: SpawnPoint
+    job_id: PrisonPilot
+  - type: Sprite
+    layers:
+    - state: green
+    - state: seniorofficer
+
+- type: entity
+  id: SpawnPointPlanetPrisoner
+  parent: SpawnPointJobBase
+  name: заключенный ПТ
+  components:
+  - type: SpawnPoint
+    job_id: PlanetPrisoner
+  - type: Sprite
+    layers:
+    - state: green
+    - state: prisoner
+
+- type: entity
+  id: SpawnPointPrisonWorker
+  parent: SpawnPointJobBase
+  name: тюремный разнорабочий
+  components:
+  - type: SpawnPoint
+    job_id: PrisonWorker
+  - type: Sprite
+    layers:
+    - state: green
+    - state: serviceworker
+
+- type: entity
   id: SpawnPointSeniorEngineer
   parent: SpawnPointJobBase
   name: seniorengineer
@@ -111,3 +220,29 @@
     layers:
       - state: green
       - state: seniorofficer
+
+- type: entity
+  id: SpawnPointBarber
+  parent: SpawnPointJobBase
+  name: парикмахер
+  components:
+  - type: SpawnPoint
+    job_id: Barber
+  - type: Sprite
+    sprite: _Sunrise/Markers/jobs.rsi
+    layers:
+    - state: green
+    - state: barber
+
+- type: entity
+  id: SpawnPointAdjutant
+  parent: SpawnPointJobBase
+  name: adjutant
+  components:
+  - type: SpawnPoint
+    job_id: Adjutant
+  - type: Sprite
+    sprite: _Sunrise/Markers/jobs.rsi
+    layers:
+    - state: green
+    - state: adjutant

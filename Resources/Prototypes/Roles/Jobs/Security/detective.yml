@@ -4,19 +4,22 @@
   description: job-description-detective
   playTimeTracker: JobDetective
   requirements:
-  - !type:DepartmentTimeRequirement
-    department: Security
-    time: 36000 #10 hrs # Sunrise-RoleTime
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 54000 # 15 hours
   startingGear: DetectiveGear
   icon: "JobIconDetective"
   supervisors: job-supervisors-hos
   canBeAntag: false
+  displayWeight: 20  # Sunrise
   access:
   - Security
   - Brig
   - Maintenance
   - Service
   - Detective
+  - Cryogenics
+  - External
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

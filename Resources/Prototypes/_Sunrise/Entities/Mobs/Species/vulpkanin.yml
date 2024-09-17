@@ -5,6 +5,10 @@
   id: BaseMobVulpkanin
   abstract: true
   components:
+  - type: Absorbable
+  - type: Speech
+    speechVerb: Vulpkanin
+    allowedEmotes: ['Growl', 'Bark', 'Howl']
   - type: HumanoidAppearance
     species: Vulpkanin
   - type: Icon
@@ -14,7 +18,7 @@
     prototype: Vulpkanin
     requiredLegs: 2
   - type: Inventory
-    speciesId: reptilian
+    speciesId: human
   - type: VulpaAccent
 
 
@@ -23,7 +27,7 @@
   name: Urist McHands
   parent: MobHumanDummy
   id: MobVulpkaninDummy
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   description: A dummy fox meant to be used in character setup.
   components:
   - type: HumanoidAppearance

@@ -1,16 +1,17 @@
 - type: vendingMachineInventory
   id: MediDrobeInventory
   startingInventory:
-    ClothingBackpackDuffelMedical: 6  # Sunrise-edit
-    ClothingBackpackMedical: 6  # Sunrise-edit
-    ClothingBackpackSatchelMedical: 6  # Sunrise-edit
+    ClothingBackpackDuffelMedical: 4
+    ClothingBackpackMedical: 4
+    ClothingBackpackSatchelMedical: 4
     ClothingUniformJumpsuitMedicalDoctor: 4
     ClothingUniformJumpskirtMedicalDoctor: 4
+    ClothingBeltMedical: 4
     ClothingHeadHatBeretMedic: 4
     ClothingHeadNurseHat: 4
     ClothingOuterCoatLab: 4
     ClothingShoesColorWhite: 4
-    ClothingHandsGlovesLatex: 6  # Sunrise-edit
+    ClothingHandsGlovesLatex: 4
     ClothingHandsGlovesNitrile: 2
     ClothingHeadsetMedical: 4
     ClothingOuterWinterMed: 2

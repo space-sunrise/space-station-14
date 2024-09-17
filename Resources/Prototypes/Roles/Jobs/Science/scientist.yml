@@ -10,6 +10,7 @@
   startingGear: ScientistGear
   icon: "JobIconScientist"
   supervisors: job-supervisors-rd
+  displayWeight: 10  # Sunrise
   access:
   - Research
   - Maintenance

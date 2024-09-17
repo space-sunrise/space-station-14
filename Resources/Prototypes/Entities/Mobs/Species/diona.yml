@@ -5,6 +5,7 @@
   id: BaseMobDiona
   abstract: true
   components:
+  - type: Absorbable
   - type: HumanoidAppearance
     species: Diona
   - type: Hunger
@@ -25,6 +26,8 @@
       Brute:
         sprite: Mobs/Effects/brute_damage.rsi
         color: "#cd7314"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
   - type: Butcherable
     butcheringType: Spike
     spawned:
@@ -82,8 +85,6 @@
           - MobMask
         layer:
           - MobLayer
-  - type: Inventory
-    templateId: diona
   - type: Speech
     speechVerb: Plant
   - type: Vocal
@@ -101,13 +102,32 @@
     actionPrototype: DionaGibAction
     allowedStates:
     - Dead
+  - type: Inventory
+    templateId: diona
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
+  # Sunrise-Start
+  - type: CollectiveMind
+    minds:
+    - Dioneas
+  # Sunrise-End
 
 - type: entity
   parent: BaseSpeciesDummy
   id: MobDionaDummy
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
-  - type: Inventory
-    templateId: diona
   - type: HumanoidAppearance
     species: Diona
+  - type: Inventory
+    templateId: diona
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female

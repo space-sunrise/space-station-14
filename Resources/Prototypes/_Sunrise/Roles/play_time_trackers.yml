@@ -17,6 +17,9 @@
   id: JobBlueShield
 
 - type: playTimeTracker
+  id: JobNanoTrasenRepresentative
+
+- type: playTimeTracker
   id: JobSeniorEngineer
 
 - type: playTimeTracker
@@ -30,3 +33,63 @@
 
 - type: playTimeTracker
   id: JobRoboticist
+
+- type: playTimeTracker
+  id: JobSecurityPilot
+
+- type: playTimeTracker
+  id: JobPrisonChef
+
+- type: playTimeTracker
+  id: JobPrisonWorker
+
+- type: playTimeTracker
+  id: JobPrisonGuard
+
+- type: playTimeTracker
+  id: JobPrisonPilot
+
+- type: playTimeTracker
+  id: JobPrisonDoctor
+
+- type: playTimeTracker
+  id: JobHeadOfPrison
+
+- type: playTimeTracker
+  id: JobPrisoner
+
+- type: playTimeTracker
+  id: JobPrisonEngineer
+
+- type: playTimeTracker
+  id: JobEngineerBorg
+
+- type: playTimeTracker
+  id: JobJanitorBorg
+
+- type: playTimeTracker
+  id: JobMedicalBorg
+
+- type: playTimeTracker
+  id: JobMiningBorg
+
+- type: playTimeTracker
+  id: JobServiceBorg
+
+- type: playTimeTracker
+  id: JobSecurityBorg
+
+- type: playTimeTracker
+  id: JobSecurityCombatBorg
+
+- type: playTimeTracker
+  id: JobPeaceBorg
+
+- type: playTimeTracker
+  id: JobClownBorg
+
+- type: playTimeTracker
+  id: JobBarber
+
+- type: playTimeTracker
+  id: JobAdjutant

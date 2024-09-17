@@ -4,7 +4,7 @@
       "x": 32,
       "y": 32
     },
-    "copyright": "Taken from tgstation",
+    "copyright": "Taken from tgstation. Resprite BlueShield Closet by CatBG (Discord:catbg)",
     "license": "CC-BY-SA-3.0",
     "states": [
         {
@@ -39,6 +39,21 @@
         },
         {
             "name": "generic_icon"
+        },
+        {
+            "name": "cardboard"
+        },
+        {
+            "name": "cardboard_open"
+        },
+        {
+            "name": "pilot_door"
+        },
+        {
+            "name": "pilot"
+        },
+        {
+            "name": "pilot_open"
         }
     ]
 }

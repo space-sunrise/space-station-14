@@ -1,14 +1,11 @@
 - type: vendingMachineInventory
   id: ChangInventory
   startingInventory:
-    FoodCondimentPacketSoy: 15  # Sunrise-edit
-    FoodSnackCookieFortune: 15  # Sunrise-edit
-    DrinkRamen: 9  # Sunrise-edit
-    DrinkHellRamen: 9  # Sunrise-edit
-    FoodSnackChowMein: 9  # Sunrise-edit
-    FoodSnackDanDanNoodles: 9  # Sunrise-edit
-    PairedChopsticks: 9  # Sunrise-edit
-    FoodRiceBoiled: 9  # Sunrise-vend
-    FoodRiceEgg: 5  # Sunrise-vend
-    FoodRicePork: 5  # Sunrise-vend
+    FoodCondimentPacketSoy: 5
+    FoodSnackCookieFortune: 5
+    DrinkRamen: 3
+    DrinkHellRamen: 3
+    FoodSnackChowMein: 3
+    FoodSnackDanDanNoodles: 3
+    PairedChopsticks: 3
 # rice?

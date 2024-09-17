@@ -3,38 +3,89 @@
   alias:
     - survival
   name: survival-title
-  showInVote: false # secret
+  showInVote: true # Sunrise-Edit
+  hide: true # Sunrise-Edit
   description: survival-description
   rules:
+    - MeteorSwarmScheduler
     - RampingStationEventScheduler
-    - GameRuleMeteorScheduler
+    - SpaceTrafficControlEventScheduler
+    - SpaceTrafficControlFriendlyEventScheduler
+    - BasicRoundstartVariation
+
+- type: gamePreset
+  id: KesslerSyndrome
+  alias:
+    - kessler
+    - junk
+    - meteorhell
+  name: kessler-syndrome-title
+  showInVote: true # Sunrise-Edit
+  hide: true # Sunrise-Edit
+  description: kessler-syndrome-description
+  rules:
+    - KesslerSyndromeScheduler
+    - RampingStationEventScheduler
+    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
 
 - type: gamePreset
   id: AllAtOnce
+  alias:
+  - all
   name: all-at-once-title
   description: all-at-once-description
   showInVote: false
+  hide: false # Sunrise-Edit
   rules:
     - Nukeops
     - Traitor
     - Revolutionary
     - Zombie
+    - KesslerSyndromeScheduler
     - RampingStationEventScheduler
-    - GameRuleMeteorScheduler
+    - SpaceTrafficControlEventScheduler
+    - BasicRoundstartVariation
 
 - type: gamePreset
-  id: Extended
+  id: AllerAtOnce
   alias:
-  - extended
-  - shittersafari
-  name: extended-title
-  showInVote: false #2boring2vote
-  description: extended-description
+  - allall
+  - aller
+  - badidea
+  - punishment
+  name: aller-at-once-title
+  description: aller-at-once-description
+  showInVote: false #Please god dont do this
+  hide: false # Sunrise-Edit
   rules:
-  - BasicStationEventScheduler
-  - GameRuleMeteorScheduler
-  - BasicRoundstartVariation
+    - Nukeops
+    - Traitor
+    - Revolutionary
+    - Zombie
+    - BasicStationEventScheduler
+    - KesslerSyndromeScheduler
+    - MeteorSwarmMildScheduler
+    - MeteorSwarmScheduler
+    - RampingStationEventScheduler
+    - SpaceTrafficControlEventScheduler
+    - SpaceTrafficControlFriendlyEventScheduler
+    - BasicRoundstartVariation
+
+# Sunrise-Edit: Replace by Extra
+#- type: gamePreset
+#  id: Extended
+#  alias:
+#  - extended
+#  - shittersafari
+#  name: extended-title
+#  showInVote: false #2boring2vote
+#  description: extended-description
+#  rules:
+#  - BasicStationEventScheduler
+#  - MeteorSwarmScheduler
+#  - SpaceTrafficControlEventScheduler
+#  - BasicRoundstartVariation
 
 - type: gamePreset
   id: Greenshift
@@ -42,11 +93,12 @@
   - greenshift
   - shittersafarideluxeedition
   name: greenshift-title
-  showInVote: false #4boring4vote
+  showInVote: true # Sunrise-Edit
+  hide: false # Sunrise-Edit
   description: greenshift-description
   rules:
+  - SpaceTrafficControlFriendlyEventScheduler
   - BasicRoundstartVariation
-  - GameRuleMeteorScheduler
   - GreenshiftAnnouncement # Sunrise-Edit
 
 - type: gamePreset
@@ -56,6 +108,7 @@
     - sekrit
   name: secret-title
   showInVote: true
+  hide: false # Sunrise-Edit
   description: secret-description
   rules:
     - Secret
@@ -69,7 +122,9 @@
   description: secret-description
   rules:
     - BasicStationEventScheduler
-    - GameRuleMeteorScheduler
+    - MeteorSwarmScheduler
+    - SpaceTrafficControlEventScheduler
+    - BasicRoundstartVariation
 
 - type: gamePreset
   id: SecretGreenshift #For Admin Use: Runs Greenshift but shows "Secret" in lobby.
@@ -78,6 +133,9 @@
   name: secret-title
   showInVote: false #Admin Use
   description: secret-description
+  rules:
+  - SpaceTrafficControlFriendlyEventScheduler
+  - BasicRoundstartVariation
 
 - type: gamePreset
   id: Sandbox
@@ -94,14 +152,17 @@
   id: Traitor
   alias:
     - traitor
+    - tator
   name: traitor-title
   description: traitor-description
-  showInVote: false
+  showInVote: true # Sunrise-Edit
+  hide: true # Sunrise-Edit
   rules:
     - Traitor
     - SubGamemodesRule
     - BasicStationEventScheduler
-    - GameRuleMeteorScheduler
+    - MeteorSwarmScheduler
+    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
 
 - type: gamePreset
@@ -111,8 +172,8 @@
     - dm
   name: death-match-title
   description: death-match-description
-  maxPlayers: 15
   showInVote: true
+  hide: true # Sunrise-Edit
   supportedMaps: DeathMatchMapPool
   rules:
     - DeathMatch31
@@ -123,12 +184,14 @@
     - nukeops
   name: nukeops-title
   description: nukeops-description
-  showInVote: false
+  showInVote: true # Sunrise-Edit
+  hide: true # Sunrise-Edit
   rules:
     - Nukeops
     - SubGamemodesRule
     - BasicStationEventScheduler
-    - GameRuleMeteorScheduler
+    - MeteorSwarmScheduler
+    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
 
 - type: gamePreset
@@ -139,12 +202,14 @@
     - revolutionaries
   name: rev-title
   description: rev-description
-  showInVote: false
+  showInVote: true # Sunrise-Edit
+  hide: true # Sunrise-Edit
   rules:
     - Revolutionary
     - SubGamemodesRule
     - BasicStationEventScheduler
-    - GameRuleMeteorScheduler
+    - MeteorSwarmScheduler
+    - SpaceTrafficControlEventScheduler
     - BasicRoundstartVariation
 
 - type: gamePreset
@@ -157,9 +222,44 @@
   - zomber
   name: zombie-title
   description: zombie-description
-  showInVote: false
+  showInVote: true # Sunrise-Edit
+  hide: true # Sunrise-Edit
   rules:
   - Zombie
   - BasicStationEventScheduler
-  - GameRuleMeteorScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
+
+- type: gamePreset
+  id: Zombieteors
+  alias:
+  - zombieteors
+  - zombombies
+  - meteombies
+  name: zombieteors-title
+  description: zombieteors-description
+  showInVote: true # Sunrise-Edit
+  hide: true # Sunrise-Edit
+  rules:
+  - Zombie
+  - BasicStationEventScheduler
+  - KesslerSyndromeScheduler
+  - SpaceTrafficControlEventScheduler
+  - BasicRoundstartVariation
+
+- type: gamePreset
+  id: Changeling
+  alias:
+  - ling
+  - lings
+  - changeling
+  name: changeling-gamemode-title
+  description: changeling-gamemode-description
+  showInVote: false
+  rules:
+  - Changeling
+  - SubGamemodesRule
+  - BasicStationEventScheduler
+  - MeteorSwarmScheduler
   - BasicRoundstartVariation

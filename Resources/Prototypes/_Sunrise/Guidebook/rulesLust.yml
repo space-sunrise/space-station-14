@@ -1,0 +1,149 @@
+﻿- type: guideEntry
+  id: LustRuleset
+  name: guide-entry-rules
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/LustRules.xml"
+
+- type: guideEntry
+  id: RuleLust0
+  name: Универсальное правило
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/RulesLust/RuleLust0.xml"
+
+- type: guideEntry
+  id: RuleLust1
+  name: Основные правила RP
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/RulesLust/RuleLust1.xml"
+
+- type: guideEntry
+  id: RuleLust11
+  name: Пренебрежение последствиями для персонажа
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/RulesLust/Subrules/RuleLust11.xml"
+
+- type: guideEntry
+  id: RuleLust12
+  name: NRP поведение
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/RulesLust/Subrules/RuleLust12.xml"
+
+- type: guideEntry
+  id: RuleLust13
+  name: Логика персонажа
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/RulesLust/Subrules/RuleLust13.xml"
+
+- type: guideEntry
+  id: RuleLust14
+  name: Память персонажей
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/RulesLust/Subrules/RuleLust14.xml"
+
+- type: guideEntry
+  id: RuleLust15
+  name: Отыгрыш своей роли
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/RulesLust/Subrules/RuleLust15.xml"
+
+- type: guideEntry
+  id: RuleLust2
+  name: Гриферство
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/RulesLust/RuleLust2.xml"
+
+- type: guideEntry
+  id: RuleLust21
+  name: Применение силы
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/RulesLust/Subrules/RuleLust21.xml"
+
+- type: guideEntry
+  id: RuleLust22
+  name: Убийство
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/RulesLust/Subrules/RuleLust22.xml"
+
+- type: guideEntry
+  id: RuleLust23
+  name: Манчкинизм
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/RulesLust/Subrules/RuleLust23.xml"
+
+- type: guideEntry
+  id: RuleLust24
+  name: Пауэргейминг
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/RulesLust/Subrules/RuleLust24.xml"
+
+- type: guideEntry
+  id: RuleLust25
+  name: Метагейминг
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/RulesLust/Subrules/RuleLust25.xml"
+
+- type: guideEntry
+  id: RuleLust3
+  name: Самоантагонизм
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/RulesLust/RuleLust3.xml"
+
+- type: guideEntry
+  id: RuleLust31
+  name: Валидхант
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/RulesLust/Subrules/RuleLust31.xml"
+
+- type: guideEntry
+  id: RuleLust32
+  name: Мультиаккаунт
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/RulesLust/Subrules/RuleLust32.xml"
+
+- type: guideEntry
+  id: RuleLust33
+  name: Сторонее ПО, читы
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/RulesLust/Subrules/RuleLust33.xml"
+
+- type: guideEntry
+  id: RuleLust4
+  name: Возраст
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/RulesLust/RuleLust4.xml"
+
+- type: guideEntry
+  id: RuleLust41
+  name: Запрещённые фетиши
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/RulesLust/Subrules/RuleLust41.xml"
+
+- type: guideEntry
+  id: RuleLust42
+  name: Приоритеты
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/RulesLust/Subrules/RuleLust42.xml"
+
+- type: guideEntry
+  id: RuleLust43
+  name: ERP полиция
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/RulesLust/Subrules/RuleLust43.xml"
+
+- type: guideEntry
+  id: RuleLust44
+  name: Приватность
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/RulesLust/Subrules/RuleLust44.xml"
+
+- type: guideEntry
+  id: RuleLust441
+  name: Распространение
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/RulesLust/Subrules/RuleLust441.xml"
+
+- type: guideEntry
+  id: RuleLust45
+  name: ЕРП ради ЕРП
+  ruleEntry: true
+  text: "/ServerInfo/Guidebook/ServerRules/RulesLust/Subrules/RuleLust45.xml"
