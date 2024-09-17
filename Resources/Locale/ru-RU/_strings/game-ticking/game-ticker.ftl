@@ -37,6 +37,7 @@ latejoin-arrival-announcement =
         [epicene] прибыли
        *[neuter] прибыл
     } на станцию!
+latejoin-arrival-announcement-special = { $job } { $character } на борту!
 latejoin-arrival-sender = Станции
 latejoin-arrivals-direction = Вскоре прибудет шаттл, который доставит вас на станцию.
 latejoin-arrivals-direction-time = Шаттл, который доставит вас на станцию, прибудет через { $time }.
@@ -44,3 +45,6 @@ latejoin-arrivals-dumped-from-shuttle = Таинственная сила не �
 latejoin-arrivals-teleport-to-spawn = Таинственная сила телепортирует вас с шаттла прибытия. Удачной смены!
 preset-not-enough-ready-players = Не удалось запустить пресет { $presetName }. Требуется { $minimumPlayers } игроков, но готовы только { $readyPlayersCount }.
 preset-no-one-ready = Не удалось запустить режим { $presetName }. Нет готовых игроков.
+game-run-level-PreRoundLobby = Лобби до начала раунда
+game-run-level-InRound = В раунде
+game-run-level-PostRound = После раунда

@@ -16,8 +16,6 @@
     - !type:DepartmentTimeRequirement
       department: Command
       time: 36000 # 10 hours
-    - !type:AgeRequirement
-      requiredAge: 35 # Sunrise-Edit
   weight: 20
   startingGear: HoPGear
   icon: "JobIconHeadOfPersonnel"
