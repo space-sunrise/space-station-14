@@ -88,14 +88,36 @@ public sealed class PettingSystem : EntitySystem
     /// <param name="args">Ивент типа PetSetAILogicEvent, передающий текущий приказ питомцу</param>
     private void Pet(EntityUid pet, PettableOnInteractComponent component, PetSetAILogicEvent args)
     {
+        var master = component.Master;
+
         // Питомец не может следовать за кем-то без хозяина
-        if (!component.Master.HasValue)
+        if (!master.HasValue)
             return;
 
         // Задаем питомцу задачу следовать за хозяином
-        _npc.SetBlackboard(pet,
-            NPCBlackboard.FollowTarget,
-            new EntityCoordinates(component.Master.Value, Vector2.Zero));
+        switch (args.Order)
+        {
+            case PetOrderType.Follow:
+                _npc.SetBlackboard(pet,
+                    NPCBlackboard.FollowTarget,
+                    new EntityCoordinates(master.Value, Vector2.Zero));
+                break;
+
+            case PetOrderType.Stay:
+                _npc.SetBlackboard(pet,
+                    NPCBlackboard.FollowTarget,
+                    new EntityCoordinates(pet, Vector2.Zero));
+                break;
+
+            case PetOrderType.Attack:
+                if (!args.Target.HasValue)
+                    break;
+
+                _npc.SetBlackboard(pet,
+                    NPCBlackboard.CurrentOrderedTarget,
+                    args.Target);
+                break;
+        }
 
         UpdatePetNPC(pet, args.Order);
     }

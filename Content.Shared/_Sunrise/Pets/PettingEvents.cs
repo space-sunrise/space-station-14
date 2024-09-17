@@ -1,4 +1,5 @@
-﻿using Robust.Shared.Serialization;
+﻿using Content.Shared.Actions;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._Sunrise.Pets;
 
@@ -47,11 +48,15 @@ public sealed partial class PetSetAILogicEvent : PetBaseEvent
     [DataField]
     public PetOrderType Order;
 
+    [NonSerialized]
+    public EntityUid? Target;
+
     public PetSetAILogicEvent() {}
 
-    public PetSetAILogicEvent(PetOrderType order)
+    public PetSetAILogicEvent(PetOrderType order, EntityUid? target = null)
     {
         Order = order;
+        Target = target;
     }
 }
 
@@ -90,10 +95,21 @@ public sealed partial class PetSetName : PetBaseEvent
     }
 }
 
+/// <summary>
+/// Ивент вызываемый при использоваии акшена у хозяина для открытия меню всех питомцев.
+/// </summary>
+public sealed partial class PetOpenAllUiEvent : InstantActionEvent {}
 
+
+/// <summary>
+/// Ивент вызываемый при использоваии акшена у хозяина.
+/// Выбирает цель для атаки питомцев
+/// </summary>
+public sealed partial class PetAttackTargetEvent : EntityTargetActionEvent {}
 #endregion
 
 #region Enums
+
 /// <summary>
 /// Требуется для определения интерфейса
 /// </summary>
@@ -102,4 +118,5 @@ public enum PetControlUiKey : byte
 {
     Key
 }
+
 #endregion

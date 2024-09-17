@@ -21,10 +21,17 @@ public sealed partial class PettableOnInteractComponent : Component
     [DataField]
     public SoundCollectionSpecifier? PettingSuccessfulSound;
 
-    public PetOrderType CurrentOrder = PetOrderType.Follow;
-
+    /// <summary>
+    /// Доступные кнопки в меню управления питомца
+    /// </summary>
     [DataField, AutoNetworkedField]
     public HashSet<ProtoId<PetControlPrototype>> AvailableControls = new();
+
+    /// <summary>
+    /// Доступные питомцу приказы
+    /// </summary>
+    [DataField(required: true)]
+    public HashSet<PetOrderType> AllowedOrders = new HashSet<PetOrderType> {PetOrderType.Follow, PetOrderType.Stay};
 }
 
 /// <summary>
@@ -35,4 +42,5 @@ public enum PetOrderType : byte
 {
     Stay,
     Follow,
+    Attack,
 }
