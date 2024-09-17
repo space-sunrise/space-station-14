@@ -1,0 +1,21 @@
+﻿- type: entity
+  id: PetOpenAllUiAction
+  name: Открыть меню управления питомцами
+  description: Открывает меню управления всеми питомцами
+  components:
+  - type: InstantAction
+    icon: _Sunrise/Interface/Actions/lock.png
+    event: !type:PetOpenAllUiEvent
+    useDelay: 1
+
+- type: entity
+  id: PetAttackTargetAction
+  name: Атаковать цель
+  description: Приказывает всем питомцам, имеющим приказ атаки, атаковать цель
+  components:
+  - type: EntityTargetAction
+    useDelay: 1
+    itemIconStyle: BigAction
+    canTargetSelf: false
+    icon: _Sunrise/Interface/Actions/lock.png
+    event: !type:PetAttackTargetEvent

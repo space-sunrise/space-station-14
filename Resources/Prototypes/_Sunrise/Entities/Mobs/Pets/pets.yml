@@ -1,0 +1,34 @@
+﻿- type: entity
+  id: BasePet
+  abstract: true
+  components:
+  - type: PettableOnInteract
+    pettingSuccessfulSound:
+      collection: FootstepSpurs
+    availableControls:
+    - Follow
+    - Stay
+    - GhostAvailable
+    - GhostUnavailable
+    - Rename
+    allowedOrders:
+    - Stay
+    - Follow
+    - Attack
+  - type: HTN
+    rootTask:
+      task: PetCompound
+    blackboard:
+      IdleRange: !type:Single
+        2.0
+      FollowCloseRange: !type:Single
+        1.0
+      FollowRange: !type:Single
+        1.5
+  - type: UserInterface
+    interfaces:
+      enum.PetControlUiKey.Key:
+        type: PetControlBoundUserInterface
+        interactionRange: -1
+  - type: ActivatableUI
+    key: enum.PetControlUiKey.Key
