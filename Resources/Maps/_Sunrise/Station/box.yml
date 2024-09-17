@@ -78122,7 +78122,7 @@ entities:
       pos: 33.5,16.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -139446.31
+      secondsUntilStateChange: -139597.38
       state: Opening
   - uid: 11707
     components:
@@ -87798,13 +87798,6 @@ entities:
     - type: Transform
       pos: 42.97217,-10.624275
       parent: 2
-- proto: EffectHearts
-  entities:
-  - uid: 22054
-    components:
-    - type: Transform
-      pos: 73.68448,-11.601847
-      parent: 2
 - proto: EmergencyLight
   entities:
   - uid: 13388
@@ -90040,7 +90033,7 @@ entities:
       pos: -6.5,40.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -42359.984
+      secondsUntilStateChange: -42511.043
       state: Closing
   - uid: 13644
     components:
@@ -155833,6 +155826,13 @@ entities:
     components:
     - type: Transform
       pos: 21.5,-18.5
+      parent: 2
+- proto: SpawnPointAdjutant
+  entities:
+  - uid: 22054
+    components:
+    - type: Transform
+      pos: -0.5,-11.5
       parent: 2
 - proto: SpawnPointAtmos
   entities:
