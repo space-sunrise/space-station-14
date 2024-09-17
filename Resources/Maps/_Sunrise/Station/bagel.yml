@@ -11227,7 +11227,7 @@ entities:
       pos: -21.5,-20.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -11639.191
+      secondsUntilStateChange: -12132.868
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11246,7 +11246,7 @@ entities:
       pos: -21.5,-18.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -11639.725
+      secondsUntilStateChange: -12133.401
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -12354,7 +12354,7 @@ entities:
       pos: 77.5,1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -14413.855
+      secondsUntilStateChange: -14907.532
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13155,7 +13155,7 @@ entities:
       pos: 44.5,27.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -4052.1582
+      secondsUntilStateChange: -4545.835
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -33327,6 +33327,11 @@ entities:
     components:
     - type: Transform
       pos: -8.5,-71.5
+      parent: 2
+  - uid: 25917
+    components:
+    - type: Transform
+      pos: 0.5,-49.5
       parent: 2
 - proto: CableApcStack
   entities:
@@ -60995,6 +61000,22 @@ entities:
     - type: Transform
       pos: 20.48184,-11.502675
       parent: 2
+    - type: GroupExamine
+      group:
+      - hoverMessage: ""
+        contextText: verb-examine-group-other
+        icon: /Textures/Interface/examine-star.png
+        components:
+        - Armor
+        - ClothingSpeedModifier
+        entries:
+        - message: >-
+            Обеспечивает следующую защиту:
+
+            - [color=orange]Взрывной[/color] урон [color=white]к содержимому[/color] снижается на [color=lightblue]10%[/color].
+          priority: 0
+          component: Armor
+        title: null
 - proto: ClothingBackpackDuffelSurgeryFilled
   entities:
   - uid: 9203
@@ -63338,7 +63359,7 @@ entities:
   - uid: 9552
     components:
     - type: Transform
-      pos: 22.5,-13.5
+      pos: 24.5,-11.5
       parent: 2
 - proto: ConveyorBelt
   entities:
@@ -72745,7 +72766,7 @@ entities:
       pos: 16.5,-8.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -7208.9346
+      secondsUntilStateChange: -7702.6113
       state: Closing
     - type: DeviceNetwork
       deviceLists:
@@ -141243,6 +141264,13 @@ entities:
     components:
     - type: Transform
       pos: -34.5,26.5
+      parent: 2
+- proto: VendingMachineClown
+  entities:
+  - uid: 25918
+    components:
+    - type: Transform
+      pos: 22.5,-13.5
       parent: 2
 - proto: VendingMachineCoffee
   entities:

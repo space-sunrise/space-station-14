@@ -10521,7 +10521,7 @@ entities:
       pos: -27.5,18.5
       parent: 30
     - type: Door
-      secondsUntilStateChange: -3850.3206
+      secondsUntilStateChange: -4193.0376
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -60381,11 +60381,6 @@ entities:
       parent: 30
 - proto: Dresser
   entities:
-  - uid: 655
-    components:
-    - type: Transform
-      pos: 3.5,15.5
-      parent: 30
   - uid: 6427
     components:
     - type: Transform
@@ -122174,6 +122169,13 @@ entities:
     components:
     - type: Transform
       pos: 33.5,39.5
+      parent: 30
+- proto: VendingMachineClown
+  entities:
+  - uid: 655
+    components:
+    - type: Transform
+      pos: 3.5,15.5
       parent: 30
 - proto: VendingMachineCoffee
   entities:
