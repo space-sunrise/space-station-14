@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "license": "CLA",
+  "copyright": "SUNRISE",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "darthvader"
+    },
+    {
+      "name": "captain_phasma"
+    },
+    {
+      "name": "red_guard"
+    },
+    {
+      "name": "kailo_ren"
+    },
+    {
+      "name": "shooter"
+    },
+    {
+      "name": "shooter_officer"
+    }
+  ]
+}

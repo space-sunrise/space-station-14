@@ -1,0 +1,216 @@
+﻿- type: entity
+  parent: BaseItem
+  name: энергетическая пика
+  id: WeaponBodyguardSpear
+  components:
+  - type: Wieldable
+  - type: ItemToggle
+    soundActivate:
+      path: /Audio/Weapons/ebladeon.ogg
+    soundDeactivate:
+      path: /Audio/Weapons/ebladeoff.ogg
+  - type: ItemToggleActiveSound
+    activeSound:
+      path: /Audio/Weapons/ebladehum.ogg
+  - type: ItemToggleSharp
+  - type: ItemToggleHot
+  - type: ItemToggleDisarmMalus
+    activatedDisarmMalus: 0.6
+  - type: ItemToggleSize
+    activatedSize: Huge
+  - type: EnergySword
+    colorOptions:
+      - Aqua
+  - type: ItemToggleMeleeWeapon
+    activatedSoundOnHit:
+      path: /Audio/Weapons/eblade1.ogg
+      params:
+        variation: 0.250
+    activatedSoundOnHitNoDamage:
+      path: /Audio/Weapons/eblade1.ogg
+      params:
+        variation: 0.250
+        volume: -10
+    activatedSoundOnSwing:
+      path: /Audio/Weapons/eblademiss.ogg
+      params:
+        variation: 0.125
+    activatedDamage:
+      types:
+        Slash: 15
+        Heat: 15
+        Structural: 20
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/bodyguardspear.rsi
+    layers:
+      - state: spear_off
+      - state: spear_on
+        color: "#FFFFFF"
+        visible: false
+        shader: unshaded
+        map: [ "blade" ]
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1.7
+    soundHit:
+      path: /Audio/Weapons/eblade1.ogg
+    damage:
+      types:
+        Blunt: 4.5
+    range: 1.75 # 1.5 is default
+  - type: Item
+    size: Huge
+    sprite: _Sunrise/Objects/Weapons/bodyguardspear.rsi
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/bodyguardspear.rsi
+    slots:
+    - back
+  - type: UseDelay
+    delay: 1.0
+  - type: PointLight
+    enabled: false
+    radius: 2
+    energy: 2
+    color: white
+    netsync: false
+  - type: Appearance
+  - type: ToggleableLightVisuals
+    spriteLayer: blade
+    inhandVisuals:
+      left:
+      - state: on-inhand-left
+        shader: unshaded
+      right:
+      - state: on-inhand-right
+        shader: unshaded
+  - type: DisarmMalus
+    malus: 0.05
+  - type: Reflect
+    enabled: false
+
+- type: entity
+  parent: EnergySword
+  name: энергетический меч
+  id: WeaponDarthVaderEnergySword
+  components:
+  - type: EnergySword
+    colorOptions:
+      - Tomato
+    litDamageBonus:
+        types:
+            Slash: 15
+            Heat: 35
+            Structural: 20
+            Blunt: -4.5
+    litDisarmMalus: 0.6
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1
+    soundHit:
+      path: /Audio/Weapons/eblade1.ogg
+    damage:
+      types:
+        Blunt: 4.5
+  - type: Reflect
+    enabled: true
+    reflectProb: 0.05
+
+- type: entity
+  parent: WeaponDarthVaderEnergySword
+  id: WeaponKailoRenEnergySword
+  name: энергетический меч
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/kailorenlaser/e_sword.rsi
+    layers:
+      - state: e_sword
+      - state: e_sword_blade
+        color: "#FFFFFF"
+        visible: false
+        shader: unshaded
+        map: [ "blade" ]
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/kailorenlaser/e_sword-inhands.rsi
+
+- type: entity
+  name: бластерный карабин DC-15
+  parent: BaseWeaponBattery
+  id: WeaponDC15
+  description: Стандартное оружие солдат Имперской армии.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/DC15.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/DC15.rsi
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 4
+    selectedMode: FullAuto
+    availableModes:
+      - SemiAuto
+      - FullAuto
+    soundGunshot:
+      collection: DC15SHOT
+      params:
+        volume: -1
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletDC15
+    fireCost: 200
+  - type: Battery
+    maxCharge: 30000
+    startingCharge: 30000
+  - type: Wieldable
+  - type: GunWieldBonus
+    minAngle: -24
+    maxAngle: -45
+
+- type: entity
+  name: бластерный пистолет DC-15s
+  parent: BaseWeaponBattery
+  id: WeaponDC15s
+  description: Стандартное оружие солдат Имперской армии.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/DC15s.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/DC15s.rsi
+    quickEquip: false
+    slots:
+    - Belt
+  - type: Gun
+    fireRate: 2.5
+    selectedMode: FullAuto
+    availableModes:
+      - SemiAuto
+      - FullAuto
+    soundGunshot:
+      collection: DC15sSHOT
+      params:
+        volume: -1
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletDC15
+    fireCost: 100
+  - type: Battery
+    maxCharge: 10000
+    startingCharge: 10000
+
+
+# I left it here for some reason
+- type: entity
+  parent: BulletDisabler
+  id: BulletDC15
+  components:
+  - type: StaminaDamageOnCollide
+    damage: 2
+  - type: Projectile
+    impactEffect: BulletImpactEffectDisabler
+    damage:
+      types:
+        Heat: 13
+    soundHit:
+      collection: WeakHit

@@ -1,0 +1,81 @@
+- type: startingGear
+  id: CaptainPhasmaGear
+  equipment:
+    gloves: ClothingHandsGlovesCaptainPhasma
+    suitstorage: OxygenTankFilled
+    outerClothing: ClothingOuterHardsuitCaptainPhasma
+    jumpsuit: ClothingUniformJumpsuitRepublicBodyguard
+    shoes: ClothingShoesCapPhasma
+    mask: ClothingMaskRepublicSoldier
+    neck: ClothingNeckCaptainPhasma
+    head: ClothingHeadHelmetHardsuitCaptainPhasma
+    back: WeaponDC15
+    belt: WeaponDC15s
+
+- type: startingGear
+  id: DarthVaderGear
+  equipment:
+    gloves: ClothingHandsGlovesCombat
+    suitstorage: OxygenTankFilled
+    outerClothing: ClothingOuherHardsuitDarthVader
+    id: DarthVaderIDCard
+    jumpsuit: ClothingUniformJumpsuitColorBlack
+    shoes: ClothingShoesDarthVader
+    pocket1: WeaponDarthVaderEnergySword
+    mask: ClothingMaskGasDarthVader
+    neck: ClothingNeckDarthVader
+
+- type: startingGear
+  id: KailoRenGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitKailoRen
+    shoes: ClothingShoesKailoRen
+    mask: ClothingMaskGasKailoRen
+    gloves: ClothingHandsGlovesKailoRen
+    outerClothing: ClothingOuterCoatKailoRenOvercoatBlack
+    suitstorage: OxygenTankFilled
+    neck: ClothingNeckKailoRen
+    pocket1: WeaponKailoRenEnergySword
+
+- type: startingGear
+  id: RepublicSoldierGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRepublicBodyguard
+    shoes: ClothingShoesRepublicSoldier
+    head: ClothingHeadHelmetHardsuitRepublicSoldier
+    mask: ClothingMaskRepublicSoldier
+    gloves: ClothingHandsGlovesRepublicSoldier
+    outerClothing: ClothingOuterHardsuitRepublicSoldier
+    suitstorage: OxygenTankFilled
+    id: RepublicIDCard
+    back: WeaponDC15
+    belt: WeaponDC15s
+
+- type: startingGear
+  id: RepublicOfficerSoldierGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRepublicBodyguard
+    shoes: ClothingShoesRepublicSoldier
+    head: ClothingHeadHelmetHardsuitRepublicSoldier
+    mask: ClothingMaskRepublicSoldier
+    gloves: ClothingHandsGlovesRepublicSoldier
+    outerClothing: ClothingOuterHardsuitRepublicSoldier
+    suitstorage: OxygenTankFilled
+    neck: ClothingNeckRepublicSoldier
+    id: RepublicIDCard
+    back: WeaponDC15
+    belt: WeaponDC15s
+
+- type: startingGear
+  id: RepublicBodyguardGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRepublicBodyguard
+    shoes: ClothingShoesRepublicBodyguard
+    head: ClothingHeadHelmetHardsuitRepublicBodyguard
+    mask: ClothingMaskRepublicSoldier
+    gloves: ClothingHandsGlovesRepublicBodyguard
+    outerClothing: ClothingOuterHardsuitRepublicBodyguard
+    suitstorage: OxygenTankFilled
+    neck: ClothingNecRepublicBodyguard
+    back: WeaponBodyguardSpear
+    id: BodyguardIDCard

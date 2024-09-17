@@ -8,3 +8,65 @@
       sprite: _Sunrise/Clothing/Neck/Mantles/ERTmantle.rsi
     - type: Clothing
       sprite: _Sunrise/Clothing/Neck/Mantles/ERTmantle.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCaptainPhasma
+  name: плащ капитана фазмы
+  description: Символизирует кровавую тиранию Империи.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Mantles/captain_phasma.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Mantles/captain_phasma.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckDarthVader
+  name: мантия Лорда Ситхов
+  description: Символическая и способная вызывать трепет и страх. Идеально подчеркивает мрачное великие своего владельца.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Mantles/darthvader.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Mantles/darthvader.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckKailoRen
+  name: чёрная накидка
+  description: Символическая и способная вызывать трепет и страх. Идеально подчеркивает мрачное великие своего владельца.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Mantles/kailo_ren.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Mantles/kailo_ren.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNecRepublicBodyguard
+  name: мантия Императорского Стража
+  description: Элитное обмундирование Императорского Стража. Обладает термальной защитой.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Mantles/republicbodyguard.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Mantles/republicbodyguard.rsi
+  - type: TemperatureProtection
+    coefficient: 0.9
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckRepublicSoldier
+  name: офицерская погона
+  description: Символизирует кровавую тиранию Имперских солдат.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Mantles/republicsoldier.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Mantles/republicsoldier.rsi

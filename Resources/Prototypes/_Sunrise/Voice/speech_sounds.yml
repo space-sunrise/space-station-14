@@ -15,3 +15,31 @@
     path: /Audio/_Sunrise/Voice/Talk/pig_ask.ogg
   exclaimSound:
     path: /Audio/_Sunrise/Voice/Talk/pig_exclaim.ogg
+
+- type: speechSounds
+  id: elitesaid
+  saySound:
+    path: /Audio/_Sunrise/StarWars/elitesaid.ogg
+  askSound:
+    path: /Audio/_Sunrise/StarWars/elitesaid.ogg
+  exclaimSound:
+    path: /Audio/_Sunrise/StarWars/elitesaid.ogg
+
+
+- type: speechSounds
+  id: ERTVoice
+  saySound:
+    path: /Audio/_Sunrise/StarWars/combine_said_2.ogg
+  askSound:
+    path: /Audio/_Sunrise/StarWars/combine_said_3.ogg
+  exclaimSound:
+    path: /Audio/_Sunrise/StarWars/combine_said_1.ogg
+
+- type: speechSounds
+  id: vaderbreath
+  saySound:
+    path: /Audio/_Sunrise/StarWars/vaderbreath.ogg
+  askSound:
+    path: /Audio/_Sunrise/StarWars/vaderbreath.ogg
+  exclaimSound:
+    path: /Audio/_Sunrise/StarWars/vaderbreath.ogg

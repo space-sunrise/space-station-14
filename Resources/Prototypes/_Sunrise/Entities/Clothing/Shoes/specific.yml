@@ -52,3 +52,124 @@
     sprite: _Sunrise/Clothing/Shoes/Specific/schoolwhiteshoes.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Shoes/Specific/schoolwhiteshoes.rsi
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesCapPhasma
+  name: стальные ботинки
+  suffix: test
+  description: Универсальны и чрезвычайно эффективны.
+  components:
+  - type: ClothingSpeedModifier
+    walkModifier: 1.1
+    sprintModifier: 1.1
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Shoes/Specific/cap_fasma.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Shoes/Specific/cap_fasma.rsi
+  - type: Magboots
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: ArmyFootstep
+      params:
+        volume: -2
+
+- type: entity
+  parent: ClothingShoesSpaceNinja
+  id: ClothingShoesDarthVader
+  name: тёмные боевые ботинки
+  description: Универсальны и чрезвычайно эффективны.
+  components:
+  - type: ClothingSpeedModifier
+    walkModifier: 1.1
+    sprintModifier: 1.1
+  - type: StaticPrice
+    price: 5000
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Shoes/Specific/darthvader.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Shoes/Specific/darthvader.rsi
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: ArmyFootstep
+      params:
+        volume: -2
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesKailoRen
+  name: тёмные боевые ботинки
+  description: Универсальны и чрезвычайно эффективны.
+  components:
+  - type: ClothingSpeedModifier
+    walkModifier: 1.05
+    sprintModifier: 1.05
+  - type: StaticPrice
+    price: 4000
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Shoes/Specific/kailo_ren.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Shoes/Specific/kailo_ren.rsi
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: ArmyFootstep
+      params:
+        volume: -2
+
+- type: entity
+  parent: ClothingShoesBootsMag
+  id: ClothingShoesRepublicSoldier
+  name: ботинки штурмовика
+  description: Стандартное обмундирование солдата Имперской Армии. Обладают термальной защитой. С магнитами.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Shoes/Specific/republicsoldier.rsi
+    layers:
+    - state: icon
+      map: [ "enum.ToggleVisuals.Layer" ]
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Shoes/Specific/republicsoldier.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
+  - type: TemperatureProtection
+    coefficient: 0.35
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: ArmyFootstep
+      params:
+        volume: -2
+
+- type: entity
+  parent: ClothingShoesBootsMag
+  id: ClothingShoesRepublicBodyguard
+  name: красные ботинки Императорского Стража
+  description: Элитное обмундирование Императорского Стража. Обладают термальной защитой. С магнитами.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Shoes/Specific/republicbodyguard.rsi
+    layers:
+    - state: icon
+      map: [ "enum.ToggleVisuals.Layer" ]
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Shoes/Specific/republicbodyguard.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
+  - type: TemperatureProtection
+    coefficient: 0.35
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: ArmyFootstep
+      params:
+        volume: -2

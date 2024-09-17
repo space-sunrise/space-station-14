@@ -8,3 +8,83 @@
       sprite: _Sunrise/Clothing/Head/Helmets/security_medic.rsi
     - type: Clothing
       sprite: _Sunrise/Clothing/Head/Helmets/security_medic.rsi
+
+- type: entity
+  parent: ClothingHeadEVAHelmetBase
+  id: ClothingHeadHelmetHardsuitCaptainPhasma
+  name: шлем скафандра капитана фазмы
+  description: Стандартное обмундирование элитного солдата Имперской Армии. Защищает от смертельного воздействия космоса.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/captain_phasma.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/captain_phasma.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: TemperatureProtection
+    coefficient: 0.6
+  - type: Reflect
+    enabled: true
+    reflectProb: .05
+    spread: 15
+
+# That's not a helmet but I leave it here
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatKailoRenCloak
+  name: капюшон
+  description: Смертельно хочется знать, что он скрывает.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/kailo_ren.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/kailo_ren.rsi
+
+- type: entity
+  parent: ClothingHeadEVAHelmetBase
+  id: ClothingHeadHelmetHardsuitRepublicSoldier
+  name: шлем скафандра штурмовика
+  description: Стандартное обмундирование солдата Имперской Армии. Защищает от смертельного воздействия космоса.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/republicsoldier.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/republicsoldier.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: TemperatureProtection
+    coefficient: 0.6
+
+- type: entity
+  parent: ClothingHeadEVAHelmetBase
+  id: ClothingHeadHelmetHardsuitRepublicBodyguard
+  name: шлем Императорского Стража
+  description:  Элитное обмундирование Императорского Стража. Защищает от смертельного воздействия космоса.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/republicbodyguard.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/republicbodyguard.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: TemperatureProtection
+    coefficient: 0.6

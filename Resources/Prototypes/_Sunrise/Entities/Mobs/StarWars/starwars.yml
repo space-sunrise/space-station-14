@@ -1,0 +1,191 @@
+- type: entity
+  parent: MobHuman
+  id: DarthVaderStarWars
+  name: Дарт Вейдер
+  suffix: STARWARS adminstuff
+  components:
+  - type: GhostRole
+    name: Дарт Вейдер
+    description: В нем ещё осталось что-то человечное... Или нет.
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: darthvaderdeath
+      params:
+        volume: 2
+  - type: RandomMetadata
+    nameSegments:
+    - names_first_darth_vader
+    - names_second_darth_vader
+  - type: Loadout
+    prototypes: [DarthVaderGear]
+  - type: Speech
+    speechSounds: vaderbreath
+    soundCooldownTime: 13
+  - type: Stamina
+    critThreshold: 200
+    stunTime: 6
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      75: Critical
+      150: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      45: 0.7
+      60: 0.5
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/_Sunrise/StarWars/darth_vader_theme.ogg
+      params:
+        volume: -2
+  - type: Icon
+    sprite: _Sunrise/starwars_jobs.rsi
+    state: darthvader
+
+- type: entity
+  parent: MobHuman
+  id: KailoRen
+  name: Кайло Рен
+  suffix: STARWARS adminstuff
+  components:
+  - type: Loadout
+    prototypes: [KailoRenGear]
+  - type: Icon
+    sprite: _Sunrise/starwars_jobs.rsi
+    state: kailo_ren
+  - type: RandomHumanoidAppearance
+    randomizeName: False
+
+- type: entity
+  parent: MobHuman
+  id: RepublicSoldier
+  name: Штурмовик (обычный)
+  suffix: STARWARS adminstuff
+  components:
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: CombineDeath
+      params:
+        volume: 2
+  - type: Loadout
+    prototypes: [RepublicSoldierGear]
+  - type: RandomMetadata
+    nameSegments:
+    - names_first_republic_soldier
+    - names_second_republic_soldier
+  - type: Speech
+    speechSounds: ERTVoice
+    soundCooldownTime: 0.1
+  - type: GhostRole
+    name: Штурмовик
+    description: Отдайте жизнь за Империю. Это все, что вы у вас есть.
+  - type: Icon
+    sprite: _Sunrise/starwars_jobs.rsi
+    state: shooter
+  - type: RandomHumanoidAppearance
+    randomizeName: False
+
+- type: entity
+  parent: MobHuman
+  id: RepublicOfficerSoldier
+  name: Штурмовик (офицер)
+  suffix: STARWARS adminstuff
+  components:
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: Loadout
+    prototypes: [RepublicOfficerSoldierGear]
+  - type: RandomMetadata
+    nameSegments:
+    - names_first_republic_officer
+    - names_second_republic_officer
+  - type: Speech
+    speechSounds: ERTVoice
+    soundCooldownTime: 0.1
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: CombineDeath
+      params:
+        volume: 2
+  - type: GhostRole
+    name: Офицерский штурмовик
+    description: Отдайте жизнь за Империю. Это все, что вы у вас есть.
+  - type: Icon
+    sprite: _Sunrise/starwars_jobs.rsi
+    state: shooter_officer
+  - type: RandomHumanoidAppearance
+    randomizeName: False
+
+- type: entity
+  parent: MobHuman
+  id: RepublicBodyguard
+  name: Императорский Страж
+  suffix: STARWARS adminstuff
+  components:
+  - type: GhostRole
+    name: Императорский Страж
+    description: Профессиональный телохранитель и искусный убийца в одном лице.
+  - type: Loadout
+    prototypes: [RepublicBodyguardGear]
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Sunrise/StarWars/elitedeath.ogg
+      params:
+        volume: -4
+  - type: Speech
+    speechSounds: elitesaid
+    soundCooldownTime: 0.1
+  - type: Vocal
+    sounds:
+      Male: dsscream
+      Female: dsscream
+      Unsexed: dsscream
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: Icon
+    sprite: _Sunrise/starwars_jobs.rsi
+    state: red_guard
+  - type: RandomHumanoidAppearance
+    randomizeName: False
+
+- type: entity
+  parent: MobHuman
+  id: CaptainPhasma
+  name: Капитан Фазма
+  suffix: STARWARS adminstuff
+  components:
+  - type: GhostRole
+    name: Капитан Фазма
+    description: Командир Имперских сил.
+  - type: Loadout
+    prototypes: [CaptainPhasmaGear]
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Sunrise/StarWars/elitedeath.ogg
+      params:
+        volume: -4
+  - type: Speech
+    speechSounds: elitesaid
+    soundCooldownTime: 0.1
+  - type: Vocal
+    sounds:
+      Male: dsscream
+      Female: dsscream
+      Unsexed: dsscream
+  - type: TriggerOnMobstateChange
+    mobState:
+    - Dead
+  - type: Icon
+    sprite: _Sunrise/starwars_jobs.rsi
+    state: captain_phasma
+  - type: RandomHumanoidAppearance
+    randomizeName: False
+

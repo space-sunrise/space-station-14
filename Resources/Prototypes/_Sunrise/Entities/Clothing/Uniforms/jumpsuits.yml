@@ -63,3 +63,46 @@
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/blueshield.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/blueshield.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitKailoRen
+  name: боевая униформа
+  description: Из качественного материала. Обладает термальной защитой.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/kailo_ren.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/kailo_ren.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
+  - type: TemperatureProtection
+    coefficient: 0.9
+
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitRepublicBodyguard
+  name: боевая униформа
+  description: Из качественного материала. Обладает термальной защитой.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/republicbodyguard.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/republicbodyguard.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
+  - type: TemperatureProtection
+    coefficient: 0.9

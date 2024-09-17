@@ -119,3 +119,28 @@
         Blunt: 0.9
         Slash: 0.9
         Piercing: 0.8
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatKailoRenOvercoatBlack
+  name: тёмное пальто
+  description: Бронированно и тепло.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/kailo_ren.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/kailo_ren.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.3
+        Slash: 0.3
+        Piercing: 0.3
+        Heat: 0.3
+  - type: TemperatureProtection
+    coefficient: 0.1
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatKailoRenCloak
+    requiredSlot:
+    - outerclothing
+    slot: head

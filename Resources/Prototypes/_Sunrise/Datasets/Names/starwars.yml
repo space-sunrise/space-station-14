@@ -1,0 +1,52 @@
+﻿- type: dataset
+  id: names_first_republic_soldier
+  values:
+  - Рядовой
+  - Рядовой
+  - Ефрейтор
+  - Младший Сержант
+
+- type: dataset
+  id: names_first_darth_vader
+  values:
+  - Дарт
+
+- type: dataset
+  id: names_second_darth_vader
+  values:
+  - Вейдер
+
+- type: dataset
+  id: names_first_republic_officer
+  values:
+  - Капрал
+  - Сержант
+  - Лейтенант
+  - Младший Лейтенант
+
+- type: dataset
+  id: names_second_republic_officer
+  values:
+  - "Бластер"
+  - "Циклон"
+  - "Хаос"
+  - "Отступник"
+  - "Коготь"
+  - "Циклоп"
+  - "Ворон"
+  - "Оникс"
+
+- type: dataset
+  id: names_second_republic_soldier
+  values:
+  - "Щит"
+  - "Пегас"
+  - "Шквал"
+  - "Крест"
+  - "Зенит"
+  - "Спарк"
+  - "Вепрь"
+  - "Вайпер"
+  - "Шторм"
+  - "Скаут"
+  - "Сейбер"
