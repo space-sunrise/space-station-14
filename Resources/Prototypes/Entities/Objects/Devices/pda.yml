@@ -354,6 +354,12 @@
   - type: Pda
     id: QuartermasterIDCard
     state: pda-qm
+    penSlot:
+      startingItem: QmPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
   - type: PdaBorderColor
     borderColor: "#e39751"
     accentVColor: "#a23e3e"
@@ -530,6 +536,12 @@
   - type: Pda
     id: CEIDCard
     state: pda-ce
+    penSlot:
+      startingItem: CEPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
   - type: PdaBorderColor
     borderColor: "#949137"
     accentHColor: "#447987"
@@ -560,6 +572,12 @@
   - type: Pda
     id: CMOIDCard
     state: pda-cmo
+    penSlot:
+      startingItem: CmoPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
   - type: PdaBorderColor
     borderColor: "#d7d7d0"
     accentHColor: "#447987"
@@ -633,6 +651,12 @@
   - type: Pda
     id: RDIDCard
     state: pda-rd
+    penSlot:
+      startingItem: RdPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
   - type: PdaBorderColor
     borderColor: "#d7d7d0"
     accentHColor: "#447987"
@@ -664,6 +688,12 @@
   - type: Pda
     id: HoSIDCard
     state: pda-hos
+    penSlot:
+      startingItem: HosPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
   - type: PdaBorderColor
     borderColor: "#A32D26"
     accentHColor: "#447987"
