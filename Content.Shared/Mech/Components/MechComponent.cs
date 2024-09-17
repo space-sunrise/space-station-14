@@ -86,7 +86,7 @@ public sealed partial class MechComponent : Component
     /// <summary>
     /// A whitelist for inserting equipment items.
     /// </summary>
-    [DataField]
+    [DataField("equipmentWhitelist")]
     public EntityWhitelist? EquipmentWhitelist;
 
     [DataField]

@@ -27,6 +27,11 @@
   - type: ContainerContainer
     containers:
       item-container: !type:Container
+#Sunrise-start
+  - type: Tag
+    tags:
+    - MechModuleEngineering
+#Sunrise-end
 
 - type: entity
   id: MechEquipmentGrabberSmall

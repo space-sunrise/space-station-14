@@ -127,6 +127,11 @@
     openState: ripley-open
     brokenState: ripley-broken
     mechToPilotDamageMultiplier: 0.75
+#Sunrise-start
+    equipmentWhitelist:
+      tags:
+      - MechModuleEngineering
+#Sunrise-end
     pilotWhitelist:
       components:
         - HumanoidAppearance

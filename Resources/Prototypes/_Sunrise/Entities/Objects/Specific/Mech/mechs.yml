@@ -1,3 +1,5 @@
+#FireFighter
+
 - type: entity
   id: MechFirefighter
   parent: BaseMech
@@ -15,7 +17,10 @@
     baseState: firefighter
     openState: firefighter-open
     brokenState: firefighter-broken
-    mechToPilotDamageMultiplier: 0.75
+    mechToPilotDamageMultiplier: 0.50
+    equipmentWhitelist:
+      tags:
+      - MechModuleEngineering
     pilotWhitelist:
       components:
         - HumanoidAppearance
@@ -54,6 +59,8 @@
     containers:
       mech-battery-slot:
       - PowerCellHigh
+
+#Hauler
       
 - type: entity
   id: MechHauler
@@ -73,6 +80,9 @@
     openState: hauler-open
     brokenState: hauler-broken
     mechToPilotDamageMultiplier: 0.75
+    equipmentWhitelist:
+      tags:
+      - MechModuleEngineering
     pilotWhitelist:
       components:
         - HumanoidAppearance
