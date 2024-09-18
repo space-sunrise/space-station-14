@@ -53,3 +53,6 @@
         1.0
       FollowRange: !type:Single
         1.5
+  - type: NpcFactionMember
+    factions:
+    - HostileToAll
