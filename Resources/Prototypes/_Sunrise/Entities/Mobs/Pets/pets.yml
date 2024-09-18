@@ -32,3 +32,24 @@
         interactionRange: -1
   - type: ActivatableUI
     key: enum.PetControlUiKey.Key
+
+- type: entity
+  id: PetDebugEntity
+  parent: [MobCorgiIan, BasePet]
+  components:
+  # Говнище нище не наследуется адекватно и не работает, поэтому его нужно копировать для каждого ентити
+  - type: UserInterface
+    interfaces:
+      enum.PetControlUiKey.Key:
+        type: PetControlBoundUserInterface
+        interactionRange: -1
+  - type: HTN
+    rootTask:
+      task: PetCompound
+    blackboard:
+      IdleRange: !type:Single
+        2.0
+      FollowCloseRange: !type:Single
+        1.0
+      FollowRange: !type:Single
+        1.5
