@@ -2,8 +2,8 @@
   id: Follow
   name: Следовать
   sprite:
-    sprite: Mobs/Animals/mouse.rsi
-    state: splat-0
+    sprite: _Sunrise/Actions/Pets/radials.rsi
+    state: follow
   event: !type:PetSetAILogicEvent
     order: Follow
 
@@ -11,8 +11,8 @@
   id: Stay
   name: Стоять
   sprite:
-    sprite: Mobs/Animals/mouse.rsi
-    state: splat-0
+    sprite: _Sunrise/Actions/Pets/radials.rsi
+    state: stay
   event: !type:PetSetAILogicEvent
     order: Stay
 
@@ -20,8 +20,8 @@
   id: GhostAvailable
   name: Включить повышенную разумность
   sprite:
-    sprite: Mobs/Animals/mouse.rsi
-    state: splat-0
+    sprite: _Sunrise/Actions/Pets/radials.rsi
+    state: brainup
   event: !type:PetSetGhostAvaliable
     enable: true
 
@@ -29,8 +29,8 @@
   id: GhostUnavailable
   name: Выключить повышенную разумность
   sprite:
-    sprite: Mobs/Animals/mouse.rsi
-    state: splat-0
+    sprite: _Sunrise/Actions/Pets/radials.rsi
+    state: braindown
   event: !type:PetSetGhostAvaliable
     enable: false
 
@@ -38,6 +38,6 @@
   id: Rename
   name: Переименовать
   sprite:
-    sprite: Mobs/Animals/mouse.rsi
-    state: splat-0
+    sprite: _Sunrise/Actions/Pets/radials.rsi
+    state: rename
   event: !type:PetSetName
