@@ -64,8 +64,8 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
             RaffleMaxDuration.ValueChanged += OnRaffleDurationChanged;
 
 
-            RaffleButton.AddItem("Don't raffle", RaffleDontRaffleId);
-            RaffleButton.AddItem("Custom settings", RaffleCustomRaffleId);
+            RaffleButton.AddItem("Без лотереи", RaffleDontRaffleId);
+            RaffleButton.AddItem("Свои настройки", RaffleCustomRaffleId);
 
             var raffleProtos =
                 _prototypeManager.EnumeratePrototypes<GhostRoleRaffleSettingsPrototype>();
@@ -76,7 +76,7 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
                 _rafflePrototypes.Add(raffleProto);
                 var s = raffleProto.Settings;
                 var label =
-                    $"{raffleProto.ID} (initial {s.InitialDuration}s, max {s.MaxDuration}s, join adds {s.JoinExtendsDurationBy}s)";
+                    $"{raffleProto.ID} (базово {s.InitialDuration} сек, максимум {s.MaxDuration} сек, каждый новый увеличивает на {s.JoinExtendsDurationBy} сек)";
                 RaffleButton.AddItem(label, idx++);
             }
 
@@ -94,7 +94,7 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
             if (RaffleInitialDuration.Value > RaffleMaxDuration.Value)
             {
                 MakeButton.Disabled = true;
-                MakeButton.ToolTip = "The initial duration must not exceed the maximum duration.";
+                MakeButton.ToolTip = "Базовая продолжительность не должна превышать максимальную";
             }
             else
             {
