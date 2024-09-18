@@ -159,7 +159,7 @@ public sealed class SharedPettingSystem : EntitySystem
 
     #endregion
 
-    #region Petting event
+    #region Petting events
 
     /// <summary>
     /// Метод, вызываем при активации акшена хозяина питомцев.

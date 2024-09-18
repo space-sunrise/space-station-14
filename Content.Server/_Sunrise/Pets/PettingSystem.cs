@@ -191,7 +191,7 @@ public sealed class PettingSystem : EntitySystem
             return;
 
         // Открываем меню для переименовывания
-        _quickDialog.OpenDialog(masterSession, "Переименовать", "Имя", (string newName) => Rename(pet, newName));
+        _quickDialog.OpenDialog(masterSession, "Переименовать", "Имя", (string newName) => Rename(pet, master.Value, newName));
     }
 
     /// <summary>
@@ -199,12 +199,12 @@ public sealed class PettingSystem : EntitySystem
     /// </summary>
     /// <param name="target">EntityUid питомца</param>
     /// <param name="name">Новое выбранное имя питомца</param>
-    private void Rename(EntityUid target, string name)
+    private void Rename(EntityUid target, EntityUid performer, string name)
     {
         // Ограничение имени по символам, чтобы в имени не оказалось огромной пасты.
         if (name.Length > MaxPetNameLenght)
         {
-            _popup.PopupEntity("Выбранное имя слишком большое", target, target);
+            _popup.PopupEntity("Выбранное имя слишком большое", target, performer);
             return;
         }
 
