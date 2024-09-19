@@ -4,7 +4,9 @@
   description: Открывает меню управления всеми питомцами
   components:
   - type: InstantAction
-    icon: _Sunrise/Interface/Actions/lock.png
+    icon:
+      sprite: _Sunrise/Actions/Pets/radials.rsi
+      state: settings
     event: !type:PetOpenAllUiEvent
     useDelay: 1
 
@@ -17,5 +19,7 @@
     useDelay: 1
     itemIconStyle: BigAction
     canTargetSelf: false
-    icon: _Sunrise/Interface/Actions/lock.png
+    icon:
+      sprite: _Sunrise/Actions/Pets/radials.rsi
+      state: attack
     event: !type:PetAttackTargetEvent
