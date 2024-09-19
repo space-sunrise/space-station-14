@@ -3543,3 +3543,20 @@
   id: 262
   time: '2024-09-19T13:05:18.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/395
+- author: J C Denton
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u044B \u043F\u043B\u0430\
+      \u0442\u044B \u0437\u0430\u043A\u043E\u043D\u043E\u0432 \u0434\u043B\u044F \u0418\
+      \u0418 \u043D\u0430 \u043A\u0430\u0440\u0442\u044B Bagel, Delta, Fland, Marathon"
+    type: Add
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0430 \u043F\u0440\u043E\
+      \u0444\u0435\u0441\u0441\u0438\u044F \u0410\u0434\u044A\u044E\u0442\u0430\u043D\
+      \u0442\u0430 \u043D\u0430 \u0432\u0441\u0435 \u043A\u0430\u0440\u0442\u044B"
+    type: Add
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u044B \u0430\u0432\u0442\
+      \u043E\u043C\u0430\u0442\u044B \u0425\u043E\u0445\u043E\u0445\u043E\u043D\u043A\
+      \u0435\u0440\u0441 \u043D\u0430 \u0432\u0441\u0435 \u043A\u0430\u0440\u0442\u044B"
+    type: Add
+  id: 263
+  time: '2024-09-19T13:46:00.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/388
