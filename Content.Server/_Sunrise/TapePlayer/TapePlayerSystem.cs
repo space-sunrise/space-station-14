@@ -99,7 +99,8 @@ public sealed class TapePlayerSystem : SharedTapePlayerSystem
                 uid,
                 false,
                 audioParams);
-            component.AudioStream = audio.Value.Entity;
+            if (audio != null)
+                component.AudioStream = audio.Value.Entity;
             Dirty(uid, component);
         }
     }

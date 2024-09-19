@@ -1,6 +1,6 @@
 - type: entity
   id: TeleportEffect
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: TimedDespawn
     lifetime: 0.4
@@ -17,6 +17,6 @@
     tags:
       - HideContextMenu
   - type: EmitSoundOnSpawn
-    sound: 
+    sound:
       path: /Audio/Effects/electrical_short_circuit2.ogg
   - type: AnimationPlayer
