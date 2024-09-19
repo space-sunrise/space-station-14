@@ -6493,8 +6493,8 @@ entities:
   - uid: 936
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 1.5,12.5
+      rot: 1.5707963267948966 rad
+      pos: 1.5,8.5
       parent: 2
 - proto: ComputerCargoOrders
   entities:
@@ -6550,6 +6550,14 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 12.5,-0.5
+      parent: 2
+- proto: ComputerPalletConsole
+  entities:
+  - uid: 938
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,12.5
       parent: 2
 - proto: ComputerPowerMonitoring
   entities:
@@ -13819,10 +13827,10 @@ entities:
     - type: Transform
       pos: 2.5,7.5
       parent: 2
-  - uid: 938
+  - uid: 2114
     components:
     - type: Transform
-      pos: 1.5,10.5
+      pos: 2.5,12.5
       parent: 2
 - proto: SpawnPointChef
   entities:
