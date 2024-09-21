@@ -1,5 +1,7 @@
-﻿- type: entity
-  id: BasePet
+﻿# Необходимая база
+
+- type: entity
+  id: BasePetAttributes
   abstract: true
   components:
   - type: PettableOnInteract
@@ -15,6 +17,44 @@
     - Stay
     - Follow
     - Attack
+  - type: ActivatableUI
+    key: enum.PetControlUiKey.Key
+
+- type: entity
+  id: BasePet
+  parent: BasePetAttributes
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Sunrise/Mobs/Pets/rabbit.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: icon
+  - type: Physics
+  - type: Speech
+    speechVerb: Canine
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: icon
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+
+# Дебаг ентити/Пример базового питомца
+
+- type: entity
+  id: PetDebugEntity
+  parent: [MobCorgiIan, BasePet]
+  components:
+  # Говнище нище не наследуется адекватно и не работает, поэтому его нужно копировать для каждого ентити
+  - type: UserInterface
+    interfaces:
+      enum.PetControlUiKey.Key:
+        type: PetControlBoundUserInterface
+        interactionRange: -1
   - type: HTN
     rootTask:
       task: PetCompound
@@ -25,19 +65,66 @@
         1.0
       FollowRange: !type:Single
         1.5
+  - type: NpcFactionMember
+    factions:
+    - HostileToAll
+
+# Заготовленные ентити питомцев
+
+- type: entity
+  id: PetRabbit
+  parent: [SimpleMobBase, BasePet]
+  name: rabbit
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Pets/rabbit.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base", "movement"]
+      state: icon
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: moving
+    noMovementLayers:
+      movement:
+        state: icon
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 1
   - type: UserInterface
     interfaces:
       enum.PetControlUiKey.Key:
         type: PetControlBoundUserInterface
         interactionRange: -1
-  - type: ActivatableUI
-    key: enum.PetControlUiKey.Key
+  - type: HTN
+    rootTask:
+      task: PetCompound
+    blackboard:
+      IdleRange: !type:Single
+        2.0
+      FollowCloseRange: !type:Single
+        1.0
+      FollowRange: !type:Single
+        1.5
+  - type: NpcFactionMember
+    factions:
+    - HostileToAll
 
 - type: entity
-  id: PetDebugEntity
-  parent: [MobCorgiIan, BasePet]
+  id: PetAnteater
+  parent: [SimpleMobBase, BasePet]
+  name: anteater
   components:
-  # Говнище нище не наследуется адекватно и не работает, поэтому его нужно копировать для каждого ентити
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Pets/anteater.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: icon
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 1
   - type: UserInterface
     interfaces:
       enum.PetControlUiKey.Key:
