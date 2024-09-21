@@ -1133,8 +1133,7 @@ entities:
           -3,2:
             1: 241
           -2,1:
-            0: 57439
-            2: 128
+            0: 57567
           -2,2:
             0: 61166
           -1,4:
@@ -1152,8 +1151,8 @@ entities:
           2,-2:
             0: 61687
           2,-4:
-            3: 6
-            4: 1536
+            2: 6
+            3: 1536
           3,-4:
             1: 8737
             0: 256
@@ -1232,21 +1231,6 @@ entities:
           moles:
           - 0
           - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-        - volume: 2500
-          temperature: 293.14975
-          moles:
-          - 20.078888
-          - 75.53487
           - 0
           - 0
           - 0
@@ -6490,11 +6474,11 @@ entities:
         - ArtifactAnalyzerSender: ArtifactAnalyzerReceiver
 - proto: ComputerCargoBounty
   entities:
-  - uid: 936
+  - uid: 938
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 1.5,12.5
+      rot: 1.5707963267948966 rad
+      pos: 1.5,8.5
       parent: 2
 - proto: ComputerCargoOrders
   entities:
@@ -6550,6 +6534,14 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 12.5,-0.5
+      parent: 2
+- proto: ComputerPalletConsole
+  entities:
+  - uid: 936
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 1.5,12.5
       parent: 2
 - proto: ComputerPowerMonitoring
   entities:
@@ -13819,10 +13811,10 @@ entities:
     - type: Transform
       pos: 2.5,7.5
       parent: 2
-  - uid: 938
+  - uid: 2114
     components:
     - type: Transform
-      pos: 1.5,10.5
+      pos: 2.5,12.5
       parent: 2
 - proto: SpawnPointChef
   entities:
