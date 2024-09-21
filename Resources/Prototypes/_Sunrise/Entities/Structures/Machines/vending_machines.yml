@@ -80,7 +80,7 @@
     pack: HonkersAds
   - type: AccessReader
     breakOnEmag: true
-    access: [["Service"]]
+    access: [["Theatre"]]
   - type: SpeakOnUIClosed
     pack: GenericVendGoodbyes
   - type: Speech
