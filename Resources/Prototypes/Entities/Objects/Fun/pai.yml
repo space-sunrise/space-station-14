@@ -79,7 +79,7 @@
     voice: FactCore
   - type: InnateItem
     instantActions:
-    - PortableSurveillanceCameraMonitor
+    - PortableSurveillanceCameraMonitorUnpowered
     - HandheldStationMapUnpowered
     - HandheldCrewMonitorBorg
     worldTargetActions:
