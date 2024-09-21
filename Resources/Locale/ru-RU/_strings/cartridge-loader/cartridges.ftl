@@ -27,8 +27,7 @@ wanted-list-reason-label = [color=darkgray]Причина:[/color] [color=white]
 wanted-list-unknown-reason-label = неизвестная причина
 wanted-list-initiator-label = [color=darkgray]Инициатор:[/color] [color=white]{ $initiator }[/color]
 wanted-list-unknown-initiator-label = неизвестный инициатор
-wanted-list-status-label =
-    [color=darkgray]статус:[/color] { $status ->
+wanted-list-status-label = [color=darkgray]статус:[/color] { $status ->
         [suspected] [color=yellow]подозреваемый[/color]
         [wanted] [color=red]разыскиваемый[/color]
         [detained] [color=#b18644]задержан[/color]
