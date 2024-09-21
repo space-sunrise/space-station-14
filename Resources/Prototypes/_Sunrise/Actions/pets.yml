@@ -16,9 +16,13 @@
   description: Приказывает всем питомцам, имеющим приказ атаки, атаковать цель
   components:
   - type: EntityTargetAction
+    whitelist:
+      components:
+      - Body
     useDelay: 1
-    itemIconStyle: BigAction
     canTargetSelf: false
+    range: 10
+    itemIconStyle: BigAction
     icon:
       sprite: _Sunrise/Actions/Pets/radials.rsi
       state: attack
