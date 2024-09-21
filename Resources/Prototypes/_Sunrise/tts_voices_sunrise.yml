@@ -12,7 +12,7 @@
   name: tts-voice-name-jirinovskiy
   sex: Male
   speaker: jirinovskiy
-  roundStart: false # надо переобучить
+  roundStart: true
   provider: sunrise
   sponsorOnly: true
 
