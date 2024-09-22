@@ -4,14 +4,20 @@
 - type: entity
   parent: BaseItem
   id: BasePortableSurveillanceCameraMonitor
-  name: portable camera monitor #портативный монитор камер
-  description: Позволяет вам в любом месте смотреть за экипажем.
+  name: portable camera monitor
+  description: Allows you to monitor the crew from anywhere.
   abstract: true
   components:
   - type: SurveillanceCameraMonitor
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/portable_camera_viewer.rsi
     state: icon
+    layers:
+    - state: icon
+    - state: monitor
+      shader: unshaded
+      visible: true
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
   - type: ActivatableUI
     key: enum.SurveillanceCameraMonitorUiKey.Key
   - type: Damageable
@@ -33,6 +39,12 @@
     receiveFrequencyId: SurveillanceCamera
     transmitFrequencyId: SurveillanceCamera
   - type: WiredNetworkConnection
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerCellSlotVisuals.Enabled:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
         
 - type: entity
   id: PortableSurveillanceCameraMonitor
@@ -66,7 +78,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Specific/handheldcriminalrecordsmonitor.rsi
+    sprite: _Sunrise/Objects/Devices/handheld_criminal_records_monitor.rsi
     state: monitor
   - type: CriminalRecordsConsole
   - type: UserInterface
