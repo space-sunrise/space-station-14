@@ -1,6 +1,9 @@
 ﻿using System.Linq;
 using Content.Shared.Actions;
+using Content.Shared.Bed.Sleep;
 using Content.Shared.Interaction;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
@@ -14,6 +17,8 @@ public sealed class SharedPettingSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     // Стандартный приказ, выдающийся при приручении
     private const PetOrderType DefaultOrder = PetOrderType.Follow;
@@ -22,6 +27,9 @@ public sealed class SharedPettingSystem : EntitySystem
     // Айди акшенов, которые будут выдаваться хозяину при появлении питомца.
     private const string OpenUiActionID = "PetOpenAllUiAction";
     private const string AttackTargetActionID = "PetAttackTargetAction";
+
+    // Эффекты
+    private const string PettingSuccessEffectID = "EffectHearts";
 
     public override void Initialize()
     {
@@ -46,6 +54,14 @@ public sealed class SharedPettingSystem : EntitySystem
 
         // Проверяем возможность приручения у таргета.
         if (!TryComp<PettableOnInteractComponent>(args.Target, out var pet))
+            return;
+
+        // Проверяем, спит ли таргет
+        if (HasComp<SleepingComponent>(args.Target))
+            return;
+
+        // Проверяем, жив ли таргет.
+        if (TryComp<MobStateComponent>(args.Target, out var state) && !_mobStateSystem.IsAlive(args.Target, state))
             return;
 
         // Объявляем перменные, чтобы несколько раз не передавать ее длинную расшифровку.
@@ -104,6 +120,9 @@ public sealed class SharedPettingSystem : EntitySystem
 
         // Показываем игроку попап об успешном приручении
         _popup.PopupClient($"Вы успешно приручаете {MetaData(pet).EntityName}", pet.Owner, master.Value);
+
+        // Спавним эффект с сердечками
+        Spawn(PettingSuccessEffectID, _transform.GetMapCoordinates(pet));
 
         // Если питомцу не доступен стандартный приказ, то он не меняет своей логики поведения
         if (!pet.Comp.AllowedOrders.Contains(DefaultOrder))
