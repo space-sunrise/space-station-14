@@ -330,6 +330,12 @@ public sealed class SharedPettingSystem : EntitySystem
         CleanMaster(uid, component, args.Target);
     }
 
+    /// <summary>
+    /// Метод, обрабатывающий логику отвязывания питомцев от хозяина, когда его тело гибнули.
+    /// </summary>
+    /// <param name="uid">EntityUid хозяина</param>
+    /// <param name="component">Компонент хозяина</param>
+    /// <param name="args">Ивент типа EntityGibbedEvent, вызываемый после гиба тела.</param>
     private void OnMasterGibbed(EntityUid uid, PetOnInteractComponent component, ref EntityGibbedEvent args)
     {
         CleanMaster(uid, component);
