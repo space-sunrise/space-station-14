@@ -1,6 +1,6 @@
 supermatter-examine-integrity = Его целостность составляет {$integrity}%
 
-ssupermatter-announcement-sender = Автоматическая система двигателя суперматерии
+supermatter-announcement-sender = Автоматическая система двигателя суперматерии
 
 supermatter-announcement-safe =
     Кристаллическая гиперструктура возвращается к безопасным параметрам работы. Аварийная защита отключена.
