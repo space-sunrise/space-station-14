@@ -104,7 +104,7 @@ public sealed class SupermatterSystem : EntitySystem
                 if (sm.Damage > sm.DamageEmergencyPoint)
                     loc = "critical";
 
-                SupermatterAlert(uid, Loc.GetString($"supermatter-announcement-{loc}", ("integrity", sm.DelaminationPoint - sm.Damage)));
+                SupermatterAlert(uid, Loc.GetString($"supermatter-announcement-{loc}", ("integrity", Math.Round(sm.DelaminationPoint - sm.Damage, 1))));
             }
         }
 
