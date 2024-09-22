@@ -23,6 +23,9 @@
       "name": "pen_rd"
     },
     {
+        "name": "pen_hop"
+    },
+    {
       "name": "pen-inhand-left",
       "directions": 4
     },
