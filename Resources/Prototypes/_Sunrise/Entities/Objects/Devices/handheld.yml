@@ -39,6 +39,7 @@
     receiveFrequencyId: SurveillanceCamera
     transmitFrequencyId: SurveillanceCamera
   - type: WiredNetworkConnection
+  - type: Appearance
   - type: GenericVisualizer
     visuals:
       enum.PowerCellSlotVisuals.Enabled:
@@ -58,6 +59,15 @@
   parent: PortableSurveillanceCameraMonitor
   suffix: Handheld, Empty
   components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/portable_camera_viewer.rsi
+    state: icon
+    layers:
+    - state: icon
+    - state: monitor
+      shader: unshaded
+      visible: false
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
   - type: ItemSlots
     slots:
       cell_slot:
@@ -176,6 +186,15 @@
   parent: HandheldRoboAnalyzer
   suffix: HandHeld, Empty
   components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/roboanalyzer.rsi
+    state: icon
+    layers:
+    - state: icon
+    - state: analyzer
+      shader: unshaded
+      visible: false
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
   - type: ItemSlots
     slots:
       cell_slot:
