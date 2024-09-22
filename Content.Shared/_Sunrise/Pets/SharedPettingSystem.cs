@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using Content.Shared.Actions;
 using Content.Shared.Bed.Sleep;
+using Content.Shared.Cloning;
+using Content.Shared.Gibbing.Events;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
@@ -41,6 +43,11 @@ public sealed class SharedPettingSystem : EntitySystem
         // Управление
         SubscribeLocalEvent<PetOnInteractComponent, PetOpenAllUiEvent>(OnPetUiActionToggled);
         SubscribeLocalEvent<PetOnInteractComponent, PetAttackTargetEvent>(OnPetAttackToggled);
+
+        // Совместимость
+        SubscribeLocalEvent<PetOnInteractComponent, CloningEvent>(OnMasterCloned);
+        SubscribeLocalEvent<PetOnInteractComponent, EntityGibbedEvent>(OnMasterGibbed);
+
     }
 
     #region Base petting
@@ -90,6 +97,7 @@ public sealed class SharedPettingSystem : EntitySystem
 
         // Меняем владельца
         pet.Comp.Master = master;
+        pet.Comp.NetMaster = GetNetEntity(master);
         Dirty(pet);
 
         // Добавляем питомца в список прирученных питомцев
@@ -103,13 +111,43 @@ public sealed class SharedPettingSystem : EntitySystem
     }
 
     /// <summary>
+    /// Метод, работающий с логикой отвязывания хозяина от питомца
+    /// </summary>
+    /// <param name="pet">Питомец</param>
+    /// <param name="master">Хозяин</param>
+    private void RemoveMaster(Entity<PettableOnInteractComponent> pet, Entity<PetOnInteractComponent> master)
+    {
+        // Заставляем питомца забыть своего хозяина
+        pet.Comp.Master = null;
+        pet.Comp.NetMaster = null;
+        Dirty(pet);
+
+        // Убираем питомца из списка прирученных питомцев у хозяина
+        master.Comp.Pets.Remove(pet.Owner);
+        Dirty(master);
+
+        // Если после отвязки у хозяина не осталось питомцев...
+        if (master.Comp.Pets.Count != 0)
+            return;
+
+        // ..Мы убираем у него все акшены, связанные с питомцами.
+        foreach (var actionUid in master.Comp.PetActions)
+        {
+            _actions.RemoveAction(actionUid);
+        }
+
+        // TODO: Возможность убрать акшен атаки отдельно, когда не осталось питомцев с возможностью атаковать.
+    }
+
+    /// <summary>
     /// Работает с логикой поведения питомца после приручения
     /// </summary>
     /// <param name="pet">Питомец</param>
-    private void Pet(Entity<PettableOnInteractComponent> pet)
+    /// <param name="silent">Скрывать визуальные эффекты, звуки и попапы?</param>
+    private void Pet(Entity<PettableOnInteractComponent> pet, bool silent = false)
     {
         // Проигрываем звук приручения, если он есть
-        if (pet.Comp.PettingSuccessfulSound != null)
+        if (pet.Comp.PettingSuccessfulSound != null && !silent)
             _audio.PlayEntity(pet.Comp.PettingSuccessfulSound, pet, pet);
 
         // Необходимая проверка, чтобы еще раз убедиться, что хозяин имеется. Даже с учетом того, что он не может не иметься
@@ -119,10 +157,12 @@ public sealed class SharedPettingSystem : EntitySystem
             return;
 
         // Показываем игроку попап об успешном приручении
-        _popup.PopupClient($"Вы успешно приручаете {MetaData(pet).EntityName}", pet.Owner, master.Value);
+        if (!silent)
+            _popup.PopupClient($"Вы успешно приручаете {MetaData(pet).EntityName}", pet.Owner, master.Value);
 
         // Спавним эффект с сердечками
-        Spawn(PettingSuccessEffectID, _transform.GetMapCoordinates(pet));
+        if (!silent)
+            Spawn(PettingSuccessEffectID, _transform.GetMapCoordinates(pet));
 
         // Если питомцу не доступен стандартный приказ, то он не меняет своей логики поведения
         if (!pet.Comp.AllowedOrders.Contains(DefaultOrder))
@@ -154,7 +194,9 @@ public sealed class SharedPettingSystem : EntitySystem
         if (master.Comp.Pets.Count != 1)
             return;
 
-        _actions.AddAction(master, OpenUiActionID);
+        // Добавляем акшен хозяину и добавляем его в список акшенов
+        var action = _actions.AddAction(master, OpenUiActionID);
+        master.Comp.PetActions.Add(action);
     }
 
     /// <summary>
@@ -173,7 +215,9 @@ public sealed class SharedPettingSystem : EntitySystem
         if (agressivePetList.Count() != 1)
             return;
 
-        _actions.AddAction(master, AttackTargetActionID);
+        // Добавляем акшен хозяину и добавляем его в список акшенов
+        var action = _actions.AddAction(master, AttackTargetActionID);
+        master.Comp.PetActions.Add(action);
     }
 
     #endregion
@@ -229,4 +273,67 @@ public sealed class SharedPettingSystem : EntitySystem
 
     #endregion
 
+    #region Pets compability
+
+    /// <summary>
+    /// Метод, работающий с логикой передачи всех питомцев от одного хозяина к другому.
+    /// Если нового хозяина нет, метод очищает весь список питомцев у старого владельца и отвязывает их.
+    /// </summary>
+    /// <param name="uid">EntityUid старого хозяина</param>
+    /// <param name="component">Компонент хозяина</param>
+    /// <param name="newMaster">EntityUid нового хозяина, если есть. В него перейдут все питомцы и добавятся все нужные для этого акшены</param>
+    private void CleanMaster(EntityUid uid, PetOnInteractComponent component, EntityUid? newMaster = null)
+    {
+        // Захешировал список, так как хз, как поведет себя цикл при удалении оттуда питомцев при итерации
+        var oldPets = component.Pets;
+
+        // Проходимся по списку всех питомцев у старого владельца
+        foreach (var petUid in oldPets)
+        {
+            if (!TryComp<PettableOnInteractComponent>(petUid, out var petComponent))
+                continue;
+
+            var petEntity = (petUid, petComponent);
+
+            // Убираем питомца из списка питомцев старого тела
+            RemoveMaster(petEntity, (uid, component));
+
+            // Если хозяин null, значит мы не передаем питомцев в новое тело.
+            // Потоум что тела или нет, или это нам не требуется
+            if (!newMaster.HasValue)
+                continue;
+
+            if (!TryComp<PetOnInteractComponent>(newMaster, out var newMasterComponent))
+                continue;
+
+            // Новое тела хозяина
+            var newMasterEntity = (newMaster.Value, newMasterComponent);
+
+            // Добавляем питомца в нового мастера
+            TrySetMaster(petEntity, newMasterEntity, true);
+
+            // Задаем питомцу правильную логику и добавляем владельцу акшены
+            Pet(petEntity, true);
+        }
+
+        // TODO: В идеале список питомцев должен храниться в Mind`е хозяина, чтобы автоматически переноситься в новое тело, как только туда зайдет игрок
+    }
+
+    /// <summary>
+    /// Метод, обрабатывающий логику передачи питомцев от старого тела хозяина к новому при клонировании
+    /// </summary>
+    /// <param name="uid">EntityUid прошлого тела хозяина</param>
+    /// <param name="component">Компонент типа PetOnInteractComponent</param>
+    /// <param name="args">Ивент типа CloningEvent</param>
+    private void OnMasterCloned(EntityUid uid, PetOnInteractComponent component, ref CloningEvent args)
+    {
+        CleanMaster(uid, component, args.Target);
+    }
+
+    private void OnMasterGibbed(EntityUid uid, PetOnInteractComponent component, ref EntityGibbedEvent args)
+    {
+        CleanMaster(uid, component);
+    }
+
+    #endregion
 }

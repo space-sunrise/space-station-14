@@ -34,8 +34,9 @@ public sealed class PetControlBoundUserInterface : BoundUserInterface
         base.Open();
 
         var pet = _entityManager.GetComponent<PettableOnInteractComponent>(Owner);
+        var ourMaster = _entityManager.GetNetEntity(_playerManager.LocalSession?.AttachedEntity);
 
-        if (_playerManager.LocalSession?.AttachedEntity != pet.Master)
+        if (ourMaster != pet.NetMaster)
             return;
 
         _menu = new RadialContainer();

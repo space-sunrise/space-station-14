@@ -16,6 +16,12 @@ public sealed partial class PettableOnInteractComponent : Component
     public EntityUid? Master;
 
     /// <summary>
+    /// Мастер, но нетворкед. Нужен, чтобы клиент понимал, кто тут хозяин.
+    /// </summary>
+    [AutoNetworkedField]
+    public NetEntity? NetMaster;
+
+    /// <summary>
     /// Звук, который воспроизводится после успешного приручения
     /// </summary>
     [DataField]
