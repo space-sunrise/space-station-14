@@ -301,7 +301,7 @@
     - UplinkCoreExtractionToolbox
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: BaseTraitorStealObjective
   id: StealSupermatterSliverObjective
   components:
@@ -309,5 +309,5 @@
     difficulty: 2.5
   - type: StealCondition
     stealGroup: SupermatterSliver
-    objectiveNoOwnerText: Cut off a sliver from the supermatter crystal.
-    descriptionText: Use any cutting tool that comes in handy. A scalpel is more recommended. Also, don't die of radiation poisoning.
+    objectiveNoOwnerText: objective-condition-steal-supermatter-sliver
+    descriptionText: objective-description-steal-supermatter-sliver
