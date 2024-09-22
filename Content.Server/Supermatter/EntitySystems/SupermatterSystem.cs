@@ -265,7 +265,7 @@ public sealed class SupermatterSystem : EntitySystem
     /// <param name="customSender"> If true, the message will be sent from Central Command </param>
     public void SupermatterAlert(EntityUid uid, string message, bool customSender = false)
     {
-        _chat.DispatchStationAnnouncement(uid, message, customSender ? "Central Command" : Loc.GetString("supermatter-announcement-sender"), false, null, Color.Yellow);
+        _chat.DispatchStationAnnouncement(uid, message, customSender ? "Central Command" : Loc.GetString("supermatter-announcement-sender"), playDefault: false, playTts: true, colorOverride: Color.Yellow);
     }
 
     private void GenerateAnomaly(EntityUid uid, float amount = 1)
