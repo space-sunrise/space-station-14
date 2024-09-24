@@ -301,3 +301,12 @@
   name: loadout-group-adj-outerClothing
   loadouts:
   - AdjutantCoat
+
+# Питомцы
+
+- type: loadoutGroup
+  id: CommonPets
+  name: loadout-group-pets
+  loadouts:
+  - PetRabbit
+  - PetAnteater

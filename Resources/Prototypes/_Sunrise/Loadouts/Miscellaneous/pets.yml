@@ -1,0 +1,15 @@
+﻿# Все питомцы, не являющиеся предметов будут появляться под персонажем при спавне
+
+- type: loadout
+  id: PetRabbit
+  minLimit: 0
+  sponsorOnly: true
+  inhand:
+  - PetRabbit
+
+- type: loadout
+  id: PetAnteater
+  minLimit: 0
+  sponsorOnly: true
+  inhand:
+  - PetAnteater
