@@ -46,7 +46,7 @@ public sealed class SharedPettingSystem : EntitySystem
 
         // Совместимость
         SubscribeLocalEvent<PetOnInteractComponent, CloningEvent>(OnMasterCloned);
-        SubscribeLocalEvent<PetOnInteractComponent, EntityGibbedEvent>(OnMasterGibbed);
+        SubscribeLocalEvent<PetOnInteractComponent, ComponentShutdown>(OnMasterShutdown);
 
     }
 
@@ -335,8 +335,8 @@ public sealed class SharedPettingSystem : EntitySystem
     /// </summary>
     /// <param name="uid">EntityUid хозяина</param>
     /// <param name="component">Компонент хозяина</param>
-    /// <param name="args">Ивент типа EntityGibbedEvent, вызываемый после гиба тела.</param>
-    private void OnMasterGibbed(EntityUid uid, PetOnInteractComponent component, ref EntityGibbedEvent args)
+    /// <param name="args">Ивент типа ComponentShutdown</param>
+    private void OnMasterShutdown(EntityUid uid, PetOnInteractComponent component, ComponentShutdown args)
     {
         CleanMaster(uid, component);
     }
