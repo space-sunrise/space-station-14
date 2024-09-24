@@ -67,7 +67,6 @@
       285: 0.4
   - type: Wagging
   - type: Inventory
-    speciesId: reptilian
     femaleDisplacements:
       jumpsuit:
         sizeMaps:
@@ -89,7 +88,6 @@
     - HeadTop
     - HeadSide
   - type: Inventory
-    speciesId: reptilian
     femaleDisplacements:
       jumpsuit:
         sizeMaps:
