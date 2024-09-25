@@ -18,11 +18,17 @@ internal sealed class BloodBrotherConverterSystem : EntitySystem
     private void OnFlash(EntityUid uid, BloodBrotherConverterComponent comp, ref AfterFlashedEvent args)
     {
         if (!TryComp<SharedBloodBrotherComponent>(args.User, out var self))
+            Log.Warning($"User {args.User} does not have SharedBloodBrotherComponent.");
             return;
         
         if (!TryComp<SharedBloodBrotherComponent>(args.Target, out _))
         {
+            Log.Info($"Converting Target {args.Target} to blood brother with TeamID {self.TeamID}.");
             _bbrule.MakeBloodBrother(args.Target, self.TeamID);
+        }
+        else
+        {
+            Log.Info($"Target {args.Target} is already a blood brother.");
         }
     }
 }
