@@ -26,7 +26,7 @@ public sealed class BloodBrotherRuleSystem : GameRuleSystem<BloodBrotherRuleComp
     [Dependency] private readonly SharedJobSystem _jobs = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
-    private BloodBrotherRuleComponent _ruleComp = null;
+    private BloodBrotherRuleComponent _ruleComp = default!;
 
     public override void Initialize()
     {
@@ -78,9 +78,9 @@ public sealed class BloodBrotherRuleSystem : GameRuleSystem<BloodBrotherRuleComp
 
         }
 
-        var aliveObj = _objectives.GetRandomObjective(mindId, mind, "BloodBrotherAliveObjectiveGroup");
+        var aliveObj = _objectives.GetRandomObjective(mindId, mind, "BloodBrotherAliveObjectiveGroup", 3);
         if (aliveObj != null) _mindSystem.AddObjective(mindId, mind, (EntityUid) aliveObj);
-        var escapeObj = _objectives.GetRandomObjective(mindId, mind, "BloodBrotherEscapeObjectiveGroup");
+        var escapeObj = _objectives.GetRandomObjective(mindId, mind, "BloodBrotherEscapeObjectiveGroup", 3);
         if (escapeObj != null) _mindSystem.AddObjective(mindId, mind, (EntityUid) escapeObj);
 
         return true;
@@ -111,7 +111,7 @@ public sealed class BloodBrotherRuleSystem : GameRuleSystem<BloodBrotherRuleComp
 
     private EntityUid? RollObjective(EntityUid id, MindComponent mind)
     {
-        var objective = _objectives.GetRandomObjective(id, mind, "BloodBrotherObjectiveGroups");
+        var objective = _objectives.GetRandomObjective(id, mind, "BloodBrotherObjectiveGroups", 3);
 
         if (objective == null)
             return objective;
@@ -123,5 +123,37 @@ public sealed class BloodBrotherRuleSystem : GameRuleSystem<BloodBrotherRuleComp
             return RollObjective(id, mind);
 
         return objective;
+    }
+    public List<(EntityUid Id, MindComponent Mind)> GetOtherBroMindsAliveAndConnected(MindComponent ourMind)
+    {
+        List<(EntityUid Id, MindComponent Mind)> allBros = new();
+        foreach (var bro in EntityQuery<BloodBrotherRuleComponent>())
+        {
+            foreach (var role in GetOtherBroMindsAliveAndConnected(ourMind, bro))
+            {
+                if (!allBros.Contains(role))
+                    allBros.Add(role);
+            }
+        }
+
+        return allBros;
+    }
+    private List<(EntityUid Id, MindComponent Mind)> GetOtherBroMindsAliveAndConnected(MindComponent ourMind, BloodBrotherRuleComponent component)
+    {
+        var bros = new List<(EntityUid Id, MindComponent Mind)>();
+        foreach (var bro in component.Minds)
+        {
+            if (TryComp(bro, out MindComponent? mind) &&
+                mind.OwnedEntity != null &&
+                mind.Session != null &&
+                mind != ourMind &&
+                _mobStateSystem.IsAlive(mind.OwnedEntity.Value) &&
+                mind.CurrentEntity == mind.OwnedEntity)
+            {
+                bros.Add((bro, mind));
+            }
+        }
+
+        return bros;
     }
 }

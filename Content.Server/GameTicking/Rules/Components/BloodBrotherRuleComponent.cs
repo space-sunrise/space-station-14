@@ -13,6 +13,8 @@ public sealed partial class BloodBrotherRuleComponent : Component
     /// </summary>
     public int NumberOfTeams => Teams.Count;
 
+    public readonly List<EntityUid> Minds = new();
+
     [DataField("prototypeId")]
     public ProtoId<AntagPrototype> PrototypeId = "BloodBrother";
 
