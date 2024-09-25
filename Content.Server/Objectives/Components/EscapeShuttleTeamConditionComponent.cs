@@ -1,10 +1,12 @@
+using Content.Server.GameTicking.Rules.Components;
+using Content.Server.GameTicking.Rules;
 using Content.Server.Objectives.Components;
 using Content.Server.Shuttles.Systems;
+using Content.Shared.Cuffs.Components;
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Components;
 using Robust.Shared.Random;
 using System.Linq;
-using Content.Server.GameTicking.Rules.Components;
 
 namespace Content.Server.Objectives.Systems;
 
@@ -68,6 +70,6 @@ public sealed class EscapeShuttleTeamConditionSystem : EntitySystem
         if (TryComp<CuffableComponent>(mind.OwnedEntity, out var cuffed) && cuffed.CuffedHandCount > 0)
             return false;
 
-        return _emergencyShuttle.IsTargetEscaping(mind.OwnedEntity.Value) ? 1f : 0f;
+        return _emergencyShuttle.IsTargetEscaping(mind.OwnedEntity.Value);
     }
 }
