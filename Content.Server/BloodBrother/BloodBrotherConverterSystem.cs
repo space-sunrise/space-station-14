@@ -19,9 +19,10 @@ internal sealed class BloodBrotherConverterSystem : EntitySystem
     {
         if (!TryComp<SharedBloodBrotherComponent>(args.User, out var self))
             return;
-        if (TryComp<SharedBloodBrotherComponent>(args.Target, out var target))
-            _bbrule.MakeBloodBrother(args.Target, self.TeamID, target);
-
-        _bbrule.MakeBloodBrother(args.Target, self.TeamID);
+        
+        if (!TryComp<SharedBloodBrotherComponent>(args.Target, out _))
+        {
+            _bbrule.MakeBloodBrother(args.Target, self.TeamID);
+        }
     }
 }
