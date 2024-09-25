@@ -47,6 +47,7 @@ public sealed class SharedPettingSystem : EntitySystem
         // Совместимость
         SubscribeLocalEvent<PetOnInteractComponent, CloningEvent>(OnMasterCloned);
         SubscribeLocalEvent<PetOnInteractComponent, ComponentShutdown>(OnMasterShutdown);
+        SubscribeLocalEvent<PettableOnInteractComponent, ComponentShutdown>(OnPetShutdown);
 
     }
 
@@ -122,8 +123,19 @@ public sealed class SharedPettingSystem : EntitySystem
         pet.Comp.NetMaster = null;
         Dirty(pet);
 
+        // Заставляем хозяина забыть питомца
+        MasterForgetPet(master, pet);
+    }
+
+    /// <summary>
+    /// Метод, убирающий питомца из списка питомцев хозяина.
+    /// </summary>
+    /// <param name="master">Ентити хозяина, у которого мы убираем питомца</param>
+    /// <param name="pet">EntityUid питомца, которого мы убираем</param>
+    private void MasterForgetPet(Entity<PetOnInteractComponent> master, EntityUid pet)
+    {
         // Убираем питомца из списка прирученных питомцев у хозяина
-        master.Comp.Pets.Remove(pet.Owner);
+        master.Comp.Pets.Remove(pet);
         Dirty(master);
 
         // Если после отвязки у хозяина не осталось питомцев...
@@ -339,6 +351,27 @@ public sealed class SharedPettingSystem : EntitySystem
     private void OnMasterShutdown(EntityUid uid, PetOnInteractComponent component, ComponentShutdown args)
     {
         CleanMaster(uid, component);
+    }
+
+    /// <summary>
+    /// Метод, занимающийся обработкой последствий после компонента питомца или его целиком из реальности.
+    /// </summary>
+    /// <param name="uid">EntityUid питомца</param>
+    /// <param name="component">Компонент питомца</param>
+    /// <param name="args">Ивент типа ComponentShutdown</param>
+    private void OnPetShutdown(EntityUid uid, PettableOnInteractComponent component, ComponentShutdown args)
+    {
+        var master = component.Master;
+
+        if (!master.HasValue)
+            return;
+
+        if (!TryComp<PetOnInteractComponent>(master, out var masterComponent))
+            return;
+
+        var masterEntity = (master.Value, masterComponent);
+
+        MasterForgetPet(masterEntity, uid);
     }
 
     #endregion
