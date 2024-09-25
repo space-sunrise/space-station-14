@@ -7,6 +7,7 @@ admin-verb-make-pirate = Make the target into a pirate. Note this doesn't config
 admin-verb-make-head-rev = Make the target into a Head Revolutionary.
 admin-verb-make-thief = Make the target into a thief.
 admin-verb-make-changeling = Make the target into a changeling.
+admin-verb-make-bloodbrother = Make the target into a blood brother.
 
 admin-verb-text-make-traitor = Make Traitor
 admin-verb-text-make-initial-infected = Make Initial Infected
@@ -16,3 +17,4 @@ admin-verb-text-make-pirate = Make Pirate
 admin-verb-text-make-head-rev = Make Head Rev
 admin-verb-text-make-thief = Make Thief
 admin-verb-text-make-changeling = Make Changeling
+admin-verb-text-make-bloodbrother = Make Blood Brother

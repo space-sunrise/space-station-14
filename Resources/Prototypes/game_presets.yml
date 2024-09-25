@@ -159,6 +159,7 @@
   hide: true # Sunrise-Edit
   rules:
     - Traitor
+    - TraitorVariations
     - SubGamemodesRule
     - BasicStationEventScheduler
     - MeteorSwarmScheduler

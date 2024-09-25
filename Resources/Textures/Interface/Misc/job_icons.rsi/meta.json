@@ -201,6 +201,9 @@
             "name": "InitialInfected"
         },
         {
+            "name": "BloodBrother"
+        },
+        {
             "name": "Admin"
         },
         {

@@ -63,3 +63,11 @@
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: Changeling
+    
+- type: statusIcon
+  id: BloodBrotherFaction
+  priority: 10
+  locationPreference: Right
+  icon:
+    sprite: Interface/Misc/job_icons.rsi
+    state: BloodBrother
