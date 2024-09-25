@@ -92,7 +92,7 @@ namespace Content.Server.Power.EntitySystems
                 }
                 if (comp.AutoRechargeRate < 0) //self discharging
                 {
-                    if (batt.Charge == 0) continue;
+                    if (batt.CurrentCharge == 0) continue;
                     UseCharge(uid, -comp.AutoRechargeRate * frameTime, batt);
                 }
             }
