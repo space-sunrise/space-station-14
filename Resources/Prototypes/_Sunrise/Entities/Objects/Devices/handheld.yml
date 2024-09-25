@@ -237,7 +237,7 @@
   abstract: true
   components:
   - type: StationAiVision
-    range: 4
+    range: 2
   - type: Item
     sprite: _Sunrise/Objects/Devices/handheld_camera.rsi
   - type: Sprite
