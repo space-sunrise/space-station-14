@@ -166,6 +166,7 @@ ent-SignDanger = предупреждающий знак "опасно"
     .desc = Знак, предупреждающий о какой-то опасности.
 ent-SignCansScience = { ent-SignCans }
     .desc = { ent-SignCans.desc }
+    .suffix = наука
 ent-SignDisposalSpace = знак "мусоросброс"
     .desc = Знак, указывающий на зону утилизации.
 ent-SignDoors = знак "двери"
