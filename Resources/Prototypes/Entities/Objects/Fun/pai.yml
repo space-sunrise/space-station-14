@@ -75,6 +75,8 @@
           Searching: { state: pai-searching-overlay }
           On: { state: pai-on-overlay }
   # Sunrise-Edit
+  - type: StationAiVision
+    range: 1
   - type: TTS
     voice: FactCore
   - type: InnateItem
@@ -119,6 +121,8 @@
           Searching: { state: syndicate-pai-searching-overlay }
           On: { state: syndicate-pai-on-overlay }
   # Sunrise-Edit
+  - type: StationAiVision
+    enabled: false
   - type: InnateItem
     worldTargetActions:
     - Emag
@@ -153,6 +157,8 @@
   - type: Construction
     graph: PotatoAI
     node: potatoai
+  - type: StationAiVision # Sunrise-edit
+    enabled: false
 
 - type: entity
   id: ActionPAIPlayMidi

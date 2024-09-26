@@ -70,3 +70,4 @@ location-testing-range = тестировочная зона
 location-the-garden = Сад
 location-thermal-control = Термальный контроль
 location-Virology = Вирусология
+location-supermatter = Кристал супер материи
