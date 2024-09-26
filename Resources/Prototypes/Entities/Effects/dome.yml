@@ -34,7 +34,7 @@
 
 - type: entity
   id: EnergyDomeSmallPink
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: EnergyDomeBase
   components:
   - type: Sprite
@@ -50,7 +50,7 @@
 
 - type: entity
   id: EnergyDomeSmallRed
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: EnergyDomeBase
   components:
   - type: Sprite
@@ -68,7 +68,7 @@
 
 - type: entity
   id: EnergyDomeMediumBlue
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: EnergyDomeBase
   components:
   - type: Fixtures
@@ -96,7 +96,7 @@
 
 - type: entity
   id: EnergyDomeSlowing
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: EnergyDomeBase
   components:
   - type: Fixtures
