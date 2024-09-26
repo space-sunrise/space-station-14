@@ -358,6 +358,7 @@
       - FauxTileAstroSnow
       - OreBagOfHolding
       - DeviceQuantumSpinInverter
+      - EnergyDomeDirectionalTurtle
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       # Sunrise-Start
