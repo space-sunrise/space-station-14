@@ -8,3 +8,5 @@ ent-NetProbeCartridge = NetProbe cartridge
     .desc = A program for getting the address and frequency of network devices.
 ent-LogProbeCartridge = LogProbe cartridge
     .desc = A program for getting access logs from devices.
+ent-WantedListCartridge = Wanted list cartridge
+    .desc = A program to get a list of wanted persons.

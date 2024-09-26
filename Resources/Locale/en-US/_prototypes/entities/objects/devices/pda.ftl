@@ -1,5 +1,7 @@
 ent-BasePDA = PDA
     .desc = Personal Data Assistant.
+ent-BaseSecurityPDA = { "" }
+    .desc = { "" }
 ent-BaseMedicalPDA = { ent-BasePDA }
     .desc = { ent-BasePDA.desc }
 ent-PassengerPDA = passenger PDA

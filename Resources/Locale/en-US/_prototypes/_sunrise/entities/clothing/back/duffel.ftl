@@ -6,3 +6,5 @@ ent-ClothingBackpackDuffelBlueShield = вещмешок офицера «син�
     .desc = На стиле.
 ent-ClothingBackpackDuffelPrisonGuard = вещмешок сотрудника кт
     .desc = На стиле.
+ent-ClothingBackpackDuffelAdjutant = adjutant duffel
+    .desc = It looks redundantly empty, with only a crumpled piece of paper lying lonely at the bottom.
