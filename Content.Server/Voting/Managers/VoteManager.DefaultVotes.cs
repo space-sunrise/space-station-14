@@ -86,7 +86,7 @@ namespace Content.Server.Voting.Managers
 
             if (totalPlayers <= playerVoteMaximum || ghostVoterPercentage >= ghostVotePercentageRequirement)
             {
-                StartVote(initiator);
+                StartVote(initiator, false);
             }
             else
             {
@@ -134,7 +134,7 @@ namespace Content.Server.Voting.Managers
             return eligibleCount;
         }
 
-        private void StartVote(ICommonSession? initiator)
+        private void StartVote(ICommonSession? initiator, bool displayVotes = true)
         {
             var alone = _playerManager.PlayerCount == 1 && initiator != null;
             var options = new VoteOptions
@@ -149,7 +149,8 @@ namespace Content.Server.Voting.Managers
                 Duration = alone
                     ? TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerAlone))
                     : TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerRestart)),
-                InitiatorTimeout = TimeSpan.FromMinutes(5)
+                InitiatorTimeout = TimeSpan.FromMinutes(5),
+                DisplayVotes = displayVotes
             };
 
             if (alone)
@@ -223,7 +224,8 @@ namespace Content.Server.Voting.Managers
                 Title = Loc.GetString("ui-vote-gamemode-title"),
                 Duration = alone
                     ? TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerAlone))
-                    : TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerPreset))
+                    : TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerPreset)),
+                DisplayVotes = false // Sunrise-Edit
             };
 
             if (alone)
@@ -275,7 +277,8 @@ namespace Content.Server.Voting.Managers
                 Title = Loc.GetString("ui-vote-map-title"),
                 Duration = alone
                     ? TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerAlone))
-                    : TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerMap))
+                    : TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerMap)),
+                DisplayVotes = false // Sunrise-Edit
             };
 
             if (alone)
