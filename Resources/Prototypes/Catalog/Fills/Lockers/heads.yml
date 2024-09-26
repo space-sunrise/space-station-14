@@ -17,6 +17,7 @@
     - id: RubberStampApproved
     - id: RubberStampDenied
     - id: RubberStampQm
+    - id: AstroNavCartridge
     - id: FlippoLighterSunriseQm  # Sunrise-Flippo
 
 - type: entity

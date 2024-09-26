@@ -36,18 +36,6 @@ public sealed partial class VoiceMaskNameChangeWindow : FancyWindow
             OnVerbChange?.Invoke((string?) args.Button.GetItemMetadata(args.Id));
             SpeechVerbSelector.SelectId(args.Id);
         };
-
-        ReloadVerbs(IoCManager.Resolve<IPrototypeManager>());
-
-        // Sunrise-TTS-Start
-        if (IoCManager.Resolve<IConfigurationManager>().GetCVar(SunriseCCVars.TTSEnabled))
-        {
-            TTSContainer.Visible = true;
-            ReloadVoices(IoCManager.Resolve<IPrototypeManager>());
-        }
-        // Sunrise-TTS-End
-
-        AddVerbs();
     }
 
     public void ReloadVerbs(IPrototypeManager proto)
@@ -59,7 +47,7 @@ public sealed partial class VoiceMaskNameChangeWindow : FancyWindow
         _verbs.Sort((a, b) => a.Item1.CompareTo(b.Item1));
     }
 
-    private void AddVerbs()
+    public void AddVerbs()
     {
         SpeechVerbSelector.Clear();
 
