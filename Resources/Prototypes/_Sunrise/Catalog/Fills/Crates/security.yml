@@ -1,0 +1,21 @@
+- type: entity
+  id: CrateSecurityMilitaryWebbing
+  parent: CrateSecgear
+  name: Military Webbing crate
+  description: Contains one Military Webbing. Requires Security access to open.
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingBeltMilitaryWebbing
+        amount: 1
+        
+- type: entity
+  id: CrateSecurityGlovesCombat
+  parent: CrateSecgear
+  name: Gloves Combat crate
+  description: Contains three Gloves Combat. Requires Security access to open.
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingHandsGlovesCombat
+        amount: 3
