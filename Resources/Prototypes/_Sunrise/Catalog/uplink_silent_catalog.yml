@@ -26,7 +26,7 @@
     Telecrystal: 4
   categories:
   - UplinkWeaponrySilent
-  
+
 - type: listing
   id: SilentUplinkEnergyDagger
   name: uplink-edagger-name
@@ -67,9 +67,9 @@
     Telecrystal: 8
   categories:
   - UplinkWeaponrySilent
-  
+
 # Ammo
-  
+
 - type: listing
   id: SilentUplinkPistol9mmMagazine
   name: uplink-pistol-magazine-name
@@ -80,7 +80,7 @@
     Telecrystal: 1
   categories:
   - UplinkAmmoSilent
-  
+
 # For the Cobra
 - type: listing
   id: SilentUplinkMagazinePistolCaselessRifle
@@ -121,7 +121,7 @@
     Telecrystal: 4
   categories:
   - UplinkExplosivesSilent
-  
+
 - type: listing
   id: SilentUplinkGrenadePenguin
   name: uplink-penguin-grenade-name
@@ -139,7 +139,7 @@
     blacklist:
       components:
       - SurplusBundle
-      
+
 - type: listing
   id: SilentUplinkExplosiveGrenade
   name: uplink-explosive-grenade-name
@@ -172,7 +172,7 @@
     Telecrystal: 1
   categories:
   - UplinkExplosivesSilent
-  
+
 - type: listing
   id: SilentUplinkEmpKit
   name: uplink-emp-kit-name
@@ -185,7 +185,7 @@
     Telecrystal: 6
   categories:
     - UplinkExplosivesSilent
-  
+
 #Chemicals
 
 - type: listing
@@ -201,7 +201,7 @@
     Telecrystal: 4
   categories:
   - UplinkChemicals
-  
+
 - type: listing
   id: UplinkPolytrinicAcidChemistryBottle
   name: uplink-polytrinic-acid-chemistry-bottle-name
@@ -214,7 +214,7 @@
     Telecrystal: 8
   categories:
   - UplinkChemicals
-  
+
 # Wearables
 
 - type: listing
@@ -376,7 +376,7 @@
     Telecrystal: 2
   categories:
     - UplinkWearablesSilent
-    
+
 # Disruption
 
 - type: listing
@@ -511,7 +511,7 @@
       blacklist:
         components:
           - SurplusBundle
-          
+
 - type: listing
   id: SilentUplinkTeleporter
   name: uplink-syndicate-teleporter-name
@@ -520,5 +520,18 @@
   productEntity: SyndicateTeleporter
   cost:
     Telecrystal: 12
+  categories:
+  - UplinkDisruptionSilent
+
+- type: listing
+  id: UplinkAntimovCircuitBoard
+  name: uplink-antimov-law-name
+  description: uplink-antimov-law-desc
+  productEntity: AntimovCircuitBoard
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 10
+  cost:
+    Telecrystal: 14
   categories:
   - UplinkDisruptionSilent
