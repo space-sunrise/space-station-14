@@ -524,7 +524,7 @@
   - UplinkDisruptionSilent
 
 - type: listing
-  id: UplinkAntimovCircuitBoard
+  id: SilentUplinkAntimovCircuitBoard
   name: uplink-antimov-law-name
   description: uplink-antimov-law-desc
   productEntity: AntimovCircuitBoard
