@@ -46,7 +46,7 @@
   - type: StorageFill
     contents:
       - id: MagazineBoxLightRifleBig
-        amount: 2
+        amount: 3
         
 - type: entity
   id: CrateArmoryMagazineBoxRifleBig
@@ -57,4 +57,4 @@
   - type: StorageFill
     contents:
       - id: MagazineBoxRifleBig
-        amount: 2
+        amount: 3

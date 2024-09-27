@@ -1,13 +1,13 @@
 - type: entity
-  id: CrateSecurityMilitaryWebbing
+  id: CrateSecurityWebbing
   parent: CrateSecgear
-  name: Military Webbing crate
-  description: Contains one Military Webbing. Requires Security access to open.
+  name: Security Webbing crate
+  description: Contains two Security Webbing. Requires Security access to open.
   components:
   - type: StorageFill
     contents:
-      - id: ClothingBeltMilitaryWebbing
-        amount: 1
+      - id: ClothingBeltSecurityWebbing
+        amount: 2
         
 - type: entity
   id: CrateSecurityGlovesCombat

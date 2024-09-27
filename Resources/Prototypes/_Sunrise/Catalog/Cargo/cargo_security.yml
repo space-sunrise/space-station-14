@@ -1,10 +1,10 @@
 - type: cargoProduct
-  id: SecurityMilitaryWebbing
+  id: SecurityWebbing
   icon:
-    sprite: Clothing/Belt/militarywebbing.rsi
+    sprite: Clothing/Belt/securitywebbing.rsi
     state: icon
-  product: CrateSecurityMilitaryWebbing
-  cost: 2000
+  product: CrateSecurityWebbing
+  cost: 2500
   category: cargoproduct-category-name-security
   group: market
 
@@ -14,6 +14,6 @@
     sprite: Clothing/Hands/Gloves/combat.rsi
     state: icon
   product: CrateSecurityGlovesCombat
-  cost: 1500
+  cost: 3500
   category: cargoproduct-category-name-security
   group: market
