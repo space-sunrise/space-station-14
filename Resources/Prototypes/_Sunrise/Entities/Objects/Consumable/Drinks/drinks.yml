@@ -136,7 +136,6 @@
   parent: DrinkGlassBase
   name: настойка ромашки
   id: DrinkNastoykaRomashki
-  suffix: nastoyka-romashki
   components:
     - type: SolutionContainerManager
       solutions:
