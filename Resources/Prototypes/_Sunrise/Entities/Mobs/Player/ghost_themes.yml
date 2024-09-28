@@ -129,7 +129,7 @@
     scale: 0.8,0.8
     layers:
     - state: mega_legion
-    
+
 - type: ghostTheme
   id: HonkChampionObserver
   components:
@@ -179,6 +179,19 @@
     color: "#fff8"
     layers:
     - state: animated
+
+- type: ghostTheme
+  id: CatSponsorObserver
+  components:
+  - type: Sprite
+    noRot: true
+    overrideContainerOcclusion: true
+    drawdepth: Ghosts
+    sprite: _Sunrise/Mobs/Ghosts/cat_ghost_human.rsi
+    color: "#fff8"
+    scale: 0.5,0.5
+    layers:
+    - state: icon
 
 - type: ghostTheme
   id: PurpleSponsorObserver

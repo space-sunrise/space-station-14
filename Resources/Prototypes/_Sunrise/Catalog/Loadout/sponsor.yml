@@ -75,3 +75,38 @@
   storage:
     back:
     - FishStationUplink100
+
+# NEWERA STATION
+
+# first level?
+- type: sponsorLoadout
+  id: NeweraStationUplink40Loadout
+  equipment: NeweraStationUplink40
+
+- type: startingGear
+  id: NeweraStationUplink40
+  storage:
+    back:
+    - NeweraStationUplink40
+
+# second level?
+- type: sponsorLoadout
+  id: NeweraStationUplink80Loadout
+  equipment: NeweraStationUplink80
+
+- type: startingGear
+  id: NeweraStationUplink80
+  storage:
+    back:
+    - NeweraStationUplink80
+
+# third level?
+- type: sponsorLoadout
+  id: NeweraStationUplink100Loadout
+  equipment: NeweraStationUplink100
+
+- type: startingGear
+  id: NeweraStationUplink100
+  storage:
+    back:
+    - NeweraStationUplink100
