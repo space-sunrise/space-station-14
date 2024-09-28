@@ -134,7 +134,7 @@
 
 - type: entity
   parent: DrinkGlassBase
-  name: Настойка ромашки
+  name: настойка ромашки
   id: DrinkNastoykaRomashki
   suffix: nastoyka-romashki
   components:
