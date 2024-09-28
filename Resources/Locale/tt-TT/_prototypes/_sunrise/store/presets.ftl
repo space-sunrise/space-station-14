@@ -1,2 +1,0 @@
-ent-StorePresetUplinkSilent = { "" }
-    .desc = { "" }
