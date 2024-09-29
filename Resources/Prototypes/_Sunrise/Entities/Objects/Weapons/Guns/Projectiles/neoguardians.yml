@@ -1,0 +1,14 @@
+- type: entity
+  id: DagonProjectile
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: magicm_green
+  - type: Projectile
+    damage:
+      groups:
+        Brute: 1
+    ignoreResistances: true

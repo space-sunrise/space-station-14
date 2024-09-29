@@ -1,0 +1,131 @@
+- type: entity
+  name: Dagon
+  id: Dagon
+  description: Redspace anomaly
+  parent: MobGuardianBase
+  components:
+    - type: GhostRole
+      allowMovement: true
+      allowSpeech: true
+      makeSentient: true
+      name: ghost-role-information-dagon-name
+      description: ghost-role-information-dagon-description
+    - type: GhostTakeoverAvailable
+    - type: MeleeWeapon
+      hidden: false
+      altDisarm: false
+      animation: WeaponArcFist
+      attackRate: 1.2
+      autoAttack: true
+      damage:
+        types:
+          Blunt: 10
+          Structural: 15
+    - type: Gun
+      minAngle: 24
+      maxAngle: 55
+      angleIncrease: 4
+      angleDecay: 16
+      fireRate: 50
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+    - type: ProjectileBatteryAmmoProvider
+      proto: DagonProjectile
+      fireCost: 50
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 50
+    - type: Battery
+      maxCharge: 5000
+      startingCharge: 5000
+      
+- type: entity
+  name: Quack
+  id: Quack
+  description: Redspace anomaly
+  parent: MobGuardianBase
+  components:
+    - type: GhostRole
+      allowMovement: true
+      allowSpeech: true
+      makeSentient: true
+      name: ghost-role-information-quack-name
+      description: ghost-role-information-quack-description
+    - type: GhostTakeoverAvailable
+    - type: MeleeWeapon
+      hidden: false
+      altDisarm: false
+      animation: WeaponArcFist
+      attackRate: 1
+      autoAttack: true
+      damage:
+        types:
+          Blunt: 5
+          Structural: 15
+    - type: SolutionRegeneration
+      solution: hypospray
+      generated:
+        reagents:
+        - ReagentId: Omnizine
+          Quantity: 20
+    - type: SolutionContainerManager
+      solutions:
+        hypospray:
+          maxVol: 20
+    - type: RefillableSolution
+      solution: hypospray
+    - type: ExaminableSolution
+      solution: hypospray
+    - type: Hypospray
+      onlyAffectsMobs: true
+    - type: UseDelay
+      delay: 1
+      
+- type: entity
+  name: Gefest
+  id: Gefest
+  description: Redspace anomaly
+  parent: MobGuardianBase
+  components:
+    - type: GhostRole
+      allowMovement: true
+      allowSpeech: true
+      makeSentient: true
+      name: ghost-role-information-gefest-name
+      description: ghost-role-information-gefest-description
+    - type: GhostTakeoverAvailable
+    - type: MeleeWeapon
+      hidden: false
+      altDisarm: false
+      animation: WeaponArcFist
+      attackRate: 1
+      autoAttack: true
+      damage:
+        types:
+          Blunt: 1
+          Structural: 35
+    - type: SolutionRegeneration
+      solution: hypospray
+      generated:
+        reagents:
+        - ReagentId: Potassium
+          Quantity: 50
+        - ReagentId: Water
+          Quantity: 50
+    - type: SolutionContainerManager
+      solutions:
+        hypospray:
+          maxVol: 100
+          canReact: false
+    - type: RefillableSolution
+      solution: hypospray
+    - type: ExaminableSolution
+      solution: hypospray
+    - type: Hypospray
+      onlyAffectsMobs: true
+      transferAmount: 50
+    - type: UseDelay
+      delay: 1
+    - type: ExplosionResistance
+      damageCoefficient: 0.1

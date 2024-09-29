@@ -1,0 +1,35 @@
+- type: entity
+  name: Neoparasite injector
+  id: DagonInjector
+  parent: HoloparasiteInjector
+  suffix: Dagon
+  components:
+  - type: GuardianCreator
+    guardianProto: Dagon
+    
+- type: entity
+  name: Neoparasite injector
+  suffix: quack
+  id: QuackInjector
+  parent: HoloparasiteInjector
+  components:
+  - type: GuardianCreator
+    guardianProto: Quack
+    
+- type: entity
+  name: Neoparasite injector
+  suffix: Gefest
+  id: GefestInjector
+  parent: HoloparasiteInjector
+  components:
+  - type: GuardianCreator
+    guardianProto: Gefest
+    
+- type: entity
+  name: Neoparasite injector
+  suffix: Redskalibur
+  id: RedskaliburInjector
+  parent: HoloparasiteInjector
+  components:
+  - type: GuardianCreator
+    guardianProto: Redskalibur
