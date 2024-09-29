@@ -11,15 +11,3 @@
     collection: BarestepWood
   itemDrop: FloorTileItemWood
   heatCapacity: 10000
-- type: tile
-  id: FloorPsychodelic
-  name: floor-psychodelic
-  sprite: /Textures/_Sunrise/Tiles/psychodelic.png
-  baseTurf: Plating
-  isSubfloor: false
-  deconstructTools: [ Prying ]
-  footstepSounds:
-    collection: MaleLaugh
-  barestepSounds:
-    collection: MaleLaugh
-  heatCapacity: 10000
