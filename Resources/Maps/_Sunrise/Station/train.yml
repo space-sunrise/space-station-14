@@ -76212,7 +76212,7 @@ entities:
       pos: 8.5,-176.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -154532.94
+      secondsUntilStateChange: -154861.16
       state: Closing
   - uid: 11227
     components:
@@ -88866,10 +88866,10 @@ entities:
       parent: 2
 - proto: SpawnPointAdjutant
   entities:
-  - uid: 16604
+  - uid: 17452
     components:
     - type: Transform
-      pos: 1.5,0.5
+      pos: -0.5,0.5
       parent: 2
 - proto: SpawnPointAtmos
   entities:
@@ -88920,6 +88920,13 @@ entities:
     components:
     - type: Transform
       pos: -6.5,-84.5
+      parent: 2
+- proto: SpawnPointBrigmedic
+  entities:
+  - uid: 13374
+    components:
+    - type: Transform
+      pos: -4.5,-335.5
       parent: 2
 - proto: SpawnPointCaptain
   entities:
@@ -89226,15 +89233,20 @@ entities:
     - type: Transform
       pos: 4.5,-303.5
       parent: 2
-  - uid: 13374
-    components:
-    - type: Transform
-      pos: 6.5,-313.5
-      parent: 2
   - uid: 13375
     components:
     - type: Transform
       pos: -7.5,-318.5
+      parent: 2
+  - uid: 16604
+    components:
+    - type: Transform
+      pos: 6.5,-313.5
+      parent: 2
+  - uid: 17453
+    components:
+    - type: Transform
+      pos: -5.5,-315.5
       parent: 2
 - proto: SpawnPointSecurityCadet
   entities:
@@ -89269,6 +89281,27 @@ entities:
     components:
     - type: Transform
       pos: -0.5,-346.5
+      parent: 2
+- proto: SpawnPointSeniorEngineer
+  entities:
+  - uid: 17455
+    components:
+    - type: Transform
+      pos: 2.5,-251.5
+      parent: 2
+- proto: SpawnPointSeniorPhysician
+  entities:
+  - uid: 17454
+    components:
+    - type: Transform
+      pos: -3.5,-169.5
+      parent: 2
+- proto: SpawnPointSeniorResearcher
+  entities:
+  - uid: 17456
+    components:
+    - type: Transform
+      pos: -4.5,-301.5
       parent: 2
 - proto: SpawnPointServiceWorker
   entities:
