@@ -193,7 +193,7 @@ public sealed partial class GunComponent : Component
     /// How fast the projectile moves.
     /// <seealso cref="GunRefreshModifiersEvent"/>
     /// </summary>
-    [AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
+    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
     public float ProjectileSpeedModified;
 
     /// <summary>
