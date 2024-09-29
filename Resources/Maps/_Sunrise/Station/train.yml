@@ -8142,7 +8142,7 @@ entities:
   - uid: 145
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
+      rot: 3.141592653589793 rad
       pos: -6.5,-269.5
       parent: 2
 - proto: AirlockExternalGlassEngineeringLocked
@@ -8305,21 +8305,6 @@ entities:
       parent: 2
 - proto: AirlockGlass
   entities:
-  - uid: 171
-    components:
-    - type: Transform
-      pos: 3.5,-147.5
-      parent: 2
-  - uid: 172
-    components:
-    - type: Transform
-      pos: 4.5,-147.5
-      parent: 2
-  - uid: 173
-    components:
-    - type: Transform
-      pos: 5.5,-147.5
-      parent: 2
   - uid: 174
     components:
     - type: Transform
@@ -8687,6 +8672,11 @@ entities:
       parent: 2
 - proto: AirlockMaintLocked
   entities:
+  - uid: 173
+    components:
+    - type: Transform
+      pos: -4.5,-161.5
+      parent: 2
   - uid: 185
     components:
     - type: Transform
@@ -9098,18 +9088,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 5.5,-262.5
       parent: 2
-  - uid: 321
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -4.5,-161.5
-      parent: 2
-    - type: DeviceLinkSource
-      linkedPorts:
-        16555:
-        - DoorStatus: DoorBolt
-        16556:
-        - DoorStatus: DoorBolt
   - uid: 322
     components:
     - type: Transform
@@ -76145,28 +76123,17 @@ entities:
       parent: 2
 - proto: HighSecCommandLocked
   entities:
+  - uid: 171
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 17.5,-307.5
+      parent: 2
   - uid: 848
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 0.5,-2.5
-      parent: 2
-  - uid: 5534
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 17.5,-307.5
-      parent: 2
-  - uid: 10108
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 17.5,-307.5
-      parent: 2
-  - uid: 11218
-    components:
-    - type: Transform
-      pos: 17.5,-307.5
       parent: 2
   - uid: 11219
     components:
@@ -76212,7 +76179,7 @@ entities:
       pos: 8.5,-176.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -154861.16
+      secondsUntilStateChange: -155072.73
       state: Closing
   - uid: 11227
     components:
@@ -89282,27 +89249,6 @@ entities:
     - type: Transform
       pos: -0.5,-346.5
       parent: 2
-- proto: SpawnPointSeniorEngineer
-  entities:
-  - uid: 17455
-    components:
-    - type: Transform
-      pos: 2.5,-251.5
-      parent: 2
-- proto: SpawnPointSeniorPhysician
-  entities:
-  - uid: 17454
-    components:
-    - type: Transform
-      pos: -3.5,-169.5
-      parent: 2
-- proto: SpawnPointSeniorResearcher
-  entities:
-  - uid: 17456
-    components:
-    - type: Transform
-      pos: -4.5,-301.5
-      parent: 2
 - proto: SpawnPointServiceWorker
   entities:
   - uid: 13382
@@ -93011,6 +92957,13 @@ entities:
     components:
     - type: Transform
       pos: -6.493462,-127.34697
+      parent: 2
+- proto: TripleGlassAirlock
+  entities:
+  - uid: 172
+    components:
+    - type: Transform
+      pos: 4.5,-147.5
       parent: 2
 - proto: TwoWayLever
   entities:
