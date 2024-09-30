@@ -20,7 +20,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.20
-        density: 150
+        density: 165
         restitution: 0.0
         mask:
         - MobMask
@@ -34,8 +34,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      50: Critical
-      100: Dead
+      75: Critical
+      150: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
       30: 0.7
@@ -94,6 +94,10 @@
   - type: MovementSpeedModifier
     baseSprintSpeed: 4.0
     baseWalkSpeed: 2.0
+  - type: DamagedByFlashing
+    flashDamage:
+      types:
+        Shock: 5.0
 
 - type: entity
   save: false

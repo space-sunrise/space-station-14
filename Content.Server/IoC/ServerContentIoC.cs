@@ -1,3 +1,4 @@
+using Content.Server._Sunrise.Proton;  // Sunrise-Proton
 using Content.Server._Sunrise.ServersHub;
 using Content.Server._Sunrise.TTS;
 using Content.Server.Administration;
@@ -74,6 +75,7 @@ namespace Content.Server.IoC
             IoCManager.Register<MappingManager>();
 
             IoCManager.Register<ServersHubManager>(); // Sunrise-Hub
+            IoCManager.Register<ProtonManager>(); // Sunrise-Proton
         }
     }
 }
