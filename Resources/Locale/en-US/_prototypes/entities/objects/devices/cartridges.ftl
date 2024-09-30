@@ -10,3 +10,5 @@ ent-LogProbeCartridge = LogProbe cartridge
     .desc = A program for getting access logs from devices.
 ent-WantedListCartridge = Wanted list cartridge
     .desc = A program to get a list of wanted persons.
+ent-AstroNavCartridge = AstroNav cartridge
+    .desc = A program for navigation that provides GPS coordinates.
