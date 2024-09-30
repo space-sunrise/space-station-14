@@ -143,7 +143,7 @@
         - Cuffable # useless if you cant be cuffed
 
 - type: entity
-  parent: [ BaseSubdermalImplant, StorePresetUplinkSilent ] #Sunrise-SilentAgents
+  parent: [ BaseSubdermalImplant, StorePresetUplink ]
   id: UplinkImplant
   name: uplink implant
   description: This implant lets the user access a hidden Syndicate uplink at will.
@@ -161,6 +161,11 @@
     interfaces:
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
+#Sunrise-start
+  - type: Tag
+    tags:
+    - SyndieAgentUplink
+#Sunrise-end
 
 - type: entity
   parent: BaseSubdermalImplant
