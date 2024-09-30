@@ -62,7 +62,7 @@
       announcement: alert-level-epsilon-announcement
       selectable: false
       sound:
-        path: /Audio/Misc/epsilon.ogg
+        path: /Audio/_Sunrise/Misc/code_epsilon.ogg
         params:
           volume: -2
       disableSelection: true
