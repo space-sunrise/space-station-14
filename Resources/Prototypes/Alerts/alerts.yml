@@ -8,6 +8,7 @@
     - category: Health
     - category: Stamina
     - alertType: ChangelingChemicals
+    - alertType: ChangelingHive
     - alertType: SuitPower
     - category: Internals
     - alertType: Fire

@@ -667,6 +667,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         // show alerts
         UpdateChemicals(uid, comp, 0);
         UpdateBiomass(uid, comp, 0);
+        _alerts.ShowAlert(uid, "ChangelingHive");
 
         // make their blood unreal
         _blood.ChangeBloodReagent(uid, "BloodChangeling");
