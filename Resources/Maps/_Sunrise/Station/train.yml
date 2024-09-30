@@ -76287,7 +76287,7 @@ entities:
       pos: 8.5,-176.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -159506.5
+      secondsUntilStateChange: -159570.67
       state: Closing
   - uid: 11227
     components:
@@ -89385,6 +89385,27 @@ entities:
     components:
     - type: Transform
       pos: -0.5,-346.5
+      parent: 2
+- proto: SpawnPointSeniorEngineer
+  entities:
+  - uid: 17479
+    components:
+    - type: Transform
+      pos: 5.5,-249.5
+      parent: 2
+- proto: SpawnPointSeniorPhysician
+  entities:
+  - uid: 17478
+    components:
+    - type: Transform
+      pos: -3.5,-169.5
+      parent: 2
+- proto: SpawnPointSeniorResearcher
+  entities:
+  - uid: 17480
+    components:
+    - type: Transform
+      pos: -4.5,-301.5
       parent: 2
 - proto: SpawnPointServiceWorker
   entities:
