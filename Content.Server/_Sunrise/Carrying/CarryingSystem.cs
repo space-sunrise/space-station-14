@@ -4,6 +4,7 @@ using Content.Server.DoAfter;
 using Content.Server.Popups;
 using Content.Server.Resist;
 using Content.Shared._Sunrise.Carrying;
+using Content.Shared.IdentityManagement;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Carrying;
@@ -344,7 +345,7 @@ namespace Content.Server._Sunrise.Carrying
         
         private void ShowCarryPopup(string locString, Filter filter, PopupType type, EntityUid carrier, EntityUid carried)
         {
-            _popupSystem.PopupEntity(Loc.GetString(locString, ("carrier", carrier), ("target", carried)),carrier, filter, true, type);
+            _popupSystem.PopupEntity(Loc.GetString(locString, ("carrier", Identity.Name(carrier, EntityManager)), ("target", Identity.Name(carried, EntityManager))),carrier, filter, true, type);
         }
     }
 }
