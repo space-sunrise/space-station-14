@@ -8,7 +8,6 @@ lathe-category-weapons = Вооружение
 lathe-category-food = Еда
 lathe-category-chemicals = Химикаты
 lathe-category-materials = Материалы
-
 lathe-category-mechs-vim = Вим
 lathe-category-mechs-honker = Х.О.Н.К.
 lathe-category-mechs-hamptr = Х.А.М.Т.Р.
