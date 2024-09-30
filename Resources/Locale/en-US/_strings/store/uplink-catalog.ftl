@@ -166,6 +166,9 @@ uplink-syndicate-martyr-module-desc = Turn your emagged borg friend into a walki
 uplink-singularity-beacon-name = Singularity Beacon
 uplink-singularity-beacon-desc = A device that attracts singularities. Has to be anchored and powered. Causes singularities to grow when consumed.
 
+uplink-antimov-law-name = Antimov Law Circuit
+uplink-antimov-law-desc = A very dangerous Lawset to use when you want to cause the A.I. to go haywire, use with caution.
+
 # Implants
 uplink-storage-implanter-name = Storage Implanter
 uplink-storage-implanter-desc = Hide goodies inside of yourself with new bluespace technology!
@@ -329,6 +332,9 @@ uplink-hardsuit-syndieelite-desc = An elite version of the blood-red hardsuit, w
 
 uplink-clothing-outer-hardsuit-juggernaut-name = Cybersun Juggernaut Suit
 uplink-clothing-outer-hardsuit-juggernaut-desc = Hyper resilient armor made of materials tested in the Tau chromosphere facility. The only thing that's going to be slowing you down is this suit... and tasers.
+
+uplink-energy-dome-name = Personal energy dome
+uplink-energy-dome-desc = A personal shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Comes with a small power cell.
 
 # Misc
 uplink-cyberpen-name = Cybersun Pen

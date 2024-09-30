@@ -32,12 +32,8 @@
     factions:
     - SimpleNeutral
   - type: IntrinsicRadioReceiver
-  - type: IntrinsicRadioTransmitter
-    channels:
-    - Binary
   - type: ActiveRadio
     channels:
-    - Binary
     - Common
   - type: HealthExaminable
     examinableTypes:
@@ -251,6 +247,8 @@
     interactFailureString: petting-failure-cleanbot
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
+  - type: StationAiVision # Sunrise-edit AI Vision on NT Bots
+    range: 0
 
 - type: entity
   parent:
@@ -304,6 +302,8 @@
   - type: Inventory
     templateId: medibot
   # Sunrise-Start
+  - type: StationAiVision
+    range: 1
   - type: AmbientSound
     enabled: true
     volume: 0
@@ -418,6 +418,7 @@
     - Bot
   - type: ActiveRadio
     channels:
-    - Binary
     - Common
     - Supply
+  - type: StationAiVision # Sunrise-edit
+    range: 1

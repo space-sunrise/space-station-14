@@ -435,6 +435,9 @@ OverlordCircuitBoard: null
 # 2024-09-08
 HatBase: null
 
+# 2024-09-19
+BlueprintFlare: null
+
 
 # Sunrise migrations
 AirlockExternalGlassShuttleArrivals: AirlockExternalGlassShuttleArrivalsLocked

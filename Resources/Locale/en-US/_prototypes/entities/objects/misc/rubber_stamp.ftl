@@ -55,3 +55,6 @@ ent-RubberStampDetective = detective's rubber stamp
     .desc = { ent-RubberStampBase.desc }
 ent-RubberStampGreytide = greytide's rubber stamp
     .desc = A rubber stamp for stamping important documents. The tide washes over you, just looking at it...
+ent-RubberStampPsychologist = psychologist's rubber stamp
+    .desc = A rubber stamp for stamping important documents. Prescribe those treatments!
+    .suffix = DO NOT MAP

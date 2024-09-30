@@ -315,6 +315,8 @@
     - Chapel
     - Hydroponics
     - Atmospherics
+  - type: StationAiVision
+    range: 3
   # Sunrise-End
   - type: AccessReader
     access: [["Command"], ["Research"]]

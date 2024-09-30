@@ -16,3 +16,5 @@ ent-ClothingNeckSyndicakePin = Syndicake pin
     .desc = The pin of Syndicakes, on backside have a little numbers "2559".
 ent-ClothingNeckVitezstviPin = Vitezstvi pin
     .desc = The pin of corporation Vitezstvi.
+ent-ClothingNeckReedIndustriesPin = reed industries pin
+    .desc = The pin of corporation Reed Industries.

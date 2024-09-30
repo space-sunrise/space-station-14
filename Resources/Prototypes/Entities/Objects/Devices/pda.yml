@@ -116,6 +116,18 @@
 
 - type: entity
   parent: BasePDA
+  id: BaseSecurityPDA
+  abstract: true
+  components:
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NewsReaderCartridge
+    - WantedListCartridge
+
+- type: entity
+  parent: BasePDA
   id: BaseMedicalPDA
   abstract: true
   components:
@@ -172,7 +184,7 @@
     - Medical Doctor
 
 - type: entity
-  parent: BasePDA
+  parent: BaseSecurityPDA
   id: SecurityCadetPDA
   name: security cadet PDA
   description: Why isn't it red?
@@ -354,6 +366,12 @@
   - type: Pda
     id: QuartermasterIDCard
     state: pda-qm
+    penSlot:
+      startingItem: QmPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
   - type: PdaBorderColor
     borderColor: "#e39751"
     accentVColor: "#a23e3e"
@@ -388,6 +406,13 @@
     accentVColor: "#8900c9"
   - type: Icon
     state: pda-miner
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - CrewManifestCartridge
+      - NotekeeperCartridge
+      - NewsReaderCartridge
+      - AstroNavCartridge
 
 - type: entity
   parent: BasePDA
@@ -438,7 +463,7 @@
     state: pda-library
 
 - type: entity
-  parent: BasePDA
+  parent: BaseSecurityPDA
   id: LawyerPDA
   name: lawyer PDA
   description: For lawyers to poach dubious clients.
@@ -481,7 +506,7 @@
     state: pda-janitor
 
 - type: entity
-  parent: BasePDA
+  parent: BaseSecurityPDA
   id: CaptainPDA
   name: captain PDA
   description: Surprisingly no different from your PDA.
@@ -530,6 +555,12 @@
   - type: Pda
     id: CEIDCard
     state: pda-ce
+    penSlot:
+      startingItem: CEPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
   - type: PdaBorderColor
     borderColor: "#949137"
     accentHColor: "#447987"
@@ -560,6 +591,12 @@
   - type: Pda
     id: CMOIDCard
     state: pda-cmo
+    penSlot:
+      startingItem: CmoPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
   - type: PdaBorderColor
     borderColor: "#d7d7d0"
     accentHColor: "#447987"
@@ -633,6 +670,12 @@
   - type: Pda
     id: RDIDCard
     state: pda-rd
+    penSlot:
+      startingItem: RdPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
   - type: PdaBorderColor
     borderColor: "#d7d7d0"
     accentHColor: "#447987"
@@ -656,7 +699,7 @@
     state: pda-science
 
 - type: entity
-  parent: BasePDA
+  parent: BaseSecurityPDA
   id: HoSPDA
   name: head of security PDA
   description: Whosoever bears this PDA is the law.
@@ -664,6 +707,12 @@
   - type: Pda
     id: HoSIDCard
     state: pda-hos
+    penSlot:
+      startingItem: HosPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
   - type: PdaBorderColor
     borderColor: "#A32D26"
     accentHColor: "#447987"
@@ -671,7 +720,7 @@
     state: pda-hos
 
 - type: entity
-  parent: BasePDA
+  parent: BaseSecurityPDA
   id: WardenPDA
   name: warden PDA
   description: The OS appears to have been jailbroken.
@@ -686,7 +735,7 @@
     state: pda-warden
 
 - type: entity
-  parent: BasePDA
+  parent: BaseSecurityPDA
   id: SecurityPDA
   name: security PDA
   description: Red to hide the stains of passenger blood.
@@ -700,7 +749,7 @@
     state: pda-security
 
 - type: entity
-  parent: BasePDA
+  parent: BaseSecurityPDA
   id: CentcomPDA
   name: CentComm PDA
   description: Light green sign of walking bureaucracy.
@@ -738,6 +787,7 @@
       - NotekeeperCartridge
       - NewsReaderCartridge
       - LogProbeCartridge
+      - WantedListCartridge
 
 - type: entity
   parent: CentcomPDA
@@ -839,7 +889,7 @@
           - Cartridge
 
 - type: entity
-  parent: BasePDA
+  parent: BaseSecurityPDA
   id: ERTLeaderPDA
   name: ERT Leader PDA
   suffix: Leader
@@ -987,7 +1037,7 @@
     state: pda-boxer
 
 - type: entity
-  parent: BasePDA
+  parent: BaseSecurityPDA
   id: DetectivePDA
   name: detective PDA
   description: Smells like rain... pouring down the rooftops...
@@ -1087,7 +1137,7 @@
     state: pda-seniorphysician
 
 - type: entity
-  parent: BasePDA
+  parent: BaseSecurityPDA
   id: SeniorOfficerPDA
   name: senior officer PDA
   description: Beaten, battered and broken, but just barely useable.

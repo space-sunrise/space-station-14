@@ -15,3 +15,6 @@ tts-voice-name-kopatich = (NEW) [Смешарики] Копатыч
 tts-voice-name-stalker-sidorovich = (NEW) [STALKER] Сидорович 2.0
 tts-voice-name-scp-049 = SCP-049
 tts-voice-name-scp-079 = SCP-079
+tts-voice-name-ludvig = (NEW) [Юбубер] Людвиг А.
+tts-voice-name-icarus-revenge = (NEW) [Lust-Модератор] IcarusRevenge
+tts-voice-name-heartstone-thrud = (NEW) [Heartstone] Трад

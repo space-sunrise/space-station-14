@@ -3,6 +3,7 @@
   id: BaseMobTajaran
   abstract: true
   components:
+  - type: Absorbable
   - type: HumanoidAppearance
     species: Tajaran
     hideLayersOnEquip:

@@ -138,3 +138,5 @@ seeds-capfruit-name = капфрут
 seeds-capfruit-display-name = дерево капфрута
 seeds-cherry-name = вишня
 seeds-cherry-display-name = вишневое дерево
+seeds-anomaly-berry-name = аномальная ягода
+seeds-anomaly-berry-display-name = аномальные ягоды

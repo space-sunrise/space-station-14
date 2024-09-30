@@ -198,6 +198,8 @@
       - ClothingHeadHatWelding
       - WetFloorSign
       - ClothingHeadHatCone
+      - FreezerElectronics
+      - Flare
       - ClothingHeadHelmetPubgMore  # Sunrise-edit
 
   - type: EmagLatheRecipes
@@ -357,6 +359,7 @@
       - FauxTileAstroSnow
       - OreBagOfHolding
       - DeviceQuantumSpinInverter
+      - EnergyDomeDirectionalTurtle
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       # Sunrise-Start

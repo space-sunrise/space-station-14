@@ -25,6 +25,7 @@
     Chest: MobHumanTorso
     Eyes: MobHumanoidEyes
     HeadTop: MobHumanoidAnyMarking
+    Tail: MobHumanoidAnyMarking #Sunrise-edit
     LArm: MobHumanLArm
     RArm: MobHumanRArm
     LHand: MobHumanLHand
@@ -38,7 +39,7 @@
   id: MobHumanMarkingLimits
   points:
     Special: # the cat ear joke
-      points: 1 # Sunrise-Sponsors
+      points: 1
       required: false
     Hair:
       points: 1
@@ -53,7 +54,7 @@
       points: 1 # Sunrise-Sponsors
       required: false
     HeadTop:
-      points: 1
+      points: 1 # Sunrise-Sponsors
       required: false
     Chest:
       points: 1
