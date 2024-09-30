@@ -2,7 +2,7 @@
   id: NVToggleAction
   name: Switching NVG
   description: Switching NVG
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     useDelay: 2.5
@@ -15,7 +15,7 @@
   id: SwitchNightVision
   name: Switches Night Vision
   description: Switches Night Vision
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     useDelay: 2.5
