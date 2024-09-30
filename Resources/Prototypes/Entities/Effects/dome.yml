@@ -122,6 +122,22 @@
     radius: 5
     power: 10
     color: "#b00000"
+    
+- type: entity
+  id: EnergyDomeSmallBlack
+  noSpawn: true
+  parent: EnergyDomeBase
+  components:
+  - type: Sprite
+    sprite: Effects/EnergyDome/energydome_small.rsi
+    layers:
+    - state: small
+      color: "#050505"
+  - type: PointLight
+    enabled: true
+    radius: 5
+    power: 2
+    color: "#050505"
 
 - type: entity
   id: EnergyDomeSlowing
