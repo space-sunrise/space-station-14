@@ -3,6 +3,7 @@ using Content.Server.Administration.Managers;
 using Content.Shared._Sunrise.Proton;
 using Content.Shared.Administration;
 using Content.Shared.Administration.Managers;
+using Robust.Server.Console;
 using Robust.Server.Player;
 using Robust.Shared.Console;
 using Robust.Shared.Network;
@@ -27,7 +28,7 @@ public sealed class ProtonManager
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IBanManager _banManager = default!;
     [Dependency] private readonly IPlayerLocator _locator = default!;
-    [Dependency] private readonly IConsoleShell _console = default!;
+    [Dependency] private readonly IServerConsoleHost _console = default!;
 
     private ISawmill _sawmill = default!;
 
@@ -93,21 +94,38 @@ public sealed class ProtonManager
         if (!_requests.ContainsKey(session.UserId))
             return;
 
-        _console.ExecuteCommand($"ban {session.UserId} \"Это автоматический бан. Клиент не ответил на отправленный пакет проверки.\" 0 high");
+        BanPlayer(session, "Это автоматический бан. Клиент не ответил на пакет в течении заданного времени");
+
         _sawmill.Debug($"Successfully banned {session.UserId} for not answering a packet");
+    }
+
+    private void BanPlayer(ICommonSession session, string message)
+    {
+        _console.ExecuteCommand($"ban {session.UserId} \"{message}\" 0 high");
     }
 
     private void HandleScreenshotResponse(ProtonResponseScreenshotClient response)
     {
+        var session = _playerManager.GetSessionById(response.MsgChannel.UserId);
+
         if (!_requests.ContainsKey(response.MsgChannel.UserId))
         {
             _sawmill.Debug($"Received screenshot response without screenshot");
+            BanPlayer(session, "Это автоматический бан. Клиент отправил пустой пакет.");
             return;
         }
 
         if (response.Screenshot == null)
         {
             _sawmill.Debug($"Received screenshot response with null screenshot");
+            BanPlayer(session, "Это автоматический бан. Клиент отправил пустой пакет.");
+            return;
+        }
+
+        if (response.Screenshot.Height > 5000 || response.Screenshot.Width > 5000)
+        {
+            _sawmill.Debug($"Received screenshot response with too big screenshot");
+            BanPlayer(session, "Это автоматический бан. Клиент отправил слишком большой пакет.");
             return;
         }
 
