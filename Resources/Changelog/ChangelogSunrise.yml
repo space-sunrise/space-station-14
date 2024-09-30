@@ -3886,3 +3886,12 @@
   id: 278
   time: '2024-09-30T13:20:42.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/413
+- author: pacable
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0430 \u043F\u043B\u044E\
+      \u0448\u0435\u0432\u0430\u044F \u043B\u0438\u043B\u0438\u0442 \u0411\u043E\u043D\
+      \u0430\u0432\u0435\u043D\u0442\u0443\u0440\u0430."
+    type: Add
+  id: 279
+  time: '2024-09-30T13:22:21.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/422
