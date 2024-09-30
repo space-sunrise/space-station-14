@@ -1,3 +1,4 @@
+using Content.Client._Sunrise.Proton;  // Sunrise-Proton
 using Content.Client._Sunrise.ServersHub;
 using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
@@ -73,6 +74,7 @@ namespace Content.Client.Entry
         [Dependency] private readonly ContentReplayPlaybackManager _replayMan = default!;
         [Dependency] private readonly DebugMonitorManager _debugMonitorManager = default!;
         [Dependency] private readonly ServersHubManager _serversHubManager = default!; // Sunrise-Hub
+        [Dependency] private readonly ProtonManager _proton = default!; // Sunrise-Proton
 
         public override void Init()
         {
@@ -137,6 +139,7 @@ namespace Content.Client.Entry
             _playbackMan.Initialize();
 
             _serversHubManager.Initialize(); // Sunrise-Hub
+            _proton.Initialize(); // Sunrise-Proton
 
             //AUTOSCALING default Setup!
             _configManager.SetCVar("interface.resolutionAutoScaleUpperCutoffX", 1080);
