@@ -29,6 +29,12 @@ network-configurator-ui-count-label =
         [few] устройства
        *[other] устройств
     }.
+network-configurator-name-set = Установить
+network-configurator-name-add = Добавить
+network-configurator-name-edit = Изменить
+network-configurator-name-clear = Очистить
+network-configurator-name-copy = Копировать
+network-configurator-name-show = Показать
 # tooltips
 network-configurator-tooltip-set = Создание списка целевых устройств
 network-configurator-tooltip-add = Добавление в список целевых устройств

@@ -5,8 +5,6 @@
   playTimeTracker: JobCentCommOperator
   requirements:
   - !type:DiscordRoleRequirement
-  - !type:AgeRequirement
-    requiredAge: 40 # Sunrise-Edit
   weight: 30
   setPreference: true
   startingGear: CentCommOperatorGear

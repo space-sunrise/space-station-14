@@ -140,6 +140,7 @@
     - Flashed
     - RadiationProtection
     - Drowsiness
+    - Adrenaline
     - LoveEffect  # Sunrise-Aphrodesiac
   - type: Body
     prototype: Human
@@ -188,8 +189,6 @@
   - type: Stripping
   - type: UserInterface
     interfaces:
-      enum.VoiceMaskUIKey.Key:
-        type: VoiceMaskBoundUserInterface
       enum.HumanoidMarkingModifierKey.Key:
         type: HumanoidMarkingModifierBoundUserInterface
       enum.StrippingUiKey.Key:
@@ -219,6 +218,7 @@
     - CanPilot
     - FootstepSound
     - DoorBumpOpener
+    - AnomalyHost
   # Sunrise-Start
   - type: Paws
     screamInterval: 3

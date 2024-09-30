@@ -16,3 +16,5 @@ ent-PottedPlantAlt7 = { ent-PottedPlantBase }
     .desc = { ent-PottedPlantBase.desc }
 ent-PottedPlantAlt8 = { ent-PottedPlantBase }
     .desc = { ent-PottedPlantBase.desc }
+ent-PottedPlantAlt9 = { ent-PottedPlantBase }
+    .desc = { ent-PottedPlantBase.desc }

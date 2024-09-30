@@ -44,11 +44,11 @@
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 3, 3 ]
             ResearchAssistant: [ 1, 1 ]
-            Borg: [ 1, 2 ]
             #security
             HeadOfSecurity: [ 1, 1 ]
             SecurityOfficer: [ 4, 4 ]
             Warden: [ 1, 1 ]
+            Lawyer: [ 1, 1 ]
             SecurityCadet: [ 1, 1 ]
             Detective: [ 1, 1 ]
             #supply
@@ -62,7 +62,6 @@
             Musician: [ 1, 1 ]
             Boxer: [ 2, 2 ]
             Reporter: [ 2, 2 ]
-            # Sunrise-Law
-            #IAA: [ 1, 1 ]
-            #Lawyer: [ 1, 1 ]
-            #Magistrat: [ 1, 1 ]
+            # silicon
+            StationAi: [ 1, 1 ]
+            Borg: [ 2, 2 ]

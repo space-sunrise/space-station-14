@@ -144,3 +144,10 @@
   icon:
     sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
     state: Barber
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconAdjutant
+  icon:
+    sprite: /Textures/Interface/Misc/job_icons.rsi
+    state: Adjutant

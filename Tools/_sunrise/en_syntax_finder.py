@@ -206,9 +206,17 @@ if __name__ == "__main__":
     'True',
     'chèvre',
     'Bon appétit!',
-    'N/A',
     'GMan 2.0',
-    'Susnet'
+    'Susnet',
+    'RL-5',
+    'Zauer',
+    'Trenchgun L-4034',
+    'SPAS-12',
+    'TBD',
+    ' °C ( K)',
+    'SUNRISE14CM',
+    'Plague inc 2.0',
+    'SCP-'
     ]  # Добавьте сюда слова, которые нужно игнорировать
     
     # Список файлов, которые нужно игнорировать

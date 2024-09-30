@@ -16,3 +16,5 @@ ent-ClothingNeckSyndicakePin = значок Синдикекса
     .desc = Значок Синдикексов, на обратной стороне можно разглядеть ряд цифр "2559".
 ent-ClothingNeckVitezstviPin = значок Vitezstvi
     .desc = Значок корпорации Vitezstvi.
+ent-ClothingNeckReedIndustriesPin = значок Reed Industries
+    .desc = Значок корпорации Reed Industries

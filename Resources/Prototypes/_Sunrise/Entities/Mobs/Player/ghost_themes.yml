@@ -129,6 +129,30 @@
     scale: 0.8,0.8
     layers:
     - state: mega_legion
+    
+- type: ghostTheme
+  id: HonkChampionObserver
+  components:
+  - type: Sprite
+    noRot: true
+    overrideContainerOcclusion: true
+    drawdepth: Ghosts
+    sprite: _Sunrise/Mobs/Aliens/hulk.rsi
+    scale: 0.8,0.8
+    layers:
+    - state: Champion_of_Honk
+
+- type: ghostTheme
+  id: HulkObserver
+  components:
+  - type: Sprite
+    noRot: true
+    overrideContainerOcclusion: true
+    drawdepth: Ghosts
+    sprite: _Sunrise/Mobs/Aliens/hulk.rsi
+    scale: 0.8,0.8
+    layers:
+    - state: Hulk
 
 # L
 

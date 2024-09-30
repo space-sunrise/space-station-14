@@ -1,13 +1,13 @@
 ﻿- type: stealTargetGroup
   id: WeaponEnergyGunMultiphase
-  name: x-01 multiphase energy gun
+  name: steal-target-groups-multiphase # x-01 multiphase energy gun
   sprite:
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/multiphase_energygun.rsi
     state: base
 
 - type: stealTargetGroup
   id: PlutoniumCore
-  name: plutonium core
+  name: steal-target-groups-plutonium # plutonium core
   sprite:
     sprite: _Sunrise/Objects/Misc/plutonium_core.rsi
     state: icon

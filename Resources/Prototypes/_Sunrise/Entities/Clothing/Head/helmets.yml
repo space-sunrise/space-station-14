@@ -28,12 +28,38 @@
         Heat: 0.85
 
 - type: entity
-  parent: ClothingHeadHelmetSwat
+  parent: [ClothingHeadBase, BaseRestrictedContraband, BaseFoldable]
   id: ClothingHeadHelmetPubg
   name: Алтын
   description: Укрепленный шлем, использующийся для подавления и разжигания бунтов
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Head/Helmets/tfhelm.rsi
+    layers:
+    - state: icon
+      map: [ "unfoldedLayer" ]
+    - state: icon-up
+      map: ["foldedLayer"]
+      visible: false
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Helmets/tfhelm.rsi
+  - type: Appearance
+  - type: Foldable
+    canFoldInsideContainer: true
+  - type: FoldableClothing
+    foldedEquippedPrefix: up
+    foldedHeldPrefix: up
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.80
+        Slash: 0.80
+        Piercing: 0.80
+        Heat: 0.80
+        Radiation: 0.80
+        Caustic: 0.95
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: ExplosionResistance
+    damageCoefficient: 0.75

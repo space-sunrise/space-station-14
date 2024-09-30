@@ -15,7 +15,8 @@
     walkModifier: 1.0
     sprintModifier: 1.0
   - type: TemperatureProtection
-    coefficient: 0.001
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
   - type: Armor
     modifiers:
       coefficients:
@@ -60,6 +61,18 @@
     damageCoefficient: 0.6
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitBlueshield
+
+- type: entity
+  parent: ClothingOuterHardsuitSecurity
+  id: ClothingOuterHardsuitSecuritySunrise
+  suffix: SUNRISE
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/hardsuits/secoff.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/hardsuits/secoff.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSecuritySunrise
 
 - type: entity
   parent: ClothingOuterHardsuitBase

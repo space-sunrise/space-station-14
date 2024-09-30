@@ -21,7 +21,8 @@
             #service
             Captain: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
-            #NanoTrasenRepresentative: [ 1, 1 ]
+            NanoTrasenRepresentative: [ 1, 1 ]
+            Adjutant: [ 1, 1 ]
             Bartender: [ 2, 2 ]
             Botanist: [ 3, 3 ]
             Chef: [ 2, 2 ]

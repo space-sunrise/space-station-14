@@ -424,13 +424,6 @@ entities:
     - type: Transform
       pos: 1.5,0.5
       parent: 2
-- proto: GunSafeRPGNanotrasen
-  entities:
-  - uid: 25
-    components:
-    - type: Transform
-      pos: 1.5,2.5
-      parent: 2
 - proto: HighSecArmoryLocked
   entities:
   - uid: 35

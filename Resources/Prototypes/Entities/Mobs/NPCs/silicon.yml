@@ -32,12 +32,8 @@
     factions:
     - SimpleNeutral
   - type: IntrinsicRadioReceiver
-  - type: IntrinsicRadioTransmitter
-    channels:
-    - Binary
   - type: ActiveRadio
     channels:
-    - Binary
     - Common
   - type: HealthExaminable
     examinableTypes:
@@ -66,6 +62,7 @@
   - type: Tag
     tags:
     - DoorBumpOpener
+    - Bot
   - type: MobState
     allowedStates:
       - Alive
@@ -107,7 +104,7 @@
   - type: TypingIndicator
     proto: robot
   - type: ZombieImmune
-  - type: StepTriggerImmune
+  - type: ProtectedFromStepTriggers
   - type: NoSlip
   - type: Insulated
   - type: TTS
@@ -250,6 +247,8 @@
     interactFailureString: petting-failure-cleanbot
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
+  - type: StationAiVision # Sunrise-edit AI Vision on NT Bots
+    range: 0
 
 - type: entity
   parent:
@@ -303,6 +302,8 @@
   - type: Inventory
     templateId: medibot
   # Sunrise-Start
+  - type: StationAiVision
+    range: 1
   - type: AmbientSound
     enabled: true
     volume: 0
@@ -414,8 +415,10 @@
     tags:
     - DoorBumpOpener
     - FootstepSound
+    - Bot
   - type: ActiveRadio
     channels:
-    - Binary
     - Common
     - Supply
+  - type: StationAiVision # Sunrise-edit
+    range: 1

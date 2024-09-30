@@ -10,3 +10,5 @@ ent-ClothingBackpackBlueShield = blue shield's backpack
     .desc = Superior.
 ent-ClothingBackpackPrisonGuard = рюкзак сотрудника кт
     .desc = На стиле.
+ent-ClothingBackpackAdjutant = adjutant backpack
+    .desc = Predominantly composed of multiforaments tied together with threads.

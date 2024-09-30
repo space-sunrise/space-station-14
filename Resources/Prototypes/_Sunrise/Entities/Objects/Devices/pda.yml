@@ -201,3 +201,31 @@
     state: pda-bartender
   - type: Icon
     state: pda-bartender  # он достаточно нейтральный, мне лень рисовать отдельный кпк для него
+
+- type: entity
+  parent: BasePDA
+  id: AdjutantPDA
+  name: adjuntant PDA
+  description: It sorely lacks the camera monitor function.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Pda
+    id: AdjutantIDCard
+    state: pda-adj
+  - type: PdaBorderColor
+    borderColor: "#A32D26"
+    accentVColor: "#DFDFDF"
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-adj

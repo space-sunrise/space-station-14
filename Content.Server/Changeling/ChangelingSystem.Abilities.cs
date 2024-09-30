@@ -125,7 +125,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         UpdateBiomass(uid, comp, comp.MaxBiomass - comp.TotalAbsorbedEntities);
 
-        var dmg = new DamageSpecifier(_proto.Index(AbsorbedDamageGroup), 200);
+        var dmg = new DamageSpecifier(_proto.Index(AbsorbedDamageGroup), 180);
         _damage.TryChangeDamage(target, dmg, false, false);
         _blood.ChangeBloodReagent(target, "FerrochromicAcid");
         _blood.SpillAllSolutions(target);
@@ -217,6 +217,8 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         comp.Chemicals = 0f;
 
+        ToggleChameleonSkin(uid, comp, false);
+
         if (_mobState.IsAlive(uid))
         {
             // fake our death
@@ -231,6 +233,8 @@ public sealed partial class ChangelingSystem : EntitySystem
             _mobState.ChangeMobState(uid, MobState.Dead);
 
         comp.IsInStasis = true;
+
+        args.Handled = true;
     }
     private void OnExitStasis(EntityUid uid, ChangelingComponent comp, ref ExitStasisEvent args)
     {
@@ -260,6 +264,8 @@ public sealed partial class ChangelingSystem : EntitySystem
         _popup.PopupEntity(Loc.GetString("changeling-stasis-exit"), uid, uid);
 
         comp.IsInStasis = false;
+
+        args.Handled = true;
     }
 
     #endregion
@@ -341,7 +347,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     }
     private void OnToggleStrainedMuscles(EntityUid uid, ChangelingComponent comp, ref ToggleStrainedMusclesEvent args)
     {
-        if (!TryUseAbility(uid, comp, args))
+        if (!TryUseAbility(uid, comp, args) || _gravity.IsWeightless(uid))
             return;
 
         ToggleStrainedMuscles(uid, comp);
@@ -350,13 +356,13 @@ public sealed partial class ChangelingSystem : EntitySystem
     {
         if (!comp.StrainedMusclesActive)
         {
-            _speed.ChangeBaseSpeed(uid, 125f, 150f, 1f);
+            _speed.ChangeBaseSpeed(uid, 4f, 7.5f, 20f);
             _popup.PopupEntity(Loc.GetString("changeling-muscles-start"), uid, uid);
             comp.StrainedMusclesActive = true;
         }
         else
         {
-            _speed.ChangeBaseSpeed(uid, 100f, 100f, 1f);
+            _speed.ChangeBaseSpeed(uid, 2.5f, 4.5f, 20f);
             _popup.PopupEntity(Loc.GetString("changeling-muscles-end"), uid, uid);
             comp.StrainedMusclesActive = false;
         }
@@ -444,7 +450,7 @@ public sealed partial class ChangelingSystem : EntitySystem
 
     #region Utilities
 
-    public void OnAnatomicPanacea(EntityUid uid, ChangelingComponent comp, ref ActionAnatomicPanaceaEvent args)
+    private void OnAnatomicPanacea(EntityUid uid, ChangelingComponent comp, ref ActionAnatomicPanaceaEvent args)
     {
         if (!TryUseAbility(uid, comp, args))
             return;
@@ -460,7 +466,8 @@ public sealed partial class ChangelingSystem : EntitySystem
         else return;
         PlayMeatySound(uid, comp);
     }
-    public void OnAugmentedEyesight(EntityUid uid, ChangelingComponent comp, ref ActionAugmentedEyesightEvent args)
+
+    private void OnAugmentedEyesight(EntityUid uid, ChangelingComponent comp, ref ActionAugmentedEyesightEvent args)
     {
         if (!TryUseAbility(uid, comp, args))
             return;
@@ -474,7 +481,8 @@ public sealed partial class ChangelingSystem : EntitySystem
         EnsureComp<FlashImmunityComponent>(uid);
         _popup.PopupEntity(Loc.GetString("changeling-passive-activate"), uid, uid);
     }
-    public void OnBiodegrade(EntityUid uid, ChangelingComponent comp, ref ActionBiodegradeEvent args)
+
+    private void OnBiodegrade(EntityUid uid, ChangelingComponent comp, ref ActionBiodegradeEvent args)
     {
         if (!TryUseAbility(uid, comp, args))
             return;
@@ -501,24 +509,38 @@ public sealed partial class ChangelingSystem : EntitySystem
         }
         _puddle.TrySplashSpillAt(uid, Transform(uid).Coordinates, soln, out _);
     }
-    public void OnChameleonSkin(EntityUid uid, ChangelingComponent comp, ref ActionChameleonSkinEvent args)
+
+    private void OnChameleonSkin(EntityUid uid, ChangelingComponent comp, ref ActionChameleonSkinEvent args)
     {
         if (!TryUseAbility(uid, comp, args))
             return;
 
-        if (HasComp<StealthComponent>(uid) && HasComp<StealthOnMoveComponent>(uid))
+        if (comp.StealthEnabled && HasComp<StealthComponent>(uid) && HasComp<StealthOnMoveComponent>(uid))
+            ToggleChameleonSkin(uid, comp, false);
+        else
+            ToggleChameleonSkin(uid, comp, true);
+    }
+
+    public void ToggleChameleonSkin(EntityUid uid, ChangelingComponent comp, bool toState)
+    {
+        if (!toState)
         {
             RemComp<StealthComponent>(uid);
             RemComp<StealthOnMoveComponent>(uid);
             _popup.PopupEntity(Loc.GetString("changeling-chameleon-end"), uid, uid);
-            return;
+            comp.StealthEnabled = false;
         }
-
-        EnsureComp<StealthComponent>(uid);
-        EnsureComp<StealthOnMoveComponent>(uid);
-        _popup.PopupEntity(Loc.GetString("changeling-chameleon-start"), uid, uid);
+        else
+        {
+            EnsureComp<StealthComponent>(uid);
+            var stealthonmove = EnsureComp<StealthOnMoveComponent>(uid);
+            stealthonmove.PassiveVisibilityRate = -0.37f;
+            _popup.PopupEntity(Loc.GetString("changeling-chameleon-start"), uid, uid);
+            comp.StealthEnabled = true;
+        }
     }
-    public void OnEphedrineOverdose(EntityUid uid, ChangelingComponent comp, ref ActionEphedrineOverdoseEvent args)
+
+    private void OnEphedrineOverdose(EntityUid uid, ChangelingComponent comp, ref ActionEphedrineOverdoseEvent args)
     {
         if (!TryUseAbility(uid, comp, args))
             return;
@@ -539,7 +561,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         }
     }
     // john space made me do this
-    public void OnHealUltraSwag(EntityUid uid, ChangelingComponent comp, ref ActionFleshmendEvent args)
+    private void OnHealUltraSwag(EntityUid uid, ChangelingComponent comp, ref ActionFleshmendEvent args)
     {
         if (!TryUseAbility(uid, comp, args))
             return;
@@ -551,7 +573,8 @@ public sealed partial class ChangelingSystem : EntitySystem
         };
         if (TryInjectReagents(uid, reagents))
             _popup.PopupEntity(Loc.GetString("changeling-fleshmend"), uid, uid);
-        else return;
+        else
+            return;
         PlayMeatySound(uid, comp);
     }
     public void OnLastResort(EntityUid uid, ChangelingComponent comp, ref ActionLastResortEvent args)

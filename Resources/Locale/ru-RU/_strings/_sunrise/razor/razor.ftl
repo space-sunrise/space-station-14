@@ -1,1 +1,1 @@
-razor-window-title = Изменить прическу
+razor-window-title = Изменить причёску
