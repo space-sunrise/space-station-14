@@ -2,3 +2,8 @@
   id: fourteen_loko_soda_plus
   flavorType: Complex
   description: flavor-complex-fourteen-loko-soda-plus
+
+- type: flavor
+  id: nastoyka_romashki
+  flavorType: Complex
+  description: flavor-nastoyka-romashki
