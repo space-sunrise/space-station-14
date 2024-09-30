@@ -182,3 +182,11 @@
   sex: Male
   speaker: icarus_revenge
   provider: sunrise
+
+- type: ttsVoice
+  id: HeartstoneThrud
+  name: tts-voice-name-heartstone-thrud
+  sex: Male
+  speaker: heartstone_thrud
+  provider: sunrise
+  sponsorOnly: true
