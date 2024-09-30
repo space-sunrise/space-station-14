@@ -1,5 +1,8 @@
 - type: Tag
   id: NoPaint
+  
+- type: Tag
+  id: IgnoreMelee
 
 - type: Tag
   id: Nanopaste
