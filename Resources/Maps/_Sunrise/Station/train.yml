@@ -36476,6 +36476,22 @@ entities:
       rot: 3.141592653589793 rad
       pos: 17.53031,-143.53029
       parent: 2
+    - type: GroupExamine
+      group:
+      - hoverMessage: ""
+        contextText: verb-examine-group-other
+        icon: /Textures/Interface/examine-star.png
+        components:
+        - Armor
+        - ClothingSpeedModifier
+        entries:
+        - message: >-
+            Обеспечивает следующую защиту:
+
+            - [color=orange]Взрывной[/color] урон [color=white]к содержимому[/color] снижается на [color=lightblue]10%[/color].
+          priority: 0
+          component: Armor
+        title: null
 - proto: ClothingBeltChampion
   entities:
   - uid: 5420
@@ -76271,7 +76287,7 @@ entities:
       pos: 8.5,-176.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -158952.64
+      secondsUntilStateChange: -159506.5
       state: Closing
   - uid: 11227
     components:
@@ -86902,6 +86918,14 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,-65.5
       parent: 2
+- proto: SignBarbershop
+  entities:
+  - uid: 17473
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 16.5,-66.5
+      parent: 2
 - proto: SignBiohazardMed
   entities:
   - uid: 12996
@@ -91216,6 +91240,30 @@ entities:
     components:
     - type: Transform
       pos: -13.5,-168.5
+      parent: 2
+  - uid: 17474
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 14.5,-73.5
+      parent: 2
+  - uid: 17475
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 14.5,-69.5
+      parent: 2
+  - uid: 17476
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 16.5,-69.5
+      parent: 2
+  - uid: 17477
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 16.5,-73.5
       parent: 2
 - proto: TablePlasmaGlass
   entities:
@@ -107151,7 +107199,7 @@ entities:
       pos: 0.5,-144.5
       parent: 2
     - type: WarpPoint
-      location: 'Car 05: Церковь, Библиотека'
+      location: 'Вагон 05: Церковь, Библиотека'
     - type: BombingTarget
   - uid: 16438
     components:
@@ -107160,7 +107208,7 @@ entities:
       pos: 0.5,-35.5
       parent: 2
     - type: WarpPoint
-      location: 'Car 01: Прибытие, Эвакуация'
+      location: 'Вагон 01: Прибытие, Эвакуация'
     - type: BombingTarget
   - uid: 16439
     components:
@@ -107169,7 +107217,7 @@ entities:
       pos: 0.5,-63.5
       parent: 2
     - type: WarpPoint
-      location: 'Car 02: Бар'
+      location: 'Вагон 02: Бар'
     - type: BombingTarget
   - uid: 16440
     components:
@@ -107178,7 +107226,7 @@ entities:
       pos: 0.5,-90.5
       parent: 2
     - type: WarpPoint
-      location: 'Car 03: Кухня, Гидропоника'
+      location: 'Вагон 03: Кухня, Гидропоника'
     - type: BombingTarget
   - uid: 16441
     components:
@@ -107187,7 +107235,7 @@ entities:
       pos: 0.5,-116.5
       parent: 2
     - type: WarpPoint
-      location: 'Car 04: ГП, Дормитории'
+      location: 'Вагон 04: ГП, Дормитории'
     - type: BombingTarget
   - uid: 16442
     components:
@@ -107196,7 +107244,7 @@ entities:
       pos: 0.5,-171.5
       parent: 2
     - type: WarpPoint
-      location: 'Car 06: Мед. блок'
+      location: 'Вагон 06: Мед. блок'
     - type: BombingTarget
   - uid: 16443
     components:
@@ -107205,7 +107253,7 @@ entities:
       pos: 0.5,-225.5
       parent: 2
     - type: WarpPoint
-      location: 'Car 08: Солнечные панели'
+      location: 'Вагон 07: Солнечные панели'
     - type: BombingTarget
   - uid: 16444
     components:
@@ -107213,7 +107261,7 @@ entities:
       pos: 0.5,-252.5
       parent: 2
     - type: WarpPoint
-      location: 'Car 09: Инженерия'
+      location: 'Вагон 08: Инженерия'
     - type: BombingTarget
   - uid: 16445
     components:
@@ -107222,7 +107270,7 @@ entities:
       pos: 0.5,-279.5
       parent: 2
     - type: WarpPoint
-      location: 'Car 10: Снабжение'
+      location: 'Вагон 09: Снабжение'
     - type: BombingTarget
   - uid: 16446
     components:
@@ -107230,7 +107278,7 @@ entities:
       pos: 0.5,-308.5
       parent: 2
     - type: WarpPoint
-      location: 'Car 11: НИО'
+      location: 'Вагон 10: НИО'
     - type: BombingTarget
   - uid: 16447
     components:
@@ -107238,7 +107286,7 @@ entities:
       pos: 0.5,-338.5
       parent: 2
     - type: WarpPoint
-      location: 'Car 12: Бриг'
+      location: 'Вагон 11: Бриг'
     - type: BombingTarget
   - uid: 16448
     components:
@@ -107247,7 +107295,7 @@ entities:
       pos: 0.5,-363.5
       parent: 2
     - type: WarpPoint
-      location: 'Car 13: Пермабриг'
+      location: 'Вагон 12: Пермабриг'
     - type: BombingTarget
 - proto: WaterCooler
   entities:
