@@ -197,3 +197,10 @@
   sex: Male
   speaker: kendrick
   provider: sunrise
+
+- type: ttsVoice
+  id: SplikZerys
+  name: tts-voice-name-splikzerys
+  sex: Male
+  speaker: splikzerys
+  provider: sunrise
