@@ -23,6 +23,7 @@ namespace Content.Client.Administration.UI.Tabs.AdminTab
             SubmitKickButton.OnPressed += SubmitKickButtonOnPressed;
             SubmitAHelpButton.OnPressed += SubmitAhelpButtonOnPressed;
             SubmitRespawnButton.OnPressed += SubmitRespawnButtonOnPressed;
+            ScreenshotButton.OnPressed += ScreenshotButtonOnPressed;  // Sunrise-edit
             PlayerList.OnSelectionChanged += OnListOnOnSelectionChanged;
         }
 
@@ -36,7 +37,21 @@ namespace Content.Client.Administration.UI.Tabs.AdminTab
             SubmitKickButton.Disabled = disableButtons;
             SubmitAHelpButton.Disabled = disableButtons;
             SubmitRespawnButton.Disabled = disableButtons;
+            ScreenshotButton.Disabled = disableButtons; // Sunrise-edit
         }
+
+        // Sunrise-start
+        private void ScreenshotButtonOnPressed(BaseButton.ButtonEventArgs obj)
+        {
+            if (_selectedPlayer == null)
+                return;
+
+            if (!AdminUIHelpers.TryConfirm(ScreenshotButton, _confirmations))
+                return;
+
+            IoCManager.Resolve<IClientConsoleHost>().ExecuteCommand($"screenshot \"{_selectedPlayer.Username}\"");
+        }
+        // Sunrise-end
 
         private void SubmitKickButtonOnPressed(BaseButton.ButtonEventArgs obj)
         {

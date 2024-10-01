@@ -9,7 +9,6 @@ ent-PortableSurveillanceCameraMonitorEmpty = { ent-PortableSurveillanceCameraMon
 ent-PortableSurveillanceCameraMonitorUnpowered = { ent-BasePortableSurveillanceCameraMonitor }
     .desc = { ent-BasePortableSurveillanceCameraMonitor.desc }
     .suffix = Переносной, Не требует энергии
-
 ent-BaseHandheldCriminalRecordsMonitor = портативный монитор криминальных записей
     .desc = Портативный монитор криминального учёта, отображающий информацию о текущих преступниках на станции.
 ent-HandheldCriminalRecordsMonitor = { ent-BaseHandheldCriminalRecordsMonitor }
@@ -21,7 +20,6 @@ ent-HandheldCriminalRecordsMonitorEmpty = { ent-HandheldCriminalRecordsMonitor }
 ent-HandheldCriminalRecordsMonitorUnpowered = { ent-BaseHandheldCriminalRecordsMonitor }
     .desc = { ent-BaseHandheldCriminalRecordsMonitor.desc }
     .suffix = Переносной, Не требует энергии
-
 ent-BaseHandheldRoboAnalyzer = анализатор киборгов
     .desc = Портативный анализатор киборгов.
 ent-HandheldRoboAnalyzer = { ent-BaseHandheldRoboAnalyzer }
@@ -33,7 +31,8 @@ ent-HandheldRoboAnalyzerEmpty = { ent-HandheldRoboAnalyzer }
 ent-HandheldRoboAnalyzerUnpowered = { ent-BaseHandheldRoboAnalyzer }
     .desc = { ent-BaseHandheldRoboAnalyzer.desc }
     .suffix = Переносной, Не требует энергии
-
-ent-HandheldCamera = бодикамера
+ent-BaseHandheldCamera = бодикамера
     .desc = Оно наблюдает за вами... И пикает..
+ent-HandheldCamera = { ent-BaseHandheldCamera }
+    .desc = { ent-BaseHandheldCamera.desc }
     .suffix = Камера

@@ -184,6 +184,14 @@
   provider: sunrise
 
 - type: ttsVoice
+  id: HeartstoneThrud
+  name: tts-voice-name-heartstone-thrud
+  sex: Male
+  speaker: heartstone_thrud
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
   id: Kendrick
   name: tts-voice-name-kendrick
   sex: Male
