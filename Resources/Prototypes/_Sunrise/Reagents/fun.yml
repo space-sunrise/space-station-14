@@ -44,3 +44,24 @@
         conditions:
           - !type:ReagentThreshold
             min: 5
+    
+- type: reagent
+  id: Gudron
+  name: reagent-name-gudron
+  group: Special
+  desc: reagent-desc-gudron
+  flavor: oil
+  color: "#0000"
+  physicalDesc: reagent-physical-desc-oil
+  recognizable: false
+  slippery: false
+  metabolisms:
+    Food:
+      metabolismRate: 1.0
+      effects:
+      - !type:HealthChange
+        conditions:
+          - !type:ReagentThreshold
+            min: 5
+        damage:
+          Poison: 3

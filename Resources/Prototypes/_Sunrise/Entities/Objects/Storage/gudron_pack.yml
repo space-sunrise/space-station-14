@@ -1,0 +1,19 @@
+- type: entity
+  id: GudronPack
+  parent: BaseStorageItem
+  name: Пачка гудроновой жевачки
+  description: Раньше она была на вес золота, а сейчас бери и жуй.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/gudron_pack.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,1,1 # chego
+  - type: StorageFill
+    contents:
+      - id: FoodGudronGumball
+        amount: 4
