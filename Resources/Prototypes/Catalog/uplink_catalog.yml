@@ -399,12 +399,11 @@
   categories:
     - UplinkExplosives
   conditions:
-  - !type:BuyerWhitelistCondition
-    blacklist:
-      components:
-      - SurplusBundle
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+        - SurplusBundle
 #Sunrise-start
-  conditions:
     - !type:StoreWhitelistCondition
       blacklist:
         tags:
@@ -1816,7 +1815,7 @@
   name: uplink-energy-dome-name
   description: uplink-energy-dome-desc
   productEntity: EnergyDomeGeneratorPersonalSyndie
-  cost: 
+  cost:
     Telecrystal: 10
   categories:
   - UplinkWearables

@@ -102,6 +102,7 @@
   - type: Tag
     tags:
     - DoorBumpOpener
+    - SyndieAgentUplink # Sunrise-Edit
   - type: Input
     context: "human"
   - type: SentienceTarget # sentient PDA = pAI lite
@@ -113,11 +114,6 @@
     proto: robot
   - type: Speech
     speechVerb: Robotic
-#Sunrise-start
-  - type: Tag
-    tags:
-    - SyndieAgentUplink
-#Sunrise-end
 
 - type: entity
   parent: BasePDA
