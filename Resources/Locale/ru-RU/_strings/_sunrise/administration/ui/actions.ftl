@@ -1,1 +1,1 @@
-﻿admin-player-actions-screenshot = Просмотр экрана
+admin-player-actions-screenshot = Просмотр экрана
