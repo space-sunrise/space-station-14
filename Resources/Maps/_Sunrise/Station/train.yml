@@ -75017,7 +75017,7 @@ entities:
       pos: 8.5,-176.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -160692.22
+      secondsUntilStateChange: -162099.1
       state: Closing
   - uid: 11227
     components:
@@ -77686,6 +77686,13 @@ entities:
     - type: Transform
       pos: -5.6625867,-71.481384
       parent: 2
+- proto: PersonalAI
+  entities:
+  - uid: 17366
+    components:
+    - type: Transform
+      pos: -0.5,-5.5
+      parent: 2
 - proto: PhoneInstrument
   entities:
   - uid: 11640
@@ -77833,6 +77840,11 @@ entities:
     components:
     - type: Transform
       pos: 16.56339,-60.471424
+      parent: 2
+  - uid: 17367
+    components:
+    - type: Transform
+      pos: 8.5,-97.5
       parent: 2
 - proto: PlushieLizardMirrored
   entities:
@@ -88116,6 +88128,27 @@ entities:
     - type: Transform
       pos: -0.5,-346.5
       parent: 2
+- proto: SpawnPointSeniorEngineer
+  entities:
+  - uid: 17365
+    components:
+    - type: Transform
+      pos: 5.5,-249.5
+      parent: 2
+- proto: SpawnPointSeniorPhysician
+  entities:
+  - uid: 13449
+    components:
+    - type: Transform
+      pos: -3.5,-169.5
+      parent: 2
+- proto: SpawnPointSeniorResearcher
+  entities:
+  - uid: 17368
+    components:
+    - type: Transform
+      pos: -4.5,-301.5
+      parent: 2
 - proto: SpawnPointServiceWorker
   entities:
   - uid: 13382
@@ -88577,17 +88610,12 @@ entities:
     - type: Transform
       pos: -5.6637,-340.33105
       parent: 2
-- proto: SubstationBasic
+- proto: SubstationExtended
   entities:
   - uid: 9449
     components:
     - type: Transform
       pos: -13.5,-250.5
-      parent: 2
-  - uid: 13449
-    components:
-    - type: Transform
-      pos: 7.5,-2.5
       parent: 2
   - uid: 13450
     components:
@@ -88658,6 +88686,11 @@ entities:
     components:
     - type: Transform
       pos: 6.5,-361.5
+      parent: 2
+  - uid: 17363
+    components:
+    - type: Transform
+      pos: 7.5,-2.5
       parent: 2
 - proto: SubstationWallBasic
   entities:
@@ -105987,7 +106020,7 @@ entities:
       pos: 0.5,-225.5
       parent: 2
     - type: WarpPoint
-      location: 'Вагон 07: Солнечные панели'
+      location: 'Вагон 08: Солнечные панели'
     - type: BombingTarget
   - uid: 16444
     components:
@@ -105995,7 +106028,7 @@ entities:
       pos: 0.5,-252.5
       parent: 2
     - type: WarpPoint
-      location: 'Вагон 08: Инженерия'
+      location: 'Вагон 09: Инженерия'
     - type: BombingTarget
   - uid: 16445
     components:
@@ -106004,7 +106037,7 @@ entities:
       pos: 0.5,-279.5
       parent: 2
     - type: WarpPoint
-      location: 'Вагон 09: Снабжение'
+      location: 'Вагон 10: Снабжение'
     - type: BombingTarget
   - uid: 16446
     components:
@@ -106012,7 +106045,7 @@ entities:
       pos: 0.5,-308.5
       parent: 2
     - type: WarpPoint
-      location: 'Вагон 10: НИО'
+      location: 'Вагон 11: НИО'
     - type: BombingTarget
   - uid: 16447
     components:
@@ -106020,7 +106053,7 @@ entities:
       pos: 0.5,-338.5
       parent: 2
     - type: WarpPoint
-      location: 'Вагон 11: Бриг'
+      location: 'Вагон 12: Бриг'
     - type: BombingTarget
   - uid: 16448
     components:
@@ -106029,8 +106062,15 @@ entities:
       pos: 0.5,-363.5
       parent: 2
     - type: WarpPoint
-      location: 'Вагон 12: Пермабриг'
+      location: 'Вагон 13: Пермабриг'
     - type: BombingTarget
+  - uid: 17364
+    components:
+    - type: Transform
+      pos: 0.5,-197.5
+      parent: 2
+    - type: WarpPoint
+      location: 'Вагон 07: ГВ, Вирусиология'
 - proto: WaterCooler
   entities:
   - uid: 16449
