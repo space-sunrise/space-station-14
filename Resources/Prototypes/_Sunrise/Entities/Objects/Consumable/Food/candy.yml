@@ -49,7 +49,7 @@
 - type: entity
   parent: FoodBase
   id: FoodGudronGumball
-  name: gudron gumball
+  name: tar gumball
   description: An ancient candy for ancient kids.
   components:
     - type: SolutionContainerManager
