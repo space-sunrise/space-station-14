@@ -3975,3 +3975,9 @@
   id: 285
   time: '2024-10-02T05:04:07.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/434
+- author: SplikZerys
+  changes:
+  - message: "\u041F\u043E\u0444\u0438\u043A\u0441\u0438\u043B DeltaStation."
+    type: Fix
+  id: 286
+  time: '2024-10-02T09:07:32.236887+00:00'
