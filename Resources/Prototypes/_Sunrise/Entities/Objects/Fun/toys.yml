@@ -578,8 +578,8 @@
 - type: entity
   id: PlushiePrototupus
   parent: BasePlushie
-  name: Плюшевый Прототип
-  description: Мне не дали описание
+  name: Плюшевая Лили Бартон
+  description: а каждый вопрос есть однозначный ответ - "хлюп хлюп"
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
