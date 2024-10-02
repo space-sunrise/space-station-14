@@ -10,6 +10,8 @@
     - !type:DepartmentTimeRequirement
       department: Command
       time: 62000 # 20 hrs
+    - !type:AgeRequirement
+      requiredAge: 30
   startingGear: BlueShieldGear
   icon: JobIconBlueShield
   supervisors: job-supervisors-centcom

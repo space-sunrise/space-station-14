@@ -564,3 +564,13 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
     state: plushie-cikuus
+
+- type: entity
+  id: PlushieSuvagesi
+  parent: BasePlushie
+  name: Плюшевая Холо Сувагеси
+  description: Обычная вульпа, да?.. Погоди.. это что, нож?.. Стой.. Нет.. БЕГИ!! ОНА КОНЧЕНАЯ!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-suvagesi
