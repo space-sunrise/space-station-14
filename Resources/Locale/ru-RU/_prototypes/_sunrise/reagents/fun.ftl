@@ -6,7 +6,6 @@ reagent-desc-honkpower = Хохохонк
 reagent-flavor-honkpower = Как смех хонкоматери
 reagent-physical-desc-honkpower = Дрожащее
 reagent-physical-desc-strong-smell = Сильно пахнущее
-flavor-nastoyka-romashki = как ромашка
 reagent-name-gudron = Гудрон
 reagent-desc-gudron = Результат переработки нефти, который любили жевать дети позапрошлого тысячелетия.
 flavor-oil = нефтянисто
