@@ -12,7 +12,7 @@
 - type: holidayGiveawayItem
   id: VigersRayBirthdayGiveawayPresent
   holiday: VigersRayBirthday
-  prototype: PresentRandomInsane
+  prototype: PresentRandomUnsafe
 
 
 - type: holidayGiveawayItem
