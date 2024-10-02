@@ -39,10 +39,15 @@ public sealed class NightVisionSystem : EntitySystem
         RaiseLocalEvent(uid, ref changeEv);
         Dirty(uid, component);
         _actionsSystem.SetCooldown(component.ActionContainer, TimeSpan.FromSeconds(1));
-        if (component is { IsNightVision: true, PlaySoundOn: true })
+        if (component is { IsNightVision: true, PlaySounds: true })
         {
             if (_net.IsServer)
-                _audioSystem.PlayPvs(component.OnOffSound, uid);
+                _audioSystem.PlayPvs(component.SoundOn, uid);
+        }
+        else if (component is { IsNightVision: false, PlaySounds: true })
+        {
+            if (_net.IsServer)
+                _audioSystem.PlayPvs(component.SoundOff, uid);
         }
     }
     

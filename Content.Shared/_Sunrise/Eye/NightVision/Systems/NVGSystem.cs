@@ -7,7 +7,7 @@ using Robust.Shared.Network;
 
 namespace Content.Shared._Sunrise.Eye.NightVision.Systems;
 
-public sealed class PNVSystem : EntitySystem
+public sealed class NVGSystem : EntitySystem
 {
     [Dependency] private readonly NightVisionSystem _nightvisionableSystem = default!;
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
@@ -43,10 +43,10 @@ public sealed class PNVSystem : EntitySystem
             _actionsSystem.AddAction(args.Equipee, ref component.ActionContainer, component.ActionProto);
         _actionsSystem.SetCooldown(component.ActionContainer, TimeSpan.FromSeconds(1)); // GCD?
 
-        if (nvcomp.PlaySoundOn && nvcomp.IsNightVision)
+        if (nvcomp.PlaySounds && nvcomp.IsNightVision)
         {
             if (_net.IsServer)
-                _audioSystem.PlayPvs(nvcomp.OnOffSound, uid);
+                _audioSystem.PlayPvs(nvcomp.SoundOn, uid);
         }
 
     }

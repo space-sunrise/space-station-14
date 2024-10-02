@@ -27,9 +27,10 @@ public sealed partial class NightVisionComponent : Component
     [Access(Other = AccessPermissions.ReadWriteExecute)]
     public bool GraceFrame = false;
 
-    [DataField("playSoundOn")]
-    public bool PlaySoundOn = true;
-    public SoundSpecifier OnOffSound = new SoundPathSpecifier("/Audio/_Sunrise/Misc/night-vision-sound-effect_E_minor.ogg");
+    [DataField("playSounds")]
+    public bool PlaySounds = true;
+    public SoundSpecifier SoundOn = new SoundPathSpecifier("/Audio/_Sunrise/Items/night_vision_on.ogg");
+    public SoundSpecifier SoundOff = new SoundPathSpecifier("/Audio/_Sunrise/Items/night_vision_off.ogg");
 }
 
 public sealed partial class NVInstantActionEvent : InstantActionEvent { }
