@@ -9,15 +9,16 @@
   metamorphicSprite:
     sprite: _Sunrise/Objects/Consumable/Drinks/kvass.rsi
     state: icon
+    
 - type: reagent
-  id: NastoykaRomashki
-  name: reagent-name-nastoyka-romashki
+  id: ChamomileTincture
+  name: reagent-name-chamomile-tincture
   parent: BaseDrink
-  desc: reagent-desc-nastoyka-romashki
+  desc: reagent-desc-chamomile-tincture
   physicalDesc: reagent-physical-desc-strong-smell
-  flavor: nastoyka_romashki
+  flavor: chamomile_tincture
   metamorphicSprite:
-    sprite: _Sunrise/Objects/Consumable/Drinks/nastoykaRomashki.rsi
+    sprite: _Sunrise/Objects/Consumable/Drinks/chamomileTincture.rsi
     state: icon
   metabolisms:
     Drink:

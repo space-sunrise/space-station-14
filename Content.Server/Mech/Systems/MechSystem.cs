@@ -18,6 +18,8 @@ using Content.Shared.Verbs;
 using Content.Shared.Wires;
 using Content.Server.Body.Systems;
 using Content.Shared.Tools.Systems;
+using Content.Shared.Hands.Components;
+using Content.Shared.Hands.EntitySystems;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
@@ -39,6 +41,7 @@ public sealed partial class MechSystem : SharedMechSystem
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly SharedToolSystem _toolSystem = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -233,6 +236,14 @@ public sealed partial class MechSystem : SharedMechSystem
         {
             _popup.PopupEntity(Loc.GetString("mech-no-enter", ("item", uid)), args.User);
             return;
+        }
+        
+        if (!TryComp<HandsComponent>(args.Args.User, out var handsComponent))
+            return;
+        
+        foreach (var hand in _hands.EnumerateHands(args.Args.User, handsComponent))
+        {
+            _hands.DoDrop(args.Args.User, hand, true, handsComponent);
         }
 
         TryInsert(uid, args.Args.User, component);
