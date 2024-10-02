@@ -15,7 +15,7 @@
       - state: light-overlay
         visible: false
         shader: unshaded
-        map: [ "light" ]
+        map: [ "enum.NVGContents.Enabled" ]
   - type: Clothing
     sprite: _Sunrise/Clothing/Eyes/Glasses/nvg.rsi
     quickEquip: true
