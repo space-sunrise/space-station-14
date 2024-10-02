@@ -1723,6 +1723,28 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
+- type: listing
+  id: UplinkSunrisePlushieCikuus
+  productEntity: PlushieCikuus
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieSuvagesi
+  productEntity: PlushieSuvagesi
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
 # ГСБ:
 - type: listing
   id: UplinkSunriseClothingMaskGasSwat

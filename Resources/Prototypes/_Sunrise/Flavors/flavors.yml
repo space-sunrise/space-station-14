@@ -7,3 +7,8 @@
   id: oil
   flavorType: Base
   description: flavor-base-oil
+  
+- type: flavor
+  id: chamomile_tincture
+  flavorType: Complex
+  description: flavor-complex-chamomile-tincture

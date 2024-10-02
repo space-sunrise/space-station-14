@@ -65,6 +65,7 @@
   - type: EyeProtection
   - type: IdentityBlocker
     coverage: EYES
+  - type: NVG #Sunrise - night vision
 
 - type: entity
   parent: ClothingEyesBase
@@ -265,3 +266,4 @@
   - type: Clothing
     sprite: Clothing/Eyes/Glasses/ninjavisor.rsi
   - type: FlashImmunity
+  - type: NVG #Sunrise - night vision

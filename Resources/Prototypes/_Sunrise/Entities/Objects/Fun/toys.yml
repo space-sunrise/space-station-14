@@ -554,3 +554,23 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
     state: plushie-bublegum
+
+- type: entity
+  id: PlushieCikuus
+  parent: BasePlushie
+  name: Плюшевая Лилит Бонавентура
+  description: Милая вульпочка в костюме горничной, она приятно пахнет цветами и с радостью уберет ваш дом. Кто о такой не мечтал?
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-cikuus
+
+- type: entity
+  id: PlushieSuvagesi
+  parent: BasePlushie
+  name: Плюшевая Холо Сувагеси
+  description: Обычная вульпа, да?.. Погоди.. это что, нож?.. Стой.. Нет.. БЕГИ!! ОНА КОНЧЕНАЯ!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-suvagesi

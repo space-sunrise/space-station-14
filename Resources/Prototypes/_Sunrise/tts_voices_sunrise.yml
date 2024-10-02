@@ -182,3 +182,32 @@
   sex: Male
   speaker: icarus_revenge
   provider: sunrise
+
+- type: ttsVoice
+  id: HeartstoneThrud
+  name: tts-voice-name-heartstone-thrud
+  sex: Male
+  speaker: heartstone_thrud
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Kendrick
+  name: tts-voice-name-kendrick
+  sex: Male
+  speaker: kendrick
+  provider: sunrise
+
+- type: ttsVoice
+  id: SplikZerys
+  name: tts-voice-name-splikzerys
+  sex: Male
+  speaker: splikzerys
+  provider: sunrise
+
+- type: ttsVoice
+  id: Dota2Riki
+  name: tts-voice-name-dota2-riki
+  sex: Male
+  speaker: dota2_riki
+  provider: sunrise

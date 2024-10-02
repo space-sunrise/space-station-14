@@ -8,5 +8,7 @@ reagent-physical-desc-honkpower = Дрожащее
 reagent-physical-desc-strong-smell = Сильно пахнущее
 reagent-name-tar = Гудрон
 reagent-desc-tar = Результат переработки нефти, который любили жевать дети позапрошлого тысячелетия.
-flavor-oil = нефтянисто
 reagent-physical-desc-oil = Нефтяное
+reagent-name-nastoyka-romashki = настойка ромашки
+reagent-desc-nastoyka-romashki = Лепестки ромашки настояные в спирте.
+
