@@ -47,9 +47,9 @@
     
 - type: reagent
   id: Gudron
-  name: reagent-name-gudron
+  name: reagent-name-tar
   group: Special
-  desc: reagent-desc-gudron
+  desc: reagent-desc-tar
   flavor: oil
   color: "#0000"
   physicalDesc: reagent-physical-desc-oil
