@@ -1,5 +1,5 @@
 - type: entity
-  id: GudronPack
+  id: TarPack
   parent: BaseStorageItem
   name: Пачка гудроновой жевачки
   description: Раньше она была на вес золота, а сейчас бери и жуй.
