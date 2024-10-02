@@ -4,11 +4,6 @@
   description: flavor-complex-fourteen-loko-soda-plus
 
 - type: flavor
-  id: nastoyka_romashki
-  flavorType: Complex
-  description: flavor-nastoyka-romashki
-
-- type: flavor
   id: oil
   flavorType: Base
   description: flavor-oil

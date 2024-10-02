@@ -9,26 +9,3 @@
   metamorphicSprite:
     sprite: _Sunrise/Objects/Consumable/Drinks/kvass.rsi
     state: icon
-- type: reagent
-  id: NastoykaRomashki
-  name: reagent-name-nastoyka-romashki
-  parent: BaseDrink
-  desc: reagent-desc-nastoyka-romashki
-  physicalDesc: reagent-physical-desc-strong-smell
-  flavor: nastoyka_romashki
-  metamorphicSprite:
-    sprite: _Sunrise/Objects/Consumable/Drinks/nastoykaRomashki.rsi
-    state: icon
-  metabolisms:
-    Drink:
-      effects:
-      - !type:SatiateThirst
-        factor: 4
-    Medicine:
-      effects:
-      - !type:HealthChange
-        damage:
-          types:
-            Poison: -2
-      - !type:ChemCleanBloodstream
-        cleanseRate: 1

@@ -133,21 +133,6 @@
       sprite: _Sunrise/Objects/Consumable/Drinks/kvass.rsi
 
 - type: entity
-  parent: DrinkGlassBase
-  name: настойка ромашки
-  id: DrinkNastoykaRomashki
-  components:
-    - type: SolutionContainerManager
-      solutions:
-        drink:
-          maxVol: 30
-          reagents:
-            - ReagentId: NastoykaRomashki
-              Quantity: 30
-    - type: Sprite
-      sprite: _Sunrise/Objects/Consumable/Drinks/nastoykaRomashki.rsi
-
-- type: entity
   parent: DrinkGlass
   id: DrinkMaiTaiGlass
   suffix: mai tai
