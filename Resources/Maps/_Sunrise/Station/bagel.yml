@@ -131539,7 +131539,7 @@ entities:
     - type: Transform
       pos: 42.5,-30.5
       parent: 2
-- proto: SMESBasic
+- proto: SMESExtended
   entities:
   - uid: 19643
     components:
