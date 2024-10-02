@@ -125,6 +125,7 @@ namespace Content.Client.Entry
             _prototypeManager.RegisterIgnore("nukeopsRole");
             _prototypeManager.RegisterIgnore("stationGoal"); // Sunrise-StationGoal
             _prototypeManager.RegisterIgnore("sponsorLoadout"); // Sunrise-Sponsors
+            _prototypeManager.RegisterIgnore("holidayGiveawayItem"); // Sunrise-Edit
             _prototypeManager.RegisterIgnore("ghostRoleRaffleDecider");
 
             _componentFactory.GenerateNetIds();

@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using Content.Server.Access.Systems;
 using Content.Server.DetailExaminable;
+using Content.Server.Holiday;
 using Content.Server.Humanoid;
 using Content.Server.IdentityManagement;
 using Content.Server.Mind.Commands;
@@ -13,6 +14,7 @@ using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.PDA;
@@ -226,6 +228,25 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         {
             jobSpecial.AfterEquip(entity);
         }
+
+        // Sunrise-Start
+        foreach (var giveaway in _prototypeManager.EnumeratePrototypes<HolidayGiveawayItemPrototype>())
+        {
+            if (string.IsNullOrEmpty(giveaway.Holiday) || string.IsNullOrEmpty(giveaway.Prototype))
+                return;
+
+            var sysMan = IoCManager.Resolve<IEntitySystemManager>();
+
+            if (!sysMan.GetEntitySystem<HolidaySystem>().IsCurrentlyHoliday(giveaway.Holiday))
+                return;
+
+            var entMan = IoCManager.Resolve<IEntityManager>();
+
+            var ent = entMan.SpawnEntity(giveaway.Prototype, entMan.GetComponent<TransformComponent>(entity).Coordinates);
+
+            sysMan.GetEntitySystem<SharedHandsSystem>().PickupOrDrop(entity, ent);
+        }
+        // Sunrise-End
     }
 
     /// <summary>
