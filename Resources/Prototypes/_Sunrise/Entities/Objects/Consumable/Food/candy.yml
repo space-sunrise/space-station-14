@@ -57,7 +57,7 @@
         food:
           maxVol: 1
           reagents:
-          - ReagentId: Gudron
+          - ReagentId: Tar
             Quantity: 1
     - type: Sprite
       sprite: _Sunrise/Objects/Consumable/Food/candy.rsi
