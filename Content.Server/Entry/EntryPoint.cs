@@ -1,5 +1,4 @@
 using Content.Server._Sunrise.GuideGenerator;
-using Content.Server._Sunrise.Proton;  // Sunrise-Proton
 using Content.Server._Sunrise.ServersHub;
 using Content.Server._Sunrise.TTS;
 using Content.Server.Acz;
@@ -49,7 +48,6 @@ namespace Content.Server.Entry
         private IVoteManager _voteManager = default!;
         private ServerUpdateManager _updateManager = default!;
         private ServersHubManager _serversHubManager = default!; // Sunrise-Edit
-        private ProtonManager _proton = default!;  // Proton
         private PlayTimeTrackingManager? _playTimeTracking;
         private IEntitySystemManager? _sysMan;
         private IServerDbManager? _dbManager;
@@ -97,7 +95,6 @@ namespace Content.Server.Entry
                 _voteManager = IoCManager.Resolve<IVoteManager>();
                 _updateManager = IoCManager.Resolve<ServerUpdateManager>();
                 _serversHubManager = IoCManager.Resolve<ServersHubManager>(); // Sunrise-Edit
-                _proton = IoCManager.Resolve<ProtonManager>(); // Proton
                 _playTimeTracking = IoCManager.Resolve<PlayTimeTrackingManager>();
                 _sysMan = IoCManager.Resolve<IEntitySystemManager>();
                 _dbManager = IoCManager.Resolve<IServerDbManager>();
@@ -117,7 +114,6 @@ namespace Content.Server.Entry
                 IoCManager.Resolve<ServerApi>().Initialize();
 
                 IoCManager.Resolve<ServersHubManager>().Initialize(); // Sunrise-Hub
-                IoCManager.Resolve<ProtonManager>().Initialize(); // Proton
 
                 _voteManager.Initialize();
                 _updateManager.Initialize();

@@ -134,18 +134,18 @@
 
 - type: entity
   parent: DrinkGlassBase
-  name: настойка ромашки
-  id: DrinkNastoykaRomashki
+  name: chamomile tincture
+  id: DrinkChamomileTincture
   components:
     - type: SolutionContainerManager
       solutions:
         drink:
           maxVol: 30
           reagents:
-            - ReagentId: NastoykaRomashki
+            - ReagentId: ChamomileTincture
               Quantity: 30
     - type: Sprite
-      sprite: _Sunrise/Objects/Consumable/Drinks/nastoykaRomashki.rsi
+      sprite: _Sunrise/Objects/Consumable/Drinks/chamomileTincture.rsi
 
 - type: entity
   parent: DrinkGlass

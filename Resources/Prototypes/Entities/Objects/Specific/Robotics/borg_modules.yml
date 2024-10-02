@@ -237,9 +237,10 @@
     - state: icon-tools-adv
   - type: ItemBorgModule
     items:
-    - Omnitool
+    - JawsOfLife
+    - PowerDrill
+    - Multitool
     - WelderBorg # Sunrise-Edit
-    - NetworkConfigurator
     - RemoteSignaller
     - GasAnalyzer
     - GeigerCounter

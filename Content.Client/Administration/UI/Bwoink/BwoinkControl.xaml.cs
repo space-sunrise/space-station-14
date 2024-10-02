@@ -167,19 +167,6 @@ namespace Content.Client.Administration.UI.Bwoink
                     _console.ExecuteCommand($"kick \"{_currentPlayer.Username}\"");
             };
 
-            // Sunrise-start
-            Screenshot.OnPressed += _ =>
-            {
-                if (!AdminUIHelpers.TryConfirm(Screenshot, _confirmations))
-                {
-                    return;
-                }
-
-                if (_currentPlayer is not null)
-                    _console.ExecuteCommand($"screenshot \"{_currentPlayer.Username}\"");
-            };
-            // Sunrise-end
-
             Follow.OnPressed += _ =>
             {
                 if (_currentPlayer is not null)
@@ -245,11 +232,6 @@ namespace Content.Client.Administration.UI.Bwoink
 
             Respawn.Visible = _adminManager.CanCommand("respawn");
             Respawn.Disabled = !Respawn.Visible || disabled;
-
-            // Sunrise-start
-            Screenshot.Visible = _adminManager.CanCommand("kick");
-            Screenshot.Disabled = !Screenshot.Visible || disabled;
-            // Sunrise-end
 
             Follow.Visible = _adminManager.CanCommand("follow");
             Follow.Disabled = !Follow.Visible || disabled;
