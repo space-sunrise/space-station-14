@@ -1,5 +1,4 @@
-﻿using Content.Client._Sunrise.Proton;  // Sunrise-Proton
-using Content.Client._Sunrise.ServersHub;
+﻿using Content.Client._Sunrise.ServersHub;
 using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
 using Content.Client.Chat.Managers;
@@ -63,7 +62,6 @@ namespace Content.Client.IoC
             // Sunrise
 
             collection.Register<ServersHubManager>(); // Sunrise-Hub
-            collection.Register<ProtonManager>(); // Sunrise-Proton
         }
     }
 }
