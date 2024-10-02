@@ -3966,3 +3966,12 @@
   id: 284
   time: '2024-10-02T03:39:13.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/415
+- author: SplikZerys
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D \u043D\u043E\u0432\u044B\
+      \u0439 \u0422\u0422\u0421-\u0433\u043E\u043B\u043E\u0441 \u0438\u0437 Dota 2\
+      \ - \u0420\u0438\u043A\u0438."
+    type: Add
+  id: 285
+  time: '2024-10-02T05:04:07.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/434
