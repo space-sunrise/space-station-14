@@ -223,6 +223,7 @@
     - id: MedicalTechFabCircuitboard
     - id: MedkitFilled
     - id: RubberStampCMO
+    - id: MedTekCartridge
     - id: FlippoLighterSunriseCmo  # Sunrise-Flippos
 
 # Hardsuit table, used for suit storage as well
