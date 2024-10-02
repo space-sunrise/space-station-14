@@ -204,3 +204,10 @@
   sex: Male
   speaker: splikzerys
   provider: sunrise
+
+- type: ttsVoice
+  id: Dota2Riki
+  name: tts-voice-name-dota2-riki
+  sex: Male
+  speaker: dota2_riki
+  provider: sunrise
