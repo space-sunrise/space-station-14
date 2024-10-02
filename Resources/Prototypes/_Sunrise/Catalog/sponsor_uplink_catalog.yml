@@ -1745,6 +1745,28 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
+- type: listing
+  id: UplinkSunrisePlushiePrototupus
+  productEntity: PlushiePrototupus
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieSmile
+  productEntity: PlushieSmile
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
 # ГСБ:
 - type: listing
   id: UplinkSunriseClothingMaskGasSwat
