@@ -27,6 +27,9 @@ public sealed partial class NightVisionComponent : Component
     [Access(Other = AccessPermissions.ReadWriteExecute)]
     public bool GraceFrame = false;
 
+    [DataField("changeLight")]
+    public bool ChangeLight = true;
+
     [DataField("playSounds")]
     public bool PlaySounds = true;
     public SoundSpecifier SoundOn = new SoundPathSpecifier("/Audio/_Sunrise/Items/night_vision_on.ogg");

@@ -1,6 +1,7 @@
 using Content.Shared._Sunrise.Eye.NightVision.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Actions;
+using Content.Shared.Light;
 using JetBrains.Annotations;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
@@ -13,6 +14,7 @@ public sealed class NightVisionSystem : EntitySystem
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly SharedPointLightSystem _pointLightSystem = default!;
 
     public override void Initialize()
     {
@@ -49,6 +51,9 @@ public sealed class NightVisionSystem : EntitySystem
             if (_net.IsServer)
                 _audioSystem.PlayPvs(component.SoundOff, uid);
         }
+        
+        if (component is { ChangeLight: true })
+            _pointLightSystem.SetEnabled(uid, component.IsNightVision);
     }
     
     [PublicAPI]
