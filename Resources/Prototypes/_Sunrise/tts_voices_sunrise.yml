@@ -211,3 +211,17 @@
   sex: Male
   speaker: dota2_riki
   provider: sunrise
+
+- type: ttsVoice
+  id: Dota2Pudge
+  name: tts-voice-name-dota2-pudge
+  sex: Male
+  speaker: dota2_pudge
+  provider: sunrise
+
+- type: ttsVoice
+  id: TF2Soldier
+  name: tts-voice-name-tf2-soldier
+  sex: Male
+  speaker: tf2_soldier
+  provider: sunrise
