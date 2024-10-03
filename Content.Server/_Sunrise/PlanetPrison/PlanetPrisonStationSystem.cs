@@ -132,12 +132,14 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
 
         _biomeSystem.EnsurePlanet(mapUid, biome);
 
+        // Sunrise-Start
         var restricted = new RestrictedRangeComponent
         {
             Origin = new Vector2(0, 0),
             Range = 160,
         };
         AddComp(mapUid, restricted);
+        // Sunrise-End
 
         EnsureComp<NightDayMapLightComponent>(mapUid);
 
