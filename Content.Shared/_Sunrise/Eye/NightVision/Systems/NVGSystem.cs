@@ -28,7 +28,7 @@ public sealed class NVGSystem : EntitySystem
         SubscribeLocalEvent<NVGComponent, GotEquippedEvent>(OnEquipped);
         SubscribeLocalEvent<NVGComponent, GotUnequippedEvent>(OnUnequipped);
         SubscribeLocalEvent<NVGComponent, InventoryRelayedEvent<CanVisionAttemptEvent>>(OnPNVTrySee);
-        SubscribeLocalEvent<NVGComponent, NVGUpdateVisualsEvent>(OnNVToggled);
+        SubscribeLocalEvent<NVGComponent, NVGUpdateVisualsEvent>(OnNVGUpdateVisuals);
     }
 
     private void OnPNVTrySee(EntityUid uid, NVGComponent component, InventoryRelayedEvent<CanVisionAttemptEvent> args)
@@ -36,8 +36,9 @@ public sealed class NVGSystem : EntitySystem
         args.Args.Cancel();
     }
     
-    private void OnNVToggled(EntityUid uid, NVGComponent component, NVGUpdateVisualsEvent args)
+    private void OnNVGUpdateVisuals(EntityUid uid, NVGComponent component, NVGUpdateVisualsEvent args)
     {
+        Log.Debug("NVG try to update visuals");
         var nvcomp = args.nvcomp;
         
         _actionsSystem.SetCooldown(component.ActionContainer, TimeSpan.FromSeconds(15));
@@ -45,7 +46,7 @@ public sealed class NVGSystem : EntitySystem
 
         if (nvcomp.IsNightVision)
         {
-            if (_net.IsServer && component is { PlaySounds: true })
+            if (_net.IsServer && component.PlaySounds)
                 _audioSystem.PlayPvs(component.SoundOn, uid);
             
             if (TryComp<AppearanceComponent>(component.Owner, out var appearance))
@@ -55,7 +56,7 @@ public sealed class NVGSystem : EntitySystem
         }
         else if (!nvcomp.IsNightVision)
         {
-            if (_net.IsServer && component is { PlaySounds: true })
+            if (_net.IsServer && component.PlaySounds)
                 _audioSystem.PlayPvs(component.SoundOff, uid);
             
             if (TryComp<AppearanceComponent>(component.Owner, out var appearance))

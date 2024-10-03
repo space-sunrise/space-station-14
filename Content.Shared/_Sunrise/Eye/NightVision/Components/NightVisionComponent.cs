@@ -29,5 +29,3 @@ public sealed partial class NightVisionComponent : Component
 }
 
 public sealed partial class NVInstantActionEvent : InstantActionEvent { }
-
-public sealed partial class NVToggleDoAfterEvent : InstantActionEvent { }

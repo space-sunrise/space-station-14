@@ -11,6 +11,7 @@ namespace Content.Shared._Sunrise.Eye.NightVision.Systems;
 public sealed class NightVisionSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly INetManager _net = default!;
 
@@ -40,8 +41,30 @@ public sealed class NightVisionSystem : EntitySystem
         Dirty(uid, component);
         _actionsSystem.SetCooldown(component.ActionContainer, TimeSpan.FromSeconds(15));
         
-        var updVisEv = new NVGUpdateVisualsEvent(component);
-        RaiseLocalEvent(uid, ref updVisEv);
+        if (_inventory.TryGetSlotEntity(uid, "eyes", out var eyesEntity))
+        {
+            if (HasComp<NVGComponent>(eyesEntity))
+            {
+                var updVisEv = new NVGUpdateVisualsEvent(component);
+                RaiseLocalEvent(eyesEntity, ref updVisEv);
+            }
+        }
+        else if (_inventory.TryGetSlotEntity(uid, "mask", out var maskEntity))
+        {
+            if (HasComp<NVGComponent>(maskEntity))
+            {
+                var updVisEv = new NVGUpdateVisualsEvent(component);
+                RaiseLocalEvent(maskEntity, ref updVisEv);
+            }
+        }
+        else if (_inventory.TryGetSlotEntity(uid, "head", out var headEntity))
+        {
+            if (HasComp<NVGComponent>(headEntity))
+            {
+                var updVisEv = new NVGUpdateVisualsEvent(component);
+                RaiseLocalEvent(headEntity, ref updVisEv);
+            }
+        }
     }
     
     [PublicAPI]
