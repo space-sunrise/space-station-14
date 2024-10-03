@@ -1,4 +1,6 @@
+using Content.Shared.DoAfter;
 using Robust.Shared.GameStates;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared._Sunrise.SharedLieDownPressingButtonSystem
 {
@@ -9,4 +11,10 @@ namespace Content.Shared._Sunrise.SharedLieDownPressingButtonSystem
         [AutoNetworkedField]
         public bool Lied { get; set; } = false;
     }
+}
+
+
+[Serializable, NetSerializable]
+public sealed partial class LieDownDoAfterEvent : SimpleDoAfterEvent
+{
 }

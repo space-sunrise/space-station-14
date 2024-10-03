@@ -47,6 +47,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Server.GameTicking;
 using Content.Shared.Parallax.Biomes;
+using Content.Shared.Salvage;
 using Robust.Shared.Audio;
 
 namespace Content.Server.Shuttles.Systems;
@@ -573,6 +574,13 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
             QueueDel(mapUid);
             return;
         }
+
+        var restricted = new RestrictedRangeComponent
+        {
+            Origin = new Vector2(0, 0),
+            Range = 160,
+        };
+        AddComp(mapUid, restricted);
 
         EnsureComp<NightDayMapLightComponent>(mapUid);
 
