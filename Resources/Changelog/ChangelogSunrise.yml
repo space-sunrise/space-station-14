@@ -4033,3 +4033,11 @@
   id: 292
   time: '2024-10-03T00:11:13.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/417
+- author: rhailrakes
+  changes:
+  - message: "\u0424\u0438\u043A\u0441 \u0441\u0438\u0441\u0442\u0435\u043C\u044B\
+      \ \u043B\u0435\u0436\u0430\u043D\u0438\u044F \u0447\u0435\u0440\u0435\u0437\
+      \ R."
+    type: Fix
+  id: 293
+  time: '2024-10-03T14:23:35.315166+00:00'

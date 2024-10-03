@@ -574,14 +574,14 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
             QueueDel(mapUid);
             return;
         }
-
+        // SUNRISE START
         var restricted = new RestrictedRangeComponent
         {
             Origin = new Vector2(0, 0),
             Range = 160,
         };
         AddComp(mapUid, restricted);
-
+        // SUNRISE END
         EnsureComp<NightDayMapLightComponent>(mapUid);
 
         Log.Info($"Created transit hub grid {ToPrettyString(uids[0])} on map {ToPrettyString(mapUid)} for station {ToPrettyString(station)}");
