@@ -6,7 +6,6 @@
   components:
   - type: Item
   - type: Sprite
-    netsync: false
     sprite: _Sunrise/Clothing/Eyes/Glasses/nvg.rsi
     layers:
       - state: icon
@@ -15,7 +14,7 @@
       - state: light-overlay
         visible: false
         shader: unshaded
-        map: [ "enum.NVGContents.Enabled" ]
+        map: [ "enum.NVGVisuals.Light" ]
   - type: Clothing
     sprite: _Sunrise/Clothing/Eyes/Glasses/nvg.rsi
     quickEquip: true
@@ -30,7 +29,6 @@
   - type: NVG
   - type: PointLight
     color: green
-    netsync: false
     enabled: false
     autoRot: true
     radius: 0.5

@@ -41,28 +41,28 @@ public sealed class NightVisionSystem : EntitySystem
         Dirty(uid, component);
         _actionsSystem.SetCooldown(component.ActionContainer, TimeSpan.FromSeconds(15));
         
+        
+        var updVisEv = new NVGUpdateVisualsEvent(component);
+        
         if (_inventory.TryGetSlotEntity(uid, "eyes", out var eyesEntity))
         {
             if (HasComp<NVGComponent>(eyesEntity))
             {
-                var updVisEv = new NVGUpdateVisualsEvent(component);
-                RaiseLocalEvent(eyesEntity, ref updVisEv);
+                RaiseLocalEvent(eyesEntity.Value, ref updVisEv);
             }
         }
         else if (_inventory.TryGetSlotEntity(uid, "mask", out var maskEntity))
         {
             if (HasComp<NVGComponent>(maskEntity))
             {
-                var updVisEv = new NVGUpdateVisualsEvent(component);
-                RaiseLocalEvent(maskEntity, ref updVisEv);
+                RaiseLocalEvent(maskEntity.Value, ref updVisEv);
             }
         }
         else if (_inventory.TryGetSlotEntity(uid, "head", out var headEntity))
         {
             if (HasComp<NVGComponent>(headEntity))
             {
-                var updVisEv = new NVGUpdateVisualsEvent(component);
-                RaiseLocalEvent(headEntity, ref updVisEv);
+                RaiseLocalEvent(headEntity.Value, ref updVisEv);
             }
         }
     }

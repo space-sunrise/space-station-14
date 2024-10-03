@@ -18,8 +18,6 @@ namespace Content.Client._Sunrise.Eye.NightVision
         public override OverlaySpace Space => OverlaySpace.WorldSpace;
         private readonly ShaderInstance? _greyscaleShader;
 	    public Color NightvisionColor = Color.Green;
-        private EntityUid? _playerEntity;
-        private EyeComponent? _eyeComponent;
 
         private NightVisionComponent _nightvisionComponent = default!;
 
@@ -37,16 +35,17 @@ namespace Content.Client._Sunrise.Eye.NightVision
         }
         protected override bool BeforeDraw(in OverlayDrawArgs args)
         {
-            if (_playerEntity == null)
-                _playerEntity = _playerManager.LocalSession?.AttachedEntity;
-
-            if (_playerEntity == null || !_entityManager.TryGetComponent(_playerEntity.Value, out _eyeComponent))
+            var playerEntity = _playerManager.LocalSession?.AttachedEntity;
+            if (playerEntity == null)
                 return false;
 
-            if (args.Viewport.Eye != _eyeComponent?.Eye)
+            if (!_entityManager.TryGetComponent(playerEntity, out EyeComponent? eyeComp))
                 return false;
 
-            if (!_entityManager.TryGetComponent<NightVisionComponent>(_playerEntity.Value, out var nightvisionComp))
+            if (args.Viewport.Eye != eyeComp.Eye)
+                return false;
+
+            if (!_entityManager.TryGetComponent<NightVisionComponent>(playerEntity.Value, out var nightvisionComp))
                 return false;
 
             _nightvisionComponent = nightvisionComp;

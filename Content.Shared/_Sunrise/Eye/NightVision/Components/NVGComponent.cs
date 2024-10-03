@@ -25,10 +25,3 @@ public enum NVGVisuals : byte
 {
     Light
 }
-
-[Serializable, NetSerializable]
-public enum NVGContents : byte
-{
-    None,
-    Enabled,
-}
