@@ -46,8 +46,9 @@
 # Sunrise-Edit: Карго не нужен шаттл без трейдпоста.
 #  - type: StationCargoShuttle
 #    path: /Maps/Shuttles/cargo.yml
-#  - type: GridSpawn
-#    groups:
+  - type: GridSpawn
+    groups:
+# Sunrise-Edit: Рефактор карго
 #      trade: !type:GridSpawnGroup
 #        addComponents:
 #        - type: ProtectedGrid
@@ -73,12 +74,10 @@
 #        - /Maps/Ruins/whiteship_bluespacejumper.yml
 
 #Sunrise-start Security shuttle
-    - type: GridSpawn
-      groups:
-        security: !type:GridSpawnGroup
-          paths:
-          - /Maps/_Sunrise/Shuttles/security.yml # Sunrise-edit
-          nameGrid: false
+      security: !type:GridSpawnGroup
+        paths:
+        - /Maps/_Sunrise/Shuttles/security.yml
+        nameGrid: false
 #Sunrise-end
 
       vgroid: !type:DungeonSpawnGroup
