@@ -1,7 +1,7 @@
 - type: entity
   name: blood red backpack shield generator
   description: A backpack shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Uses a power cell.
-  id: EnergyDomeGeneratorSyndie
+  id: EnergyDomeGeneratorBackpackSyndie
   parent: BaseItem
   components:
   - type: Item
@@ -41,7 +41,7 @@
 - type: entity
   name: BT-21b "Barrier"
   description: A personal shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Uses a power cell.
-  id: EnergyDomeGeneratorSyndie
+  id: EnergyDomeGeneratorPersonalNT
   parent: BaseItem
   components:
   - type: Item
