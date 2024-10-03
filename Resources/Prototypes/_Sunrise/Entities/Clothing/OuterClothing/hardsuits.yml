@@ -46,17 +46,17 @@
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 10000
   - type: ClothingSpeedModifier
-    walkModifier: 0.75
-    sprintModifier: 0.75
+    walkModifier: 0.85
+    sprintModifier: 0.85
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.6
-        Heat: 0.4  # У ОСЩ пушка с тепловым уроном, следовательно броник должен защищать от лазеров
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5  # У ОСЩ пушка с тепловым уроном, следовательно броник должен защищать от лазеров
         Radiation: 0.25
-        Caustic: 0.6
+        Caustic: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.6
   - type: ToggleableClothing

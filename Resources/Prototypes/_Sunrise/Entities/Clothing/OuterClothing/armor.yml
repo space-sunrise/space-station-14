@@ -34,11 +34,11 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.6
-        Heat: 0.4  # У ОСЩ пушка с тепловым уроном, следовательно броник должен защищать от лазеров
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.6  # У ОСЩ пушка с тепловым уроном, следовательно броник должен защищать от лазеров
   - type: ExplosionResistance
-    damageCoefficient: 0.80
+    damageCoefficient: 0.65
   - type: Item
     size: Normal

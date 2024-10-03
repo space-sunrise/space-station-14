@@ -1,3 +1,14 @@
+ent-DebugMechEquipment = { "" }
+    .suffix = DEBUG
+    .desc = { "" }
+ent-CombatMechEquipment = { "" }
+    .desc = { "" }
+ent-IndustrialMechEquipment = { "" }
+    .desc = { "" }
+ent-SpecialMechEquipment = { "" }
+    .desc = { "" }
+ent-SmallMechEquipment = { "" }
+    .desc = { "" }
 ent-BaseMechEquipment = { ent-BaseItem }
     .desc = { ent-BaseItem.desc }
 ent-MechEquipmentGrabber = hydraulic clamp
