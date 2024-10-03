@@ -13640,25 +13640,6 @@ entities:
       rot: 3.141592653589793 rad
       pos: 116.5,33.5
       parent: 2
-- proto: BaseAdvancedPen
-  entities:
-  - uid: 149
-    components:
-    - type: Transform
-      pos: 89.511765,-15.005982
-      parent: 2
-  - uid: 1473
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 91.668015,-15.334107
-      parent: 2
-  - uid: 1924
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 93.52739,-15.787232
-      parent: 2
 - proto: BaseGasCondenser
   entities:
   - uid: 14097
