@@ -4049,3 +4049,12 @@
     type: Add
   id: 293
   time: '2024-10-03T13:53:41.040404+00:00'
+- author: pacable
+  changes:
+  - message: "\u0418\u0437\u043C\u0435\u043D\u0435\u043D\u044B \u0437\u0432\u0443\u043A\
+      \u0438 \u043F\u043B\u044E\u0448\u0435\u0432\u043E\u0433\u043E \u0441\u043C\u0430\
+      \u0439\u043B\u0430."
+    type: Tweak
+  id: 294
+  time: '2024-10-03T18:58:38.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/453
