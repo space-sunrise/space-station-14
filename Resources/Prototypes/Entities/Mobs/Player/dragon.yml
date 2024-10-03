@@ -157,8 +157,6 @@
   - type: NightVision
     isToggle: true
     color: "#808080"
-    playSounds: false
-    changeLight: false
   # Sunrise-End
 
 - type: entity
