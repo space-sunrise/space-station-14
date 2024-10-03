@@ -1,17 +1,18 @@
+using Content.Shared.DoAfter;
 using Robust.Shared.Player;
 using Robust.Shared.Input.Binding;
 using JetBrains.Annotations;
 using Content.Shared.Humanoid;
-using Content.Shared.Rotation;
-using Content.Shared.Popups;
+using Content.Shared.Movement.Systems;
 using Content.Shared.Standing;
 
 namespace Content.Shared._Sunrise.SharedLieDownPressingButtonSystem
 {
-    public class SharedLieDownPressingButtonSystem : EntitySystem
+    public abstract class SharedLieDownPressingButtonSystem : EntitySystem
     {
         [Dependency] private readonly StandingStateSystem _standing = default!;
-        [Dependency] private readonly SharedPopupSystem _popup = default!;
+        [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+        [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
 
         static private Angle _defaultAngleRotation = 0;
 
@@ -22,7 +23,37 @@ namespace Content.Shared._Sunrise.SharedLieDownPressingButtonSystem
             CommandBinds.Builder
             .Bind(KeyFunctions.LieDown, InputCmdHandler.FromDelegate(HandlePressButtonLieDown, handle: false, outsidePrediction: false))
             .Register<SharedLieDownPressingButtonSystem>();
+
+            SubscribeLocalEvent<StandingStateComponent, LieDownDoAfterEvent>(OnDoAfter);
+            SubscribeLocalEvent<StandingStateComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeed);
         }
+
+        private void OnDoAfter(Entity<StandingStateComponent> ent, ref LieDownDoAfterEvent args)
+        {
+            if (args.Handled || args.Cancelled)
+                return;
+
+            if (!TryComp<StandingStateComponent>(ent, out var standingStateComponent))
+                return;
+
+            if (!standingStateComponent.Standing)
+            {
+                TryStand((ent, standingStateComponent));
+                return;
+            }
+
+            TryLieDown((ent, standingStateComponent));
+        }
+
+
+        private void OnRefreshMovementSpeed(Entity<StandingStateComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
+        {
+            if (_standing.IsDown(ent))
+                args.ModifySpeed(0.4f, 0.4f);
+            else
+                args.ModifySpeed(1f, 1f);
+        }
+
         private void HandlePressButtonLieDown(ICommonSession? session)
         {
             if (session?.AttachedEntity is var attachedEnt && attachedEnt is null)
@@ -30,13 +61,12 @@ namespace Content.Shared._Sunrise.SharedLieDownPressingButtonSystem
 
             var ent = attachedEnt.Value;
 
-            if (TryComp<StandingStateComponent>(ent, out var standingStateComponent))
-                if (!standingStateComponent.Standing)
-                {
-                    TryStand((ent, standingStateComponent));
-                    return;
-                }
-            TryLieDown((ent, standingStateComponent));
+            var doAfterArgs = new DoAfterArgs(EntityManager, ent, 1, new LieDownDoAfterEvent(), ent, ent)
+            {
+                BreakOnDamage = true,
+            };
+
+            _doAfter.TryStartDoAfter(doAfterArgs);
         }
 
         [PublicAPI]
@@ -56,10 +86,8 @@ namespace Content.Shared._Sunrise.SharedLieDownPressingButtonSystem
         private void LieDown(Entity<StandingStateComponent?> ent)
         {
             /*_rotationVisuals.SetHorizontalAngle(ent.Owner, _defaultAngleRotation);*/
-            _standing.Down(ent, playSound: false, dropHeldItems: false, force: true);
-
-            _popup.PopupPredicted("Ложится прямо как в матрице!", ent, ent);
-
+            _standing.Down(ent, playSound: true, dropHeldItems: false, force: true);
+            _movementSpeed.RefreshMovementSpeedModifiers(ent);
             /*Dirty(ent);*/
         }
 
@@ -76,6 +104,7 @@ namespace Content.Shared._Sunrise.SharedLieDownPressingButtonSystem
         private void Stand(Entity<StandingStateComponent> ent)
         {
             _standing.Stand(ent, standingState: ent.Comp);
+            _movementSpeed.RefreshMovementSpeedModifiers(ent);
             /*_rotationVisuals.ResetHorizontalAngle(ent.Owner);*/
 
             /*Dirty(ent);*/
