@@ -574,3 +574,50 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
     state: plushie-suvagesi
+
+- type: entity
+  id: PlushiePrototupus
+  parent: BasePlushie
+  name: Плюшевая Лили Бартон
+  description: а каждый вопрос есть однозначный ответ - "хлюп хлюп"
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-prototupus
+
+- type: entity
+  abstract: true
+  id: EmitSquish
+  components:
+  - type: MeleeWeapon
+    soundHit:
+      path: Resources/Audio/Voice/Slime/slime_squish.ogg
+      params:
+        volume: 100
+  - type: EmitSoundOnTrigger
+    sound:
+      path: Resources/Audio/Voice/Slime/slime_squish.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: Resources/Audio/Voice/Slime/slime_squish.ogg
+  - type: EmitSoundOnUse
+    sound:
+      path: Resources/Audio/Voice/Slime/slime_squish.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: Resources/Audio/Voice/Slime/slime_squish.ogg
+  - type: EmitSoundOnActivate
+    sound:
+      path: Resources/Audio/Voice/Slime/slime_squish.ogg
+
+- type: entity
+  id: PlushieSmile
+  parent:
+  - BasePlushie
+  - EmitSquish
+  name: Плюшевая Смайл
+  description: Плюшевая Смайл готова выслушать все ваши жалобы и стать вашей лучшей подругой.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-smile
