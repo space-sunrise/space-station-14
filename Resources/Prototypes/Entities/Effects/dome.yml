@@ -48,6 +48,24 @@
     radius: 5
     power: 2
     color: "#f5166b"
+    
+- type: entity
+  id: EnergyDomeSmallBlue
+  categories: [ HideSpawnMenu ]
+  parent: EnergyDomeBase
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    noRot: true
+    sprite: Effects/EnergyDome/energydome_small.rsi
+    layers:
+    - state: small
+      color: "#64b9de"
+  - type: PointLight
+    enabled: true
+    radius: 5
+    power: 2
+    color: "#64b9de"
 
 - type: entity
   id: EnergyDomeSmallRed
