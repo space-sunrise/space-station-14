@@ -591,30 +591,30 @@
   components:
   - type: MeleeWeapon
     soundHit:
-      path: Resources/Audio/Voice/Slime/slime_squish.ogg
+      collection: PlushieSlimeSounds
       params:
         volume: 100
   - type: EmitSoundOnTrigger
     sound:
-      path: Resources/Audio/Voice/Slime/slime_squish.ogg
+      collection: PlushieSlimeSounds
   - type: EmitSoundOnCollide
     sound:
-      path: Resources/Audio/Voice/Slime/slime_squish.ogg
+      collection: PlushieSlimeSounds
   - type: EmitSoundOnUse
     sound:
-      path: Resources/Audio/Voice/Slime/slime_squish.ogg
+      collection: PlushieSlimeSounds
   - type: EmitSoundOnLand
     sound:
-      path: Resources/Audio/Voice/Slime/slime_squish.ogg
+      collection: PlushieSlimeSounds
   - type: EmitSoundOnActivate
     sound:
-      path: Resources/Audio/Voice/Slime/slime_squish.ogg
+      collection: PlushieSlimeSounds
 
 - type: entity
   id: PlushieSmile
   parent:
-  - BasePlushie
   - EmitSquish
+  - BasePlushie
   name: Плюшевая Смайл
   description: Плюшевая Смайл готова выслушать все ваши жалобы и стать вашей лучшей подругой.
   components:
