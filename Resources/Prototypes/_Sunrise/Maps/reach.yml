@@ -3,7 +3,7 @@
   mapName: 'New reach (by ds_swanson)'
   mapPath: /Maps/_Sunrise/Station/reach.yml
   minPlayers: 0
-  maxPlayers: 15
+  maxPlayers: 9
   stations:
     Reach:
       stationProto: StandardNanotrasenStation
