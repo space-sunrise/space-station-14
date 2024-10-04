@@ -4,6 +4,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Sunrise.Pets;
 
 #region System events
+
 /// <summary>
 /// Вызывается, когда у питомца меняется владелец
 /// </summary>
@@ -13,6 +14,25 @@ public sealed class PetMasterChanged: HandledEntityEventArgs
     /// Новый владелец питомца
     /// </summary>
     public EntityUid NewMaster { get; set; }
+}
+
+/// <summary>
+/// Вызывается, когда питомец спавнится от лоадаута.
+/// Нужен, чтобы автоматически привязывать выбращего данный лоадаут человека к питомцу.
+/// Виздены не придумали нормального способа отследить получение лоадаута.
+/// </summary>
+public sealed class LoadoutPetSpawned : EntityEventArgs
+{
+    /// <summary>
+    /// Игрок, выбравший лоадаут с питомцем.
+    /// Питомец будет автоматически привязан к этому EntityUid.
+    /// </summary>
+    public EntityUid Master { get; set; }
+
+    public LoadoutPetSpawned(EntityUid master)
+    {
+        Master = master;
+    }
 }
 
 #endregion

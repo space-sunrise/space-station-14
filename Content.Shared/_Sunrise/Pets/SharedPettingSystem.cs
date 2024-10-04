@@ -2,7 +2,7 @@
 using Content.Shared.Actions;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Cloning;
-using Content.Shared.Gibbing.Events;
+using Content.Shared.Hands;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
@@ -48,6 +48,8 @@ public sealed class SharedPettingSystem : EntitySystem
         SubscribeLocalEvent<PetOnInteractComponent, CloningEvent>(OnMasterCloned);
         SubscribeLocalEvent<PetOnInteractComponent, ComponentShutdown>(OnMasterShutdown);
         SubscribeLocalEvent<PettableOnInteractComponent, ComponentShutdown>(OnPetShutdown);
+
+        SubscribeLocalEvent<PettableOnInteractComponent, LoadoutPetSpawned>(OnLoadoutSpawn);
 
     }
 
@@ -230,6 +232,25 @@ public sealed class SharedPettingSystem : EntitySystem
         // Добавляем акшен хозяину и добавляем его в список акшенов
         var action = _actions.AddAction(master, AttackTargetActionID);
         master.Comp.PetActions.Add(action);
+    }
+
+    private void OnLoadoutSpawn(EntityUid uid, PettableOnInteractComponent component, LoadoutPetSpawned args)
+    {
+        if (!_timing.IsFirstTimePredicted)
+            return;
+
+        if (!TryComp<PetOnInteractComponent>(args.Master, out var masterComponent))
+            return;
+
+        var petEntity = (uid, component);
+        var masterEntity = (args.Master, masterComponent);
+
+        // Пытаемся задать питомцу хозязина и проверяем, получилось ли.
+        if (!TrySetMaster(petEntity, masterEntity))
+            return;
+
+        // Приручаем питомца, если все прошло успешно и код дошел до этого момента.
+        Pet(petEntity);
     }
 
     #endregion
