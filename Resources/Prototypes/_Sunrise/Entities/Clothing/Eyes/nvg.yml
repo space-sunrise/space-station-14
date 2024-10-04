@@ -24,11 +24,6 @@
       - state: equipped-EYES-unshaded
         shader: unshaded
     slots: [ Eyes ]
-  - type: ToggleableLightVisuals
-    clothingVisuals:
-      head:
-      - state: on-equipped-EYES
-        shader: unshaded
   - type: UseDelay
     delay: 4
   - type: NVG

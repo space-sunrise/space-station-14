@@ -37,7 +37,7 @@ public sealed class NVGSystem : EntitySystem
     {
         var nvcomp = args.nvcomp;
         
-        _actionsSystem.SetCooldown(component.ActionContainer, TimeSpan.FromSeconds(15));
+        _actionsSystem.SetCooldown(component.ActionContainer, TimeSpan.FromSeconds(5));
 
         if (!nvcomp.IsNightVision)
         {
