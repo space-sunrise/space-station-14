@@ -6,5 +6,6 @@
     DrinkTeacup: 5
     DrinkGreenTea: 5
     DrinkHotCoco: 5
+    DrinkChamomileTincture: 5 # Sunrise-edit
   emaggedInventory:
     DrinkNothing: 2

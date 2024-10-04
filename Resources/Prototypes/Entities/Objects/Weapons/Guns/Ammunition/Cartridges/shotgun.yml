@@ -29,7 +29,7 @@
       - state: beanbag
         map: [ "enum.AmmoVisualLayers.Base" ]
   - type: CartridgeAmmo
-    proto: PelletShotgunBeanbag
+    proto: PelletShotgunBeanbagSpread # Sunrise-Edit
   - type: SpentAmmoVisuals
     state: "beanbag"
 

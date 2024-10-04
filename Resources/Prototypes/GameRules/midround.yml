@@ -49,7 +49,7 @@
         prototype: Changeling
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   parent: BaseGameRule
   id: Exterminator
   components:

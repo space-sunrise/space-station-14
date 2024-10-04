@@ -1,0 +1,9 @@
+- type: entity
+  id: StopFollowAction
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    icon: _Sunrise/Interface/Actions/stopFollow.png
+    priority: 2
+    checkCanInteract: false
+    event: !type:StopFollowActionEvent

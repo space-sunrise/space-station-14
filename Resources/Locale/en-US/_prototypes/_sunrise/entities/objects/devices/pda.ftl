@@ -22,3 +22,5 @@ ent-NanoTrasenRepresentativePDA = NanoTrasenRepresentative PDA
     .desc = { ent-CaptainPDA.desc }
 ent-BarberPDA = КПК парикмахера
     .desc = { ent-BasePDA.desc }
+ent-AdjutantPDA = adjuntant PDA
+    .desc = It sorely lacks the camera monitor function.

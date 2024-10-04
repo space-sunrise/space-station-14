@@ -1,0 +1,49 @@
+- type: cargoProduct
+  id: ArmoryM16A4
+  icon:
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/m16a4/big.rsi
+    state: icon
+  product: CrateArmoryM16A4
+  cost: 10000
+  category: cargoproduct-category-name-armory
+  group: market
+  
+- type: cargoProduct
+  id: ArmoryAKMS
+  icon:
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/akms/big.rsi
+    state: icon
+  product: CrateArmoryAKMS
+  cost: 11000
+  category: cargoproduct-category-name-armory
+  group: market
+
+- type: cargoProduct
+  id: ArmoryMP5
+  icon:
+    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp5/big.rsi
+    state: icon
+  product: CrateArmoryMP5
+  cost: 9500
+  category: cargoproduct-category-name-armory
+  group: market
+  
+- type: cargoProduct
+  id: ArmoryMagazineBoxLightRifleBig
+  icon:
+    sprite: Objects/Weapons/Guns/Ammunition/Boxes/light_rifle.rsi
+    state: base-b
+  product: CrateArmoryMagazineBoxLightRifleBig
+  cost: 2000
+  category: cargoproduct-category-name-armory
+  group: market
+  
+- type: cargoProduct
+  id: ArmoryMagazineBoxRifleBig
+  icon:
+    sprite: Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi
+    state: base-b
+  product: CrateArmoryMagazineBoxRifleBig
+  cost: 2000
+  category: cargoproduct-category-name-armory
+  group: market

@@ -133,6 +133,12 @@ uplink-reinforcement-radio-nukeops-desc =  Radio in a nuclear operative of extre
 uplink-reinforcement-radio-cyborg-assault-name = Syndicate Assault Cyborg Teleporter
 uplink-reinforcement-radio-cyborg-assault-desc =  A lean, mean killing machine with access to an Energy Sword, LMG, Cryptographic Sequencer, and a Pinpointer.
 
+uplink-mech-teleporter-heavy-name = Heavy Mech teleporter
+uplink-mech-teleporter-heavy-desc = Contains Cybersan heavy armored mech with integrated chainsword, Ultra AC-2, LBX AC 10 "Scattershot", BRM-6 Missile Rack and P-X Tesla Cannon.
+
+uplink-mech-teleporter-assault-name = Assault Mech teleporter
+uplink-mech-teleporter-assault-desc = Contains Cybersan lightly armored mech with integrated chainsword, LBX AC 10 "Scattershot", SRM-8 Light Missile Rack and P-X Tesla Cannon.
+
 uplink-stealth-box-name = Stealth Box
 uplink-stealth-box-desc = A box outfitted with stealth technology. Sneak around unnoticed, but don't move too fast or you'll be revealed!
 
@@ -165,6 +171,9 @@ uplink-syndicate-martyr-module-desc = Turn your emagged borg friend into a walki
 
 uplink-singularity-beacon-name = Singularity Beacon
 uplink-singularity-beacon-desc = A device that attracts singularities. Has to be anchored and powered. Causes singularities to grow when consumed.
+
+uplink-antimov-law-name = Antimov Law Circuit
+uplink-antimov-law-desc = A very dangerous Lawset to use when you want to cause the A.I. to go haywire, use with caution.
 
 # Implants
 uplink-storage-implanter-name = Storage Implanter
@@ -330,6 +339,9 @@ uplink-hardsuit-syndieelite-desc = An elite version of the blood-red hardsuit, w
 uplink-clothing-outer-hardsuit-juggernaut-name = Cybersun Juggernaut Suit
 uplink-clothing-outer-hardsuit-juggernaut-desc = Hyper resilient armor made of materials tested in the Tau chromosphere facility. The only thing that's going to be slowing you down is this suit... and tasers.
 
+uplink-energy-dome-name = Personal energy dome
+uplink-energy-dome-desc = A personal shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Comes with a small power cell.
+
 # Misc
 uplink-cyberpen-name = Cybersun Pen
 uplink-cyberpen-desc = Cybersun's legal department pen, invaluable for forging documents and escaping prisons. Smells vaguely of hard-light and war profiteering.
@@ -440,8 +452,14 @@ uplink-barber-scissors-desc = A good tool to give your fellow agent a nice hairc
 uplink-backpack-syndicate-name = Syndicate backpack
 uplink-backpack-syndicate-desc = A lightweight explosion-proof backpack for holding various traitor goods
 
+uplink-cameraBug-name = Camera bug
+uplink-cameraBug-desc = A portable device that allows you to view the station's cameras.
+
 uplink-combat-bakery-name = Combat Bakery Kit
 uplink-combat-bakery-desc = A kit of clandestine baked weapons. Contains a baguette sword, a pair of throwing croissants, and a syndicate microwave board for making more. Once the job is done, eat the evidence.
+
+uplink-business-card-name = Syndicate business card.
+uplink-business-card-desc = A business card that you can give to someone to demonstrate your involvement in the syndicate or leave at the crime scene in order to make fun of the detective. You can buy no more than three of them.
 
 uplink-syndicate-teleporter-name = Hand syndicate teleporter
 uplink-syndicate-teleporter-desc = An experimental hand teleporting device. Teleports its owner forward in a small area. Be careful not to end up in the wall.

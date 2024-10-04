@@ -55,7 +55,7 @@ namespace Content.Server.Holiday
         {
             foreach (var holiday in _currentHolidays)
             {
-                _chatManager.DispatchServerAnnouncement(holiday.Greet());
+                _chatManager.DispatchServerAnnouncement(holiday.Greet(), holiday.GreetColor()); // Sunrise-Edit
             }
         }
 

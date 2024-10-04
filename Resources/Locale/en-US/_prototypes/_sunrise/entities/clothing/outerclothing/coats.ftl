@@ -18,3 +18,5 @@ ent-ClothingOuterCoatNtrep = nt representive jacket
     .desc = A fancy black jacket, standart issue to Nanotrasen Representives.
 ent-ClothingOuterCoatNtrepOpen = nt representive jacket
     .desc = { ent-ClothingOuterStorageFoldableBaseOpened.desc }
+ent-ClothingOuterCoatAdjutant = adjutant's winter jacket
+    .desc = heavy jacket made of 'synthetic' animal fur.

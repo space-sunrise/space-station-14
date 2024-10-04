@@ -11227,7 +11227,7 @@ entities:
       pos: -21.5,-20.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -11054.908
+      secondsUntilStateChange: -12257.689
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11246,7 +11246,7 @@ entities:
       pos: -21.5,-18.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -11055.441
+      secondsUntilStateChange: -12258.223
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -12354,7 +12354,7 @@ entities:
       pos: 77.5,1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -13829.572
+      secondsUntilStateChange: -15032.354
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13155,7 +13155,7 @@ entities:
       pos: 44.5,27.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -3467.8748
+      secondsUntilStateChange: -4670.6562
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -14493,6 +14493,13 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 14.5,28.5
       parent: 2
+- proto: ArtistCircuitBoard
+  entities:
+  - uid: 10900
+    components:
+    - type: Transform
+      pos: -113.60269,8.782251
+      parent: 2
 - proto: Ashtray
   entities:
   - uid: 583
@@ -14509,6 +14516,13 @@ entities:
     components:
     - type: Transform
       pos: 32.2979,26.45987
+      parent: 2
+- proto: AsimovCircuitBoard
+  entities:
+  - uid: 25908
+    components:
+    - type: Transform
+      pos: -109.370636,8.725083
       parent: 2
 - proto: AtmosDeviceFanDirectional
   entities:
@@ -33313,6 +33327,11 @@ entities:
     components:
     - type: Transform
       pos: -8.5,-71.5
+      parent: 2
+  - uid: 25917
+    components:
+    - type: Transform
+      pos: 0.5,-49.5
       parent: 2
 - proto: CableApcStack
   entities:
@@ -60981,6 +61000,22 @@ entities:
     - type: Transform
       pos: 20.48184,-11.502675
       parent: 2
+    - type: GroupExamine
+      group:
+      - hoverMessage: ""
+        contextText: verb-examine-group-other
+        icon: /Textures/Interface/examine-star.png
+        components:
+        - Armor
+        - ClothingSpeedModifier
+        entries:
+        - message: >-
+            Обеспечивает следующую защиту:
+
+            - [color=orange]Взрывной[/color] урон [color=white]к содержимому[/color] снижается на [color=lightblue]10%[/color].
+          priority: 0
+          component: Armor
+        title: null
 - proto: ClothingBackpackDuffelSurgeryFilled
   entities:
   - uid: 9203
@@ -62168,7 +62203,7 @@ entities:
     - type: Transform
       pos: -47.44876,21.462833
       parent: 2
-- proto: ClothingOuterHardsuitSecurity
+- proto: ClothingOuterHardsuitSecuritySunrise
   entities:
   - uid: 9379
     components:
@@ -62781,6 +62816,13 @@ entities:
     - type: Transform
       pos: 7.5,3.5
       parent: 2
+- proto: CommandmentCircuitBoard
+  entities:
+  - uid: 9525
+    components:
+    - type: Transform
+      pos: -113.60892,8.394495
+      parent: 2
 - proto: ComputerAlert
   entities:
   - uid: 9473
@@ -63146,14 +63188,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 42.5,-0.5
       parent: 2
-- proto: ComputerShuttleSalvage
-  entities:
-  - uid: 9525
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 42.5,0.5
-      parent: 2
 - proto: ComputerShuttleSecurity
   entities:
   - uid: 9526
@@ -63325,7 +63359,7 @@ entities:
   - uid: 9552
     components:
     - type: Transform
-      pos: 22.5,-13.5
+      pos: 24.5,-11.5
       parent: 2
 - proto: ConveyorBelt
   entities:
@@ -63647,6 +63681,13 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 41.5,2.5
+      parent: 2
+- proto: CorporateCircuitBoard
+  entities:
+  - uid: 25907
+    components:
+    - type: Transform
+      pos: -109.95834,8.718797
       parent: 2
 - proto: CowToolboxFilled
   entities:
@@ -70364,17 +70405,12 @@ entities:
     - type: Transform
       pos: 40.998024,-28.26824
       parent: 2
-- proto: EffectHearts
+- proto: DungeonMasterCircuitBoard
   entities:
-  - uid: 17622
-    components:
-    - type: Transform
-      pos: -3.2532804,-4.4838986
-      parent: 2
   - uid: 23991
     components:
     - type: Transform
-      pos: 22.003782,-6.4169188
+      pos: -112.992584,8.387537
       parent: 2
 - proto: EmergencyLight
   entities:
@@ -72730,7 +72766,7 @@ entities:
       pos: 16.5,-8.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -6624.6514
+      secondsUntilStateChange: -7827.4326
       state: Closing
     - type: DeviceNetwork
       deviceLists:
@@ -102150,8 +102186,6 @@ entities:
     - type: Transform
       pos: -9.5,4.5
       parent: 2
-    - type: GravityGenerator
-      charge: 100
     - type: PointLight
       radius: 175.75
 - proto: Grille
@@ -112311,6 +112345,13 @@ entities:
     - type: Transform
       pos: -5.6705914,-28.301483
       parent: 2
+- proto: LiveLetLiveCircuitBoard
+  entities:
+  - uid: 17622
+    components:
+    - type: Transform
+      pos: -112.98599,8.792444
+      parent: 2
 - proto: LockableButtonCommand
   entities:
   - uid: 25060
@@ -114467,12 +114508,26 @@ entities:
     - type: Transform
       pos: 22.5,-29.5
       parent: 2
+- proto: NTDefaultCircuitBoard
+  entities:
+  - uid: 25906
+    components:
+    - type: Transform
+      pos: -110.55173,8.731553
+      parent: 2
 - proto: NuclearBomb
   entities:
   - uid: 16911
     components:
     - type: Transform
       pos: 4.5,-5.5
+      parent: 2
+- proto: NutimovCircuitBoard
+  entities:
+  - uid: 25726
+    components:
+    - type: Transform
+      pos: -112.40628,8.812952
       parent: 2
 - proto: OperatingTable
   entities:
@@ -114784,6 +114839,13 @@ entities:
     components:
     - type: Transform
       pos: -40.5,6.5
+      parent: 2
+- proto: PaladinCircuitBoard
+  entities:
+  - uid: 25905
+    components:
+    - type: Transform
+      pos: -112.41751,8.3724
       parent: 2
 - proto: Paper
   entities:
@@ -131477,7 +131539,7 @@ entities:
     - type: Transform
       pos: 42.5,-30.5
       parent: 2
-- proto: SMESBasic
+- proto: SMESExtended
   entities:
   - uid: 19643
     components:
@@ -133953,6 +134015,13 @@ entities:
     - type: Transform
       pos: 41.5,-30.5
       parent: 2
+- proto: SpawnPointAdjutant
+  entities:
+  - uid: 25916
+    components:
+    - type: Transform
+      pos: 0.5,2.5
+      parent: 2
 - proto: SpawnPointAtmos
   entities:
   - uid: 20108
@@ -134620,6 +134689,13 @@ entities:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -109.5,11.5
+      parent: 2
+- proto: StationEfficiencyCircuitBoard
+  entities:
+  - uid: 25909
+    components:
+    - type: Transform
+      pos: -109.96268,8.375474
       parent: 2
 - proto: StationMap
   entities:
@@ -141188,6 +141264,13 @@ entities:
     components:
     - type: Transform
       pos: -34.5,26.5
+      parent: 2
+- proto: VendingMachineClown
+  entities:
+  - uid: 25918
+    components:
+    - type: Transform
+      pos: 22.5,-13.5
       parent: 2
 - proto: VendingMachineCoffee
   entities:
@@ -158827,6 +158910,36 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 46.5,-17.5
       parent: 2
+- proto: WindoorSecurePlasma
+  entities:
+  - uid: 25913
+    components:
+    - type: Transform
+      pos: -110.5,9.5
+      parent: 2
+    - type: AccessReader
+      access:
+      - - Captain
+      - - ResearchDirector
+  - uid: 25914
+    components:
+    - type: Transform
+      pos: -109.5,9.5
+      parent: 2
+    - type: AccessReader
+      access:
+      - - Captain
+      - - ResearchDirector
+  - uid: 25915
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -110.5,8.5
+      parent: 2
+    - type: AccessReader
+      access:
+      - - Captain
+      - - ResearchDirector
 - proto: WindoorSecureSalvageLocked
   entities:
   - uid: 24263
@@ -158956,6 +159069,36 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 12.5,34.5
       parent: 2
+- proto: WindoorSecureUranium
+  entities:
+  - uid: 25910
+    components:
+    - type: Transform
+      pos: -113.5,9.5
+      parent: 2
+    - type: AccessReader
+      access:
+      - - Captain
+      - - ResearchDirector
+  - uid: 25911
+    components:
+    - type: Transform
+      pos: -112.5,9.5
+      parent: 2
+    - type: AccessReader
+      access:
+      - - Captain
+      - - ResearchDirector
+  - uid: 25912
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -112.5,8.5
+      parent: 2
+    - type: AccessReader
+      access:
+      - - Captain
+      - - ResearchDirector
 - proto: Window
   entities:
   - uid: 8633

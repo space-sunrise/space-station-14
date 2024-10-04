@@ -17,6 +17,7 @@
     - id: RubberStampApproved
     - id: RubberStampDenied
     - id: RubberStampQm
+    - id: AstroNavCartridge
     - id: FlippoLighterSunriseQm  # Sunrise-Flippo
 
 - type: entity
@@ -222,6 +223,7 @@
     - id: MedicalTechFabCircuitboard
     - id: MedkitFilled
     - id: RubberStampCMO
+    - id: MedTekCartridge
     - id: FlippoLighterSunriseCmo  # Sunrise-Flippos
 
 # Hardsuit table, used for suit storage as well
@@ -331,6 +333,7 @@
     - id: RubberStampHos
     - id: SecurityTechFabCircuitboard
     - id: WeaponDisabler
+    - id: WantedListCartridge
     - id: FlippoLighterSunriseHos  # Sunrise-Flippo
 
 # Hardsuit table, used for suit storage as well

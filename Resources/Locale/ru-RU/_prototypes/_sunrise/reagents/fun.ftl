@@ -5,3 +5,6 @@ reagent-name-honkpower = Мощь хонка
 reagent-desc-honkpower = Хохохонк
 reagent-flavor-honkpower = Как смех хонкоматери
 reagent-physical-desc-honkpower = Дрожащее
+reagent-physical-desc-strong-smell = Сильно пахнущее
+reagent-name-nastoyka-romashki = настойка ромашки
+reagent-desc-nastoyka-romashki = Лепестки ромашки настояные в спирте.
