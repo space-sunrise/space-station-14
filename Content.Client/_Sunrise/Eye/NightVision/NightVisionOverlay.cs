@@ -50,6 +50,8 @@ namespace Content.Client._Sunrise.Eye.NightVision
 
             _nightvisionComponent = nightvisionComp;
             
+            NightvisionColor = _nightvisionComponent.NightVisionColor;
+            
             var nightvision = _nightvisionComponent.IsNightVision;
 
             if (!nightvision && _nightvisionComponent.DrawShadows) // Disable our Night Vision

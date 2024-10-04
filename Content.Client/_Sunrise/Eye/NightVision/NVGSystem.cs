@@ -18,6 +18,6 @@ public sealed class NVGSystem : EntitySystem
         var nvcomp = args.nvcomp;
         
         if (TryComp<SpriteComponent>(component.Owner, out var sprite))
-            sprite.LayerSetVisible(NVGVisuals.Light, nvcomp.IsNightVision);
+            sprite.LayerSetVisible(NVGVisuals.Light, !nvcomp.IsNightVision);
     }
 }

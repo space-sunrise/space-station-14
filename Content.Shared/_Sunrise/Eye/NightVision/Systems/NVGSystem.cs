@@ -39,12 +39,12 @@ public sealed class NVGSystem : EntitySystem
         
         _actionsSystem.SetCooldown(component.ActionContainer, TimeSpan.FromSeconds(15));
 
-        if (nvcomp.IsNightVision)
+        if (!nvcomp.IsNightVision)
         {
             if (_net.IsServer && component.PlaySounds)
                 _audioSystem.PlayPvs(component.SoundOn, uid);
         }
-        else if (!nvcomp.IsNightVision)
+        else if (nvcomp.IsNightVision)
         {
             if (_net.IsServer && component.PlaySounds)
                 _audioSystem.PlayPvs(component.SoundOff, uid);

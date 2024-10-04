@@ -35,36 +35,38 @@ public sealed class NightVisionSystem : EntitySystem
 
     private void OnActionToggle(EntityUid uid, NightVisionComponent component, NVInstantActionEvent args)
     {
-        component.IsNightVision = !component.IsNightVision;
-        var changeEv = new NightVisionToggledEvent(component.IsNightVision);
-        RaiseLocalEvent(uid, ref changeEv);
-        Dirty(uid, component);
-        _actionsSystem.SetCooldown(component.ActionContainer, TimeSpan.FromSeconds(15));
-        
-        
         var updVisEv = new NVGUpdateVisualsEvent(component);
         
         if (_inventory.TryGetSlotEntity(uid, "eyes", out var eyesEntity))
         {
-            if (HasComp<NVGComponent>(eyesEntity))
+            if (TryComp<NVGComponent>(eyesEntity, out var nvcomp))
             {
+                component.NightVisionColor = nvcomp.NVGColor;
                 RaiseLocalEvent(eyesEntity.Value, ref updVisEv);
             }
         }
         else if (_inventory.TryGetSlotEntity(uid, "mask", out var maskEntity))
         {
-            if (HasComp<NVGComponent>(maskEntity))
+            if (TryComp<NVGComponent>(maskEntity, out var nvcomp))
             {
+                component.NightVisionColor = nvcomp.NVGColor;
                 RaiseLocalEvent(maskEntity.Value, ref updVisEv);
             }
         }
         else if (_inventory.TryGetSlotEntity(uid, "head", out var headEntity))
         {
-            if (HasComp<NVGComponent>(headEntity))
+            if (TryComp<NVGComponent>(headEntity, out var nvcomp))
             {
+                component.NightVisionColor = nvcomp.NVGColor;
                 RaiseLocalEvent(headEntity.Value, ref updVisEv);
             }
         }
+        
+        component.IsNightVision = !component.IsNightVision;
+        var changeEv = new NightVisionToggledEvent(component.IsNightVision);
+        RaiseLocalEvent(uid, ref changeEv);
+        Dirty(uid, component);
+        _actionsSystem.SetCooldown(component.ActionContainer, TimeSpan.FromSeconds(15));
     }
     
     [PublicAPI]
