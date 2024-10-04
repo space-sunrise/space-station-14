@@ -1,7 +1,7 @@
 - type: gameMap
   id: SunriseReach
   mapName: 'New reach (by ds_swanson)'
-  mapPath: /Maps/_Sunrise/reach.yml
+  mapPath: /Maps/_Sunrise/Station/reach.yml
   minPlayers: 0
   maxPlayers: 15
   stations:
