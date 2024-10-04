@@ -1,7 +1,7 @@
 - type: gameMap
   id: new_reach
   mapName: 'new reach'
-  mapPath: /Maps/new_reach.yml
+  mapPath: /Maps/_Sunrise/reach.yml
   minPlayers: 0
   maxPlayers: 15
   stations:
@@ -9,7 +9,7 @@
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Boykisser Station {1}'
+          mapNameTemplate: '{0} Рич {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: 'SC'
