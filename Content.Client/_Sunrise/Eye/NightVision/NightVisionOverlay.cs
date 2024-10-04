@@ -38,18 +38,18 @@ namespace Content.Client._Sunrise.Eye.NightVision
             var playerEntity = _playerManager.LocalSession?.AttachedEntity;
             if (playerEntity == null)
                 return false;
-            
+
             if (!_entityManager.TryGetComponent(playerEntity, out EyeComponent? eyeComp))
                 return false;
 
             if (args.Viewport.Eye != eyeComp.Eye)
                 return false;
 
-            if (!_entityManager.TryGetComponent<NightVisionComponent>(playerEntity, out var nightvisionComp))
+            if (!_entityManager.TryGetComponent<NightVisionComponent>(playerEntity.Value, out var nightvisionComp))
                 return false;
 
             _nightvisionComponent = nightvisionComp;
-
+            
             var nightvision = _nightvisionComponent.IsNightVision;
 
             if (!nightvision && _nightvisionComponent.DrawShadows) // Disable our Night Vision
@@ -78,13 +78,16 @@ namespace Content.Client._Sunrise.Eye.NightVision
                 _nightvisionComponent.GraceFrame = false;
             }
 
-            _greyscaleShader?.SetParameter("SCREEN_TEXTURE", ScreenTexture);
-
-            var worldHandle = args.WorldHandle;
-            var viewport = args.WorldBounds;
-            worldHandle.UseShader(_greyscaleShader);
-            worldHandle.DrawRect(viewport, NightvisionColor);
-            worldHandle.UseShader(null);
+            if (_nightvisionComponent.IsNightVision)
+            {
+                _greyscaleShader?.SetParameter("SCREEN_TEXTURE", ScreenTexture);
+                
+                var worldHandle = args.WorldHandle;
+                var viewport = args.WorldBounds;
+                worldHandle.UseShader(_greyscaleShader);
+                worldHandle.DrawRect(viewport, NightvisionColor);
+                worldHandle.UseShader(null);
+            }
         }
     }
 }
