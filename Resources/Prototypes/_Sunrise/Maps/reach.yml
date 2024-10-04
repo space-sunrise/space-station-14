@@ -9,7 +9,7 @@
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
-          mapNameTemplate: '{0} Рич {1}'
+          mapNameTemplate: '{0} Предел {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: 'SC'
@@ -17,6 +17,7 @@
           emergencyShuttlePath: /Maps/Shuttles/emergency.yml
         - type: StationJobs
           availableJobs:
+            SalvageSpecialist: [ 1, 1 ]
             Captain: [ 1, 1 ]
             HeadOfSecurity: [ 1, 1 ]
             SecurityOfficer: [ 1, 2 ]
