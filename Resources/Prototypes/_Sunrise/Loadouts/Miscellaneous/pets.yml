@@ -3,13 +3,91 @@
 - type: loadout
   id: PetRabbit
   minLimit: 0
-  sponsorOnly: true
+  sponsorOnly: false
   inhand:
   - PetRabbit
 
 - type: loadout
   id: PetAnteater
   minLimit: 0
-  sponsorOnly: true
+  sponsorOnly: false
   inhand:
   - PetAnteater
+
+- type: loadout
+  id: PetOctopus
+  minLimit: 0
+  sponsorOnly: false
+  inhand:
+  - PetOctopus
+
+- type: loadout
+  id: PetOtter
+  minLimit: 0
+  sponsorOnly: false
+  inhand:
+  - PetOtter
+
+- type: loadout
+  id: PetAlexander
+  minLimit: 0
+  sponsorOnly: false
+  inhand:
+  - PetAlexander
+
+- type: loadout
+  id: PetNavySeal
+  minLimit: 0
+  sponsorOnly: false
+  inhand:
+  - PetAlexander
+
+- type: loadout
+  id: PetMobCorgiIan
+  minLimit: 0
+  sponsorOnly: false
+  inhand:
+  - PetMobCorgiIan
+
+- type: loadout
+  id: PetMobSlimesPet
+  minLimit: 0
+  sponsorOnly: false
+  inhand:
+  - PetMobSlimesPet
+
+- type: loadout
+  id: PetMobCatRuntime
+  minLimit: 0
+  sponsorOnly: false
+  inhand:
+  - PetMobCatRuntime
+
+- type: loadout
+  id: PetMobCorgiLisa
+  minLimit: 0
+  sponsorOnly: false
+  inhand:
+  - PetMobCorgiLisa
+
+- type: loadout
+  id: PetMobCatFloppa
+  minLimit: 0
+  sponsorOnly: false
+  inhand:
+  - PetMobCatFloppa
+
+- type: loadout
+  id: PetMobWalter
+  minLimit: 0
+  sponsorOnly: false
+  inhand:
+  - PetMobWalter
+
+- type: loadout
+  id: PetMobCrabAtmos
+  minLimit: 0
+  sponsorOnly: false
+  inhand:
+  - PetMobCrabAtmos
+
