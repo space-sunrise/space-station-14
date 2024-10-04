@@ -4132,3 +4132,18 @@
   id: 298
   time: '2024-10-03T19:01:58.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/446
+- author: SplikZerys
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D MindShield \u0430\u0442\
+      \u043C\u043E\u0441\u0430\u043C."
+    type: Add
+  id: 299
+  time: '2024-10-04T08:29:54.413435+00:00'
+- author: SplikZerys
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u0438\u043B \u0432 \u043E\u043F\u043E\
+      \u0432\u0435\u0449\u0435\u043D\u0438\u044F\u0445 \u0418\u0418 \u0441\u0442\u0430\
+      \u043D\u0446\u0438\u0438 \u043E\u0437\u0432\u0443\u0447\u043A\u0443 Glados."
+    type: Add
+  id: 300
+  time: '2024-10-04T09:06:48.157470+00:00'
