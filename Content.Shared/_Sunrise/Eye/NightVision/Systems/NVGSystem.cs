@@ -69,7 +69,7 @@ public sealed class NVGSystem : EntitySystem
         _nightvisionableSystem.UpdateIsNightVision(args.Equipee, nvcomp);
         if (component.ActionContainer == null)
             _actionsSystem.AddAction(args.Equipee, ref component.ActionContainer, component.ActionProto);
-        _actionsSystem.SetCooldown(component.ActionContainer, TimeSpan.FromSeconds(1)); // GCD?
+        _actionsSystem.SetCooldown(component.ActionContainer, TimeSpan.FromSeconds(5)); // GCD?
 
         if (component.PlaySounds && nvcomp.IsNightVision)
         {

@@ -66,7 +66,7 @@ public sealed class NightVisionSystem : EntitySystem
         var changeEv = new NightVisionToggledEvent(component.IsNightVision);
         RaiseLocalEvent(uid, ref changeEv);
         Dirty(uid, component);
-        _actionsSystem.SetCooldown(component.ActionContainer, TimeSpan.FromSeconds(15));
+        _actionsSystem.SetCooldown(component.ActionContainer, TimeSpan.FromSeconds(5));
     }
     
     [PublicAPI]
