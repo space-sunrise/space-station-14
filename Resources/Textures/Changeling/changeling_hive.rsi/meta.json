@@ -8,13 +8,13 @@
     },
     "states": [
         {
-            "name": "kilo"
+            "name": "0"
         },
         {
-            "name": "lima"
+            "name": "1"
         },
         {
-            "name": "mike"
+            "name": "2"
         },
         {
             "name": "undefined"
