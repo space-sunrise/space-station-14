@@ -8,5 +8,3 @@ ent-ClothingNeckLawyerbadge = lawyer badge
     .desc = A badge to show that the owner is a 'legitimate' lawyer who passed the NT bar exam required to practice law.
 ent-ActionStethoscope = Listen with stethoscope
     .desc = { "" }
-ent-Dinkystar = star sticker
-    .desc = A dinky lil star for only the hardest working security officers! It's not even sticky anymore.
