@@ -1,8 +1,7 @@
 - type: latheRecipe
   id: HandCraftedNVD
   result: ClothingEyesNVDHandcrafted
-  category: Tools
-  completetime: 15
+  completetime: 10
   materials:
     Steel: 500
     Plastic: 200
@@ -11,8 +10,7 @@
 - type: latheRecipe
   id: BasicNVD
   result: ClothingEyesNVD
-  category: Tools
-  completetime: 15
+  completetime: 10
   materials:
     Steel: 1000
     Plastic: 400
