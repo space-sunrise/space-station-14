@@ -34,6 +34,6 @@ ent-WeaponMechCombatMissileRack8 = стойка для легких ракет S
 ent-WeaponMechCombatMissileRack6 = ракетная стойка BRM-6
     .desc = Трубки должны загружаться снаружи.
     .suffix = Оружие мехов, Стрелковое, Боевое, Ракетница
-ent-WeaponMechCombatFlashbangLauncher =  ракетная стойка ослепительных ракет SGL-6
+ent-WeaponMechCombatFlashbangLauncher = ракетная стойка ослепительных ракет SGL-6
     .desc = Запускает низколетящие прорывные ракеты, предназначенные для взрыва только при поражении прочной цели.
     .suffix = Оружие мехов, Стрелковое, Боевое, Ослепляющая
