@@ -40,7 +40,7 @@ public sealed class SoilSystem : EntitySystem
         var userMeta = MetaData(args.User);
 
         _popup.PopupEntity(Loc.GetString(ent.Comp.PopupStringSuccess, ("user", userMeta.EntityName), ("name", targetMeta.EntityName)), args.User, PopupType.LargeGreen);
-        _stamina.TryTakeStamina(ent, ent.Comp.StaminaDamage);
+        _stamina.TryTakeStamina(args.User, ent.Comp.StaminaDamage);
 
         _entity.QueueDeleteEntity(ent.Owner);
     }
