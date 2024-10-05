@@ -15,7 +15,7 @@
 # Tier 2
 
 - type: technology
-  id: HandcraftNVD
+  id: BasicNVD
   name: research-technology-basic-nvd
   icon:
     sprite: _Sunrise/Clothing/Eyes/Glasses/nvd.rsi
