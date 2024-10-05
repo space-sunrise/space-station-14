@@ -1,10 +1,10 @@
-namespace Content.Server.EnergyDome;
+namespace Content.Shared.EnergyDome;
 
 /// <summary>
 /// marker component that allows linking the dome generator with the dome itself
 /// </summary>
 
-[RegisterComponent, Access(typeof(EnergyDomeSystem))]
+[RegisterComponent]
 public sealed partial class EnergyDomeComponent : Component
 {
     /// <summary>
