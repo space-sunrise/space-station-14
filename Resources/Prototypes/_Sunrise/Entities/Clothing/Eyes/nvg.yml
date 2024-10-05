@@ -70,4 +70,4 @@
         shader: unshaded
         map: [ "enum.NVGVisuals.Light" ]
   - type: NVG
-    color: "#d9d900"
+    color: "#ebeb00"
