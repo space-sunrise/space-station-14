@@ -1,3 +1,3 @@
-ent-WeaponMechDebugMelle = debug bam
-    .desc = A robust thing.
-    .suffix = Mech Weapon, DEBUG, Melee
+ent-WeaponMechDebugMelle = дебаг бам
+    .desc = Робастная штука.
+    .suffix = Оружие мехов, ДЕБАГ, Ближнее
