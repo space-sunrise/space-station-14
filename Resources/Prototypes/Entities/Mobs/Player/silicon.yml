@@ -70,6 +70,7 @@
     canShuttle: false
     title: comms-console-announcement-title-station-ai
     color: "#2ed2fd"
+    announceVoice: PortalGlados
 
 
 # Ai

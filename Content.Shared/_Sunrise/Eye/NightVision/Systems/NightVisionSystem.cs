@@ -11,6 +11,7 @@ namespace Content.Shared._Sunrise.Eye.NightVision.Systems;
 public sealed class NightVisionSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly INetManager _net = default!;
 
@@ -38,11 +39,31 @@ public sealed class NightVisionSystem : EntitySystem
         var changeEv = new NightVisionToggledEvent(component.IsNightVision);
         RaiseLocalEvent(uid, ref changeEv);
         Dirty(uid, component);
-        _actionsSystem.SetCooldown(component.ActionContainer, TimeSpan.FromSeconds(1));
-        if (component is { IsNightVision: true, PlaySoundOn: true })
+        _actionsSystem.SetCooldown(component.ActionContainer, TimeSpan.FromSeconds(15));
+        
+        
+        var updVisEv = new NVGUpdateVisualsEvent(component);
+        
+        if (_inventory.TryGetSlotEntity(uid, "eyes", out var eyesEntity))
         {
-            if (_net.IsServer)
-                _audioSystem.PlayPvs(component.OnOffSound, uid);
+            if (HasComp<NVGComponent>(eyesEntity))
+            {
+                RaiseLocalEvent(eyesEntity.Value, ref updVisEv);
+            }
+        }
+        else if (_inventory.TryGetSlotEntity(uid, "mask", out var maskEntity))
+        {
+            if (HasComp<NVGComponent>(maskEntity))
+            {
+                RaiseLocalEvent(maskEntity.Value, ref updVisEv);
+            }
+        }
+        else if (_inventory.TryGetSlotEntity(uid, "head", out var headEntity))
+        {
+            if (HasComp<NVGComponent>(headEntity))
+            {
+                RaiseLocalEvent(headEntity.Value, ref updVisEv);
+            }
         }
     }
     
@@ -71,6 +92,15 @@ public sealed class NightVisionSystem : EntitySystem
 [ByRefEvent]
 public record struct NightVisionToggledEvent(bool CanEnableNightVision);
 
+[PublicAPI, ByRefEvent]
+public sealed class NVGUpdateVisualsEvent : EntityEventArgs {
+    public NightVisionComponent nvcomp;
+    
+    public NVGUpdateVisualsEvent(NightVisionComponent component)
+    {
+        nvcomp = component;
+    }
+}
 
 public sealed class CanVisionAttemptEvent : CancellableEntityEventArgs, IInventoryRelayEvent
 {

@@ -1,24 +1,43 @@
 - type: entity
   name: NVD
-  id: ClothingEyesVision
+  id: ClothingEyesNVD
   parent: BaseItem
   description: Night vision device. Provides an image of the terrain in low-light conditions.
   components:
   - type: Item
   - type: Sprite
-    sprite: Clothing/Eyes/Glasses/ninjavisor.rsi
-    state: icon
+    sprite: _Sunrise/Clothing/Eyes/Glasses/nvg.rsi
+    layers:
+      - state: icon
+      - state: icon-unshaded
+        shader: unshaded
+      - state: light-overlay
+        visible: false
+        shader: unshaded
+        map: [ "enum.NVGVisuals.Light" ]
   - type: Clothing
-    sprite: Clothing/Eyes/Glasses/ninjavisor.rsi
+    sprite: _Sunrise/Clothing/Eyes/Glasses/nvg.rsi
     quickEquip: true
+    clothingVisuals:
+      eyes:
+      - state: off-equipped-EYES
+      - state: equipped-EYES-unshaded
+        shader: unshaded
     slots: [ Eyes ]
   - type: UseDelay
     delay: 4
   - type: NVG
+  - type: PointLight
+    color: green
+    enabled: false
+    autoRot: true
+    radius: 0.5
+    energy: 0.5
+  - type: Appearance
 
 - type: entity
-  parent: [ClothingEyesVision,ShowSecurityIcons]
-  id: ClothingEyesVisionNuki
-  suffix: nuke
+  parent: [ClothingEyesNVD,ShowSecurityIcons]
+  id: ClothingEyesNVDSyndicate
+  suffix: syndicate
   components:
   - type: ShowSyndicateIcons

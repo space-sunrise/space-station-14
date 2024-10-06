@@ -13,6 +13,7 @@ using Content.Shared.PowerCell.Components;
 using Content.Shared.Timing;
 using Content.Shared.Toggleable;
 using Content.Shared.Verbs;
+using Content.Shared.EnergyDome;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 

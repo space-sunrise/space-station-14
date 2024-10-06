@@ -2,3 +2,12 @@
   id: ClownGoblinScream
   files:
     - /Audio/Items/airhorn.ogg
+
+- type: soundCollection
+  id: PlushieSlimeSounds
+  files:
+    - /Audio/_Sunrise/Voice/Slime/блааамп.ogg
+    - /Audio/_Sunrise/Voice/Slime/блимпаф.ogg
+    - /Audio/_Sunrise/Voice/Slime/блабл-бламп.ogg
+    - /Audio/_Sunrise/Voice/Slime/блюмп.ogg
+    - /Audio/_Sunrise/Voice/Slime/бламп.ogg
