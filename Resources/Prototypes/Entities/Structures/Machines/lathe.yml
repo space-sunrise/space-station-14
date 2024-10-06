@@ -360,6 +360,10 @@
       - OreBagOfHolding
       - DeviceQuantumSpinInverter
       - EnergyDomeDirectionalTurtle
+      # Sunrise-start
+      - HandCraftedNVD
+      - BasicNVD
+      # Sunrise-end
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       # Sunrise-Start
