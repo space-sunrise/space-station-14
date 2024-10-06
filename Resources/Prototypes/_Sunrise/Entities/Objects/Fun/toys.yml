@@ -621,3 +621,13 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
     state: plushie-smile
+
+- type: entity
+  id: PlushieCFB
+  parent: BasePlushie
+  name: Виктория Белая
+  description: Персона в строгом костюме сотрудника ПНТ. Постоянно карает и не щадит. Любит баловаться и мяукать.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-CFB
