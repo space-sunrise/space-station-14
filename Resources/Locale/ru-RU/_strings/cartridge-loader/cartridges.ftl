@@ -16,6 +16,7 @@ log-probe-label-time = Время
 log-probe-label-accessor = Использовано:
 log-probe-label-number = #
 astro-nav-program-name = АстроНав
+med-tek-program-name = МедТек
 # Wanted list cartridge
 wanted-list-program-name = Список разыскиваемых
 wanted-list-label-no-records = Все в порядке, ковбой
