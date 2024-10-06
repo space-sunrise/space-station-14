@@ -4211,3 +4211,12 @@
     type: Remove
   id: 304
   time: '2024-10-06T22:06:18.435030+00:00'
+- author: pacable
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0430 \u043F\u043B\u044E\
+      \u0448\u043A\u0430 \u0412\u0438\u043A\u0442\u043E\u0440\u0438\u0438 \u0411\u0435\
+      \u043B\u043E\u0439."
+    type: Add
+  id: 305
+  time: '2024-10-06T22:14:27.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/464
