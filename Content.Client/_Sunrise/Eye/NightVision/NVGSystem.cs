@@ -20,7 +20,8 @@ public sealed class NVGSystem : EntitySystem
         
         if (TryComp<SpriteComponent>(component.Owner, out var sprite))
         {
-            sprite.LayerSetVisible(NVGVisuals.Light, !nvcomp.IsNightVision);
+            if (args.Sprite.LayerMapTryGet(NVGVisuals.Light, out var layer))
+                sprite.LayerSetVisible(layer, !nvcomp.IsNightVision);
         }
     }
     
@@ -30,7 +31,8 @@ public sealed class NVGSystem : EntitySystem
         
         if (TryComp<SpriteComponent>(component.Owner, out var sprite))
         {
-            sprite.LayerSetVisible(NVGVisuals.Light, args.enable);
+            if (args.Sprite.LayerMapTryGet(NVGVisuals.Light, out var layer))
+                sprite.LayerSetVisible(layer, args.enable);
         }
     }
 }
