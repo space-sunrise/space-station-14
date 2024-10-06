@@ -53,6 +53,23 @@ public sealed class NVGSystem : EntitySystem
         var updVisEv = new AfterNVGUpdateVisualsEvent(nvcomp);
         RaiseLocalEvent(component.Owner, ref updVisEv);
     }
+    
+    public void UpdateVisuals(EntityUid uid, NVGComponent component, bool enable, NightVisionComponent nvcomp)
+    {
+        if (enable)
+        {
+            if (_net.IsServer && component.PlaySounds)
+                _audioSystem.PlayPvs(component.SoundOn, uid);
+        }
+        else if (!enable)
+        {
+            if (_net.IsServer && component.PlaySounds)
+                _audioSystem.PlayPvs(component.SoundOff, uid);
+        }
+        
+        var updVisEv = new NVGClientUpdateVisualsEvent(nvcomp, enable);
+        RaiseLocalEvent(component.Owner, ref updVisEv);
+    }
 
     private void OnEquipped(EntityUid uid, NVGComponent component, GotEquippedEvent args)
     {
@@ -70,13 +87,6 @@ public sealed class NVGSystem : EntitySystem
         if (component.ActionContainer == null)
             _actionsSystem.AddAction(args.Equipee, ref component.ActionContainer, component.ActionProto);
         _actionsSystem.SetCooldown(component.ActionContainer, TimeSpan.FromSeconds(5)); // GCD?
-
-        if (component.PlaySounds && nvcomp.IsNightVision)
-        {
-            if (_net.IsServer)
-                _audioSystem.PlayPvs(component.SoundOn, uid);
-        }
-
     }
 
     private void OnUnequipped(EntityUid uid, NVGComponent component, GotUnequippedEvent args)
@@ -94,7 +104,10 @@ public sealed class NVGSystem : EntitySystem
             component.ActionContainer = null;
         }
         
-        RemCompDeferred<NightVisionComponent>(args.Equipee);
+        UpdateVisuals(uid ,component, false, nvcomp);
+        
+        if (_net.IsServer)
+            RemCompDeferred<NightVisionComponent>(args.Equipee);
     }
 }
 
@@ -105,5 +118,18 @@ public sealed class AfterNVGUpdateVisualsEvent : EntityEventArgs {
     public AfterNVGUpdateVisualsEvent(NightVisionComponent component)
     {
         nvcomp = component;
+    }
+}
+
+[PublicAPI, ByRefEvent]
+public sealed class NVGClientUpdateVisualsEvent : EntityEventArgs {
+    public NightVisionComponent nvcomp;
+    public bool enable;
+    
+    public NVGClientUpdateVisualsEvent(NightVisionComponent component, bool isenable)
+    {
+        nvcomp = component;
+        enable = isenable;
+        
     }
 }
