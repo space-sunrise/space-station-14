@@ -178,7 +178,7 @@
       - MicroManipulatorStockPart
       - MatterBinStockPart
       - CapacitorStockPart
-      - ConveyorBeltAssembly
+#      - ConveyorBeltAssembly Sunrise-Edit
       - IntercomElectronics
       - FirelockElectronics
       - DoorElectronics
