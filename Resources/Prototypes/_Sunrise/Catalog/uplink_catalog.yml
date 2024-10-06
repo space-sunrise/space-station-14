@@ -1,3 +1,14 @@
+- type: listing
+  id: UplinkSyndieNVD
+  name: uplink-syndie-nvd-name
+  description: uplink-syndie-nvd-desc
+  icon: { sprite: /Textures/_Sunrise/Clothing/Eyes/Glasses/syndie_nvd.rsi, state: icon }
+  productEntity: ClothingEyesNVDSyndicate
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkWearables
+
 # For the Buldog
 - type: listing
   id: UplinkMagazineShotgun

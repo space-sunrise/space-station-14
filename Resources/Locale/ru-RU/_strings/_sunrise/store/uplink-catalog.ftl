@@ -12,3 +12,5 @@ uplink-hardsuit-syndie-commander-name = скафандр Командира Си
 uplink-hardsuit-syndie-commander-desc = Скафандр предназначеный для командиров отрядов Горлекса.
 uplink-hardsuit-syndie-medic-name = скафандр Медика Синдиката
 uplink-hardsuit-syndie-medic-desc = Скафандр предназначеный для боевых врачей отрядов Горлекса.
+uplink-syndie-nvd-name = ПНВ Синдиката
+uplink-syndie-nvd-desc = Качественно исполненый прибор ночного видения, производства компании "Горлакс секьюрити", использует красные линзы для улучшения видимости в условиях низкой освещенности.
