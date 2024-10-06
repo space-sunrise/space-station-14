@@ -13,8 +13,8 @@
   startingGear: TechnicalAssistantGear
   icon: "JobIconTechnicalAssistant"
   supervisors: job-supervisors-engineering
-  canBeAntag: false
-  displayWeight: 0  # Sunrise
+  canBeAntag: true # Sunrise-Edit
+  displayWeight: 0 # Sunrise-Edit
   access:
   - Maintenance
   - Engineering

@@ -11,8 +11,8 @@
   startingGear: MedicalInternGear
   icon: "JobIconMedicalIntern"
   supervisors: job-supervisors-medicine
-  canBeAntag: false
-  displayWeight: 0  # Sunrise
+  canBeAntag: true # Sunrise-Edit
+  displayWeight: 0  # Sunrise-Edit
   access:
   - Medical
   - Maintenance
