@@ -12,6 +12,7 @@ using Content.Shared._Sunrise.Shuttles;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Atmos;
 using Content.Shared.Gravity;
+using Content.Shared.Parallax;
 using Content.Shared.Parallax.Biomes;
 using Content.Shared.Salvage;
 using Content.Shared.Shuttles.Components;
@@ -164,6 +165,10 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
 
         EnsureComp<AlwaysPoweredMapComponent>(mapUid);
         EnsureComp<NightDayMapLightComponent>(mapUid);
+
+        EnsureComp<ParallaxComponent>(mapUid, out var parallaxComponent);
+        parallaxComponent.Parallax = "Sky";
+        Dirty(mapUid, parallaxComponent);
 
         var destComp = _entManager.EnsureComponent<FTLDestinationComponent>(mapUid);
         destComp.BeaconsOnly = true;

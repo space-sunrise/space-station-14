@@ -50,6 +50,7 @@ using Content.Server.GameTicking;
 using Content.Shared._Sunrise.AlwaysPoweredMap;
 using Content.Shared.Atmos;
 using Content.Shared.Gravity;
+using Content.Shared.Parallax;
 using Content.Shared.Parallax.Biomes;
 using Content.Shared.Salvage;
 using Robust.Shared.Audio;
@@ -619,6 +620,9 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         // Sunrise-End
 
         EnsureComp<AlwaysPoweredMapComponent>(mapUid);
+        EnsureComp<ParallaxComponent>(mapUid, out var parallaxComponent);
+        parallaxComponent.Parallax = "Sky";
+        Dirty(mapUid, parallaxComponent);
 
         _mapManager.DoMapInitialize(mapId);
         // Sunrise-end
