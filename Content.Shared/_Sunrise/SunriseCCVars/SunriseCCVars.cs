@@ -190,6 +190,13 @@ public sealed class SunriseCCVars
     public static readonly CVarDef<int> MinPlayersPlanetPrison =
         CVarDef.Create("planet_prison.min_players", 60, CVar.SERVERONLY);
 
+    /*
+     * MaxLoadedChunks
+     */
+
+    public static readonly CVarDef<int> MaxLoadedChunks =
+        CVarDef.Create("chunk.max", 100, CVar.ARCHIVE | CVar.REPLICATED | CVar.SERVER);
+
     /**
      * Roadmap
      */
