@@ -3,6 +3,7 @@
 evolutionmenu-combat-armblade-name = Лезвие руки
 evolutionmenu-combat-armblade-desc =
     Преобразуйте одну из своих рук в уродливое лезвие, состоящее из костей и плоти, способное вскрывать шлюзы и разрезать врагов, как масло.
+        ПРЕДУПРЕЖДЕНИЕ: Требуется поглотить как минимум 2 органики для использования способности.
         Стоимость: 15 химических веществ.
 evolutionmenu-combat-boneshard-name = Костяной осколок
 evolutionmenu-combat-boneshard-desc =
