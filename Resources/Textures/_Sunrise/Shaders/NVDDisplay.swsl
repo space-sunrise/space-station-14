@@ -1,0 +1,22 @@
+﻿uniform sampler2D SCREEN_TEXTURE;
+
+void fragment() {
+    vec2 uv = UV;
+    vec4 color = texture(SCREEN_TEXTURE, uv);
+
+    // Convert the color to grayscale
+    float grayscale = dot(color.rgb, vec3(0.299, 0.587, 0.114));
+    vec3 result = vec3(grayscale);
+
+    float stripeHeight = 0.01;
+    float stripeOffset = mod(TIME * 0.1, 1.0);
+    float stripeAlpha = 0.1;
+    float stripe = smoothstep(0.0, stripeHeight, mod(uv.y + stripeOffset, stripeHeight));
+
+    vec3 stripeColor = vec3(0.1, 0.1, 0.1);
+    float stripeGray = dot(stripeColor, vec3(0.299, 0.587, 0.114));
+
+    result = mix(result, vec3(stripeGray), stripeAlpha * stripe);
+
+    COLOR = vec4(result, color.a);
+}

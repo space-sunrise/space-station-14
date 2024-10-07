@@ -1,0 +1,4 @@
+﻿- type: shader
+  id: NVDDisplay
+  kind: source
+  path: "/Textures/_Sunrise/Shaders/NVDDisplay.swsl"

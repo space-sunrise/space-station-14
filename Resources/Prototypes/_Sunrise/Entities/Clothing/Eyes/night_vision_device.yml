@@ -14,9 +14,9 @@
       - state: light-overlay
         visible: false
         shader: unshaded
-        map: [ "enum.NVGVisuals.Light" ]
+        map: [ "enum.NVDVisuals.Light" ]
   - type: Clothing
-    sprite: _Sunrise/Clothing/Eyes/Glasses/nvg.rsi
+    sprite: _Sunrise/Clothing/Eyes/Glasses/nvd.rsi
     quickEquip: true
     clothingVisuals:
       eyes:
@@ -24,9 +24,6 @@
       - state: equipped-EYES-unshaded
         shader: unshaded
     slots: [ Eyes ]
-  - type: UseDelay
-    delay: 4
-  - type: NVG
   - type: PointLight
     color: green
     enabled: false
@@ -34,6 +31,9 @@
     radius: 0.5
     energy: 0.5
   - type: Appearance
+  - type: NightVisionDevice
+    displayColor: "#82eb6c"
+    displayShader: NVDDisplay
 
 - type: entity
   parent: [ClothingEyesNVD,ShowSecurityIcons]
@@ -49,11 +49,12 @@
       - state: light-overlay
         visible: false
         shader: unshaded
-        map: [ "enum.NVGVisuals.Light" ]
+        map: [ "enum.NVDVisuals.Light" ]
   - type: ShowSyndicateIcons
-  - type: NVG
-    color: "#800000"
-    
+  - type: NightVisionDevice
+    displayColor: "#ff6e6e"
+    displayShader: NVDDisplay
+
 - type: entity
   parent: ClothingEyesNVD
   id: ClothingEyesNVDHandcrafted
@@ -68,6 +69,7 @@
       - state: light-overlay
         visible: false
         shader: unshaded
-        map: [ "enum.NVGVisuals.Light" ]
-  - type: NVG
-    color: "#ebeb00"
+        map: [ "enum.NVDVisuals.Light" ]
+  - type: NightVisionDevice
+    displayColor: "#f2fa5c"
+    displayShader: NVDDisplay

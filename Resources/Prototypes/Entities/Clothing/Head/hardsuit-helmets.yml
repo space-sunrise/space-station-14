@@ -86,8 +86,9 @@
   # Sunrise-Start
   - type: EyeProtection
   - type: FlashImmunity
-  - type: NVG
-    color: "#ebeb00"
+  - type: NightVisionDevice
+    displayColor: "#ebeb00"
+    displayShader: NVDDisplay
   # Sunrise-End
 
 #Spationaut Hardsuit
