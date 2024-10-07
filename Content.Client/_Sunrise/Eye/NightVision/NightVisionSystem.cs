@@ -8,7 +8,6 @@ public sealed class NightVisionSystem : EntitySystem
 {
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IOverlayManager _overlayMan = default!;
-    [Dependency] private readonly ILightManager _light = default!;
 
     private NightVisionOverlay _overlay = default!;
 
@@ -29,7 +28,6 @@ public sealed class NightVisionSystem : EntitySystem
     {
         if (_overlay == default!)
             return;
-        _light.DrawLighting = !component.IsNightVision;
         _overlayMan.AddOverlay(_overlay);
     }
 
@@ -37,7 +35,6 @@ public sealed class NightVisionSystem : EntitySystem
     {
         if (_overlay == default!)
             return;
-        _light.DrawLighting = !component.IsNightVision;
         _overlayMan.RemoveOverlay(_overlay);
     }
 
@@ -45,7 +42,6 @@ public sealed class NightVisionSystem : EntitySystem
     {
         if (_player.LocalSession?.AttachedEntity != uid)
             return;
-        _light.DrawLighting = !component.IsNightVision;
         _overlayMan.AddOverlay(_overlay);
     }
 
@@ -55,7 +51,6 @@ public sealed class NightVisionSystem : EntitySystem
             return;
         if (_overlay == default!)
             return;
-        _light.DrawLighting = !component.IsNightVision;
         _overlayMan.RemoveOverlay(_overlay);
     }
 }

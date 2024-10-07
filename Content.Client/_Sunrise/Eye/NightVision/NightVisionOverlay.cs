@@ -86,7 +86,6 @@ namespace Content.Client._Sunrise.Eye.NightVision
                 var worldHandle = args.WorldHandle;
                 var viewport = args.WorldBounds;
                 worldHandle.UseShader(_greyscaleShader);
-                Logger.Info($"Draw {DisplayColor} color");
                 worldHandle.DrawRect(viewport, DisplayColor);
                 worldHandle.UseShader(null);
             }

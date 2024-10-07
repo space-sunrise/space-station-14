@@ -3,6 +3,7 @@ using Content.Shared._Sunrise.Eye.NightVision.Components;
 using Content.Shared._Sunrise.Eye.NightVision.Systems;
 using Content.Shared.Inventory.Events;
 using Robust.Client.Graphics;
+using Robust.Client.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client._Sunrise.Eye.NightVision;
@@ -12,6 +13,7 @@ public sealed class NightVisionDeviceOverlaySystem : EquipmentHudSystem<NightVis
     [Dependency] private readonly IOverlayManager _overlayMan = default!;
     [Dependency] private readonly ILightManager _lightManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
 
     private NightVisionDeviceOverlay _overlay = default!;
 
@@ -25,8 +27,16 @@ public sealed class NightVisionDeviceOverlaySystem : EquipmentHudSystem<NightVis
 
     private void OnNightVisionToggled(EntityUid uid, NightVisionDeviceComponent component, NightVisionDeviceToggledEvent args)
     {
-        _overlay.Enabled = args.Enabled;
-        _lightManager.DrawLighting = !args.Enabled;
+        var playerEntity = _playerManager.LocalSession?.AttachedEntity;
+        if (playerEntity == null)
+            return;
+
+        if (playerEntity == args.Equipped)
+        {
+            _overlay.Enabled = component.Activated;
+            // Явный бред
+            _lightManager.DrawLighting = !component.Activated;
+        }
     }
 
     protected override void UpdateInternal(RefreshEquipmentHudEvent<NightVisionDeviceComponent> component)
@@ -39,7 +49,6 @@ public sealed class NightVisionDeviceOverlaySystem : EquipmentHudSystem<NightVis
                 _overlay.Shader = shaderPrototype.InstanceUnique();
             _overlay.DisplayColor = comp.DisplayColor;
             _overlay.Enabled = comp.Activated;
-            _lightManager.DrawLighting = !comp.Activated;
         }
         if (!_overlayMan.HasOverlay<NightVisionOverlay>())
         {
@@ -51,6 +60,7 @@ public sealed class NightVisionDeviceOverlaySystem : EquipmentHudSystem<NightVis
     {
         base.DeactivateInternal();
         _overlayMan.RemoveOverlay(_overlay);
+        // Явный бред
         _lightManager.DrawLighting = true;
     }
 }

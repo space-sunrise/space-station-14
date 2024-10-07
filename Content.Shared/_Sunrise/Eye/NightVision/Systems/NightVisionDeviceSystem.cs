@@ -75,7 +75,7 @@ public sealed class NightVisionDeviceSystem : EntitySystem
         _appearance.SetData(ent, ToggleableLightVisuals.Enabled, ent.Comp.Activated);
         _light.SetEnabled(ent.Owner, ent.Comp.Activated, comp: light);
 
-        var changeEv = new NightVisionDeviceToggledEvent(ent.Comp.Activated);
+        var changeEv = new NightVisionDeviceToggledEvent(args.Performer);
         RaiseLocalEvent(ent.Owner, ref changeEv);
         Dirty(ent);
 
@@ -84,7 +84,15 @@ public sealed class NightVisionDeviceSystem : EntitySystem
 }
 
 [ByRefEvent]
-public record struct NightVisionDeviceToggledEvent(bool Enabled);
+public sealed class NightVisionDeviceToggledEvent : EntityEventArgs
+{
+    public EntityUid Equipped;
+    public NightVisionDeviceToggledEvent(EntityUid equipped)
+    {
+        Equipped = equipped;
+    }
+
+};
 
 [PublicAPI, ByRefEvent]
 public sealed class AfterNvdUpdateVisualsEvent : EntityEventArgs
