@@ -9,7 +9,7 @@
   startingGear: SecurityCadetGear
   icon: "JobIconSecurityCadet"
   supervisors: job-supervisors-security
-  canBeAntag: true # Sunrise-Edit
+  canBeAntag: false
   displayWeight: 0 # Sunrise-Edit
   access:
   - Security
