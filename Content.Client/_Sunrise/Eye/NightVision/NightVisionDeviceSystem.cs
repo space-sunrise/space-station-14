@@ -35,13 +35,9 @@ public sealed class NightVisionDeviceOverlaySystem : EquipmentHudSystem<NightVis
 
         foreach (var comp in component.Components)
         {
-            Logger.Info($"UpdateInternal");
-            Logger.Info($"DisplayShader: {comp.DisplayShader}");
             if (_prototypeManager.TryIndex<ShaderPrototype>(comp.DisplayShader, out var shaderPrototype))
                 _overlay.Shader = shaderPrototype.InstanceUnique();
-            Logger.Info($"DisplayColor: {comp.DisplayColor}");
             _overlay.DisplayColor = comp.DisplayColor;
-            Logger.Info($"Enabled: {comp.Activated}");
             _overlay.Enabled = comp.Activated;
             _lightManager.DrawLighting = !comp.Activated;
         }
