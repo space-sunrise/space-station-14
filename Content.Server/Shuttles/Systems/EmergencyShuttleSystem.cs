@@ -8,6 +8,7 @@ using Content.Server._Sunrise.TransitHub;
 using Content.Server.Access.Systems;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
+using Content.Server.Atmos.EntitySystems;
 using Content.Server.Chat.Systems;
 using Content.Server.Communications;
 using Content.Server.DeviceNetwork.Components;
@@ -46,6 +47,10 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Server.GameTicking;
+using Content.Shared._Sunrise.AlwaysPoweredMap;
+using Content.Shared.Atmos;
+using Content.Shared.Gravity;
+using Content.Shared.Parallax;
 using Content.Shared.Parallax.Biomes;
 using Content.Shared.Salvage;
 using Robust.Shared.Audio;
@@ -84,6 +89,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
     [Dependency] private readonly BiomeSystem _biomes = default!;
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
     [Dependency] private readonly MapLoaderSystem _loader = default!;
+    [Dependency] private readonly AtmosphereSystem _atmos = default!;
 
     private const float ShuttleSpawnBuffer = 1f;
 
@@ -575,6 +581,35 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
             return;
         }
 
+        EnsureComp<NightDayMapLightComponent>(mapUid);
+
+        Log.Info($"Created transit hub grid {ToPrettyString(uids[0])} on map {ToPrettyString(mapUid)} for station {ToPrettyString(station)}");
+
+        EnsureComp<ProtectedGridComponent>(uids[0]);
+
+       // var template = _random.Pick(component.Biomes);
+       // _biomes.EnsurePlanet(mapUid, _protoManager.Index<BiomeTemplatePrototype>(template), mapLight: component.PlanetLightColor);
+
+        component.MapEntity = mapUid;
+        component.Entity = uids[0];
+
+        var moles = new float[Atmospherics.AdjustedNumberOfGases];
+        moles[(int) Gas.Oxygen] = 21.824779f;
+        moles[(int) Gas.Nitrogen] = 82.10312f;
+
+        var mixture = new GasMixture(moles, Atmospherics.T20C);
+
+        _atmos.SetMapAtmosphere(mapUid, false, mixture);
+
+        var gravity = EnsureComp<GravityComponent>(mapUid);
+        gravity.Enabled = true;
+        gravity.Inherent = true;
+        Dirty(mapUid, gravity);
+
+        var light = EnsureComp<MapLightComponent>(mapUid);
+        light.AmbientLightColor = Color.FromHex("#D8B059");
+        Dirty(mapUid, light);
+
         // Sunrise-Start
         var restricted = new RestrictedRangeComponent
         {
@@ -584,16 +619,10 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         AddComp(mapUid, restricted);
         // Sunrise-End
 
-        EnsureComp<NightDayMapLightComponent>(mapUid);
-
-        Log.Info($"Created transit hub grid {ToPrettyString(uids[0])} on map {ToPrettyString(mapUid)} for station {ToPrettyString(station)}");
-
-        EnsureComp<ProtectedGridComponent>(uids[0]);
-        var template = _random.Pick(component.Biomes);
-        _biomes.EnsurePlanet(mapUid, _protoManager.Index<BiomeTemplatePrototype>(template), mapLight: component.PlanetLightColor);
-
-        component.MapEntity = mapUid;
-        component.Entity = uids[0];
+        EnsureComp<AlwaysPoweredMapComponent>(mapUid);
+        EnsureComp<ParallaxComponent>(mapUid, out var parallaxComponent);
+        parallaxComponent.Parallax = "Grass";
+        Dirty(mapUid, parallaxComponent);
 
         _mapManager.DoMapInitialize(mapId);
         // Sunrise-end
