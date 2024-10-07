@@ -6,9 +6,7 @@
   components:
   - type: InstantAction
     useDelay: 2.5
-    icon:
-      sprite: Clothing/Eyes/Glasses/ninjavisor.rsi
-      state: icon
+    icon: { sprite: _Sunrise/Clothing/Eyes/Glasses/nvg.rsi, state: icon }
     event: !type:NVInstantActionEvent
 
 - type: entity
@@ -19,7 +17,5 @@
   components:
   - type: InstantAction
     useDelay: 2.5
-    icon:
-      sprite: Clothing/Eyes/Glasses/ninjavisor.rsi
-      state: icon
+    icon: { sprite: _Sunrise/Clothing/Eyes/Glasses/nvg.rsi, state: icon }
     event: !type:NVInstantActionEvent

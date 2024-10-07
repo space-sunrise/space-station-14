@@ -14,6 +14,9 @@ public sealed partial class NVGComponent : Component
     [DataField] public EntProtoId<InstantActionComponent> ActionProto = "NVToggleAction";
     [DataField] public EntityUid? ActionContainer;
     
+    [DataField("color")] 
+    public Color NVGColor = Color.Green;
+    
     [DataField("playSounds")]
     public bool PlaySounds = true;
     public SoundSpecifier SoundOn = new SoundPathSpecifier("/Audio/_Sunrise/Items/night_vision_on.ogg");

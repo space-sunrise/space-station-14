@@ -11,6 +11,7 @@ public sealed class NVGSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<NVGComponent, AfterNVGUpdateVisualsEvent>(OnAfterNVGUpdateVisualsEvent);
+        SubscribeLocalEvent<NVGComponent, NVGClientUpdateVisualsEvent>(OnNVGClientUpdateVisualsEvent);
     }
     
     private void OnAfterNVGUpdateVisualsEvent(EntityUid uid, NVGComponent component, AfterNVGUpdateVisualsEvent args)
@@ -18,6 +19,20 @@ public sealed class NVGSystem : EntitySystem
         var nvcomp = args.nvcomp;
         
         if (TryComp<SpriteComponent>(component.Owner, out var sprite))
-            sprite.LayerSetVisible(NVGVisuals.Light, nvcomp.IsNightVision);
+        {
+            if (sprite.LayerMapTryGet(NVGVisuals.Light, out var layer))
+                sprite.LayerSetVisible(layer, !nvcomp.IsNightVision);
+        }
+    }
+    
+    private void OnNVGClientUpdateVisualsEvent(EntityUid uid, NVGComponent component, NVGClientUpdateVisualsEvent args)
+    {
+        var nvcomp = args.nvcomp;
+        
+        if (TryComp<SpriteComponent>(component.Owner, out var sprite))
+        {
+            if (sprite.LayerMapTryGet(NVGVisuals.Light, out var layer))
+                sprite.LayerSetVisible(layer, args.enable);
+        }
     }
 }
