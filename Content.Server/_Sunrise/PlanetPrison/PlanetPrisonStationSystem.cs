@@ -167,7 +167,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         EnsureComp<NightDayMapLightComponent>(mapUid);
 
         EnsureComp<ParallaxComponent>(mapUid, out var parallaxComponent);
-        parallaxComponent.Parallax = "Sky";
+        parallaxComponent.Parallax = "Grass";
         Dirty(mapUid, parallaxComponent);
 
         var destComp = _entManager.EnsureComponent<FTLDestinationComponent>(mapUid);
