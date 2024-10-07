@@ -558,7 +558,7 @@
   - type: Wieldable
   - type: UseDelay
     delay: 0.5
-  - type: ZoomableGun
+  - type: Telescope
 
 - type: entity
   name: S-13 «Чёрная мамба»
@@ -602,7 +602,7 @@
   - type: Battery
     maxCharge: 3000
     startingCharge: 3000
-    
+
 - type: entity
   name: SAM-300
   parent: BaseWeaponBattery
