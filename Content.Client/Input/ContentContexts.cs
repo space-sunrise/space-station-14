@@ -85,10 +85,6 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.Arcade2);
             human.AddFunction(ContentKeyFunctions.Arcade3);
 
-            // Sunrise LieDown
-            human.AddFunction(Shared._Sunrise.KeyFunctions.LieDown);
-            // Sunrise LieDown
-
             // actions should be common (for ghosts, mobs, etc)
             common.AddFunction(ContentKeyFunctions.OpenActionsMenu);
 

@@ -584,8 +584,3 @@ binds:
   type: State
   key: MouseRight
   canFocus: true
-
-# Sunrise
-- function: LieDown
-  type: State
-  key: R
