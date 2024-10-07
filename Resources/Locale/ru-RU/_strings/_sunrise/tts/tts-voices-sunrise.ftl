@@ -23,3 +23,4 @@ tts-voice-name-splikzerys = (NEW) [SUNRISE] SplikZerys
 tts-voice-name-dota2-riki = (NEW) [Dota 2] Рики
 tts-voice-name-dota2-pudge = (NEW) [Dota 2] Пудж
 tts-voice-name-tf2-soldier = (NEW) [Team Fortress 2] Солдат 2.0
+tts-voice-name-dota2-abaddon = (NEW) [Dota 2] Абаддон
