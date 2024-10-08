@@ -82,13 +82,13 @@
   - type: Sprite
     sprite: _Sunrise/Structures/Airlocks/Glass/double_chemistry.rsi
 
-- type: entity
-  id: DoubleGlassAirlockCommand
-  parent: [ DoubleGlassAirlock, AirlockCommandLocked ]
-  name: double command glass airlock
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Structures/Airlocks/Glass/double_command.rsi
+#- type: entity
+#  id: DoubleGlassAirlockCommand
+#  parent: [ DoubleGlassAirlock, AirlockCommandLocked ]
+#  name: double command glass airlock
+#  components:
+#  - type: Sprite
+#    sprite: _Sunrise/Structures/Airlocks/Glass/double_command.rsi
 
 - type: entity
   id: DoubleGlassAirlockCentralCommand
