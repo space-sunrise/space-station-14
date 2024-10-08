@@ -1,3 +1,5 @@
+# == Basic == #
+
 - type: entity
   id: DoubleGlassAirlock
   parent: AirlockGlass
@@ -55,8 +57,10 @@
         - GlassAirlockLayer
   - type: Transform
     noRot: false
+    
+# == airlocks == #
 
-# == Double airlocks ==
+# == Double airlocks == #
 
 - type: entity
   id: DoubleGlassAirlockAtmospherics
