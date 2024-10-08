@@ -142,6 +142,7 @@ public sealed partial class BorgSystem : SharedBorgSystem
     {
         base.OnInserted(uid, component, args);
 
+//Sunrise-start: Fix borgs minds
         if (HasComp<BorgBrainComponent>(args.Entity) && _mind.TryGetMind(args.Entity, out var mindId, out var mind))
         {
             if (TryComp<ContainerManagerComponent>(uid, out var containerManager) &&
@@ -153,12 +154,14 @@ public sealed partial class BorgSystem : SharedBorgSystem
                 }
             }
         }
+//Sunrise-end
     }
 
     protected override void OnRemoved(EntityUid uid, BorgChassisComponent component, EntRemovedFromContainerMessage args)
     {
         base.OnRemoved(uid, component, args);
 
+//Sunrise-start: Fix borgs minds
         if (HasComp<BorgBrainComponent>(args.Entity) && _mind.TryGetMind(uid, out var mindId, out var mind))
         {
             if (TryComp<ContainerManagerComponent>(uid, out var containerManager) &&
@@ -170,6 +173,7 @@ public sealed partial class BorgSystem : SharedBorgSystem
                 }
             }
         }
+//Sunrise-end
     }
 
     private void OnMindAdded(EntityUid uid, BorgChassisComponent component, MindAddedMessage args)
