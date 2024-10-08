@@ -225,3 +225,17 @@
   sex: Male
   speaker: tf2_soldier
   provider: sunrise
+
+- type: ttsVoice
+  id: Dota2Abaddon
+  name: tts-voice-name-dota2-abaddon
+  sex: Male
+  speaker: dota2_abaddon
+  provider: sunrise
+
+- type: ttsVoice
+  id: Dota2Silencer
+  name: tts-voice-name-dota2-silencer
+  sex: Male
+  speaker: dota2_silencer
+  provider: sunrise

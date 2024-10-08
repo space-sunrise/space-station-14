@@ -8,20 +8,20 @@ namespace Content.Client._Sunrise.Eye.NightVision
 {
     public sealed class NightVisionOverlay : Overlay
     {
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IEntityManager _entityManager = default!;
         [Dependency] private readonly ILightManager _lightManager = default!;
+        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
 
         public override bool RequestScreenTexture => true;
         public override OverlaySpace Space => OverlaySpace.WorldSpace;
         private readonly ShaderInstance? _greyscaleShader;
-	    public Color NightvisionColor = Color.Green;
+	    public Color DisplayColor = Color.Green;
 
-        private NightVisionComponent _nightvisionComponent = default!;
+        private NightVisionComponent _nightVisionComponent = default!;
 
-	    public NightVisionOverlay(Color color)
+	    public NightVisionOverlay()
         {
             IoCManager.InjectDependencies(this);
             if (!_prototypeManager.TryIndex<ShaderPrototype>("GreyscaleFullscreen", out var shaderPrototype))
@@ -30,9 +30,8 @@ namespace Content.Client._Sunrise.Eye.NightVision
                 return;
             }
             _greyscaleShader = shaderPrototype.InstanceUnique();
-
-            NightvisionColor = color;
         }
+
         protected override bool BeforeDraw(in OverlayDrawArgs args)
         {
             var playerEntity = _playerManager.LocalSession?.AttachedEntity;
@@ -48,15 +47,17 @@ namespace Content.Client._Sunrise.Eye.NightVision
             if (!_entityManager.TryGetComponent<NightVisionComponent>(playerEntity.Value, out var nightvisionComp))
                 return false;
 
-            _nightvisionComponent = nightvisionComp;
-            
-            var nightvision = _nightvisionComponent.IsNightVision;
+            _nightVisionComponent = nightvisionComp;
 
-            if (!nightvision && _nightvisionComponent.DrawShadows) // Disable our Night Vision
+            DisplayColor = _nightVisionComponent.Color;
+
+            var nightvision = _nightVisionComponent.IsNightVision;
+
+            if (!nightvision && _nightVisionComponent.DrawShadows) // Disable our Night Vision
             {
                 _lightManager.DrawLighting = true;
-                _nightvisionComponent.DrawShadows = false;
-                _nightvisionComponent.GraceFrame = true;
+                _nightVisionComponent.DrawShadows = false;
+                _nightVisionComponent.GraceFrame = true;
                 return true;
             }
 
@@ -68,24 +69,24 @@ namespace Content.Client._Sunrise.Eye.NightVision
             if (ScreenTexture == null)
                 return;
 
-            if (!_nightvisionComponent.GraceFrame)
+            if (!_nightVisionComponent.GraceFrame)
             {
-                _nightvisionComponent.DrawShadows = true; // Enable our Night Vision
+                _nightVisionComponent.DrawShadows = true; // Enable our Night Vision
                 _lightManager.DrawLighting = false;
             }
             else
             {
-                _nightvisionComponent.GraceFrame = false;
+                _nightVisionComponent.GraceFrame = false;
             }
 
-            if (_nightvisionComponent.IsNightVision)
+            if (_nightVisionComponent.IsNightVision)
             {
                 _greyscaleShader?.SetParameter("SCREEN_TEXTURE", ScreenTexture);
-                
+
                 var worldHandle = args.WorldHandle;
                 var viewport = args.WorldBounds;
                 worldHandle.UseShader(_greyscaleShader);
-                worldHandle.DrawRect(viewport, NightvisionColor);
+                worldHandle.DrawRect(viewport, DisplayColor);
                 worldHandle.UseShader(null);
             }
         }
