@@ -154,7 +154,7 @@
   name: Spy
   id: Spy
   description: Redspace anomaly
-  save: false
+  parent: MobGuardianBase
   components:
     - type: GhostRole
       allowMovement: true
@@ -186,7 +186,7 @@
   name: Lawyer
   id: Lawyer
   description: Fast, but his range is limited to three meters, which is very short.
-  save: false
+  parent: MobGuardianBase
   components:
     - type: GhostRole
       allowMovement: true
