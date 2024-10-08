@@ -96,7 +96,7 @@
   name: double central command glass airlock
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/centcomm.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_centcomm.rsi
 
 - type: entity
   id: DoubleGlassAirlockEngineering
