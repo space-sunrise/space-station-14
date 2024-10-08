@@ -135059,33 +135059,6 @@ entities:
     - type: Transform
       pos: -52.5,-49.5
       parent: 5350
-- proto: SMESBasic
-  entities:
-  - uid: 9200
-    components:
-    - type: Transform
-      pos: 44.5,25.5
-      parent: 5350
-  - uid: 9207
-    components:
-    - type: Transform
-      pos: 48.5,30.5
-      parent: 5350
-  - uid: 24070
-    components:
-    - type: Transform
-      pos: 44.5,26.5
-      parent: 5350
-  - uid: 24073
-    components:
-    - type: Transform
-      pos: 57.5,9.5
-      parent: 5350
-  - uid: 26979
-    components:
-    - type: Transform
-      pos: 55.5,30.5
-      parent: 5350
 - proto: SMESExtended
   entities:
   - uid: 4749
@@ -135183,6 +135156,37 @@ entities:
       parent: 5350
     - type: Label
       currentLabel: СМЭС Ядра ИИ
+    - type: NameModifier
+      baseName: СМЭС
+  - uid: 9200
+    components:
+    - type: Transform
+      pos: 44.5,25.5
+      parent: 5350
+  - uid: 9207
+    components:
+    - type: Transform
+      pos: 48.5,30.5
+      parent: 5350
+  - uid: 15910
+    components:
+    - type: Transform
+      pos: 44.5,26.5
+      parent: 5350
+  - uid: 20032
+    components:
+    - type: Transform
+      pos: 57.5,9.5
+      parent: 5350
+  - uid: 23037
+    components:
+    - type: MetaData
+      name: СМЭС (СМЭС сингулярности)
+    - type: Transform
+      pos: 55.5,30.5
+      parent: 5350
+    - type: Label
+      currentLabel: СМЭС сингулярности
     - type: NameModifier
       baseName: СМЭС
 - proto: SmokingPipeFilledCannabis
@@ -138103,36 +138107,6 @@ entities:
     - type: Transform
       pos: 26.5,-52.5
       parent: 5350
-- proto: SubstationBasic
-  entities:
-  - uid: 15910
-    components:
-    - type: MetaData
-      name: North Med Substation
-    - type: Transform
-      pos: -31.5,-27.5
-      parent: 5350
-  - uid: 20178
-    components:
-    - type: MetaData
-      name: East Sci Substation
-    - type: Transform
-      pos: 27.5,-32.5
-      parent: 5350
-  - uid: 23398
-    components:
-    - type: MetaData
-      name: Engineering Substation
-    - type: Transform
-      pos: 53.5,7.5
-      parent: 5350
-  - uid: 23685
-    components:
-    - type: MetaData
-      name: Singulo Substation
-    - type: Transform
-      pos: 56.5,30.5
-      parent: 5350
 - proto: SubstationExtended
   entities:
   - uid: 9091
@@ -138353,6 +138327,50 @@ entities:
       parent: 5350
     - type: Label
       currentLabel: Подстанция Ядра ИИ
+    - type: NameModifier
+      baseName: подстанция
+  - uid: 20049
+    components:
+    - type: MetaData
+      name: подстанция (Подстанция сингулярности)
+    - type: Transform
+      pos: 56.5,30.5
+      parent: 5350
+    - type: Label
+      currentLabel: Подстанция сингулярности
+    - type: NameModifier
+      baseName: подстанция
+  - uid: 20178
+    components:
+    - type: MetaData
+      name: подстанция (Подстанция севера меда)
+    - type: Transform
+      pos: -31.5,-27.5
+      parent: 5350
+    - type: Label
+      currentLabel: Подстанция севера меда
+    - type: NameModifier
+      baseName: подстанция
+  - uid: 22706
+    components:
+    - type: MetaData
+      name: подстанция (Подстанция востока НИО)
+    - type: Transform
+      pos: 27.5,-32.5
+      parent: 5350
+    - type: Label
+      currentLabel: Подстанция востока НИО
+    - type: NameModifier
+      baseName: подстанция
+  - uid: 23036
+    components:
+    - type: MetaData
+      name: подстанция (Подстанция инженерии)
+    - type: Transform
+      pos: 53.5,7.5
+      parent: 5350
+    - type: Label
+      currentLabel: Подстанция инженерии
     - type: NameModifier
       baseName: подстанция
 - proto: SuitStorageCaptain
