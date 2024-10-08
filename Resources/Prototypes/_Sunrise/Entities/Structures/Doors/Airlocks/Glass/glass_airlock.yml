@@ -64,7 +64,7 @@
   name: double atmos glass airlock
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Airlocks/Glass/double_atmospherics.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_atmospherics.rsi
 
 - type: entity
   id: DoubleGlassAirlockCargo
@@ -72,7 +72,7 @@
   name: double cargo glass airlock
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Airlocks/Glass/double_cargo.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_cargo.rsi
 
 - type: entity
   id: DoubleGlassAirlockChemistry
@@ -80,7 +80,7 @@
   name: double chemistry glass airlock
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Airlocks/Glass/double_chemistry.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_chemistry.rsi
 
 - type: entity
   id: DoubleGlassAirlockCommand
@@ -88,7 +88,7 @@
   name: double command glass airlock
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Airlocks/Glass/double_command.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_command.rsi
 
 - type: entity
   id: DoubleGlassAirlockCentralCommand
@@ -96,7 +96,7 @@
   name: double central command glass airlock
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Airlocks/Glass/centcomm.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/centcomm.rsi
 
 - type: entity
   id: DoubleGlassAirlockEngineering
@@ -104,7 +104,7 @@
   name: double engineering glass airlock
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Airlocks/Glass/double_engineering.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_engineering.rsi
 
 - type: entity
   id: DoubleGlassAirlockMaint
@@ -112,7 +112,7 @@
   name: double maint glass airlock
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Airlocks/Glass/double_maint.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_maint.rsi
 
 - type: entity
   id: DoubleGlassAirlockMedical
@@ -120,7 +120,7 @@
   name: double medical glass airlock
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Airlocks/Glass/double_medical.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_medical.rsi
 
 - type: entity
   id: DoubleGlassAirlockScience
@@ -128,7 +128,7 @@
   name: double science glass airlock
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Airlocks/Glass/double_science.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_science.rsi
 
 - type: entity
   id: DoubleGlassAirlockSecurity
@@ -136,7 +136,7 @@
   name: double security glass airlock
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Airlocks/Glass/double_security.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_security.rsi
 
 - type: entity
   id: DoubleGlassAirlockVirology
@@ -144,7 +144,7 @@
   name: double virology glass airlock
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Airlocks/Glass/double_virology.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_virology.rsi
 
 # == Triple airlocks ==
 
@@ -154,7 +154,7 @@
   name: triple atmospherics glass airlock
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Airlocks/Glass/triple_atmospherics.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_atmospherics.rsi
 
 - type: entity
   id: TripleGlassAirlockBasic
@@ -162,7 +162,7 @@
   name: triple basic glass airlock
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Airlocks/Glass/triple_basic.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_basic.rsi
 
 - type: entity
   id: TripleGlassAirlockCargo
@@ -170,7 +170,7 @@
   name: triple cargo glass airlock
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Airlocks/Glass/triple_cargo.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_cargo.rsi
 
 - type: entity
   id: TripleGlassAirlockCentcomm
@@ -178,7 +178,7 @@
   name: triple centcomm glass airlock
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Airlocks/Glass/triple_centcomm.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_centcomm.rsi
 
 - type: entity
   id: TripleGlassAirlockChemistry
@@ -186,7 +186,7 @@
   name: triple chemistry glass airlock
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Airlocks/Glass/triple_chemistry.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_chemistry.rsi
 
 - type: entity
   id: TripleGlassAirlockCommand
@@ -194,7 +194,7 @@
   name: triple command glass airlock
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Airlocks/Glass/triple_command.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_command.rsi
 
 - type: entity
   id: TripleGlassAirlockEngineering
@@ -202,7 +202,7 @@
   name: triple engineering glass airlock
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Airlocks/Glass/triple_engineering.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_engineering.rsi
 
 - type: entity
   id: TripleGlassAirlock1
@@ -210,7 +210,7 @@
   name: triple glass airlock
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Airlocks/Glass/triple_glass.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_glass.rsi
 
 - type: entity
   id: TripleGlassAirlockMaint
@@ -218,7 +218,7 @@
   name: triple maint glass airlock
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Airlocks/Glass/triple_maint.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_maint.rsi
 
 - type: entity
   id: TripleGlassAirlockMedical
@@ -226,7 +226,7 @@
   name: triple medical glass airlock
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Airlocks/Glass/triple_medical.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_medical.rsi
 
 - type: entity
   id: TripleGlassAirlockScience
@@ -234,7 +234,7 @@
   name: triple science glass airlock
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Airlocks/Glass/triple_science.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_science.rsi
 
 - type: entity
   id: TripleGlassAirlockSecurity
@@ -242,7 +242,7 @@
   name: triple security glass airlock
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Airlocks/Glass/triple_security.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_security.rsi
 
 - type: entity
   id: TripleGlassAirlockVirology
@@ -250,4 +250,4 @@
   name: triple virology glass airlock
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Airlocks/Glass/triple_virology.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_virology.rsi
