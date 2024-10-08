@@ -10,7 +10,6 @@
       makeSentient: true
       name: ghost-role-information-dagon-name
       description: ghost-role-information-dagon-description
-    - type: GhostTakeoverAvailable
     - type: MeleeWeapon
       hidden: false
       altDisarm: false
@@ -52,7 +51,6 @@
       makeSentient: true
       name: ghost-role-information-quack-name
       description: ghost-role-information-quack-description
-    - type: GhostTakeoverAvailable
     - type: MeleeWeapon
       hidden: false
       altDisarm: false
@@ -94,7 +92,6 @@
       makeSentient: true
       name: ghost-role-information-gefest-name
       description: ghost-role-information-gefest-description
-    - type: GhostTakeoverAvailable
     - type: MeleeWeapon
       hidden: false
       altDisarm: false
@@ -146,7 +143,6 @@
     makeSentient: true
     name: ghost-role-information-redskalibur-name
     description: ghost-role-information-redskalibur-description
-  - type: GhostTakeoverAvailable
   - type: Guardian
   - type: MeleeWeapon
     attackRate: 1.2
@@ -166,7 +162,6 @@
       makeSentient: true
       name: ghost-role-information-spy-name
       description: ghost-role-information-spy-description
-    - type: GhostTakeoverAvailable
     - type: MeleeWeapon
       hidden: false
       altDisarm: false
@@ -186,3 +181,29 @@
     - type: Stealth
       maxVisibility: 0
       MinVisibility: 0
+      
+- type: entity
+  name: Lawyer
+  id: Lawyer
+  description: Fast, but his range is limited to three meters, which is very short.
+  save: false
+  components:
+    - type: GhostRole
+      allowMovement: true
+      allowSpeech: true
+      makeSentient: true
+      name: ghost-role-information-lawyer-name
+      description: ghost-role-information-lawyer-description
+    - type: MeleeWeapon
+      hidden: false
+      altDisarm: false
+      animation: WeaponArcFist
+      attackRate: 1.5
+      autoAttack: true
+      damage:
+        types:
+          Blunt: 30
+          Structural: 55
+    - type: Guardian
+      damageShare: 0.35
+      distanceAllowed: 3

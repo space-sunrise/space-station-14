@@ -42,3 +42,12 @@
   components:
   - type: GuardianCreator
     guardianProto: Spy
+    
+- type: entity
+  name:  Lawyer injector
+  suffix: Security Neoparasite
+  id: LawyerInjector
+  parent: HoloparasiteInjector
+  components:
+  - type: GuardianCreator
+    guardianProto: Lawyer
