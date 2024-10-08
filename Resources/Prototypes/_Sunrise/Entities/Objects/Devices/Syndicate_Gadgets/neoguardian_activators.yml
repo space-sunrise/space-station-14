@@ -33,3 +33,12 @@
   components:
   - type: GuardianCreator
     guardianProto: Redskalibur
+    
+- type: entity
+  name: Neoparasite injector
+  suffix: Spy
+  id: SpyInjector
+  parent: HoloparasiteInjector
+  components:
+  - type: GuardianCreator
+    guardianProto: Spy

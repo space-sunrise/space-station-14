@@ -129,3 +129,60 @@
       delay: 1
     - type: ExplosionResistance
       damageCoefficient: 0.1
+      
+- type: entity
+  name: Redskalibur
+  id: Redskalibur
+  parent: EldritchBlade
+  description: Redspace anomaly
+  components:
+  - type: Reflect
+    enabled: true
+    reflectProb: .50
+    spread: 360
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: ghost-role-information-redskalibur-name
+    description: ghost-role-information-redskalibur-description
+  - type: GhostTakeoverAvailable
+  - type: Guardian
+  - type: MeleeWeapon
+    attackRate: 1.2
+    damage:
+      types:
+        Slash: 20
+        
+- type: entity
+  name: Spy
+  id: Spy
+  description: Redspace anomaly
+  save: false
+  components:
+    - type: GhostRole
+      allowMovement: true
+      allowSpeech: true
+      makeSentient: true
+      name: ghost-role-information-spy-name
+      description: ghost-role-information-spy-description
+    - type: GhostTakeoverAvailable
+    - type: MeleeWeapon
+      hidden: false
+      altDisarm: false
+      animation: WeaponArcFist
+      attackRate: 1.3
+      autoAttack: true
+      damage:
+        types:
+          Blunt: 5
+          Structural: 10
+    - type: Guardian
+      distanceAllowed: 900
+    - type: Tag
+      tags:
+        - CannotSuicide
+        - DoorBumpOpener
+    - type: Stealth
+      maxVisibility: 0
+      MinVisibility: 0
