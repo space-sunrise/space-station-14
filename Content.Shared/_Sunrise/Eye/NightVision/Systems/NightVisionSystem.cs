@@ -2,7 +2,6 @@ using Content.Shared._Sunrise.Eye.NightVision.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Actions;
 using JetBrains.Annotations;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 
@@ -11,7 +10,6 @@ namespace Content.Shared._Sunrise.Eye.NightVision.Systems;
 public sealed class NightVisionSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly INetManager _net = default!;
 
     public override void Initialize()
@@ -20,7 +18,8 @@ public sealed class NightVisionSystem : EntitySystem
 
         if(_net.IsServer)
             SubscribeLocalEvent<NightVisionComponent, ComponentStartup>(OnComponentStartup);
-        SubscribeLocalEvent<NightVisionComponent, NVInstantActionEvent>(OnActionToggle);
+        SubscribeLocalEvent<NightVisionComponent, NightVisionToggleEvent>(OnActionToggle);
+
     }
 
     [ValidatePrototypeId<EntityPrototype>]
@@ -32,20 +31,14 @@ public sealed class NightVisionSystem : EntitySystem
             _actionsSystem.AddAction(uid, ref component.ActionContainer, SwitchNightVisionAction);
     }
 
-    private void OnActionToggle(EntityUid uid, NightVisionComponent component, NVInstantActionEvent args)
+    private void OnActionToggle(EntityUid uid, NightVisionComponent component, NightVisionToggleEvent args)
     {
         component.IsNightVision = !component.IsNightVision;
         var changeEv = new NightVisionToggledEvent(component.IsNightVision);
         RaiseLocalEvent(uid, ref changeEv);
         Dirty(uid, component);
-        _actionsSystem.SetCooldown(component.ActionContainer, TimeSpan.FromSeconds(1));
-        if (component is { IsNightVision: true, PlaySoundOn: true })
-        {
-            if (_net.IsServer)
-                _audioSystem.PlayPvs(component.OnOffSound, uid);
-        }
     }
-    
+
     [PublicAPI]
     public void UpdateIsNightVision(EntityUid uid, NightVisionComponent? component = null)
     {
@@ -58,7 +51,7 @@ public sealed class NightVisionSystem : EntitySystem
         var ev = new CanVisionAttemptEvent();
         RaiseLocalEvent(uid, ev);
         component.IsNightVision = ev.CanEnableNightVision;
-        
+
         if (old == component.IsNightVision)
             return;
 
@@ -69,8 +62,13 @@ public sealed class NightVisionSystem : EntitySystem
 }
 
 [ByRefEvent]
-public record struct NightVisionToggledEvent(bool CanEnableNightVision);
+public record struct NightVisionToggledEvent(bool Enabled);
 
+[PublicAPI, ByRefEvent]
+public sealed class NightVisionDeviceUpdateVisualsEvent : EntityEventArgs
+{
+
+}
 
 public sealed class CanVisionAttemptEvent : CancellableEntityEventArgs, IInventoryRelayEvent
 {

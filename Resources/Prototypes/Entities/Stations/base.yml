@@ -39,22 +39,21 @@
   components:
     - type: GatewayGenerator
 
-- type: entity
-  id: BaseStationShuttles
-  abstract: true
-  components:
-  - type: StationCargoShuttle
-    path: /Maps/Shuttles/cargo.yml
-  - type: GridSpawn
-    groups:
-# Sunrise-Edit: Карго не нужен шаттл без трейдпоста.
+# Sunrise-Start
+#- type: entity
+#  id: BaseStationShuttles
+#  abstract: true
+#  components:
+#  - type: StationCargoShuttle
+#    path: /Maps/Shuttles/cargo.yml
+#  - type: GridSpawn
+#    groups:
 #      trade: !type:GridSpawnGroup
 #        addComponents:
 #        - type: ProtectedGrid
 #        - type: TradeStation
 #        paths:
 #        - /Maps/Shuttles/trading_outpost.yml
-# Spawn last
 #      ruins: !type:GridSpawnGroup
 #        hide: true
 #        nameGrid: true
@@ -71,17 +70,18 @@
 #        - /Maps/Ruins/syndicate_dropship.yml
 #        - /Maps/Ruins/whiteship_ancient.yml
 #        - /Maps/Ruins/whiteship_bluespacejumper.yml
-      vgroid: !type:DungeonSpawnGroup
-        minimumDistance: 300
-        maximumDistance: 350
-        nameDataset: names_borer
-        stationGrid: false
-        addComponents:
-        - type: Gravity
-          enabled: true
-          inherent: true
-        protos:
-        - VGRoid
+#      vgroid: !type:DungeonSpawnGroup
+#        minimumDistance: 300
+#        maximumDistance: 350
+#        nameDataset: names_borer
+#        stationGrid: false
+#        addComponents:
+#        - type: Gravity
+#          enabled: true
+#          inherent: true
+#        protos:
+#        - VGRoid
+#Sunrise-End
 
 # Sunrise-Edit: Вынесено в _Sunrise
 #- type: entity

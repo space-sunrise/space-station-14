@@ -438,6 +438,8 @@ HatBase: null
 # 2024-09-19
 BlueprintFlare: null
 
+# 2024-10-04
+BaseAdvancedPen: Pen
 
 # Sunrise migrations
 AirlockExternalGlassShuttleArrivals: AirlockExternalGlassShuttleArrivalsLocked
@@ -463,3 +465,4 @@ ComputerShuttleCargo: null
 ClothingOuterHardsuitSecurity: ClothingOuterHardsuitSecuritySunrise
 ClothingHeadHelmetHardsuitSecurity: ClothingHeadHelmetHardsuitSecuritySunrise
 EffectHearts: null
+ConveyorBelt: null

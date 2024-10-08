@@ -65,7 +65,6 @@
   - type: EyeProtection
   - type: IdentityBlocker
     coverage: EYES
-  - type: NVG #Sunrise - night vision
 
 - type: entity
   parent: ClothingEyesBase
@@ -189,7 +188,7 @@
   parent: [ClothingEyesBase, BaseCommandContraband]
   id: ClothingEyesGlassesCommand
   name: administration glasses
-  description: Upgraded sunglasses that provide flash immunity and show ID card status. 
+  description: Upgraded sunglasses that provide flash immunity and show ID card status.
   components:
   - type: Sprite
     sprite: Clothing/Eyes/Glasses/commandglasses.rsi
@@ -266,4 +265,6 @@
   - type: Clothing
     sprite: Clothing/Eyes/Glasses/ninjavisor.rsi
   - type: FlashImmunity
-  - type: NVG #Sunrise - night vision
+  - type: NightVisionDevice #Sunrise - night visions
+    displayColor: "#44b855"
+    displayShader: NVDDisplay

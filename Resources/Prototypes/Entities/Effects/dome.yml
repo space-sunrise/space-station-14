@@ -31,6 +31,7 @@
   - type: Tag
     tags:
       - HideContextMenu
+      - IgnoreMelee
 
 - type: entity
   id: EnergyDomeSmallPink
@@ -47,6 +48,24 @@
     radius: 5
     power: 2
     color: "#f5166b"
+    
+- type: entity
+  id: EnergyDomeSmallBlue
+  categories: [ HideSpawnMenu ]
+  parent: EnergyDomeBase
+  components:
+  - type: Sprite
+    drawdepth: Effects
+    noRot: true
+    sprite: Effects/EnergyDome/energydome_small.rsi
+    layers:
+    - state: small
+      color: "#64b9de"
+  - type: PointLight
+    enabled: true
+    radius: 5
+    power: 2
+    color: "#64b9de"
 
 - type: entity
   id: EnergyDomeSmallRed
@@ -93,6 +112,34 @@
     radius: 5
     power: 10
     color: "#64b9de"
+    
+- type: entity
+  id: EnergyDomeMediumRed
+  categories: [ HideSpawnMenu ]
+  parent: EnergyDomeBase
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 1.8
+        density: 0
+        mask:
+        - None
+        layer:
+        - BulletImpassable
+        - Opaque
+  - type: Sprite
+    sprite: Effects/EnergyDome/energydome_medium.rsi
+    layers:
+    - state: medium
+      color: "#b00000"
+  - type: PointLight
+    enabled: true
+    radius: 5
+    power: 10
+    color: "#b00000"
 
 - type: entity
   id: EnergyDomeSlowing

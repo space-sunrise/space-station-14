@@ -1,23 +1,22 @@
 using Content.Shared.Actions;
 using Content.Shared._Sunrise.Eye.NightVision.Systems;
-using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared._Sunrise.Eye.NightVision.Components;
 
 [RegisterComponent]
 [NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(NightVisionSystem))]
+[Access(typeof(NightVisionSystem), typeof(NightVisionDeviceSystem))]
 public sealed partial class NightVisionComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite), DataField("isOn"), AutoNetworkedField]
     public bool IsNightVision;
 
-    [DataField("color")]
-    public Color NightVisionColor = Color.Green;
+    [DataField("color", required: true)]
+    public Color Color;
 
     [DataField]
-    public bool IsToggle = false;
+    public bool IsToggle;
 
     [DataField] public EntityUid? ActionContainer;
 
@@ -26,10 +25,9 @@ public sealed partial class NightVisionComponent : Component
 
     [Access(Other = AccessPermissions.ReadWriteExecute)]
     public bool GraceFrame = false;
-
-    [DataField("playSoundOn")]
-    public bool PlaySoundOn = true;
-    public SoundSpecifier OnOffSound = new SoundPathSpecifier("/Audio/_Sunrise/Misc/night-vision-sound-effect_E_minor.ogg");
 }
 
-public sealed partial class NVInstantActionEvent : InstantActionEvent { }
+public sealed partial class NightVisionToggleEvent : InstantActionEvent
+{
+
+}

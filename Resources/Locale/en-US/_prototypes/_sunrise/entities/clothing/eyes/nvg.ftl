@@ -1,5 +1,5 @@
-ent-ClothingEyesVision = NVD
+ent-ClothingEyesNVD = NVD
     .desc = Night vision device. Provides an image of the terrain in low-light conditions.
-ent-ClothingEyesVisionNuki = { ent-ClothingEyesVision }
-    .suffix = nuke
-    .desc = { ent-ClothingEyesVision.desc }
+ent-ClothingEyesNVDSyndicate = { ent-ClothingEyesNVD }
+    .suffix = syndicate
+    .desc = { ent-ClothingEyesNVD.desc }
