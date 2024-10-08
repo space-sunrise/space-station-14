@@ -144,7 +144,14 @@ public sealed partial class BorgSystem : SharedBorgSystem
 
         if (HasComp<BorgBrainComponent>(args.Entity) && _mind.TryGetMind(args.Entity, out var mindId, out var mind))
         {
-            _mind.TransferTo(mindId, uid, mind: mind);
+            if (TryComp<ContainerManagerComponent>(uid, out var containerManager) &&
+                containerManager.TryGetContainer("borg_brain", out var borgBrainContainer))
+            {
+                if (borgBrainContainer.Contains(args.Entity))
+                {
+                    _mind.TransferTo(mindId, uid, mind: mind);
+                }
+            }
         }
     }
 
@@ -152,10 +159,16 @@ public sealed partial class BorgSystem : SharedBorgSystem
     {
         base.OnRemoved(uid, component, args);
 
-        if (HasComp<BorgBrainComponent>(args.Entity) &
-            _mind.TryGetMind(uid, out var mindId, out var mind))
+        if (HasComp<BorgBrainComponent>(args.Entity) && _mind.TryGetMind(uid, out var mindId, out var mind))
         {
-            _mind.TransferTo(mindId, args.Entity, mind: mind);
+            if (TryComp<ContainerManagerComponent>(uid, out var containerManager) &&
+                containerManager.TryGetContainer("borg_brain", out var borgBrainContainer))
+            {
+                if (borgBrainContainer.ContainedEntities.Count == 0)
+                {
+                    _mind.TransferTo(mindId, args.Entity, mind: mind);
+                }
+            }
         }
     }
 
