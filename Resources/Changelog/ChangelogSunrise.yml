@@ -4318,9 +4318,9 @@
   time: '2024-10-07T05:44:30.351230+00:00'
 - author: SplikZerys
   changes:
-  - message: "u0414\u043E\u0431\u0430\u0432\u0438\u043B \u0422\u0422\u0421\
-      -\u0433\u043E\u043B\u043E\u0441 \u0410\u0431\u0430\u0434\u0434\u043E\u043D\u0430\
-      \ \u0438\u0437 Dota 2."
+  - message: "\u0414\u043E\u0431\u0430\u0432\u0438\u043B \u0422\u0422\u0421-\u0433\
+      \u043E\u043B\u043E\u0441 \u0410\u0431\u0430\u0434\u0434\u043E\u043D\u0430 \u0438\
+      \u0437 Dota 2."
     type: Add
   id: 313
   time: '2024-10-07T11:35:00.050196+00:00'
@@ -4332,3 +4332,14 @@
     type: Add
   id: 314
   time: '2024-10-07T18:02:26.813738+00:00'
+- author: SplikZerys
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u0438\u043B \u0422\u0422\u0421-\u0433\
+      \u043E\u043B\u043E\u0441 Announcer \u0438\u0437 Containment Breach."
+    type: Add
+  - message: "\u0414\u043E\u0431\u0430\u0432\u0438\u043B \u0422\u0422\u0421-\u0433\
+      \u043E\u043B\u043E\u0441 \u0421\u043C\u043E\u0442\u0440\u0438\u0442\u0435\u043B\
+      \u044F \u0438\u0437 Hearthstone."
+    type: Add
+  id: 315
+  time: '2024-10-09T09:20:41.511183+00:00'
