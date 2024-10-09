@@ -56,7 +56,7 @@
       cell_slot: !type:Container
   - type: PartAssembly
     parts:
-      base:
+      synth:
       - BaseSynthLArm
       - BaseSynthRArm
       - BaseSynthLLeg

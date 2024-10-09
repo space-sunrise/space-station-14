@@ -19,7 +19,7 @@
 
     - to: synth
       steps:
-      - assemblyId: base
+      - assemblyId: synth
         guideString: borg-construction-guide-string
 
       - material: Cable
