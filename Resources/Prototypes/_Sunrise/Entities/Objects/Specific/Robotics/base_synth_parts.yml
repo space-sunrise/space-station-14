@@ -10,7 +10,7 @@
   - type: Tag
     tags:
     - Trash
-#    - BorgArm Need add new tags
+    - SynthArm
 
 - type: entity
   id: BaseSynthArmRight
@@ -23,7 +23,7 @@
   - type: Tag
     tags:
     - Trash
-#    - BorgArm Need add new tags
+    - SynthArm
 
 - type: entity
   id: BaseSynthLegLeft
@@ -37,7 +37,7 @@
   - type: Tag
     tags:
     - Trash
-#    - BorgLeg Need add new tags
+    - SynthLeg
 
 - type: entity
   id: BaseSynthLegRight
@@ -51,7 +51,7 @@
   - type: Tag
     tags:
     - Trash
-#    - BorgLeg Need add new tags
+    - BorgLeg
 
 - type: entity
   id: BaseSynthHead
@@ -64,7 +64,7 @@
   - type: Tag
     tags:
     - Trash
-#    - BorgHead Need add new tags
+    - SynthHead
 
 - type: entity
   id: BaseSynthTorso

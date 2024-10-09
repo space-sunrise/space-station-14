@@ -138,3 +138,26 @@
 
 - type: Tag
   id: MagazineDl6902
+  
+# Synth:
+
+- type: Tag
+  id: SynthArm
+  
+- type: Tag
+  id: BaseSynthLArm
+  
+- type: Tag
+  id: BaseSynthRArm
+
+- type: Tag
+  id: SynthLeg
+  
+- type: Tag
+  id: BaseSynthLLeg
+  
+- type: Tag
+  id: BaseSynthRLeg
+  
+- type: Tag
+  id: SynthHead

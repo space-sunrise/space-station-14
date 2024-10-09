@@ -24,7 +24,7 @@
   - type: Sprite
     noRot: false
     drawdepth: Items
-    sprite: _Sunrise/Objects/Specific/Robotics/machine_parts.rsi
+    sprite: _Sunrise/Objects/Specific/Robotics/synth_parts.rsi
     state: chest
   - type: Appearance
 #  - type: ItemMapper
