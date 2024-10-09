@@ -496,6 +496,7 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: gygax
@@ -547,6 +548,7 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: durand
@@ -608,6 +610,7 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: marauder
@@ -680,6 +683,7 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: seraph
@@ -755,6 +759,7 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: darkgygax
@@ -827,6 +832,7 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: mauler
