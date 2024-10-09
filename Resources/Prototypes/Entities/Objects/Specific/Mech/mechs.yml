@@ -526,7 +526,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHigh
+      - PowerCageHigh
 
 # Durand
 - type: entity
@@ -585,7 +585,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHigh
+      - PowerCageHigh
 
 # Nanotrasen Combat Mechs
 
@@ -647,7 +647,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHyper
+      - PowerCageHigh
 
 - type: entity
   id: MechMarauderFilled
@@ -719,7 +719,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellAntiqueProto
+      - PowerCageHigh
 
 - type: entity
   id: MechSeraphFilled
@@ -794,7 +794,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHyper
+      - PowerCageHigh
 
 - type: entity
   id: MechGygaxSyndieFilled
@@ -866,7 +866,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHyper
+      - PowerCageHigh
 
 - type: entity
   id: MechMaulerSyndieFilled
