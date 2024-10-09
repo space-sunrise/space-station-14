@@ -193,7 +193,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHigh
+      - PowerCageSmall
 
 # Ripley MK-II
 - type: entity
@@ -245,7 +245,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHigh
+      - PowerCageSmall
 
 # Clarke
 - type: entity
@@ -297,7 +297,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHigh
+      - PowerCageSmall
 
 # H.O.N.K.
 - type: entity
@@ -338,7 +338,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHigh
+      - PowerCageSmall
 
 - type: entity
   parent: MechHonkerBattery
@@ -401,7 +401,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHigh
+      - PowerCageSmall
 
 # Vim!!!!!!!
 
@@ -473,7 +473,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHigh
+      - PowerCageSmall
 
 # Combat-Station Mechs
 
