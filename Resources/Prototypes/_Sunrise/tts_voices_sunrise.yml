@@ -253,3 +253,10 @@
   sex: Male
   speaker: cb_announcer
   provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneLordOfThunder
+  name: tts-voice-name-hearthstone-lord-of-thunder
+  sex: Male
+  speaker: hearthstone_lord_of_thunder
+  provider: sunrise
