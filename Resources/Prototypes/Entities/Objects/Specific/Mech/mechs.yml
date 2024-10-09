@@ -159,6 +159,7 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: ripley
@@ -208,6 +209,7 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: ripleymkii
@@ -260,6 +262,7 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: clarke
@@ -312,6 +315,7 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: honker
@@ -364,6 +368,7 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: hamtr
@@ -417,6 +422,7 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: vim
