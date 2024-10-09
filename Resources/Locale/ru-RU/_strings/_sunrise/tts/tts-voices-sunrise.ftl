@@ -25,3 +25,5 @@ tts-voice-name-dota2-pudge = (NEW) [Dota 2] Пудж
 tts-voice-name-tf2-soldier = (NEW) [Team Fortress 2] Солдат 2.0
 tts-voice-name-dota2-abaddon = (NEW) [Dota 2] Абаддон
 tts-voice-name-dota2-silencer = (NEW) [Dota 2] Сайленсер
+tts-voice-name-hearthstone-warden = (NEW) [Hearthstone] Смотритель
+tts-voice-name-cb-announcer = (NEW) [Containment Breach] Announcer
