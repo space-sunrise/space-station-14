@@ -3,6 +3,7 @@
   abstract: true
   categories: [ HideSpawnMenu ]
   components:
+  - type: Magboots
   - type: Mech
     equipmentWhitelist:
       tags:
