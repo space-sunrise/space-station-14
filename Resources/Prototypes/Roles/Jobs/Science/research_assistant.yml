@@ -4,15 +4,13 @@
   description: job-description-research-assistant
   playTimeTracker: JobResearchAssistant
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Science
-      time: 18000 #5 hrs # Sunrise-RoleTime
-      inverted: true # stop playing intern if you're good at science!
+    - !type:OverallPlaytimeRequirement
+      time: 3600 #1 hr # Sunrise-RoleTime
   startingGear: ResearchAssistantGear
   icon: "JobIconResearchAssistant"
   supervisors: job-supervisors-science
-  canBeAntag: false
-  displayWeight: 0  # Sunrise
+  canBeAntag: true # Sunrise-Edit
+  displayWeight: 0 # Sunrise-Edit
   access:
   - Research
   - Maintenance

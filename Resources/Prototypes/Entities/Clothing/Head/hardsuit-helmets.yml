@@ -83,8 +83,13 @@
   - type: PressureProtection
     highPressureMultiplier: 0.1
     lowPressureMultiplier: 1000
-  - type: EyeProtection # Sunrise-Edit
-  - type: FlashImmunity # Sunrise-Edit
+  # Sunrise-Start
+  - type: EyeProtection
+  - type: FlashImmunity
+  - type: NightVisionDevice
+    displayColor: "#ebeb00"
+    displayShader: NVDDisplay
+  # Sunrise-End
 
 #Spationaut Hardsuit
 - type: entity

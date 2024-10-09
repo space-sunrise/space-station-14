@@ -1,13 +1,18 @@
 ﻿using System.Linq;
 using System.Numerics;
 using Content.Server._Sunrise.NightDayMapLight;
+using Content.Server.Atmos.EntitySystems;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Maps;
 using Content.Server.Parallax;
 using Content.Server.Shuttles.Systems;
+using Content.Shared._Sunrise.AlwaysPoweredMap;
 using Content.Shared._Sunrise.Shuttles;
 using Content.Shared._Sunrise.SunriseCCVars;
+using Content.Shared.Atmos;
+using Content.Shared.Gravity;
+using Content.Shared.Parallax;
 using Content.Shared.Parallax.Biomes;
 using Content.Shared.Salvage;
 using Content.Shared.Shuttles.Components;
@@ -15,6 +20,7 @@ using Robust.Server.GameObjects;
 using Robust.Server.Maps;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -35,6 +41,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
+    [Dependency] private readonly AtmosphereSystem _atmos = default!;
 
     private ISawmill _sawmill = default!;
 
@@ -110,7 +117,7 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         }
 
         _chat.DispatchServerAnnouncement(Loc.GetString("planet-prison-select-map", ("stationName", gameMap.MapName)), Color.LightBlue);
-        _chat.DispatchServerAnnouncement(Loc.GetString("planet-prison-select-biome", ("biomeName", biome.ID)), Color.LightBlue);
+       // _chat.DispatchServerAnnouncement(Loc.GetString("planet-prison-select-biome", ("biomeName", biome.ID)), Color.LightBlue);
 
         var uids = _gameTicker.LoadGameMap(gameMap, xform.MapID, mapOptions);
 
@@ -130,7 +137,22 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         EnsureComp<IgnoreFtlCheckComponent>(uids[0]);
         component.PrisonGrid = uids[0];
 
-        _biomeSystem.EnsurePlanet(mapUid, biome);
+        var moles = new float[Atmospherics.AdjustedNumberOfGases];
+        moles[(int) Gas.Oxygen] = 21.824779f;
+        moles[(int) Gas.Nitrogen] = 82.10312f;
+
+        var mixture = new GasMixture(moles, Atmospherics.T20C);
+
+        _atmos.SetMapAtmosphere(mapUid, false, mixture);
+
+        var gravity = EnsureComp<GravityComponent>(mapUid);
+        gravity.Enabled = true;
+        gravity.Inherent = true;
+        Dirty(mapUid, gravity);
+
+        var light = EnsureComp<MapLightComponent>(mapUid);
+        light.AmbientLightColor = Color.FromHex("#D8B059");
+        Dirty(mapUid, light);
 
         // Sunrise-Start
         var restricted = new RestrictedRangeComponent
@@ -141,11 +163,15 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
         AddComp(mapUid, restricted);
         // Sunrise-End
 
+        EnsureComp<AlwaysPoweredMapComponent>(mapUid);
         EnsureComp<NightDayMapLightComponent>(mapUid);
+
+        EnsureComp<ParallaxComponent>(mapUid, out var parallaxComponent);
+        parallaxComponent.Parallax = "Grass";
+        Dirty(mapUid, parallaxComponent);
 
         var destComp = _entManager.EnsureComponent<FTLDestinationComponent>(mapUid);
         destComp.BeaconsOnly = true;
         _shuttle.SetFTLWhitelist(mapUid, component.ShuttleWhitelist);
-
     }
 }
