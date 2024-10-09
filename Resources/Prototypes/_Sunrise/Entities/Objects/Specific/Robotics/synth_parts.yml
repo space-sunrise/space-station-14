@@ -1,5 +1,5 @@
 - type: entity
-  id: LeftArmBorg
+  id: LeftArmSynth
   parent: BaseBorgArmLeft
   components:
   - type: Sprite
@@ -60,7 +60,7 @@
     tags:
     - Trash
     - SynthLeg
-    - BaseSynthLLeg
+    - BaseSynthRLeg
     
 - type: entity
   id: LightHeadSynth

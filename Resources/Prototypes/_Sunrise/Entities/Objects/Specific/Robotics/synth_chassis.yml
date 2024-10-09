@@ -54,23 +54,22 @@
     containers:
       part-container: !type:Container
       cell_slot: !type:Container
-#  - type: PartAssembly
-#    parts:
-#      generic:
-#      - BorgGenericLArm
-#      - BorgGenericRArm
-#      - BorgGenericLLeg
-#      - BorgGenericRLeg
-#      - BorgGenericHead
-#      - BorgGenericTorso
-#  - type: Construction
-#    graph: Cyborg
-#    node: start
-#    defaultTarget: cyborg
-#    containers:
-#    - part-container
-#    - cell_slot
+  - type: PartAssembly
+    parts:
+      base:
+      - BaseSynthLArm
+      - BaseSynthRArm
+      - BaseSynthLLeg
+      - BaseSynthRLeg
+      - BaseSynthHead
+  - type: Construction
+    graph: Synth
+    node: start
+    defaultTarget: synth
+    containers:
+    - part-container
+    - cell_slot
   - type: Pullable
-#  - type: GuideHelp
-#    guides:
-#    - Cyborgs
+  - type: GuideHelp
+    guides:
+    - Cyborgs

@@ -1,0 +1,48 @@
+- type: constructionGraph
+  id: Synth
+  start: start
+  graph:
+  - node: start
+    entity: SynthChassis
+    edges:
+
+    # empty the parts via prying
+    - to: start
+      conditions:
+      - !type:ContainerNotEmpty
+        container: part-container
+      steps:
+      - tool: Prying
+        doAfter: 0.5
+        completed:
+          - !type:EmptyAllContainers
+
+    - to: synth
+      steps:
+      - assemblyId: base
+        guideString: borg-construction-guide-string
+
+      - material: Cable
+        amount: 1
+        doAfter: 1
+        store: part-container
+
+      - component: Flash
+        name: flash
+        store: part-container
+        icon:
+          sprite: Objects/Weapons/Melee/flash.rsi
+          state: flash
+
+      - component: Flash
+        name: second flash
+        store: part-container
+        icon:
+          sprite: Objects/Weapons/Melee/flash.rsi
+          state: flash
+
+      - tool: Screwing
+        doAfter: 0.5
+
+  - node: synth
+    entity: BaseMobSynth
