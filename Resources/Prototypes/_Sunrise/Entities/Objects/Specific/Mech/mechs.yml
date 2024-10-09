@@ -55,7 +55,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHyper
+      - PowerCageHigh
 
 - type: entity
   id: MechMolotFilled
