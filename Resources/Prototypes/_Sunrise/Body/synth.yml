@@ -4,13 +4,13 @@
   root: torso
   slots:
     head:
-      part: HeadSynth
+      part: HeadSynthMob
       connections:
       - torso
       organs:
         eyes: Flash
     torso:
-      part: TorsoSynth
+      part: TorsoSynthMob
       connections:
       - left arm
       - right arm
@@ -20,18 +20,18 @@
         brain: PositronicBrain
         powercell: PowerCellSynth
     right arm:
-      part: RightArmSynth
+      part: RightArmSynthMob
       connections:
       - right hand
     left arm:
-      part: LeftArmSynth
+      part: LeftArmSynthMob
       connections:
       - left hand
     right hand:
-      part: RightHandSynth
+      part: RightHandSynthMob
     left hand:
-      part: LeftHandSynth
+      part: LeftHandSynthMob
     right leg:
-      part: RightLegSynth
+      part: RightLegSynthMob
     left leg:
-      part: LeftLegSynth
+      part: LeftLegSynthMob

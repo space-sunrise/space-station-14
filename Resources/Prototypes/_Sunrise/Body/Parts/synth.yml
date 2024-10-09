@@ -8,7 +8,7 @@
     sprite: _Sunrise/Mobs/Species/Synth/parts.rsi
 
 - type: entity
-  id: TorsoSynth
+  id: TorsoSynthMob
   name: "synth torso"
   parent: [PartSynth, BaseTorso]
   components:
@@ -16,7 +16,7 @@
     state: "torso"
 
 - type: entity
-  id: HeadSynth
+  id: HeadSynthMob
   name: "synth head"
   parent: [PartSynth, BaseHead]
   components:
@@ -24,7 +24,7 @@
     state: "head"
 
 - type: entity
-  id: LeftArmSynth
+  id: LeftArmSynthMob
   name: "left synth arm"
   parent: [PartSynth, BaseLeftArm]
   components:
@@ -32,7 +32,7 @@
     state: "l_arm"
 
 - type: entity
-  id: RightArmSynth
+  id: RightArmSynthMob
   name: "right synth arm"
   parent: [PartSynth, BaseRightArm]
   components:
@@ -40,7 +40,7 @@
     state: "r_arm"
 
 - type: entity
-  id: LeftHandSynth
+  id: LeftHandSynthMob
   name: "left synth hand"
   parent: [PartSynth, BaseLeftHand]
   components:
@@ -48,7 +48,7 @@
     state: "l_hand"
 
 - type: entity
-  id: RightHandSynth
+  id: RightHandSynthMob
   name: "right synth hand"
   parent: [PartSynth, BaseRightHand]
   components:
@@ -56,7 +56,7 @@
     state: "r_hand"
 
 - type: entity
-  id: LeftLegSynth
+  id: LeftLegSynthMob
   name: "left synth leg"
   parent: [PartSynth, BaseLeftLeg]
   components:
@@ -64,7 +64,7 @@
     state: "l_leg"
 
 - type: entity
-  id: RightLegSynth
+  id: RightLegSynthMob
   name: "right synth leg"
   parent: [PartSynth, BaseRightLeg]
   components:
@@ -72,7 +72,7 @@
     state: "r_leg"
 
 - type: entity
-  id: LeftFootSynth
+  id: LeftFootSynthMob
   name: "left synth foot"
   parent: [PartSynth, BaseLeftFoot]
   components:
@@ -80,7 +80,7 @@
     state: "l_foot"
 
 - type: entity
-  id: RightFootSynth
+  id: RightFootSynthMob
   name: "right synth foot"
   parent: [PartSynth, BaseRightFoot]
   components:
