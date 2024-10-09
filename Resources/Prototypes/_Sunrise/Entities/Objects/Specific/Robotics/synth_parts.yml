@@ -1,0 +1,63 @@
+- type: entity
+  id: LeftArmBorg
+  parent: BaseBorgArmLeft
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Robotics/synth_parts.rsi
+    state: l_arm
+  - type: Icon
+    sprite: _Sunrise/Objects/Specific/Robotics/synth_parts.rsi
+    state: l_arm
+  - type: Tag
+    tags:
+    - Trash
+#    - BorgArm
+#    - BorgGenericLArm
+
+- type: entity
+  id: RightArmSynth
+  parent: BaseSynthArmRight
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Robotics/synth_parts.rsi
+    state: r_arm
+  - type: Icon
+    sprite: _Sunrise/Objects/Specific/Robotics/synth_parts.rsi
+    state: r_arm
+  - type: Tag
+    tags:
+    - Trash
+#    - BorgArm
+#    - BorgGenericRArm
+
+- type: entity
+  id: LeftLegSynth
+  parent: BaseSynthLegLeft
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Robotics/synth_parts.rsi
+    state: l_leg
+  - type: Icon
+    sprite: _Sunrise/Objects/Specific/Robotics/synth_parts.rsi
+    state: l_leg
+  - type: Tag
+    tags:
+    - Trash
+#    - BorgLeg
+#    - BorgGenericLLeg
+
+- type: entity
+  id: RightLegSynth
+  parent: BaseSynthLegRight
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Robotics/synth_parts.rsi
+    state: r_leg
+  - type: Icon
+    sprite: _Sunrise/Objects/Specific/Robotics/synth_parts.rsi
+    state: r_leg
+  - type: Tag
+    tags:
+    - Trash
+#    - BorgLeg
+#    - BorgGenericRLeg
