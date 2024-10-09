@@ -239,3 +239,17 @@
   sex: Male
   speaker: dota2_silencer
   provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneWarden
+  name: tts-voice-name-hearthstone-warden
+  sex: Male
+  speaker: hearthstone_warden
+  provider: sunrise
+
+- type: ttsVoice
+  id: CBAnnouncer
+  name: tts-voice-name-cb-announcer
+  sex: Male
+  speaker: cb_announcer
+  provider: sunrise
