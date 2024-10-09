@@ -363,6 +363,9 @@
       # Sunrise-start
       - HandCraftedNVD
       - BasicNVD
+      - PowerCageHigh
+      - PowerCageMedium
+      - PowerCageSmall
       # Sunrise-end
   - type: EmagLatheRecipes
     emagDynamicRecipes:
