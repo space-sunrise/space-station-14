@@ -180,6 +180,10 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.25
     baseSprintSpeed: 3.6
+  - type: Reflect
+    reflectProb: 0.05
+    reflects:
+    - NonEnergy
 
 - type: entity
   id: MechRipleyBattery
@@ -228,6 +232,10 @@
     baseSprintSpeed: 2
   - type: Damageable
     damageModifierSet: MediumArmorNT
+  - type: Reflect
+    reflectProb: 0.15
+    reflects:
+    - NonEnergy
 
 - type: entity
   id: MechRipley2Battery
@@ -276,6 +284,10 @@
     baseSprintSpeed: 4.5
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
+  - type: Reflect
+    reflectProb: 0.15
+    reflects:
+    - NonEnergy
 
 - type: entity
   id: MechClarkeBattery
@@ -313,6 +325,10 @@
     pilotWhitelist:
       components:
       - HumanoidAppearance
+  - type: Reflect
+    reflectProb: 0.05
+    reflects:
+    - NonEnergy
 
 - type: entity
   parent: MechHonker
@@ -372,6 +388,10 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.4
     baseSprintSpeed: 3.7
+  - type: Reflect
+    reflectProb: 0.05
+    reflects:
+    - NonEnergy
 
 - type: entity
   parent: MechHamtr
@@ -438,6 +458,10 @@
   - type: Access
     tags:
     - Maintenance
+  - type: Reflect
+    reflectProb: 0.05
+    reflects:
+    - NonEnergy
   # TOOD: buzz / chime actions
   # TODO: builtin flashlight
 
@@ -489,6 +513,10 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 2.6
+  - type: Reflect
+    reflectProb: 0.15
+    reflects:
+    - NonEnergy
 
 - type: entity
   id: MechGygaxBattery
@@ -544,6 +572,10 @@
   - type: Repairable
     fuelCost: 30
     doAfterDelay: 15
+  - type: Reflect
+    reflectProb: 0.15
+    reflects:
+    - NonEnergy
 
 - type: entity
   id: MechDurandBattery
@@ -602,6 +634,10 @@
   - type: Repairable
     fuelCost: 30
     doAfterDelay: 15
+  - type: Reflect
+    reflectProb: 0.3
+    reflects:
+    - NonEnergy
 
 - type: entity
   id: MechMarauderBattery
@@ -670,6 +706,10 @@
   - type: Repairable
     fuelCost: 30
     doAfterDelay: 20
+  - type: Reflect
+    reflectProb: 0.3
+    reflects:
+    - NonEnergy
 
 - type: entity
   id: MechSeraphBattery
@@ -741,6 +781,10 @@
   - type: Repairable
     fuelCost: 40
     doAfterDelay: 20
+  - type: Reflect
+    reflectProb: 0.25
+    reflects:
+    - NonEnergy
 
 - type: entity
   id: MechGygaxSyndieBattery
@@ -809,6 +853,10 @@
   - type: Repairable
     fuelCost: 50
     doAfterDelay: 25
+  - type: Reflect
+    reflectProb: 0.35
+    reflects:
+    - NonEnergy
 
 - type: entity
   id: MechMaulerSyndieBattery
