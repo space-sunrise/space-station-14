@@ -22,150 +22,34 @@
         restitution: 0.3
         friction: 0.2
   - type: Sprite
-    noRot: false
+    noRot: true
     drawdepth: Items
     sprite: _Sunrise/Objects/Specific/Robotics/synth_parts.rsi
     state: chest
   - type: Appearance
-#  - type: ItemMapper
-#    sprite: Objects/Specific/Robotics/cyborg_parts.rsi
-#    mapLayers:
-#      borg_l_arm+o:
-#        whitelist:
-#          tags:
-#          - BorgGenericLArm
-#      borg_r_arm+o:
-#        whitelist:
-#          tags:
-#          - BorgGenericRArm
-#      borg_l_leg+o:
-#        whitelist:
-#          tags:
-#          - BorgGenericLLeg
-#      borg_r_leg+o:
-#        whitelist:
-#          tags:
-#          - BorgGenericRLeg
-#      borg_head+o:
-#        whitelist:
-#          tags:
-#          - BorgGenericHead
-#      borg_chest+o:
-#        whitelist:
-#          tags:
-#          - BorgGenericTorso
-#      service_l_arm+o:
-#        whitelist:
-#          tags:
-#          - BorgServiceLArm
-#      service_r_arm+o:
-#        whitelist:
-#          tags:
-#          - BorgServiceRArm
-#      service_l_leg+o:
-#        whitelist:
-#          tags:
-#          - BorgServiceLLeg
-#      service_r_leg+o:
-#        whitelist:
-#          tags:
-#          - BorgServiceRLeg
-#      service_head+o:
-#        whitelist:
-#          tags:
-#          - BorgServiceHead
-#      service_chest+o:
-#        whitelist:
-#          tags:
-#          - BorgServiceTorso
-#      engineer_l_arm+o:
-#        whitelist:
-#          tags:
-#          - BorgEngineerLArm
-#      engineer_r_arm+o:
-#        whitelist:
-#          tags:
-#          - BorgEngineerRArm
-#      engineer_l_leg+o:
-#        whitelist:
-#          tags:
-#          - BorgEngineerLLeg
-#      engineer_r_leg+o:
-#        whitelist:
-#          tags:
-#          - BorgEngineerRLeg
-#      engineer_head+o:
-#        whitelist:
-#          tags:
-#          - BorgEngineerHead
-#      engineer_chest+o:
-#        whitelist:
-#          tags:
-#          - BorgEngineerTorso
-#      mining_l_arm+o:
-#        whitelist:
-#          tags:
-#            - BorgMiningLArm
-#      mining_r_arm+o:
-#        whitelist:
-#          tags:
-#            - BorgMiningRArm
-#      mining_l_leg+o:
-#        whitelist:
-#          tags:
-#            - BorgMiningLLeg
-#      mining_r_leg+o:
-#        whitelist:
-#          tags:
-#            - BorgMiningRLeg
-#      mining_head+o:
-#        whitelist:
-#          tags:
-#            - BorgMiningHead
-#      mining_chest+o:
-#        whitelist:
-#          tags:
-#            - BorgMiningTorso
-#      medical_l_arm+o:
-#        whitelist:
-#          tags:
-#            - BorgMedicalLArm
-#      medical_r_arm+o:
-#        whitelist:
-#          tags:
-#            - BorgMedicalRArm
-#      medical_l_leg+o:
-#        whitelist:
-#          tags:
-#            - BorgMedicalLLeg
-#      medical_r_leg+o:
-#        whitelist:
-#          tags:
-#            - BorgMedicalRLeg
-#      medical_head+o:
-#        whitelist:
-#          tags:
-#            - BorgMedicalHead
-#      medical_chest+o:
-#        whitelist:
-#          tags:
-#            - BorgMedicalTorso
-#      janitor_l_leg+o:
-#        whitelist:
-#          tags:
-#            - BorgJanitorLLeg
-#      janitor_r_leg+o:
-#        whitelist:
-#          tags:
-#            - BorgJanitorRLeg
-#      janitor_head+o:
-#        whitelist:
-#          tags:
-#            - BorgJanitorHead
-#      janitor_chest+o:
-#        whitelist:
-#          tags:
-#            - BorgJanitorTorso
+  - type: ItemMapper
+    sprite: _Sunrise/Objects/Specific/Robotics/synth_parts.rsi
+    mapLayers:
+      l_arm+o:
+        whitelist:
+          tags:
+          - BaseSynthLArm
+      r_arm+o:
+        whitelist:
+          tags:
+          - BaseSynthRArm
+      l_leg+o:
+        whitelist:
+          tags:
+          - BaseSynthLLeg
+      r_leg+o:
+        whitelist:
+          tags:
+          - BaseSynthRLeg
+      head+o:
+        whitelist:
+          tags:
+          - BaseSynthHead
   - type: ContainerContainer
     containers:
       part-container: !type:Container
@@ -179,39 +63,6 @@
 #      - BorgGenericRLeg
 #      - BorgGenericHead
 #      - BorgGenericTorso
-#      service:
-#      - BorgServiceLArm
-#      - BorgServiceRArm
-#      - BorgServiceLLeg
-#      - BorgServiceRLeg
-#      - BorgServiceHead
-#      - BorgServiceTorso
-#      engineer:
-#      - BorgEngineerLArm
-#      - BorgEngineerRArm
-#      - BorgEngineerLLeg
-#      - BorgEngineerRLeg
-#      - BorgEngineerHead
-#      - BorgEngineerTorso
-#      medical:
-#      - BorgMedicalLArm
-#      - BorgMedicalRArm
-#      - BorgMedicalLLeg
-#      - BorgMedicalRLeg
-#      - BorgMedicalHead
-#      - BorgMedicalTorso
-#      janitor:
-#      - BorgJanitorLLeg
-#      - BorgJanitorRLeg
-#      - BorgJanitorHead
-#      - BorgJanitorTorso
-#      mining:
-#      - BorgMiningLArm
-#      - BorgMiningRArm
-#      - BorgMiningLLeg
-#      - BorgMiningRLeg
-#      - BorgMiningHead
-#      - BorgMiningTorso
 #  - type: Construction
 #    graph: Cyborg
 #    node: start
