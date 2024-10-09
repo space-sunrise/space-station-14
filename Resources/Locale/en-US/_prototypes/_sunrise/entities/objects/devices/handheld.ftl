@@ -1,5 +1,5 @@
 ent-BasePortableSurveillanceCameraMonitor = portable camera monitor
-    .desc = Позволяет вам в любом месте смотреть за экипажем.
+    .desc = Allows you to monitor the crew from anywhere.
 ent-PortableSurveillanceCameraMonitor = { ent-BasePortableSurveillanceCameraMonitor }
     .suffix = Handheld, Powered
     .desc = { ent-BasePortableSurveillanceCameraMonitor.desc }

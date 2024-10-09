@@ -554,3 +554,80 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
     state: plushie-bublegum
+
+- type: entity
+  id: PlushieCikuus
+  parent: BasePlushie
+  name: Плюшевая Лилит Бонавентура
+  description: Милая вульпочка в костюме горничной, она приятно пахнет цветами и с радостью уберет ваш дом. Кто о такой не мечтал?
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-cikuus
+
+- type: entity
+  id: PlushieSuvagesi
+  parent: BasePlushie
+  name: Плюшевая Холо Сувагеси
+  description: Обычная вульпа, да?.. Погоди.. это что, нож?.. Стой.. Нет.. БЕГИ!! ОНА КОНЧЕНАЯ!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-suvagesi
+
+- type: entity
+  id: PlushiePrototupus
+  parent: BasePlushie
+  name: Плюшевая Лили Бартон
+  description: а каждый вопрос есть однозначный ответ - "хлюп хлюп"
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-prototupus
+
+- type: entity
+  abstract: true
+  id: EmitSquish
+  components:
+  - type: MeleeWeapon
+    soundHit:
+      collection: PlushieSlimeSounds
+      params:
+        volume: 100
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: PlushieSlimeSounds
+  - type: EmitSoundOnCollide
+    sound:
+      collection: PlushieSlimeSounds
+  - type: EmitSoundOnUse
+    sound:
+      collection: PlushieSlimeSounds
+  - type: EmitSoundOnLand
+    sound:
+      collection: PlushieSlimeSounds
+  - type: EmitSoundOnActivate
+    sound:
+      collection: PlushieSlimeSounds
+
+- type: entity
+  id: PlushieSmile
+  parent:
+  - EmitSquish
+  - BasePlushie
+  name: Плюшевая Смайл
+  description: Плюшевая Смайл готова выслушать все ваши жалобы и стать вашей лучшей подругой.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-smile
+
+- type: entity
+  id: PlushieCFB
+  parent: BasePlushie
+  name: Виктория Белая
+  description: Персона в строгом костюме сотрудника ПНТ. Постоянно карает и не щадит. Любит баловаться и мяукать.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-CFB

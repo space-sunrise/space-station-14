@@ -12,7 +12,6 @@ using Content.Sunrise.Interfaces.Server;
 using JetBrains.Annotations;
 using Robust.Server.Player;
 using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
@@ -24,8 +23,6 @@ namespace Content.Server.GameTicking
     public sealed partial class GameTicker
     {
         [Dependency] private readonly IPlayerManager _playerManager = default!;
-        [Dependency] private readonly IServerDbManager _dbManager = default!;
-        [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
 
         private void InitializePlayer()
         {
@@ -70,7 +67,7 @@ namespace Content.Server.GameTicking
                         Timer.Spawn(0, () => _playerManager.JoinGame(args.Session));
                     // Sunrise-Queue-End
 
-                    var record = await _dbManager.GetPlayerRecordByUserId(args.Session.UserId);
+                    var record = await _db.GetPlayerRecordByUserId(args.Session.UserId);
                     var firstConnection = record != null &&
                                           Math.Abs((record.FirstSeenTime - record.LastSeenTime).TotalMinutes) < 1;
 
@@ -94,8 +91,8 @@ namespace Content.Server.GameTicking
 
                     RaiseNetworkEvent(GetConnectionStatusMsg(), session.Channel);
 
-                    if (firstConnection && _configurationManager.GetCVar(CCVars.AdminNewPlayerJoinSound))
-                        _audioSystem.PlayGlobal(new SoundPathSpecifier("/Audio/Effects/newplayerping.ogg"),
+                    if (firstConnection && _cfg.GetCVar(CCVars.AdminNewPlayerJoinSound))
+                        _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Effects/newplayerping.ogg"),
                             Filter.Empty().AddPlayers(_adminManager.ActiveAdmins), false,
                             audioParams: new AudioParams { Volume = -5f });
 

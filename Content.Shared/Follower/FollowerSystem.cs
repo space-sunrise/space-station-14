@@ -1,9 +1,11 @@
 using System.Numerics;
+using Content.Shared.Actions;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Database;
 using Content.Shared.Follower.Components;
 using Content.Shared.Ghost;
 using Content.Shared.Hands;
+using Content.Shared.Interaction.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Tag;
@@ -29,13 +31,14 @@ public sealed class FollowerSystem : EntitySystem
     [Dependency] private readonly SharedPhysicsSystem _physicsSystem = default!;
     [Dependency] private readonly INetManager _netMan = default!;
     [Dependency] private readonly ISharedAdminManager _adminManager = default!;
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<GetVerbsEvent<AlternativeVerb>>(OnGetAlternativeVerbs);
-        SubscribeLocalEvent<FollowerComponent, MoveInputEvent>(OnFollowerMove);
+        //SubscribeLocalEvent<FollowerComponent, MoveInputEvent>(OnFollowerMove); // Sunrise-Edit
         SubscribeLocalEvent<FollowerComponent, PullStartedMessage>(OnPullStarted);
         SubscribeLocalEvent<FollowerComponent, EntityTerminatingEvent>(OnFollowerTerminating);
 
@@ -43,7 +46,27 @@ public sealed class FollowerSystem : EntitySystem
         SubscribeLocalEvent<FollowerComponent, GotEquippedHandEvent>(OnGotEquippedHand);
         SubscribeLocalEvent<FollowedComponent, EntityTerminatingEvent>(OnFollowedTerminating);
         SubscribeLocalEvent<BeforeSaveEvent>(OnBeforeSave);
+
+        // Sunrise-Start
+        SubscribeLocalEvent<FollowerComponent, StartedFollowingEntityEvent>(OnStartedFollowingEntity);
+        SubscribeLocalEvent<FollowerComponent, StopFollowActionEvent>(OnStopFollowAction);
+        // Sunrise-Stop
     }
+
+    // Sunrise-Start
+    private void OnStopFollowAction(EntityUid uid, FollowerComponent component, StopFollowActionEvent args)
+    {
+        StopFollowingEntity(uid, component.Following);
+        _actions.RemoveAction(uid, component.StopFollowActionEntity);
+        RemComp<BlockMovementComponent>(uid);
+    }
+
+    private void OnStartedFollowingEntity(Entity<FollowerComponent> ent, ref StartedFollowingEntityEvent args)
+    {
+        _actions.AddAction(ent.Owner, ref ent.Comp.StopFollowActionEntity, ent.Comp.StopFollowAction);
+        EnsureComp<BlockMovementComponent>(ent.Owner);
+    }
+    // Sunrise-Stop
 
     private void OnFollowedAttempt(Entity<FollowedComponent> ent, ref ComponentGetStateAttemptEvent args)
     {
@@ -114,11 +137,12 @@ public sealed class FollowerSystem : EntitySystem
         }
     }
 
-    private void OnFollowerMove(EntityUid uid, FollowerComponent component, ref MoveInputEvent args)
-    {
-        if (args.HasDirectionalMovement)
-            StopFollowingEntity(uid, component.Following);
-    }
+    // Sunrise-Edit: Сброс слежения только через экшн.
+    // private void OnFollowerMove(EntityUid uid, FollowerComponent component, ref MoveInputEvent args)
+    // {
+    //     if (args.HasDirectionalMovement)
+    //         StopFollowingEntity(uid, component.Following);
+    // }
 
     private void OnPullStarted(EntityUid uid, FollowerComponent component, PullStartedMessage args)
     {
@@ -353,3 +377,9 @@ public sealed class EntityStoppedFollowingEvent : FollowEvent
     {
     }
 }
+
+// Sunrise-Start
+public sealed partial class StopFollowActionEvent : InstantActionEvent
+{
+}
+// Sunrise-End

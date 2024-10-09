@@ -216,7 +216,10 @@ if __name__ == "__main__":
     ' °C ( K)',
     'SUNRISE14CM',
     'Plague inc 2.0',
-    'SCP-'
+    'SCP-',
+    'IcarusRevenge',
+    'SplikZerys',
+    'Kendrick'
     ]  # Добавьте сюда слова, которые нужно игнорировать
     
     # Список файлов, которые нужно игнорировать

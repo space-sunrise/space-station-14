@@ -1,0 +1,31 @@
+- type: holiday
+  id: VigersRayBirthday
+  name: holiday-name-vigers-ray-birthday
+  beginDay: 2
+  beginMonth: October
+  greet:
+    !type:Custom
+    text: holiday-custom-vigers-ray-birthday
+  greetColor: gold
+
+
+- type: holidayGiveawayItem
+  id: VigersRayBirthdayGiveawayPresent
+  holiday: VigersRayBirthday
+  prototype: PresentRandom
+
+
+- type: holidayGiveawayItem
+  id: VigersRayBirthdayGiveawayInvitation
+  holiday: VigersRayBirthday
+  prototype: PaperVigersRayBirthdayInvitation
+
+
+- type: entity
+  id: PaperVigersRayBirthdayInvitation
+  name: Приглашение на день рождения
+  description: Кто-то пригласил вас на праздник...
+  parent: Paper
+  components:
+  - type: Paper
+    content: paper-text-vigers-ray-birthday

@@ -40,7 +40,7 @@
   suffix: Single
   components:
   - type: Stack
-    stackType: Brutepack
+    stackType: Nanopaste
     count: 1
 
 - type: entity
@@ -49,5 +49,5 @@
   suffix: Full
   components:
   - type: Stack
-    stackType: Brutepack
+    stackType: Nanopaste
     count: 10

@@ -182,3 +182,74 @@
   sex: Male
   speaker: icarus_revenge
   provider: sunrise
+
+- type: ttsVoice
+  id: HeartstoneThrud
+  name: tts-voice-name-heartstone-thrud
+  sex: Male
+  speaker: heartstone_thrud
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Kendrick
+  name: tts-voice-name-kendrick
+  sex: Male
+  speaker: kendrick
+  provider: sunrise
+
+- type: ttsVoice
+  id: SplikZerys
+  name: tts-voice-name-splikzerys
+  sex: Male
+  speaker: splikzerys
+  provider: sunrise
+
+- type: ttsVoice
+  id: Dota2Riki
+  name: tts-voice-name-dota2-riki
+  sex: Male
+  speaker: dota2_riki
+  provider: sunrise
+
+- type: ttsVoice
+  id: Dota2Pudge
+  name: tts-voice-name-dota2-pudge
+  sex: Male
+  speaker: dota2_pudge
+  provider: sunrise
+
+- type: ttsVoice
+  id: TF2Soldier
+  name: tts-voice-name-tf2-soldier
+  sex: Male
+  speaker: tf2_soldier
+  provider: sunrise
+
+- type: ttsVoice
+  id: Dota2Abaddon
+  name: tts-voice-name-dota2-abaddon
+  sex: Male
+  speaker: dota2_abaddon
+  provider: sunrise
+
+- type: ttsVoice
+  id: Dota2Silencer
+  name: tts-voice-name-dota2-silencer
+  sex: Male
+  speaker: dota2_silencer
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneWarden
+  name: tts-voice-name-hearthstone-warden
+  sex: Male
+  speaker: hearthstone_warden
+  provider: sunrise
+
+- type: ttsVoice
+  id: CBAnnouncer
+  name: tts-voice-name-cb-announcer
+  sex: Male
+  speaker: cb_announcer
+  provider: sunrise
