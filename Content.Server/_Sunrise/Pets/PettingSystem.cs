@@ -76,19 +76,18 @@ public sealed class PettingSystem : EntitySystem
         if (!TryComp<PettableOnInteractComponent>(entity, out var component))
             return;
 
-        Pet(entity, component, args);
+        Pet((entity, component), ref args);
     }
 
     /// <summary>
     /// Серверная часть приручения питомца.
     /// При приручении стандартным приказом является следование за хозяином.
     /// </summary>
-    /// <param name="pet">EntityUid питомца</param>
-    /// <param name="component">Компонент PettableOnInteractComponent</param>
+    /// <param name="pet">Entity питомца</param>
     /// <param name="args">Ивент типа PetSetAILogicEvent, передающий текущий приказ питомцу</param>
-    private void Pet(EntityUid pet, PettableOnInteractComponent component, PetSetAILogicEvent args)
+    private void Pet(Entity<PettableOnInteractComponent> pet, ref PetSetAILogicEvent args)
     {
-        var master = component.Master;
+        var master = pet.Comp.Master;
 
         // Питомец не может следовать за кем-то без хозяина
         if (!master.HasValue)
@@ -191,7 +190,10 @@ public sealed class PettingSystem : EntitySystem
             return;
 
         // Открываем меню для переименовывания
-        _quickDialog.OpenDialog(masterSession, "Переименовать", "Имя", (string newName) => Rename(pet, master.Value, newName));
+        _quickDialog.OpenDialog(masterSession,
+            Loc.GetString("pet-rename-label"),
+            Loc.GetString("pet-name-label"),
+            (string newName) => Rename(pet, master.Value, newName));
     }
 
     /// <summary>
@@ -204,7 +206,7 @@ public sealed class PettingSystem : EntitySystem
         // Ограничение имени по символам, чтобы в имени не оказалось огромной пасты.
         if (name.Length > MaxPetNameLenght)
         {
-            _popup.PopupEntity("Выбранное имя слишком большое", target, performer);
+            _popup.PopupEntity(Loc.GetString("pet-name-too-long"), target, performer);
             return;
         }
 

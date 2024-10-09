@@ -13,13 +13,8 @@ public sealed partial class PettableOnInteractComponent : Component
     /// <summary>
     /// Владелец питомца. Для изменения использовать PettingSystem.SetMaster()
     /// </summary>
-    public EntityUid? Master;
-
-    /// <summary>
-    /// Мастер, но нетворкед. Нужен, чтобы клиент понимал, кто тут хозяин.
-    /// </summary>
     [AutoNetworkedField]
-    public NetEntity? NetMaster;
+    public EntityUid? Master;
 
     /// <summary>
     /// Звук, который воспроизводится после успешного приручения

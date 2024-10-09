@@ -34,9 +34,9 @@ public sealed class PetControlBoundUserInterface : BoundUserInterface
         base.Open();
 
         var pet = _entityManager.GetComponent<PettableOnInteractComponent>(Owner);
-        var ourMaster = _entityManager.GetNetEntity(_playerManager.LocalSession?.AttachedEntity);
+        var ourMaster = _playerManager.LocalSession?.AttachedEntity;
 
-        if (ourMaster != pet.NetMaster)
+        if (ourMaster != pet.Master)
             return;
 
         _menu = new RadialContainer();
@@ -77,6 +77,9 @@ public sealed class PetControlBoundUserInterface : BoundUserInterface
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
+
+        if (!disposing)
+            return;
 
         _menu?.Close();
     }

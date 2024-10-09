@@ -2,12 +2,13 @@
 using Content.Shared.Actions;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Cloning;
-using Content.Shared.Hands;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Shared._Sunrise.Pets;
@@ -27,11 +28,11 @@ public sealed class SharedPettingSystem : EntitySystem
     private const PetOrderType AttackOrder = PetOrderType.Attack;
 
     // Айди акшенов, которые будут выдаваться хозяину при появлении питомца.
-    private const string OpenUiActionID = "PetOpenAllUiAction";
-    private const string AttackTargetActionID = "PetAttackTargetAction";
+    private readonly EntProtoId OpenUiAction = "PetOpenAllUiAction";
+    private readonly EntProtoId AttackTargetAction = "PetAttackTargetAction";
 
     // Эффекты
-    private const string PettingSuccessEffectID = "EffectHearts";
+    private readonly EntProtoId PettingSuccessEffect = "EffectHearts";
 
     public override void Initialize()
     {
@@ -55,7 +56,7 @@ public sealed class SharedPettingSystem : EntitySystem
 
     #region Base petting
 
-    private void OnPetAttempt(EntityUid uid, PetOnInteractComponent component, BeforeInteractHandEvent args)
+    private void OnPetAttempt(Entity<PetOnInteractComponent> master, ref BeforeInteractHandEvent args)
     {
         // Эта проверка позволяет методу срабатывать на клиенте только в первый раз, когда он предугадывает его.
         // Нужно, чтобы клиент 999 раз не выполнял действия ниже
@@ -76,10 +77,9 @@ public sealed class SharedPettingSystem : EntitySystem
 
         // Объявляем перменные, чтобы несколько раз не передавать ее длинную расшифровку.
         var petEntity = (args.Target, pet);
-        var masterEntity = (args.User, component);
 
         // Пытаемся задать питомцу хозязина и проверяем, получилось ли.
-        if (!TrySetMaster(petEntity, masterEntity))
+        if (!TrySetMaster(petEntity, master))
             return;
 
         // Приручаем питомца, если все прошло успешно и код дошел до этого момента.
@@ -100,7 +100,6 @@ public sealed class SharedPettingSystem : EntitySystem
 
         // Меняем владельца
         pet.Comp.Master = master;
-        pet.Comp.NetMaster = GetNetEntity(master);
         Dirty(pet);
 
         // Добавляем питомца в список прирученных питомцев
@@ -122,7 +121,6 @@ public sealed class SharedPettingSystem : EntitySystem
     {
         // Заставляем питомца забыть своего хозяина
         pet.Comp.Master = null;
-        pet.Comp.NetMaster = null;
         Dirty(pet);
 
         // Заставляем хозяина забыть питомца
@@ -172,11 +170,17 @@ public sealed class SharedPettingSystem : EntitySystem
 
         // Показываем игроку попап об успешном приручении
         if (!silent)
-            _popup.PopupClient($"Вы успешно приручаете {MetaData(pet).EntityName}", pet.Owner, master.Value);
+        {
+            var message = Loc.GetString("pet-success",
+                ("name", Identity.Name(pet, EntityManager, master.Value)));
+
+            _popup.PopupClient(message, pet.Owner, master.Value);
+        }
+
 
         // Спавним эффект с сердечками
         if (!silent)
-            Spawn(PettingSuccessEffectID, _transform.GetMapCoordinates(pet));
+            Spawn(PettingSuccessEffect, _transform.GetMapCoordinates(pet));
 
         // Если питомцу не доступен стандартный приказ, то он не меняет своей логики поведения
         if (!pet.Comp.AllowedOrders.Contains(DefaultOrder))
@@ -209,7 +213,7 @@ public sealed class SharedPettingSystem : EntitySystem
             return;
 
         // Добавляем акшен хозяину и добавляем его в список акшенов
-        var action = _actions.AddAction(master, OpenUiActionID);
+        var action = _actions.AddAction(master, OpenUiAction);
         master.Comp.PetActions.Add(action);
     }
 
@@ -230,11 +234,11 @@ public sealed class SharedPettingSystem : EntitySystem
             return;
 
         // Добавляем акшен хозяину и добавляем его в список акшенов
-        var action = _actions.AddAction(master, AttackTargetActionID);
+        var action = _actions.AddAction(master, AttackTargetAction);
         master.Comp.PetActions.Add(action);
     }
 
-    private void OnLoadoutSpawn(EntityUid uid, PettableOnInteractComponent component, LoadoutPetSpawned args)
+    private void OnLoadoutSpawn(Entity<PettableOnInteractComponent> pet, ref LoadoutPetSpawned args)
     {
         if (!_timing.IsFirstTimePredicted)
             return;
@@ -242,15 +246,14 @@ public sealed class SharedPettingSystem : EntitySystem
         if (!TryComp<PetOnInteractComponent>(args.Master, out var masterComponent))
             return;
 
-        var petEntity = (uid, component);
         var masterEntity = (args.Master, masterComponent);
 
         // Пытаемся задать питомцу хозязина и проверяем, получилось ли.
-        if (!TrySetMaster(petEntity, masterEntity))
+        if (!TrySetMaster(pet, masterEntity))
             return;
 
         // Приручаем питомца, если все прошло успешно и код дошел до этого момента.
-        Pet(petEntity);
+        Pet(pet, true);
     }
 
     #endregion
@@ -261,35 +264,26 @@ public sealed class SharedPettingSystem : EntitySystem
     /// Метод, вызываем при активации акшена хозяина питомцев.
     /// Акшен должен переключать меню управления всех питомцев хозяина для удобства управления несколькими питомцами.
     /// </summary>
-    /// <param name="master">EntityUid хозяина</param>
-    /// <param name="component">Компонент, позволяющий приручать питомцев типа PetOnInteractComponent</param>
+    /// <param name="master">Entity хозяина</param>
     /// <param name="args">Ивент, вызываемый акшеном, типа PetOpenAllUiEvent</param>
-    private void OnPetUiActionToggled(EntityUid master, PetOnInteractComponent component, PetOpenAllUiEvent args)
+    private void OnPetUiActionToggled(Entity<PetOnInteractComponent> master, ref PetOpenAllUiEvent args)
     {
         // Выполняем действия для каждого питомца из списка прирученных питомцев у хозяина.
-        foreach (var pet in component.Pets)
+        foreach (var pet in master.Comp.Pets)
         {
-            // Проверяем, открыто ли меню управления у конкретного питомца
-            var isOpen = _ui.IsUiOpen(pet, PetControlUiKey.Key);
-
-            // Если меню открыто мы его закрываем, если закрыто - открываем
-            if (isOpen)
-                _ui.CloseUi(pet, PetControlUiKey.Key, master);
-            else
-                _ui.OpenUi(pet, PetControlUiKey.Key, master);
+            _ui.TryToggleUi(pet, PetControlUiKey.Key, master);
         }
     }
 
     /// <summary>
     /// Метод, работающий с каждым питомцем, задавая ему приказ атаковать, если это возможно.
     /// </summary>
-    /// <param name="master">EntityUid хозяина</param>
-    /// <param name="component">Компонент, позволяющий приручать питомцев, типа PetOnInteractComponent</param>
+    /// <param name="master">Entity хозяина</param>
     /// <param name="args">Ивент, передающий приказ атаковать и таргет для атаки, типа PetAttackTargetEvent</param>
-    private void OnPetAttackToggled(EntityUid master, PetOnInteractComponent component, PetAttackTargetEvent args)
+    private void OnPetAttackToggled(Entity<PetOnInteractComponent> master, ref PetAttackTargetEvent args)
     {
         // Проходимся по всем прирученным питомцам у владельца
-        foreach (var pet in component.Pets)
+        foreach (var pet in master.Comp.Pets)
         {
             // Получаем компонент питомца, чтобы достать оттуда список доступных приказов
             if (!TryComp<PettableOnInteractComponent>(pet, out var petComponent))
@@ -312,13 +306,12 @@ public sealed class SharedPettingSystem : EntitySystem
     /// Метод, работающий с логикой передачи всех питомцев от одного хозяина к другому.
     /// Если нового хозяина нет, метод очищает весь список питомцев у старого владельца и отвязывает их.
     /// </summary>
-    /// <param name="uid">EntityUid старого хозяина</param>
-    /// <param name="component">Компонент хозяина</param>
+    /// <param name="master">Entity старого хозяина</param>
     /// <param name="newMaster">EntityUid нового хозяина, если есть. В него перейдут все питомцы и добавятся все нужные для этого акшены</param>
-    private void CleanMaster(EntityUid uid, PetOnInteractComponent component, EntityUid? newMaster = null)
+    private void CleanMaster(Entity<PetOnInteractComponent> master, EntityUid? newMaster = null)
     {
         // Захешировал список, так как хз, как поведет себя цикл при удалении оттуда питомцев при итерации
-        var oldPets = component.Pets;
+        var oldPets = master.Comp.Pets;
 
         // Проходимся по списку всех питомцев у старого владельца
         foreach (var petUid in oldPets)
@@ -329,7 +322,7 @@ public sealed class SharedPettingSystem : EntitySystem
             var petEntity = (petUid, petComponent);
 
             // Убираем питомца из списка питомцев старого тела
-            RemoveMaster(petEntity, (uid, component));
+            RemoveMaster(petEntity, master);
 
             // Если хозяин null, значит мы не передаем питомцев в новое тело.
             // Потоум что тела или нет, или это нам не требуется
@@ -355,34 +348,31 @@ public sealed class SharedPettingSystem : EntitySystem
     /// <summary>
     /// Метод, обрабатывающий логику передачи питомцев от старого тела хозяина к новому при клонировании
     /// </summary>
-    /// <param name="uid">EntityUid прошлого тела хозяина</param>
-    /// <param name="component">Компонент типа PetOnInteractComponent</param>
+    /// <param name="master">Entity прошлого тела хозяина</param>
     /// <param name="args">Ивент типа CloningEvent</param>
-    private void OnMasterCloned(EntityUid uid, PetOnInteractComponent component, ref CloningEvent args)
+    private void OnMasterCloned(Entity<PetOnInteractComponent> master, ref CloningEvent args)
     {
-        CleanMaster(uid, component, args.Target);
+        CleanMaster(master, args.Target);
     }
 
     /// <summary>
     /// Метод, обрабатывающий логику отвязывания питомцев от хозяина, когда его тело гибнули.
     /// </summary>
-    /// <param name="uid">EntityUid хозяина</param>
-    /// <param name="component">Компонент хозяина</param>
+    /// <param name="master">Entity хозяина</param>
     /// <param name="args">Ивент типа ComponentShutdown</param>
-    private void OnMasterShutdown(EntityUid uid, PetOnInteractComponent component, ComponentShutdown args)
+    private void OnMasterShutdown(Entity<PetOnInteractComponent> master, ref ComponentShutdown args)
     {
-        CleanMaster(uid, component);
+        CleanMaster(master);
     }
 
     /// <summary>
     /// Метод, занимающийся обработкой последствий после компонента питомца или его целиком из реальности.
     /// </summary>
-    /// <param name="uid">EntityUid питомца</param>
-    /// <param name="component">Компонент питомца</param>
+    /// <param name="pet">Entity питомца</param>
     /// <param name="args">Ивент типа ComponentShutdown</param>
-    private void OnPetShutdown(EntityUid uid, PettableOnInteractComponent component, ComponentShutdown args)
+    private void OnPetShutdown(Entity<PettableOnInteractComponent> pet, ref ComponentShutdown args)
     {
-        var master = component.Master;
+        var master = pet.Comp.Master;
 
         if (!master.HasValue)
             return;
@@ -392,7 +382,7 @@ public sealed class SharedPettingSystem : EntitySystem
 
         var masterEntity = (master.Value, masterComponent);
 
-        MasterForgetPet(masterEntity, uid);
+        MasterForgetPet(masterEntity, pet);
     }
 
     #endregion
