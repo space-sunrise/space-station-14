@@ -9,7 +9,13 @@ public sealed partial class GavelBlockComponent : Component
     public SoundSpecifier HitSound;
 
     [DataField]
-    public TimeSpan Cooldown = TimeSpan.FromSeconds(1.5);
+    public TimeSpan Cooldown = TimeSpan.FromSeconds(0.5);
+
+    [DataField(readOnly: true)]
+    public int Counter;
+
+    [DataField(readOnly: true)]
+    public int MaxCounter = 60;
 
     public TimeSpan? PrevSound;
 }

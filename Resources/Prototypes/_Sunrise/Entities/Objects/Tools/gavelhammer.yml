@@ -8,6 +8,11 @@
     sprite: _Sunrise/Objects/Tools/gavelhammer.rsi
     state: icon
   - type: Appearance
+  - type: MeleeWeapon  # Чтоб можно было по голове настучать
+    attackRate: 0.4
+    damage:
+      groups:
+        Brute: 1
   - type: Item
     size: Small
   - type: GavelHammer
