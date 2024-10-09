@@ -17,7 +17,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: HitscanBatteryAmmoProvider
     proto: Pulse
-    fireCost: 40
+    fireCost: 80
   - type: Appearance
   - type: AmmoCounter
 
@@ -40,7 +40,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
     proto: RedHeavyLaser
-    fireCost: 99
+    fireCost: 180
   - type: Appearance
   - type: AmmoCounter
 
@@ -63,7 +63,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
   - type: HitscanBatteryAmmoProvider
     proto: RedMediumLaser
-    fireCost: 59
+    fireCost: 120
   - type: Appearance
   - type: AmmoCounter
 
@@ -86,7 +86,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
   - type: HitscanBatteryAmmoProvider
     proto: RedLaser
-    fireCost: 39
+    fireCost: 80
   - type: Appearance
   - type: AmmoCounter
 
@@ -113,7 +113,7 @@
         variation: 0.2
   - type: ProjectileBatteryAmmoProvider
     proto: TeslaGunBullet
-    fireCost: 99
+    fireCost: 180
   - type: Appearance
   - type: AmmoCounter
 
@@ -136,7 +136,7 @@
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: BulletDisabler
-    fireCost: 29
+    fireCost: 60
   - type: Appearance
   - type: AmmoCounter
 
@@ -159,7 +159,7 @@
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: BulletTaser
-    fireCost: 19
+    fireCost: 40
   - type: Appearance
   - type: AmmoCounter
 
@@ -182,7 +182,7 @@
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: ShellShotgun
-    fireCost: 99
+    fireCost: 200
   - type: Appearance
   - type: AmmoCounter
 
@@ -205,7 +205,7 @@
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: ShellShotgunIncendiary
-    fireCost: 99
+    fireCost: 200
   - type: Appearance
   - type: AmmoCounter
 
@@ -228,7 +228,7 @@
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: CartridgeLightRifle
-    fireCost: 15
+    fireCost: 30
   - type: Appearance
   - type: AmmoCounter
 
@@ -251,7 +251,7 @@
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: BulletWeakRocket
-    fireCost: 25
+    fireCost: 50
   - type: Appearance
   - type: AmmoCounter
 
@@ -274,7 +274,7 @@
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: GrenadeBlast
-    fireCost: 100
+    fireCost: 200
   - type: Appearance
   - type: AmmoCounter
 
@@ -299,6 +299,6 @@
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: GrenadeFlash
-    fireCost: 30
+    fireCost: 60
   - type: Appearance
   - type: AmmoCounter
