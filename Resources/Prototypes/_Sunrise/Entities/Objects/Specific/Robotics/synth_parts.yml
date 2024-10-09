@@ -68,27 +68,12 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Specific/Robotics/synth_parts.rsi
-    state: borg_head
+    state: head
   - type: Icon
     sprite: _Sunrise/Objects/Specific/Robotics/synth_parts.rsi
-    state: borg_head
+    state: head
   - type: Tag
     tags:
     - Trash
     - SynthHead
     - BaseSynthHead
-
-- type: entity
-  id: TorsoSynth
-  parent: BaseSynthTorso
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Objects/Specific/Robotics/synth_parts.rsi
-    state: borg_chest
-  - type: Icon
-    sprite: _Sunrise/Objects/Specific/Robotics/synth_parts.rsi
-    state: borg_chest
-  - type: Tag
-    tags:
-    - Trash
-    - BaseSynthTorso
