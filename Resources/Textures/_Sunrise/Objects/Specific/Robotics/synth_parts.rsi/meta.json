@@ -8,29 +8,43 @@
   },
   "states": [
     {
-      "name": "chest",
-      "directions": 4
-    },
-    {
-      "name": "chest_icon"
+      "name": "chest"
     },
     {
       "name": "groin"
     },
     {
+      "name": "groin+o"
+    },
+    {
       "name": "head"
+    },
+    {
+      "name": "head+o"
     },
     {
       "name": "l_arm"
     },
     {
+      "name": "l_arm+o"
+    },
+    {
       "name": "r_arm"
+    },
+    {
+      "name": "r_arm+o"
     },
     {
       "name": "l_leg"
     },
     {
+      "name": "l_leg+o"
+    },
+    {
       "name": "r_leg"
+    },
+    {
+      "name": "r_leg+o"
     }
   ]
 }
