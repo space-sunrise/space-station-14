@@ -5,9 +5,9 @@
   description: A lightweight yet strong exosuit used for special cleanup operations.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/cburncommander.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/cburn-commander.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/cburncommander.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/cburn-commander.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
@@ -112,11 +112,11 @@
   description: A heavily armored USSP spacesuit designed for combat operations in extreme conditions. Reinforced armor protects against firearms and energy weapons, radiation and explosions. It is used by elite units to protect strategic facilities.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp_heavy.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp-heavy.rsi
   - type: Item
     size: Huge
   - type: Clothing
-    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp_heavy.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp-heavy.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.05
     lowPressureMultiplier: 1000
@@ -149,9 +149,9 @@
   description: A lightweight combat suit designed for rapid response and mobile operations. The light armor provides protection against firearms and allows for high maneuverability. The Grom-P is used by assault troops for fast and effective combat operations.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp_light.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp-light.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp_light.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp-light.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
