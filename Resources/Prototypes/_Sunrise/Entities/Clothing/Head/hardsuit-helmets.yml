@@ -6,8 +6,7 @@
   description: A pressure resistant and fireproof hood worn by special cleanup units.
   components:
   - type: Sprite
-    netsync: false
-    sprite: _Sunrise/Clothing/Head/Hardsuits/cburncommander.rsi
+    sprite: _Sunrise/Clothing/Head/Hardsuits/cburn-commander.rsi
     layers:
     - state: icon
     - state: icon-unshaded
