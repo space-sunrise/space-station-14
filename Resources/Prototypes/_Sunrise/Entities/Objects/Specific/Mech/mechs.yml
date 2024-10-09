@@ -42,6 +42,10 @@
   - type: Repairable
     fuelCost: 30
     doAfterDelay: 15
+  - type: Reflect
+    reflectProb: 0.3
+    reflects:
+    - NonEnergy
     
 - type: entity
   id: MechMolotBattery
