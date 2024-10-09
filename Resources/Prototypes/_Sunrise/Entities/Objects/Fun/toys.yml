@@ -624,6 +624,7 @@
 
 - type: entity
   id: EmitMeow
+  abstract: true
   components:
   - type: MeleeWeapon
     soundHit:
