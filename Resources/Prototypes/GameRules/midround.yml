@@ -37,16 +37,44 @@
   id: Changeling
   components:
   - type: ChangelingRule
-  - type: AntagSelection
-    agentName: changeling-roundend-name
-    definitions:
-    - prefRoles: [ Changeling ]
-      max: 5
-      playerRatio: 10
-      lateJoinAdditional: true
-      mindComponents:
-      - type: ChangelingRole
-        prototype: Changeling
+  - type: MultiAntagSelection
+    components:
+      - type: AntagSelection
+        agentName: changeling-roundend-name
+        definitions:
+        - prefRoles: [ Changeling ]
+          max: 3
+          playerRatio: 30
+          lateJoinAdditional: false
+          mindComponents:
+          - type: ChangelingRole
+            prototype: Changeling
+          - type: ChangelingHive
+            hive: "enum.ChangelingHive.Kilo"
+      - type: AntagSelection
+        agentName: changeling-roundend-name
+        definitions:
+        - prefRoles: [ Changeling ]
+          max: 3
+          playerRatio: 30
+          lateJoinAdditional: false
+          mindComponents:
+          - type: ChangelingRole
+            prototype: Changeling
+          - type: ChangelingHive
+            hive: "enum.ChangelingHive.Lima"
+      - type: AntagSelection
+        agentName: changeling-roundend-name
+        definitions:
+        - prefRoles: [ Changeling ]
+          max: 3
+          playerRatio: 30
+          lateJoinAdditional: false
+          mindComponents:
+          - type: ChangelingRole
+            prototype: Changeling
+          - type: ChangelingHive
+            hive: "enum.ChangelingHive.Mike"
 
 - type: entity
   categories: [ HideSpawnMenu ]

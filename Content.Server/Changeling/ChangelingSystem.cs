@@ -112,6 +112,9 @@ public sealed partial class ChangelingSystem : EntitySystem
     public EntProtoId SpacesuitPrototype = "ChangelingClothingOuterHardsuit";
     public EntProtoId SpacesuitHelmetPrototype = "ChangelingClothingHeadHelmetHardsuit";
 
+    private TimeSpan _nextPopupUpdate = TimeSpan.Zero;
+    private TimeSpan _popupCooldown = TimeSpan.FromSeconds(4);
+
     public override void Initialize()
     {
         base.Initialize();
@@ -142,7 +145,48 @@ public sealed partial class ChangelingSystem : EntitySystem
 
             Cycle(uid, comp);
         }
+
+        CycleFeeling();
     }
+
+    private void CycleFeeling()
+    {
+        // Я чувствую рядом с собой генокрада
+        if (_timing.CurTime < _nextPopupUpdate)
+            return;
+        _nextPopupUpdate = _timing.CurTime + _popupCooldown;
+
+        var query1 = EntityManager.AllEntityQueryEnumerator<ChangelingComponent>();
+        while (query1.MoveNext(out var uid1, out var comp1))
+        {
+            var toPopup = false;
+
+            var xform1 = _transform.GetMapCoordinates(uid1, Transform(uid1));
+
+            var query2 = EntityManager.AllEntityQueryEnumerator<ChangelingComponent>();
+            while (query2.MoveNext(out var uid2, out var comp2))
+            {
+                if (uid1 == uid2)
+                    continue;
+
+                if (comp1.Hive == comp2.Hive)
+                    continue;
+
+                var xform2 = _transform.GetMapCoordinates(uid2, Transform(uid2));
+
+                var dist = (xform1.Position - xform2.Position).Length();
+
+                if (dist < 2 && _rand.Next(0, 1) == 1) // Чувство может сбоить.
+                {
+                    toPopup = true;
+                }
+            }
+
+            if (toPopup)
+                _popup.PopupEntity(Loc.GetString("changeling-feeling-other-hive"), uid1, uid1, PopupType.SmallCaution);
+        }
+    }
+
     public void Cycle(EntityUid uid, ChangelingComponent comp)
     {
         UpdateChemicals(uid, comp);
@@ -168,7 +212,7 @@ public sealed partial class ChangelingSystem : EntitySystem
     }
     private void UpdateBiomass(EntityUid uid, ChangelingComponent comp, float? amount = null)
     {
-        comp.Biomass += amount ?? -1;
+        comp.Biomass += amount ?? 0;
         comp.Biomass = Math.Clamp(comp.Biomass, 0, comp.MaxBiomass);
         Dirty(uid, comp);
         _alerts.ShowAlert(uid, "ChangelingBiomass");
@@ -387,13 +431,18 @@ public sealed partial class ChangelingSystem : EntitySystem
     }
     public bool TryToggleItem(EntityUid uid, EntProtoId proto, ChangelingComponent comp, string? clothingSlot = null)
     {
-        if (!comp.Equipment.TryGetValue(proto.Id, out var item) && item == null)
+        if (!comp.Equipment.TryGetValue(proto.Id, out var item))
         {
             item = Spawn(proto, Transform(uid).Coordinates);
-            if (clothingSlot != null && !_inventory.TryEquip(uid, (EntityUid) item, clothingSlot, force: true))
+            if (clothingSlot != null)
             {
-                QueueDel(item);
-                return false;
+                if (!_inventory.TryEquip(uid, (EntityUid) item, clothingSlot, force: true))
+                {
+                    QueueDel(item);
+                    return false;
+                }
+                comp.Equipment.Add(proto.Id, item);
+                return true;
             }
             else if (!_hands.TryForcePickupAnyHand(uid, (EntityUid) item))
             {
@@ -469,6 +518,8 @@ public sealed partial class ChangelingSystem : EntitySystem
 
         newComp.TotalAbsorbedEntities = comp.TotalAbsorbedEntities;
         newComp.TotalStolenDNA = comp.TotalStolenDNA;
+
+        newComp.Hive = comp.Hive;
 
         return comp;
     }
@@ -597,6 +648,15 @@ public sealed partial class ChangelingSystem : EntitySystem
 
     private void OnStartup(EntityUid uid, ChangelingComponent comp, ref ComponentStartup args)
     {
+        // Временное решение для тестов
+        var hives = (ChangelingHive[]?) Enum.GetValues(typeof(ChangelingHive));
+
+        if (hives is { Length: > 0 })
+        {
+            comp.Hive = _rand.Pick(hives);
+        }
+        // Временное решение для тестов закончилось
+
         RemComp<HungerComponent>(uid);
         RemComp<ThirstComponent>(uid);
         EnsureComp<ZombieImmuneComponent>(uid);
@@ -612,6 +672,7 @@ public sealed partial class ChangelingSystem : EntitySystem
         // show alerts
         UpdateChemicals(uid, comp, 0);
         UpdateBiomass(uid, comp, 0);
+        _alerts.ShowAlert(uid, "ChangelingHive");
 
         // make their blood unreal
         _blood.ChangeBloodReagent(uid, "BloodChangeling");
