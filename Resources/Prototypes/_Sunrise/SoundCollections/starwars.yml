@@ -1,0 +1,49 @@
+﻿- type: soundCollection
+  id: CombineDeath
+  files:
+  - /Audio/_Sunrise/StarWars/soldierdeath1.ogg
+  - /Audio/_Sunrise/StarWars/soldierdeath2.ogg
+  - /Audio/_Sunrise/StarWars/soldierdeath3.ogg
+  - /Audio/_Sunrise/StarWars/soldierdeath4.ogg
+  - /Audio/_Sunrise/StarWars/soldierdeath5.ogg
+  - /Audio/_Sunrise/StarWars/soldierdeath6.ogg
+  - /Audio/_Sunrise/StarWars/soldierdeath7.ogg
+  - /Audio/_Sunrise/StarWars/soldierdeath8.ogg
+  - /Audio/_Sunrise/StarWars/soldierdeath9.ogg
+  - /Audio/_Sunrise/StarWars/soldierdeath10.ogg
+  - /Audio/_Sunrise/StarWars/soldierdeath11.ogg
+  - /Audio/_Sunrise/StarWars/soldierdeath12.ogg
+  - /Audio/_Sunrise/StarWars/soldierdeath13.ogg
+  - /Audio/_Sunrise/StarWars/soldierdeath14.ogg
+  - /Audio/_Sunrise/StarWars/soldierdeath15.ogg
+  - /Audio/_Sunrise/StarWars/soldierdeath16.ogg
+
+- type: soundCollection
+  id: ArmyFootstep
+  files:
+  - /Audio/_Sunrise/StarWars/army_footstep_1.ogg
+  - /Audio/_Sunrise/StarWars/army_footstep_2.ogg
+  - /Audio/_Sunrise/StarWars/army_footstep_3.ogg
+  - /Audio/_Sunrise/StarWars/army_footstep_4.ogg
+  - /Audio/_Sunrise/StarWars/army_footstep_5.ogg
+  - /Audio/_Sunrise/StarWars/army_footstep_6.ogg
+
+- type: soundCollection
+  id: DC15SHOT
+  files:
+  - /Audio/_Sunrise/StarWars/dc15shot.ogg
+
+- type: soundCollection
+  id: DC15sSHOT
+  files:
+  - /Audio/_Sunrise/StarWars/dc15sshot.ogg
+
+- type: soundCollection
+  id: darthvaderdeath
+  files:
+  - /Audio/_Sunrise/StarWars/darth_vader_death.ogg
+
+- type: soundCollection
+  id: DeathSquadScream
+  files:
+  - /Audio/_Sunrise/StarWars/deathsquadscream.ogg

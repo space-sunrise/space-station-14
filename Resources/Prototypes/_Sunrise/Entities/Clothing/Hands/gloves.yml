@@ -32,3 +32,93 @@
     sprite: _Sunrise/Clothing/Hands/Gloves/hos.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Hands/Gloves/hos.rsi
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesCaptainPhasma
+  name: перчатки капитана фазмы
+  description: Стандартное обмундирование элитного солдата Имперской Армии. Обладает термальной защитой.
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Hands/Gloves/captain_phasma.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Hands/Gloves/captain_phasma.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
+  - type: TemperatureProtection
+    coefficient: 0.35
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesKailoRen
+  name: тёмные перчатки
+  description: Элитные и очень чёрные. Обладают термальной защитой.
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Hands/Gloves/kailo_ren.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Hands/Gloves/kailo_ren.rsi
+  - type: Insulated
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
+  - type: TemperatureProtection
+    coefficient: 0.35
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesRepublicBodyguard
+  name: перчатки Императорского Стража
+  description: Элитное обмундирование Императорского Стража. Обладают термальной защитой.
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Hands/Gloves/republicbodyguard.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Hands/Gloves/republicbodyguard.rsi
+  - type: Insulated
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: TemperatureProtection
+    coefficient: 0.35
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesRepublicSoldier
+  name: перчатки штурмовика
+  description: Стандартное обмундирование солдата Имперской Армии. Обладает термальной защитой.
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Hands/Gloves/republicsoldier.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Hands/Gloves/republicsoldier.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+        Heat: 0.95
+  - type: TemperatureProtection
+    coefficient: 0.35

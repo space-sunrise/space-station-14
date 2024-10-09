@@ -42,3 +42,87 @@
     damageCoefficient: 0.65
   - type: Item
     size: Normal
+
+- type: entity
+  parent: ClothingOuterEVASuitBase
+  id: ClothingOuterHardsuitCaptainPhasma
+  name: броня-скафандр из стали
+  description: Стандартное обмундирование элитного солдата Имперской Армии. Защищает от смертельного воздействия космоса.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/captain_phasma.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/captain_phasma.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.7
+        Heat: 0.7
+        Radiation: 0.7
+        Caustic: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: TemperatureProtection
+    coefficient: 0.7
+
+- type: entity
+  parent: ClothingOuterEVASuitBase
+  id: ClothingOuterHardsuitRepublicBodyguard
+  name: броня-скафандр Императорского Стража
+  description: Элитное обмундирование Императорского Стража. Защищает от смертельного воздействия космоса.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/republicbodyguard.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/republicbodyguard.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.25
+        Slash: 0.25
+        Piercing: 0.25
+        Heat: 0.35
+        Radiation: 0.35
+        Caustic: 0.35
+  - type: ClothingSpeedModifier
+    walkModifier: 1.02
+    sprintModifier: 1.02
+  - type: TemperatureProtection
+    coefficient: 0.7
+
+- type: entity
+  parent: ClothingOuterEVASuitBase
+  id: ClothingOuterHardsuitRepublicSoldier
+  name: броня-скафандр штурмовика
+  description: Стандартное обмундирование солдата Имперской Армии. Защищает от смертельного воздействия космоса.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/republicsoldier.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/republicsoldier.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.8
+        Radiation: 0.8
+        Caustic: 0.8
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: TemperatureProtection
+    coefficient: 0.7

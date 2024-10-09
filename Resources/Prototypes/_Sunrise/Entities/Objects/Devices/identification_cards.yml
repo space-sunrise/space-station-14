@@ -178,3 +178,78 @@
     - state: idadjutant
   - type: PresetIdCard
     job: Adjutant
+
+# STAR WARS ID CARDS:
+
+- type: entity
+  parent: IDCardStandard
+  id: RepublicIDCard
+  name: ID карта Имперского штурмовика
+  description: Используется как идентификатор и средство взлома.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards_starwars.rsi
+    layers:
+    - state: default2
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: _Sunrise/Objects/Misc/id_cards_starwars.rsi
+  - type: IdCard
+    jobTitle: Вооруженные силы Империи
+    fullName: Имперский штурмовик
+  - type: Emag
+  - type: LimitedCharges
+    maxCharges: 1
+    charges: 1
+  - type: AutoRecharge
+    rechargeDuration: 180
+
+- type: entity
+  parent: IDCardStandard
+  id: DarthVaderIDCard
+  name: ID карта Лорда Ситхов
+  description: Используется как идентификатор и средство взлома.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards_starwars.rsi
+    layers:
+    - state: default
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: _Sunrise/Objects/Misc/id_cards_starwars.rsi
+  - type: IdCard
+    jobTitle: Лорд Ситхов
+    fullName: Дарт Вейдер
+  - type: Emag
+  - type: LimitedCharges
+    maxCharges: 1
+    charges: 1
+  - type: AutoRecharge
+    rechargeDuration: 180
+
+- type: entity
+  parent: IDCardStandard
+  id: BodyguardIDCard
+  name: ID карта Императорского Стража
+  noSpawn: true
+  description: Используется как идентификатор и средство взлома.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards_starwars.rsi
+    layers:
+    - state: bodyguard
+  - type: Clothing
+    slots:
+    - idcard
+    sprite: _Sunrise/Objects/Misc/id_cards_starwars.rsi
+  - type: IdCard
+    jobTitle: Императорская Гвардия
+    fullName: Страж
+  - type: Emag
+  - type: LimitedCharges
+    maxCharges: 1
+    charges: 1
+  - type: AutoRecharge
+    rechargeDuration: 180

@@ -1,0 +1,48 @@
+﻿- type: entity
+  parent: Clothing
+  id: ClothingMaskGasDarthVader
+  name: темная дыхательная маска
+  description: Является частью скафандра.
+  components:
+  - type: Tag
+    tags: [] # ignore "WhitelistChameleon" tag
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/darth.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/darth.rsi
+    slots: [mask]
+  - type: Unremoveable
+  - type: BreathMask
+  - type: IdentityBlocker
+
+- type: entity
+  parent: ClothingMaskBase
+  id: ClothingMaskRepublicSoldier
+  name: дыхательная маска
+  description: Защищает глаза от ярких вспышек.
+  components:
+  - type: EyeProtection
+  - type: Sprite
+    sprite:  _Sunrise/Clothing/Mask/republicsoldier.rsi
+    state: icon
+  - type: Clothing
+    sprite:  _Sunrise/Clothing/Mask/republicsoldier.rsi
+  - type: BreathMask
+  - type: IdentityBlocker
+
+- type: entity
+  parent: Clothing
+  id: ClothingMaskGasKailoRen
+  name: темная дыхательная маска
+  description: ...
+  components:
+  - type: Tag
+    tags: [] # ignore "WhitelistChameleon" tag
+  - type: Sprite
+    sprite:  _Sunrise/Clothing/Mask/kailo_ren.rsi
+    state: icon
+  - type: Clothing
+    sprite:  _Sunrise/Clothing/Mask/kailo_ren.rsi
+    slots: [mask]
+  - type: BreathMask
