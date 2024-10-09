@@ -2,7 +2,7 @@
   id: MechMolot
   parent: [ BaseMech, CombatMech, BaseRestrictedContraband ]
   name: Molot M-1
-  description: It's a heavy mech designed by the SSSP to operate in aggressive, unaccepted environments. It has 4 weapon mounts on board, oxygen maintenance in the cockpit.
+  description: A heavy mech designed by the SSSP to operate in aggressive, unaccepted environments. It has 4 weapon mounts on board, oxygen maintenance in the cockpit.
   components:
   - type: Sprite
     drawdepth: Mobs
