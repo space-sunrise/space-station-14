@@ -146,6 +146,7 @@
         node: start
       - !type:DoActsBehavior
         acts: ["Destruction"]
+  - type: Prying
 
 # Ripley MK-I
 - type: entity
