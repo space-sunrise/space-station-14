@@ -146,6 +146,7 @@
   maxLimit: 3
   loadouts:
   - SecurityBodycam
+  - SecurityPepperspray
   - SecurityWhistle
   - SecurityRadioHandheld
   - SecurityTourniquet
@@ -271,3 +272,32 @@
   loadouts:
   - SecurityPilotJumpsuit
   - SecurityPilotJumpskirt
+
+- type: loadoutGroup
+  id: AdjutantJumpsuit
+  name: loadout-group-adj-jumpsuit
+  loadouts:
+  - AdjutantJumpsuit
+  - AdjutantJumpskirt
+
+- type: loadoutGroup
+  id: AdjutantBackpack
+  name: loadout-group-adj-backpack
+  loadouts:
+  - AdjutantBackpack
+  - AdjutantSatchel
+  - AdjutantDuffel
+
+- type: loadoutGroup
+  id: AdjutantHead
+  name: loadout-group-adj-head
+  loadouts:
+  - AdjutantCap
+  - AdjutantBeret
+  - AdjutantGarrisonCap
+
+- type: loadoutGroup
+  id: AdjutantOuterClothing
+  name: loadout-group-adj-outerClothing
+  loadouts:
+  - AdjutantCoat

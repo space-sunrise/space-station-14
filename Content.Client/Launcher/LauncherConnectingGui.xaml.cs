@@ -30,16 +30,19 @@ namespace Content.Client.Launcher
         private readonly IRobustRandom _random;
         private readonly IPrototypeManager _prototype;
         private readonly IConfigurationManager _cfg;
-        private readonly ServersHubManager _serversHubManager;
+        private readonly IClipboardManager _clipboard;
+        private readonly ServersHubManager _serversHubManager; // Sunrise-Edit
 
         public LauncherConnectingGui(LauncherConnecting state, IRobustRandom random,
-            IPrototypeManager prototype, IConfigurationManager config, ServersHubManager serversHubManager)
+            IPrototypeManager prototype, IConfigurationManager config, IClipboardManager clipboard,
+            ServersHubManager serversHubManager) // Sunrise-Edit
         {
             _state = state;
             _random = random;
             _prototype = prototype;
             _cfg = config;
-            _serversHubManager = serversHubManager;
+            _clipboard = clipboard;
+            _serversHubManager = serversHubManager; // Sunrise-Edit
 
             RobustXamlLoader.Load(this);
 
@@ -48,8 +51,11 @@ namespace Content.Client.Launcher
             Stylesheet = IoCManager.Resolve<IStylesheetManager>().SheetSpace;
 
             ChangeLoginTip();
-            ReconnectButton.OnPressed += ReconnectButtonPressed;
             RetryButton.OnPressed += ReconnectButtonPressed;
+            ReconnectButton.OnPressed += ReconnectButtonPressed;
+
+            CopyButton.OnPressed += CopyButtonPressed;
+            CopyButtonDisconnected.OnPressed += CopyButtonDisconnectedPressed;
             ExitButton.OnPressed += _ => _state.Exit();
 
             var addr = state.Address;
@@ -68,15 +74,17 @@ namespace Content.Client.Launcher
             edim.LastNetDisconnectedArgsChanged += LastNetDisconnectedArgsChanged;
             LastNetDisconnectedArgsChanged(edim.LastNetDisconnectedArgs);
 
-            _serversHubManager.ServersDataListChanged += RefreshServersHubHeader;
+            _serversHubManager.ServersDataListChanged += RefreshServersHubHeader; // Sunrise-Edit
         }
 
+        // Sunrise-Start
         private void RefreshServersHubHeader(List<ServerHubEntry> servers)
         {
             var totalPlayers = servers.Sum(server => server.CurrentPlayers);
             var maxPlayers = servers.Sum(server => server.MaxPlayers);
-            ServersHubHeaderLabel.Text = $"Сейчас играет: {totalPlayers}/{maxPlayers}";
+            ServersHubHeaderLabel.Text = Loc.GetString("serverhub-playingnow", ("total", totalPlayers), ("max", maxPlayers)); // Sunrise-Edit
         }
+        // Sunrise-End
 
         // Just button, there's only one at once anyways :)
         private void ReconnectButtonPressed(BaseButton.ButtonEventArgs args)
@@ -89,6 +97,24 @@ namespace Content.Client.Launcher
             }
 
             _state.RetryConnect();
+        }
+
+        private void CopyButtonPressed(BaseButton.ButtonEventArgs args)
+        {
+            CopyText(ConnectFailReason.Text);
+        }
+
+        private void CopyButtonDisconnectedPressed(BaseButton.ButtonEventArgs args)
+        {
+            CopyText(DisconnectReason.Text);
+        }
+
+        private void CopyText(string? text)
+        {
+            if (!string.IsNullOrEmpty(text))
+            {
+                _clipboard.SetText(text);
+            }
         }
 
         private void ConnectFailReasonChanged(string? reason)

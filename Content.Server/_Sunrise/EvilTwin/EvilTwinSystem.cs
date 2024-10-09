@@ -212,7 +212,7 @@ public sealed class EvilTwinSystem : EntitySystem
             var implantEnt = Spawn(MindShield, coords);
 
             if (TryComp<SubdermalImplantComponent>(implantEnt, out var implantComp))
-                _subdermalImplant.ForceImplant(target, implantEnt, implantComp);
+                _subdermalImplant.ForceImplant(twinUid, implantEnt, implantComp);
         }
 
         EnsureComp<EvilTwinComponent>(twinUid).TargetMindId = mindId;

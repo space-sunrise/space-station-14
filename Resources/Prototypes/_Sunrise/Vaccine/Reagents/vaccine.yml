@@ -1,0 +1,41 @@
+- type: reagent
+  id: NotReadyVaccine
+  name: reagent-name-notready-vaccine
+  group: Medicine
+  desc: reagent-description-notready-vaccine
+  physicalDesc: reagent-description-disease-strange-physical-desc
+  flavor: medicine
+  color: "#83a7b1"
+
+- type: reagent
+  id: Vaccine
+  name: reagent-name-vaccine
+  group: Medicine
+  desc: reagent-description-vaccine
+  physicalDesc: reagent-description-disease-strange-physical-desc
+  flavor: medicine
+  color: "#86caf7"
+  metabolisms:
+    Medicine:
+      effects:
+        - !type:CureDiseaseInfection
+          conditions:
+            - !type:ReagentThreshold
+              min: 10
+
+- type: reagent
+  id: VaccinePlus
+  name: reagent-name-vaccine-plus
+  group: Medicine
+  desc: reagent-description-vaccine-plus
+  physicalDesc: reagent-description-disease-strange-physical-desc
+  flavor: medicine
+  color: "#8192ea"
+  metabolisms:
+    Medicine:
+      effects:
+        - !type:CureDiseaseInfection
+          innoculate: true
+          conditions:
+            - !type:ReagentThreshold
+              min: 7

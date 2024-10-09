@@ -7,11 +7,40 @@
   flavor: funny
   color: "#FF00E8"
   metabolisms:
-    Poison:
+    Narcotic:
       effects:
       - !type:PopupMessage
         type: Local
         messages: [ "aphrodesiac-effect1", "aphrodesiac-effect2" ]
         probability: 0.1
-      - !type:LoveEffect
-        effectPower: 2
+      - !type:GenericStatusEffect
+        key: LoveEffect
+        component: LoveVision
+        refresh: false
+        time: 10.0  # Полная баночка = 5 минут
+        type: Add
+      - !type:Jitter
+        refresh: false
+        time: 1.0  # Полная баночка = 1 минута тряски
+        amplitude: 2
+        frequency: 5
+
+- type: reagent
+  id: HonkPower
+  name: reagent-name-honkpower
+  group: Toxins
+  desc: reagent-desc-honkpower
+  flavor: funny
+  color: "#F0E68C"
+  physicalDesc: reagent-physical-desc-honkpower
+  recognizable: false
+  slippery: true
+  metabolisms:
+    Food: 
+      metabolismRate: 1.0
+      effects:
+      - !type:Polymorph
+        prototype: ClowanHulk
+        conditions:
+          - !type:ReagentThreshold
+            min: 5

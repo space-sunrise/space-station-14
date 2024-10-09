@@ -210,6 +210,6 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
 
     private void ChangeServerPressed()
     {
-        _serversHubManager.OpenServersHub();
+        _serversHubManager.ToggleWindow();
     }
 }

@@ -9,8 +9,7 @@
       time: 7200 # 2 hrs
   alwaysUseSpawner: true
   canBeAntag: false
-  setPreference: false
-  startingGear: StationEngineerGear
+  startingGear: PrisonEngineerGear
   icon: "JobIconPrisonEngineer"
   supervisors: job-supervisors-head-of-prison
   displayWeight: 70
@@ -19,3 +18,14 @@
   - Engineering
   - External
   - Atmospherics
+
+- type: startingGear
+  id: PrisonEngineerGear
+  equipment:
+    eyes: ClothingEyesGlassesMeson
+    belt: ClothingBeltUtilityEngineering
+    ears: ClothingHeadsetJEngineering
+    id: PrisonEngineerPDA
+  storage:
+    back:
+    - Flash

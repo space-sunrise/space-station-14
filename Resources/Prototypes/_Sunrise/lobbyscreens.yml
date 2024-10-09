@@ -185,3 +185,7 @@
 - type: lobbyBackground
   id: EngineersVsZombies
   background: /Textures/_Sunrise/LobbyScreens/engineers-vs-zombies.webp
+
+- type: lobbyBackground
+  id: Reunion
+  background: /Textures/_Sunrise/LobbyScreens/reunion.webp

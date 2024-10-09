@@ -47,6 +47,7 @@ namespace Content.Server.Zombies
         [Dependency] private readonly ActionsSystem _action = default!;
         [Dependency] private readonly SharedStunSystem _stun = default!;
         [Dependency] private readonly NavMapSystem _navMap = default!; // Sunrise-Zombies
+        [Dependency] private readonly SharedTransformSystem _transform = default!;
 
         public const SlotFlags ProtectiveSlots =
             SlotFlags.FEET |
@@ -166,7 +167,7 @@ namespace Content.Server.Zombies
 
             args.Handled = true;
             var xform = Transform(uid);
-            var mapCoords = args.Target.ToMap(EntityManager);
+            var mapCoords = args.Target.ToMap(EntityManager, _transform);
             var direction = mapCoords.Position - xform.MapPosition.Position;
 
             if (direction.Length() > component.MaxThrow)

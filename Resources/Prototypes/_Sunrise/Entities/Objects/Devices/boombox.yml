@@ -7,7 +7,7 @@
   - type: Item
     size: Huge
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Devices/boombox.rsi
+    sprite: _Sunrise/Objects/Devices/boombox.rsi
     layers:
     - state: "off"
       map: ["enum.TapePlayerVisualLayers.Base"]
@@ -34,7 +34,7 @@
   - type: Item
     size: Huge
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Devices/syndie_boombox.rsi
+    sprite: _Sunrise/Objects/Devices/syndie_boombox.rsi
     layers:
     - state: "off"
       map: ["enum.TapePlayerVisualLayers.Base"]

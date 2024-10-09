@@ -32,7 +32,9 @@ namespace Content.Shared.Gravity
 
             // Sunrise-Start
             if (TryComp<BorgMagbootsComponent>(uid, out var borgMagbootsComponent) && borgMagbootsComponent.On)
-                return false;
+            {
+                return borgMagbootsComponent.RequiresGrid && !EntityOnGravitySupportingGridOrMap(uid);
+            }
             // Sunrise-End
 
             var ev = new IsWeightlessEvent(uid);

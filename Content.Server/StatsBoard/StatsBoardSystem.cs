@@ -26,6 +26,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Robust.Shared.Localization;
 
 namespace Content.Server.StatsBoard;
 
@@ -504,7 +505,7 @@ public sealed class StatsBoardSystem : EntitySystem
             }
         }
 
-        result += "На станции были представители таких рас:";
+        result += Loc.GetString("statsentry-species-entry-name") + "\n";
         foreach (var speciesEntry in roundSpecies)
         {
             var species = speciesEntry.Key;
@@ -516,44 +517,43 @@ public sealed class StatsBoardSystem : EntitySystem
                 mostPopularSpecies = species;
             }
 
-            result += $"\n[bold][color=white]{Loc.GetString(species)}[/color][/bold] в количестве [color=white]{count}[/color].";
+            result += Loc.GetString("statsentry-species-entry", ("name", Loc.GetString(species)), ("count", count)) + "\n";
         }
 
         if (mostPopularSpecies != null)
         {
-            result += $"\nСамой распространённой расой стал [color=white]{Loc.GetString(mostPopularSpecies)}[/color].";
+            result += Loc.GetString("statsentry-mst-pop-species", ("name", Loc.GetString(mostPopularSpecies))) + "\n";
         }
 
         var station = _station.GetStations().FirstOrDefault();
         var bank = GetBankAccount(station);
 
         if (bank != null)
-            result += $"\nПод конец смены баланс карго составил [color=white]{bank.Balance}[/color] кредитов.";
+            result += Loc.GetString("statsentry-bank-balance", ("balance", bank.Balance)) + "\n";
 
         if (_firstMurder.victim != null)
         {
             var victimUsername = TryGetUsername(_firstMurder.victim.Value);
             var victimName = TryGetName(_firstMurder.victim.Value);
             var victimUsernameColor = victimUsername != null ? $" ([color=gray]{victimUsername}[/color])" : "";
-            result += $"\nПервая жертва станции - [color=white]{victimName}[/color]{victimUsernameColor}.";
-            result += $"\nВремя смерти - [color=yellow]{_firstMurder.time.ToString("hh\\:mm\\:ss")}[/color].";
+            result += Loc.GetString("statsentry-firth-murder", ("name", victimName), ("username", victimUsernameColor)) + "\n";
+            result += Loc.GetString("statsentry-firth-murder-time", ("time", _firstMurder.time.ToString("hh\\:mm\\:ss"))) + "\n";
             if (_firstMurder.killer != null)
             {
                 var killerUsername = TryGetUsername(_firstMurder.killer.Value);
                 var killerName = TryGetName(_firstMurder.killer.Value);
                 var killerUsernameColor = killerUsername != null ? $" ([color=gray]{killerUsername}[/color])" : "";
-                result +=
-                    $"\nУбийца - [color=white]{killerName}[/color]{killerUsernameColor}.";
+                result += Loc.GetString("statsentry-firth-murder-killer", ("name", killerName), ("username", killerUsernameColor)) + "\n";
             }
             else
             {
-                result += "\nСмерть наступила при неизвестных обстоятельствах.";
+                result += Loc.GetString("statsentry-firth-murder-killer-none") + "\n";
             }
         }
 
         if (totalSlipped >= 1)
         {
-            result += $"\nИгроки в этой смене поскользнулись [color=white]{totalSlipped}[/color] раз.";
+            result += Loc.GetString("statsentry-total-slipped", ("count", totalSlipped)) + "\n";
         }
 
         if (mostSlippedCharacter != null && maxSlippedCount > 1)
@@ -561,13 +561,12 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(mostSlippedCharacter.Value);
             var name = TryGetName(mostSlippedCharacter.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result +=
-                $"\nБольше всех раз поскользнулся [color=white]{name}[/color]{usernameColor} - [color=white]{maxSlippedCount}[/color].";
+            result += Loc.GetString("statsentry-most-slipped", ("name", name), ("username", usernameColor), ("count", maxSlippedCount)) + "\n";
         }
 
         if (totalCreampied >= 1)
         {
-            result += $"\nВсего кремировано игроков: {totalCreampied}.";
+            result += Loc.GetString("statsentry-total-creampied", ("total", totalCreampied)) + "\n";
         }
 
         if (mostDeadCharacter != null && maxDeadCount > 1)
@@ -575,13 +574,12 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(mostDeadCharacter.Value);
             var name = TryGetName(mostDeadCharacter.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result +=
-                $"\nБольше всего раз умирал [color=white]{name}[/color]{usernameColor}, а именно [color=white]{maxDeadCount}[/color] раз.";
+            result += Loc.GetString("statsentry-most-dead", ("name", name), ("username", usernameColor), ("count", maxDeadCount)) + "\n";
         }
 
         if (totalDoorEmaged >= 1)
         {
-            result += $"\nШлюзы были емагнуты [color=white]{totalDoorEmaged}[/color] раз.";
+            result += Loc.GetString("statsentry-total-door-emaged", ("count", totalDoorEmaged)) + "\n";
         }
 
         if (mostDoorEmagedCharacter != null)
@@ -589,18 +587,17 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(mostDoorEmagedCharacter.Value);
             var name = TryGetName(mostDoorEmagedCharacter.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result +=
-                $"\nБольше всего шлюзов емагнул - [color=white]{name}[/color]{usernameColor} - [color=white]{maxDoorEmagedCount}[/color] раз.";
+            result += Loc.GetString("statsentry-most-door-emaged-character", ("name", name), ("username", usernameColor), ("count", maxDoorEmagedCount)) + "\n";
         }
 
         if (_jointCreated >= 1)
         {
-            result += $"\nБыло скручено [color=white]{_jointCreated}[/color] косяков.";
+            result += Loc.GetString("statsentry-joint-created", ("count", _jointCreated)) + "\n";
         }
 
         if (totalKilledMice >= 1)
         {
-            result += $"\nБыло убито [color=white]{totalKilledMice}[/color] мышей.";
+            result += Loc.GetString("statsentry-total-killed-mice", ("count", totalKilledMice)) + "\n";
         }
 
         if (mostKillsMiceCharacter != null && maxKillsMice > 1)
@@ -608,7 +605,7 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(mostKillsMiceCharacter.Value);
             var name = TryGetName(mostKillsMiceCharacter.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result += $"\n{name}[/color]{usernameColor} устроил геноцид, убив [color=white]{maxKillsMice}[/color] мышей.";
+            result += Loc.GetString("statsentry-most-kills-mice-character", ("name", name), ("username", usernameColor), ("count", maxKillsMice)) + "\n";
         }
 
         if (_hamsterKiller != null)
@@ -616,13 +613,12 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(_hamsterKiller.Value);
             var name = TryGetName(_hamsterKiller.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result +=
-                $"\nУбийцей гамлета был [color=white]{name}[/color]{usernameColor}.";
+            result += Loc.GetString("statsentry-hamster-killer", ("name", name), ("username", usernameColor)) + "\n";
         }
 
         if (totalCuffedCount >= 1)
         {
-            result += $"\nИгроки были закованы [color=white]{totalCuffedCount}[/color] раз.";
+            result += Loc.GetString("statsentry-total-cuffed-count", ("count", totalCuffedCount)) + "\n";
         }
 
         if (playerWithLongestCuffedTime != null)
@@ -630,13 +626,12 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(playerWithLongestCuffedTime.Value);
             var name = TryGetName(playerWithLongestCuffedTime.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result +=
-                $"\nБольше всего времени в наручниках провёл [color=white]{name}[/color]{usernameColor} - [color=yellow]{maxCuffedTime.ToString("hh\\:mm\\:ss")}[/color].";
+            result += Loc.GetString("statsentry-player-with-longest-cuffed-time", ("name", name), ("username", usernameColor), ("time", maxCuffedTime.ToString("hh\\:mm\\:ss"))) + "\n";
         }
 
         if (totalSleepTime > TimeSpan.Zero)
         {
-            result += $"\nОбщее время сна игроков составило [color=yellow]{totalSleepTime.ToString("hh\\:mm\\:ss")}[/color].";
+            result += Loc.GetString("statsentry-total-sleep-time", ("time", totalSleepTime.ToString("hh\\:mm\\:ss"))) + "\n";
         }
 
         if (playerWithLongestSleepTime != null)
@@ -644,8 +639,8 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(playerWithLongestSleepTime.Value);
             var name = TryGetName(playerWithLongestSleepTime.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result += $"\nГлавной соней станции оказался [color=white]{name}[/color]{usernameColor}.";
-            result += $"\nОн спал на протяжении [color=yellow]{maxSleepTime.ToString("hh\\:mm\\:ss")}[/color].";
+            result += Loc.GetString("statsentry-player-with-longest-sleep-time", ("name", name), ("username", usernameColor)) + "\n";
+            result += Loc.GetString("statsentry-player-with-longest-sleep-time-time", ("time", maxSleepTime.ToString("hh\\:mm\\:ss"))) + "\n";
         }
 
         if (playerWithLongestSpaceTime != null)
@@ -653,8 +648,7 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(playerWithLongestSpaceTime.Value);
             var name = TryGetName(playerWithLongestSpaceTime.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result +=
-                $"\nБольше всего времени в космосе провел [color=white]{name}[/color]{usernameColor} - [color=yellow]{maxSpaceTime.ToString("hh\\:mm\\:ss")}[/color].";
+            result += Loc.GetString("statsentry-player-with-longest-space-time", ("name", name), ("username", usernameColor), ("time", maxSpaceTime.ToString("hh\\:mm\\:ss"))) + "\n";
         }
 
         if (_clownCuffed.clown != null && _clownCuffed.time != null)
@@ -662,13 +656,12 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(_clownCuffed.clown.Value);
             var name = TryGetName(_clownCuffed.clown.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result +=
-                $"\nКлоун [color=white]{name}[/color]{usernameColor} был закован всего спустя [color=yellow]{_clownCuffed.time.Value.ToString("hh\\:mm\\:ss")}[/color].";
+            result += Loc.GetString("statsentry-clown-cuffed", ("name", name), ("username", usernameColor), ("time", _clownCuffed.time.Value.ToString("hh\\:mm\\:ss"))) + "\n";
         }
 
         if (totalHeal >= 1)
         {
-            result += $"\nВсего игроками было излечено [color=white]{totalHeal}[/color] урона.";
+            result += Loc.GetString("statsentry-total-heal", ("count", totalHeal)) + "\n";
         }
 
         if (playerWithMostInflictedHeal != null)
@@ -676,13 +669,12 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(playerWithMostInflictedHeal.Value);
             var name = TryGetName(playerWithMostInflictedHeal.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result +=
-                $"\nБольше всего урона игрокам вылечил [color=white]{name}[/color]{usernameColor} - [color=white]{maxInflictedHeal}[/color].";
+            result += Loc.GetString("statsentry-player-with-most-infected-heal", ("name", name), ("username", usernameColor), ("count", maxInflictedHeal)) + "\n";
         }
 
         if (totalDamage >= 1)
         {
-            result += $"\nВсего игроками было получено [color=white]{totalDamage}[/color] урона.";
+            result += Loc.GetString("statsentry-total-damage", ("count", totalDamage)) + "\n";
         }
 
         if (playerWithMostInflictedDamage != null)
@@ -690,8 +682,7 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(playerWithMostInflictedDamage.Value);
             var name = TryGetName(playerWithMostInflictedDamage.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result +=
-                $"\nБольше всего урона нанес [color=white]{name}[/color]{usernameColor} - [color=white]{maxInflictedDamage}[/color].";
+            result += Loc.GetString("statsentry-player-with-most-infected-damage", ("name", name), ("username", usernameColor), ("count", maxInflictedDamage)) + "\n";
         }
 
         if (playerWithMinSpentTk != null)
@@ -699,8 +690,7 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(playerWithMinSpentTk.Value);
             var name = TryGetName(playerWithMinSpentTk.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result +=
-                $"\nМеньше всего телекристалов потратил [color=white]{name}[/color]{usernameColor} - [color=white]{minSpentTk}[/color]ТК.";
+            result += Loc.GetString("statsentry-player-with-min-spent-tk", ("name", name), ("username", usernameColor), ("count", minSpentTk)) + "\n";
         }
 
         if (playerWithMaxHumKills != null && maxHumKillCount > 1)
@@ -708,8 +698,8 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(playerWithMaxHumKills.Value);
             var name = TryGetName(playerWithMaxHumKills.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result += $"\nНастоящим маньяком в этой смене был [color=white]{name}[/color]{usernameColor}.";
-            result += $"\nОн убил [color=white]{maxHumKillCount}[/color] гуманоидов.";
+            result += Loc.GetString("statsentry-player-with-max-hum-kills", ("name", name), ("username", usernameColor)) + "\n";
+            result += Loc.GetString("statsentry-player-with-max-hum-kills-count", ("count", maxHumKillCount)) + "\n";
         }
 
         if (playerWithMaxDamage != null)
@@ -717,13 +707,12 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(playerWithMaxDamage.Value);
             var name = TryGetName(playerWithMaxDamage.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result +=
-                $"\nБольше всего урона получил [color=white]{name}[/color]{usernameColor} - [color=white]{maxTakeDamage}[/color]. Вот бедняга.";
+            result += Loc.GetString("statsentry-player-with-max-damage", ("name", name), ("username", usernameColor), ("count", maxTakeDamage)) + "\n";
         }
 
         if (totalAbsorbedPuddle >= 1)
         {
-            result += $"\nИгроками было убрано [color=white]{totalAbsorbedPuddle}[/color] луж.";
+            result += Loc.GetString("statsentry-total-absorbed-puddle", ("count", totalAbsorbedPuddle)) + "\n";
         }
 
         if (playerWithMostPuddleAbsorb != null && maxPuddleAbsorb > 1)
@@ -731,21 +720,20 @@ public sealed class StatsBoardSystem : EntitySystem
             var username = TryGetUsername(playerWithMostPuddleAbsorb.Value);
             var name = TryGetName(playerWithMostPuddleAbsorb.Value);
             var usernameColor = username != null ? $" ([color=gray]{username}[/color])" : "";
-            result +=
-                $"\nБольше всего луж было убрано благодаря [color=white]{name}[/color]{usernameColor} - [color=white]{maxPuddleAbsorb}[/color].";
+            result += Loc.GetString("statsentry-player-with-most-puddle-absorb", ("name", name), ("username", usernameColor), ("count", maxPuddleAbsorb)) + "\n";
         }
 
         if (totalCaptainCardInteracted >= 1)
         {
-            result += $"\nКарта капитана побывала у [color=white]{totalCaptainCardInteracted}[/color] игроков.";
+            result += Loc.GetString("statsentry-total-captain-card-interacted", ("count", totalCaptainCardInteracted)) + "\n";
         }
 
         if (totalElectrocutedCount >= 1)
         {
-            result += $"\nИгроки были шокированы [color=white]{totalElectrocutedCount}[/color] раз.";
+            result += Loc.GetString("statsentry-total-electrocuted-count", ("count", totalElectrocutedCount)) + "\n";
         }
-
-        result += "\n";
+        
+        //убрал пробельчик, так как всё равно он есть при добавлении ласт строчки
 
         return result;
     }

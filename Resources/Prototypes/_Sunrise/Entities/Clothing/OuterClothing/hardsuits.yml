@@ -15,7 +15,8 @@
     walkModifier: 1.0
     sprintModifier: 1.0
   - type: TemperatureProtection
-    coefficient: 0.001
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
   - type: Armor
     modifiers:
       coefficients:
@@ -45,21 +46,33 @@
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 10000
   - type: ClothingSpeedModifier
-    walkModifier: 0.75
-    sprintModifier: 0.75
+    walkModifier: 0.85
+    sprintModifier: 0.85
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.6
-        Heat: 0.4  # У ОСЩ пушка с тепловым уроном, следовательно броник должен защищать от лазеров
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5  # У ОСЩ пушка с тепловым уроном, следовательно броник должен защищать от лазеров
         Radiation: 0.25
-        Caustic: 0.6
+        Caustic: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.6
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitBlueshield
+
+- type: entity
+  parent: ClothingOuterHardsuitSecurity
+  id: ClothingOuterHardsuitSecuritySunrise
+  suffix: SUNRISE
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/hardsuits/secoff.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/hardsuits/secoff.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitSecuritySunrise
 
 - type: entity
   parent: ClothingOuterHardsuitBase
@@ -68,9 +81,9 @@
   description: Облегченная версия скафандра Службы безопасности, обеспечивает хорошую подвижность, но меньшую защиту.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Hardsuits/pilothardsuit.rsi
+    sprite: _Sunrise/Clothing/Hardsuits/pilothardsuit.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/Hardsuits/pilothardsuit.rsi
+    sprite: _Sunrise/Clothing/Hardsuits/pilothardsuit.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000

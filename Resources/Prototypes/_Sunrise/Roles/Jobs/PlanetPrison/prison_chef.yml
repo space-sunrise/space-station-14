@@ -7,7 +7,7 @@
   requirements:
   - !type:RoleTimeRequirement
     role: JobChef
-    time: 7200 #2 hrs # Sunrise-RoleTime
+    time: 7200 #2 hrs
   setPreference: false
   icon: "JobIconPrisonChef"
   supervisors: job-supervisors-head-of-prison

@@ -90,3 +90,15 @@
   id: red_mamba
   files:
   - /Audio/_Sunrise/Weapons/Guns/Gunshots/red_mamba.ogg
+
+- type: soundCollection
+  id: EearthGovernmentMachineGunShot
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/EG_MG_1.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/EG_MG_2.ogg
+
+- type: soundCollection
+  id: glock22
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/glock22_shot_1.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/glock22_shot_2.ogg

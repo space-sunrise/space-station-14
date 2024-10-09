@@ -1,0 +1,76 @@
+- type: inventoryTemplate
+  id: clowngoblin
+  slots:  
+    - name: id
+      slotTexture: id
+      slotFlags: IDCARD
+      slotGroup: SecondHotbar
+      stripTime: 6
+      uiWindowPos: 2,1
+      strippingWindowPos: 2,4
+      displayName: ID
+    - name: belt
+      slotTexture: belt
+      slotFlags: BELT
+      slotGroup: SecondHotbar
+      stripTime: 6
+      uiWindowPos: 3,1
+      strippingWindowPos: 1,5
+      displayName: Belt
+    - name: pocket1
+      slotTexture: pocket
+      slotFlags: POCKET
+      slotGroup: MainHotbar
+      stripTime: 6
+      uiWindowPos: 0,3
+      strippingWindowPos: 0,4
+      displayName: Pocket 1
+      stripHidden: true
+
+- type: inventoryTemplate
+  id: clownhulk
+  slots:  
+    - name: id
+      slotTexture: id
+      slotFlags: IDCARD
+      slotGroup: SecondHotbar
+      stripTime: 10
+      uiWindowPos: 2,1
+      strippingWindowPos: 2,4
+      displayName: ID
+      offset: 0.11, -0.1
+    - name: ears
+      slotTexture: ears
+      slotFlags: EARS
+      stripTime: 8
+      uiWindowPos: 0,1
+      strippingWindowPos: 0,-1
+      displayName: Ears
+      offset: 0, 0.21
+    - name: belt
+      slotTexture: belt
+      slotFlags: BELT
+      slotGroup: SecondHotbar
+      stripTime: 10
+      uiWindowPos: 3,1
+      strippingWindowPos: 1,5
+      displayName: Belt
+      offset: 0, -0.1
+    - name: pocket1
+      slotTexture: pocket
+      slotFlags: POCKET
+      slotGroup: MainHotbar
+      stripTime: 10
+      uiWindowPos: 1,1
+      strippingWindowPos: 1,2
+      displayName: Pocket 1
+      stripHidden: true
+    - name: pocket2
+      slotTexture: pocket
+      slotFlags: POCKET
+      slotGroup: MainHotbar
+      stripTime: 10
+      uiWindowPos: 2,3
+      strippingWindowPos: 1,4
+      displayName: Pocket 2
+      stripHidden: true

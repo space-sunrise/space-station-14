@@ -9,7 +9,7 @@
     tags:
     - Nanopaste
   - type: Sprite
-    sprite: _Sunrise/nanopaste.rsi
+    sprite: _Sunrise/Objects/Misc/nanopaste.rsi
     state: icon
   - type: Item
     heldPrefix: nanopaste
@@ -40,7 +40,7 @@
   suffix: Single
   components:
   - type: Stack
-    stackType: Brutepack
+    stackType: Nanopaste
     count: 1
 
 - type: entity
@@ -49,5 +49,5 @@
   suffix: Full
   components:
   - type: Stack
-    stackType: Brutepack
+    stackType: Nanopaste
     count: 10

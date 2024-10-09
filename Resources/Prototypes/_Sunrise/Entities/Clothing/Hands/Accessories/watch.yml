@@ -5,6 +5,6 @@
   description: Эти часы может носить только божественная личность.
   components:
     - type: Sprite
-      sprite: _Sunrise/Entities/Clothing/Hands/Accessories/watch.rsi
+      sprite: _Sunrise/Clothing/Hands/Accessories/watch.rsi
     - type: Clothing
-      sprite: _Sunrise/Entities/Clothing/Hands/Accessories/watch.rsi
+      sprite: _Sunrise/Clothing/Hands/Accessories/watch.rsi

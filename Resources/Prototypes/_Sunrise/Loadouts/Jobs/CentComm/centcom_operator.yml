@@ -1,65 +1,29 @@
 - type: loadout
   id: CentCommOfficerJumpsuit
-  equipment: CentCommOfficerJumpsuit
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: MaleMoment
-
-- type: startingGear
-  id: CentCommOfficerJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitCentcomOfficer
 
 - type: loadout
-  id: CentCommOfficerJumpskirt
-  equipment: CentCommOfficerJumpskirt
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: WomanMoment
-
-- type: startingGear
   id: CentCommOfficerJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtCentcomOfficer
 
 - type: loadout
   id: CentCommOfficialJumpsuit
-  equipment: CentCommOfficialJumpsuit
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: MaleMoment
-
-- type: startingGear
-  id: CentCommOfficialJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitCentcomOfficial
 
 - type: loadout
-  id: CentCommOfficialJumpskirt
-  equipment: CentCommOfficialJumpskirt
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: WomanMoment
-
-- type: startingGear
   id: CentCommOfficialJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtCentcomOfficial
 
 - type: loadout
   id: HeadHatBeretCentcomNaval
-  equipment: HeadHatBeretCentcomNaval
-
-- type: startingGear
-  id: HeadHatBeretCentcomNaval
   equipment:
     head: ClothingHeadHatBeretCentcomNaval
 
 - type: loadout
-  id: HeadHatCentcomcap
-  equipment: HeadHatCentcomcap
-
-- type: startingGear
   id: HeadHatCentcomcap
   equipment:
     head: ClothingHeadHatCentcomcap

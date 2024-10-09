@@ -8,7 +8,7 @@
   - type: Item
     size: Tiny
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Devices/tapes.rsi
+    sprite: _Sunrise/Objects/Devices/tapes.rsi
 
 - type: entity
   parent: BaseMusicTape

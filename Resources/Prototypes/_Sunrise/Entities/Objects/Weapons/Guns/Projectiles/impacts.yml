@@ -9,7 +9,7 @@
     layers:
     - shader: unshaded
       map: ["enum.EffectLayers.Unshaded"]
-      sprite: _Sunrise/SyndieGuns/big_red_projectile.rsi
+      sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/big_red_projectile.rsi
       state: impact_laser_blue
   - type: EffectVisuals
   - type: Tag

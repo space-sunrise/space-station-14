@@ -5,6 +5,7 @@
   name: Urist McXeno
   abstract: true
   components:
+  - type: Absorbable
   - type: Respirator
     damage:
       types:

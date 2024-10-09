@@ -1,0 +1,241 @@
+﻿- type: ttsVoice
+  id: Minkir
+  name: tts-voice-name-minkir
+  sex: Male
+  speaker: minkir
+  roundStart: true
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Jirinovskiy
+  name: tts-voice-name-jirinovskiy
+  sex: Male
+  speaker: jirinovskiy
+  roundStart: true
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: MaksimPoltavskiy
+  name: tts-voice-name-maksim-poltavskiy
+  sex: Male
+  speaker: maksim_poltavskiy
+  roundStart: true
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: PortalGlados
+  name: tts-voice-name-hl2-glados
+  sex: Male
+  speaker: portal_glados
+  roundStart: false # for borgs
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: SBSquidward
+  name: tts-voice-name-sb-squidward
+  sex: Male
+  speaker: sb_squidward
+  roundStart: true
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: TemplarAssasin
+  name: tts-voice-name-templar-assasin
+  sex: Female
+  speaker: templar_assasin
+  roundStart: false # maybe for borgs...
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Brejnev
+  name: tts-voice-name-brejnev
+  sex: Male
+  speaker: brejnev
+  roundStart: true
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: HL2Kleiner
+  name: tts-voice-name-hl2-kleiner
+  sex: Male
+  speaker: hl2_kleiner
+  roundStart: true
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: TF2Medic
+  name: tts-voice-name-tf2-medic
+  sex: Male
+  speaker: tf2_medic
+  roundStart: true
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Livsey
+  name: tts-voice-name-livsey
+  sex: Male
+  speaker: livsey
+  roundStart: false # устаревший способ обучения моделей
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: HL2Barni
+  name: tts-voice-name-hl2-barni
+  sex: Male
+  speaker: hl2_barni
+  roundStart: true
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: HL2Gman
+  name: tts-voice-name-hl2-gman
+  sex: Male
+  speaker: hl2_gman
+  roundStart: true
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Losyash
+  name: tts-voice-name-losyash
+  sex: Male
+  speaker: losyash
+  roundStart: true
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: HL2FatherGrigori
+  name: tts-voice-name-hl2-father-grigori
+  sex: Male
+  speaker: hl2_father_grigori
+  roundStart: true
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Kopatich
+  name: tts-voice-name-kopatich
+  sex: Male
+  speaker: kopatich
+  roundStart: true
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: StalkerSidorovich
+  name: tts-voice-name-stalker-sidorovich
+  sex: Male
+  speaker: stalker_sidorovich
+  roundStart: true
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Livsey2
+  name: tts-voice-name-livsey
+  sex: Male
+  speaker: livsey_2
+  roundStart: true
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: SCP049 # DON'T USE
+  name: tts-voice-name-scp-049
+  sex: Male
+  speaker: scp_049
+  roundStart: false
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: SCP079 # DON'T USE
+  name: tts-voice-name-scp-079
+  sex: Male
+  speaker: scp_079
+  roundStart: false
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Ludvig
+  name: tts-voice-name-ludvig
+  sex: Male
+  speaker: ludvig
+  provider: sunrise
+
+- type: ttsVoice
+  id: IcarusRevenge
+  name: tts-voice-name-icarus-revenge
+  sex: Male
+  speaker: icarus_revenge
+  provider: sunrise
+
+- type: ttsVoice
+  id: HeartstoneThrud
+  name: tts-voice-name-heartstone-thrud
+  sex: Male
+  speaker: heartstone_thrud
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Kendrick
+  name: tts-voice-name-kendrick
+  sex: Male
+  speaker: kendrick
+  provider: sunrise
+
+- type: ttsVoice
+  id: SplikZerys
+  name: tts-voice-name-splikzerys
+  sex: Male
+  speaker: splikzerys
+  provider: sunrise
+
+- type: ttsVoice
+  id: Dota2Riki
+  name: tts-voice-name-dota2-riki
+  sex: Male
+  speaker: dota2_riki
+  provider: sunrise
+
+- type: ttsVoice
+  id: Dota2Pudge
+  name: tts-voice-name-dota2-pudge
+  sex: Male
+  speaker: dota2_pudge
+  provider: sunrise
+
+- type: ttsVoice
+  id: TF2Soldier
+  name: tts-voice-name-tf2-soldier
+  sex: Male
+  speaker: tf2_soldier
+  provider: sunrise
+
+- type: ttsVoice
+  id: Dota2Abaddon
+  name: tts-voice-name-dota2-abaddon
+  sex: Male
+  speaker: dota2_abaddon
+  provider: sunrise
+
+- type: ttsVoice
+  id: Dota2Silencer
+  name: tts-voice-name-dota2-silencer
+  sex: Male
+  speaker: dota2_silencer
+  provider: sunrise

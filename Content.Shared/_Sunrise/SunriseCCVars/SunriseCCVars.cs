@@ -147,6 +147,13 @@ public sealed class SunriseCCVars
     public static readonly CVarDef<string> ServersHubList =
         CVarDef.Create("servers_hub.urls", "", CVar.SERVERONLY);
 
+    /// <summary>
+    /// Простое название сервера для отображения в хабе.
+    /// </summary>
+
+    public static readonly CVarDef<string> ServersHubShortName =
+        CVarDef.Create("servers_hub.short_name", "SS14 SERVER", CVar.SERVERONLY);
+
     /**
      * Tape Player
      */
@@ -173,7 +180,8 @@ public sealed class SunriseCCVars
     public static readonly CVarDef<float> LobbyOpacity =
         CVarDef.Create("lobby.lobby_opacity", 0.90f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
-    public static readonly CVarDef<string> ServerName = CVarDef.Create("lobby.server_name", "SS14", CVar.REPLICATED);
+    public static readonly CVarDef<string> ServerName =
+        CVarDef.Create("lobby.server_name", "SS14", CVar.SERVER | CVar.REPLICATED);
 
     /*
      * Planet Prison
@@ -181,6 +189,13 @@ public sealed class SunriseCCVars
 
     public static readonly CVarDef<int> MinPlayersPlanetPrison =
         CVarDef.Create("planet_prison.min_players", 60, CVar.SERVERONLY);
+
+    /*
+     * MaxLoadedChunks
+     */
+
+    public static readonly CVarDef<int> MaxLoadedChunks =
+        CVarDef.Create("chunk.max", 100, CVar.ARCHIVE | CVar.REPLICATED | CVar.SERVER);
 
     /**
      * Roadmap
@@ -204,10 +219,46 @@ public sealed class SunriseCCVars
         CVarDef.Create("cryo_teleport.enable", false, CVar.SERVERONLY);
 
     /*
-     * Damage variance
+     * Damage
      */
+
+    public static readonly CVarDef<bool> DamageOverlay =
+        CVarDef.Create("damage.overlay", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     public static readonly CVarDef<float> DamageVariance =
         CVarDef.Create("damage.variance", 0.15f, CVar.SERVER | CVar.REPLICATED);
 
+    public static readonly CVarDef<float> DamageModifier =
+        CVarDef.Create("damage.damage_modifier", 1f, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<float> HealModifier =
+        CVarDef.Create("damage.heal_modifier", 1.2f, CVar.SERVER | CVar.REPLICATED);
+
+    /*
+     * NPCs
+     */
+
+    public static readonly CVarDef<bool> NPCDisableWithoutPlayers = CVarDef.Create("npc.disable_without_players", true);
+
+    public static readonly CVarDef<float> NPCDisableDistance = CVarDef.Create("npc.disable_distance", 15f);
+
+    /*
+     * Vote
+     */
+
+    public static readonly CVarDef<bool> ShowRestartVotes = CVarDef.Create("vote.show_restart_votes", true);
+
+    public static readonly CVarDef<bool> ShowPresetVotes = CVarDef.Create("vote.show_preset_votes", true);
+
+    public static readonly CVarDef<bool> ShowMapVotes = CVarDef.Create("vote.show_map_votes", true);
+
+    public static readonly CVarDef<bool> RunMapVoteAfterRestart = CVarDef.Create("vote.run_map_vote_after_restart", false);
+
+    public static readonly CVarDef<bool> RunPresetVoteAfterRestart = CVarDef.Create("vote.run_preset_vote_after_restart", false);
+
+    /*
+     * Preset
+     */
+
+    public static readonly CVarDef<bool> ResetPresetAfterRestart = CVarDef.Create("game.reset_preset_after_restart", false);
 }

@@ -103,7 +103,7 @@
 # Basic
 - type: loadout
   id: EmergencyWithoutGas
-  equipment: EmergencyWithoutGas
+  startingGear: EmergencyWithoutGas
   effects:
   - !type:GroupLoadoutEffect
     proto: NoBreather
@@ -117,7 +117,7 @@
 # Clown
 - type: loadout
   id: EmergencyWithoutGasClown
-  equipment: EmergencyWithoutGasClown
+  startingGear: EmergencyWithoutGasClown
   effects:
   - !type:GroupLoadoutEffect
     proto: NoBreather
@@ -131,7 +131,7 @@
 # Engineering / Extended
 - type: loadout
   id: EmergencyWithoutGasExtended
-  equipment: EmergencyWithoutGasExtended
+  startingGear: EmergencyWithoutGasExtended
   effects:
   - !type:GroupLoadoutEffect
     proto: NoBreather
@@ -145,7 +145,7 @@
 # Medical
 - type: loadout
   id: EmergencyWithoutGasMedical
-  equipment: EmergencyWithoutGasMedical
+  startingGear: EmergencyWithoutGasMedical
   effects:
   - !type:GroupLoadoutEffect
     proto: NoBreather
@@ -159,7 +159,7 @@
 # Security
 - type: loadout
   id: EmergencyWithoutGasSecurity
-  equipment: EmergencyWithoutGasSecurity
+  startingGear: EmergencyWithoutGasSecurity
   effects:
   - !type:GroupLoadoutEffect
     proto: NoBreather
@@ -173,7 +173,7 @@
 # Syndicate
 - type: loadout
   id: EmergencyWithoutGasSyndicate
-  equipment: EmergencyWithoutGasSyndicate
+  startingGear: EmergencyWithoutGasSyndicate
   effects:
   - !type:GroupLoadoutEffect
     proto: NoBreather

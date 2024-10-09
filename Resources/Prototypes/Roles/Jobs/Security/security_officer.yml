@@ -31,7 +31,7 @@
     eyes: ClothingEyesGlassesSecurity
     id: SecurityPDA
     ears: ClothingHeadsetSecurity
-    pocket1: WeaponPistolMk58Nonlethal # Sunrise-Edit
+    pocket1: WeaponPistolG22NonLethal # Sunrise-Edit
   storage:
     back:
     - Flash

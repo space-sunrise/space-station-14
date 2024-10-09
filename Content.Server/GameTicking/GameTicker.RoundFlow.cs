@@ -22,6 +22,8 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Server.StatsBoard;
 using Content.Shared._Sunrise.StatsBoard;
+using Robust.Shared.Physics;
+using Robust.Shared.Physics.Systems;
 
 namespace Content.Server.GameTicking
 {
@@ -30,6 +32,7 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly DiscordWebhook _discord = default!;
         [Dependency] private readonly ITaskManager _taskManager = default!;
         [Dependency] private readonly StatsBoardSystem _statsBoardSystem = default!;
+        [Dependency] private readonly SharedPhysicsSystem _physics = default!;
 
         private static readonly Counter RoundNumberMetric = Metrics.CreateCounter(
             "ss14_round_number",
@@ -143,7 +146,14 @@ namespace Content.Server.GameTicking
                     _mapManager.AddUninitializedMap(toLoad);
                 }
 
-                LoadGameMap(map, toLoad, null);
+                if (map == mainStationMap) // Sunrise
+                {
+                    LoadGameMap(map, toLoad, null, anchor: true);
+                }
+                else
+                {
+                    LoadGameMap(map, toLoad, null);
+                }
             }
         }
 
@@ -157,7 +167,7 @@ namespace Content.Server.GameTicking
         /// <param name="loadOptions">Map loading options, includes offset.</param>
         /// <param name="stationName">Name to assign to the loaded station.</param>
         /// <returns>All loaded entities and grids.</returns>
-        public IReadOnlyList<EntityUid> LoadGameMap(GameMapPrototype map, MapId targetMapId, MapLoadOptions? loadOptions, string? stationName = null)
+        public IReadOnlyList<EntityUid> LoadGameMap(GameMapPrototype map, MapId targetMapId, MapLoadOptions? loadOptions, string? stationName = null, bool anchor = false)
         {
             // Okay I specifically didn't set LoadMap here because this is typically called onto a new map.
             // whereas the command can also be used on an existing map.
@@ -175,6 +185,17 @@ namespace Content.Server.GameTicking
             var gridIds = _map.LoadMap(targetMapId, ev.GameMap.MapPath.ToString(), ev.Options);
 
             _metaData.SetEntityName(_mapManager.GetMapEntityId(targetMapId), map.MapName);
+
+            // Sunrise
+            if (anchor)
+            {
+                var grids = _mapManager.GetAllMapGrids(targetMapId);
+                foreach (var grid in grids)
+                {
+                    _physics.SetBodyType(grid.Owner, BodyType.Static);
+                }
+            }
+            // Sunrise
 
             var gridUids = gridIds.ToList();
             RaiseLocalEvent(new PostGameMapLoad(map, targetMapId, gridUids, stationName));
@@ -368,7 +389,7 @@ namespace Content.Server.GameTicking
             var listOfPlayerInfo = new List<RoundEndMessageEvent.RoundEndPlayerInfo>();
             // Grab the great big book of all the Minds, we'll need them for this.
             var allMinds = EntityQueryEnumerator<MindComponent>();
-            var pvsOverride = _configurationManager.GetCVar(CCVars.RoundEndPVSOverrides);
+            var pvsOverride = _cfg.GetCVar(CCVars.RoundEndPVSOverrides);
             while (allMinds.MoveNext(out var mindId, out var mind))
             {
                 // TODO don't list redundant observer roles?

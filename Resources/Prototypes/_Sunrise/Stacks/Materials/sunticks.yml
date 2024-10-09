@@ -1,5 +1,5 @@
 - type: stack
   id: Suntick
   name: Suntick
-  icon: _Sunrise/Entities/Objects/Specific/Donate/suntick.rsi
+  icon: _Sunrise/Objects/Specific/Donate/suntick.rsi
   spawn: Suntick1

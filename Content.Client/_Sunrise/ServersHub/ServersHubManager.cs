@@ -1,36 +1,53 @@
-using System.Linq;
 using Content.Shared._Sunrise.ServersHub;
+using Robust.Client.UserInterface;
 using Robust.Shared.Network;
-using Robust.Shared.Timing;
 
 namespace Content.Client._Sunrise.ServersHub;
 
 public partial class ServersHubManager
 {
     [Dependency] private readonly IClientNetManager _netManager = default!;
+    [Dependency] private readonly IUserInterfaceManager UIManager = default!;
 
     public event Action<List<ServerHubEntry>>? ServersDataListChanged;
 
     public List<ServerHubEntry> ServersDataList = [];
 
-    private ServersHubUi? _menu;
+    private ServersHubUi _serversHubUi = default!;
 
     public void Initialize()
     {
         _netManager.RegisterNetMessage<MsgFullServerHubList>(OnServersDataChanged);
-
-        _menu = new ServersHubUi();
     }
 
-    // Ахуеть какой костыль, но явно лучше чем писать лишние 300 строк.
-    public void OpenServersHub()
+    public void OpenWindow()
     {
-        _menu = new ServersHubUi();
-        _menu.OnClose += _menu.Close;
-        _menu.OpenCentered();
-        var totalPlayers = ServersDataList.Sum(server => server.CurrentPlayers);
-        var maxPlayers = ServersDataList.Sum(server => server.MaxPlayers);
-        _menu!.RefreshHeader(totalPlayers, maxPlayers);
+        EnsureWindow();
+
+        _serversHubUi.OpenCentered();
+        _serversHubUi.MoveToFront();
+    }
+
+    private void EnsureWindow()
+    {
+        if (_serversHubUi is { Disposed: false })
+            return;
+
+        _serversHubUi = UIManager.CreateWindow<ServersHubUi>();
+    }
+
+    public void ToggleWindow()
+    {
+        EnsureWindow();
+
+        if (_serversHubUi.IsOpen)
+        {
+            _serversHubUi.Close();
+        }
+        else
+        {
+            OpenWindow();
+        }
     }
 
     private void OnServersDataChanged(MsgFullServerHubList msg)
@@ -39,8 +56,5 @@ public partial class ServersHubManager
         // и его можно было отобразить после отключения или бана.
         ServersDataList = msg.ServersHubEntries;
         ServersDataListChanged?.Invoke(ServersDataList);
-        var totalPlayers = ServersDataList.Sum(server => server.CurrentPlayers);
-        var maxPlayers = ServersDataList.Sum(server => server.MaxPlayers);
-        _menu!.RefreshHeader(totalPlayers, maxPlayers);
     }
 }

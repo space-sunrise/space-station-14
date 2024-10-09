@@ -5,6 +5,7 @@
   id: MobFelinidBase
   abstract: true
   components:
+  - type: Absorbable
   - type: OwOAccent
   - type: Speech
     speechVerb: Felinid
@@ -13,6 +14,18 @@
     scale: 0.75, 0.75
   - type: HumanoidAppearance
     species: Felinid
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.20
+        density: 165
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
   - type: Body
     prototype: Felinid
   - type: Damageable
@@ -21,8 +34,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      50: Critical
-      100: Dead
+      75: Critical
+      150: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
       30: 0.7
@@ -81,6 +94,13 @@
   - type: MovementSpeedModifier
     baseSprintSpeed: 4.0
     baseWalkSpeed: 2.0
+  - type: DamagedByFlashing
+    flashDamage:
+      types:
+        Shock: 5.0
+  - type: NightVision
+    isToggle: true
+    color: "#808080"
 
 - type: entity
   save: false

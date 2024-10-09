@@ -1,394 +1,260 @@
+# Для тяночек
 - type: loadout
   id: ThighWhiteSocks
-  equipment: ThighWhiteSocks
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: ThighWhiteSocks
   equipment:
     socks: ClothingThighWhite
 
 - type: loadout
-  id: ShortWhiteSocks
-  equipment: ShortWhiteSocks
-
-- type: startingGear
-  id: ShortWhiteSocks
-  equipment:
-    socks: ClothingShortWhite
-
-- type: loadout
   id: FishnetTights
-  equipment: FishnetTights
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: FishnetTights
   equipment:
     socks: ClothingFishnet
 
 - type: loadout
   id: KneeWhiteSocks
-  equipment: KneeWhiteSocks
   sponsorOnly: true
-
-- type: startingGear
-  id: KneeWhiteSocks
   equipment:
     socks: ClothingKneeWhite
 
 - type: loadout
-  id: KneeAceSocks
-  equipment: KneeAceSocks
-  sponsorOnly: true
-
-- type: startingGear
-  id: KneeAceSocks
-  equipment:
-    socks: ClothingKneeAce
-
-- type: loadout
-  id: KneeAssblastusaSocks
-  equipment: KneeAssblastusaSocks
-  sponsorOnly: true
-
-- type: startingGear
-  id: KneeAssblastusaSocks
-  equipment:
-    socks: ClothingKneeAsblastusa
-
-- type: loadout
-  id: KneeBeeSocks
-  equipment: KneeBeeSocks
-  sponsorOnly: true
-
-- type: startingGear
-  id: KneeBeeSocks
-  equipment:
-    socks: ClothingKneeBee
-
-- type: loadout
-  id: KneeBlackSocks
-  equipment: KneeBlackSocks
-  sponsorOnly: true
-
-- type: startingGear
-  id: KneeBlackSocks
-  equipment:
-    socks: ClothingKneeBlack
-
-- type: loadout
-  id: KneeCommieSocks
-  equipment: KneeCommieSocks
-  sponsorOnly: true
-
-- type: startingGear
-  id: KneeCommieSocks
-  equipment:
-    socks: ClothingKneeCommie
-
-- type: loadout
   id: KneeFishnetSocks
-  equipment: KneeFishnetSocks
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: KneeFishnetSocks
   equipment:
     socks: ClothingKneeFishnet
 
 - type: loadout
-  id: KneeRainbowSocks
-  equipment: KneeRainbowSocks
-  sponsorOnly: true
-
-- type: startingGear
-  id: KneeRainbowSocks
-  equipment:
-    socks: ClothingKneeRainbow
-
-- type: loadout
-  id: KneeStripedSocks
-  equipment: KneeStripedSocks
-  sponsorOnly: true
-
-- type: startingGear
-  id: KneeStripedSocks
-  equipment:
-    socks: ClothingKneeStriped
-
-- type: loadout
-  id: KneeThinSocks
-  equipment: KneeThinSocks
-  sponsorOnly: true
-
-- type: startingGear
-  id: KneeThinSocks
-  equipment:
-    socks: ClothingKneeThin
-
-- type: loadout
-  id: KneeTransSocks
-  equipment: KneeTransSocks
-  sponsorOnly: true
-
-- type: startingGear
-  id: KneeTransSocks
-  equipment:
-    socks: ClothingKneeTrans
-
-- type: loadout
-  id: KneeUkSocks
-  equipment: KneeUkSocks
-  sponsorOnly: true
-
-- type: startingGear
-  id: KneeUkSocks
-  equipment:
-    socks: ClothingKneeUk
-
-- type: loadout
-  id: NormBlackSocks
-  equipment: NormBlackSocks
-  sponsorOnly: true
-
-- type: startingGear
-  id: NormBlackSocks
-  equipment:
-    socks: ClothingNormBlack
-
-- type: loadout
-  id: NormWhiteSocks
-  equipment: NormWhiteSocks
-  sponsorOnly: true
-
-- type: startingGear
-  id: NormWhiteSocks
-  equipment:
-    socks: ClothingNormWhite
-
-- type: loadout
   id: Pantyhose
-  equipment: Pantyhose
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: Pantyhose
   equipment:
     socks: ClothingPantyhose
 
 - type: loadout
   id: ShortBlackSocks
-  equipment: ShortBlackSocks
   sponsorOnly: true
-
-- type: startingGear
-  id: ShortBlackSocks
   equipment:
     socks: ClothingShortBlack
 
 - type: loadout
   id: StockingsBlue
-  equipment: StockingsBlue
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: StockingsBlue
   equipment:
     socks: ClothingStockingsBlue
 
 - type: loadout
   id: StockingsCyan
-  equipment: StockingsCyan
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: StockingsCyan
   equipment:
     socks: ClothingStockingsCyan
 
 - type: loadout
   id: StockingsDpink
-  equipment: StockingsDpink
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: StockingsDpink
   equipment:
     socks: ClothingStockingsDpink
 
 - type: loadout
   id: StockingsGreen
-  equipment: StockingsGreen
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: StockingsGreen
   equipment:
     socks: ClothingStockingsGreen
 
 - type: loadout
   id: Stockingslpink
-  equipment: Stockingslpink
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: Stockingslpink
   equipment:
     socks: ClothingStockingslpink
 
 - type: loadout
   id: StockingsOrange
-  equipment: StockingsOrange
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: StockingsOrange
   equipment:
     socks: ClothingStockingsOrange
 
 - type: loadout
   id: StockingsPurple
-  equipment: StockingsPurple
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: StockingsPurple
   equipment:
     socks: ClothingStockingsPurple
 
 - type: loadout
   id: ThighAceSocks
-  equipment: ThighAceSocks
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: ThighAceSocks
   equipment:
     socks: ClothingThighAce
 
 - type: loadout
   id: ThighAsblastusaSocks
-  equipment: ThighAsblastusaSocks
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: ThighAsblastusaSocks
   equipment:
     socks: ClothingThighAsblastusa
 
 - type: loadout
   id: ThighBeeSocks
-  equipment: ThighBeeSocks
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: ThighBeeSocks
   equipment:
     socks: ClothingThighBee
 
 - type: loadout
   id: ThighBlackSocks
-  equipment: ThighBlackSocks
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: ThighBlackSocks
   equipment:
     socks: ClothingThighBlack
 
 - type: loadout
   id: ThighCommieSocks
-  equipment: ThighCommieSocks
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: ThighCommieSocks
   equipment:
     socks: ClothingThighCommie
 
 - type: loadout
   id: ThighRainbowSocks
-  equipment: ThighRainbowSocks
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: ThighRainbowSocks
   equipment:
     socks: ClothingThighRainbow
 
 - type: loadout
   id: ThighTransSocks
-  equipment: ThighTransSocks
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: ThighTransSocks
   equipment:
     socks: ClothingThighTrans
 
 - type: loadout
   id: ThighUkSocks
-  equipment: ThighUkSocks
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: ThighUkSocks
   equipment:
     socks: ClothingThighUk
+
+# Для мужиков
+- type: loadout
+  id: ShortWhiteSocks
+  equipment:
+    socks: ClothingShortWhite
+
+- type: loadout
+  id: KneeAceSocks
+  sponsorOnly: true
+  equipment:
+    socks: ClothingKneeAce
+
+- type: loadout
+  id: KneeAssblastusaSocks
+  sponsorOnly: true
+  equipment:
+    socks: ClothingKneeAsblastusa
+
+- type: loadout
+  id: KneeBeeSocks
+  sponsorOnly: true
+  equipment:
+    socks: ClothingKneeBee
+
+- type: loadout
+  id: KneeBlackSocks
+  sponsorOnly: true
+  equipment:
+    socks: ClothingKneeBlack
+
+- type: loadout
+  id: KneeCommieSocks
+  sponsorOnly: true
+  equipment:
+    socks: ClothingKneeCommie
+
+- type: loadout
+  id: KneeRainbowSocks
+  sponsorOnly: true
+  equipment:
+    socks: ClothingKneeRainbow
+
+- type: loadout
+  id: KneeStripedSocks
+  sponsorOnly: true
+  equipment:
+    socks: ClothingKneeStriped
+
+- type: loadout
+  id: KneeThinSocks
+  sponsorOnly: true
+  equipment:
+    socks: ClothingKneeThin
+
+- type: loadout
+  id: KneeTransSocks
+  sponsorOnly: true
+  equipment:
+    socks: ClothingKneeTrans
+
+- type: loadout
+  id: KneeUkSocks
+  sponsorOnly: true
+  equipment:
+    socks: ClothingKneeUk
+
+- type: loadout
+  id: NormBlackSocks
+  sponsorOnly: true
+  equipment:
+    socks: ClothingNormBlack
+
+- type: loadout
+  id: NormWhiteSocks
+  sponsorOnly: true
+  equipment:
+    socks: ClothingNormWhite

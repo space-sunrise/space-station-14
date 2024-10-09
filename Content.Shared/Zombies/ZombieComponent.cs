@@ -21,17 +21,17 @@ public sealed partial class ZombieComponent : Component
     /// The baseline infection chance you have if you are completely nude
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    public float MaxZombieInfectionChance = 1.00f;
+    public float MaxZombieInfectionChance = 0.8f;
 
     /// <summary>
     /// The minimum infection chance possible. This is simply to prevent
     /// being invincible by bundling up.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    public float MinZombieInfectionChance = 0.6f; // Sunrise-Edit
+    public float MinZombieInfectionChance = 0.25f; // Sunrise-Edit
 
     [ViewVariables(VVAccess.ReadWrite)]
-    public float ZombieMovementSpeedBuff = 1.05f; // Sunrise-Edit
+    public float ZombieMovementSpeedBuff = 0.95f; // Sunrise-Edit
 
     /// <summary>
     /// The skin color of the zombie
@@ -90,7 +90,7 @@ public sealed partial class ZombieComponent : Component
     public TimeSpan NextTick;
 
     [DataField("zombieStatusIcon")]
-    public ProtoId<StatusIconPrototype> StatusIcon { get; set; } = "ZombieFaction";
+    public ProtoId<FactionIconPrototype> StatusIcon { get; set; } = "ZombieFaction";
 
     /// <summary>
     /// Healing each second
@@ -100,9 +100,9 @@ public sealed partial class ZombieComponent : Component
     {
         DamageDict = new ()
         {
-            { "Blunt", -5 }, // Sunrise-Edit
-            { "Slash", -5 }, // Sunrise-Edit
-            { "Piercing", -5 }, // Sunrise-Edit
+            { "Blunt", -0.4 },
+            { "Slash", -0.2 },
+            { "Piercing", -0.2 },
             { "Heat", -0.02 },
             { "Shock", -0.02 },
         }
@@ -112,7 +112,7 @@ public sealed partial class ZombieComponent : Component
     /// A multiplier applied to <see cref="PassiveHealing"/> when the entity is in critical condition.
     /// </summary>
     [DataField("passiveHealingCritMultiplier")]
-    public float PassiveHealingCritMultiplier = 2f; // Sunrise-Edit
+    public float PassiveHealingCritMultiplier = 2f;
 
     /// <summary>
     /// Healing given when a zombie bites a living being.
@@ -122,9 +122,9 @@ public sealed partial class ZombieComponent : Component
     {
         DamageDict = new()
         {
-            { "Blunt", -5 }, // Sunrise-Edit
-            { "Slash", -5 }, // Sunrise-Edit
-            { "Piercing", -5 }, // Sunrise-Edit
+            { "Blunt", -2 },
+            { "Slash", -2 },
+            { "Piercing", -2 },
         }
     };
 
@@ -167,7 +167,7 @@ public sealed partial class ZombieComponent : Component
     {
         DamageDict = new Dictionary<string, FixedPoint2>
         {
-            { "Slash", 30 },
+            { "Slash", 15 },
         },
     };
 

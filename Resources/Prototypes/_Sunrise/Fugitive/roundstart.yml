@@ -1,6 +1,0 @@
-- type: entity
-  id: Fugitive
-  parent: BaseGameRule
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: FugitiveRule

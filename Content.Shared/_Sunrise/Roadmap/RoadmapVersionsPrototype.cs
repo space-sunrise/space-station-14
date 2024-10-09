@@ -8,7 +8,7 @@ public sealed class RoadmapVersionsPrototype : IPrototype
 {
     [IdDataField] public string ID { get; } = default!;
     [DataField]
-    public int Year { get; set; } = 1984;
+    public string Fork { get; set; } = "SUNRISE";
 
     [DataField]
     public Dictionary<string, RoadmapGroup> Versions = new();

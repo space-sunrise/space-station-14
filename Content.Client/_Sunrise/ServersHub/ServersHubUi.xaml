@@ -1,12 +1,13 @@
 <DefaultWindow xmlns="https://spacestation14.io"
-               xmlns:serversHub="clr-namespace:Content.Client._Sunrise.ServersHub"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
-               Title="Servers Hub"
+               xmlns:serversHub="clr-namespace:Content.Client._Sunrise.ServersHub"
+               Title="{Loc servers-hub-title}"
                MinSize="650 300">
     <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" Margin="3 3 3 3">
         <controls:StripeBack>
             <BoxContainer Orientation="Horizontal">
-                <Label HorizontalExpand="True" Text="Сейчас играет: 0/0" Name="ServersHubHeaderLabel" VAlign="Center"
+                <Label HorizontalExpand="True" Text="" Name="ServersHubHeaderLabel" VAlign="Center"
                        StyleClasses="LabelHeading" Align="Center"/>
             </BoxContainer>
         </controls:StripeBack>

@@ -126,7 +126,7 @@ namespace Content.Client.Lobby
         {
             var totalPlayers = _serversHubManager.ServersDataList.Sum(server => server.CurrentPlayers);
             var maxPlayers = _serversHubManager.ServersDataList.Sum(server => server.MaxPlayers);
-            Lobby!.ServersHubHeaderLabel.Text = $"Сейчас играет: {totalPlayers}/{maxPlayers}";
+            Lobby!.ServersHubHeaderLabel.Text = Loc.GetString("serverhub-playingnow", ("total", totalPlayers), ("max", maxPlayers)); // Sunrise-Edit
         }
 
         public void SwitchState(LobbyGui.LobbyGuiState state)

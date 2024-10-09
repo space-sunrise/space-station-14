@@ -10,6 +10,7 @@
   startingGear: SecurityPilotGear
   icon: JobIconSecurityPilot
   supervisors: job-supervisors-hos
+  setPreference: false
   canBeAntag: false
   displayWeight: 50
   speciesBlacklist:
@@ -34,4 +35,4 @@
     outerClothing: ClothingOuterCoatPilot
     id: SecurityPilotPDA
     ears: ClothingHeadsetSecurity
-    pocket1: WeaponPistolMk58Nonlethal
+    pocket1: WeaponPistolG22NonLethal

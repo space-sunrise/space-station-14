@@ -3,7 +3,7 @@
   id: Scream
   name: chat-emote-name-scream
   category: Vocal
-  icon: Interface/Actions/scream.png
+  icon: Interface/Emotes/scream.png
   whitelist:
     components:
     - Vocal
@@ -14,38 +14,24 @@
   chatTriggers:
     - scream
     - screams
-    - screams.
-    - screams!
     - screaming
     - screamed
     - shriek
     - shrieks
-    - shrieks.
-    - shrieks!
     - shrieking
     - shrieked
     - screech
     - screeches
-    - screeches.
-    - screeches!
     - screeching
     - screeched
     - yell
     - yells
-    - yells.
-    - yells!
     - yelled
     - yelling
     # Russian-Localization-Start
     - кричит
-    - кричит.
-    - кричит!
     - орёт
-    - орёт.
-    - орёт!
     - визжит
-    - визжит.
-    - визжит!
     # Russian-Localization-End
 
 - type: emote
@@ -63,48 +49,27 @@
   chatTriggers:
     - laugh
     - laughs
-    - laughs.
-    - laughs!
     - laughing
     - laughed
     - chuckle
     - chuckles
-    - chuckles.
-    - chuckles!
     - chuckled
     - chuckling
     - giggle
     - giggles
-    - giggles.
-    - giggles!
     - giggling
     - giggled
     - chortle
-    - chortle.
-    - chortle!
     - chortles
-    - chortles.
-    - chortles!
     - chortling
-    - chortling.
-    - chortling!
-    # Russian-Localization-Start
+  # Russian-Localization-Start
     - смеется
-    - смеется.
-    - смеется!
     - смеётся
-    - смеётся.
-    - смеётся!
     - хохочет
-    - хохочет.
-    - хохочет!
     - хихикает
-    - хихикает.
-    - хихикает!
     - хихикнул
     - хихикнула
-    - ржёт
-    # Russian-Localization-End
+  # Russian-Localization-End
 
 - type: emote
   id: Honk
@@ -119,22 +84,12 @@
   chatMessages: ["chat-emote-msg-honk"]
   chatTriggers:
     - honk
-    - honk.
-    - honk!
     - honks
-    - honks.
-    - honks!
     - honked
-    - honked.
-    - honked!
     - honking
-    - honking.
-    - honking!
-    # Russian-Localization-Start
+  # Russian-Localization-Start
     - хонк
-    - хонк.
-    - хонк!
-    # Russian-Localization-End
+  # Russian-Localization-End
 
 - type: emote
   id: Sigh
@@ -152,17 +107,11 @@
     - sigh
     - sighs
     - sighed
-    - sigh.
-    - sighs.
-    - sighed.
-    # Russian-Localization-Start
+  # Russian-Localization-Start
     - вздыхает
-    - вздыхает.
     - вздохнул
     - вздохнула
-    - вздохнул.
-    - вздохнула.
-    # Russian-Localization-End
+  # Russian-Localization-End
 
 - type: emote
   id: Whistle
@@ -178,22 +127,12 @@
   chatMessages: ["chat-emote-msg-whistle"]
   chatTriggers:
     - whistle
-    - whistle.
-    - whistle!
     - whistles
-    - whistles.
-    - whistles!
     - whistleblowing
-    - whistleblowing.
-    - whistleblowing!
-    # Russian-Localization-Start
+  # Russian-Localization-Start
     - свистит
-    - свистит.
-    - свистит!
     - свистнул
-    - свистнул.
-    - свистнул!
-    # Russian-Localization-End
+  # Russian-Localization-End
 
 - type: emote
   id: Crying
@@ -209,30 +148,15 @@
   chatMessages: ["chat-emote-msg-crying"]
   chatTriggers:
     - cry
-    - cry.
-    - cry!
     - crying
-    - crying.
-    - crying!
     - cries
-    - cries.
-    - cries!
     - sob
-    - sob.
     - sobs
-    - sobs.
-    - sobs!
     - sobbing
-    - sobbing.
-    - sobbing!
-    # Russian-Localization-Start
+  # Russian-Localization-Start
     - плачет
-    - плачет.
-    - плачет!
     - рыдает
-    - рыдает.
-    - рыдает!
-    # Russian-Localization-End
+  # Russian-Localization-End
 
 - type: emote
   id: Squish
@@ -249,19 +173,11 @@
   chatMessages: ["chat-emote-msg-squish"]
   chatTriggers:
     - squish
-    - squish.
-    - squish!
     - squishing
-    - squishing.
-    - squishing!
     - squishes
-    - squishes.
-    - squishes!
-    # Russian-Localization-Start
+  # Russian-Localization-Start
     - хлюпает
-    - хлюпает.
-    - хлюпает!
-    # Russian-Localization-End
+  # Russian-Localization-End
 
 - type: emote
   id: Chitter
@@ -278,19 +194,11 @@
   chatMessages: ["chat-emote-msg-chitter"]
   chatTriggers:
    - chitter
-   - chitter.
-   - chitter!
    - chitters
-   - chitters.
-   - chitters!
    - chittered
-   - chittered.
-   - chittered!
-   # Russian-Localization-Start
+  # Russian-Localization-Start
    - стрекочет
-   - стрекочет.
-   - стрекочет!
-   # Russian-Localization-End
+  # Russian-Localization-End
 
 - type: emote
   id: Squeak
@@ -307,19 +215,11 @@
   chatMessages: ["chat-emote-msg-squeak"]
   chatTriggers:
    - squeak
-   - squeak.
-   - squeak!
    - squeaks
-   - squeaks.
-   - squeaks!
    - squeaked
-   - squeaked.
-   - squeaked!
-   # Russian-Localization-Start
+  # Russian-Localization-Start
    - пищит
-   - пищит.
-   - пищит!
-   # Russian-Localization-End
+  # Russian-Localization-End
 
 - type: emote
   id: Click
@@ -336,19 +236,11 @@
   chatMessages: ["chat-emote-msg-click"]
   chatTriggers:
    - click
-   - click.
-   - click!
    - clicks
-   - clicks.
-   - clicks!
-   # Russian-Localization-Start
+  # Russian-Localization-Start
    - клац
-   - клац.
-   - клац!
    - клацает
-   - клацает.
-   - клацает!
-   # Russian-Localization-End
+  # Russian-Localization-End
 
 # hand emotes
 - type: emote
@@ -366,24 +258,16 @@
   chatTriggers:
     - clap
     - claps
-    - claps.
-    - claps!
     - clapping
     - clapped
     # Russian-Localization-Start
     - хлопает
-    - хлопает.
-    - хлопает!
     - хлопнул
     - хлопнула
     - хлопает в ладоши
-    - хлопает в ладоши.
-    - хлопает в ладоши!
     - хлопнул в ладоши
     - хлопнула в ладоши
     - апплодирует
-    - апплодирует.
-    - апплодирует!
     # Russian-Localization-End
 
 - type: emote
@@ -405,32 +289,20 @@
     - snapped
     - snap fingers
     - snaps fingers
-    - snaps fingers.
-    - snaps fingers!
     - snaps their fingers
-    - snaps their fingers.
-    - snaps their fingers!
     - snapping fingers
     - snapped fingers
     # Russian-Localization-Start
     - щелкает
-    - щелкает.
-    - щелкает!
     - щелкнул
     - щелкнула
     - щёлкает
-    - щёлкает.
-    - щёлкает!
     - щёлкнул
     - щёлкнула
     - щелкает пальцами
-    - щелкает пальцами.
-    - щелкает пальцами!
     - щелкнул пальцами
     - щелкнула пальцами
     - щёлкает пальцами
-    - щёлкает пальцами.
-    - щёлкает пальцами!
     - щёлкнул пальцами
     - щёлкнула пальцами
     # Russian-Localization-End
@@ -449,25 +321,13 @@
   chatMessages: ["chat-emote-msg-salute"]
   chatTriggers:
     - salute
-    - salute.
-    - salute!
     - salutes
-    - salutes.
-    - salutes!
-    # Russian-Localization-Start
+  # Russian-Localization-Start
     - салютует
-    - салютует.
-    - салютует!
     - отдаёт честь
-    - отдаёт честь.
-    - отдаёт честь!
     - отдал честь
-    - отдал честь.
-    - отдал честь!
     - отдала честь
-    - отдала честь.
-    - отдала честь!
-    # Russian-Localization-End
+  # Russian-Localization-End
 
 - type: emote
   id: Gasp
@@ -478,14 +338,8 @@
   chatMessages: ["chat-emote-msg-gasp"]
   chatTriggers:
    - gasp
-   - gasp.
-   - gasp!
    - gasps
-   - gasps.
-   - gasps!
    - gasped
-   - gasped.
-   - gasped!
 
 - type: emote
   id: DefaultDeathgasp
@@ -517,28 +371,14 @@
   chatMessages: ["chat-emote-msg-buzz"]
   chatTriggers:
     - buzzing
-    - buzzing!
-    - buzzing.
     - buzz
-    - buzz.
-    - buzz!
     - buzzed
-    - buzzed.
-    - buzzed!
     - buzzes
-    - buzzes.
-    - buzzes!
-    # Russian-Localization-Start
-    - жужжит!
-    - жужжит.
+  # Russian-Localization-Start
     - жужжит
     - зажужжал
-    - зажужжал.
-    - зажужжал!
     - зажужжала
-    - зажужжала.
-    - зажужжала!
-    # Russian-Localization-End
+  # Russian-Localization-End
 
 - type: emote
   id: Weh
@@ -559,22 +399,12 @@
   chatMessages: ["chat-emote-msg-chirp"]
   chatTriggers:
     - chirp
-    - chirp!
-    - chirp.
     - chirps
-    - churps.
-    - chirps!
     - chirped
-    - chirped.
-    - chirped!
     - chirping
-    - chirping.
-    - chirping!
-    # Russian-Localization-Start
+  # Russian-Localization-Start
     - чирикает
-    - чирикает.
-    - чирикает!
-    # Russian-Localization-End
+  # Russian-Localization-End
 
 # Machine Emotes
 - type: emote
@@ -590,22 +420,12 @@
   chatMessages: ["chat-emote-msg-beep"]
   chatTriggers:
     - beep
-    - beep!
-    - beep.
     - beeps
-    - beeps.
-    - beeps!
     - beeped
-    - beeped.
-    - beeped!
     - beeping
-    - beeping.
-    - beeping!
-    # Russian-Localization-Start
+  # Russian-Localization-Start
     - бип
-    - бип.
-    - бип!
-    # Russian-Localization-End
+  # Russian-Localization-End
 
 - type: emote
   id: Chime
@@ -620,22 +440,12 @@
   chatMessages: ["chat-emote-msg-chime"]
   chatTriggers:
     - chime
-    - chime.
-    - chime!
     - chimes
-    - chimes.
-    - chimes!
     - chimed
-    - chimed.
-    - chimed!
     - chiming
-    - chiming,
-    - chiming!
-    # Russian-Localization-Start
+  # Russian-Localization-Start
     - дзынь
-    - дзынь.
-    - дзынь!
-    # Russian-Localization-End
+  # Russian-Localization-End
 
 - type: emote
   id: Buzz-Two
@@ -650,55 +460,23 @@
   chatMessages: ["chat-emote-msg-buzzestwo"]
   chatTriggers:
     - buzztwice
-    - buzztwice.
-    - buzztwice!
     - buzzstwice
-    - buzzstwice.
-    - buzzstwice!
     - buzzestwice
-    - buzzestwice.
-    - buzzestwice!
     - buzzingtwice
-    - buzzingtwice.
-    - buzzingtwice!
     - buzzedtwice
-    - buzzedtwice.
-    - buzzedtwice!
     - buzz twice
-    - buzz twice.
-    - buzz twice!
     - buzzs twice
-    - buzzs twice.
-    - buzzs twice!
     - buzzes twice
-    - buzzes twice.
-    - buzzes twice!
     - buzzing twice
-    - buzzing twice.
-    - buzzing twice!
     - buzzed twice
-    - buzzed twice.
-    - buzzed twice!
-    # Russian-Localization-Start
+  # Russian-Localization-Start
     - бипбуп
-    - бипбуп.
-    - бипбуп!
     - бип буп
-    - бип буп.
-    - бип буп!
     - бип-буп
-    - бип-буп.
-    - бип-буп!
     - бипбип
-    - бипбип.
-    - бипбип!
     - бип бип
-    - бип бип.
-    - бип бип!
     - бип-бип
-    - бип-бип.
-    - бип-бип!
-    # Russian-Localization-End
+  # Russian-Localization-End
 
 - type: emote
   id: Ping
@@ -713,19 +491,9 @@
   chatMessages: ["chat-emote-msg-ping"]
   chatTriggers:
     - ping
-    - ping.
-    - ping!
     - pings
-    - pings.
-    - pings!
     - pinged
-    - pinged.
-    - pinged!
     - pinging
-    - pinging.
-    - pinging!
-    # Russian-Localization-Start
+  # Russian-Localization-Start
     - пинг
-    - пинг.
-    - пинг!
-    # Russian-Localization-End
+  # Russian-Localization-End

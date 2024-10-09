@@ -1,11 +1,11 @@
 using System.Numerics;
-using Content.Server.Audio;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Ghost;
 using Content.Server.Jittering;
 using Content.Server.Light.Components;
 using Content.Server.Nutrition.EntitySystems;
+using Content.Server.Polymorph.Systems;
 using Content.Server.Speech.Components;
 using Content.Server.Speech.EntitySystems;
 using Content.Server.Stunnable;
@@ -36,6 +36,7 @@ public sealed class VigersRaySystem : EntitySystem
     [Dependency] private readonly JitteringSystem _jittering = default!;
     [Dependency] private readonly StutteringSystem _stuttering = default!;
     [Dependency] private readonly AudioSystem _audioSystem = default!;
+    [Dependency] private readonly PolymorphSystem _polymorphSystem = default!;
 
     public override void Initialize()
     {
@@ -55,7 +56,7 @@ public sealed class VigersRaySystem : EntitySystem
 
     private void OnVigersRayJoin(VigersRayJoinEvent args)
     {
-        _chatManager.DispatchServerAnnouncement("VigersRay здесь", Color.Red);
+        _chatManager.DispatchServerAnnouncement("VigersRay пришел", Color.Red);
 
         var blobFactoryQuery = EntityQueryEnumerator<PoweredLightComponent>();
         while (blobFactoryQuery.MoveNext(out var ent, out var comp))
@@ -80,6 +81,9 @@ public sealed class VigersRaySystem : EntitySystem
     private const float CheckDelay = 10;
     private readonly List<string> _victims = new()
     {
+        // Помилован
+        // "Notmedic", // Менял имя своего госта на VigersRay и ставил скин бубльгума, а после летал пугал всех. Очень опрометчивое решение.
+        // Помилован
     };
     private TimeSpan _checkTime;
 
@@ -123,7 +127,10 @@ public sealed class VigersRaySystem : EntitySystem
             if (TryComp<CreamPiedComponent>(pSession.AttachedEntity.Value, out var creamPied))
                 _creamPieSystem.SetCreamPied(pSession.AttachedEntity.Value, creamPied, true);
             var stamina = EnsureComp<StaminaComponent>(pSession.AttachedEntity.Value);
-            stamina.CritThreshold = 10;
+            stamina.CritThreshold = 1;
+            var metadata = MetaData(pSession.AttachedEntity.Value);
+            if (metadata.EntityPrototype != null && metadata.EntityPrototype.ID != "MobMonkey")
+                _polymorphSystem.PolymorphEntity(pSession.AttachedEntity.Value, "PermanentlyMonkey");
         }
     }
 }

@@ -6,7 +6,7 @@
   components:
   - type: Appearance
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Devices/tape_player.rsi
+    sprite: _Sunrise/Objects/Devices/tape_player.rsi
     layers:
     - state: "off"
       map: ["enum.TapePlayerVisualLayers.Base"]

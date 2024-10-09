@@ -17,7 +17,7 @@
       visible: false
   - type: FlashImmunity
   - type: ShowJobIcons
-  - type: ShowMindShieldIcons
+#  - type: ShowMindShieldIcons Sunrise-Edit
   - type: ShowCriminalRecordIcons
   - type: BorgCuffed
   - type: BorgTransponder
@@ -112,7 +112,7 @@
   - type: BorgCuffed
   - type: FlashImmunity
   - type: ShowJobIcons
-  - type: ShowMindShieldIcons
+#  - type: ShowMindShieldIcons Sunrise-Edit
   - type: ShowCriminalRecordIcons
   - type: BorgTransponder
     sprite:
@@ -205,14 +205,14 @@
       map: [ "light" ]
       visible: false
   - type: ShowJobIcons
-  - type: ShowMindShieldIcons
+#  - type: ShowMindShieldIcons Sunrise-Edit
   - type: ShowCriminalRecordIcons
   - type: SiliconLawProvider
     laws: PeaceStatic
   - type: Pacified
   - type: FlashImmunity
   - type: FabricateCookie
-    сookieList:
+    cookieList:
     - FoodBakedCookieOatmeal
     - FoodBakedCookieRaisin
     - FoodBakedCookie
@@ -461,14 +461,16 @@
         volume: -15
   - type: FlashImmunity
   - type: ShowJobIcons
-  - type: ShowMindShieldIcons
+#  - type: ShowMindShieldIcons Sunrise-Edit
   - type: ShowCriminalRecordIcons
   - type: GhostRole
     makeSentient: true
     allowMovement: true
     name: Боевой киборг ОБР
     description: Слава НТ!.
-    rules: Подчиняйтес ОБР и Центральному Командованию.
+    rules: Подчиняйтесь ОБР и Центральному Командованию.
+    raffle:
+      settings: default
   - type: GhostTakeoverAvailable
   - type: Construction
     node: ertcombat

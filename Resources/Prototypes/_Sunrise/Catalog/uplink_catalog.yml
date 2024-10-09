@@ -1,3 +1,14 @@
+- type: listing
+  id: UplinkSyndieNVD
+  name: uplink-syndie-nvd-name
+  description: uplink-syndie-nvd-desc
+  icon: { sprite: /Textures/_Sunrise/Clothing/Eyes/Glasses/syndie_nvd.rsi, state: icon }
+  productEntity: ClothingEyesNVDSyndicate
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkWearables
+
 # For the Buldog
 - type: listing
   id: UplinkMagazineShotgun
@@ -49,6 +60,16 @@
       components:
       - SurplusBundle
 
+- type: listing
+  id: UplinkMagazinePistolSubMachineGunSIAR52
+  name: Магазин ПП (.25 безгильзовый)
+  description: Магазин ПП на 30 патронов. Совместим с SIAR-52.
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/IAR-52mag.rsi, state: base }
+  productEntity: MagazinePistolSubMachineGunSIAR52
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkAmmo
 
 # For the China-Lake
 - type: listing
@@ -98,7 +119,7 @@
   name: Рюкзак Синдиката
   productEntity: ClothingBackpackSyndie
   cost:
-    Telecrystal: 5
+    Telecrystal: 4
   categories:
   - UplinkWearables
 
@@ -107,9 +128,9 @@
   name: Набор ПП AJ-100
   productEntity: ClothingBackpackSyndieAJ100Filled
   description: Включает в себя пистолет-пулемёт AJ-100 и два магазина патрон.
-  icon: { sprite: _Sunrise/SyndieGuns/AJ-100.rsi, state: icon }
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/SMGs/AJ-100.rsi, state: icon }
   cost:
-    Telecrystal: 25
+    Telecrystal: 20
   categories:
   - UplinkWeaponry
   conditions:
@@ -122,9 +143,9 @@
   id: UplinkWeaponSyndieLaserPistol
   name: SAM-300
   productEntity: WeaponSyndieLaserPistolBiocode
-  icon: { sprite: _Sunrise/SyndieGuns/syndielaserpistol.rsi, state: icon }
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Battery/syndielaserpistol.rsi, state: icon }
   cost:
-    Telecrystal: 20
+    Telecrystal: 10
   categories:
   - UplinkWeaponry
   conditions:
@@ -138,9 +159,9 @@
   name: Набор DL6902
   productEntity: ClothingBackpackSyndieDL6902Filled
   description: Включает в себя пулемёт DL6902 и один магазин патрон.
-  icon: { sprite: _Sunrise/SyndieGuns/DL6902.rsi, state: icon }
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/LMGs/DL6902.rsi, state: icon }
   cost:
-    Telecrystal: 50
+    Telecrystal: 30
   categories:
   - UplinkWeaponry
   conditions:
@@ -154,9 +175,9 @@
   name: Набор SIAR-52
   productEntity: ClothingBackpackSyndieSIAR52Filled
   description: Включает в себя пулемёт SIAR-52 и два магазина патрон.
-  icon: { sprite: _Sunrise/SyndieGuns/IAR-52.rsi, state: icon }
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/SMGs/IAR-52.rsi, state: icon }
   cost:
-    Telecrystal: 25
+    Telecrystal: 20
   categories:
   - UplinkWeaponry
   conditions:
@@ -169,9 +190,9 @@
   id: UplinkWeaponLaserMinigun
   name: UVL-21 «Виверна»
   productEntity: WeaponLaserMinigunBiocode
-  icon: { sprite: _Sunrise/SyndieGuns/laserminigun.rsi, state: icon }
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Battery/laserminigun.rsi, state: icon }
   cost:
-    Telecrystal: 50
+    Telecrystal: 35
   categories:
   - UplinkWeaponry
   conditions:
@@ -184,9 +205,9 @@
   id: UplinkWeaponSyndieLaserGun
   name: S-13 «Чёрная мамба»
   productEntity: WeaponSyndieLaserGunBiocode
-  icon: { sprite: _Sunrise/SyndieGuns/syndielasergun.rsi, state: icon }
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Battery/syndielasergun.rsi, state: icon }
   cost:
-    Telecrystal: 40
+    Telecrystal: 25
   categories:
   - UplinkWeaponry
   conditions:
@@ -258,7 +279,7 @@
   productEntity: ReinforcementRadioSyndicateCyborgAssault
   icon: { sprite: Mobs/Silicon/chassis.rsi, state: synd_sec }
   cost:
-    Telecrystal: 50
+    Telecrystal: 30
   categories:
   - UplinkAllies
   conditions:
@@ -274,7 +295,7 @@
   productEntity: ReinforcementRadioSyndicateCyborgHeavy
   icon: { sprite: _Sunrise/Mobs/Silicon/heavy_syndicate_borg.rsi, state: heavy }
   cost:
-    Telecrystal: 100
+    Telecrystal: 50
   categories:
   - UplinkAllies
   conditions:
@@ -290,7 +311,7 @@
   productEntity: ReinforcementRadioSyndicateCyborgSpider
   icon: { sprite: _Sunrise/Mobs/Silicon/chassis.rsi, state: spider }
   cost:
-    Telecrystal: 50
+    Telecrystal: 20
   categories:
   - UplinkAllies
   conditions:
@@ -306,7 +327,7 @@
   productEntity: ReinforcementRadioSyndicateCyborgMedical
   icon: { sprite: Mobs/Silicon/chassis.rsi, state: synd_medical }
   cost:
-    Telecrystal: 50
+    Telecrystal: 20
   categories:
   - UplinkAllies
   conditions:
@@ -322,7 +343,7 @@
   productEntity: ReinforcementRadioSyndicateCyborgReaper
   icon: { sprite: _Sunrise/Mobs/Silicon/chassis.rsi, state: syndi_reaper }
   cost:
-    Telecrystal: 50
+    Telecrystal: 35
   categories:
   - UplinkAllies
   conditions:
@@ -331,3 +352,13 @@
       tags:
       - NukeOpsUplink
 
+- type: listing
+  id: UplinkTeleporter
+  name: uplink-syndicate-teleporter-name
+  description: uplink-syndicate-teleporter-desc
+  icon: { sprite: Objects/Devices/syndicate_teleporter.rsi, state: icon}
+  productEntity: SyndicateTeleporter
+  cost:
+    Telecrystal: 12
+  categories:
+  - UplinkDisruption

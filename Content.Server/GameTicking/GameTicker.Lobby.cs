@@ -187,5 +187,17 @@ namespace Content.Server.GameTicking
             // update server info to reflect new ready count
             UpdateInfoText();
         }
+
+        public bool UserHasJoinedGame(ICommonSession session)
+            => UserHasJoinedGame(session.UserId);
+
+        public bool UserHasJoinedGame(NetUserId userId)
+        {
+            // Sunrise-Edit: Я не понимаю почему, но PlayerGameStatuses[userId] может вернуть ошибку.
+            if (!PlayerGameStatuses.TryGetValue(userId, out var status))
+                return false;
+
+            return status == PlayerGameStatus.JoinedGame;
+        }
     }
 }

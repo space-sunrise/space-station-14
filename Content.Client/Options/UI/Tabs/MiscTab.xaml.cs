@@ -34,7 +34,7 @@ public sealed partial class MiscTab : Control
         var layoutEntries = new List<OptionDropDownCVar<string>.ValueOption>();
         foreach (var layout in Enum.GetValues(typeof(ScreenType)))
         {
-            layoutEntries.Add(new OptionDropDownCVar<string>.ValueOption(layout.ToString()!, layout.ToString()!));
+            layoutEntries.Add(new OptionDropDownCVar<string>.ValueOption(layout.ToString()!, Loc.GetString($"ui-options-hud-layout-{layout.ToString()!.ToLower()}")));
         }
 
         // Channel can be null in replays so.
@@ -48,10 +48,12 @@ public sealed partial class MiscTab : Control
         var lobbyBackgroundEntries = new List<OptionDropDownCVar<string>.ValueOption>();
         foreach (var layout in Enum.GetValues(typeof(LobbyBackgroundType)))
         {
-            lobbyBackgroundEntries.Add(new OptionDropDownCVar<string>.ValueOption(layout.ToString()!, layout.ToString()!));
+            var layoutLoc = Loc.GetString($"layout-{layout.ToString()!.ToLower()}");
+            lobbyBackgroundEntries.Add(new OptionDropDownCVar<string>.ValueOption(layout.ToString()!, layoutLoc));
         }
         Control.AddOptionDropDown(SunriseCCVars.LobbyBackground, DropDownLobbyBackground, lobbyBackgroundEntries);
         Control.AddOptionPercentSlider(SunriseCCVars.LobbyOpacity, LobbyOpacitySlider);
+        Control.AddOptionCheckBox(SunriseCCVars.DamageOverlay, DamageOverlayCheckBox);
         // Sunrise-End
 
         Control.AddOptionCheckBox(CVars.DiscordEnabled, DiscordRich);

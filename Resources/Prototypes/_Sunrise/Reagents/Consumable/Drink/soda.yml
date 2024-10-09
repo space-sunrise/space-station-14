@@ -1,0 +1,24 @@
+- type: reagent
+  id: FourteenLokoPlus
+  name: reagent-name-fourteen-loko-plus
+  parent: BaseSoda
+  desc: reagent-desc-fourteen-loko-plus
+  physicalDesc: reagent-physical-desc-fizzy
+  flavor: fourteen_loko_soda_plus
+  color: "#fcf6de"
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 2
+    Narcotic:
+      effects:
+      - !type:MovespeedModifier
+        walkSpeedModifier: 1.16
+        sprintSpeedModifier: 1.16
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 1.4

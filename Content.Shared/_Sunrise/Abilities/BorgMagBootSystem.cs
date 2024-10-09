@@ -77,6 +77,6 @@ public sealed class SharedBorgMagbootsSystem : EntitySystem
     private void OnSlipAttempt(EntityUid uid, BorgMagbootsComponent component, InventoryRelayedEvent<SlipAttemptEvent> args)
     {
         if (component.On)
-            args.Args.Cancel();
+            args.Args.NoSlip = true;
     }
 }

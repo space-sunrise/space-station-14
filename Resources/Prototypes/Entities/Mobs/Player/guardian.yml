@@ -109,6 +109,7 @@
     - type: Tag
       tags:
         - CannotSuicide
+        - NoPaint  # Sunrise-edit
 
 # From the uplink injector
 - type: entity
@@ -148,7 +149,7 @@
   name: Ifrit
   parent: MobGuardianBase
   id: MobIfritGuardian
-  description: A corrupted jinn, ripped from fitra to serve the wizard's petty needs. It stands wicked, tuning into it's owner's life to sustain itself.
+  description: A corrupted jinn, ripped from fitra to serve the wizard's petty needs. It stands wicked, tuning into its owner's life to sustain itself.
   components:
     - type: GhostRole
       allowMovement: true
@@ -226,6 +227,7 @@
       tags:
         - CannotSuicide
         - FootstepSound
+        - NoPaint  # Sunrise-edit
     - type: Inventory
       templateId: holoclown
     - type: Hands

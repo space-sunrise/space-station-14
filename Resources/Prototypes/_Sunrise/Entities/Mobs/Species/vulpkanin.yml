@@ -5,6 +5,7 @@
   id: BaseMobVulpkanin
   abstract: true
   components:
+  - type: Absorbable
   - type: Speech
     speechVerb: Vulpkanin
     allowedEmotes: ['Growl', 'Bark', 'Howl']
@@ -17,7 +18,7 @@
     prototype: Vulpkanin
     requiredLegs: 2
   - type: Inventory
-    speciesId: reptilian
+    speciesId: human
   - type: VulpaAccent
 
 

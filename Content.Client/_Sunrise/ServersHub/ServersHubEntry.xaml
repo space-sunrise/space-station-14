@@ -1,6 +1,7 @@
 <PanelContainer xmlns="https://spacestation14.io"
                 xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
-                Name="BackgroundColorPanel">
+                Name="BackgroundColorPanel"
+                MouseFilter="Pass">
     <BoxContainer Orientation="Vertical">
         <customControls:HSeparator/>
         <BoxContainer Orientation="Horizontal"
@@ -20,7 +21,7 @@
                    ClipText="True"/>
             <customControls:VSeparator/>
             <Button Name="ConnectButton"
-                    Text="Подключиться"
+                    Text="{Loc 'serverhub-connect'}"
                     SizeFlagsStretchRatio="3"
                     MinWidth="145"/>
             <customControls:VSeparator/>

@@ -9,3 +9,27 @@
   metamorphicSprite:
     sprite: _Sunrise/Objects/Consumable/Drinks/kvass.rsi
     state: icon
+    
+- type: reagent
+  id: ChamomileTincture
+  name: reagent-name-chamomile-tincture
+  parent: BaseDrink
+  desc: reagent-desc-chamomile-tincture
+  physicalDesc: reagent-physical-desc-strong-smell
+  flavor: chamomile_tincture
+  metamorphicSprite:
+    sprite: _Sunrise/Objects/Consumable/Drinks/chamomileTincture.rsi
+    state: icon
+  metabolisms:
+    Drink:
+      effects:
+      - !type:SatiateThirst
+        factor: 4
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: -2
+      - !type:ChemCleanBloodstream
+        cleanseRate: 1

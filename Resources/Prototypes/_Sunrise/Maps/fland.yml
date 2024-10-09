@@ -16,14 +16,13 @@
             prefixCreator: 'B'
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/_Sunrise/Shuttles/emergency_fland.yml
-        - type: StationCargoShuttle
-          path: /Maps/Shuttles/cargo_fland.yml
         - type: StationJobs
           availableJobs:
             #service
             Captain: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
-            # NanoTrasenRepresentative: [ 1, 1 ]
+            NanoTrasenRepresentative: [ 1, 1 ]
+            Adjutant: [ 1, 1 ]
             Bartender: [ 2, 2 ]
             Botanist: [ 4, 4 ]
             Chef: [ 2, 2 ]
@@ -49,7 +48,7 @@
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
-            SecurityPilot: [ 1, 1 ]
+            #SecurityPilot: [ 1, 1 ]
             SecurityOfficer: [ 8, 8 ]
             Detective: [ 1, 1 ]
             SecurityCadet: [ -1, -1 ]
@@ -78,6 +77,7 @@
             # Sunrise-Science
             Roboticist: [ 2, 2 ]
             # silicon
+            StationAi: [ 1, 1 ]
             Borg: [ 2, 2 ]
             MedicalBorg: [ 4, 4 ]
             EngineerBorg: [ 2, 2 ]
@@ -90,3 +90,24 @@
             SecurityCombatBorg: [ 2, 2 ]
             # Sunrise-Civillian
             Barber: [ 1, 1 ]
+        - type: StationGoal
+          goals:
+          - Shuttle
+          - Singularity
+          - SolarPanels
+          - Artifacts
+          - Bank
+          - Zoo
+          - MiningOutpost
+          - Tesla
+          - XenobiologyRepair
+          - VirusologyAmbusol
+          - Containment
+          - WeaponsSecurity
+          - MaintsRepair
+          - DormsBuild
+          - BattleShuttle
+          - Transit
+          - NukeRoom
+          - Permabrig
+          - Farm

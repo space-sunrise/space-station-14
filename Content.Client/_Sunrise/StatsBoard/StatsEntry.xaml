@@ -5,7 +5,7 @@
     <PanelContainer StyleClasses="AngleRect" HorizontalExpand="True">
         <BoxContainer Orientation="Vertical" HorizontalExpand="True" HorizontalAlignment="Left">
             <BoxContainer Orientation="Horizontal" >
-                <Label Text="Персонаж: " StyleClasses="LabelKeyText"/>
+                <Label Text="{Loc 'statsentry-character'}" StyleClasses="LabelKeyText"/>
                 <RichTextLabel Name="NameLabel"/>
             </BoxContainer>
             <RichTextLabel Name="StatsLabel"/>

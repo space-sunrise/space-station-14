@@ -1,0 +1,39 @@
+﻿- type: entity
+  parent: BaseGameRule
+  id: DiseaseSpawn
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    minimumPlayers: 40
+    weight: 10
+    maxOccurrences: 1
+    duration: 1
+    earliestStart: 30
+    reoccurrenceDelay: 20
+  - type: LateJoinSpawnRule
+    prototype: MobDisease
+
+- type: entity
+  parent: BaseGameRule
+  id: FugitiveSpawn
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    weight: 10
+    duration: 1
+    earliestStart: 30
+    minimumPlayers: 10
+  - type: LateJoinSpawnRule
+    prototype: SpawnPointGhostFugitive
+
+- type: entity
+  parent: BaseGameRule
+  id: EvilTwinSpawn
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    minimumPlayers: 2
+    weight: 10
+    duration: 1
+  - type: LateJoinSpawnRule
+    prototype: SpawnPointEvilTwin

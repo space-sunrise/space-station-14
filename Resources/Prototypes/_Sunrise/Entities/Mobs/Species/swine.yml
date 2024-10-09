@@ -4,6 +4,7 @@
   id: BaseMobSwine
   abstract: true
   components:
+  - type: Absorbable
   - type: HumanoidAppearance
     species: Swine
   - type: Hunger

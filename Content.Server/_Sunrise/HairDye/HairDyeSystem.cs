@@ -1,4 +1,6 @@
-﻿using Content.Server.DoAfter;
+﻿// © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt;
+
+using Content.Server.DoAfter;
 using Content.Server.Humanoid;
 using Content.Server.Popups;
 using Content.Shared._Sunrise.HairDye;
@@ -20,7 +22,6 @@ public sealed class HairDyeSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
-    /// <inheritdoc/>
     public override void Initialize()
     {
         SubscribeLocalEvent<HairDyerComponent, AfterInteractEvent>(OnHairDyerInteract);

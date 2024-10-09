@@ -1,5 +1,16 @@
 - type: entity
   parent: ClothingBeltStorageBase
+  id: ClothingBeltSyndieWebbing
+  name: РПС Синдиката
+  description: Довольно вместительное хранилище для боеприпасов.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Belt/syndieRPS.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Belt/syndieRPS.rsi
+
+- type: entity
+  parent: ClothingBeltStorageBase
   id: ClothingBeltBlueShieldWebbing
   name: рпс офицера «синий щит»
   description: Голубой?!
@@ -33,9 +44,9 @@
   description: Пояс службы безопасности, но из качественного материала.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Belt/hos.rsi
+    sprite: _Sunrise/Clothing/Belt/hos.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/Belt/hos.rsi
+    sprite: _Sunrise/Clothing/Belt/hos.rsi
   - type: Storage
     whitelist:
       tags:
@@ -68,9 +79,9 @@
   description: Стерильный пояс со множеством карманов под таблетки и другие лекарства, подчёркивающий, что лечить нужно со стилем.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Belt/cmo.rsi
+    sprite: _Sunrise/Clothing/Belt/cmo.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/Belt/cmo.rsi
+    sprite: _Sunrise/Clothing/Belt/cmo.rsi
 
 - type: entity
   parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase]
@@ -79,8 +90,8 @@
   description: A set of tactical webbing worn by Syndicate boarding parties.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Clothing/Belt/webbing.rsi
+    sprite: _Sunrise/Clothing/Belt/webbing.rsi
   - type: Clothing
-    sprite: _Sunrise/Entities/Clothing/Belt/webbing.rsi
+    sprite: _Sunrise/Clothing/Belt/webbing.rsi
   - type: ExplosionResistance
     damageCoefficient: 0.5

@@ -10,6 +10,7 @@
   description: event-description
   rules:
   - BasicRoundstartVariation
+  - SpaceTrafficControlFriendlyEventScheduler
 
 - type: gamePreset
   id: Extra
@@ -21,7 +22,8 @@
   description: extra-description
   rules:
   - BasicStationEventScheduler
-  - GameRuleMeteorScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation
 
 - type: gamePreset
@@ -34,5 +36,6 @@
   description: secret-description
   rules:
   - BasicStationEventScheduler
-  - GameRuleMeteorScheduler
+  - MeteorSwarmScheduler
+  - SpaceTrafficControlEventScheduler
   - BasicRoundstartVariation

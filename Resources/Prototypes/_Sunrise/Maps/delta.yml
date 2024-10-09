@@ -29,6 +29,7 @@
             Zookeeper: [ 1, 1 ]
             Captain: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
+            Adjutant: [ 1, 1 ]
             ChiefEngineer: [ 1, 1 ]
             StationEngineer: [ 5, 5 ]
             SeniorEngineer: [ 1, 1 ]
@@ -39,7 +40,7 @@
             Scientist: [ 6, 6 ]
             HeadOfSecurity: [ 1, 1 ]
             SecurityOfficer: [ 6, 6 ]
-            SecurityPilot: [ 1, 1 ]
+            #SecurityPilot: [ 1, 1 ]
             Chaplain: [ 1, 1 ]
             Warden: [ 1, 1 ]
             Librarian: [ 1, 1 ]
@@ -55,8 +56,8 @@
             SecurityCadet: [ -1, -1 ]
             Psychologist: [ 1, 1 ]
             Detective: [ 1, 1 ]
-            Paramedic: [ 2, 2 ]
-            # NanoTrasenRepresentative: [ 1, 1 ]
+            Paramedic: [ 1, 1 ]
+            NanoTrasenRepresentative: [ 1, 1 ]
             # Sunrise-Law
             IAA: [ 1, 1 ]
             Lawyer: [ 2, 2 ]
@@ -72,6 +73,7 @@
             # Sunrise-Science
             Roboticist: [ 2, 2 ]
             # silicon
+            StationAi: [ 1, 1 ]
             Borg: [ 2, 2 ]
             MedicalBorg: [ 4, 4 ]
             EngineerBorg: [ 2, 2 ]
@@ -96,3 +98,12 @@
           - Tesla
           - XenobiologyRepair
           - VirusologyAmbusol
+          - Containment
+          - WeaponsSecurity
+          - MaintsRepair
+          - DormsBuild
+          - BattleShuttle
+          - Transit
+          - NukeRoom
+          - Permabrig
+          - Farm

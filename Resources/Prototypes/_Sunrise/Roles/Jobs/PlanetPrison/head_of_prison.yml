@@ -35,4 +35,5 @@
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltSecurity
     belt: ClothingBeltPrisonGuardianFilled
-    pocket1: WeaponPistolMk58Nonlethal
+    pocket1: WeaponPistolDeagle
+    pocket2: MagazineDeagle

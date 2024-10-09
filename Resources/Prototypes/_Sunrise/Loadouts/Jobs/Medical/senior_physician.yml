@@ -1,23 +1,9 @@
 - type: loadout
   id: JumpsuitSeniorPhysician
-  equipment: JumpsuitSeniorPhysician
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: MaleMoment
-
-- type: startingGear
-  id: JumpsuitSeniorPhysician
   equipment:
     jumpsuit: ClothingUniformJumpsuitSeniorPhysician
 
 - type: loadout
-  id: JumpskirtSeniorPhysician
-  equipment: JumpskirtSeniorPhysician
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: WomanMoment
-
-- type: startingGear
   id: JumpskirtSeniorPhysician
   equipment:
     jumpsuit: ClothingUniformJumpskirtSeniorPhysician

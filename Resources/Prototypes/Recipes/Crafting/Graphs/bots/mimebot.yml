@@ -13,7 +13,7 @@
         name: обед Хэппи Хонк  # Sunrise-recipes
       - tag: MimeBelt
         icon:
-            sprite: Clothing/Belt/suspenders.rsi
+            sprite: Clothing/Belt/suspenders_red.rsi
             state: icon
         name: suspenders
         doAfter: 2

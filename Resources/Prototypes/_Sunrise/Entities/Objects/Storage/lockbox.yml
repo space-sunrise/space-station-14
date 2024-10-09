@@ -5,7 +5,7 @@
   description: Высокозащищенный чемодан предназначеный для хранения важных документов и предметов.
   components:
   - type: Sprite
-    sprite: _Sunrise/lockbox.rsi
+    sprite: _Sunrise/Objects/Misc/lockbox.rsi
     layers:
     - state: icon
     - state: locked

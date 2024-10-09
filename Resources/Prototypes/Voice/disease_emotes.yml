@@ -19,9 +19,11 @@
   chatTriggers:
     - cough
     - coughs
+    - coughed
     # Russian-Localization-Start
     - кашель
     - кашляет
+    - кашлянул
     # Russian-Localization-End
 
 - type: emote

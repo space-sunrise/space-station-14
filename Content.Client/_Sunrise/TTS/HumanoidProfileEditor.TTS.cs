@@ -53,7 +53,7 @@ public sealed partial class HumanoidProfileEditor
                 continue;
 
             VoiceButton.SetItemDisabled(VoiceButton.GetIdx(i), true);
-            VoiceButton.SetItemText(VoiceButton.GetIdx(i), $"{name} [СПОНСОР]"); // Sunrise-edit
+            VoiceButton.SetItemText(VoiceButton.GetIdx(i), Loc.GetString("sponsor-marking", ("name", name))); // Sunrise-edit
         }
 
         var voiceChoiceId = _voiceList.FindIndex(x => x.ID == Profile.Voice);

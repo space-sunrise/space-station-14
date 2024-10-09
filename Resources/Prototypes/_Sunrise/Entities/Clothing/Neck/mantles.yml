@@ -8,3 +8,14 @@
       sprite: _Sunrise/Clothing/Neck/Mantles/ERTmantle.rsi
     - type: Clothing
       sprite: _Sunrise/Clothing/Neck/Mantles/ERTmantle.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckMantleAdjutant
+  name: adjutant mantle
+  description: Lightweight, velvet, uninhibited movement, on one shoulder, as if it speaks to your precarious position of command..
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Clothing/Neck/Mantles/adjmantle.rsi
+    - type: Clothing
+      sprite: _Sunrise/Clothing/Neck/Mantles/adjmantle.rsi

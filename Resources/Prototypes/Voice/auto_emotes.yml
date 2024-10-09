@@ -3,7 +3,7 @@
   id: ZombieGroan
   emote: Scream
   interval: 5.0
-  chance: 0.5 # Sunrise-Edit если ставить меньше, то от спама звуками голова болит
+  chance: 0.2 # Sunrise-Edit если ставить меньше, то от спама звуками голова болит
   withChat: false
 # Cluwne
 - type: autoEmote

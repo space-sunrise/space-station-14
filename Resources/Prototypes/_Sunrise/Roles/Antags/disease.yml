@@ -1,0 +1,95 @@
+- type: entity
+  id: MobDisease
+  name: разумная болезнь
+  description: plague inc 2.0
+  components:
+  - type: MindContainer
+  - type: InputMover
+  - type: MobMover
+  - type: Input
+    context: "ghost"
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 6
+    baseSprintSpeed: 6
+  - type: Sprite
+    noRot: true
+    drawdepth: Ghosts
+    sprite: _Sunrise/Mobs/Aliens/disease.rsi
+    layers:
+    - state: idle
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: KinematicController
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 80
+        mask:
+        - GhostImpassable
+  - type: MovementIgnoreGravity
+  - type: Damageable
+    damageContainer: Biological
+  - type: Examiner
+  - type: NoSlip
+  - type: Actions
+  - type: Eye
+    drawFov: false
+    visMask:
+      - Normal
+      - Ghost
+  - type: ContentEye
+    maxZoom: 1.2, 1.2
+  - type: DoAfter
+  - type: Alerts
+  - type: GhostRole
+    makeSentient: true
+    name: ghostrole-disease-name
+    description: ghostrole-disease-description
+    requirements:
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 7200 #2 hrs
+    - !type:OverallPlaytimeRequirement
+      time: 18000 #5 hrs
+    raffle:
+      settings: default
+
+  - type: GhostTakeoverAvailable
+  - type: PointLight
+    color: "#52964F"
+    radius: 2
+    softness: 1
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: Visibility
+    layer: 2 #ghost vis layer
+  - type: Store
+    categories:
+    - DiseaseInfectCategory
+    - DiseaseSymptomsCategory
+    - DiseaseEvolutionCategory
+    currencyWhitelist:
+    - DiseasePoints
+    balance:
+      DiseasePoints: 20
+  - type: DiseaseRole
+    actions:
+      ActionInfect: -1
+      ActionDiseaseBaseChance: -1
+      ActionDiseaseInfectChance: -1
+      ActionDiseaseShield: -1
+      ActionDiseaseLethal: -1
+
+- type: sickIcon
+  id: SmartDiseaseIcon
+  icon:
+    sprite: _Sunrise/Mobs/Aliens/disease.rsi
+    state: sick
+  priority: 2
+

@@ -1,0 +1,10 @@
+﻿#- type: construction
+#  name: Алтын
+#  id: helmetpubg
+#  praph: helmetpubg
+#  startNode: start
+#  targetNode: hhelmetpubg
+#  category: construction-category-weapons
+#  description: Прочная каска для самых крутых.
+#  icon: { sprite: _Sunrise/Clothing/Head/Helmets/tfhelm.rsi, state: icon }
+#  objectType: Item

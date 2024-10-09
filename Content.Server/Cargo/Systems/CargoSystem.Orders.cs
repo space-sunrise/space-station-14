@@ -1,7 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Server.Cargo.Components;
 using Content.Server.Labels.Components;
-using Content.Server.Paper;
 using Content.Server.Station.Components;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.BUI;
@@ -9,11 +8,13 @@ using Content.Shared.Cargo.Components;
 using Content.Shared.Cargo.Events;
 using Content.Shared.Cargo.Prototypes;
 using Content.Shared.Database;
+using Content.Shared.Emag.Components;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
+using Content.Shared.Paper;
+using Robust.Shared.Audio;
 using Robust.Shared.Map;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
 namespace Content.Server.Cargo.Systems
@@ -111,7 +112,7 @@ namespace Content.Server.Cargo.Systems
             if (!_accessReaderSystem.IsAllowed(player, uid))
             {
                 ConsolePopup(args.Actor, Loc.GetString("cargo-console-order-not-allowed"));
-                PlayDenySound(uid, component);
+                PlayDenySound(uid, component.ErrorSound);
                 return;
             }
 
@@ -123,7 +124,7 @@ namespace Content.Server.Cargo.Systems
                 !TryGetOrderDatabase(station, out var orderDatabase))
             {
                 ConsolePopup(args.Actor, Loc.GetString("cargo-console-station-not-found"));
-                PlayDenySound(uid, component);
+                PlayDenySound(uid, component.ErrorSound); // Sunrise-Edit
                 return;
             }
 
@@ -138,7 +139,7 @@ namespace Content.Server.Cargo.Systems
             if (!_protoMan.HasIndex<EntityPrototype>(order.ProductId))
             {
                 ConsolePopup(args.Actor, Loc.GetString("cargo-console-invalid-product"));
-                PlayDenySound(uid, component);
+                PlayDenySound(uid, component.ErrorSound); // Sunrise-Edit
                 return;
             }
 
@@ -149,7 +150,7 @@ namespace Content.Server.Cargo.Systems
             if (amount >= capacity)
             {
                 ConsolePopup(args.Actor, Loc.GetString("cargo-console-too-many"));
-                PlayDenySound(uid, component);
+                PlayDenySound(uid, component.ErrorSound); // Sunrise-Edit
                 return;
             }
 
@@ -160,7 +161,7 @@ namespace Content.Server.Cargo.Systems
             {
                 order.OrderQuantity = cappedAmount;
                 ConsolePopup(args.Actor, Loc.GetString("cargo-console-snip-snip"));
-                PlayDenySound(uid, component);
+                PlayDenySound(uid, component.ErrorSound); // Sunrise-Edit
             }
 
             var cost = order.Price * order.OrderQuantity;
@@ -169,17 +170,13 @@ namespace Content.Server.Cargo.Systems
             if (cost > bank.Balance)
             {
                 ConsolePopup(args.Actor, Loc.GetString("cargo-console-insufficient-funds", ("cost", cost)));
-                PlayDenySound(uid, component);
+                PlayDenySound(uid, component.ErrorSound); // Sunrise-Edit
                 return;
             }
 
             var ev = new FulfillCargoOrderEvent((station.Value, stationData), order, (uid, component));
             RaiseLocalEvent(ref ev);
             ev.FulfillmentEntity ??= station.Value;
-
-            _idCardSystem.TryFindIdCard(player, out var idCard);
-            // ReSharper disable once ConditionalAccessQualifierIsNonNullableAccordingToAPIContract
-            order.SetApproverData(idCard.Comp?.FullName, idCard.Comp?.JobTitle);
 
             if (!ev.Handled)
             {
@@ -188,7 +185,7 @@ namespace Content.Server.Cargo.Systems
                 if (ev.FulfillmentEntity == null)
                 {
                     ConsolePopup(args.Actor, Loc.GetString("cargo-console-unfulfilled"));
-                    PlayDenySound(uid, component);
+                    PlayDenySound(uid, component.ErrorSound); // Sunrise-Edit
                     return;
                 }
             }
@@ -196,12 +193,20 @@ namespace Content.Server.Cargo.Systems
             order.Approved = true;
             _audio.PlayPvs(component.ConfirmSound, uid);
 
-            var message = Loc.GetString("cargo-console-unlock-approved-order-broadcast",
-                ("productName", Loc.GetString(order.ProductName)),
-                ("orderAmount", order.OrderQuantity),
-                ("approver", order.Approver ?? string.Empty),
-                ("cost", cost));
-            _radio.SendRadioMessage(uid, message, component.AnnouncementChannel, uid, escapeMarkup: false);
+            if (!HasComp<EmaggedComponent>(uid))
+            {
+                var tryGetIdentityShortInfoEvent = new TryGetIdentityShortInfoEvent(uid, player);
+                RaiseLocalEvent(tryGetIdentityShortInfoEvent);
+                order.SetApproverData(tryGetIdentityShortInfoEvent.Title);
+
+                var message = Loc.GetString("cargo-console-unlock-approved-order-broadcast",
+                    ("productName", Loc.GetString(order.ProductName)),
+                    ("orderAmount", order.OrderQuantity),
+                    ("approver", order.Approver ?? string.Empty),
+                    ("cost", cost));
+                _radio.SendRadioMessage(uid, message, component.AnnouncementChannel, uid, escapeMarkup: false);
+            }
+
             ConsolePopup(args.Actor, Loc.GetString("cargo-console-trade-station", ("destination", MetaData(ev.FulfillmentEntity.Value).EntityName)));
 
             // Log order approval
@@ -215,27 +220,27 @@ namespace Content.Server.Cargo.Systems
 
         private EntityUid? TryFulfillOrder(Entity<StationDataComponent> stationData, CargoOrderData order, StationCargoOrderDatabaseComponent orderDatabase)
         {
-            // No slots at the trade station
-            _listEnts.Clear();
-            GetTradeStations(stationData, ref _listEnts);
+            // Sunrise-Edit
+            //_listEnts.Clear();
+            //GetTradeStations(stationData, ref _listEnts);
             EntityUid? tradeDestination = null;
 
             // Try to fulfill from any station where possible, if the pad is not occupied.
-            foreach (var trade in _listEnts)
+            foreach (var gridUid in stationData.Comp.Grids) // Sunrise-Edit
             {
-                var tradePads = GetCargoPallets(trade, BuySellType.Buy);
+                var tradePads = GetCargoPallets(gridUid, BuySellType.Buy); // Sunrise-Edit
                 _random.Shuffle(tradePads);
 
-                var freePads = GetFreeCargoPallets(trade, tradePads);
+                var freePads = GetFreeCargoPallets(gridUid, tradePads); // Sunrise-Edit
                 if (freePads.Count >= order.OrderQuantity) //check if the station has enough free pallets
                 {
                     foreach (var pad in freePads)
                     {
-                        var coordinates = new EntityCoordinates(trade, pad.Transform.LocalPosition);
+                        var coordinates = new EntityCoordinates(gridUid, pad.Transform.LocalPosition); // Sunrise-Edit
 
                         if (FulfillOrder(order, coordinates, orderDatabase.PrinterOutput))
                         {
-                            tradeDestination = trade;
+                            tradeDestination = gridUid; // Sunrise-Edit
                             order.NumDispatched++;
                             if (order.OrderQuantity <= order.NumDispatched) //Spawn a crate on free pellets until the order is fulfilled.
                                 break;
@@ -297,7 +302,7 @@ namespace Content.Server.Cargo.Systems
 
             if (!TryAddOrder(stationUid.Value, data, orderDatabase))
             {
-                PlayDenySound(uid, component);
+                PlayDenySound(uid, component.ErrorSound); // Sunrise-Edit
                 return;
             }
 
@@ -347,9 +352,9 @@ namespace Content.Server.Cargo.Systems
             _popup.PopupCursor(text, actor);
         }
 
-        private void PlayDenySound(EntityUid uid, CargoOrderConsoleComponent component)
+        private void PlayDenySound(EntityUid uid, SoundSpecifier errorSound) // Sunrise-Edit
         {
-            _audio.PlayPvs(_audio.GetSound(component.ErrorSound), uid);
+            _audio.PlayPvs(_audio.GetSound(errorSound), uid); // Sunrise-Edit
         }
 
         private static CargoOrderData GetOrderData(CargoConsoleAddOrderMessage args, CargoProductPrototype cargoProduct, int id)
@@ -512,15 +517,14 @@ namespace Content.Server.Cargo.Systems
                 var val = Loc.GetString("cargo-console-paper-print-name", ("orderNumber", order.OrderId));
                 _metaSystem.SetEntityName(printed, val);
 
-                _paperSystem.SetContent(printed, Loc.GetString(
+                _paperSystem.SetContent((printed, paper), Loc.GetString(
                         "cargo-console-paper-print-text",
                         ("orderNumber", order.OrderId),
                         ("itemName", MetaData(item).EntityName),
                         ("orderQuantity", order.OrderQuantity),
                         ("requester", order.Requester),
                         ("reason", order.Reason),
-                        ("approver", order.Approver ?? string.Empty)),
-                    paper);
+                        ("approver", order.Approver ?? string.Empty)));
 
                 // attempt to attach the label to the item
                 if (TryComp<PaperLabelComponent>(item, out var label))
