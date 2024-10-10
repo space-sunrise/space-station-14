@@ -20,6 +20,7 @@ using Content.Server.Body.Systems;
 using Content.Shared.Tools.Systems;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Tag;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
@@ -42,6 +43,7 @@ public sealed partial class MechSystem : SharedMechSystem
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly SharedToolSystem _toolSystem = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -87,7 +89,7 @@ public sealed partial class MechSystem : SharedMechSystem
         if (TryComp<WiresPanelComponent>(uid, out var panel) && !panel.Open)
             return;
 
-        if (component.BatterySlot.ContainedEntity == null && TryComp<BatteryComponent>(args.Used, out var battery))
+        if (component.BatterySlot.ContainedEntity == null && TryComp<BatteryComponent>(args.Used, out var battery) && _tag.HasTag(args.Used, "PowerCage"))
         {
             InsertBattery(uid, args.Used, component, battery);
             _actionBlocker.UpdateCanMove(uid);
