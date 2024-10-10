@@ -1856,7 +1856,7 @@
   id: UplinkEnergyDomeSyndie
   name: uplink-energy-dome-name
   description: uplink-energy-dome-desc
-  productEntity: EnergyDomeGeneratorPersonalSyndie
+  productEntity: EnergyDomeGeneratorPersonalSyndieBiocode
   cost:
     Telecrystal: 10
   categories:
