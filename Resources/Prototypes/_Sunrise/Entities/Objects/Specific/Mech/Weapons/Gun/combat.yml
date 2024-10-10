@@ -42,9 +42,9 @@
     availableModes:
       - FullAuto
     soundGunshot:
-      path: /Audio/_Sunrise/Weapons/Guns/HMGs/minigun_shot.ogg
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
   - type: ProjectileBatteryAmmoProvider
-    proto: BulletSyndiPlasma2
+    proto: BulletEnergyGunLaser
     fireCost: 20
   - type: Appearance
   - type: AmmoCounter
