@@ -658,3 +658,13 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
     state: plushie-CFB
+
+- type: entity
+  id: PlushieSebastian
+  parent: BasePlushie
+  name: Плюшевый Командир Себастиан Хейз
+  description: На самом деле он агент, который забыл что нужно действовать скрытно.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-sebastian
