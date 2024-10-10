@@ -1,0 +1,225 @@
+- type: job
+  id: OSO
+  name: Офицер Специальных Операций
+  playTimeTracker: OSO
+  icon: "JobIconNanotrasen"
+  setPreference: false
+  accessGroups:
+  - AllAccess
+  access:
+  - DSO
+  - HDSO
+  - CentralCommand
+
+- type: job
+  id: DSQL
+  name: Агент ЦентКома
+  playTimeTracker: DSQL
+  icon: "JobIconNanotrasen"
+  setPreference: false
+  accessGroups:
+  - AllAccess
+  access:
+  - DSO
+  - HDSO
+  - CentralCommand
+
+- type: job
+  id: DSQ
+  name: Агент ЦентКома
+  playTimeTracker: DSS
+  icon: "JobIconNanotrasen"
+  setPreference: false
+  accessGroups:
+  - AllAccess
+  access:
+  - DSO
+  - CentralCommand
+
+- type: startingGear
+  id: DeathsquadGearHardSV
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitDeathSquadUnremoveableSV
+    back: ClothingDeathSquadronBackpackFilledSV
+    shoes: ClothingShoesBootsMagDSO
+    mask: ClothingMaskGasDeathSquad
+    eyes: ClothingEyesGlassesSunglassesHUDDSO
+    gloves: ClothingHandsGlovesPowergloveDSOActive
+    neck: CombatKnifeTac
+    outerClothing: ClothingOuterHardsuitDeathsquadUnremoveableSV
+    suitstorage: JetpackDeathSquadron
+    id: DeathsquadPDAOperSV
+    ears: ClothingHeadsetAltDSO
+    belt: ClothingBeltAssaultFilledSV
+    pocket1: HandheldCrewMonitor
+    pocket2: DoorRemoteAll
+
+- type: startingGear
+  id: DeathsquadLeaderGearSV
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitDeathSquadUnremoveableSV
+    back: ClothingDeathSquadronBackpackFilledSV
+    shoes: ClothingShoesBootsMagDSO
+    mask: ClothingMaskGasDeathSquad
+    eyes: ClothingEyesGlassesSunglassesHUDDSO
+    gloves: ClothingHandsGlovesPowergloveDSOActive
+    neck: CombatKnifeTac
+    outerClothing: ClothingOuterHardsuitDeathsquadUnremoveableSV
+    suitstorage: JetpackDeathSquadron
+    id: DeathsquadPDALeadSV
+    ears: ClothingHeadsetAltDSO
+    belt: ClothingBeltAssaultFilledSV
+    pocket1: HandheldCrewMonitor
+    pocket2: DoorRemoteAll
+    
+- type: startingGear
+  id: DeathsquadOSOSV
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCentcomOfficerBlackDSO
+    back: ClothingBackpackSatchelHoldingFilledSV
+    shoes: ClothingShoesCentcomBlackDSO
+    head: ClothingHeadCapCentcomBlack
+    mask: ClothingMaskGasDeathSquad
+    eyes: ClothingEyesGlassesSunglassesHUDDSO
+    gloves: ClothingHandsGlovesCombat
+    neck: ClothingNeckCloakCentcomBlack
+    outerClothing: ClothingOuterCoatSpaceAssholeDSO
+    #suitstorage: 
+    id: DeathsquadPDAOSOSV
+    ears: ClothingHeadsetAltDSO
+    belt: ClothingBeltHolsterDSOFilled
+    pocket1: DoorRemoteAll
+    #pocket2: 
+
+- type: entity
+  parent: CentcomPDA
+  noSpawn: true
+  id: DeathsquadPDAOperSV
+  name: 'КПК Центком'
+  description: Светло-зеленый символ ходячей бюрократии.
+  components:
+  - type: Pda
+    id: CentcomIDCardDeathsquadOperSV
+
+- type: entity
+  parent: CentcomPDA
+  noSpawn: true
+  id: DeathsquadPDALeadSV
+  name: 'КПК Центком'
+  description: Светло-зеленый символ ходячей бюрократии.
+  components:
+  - type: Pda
+    id: CentcomIDCardDeathsquadLeadSV
+
+- type: entity
+  parent: CentcomPDA
+  noSpawn: true
+  id: DeathsquadPDAOSOSV
+  name: 'КПК Центком'
+  description: Светло-зеленый символ ходячей бюрократии.
+  components:
+  - type: Pda
+    id: CentcomIDCardDeathsquadOSOSV
+
+- type: entity
+  parent: CentcomIDCard
+  noSpawn: true
+  id: CentcomIDCardDeathsquadOperSV
+  name: ID карта
+  components:
+  - type: Sprite
+    layers:
+    - state: centcom
+  - type: Item
+    heldPrefix: blue
+  - type: PresetIdCard
+    job: DSQ
+  - type: IdCard
+    jobTitle: Агент ЦентКома
+    fullName: Оперативник Эскадрона Смерти
+
+- type: entity
+  parent: CentcomIDCard
+  noSpawn: true
+  id: CentcomIDCardDeathsquadLeadSV
+  name: ID карта
+  components:
+  - type: Sprite
+    layers:
+    - state: centcom
+  - type: Item
+    heldPrefix: blue
+  - type: PresetIdCard
+    job: DSQL
+  - type: IdCard
+    jobTitle: Агент ЦентКома
+    fullName: Командир Эскадрона Смерти
+
+- type: entity
+  parent: CentcomIDCard
+  noSpawn: true
+  id: CentcomIDCardDeathsquadOSOSV
+  name: ID карта
+  components:
+  - type: Sprite
+    layers:
+    - state: centcom
+  - type: Item
+    heldPrefix: blue
+  - type: PresetIdCard
+    job: OSO
+  - type: IdCard
+    jobTitle: Офицер Специальных Операций
+
+- type: dataset
+  id: LastNamesDed
+  values:
+  - Дядя
+  - Дракон
+  - Борода
+  - Молчун
+  - Бродяга
+  - Абориген
+  - Тень
+  - Сигма
+  - Каскад
+  - Космос
+  - Мажор
+  - Маяк
+  - Мир
+  - Носорог
+  - Патриот
+  - Жук
+  - Луч
+  - Меч
+  - Щит
+  - Эхо
+  - Огонь
+  - Печь
+  - Сигизмунд
+  - Змей
+  - Танк
+  - Свин
+  - Ящер
+  - Вяч
+
+- type: dataset
+  id: LastNamesDedLeader
+  values:
+  - Гост
+  - Пейн
+  - Шепард
+  - Блейд
+  - Прайс
+  - Бласковиц
+  - Снейк
+
+- type: dataset
+  id: NamesLordSyndiOpsCom
+  values:
+  - Командир  
+
+- type: dataset
+  id: NamesLordSyndiOps
+  values:
+  - Оперативник

@@ -1,0 +1,35 @@
+- type: entity
+  name: стимулятор XZ-2
+  parent: Stimpack
+  id: BattleMedipenExtDSO
+  description: УЖАСНО эффективный стимулятор для поддержания бойца почти неуязвимым ко всему на протяжении долгого времени без побочек, выведенный Арасакой. Немного ускоряет и спасает от оглушения - но не очень эффективно. Крайне вместительный.
+  suffix: SV | ДСО
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 100
+        reagents:
+        - ReagentId: ExperimentalStimulantsSV
+          Quantity: 100  
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 100
+
+- type: entity
+  name: стимулятор XS-1
+  parent: Stimpack
+  id: BattleMedipenDSO
+  description: УЖАСНО эффективный стимулятор для поддержания бойца почти неуязвимым ко всему на протяжении долгого времени без побочек, выведенный Арасакой. Небольшая версия.
+  suffix: SV | ДСО
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 20
+        reagents:
+        - ReagentId: ExperimentalStimulantsLord2
+          Quantity: 20  
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 20
