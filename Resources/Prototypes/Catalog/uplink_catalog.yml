@@ -610,7 +610,6 @@
     - !type:StoreWhitelistCondition
       blacklist:
         tags:
-          - SyndieAgentUplink
           - AssaultOpsUplink
 #Sunrise-end
 
