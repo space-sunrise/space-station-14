@@ -10,4 +10,7 @@
     </ProjectReference>
     <ProjectReference Include="..\Content.Sunrise.Interfaces.Shared\Content.Sunrise.Interfaces.Shared.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="IClientDiscordAuthManager.cs" />
+  </ItemGroup>
 </Project>
