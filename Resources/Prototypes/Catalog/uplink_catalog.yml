@@ -1060,7 +1060,7 @@
   discountDownTo:
     Telecrystal: 2
   cost:
-    Telecrystal: 4
+    Telecrystal: 3
   categories:
   - UplinkDisruption
 
@@ -1856,7 +1856,7 @@
   id: UplinkEnergyDomeSyndie
   name: uplink-energy-dome-name
   description: uplink-energy-dome-desc
-  productEntity: EnergyDomeGeneratorPersonalSyndie
+  productEntity: EnergyDomeGeneratorPersonalSyndieBiocode
   cost:
     Telecrystal: 10
   categories:

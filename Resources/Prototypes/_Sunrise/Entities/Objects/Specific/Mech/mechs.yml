@@ -1,0 +1,70 @@
+- type: entity
+  id: MechMolot
+  parent: [ BaseMech, CombatMech ]
+  name: Molot M-1
+  description: A heavy mech designed by the SSSP to operate in aggressive, unaccepted environments. It has 4 weapon mounts on board, oxygen maintenance in the cockpit.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: _Sunrise/Objects/Specific/Mech/mecha.rsi
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: molot
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Mech
+    baseState: molot
+    openState: molot-open
+    brokenState: molot-broken
+    mechToPilotDamageMultiplier: 0.1
+    airtight: true
+    maxIntegrity: 700
+    maxEquipmentAmount: 4
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 40
+        Structural: 200
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 2.5
+  - type: Damageable
+    damageModifierSet: HeavyArmorNT
+  - type: CanMoveInAir
+  - type: MovementAlwaysTouching
+  - type: Repairable
+    fuelCost: 30
+    doAfterDelay: 15
+  - type: Reflect
+    reflectProb: 0.3
+    reflects:
+    - NonEnergy
+    
+- type: entity
+  id: MechMolotBattery
+  parent: MechMolot
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCageHigh
+
+- type: entity
+  id: MechMolotFilled
+  parent: MechMolotBattery
+  suffix: Battery, Filled
+  components:
+  - type: Mech
+    startingEquipment:
+      - WeaponMechChainSword
+      - WeaponMechCombatPulseRifle
+      - WeaponMechCombatUltraRifle
+      - WeaponMechCombatMissileRack8

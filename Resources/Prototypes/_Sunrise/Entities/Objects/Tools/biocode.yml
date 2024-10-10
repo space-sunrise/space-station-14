@@ -1,0 +1,17 @@
+- type: entity
+  parent: EnergyDomeGeneratorBackpackSyndie
+  id: EnergyDomeGeneratorBackpackSyndieBiocode
+  suffix: BIOCODE
+  components: 
+  - type: FactionClothingBlocker
+    factions:
+    - Syndicate
+    
+- type: entity
+  parent: EnergyDomeGeneratorPersonalSyndie
+  id: EnergyDomeGeneratorPersonalSyndieBiocode
+  suffix: BIOCODE
+  components: 
+  - type: FactionClothingBlocker
+    factions:
+    - Syndicate

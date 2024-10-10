@@ -4354,3 +4354,28 @@
     type: Add
   id: 316
   time: '2024-10-09T09:20:41.511183+00:00'
+- author: SplikZerys
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u0438\u043B \u043D\u043E\u0432\u044B\u0439\
+      \ \u0422\u0422\u0421-\u0433\u043E\u043B\u043E\u0441 \u0412\u043B\u0430\u0441\
+      \u0442\u0435\u043B\u0438\u043D \u0413\u0440\u043E\u043C\u0430 \u0438\u0437 Hearthstone."
+    type: Add
+  id: 317
+  time: '2024-10-09T14:13:20.915546+00:00'
+- author: SkyHappy
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D 1 \u043D\u043E\u0432\
+      \u044B\u0439 \u043B\u043E\u0431\u0431\u0438 \u0430\u0440\u0442."
+    type: Add
+  id: 318
+  time: '2024-10-10T16:30:56.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/483
+- author: SkyHappy
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D \u043F\u043E\u0441\u0442\
+      \u0435\u0440 \u0441 \u0410\u0440\u0438\u0440\u0430\u043B\u0435\u043D\u043E\u0439\
+      ."
+    type: Add
+  id: 319
+  time: '2024-10-10T16:31:13.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/477
