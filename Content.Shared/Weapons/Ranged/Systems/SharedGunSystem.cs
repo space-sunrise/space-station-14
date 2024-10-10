@@ -217,6 +217,18 @@ public abstract partial class SharedGunSystem : EntitySystem
         Dirty(uid, gun);
     }
 
+    // Sunrise START
+
+    /// <summary>
+    /// Sets the targeted entity of the gun. Should be called before attempting to shoot to avoid shooting over the target.
+    /// </summary>
+    public void SetTarget(GunComponent gun, EntityUid target)
+    {
+        gun.Target = target;
+    }
+
+    // Sunrise END
+
     /// <summary>
     /// Attempts to shoot at the target coordinates. Resets the shot counter after every shot.
     /// </summary>

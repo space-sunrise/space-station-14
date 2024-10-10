@@ -59,7 +59,7 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
-  - type: ZoomableGun
+  - type: Telescope
   - type: UseDelay
     delay: 0.5
 
@@ -122,7 +122,7 @@
   - type: Wieldable
   - type: UseDelay
     delay: 0.5
-  - type: ZoomableGun
+  - type: Telescope
   - type: ChamberMagazineAmmoProvider
     autoEject: true
     boltClosed: null
@@ -191,7 +191,7 @@
   - type: Wieldable
   - type: UseDelay
     delay: 0.5
-  - type: ZoomableGun
+  - type: Telescope
 
 - type: entity
   name: M1 Garand
