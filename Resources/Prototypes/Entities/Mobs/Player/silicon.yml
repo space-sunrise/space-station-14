@@ -291,6 +291,7 @@
   - type: ContainerComp
     proto: AiHeld
     container: station_ai_mind_slot
+  - type: Damageable
   - type: Destructible
     thresholds:
     - trigger:
