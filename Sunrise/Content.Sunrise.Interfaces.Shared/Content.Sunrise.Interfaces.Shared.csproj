@@ -7,7 +7,4 @@
   <ItemGroup>
     <ProjectReference Include="..\..\RobustToolbox\Robust.Shared\Robust.Shared.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="ISharedDiscordAuthManager.cs" />
-  </ItemGroup>
 </Project>
