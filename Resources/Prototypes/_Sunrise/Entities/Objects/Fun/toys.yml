@@ -623,8 +623,35 @@
     state: plushie-smile
 
 - type: entity
+  id: EmitMeow
+  abstract: true
+  components:
+  - type: MeleeWeapon
+    soundHit:
+      collection: CatMeows
+      params:
+        volume: 100
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: CatMeows
+  - type: EmitSoundOnCollide
+    sound:
+      collection: CatMeows
+  - type: EmitSoundOnUse
+    sound:
+      collection: CatMeows
+  - type: EmitSoundOnLand
+    sound:
+      collection: CatMeows
+  - type: EmitSoundOnActivate
+    sound:
+      collection: CatMeows
+
+- type: entity
   id: PlushieCFB
-  parent: BasePlushie
+  parent:
+  - EmitMeow
+  - BasePlushie
   name: Виктория Белая
   description: Персона в строгом костюме сотрудника ПНТ. Постоянно карает и не щадит. Любит баловаться и мяукать.
   components:
