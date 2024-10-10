@@ -1121,9 +1121,9 @@
   productEntity: ToolboxSyndicateFilled
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 1
+    Telecrystal: 2 # Sunrise-edit: Toolbox rebalance
   cost:
-    Telecrystal: 2
+    Telecrystal: 4 # Sunrise-edit: Toolbox rebalance
   categories:
   - UplinkDisruption
 

@@ -20,6 +20,9 @@ public sealed partial class NightVisionDeviceComponent : Component
 
     [DataField("requiredSlot"), AutoNetworkedField]
     public SlotFlags RequiredFlags = SlotFlags.EYES;
+    
+    [DataField("isPowered"), AutoNetworkedField]
+    public bool isPowered = false;
 
     [DataField]
     [AutoNetworkedField]
