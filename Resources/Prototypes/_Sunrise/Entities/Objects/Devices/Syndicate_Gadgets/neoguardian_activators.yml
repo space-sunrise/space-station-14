@@ -1,0 +1,53 @@
+- type: entity
+  name: Neoparasite injector
+  id: DagonInjector
+  parent: HoloparasiteInjector
+  suffix: Dagon
+  components:
+  - type: GuardianCreator
+    guardianProto: Dagon
+    
+- type: entity
+  name: Neoparasite injector
+  suffix: quack
+  id: QuackInjector
+  parent: HoloparasiteInjector
+  components:
+  - type: GuardianCreator
+    guardianProto: Quack
+    
+- type: entity
+  name: Neoparasite injector
+  suffix: Gefest
+  id: GefestInjector
+  parent: HoloparasiteInjector
+  components:
+  - type: GuardianCreator
+    guardianProto: Gefest
+    
+- type: entity
+  name: Neoparasite injector
+  suffix: Redskalibur
+  id: RedskaliburInjector
+  parent: HoloparasiteInjector
+  components:
+  - type: GuardianCreator
+    guardianProto: Redskalibur
+    
+- type: entity
+  name: Neoparasite injector
+  suffix: Spy
+  id: SpyInjector
+  parent: HoloparasiteInjector
+  components:
+  - type: GuardianCreator
+    guardianProto: Spy
+    
+- type: entity
+  name:  Lawyer injector
+  suffix: Security Neoparasite
+  id: LawyerInjector
+  parent: HoloparasiteInjector
+  components:
+  - type: GuardianCreator
+    guardianProto: Lawyer
