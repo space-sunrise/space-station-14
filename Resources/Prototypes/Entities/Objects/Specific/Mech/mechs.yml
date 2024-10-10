@@ -103,10 +103,10 @@
     - DoorBumpOpener
     - FootstepSound
   - type: Pullable
-  - type: Physics
-    bodyType: KinematicController
   - type: Clickable
   - type: WiresPanel
+  - type: Physics
+    bodyType: Dynamic
   - type: Fixtures
     fixtures:
       fix1:
@@ -115,9 +115,10 @@
           radius: 0.45
         density: 1000
         mask:
-        - MobMask
+        - FullTileMask
         layer:
-        - MobLayer
+        - MidImpassable
+        - LowImpassable
   - type: Appearance
   - type: ContainerContainer
     containers:
