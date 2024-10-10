@@ -145,9 +145,7 @@ public sealed partial class GunSystem : SharedGunSystem
         var entityNull = _player.LocalEntity;
 
         if (entityNull == null || !TryComp<CombatModeComponent>(entityNull, out var combat) || !combat.IsInCombatMode)
-        {
             return;
-        }
 
         var entity = entityNull.Value;
 
