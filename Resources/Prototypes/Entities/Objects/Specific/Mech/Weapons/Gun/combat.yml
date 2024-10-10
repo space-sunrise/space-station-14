@@ -135,7 +135,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
   - type: ProjectileBatteryAmmoProvider
-    proto: BulletDisabler
+    proto: BulletDisablerSmgSpread
     fireCost: 60
   - type: Appearance
   - type: AmmoCounter
