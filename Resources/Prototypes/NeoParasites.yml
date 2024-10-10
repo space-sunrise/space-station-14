@@ -1,0 +1,2129 @@
+#Дагон, и кстати это санрайза, да-да https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
+- type: entity
+  name: Инъектор Нeопаразита
+  id: NeoparasiteOne
+  parent: BaseItem
+  suffix: Дагон
+  description: A complex artwork of handheld machinery allowing the user to host a holoparasite guardian.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/hypospray.rsi
+    state: combat_hypo
+  - type: GuardianCreator
+    guardianProto: Dagon
+  - type: HiddenDescription
+    entries:
+    - label: Инъектор голопаразита 2.0 типа "Дагон"
+      whitelistMind:
+        components:
+          - TraitorRole
+          - NukeOperative
+    - label: Гипоспрей, похожий на тот, что есть у главного врача. есть этикетка с цифрой "1"
+      jobRequired:
+        - ResearchAssistant
+        - ResearchDirector
+        - Scientist
+        - Borg
+    - label: Гипоспрей, на его кончике можно заметить остатки жидкости с наноботами
+      jobRequired:
+        - Paramedic
+        - MedicalDoctor
+        - ChiefMedicalOfficer
+
+- type: entity
+  name: Дагон
+  id: Dagon
+  description: Редспейс аномалия
+  save: false
+  components:
+    - type: LagCompensation
+    - type: GhostRole
+      allowMovement: true
+      allowSpeech: true
+      makeSentient: true
+      name: Голопаразит 2.0 "Дагон"
+      description: СПРОСИТЕ В АХ ПРО ВАШИ СПОСОБНОСТИ
+    - type: GhostTakeoverAvailable
+    - type: Input
+      context: "human"
+    - type: MobMover
+    - type: InputMover
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 4
+      baseSprintSpeed: 5.5
+    - type: DamageOnHighSpeedImpact
+      damage:
+        types:
+          Blunt: 5
+      soundHit:
+        collection: MetalThud
+    - type: RandomSprite
+      available:
+        - enum.DamageStateVisualLayers.Base:
+            magic_base: ""
+          enum.DamageStateVisualLayers.BaseUnshaded:
+            magic_flare: Sixteen
+        - enum.DamageStateVisualLayers.Base:
+            miner_base: ""
+          enum.DamageStateVisualLayers.BaseUnshaded:
+            miner_flare: Sixteen
+        - enum.DamageStateVisualLayers.Base:
+            tech_base: ""
+          enum.DamageStateVisualLayers.BaseUnshaded:
+            tech_flare: Sixteen
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: Mobs/Aliens/Guardians/guardians.rsi
+      layers:
+        - state: tech_base
+          map: [ "enum.DamageStateVisualLayers.Base" ]
+        - state: tech_flare
+          map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+          color: "#40a7d7"
+          shader: unshaded
+      noRot: true
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Physics
+      bodyType: KinematicController
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.35
+          density: 25
+          mask:
+            - FlyingMobMask
+          layer:
+            - FlyingMobLayer
+    - type: Damageable
+      damageContainer: Biological
+    - type: MobState
+      allowedStates:
+        - Alive
+    - type: CombatMode
+    - type: Internals
+    - type: Examiner
+    - type: Speech
+      speechVerb: Robotic
+    - type: TypingIndicator
+      proto: guardian
+    - type: Pullable
+    - type: MeleeWeapon
+      hidden: false
+      altDisarm: false
+      animation: WeaponArcFist
+      attackRate: 1.2
+      autoAttack: true
+      damage:
+        types:
+          Blunt: 10
+          Structural: 15
+    - type: MeleeSpeech
+    - type: UserInterface
+      interfaces:
+      - key: enum.MeleeSpeechUiKey.Key
+        type: MeleeSpeechBoundUserInterface
+    - type: Actions
+    - type: Guardian
+    - type: InteractionPopup
+      interactSuccessString: petting-success-holo
+      interactFailureString: petting-failure-holo
+      successChance: 0.7
+    - type: Tag
+      tags:
+        - CannotSuicide
+    - type: Gun
+      minAngle: 24
+      maxAngle: 55
+      angleIncrease: 4
+      angleDecay: 16
+      fireRate: 50
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+    - type: ProjectileBatteryAmmoProvider
+      proto: DagonProjectile
+      fireCost: 50
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 50
+    - type: Battery
+      maxCharge: 5000
+      startingCharge: 5000
+
+- type: entity
+  id: DagonProjectile
+  name: да, это пародия на изумрудный всплеск
+  description: Оdfewf
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: magicm_green
+  - type: Projectile
+    damage:
+      groups: # good enough. Maybe make it call the rejuvenate command later.
+        Brute: 1
+    ignoreResistances: true
+
+#знахарь
+- type: entity
+  name: Инъектор Нeопаразита
+  suffix: знахарь
+  id: NeoparasiteTwo
+  parent: BaseItem
+  description: A complex artwork of handheld machinery allowing the user to host a holoparasite guardian.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/hypospray.rsi
+    state: combat_hypo
+  - type: GuardianCreator
+    guardianProto: NeZnayoKakNaAngliyskom
+  - type: HiddenDescription
+    entries:
+    - label: Инъектор голопаразита 2.0 типа "Дагон"
+      whitelistMind:
+        components:
+          - TraitorRole
+          - NukeOperative
+    - label: Гипоспрей, похожий на тот, что есть у главного врача. есть этикетка с цифрой "2"
+      jobRequired:
+        - ResearchAssistant
+        - ResearchDirector
+        - Scientist
+        - Borg
+    - label: Гипоспрей, на его кончике можно заметить остатки жидкости с наноботами
+      jobRequired:
+        - Paramedic
+        - MedicalDoctor
+        - ChiefMedicalOfficer
+
+- type: entity
+  name: Знахарь
+  id: NeZnayoKakNaAngliyskom
+  description: Редспейс аномалия
+  save: false
+  components:
+    - type: LagCompensation
+    - type: GhostRole
+      allowMovement: true
+      allowSpeech: true
+      makeSentient: true
+      name: Голопаразит 2.0 "Знахарь"
+      description: СПРОСИТЕ В АХ ПРО ВАШИ СПОСОБНОСТИ
+    - type: GhostTakeoverAvailable
+    - type: Input
+      context: "human"
+    - type: MobMover
+    - type: InputMover
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 4
+      baseSprintSpeed: 5.5
+    - type: DamageOnHighSpeedImpact
+      damage:
+        types:
+          Blunt: 5
+      soundHit:
+        collection: MetalThud
+    - type: RandomSprite
+      available:
+        - enum.DamageStateVisualLayers.Base:
+            magic_base: ""
+          enum.DamageStateVisualLayers.BaseUnshaded:
+            magic_flare: Sixteen
+        - enum.DamageStateVisualLayers.Base:
+            miner_base: ""
+          enum.DamageStateVisualLayers.BaseUnshaded:
+            miner_flare: Sixteen
+        - enum.DamageStateVisualLayers.Base:
+            tech_base: ""
+          enum.DamageStateVisualLayers.BaseUnshaded:
+            tech_flare: Sixteen
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: Mobs/Aliens/Guardians/guardians.rsi
+      layers:
+        - state: tech_base
+          map: [ "enum.DamageStateVisualLayers.Base" ]
+        - state: tech_flare
+          map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+          color: "#40a7d7"
+          shader: unshaded
+      noRot: true
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Physics
+      bodyType: KinematicController
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.35
+          density: 25
+          mask:
+            - FlyingMobMask
+          layer:
+            - FlyingMobLayer
+    - type: Damageable
+      damageContainer: Biological
+    - type: MobState
+      allowedStates:
+        - Alive
+    - type: CombatMode
+    - type: Internals
+    - type: Examiner
+    - type: Speech
+      speechVerb: Robotic
+    - type: TypingIndicator
+      proto: guardian
+    - type: Pullable
+    - type: MeleeWeapon
+      hidden: false
+      altDisarm: false
+      animation: WeaponArcFist
+      attackRate: 1
+      autoAttack: true
+      damage:
+        types:
+          Blunt: 5
+          Structural: 35
+    - type: MeleeSpeech
+    - type: UserInterface
+      interfaces:
+      - key: enum.MeleeSpeechUiKey.Key
+        type: MeleeSpeechBoundUserInterface
+    - type: Actions
+    - type: Guardian
+    - type: InteractionPopup
+      interactSuccessString: petting-success-holo
+      interactFailureString: petting-failure-holo
+      successChance: 0.7
+    - type: Tag
+      tags:
+        - CannotSuicide
+    - type: SolutionRegeneration
+      solution: hypospray
+      generated:
+        reagents:
+        - ReagentId: Omnizine
+          Quantity: 20
+    - type: SolutionContainerManager
+      solutions:
+        hypospray:
+          maxVol: 20
+    - type: RefillableSolution
+      solution: hypospray
+    - type: ExaminableSolution
+      solution: hypospray
+    - type: Hypospray
+      onlyAffectsMobs: true
+    - type: UseDelay
+      delay: 1
+
+#гефест
+- type: entity
+  name: Инъектор Нeопаразита
+  suffix: Гефест
+  id: NeoparasiteTrhee
+  parent: BaseItem
+  description: A complex artwork of handheld machinery allowing the user to host a holoparasite guardian.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/hypospray.rsi
+    state: combat_hypo
+  - type: GuardianCreator
+    guardianProto: Gefest
+  - type: HiddenDescription
+    entries:
+    - label: Инъектор голопаразита 2.0 типа "Гефест"
+      whitelistMind:
+        components:
+          - TraitorRole
+          - NukeOperative
+    - label: Гипоспрей, похожий на тот, что есть у главного врача. есть этикетка с цифрой "3"
+      jobRequired:
+        - ResearchAssistant
+        - ResearchDirector
+        - Scientist
+        - Borg
+    - label: Гипоспрей, на его кончике можно заметить остатки жидкости с наноботами
+      jobRequired:
+        - Paramedic
+        - MedicalDoctor
+        - ChiefMedicalOfficer
+
+- type: entity
+  name: Гефест
+  id: Gefest
+  description: Редспейс аномалия
+  save: false
+  components:
+    - type: LagCompensation
+    - type: GhostRole
+      allowMovement: true
+      allowSpeech: true
+      makeSentient: true
+      name: Голопаразит 2.0 "Гефест"
+      description: СПРОСИТЕ В АХ ПРО ВАШИ СПОСОБНОСТИ
+    - type: GhostTakeoverAvailable
+    - type: Input
+      context: "human"
+    - type: MobMover
+    - type: InputMover
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 4
+      baseSprintSpeed: 5.5
+    - type: DamageOnHighSpeedImpact
+      damage:
+        types:
+          Blunt: 5
+      soundHit:
+        collection: MetalThud
+    - type: RandomSprite
+      available:
+        - enum.DamageStateVisualLayers.Base:
+            magic_base: ""
+          enum.DamageStateVisualLayers.BaseUnshaded:
+            magic_flare: Sixteen
+        - enum.DamageStateVisualLayers.Base:
+            miner_base: ""
+          enum.DamageStateVisualLayers.BaseUnshaded:
+            miner_flare: Sixteen
+        - enum.DamageStateVisualLayers.Base:
+            tech_base: ""
+          enum.DamageStateVisualLayers.BaseUnshaded:
+            tech_flare: Sixteen
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: Mobs/Aliens/Guardians/guardians.rsi
+      layers:
+        - state: tech_base
+          map: [ "enum.DamageStateVisualLayers.Base" ]
+        - state: tech_flare
+          map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+          color: "#40a7d7"
+          shader: unshaded
+      noRot: true
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Physics
+      bodyType: KinematicController
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.35
+          density: 25
+          mask:
+            - FlyingMobMask
+          layer:
+            - FlyingMobLayer
+    - type: Damageable
+      damageContainer: Biological
+    - type: MobState
+      allowedStates:
+        - Alive
+    - type: CombatMode
+    - type: Internals
+    - type: Examiner
+    - type: Speech
+      speechVerb: Robotic
+    - type: TypingIndicator
+      proto: guardian
+    - type: Pullable
+    - type: MeleeWeapon
+      hidden: false
+      altDisarm: false
+      animation: WeaponArcFist
+      attackRate: 1
+      autoAttack: true
+      damage:
+        types:
+          Blunt: 1
+          Structural: 35
+    - type: MeleeSpeech
+    - type: UserInterface
+      interfaces:
+      - key: enum.MeleeSpeechUiKey.Key
+        type: MeleeSpeechBoundUserInterface
+    - type: Actions
+    - type: Guardian
+      damageShare: 3
+    - type: InteractionPopup
+      interactSuccessString: petting-success-holo
+      interactFailureString: petting-failure-holo
+      successChance: 0.7
+    - type: Tag
+      tags:
+        - CannotSuicide
+    - type: SolutionRegeneration
+      solution: hypospray
+      generated:
+        reagents:
+        - ReagentId: Potassium
+          Quantity: 50
+        - ReagentId: Water
+          Quantity: 50
+    - type: SolutionContainerManager
+      solutions:
+        hypospray:
+          maxVol: 100
+          canReact: false
+    - type: RefillableSolution
+      solution: hypospray
+    - type: ExaminableSolution
+      solution: hypospray
+    - type: Hypospray
+      onlyAffectsMobs: true
+      transferAmount: 50
+    - type: UseDelay
+      delay: 1
+    - type: ExplosionResistance
+      damageCoefficient: 0.1
+
+#редскалибур
+- type: entity
+  name: Инъектор Нeопаразита
+  suffix: Редскалибур
+  id: NeoparasiteFour
+  parent: BaseItem
+  description: A complex artwork of handheld machinery allowing the user to host a holoparasite guardian.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/hypospray.rsi
+    state: combat_hypo
+  - type: GuardianCreator
+    guardianProto: Redskalibur
+  - type: HiddenDescription
+    entries:
+    - label: Инъектор голопаразита 2.0 типа "Редскалибур"
+      whitelistMind:
+        components:
+          - TraitorRole
+          - NukeOperative
+    - label: Гипоспрей, похожий на тот, что есть у главного врача. есть этикетка с цифрой "4"
+      jobRequired:
+        - ResearchAssistant
+        - ResearchDirector
+        - Scientist
+        - Borg
+    - label: Гипоспрей, на его кончике можно заметить остатки жидкости с наноботами
+      jobRequired:
+        - Paramedic
+        - MedicalDoctor
+        - ChiefMedicalOfficer
+
+- type: entity
+  name: Редскалибур
+  id: Redskalibur
+  parent: EldritchBlade
+  description: Редспейс аномалия
+  components:
+  - type: Reflect
+    enabled: true
+    reflectProb: .50
+    spread: 360
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: Голопаразит 2.0 "Редскалибур"
+    description: СПРОСИТЕ В АХ ПРО ВАШИ СПОСОБНОСТИ
+  - type: GhostTakeoverAvailable
+  - type: Guardian
+  - type: MeleeWeapon
+    attackRate: 1.2
+    damage:
+      types:
+        Slash: 20
+
+#Шпион
+- type: entity
+  name: Инъектор Нeопаразита
+  suffix: Шпион
+  id: NeoparasiteFive
+  parent: BaseItem
+  description: A complex artwork of handheld machinery allowing the user to host a holoparasite guardian.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/hypospray.rsi
+    state: combat_hypo
+  - type: GuardianCreator
+    guardianProto: Spy
+  - type: HiddenDescription
+    entries:
+    - label: Инъектор голопаразита 2.0 типа "Шпион"
+      whitelistMind:
+        components:
+          - TraitorRole
+          - NukeOperative
+    - label: Гипоспрей, похожий на тот, что есть у главного врача. есть этикетка с цифрой "5"
+      jobRequired:
+        - ResearchAssistant
+        - ResearchDirector
+        - Scientist
+        - Borg
+    - label: Гипоспрей, на его кончике можно заметить остатки жидкости с наноботами
+      jobRequired:
+        - Paramedic
+        - MedicalDoctor
+        - ChiefMedicalOfficer
+
+- type: entity
+  name: Шпион
+  id: Spy
+  description: Редспейс аномалия
+  save: false
+  components:
+    - type: LagCompensation
+    - type: GhostRole
+      allowMovement: true
+      allowSpeech: true
+      makeSentient: true
+      name: Голопаразит 2.0 "Шпион"
+      description: СПРОСИТЕ В АХ ПРО ВАШИ СПОСОБНОСТИ
+    - type: GhostTakeoverAvailable
+    - type: Input
+      context: "human"
+    - type: MobMover
+    - type: InputMover
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 4
+      baseSprintSpeed: 5.5
+    - type: DamageOnHighSpeedImpact
+      damage:
+        types:
+          Blunt: 10
+      soundHit:
+        collection: MetalThud
+    - type: RandomSprite
+      available:
+        - enum.DamageStateVisualLayers.Base:
+            magic_base: ""
+          enum.DamageStateVisualLayers.BaseUnshaded:
+            magic_flare: Sixteen
+        - enum.DamageStateVisualLayers.Base:
+            miner_base: ""
+          enum.DamageStateVisualLayers.BaseUnshaded:
+            miner_flare: Sixteen
+        - enum.DamageStateVisualLayers.Base:
+            tech_base: ""
+          enum.DamageStateVisualLayers.BaseUnshaded:
+            tech_flare: Sixteen
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: Mobs/Aliens/Guardians/guardians.rsi
+      layers:
+        - state: tech_base
+          map: [ "enum.DamageStateVisualLayers.Base" ]
+        - state: tech_flare
+          map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+          color: "#40a7d7"
+          shader: unshaded
+      noRot: true
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Physics
+      bodyType: KinematicController
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.35
+          density: 25
+          mask:
+            - FlyingMobMask
+          layer:
+            - FlyingMobLayer
+    - type: Damageable
+      damageContainer: Biological
+    - type: MobState
+      allowedStates:
+        - Alive
+    - type: CombatMode
+    - type: Internals
+    - type: Examiner
+    - type: Speech
+      speechVerb: Robotic
+    - type: TypingIndicator
+      proto: guardian
+    - type: Pullable
+    - type: MeleeWeapon
+      hidden: false
+      altDisarm: false
+      animation: WeaponArcFist
+      attackRate: 1.3
+      autoAttack: true
+      damage:
+        types:
+          Blunt: 5
+          Structural: 10
+    - type: MeleeSpeech
+    - type: UserInterface
+      interfaces:
+      - key: enum.MeleeSpeechUiKey.Key
+        type: MeleeSpeechBoundUserInterface
+    - type: Actions
+    - type: Guardian
+      distanceAllowed: 900
+    - type: InteractionPopup
+      interactSuccessString: petting-success-holo
+      interactFailureString: petting-failure-holo
+      successChance: 0.7
+    - type: Tag
+      tags:
+        - CannotSuicide
+        - DoorBumpOpener
+    - type: Stealth
+      maxVisibility: 0
+      MinVisibility: 0
+
+#НЕОПАРАЗИТ КОТОРЫЙ НУЖНО ВКОЛОТЬ СЛУЧАЙНОМУ СБШНИКУ
+- type: entity
+  name:  инъектор Законника
+  suffix: СБ неопаразит
+  id: NeoparasiteSix
+  parent: BaseItem
+  description: A complex artwork of handheld machinery allowing the user to host a holoparasite guardian.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/hypospray.rsi
+    state: combat_hypo
+  - type: GuardianCreator
+    guardianProto: Laww
+  - type: HiddenDescription
+    entries:
+    - label: Инъектор голопаразита 2.0 типа "Законник"
+      whitelistMind:
+        components:
+          - TraitorRole
+          - NukeOperative
+    - label: Гипоспрей, похожий на тот, что есть у главного врача. есть этикетка с цифрой "6"
+      jobRequired:
+        - ResearchAssistant
+        - ResearchDirector
+        - Scientist
+        - Borg
+    - label: Гипоспрей, на его кончике можно заметить остатки жидкости с наноботами
+      jobRequired:
+        - Paramedic
+        - MedicalDoctor
+        - ChiefMedicalOfficer
+
+- type: entity
+  name: Законник
+  id: Laww
+  description: Быстрый, но его дистанция ограничена тремя метрами, что очень мало
+  save: false
+  components:
+    - type: LagCompensation
+    - type: GhostRole
+      allowMovement: true
+      allowSpeech: true
+      makeSentient: true
+      name: Голопаразит 2.0 "Законник"
+      description: СПРОСИТЕ В АХ ПРО ВАШИ СПОСОБНОСТИ
+    - type: GhostTakeoverAvailable
+    - type: Input
+      context: "human"
+    - type: MobMover
+    - type: InputMover
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 4
+      baseSprintSpeed: 5.5
+    - type: DamageOnHighSpeedImpact
+      damage:
+        types:
+          Blunt: 5
+      soundHit:
+        collection: MetalThud
+    - type: RandomSprite
+      available:
+        - enum.DamageStateVisualLayers.Base:
+            magic_base: ""
+          enum.DamageStateVisualLayers.BaseUnshaded:
+            magic_flare: Sixteen
+        - enum.DamageStateVisualLayers.Base:
+            miner_base: ""
+          enum.DamageStateVisualLayers.BaseUnshaded:
+            miner_flare: Sixteen
+        - enum.DamageStateVisualLayers.Base:
+            tech_base: ""
+          enum.DamageStateVisualLayers.BaseUnshaded:
+            tech_flare: Sixteen
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: Mobs/Aliens/Guardians/guardians.rsi
+      layers:
+        - state: tech_base
+          map: [ "enum.DamageStateVisualLayers.Base" ]
+        - state: tech_flare
+          map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+          color: "#40a7d7"
+          shader: unshaded
+      noRot: true
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Physics
+      bodyType: KinematicController
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.35
+          density: 25
+          mask:
+            - FlyingMobMask
+          layer:
+            - FlyingMobLayer
+    - type: Damageable
+      damageContainer: Biological
+    - type: MobState
+      allowedStates:
+        - Alive
+    - type: CombatMode
+    - type: Internals
+    - type: Examiner
+    - type: Speech
+      speechVerb: Robotic
+    - type: TypingIndicator
+      proto: guardian
+    - type: Pullable
+    - type: MeleeWeapon
+      hidden: false
+      altDisarm: false
+      animation: WeaponArcFist
+      attackRate: 1.5
+      autoAttack: true
+      damage:
+        types:
+          Blunt: 30
+          Structural: 55
+    - type: MeleeSpeech
+    - type: UserInterface
+      interfaces:
+      - key: enum.MeleeSpeechUiKey.Key
+        type: MeleeSpeechBoundUserInterface
+    - type: Actions
+    - type: Guardian
+      damageShare: 0.35
+      distanceAllowed: 3
+    - type: InteractionPopup
+      interactSuccessString: petting-success-holo
+      interactFailureString: petting-failure-holo
+      successChance: 0.7
+    - type: Tag
+      tags:
+        - CannotSuicide
+        - DoorBumpOpener
+
+#Вандаравю
+- type: entity
+  name:  инъектор Нулевого
+  suffix: Нулевой
+  id: NeoparasiteDFDS
+  parent: BaseItem
+  description: A complex artwork of handheld machinery allowing the user to host a holoparasite guardian.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/hypospray.rsi
+    state: combat_hypo
+  - type: GuardianCreator
+    guardianProto: Stronger
+  - type: HiddenDescription
+    entries:
+    - label: Инъектор голопаразита 2.0 типа "нулевой"
+      whitelistMind:
+        components:
+          - TraitorRole
+          - NukeOperative
+    - label: Гипоспрей, похожий на тот, что есть у главного врача. есть этикетка с цифрой "7"
+      jobRequired:
+        - ResearchAssistant
+        - ResearchDirector
+        - Scientist
+        - Borg
+    - label: Гипоспрей, на его кончике можно заметить остатки жидкости с наноботами
+      jobRequired:
+        - Paramedic
+        - MedicalDoctor
+        - ChiefMedicalOfficer
+
+- type: entity
+  name: И-су
+  id: Stronger
+  description: кто это?
+  parent: BaseMobSpeciesOrganic
+  save: false
+  components:
+    - type: LagCompensation
+    - type: GhostRole
+      allowMovement: true
+      allowSpeech: true
+      makeSentient: true
+      name: И-су
+      description: СПРОСИТЕ В АХ ПРО ВАШИ СПОСОБНОСТИ
+    - type: GhostTakeoverAvailable
+    - type: Damageable
+      damageContainer: Biological
+    - type: MobState
+      allowedStates:
+        - Alive
+    - type: Guardian
+      damageShare: 0.15
+      distanceAllowed: 9000
+    - type: Tag
+      tags:
+        - CannotSuicide
+        - DoorBumpOpener
+    - type: Icon
+      sprite: Mobs/Species/Human/parts.rsi
+      state: full
+    - type: Loadout
+      prototypes: [ PassengerGear]
+    - type: Stamina
+      decay: 6
+      cooldown: 1
+      critThreshold: 600
+    - type: NoSlip
+    - type: Bloodstream
+      bloodMaxVolume: 10
+      bloodReagent: Blood
+
+#Рейн
+- type: entity
+  name: Инъектор Нeопаразита
+  id: NeoparasiteRain
+  parent: BaseItem
+  suffix: Рейн
+  description: A complex artwork of handheld machinery allowing the user to host a holoparasite guardian.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/hypospray.rsi
+    state: combat_hypo
+  - type: GuardianCreator
+    guardianProto: Rains
+  - type: HiddenDescription
+    entries:
+    - label: Инъектор голопаразита 2.0 типа "Рейн"
+      whitelistMind:
+        components:
+          - TraitorRole
+          - NukeOperative
+    - label: Гипоспрей, похожий на тот, что есть у главного врача. есть этикетка со стертой надписью
+      jobRequired:
+        - ResearchAssistant
+        - ResearchDirector
+        - Scientist
+        - Borg
+    - label: Гипоспрей, на его кончике можно заметить остатки жидкости с наноботами
+      jobRequired:
+        - Paramedic
+        - MedicalDoctor
+        - ChiefMedicalOfficer
+
+- type: entity
+  name: Рейн
+  id: Rains
+  description: Редспейс аномалия
+  save: false
+  components:
+    - type: LagCompensation
+    - type: GhostRole
+      allowMovement: true
+      allowSpeech: true
+      makeSentient: true
+      name: Голопаразит 2.0 "Дагон"
+      description: СПРОСИТЕ В АХ ПРО ВАШИ СПОСОБНОСТИ
+    - type: GhostTakeoverAvailable
+    - type: Input
+      context: "human"
+    - type: MobMover
+    - type: InputMover
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 4
+      baseSprintSpeed: 5.5
+    - type: DamageOnHighSpeedImpact
+      damage:
+        types:
+          Blunt: 5
+      soundHit:
+        collection: MetalThud
+    - type: RandomSprite
+      available:
+        - enum.DamageStateVisualLayers.Base:
+            magic_base: ""
+          enum.DamageStateVisualLayers.BaseUnshaded:
+            magic_flare: Sixteen
+        - enum.DamageStateVisualLayers.Base:
+            miner_base: ""
+          enum.DamageStateVisualLayers.BaseUnshaded:
+            miner_flare: Sixteen
+        - enum.DamageStateVisualLayers.Base:
+            tech_base: ""
+          enum.DamageStateVisualLayers.BaseUnshaded:
+            tech_flare: Sixteen
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: Mobs/Aliens/Guardians/guardians.rsi
+      layers:
+        - state: tech_base
+          map: [ "enum.DamageStateVisualLayers.Base" ]
+        - state: tech_flare
+          map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+          color: "#40a7d7"
+          shader: unshaded
+      noRot: true
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Physics
+      bodyType: KinematicController
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.35
+          density: 25
+          mask:
+            - FlyingMobMask
+          layer:
+            - FlyingMobLayer
+    - type: Damageable
+      damageContainer: Biological
+    - type: MobState
+      allowedStates:
+        - Alive
+    - type: CombatMode
+    - type: Internals
+    - type: Examiner
+    - type: Speech
+      speechVerb: Robotic
+    - type: TypingIndicator
+      proto: guardian
+    - type: Pullable
+    - type: MeleeWeapon
+      hidden: false
+      altDisarm: false
+      animation: WeaponArcFist
+      attackRate: 1.2
+      autoAttack: true
+      damage:
+        types:
+          Blunt: 10
+          Structural: 15
+    - type: MeleeSpeech
+    - type: UserInterface
+      interfaces:
+      - key: enum.MeleeSpeechUiKey.Key
+        type: MeleeSpeechBoundUserInterface
+    - type: Actions
+    - type: Guardian
+    - type: InteractionPopup
+      interactSuccessString: petting-success-holo
+      interactFailureString: petting-failure-holo
+      successChance: 0.7
+    - type: Tag
+      tags:
+        - CannotSuicide
+    - type: Gun
+      minAngle: 360
+      maxAngle: 360
+      angleIncrease: 0
+      angleDecay: 16
+      fireRate: 8
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+    - type: ProjectileBatteryAmmoProvider
+      proto: RainProjectile
+      fireCost: 50
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 300
+    - type: Battery
+      maxCharge: 6000
+      startingCharge: 6000
+
+- type: entity
+  id: RainProjectile
+  name: Капля
+  description: Кааааапля
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: bluespace
+  - type: Projectile
+    damage:
+      groups: # good enough. Maybe make it call the rejuvenate command later.
+        Burn: 30
+
+#Сцентия
+- type: entity
+  name: Инъектор Нeопаразита
+  id: NeoparasiteScientia
+  parent: BaseItem
+  suffix: Сцентия
+  description: A complex artwork of handheld machinery allowing the user to host a holoparasite guardian.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/hypospray.rsi
+    state: combat_hypo
+  - type: GuardianCreator
+    guardianProto: Scientiaaa
+  - type: HiddenDescription
+    entries:
+    - label: Инъектор голопаразита 2.0 типа "Сцентия"
+      whitelistMind:
+        components:
+          - TraitorRole
+          - NukeOperative
+    - label: Гипоспрей, похожий на тот, что есть у главного врача. есть этикетка со стертой надписью
+      jobRequired:
+        - ResearchAssistant
+        - ResearchDirector
+        - Scientist
+        - Borg
+    - label: Гипоспрей, на его кончике можно заметить остатки жидкости с наноботами
+      jobRequired:
+        - Paramedic
+        - MedicalDoctor
+        - ChiefMedicalOfficer
+
+- type: entity
+  name: Сцентия
+  id: Scientiaaa
+  description: Свиток рун. кажется, все руны крмое руны оглушения светятся
+  save: false
+  parent: ScrollRunes
+  components:
+    - type: LagCompensation
+    - type: GhostRole
+      allowMovement: true
+      allowSpeech: true
+      makeSentient: true
+      name: Голопаразит 2.0 "сциентия"
+      description: СПРОСИТЕ В АХ ПРО ВАШИ СПОСОБНОСТИ
+    - type: GhostTakeoverAvailable
+    - type: Guardian
+
+#Статик
+- type: entity
+  name:  инъектор Статика
+  suffix: Статик
+  id: NeoparasitEsTATIC
+  parent: BaseItem
+  description: A complex artwork of handheld machinery allowing the user to host a holoparasite guardian.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/hypospray.rsi
+    state: combat_hypo
+  - type: GuardianCreator
+    guardianProto: Staticc
+  - type: HiddenDescription
+    entries:
+    - label: Инъектор голопаразита 2.0 типа "Статик"
+      whitelistMind:
+        components:
+          - TraitorRole
+          - NukeOperative
+    - label: Гипоспрей, похожий на тот, что есть у главного врача. есть этикетка с цифрой "8"
+      jobRequired:
+        - ResearchAssistant
+        - ResearchDirector
+        - Scientist
+        - Borg
+    - label: Гипоспрей, на его кончике можно заметить остатки жидкости с наноботами
+      jobRequired:
+        - Paramedic
+        - MedicalDoctor
+        - ChiefMedicalOfficer
+
+- type: entity
+  name: Статик
+  id: Staticc
+  description: от него исходит электрическая аура
+  save: false
+  components:
+    - type: LagCompensation
+    - type: GhostRole
+      allowMovement: true
+      allowSpeech: true
+      makeSentient: true
+      name: Голопаразит 2.0 "Статик"
+      description: СПРОСИТЕ В АХ ПРО ВАШИ СПОСОБНОСТИ
+    - type: GhostTakeoverAvailable
+    - type: Input
+      context: "human"
+    - type: MobMover
+    - type: InputMover
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 4
+      baseSprintSpeed: 5.5
+    - type: DamageOnHighSpeedImpact
+      damage:
+        types:
+          Blunt: 5
+      soundHit:
+        collection: MetalThud
+    - type: RandomSprite
+      available:
+        - enum.DamageStateVisualLayers.Base:
+            magic_base: ""
+          enum.DamageStateVisualLayers.BaseUnshaded:
+            magic_flare: Sixteen
+        - enum.DamageStateVisualLayers.Base:
+            miner_base: ""
+          enum.DamageStateVisualLayers.BaseUnshaded:
+            miner_flare: Sixteen
+        - enum.DamageStateVisualLayers.Base:
+            tech_base: ""
+          enum.DamageStateVisualLayers.BaseUnshaded:
+            tech_flare: Sixteen
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: Mobs/Aliens/Guardians/guardians.rsi
+      layers:
+        - state: tech_base
+          map: [ "enum.DamageStateVisualLayers.Base" ]
+        - state: tech_flare
+          map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+          color: "#40a7d7"
+          shader: unshaded
+      noRot: true
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Physics
+      bodyType: KinematicController
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.35
+          density: 25
+          mask:
+            - FlyingMobMask
+          layer:
+            - FlyingMobLayer
+    - type: Damageable
+      damageContainer: Biological
+    - type: MobState
+      allowedStates:
+        - Alive
+    - type: CombatMode
+    - type: Internals
+    - type: Examiner
+    - type: Speech
+      speechVerb: Robotic
+    - type: TypingIndicator
+      proto: guardian
+    - type: Pullable
+    - type: MeleeWeapon
+      hidden: false
+      altDisarm: false
+      animation: WeaponArcFist
+      attackRate: 1.5
+      autoAttack: true
+      damage:
+        types:
+          Blunt: 30
+          Structural: 55
+    - type: MeleeSpeech
+    - type: UserInterface
+      interfaces:
+      - key: enum.MeleeSpeechUiKey.Key
+        type: MeleeSpeechBoundUserInterface
+    - type: Actions
+    - type: Guardian
+      damageShare: 0.8
+      distanceAllowed: 6
+    - type: InteractionPopup
+      interactSuccessString: petting-success-holo
+      interactFailureString: petting-failure-holo
+      successChance: 0.7
+    - type: Tag
+      tags:
+        - CannotSuicide
+        - DoorBumpOpener
+    - type: Gun
+      minAngle: 1
+      maxAngle: 1
+      angleIncrease: 0
+      angleDecay: 16
+      fireRate: 0.9
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
+    - type: ProjectileBatteryAmmoProvider
+      proto: TeslaGunBullet
+      fireCost: 100
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 50
+    - type: Battery
+      maxCharge: 300
+      startingCharge: 300
+
+#Тасовщик
+- type: entity
+  name:  инъектор Законника
+  suffix: Тасовщик
+  id: NeoparasitEJoker
+  parent: BaseItem
+  description: A complex artwork of handheld machinery allowing the user to host a holoparasite guardian.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/hypospray.rsi
+    state: combat_hypo
+  - type: GuardianCreator
+    guardianProto: Joker
+  - type: HiddenDescription
+    entries:
+    - label: Инъектор голопаразита 2.0 типа "Тасовщик"
+      whitelistMind:
+        components:
+          - TraitorRole
+          - NukeOperative
+    - label: Гипоспрей, похожий на тот, что есть у главного врача. есть этикетка с цифрой "9"
+      jobRequired:
+        - ResearchAssistant
+        - ResearchDirector
+        - Scientist
+        - Borg
+    - label: Гипоспрей, на его кончике можно заметить остатки жидкости с наноботами
+      jobRequired:
+        - Paramedic
+        - MedicalDoctor
+        - ChiefMedicalOfficer
+
+- type: entity
+  name: Тасовщик
+  id: Joker
+  description: ОН странно смеётся
+  save: false
+  components:
+    - type: LagCompensation
+    - type: GhostRole
+      allowMovement: true
+      allowSpeech: true
+      makeSentient: true
+      name: Голопаразит 2.0 "Тасовщик"
+      description: СПРОСИТЕ В АХ ПРО ВАШИ СПОСОБНОСТИ
+    - type: GhostTakeoverAvailable
+    - type: Input
+      context: "human"
+    - type: MobMover
+    - type: InputMover
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 4
+      baseSprintSpeed: 5.5
+    - type: DamageOnHighSpeedImpact
+      damage:
+        types:
+          Blunt: 5
+      soundHit:
+        collection: MetalThud
+    - type: RandomSprite
+      available:
+        - enum.DamageStateVisualLayers.Base:
+            magic_base: ""
+          enum.DamageStateVisualLayers.BaseUnshaded:
+            magic_flare: Sixteen
+        - enum.DamageStateVisualLayers.Base:
+            miner_base: ""
+          enum.DamageStateVisualLayers.BaseUnshaded:
+            miner_flare: Sixteen
+        - enum.DamageStateVisualLayers.Base:
+            tech_base: ""
+          enum.DamageStateVisualLayers.BaseUnshaded:
+            tech_flare: Sixteen
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: Mobs/Aliens/Guardians/guardians.rsi
+      layers:
+        - state: tech_base
+          map: [ "enum.DamageStateVisualLayers.Base" ]
+        - state: tech_flare
+          map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+          color: "#40a7d7"
+          shader: unshaded
+      noRot: true
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Physics
+      bodyType: KinematicController
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.35
+          density: 25
+          mask:
+            - FlyingMobMask
+          layer:
+            - FlyingMobLayer
+    - type: Damageable
+      damageContainer: Biological
+    - type: MobState
+      allowedStates:
+        - Alive
+    - type: CombatMode
+    - type: Internals
+    - type: Examiner
+    - type: Speech
+      speechVerb: Robotic
+    - type: TypingIndicator
+      proto: guardian
+    - type: Pullable
+    - type: MeleeWeapon
+      hidden: false
+      altDisarm: false
+      animation: WeaponArcFist
+      attackRate: 1.5
+      autoAttack: true
+      damage:
+        types:
+          Blunt: 30
+          Structural: 55
+    - type: MeleeSpeech
+    - type: UserInterface
+      interfaces:
+      - key: enum.MeleeSpeechUiKey.Key
+        type: MeleeSpeechBoundUserInterface
+    - type: Actions
+    - type: Guardian
+      damageShare: 0.5
+      distanceAllowed: 10
+    - type: InteractionPopup
+      interactSuccessString: petting-success-holo
+      interactFailureString: petting-failure-holo
+      successChance: 0.7
+    - type: Tag
+      tags:
+        - CannotSuicide
+        - DoorBumpOpener
+    - type: Gun
+      minAngle: 1
+      maxAngle: 1
+      angleIncrease: 0
+      angleDecay: 16
+      fireRate: 2
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
+    - type: ProjectileBatteryAmmoProvider
+      proto: DivineCard
+      fireCost: 50
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 10
+    - type: Battery
+      maxCharge: 200
+      startingCharge: 200
+
+- type: entity
+  parent: BaseItem
+  id: DivineCard
+  name: игральная карта
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: spellcard
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.2
+        density: 5
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.1,0.1,0.1"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+  - type: EmbeddableProjectile
+    sound: /Audio/Weapons/star_hit.ogg
+    embedOnThrow: false
+  - type: ThrowingAngle
+    angle: 0
+  - type: Ammo
+    muzzleFlash: null
+  - type: Tag
+    tags:
+    - Arrow
+    - CannonRestrict
+  - type: Projectile
+    deleteOnCollide: false
+    onlyCollideWhenShot: true
+    damage:
+      types:
+        Slash: 7
+  - type: Appearance
+  - type: TimedDespawn
+    lifetime: 4
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 20
+        reagents:
+        - ReagentId: MuteToxin
+          Quantity: 10
+        - ReagentId: Laughter
+          Quantity: 10
+  - type: MeleeChemicalInjector
+    solution: melee
+  - type: RefillableSolution
+    solution: melee
+  - type: InjectableSolution
+    solution: melee
+  - type: SolutionInjectOnEmbed
+    transferAmount: 20
+    solution: melee
+  - type: SolutionTransfer
+    maxTransferAmount: 20
+
+#БонкБот
+- type: entity
+  name:  инъектор Бонкера
+  suffix: Бонкер
+  id: NeoparasiteSAAA
+  parent: BaseItem
+  description: A complex artwork of handheld machinery allowing the user to host a holoparasite guardian.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/hypospray.rsi
+    state: combat_hypo
+  - type: GuardianCreator
+    guardianProto: Bonker
+  - type: HiddenDescription
+    entries:
+    - label: Инъектор голопаразита 2.0 типа "Бонкер"
+      whitelistMind:
+        components:
+          - TraitorRole
+          - NukeOperative
+    - label: Гипоспрей, похожий на тот, что есть у главного врача. есть этикетка с цифрой "7"
+      jobRequired:
+        - ResearchAssistant
+        - ResearchDirector
+        - Scientist
+        - Borg
+    - label: Гипоспрей, на его кончике можно заметить остатки жидкости с наноботами
+      jobRequired:
+        - Paramedic
+        - MedicalDoctor
+        - ChiefMedicalOfficer
+
+- type: entity
+  name: Бонкер
+  id: Bonker
+  parent: MobClownSpider
+  save: false
+  components:
+    - type: LagCompensation
+    - type: GhostRole
+      allowMovement: true
+      allowSpeech: true
+      makeSentient: true
+      name: Бонкер
+      description: СПРОСИТЕ В АХ ПРО ВАШИ СПОСОБНОСТИ
+    - type: GhostTakeoverAvailable
+    - type: Damageable
+      damageContainer: Biological
+    - type: MobState
+      allowedStates:
+        - Alive
+    - type: Guardian
+      damageShare: 0.3
+      distanceAllowed: 20
+    - type: Tag
+      tags:
+        - CannotSuicide
+        - DoorBumpOpener
+    - type: NoSlip
+    - type: Gun
+      minAngle: 1
+      maxAngle: 1
+      angleIncrease: 0
+      angleDecay: 16
+      fireRate: 2
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
+    - type: ProjectileBatteryAmmoProvider
+      proto: SopperSoap
+      fireCost: 50
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 10
+    - type: Battery
+      maxCharge: 200
+      startingCharge: 200
+
+- type: entity
+  name: МылоБонкера
+  id: SopperSoap
+  parent: Soap
+  components:
+  - type: TimedDespawn
+    lifetime: 2
+  - type: SpawnOnDespawn
+    prototype: SpiderWebClown
+
+#Ицтлаколиуки
+- type: entity
+  name: Инъектор Нeопаразита
+  id: NeoparasiteO
+  parent: BaseItem
+  suffix: Ицтлаколиуки
+  description: A complex artwork of handheld machinery allowing the user to host a holoparasite guardian.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/hypospray.rsi
+    state: combat_hypo
+  - type: GuardianCreator
+    guardianProto: Hsdhwd
+  - type: HiddenDescription
+    entries:
+    - label: Инъектор голопаразита 2.0 типа "Ицтлаколиуки"
+      whitelistMind:
+        components:
+          - TraitorRole
+          - NukeOperative
+    - label: Гипоспрей, похожий на тот, что есть у главного врача. есть этикетка с цифрой "1"
+      jobRequired:
+        - ResearchAssistant
+        - ResearchDirector
+        - Scientist
+        - Borg
+    - label: Гипоспрей, на его кончике можно заметить остатки жидкости с наноботами
+      jobRequired:
+        - Paramedic
+        - MedicalDoctor
+        - ChiefMedicalOfficer
+
+- type: entity
+  name: Ицтлаколиуки
+  id: Hsdhwd
+  description: Редспейс аномалия
+  save: false
+  components:
+    - type: LagCompensation
+    - type: GhostRole
+      allowMovement: true
+      allowSpeech: true
+      makeSentient: true
+      name: Голопаразит 2.0 "Дагон"
+      description: СПРОСИТЕ В АХ ПРО ВАШИ СПОСОБНОСТИ
+    - type: GhostTakeoverAvailable
+    - type: Input
+      context: "human"
+    - type: MobMover
+    - type: InputMover
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 4
+      baseSprintSpeed: 5.5
+    - type: DamageOnHighSpeedImpact
+      damage:
+        types:
+          Blunt: 5
+      soundHit:
+        collection: MetalThud
+    - type: RandomSprite
+      available:
+        - enum.DamageStateVisualLayers.Base:
+            magic_base: ""
+          enum.DamageStateVisualLayers.BaseUnshaded:
+            magic_flare: Sixteen
+        - enum.DamageStateVisualLayers.Base:
+            miner_base: ""
+          enum.DamageStateVisualLayers.BaseUnshaded:
+            miner_flare: Sixteen
+        - enum.DamageStateVisualLayers.Base:
+            tech_base: ""
+          enum.DamageStateVisualLayers.BaseUnshaded:
+            tech_flare: Sixteen
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: Mobs/Aliens/Guardians/guardians.rsi
+      layers:
+        - state: tech_base
+          map: [ "enum.DamageStateVisualLayers.Base" ]
+        - state: tech_flare
+          map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+          color: "#40a7d7"
+          shader: unshaded
+      noRot: true
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Physics
+      bodyType: KinematicController
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.35
+          density: 25
+          mask:
+            - FlyingMobMask
+          layer:
+            - FlyingMobLayer
+    - type: Damageable
+      damageContainer: Biological
+    - type: MobState
+      allowedStates:
+        - Alive
+    - type: CombatMode
+    - type: Internals
+    - type: Examiner
+    - type: Speech
+      speechVerb: Robotic
+    - type: TypingIndicator
+      proto: guardian
+    - type: Pullable
+    - type: MeleeWeapon
+      hidden: false
+      altDisarm: false
+      animation: WeaponArcFist
+      attackRate: 1.2
+      autoAttack: true
+      damage:
+        types:
+          Blunt: 10
+          Structural: 15
+    - type: MeleeSpeech
+    - type: UserInterface
+      interfaces:
+      - key: enum.MeleeSpeechUiKey.Key
+        type: MeleeSpeechBoundUserInterface
+    - type: Actions
+    - type: Guardian
+    - type: InteractionPopup
+      interactSuccessString: petting-success-holo
+      interactFailureString: petting-failure-holo
+      successChance: 0.7
+    - type: Tag
+      tags:
+        - CannotSuicide
+    - type: Gun
+      minAngle: 4
+      maxAngle: 5
+      angleIncrease: 1
+      angleDecay: 16
+      fireRate: 1
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+    - type: ProjectileBatteryAmmoProvider
+      proto: ShJSDpROJECTILE
+      fireCost: 50
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 50
+    - type: Battery
+      maxCharge: 5000
+      startingCharge: 5000
+
+- type: entity
+  id: ShJSDpROJECTILE
+  name: аааавыфафв
+  description: Оdfewf
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: ice
+  - type: Projectile
+    damage:
+      groups: # good enough. Maybe make it call the rejuvenate command later.
+        Burn: 20
+  - type: TimedDespawn
+    lifetime: 1
+  - type: SpawnOnDespawn
+    prototype: AnomalyIces
+
+- type: entity
+  id: AnomalyIces
+  parent: AnomalyIce
+  components:
+  - type: TimedDespawn
+    lifetime: 60
+
+#Ирротианабалис
+- type: entity
+  name:  инъектор Ирротианабалиса
+  suffix: Ирротианабалис
+  id: irrationabilissss
+  parent: BaseItem
+  description: A complex artwork of handheld machinery allowing the user to host a holoparasite guardian.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/hypospray.rsi
+    state: combat_hypo
+  - type: GuardianCreator
+    guardianProto: irrationabilis
+  - type: HiddenDescription
+    entries:
+    - label: Инъектор голопаразита 2.0 типа "Ирротианабалис"
+      whitelistMind:
+        components:
+          - TraitorRole
+          - NukeOperative
+    - label: Гипоспрей, похожий на тот, что есть у главного врача. есть этикетка с цифрой "7"
+      jobRequired:
+        - ResearchAssistant
+        - ResearchDirector
+        - Scientist
+        - Borg
+    - label: Гипоспрей, на его кончике можно заметить остатки жидкости с наноботами
+      jobRequired:
+        - Paramedic
+        - MedicalDoctor
+        - ChiefMedicalOfficer
+
+- type: entity
+  name: Ирротианабалис
+  id: irrationabilis
+  parent: WeaponMeleeKnockbackStick
+  save: false
+  components:
+    - type: Guardian
+      distanceAllowed: 1
+
+#Кюри
+- type: entity
+  name:  инъектор Кюри
+  suffix: Кюри
+  id: NeoparasitEKurii
+  parent: BaseItem
+  description: A complex artwork of handheld machinery allowing the user to host a holoparasite guardian.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/hypospray.rsi
+    state: combat_hypo
+  - type: GuardianCreator
+    guardianProto: Kuri
+  - type: HiddenDescription
+    entries:
+    - label: Инъектор голопаразита 2.0 типа "Кюри"
+      whitelistMind:
+        components:
+          - TraitorRole
+          - NukeOperative
+    - label: Гипоспрей, похожий на тот, что есть у главного врача. есть этикетка с цифрой "13"
+      jobRequired:
+        - ResearchAssistant
+        - ResearchDirector
+        - Scientist
+        - Borg
+    - label: Гипоспрей, на его кончике можно заметить остатки жидкости с наноботами
+      jobRequired:
+        - Paramedic
+        - MedicalDoctor
+        - ChiefMedicalOfficer
+
+- type: entity
+  name: Кюри
+  id: Kuri
+  description: ОН странно смеётся
+  save: false
+  components:
+    - type: LagCompensation
+    - type: GhostRole
+      allowMovement: true
+      allowSpeech: true
+      makeSentient: true
+      name: Голопаразит 2.0 "Кюри"
+      description: СПРОСИТЕ В АХ ПРО ВАШИ СПОСОБНОСТИ
+    - type: GhostTakeoverAvailable
+    - type: Input
+      context: "human"
+    - type: MobMover
+    - type: InputMover
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 4
+      baseSprintSpeed: 5.5
+    - type: DamageOnHighSpeedImpact
+      damage:
+        types:
+          Blunt: 5
+      soundHit:
+        collection: MetalThud
+    - type: RandomSprite
+      available:
+        - enum.DamageStateVisualLayers.Base:
+            magic_base: ""
+          enum.DamageStateVisualLayers.BaseUnshaded:
+            magic_flare: Sixteen
+        - enum.DamageStateVisualLayers.Base:
+            miner_base: ""
+          enum.DamageStateVisualLayers.BaseUnshaded:
+            miner_flare: Sixteen
+        - enum.DamageStateVisualLayers.Base:
+            tech_base: ""
+          enum.DamageStateVisualLayers.BaseUnshaded:
+            tech_flare: Sixteen
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: Mobs/Aliens/Guardians/guardians.rsi
+      layers:
+        - state: tech_base
+          map: [ "enum.DamageStateVisualLayers.Base" ]
+        - state: tech_flare
+          map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+          color: "#40a7d7"
+          shader: unshaded
+      noRot: true
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Physics
+      bodyType: KinematicController
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.35
+          density: 25
+          mask:
+            - FlyingMobMask
+          layer:
+            - FlyingMobLayer
+    - type: Damageable
+      damageContainer: Biological
+    - type: MobState
+      allowedStates:
+        - Alive
+    - type: CombatMode
+    - type: Internals
+    - type: Examiner
+    - type: Speech
+      speechVerb: Robotic
+    - type: TypingIndicator
+      proto: guardian
+    - type: Pullable
+    - type: MeleeWeapon
+      hidden: false
+      altDisarm: false
+      animation: WeaponArcFist
+      attackRate: 1.5
+      autoAttack: true
+      damage:
+        types:
+          Blunt: 30
+          Structural: 55
+    - type: MeleeSpeech
+    - type: UserInterface
+      interfaces:
+      - key: enum.MeleeSpeechUiKey.Key
+        type: MeleeSpeechBoundUserInterface
+    - type: Actions
+    - type: Guardian
+      damageShare: 0.5
+      distanceAllowed: 3
+    - type: InteractionPopup
+      interactSuccessString: petting-success-holo
+      interactFailureString: petting-failure-holo
+      successChance: 0.7
+    - type: Tag
+      tags:
+        - CannotSuicide
+        - DoorBumpOpener
+    - type: Gun
+      minAngle: 1
+      maxAngle: 1
+      angleIncrease: 0
+      angleDecay: 16
+      fireRate: 0.5
+      selectedMode: SemiAuto
+      availableModes:
+        - SemiAuto
+    - type: ProjectileBatteryAmmoProvider
+      proto: DivineKuriii
+      fireCost: 50
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 10
+    - type: Battery
+      maxCharge: 200
+      startingCharge: 200
+
+- type: entity
+  parent: BaseItem
+  id: DivineKuriii
+  name: Липкий плутоний
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: declone
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.2
+        density: 5
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.1,0.1,0.1"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+  - type: EmbeddableProjectile
+    sound: /Audio/Weapons/star_hit.ogg
+    embedOnThrow: false
+  - type: ThrowingAngle
+    angle: 0
+  - type: Ammo
+    muzzleFlash: null
+  - type: Tag
+    tags:
+    - Arrow
+    - CannonRestrict
+  - type: Projectile
+    deleteOnCollide: false
+    onlyCollideWhenShot: true
+    damage:
+      types:
+        Blunt: 15
+  - type: Appearance
+  - type: TimedDespawn
+    lifetime: 60
+  - type: RadiationSource
+    intensity: 0.2
+
+#книжка телепорта
+- type: entity
+  id: BlinkBooketernal
+  name: книга вечного телепорта
+  parent: BaseSpellbook
+  components:
+    - type: Sprite
+      sprite: Objects/Misc/books.rsi
+      layers:
+      - state: paper
+      - state: cover_old
+        color: "#657e9c"
+      - state: icon_text3
+      - state: decor_wingette_circle
+        color: gold
+      - state: icon_magic
+      - state: detail_rivets
+        color: gold
+    - type: Spellbook
+      spells:
+        ActionBlink: -1
+      learnPermanently: true
+
+#ПРЕСЕТЫ МАГОВ И ИХ ОДЕЖДА
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: BlueWizzard
+  name: Синий Волшебник
+  suffix: Инъектор
+  components:
+  - type: Icon
+    sprite: Mobs/Species/Human/parts.rsi
+    state: full
+  - type: Loadout
+    prototypes: [ BllueWwizard]
+  - type: Bloodstream
+    bloodMaxVolume: 100
+    bloodReagent: Blood
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Critical
+      250: Dead
+  - type: NoSlip
+
+- type: startingGear
+  id: BllueWwizard
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorWhite
+    shoes: ClothingShoesWizard
+    head: ClothingHeadHelmetWizardHelm
+    outerClothing: ClothingOuterWizard
+    pocket2: BarberScissors
+    belt: BlueWizrdBelt
+
+- type: entity
+  name: Кожанный пояс
+  parent: ClothingBeltStorageWaistbag
+  id: BlueWizrdBelt
+  description: Пояс волшебника
+  components:
+  - type: StorageFill
+    contents:
+      - id: EpinephrineChemistryBottle
+        amount: 2
+      - id: OmnizineChemistryBottle
+        amount: 2
+      - id: BruteAutoInjector
+        amount: 2
+      - id: BurnAutoInjector
+        amount: 2
+
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: RedWizzard
+  name: Красный Волшебник
+  suffix: Инъектор
+  components:
+  - type: Icon
+    sprite: Mobs/Species/Human/parts.rsi
+    state: full
+  - type: Loadout
+    prototypes: [ RedWwizard]
+  - type: Bloodstream
+    bloodMaxVolume: 100
+    bloodReagent: Blood
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Critical
+      250: Dead
+  - type: NoSlip
+
+- type: startingGear
+  id: RedWwizard
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorWhite
+    shoes: ClothingShoesWizard
+    head: ClothingHeadHatRedwizard
+    outerClothing: ClothingOuterWizardRed
+    pocket2: BarberScissors
+    belt: BlueWizrdBelt
