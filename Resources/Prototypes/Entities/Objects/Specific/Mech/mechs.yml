@@ -115,10 +115,9 @@
           radius: 0.45
         density: 1000
         mask:
-        - FullTileMask
+        - MobMask
         layer:
-        - MidImpassable
-        - LowImpassable
+        - MobLayer
   - type: Appearance
   - type: ContainerContainer
     containers:
