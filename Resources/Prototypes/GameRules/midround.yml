@@ -24,11 +24,10 @@
       allowNonHumans: true
       multiAntagSetting: NotExclusive
       startingGear: ThiefGear
-#      components:
-#      - type: Pacified # Sunrise-Edit: Воры не терпилы
-      mindComponents:
-      - type: ThiefRole
-        prototype: Thief
+      #components:
+      #- type: Pacified    # Sunrise-Edit: Воры не терпилы
+      mindRoles:
+      - MindRoleThief
       briefing:
         sound: "/Audio/Misc/thief_greeting.ogg"
 
@@ -44,9 +43,8 @@
       max: 5
       playerRatio: 10
       lateJoinAdditional: true
-      mindComponents:
-      - type: ChangelingRole
-        prototype: Changeling
+      mindRoles:
+      - MindRoleChangeling
 
 - type: entity
   categories: [ HideSpawnMenu ]
