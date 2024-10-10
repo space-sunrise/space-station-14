@@ -91,3 +91,19 @@
   - Syndicate
   - Zombie
   - Revolutionary
+
+- type: npcFaction
+  id: HostileToAll
+  hostile:
+  - Dragon
+  - NanoTrasen
+  - Mouse
+  - Passive
+  - PetsNT
+  - SimpleHostile
+  - SimpleNeutral
+  - Syndicate
+  - Xeno
+  - Zombie
+  - Revolutionary
+  - Changeling

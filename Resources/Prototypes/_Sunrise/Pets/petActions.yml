@@ -1,0 +1,43 @@
+﻿- type: petControl
+  id: Follow
+  name: Следовать
+  sprite:
+    sprite: _Sunrise/Actions/Pets/radials.rsi
+    state: follow
+  event: !type:PetSetAILogicEvent
+    order: Follow
+
+- type: petControl
+  id: Stay
+  name: Стоять
+  sprite:
+    sprite: _Sunrise/Actions/Pets/radials.rsi
+    state: stay
+  event: !type:PetSetAILogicEvent
+    order: Stay
+
+- type: petControl
+  id: GhostAvailable
+  name: Включить повышенную разумность
+  sprite:
+    sprite: _Sunrise/Actions/Pets/radials.rsi
+    state: brainup
+  event: !type:PetSetGhostAvaliable
+    enable: true
+
+- type: petControl
+  id: GhostUnavailable
+  name: Выключить повышенную разумность
+  sprite:
+    sprite: _Sunrise/Actions/Pets/radials.rsi
+    state: braindown
+  event: !type:PetSetGhostAvaliable
+    enable: false
+
+- type: petControl
+  id: Rename
+  name: Переименовать
+  sprite:
+    sprite: _Sunrise/Actions/Pets/radials.rsi
+    state: rename
+  event: !type:PetSetName
