@@ -1,0 +1,25 @@
+- type: entity
+  id: SynthChangeScreen
+  name: Сменить дисплей
+  description: Позволяет вам изменить изображение на вашем мониторе.
+  noSpawn: true
+  components:
+  - type: InstantAction
+    icon:
+      sprite: _Sunrise/Actions/synth_actions.rsi
+      state: screen_change
+    itemIconStyle: NoItem
+    event: !type:SynthChangeScreenActionEvent
+
+- type: entity
+  id: SynthDrainWires
+  name: Выдвинуть провода
+  description: Позволяет вам выдвинуть провода для зарядки.
+  noSpawn: true
+  components:
+  - type: InstantAction
+    icon:
+      sprite: _Sunrise/Actions/synth_actions.rsi
+      state: screen_change
+    itemIconStyle: NoItem
+    event: !type:SynthDrainWiresActionEvent

@@ -1,0 +1,28 @@
+- type: soundCollection
+  id: FootstepRobotLegs
+  files:
+  - /Audio/_Sunrise/Synth/robot_legs1.ogg
+  - /Audio/_Sunrise/Synth/robot_legs2.ogg
+  - /Audio/_Sunrise/Synth/robot_legs3.ogg
+  - /Audio/_Sunrise/Synth/robot_legs4.ogg
+
+- type: soundCollection
+  id: FootstepRobotSpider
+  files:
+  - /Audio/_Sunrise/Synth/robot_spider1.ogg
+  - /Audio/_Sunrise/Synth/robot_spider2.ogg
+  - /Audio/_Sunrise/Synth/robot_spider3.ogg
+
+- type: soundCollection
+  id: SynthScreams
+  files:
+  - /Audio/_Sunrise/Synth/robot_scream_1.ogg
+  - /Audio/_Sunrise/Synth/robot_scream_2.ogg
+  - /Audio/_Sunrise/Synth/robot_scream_3.ogg
+  - /Audio/_Sunrise/Synth/robot_scream_4.ogg
+
+- type: soundCollection
+  id: Footstep2RobotLegs
+  files:
+    - /Audio/_Sunrise/Synth/robot_legs_2_1.ogg
+    - /Audio/_Sunrise/Synth/robot_legs_2_2.ogg

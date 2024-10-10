@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Спизжено из SS13 Paradise",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "chest"
+    },
+    {
+      "name": "groin"
+    },
+    {
+      "name": "groin+o"
+    },
+    {
+      "name": "head"
+    },
+    {
+      "name": "head+o"
+    },
+    {
+      "name": "l_arm"
+    },
+    {
+      "name": "l_arm+o"
+    },
+    {
+      "name": "r_arm"
+    },
+    {
+      "name": "r_arm+o"
+    },
+    {
+      "name": "l_leg"
+    },
+    {
+      "name": "l_leg+o"
+    },
+    {
+      "name": "r_leg"
+    },
+    {
+      "name": "r_leg+o"
+    }
+  ]
+}
