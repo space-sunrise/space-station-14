@@ -689,12 +689,12 @@
 
 - type: entity
   parent: BasePlushie
-  id: PlushieMirotvorec
+  id: PlushiePeacemaker
   name: Миротворец
   description: Там где он, там мир, но там где война, там он несëт смерть.
   components:
   - type: Sprite
-    state: plushie-mirotvorec
+    state: plushie-peacemaker
     sprite: _Sunrise/Objects/Fun/toys.rsi
   - type: EmitSoundOnUse
     sound:
