@@ -11209,7 +11209,7 @@ entities:
       pos: -21.5,-20.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -14584.535
+      secondsUntilStateChange: -14646.365
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -11228,7 +11228,7 @@ entities:
       pos: -21.5,-18.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -14585.068
+      secondsUntilStateChange: -14646.898
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -12336,7 +12336,7 @@ entities:
       pos: 77.5,1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -17359.2
+      secondsUntilStateChange: -17421.03
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13137,7 +13137,7 @@ entities:
       pos: 44.5,27.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -6997.502
+      secondsUntilStateChange: -7059.3325
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -13295,36 +13295,42 @@ entities:
       parent: 2
 - proto: AirlockSyndicateGlassLocked
   entities:
-  - uid: 25084
+  - uid: 16548
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -2.5,-3.5
       parent: 25079
-  - uid: 25085
+  - uid: 20655
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -7.5,-2.5
       parent: 25079
-  - uid: 25086
+  - uid: 20727
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: -15.5,-2.5
       parent: 25079
 - proto: AirlockSyndicateLocked
   entities:
-  - uid: 25087
+  - uid: 23991
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: 10.5,-2.5
       parent: 25079
-  - uid: 25088
+  - uid: 24092
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: 6.5,-2.5
       parent: 25079
-  - uid: 25089
+  - uid: 25084
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: 1.5,-3.5
       parent: 25079
 - proto: AirlockTheatreLocked
@@ -72440,7 +72446,7 @@ entities:
       pos: 16.5,-8.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -10154.278
+      secondsUntilStateChange: -10216.108
       state: Closing
     - type: DeviceNetwork
       deviceLists:
@@ -158632,7 +158638,7 @@ entities:
       lastSignals:
         DoorStatus: True
     - type: Door
-      secondsUntilStateChange: -2870.4338
+      secondsUntilStateChange: -2932.2644
       state: Opening
     - type: Airlock
       autoClose: False
