@@ -31,7 +31,7 @@ def check_dir(dir: str):
 def check_yml(yml_path: str):
     try:
         with open(yml_path, "r", encoding="utf-8") as file:
-            data = yaml.safe_load(file)
+            data = yaml.load(file, Loader=yaml.Loader)
 
             # Проверка нужных полей на русские символы
             for key in ['name', 'description', 'suffix']:
