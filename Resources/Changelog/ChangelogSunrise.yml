@@ -4362,6 +4362,16 @@
     type: Add
   id: 317
   time: '2024-10-09T14:13:20.915546+00:00'
+- author: SplikZerys
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u0438\u043B 4 \u043D\u043E\u0432\u044B\
+      \u0445 \u0422\u0422\u0421-\u0433\u043E\u043B\u043E\u0441\u0430 \u043F\u0435\u0440\
+      \u0441\u043E\u043D\u0430\u0436\u0435\u0439 \u0438\u0437 Hearthstone: \u0422\u0435\
+      \u043A\u0430\u043D, \u0424\u0438\u043D\u043B\u0438, \u0411\u0440\u0430\u043D\
+      \ \u0438 \u0420\u0435\u043D\u043E."
+    type: Add
+  id: 318
+  time: '2024-10-11T13:54:17.028771+00:00'
 - author: SkyHappy
   changes:
   - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D 1 \u043D\u043E\u0432\
