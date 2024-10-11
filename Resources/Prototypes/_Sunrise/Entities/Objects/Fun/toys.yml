@@ -668,3 +668,19 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
     state: plushie-sebastian
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieNara
+  name: На-Ра
+  description: Из дормиториев только что вышел нуарный унатх.
+  components:
+  - type: Sprite
+    state: plushie-nara
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Sunrise/papich_naaa.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Sunrise/papich_naaa.ogg
