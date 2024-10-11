@@ -1,6 +1,6 @@
 ent-EnergyDomeGeneratorBackpackSyndieBiocode = { ent-EnergyDomeGeneratorBackpackSyndie }
+    .suffix = BIOCODE
     .desc = { ent-EnergyDomeGeneratorBackpackSyndie.desc }
-    .suffix = БИОКОД
 ent-EnergyDomeGeneratorPersonalSyndieBiocode = { ent-EnergyDomeGeneratorPersonalSyndie }
+    .suffix = BIOCODE
     .desc = { ent-EnergyDomeGeneratorPersonalSyndie.desc }
-    .suffix = БИОКОД
