@@ -4677,3 +4677,15 @@
   id: 332
   time: '2024-10-11T10:25:19.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/484
+- author: lulpiopio
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u0438\u043B \u041C\u0438\u0440\u043E\u0442\
+      \u0432\u043E\u0440\u0446\u0430."
+    type: Add
+  - message: "\u0414\u043E\u0431\u0430\u0432\u0438\u043B \u0435\u0449\u0435 \u043E\
+      \u0434\u0438\u043D \u0437\u0432\u0443\u043A \u0438 \u044D\u0442\u043E \u043D\
+      \u0435 \u041F\u0430\u043F\u0438\u0447."
+    type: Add
+  id: 333
+  time: '2024-10-11T16:38:01.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/490
