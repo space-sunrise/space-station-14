@@ -1801,8 +1801,8 @@
     stock: 1
 
 - type: listing
-  id: UplinkSunrisePlushieMirotvorec
-  productEntity: PlushieMirotvorec
+  id: UplinkSunrisePlushiePeacemaker
+  productEntity: PlushiePeacemaker
   cost:
     Suntick: 4
   categories:
