@@ -22,4 +22,4 @@ jobs:
           pip install --no-cache-dir PyYAML
       - name: Validate Locales
         run: |
-          python3 Tools/_Sunrise/Schemas/validate_yml.py Resources/
+          python3 Tools/_sunrise/Schemas/validate_yml.py Resources/
