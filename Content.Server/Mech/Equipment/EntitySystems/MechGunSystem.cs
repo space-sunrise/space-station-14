@@ -15,28 +15,16 @@ public sealed class MechGunSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<MechEquipmentComponent, GunShotEvent>(MechGunShot);
-        SubscribeLocalEvent<MechEquipmentComponent, OnEmptyGunShotEvent>(MechEmptyGunShot);
+        SubscribeLocalEvent<MechEquipmentComponent, GunShotEvent>((id,cmp,_)=> TryChargeGunBattery(id, cmp));
+        SubscribeLocalEvent<MechEquipmentComponent, OnEmptyGunShotEvent>((id, cmp, _) => TryChargeGunBattery(id, cmp));
     }
 
-    private void MechGunShot(EntityUid uid, MechEquipmentComponent component, ref GunShotEvent args)
+    private void TryChargeGunBattery(EntityUid uid, MechEquipmentComponent component)
     {
-        if (!component.EquipmentOwner.HasValue
-            || !HasComp<MechComponent>(component.EquipmentOwner.Value)
-            || !TryComp<BatteryComponent>(uid, out var battery))
-            return;
-
-        ChargeGunBattery(uid, battery);
-    }
-    
-    private void MechEmptyGunShot(EntityUid uid, MechEquipmentComponent component, ref OnEmptyGunShotEvent args)
-    {
-        if (!component.EquipmentOwner.HasValue
-            || !HasComp<MechComponent>(component.EquipmentOwner.Value)
-            || !TryComp<BatteryComponent>(uid, out var battery))
-            return;
-
-        ChargeGunBattery(uid, battery);
+        if (component.EquipmentOwner.HasValue
+            && HasComp<MechComponent>(component.EquipmentOwner.Value)
+            && TryComp<BatteryComponent>(uid, out var battery))
+            ChargeGunBattery(uid, battery);
     }
 
     private void ChargeGunBattery(EntityUid uid, BatteryComponent component)
