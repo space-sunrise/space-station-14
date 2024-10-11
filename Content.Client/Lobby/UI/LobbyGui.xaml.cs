@@ -80,6 +80,15 @@ namespace Content.Client.Lobby.UI
                 CharacterInfoHider.Texture = CharacterInfoContent.Visible ? IconExpanded : IconCollapsed;
             };
 
+            UserProfileHider.OnKeyBindUp += args =>
+            {
+                if (args.Function != EngineKeyFunctions.Use)
+                    return;
+
+                UserProfileContent.Visible = !UserProfileContent.Visible;
+                UserProfileHider.Texture = UserProfileContent.Visible ? IconExpanded : IconCollapsed;
+            };
+
             ServersHubHider.OnKeyBindUp += args =>
             {
                 if (args.Function != EngineKeyFunctions.Use)
@@ -152,11 +161,13 @@ namespace Content.Client.Lobby.UI
             ServerInfoHider.Texture = ServerInfoContent.Visible ? IconExpanded : IconCollapsed;
             CharacterInfoHider.Texture = CharacterInfoContent.Visible ? IconExpanded : IconCollapsed;
             ChatHider.Texture = ChatContent.Visible ? IconExpanded : IconCollapsed;
+            UserProfileHider.Texture = CharacterInfoContent.Visible ? IconExpanded : IconCollapsed;
             ServersHubHider.Modulate = StyleNano.NanoGold;
             ChangelogHider.Modulate = StyleNano.NanoGold;
             ServerInfoHider.Modulate = StyleNano.NanoGold;
             CharacterInfoHider.Modulate = StyleNano.NanoGold;
             ChatHider.Modulate = StyleNano.NanoGold;
+            UserProfileHider.Modulate = StyleNano.NanoGold;
         }
 
         private void OnServersHubEnableChanged(bool enable)
