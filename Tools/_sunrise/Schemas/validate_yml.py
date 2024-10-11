@@ -31,13 +31,15 @@ def check_dir(dir: str):
 def check_yml(yml_path: str):
     try:
         with open(yml_path, "r", encoding="utf-8") as file:
-            data = yaml.load(file, Loader=yaml.Loader)
+            data = yaml.safe_load(file)  # Замените на safe_load для большей безопасности
 
             # Проверка нужных полей на русские символы
             for key in ['name', 'description', 'suffix']:
                 if key in data and has_russian_chars(data[key]):
                     add_error(yml_path, f"Поле '{key}' содержит русские символы.")
 
+    except yaml.YAMLError as e:
+        add_error(yml_path, f"Ошибка чтения файла YAML: {e}")
     except Exception as e:
         add_error(yml_path, f"Ошибка чтения файла: {e}")
 
