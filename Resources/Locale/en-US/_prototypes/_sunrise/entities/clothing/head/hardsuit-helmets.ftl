@@ -6,3 +6,7 @@ ent-ClothingHeadHelmetHardsuitSecuritySunrise = { ent-ClothingHeadHelmetHardsuit
     .desc = { ent-ClothingHeadHelmetHardsuitSecurity.desc }
 ent-ClothingHeadHelmetHardsuitPilot = Шлем скафандра пилота Службы Безопасности
     .desc = Футуристичный шлем с отличным обзором.
+ent-ClothingHeadHelmetHeavyHardsuitUSSP = Bulat-M helmet
+    .desc = A heavily armored USSP spacesuit designed for combat operations in extreme conditions. Reinforced armor protects against firearms and energy weapons, radiation and explosions. It is used by elite units to protect strategic facilities.
+ent-ClothingHeadHelmetLightHardsuitUSSP = Thunder-P helmet
+    .desc = A lightweight combat suit designed for rapid response and mobile operations. The light armor provides protection against firearms and allows for high maneuverability. The Grom-P is used by assault troops for fast and effective combat operations.

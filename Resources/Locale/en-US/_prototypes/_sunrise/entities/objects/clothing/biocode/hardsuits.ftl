@@ -13,6 +13,3 @@ ent-ClothingOuterHardsuitSyndieCommanderBiocode = { ent-ClothingOuterHardsuitSyn
 ent-ClothingOuterHardsuitJuggernautBiocode = { ent-ClothingOuterHardsuitJuggernaut }
     .suffix = BIOCODE
     .desc = { ent-ClothingOuterHardsuitJuggernaut.desc }
-ent-ClothingOuterHardsuitBrigmedicSunrise = brigmedic hardsuit
-    .desc = Special hardsuit of the guardian angel of the brig. It is the medical version of the security hardsuit.
-    .suffix = Sunrise
