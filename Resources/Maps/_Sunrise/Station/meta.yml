@@ -14019,9 +14019,10 @@ entities:
   - uid: 27228
     components:
     - type: Transform
+      anchored: False
       rot: 3.141592653589793 rad
-      pos: 81.5,-33.5
-      parent: 5350
+      pos: 83.77101,-35.91482
+      parent: 951
 - proto: AtmosFixBlockerMarker
   entities:
   - uid: 11609
@@ -34476,6 +34477,11 @@ entities:
     components:
     - type: Transform
       pos: -9.5,-14.5
+      parent: 5350
+  - uid: 27035
+    components:
+    - type: Transform
+      pos: 106.5,1.5
       parent: 5350
 - proto: CableApcStack
   entities:
@@ -120721,8 +120727,9 @@ entities:
   - uid: 27552
     components:
     - type: Transform
-      pos: 81.5,-32.5
-      parent: 5350
+      anchored: False
+      pos: 83.77101,-34.91482
+      parent: 951
 - proto: PlasticFlapsAirtightClear
   entities:
   - uid: 1102
@@ -121736,6 +121743,18 @@ entities:
     components:
     - type: Transform
       pos: 13.5,17.5
+      parent: 5350
+- proto: PottedPlantBioluminscent
+  entities:
+  - uid: 27037
+    components:
+    - type: Transform
+      pos: 102.5,-0.5
+      parent: 5350
+  - uid: 27038
+    components:
+    - type: Transform
+      pos: 106.5,-0.5
       parent: 5350
 - proto: PottedPlantRandom
   entities:
@@ -133798,7 +133817,7 @@ entities:
   - uid: 4372
     components:
     - type: MetaData
-      name: кнопка сигнала (Турели загрузочной ИИ)
+      name: кнопка сигнала (турели загрузки (летал))
     - type: Transform
       pos: -10.5,20.5
       parent: 5350
@@ -133829,13 +133848,13 @@ entities:
         - Pressed: Toggle
         - Pressed: AutoClose
     - type: Label
-      currentLabel: Турели загрузочной ИИ
+      currentLabel: турели загрузки (летал)
     - type: NameModifier
       baseName: кнопка сигнала
   - uid: 4667
     components:
     - type: MetaData
-      name: кнопка сигнала (Турели ядра ИИ)
+      name: кнопка сигнала (турели ядра ИИ (летал))
     - type: Transform
       pos: 104.5,10.5
       parent: 5350
@@ -133872,7 +133891,7 @@ entities:
         - Pressed: Toggle
         - Pressed: AutoClose
     - type: Label
-      currentLabel: Турели ядра ИИ
+      currentLabel: турели ядра ИИ (летал)
     - type: NameModifier
       baseName: кнопка сигнала
   - uid: 7367
@@ -134003,6 +134022,31 @@ entities:
         - Pressed: Toggle
         23578:
         - Pressed: Toggle
+  - uid: 27036
+    components:
+    - type: MetaData
+      name: кнопка сигнала (турели холла спутника (нелетал))
+    - type: Transform
+      pos: 103.5,3.5
+      parent: 5350
+    - type: DeviceLinkSource
+      linkedPorts:
+        27031:
+        - Pressed: Toggle
+        - Pressed: AutoClose
+        27030:
+        - Pressed: Toggle
+        - Pressed: AutoClose
+        27033:
+        - Pressed: Toggle
+        - Pressed: AutoClose
+        27032:
+        - Pressed: Toggle
+        - Pressed: AutoClose
+    - type: Label
+      currentLabel: турели холла спутника (нелетал)
+    - type: NameModifier
+      baseName: кнопка сигнала
 - proto: SignalButtonExt1
   entities:
   - uid: 24633
@@ -137905,27 +137949,6 @@ entities:
     components:
     - type: Transform
       pos: -0.5,44.5
-      parent: 5350
-- proto: SpawnPointSeniorEngineer
-  entities:
-  - uid: 27030
-    components:
-    - type: Transform
-      pos: 58.5,19.5
-      parent: 5350
-- proto: SpawnPointSeniorPhysician
-  entities:
-  - uid: 27028
-    components:
-    - type: Transform
-      pos: -7.5,-28.5
-      parent: 5350
-- proto: SpawnPointSeniorResearcher
-  entities:
-  - uid: 27029
-    components:
-    - type: Transform
-      pos: 10.5,-24.5
       parent: 5350
 - proto: SpawnPointServiceWorker
   entities:
@@ -164229,6 +164252,24 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -13.5,16.5
       parent: 5350
+  - uid: 27028
+    components:
+    - type: Transform
+      pos: 106.5,2.5
+      parent: 5350
+    - type: Gun
+      fireRate: 3
+    - type: BallisticAmmoProvider
+      proto: BulletDisabler
+  - uid: 27029
+    components:
+    - type: Transform
+      pos: 102.5,2.5
+      parent: 5350
+    - type: Gun
+      fireRate: 3
+    - type: BallisticAmmoProvider
+      proto: BulletDisabler
 - proto: WeaponTurretSyndicateBroken
   entities:
   - uid: 13978
@@ -164675,6 +164716,8 @@ entities:
     - type: Transform
       pos: 101.5,12.5
       parent: 5350
+    - type: Door
+      bumpOpen: False
   - uid: 1992
     components:
     - type: Transform
@@ -164686,24 +164729,32 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 101.5,12.5
       parent: 5350
+    - type: Door
+      bumpOpen: False
   - uid: 3357
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 101.5,6.5
       parent: 5350
+    - type: Door
+      bumpOpen: False
   - uid: 3471
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 107.5,6.5
       parent: 5350
+    - type: Door
+      bumpOpen: False
   - uid: 3472
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 107.5,6.5
       parent: 5350
+    - type: Door
+      bumpOpen: False
   - uid: 3474
     components:
     - type: Transform
@@ -164714,51 +164765,69 @@ entities:
     - type: Transform
       pos: 107.5,6.5
       parent: 5350
+    - type: Door
+      bumpOpen: False
   - uid: 3753
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -13.5,16.5
       parent: 5350
+    - type: Door
+      bumpOpen: False
   - uid: 3849
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: -12.5,19.5
       parent: 5350
+    - type: Door
+      bumpOpen: False
   - uid: 3885
     components:
     - type: Transform
       pos: -7.5,16.5
       parent: 5350
+    - type: Door
+      bumpOpen: False
   - uid: 3887
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -8.5,19.5
       parent: 5350
+    - type: Door
+      bumpOpen: False
   - uid: 3906
     components:
     - type: Transform
       pos: -8.5,19.5
       parent: 5350
+    - type: Door
+      bumpOpen: False
   - uid: 3907
     components:
     - type: Transform
       pos: -12.5,19.5
       parent: 5350
+    - type: Door
+      bumpOpen: False
   - uid: 3908
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -7.5,16.5
       parent: 5350
+    - type: Door
+      bumpOpen: False
   - uid: 4364
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: 107.5,12.5
       parent: 5350
+    - type: Door
+      bumpOpen: False
   - uid: 4368
     components:
     - type: Transform
@@ -164771,11 +164840,15 @@ entities:
       rot: 3.141592653589793 rad
       pos: 101.5,6.5
       parent: 5350
+    - type: Door
+      bumpOpen: False
   - uid: 4373
     components:
     - type: Transform
       pos: 107.5,12.5
       parent: 5350
+    - type: Door
+      bumpOpen: False
   - uid: 6484
     components:
     - type: Transform
@@ -164799,12 +164872,44 @@ entities:
     - type: Transform
       pos: -13.5,16.5
       parent: 5350
+    - type: Door
+      bumpOpen: False
   - uid: 23496
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -5.5,35.5
       parent: 5350
+  - uid: 27030
+    components:
+    - type: Transform
+      pos: 102.5,2.5
+      parent: 5350
+    - type: Door
+      bumpOpen: False
+  - uid: 27031
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 102.5,2.5
+      parent: 5350
+    - type: Door
+      bumpOpen: False
+  - uid: 27032
+    components:
+    - type: Transform
+      pos: 106.5,2.5
+      parent: 5350
+    - type: Door
+      bumpOpen: False
+  - uid: 27033
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 106.5,2.5
+      parent: 5350
+    - type: Door
+      bumpOpen: False
 - proto: WindoorSecureAtmosphericsLocked
   entities:
   - uid: 5236
