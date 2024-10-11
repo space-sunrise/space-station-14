@@ -31,7 +31,12 @@ def check_dir(dir: str):
 def check_yml(yml_path: str):
     try:
         with open(yml_path, "r", encoding="utf-8") as file:
-            data = yaml.safe_load(file)  # Замените на safe_load для большей безопасности
+            content = file.read()
+            # Удаляем строки с тегами !type:
+            filtered_content = remove_type_tags(content)
+
+            # Загружаем оставшийся текст в формате YAML
+            data = yaml.safe_load(filtered_content)
 
             # Проверка нужных полей на русские символы
             for key in ['name', 'description', 'suffix']:
@@ -42,6 +47,12 @@ def check_yml(yml_path: str):
         add_error(yml_path, f"Ошибка чтения файла YAML: {e}")
     except Exception as e:
         add_error(yml_path, f"Ошибка чтения файла: {e}")
+
+def remove_type_tags(content: str) -> str:
+    """Удаляет строки с тегами !type:."""
+    lines = content.splitlines()
+    filtered_lines = [line for line in lines if '!type:' not in line]
+    return '\n'.join(filtered_lines)
 
 def has_russian_chars(text: str) -> bool:
     """Проверяет, содержит ли текст русские символы."""
