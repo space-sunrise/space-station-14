@@ -684,3 +684,23 @@
   - type: EmitSoundOnTrigger
     sound:
       path: /Audio/_Sunrise/papich_naaa.ogg
+  - type: UseDelay
+    delay: 20.0
+
+- type: entity
+  parent: BasePlushie
+  id: PlushiePeacemaker
+  name: Миротворец
+  description: Там где он, там мир, но там где война, там он несëт смерть.
+  components:
+  - type: Sprite
+    state: plushie-peacemaker
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Sunrise/vizhu_pidorasa.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Sunrise/vizhu_pidorasa.ogg
+  - type: UseDelay
+    delay: 20.0
