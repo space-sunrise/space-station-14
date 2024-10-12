@@ -3,7 +3,6 @@
 import argparse
 import os
 import re
-import yaml
 from glob import iglob
 from typing import Any, List
 
@@ -36,24 +35,26 @@ def check_yml(yml_path: str):
             # Оставляем только строки с ключами 'name:', 'description:', 'suffix:'
             filtered_content = filter_specific_keys(content)
 
-            # Загружаем оставшийся текст в формате YAML
-            data = yaml.safe_load(filtered_content)
-
             # Проверка нужных полей на русские символы
-            for key in ['name', 'description', 'suffix']:
-                if key in data and has_russian_chars(data[key]):
+            for key, value in filtered_content.items():
+                if has_russian_chars(value):
                     add_error(yml_path, f"Поле '{key}' содержит русские символы.")
 
-    except yaml.YAMLError as e:
-        add_error(yml_path, f"Ошибка чтения файла YAML: {e}")
     except Exception as e:
         add_error(yml_path, f"Ошибка чтения файла: {e}")
 
-def filter_specific_keys(content: str) -> str:
+def filter_specific_keys(content: str) -> dict:
+    result = {}
     lines = content.splitlines()
-    # Фильтруем строки, оставляя только те, что начинаются с нужных ключей
-    filtered_lines = [line for line in lines if re.match(r'^(name|description|suffix):', line.strip())]
-    return '\n'.join(filtered_lines)
+    key_pattern = re.compile(r'^(name|description|suffix):\s*(.+)')
+
+    for line in lines:
+        match = key_pattern.match(line.strip())
+        if match:
+            key, value = match.groups()
+            result[key] = value
+
+    return result
 
 def has_russian_chars(text: str) -> bool:
     return bool(re.search(r'[а-яА-Я]', text))
