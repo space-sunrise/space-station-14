@@ -1,0 +1,1 @@
+cratevendingmachinerestockchefvend-name = ящик пополнения ШефВенд
