@@ -4719,3 +4719,12 @@
     type: Tweak
   id: 336
   time: '2024-10-12T14:00:06.691194+00:00'
+- author: kanopus7
+  changes:
+  - message: "\u041B\u0438\u043C\u0438\u0442 \u0441\u0438\u043C\u0432\u043E\u043B\u043E\
+      \u0432 \u0432 \u043A\u043D\u0438\u0433\u0435 \u043F\u043E\u0432\u044B\u0448\u0435\
+      \u043D \u0441 12000 \u0434\u043E 15000."
+    type: Tweak
+  id: 337
+  time: '2024-10-12T16:59:55.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/500
