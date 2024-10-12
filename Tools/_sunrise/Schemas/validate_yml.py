@@ -46,7 +46,7 @@ def check_yml(yml_path: str):
 def filter_specific_keys(content: str) -> dict:
     result = {}
     lines = content.splitlines()
-    key_pattern = re.compile(r'^(name|description|suffix):\s*(.+)')
+    key_pattern = re.compile(r'^(name|description|suffix|rules):\s*(.+)')
 
     for line in lines:
         match = key_pattern.match(line.strip())
