@@ -32,7 +32,7 @@
     stackType: Nanopaste
     count: 10
   - type: StackPrice
-    price: 25
+    price: 9
 
 - type: entity
   id: Nanopaste1
