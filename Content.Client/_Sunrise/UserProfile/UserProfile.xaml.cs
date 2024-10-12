@@ -48,11 +48,15 @@ public sealed partial class UserProfile : Control
 
         if (_playerManager.LocalSession != null)
         {
-            if (!_sponsorsManager.ClientIsSponsor())
-                return;
-
-            _sponsorsManager.TryGetOocTitle(_playerManager.LocalSession.UserId, out var sponsorTitle);
-            SponsorTierName.Text = sponsorTitle;
+            if (_sponsorsManager.ClientIsSponsor())
+            {
+                _sponsorsManager.TryGetOocTitle(_playerManager.LocalSession.UserId, out var sponsorTitle);
+                SponsorTierName.Text = sponsorTitle;
+            }
+            else
+            {
+                SponsorTierName.Text = Loc.GetString("user-profile-no-sponsor");
+            }
         }
     }
 
