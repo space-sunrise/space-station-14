@@ -28,6 +28,17 @@
       roleLoadout: [ RoleSurvivalStandard ]
 
 - type: randomHumanoidSettings
+  id: VisitorInvestigator
+  parent: VisitorHead
+  components:
+    - type: GhostRole
+      name: job-name-investigator
+      description: ghost-role-information-security-description
+    - type: Loadout
+      prototypes: [ VisitorInvestigator, VisitorInvestigatorAlt ]
+      roleLoadout: [ RoleSurvivalStandard ]
+
+- type: randomHumanoidSettings
   id: VisitorCE
   parent: VisitorHead
   components:
@@ -426,7 +437,7 @@
     - type: RandomMetadata
       nameSegments:
       - names_clown
-      
+
 - type: randomHumanoidSettings
   id: VisitorJanitor
   parent: VisitorCivilian
