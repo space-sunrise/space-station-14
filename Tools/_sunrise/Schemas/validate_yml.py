@@ -32,8 +32,9 @@ def check_yml(yml_path: str):
     try:
         with open(yml_path, "r", encoding="utf-8") as file:
             content = file.read()
-            # Удаляем строки с тегами !type:
-            filtered_content = remove_type_tags(content)
+
+            # Оставляем только строки с ключами 'name:', 'description:', 'suffix:'
+            filtered_content = filter_specific_keys(content)
 
             # Загружаем оставшийся текст в формате YAML
             data = yaml.safe_load(filtered_content)
@@ -48,14 +49,13 @@ def check_yml(yml_path: str):
     except Exception as e:
         add_error(yml_path, f"Ошибка чтения файла: {e}")
 
-def remove_type_tags(content: str) -> str:
-    """Удаляет строки с тегами !type:."""
+def filter_specific_keys(content: str) -> str:
     lines = content.splitlines()
-    filtered_lines = [line for line in lines if '!type:' not in line]
+    # Фильтруем строки, оставляя только те, что начинаются с нужных ключей
+    filtered_lines = [line for line in lines if re.match(r'^(name|description|suffix):', line.strip())]
     return '\n'.join(filtered_lines)
 
 def has_russian_chars(text: str) -> bool:
-    """Проверяет, содержит ли текст русские символы."""
     return bool(re.search(r'[а-яА-Я]', text))
 
 def add_error(yml: str, message: str):
