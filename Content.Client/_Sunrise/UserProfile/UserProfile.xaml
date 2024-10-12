@@ -1,0 +1,51 @@
+<Control xmlns="https://spacestation14.io"
+         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
+         MinSize="100 100">
+    <BoxContainer Orientation="Vertical" >
+        <customControls:HSeparator/>
+        <BoxContainer Orientation="Horizontal" SeparationOverride="2" HorizontalExpand="True">
+            <customControls:VSeparator/>
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+                <Label Text="{Loc 'Спонсорство'}" StyleClasses="LabelHeadingBigger" HorizontalAlignment="Center"/>
+                <GridContainer Columns="2"
+                               HorizontalAlignment="Center"
+                               VerticalExpand="True"
+                               VerticalAlignment="Top"
+                               Margin="5 5 5 5">
+                    <Label Text="{Loc 'Уровень: '}" StyleClasses="LabelKeyText"/>
+                    <Label Name="SponsorTierName" />
+                </GridContainer>
+                <GridContainer Columns="2"
+                               HorizontalAlignment="Center"
+                               VerticalExpand="True"
+                               VerticalAlignment="Top">
+                    <Button Name="InfoSponsorButton" Text="Информация" Disabled="True" />
+                    <Button Name="BuySponsorButton" Text="Приобрести" />
+                </GridContainer>
+            </BoxContainer>
+            <customControls:VSeparator/>
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+                <Label Text="{Loc 'Соц.сети'}" StyleClasses="LabelHeadingBigger" HorizontalAlignment="Center"/>
+                <GridContainer Columns="2"
+                               HorizontalAlignment="Center"
+                               VerticalExpand="True"
+                               VerticalAlignment="Top"
+                               Margin="5 5 5 5">
+                    <Label Text="{Loc 'Discord:'}" StyleClasses="LabelKeyText"/>
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Name="LinkedDiscordName" />
+                        <Button Name="LinkDiscordButton" Text="Подвязать"/>
+                    </BoxContainer>
+                    <Label Text="{Loc 'Telegram:'}" StyleClasses="LabelKeyText"/>
+                    <BoxContainer Orientation="Horizontal" >
+                        <Label Name="LinkedTelegramName" />
+                        <Button Name="LinkTelegramButton" Text="Подвязать"/>
+                    </BoxContainer>
+                </GridContainer>
+            </BoxContainer>
+            <customControls:VSeparator/>
+        </BoxContainer>
+        <customControls:HSeparator/>
+    </BoxContainer>
+</Control>

@@ -1,12 +1,12 @@
 using Content.Sunrise.Interfaces.Shared;
-using Robust.Client.Graphics;
 
 namespace Content.Sunrise.Interfaces.Client;
 
 public interface IClientServiceAuthManager : ISharedServiceAuthManager
 {
-    public string ServiceJoinUrl { get; }
-    public Texture? ServiceJoinQrcode { get; }
-    public string ServiceUsername { get; }
-    public List<ServiceAuthData> ServiceAuthDatas { get; set; }
+    public List<ServiceAuthData> ServiceAuthDataList { get; set; }
+    public List<LinkedServiceData> ServiceLinkedServices { get; set; }
+    public event Action<List<LinkedServiceData>>? LoadedServiceLinkedServices;
+    public event Action<ServiceAuthData>? LoadedAuthData;
+    public void ToggleWindow(ServiceType serviceType);
 }
