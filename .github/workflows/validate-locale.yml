@@ -4,8 +4,7 @@ on:
   push:
     branches: [ staging, trying ]
   pull_request:
-    paths:
-      - '**/*.yml'
+    types: [ opened, reopened, synchronize, ready_for_review ]
 
 jobs:
   validate_ymls:
