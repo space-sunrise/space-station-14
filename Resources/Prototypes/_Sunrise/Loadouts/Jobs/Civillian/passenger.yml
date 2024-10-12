@@ -1,0 +1,79 @@
+- type: loadout
+  id: JumpskirtBlackElegantDress
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtBlackElegantDress
+
+- type: loadout
+  id: JumpskirtRedElegantDress
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtRedElegantDress
+
+- type: loadout
+  id: JumpskirtGreenElegantDress
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtGreenElegantDress
+
+- type: loadout
+  id: JumpskirtBlueElegantDress
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtBlueElegantDress
+
+- type: loadout
+  id: JumpskirtPurpleElegantDress
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPurpleElegantDress
+
+- type: loadout
+  id: JumpskirtCyanStripedDress
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCyanStripedDress
+
+- type: loadout
+  id: JumpskirtRedStripedDress
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtRedStripedDress
+
+- type: loadout
+  id: JumpskirtGreenStripedDress
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtGreenStripedDress
+
+- type: loadout
+  id: JumpskirtPinkStripedDress
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPinkStripedDress
+
+- type: loadout
+  id: JumpskirtOrangeStripedDress
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtOrangeStripedDress
+
+- type: loadout
+  id: JumpskirtPurpleTurtleneckDress
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtPurpleTurtleneckDress
+
+- type: loadout
+  id: JumpskirtRedTurtleneckDress
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtRedTurtleneckDress
+
+- type: loadout
+  id: JumpskirtGreenTurtleneckDress
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtGreenTurtleneckDress
+
+- type: loadout
+  id: JumpskirtBlueTurtleneckDress
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtBlueTurtleneckDress
+
+- type: loadout
+  id: JumpskirtYellowTurtleneckDress
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtYellowTurtleneckDress
+
+- type: loadout
+  id: JumpskirtYellowOldDress
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtYellowOldDress

@@ -172,6 +172,22 @@
   - GreyJumpskirt
   - AncientJumpsuit
   - RainbowJumpsuit
+  - JumpskirtBlackElegantDress # Sunrise
+  - JumpskirtRedElegantDress # Sunrise
+  - JumpskirtGreenElegantDress # Sunrise
+  - JumpskirtBlueElegantDress # Sunrise
+  - JumpskirtPurpleElegantDress # Sunrise
+  - JumpskirtCyanStripedDress # Sunrise
+  - JumpskirtRedStripedDress # Sunrise
+  - JumpskirtGreenStripedDress # Sunrise
+  - JumpskirtPinkStripedDress # Sunrise
+  - JumpskirtOrangeStripedDress # Sunrise
+  - JumpskirtPurpleTurtleneckDress # Sunrise
+  - JumpskirtRedTurtleneckDress # Sunrise
+  - JumpskirtGreenTurtleneckDress # Sunrise
+  - JumpskirtBlueTurtleneckDress # Sunrise
+  - JumpskirtYellowTurtleneckDress # Sunrise
+  - JumpskirtYellowOldDress # Sunrise
 
 - type: loadoutGroup
   id: PassengerFace
