@@ -301,7 +301,7 @@
   id: HearthstoneZverolovTavish
   name: tts-voice-name-hearthstone-zverolov-tavish
   sex: Male
-  speaker: hearthstone_zverolov_tavishfire-station-public-master-939
+  speaker: hearthstone_zverolov_tavish
   provider: sunrise
 
 - type: ttsVoice
