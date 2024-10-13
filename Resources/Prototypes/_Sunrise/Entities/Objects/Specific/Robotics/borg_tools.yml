@@ -637,7 +637,7 @@
     onlyAffectsMobs: false
 
 - type: entity
-  name: Глушитель связи диверсанта
+  name: the saboteur's communications jammer
   parent: BaseItem
   id: RadioJammerBorg
   components:
