@@ -301,7 +301,7 @@
   id: HearthstoneZverolovTavish
   name: tts-voice-name-hearthstone-zverolov-tavish
   sex: Male
-  speaker: hearthstone_zverolov_tavish
+  speaker: hearthstone_zverolov_tavishfire-station-public-master-939
   provider: sunrise
 
 - type: ttsVoice
@@ -316,4 +316,11 @@
   name: tts-voice-name-hearthstone-mister-chu
   sex: Male
   speaker: hearthstone_mister_chu
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneSotis
+  name: tts-voice-name-hearthstone-sotis
+  sex: Male
+  speaker: hearthstone_sotis
   provider: sunrise
