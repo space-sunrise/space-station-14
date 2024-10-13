@@ -1,8 +1,8 @@
 - type: entity
   id: PlushieOne
   parent: BasePlushie
-  name: Декус-Киурз
-  description: Унатх, которого никто не ждет.
+  name: Dekus-Kiurs
+  description: Unath, whom no one is expecting.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
@@ -11,8 +11,8 @@
 - type: entity
   id: PlushieTwo
   parent: BasePlushie
-  name: Неизвестный
-  description: Плюшевый, вежливый мужчина с утончёнными вкусом и усами.
+  name: Unknown
+  description: A plush, polite man with refined taste and a moustache.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
@@ -21,8 +21,8 @@
 - type: entity
   id: PlushieThree
   parent: BasePlushie
-  name: Тереза Шарапова
-  description: Плюшевый глава персонала, он вас бесит.
+  name: Teresa Sharapova
+  description: The plush head of staff, he's pissing you off.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
@@ -31,8 +31,8 @@
 - type: entity
   id: PlushieFour
   parent: BasePlushie
-  name: Ясли Чунканжук
-  description: Плюшевая оранжевая лиса в форме офицера.
+  name: Yasly Chunkanjuk
+  description: A plush orange fox in an officer's uniform.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
@@ -41,8 +41,8 @@
 - type: entity
   id: PlushieFive
   parent: BasePlushie
-  name: Роберт Крапивин
-  description: Плюшевая игрушка смотрителя в странной синей форме.
+  name: Robert Krapivin
+  description: A plush toy of a caretaker in a strange blue uniform.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
@@ -51,8 +51,8 @@
 - type: entity
   id: PlushieSix
   parent: BasePlushie
-  name: Анатолий Бобров
-  description: Плюшевый утилизатор с дыркой в скафандре.
+  name: Anatoly Bobrov
+  description: A plush disposer with a hole in his spacesuit.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
@@ -61,8 +61,8 @@
 - type: entity
   id: PlushieSeven
   parent: BasePlushie
-  name: Каин Де Ла Мейс
-  description: Плюшевый командир ядерных оперативников. Очень страшный.
+  name: Cain De La Mace
+  description: The plush commander of the nuclear operatives. Very scary.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
@@ -71,8 +71,8 @@
 - type: entity
   id: PlushieEight
   parent: BasePlushie
-  name: Артём Спирин младший
-  description: Плюшевая игрушка начальника штаба центрального командования. В руке видна записка об отказе.
+  name: Artem Spirin Jr.
+  description: A plush toy of the Chief of Staff of Central Command. A rejection note can be seen in his hand.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
@@ -81,8 +81,8 @@
 - type: entity
   id: PlushieNine
   parent: BasePlushie
-  name: Виктория Гофмана
-  description: Плюшевый уборщик с кровью из носа и электрогитарой.
+  name: Victoria Hoffmann
+  description: A plush caretaker with a bloody nose and an electric guitar.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
@@ -91,8 +91,8 @@
 - type: entity
   id: PlushieTen
   parent: BasePlushie
-  name: Артём Спирин старший
-  description: Плюшевый, сильно запылившийся учёный.
+  name: Artyom Spirin Sr.
+  description: A plush, heavily dusted scientist.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
@@ -101,8 +101,8 @@
 - type: entity
   id: PlushieEleven
   parent: BasePlushie
-  name: Акепа Грязнов
-  description: Плюшевый мужественный дворф в водолазке оператора центрального командования.
+  name: Akepa Gryaznov
+  description: A plush manly dwarf in a Central Command operator's turtleneck.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
@@ -111,8 +111,8 @@
 - type: entity
   id: PlushieTwelve
   parent: BasePlushie
-  name: Вуиар Тэриякин
-  description: Плюшевая игрушка Капитана с зелёными волосами цвета капусты.
+  name: Vouiar Teriyakin
+  description: Plush Captain toy with green cabbage coloured hair.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
@@ -121,8 +121,8 @@
 - type: entity
   id: PlushieThirteen
   parent: BasePlushie
-  name: Марианна Брагина
-  description: Очень милая плюшевая игрушка атмосферного техника.
+  name: Marianna Bragina
+  description: A very cute plush toy of an atmospheric technician.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
@@ -131,8 +131,8 @@
 - type: entity
   id: PlushieFourteen
   parent: BasePlushie
-  name: Дракоша
-  description: Плюшевая игрушка дракона-гумонойда с коричневой чешуйкой.
+  name: Drakosha
+  description: A plush humongoid dragon toy with brown scales.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
@@ -141,8 +141,8 @@
 - type: entity
   id: PlushieFifteen
   parent: BasePlushie
-  name: Пуро
-  description: Плюшевая игрушка вульпы с  белой маской на лице.
+  name: Puro
+  description: A plush vulpas toy with a white mask on its face.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
@@ -151,8 +151,8 @@
 - type: entity
   id: PlushieSixteen
   parent: BasePlushie
-  name: Рудольф Фон-Вяйнер
-  description: Плюшевая игрушка старшего инженера с пурпурными как плазма волосами.
+  name: Rudolf Von-Weiner
+  description: A plush toy of a senior engineer with hair as purple as plasma.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
@@ -162,7 +162,7 @@
   id: PlushieSeventeen
   parent: BasePlushie
   name: TR-263
-  description: Роботизированный Раптор. Не стоит совать свои руки к его плюшевой морде. Все же знают чем это обычно заканчивается?
+  description: A robotic Raptor. You don't want to put your hands on his plush face. Everyone knows how that usually ends, right?
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
@@ -171,8 +171,8 @@
 - type: entity
   id: PlushieEighteen
   parent: BasePlushie
-  name: Комиссар
-  description: Комиссар — cупер-спец по расследованию плюшевых нарушений. Самое грозное и мягкое правосудие в плюшевой вселенной.
+  name: Commissioner
+  description: The Commissioner is a super-specialised investigator of plush offences. The most formidable and gentle justice in the plush universe.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
@@ -181,8 +181,8 @@
 - type: entity
   id: PlushieNineteen
   parent: BasePlushie
-  name: Подлый жулик
-  description: Некоторые называют его плохим, другие говорят что он худший, но все мы знаем кто он.
+  name: Sneaky crook
+  description: Some call him bad, some say he's the worst, but we all know who he is.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
@@ -191,8 +191,8 @@
 - type: entity
   id: PlushieTwenty
   parent: BasePlushie
-  name: Лураш-Ма
-  description: Пускай его чешуя черна, но помыслы его чисты! И не спрашивайте, откуда у него гипоручка и зачем ему в ней ноктюрин!
+  name: Louras-Ma
+  description: His scales may be black, but his thoughts are pure! And don't ask him where he got his hypo-arm and why he needs nocturine in it!
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
