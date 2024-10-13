@@ -308,5 +308,12 @@
   id: HearthstoneElisa
   name: tts-voice-name-hearthstone-elisa
   sex: Female
-  speaker: tts-voice-name-hearthstone-elisa
+  speaker: hearthstone_elisa
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneMisterChu
+  name: tts-voice-name-hearthstone-mister-chu
+  sex: Male
+  speaker: hearthstone_mister_chu
   provider: sunrise
