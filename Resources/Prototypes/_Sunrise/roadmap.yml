@@ -5,104 +5,104 @@
       name: 2024
       goals:
         fugitive:
-          name: Беглец
-          desc: Сбежавший заключенный, цель которого - выжить.
+          name: Fugitive
+          desc: An escaped fugitive prisoner whose goal is to survive.
           state: Complete
-        planet_prison:
-          name: Планетарная тюрьма
-          desc: Тюрьма на планете работающая как отдельная станция.
+        planet-prison:
+          name: Planet Prison
+          desc: A prison on a planet operating as a separate station.
           state: Complete
-        cyborg_update:
-          name: Станционные борги
-          desc: Новые борги.
+        cyborg-update:
+          name: Station Cyborgs Update
+          desc: New cyborgs.
           state: Complete
-        collective_mind:
-          name: Коллективный разум
-          desc: Система позволяющая общяться некоторым созданиям между собой если он у них есть.
+        collective-mind:
+          name: Collective Mind
+          desc: A system that allows some creatures to communicate with each other if they have one.
           state: Complete
-        syndicate_cyborgs:
-          name: Новые борги синдиката
-          desc: Более продвинутые и полезные борги синдиката.
+        syndicate-cyborgs:
+          name: New Syndie Cyborgs
+          desc: More advanced and useful syndicate borg.
           state: Complete
-        new_guns:
-          name: Расширение огнестрела
-          desc: Добавление разннобразного огнестрельного вооружения(а как-же огнемёт?).
+        new-guns:
+          name: Firearms Expansion
+          desc: Adding various firearms (what about the flamethrower?).
           state: Complete
-        smart_viruse:
-          name: Разумная болезнь
-          desc: Антагонист, цель которого заразить станцию болезнью.
+        smart-viruse:
+          name: Smart Viruse
+          desc: An antagonist whose goal is to infect the station with a disease.
           state: Complete
-        cargo_rework:
-          name: Реворк карго
-          desc: Удаление торгового аванпоста и шаттла карго, реализация покупки и продажи на станции.
+        cargo-rework:
+          name: Cargo Rework
+          desc: Removal of the trading outpost and the cargo shuttle, realizing the buying and selling at the station.
           state: Complete
-        new_maps:
-          name: Гробальная переработка карт
-          desc: Значительные доработки карт (дельта, бокс).
+        new-maps:
+          name: Global Map Reworking
+          desc: Significant refinements to the maps (delta, box).
           state: Complete
-        fully_translating:
-          name: Полный перевод всего
-          desc: перевод всех вещей, меню. С целью упростить геймплей.
+        fully-translating:
+          name: Full Translation Of Everything
+          desc: translation of all the items, menus. In order to simplify gameplay.
           state: Complete
-        night_vision:
-          name: Ночное виденье
-          desc: ПНВ, ночное виденье у некоторых животных/расс.
+        night-vision:
+          name: Night Vision
+          desc: NVD, night vision in some animals/race.
           state: Complete
         ipc:
-          name: КПБ
-          desc: Расса разумных машин, в переработке.
+          name: IPC
+          desc: A race of intelligent machines, in reworking.
           state: Partial
         blob:
-          name: Блоб
-          desc: Антагонист цель которого поглотить и тем самым уничтожить станцию.
+          name: Blob
+          desc: An antagonist whose goal is to devour and thereby destroy the station.
           state: InProgress
-        assault_ops:
-          name: Диверсионый отряд
-          desc: Ну типа да.
+        assault-ops:
+          name: Assault Ops
+          desc: A mercenary squad whose purpose is to stealthily sabotage the station, disrupting its operations.
           state: InProgress
-        ert_call:
-          name: Консоль вызова ОБР
-          desc: Консоль с помощью которой можно вызвать обр.
+        ert-call:
+          name: ERT Call Console
+          desc: A console that can be used to call an ERT.
           state: InProgress
-        SSSP:
-          name: Станция СССП
-          desc: Отдельная станция СССП с своими задачами на смену.
+        USSP:
+          name: USSP Station
+          desc: A separate station of the USSP with its own shift tasks.
           state: InProgress
-        vent_crawling:
-          name: Передвижение по вентиляции
-          desc: Возможность мелким существам и разным антагонистами передвигаться по вентиляционной системе.
+        vent-crawling:
+          name: Vent Crawling
+          desc: Allowing small creatures and various antagonists to move through the ventilation system.
           state: InProgress
-        flesh_cult:
-          name: Культ плоти
-          desc: Культ плоти цель которого уничтожить станцию.
+        flesh-cult:
+          name: The cult of flesh
+          desc: A flesh cult intent on destroying the station.
           state: InProgress
-        blood_cult:
-          name: Культ крови (Нар`Си)
-          desc: Культ который идёт за богом Нар`Си, цель культа призвать своего покровителя который позже уничтожит станцию.
+        blood-cult:
+          name: Blood Cult (Nar'Si)
+          desc: A cult that follows the god Nar'Si, the cult's goal is to summon its patron, who will later destroy the station.
           state: InProgress
         economy:
-          name: Экономика
-          desc: Добавление денег, зарплаты, почта будет давать деньги а вендоматы будут брать деньги за еду.
+          name: Economy
+          desc: Adding money, wages, the post office will give money and vendomats will take money for food.
           state: InProgress
-        extend_med:
-          name: Расширение мед. отдела
-          desc: Добавление новых механик, ролей.
-          state: InProgress
+        extend-med:
+          name: Medical Department Expansion
+          desc: Adding new mechanics, roles.
+          state: Planned
         pathologist:
-          name: Паталогоанатом
-          desc: Новая роль мед.отдела. Задача которой следить за моргом.
-          state: InProgress
+          name: Pathologist
+          desc: A new role for the medical department. To keep an eye on the morgue.
+          state: Planned
         arena:
-          name: Арена для призраков
-          desc: Арена где призраки могут занять своё время что-бы не летать по станции в ожидании конца раунда.
+          name: Ghosts Arena
+          desc: An arena where ghosts can occupy their time so they don't have to fly around the station waiting for the end of the round.
           state: Planned
         limbo:
-          name: Лимбо
-          desc: Отдельный мирок для призраков где нет правил.
+          name: Limbo
+          desc: A separate world for ghosts where there are no rules.
           state: Planned
         taipan:
-          name: Тайпан
-          desc: Отдельная станция синдиката с своими задачами на смену.
+          name: Taipan
+          desc: A separate syndicate station with its own shift tasks.
           state: Planned
     2025:
       name: 2025
