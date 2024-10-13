@@ -5,9 +5,9 @@
   description: A lightweight yet strong exosuit used for special cleanup operations.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/OuterClothing/hardsuits/cburncommander.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/cburn-commander.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/OuterClothing/hardsuits/cburncommander.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/cburn-commander.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
@@ -39,9 +39,9 @@
   description: Крепкий и надёжныый, как и его владелец.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/OuterClothing/hardsuits/blueshield.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/blueshield.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/OuterClothing/hardsuits/blueshield.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/blueshield.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.525
     lowPressureMultiplier: 10000
@@ -68,9 +68,9 @@
   suffix: SUNRISE
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/OuterClothing/hardsuits/secoff.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/secoff.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/OuterClothing/hardsuits/secoff.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/secoff.rsi
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSecuritySunrise
 
@@ -81,9 +81,9 @@
   description: Облегченная версия скафандра Службы безопасности, обеспечивает хорошую подвижность, но меньшую защиту.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Hardsuits/pilothardsuit.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/pilothardsuit.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Hardsuits/pilothardsuit.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/pilothardsuit.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.5
     lowPressureMultiplier: 1000
@@ -102,3 +102,101 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPilot
+    
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitBrigmedicSunrise
+  name: brigmedic hardsuit
+  description: Special hardsuit of the guardian angel of the brig. It is the medical version of the security hardsuit.
+  suffix: Sunrise
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/brigmedic.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/brigmedic.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.7
+        Caustic: 0.4
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitBrigmedic
+    
+# USSP
+
+- type: entity
+  parent: [ ClothingOuterHardsuitBase ]
+  id: ClothingOuterHeavyHardsuitUSSP
+  name: Bulat-M
+  description: A heavily armored USSP spacesuit designed for combat operations in extreme conditions. Reinforced armor protects against firearms and energy weapons, radiation and explosions. It is used by elite units to protect strategic facilities.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp-heavy.rsi
+  - type: Item
+    size: Huge
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp-heavy.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.05
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.5
+        Radiation: 0.5
+        Caustic: 0.5
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHeavyHardsuitUSSP
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+    
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseRestrictedContraband]
+  id: ClothingOuterLightHardsuitUSSP
+  name: Thunder-P
+  description: A lightweight combat suit designed for rapid response and mobile operations. The light armor provides protection against firearms and allows for high maneuverability. The Grom-P is used by assault troops for fast and effective combat operations.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp-light.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp-light.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.5
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
+        Caustic: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetLightHardsuitUSSP

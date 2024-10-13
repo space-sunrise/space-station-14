@@ -610,7 +610,6 @@
     - !type:StoreWhitelistCondition
       blacklist:
         tags:
-          - SyndieAgentUplink
           - AssaultOpsUplink
 #Sunrise-end
 
@@ -1060,7 +1059,7 @@
   discountDownTo:
     Telecrystal: 2
   cost:
-    Telecrystal: 4
+    Telecrystal: 3
   categories:
   - UplinkDisruption
 
@@ -1121,9 +1120,9 @@
   productEntity: ToolboxSyndicateFilled
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 1
+    Telecrystal: 2 # Sunrise-edit: Toolbox rebalance
   cost:
-    Telecrystal: 2
+    Telecrystal: 4 # Sunrise-edit: Toolbox rebalance
   categories:
   - UplinkDisruption
 
@@ -1856,7 +1855,7 @@
   id: UplinkEnergyDomeSyndie
   name: uplink-energy-dome-name
   description: uplink-energy-dome-desc
-  productEntity: EnergyDomeGeneratorPersonalSyndie
+  productEntity: EnergyDomeGeneratorPersonalSyndieBiocode
   cost:
     Telecrystal: 10
   categories:

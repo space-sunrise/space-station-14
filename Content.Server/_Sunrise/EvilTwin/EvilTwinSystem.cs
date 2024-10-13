@@ -119,11 +119,7 @@ public sealed class EvilTwinSystem : EntitySystem
             !_mindSystem.TryGetMind(uid, out var mindId, out var mind))
             return;
 
-        var role = new EvilTwinRoleComponent
-        {
-            PrototypeId = EvilTwinRole,
-        };
-        _roleSystem.MindAddRole(mindId, role, mind);
+        _roleSystem.MindAddRole(mindId, "MindRoleEvilTwin");
         _mindSystem.TryAddObjective(mindId, mind, EscapeObjective);
         _mindSystem.TryAddObjective(mindId, mind, KillObjective);
         if (_mindSystem.TryGetObjectiveComp<TargetObjectiveComponent>(uid, out var obj))
@@ -141,7 +137,7 @@ public sealed class EvilTwinSystem : EntitySystem
             if (!_mindSystem.TryGetMind(actor.PlayerSession, out var mindId, out var mind) || mind.OwnedEntity == null)
                 continue;
 
-            if (!_jobSystem.MindTryGetJob(mindId, out _, out _))
+            if (!_jobSystem.MindTryGetJob(mindId, out _))
                 continue;
 
             uid = mind.OwnedEntity;
@@ -171,7 +167,7 @@ public sealed class EvilTwinSystem : EntitySystem
             detailCopy.Content = detail.Content;
         }
 
-        if (_jobSystem.MindTryGetJob(mindId, out _, out var jobProto) && jobProto.StartingGear != null)
+        if (_jobSystem.MindTryGetJob(mindId, out var jobProto) && jobProto.StartingGear != null)
         {
             var jobLoadout = LoadoutSystem.GetJobPrototype(jobProto.ID);
 

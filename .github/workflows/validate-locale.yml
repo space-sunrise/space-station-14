@@ -1,0 +1,24 @@
+name: Locale Validator
+
+on:
+  push:
+    branches: [ staging, trying ]
+  pull_request:
+    types: [ opened, reopened, synchronize, ready_for_review ]
+
+jobs:
+  validate_ymls:
+    name: Validate Locales
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3.6.0
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Install dependencies
+        run: |
+          pip install --no-cache-dir PyYAML
+      - name: Validate Locales
+        run: |
+          python3 Tools/_sunrise/Schemas/validate_yml.py Resources/Prototypes/

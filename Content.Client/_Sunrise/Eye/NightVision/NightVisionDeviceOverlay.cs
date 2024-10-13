@@ -53,9 +53,9 @@ namespace Content.Client._Sunrise.Eye.NightVision
 
             var worldHandle = args.WorldHandle;
             var viewport = args.WorldBounds;
-            worldHandle.SetTransform(Matrix3x2.Identity);
             worldHandle.UseShader(Shader);
             worldHandle.DrawRect(viewport, DisplayColor.Value);
+            worldHandle.UseShader(null);
         }
     }
 }
