@@ -216,14 +216,14 @@
   id: MagazineV31Extended
   components:
   - type: BallisticAmmoProvider
-    capacity: (новая вместимость)
+    capacity: 50
 
 - type: entity
   parent: MagazineFamas
   id: MagazineFamasExtended
   components:
   - type: BallisticAmmoProvider
-    capacity: 50
+    capacity: 34
 
 - type: entity
   parent: MagazineG36

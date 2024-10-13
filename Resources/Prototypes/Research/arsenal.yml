@@ -15,6 +15,31 @@
   - MechEquipmentKineticAccelerator
   # These are roundstart but not replenishable for salvage
 
+- type: technology # Sunrise-start
+  id: ExtendedAmunitions
+  name: research-technology-extended-amunitions
+  icon:
+    sprite: Objects/Weapons/Guns/Ammunition/Boxes/anti_materiel.rsi
+    state: base-b
+  discipline: Arsenal
+  tier: 2
+  cost: 10000
+  recipeUnlocks:
+  - BaseMagazinePistolCaselessRifleExtended
+  - MagazinePPSH41Extended
+  - MagazineMP5Extended
+  - MagazineMP7Extended
+  - MagazineP90
+  - MagazineM16A4Extended
+  - MagazineAR18Extended
+  - MagazineM28Extended
+  - MagazineG36Extended
+  - MagazineFamasExtended
+  - MagazineV31Extended
+  - MagazineBauer127Extended
+  - MagazineBR64Extended
+  - MagazineDragunovExtended # Sunrise-end
+
 - type: technology
   id: DraconicMunitions
   name: research-technology-draconic-munitions
@@ -170,7 +195,7 @@
 - type: technology
   id: EnergyBarriers
   name: research-technology-energy_barriers
-  icon: 
+  icon:
     sprite: Objects/Tools/EnergyDome/reinhardt.rsi
     state: icon
   discipline: Arsenal
@@ -178,7 +203,7 @@
   cost: 6000
   recipeUnlocks:
   - EnergyDomeDirectionalTurtle
-  
+
 - type: technology
   id: BasicShuttleArmament
   name: research-technology-basic-shuttle-armament
