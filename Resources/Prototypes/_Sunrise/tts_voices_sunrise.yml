@@ -303,3 +303,10 @@
   sex: Male
   speaker: hearthstone_zverolov_tavish
   provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneElisa
+  name: tts-voice-name-hearthstone-elisa
+  sex: Female
+  speaker: tts-voice-name-hearthstone-elisa
+  provider: sunrise
