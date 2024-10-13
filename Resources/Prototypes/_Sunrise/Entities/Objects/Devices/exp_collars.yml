@@ -1,0 +1,50 @@
+﻿- type: entity
+  parent: ClothingNeckBase
+  id: ExplosiveCollarBase
+  abstract: true
+  components:
+  - type: WiresVisuals
+  - type: UserInterface
+    interfaces:
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Wires
+    layoutId: ExplosiveCollar
+    alwaysRandomize: true
+  - type: Defusable
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 10.0
+    intesitySlope: 5
+    maxIntensity: 4
+  - type: ExplodeOnTrigger
+  - type: WiresPanel
+  - type: StaticPrice
+    price: 3000
+  - type: ExpCollar
+
+- type: entity
+  parent: ExplosiveCollarBase
+  id: ExplosiveCollarRed
+  name: red collar
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/red_collar.rsi
+    state: item
+  - type: Clothing
+    sprite: _Sunrise/Objects/Devices/red_collar.rsi
+  - type: ExpCollar
+    isHost: true
+
+- type: entity
+  parent: ExplosiveCollarBase
+  id: ExplosiveCollarWhite
+  name: white collar
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/white_collar.rsi
+    state: item
+  - type: Clothing
+    sprite: _Sunrise/Objects/Devices/white_collar.rsi
+
+# TODO: инструкция

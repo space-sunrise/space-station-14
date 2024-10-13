@@ -362,3 +362,21 @@
     Telecrystal: 12
   categories:
   - UplinkDisruption
+
+- type: listing
+  id: UplinkExplosiveCollarsKit
+  name: uplink-exp-collars-kit-name
+  description: uplink-exp-collars-kit-desc
+  icon:
+    sprite: _Sunrise/Objects/Devices/red_collar.rsi
+    state: item
+  productEntity: ExpCollarsKit
+  cost:
+    Telecrystal: 10
+  categories:
+  - UplinkExplosives
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
