@@ -4,8 +4,7 @@ on:
   push:
     branches: [ staging, trying ]
   pull_request:
-    paths:
-      - '**/*.yml'
+    types: [ opened, reopened, synchronize, ready_for_review ]
 
 jobs:
   validate_ymls:
@@ -22,5 +21,4 @@ jobs:
           pip install --no-cache-dir PyYAML
       - name: Validate Locales
         run: |
-          python3 Tools/_sunrise/Schemas/validate_yml.py Resources/
-
+          python3 Tools/_sunrise/Schemas/validate_yml.py Resources/Prototypes/

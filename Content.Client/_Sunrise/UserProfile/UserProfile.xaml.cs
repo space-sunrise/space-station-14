@@ -19,6 +19,8 @@ public sealed partial class UserProfile : Control
     private readonly IClientServiceAuthManager? _serviceAuthManager;
     private readonly ISharedSponsorsManager? _sponsorsManager;
 
+    private string _donateUrl = string.Empty;
+
     public UserProfile()
     {
         IoCManager.InjectDependencies(this);
@@ -27,7 +29,7 @@ public sealed partial class UserProfile : Control
         IoCManager.Instance!.TryResolveType(out _sponsorsManager);
         IoCManager.Instance!.TryResolveType(out _serviceAuthManager);
 
-        BuySponsorButton.Disabled = _cfg.GetCVar(SunriseCCVars.InfoLinksDonate) == "";
+        _cfg.OnValueChanged(SunriseCCVars.InfoLinksDonate, OnInfoLinksDonateChanged, true);
 
         if (_serviceAuthManager == null || _sponsorsManager == null)
             return;
@@ -41,6 +43,12 @@ public sealed partial class UserProfile : Control
         _sponsorsManager.LoadedSponsorData += RefreshSponsorData;
     }
 
+    private void OnInfoLinksDonateChanged(string url)
+    {
+        BuySponsorButton.Disabled = url == "";
+        _donateUrl = url;
+    }
+
     private void RefreshSponsorData()
     {
         if (_sponsorsManager == null)
@@ -48,11 +56,15 @@ public sealed partial class UserProfile : Control
 
         if (_playerManager.LocalSession != null)
         {
-            if (!_sponsorsManager.ClientIsSponsor())
-                return;
-
-            _sponsorsManager.TryGetOocTitle(_playerManager.LocalSession.UserId, out var sponsorTitle);
-            SponsorTierName.Text = sponsorTitle;
+            if (_sponsorsManager.ClientIsSponsor())
+            {
+                _sponsorsManager.TryGetOocTitle(_playerManager.LocalSession.UserId, out var sponsorTitle);
+                SponsorTierName.Text = sponsorTitle;
+            }
+            else
+            {
+                SponsorTierName.Text = Loc.GetString("user-profile-no-sponsor");
+            }
         }
     }
 
@@ -79,7 +91,7 @@ public sealed partial class UserProfile : Control
 
     private void BuySponsorPressed(BaseButton.ButtonEventArgs obj)
     {
-        _uri.OpenUri(_cfg.GetCVar(SunriseCCVars.InfoLinksDonate));
+        _uri.OpenUri(_donateUrl);
     }
 
     private void LinkTelegramPressed(BaseButton.ButtonEventArgs obj)

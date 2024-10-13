@@ -7,40 +7,40 @@
         <BoxContainer Orientation="Horizontal" SeparationOverride="2" HorizontalExpand="True">
             <customControls:VSeparator/>
             <BoxContainer Orientation="Vertical" HorizontalExpand="True">
-                <Label Text="{Loc 'Спонсорство'}" StyleClasses="LabelHeadingBigger" HorizontalAlignment="Center"/>
+                <Label Text="{Loc 'user-profile-sponsor-title'}" StyleClasses="LabelHeadingBigger" HorizontalAlignment="Center"/>
                 <GridContainer Columns="2"
                                HorizontalAlignment="Center"
                                VerticalExpand="True"
                                VerticalAlignment="Top"
                                Margin="5 5 5 5">
-                    <Label Text="{Loc 'Уровень: '}" StyleClasses="LabelKeyText"/>
+                    <Label Text="{Loc 'user-profile-level'}" StyleClasses="LabelKeyText"/>
                     <Label Name="SponsorTierName" />
                 </GridContainer>
                 <GridContainer Columns="2"
                                HorizontalAlignment="Center"
                                VerticalExpand="True"
                                VerticalAlignment="Top">
-                    <Button Name="InfoSponsorButton" Text="Информация" Disabled="True" />
-                    <Button Name="BuySponsorButton" Text="Приобрести" />
+                    <Button Name="InfoSponsorButton" Text="{Loc 'user-profile-sponsor-info-button'}" Disabled="True" />
+                    <Button Name="BuySponsorButton" Text="{Loc 'user-profile-sponsor-buy-button'}" />
                 </GridContainer>
             </BoxContainer>
             <customControls:VSeparator/>
             <BoxContainer Orientation="Vertical" HorizontalExpand="True">
-                <Label Text="{Loc 'Соц.сети'}" StyleClasses="LabelHeadingBigger" HorizontalAlignment="Center"/>
+                <Label Text="{Loc 'user-profile-social-links'}" StyleClasses="LabelHeadingBigger" HorizontalAlignment="Center"/>
                 <GridContainer Columns="2"
                                HorizontalAlignment="Center"
                                VerticalExpand="True"
                                VerticalAlignment="Top"
                                Margin="5 5 5 5">
-                    <Label Text="{Loc 'Discord:'}" StyleClasses="LabelKeyText"/>
+                    <Label Text="{Loc 'user-profile-service-discord'}" StyleClasses="LabelKeyText"/>
                     <BoxContainer Orientation="Horizontal">
                         <Label Name="LinkedDiscordName" />
-                        <Button Name="LinkDiscordButton" Text="Подвязать"/>
+                        <Button Name="LinkDiscordButton" Text="{Loc 'user-profile-service-link'}"/>
                     </BoxContainer>
-                    <Label Text="{Loc 'Telegram:'}" StyleClasses="LabelKeyText"/>
+                    <Label Text="{Loc 'user-profile-service-telegram'}" StyleClasses="LabelKeyText"/>
                     <BoxContainer Orientation="Horizontal" >
                         <Label Name="LinkedTelegramName" />
-                        <Button Name="LinkTelegramButton" Text="Подвязать"/>
+                        <Button Name="LinkTelegramButton" Text="{Loc 'user-profile-service-link'}"/>
                     </BoxContainer>
                 </GridContainer>
             </BoxContainer>
