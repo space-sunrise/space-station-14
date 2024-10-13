@@ -136,41 +136,41 @@
           desc: I kind of do.
           state: Planned
         skills:
-          name: Система навыков
-          desc: Система не позволяющая сделать то или инное действие если у вас нет определённого навыка.
+          name: Skill System
+          desc: A system that prevents you from doing something if you don't have a certain skill.
           state: Planned
         space-fight:
-          name: Режим космической битвы
-          desc: Ну типа да.
+          name: Space Fight Mode
+          desc: I kind of do.
           state: Planned
         spider-terror:
-          name: Пауки ужаса
-          desc: Ну типа да.
+          name: Spider Terror
+          desc: I kind of do.
           state: Planned
         wizards:
-          name: Режим магов
-          desc: Ну типа да.
+          name: Wizard Mode
+          desc: I kind of do.
           state: Planned
         morph:
-          name: Морф
-          desc: Ну типа да.
+          name: Morph
+          desc: I kind of do.
           state: Planned
         diseases:
-          name: Болезни
-          desc: Оживление вирусологии, вы сможете реально получить спид, как соник.
+          name: Diseases
+          desc: Revitalising virology, you can actually get speed as a sonic.
           state: Planned
         plasmamens:
-          name: Раса плазмаменов
-          desc: Раса крутых плазменных чувачков.
+          name: A race of plasmamens
+          desc: A race of cool plasma dudes.
           state: Planned
         centcomm-update:
-          name: Обновление ЦК
-          desc: Обновление карты центрального коммандования и возможное обновление ролей.
+          name: Centcomm Update
+          desc: Central Command map update and possible role update.
           state: Planned
     2026:
       name: 2026
       goals:
         ratvar:
-          name: Культ Ратвара
-          desc: Культ поклоняющийся механическому богу.
+          name: Ratvar Cult
+          desc: A cult worshipping a mechanical god.
           state: Planned
