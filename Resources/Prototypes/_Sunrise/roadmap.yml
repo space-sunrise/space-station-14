@@ -108,42 +108,42 @@
       name: 2025
       goals:
         mail:
-          name: Почта
-          desc: Отправка поссылок в разные части станции за которые станция будет получать деньги.
+          name: Mail
+          desc: Sending parcels to different parts of the station for which the station will receive money.
           state: InProgress
-        mech:
-          name: Мехи
-          desc: Ну типа да.
+        mechs:
+          name: Mechs
+          desc: Controlled mechanoids, created to work in difficult places, as well as in facilitating the transportation of goods and other tasks where man himself can not cope.
           state: Partial
         ai:
-          name: ИИ
-          desc: Новая профессия искуственного интелекта нацеленная на помощь станции в уничтожении самих себя?
+          name: AI
+          desc: A new artificial intelligence profession aimed at helping the station destroy itself?
           state: Partial
         borer:
-          name: Мозговой червь
-          desc: Антагонист залазящий в мозги живых существ и захватывающий их разум.
+          name: Brainworm
+          desc: An antagonist climbing into the brains of living beings and taking over their minds.
           state: Planned
         lavaland:
-          name: Лаваленд
-          desc: Отдельное измерение где шахтёры будут добывать ресурсы для станции.
+          name: Lavalend
+          desc: A separate dimension where miners will extract resources for the station.
           state: Planned
         angels:
-          name: Раса ангелов
-          desc: Ну типа да.
+          name: A race of angels
+          desc: I kind of do.
           state: Planned
         impids:
-          name: Раса импидов
-          desc: Ну типа да.
+          name: A race of impids
+          desc: I kind of do.
           state: Planned
         skills:
           name: Система навыков
           desc: Система не позволяющая сделать то или инное действие если у вас нет определённого навыка.
           state: Planned
-        space_fight:
+        space-fight:
           name: Режим космической битвы
           desc: Ну типа да.
           state: Planned
-        spider_terror:
+        spider-terror:
           name: Пауки ужаса
           desc: Ну типа да.
           state: Planned
@@ -163,7 +163,7 @@
           name: Раса плазмаменов
           desc: Раса крутых плазменных чувачков.
           state: Planned
-        centcomm_update:
+        centcomm-update:
           name: Обновление ЦК
           desc: Обновление карты центрального коммандования и возможное обновление ролей.
           state: Planned
