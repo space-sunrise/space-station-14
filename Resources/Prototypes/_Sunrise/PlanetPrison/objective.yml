@@ -14,8 +14,8 @@
   categories: [ HideSpawnMenu ]
   parent: [BasePlanetPrisonerObjective, BaseLivingObjective]
   id: PlanetPrisonerEscapeObjective
-  name: Сбежать с планетарной тюрьмы.
-  description: Вам нужно выбраться из комплекса содержания и убежать как можно дальше, возможно вам удастся скрыться.
+  name: Escape from planet prison
+  description: You need to get out of the containment complex and run as far away as possible, you may be able to escape.
   components:
   - type: Objective
     difficulty: 1.0
