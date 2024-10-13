@@ -3,6 +3,7 @@
   abstract: true
   categories: [ HideSpawnMenu ]
   components:
+  - type: Magboots
   - type: Mech
     equipmentWhitelist:
       tags:
@@ -102,10 +103,10 @@
     - DoorBumpOpener
     - FootstepSound
   - type: Pullable
-  - type: Physics
-    bodyType: KinematicController
   - type: Clickable
   - type: WiresPanel
+  - type: Physics
+    bodyType: Dynamic
   - type: Fixtures
     fixtures:
       fix1:
@@ -145,6 +146,7 @@
         node: start
       - !type:DoActsBehavior
         acts: ["Destruction"]
+  - type: Prying
 
 # Ripley MK-I
 - type: entity
@@ -157,6 +159,7 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: ripley
@@ -180,6 +183,10 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.25
     baseSprintSpeed: 3.6
+  - type: Reflect
+    reflectProb: 0.05
+    reflects:
+    - NonEnergy
 
 - type: entity
   id: MechRipleyBattery
@@ -189,7 +196,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHigh
+      - PowerCageSmall
 
 # Ripley MK-II
 - type: entity
@@ -202,6 +209,7 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: ripleymkii
@@ -228,6 +236,10 @@
     baseSprintSpeed: 2
   - type: Damageable
     damageModifierSet: MediumArmorNT
+  - type: Reflect
+    reflectProb: 0.15
+    reflects:
+    - NonEnergy
 
 - type: entity
   id: MechRipley2Battery
@@ -237,7 +249,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHigh
+      - PowerCageSmall
 
 # Clarke
 - type: entity
@@ -250,6 +262,7 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: clarke
@@ -276,6 +289,10 @@
     baseSprintSpeed: 4.5
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
+  - type: Reflect
+    reflectProb: 0.15
+    reflects:
+    - NonEnergy
 
 - type: entity
   id: MechClarkeBattery
@@ -285,7 +302,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHigh
+      - PowerCageSmall
 
 # H.O.N.K.
 - type: entity
@@ -298,6 +315,7 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: honker
@@ -313,6 +331,10 @@
     pilotWhitelist:
       components:
       - HumanoidAppearance
+  - type: Reflect
+    reflectProb: 0.05
+    reflects:
+    - NonEnergy
 
 - type: entity
   parent: MechHonker
@@ -322,7 +344,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHigh
+      - PowerCageSmall
 
 - type: entity
   parent: MechHonkerBattery
@@ -346,6 +368,7 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: hamtr
@@ -372,6 +395,10 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.4
     baseSprintSpeed: 3.7
+  - type: Reflect
+    reflectProb: 0.05
+    reflects:
+    - NonEnergy
 
 - type: entity
   parent: MechHamtr
@@ -381,7 +408,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHigh
+      - PowerCageSmall
 
 # Vim!!!!!!!
 
@@ -395,6 +422,7 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: vim
@@ -438,6 +466,10 @@
   - type: Access
     tags:
     - Maintenance
+  - type: Reflect
+    reflectProb: 0.05
+    reflects:
+    - NonEnergy
   # TOOD: buzz / chime actions
   # TODO: builtin flashlight
 
@@ -449,7 +481,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHigh
+      - PowerCageSmall
 
 # Combat-Station Mechs
 
@@ -464,6 +496,7 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: gygax
@@ -489,6 +522,10 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 2.6
+  - type: Reflect
+    reflectProb: 0.15
+    reflects:
+    - NonEnergy
 
 - type: entity
   id: MechGygaxBattery
@@ -498,7 +535,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHigh
+      - PowerCageHigh
 
 # Durand
 - type: entity
@@ -511,6 +548,7 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: durand
@@ -544,6 +582,10 @@
   - type: Repairable
     fuelCost: 30
     doAfterDelay: 15
+  - type: Reflect
+    reflectProb: 0.15
+    reflects:
+    - NonEnergy
 
 - type: entity
   id: MechDurandBattery
@@ -553,7 +595,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHigh
+      - PowerCageHigh
 
 # Nanotrasen Combat Mechs
 
@@ -568,6 +610,7 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: marauder
@@ -602,6 +645,10 @@
   - type: Repairable
     fuelCost: 30
     doAfterDelay: 15
+  - type: Reflect
+    reflectProb: 0.3
+    reflects:
+    - NonEnergy
 
 - type: entity
   id: MechMarauderBattery
@@ -611,7 +658,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHyper
+      - PowerCageHigh
 
 - type: entity
   id: MechMarauderFilled
@@ -636,6 +683,7 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: seraph
@@ -670,6 +718,10 @@
   - type: Repairable
     fuelCost: 30
     doAfterDelay: 20
+  - type: Reflect
+    reflectProb: 0.3
+    reflects:
+    - NonEnergy
 
 - type: entity
   id: MechSeraphBattery
@@ -679,7 +731,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellAntiqueProto
+      - PowerCageHigh
 
 - type: entity
   id: MechSeraphFilled
@@ -707,6 +759,7 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: darkgygax
@@ -741,6 +794,10 @@
   - type: Repairable
     fuelCost: 40
     doAfterDelay: 20
+  - type: Reflect
+    reflectProb: 0.25
+    reflects:
+    - NonEnergy
 
 - type: entity
   id: MechGygaxSyndieBattery
@@ -750,7 +807,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHyper
+      - PowerCageHigh
 
 - type: entity
   id: MechGygaxSyndieFilled
@@ -775,6 +832,7 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: mauler
@@ -809,6 +867,10 @@
   - type: Repairable
     fuelCost: 50
     doAfterDelay: 25
+  - type: Reflect
+    reflectProb: 0.35
+    reflects:
+    - NonEnergy
 
 - type: entity
   id: MechMaulerSyndieBattery
@@ -818,7 +880,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHyper
+      - PowerCageHigh
 
 - type: entity
   id: MechMaulerSyndieFilled

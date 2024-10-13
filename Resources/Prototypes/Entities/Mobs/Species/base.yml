@@ -240,6 +240,7 @@
   # Sunrise-Start
   - type: Carriable
   - type: CanEscapeInventory
+  - type: LayingDown
   # Sunrise-End
   - type: Barotrauma
     damage:

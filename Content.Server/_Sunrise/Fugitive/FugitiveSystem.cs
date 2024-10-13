@@ -138,10 +138,7 @@ namespace Content.Server._Sunrise.Fugitive
                 _roleSystem.MindTryRemoveRole<FugitiveRoleComponent>(mindId);
             }
 
-            _roleSystem.MindAddRole(mindId, new FugitiveRoleComponent
-            {
-                PrototypeId = AntagRole,
-            });
+            _roleSystem.MindAddRole(mindId, "MindRoleFugitive");
 
             _mindSystem.TryAddObjective(mindId, mind, EscapeObjective);
 

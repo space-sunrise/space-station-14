@@ -1,8 +1,10 @@
 using Content.Shared._Sunrise.Eye.NightVision.Components;
+using Content.Shared.PowerCell;
 using Content.Shared.Inventory;
 using Content.Shared.Actions;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Toggleable;
+using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using JetBrains.Annotations;
@@ -11,11 +13,13 @@ namespace Content.Shared._Sunrise.Eye.NightVision.Systems;
 
 public sealed class NightVisionDeviceSystem : EntitySystem
 {
+    [Dependency] private readonly SharedPowerCellSystem _powerCell = default!;
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly SharedPointLightSystem _light = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {
@@ -57,6 +61,12 @@ public sealed class NightVisionDeviceSystem : EntitySystem
     {
         if (args.Handled)
             return;
+        
+        if (ent.Comp.isPowered && !_powerCell.HasDrawCharge(ent.Owner))
+        {
+            _popup.PopupClient(Loc.GetString("base-computer-ui-component-not-powered", ("machine", ent.Owner)), args.Performer, args.Performer);
+            return;
+        }
 
         var updVisEv = new NightVisionDeviceUpdateVisualsEvent();
         RaiseLocalEvent(ent, ref updVisEv);

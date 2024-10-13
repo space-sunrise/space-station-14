@@ -1,7 +1,7 @@
 - type: entity
   name: NVD
   id: ClothingEyesNVD
-  parent: BaseItem
+  parent: [BaseItem, PowerCellSlotSmallItem]
   description: Night vision device. Provides an image of the terrain in low-light conditions.
   components:
   - type: Item
@@ -32,8 +32,13 @@
     energy: 0.5
   - type: Appearance
   - type: NightVisionDevice
+    isPowered: true
     displayColor: "#82eb6c"
     displayShader: NVDDisplay
+  - type: PowerCellDraw
+    drawRate: 0
+    useRate: 20
+  - type: ToggleCellDraw
 
 - type: entity
   parent: [ClothingEyesNVD,ShowSecurityIcons]
@@ -52,6 +57,7 @@
         map: [ "enum.NVDVisuals.Light" ]
   - type: ShowSyndicateIcons
   - type: NightVisionDevice
+    isPowered: true
     displayColor: "#ff6e6e"
     displayShader: NVDDisplay
 
@@ -71,5 +77,9 @@
         shader: unshaded
         map: [ "enum.NVDVisuals.Light" ]
   - type: NightVisionDevice
+    isPowered: true
     displayColor: "#f2fa5c"
     displayShader: NVDDisplay
+  - type: PowerCellDraw
+    drawRate: 0
+    useRate: 50

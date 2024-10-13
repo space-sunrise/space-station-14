@@ -59,20 +59,23 @@ public sealed class SunriseCCVars
         CVarDef.Create("discord.ban_webhook", string.Empty, CVar.SERVERONLY);
 
     /*
-     * Discord Auth
+     * Service Authorization
      */
 
-    public static readonly CVarDef<bool> DiscordAuthEnabled =
-        CVarDef.Create("discord_auth.enabled", false, CVar.SERVERONLY);
+    public static readonly CVarDef<bool> ServiceAuthEnabled =
+        CVarDef.Create("service_auth.enabled", false, CVar.SERVERONLY);
 
-    public static readonly CVarDef<string> DiscordAuthApiUrl =
-        CVarDef.Create("discord_auth.api_url", "", CVar.SERVERONLY);
+    public static readonly CVarDef<string> ServiceAuthApiUrl =
+        CVarDef.Create("service_auth.api_url", "", CVar.SERVERONLY);
 
-    public static readonly CVarDef<string> DiscordAuthApiToken =
-        CVarDef.Create("discord_auth.api_token", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+    public static readonly CVarDef<string> ServiceAuthApiToken =
+        CVarDef.Create("service_auth.api_token", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
 
-    public static readonly CVarDef<bool> DiscordAuthCheckMember =
-        CVarDef.Create("discord_auth.check_member", false, CVar.SERVERONLY);
+    public static readonly CVarDef<bool> ServiceAuthCheckTelegramMember =
+        CVarDef.Create("service_auth.check_telegram_member", false, CVar.SERVERONLY);
+
+    public static readonly CVarDef<bool> ServiceAuthCheckDiscordMember =
+        CVarDef.Create("service_auth.check_discord_member", false, CVar.SERVERONLY);
 
     /*
      * GodMode RoundEnd
@@ -164,11 +167,21 @@ public sealed class SunriseCCVars
     public static readonly CVarDef<bool> TapePlayerClientEnabled =
         CVarDef.Create("tape_player.client_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
+    /*
+     * INFOLINKS
+     */
+
     /// <summary>
     /// Link to boosty to show in the launcher.
     /// </summary>
     public static readonly CVarDef<string> InfoLinksDonate =
         CVarDef.Create("infolinks.donate", "", CVar.SERVER | CVar.REPLICATED);
+
+    /// <summary>
+    /// Link to Telegram channel to show in the launcher.
+    /// </summary>
+    public static readonly CVarDef<string> InfoLinksTelegram =
+        CVarDef.Create("infolinks.telegram", "", CVar.SERVER | CVar.REPLICATED);
 
     /**
      * Lobby

@@ -253,3 +253,47 @@
   sex: Male
   speaker: cb_announcer
   provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneLordOfThunder
+  name: tts-voice-name-hearthstone-lord-of-thunder
+  sex: Male
+  speaker: hearthstone_lord_of_thunder
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneTekahn
+  name: tts-voice-name-hearthstone-tekahn
+  sex: Male
+  speaker: hearthstone_tekahn
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneAhun
+  name: tts-voice-name-hearthstone-ahun
+  sex: Male
+  speaker: hearthstone_ahun
+  provider: sunrise
+  roundStart: false # ужасное качество
+
+- type: ttsVoice
+  id: HearthstoneFinli
+  name: tts-voice-name-hearthstone-finli
+  sex: Male
+  speaker: hearthstone_finli
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneBrann
+  name: tts-voice-name-hearthstone-brann
+  sex: Male
+  speaker: hearthstone_brann
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneReno
+  name: tts-voice-name-hearthstone-reno
+  sex: Male
+  speaker: hearthstone_reno
+  provider: sunrise
+

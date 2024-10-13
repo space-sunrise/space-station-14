@@ -623,11 +623,84 @@
     state: plushie-smile
 
 - type: entity
+  id: EmitMeow
+  abstract: true
+  components:
+  - type: MeleeWeapon
+    soundHit:
+      collection: CatMeows
+      params:
+        volume: 100
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: CatMeows
+  - type: EmitSoundOnCollide
+    sound:
+      collection: CatMeows
+  - type: EmitSoundOnUse
+    sound:
+      collection: CatMeows
+  - type: EmitSoundOnLand
+    sound:
+      collection: CatMeows
+  - type: EmitSoundOnActivate
+    sound:
+      collection: CatMeows
+
+- type: entity
   id: PlushieCFB
-  parent: BasePlushie
+  parent:
+  - EmitMeow
+  - BasePlushie
   name: Виктория Белая
   description: Персона в строгом костюме сотрудника ПНТ. Постоянно карает и не щадит. Любит баловаться и мяукать.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
     state: plushie-CFB
+
+- type: entity
+  id: PlushieSebastian
+  parent: BasePlushie
+  name: Плюшевый Командир Себастиан Хейз
+  description: На самом деле он агент, который забыл что нужно действовать скрытно.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-sebastian
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieNara
+  name: На-Ра
+  description: Из дормиториев только что вышел нуарный унатх.
+  components:
+  - type: Sprite
+    state: plushie-nara
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Sunrise/papich_naaa.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Sunrise/papich_naaa.ogg
+  - type: UseDelay
+    delay: 20.0
+
+- type: entity
+  parent: BasePlushie
+  id: PlushiePeacemaker
+  name: Миротворец
+  description: Там где он, там мир, но там где война, там он несëт смерть.
+  components:
+  - type: Sprite
+    state: plushie-peacemaker
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Sunrise/vizhu_pidorasa.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Sunrise/vizhu_pidorasa.ogg
+  - type: UseDelay
+    delay: 20.0

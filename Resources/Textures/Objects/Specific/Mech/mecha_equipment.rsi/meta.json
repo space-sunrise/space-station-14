@@ -183,6 +183,12 @@
           0.1
         ]
       ]
+    },
+    {
+      "name": "mecha_xray"
+    },
+    {
+      "name": "mecha_amlg90"
     }
   ]
 }
