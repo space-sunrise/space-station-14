@@ -20,6 +20,8 @@ using Content.Server.Body.Systems;
 using Content.Shared.Tools.Systems;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.NPC.Components;
+using Content.Shared.NPC.Systems;
 using Content.Shared.Tag;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
@@ -32,6 +34,7 @@ namespace Content.Server.Mech.Systems;
 /// <inheritdoc/>
 public sealed partial class MechSystem : SharedMechSystem
 {
+    [Dependency] private readonly NpcFactionSystem _faction = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
     [Dependency] private readonly BatterySystem _battery = default!;
@@ -240,14 +243,11 @@ public sealed partial class MechSystem : SharedMechSystem
             return;
         }
         
-        if (!TryComp<HandsComponent>(args.Args.User, out var handsComponent))
-            return;
-        
-        foreach (var hand in _hands.EnumerateHands(args.Args.User, handsComponent))
-        {
-            _hands.DoDrop(args.Args.User, hand, true, handsComponent);
-        }
+        if (TryComp<HandsComponent>(args.Args.User, out var handsComponent))
+            foreach (var hand in _hands.EnumerateHands(args.Args.User, handsComponent))
+                _hands.DoDrop(args.Args.User, hand, true, handsComponent);
 
+        _factionSystem.Up(args.Args.User, uid);
         TryInsert(uid, args.Args.User, component);
         _actionBlocker.UpdateCanMove(uid);
 
@@ -259,6 +259,7 @@ public sealed partial class MechSystem : SharedMechSystem
         if (args.Cancelled || args.Handled)
             return;
 
+        RemComp<NpcFactionMemberComponent>(uid);
         TryEject(uid, component);
 
         args.Handled = true;

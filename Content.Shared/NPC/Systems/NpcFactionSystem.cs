@@ -80,6 +80,23 @@ public sealed partial class NpcFactionSystem : EntitySystem
 
         return ent.Comp.Factions.Contains(faction);
     }
+    
+    public void Up(EntityUid from, EntityUid to)
+    {
+        if (TryComp<NpcFactionMemberComponent>(from, out var fromFaction))
+        {
+            if (TryComp<NpcFactionMemberComponent>(to, out var toFaction))
+            {
+                _serialization.CopyTo(fromFaction, ref toFaction, notNullableOverride: true);
+            }
+            else
+            {
+                var newComp = new NpcFactionMemberComponent();
+                _serialization.CopyTo(fromFaction, ref newComp, notNullableOverride: true);
+                AddComp<NpcFactionMemberComponent>(to, newComp);
+            }
+        }
+    }
 
     /// <summary>
     /// Adds this entity to the particular faction.

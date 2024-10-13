@@ -40,6 +40,8 @@ public partial class MobStateSystem : EntitySystem
     {
         if (!_mobStateQuery.Resolve(target, ref component, false))
             return false;
+        if (TryComp<MechComponent>(target, out var mech))
+            return !mech.Broken;
         return component.CurrentState == MobState.Alive;
     }
 
