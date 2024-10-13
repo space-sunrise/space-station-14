@@ -324,3 +324,10 @@
   sex: Male
   speaker: hearthstone_sotis
   provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneMediv
+  name: tts-voice-name-hearthstone-mediv
+  sex: Male
+  speaker: hearthstone_mediv
+  provider: sunrise
