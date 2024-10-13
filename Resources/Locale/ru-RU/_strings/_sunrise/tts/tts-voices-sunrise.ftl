@@ -33,3 +33,4 @@ tts-voice-name-hearthstone-tekahn = (NEW) [Hearthstone] Текан
 tts-voice-name-hearthstone-finli = (NEW) [Hearthstone] Финли
 tts-voice-name-hearthstone-brann = (NEW) [Hearthstone] Бранн
 tts-voice-name-hearthstone-reno = (NEW) [Hearthstone] Рено
+tts-voice-name-hearthstone-zverolov-tavish = (NEW) [Hearthstone] Зверолов Тавиш

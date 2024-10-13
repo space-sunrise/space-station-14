@@ -297,3 +297,9 @@
   speaker: hearthstone_reno
   provider: sunrise
 
+- type: ttsVoice
+  id: HearthstoneZverolovTavish
+  name: tts-voice-name-hearthstone-zverolov-tavish
+  sex: Male
+  speaker: hearthstone_zverolov_tavish
+  provider: sunrise
