@@ -39,7 +39,7 @@ def check_yml(yml_path: str):
         add_error(yml_path, -1, f"Ошибка чтения файла: {e}")
 
 def filter_and_check(content: List[str], yml_path: str):
-    key_pattern = re.compile(r'^(name|description|suffix|rules):\s*(.+)')
+    key_pattern = re.compile(r'^(name|description|suffix|rules|desc):\s*(.+)')
 
     for i, line in enumerate(content, start=1):
         match = key_pattern.match(line.strip())
