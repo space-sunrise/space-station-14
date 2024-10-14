@@ -1,6 +1,7 @@
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Mech.Components;
 using Content.Shared.Standing;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
