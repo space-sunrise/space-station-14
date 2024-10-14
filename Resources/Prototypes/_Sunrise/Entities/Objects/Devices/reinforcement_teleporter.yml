@@ -6,8 +6,8 @@
   suffix: NukeOps
   components:
   - type: GhostRole
-    name: Медицинский борг синдиката
-    description: Смерть НТ.
+    name: ghost-role-information-syndicate-medical-cyborg-name
+    description: ghost-role-information-syndicate-medical-cyborg-description
     rules: Normal syndicate antagonist rules apply. Work with whoever called you in, and don't harm them.
     raffle:
       settings: default
@@ -22,8 +22,8 @@
   suffix: NukeOps
   components:
   - type: GhostRole
-    name: Борг синдиката "Жнец"
-    description: Смерть НТ.
+    name: ghost-role-information-syndicate-reaper-cyborg-name
+    description: ghost-role-information-syndicate-reaper-cyborg-description
     rules: Normal syndicate antagonist rules apply. Work with whoever called you in, and don't harm them.
     raffle:
       settings: default
@@ -54,8 +54,8 @@
   suffix: NukeOps
   components:
   - type: GhostRole
-    name: Тяжелый боевой борг синдиката
-    description: Смерть НТ.
+    name: ghost-role-information-syndicate-heavy-cyborg-name
+    description: ghost-role-information-syndicate-heavy-cyborg-description
     rules: Normal syndicate antagonist rules apply. Work with whoever called you in, and don't harm them.
     raffle:
       settings: default
@@ -70,8 +70,8 @@
   suffix: NukeOps
   components:
   - type: GhostRole
-    name: Диверсионный борг синдиката
-    description: Смерть НТ.
+    name: ghost-role-information-syndicate-spider-cyborg-name
+    description: ghost-role-information-syndicate-spider-cyborg-name
     rules: Normal syndicate antagonist rules apply. Work with whoever called you in, and don't harm them.
     raffle:
       settings: default
