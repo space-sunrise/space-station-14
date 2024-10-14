@@ -530,7 +530,7 @@
   - type: Appearance
 
 - type: entity
-  name: Пистолет-пулёмет SIAR-52
+  name: SIAR-52 SMG
   parent: BaseWeaponSubMachineGun
   id: WeaponSIAR52
   description: A high rate of fire weapon, equipped with integrated silencer.
