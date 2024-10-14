@@ -438,9 +438,11 @@ namespace Content.Server.GameTicking
                     PlayerICName = playerIcName,
                     PlayerGuid = userId,
                     PlayerNetEntity = GetNetEntity(entity),
-                    Role = antag
-                        ? roles.First(role => role.Antagonist).Name
-                        : roles.FirstOrDefault().Name ?? Loc.GetString("game-ticker-unknown-role"),
+                    Role = roles.Any()
+                        ? (antag
+                            ? roles.FirstOrDefault(role => role.Antagonist).Name
+                            : roles.FirstOrDefault(role => !role.Antagonist).Name) ?? Loc.GetString("game-ticker-unknown-role")
+                        : Loc.GetString("game-ticker-unknown-role"),
                     Antag = antag,
                     JobPrototypes = roles.Where(role => !role.Antagonist).Select(role => role.Prototype).ToArray(),
                     AntagPrototypes = roles.Where(role => role.Antagonist).Select(role => role.Prototype).ToArray(),
