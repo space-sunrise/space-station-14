@@ -1,2 +1,4 @@
-﻿uplink-exp-collars-kit-name = Потом придумаю
-uplink-exp-collars-kit-desc = Заебало
+﻿uplink-exp-collars-kit-name = Набор с взрывными ошейниками
+uplink-exp-collars-kit-desc = Набор включает два взрывных ошейника и свадебный букет. Если соединить ошейники, то при смерти носителя красного ошейника они оба взорвутся.
+uplink-bouquet-name = Букет
+uplink-bouquet-desc = Красивый набор цветов, соответствующий последним стандартам Синдиката.

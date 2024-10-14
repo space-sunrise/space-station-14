@@ -18,19 +18,25 @@ public sealed partial class ExpCollarComponent : Component
     /// <summary>
     /// Привязанные ошейники
     /// </summary>
-    [DataField]
+    [DataField(readOnly: true)]
     public List<EntityUid> Linked = new();
 
     /// <summary>
     /// Взведен ли механизм
     /// </summary>
-    [DataField]
+    [DataField(readOnly: true)]
     public bool Armed;
 
-    [DataField]
+    /// <summary>
+    /// Звук
+    /// </summary>
+    [DataField(readOnly: true)]
     public SoundSpecifier BeepSound;
 
-    [DataField]
+    /// <summary>
+    /// Сколько урона наносится при взрыве носителю
+    /// </summary>
+    [DataField(readOnly: true)]
     public DamageSpecifier Damage;
 
     /// <summary>
@@ -45,11 +51,21 @@ public sealed partial class ExpCollarComponent : Component
     [DataField(readOnly: true)]
     public EntityUid? Wearer;
 
+    /// <summary>
+    /// Разница между временем сколько снимает ошейник носитель и сосед если он не взведен
+    /// </summary>
     [DataField(readOnly: true)]
     public TimeSpan InitialStripDelay = TimeSpan.FromSeconds(0);
 
+    /// <summary>
+    /// Разница между временем сколько снимает ошейник носитель и сосед если он взведен
+    /// </summary>
     [DataField(readOnly: true)]
     public TimeSpan ArmedStripDelay = TimeSpan.FromSeconds(30);
 
+    /// <summary>
+    /// Идет ли асинхронная функция кулдауна на ошейнике
+    /// </summary>
+    [DataField(readOnly: true)]
     public bool ActiveCooldown;
 }

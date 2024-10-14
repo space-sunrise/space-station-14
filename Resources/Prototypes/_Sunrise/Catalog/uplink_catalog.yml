@@ -380,3 +380,16 @@
     blacklist:
       tags:
       - NukeOpsUplink
+
+- type: listing
+  id: UplinkBouquet
+  name: uplink-bouquet-name
+  description: uplink-bouquet-desc
+  icon:
+    sprite: _Sunrise/Objects/Misc/bouquet.rsi
+    state: item
+  productEntity: Bouquet
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkPointless

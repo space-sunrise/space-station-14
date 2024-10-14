@@ -13,8 +13,6 @@
     intesitySlope: 5
     maxIntensity: 4
   - type: ExplodeOnTrigger
-  - type: StaticPrice
-    price: 3000
   - type: ExpCollar
     initialStripDelay: 0
     armedStripDelay: 30
@@ -24,6 +22,8 @@
       groups:
         Brute: 300
         Burn: 300
+  - type: StaticPrice
+    price: 3000
 
 - type: entity
   parent: ExplosiveCollarBase

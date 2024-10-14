@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using Content.Server.Body.Systems;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Popups;
 using Content.Shared.Clothing;
@@ -19,9 +18,6 @@ namespace Content.Server._Sunrise.ExpCollars;
 
 /// <summary>
 /// Система для взрывного ошейника.
-/// Мне не нравится что органы гибаются
-/// Надо убрать болты
-/// Мне не нравится что попапы идут одновременно
 /// </summary>
 public sealed class ExpCollarsSystem : EntitySystem
 {
@@ -33,19 +29,15 @@ public sealed class ExpCollarsSystem : EntitySystem
     [Dependency] private readonly ClothingSystem _clothing = default!;
     [Dependency] private readonly TagSystem _tag = default!;
 
-    private ISawmill _sawmill = default!;
-
     /// <inheritdoc/>
     public override void Initialize()
     {
-        _sawmill = Logger.GetSawmill("expcollarsystem");
-
         SubscribeLocalEvent<ExpCollarComponent, AfterInteractEvent>(OnInteraction);
+        SubscribeLocalEvent<ExpCollarUserComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<ExpCollarComponent, ClothingGotEquippedEvent>(OnEquipped);
         SubscribeLocalEvent<ExpCollarComponent, ClothingGotUnequippedEvent>(OnUnequipped);
-        SubscribeLocalEvent<ExpCollarComponent, ComponentShutdown>(OnShutdown);
-        SubscribeLocalEvent<ExpCollarUserComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<ExpCollarComponent, ComponentInit>(OnComponentInit);
+        SubscribeLocalEvent<ExpCollarComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<ExpCollarComponent, ExaminedEvent>(OnExamined);
     }
 
