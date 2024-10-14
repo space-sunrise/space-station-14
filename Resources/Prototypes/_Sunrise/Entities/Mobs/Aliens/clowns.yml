@@ -127,7 +127,7 @@
     interval: 10
     
 - type: entity
-  parent: [ BaseSimpleMob, MobCombat, MobBloodstream, MobFlammable ]
+  parent: [ BaseSimpleMob, MobCombat, MobBloodstream, MobFlammable, StripableInventoryBase ]
   id: MobClownHulk
   name: clown champion
   description: A BiG JoKe! Just try crossing him, and he'll cross you in his HuGe ShOeS.
@@ -150,7 +150,7 @@
     defaultRotation: 90
     horizontalRotation: 90
   - type: Stamina
-    critThreshold: 350
+    critThreshold: 200
   - type: Physics
     bodyType: Dynamic
   - type: SleepEmitSound
@@ -223,14 +223,13 @@
   - type: NoSlip
   - type: MovementAlwaysTouching
   - type: Stripping
-  - type: Strippable
   - type: Body
     prototype: SVBodyDoubleClown
   - type: InventorySlots
   - type: Inventory
     templateId: clownhulk
   - type: Tool
-    speedModifier: 5
+    speedModifier: 3
     qualities:
       - Prying
   - type: Prying
@@ -240,3 +239,41 @@
       true
     useSound:
       path: /Audio/Items/crowbar.ogg
+  - type: Vocal
+    sounds:
+      Male: MaleHuman
+      Female: FemaleHuman
+      Unsexed: MaleHuman
+  - type: Speech
+    speechSounds: Alto
+  - type: Emoting
+  - type: BodyEmotes
+    soundsId: GeneralBodyEmotes
+  - type: IdExaminable
+  - type: RangedDamageSound
+    soundGroups:
+      Brute:
+        collection:
+          MeatBulletImpact
+    soundTypes:
+      Heat:
+        collection:
+          MeatLaserImpact
+  - type: StatusIcon
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: hugging-success-generic
+    interactSuccessSound: /Audio/Effects/thudswoosh.ogg
+    messagePerceivedByOthers: hugging-success-generic-others
+  - type: PassiveDamage # Slight passive regen. Assuming one damage type, comes out to about 4 damage a minute.
+    allowedStates:
+    - Alive
+    damageCap: 20
+    damage:
+      types:
+        Heat: -0.07
+      groups:
+        Brute: -0.07
+  - type: Fingerprint
+  - type: Blindable
+  - type: Dna
