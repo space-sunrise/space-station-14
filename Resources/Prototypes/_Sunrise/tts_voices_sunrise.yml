@@ -269,14 +269,6 @@
   provider: sunrise
 
 - type: ttsVoice
-  id: HearthstoneAhun
-  name: tts-voice-name-hearthstone-ahun
-  sex: Male
-  speaker: hearthstone_ahun
-  provider: sunrise
-  roundStart: false # ужасное качество
-
-- type: ttsVoice
   id: HearthstoneFinli
   name: tts-voice-name-hearthstone-finli
   sex: Male
@@ -297,3 +289,38 @@
   speaker: hearthstone_reno
   provider: sunrise
 
+- type: ttsVoice
+  id: HearthstoneZverolovTavish
+  name: tts-voice-name-hearthstone-zverolov-tavish
+  sex: Male
+  speaker: hearthstone_zverolov_tavish
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneElisa
+  name: tts-voice-name-hearthstone-elisa
+  sex: Female
+  speaker: hearthstone_elisa
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneSotis
+  name: tts-voice-name-hearthstone-sotis
+  sex: Male
+  speaker: hearthstone_sotis
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneMediv
+  name: tts-voice-name-hearthstone-mediv
+  sex: Male
+  speaker: hearthstone_mediv
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneMTF1
+  name: tts-voice-name-hearthstone-mtf1
+  sex: Male
+  speaker: mtf_1
+  provider: sunrise
+  roundStart: false # хз
