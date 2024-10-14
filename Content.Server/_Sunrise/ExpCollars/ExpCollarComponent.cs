@@ -1,4 +1,7 @@
-﻿namespace Content.Server._Sunrise.ExpCollars;
+﻿using Content.Shared.Damage;
+using Robust.Shared.Audio;
+
+namespace Content.Server._Sunrise.ExpCollars;
 
 /// <summary>
 /// Компонент для взрывного ошейника
@@ -19,16 +22,16 @@ public sealed partial class ExpCollarComponent : Component
     public List<EntityUid> Linked = new();
 
     /// <summary>
-    /// Включены ли болты
-    /// </summary>
-    [DataField]
-    public bool Bolts;
-
-    /// <summary>
     /// Взведен ли механизм
     /// </summary>
     [DataField]
     public bool Armed;
+
+    [DataField]
+    public SoundSpecifier BeepSound;
+
+    [DataField]
+    public DamageSpecifier Damage;
 
     /// <summary>
     /// "Девственность" взрывного механизма
@@ -36,8 +39,17 @@ public sealed partial class ExpCollarComponent : Component
     [DataField(readOnly: true)]
     public bool Virgin = true;
 
+    /// <summary>
+    /// Айди сущности, которая считается текущим носителем
+    /// </summary>
     [DataField(readOnly: true)]
     public EntityUid? Wearer;
+
+    [DataField(readOnly: true)]
+    public TimeSpan InitialStripDelay = TimeSpan.FromSeconds(0);
+
+    [DataField(readOnly: true)]
+    public TimeSpan ArmedStripDelay = TimeSpan.FromSeconds(30);
 
     public bool ActiveCooldown;
 }

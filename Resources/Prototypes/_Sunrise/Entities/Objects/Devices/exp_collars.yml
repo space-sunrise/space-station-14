@@ -3,25 +3,27 @@
   id: ExplosiveCollarBase
   abstract: true
   components:
-  - type: WiresVisuals
-  - type: UserInterface
-    interfaces:
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
-  - type: Wires
-    layoutId: ExplosiveCollar
-    alwaysRandomize: true
-  - type: Defusable
+  - type: Clothing
+    quickEquip: false
+    equipDelay: 2
+    unequipDelay: 20
   - type: Explosive
     explosionType: Default
     totalIntensity: 10.0
     intesitySlope: 5
     maxIntensity: 4
   - type: ExplodeOnTrigger
-  - type: WiresPanel
   - type: StaticPrice
     price: 3000
   - type: ExpCollar
+    initialStripDelay: 0
+    armedStripDelay: 30
+    beepSound:
+      path: /Audio/Effects/beep1.ogg
+    damage:
+      groups:
+        Brute: 300
+        Burn: 300
 
 - type: entity
   parent: ExplosiveCollarBase

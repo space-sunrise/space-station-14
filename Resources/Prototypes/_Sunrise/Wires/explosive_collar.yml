@@ -1,7 +1,0 @@
-﻿- type: wireLayout
-  id: ExplosiveCollar
-  dummyWires: 3
-  wires:
-  - !type:ExpCollarBoltAction # болты
-  - !type:ExpCollarElectrocuteAction # электрошок
-  - !type:ExpCollarArmAction # arm
