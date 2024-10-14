@@ -331,3 +331,10 @@
   sex: Male
   speaker: hearthstone_mediv
   provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneMTF1
+  name: tts-voice-name-hearthstone-mtf1
+  sex: Male
+  speaker: mtf_1
+  provider: sunrise

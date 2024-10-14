@@ -38,3 +38,4 @@ tts-voice-name-hearthstone-elisa = (NEW) [Hearthstone] Элиза
 tts-voice-name-hearthstone-mister-chu = (NEW) [Hearthstone] Мистер Чу
 tts-voice-name-hearthstone-sotis = (NEW) [Hearthstone] Сотис
 tts-voice-name-hearthstone-mediv = (NEW) [Hearthstone] Медив
+tts-voice-name-hearthstone-mtf1 = (NEW) [Containment Breach] MTF 1
