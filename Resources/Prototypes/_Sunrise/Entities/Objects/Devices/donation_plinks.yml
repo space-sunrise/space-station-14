@@ -1,11 +1,7 @@
-##################
-#    SUNRISE     #
-##################
-
 # Дебаг и основа
 - type: entity
   parent: BaseItem
-  id: BaseSunriseUplink
+  id: BaseDonationPlink
   categories: [ HideSpawnMenu ]
   components:
   - type: Item
@@ -53,13 +49,17 @@
     tags:
       - SunriseUplink
 
+##################
+#    SUNRISE     #
+##################
+
 # Рыцарь Солнца
 - type: entity
-  parent: BaseSunriseUplink
+  parent: BaseDonationPlink
   id: SunriseUplink40
   categories: [ HideSpawnMenu ]
-  name: портативный магазин Санрайз
-  description: Имеет широкий ассортимент товаров для всех вкусов и предпочтений - от удивительных ручных изделий и уникальных сувениров до современной техники и модных аксессуаров.
+  name: Sunrise portable shop
+  description: Has a wide range of products for all tastes and preferences - from amazing handicrafts and unique souvenirs to modern appliances and fashion accessories.
   suffix: 40
   components:
   - type: Store
@@ -68,11 +68,9 @@
 
 # Солнышко
 - type: entity
-  parent: BaseSunriseUplink
+  parent: SunriseUplink40
   id: SunriseUplink80
   categories: [ HideSpawnMenu ]
-  name: портативный магазин Санрайз
-  description: Имеет широкий ассортимент товаров для всех вкусов и предпочтений - от удивительных ручных изделий и уникальных сувениров до современной техники и модных аксессуаров.
   suffix: 80
   components:
   - type: Store
@@ -81,11 +79,9 @@
 
 # Бесконечное лето
 - type: entity
-  parent: BaseSunriseUplink
+  parent: SunriseUplink40
   id: SunriseUplink100
   categories: [ HideSpawnMenu ]
-  name: портативный магазин Санрайз
-  description: Имеет широкий ассортимент товаров для всех вкусов и предпочтений - от удивительных ручных изделий и уникальных сувениров до современной техники и модных аксессуаров.
   suffix: 100
   components:
   - type: Store
@@ -97,11 +93,11 @@
 ##################
 
 - type: entity
-  parent: BaseSunriseUplink
+  parent: BaseDonationPlink
   id: FishStationUplink40
   categories: [ HideSpawnMenu ]
-  name: Портативный магазин «Рыбаплинк»
-  description: Имеет широкий ассортимент товаров для всех вкусов и предпочтений - от удивительных ручных изделий и уникальных сувениров до современной техники и модных аксессуаров.
+  name: "Fishplink" portable shop
+  description: Has a wide range of products for all tastes and preferences - from amazing handicrafts and unique souvenirs to modern appliances and fashion accessories.
   suffix: 40
   components:
   - type: Item
@@ -116,39 +112,21 @@
       Suntick: 40
 
 - type: entity
-  parent: BaseSunriseUplink
+  parent: FishStationUplink40
   id: FishStationUplink80
   categories: [ HideSpawnMenu ]
-  name: Портативный магазин «Рыбаплинк»
-  description: Имеет широкий ассортимент товаров для всех вкусов и предпочтений - от удивительных ручных изделий и уникальных сувениров до современной техники и модных аксессуаров.
   suffix: 80
   components:
-  - type: Item
-    size: Small
-    sprite: _Sunrise/Objects/Devices/fishstation_uplink.rsi
-  - type: Sprite
-    sprite: _Sunrise/Objects/Devices/fishstation_uplink.rsi
-    layers:
-    - state: icon-on
   - type: Store
     balance:
       Suntick: 80
 
 - type: entity
-  parent: BaseSunriseUplink
+  parent: FishStationUplink40
   id: FishStationUplink100
   categories: [ HideSpawnMenu ]
-  name: Портативный магазин «Рыбаплинк»
-  description: Имеет широкий ассортимент товаров для всех вкусов и предпочтений - от удивительных ручных изделий и уникальных сувениров до современной техники и модных аксессуаров.
   suffix: 100
   components:
-  - type: Item
-    size: Small
-    sprite: _Sunrise/Objects/Devices/fishstation_uplink.rsi
-  - type: Sprite
-    sprite: _Sunrise/Objects/Devices/fishstation_uplink.rsi
-    layers:
-    - state: icon-on
   - type: Store
     balance:
       Suntick: 100
@@ -159,11 +137,11 @@
 ##################
 
 - type: entity
-  parent: BaseSunriseUplink
+  parent: BaseDonationPlink
   id: NeweraStationUplink40
   categories: [ HideSpawnMenu ]
-  name: Портативный магазин «Котоплинк»
-  description: Имеет широкий ассортимент товаров для всех вкусов и предпочтений - от удивительных ручных изделий и уникальных сувениров до современной техники и модных аксессуаров.
+  name: "Catoplink" portable Shop
+  description: Has a wide range of products for all tastes and preferences - from amazing handicrafts and unique souvenirs to modern appliances and fashion accessories.
   suffix: 40
   components:
   - type: Item
@@ -178,39 +156,21 @@
       Suntick: 40
 
 - type: entity
-  parent: BaseSunriseUplink
+  parent: NeweraStationUplink40
   id: NeweraStationUplink80
   categories: [ HideSpawnMenu ]
-  name: Портативный магазин «Котоплинк»
-  description: Имеет широкий ассортимент товаров для всех вкусов и предпочтений - от удивительных ручных изделий и уникальных сувениров до современной техники и модных аксессуаров.
   suffix: 80
   components:
-  - type: Item
-    size: Small
-    sprite: _Sunrise/Entities/Objects/Devices/newera_uplink.rsi
-  - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Devices/newera_uplink.rsi
-    layers:
-    - state: icon-on
   - type: Store
     balance:
       Suntick: 80
 
 - type: entity
-  parent: BaseSunriseUplink
+  parent: NeweraStationUplink40
   id: NeweraStationUplink100
   categories: [ HideSpawnMenu ]
-  name: Портативный магазин «Котоплинк»
-  description: Имеет широкий ассортимент товаров для всех вкусов и предпочтений - от удивительных ручных изделий и уникальных сувениров до современной техники и модных аксессуаров.
   suffix: 100
   components:
-  - type: Item
-    size: Small
-    sprite: _Sunrise/Entities/Objects/Devices/newera_uplink.rsi
-  - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Devices/newera_uplink.rsi
-    layers:
-    - state: icon-on
   - type: Store
     balance:
       Suntick: 100
