@@ -1,7 +1,7 @@
 ﻿- type: entity
   parent: HandTeleporter
   id: HandTeleporterAA
-  suffix: ААбуз
+  suffix: Admeme
   components:
   - type: HandTeleporter
     firstPortalPrototype: PortalRedAA
@@ -12,7 +12,7 @@
 - type: entity
   parent: PortalRed
   id: PortalRedAA
-  suffix: ААбуз
+  suffix: Admeme
   components:
   - type: Portal
     canTeleportToOtherMaps: true
@@ -20,7 +20,7 @@
 - type: entity
   parent: PortalBlue
   id: PortalBlueAA
-  suffix: ААбуз
+  suffix: Admeme
   components:
   - type: Portal
     canTeleportToOtherMaps: true
