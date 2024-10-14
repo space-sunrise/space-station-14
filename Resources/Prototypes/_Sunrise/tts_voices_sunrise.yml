@@ -323,3 +323,4 @@
   sex: Male
   speaker: mtf_1
   provider: sunrise
+  roundStart: false # хз
