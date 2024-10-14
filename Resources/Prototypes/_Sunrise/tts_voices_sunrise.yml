@@ -269,14 +269,6 @@
   provider: sunrise
 
 - type: ttsVoice
-  id: HearthstoneAhun
-  name: tts-voice-name-hearthstone-ahun
-  sex: Male
-  speaker: hearthstone_ahun
-  provider: sunrise
-  roundStart: false # ужасное качество
-
-- type: ttsVoice
   id: HearthstoneFinli
   name: tts-voice-name-hearthstone-finli
   sex: Male
@@ -309,13 +301,6 @@
   name: tts-voice-name-hearthstone-elisa
   sex: Female
   speaker: hearthstone_elisa
-  provider: sunrise
-
-- type: ttsVoice
-  id: HearthstoneMisterChu
-  name: tts-voice-name-hearthstone-mister-chu
-  sex: Male
-  speaker: hearthstone_mister_chu
   provider: sunrise
 
 - type: ttsVoice
