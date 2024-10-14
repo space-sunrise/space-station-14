@@ -4728,3 +4728,12 @@
   id: 337
   time: '2024-10-12T16:59:55.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/500
+- author: rhailrake
+  changes:
+  - message: "\u0418\u0441\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0430 \u043E\u0448\
+      \u0438\u0431\u043A\u0430 \u0441 \u043A\u043E\u043D\u0446\u043E\u043C \u0440\u0430\
+      \u0443\u043D\u0434\u0430."
+    type: Fix
+  id: 338
+  time: '2024-10-14T19:35:01.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/511
