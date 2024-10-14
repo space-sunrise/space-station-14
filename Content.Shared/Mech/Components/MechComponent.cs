@@ -119,7 +119,7 @@ public sealed partial class MechComponent : Component
     /// outside of the mech. You can exit instantly yourself.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float ExitDelay = 3;
+    public float ExitDelay = 6;
 
     /// <summary>
     /// How long it takes to pull out the battery.
