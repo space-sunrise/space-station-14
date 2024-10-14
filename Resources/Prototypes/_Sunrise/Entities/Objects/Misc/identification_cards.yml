@@ -2,7 +2,6 @@
   parent: IDCardStandard
   id: BlueShieldIDCard
   name: blueshield ID card
-  description: Карта, необходимая для доступа в различные области станции.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Misc/id_cards.rsi
