@@ -184,7 +184,9 @@
     baseWalkSpeed: 2.25
     baseSprintSpeed: 3.6
   - type: Reflect
-    reflectProb: 0.05
+    reflectProb: 0.15
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
 
@@ -237,7 +239,9 @@
   - type: Damageable
     damageModifierSet: MediumArmorNT
   - type: Reflect
-    reflectProb: 0.15
+    reflectProb: 0.25
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
 
@@ -290,7 +294,9 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.15
+    reflectProb: 0.25
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
 
@@ -332,7 +338,9 @@
       components:
       - HumanoidAppearance
   - type: Reflect
-    reflectProb: 0.05
+    reflectProb: 0.15
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
 
@@ -396,7 +404,9 @@
     baseWalkSpeed: 2.4
     baseSprintSpeed: 3.7
   - type: Reflect
-    reflectProb: 0.05
+    reflectProb: 0.15
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
 
@@ -467,7 +477,9 @@
     tags:
     - Maintenance
   - type: Reflect
-    reflectProb: 0.05
+    reflectProb: 0.15
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
   # TOOD: buzz / chime actions
@@ -523,7 +535,9 @@
     baseWalkSpeed: 2
     baseSprintSpeed: 2.6
   - type: Reflect
-    reflectProb: 0.15
+    reflectProb: 0.25
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
 
@@ -583,7 +597,9 @@
     fuelCost: 30
     doAfterDelay: 15
   - type: Reflect
-    reflectProb: 0.15
+    reflectProb: 0.25
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
 
@@ -646,7 +662,9 @@
     fuelCost: 30
     doAfterDelay: 15
   - type: Reflect
-    reflectProb: 0.3
+    reflectProb: 0.4
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
 
@@ -719,7 +737,9 @@
     fuelCost: 30
     doAfterDelay: 20
   - type: Reflect
-    reflectProb: 0.3
+    reflectProb: 0.4
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
 
@@ -795,7 +815,9 @@
     fuelCost: 40
     doAfterDelay: 20
   - type: Reflect
-    reflectProb: 0.25
+    reflectProb: 0.35
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
 
@@ -868,7 +890,9 @@
     fuelCost: 50
     doAfterDelay: 25
   - type: Reflect
-    reflectProb: 0.35
+    reflectProb: 0.45
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
 
