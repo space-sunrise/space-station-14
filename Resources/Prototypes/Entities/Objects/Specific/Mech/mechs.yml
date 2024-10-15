@@ -839,9 +839,7 @@
   - type: Mech
     startingEquipment:
       - WeaponMechChainSword
-      - WeaponMechCombatShotgun
       - WeaponMechCombatMissileRack8
-      - WeaponMechCombatTeslaCannon
 
 # Mauler
 - type: entity
@@ -914,7 +912,4 @@
   - type: Mech
     startingEquipment:
       - WeaponMechChainSword
-      - WeaponMechCombatUltraRifle
-      - WeaponMechCombatShotgun
       - WeaponMechCombatMissileRack6
-      - WeaponMechCombatTeslaCannon

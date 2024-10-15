@@ -362,3 +362,37 @@
     Telecrystal: 12
   categories:
   - UplinkDisruption
+
+# Mechs
+
+- type: listing
+  id: UplinkDarkGygax
+  name: uplink-mech-teleporter-assault-name
+  description: uplink-mech-teleporter-assault-desc
+  icon: { sprite: /Textures/Objects/Specific/Mech/mecha.rsi, state: darkgygax }
+  productEntity: CrateCybersunDarkGygaxBundle
+  cost:
+    Telecrystal: 65
+  categories:
+  - UplinkMechs
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkMauler
+  name: uplink-mech-teleporter-heavy-name
+  description: uplink-mech-teleporter-heavy-desc
+  icon: { sprite: /Textures/Objects/Specific/Mech/mecha.rsi, state: mauler }
+  productEntity: CrateCybersunMaulerBundle
+  cost:
+    Telecrystal: 90
+  categories:
+  - UplinkMechs
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
