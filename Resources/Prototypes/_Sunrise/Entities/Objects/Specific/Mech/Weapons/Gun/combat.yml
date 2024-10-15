@@ -37,7 +37,7 @@
     maxAngle: 15
     angleIncrease: 4
     angleDecay: 16
-    fireRate: 3.5
+    fireRate: 4.75
     selectedMode: FullAuto
     availableModes:
       - FullAuto
@@ -45,6 +45,6 @@
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: BulletSyndiPlasma2
-    fireCost: 30
+    fireCost: 25
   - type: Appearance
   - type: AmmoCounter
