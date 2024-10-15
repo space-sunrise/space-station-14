@@ -396,3 +396,149 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      
+# Mechs equipment
+      
+- type: listing
+  id: UplinkMechImmolationGun
+  name: uplink-mech-equipment-immolation-gun-name
+  description: uplink-mech-equipment-immolation-gun-desc
+  icon: { sprite: /Textures/Objects/Specific/Mech/mecha_equipment.rsi, state: mecha_laser }
+  productEntity: WeaponMechCombatImmolationGun
+  cost:
+    Telecrystal: 7
+  categories:
+  - UplinkMechs
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      
+- type: listing
+  id: UplinkMechTeslaCannon
+  name: uplink-mech-equipment-tesla-cannon-name
+  description: uplink-mech-equipment-tesla-cannon-desc
+  icon: { sprite: /Textures/Objects/Specific/Mech/mecha_equipment.rsi, state: mecha_wholegen }
+  productEntity: WeaponMechCombatTeslaCannon
+  cost:
+    Telecrystal: 15
+  categories:
+  - UplinkMechs
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      
+- type: listing
+  id: UplinkMechShotgun
+  name: uplink-mech-equipment-shotgun-name
+  description: uplink-mech-equipment-shotgun-desc
+  icon: { sprite: /Textures/Objects/Specific/Mech/mecha_equipment.rsi, state: mecha_scatter }
+  productEntity: WeaponMechCombatShotgun
+  cost:
+    Telecrystal: 7
+  categories:
+  - UplinkMechs
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      
+- type: listing
+  id: UplinkMechShotgunIncendiary
+  name: uplink-mech-equipment-shotgun-incendiary-name
+  description: uplink-mech-equipment-shotgun-incendiary-desc
+  icon: { sprite: /Textures/Objects/Specific/Mech/mecha_equipment.rsi, state: mecha_carbine }
+  productEntity: WeaponMechCombatShotgunIncendiary
+  cost:
+    Telecrystal: 12
+  categories:
+  - UplinkMechs
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      
+- type: listing
+  id: UplinkMechUltraRifle
+  name: uplink-mech-equipment-ultra-rifle-name
+  description: uplink-mech-equipment-ultra-rifle-desc
+  icon: { sprite: /Textures/Objects/Specific/Mech/mecha_equipment.rsi, state: mecha_uac2 }
+  productEntity: WeaponMechCombatUltraRifle
+  cost:
+    Telecrystal: 10
+  categories:
+  - UplinkMechs
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      
+- type: listing
+  id: UplinkMechIon
+  name: uplink-mech-equipment-ion-name
+  description: uplink-mech-equipment-ion-desc
+  icon: { sprite: /Textures/Objects/Specific/Mech/mecha_equipment.rsi, state: mecha_ion }
+  productEntity: WeaponMechCombatIon
+  cost:
+    Telecrystal: 12
+  categories:
+  - UplinkMechs
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      
+- type: listing
+  id: UplinkMechAMLG90
+  name: uplink-mech-equipment-amlg90-name
+  description: uplink-mech-equipment-amlg90-desc
+  icon: { sprite: /Textures/Objects/Specific/Mech/mecha_equipment.rsi, state: mecha_amlg90 }
+  productEntity: WeaponMechCombatAMLG90
+  cost:
+    Telecrystal: 15
+  categories:
+  - UplinkMechs
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkMechVindictor
+  name: uplink-mech-equipment-vindictor-name
+  description: uplink-mech-equipment-vindictor-desc
+  icon: { sprite: /Textures/_Sunrise/Objects/Specific/Mech/mecha_vindictor.rsi, state:  mecha_vindictor }
+  productEntity: WeaponMechCombatVindictor
+  cost:
+    Telecrystal: 30
+  categories:
+  - UplinkMechs
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkMechUVM31
+  name: uplink-mech-equipment-uvm31-name
+  description: uplink-mech-equipment-uvm31-desc
+  icon: { sprite: /Textures/_Sunrise/Objects/Specific/Mech/mecha_uvm31.rsi, state: mecha_uvm31 }
+  productEntity: WeaponMechCombatUVM31
+  cost:
+    Telecrystal: 20
+  categories:
+  - UplinkMechs
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
