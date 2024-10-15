@@ -389,6 +389,11 @@ public abstract class SharedMechSystem : EntitySystem
         if (component.PilotSlot.ContainedEntity == null)
             return false;
 
+        if (HasComp<NoRotateOnMoveComponent>(uid))
+        {
+            RemComp<NoRotateOnMoveComponent>(uid);
+        }
+            
         var pilot = component.PilotSlot.ContainedEntity.Value;
 
         RemoveUser(uid, pilot);
