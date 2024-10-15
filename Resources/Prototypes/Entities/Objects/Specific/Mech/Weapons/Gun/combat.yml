@@ -30,7 +30,7 @@
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
-    state: mecha_laser
+    state: mecha_immolator
   - type: Gun
     fireRate: 0.6
     selectedMode: SemiAuto
@@ -53,7 +53,7 @@
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
-    state: mecha_laser
+    state: mecha_solaris
   - type: Gun
     fireRate: 1
     selectedMode: SemiAuto
@@ -76,7 +76,7 @@
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
-    state: mecha_laser
+    state: mecha_firedart
   - type: Gun
     fireRate: 0.8
     selectedMode: SemiAuto
