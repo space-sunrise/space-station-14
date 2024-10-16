@@ -986,7 +986,7 @@
 
 - type: listing
   id: UplinkSunriseClothingHeadHatIAA
-  name: uplink-uplink-sunrise-clothing-head-hat-name
+  name: uplink-uplink-sunrise-clothing-head-hat-iaa-name
   productEntity: ClothingHeadHatIAA
   cost:
     Suntick: 10
@@ -1031,7 +1031,7 @@
 
 - type: listing
   id: UplinkSunriseClothingNeckCloakIAACloak
-  name: uplink-uplink-sunrise-clothing-neck-cloak-cloak-name
+  name: uplink-uplink-sunrise-clothing-neck-cloak-iaa-cloak-name
   productEntity: ClothingNeckCloakIAACloak
   cost:
     Suntick: 15
@@ -1873,7 +1873,7 @@
 
 - type: listing
   id: UplinkSunriseClothingNeckCloakHOSCloak
-  name: uplink-uplink-sunrise-clothing-neck-cloak-cloak-name
+  name: uplink-uplink-sunrise-clothing-neck-cloak-hos-cloak-name
   productEntity: ClothingNeckCloakHOSCloak
   cost:
     Suntick: 15
@@ -1891,7 +1891,7 @@
 
 - type: listing
   id: UplinkSunriseClothingBreathMaskRD
-  name: uplink-uplink-sunrise-clothing-breath-mask-name
+  name: uplink-uplink-sunrise-clothing-breath-mask-rd-name
   productEntity: ClothingBreathMaskRD
   cost:
     Suntick: 10
@@ -2137,7 +2137,7 @@
 
 - type: listing
   id: UplinkSunriseClothingHeadHatHOP
-  name: uplink-uplink-sunrise-clothing-head-hat-name
+  name: uplink-uplink-sunrise-clothing-head-hat-hop-name
   productEntity: ClothingHeadHatHOP
   cost:
     Suntick: 10
@@ -2167,7 +2167,7 @@
 
 - type: listing
   id: UplinkSunriseClothingNeckCloakHOPCloak
-  name: uplink-uplink-sunrise-clothing-neck-cloak-cloak-name
+  name: uplink-uplink-sunrise-clothing-neck-cloak-hop-cloak-name
   productEntity: ClothingNeckCloakHOPCloak
   cost:
     Suntick: 15
@@ -2306,7 +2306,7 @@
 
 - type: listing
   id: UplinkSunriseClothingBreathMaskQM
-  name: uplink-uplink-sunrise-clothing-breath-mask-name
+  name: uplink-uplink-sunrise-clothing-breath-mask-qm-name
   productEntity: ClothingBreathMaskQM
   cost:
     Suntick: 10
@@ -2428,7 +2428,7 @@
 
 - type: listing
   id: UplinkSunriseClothingBreathMaskCMO2
-  name: uplink-uplink-sunrise-clothing-breath-mask-name
+  name: uplink-uplink-sunrise-clothing-breath-mask-cmo2-name
   productEntity: ClothingBreathMaskCMO
   cost:
     Suntick: 8

@@ -86,10 +86,10 @@ uplink-uplink-sunrise-book-engineers-handbook-name = Справочник инж
 ## IAA
 
 uplink-uplink-sunrise-clothing-mask-name = Элитный противогаз
-uplink-uplink-sunrise-clothing-head-hat-name = Загадочная шляпа
+uplink-uplink-sunrise-clothing-head-hat-iaa-name = Загадочная шляпа
 uplink-uplink-sunrise-clothing-outer-coat-name = Пиджак агента внутренних дел
 uplink-uplink-sunrise-clothing-uniform-jumpsuit-name = Рубашка с галстуком
-uplink-uplink-sunrise-clothing-neck-cloak-cloak-name = плащ агента внутренних дел
+uplink-uplink-sunrise-clothing-neck-cloak-iaa-cloak-name = плащ агента внутренних дел
 
 ## Plushies
 
@@ -146,11 +146,11 @@ uplink-uplink-sunrise-clothing-uniform-jumpsuit-black-name = Старый ком
 uplink-uplink-sunrise-clothing-belt-ho-name = Пояс службы безопасности
 uplink-uplink-sunrise-clothing-head-hat-cap-black-name = Старая кожаная фуражка СССП
 uplink-uplink-sunrise-clothing-head-hat-cap-leather-ho-name = Кожаная фуражка главы службы безопасности
-uplink-uplink-sunrise-clothing-neck-cloak-cloak-name = Плащ главы службы безопасности
+uplink-uplink-sunrise-clothing-neck-cloak-hos-cloak-name = Плащ главы службы безопасности
 
 ## Research Director
 
-uplink-uplink-sunrise-clothing-breath-mask-name = Противогаз с фиолетовым визором
+uplink-uplink-sunrise-clothing-breath-mask-rd-name = Противогаз с фиолетовым визором
 uplink-uplink-sunrise-clothing-head-hat-magic-name = Фуражка научного руководителя
 uplink-uplink-sunrise-clothing-outer-coat-lab-research-director-name = Халат научного руководителя
 uplink-uplink-sunrise-clothing-neck-cloak-research-director-name = Плащ светилы науки
@@ -175,9 +175,9 @@ uplink-uplink-sunrise-clothing-head-hat-cap-name = Медицинский бер
 ## Head of Personality
 
 uplink-uplink-sunrise-clothing-elite-mask-gas-name = Противогаз главы персонала
-uplink-uplink-sunrise-clothing-head-hat-name = Фуражка главы персонала
+uplink-uplink-sunrise-clothing-head-hat-hop-name = Фуражка главы персонала
 uplink-uplink-sunrise-clothing-outer-elite-coat-name = Шинель главы персонала
-uplink-uplink-sunrise-clothing-neck-cloak-cloak-name = Плащ главы персонала
+uplink-uplink-sunrise-clothing-neck-cloak-hop-cloak-name = Плащ главы персонала
 
 ## Security
 
@@ -192,7 +192,7 @@ uplink-uplink-sunrise-box-body-bag-name = Коробка мешков для т�
 
 ## Quartermaster
 
-uplink-uplink-sunrise-clothing-breath-mask-name = Противогаз куратора
+uplink-uplink-sunrise-clothing-breath-mask-qm-name = Противогаз куратора
 uplink-uplink-sunrise-clothing-head-hat-cap-name = Шляпа капитана утилятов
 uplink-uplink-sunrise-clothing-outer-coat-name = Теплое пальто
 uplink-uplink-sunrise-clothing-neck-cloak-name = Плащ квартирмейстера
@@ -203,7 +203,7 @@ uplink-uplink-sunrise-cryostasis-beaker-name = Криостазисная мен
 uplink-uplink-sunrise-medicated-suture-name = Медицинская нить (10 шт)
 uplink-uplink-sunrise-pill-canister-dermaline-name = Баночка с дермалином
 uplink-uplink-sunrise-pill-canister-bicaridine-name = Баночка с бикаридином
-uplink-uplink-sunrise-clothing-breath-mask-name = Медицинский респиратор
+uplink-uplink-sunrise-clothing-breath-mask-cmo2-name = Медицинский респиратор
 uplink-uplink-sunrise-syringe-bluespace-name = Блюспейс-шприц
 uplink-uplink-sunrise-regenerative-mesh-name = Регенеративная сеть (10 шт)
 uplink-uplink-sunrise-clothing-hands-gloves-nitrile-name = Нитриловые перчатки
