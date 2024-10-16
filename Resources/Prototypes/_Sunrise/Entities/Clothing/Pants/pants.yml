@@ -3,8 +3,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsManAssblastusa
-  name: men's "Assblastusa" underpants
-  description: "Assblastusa" uniquely designed underpants for men.
+  name: men's /"Assblastusa/" underpants
+  description: /"Assblastusa/" uniquely designed underpants for men.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
@@ -42,7 +42,7 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsManCommie
-  name: man's "Commie" underpants
+  name: man's /"Commie/" underpants
   description: communist-designed underpants for men.
   components:
   - type: Sprite
@@ -68,7 +68,7 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsManKinky
-  name: man's underpants "Kinky"
+  name: man's underpants /"Kinky/"
   description: underpants with a provocative design for mens.
   components:
   - type: Sprite
@@ -161,8 +161,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsWomanAssblastusa
-  name: women's "Assblastusa" underpants
-  description: "Assblastusa" uniquely designed underpants for womens.
+  name: women's /"Assblastusa/" underpants
+  description: /"Assblastusa/" uniquely designed underpants for womens.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
@@ -200,7 +200,7 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsWomanCommie
-  name: women's "Commie" underpants
+  name: women's /"Commie/" underpants
   description: communist-designed underpants for womens.
   components:
   - type: Sprite
@@ -213,7 +213,7 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsWomanKinky
-  name: women's "Kinky" underpants
+  name: women's /"Kinky/" underpants
   description: underpants with a provocative design for womens.
   components:
   - type: Sprite
