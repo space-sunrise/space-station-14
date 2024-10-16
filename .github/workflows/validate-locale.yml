@@ -5,7 +5,7 @@ on:
     branches: [ staging, trying ]
   pull_request:
     paths:
-      - '**.yml/**'
+      - '**.yml'
 
 jobs:
   validate_ymls:
