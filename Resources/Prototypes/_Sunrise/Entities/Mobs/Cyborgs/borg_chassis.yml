@@ -439,7 +439,7 @@
 - type: entity
   id: BorgChassisERT
   parent: BaseBorgChassisNT
-  name: ERT сombat cyborg
+  name: ERT combat cyborg
   description: An NT combat robot designed to support the OBR in combat missions.
   components:
   - type: Sprite
@@ -599,7 +599,7 @@
 - type: entity
   id: BorgChassisSyndicateHeavy
   parent: BaseBorgChassisSyndicate
-  name: syndicate's heavy combat cyborg.
+  name: syndicate's heavy combat cyborg
   description: A modernized version of the Syndicate's combat cyborg, equipped with heavy weapons and a sturdy hull.
   components:
   - type: Sprite
@@ -620,6 +620,7 @@
     sprite:
       sprite: _Sunrise/Mobs/Silicon/heavy_syndicate_borg.rsi
       state: heavy
+    name: syndicate's heavy combat cyborg.
   - type: BorgChassis
     maxModules: 4
     moduleWhitelist:
@@ -731,7 +732,7 @@
     sprite:
       sprite: _Sunrise/Mobs/Silicon/chassis.rsi
       state: spider
-    name: Киборг диверсант Синдиката
+    name: syndicate's cyborg-saboteur
   - type: BorgChassis
     maxModules: 4
     moduleWhitelist:
