@@ -46,8 +46,8 @@
   parent: ClothingHeadHardsuitWithLightBase
   id: ClothingHeadHelmetHardsuitBlueshield
   categories: [ HideSpawnMenu ]
-  name: шлем скафандра офицера «синий щит»
-  description: Синий.
+  name: blueshield's hardsuit helmet
+  description: Blue.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Head/Hardsuits/blueshield.rsi
@@ -78,8 +78,8 @@
   parent: ClothingHeadHardsuitWithLightBase
   id: ClothingHeadHelmetHardsuitPilot
   categories: [ HideSpawnMenu ]
-  name: Шлем скафандра пилота Службы Безопасности
-  description: Футуристичный шлем с отличным обзором.
+  name: security pilot's hardsuit helmet
+  description: A futuristic helmet with excellent visibility.
   components:
   - type: BreathMask
   - type: Sprite
