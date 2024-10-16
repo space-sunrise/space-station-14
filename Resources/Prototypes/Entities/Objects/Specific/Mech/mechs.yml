@@ -118,6 +118,14 @@
         - MobMask
         layer:
         - MobLayer
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Critical
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      1000: Critical
   - type: Appearance
   - type: ContainerContainer
     containers:

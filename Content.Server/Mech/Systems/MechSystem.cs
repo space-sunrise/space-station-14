@@ -259,7 +259,7 @@ public sealed partial class MechSystem : SharedMechSystem
         if (args.Cancelled || args.Handled)
             return;
 
-        RemComp<NpcFactionMemberComponent>(uid);
+        RemComp<NpcFactionMemberComponent>(component.Owner);
         TryEject(uid, component);
 
         args.Handled = true;
