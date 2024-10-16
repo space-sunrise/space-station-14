@@ -159,7 +159,7 @@
   - type: Appearance
 
 - type: entity
-  parent: БMagazinePPSH41
+  parent: MagazinePPSH41
   id: MagazinePPSH41Extended
   components:
   - type: BallisticAmmoProvider

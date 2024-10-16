@@ -22,14 +22,14 @@
     sprite: Objects/Weapons/Guns/Ammunition/Boxes/anti_materiel.rsi
     state: base-b
   discipline: Arsenal
-  tier: 2
+  tier: 1
   cost: 10000
   recipeUnlocks:
   - BaseMagazinePistolCaselessRifleExtended
   - MagazinePPSH41Extended
   - MagazineMP5Extended
   - MagazineMP7Extended
-  - MagazineP90
+  - MagazineP90Extended
   - MagazineM16A4Extended
   - MagazineAR18Extended
   - MagazineM28Extended
