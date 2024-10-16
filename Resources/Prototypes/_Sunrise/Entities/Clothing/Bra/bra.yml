@@ -27,7 +27,7 @@
 - type: entity
   parent: ClothingBraStorageBase
   id: ClothingBraAssblastusa
-  name: women's bra "Essblastusa"
+  name: women's bra "Assblastusa"
   description: A bra with a unique space inspired design.
   components:
   - type: Sprite

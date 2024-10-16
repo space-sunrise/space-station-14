@@ -3,8 +3,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsManAssblastusa
-  name: мужские трусы "Assblastusa"
-  description: трусы с уникальным дизайном "Assblastusa" для мужчин.
+  name: men's underpants "Assblastusa"
+  description: "Assblastusa" uniquely designed briefs for men.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
@@ -16,8 +16,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsManBoxers
-  name: мужские боксеры
-  description: Комфортные боксеры для мужчин.
+  name: man's boxers
+  description: Comfortable boxers for mens.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
@@ -29,8 +29,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsManBriefs
-  name: мужские трусы
-  description: Обычные мужские трусы.
+  name: men's underpants
+  description: Regular men's underwear.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
@@ -42,8 +42,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsManCommie
-  name: мужские трусы "Коммуняка"
-  description: трусы с коммунистическим дизайном для мужчин.
+  name: man's underpants "Commie"
+  description: communist-designed briefs for men.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
@@ -55,8 +55,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsManHearts
-  name: мужские трусы с сердечками
-  description: трусы с рисунком сердечек для мужчин.
+  name: man's underpants with hearts
+  description: heart pattern briefs for mens.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
@@ -68,8 +68,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsManKinky
-  name: мужские трусы "Кинки"
-  description: трусы с вызывающим дизайном для мужчин.
+  name: man's underpants "Kinky"
+  description: underpants with a provocative design for mens.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
@@ -81,8 +81,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsManLongjohns
-  name: мужские теплые трусы
-  description: Теплые длинные трусы для мужчин.
+  name: men's sweatpants
+  description: Warm long underpants for men.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
@@ -94,8 +94,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsManMankini
-  name: мужской манкини
-  description: Одежда для смелых мужчин.
+  name: men's mankini
+  description: Clothing for bold men.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
@@ -107,8 +107,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsManStripe
-  name: мужские полосатые трусы
-  description: трусы с полосатым дизайном для мужчин.
+  name: men's striped briefs
+  description: underpants with a striped design for men.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
@@ -120,8 +120,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsManUk
-  name: мужские трусы с флагом Великобритании
-  description: трусы с флагом Великобритании для мужчин.
+  name: men's underpants with the British flag
+  description: UK flag underpants for men.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
