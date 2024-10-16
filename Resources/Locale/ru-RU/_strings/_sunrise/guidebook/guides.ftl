@@ -14,7 +14,7 @@ guide-entry-sr-rule-3-4 = Правило 3.4.
 guide-entry-sr-rule-3-5 = Правило 3.5.
 guide-entry-sr-rule-3-6 = Правило 3.6.
 guide-entry-sr-rule-3-7 = Правило 3.7.
-guide-entry-sr-rule-3-8 =Правило 3.8.
+guide-entry-sr-rule-3-8 = Правило 3.8.
 guide-entry-sr-rule-3-9 = Правило 3.9.
 guide-entry-sr-rule-4 = Правило 4
 guide-entry-sr-rule-5 = Правило 5
@@ -51,7 +51,7 @@ guide-entry-fr-rules = Правила сервера: Frontier
 guide-entry-fr-rule-1 = Правило 1
 guide-entry-fr-rule-2 = Правило 2
 guide-entry-fr-rule-3 = Правило 3
-guide-entry-fr-rule-3-1 Правило 3.1
+guide-entry-fr-rule-3-1 = Правило 3.1
 guide-entry-fr-rule-4 = Правило 4
 guide-entry-fr-rule-5 = Правило 5
 guide-entry-fr-rule-6 = Правило 6
