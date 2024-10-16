@@ -1,7 +1,8 @@
-# Общее
+# General
+
 - type: listing
   id: UplinkSunrisePresentRandom
-  name: Подарок
+  name: uplink-sunrise-present-random-name
   productEntity: PresentRandom
   cost:
     Suntick: 10
@@ -25,7 +26,7 @@
 
 - type: listing
   id: UplinkSunriseSkub
-  name: Скаб
+  name: uplink-sunrise-skub-name
   productEntity: Skub
   cost:
     Suntick: 10
@@ -37,7 +38,7 @@
 
 - type: listing
   id: UplinkSunriseClothingHeadHatSkub
-  name: Шапка скаба
+  name: uplink-sunrise-clothing-head-hat-skub-name
   productEntity: ClothingHeadHatSkub
   cost:
     Suntick: 10
@@ -49,7 +50,7 @@
 
 - type: listing
   id: UplinkSunriseClothingOuterSkub
-  name: Костюм скаба
+  name: uplink-sunrise-clothing-outer-skub-name
   productEntity: ClothingOuterSkub
   cost:
     Suntick: 15
@@ -61,7 +62,7 @@
 
 - type: listing
   id: UplinkSunriseClothingUniformJumpsuitSkeleton
-  name: Комбинезон скелета
+  name: uplink-sunrise-clothing-uniform-jumpsuit-skeleton-name
   productEntity: ClothingUniformJumpsuitSkeleton
   cost:
     Suntick: 12
@@ -73,7 +74,7 @@
 
 - type: listing
   id: UplinkSunriseClothingHandsWatchDivine
-  name: Божественные часы
+  name: uplink-sunrise-clothing-hands-watch-divine-name
   productEntity: ClothingHandsWatchDivine
   cost:
     Suntick: 10
@@ -85,7 +86,7 @@
 
 - type: listing
   id: UplinkSunriseClothingMaskSkull
-  name: Саска черепа
+  name: uplink-sunrise-clothing-mask-skull-name
   productEntity: ClothingMaskSkull
   cost:
     Suntick: 4
@@ -97,7 +98,7 @@
 
 - type: listing
   id: UplinkSunriseSynthesizerInstrument
-  name: Музыкальный синтезатор
+  name: uplink-sunrise-synthesizer-instrument-name
   productEntity: SynthesizerInstrument
   cost:
     Suntick: 20
@@ -109,7 +110,7 @@
 
 - type: listing
   id: UplinkSunriseToySword
-  name: Игрушечный меч
+  name: uplink-sunrise-toy-sword-name
   productEntity: ToySword
   cost:
     Suntick: 6
@@ -119,21 +120,9 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
-#- type: listing
-#  id: UplinkSunriseNukeDiskFake
-#  name: Поддельный диск ядерной авторизации
-#  productEntity: NukeDiskFake
-#  cost:
-#    Suntick: 30
-#  categories:
-#  - General
-#  conditions:
-#  - !type:ListingLimitedStockCondition
-#    stock: 1
-
 - type: listing
   id: UplinkSunriseRevolverCapGun
-  name: Игрушечный пистолет
+  name: uplink-sunrise-revolver-cap-gun-name
   productEntity: RevolverCapGun
   cost:
     Suntick: 10
@@ -143,21 +132,9 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
-#- type: listing
-#  id: UplinkSunriseRevolverCapGunFake
-#  name: Игрушечный пистолет
-#  productEntity: RevolverCapGunFake
-#  cost:
-#    Suntick: 10
-#  categories:
-#  - General
-#  conditions:
-#  - !type:ListingLimitedStockCondition
-#    stock: 1
-
 - type: listing
   id: UplinkSunriseFoamCutlass
-  name: Игрушечная абордажная сабля
+  name: uplink-sunrise-foam-cutlass-name
   productEntity: FoamCutlass
   cost:
     Suntick: 6
@@ -169,7 +146,7 @@
 
 - type: listing
   id: UplinkSunriseMrChips
-  name: Мистер Чипс
+  name: uplink-sunrise-mrchips-name
   productEntity: MrChips
   cost:
     Suntick: 4
@@ -181,7 +158,7 @@
 
 - type: listing
   id: UplinkSunriseMrDips
-  name: Мистер Дипс
+  name: uplink-sunrise-mrdips-name
   productEntity: MrDips
   cost:
     Suntick: 4
@@ -193,7 +170,7 @@
 
 - type: listing
   id: UplinkSunriseBeachBall
-  name: Пляжный мяч
+  name: uplink-sunrise-beach-ball-name
   productEntity: BeachBall
   cost:
     Suntick: 3
