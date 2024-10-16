@@ -323,7 +323,7 @@
   sex: Male
   speaker: mtf_1
   provider: sunrise
-  roundStart: true # хз
+  roundStart: false # точно нет
 
 - type: ttsVoice
   id: CBMTF2
@@ -331,7 +331,7 @@
   sex: Male
   speaker: mtf_2
   provider: sunrise
-  roundStart: true # хз
+  roundStart: false # точно нет
 
 - type: ttsVoice
   id: ThreeBigatiraAleshaPopovich
@@ -346,5 +346,21 @@
   name: tts-voice-name-petr_glance_ivashenko
   sex: Male
   speaker: petr_ivashenko
+  provider: sunrise
+  roundStart: true
+
+- type: ttsVoice
+  id: HearthstoneValiraSangvinar
+  name: tts-voice-name-hearthstone-valira-sangvinar
+  sex: Female
+  speaker: hearthstone_valira_sangvinar
+  provider: sunrise
+  roundStart: true
+
+- type: ttsVoice
+  id: HearthstoneAkama
+  name: tts-voice-name-hearthstone-akama
+  sex: Male
+  speaker: hearthstone_akama
   provider: sunrise
   roundStart: true
