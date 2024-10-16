@@ -623,6 +623,74 @@
 
 # Nanotrasen Combat Mechs
 
+# NT Gygax
+- type: entity
+  id: MechNTGygax
+  parent: [ BaseMech, CombatMech, BaseRestrictedContraband ]
+  name: Nanotrasen Special Gygax
+  description: Nanotrasen's trump card when solving problems. High durability, increased protection against shock, explosions, temperature, shots: conventional, laser and energy, as well as expanded equipment slots allow to turn the situation on the station upside down. Gas pedals consume a colossal amount of energy.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: ntgygax
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Mech
+    baseState: ntgygax
+    openState: ntgygax-open
+    brokenState: ntgygax-broken
+    mechToPilotDamageMultiplier: 0.2
+    airtight: true
+    maxIntegrity: 400
+    maxEquipmentAmount: 4
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 30
+        Structural: 180
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.4
+    baseSprintSpeed: 3
+  - type: Reflect
+    reflectProb: 0.30
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    reflects:
+    - NonEnergy
+
+- type: entity
+  id: MechNTGygaxBattery
+  parent: MechNTGygax
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCageHigh
+      
+- type: entity
+  id: MechNTGygaxFilled
+  parent: MechNTGygaxBattery
+  suffix: Battery, Filled
+  components:
+  - type: Mech
+    startingEquipment:
+      - WeaponMechChainSword
+      - WeaponMechCombatPulseRifle
+      - WeaponMechCombatUltraRifle
+      - WeaponMechCombatMissileRack8
+
 # Marauder
 - type: entity
   id: MechMarauder
@@ -798,9 +866,9 @@
     baseState: darkgygax
     openState: darkgygax-open
     brokenState: darkgygax-broken
-    mechToPilotDamageMultiplier: 0.15
+    mechToPilotDamageMultiplier: 0.2
     airtight: true
-    maxIntegrity: 300
+    maxIntegrity: 350
     maxEquipmentAmount: 4
     pilotWhitelist:
       components:
@@ -823,7 +891,7 @@
     fuelCost: 40
     doAfterDelay: 20
   - type: Reflect
-    reflectProb: 0.35
+    reflectProb: 0.30
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -842,6 +910,79 @@
 - type: entity
   id: MechGygaxSyndieFilled
   parent: MechGygaxSyndieBattery
+  suffix: Battery, Filled
+  components:
+  - type: Mech
+    startingEquipment:
+      - WeaponMechChainSword
+      - WeaponMechCombatMissileRack8
+      
+# Rover
+- type: entity
+  id: MechRoverSyndie
+  parent: [ BaseMech, CombatMech, BaseSyndicateContraband ]
+  name: Rover
+  description: A modified Durand used for nefarious purposes. On the back of the armor plate there is an inscription "Cybersun Inc."
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: rover
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Mech
+    baseState: rover
+    openState: rover-open
+    brokenState: rover-broken
+    mechToPilotDamageMultiplier: 0.15
+    airtight: true
+    maxIntegrity: 450
+    maxEquipmentAmount: 5
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 30
+        Structural: 200
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 3
+  - type: Damageable
+    damageModifierSet: MediumArmorSyndi
+  - type: CanMoveInAir
+  - type: MovementAlwaysTouching
+  - type: Repairable
+    fuelCost: 30
+    doAfterDelay: 20
+  - type: Reflect
+    reflectProb: 0.35
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    reflects:
+    - NonEnergy
+
+- type: entity
+  id: MechRoverSyndieBattery
+  parent: MechRoverSyndie
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCageHigh
+
+- type: entity
+  id: MechRoveSyndierFilled
+  parent: MechRoverSyndieBattery
   suffix: Battery, Filled
   components:
   - type: Mech
