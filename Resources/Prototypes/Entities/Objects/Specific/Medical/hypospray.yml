@@ -88,9 +88,9 @@
       solutions:
         hypospray:
           maxVol: 3000
-  - type: Hypospray
-    onlyAffectsMobs: false
-    pierceArmor: true
+    - type: Hypospray
+      onlyAffectsMobs: false
+      pierceArmor: true
     - type: UseDelay
       delay: 0.0
 
