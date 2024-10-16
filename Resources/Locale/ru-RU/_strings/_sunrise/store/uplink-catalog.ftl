@@ -42,6 +42,7 @@ uplink-clothing-backpack-syndie-siar52-name = Набор SIAR-52
 uplink-clothing-backpack-syndie-siar52-desc = Включает в себя пулемёт SIAR-52 и два магазина патрон.
 uplink-weapon-syndie-laser-minigun-name = UVL-21 «Виверна»
 uplink-weapon-syndie-laser-gun-name = S-13 «Чёрная мамба»
+
 ## Cyborgs
 
 uplink-reinforcement-radio-syndicate-cyborg-assault-name = Телепорт подкрепления боевого борга синдиката
@@ -54,3 +55,10 @@ uplink-reinforcement-radio-syndicate-cyborg-medical-name = Телепорт по
 uplink-reinforcement-radio-syndicate-cyborg-medical-desc  = Отправляет вам в поддержку борга синдиката.
 uplink-reinforcement-radio-syndicate-cyborg-reaper-name = Телепорт подкрепления борга синдиката "Жнец"
 uplink-reinforcement-radio-syndicate-cyborg-reaper-desc = Отправляет вам в поддержку борга синдиката.
+
+## Equipment
+
+uplink-hypo-name = Горлекс гипоспрей
+uplink-hypo-desc = Химический гипоспрей, произвёденный синдикатом, способный мгновенно впрыснуть до 20 ед. реагентов. Изначально пуст.
+uplink-polytrinic-acid-chemistry-bottle-name = Политриновая кислота
+uplink-polytrinic-acid-chemistry-bottle-desc = Чрезвычайно едкое химическое вещество. Сильно обжигает всех, кто вступит с ней в непосредственный контакт.

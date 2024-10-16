@@ -363,3 +363,30 @@
     Telecrystal: 12
   categories:
   - UplinkDisruption
+
+- type: listing
+  id: UplinkHypo
+  name: uplink-hypo-name
+  description: uplink-hypo-desc
+  icon: { sprite: /Textures/Objects/Specific/Medical/syndihypo.rsi, state: hypo }
+  productEntity: SyndiHypo
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkChemicals
+  
+- type: listing
+  id: UplinkPolytrinicAcidChemistryBottle
+  name: uplink-polytrinic-acid-chemistry-bottle-name
+  description: uplink-polytrinic-acid-chemistry-bottle-desc
+  productEntity: PolytrinicAcidChemistryBottle
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 4
+  cost:
+    Telecrystal: 8
+  categories:
+  - UplinkChemicals
