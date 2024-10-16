@@ -1,19 +1,19 @@
 ﻿- type: guideEntry
   id: FSRuleset
-  name: guide-entry-rules
+  name: guide-entry-fr-rules
   ruleEntry: true
   text: "/ServerInfo/Guidebook/ServerRules/FrontierRules.xml"
 
 - type: guideEntry
   id: RuleFS1
-  name: guide-entry-rule-1
+  name: guide-entry-fr-rule-1
   ruleEntry: true
   priority: 1
   text: "/ServerInfo/Guidebook/ServerRules/RulesFS/RuleFS1.xml"
 
 - type: guideEntry
   id: RuleFS2
-  name: guide-entry-rule-2
+  name: guide-entry-fr-rule-2
   ruleEntry: true
   priority: 2
   text: "/ServerInfo/Guidebook/ServerRules/RulesFS/RuleFS2.xml"
