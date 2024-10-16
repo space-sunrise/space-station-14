@@ -2,7 +2,7 @@
 - type: entity
   id: PartPredator
   parent: [BaseItem, BasePart]
-  name: "predator head"
+  name: "predator body part"
   abstract: true
   components:
   - type: Extractable
