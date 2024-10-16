@@ -1,6 +1,6 @@
 ﻿- type: entity
   id: LockerHeadOfPrisonFilled
-  name: шкафчик начальника тюрьмы
+  name: head of prison's locker
   suffix: Filled
   parent: LockerHeadOfSecurity
   components:
