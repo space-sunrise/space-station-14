@@ -18,3 +18,6 @@ ghost-role-information-evil-twin-rules =
 ghost-role-information-foliant-name = Фолиант
 ghost-role-information-foliant-description = Помогайте своему библиотекарю просвящать эту станцию.
 ghost-role-information-foliant-rules = Вы разумная книга-мимик. Помогайте своему хозяину скрасить жизнь, просвящайте всех на станции.
+ghost-role-information-ert-cyborg-name = Боевой киборг ОБР
+ghost-role-information-ert-cyborg-description = Слава НТ!
+ghost-role-information-ert-cyborg-rules = Подчиняйтесь ОБР и Центральному Командованию.
