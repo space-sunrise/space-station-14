@@ -40,7 +40,7 @@
     Telecrystal: 2
   categories:
   - UplinkWeaponrySilent
-  
+
 - type: listing
   id: SilentUplinkSyndicateRapier
   name: uplink-syndicate-rapier-name
