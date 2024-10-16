@@ -40,8 +40,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingKneeAsblastusa
-  name: "Assblastusa" logo socks
-  description: "Assblastusa" logo socks - knee-length socks featuring the "Assblastusa" logo.
+  name: /"Assblastusa/" logo socks
+  description: /"Assblastusa/" logo socks - knee-length socks featuring the /"Assblastusa/" logo.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/knee.rsi
@@ -352,8 +352,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingThighAsblastusa
-  name: thigh-high stockings with the "Assblastusa" logo
-  description: Thigh-high stockings with the "Assblastusa" logo - elegant thigh-high stockings with an added "Assblastusa" logo at the top, for women, and maybe even men?
+  name: thigh-high stockings with the /"Assblastusa/" logo
+  description: Thigh-high stockings with the "Assblastusa" logo - elegant thigh-high stockings with an added /"Assblastusa/" logo at the top, for women, and maybe even men?
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/thigh.rsi
