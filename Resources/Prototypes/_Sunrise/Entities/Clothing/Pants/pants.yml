@@ -4,7 +4,7 @@
   parent: ClothingPantsStorageBase
   id: ClothingPantsManAssblastusa
   name: men's "Assblastusa" underpants
-  description: "Assblastusa" uniquely designed briefs for men.
+  description: "Assblastusa" uniquely designed underpants for men.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
@@ -162,7 +162,7 @@
   parent: ClothingPantsStorageBase
   id: ClothingPantsWomanAssblastusa
   name: women's "Assblastusa" underpants
-  description: трусы с уникальным дизайном "Assblastusa" для женщин.
+  description: "Assblastusa" uniquely designed underpants for womens.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
