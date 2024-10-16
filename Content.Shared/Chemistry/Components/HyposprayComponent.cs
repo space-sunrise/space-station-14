@@ -42,6 +42,6 @@ public sealed partial class HyposprayComponent : Component
     ///     Whether the hypospray uses a needle (i.e. medipens)
     ///     or sci fi bullshit that sprays into the bloodstream directly (i.e. hypos)
     /// </summary>
-    [DataField("pierceArmor")]
+    [DataField]
     public bool PierceArmor = false;
 }
