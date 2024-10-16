@@ -10,3 +10,8 @@ ghost-role-information-syndicate-spider-cyborg-name = Диверсионный �
 ghost-role-information-syndicate-spider-cyborg-description = Смерть НТ.
 ghost-role-information-clown-goblin-name = клоун гоблин
 ghost-role-information-clown-goblin-description = Ужасное создание, которое поклоняется творцу...
+ghost-role-information-evil-twin-name = Злой двойник
+ghost-role-information-evil-twin-description = Вы - злой двойник какой-то другой персоны.
+ghost-role-information-evil-twin-rules = 
+    Старайтесь действовать скрытно, никто не должен прознать о подмене!
+    Действуйте от лица вашего оригинала, хитрите, подставляйте, запутывайте.
