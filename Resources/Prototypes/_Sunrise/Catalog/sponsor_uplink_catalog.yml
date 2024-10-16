@@ -14,7 +14,7 @@
 
 - type: listing
   id: UplinkSunriseMaterialHideCorgi
-  name: Шкура корги
+  name: uplink-sunrise-material-hidecorgi-name
   productEntity: MaterialHideCorgi
   cost:
     Suntick: 15
@@ -182,7 +182,7 @@
 
 - type: listing
   id: UplinkSunriseToyHammer
-  name: Резиновый молоток
+  name: uplink-sunrise-toy-hammer-name
   productEntity: ToyHammer
   cost:
     Suntick: 3
@@ -194,7 +194,7 @@
 
 - type: listing
   id: UplinkSunriseClothingHeadHatMagician
-  name: Цилиндр фокусника
+  name: uplink-sunrise-clothing-head-hat-magician-name
   productEntity: ClothingHeadHatMagician
   cost:
     Suntick: 6
@@ -206,7 +206,7 @@
 
 - type: listing
   id: UplinkSunriseCrazyGlue
-  name: Тюбик сумашедшего клея
+  name: uplink-sunrise-crazy-glue-name
   productEntity: CrazyGlue
   cost:
     Suntick: 8
@@ -218,7 +218,7 @@
 
 - type: listing
   id: UplinkSunrisePlasticBanana
-  name: Банан
+  name: uplink-sunrise-plastic-banana-name
   productEntity: PlasticBanana
   cost:
     Suntick: 4
@@ -230,7 +230,7 @@
 
 - type: listing
   id: UplinkSunriseWhoopieCushion
-  name: Подушка-пердушка
+  name: uplink-sunrise-whoopie-cushion-name
   productEntity: WhoopieCushion
   cost:
     Suntick: 6
@@ -242,7 +242,7 @@
 
 - type: listing
   id: UplinkSunriseRGBStaff
-  name: RGB посох
+  name: uplink-sunrise-rgb-staff-name
   productEntity: RGBStaff
   cost:
     Suntick: 15
@@ -254,7 +254,7 @@
 
 - type: listing
   id: UplinkSunrisePlunger
-  name: Вантуз
+  name: uplink-sunrise-plunger-name
   productEntity: Plunger
   cost:
     Suntick: 5
@@ -266,7 +266,7 @@
 
 - type: listing
   id: UplinkSunriseMaterialHideBear
-  name: Медвежья шкура
+  name: uplink-sunrise-material-hidebear-name
   productEntity: MaterialHideBear
   cost:
     Suntick: 10
@@ -278,7 +278,7 @@
 
 - type: listing
   id: UplinkSunriseClothingHeadHatWatermelon
-  name: Арбузный шлем
+  name: uplink-sunrise-clothing-head-hat-watermelon-name
   productEntity: ClothingHeadHatWatermelon
   cost:
     Suntick: 3
@@ -290,7 +290,7 @@
 
 - type: listing
   id: UplinkSunriseBookSpaceEncyclopedia
-  name: Космическая энциклопедия
+  name: uplink-sunrise-book-space-encyclopedia-name
   productEntity: BookSpaceEncyclopedia
   cost:
     Suntick: 10
@@ -302,7 +302,7 @@
 
 - type: listing
   id: UplinkSunriseCigarCase
-  name: Портсигар
+  name: uplink-sunrise-cigar-case-name
   productEntity: CigarCase
   cost:
     Suntick: 5
@@ -314,7 +314,7 @@
 
 - type: listing
   id: UplinkSunriseCigarGoldCase
-  name: Премиум портсигар
+  name: uplink-sunrise-cigar-gold-case-name
   productEntity: CigarGoldCase
   cost:
     Suntick: 10
@@ -326,7 +326,7 @@
 
 - type: listing
   id: UplinkSunriseCrayonRainbow
-  name: Радужный мелок
+  name: uplink-sunrise-crayon-rainbow-name
   productEntity: CrayonRainbow
   cost:
     Suntick: 15
@@ -338,7 +338,7 @@
 
 - type: listing
   id: UplinkSunriseClothingUniformColorJumpskirtRainbow
-  name: Радужная юбка-комбинезон
+  name: uplink-sunrise-clothing-uniform-color-jumpskirt-rainbow-name
   productEntity: ClothingUniformColorJumpskirtRainbow
   cost:
     Suntick: 10
@@ -350,7 +350,7 @@
 
 - type: listing
   id: UplinkSunriseClothingUniformColorRainbow
-  name: Радужный комбинезон
+  name: uplink-sunrise-clothing-uniform-color-jumpsuit-rainbow-name
   productEntity: ClothingUniformColorRainbow
   cost:
     Suntick: 10
@@ -362,7 +362,7 @@
 
 - type: listing
   id: UplinkSunriseBedsheetRainbow
-  name: Радужный комбинезон
+  name: uplink-sunrise-bedsheet-rainbow-name
   productEntity: BedsheetRainbow
   cost:
     Suntick: 10
@@ -374,7 +374,7 @@
 
 - type: listing
   id: UplinkSunriseSpeedLoaderCap
-  name: Зарядник пистонов
+  name: uplink-sunrise-speed-loader-cap-name
   productEntity: SpeedLoaderCap
   cost:
     Suntick: 10
@@ -386,7 +386,7 @@
 
 - type: listing
   id: UplinkSunriseBoxCartridgeCap
-  name: Коробка пистонов
+  name: uplink-sunrise-box-cartridge-cap-name
   productEntity: BoxCartridgeCap
   cost:
     Suntick: 30
@@ -398,7 +398,7 @@
 
 - type: listing
   id: UplinkSunriseClothingHeadHatFlowerWreath
-  name: Цветочный венок
+  name: uplink-sunrise-clothing-head-hat-flower-wreath-name
   productEntity: ClothingHeadHatFlowerWreath
   cost:
     Suntick: 10
@@ -410,7 +410,7 @@
 
 - type: listing
   id: UplinkSunriseClothingNeckBling
-  name: Побрякушки
+  name: uplink-sunrise-clothing-neck-bling-name
   productEntity: ClothingNeckBling
   cost:
     Suntick: 10
@@ -422,7 +422,7 @@
 
 - type: listing
   id: UplinkSunriseClothingNeckCloakMoth
-  name: Плащ моли
+  name: uplink-sunrise-clothing-neck-cloak-moth-name
   productEntity: ClothingNeckCloakMoth
   cost:
     Suntick: 10
@@ -434,7 +434,7 @@
 
 - type: listing
   id: UplinkSunriseClothingHeadHatHoodMoth
-  name: Маска моли
+  name: uplink-sunrise-clothing-head-hat-hood-moth-name
   productEntity: ClothingHeadHatHoodMoth
   cost:
     Suntick: 5
@@ -446,7 +446,7 @@
 
 - type: listing
   id: UplinkSunriseClothingNeckSunriseBadge
-  name: Значок Санрайзосексуалов
+  name: uplink-sunrise-clothing-neck-sunrise-badge-name
   productEntity: ClothingNeckSunriseBadge
   cost:
     Suntick: 100
@@ -458,7 +458,7 @@
 
 - type: listing
   id: UplinkSunriseBoxMRE
-  name: И.Р.П.
+  name: uplink-sunrise-box-mre-name
   productEntity: BoxMRE
   cost:
     Suntick: 5
@@ -470,7 +470,7 @@
 
 - type: listing
   id: UplinkSunriseFlippoLighter
-  name: Зажигалка флиппо
+  name: uplink-sunrise-flippo-lighter-name
   productEntity: FlippoLighter
   cost:
     Suntick: 5
@@ -482,7 +482,7 @@
 
 - type: listing
   id: UplinkSunriseFlippoLighterBlue
-  name: Синяя зажигалка флиппо
+  name: uplink-sunrise-flippo-lighter-blue-name
   productEntity: FlippoLighterSunriseBlue
   cost:
     Suntick: 5
@@ -494,7 +494,7 @@
 
 - type: listing
   id: UplinkSunriseFlippoLighterContractor
-  name: Зажигалка флиппо Контрактника
+  name: uplink-sunrise-flippo-lighter-contractor-name
   productEntity: FlippoLighterSunriseContractor
   cost:
     Suntick: 15
@@ -506,7 +506,7 @@
 
 - type: listing
   id: UplinkSunriseClothingOuterCoatBomber
-  name: Куртка-бомбер
+  name: uplink-sunrise-clothing-outer-coat-bomber-name
   productEntity: ClothingOuterCoatBomber
   cost:
     Suntick: 5
@@ -518,7 +518,7 @@
 
 - type: listing
   id: UplinkSunriseDrinkVodkaBottleFull
-  name: Бутылка водки
+  name: uplink-sunrise-drink-vodka-bottle-full-name
   productEntity: DrinkVodkaBottleFull
   cost:
     Suntick: 3
@@ -530,7 +530,7 @@
 
 - type: listing
   id: UplinkSunriseFoodTinMRE
-  name: Мясная консерва
+  name: uplink-sunrise-food-tin-mre-name
   productEntity: FoodTinMRE
   cost:
     Suntick: 3
@@ -542,7 +542,7 @@
 
 - type: listing
   id: UplinkSunriseFoodTinBeans
-  name: Консервированная фасоль
+  name: uplink-sunrise-food-tin-beans-name
   productEntity: FoodTinBeans
   cost:
     Suntick: 3
@@ -554,7 +554,7 @@
 
 - type: listing
   id: UplinkSunriseFoodTinPeachesMaint
-  name: Техтуннельные персики
+  name: uplink-sunrise-food-tin-peaches-maint-name
   productEntity: FoodTinPeachesMaint
   cost:
     Suntick: 3
@@ -566,7 +566,7 @@
 
 - type: listing
   id: UplinkSunriseDrinkWhiskeyBottleFull
-  name: Особый запас дядюшки Гита
+  name: uplink-sunrise-drink-whiskey-bottle-full-name
   productEntity: DrinkWhiskeyBottleFull
   cost:
     Suntick: 3
@@ -578,7 +578,7 @@
 
 - type: listing
   id: UplinkSunriseDrinkRumBottleFull
-  name: Кубинский пряный ром капитана Пита
+  name: uplink-sunrise-drink-rum-bottle-full-name
   productEntity: DrinkRumBottleFull
   cost:
     Suntick: 3
@@ -590,7 +590,7 @@
 
 - type: listing
   id: UplinkSunriseDrinkBeerBottleFull
-  name: Пиво
+  name: uplink-sunrise-drink-beer-bottle-full-name
   productEntity: DrinkBeerBottleFull
   cost:
     Suntick: 3
@@ -600,55 +600,7 @@
   - !type:ListingLimitedStockCondition
     stock: 3
 
-#- type: listing
-#  id: UplinkSunriseClothingOuterHardsuitBasic
-#  name: Базовый скафандр
-#  productEntity: ClothingOuterHardsuitBasic
-#  cost:
-#    Suntick: 20
-#  categories:
-#  - General
-#  conditions:
-#  - !type:ListingLimitedStockCondition
-#    stock: 1
-
-#- type: listing
-#  id: UplinkSunriseClothingHeadHelmetHardsuitBasic
-#  name: Базовый шлем скафандра
-#  productEntity: ClothingHeadHelmetHardsuitBasic
-#  cost:
-#    Suntick: 5
-#  categories:
-#  - General
-#  conditions:
-#  - !type:ListingLimitedStockCondition
-#    stock: 1
-
-#- type: listing
-#  id: UplinkSunrisePowerCellHyper
-#  name: Батарея гипер ёмкости
-#  productEntity: PowerCellHyper
-#  cost:
-#    Suntick: 30
-#  categories:
-#  - General
-#  conditions:
-#  - !type:ListingLimitedStockCondition
-#    stock: 1
-
-#- type: listing
-#  id: UplinkSunrisePowerCellAntiqueProto
-#  name: Прототип древней батареи
-#  productEntity: PowerCellAntiqueProto
-#  cost:
-#    Suntick: 45
-#  categories:
-#  - General
-#  conditions:
-#  - !type:ListingLimitedStockCondition
-#    stock: 1
-
-# Плащи:
+# Cloaks:
 - type: listing
   id: UplinkSunriseClothingNeckCloakAlpha
   name: Плащ Альфа
