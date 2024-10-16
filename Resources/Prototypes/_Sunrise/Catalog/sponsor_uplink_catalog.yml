@@ -971,7 +971,7 @@
 
 - type: listing
   id: UplinkSunriseClothingMaskIAA
-  name: uplink-uplink-sunrise-clothing-mask-name
+  name: uplink-uplink-sunrise-clothing-mask-iaa-name
   productEntity: ClothingMaskIAA
   cost:
     Suntick: 10
@@ -1001,7 +1001,7 @@
 
 - type: listing
   id: UplinkSunriseClothingOuterCoatIAA
-  name: uplink-uplink-sunrise-clothing-outer-coat-name
+  name: uplink-uplink-sunrise-clothing-outer-coat-iaa-name
   productEntity: ClothingOuterCoatIAA
   cost:
     Suntick: 15
@@ -1016,7 +1016,7 @@
 
 - type: listing
   id: UplinkSunriseClothingUniformJumpsuitIAA
-  name: uplink-uplink-sunrise-clothing-uniform-jumpsuit-name
+  name: uplink-uplink-sunrise-clothing-uniform-jumpsuit-iaa-name
   productEntity: ClothingUniformJumpsuitIAA
   cost:
     Suntick: 10
@@ -1723,7 +1723,7 @@
 
 - type: listing
   id: UplinkSunriseClothingOuterCoatHOSOvercoatBlack
-  name: uplink-uplink-sunrise-clothing-outer-coat-overcoat-black-name
+  name: uplink-uplink-sunrise-clothing-outer-coat-hos-overcoat-black-name
   productEntity: ClothingOuterCoatHOSOvercoatBlack
   cost:
     Suntick: 15
@@ -1783,7 +1783,7 @@
 
 - type: listing
   id: UplinkSunriseClothingOuterCoatUSSPOvercoatBlack
-  name: uplink-uplink-sunrise-clothing-outer-coat-overcoat-black-name
+  name: uplink-uplink-sunrise-clothing-outer-coat-ussp-overcoat-black-name
   productEntity: ClothingOuterCoatUSSPOvercoatBlack
   cost:
     Suntick: 15
@@ -2075,7 +2075,7 @@
 
 - type: listing
   id: UplinkSunriseClothingNeckCMOCloak
-  name: uplink-uplink-sunrise-clothing-neck-cloak-name
+  name: uplink-uplink-sunrise-clothing-neck-cmo-cloak-name
   productEntity: ClothingNeckCMOCloak
   cost:
     Suntick: 15
@@ -2105,7 +2105,7 @@
 
 - type: listing
   id: UplinkSunriseClothingHeadHatCapCMO
-  name: uplink-uplink-sunrise-clothing-head-hat-cap-name
+  name: uplink-uplink-sunrise-clothing-head-hat-cap-cmo-name
   productEntity: ClothingHeadHatCapCMO
   cost:
     Suntick: 10
@@ -2199,7 +2199,7 @@
 
 - type: listing
   id: UplinkSunriseClothingMaskIAA2
-  name: uplink-uplink-sunrise-clothing-mask-name
+  name: uplink-uplink-sunrise-clothing-mask-iaa2-name
   productEntity: ClothingMaskIAA
   cost:
     Suntick: 10
@@ -2321,7 +2321,7 @@
 
 - type: listing
   id: UplinkSunriseClothingHeadHatCapQM
-  name: uplink-uplink-sunrise-clothing-head-hat-cap-name
+  name: uplink-uplink-sunrise-clothing-head-hat-cap-qm-name
   productEntity: ClothingHeadHatCapQM
   cost:
     Suntick: 10
@@ -2336,7 +2336,7 @@
 
 - type: listing
   id: UplinkSunriseClothingOuterCoatQM
-  name: uplink-uplink-sunrise-clothing-outer-coat-name
+  name: uplink-uplink-sunrise-clothing-outer-coat-qm-name
   productEntity: ClothingOuterCoatQM
   cost:
     Suntick: 15
@@ -2351,7 +2351,7 @@
 
 - type: listing
   id: UplinkSunriseClothingNeckCloakQM
-  name: uplink-uplink-sunrise-clothing-neck-cloak-name
+  name: uplink-uplink-sunrise-clothing-neck-cloak-qm-name
   productEntity: ClothingNeckCloakQM
   cost:
     Suntick: 15
