@@ -98,9 +98,14 @@ public sealed class HypospraySystem : SharedHypospraySystem
                 if (target == null) return false;
                 var taget = (EntityUid) target;
 
-                _popup.PopupEntity(Loc.GetString("hypospay-component-failure-hardsuit"), taget, user, PopupType.MediumCaution);
+                _popup.PopupEntity(Loc.GetString("hypospay-component-failure-hardsuit"), target, user, PopupType.MediumCaution);
                 return false;
             }
+        }
+        else if (!component.PierceArmor && TryComp<TagComponent>(target, out var tag) && tag.Tags.Contains("NoInjectable"))
+        {
+            _popup.PopupEntity(Loc.GetString("hypospay-component-failure-hardsuit"), target, user, PopupType.MediumCaution);
+            return false;
         }
 
         if (target == user)

@@ -45,6 +45,11 @@ public sealed class InjectorSystem : SharedInjectorSystem
                 return false;
             }
         }
+        else if (TryComp<TagComponent>(target, out var tag) && tag.Tags.Contains("NoInjectable"))
+        {
+            _popup.PopupEntity(Loc.GetString("injector-component-failure-hardsuit"), target, user, PopupType.MediumCaution);
+            return false;
+        }
         
         // Handle injecting/drawing for solutions
         if (injector.Comp.ToggleState == InjectorToggleMode.Inject)

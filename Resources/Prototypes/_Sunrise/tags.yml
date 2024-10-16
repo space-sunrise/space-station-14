@@ -3,6 +3,9 @@
   
 - type: Tag
   id: IgnoreMelee
+  
+- type: Tag
+  id: NoInjectable
 
 - type: Tag
   id: Nanopaste
