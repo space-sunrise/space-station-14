@@ -8,3 +8,5 @@ ghost-role-information-syndicate-heavy-cyborg-name = Тяжелый боевой
 ghost-role-information-syndicate-heavy-cyborg-description = Смерть НТ.
 ghost-role-information-syndicate-spider-cyborg-name = Диверсионный борг синдиката
 ghost-role-information-syndicate-spider-cyborg-description = Смерть НТ.
+ghost-role-information-clown-goblin-name = клоун гоблин
+ghost-role-information-clown-goblin-description = Ужасное создание, которое поклоняется творцу...
