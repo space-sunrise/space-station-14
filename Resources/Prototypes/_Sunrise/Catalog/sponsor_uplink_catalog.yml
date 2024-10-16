@@ -75,7 +75,7 @@
 - type: listing
   id: UplinkSunriseClothingHandsWatchDivine
   name: uplink-sunrise-clothing-hands-watch-divine-name
-  productEntity: ClothingHandsWatchDivine
+  productEntity: ClothingHandsClockDivine
   cost:
     Suntick: 10
   categories:
