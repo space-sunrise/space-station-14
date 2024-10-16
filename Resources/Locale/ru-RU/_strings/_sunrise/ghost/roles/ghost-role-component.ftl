@@ -15,3 +15,6 @@ ghost-role-information-evil-twin-description = Вы - злой двойник к
 ghost-role-information-evil-twin-rules = 
     Старайтесь действовать скрытно, никто не должен прознать о подмене!
     Действуйте от лица вашего оригинала, хитрите, подставляйте, запутывайте.
+ghost-role-information-foliant-name = Фолиант
+ghost-role-information-foliant-description = Помогайте своему библиотекарю просвящать эту станцию.
+ghost-role-information-foliant-rules = Вы разумная книга-мимик. Помогайте своему хозяину скрасить жизнь, просвящайте всех на станции.
