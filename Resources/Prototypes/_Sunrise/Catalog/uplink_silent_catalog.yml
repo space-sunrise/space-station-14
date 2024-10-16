@@ -40,6 +40,20 @@
     Telecrystal: 2
   categories:
   - UplinkWeaponrySilent
+  
+- type: listing
+  id: SilentUplinkSyndicateRapier
+  name: uplink-syndicate-rapier-name
+  description: uplink-syndicate-rapier-desc
+  icon: { sprite: /Textures/_SunRise/Clothing/Belt/syndieSheath.rsi, state: sheath-rapier }
+  productEntity: ClothingBeltSheathSyndicateFilled
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 5
+  cost:
+    Telecrystal: 11
+  categories:
+  - UplinkWeaponrySilent
 
 - type: listing
   id: SilentUplinkThrowingKnivesKit
