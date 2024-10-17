@@ -2,7 +2,7 @@
   name: blood red backpack shield generator
   description: A backpack shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Uses a power cell.
   id: EnergyDomeGeneratorBackpackSyndie
-  parent: BaseItem
+  parent: [ BaseItem, BaseSyndicateContraband ]
   components:
   - type: Item
     size: Ginormous
@@ -42,7 +42,7 @@
   name: BR-50c "Bastion"
   description: A backpack shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Uses a power cell.
   id: EnergyDomeGeneratorBackpackNT
-  parent: BaseItem
+  parent: [ BaseItem, BaseCentcommContraband ]
   components:
   - type: Item
     size: Ginormous
@@ -82,7 +82,7 @@
   name: BT-21b "Barrier"
   description: A personal shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Uses a power cell.
   id: EnergyDomeGeneratorPersonalNT
-  parent: BaseItem
+  parent: [ BaseItem, BaseCentcommContraband ]
   components:
   - type: Item
     size: Ginormous
