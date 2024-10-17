@@ -1,3 +1,4 @@
+# by mizeliy
 meta:
   format: 6
   postmapinit: false
@@ -23,7 +24,7 @@ entities:
   - uid: 1
     components:
     - type: MetaData
-      name: Forceps
+      name: NT - Forceps - ОБР
     - type: Transform
       pos: -1.0625,-0.28928185
       parent: invalid
@@ -1620,7 +1621,7 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-- proto: DefibrillatorCabinet
+- proto: DefibrillatorCabinetFilled
   entities:
   - uid: 208
     components:
@@ -2669,6 +2670,18 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,3.5
       parent: 1
+  - uid: 461
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -1.5,10.5
+      parent: 1
+  - uid: 462
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 3.5,10.5
+      parent: 1
 - proto: RailingCorner
   entities:
   - uid: 315
@@ -2769,9 +2782,13 @@ entities:
   entities:
   - uid: 320
     components:
+    - type: MetaData
+      name: печать ОБР
     - type: Transform
       pos: 1.6421438,7.3485546
       parent: 1
+    - type: Stamp
+      stampedName: ОБР
 - proto: SheetGlass
   entities:
   - uid: 29
