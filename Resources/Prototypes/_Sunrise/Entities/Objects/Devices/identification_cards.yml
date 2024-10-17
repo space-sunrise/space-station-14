@@ -1,8 +1,7 @@
 - type: entity
   parent: IDCardStandard
   id: BlueShieldIDCard
-  name: ID карта офицера «синий щит»
-  description: Карта, необходимая для доступа в различные области станции.
+  name: officer «blue shield» ID card
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Misc/id_cards.rsi
@@ -17,7 +16,7 @@
 - type: entity
   parent: IDCardStandard
   id: RoboticistIDCard
-  name: ID карта робототехника
+  name: roboticist ID card
   components:
   - type: Sprite
     layers:
@@ -29,7 +28,7 @@
 - type: entity
   parent: IDCardStandard
   id: SecurityPilotIDCard
-  name: ID карта пилота службы безопастности
+  name: security pilot ID card
   components:
   - type: Sprite
     layers:
@@ -41,7 +40,7 @@
 - type: entity
   parent: IDCardStandard
   id: PrisonEngineeringIDCard
-  name: ID карта тюремного инженера
+  name: prison engineer ID card
   components:
   - type: Sprite
     layers:
@@ -115,7 +114,7 @@
 - type: entity
   parent: IDCardStandard
   id: PrisonPilotIDCard
-  name: ID карта тюремного пилота
+  name: prison pilot ID card
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Misc/id_cards.rsi
@@ -128,7 +127,7 @@
 - type: entity
   parent: IDCardStandard
   id: HeadOfPrisonIDCard
-  name: ID карта начальника тюрьмы
+  name: head of prison ID card
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Misc/id_cards.rsi
@@ -143,7 +142,7 @@
 - type: entity
   parent: IDCardStandard
   id: NanoTrasenRepresentativeIDCard
-  name: NanoTrasen Representative ID Card
+  name: NanoTrasen representative ID card
   components:
   - type: Sprite
     layers:
@@ -154,8 +153,7 @@
 - type: entity
   parent: IDCardStandard
   id: BarberIDCard
-  name: ID карта парикмахера
-  description: Карта, необходимая для доступа в различные области станции.
+  name: barber ID card
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Misc/id_cards.rsi
