@@ -364,3 +364,11 @@
   speaker: pathologic2_georgiy_kain
   provider: sunrise
   roundStart: true
+
+- type: ttsVoice
+  id: Pathologic2ArtemiyBurach
+  name: tts-voice-name-pathologic2-artemiy-burach
+  sex: Male
+  speaker: pathologic2_artemiy_burach
+  provider: sunrise
+  roundStart: true

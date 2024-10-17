@@ -42,3 +42,4 @@ tts-voice-name-three-bogatira-alesha-popovich = (NEW) [Три Богатыря] 
 tts-voice-name-hearthstone-valira-sangvinar = (NEW) [Hearthstone] Валира Сангвинар
 tts-voice-name-hearthstone-akama = (NEW) [Hearthstone] Акама
 tts-voice-name-pathologic2-georgiy-kain = (NEW) [Pathologic 2] Георгий Каин
+tts-voice-name-pathologic2-artemiy-burach = (NEW) [Pathologic 2] Артемий Бурах
