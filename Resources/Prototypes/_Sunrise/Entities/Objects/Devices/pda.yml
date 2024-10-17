@@ -224,8 +224,8 @@
     id: AdjutantIDCard
     state: pda-adj
   - type: PdaBorderColor
-    borderColor: "#A32D26"
-    accentVColor: "#DFDFDF"
+    borderColor: "#1b2426"
+    accentVColor: "#62584a"
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-adj

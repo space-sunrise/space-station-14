@@ -41,7 +41,7 @@
   id: AdjutantGear
   equipment:
     shoes: ClothingShoesBootsLaceup
-    eyes: ClothingEyesGlassesSunglasses
+    eyes: ClothingEyesGlassesCommand
     id: AdjutantPDA
     ears: ClothingHeadsetAdjutant
     neck: ClothingNeckMantleAdjutant
