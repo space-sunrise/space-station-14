@@ -1,0 +1,7 @@
+- type: accessLevel
+  id: DSO
+  name: ДСО
+
+- type: accessLevel
+  id: HDSO
+  name: командование ДСО

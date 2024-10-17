@@ -1,0 +1,78 @@
+- type: entity
+  name: дубинка-шокер ДСО
+  parent: Stunbaton
+  id: StunbatonDSO
+  description: Усиленная дубинка с самовосстанавливающимся зарядом.
+  suffix: SV | ДСО
+  components:
+  - type: ItemToggleMeleeWeapon
+    activatedDamage:
+      types:
+        Blunt: 2
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 15
+    angle: 60
+    animation: WeaponArcSlash
+  - type: DisarmMalus
+    malus: 0
+  - type: Stunbaton
+    energyPerUse: 25
+  - type: StaminaDamageOnHit
+    damage: 100
+    sound: /Audio/Weapons/egloves.ogg
+  - type: StaminaDamageOnCollide
+    damage: 120
+    sound: /Audio/Weapons/egloves.ogg
+  - type: Battery
+    maxCharge: 1000
+    startingCharge: 1000
+  - type: StaticPrice
+    price: 450
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 10
+  - type: FactionWeaponBlocker
+    factions:
+    - DeathSquadron
+    alertText: Данное оружие биокодировано. Вы не можете его использовать.
+
+- type: entity
+  parent: CombatKnife
+  id: CombatKnifeTac
+  name: Тактический нож
+  description: С крюком для вскрытия дверей.
+  suffix: SV | ДСО
+  components:
+  - type: DisarmMalus
+    malus: 0
+  - type: Tool
+    speed: 1.5
+    qualities:
+      - Prying
+    useSound:
+      path: /Audio/Items/crowbar.ogg
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 20
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - neck
+
+- type: entity
+  parent: EnergySwordDouble
+  id: EnergySwordDoubleDeathsquadDSO
+  name: двухклинковый энергетический меч
+  description: Эта падла нихрена не игрушечная. Если ты видишь человека с этой штукой - беги пока не разделили.
+  suffix: SV | ДСО
+  components:
+  - type: DisarmMalus
+    malus: 0
+  - type: FactionWeaponBlocker
+    factions:
+    - DeathSquadron
+    alertText: Данное оружие биокодировано. Вы не можете его использовать.

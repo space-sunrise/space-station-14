@@ -1,0 +1,59 @@
+- type: entity
+  id: MagazineShotgunExt
+  name: расширенный барабан (.50 дробь)
+  parent: MagazineShotgun
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgun
+    capacity: 16
+  - type: Sprite
+    layers:
+    - state: pellets
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineShotgunExtInc
+  name: расширенный барабан (.50 зажигательные)
+  parent: MagazineShotgunExt
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunIncendiary
+    capacity: 16  
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineShotgunExtBeanbag
+  name: расширенный барабан (.50 травматические)
+  parent: MagazineShotgunExt
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunBeanbag
+    capacity: 16  
+  - type: Sprite
+    layers:
+    - state: beanbag
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: MagazineShotgunExtSlug
+  name: расширенный барабан (.50 пуля)
+  parent: MagazineShotgunExt
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunSlug
+    capacity: 16  
+  - type: Sprite
+    layers:
+    - state: slug
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
