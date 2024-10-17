@@ -981,7 +981,7 @@
       - PowerCageHigh
 
 - type: entity
-  id: MechRoveSyndierFilled
+  id: MechRoverSyndierFilled
   parent: MechRoverSyndieBattery
   suffix: Battery, Filled
   components:
