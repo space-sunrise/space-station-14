@@ -372,3 +372,11 @@
   speaker: pathologic2_artemiy_burach
   provider: sunrise
   roundStart: true
+
+- type: ttsVoice
+  id: WarcraftIllidan
+  name: tts-voice-name-warcraft-illidan-yarost-buri
+  sex: Male
+  speaker: warcraft_illidan_yarost_buri
+  provider: sunrise
+  roundStart: true
