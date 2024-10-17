@@ -21,6 +21,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Containers;
 
 namespace Content.Server._Sunrise.Execution;
 
@@ -29,6 +30,7 @@ namespace Content.Server._Sunrise.Execution;
 /// </summary>
 public sealed class ExecutionSystem : EntitySystem
 {
+    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
@@ -168,6 +170,15 @@ public sealed class ExecutionSystem : EntitySystem
         // We must be able to actually fire the gun
         if (!TryComp<GunComponent>(weapon, out var gun) && _gunSystem.CanShoot(gun!))
             return false;
+    
+        if (_containerSystem.TryGetContainer(weapon, "gun_chamber", out var chamberContainer))
+        {
+            foreach (var contained in chamberContainer.ContainedEntities)
+            {
+                if (TryComp<CartridgeAmmoComponent>(contained, out var cartridge) && cartridge.Spent)
+                    return false;
+            }
+        }
 
         return true;
     }

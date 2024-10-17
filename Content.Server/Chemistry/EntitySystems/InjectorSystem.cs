@@ -1,5 +1,6 @@
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
+using Content.Server.Popups;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
@@ -11,13 +12,18 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Forensics;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
+using Content.Shared.Inventory;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Stacks;
+using Content.Shared.Tag;
+using Content.Shared.Popups;
 
 namespace Content.Server.Chemistry.EntitySystems;
 
 public sealed class InjectorSystem : SharedInjectorSystem
 {
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] private readonly BloodstreamSystem _blood = default!;
     [Dependency] private readonly ReactiveSystem _reactiveSystem = default!;
 
@@ -31,6 +37,20 @@ public sealed class InjectorSystem : SharedInjectorSystem
 
     private bool TryUseInjector(Entity<InjectorComponent> injector, EntityUid target, EntityUid user)
     {
+        if (_inventorySystem.TryGetSlotEntity(target, "outerClothing", out var suit))
+        {
+            if (TryComp<TagComponent>(suit, out var tag) && tag.Tags.Contains("Hardsuit"))
+            {
+                _popup.PopupEntity(Loc.GetString("injector-component-failure-hardsuit"), target, user, PopupType.MediumCaution);
+                return false;
+            }
+        }
+        else if (TryComp<TagComponent>(target, out var tag) && tag.Tags.Contains("NoInjectable"))
+        {
+            _popup.PopupEntity(Loc.GetString("injector-component-failure-hardsuit"), target, user, PopupType.MediumCaution);
+            return false;
+        }
+        
         // Handle injecting/drawing for solutions
         if (injector.Comp.ToggleState == InjectorToggleMode.Inject)
         {

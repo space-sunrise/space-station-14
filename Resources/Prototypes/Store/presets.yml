@@ -17,6 +17,7 @@
     - UplinkJob
     - UplinkPointless
     - UplinkObjectives
+    - UplinkMechs #Sunrise-mechs
     currencyWhitelist:
     - Telecrystal
     balance:

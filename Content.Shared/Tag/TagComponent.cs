@@ -6,6 +6,7 @@ namespace Content.Shared.Tag;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState, Access(typeof(TagSystem))]
 public sealed partial class TagComponent : Component
 {
-    [DataField, ViewVariables, AutoNetworkedField]
+    [DataField, AutoNetworkedField]
+    [Access(typeof(TagSystem), Other = AccessPermissions.ReadExecute)]
     public HashSet<ProtoId<TagPrototype>> Tags = new();
 }

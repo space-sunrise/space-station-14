@@ -11,8 +11,12 @@ using Content.Shared.Interaction.Events;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Timing;
 using Content.Shared.Weapons.Melee.Events;
+using Content.Shared.Inventory;
+using Content.Shared.Tag;
+using Content.Shared.Popups;
 using Content.Server.Interaction;
 using Content.Server.Body.Components;
+using Content.Server.Popups;
 using Robust.Shared.GameStates;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -22,6 +26,8 @@ namespace Content.Server.Chemistry.EntitySystems;
 
 public sealed class HypospraySystem : SharedHypospraySystem
 {
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly InteractionSystem _interaction = default!;
 
@@ -84,6 +90,23 @@ public sealed class HypospraySystem : SharedHypospraySystem
         }
 
         string? msgFormat = null;
+        
+        if (!component.PierceArmor && _inventorySystem.TryGetSlotEntity(target, "outerClothing", out var suit))
+        {
+            if (TryComp<TagComponent>(suit, out var tag) && tag.Tags.Contains("Hardsuit"))
+            {
+                if (target == null) return false;
+                var taget = (EntityUid) target;
+
+                _popup.PopupEntity(Loc.GetString("hypospay-component-failure-hardsuit"), target, user, PopupType.MediumCaution);
+                return false;
+            }
+        }
+        else if (!component.PierceArmor && TryComp<TagComponent>(target, out var tag) && tag.Tags.Contains("NoInjectable"))
+        {
+            _popup.PopupEntity(Loc.GetString("hypospay-component-failure-hardsuit"), target, user, PopupType.MediumCaution);
+            return false;
+        }
 
         if (target == user)
             msgFormat = "hypospray-component-inject-self-message";

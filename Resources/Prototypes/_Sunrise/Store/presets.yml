@@ -5,18 +5,19 @@
   - type: Store
     name: store-preset-name-uplink
     categories:
-    - UplinkWeaponrySilent
+    - UplinkWeaponry
     - UplinkAmmoSilent
-    - UplinkExplosivesSilent
+    - UplinkExplosives
     - UplinkChemicals
     - UplinkDeception
-    - UplinkDisruptionSilent
+    - UplinkDisruption
     - UplinkImplants
     - UplinkAllies
-    - UplinkWearablesSilent
+    - UplinkWearables
     - UplinkJob
     - UplinkPointless
     - UplinkObjectives
+    - UplinkMechs #Sunrise-mechs
     currencyWhitelist:
     - Telecrystal
     balance:
