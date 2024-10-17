@@ -326,14 +326,6 @@
   roundStart: false # точно нет
 
 - type: ttsVoice
-  id: CBMTF2
-  name: tts-voice-name-mtf2
-  sex: Male
-  speaker: mtf_2
-  provider: sunrise
-  roundStart: false # точно нет
-
-- type: ttsVoice
   id: ThreeBigatiraAleshaPopovich
   name: tts-voice-name-three-bogatira-alesha-popovich
   sex: Male

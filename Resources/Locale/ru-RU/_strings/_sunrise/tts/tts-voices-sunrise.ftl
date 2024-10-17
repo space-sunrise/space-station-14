@@ -37,7 +37,6 @@ tts-voice-name-hearthstone-elisa = (NEW) [Hearthstone] Элиза
 tts-voice-name-hearthstone-sotis = (NEW) [Hearthstone] Сотис
 tts-voice-name-hearthstone-mediv = (NEW) [Hearthstone] Медив
 tts-voice-name-mtf1 = (NEW) [Containment Breach] MTF 1
-tts-voice-name-mtf2 = (NEW) [Containment Breach] MTF 2
 tts-voice-name-petr_glance_ivashenko = (NEW) [Актер Озвучки] Пётр Иващенко
 tts-voice-name-three-bogatira-alesha-popovich = (NEW) [Три Богатыря] Алёша Попович
 tts-voice-name-hearthstone-valira-sangvinar = (NEW) [Hearthstone] Валира Сангвинар
