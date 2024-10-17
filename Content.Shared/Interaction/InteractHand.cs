@@ -45,10 +45,13 @@ namespace Content.Shared.Interaction
     public sealed class BeforeInteractHandEvent : HandledEntityEventArgs
     {
         public EntityUid Target { get; }
+        public EntityUid User { get; } // Sunrise added
 
-        public BeforeInteractHandEvent(EntityUid target)
+        // Sunrise edit - EntityUid user
+        public BeforeInteractHandEvent(EntityUid target, EntityUid user)
         {
             Target = target;
+            User = user; // Sunrise added
         }
     }
 }
