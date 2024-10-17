@@ -42,3 +42,4 @@ tts-voice-name-petr_glance_ivashenko = (NEW) [Актер Озвучки] Пёт�
 tts-voice-name-three-bogatira-alesha-popovich = (NEW) [Три Богатыря] Алёша Попович
 tts-voice-name-hearthstone-valira-sangvinar = (NEW) [Hearthstone] Валира Сангвинар
 tts-voice-name-hearthstone-akama = (NEW) [Hearthstone] Акама
+tts-voice-name-pathologic2-georgiy-kain = (NEW) [Pathologic 2] Георгий Каин

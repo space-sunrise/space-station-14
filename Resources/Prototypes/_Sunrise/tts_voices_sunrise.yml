@@ -364,3 +364,11 @@
   speaker: hearthstone_akama
   provider: sunrise
   roundStart: true
+
+- type: ttsVoice
+  id: Pathologic2GeorgiyKain
+  name: tts-voice-name-pathologic2-georgiy-kain
+  sex: Male
+  speaker: pathologic2_georgiy_kain
+  provider: sunrise
+  roundStart: true
