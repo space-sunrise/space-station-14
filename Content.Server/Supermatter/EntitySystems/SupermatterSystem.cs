@@ -26,6 +26,7 @@ using Content.Shared.Examine;
 using Content.Server.DoAfter;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Kitchen.Components;
+using Content.Shared.Tag;
 
 namespace Content.Server.Supermatter.EntitySystems;
 
@@ -45,6 +46,7 @@ public sealed class SupermatterSystem : EntitySystem
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly ExplosionSystem _explosion = default!;
+    [Dependency] private readonly TagSystem _tagSystem = default!;
 
     public override void Initialize()
     {
@@ -182,7 +184,10 @@ public sealed class SupermatterSystem : EntitySystem
 
         _sound.PlayPvs(SupermatterComponent.SupermatterZapSound, uid);
         _lightning.ShootRandomLightnings(uid, 3, (int) strength < 1 ? 1 : (int) strength, lightningProto);
-        Comp<RadiationSourceComponent>(uid).Intensity = 1 + strength;
+        if (Comp<RadiationSourceComponent>(uid).Intensity < 5)
+            Comp<RadiationSourceComponent>(uid).Intensity += 1 + strength;
+        else
+            Comp<RadiationSourceComponent>(uid).Intensity = 5;
     }
     /// <summary>
     ///     React to damage dealt by all doodads.
@@ -295,6 +300,8 @@ public sealed class SupermatterSystem : EntitySystem
         if (EntityManager.IsQueuedForDeletion(uid))
             return;
 
+        if (TryComp<SupermatterComponent>(smUid, out var sm))
+            sm.Damage += 1;
         _sound.PlayPvs(SupermatterComponent.VaporizeSound, smUid);
         EntityManager.QueueDeleteEntity(uid);
 
@@ -419,6 +426,9 @@ public sealed class SupermatterSystem : EntitySystem
     {
         if (!sm.Activated)
             sm.Activated = true;
+        
+        if (_tagSystem.HasTag(args.OtherEntity, "EmitterBolt"))
+            return;
 
         Vaporize(args.OtherEntity, uid);
     }
