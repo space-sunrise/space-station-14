@@ -2,5 +2,5 @@
   save: false
   parent: BaseMobPredator
   id: MobPredator
-  name: Хищник
+  name: Predator
   

@@ -1,32 +1,32 @@
 - type: construction
-  name: картофельная батарея  # Sunrise-recipes
+  name: potato battery
   id: PowerCellPotato
   graph: PowerCellPotato
   startNode: start
   targetNode: potatobattery
   category: construction-category-misc
-  description: Поистине гениальный источник энергии.  # Sunrise-recipes
+  description: A truly ingenious source of power.
   icon: { sprite: Objects/Power/power_cells.rsi, state: potato }
   objectType: Item
 
 - type: construction
-  name: картофельный искусственный интеллект  # Sunrise-recipes
+  name: potato artificial intelligence
   id: PotatoAI
   graph: PotatoAI
   startNode: start
   targetNode: potatoai
   category: construction-category-misc
-  description: Картофель - идеальный источник энергии для этого чипа.  # Sunrise-recipes
+  description: The potato happens to be the perfect power source for this chip.
   icon: { sprite: Objects/Fun/pai.rsi, state: icon-potato-off }
   objectType: Item
-
+  
 - type: construction
-  name: суперкомпактный чип искусственного интеллекта  # Sunrise-recipes
+  name: supercompact AI chip
   id: PotatoAIChip
   graph: PotatoAIChip
   startNode: start
   targetNode: potatoaichip
   category: construction-category-misc
-  description: Мастерски сделанный чип ИИ, требующий столь же импровизированного источника питания.  # Sunrise-recipes
+  description: A masterfully(?) crafted AI chip, requiring a similarly improvised power source.
   icon: { sprite: Objects/Misc/potatoai_chip.rsi, state: icon }
   objectType: Item

@@ -1,7 +1,7 @@
 ﻿- type: entity
   id: SmileAffection
-  name: Обнимашки
-  description: Смайл обнимается с целью, восстанавливая ей некоторое количество здоровья.
+  name: Hugs
+  description: Smile hugs the target, restoring a certain amount of health to it.
   categories: [ HideSpawnMenu ]
   components:
   - type: EntityTargetAction

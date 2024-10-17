@@ -23,8 +23,8 @@
 - type: entity
   parent: ClothingBackpackDuffel
   id: ClothingBackpackDuffelBlueShield
-  name: Облегчённый вещмешок офицера «синий щит»
-  description: На стиле.
+  name: blueshield's lightweight duffel bag
+  description: On style.
   components:
     - type: ClothingSpeedModifier
       walkModifier: 0.95
@@ -35,8 +35,8 @@
 - type: entity
   parent: ClothingBackpackDuffel
   id: ClothingBackpackDuffelPrisonGuard
-  name: вещмешок сотрудника кт
-  description: На стиле.
+  name: prison guard's duffel bag
+  description: On style.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Back/Duffels/guard.rsi

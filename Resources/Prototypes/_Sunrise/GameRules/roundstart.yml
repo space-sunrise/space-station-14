@@ -18,3 +18,10 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: EvilTwinRule
+
+- type: entity
+  id: PlanetPrison
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PlanetPrisonRule

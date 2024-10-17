@@ -1,25 +1,25 @@
 ﻿- type: construction
-  name: плюшевый ревенант  # Sunrise-recipes
+  name: revenant plushie
   id: PlushieGhostRevenant
   graph: PlushieGhostRevenant
   startNode: start
   targetNode: plushie
   category: construction-category-misc
   objectType: Item
-  description: Игрушка, которой можно напугать медблок.  # Sunrise-recipes
+  description: A toy to scare the medbay with.
   icon:
     sprite: Mobs/Ghosts/revenant.rsi
     state: icon
 
 - type: construction
-  name: костюм Иана  # Sunrise-recipes
+  name: ian suit
   id: ClothingOuterSuitIan
   graph: ClothingOuterSuitIan
   startNode: start
   targetNode: suit
   category: construction-category-misc
   objectType: Item
-  description: Сделайте себя похожим на Йана!  # Sunrise-recipes
+  description: Make yourself look just like Ian!
   icon:
     sprite: Clothing/OuterClothing/Suits/iansuit.rsi
     state: icon

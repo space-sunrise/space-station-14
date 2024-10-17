@@ -1,7 +1,7 @@
 - type: entity
   id: LockerBlueshield
   parent: LockerBaseSecure
-  name: шкаф офицера "Синий Щит"
+  name: blueshield officer's locker
   components:
     - type: Appearance
     - type: Sprite
@@ -28,7 +28,7 @@
 - type: entity
   id: LockerPilot
   parent: LockerBaseSecure
-  name: шкаф пилота
+  name: security pilot's locker
   components:
   - type: Appearance
   - type: Sprite

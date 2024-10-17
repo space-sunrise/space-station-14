@@ -1,7 +1,7 @@
 - type: entity
   id: BorgCombatModuleERT
   parent: [ BaseBorgModuleERT, BaseProviderBorgModule ]
-  name: Оружейный модуль киборга ОБР
+  name: ERT cyborg weapon module
   components:
   - type: Sprite
     layers:
@@ -16,7 +16,7 @@
 - type: entity
   id: BorgModuleERTNlethal
   parent: [ BaseBorgModuleERT, BaseProviderBorgModule ]
-  name: Нелетальный модуль киборга ОБР
+  name: non-lethal ERT cyborg module
   components:
   - type: Sprite
     layers:
@@ -31,7 +31,7 @@
 - type: entity
   id: BorgToolModuleERT
   parent: [ BaseBorgModuleERT, BaseProviderBorgModule ]
-  name: Инструментальный модуль киборга ОБР
+  name: ERT cyborg tool module
   components:
   - type: Sprite
     layers:
@@ -44,7 +44,7 @@
 - type: entity
   id: BorgHeavyModuleSyndicateCombat
   parent: [ BaseBorgModuleSyndicate, BaseProviderBorgModule ]
-  name: Оружейный модуль тяжёлого киборга Синдиката
+  name: syndicate heavy cyborg weapon module
   components:
   - type: Sprite
     layers:
@@ -58,7 +58,7 @@
 - type: entity
   id: BorgScoutModuleSyndicateCombat
   parent: [ BaseBorgModuleSyndicate, BaseProviderBorgModule ]
-  name: Защитный модуль киборга диверсанта Синдиката
+  name: syndicate saboteur cyborg defence module
   components:
   - type: Sprite
     layers:
@@ -73,7 +73,7 @@
 - type: entity
   id: BorgScoutModuleSyndicateTool
   parent: [ BaseBorgModuleSyndicate, BaseProviderBorgModule ]
-  name: Продвинутый инструментальный модуль киборга диверсанта Синдиката
+  name: advanced syndicate saboteur cyborg tool module
   components:
   - type: Sprite
     layers:

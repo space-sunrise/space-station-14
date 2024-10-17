@@ -1,6 +1,6 @@
 # © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 - type: body
-  name: "Хищник"
+  name: Predator
   id: Predator
   root: torso
   slots:

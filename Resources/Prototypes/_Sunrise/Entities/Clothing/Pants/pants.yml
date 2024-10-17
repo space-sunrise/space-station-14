@@ -3,8 +3,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsManAssblastusa
-  name: мужские трусы "Assblastusa"
-  description: трусы с уникальным дизайном "Assblastusa" для мужчин.
+  name: men's /"Assblastusa/" underpants
+  description: /"Assblastusa/" uniquely designed underpants for men.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
@@ -16,8 +16,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsManBoxers
-  name: мужские боксеры
-  description: Комфортные боксеры для мужчин.
+  name: man's boxers
+  description: Comfortable boxers for mens.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
@@ -29,8 +29,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsManBriefs
-  name: мужские трусы
-  description: Обычные мужские трусы.
+  name: men's underpants
+  description: Regular men's underwear.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
@@ -42,8 +42,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsManCommie
-  name: мужские трусы "Коммуняка"
-  description: трусы с коммунистическим дизайном для мужчин.
+  name: man's /"Commie/" underpants
+  description: communist-designed underpants for men.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
@@ -55,8 +55,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsManHearts
-  name: мужские трусы с сердечками
-  description: трусы с рисунком сердечек для мужчин.
+  name: man's underpants with hearts
+  description: heart pattern underpants for mens.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
@@ -68,8 +68,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsManKinky
-  name: мужские трусы "Кинки"
-  description: трусы с вызывающим дизайном для мужчин.
+  name: man's underpants /"Kinky/"
+  description: underpants with a provocative design for mens.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
@@ -81,8 +81,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsManLongjohns
-  name: мужские теплые трусы
-  description: Теплые длинные трусы для мужчин.
+  name: men's sweatpants
+  description: Warm long underpants for men.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
@@ -94,8 +94,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsManMankini
-  name: мужской манкини
-  description: Одежда для смелых мужчин.
+  name: men's mankini
+  description: Clothing for bold men.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
@@ -107,8 +107,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsManStripe
-  name: мужские полосатые трусы
-  description: трусы с полосатым дизайном для мужчин.
+  name: men's striped underpants
+  description: underpants with a striped design for men.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
@@ -120,8 +120,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsManUk
-  name: мужские трусы с флагом Великобритании
-  description: трусы с флагом Великобритании для мужчин.
+  name: men's underpants with the British flag
+  description: UK flag underpants for men.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
@@ -135,8 +135,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsWomanNekoWhite
-  name: женские белые трусы с котиками
-  description: трусы с белым цветом и изображением котиков для женщин.
+  name: women's white kitty underpants
+  description: white panties with a picture of SEALs on them for women.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
@@ -148,8 +148,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsWomanNekoBlack
-  name: женские черные трусы с котиками
-  description: трусы с черным цветом и изображением котиков для женщин.
+  name: women's black kitty underpants
+  description: black panties with a picture of SEALs on them for women.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
@@ -161,8 +161,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsWomanAssblastusa
-  name: женские трусы "Assblastusa"
-  description: трусы с уникальным дизайном "Assblastusa" для женщин.
+  name: women's /"Assblastusa/" underpants
+  description: /"Assblastusa/" uniquely designed underpants for womens.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
@@ -174,8 +174,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsWomanBikini
-  name: женские бикини
-  description: трусы-бикини для женщин.
+  name: women's bikini
+  description: bikini briefs for womens.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
@@ -187,8 +187,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsWomanBralette
-  name: женские трусики-бра
-  description: Трусики-бра для женщин.
+  name: women's bralettes
+  description: Bra-underpants for womens.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
@@ -200,8 +200,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsWomanCommie
-  name: женские трусы "Коммуняка"
-  description: трусы с коммунистическим дизайном для женщин.
+  name: women's /"Commie/" underpants
+  description: communist-designed underpants for womens.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
@@ -213,8 +213,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsWomanKinky
-  name: женские трусы "Кинки"
-  description: трусы с вызывающим дизайном для женщин.
+  name: women's /"Kinky/" underpants
+  description: underpants with a provocative design for womens.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
@@ -226,8 +226,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsWomanLace
-  name: женские кружевные трусы
-  description: трусы с кружевным узором для женщин.
+  name: women's lace underpants
+  description: lace pattern underpants for womens.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
@@ -239,8 +239,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsWomanSport
-  name: женские спортивные трусы
-  description: Удобные и практичные спортивные трусы для женщин.
+  name: women's sports underpants
+  description: Comfortable and practical sports shorts for womens.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
@@ -252,8 +252,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsWomanThong
-  name: женские трусики-стринги
-  description: Трусики-стринги для женщин.
+  name: women's thong underpants
+  description: Thong panties for womens.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
@@ -265,8 +265,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsWomanUk
-  name: женские трусы с флагом Великобритании
-  description: трусы с флагом Великобритании для женщин.
+  name: women's underpants with the British flag
+  description: UK flag underpants for women.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
@@ -278,8 +278,8 @@
 - type: entity
   parent: ClothingPantsStorageBase
   id: ClothingPantsWomanStrapless
-  name: женские трусы без лямок
-  description: трусы без лямок для женщин.
+  name: women's strapless underpants
+  description: strapless underpants for women.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi

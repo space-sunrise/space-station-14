@@ -1,7 +1,7 @@
 - type: entity
   parent: GunSafe
   id: GunSafeEnergyGunMini
-  name: сейф миниатюрных энергетических пушек
+  name: mini energy cannons safe
   suffix: SUNRISE
   components:
   - type: StorageFill
@@ -12,8 +12,8 @@
 - type: entity
   parent: GunSafe
   id: GunSafePistolG22
-  name: Сейф Глок-22
-  suffix: SUNRISE
+  name: safe
+  suffix: Glock-22
   components:
   - type: StorageFill
     contents:
@@ -25,8 +25,8 @@
 - type: entity
   parent: GunSafe
   id: GunSafeRifleM16A4
-  name: Сейф M16A4
-  suffix: SUNRISE
+  name: safe
+  suffix: M16A4
   components:
   - type: StorageFill
     contents:
@@ -38,8 +38,8 @@
 - type: entity
   parent: GunSafe
   id: GunSafeSubMachineGunVector
-  name: Сейф векторов
-  suffix: SUNRISE
+  name: safe
+  suffix: Vector
   components:
   - type: StorageFill
     contents:
@@ -51,8 +51,8 @@
 - type: entity
   parent: GunSafe
   id: GunSafeShotgunPaladin
-  name: Сейф Паладинов 12
-  suffix: SUNRISE
+  name: safe
+  suffix: Paladin 12
   components:
   - type: StorageFill
     contents:
@@ -68,8 +68,8 @@
 - type: entity
   parent: GunSafe
   id: GunSafeShotgunTrenchgun4034
-  name: Сейф Тренчганов 4034
-  suffix: SUNRISE
+  name: safe
+  suffix: Trenchgun 4034
   components:
   - type: StorageFill
     contents:
@@ -85,8 +85,8 @@
 - type: entity
   id: GunSafeSubMachineGunMP38
   parent: GunSafe
-  name: Сейф MP-38
-  suffix: SUNRISE
+  name: safe
+  suffix: MP-38
   components:
   - type: StorageFill
     contents:
@@ -102,8 +102,8 @@
 - type: entity
   parent: GunSafe
   id: GunSafeEnergyGun
-  name: сейф энергетических пушек
-  suffix: SUNRISE
+  name: safe
+  suffix: Energy guns
   components:
   - type: StorageFill
     contents:

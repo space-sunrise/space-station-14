@@ -1,7 +1,7 @@
 ﻿- type: entity
   id: BarberRazor
-  name: Электробритва
-  description: Используется парикмахерами для изменения прически
+  name: electric razor
+  description: Used by hairdressers to modify hairstyles.
   parent: BaseItem
   components:
   - type: Sprite
@@ -32,7 +32,7 @@
   id: BaseBarberHairDye
   abstract: true
   parent: BaseItem
-  description: Используется парикмахерами для изменения цвета прически.
+  description: Used by hairdressers to change the colour of a hairstyle.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Misc/hairdyebottle.rsi
@@ -53,7 +53,7 @@
 
 - type: entity
   id: BarberHairDyeBlue
-  name: Синий краситель для волос
+  name: blue hair dye
   parent: BaseBarberHairDye
   components:
   - type: Sprite
@@ -67,7 +67,7 @@
 
 - type: entity
   id: BarberHairDyeRed
-  name: Красный краситель для волос
+  name: red hair dye
   parent: BaseBarberHairDye
   components:
   - type: Sprite
@@ -81,7 +81,7 @@
 
 - type: entity
   id: BarberHairDyeGreen
-  name: Зеленый краситель для волос
+  name: green hair dye
   parent: BaseBarberHairDye
   components:
   - type: Sprite
@@ -95,7 +95,7 @@
 
 - type: entity
   id: BarberHairDyeLight
-  name: Светлый краситель для волос
+  name: light hair dye
   parent: BaseBarberHairDye
   components:
   - type: Sprite
@@ -109,7 +109,7 @@
 
 - type: entity
   id: BarberHairDyeDark
-  name: Тёмный краситель для волос
+  name: dark hair dye
   parent: BaseBarberHairDye
   components:
   - type: Sprite

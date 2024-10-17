@@ -13,8 +13,8 @@
 - type: entity
   parent: BaseComputerShuttle
   id: ComputerShuttleCentComm
-  name: консоль управления шаттлом ПЦК
-  description: Консоль для удаленного управления шаттлом Представителя Центрального Командования.
+  name: RCC shuttle console
+  description: Console for remote control of the Central Command Representative's shuttle.
   components:
   - type: Sprite
     layers:
@@ -23,9 +23,9 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: eris_control  # оно красивое
+      state: eris_control
     - map: ["computerLayerKeys"]
-      state: security_key  # оно красивое
+      state: security_key
   - type: DroneConsole
     components:
     - type: CentCommShuttle
@@ -39,8 +39,8 @@
 - type: entity
   parent: BaseComputerShuttle
   id: ComputerShuttlePrison
-  name: консоль управления тюремным шаттлом
-  description: Консоль для удаленного управления тюремным шаттлом.
+  name: prison's shuttle console
+  description: Console for remote control of the prison's shuttle.
   components:
   - type: Sprite
     layers:
@@ -49,9 +49,9 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: eris_control  # оно красивое
+      state: eris_control 
     - map: ["computerLayerKeys"]
-      state: security_key  # оно красивое
+      state: security_key 
   - type: DroneConsole
     components:
     - type: PrisonShuttle
@@ -65,8 +65,8 @@
 - type: entity
   parent: ComputerComms
   id: PrisonComputerComms
-  name: консоль связи тюрьмы
-  description: Консоль для контроля над объявлениями в космической тюрьме.
+  name: prison communications computer
+  description: A console for controlling announcements in a space prison.
   components:
   - type: AccessReader
     access: [[ "Security" ]]
@@ -85,8 +85,8 @@
 - type: entity
   parent: BaseComputerShuttle
   id: ComputerShuttleSecurity
-  name: консоль управления шаттлом службы безопасности
-  description: Консоль для удаленного управления шаттлом службы безопасности.
+  name: security shuttle console
+  description: Console for remote control of the security shuttle.
   components:
   - type: Sprite
     layers:
@@ -95,9 +95,9 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: eris_control  # оно красивое
+      state: eris_control
     - map: ["computerLayerKeys"]
-      state: security_key  # оно красивое
+      state: security_key
   - type: DroneConsole
     components:
     - type: SecurityShuttle

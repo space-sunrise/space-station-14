@@ -38,8 +38,8 @@
 - type: entity
   id: OrganHumanoidXenoBrain
   parent: BaseHumanoidXenoOrgan
-  name: мозг
-  description: Нексус чужеродного разума. Мысли, которых вы не хотите знать.
+  name: brain
+  description: The nexus of the alien mind. Thoughts you don't want to know.
   components:
   - type: Sprite
     state: brain
@@ -72,8 +72,8 @@
 - type: entity
   id: OrganHumanoidXenoTongue
   parent: BaseHumanoidXenoOrgan
-  name: язык
-  description: Длинный и гибкий.
+  name: tongue
+  description: Long and flexible.
   components:
   - type: Sprite
     state: tongue
@@ -81,8 +81,8 @@
 - type: entity
   id: OrganHumanoidXenoAppendix
   parent: BaseHumanoidXenoOrgan
-  name: аппендикс
-  description: Эволюционный привет из прошлого.
+  name: appendix
+  description: An evolutionary greeting from the past.
   components:
   - type: Sprite
     layers:
@@ -93,8 +93,8 @@
 - type: entity
   id: OrganHumanoidXenoEars
   parent: BaseHumanoidXenoOrgan
-  name: уши
-  description: Сверхчувствительные локаторы. Слышат ваши страхи.
+  name: ears
+  description: Ultra-sensitive locators. Hear your fears.
   components:
   - type: Sprite
     state: ears
@@ -102,8 +102,8 @@
 - type: entity
   id: OrganHumanoidXenoLungs
   parent: BaseHumanoidXenoOrgan
-  name: легкие
-  description: Фильтруют кислород из атмосферы и направляют его в кровь, где он используется как переносчик электронов.
+  name: lungs
+  description: They filter oxygen from the atmosphere and channel it into the bloodstream, where it is used as an electron carrier.
   components:
   - type: Sprite
     layers:
@@ -136,8 +136,8 @@
 - type: entity
   id: OrganHumanoidXenoHeart
   parent: BaseHumanoidXenoOrgan
-  name: сердце ксеноморфа
-  description: Мощный орган, перекачивающий кислую кровь сквозь жесткие ткани и обеспечивающий невероятную выносливость и силу каждому ксеноморфу.
+  name: xenomorph heart
+  description: A powerful organ that pumps acidic blood through tough tissues and provides incredible stamina and strength to every xenomorph.
   components:
   - type: Sprite
     state: heart-on
@@ -152,15 +152,15 @@
 - type: entity
   id: OrganHumanoidXenoStomach
   parent: BaseHumanoidXenoOrgan
-  name: желудок
-  description: Прожорливая яма.
+  name: stomach
+  description: A voracious pit.
   components:
   - type: Sprite
     state: stomach
   - type: SolutionContainerManager
     solutions:
       stomach:
-        maxVol: 100 # 2x more than human
+        maxVol: 100
       food:
         maxVol: 5
         reagents:
@@ -177,29 +177,28 @@
 - type: entity
   id: OrganHumanoidXenoLiver
   parent: BaseHumanoidXenoOrgan
-  name: печень
-  description: Мощный детоксикатор, с легкостью нейтрализующий опасные вещества.
+  name: liver
+  description: A powerful detoxifier that neutralizes dangerous substances with ease.
   components:
   - type: Sprite
     state: liver
-  - type: Metabolizer # The liver metabolizes certain chemicals only, like alcohol.
+  - type: Metabolizer
     maxReagents: 1
     metabolizerTypes: [Human]
     groups:
     - id: Alcohol
-      rateModifier: 0.1 # removes alcohol very slowly along with the stomach removing it as a drink
+      rateModifier: 0.1
 
 - type: entity
   id: OrganHumanoidXenoKidneys
   parent: BaseHumanoidXenoOrgan
-  name: почки
-  description: Парные фильтры, безжалостно выводящие всё лишнее.
+  name: kidneys
+  description: Paired filters, ruthlessly taking out anything superfluous.
   components:
   - type: Sprite
     layers:
       - state: kidney-l
       - state: kidney-r
-  # The kidneys just remove anything that doesn't currently have any metabolisms, as a stopgap.
   - type: Metabolizer
     maxReagents: 5
     metabolizerTypes: [Human]

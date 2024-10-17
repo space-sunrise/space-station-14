@@ -2,7 +2,7 @@
 - type: entity
   id: PartPredator
   parent: [BaseItem, BasePart]
-  name: "голова яутжи"
+  name: "predator body part"
   abstract: true
   components:
   - type: Extractable
@@ -15,7 +15,7 @@
 
 - type: entity
   id: TorsoPredator
-  name: "торс яутжи"
+  name: "predator torso"
   parent: [PartPredator, BaseTorso]
   components:
   - type: Sprite
@@ -31,7 +31,7 @@
 
 - type: entity
   id: HeadPredator
-  name: "голова яутжи"
+  name: "predator head"
   parent: [PartPredator, BaseHead]
   components:
   - type: Sprite
@@ -47,7 +47,7 @@
 
 - type: entity
   id: LeftArmPredator
-  name: "левая рука яутжи"
+  name: "left predator arm"
   parent: [PartPredator, BaseLeftArm]
   components:
   - type: Sprite
@@ -56,7 +56,7 @@
 
 - type: entity
   id: RightArmPredator
-  name: "правая рука яутжи"
+  name: "right predator arm"
   parent: [PartPredator, BaseRightArm]
   components:
   - type: Sprite
@@ -65,7 +65,7 @@
 
 - type: entity
   id: LeftHandPredator
-  name: "левая кисть яутжи"
+  name: "left predator hand"
   parent: [PartPredator, BaseLeftHand]
   components:
   - type: Sprite
@@ -74,7 +74,7 @@
 
 - type: entity
   id: RightHandPredator
-  name: "правая кисть яутжи"
+  name: "right predator hand"
   parent: [PartPredator, BaseRightHand]
   components:
   - type: Sprite
@@ -83,7 +83,7 @@
 
 - type: entity
   id: LeftLegPredator
-  name: "левая нога яутжи"
+  name: "left predator leg"
   parent: [PartPredator, BaseLeftLeg]
   components:
   - type: Sprite
@@ -92,7 +92,7 @@
 
 - type: entity
   id: RightLegPredator
-  name: "правая нога нога уятжи"
+  name: "right predator leg"
   parent: [PartPredator, BaseRightLeg]
   components:
   - type: Sprite
@@ -101,7 +101,7 @@
 
 - type: entity
   id: LeftFootPredator
-  name: "левая стопа яутжи"
+  name: "left predator foot"
   parent: [PartPredator, BaseLeftFoot]
   components:
   - type: Sprite
@@ -110,7 +110,7 @@
 
 - type: entity
   id: RightFootPredator
-  name: "правая стопа яутжи"
+  name: "right predator foot"
   parent: [PartPredator, BaseRightFoot]
   components:
   - type: Sprite

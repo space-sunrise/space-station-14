@@ -1,7 +1,7 @@
 # © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 - type: species
   id: Predator
-  name: Яутжа
+  name: species-name-predator
   roundStart: true
   prototype: MobPredator
   sprites: MobPredatorSprites

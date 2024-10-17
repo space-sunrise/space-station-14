@@ -1,8 +1,8 @@
 ﻿- type: entity
   parent: BaseItem
   id: TapePlayer
-  name: магнитофон
-  description: Революция в области музыкального исскуства, главный враг музыкантов.
+  name: tape player
+  description: A revolution in the art of music, the main enemy of musicians.
   components:
   - type: Appearance
   - type: Sprite

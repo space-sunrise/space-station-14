@@ -192,18 +192,18 @@
 
 - type: emote
   id: Vomit
-  name: Тошнота
+  name: chat-emote-name-vomit
   category: Vocal
-  chatMessages: [тошнитыы]
+  chatMessages: [тошнит]
 
 - type: emote
   id: Headache
-  name: Головная боль
+  name: chat-emote-name-headache
   category: Vocal
-  chatMessages: [голова болитыы]
+  chatMessages: [голова болит]
 
 - type: emote
   id: Insult
-  name: Инсульт
+  name: chat-emote-name-insult
   category: Vocal
-  chatMessages: [инсультыы]
+  chatMessages: [инсульт]

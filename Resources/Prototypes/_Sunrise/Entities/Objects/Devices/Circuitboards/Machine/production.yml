@@ -12,37 +12,16 @@
         Glass: 1
 
 - type: entity
-  parent: BaseComputerCircuitboard
-  id: CentCommShuttleConsoleCircuitboard
-  name: консоль шаттла ПЦК (консольная плата)
-  description: Плата которая используется для создания консоли шаттла ПЦК.
+  parent: BaseMachineCircuitboard
+  id: PacificatorCircuitboard
+  name: pacifism generator machine board
+  description: Makes all sentient beings within range pacifists.
   components:
-  - type: ComputerBoard
-    prototype: ComputerShuttleCentComm
-
-- type: entity
-  parent: BaseComputerCircuitboard
-  id: PrisonShuttleConsoleCircuitboard
-  name: консоль тюремного шаттла (консольная плата)
-  description: Плата которая используется для создания консоли тюремного шаттла.
-  components:
-  - type: ComputerBoard
-    prototype: ComputerShuttlePrison
-
-- type: entity
-  parent: BaseComputerCircuitboard
-  id: PrisonCommsComputerCircuitboard
-  name: консоль связи тюрьмы (консольная плата)
-  description: Плата которая используется для создания консоли связи тюрьмы.
-  components:
-  - type: ComputerBoard
-    prototype: PrisonComputerComms
-
-- type: entity
-  parent: BaseComputerCircuitboard
-  id: SecurityShuttleConsoleCircuitboard
-  name: консоль шаттла службы безопастности (консольная плата)
-  description: Плата которая используется для создания консоли шаттла службы безопастности.
-  components:
-  - type: ComputerBoard
-    prototype: ComputerShuttleSecurity
+  - type: MachineBoard
+    prototype: Pacificator
+    stackRequirements:
+      Capacitor: 4
+      MatterBin: 3
+      Steel: 5
+      CableHV: 5
+      Uranium: 2

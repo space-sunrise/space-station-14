@@ -57,8 +57,8 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtBlueShield
-  name: юбка-комбинезон офицера «синий щит»
-  description: Детка...
+  name: blueshield's jumpskirt
+  description: Baby...
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/blueshield.rsi
@@ -68,8 +68,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpskirtPrisonerGrey
-  name: юбка-комбинезон заключенной
-  description: Почему она не оранжевая?
+  name: prisoner's jumpskirt
+  description: Why isn't it orange?
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/prisoner.rsi
@@ -79,8 +79,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpskirtGuard
-  name: юбка-комбинезон охраны
-  description: Почему она не красная?
+  name: prison guard's jumpskirt
+  description: Why isn't it red?
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/guard.rsi
@@ -90,7 +90,7 @@
 - type: entity
   parent: ClothingUniformSkirtBase
   id: ClothingUniformJumpskirtPilot
-  name: Юбка комбинезон пилота Службы Безопасности
+  name: security pilot's jumpskirt
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/pilotjumpskirt.rsi
@@ -112,8 +112,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpskirtBarber
-  name: платье парикмахера
-  description: Как же он хорош.
+  name: barber's jumpskirt
+  description: He's so good.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/barber.rsi

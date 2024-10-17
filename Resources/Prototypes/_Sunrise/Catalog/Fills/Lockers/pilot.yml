@@ -5,7 +5,7 @@
   components:
   - type: StorageFill
     contents:
-    - id: WeaponGunLaserCarbineAutomatic  # Не удалять, это табельное оружие пилота
+    - id: WeaponGunLaserCarbineAutomatic
     - id: ClothingHeadsetSecurity
     - id: WeaponDisabler
     - id: CigarGoldCase

@@ -1,7 +1,7 @@
 ﻿- type: entity
   id: BarberPole
-  name: жезл парикмахера
-  description: Сине-красно-белый вертящийся цилиндр у забугорных парикмахеров.
+  name: barber's pole
+  description: The blue-red-white spinning cylinder at the overseas hairdressers.
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Decoration/barberpole.rsi

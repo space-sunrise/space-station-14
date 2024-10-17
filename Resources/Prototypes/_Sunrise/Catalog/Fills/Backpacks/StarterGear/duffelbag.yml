@@ -2,7 +2,7 @@
   parent: ClothingBackpackDuffelSyndicateBundle
   id: ClothingBackpackDuffelBoomboxBundle
   name: syndicate boombox bundle
-  description: "Убивайте со стилем"
+  description: Kills with style.
   components:
   - type: StorageFill
     contents:

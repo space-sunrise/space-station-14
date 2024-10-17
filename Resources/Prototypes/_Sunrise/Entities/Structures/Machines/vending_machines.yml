@@ -1,8 +1,8 @@
 ﻿- type: entity
   parent: VendingMachine
   id: VendingMachineBarber
-  name: парикмахерВенд
-  description: Тут вы можете купить предметы, чтоб починить испорченную прическу.
+  name: barberWend
+  description: This is where you can buy items to fix a messed up hairstyle.
   components:
   - type: VendingMachine
     pack: BarberInventory

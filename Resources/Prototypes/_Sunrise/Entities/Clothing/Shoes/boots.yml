@@ -10,8 +10,8 @@
 - type: entity
   parent: ClothingShoesMilitaryBase
   id: ClothingShoesBootsBlueShield
-  name: ботинки офицера «синий щит»
-  description: Синий или голубой, вот в чём вопрос.
+  name: blueshield's boots
+  description: Blue or blue, that is the question.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Shoes/Boots/blueshield.rsi
@@ -21,8 +21,8 @@
 - type: entity
   parent: [ClothingShoesBase, ClothingSlotBase]
   id: ClothingShoesBootsPrisonerGrey
-  name: ботинки заключенного
-  description: Почему не оранжевые?
+  name: prisoner's boots
+  description: Why they not orange?
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Shoes/Boots/prisoner.rsi
@@ -32,8 +32,8 @@
 - type: entity
   parent: ClothingShoesBaseButcherable
   id: ClothingShoesUSSPBlack
-  name: кожаные ботинки СССП
-  description: Старая вещица, прямиком из СССП.
+  name: USSP leather boots
+  description: Old stuff, straight out of SSSP.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Shoes/ussp.rsi
@@ -43,8 +43,8 @@
 - type: entity
   parent: ClothingShoesBaseButcherable
   id: ClothingShoesEliteCaptain
-  name: капитанские ботинки
-  description: Конструкция ботинок имеет смягчающий эффект который даёт комфорт капитанского уровня.
+  name: captain's boots
+  description: The boots design has a cushioning effect that gives captain's level comfort.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Shoes/cptshoes.rsi

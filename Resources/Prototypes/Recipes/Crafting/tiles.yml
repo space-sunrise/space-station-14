@@ -1,79 +1,79 @@
 # These should be lathe recipes but lathe code sucks so hard rn so they'll be crafted by hand.
 
 - type: construction
-  name: стальная плитка  # Sunrise-recipes
+  name: steel tile
   id: TileSteel
   graph: TileSteel
   startNode: start
   targetNode: steeltile
   category: construction-category-tiles
-  description: Четыре стальных плитки.  # Sunrise-recipes
+  description: "Four steel station tiles."
   icon: { sprite: Objects/Tiles/tile.rsi, state: steel }
   objectType: Item
 
 - type: construction
-  name: деревянный пол  # Sunrise-recipes
+  name: wood floor
   id: TileWood
   graph: TileWood
   startNode: start
   targetNode: woodtile
   category: construction-category-tiles
-  description: Четыре куска деревянного пола для станции.  # Sunrise-recipes
+  description: "Four pieces of wooden station flooring."
   icon: { sprite: Objects/Tiles/tile.rsi, state: wood }
   objectType: Item
-
+  
 - type: construction
-  name: заполненная латунная пластина  # Sunrise-recipes
+  name: filled brass plate
   id: TileBrassFilled
   graph: TilesBrass
   startNode: start
   targetNode: filledPlate
   category: construction-category-tiles
-  description: Четыре штуки латунного напольного покрытия, совместимого только с латунным покрытием.  # Sunrise-recipes
+  description: "Four pieces of brass station flooring, only compatible with brass plating."
   icon: { sprite: Objects/Tiles/tile.rsi, state: brass-filled }
   objectType: Item
-
+  
 - type: construction
-  name: гладкая латунная пластина  # Sunrise-recipes
+  name: smooth brass plate
   id: TileBrassReebe
   graph: TilesBrass
   startNode: start
   targetNode: reebe
   category: construction-category-tiles
-  description: Четыре куска гладкого латунного напольного покрытия, совместимого только с латунным покрытием.  # Sunrise-recipes
+  description: "Four pieces of smooth brass station flooring, only compatible with brass plating."
   icon: { sprite: Objects/Tiles/tile.rsi, state: reebe }
   objectType: Item
 
 - type: construction
-  name: белая плитка  # Sunrise-recipes
+  name: white tile
   id: TileWhite
   graph: TileWhite
   startNode: start
   targetNode: whitetile
-  category: construction-category-tiles  # Sunrise-recipes
-  description: Четыре белые плитки.
+  category: construction-category-tiles
+  description: "Four white station tiles."
   icon: { sprite: Objects/Tiles/tile.rsi, state: white }
   objectType: Item
 
 - type: construction
-  name: темная плитка  # Sunrise-recipes
+  name: dark tile
   id: TileDark
   graph: TileDark
   startNode: start
   targetNode: darktile
   category: construction-category-tiles
-  description: Четыре темные плитки станции.  # Sunrise-recipes
+  description: "Four dark station tiles."
   icon: { sprite: Objects/Tiles/tile.rsi, state: dark }
   objectType: Item
 
 - type: construction
-  name: плитка из плоти  # Sunrise-recipes
+  name: flesh tile
   id: TileFlesh
   graph: TileFlesh
   startNode: start
   targetNode: fleshTile
   category: construction-category-tiles
-  description: Четыре мясистые плитки.  # Sunrise-recipes
+  description: "Four fleshy tiles."
   icon: { sprite: Objects/Tiles/tile.rsi, state: meat }
   objectType: Item
 
@@ -188,12 +188,12 @@
 #   objectType: Item
 
 - type: construction
-  name: большой деревянный пол  # Sunrise-recipes
+  name: large wood floor
   id: TileWoodLarge
   graph: TileWoodLarge
   startNode: start
   targetNode: woodtilelarge
   category: construction-category-tiles
-  description: Четыре куска деревянного пола для станции.  # Sunrise-recipes
+  description: "Four pieces of wooden station flooring."
   icon: { sprite: Objects/Tiles/tile.rsi, state: wood-large }
   objectType: Item

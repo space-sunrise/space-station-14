@@ -5,11 +5,9 @@
   components:
   - type: EvilTwinSpawner
   - type: GhostRole
-    name: Злой двойник
-    description: Вы - злой двойник какой-то другой персоны.
-    rules: |
-      Старайтесь действовать скрытно, никто не должен прознать о подмене!
-      Действуйте от лица вашего оригинала, хитрите, подставляйте, запутывайте.
+    name: ghost-role-information-evil-twin-name
+    description: ghost-role-information-evil-twin-description
+    rules: ghost-role-information-evil-twin-rules
   - type: GhostTakeoverAvailable
   - type: Sprite
     sprite: Markers/jobs.rsi

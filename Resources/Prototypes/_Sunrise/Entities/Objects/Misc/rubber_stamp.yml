@@ -13,9 +13,10 @@
       state: stamp-iaa
 
 - type: entity
-  name: печать магистрата
+  name: magistrat's rubber stamp
   parent: RubberStampBase
   id: RubberStampMagistrat
+  suffix: DO NOT MAP
   components:
   - type: Stamp
     stampedName: Магистрат
@@ -29,6 +30,7 @@
   name: NT representative's rubber stamp
   parent: RubberStampBase
   id: RubberStampNtrep
+  suffix: DO NOT MAP
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-ntrep
@@ -42,6 +44,7 @@
   name: Adjutant's rubber stamp
   parent: RubberStampBase
   id: RubberStampAdj
+  suffix: DO NOT MAP
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-adj

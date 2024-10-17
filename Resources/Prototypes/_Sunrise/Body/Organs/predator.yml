@@ -38,8 +38,8 @@
 - type: entity
   id: OrganPredatorBrain
   parent: BasePredatorOrgan
-  name: мозг
-  description: Нексус чужеродного разума. Мысли, которых вы не хотите знать.
+  name: brain
+  description: The nexus of the alien mind. Thoughts you don't want to know.
   components:
   - type: Sprite
     state: brain
@@ -72,8 +72,8 @@
 - type: entity
   id: OrganPredatorTongue
   parent: BasePredatorOrgan
-  name: язык
-  description: Длинный и гибкий.
+  name: tongue
+  description: Long and flexible.
   components:
   - type: Sprite
     state: tongue
@@ -81,8 +81,8 @@
 - type: entity
   id: OrganPredatorAppendix
   parent: BasePredatorOrgan
-  name: аппендикс
-  description: Эволюционный привет из прошлого.
+  name: appendix
+  description: An evolutionary greeting from the past.
   components:
   - type: Sprite
     layers:
@@ -93,8 +93,8 @@
 - type: entity
   id: OrganPredatorEars
   parent: BasePredatorOrgan
-  name: уши
-  description: Сверхчувствительные локаторы. Слышат ваши страхи.
+  name: ears
+  description: Ultra-sensitive locators. Hear your fears.
   components:
   - type: Sprite
     state: ears
@@ -102,8 +102,8 @@
 - type: entity
   id: OrganPredatorLungs
   parent: BasePredatorOrgan
-  name: легкие
-  description: Фильтруют кислород из атмосферы и направляют его в кровь, где он используется как переносчик электронов.
+  name: lungs
+  description: They filter oxygen from the atmosphere and channel it into the bloodstream, where it is used as an electron carrier.
   components:
   - type: Sprite
     layers:
@@ -136,8 +136,8 @@
 - type: entity
   id: OrganPredatorHeart
   parent: BasePredatorOrgan
-  name: сердце яутжи
-  description: Мощный орган, перекачивающий кислую кровь сквозь жесткие ткани и обеспечивающий невероятную выносливость и силу каждому яутже.
+  name: predator heart
+  description: A powerful organ that pumps acidic blood through tough tissues and provides incredible stamina and strength to every predator.
   components:
   - type: Sprite
     state: heart-on
@@ -152,8 +152,8 @@
 - type: entity
   id: OrganPredatorStomach
   parent: BasePredatorOrgan
-  name: желудок
-  description: Прожорливая яма.
+  name: stomach
+  description: A voracious pit.
   components:
   - type: Sprite
     state: stomach
@@ -177,8 +177,8 @@
 - type: entity
   id: OrganPredatorLiver
   parent: BasePredatorOrgan
-  name: печень
-  description: Мощный детоксикатор, с легкостью нейтрализующий опасные вещества.
+  name: liver
+  description: A powerful detoxifier that neutralizes dangerous substances with ease.
   components:
   - type: Sprite
     state: liver
@@ -192,8 +192,8 @@
 - type: entity
   id: OrganPredatorKidneys
   parent: BasePredatorOrgan
-  name: почки
-  description: Парные фильтры, безжалостно выводящие всё лишнее.
+  name: kidneys
+  description: Paired filters, ruthlessly taking out anything superfluous.
   components:
   - type: Sprite
     layers:
@@ -207,8 +207,8 @@
 - type: entity
   id: OrganPredatorEyes
   parent: BasePredatorOrgan
-  name: глаза
-  description: Я тебя вижу!
+  name: eyes
+  description: I see YOU!
   components:
   - type: Sprite
     layers:

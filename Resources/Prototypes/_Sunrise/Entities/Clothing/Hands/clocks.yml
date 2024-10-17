@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsClockDivine
+  name: divine clock
+  description: This clock can only be worn by a divine person.
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Clothing/Hands/Clocks/divine_clock.rsi
+    - type: Clothing
+      sprite: _Sunrise/Clothing/Hands/Clocks/divine_clock.rsi

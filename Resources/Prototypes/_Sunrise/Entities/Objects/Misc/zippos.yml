@@ -2,9 +2,8 @@
   abstract: true
   parent: BaseItem
   id: FlippoLighterSunriseBase
-  name: зажигалка флиппо
-  description: Надёжная металлическая зажигалка, рассчитанная на длительный срок службы.
-#  suffix: Sunrise-Flippo
+  name: flippo lighter
+  description: A reliable metal lighter designed to last a long time.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Misc/zippos.rsi

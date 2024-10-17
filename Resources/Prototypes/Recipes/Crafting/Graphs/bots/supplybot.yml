@@ -10,12 +10,12 @@
         icon:
           sprite: Objects/Misc/proximity_sensor.rsi
           state: icon
-        name: датчик движения  # Sunrise-recipes
+        name: proximity sensor
       - tag: BorgHead
         icon:
           sprite: Objects/Specific/Robotics/cyborg_parts.rsi
           state: borg_head
-        name: голову борга  # Sunrise-recipes
+        name: borg head
         doAfter: 1
       - material: Steel
         amount: 10

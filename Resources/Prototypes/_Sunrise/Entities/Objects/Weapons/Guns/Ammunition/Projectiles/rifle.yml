@@ -13,7 +13,7 @@
   categories: [ HideSpawnMenu ]
   parent: BaseBulletTrigger
   id: BulletRocket20
-  name: bullet (рельсотрон)
+  name: bullet (railgun)
   components:
   - type: Projectile
     damage:

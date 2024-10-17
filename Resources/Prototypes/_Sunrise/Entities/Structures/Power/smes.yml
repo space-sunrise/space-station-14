@@ -1,9 +1,7 @@
 - type: entity
   parent: BaseSMES
   id: SMESExtended
-  name: СМЭС
-  description: Сверхпроводящая Магнитная Энергонакопительная Станция (СМЭС) большой ёмкости.
-  suffix: Увеличенный, 24MW
+  suffix: Basic, Extended, 24MW
   components:
   - type: Battery
     maxCharge: 24000000

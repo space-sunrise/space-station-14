@@ -185,10 +185,10 @@
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/cocked.ogg
       
 - type: entity
-  name: Пулемёт DL6902
+  name: DL6902 machine gun
   id: WeaponDL6902
   parent: BaseWeaponLightMachineGun
-  description: Тяжёлый пулемёт Cybersun.
+  description: Cybersun heavy machine gun.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/LMGs/DL6902.rsi

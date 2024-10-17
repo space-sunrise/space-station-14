@@ -12,8 +12,8 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHelmetPilot
-  name: Шлем пилота Службы Безопасности
-  description: Толстый шлем пилота, обеспечивающий хорошую защиту головы.
+  name: security pilot's helmet
+  description: A thick pilot's helmet that provides good head protection.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Head/Hats/pilothelmet.rsi
@@ -30,8 +30,8 @@
 - type: entity
   parent: [ClothingHeadBase, BaseRestrictedContraband, BaseFoldable]
   id: ClothingHeadHelmetPubg
-  name: Алтын
-  description: Укрепленный шлем, использующийся для подавления и разжигания бунтов
+  name: Altyn
+  description: A fortified helmet used to suppress and incite riots.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Head/Helmets/tfhelm.rsi

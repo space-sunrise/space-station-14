@@ -1,6 +1,3 @@
-shop-disease-category-infect = Передача
-shop-disease-category-symptoms = Симптомы
-shop-disease-category-evolution = Улучшение
 shop-disease-currency = Очки эволюции
 listing-disease-cough-name = Кашель
 listing-disease-cough-description = Заражённые начинают кашлять.

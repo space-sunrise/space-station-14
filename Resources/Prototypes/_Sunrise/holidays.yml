@@ -23,8 +23,8 @@
 
 - type: entity
   id: PaperVigersRayBirthdayInvitation
-  name: Приглашение на день рождения
-  description: Кто-то пригласил вас на праздник...
+  name: Birthday invitation
+  description: Someone has invited you to a party...
   parent: Paper
   components:
   - type: Paper

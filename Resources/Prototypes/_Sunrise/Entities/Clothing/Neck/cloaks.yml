@@ -10,7 +10,7 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakCentcomAdmiral
-  name: admiral's cape
+  name: admiral's cloak
   description: A vibrant green cape with gold stitching, worn by Nanotrasen Navy Admirals.
   components:
   - type: Sprite
@@ -19,8 +19,8 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakHOSCloak
-  name: плащ главы службы безопасности
-  description: Чёрно-красный плащ ГСБ, символизирует безопасность и жестокость.
+  name: head of security's cloak
+  description: The black and red cloak of HOS, symbolizes safety and brutality.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Neck/Cloaks/hoscloak.rsi
@@ -29,8 +29,8 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakResearchDirector
-  name: плащ светилы науки
-  description: Фиолетовый плащ с изображенной спиралью ДНК, демонстрирует ваше всезнание и феноменальность.
+  name: research director's cloak
+  description: The purple cape with the DNA helix depicted, demonstrates your omniscience and phenomenality.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Neck/Cloaks/rd.rsi
@@ -39,8 +39,8 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingEliteNeckCloakCaptain
-  name: плащ капитана
-  description: Большое количество 24 коратного золота, позволяет понять ваш статус издалека.
+  name: captain's cloak
+  description: The large amount of 24 korat gold, lets you understand your status from afar.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Neck/Cloaks/cptcloak.rsi
@@ -49,8 +49,8 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckEliteCloakCECloak
-  name: плащ старшего инженера
-  description: Увесистый, но очень роскошный белый плащ с золотыми лентами. На обратной стороне имеется маленькая этикетка "Поменяйте топливо в ДАМ".
+  name: chief engineer's cloak
+  description: Weighty but very luxurious white coat with gold ribbons. There is a small label on the back "Change fuel at DAM".
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Neck/Cloaks/cecloak.rsi
@@ -59,8 +59,8 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakIAACloak
-  name: плащ агента внутренних дел
-  description: Темная накидка на голову из флисовой ткани. Эффектно сочетается с общим стилем агента внутренних дел.
+  name: internal affairs agent's cloak
+  description: Dark fleece head cover. Effectively combines with the general style of an internal affairs agent.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Neck/Cloaks/iaa.rsi
@@ -69,8 +69,8 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCMOCloak
-  name: плащ главного врача
-  description: Его получают только лучшие из лучших. Человек который его носит спас не одну сотню жизней.
+  name: chief medical officer's cloak
+  description: Only the best of the best get it. Human who wears it has saved hundreds of lives.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Neck/Cloaks/cmocloak.rsi
@@ -79,8 +79,8 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakQM
-  name: плащ квартирмейстера
-  description: Плащ, готовый пройти с вами сквозь кровь, боль, маты, ксеноморфов или чего-то по экзотичнее. Подчёркивает богатства владельца большим выточенным алмазом, пока вы не узнаете что это ширпотреб.
+  name: quartermaster's cloak
+  description: A cloak ready to walk with you through blood, pain, mats, xenomorphs, or something more exotic. Emphasizes the wearer's wealth with a large chiseled diamond, until you find out it's junk.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Neck/Cloaks/qmcloak.rsi
@@ -89,8 +89,8 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakHOPCloak
-  name: плащ главы персонала
-  description: Плащ Главы персонала. Голубой, с золотыми вставками плащ, напоминающий, кто тут Босс.
+  name: head of personal's cloak
+  description: Head of Personal's cloak. A blue, gold-embroidered cape that reminds you who's the Boss.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Neck/Cloaks/hopcloak.rsi
@@ -99,8 +99,8 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakBlackSec
-  name: плащ службы безопасности
-  description: Чёрный и загадочный.
+  name: security's cloak
+  description: Black and mysterious.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Neck/Cloaks/blackcloak.rsi
@@ -117,8 +117,8 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakDarthHOSCloak
-  name: мантия Темного Лорда.
-  description: Символическая и способная вызвать трепет всем вокруг мантия, которая идеально отображает мрачное величие её владельца.
+  name: Dark Lord's cloak
+  description: A symbolic and awe-inspiring mantle that perfectly depicts the somber majesty of its wearer.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Neck/Cloaks/darth-hos.rsi
@@ -127,8 +127,8 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakWhite
-  name: наплечник офицера Республиканской армии
-  description: Элемент снаряжениия элитного солдата в звании офицера.
+  name: republican army officer's shoulder pad
+  description: An item of equipment of an elite soldier with the rank of officer.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Neck/Cloaks/securityofficer.rsi
@@ -137,8 +137,8 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakAlpha
-  name: плащ Альфа
-  description: Плащ, который позволял прятаться от врагов так же успешно, как и оперативнику прятаться от своих заслуг.
+  name: alpha cloak
+  description: A cloak that allowed him to hide from his enemies as successfully as an operative could hide from his merits.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Neck/Cloaks/alpha.rsi
@@ -147,8 +147,8 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakLima
-  name: плащ Лима
-  description: Плащ, который позволял прятаться от врагов так же успешно, как и оперативнику прятаться от своих заслуг.
+  name: lima cloak
+  description: A cloak that allowed him to hide from his enemies as successfully as an operative could hide from his merits.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Neck/Cloaks/lima.rsi
@@ -157,8 +157,8 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakDelta
-  name: плащ Дельта
-  description: Плащ, который позволял прятаться от врагов так же успешно, как и оперативнику прятаться от своих заслуг.
+  name: delta cloak
+  description: A cloak that allowed him to hide from his enemies as successfully as an operative could hide from his merits.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Neck/Cloaks/delta.rsi
@@ -167,8 +167,8 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakEcho
-  name: плащ Эхо
-  description: Плащ, который позволял прятаться от врагов так же успешно, как и оперативнику прятаться от своих заслуг.
+  name: echo cloak
+  description: A cloak that allowed him to hide from his enemies as successfully as an operative could hide from his merits.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Neck/Cloaks/echo.rsi
@@ -177,8 +177,8 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNecRepublicBodyguard
-  name: мантия Императорского Стража
-  description: Элитное обмундирование Императорского Стража.
+  name: imperial guard's robe
+  description: The elite uniforms of the Imperial Guard.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Neck/Cloaks/republicbodyguard.rsi
@@ -189,8 +189,8 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckKailoRen
-  name: чёрная накидка
-  description: Символическая и способная вызывать трепет и страх. Идеально подчеркивает мрачное великие своего владельца.
+  name: black cloak
+  description: Symbolic and capable of evoking awe and fear. Perfectly emphasizes the dark greatness of its owner.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Neck/Cloaks/kailo_ren.rsi
@@ -201,8 +201,8 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingCloakGamer
-  name: легендарный плащ геймера
-  description: Его носят самые опытные профессиональные геймеры.
+  name: legendary gamer's cloak
+  description: It is worn by the most experienced professional gamers.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Neck/Cloaks/gamer.rsi
@@ -210,8 +210,8 @@
 - type: entity
   parent: ClothingNeckBase
   id: ClothingCloakAtmosian
-  name: плащ атмосианина
-  description: Плащ легендарного атмосианина.
+  name: atmosian's cloak
+  description: The cloak of the legendary Atmosian.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Neck/Cloaks/atmosian.rsi

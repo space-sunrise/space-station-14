@@ -1,11 +1,11 @@
 - type: construction
-  name: паутинная плитка  # Sunrise-recipes
+  name: web tile
   id: TileWeb
   graph: WebObjects
   startNode: start
   targetNode: tile
   category: construction-category-tiles
-  description: Приятный и гладкий.  # Sunrise-recipes
+  description: "Nice and smooth."
   entityWhitelist:
     tags:
     - SpiderCraft
@@ -15,13 +15,13 @@
   objectType: Item
 
 - type: construction
-  name: паутинная зимняя кофта  # Sunrise-recipes
+  name: web winter coat
   id: ClothingOuterWinterWeb
   graph: WebObjects
   startNode: start
   targetNode: coat
   category: construction-category-clothing
-  description: Удивительно теплые и прочные.  # Sunrise-recipes
+  description: "Surprisingly warm and durable."
   entityWhitelist:
     tags:
     - SpiderCraft
@@ -31,13 +31,13 @@
   objectType: Item
 
 - type: construction
-  name: паутинная униформа  # Sunrise-recipes
+  name: web jumpsuit
   id: ClothingUniformJumpsuitWeb
   graph: WebObjects
   startNode: start
   targetNode: jumpsuit
   category: construction-category-clothing
-  description: По крайней мере, это уже что-то.  # Sunrise-recipes
+  description: "At least it's something."
   entityWhitelist:
     tags:
     - SpiderCraft
@@ -47,13 +47,13 @@
   objectType: Item
 
 - type: construction
-  name: паутинная униформа с юбкой  # Sunrise-recipes
+  name: web jumpskirt
   id: ClothingUniformJumpskirtWeb
   graph: WebObjects
   startNode: start
   targetNode: jumpskirt
   category: construction-category-clothing
-  description: По крайней мере, это уже что-то.  # Sunrise-recipes
+  description: "At least it's something."
   entityWhitelist:
     tags:
     - SpiderCraft
@@ -63,13 +63,13 @@
   objectType: Item
 
 - type: construction
-  name: шёлковое тканое полотно  # Sunrise-recipes
+  name: silk woven cloth
   id: SilkWovenCloth
   graph: WebObjects
   startNode: start
   targetNode: cloth
   category: construction-category-materials
-  description: Как ни странно, на ощупь напоминает ткань.  # Sunrise-recipes
+  description: "Feels just like cloth, strangely enough."
   entityWhitelist:
     tags:
     - SpiderCraft
@@ -79,13 +79,13 @@
   objectType: Item
 
 - type: construction
-  name: паутинный щит  # Sunrise-recipes
+  name: web shield
   id: WebShield
   graph: WebObjects
   startNode: start
   targetNode: shield
   category: construction-category-clothing
-  description: Он достаточно толстый, чтобы выдержать несколько ударов, но, скорее всего, не нагреется.  # Sunrise-recipes
+  description: "It's thick enough to handle a few blows, but probably not heat."
   entityWhitelist:
     tags:
     - SpiderCraft
@@ -95,13 +95,13 @@
   objectType: Item
 
 - type: construction
-  name: паутинные зимние ботинки  # Sunrise-recipes
+  name: web winter boots
   id: ClothingShoesBootsWinterWeb
   graph: WebObjects
   startNode: start
   targetNode: boots
   category: construction-category-clothing
-  description: Плотно сплетенное полотно защищает от холода.  # Sunrise-recipes
+  description: "Tightly woven web should protect against the cold"
   entityWhitelist:
     tags:
     - SpiderCraft
