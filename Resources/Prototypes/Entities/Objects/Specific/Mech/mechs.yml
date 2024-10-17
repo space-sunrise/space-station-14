@@ -628,7 +628,7 @@
   id: MechNTGygax
   parent: [ BaseMech, CombatMech, BaseRestrictedContraband ]
   name: Nanotrasen Special Gygax
-  description: Nanotrasen's trump card when solving problems. High durability, increased protection against shock, explosions, temperature, shots: conventional, laser and energy, as well as expanded equipment slots allow to turn the situation on the station upside down. Gas pedals consume a colossal amount of energy.
+  description: "Nanotrasen's trump card when solving problems. High durability, increased protection against shock, explosions, temperature, shots: conventional, laser and energy, as well as expanded equipment slots allow to turn the situation on the station upside down. Gas pedals consume a colossal amount of energy."
   components:
   - type: Sprite
     drawdepth: Mobs
