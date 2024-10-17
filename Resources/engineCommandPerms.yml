@@ -73,19 +73,21 @@
 - Flags: MAPPING
   Commands:
   - addmap
-  - loadgrid
-  - loadmap
+#Sunrise-start: loadmap|mapinit|loadgrid|tpgrid|rmmap|rmgrid for moderators
+#  - loadgrid
+#  - loadmap
   - pausemap
   - querymappaused
-  - rmgrid
-  - rmmap
-  - mapinit
+#  - rmgrid
+#  - rmmap
+#  - mapinit
   - savegrid
   - savemap
   - setambientlight
-  - tpgrid
+#  - tpgrid
   - gridtc
   - togglespritenetsync
+#Sunrise-end
 
 - Flags: ADMIN
   Commands:
@@ -111,6 +113,14 @@
   - spawn
   - cspawn
   - delete
+#Sunrise-start: loadmap|mapinit|loadgrid for moderators
+  - loadgrid
+  - loadmap
+  - mapinit
+  - tpgrid
+  - rmgrid
+  - rmmap
+#Sunrise-end
 
 - Flags: MODERATOR
   Commands:
