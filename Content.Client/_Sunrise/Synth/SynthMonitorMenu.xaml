@@ -1,0 +1,11 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               Title="{Loc 'Change screen'}"
+               SetSize="380 310"
+               Resizable="False">
+    <BoxContainer Orientation="Vertical">
+        <ScrollContainer VerticalExpand="True">
+            <GridContainer Name="Grid" Columns="2" Margin="0 5" >
+            </GridContainer>
+        </ScrollContainer>
+    </BoxContainer>
+</DefaultWindow>

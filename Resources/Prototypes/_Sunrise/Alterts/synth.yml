@@ -1,0 +1,17 @@
+- type: alert
+  id: SynthCharge
+  icons:
+    - sprite: /Textures/_Sunrise/Interface/Alerts/synth_charge.rsi
+      state: starving
+    - sprite: /Textures/_Sunrise/Interface/Alerts/synth_charge.rsi
+      state: hungry
+    - sprite: /Textures/_Sunrise/Interface/Alerts/synth_charge.rsi
+      state: fed
+    - sprite: /Textures/_Sunrise/Interface/Alerts/synth_charge.rsi
+      state: well_fed
+    - sprite: /Textures/_Sunrise/Interface/Alerts/synth_charge.rsi
+      state: full
+  name: robot-charge-alert-name
+  description: robot-charge-alert-desc
+  minSeverity: 0
+  maxSeverity: 4

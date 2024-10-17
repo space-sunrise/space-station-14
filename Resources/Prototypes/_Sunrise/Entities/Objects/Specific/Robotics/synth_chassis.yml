@@ -1,0 +1,75 @@
+- type: entity
+  id: SynthChassis
+  name: Integrated Robotic Chassis
+  description: A frame that machines are built on. Significantly less spooky than expected.
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 100
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+        restitution: 0.3
+        friction: 0.2
+  - type: Sprite
+    noRot: true
+    drawdepth: Items
+    sprite: _Sunrise/Objects/Specific/Robotics/synth_parts.rsi
+    state: chest
+  - type: Appearance
+  - type: ItemMapper
+    sprite: _Sunrise/Objects/Specific/Robotics/synth_parts.rsi
+    mapLayers:
+      l_arm+o:
+        whitelist:
+          tags:
+          - BaseSynthLArm
+      r_arm+o:
+        whitelist:
+          tags:
+          - BaseSynthRArm
+      l_leg+o:
+        whitelist:
+          tags:
+          - BaseSynthLLeg
+      r_leg+o:
+        whitelist:
+          tags:
+          - BaseSynthRLeg
+      head+o:
+        whitelist:
+          tags:
+          - BaseSynthHead
+  - type: ContainerContainer
+    containers:
+      part-container: !type:Container
+      cell_slot: !type:Container
+  - type: PartAssembly
+    parts:
+      synth:
+      - BaseSynthLArm
+      - BaseSynthRArm
+      - BaseSynthLLeg
+      - BaseSynthRLeg
+      - BaseSynthHead
+  - type: Construction
+    graph: Synth
+    node: start
+    defaultTarget: synth
+    containers:
+    - part-container
+    - cell_slot
+  - type: Pullable
+  - type: GuideHelp
+    guides:
+    - Cyborgs

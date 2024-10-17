@@ -1,0 +1,1194 @@
+# All the synth customization
+
+#
+# Monitors
+#
+- type: marking
+  id: SynthMonitorBlue
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: blue_s
+
+- type: marking
+  id: SynthMonitorBreakout
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: breakout_s
+
+- type: marking
+  id: SynthMonitorConsole
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: console_s
+
+- type: marking
+  id: SynthMonitorCrt
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: ipc_crt
+
+- type: marking
+  id: SynthMonitorDatabase
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: ipc_database
+
+- type: marking
+  id: SynthMonitorEight
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: eight_s
+
+- type: marking
+  id: SynthMonitorFrowny
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: ipc_frowny
+
+- type: marking
+  id: SynthMonitorGoggles
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: goggles_s
+
+- type: marking
+  id: SynthMonitorGreen
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: green_s
+
+- type: marking
+  id: SynthMonitorHeart
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: heart_s
+
+- type: marking
+  id: SynthMonitorMonoeye
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: monoeye_s
+
+- type: marking
+  id: SynthMonitorNature
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: nature_s
+
+- type: marking
+  id: SynthMonitorNo
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: ipc_no
+
+- type: marking
+  id: SynthMonitorOrange
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: orange_s
+
+- type: marking
+  id: SynthMonitorPink
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: pink_s
+
+- type: marking
+  id: SynthMonitorPurple
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: purple_s
+
+- type: marking
+  id: SynthMonitorRed
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: red_s
+
+- type: marking
+  id: SynthMonitorRgb
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: rgb_s
+
+- type: marking
+  id: SynthMonitorScroll
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: scroll_s
+
+- type: marking
+  id: SynthMonitorShower
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: shower_s
+
+- type: marking
+  id: SynthMonitorSmiley
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: ipc_smiley
+
+- type: marking
+  id: SynthMonitorStars
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: ipc_stars
+
+- type: marking
+  id: SynthMonitorYellow
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: yellow_s
+
+- type: marking
+  id: SynthMonitorYes
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: ipc_yes
+
+- type: marking
+  id: SynthMonitorLumiEyes
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: lumi_eyes_s
+
+- type: marking
+  id: SynthMonitorLumiMusic
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: lumi_music_s
+
+- type: marking
+  id: SynthMonitorLumiWaiting
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: lumi_waiting_s
+
+- type: marking
+  id: SynthMonitorStatic
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: static_s
+
+- type: marking
+  id: SynthMonitorGolGlider
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: gol_glider_s
+
+- type: marking
+  id: SynthMonitorRainbow
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: rainbow_s
+
+- type: marking
+  id: SynthMonitorLumi_Waiting
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: off_hesp_alt_s
+
+- type: marking
+  id: SynthMonitorPinkHesp
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: pink_hesp_alt_s
+
+- type: marking
+  id: SynthMonitorOrangeHesp
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: orange_hesp_alt_s
+
+- type: marking
+  id: SynthMonitorGogglesHesp
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: goggles_hesp_alt_s
+
+- type: marking
+  id: SynthMonitorScrollHesp
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: scroll_hesp_alt_s
+
+- type: marking
+  id: SynthMonitorRgbHesp
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: rgb_hesp_alt_s
+
+- type: marking
+  id: SynthMonitorRainbowHesp
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: rainbow_hesp_alt_s
+
+- type: marking
+  id: SynthMonitorSmoking
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: smoking_s
+
+- type: marking
+  id: SynthMonitorTest
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: test_s
+
+- type: marking
+  id: SynthMonitorOff
+  bodyPart: Snout
+  markingCategory: Snout
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_monitors.rsi
+    state: ipc_off
+
+- type: marking
+  id: SynthAntennae
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_accessories.rsi
+    state: antennae_s
+
+- type: marking
+  id: SynthTvAntennae
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_accessories.rsi
+    state: tvantennae_s
+
+- type: marking
+  id: SynthTesla
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_accessories.rsi
+    state: tesla_s
+
+- type: marking
+  id: SynthLight
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_accessories.rsi
+    state: light_s
+
+- type: marking
+  id: SynthCyberHead
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_accessories.rsi
+    state: cyberhead_s
+
+- type: marking
+  id: SynthSideLights
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_accessories.rsi
+    state: sidelights_s
+
+- type: marking
+  id: SynthAntlers
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_accessories.rsi
+    state: antlers_s
+
+- type: marking
+  id: SynthDroneEyes
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_accessories.rsi
+    state: droneeyes_s
+
+- type: marking
+  id: SynthCrowned
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_accessories.rsi
+    state: crowned_s
+
+- type: marking
+  id: SynthLArmBishop
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_bishop.rsi
+    state: l_arm
+
+- type: marking
+  id: SynthLHandBishop
+  bodyPart: LHand
+  markingCategory: Arms
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_bishop.rsi
+    state: l_hand
+
+- type: marking
+  id: SynthRArmBishop
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_bishop.rsi
+    state: r_arm
+
+- type: marking
+  id: SynthRHandBishop
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_bishop.rsi
+    state: r_hand
+
+- type: marking
+  id: SynthRLegBishop
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_bishop.rsi
+    state: r_leg
+
+- type: marking
+  id: SynthLLegBishop
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_bishop.rsi
+    state: l_leg
+
+- type: marking
+  id: SynthLFootBishop
+  bodyPart: LFoot
+  markingCategory: Legs
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_bishop.rsi
+    state: l_foot
+
+- type: marking
+  id: SynthRFootBishop
+  bodyPart: RFoot
+  markingCategory: Legs
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_bishop.rsi
+    state: r_foot
+
+- type: marking
+  id: SynthChestBishop
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_bishop.rsi
+    state: torso
+
+- type: marking
+  id: SynthHeadBishop
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_bishop.rsi
+    state: head
+
+- type: marking
+  id: SynthHeadHesphiastos
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_hesphiastos.rsi
+    state: head
+
+- type: marking
+  id: SynthLArmHesphiastos
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_hesphiastos.rsi
+    state: l_arm
+
+- type: marking
+  id: SynthLHandHesphiastos
+  bodyPart: LHand
+  markingCategory: Arms
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_hesphiastos.rsi
+    state: l_hand
+
+- type: marking
+  id: SynthRArmHesphiastos
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_hesphiastos.rsi
+    state: r_arm
+
+- type: marking
+  id: SynthRHandHesphiastos
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_hesphiastos.rsi
+    state: r_hand
+
+- type: marking
+  id: SynthRLegHesphiastos
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_hesphiastos.rsi
+    state: r_leg
+
+- type: marking
+  id: SynthLLegHesphiastos
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_hesphiastos.rsi
+    state: l_leg
+
+- type: marking
+  id: SynthLFootHesphiastos
+  bodyPart: LFoot
+  markingCategory: Legs
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_hesphiastos.rsi
+    state: l_foot
+
+- type: marking
+  id: SynthRFootHesphiastos
+  bodyPart: RFoot
+  markingCategory: Legs
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_hesphiastos.rsi
+    state: r_foot
+
+- type: marking
+  id: SynthChestHesphiastos
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_hesphiastos.rsi
+    state: torso
+
+- type: marking
+  id: SynthHeadShellguard
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_shellguard.rsi
+    state: head
+
+- type: marking
+  id: SynthLArmShellguard
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_shellguard.rsi
+    state: l_arm
+
+- type: marking
+  id: SynthLHandShellguard
+  bodyPart: LHand
+  markingCategory: Arms
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_shellguard.rsi
+    state: l_hand
+
+- type: marking
+  id: SynthRArmShellguard
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_shellguard.rsi
+    state: r_arm
+
+- type: marking
+  id: SynthRHandShellguard
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_shellguard.rsi
+    state: r_hand
+
+- type: marking
+  id: SynthRLegShellguard
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_shellguard.rsi
+    state: r_leg
+
+- type: marking
+  id: SynthLLegShellguard
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_shellguard.rsi
+    state: l_leg
+
+- type: marking
+  id: SynthLFootShellguard
+  bodyPart: LFoot
+  markingCategory: Legs
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_shellguard.rsi
+    state: l_foot
+
+- type: marking
+  id: SynthRFootShellguard
+  bodyPart: RFoot
+  markingCategory: Legs
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_shellguard.rsi
+    state: r_foot
+
+- type: marking
+  id: SynthChestShellguard
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_shellguard.rsi
+    state: torso
+
+- type: marking
+  id: SynthHeadWardtakahashi
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_wardtakahashi.rsi
+    state: head
+
+- type: marking
+  id: SynthLArmWardtakahashi
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_wardtakahashi.rsi
+    state: l_arm
+
+- type: marking
+  id: SynthLHandWardtakahashi
+  bodyPart: LHand
+  markingCategory: Arms
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_wardtakahashi.rsi
+    state: l_hand
+
+- type: marking
+  id: SynthRArmWardtakahashi
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_wardtakahashi.rsi
+    state: r_arm
+
+- type: marking
+  id: SynthRHandWardtakahashi
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_wardtakahashi.rsi
+    state: r_hand
+
+- type: marking
+  id: SynthRLegWardtakahashi
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_wardtakahashi.rsi
+    state: r_leg
+
+- type: marking
+  id: SynthLLegWardtakahashi
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_wardtakahashi.rsi
+    state: l_leg
+
+- type: marking
+  id: SynthLFootWardtakahashi
+  bodyPart: LFoot
+  markingCategory: Legs
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_wardtakahashi.rsi
+    state: l_foot
+
+- type: marking
+  id: SynthRFootWardtakahashi
+  bodyPart: RFoot
+  markingCategory: Legs
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_wardtakahashi.rsi
+    state: r_foot
+
+- type: marking
+  id: SynthChestWardtakahashi
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_wardtakahashi.rsi
+    state: torso
+
+- type: marking
+  id: SynthHeadXion
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_xion.rsi
+    state: head
+
+- type: marking
+  id: SynthLArmXion
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_xion.rsi
+    state: l_arm
+
+- type: marking
+  id: SynthLHandXion
+  bodyPart: LHand
+  markingCategory: Arms
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_xion.rsi
+    state: l_hand
+
+- type: marking
+  id: SynthRArmXion
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_xion.rsi
+    state: r_arm
+
+- type: marking
+  id: SynthRHandXion
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_xion.rsi
+    state: r_hand
+
+- type: marking
+  id: SynthRLegXion
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_xion.rsi
+    state: r_leg
+
+- type: marking
+  id: SynthLLegXion
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_xion.rsi
+    state: l_leg
+
+- type: marking
+  id: SynthLFootXion
+  bodyPart: LFoot
+  markingCategory: Legs
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_xion.rsi
+    state: l_foot
+
+- type: marking
+  id: SynthRFootXion
+  bodyPart: RFoot
+  markingCategory: Legs
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_xion.rsi
+    state: r_foot
+
+- type: marking
+  id: SynthChestXion
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_xion.rsi
+    state: torso
+
+- type: marking
+  id: SynthHeadZenghu
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_zenghu.rsi
+    state: head
+
+- type: marking
+  id: SynthLArmZenghu
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_zenghu.rsi
+    state: l_arm
+
+- type: marking
+  id: SynthLHandZenghu
+  bodyPart: LHand
+  markingCategory: Arms
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_zenghu.rsi
+    state: l_hand
+
+- type: marking
+  id: SynthRArmZenghu
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_zenghu.rsi
+    state: r_arm
+
+- type: marking
+  id: SynthRHandZenghu
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_zenghu.rsi
+    state: r_hand
+
+- type: marking
+  id: SynthRLegZenghu
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_zenghu.rsi
+    state: r_leg
+
+- type: marking
+  id: SynthLLegZenghu
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_zenghu.rsi
+    state: l_leg
+
+- type: marking
+  id: SynthLFootZenghu
+  bodyPart: LFoot
+  markingCategory: Legs
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_zenghu.rsi
+    state: l_foot
+
+- type: marking
+  id: SynthRFootZenghu
+  bodyPart: RFoot
+  markingCategory: Legs
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_zenghu.rsi
+    state: r_foot
+
+- type: marking
+  id: SynthChestZenghu
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_zenghu.rsi
+    state: torso
+
+- type: marking
+  id: SynthHeadRobotic
+  bodyPart: Head
+  markingCategory: Head
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_robotic.rsi
+    state: head
+
+- type: marking
+  id: SynthLArmRobotic
+  bodyPart: LArm
+  markingCategory: Arms
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_robotic.rsi
+    state: l_arm
+
+- type: marking
+  id: SynthLHandRobotic
+  bodyPart: LHand
+  markingCategory: Arms
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_robotic.rsi
+    state: l_hand
+
+- type: marking
+  id: SynthRArmRobotic
+  bodyPart: RArm
+  markingCategory: Arms
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_robotic.rsi
+    state: r_arm
+
+- type: marking
+  id: SynthRHandRobotic
+  bodyPart: RHand
+  markingCategory: Arms
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_robotic.rsi
+    state: r_hand
+
+- type: marking
+  id: SynthRLegRobotic
+  bodyPart: RLeg
+  markingCategory: Legs
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_robotic.rsi
+    state: r_leg
+
+- type: marking
+  id: SynthLLegRobotic
+  bodyPart: LLeg
+  markingCategory: Legs
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_robotic.rsi
+    state: l_leg
+
+- type: marking
+  id: SynthLFootRobotic
+  bodyPart: LFoot
+  markingCategory: Legs
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_robotic.rsi
+    state: l_foot
+
+- type: marking
+  id: SynthRFootRobotic
+  bodyPart: RFoot
+  markingCategory: Legs
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_robotic.rsi
+    state: r_foot
+
+- type: marking
+  id: SynthChestRobotic
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [ Synth ]
+  forcedColoring: true
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/synth_robotic.rsi
+    state: torso
