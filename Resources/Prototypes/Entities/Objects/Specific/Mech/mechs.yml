@@ -620,6 +620,64 @@
     containers:
       mech-battery-slot:
       - PowerCageHigh
+      
+# Phazon
+
+- type: entity
+  id: MechPhazon
+  parent: [ BaseMech, CombatMech, BaseRestrictedContraband ]
+  name: Phazon
+  description: The most advanced mech on the market, the pinnacle of technological development, extremely mobile and deadly.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: phazon
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Mech
+    baseState: phazon
+    openState: phazon-open
+    brokenState: phazon-broken
+    mechToPilotDamageMultiplier: 0.4
+    maxIntegrity: 200
+    maxEquipmentAmount: 6
+    airtight: true
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 20
+        Structural: 130
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.2
+    baseSprintSpeed: 4
+  - type: Reflect
+    reflectProb: 0.65
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    reflects:
+    - NonEnergy
+    - Energy
+
+- type: entity
+  id: MechPhazonBattery
+  parent: MechPhazon
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCageHigh
 
 # Nanotrasen Combat Mechs
 
