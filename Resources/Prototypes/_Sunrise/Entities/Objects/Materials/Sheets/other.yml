@@ -19,6 +19,12 @@
     layers:
     - state: paper
       map: ["base"]
+    - state: paper_words
+      map: ["enum.PaperVisualLayers.Writing"]
+      visible: false
+    - state: paper_stamp-generic
+      map: ["enum.PaperVisualLayers.Stamp"]
+      visible: false
   - type: Tag
     tags:
     - Document
@@ -29,4 +35,5 @@
   suffix: Single
   components:
   - type: Stack
+    stackType: SheetPrinter
     count: 1
