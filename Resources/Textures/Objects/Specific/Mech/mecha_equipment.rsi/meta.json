@@ -257,6 +257,19 @@
     },
     {
       "name": "mecha_amlg90"
+    },
+    {
+      "name": "triphasic_scan_module",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
     }
   ]
 }

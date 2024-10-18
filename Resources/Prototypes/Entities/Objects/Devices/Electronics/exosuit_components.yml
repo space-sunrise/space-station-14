@@ -102,3 +102,20 @@
     - type: GuideHelp
       guides:
       - Robotics
+      
+- type: entity
+  id: MechPhasicScanningModule
+  parent: BaseExosuitParts
+  name: phasic scanning module
+  description: An application part used in the construction of various devices.
+  components:
+    - type: Item
+      storedRotation: 0
+    - type: Sprite
+      state: triphasic_scan_module
+    - type: Tag
+      tags:
+      - MechPhasicScanningModule
+    - type: GuideHelp
+      guides:
+      - Robotics
