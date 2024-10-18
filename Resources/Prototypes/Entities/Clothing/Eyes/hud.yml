@@ -33,6 +33,7 @@
     damageContainers:
     - Inorganic
     - Silicon
+    - Mech # Sunrise-edit
 
 - type: entity
   parent: [ClothingEyesBase, ShowMedicalIcons]

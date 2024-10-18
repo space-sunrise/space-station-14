@@ -127,7 +127,7 @@ public sealed class HealingSystem : EntitySystem
         var healingDict = healing.Damage.DamageDict;
         foreach (var type in healingDict)
         {
-            if (damageableDict[type.Key].Value > 0)
+            if (damageableDict.TryGetValue(type.Key, out var damageValue) && damageValue.Value > 0) //Sunrise-edit: fix server crashes
             {
                 return true;
             }

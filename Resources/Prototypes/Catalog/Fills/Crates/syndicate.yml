@@ -45,6 +45,21 @@
       - id: DoubleEmergencyNitrogenTankFilled
       - id: ToolboxSyndicateFilled
       - id: PlushieNuke
+      
+- type: entity
+  id: CrateCybersunRoverBundle
+  suffix: Filled
+  parent: CrateSyndicate
+  name: Cybersun rover bundle
+  description: Contains a set of Cybersan medium armored mechs.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MechRoverSyndieFilled
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: DoubleEmergencyNitrogenTankFilled
+      - id: ToolboxSyndicateFilled
+      - id: PlushieNuke
 
 - type: entity
   id: CrateCybersunMaulerBundle
