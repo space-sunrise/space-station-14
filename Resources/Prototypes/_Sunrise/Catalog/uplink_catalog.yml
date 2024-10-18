@@ -367,8 +367,8 @@
   id: UplinkSyndicateRapier
   name: uplink-syndicate-rapier-name
   description: uplink-syndicate-rapier-desc
-  icon: { sprite: /Textures/_SunRise/Clothing/Belt/syndie_sheath.rsi, state: sheath-rapier }
-  productEntity: ClothingBeltSheathSyndicateFilled
+  icon: { sprite: _Sunrise/Clothing/Belt/syndie_sheath.rsi, state: sheath-rapier }
+  productEntity: BeltSheathSyndieFilledBox
   discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 5

@@ -22,8 +22,6 @@
     spread: 90
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Melee/syndicate_rapier.rsi
-  - type: DisarmMalus
-    weight: 0.0002
   - type: Tag
     tags:
     - SyndicateRapier
