@@ -1,0 +1,30 @@
+﻿- type: vendingMachineInventory
+  id: VendERTMechInventory
+  startingInventory:
+    WeaponMechCombatMissileRack8: 1
+    WeaponMechCombatFlashbangLauncher: 1
+    WeaponMechCombatShotgunIncendiary: 1
+    WeaponMechCombatShotgun: 2
+    WeaponMechCombatUltraRifle: 2
+    WeaponMechCombatVindictor: 1
+    WeaponMechCombatPulseRifle: 2
+    WeaponMechCombatXray: 2
+    WeaponMechCombatImmolationGun: 2
+    WeaponMechChainSword: 2
+    WeaponMechCombatDisabler: 2
+    DoubleEmergencyNitrogenTankFilled: 2
+    DoubleEmergencyOxygenTankFilled: 2
+    ClothingEyesGlassesWelding: 2
+    WelderExperimental: 2
+    CableApcStack: 4
+    Nanopaste: 4
+    Crowbar: 2
+    Screwdriver: 2
+    PowerCageHigh: 4
+    PortableRecharger: 2
+    ClothingEyesNVD: 2
+    ClothingEyesHudDiagnostic: 2
+  emaggedInventory:
+    WeaponMechSpecialBananaMortar: 1
+    WeaponMechSpecialMousetrapMortar: 1
+    MechEquipmentHorn: 1

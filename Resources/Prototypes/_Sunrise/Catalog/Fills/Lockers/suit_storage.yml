@@ -10,3 +10,73 @@
     - id: ClothingMaskGas
   - type: AccessReader
     access: [["BlueShield"]]
+
+- type: entity
+  id: SuitStorageERTLeader
+  parent: SuitStorageBase
+  suffix: ERT Leader
+  components:
+  - type: StorageFill
+    contents:
+        - id: ClothingOuterHardsuitERTLeader
+        - id: ClothingMaskGasERT
+        - id: OxygenTankFilled
+        - id: NitrogenTankFilled
+  - type: AccessReader
+    access: [["CentralCommand"]]
+
+- type: entity
+  id: SuitStorageERTSecurity
+  parent: SuitStorageBase
+  suffix: ERT Security
+  components:
+  - type: StorageFill
+    contents:
+        - id: ClothingOuterHardsuitERTSecurity
+        - id: ClothingMaskGasERT
+        - id: OxygenTankFilled
+        - id: NitrogenTankFilled
+  - type: AccessReader
+    access: [["CentralCommand"]]
+
+- type: entity
+  id: SuitStorageERTMedical
+  parent: SuitStorageBase
+  suffix: ERT Medical
+  components:
+  - type: StorageFill
+    contents:
+        - id: ClothingOuterHardsuitERTMedical
+        - id: ClothingMaskGasERT
+        - id: OxygenTankFilled
+        - id: NitrogenTankFilled
+  - type: AccessReader
+    access: [["CentralCommand"]]
+
+- type: entity
+  id: SuitStorageERTEngineer
+  parent: SuitStorageBase
+  suffix: ERT Engineer
+  components:
+  - type: StorageFill
+    contents:
+        - id: ClothingOuterHardsuitERTEngineer
+        - id: ClothingMaskGasERT
+        - id: OxygenTankFilled
+        - id: NitrogenTankFilled
+  - type: AccessReader
+    access: [["CentralCommand"]]
+
+- type: entity
+  id: SuitStorageERTJanitor
+  parent: SuitStorageBase
+  suffix: ERT Janitor
+  components:
+  - type: StorageFill
+    contents:
+        - id: ClothingOuterHardsuitERTJanitor
+        - id: ClothingMaskGasERT
+        - id: OxygenTankFilled
+        - id: NitrogenTankFilled
+  - type: AccessReader
+    access: [["CentralCommand"]]

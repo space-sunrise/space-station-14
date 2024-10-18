@@ -62,3 +62,241 @@
     energy: 1.6
     color: "#6148c7"
   - type: PlayerCountDependentStock  # Sunrise-vend
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineERTCommon
+  name: ERTVend
+  description: Vending machine with general equipment ERT. The sign says "FOR ERT ONLY."
+  components:
+  - type: VendingMachine
+    pack: VendERTCommonInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Advertise
+    pack: SecTechAds
+  - type: SpeakOnUIClosed
+    pack: SecTechGoodbyes
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/VendingMachines/ert_vend.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["CentralCommand"]]
+  - type: PointLight
+    radius: 1
+    energy: 1.2
+    color: "#78645c"
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineERTGuns
+  name: ERT Guns
+  description: Vending machine with ERT weapons. The sign says "FOR ERT ONLY."
+  components:
+  - type: VendingMachine
+    pack: VendERTGunInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Advertise
+    pack: SecTechAds
+  - type: SpeakOnUIClosed
+    pack: SecTechGoodbyes
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/VendingMachines/ert_gun_vend.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["CentralCommand"]]
+  - type: PointLight
+    radius: 1
+    energy: 1.2
+    color: "#78645c"
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineERTMech
+  name: Mecha Vend
+  description: Vending machine with mecha equipment ERT. The sign says "FOR ERT ONLY."
+  components:
+  - type: VendingMachine
+    pack: VendERTMechInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Advertise
+    pack: SecTechAds
+  - type: SpeakOnUIClosed
+    pack: SecTechGoodbyes
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/VendingMachines/mech_vend.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["CentralCommand"]]
+  - type: PointLight
+    radius: 1
+    energy: 1.2
+    color: "#78645c"
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineERTMed
+  name: HyperVend
+  description: Vending machine with medical equipment ERT. The sign says "FOR ERT ONLY."
+  components:
+  - type: VendingMachine
+    pack: VendERTMedInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Advertise
+    pack: SecTechAds
+  - type: SpeakOnUIClosed
+    pack: SecTechGoodbyes
+  - type: Sprite
+    sprite: Structures/Machines/VendingMachines/medical.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["CentralCommand"]]
+  - type: PointLight
+    radius: 1
+    energy: 1.2
+    color: "#78645c"
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineERTEng
+  name: Build Vend
+  description: Vending machine with engineering equipment ERT. The sign says "FOR ERT ONLY."
+  components:
+  - type: VendingMachine
+    pack: VendERTEngInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Advertise
+    pack: SecTechAds
+  - type: SpeakOnUIClosed
+    pack: SecTechGoodbyes
+  - type: Sprite
+    sprite: Structures/Machines/VendingMachines/engivend.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["CentralCommand"]]
+  - type: PointLight
+    radius: 1
+    energy: 1.2
+    color: "#78645c"
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineERTClean
+  name: Clean Vend
+  description: Vending machine with cleaning equipment ERT. The sign says "FOR ERT ONLY."
+  components:
+  - type: VendingMachine
+    pack: VendERTCleanInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Advertise
+    pack: SecTechAds
+  - type: SpeakOnUIClosed
+    pack: SecTechGoodbyes
+  - type: Sprite
+    sprite: Structures/Machines/VendingMachines/janidrobe.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["CentralCommand"]]
+  - type: PointLight
+    radius: 1
+    energy: 1.2
+    color: "#78645c"
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachineERTAmmo
+  name: Ammo Vend
+  description: A vending machine with ammunition.
+  components:
+  - type: VendingMachine
+    pack: VendAmmoExtInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Advertise
+    pack: SecTechAds
+  - type: SpeakOnUIClosed
+    pack: SecTechGoodbyes
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/VendingMachines/ammo.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: AccessReader
+    access: [["CentralCommand"]]
+  - type: PointLight
+    radius: 1
+    energy: 1.2
+    color: "#78645c"
