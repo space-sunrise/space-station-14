@@ -238,7 +238,7 @@
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
-    state: icon
+    state: mecha_analyzer
     layers:
     - state: mecha_analyzer
     - state: mecha_analyzer_anim
@@ -285,11 +285,11 @@
   suffix: HandHeld, Empty
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Devices/roboanalyzer.rsi
-    state: icon
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_analyzer
     layers:
-    - state: icon
-    - state: analyzer
+    - state: mecha_analyzer
+    - state: mecha_analyzer_anim
       shader: unshaded
       visible: false
       map: [ "enum.PowerDeviceVisualLayers.Powered" ]
