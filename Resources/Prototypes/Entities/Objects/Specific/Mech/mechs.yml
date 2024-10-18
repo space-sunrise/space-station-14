@@ -213,6 +213,13 @@
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      200: Critical
+    showOverlays: false
+    allowRevives: true
 
 - type: entity
   id: MechRipleyBattery
@@ -268,6 +275,13 @@
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      250: Critical
+    showOverlays: false
+    allowRevives: true
 
 - type: entity
   id: MechRipley2Battery
@@ -323,6 +337,13 @@
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      250: Critical
+    showOverlays: false
+    allowRevives: true
 
 - type: entity
   id: MechClarkeBattery
@@ -367,6 +388,13 @@
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      150: Critical
+    showOverlays: false
+    allowRevives: true
 
 - type: entity
   parent: MechHonker
@@ -433,7 +461,14 @@
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
-
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      150: Critical
+    showOverlays: false
+    allowRevives: true
+    
 - type: entity
   parent: MechHamtr
   id: MechHamtrBattery
@@ -506,6 +541,13 @@
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      150: Critical
+    showOverlays: false
+    allowRevives: true
   # TOOD: buzz / chime actions
   # TODO: builtin flashlight
 
@@ -564,6 +606,13 @@
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      300: Critical
+    showOverlays: false
+    allowRevives: true
 
 - type: entity
   id: MechGygaxBattery
@@ -599,7 +648,6 @@
     brokenState: durand-broken
     mechToPilotDamageMultiplier: 0.25
     airtight: true
-    maxIntegrity: 400
     pilotWhitelist:
       components:
         - HumanoidAppearance
@@ -626,6 +674,13 @@
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      450: Critical
+    showOverlays: false
+    allowRevives: true
 
 - type: entity
   id: MechDurandBattery
@@ -661,7 +716,6 @@
     openState: phazon-open
     brokenState: phazon-broken
     mechToPilotDamageMultiplier: 0.4
-    maxIntegrity: 200
     maxEquipmentAmount: 6
     airtight: true
     pilotWhitelist:
@@ -684,6 +738,13 @@
     reflects:
     - NonEnergy
     - Energy
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      200: Critical
+    showOverlays: false
+    allowRevives: true
 
 - type: entity
   id: MechPhazonBattery
@@ -721,7 +782,6 @@
     brokenState: ntgygax-broken
     mechToPilotDamageMultiplier: 0.2
     airtight: true
-    maxIntegrity: 400
     maxEquipmentAmount: 4
     pilotWhitelist:
       components:
@@ -742,6 +802,13 @@
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      400: Critical
+    showOverlays: false
+    allowRevives: true
 
 - type: entity
   id: MechNTGygaxBattery
@@ -762,8 +829,8 @@
     startingEquipment:
       - WeaponMechChainSword
       - WeaponMechCombatPulseRifle
-      - WeaponMechCombatUltraRifle
-      - WeaponMechCombatMissileRack8
+      - WeaponMechCombatXray
+      - WeaponMechCombatMissileRack6
 
 # Marauder
 - type: entity
@@ -789,7 +856,6 @@
     brokenState: marauder-broken
     mechToPilotDamageMultiplier: 0.1
     airtight: true
-    maxIntegrity: 500
     maxEquipmentAmount: 4
     pilotWhitelist:
       components:
@@ -817,6 +883,13 @@
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      500: Critical
+    showOverlays: false
+    allowRevives: true
 
 - type: entity
   id: MechMarauderBattery
@@ -845,7 +918,7 @@
   id: MechSeraph
   parent: [ BaseMech, CombatMech, BaseCentcommContraband ]
   name: Seraph
-  description: That's the last thing you'll see. # Death Squad mech
+  description: That's the last thing you'll see.
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -864,7 +937,6 @@
     brokenState: seraph-broken
     mechToPilotDamageMultiplier: 0.05
     airtight: true
-    maxIntegrity: 550
     maxEquipmentAmount: 5
     pilotWhitelist:
       components:
@@ -892,6 +964,13 @@
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      550: Critical
+    showOverlays: false
+    allowRevives: true
 
 - type: entity
   id: MechSeraphBattery
@@ -942,7 +1021,6 @@
     brokenState: darkgygax-broken
     mechToPilotDamageMultiplier: 0.2
     airtight: true
-    maxIntegrity: 350
     maxEquipmentAmount: 4
     pilotWhitelist:
       components:
@@ -970,6 +1048,13 @@
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      350: Critical
+    showOverlays: false
+    allowRevives: true
 
 - type: entity
   id: MechGygaxSyndieBattery
@@ -1015,7 +1100,6 @@
     brokenState: rover-broken
     mechToPilotDamageMultiplier: 0.15
     airtight: true
-    maxIntegrity: 450
     maxEquipmentAmount: 5
     pilotWhitelist:
       components:
@@ -1043,6 +1127,13 @@
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      450: Critical
+    showOverlays: false
+    allowRevives: true
 
 - type: entity
   id: MechRoverSyndieBattery
@@ -1088,7 +1179,6 @@
     brokenState: mauler-broken
     mechToPilotDamageMultiplier: 0.1
     airtight: true
-    maxIntegrity: 500
     maxEquipmentAmount: 5
     pilotWhitelist:
       components:
@@ -1116,6 +1206,13 @@
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      500: Critical
+    showOverlays: false
+    allowRevives: true
 
 - type: entity
   id: MechMaulerSyndieBattery
