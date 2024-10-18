@@ -5,7 +5,7 @@
   description: A thin blade made of plastitanium with a diamond tip.
   components:
   - type: Sprite
-    sprite: _SunRise/Objects/Weapons/Melee/syndicate_rapier.rsi
+    sprite: _Sunrise/Objects/Weapons/Melee/syndicate_rapier.rsi
   - type: MeleeWeapon
     wideAnimationRotation: -135
     angle: 0
@@ -21,7 +21,7 @@
     reflectProb: 0.2
     spread: 90
   - type: Item
-    sprite: _SunRise/Objects/Weapons/Melee/syndicate_rapier.rsi
+    sprite: _Sunrise/Objects/Weapons/Melee/syndicate_rapier.rsi
   - type: DisarmMalus
     weight: 0.0002
   - type: Tag
