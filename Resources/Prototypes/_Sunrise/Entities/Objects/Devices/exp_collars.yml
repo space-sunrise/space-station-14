@@ -1,0 +1,52 @@
+﻿- type: entity
+  parent: ClothingNeckBase
+  id: ExplosiveCollarBase
+  abstract: true
+  components:
+  - type: Clothing
+    quickEquip: false
+    equipDelay: 2
+    unequipDelay: 20
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 10.0
+    intensitySlope: 5
+    maxIntensity: 4
+  - type: ExplodeOnTrigger
+  - type: ExpCollar
+    initialStripDelay: 0
+    armedStripDelay: 30
+    beepSound:
+      path: /Audio/Effects/beep1.ogg
+    damage:
+      groups:
+        Brute: 300
+        Burn: 300
+  - type: StaticPrice
+    price: 3000
+
+- type: entity
+  parent: ExplosiveCollarBase
+  id: ExplosiveCollarRed
+  name: red collar
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/red_collar.rsi
+    state: item
+  - type: Clothing
+    sprite: _Sunrise/Objects/Devices/red_collar.rsi
+  - type: ExpCollar
+    isHost: true
+
+- type: entity
+  parent: ExplosiveCollarBase
+  id: ExplosiveCollarWhite
+  name: white collar
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/white_collar.rsi
+    state: item
+  - type: Clothing
+    sprite: _Sunrise/Objects/Devices/white_collar.rsi
+
+# TODO: инструкция
