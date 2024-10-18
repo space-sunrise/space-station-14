@@ -704,3 +704,53 @@
       path: /Audio/_Sunrise/vizhu_pidorasa.ogg
   - type: UseDelay
     delay: 20.0
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieEblan
+  name: Плюшевый Милос-Танака
+  description: Защитник станции, всегда готовый к неожиданным приключениям!
+  components:
+  - type: Sprite
+    state: plushie-eblan
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieKlim
+  name: Плюшевый Клим Кузьмин
+  description: Вульпа атмос, от него пахнет плазмой. Заделает любую дыру, даже в вашем сердце.
+  components:
+  - type: Sprite
+    state: plushie-klim
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieMelania
+  name: Плюшевая Мелания Киселёва
+  description: Величайшая желешка во вселенной, любящая своих сестер. Хлюп!
+  components:
+  - type: Sprite
+    state: plushie-melania
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieOkobius
+  name: Плюшевый Окобиус Акватика
+  description: Один из худших бригмедиков, что когда либо существовали.
+  components:
+  - type: Sprite
+    state: plushie-okobius
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieVyacheslav
+  name: Плюшевый Вячеслав Некрасов
+  description: Популярная в соответствующих кругах личность.
+  components:
+  - type: Sprite
+    state: plushie-vyacheslav
+    sprite: _Sunrise/Objects/Fun/toys.rsi
