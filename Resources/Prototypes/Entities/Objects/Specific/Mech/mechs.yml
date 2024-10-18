@@ -171,6 +171,8 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: Prying
+  - type: StatusIconComponent
+    bounds: 1.08, 1.08
 
 # Ripley MK-I
 - type: entity
@@ -802,6 +804,8 @@
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
+  - type: Damageable
+    damageModifierSet: MediumArmorNT
   - type: MobThresholds
     currentThresholdState : Alive
     thresholds:
