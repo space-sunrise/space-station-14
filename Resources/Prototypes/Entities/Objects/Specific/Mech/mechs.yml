@@ -171,7 +171,7 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: Prying
-  - type: StatusIconComponent
+  - type: StatusIcon
     bounds: 1.08, 1.08
 
 # Ripley MK-I
