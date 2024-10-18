@@ -172,7 +172,7 @@
         acts: ["Destruction"]
   - type: Prying
   - type: StatusIcon
-    bounds: 1.08, 1.08
+    bounds: "-0.6,-0.6, 0.6, 0.6"
 
 # Ripley MK-I
 - type: entity
