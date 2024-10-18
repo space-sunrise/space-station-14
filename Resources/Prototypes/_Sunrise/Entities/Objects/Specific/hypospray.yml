@@ -1,0 +1,33 @@
+- type: entity
+  name: piercing auto-injector
+  parent: ChemicalMedipen
+  id: PiercingAutoInjector
+  description: A rapid dose of puncturase, saline and tranexamic acid, intended for combat applications.
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Medical/medipen.rsi
+    layers:
+    - state: firstaid
+      map: ["enum.SolutionContainerLayers.Fill"]
+  - type: SolutionContainerVisuals
+    maxFillLevels: 1
+    changeColor: false
+    emptySpriteName: firstaid_empty
+  - type: Hypospray
+    solutionName: pen
+    transferAmount: 20
+    onlyAffectsMobs: false
+    injectOnly: true
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 20
+        reagents:
+        - ReagentId: Puncturase
+          Quantity: 10
+        - ReagentId: Saline
+          Quantity: 5
+        - ReagentId: TranexamicAcid
+          Quantity: 5
+  - type: Tag
+    tags: []

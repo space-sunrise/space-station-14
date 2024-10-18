@@ -1,0 +1,29 @@
+﻿- type: vendingMachineInventory
+  id: VendERTCleanInventory
+  startingInventory:
+    AdvMopItem: 4
+    CleanerGrenade: 14
+    Holoprojector: 3
+    WetFloorSign: 12
+    Plunger: 4
+    SoapNT: 7
+    TrashBagBlue: 6
+    Bucket: 4
+    RagItem: 1
+    LightReplacer: 4
+    BoxLightMixed: 8
+    MegaSprayBottle: 2
+    SprayBottleSpaceCleaner: 8
+    PlantBGoneSpray: 12
+    ClothingHeadHelmetERTJanitor: 3
+    ClothingHandsGlovesJanitor: 3
+    ClothingShoesGaloshes: 3
+    JanitorialTrolley: 2
+    MopBucketFull: 2
+    ClothingHeadHelmetJanitorBombSuit: 1
+    ClothingOuterSuitJanitorBomb: 1
+    ClothingBackpackWaterTank: 1
+    WeaponSprayNozzle: 1
+  emaggedInventory:
+    RubberChicken: 1
+    SlipocalypseClusterSoap: 1

@@ -1,0 +1,26 @@
+﻿- type: vendingMachineInventory
+  id: VendERTGunInventory
+  startingInventory:
+    WeaponPistolG22: 8
+    MagazineGlock22: 16
+    WeaponRevolverMatebaNew: 1
+    SpeedLoaderMagnum: 3
+    WeaponSubMachineGunDrozd: 5
+    MagazinePistolSubMachineGun: 15
+    WeaponRifleFamas: 6
+    MagazineFamas: 18
+    WeaponShotgunSPAS12: 4
+    BoxLethalshot: 8
+    WeaponEnergyGun: 5
+    WeaponEnergyGunPistol: 8
+    WeaponPulseCarbine: 6
+    WeaponPulsePistol: 8
+    GrenadeShrapnel: 6
+    GrenadeIncendiary: 3
+    ExGrenade: 3
+    EmpGrenade: 2
+    C4: 2
+  emaggedInventory:
+    WeaponSubMachineGunC20r: 1
+    WeaponRevolverPythonAP: 1
+    SpeedLoaderMagnumAP: 1

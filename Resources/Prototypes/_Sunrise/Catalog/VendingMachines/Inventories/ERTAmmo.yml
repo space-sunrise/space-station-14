@@ -1,0 +1,22 @@
+﻿- type: vendingMachineInventory
+  id: VendAmmoExtInventory
+  startingInventory:
+    MagazineBoxRifleBig: 8
+    MagazineBoxRifleBigRubber: 6
+    MagazineBoxCaselessRifleBig: 8
+    MagazineBoxCaselessRifleBigRubber: 6
+    MagazineBoxLightRifleBig: 8
+    MagazineBoxPistol: 15
+    MagazineBoxPistolRubber: 16
+    MagazineBoxMagnum: 8
+    MagazineBoxMagnumIncendiary: 4
+    MagazineBoxMagnumRubber: 6
+    MagazineBoxAntiMaterielBig: 6
+    BoxLethalshot: 8
+    BoxShotgunIncendiary: 6
+    BoxShotgunSlug: 8
+    BoxBeanbag: 8
+    BoxShellTranquilizer: 2
+  emaggedInventory:
+    BoxCartridgeCap: 1
+    BoxDonkSoftBox: 1
