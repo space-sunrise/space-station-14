@@ -71,6 +71,11 @@
   - type: Store
     balance:
       Telecrystal: 0
+#Sunrise-start
+  - type: Tag
+    tags:
+    - SyndieAgentUplink
+#Sunrise-end
 
 - type: entity
   parent: BaseUplinkRadio

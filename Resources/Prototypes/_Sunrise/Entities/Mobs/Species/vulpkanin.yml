@@ -18,7 +18,7 @@
     prototype: Vulpkanin
     requiredLegs: 2
   - type: Inventory
-    speciesId: reptilian
+    speciesId: human
   - type: VulpaAccent
 
 

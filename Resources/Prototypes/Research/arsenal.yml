@@ -12,6 +12,7 @@
   recipeUnlocks:
   - WeaponProtoKineticAccelerator
   - ShuttleGunKineticCircuitboard
+  - MechEquipmentKineticAccelerator
   # These are roundstart but not replenishable for salvage
 
 - type: technology
@@ -46,6 +47,7 @@
   cost: 7500
   recipeUnlocks:
   - WeaponLaserCarbine
+  - WeaponMechCombatFiredartLaser
 
 - type: technology
   id: NonlethalAmmunition
@@ -62,6 +64,7 @@
   - BoxBeanbag
   - WeaponDisabler
   # Sunrise-Start
+  - WeaponMechCombatDisabler
   - CartridgePistolRubber
   - CartridgeMagnumRubber
   - CartridgeLightRifleRubber
@@ -150,6 +153,7 @@
   cost: 10000
   recipeUnlocks:
   - WeaponLaserCannon
+  - WeaponMechCombatSolarisLaser
 
 - type: technology
   id: WaveParticleHarnessing
@@ -163,6 +167,18 @@
   recipeUnlocks:
   - WeaponXrayCannon
 
+- type: technology
+  id: EnergyBarriers
+  name: research-technology-energy_barriers
+  icon: 
+    sprite: Objects/Tools/EnergyDome/reinhardt.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 2
+  cost: 6000
+  recipeUnlocks:
+  - EnergyDomeDirectionalTurtle
+  
 - type: technology
   id: BasicShuttleArmament
   name: research-technology-basic-shuttle-armament
@@ -185,6 +201,30 @@
   technologyPrerequisites:
   - SalvageWeapons
 
+- type: technology
+  id: Gygax
+  name: research-technology-gygax
+  icon:
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: gygax
+  discipline: Arsenal
+  tier: 2
+  cost: 12000
+  recipeUnlocks:
+  - GygaxHarness
+  - GygaxArmor
+  - GygaxHead
+  - GygaxLArm
+  - GygaxLLeg
+  - GygaxRArm
+  - GygaxRLeg
+  - GygaxCentralElectronics
+  - GygaxPeripheralsElectronics
+  - GygaxTargetingElectronics
+  - WeaponMechCombatUltraRifle
+  technologyPrerequisites:
+  - Ripley2
+
 # Tier 3
 
 - type: technology
@@ -199,6 +239,21 @@
   recipeUnlocks:
   - WeaponAdvancedLaser
   - PortableRecharger
+  - WeaponMechCombatImmolationGun
+
+- type: technology
+  id: ExplosiveMechAmmunition
+  name: research-technology-explosive-mech-ammunition
+  icon:
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_missilerack
+  discipline: Arsenal
+  tier: 3
+  cost: 15000
+  recipeUnlocks:
+  - WeaponMechCombatMissileRack8
+  technologyPrerequisites:
+  - ExplosiveTechnology
 
 - type: technology
   id: ExperimentalBatteryAmmo
@@ -227,3 +282,28 @@
   - ShuttleGunDusterCircuitboard
   technologyPrerequisites:
   - BasicShuttleArmament
+
+- type: technology
+  id: Durand
+  name: research-technology-durand
+  icon:
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: durand
+  discipline: Arsenal
+  tier: 3
+  cost: 16000
+  recipeUnlocks:
+  - DurandHarness
+  - DurandArmor
+  - DurandHead
+  - DurandLArm
+  - DurandLLeg
+  - DurandRArm
+  - DurandRLeg
+  - DurandCentralElectronics
+  - DurandPeripheralsElectronics
+  - DurandTargetingElectronics
+  - WeaponMechCombatShotgun
+  - WeaponMechCombatShotgunIncendiary
+  technologyPrerequisites:
+  - Gygax

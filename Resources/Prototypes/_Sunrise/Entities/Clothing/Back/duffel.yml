@@ -23,9 +23,12 @@
 - type: entity
   parent: ClothingBackpackDuffel
   id: ClothingBackpackDuffelBlueShield
-  name: вещмешок офицера «синий щит»
+  name: Облегчённый вещмешок офицера «синий щит»
   description: На стиле.
   components:
+    - type: ClothingSpeedModifier
+      walkModifier: 0.95
+      sprintModifier: 0.95
     - type: Sprite
       sprite: _Sunrise/Clothing/Back/Duffels/blueshield.rsi
 
@@ -37,3 +40,12 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Back/Duffels/guard.rsi
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelAdjutant
+  name: adjutant duffel
+  description: It looks redundantly empty, with only a crumpled piece of paper lying lonely at the bottom.
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Clothing/Back/Duffels/adjutant.rsi

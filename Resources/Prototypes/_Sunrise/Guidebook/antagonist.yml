@@ -1,0 +1,4 @@
+- type: guideEntry
+  id: Disease
+  name: guide-entry-disease
+  text: "/ServerInfo/Guidebook/Antagonist/Disease.xml"

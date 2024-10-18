@@ -15,6 +15,7 @@ using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
+using Content.Shared.Players.RateLimiting;
 using JetBrains.Annotations;
 using Robust.Server.Player;
 using Robust.Shared;
@@ -106,14 +107,12 @@ namespace Content.Server.Administration.Systems
 
         	_rateLimit.Register(
                 RateLimitKey,
-                new RateLimitRegistration
-                {
-                    CVarLimitPeriodLength = CCVars.AhelpRateLimitPeriod,
-                    CVarLimitCount = CCVars.AhelpRateLimitCount,
-                    PlayerLimitedAction = PlayerRateLimitedAction
-                });
+                new RateLimitRegistration(CCVars.AhelpRateLimitPeriod,
+                    CCVars.AhelpRateLimitCount,
+                    PlayerRateLimitedAction)
+                );
 
-            IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
+                IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
         }
 
         private void PlayerRateLimitedAction(ICommonSession obj)

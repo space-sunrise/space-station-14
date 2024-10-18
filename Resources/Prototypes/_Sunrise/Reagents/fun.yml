@@ -24,3 +24,23 @@
         time: 1.0  # Полная баночка = 1 минута тряски
         amplitude: 2
         frequency: 5
+
+- type: reagent
+  id: HonkPower
+  name: reagent-name-honkpower
+  group: Toxins
+  desc: reagent-desc-honkpower
+  flavor: funny
+  color: "#F0E68C"
+  physicalDesc: reagent-physical-desc-honkpower
+  recognizable: false
+  slippery: true
+  metabolisms:
+    Food: 
+      metabolismRate: 1.0
+      effects:
+      - !type:Polymorph
+        prototype: ClowanHulk
+        conditions:
+          - !type:ReagentThreshold
+            min: 5

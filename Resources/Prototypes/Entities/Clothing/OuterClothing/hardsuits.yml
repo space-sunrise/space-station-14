@@ -45,7 +45,8 @@
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
   - type: TemperatureProtection
-    coefficient: 0.001
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
   - type: FireProtection
     reduction: 0.8
   - type: ExplosionResistance
@@ -161,7 +162,7 @@
   parent: [ClothingOuterHardsuitBase, BaseCargoContraband]
   id: ClothingOuterHardsuitMaxim
   name: salvager maxim hardsuit
-  description: Fire. Heat. These things forge great weapons, they also forge great salvagers.
+  description: Fire. Heat. These things forge great weapons, they also forge great salvagers.  Has built-in battery-powered energy barrier technology.
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Hardsuits/maxim.rsi
@@ -176,17 +177,41 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.5
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.6
         Heat: 0.3
         Radiation: 0.1
   - type: ExplosionResistance
     damageCoefficient: 0.2
   - type: TemperatureProtection
-    coefficient: 0.001
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitMaxim
+    clothingPrototype: ClothingHeadHelmetHardsuitMaxim  
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+      toggleable-clothing: !type:ContainerSlot
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSmall
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 6
+    domePrototype: EnergyDomeSmallPink
+  - type: PowerCellDraw
+    drawRate: 8
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0
 
 #Security Hardsuit
 - type: entity
@@ -545,7 +570,8 @@
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
   - type: TemperatureProtection
-    coefficient: 0.001
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
   - type: ExplosionResistance
     damageCoefficient: 0.2
   - type: FireProtection
@@ -762,7 +788,7 @@
 #CENTCOMM / ERT HARDSUITS
 #ERT Leader Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitSyndieCommander
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndieCommander ]
   id: ClothingOuterHardsuitERTLeader
   name: ERT leader's hardsuit
   description: A protective hardsuit worn by the leader of an emergency response team.
@@ -776,7 +802,7 @@
 
 #ERT Chaplain Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitJuggernaut
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitJuggernaut ]
   id: ClothingOuterHardsuitERTChaplain
   name: ERT chaplain's hardsuit
   description: A protective hardsuit worn by the chaplains of an Emergency Response Team.
@@ -804,7 +830,7 @@
 
 #ERT Medic Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitSyndieMedic
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndieMedic ]
   id: ClothingOuterHardsuitERTMedical
   name: ERT medic's hardsuit
   description: A protective hardsuit worn by the medics of an emergency response team.
@@ -818,7 +844,7 @@
 
 #ERT Security Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitSyndie
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndie ]
   id: ClothingOuterHardsuitERTSecurity
   name: ERT security's hardsuit
   description: A protective hardsuit worn by the security officers of an emergency response team.
@@ -850,7 +876,7 @@
 
 #Deathsquad
 - type: entity
-  parent: ClothingOuterHardsuitBase
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitBase ]
   id: ClothingOuterHardsuitDeathsquad
   name: death squad hardsuit
   description: An advanced hardsuit favored by commandos for use in special operations.
@@ -863,7 +889,8 @@
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
   - type: TemperatureProtection
-    coefficient: 0.001
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
   - type: ExplosionResistance
     damageCoefficient: 0.2
   - type: FireProtection
@@ -886,7 +913,7 @@
 
 #CBURN Hardsuit
 - type: entity
-  parent: ClothingOuterHardsuitBase
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitBase ]
   id: ClothingOuterHardsuitCBURN
   name: CBURN exosuit
   description: A lightweight yet strong exosuit used for special cleanup operations.
@@ -899,7 +926,8 @@
     highPressureMultiplier: 0.02
     lowPressureMultiplier: 1000
   - type: TemperatureProtection
-    coefficient: 0.001
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
   - type: ExplosionResistance
     damageCoefficient: 0.7
   - type: Armor
@@ -1016,7 +1044,8 @@
     highPressureMultiplier: 0.225
     lowPressureMultiplier: 1000
   - type: TemperatureProtection
-    coefficient: 0.01
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.01
   - type: ExplosionResistance
     damageCoefficient: 0.2
   - type: Armor

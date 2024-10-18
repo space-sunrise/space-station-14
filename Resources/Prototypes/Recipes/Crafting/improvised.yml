@@ -214,3 +214,16 @@
   icon:
     sprite: Objects/Weapons/Bombs/pipebomb.rsi
     state: icon
+
+- type: construction
+  name: rolling pin
+  id: rollingpin
+  graph: WoodenRollingPin
+  startNode: start
+  targetNode: rollingpin
+  category: construction-category-tools
+  objectType: Item
+  description: A rolling pin, used for cooking and defending the kitchen.
+  icon:
+    sprite: Objects/Tools/rolling_pin.rsi
+    state: icon

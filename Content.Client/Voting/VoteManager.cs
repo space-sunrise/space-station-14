@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Content.Shared.Voting;
@@ -156,7 +156,6 @@ namespace Content.Client.Voting
                     Entries = message.Options
                         .Select(c => new VoteEntry(c.name))
                         .ToArray(),
-                    Hide = message.Hide // Sunrise-Edit
                 };
 
                 existingVote = vote;
@@ -185,6 +184,8 @@ namespace Content.Client.Voting
             existingVote.Title = message.VoteTitle;
             existingVote.StartTime = _gameTiming.RealServerToLocal(message.StartTime);
             existingVote.EndTime = _gameTiming.RealServerToLocal(message.EndTime);
+            existingVote.DisplayVotes = message.DisplayVotes;
+            existingVote.TargetEntity = message.TargetEntity;
 
             // Logger.Debug($"{existingVote.StartTime}, {existingVote.EndTime}, {_gameTiming.RealTime}");
 
@@ -246,8 +247,8 @@ namespace Content.Client.Voting
             public string Initiator = "";
             public int? OurVote;
             public int Id;
-            public bool Hide; // Sunrise-Edit
-
+            public bool DisplayVotes;
+            public int? TargetEntity; // NetEntity
             public ActiveVote(int voteId)
             {
                 Id = voteId;

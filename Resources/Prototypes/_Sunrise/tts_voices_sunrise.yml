@@ -12,7 +12,7 @@
   name: tts-voice-name-jirinovskiy
   sex: Male
   speaker: jirinovskiy
-  roundStart: false # надо переобучить
+  roundStart: true
   provider: sunrise
   sponsorOnly: true
 
@@ -150,3 +150,201 @@
   roundStart: true
   provider: sunrise
   sponsorOnly: true
+
+- type: ttsVoice
+  id: SCP049 # DON'T USE
+  name: tts-voice-name-scp-049
+  sex: Male
+  speaker: scp_049
+  roundStart: false
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: SCP079 # DON'T USE
+  name: tts-voice-name-scp-079
+  sex: Male
+  speaker: scp_079
+  roundStart: false
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Ludvig
+  name: tts-voice-name-ludvig
+  sex: Male
+  speaker: ludvig
+  provider: sunrise
+
+- type: ttsVoice
+  id: IcarusRevenge
+  name: tts-voice-name-icarus-revenge
+  sex: Male
+  speaker: icarus_revenge
+  provider: sunrise
+
+- type: ttsVoice
+  id: HeartstoneThrud
+  name: tts-voice-name-heartstone-thrud
+  sex: Male
+  speaker: heartstone_thrud
+  provider: sunrise
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Kendrick
+  name: tts-voice-name-kendrick
+  sex: Male
+  speaker: kendrick
+  provider: sunrise
+
+- type: ttsVoice
+  id: SplikZerys
+  name: tts-voice-name-splikzerys
+  sex: Male
+  speaker: splikzerys
+  provider: sunrise
+
+- type: ttsVoice
+  id: Dota2Riki
+  name: tts-voice-name-dota2-riki
+  sex: Male
+  speaker: dota2_riki
+  provider: sunrise
+
+- type: ttsVoice
+  id: Dota2Pudge
+  name: tts-voice-name-dota2-pudge
+  sex: Male
+  speaker: dota2_pudge
+  provider: sunrise
+
+- type: ttsVoice
+  id: TF2Soldier
+  name: tts-voice-name-tf2-soldier
+  sex: Male
+  speaker: tf2_soldier
+  provider: sunrise
+
+- type: ttsVoice
+  id: Dota2Abaddon
+  name: tts-voice-name-dota2-abaddon
+  sex: Male
+  speaker: dota2_abaddon
+  provider: sunrise
+
+- type: ttsVoice
+  id: Dota2Silencer
+  name: tts-voice-name-dota2-silencer
+  sex: Male
+  speaker: dota2_silencer
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneWarden
+  name: tts-voice-name-hearthstone-warden
+  sex: Male
+  speaker: hearthstone_warden
+  provider: sunrise
+
+- type: ttsVoice
+  id: CBAnnouncer
+  name: tts-voice-name-cb-announcer
+  sex: Male
+  speaker: cb_announcer
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneLordOfThunder
+  name: tts-voice-name-hearthstone-lord-of-thunder
+  sex: Male
+  speaker: hearthstone_lord_of_thunder
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneTekahn
+  name: tts-voice-name-hearthstone-tekahn
+  sex: Male
+  speaker: hearthstone_tekahn
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneFinli
+  name: tts-voice-name-hearthstone-finli
+  sex: Male
+  speaker: hearthstone_finli
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneBrann
+  name: tts-voice-name-hearthstone-brann
+  sex: Male
+  speaker: hearthstone_brann
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneReno
+  name: tts-voice-name-hearthstone-reno
+  sex: Male
+  speaker: hearthstone_reno
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneZverolovTavish
+  name: tts-voice-name-hearthstone-zverolov-tavish
+  sex: Male
+  speaker: hearthstone_zverolov_tavish
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneElisa
+  name: tts-voice-name-hearthstone-elisa
+  sex: Female
+  speaker: hearthstone_elisa
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneSotis
+  name: tts-voice-name-hearthstone-sotis
+  sex: Male
+  speaker: hearthstone_sotis
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneMediv
+  name: tts-voice-name-hearthstone-mediv
+  sex: Male
+  speaker: hearthstone_mediv
+  provider: sunrise
+
+- type: ttsVoice
+  id: CBMTF1
+  name: tts-voice-name-mtf1
+  sex: Male
+  speaker: mtf_1
+  provider: sunrise
+  roundStart: true # хз
+
+- type: ttsVoice
+  id: CBMTF2
+  name: tts-voice-name-mtf2
+  sex: Male
+  speaker: mtf_2
+  provider: sunrise
+  roundStart: true # хз
+
+- type: ttsVoice
+  id: ThreeBigatiraAleshaPopovich
+  name: tts-voice-name-three-bogatira-alesha-popovich
+  sex: Male
+  speaker: three_bogatira_alesha
+  provider: sunrise
+  roundStart: true
+
+- type: ttsVoice
+  id: PetrGlanceIvashenko
+  name: tts-voice-name-petr_glance_ivashenko
+  sex: Male
+  speaker: petr_ivashenko
+  provider: sunrise
+  roundStart: true

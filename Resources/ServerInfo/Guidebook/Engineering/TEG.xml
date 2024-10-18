@@ -31,15 +31,15 @@
 
   Кроме сказанного выше, существует множество способов чтобы нагреть (или охладить) газы; здесь мы рассмотрим 2 основных метода, используемые при настройке горячего контура ТЭГа: [color=red]Газодобытчик[/color], и [color=red]Камера сгорания[/color].
 
-  ## The Pipe Burn
+  ## Нагрев Трубы
 
-  Also known as the naive method, this is generally discouraged when working for efficiency. However, if all you need is a smidge of power to run the station, and you don't feel like setting up the burn chamber, this method will do.
+  Также известный как наивный метод, он обычно не рекомендуется, если вам важна эффективность. Однако, если вам нужно немного энергии, чтобы запустить станцию, и у вас нет желания настраивать камеру сгорания, этот метод подойдёт.
 
-  [color=#444444]TODO: Remove this section when atmos pipes are updated to have pressure/temperature limits in a future atmos refactor.[/color]
+  [color=#444444]TODO: Удалить этот раздел, когда в будущем атмосферные трубы будут обновлены и получат ограничения по давлению/температуре.[/color]
 
-  Most (if not all) pipe burns follow this general layout:
+  Большинство (если не все) нагревы труб следуют этой общей схеме:
   <Box>
-    Gas input -> High-pressure pump -> Pipe segment (with heater) -> Low-pressure pump -> Circulator
+    Вход газа -> Насос высокого давления -> Сегмент трубы (с нагревателем) -> Насос низкого давления -> Циркулятор
   </Box>
   <Box>
     <GuideEntityEmbed Entity="GasMixer" Rotation="90" Caption="" Margin="-1"/>
@@ -51,13 +51,13 @@
   <Box>
     <GuideEntityEmbed Entity="GasThermoMachineHeaterEnabled" Caption="" Rotation="180" Margin="0"/>
   </Box>
-  - The Gas input is pretty self-explanatory; this is where you will input the O2-Plasma mix to be burnt. A 2:1 (67/33) ratio of Oxygen to Plasma is recommended for the hottest burn.
-  - The High-pressure pump serves 2 purposes; first, it prevents the burn from backwashing into the supply pipe, which would be.. bad, for many reasons. Second, it maintains a positive pressure in the following pipe segment, which is important to allow the burn to continue, especially since hot gases expand.
-  - The Pipe segment is where the burn actually occurs; to start it off, one can use a heater to increase the temperature up to the ignition temperature of Plasma. Afterwards, the reaction should be self-sustaining, so long as the Pressure and Moles supplied remains high enough. [color=#a4885c]Be warned[/color]; if you wish to remove the heater, it will carry some of this superheated gas with it, transferring it to the next pipenet you connect it to. Best to space the gas through a space vent, if you must.
-  - The Low-pressure pump (whose pressure should be [italic]slightly lower[/italic] than the input pump) prevents [italic]all[/italic] the gas from passing through the circulator, which could result in the loss of the Moles required to sustain a burn.
-  - The Circulator is where this generated heat will flow to the cold loop; afterwards, feel free to space the waste gases.
+  - Вход газа довольно очевиден; это то место, куда вы подаёте смесь O2-Плазма для сжигания. Рекомендуется соотношение 2:1 (67/33) кислорода и плазмы для наиболее горячего сжигания.
+  - Насос высокого давления выполняет две функции: во-первых, он предотвращает обратное проникновение сжигаемого газа в подающий трубопровод, что было бы плохо по многим причинам. Во-вторых, он поддерживает положительное давление в следующем сегменте трубы, что важно для продолжения горения, особенно учитывая расширение горячих газов.
+  - Сегмент трубы — это место, где происходит сжигание; для начала его можно нагреть с помощью нагревателя до температуры воспламенения плазмы. После этого реакция должна быть самоподдерживающейся, если давление и количество подаваемых молекул будут оставаться достаточно высокими. [color=#a4885c]Будьте осторожны[/color]: если вы решите убрать нагреватель, это приведет к переносу части этого перегретого газа, перенося его в следующую трубную сеть, к которой вы подключитесь. Лучше всего выпустить газ через вентиль в космос, если это необходимо.
+  - Насос низкого давления (чьё давление должно быть [italic]чуть ниже[/italic], чем у насоса на входе) предотвращает прохождение [italic]всего[/italic] газа через циркулятор, что может привести к потере молекул, необходимых для поддержания горения.
+  - Циркулятор — это место, куда поступает это генерируемое тепло для передачи в холодный контур; после этого можно выпустить отработанные газы в космос.
 
-  Note: Pressure pumps are used here as, while they pump on pressure (not flow-rate, which is comparatively faster), they are a bit easier to control when it comes to the limited Plasma supply on-station. However, the steps shown can be followed with volumetric pumps too.
+  Примечание: здесь используются пассивные насосы, так как они работают по давлению (а не по скорости потока, что быстрее), однако их легче контролировать при ограниченном запасе плазмы на станции. Однако указанные шаги можно выполнить и с обычними насосами.
 
   ## Камера сгорания
 

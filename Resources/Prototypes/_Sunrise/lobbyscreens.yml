@@ -7,6 +7,10 @@
   background: /Textures/_Sunrise/LobbyScreens/dead-in-space.webp
 
 - type: lobbyBackground
+  id: Engineer
+  background: /Textures/_Sunrise/LobbyScreens/engineer.webp
+
+- type: lobbyBackground
   id: Deadsquad
   background: /Textures/_Sunrise/LobbyScreens/deadsquad.webp
 
@@ -185,3 +189,7 @@
 - type: lobbyBackground
   id: EngineersVsZombies
   background: /Textures/_Sunrise/LobbyScreens/engineers-vs-zombies.webp
+
+- type: lobbyBackground
+  id: Reunion
+  background: /Textures/_Sunrise/LobbyScreens/reunion.webp

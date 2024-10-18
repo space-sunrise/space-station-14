@@ -106,6 +106,7 @@
     - Pacified
     - RadiationProtection
     - Drowsiness
+    - Adrenaline
   - type: Temperature
     heatDamageThreshold: 800
   - type: Metabolizer
@@ -149,10 +150,15 @@
     tags:
     - CannotSuicide
     - DoorBumpOpener
+  - type: Puller
+    needsHands: false
   # Sunrise-Start
   - type: CollectiveMind
     minds:
     - Carp
+  - type: NightVision
+    isToggle: true
+    color: "#808080"
   # Sunrise-End
 
 - type: entity
@@ -251,3 +257,4 @@
     priority: 2
     checkCanAccess: false
     range: 0
+    itemIconStyle: BigAction

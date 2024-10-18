@@ -1,0 +1,85 @@
+- type: entity
+  name: NVD
+  id: ClothingEyesNVD
+  parent: [BaseItem, PowerCellSlotSmallItem]
+  description: Night vision device. Provides an image of the terrain in low-light conditions.
+  components:
+  - type: Item
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Eyes/Glasses/nvd.rsi
+    layers:
+      - state: icon
+      - state: icon-unshaded
+        shader: unshaded
+      - state: light-overlay
+        visible: false
+        shader: unshaded
+        map: [ "enum.NVDVisuals.Light" ]
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Eyes/Glasses/nvd.rsi
+    quickEquip: true
+    clothingVisuals:
+      eyes:
+      - state: off-equipped-EYES
+      - state: equipped-EYES-unshaded
+        shader: unshaded
+    slots: [ Eyes ]
+  - type: PointLight
+    color: green
+    enabled: false
+    autoRot: true
+    radius: 0.5
+    energy: 0.5
+  - type: Appearance
+  - type: NightVisionDevice
+    isPowered: true
+    displayColor: "#82eb6c"
+    displayShader: NVDDisplay
+  - type: PowerCellDraw
+    drawRate: 0
+    useRate: 20
+  - type: ToggleCellDraw
+
+- type: entity
+  parent: [ClothingEyesNVD,ShowSecurityIcons]
+  id: ClothingEyesNVDSyndicate
+  suffix: syndicate
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Eyes/Glasses/syndie_nvd.rsi
+    layers:
+      - state: icon
+      - state: icon-unshaded
+        shader: unshaded
+      - state: light-overlay
+        visible: false
+        shader: unshaded
+        map: [ "enum.NVDVisuals.Light" ]
+  - type: ShowSyndicateIcons
+  - type: NightVisionDevice
+    isPowered: true
+    displayColor: "#ff6e6e"
+    displayShader: NVDDisplay
+
+- type: entity
+  parent: ClothingEyesNVD
+  id: ClothingEyesNVDHandcrafted
+  suffix: handcrafted
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Eyes/Glasses/handcrafted_nvd.rsi
+    layers:
+      - state: icon
+      - state: icon-unshaded
+        shader: unshaded
+      - state: light-overlay
+        visible: false
+        shader: unshaded
+        map: [ "enum.NVDVisuals.Light" ]
+  - type: NightVisionDevice
+    isPowered: true
+    displayColor: "#f2fa5c"
+    displayShader: NVDDisplay
+  - type: PowerCellDraw
+    drawRate: 0
+    useRate: 50

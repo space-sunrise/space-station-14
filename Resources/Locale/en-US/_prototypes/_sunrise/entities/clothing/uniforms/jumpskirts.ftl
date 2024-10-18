@@ -20,3 +20,5 @@ ent-ClothingUniformJumpskirtNtrep = nt representive skirt
     .desc = That skirt that is better not to see.
 ent-ClothingUniformJumpskirtBarber = платье парикмахера
     .desc = Как же он хорош.
+ent-ClothingUniformJumpskirtAdjutant = adjutant jumpskirt
+    .desc = Sewn to perfection with breathable fabric that will keep you on your feet for your entire shift.

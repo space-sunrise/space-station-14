@@ -1,0 +1,72 @@
+- type: entity
+  name: pen-CE-name
+  parent: BaseItem
+  id: CEPen
+  description: pen-CE-description
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/pens.rsi
+    state: pen_ce
+  - type: Item
+    sprite: _Sunrise/Objects/Misc/pens.rsi
+    heldPrefix: pen_ce
+    size: Tiny
+  - type: Tag
+    tags:
+    - Write
+    - Pen
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 25
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/pen_click.ogg
+      params:
+        volume: -4
+        maxDistance: 2
+  - type: UseDelay
+    delay: 1.5
+
+- type: entity
+  name: pen-Cmo-name
+  parent: CEPen
+  id: CmoPen
+  description: pen-Cmo-description
+  components:
+  - type: Sprite
+    state: pen_cmo
+  - type: Item
+    heldPrefix: pen_cmo
+
+- type: entity
+  name: pen-Hos-name
+  parent: CEPen
+  id: HosPen
+  description: pen-Hos-description
+  components:
+  - type: Sprite
+    state: pen_hos
+  - type: Item
+    heldPrefix: pen_hos
+
+- type: entity
+  name: pen-Qm-name
+  parent: CEPen
+  id: QmPen
+  description: pen-Qm-description
+  components:
+  - type: Sprite
+    state: pen_qm
+  - type: Item
+    heldPrefix: pen_qm
+
+- type: entity
+  name: pen-Rd-name
+  parent: CEPen
+  id: RdPen
+  description: pen-Rd-description
+  components:
+  - type: Sprite
+    state: pen_rd
+  - type: Item
+    heldPrefix: pen_rd

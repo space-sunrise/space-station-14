@@ -137,8 +137,6 @@
       - AirTank
       - GasAnalyzer
       - UtilityBelt
-      - Fulton
-      - FultonBeacon
       - Pickaxe
       - ModularReceiver
       - AppraisalTool
@@ -180,7 +178,7 @@
       - MicroManipulatorStockPart
       - MatterBinStockPart
       - CapacitorStockPart
-      - ConveyorBeltAssembly
+#      - ConveyorBeltAssembly Sunrise-Edit
       - IntercomElectronics
       - FirelockElectronics
       - DoorElectronics
@@ -200,6 +198,8 @@
       - ClothingHeadHatWelding
       - WetFloorSign
       - ClothingHeadHatCone
+      - FreezerElectronics
+      - Flare
       - ClothingHeadHelmetPubgMore  # Sunrise-edit
 
   - type: EmagLatheRecipes
@@ -332,6 +332,8 @@
       - PowerCellHigh
       - WeaponPistolCHIMP
       - ClothingMaskWeldingGas
+      - MineralScannerEmpty
+      - AdvancedMineralScannerEmpty
       - WeaponGauntletGorilla
       - SynthesizerInstrument
       - ClothingShoesBootsMagSci
@@ -345,7 +347,6 @@
       - WeaponLaserSvalinn
       - WeaponProtoKineticAccelerator
       - WeaponTetherGun
-      - WeaponGrapplingGun
       - ClothingBackpackHolding
       - ClothingBackpackSatchelHolding
       - ClothingBackpackDuffelHolding
@@ -358,6 +359,14 @@
       - FauxTileAstroSnow
       - OreBagOfHolding
       - DeviceQuantumSpinInverter
+      - EnergyDomeDirectionalTurtle
+      # Sunrise-start
+      - HandCraftedNVD
+      - BasicNVD
+      - PowerCageHigh
+      - PowerCageMedium
+      - PowerCageSmall
+      # Sunrise-end
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       # Sunrise-Start
@@ -448,6 +457,7 @@
     - ProtolatheMachineCircuitboard
     - AutolatheMachineCircuitboard
     - CircuitImprinterMachineCircuitboard
+    - BiogeneratorMachineCircuitboard
     - OreProcessorMachineCircuitboard
     - ElectrolysisUnitMachineCircuitboard
     - CentrifugeMachineCircuitboard
@@ -459,6 +469,7 @@
     - UniformPrinterMachineCircuitboard
     - FloorGreenCircuit
     - FloorBlueCircuit
+    - FloorRedCircuit
     - MicrowaveMachineCircuitboard
     - ReagentGrinderMachineCircuitboard
     - ElectricGrillMachineCircuitboard
@@ -466,6 +477,8 @@
     - SodaDispenserMachineCircuitboard
     - SpaceHeaterMachineCircuitBoard
     - CutterMachineCircuitboard
+    - StationAnchorCircuitboard
+    - SalvageMagnetMachineCircuitboard
     dynamicRecipes:
       - ThermomachineFreezerMachineCircuitBoard
       - HellfireFreezerMachineCircuitBoard
@@ -508,6 +521,14 @@
       - HonkerCentralElectronics
       - HonkerPeripheralsElectronics
       - HonkerTargetingElectronics
+      - GygaxCentralElectronics
+      - GygaxPeripheralsElectronics
+      - GygaxTargetingElectronics
+      - DurandCentralElectronics
+      - DurandPeripheralsElectronics
+      - DurandTargetingElectronics
+      - ClarkeCentralElectronics
+      - ClarkePeripheralsElectronics
       - HamtrCentralElectronics
       - HamtrPeripheralsElectronics
       - PortableGeneratorPacmanMachineCircuitboard
@@ -627,6 +648,8 @@
     - RightLegBorgService
     - HeadBorgService
     - TorsoBorgService
+    - MechAirTank
+    - MechThruster
     dynamicRecipes:
 #Sunrise-edit start
     - CartridgeLightRifleRubber
@@ -660,6 +683,8 @@
     - RipleyRArm
     - RipleyLLeg
     - RipleyRLeg
+    - RipleyMKIIHarness
+    - RipleyUpgradeKit
     - MechEquipmentGrabber
     - HonkerHarness
     - HonkerLArm
@@ -674,6 +699,41 @@
     - HamtrLLeg
     - HamtrRLeg
     - VimHarness
+    - ClarkeHarness
+    - ClarkeHead
+    - ClarkeLArm
+    - ClarkeRArm
+    - ClarkeTreads
+    - DurandHarness
+    - DurandArmor
+    - DurandHead
+    - DurandLArm
+    - DurandLLeg
+    - DurandRArm
+    - DurandRLeg
+    - GygaxHarness
+    - GygaxArmor
+    - GygaxHead
+    - GygaxLArm
+    - GygaxLLeg
+    - GygaxRArm
+    - GygaxRLeg
+    - MechEquipmentDrill
+    - MechEquipmentDrillDiamond
+    - MechEquipmentKineticAccelerator
+    - MechEquipmentHonkerBananaMortar
+    - MechEquipmentHonkerMousetrapMortar
+  - type: EmagLatheRecipes
+    emagDynamicRecipes:
+    - WeaponMechCombatImmolationGun
+    - WeaponMechCombatSolarisLaser
+    - WeaponMechCombatFiredartLaser
+    - WeaponMechCombatUltraRifle
+    - WeaponMechCombatShotgun
+    - WeaponMechCombatShotgunIncendiary
+    - WeaponMechCombatDisabler
+    - WeaponMechCombatFlashbangLauncher
+    - WeaponMechCombatMissileRack8
   - type: MaterialStorage
     whitelist:
       tags:
@@ -873,6 +933,15 @@
       - WeaponLaserCannon
       - WeaponLaserCarbine
       - WeaponXrayCannon
+      - WeaponMechCombatImmolationGun # Sunrise - Mechs
+      - WeaponMechCombatSolarisLaser # Sunrise - Mechs
+      - WeaponMechCombatFiredartLaser # Sunrise - Mechs
+      - WeaponMechCombatUltraRifle # Sunrise - Mechs
+      - WeaponMechCombatShotgun # Sunrise - Mechs
+      - WeaponMechCombatShotgunIncendiary # Sunrise - Mechs
+      - WeaponMechCombatDisabler # Sunrise - Mechs
+      - WeaponMechCombatFlashbangLauncher # Sunrise - Mechs
+      - WeaponMechCombatMissileRack8 # Sunrise - Mechs
       - WeaponEnergyGun       # Sunrise - Energy Gun
       - WeaponEnergyGunMini   # Sunrise - Miniature Energy Gun
       - WeaponEnergyGunPistol # Sunrise - PDW-9 Energy Pistol
@@ -1208,6 +1277,70 @@
         - Sheet
         - RawMaterial
         - Ingot
+
+- type: entity
+  id: Biogenerator
+  parent: BaseLathe
+  name: biogenerator
+  description: Converts plants into biomass, which can be used to construct useful items.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/biofabricator.rsi
+    snapCardinals: true
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+    - state: inserting
+      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: Machine
+    board: BiogeneratorMachineCircuitboard
+  - type: MaterialStorage
+    insertOnInteract: false
+    canEjectStoredMaterials: false
+  - type: ProduceMaterialExtractor
+  - type: ItemSlots
+    slots:
+      beaker_slot:
+        name: lathe-component-output-slot-beaker-name
+        whitelist:
+          components:
+          - FitsInDispenser
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      beaker_slot: !type:ContainerSlot
+  - type: Lathe
+    reagentOutputSlotId: beaker_slot
+    idleState: icon
+    runningState: building
+    staticRecipes:
+    - BioGenMilk
+    - BioGenMilkSoy
+    - BioGenEthanol
+    - BioGenCream
+    - BioGenBlackpepper
+    - BioGenEnzyme
+    - BioGenFlour
+    - BioGenSugar
+    - BioGenMonkeyCube
+    - BioGenKoboldCube
+    - BioGenMaterialCloth1
+    - BioGenMaterialCardboard1
+    - BioGenPaper
+    - BioGenPaperRolling1
+    - BioGenCandle
+    - BioGenPlantBGone
+    - BioGenWeedKiller
+    - BioGenPestKiller
+    - BioGenLeft4Zed
+    - BioGenEZNutrient
+    - BioGenRobustHarvest
 
 - type: entity
   parent: BaseLathe

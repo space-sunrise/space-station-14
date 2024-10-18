@@ -5,7 +5,8 @@
   minLimit: 0
   maxLimit: 3
   loadouts:
-  - CorporateLaw # Sunrise-edit
+  - FlowerWreath
+  - Hairflower
   - PlushieLizard
   - PlushieSpaceLizard
   - Lighter
@@ -23,10 +24,13 @@
   - ClothingNeckVitezstviPin  # Sunrise
   - ClothingNeckEarthPin  # Sunrise
   - ClothingNeckUSSPPin  # Sunrise
+  - ClothingNeckReedIndustriesPin  # Sunrise
+  - CorporateLaw # Sunrise-edit
   - ClothingNeckLGBTPin
   - ClothingNeckAromanticPin
   - ClothingNeckAsexualPin
   - ClothingNeckBisexualPin
+  - ClothingNeckGayPin
   - ClothingNeckIntersexPin
   - ClothingNeckLesbianPin
   - ClothingNeckNonBinaryPin
@@ -70,6 +74,14 @@
   loadouts:
   - LoadoutSpeciesEVANitrogen
   - LoadoutSpeciesEVAOxygen
+
+- type: loadoutGroup
+  id: GroupPocketTankDouble
+  name: loadout-group-pocket-tank-double
+  hidden: true
+  loadouts:
+  - LoadoutSpeciesPocketDoubleNitrogen
+  - LoadoutSpeciesPocketDoubleOxygen
 
 # Command
 - type: loadoutGroup
@@ -500,7 +512,7 @@
   loadouts:
   - MimeSuspendersRed
   - MimeSuspendersBlack
-  
+
 - type: loadoutGroup
   id: SurvivalMime
   name: loadout-group-survival-mime
@@ -928,6 +940,7 @@
   - SecurityHelmet
   - SecurityBeret
   - SecurityHat
+  - TrooperHat
 
 - type: loadoutGroup
   id: SecurityJumpsuit
@@ -937,6 +950,9 @@
   - SecurityJumpskirt
   - SecurityJumpsuitGrey
   - SecurityJumpskirtGrey
+#  - SeniorOfficerJumpsuit # Sunrise-Edit
+#  - SeniorOfficerJumpskirt # Sunrise-Edit
+  - TrooperUniform
 
 - type: loadoutGroup
   id: SecurityBackpack
@@ -999,6 +1015,7 @@
   loadouts:
   - DetectiveArmorVest
   - DetectiveCoat
+  - DetectiveCoatGrey
 
 - type: loadoutGroup
   id: SecurityCadetJumpsuit

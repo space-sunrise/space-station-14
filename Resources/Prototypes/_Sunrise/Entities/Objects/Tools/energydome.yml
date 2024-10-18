@@ -1,0 +1,78 @@
+- type: entity
+  name: blood red backpack shield generator
+  description: A backpack shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Uses a power cell.
+  id: EnergyDomeGeneratorBackpackSyndie
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Ginormous
+  - type: MultiHandedItem
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Back
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/EnergyDome/syndie_back.rsi
+    layers:
+      - state: icon
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSmall
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 3
+    domePrototype: EnergyDomeMediumRed
+  - type: PowerCellDraw
+    drawRate: 2
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0
+    
+- type: entity
+  name: BT-21b "Barrier"
+  description: A personal shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Uses a power cell.
+  id: EnergyDomeGeneratorPersonalNT
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Ginormous
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - Belt
+  - type: Sprite
+    sprite: _Sunrise/Objects/Tools/EnergyDome/nanotrasen_belt.rsi
+    layers:
+      - state: icon
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSmall
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 5
+    domePrototype: EnergyDomeSmallBlue
+  - type: PowerCellDraw
+    drawRate: 3
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0

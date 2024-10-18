@@ -110,3 +110,30 @@
   id: DiseasePoints
   displayName: shop-disease-currency
   canWithdraw: false
+
+#uplink categoires
+
+- type: storeCategory
+  id: UplinkWeaponrySilent
+  name: store-category-weapons
+  priority: 0
+  
+- type: storeCategory
+  id: UplinkAmmoSilent
+  name: store-category-ammo
+  priority: 1
+
+- type: storeCategory
+  id: UplinkExplosivesSilent
+  name: store-category-explosives
+  priority: 2
+
+- type: storeCategory
+  id: UplinkWearablesSilent
+  name: store-category-wearables
+  priority: 3
+  
+- type: storeCategory
+  id: UplinkDisruptionSilent
+  name: store-category-disruption
+  priority: 6

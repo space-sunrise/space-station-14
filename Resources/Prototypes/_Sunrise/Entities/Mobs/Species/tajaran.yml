@@ -3,6 +3,7 @@
   id: BaseMobTajaran
   abstract: true
   components:
+  - type: Absorbable
   - type: HumanoidAppearance
     species: Tajaran
     hideLayersOnEquip:
@@ -56,7 +57,7 @@
       80: Critical
       200: Dead
   - type: Inventory
-    speciesId: reptilian
+    speciesId: human
 
 - type: entity
   save: false
