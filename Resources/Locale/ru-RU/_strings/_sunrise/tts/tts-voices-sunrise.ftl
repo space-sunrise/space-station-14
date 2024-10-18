@@ -43,4 +43,4 @@ tts-voice-name-hearthstone-valira-sangvinar = (NEW) [Hearthstone] Валира �
 tts-voice-name-hearthstone-akama = (NEW) [Hearthstone] Акама
 tts-voice-name-pathologic2-georgiy-kain = (NEW) [Pathologic 2] Георгий Каин
 tts-voice-name-pathologic2-artemiy-burach = (NEW) [Pathologic 2] Артемий Бурах
-tts-voice-name-warcraft-illidan-yarost-buri = (NEW) [Warcraft] Иллидан Ярость Бури
+tts-voice-name-pathologic2-grif = (NEW) [Pathologic 2] Гриф

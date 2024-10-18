@@ -204,6 +204,7 @@
   sex: Male
   speaker: splikzerys
   provider: sunrise
+  roundStart: false # предстоит перетренировка модели
 
 - type: ttsVoice
   id: Dota2Riki
@@ -374,9 +375,9 @@
   roundStart: true
 
 - type: ttsVoice
-  id: WarcraftIllidan
-  name: tts-voice-name-warcraft-illidan-yarost-buri
+  id: Pathologic2Grif
+  name: tts-voice-name-pathologic2-grif
   sex: Male
-  speaker: warcraft_illidan_yarost_buri
+  speaker: pathologic2_grif
   provider: sunrise
   roundStart: true
