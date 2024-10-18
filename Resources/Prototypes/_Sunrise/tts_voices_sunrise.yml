@@ -381,3 +381,11 @@
   speaker: pathologic2_grif
   provider: sunrise
   roundStart: true
+
+- type: ttsVoice
+  id: Pathologic2AnglayaLilich
+  name: tts-voice-name-pathologic2-anglaya-lilich
+  sex: Female
+  speaker: pathologic2_anglaya_lilich
+  provider: sunrise
+  roundStart: true
