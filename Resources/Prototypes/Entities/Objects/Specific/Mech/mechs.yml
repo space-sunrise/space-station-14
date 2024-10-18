@@ -77,7 +77,12 @@
   - type: DoAfter
   - type: Repairable
     fuelCost: 25
-    doAfterDelay: 10
+    doAfterDelay: 3
+    damage:
+      types:
+        Blunt: -15
+        Slash: -15
+        Piercing: -15
   - type: UserInterface
     interfaces:
       enum.MechUiKey.Key:
@@ -123,9 +128,20 @@
     - Alive
     - Critical
   - type: MobThresholds
+    currentThresholdState : Alive
     thresholds:
       0: Alive
-      1000: Critical
+      500: Critical
+    showOverlays: false
+    allowRevives: true
+  - type: HealthExaminable
+    examinableTypes:
+      - Blunt
+      - Slash
+      - Piercing
+      - Heat
+      - Shock
+    locPrefix: mech
   - type: Appearance
   - type: ContainerContainer
     containers:
@@ -133,7 +149,7 @@
       mech-equipment-container: !type:Container
       mech-battery-slot: !type:ContainerSlot
   - type: Damageable
-    damageContainer: Inorganic
+    damageContainer: Mech
     damageModifierSet: LightArmor
   - type: FootstepModifier
     footstepSoundCollection:
@@ -145,7 +161,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1000
+        damage: 700
       behaviors:
       - !type:PlaySoundBehavior
         sound:

@@ -4,6 +4,7 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
+using Content.Shared.Mobs;
 using Content.Shared.DragDrop;
 using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
@@ -50,7 +51,7 @@ public abstract class SharedMechSystem : EntitySystem
         SubscribeLocalEvent<MechComponent, MechEjectPilotEvent>(OnEjectPilotEvent);
         SubscribeLocalEvent<MechComponent, UserActivateInWorldEvent>(RelayInteractionEvent);
         SubscribeLocalEvent<MechComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<MechComponent, DestructionEventArgs>(OnDestruction);
+        SubscribeLocalEvent<MechComponent, MobStateChangedEvent>(OnMobState);
         SubscribeLocalEvent<MechComponent, GetAdditionalAccessEvent>(OnGetAdditionalAccess);
         SubscribeLocalEvent<MechComponent, DragDropTargetEvent>(OnDragDrop);
         SubscribeLocalEvent<MechComponent, CanDropTargetEvent>(OnCanDragDrop);
@@ -101,9 +102,17 @@ public abstract class SharedMechSystem : EntitySystem
         UpdateAppearance(uid, component);
     }
 
-    private void OnDestruction(EntityUid uid, MechComponent component, DestructionEventArgs args)
+    private void OnMobState(EntityUid uid, MechComponent component, MobStateChangedEvent args)
     {
-        BreakMech(uid, component);
+        if (args.NewMobState == MobState.Critical)
+        {
+            BreakMech(uid, component);
+        }
+        if (args.NewMobState == MobState.Alive)
+        {
+            component.Broken = false;
+            UpdateAppearance(uid, component);
+        }
     }
 
     private void OnGetAdditionalAccess(EntityUid uid, MechComponent component, ref GetAdditionalAccessEvent args)

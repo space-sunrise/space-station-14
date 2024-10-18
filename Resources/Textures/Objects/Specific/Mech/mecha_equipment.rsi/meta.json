@@ -131,6 +131,25 @@
       "name": "mecha_analyzer"
     },
     {
+      "name": "mecha_analyzer_anim",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.5
+        ]
+      ]
+    },
+    {
       "name": "mecha_medigun"
     },
     {

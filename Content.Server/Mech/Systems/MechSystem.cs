@@ -62,7 +62,7 @@ public sealed partial class MechSystem : SharedMechSystem
         SubscribeLocalEvent<MechComponent, MechEntryEvent>(OnMechEntry);
         SubscribeLocalEvent<MechComponent, MechExitEvent>(OnMechExit);
 
-        SubscribeLocalEvent<MechComponent, DamageChangedEvent>(OnDamageChanged);
+        //SubscribeLocalEvent<MechComponent, DamageChangedEvent>(OnDamageChanged);
         SubscribeLocalEvent<MechComponent, MechEquipmentRemoveMessage>(OnRemoveEquipmentMessage);
 
         SubscribeLocalEvent<MechComponent, UpdateCanMoveEvent>(OnMechCanMoveEvent);
@@ -265,7 +265,7 @@ public sealed partial class MechSystem : SharedMechSystem
         args.Handled = true;
     }
 
-    private void OnDamageChanged(EntityUid uid, MechComponent component, DamageChangedEvent args)
+/*    private void OnDamageChanged(EntityUid uid, MechComponent component, DamageChangedEvent args)
     {
         var integrity = component.MaxIntegrity - args.Damageable.TotalDamage;
         SetIntegrity(uid, integrity, component);
@@ -278,6 +278,7 @@ public sealed partial class MechSystem : SharedMechSystem
             _damageable.TryChangeDamage(component.PilotSlot.ContainedEntity, damage);
         }
     }
+*/
 
     private void ToggleMechUi(EntityUid uid, MechComponent? component = null, EntityUid? user = null)
     {

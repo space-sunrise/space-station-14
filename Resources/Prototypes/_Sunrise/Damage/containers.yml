@@ -6,3 +6,12 @@
   - Heat
   - Shock
   - Caustic
+
+- type: damageContainer
+  id: Mech
+  supportedGroups:
+  - Brute
+  supportedTypes:
+  - Heat
+  - Shock
+  - Caustic
