@@ -10,7 +10,7 @@
   - type: Explosive
     explosionType: Default
     totalIntensity: 10.0
-    intesitySlope: 5
+    intensitySlope: 5
     maxIntensity: 4
   - type: ExplodeOnTrigger
   - type: ExpCollar
