@@ -388,7 +388,7 @@
   icon: { sprite: /Textures/Objects/Specific/Mech/mecha.rsi, state: rover }
   productEntity: CrateCybersunRoverBundle
   cost:
-    Telecrystal: 65
+    Telecrystal: 75
   categories:
   - UplinkMechs
   conditions:
