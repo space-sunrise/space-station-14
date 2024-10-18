@@ -380,6 +380,22 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      
+- type: listing
+  id: UplinkRover
+  name: uplink-mech-teleporter-medium-name
+  description: uplink-mech-teleporter-medium-desc
+  icon: { sprite: /Textures/Objects/Specific/Mech/mecha.rsi, state: rover }
+  productEntity: CrateCybersunRoverBundle
+  cost:
+    Telecrystal: 65
+  categories:
+  - UplinkMechs
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
 
 - type: listing
   id: UplinkMauler

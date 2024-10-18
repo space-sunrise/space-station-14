@@ -33,3 +33,5 @@ uplink-mech-equipment-vindictor-name = Устанавливаемый MG-100 Vin
 uplink-mech-equipment-vindictor-desc = Тяжёлое оружие массового поражения.
 uplink-mech-equipment-uvm31-name = UVM-31 "Дрейк"
 uplink-mech-equipment-uvm31-desc = Тяжёлое оружие массового поражения разработанное Cybersun на основе минигана. теперь на прочном штативе позволяющем вести огонь прямо из МЕХа!
+uplink-mech-teleporter-medium-name = Телепорт среднего меха
+uplink-mech-teleporter-medium-desc = Содержит среднебронированный мех Cybersan с интегрированными цепным мечом и ракетной установкой BRM-8.
