@@ -3,3 +3,9 @@
   values:
     prefix: advertisement-barber-
     count: 10
+
+- type: localizedDataset
+  id: HonkersAds
+  values:
+    prefix: advertisement-honkers-
+    count: 10

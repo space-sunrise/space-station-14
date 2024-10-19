@@ -46,12 +46,8 @@
     stopSearchVerbPopup: pai-system-stopped-searching
   - type: Examiner
   - type: IntrinsicRadioReceiver
-  - type: IntrinsicRadioTransmitter
-    channels:
-    - Binary
   - type: ActiveRadio
     channels:
-    - Binary
     - Common
   - type: DoAfter
   - type: Actions
@@ -75,17 +71,23 @@
           Searching: { state: pai-searching-overlay }
           On: { state: pai-on-overlay }
   # Sunrise-Edit
+  - type: StationAiVision
+    range: 1
   - type: TTS
     voice: FactCore
   - type: InnateItem
     instantActions:
-    - PortableSurveillanceCameraMonitor
+    - PortableSurveillanceCameraMonitorUnpowered
     - HandheldStationMapUnpowered
     - HandheldCrewMonitorBorg
     worldTargetActions:
     - HandheldHealthAnalyzerUnpowered
   - type: BorgBrain
   # Sunrise-End
+  - type: ChangeVoiceInContainer
+    whitelist:
+      components:
+        - SecretStash
 
 - type: entity
   parent: [ PersonalAI, BaseSyndicateContraband]
@@ -119,6 +121,8 @@
           Searching: { state: syndicate-pai-searching-overlay }
           On: { state: syndicate-pai-on-overlay }
   # Sunrise-Edit
+  - type: StationAiVision
+    enabled: false
   - type: InnateItem
     worldTargetActions:
     - Emag
@@ -153,6 +157,8 @@
   - type: Construction
     graph: PotatoAI
     node: potatoai
+  - type: StationAiVision # Sunrise-edit
+    enabled: false
 
 - type: entity
   id: ActionPAIPlayMidi

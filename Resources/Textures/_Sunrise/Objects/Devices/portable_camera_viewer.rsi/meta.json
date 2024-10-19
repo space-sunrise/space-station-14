@@ -4,11 +4,14 @@
         "x": 32,
         "y": 32
     },
-    "license": "CC-BY-SA-3.0",
-    "copyright": "",
+    "license": "CLA",
+    "copyright": "SUNRISE",
     "states": [
         {
             "name": "icon"
+        },
+        {
+            "name": "monitor"
         }
     ]
 }

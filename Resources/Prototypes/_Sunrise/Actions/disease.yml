@@ -2,7 +2,7 @@
   id: ActionInfect
   name: action-disease-infect-name
   description: action-disease-infect-description
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: EntityTargetAction
     useDelay: 1
@@ -21,7 +21,7 @@
   id: ActionDiseaseShop
   name: action-disease-shop-name
   description: action-disease-shop-description
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     icon:
@@ -33,7 +33,7 @@
   id: ActionDiseaseBaseChance
   name: listing-disease-base-chance-name
   description: listing-disease-base-chance-description
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     itemIconStyle: NoItem
@@ -46,7 +46,7 @@
   id: ActionDiseaseInfectChance
   name: listing-disease-infect-chance-name
   description: listing-disease-infect-chance-description
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     itemIconStyle: NoItem
@@ -59,7 +59,7 @@
   id: ActionDiseaseShield
   name: listing-disease-shield-name
   description: listing-disease-shield-description
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     itemIconStyle: NoItem
@@ -72,7 +72,7 @@
   id: ActionDiseaseLethal
   name: listing-disease-lethal-name
   description: listing-disease-lethal-description
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     itemIconStyle: NoItem
@@ -80,14 +80,14 @@
       sprite: _Sunrise/Actions/disease.rsi
       state: lethal
     event: !type:DiseaseAddLethalEvent
-    
+
 #Store
 
 - type: entity
   id: ActionDiseaseCough
   name: listing-disease-cough-name
   description: listing-disease-cough-description
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     itemIconStyle: NoItem
@@ -102,7 +102,7 @@
   id: ActionDiseaseSneeze
   name: listing-disease-sneeze-name
   description: listing-disease-sneeze-description
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     itemIconStyle: NoItem
@@ -117,7 +117,7 @@
   id: ActionDiseaseVomit
   name: listing-disease-vomit-name
   description: listing-disease-vomit-description
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     itemIconStyle: NoItem
@@ -132,7 +132,7 @@
   id: ActionDiseaseNarcolepsy
   name: listing-disease-narcolepsy-name
   description: listing-disease-narcolepsy-description
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     itemIconStyle: NoItem
@@ -147,7 +147,7 @@
   id: ActionDiseaseCrying
   name: listing-disease-cry-name
   description: listing-disease-cry-description
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     itemIconStyle: NoItem
@@ -162,7 +162,7 @@
   id: ActionDiseaseMuted
   name: listing-disease-muted-name
   description: listing-disease-muted-description
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     itemIconStyle: NoItem
@@ -177,7 +177,7 @@
   id: ActionDiseaseSlowness
   name: listing-disease-slowness-name
   description: listing-disease-slowness-description
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     itemIconStyle: NoItem
@@ -192,7 +192,7 @@
   id: ActionDiseaseBleed
   name: listing-disease-bleed-name
   description: listing-disease-bleed-description
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     itemIconStyle: NoItem
@@ -207,7 +207,7 @@
   id: ActionDiseaseBlindness
   name: listing-disease-blindness-name
   description: listing-disease-blindness-description
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     itemIconStyle: NoItem
@@ -222,7 +222,7 @@
   id: ActionDiseaseInsult
   name: listing-disease-insult-name
   description: listing-disease-insult-description
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     itemIconStyle: NoItem

@@ -24,3 +24,5 @@ ent-NanoTrasenRepresentativeIDCard = NanoTrasen Representative ID Card
     .desc = { ent-IDCardStandard.desc }
 ent-BarberIDCard = ID карта парикмахера
     .desc = Карта, необходимая для доступа в различные области станции.
+ent-AdjutantIDCard = adjutant ID card
+    .desc = Adjutant ID card.

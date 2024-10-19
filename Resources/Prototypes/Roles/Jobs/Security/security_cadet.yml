@@ -6,15 +6,11 @@
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 18000 #5 hrs # Sunrise-RoleTime
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 36000 #10 hrs # Sunrise-RoleTime
-      inverted: true # stop playing intern if you're good at security!
   startingGear: SecurityCadetGear
   icon: "JobIconSecurityCadet"
   supervisors: job-supervisors-security
   canBeAntag: false
-  displayWeight: 0  # Sunrise
+  displayWeight: 0 # Sunrise-Edit
   access:
   - Security
   - Brig

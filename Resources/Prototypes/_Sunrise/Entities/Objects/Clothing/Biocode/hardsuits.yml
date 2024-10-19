@@ -62,34 +62,3 @@
       path: "/Audio/Effects/beep1.ogg"
       params:
         volume: 15
-
-#Brigmedic Hardsuit
-- type: entity
-  parent: ClothingOuterHardsuitBase
-  id: ClothingOuterHardsuitBrigmedicSunrise
-  name: brigmedic hardsuit
-  description: Special hardsuit of the guardian angel of the brig. It is the medical version of the security hardsuit.
-  suffix: Sunrise
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Clothing/OuterClothing/hardsuits/brigmedic.rsi
-  - type: Clothing
-    sprite: _Sunrise/Clothing/OuterClothing/hardsuits/brigmedic.rsi
-  - type: PressureProtection
-    highPressureMultiplier: 0.3
-    lowPressureMultiplier: 1000
-  - type: ExplosionResistance
-    damageCoefficient: 0.6
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.7
-        Slash: 0.7
-        Piercing: 0.7
-        Caustic: 0.4
-  - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
-  - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitBrigmedic

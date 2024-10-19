@@ -69,6 +69,9 @@ namespace Content.IntegrationTests.Tests
 			"SunriseFland",
 			"SunriseMarathon",
             "SunriseCentComm",
+            "SunriseBagel",
+            "SunriseReach",
+            "SunriseTrain",
             "PlanetPrison",
         };
 

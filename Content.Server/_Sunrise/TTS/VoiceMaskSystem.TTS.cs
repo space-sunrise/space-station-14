@@ -13,8 +13,7 @@ public partial class VoiceMaskSystem
 
     private void OnSpeakerVoiceTransform(EntityUid uid, VoiceMaskComponent component, TransformSpeakerVoiceEvent args)
     {
-        if (component.Enabled)
-            args.VoiceId = component.VoiceId;
+        args.VoiceId = component.VoiceId;
     }
 
     private void OnChangeVoice(EntityUid uid, VoiceMaskComponent component, VoiceMaskChangeVoiceMessage message)
@@ -25,18 +24,16 @@ public partial class VoiceMaskSystem
 
         TrySetLastKnownVoice(uid, message.Voice);
 
-        UpdateUI(uid, component);
+        UpdateUI((uid, component));
     }
 
-    private void TrySetLastKnownVoice(EntityUid maskWearer, string? voiceId)
+    private void TrySetLastKnownVoice(EntityUid maskWearer, string voiceId)
     {
-        if (!HasComp<VoiceMaskComponent>(maskWearer)
-            || !_inventory.TryGetSlotEntity(maskWearer, MaskSlot, out var maskEntity)
-            || !TryComp<VoiceMaskerComponent>(maskEntity, out var maskComp))
+        if (!TryComp<VoiceMaskComponent>(maskWearer, out var maskComp))
         {
             return;
         }
 
-        maskComp.LastSetVoice = voiceId;
+        maskComp.VoiceId = voiceId;
     }
 }

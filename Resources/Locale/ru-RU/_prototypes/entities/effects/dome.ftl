@@ -1,0 +1,10 @@
+ent-EnergyDomeBase = { "" }
+    .desc = { "" }
+ent-EnergyDomeSmallPink = { ent-EnergyDomeBase }
+    .desc = { ent-EnergyDomeBase.desc }
+ent-EnergyDomeSmallRed = { ent-EnergyDomeBase }
+    .desc = { ent-EnergyDomeBase.desc }
+ent-EnergyDomeMediumBlue = { ent-EnergyDomeBase }
+    .desc = { ent-EnergyDomeBase.desc }
+ent-EnergyDomeSlowing = { ent-EnergyDomeBase }
+    .desc = { ent-EnergyDomeBase.desc }

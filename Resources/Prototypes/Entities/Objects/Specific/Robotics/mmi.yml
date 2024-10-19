@@ -92,18 +92,10 @@
 #      wipeVerbPopup: positronic-brain-wiped-device
 #      stopSearchVerbText: positronic-brain-stop-searching-verb-text
 #      stopSearchVerbPopup: positronic-brain-stopped-searching
+#      job: Borg
     - type: BlockMovement
     - type: Examiner
-# Sunrise-Edit
-#    - type: BorgBrain
-#    - type: IntrinsicRadioReceiver
-#    - type: IntrinsicRadioTransmitter
-#      channels:
-#      - Binary
-#    - type: ActiveRadio
-#      channels:
-#      - Binary
-#      - Common
+
     - type: NameIdentifier
       group: PositronicBrain
     - type: DoAfter

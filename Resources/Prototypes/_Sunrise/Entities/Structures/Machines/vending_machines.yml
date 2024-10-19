@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   parent: VendingMachine
   id: VendingMachineBarber
   name: парикмахерВенд
@@ -65,9 +65,41 @@
 
 - type: entity
   parent: VendingMachine
+  id: VendingMachineClown
+  name: HohohonkersVend
+  description: Get your honk fix here! Surprise the station with HohohonkersVend — the ultimate machine for hilarious pranks. Hack it, and you'll unlock something special!
+  components:
+  - type: VendingMachine
+    pack: HohohonkersInventory
+    offState: off
+    brokenState: broken
+    normalState: normal-unshaded
+    ejectState: eject-unshaded
+    denyState: deny-unshaded
+  - type: Advertise
+    pack: HonkersAds
+  - type: AccessReader
+    breakOnEmag: true
+    access: [["Theatre"]]
+  - type: SpeakOnUIClosed
+    pack: GenericVendGoodbyes
+  - type: Speech
+  - type: Sprite
+    sprite: _Sunrise/Structures/Machines/VendingMachines/hohohonkers.rsi
+    layers:
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.Base"]
+    - state: "off"
+      map: ["enum.VendingMachineVisualLayers.BaseUnshaded"]
+      shader: unshaded
+    - state: panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+
+- type: entity
+  parent: VendingMachine
   id: VendingMachineERTCommon
   name: ERTVend
-  description: Vending machine with general equipment ERT. The sign says "FOR ERT ONLY."
+  description: Vending machine with general equipment ERT. The sign says "FOR ERT ONLY".
   components:
   - type: VendingMachine
     pack: VendERTCommonInventory
@@ -101,7 +133,7 @@
   parent: VendingMachine
   id: VendingMachineERTGuns
   name: ERT Guns
-  description: Vending machine with ERT weapons. The sign says "FOR ERT ONLY."
+  description: Vending machine with ERT weapons. The sign says "FOR ERT ONLY".
   components:
   - type: VendingMachine
     pack: VendERTGunInventory
@@ -135,7 +167,7 @@
   parent: VendingMachine
   id: VendingMachineERTMech
   name: Mecha Vend
-  description: Vending machine with mecha equipment ERT. The sign says "FOR ERT ONLY."
+  description: Vending machine with mecha equipment ERT. The sign says "FOR ERT ONLY".
   components:
   - type: VendingMachine
     pack: VendERTMechInventory
@@ -169,7 +201,7 @@
   parent: VendingMachine
   id: VendingMachineERTMed
   name: HyperVend
-  description: Vending machine with medical equipment ERT. The sign says "FOR ERT ONLY."
+  description: Vending machine with medical equipment ERT. The sign says "FOR ERT ONLY".
   components:
   - type: VendingMachine
     pack: VendERTMedInventory
@@ -203,7 +235,7 @@
   parent: VendingMachine
   id: VendingMachineERTEng
   name: Build Vend
-  description: Vending machine with engineering equipment ERT. The sign says "FOR ERT ONLY."
+  description: Vending machine with engineering equipment ERT. The sign says "FOR ERT ONLY".
   components:
   - type: VendingMachine
     pack: VendERTEngInventory
@@ -237,7 +269,7 @@
   parent: VendingMachine
   id: VendingMachineERTClean
   name: Clean Vend
-  description: Vending machine with cleaning equipment ERT. The sign says "FOR ERT ONLY."
+  description: Vending machine with cleaning equipment ERT. The sign says "FOR ERT ONLY".
   components:
   - type: VendingMachine
     pack: VendERTCleanInventory

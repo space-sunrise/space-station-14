@@ -99,35 +99,6 @@
     alertText: Данное оружие биокодировано. Вы не можете его использовать.
 
 - type: entity
-  parent: EnergySwordDouble
-  id: EnergySwordDoubleBiocode
-  suffix: BIOCODE
-  components:
-  - type: FactionWeaponBlocker
-    factions:
-    - Syndicate
-    alertText: Данное оружие биокодировано. Вы не можете его использовать.
-  - type: Construction
-    graph: EnergySwordDoubleGraph
-    node: DoubleEnergySwordNode
-
-- type: entity
-  parent: EnergySword
-  id: EnergySwordBiocode
-  suffix: BIOCODE
-  components:
-  - type: FactionWeaponBlocker
-    factions:
-    - Syndicate
-    alertText: Данное оружие биокодировано. Вы не можете его использовать.
-  - type: Tag
-    tags:
-    - EnergySword
-  - type: Construction
-    graph: EnergySwordDoubleGraph
-    node: start
-
-- type: entity
   parent: WeaponSIAR52
   id: WeaponSIAR52Biocode
   suffix: BIOCODE

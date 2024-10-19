@@ -1,4 +1,4 @@
-ent-AirlockHatchMaintenance = Технический герметичный шлюз
+ent-AirlockHatchMaintenance = технический герметичный шлюз
     .desc = Защищает Тех.Тонели в безопасности.
-ent-AirlockHatch = Герметичный шлюз
+ent-AirlockHatch = герметичный шлюз
     .desc = Удерживает плохих снаружи, а хороших внутри.

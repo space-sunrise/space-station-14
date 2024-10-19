@@ -468,7 +468,9 @@
     allowMovement: true
     name: Боевой киборг ОБР
     description: Слава НТ!.
-    rules: Подчиняйтес ОБР и Центральному Командованию.
+    rules: Подчиняйтесь ОБР и Центральному Командованию.
+    raffle:
+      settings: default
   - type: GhostTakeoverAvailable
   - type: Construction
     node: ertcombat

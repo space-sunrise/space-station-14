@@ -1,3 +1,14 @@
+- type: listing
+  id: UplinkSyndieNVD
+  name: uplink-syndie-nvd-name
+  description: uplink-syndie-nvd-desc
+  icon: { sprite: /Textures/_Sunrise/Clothing/Eyes/Glasses/syndie_nvd.rsi, state: icon }
+  productEntity: ClothingEyesNVDSyndicate
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkWearables
+
 # For the Buldog
 - type: listing
   id: UplinkMagazineShotgun
@@ -20,7 +31,7 @@
   name: uplink-magazine-shotgun-name
   description: uplink-magazine-shotgun-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: slug }
-  productEntity: MagazineShotgun
+  productEntity: MagazineShotgunIncendiary
   cost:
     Telecrystal: 3
   categories:
@@ -341,3 +352,13 @@
       tags:
       - NukeOpsUplink
 
+- type: listing
+  id: UplinkTeleporter
+  name: uplink-syndicate-teleporter-name
+  description: uplink-syndicate-teleporter-desc
+  icon: { sprite: Objects/Devices/syndicate_teleporter.rsi, state: icon}
+  productEntity: SyndicateTeleporter
+  cost:
+    Telecrystal: 12
+  categories:
+  - UplinkDisruption

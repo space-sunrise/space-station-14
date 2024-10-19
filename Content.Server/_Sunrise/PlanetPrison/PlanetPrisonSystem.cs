@@ -46,7 +46,7 @@ namespace Content.Server._Sunrise.PlanetPrison
         {
             if (!TryComp<MindComponent>(uid, out var mind) || mind.OwnedEntity == null)
                 return;
-            if (HasComp<PlanetPrisonerRoleComponent>(uid)) // don't show both briefings
+            if (HasComp<PlanetPrisonerRoleComponent>(uid))
                 return;
             args.Append(Loc.GetString("planet-prisoner-role-greeting"));
         }
@@ -54,6 +54,8 @@ namespace Content.Server._Sunrise.PlanetPrison
         private void OnObjectivesTextPrepend(EntityUid uid, PlanetPrisonRuleComponent comp, ref ObjectivesTextPrependEvent args)
         {
             var planetPrisonRule = GetPlanetPrisonRule();
+            if (planetPrisonRule == null)
+                return;
             args.Text += Loc.GetString("planet-prison-round-end-result", ("count", planetPrisonRule.EscapedPrisoners.Count));
         }
 
@@ -71,6 +73,9 @@ namespace Content.Server._Sunrise.PlanetPrison
             NextTick += RefreshCooldown;
 
             var planetPrisonRule = GetPlanetPrisonRule();
+            if (planetPrisonRule == null)
+                return;
+
             var planetPrisonStation = EntityQuery<PlanetPrisonStationComponent>().FirstOrDefault();
             if (planetPrisonStation == null || planetPrisonStation.PrisonGrid == EntityUid.Invalid)
                 return;
@@ -112,14 +117,16 @@ namespace Content.Server._Sunrise.PlanetPrison
             }
         }
 
-        public PlanetPrisonRuleComponent GetPlanetPrisonRule()
+        public PlanetPrisonRuleComponent? GetPlanetPrisonRule()
         {
             var planetPrisonRule = EntityQuery<PlanetPrisonRuleComponent>().FirstOrDefault();
-            if (planetPrisonRule != null)
-                return planetPrisonRule;
+            return planetPrisonRule;
+        }
 
+        public PlanetPrisonRuleComponent StartPlanetPrisonRule()
+        {
             _gameTicker.StartGameRule(GameRule, out var ruleEntity);
-            planetPrisonRule = Comp<PlanetPrisonRuleComponent>(ruleEntity);
+            var planetPrisonRule = Comp<PlanetPrisonRuleComponent>(ruleEntity);
 
             return planetPrisonRule;
         }
@@ -127,12 +134,14 @@ namespace Content.Server._Sunrise.PlanetPrison
         public bool PrisonerEscaped(EntityUid mind)
         {
             var planetPrisonRule = GetPlanetPrisonRule();
+            if (planetPrisonRule == null)
+                return false;
             return planetPrisonRule.EscapedPrisoners.Contains(mind);
         }
 
         private void OnMindAdded(EntityUid uid, PlanetPrisonerComponent component, MindAddedMessage args)
         {
-            var planetPrisonRule = GetPlanetPrisonRule();
+            var planetPrisonRule = GetPlanetPrisonRule() ?? StartPlanetPrisonRule();
 
             if (!_mindSystem.TryGetMind(uid, out var mindId, out var mind))
             {
@@ -150,10 +159,7 @@ namespace Content.Server._Sunrise.PlanetPrison
                 _roleSystem.MindTryRemoveRole<PlanetPrisonerRoleComponent>(mindId);
             }
 
-            _roleSystem.MindAddRole(mindId, new PlanetPrisonerRoleComponent
-            {
-                PrototypeId = AntagRole,
-            });
+            _roleSystem.MindAddRole(mindId, "MindRolePlanetPrisoner");
 
             _mindSystem.TryAddObjective(mindId, mind, EscapeObjective);
 

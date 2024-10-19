@@ -18,6 +18,7 @@ public sealed partial class NPCSleepSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly NPCSystem _npcSystem = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     public bool Enabled { get; set; } = true;
 
@@ -79,7 +80,7 @@ public sealed partial class NPCSleepSystem : EntitySystem
     private bool AllowNpc(EntityUid uid)
     {
         var xform = Transform(uid);
-        var npcCoords = xform.Coordinates.ToMap(EntityManager);
+        var npcCoords = xform.Coordinates.ToMap(EntityManager, _transform);
         var npcMapId = xform.MapID;
 
         foreach (var playerSession in _playerManager.SessionsDict)
@@ -93,7 +94,7 @@ public sealed partial class NPCSleepSystem : EntitySystem
             if (npcMapId != playerMapId)
                 continue;
 
-            var playerCoords = xformPlayer.Coordinates.ToMap(EntityManager);
+            var playerCoords = xformPlayer.Coordinates.ToMap(EntityManager, _transform);
 
             var distance = (npcCoords.Position - playerCoords.Position).Length();
 

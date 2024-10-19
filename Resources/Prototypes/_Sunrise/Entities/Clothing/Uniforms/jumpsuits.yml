@@ -173,3 +173,37 @@
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/barber.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/barber.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitAdjutant
+  name: adjutant jumpsuit
+  description: Sewn to perfection with breathable fabric that will keep you on your feet for your entire shift.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adjutant.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adjutant.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitAdidasBlack
+  name: чёрная спортивка СССП
+  description: Отлично сшитый комплект штанов, футболки и ветровки. Имеет отличительные особенности в две полосы, именной принт "Красный Серп".
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas-black.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas-black.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitAdidasWhite
+  name: белая спортивка СССП
+  description: Белый вариант популярной спортивной формы олимпийцев СССП, имеет две чёрные полосы на каждой части комплекта. Модно, стильно и ярко!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas-white.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas-white.rsi
+

@@ -26,3 +26,5 @@ roles-antag-dragon-name = Космический дракон
 roles-antag-dragon-objective = Создайте армию карпов для захвата квадранта.
 roles-antag-changeling-name = Генокрад
 roles-antag-changeling-description = Используйте свои способности к превращению, чтобы выполнить свои задачи.
+roles-antag-terminator-name = Терминатор
+roles-antag-terminator-objective = Убейте цель любой ценой, от этого зависит будущее.

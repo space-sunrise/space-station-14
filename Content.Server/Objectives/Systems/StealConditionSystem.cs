@@ -1,7 +1,7 @@
-using System.Text.RegularExpressions; //Sunrise-Edit
-using Robust.Shared.Log; //Sunrise-Edit
 using Content.Server.Objectives.Components;
 using Content.Server.Objectives.Components.Targets;
+using Content.Shared.CartridgeLoader;
+using Content.Shared.Interaction;
 using Content.Shared.Mind;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Objectives.Systems;
@@ -22,10 +22,13 @@ public sealed class StealConditionSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly SharedObjectivesSystem _objectives = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
     private EntityQuery<ContainerManagerComponent> _containerQuery;
+
+    private HashSet<Entity<TransformComponent>> _nearestEnts = new();
 
     public override void Initialize()
     {
@@ -74,22 +77,15 @@ public sealed class StealConditionSystem : EntitySystem
     private void OnAfterAssign(Entity<StealConditionComponent> condition, ref ObjectiveAfterAssignEvent args)
     {
         var group = _proto.Index(condition.Comp.StealGroup);
+        string localizedName = Loc.GetString(group.Name);
 
-        //Sunrise-Start
-        var locale = $"objective-{Regex.Replace(group.Name, @"[*?!'%\s]", string.Empty).ToLower()}";
-        if (Loc.GetString(locale) == locale)
-        {
-            Logger.Error($"Steal item objective-{Regex.Replace(group.Name, @"[*?!'%\s]", string.Empty).ToLower()} doesn't have locale");
-            locale = group.Name;
-        }
         var title =condition.Comp.OwnerText == null
-            ? Loc.GetString(condition.Comp.ObjectiveNoOwnerText, ("itemName", Loc.GetString(locale)))
-            : Loc.GetString(condition.Comp.ObjectiveText, ("owner", Loc.GetString(condition.Comp.OwnerText)), ("itemName", Loc.GetString(locale)));
+            ? Loc.GetString(condition.Comp.ObjectiveNoOwnerText, ("itemName", localizedName))
+            : Loc.GetString(condition.Comp.ObjectiveText, ("owner", Loc.GetString(condition.Comp.OwnerText)), ("itemName", localizedName));
 
         var description = condition.Comp.CollectionSize > 1
-            ? Loc.GetString(condition.Comp.DescriptionMultiplyText, ("itemName", Loc.GetString(locale)), ("count", condition.Comp.CollectionSize))
-            : Loc.GetString(condition.Comp.DescriptionText, ("itemName", Loc.GetString(locale)));
-        //Sunrise-End
+            ? Loc.GetString(condition.Comp.DescriptionMultiplyText, ("itemName", localizedName), ("count", condition.Comp.CollectionSize))
+            : Loc.GetString(condition.Comp.DescriptionText, ("itemName", localizedName));
 
         _metaData.SetEntityName(condition.Owner, title, args.Meta);
         _metaData.SetEntityDescription(condition.Owner, description, args.Meta);
@@ -111,15 +107,19 @@ public sealed class StealConditionSystem : EntitySystem
         //check stealAreas
         if (condition.CheckStealAreas)
         {
-            var areasQuery = AllEntityQuery<StealAreaComponent>();
-            while (areasQuery.MoveNext(out var uid, out var area))
+            var areasQuery = AllEntityQuery<StealAreaComponent, TransformComponent>();
+            while (areasQuery.MoveNext(out var uid, out var area, out var xform))
             {
                 if (!area.Owners.Contains(mind.Owner))
                     continue;
 
-                var nearestEnt = _lookup.GetEntitiesInRange(uid, area.Range);
-                foreach (var ent in nearestEnt)
+                _nearestEnts.Clear();
+                _lookup.GetEntitiesInRange<TransformComponent>(xform.Coordinates, area.Range, _nearestEnts);
+                foreach (var ent in _nearestEnts)
                 {
+                    if (!_interaction.InRangeUnobstructed((uid, xform), (ent, ent.Comp), range: area.Range))
+                        continue;
+
                     CheckEntity(ent, condition, ref containerStack, ref count);
                 }
             }
@@ -179,6 +179,11 @@ public sealed class StealConditionSystem : EntitySystem
             return 0;
 
         if (target.StealGroup != condition.StealGroup)
+            return 0;
+
+        // check if cartridge is installed
+        if (TryComp<CartridgeComponent>(entity, out var cartridge) &&
+            cartridge.InstallationStatus is not InstallationStatus.Cartridge)
             return 0;
 
         // check if needed target alive

@@ -161,6 +161,11 @@
     interfaces:
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
+#Sunrise-start
+  - type: Tag
+    tags:
+    - SyndieAgentUplink
+#Sunrise-end
 
 - type: entity
   parent: BaseSubdermalImplant

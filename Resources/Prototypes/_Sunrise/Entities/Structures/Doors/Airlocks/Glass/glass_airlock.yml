@@ -1,3 +1,5 @@
+# == Basic == #
+
 - type: entity
   id: DoubleGlassAirlock
   parent: AirlockGlass
@@ -25,7 +27,7 @@
         - GlassAirlockLayer
   - type: Transform
     noRot: false
-    
+
 - type: entity
   id: TripleGlassAirlock
   parent: AirlockGlass
@@ -55,3 +57,201 @@
         - GlassAirlockLayer
   - type: Transform
     noRot: false
+    
+# == airlocks == #
+
+# == Double airlocks == #
+
+- type: entity
+  id: DoubleGlassAirlockAtmospherics
+  parent: [ DoubleGlassAirlock, AirlockAtmosphericsLocked ]
+  name: double atmos glass airlock
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_atmospherics.rsi
+
+- type: entity
+  id: DoubleGlassAirlockCargo
+  parent: [ DoubleGlassAirlock, AirlockCargoLocked ]
+  name: double cargo glass airlock
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_cargo.rsi
+
+- type: entity
+  id: DoubleGlassAirlockChemistry
+  parent: [ DoubleGlassAirlock, AirlockChemistryLocked ]
+  name: double chemistry glass airlock
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_chemistry.rsi
+
+- type: entity
+  id: DoubleGlassAirlockCommand
+  parent: [ DoubleGlassAirlock, AirlockCommandLocked ]
+  name: double command glass airlock
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_command.rsi
+
+- type: entity
+  id: DoubleGlassAirlockCentralCommand
+  parent: [ DoubleGlassAirlock, AirlockCentralCommandLocked ]
+  name: double central command glass airlock
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_centcomm.rsi
+
+- type: entity
+  id: DoubleGlassAirlockEngineering
+  parent: [ DoubleGlassAirlock, AirlockEngineeringLocked ]
+  name: double engineering glass airlock
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_engineering.rsi
+
+- type: entity
+  id: DoubleGlassAirlockMaint
+  parent: [ DoubleGlassAirlock, AirlockMaintLocked ]
+  name: double maint glass airlock
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_maint.rsi
+
+- type: entity
+  id: DoubleGlassAirlockMedical
+  parent: [ DoubleGlassAirlock, AirlockMedicalLocked ]
+  name: double medical glass airlock
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_medical.rsi
+
+- type: entity
+  id: DoubleGlassAirlockScience
+  parent: [ DoubleGlassAirlock, AirlockScienceLocked ]
+  name: double science glass airlock
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_science.rsi
+
+- type: entity
+  id: DoubleGlassAirlockSecurity
+  parent: [ DoubleGlassAirlock, AirlockSecurityLocked ]
+  name: double security glass airlock
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_security.rsi
+
+- type: entity
+  id: DoubleGlassAirlockVirology
+  parent: [ DoubleGlassAirlock, AirlockVirologyLocked ]
+  name: double virology glass airlock
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_virology.rsi
+
+# == Triple airlocks ==
+
+- type: entity
+  id: TripleGlassAirlockAtmospherics
+  parent: [ TripleGlassAirlock, AirlockAtmosphericsLocked ]
+  name: triple atmospherics glass airlock
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_atmospherics.rsi
+
+- type: entity
+  id: TripleGlassAirlockBasic
+  parent: [ TripleGlassAirlock, AirlockServiceLocked ]
+  name: triple basic glass airlock
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_basic.rsi
+
+- type: entity
+  id: TripleGlassAirlockCargo
+  parent: [ TripleGlassAirlock, AirlockCargoLocked ]
+  name: triple cargo glass airlock
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_cargo.rsi
+
+- type: entity
+  id: TripleGlassAirlockCentcomm
+  parent: [ TripleGlassAirlock, AirlockCentralCommandLocked ]
+  name: triple centcomm glass airlock
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_centcomm.rsi
+
+- type: entity
+  id: TripleGlassAirlockChemistry
+  parent: [ TripleGlassAirlock, AirlockChemistryLocked ]
+  name: triple chemistry glass airlock
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_chemistry.rsi
+
+- type: entity
+  id: TripleGlassAirlockCommand
+  parent: [ TripleGlassAirlock, AirlockCommandLocked ]
+  name: triple command glass airlock
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_command.rsi
+
+- type: entity
+  id: TripleGlassAirlockEngineering
+  parent: [ TripleGlassAirlock, AirlockEngineeringLocked ]
+  name: triple engineering glass airlock
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_engineering.rsi
+
+- type: entity
+  id: TripleGlassAirlock1
+  parent: [ TripleGlassAirlock ]
+  name: triple glass airlock
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_glass.rsi
+
+- type: entity
+  id: TripleGlassAirlockMaint
+  parent: [ TripleGlassAirlock, AirlockMaintLocked ]
+  name: triple maint glass airlock
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_maint.rsi
+
+- type: entity
+  id: TripleGlassAirlockMedical
+  parent: [ TripleGlassAirlock, AirlockMedicalLocked ]
+  name: triple medical glass airlock
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_medical.rsi
+
+- type: entity
+  id: TripleGlassAirlockScience
+  parent: [ TripleGlassAirlock, AirlockScienceLocked ]
+  name: triple science glass airlock
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_science.rsi
+
+- type: entity
+  id: TripleGlassAirlockSecurity
+  parent: [ TripleGlassAirlock, AirlockSecurityLocked ]
+  name: triple security glass airlock
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_security.rsi
+
+- type: entity
+  id: TripleGlassAirlockVirology
+  parent: [ TripleGlassAirlock, AirlockVirologyLocked ]
+  name: triple virology glass airlock
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_virology.rsi

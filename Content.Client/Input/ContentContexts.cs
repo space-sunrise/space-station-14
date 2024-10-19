@@ -85,6 +85,11 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.Arcade2);
             human.AddFunction(ContentKeyFunctions.Arcade3);
 
+            // Sunrise
+            human.AddFunction(ContentKeyFunctions.ToggleStanding);
+            human.AddFunction(ContentKeyFunctions.LookUp);
+            // Sunrise
+
             // actions should be common (for ghosts, mobs, etc)
             common.AddFunction(ContentKeyFunctions.OpenActionsMenu);
 
