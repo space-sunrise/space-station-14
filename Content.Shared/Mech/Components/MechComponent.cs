@@ -153,17 +153,17 @@ public sealed partial class MechComponent : Component
     
     #region Sounds
     [DataField]
-    public SoundSpecifier EnableLightSound = new SoundPathSpecifier("Audio/_Sunrise/Mechs/mech_lights_enabled.ogg");
+    public SoundSpecifier EnableLightSound = new SoundPathSpecifier("/Audio/_Sunrise/Mechs/mech_lights_enabled.ogg");
     [DataField]
-    public SoundSpecifier DisableLightSound = new SoundPathSpecifier("Audio/_Sunrise/Mechs/mech_lights_disabled.ogg");
+    public SoundSpecifier DisableLightSound = new SoundPathSpecifier("/Audio/_Sunrise/Mechs/mech_lights_disabled.ogg");
     [DataField]
-    public SoundSpecifier HelloSound = new SoundPathSpecifier("Audio/_Sunrise/Mechs/mech_hello.ogg");
+    public SoundSpecifier HelloSound = new SoundPathSpecifier("/Audio/_Sunrise/Mechs/mech_hello.ogg");
     [DataField]
-    public SoundSpecifier Alert50 = new SoundPathSpecifier("Audio/_Sunrise/Mechs/mech_alert_50.ogg");
+    public SoundSpecifier Alert50 = new SoundPathSpecifier("/Audio/_Sunrise/Mechs/mech_alert_50.ogg");
     [DataField]
-    public SoundSpecifier Alert25 = new SoundPathSpecifier("Audio/_Sunrise/Mechs/mech_alert_25.ogg");
+    public SoundSpecifier Alert25 = new SoundPathSpecifier("/Audio/_Sunrise/Mechs/mech_alert_25.ogg");
     [DataField]
-    public SoundSpecifier Alert5 = new SoundPathSpecifier("Audio/_Sunrise/Mechs/mech_alert_5.ogg");
+    public SoundSpecifier Alert5 = new SoundPathSpecifier("/Audio/_Sunrise/Mechs/mech_alert_5.ogg");
     #endregion
 
     #region Action Prototypes

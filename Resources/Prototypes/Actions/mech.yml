@@ -42,7 +42,7 @@
   description: Turns mech lights.
   components:
   - type: InstantAction
-    useDelay: 1
+    useDelay: 5
     itemIconStyle: NoItem
     icon: { sprite: Interface/Actions/actions_mecha.rsi, state: mech_lights_off }
     iconOn: { sprite: Interface/Actions/actions_mecha.rsi, state: mech_lights_on }

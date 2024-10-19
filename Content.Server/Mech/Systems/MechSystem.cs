@@ -11,7 +11,9 @@ using Content.Shared.Interaction;
 using Content.Shared.Mech;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mech.EntitySystems;
+using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Popups;
 using Content.Shared.Tools.Components;
@@ -24,6 +26,8 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Tag;
+using Robust.Server.Audio;
+using Robust.Shared.Audio;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
@@ -35,6 +39,7 @@ namespace Content.Server.Mech.Systems;
 /// <inheritdoc/>
 public sealed partial class MechSystem : SharedMechSystem
 {
+    [Dependency] private readonly AudioSystem _audioSystem = default!;
     [Dependency] private readonly NpcFactionSystem _factionSystem = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
@@ -272,20 +277,17 @@ public sealed partial class MechSystem : SharedMechSystem
         if (TryComp<DamageableComponent>(uid, out var damage))
         {
             var total = damage.TotalDamage;
-            if (mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var critThreshold))
+            if (_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var critThreshold))
             {
                 var damagePercentage = (total / critThreshold) * 100;
-                if (damagePercentage <= 5)
+                if (component.PilotSlot.ContainedEntity != null)
                 {
-                    _audioSystem.PlayPvs(component.Alert5, component.PilotSlot.ContainedEntity);
-                }
-                else if (damagePercentage <= 25)
-                {
-                    _audioSystem.PlayPvs(component.Alert25, component.PilotSlot.ContainedEntity);
-                }
-                else if (damagePercentage <= 50)
-                {
-                    _audioSystem.PlayPvs(component.Alert50, component.PilotSlot.ContainedEntity);
+                    if (damagePercentage <= 5)
+                        _audioSystem.PlayPvs(_audioSystem.GetSound(component.Alert5), component.PilotSlot.ContainedEntity.Value);
+                    else if (damagePercentage <= 25)
+                        _audioSystem.PlayPvs(_audioSystem.GetSound(component.Alert25), component.PilotSlot.ContainedEntity.Value);
+                    else if (damagePercentage <= 50)
+                        _audioSystem.PlayPvs(_audioSystem.GetSound(component.Alert50), component.PilotSlot.ContainedEntity.Value);
                 }
             }
         }
@@ -293,8 +295,8 @@ public sealed partial class MechSystem : SharedMechSystem
             args.DamageDelta != null &&
             component.PilotSlot.ContainedEntity != null)
         {
-            var damage = args.DamageDelta * component.MechToPilotDamageMultiplier;
-            _damageable.TryChangeDamage(component.PilotSlot.ContainedEntity, damage);
+            var damagetoplayer = args.DamageDelta * component.MechToPilotDamageMultiplier;
+            _damageable.TryChangeDamage(component.PilotSlot.ContainedEntity, damagetoplayer);
         }
     }
 
