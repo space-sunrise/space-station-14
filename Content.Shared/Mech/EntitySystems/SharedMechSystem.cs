@@ -179,7 +179,7 @@ public abstract class SharedMechSystem : EntitySystem
             component.Lights = !component.Lights;
             _pointLight.SetEnabled(uid, component.Lights, pointLightComponent);
             _actions.SetToggled(component.MechLightsActionEntity, component.Lights);
-            _audioSystem.PlayPredicted(component.ToggleLightSound, component.PilotSlot.ContainedEntity.Value, component);
+            _audioSystem.PlayPredicted(component.ToggleLightSound, component.Owner, component.PilotSlot.ContainedEntity);
             Dirty(uid ,component);
         }
     }
