@@ -361,6 +361,7 @@
       - DeviceQuantumSpinInverter
       - EnergyDomeDirectionalTurtle
       # Sunrise-start
+      - MechPhasicScanningModule
       - HandCraftedNVD
       - BasicNVD
       - PowerCageHigh
@@ -524,6 +525,9 @@
       - GygaxCentralElectronics
       - GygaxPeripheralsElectronics
       - GygaxTargetingElectronics
+      - PhazonCentralElectronics
+      - PhazonPeripheralsElectronics
+      - PhazonTargetingElectronics
       - DurandCentralElectronics
       - DurandPeripheralsElectronics
       - DurandTargetingElectronics
@@ -718,6 +722,13 @@
     - GygaxLLeg
     - GygaxRArm
     - GygaxRLeg
+    - PhazonHarness
+    - PhazonArmor
+    - PhazonHead
+    - PhazonLArm
+    - PhazonLLeg
+    - PhazonRArm
+    - PhazonRLeg
     - MechEquipmentDrill
     - MechEquipmentDrillDiamond
     - MechEquipmentKineticAccelerator
