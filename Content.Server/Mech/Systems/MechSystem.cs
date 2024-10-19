@@ -11,6 +11,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Mech;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mech.EntitySystems;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Events;
 using Content.Shared.Popups;
 using Content.Shared.Tools.Components;
@@ -47,6 +48,7 @@ public sealed partial class MechSystem : SharedMechSystem
     [Dependency] private readonly SharedToolSystem _toolSystem = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -62,7 +64,7 @@ public sealed partial class MechSystem : SharedMechSystem
         SubscribeLocalEvent<MechComponent, MechEntryEvent>(OnMechEntry);
         SubscribeLocalEvent<MechComponent, MechExitEvent>(OnMechExit);
 
-        //SubscribeLocalEvent<MechComponent, DamageChangedEvent>(OnDamageChanged);
+        SubscribeLocalEvent<MechComponent, DamageChangedEvent>(OnDamageChanged);
         SubscribeLocalEvent<MechComponent, MechEquipmentRemoveMessage>(OnRemoveEquipmentMessage);
 
         SubscribeLocalEvent<MechComponent, UpdateCanMoveEvent>(OnMechCanMoveEvent);
@@ -265,11 +267,28 @@ public sealed partial class MechSystem : SharedMechSystem
         args.Handled = true;
     }
 
-/*    private void OnDamageChanged(EntityUid uid, MechComponent component, DamageChangedEvent args)
+    private void OnDamageChanged(EntityUid uid, MechComponent component, DamageChangedEvent args)
     {
-        var integrity = component.MaxIntegrity - args.Damageable.TotalDamage;
-        SetIntegrity(uid, integrity, component);
-
+        if (TryComp<DamageableComponent>(uid, out var damage))
+        {
+            var total = damage.TotalDamage;
+            if (mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var critThreshold))
+            {
+                var damagePercentage = (total / critThreshold) * 100;
+                if (damagePercentage <= 5)
+                {
+                    _audioSystem.PlayPvs(component.Alert5, component.PilotSlot.ContainedEntity);
+                }
+                else if (damagePercentage <= 25)
+                {
+                    _audioSystem.PlayPvs(component.Alert25, component.PilotSlot.ContainedEntity);
+                }
+                else if (damagePercentage <= 50)
+                {
+                    _audioSystem.PlayPvs(component.Alert50, component.PilotSlot.ContainedEntity);
+                }
+            }
+        }
         if (args.DamageIncreased &&
             args.DamageDelta != null &&
             component.PilotSlot.ContainedEntity != null)
@@ -278,7 +297,7 @@ public sealed partial class MechSystem : SharedMechSystem
             _damageable.TryChangeDamage(component.PilotSlot.ContainedEntity, damage);
         }
     }
-*/
+
 
     private void ToggleMechUi(EntityUid uid, MechComponent? component = null, EntityUid? user = null)
     {

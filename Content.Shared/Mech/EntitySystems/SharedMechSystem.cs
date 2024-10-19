@@ -179,7 +179,10 @@ public abstract class SharedMechSystem : EntitySystem
             component.Lights = !component.Lights;
             _pointLight.SetEnabled(uid, component.Lights, pointLightComponent);
             _actions.SetToggled(component.MechLightsActionEntity, component.Lights);
-            _audioSystem.PlayPredicted(component.ToggleLightSound, component.Owner, component.PilotSlot.ContainedEntity);
+            if(component.Lights)
+                _audioSystem.PlayPredicted(component.EnableLightSound, component.Owner, component.PilotSlot.ContainedEntity);
+            else
+                _audioSystem.PlayPredicted(component.DisableLightSound, component.Owner, component.PilotSlot.ContainedEntity);
             Dirty(uid ,component);
         }
     }
@@ -407,6 +410,7 @@ public abstract class SharedMechSystem : EntitySystem
 
         SetupUser(uid, toInsert.Value);
         _container.Insert(toInsert.Value, component.PilotSlot);
+        _audioSystem.PlayPredicted(component.HelloSound, component.Owner, toInsert);
         UpdateAppearance(uid, component);
         return true;
     }
