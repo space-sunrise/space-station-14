@@ -173,6 +173,12 @@
   - type: Prying
   - type: StatusIcon
     bounds: "-0.6,-0.6, 0.6, 0.6"
+  - type: PointLight
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    radius: 6
+    netsync: false
 
 # Ripley MK-I
 - type: entity

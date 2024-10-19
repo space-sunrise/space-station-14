@@ -67,6 +67,12 @@ public sealed partial class MechComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public bool Broken = false;
+    
+    /// <summary>
+    /// Whether the mech has toggled lights.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+    public bool Lights = false;
 
     /// <summary>
     /// The slot the pilot is stored in.
@@ -143,6 +149,11 @@ public sealed partial class MechComponent : Component
     /// </summary>
     [DataField]
     public List<EntProtoId> StartingEquipment = new();
+    
+    #region Sounds
+    [DataField]
+    public SoundSpecifier ToggleLightSound = new SoundPathSpecifier("/Audio/Items/flashlight_pda.ogg");
+    #endregion
 
     #region Action Prototypes
     [DataField]
@@ -151,6 +162,8 @@ public sealed partial class MechComponent : Component
     public EntProtoId MechUiAction = "ActionMechOpenUI";
     [DataField]
     public EntProtoId MechEjectAction = "ActionMechEject";
+    [DataField]
+    public EntProtoId MechLightsAction = "ActionMechLights";
     #endregion
 
     #region Visualizer States
@@ -165,4 +178,5 @@ public sealed partial class MechComponent : Component
     [DataField] public EntityUid? MechCycleActionEntity;
     [DataField] public EntityUid? MechUiActionEntity;
     [DataField] public EntityUid? MechEjectActionEntity;
+    [DataField] public EntityUid? MechLightsActionEntity;
 }

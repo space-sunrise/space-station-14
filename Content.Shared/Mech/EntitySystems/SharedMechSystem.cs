@@ -20,6 +20,7 @@ using Content.Shared.Popups;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Whitelist;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
@@ -34,12 +35,14 @@ public abstract class SharedMechSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly SharedMoverController _mover = default!;
+    [Dependency] private readonly SharedPointLightSystem _pointLight = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
@@ -49,6 +52,7 @@ public abstract class SharedMechSystem : EntitySystem
     {
         SubscribeLocalEvent<MechComponent, MechToggleEquipmentEvent>(OnToggleEquipmentAction);
         SubscribeLocalEvent<MechComponent, MechEjectPilotEvent>(OnEjectPilotEvent);
+        SubscribeLocalEvent<MechComponent, MechToggleLightsEvent>(OnToggleLightsEvent);
         SubscribeLocalEvent<MechComponent, UserActivateInWorldEvent>(RelayInteractionEvent);
         SubscribeLocalEvent<MechComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<MechComponent, MobStateChangedEvent>(OnMobState);
@@ -77,7 +81,17 @@ public abstract class SharedMechSystem : EntitySystem
         args.Handled = true;
         TryEject(uid, component);
     }
+    
+    private void OnToggleLightsEvent(EntityUid uid, MechComponent component, MechToggleLightsEvent args)
+    {
+        if (args.Handled)
+            return;
 
+        ToggleLights(uid, component);
+        
+        args.Handled = true;
+    }
+    
     private void RelayInteractionEvent(EntityUid uid, MechComponent component, UserActivateInWorldEvent args)
     {
         var pilot = component.PilotSlot.ContainedEntity;
@@ -144,6 +158,7 @@ public abstract class SharedMechSystem : EntitySystem
 
         _actions.AddAction(pilot, ref component.MechCycleActionEntity, component.MechCycleAction, mech);
         _actions.AddAction(pilot, ref component.MechUiActionEntity, component.MechUiAction, mech);
+        _actions.AddAction(pilot, ref component.MechLightsActionEntity, component.MechLightsAction, mech);
         _actions.AddAction(pilot, ref component.MechEjectActionEntity, component.MechEjectAction, mech);
     }
 
@@ -155,6 +170,18 @@ public abstract class SharedMechSystem : EntitySystem
         RemComp<InteractionRelayComponent>(pilot);
 
         _actions.RemoveProvidedActions(pilot, mech);
+    }
+    
+    public void ToggleLights(EntityUid uid, MechComponent component)
+    {
+        if (_pointLight.TryGetLight(uid, out var pointLightComponent))
+        {
+            component.Lights = !component.Lights;
+            _pointLight.SetEnabled(uid, component.Lights, pointLightComponent);
+            _actions.SetToggled(component.MechLightsActionEntity, component.Lights);
+            _audioSystem.PlayPredicted(component.ToggleLightSound, component.PilotSlot.ContainedEntity.Value, component);
+            Dirty(uid ,component);
+        }
     }
 
     /// <summary>
