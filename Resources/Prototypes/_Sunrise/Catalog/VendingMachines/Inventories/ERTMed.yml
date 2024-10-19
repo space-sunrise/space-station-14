@@ -3,29 +3,28 @@
   startingInventory:
     Hypospray: 1
     MedkitCombatFilled: 8
-    MedkitAdvancedFilled: 8
+    MedkitAdvancedFilled: 6
     MedTekCartridge: 8
-    MedicatedSuture: 9
-    RegenerativeMesh: 9
-    Bloodpack: 11
+    MedicatedSuture: 6
+    RegenerativeMesh: 5
+    Bloodpack: 8
     EmergencyMedipen: 8
-    AntiPoisonMedipen: 8
-    CombatMedipen: 8
+    AntiPoisonMedipen: 5
+    CombatMedipen: 4
     PiercingAutoInjector: 8
-    BruteAutoInjector: 8
-    BurnAutoInjector: 8
-    RadAutoInjector: 8
-    Syringe: 8
-    OmnizineChemistryBottle: 6
+    BruteAutoInjector: 6
+    BurnAutoInjector: 6
+    RadAutoInjector: 3
+    OmnizineChemistryBottle: 4
     EpinephrineChemistryBottle: 9
     EphedrineChemistryBottle: 3
-    SyringeBicaridine: 8
-    SyringeDermaline: 8
-    SyringeInaprovaline: 8
-    SyringeTranexamicAcid: 8
-    SyringeHyronalin: 8
-    SyringeSigynate: 8
-    SyringeSaline: 8
+    SyringeBicaridine: 5
+    SyringeDermaline: 5
+    SyringeInaprovaline: 3
+    SyringeTranexamicAcid: 4
+    SyringeHyronalin: 3
+    SyringeSigynate: 4
+    SyringeSaline: 6
     BoxPillCanister: 8
     BoxLatexGloves: 8
     BoxSyringe: 8
@@ -37,12 +36,6 @@
     ClothingHeadHelmetERTMedic: 3
     Implanter: 10
     TrackingImplanter: 8
-    LightImplanter: 8
     MindShieldImplanter: 14
-    PillAmbuzol: 19
-    SyringeAmbuzol: 10
-    PillAmbuzolPlus: 8
-  emaggedInventory:
-    StrangePill: 1
-    StimpackMini: 2
-    SyringeRomerol: 1
+    PillAmbuzol: 8
+    SyringeAmbuzol: 6
