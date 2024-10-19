@@ -36,6 +36,9 @@
   
 - type: Tag
   id: SyndieAgentUplink
+  
+- type: Tag
+  id: AnomalyCore
 
 # Catridges:
 

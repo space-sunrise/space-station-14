@@ -118,6 +118,16 @@
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"
           data: 14
+          
+      - tag: AnomalyCore
+        name: any anomaly core
+        icon:
+          sprite: "Structures/Specific/Anomalies/Cores/gravity_core.rsi"
+          state: core
+        completed:
+        - !type:VisualizerDataInt
+          key: "enum.MechAssemblyVisuals.State"
+          data: 15
 
       - component: PowerCell
         name: power cell
@@ -125,10 +135,6 @@
         icon:
           sprite: Objects/Power/power_cells.rsi
           state: small
-        completed:
-        - !type:VisualizerDataInt
-          key: "enum.MechAssemblyVisuals.State"
-          data: 15
 
       - material: Cable
         amount: 4
@@ -144,7 +150,7 @@
           key: "enum.MechAssemblyVisuals.State"
           data: 17
 
-      - material: PlaSteel
+      - material: Plasteel
         amount: 5
         completed:
         - !type:VisualizerDataInt
@@ -202,7 +208,7 @@
 
       - tool: Welding
         doAfter: 1
-
+       
   - node: phazon
     actions:
     - !type:BuildMech
