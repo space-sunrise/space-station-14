@@ -156,6 +156,7 @@ public abstract class SharedMechSystem : EntitySystem
         if (_net.IsClient)
             return;
 
+        _audioSystem.PlayPredicted(component.HelloSound, component.Owner, pilot);
         _actions.AddAction(pilot, ref component.MechCycleActionEntity, component.MechCycleAction, mech);
         _actions.AddAction(pilot, ref component.MechUiActionEntity, component.MechUiAction, mech);
         _actions.AddAction(pilot, ref component.MechLightsActionEntity, component.MechLightsAction, mech);
@@ -410,7 +411,6 @@ public abstract class SharedMechSystem : EntitySystem
 
         SetupUser(uid, toInsert.Value);
         _container.Insert(toInsert.Value, component.PilotSlot);
-        _audioSystem.PlayPredicted(component.HelloSound, component.Owner, toInsert.Value);
         UpdateAppearance(uid, component);
         return true;
     }
