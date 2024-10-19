@@ -276,20 +276,7 @@ public sealed partial class MechSystem : SharedMechSystem
     {
         if (TryComp<DamageableComponent>(uid, out var damage))
         {
-            var total = damage.TotalDamage;
-            if (_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var critThreshold))
-            {
-                var damagePercentage = (total / critThreshold) * 100;
-                if (component.PilotSlot.ContainedEntity != null)
-                {
-                    if (damagePercentage <= 5)
-                        _audioSystem.PlayPvs(_audioSystem.GetSound(component.Alert5), component.PilotSlot.ContainedEntity.Value);
-                    else if (damagePercentage <= 25)
-                        _audioSystem.PlayPvs(_audioSystem.GetSound(component.Alert25), component.PilotSlot.ContainedEntity.Value);
-                    else if (damagePercentage <= 50)
-                        _audioSystem.PlayPvs(_audioSystem.GetSound(component.Alert50), component.PilotSlot.ContainedEntity.Value);
-                }
-            }
+            PlayCritSound(uid, component, damage);
         }
         if (args.DamageIncreased &&
             args.DamageDelta != null &&
@@ -297,6 +284,25 @@ public sealed partial class MechSystem : SharedMechSystem
         {
             var damagetoplayer = args.DamageDelta * component.MechToPilotDamageMultiplier;
             _damageable.TryChangeDamage(component.PilotSlot.ContainedEntity, damagetoplayer);
+        }
+    }
+    
+    private void PlayCritSound(EntityUid uid, MechComponent component, DamageableComponent damage )
+    {
+        var total = damage.TotalDamage;
+        if (_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var critThreshold))
+        {
+            var damagePercentage = (total / critThreshold) * 100;
+            if (component.PilotSlot.ContainedEntity != null)
+            {
+                if (damagePercentage <= 5)
+                    _audioSystem.PlayPvs(_audioSystem.GetSound(component.Alert5), component.PilotSlot.ContainedEntity.Value);
+                if (damagePercentage <= 25)
+                    _audioSystem.PlayPvs(_audioSystem.GetSound(component.Alert25), component.PilotSlot.ContainedEntity.Value);
+                if (damagePercentage <= 50)
+                    _audioSystem.PlayPvs(_audioSystem.GetSound(component.Alert50), component.PilotSlot.ContainedEntity.Value);
+                Dirty(uid ,component);
+            }
         }
     }
 
