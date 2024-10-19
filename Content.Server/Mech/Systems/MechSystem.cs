@@ -295,9 +295,9 @@ public sealed partial class MechSystem : SharedMechSystem
             var damagePercentage = (total / critThreshold) * 100;
             if (component.PilotSlot.ContainedEntity != null)
             {
-                if (damagePercentage <= 5)
+                if (damagePercentage <= 95)
                     _audioSystem.PlayPvs(_audioSystem.GetSound(component.Alert5), component.PilotSlot.ContainedEntity.Value);
-                if (damagePercentage <= 25)
+                if (damagePercentage <= 75)
                     _audioSystem.PlayPvs(_audioSystem.GetSound(component.Alert25), component.PilotSlot.ContainedEntity.Value);
                 if (damagePercentage <= 50)
                     _audioSystem.PlayPvs(_audioSystem.GetSound(component.Alert50), component.PilotSlot.ContainedEntity.Value);
