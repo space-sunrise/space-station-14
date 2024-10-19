@@ -192,7 +192,7 @@
       - tag: PhazonArmor
         name: phazon armor plates
         icon:
-          sprite: "Objects/Specific/Mech/gygax_construction.rsi"
+          sprite: "Objects/Specific/Mech/phazon_construction.rsi"
           state: phazon_armor
         completed:
         - !type:VisualizerDataInt
