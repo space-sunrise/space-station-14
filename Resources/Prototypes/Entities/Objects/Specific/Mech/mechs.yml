@@ -177,7 +177,7 @@
     enabled: false
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
-    radius: 6
+    radius: 4
     netsync: false
 
 # Ripley MK-I
@@ -352,6 +352,12 @@
       250: Critical
     showOverlays: false
     allowRevives: true
+  - type: PointLight
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    radius: 8
+    netsync: false
 
 - type: entity
   id: MechClarkeBattery
