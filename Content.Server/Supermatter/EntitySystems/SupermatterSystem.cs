@@ -14,6 +14,7 @@ using Content.Shared.Tag;
 using Content.Shared.DoAfter;
 using Content.Server.Popups;
 using Content.Shared.Supermatter;
+using Content.Shared.Singularity.Components;
 using Content.Server.Administration.Logs;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Audio.Systems;
@@ -427,7 +428,8 @@ public sealed class SupermatterSystem : EntitySystem
         if (!sm.Activated)
             sm.Activated = true;
         
-        if (_tagSystem.HasTag(args.OtherEntity, "EmitterBolt"))
+        if (_tagSystem.HasTag(args.OtherEntity, "EmitterBolt") 
+            || HasComp<SingularityComponent>(args.OtherEntity))
             return;
 
         Vaporize(args.OtherEntity, uid);
