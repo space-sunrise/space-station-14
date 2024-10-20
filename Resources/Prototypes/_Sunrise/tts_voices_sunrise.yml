@@ -397,3 +397,19 @@
   speaker: pathologic2_alexander_saburov
   provider: sunrise
   roundStart: true
+
+- type: ttsVoice
+  id: Pathologic2Inkvizitor
+  name: tts-voice-name-pathologic2-inkvizitor
+  sex: Female
+  speaker: pathologic2_inkvizitor
+  provider: sunrise
+  roundStart: true
+
+- type: ttsVoice
+  id: Pathologic2AlexanderBlok
+  name: tts-voice-name-pathologic2-alexander-blok
+  sex: Male
+  speaker: pathologic2_alexander_blok
+  provider: sunrise
+  roundStart: true
