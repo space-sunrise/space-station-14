@@ -67,11 +67,11 @@
           key: "enum.MechAssemblyVisuals.State"
           data: 8
 
-      - component: PowerCell
-        name: power cell
+      - tag: PowerCage
+        name: power cage
         store: battery-container
         icon:
-          sprite: Objects/Power/power_cells.rsi
+          sprite: Objects/Power/power_cages.rsi
           state: small
         completed:
         - !type:VisualizerDataInt
