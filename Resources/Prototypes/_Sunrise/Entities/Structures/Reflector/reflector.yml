@@ -35,7 +35,7 @@
   - type: Sprite 
     sprite: _Starlight/Structures/Reflector/reflector.rsi
     layers:
-    - state: reflector
+    - state: reflector_box
       shader: unshaded
   - type: Repairable
     fuelCost: 15
