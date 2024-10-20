@@ -300,9 +300,13 @@ public sealed class SupermatterSystem : EntitySystem
     {
         if (EntityManager.IsQueuedForDeletion(uid))
             return;
+        
+        if (_tagSystem.HasTag(uid, "EmitterBolt") 
+            || HasComp<SingularityComponent>(uid))
+            return;
 
         if (TryComp<SupermatterComponent>(smUid, out var sm))
-            sm.Damage += 1;
+            sm.ExternalDamage += 1;
         _sound.PlayPvs(SupermatterComponent.VaporizeSound, smUid);
         EntityManager.QueueDeleteEntity(uid);
 
@@ -427,10 +431,6 @@ public sealed class SupermatterSystem : EntitySystem
     {
         if (!sm.Activated)
             sm.Activated = true;
-        
-        if (_tagSystem.HasTag(args.OtherEntity, "EmitterBolt") 
-            || HasComp<SingularityComponent>(args.OtherEntity))
-            return;
 
         Vaporize(args.OtherEntity, uid);
     }
