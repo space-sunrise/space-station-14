@@ -47,7 +47,7 @@ namespace Content.Shared.Construction.Steps
             return new ConstructionGuideEntry
             {
                 Localization = "construction-presenter-arbitrary-step",
-                Arguments = new (string, object)[] { ("name", Loc.TryGetString($"{Name}", out var name) ? name : nameLocale) },
+                Arguments = new (string, object)[] { ("name", Loc.TryGetString($"{Name}", out var translatedname) ? translatedname : nameLocale ?? Name) },
                 Icon = Icon,
             };
         }
