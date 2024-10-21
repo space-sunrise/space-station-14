@@ -204,6 +204,7 @@
   sex: Male
   speaker: splikzerys
   provider: sunrise
+  roundStart: false # предстоит перетренировка модели
 
 - type: ttsVoice
   id: Dota2Riki
@@ -269,14 +270,6 @@
   provider: sunrise
 
 - type: ttsVoice
-  id: HearthstoneAhun
-  name: tts-voice-name-hearthstone-ahun
-  sex: Male
-  speaker: hearthstone_ahun
-  provider: sunrise
-  roundStart: false # ужасное качество
-
-- type: ttsVoice
   id: HearthstoneFinli
   name: tts-voice-name-hearthstone-finli
   sex: Male
@@ -297,3 +290,142 @@
   speaker: hearthstone_reno
   provider: sunrise
 
+- type: ttsVoice
+  id: HearthstoneZverolovTavish
+  name: tts-voice-name-hearthstone-zverolov-tavish
+  sex: Male
+  speaker: hearthstone_zverolov_tavish
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneElisa
+  name: tts-voice-name-hearthstone-elisa
+  sex: Female
+  speaker: hearthstone_elisa
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneSotis
+  name: tts-voice-name-hearthstone-sotis
+  sex: Male
+  speaker: hearthstone_sotis
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneMediv
+  name: tts-voice-name-hearthstone-mediv
+  sex: Male
+  speaker: hearthstone_mediv
+  provider: sunrise
+
+- type: ttsVoice
+  id: CBMTF1
+  name: tts-voice-name-mtf1
+  sex: Male
+  speaker: mtf_1
+  provider: sunrise
+  roundStart: false # точно нет
+
+- type: ttsVoice
+  id: ThreeBigatiraAleshaPopovich
+  name: tts-voice-name-three-bogatira-alesha-popovich
+  sex: Male
+  speaker: three_bogatira_alesha
+  provider: sunrise
+  roundStart: true
+
+- type: ttsVoice
+  id: PetrGlanceIvashenko
+  name: tts-voice-name-petr_glance_ivashenko
+  sex: Male
+  speaker: petr_ivashenko
+  provider: sunrise
+  roundStart: true
+
+- type: ttsVoice
+  id: HearthstoneValiraSangvinar
+  name: tts-voice-name-hearthstone-valira-sangvinar
+  sex: Female
+  speaker: hearthstone_valira_sangvinar
+  provider: sunrise
+  roundStart: true
+
+- type: ttsVoice
+  id: HearthstoneAkama
+  name: tts-voice-name-hearthstone-akama
+  sex: Male
+  speaker: hearthstone_akama
+  provider: sunrise
+  roundStart: true
+
+- type: ttsVoice
+  id: Pathologic2GeorgiyKain
+  name: tts-voice-name-pathologic2-georgiy-kain
+  sex: Male
+  speaker: pathologic2_georgiy_kain
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Pathologic2ArtemiyBurach
+  name: tts-voice-name-pathologic2-artemiy-burach
+  sex: Male
+  speaker: pathologic2_artemiy_burach
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Pathologic2Grif
+  name: tts-voice-name-pathologic2-grif
+  sex: Male
+  speaker: pathologic2_grif
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Pathologic2AnglayaLilich
+  name: tts-voice-name-pathologic2-anglaya-lilich
+  sex: Female
+  speaker: pathologic2_anglaya_lilich_tired
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Pathologic2AlexanderSaburov
+  name: tts-voice-name-pathologic2-alexander-saburov
+  sex: Male
+  speaker: pathologic2_alexander_saburov
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Pathologic2Inkvizitor
+  name: tts-voice-name-pathologic2-inkvizitor
+  sex: Female
+  speaker: pathologic2_inkvizitor
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Pathologic2AlexanderBlok
+  name: tts-voice-name-pathologic2-alexander-blok
+  sex: Male
+  speaker: pathologic2_alexander_blok
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Pathologic2MarkBessmertnik
+  name: tts-voice-name-pathologic2-mark-bessmertnik
+  sex: Male
+  speaker: pathologic2_mark_bessmertnik
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: true
