@@ -134,6 +134,7 @@ ignore_list:
   - 'Discord'
   - 'Telegram'
   - 'AMLG-90'
+  - 'TR-263'
 
 ignore_files:
   - italian.ftl
