@@ -1,2 +1,2 @@
-ent-ClothingHandsClockDivine = divine clock
-    .desc = This clock can only be worn by a divine person.
+ent-ClothingHandsClockDivine = божественные часы
+    .desc = Эти часы может носить только божественная личность.
