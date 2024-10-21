@@ -175,10 +175,10 @@ public sealed class SupermatterSystem : EntitySystem
         var damageExternal = sm.AVExternalDamage + strength;
         sm.AVExternalDamage = 0f;
 
-        sm.AVHeatAccumulator += damageExternal * sm.HeatAccumulatorRate;
-        sm.AVRadiationAccumulator += damageExternal * sm.RadiationAccumulatorRate;
-        sm.AVLightingAccumulator += damageExternal * sm.LightingAccumulatorRate;
-        sm.InternalEnergy += damageExternal * sm.InternalEnergyAccumulatorRate;
+        sm.AVHeatAccumulator = Math.Clamp(sm.AVHeatAccumulator + (damageExternal * sm.HeatAccumulatorRate), 0, 10);
+        sm.AVRadiationAccumulator = Math.Clamp(sm.AVRadiationAccumulator + (damageExternal * sm.RadiationAccumulatorRate), 0, 10);
+        sm.AVLightingAccumulator = Math.Clamp(sm.AVLightingAccumulator + (damageExternal * sm.LightingAccumulatorRate), 0, 10);
+        sm.InternalEnergy = Math.Clamp(sm.InternalEnergy + (damageExternal * sm.InternalEnergyAccumulatorRate), 0, 10);
 
         if (sm.AVLightingAccumulator > sm.LightingAccumulatorThreshold)
         {
