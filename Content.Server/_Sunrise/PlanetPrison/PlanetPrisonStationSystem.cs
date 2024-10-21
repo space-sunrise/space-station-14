@@ -71,6 +71,10 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
             return;
         }
 
+        var enable = _cfg.GetCVar(SunriseCCVars.MinPlayersEnable);
+        if (!enable)
+            return;
+
         var minPlayers = _cfg.GetCVar(SunriseCCVars.MinPlayersPlanetPrison);
         if (_player.PlayerCount <= minPlayers)
         {
