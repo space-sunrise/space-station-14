@@ -84,8 +84,8 @@
           name: ERT Call Console
           desc: A console that can be used to call an ERT.
           state: InProgress
-        USSP:
-          id: USSP
+        ussp:
+          id: ussp
           name: USSP Station
           desc: A separate station of the USSP with its own shift tasks.
           state: InProgress
@@ -211,6 +211,7 @@
       name: 2026
       goals:
         ratvar:
+          id: ratvar
           name: Ratvar Cult
           desc: A cult worshipping a mechanical god.
           state: Planned

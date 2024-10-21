@@ -55,8 +55,8 @@ namespace Content.Client._Sunrise.Roadmap
                 {
                     var roadmapItem = new RoadmapItem()
                     {
-                        HeaderText = Loc.TryGetString($"{goal.Value.ID}-name", out var name) ? name : goal.Value.Name,
-                        Text = Loc.TryGetString($"{goal.Value.ID}-desc", out var desc) ? desc : goal.Value.Desc,
+                        HeaderText = Loc.TryGetString($"{goal.Value.Id}-name", out var name) ? name : goal.Value.Name,
+                        Text = Loc.TryGetString($"{goal.Value.Id}-desc", out var desc) ? desc : goal.Value.Desc,
                         ItemState = goal.Value.State,
                     };
 

@@ -30,7 +30,7 @@ public sealed partial class RoadmapGroup
 public sealed partial class RoadmapGoal
 {
     [DataField]
-    public string ID { get; set; } = string.Empty; //Хуйня нужная для локализации, не трогать
+    public string Id { get; set; } = string.Empty; //Хуйня нужная для локализации, не трогать
     
     [DataField]
     public string Name { get; set; } = string.Empty;
