@@ -1,3 +1,3 @@
-ent-LockerHeadOfPrisonFilled = head of prison's locker
-    .suffix = Filled
+ent-LockerHeadOfPrisonFilled = шкафчик начальника тюрьмы
+    .suffix = Заполнен
     .desc = { ent-LockerHeadOfSecurity.desc }

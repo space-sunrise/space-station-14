@@ -1,8 +1,8 @@
-ent-CentCommShuttleConsoleCircuitboard = CCR shuttle computer board
-    .desc = A computer printed circuit board for a CCR shuttle computer.
-ent-PrisonShuttleConsoleCircuitboard = prison shuttle computer board
-    .desc = A computer printed circuit board for a prison shuttle computer.
-ent-PrisonCommsComputerCircuitboard = prison communications computer board
-    .desc = A computer printed circuit board for a prison communications console.
-ent-SecurityShuttleConsoleCircuitboard = security shuttle computer board
-    .desc = A computer printed circuit board for a security shuttle computer.
+ent-CentCommShuttleConsoleCircuitboard = консоль шаттла ПЦК (консольная плата)
+    .desc = Плата которая используется для создания консоли шаттла ПЦК.
+ent-PrisonShuttleConsoleCircuitboard = консоль тюремного шаттла (консольная плата)
+    .desc = Плата которая используется для создания консоли тюремного шаттла.
+ent-PrisonCommsComputerCircuitboard = консоль связи тюрьмы (консольная плата)
+    .desc = Плата которая используется для создания консоли связи тюрьмы.
+ent-SecurityShuttleConsoleCircuitboard = консоль шаттла службы безопастности (консольная плата)
+    .desc = Плата которая используется для создания консоли шаттла службы безопастности.
