@@ -33,7 +33,7 @@
   - type: RCDDeconstructable
     deconstructable: false
   - type: Sprite 
-    sprite: _Starlight/Structures/Reflector/reflector.rsi
+    sprite: _Sunrise/Structures/Reflector/reflector.rsi
     layers:
     - state: reflector_box
       shader: unshaded
