@@ -1,0 +1,13 @@
+material-computer-circuit-board-name = любую консольную плату
+step-air-alarm-electronics-name = микросхему воздушной сигнализации
+step-fire-alarm-electronics = микросхему пожарной сигнализации
+step-apc-electronics-name = микросхему ЛКП
+step-firelock-electronics-name = микросхема пожарного шлюза
+step-door-electronics-circuit-board-name = микросхему шлюза
+step-multitool-name = мультитул
+step-capacitor-name = конденсатор
+step-powercell-name = любую батарею
+step-powercell-small-name = маленькую батарею
+step-signal-trigger-name = сигнальный триггер
+step-conveyor-assembly-name = разобранную конвейерную ленту
+step-voice-trigger = голосовой триггер

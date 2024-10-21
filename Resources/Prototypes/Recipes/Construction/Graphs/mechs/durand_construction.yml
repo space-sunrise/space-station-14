@@ -98,7 +98,7 @@
           data: 11
 
       - component: PowerCell
-        name: power cell
+        name: step-powercell-name
         store: battery-container
         icon:
           sprite: Objects/Power/power_cells.rsi

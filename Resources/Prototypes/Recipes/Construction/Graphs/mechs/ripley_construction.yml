@@ -71,7 +71,7 @@
 #currently mechs don't support upgrading. add them back in once that's squared away.
 
       - component: PowerCell
-        name: power cell
+        name: step-powercell-name
         store: battery-container
         icon:
           sprite: Objects/Power/power_cells.rsi
