@@ -1,2 +1,2 @@
-﻿ent-HandTeleporterAA = { ent-HandTeleporter }
+ent-HandTeleporterAA = { ent-HandTeleporter }
     .desc = { ent-HandTeleporter.desc }

@@ -1,2 +1,2 @@
-ent-MobDisease = разумная болезнь
+ent-MobDisease = sensible disease
     .desc = plague inc 2.0

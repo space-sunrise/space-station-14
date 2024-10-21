@@ -52,7 +52,7 @@ uplink-reinforcement-radio-syndicate-cyborg-heavy-desc = Отправляет в
 uplink-reinforcement-radio-syndicate-cyborg-spider-name = Телепорт подкрепления диверсионного боевого борга синдиката
 uplink-reinforcement-radio-syndicate-cyborg-spider-desc = Отправляет вам в поддержку борга синдиката.
 uplink-reinforcement-radio-syndicate-cyborg-medical-name = Телепорт подкрепления медицинского борга синдиката
-uplink-reinforcement-radio-syndicate-cyborg-medical-desc  = Отправляет вам в поддержку борга синдиката.
+uplink-reinforcement-radio-syndicate-cyborg-medical-desc = Отправляет вам в поддержку борга синдиката.
 uplink-reinforcement-radio-syndicate-cyborg-reaper-name = Телепорт подкрепления борга синдиката "Жнец"
 uplink-reinforcement-radio-syndicate-cyborg-reaper-desc = Отправляет вам в поддержку борга синдиката.
 

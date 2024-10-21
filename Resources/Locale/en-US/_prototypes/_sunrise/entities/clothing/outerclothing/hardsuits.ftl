@@ -1,12 +1,12 @@
 ent-ClothingOuterHardsuitCBURNLeader = CBURN commander exosuit
     .desc = A lightweight yet strong exosuit used for special cleanup operations.
-ent-ClothingOuterHardsuitBlueshield = скафандр офицера «синий щит»
-    .desc = Крепкий и надёжныый, как и его владелец.
+ent-ClothingOuterHardsuitBlueshield = blueshield's hardsuit
+    .desc = Tough and reliable, just like its owner.
 ent-ClothingOuterHardsuitSecuritySunrise = { ent-ClothingOuterHardsuitSecurity }
     .suffix = SUNRISE
     .desc = { ent-ClothingOuterHardsuitSecurity.desc }
-ent-ClothingOuterHardsuitPilot = Скафандр пилота Службы Безопасности
-    .desc = Облегченная версия скафандра Службы безопасности, обеспечивает хорошую подвижность, но меньшую защиту.
+ent-ClothingOuterHardsuitPilot = security pilot's hardsuit
+    .desc = A lightweight version of the Security Service spacesuit, it provides good mobility but less protection.
 ent-ClothingOuterHardsuitBrigmedicSunrise = brigmedic hardsuit
     .desc = Special hardsuit of the guardian angel of the brig. It is the medical version of the security hardsuit.
     .suffix = Sunrise

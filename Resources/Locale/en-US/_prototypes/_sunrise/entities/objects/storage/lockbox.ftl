@@ -1,4 +1,4 @@
-ent-Lockbox = Защищенный чемодан
-    .desc = Высокозащищенный чемодан предназначеный для хранения важных документов и предметов.
-ent-LockboxCaptain = Защищенный чемодан
-    .desc = Высокозащищенный чемодан предназначеный для хранения важных документов и предметов.
+ent-Lockbox = Protected suitcase
+    .desc = Highly protective suitcase designed for storing important documents and items.
+ent-LockboxCaptain = { ent-Lockbox }
+    .desc = { ent-Lockbox.desc }
