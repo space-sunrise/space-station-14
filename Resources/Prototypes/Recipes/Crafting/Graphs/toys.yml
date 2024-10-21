@@ -7,12 +7,12 @@
         - to: plushie
           steps:
             - tag: PlushieGhost
-              name: ghost soft toy
+              name: step-ghost-soft-toy-name
               icon:
                 sprite: Mobs/Ghosts/ghost_human.rsi
                 state: icon
             - tag: Ectoplasm
-              name: ectoplasm
+              name: step-ectoplasm-name
               icon:
                 sprite: Mobs/Ghosts/revenant.rsi
                 state: ectoplasm
@@ -29,7 +29,7 @@
     - to: suit
       steps:
       - tag: HideCorgi
-        name: corgi hide
+        name: step-corgi-hide-name
         icon:
           sprite: Objects/Materials/materials.rsi
           state: corgihide

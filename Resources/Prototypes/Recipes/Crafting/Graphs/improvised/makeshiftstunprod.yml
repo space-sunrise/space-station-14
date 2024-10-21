@@ -18,9 +18,9 @@
                 sprite: Objects/Misc/cablecuffs.rsi
                 state: cuff
                 color: red
-              name: cuffs
+              name: step-cuffs-name
             - tag: Igniter
-              name: igniter
+              name: step-igniter-name
               icon:
                 sprite: Objects/Devices/igniter.rsi
                 state: icon

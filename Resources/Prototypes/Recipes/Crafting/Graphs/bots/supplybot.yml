@@ -15,7 +15,7 @@
         icon:
           sprite: Objects/Specific/Robotics/cyborg_parts.rsi
           state: borg_head
-        name: borg head
+        name: step-borg-head-name
         doAfter: 1
       - material: Steel
         amount: 10
