@@ -7,19 +7,19 @@
         - to: jumpsuit
           steps:
             - tag: BananaPeel
-              name: a banana peel
+              name: step-banana-peel-name
               icon:
                 sprite: Objects/Specific/Hydroponics/banana.rsi
                 state: peel
               doAfter: 1
             - tag: BananaPeel
-              name: a banana peel
+              name: step-banana-peel-name
               icon:
                 sprite: Objects/Specific/Hydroponics/banana.rsi
                 state: peel
               doAfter: 1
             - tag: BananaPeel
-              name: a banana peel
+              name: step-banana-peel-name
               icon:
                 sprite: Objects/Specific/Hydroponics/banana.rsi
                 state: peel
@@ -45,19 +45,19 @@
         - to: shoes
           steps:
             - tag: BananaPeel
-              name: a banana peel
+              name: step-banana-peel-name
               icon:
                 sprite: Objects/Specific/Hydroponics/banana.rsi
                 state: peel
               doAfter: 1
             - tag: BananaPeel
-              name: a banana peel
+              name: step-banana-peel-name
               icon:
                 sprite: Objects/Specific/Hydroponics/banana.rsi
                 state: peel
               doAfter: 1
             - tag: BananaPeel
-              name: a banana peel
+              name: step-banana-peel-name
               icon:
                 sprite: Objects/Specific/Hydroponics/banana.rsi
                 state: peel
@@ -83,19 +83,19 @@
         - to: mask
           steps:
             - tag: BananaPeel
-              name: a banana peel
+              name: step-banana-peel-name
               icon:
                 sprite: Objects/Specific/Hydroponics/banana.rsi
                 state: peel
               doAfter: 1
             - tag: BananaPeel
-              name: a banana peel
+              name: step-banana-peel-name
               icon:
                 sprite: Objects/Specific/Hydroponics/banana.rsi
                 state: peel
               doAfter: 1
             - tag: BananaPeel
-              name: a banana peel
+              name: step-banana-peel-name
               icon:
                 sprite: Objects/Specific/Hydroponics/banana.rsi
                 state: peel
