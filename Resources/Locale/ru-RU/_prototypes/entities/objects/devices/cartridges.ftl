@@ -10,5 +10,7 @@ ent-LogProbeCartridge = картридж Зонд логов
     .desc = Программа для получения логов доступа с устройств
 ent-WantedListCartridge = картридж списка разыскиваемых
     .desc = Программа для получения списка разыскиваемых лиц.
+ent-MedTekCartridge = MedTek cartridge
+    .desc = A program that provides medical diagnostic tools.
 ent-AstroNavCartridge = Картридж АстроНав
     .desc = Программа для навигации, предоставляющая GPS-координаты.
