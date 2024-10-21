@@ -8,5 +8,5 @@ ent-ClothingNeckLawyerbadge = значок адвоката
     .desc = Значок, свидетельствующий что владелец является "законным" юристом, сдавшим экзамен Nanotrasen, необходимый для занятия юридической практикой.
 ent-ActionStethoscope = Прослушать стетоскопом
     .desc = { "" }
-ent-Dinkystar = star sticker
-    .desc = A dinky lil star for only the hardest working security officers! It's not even sticky anymore.
+ent-Dinkystar = звёздная наклейка
+    .desc = Маленькая звёздочка для самых трудолюбивых сотрудников службы безопасности! Она уже не липкая.

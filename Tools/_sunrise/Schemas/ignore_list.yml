@@ -133,6 +133,7 @@ ignore_list:
   - 'Plague inc 2.0'
   - 'Discord'
   - 'Telegram'
+  - 'AMLG-90'
 
 ignore_files:
   - italian.ftl
