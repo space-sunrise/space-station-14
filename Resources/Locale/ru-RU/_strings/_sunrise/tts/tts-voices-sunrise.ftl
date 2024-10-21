@@ -48,3 +48,4 @@ tts-voice-name-pathologic2-anglaya-lilich = (NEW) [Pathologic 2] Англая Л
 tts-voice-name-pathologic2-alexander-saburov = (NEW) [Pathologic 2] Александр Сабуров
 tts-voice-name-pathologic2-inkvizitor = (NEW) [Pathologic 2] Инквизитор
 tts-voice-name-pathologic2-alexander-blok = (NEW) [Pathologic 2] Александр Блок
+tts-voice-name-pathologic2-mark-bessmertnik = (NEW) [Pathologic 2] Марк Бессмертник

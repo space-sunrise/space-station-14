@@ -365,6 +365,7 @@
   speaker: pathologic2_georgiy_kain
   provider: sunrise
   roundStart: true
+  sponsorOnly: true
 
 - type: ttsVoice
   id: Pathologic2ArtemiyBurach
@@ -373,6 +374,7 @@
   speaker: pathologic2_artemiy_burach
   provider: sunrise
   roundStart: true
+  sponsorOnly: true
 
 - type: ttsVoice
   id: Pathologic2Grif
@@ -381,6 +383,7 @@
   speaker: pathologic2_grif
   provider: sunrise
   roundStart: true
+  sponsorOnly: true
 
 - type: ttsVoice
   id: Pathologic2AnglayaLilich
@@ -389,6 +392,7 @@
   speaker: pathologic2_anglaya_lilich_tired
   provider: sunrise
   roundStart: true
+  sponsorOnly: true
 
 - type: ttsVoice
   id: Pathologic2AlexanderSaburov
@@ -397,6 +401,7 @@
   speaker: pathologic2_alexander_saburov
   provider: sunrise
   roundStart: true
+  sponsorOnly: true
 
 - type: ttsVoice
   id: Pathologic2Inkvizitor
@@ -405,6 +410,7 @@
   speaker: pathologic2_inkvizitor
   provider: sunrise
   roundStart: true
+  sponsorOnly: true
 
 - type: ttsVoice
   id: Pathologic2AlexanderBlok
@@ -413,3 +419,13 @@
   speaker: pathologic2_alexander_blok
   provider: sunrise
   roundStart: true
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Pathologic2MarkBessmertnik
+  name: tts-voice-name-pathologic2-mark-bessmertnik
+  sex: Male
+  speaker: pathologic2_mark_bessmertnik
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: true
