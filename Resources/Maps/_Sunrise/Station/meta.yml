@@ -118806,18 +118806,6 @@ entities:
     - type: Transform
       pos: 10.558252,-14.387053
       parent: 5350
-- proto: Intellicard
-  entities:
-  - uid: 26880
-    components:
-    - type: Transform
-      pos: -7.5668554,15.683428
-      parent: 5350
-  - uid: 26881
-    components:
-    - type: Transform
-      pos: -7.4262304,15.605303
-      parent: 5350
 - proto: IntercomAll
   entities:
   - uid: 3128
@@ -122874,6 +122862,51 @@ entities:
     - type: Transform
       pos: -26.28364,-10.470074
       parent: 5350
+  - uid: 26881
+    components:
+    - type: Transform
+      pos: -7.323101,15.538839
+      parent: 5350
+    - type: Paper
+      stampState: paper_stamp-centcom
+      stampedBy:
+      - stampedColor: '#006600FF'
+        stampedName: stamp-component-stamped-name-centcom
+      content: >
+        [color=#006400]███░███░░░░██░░░░[/color]
+
+        [color=#006400]░██░████░░░██░░░░[/color] [head=3]Бланк документа[/head]
+
+        [color=#006400]░░█░██░██░░██░█░░[/color] [head=3]NanoTrasen[/head]
+
+        [color=#006400]░░░░██░░██░██░██░[/color] [bold]Meta Station ЦК - ИИ[/bold]
+
+        [color=#006400]░░░░██░░░████░███[/color]
+
+        =============================================
+                          [head=3]ПРИКАЗ ЦК[/head]
+        =============================================
+
+        [bold]Дата и время от начала смены:[/bold]
+          28.08.3024, 00:00
+        [bold]Составитель документа:[/bold]
+
+        [color=Red] Джеймс Малкович[/color]
+
+        [bold]Должность составителя:[/bold]
+
+        [color=Red] Оператор ЦК[/color]
+
+
+        Уважаемый текущий установленый Искуственный Интеллект станции, в соответствии с действующим регламентом уведомляем вас об отправке вам следующего приказа:
+         Вы обязаны соблюдать свои законы.
+        Сообщаем вам, что вы должны выполнять действующий приказ беспрекословно.
+         В случае нарушения, к вам будут применены Административные Санкции Корпорации, вплоть до удаления из НаноТрейзен.
+        За вами остаётся право запросить уточнение по действующему приказу.
+
+
+        =============================================
+                                    [italic]Место для печатей[/italic]
 - proto: PaperBin10
   entities:
   - uid: 23164
@@ -148436,6 +148469,13 @@ entities:
     - type: Transform
       pos: 21.475891,-16.453907
       parent: 5350
+- proto: ToolboxElectrical
+  entities:
+  - uid: 8405
+    components:
+    - type: Transform
+      pos: -13.545377,15.703165
+      parent: 5350
 - proto: ToolboxElectricalFilled
   entities:
   - uid: 1520
@@ -148572,6 +148612,11 @@ entities:
     components:
     - type: Transform
       pos: 1.5618443,-16.342892
+      parent: 5350
+  - uid: 26880
+    components:
+    - type: Transform
+      pos: -7.615568,15.778646
       parent: 5350
 - proto: ToyAmongPequeno
   entities:
