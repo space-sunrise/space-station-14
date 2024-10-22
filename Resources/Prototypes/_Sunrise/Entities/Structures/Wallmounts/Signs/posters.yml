@@ -1,0 +1,19 @@
+- type: entity
+  parent: PosterBase
+  id: PosterContrabandAriralInSpace
+  name: "Арирал в космосе"
+  description: "Это явно послание.. Что-то я забыл.."
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Wallmounts/posters.rsi
+    state: sunriseposter1_legit
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitAIOverseer
+  name: "ИИ видит"
+  description: "Автоматизировать можно всё, даже Службу Безопасности."
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Wallmounts/posters.rsi
+    state: sunriseposter2_legit
