@@ -1,2 +1,2 @@
-voice-mask-voice-change-info = Выберите голос, который вы хотите подражать.
-voice-mask-voice-popup-success = Голос успешно изменён.
+voice-mask-voice-change-info = Choose the voice you want to imitate.
+voice-mask-voice-popup-success = Voice successfully changed
