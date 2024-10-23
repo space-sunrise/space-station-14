@@ -1,3 +1,3 @@
-server-info-donate-button = Донат
-server-info-roadmap-button = Планы
-server-info-servers-hub-button = Другие сервера
+server-info-donate-button = Donate
+server-info-roadmap-button = Roadmap
+server-info-servers-hub-button = Another servers
