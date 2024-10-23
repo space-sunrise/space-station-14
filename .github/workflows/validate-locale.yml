@@ -6,6 +6,7 @@ on:
   pull_request:
     paths:
       - '**.yml'
+      - '**.ftl'
 
 jobs:
   validate_ymls:
