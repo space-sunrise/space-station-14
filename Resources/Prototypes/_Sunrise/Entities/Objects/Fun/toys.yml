@@ -698,3 +698,13 @@
   - type: Sprite
     state: plushie-lu
     sprite: _Sunrise/Objects/Fun/toys.rsi
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieAgata
+  name: Плюшеывый агент Агата Кацухиро
+  description: Эта плюшка была сделана на планетарной тюрьме, осуждёнными агентами Синдиката. Носи её с гордостью, корпорат
+  components:
+  - type: Sprite
+    state: plushie-agata
+    sprite: _Sunrise/Objects/Fun/toys.rsi
