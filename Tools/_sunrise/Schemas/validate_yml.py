@@ -37,6 +37,7 @@ def contains_ignored_word(text, ignore_list):
 
 def check_translations(root_dir, ignore_list, ignore_files):
     ru_locale_dir = f'{root_dir}ru-RU/'
+    en_locale_dir = f'{root_dir}en-US/'
     root_dir_abs = os.path.abspath(ru_locale_dir)
 
     for dirpath, _, filenames in os.walk(ru_locale_dir):
@@ -64,6 +65,32 @@ def check_translations(root_dir, ignore_list, ignore_files):
                                         add_error(rel_path, line_num, f'Не переведённая строка "{key}": {line.strip()}')
                                 elif is_english(value):
                                     add_error(rel_path, line_num, f'Не переведённая строка "{key}": {line.strip()}')
+                                    
+    for dirpath, _, filenames in os.walk(en_locale_dir):
+        for filename in filenames:
+            if filename.endswith('.ftl'):
+                file_path = os.path.join(dirpath, filename)
+                rel_path = os.path.relpath(file_path, root_dir_abs)
+
+                if filename in ignore_files:
+                    #print(f'Игнорирование файла: {filename}') Не нужно, если много файлов игнорирует
+                    continue
+
+                with open(file_path, 'r', encoding='utf-8') as ftl_file:
+                    lines = ftl_file.readlines()
+                    for line_num, line in enumerate(lines, start=1):
+                        if '=' in line and not line.strip().startswith('#'):
+                            key, value = line.split('=', 1)
+                            key = key.strip()
+                            value = value.strip()
+                            value = remove_braces_content(value)
+
+                            if not is_english(value) and not contains_ignored_word(value, ignore_list):
+                                if key.endswith('.desc') or key.endswith('.suffix'):
+                                    if has_russian(value):
+                                        add_error(rel_path, line_num, f'Русская строка "{key}": {line.strip()}')
+                                elif has_russian(value):
+                                    add_error(rel_path, line_num, f'Русская строка "{key}": {line.strip()}')
 
 def check_yml_files(dir: str, ignore_list: List[str]):
     key_pattern = re.compile(r'^(name|description|suffix|rules|desc):\s*(.+)')
