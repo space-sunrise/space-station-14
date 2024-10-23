@@ -249,11 +249,11 @@ uplink-sunrise-clothing-head-hat-hardhat-yellow-name = Желтая рабоча
 
 ## Friends
 
-uplink-sunrise-mob-hamster-name = Хомяк
-uplink-sunrise-mob-honk-bot-name = Хонкбот
-uplink-sunrise-mob-cat-space-name = Космическая кошка
-uplink-sunrise-mob-cockroach-name = Таракан
-uplink-sunrise-mob-mothroach-name = Таракан
-uplink-sunrise-player-borg-generic-name = Борг
-uplink-sunrise-boombox-name = Бумбокс
-uplink-sunrise-tape-player-name = Магнитофон
+uplink-sunrise-mob-hamster-name = Hamster
+uplink-sunrise-mob-honk-bot-name = Honkbot
+uplink-sunrise-mob-cat-space-name = Space cat
+uplink-sunrise-mob-cockroach-name = Cockroach
+uplink-sunrise-mob-mothroach-name = Mothroach
+uplink-sunrise-player-borg-generic-name = Borg
+uplink-sunrise-boombox-name = Boombox
+uplink-sunrise-tape-player-name = Tape player
