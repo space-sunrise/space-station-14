@@ -1,2 +1,2 @@
-revenant-lock-name = Перегрузка шлюзов
-revenant-lock-desc = Перегружает находящиеся поблизости шлюзы, заставляя их переключиться в режим болтирования. При его использовании вы становитесь уязвимы к атакам на длительное время.
+revenant-lock-name = Airlocks overload
+revenant-lock-desc = Overloads nearby airlocks, forcing them into bolting mode. When you use it, you become vulnerable to attacks for a long time.
