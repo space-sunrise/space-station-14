@@ -4375,18 +4375,6 @@ entities:
     - type: Transform
       pos: 22.5,-11.5
       parent: 1
-- proto: CockroachTimedSpawner
-  entities:
-  - uid: 1341
-    components:
-    - type: Transform
-      pos: -0.5,-0.5
-      parent: 1
-  - uid: 1344
-    components:
-    - type: Transform
-      pos: -13.5,-9.5
-      parent: 1
 - proto: ComputerCloningConsole
   entities:
   - uid: 982
@@ -7301,18 +7289,6 @@ entities:
     components:
     - type: Transform
       pos: 18.5,-19.5
-      parent: 1
-- proto: MouseTimedSpawner
-  entities:
-  - uid: 1357
-    components:
-    - type: Transform
-      pos: 16.5,-2.5
-      parent: 1
-  - uid: 1358
-    components:
-    - type: Transform
-      pos: 20.5,-21.5
       parent: 1
 - proto: NitrogenCanister
   entities:
