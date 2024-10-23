@@ -1,2 +1,2 @@
-player-tab-sponsor-count = Спонсоров: { $count }
-player-tab-antag-count = Антагонистов: { $count }
+player-tab-sponsor-count = Sponsors: { $count }
+player-tab-antag-count = Antagonists: { $count }
