@@ -1,5 +1,5 @@
 - type: gameMap
-  id: Cog
+  id: SunriseCog
   mapName: 'Cog'
   mapPath: /Maps/_Sunrise/Station/cog.yml
   minPlayers: 40

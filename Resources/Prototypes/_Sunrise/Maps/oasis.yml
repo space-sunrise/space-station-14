@@ -1,5 +1,5 @@
 - type: gameMap
-  id: Oasis
+  id: SunriseOasis
   mapName: 'Oasis'
   mapPath: /Maps/_Sunrise/Station/oasis.yml
   minPlayers: 70
