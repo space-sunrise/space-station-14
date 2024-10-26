@@ -475,6 +475,9 @@ public abstract class SharedMechSystem : EntitySystem
 
         _appearance.SetData(uid, MechVisuals.Open, IsEmpty(component), appearance);
         _appearance.SetData(uid, MechVisuals.Broken, component.Broken, appearance);
+        
+        var ev = new UpdateAppearanceEvent();
+        RaiseLocalEvent(uid, ev);
     }
 
     private void OnDragDrop(EntityUid uid, MechComponent component, ref DragDropTargetEvent args)
@@ -532,5 +535,10 @@ public sealed partial class MechExitEvent : SimpleDoAfterEvent
 /// </summary>
 [Serializable, NetSerializable]
 public sealed partial class MechEntryEvent : SimpleDoAfterEvent
+{
+}
+
+[Serializable, NetSerializable]
+public sealed partial class UpdateAppearanceEvent : EntityEventArgs
 {
 }

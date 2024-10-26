@@ -18,6 +18,7 @@ public sealed class MechSystem : SharedMechSystem
         base.Initialize();
 
         SubscribeLocalEvent<MechComponent, AppearanceChangeEvent>(OnAppearanceChanged);
+        SubscribeLocalEvent<MechComponent, UpdateAppearanceEvent>(OnUpdateAppearanceEvent);
     }
 
     private void OnAppearanceChanged(EntityUid uid, MechComponent component, ref AppearanceChangeEvent args)
@@ -26,6 +27,14 @@ public sealed class MechSystem : SharedMechSystem
             return;
 
         UpdateAppearance(uid, component, args.Sprite);
+    }
+    
+    private void OnUpdateAppearanceEvent(EntityUid uid, MechComponent component, ref UpdateAppearanceEvent args)
+    {
+        if (!TryComp<SpriteComponent>(uid, out var sprite))
+            return;
+        
+        UpdateAppearance(uid, component, sprite);
     }
 
     private void UpdateAppearance(EntityUid uid, MechComponent component, SpriteComponent sprite)
