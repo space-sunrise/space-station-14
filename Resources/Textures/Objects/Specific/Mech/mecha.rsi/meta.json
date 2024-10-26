@@ -280,41 +280,6 @@
       "name": "deathripley-broken"
     },
     {
-      "name": "darkgygax",
-      "directions": 4
-    },
-    {
-      "name": "darkgygax-open",
-      "delays": [
-        [
-          0.1,
-          0.05,
-          0.05,
-          0.05,
-          0.1,
-          0.05,
-          0.05,
-          0.05,
-          0.1
-        ]
-      ]
-    },
-    {
-      "name": "darkgygax-broken",
-      "delays": [
-        [
-          0.3,
-          0.5,
-          0.3,
-          0.5,
-          0.3,
-          0.4,
-          0.5,
-          0.3
-        ]
-      ]
-    },
-    {
       "name": "rover",
       "directions": 4
     },
@@ -367,76 +332,6 @@
           1,
           0.5,
           1
-        ]
-      ]
-    },
-    {
-      "name": "gygax",
-      "directions": 4
-    },
-    {
-      "name": "gygax-open",
-      "delays": [
-        [
-          0.1,
-          0.05,
-          0.05,
-          0.05,
-          0.1,
-          0.05,
-          0.05,
-          0.05,
-          0.1
-        ]
-      ]
-    },
-    {
-      "name": "gygax-broken",
-      "delays": [
-        [
-          5,
-          0.05,
-          0.05,
-          0.05,
-          0.1,
-          0.1,
-          0.5,
-          0.1
-        ]
-      ]
-    },
-    {
-      "name": "ntgygax",
-      "directions": 4
-    },
-    {
-      "name": "ntgygax-open",
-      "delays": [
-        [
-          0.1,
-          0.05,
-          0.05,
-          0.05,
-          0.1,
-          0.05,
-          0.05,
-          0.05,
-          0.1
-        ]
-      ]
-    },
-    {
-      "name": "ntgygax-broken",
-      "delays": [
-        [
-          5,
-          0.05,
-          0.05,
-          0.05,
-          0.1,
-          0.1,
-          0.5,
-          0.1
         ]
       ]
     },

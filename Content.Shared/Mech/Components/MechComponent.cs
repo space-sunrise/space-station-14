@@ -3,6 +3,7 @@ using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
+using Robust.Shared.Serialization;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Mech.Components;
@@ -178,11 +179,11 @@ public sealed partial class MechComponent : Component
     #endregion
 
     #region Visualizer States
-    [DataField]
+    [DataField, AutoNetworkedField]
     public string? BaseState;
-    [DataField]
+    [DataField, AutoNetworkedField]
     public string? OpenState;
-    [DataField]
+    [DataField, AutoNetworkedField]
     public string? BrokenState;
     #endregion
 

@@ -1,0 +1,103 @@
+# Base Paints
+- type: entity
+  parent: BaseItem
+  id: MechPaintBase
+  name: mech spray paint
+  description: A tin of mech spray paint.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: Objects/Fun/spraycans.rsi
+    state: clown_cap
+    layers:
+      - state: clown_cap
+        map: ["enum.OpenableVisuals.Layer"]
+  - type: MechPaint
+    used: false
+    whitelist:
+      tags:
+        - Gygax
+    baseState: gygax
+    openState: gygax-open
+    brokenState: gygax-broken
+  - type: Item
+    sprite: Objects/Fun/spraycans.rsi
+    heldPrefix: spray
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: SpaceGlue
+          Quantity: 50
+  - type: TrashOnSolutionEmpty
+    solution: drink
+  - type: Sealable
+  - type: Openable
+    sound:
+      path: /Audio/Effects/pop_high.ogg
+    closeable: true
+    closeSound:
+      path: /Audio/Effects/pop_high.ogg
+
+# Paints
+
+# Gygax-Molot
+- type: entity
+  parent: MechPaintBase
+  suffix: DEBUG
+  id: MechPaintGygaxMolot
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/spraycans.rsi
+    layers:
+      - state: spray
+        map: ["Base"]
+      - state: spray_cap_colors
+        map: ["enum.OpenableVisuals.Layer"]
+        color: "#879900"
+  - type: MechPaint
+    used: false
+    whitelist:
+      tags:
+        - Gygax
+    baseState: molot
+    openState: molot-open
+    brokenState: molot-broken
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "spray_colors" , color: "#879900"}
+          False: {state: "spray_cap_colors" , color: "#879900"}
+          
+#Gygax-Old
+
+- type: entity
+  parent: MechPaintBase
+  suffix: DEBUG
+  id: MechPaintGygaxOld
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/spraycans.rsi
+    layers:
+      - state: spray
+        map: ["Base"]
+      - state: spray_cap_colors
+        map: ["enum.OpenableVisuals.Layer"]
+        color: "#ed5f3b"
+  - type: MechPaint
+    used: false
+    whitelist:
+      tags:
+        - Gygax
+    baseState: gygax_alt
+    openState: gygax_alt-open
+    brokenState: gygax_alt-broken
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "spray_colors" , color: "#ed5f3b"}
+          False: {state: "spray_cap_colors" , color: "#ed5f3b"}

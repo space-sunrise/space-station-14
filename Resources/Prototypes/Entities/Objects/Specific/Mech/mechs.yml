@@ -221,6 +221,11 @@
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - Ripley
   - type: MobThresholds
     currentThresholdState : Alive
     thresholds:
@@ -358,6 +363,11 @@
     autoRot: true
     radius: 8
     netsync: false
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - Clarke
 
 - type: entity
   id: MechClarkeBattery
@@ -587,7 +597,7 @@
   - type: Sprite
     drawdepth: Mobs
     noRot: true
-    sprite: Objects/Specific/Mech/mecha.rsi
+    sprite: Objects/Specific/Mech/gygax.rsi
     scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
@@ -627,6 +637,11 @@
       300: Critical
     showOverlays: false
     allowRevives: true
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - Gygax
 
 - type: entity
   id: MechGygaxBattery
@@ -695,6 +710,11 @@
       450: Critical
     showOverlays: false
     allowRevives: true
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - Durand
 
 - type: entity
   id: MechDurandBattery
@@ -759,6 +779,11 @@
       200: Critical
     showOverlays: false
     allowRevives: true
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - Phazon
 
 - type: entity
   id: MechPhazonBattery
@@ -782,7 +807,7 @@
   - type: Sprite
     drawdepth: Mobs
     noRot: true
-    sprite: Objects/Specific/Mech/mecha.rsi
+    sprite: Objects/Specific/Mech/gygax.rsi
     scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
@@ -1023,7 +1048,7 @@
   - type: Sprite
     drawdepth: Mobs
     noRot: true
-    sprite: Objects/Specific/Mech/mecha.rsi
+    sprite: Objects/Specific/Mech/gygax.rsi
     scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]

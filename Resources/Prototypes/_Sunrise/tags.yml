@@ -144,3 +144,20 @@
 
 - type: Tag
   id: MagazineDl6902
+
+# Mechs
+
+- type: Tag
+  id: Ripley
+  
+- type: Tag
+  id: Clarke
+
+- type: Tag
+  id: Gygax
+  
+- type: Tag
+  id: Durand
+  
+- type: Tag
+  id: Phazon
