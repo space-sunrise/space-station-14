@@ -194,6 +194,22 @@
         },
         {
             "name": "plushie-agata"
+        },
+        {
+            "name": "plushie-milos-tan"
+        },
+        {
+            "name": "syndie-visor",
+            "delays": [
+                [
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3
+                ]
+            ]
         }
     ]
 }

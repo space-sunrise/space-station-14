@@ -708,3 +708,16 @@
   - type: Sprite
     state: plushie-agata
     sprite: _Sunrise/Objects/Fun/toys.rsi
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieMilosTanka
+  name: Плюшевый Милос-Танака
+  description: Унати в форме Центрального Командования, что он может в себе скрывать кроме двух ножей и револьвера?
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    layers:
+    - state: plushie-milos-tan
+    - state: syndie-visor
+      shader: unshaded
