@@ -46,7 +46,7 @@
 # Gygax-Molot
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG
+  suffix: DEBUG, Gygax, Molot
   id: MechPaintGygaxMolot
   components:
   - type: Sprite
@@ -76,7 +76,7 @@
 
 - type: entity
   parent: MechPaintBase
-  suffix: DEBUG
+  suffix: DEBUG, Gygax, Old
   id: MechPaintGygaxOld
   components:
   - type: Sprite
@@ -101,3 +101,123 @@
         enum.OpenableVisuals.Layer:
           True: {state: "spray_colors" , color: "#ed5f3b"}
           False: {state: "spray_cap_colors" , color: "#ed5f3b"}
+          
+#Durand-Unathi
+
+- type: entity
+  parent: MechPaintBase
+  suffix: DEBUG, Durand, Unathi
+  id: MechPaintDurandUnathi
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/spraycans.rsi
+    layers:
+      - state: spray
+        map: ["Base"]
+      - state: spray_cap_colors
+        map: ["enum.OpenableVisuals.Layer"]
+        color: "#47511c"
+  - type: MechPaint
+    used: false
+    whitelist:
+      tags:
+        - Durand
+    baseState: unathi
+    openState: unathi-open
+    brokenState: unathi-broken
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "spray_colors" , color: "#47511c"}
+          False: {state: "spray_cap_colors" , color: "#47511c"}
+          
+#Durand-Shire
+
+- type: entity
+  parent: MechPaintBase
+  suffix: DEBUG, Durand , Shire
+  id: MechPaintDurandShire
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/spraycans.rsi
+    layers:
+      - state: spray
+        map: ["Base"]
+      - state: spray_cap_colors
+        map: ["enum.OpenableVisuals.Layer"]
+        color: "#384134"
+  - type: MechPaint
+    used: false
+    whitelist:
+      tags:
+        - Durand
+    baseState: shire
+    openState: shire-open
+    brokenState: shire-broken
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "spray_colors" , color: "#384134"}
+          False: {state: "spray_cap_colors" , color: "#384134"}
+          
+#Durand-Dollhouse
+
+- type: entity
+  parent: MechPaintBase
+  suffix: DEBUG, Durand , Dollhouse
+  id: MechPaintDurandDollhouse
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/spraycans.rsi
+    layers:
+      - state: spray
+        map: ["Base"]
+      - state: spray_cap_colors
+        map: ["enum.OpenableVisuals.Layer"]
+        color: "#b8b898"
+  - type: MechPaint
+    used: false
+    whitelist:
+      tags:
+        - Durand
+    baseState: dollhouse
+    openState: dollhouse-open
+    brokenState: dollhouse-broken
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "spray_colors" , color: "#b8b898"}
+          False: {state: "spray_cap_colors" , color: "#b8b898"}
+          
+#Durand-Executor
+
+- type: entity
+  parent: MechPaintBase
+  suffix: DEBUG, Durand , Executor
+  id: MechPaintDurandDollhouse
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/spraycans.rsi
+    layers:
+      - state: spray
+        map: ["Base"]
+      - state: spray_cap_colors
+        map: ["enum.OpenableVisuals.Layer"]
+        color: "#dbaa14"
+  - type: MechPaint
+    used: false
+    whitelist:
+      tags:
+        - Durand
+    baseState: executor
+    openState: executor-open
+    brokenState: executor-broken
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "spray_colors" , color: "#dbaa14"}
+          False: {state: "spray_cap_colors" , color: "#dbaa14"}

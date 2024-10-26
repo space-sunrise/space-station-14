@@ -280,62 +280,6 @@
       "name": "deathripley-broken"
     },
     {
-      "name": "rover",
-      "directions": 4
-    },
-    {
-      "name": "rover-open",
-      "delays": [
-        [
-          0.5,
-          0.5,
-          0.5,
-          0.5,
-          0.5,
-          0.5
-        ]
-      ]
-    },
-    {
-      "name": "rover-broken",
-      "delays": [
-        [
-          0.5,
-          0.5,
-          0.5,
-          0.5
-        ]
-      ]
-    },
-    {
-      "name": "durand",
-      "directions": 4
-    },
-    {
-      "name": "durand-open",
-      "delays": [
-        [
-          1,
-          0.1,
-          0.1,
-          0.5,
-          0.1,
-          0.1
-        ]
-      ]
-    },
-    {
-      "name": "durand-broken",
-      "delays": [
-        [
-          0.5,
-          1,
-          0.5,
-          1
-        ]
-      ]
-    },
-    {
       "name": "ripley-g",
       "directions": 4
     },

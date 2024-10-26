@@ -77,7 +77,7 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Objects/Specific/Mech/mecha.rsi
+      - sprite: Objects/Specific/Mech/gygax.rsi
         state: gygax
   - type: ConditionalSpawner
     prototypes:
@@ -91,7 +91,7 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Objects/Specific/Mech/mecha.rsi
+      - sprite: Objects/Specific/Mech/durand.rsi
         state: durand
   - type: ConditionalSpawner
     prototypes:
@@ -163,7 +163,7 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Objects/Specific/Mech/mecha.rsi
+      - sprite: Objects/Specific/Mech/gygax.rsi
         state: darkgygax
   - type: ConditionalSpawner
     prototypes:
@@ -178,7 +178,7 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: Objects/Specific/Mech/mecha.rsi
+      - sprite: Objects/Specific/Mech/gygax.rsi
         state: darkgygax
   - type: ConditionalSpawner
     prototypes:

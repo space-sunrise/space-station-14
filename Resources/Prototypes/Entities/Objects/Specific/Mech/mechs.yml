@@ -663,7 +663,7 @@
   - type: Sprite
     drawdepth: Mobs
     noRot: true
-    sprite: Objects/Specific/Mech/mecha.rsi
+    sprite: Objects/Specific/Mech/durand.rsi
     scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
@@ -1127,18 +1127,18 @@
   - type: Sprite
     drawdepth: Mobs
     noRot: true
-    sprite: Objects/Specific/Mech/mecha.rsi
+    sprite: Objects/Specific/Mech/durand.rsi
     scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
-      state: rover
+      state: darkdurand
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
   - type: Mech
-    baseState: rover
-    openState: rover-open
-    brokenState: rover-broken
+    baseState: darkdurand
+    openState: darkdurand-open
+    brokenState: darkdurand-broken
     mechToPilotDamageMultiplier: 0.15
     airtight: true
     maxEquipmentAmount: 5
