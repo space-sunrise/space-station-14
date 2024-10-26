@@ -50,13 +50,14 @@
   id: MechPaintGygaxMolot
   components:
   - type: Sprite
-    sprite: Objects/Fun/spraycans.rsi
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/gygax.rsi
+    state: pobeda-cap
     layers:
-      - state: spray
-        map: ["Base"]
-      - state: spray_cap_colors
+      - state: pobeda-cap
         map: ["enum.OpenableVisuals.Layer"]
-        color: "#879900"
+  - type: Item
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/gygax.rsi
+    heldPrefix: pobeda
   - type: MechPaint
     used: false
     whitelist:
@@ -69,8 +70,8 @@
     visuals:
       enum.OpenableVisuals.Opened:
         enum.OpenableVisuals.Layer:
-          True: {state: "spray_colors" , color: "#879900"}
-          False: {state: "spray_cap_colors" , color: "#879900"}
+          True: {state: "pobeda"}
+          False: {state: "pobeda-cap"}
           
 #Gygax-Old
 
@@ -110,13 +111,13 @@
   id: MechPaintDurandUnathi
   components:
   - type: Sprite
-    sprite: Objects/Fun/spraycans.rsi
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/durand.rsi
     layers:
-      - state: spray
-        map: ["Base"]
-      - state: spray_cap_colors
+      - state: kharn-cap
         map: ["enum.OpenableVisuals.Layer"]
-        color: "#47511c"
+  - type: Item
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/durand.rsi
+    heldPrefix: kharn
   - type: MechPaint
     used: false
     whitelist:
@@ -129,8 +130,8 @@
     visuals:
       enum.OpenableVisuals.Opened:
         enum.OpenableVisuals.Layer:
-          True: {state: "spray_colors" , color: "#47511c"}
-          False: {state: "spray_cap_colors" , color: "#47511c"}
+          True: {state: "kharn"}
+          False: {state: "kharn-cap"}
           
 #Durand-Shire
 
@@ -140,13 +141,13 @@
   id: MechPaintDurandShire
   components:
   - type: Sprite
-    sprite: Objects/Fun/spraycans.rsi
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/durand.rsi
     layers:
-      - state: spray
-        map: ["Base"]
-      - state: spray_cap_colors
+      - state: shire-cap
         map: ["enum.OpenableVisuals.Layer"]
-        color: "#384134"
+  - type: Item
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/durand.rsi
+    heldPrefix: shire
   - type: MechPaint
     used: false
     whitelist:
@@ -159,8 +160,8 @@
     visuals:
       enum.OpenableVisuals.Opened:
         enum.OpenableVisuals.Layer:
-          True: {state: "spray_colors" , color: "#384134"}
-          False: {state: "spray_cap_colors" , color: "#384134"}
+          True: {state: "shire"}
+          False: {state: "shire-cap"}
           
 #Durand-Dollhouse
 
@@ -170,13 +171,13 @@
   id: MechPaintDurandDollhouse
   components:
   - type: Sprite
-    sprite: Objects/Fun/spraycans.rsi
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/durand.rsi
     layers:
-      - state: spray
-        map: ["Base"]
-      - state: spray_cap_colors
+      - state: dollhouse-cap
         map: ["enum.OpenableVisuals.Layer"]
-        color: "#b8b898"
+  - type: Item
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/durand.rsi
+    heldPrefix: dollhouse
   - type: MechPaint
     used: false
     whitelist:
@@ -189,8 +190,8 @@
     visuals:
       enum.OpenableVisuals.Opened:
         enum.OpenableVisuals.Layer:
-          True: {state: "spray_colors" , color: "#b8b898"}
-          False: {state: "spray_cap_colors" , color: "#b8b898"}
+          True: {state: "dollhouse"}
+          False: {state: "dollhouse-cap"}
           
 #Durand-Executor
 
@@ -200,13 +201,13 @@
   id: MechPaintDurandDollhouse
   components:
   - type: Sprite
-    sprite: Objects/Fun/spraycans.rsi
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/durand.rsi
     layers:
-      - state: spray
-        map: ["Base"]
-      - state: spray_cap_colors
+      - state: executioner-cap
         map: ["enum.OpenableVisuals.Layer"]
-        color: "#dbaa14"
+  - type: Item
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/durand.rsi
+    heldPrefix: executioner
   - type: MechPaint
     used: false
     whitelist:
@@ -219,5 +220,5 @@
     visuals:
       enum.OpenableVisuals.Opened:
         enum.OpenableVisuals.Layer:
-          True: {state: "spray_colors" , color: "#dbaa14"}
-          False: {state: "spray_cap_colors" , color: "#dbaa14"}
+          True: {state: "executioner"}
+          False: {state: "executioner-cap"}
