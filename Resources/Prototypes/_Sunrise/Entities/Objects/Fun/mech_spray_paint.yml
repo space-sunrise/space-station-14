@@ -198,7 +198,7 @@
 - type: entity
   parent: MechPaintBase
   suffix: DEBUG, Durand , Executor
-  id: MechPaintDurandDollhouse
+  id: MechPaintDurandExecutor
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/mech_spraycans/durand.rsi

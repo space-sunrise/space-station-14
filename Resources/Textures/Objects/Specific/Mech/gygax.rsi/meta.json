@@ -113,6 +113,42 @@
       ]
     },
     {
+      "name": "gygax_white",
+      "directions": 4
+    },
+    {
+      "name": "gygax_white-open",
+      "delays": [
+        [
+          0.1,
+          0.05,
+          0.05,
+          0.05,
+          0.1,
+          0.05,
+          0.05,
+          0.05,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "gygax_white-broken",
+      "delays": [
+        [
+          0.3,
+          0.5,
+          0.4,
+          0.3,
+          0.5,
+          0.3,
+          0.4,
+          0.5,
+          0.3
+        ]
+      ]
+    },
+    {
       "name": "darkgygax",
       "directions": 4
     },

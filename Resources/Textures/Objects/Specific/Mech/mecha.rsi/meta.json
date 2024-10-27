@@ -46,20 +46,6 @@
       "name": "reticence-broken"
     },
     {
-      "name": "ripley",
-      "directions": 4
-    },
-    {
-      "name": "ripley-empty",
-      "directions": 4
-    },
-    {
-      "name": "ripley-open"
-    },
-    {
-      "name": "ripley-broken"
-    },
-    {
       "name": "marauder",
       "directions": 4
     },
@@ -136,13 +122,6 @@
     },
     {
       "name": "phazon-broken"
-    },
-    {
-      "name": "ripley-old",
-      "directions": 4
-    },
-    {
-      "name": "ripley-broken-old"
     },
     {
       "name": "mauler",
@@ -260,40 +239,6 @@
       "name": "hamtr-broken"
     },
     {
-      "name": "firefighter",
-      "directions": 4
-    },
-    {
-      "name": "firefighter-open"
-    },
-    {
-      "name": "firefighter-broken"
-    },
-    {
-      "name": "deathripley",
-      "directions": 4
-    },
-    {
-      "name": "deathripley-open"
-    },
-    {
-      "name": "deathripley-broken"
-    },
-    {
-      "name": "ripley-g",
-      "directions": 4
-    },
-    {
-      "name": "ripley-g-open"
-    },
-    {
-      "name": "ripley-g-full",
-      "directions": 4
-    },
-    {
-      "name": "ripley-g-full-open"
-    },
-    {
       "name": "darkhonker",
       "directions": 4,
       "delays": [
@@ -320,62 +265,6 @@
     },
     {
       "name": "darkhonker-broken"
-    },
-    {
-      "name": "ripleymkii",
-      "directions": 4
-    },
-    {
-      "name": "ripleymkii-open"
-    },
-    {
-      "name": "ripleymkii-broken"
-    },
-    {
-      "name": "clarke",
-      "directions": 4,
-      "delays": [
-        [
-          0.1,
-          0.05,
-          0.05
-        ],
-        [
-          0.1,
-          0.05,
-          0.05
-        ],
-        [
-          0.1,
-          0.05,
-          0.05
-        ],
-        [
-          0.1,
-          0.05,
-          0.05
-        ]
-      ]
-    },
-    {
-      "name": "clarke-open"
-    },
-    {
-      "name": "clarke-broken"
-    },
-    {
-      "name": "hauler",
-      "directions": 4
-    },
-    {
-      "name": "hauler-empty",
-      "directions": 4
-    },
-    {
-      "name": "hauler-open"
-    },
-    {
-      "name": "hauler-broken"
     },
     {
       "name": "vim",
