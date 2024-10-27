@@ -174,9 +174,9 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/cecoat.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/cecoat.rsi
-    
+
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: ClothingOuterStorageFoldableBase
   id: ClothingOuterCoatCMOOvercoat
   name: лабораторный халат главного врача
   description: На 99% состоит из Нитрила.
@@ -185,7 +185,12 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/cmo.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/cmo.rsi
-    
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatCMOOvercoat]
+  id: ClothingOuterCoatLabCMOOvercoatOpened
+  name: cmo lab coat
+
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterEliteCoatHOP
@@ -225,7 +230,7 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/iaacoat.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/iaacoat.rsi
-    
+
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatQM
@@ -238,7 +243,7 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/qmcoat.rsi
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: ClothingOuterStorageFoldableBase
   id: ClothingOuterCoatLabResearchDirector
   name: халат научного руководителя
   description: Плотный халат, защищающий своего носителя от струи кислоты и плавленой плазмы. Имеет фиолетовые и голубые ленты на плечах и поясе.
@@ -251,6 +256,12 @@
     modifiers:
       coefficients:
         Caustic: 0.75
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabResearchDirector]
+  id: ClothingOuterCoatLabResearchDirectorOpened
+  name: research director lab coat
+
 
 - type: entity
   parent: ClothingOuterStorageBase
@@ -269,7 +280,7 @@
         Slash: 0.7
         Piercing: 0.4
         Heat: 0.7
-        
+
 - type: entity
   parent: ClothingOuterBase
   id: ClothingOuterAerostaticBomberJacket
@@ -280,7 +291,7 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/kim.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/kim.rsi
-    
+
 - type: entity
   parent: ClothingOuterBase
   id: ClothingOuterDiscoAssBlazer
@@ -291,7 +302,7 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/disco.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/disco.rsi
-    
+
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatCaptainOvercoat
