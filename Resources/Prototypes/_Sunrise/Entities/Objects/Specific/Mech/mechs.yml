@@ -1,5 +1,5 @@
 - type: entity
-  id: MechGygax
+  id: MechSecPod
   parent: [ BaseMech, CombatMech, BaseRestrictedContraband ]
   name: Security Pod
   description: While lightly armored, the Gygax has incredible mobility thanks to its ability that lets it smash through walls at high speeds.
