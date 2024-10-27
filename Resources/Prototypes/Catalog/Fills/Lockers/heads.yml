@@ -212,7 +212,7 @@
     - id: BoxEncryptionKeyMedical
     - id: ClothingBackpackDuffelSurgeryFilled
     - id: ClothingCloakCmo
-    - id: ClothingEyesHudMedical
+#    - id: ClothingEyesHudMedical # Sunrise-edit
     - id: ClothingHandsGlovesNitrile
     - id: ClothingHeadHatBeretCmo
     - id: ClothingHeadsetAltMedical
@@ -220,6 +220,10 @@
     - id: DoorRemoteMedical
     - id: HandheldCrewMonitor
     - id: Hypospray
+    #Sunrise-start
+    - id: ClothingEyesUniversalMedicalHud
+    - id: AdvancedDefibrillator
+    #Sunrise-end
     - id: MedicalTechFabCircuitboard
     - id: MedkitFilled
     - id: RubberStampCMO
