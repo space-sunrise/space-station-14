@@ -10,6 +10,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Mind;
 using Content.Shared.Store;
+using Content.Shared.Store.Events;
 using Content.Shared.Store.Components;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
@@ -163,24 +164,8 @@ public sealed partial class StoreSystem
             }
         }
 
-        if (!IsOnStartingMap(uid, component))
-            component.RefundAllowed = false;
+        var listingev = new StorePurchasedListingEvent() { Purchaser = buyer, Listing = listing };
 
-        //subtract the cash
-        foreach (var (currency, amount) in cost)
-        {
-            component.Balance[currency] -= amount;
-
-            component.BalanceSpent.TryAdd(currency, FixedPoint2.Zero);
-
-            component.BalanceSpent[currency] += amount;
-
-            // Sunrise-Start
-            var ev = new SubtractCashEvent(buyer, currency, amount);
-            RaiseLocalEvent(buyer, ref ev);
-            // Sunrise-End
-       
- }
         //spawn entity
         if (listing.ProductEntity != null)
         {
@@ -192,6 +177,7 @@ public sealed partial class StoreSystem
             // Sunrise-End
 
             _hands.PickupOrDrop(buyer, product);
+            listingev.Item = product;
 
             HandleRefundComp(uid, component, product);
 
@@ -257,6 +243,8 @@ public sealed partial class StoreSystem
 
             if (upgradeActionId != null)
                 HandleRefundComp(uid, component, upgradeActionId.Value);
+
+            listingev.Action = actionUid;
         }
 
         if (listing.ProductEvent != null)
@@ -266,6 +254,9 @@ public sealed partial class StoreSystem
             else
                 RaiseLocalEvent(buyer, listing.ProductEvent);
         }
+
+        RaiseLocalEvent(uid, ev);
+        RaiseLocalEvent(buyer, ev);
 
         //log dat shit.
         _admin.Add(LogType.StorePurchase,

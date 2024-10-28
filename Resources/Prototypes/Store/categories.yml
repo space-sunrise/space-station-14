@@ -120,3 +120,12 @@
   id: ChangelingAbilityUtility
   name: store-ling-category-utility
   priority: 2
+  
+#vampire
+- type: storeCategory
+  id: VampirePowers
+  name: store-category-vampirepowers
+
+- type: storeCategory
+  id: VampirePassives
+  name: store-category-vampirepassives

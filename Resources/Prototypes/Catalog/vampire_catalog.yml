@@ -1,0 +1,193 @@
+- type: listing
+  id: VampireToggleFangs
+  name: vampire-ability-blessing
+  description: vampire-ability-blessing-description 
+  cost:
+    BloodEssence: 0
+  productAction: ActionVampireToggleFangs
+  categories:
+  - VampirePowers
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: VampireGlare
+  name: vampire-ability-glare
+  description: vampire-ability-glare-description
+  cost:
+    BloodEssence: 20
+  productAction: ActionVampireGlare
+  categories:
+  - VampirePowers
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+    - VampireToggleFangs
+
+- type: listing
+  id: VampireHypnotise
+  name: vampire-ability-hypnotise
+  description: vampire-ability-hypnotise-description
+  cost:
+    BloodEssence: 60
+  productAction: ActionVampireHypnotise
+  categories:
+  - VampirePowers
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+    - VampireToggleFangs
+
+- type: listing
+  id: VampireScreech
+  name: vampire-ability-screech
+  description: vampire-ability-screech-description
+  cost:
+    BloodEssence: 120
+  productAction: ActionVampireScreech
+  categories:
+  - VampirePowers
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+    - VampireToggleFangs
+
+- type: listing
+  id: VampireBloodSteal
+  name: vampire-ability-bloodsteal
+  description: vampire-ability-bloodsteal-description
+  cost:
+    BloodEssence: 120
+  productAction: ActionVampireBloodSteal
+  categories:
+  - VampirePowers
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+    - VampireToggleFangs
+
+- type: listing
+  id: VampireBatForm
+  name: vampire-ability-batform
+  description: vampire-ability-batform-description
+  cost:
+    BloodEssence: 200
+  productAction: ActionVampireBatform
+  categories:
+  - VampirePowers
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+    - VampireToggleFangs
+    blacklist: 
+    - VampireMouseForm
+
+- type: listing
+  id: VampireMouseForm
+  name: vampire-ability-mouseform
+  description: vampire-ability-mouseform-description
+  cost:
+    BloodEssence: 200
+  productAction: ActionVampireMouseform
+  categories:
+  - VampirePowers
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+    - VampireToggleFangs
+    blacklist: 
+    - VampireBatForm
+
+- type: listing
+  id: VampireCloakOfDarkness
+  name: vampire-ability-cloakofdarkness
+  description: vampire-ability-cloakofdarkness-description
+  cost:
+    BloodEssence: 400
+  productAction: ActionVampireCloakOfDarkness
+  categories:
+  - VampirePowers
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+    - VampireToggleFangs
+
+#Passives
+- type: listing
+  id: VampireUnholyStrength
+  name: vampire-passive-unholystrength
+  description: vampire-passive-unholystrength-description
+  icon:
+    sprite: Interface/Actions/actions_vampire.rsi
+    state: uhholystrength
+  cost:
+    BloodEssence: 20
+  categories:
+  - VampirePassives
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+    - VampireToggleFangs
+
+- type: listing
+  id: VampireSupernaturalStrength
+  name: vampire-passive-supernaturalstrength
+  description: vampire-passive-supernaturalstrength-description
+  icon:
+    sprite: Interface/Actions/actions_vampire.rsi
+    state: supernaturalstrength
+  cost:
+    BloodEssence: 400
+  categories:
+  - VampirePassives
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:BuyBeforeCondition
+    whitelist:
+    - VampireUnnaturalStrength
+
+- type: listing
+  id: VampireDeathsEmbrace
+  name: vampire-passive-deathsembrace
+  description: vampire-passive-deathsembrace-description
+  icon:
+    sprite: Interface/Actions/actions_vampire.rsi
+    state: deathsembrace
+  cost:
+    BloodEssence: 160
+  categories:
+  - VampirePassives
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+#- type: listing
+#  id: VampireSupernaturalStrength
+#  name: Supernatural Strength
+#  description: Infuse your muscles with unholy strength, allowing you to pry open any barricade mortals may hide behind.
+#  productAction: SupernaturalStrength
+#  cost:
+#    BloodEssence: 400
+#  categories:
+#  - VampirePowers
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
