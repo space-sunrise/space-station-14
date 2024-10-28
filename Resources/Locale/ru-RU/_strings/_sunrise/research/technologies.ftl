@@ -3,3 +3,4 @@ research-technology-energy-gun-advance = Продвинутое энергети
 research-technology-advance-laser = Военное энергетическое вооружение
 research-technology-handcraft-nvd = Кустарные ПНВ
 research-technology-basic-nvd = Продвинутое ПНВ
+research-technology-cargo-bluespace-equipment = Блюспейс экиперовка карго

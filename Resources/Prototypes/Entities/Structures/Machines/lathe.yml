@@ -366,6 +366,8 @@
       - PowerCageHigh
       - PowerCageMedium
       - PowerCageSmall
+      - CargoSuit
+      - BluespaceBox
       # Sunrise-end
   - type: EmagLatheRecipes
     emagDynamicRecipes:
