@@ -200,6 +200,9 @@ public sealed class SunriseCCVars
      * Planet Prison
      */
 
+    public static readonly CVarDef<bool> MinPlayersEnable =
+            CVarDef.Create("planet_prison.enable", true, CVar.SERVERONLY);
+
     public static readonly CVarDef<int> MinPlayersPlanetPrison =
         CVarDef.Create("planet_prison.min_players", 60, CVar.SERVERONLY);
 
