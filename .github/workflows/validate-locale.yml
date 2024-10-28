@@ -7,8 +7,9 @@ on:
     types: [ opened, reopened, synchronize, ready_for_review ]
 
 jobs:
-  validate_ymls:
+  build:
     name: Validate Locales
+    if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3.6.0
