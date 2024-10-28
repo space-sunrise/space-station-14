@@ -17,6 +17,8 @@ public sealed class RoundEndVoteSystem : EntitySystem
     [Dependency] private readonly SharedGameTicker _sharedgameTicker = default!;
     [Dependency] private readonly IVoteManager _voteManager = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    
+    private TimeSpan? _voteStartTime = null;
 
     public override void Initialize()
     {
@@ -25,16 +27,24 @@ public sealed class RoundEndVoteSystem : EntitySystem
         SubscribeLocalEvent<RoundEndSystemChangedEvent>(OnRoundEndSystemChange);
     }
     
-    public async void OnRoundEndSystemChange(RoundEndSystemChangedEvent args)
+    public void OnRoundEndSystemChange(RoundEndSystemChangedEvent args)
+    {   
+        _voteStartTime = _gameTiming.CurTime + _gameTicker.LobbyDuration - TimeSpan.FromSeconds(75);
+        Log.Warning($"Vote will start at {_voteStartTime}");
+    }
+    
+    public override void Update(float frameTime)
     {
-        if (_gameTicker.RunLevel != GameRunLevel.PreRoundLobby)
+        base.Update(frameTime);
+        
+        if (_gameTicker.RunLevel != GameRunLevel.PreRoundLobby || _voteStartTime == null)
             return;
         
-        var delay = Math.Abs((_gameTicker.LobbyDuration - TimeSpan.FromSeconds(75)).TotalMilliseconds);
-        
-        Log.Warning($"waiting {(int)delay}");
-        await Task.Delay((int)delay);
-        StartRoundEndVotes();
+        if (_gameTiming.CurTime >= _voteStartTime)
+        {
+            StartRoundEndVotes();
+            _voteStartTime = null;
+        }
     }
     
     public void StartRoundEndVotes()

@@ -272,8 +272,9 @@ namespace Content.Server.Voting.Managers
         {
             var maps = new Dictionary<string, GameMapPrototype>();
             var eligibleMaps = _gameMapManager.CurrentlyEligibleMaps().ToList();
-            maps.Add(Loc.GetString("ui-vote-secret-map"), _random.Pick(eligibleMaps));
-            foreach (var map in eligibleMaps)
+            var selectedMaps = eligibleMaps.OrderBy(_ => _random.Next()).Take(3).ToList();
+            maps.Add(Loc.GetString("ui-vote-secret-map"), _random.Pick(selectedMaps));
+            foreach (var map in selectedMaps)
             {
                 maps.Add(map.MapName, map);
             }
