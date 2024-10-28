@@ -22,8 +22,8 @@
     rules:
     - id: Thief
       prob: 0.85 # Воры отличный антаг
-#    - id: Changeling Генокрады временно выведены в отдельный режим
-#      prob: 0.50
+    - id: Changeling
+      prob: 0.50
 
 - type: entity
   id: DeathMatch31
