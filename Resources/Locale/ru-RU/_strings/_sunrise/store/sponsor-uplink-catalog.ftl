@@ -135,17 +135,17 @@ uplink-sunrise-plushie-thirty-eight-name = Дань Хэн Пожиратель 
 ## HOS
 
 uplink-sunrise-clothing-mask-gas-swat-name = Противогаз спецназа
-uplink-sunrise-clothing-hands-gloves-leather-ho-name = Кожаные перчатки
+uplink-sunrise-clothing-hands-gloves-leather-hos-name = Кожаные перчатки
 uplink-sunrise-clothing-outer-coat-hos-overcoat-black-name = Бронированная шинель
-uplink-sunrise-clothing-backpack-satchel-ho-name = Сумка главы службы безопасности
+uplink-sunrise-clothing-backpack-satchel-hos-name = Сумка главы службы безопасности
 uplink-sunrise-clothing-shoes-black-name = Кожаные ботинки СССП
-uplink-sunrise-clothing-outer-coat-ho-overcoat-name = Бронированная шинель
+uplink-sunrise-clothing-outer-coat-hos-overcoat-name = Бронированная шинель
 uplink-sunrise-clothing-outer-coat-ussp-overcoat-black-name = Бронированная шинель СССП
-uplink-sunrise-clothing-uniform-jumpsuit-ho-old-name = Старый комбинезон главы службы безопасности
+uplink-sunrise-clothing-uniform-jumpsuit-hos-old-name = Старый комбинезон главы службы безопасности
 uplink-sunrise-clothing-uniform-jumpsuit-black-name = Старый комбинезон СССП
-uplink-sunrise-clothing-belt-ho-name = Пояс службы безопасности
+uplink-sunrise-clothing-belt-hos-name = Пояс службы безопасности
 uplink-sunrise-clothing-head-hat-cap-black-name = Старая кожаная фуражка СССП
-uplink-sunrise-clothing-head-hat-cap-leather-ho-name = Кожаная фуражка главы службы безопасности
+uplink-sunrise-clothing-head-hat-cap-leather-hos-name = Кожаная фуражка главы службы безопасности
 uplink-sunrise-clothing-neck-cloak-hos-cloak-name = Плащ главы службы безопасности
 
 ## Research Director

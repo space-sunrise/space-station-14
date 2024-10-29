@@ -135,42 +135,42 @@ uplink-sunrise-plushie-thirty-eight-name = Dan Heng Moon Eater
 ## HOS
 
 uplink-sunrise-clothing-mask-gas-swat-name = Swat Gas Mask
-uplink-sunrise-clothing-hands-gloves-leather-ho-name = Кожаные перчатки
-uplink-sunrise-clothing-outer-coat-hos-overcoat-black-name = Бронированная шинель
-uplink-sunrise-clothing-backpack-satchel-ho-name = Сумка главы службы безопасности
-uplink-sunrise-clothing-shoes-black-name = Кожаные ботинки СССП
-uplink-sunrise-clothing-outer-coat-ho-overcoat-name = Бронированная шинель
-uplink-sunrise-clothing-outer-coat-ussp-overcoat-black-name = Бронированная шинель СССП
-uplink-sunrise-clothing-uniform-jumpsuit-ho-old-name = Старый комбинезон главы службы безопасности
-uplink-sunrise-clothing-uniform-jumpsuit-black-name = Старый комбинезон СССП
-uplink-sunrise-clothing-belt-ho-name = Пояс службы безопасности
-uplink-sunrise-clothing-head-hat-cap-black-name = Старая кожаная фуражка СССП
-uplink-sunrise-clothing-head-hat-cap-leather-ho-name = Кожаная фуражка главы службы безопасности
-uplink-sunrise-clothing-neck-cloak-hos-cloak-name = Плащ главы службы безопасности
+uplink-sunrise-clothing-hands-gloves-leather-hos-name = Leather Gloves
+uplink-sunrise-clothing-outer-coat-hos-overcoat-black-name = Armored Overcoat
+uplink-sunrise-clothing-backpack-satchel-hos-name = Head Of Security's Satchel
+uplink-sunrise-clothing-shoes-black-name = USSP Leather Boots
+uplink-sunrise-clothing-outer-coat-hos-overcoat-name = Armored Overcoat
+uplink-sunrise-clothing-outer-coat-ussp-overcoat-black-name = USSP Armored Overcoat
+uplink-sunrise-clothing-uniform-jumpsuit-hos-old-name = Old Head Of Security's Jumpsuit
+uplink-sunrise-clothing-uniform-jumpsuit-black-name = Old USSP Jumpsuit
+uplink-sunrise-clothing-belt-hos-name = Security's Belt
+uplink-sunrise-clothing-head-hat-cap-black-name = Old Leather USSP Cap
+uplink-sunrise-clothing-head-hat-cap-leather-hos-name = Head Of Security's Leather Cap
+uplink-sunrise-clothing-neck-cloak-hos-cloak-name = Head Of Security's Cloak
 
 ## Research Director
 
-uplink-sunrise-clothing-breath-mask-rd-name = Противогаз с фиолетовым визором
-uplink-sunrise-clothing-head-hat-magic-name = Фуражка научного руководителя
-uplink-sunrise-clothing-outer-coat-lab-research-director-name = Халат научного руководителя
-uplink-sunrise-clothing-neck-cloak-research-director-name = Плащ светилы науки
+uplink-sunrise-clothing-breath-mask-rd-name = Gas mask with purple visor
+uplink-sunrise-clothing-head-hat-magic-name = Research Director's Hat
+uplink-sunrise-clothing-outer-coat-lab-research-director-name = Research Director's Lab Coat
+uplink-sunrise-clothing-neck-cloak-research-director-name = Luminary of Science's Cloak
 
 ## Captain
 
-uplink-sunrise-clothing-elite-mask-gas-captain-name = Противогаз капитана
-uplink-sunrise-clothing-head-elite-captain-cap-name = Федора капитана
-uplink-sunrise-clothing-outer-coat-captain-overcoat-name = Капитанская шинель
-uplink-sunrise-clothing-elite-neck-cloak-captain-name = Плащ капитана
-uplink-sunrise-clothing-shoes-elite-captain-name = Капитанские ботинки
+uplink-sunrise-clothing-elite-mask-gas-captain-name = Captain's Gas Mask
+uplink-sunrise-clothing-head-elite-captain-cap-name = Captain's Fedora
+uplink-sunrise-clothing-outer-coat-captain-overcoat-name = Captain's Overcoat
+uplink-sunrise-clothing-elite-neck-cloak-captain-name = Captain's Cloak
+uplink-sunrise-clothing-shoes-elite-captain-name = Captain's Boots
 
 ## CMO
 
-uplink-sunrise-clothing-breath-mask-name = Медицинский респиратор
-uplink-sunrise-clothing-belt-medical-name = Медицинский пояс главного врача
-uplink-sunrise-clothing-outer-coat-overcoat-name = Лабораторный халат главного врача
-uplink-sunrise-clothing-neck-cmo-cloak-name = Плащ главного врача
-uplink-sunrise-clothing-special-head-hat-hardhat-name = Медицинская шапочка главного врача
-uplink-sunrise-clothing-head-hat-cap-cmo-name = Медицинский берет
+uplink-sunrise-clothing-breath-mask-name = Medical Respirator
+uplink-sunrise-clothing-belt-medical-name = Chief Medical Officer's Medical Belt
+uplink-sunrise-clothing-outer-coat-overcoat-name = Chief Medical Officer's Lab Coat
+uplink-sunrise-clothing-neck-cmo-cloak-name = Chief Medical Officer's Cloak
+uplink-sunrise-clothing-special-head-hat-hardhat-name = Chief Medical Officer's Medical Cap
+uplink-sunrise-clothing-head-hat-cap-cmo-name = Medical's Beret
 
 ## Head of Personality
 
@@ -220,32 +220,32 @@ uplink-sunrise-gauze-name = Марлевый бинт (10 шт)
 
 ## Research
 
-uplink-sunrise-book-scientists-guidebook-name = Справочник учёного
-uplink-sunrise-research-disk-name = Диск исследовательских очков (5000)
-uplink-sunrise-clothing-shoes-boots-mag-name = Магнитные сапоги
+uplink-sunrise-book-scientists-guidebook-name = Scientists guidebook
+uplink-sunrise-research-disk-name = Research Disk (5000)
+uplink-sunrise-clothing-shoes-boots-mag-name = Magboots
 
 ## Service
 
-uplink-sunrise-food-cart-cold-name = Тележка холодной еды
-uplink-sunrise-janitorial-trolley-name = Тележка уборщика
-uplink-sunrise-food-cart-hot-name = Тележка горячей еды
-uplink-sunrise-unstable-mutagen-chemistry-bottle-name = Нестабильный мутаген
-uplink-sunrise-robust-harvest-chemistry-bottle-name = Робаст харвест
-uplink-sunrise-vending-machine-restock-booze-name = Набор пополнения АлкоМат
-uplink-sunrise-vending-machine-restock-chefvend-name = Набор пополнения ШефВенд
-uplink-sunrise-box-light-mixed-name = Коробка смешанных лампочек
-uplink-sunrise-spray-bottle-space-cleaner-name = Космический очиститель
-uplink-sunrise-mousetrap-name = Мышеловка
-uplink-sunrise-adv-mop-item-name = Продвинутая швабра
-uplink-sunrise-trash-bag-blue-name = Мешок для мусора
+uplink-sunrise-food-cart-cold-name = Cold Food Cart
+uplink-sunrise-janitorial-trolley-name = Janitorial Trolley
+uplink-sunrise-food-cart-hot-name = Hot Food Cart
+uplink-sunrise-unstable-mutagen-chemistry-bottle-name = Unstable Mutagen
+uplink-sunrise-robust-harvest-chemistry-bottle-name = Robust Harvest
+uplink-sunrise-vending-machine-restock-booze-name = BoozeOMat Restock Kit
+uplink-sunrise-vending-machine-restock-chefvend-name = ChefVend Restock Kit
+uplink-sunrise-box-light-mixed-name = Mixed Lights Box
+uplink-sunrise-spray-bottle-space-cleaner-name = Space Cleaner
+uplink-sunrise-mousetrap-name = Mousetrap
+uplink-sunrise-adv-mop-item-name = Advanced Mop
+uplink-sunrise-trash-bag-blue-name = Trash Bag
 
 ## Cargo
 
-uplink-sunrise-appraisal-tool-name = Оценочный инструмент
-uplink-sunrise-clothing-belt-utility-filled-name = Пояс для инструментов
-uplink-sunrise-clothing-shoes-boots-work-name = Рабочие ботинки
-uplink-sunrise-clothing-outer-vest-hazard-name = Светоотражающий жилет
-uplink-sunrise-clothing-head-hat-hardhat-yellow-name = Желтая рабочая каска
+uplink-sunrise-appraisal-tool-name = Appraisal Tool
+uplink-sunrise-clothing-belt-utility-filled-name = Tool Belt
+uplink-sunrise-clothing-shoes-boots-work-name = Work Boots
+uplink-sunrise-clothing-outer-vest-hazard-name = Reflective Vest
+uplink-sunrise-clothing-head-hat-hardhat-yellow-name = Yellow Work Helmet
 
 ## Friends
 
