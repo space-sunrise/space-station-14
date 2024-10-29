@@ -134,7 +134,7 @@
   description: vampire-passive-unholystrength-description
   icon:
     sprite: Interface/Actions/actions_vampire.rsi
-    state: uhholystrength
+    state: unholystrength
   cost:
     BloodEssence: 20
   categories:

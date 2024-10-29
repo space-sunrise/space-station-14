@@ -1061,14 +1061,14 @@
       effects:
       #If vampire
       - !type:HealthChange
-        condition:
+        conditions:
         - !type:OrganType
           type: Vampire
         damage:
           types:
             Heat: 2
       - !type:Emote
-        condition:
+        conditions:
         - !type:OrganType
           type: Vampire
         emote: Scream
