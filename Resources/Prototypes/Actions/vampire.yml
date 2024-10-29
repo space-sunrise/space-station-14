@@ -1,7 +1,7 @@
 - type: entity
   id: ActionVampireOpenMutationsMenu
-  name: vampire-power-mutationsmenu
-  description: vampire-power-mutationsmenu-description
+  name: Mutations menu
+  description: Opens menu with vampires mutations.
   categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
@@ -15,8 +15,8 @@
 
 - type: entity
   id: ActionVampireToggleFangs
-  name: vampire-power-togglefangs
-  description: vampire-power-togglefangs-description
+  name: Toggle Fangs
+  description: The vampire extends their fangs so they may drink from their victim.
   categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction

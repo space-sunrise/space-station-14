@@ -94,7 +94,7 @@ public sealed partial class VampireSystem
         if (!TryComp<VampireComponent>(vampire, out var comp))
             return;
         
-        var action = _action.AddAction(vampire, VampireComponent.MutationsActionPrototype);
+        var action = _action.AddAction(vampire, VampireComponent.ToggleFangsActionPrototype);
         if (!action.HasValue)
             return;
 

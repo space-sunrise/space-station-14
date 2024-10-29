@@ -49,6 +49,8 @@ public sealed partial class VampireComponent : Component
 
     [ValidatePrototypeId<EntityPrototype>]
     public static readonly string MutationsActionPrototype = "ActionVampireOpenMutationsMenu";
+    [ValidatePrototypeId<EntityPrototype>]
+    public static readonly string ToggleFangsActionPrototype = "ActionVampireToggleFangs";
     [ValidatePrototypeId<VampirePowerProtype>]
     public static readonly string DrinkBloodPrototype = "DrinkBlood";
 
