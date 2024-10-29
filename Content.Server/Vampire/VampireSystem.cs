@@ -77,6 +77,7 @@ public sealed partial class VampireSystem : EntitySystem
         //SubscribeLocalEvent<VampireComponent, VampireSelfPowerEvent>(OnUseSelfPower);
         //SubscribeLocalEvent<VampireComponent, VampireTargetedPowerEvent>(OnUseTargetedPower);
         SubscribeLocalEvent<VampireComponent, ExaminedEvent>(OnExamined);
+        SubscribeLocalEvent<VampireComponent, VampireBloodChangedEvent>(OnVampireBloodChangedEvent);
 
         InitializePowers();
     }
@@ -153,6 +154,9 @@ public sealed partial class VampireSystem : EntitySystem
         vampire.Comp.Balance[VampireComponent.CurrencyProto] += quantity;
 
         UpdateBloodDisplay(vampire);
+        
+        var ev = new VampireBloodChangedEvent();
+        RaiseLocalEvent(vampire, ev);
 
         return true;
     }
@@ -167,6 +171,9 @@ public sealed partial class VampireSystem : EntitySystem
         vampire.Comp.Balance[VampireComponent.CurrencyProto] -= quantity;
 
         UpdateBloodDisplay(vampire);
+        
+        var ev = new VampireBloodChangedEvent();
+        RaiseLocalEvent(vampire, ev);
 
         return true;
     }
@@ -191,6 +198,13 @@ public sealed partial class VampireSystem : EntitySystem
 
         _action.SetCharges(mutationsAction, chargeDisplay);
     }
+    
+    private void OnVampireBloodChangedEvent(EntityUid uid, VampireComponent component, VampireBloodChangedEvent args)
+    {
+        if (comp.Balance == 150)
+            _action.AddAction(vampire, VampireComponent.MutationsActionPrototype);
+    }
+    
     private FixedPoint2 GetBloodEssence(Entity<VampireComponent> vampire)
     {
         if (!vampire.Comp.Balance.TryGetValue(VampireComponent.CurrencyProto, out var val))

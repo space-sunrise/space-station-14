@@ -38,6 +38,9 @@ public sealed partial class VampirePassiveActionEvent : BaseActionEvent
 [Serializable, NetSerializable]
 public sealed partial class VampirePurchaseUnnaturalStrength : EntityEventArgs { }
 
+[Serializable, NetSerializable]
+public sealed partial class VampireBloodChangedEvent : EntityEventArgs { }
+
 //Doafter events
 [Serializable, NetSerializable]
 public sealed partial class VampireDrinkBloodDoAfterEvent : DoAfterEvent
