@@ -162,7 +162,7 @@
     stock: 1
   - !type:BuyBeforeCondition
     whitelist:
-    - VampireUnnaturalStrength
+    - VampireUnholyStrength
 
 #- type: listing
 #  id: VampireDeathsEmbrace

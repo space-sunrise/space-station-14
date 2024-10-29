@@ -1,6 +1,6 @@
 - type: vampirePower
   id: SummonHeirloom
-  usableusableWhileCuffed: false
+  usableWhileCuffed: false
   usableWhileStunned: false
 
 - type: vampirePower
@@ -64,7 +64,7 @@
       types:
         Slash: 10
     animation: WeaponArcClaw
-    hitSound: /Audio/Weapons/slash.ogg
+    soundHit: /Audio/Weapons/slash.ogg
 
 - type: vampirePassive
   id: SupernaturalStrength 
@@ -75,7 +75,7 @@
       types:
         Slash: 15
     animation: WeaponArcClaw
-    hitSound: /Audio/Weapons/slash.ogg 
+    soundHit: /Audio/Weapons/slash.ogg 
   - type: Prying
     force: True
     pryPowered: True
