@@ -174,28 +174,28 @@ uplink-sunrise-clothing-head-hat-cap-cmo-name = Medical's Beret
 
 ## Head of Personality
 
-uplink-sunrise-clothing-elite-mask-gas-name = Противогаз главы персонала
-uplink-sunrise-clothing-head-hat-hop-name = Фуражка главы персонала
-uplink-sunrise-clothing-outer-elite-coat-name = Шинель главы персонала
-uplink-sunrise-clothing-neck-cloak-hop-cloak-name = Плащ главы персонала
+uplink-sunrise-clothing-elite-mask-gas-name = Head Of Personality's Gas Mask
+uplink-sunrise-clothing-head-hat-hop-name = Head Of Personality's Cap
+uplink-sunrise-clothing-outer-elite-coat-name = Head Of Personality's Overcoat
+uplink-sunrise-clothing-neck-cloak-hop-cloak-name = Head Of Personality's Cloak
 
 ## Security
 
-uplink-sunrise-telescopic-shield-name = Телескопический щит
-uplink-sunrise-clothing-mask-iaa2-name = Элитный противогаз
-uplink-sunrise-clothing-neck-cloak-black-sec-name = Плащ службы безопасности
-uplink-sunrise-weapon-disabler-name = Станнер
-uplink-sunrise-clothing-outer-armor-bulletproof-name = Пуленепробиваемый жилет
-uplink-sunrise-medkit-filled-name = Аптечка первой помощи
-uplink-sunrise-magazine-box-pistol-name = Коробка патронов (.35 авто)
-uplink-sunrise-box-body-bag-name = Коробка мешков для тел
+uplink-sunrise-telescopic-shield-name = Telescopic Shield
+uplink-sunrise-clothing-mask-iaa2-name = Elite Gas Mask
+uplink-sunrise-clothing-neck-cloak-black-sec-name = Security's Cloak
+uplink-sunrise-weapon-disabler-name = Disabler
+uplink-sunrise-clothing-outer-armor-bulletproof-name = Bulletproof Vest
+uplink-sunrise-medkit-filled-name = First Aid Kit
+uplink-sunrise-magazine-box-pistol-name = Ammo Box (.35 auto)
+uplink-sunrise-box-body-bag-name = Box Of Body Bags
 
 ## Quartermaster
 
-uplink-sunrise-clothing-breath-mask-qm-name = Противогаз куратора
-uplink-sunrise-clothing-head-hat-cap-qm-name = Шляпа капитана утилятов
-uplink-sunrise-clothing-outer-coat-qm-name = Теплое пальто
-uplink-sunrise-clothing-neck-cloak-qm-name = Плащ квартирмейстера
+uplink-sunrise-clothing-breath-mask-qm-name = Mentor's Gas Mask
+uplink-sunrise-clothing-head-hat-cap-qm-name = Recyclers Captain's Hat
+uplink-sunrise-clothing-outer-coat-qm-name = Warm Coat
+uplink-sunrise-clothing-neck-cloak-qm-name = Quartermaster's Cloak
 
 ## Medical
 
