@@ -29,6 +29,9 @@
       "name": "batform"
     },
     {
+      "name": "mouseform"
+    },
+    {
       "name": "summonheirloom"
     },
     {
@@ -39,6 +42,18 @@
     },
     {
       "name": "supernaturalstrength"
+    },
+    {
+      "name": "deathsembrace"
+    },
+    {
+      "name": "mutation"
+    },
+    {
+      "name": "stellarweakness"
+    },
+    {
+      "name": "fullpotential"
     }
   ]
 }
