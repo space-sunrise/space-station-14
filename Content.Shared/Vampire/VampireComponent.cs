@@ -191,6 +191,16 @@ public sealed partial class VampireSealthComponent : Component
     public float Upkeep = 0;
 }
 
+[Serializable, NetSerializable]
+public enum VampireMutationsType : byte
+{
+    Hemomancer,
+    Umbrae,
+    Gargantua,
+    Dantalion,
+    Bestia
+}
+
 /*[Serializable, NetSerializable]
 public enum VampirePowerKey : byte
 {
