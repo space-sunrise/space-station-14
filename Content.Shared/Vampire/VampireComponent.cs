@@ -24,6 +24,11 @@ public sealed partial class VampireComponent : Component
     public static readonly string HeirloomProto = "HeirloomVampire";
     [ValidatePrototypeId<CurrencyPrototype>]
     public static readonly string CurrencyProto = "BloodEssence";
+    
+    [ViewVariables(VVAccess.ReadOnly), DataField("defaultMutation")]
+    public VampireMutationsType DefaultMutation = VampireMutationsType.Hemomancer;
+    [ViewVariables(VVAccess.ReadOnly), DataField("currentMutation")]
+    public VampireMutationsType CurrentMutation = VampireMutationsType.Hemomancer;
 
     public static readonly EntityWhitelist AcceptableFoods = new()
     {
@@ -199,6 +204,42 @@ public enum VampireMutationsType : byte
     Gargantua,
     Dantalion,
     Bestia
+}
+
+[Serializable, NetSerializable]
+public sealed class VampireMutationComponentState : ComponentState
+{
+    public VampireMutationsType SelectedMutation;
+}
+
+[Serializable, NetSerializable]
+public sealed class VampireMutationBoundUserInterfaceState : BoundUserInterfaceState
+{
+    public readonly HashSet<VampireMutationsType> MutationList;
+    public readonly VampireMutationsType SelectedMutation;
+
+    public VampireMutationBoundUserInterfaceState(HashSet<VampireMutationsType> mutationList, VampireMutationsType selectedId)
+    {
+        MutationList = mutationList;
+        SelectedMutation = selectedId;
+    }
+}
+
+[Serializable, NetSerializable]
+public sealed class VampireMutationPrototypeSelectedMessage : BoundUserInterfaceMessage
+{
+    public readonly VampireMutationsType SelectedId;
+
+    public VampireMutationPrototypeSelectedMessage(VampireMutationsType selectedId)
+    {
+        SelectedId = selectedId;
+    }
+}
+
+[Serializable, NetSerializable]
+public enum VampireMutationUiKey : byte
+{
+    Key
 }
 
 /*[Serializable, NetSerializable]
