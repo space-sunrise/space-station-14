@@ -66,8 +66,8 @@ uplink-sunrise-holofan-projector-name = Атмос голопроектор
 uplink-sunrise-welder-experimental-name = Эксперементальный сварочный аппарат
 uplink-sunrise-jaws-of-life-name = Челюсти жизни
 uplink-sunrise-power-drill-name = Электродрель
-uplink-sunrise-ammo-name = Катридж РСУ
-uplink-sunrise-name = РСУ
+uplink-sunrise-rcd-ammo-name = Картридж РСУ
+uplink-sunrise-rcd-name = РСУ
 uplink-sunrise-omnitool-name = Омнитул
 uplink-sunrise-clothing-outer-atmosian-bomber-jacket-name = Куртка-бомбер атмосианина
 uplink-sunrise-clothing-mask-gas-atmosian-name = Противогаз атмосианина
@@ -78,9 +78,9 @@ uplink-sunrise-double-emergency-nitrogen-tank-filled-name = Двойной ав�
 
 ## Chef Engineer
 
-uplink-sunrise-clothing-mask-gas-name = Противогаз старшего инженера
-uplink-sunrise-clothing-outer-coat-overcoat-white-name = Пальто старшего инженера
-uplink-sunrise-clothing-neck-elite-cloak-cloak-name = Плащ старшего инженера
+uplink-sunrise-clothing-mask-gas-ce-name = Противогаз старшего инженера
+uplink-sunrise-clothing-outer-coat-ce-overcoat-white-name = Пальто старшего инженера
+uplink-sunrise-clothing-neck-elite-cloak-ce-name = Плащ старшего инженера
 uplink-sunrise-book-engineers-handbook-name = Справочник инженера
 
 ## IAA

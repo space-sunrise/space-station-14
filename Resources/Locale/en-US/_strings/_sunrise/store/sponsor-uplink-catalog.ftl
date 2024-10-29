@@ -62,79 +62,79 @@ uplink-sunrise-clothing-cloak-gamer-name = Legendary Gamer's Cloak
 
 ## Engineering
 
-uplink-sunrise-holofan-projector-name = Атмос голопроектор
-uplink-sunrise-welder-experimental-name = Эксперементальный сварочный аппарат
-uplink-sunrise-jaws-of-life-name = Челюсти жизни
-uplink-sunrise-power-drill-name = Электродрель
-uplink-sunrise-ammo-name = Катридж РСУ
-uplink-sunrise-name = РСУ
-uplink-sunrise-omnitool-name = Омнитул
-uplink-sunrise-clothing-outer-atmosian-bomber-jacket-name = Куртка-бомбер атмосианина
-uplink-sunrise-clothing-mask-gas-atmosian-name = Противогаз атмосианина
-uplink-sunrise-clothing-cloak-atmosian-name = Плащ атмосианина
-uplink-sunrise-sheet-glass-name = Стекло (30 шт)
-uplink-sunrise-double-emergency-oxygen-tank-filled-name = Двойной аварийный кислородный баллон
-uplink-sunrise-double-emergency-nitrogen-tank-filled-name = Двойной аварийный азотный баллон
+uplink-sunrise-holofan-projector-name = Atmos Holofan Projector
+uplink-sunrise-welder-experimental-name = Experimental Welder
+uplink-sunrise-jaws-of-life-name = Jaws of Life
+uplink-sunrise-power-drill-name = Power Drill
+uplink-sunrise-ammo-name = RCD Cartridge
+uplink-sunrise-name = RCD
+uplink-sunrise-omnitool-name = Omnitool
+uplink-sunrise-clothing-outer-atmosian-bomber-jacket-name = Atmosian Bomber Jacket
+uplink-sunrise-clothing-mask-gas-atmosian-name = Atmosian Gas Mask
+uplink-sunrise-clothing-cloak-atmosian-name = Atmosian's Cloak
+uplink-sunrise-sheet-glass-name = Glass (30x)
+uplink-sunrise-double-emergency-oxygen-tank-filled-name = Double Emergency Oxygen Tank
+uplink-sunrise-double-emergency-nitrogen-tank-filled-name = Double Emergency Nitrogen Tank
 
 ## Chef Engineer
 
-uplink-sunrise-clothing-mask-gas-name = Противогаз старшего инженера
-uplink-sunrise-clothing-outer-coat-overcoat-white-name = Пальто старшего инженера
-uplink-sunrise-clothing-neck-elite-cloak-cloak-name = Плащ старшего инженера
-uplink-sunrise-book-engineers-handbook-name = Справочник инженера
+uplink-sunrise-clothing-mask-gas-ce-name = Chef Engineer's Gas Mask
+uplink-sunrise-clothing-outer-coat-ce-overcoat-white-name = Chef Engineer's Overcoat
+uplink-sunrise-clothing-neck-elite-cloak-ce-name = Chef Engineer's Cloak
+uplink-sunrise-book-engineers-handbook-name = Engineer's handbook
 
 ## IAA
 
-uplink-sunrise-clothing-mask-iaa-name = Элитный противогаз
-uplink-sunrise-clothing-head-hat-iaa-name = Загадочная шляпа
-uplink-sunrise-clothing-outer-coat-iaa-name = Пиджак агента внутренних дел
-uplink-sunrise-clothing-uniform-jumpsuit-iaa-name = Рубашка с галстуком
-uplink-sunrise-clothing-neck-cloak-iaa-cloak-name = плащ агента внутренних дел
+uplink-sunrise-clothing-mask-iaa-name = Elite Gas Mask
+uplink-sunrise-clothing-head-hat-iaa-name = Mystery hat
+uplink-sunrise-clothing-outer-coat-iaa-name = Internal Affairs Agent's Jacket
+uplink-sunrise-clothing-uniform-jumpsuit-iaa-name = Tie-dye shirt
+uplink-sunrise-clothing-neck-cloak-iaa-cloak-name = Internal Affairs Agent's Cloak
 
 ## Plushies
 
-uplink-sunrise-plushie-one-name = Декус-Киурз
-uplink-sunrise-plushie-two-name = Неизвестный
-uplink-sunrise-plushie-three-name = Тереза Шарапова
-uplink-sunrise-plushie-four-name = Ясли Чунканжук
-uplink-sunrise-plushie-five-name = Роберт Крапивин
-uplink-sunrise-plushie-six-name = Анатолий Бобров
-uplink-sunrise-plushie-seven-name = Каин Де Ла Мейс
-uplink-sunrise-plushie-eight-name = Артём Спирин младший
-uplink-sunrise-plushie-nine-name = Виктория Гофмана
-uplink-sunrise-plushie-ten-name = Артём Спирин старший
-uplink-sunrise-plushie-eleven-name = Акепа Грязнов
-uplink-sunrise-plushie-twelve-name = Вуиар Тэриякин
-uplink-sunrise-plushie-thirteen-name = Марианна Брагина
-uplink-sunrise-plushie-fourteen-name = Дракоша
-uplink-sunrise-plushie-fifteen-name = Пуро
-uplink-sunrise-plushie-sixteen-name = Рудольф Фон-Вяйнер
+uplink-sunrise-plushie-one-name = Dekus-Kiurs
+uplink-sunrise-plushie-two-name = Unknown
+uplink-sunrise-plushie-three-name = Teresa Sharapova
+uplink-sunrise-plushie-four-name = Yasly Chunkanjuk
+uplink-sunrise-plushie-five-name = Robert Krapivin
+uplink-sunrise-plushie-six-name = Anatoly Bobrov
+uplink-sunrise-plushie-seven-name = Cain De La Mace
+uplink-sunrise-plushie-eight-name = Artem Spirin Jr.
+uplink-sunrise-plushie-nine-name = Victoria Hoffmann
+uplink-sunrise-plushie-ten-name = Artyom Spirin Sr.
+uplink-sunrise-plushie-eleven-name = Akepa Gryaznov
+uplink-sunrise-plushie-twelve-name = Vouiar Teriyakin
+uplink-sunrise-plushie-thirteen-name = Marianna Bragina
+uplink-sunrise-plushie-fourteen-name = Drakosha
+uplink-sunrise-plushie-fifteen-name = Puro
+uplink-sunrise-plushie-sixteen-name = Rudolf Von-Weiner
 uplink-sunrise-plushie-seventeen-name = TR-263
-uplink-sunrise-plushie-eighteen-name = Комиссар
-uplink-sunrise-plushie-nineteen-name = Подлый жулик
-uplink-sunrise-plushie-twenty-name = Лураш-Ма
-uplink-sunrise-plushie-twenty-one-name = Гентухв Анмимиш
-uplink-sunrise-plushie-twenty-two-name = Кондрат Серан
-uplink-sunrise-plushie-twenty-three-name = Дарт Вейдер
-uplink-sunrise-plushie-twenty-four-name = Узо-Кур-Петаксай
-uplink-sunrise-plushie-twenty-five-name = Роман Фильченков
-uplink-sunrise-plushie-twenty-six-name = Конрадра Алексеева
-uplink-sunrise-plushie-twenty-seven-name = Игорь
-uplink-sunrise-plushie-twenty-eight-name = Хаски Хаскович
-uplink-sunrise-plushie-twenty-nine-name = Ах-Вадюмиек
-uplink-sunrise-plushie-thirty-name = Нанати
-uplink-sunrise-plushie-thirty-one-name = Скаут-птица
-uplink-sunrise-plushie-thirty-two-name = Кириешка
-uplink-sunrise-plushie-thirty-three-name = Аллан Хаскович
-uplink-sunrise-plushie-thirty-four-name = Спиффо
-uplink-sunrise-plushie-thirty-five-name = Кирпичный Джим
-uplink-sunrise-plushie-thirty-six-big-name = Кирпичный Джим
+uplink-sunrise-plushie-eighteen-name = Commissioner
+uplink-sunrise-plushie-nineteen-name = Sneaky crook
+uplink-sunrise-plushie-twenty-name = Louras-Ma
+uplink-sunrise-plushie-twenty-one-name = Gentuhw Anmimisz
+uplink-sunrise-plushie-twenty-two-name = Kondrat Seran
+uplink-sunrise-plushie-twenty-three-name = Darth Vader
+uplink-sunrise-plushie-twenty-four-name = Uzo-Kur-Petaksay
+uplink-sunrise-plushie-twenty-five-name = Roman Filchenkov
+uplink-sunrise-plushie-twenty-six-name = Konradra Alexeev
+uplink-sunrise-plushie-twenty-seven-name = Igor
+uplink-sunrise-plushie-twenty-eight-name = Husky Huskovic
+uplink-sunrise-plushie-twenty-nine-name = Ah Wadumiek
+uplink-sunrise-plushie-thirty-name = Nanati
+uplink-sunrise-plushie-thirty-one-name = Scout bird
+uplink-sunrise-plushie-thirty-two-name = Kirieszka
+uplink-sunrise-plushie-thirty-three-name = Allan Haskovic
+uplink-sunrise-plushie-thirty-four-name = Spiffo
+uplink-sunrise-plushie-thirty-five-name = Brick Jim
+uplink-sunrise-plushie-thirty-six-big-name = Big Brick Jim
 uplink-sunrise-plushie-thirty-seven-name = V.O.R.T.E.X.
-uplink-sunrise-plushie-thirty-eight-name = Дань Хэн Пожиратель Луны
+uplink-sunrise-plushie-thirty-eight-name = Dan Heng Moon Eater
 
 ## HOS
 
-uplink-sunrise-clothing-mask-gas-swat-name = Противогаз спецназа
+uplink-sunrise-clothing-mask-gas-swat-name = Swat Gas Mask
 uplink-sunrise-clothing-hands-gloves-leather-ho-name = Кожаные перчатки
 uplink-sunrise-clothing-outer-coat-hos-overcoat-black-name = Бронированная шинель
 uplink-sunrise-clothing-backpack-satchel-ho-name = Сумка главы службы безопасности

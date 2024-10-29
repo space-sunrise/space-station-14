@@ -773,7 +773,7 @@
 
 - type: listing
   id: UplinkSunriseRCDAmmo
-  name: uplink-sunrise-ammo-name
+  name: uplink-sunrise-rcd-ammo-name
   productEntity: RCDAmmo
   cost:
     Suntick: 10
@@ -788,7 +788,7 @@
 
 - type: listing
   id: UplinkSunriseRCD
-  name: uplink-sunrise-name
+  name: uplink-sunrise-rcd-name
   productEntity: RCD
   cost:
     Suntick: 30
@@ -909,7 +909,7 @@
 # Chef Engineer
 - type: listing
   id: UplinkSunriseClothingMaskGasCE
-  name: uplink-sunrise-clothing-mask-gas-name
+  name: uplink-sunrise-clothing-mask-gas-ce-name
   productEntity: ClothingMaskGasCE
   cost:
     Suntick: 8
@@ -924,7 +924,7 @@
 
 - type: listing
   id: UplinkSunriseClothingOuterCoatCEOvercoatWhite
-  name: uplink-sunrise-clothing-outer-coat-overcoat-white-name
+  name: uplink-sunrise-clothing-outer-coat-ce-overcoat-white-name
   productEntity: ClothingOuterCoatCEOvercoatWhite
   cost:
     Suntick: 15
@@ -938,8 +938,8 @@
     - ChiefEngineer
 
 - type: listing
-  id: UplinkSunriseClothingNeckEliteCloakCECloak
-  name: uplink-sunrise-clothing-neck-elite-cloak-cloak-name
+  id: UplinkSunriseClothingNeckEliteCloakCE
+  name: uplink-sunrise-clothing-neck-elite-cloak-ce-name
   productEntity: ClothingNeckEliteCloakCECloak
   cost:
     Suntick: 15
