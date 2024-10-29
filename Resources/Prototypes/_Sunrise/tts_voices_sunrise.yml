@@ -324,15 +324,15 @@
   sex: Male
   speaker: mtf_1
   provider: sunrise
-  roundStart: true # временно
+  roundStart: false # временно
 
 - type: ttsVoice
-  id: CBMTF2 # Проверить модель на качество
+  id: CBMTF2 # Переобучить
   name: tts-voice-name-mtf2
   sex: Male
   speaker: mtf_2
   provider: sunrise
-  roundStart: true # временно
+  roundStart: false # временно
 
 - type: ttsVoice
   id: ThreeBigatiraAleshaPopovich
@@ -457,10 +457,10 @@
   sponsorOnly: true
 
 - type: ttsVoice
-  id: HearthstoneBellok # Проверить модель на качество, пищит?
+  id: HearthstoneBellok
   name: tts-voice-name-hearthstone-bellok-bright-blade
   sex: Male
   speaker: hearthstone_bellok_bright_blade
   provider: sunrise
-  roundStart: true
+  roundStart: false # Переобучить
   sponsorOnly: true
