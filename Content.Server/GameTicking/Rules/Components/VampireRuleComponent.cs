@@ -1,6 +1,5 @@
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.Roles;
-using Content.Shared.Store;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 

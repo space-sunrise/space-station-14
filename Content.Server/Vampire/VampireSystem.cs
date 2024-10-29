@@ -7,9 +7,6 @@ using Content.Server.Interaction;
 using Content.Server.Nutrition.EntitySystems;
 using Content.Server.Polymorph.Systems;
 using Content.Server.Storage.EntitySystems;
-using Content.Server.Store.Components;
-using Content.Shared.Store.Events;
-using Content.Server.Store.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Body.Systems;
 using Content.Shared.Buckle;
@@ -38,7 +35,6 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using System.Linq;
-using Content.Shared.Store;
 
 namespace Content.Server.Vampire;
 
@@ -71,7 +67,6 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly StoreSystem _store = default!;
     [Dependency] private readonly MetabolizerSystem _metabolism = default!;
 
     public override void Initialize()
@@ -82,38 +77,9 @@ public sealed partial class VampireSystem : EntitySystem
         //SubscribeLocalEvent<VampireComponent, VampireSelfPowerEvent>(OnUseSelfPower);
         //SubscribeLocalEvent<VampireComponent, VampireTargetedPowerEvent>(OnUseTargetedPower);
         SubscribeLocalEvent<VampireComponent, ExaminedEvent>(OnExamined);
-        //SubscribeLocalEvent<VampireComponent, StoreProductEvent>(OnStorePurchasePassive);
-
-        SubscribeLocalEvent<VampireHeirloomComponent, StorePurchasedListingEvent>(OnStorePurchase);
 
         InitializePowers();
     }
-
-    /*private void OnStorePurchasePassive(EntityUid uid, VampireComponent component, StoreProductEvent args)
-    {
-        if (args.Ev is not VampirePowerDetails)
-            return;
-
-        var def = args.Ev as VampirePowerDetails;
-        if (def == null)
-            return;
-
-        var vampire = new Entity<VampireComponent>(uid, component);
-
-        switch (def.Type)
-        {
-            case VampirePowerKey.UnnaturalStrength:
-                {
-                    UnnaturalStrength(vampire, def);
-                    break;
-                }
-            case VampirePowerKey.SupernaturalStrength:
-                {
-                    SupernaturalStrength(vampire, def);
-                    break;
-                }
-        }
-    }*/
 
     /// <summary>
     /// Handles healing and damaging in space
@@ -171,56 +137,6 @@ public sealed partial class VampireSystem : EntitySystem
     private void OnComponentStartup(EntityUid uid, VampireComponent component, ComponentStartup args)
     {
         //MakeVampire(uid);
-    }
-
-    private void OnStorePurchase(EntityUid uid, VampireHeirloomComponent component, ref StorePurchasedListingEvent ev)
-    {
-        if (!TryComp<VampireComponent>(ev.Purchaser, out var vampireComponent))
-            return;
-
-        var vampire = new Entity<VampireComponent>(ev.Purchaser, vampireComponent);
-
-        if (ev.Action != null)
-        {
-            OnStorePurchaseActive(vampire, ev.Action.Value);
-        }
-        else
-        {
-            //Its a passive
-            OnStorePurchasePassive(vampire, ev.Listing);
-        }
-    }
-    private void OnStorePurchaseActive(Entity<VampireComponent> purchaser, EntityUid purchasedAction)
-    {
-        if (TryComp<InstantActionComponent>(purchasedAction, out var instantAction) && instantAction.Event != null && instantAction.Event is VampireSelfPowerEvent)
-        {
-            var vampirePower = instantAction.Event as VampireSelfPowerEvent;
-            if (vampirePower == null) return;
-            purchaser.Comp.UnlockedPowers[vampirePower.DefinitionName] = purchasedAction;
-            return;
-        }
-        if (TryComp<EntityTargetActionComponent>(purchasedAction, out var targetAction) && targetAction.Event != null && targetAction.Event is VampireTargetedPowerEvent)
-        {
-            var vampirePower = targetAction.Event as VampireTargetedPowerEvent;
-            if (vampirePower == null) return;
-            purchaser.Comp.UnlockedPowers[vampirePower.DefinitionName] = purchasedAction;
-            return;
-        }
-
-        UpdateBloodDisplay(purchaser);
-    }
-
-    private void OnStorePurchasePassive(Entity<VampireComponent> purchaser, ListingData purchasedPassive)
-    {
-        if (!_passiveCache.TryGetValue(purchasedPassive.ID, out var passiveDef))
-            return;
-
-        //I am so going to hell for this
-        foreach (var compToRemove in passiveDef.CompsToRemove.Values)
-            RemComp(purchaser, compToRemove.Component.GetType());
-
-        foreach (var compToAdd in passiveDef.CompsToAdd.Values)
-            AddComp(purchaser, compToAdd.Component, true);
     }
 
     private void OnExamined(EntityUid uid, VampireComponent component, ExaminedEvent args)
