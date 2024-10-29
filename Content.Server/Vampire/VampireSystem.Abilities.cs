@@ -75,10 +75,6 @@ public sealed partial class VampireSystem
     #region Ability Entry Points
     private void OnVampireOpenMutationsMenu(EntityUid uid, VampireComponent component, VampireOpenMutationsMenu ev)
     {
-        if (!TryComp<StoreComponent>(uid, out var store))
-            return;
-
-        _store.ToggleUi(uid, uid, store);
     }
     private void OnVampireToggleFangs(EntityUid entity, VampireComponent component, VampireToggleFangsEvent ev)
     {
@@ -277,30 +273,6 @@ public sealed partial class VampireSystem
     #endregion
 
     #region Other Powers
-    /// <summary>
-    /// Spawn and bind the pendant if one does not already exist, otherwise just summon to the vampires hand
-    /// </summary>
-    private void SummonHeirloom(Entity<VampireComponent> vampire)
-    {
-        if (!vampire.Comp.Heirloom.HasValue
-            || LifeStage(vampire.Comp.Heirloom.Value) >= EntityLifeStage.Terminating)
-        {
-            //If the pendant does not exist, or has been deleted - spawn one
-            vampire.Comp.Heirloom = Spawn(VampireComponent.HeirloomProto);
-
-            if (TryComp<VampireHeirloomComponent>(vampire.Comp.Heirloom, out var heirloomComponent))
-                heirloomComponent.VampireOwner = vampire;
-
-            //Init the store balance, or init the vampire's balance if this is the first summon
-            if (TryComp<StoreComponent>(vampire.Comp.Heirloom, out var storeComponent))
-                if (vampire.Comp.Balance == null)
-                    vampire.Comp.Balance = storeComponent.Balance;
-                else
-                    storeComponent.Balance = vampire.Comp.Balance;
-        }
-        //Move to players hands
-        _hands.PickupOrDrop(vampire, vampire.Comp.Heirloom.Value);
-    }
     private void Screech(Entity<VampireComponent> vampire, TimeSpan? duration, DamageSpecifier? damage = null)
     {
         foreach (var entity in _entityLookup.GetEntitiesInRange(vampire, 3, LookupFlags.Approximate | LookupFlags.Dynamic | LookupFlags.Static | LookupFlags.Sundries))
