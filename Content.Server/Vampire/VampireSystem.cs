@@ -1,7 +1,6 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.Rotting;
 using Content.Server.Beam;
-using Content.Server.Bed.Sleep;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Systems;
 using Content.Server.Interaction;
@@ -14,6 +13,7 @@ using Content.Server.Store.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Body.Systems;
 using Content.Shared.Buckle;
+using Content.Shared.Bed.Sleep;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Construction.Components;
 using Content.Shared.Damage;

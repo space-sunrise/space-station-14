@@ -77,7 +77,7 @@ public sealed partial class VampireComponent : Component
     /// <summary>
     /// Current available balance, used to sync currency across heirlooms and add essence as we feed
     /// </summary>
-    public Dictionary<string, FixedPoint2> Balance = default!;
+    public Dictionary<ProtoId<CurrencyPrototype>, FixedPoint2> Balance = default!;
 
     public readonly SoundSpecifier BloodDrainSound = new SoundPathSpecifier("/Audio/Items/drink.ogg", new AudioParams() { Volume = -3f, MaxDistance = 3f });
     public readonly SoundSpecifier AbilityPurchaseSound = new SoundPathSpecifier("/Audio/Items/drink.ogg");
@@ -160,6 +160,8 @@ public sealed partial class VampireFangsExtendedComponent : Component { }
 /// </summary>
 public sealed partial class VampireHealingComponent : Component
 {
+    public double NextHealTick = 0;
+    
     public DamageSpecifier? Healing = default!;
 }
 

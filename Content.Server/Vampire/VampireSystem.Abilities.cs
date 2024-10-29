@@ -24,6 +24,7 @@ using Content.Shared.Popups;
 using Content.Shared.Prying.Components;
 using Content.Shared.Stealth.Components;
 using Content.Shared.Store.Events;
+using Content.Shared.Store.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Vampire;
 using Content.Shared.Vampire.Components;
@@ -335,9 +336,6 @@ public sealed partial class VampireSystem
         if (HasComp<VampireComponent>(target))
             return;
 
-        if (!HasComp<FlashableComponent>(target))
-            return;
-
         if (HasComp<FlashImmunityComponent>(target))
             return;
 
@@ -452,9 +450,8 @@ public sealed partial class VampireSystem
         target: target,
         used: target)
         {
-            BreakOnUserMove = true,
+            BreakOnMove = true,
             BreakOnDamage = true,
-            BreakOnTargetMove = true,
             MovementThreshold = 0.01f,
             DistanceThreshold = 1.0f,
             NeedHand = false,
@@ -617,8 +614,11 @@ public sealed partial class VampireSystem
         //Do a precheck
         if (!HasComp<VampireFangsExtendedComponent>(vampire))
             return false;
+        
+        if (!HasComp<TransformComponent>(vampire))
+            return false;
 
-        if (!_interaction.InRangeUnobstructed(vampire, target, popup: true))
+        if (!_interaction.InRangeUnobstructed(vampire.Owner, target, popup: true))
             return false;
 
         if (_food.IsMouthBlocked(target, vampire))
@@ -636,9 +636,8 @@ public sealed partial class VampireSystem
         target: target,
         used: target)
         {
-            BreakOnUserMove = true,
+            BreakOnMove = true,
             BreakOnDamage = true,
-            BreakOnTargetMove = true,
             MovementThreshold = 0.01f,
             DistanceThreshold = 1.0f,
             NeedHand = false,
@@ -718,10 +717,10 @@ public sealed partial class VampireSystem
     private bool TryIngestBlood(Entity<VampireComponent> vampire, Solution ingestedSolution, bool force = false)
     {
         //Get all stomaches
-        if (TryComp<BodyComponent>(vampire.Owner, out var body) && _body.TryGetBodyOrganComponents<StomachComponent>(vampire.Owner, out var stomachs, body))
+        if (TryComp<BodyComponent>(vampire.Owner, out var body) && _body.TryGetBodyOrganEntityComps<StomachComponent>((vampire.Owner, body), out var stomachs))
         {
             //Pick the first one that has space available
-            var firstStomach = stomachs.FirstOrNull(stomach => _stomach.CanTransferSolution(stomach.Comp.Owner, ingestedSolution, stomach.Comp));
+            var firstStomach = stomachs.FirstOrNull(stomach => _stomach.CanTransferSolution(stomach.Owner, ingestedSolution, stomach.Comp1));
             if (firstStomach == null)
             {
                 //We are full
@@ -729,7 +728,7 @@ public sealed partial class VampireSystem
                 return false;
             }
             //Fill the stomach with that delicious blood
-            return _stomach.TryTransferSolution(firstStomach.Value.Comp.Owner, ingestedSolution, firstStomach.Value.Comp);
+            return _stomach.TryTransferSolution(firstStomach.Value.Owner, ingestedSolution, firstStomach.Value.Comp1);
         }
 
         //No stomach
