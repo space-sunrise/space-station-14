@@ -1,27 +1,28 @@
 - type: entity
-  id: ActionVampireSummonHeirloom
-  name: vampire-power-summonheirloom
-  description: vampire-power-summonheirloom-description
-  noSpawn: true
+  id: ActionVampireOpenMutationsMenu
+  name: vampire-power-mutationsmenu
+  description: vampire-power-mutationsmenu-description
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
+    itemIconStyle: NoItem
     icon:
       sprite: Interface/Actions/actions_vampire.rsi
       state: summonheirloom
     event:
-      !type:VampireSummonHeirloomEvent
-      definitionName: SummonHeirloom
-    useDelay: 60
+      !type:VampireOpenMutationsMenu
+    useDelay: 5
 
 - type: entity
   id: ActionVampireToggleFangs
   name: vampire-power-togglefangs
   description: vampire-power-togglefangs-description
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     checkCanInteract: false
     priority: 1
+    itemIconStyle: NoItem
     icon:
       sprite: Interface/Actions/actions_vampire.rsi
       state: fangs_retracted
@@ -36,13 +37,14 @@
   id: ActionVampireGlare
   name: vampire-power-glare
   description: vampire-power-glare-description
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: EntityTargetAction
     whitelist:
       components:
       - Body
     priority: 2
+    itemIconStyle: NoItem
     icon:
       sprite: Interface/Actions/actions_vampire.rsi
       state: glare
@@ -57,7 +59,7 @@
   id: ActionVampireHypnotise
   name: vampire-power-hypnotise
   description: vampire-power-hypnotise-description
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: EntityTargetAction
     whitelist:
@@ -66,6 +68,7 @@
     canTargetSelf: false
     interactOnMiss: false
     priority: 2
+    itemIconStyle: NoItem
     icon:
       sprite: Interface/Actions/actions_vampire.rsi
       state: hypnotise
@@ -78,11 +81,12 @@
   id: ActionVampireScreech
   name: vampire-power-screech
   description: vampire-power-screech-description
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     checkCanInteract: false
     priority: 2
+    itemIconStyle: NoItem
     icon:
       sprite: Interface/Actions/actions_vampire.rsi
       state: screech
@@ -97,11 +101,12 @@
   id: ActionVampireBloodSteal
   name: vampire-power-bloodsteal
   description: vampire-power-bloodsteal-description
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     checkCanInteract: false
     priority: 2
+    itemIconStyle: NoItem
     icon:
       sprite: Interface/Actions/actions_vampire.rsi
       state: bloodsteal
@@ -116,11 +121,12 @@
   id: ActionVampireBatform
   name: vampire-power-batform
   description: vampire-power-batform-description
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     checkCanInteract: false
     priority: 2
+    itemIconStyle: NoItem
     icon:
       sprite: Interface/Actions/actions_vampire.rsi
       state: batform
@@ -135,11 +141,12 @@
   id: ActionVampireMouseform
   name: vampire-power-mouseform
   description: vampire-power-mouseform-description
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     checkCanInteract: false
     priority: 2
+    itemIconStyle: NoItem
     icon:
       sprite: Interface/Actions/actions_vampire.rsi
       state: mouseform
@@ -154,11 +161,12 @@
   id: ActionVampireCloakOfDarkness
   name: vampire-power-cloakofdarkness
   description: vampire-power-cloakofdarkness-description
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     checkCanInteract: false
     priority: 2
+    itemIconStyle: NoItem
     icon:
       sprite: Interface/Actions/actions_vampire.rsi
       state: cloakofdarkness

@@ -91,7 +91,7 @@ public sealed partial class VampireSystem
 
     private void AddStartingAbilities(Entity<VampireComponent> vampire)
     {
-        var action = _action.AddAction(vampire, VampireComponent.SummonActionPrototype);
+        var action = _action.AddAction(vampire, VampireComponent.MutationsActionPrototype);
         if (!action.HasValue)
             return;
 

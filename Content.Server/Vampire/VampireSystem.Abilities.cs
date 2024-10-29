@@ -49,7 +49,7 @@ public sealed partial class VampireSystem
         _passiveCache = BuildPassiveCache();
 
         //Abilities
-        SubscribeLocalEvent<VampireComponent, VampireSummonHeirloomEvent>(OnVampireSummonHeirloom);
+        SubscribeLocalEvent<VampireComponent, VampireOpenMutationsMenu>(OnVampireOpenMutationsMenu);
         SubscribeLocalEvent<VampireComponent, VampireToggleFangsEvent>(OnVampireToggleFangs);
         SubscribeLocalEvent<VampireComponent, VampireGlareEvent>(OnVampireGlare);
         SubscribeLocalEvent<VampireComponent, VampireScreechEvent>(OnVampireScreech);
@@ -73,19 +73,12 @@ public sealed partial class VampireSystem
     }
 
     #region Ability Entry Points
-    private void OnVampireSummonHeirloom(EntityUid entity, VampireComponent component, VampireSummonHeirloomEvent ev)
+    private void OnVampireOpenMutationsMenu(EntityUid uid, VampireComponent component, VampireOpenMutationsMenu ev)
     {
-        if (!TryGetPowerDefinition(ev.DefinitionName, out var def))
+        if (!TryComp<StoreComponent>(uid, out var store))
             return;
 
-        var vampire = new Entity<VampireComponent>(entity, component);
-
-        if (!IsAbilityUsable(vampire, def))
-            return;
-
-        SummonHeirloom(vampire);
-
-        ev.Handled = true;
+        _store.ToggleUi(uid, uid, store);
     }
     private void OnVampireToggleFangs(EntityUid entity, VampireComponent component, VampireToggleFangsEvent ev)
     {

@@ -84,7 +84,6 @@ public sealed partial class VampireSystem : EntitySystem
         SubscribeLocalEvent<VampireComponent, ExaminedEvent>(OnExamined);
         //SubscribeLocalEvent<VampireComponent, StoreProductEvent>(OnStorePurchasePassive);
 
-        SubscribeLocalEvent<VampireHeirloomComponent, UseInHandEvent>(OnUseHeirloom);
         SubscribeLocalEvent<VampireHeirloomComponent, StorePurchasedListingEvent>(OnStorePurchase);
 
         InitializePowers();
@@ -172,21 +171,6 @@ public sealed partial class VampireSystem : EntitySystem
     private void OnComponentStartup(EntityUid uid, VampireComponent component, ComponentStartup args)
     {
         MakeVampire(uid);
-    }
-
-    private void OnUseHeirloom(EntityUid uid, VampireHeirloomComponent component, UseInHandEvent args)
-    {
-        //Ensure the user is a vampire
-        if (!HasComp<VampireComponent>(args.User))
-            return;
-
-        //Only allow the heirloom owner to use this - prevent stealing others blood essence
-        //TODO: Popup, deprecation
-        if (component.VampireOwner != args.User)
-            return;
-
-        //And open the UI
-        _store.ToggleUi(args.User, uid);
     }
 
     private void OnStorePurchase(EntityUid uid, VampireHeirloomComponent component, ref StorePurchasedListingEvent ev)
@@ -281,12 +265,12 @@ public sealed partial class VampireSystem : EntitySystem
             return;
 
         var chargeDisplay = (int) Math.Round((decimal) balance);
-        var summonAction = GetPowerEntity(vampire, VampireComponent.SummonActionPrototype);
+        var mutationsAction = GetPowerEntity(vampire, VampireComponent.MutationsActionPrototype);
 
-        if (summonAction == null)
+        if (mutationsAction == null)
             return;
 
-        _action.SetCharges(summonAction, chargeDisplay);
+        _action.SetCharges(mutationsAction, chargeDisplay);
     }
     private FixedPoint2 GetBloodEssence(Entity<VampireComponent> vampire)
     {
