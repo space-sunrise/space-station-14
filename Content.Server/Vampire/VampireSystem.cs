@@ -141,7 +141,7 @@ public sealed partial class VampireSystem : EntitySystem
         var healingQuery = EntityQueryEnumerator<VampireComponent, VampireHealingComponent>();
         while (healingQuery.MoveNext(out var uid, out _, out var healing))
         {
-            if (vampire == null || healing == null)
+            if (healing == null)
                 continue;
             
             if (healing.NextHealTick <= 0)

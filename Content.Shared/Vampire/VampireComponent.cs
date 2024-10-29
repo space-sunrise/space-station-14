@@ -158,6 +158,7 @@ public sealed partial class VampireFangsExtendedComponent : Component { }
 /// <summary>
 /// When added, heals the entity by the specified amount
 /// </summary>
+[RegisterComponent]
 public sealed partial class VampireHealingComponent : Component
 {
     public double NextHealTick = 0;
