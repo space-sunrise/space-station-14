@@ -5927,9 +5927,11 @@ entities:
       parent: 2
     - type: DeviceList
       devices:
-      - 422
-      - 7448
+      - 16539
       - 7447
+      - 7448
+      - 9753
+      - 9606
   - uid: 41
     components:
     - type: Transform
@@ -8566,9 +8568,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,-176.5
       parent: 2
-    - type: DeviceNetwork
-      deviceLists:
-      - 40
   - uid: 423
     components:
     - type: Transform
@@ -8933,6 +8932,14 @@ entities:
     - type: DeviceNetwork
       deviceLists:
       - 71
+  - uid: 16539
+    components:
+    - type: Transform
+      pos: -2.5,-175.5
+      parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 40
 - proto: AltarSpawner
   entities:
   - uid: 11643
@@ -65019,6 +65026,9 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-176.5
       parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 40
     - type: AtmosPipeColor
       color: '#0335FCFF'
   - uid: 9607
@@ -66397,6 +66407,9 @@ entities:
     - type: Transform
       pos: -1.5,-173.5
       parent: 2
+    - type: DeviceNetwork
+      deviceLists:
+      - 40
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 9754
@@ -75060,7 +75073,7 @@ entities:
       pos: 8.5,-176.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -163516.45
+      secondsUntilStateChange: -163670.66
       state: Closing
   - uid: 11227
     components:
