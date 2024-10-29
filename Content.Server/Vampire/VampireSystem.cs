@@ -126,6 +126,9 @@ public sealed partial class VampireSystem : EntitySystem
         var stealthQuery = EntityQueryEnumerator<VampireComponent, VampireSealthComponent>();
         while (stealthQuery.MoveNext(out var uid, out var vampire, out var stealth))
         {
+            if (vampire == null || stealth == null)
+                continue;
+            
             if (stealth.NextStealthTick <= 0)
             {
                 stealth.NextStealthTick = 1;
@@ -138,6 +141,9 @@ public sealed partial class VampireSystem : EntitySystem
         var healingQuery = EntityQueryEnumerator<VampireComponent, VampireHealingComponent>();
         while (healingQuery.MoveNext(out var uid, out _, out var healing))
         {
+            if (vampire == null || healing == null)
+                continue;
+            
             if (healing.NextHealTick <= 0)
             {
                 healing.NextHealTick = 1;
