@@ -170,7 +170,7 @@ public sealed partial class VampireSystem : EntitySystem
 
     private void OnComponentStartup(EntityUid uid, VampireComponent component, ComponentStartup args)
     {
-        MakeVampire(uid);
+        //MakeVampire(uid);
     }
 
     private void OnStorePurchase(EntityUid uid, VampireHeirloomComponent component, ref StorePurchasedListingEvent ev)
@@ -258,14 +258,17 @@ public sealed partial class VampireSystem : EntitySystem
     /// Use the charges display on SummonHeirloom to show the remaining blood essence
     /// </summary>
     /// <param name="vampire"></param>
-    private void UpdateBloodDisplay(Entity<VampireComponent> vampire)
+    public void UpdateBloodDisplay(EntityUid vampire)
     {
+        if (!TryComp<VampireComponent>(vampire, out var comp))
+            return;
+        
         //Sanity check, you never know who is going to touch this code
-        if (!vampire.Comp.Balance.TryGetValue(VampireComponent.CurrencyProto, out var balance))
+        if (!comp.Balance.TryGetValue(VampireComponent.CurrencyProto, out var balance))
             return;
 
         var chargeDisplay = (int) Math.Round((decimal) balance);
-        var mutationsAction = GetPowerEntity(vampire, VampireComponent.MutationsActionPrototype);
+        var mutationsAction = GetPowerEntity(comp, VampireComponent.MutationsActionPrototype);
 
         if (mutationsAction == null)
             return;

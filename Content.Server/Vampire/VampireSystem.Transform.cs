@@ -89,8 +89,11 @@ public sealed partial class VampireSystem
         }
     }
 
-    private void AddStartingAbilities(Entity<VampireComponent> vampire)
+    public void AddStartingAbilities(EntityUid vampire)
     {
+        if (!TryComp<VampireComponent>(vampire, out var comp))
+            return;
+        
         var action = _action.AddAction(vampire, VampireComponent.MutationsActionPrototype);
         if (!action.HasValue)
             return;
@@ -103,7 +106,7 @@ public sealed partial class VampireSystem
         if (actionEvent == null)
             return;
 
-        vampire.Comp.UnlockedPowers.Add(actionEvent.DefinitionName, action);
+        comp.UnlockedPowers.Add(actionEvent.DefinitionName, action);
 
         UpdateBloodDisplay(vampire);
     }
