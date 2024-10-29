@@ -195,4 +195,4 @@
   components:
   - type: MindRole
     antagPrototype: Vampire
-  - type: VampireRoleComponent
+  - type: VampireRole
