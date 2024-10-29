@@ -91,3 +91,65 @@
   inhand:
   - PetMobCrabAtmos
 
+- type: loadout
+  id: PetMcGriff
+  minLimit: 0
+  sponsorOnly: false
+  inhand:
+  - PetMcGriff
+
+- type: loadout
+  id: PetMobPossumMorty
+  minLimit: 0
+  sponsorOnly: false
+  inhand:
+  - PetMobPossumMorty
+
+- type: loadout
+  id: PetMobPossumPoppy
+  minLimit: 0
+  sponsorOnly: false
+  inhand:
+  - PetMobPossumPoppy
+
+- type: loadout
+  id: PetMobPaperwork
+  minLimit: 0
+  sponsorOnly: false
+  inhand:
+  - PetMobPaperwork
+
+- type: loadout
+  id: PetMobCorgiIanOld
+  minLimit: 0
+  sponsorOnly: false
+  inhand:
+  - PetMobCorgiIanOld
+
+- type: loadout
+  id: PetMobGoose
+  minLimit: 0
+  sponsorOnly: false
+  inhand:
+  - PetMobGoose
+
+- type: loadout
+  id: PetMobClownGoblin
+  minLimit: 0
+  sponsorOnly: false
+  inhand:
+  - PetMobClownGoblin
+
+- type: loadout
+  id: PetMobCorgiIanPup
+  minLimit: 0
+  sponsorOnly: false
+  inhand:
+  - PetMobCorgiIanPup
+
+- type: loadout
+  id: PetMobParrot
+  minLimit: 0
+  sponsorOnly: false
+  inhand:
+  - PetMobParrot
