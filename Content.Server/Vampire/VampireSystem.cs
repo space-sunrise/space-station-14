@@ -58,6 +58,7 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly SharedActionsSystem _action = default!;
+    [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
     [Dependency] private readonly SharedBodySystem _body = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
@@ -201,13 +202,20 @@ public sealed partial class VampireSystem : EntitySystem
     
     private void OnVampireBloodChangedEvent(EntityUid uid, VampireComponent component, VampireBloodChangedEvent args)
     {
-        if (comp.Balance == 150)
-            _action.AddAction(vampire, VampireComponent.MutationsActionPrototype);
+        Log.Warning($"Blood amount: {GetBloodEssence(uid)}");
+        if (GetBloodEssence(uid) >= FixedPoint2.New(150) && !_actionContainer.HasAction(uid, "ActionVampireOpenMutationsMenu"))
+        {
+            Log.Warning($"earned enought blood for mutation");
+            _action.AddAction(uid, VampireComponent.MutationsActionPrototype);
+        }
     }
     
-    private FixedPoint2 GetBloodEssence(Entity<VampireComponent> vampire)
+    private FixedPoint2 GetBloodEssence(EntityUid vampire)
     {
-        if (!vampire.Comp.Balance.TryGetValue(VampireComponent.CurrencyProto, out var val))
+        if (!TryComp<VampireComponent>(vampire, out var comp))
+            return 0;
+        
+        if (!comp.Balance.TryGetValue(VampireComponent.CurrencyProto, out var val))
             return 0;
 
         return val;
