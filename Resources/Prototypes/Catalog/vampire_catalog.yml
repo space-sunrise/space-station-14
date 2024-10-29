@@ -164,20 +164,23 @@
     whitelist:
     - VampireUnnaturalStrength
 
-- type: listing
-  id: VampireDeathsEmbrace
-  name: vampire-passive-deathsembrace
-  description: vampire-passive-deathsembrace-description
-  icon:
-    sprite: Interface/Actions/actions_vampire.rsi
-    state: deathsembrace
-  cost:
-    BloodEssence: 160
-  categories:
-  - VampirePassives
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
+#- type: listing
+#  id: VampireDeathsEmbrace
+#  name: vampire-passive-deathsembrace
+#  description: vampire-passive-deathsembrace-description
+#  icon:
+#    sprite: Interface/Actions/actions_vampire.rsi
+#    state: deathsembrace
+#  cost:
+#    BloodEssence: 160
+#  categories:
+#  - VampirePassives
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+#  - !type:BuyBeforeCondition
+#    whitelist:
+#    - VampireToggleFangs
 
 #- type: listing
 #  id: VampireSupernaturalStrength

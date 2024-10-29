@@ -7,6 +7,7 @@ using Content.Shared.Atmos.Rotting;
 using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Chemistry.Reagent;
+using Content.Shared.Chemistry;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Vampire;
 using Content.Shared.Vampire.Components;

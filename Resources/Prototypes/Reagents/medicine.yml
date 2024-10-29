@@ -1052,16 +1052,6 @@
   physicalDesc: reagent-physical-desc-holy
   flavor: holy
   color: "#91C3F7"
-  reactiveEffects:
-    Unholy:
-      methods: [ Touch ]
-      effects:
-        - !type:HealthChange
-          damage:
-            types:
-              Heat: 5
-        - !type:Emote
-          emote: Scream
   metabolisms:
     Drink:
       effects:
@@ -1099,6 +1089,15 @@
             Shock: -0.2
             Cold: -0.2
   reactiveEffects:
+    Unholy:
+      methods: [ Touch ]
+      effects:
+        - !type:HealthChange
+          damage:
+            types:
+              Heat: 5
+        - !type:Emote
+          emote: Scream
     Extinguish:
       methods: [ Touch ]
       effects:
