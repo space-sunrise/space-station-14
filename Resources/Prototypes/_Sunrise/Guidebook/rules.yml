@@ -279,7 +279,7 @@
 - type: guideEntry
   id: SunriseSpaceLawPunishments
   name: guide-entry-sr-rule-sl-punishments
-  priority: 5
+  priority: 3
   text: "/ServerInfo/Guidebook/ServerRules/SpaceLawSR/SLPunishments.xml"
 
 - type: guideEntry
