@@ -18,7 +18,13 @@
     - id: RubberStampDenied
     - id: RubberStampQm
     - id: AstroNavCartridge
-    - id: FlippoLighterSunriseQm  # Sunrise-Flippo
+    # Sunrise-start: Flippos + Cargo suit
+    - id: ClothingOuterSuitCargo
+    - id: BluespaceBox
+    - id: BluespaceBox
+      prob: 0.25
+    - id: FlippoLighterSunriseQm
+    # Sunrise-end
 
 - type: entity
   id: LockerQuarterMasterFilled
