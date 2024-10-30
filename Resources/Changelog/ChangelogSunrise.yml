@@ -5189,3 +5189,14 @@
   id: 367
   time: '2024-10-30T07:49:47.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/557
+- author: J C Denton
+  changes:
+  - message: "\u0412 \u043F\u0443\u043B \u043A\u0430\u0440\u0442\u0430 \u0434\u043E\
+      \u0431\u0430\u0432\u043B\u0435\u043D\u0430 \u0413\u0435\u043B\u044C\u0442\u0430\
+      \ (\u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0439\u0442\u0435 setmap\
+      \ SunriseCorvaxGelta \u043D\u0430 \u0441\u0432\u043E\u0439 \u0441\u0442\u0440\
+      \u0430\u0445 \u0438 \u0440\u0438\u0441\u043A)."
+    type: Add
+  id: 368
+  time: '2024-10-30T07:51:19.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/561
