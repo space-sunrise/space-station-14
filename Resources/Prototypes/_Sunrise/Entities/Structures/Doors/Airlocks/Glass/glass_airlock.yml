@@ -42,7 +42,6 @@
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_glass_airlock.rsi
     snapCardinals: false
-    scale: 1.5,1
     offset: 0,0
   - type: Fixtures
     fixtures:

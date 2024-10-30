@@ -4,6 +4,7 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
+using Content.Shared.Mobs;
 using Content.Shared.DragDrop;
 using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
@@ -19,10 +20,12 @@ using Content.Shared.Popups;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Whitelist;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
+using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
 
 namespace Content.Shared.Mech.EntitySystems;
 
@@ -33,12 +36,14 @@ public abstract class SharedMechSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly SharedMoverController _mover = default!;
+    [Dependency] private readonly SharedPointLightSystem _pointLight = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
@@ -48,9 +53,10 @@ public abstract class SharedMechSystem : EntitySystem
     {
         SubscribeLocalEvent<MechComponent, MechToggleEquipmentEvent>(OnToggleEquipmentAction);
         SubscribeLocalEvent<MechComponent, MechEjectPilotEvent>(OnEjectPilotEvent);
+        SubscribeLocalEvent<MechComponent, MechToggleLightsEvent>(OnToggleLightsEvent);
         SubscribeLocalEvent<MechComponent, UserActivateInWorldEvent>(RelayInteractionEvent);
         SubscribeLocalEvent<MechComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<MechComponent, DestructionEventArgs>(OnDestruction);
+        SubscribeLocalEvent<MechComponent, MobStateChangedEvent>(OnMobState);
         SubscribeLocalEvent<MechComponent, GetAdditionalAccessEvent>(OnGetAdditionalAccess);
         SubscribeLocalEvent<MechComponent, DragDropTargetEvent>(OnDragDrop);
         SubscribeLocalEvent<MechComponent, CanDropTargetEvent>(OnCanDragDrop);
@@ -76,7 +82,17 @@ public abstract class SharedMechSystem : EntitySystem
         args.Handled = true;
         TryEject(uid, component);
     }
+    
+    private void OnToggleLightsEvent(EntityUid uid, MechComponent component, MechToggleLightsEvent args)
+    {
+        if (args.Handled)
+            return;
 
+        ToggleLights(uid, component);
+        
+        args.Handled = true;
+    }
+    
     private void RelayInteractionEvent(EntityUid uid, MechComponent component, UserActivateInWorldEvent args)
     {
         var pilot = component.PilotSlot.ContainedEntity;
@@ -101,9 +117,17 @@ public abstract class SharedMechSystem : EntitySystem
         UpdateAppearance(uid, component);
     }
 
-    private void OnDestruction(EntityUid uid, MechComponent component, DestructionEventArgs args)
+    private void OnMobState(EntityUid uid, MechComponent component, MobStateChangedEvent args)
     {
-        BreakMech(uid, component);
+        if (args.NewMobState == MobState.Critical)
+        {
+            BreakMech(uid, component);
+        }
+        if (args.NewMobState == MobState.Alive)
+        {
+            component.Broken = false;
+            UpdateAppearance(uid, component);
+        }
     }
 
     private void OnGetAdditionalAccess(EntityUid uid, MechComponent component, ref GetAdditionalAccessEvent args)
@@ -135,6 +159,7 @@ public abstract class SharedMechSystem : EntitySystem
 
         _actions.AddAction(pilot, ref component.MechCycleActionEntity, component.MechCycleAction, mech);
         _actions.AddAction(pilot, ref component.MechUiActionEntity, component.MechUiAction, mech);
+        _actions.AddAction(pilot, ref component.MechLightsActionEntity, component.MechLightsAction, mech);
         _actions.AddAction(pilot, ref component.MechEjectActionEntity, component.MechEjectAction, mech);
     }
 
@@ -146,6 +171,21 @@ public abstract class SharedMechSystem : EntitySystem
         RemComp<InteractionRelayComponent>(pilot);
 
         _actions.RemoveProvidedActions(pilot, mech);
+    }
+    
+    public void ToggleLights(EntityUid uid, MechComponent component)
+    {
+        if (_pointLight.TryGetLight(uid, out var pointLightComponent))
+        {
+            component.Lights = !component.Lights;
+            _pointLight.SetEnabled(uid, component.Lights, pointLightComponent);
+            _actions.SetToggled(component.MechLightsActionEntity, component.Lights);
+            if(component.Lights)
+                _audioSystem.PlayPredicted(component.EnableLightSound, component.Owner, component.PilotSlot.ContainedEntity);
+            else
+                _audioSystem.PlayPredicted(component.DisableLightSound, component.Owner, component.PilotSlot.ContainedEntity);
+            Dirty(uid ,component);
+        }
     }
 
     /// <summary>
@@ -370,6 +410,7 @@ public abstract class SharedMechSystem : EntitySystem
             return false;
 
         SetupUser(uid, toInsert.Value);
+        _audioSystem.PlayPredicted(component.HelloSound, component.Owner, toInsert.Value);
         _container.Insert(toInsert.Value, component.PilotSlot);
         UpdateAppearance(uid, component);
         return true;
@@ -389,6 +430,11 @@ public abstract class SharedMechSystem : EntitySystem
         if (component.PilotSlot.ContainedEntity == null)
             return false;
 
+        if (HasComp<NoRotateOnMoveComponent>(uid))
+        {
+            RemComp<NoRotateOnMoveComponent>(uid);
+        }
+            
         var pilot = component.PilotSlot.ContainedEntity.Value;
 
         RemoveUser(uid, pilot);
@@ -421,7 +467,7 @@ public abstract class SharedMechSystem : EntitySystem
             args.Cancel();
     }
 
-    private void UpdateAppearance(EntityUid uid, MechComponent? component = null,
+    public void UpdateAppearance(EntityUid uid, MechComponent? component = null,
         AppearanceComponent? appearance = null)
     {
         if (!Resolve(uid, ref component, ref appearance, false))
@@ -429,6 +475,9 @@ public abstract class SharedMechSystem : EntitySystem
 
         _appearance.SetData(uid, MechVisuals.Open, IsEmpty(component), appearance);
         _appearance.SetData(uid, MechVisuals.Broken, component.Broken, appearance);
+        
+        var ev = new UpdateAppearanceEvent();
+        RaiseLocalEvent(uid, ev);
     }
 
     private void OnDragDrop(EntityUid uid, MechComponent component, ref DragDropTargetEvent args)
@@ -486,5 +535,10 @@ public sealed partial class MechExitEvent : SimpleDoAfterEvent
 /// </summary>
 [Serializable, NetSerializable]
 public sealed partial class MechEntryEvent : SimpleDoAfterEvent
+{
+}
+
+[Serializable, NetSerializable]
+public sealed partial class UpdateAppearanceEvent : EntityEventArgs
 {
 }

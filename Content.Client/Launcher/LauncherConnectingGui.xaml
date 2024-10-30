@@ -51,6 +51,18 @@
                                         HorizontalAlignment="Center"
                                         VerticalAlignment="Bottom"
                                         StyleClasses="OpenLeft"/>
+                                <!-- Sunrise edit start. -->
+                                <Button Name="Forum"
+                                        Text="Forum"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Bottom"
+                                        StyleClasses="OpenLeft"/>
+                                <Button Name="Discord"
+                                        Text="Discord"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Bottom"
+                                        StyleClasses="OpenLeft"/>
+                                <!-- Sunrise edit end. -->
                             </BoxContainer>
                         </BoxContainer>
                     </Control>

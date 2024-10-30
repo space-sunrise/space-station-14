@@ -30,7 +30,7 @@
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
-    state: mecha_laser
+    state: mecha_immolator
   - type: Gun
     fireRate: 0.6
     selectedMode: SemiAuto
@@ -53,7 +53,7 @@
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
-    state: mecha_laser
+    state: mecha_solaris
   - type: Gun
     fireRate: 1
     selectedMode: SemiAuto
@@ -76,7 +76,7 @@
   components:
   - type: Sprite
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
-    state: mecha_laser
+    state: mecha_firedart
   - type: Gun
     fireRate: 0.8
     selectedMode: SemiAuto
@@ -220,7 +220,7 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_uac2
   - type: Gun
-    fireRate: 2
+    fireRate: 5
     shotsPerBurst: 3
     burstCooldown: 1.2
     selectedMode: Burst
@@ -273,7 +273,7 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_amlg90
   - type: Gun
-    fireRate: 2
+    fireRate: 4
     shotsPerBurst: 3
     burstCooldown: 1.2
     selectedMode: Burst
@@ -285,7 +285,7 @@
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: BulletSyndiPlasma
-    fireCost: 75
+    fireCost: 20
   - type: Appearance
   - type: AmmoCounter
     

@@ -121,7 +121,7 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-        
+
 - type: entity
   parent: ClothingHeadHardsuitBase
   id: ClothingHeadHelmetLightHardsuitUSSP
@@ -143,3 +143,24 @@
         Piercing: 0.9
         Heat: 0.9
   - type: FlashImmunity
+
+- type: entity
+  parent: ClothingHeadHardsuitWithLightBase
+  id: ClothingHeadHelmetHardsuitEngineeringCompact
+  name: engineering hardsuit helmet
+  description: An engineering hardsuit helmet designed for working in low-pressure, high radioactive environments.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hardsuits/engineering-compact.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hardsuits/engineering-compact.rsi
+  - type: PointLight
+    color: cyan
+  - type: PressureProtection
+    highPressureMultiplier: 0.1
+    lowPressureMultiplier: 1000
+  - type: EyeProtection
+  - type: FlashImmunity
+  - type: NightVisionDevice
+    displayColor: "#ebeb00"
+    displayShader: NVDDisplay
