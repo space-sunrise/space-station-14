@@ -4,7 +4,7 @@
   mapPath: /Maps/_Sunrise/Station/marathon.yml
   maxRandomOffset: 0
   randomRotation: false
-  minPlayers: 20
+  minPlayers: 0
   stations:
     Marathon:
       stationProto: StandardNanotrasenStation

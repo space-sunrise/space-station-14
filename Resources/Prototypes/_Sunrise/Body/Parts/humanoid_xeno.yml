@@ -2,7 +2,7 @@
 - type: entity
   id: PartHumanoidXeno
   parent: BaseItem
-  name: "правая рука ксеноморфа"
+  name: "xenomorph body part"
   abstract: true
   components:
   - type: Damageable
@@ -18,7 +18,7 @@
 
 - type: entity
   id: TorsoHumanoidXeno
-  name: "торс ксеноморфа"
+  name: "xenomorph torso"
   parent: PartHumanoidXeno
   components:
   - type: Sprite
@@ -33,7 +33,7 @@
 
 - type: entity
   id: HeadHumanoidXeno
-  name: "голова ксеноморфа"
+  name: "xenomorph head"
   parent: PartHumanoidXeno
   components:
   - type: Sprite
@@ -54,7 +54,7 @@
 
 - type: entity
   id: LeftArmHumanoidXeno
-  name: "левая рука ксеноморфа"
+  name: "left xenomorph arm"
   parent: PartHumanoidXeno
   components:
   - type: Sprite
@@ -70,7 +70,7 @@
 
 - type: entity
   id: RightArmHumanoidXeno
-  name: "правая рука ксеноморфа"
+  name: "right xenomorph arm"
   parent: PartHumanoidXeno
   components:
   - type: Sprite
@@ -86,7 +86,7 @@
 
 - type: entity
   id: LeftHandHumanoidXeno
-  name: "левая кисть ксеноморфа"
+  name: "left xenomorph hand"
   parent: PartHumanoidXeno
   components:
   - type: Sprite
@@ -102,7 +102,7 @@
 
 - type: entity
   id: RightHandHumanoidXeno
-  name: "правая кисть ксеноморфа"
+  name: "right xenomorph hand"
   parent: PartHumanoidXeno
   components:
   - type: Sprite
@@ -118,7 +118,7 @@
 
 - type: entity
   id: LeftLegHumanoidXeno
-  name: "левая нога ксеноморфа"
+  name: "left xenomorph leg"
   parent: PartHumanoidXeno
   components:
   - type: Sprite
@@ -135,7 +135,7 @@
 
 - type: entity
   id: RightLegHumanoidXeno
-  name: "правая нога ксеноморфа"
+  name: "right xenomorph leg"
   parent: PartHumanoidXeno
   components:
   - type: Sprite
@@ -152,7 +152,7 @@
 
 - type: entity
   id: LeftFootHumanoidXeno
-  name: "левая стопа ксеноморфа"
+  name: "left xenomorph foot"
   parent: PartHumanoidXeno
   components:
   - type: Sprite
@@ -168,7 +168,7 @@
 
 - type: entity
   id: RightFootHumanoidXeno
-  name: "правая стопа ксеноморфа"
+  name: "right xenomorph foot"
   parent: PartHumanoidXeno
   components:
   - type: Sprite

@@ -35,8 +35,8 @@
 - type: entity
   parent: ClothingOuterHardsuitBase
   id: ClothingOuterHardsuitBlueshield
-  name: скафандр офицера «синий щит»
-  description: Крепкий и надёжныый, как и его владелец.
+  name: blueshield's hardsuit
+  description: Tough and reliable, just like its owner.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/blueshield.rsi
@@ -77,8 +77,8 @@
 - type: entity
   parent: ClothingOuterHardsuitBase
   id: ClothingOuterHardsuitPilot
-  name: Скафандр пилота Службы Безопасности
-  description: Облегченная версия скафандра Службы безопасности, обеспечивает хорошую подвижность, но меньшую защиту.
+  name: security pilot's hardsuit
+  description: A lightweight version of the Security Service spacesuit, it provides good mobility but less protection.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/pilothardsuit.rsi

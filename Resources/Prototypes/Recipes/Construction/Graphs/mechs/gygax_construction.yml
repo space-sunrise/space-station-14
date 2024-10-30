@@ -81,7 +81,7 @@
           data: 9
 
       - tag: CapacitorStockPart
-        name: capacitor
+        name: step-capacitor-name
         icon:
           sprite: Objects/Misc/stock_parts.rsi
           state: capacitor
@@ -98,7 +98,7 @@
           data: 11
 
       - component: PowerCell
-        name: power cell
+        name: step-powercell-name
         store: battery-container
         icon:
           sprite: Objects/Power/power_cells.rsi

@@ -1,2 +1,2 @@
 ent-ClothingBackpackDuffelBoomboxBundle = syndicate boombox bundle
-    .desc = Убивайте со стилем
+    .desc = Kills with style.

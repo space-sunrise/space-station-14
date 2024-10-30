@@ -17,3 +17,4 @@ comp-secret-stash-verb-cant-close = Вы не можете закрыть { $sta
 comp-secret-stash-verb-open = Открыть
 secret-stash-plant = растение
 secret-stash-toilet = бачок унитаза
+secret-stash-plushie = плюшевая игрушка

@@ -7,13 +7,13 @@
     - to: empty
       steps:
       - tag: DrinkCan
-        name: пустую банку  # Sunrise-recipes
+        name: step-empty-can-name
         icon:
           sprite: Objects/Consumable/Drinks/cola.rsi
           state: icon_open
         doAfter: 1
       - tag: Igniter
-        name: воспламенитель  # Sunrise-recipes
+        name: step-igniter-name
         icon:
           sprite: Objects/Devices/igniter.rsi
           state: icon
