@@ -70,6 +70,16 @@ vampire-mutation-umbrae-info =
     
     - Блик
     - Плащ тьмы
+    
+vampire-mutation-gargantua-info = 
+    Гаргантюа
+    
+    Фокусируется на ближнем уроне и стойкости.
+    
+    Способности:
+    
+    - Нечестивая сила
+    - Сверхъестественная сила
 
 vampire-mutation-bestia-info = 
     Бестия
