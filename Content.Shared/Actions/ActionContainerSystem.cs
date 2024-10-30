@@ -238,16 +238,16 @@ public sealed class ActionContainerSystem : EntitySystem
         DebugTools.AssertOwner(uid, comp);
         comp ??= EnsureComp<ActionsContainerComponent>(uid);
 
-        ///if (!TryComp<MetaDataComponent>(actionId, out var actionData))
-        ///    return false;
-        ///if (!TryPrototype(actionId, out var actionProto, actionData))
-        ///    return false;
+        if (!TryComp<MetaDataComponent>(actionId, out var actionData))
+            return false;
+        if (!TryPrototype(actionId, out var actionProto, actionData))
+            return false;
 
-        ///if (HasAction(uid, actionProto.ID))
-        ///{
-        ///    Log.Debug($"Tried to insert action {ToPrettyString(actionId)} into {ToPrettyString(uid)}. Failed due to duplicate actions.");
-        ///    return false;
-        ///}
+        if (HasAction(uid, actionProto.ID, comp))
+        {
+            Log.Debug($"Tried to insert action {ToPrettyString(actionId)} into {ToPrettyString(uid)}. Failed due to duplicate actions.");
+            return false;
+        }
 
         if (!_container.Insert(actionId, comp.Container))
         {

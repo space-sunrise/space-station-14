@@ -1,8 +1,11 @@
 - type: Tag
   id: NoPaint
-  
+
 - type: Tag
   id: IgnoreMelee
+  
+- type: Tag
+  id: NoInjectable
 
 - type: Tag
   id: Nanopaste
@@ -30,9 +33,12 @@
 
 - type: Tag
   id: AssaultOpsUplink
-  
+
 - type: Tag
   id: SyndieAgentUplink
+  
+- type: Tag
+  id: AnomalyCore
 
 # Catridges:
 
@@ -138,3 +144,43 @@
 
 - type: Tag
   id: MagazineDl6902
+
+- type: Tag
+  id: BluespaceBox
+  
+- type: Tag
+  id: SyndicateRapier
+  
+# Material bag:
+
+- type: Tag
+  id: Tile
+
+- type: Tag
+  id: MicroManipulatorStockPart
+
+- type: Tag
+  id: MatterBinStockPart
+
+- type: Tag
+  id: PartRodMetal
+
+- type: Tag
+  id: Board
+  
+# Mechs
+
+- type: Tag
+  id: Ripley
+  
+- type: Tag
+  id: Clarke
+
+- type: Tag
+  id: Gygax
+  
+- type: Tag
+  id: Durand
+  
+- type: Tag
+  id: Phazon

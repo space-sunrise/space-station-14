@@ -28,13 +28,13 @@
                 state: walkietalkie
               doAfter: 5
             - tag: CapacitorStockPart
-              name: capacitor
+              name: step-capacitor-name
               icon:
                 sprite: Objects/Misc/stock_parts.rsi
                 state: capacitor
               doAfter: 5
             - tag: CapacitorStockPart
-              name: capacitor
+              name: step-capacitor-name
               icon:
                 sprite: Objects/Misc/stock_parts.rsi
                 state: capacitor

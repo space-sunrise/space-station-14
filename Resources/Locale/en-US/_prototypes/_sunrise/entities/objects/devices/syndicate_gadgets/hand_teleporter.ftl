@@ -1,0 +1,9 @@
+ent-HandTeleporterAA = { ent-HandTeleporter }
+    .suffix = Admeme
+    .desc = { ent-HandTeleporter.desc }
+ent-PortalRedAA = { ent-PortalRed }
+    .suffix = Admeme
+    .desc = { ent-PortalRed.desc }
+ent-PortalBlueAA = { ent-PortalBlue }
+    .suffix = Admeme
+    .desc = { ent-PortalBlue.desc }

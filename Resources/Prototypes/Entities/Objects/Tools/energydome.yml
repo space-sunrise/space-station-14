@@ -2,7 +2,7 @@
   name: blood red personal shield generator
   description: A personal shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Uses a power cell.
   id: EnergyDomeGeneratorPersonalSyndie
-  parent: BaseItem
+  parent: [ BaseItem, BaseSyndicateContraband ]
   components:
   - type: Item
     size: Ginormous

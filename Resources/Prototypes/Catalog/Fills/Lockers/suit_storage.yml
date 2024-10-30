@@ -74,6 +74,7 @@
         - id: OxygenTankFilled
         - id: ClothingOuterHardsuitPirateEVA
         - id: ClothingMaskGas
+        - id: ClothingShoesBootsMagPirate
 
 #NTSRA Voidsuit
 - type: entity
@@ -260,6 +261,7 @@
         - id: OxygenTankFilled
         - id: ClothingOuterHardsuitPirateCap
         - id: ClothingMaskGas
+        - id: ClothingShoesBootsMagPirate
 
 #Wizard
 - type: entity

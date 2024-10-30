@@ -1,8 +1,8 @@
 - type: entity
   parent: ClothingBraStorageBase
   id: ClothingBraNekoWhite
-  name: женский бюстгальтер "Неко" белый
-  description: Белый бюстгальтер с изображением ушек и хвоста кошки.
+  name: women's bra "Neko" white
+  description: White bra featuring cat ears and tail.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Bra/bra.rsi
@@ -14,8 +14,8 @@
 - type: entity
   parent: ClothingBraStorageBase
   id: ClothingBraNekoBlack
-  name: женский бюстгальтер "Неко" черный
-  description: Черный бюстгальтер с изображением ушек и хвоста кошки.
+  name: women's bra "Neko" black
+  description: Black bra featuring cat ears and tail.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Bra/bra.rsi
@@ -27,8 +27,8 @@
 - type: entity
   parent: ClothingBraStorageBase
   id: ClothingBraAssblastusa
-  name: женский бюстгальтер "Эссбластуса"
-  description: Бюстгальтер с уникальным дизайном, вдохновленным космическими мотивами.
+  name: women's bra "Assblastusa"
+  description: A bra with a unique space inspired design.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Bra/bra.rsi
@@ -40,8 +40,8 @@
 - type: entity
   parent: ClothingBraStorageBase
   id: ClothingBraBikini
-  name: женский бюстгальтер-бикини
-  description: Бюстгальтер с обтягивающим купальником.
+  name: women's bra-bikini
+  description: A bra with a tight swimsuit.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Bra/bra.rsi
@@ -53,8 +53,8 @@
 - type: entity
   parent: ClothingBraStorageBase
   id: ClothingBraBralette
-  name: женский бра-топ
-  description: Комфортный и стильный бра-топ.
+  name: women's bra-top
+  description: Comfortable and stylish bra-top.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Bra/bra.rsi
@@ -66,8 +66,8 @@
 - type: entity
   parent: ClothingBraStorageBase
   id: ClothingBraCommie
-  name: женский бюстгальтер "Комми"
-  description: Бюстгальтер с дизайном, вдохновленным стилем коммунизма.
+  name: women's bra "Commie"
+  description: A bra with a communist inspired design.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Bra/bra.rsi
@@ -79,8 +79,8 @@
 - type: entity
   parent: ClothingBraStorageBase
   id: ClothingBraKinky
-  name: женский сексуальный бюстгальтер
-  description: Сексуальный бюстгальтер для особых случаев.
+  name: women's sexy bra
+  description: A sexy bra for special occasions.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Bra/bra.rsi
@@ -92,8 +92,8 @@
 - type: entity
   parent: ClothingBraStorageBase
   id: ClothingBraLace
-  name: женский кружевной бюстгальтер
-  description: Кружевной бюстгальтер для женственного образа.
+  name: women's lace bra
+  description: Lace bra for a feminine look.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Bra/bra.rsi
@@ -105,8 +105,8 @@
 - type: entity
   parent: ClothingBraStorageBase
   id: ClothingBraSport
-  name: женский спортивный бюстгальтер
-  description: Удобный и поддерживающий бюстгальтер для занятий спортом.
+  name: women's sports bra
+  description: Comfortable and supportive bra for sports activities.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Bra/bra.rsi
@@ -118,8 +118,8 @@
 - type: entity
   parent: ClothingBraStorageBase
   id: ClothingBraThong
-  name: женский тонкий бюстгальтер
-  description: Тонкий бюстгальтер без лишних деталей.
+  name: women's slim bra
+  description: A slim, uncluttered bra.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Bra/bra.rsi
@@ -131,8 +131,8 @@
 - type: entity
   parent: ClothingBraStorageBase
   id: ClothingBraUk
-  name: женский бюстгальтер "Великобритания"
-  description: Бюстгальтер с дизайном, символизирующим Великобританию.
+  name: women's bra "Great Britain"
+  description: A bra with a design symbolizing Great Britain.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Bra/bra.rsi
@@ -144,8 +144,8 @@
 - type: entity
   parent: ClothingBraStorageBase
   id: ClothingBraStrapless
-  name: женский бюстгальтер без бретелек
-  description: Бюстгальтер без бретелек для невидимости под одеждой.
+  name: women's strapless bra
+  description: Strapless bra for invisibility under clothing.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Bra/bra.rsi

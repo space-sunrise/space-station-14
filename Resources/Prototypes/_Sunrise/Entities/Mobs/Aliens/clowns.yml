@@ -16,8 +16,8 @@
     makeSentient: true
     allowSpeech: true
     allowMovement: true
-    name: клоун гоблин
-    description: Ужасное создание, которое поклоняется творцу...
+    name: ghost-role-information-clown-goblin-name
+    description: ghost-role-information-clown-goblin-description
   - type: Speech
     speechSounds: BikeHorn
   - type: Sprite

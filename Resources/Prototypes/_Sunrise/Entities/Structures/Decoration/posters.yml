@@ -1,9 +1,0 @@
-- type: entity
-  parent: PosterBase
-  id: PosterAriralInSpace
-  name: "Арирал в космосе"
-  description: "Это явно послание.. Что-то я забыл.."
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Structures/Decoration/poster.rsi
-    state: poster

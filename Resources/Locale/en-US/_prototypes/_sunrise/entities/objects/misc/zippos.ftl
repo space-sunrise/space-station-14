@@ -1,5 +1,5 @@
-ent-FlippoLighterSunriseBase = зажигалка флиппо
-    .desc = Надёжная металлическая зажигалка, рассчитанная на длительный срок службы.
+ent-FlippoLighterSunriseBase = flippo lighter
+    .desc = A reliable metal lighter designed to last a long time.
 ent-FlippoLighterSunriseCe = { ent-FlippoLighterSunriseBase }
     .desc = { ent-FlippoLighterSunriseBase.desc }
 ent-FlippoLighterSunriseCmo = { ent-FlippoLighterSunriseBase }

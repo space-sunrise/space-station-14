@@ -4,3 +4,5 @@ ent-BulletEMP = импульс ЭМИ
     .desc = { ent-BaseBulletTrigger.desc }
 ent-BaseBulletRubber = резиновая пуля
     .desc = { ent-BaseBullet.desc }
+ent-RadiationBullet = поток радиоактивных частиц
+    .desc = { ent-BaseBullet.desc }
