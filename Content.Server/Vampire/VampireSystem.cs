@@ -210,9 +210,17 @@ public sealed partial class VampireSystem : EntitySystem
     private void OnVampireBloodChangedEvent(EntityUid uid, VampireComponent component, VampireBloodChangedEvent args)
     {
         // Mutations
-        if (GetBloodEssence(uid) >= FixedPoint2.New(150) && !_actionContainer.HasAction(uid, "ActionVampireOpenMutationsMenu"))
+        if (GetBloodEssence(uid) >= FixedPoint2.New(50) && !_actionContainer.HasAction(uid, "ActionVampireOpenMutationsMenu"))
         {
             _action.AddAction(uid, ref component.MutationsAction, VampireComponent.MutationsActionPrototype);
+        }
+        else if (_actionContainer.HasAction(uid, "ActionVampireOpenMutationsMenu"))
+        {
+            if (!TryComp(uid, out ActionsComponent? comp) || component.MutationsAction is null)
+                return;
+            
+            _action.RemoveAction(uid, component.MutationsAction, comp);
+            _actionContainer.RemoveAction(component.MutationsAction.Value);
         }
         
         //Hemomancer
@@ -326,15 +334,14 @@ public sealed partial class VampireSystem : EntitySystem
     }
     private void ChangeMutation(EntityUid uid, VampireMutationsType newMutation, VampireComponent component)
     {
-        if (component.MutationsAction != null)
+        var vampire = new Entity<VampireComponent>(uid, component);
+        if (SubtractBloodEssence(vampire, FixedPoint2.New(50)))
         {
-            _action.RemoveAction(uid, component.MutationsAction);
-            TryOpenUi(uid, component.Owner, component);
+            component.CurrentMutation = newMutation;
+            UpdateUi(uid, component);
+            var ev = new VampireBloodChangedEvent();
+            RaiseLocalEvent(uid, ev);
         }
-        component.CurrentMutation = newMutation;
-        UpdateUi(uid, component);
-        var ev = new VampireBloodChangedEvent();
-        RaiseLocalEvent(uid, ev);
     }
     
     private void GetState(EntityUid uid, VampireComponent component, ref ComponentGetState args)
