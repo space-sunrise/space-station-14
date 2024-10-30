@@ -41,13 +41,17 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
     {
         base.Initialize();
 
+        SubscribeLocalEvent<VampireRuleComponent, GetBriefingEvent>(OnGetBriefing);
+
         SubscribeLocalEvent<VampireRuleComponent, AfterAntagEntitySelectedEvent>(OnSelectAntag);
         //SubscribeLocalEvent<VampireRuleComponent, ObjectivesTextPrependEvent>(OnTextPrepend);
     }
 
-    private void OnSelectAntag(EntityUid uid, VampireRuleComponent comp, ref AfterAntagEntitySelectedEvent args)
+    private void OnSelectAntag(EntityUid mindId, VampireRuleComponent comp, ref AfterAntagEntitySelectedEvent args)
     {
-        MakeVampire(args.EntityUid, comp);
+        var ent = args.EntityUid;
+        _antag.SendBriefing(ent, MakeBriefing(ent), Color.Yellow, BriefingSound);
+        MakeVampire(ent, comp);
     }
     public bool MakeVampire(EntityUid target, VampireRuleComponent rule)
     {
@@ -60,9 +64,9 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
             var briefing = Loc.GetString("vampire-role-greeting", ("name", metaData?.EntityName ?? "Unknown"));
             var briefingShort = Loc.GetString("vampire-role-greeting-short", ("name", metaData?.EntityName ?? "Unknown"));
 
-            _antag.SendBriefing(target, briefing, Color.Yellow, BriefingSound);
             _role.MindHasRole<VampireRoleComponent>(mindId, out var vampireRole);
-            if (vampireRole is not null)
+            _role.MindHasRole<RoleBriefingComponent>(mindId, out var briefingComp);
+            if (vampireRole is not null && briefingComp is null)
             {
                 AddComp<RoleBriefingComponent>(vampireRole.Value.Owner);
                 Comp<RoleBriefingComponent>(vampireRole.Value.Owner).Briefing = briefing;
@@ -90,6 +94,27 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
         //    _mind.TryAddObjective(mindId, mind, objective);
 
         return true;
+    }
+    
+    private void OnGetBriefing(Entity<VampireRuleComponent> role, ref GetBriefingEvent args)
+    {
+        var ent = args.Mind.Comp.OwnedEntity;
+        
+        if (ent is null)
+            return;
+        args.Append(MakeBriefing(ent.Value));
+    }
+    
+    private string MakeBriefing(EntityUid ent)
+    {
+        if (TryComp<MetaDataComponent>(ent, out var metaData))
+        {
+            var briefing = Loc.GetString("vampire-role-greeting", ("name", metaData?.EntityName ?? "Unknown"));
+            
+            return briefing;
+        }
+        
+        return "";
     }
 
 /*    private void OnTextPrepend(EntityUid uid, VampireRuleComponent comp, ref ObjectivesTextPrependEvent args)
