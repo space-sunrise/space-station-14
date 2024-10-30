@@ -36,7 +36,7 @@ public sealed partial class VampireComponent : Component
         VampireMutationsType.Hemomancer,
         VampireMutationsType.Umbrae,
         VampireMutationsType.Gargantua,
-        VampireMutationsType.Dantalion,
+        //VampireMutationsType.Dantalion,
         VampireMutationsType.Bestia
     };
 
