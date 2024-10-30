@@ -1,27 +1,26 @@
 - type: entity
-  id: MechMolot
-  parent: [ BaseMech, CombatMech ]
-  name: Molot M-1
-  description: A heavy mech designed by the SSSP to operate in aggressive, unaccepted environments. It has 4 weapon mounts on board, oxygen maintenance in the cockpit.
+  id: MechSecPod
+  parent: [ BaseMech, CombatMech, BaseRestrictedContraband ]
+  name: Security Pod
+  description: While lightly armored, the Gygax has incredible mobility thanks to its ability that lets it smash through walls at high speeds.
   components:
   - type: Sprite
     drawdepth: Mobs
     noRot: true
-    sprite: _Sunrise/Objects/Specific/Mech/mecha.rsi
+    sprite: _Sunrise/Objects/Specific/Mech/sec_pod.rsi
+    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
-      state: molot
+      state: sec_pod
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
   - type: Mech
-    baseState: molot
-    openState: molot-open
-    brokenState: molot-broken
-    mechToPilotDamageMultiplier: 0.1
+    baseState: sec_pod
+    openState: sec_pod
+    brokenState: sec_pod
+    mechToPilotDamageMultiplier: 0.3
     airtight: true
-    maxIntegrity: 700
-    maxEquipmentAmount: 4
     pilotWhitelist:
       components:
         - HumanoidAppearance
@@ -30,41 +29,22 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 40
-        Structural: 200
+        Blunt: 0
+        Structural: 0
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 2.5
-  - type: Damageable
-    damageModifierSet: HeavyArmorNT
-  - type: CanMoveInAir
-  - type: MovementAlwaysTouching
-  - type: Repairable
-    fuelCost: 30
-    doAfterDelay: 15
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 3
   - type: Reflect
-    reflectProb: 0.3
+    reflectProb: 0.25
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
-    
-- type: entity
-  id: MechMolotBattery
-  parent: MechMolot
-  suffix: Battery
-  components:
-  - type: ContainerFill
-    containers:
-      mech-battery-slot:
-      - PowerCageHigh
-
-- type: entity
-  id: MechMolotFilled
-  parent: MechMolotBattery
-  suffix: Battery, Filled
-  components:
-  - type: Mech
-    startingEquipment:
-      - WeaponMechChainSword
-      - WeaponMechCombatPulseRifle
-      - WeaponMechCombatUltraRifle
-      - WeaponMechCombatMissileRack8
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      300: Critical
+    showOverlays: false
+    allowRevives: true
+  - type: Tag

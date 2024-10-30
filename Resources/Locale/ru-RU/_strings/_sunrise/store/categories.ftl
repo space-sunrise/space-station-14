@@ -24,3 +24,4 @@ shop-disease-category-symptoms = Симптомы
 shop-disease-category-evolution = Улучшение
 # Uplink
 store-category-objectives = Цели
+store-category-mechs = Мехи

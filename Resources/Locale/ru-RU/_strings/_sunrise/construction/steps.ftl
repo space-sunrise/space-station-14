@@ -16,6 +16,7 @@ step-wallmount-generator-circuit-board-name = микросхему настен�
 step-freezer-electronics-name = микросхему морозильника
 step-multitool-name = мультитул
 step-capacitor-name = конденсатор
+step-powercage-name = любую энерго ячейку
 step-powercell-name = любую батарею
 step-powercell-small-name = маленькую батарею
 step-signal-trigger-name = сигнальный триггер

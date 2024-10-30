@@ -62,3 +62,26 @@ uplink-hypo-name = Горлекс гипоспрей
 uplink-hypo-desc = Химический гипоспрей, произвёденный синдикатом, способный мгновенно впрыснуть до 20 ед. реагентов. Изначально пуст.
 uplink-polytrinic-acid-chemistry-bottle-name = Политриновая кислота
 uplink-polytrinic-acid-chemistry-bottle-desc = Чрезвычайно едкое химическое вещество. Сильно обжигает всех, кто вступит с ней в непосредственный контакт.
+
+## Mechs equipment
+
+uplink-mech-equipment-immolation-gun-name = пушка-испепелитель ZFI
+uplink-mech-equipment-immolation-gun-desc = Оружие для боевых мехов, стреляющее высокотемпературными лучами.
+uplink-mech-equipment-tesla-cannon-name = тесла-пушка P-X
+uplink-mech-equipment-tesla-cannon-desc = Оружие для боевых мехов, стреляющее энергетическими шарами, основанное на принципе экспериментального двигателя Теслы.
+uplink-mech-equipment-shotgun-name = LBX AC 10 "Залп"
+uplink-mech-equipment-shotgun-desc = Навесной нелетальный электрошокер, позволяющий оглушить злоумышленников.
+uplink-mech-equipment-shotgun-incendiary-name = карабин FNX-99 "Аид"
+uplink-mech-equipment-shotgun-incendiary-desc = Навесной карабин, стреляющий зажигательными патронами.
+uplink-mech-equipment-ultra-rifle-name = AC-2 "Ультра"
+uplink-mech-equipment-ultra-rifle-desc = Навесной карабин, стреляющий зажигательными патронами.
+uplink-mech-equipment-ion-name = ионная тяжёлая пушка М-4
+uplink-mech-equipment-ion-desc = Навесное ионное орудие, действующее по тому же принципу, что и ручной ионный карабин. Чрезвычайно эффективно против синтетиков, роботов и других мехов.
+uplink-mech-equipment-amlg90-name = AMLG-90
+uplink-mech-equipment-amlg90-desc = Лазерный навесной пулемёт.
+uplink-mech-equipment-vindictor-name = Устанавливаемый MG-100 Vindicator Minigun
+uplink-mech-equipment-vindictor-desc = Тяжёлое оружие массового поражения.
+uplink-mech-equipment-uvm31-name = UVM-31 "Дрейк"
+uplink-mech-equipment-uvm31-desc = Тяжёлое оружие массового поражения разработанное Cybersun на основе минигана. теперь на прочном штативе позволяющем вести огонь прямо из МЕХа!
+uplink-mech-teleporter-medium-name = Телепорт среднего меха
+uplink-mech-teleporter-medium-desc = Содержит среднебронированный мех Cybersan с интегрированными цепным мечом и ракетной установкой BRM-8.

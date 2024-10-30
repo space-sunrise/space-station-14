@@ -3,6 +3,9 @@
 
 - type: Tag
   id: IgnoreMelee
+  
+- type: Tag
+  id: NoInjectable
 
 - type: Tag
   id: Nanopaste
@@ -33,6 +36,9 @@
 
 - type: Tag
   id: SyndieAgentUplink
+  
+- type: Tag
+  id: AnomalyCore
 
 # Catridges:
 
@@ -158,3 +164,20 @@
 
 - type: Tag
   id: Board
+  
+# Mechs
+
+- type: Tag
+  id: Ripley
+  
+- type: Tag
+  id: Clarke
+
+- type: Tag
+  id: Gygax
+  
+- type: Tag
+  id: Durand
+  
+- type: Tag
+  id: Phazon

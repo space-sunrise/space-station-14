@@ -114,3 +114,10 @@
   id: DiseasePoints
   displayName: shop-disease-currency
   canWithdraw: false
+
+#uplink categoires
+
+- type: storeCategory
+  id: UplinkMechs
+  name: store-category-mechs
+  priority: 8

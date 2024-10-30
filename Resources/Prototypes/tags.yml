@@ -808,6 +808,33 @@
 
 - type: Tag
   id: GygaxRLeg
+  
+- type: Tag
+  id: PhazonArmor
+
+- type: Tag
+  id: PhazonCentralControlModule
+
+- type: Tag
+  id: PhazonPeripheralsControlModule
+
+- type: Tag
+  id: PhazonTargetingControlModule
+
+- type: Tag
+  id: PhazonHead
+
+- type: Tag
+  id: PhazonLArm
+
+- type: Tag
+  id: PhazonLLeg
+
+- type: Tag
+  id: PhazonRArm
+
+- type: Tag
+  id: PhazonRLeg
 
 - type: Tag
   id: HudMedical
@@ -1049,6 +1076,9 @@
 
 - type: Tag
   id: MechThruster
+  
+- type: Tag
+  id: MechPhasicScanningModule
 
 - type: Tag
   id: Medal
