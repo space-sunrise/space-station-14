@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared.Localizations;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Preferences;
 using JetBrains.Annotations;
@@ -33,7 +34,9 @@ public sealed partial class OverallPlaytimeRequirement : JobRequirement
         // Sunrise-Sponsors-End
 
         var overallTime = playTimes.GetValueOrDefault(PlayTimeTrackingShared.TrackerOverall);
-        var overallDiff = Time.TotalMinutes - overallTime.TotalMinutes;
+        var overallDiffSpan = Time - overallTime;
+        var overallDiff = overallDiffSpan.TotalMinutes;
+        var formattedOverallDiff = ContentLocalizationManager.FormatPlaytime(overallDiffSpan);
 
         if (!Inverted)
         {
@@ -42,14 +45,14 @@ public sealed partial class OverallPlaytimeRequirement : JobRequirement
 
             reason = FormattedMessage.FromMarkupPermissive(Loc.GetString(
                 "role-timer-overall-insufficient",
-                ("time", Math.Ceiling(overallDiff))));
+                ("time", formattedOverallDiff)));
             return false;
         }
 
         if (overallDiff <= 0 || overallTime >= Time)
         {
             reason = FormattedMessage.FromMarkupPermissive(Loc.GetString("role-timer-overall-too-high",
-                ("time", -overallDiff)));
+                ("time", formattedOverallDiff)));
             return false;
         }
 

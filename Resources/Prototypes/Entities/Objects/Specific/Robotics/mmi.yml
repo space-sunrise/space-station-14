@@ -49,6 +49,10 @@
     guides:
     - Cyborgs
     - Robotics
+  - type: ChangeVoiceInContainer
+    whitelist:
+      components:
+      - SecretStash
 
 - type: entity
   parent: MMI
@@ -122,3 +126,7 @@
       guides:
       - Cyborgs
       - Robotics
+    - type: ChangeVoiceInContainer
+      whitelist:
+        components:
+        - SecretStash
