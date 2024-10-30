@@ -17,7 +17,7 @@
   id: ExtendedAmunitions
   name: research-technology-extended-amunitions
   icon:
-    sprite: _Sunrise\Objects\Weapons\Guns\Ammunition\Magazines\famas.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/famas.rsi
     state: base
   discipline: Arsenal
   tier: 2
