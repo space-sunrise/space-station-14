@@ -209,11 +209,68 @@ public sealed partial class VampireSystem : EntitySystem
     
     private void OnVampireBloodChangedEvent(EntityUid uid, VampireComponent component, VampireBloodChangedEvent args)
     {
-        Log.Warning($"Blood amount: {GetBloodEssence(uid)}");
+        // Mutations
         if (GetBloodEssence(uid) >= FixedPoint2.New(150) && !_actionContainer.HasAction(uid, "ActionVampireOpenMutationsMenu"))
         {
-            Log.Warning($"earned enought blood for mutation");
             _action.AddAction(uid, ref component.MutationsAction, VampireComponent.MutationsActionPrototype);
+        }
+        
+        //Hemomancer
+        
+        if (GetBloodEssence(uid) >= FixedPoint2.New(200) && !_actionContainer.HasAction(uid, "ActionVampireBloodSteal") && component.CurrentMutation == VampireMutationsType.Hemomancer)
+        {
+            var action = _action.AddAction(uid, "ActionVampireBloodSteal");
+            component.UnlockedPowers.Add("BloodSteal", action);
+        }
+        
+        if (GetBloodEssence(uid) >= FixedPoint2.New(300) && !_actionContainer.HasAction(uid, "ActionVampireScreech") && component.CurrentMutation == VampireMutationsType.Hemomancer)
+        {
+            var action = _action.AddAction(uid, "ActionVampireScreech");
+            component.UnlockedPowers.Add("Screech", action);
+        }
+        
+        //Umbrae
+        
+        if (GetBloodEssence(uid) >= FixedPoint2.New(200) && !_actionContainer.HasAction(uid, "ActionVampireGlare") && component.CurrentMutation == VampireMutationsType.Umbrae)
+        {
+            _action.AddAction(uid, "ActionVampireGlare");
+            component.UnlockedPowers.Add("Glare", action);
+        }
+        
+        if (GetBloodEssence(uid) >= FixedPoint2.New(300) && !_actionContainer.HasAction(uid, "ActionVampireCloakOfDarkness") && component.CurrentMutation == VampireMutationsType.Umbrae)
+        {
+            _action.AddAction(uid, "ActionVampireCloakOfDarkness");
+            component.UnlockedPowers.Add("CloakOfDarkness", action);
+        }
+        
+        //Gargantua
+        
+        if (GetBloodEssence(uid) >= FixedPoint2.New(200) && && component.CurrentMutation == VampireMutationsType.Gargantua)
+        {
+            var vampire = new Entity<VampireComponent>(uid, component);
+            
+            UnnaturalStrength(vampire);
+        }
+        
+        if (GetBloodEssence(uid) >= FixedPoint2.New(300) && && component.CurrentMutation == VampireMutationsType.Gargantua)
+        {
+            var vampire = new Entity<VampireComponent>(uid, component);
+            
+            SupernaturalStrength(vampire);
+        }
+        
+        //Bestia
+        
+        if (GetBloodEssence(uid) >= FixedPoint2.New(200) && !_actionContainer.HasAction(uid, "ActionVampireBatform") && component.CurrentMutation == VampireMutationsType.Bestia)
+        {
+            _action.AddAction(uid, "ActionVampireBatform");
+            component.UnlockedPowers.Add("PolymorphBat", action);
+        }
+        
+        if (GetBloodEssence(uid) >= FixedPoint2.New(300) && !_actionContainer.HasAction(uid, "ActionVampireMouseform") && component.CurrentMutation == VampireMutationsType.Bestia)
+        {
+            _action.AddAction(uid, "ActionVampireMouseform");
+            component.UnlockedPowers.Add("PolymorphMouse", action);
         }
     }
     
@@ -272,10 +329,12 @@ public sealed partial class VampireSystem : EntitySystem
         if (component.MutationsAction != null)
         {
             _action.RemoveAction(uid, component.MutationsAction);
-            _uiSystem.TryToggleUi(uid, VampireMutationUiKey.Key, actor.PlayerSession);
+            TryOpenUi(uid, component.Owner, component);
         }
         component.CurrentMutation = newMutation;
         UpdateUi(uid, component);
+        var ev = new VampireBloodChangedEvent();
+        RaiseLocalEvent(uid, ev);
     }
     
     private void GetState(EntityUid uid, VampireComponent component, ref ComponentGetState args)
