@@ -5173,3 +5173,19 @@
   id: 365
   time: '2024-10-30T07:48:00.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/555
+- author: Rinary
+  changes:
+  - message: "\u0411\u044B\u043B \u0432\u043E\u0437\u0432\u0440\u0430\u0449\u0435\u043D\
+      \ Train \u0432 Map Pool"
+    type: Tweak
+  id: 366
+  time: '2024-10-30T07:49:32.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/556
+- author: J C Denton
+  changes:
+  - message: "\u0420\u0430\u0437\u043B\u0438\u0447\u043D\u044B\u0435 \u043F\u0440\u0430\
+      \u0432\u043A\u0438 \u043D\u0430 SunriseTrain."
+    type: Tweak
+  id: 367
+  time: '2024-10-30T07:49:47.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/557
