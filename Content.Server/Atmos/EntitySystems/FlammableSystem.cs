@@ -5,6 +5,7 @@ using Content.Server.Stunnable;
 using Content.Server.Temperature.Components;
 using Content.Server.Temperature.Systems;
 using Content.Server.Damage.Components;
+using Content.Shared._Sunrise.Mood;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Alert;
 using Content.Shared.Atmos;
@@ -425,10 +426,12 @@ namespace Content.Server.Atmos.EntitySystems
 
                 if (!flammable.OnFire)
                 {
+                    RaiseLocalEvent(uid, new MoodRemoveEffectEvent("OnFire")); // Sunrise Edit
                     _alertsSystem.ClearAlert(uid, flammable.FireAlert);
                     continue;
                 }
 
+                RaiseLocalEvent(uid, new MoodEffectEvent("OnFire")); // Sunrise Edit
                 _alertsSystem.ShowAlert(uid, flammable.FireAlert);
 
                 if (flammable.FireStacks > 0)

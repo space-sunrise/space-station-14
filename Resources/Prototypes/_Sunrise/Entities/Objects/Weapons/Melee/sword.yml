@@ -1,0 +1,29 @@
+- type: entity
+  name: syndicate rapier
+  parent: [ BaseSword, BaseSyndicateContraband ]
+  id: SyndicateRapier
+  description: A thin blade made of plastitanium with a diamond tip.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Melee/syndicate_rapier.rsi
+  - type: DisarmMalus
+    malus: 0.6
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    angle: 0
+    animation: WeaponArcThrust
+    attackRate: 1.4
+    damage:
+      types:
+        Piercing: 18
+    resistanceBypass: true
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+  - type: Reflect
+    reflectProb: 0.2
+    spread: 90
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Melee/syndicate_rapier.rsi
+  - type: Tag
+    tags:
+    - SyndicateRapier

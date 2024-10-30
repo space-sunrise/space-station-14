@@ -1,5 +1,6 @@
-research-technology-energy-gun = Энергетическое вооружение
-research-technology-energy-gun-advance = Продвинутое энергетическое вооружение
-research-technology-advance-laser = Военное энергетическое вооружение
 research-technology-handcraft-nvd = Кустарные ПНВ
 research-technology-basic-nvd = Продвинутое ПНВ
+research-technology-combat-equipment = Боевое снаряжение
+research-technology-extended-amunitions = Расширенные магазины
+research-technology-phazon = Фазон
+research-technology-cargo-bluespace-equipment = Блюспейс экипировка карго

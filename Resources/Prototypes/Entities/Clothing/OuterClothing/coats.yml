@@ -417,7 +417,7 @@
         Caustic: 0.75
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: ClothingOuterStorageFoldableBase #Sunrise-edit
   id: ClothingOuterCoatLabSeniorResearcher
   name: senior researcher lab coat
   description: A suit that protects against minor chemical spills. Has a purple collar and wrist trims.
@@ -431,8 +431,15 @@
       coefficients:
         Caustic: 0.75
 
+#Sunrise-start
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabSeniorResearcher]
+  id: ClothingOuterCoatLabSeniorResearcherOpened
+  name: senior researcher lab coat
+#Sunrise-end
+
+- type: entity
+  parent: ClothingOuterStorageFoldableBase #Sunrise-edit
   id: ClothingOuterCoatLabSeniorPhysician
   name: senior physician lab coat
   description: A suit that protects against minor chemical spills. Has light blue sleeves and an orange waist trim.
@@ -445,6 +452,13 @@
     modifiers:
       coefficients:
         Caustic: 0.75
+
+#Sunrise-start
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabSeniorPhysician]
+  id: ClothingOuterCoatLabSeniorPhysicianOpened
+  name: senior physician lab coat
+#Sunrise-end
 
 - type: entity
   parent: ClothingOuterStorageBase

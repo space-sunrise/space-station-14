@@ -274,4 +274,9 @@ public abstract class ClothingSystem : EntitySystem
     }
 
     #endregion
+
+    public void SetStripDelay(Entity<ClothingComponent> clothing, TimeSpan newDelay)
+    {
+        clothing.Comp.StripDelay = newDelay;
+    }
 }

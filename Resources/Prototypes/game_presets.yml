@@ -37,6 +37,7 @@
   description: all-at-once-description
   showInVote: false
   hide: false # Sunrise-Edit
+  minPlayers: 50 # Sunrise-Edit: 50 players for NUKEOPS
   rules:
     - Nukeops
     - Traitor
@@ -58,6 +59,7 @@
   description: aller-at-once-description
   showInVote: false #Please god dont do this
   hide: false # Sunrise-Edit
+  minPlayers: 50 # Sunrise-Edit: 50 players for NUKEOPS
   rules:
     - Nukeops
     - Traitor
@@ -157,6 +159,7 @@
   description: traitor-description
   showInVote: true # Sunrise-Edit
   hide: true # Sunrise-Edit
+  minPlayers: 5 # Sunrise-Edit: 50 players for TRAITORS
   rules:
     - Traitor
     - SubGamemodesRule
@@ -186,6 +189,7 @@
   description: nukeops-description
   showInVote: true # Sunrise-Edit
   hide: true # Sunrise-Edit
+  minPlayers: 50 # Sunrise-Edit: 50 players for NUKEOPS
   rules:
     - Nukeops
     - SubGamemodesRule
@@ -204,6 +208,7 @@
   description: rev-description
   showInVote: true # Sunrise-Edit
   hide: true # Sunrise-Edit
+  minPlayers: 15 # Sunrise-Edit: 50 players for REVOLUTIONARY
   rules:
     - Revolutionary
     - SubGamemodesRule
@@ -224,6 +229,7 @@
   description: zombie-description
   showInVote: true # Sunrise-Edit
   hide: true # Sunrise-Edit
+  minPlayers: 20 # Sunrise-Edit: 50 players for ZOMBIES
   rules:
   - Zombie
   - BasicStationEventScheduler
@@ -241,6 +247,7 @@
   description: zombieteors-description
   showInVote: true # Sunrise-Edit
   hide: true # Sunrise-Edit
+  minPlayers: 20 # Sunrise-Edit: 50 players for ZOMBIES
   rules:
   - Zombie
   - BasicStationEventScheduler
@@ -256,7 +263,8 @@
   - changeling
   name: changeling-gamemode-title
   description: changeling-gamemode-description
-  showInVote: false
+  showInVote: true
+  minPlayers: 50 # Sunrise-Edit: 50 players for CHANGELINGS
   rules:
   - Changeling
   - SubGamemodesRule

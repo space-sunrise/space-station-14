@@ -123,8 +123,8 @@
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatPilot
-  name: Куртка пилота Службы Безопасности
-  description: Стильная куртка для настоящего аса.
+  name: security pilot's jacket
+  description: Stylish jacket for a real ace.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/OuterClothing/Coats/pilotcoat.rsi
@@ -167,30 +167,35 @@
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatCEOvercoatWhite
-  name: пальто старшего инженера
-  description: Пальто Старшего Инженера. Роскошное пальто с позолоченными вставками, делающие вид, что защищает вас от каких-либо угроз.
+  name: chef engineer's coat
+  description: Chef Engineer's Coat. A luxurious coat with gilded inserts pretending to protect you from any threats.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/OuterClothing/Coats/cecoat.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/cecoat.rsi
-    
+
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: ClothingOuterStorageFoldableBase
   id: ClothingOuterCoatCMOOvercoat
-  name: лабораторный халат главного врача
-  description: На 99% состоит из Нитрила.
+  name: chief medical officer's lab coat
+  description: 99% Nitrile.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/OuterClothing/Coats/cmo.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/cmo.rsi
-    
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatCMOOvercoat]
+  id: ClothingOuterCoatLabCMOOvercoatOpened
+  name: cmo lab coat
+
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterEliteCoatHOP
-  name: шинель главы персонала
-  description: Удобное приталенная шинель тёмно-синего цвета с кожаными ремнями. На плечах видны декоративные погоны.
+  name: head of personality's overcoat
+  description: Comfortable fitted navy blue overcoat with leather straps. Decorative epaulettes are visible on the shoulders.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/OuterClothing/Coats/hopcoat.rsi
@@ -200,8 +205,8 @@
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatHOSOvercoatBlack
-  name: бронированная шинель
-  description: Чёрная шинель с красными полосками, серебряными заклепками и золотой бляшкой.
+  name: armored overcoat
+  description: Black overcoat with red lines, silver rivets and a gold plaque.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/OuterClothing/Coats/hos_coat.rsi
@@ -218,19 +223,19 @@
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatIAA
-  name: пиджак агента внутренних дел
-  description: Чёрный пиджак строгого тона с позолоченным креплением под значок. От него веет запахом чернил для ручек и бюрократией.
+  name: internal affairs agent jacket
+  description: It's a strict black jacket with a gold-plated badge fastener. He smells of pen ink and bureaucracy.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/OuterClothing/Coats/iaacoat.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/iaacoat.rsi
-    
+
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatQM
-  name: теплое пальто
-  description: Удобное пальто созданное из лёгкой ткани дикого лиаруса, место обитания которого является лавовая планета №468, позволяет придерживаться стиля современных времён.
+  name: warm coat
+  description: A comfortable coat created from the lightweight fabric of wild lyarus, whose habitat is lava planet №468, allows you to keep in style for modern times.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/OuterClothing/Coats/qmcoat.rsi
@@ -238,10 +243,10 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/qmcoat.rsi
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: ClothingOuterStorageFoldableBase
   id: ClothingOuterCoatLabResearchDirector
-  name: халат научного руководителя
-  description: Плотный халат, защищающий своего носителя от струи кислоты и плавленой плазмы. Имеет фиолетовые и голубые ленты на плечах и поясе.
+  name: research director's lab coat
+  description: A thick robe that protects its wearer from acid jets and fused plasma. It has purple and blue ribbons on the shoulders and waistband.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/OuterClothing/Coats/rd_coat.rsi
@@ -253,10 +258,16 @@
         Caustic: 0.75
 
 - type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabResearchDirector]
+  id: ClothingOuterCoatLabResearchDirectorOpened
+  name: research director lab coat
+
+
+- type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatHoSOvercoat
-  name: бронированная шинель
-  description: Довольно старая вещь для этих времён, навевающая старые воспоминания...
+  name: armored overcoat
+  description: Pretty old stuff for these times, bringing back old memories...
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/OuterClothing/Coats/hos_overcoat.rsi
@@ -269,7 +280,7 @@
         Slash: 0.7
         Piercing: 0.4
         Heat: 0.7
-        
+
 - type: entity
   parent: ClothingOuterBase
   id: ClothingOuterAerostaticBomberJacket
@@ -280,7 +291,7 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/kim.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/kim.rsi
-    
+
 - type: entity
   parent: ClothingOuterBase
   id: ClothingOuterDiscoAssBlazer
@@ -291,12 +302,12 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/disco.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/disco.rsi
-    
+
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatCaptainOvercoat
-  name: капитанская шинель
-  description: Селанная специально под замеры действующего капитана и сделанный лучшими швеями NanoTrasen.
+  name: captain's overcoat
+  description: Made specifically to the measurements of the current captain and made by the best seamstresses at NanoTrasen.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/OuterClothing/Coats/cpt.rsi
@@ -317,8 +328,8 @@
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatUSSPOvercoatBlack
-  name: бронированная шинель СССП
-  description: Старая вещица, прямиком из СССП.
+  name: USSP armored overcoat
+  description: Old stuff, straight out of USSP.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/OuterClothing/Coats/ussp.rsi
@@ -328,8 +339,8 @@
 - type: entity
   parent: ClothingOuterBase
   id: ClothingOuterAtmosianBomberJacket
-  name: куртка-бомбер атмосианина
-  description: Плотная, поношенная куртка-бомбер атмосианина.
+  name: atmosian bomber jacket
+  description: Tight, worn atmosian bomber jacket.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/OuterClothing/Coats/atmosian.rsi

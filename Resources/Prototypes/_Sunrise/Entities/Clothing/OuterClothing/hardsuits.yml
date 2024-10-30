@@ -35,8 +35,8 @@
 - type: entity
   parent: ClothingOuterHardsuitBase
   id: ClothingOuterHardsuitBlueshield
-  name: скафандр офицера «синий щит»
-  description: Крепкий и надёжныый, как и его владелец.
+  name: blueshield's hardsuit
+  description: Tough and reliable, just like its owner.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/blueshield.rsi
@@ -77,8 +77,8 @@
 - type: entity
   parent: ClothingOuterHardsuitBase
   id: ClothingOuterHardsuitPilot
-  name: Скафандр пилота Службы Безопасности
-  description: Облегченная версия скафандра Службы безопасности, обеспечивает хорошую подвижность, но меньшую защиту.
+  name: security pilot's hardsuit
+  description: A lightweight version of the Security Service spacesuit, it provides good mobility but less protection.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/pilothardsuit.rsi
@@ -102,7 +102,7 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPilot
-    
+
 - type: entity
   parent: ClothingOuterHardsuitBase
   id: ClothingOuterHardsuitBrigmedicSunrise
@@ -132,7 +132,7 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitBrigmedic
-    
+
 # USSP
 
 - type: entity
@@ -171,7 +171,7 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
-    
+
 - type: entity
   parent: [ClothingOuterHardsuitBase, BaseRestrictedContraband]
   id: ClothingOuterLightHardsuitUSSP
@@ -200,3 +200,21 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetLightHardsuitUSSP
+
+- type: entity
+  parent: [ClothingOuterHardsuitEngineering, BaseEngineeringContraband]
+  id: ClothingOuterHardsuitEngineeringCompact
+  name: senior's engineer hardsuit
+  description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding. Very compact.
+  components:
+  - type: Item
+    size: Normal
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/engineering-compact.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/engineering-compact.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitEngineeringCompact

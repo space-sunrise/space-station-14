@@ -241,6 +241,7 @@
   - type: Carriable
   - type: CanEscapeInventory
   - type: LayingDown
+  - type: Mood
   # Sunrise-End
   - type: Barotrauma
     damage:

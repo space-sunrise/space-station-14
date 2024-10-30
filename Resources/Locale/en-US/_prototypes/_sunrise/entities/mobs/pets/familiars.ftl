@@ -1,2 +1,2 @@
-ent-MobBook = Фолиант
-    .desc = Ожившая книга-мимик, охраняющая библиотечные знания.
+ent-MobBook = Foliant
+    .desc = A living book-mimic guarding library knowledge.
