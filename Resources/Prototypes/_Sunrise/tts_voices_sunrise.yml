@@ -454,7 +454,6 @@
   speaker: crysis2_ai_costume
   provider: sunrise
   roundStart: false
-  sponsorOnly: true
 
 - type: ttsVoice
   id: HearthstoneBellok
@@ -472,7 +471,7 @@
   speaker: hearthstone_prince_artas
   provider: sunrise
   roundStart: true
-  sponsorOnly: true
+  sponsorOnly: false
 
 - type: ttsVoice
   id: HearthstoneTarkus
