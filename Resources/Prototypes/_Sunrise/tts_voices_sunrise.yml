@@ -453,8 +453,7 @@
   sex: Male
   speaker: crysis2_ai_costume
   provider: sunrise
-  roundStart: true
-  sponsorOnly: true
+  roundStart: false
 
 - type: ttsVoice
   id: HearthstoneBellok
@@ -472,7 +471,7 @@
   speaker: hearthstone_prince_artas
   provider: sunrise
   roundStart: true
-  sponsorOnly: true
+  sponsorOnly: false
 
 - type: ttsVoice
   id: HearthstoneTarkus

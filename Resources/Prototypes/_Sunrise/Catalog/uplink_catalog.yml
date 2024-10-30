@@ -377,7 +377,7 @@
     Telecrystal: 11
   categories:
   - UplinkWeaponry
-  
+
 - type: listing
   id: UplinkHypo
   name: uplink-hypo-name
@@ -391,7 +391,7 @@
     Telecrystal: 4
   categories:
   - UplinkChemicals
-  
+
 - type: listing
   id: UplinkPolytrinicAcidChemistryBottle
   name: uplink-polytrinic-acid-chemistry-bottle-name
@@ -404,7 +404,7 @@
     Telecrystal: 8
   categories:
   - UplinkChemicals
-  
+
 - type: listing
   id: UplinkExplosiveCollarsKit
   name: uplink-exp-collars-kit-name
@@ -420,7 +420,7 @@
   conditions:
   - !type:StoreWhitelistCondition
     blacklist:
-    
+
 - type: listing
   id: UplinkBouquet
   name: uplink-bouquet-name
@@ -433,14 +433,14 @@
     Telecrystal: 1
   categories:
   - UplinkPointless
-  
+
 # Mechs
 
 - type: listing
   id: UplinkDarkGygax
   name: uplink-mech-teleporter-assault-name
   description: uplink-mech-teleporter-assault-desc
-  icon: { sprite: /Textures/Objects/Specific/Mech/mecha.rsi, state: darkgygax }
+  icon: { sprite: /Textures/Objects/Specific/Mech/gygax.rsi, state: darkgygax }
   productEntity: CrateCybersunDarkGygaxBundle
   cost:
     Telecrystal: 65
@@ -451,12 +451,12 @@
     whitelist:
       tags:
       - NukeOpsUplink
-      
+
 - type: listing
-  id: UplinkRover
+  id: UplinkDarkDurand
   name: uplink-mech-teleporter-medium-name
   description: uplink-mech-teleporter-medium-desc
-  icon: { sprite: /Textures/Objects/Specific/Mech/mecha.rsi, state: rover }
+  icon: { sprite: /Textures/Objects/Specific/Mech/durand.rsi, state: darkdurand }
   productEntity: CrateCybersunRoverBundle
   cost:
     Telecrystal: 75
@@ -483,9 +483,9 @@
     whitelist:
       tags:
       - NukeOpsUplink
-      
+
 # Mechs equipment
-      
+
 - type: listing
   id: UplinkMechImmolationGun
   name: uplink-mech-equipment-immolation-gun-name
@@ -501,7 +501,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
-      
+
 - type: listing
   id: UplinkMechTeslaCannon
   name: uplink-mech-equipment-tesla-cannon-name
@@ -517,7 +517,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
-      
+
 - type: listing
   id: UplinkMechShotgun
   name: uplink-mech-equipment-shotgun-name
@@ -533,7 +533,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
-      
+
 - type: listing
   id: UplinkMechShotgunIncendiary
   name: uplink-mech-equipment-shotgun-incendiary-name
@@ -549,7 +549,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
-      
+
 - type: listing
   id: UplinkMechUltraRifle
   name: uplink-mech-equipment-ultra-rifle-name
@@ -565,7 +565,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
-      
+
 - type: listing
   id: UplinkMechIon
   name: uplink-mech-equipment-ion-name
@@ -581,7 +581,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
-      
+
 - type: listing
   id: UplinkMechAMLG90
   name: uplink-mech-equipment-amlg90-name
