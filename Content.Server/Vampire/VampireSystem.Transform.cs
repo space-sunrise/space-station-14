@@ -94,19 +94,24 @@ public sealed partial class VampireSystem
         if (!TryComp<VampireComponent>(vampire, out var comp))
             return;
         
-        var action = _action.AddAction(vampire, VampireComponent.ToggleFangsActionPrototype);
-        if (!action.HasValue)
-            return;
+        foreach (var actionId in comp.BaseVampireActions)
+        {
+            var action = _action.AddAction(vampire, actionId);
+            
+            if (!action.HasValue)
+                return;
+            
+            if (!TryComp<InstantActionComponent>(action, out var instantActionComponent))
+                return;
+            
+            var actionEvent = instantActionComponent.Event as VampireSelfPowerEvent;
 
-        if (!TryComp<InstantActionComponent>(action, out var instantActionComponent))
-            return;
+            if (actionEvent == null)
+                return;
 
-        var actionEvent = instantActionComponent.Event as VampireSelfPowerEvent;
-
-        if (actionEvent == null)
-            return;
-
-        comp.UnlockedPowers.Add(actionEvent.DefinitionName, action);
+            comp.UnlockedPowers.Add(actionEvent.DefinitionName, action);
+            
+        }
 
         UpdateBloodDisplay(vampire);
     }

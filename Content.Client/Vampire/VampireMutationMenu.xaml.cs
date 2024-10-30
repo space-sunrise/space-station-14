@@ -53,6 +53,7 @@ public sealed partial class VampireMutationMenu : DefaultWindow
         
             string texturePath = Mutation switch
             {
+                VampireMutationsType.None => "/Textures/Interface/Actions/actions_vampire.rsi/deathsembrace.png",
                 VampireMutationsType.Hemomancer => "/Textures/Interface/Actions/actions_vampire.rsi/hemomancer.png",
                 VampireMutationsType.Umbrae => "/Textures/Interface/Actions/actions_vampire.rsi/umbrae.png",
                 VampireMutationsType.Gargantua => "/Textures/Interface/Actions/actions_vampire.rsi/gargantua.png",

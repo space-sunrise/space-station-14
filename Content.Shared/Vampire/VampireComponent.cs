@@ -26,12 +26,13 @@ public sealed partial class VampireComponent : Component
     public static readonly string CurrencyProto = "BloodEssence";
     
     [ViewVariables(VVAccess.ReadOnly), DataField("defaultMutation")]
-    public VampireMutationsType DefaultMutation = VampireMutationsType.Hemomancer;
+    public VampireMutationsType DefaultMutation = VampireMutationsType.None;
     [ViewVariables(VVAccess.ReadOnly), DataField("currentMutation")]
-    public VampireMutationsType CurrentMutation = VampireMutationsType.Hemomancer;
+    public VampireMutationsType CurrentMutation = VampireMutationsType.None;
     
     public readonly HashSet<VampireMutationsType> VampireMutations = new()
     {
+        VampireMutationsType.None,
         VampireMutationsType.Hemomancer,
         VampireMutationsType.Umbrae,
         VampireMutationsType.Gargantua,
@@ -67,8 +68,11 @@ public sealed partial class VampireComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     public EntityUid? MutationsAction;
     
-    [ValidatePrototypeId<EntityPrototype>]
-    public static readonly string ToggleFangsActionPrototype = "ActionVampireToggleFangs";
+    public readonly List<ProtoId<EntityPrototype>> BaseVampireActions = new()
+    {
+        "ActionVampireToggleFangs",
+        "ActionVampireHypnotise"
+    };
     
     [ValidatePrototypeId<VampirePowerProtype>]
     public static readonly string DrinkBloodPrototype = "DrinkBlood";
@@ -213,6 +217,7 @@ public sealed partial class VampireSealthComponent : Component
 [Serializable, NetSerializable]
 public enum VampireMutationsType : byte
 {
+    None,
     Hemomancer,
     Umbrae,
     Gargantua,
