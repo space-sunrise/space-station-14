@@ -464,3 +464,21 @@
   provider: sunrise
   roundStart: false # Переобучить
   sponsorOnly: true
+
+- type: ttsVoice
+  id: HearthstonePriceArtas
+  name: tts-voice-name-hearthstone-prince-artas
+  sex: Male
+  speaker: hearthstone_prince_artas
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: HearthstoneTarkus
+  name: tts-voice-name-hearthstone-tarkus
+  sex: Male
+  speaker: heathstone_tarkus
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: true

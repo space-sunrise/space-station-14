@@ -53,3 +53,5 @@ tts-voice-name-pathologic2-mark-bessmertnik = (NEW) [Pathologic 2] Марк Бе
 tts-voice-name-crysis2-ai-blackops-03-v1 = (NEW) [Crysis 2] Оперативник 3 1.0
 tts-voice-name-crysis2-ai-costume = (NEW) [Crysis 2] ИИ Нанокостюма 2.0
 tts-voice-name-hearthstone-bellok-bright-blade = (NEW) [Hearthstone] Беллок Сияющий Клинок
+tts-voice-name-hearthstone-price-artas = (NEW) [Hearthstone] Принц Артас
+tts-voice-name-hearthstone-tarkus = (NEW) [Hearthstone] Таркус
