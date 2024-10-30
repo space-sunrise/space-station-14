@@ -47,7 +47,7 @@
 - type: entity
   parent: MechPaintBase
   suffix: DEBUG, Ripley, Aluminizer
-  id: MechPaintClarkeOrangey
+  id: MechPaintRipleyAluminizer
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/mech_spraycans/ripley.rsi
@@ -72,7 +72,7 @@
         enum.OpenableVisuals.Layer:
           True: {state: "aluminizer"}
           False: {state: "aluminizer-cap"}
-          
+
 # Ripley-Combat Ripley
 - type: entity
   parent: MechPaintBase
@@ -102,7 +102,7 @@
         enum.OpenableVisuals.Layer:
           True: {state: "combat-ripley"}
           False: {state: "combat-ripley-cap"}
-          
+
 # Ripley-Firestarter
 - type: entity
   parent: MechPaintBase
@@ -132,7 +132,7 @@
         enum.OpenableVisuals.Layer:
           True: {state: "firestarter"}
           False: {state: "firestarter-cap"}
-          
+
 # Ripley-Hauler
 - type: entity
   parent: MechPaintBase
@@ -162,7 +162,7 @@
         enum.OpenableVisuals.Layer:
           True: {state: "hauler"}
           False: {state: "hauler-cap"}
-          
+
 # Ripley-Reaper
 - type: entity
   parent: MechPaintBase
@@ -192,7 +192,7 @@
         enum.OpenableVisuals.Layer:
           True: {state: "reaper"}
           False: {state: "reaper-cap"}
-          
+
 # Ripley-Zairjah
 - type: entity
   parent: MechPaintBase
@@ -282,7 +282,7 @@
         enum.OpenableVisuals.Layer:
           True: {state: "pobeda"}
           False: {state: "pobeda-cap"}
-          
+
 #Gygax-Old
 
 - type: entity
@@ -312,7 +312,7 @@
         enum.OpenableVisuals.Layer:
           True: {state: "spray_colors" , color: "#ed5f3b"}
           False: {state: "spray_cap_colors" , color: "#ed5f3b"}
-          
+
 #Durand-Unathi
 
 - type: entity
@@ -342,7 +342,7 @@
         enum.OpenableVisuals.Layer:
           True: {state: "kharn"}
           False: {state: "kharn-cap"}
-          
+
 #Durand-Shire
 
 - type: entity
@@ -372,7 +372,7 @@
         enum.OpenableVisuals.Layer:
           True: {state: "shire"}
           False: {state: "shire-cap"}
-          
+
 #Durand-Dollhouse
 
 - type: entity
@@ -402,7 +402,7 @@
         enum.OpenableVisuals.Layer:
           True: {state: "dollhouse"}
           False: {state: "dollhouse-cap"}
-          
+
 #Durand-Executor
 
 - type: entity

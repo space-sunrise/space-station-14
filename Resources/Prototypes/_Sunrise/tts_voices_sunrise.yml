@@ -453,8 +453,7 @@
   sex: Male
   speaker: crysis2_ai_costume
   provider: sunrise
-  roundStart: false # для костюмов
-  sponsorOnly: false
+  roundStart: false
 
 - type: ttsVoice
   id: HearthstoneBellok
