@@ -148,6 +148,9 @@
 - type: Tag
   id: BluespaceBox
   
+- type: Tag
+  id: SyndicateRapier
+  
 # Material bag:
 
 - type: Tag
