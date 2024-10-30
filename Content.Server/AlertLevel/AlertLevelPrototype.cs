@@ -71,5 +71,9 @@ public sealed partial class AlertLevelDetail
     /// How long it takes for the shuttle to arrive when called.
     /// </summary>
     [DataField("shuttleTime")] public TimeSpan ShuttleTime { get; private set; } = TimeSpan.FromMinutes(5);
+
+    // Sunrise-Start
+    [DataField("forceEndRound")] public bool ForceEndRound { get; private set; } = false;
+    // Sunrise-End
 }
 

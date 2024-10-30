@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server.Chat.Systems;
+using Content.Server.RoundEnd;
 using Content.Server.Station.Systems;
 using Content.Shared.CCVar;
 using Robust.Shared.Audio;
@@ -16,6 +17,7 @@ public sealed class AlertLevelSystem : EntitySystem
     [Dependency] private readonly ChatSystem _chatSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private readonly RoundEndSystem _roundEnd = default!;
 
     // Until stations are a prototype, this is how it's going to have to be.
     public const string DefaultAlertLevelSet = "stationAlerts";
@@ -188,6 +190,13 @@ public sealed class AlertLevelSystem : EntitySystem
                 colorOverride: detail.Color,
                 sender: stationName);
         }
+
+        // Sunrise-Start
+        if (detail.ForceEndRound)
+        {
+            _roundEnd.EndRound();
+        }
+        // Sunrise-End
 
         RaiseLocalEvent(new AlertLevelChangedEvent(station, level));
     }
