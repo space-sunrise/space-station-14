@@ -279,3 +279,14 @@
     sprite: _Sunrise/Clothing/Head/Hats/adjcap.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hats/adjcap.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatWithPaces
+  name: Hat with paces
+  description: A black hat with paces, usually worn by Jews.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/hat_with_paces.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/hat_with_paces.rsi
