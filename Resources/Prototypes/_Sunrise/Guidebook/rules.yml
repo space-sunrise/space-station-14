@@ -285,7 +285,7 @@
 - type: guideEntry
   id: SunriseSpaceLawCrimeList
   name: guide-entry-sr-rule-sl-crime-list
-  priority: 5
+  priority: 4
   text: "/ServerInfo/Guidebook/ServerRules/SpaceLawSR/SLCrimeList.xml"
 
 - type: guideEntry
