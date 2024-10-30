@@ -28,5 +28,8 @@
     head: ClothingHeadHatBeretSeniorPhysician
     id: SeniorPhysicianPDA
     ears: ClothingHeadsetMedical
-    belt: ClothingBeltMedicalFilled
+    eyes: ClothingEyesUniversalMedicalHud
     outerClothing: ClothingOuterCoatLabSeniorPhysician
+  storage:
+    back:
+    - OmnizineChemistryBottle

@@ -277,4 +277,14 @@ public sealed class SunriseCCVars
      */
 
     public static readonly CVarDef<bool> ResetPresetAfterRestart = CVarDef.Create("game.reset_preset_after_restart", false);
+
+    /*
+     * Ban links.
+     */
+
+    public static readonly CVarDef<string> BanForumLink =
+        CVarDef.Create("cl.forum_link", "", CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
+
+    public static readonly CVarDef<string> BanDiscordLink =
+        CVarDef.Create("cl.discord_link", "", CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
 }

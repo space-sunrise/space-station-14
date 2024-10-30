@@ -6,6 +6,7 @@
   order:
     - alertType: ChangelingBiomass
     - category: Health
+    - category: Mood #Sunrise Edit
     - category: Stamina
     - alertType: ChangelingChemicals
     - alertType: SuitPower

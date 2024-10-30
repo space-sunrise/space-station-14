@@ -145,6 +145,9 @@
 - type: Tag
   id: MagazineDl6902
 
+- type: Tag
+  id: BluespaceBox
+  
 # Material bag:
 
 - type: Tag
