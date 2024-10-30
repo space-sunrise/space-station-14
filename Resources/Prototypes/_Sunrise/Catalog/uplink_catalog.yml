@@ -405,6 +405,35 @@
   categories:
   - UplinkChemicals
   
+- type: listing
+  id: UplinkExplosiveCollarsKit
+  name: uplink-exp-collars-kit-name
+  description: uplink-exp-collars-kit-desc
+  icon:
+    sprite: _Sunrise/Objects/Devices/red_collar.rsi
+    state: item
+  productEntity: ExpCollarsKit
+  cost:
+    Telecrystal: 10
+  categories:
+  - UplinkExplosives
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+    
+- type: listing
+  id: UplinkBouquet
+  name: uplink-bouquet-name
+  description: uplink-bouquet-desc
+  icon:
+    sprite: _Sunrise/Objects/Misc/bouquet.rsi
+    state: item
+  productEntity: Bouquet
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkPointless
+  
 # Mechs
 
 - type: listing
