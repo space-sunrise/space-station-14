@@ -4830,3 +4830,12 @@
   id: 345
   time: '2024-10-30T07:03:53.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/495
+- author: SkyHappy
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u044B \u0440\u0430\u0441\
+      \u0448\u0438\u0440\u0435\u043D\u043D\u044B\u0435 \u043C\u0430\u0433\u0430\u0437\
+      \u0438\u043D\u044B"
+    type: Add
+  id: 346
+  time: '2024-10-30T07:08:48.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/509
