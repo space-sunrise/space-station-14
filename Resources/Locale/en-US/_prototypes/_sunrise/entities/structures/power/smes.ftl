@@ -1,3 +1,3 @@
-ent-SMESExtended = СМЭС
-    .desc = Сверхпроводящая Магнитная Энергонакопительная Станция (СМЭС) большой ёмкости.
-    .suffix = Увеличенный, 24MW
+ent-SMESExtended = { ent-BaseSMES }
+    .suffix = Basic, Extended, 24MW
+    .desc = { ent-BaseSMES.desc }

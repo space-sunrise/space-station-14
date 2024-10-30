@@ -1,8 +1,8 @@
 - type: entity
   parent: ClothingBackpackSyndie
   id: ClothingBackpackSyndieAJ100Filled
-  name: набор AJ-10
-  description: Включает в себя пистолет-пулемёт AJ-100 и два магазина патрон.
+  name: AJ-100 kit
+  description: Includes an AJ-100 submachine gun and two magazines of ammunition.
   components:
   - type: StorageFill
     contents:
@@ -13,8 +13,8 @@
 - type: entity
   parent: ClothingBackpackSyndie
   id: ClothingBackpackSyndieDL6902Filled
-  name: набор DL-6902
-  description: Включает в себя пулемёт DL6902 и один магазин патрон.
+  name: DL-6902 kit
+  description: Includes a DL6902 machine gun and one magazine of ammunition.
   components:
   - type: StorageFill
     contents:
@@ -24,8 +24,8 @@
 - type: entity
   parent: ClothingBackpackSyndie
   id: ClothingBackpackSyndieSIAR52Filled
-  name: набор SIAR-52
-  description: Включает в себя пулемёт SIAR-52 и два магазина патрон.
+  name: SIAR-52 kit
+  description: Includes a SIAR-52 machine gun and two magazines of ammunition.
   components:
   - type: StorageFill
     contents:

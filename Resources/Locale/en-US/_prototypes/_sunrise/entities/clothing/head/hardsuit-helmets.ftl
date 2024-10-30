@@ -1,11 +1,11 @@
 ent-ClothingHeadHelmetCBURNLeader = cburn commander helmet
     .desc = A pressure resistant and fireproof hood worn by special cleanup units.
-ent-ClothingHeadHelmetHardsuitBlueshield = шлем скафандра офицера «синий щит»
-    .desc = Синий.
+ent-ClothingHeadHelmetHardsuitBlueshield = blueshield's hardsuit helmet
+    .desc = Blue.
 ent-ClothingHeadHelmetHardsuitSecuritySunrise = { ent-ClothingHeadHelmetHardsuitSecurity }
     .desc = { ent-ClothingHeadHelmetHardsuitSecurity.desc }
-ent-ClothingHeadHelmetHardsuitPilot = Шлем скафандра пилота Службы Безопасности
-    .desc = Футуристичный шлем с отличным обзором.
+ent-ClothingHeadHelmetHardsuitPilot = security pilot's hardsuit helmet
+    .desc = A futuristic helmet with excellent visibility.
 ent-ClothingHeadHelmetHeavyHardsuitUSSP = Bulat-M helmet
     .desc = A heavily armored USSP spacesuit designed for combat operations in extreme conditions. Reinforced armor protects against firearms and energy weapons, radiation and explosions. It is used by elite units to protect strategic facilities.
 ent-ClothingHeadHelmetLightHardsuitUSSP = Thunder-P helmet

@@ -1,5 +1,5 @@
-ent-VendingMachineBarber = парикмахерВенд
-    .desc = Тут вы можете купить предметы, чтоб починить испорченную прическу.
+ent-VendingMachineBarber = barberWend
+    .desc = This is where you can buy items to fix a messed up hairstyle.
 ent-VendingMachineMayson = MaysonMil & YanLu corp
     .desc = A vending machine containing products of the company "MaysonMil & YanLu".
 ent-VendingMachineClown = HohohonkersVend
