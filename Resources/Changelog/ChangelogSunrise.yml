@@ -5134,7 +5134,8 @@
   - message: "\u041F\u043E\u043D\u0438\u0437\u0438\u043B \u043F\u043E\u0440\u043E\u0433\
       \ \u0432\u044B\u043A\u043B\u044E\u0447\u0435\u043D\u0438\u044F \u0432\u0435\u043D\
       \u0442\u0438\u043B\u044F\u0446\u0438\u0439 \u043E\u0442 \u0434\u0430\u0432\u043B\
-      \u0435\u043D\u0438\u044F [80 \u043A\u041F\u0430 > 10 \u043A\u041F\u0430]."
+      \u0435\u043D\u0438\u044F (80 \u043A\u041F\u0430 \u2192 0 \u043A\u041F\u0430\
+      )."
     type: Tweak
   id: 364
   time: '2024-10-30T07:44:13.0000000+00:00'
@@ -5377,3 +5378,57 @@
   id: 370
   time: '2024-10-30T07:54:50.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/457
+- author: Focstor
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0430 \u0440\u0430\u043F\
+      \u0438\u0440\u0430 \u0441\u0438\u043D\u0434\u0438\u043A\u0430\u0442\u0430."
+    type: Add
+  id: 371
+  time: '2024-10-30T08:16:45.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/565
+- author: pacable
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u044B \u043D\u0430\u0431\
+      \u043E\u0440 \u043F\u0430\u0440\u043D\u044B\u0445 \u0432\u0437\u0440\u044B\u0432\
+      \u043D\u044B\u0445 \u043E\u0448\u0435\u0439\u043D\u0438\u043A\u043E\u0432 \u0434\
+      \u043B\u044F \u0430\u0433\u0435\u043D\u0442\u043E\u0432 \u0441\u0438\u043D\u0434\
+      \u0438\u043A\u0430\u0442\u0430."
+    type: Add
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D \u0431\u0443\u043A\u0435\
+      \u0442 \u0446\u0432\u0435\u0442\u043E\u0432."
+    type: Add
+  id: 372
+  time: '2024-10-30T08:18:21.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/567
+- author: Pacable
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u044B 3 \u043D\u043E\
+      \u0432\u044B\u0435 \u043F\u043B\u044E\u0448\u043A\u0438."
+    type: Add
+  - message: "\u0423\u0434\u0430\u043B\u0435\u043D\u044B \u0437\u0432\u0443\u043A\u0438\
+      \ \u041F\u0430\u043F\u0438\u0447\u0430 \u0443 \u043D\u0435\u043A\u043E\u0442\
+      \u043E\u0440\u044B\u0445 \u043F\u043B\u044E\u0448\u0435\u043A."
+    type: Remove
+  id: 373
+  time: '2024-10-30T08:45:42.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/568
+- author: VigersRay
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D \u043D\u043E\u0432\u044B\
+      \u0439 \u0442\u0440\u0435\u043A \u0432 \u043B\u043E\u0431\u0431\u0438 - Chikoi\
+      \ The Maid - Scarlet\u29F8\u0410#."
+    type: Add
+  id: 374
+  time: '2024-10-30T09:15:48.361440+00:00'
+- author: SplikZerys
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u044B \u043D\u043E\u0432\
+      \u044B\u0435 4 \u0422\u0422\u0421-\u0433\u043E\u043B\u043E\u0441\u0430 \u0438\
+      \u0437 Crysis 2: \u0418\u0418 \u043D\u0430\u043D\u043E\u043A\u043E\u0441\u0442\
+      \u044E\u043C\u0430 \u0438 \u041E\u043F\u0435\u0440\u0430\u0442\u0438\u0432\u043D\
+      \u0438\u043A 1 \u0438 Hearthstone: \u041F\u0440\u0438\u043D\u0446 \u0410\u0440\
+      \u0442\u0430\u0441 \u0438 \u0422\u0430\u0440\u043A\u0443\u0441."
+    type: Add
+  id: 375
+  time: '2024-10-30T09:45:39.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/570
