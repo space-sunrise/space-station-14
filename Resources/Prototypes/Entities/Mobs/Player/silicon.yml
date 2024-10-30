@@ -70,9 +70,9 @@
     canShuttle: false
     title: comms-console-announcement-title-station-ai
     color: "#2ed2fd"
+    announceVoice: PortalGlados
   - type: Speech
     speechVerb: Robotic
-    announceVoice: PortalGlados
 
 - type: entity
   id: AiHeldIntellicard

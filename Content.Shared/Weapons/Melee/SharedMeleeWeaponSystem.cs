@@ -63,6 +63,8 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     /// </summary>
     public const float GracePeriod = 0.05f;
 
+    public const string IgnoreMeleeTag = "IgnoreMelee";
+
     public override void Initialize()
     {
         base.Initialize();
@@ -727,15 +729,10 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         for (var i = 0; i < increments; i++)
         {
             var castAngle = new Angle(baseAngle + increment * i);
-            var res = _physics.IntersectRay(mapId,
-                new CollisionRay(position,
-                    castAngle.ToWorldVec(),
-                    AttackMask),
-                range,
-                ignore,
-                false)
-                .Where(x => !_tagSystem.HasTag(x.HitEntity, "IgnoreMelee")
-                ).ToList();
+            var ray = new CollisionRay(position, castAngle.ToWorldVec(), AttackMask);
+            var res = _physics.IntersectRay(mapId, ray, range, ignore, false)
+                .Where(x => !_tagSystem.HasTag(x.HitEntity, IgnoreMeleeTag))
+                .ToList();
 
             if (res.Count != 0)
             {
