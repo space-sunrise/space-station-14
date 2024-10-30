@@ -678,14 +678,6 @@
   - type: Sprite
     state: plushie-nara
     sprite: _Sunrise/Objects/Fun/toys.rsi
-  - type: EmitSoundOnUse
-    sound:
-      path: /Audio/_Sunrise/papich_naaa.ogg
-  - type: EmitSoundOnTrigger
-    sound:
-      path: /Audio/_Sunrise/papich_naaa.ogg
-  - type: UseDelay
-    delay: 20.0
 
 - type: entity
   parent: BasePlushie
@@ -754,3 +746,36 @@
   - type: Sprite
     state: plushie-vyacheslav
     sprite: _Sunrise/Objects/Fun/toys.rsi
+
+- type: entity
+  parent: [ EmitVulpGrowl, BasePlushie ]
+  id: PlushieLu
+  name: Плюшевый Лу'Сайм
+  description: Вы думаете, это вульпа-химик - женщина? Думайте так дальше... Иногда фыркает
+  components:
+  - type: Sprite
+    state: plushie-lu
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieAgata
+  name: Плюшеывый агент Агата Кацухиро
+  description: Эта плюшка была сделана на планетарной тюрьме, осуждёнными агентами Синдиката. Носи её с гордостью, корпорат
+  components:
+  - type: Sprite
+    state: plushie-agata
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieMilosTanka
+  name: Плюшевый Милос-Танака
+  description: Унати в форме Центрального Командования, что он может в себе скрывать кроме двух ножей и револьвера?
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    layers:
+    - state: plushie-milos-tan
+    - state: syndie-visor
+      shader: unshaded
