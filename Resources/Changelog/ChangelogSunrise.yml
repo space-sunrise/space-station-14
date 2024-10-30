@@ -4839,3 +4839,11 @@
   id: 346
   time: '2024-10-30T07:08:48.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/509
+- author: J C Denton
+  changes:
+  - message: "\u041D\u0435\u0431\u043E\u043B\u044C\u0448\u0438\u0435 \u043F\u0440\u0430\
+      \u0432\u043A\u0438 \u043D\u0430 SunriseMeta."
+    type: Tweak
+  id: 347
+  time: '2024-10-30T07:18:35.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/513
