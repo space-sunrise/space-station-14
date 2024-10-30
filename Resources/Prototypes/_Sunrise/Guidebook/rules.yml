@@ -273,7 +273,7 @@
 - type: guideEntry
   id: SunriseSpaceLawFRSB
   name: guide-entry-sr-rule-sl-frsb
-  priority: 5
+  priority: 2
   text: "/ServerInfo/Guidebook/ServerRules/SpaceLawSR/SLFRSB.xml"
 
 - type: guideEntry
