@@ -453,7 +453,7 @@
   sex: Male
   speaker: crysis2_ai_costume
   provider: sunrise
-  roundStart: true
+  roundStart: false
   sponsorOnly: true
 
 - type: ttsVoice
