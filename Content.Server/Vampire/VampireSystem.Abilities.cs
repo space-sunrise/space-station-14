@@ -252,26 +252,26 @@ public sealed partial class VampireSystem
 
 
     #region Passive Powers
-    /*private void UnnaturalStrength(Entity<VampireComponent> vampire, VampirePowerDetails def)
+    private void UnnaturalStrength(Entity<VampireComponent> vampire)
     {
-        if (def.Damage is null)
-            return;
+        var damage = new DamageSpecifier();
+        damage.DamageDict.Add("Slash", 15);
 
         var meleeComp = EnsureComp<MeleeWeaponComponent>(vampire);
-        meleeComp.Damage += def.Damage;
+        meleeComp.Damage += damage;
     }
-    private void SupernaturalStrength(Entity<VampireComponent> vampire, VampirePowerDetails def)
+    private void SupernaturalStrength(Entity<VampireComponent> vampire)
     {
         var pryComp = EnsureComp<PryingComponent>(vampire);
         pryComp.Force = true;
         pryComp.PryPowered = true;
 
-        if (def.Damage is null)
-            return;
+        var damage = new DamageSpecifier();
+        damage.DamageDict.Add("Slash", 15);
 
         var meleeComp = EnsureComp<MeleeWeaponComponent>(vampire);
-        meleeComp.Damage += def.Damage;
-    }*/
+        meleeComp.Damage += damage;
+    }
     #endregion
 
     #region Other Powers
@@ -642,7 +642,7 @@ public sealed partial class VampireSystem
             return;
         }
 
-        var volumeToConsume = (FixedPoint2) Math.Min((float) victimBloodRemaining.Value, args.Volume);
+        var volumeToConsume = (FixedPoint2) Math.Min((float) victimBloodRemaining.Value, args.Volume * 2);
 
         //Slurp
         _audio.PlayPvs(entity.Comp.BloodDrainSound, entity.Owner, AudioParams.Default.WithVolume(-3f));
