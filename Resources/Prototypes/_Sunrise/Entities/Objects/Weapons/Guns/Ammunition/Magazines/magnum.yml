@@ -58,3 +58,11 @@
       steps: 6
       zeroVisible: false
     - type: Appearance
+
+- type: entity
+  parent: MagazineDeagle
+  id: MagazineDeagleExtended
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 10
+
