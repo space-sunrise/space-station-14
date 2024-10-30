@@ -98,6 +98,9 @@
     flashDamage:
       types:
         Shock: 5.0
+#  - type: NightVision
+#    isToggle: true
+#    color: "#808080"
 
 - type: entity
   save: false

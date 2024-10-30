@@ -340,6 +340,72 @@
   materials:
     Steel: 500
     Glass: 200
+    
+#Phazon
+
+- type: latheRecipe
+  id: PhazonHarness
+  result: PhazonHarness
+  category: Phazon
+  completetime: 10
+  materials:
+    Steel: 2500
+    Glass: 2000
+
+- type: latheRecipe
+  id: PhazonArmor
+  result: PhazonArmorPlate
+  category: Phazon
+  completetime: 10
+  materials:
+    Steel: 3000
+    Plasma: 1000
+
+- type: latheRecipe
+  id: PhazonHead
+  result: PhazonHead
+  category: Phazon
+  completetime: 10
+  materials:
+    Steel: 1500
+    Glass: 250
+    Plasma: 500
+
+- type: latheRecipe
+  id: PhazonLArm
+  result: PhazonLArm
+  category: Phazon
+  completetime: 10
+  materials:
+    Steel: 1100
+    Plasma: 250
+
+- type: latheRecipe
+  id: PhazonLLeg
+  result: PhazonLLeg
+  category: Phazon
+  completetime: 10
+  materials:
+    Steel: 1100
+    Plasma: 250
+
+- type: latheRecipe
+  id: PhazonRLeg
+  result: PhazonRLeg
+  category: Phazon
+  completetime: 10
+  materials:
+    Steel: 1100
+    Plasma: 250
+
+- type: latheRecipe
+  id: PhazonRArm
+  result: PhazonRArm
+  category: Phazon
+  completetime: 10
+  materials:
+    Steel: 1100
+    Plasma: 250
 
 
 # Equipment
@@ -409,6 +475,16 @@
     Bananium: 300
 
 # Misc
+- type: latheRecipe
+  id: MechPhasicScanningModule
+  result: MechPhasicScanningModule
+  category: MechEquipment
+  completetime: 10
+  materials:
+    Steel: 2000
+    Glass: 500
+    Silver: 100
+
 - type: latheRecipe
   id: MechAirTank
   result: MechAirTank

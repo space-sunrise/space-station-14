@@ -22,7 +22,7 @@
         icon:
           sprite: Objects/Misc/proximity_sensor.rsi
           state: icon
-        name: proximity sensor
+        name: step-proximity-sensor-name
     - to: start
       completed:
       - !type:SpawnPrototype
@@ -52,7 +52,7 @@
       steps:
       - tag: Payload
         store: payload
-        name: payload
+        name: step-payload-name
         doAfter: 0.5
 
   - node: mine

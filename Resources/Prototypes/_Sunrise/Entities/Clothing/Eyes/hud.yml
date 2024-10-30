@@ -1,0 +1,14 @@
+- type: entity
+  parent: [ClothingEyesBase, ShowMedicalIcons]
+  id: ClothingEyesUniversalMedicalHud
+  name: universal medical hud
+  description: A heads-up display that combines the advantages of a medical scanner and chemical analysis glasses.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Eyes/Hud/med_chem_hud.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Eyes/Hud/med_chem_hud.rsi
+  - type: SolutionScanner
+  - type: Tag
+    tags:
+    - HudMedical

@@ -34,7 +34,7 @@
           data: 4
 
       - tag: RipleyCentralControlModule
-        name: ripley central control module
+        name: step-ripley-central-control-module-name
         icon:
           sprite: "Objects/Misc/module.rsi"
           state: "mainboard"
@@ -51,7 +51,7 @@
           data: 6
 
       - tag: RipleyPeripheralsControlModule
-        name: ripley peripherals control module
+        name: step-ripley-peripherals-control-module-name
         icon:
           sprite: "Objects/Misc/module.rsi"
           state: id_mod
@@ -67,11 +67,11 @@
           key: "enum.MechAssemblyVisuals.State"
           data: 8
 
-      - component: PowerCell
-        name: power cell
+      - tag: PowerCage
+        name: step-powercage-name
         store: battery-container
         icon:
-          sprite: Objects/Power/power_cells.rsi
+          sprite: Objects/Power/power_cages.rsi
           state: small
         completed:
         - !type:VisualizerDataInt
@@ -107,7 +107,7 @@
           data: 17
 
       - tag: MechAirTank
-        name: exosuit air tank
+        name: step-exosuit-air-tank-name
         icon:
           sprite: Objects/Specific/Mech/mecha_equipment.rsi
           state: mecha_air_tank

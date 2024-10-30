@@ -58,5 +58,5 @@ ent-PlayerBorgSyndicateSaboteurBattery = { ent-BorgChassisSyndicateSaboteur }
 ent-PlayerBorgSyndicateSaboteurGhostRole = { ent-PlayerBorgSyndicateSaboteurBattery }
     .suffix = Гост роль
     .desc = { ent-PlayerBorgSyndicateSaboteurBattery.desc }
-ent-PlayerBorgSyndicateInvasionGhostRoleSpawner = syndicate invasion borg spawner
+ent-PlayerBorgSyndicateInvasionGhostRoleSpawner = спавнер инвазивного борга синдиката
     .desc = { ent-MarkerBase.desc }

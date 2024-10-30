@@ -157,3 +157,31 @@
     steps: 2
     zeroVisible: false
   - type: Appearance
+
+- type: entity
+  parent: MagazinePPSH41
+  id: MagazinePPSH41Extended
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 85
+
+- type: entity
+  parent: MagazineMP5
+  id: MagazineMP5Extended
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 54
+
+- type: entity
+  parent: MagazineMP7
+  id: MagazineMP7Extended
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 51
+
+- type: entity
+  parent: MagazineP90
+  id: MagazineP90Extended
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 63

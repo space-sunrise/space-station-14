@@ -8,6 +8,7 @@ using Content.Server.Decals;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Atmos;
 using Content.Shared.Decals;
 using Content.Shared.Gravity;
@@ -57,6 +58,10 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
     private const float DefaultLoadRange = 16f;
     private float _loadRange = DefaultLoadRange;
 
+    // Sunrise
+    private int _maxChunks = 100;
+    // Sunrise
+
     private List<(Vector2i, Tile)> _tiles = new();
 
     private ObjectPool<HashSet<Vector2i>> _tilePool =
@@ -86,9 +91,17 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         SubscribeLocalEvent<FTLStartedEvent>(OnFTLStarted);
         SubscribeLocalEvent<ShuttleFlattenEvent>(OnShuttleFlatten);
         Subs.CVar(_configManager, CVars.NetMaxUpdateRange, SetLoadRange, true);
+        Subs.CVar(_configManager, SunriseCCVars.MaxLoadedChunks, SetMaxChunk, true); // Sunrise
         InitializeCommands();
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(ProtoReload);
     }
+
+    // Sunrise
+    private void SetMaxChunk(int obj)
+    {
+        _maxChunks = obj;
+    }
+    // Sunrise
 
     private void ProtoReload(PrototypesReloadedEventArgs obj)
     {
@@ -428,16 +441,21 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         BuildMarkerChunks(component, gridUid, grid, seed);
 
         var active = _activeChunks[component];
+        var loadedCount = component.LoadedChunks.Count; // Sunrise
 
         foreach (var chunk in active)
         {
-            LoadChunkMarkers(component, gridUid, grid, chunk, seed);
+            // Sunrise
+            if (loadedCount >= _maxChunks)
+                continue;
+            // Sunrise
 
             if (!component.LoadedChunks.Add(chunk))
                 continue;
 
-            // Load NOW!
+            LoadChunkMarkers(component, gridUid, grid, chunk, seed);
             LoadChunk(component, gridUid, grid, chunk, seed);
+            loadedCount++; // Sunrise
         }
     }
 

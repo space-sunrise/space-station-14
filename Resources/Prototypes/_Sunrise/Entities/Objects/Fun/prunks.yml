@@ -122,6 +122,7 @@
     solutionName: hypospray
     transferAmount: 10
     onlyAffectsMobs: false
+    injectOnly: true
   - type: UseDelay
     delay: 0.5
   # - type: HiddenDescription

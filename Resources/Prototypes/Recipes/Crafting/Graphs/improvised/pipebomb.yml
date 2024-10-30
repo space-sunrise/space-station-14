@@ -10,7 +10,7 @@
         icon:
           sprite: Structures/Piping/Atmospherics/pipe.rsi
           state: pipeStraight
-        name: трубу  # Sunrise-recipes
+        name: step-pipe-name
       - material: Steel
         amount: 1
         doAfter: 3

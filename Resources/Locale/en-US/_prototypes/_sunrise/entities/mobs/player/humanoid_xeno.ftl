@@ -1,2 +1,2 @@
-ent-MobHumanoidXeno = Ксеноморф
+ent-MobHumanoidXeno = Xenomorph
     .desc = { ent-BaseMobHumanoidXeno.desc }

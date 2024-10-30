@@ -1,8 +1,8 @@
 - type: entity
   parent: ClothingMaskGas
   id: ClothingMaskGasPilot
-  description: Противогаз выполенный в стиле масок пилотов 21-го века.
-  name: Противогаз пилота Службы Безопасности
+  name: security pilot's gas mask
+  description: A gas mask made in the style of 21st century pilot masks.
   components:
   - type: Item
     size: Tiny
@@ -14,8 +14,8 @@
 - type: entity
   parent: ClothingMaskGas
   id: ClothingMaskGasAtmosian
-  name: противогаз атмосианина
-  description: Улучшенный противогаз, используемый атмосианинами. Огнеупорный!
+  name: atmosian's gas mask
+  description: An improved gas mask used by the Atmosians. Fireproof!
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Mask/atmosian.rsi
@@ -29,8 +29,8 @@
 - type: entity
   parent: ClothingMaskBase
   id: ClothingMaskSkull
-  name: маска черепа
-  description: Зловещая маска черепа.
+  name: skull mask
+  description: Ominous skull mask.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Mask/death.rsi
@@ -41,8 +41,8 @@
 - type: entity
   parent: ClothingMaskGasAtmos
   id: ClothingBreathMaskRD
-  name: противогаз с фиолетовым визором
-  description: Специальный противогаз главы научно-исследовательского отдела. Имеет ярко-фиолетовый визор из плазменного стекла, через который искать аномалии и вдыхать фрезор будет куда интереснее.
+  name: gas mask with purple visor
+  description: Special gas mask of the head of the research department. It has a bright purple plasma glass visor, through which it will be much more interesting to search for anomalies and inhale freesor.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Mask/rdmask.rsi
@@ -54,8 +54,8 @@
 - type: entity
   parent: ClothingMaskGasExplorer
   id: ClothingBreathMaskQM
-  name: противогаз куратора
-  description: Пока другие работают, ты смотришь на них и наслаждаешься жизнью. Сделана специально для квартирмейстеров, позволяя более удобно проводить время, не обращая внимания на то, как что-то ест вашего работника.
+  name: handler's gas mask
+  description: While others are working, you watch them and enjoy life. Made specifically for apartment dwellers, allowing for a more convenient way to pass the time without having to pay attention to how something is eating your employee.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Mask/qmmask.rsi
@@ -67,8 +67,8 @@
 - type: entity
   parent: ClothingMaskGasAtmos
   id: ClothingMaskIAA
-  name: Элитный противогаз
-  description: Черный противогаз с позолоченным элементом над визором из прочного стекла. Вы не обязаны дышать с подсудимыми одним воздухом. Защищает от вспышек.
+  name: elite gas mask
+  description: Black gas mask with gold-plated element above the visor made of durable glass. You do not have to breathe the same air as the defendants. Protects against flares.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Mask/iaamask.rsi
@@ -81,8 +81,8 @@
 - type: entity
   parent: ClothingMaskGasAtmos
   id: ClothingEliteMaskGasHOP
-  name: Противогаз главы персонала
-  description: Надежный противогаз выполненный в тематическом тёмно-синем цвете. В нём вас будет страшиться весь сервисный отдел.
+  name: head of personal's gas mask
+  description: Rugged gas mask in thematic navy blue color. The whole service department will be afraid of you in it.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Mask/hopmask.rsi
@@ -94,8 +94,8 @@
 - type: entity
   parent: ClothingMaskGasAtmos
   id: ClothingEliteMaskGasCaptain
-  name: Противогаз капитана
-  description: Сквозь янтарное стекло ситуация на станции кажется менее ужасной.
+  name: captain's gas mask
+  description: Through the amber glass, the situation at the station seems less dire.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Mask/cptmask.rsi
@@ -107,8 +107,8 @@
 - type: entity
   parent: ClothingMaskGasAtmos
   id: ClothingBreathMaskCMO
-  name: Медицинский респиратор
-  description: Качественный респиратор.
+  name: medical respirator
+  description: Quality respirator.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Mask/cmomask.rsi
@@ -120,8 +120,8 @@
 - type: entity
   parent: ClothingMaskGasAtmos
   id: ClothingMaskGasCE
-  name: противогаз старшего инженера
-  description: Очень прочный и стильный белый противогаз с зеленой полосой на лобной части. Позволит исправить последствия работы атмосферных техников с купленными дипломами.
+  name: chef engineer's gas mask
+  description: Very durable and stylish white gas mask with a green stripe on the frontal area. Will allow you to correct the consequences of atmospheric technicians with bought diplomas.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Mask/cemask.rsi

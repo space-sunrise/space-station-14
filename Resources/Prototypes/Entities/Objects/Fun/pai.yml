@@ -84,6 +84,10 @@
     - HandheldHealthAnalyzerUnpowered
   - type: BorgBrain
   # Sunrise-End
+  - type: ChangeVoiceInContainer
+    whitelist:
+      components:
+        - SecretStash
 
 - type: entity
   parent: [ PersonalAI, BaseSyndicateContraband]

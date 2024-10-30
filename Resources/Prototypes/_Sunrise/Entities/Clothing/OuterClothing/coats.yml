@@ -123,13 +123,13 @@
 - type: entity
   parent: ClothingOuterStorageBase
   id: ClothingOuterCoatPilot
-  name: Куртка пилота Службы Безопасности
-  description: Стильная куртка для настоящего аса.
+  name: security pilot's jacket
+  description: Stylish jacket for a real ace.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/OuterClothing/pilotcoat.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/pilotcoat.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/OuterClothing/pilotcoat.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/pilotcoat.rsi
 
 - type: entity
   parent: ClothingOuterStorageFoldableBase
@@ -163,3 +163,186 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/adjutantcoat.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/adjutantcoat.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatCEOvercoatWhite
+  name: chef engineer's coat
+  description: Chef Engineer's Coat. A luxurious coat with gilded inserts pretending to protect you from any threats.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/cecoat.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/cecoat.rsi
+
+- type: entity
+  parent: ClothingOuterStorageFoldableBase
+  id: ClothingOuterCoatCMOOvercoat
+  name: chief medical officer's lab coat
+  description: 99% Nitrile.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/cmo.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/cmo.rsi
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatCMOOvercoat]
+  id: ClothingOuterCoatLabCMOOvercoatOpened
+  name: cmo lab coat
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterEliteCoatHOP
+  name: head of personality's overcoat
+  description: Comfortable fitted navy blue overcoat with leather straps. Decorative epaulettes are visible on the shoulders.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/hopcoat.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/hopcoat.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatHOSOvercoatBlack
+  name: armored overcoat
+  description: Black overcoat with red lines, silver rivets and a gold plaque.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/hos_coat.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/hos_coat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.4
+        Heat: 0.7
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatIAA
+  name: internal affairs agent jacket
+  description: It's a strict black jacket with a gold-plated badge fastener. He smells of pen ink and bureaucracy.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/iaacoat.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/iaacoat.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatQM
+  name: warm coat
+  description: A comfortable coat created from the lightweight fabric of wild lyarus, whose habitat is lava planet №468, allows you to keep in style for modern times.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/qmcoat.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/qmcoat.rsi
+
+- type: entity
+  parent: ClothingOuterStorageFoldableBase
+  id: ClothingOuterCoatLabResearchDirector
+  name: research director's lab coat
+  description: A thick robe that protects its wearer from acid jets and fused plasma. It has purple and blue ribbons on the shoulders and waistband.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/rd_coat.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/rd_coat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.75
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabResearchDirector]
+  id: ClothingOuterCoatLabResearchDirectorOpened
+  name: research director lab coat
+
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatHoSOvercoat
+  name: armored overcoat
+  description: Pretty old stuff for these times, bringing back old memories...
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/hos_overcoat.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/hos_overcoat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.4
+        Heat: 0.7
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterAerostaticBomberJacket
+  name: aerostatic bomber jacket
+  description: A jacket once worn by the revolutionary air brigades during the Antecentennial Revolution. There are quite a few pockets on the inside, mostly for storing notebooks and compasses.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/kim.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/kim.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterDiscoAssBlazer
+  name: disco ass blazer
+  description: Looks like someone skinned this blazer off some long extinct disco-animal. It has an enigmatic white rectangle on the back and the right sleeve.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/disco.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/disco.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatCaptainOvercoat
+  name: captain's overcoat
+  description: Made specifically to the measurements of the current captain and made by the best seamstresses at NanoTrasen.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/cpt.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/cpt.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.6
+        Heat: 0.5
+        Caustic: 0.9
+  - type: ExplosionResistance
+    damageCoefficient: 0.65
+  - type: GroupExamine
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatUSSPOvercoatBlack
+  name: USSP armored overcoat
+  description: Old stuff, straight out of USSP.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/ussp.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/ussp.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterAtmosianBomberJacket
+  name: atmosian bomber jacket
+  description: Tight, worn atmosian bomber jacket.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/atmosian.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/atmosian.rsi

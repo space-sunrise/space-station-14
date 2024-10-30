@@ -31,6 +31,7 @@
   - type: RandomSpawner
     offset: 0
     prototypes:
+      - PosterContrabandAriralInSpace # Sunrise-edit
       - PosterContrabandFreeTonto
       - PosterContrabandAtmosiaDeclarationIndependence
       - PosterContrabandFunPolice
@@ -107,6 +108,7 @@
   - type: RandomSpawner
     offset: 0
     prototypes:
+      - PosterLegitAIOverseer #Sunrise-edit
       - PosterLegitHereForYourSafety
       - PosterLegitNanotrasenLogo
       - PosterLegitCleanliness
