@@ -214,7 +214,7 @@ public sealed partial class VampireSystem : EntitySystem
         {
             _action.AddAction(uid, ref component.MutationsAction, VampireComponent.MutationsActionPrototype);
         }
-        else if (_actionContainer.HasAction(uid, "ActionVampireOpenMutationsMenu"))
+        else if (GetBloodEssence(uid) < FixedPoint2.New(50) && _actionContainer.HasAction(uid, "ActionVampireOpenMutationsMenu"))
         {
             if (!TryComp(uid, out ActionsComponent? comp) || component.MutationsAction is null)
                 return;
