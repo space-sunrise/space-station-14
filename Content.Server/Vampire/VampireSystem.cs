@@ -233,26 +233,26 @@ public sealed partial class VampireSystem : EntitySystem
         
         if (GetBloodEssence(uid) >= FixedPoint2.New(200) && !_actionContainer.HasAction(uid, "ActionVampireGlare") && component.CurrentMutation == VampireMutationsType.Umbrae)
         {
-            _action.AddAction(uid, "ActionVampireGlare");
+            var action = _action.AddAction(uid, "ActionVampireGlare");
             component.UnlockedPowers.Add("Glare", action);
         }
         
         if (GetBloodEssence(uid) >= FixedPoint2.New(300) && !_actionContainer.HasAction(uid, "ActionVampireCloakOfDarkness") && component.CurrentMutation == VampireMutationsType.Umbrae)
         {
-            _action.AddAction(uid, "ActionVampireCloakOfDarkness");
+            var action = _action.AddAction(uid, "ActionVampireCloakOfDarkness");
             component.UnlockedPowers.Add("CloakOfDarkness", action);
         }
         
         //Gargantua
         
-        if (GetBloodEssence(uid) >= FixedPoint2.New(200) && && component.CurrentMutation == VampireMutationsType.Gargantua)
+        if (GetBloodEssence(uid) >= FixedPoint2.New(200) && component.CurrentMutation == VampireMutationsType.Gargantua)
         {
             var vampire = new Entity<VampireComponent>(uid, component);
             
             UnnaturalStrength(vampire);
         }
         
-        if (GetBloodEssence(uid) >= FixedPoint2.New(300) && && component.CurrentMutation == VampireMutationsType.Gargantua)
+        if (GetBloodEssence(uid) >= FixedPoint2.New(300) && component.CurrentMutation == VampireMutationsType.Gargantua)
         {
             var vampire = new Entity<VampireComponent>(uid, component);
             
@@ -263,13 +263,13 @@ public sealed partial class VampireSystem : EntitySystem
         
         if (GetBloodEssence(uid) >= FixedPoint2.New(200) && !_actionContainer.HasAction(uid, "ActionVampireBatform") && component.CurrentMutation == VampireMutationsType.Bestia)
         {
-            _action.AddAction(uid, "ActionVampireBatform");
+            var action = _action.AddAction(uid, "ActionVampireBatform");
             component.UnlockedPowers.Add("PolymorphBat", action);
         }
         
         if (GetBloodEssence(uid) >= FixedPoint2.New(300) && !_actionContainer.HasAction(uid, "ActionVampireMouseform") && component.CurrentMutation == VampireMutationsType.Bestia)
         {
-            _action.AddAction(uid, "ActionVampireMouseform");
+            var action = _action.AddAction(uid, "ActionVampireMouseform");
             component.UnlockedPowers.Add("PolymorphMouse", action);
         }
     }
