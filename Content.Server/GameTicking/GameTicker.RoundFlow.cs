@@ -5,6 +5,7 @@ using Content.Server.GameTicking.Events;
 using Content.Server.Ghost;
 using Content.Server.Maps;
 using Content.Server.Roles;
+using Content.Server.Shuttles.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
@@ -194,6 +195,9 @@ namespace Content.Server.GameTicking
                 var grids = _mapManager.GetAllMapGrids(targetMapId);
                 foreach (var grid in grids)
                 {
+                    if (HasComp<ShuttleComponent>(grid.Owner))
+                        continue;
+
                     _physics.SetBodyType(grid.Owner, BodyType.Static);
                 }
             }

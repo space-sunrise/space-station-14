@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckStoleTallit
+  name: Tallit
+  description: A Jewish prayer shawl.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Stoles/tallit.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Stoles/tallit.rsi

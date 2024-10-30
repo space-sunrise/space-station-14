@@ -13,6 +13,3 @@ ent-ClothingOuterHardsuitSyndieCommanderBiocode = { ent-ClothingOuterHardsuitSyn
 ent-ClothingOuterHardsuitJuggernautBiocode = { ent-ClothingOuterHardsuitJuggernaut }
     .suffix = БИОКОД
     .desc = { ent-ClothingOuterHardsuitJuggernaut.desc }
-ent-ClothingOuterHardsuitBrigmedicSunrise = { ent-ClothingOuterHardsuitBrigmedic }
-    .desc = { ent-ClothingOuterHardsuitBrigmedic.desc }
-    .suffix = Санрайз

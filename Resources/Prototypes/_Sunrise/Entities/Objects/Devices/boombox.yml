@@ -1,8 +1,8 @@
 ﻿- type: entity
   parent: TapePlayer
   id: Boombox
-  name: Бумбокс
-  description: Будьте на стиле.
+  name: boombox
+  description: Be on style.
   components:
   - type: Item
     size: Huge
@@ -28,8 +28,8 @@
 - type: entity
   parent: TapePlayer
   id: BoomboxSyndie
-  name: Бумбокс синдиката
-  description: Убивайте со стилем.
+  name: syndie boombox
+  description: Kill with style.
   components:
   - type: Item
     size: Huge

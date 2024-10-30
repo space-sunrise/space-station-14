@@ -16,7 +16,7 @@ steal-target-groups-multiphase = X-01 мультифазный энергети�
 steal-target-groups-plutonium = плутониевое ядро
 # Thief Collection
 steal-target-groups-figurines = фигурка
-steal-target-groups-heads-cloaks = часы глав
+steal-target-groups-heads-cloaks = плащи глав
 steal-target-groups-heads-bedsheets = одеяла глав
 steal-target-groups-stamps = Печать
 steal-target-groups-door-remotes = Пульт от шлюзов

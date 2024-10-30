@@ -17,6 +17,8 @@
     ClothingOuterPlagueSuit: 1
     ClothingMaskPlague: 1
     ClothingHeadsetService: 2
+    ClothingHeadHatWithPaces: 1 # Sunrise
+    ClothingNeckStoleTallit: 1 # Sunrise
     BoxCandle: 2
     BoxCandleSmall: 2
     Urn: 5

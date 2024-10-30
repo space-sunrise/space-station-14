@@ -10,7 +10,7 @@
         icon:
           sprite: Objects/Storage/Happyhonk/mime.rsi
           state: box
-        name: обед Хэппи Хонк  # Sunrise-recipes
+        name: mime edition happy honk meal
       - tag: MimeBelt
         icon:
             sprite: Clothing/Belt/suspenders_red.rsi
@@ -21,24 +21,24 @@
         icon:
           sprite: Objects/Misc/proximity_sensor.rsi
           state: icon
-        name: датчик движения  # Sunrise-recipes
+        name: step-proximity-sensor-name
       - tag: BorgHead
         icon:
           sprite: Objects/Specific/Robotics/cyborg_parts.rsi
           state: borg_head
-        name: голову борга  # Sunrise-recipes
+        name: step-borg-head-name
         doAfter: 2
       - tag: BorgArm
         icon:
           sprite: Mobs/Silicon/drone.rsi
           state: l_hand
-        name: руку борга  # Sunrise-recipes
+        name: step-borg-arm-name
         doAfter: 2
       - tag: BorgArm
         icon:
           sprite: Mobs/Silicon/drone.rsi
           state: l_hand
-        name: руку борга  # Sunrise-recipes
+        name: step-borg-arm-name
         doAfter: 2
   - node: bot
     entity: MobMimeBot
