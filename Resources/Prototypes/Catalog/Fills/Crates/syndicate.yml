@@ -41,11 +41,12 @@
   - type: StorageFill
     contents:
       - id: MechGygaxSyndieFilled
+      - id: HandheldMechAnalyzer
       - id: DoubleEmergencyOxygenTankFilled
       - id: DoubleEmergencyNitrogenTankFilled
       - id: ToolboxSyndicateFilled
       - id: PlushieNuke
-      
+
 - type: entity
   id: CrateCybersunRoverBundle
   suffix: Filled
@@ -56,6 +57,7 @@
   - type: StorageFill
     contents:
       - id: MechRoverSyndieFilled
+      - id: HandheldMechAnalyzer
       - id: DoubleEmergencyOxygenTankFilled
       - id: DoubleEmergencyNitrogenTankFilled
       - id: ToolboxSyndicateFilled
@@ -71,6 +73,7 @@
   - type: StorageFill
     contents:
       - id: MechMaulerSyndieFilled
+      - id: HandheldMechAnalyzer
       - id: DoubleEmergencyOxygenTankFilled
       - id: DoubleEmergencyNitrogenTankFilled
       - id: ToolboxSyndicateFilled
