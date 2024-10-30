@@ -7,7 +7,7 @@
     issuer: syndicate
   - type: RoleRequirement
     roles:
-      components:
+      mindRoles:
       - FugitiveRole
 
 - type: entity
