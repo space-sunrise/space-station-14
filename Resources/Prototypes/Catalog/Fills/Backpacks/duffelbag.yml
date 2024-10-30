@@ -93,6 +93,8 @@
         amount: 4
       - id: GrenadeFrag
         amount: 4
+      - id: BulletGrenadeEMP
+        amount: 4
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle

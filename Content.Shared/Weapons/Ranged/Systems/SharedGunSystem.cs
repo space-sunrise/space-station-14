@@ -460,6 +460,11 @@ public abstract partial class SharedGunSystem : EntitySystem
         Projectiles.SetShooter(uid, projectile, user ?? gunUid);
         projectile.Weapon = gunUid;
 
+        // Sunrise-Start
+        var ev = new ProjectileShotEvent();
+        RaiseLocalEvent(uid, ref ev);
+        // Sunrise-End
+
         TransformSystem.SetWorldRotation(uid, direction.ToWorldAngle());
     }
 
