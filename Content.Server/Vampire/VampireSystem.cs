@@ -30,6 +30,7 @@ using Content.Shared.StatusEffect;
 using Content.Shared.Stunnable;
 using Content.Shared.Vampire;
 using Content.Shared.Vampire.Components;
+using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
@@ -69,6 +70,7 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly MetabolizerSystem _metabolism = default!;
+    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
 
     public override void Initialize()
     {

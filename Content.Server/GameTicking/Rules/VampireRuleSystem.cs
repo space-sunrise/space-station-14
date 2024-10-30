@@ -10,6 +10,7 @@ using Content.Shared.NPC.Systems;
 using Content.Shared.Roles;
 using Content.Shared.Store;
 using Content.Shared.Store.Components;
+using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using System.Text;
@@ -24,6 +25,7 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
     [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
     [Dependency] private readonly ObjectivesSystem _objective = default!;
     [Dependency] private readonly VampireSystem _vampire = default!;
+    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
 
     public readonly SoundSpecifier BriefingSound = new SoundPathSpecifier("/Audio/Ambience/Antag/vampire_start.ogg");
 
@@ -72,15 +74,17 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
 
         // make sure it's initial chems are set to max
         var vampireComponent = EnsureComp<VampireComponent>(target);
+        var interfaceComponent = EnsureComp<UserInterfaceComponent>(target);
+        
+        if (HasComp<UserInterfaceComponent>(target))
+            _uiSystem.SetUiState(target, VampireMutationUiKey.Key, new VampireMutationBoundUserInterfaceState());
 
         vampireComponent.Balance = new() { { VampireComponent.CurrencyProto, 0 } };
 
         rule.VampireMinds.Add(mindId);
         
         if (HasComp<VampireComponent>(target))
-        {
             _vampire.AddStartingAbilities(target);
-        }
 
         //foreach (var objective in rule.Objectives)
         //    _mind.TryAddObjective(mindId, mind, objective);
