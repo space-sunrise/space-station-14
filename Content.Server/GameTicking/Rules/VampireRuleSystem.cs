@@ -77,7 +77,7 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
         var interfaceComponent = EnsureComp<UserInterfaceComponent>(target);
         
         if (HasComp<UserInterfaceComponent>(target))
-            _uiSystem.SetUiState(target, VampireMutationUiKey.Key, new VampireMutationBoundUserInterfaceState());
+            _uiSystem.SetUiState(target, VampireMutationUiKey.Key, new VampireMutationBoundUserInterfaceState(vampireComponent.VampireMutations, vampireComponent.CurrentMutation));
 
         vampireComponent.Balance = new() { { VampireComponent.CurrencyProto, 0 } };
 

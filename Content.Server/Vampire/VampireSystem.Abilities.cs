@@ -31,7 +31,6 @@ using Content.Shared.Vampire.Components;
 using Content.Shared.Weapons.Melee;
 using FastAccessors;
 using Robust.Shared.Audio;
-using Robust.Shared.Player;
 using Robust.Shared.Containers;
 using Robust.Shared.Utility;
 using System.Collections.Frozen;
@@ -753,14 +752,5 @@ public sealed partial class VampireSystem
     {
         var protos = _prototypeManager.EnumeratePrototypes<VampirePassiveProtype>();
         return protos.ToFrozenDictionary(x => x.CatalogEntry);
-    }
-    
-    private void TryOpenUi(EntityUid uid, EntityUid user, VampireComponent? component = null)
-    {
-        if (!Resolve(uid, ref component))
-            return;
-        if (!TryComp(user, out ActorComponent? actor))
-            return;
-        _uiSystem.TryToggleUi(uid, VampireMutationUiKey.Key, actor.PlayerSession);
     }
 }

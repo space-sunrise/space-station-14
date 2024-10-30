@@ -31,6 +31,8 @@ using Content.Shared.Stunnable;
 using Content.Shared.Vampire;
 using Content.Shared.Vampire.Components;
 using Robust.Server.GameObjects;
+using Robust.Shared.Player;
+using Robust.Shared.GameStates;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
@@ -81,6 +83,9 @@ public sealed partial class VampireSystem : EntitySystem
         //SubscribeLocalEvent<VampireComponent, VampireTargetedPowerEvent>(OnUseTargetedPower);
         SubscribeLocalEvent<VampireComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<VampireComponent, VampireBloodChangedEvent>(OnVampireBloodChangedEvent);
+        
+        SubscribeLocalEvent<VampireComponent, ComponentGetState>(GetState);
+        SubscribeLocalEvent<VampireComponent, VampireMutationPrototypeSelectedMessage>(OnMutationSelected);
 
         InitializePowers();
     }
@@ -208,7 +213,7 @@ public sealed partial class VampireSystem : EntitySystem
         if (GetBloodEssence(uid) >= FixedPoint2.New(150) && !_actionContainer.HasAction(uid, "ActionVampireOpenMutationsMenu"))
         {
             Log.Warning($"earned enought blood for mutation");
-            _action.AddAction(uid, VampireComponent.MutationsActionPrototype);
+            _action.AddAction(uid, ref component.MutationsAction, VampireComponent.MutationsActionPrototype);
         }
     }
     
@@ -254,5 +259,47 @@ public sealed partial class VampireSystem : EntitySystem
         }
 
         return false;
+    }
+    
+    private void OnMutationSelected(EntityUid uid, VampireComponent component, VampireMutationPrototypeSelectedMessage args)
+    {
+        if (component.CurrentMutation == args.SelectedId)
+            return;
+        ChangeMutation(uid, args.SelectedId, component);
+    }
+    private void ChangeMutation(EntityUid uid, VampireMutationsType newMutation, VampireComponent component)
+    {
+        if (component.MutationsAction != null)
+        {
+            _action.RemoveAction(uid, component.MutationsAction);
+            _uiSystem.TryToggleUi(uid, VampireMutationUiKey.Key, actor.PlayerSession);
+        }
+        component.CurrentMutation = newMutation;
+        UpdateUi(uid, component);
+    }
+    
+    private void GetState(EntityUid uid, VampireComponent component, ref ComponentGetState args)
+    {
+        args.State = new VampireMutationComponentState
+        {
+            SelectedMutation = component.CurrentMutation
+        };
+    }
+    
+    private void TryOpenUi(EntityUid uid, EntityUid user, VampireComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return;
+        if (!TryComp(user, out ActorComponent? actor))
+            return;
+        _uiSystem.TryToggleUi(uid, VampireMutationUiKey.Key, actor.PlayerSession);
+    }
+    
+    public void UpdateUi(EntityUid uid, VampireComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return;
+        var state = new VampireMutationBoundUserInterfaceState(component.VampireMutations, component.CurrentMutation);
+        _uiSystem.SetUiState(uid, VampireMutationUiKey.Key, state);
     }
 }

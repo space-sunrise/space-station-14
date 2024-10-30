@@ -29,6 +29,15 @@ public sealed partial class VampireComponent : Component
     public VampireMutationsType DefaultMutation = VampireMutationsType.Hemomancer;
     [ViewVariables(VVAccess.ReadOnly), DataField("currentMutation")]
     public VampireMutationsType CurrentMutation = VampireMutationsType.Hemomancer;
+    
+    public readonly HashSet<VampireMutationsType> VampireMutations = new()
+    {
+        VampireMutationsType.Hemomancer,
+        VampireMutationsType.Umbrae,
+        VampireMutationsType.Gargantua,
+        VampireMutationsType.Dantalion,
+        VampireMutationsType.Bestia
+    };
 
     public static readonly EntityWhitelist AcceptableFoods = new()
     {
@@ -54,8 +63,13 @@ public sealed partial class VampireComponent : Component
 
     [ValidatePrototypeId<EntityPrototype>]
     public static readonly string MutationsActionPrototype = "ActionVampireOpenMutationsMenu";
+    
+    [ViewVariables(VVAccess.ReadWrite)]
+    public EntityUid? MutationsAction;
+    
     [ValidatePrototypeId<EntityPrototype>]
     public static readonly string ToggleFangsActionPrototype = "ActionVampireToggleFangs";
+    
     [ValidatePrototypeId<VampirePowerProtype>]
     public static readonly string DrinkBloodPrototype = "DrinkBlood";
 
