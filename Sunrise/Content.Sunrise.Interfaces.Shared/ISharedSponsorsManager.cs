@@ -9,9 +9,13 @@ public interface ISharedSponsorsManager
 {
     public void Initialize();
 
+    public event Action? LoadedSponsorData;
+
     // Client
     public List<string> GetClientPrototypes();
     public bool ClientAllowedRespawn();
+
+    public bool ClientIsSponsor();
 
     // Server
     public bool TryGetPrototypes(NetUserId userId, [NotNullWhen(true)] out List<string>? prototypes);

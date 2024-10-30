@@ -159,10 +159,7 @@ namespace Content.Server._Sunrise.PlanetPrison
                 _roleSystem.MindTryRemoveRole<PlanetPrisonerRoleComponent>(mindId);
             }
 
-            _roleSystem.MindAddRole(mindId, new PlanetPrisonerRoleComponent
-            {
-                PrototypeId = AntagRole,
-            });
+            _roleSystem.MindAddRole(mindId, "MindRolePlanetPrisoner");
 
             _mindSystem.TryAddObjective(mindId, mind, EscapeObjective);
 

@@ -38,13 +38,14 @@ public sealed class TerminatorSystem : EntitySystem
     private void OnCreated(EntityUid uid, TerminatorComponent comp, ref GenericAntagCreatedEvent args)
     {
         var mindId = args.MindId;
-        var mind = args.Mind;
 
-        _role.MindAddRole(mindId, new RoleBriefingComponent
+        _role.MindAddRole(mindId, "MindRoleTerminator");
+        _role.MindHasRole<TerminatorRoleComponent>(mindId, out var terminatorRole);
+        if (terminatorRole is not null)
         {
-            Briefing = Loc.GetString("terminator-role-briefing")
-        }, mind);
-        _role.MindAddRole(mindId, new TerminatorRoleComponent(), mind);
+            AddComp<RoleBriefingComponent>(terminatorRole.Value.Owner);
+            Comp<RoleBriefingComponent>(terminatorRole.Value.Owner).Briefing = Loc.GetString("terminator-role-briefing");
+        }
     }
 
     /// <summary>

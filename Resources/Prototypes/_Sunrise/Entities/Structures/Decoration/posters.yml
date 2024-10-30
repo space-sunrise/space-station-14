@@ -1,0 +1,9 @@
+- type: entity
+  parent: PosterBase
+  id: PosterAriralInSpace
+  name: ariral in space
+  description: It's clearly a message.. I've forgotten something...
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Decoration/poster.rsi
+    state: poster

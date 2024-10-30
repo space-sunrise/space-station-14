@@ -7,7 +7,7 @@ namespace Content.Client._Sunrise.ServersHub;
 public partial class ServersHubManager
 {
     [Dependency] private readonly IClientNetManager _netManager = default!;
-    [Dependency] private readonly IUserInterfaceManager UIManager = default!;
+    [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
 
     public event Action<List<ServerHubEntry>>? ServersDataListChanged;
 
@@ -33,7 +33,7 @@ public partial class ServersHubManager
         if (_serversHubUi is { Disposed: false })
             return;
 
-        _serversHubUi = UIManager.CreateWindow<ServersHubUi>();
+        _serversHubUi = _uiManager.CreateWindow<ServersHubUi>();
     }
 
     public void ToggleWindow()

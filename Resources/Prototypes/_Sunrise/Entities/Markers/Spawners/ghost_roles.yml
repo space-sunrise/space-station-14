@@ -8,9 +8,9 @@
     makeSentient: true
     allowMovement: true
     allowSpeech: true
-    name: Фолиант
-    description: Помогайте своему библиотекарю просвящать эту станцию.
-    rules: Вы разумная книга-мимик. Помогайте своему хозяину скрасить жизнь, просвящайте всех на станции.
+    name: ghost-role-information-foliant-name
+    description: ghost-role-information-foliant-description
+    rules: ghost-role-information-foliant-rules
     raffle:
       settings: short
   - type: GhostRoleMobSpawner

@@ -1,2 +1,2 @@
-ent-SmileAffection = Обнимашки
-    .desc = Смайл обнимается с целью, восстанавливая ей некоторое количество здоровья.
+ent-SmileAffection = Hugs
+    .desc = Smile hugs the target, restoring a certain amount of health to it.

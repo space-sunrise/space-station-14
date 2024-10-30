@@ -405,6 +405,9 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: NightVisionDevice #Sunrise - night vision
+    displayColor: "#44b855"
+    displayShader: NVDDisplay
 
 #Syndicate Elite Hardsuit
 - type: entity
@@ -434,6 +437,9 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: NightVisionDevice #Sunrise - night vision
+    displayColor: "#44b855"
+    displayShader: NVDDisplay
 
 #Syndicate Commander Hardsuit
 - type: entity
@@ -458,6 +464,9 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: NightVisionDevice #Sunrise - night vision
+    displayColor: "#44b855"
+    displayShader: NVDDisplay
 
 #Cybersun Juggernaut Hardsuit
 - type: entity
@@ -482,6 +491,9 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: NightVisionDevice #Sunrise - night vision
+    displayColor: "#44b855"
+    displayShader: NVDDisplay
 
 #Wizard Hardsuit
 - type: entity

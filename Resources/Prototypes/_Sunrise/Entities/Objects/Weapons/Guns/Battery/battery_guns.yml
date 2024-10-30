@@ -267,8 +267,7 @@
 - type: entity
   parent: BaseWeaponBattery
   id: WeaponIONRifle
-  name: "Ion Rifle"
-  description: ""
+  name: ion rifle
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/ion_rifle.rsi
@@ -558,13 +557,13 @@
   - type: Wieldable
   - type: UseDelay
     delay: 0.5
-  - type: ZoomableGun
+  - type: Telescope
 
 - type: entity
-  name: S-13 «Чёрная мамба»
+  name: S-13 «Black mamba»
   parent: BaseWeaponBattery
   id: WeaponSyndieLaserGun
-  description: Модернизированный «Лектер», переделаный под плазменый энергомодуль.
+  description: A modernised Lecter, converted to a plasma energy module.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/syndielasergun.rsi
@@ -602,12 +601,12 @@
   - type: Battery
     maxCharge: 3000
     startingCharge: 3000
-    
+
 - type: entity
   name: SAM-300
   parent: BaseWeaponBattery
   id: WeaponSyndieLaserPistol
-  description: Лазерный пистолет Синдиката, разработанный на базе пистолета капитана НТ.
+  description: The Syndicate's laser pistol, developed from the NT Captain's pistol.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/syndielaserpistol.rsi
@@ -642,10 +641,10 @@
     autoRechargeRate: 10
 
 - type: entity
-  name: UVL-21 «Виверна»
+  name: UVL-21 «Vivern»
   parent: BaseWeaponBattery
   id: WeaponLaserMinigun
-  description: Тяжелое оружие массового поражения разработанное на основе минигана.
+  description: A heavy weapon of mass destruction based on the minigun.
   components:
   - type: Clothing
     quickEquip: false

@@ -4,6 +4,7 @@ using Content.Server.Discord;
 using Content.Server.GameTicking.Events;
 using Content.Server.Ghost;
 using Content.Server.Maps;
+using Content.Server.Roles;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
@@ -30,6 +31,7 @@ namespace Content.Server.GameTicking
     public sealed partial class GameTicker
     {
         [Dependency] private readonly DiscordWebhook _discord = default!;
+        [Dependency] private readonly RoleSystem _role = default!;
         [Dependency] private readonly ITaskManager _taskManager = default!;
         [Dependency] private readonly StatsBoardSystem _statsBoardSystem = default!;
         [Dependency] private readonly SharedPhysicsSystem _physics = default!;
@@ -398,7 +400,7 @@ namespace Content.Server.GameTicking
                 var userId = mind.UserId ?? mind.OriginalOwnerUserId;
 
                 var connected = false;
-                var observer = HasComp<ObserverRoleComponent>(mindId);
+                var observer = _role.MindHasRole<ObserverRoleComponent>(mindId);
                 // Continuing
                 if (userId != null && _playerManager.ValidSessionId(userId.Value))
                 {
@@ -425,7 +427,7 @@ namespace Content.Server.GameTicking
                     _pvsOverride.AddGlobalOverride(GetNetEntity(entity.Value), recursive: true);
                 }
 
-                var roles = _roles.MindGetAllRoles(mindId);
+                var roles = _roles.MindGetAllRoleInfo(mindId);
 
                 var playerEndRoundInfo = new RoundEndMessageEvent.RoundEndPlayerInfo()
                 {
@@ -436,9 +438,11 @@ namespace Content.Server.GameTicking
                     PlayerICName = playerIcName,
                     PlayerGuid = userId,
                     PlayerNetEntity = GetNetEntity(entity),
-                    Role = antag
-                        ? roles.First(role => role.Antagonist).Name
-                        : roles.FirstOrDefault().Name ?? Loc.GetString("game-ticker-unknown-role"),
+                    Role = roles.Any()
+                        ? (antag
+                            ? roles.FirstOrDefault(role => role.Antagonist).Name
+                            : roles.FirstOrDefault(role => !role.Antagonist).Name) ?? Loc.GetString("game-ticker-unknown-role")
+                        : Loc.GetString("game-ticker-unknown-role"),
                     Antag = antag,
                     JobPrototypes = roles.Where(role => !role.Antagonist).Select(role => role.Prototype).ToArray(),
                     AntagPrototypes = roles.Where(role => role.Antagonist).Select(role => role.Prototype).ToArray(),

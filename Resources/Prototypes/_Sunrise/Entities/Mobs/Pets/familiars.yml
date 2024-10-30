@@ -1,8 +1,8 @@
 - type: entity
   parent: [ SimpleMobBase, MobCombat ]
   id: MobBook
-  name: Фолиант
-  description: Ожившая книга-мимик, охраняющая библиотечные знания.
+  name: Foliant
+  description: A living book-mimic guarding library knowledge.
   components:
   - type: MovementSpeedModifier
     baseWalkSpeed: 4
@@ -38,7 +38,7 @@
     - id: BookHowToCookForFortySpaceman  # Типо разделали, и получите гайд на шефа :D
   - type: InteractionPopup
     successChance: 0.3
-    interactSuccessString: petting-success-goose  # Я хз как это описать
+    interactSuccessString: petting-success-goose
     interactSuccessSpawn: EffectHearts
     interactFailureString: petting-failure-goat
     interactSuccessSound:
@@ -47,9 +47,9 @@
     makeSentient: true
     allowMovement: true
     allowSpeech: true
-    name: Фолиант
-    description: Помогайте своему библиотекарю просвящать эту станцию.
-    rules: Вы разумная книга-мимик. Помогайте своему хозяину скрасить жизнь, просвящайте всех на станции.
+    name: ghost-role-information-foliant-name
+    description: ghost-role-information-foliant-description
+    rules: ghost-role-information-foliant-rules
   - type: GhostTakeoverAvailable
   - type: Grammar
     attributes:

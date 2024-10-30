@@ -61,9 +61,6 @@
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
-  - type: NightVisionDevice #Sunrise - night vision
-    displayColor: "#44b855"
-    displayShader: NVDDisplay
 
 - type: entity
   parent: ClothingMaskGas
