@@ -1,7 +1,7 @@
 - type: entity
   id: ActionVampireOpenMutationsMenu
   name: Mutations menu
-  description: Opens menu with vampires mutations.
+  description: "Opens menu with vampires mutations."
   categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
@@ -16,7 +16,7 @@
 - type: entity
   id: ActionVampireToggleFangs
   name: Toggle Fangs
-  description: The vampire extends their fangs so they may drink from their victim.
+  description: "Extend or retract your fangs. Walking around with your fangs out might reveal your true nature."
   categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
@@ -35,8 +35,8 @@
 
 - type: entity
   id: ActionVampireGlare
-  name: vampire-power-glare
-  description: vampire-power-glare-description
+  name: Glare
+  description: "Release a blinding flash from your eyes, stunning a unprotected mortal for 10 seconds. Activation Cost: 20 Essence. Cooldown: 60 Seconds"
   categories: [ HideSpawnMenu ]
   components:
   - type: EntityTargetAction
@@ -57,8 +57,8 @@
 
 - type: entity
   id: ActionVampireHypnotise
-  name: vampire-power-hypnotise
-  description: vampire-power-hypnotise-description
+  name: Hypnotise
+  description: "Stare deeply into a mortals eyes, forcing them to sleep for 60 seconds. Activation Cost: 20 Essence. Activation Delay: 5 Seconds. Cooldown: 5 Minutes"
   categories: [ HideSpawnMenu ]
   components:
   - type: EntityTargetAction
@@ -79,8 +79,8 @@
 
 - type: entity
   id: ActionVampireScreech
-  name: vampire-power-screech
-  description: vampire-power-screech-description
+  name: Screech
+  description: "Release a piercing scream, stunning unprotected mortals and shattering fragile objects nearby. Activation Cost: 20 Essence. Activation Delay: 5 Seconds. Cooldown: 5 Minutes"
   categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
@@ -99,8 +99,8 @@
 
 - type: entity
   id: ActionVampireBloodSteal
-  name: vampire-power-bloodsteal
-  description: vampire-power-bloodsteal-description
+  name: Blood Steal
+  description: "Wrench the blood from all bodies nearby - living or dead. Activation Cost: 20 Essence. Cooldown: 60 Seconds"
   categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
@@ -119,8 +119,8 @@
 
 - type: entity
   id: ActionVampireBatform
-  name: vampire-power-batform
-  description: vampire-power-batform-description
+  name: Bat Form
+  description: "Assume for form of a bat. Fast, Hard to Hit, Likes fruit. Activation Cost: 20 Essence. Cooldown: 30 Seconds"
   categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
@@ -139,8 +139,8 @@
 
 - type: entity
   id: ActionVampireMouseform
-  name: vampire-power-mouseform
-  description: vampire-power-mouseform-description
+  name: Mouse Form
+  description: "Assume for form of a mouse. Fast, Small, Immune to doors. Activation Cost: 20 Essence. Cooldown: 30 Seconds"
   categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
@@ -159,8 +159,8 @@
 
 - type: entity
   id: ActionVampireCloakOfDarkness
-  name: vampire-power-cloakofdarkness
-  description: vampire-power-cloakofdarkness-description
+  name: Cloak of Darkness
+  description: "Cloak yourself from mortal eyes, rendering you invisible while stationary. Activation Cost: 30 Essence. Upkeep: 1 Essence/Second Cooldown: 10 Seconds"
   categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
