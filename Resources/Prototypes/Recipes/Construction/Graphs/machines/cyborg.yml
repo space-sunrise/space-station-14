@@ -28,14 +28,14 @@
         store: part-container
 
       - component: Flash
-        name: flash
+        name: step-flash-name
         store: part-container
         icon:
           sprite: Objects/Weapons/Melee/flash.rsi
           state: flash
 
       - component: Flash
-        name: second flash
+        name: step-second-flash-name
         store: part-container
         icon:
           sprite: Objects/Weapons/Melee/flash.rsi
@@ -55,14 +55,14 @@
         store: part-container
 
       - component: Flash
-        name: flash
+        name: step-flash-name
         store: part-container
         icon:
           sprite: Objects/Weapons/Melee/flash.rsi
           state: flash
 
       - component: Flash
-        name: second flash
+        name: step-second-flash-name
         store: part-container
         icon:
           sprite: Objects/Weapons/Melee/flash.rsi
@@ -82,14 +82,14 @@
         store: part-container
 
       - component: Flash
-        name: flash
+        name: step-flash-name
         store: part-container
         icon:
           sprite: Objects/Weapons/Melee/flash.rsi
           state: flash
 
       - component: Flash
-        name: second flash
+        name: step-second-flash-name
         store: part-container
         icon:
           sprite: Objects/Weapons/Melee/flash.rsi
@@ -109,14 +109,14 @@
         store: part-container
 
       - component: Flash
-        name: flash
+        name: step-flash-name
         store: part-container
         icon:
           sprite: Objects/Weapons/Melee/flash.rsi
           state: flash
 
       - component: Flash
-        name: second flash
+        name: step-second-flash-name
         store: part-container
         icon:
           sprite: Objects/Weapons/Melee/flash.rsi
@@ -136,14 +136,14 @@
         store: part-container
 
       - component: Flash
-        name: flash
+        name: step-flash-name
         store: part-container
         icon:
           sprite: Objects/Weapons/Melee/flash.rsi
           state: flash
 
       - component: Flash
-        name: second flash
+        name: step-second-flash-name
         store: part-container
         icon:
           sprite: Objects/Weapons/Melee/flash.rsi
@@ -163,14 +163,14 @@
         store: part-container
 
       - component: Flash
-        name: flash
+        name: step-flash-name
         store: part-container
         icon:
           sprite: Objects/Weapons/Melee/flash.rsi
           state: flash
 
       - component: Flash
-        name: second flash
+        name: step-second-flash-name
         store: part-container
         icon:
           sprite: Objects/Weapons/Melee/flash.rsi
@@ -191,14 +191,14 @@
         store: part-container
 
       - component: Flash
-        name: flash
+        name: step-flash-name
         store: part-container
         icon:
           sprite: Objects/Weapons/Melee/flash.rsi
           state: flash
 
       - component: Flash
-        name: second flash
+        name: step-second-flash-name
         store: part-container
         icon:
           sprite: Objects/Weapons/Melee/flash.rsi
@@ -218,14 +218,14 @@
         store: part-container
 
       - component: Flash
-        name: flash
+        name: step-flash-name
         store: part-container
         icon:
           sprite: Objects/Weapons/Melee/flash.rsi
           state: flash
 
       - component: Flash
-        name: second flash
+        name: step-second-flash-name
         store: part-container
         icon:
           sprite: Objects/Weapons/Melee/flash.rsi

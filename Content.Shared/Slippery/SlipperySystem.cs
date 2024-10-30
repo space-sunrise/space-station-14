@@ -1,3 +1,4 @@
+using Content.Shared._Sunrise.Mood;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
 using Content.Shared.Inventory;
@@ -19,7 +20,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Slippery;
 
-[UsedImplicitly] 
+[UsedImplicitly]
 public sealed class SlipperySystem : EntitySystem
 {
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
@@ -83,7 +84,7 @@ public sealed class SlipperySystem : EntitySystem
     {
         if (HasComp<SpeedModifiedByContactComponent>(args.OtherEntity))
             _speedModifier.AddModifiedEntity(args.OtherEntity);
-    } 
+    }
 
     private bool CanSlip(EntityUid uid, EntityUid toSlip)
     {
@@ -127,6 +128,8 @@ public sealed class SlipperySystem : EntitySystem
         var playSound = !_statusEffects.HasStatusEffect(other, "KnockedDown");
 
         _stun.TryParalyze(other, TimeSpan.FromSeconds(component.ParalyzeTime), true);
+
+        RaiseLocalEvent(other, new MoodEffectEvent("MobSlipped"));
 
         // Sunrise-Start
         var evSlipped = new SlippedEvent(other);

@@ -1,5 +1,5 @@
 - type: entity
-  name: нанопаста
+  name: nanopaste
   description:
   parent: BaseHealingItem
   id: Nanopaste

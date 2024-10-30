@@ -36,6 +36,11 @@
   components:
     - type: Sprite
       state: micro_mani
+#Sunrise-start
+    - type: Tag
+      tags:
+        - MicroManipulatorStockPart
+#Sunrise-end
     - type: Stack
       stackType: Manipulator
 
@@ -48,5 +53,10 @@
   components:
     - type: Sprite
       state: matter_bin
+#Sunrise-start
+    - type: Tag
+      tags:
+        - MatterBinStockPart
+#Sunrise-end
     - type: Stack
       stackType: MatterBin

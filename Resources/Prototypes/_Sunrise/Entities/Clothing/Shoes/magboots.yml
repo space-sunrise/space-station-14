@@ -1,0 +1,30 @@
+- type: entity
+  parent: [ClothingShoesBootsMag, ClothingShoesBootsCombat, BaseSecurityContraband]
+  id: ClothingShoesBootsMagCombat
+  name: combat magboots
+  description: Combat magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Shoes/magboots-combat.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Shoes/magboots-combat.rsi
+  - type: Magboots
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.9
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.5
+
+- type: entity
+  parent: ClothingShoesBootsMagCombat
+  id: ClothingShoesBootsMagPirate
+  name: pirate magboots
+  description: Repainted combat magnets to match the colors of pirates.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Shoes/magboots-pirate.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Shoes/magboots-pirate.rsi
+  - type: Magboots

@@ -1,2 +1,2 @@
-ent-PosterAriralInSpace = Арирал в космосе
-    .desc = Это явно послание.. Что-то я забыл..
+ent-PosterAriralInSpace = ariral in space
+    .desc = It's clearly a message.. I've forgotten something...

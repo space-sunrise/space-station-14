@@ -4,5 +4,5 @@ ent-ComfyBrownChair = comfy brown chair
     .desc = It looks comfy.
 ent-ChairOfficeGrey = grey office chair
     .desc = { ent-ChairOfficeLight.desc }
-ent-ChairBarber = кресло парикмахера
+ent-ChairBarber = barber's chair
     .desc = { ent-StoolBase.desc }

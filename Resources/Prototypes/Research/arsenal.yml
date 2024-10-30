@@ -170,7 +170,7 @@
 - type: technology
   id: EnergyBarriers
   name: research-technology-energy_barriers
-  icon: 
+  icon:
     sprite: Objects/Tools/EnergyDome/reinhardt.rsi
     state: icon
   discipline: Arsenal
@@ -178,7 +178,7 @@
   cost: 6000
   recipeUnlocks:
   - EnergyDomeDirectionalTurtle
-  
+
 - type: technology
   id: BasicShuttleArmament
   name: research-technology-basic-shuttle-armament

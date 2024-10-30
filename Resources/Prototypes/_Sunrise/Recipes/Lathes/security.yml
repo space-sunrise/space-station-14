@@ -318,3 +318,14 @@
     Steel: 3000
     Glass: 1500
     Plastic: 300
+
+- type: latheRecipe
+  id: ClothingShoesBootsMagCombat
+  result: ClothingShoesBootsMagCombat
+  category: Weapons
+  completetime: 12
+  materials:
+    Steel: 1500
+    Plastic: 500
+    Plasma: 300
+    Silver: 200
