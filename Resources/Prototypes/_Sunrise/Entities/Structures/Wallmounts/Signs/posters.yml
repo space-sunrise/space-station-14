@@ -1,8 +1,8 @@
 - type: entity
   parent: PosterBase
   id: PosterContrabandAriralInSpace
-  name: "Арирал в космосе"
-  description: "Это явно послание.. Что-то я забыл.."
+  name: "Ariral in Space"
+  description: "This is clearly a message..I think I forgot something..."
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Wallmounts/posters.rsi

@@ -1999,6 +1999,7 @@ entities:
   - uid: 23
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: 9.5,0.5
       parent: 2
 - proto: AirlockCommandGlassLocked
@@ -2319,7 +2320,7 @@ entities:
       pos: 4.5,-1.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -46590.297
+      secondsUntilStateChange: -46801.863
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -8278,20 +8279,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: 4.4258823,-11.678621
-      parent: 2
-- proto: ConveyorBelt
-  entities:
-  - uid: 956
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 9.5,-6.5
-      parent: 2
-  - uid: 957
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 10.5,-6.5
       parent: 2
 - proto: CrateEmergencyInternals
   entities:
@@ -18883,16 +18870,6 @@ entities:
     - type: Transform
       pos: 9.5,-7.5
       parent: 2
-    - type: DeviceLinkSource
-      linkedPorts:
-        956:
-        - Right: Forward
-        - Left: Reverse
-        - Middle: Off
-        957:
-        - Left: Reverse
-        - Right: Forward
-        - Middle: Off
   - uid: 2106
     components:
     - type: Transform
