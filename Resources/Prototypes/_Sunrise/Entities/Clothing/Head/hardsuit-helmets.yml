@@ -171,7 +171,7 @@
   parent: ClothingHeadHardsuitWithLightBase
   id: ClothingHeadHelmetHardsuitUegParatrooper
   name: space marine spacesuit helmet
-  description: The helmet from a copy of the paratrooper spacesuit
+  description: The helmet from a paratrooper spacesuit.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Head/Hardsuits/ueg_paratrooperh.rsi
@@ -197,7 +197,7 @@
   parent: ClothingHeadHardsuitWithLightBase
   id: ClothingHeadHelmetHardsuitUegCap
   name: space suit helmet of a space marines captain.
-  description: Шлем от экземпляра капитанского скафандра ОПЗ
+  description: The helmet from a paratrooper captain spacesuit.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Head/Hardsuits/ueg_captainh.rsi
