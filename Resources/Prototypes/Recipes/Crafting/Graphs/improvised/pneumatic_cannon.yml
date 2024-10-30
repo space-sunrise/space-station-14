@@ -10,13 +10,13 @@
         icon:
           sprite: Structures/Piping/Atmospherics/pipe.rsi
           state: pipeStraight
-        name: трубу  # Sunrise-recipes
+        name: step-pipe-name
       - tag: Handcuffs
         icon:
           sprite: Objects/Misc/cablecuffs.rsi
           state: cuff
           color: red
-        name: наручники  # Sunrise-recipes
+        name: step-cuffs-name
       - material: Steel
         amount: 6
         doAfter: 10

@@ -501,3 +501,183 @@
     tags:
     - Trash
     - BorgServiceTorso
+
+# peace parts
+- type: entity
+  id: LeftArmBorgPeace
+  parent: BaseBorgArmLeft
+  name: peace cyborg left arm
+  components:
+    - type: Sprite
+      state: peace_l_arm
+    - type: Icon
+      state: peace_l_arm
+    - type: Tag
+      tags:
+        - Trash
+        - BorgArm
+        - BorgPeaceLArm
+
+- type: entity
+  id: RightArmBorgPeace
+  parent: BaseBorgArmRight
+  name: peace cyborg right arm
+  components:
+    - type: Sprite
+      state: peace_r_arm
+    - type: Icon
+      state: peace_r_arm
+    - type: Tag
+      tags:
+        - Trash
+        - BorgArm
+        - BorgPeaceRArm
+
+- type: entity
+  id: LeftLegBorgPeace
+  parent: BaseBorgLegLeft
+  name: peace cyborg left leg
+  components:
+    - type: Sprite
+      state: peace_l_leg
+    - type: Icon
+      state: peace_l_leg
+    - type: Tag
+      tags:
+        - Trash
+        - BorgLeg
+        - BorgPeaceLLeg
+
+- type: entity
+  id: RightLegBorgPeace
+  parent: BaseBorgLegRight
+  name: peace cyborg right leg
+  components:
+    - type: Sprite
+      state: peace_r_leg
+    - type: Icon
+      state: peace_r_leg
+    - type: Tag
+      tags:
+        - Trash
+        - BorgLeg
+        - BorgPeaceRLeg
+
+- type: entity
+  id: HeadBorgPeace
+  parent: BaseBorgHead
+  name: peace cyborg head
+  components:
+    - type: Sprite
+      state: peace_head
+    - type: Icon
+      state: peace_head
+    - type: Tag
+      tags:
+        - Trash
+        - BorgHead
+        - BorgPeaceHead
+
+- type: entity
+  id: TorsoBorgPeace
+  parent: BaseBorgTorso
+  name: peace cyborg torso
+  components:
+    - type: Sprite
+      state: peace_chest
+    - type: Icon
+      state: peace_chest
+    - type: Tag
+      tags:
+        - Trash
+        - BorgPeaceTorso
+        
+# clown parts
+- type: entity
+  id: LeftArmBorgClown
+  parent: BaseBorgArmLeft
+  name: clown cyborg left arm
+  components:
+    - type: Sprite
+      state: peace_l_arm
+    - type: Icon
+      state: peace_l_arm
+    - type: Tag
+      tags:
+        - Trash
+        - BorgArm
+        - BorgClownLArm
+
+- type: entity
+  id: RightArmBorgClown
+  parent: BaseBorgArmRight
+  name: clown cyborg right arm
+  components:
+    - type: Sprite
+      state: peace_r_arm
+    - type: Icon
+      state: peace_r_arm
+    - type: Tag
+      tags:
+        - Trash
+        - BorgArm
+        - BorgClownRArm
+
+- type: entity
+  id: LeftLegBorgClown
+  parent: BaseBorgLegLeft
+  name: clown cyborg left leg
+  components:
+    - type: Sprite
+      state: peace_l_leg
+    - type: Icon
+      state: peace_l_leg
+    - type: Tag
+      tags:
+        - Trash
+        - BorgLeg
+        - BorgClownLLeg
+
+- type: entity
+  id: RightLegBorgClown
+  parent: BaseBorgLegRight
+  name: clown cyborg right leg
+  components:
+    - type: Sprite
+      state: peace_r_leg
+    - type: Icon
+      state: peace_r_leg
+    - type: Tag
+      tags:
+        - Trash
+        - BorgLeg
+        - BorgClownRLeg
+
+- type: entity
+  id: HeadBorgClown
+  parent: BaseBorgHead
+  name: clown cyborg head
+  components:
+    - type: Sprite
+      state: peace_head
+    - type: Icon
+      state: peace_head
+    - type: Tag
+      tags:
+        - Trash
+        - BorgHead
+        - BorgClownHead
+
+- type: entity
+  id: TorsoBorgClown
+  parent: BaseBorgTorso
+  name: clown cyborg torso
+  components:
+    - type: Sprite
+      state: peace_chest
+    - type: Icon
+      state: peace_chest
+    - type: Tag
+      tags:
+        - Trash
+        - BorgClownTorso

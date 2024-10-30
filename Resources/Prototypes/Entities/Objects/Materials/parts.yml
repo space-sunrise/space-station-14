@@ -43,6 +43,11 @@
     layers:
     - state: rods_5
       map: ["base"]
+#Sunrise-start
+  - type: Tag
+    tags:
+    - PartRodMetal
+#Sunrise-end
   - type: Item
     size: Normal
 #    heldPrefix: rods
@@ -78,6 +83,7 @@
   - type: Tag
     tags:
     - RodMetal1
+    - PartRodMetal #Sunrise-edit
   - type: Sprite
     state: rods
   - type: Stack
@@ -92,6 +98,7 @@
   - type: Tag
     tags:
     - RodMetal1
+    - PartRodMetal #Sunrise-edit
   - type: Sprite
     state: rods
   - type: Stack

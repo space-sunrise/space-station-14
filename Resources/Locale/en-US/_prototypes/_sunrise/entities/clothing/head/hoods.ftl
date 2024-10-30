@@ -1,2 +1,2 @@
-ent-ClothingHeadHatHoodBlackCloak = капюшон
-    .desc = Закрывает затылок.
+ent-ClothingHeadHatHoodBlackCloak = hood
+    .desc = Closes the back of head.

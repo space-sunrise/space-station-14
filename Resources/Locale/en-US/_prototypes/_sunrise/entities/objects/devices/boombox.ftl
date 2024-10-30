@@ -1,4 +1,4 @@
-ent-Boombox = Бумбокс
-    .desc = Будьте на стиле.
-ent-BoomboxSyndie = Бумбокс синдиката
-    .desc = Убивайте со стилем.
+ent-Boombox = boombox
+    .desc = Be on style.
+ent-BoomboxSyndie = syndie boombox
+    .desc = Kill with style.

@@ -5,172 +5,213 @@
       name: 2024
       goals:
         fugitive:
-          name: Беглец
-          desc: Сбежавший заключенный, цель которого - выжить.
+          id: fugitive
+          name: Fugitive
+          desc: An escaped fugitive prisoner whose goal is to survive.
           state: Complete
-        planet_prison:
-          name: Планетарная тюрьма
-          desc: Тюрьма на планете работающая как отдельная станция.
+        planet-prison:
+          id: planet-prison
+          name: Planet Prison
+          desc: A prison on a planet operating as a separate station.
           state: Complete
-        cyborg_update:
-          name: Станционные борги
-          desc: Новые борги.
+        cyborg-update:
+          id: cyborg-update
+          name: Station Cyborgs Update
+          desc: New cyborgs.
           state: Complete
-        collective_mind:
-          name: Коллективный разум
-          desc: Система позволяющая общяться некоторым созданиям между собой если он у них есть.
+        collective-mind:
+          id: collective-mind
+          name: Collective Mind
+          desc: A system that allows some creatures to communicate with each other if they have one.
           state: Complete
-        syndicate_cyborgs:
-          name: Новые борги синдиката
-          desc: Более продвинутые и полезные борги синдиката.
+        syndicate-cyborgs:
+          id: syndicate-cyborgs
+          name: New Syndie Cyborgs
+          desc: More advanced and useful syndicate borg.
           state: Complete
-        new_guns:
-          name: Расширение огнестрела
-          desc: Добавление разннобразного огнестрельного вооружения(а как-же огнемёт?).
+        new-guns:
+          id: new-guns
+          name: Firearms Expansion
+          desc: Adding various firearms (what about the flamethrower?).
           state: Complete
-        smart_viruse:
-          name: Разумная болезнь
-          desc: Антагонист, цель которого заразить станцию болезнью.
+        smart-viruse:
+          id: smart-viruse
+          name: Smart Viruse
+          desc: An antagonist whose goal is to infect the station with a disease.
           state: Complete
-        cargo_rework:
-          name: Реворк карго
-          desc: Удаление торгового аванпоста и шаттла карго, реализация покупки и продажи на станции.
+        cargo-rework:
+          id: cargo-rework
+          name: Cargo Rework
+          desc: Removal of the trading outpost and the cargo shuttle, realizing the buying and selling at the station.
           state: Complete
-        new_maps:
-          name: Гробальная переработка карт
-          desc: Значительные доработки карт (дельта, бокс).
+        new-maps:
+          id: new-maps
+          name: Global Map Reworking
+          desc: Significant refinements to the maps (delta, box).
           state: Complete
-        fully_translating:
-          name: Полный перевод всего
-          desc: перевод всех вещей, меню. С целью упростить геймплей.
+        fully-translating:
+          id: fully-translating
+          name: Full Translation Of Everything
+          desc: translation of all the items, menus. In order to simplify gameplay.
           state: Complete
-        night_vision:
-          name: Ночное виденье
-          desc: ПНВ, ночное виденье у некоторых животных/расс.
+        night-vision:
+          id: night-vision
+          name: Night Vision
+          desc: NVD, night vision in some animals/race.
           state: Complete
+        mechs:
+          id: mechs
+          name: Mechs
+          desc: Controlled mechanoids, created to work in difficult places, as well as in facilitating the transportation of goods and other tasks where man himself can not cope.
+          state: Partial
         ipc:
-          name: КПБ
-          desc: Расса разумных машин, в переработке.
+          id: ipc
+          name: IPC
+          desc: A race of intelligent machines, in reworking.
           state: Partial
         blob:
-          name: Блоб
-          desc: Антагонист цель которого поглотить и тем самым уничтожить станцию.
+          id: blob
+          name: Blob
+          desc: An antagonist whose goal is to devour and thereby destroy the station.
           state: InProgress
-        assault_ops:
-          name: Диверсионый отряд
-          desc: Ну типа да.
+        assault-ops:
+          id: assault-ops
+          name: Assault Ops
+          desc: A mercenary squad whose purpose is to stealthily sabotage the station, disrupting its operations.
           state: InProgress
-        ert_call:
-          name: Консоль вызова ОБР
-          desc: Консоль с помощью которой можно вызвать обр.
+        ert-call:
+          id: ert-call
+          name: ERT Call Console
+          desc: A console that can be used to call an ERT.
           state: InProgress
-        SSSP:
-          name: Станция СССП
-          desc: Отдельная станция СССП с своими задачами на смену.
+        ussp:
+          id: ussp
+          name: USSP Station
+          desc: A separate station of the USSP with its own shift tasks.
           state: InProgress
-        vent_crawling:
-          name: Передвижение по вентиляции
-          desc: Возможность мелким существам и разным антагонистами передвигаться по вентиляционной системе.
+        vent-crawling:
+          id: vent-crawling
+          name: Vent Crawling
+          desc: Allowing small creatures and various antagonists to move through the ventilation system.
           state: InProgress
-        flesh_cult:
-          name: Культ плоти
-          desc: Культ плоти цель которого уничтожить станцию.
+        flesh-cult:
+          id: flesh-cult
+          name: The cult of flesh
+          desc: A flesh cult intent on destroying the station.
           state: InProgress
-        blood_cult:
-          name: Культ крови (Нар`Си)
-          desc: Культ который идёт за богом Нар`Си, цель культа призвать своего покровителя который позже уничтожит станцию.
+        blood-cult:
+          id: blood-cult
+          name: Blood Cult (Nar'Si)
+          desc: A cult that follows the god Nar'Si, the cult's goal is to summon its patron, who will later destroy the station.
           state: InProgress
         economy:
-          name: Экономика
-          desc: Добавление денег, зарплаты, почта будет давать деньги а вендоматы будут брать деньги за еду.
+          id: economy
+          name: Economy
+          desc: Adding money, wages, the post office will give money and vendomats will take money for food.
           state: InProgress
-        extend_med:
-          name: Расширение мед. отдела
-          desc: Добавление новых механик, ролей.
-          state: InProgress
+        extend-med:
+          id: extend-med
+          name: Medical Department Expansion
+          desc: Adding new mechanics, roles.
+          state: Planned
         pathologist:
-          name: Паталогоанатом
-          desc: Новая роль мед.отдела. Задача которой следить за моргом.
-          state: InProgress
+          id: pathologist
+          name: Pathologist
+          desc: A new role for the medical department. To keep an eye on the morgue.
+          state: Planned
         arena:
-          name: Арена для призраков
-          desc: Арена где призраки могут занять своё время что-бы не летать по станции в ожидании конца раунда.
+          id: arena
+          name: Ghosts Arena
+          desc: An arena where ghosts can occupy their time so they don't have to fly around the station waiting for the end of the round.
           state: Planned
         limbo:
-          name: Лимбо
-          desc: Отдельный мирок для призраков где нет правил.
+          id: limbo
+          name: Limbo
+          desc: A separate world for ghosts where there are no rules.
           state: Planned
         taipan:
-          name: Тайпан
-          desc: Отдельная станция синдиката с своими задачами на смену.
+          id: taipan
+          name: Taipan
+          desc: A separate syndicate station with its own shift tasks.
           state: Planned
     2025:
       name: 2025
       goals:
         mail:
-          name: Почта
-          desc: Отправка поссылок в разные части станции за которые станция будет получать деньги.
+          id: mail
+          name: Mail
+          desc: Sending parcels to different parts of the station for which the station will receive money.
           state: InProgress
-        mech:
-          name: Мехи
-          desc: Ну типа да.
-          state: Partial
         ai:
-          name: ИИ
-          desc: Новая профессия искуственного интелекта нацеленная на помощь станции в уничтожении самих себя?
+          id: ai
+          name: AI
+          desc: A new artificial intelligence profession aimed at helping the station destroy itself?
           state: Partial
         borer:
-          name: Мозговой червь
-          desc: Антагонист залазящий в мозги живых существ и захватывающий их разум.
+          id: borer
+          name: Brainworm
+          desc: An antagonist climbing into the brains of living beings and taking over their minds.
           state: Planned
         lavaland:
-          name: Лаваленд
-          desc: Отдельное измерение где шахтёры будут добывать ресурсы для станции.
+          id: lavalend
+          name: Lavalend
+          desc: A separate dimension where miners will extract resources for the station.
           state: Planned
         angels:
-          name: Раса ангелов
-          desc: Ну типа да.
+          id: angels
+          name: A race of angels
+          desc: A new race of angels with their own abilities.
           state: Planned
         impids:
-          name: Раса импидов
-          desc: Ну типа да.
+          id: impids
+          name: A race of impids
+          desc: A new race of imps raised in a harsh and hot environment.
           state: Planned
         skills:
-          name: Система навыков
-          desc: Система не позволяющая сделать то или инное действие если у вас нет определённого навыка.
+          id: skills
+          name: Skill System
+          desc: A system that prevents you from doing something if you don't have a certain skill.
           state: Planned
-        space_fight:
-          name: Режим космической битвы
-          desc: Ну типа да.
+        space-fight:
+          id: space-fight
+          name: Space Fight Mode
+          desc: New exciting mode that will immerse you in the world of space wars.
           state: Planned
-        spider_terror:
-          name: Пауки ужаса
-          desc: Ну типа да.
+        spider-terror:
+          id: spider-terror
+          name: Spider Terror
+          desc: The result of the Syndicate's experiments to crossbreed the DNA of a giant space spider and a Xenomorph.
           state: Planned
         wizards:
-          name: Режим магов
-          desc: Ну типа да.
+          id: wizards
+          name: Wizard Mode
+          desc: Game mode when the mage spawns and does all sorts of mischief.
           state: Planned
         morph:
-          name: Морф
-          desc: Ну типа да.
+          id: morph
+          name: Morph
+          desc: A mass of green flesh that has the ability to take on the appearance of any person.
           state: Planned
         diseases:
-          name: Болезни
-          desc: Оживление вирусологии, вы сможете реально получить спид, как соник.
+          id: diseases
+          name: Diseases
+          desc: Revitalising virology, you can actually get speed as a sonic.
           state: Planned
         plasmamens:
-          name: Раса плазмаменов
-          desc: Раса крутых плазменных чувачков.
+          id: plasmamens
+          name: A race of plasmamens
+          desc: A race of cool plasma dudes.
           state: Planned
-        centcomm_update:
-          name: Обновление ЦК
-          desc: Обновление карты центрального коммандования и возможное обновление ролей.
+        centcomm-update:
+          id: centcomm-update
+          name: Centcomm Update
+          desc: Central Command map update and possible role update.
           state: Planned
     2026:
       name: 2026
       goals:
         ratvar:
-          name: Культ Ратвара
-          desc: Культ поклоняющийся механическому богу.
+          id: ratvar
+          name: Ratvar Cult
+          desc: A cult worshipping a mechanical god.
           state: Planned

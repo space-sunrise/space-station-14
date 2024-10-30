@@ -210,3 +210,45 @@
     steps: 2
     zeroVisible: false
   - type: Appearance
+
+- type: entity
+  parent: MagazineV31
+  id: MagazineV31Extended
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 50
+
+- type: entity
+  parent: MagazineFamas
+  id: MagazineFamasExtended
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 34
+
+- type: entity
+  parent: MagazineG36
+  id: MagazineG36Extended
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 34
+
+- type: entity
+  parent: MagazineM28
+  id: MagazineM28Extended
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 34
+
+- type: entity
+  parent: MagazineAR18
+  id: MagazineAR18Extended
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 34
+
+- type: entity
+  parent: MagazineM16A4
+  id: MagazineM16A4Extended
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 34

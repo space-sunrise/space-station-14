@@ -23,7 +23,7 @@
     ears: ClothingHeadsetAltCentCom
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitCBURN
-    shoes: ClothingShoesBootsCombatFilled
+    shoes: ClothingShoesBootsMagCombat
     id: CBURNPDA
     pocket1: RadioHandheld
     pocket2: WeaponLaserGun

@@ -48,3 +48,5 @@ ent-ClothingHeadHatGarrisonCapAdjutant = пилотка адъютанта
     .desc = Небольшая хлопчатобумажная пилотка, так и норовит слететь с головы.
 ent-ClothingHeadHatCapAdjutant = фуражка адъютанта
     .desc = Синяя с белым, подозрительно напоминает капитанскую.
+ent-ClothingHeadHatWithPaces = Шляпа с пейсами
+    .desc = Чёрная шляпа с пейсами, обычно такую носят евреи.
