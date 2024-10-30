@@ -38,7 +38,6 @@
   - type: PowerCellDraw
     drawRate: 0
     useRate: 20
-  - type: ToggleCellDraw
 
 - type: entity
   parent: [ClothingEyesNVD,ShowSecurityIcons]

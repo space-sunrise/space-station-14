@@ -166,6 +166,54 @@
         whitelist:
           tags:
             - BorgJanitorTorso
+      peace_l_arm+o:
+        whitelist:
+          tags:
+            - BorgPeaceLArm
+      peace_r_arm+o:
+        whitelist:
+          tags:
+            - BorgPeaceRArm
+      peace_l_leg+o:
+        whitelist:
+          tags:
+            - BorgPeaceLLeg
+      peace_r_leg+o:
+        whitelist:
+          tags:
+            - BorgPeaceRLeg
+      peace_head+o:
+        whitelist:
+          tags:
+            - BorgPeaceHead
+      peace_chest+o:
+        whitelist:
+          tags:
+            - BorgPeaceTorso
+      clown_l_arm+o:
+        whitelist:
+          tags:
+            - BorgClownLArm
+      clown_r_arm+o:
+        whitelist:
+          tags:
+            - BorgClownRArm
+      clown_l_leg+o:
+        whitelist:
+          tags:
+            - BorgClownLLeg
+      clown_r_leg+o:
+        whitelist:
+          tags:
+            - BorgClownRLeg
+      clown_head+o:
+        whitelist:
+          tags:
+            - BorgClownHead
+      clown_chest+o:
+        whitelist:
+          tags:
+            - BorgClownTorso
   - type: ContainerContainer
     containers:
       part-container: !type:Container
@@ -212,6 +260,20 @@
       - BorgMiningRLeg
       - BorgMiningHead
       - BorgMiningTorso
+      peace:
+      - BorgPeaceLArm
+      - BorgPeaceRArm
+      - BorgPeaceLLeg
+      - BorgPeaceRLeg
+      - BorgPeaceHead
+      - BorgPeaceTorso
+      clown:
+      - BorgClownLArm
+      - BorgClownRArm
+      - BorgClownLLeg
+      - BorgClownRLeg
+      - BorgClownHead
+      - BorgClownTorso
   - type: Construction
     graph: Cyborg
     node: start
