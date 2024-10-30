@@ -73,6 +73,10 @@ namespace Content.IntegrationTests.Tests
             "SunriseReach",
             "SunriseTrain",
             "PlanetPrison",
+            "SunriseCog",
+            "SunriseCorvaxGelta",
+            "SunriseMeta",
+            "SunriseOasis",
         };
 
         /// <summary>
