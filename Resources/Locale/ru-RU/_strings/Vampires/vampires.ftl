@@ -1,4 +1,4 @@
-vampires-title = Vampires
+vampires-title = Вампиры
 
 vampire-fangs-extended-examine = Вы видите блеск [color=white]острых клыков[/color].
 vampire-fangs-extended = Вы вытягиваете свои клыки
@@ -44,3 +44,39 @@ vampire-passive-supernaturalstrength-description = Increase your upper body musc
 
 vampire-passive-deathsembrace = Deaths Embrace
 vampire-passive-deathsembrace-description = Embrace death and it shall pass you over. Effect: Heal when in a coffin, automatically return to your coffin upon death for 100 blood essence.
+
+#Mutation menu
+
+vampire-mutation-menu-ui-window-name = Меню мутаций
+
+vampire-mutation-none-info = Ничего не выбрано
+
+vampire-mutation-hemomancer-info = 
+    Гемомансер
+    
+    Фокусируеться на кровавой магии и манипуляции крови вокруг себя.
+    
+    Способности:
+    
+    - Визг
+    - Кража крови
+
+vampire-mutation-umbrae-info = 
+    Тень
+    
+    Фокусируется на темноте, стелсе, мобильности.
+    
+    Способности:
+    
+    - Блик
+    - Плащ тьмы
+
+vampire-mutation-bestia-info = 
+    Бестия
+    
+    Фокусируется на превращении и собирании трофеев
+    
+    Способности:
+    
+    - Форма летучей мыши
+    - Мышиная форма
