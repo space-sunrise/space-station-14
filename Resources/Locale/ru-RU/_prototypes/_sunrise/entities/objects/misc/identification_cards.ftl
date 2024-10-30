@@ -1,5 +1,5 @@
 ent-BlueShieldIDCard = ID карта офицера /"синий щит/"
-    .desc = Карта, необходимая для доступа в различные области станции.
+    .desc = { ent-IDCardStandard.desc }
 ent-RoboticistIDCard = ID карта робототехника
     .desc = { ent-IDCardStandard.desc }
 ent-SecurityPilotIDCard = ID карта пилота службы безопастности
