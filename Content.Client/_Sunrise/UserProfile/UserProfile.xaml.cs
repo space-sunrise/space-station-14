@@ -31,16 +31,29 @@ public sealed partial class UserProfile : Control
 
         _cfg.OnValueChanged(SunriseCCVars.InfoLinksDonate, OnInfoLinksDonateChanged, true);
 
-        if (_serviceAuthManager == null || _sponsorsManager == null)
-            return;
+        if (_serviceAuthManager == null)
+        {
+            LinkDiscordButton.Disabled = true;
+            LinkTelegramButton.Disabled = true;
+        }
+        else
+        {
+            LinkTelegramButton.OnPressed += LinkTelegramPressed;
+            LinkDiscordButton.OnPressed += LinkDiscordPressed;
+            _serviceAuthManager.LoadedServiceLinkedServices += RefreshServiceLinkedServices;
+        }
 
-        BuySponsorButton.OnPressed += BuySponsorPressed;
-        LinkTelegramButton.OnPressed += LinkTelegramPressed;
-        LinkDiscordButton.OnPressed += LinkDiscordPressed;
-        InfoSponsorButton.OnPressed += InfoSponsorPressed;
-
-        _serviceAuthManager.LoadedServiceLinkedServices += RefreshServiceLinkedServices;
-        _sponsorsManager.LoadedSponsorData += RefreshSponsorData;
+        if (_sponsorsManager == null)
+        {
+            BuySponsorButton.Disabled = true;
+            InfoSponsorButton.Disabled = true;
+        }
+        else
+        {
+            BuySponsorButton.OnPressed += BuySponsorPressed;
+            _sponsorsManager.LoadedSponsorData += RefreshSponsorData;
+            InfoSponsorButton.OnPressed += InfoSponsorPressed;
+        }
     }
 
     private void OnInfoLinksDonateChanged(string url)
