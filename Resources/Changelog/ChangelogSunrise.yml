@@ -4909,3 +4909,28 @@
   id: 349
   time: '2024-10-30T07:28:58.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/563
+- author: pacable
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u044B \u041F\u043B\u044E\
+      \u0448\u0435\u0432\u044B\u0439 \u041C\u0438\u043B\u043E\u0441-\u0422\u0430\u043D\
+      \u0430\u043A\u0430, \u041F\u043B\u044E\u0448\u0435\u0432\u044B\u0439 \u041A\u043B\
+      \u0438\u043C \u041A\u0443\u0437\u044C\u043C\u0438\u043D, \u041F\u043B\u044E\u0448\
+      \u0435\u0432\u0430\u044F \u041C\u0435\u043B\u0430\u043D\u0438\u044F \u041A\u0438\
+      \u0441\u0435\u043B\u0451\u0432\u0430, \u041F\u043B\u044E\u0448\u0435\u0432\u044B\
+      \u0439 \u041E\u043A\u043E\u0431\u0438\u0443\u0441 \u0410\u043A\u0432\u0430\u0442\
+      \u0438\u043A\u0430, \u041F\u043B\u044E\u0448\u0435\u0432\u044B\u0439 \u0412\u044F\
+      \u0447\u0435\u0441\u043B\u0430\u0432 \u041D\u0435\u043A\u0440\u0430\u0441\u043E\
+      \u0432."
+    type: Add
+  id: 350
+  time: '2024-10-30T07:30:32.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/525
+- author: kanopus7
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0430 \u0441\u0443\u043C\
+      \u043A\u0430 \u0434\u043B\u044F \u043C\u0430\u0442\u0435\u0440\u0438\u0430\u043B\
+      \u043E\u0432."
+    type: Add
+  id: 351
+  time: '2024-10-30T07:30:59.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/526
