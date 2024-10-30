@@ -939,20 +939,6 @@
       - SpeedLoaderMagnumUranium
       - TelescopicShield
       - TimerTrigger
-      - BaseMagazinePistolCaselessRifleExtended
-      - MagazinePPSH41Extended
-      - MagazineMP5Extended
-      - MagazineMP7Extended
-      - MagazineP90Extended
-      - MagazineM16A4Extended
-      - MagazineAR18Extended
-      - MagazineM28Extended
-      - MagazineG36Extended
-      - MagazineFamasExtended
-      - MagazineV31Extended
-      - MagazineBauer127Extended
-      - MagazineBR64Extended
-      - MagazineDragunovExtended
       - Truncheon
       - VoiceTrigger
       - WeaponAdvancedLaser
@@ -961,6 +947,7 @@
       - WeaponLaserCannon
       - WeaponLaserCarbine
       - WeaponXrayCannon
+    # Sunrise-Start
       - WeaponMechCombatImmolationGun # Sunrise - Mechs
       - WeaponMechCombatSolarisLaser # Sunrise - Mechs
       - WeaponMechCombatFiredartLaser # Sunrise - Mechs
@@ -975,6 +962,21 @@
       - WeaponEnergyGunPistol # Sunrise - PDW-9 Energy Pistol
       - WeaponGunLaserCarbineAutomatic # Sunrise - IK-60 Laser Carbine
       - ClothingShoesBootsMagCombat # Sunrise - Combat Magboots
+      - BaseMagazinePistolCaselessRifleExtended
+      - MagazinePPSH41Extended
+      - MagazineMP5Extended
+      - MagazineMP7Extended
+      - MagazineP90Extended
+      - MagazineM16A4Extended
+      - MagazineAR18Extended
+      - MagazineM28Extended
+      - MagazineG36Extended
+      - MagazineFamasExtended
+      - MagazineV31Extended
+      - MagazineBauer127Extended
+      - MagazineBR64Extended
+      - MagazineDragunovExtended
+    # Sunrise-End
   - type: MaterialStorage
     whitelist:
       tags:
