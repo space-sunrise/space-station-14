@@ -9,6 +9,7 @@ using Content.Server.GameTicking.Presets;
 using Content.Server.Maps;
 using Content.Server.Roles;
 using Content.Server.RoundEnd;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Database;
@@ -86,9 +87,13 @@ namespace Content.Server.Voting.Managers
             var ghostVotePercentageRequirement = _cfg.GetCVar(CCVars.VoteRestartGhostPercentage);
             var ghostVoterPercentage = CalculateEligibleVoterPercentage(VoterEligibility.Ghost);
 
+            // Sunrise-Start
+            var showRestartVotes = _cfg.GetCVar(SunriseCCVars.ShowRestartVotes);
+            // Sunrise-End
+
             if (totalPlayers <= playerVoteMaximum || ghostVoterPercentage >= ghostVotePercentageRequirement)
             {
-                StartVote(initiator, false);
+                StartVote(initiator, showRestartVotes);
             }
             else
             {
@@ -136,7 +141,7 @@ namespace Content.Server.Voting.Managers
             return eligibleCount;
         }
 
-        private void StartVote(ICommonSession? initiator, bool displayVotes = true)
+        private void StartVote(ICommonSession? initiator, bool displayVotes)
         {
             var alone = _playerManager.PlayerCount == 1 && initiator != null;
             var options = new VoteOptions
@@ -227,7 +232,7 @@ namespace Content.Server.Voting.Managers
                 Duration = alone
                     ? TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerAlone))
                     : TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerPreset)),
-                DisplayVotes = false // Sunrise-Edit
+                DisplayVotes = _cfg.GetCVar(SunriseCCVars.ShowPresetVotes), // Sunrise-Edit
             };
 
             if (alone)
@@ -267,8 +272,9 @@ namespace Content.Server.Voting.Managers
         {
             var maps = new Dictionary<string, GameMapPrototype>();
             var eligibleMaps = _gameMapManager.CurrentlyEligibleMaps().ToList();
-            maps.Add(Loc.GetString("ui-vote-secret-map"), _random.Pick(eligibleMaps));
-            foreach (var map in eligibleMaps)
+            var selectedMaps = eligibleMaps.OrderBy(_ => _random.Next()).Take(3).ToList();
+            maps.Add(Loc.GetString("ui-vote-secret-map"), _random.Pick(selectedMaps));
+            foreach (var map in selectedMaps)
             {
                 maps.Add(map.MapName, map);
             }
@@ -280,7 +286,7 @@ namespace Content.Server.Voting.Managers
                 Duration = alone
                     ? TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerAlone))
                     : TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerMap)),
-                DisplayVotes = false // Sunrise-Edit
+                DisplayVotes = _cfg.GetCVar(SunriseCCVars.ShowMapVotes), // Sunrise-Edit
             };
 
             if (alone)

@@ -1,82 +1,82 @@
 - type: guideEntry
   id: SunriseRuleset
-  name: guide-entry-rules
+  name: guide-entry-sr-rules
   ruleEntry: true
   text: "/ServerInfo/Guidebook/ServerRules/SunriseRules.xml"
 
 - type: guideEntry
   id: RuleSR0
-  name: Правило 0
+  name: guide-entry-sr-rule-0
   ruleEntry: true
   priority: 0
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/CoreRules/RuleSR0DBAD.xml"
 
 - type: guideEntry
   id: RuleSR1
-  name: Правило 1
+  name: guide-entry-sr-rule-1
   ruleEntry: true
   priority: 1
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/CoreRules/RuleSR1Decay.xml"
 
 - type: guideEntry
   id: RuleSR2
-  name: Правило 2
+  name: guide-entry-sr-rule-2
   ruleEntry: true
   priority: 2
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/CoreRules/RuleSR2Kill.xml"
 
 - type: guideEntry
   id: RuleSR3
-  name: Правило 3
+  name: guide-entry-sr-rule-3
   ruleEntry: true
   priority: 3
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/CoreRules/RuleSR3VGA.xml"
 
 - type: guideEntry
   id: RuleSR4
-  name: Правило 4
+  name: guide-entry-sr-rule-4
   ruleEntry: true
   priority: 4
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/CoreRules/RuleSR4LC.xml"
 
 - type: guideEntry
   id: RuleSR5
-  name: Правило 5
+  name: guide-entry-sr-rule-5
   ruleEntry: true
   priority: 5
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/CoreRules/RuleSR5.xml"
 
 - type: guideEntry
   id: RuleSR6
-  name: Правило 6
+  name: guide-entry-sr-rule-6
   ruleEntry: true
   priority: 6
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/CoreRules/RuleSR6RPA.xml"
 
 - type: guideEntry
   id: RuleSR7
-  name: Правило 7
+  name: guide-entry-sr-rule-7
   ruleEntry: true
   priority: 7
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/CoreRules/RuleSR7SA.xml"
 
 - type: guideEntry
   id: RuleSR8
-  name: Правило 8
+  name: guide-entry-sr-rule-8
   ruleEntry: true
   priority: 8
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/CoreRules/RuleSR8VH.xml"
 
 - type: guideEntry
   id: RuleSR9
-  name: Правило 9
+  name: guide-entry-sr-rule-9
   ruleEntry: true
   priority: 9
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/CoreRules/RuleSR9ERP.xml"
 
 - type: guideEntry
   id: RuleSR10
-  name: Правило 10
+  name: guide-entry-sr-rule-10
   ruleEntry: true
   priority: 10
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/CoreRules/RuleSR10Exploit.xml"
@@ -86,14 +86,14 @@
 
 - type: guideEntry
   id: RuleSRRP1
-  name: Правило 3.1.
+  name: guide-entry-sr-rule-3-1
   ruleEntry: true
   priority: 1
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/RolePlayRules/RuleSRRP1PG.xml"
 
 - type: guideEntry
   id: RuleSRRP2
-  name: Правило 3.2.
+  name: guide-entry-sr-rule-3-2
   ruleEntry: true
   priority: 2
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/RolePlayRules/RuleSRRP2MG.xml"
@@ -101,21 +101,21 @@
 
 - type: guideEntry
   id: RuleSRRP3
-  name: Правило 3.3.
+  name: guide-entry-sr-rule-3-3
   ruleEntry: true
   priority: 3
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/RolePlayRules/RuleSRRP3MK.xml"
 
 - type: guideEntry
   id: RuleSRRP4
-  name: Правило 3.4.
+  name: guide-entry-sr-rule-3-4
   ruleEntry: true
   priority: 4
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/RolePlayRules/RuleSRRP4ICinOOC.xml"
 
 - type: guideEntry
   id: RuleSRRP5
-  name: Правило 3.5.
+  name: guide-entry-sr-rule-3-5
   ruleEntry: true
   priority: 5
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/RolePlayRules/RuleSRRP5Multikey.xml"
@@ -123,14 +123,14 @@
 
 - type: guideEntry
   id: RuleSRRP6
-  name: Правило 3.6.
+  name: guide-entry-sr-rule-3-6
   ruleEntry: true
   priority: 6
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/RolePlayRules/RuleSRRP6SK.xml"
 
 - type: guideEntry
   id: RuleSRRP7
-  name: Правило 3.7.
+  name: guide-entry-sr-rule-3-7
   ruleEntry: true
   priority: 7
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/RolePlayRules/RuleSRRP7ORL.xml"
@@ -138,14 +138,14 @@
 
 - type: guideEntry
   id: RuleSRRP8
-  name: Правило 3.8.
+  name: guide-entry-sr-rule-3-8
   ruleEntry: true
   priority: 8
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/RolePlayRules/RuleSRRP8DH.xml"
 
 - type: guideEntry
   id: RuleSRRP9
-  name: Правило 3.9.
+  name: guide-entry-sr-rule-3-9
   ruleEntry: true
   priority: 9
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/RolePlayRules/RuleSRRP9RE.xml"
@@ -154,105 +154,105 @@
 
 - type: guideEntry
   id: REP00
-  name: Исключение/прецедент 0
+  name: guide-entry-sr-rule-excep-0
   ruleEntry: true
   priority: 1
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER0.xml"
 
 - type: guideEntry
   id: PER1
-  name: Исключение/прецедент 1
+  name: guide-entry-sr-rule-excep-1
   ruleEntry: true
   priority: 2
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER1.xml"
 
 - type: guideEntry
   id: PER2
-  name: Исключение/прецедент 2
+  name: guide-entry-sr-rule-excep-2
   ruleEntry: true
   priority: 3
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER2.xml"
 
 - type: guideEntry
   id: PER3
-  name: Исключение/прецедент
+  name: guide-entry-sr-rule-excep-3
   ruleEntry: true
   priority: 4
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER4.xml"
 
 - type: guideEntry
   id: PER3.1
-  name: Исключение/прецедент 3.1
+  name: guide-entry-sr-rule-excep-3-1
   ruleEntry: true
   priority: 5
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER3.1.xml"
 
 - type: guideEntry
   id: PER3.3
-  name: Исключение/прецедент 3.3
+  name: guide-entry-sr-rule-excep-3-3
   ruleEntry: true
   priority: 6
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER3.3.xml"
 
 - type: guideEntry
   id: PER3.6
-  name: Исключение/прецедент
+  name: guide-entry-sr-rule-excep-3-6
   ruleEntry: true
   priority: 7
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER3.6.xml"
 
 - type: guideEntry
   id: PER4
-  name: Исключение/прецедент 4
+  name: guide-entry-sr-rule-excep-4
   ruleEntry: true
   priority: 8
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER4.xml"
 
 - type: guideEntry
   id: PER6
-  name: Исключение/прецедент 6
+  name: guide-entry-sr-rule-excep-6
   ruleEntry: true
   priority: 9
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER6.xml"
 
 - type: guideEntry
   id: PER7
-  name: Исключение/прецедент 7
+  name: guide-entry-sr-rule-excep-7
   ruleEntry: true
   priority: 10
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER7.xml"
 
 - type: guideEntry
   id: PER8
-  name: Исключение/прецедент 8
+  name: guide-entry-sr-rule-excep-8
   ruleEntry: true
   priority: 11
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER8.xml"
 
 - type: guideEntry
   id: PER10
-  name: Правило/прецедент 10
+  name: guide-entry-sr-rule-excep-10
   ruleEntry: true
   priority: 12
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/PrecedentExceptionRules/PER10.xml"
 
 - type: guideEntry
   id: CEP
-  name: Политика эскалации конфликтов
+  name: guide-entry-sr-rule-cep
   ruleEntry: true
   priority: 1
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/AdditionalRules/CEP.xml"
 
 - type: guideEntry
   id: CCP
-  name: Политика создания персонажей
+  name: guide-entry-sr-rule-ccp
   ruleEntry: true
   priority: 2
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/AdditionalRules/CCP.xml"
 
 - type: guideEntry
   id: PANA
-  name: Препятствование аресту неантагонистами
+  name: guide-entry-sr-rule-pana
   ruleEntry: true
   priority: 3
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/AdditionalRules/PANA.xml"

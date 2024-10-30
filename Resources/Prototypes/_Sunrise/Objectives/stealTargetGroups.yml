@@ -11,3 +11,11 @@
   sprite:
     sprite: _Sunrise/Objects/Misc/plutonium_core.rsi
     state: icon
+
+- type: stealTargetGroup
+  id: AdvancedDefibrillator
+  name: steal-target-groups-advanced-defibrillator # advanced defibrillator
+  sprite:
+    sprite: _Sunrise/Entities/Objects/Specific/Medical/advanced_defib.rsi
+    state: defib
+

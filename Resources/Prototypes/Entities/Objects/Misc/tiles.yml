@@ -19,6 +19,7 @@
   - type: Tag
     tags:
       - NoPaint
+      - Tile
   # Sunrise-end
   - type: Damageable
     damageContainer: Inorganic

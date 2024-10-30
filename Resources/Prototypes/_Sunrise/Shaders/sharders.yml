@@ -1,0 +1,7 @@
+﻿- type: shader
+  id: NVDDisplay
+  kind: source
+  path: "/Textures/_Sunrise/Shaders/NVDDisplay.swsl"
+  params:
+    luminance_threshold: 0.5
+    noise_amount: 0.5

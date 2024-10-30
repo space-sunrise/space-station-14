@@ -4,7 +4,7 @@
   mapPath: /Maps/_Sunrise/Station/train.yml
   maxRandomOffset: 0
   randomRotation: false
-  minPlayers: 35
+  minPlayers: 0
   stations:
     Train:
       stationProto: StandardNanotrasenStation
@@ -15,7 +15,7 @@
             !type:NanotrasenNameGenerator
             prefixCreator: 'ED'
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/Shuttles/emergency_omega.yml # TODO - add railway station
+          emergencyShuttlePath: /Maps/_Sunrise/Shuttles/emergency_omega.yml # TODO - add railway station
         - type: StationJobs
           availableJobs:
             #service
@@ -58,7 +58,7 @@
             SeniorOfficer: [ 1, 1 ]
             Detective: [ 1, 1 ]
             Brigmedic: [ 1, 1 ]
-            SecurityPilot: [ 1, 1 ]
+            #SecurityPilot: [ 1, 1 ]
             SecurityOfficer: [ 5, 5 ]
             SecurityCadet: [ -1, -1 ]
             #supply

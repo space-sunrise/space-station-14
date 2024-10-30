@@ -1,7 +1,7 @@
 # © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 - type: species
   id: HumanoidXeno
-  name: Ксеноморф
+  name: species-name-xeno
   roundStart: true
   prototype: MobHumanoidXeno
   sprites: MobHumanoidXenoSprites

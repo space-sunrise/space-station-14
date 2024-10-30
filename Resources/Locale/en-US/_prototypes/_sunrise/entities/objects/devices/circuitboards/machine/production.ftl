@@ -1,10 +1,4 @@
 ent-PrinterDocMachineCircuitboard = document printer machine board
     .desc = A machine printed circuit board for an document printer
-ent-CentCommShuttleConsoleCircuitboard = консоль шаттла ПЦК (консольная плата)
-    .desc = Плата которая используется для создания консоли шаттла ПЦК.
-ent-PrisonShuttleConsoleCircuitboard = консоль тюремного шаттла (консольная плата)
-    .desc = Плата которая используется для создания консоли тюремного шаттла.
-ent-PrisonCommsComputerCircuitboard = консоль связи тюрьмы (консольная плата)
-    .desc = Плата которая используется для создания консоли связи тюрьмы.
-ent-SecurityShuttleConsoleCircuitboard = консоль шаттла службы безопастности (консольная плата)
-    .desc = Плата которая используется для создания консоли шаттла службы безопастности.
+ent-PacificatorCircuitboard = pacifism generator machine board
+    .desc = Makes all sentient beings within range pacifists.

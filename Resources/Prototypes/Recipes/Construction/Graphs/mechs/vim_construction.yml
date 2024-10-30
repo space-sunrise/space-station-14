@@ -7,7 +7,7 @@
     - to: vim
       steps:
       - tag: VoiceTrigger
-        name: a voice trigger
+        name: step-voice-trigger
         icon:
           sprite: "Objects/Devices/voice.rsi"
           state: "voice"
@@ -15,11 +15,11 @@
         - !type:VisualizerDataInt
           key: "enum.MechAssemblyVisuals.State"
           data: 1
-      - component: PowerCell
-        name: a power cell
+      - tag: PowerCage
+        name: step-powercage-name
         store: battery-container
         icon:
-          sprite: Objects/Power/power_cells.rsi
+          sprite: Objects/Power/power_cages.rsi
           state: small
       - tool: Screwing
         doAfter: 1

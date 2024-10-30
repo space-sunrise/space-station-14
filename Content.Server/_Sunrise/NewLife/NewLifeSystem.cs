@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using System.Threading.Tasks;
 using Content.Server._Sunrise.NewLife.UI;
 using Content.Server.EUI;
@@ -18,7 +19,8 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
+using Content.Sunrise.Interfaces.Shared;
+using Robust.Shared.Utility; // Sunrise-Sponsors
 
 namespace Content.Server._Sunrise.NewLife
 {
@@ -147,6 +149,8 @@ namespace Content.Server._Sunrise.NewLife
             if (stationUid == null || roleProto == null || characterId == null)
                 return;
             if ((_sponsorsManager == null || !_sponsorsManager.IsAllowedRespawn(player.UserId)) && _newLifeSponsorOnly)
+                return;
+            if (!_stationJobs.GetAvailableJobs(stationUid.Value).Contains(roleProto))
                 return;
             _prefsManager.GetPreferences(player.UserId).SetProfile(characterId.Value);
             _gameTicker.MakeJoinGame(player, stationUid.Value, roleProto, canBeAntag: false);

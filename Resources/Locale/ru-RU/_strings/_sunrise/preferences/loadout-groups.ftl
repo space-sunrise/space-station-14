@@ -14,6 +14,7 @@ loadout-group-centcomm-operator-head-hat = Головой убор ОЦК
 loadout-group-senior-officer-jumpsuit = Униформа инструктора СБ
 loadout-group-senior-researcher-jumpsuit = Униформа ведущего учёного
 loadout-group-senior-physician-jumpsuit = Униформа ведущего врача
+loadout-group-senior-physician-belt = Ведущий врач, пояс
 loadout-group-senior-engineer-jumpsuit = Униформа ведущего инженера
 loadout-group-chief-engineer-backpack = Старший инженер, рюкзак
 loadout-group-roboticist-head = Робототехник, головной убор

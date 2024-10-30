@@ -199,8 +199,9 @@
   - type: Healing
     delay: 1
     damageContainers:
-    - Synth
+    - Synth #Sunrise-edit
     - Silicon
+    - Mech #Sunrise-edit
     damage:
       types:
         Heat: -5

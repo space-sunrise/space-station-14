@@ -119,7 +119,7 @@
     - id: Welder
     - id: Multitool
     - id: ClothingHandsGlovesCombat
-    - id: ClothingMaskGasSyndicate
+    - id: ClothingEyesGlassesWelding #Sunrise-edit: rebalance toolbox
 
 - type: entity
   id: ToolboxGoldFilled

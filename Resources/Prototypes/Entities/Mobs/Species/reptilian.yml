@@ -66,6 +66,15 @@
       295: 0.6
       285: 0.4
   - type: Wagging
+# Sunrise-start
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+    - NoInjectable
+#Sunrise-end
   - type: Inventory
     speciesId: reptilian
     femaleDisplacements:

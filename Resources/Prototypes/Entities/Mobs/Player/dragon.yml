@@ -150,6 +150,8 @@
     tags:
     - CannotSuicide
     - DoorBumpOpener
+  - type: Puller
+    needsHands: false
   # Sunrise-Start
   - type: CollectiveMind
     minds:

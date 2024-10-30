@@ -1,0 +1,26 @@
+﻿- type: entity
+  parent: HandTeleporter
+  id: HandTeleporterAA
+  suffix: Admeme
+  components:
+  - type: HandTeleporter
+    firstPortalPrototype: PortalRedAA
+    secondPortalPrototype: PortalBlueAA
+    allowPortalsOnDifferentGrids: true
+    portalCreationDelay: 0
+
+- type: entity
+  parent: PortalRed
+  id: PortalRedAA
+  suffix: Admeme
+  components:
+  - type: Portal
+    canTeleportToOtherMaps: true
+
+- type: entity
+  parent: PortalBlue
+  id: PortalBlueAA
+  suffix: Admeme
+  components:
+  - type: Portal
+    canTeleportToOtherMaps: true

@@ -10,6 +10,11 @@
       state: cpuboard
     - type: Item
       storedRotation: -90
+#Sunrise-start
+    - type: Tag
+      tags:
+        - Board
+#Sunrise-end
     - type: StaticPrice
       price: 100
     - type: PhysicalComposition

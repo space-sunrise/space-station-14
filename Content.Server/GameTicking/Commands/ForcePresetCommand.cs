@@ -7,7 +7,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.GameTicking.Commands
 {
-    [AdminCommand(AdminFlags.Round)]
+    [AdminCommand(AdminFlags.Host)]
     sealed class ForcePresetCommand : IConsoleCommand
     {
         [Dependency] private readonly IEntityManager _e = default!;
@@ -38,14 +38,6 @@ namespace Content.Server.GameTicking.Commands
                 return;
             }
 
-            // Sunrise-Start
-            if (type.Hide)
-            {
-                shell.WriteError(Loc.GetString("set-game-preset-preset-error", ("preset", args[0])));
-                return;
-            }
-            // Sunrise-End
-
             ticker.SetGamePreset(type, true);
             shell.WriteLine($"Forced the game to start with preset {name}.");
             ticker.UpdateInfoText();
@@ -55,19 +47,10 @@ namespace Content.Server.GameTicking.Commands
         {
             if (args.Length == 1)
             {
-                var gamePresets = IoCManager.Resolve<IPrototypeManager>().EnumeratePrototypes<GamePresetPrototype>()
-                    .OrderBy(p => p.ID);
-
-                // Sunrise-Start
-                var options = new List<string>();
-                foreach (var preset in gamePresets)
-                {
-                    if (preset.Hide)
-                        continue;
-
-                    options.Add(preset.ID);
-                }
-                // Sunrise-End
+                var options = IoCManager.Resolve<IPrototypeManager>()
+                    .EnumeratePrototypes<GamePresetPrototype>()
+                    .OrderBy(p => p.ID)
+                    .Select(p => p.ID);
 
                 return CompletionResult.FromHintOptions(options, "<preset>");
             }
