@@ -445,7 +445,7 @@
   speaker: crysis2_ai_blackops_03_v1
   provider: sunrise
   roundStart: true
-  sponsorOnly: true
+  sponsorOnly: false
 
 - type: ttsVoice
   id: Crysis2AICostume
@@ -463,7 +463,7 @@
   speaker: hearthstone_bellok_bright_blade
   provider: sunrise
   roundStart: false # Переобучить
-  sponsorOnly: true
+  sponsorOnly: false
 
 - type: ttsVoice
   id: HearthstonePriceArtas
@@ -481,4 +481,4 @@
   speaker: heathstone_tarkus
   provider: sunrise
   roundStart: true
-  sponsorOnly: true
+  sponsorOnly: false
