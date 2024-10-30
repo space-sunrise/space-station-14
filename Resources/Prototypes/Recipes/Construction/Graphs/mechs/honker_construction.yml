@@ -68,7 +68,7 @@
 #currently mechs don't support upgrading. add them back in once that's squared away.
 
       - tag: PowerCage
-        name: power cage
+        name: step-powercage-name
         store: battery-container
         icon:
           sprite: Objects/Power/power_cages.rsi

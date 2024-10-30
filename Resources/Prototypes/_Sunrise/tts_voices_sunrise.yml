@@ -324,7 +324,15 @@
   sex: Male
   speaker: mtf_1
   provider: sunrise
-  roundStart: false # точно нет
+  roundStart: true # временно
+
+- type: ttsVoice
+  id: CBMTF2 # Проверить модель на качество
+  name: tts-voice-name-mtf2
+  sex: Male
+  speaker: mtf_2
+  provider: sunrise
+  roundStart: true # временно
 
 - type: ttsVoice
   id: ThreeBigatiraAleshaPopovich
@@ -426,6 +434,33 @@
   name: tts-voice-name-pathologic2-mark-bessmertnik
   sex: Male
   speaker: pathologic2_mark_bessmertnik
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Crysis2Operator3v1 # недообучена
+  name: tts-voice-name-crysis2-ai-blackops-03-v1
+  sex: Male
+  speaker: crysis2_ai_blackops_03_v1
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: Crysis2AICostume
+  name: tts-voice-name-crysis2-ai-costume
+  sex: Male
+  speaker: crysis2_ai_costume
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: true
+
+- type: ttsVoice
+  id: HearthstoneBellok # Проверить модель на качество, пищит?
+  name: tts-voice-name-hearthstone-bellok-bright-blade
+  sex: Male
+  speaker: hearthstone_bellok_bright_blade
   provider: sunrise
   roundStart: true
   sponsorOnly: true

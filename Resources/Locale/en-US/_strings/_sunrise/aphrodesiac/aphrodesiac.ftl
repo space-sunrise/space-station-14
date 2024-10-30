@@ -5,3 +5,4 @@ reagent-effect-guidebook-love =
         [1] Causes
         *[other] cause
     } subject to fall in love.
+reagent-beepskysmash-effect1 = Bipski lands a body punch!

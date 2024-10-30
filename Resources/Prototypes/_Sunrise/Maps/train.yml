@@ -4,7 +4,7 @@
   mapPath: /Maps/_Sunrise/Station/train.yml
   maxRandomOffset: 0
   randomRotation: false
-  minPlayers: 35
+  minPlayers: 0
   stations:
     Train:
       stationProto: StandardNanotrasenStation

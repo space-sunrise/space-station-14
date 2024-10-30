@@ -17,3 +17,10 @@
     steps: 6
     zeroVisible: false
   - type: Appearance
+
+- type: entity
+  parent: BaseMagazinePistolCaselessRifle
+  id: BaseMagazinePistolCaselessRifleExtended
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 20

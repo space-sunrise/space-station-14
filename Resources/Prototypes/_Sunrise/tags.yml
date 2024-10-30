@@ -1,6 +1,6 @@
 - type: Tag
   id: NoPaint
-  
+
 - type: Tag
   id: IgnoreMelee
   
@@ -33,7 +33,7 @@
 
 - type: Tag
   id: AssaultOpsUplink
-  
+
 - type: Tag
   id: SyndieAgentUplink
   
@@ -145,6 +145,23 @@
 - type: Tag
   id: MagazineDl6902
 
+# Material bag:
+
+- type: Tag
+  id: Tile
+
+- type: Tag
+  id: MicroManipulatorStockPart
+
+- type: Tag
+  id: MatterBinStockPart
+
+- type: Tag
+  id: PartRodMetal
+
+- type: Tag
+  id: Board
+  
 # Mechs
 
 - type: Tag

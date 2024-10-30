@@ -367,6 +367,7 @@
       - PowerCageHigh
       - PowerCageMedium
       - PowerCageSmall
+      - ClothingShoesBootsMagCombat
       # Sunrise-end
   - type: EmagLatheRecipes
     emagDynamicRecipes:
@@ -936,6 +937,20 @@
       - SpeedLoaderMagnumUranium
       - TelescopicShield
       - TimerTrigger
+      - BaseMagazinePistolCaselessRifleExtended
+      - MagazinePPSH41Extended
+      - MagazineMP5Extended
+      - MagazineMP7Extended
+      - MagazineP90Extended
+      - MagazineM16A4Extended
+      - MagazineAR18Extended
+      - MagazineM28Extended
+      - MagazineG36Extended
+      - MagazineFamasExtended
+      - MagazineV31Extended
+      - MagazineBauer127Extended
+      - MagazineBR64Extended
+      - MagazineDragunovExtended
       - Truncheon
       - VoiceTrigger
       - WeaponAdvancedLaser
@@ -957,6 +972,7 @@
       - WeaponEnergyGunMini   # Sunrise - Miniature Energy Gun
       - WeaponEnergyGunPistol # Sunrise - PDW-9 Energy Pistol
       - WeaponGunLaserCarbineAutomatic # Sunrise - IK-60 Laser Carbine
+      - ClothingShoesBootsMagCombat # Sunrise - Combat Magboots
   - type: MaterialStorage
     whitelist:
       tags:

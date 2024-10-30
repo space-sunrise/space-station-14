@@ -68,7 +68,7 @@
           data: 8
 
       - tag: CapacitorStockPart
-        name: capacitor
+        name: step-capacitor-name
         icon:
           sprite: Objects/Misc/stock_parts.rsi
           state: capacitor

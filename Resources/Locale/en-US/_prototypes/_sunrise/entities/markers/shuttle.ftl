@@ -1,4 +1,5 @@
-ent-FTLPointShuttle = Посадочная площадка
+ent-FTLPointShuttle = landing pad
     .desc = { ent-MarkerBase.desc }
-ent-FTLPointShuttlePrisonSpawn = Посадочная площадка (спавн тюремный шаттл)
+ent-FTLPointShuttlePrisonSpawn = landing pad
+    .suffix = Prison shuttle spawn
     .desc = { ent-MarkerBase.desc }
