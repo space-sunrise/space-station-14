@@ -46,6 +46,7 @@
       - id: DoubleEmergencyNitrogenTankFilled
       - id: ToolboxSyndicateFilled
       - id: PlushieNuke
+      - id: WelderIndustrial # Удалить когда ремонт мехов будет дешевле по сварочному топливу
 
 - type: entity
   id: CrateCybersunRoverBundle
@@ -62,6 +63,7 @@
       - id: DoubleEmergencyNitrogenTankFilled
       - id: ToolboxSyndicateFilled
       - id: PlushieNuke
+      - id: WelderIndustrial # Удалить когда ремонт мехов будет дешевле по сварочному топливу
 
 - type: entity
   id: CrateCybersunMaulerBundle
@@ -78,3 +80,4 @@
       - id: DoubleEmergencyNitrogenTankFilled
       - id: ToolboxSyndicateFilled
       - id: PlushieNuke
+      - id: WelderIndustrial # Удалить когда ремонт мехов будет дешевле по сварочному топливу
