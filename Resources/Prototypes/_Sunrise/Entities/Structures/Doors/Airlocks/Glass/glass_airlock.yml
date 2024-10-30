@@ -40,7 +40,7 @@
         path:
           "/Audio/Effects/glass_hit.ogg"
   - type: Sprite
-    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/double_glass_airlock.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_glass.rsi
     snapCardinals: false
     offset: 0,0
   - type: Fixtures
@@ -56,7 +56,7 @@
         - GlassAirlockLayer
   - type: Transform
     noRot: false
-    
+
 # == airlocks == #
 
 # == Double airlocks == #
@@ -206,14 +206,6 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_engineering.rsi
-
-- type: entity
-  id: TripleGlassAirlock1
-  parent: [ TripleGlassAirlock ]
-  name: triple glass airlock
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/triple_glass.rsi
 
 - type: entity
   id: TripleGlassAirlockMaint

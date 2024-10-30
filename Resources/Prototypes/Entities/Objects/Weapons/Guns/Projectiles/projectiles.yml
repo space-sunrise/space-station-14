@@ -700,10 +700,37 @@
   - type: StaminaDamageOnCollide
     damage: 80
 
+# Sunrise-Start
+- type: entity
+  id: BaseBulletGrenade
+  parent: BaseItem
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 5
+    deleteOnCollide: false
+  - type: StartTimerOnShoot
+  - type: OnUseTimerTrigger
+    delay: 2
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 50
+        mask:
+        - ItemMask
+        restitution: 0.05
+        friction: 0.5
+  # Sunrise-End
+
 - type: entity
   id: BulletGrenadeBlast
   name: blast grenade
-  parent: BaseBulletTrigger
+  parent: BaseBulletGrenade # Sunrise-Edit
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -720,7 +747,7 @@
 - type: entity
   id: BulletGrenadeFlash
   name: flash grenade
-  parent: BaseBulletTrigger
+  parent: BaseBulletGrenade # Sunrise-Edit
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -739,7 +766,7 @@
 - type: entity
   id: BulletGrenadeFrag
   name: frag grenade
-  parent: BaseBulletTrigger
+  parent: BaseBulletGrenade # Sunrise-Edit
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -756,7 +783,7 @@
 - type: entity
   id: BulletGrenadeEMP
   name: EMP rocket
-  parent: BaseBulletTrigger
+  parent: BaseBulletGrenade # Sunrise-Edit
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite

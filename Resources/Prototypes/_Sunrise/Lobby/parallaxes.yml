@@ -1,0 +1,60 @@
+- type: lobbyParallax
+  id: Aspid
+  parallax: AspidStation
+
+- type: lobbyParallax
+  id: Lighthouse
+  parallax: LighthouseStation
+
+- type: lobbyParallax
+  id: Angle
+  parallax: AngleStation
+
+- type: lobbyParallax
+  id: FastSpace
+  parallax: FastSpace
+
+- type: lobbyParallax
+  id: Default
+  parallax: Default
+
+- type: lobbyParallax
+  id: Bagel
+  parallax: BagelStation
+
+- type: lobbyParallax
+  id: Kettle
+  parallax: KettleStation
+
+- type: lobbyParallax
+  id: Avrite
+  parallax: AvriteStation
+
+- type: lobbyParallax
+  id: Delta
+  parallax: DeltaStation
+
+- type: lobbyParallax
+  id: Tortuga
+  parallax: TortugaStation
+
+- type: lobbyParallax
+  id: ShipwreckedTurbulence
+  parallax: ShipwreckedTurbulence
+
+- type: lobbyParallax
+  id: Pebble
+  parallax: PebbleStation
+
+- type: lobbyParallax
+  id: Outpost
+  parallax: OutpostStation
+
+- type: lobbyParallax
+  id: Train
+  parallax: TrainStation
+
+- type: lobbyParallax
+  id: Core
+  parallax: CoreStation
+

@@ -57,7 +57,7 @@
       scrolling: "-0.004,  0.002"
 
 - type: parallax
-  id: ShipwreckedTurbulence1
+  id: ShipwreckedTurbulence
   layers:
     - texture:
         !type:ImageParallaxTextureSource
