@@ -9,7 +9,7 @@
             - material: MetalRod
               amount: 1
             - tag: PowerCellSmall
-              name: батарею маленькой ёмкости  # Sunrise-recipes
+              name: step-powercell-small-name
               icon:
                 sprite: Objects/Power/power_cells.rsi
                 state: small
@@ -18,13 +18,13 @@
                 sprite: Objects/Misc/cablecuffs.rsi
                 state: cuff
                 color: red
-              name: наручники  # Sunrise-recipes
+              name: step-cuffs-name
             - tag: Igniter
-              name: воспламенитель  # Sunrise-recipes
+              name: step-igniter-name
               icon:
                 sprite: Objects/Devices/igniter.rsi
                 state: icon
               doAfter: 15
     - node: msstunprod
       entity: Stunprod
-
+      

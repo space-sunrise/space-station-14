@@ -1,8 +1,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingFishnet
-  name: ажурные колготки
-  description: Красивые ажурные колготки.
+  name: fishnet tights
+  description: Beautiful fishnet tights.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/fishnet.rsi
@@ -14,8 +14,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingKneeWhite
-  name: белые гольфы
-  description: Белые гольфы - простые белые носки до колена.
+  name: white socks
+  description: White knee are simple white knee-length socks.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/knee.rsi
@@ -27,8 +27,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingKneeAce
-  name: гольфы с козырьком
-  description: Гольфы с козырьком - носки до колена с добавленным козырьком в верхней части.
+  name: visor socks
+  description: Visor socks - knee-length socks with an added visor at the top.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/knee.rsi
@@ -40,8 +40,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingKneeAsblastusa
-  name: гольфы с логотипом "Assblastusa"
-  description: Гольфы с логотипом "Assblastusa" - носки до колена с изображением логотипа "Assblastusa".
+  name: /"Assblastusa/" logo socks
+  description: /"Assblastusa/" logo socks - knee-length socks featuring the /"Assblastusa/" logo.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/knee.rsi
@@ -53,8 +53,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingKneeBee
-  name: гольфы с пчелой
-  description: Гольфы с пчелой - носки до колена с изображением пчелы.
+  name: bee socks
+  description: Bee socks - knee-length socks featuring a bee.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/knee.rsi
@@ -66,8 +66,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingKneeBlack
-  name: черные гольфы
-  description: Черные гольфы - простые черные носки до колена.
+  name: black socks
+  description: Black knee are simple white knee-length socks.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/knee.rsi
@@ -79,8 +79,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingKneeCommie
-  name: коммунистические гольфы
-  description: Коммунистические гольфы - носки до колена с коммунистическими символами.
+  name: commie socks
+  description: Commie socks - knee-length socks with communist symbols.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/knee.rsi
@@ -92,8 +92,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingKneeFishnet
-  name: гольфы в сетку
-  description: Гольфы в сетку - носки до колена с сетчатым узором.
+  name: mesh socks
+  description: Mesh socks - knee-length socks with a mesh pattern.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/knee.rsi
@@ -105,8 +105,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingKneeRainbow
-  name: радужные гольфы
-  description: Радужные гольфы - носки до колена с радужным узором.
+  name: rainbow socks
+  description: Rainbow socks - knee-length socks with a rainbow pattern.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/knee.rsi
@@ -118,8 +118,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingKneeStriped
-  name: полосатые гольфы
-  description: Полосатые гольфы - носки до колена с полосатым узором.
+  name: striped socks
+  description: Striped socks - knee-length socks with a striped pattern.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/knee.rsi
@@ -131,8 +131,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingKneeThin
-  name: тонкие гольфы
-  description: Тонкие гольфы - тонкие носки до колена.
+  name: thin socks
+  description: Thin socks are thin knee-length socks.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/knee.rsi
@@ -144,8 +144,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingKneeTrans
-  name: гольфы с трансфлагом
-  description: Гольфы с трансфлагом - носки до колена с изображением флага трансгендерной гордости.
+  name: transflag socks
+  description: Transflag socks - knee-length socks featuring the transgender pride flag.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/knee.rsi
@@ -157,8 +157,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingKneeUk
-  name: гольфы с британским флагом
-  description: Гольфы с британским флагом - носки до колена с изображением флага Великобритании.
+  name: british flag socks
+  description: British flag socks - knee-length socks featuring the British flag.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/knee.rsi
@@ -170,8 +170,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingNormBlack
-  name: чёрные носки
-  description: Чёрные носки.
+  name: black socks
+  description: Black socks.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/norm.rsi
@@ -183,8 +183,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingNormWhite
-  name: белые носки
-  description: Белые носки.
+  name: white socks
+  description: White socks.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/norm.rsi
@@ -196,8 +196,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingPantyhose
-  name: колготки
-  description: Эластичные колготки для ног.
+  name: tights
+  description: Elastic leg tights.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/pantyhose.rsi
@@ -209,8 +209,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingShortBlack
-  name: черные короткие носки
-  description:
+  name: black short socks
+  description: Black short socks.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/short.rsi
@@ -222,8 +222,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingShortWhite
-  name: белые короткие носки
-  description:
+  name: white short socks
+  description: White short socks.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/short.rsi
@@ -235,8 +235,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingStockingsBlue
-  name: голубые чулки
-  description:
+  name: blue stockings
+  description: Blue stockings - elegant stockings for women, and maybe even men?
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/stockings.rsi
@@ -248,8 +248,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingStockingsCyan
-  name: голубовато-зелёные чулки
-  description:
+  name: blue-green stockings
+  description: Blue-green stockings - elegant stockings for women, and maybe even men?
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/stockings.rsi
@@ -261,8 +261,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingStockingsDpink
-  name: тёмно-розовые чулки
-  description:
+  name: dark-pink stockings
+  description: Dark-pink stockings - elegant stockings for women, and maybe even men?
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/stockings.rsi
@@ -274,8 +274,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingStockingsGreen
-  name: зелёные чулки
-  description:
+  name: green stockings
+  description: Green stockings - elegant stockings for women, and maybe even men?
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/stockings.rsi
@@ -287,8 +287,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingStockingslpink
-  name: светло-розовые чулки
-  description:
+  name: light-pink stockings
+  description: Light-pink stockings - elegant stockings for women, and maybe even men?
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/stockings.rsi
@@ -300,8 +300,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingStockingsOrange
-  name: оранжевые чулки
-  description:
+  name: orange stockings
+  description: Orange stockings - elegant stockings for women, and maybe even men?
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/stockings.rsi
@@ -313,8 +313,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingStockingsPurple
-  name: фиолетовые чулки
-  description:
+  name: purple stockings
+  description: Purple stockings - elegant stockings for women, and maybe even men?
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/stockings.rsi
@@ -326,8 +326,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingThighWhite
-  name: белые чулки до бедра
-  description:
+  name: white thigh-high stockings
+  description: White thigh-high stockings - elegant white thigh-high stockings for women, and maybe even men?
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/thigh.rsi
@@ -339,8 +339,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingThighAce
-  name: чулки до бедра с козырьком
-  description:
+  name: thigh-high stockings with a visor
+  description: Thigh-high stockings with a visor - elegant thigh-high stockings with an added visor at the top, for women, and maybe even men?
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/thigh.rsi
@@ -352,8 +352,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingThighAsblastusa
-  name: чулки до бедра с логотипом "Assblastusa"
-  description:
+  name: thigh-high stockings with the /"Assblastusa/" logo
+  description: Thigh-high stockings with the "Assblastusa" logo - elegant thigh-high stockings with an added /"Assblastusa/" logo at the top, for women, and maybe even men?
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/thigh.rsi
@@ -365,8 +365,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingThighBee
-  name: чулки до бедра с изображением пчелы
-  description:
+  name: thigh-high stockings with a bee image
+  description: Thigh-high stockings with a bee image - elegant thigh-high stockings with an added a bee image at the top, for women, and maybe even men?
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/thigh.rsi
@@ -378,8 +378,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingThighBlack
-  name: черные чулки до бедра
-  description:
+  name: black thigh-high stockings
+  description: Black thigh-high stockings - elegant black thigh-high stockings for women, and maybe even men?
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/thigh.rsi
@@ -391,8 +391,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingThighCommie
-  name: чулки до бедра с коммунистическими символами
-  description:
+  name: thigh-high stockings with commie symbols
+  description: thigh-high stockings with commie symbols - elegant thigh-high stockings with an added a commie symbols at the top, for women, and maybe even men?
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/thigh.rsi
@@ -404,8 +404,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingThighFishnet
-  name: чулки до бедра с сетчатым узором
-  description:
+  name: thigh-high stockings with a mesh pattern
+  description: thigh-high stockings with a mesh pattern - elegant thigh-high stockings with a mesh pattern, for women, and maybe even men?
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/thigh.rsi
@@ -417,8 +417,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingThighRainbow
-  name: радужные чулки до бедра
-  description:
+  name: rainbow thigh-high stockings
+  description: Rainbow thigh-high stockings - elegant rainbow thigh-high stockings for women, and maybe even men?
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/thigh.rsi
@@ -430,8 +430,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingThighStriped
-  name: полосатые чулки до бедра
-  description:
+  name: thigh-high striped stockings
+  description: thigh-high striped stockings - elegant  thigh-high striped stockings for women, and maybe even men?
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/thigh.rsi
@@ -443,8 +443,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingThighThin
-  name: тонкие чулки до бедра
-  description:
+  name: thigh-high thin stockings
+  description: thigh-high thin stockings - elegant  thigh-high thin stockings for women, and maybe even men?
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/thigh.rsi
@@ -456,8 +456,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingThighTrans
-  name: чулки до бедра с трансфлагом
-  description:
+  name: thigh-high stockings with a transflag
+  description: thigh-high stockings with a transflag - elegant  thigh-high stockings with an added the transgender pride flag  at the top, for women, and maybe even men?
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/thigh.rsi
@@ -469,8 +469,8 @@
 - type: entity
   parent: ClothingSocksBaseButcherable
   id: ClothingThighUk
-  name: чулки до бедра с изображением британского флага
-  description:
+  name: thigh-high stockings with the british flag
+  description: thigh-high stockings with a transflag - elegant  thigh-high stockings with the British flag at the top, for women, and maybe even men?
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Socks/thigh.rsi

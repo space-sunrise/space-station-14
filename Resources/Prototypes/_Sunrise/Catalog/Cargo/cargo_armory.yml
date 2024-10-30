@@ -14,7 +14,7 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/akms/big.rsi
     state: icon
   product: CrateArmoryAKMS
-  cost: 11000
+  cost: 35000
   category: cargoproduct-category-name-armory
   group: market
 

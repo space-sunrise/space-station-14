@@ -1,6 +1,6 @@
 ent-BaseEvilTwinObjective = { ent-BaseObjective }
     .desc = { ent-BaseObjective.desc }
-ent-EscapeShuttleTwinObjective = Улететь на эвакуационном шаттле
-    .desc = Успешно заменив свою цель улетите со станции.
-ent-KillTwinObjective = Устранить оригинал
-    .desc = Устраните оригинал и замените его.
+ent-EscapeShuttleTwinObjective = Escape to centcomm alive and unrestrained.
+    .desc = Successfully replace your target and escape to centcomm.
+ent-KillTwinObjective = Eliminate the original
+    .desc = Eliminate the original and replace it.

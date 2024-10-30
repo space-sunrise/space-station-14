@@ -1,2 +1,2 @@
-ent-BarberPole = жезл парикмахера
-    .desc = Сине-красно-белый вертящийся цилиндр у забугорных парикмахеров.
+ent-BarberPole = barber's pole
+    .desc = The blue-red-white spinning cylinder at the overseas hairdressers.
