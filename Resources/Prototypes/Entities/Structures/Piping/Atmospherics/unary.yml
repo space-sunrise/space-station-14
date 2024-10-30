@@ -57,6 +57,7 @@
             Welded: { state: vent_welded }
             Lockout: { state: vent_lockout }
     - type: GasVentPump
+      underPressureLockoutThreshold: 0 # Sunrise-Edit
     - type: Construction
       graph: GasUnary
       node: ventpump

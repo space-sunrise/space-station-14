@@ -1,8 +1,8 @@
 - type: entity
   parent: ClothingBackpack
   id: ClothingBackpackSyndie
-  name: Рюкзак Синдиката
-  description: Рюкзак оперативника с повышенной вместительностью.
+  name: syndie backpack
+  description: An operative's backpack with increased capacity.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Back/Backpacks/syndiebackpack.rsi
@@ -58,8 +58,8 @@
 - type: entity
   parent: ClothingBackpack
   id: ClothingBackpackPrisonGuard
-  name: рюкзак сотрудника кт
-  description: На стиле.
+  name: prison guard's backpack
+  description: On style.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Back/Backpacks/guard.rsi

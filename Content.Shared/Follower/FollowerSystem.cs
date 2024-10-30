@@ -246,6 +246,15 @@ public sealed class FollowerSystem : EntitySystem
 
         if (removeComp)
         {
+            // Sunrise-Edit
+            RemComp<BlockMovementComponent>(uid);
+
+            if (TryComp<FollowerComponent>(uid, out var followerComponent))
+            {
+                _actions.RemoveAction(uid, followerComponent.StopFollowActionEntity);
+            }
+            // Sunrise-Edit
+
             RemComp<FollowerComponent>(uid);
             RemComp<OrbitVisualsComponent>(uid);
         }

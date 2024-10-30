@@ -23,8 +23,8 @@
 - type: entity
   parent: ClothingBackpackSatchel
   id: ClothingBackpackSatchelBlueShield
-  name: сумка офицера «синий щит»
-  description: На стиле.
+  name: blueshield's satchel
+  description: On style.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Back/Satchels/blueshield.rsi
@@ -32,8 +32,8 @@
 - type: entity
   parent: ClothingBackpackSatchel
   id: ClothingBackpackSatchelPrisonGuard
-  name: сумка сотрудника кт
-  description: На стиле.
+  name: prison guard's satchel
+  description: On style.
   components:
     - type: Sprite
       sprite: _Sunrise/Clothing/Back/Satchels/guard.rsi
@@ -41,8 +41,8 @@
 - type: entity
   parent: ClothingBackpackSatchel
   id: ClothingBackpackSatchelHoS
-  name: сумка главы службы безопасности
-  description: Стильная чёрная кожаная сумка.
+  name: head of security's satchel
+  description: Stylish black leather satchel.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Back/Satchels/hos.rsi

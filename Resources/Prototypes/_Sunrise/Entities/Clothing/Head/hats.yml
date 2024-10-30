@@ -89,8 +89,8 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatBeretBlueShield
-  name: берет офицера «синий щит»
-  description: Синий.
+  name: blueshield's beret
+  description: Blue.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Head/Hats/blueshield.rsi
@@ -100,8 +100,8 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadPrisonGuard
-  name: головной убор охраны кт
-  description: Дарует полную неприкосновенность при лишении других людей ОПРС, достоинства или уважения.
+  name: prison guard's hat
+  description: Grants complete immunity when depriving others of OPDP, dignity, or respect.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Head/Hats/prisonguard.rsi
@@ -111,8 +111,8 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatBeretPrisonGuard
-  name: берет охраны кт
-  description: Почему не красный?
+  name: prison guard's beret
+  description: Why isn't it red?
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Head/Hats/prisonguard_beret.rsi
@@ -122,8 +122,8 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadCapPrisonGuard
-  name: кепка охраны кт
-  description: Почему не красный?
+  name: prison guard's cap
+  description: Why isn't it red?
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Head/Hats/cap.rsi
@@ -133,8 +133,8 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatIAA
-  name: загадочная шляпа
-  description: Шляпа в чёрно-белом стиле. Напоминает секретных агентов из фильмов и сериалов.
+  name: mystery hat
+  description: Black and white style hat. Reminiscent of secret agents from movies and TV shows.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Head/Hats/iaahat.rsi
@@ -144,8 +144,8 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatCapUSSPBlack
-  name: старая кожаная фуражка СССП
-  description: Чёрная фуражка с серым козырьком.
+  name: old leather USSP cap.
+  description: Black cap with gray visor.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Head/Hats/ussp.rsi
@@ -155,8 +155,8 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatCapLeatherHoS
-  name: кожаная фуражка главы службы безопасности
-  description: Довольно старая вещь для этих времён, навевающая старые воспоминания...
+  name: head of security's leather cap
+  description: Pretty old stuff for these times, bringing back old memories...
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Head/Hats/hoscap.rsi
@@ -166,8 +166,8 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatMagicRD
-  name: фуражка научного руководителя
-  description: В ней вам не страшен ни плазменный дождь, ни кислота, капающая из вентиляции. Презентабельный вид причёски останется под защитой науки.
+  name: research director's cap
+  description: No plasma rain or acid dripping from the ventilation system. Your hairstyle will be protected by science.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Head/Hats/rdhat.rsi
@@ -184,8 +184,8 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatCapQM
-  name: шляпа капитана утилятов
-  description: "Шляпа изображена в классическом пиратском стиле и представляется в стандартном для карго отдела цвете. На шляпе написано: АР! Три Кинетических Ускорителя мне в рот и... *остальная часть надписи затëрта*"
+  name: captain duck's hat
+  description: "The hat is depicted in the classic pirate style and appears in the standard color for the cargo department. The hat reads, AR! Three Kinetic Accelerators in my mouth and-- *the rest of the lettering is blacked out."
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Head/Hats/qmhat.rsi
@@ -195,8 +195,8 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatHOP
-  name: фуражка главы персонала
-  description: Тёмно-синяя фуражка с позолоченным рантом. Козырек дает отблеск грамотности и внимательности носителя.
+  name: head of personality's cap
+  description: A navy blue cap with a gilded brim. The visor gives a glimpse of the wearer's literacy and attentiveness.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Head/Hats/hophat.rsi
@@ -206,8 +206,8 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadEliteCaptainCap
-  name: федора капитана
-  description: синяя федора с золотой лентой.
+  name: captain's fedora
+  description: blue fedora with a gold ribbon.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Head/Hats/cptcap.rsi
@@ -217,8 +217,8 @@
 - type: entity
   parent: ClothingHeadHatHardhatBase
   id: ClothingSpecialHeadHatHardhatCMO
-  name: медицинская шапочка главного врача
-  description: Стерильная шапочка с фонариком.
+  name: CMO's medical cap
+  description: Sterile cap with a flashlight.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Head/Hats/cmospecialhat.rsi
@@ -228,8 +228,8 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatCapCMO
-  name: медицинский берет
-  description: Белый берет с красным крестом на центральной части.
+  name: medical beret
+  description: White beret with a red cross on the center section.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Head/Hats/cmohat.rsi
@@ -279,3 +279,14 @@
     sprite: _Sunrise/Clothing/Head/Hats/adjcap.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hats/adjcap.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatWithPaces
+  name: Hat with paces
+  description: A black hat with paces, usually worn by Jews.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/hat_with_paces.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/hat_with_paces.rsi

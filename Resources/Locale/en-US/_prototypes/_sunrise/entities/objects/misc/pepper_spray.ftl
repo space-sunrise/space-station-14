@@ -1,5 +1,5 @@
-ent-BasePepperSpray = перцовый баллончик
-    .desc = Баллончик с очень едкой жижей внутри.
+ent-BasePepperSpray = pepper spray
+    .desc = It's a canister with a very corrosive liquid inside.
 ent-PepperSprayBottleRed = { ent-BasePepperSpray }
     .desc = { ent-BasePepperSpray.desc }
 ent-PepperSprayBottleGreen = { ent-BasePepperSpray }

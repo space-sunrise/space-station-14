@@ -1,6 +1,6 @@
 - type: entity
   id: ActionTakeAim
-  name: Включить прицеливание
+  name: Activate aiming
   components:
   - type: InstantAction
     itemIconStyle: NoItem

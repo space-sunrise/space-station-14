@@ -43,7 +43,7 @@
         steps:
         - tag: WallmountSubstationElectronics
           store: board
-          name: "wallmount substation circuit board"
+          name: step-wallmount-substation-circuit-board-name
           icon:
             sprite: "Objects/Misc/module.rsi"
             state: "charger_APC"
@@ -52,13 +52,13 @@
             - PowerCell
             - PowerCellSmall
           store: powercell
-          name: a powercell
+          name: step-powercell-name
           icon:
             sprite: "Objects/Power/power_cells.rsi"
             state: "medium"
           doAfter: 0.5
         - tag: CapacitorStockPart
-          name: a capacitor
+          name: step-capacitor-name
           store: capacitor
           icon:
             sprite: "Objects/Misc/stock_parts.rsi"

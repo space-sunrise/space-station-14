@@ -22,3 +22,7 @@
     id: SeniorResearcherPDA
     ears: ClothingHeadsetScience
     outerClothing: ClothingOuterCoatLabSeniorResearcher
+  storage:
+    back:
+    - WeaponPistolCHIMP
+    - RadiationEmitter
