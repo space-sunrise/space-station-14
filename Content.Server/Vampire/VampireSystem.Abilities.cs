@@ -642,7 +642,7 @@ public sealed partial class VampireSystem
             return;
         }
 
-        var volumeToConsume = (FixedPoint2) Math.Min((float) victimBloodRemaining.Value, args.Volume * 2);
+        var volumeToConsume = (FixedPoint2) Math.Min((float) victimBloodRemaining.Value, args.Volume * 4);
 
         //Slurp
         _audio.PlayPvs(entity.Comp.BloodDrainSound, entity.Owner, AudioParams.Default.WithVolume(-3f));
