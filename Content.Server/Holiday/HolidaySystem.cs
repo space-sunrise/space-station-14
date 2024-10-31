@@ -3,6 +3,8 @@ using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Shared.CCVar;
 using Content.Shared.Holiday;
+using Robust.Server.GameObjects;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 
@@ -14,6 +16,7 @@ namespace Content.Server.Holiday
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly IChatManager _chatManager = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+        [Dependency] private readonly SharedPointLightSystem _point = default!;
 
         [ViewVariables]
         private readonly List<HolidayPrototype> _currentHolidays = new();
@@ -26,6 +29,7 @@ namespace Content.Server.Holiday
             Subs.CVar(_configManager, CCVars.HolidaysEnabled, OnHolidaysEnableChange);
             SubscribeLocalEvent<GameRunLevelChangedEvent>(OnRunLevelChanged);
             SubscribeLocalEvent<HolidayVisualsComponent, ComponentInit>(OnVisualsInit);
+            SubscribeLocalEvent<PointLightComponent, MapInitEvent>(OnLightMapInit);
         }
 
         public void RefreshCurrentHolidays()
@@ -102,6 +106,17 @@ namespace Content.Server.Holiday
                     break;
                 case GameRunLevel.PostRound:
                     break;
+            }
+        }
+        
+        private void OnLightMapInit(Entity<PointLightComponent> ent, ref MapInitEvent args)
+        {
+            foreach (var holiday in _currentHolidays)
+            {
+                if (holiday.ID == "Helloween")
+                {
+                    _point.SetEnergy(ent, ent.Comp.Energy / 3, ent.Comp);
+                }
             }
         }
 

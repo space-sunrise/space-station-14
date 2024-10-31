@@ -1,3 +1,5 @@
+# VigersRayBirthday
+
 - type: holiday
   id: VigersRayBirthday
   name: holiday-name-vigers-ray-birthday
@@ -7,7 +9,6 @@
     !type:Custom
     text: holiday-custom-vigers-ray-birthday
   greetColor: gold
-
 
 - type: holidayGiveawayItem
   id: VigersRayBirthdayGiveawayPresent
@@ -29,3 +30,28 @@
   components:
   - type: Paper
     content: paper-text-vigers-ray-birthday
+
+# Helloween
+
+- type: holiday
+  id: Helloween
+  name: holiday-name-helloween
+  beginDay: 31
+  beginMonth: October
+  endDay: 3
+  endMonth: November
+  greet:
+    !type:Custom
+    text: holiday-custom-helloween
+  greetColor: orange
+  
+- type: holidayGiveawayItem
+  id: HelloweenGiveawayCandle
+  holiday: Helloween
+  prototype: CandleBlackInfinite
+
+
+- type: holidayGiveawayItem
+  id: HelloweenGiveawayCandyBucket
+  holiday: Helloween
+  prototype: CandyBucket
