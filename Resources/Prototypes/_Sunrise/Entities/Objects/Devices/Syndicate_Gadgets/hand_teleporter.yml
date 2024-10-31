@@ -24,3 +24,40 @@
   components:
   - type: Portal
     canTeleportToOtherMaps: true
+
+- type: entity
+  parent: HandTeleporter
+  id: HandTeleporterInvisibleAA
+  name: invisible teleporter
+  description: A handheld teleporter that creates portals visible only to ghosts.
+  suffix: Admeme
+  components:
+  - type: HandTeleporter
+    firstPortalPrototype: PortalRedInvisibleAA
+    secondPortalPrototype: PortalBlueInvisibleAA
+    allowPortalsOnDifferentGrids: true
+    portalCreationDelay: 0
+
+- type: entity
+  parent: PortalRed
+  id: PortalRedInvisibleAA
+  name: invisible portal
+  description: This portal can only be seen by ghosts.
+  suffix: Admeme
+  components:
+  - type: Portal
+    canTeleportToOtherMaps: true
+  - type: Visibility
+    layer: 2
+
+- type: entity
+  parent: PortalBlue
+  id: PortalBlueInvisibleAA
+  name: invisible portal
+  description: This portal can only be seen by ghosts.
+  suffix: Admeme
+  components:
+  - type: Portal
+    canTeleportToOtherMaps: true
+  - type: Visibility
+    layer: 2
