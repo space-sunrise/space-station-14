@@ -90,6 +90,7 @@ public sealed partial class VampireSystem : EntitySystem
         SubscribeLocalEvent<VampireComponent, VampireMutationPrototypeSelectedMessage>(OnMutationSelected);
 
         InitializePowers();
+        InitializeObjectives();
     }
 
     /// <summary>

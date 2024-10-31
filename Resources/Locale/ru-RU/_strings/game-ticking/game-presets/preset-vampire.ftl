@@ -1,5 +1,5 @@
 vampire-roundend-name = вампир
-objective-issuer-vampire = [color=orange]Коллективный разум[/color]
+objective-issuer-vampire = [color=red]Жажда крови[/color]
 roundend-prepend-vampire-drained-named = [color=white]{ $name }[/color] выпил в общей сложности [color=red]{ $number }[/color] крови.
 roundend-prepend-vampire-absorbed = Кто-то выпил в общей сложности [color=red]{ $number }[/color] крови.
 vampire-gamemode-title = Вампиры

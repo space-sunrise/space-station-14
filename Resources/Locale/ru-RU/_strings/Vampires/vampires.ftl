@@ -90,3 +90,8 @@ vampire-mutation-bestia-info =
     
     - Форма летучей мыши
     - Мышиная форма
+    
+## Objectives
+
+objective-condition-drain-title = Выпить { $count } крови.
+objective-condition-drain-description = Я должен выпить { $count } крови. Это необходимо для моего выживания и дальнейшей эволюции.

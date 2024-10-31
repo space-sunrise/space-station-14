@@ -117,5 +117,19 @@
   id: ThiefObjectiveGroupEscape
   weights:
     EscapeThiefShuttleObjective: 1
+    
+# Vampire
+
+- type: weightedRandom
+  id: VampireObjectiveGroupSteal
+  weights:
+    CMOHyposprayVampireStealObjective: 1
+    RDHardsuitVampireStealObjective: 1
+    EnergyShotgunVampireStealObjective: 1
+    MagbootsVampireStealObjective: 1
+    ClipboardVampireStealObjective: 1
+    CaptainIDVampireStealObjective: 1
+    CaptainJetpackVampireStealObjective: 1
+    CaptainGunVampireStealObjective: 1
 
 #Crew, wizard, when you code it...

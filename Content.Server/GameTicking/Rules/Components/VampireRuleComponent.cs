@@ -11,11 +11,16 @@ public sealed partial class VampireRuleComponent : Component
 {
     public readonly List<EntityUid> VampireMinds = new();
     
-/*
-    public readonly List<ProtoId<EntityPrototype>> Objectives = new()
+
+    public readonly List<ProtoId<EntityPrototype>> BaseObjectives = new()
     {
-        "ChangelingSurviveObjective",
-        "ChangelingStealDNAObjective",
-        "EscapeIdentityObjective"
-    }; */
+        "VampireKillRandomPersonObjective",
+        "VampireDrainObjective"
+    };
+    
+    public readonly List<ProtoId<EntityPrototype>> EscapeObjectives = new()
+    {
+        "VampireSurviveObjective",
+        "VampireEscapeObjective"
+    };
 }

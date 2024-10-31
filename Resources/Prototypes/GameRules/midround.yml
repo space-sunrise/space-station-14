@@ -50,6 +50,10 @@
   parent: BaseGameRule
   id: Vampire
   components:
+  - type: AntagRandomObjectives
+    sets:
+    - groups: VampireObjectiveGroupSteal
+    maxDifficulty: 10
   - type: VampireRule
   - type: AntagSelection
     agentName: vampire-roundend-name

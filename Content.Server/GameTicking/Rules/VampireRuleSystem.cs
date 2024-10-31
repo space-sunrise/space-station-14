@@ -89,9 +89,17 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
         
         if (HasComp<VampireComponent>(target))
             _vampire.AddStartingAbilities(target);
+        
+        Random random = new Random();
 
-        //foreach (var objective in rule.Objectives)
-        //    _mind.TryAddObjective(mindId, mind, objective);
+        foreach (var objective in rule.BaseObjectives)
+            _mind.TryAddObjective(mindId, mind, objective);
+            
+        if (rule.EscapeObjectives.Count > 0)
+        {
+            var randomEscapeObjective = rule.EscapeObjectives[random.Next(rule.EscapeObjectives.Count)];
+            _mind.TryAddObjective(mindId, mind, randomEscapeObjective);
+        }
 
         return true;
     }
