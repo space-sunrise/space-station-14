@@ -789,7 +789,7 @@
   - type: Sprite
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     layers:
-      - state: frag
+      - state: grenade #Sunrise-edit
   - type: EmpOnTrigger
     range: 5
     energyConsumption: 50000
@@ -800,6 +800,7 @@
     radius: 3.5
     color: blue
     energy: 0.5
+  - type: DeleteOnTrigger #Sunrise-edit
 
 - type: entity
   id: BulletCap
