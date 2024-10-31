@@ -55,3 +55,6 @@ tts-voice-name-crysis2-ai-costume = (NEW) [Crysis 2] ИИ Нанокостюма
 tts-voice-name-hearthstone-bellok-bright-blade = (NEW) [Hearthstone] Беллок Сияющий Клинок
 tts-voice-name-hearthstone-prince-artas = (NEW) [Hearthstone] Принц Артас
 tts-voice-name-hearthstone-tarkus = (NEW) [Hearthstone] Таркус
+tts-voice-name-hearthstone-uter = (NEW) [Hearthstone] Утер
+tts-voice-name-hearthstone-malfurion = (NEW) [Hearthstone] Малфурион
+tts-voice-name-hearthstone-gul-dan = (NEW) [Hearthstone] ГулДан
