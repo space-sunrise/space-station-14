@@ -189,3 +189,12 @@
   - type: MindRole
     antagPrototype: Changeling
   - type: ChangelingRole
+  
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleVampire
+  name: Vampire Role
+  components:
+  - type: MindRole
+    antagPrototype: Vampire
+  - type: VampireRole

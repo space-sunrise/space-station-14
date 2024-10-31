@@ -45,6 +45,21 @@
       lateJoinAdditional: true
       mindRoles:
       - MindRoleChangeling
+      
+- type: entity
+  parent: BaseGameRule
+  id: Vampire
+  components:
+  - type: VampireRule
+  - type: AntagSelection
+    agentName: vampire-roundend-name
+    definitions:
+    - prefRoles: [ Vampire ]
+      max: 4
+      playerRatio: 30
+      lateJoinAdditional: true
+      mindRoles:
+      - MindRoleVampire
 
 - type: entity
   categories: [ HideSpawnMenu ]
