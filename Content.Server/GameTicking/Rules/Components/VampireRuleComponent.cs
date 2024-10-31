@@ -26,13 +26,13 @@ public sealed partial class VampireRuleComponent : Component
     
     public readonly List<ProtoId<EntityPrototype>> StealObjectives = new()
     {
-        "CMOHyposprayVampireStealObjective"
-        "RDHardsuitVampireStealObjective"
-        "EnergyShotgunVampireStealObjective"
-        "MagbootsVampireStealObjective"
-        "ClipboardVampireStealObjective"
-        "CaptainIDVampireStealObjective"
-        "CaptainJetpackVampireStealObjective"
+        "CMOHyposprayVampireStealObjective",
+        "RDHardsuitVampireStealObjective",
+        "EnergyShotgunVampireStealObjective",
+        "MagbootsVampireStealObjective",
+        "ClipboardVampireStealObjective",
+        "CaptainIDVampireStealObjective",
+        "CaptainJetpackVampireStealObjective",
         "CaptainGunVampireStealObjective"
     }
 }
