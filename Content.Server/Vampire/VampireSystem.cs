@@ -312,18 +312,22 @@ public sealed partial class VampireSystem : EntitySystem
         
         //Gargantua
         
-        if (GetBloodEssence(uid) >= FixedPoint2.New(200) && component.CurrentMutation == VampireMutationsType.Gargantua)
+        if (GetBloodEssence(uid) >= FixedPoint2.New(200) && !_actionEntities.TryGetValue("ActionVampireUnnaturalStrength", out entity) && component.CurrentMutation == VampireMutationsType.Gargantua)
         {
             var vampire = new Entity<VampireComponent>(uid, component);
             
             UnnaturalStrength(vampire);
+            
+            component.UnlockedPowers.Add("ActionVampireUnnaturalStrength", vampire);
         }
         
-        if (GetBloodEssence(uid) >= FixedPoint2.New(300) && component.CurrentMutation == VampireMutationsType.Gargantua)
+        if (GetBloodEssence(uid) >= FixedPoint2.New(300) && !_actionEntities.TryGetValue("ActionVampireSupernaturalStrength", out entity) && component.CurrentMutation == VampireMutationsType.Gargantua)
         {
             var vampire = new Entity<VampireComponent>(uid, component);
             
             SupernaturalStrength(vampire);
+            
+            component.UnlockedPowers.Add("ActionVampireSupernaturalStrength", vampire);
         }
         
         //Bestia
