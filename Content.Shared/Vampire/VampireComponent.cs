@@ -47,7 +47,7 @@ public sealed partial class VampireComponent : Component
     [ValidatePrototypeId<MetabolizerTypePrototype>]
     public static readonly string MetabolizerVampire = "vampire";
     [ValidatePrototypeId<MetabolizerTypePrototype>]
-    public static readonly string MetabolizerBloodsucker = "bloodsucker";
+    public static readonly string MetabolizerBloodsucker = "Bloodsucker";
 
     public static readonly DamageSpecifier MeleeDamage = new()
     {
@@ -93,11 +93,6 @@ public sealed partial class VampireComponent : Component
     /// All unlocked abilities
     /// </summary>
     public Dictionary<string, EntityUid?> UnlockedPowers = new();
-
-    /// <summary>
-    /// Link to the vampires heirloom
-    /// </summary>
-    public EntityUid? Heirloom = default!;
 
     /// <summary>
     /// Current available balance, used to sync currency across heirlooms and add essence as we feed
@@ -169,13 +164,6 @@ public sealed partial class UnholyComponent : Component { }
 /// </summary>
 [RegisterComponent]
 public sealed partial class CoffinComponent : Component { }
-
-[RegisterComponent]
-public sealed partial class VampireHeirloomComponent : Component
-{
-    //Use of the heirloom is limited to this entity
-    public EntityUid? VampireOwner = default!;
-}
 
 [RegisterComponent]
 public sealed partial class VampireFangsExtendedComponent : Component { }
