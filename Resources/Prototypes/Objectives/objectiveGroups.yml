@@ -121,6 +121,11 @@
 # Vampire
 
 - type: weightedRandom
+  id: VampireObjectiveGroups
+  weights:
+    VampireObjectiveGroupSteal: 1
+
+- type: weightedRandom
   id: VampireObjectiveGroupSteal
   weights:
     CMOHyposprayVampireStealObjective: 1

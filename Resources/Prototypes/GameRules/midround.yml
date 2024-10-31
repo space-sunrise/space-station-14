@@ -52,7 +52,7 @@
   components:
   - type: AntagRandomObjectives
     sets:
-    - groups: VampireObjectiveGroupSteal
+    - groups: VampireObjectiveGroups
     maxDifficulty: 10
   - type: VampireRule
   - type: AntagSelection
