@@ -3,6 +3,8 @@ using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Shared.CCVar;
 using Content.Shared.Holiday;
+using Robust.Server.GameObjects;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 
@@ -14,6 +16,7 @@ namespace Content.Server.Holiday
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly IChatManager _chatManager = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+        [Dependency] private readonly SharedPointLightSystem _point = default!;
 
         [ViewVariables]
         private readonly List<HolidayPrototype> _currentHolidays = new();
@@ -64,6 +67,14 @@ namespace Content.Server.Holiday
             foreach (var holiday in _currentHolidays)
             {
                 holiday.Celebrate();
+                if (holiday.ID == "Helloween")
+                {
+                    var query = EntityManager.EntityQuery<PointLightComponent>();
+                    foreach (var light in query)
+                    {
+                        _point.SetEnergy(light.Owner, light.Energy / 2, light);
+                    }
+                }
             }
         }
 
