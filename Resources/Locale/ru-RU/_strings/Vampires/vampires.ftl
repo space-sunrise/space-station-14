@@ -25,6 +25,8 @@ vampire-cloak-disable = Вы ослабляете хватку теней.
 
 vampire-bloodsteal-other = Вы чувствуете, как кровь вырывается из вашего тела!
 vampire-hypnotise-other = {CAPITALIZE(THE($user))} пристально вглядывается в {THE($target)} глаза!
+vampire-unnaturalstrength = Верхние мышцы {CAPITALIZE(THE($user))} увеличиваються делая его сильнее!
+vampire-supernaturalstrength = Верхние мышцы {CAPITALIZE(THE($user))} набухают от мощи делая его сверхсильным!
 
 store-currency-display-blood-essence = Кровавая эссенция
 store-category-vampirepowers = Силы
