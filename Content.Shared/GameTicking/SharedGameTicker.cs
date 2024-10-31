@@ -8,7 +8,6 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.Markdown.Mapping;
 using Robust.Shared.Serialization.Markdown.Value;
 using Robust.Shared.Timing;
-using Robust.Shared.Utility;
 
 namespace Content.Shared.GameTicking
 {
@@ -90,25 +89,23 @@ namespace Content.Shared.GameTicking
     {
         public bool IsRoundStarted { get; }
         // Sunrise-Start
-        public string? LobbyType { get; }
-        public string? LobbyParallax { get; }
-        public string? LobbyAnimation { get; }
-        public string? LobbyArt { get; }
+        public string? LobbyParalax { get; }
+        public LobbyImage? LobbyImage { get; }
         // Sunrise-End
+        public string? LobbyBackground { get; }
         public bool YouAreReady { get; }
         // UTC.
         public TimeSpan StartTime { get; }
         public TimeSpan RoundStartTimeSpan { get; }
         public bool Paused { get; }
 
-        public TickerLobbyStatusEvent(bool isRoundStarted, string? lobbyType, string? lobbyBackground, string? lobbyParallax, string? lobbyAnimation, bool youAreReady, TimeSpan startTime, TimeSpan preloadTime, TimeSpan roundStartTimeSpan, bool paused)
+        public TickerLobbyStatusEvent(bool isRoundStarted, string? lobbyBackground, string? lobbyParalax, LobbyImage? lobbyImage, bool youAreReady, TimeSpan startTime, TimeSpan preloadTime, TimeSpan roundStartTimeSpan, bool paused)
         {
             IsRoundStarted = isRoundStarted;
             // Sunrise-Start
-            LobbyType = lobbyType;
-            LobbyArt = lobbyBackground;
-            LobbyParallax = lobbyParallax;
-            LobbyAnimation = lobbyAnimation;
+            LobbyBackground = lobbyBackground;
+            LobbyParalax = lobbyParalax;
+            LobbyImage = lobbyImage;
             // Sunrise-End
             YouAreReady = youAreReady;
             StartTime = startTime;
@@ -244,18 +241,12 @@ namespace Content.Shared.GameTicking
     // Sunrise-Start
     [Serializable, NetSerializable]
     [DataDefinition]
-    public partial record LobbyAnimationData
+    public partial record LobbyImage
     {
-        public ResPath Path;
+        public string Path;
         public string State;
         public Vector2 Scale;
     }
-
-    public enum LobbyBackgroundType
-    {
-        Animation,
-        Parallax,
-        Art
-    }
     // Sunrise-End
+
 }

@@ -3,10 +3,12 @@ using Content.Client._Sunrise.Latejoin;
 using Content.Client._Sunrise.ServersHub;
 using Content.Client.Audio;
 using Content.Client.GameTicking.Managers;
+using Content.Client.LateJoin;
 using Content.Client.Lobby.UI;
 using Content.Client.Message;
 using Content.Client.UserInterface.Systems.Chat;
 using Content.Client.Voting;
+using Robust.Client;
 using Robust.Client.Console;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
@@ -15,14 +17,11 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Client.Changelog;
 using Content.Client.Parallax.Managers;
-using Content.Server.GameTicking.Prototypes;
-using Content.Shared._Sunrise.Lobby;
 using Content.Shared._Sunrise.ServersHub;
 using Content.Shared._Sunrise.SunriseCCVars;
-using Content.Shared.GameTicking;
+using Robust.Shared.Configuration;
 using Robust.Shared.Configuration;
 using Robust.Shared.ContentPack;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Serialization.Markdown;
 using Robust.Shared.Serialization.Markdown.Mapping;
@@ -44,7 +43,6 @@ namespace Content.Client.Lobby
         [Dependency] private readonly ServersHubManager _serversHubManager = default!;
         [Dependency] private readonly ChangelogManager _changelogManager = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
         private ClientGameTicker _gameTicker = default!;
         private ContentAudioSystem _contentAudioSystem = default!;
@@ -90,15 +88,7 @@ namespace Content.Client.Lobby
             var combinedChangelog = _changelogManager.MergeChangelogs(changelogs);
 
             Lobby!.LocalChangelogBody.PopulateChangelog(combinedChangelog);
-            Lobby!.LobbyAnimation.DisplayRect.Stretch = TextureRect.StretchMode.KeepAspectCovered;
-            Lobby!.LobbyAnimation.DisplayRect.HorizontalExpand = true;
-            Lobby!.LobbyAnimation.DisplayRect.VerticalExpand = true;
 
-
-            _cfg.OnValueChanged(SunriseCCVars.LobbyBackgroundType, OnLobbyBackgroundTypeChanged, true);
-            _cfg.OnValueChanged(SunriseCCVars.LobbyArt, OnLobbyArtChanged, true);
-            _cfg.OnValueChanged(SunriseCCVars.LobbyAnimation, OnLobbyAnimationChanged, true);
-            _cfg.OnValueChanged(SunriseCCVars.LobbyParallax, OnLobbyParallaxChanged, true);
             // Sunrise-end
 
             Lobby.CharacterPreview.CharacterSetupButton.OnPressed += OnSetupPressed;
@@ -207,11 +197,10 @@ namespace Content.Client.Lobby
         private void LobbyStatusUpdated()
         {
             // Sunrise-Start
-            UpdateLobbyType();
-            UpdateLobbyParallax();
-            UpdateLobbyAnimation();
-            UpdateLobbyArt();
+            UpdateLobbyaralax();
+            UpdateLobbyImage();
             // Sunrise-End
+            UpdateLobbyBackground();
             UpdateLobbyUi();
         }
 
@@ -276,133 +265,41 @@ namespace Content.Client.Lobby
         }
 
         // Sunrise-start
-
-        private void OnLobbyBackgroundTypeChanged(string lobbyBackgroundTypeString)
+        private void UpdateLobbyaralax()
         {
-            if (lobbyBackgroundTypeString == "Random" && _gameTicker.LobbyType != null)
-                SetLobbyBackgroundType(_gameTicker.LobbyType);
+            if (_gameTicker.LobbyParalax != null)
+            {
+                _parallaxManager.LoadParallaxByName(_gameTicker.LobbyParalax);
+                Lobby!.LobbyParalax = _gameTicker.LobbyParalax;
+            }
             else
             {
-                SetLobbyBackgroundType(lobbyBackgroundTypeString);
+                Lobby!.LobbyParalax = "FastSpace";
             }
         }
 
-        public void SetLobbyBackgroundType(string lobbyBackgroundString)
+        private void UpdateLobbyImage()
         {
-            if (!Enum.TryParse(lobbyBackgroundString, out LobbyBackgroundType lobbyBackgroundTypeString))
-            {
-                lobbyBackgroundTypeString = default;
-            }
-
-            switch (lobbyBackgroundTypeString)
-            {
-                case LobbyBackgroundType.Parallax:
-                    Lobby!.LobbyAnimation.Visible = false;
-                    Lobby!.LobbyArt.Visible = false;
-                    Lobby!.ShowParallax = true;
-                    break;
-                case LobbyBackgroundType.Art:
-                    Lobby!.LobbyAnimation.Visible = false;
-                    Lobby!.LobbyArt.Visible = true;
-                    Lobby!.ShowParallax = false;
-                    break;
-                case LobbyBackgroundType.Animation:
-                    Lobby!.LobbyAnimation.Visible = true;
-                    Lobby!.LobbyArt.Visible = false;
-                    Lobby!.ShowParallax = false;
-                    break;
-            }
-        }
-
-        private void OnLobbyArtChanged(string lobbyArt)
-        {
-            if (lobbyArt == "Random" && _gameTicker.LobbyArt != null)
-                SetLobbyArt(_gameTicker.LobbyArt);
-            else
-            {
-                SetLobbyArt(lobbyArt);
-            }
-        }
-
-        private void OnLobbyAnimationChanged(string lobbyAnimation)
-        {
-            if (lobbyAnimation == "Random" && _gameTicker.LobbyAnimation != null)
-                SetLobbyAnimation(_gameTicker.LobbyAnimation);
-            else
-            {
-                SetLobbyAnimation(lobbyAnimation);
-            }
-        }
-
-        private void OnLobbyParallaxChanged(string lobbyParallax)
-        {
-            if (lobbyParallax == "Random" && _gameTicker.LobbyParallax != null)
-                SetLobbyParallax(_gameTicker.LobbyParallax);
-            else
-            {
-                SetLobbyParallax(lobbyParallax);
-            }
-        }
-
-        private void SetLobbyAnimation(string lobbyAnimation)
-        {
-            if (!_prototypeManager.TryIndex<LobbyAnimationPrototype>(lobbyAnimation, out var lobbyAnimationPrototype))
+            if (_gameTicker.LobbyImage == null)
                 return;
 
-            Lobby!.LobbyAnimation.SetFromSpriteSpecifier(new SpriteSpecifier.Rsi(lobbyAnimationPrototype.Animation, lobbyAnimationPrototype.State));
-            Lobby!.LobbyAnimation.DisplayRect.TextureScale = lobbyAnimationPrototype.Scale;
+            Lobby!.LobbyImage.SetFromSpriteSpecifier(new SpriteSpecifier.Rsi(new ResPath(_gameTicker.LobbyImage.Path), _gameTicker.LobbyImage.State));
+            Lobby!.LobbyImage.DisplayRect.TextureScale = _gameTicker.LobbyImage.Scale;
         }
-
-        private void SetLobbyArt(string lobbyArt)
-        {
-            if (!_prototypeManager.TryIndex<LobbyBackgroundPrototype>(lobbyArt, out var lobbyArtPrototype))
-                return;
-
-            Lobby!.LobbyArt.Texture = _resourceCache.GetResource<TextureResource>(lobbyArtPrototype.Background);
-        }
-
-        private void SetLobbyParallax(string lobbyParallax)
-        {
-            if (!_prototypeManager.TryIndex<LobbyParallaxPrototype>(lobbyParallax, out var lobbyParallaxPrototype))
-                return;
-
-            _parallaxManager.LoadParallaxByName(lobbyParallaxPrototype.Parallax);
-            Lobby!.LobbyParallax = lobbyParallaxPrototype.Parallax;
-        }
-
-        private void UpdateLobbyType()
-        {
-            if (_cfg.GetCVar(SunriseCCVars.LobbyBackgroundType) != "Random")
-                return;
-
-            SetLobbyBackgroundType(_gameTicker.LobbyType!);
-        }
-
-        private void UpdateLobbyAnimation()
-        {
-            if (_cfg.GetCVar(SunriseCCVars.LobbyAnimation) != "Random")
-                return;
-
-            SetLobbyAnimation(_gameTicker.LobbyAnimation!);
-        }
-
-        private void UpdateLobbyArt()
-        {
-            if (_cfg.GetCVar(SunriseCCVars.LobbyArt) != "Random")
-                return;
-
-            SetLobbyArt(_gameTicker.LobbyArt!);
-        }
-
-        private void UpdateLobbyParallax()
-        {
-            if (_cfg.GetCVar(SunriseCCVars.LobbyParallax) != "Random")
-                return;
-
-            SetLobbyParallax(_gameTicker.LobbyParallax!);
-        }
-
         // Sunrise-end
+
+        private void UpdateLobbyBackground()
+        {
+            if (_gameTicker.LobbyBackground != null)
+            {
+                Lobby!.Background.Texture = _resourceCache.GetResource<TextureResource>(_gameTicker.LobbyBackground );
+            }
+            else
+            {
+                Lobby!.Background.Texture = null;
+            }
+
+        }
 
         private void SetReady(bool newReady)
         {
@@ -414,4 +311,10 @@ namespace Content.Client.Lobby
             _consoleHost.ExecuteCommand($"toggleready {newReady}");
         }
     }
+}
+
+public enum LobbyBackgroundType
+{
+    Paralax,
+    Art
 }

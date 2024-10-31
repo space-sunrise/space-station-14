@@ -547,15 +547,14 @@ namespace Content.Server.GameTicking
 
             RunLevel = GameRunLevel.PreRoundLobby;
             // Sunrise-Start
-            RandomizeLobbyBackgroundType();
-            RandomizeLobbyBackgroundParallax();
-            RandomizeLobbyBackgroundAnimation();
-            RandomizeLobbyBackgroundArt();
-            _statsBoardSystem.CleanEntries();
+            RandomizeLobbyParalax();
+            RandomizeLobbyImage();
+            RandomizeLobbyBackground();
             // Sunrise-End
             ResettingCleanup();
             IncrementRoundNumber();
             SendRoundStartingDiscordMessage();
+            _statsBoardSystem.CleanEntries(); // Sunrise-Edit
 
             if (!LobbyEnabled)
             {

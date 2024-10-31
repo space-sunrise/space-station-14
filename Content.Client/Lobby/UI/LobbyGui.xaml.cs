@@ -28,8 +28,7 @@ namespace Content.Client.Lobby.UI
         [Dependency] private readonly IResourceCache _resourceCache = default!;
         [Dependency] private readonly IConfigurationManager _configurationManager = default!;
 
-        public string LobbyParallax = "FastSpace"; // Sunrise-edit
-        public bool ShowParallax; // Sunrise-edit
+        public string LobbyParalax = "FastSpace"; // Sunrise-edit
         [ViewVariables(VVAccess.ReadWrite)] public Vector2 Offset { get; set; } // Sunrise-edit
         public const string DefaultIconExpanded = "/Textures/Interface/Nano/inverted_triangle.svg.png";
         public const string DefaultIconCollapsed = "/Textures/Interface/Nano/top_triangle.svg.png";
@@ -46,7 +45,7 @@ namespace Content.Client.Lobby.UI
             RobustXamlLoader.Load(this);
             IoCManager.InjectDependencies(this);
             SetAnchorPreset(MainContainer, LayoutPreset.Wide);
-            SetAnchorPreset(LobbyArt, LayoutPreset.Wide); // Sunrise-Edit
+            SetAnchorPreset(Background, LayoutPreset.Wide);
 
             LobbySong.SetMarkup(Loc.GetString("lobby-state-song-no-song-text"));
 
@@ -109,6 +108,8 @@ namespace Content.Client.Lobby.UI
             };
 
             Offset = new Vector2(_random.Next(0, 1000), _random.Next(0, 1000));
+
+            _parallaxManager.LoadParallaxByName(LobbyParalax);
             RectClipContent = true;
 
             var panelTex = _resourceCache.GetTexture("/Textures/Interface/Nano/button.svg.96dpi.png");
@@ -130,14 +131,16 @@ namespace Content.Client.Lobby.UI
             LobbySongPanel.PanelOverride = _back;
 
             _configurationManager.OnValueChanged(SunriseCCVars.LobbyOpacity, OnLobbyOpacityChanged);
+            _configurationManager.OnValueChanged(SunriseCCVars.LobbyBackground, OnLobbyBackgroundChanged);
             _configurationManager.OnValueChanged(SunriseCCVars.ServersHubEnable, OnServersHubEnableChanged);
 
             SetLobbyOpacity(_configurationManager.GetCVar(SunriseCCVars.LobbyOpacity));
+            SetLobbyBackgroundType(_configurationManager.GetCVar(SunriseCCVars.LobbyBackground));
             SetServersHubEnable(_configurationManager.GetCVar(SunriseCCVars.ServersHubEnable));
 
             Chat.SetChatOpacity();
 
-            ServerName.Text = Loc.GetString("ui-lobby-welcome", ("name", _configurationManager.GetCVar(SunriseCCVars.ServerName)));
+            ServerName.Text = Loc.GetString("ui-lobby-cfgwelcome", ("name", _configurationManager.GetCVar(SunriseCCVars.ServerName)));
             LoadIcons();
             // Sunrise-end
         }
@@ -176,6 +179,31 @@ namespace Content.Client.Lobby.UI
         {
             ServersHubBox.Visible = enable;
         }
+
+        private void OnLobbyBackgroundChanged(string lobbyBackgroundString)
+        {
+            SetLobbyBackgroundType(lobbyBackgroundString);
+        }
+
+        private void SetLobbyBackgroundType(string lobbyBackgroundString)
+        {
+            if (!Enum.TryParse(lobbyBackgroundString, out LobbyBackgroundType lobbyBackgroundTypeString))
+            {
+                lobbyBackgroundTypeString = default;
+            }
+
+            switch (lobbyBackgroundTypeString)
+            {
+                case LobbyBackgroundType.Paralax:
+                    LobbyImage.Visible = true;
+                    Background.Visible = false;
+                    break;
+                case LobbyBackgroundType.Art:
+                    LobbyImage.Visible = false;
+                    Background.Visible = true;
+                    break;
+            }
+        }
         // Sunrise-End
 
         private void OnLobbyOpacityChanged(float opacity)
@@ -211,10 +239,7 @@ namespace Content.Client.Lobby.UI
         // Sunrise-start
         protected override void Draw(DrawingHandleScreen handle)
         {
-            if (!ShowParallax)
-                return;
-
-            foreach (var layer in _parallaxManager.GetParallaxLayers(LobbyParallax))
+            foreach (var layer in _parallaxManager.GetParallaxLayers(LobbyParalax))
             {
                 var tex = layer.Texture;
                 var texSize = new Vector2i(
