@@ -215,3 +215,14 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Neck/Cloaks/atmosian.rsi
+
+ #Для ивентов
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakUeg
+  name: paratrooper cape
+  description: The cloak of the famous space troopers of the United Government of Earth. It is worn only by those truly honored to be OPZ Space Troopers. This cape represents the freedom and democracy that civilization must strive for. Otherwise, democracy and liberation will be brought by the Earth Government.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Cloaks/ueg_cloak.rsi
