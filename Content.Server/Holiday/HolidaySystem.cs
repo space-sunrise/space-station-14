@@ -72,7 +72,7 @@ namespace Content.Server.Holiday
                     var query = EntityManager.EntityQuery<PointLightComponent>();
                     foreach (var light in query)
                     {
-                        _point.SetEnergy(light.Owner, light.Energy / 2, light);
+                        _point.SetEnergy(light.Owner, light.Energy / 3, light);
                     }
                 }
             }
