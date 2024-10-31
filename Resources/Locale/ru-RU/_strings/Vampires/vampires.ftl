@@ -32,18 +32,15 @@ store-category-vampirepassives = Пассивные
 
 #Powers
 
-vampire-power-blessing = Blessing of Lilith
-vampire-power-blessing-description = Swear your soul to Lilith, receive her blessing, and feast upon the bounty around you.
-
 #Passives
-vampire-passive-unholystrength = Unholy Strength
-vampire-passive-unholystrength-description = Infuse your upper body muscles with essence, granting you claws and increased strength. Effect: 10 Slash per hit
+vampire-passive-unholystrength = Нечестивая сила
+vampire-passive-unholystrength-description = Наполните мышцы верхней части тела кровью, наделяя вас когтями и повышенной силой. Эффект: 10 порезов за удар
 
-vampire-passive-supernaturalstrength = Supernatural Strength
-vampire-passive-supernaturalstrength-description = Increase your upper body muscles strength further, no barrier shall stand in your way. Effect: 15 Slash per hit, able to pry open doors by hand.
+vampire-passive-supernaturalstrength = Сверхъестественная сила
+vampire-passive-supernaturalstrength-description = Увеличьте силу мышц верхней части тела, и ни одна преграда не встанет на вашем пути. Эффект: 15 порезов за удар, возможность открывать двери руками.
 
-vampire-passive-deathsembrace = Deaths Embrace
-vampire-passive-deathsembrace-description = Embrace death and it shall pass you over. Effect: Heal when in a coffin, automatically return to your coffin upon death for 100 blood essence.
+vampire-passive-deathsembrace = Объятия смерти
+vampire-passive-deathsembrace-description = Примите смерть, и она обойдет вас стороной. Эффект: исцеление в гробу, автоматическое возвращение в гроб после смерти за 100 эссенции крови.
 
 #Mutation menu
 
