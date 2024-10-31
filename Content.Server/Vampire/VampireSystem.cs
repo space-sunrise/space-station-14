@@ -7,6 +7,7 @@ using Content.Server.Interaction;
 using Content.Server.Nutrition.EntitySystems;
 using Content.Server.Polymorph.Systems;
 using Content.Server.Storage.EntitySystems;
+using Content.Server.Mind;
 using Content.Shared.Actions;
 using Content.Shared.Body.Systems;
 using Content.Shared.Buckle;
@@ -43,6 +44,7 @@ namespace Content.Server.Vampire;
 
 public sealed partial class VampireSystem : EntitySystem
 {
+    [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly IAdminLogManager _admin = default!;
     [Dependency] private readonly FoodSystem _food = default!;
     [Dependency] private readonly EntityStorageSystem _entityStorage = default!;
