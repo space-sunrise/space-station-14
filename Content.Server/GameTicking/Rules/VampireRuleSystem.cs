@@ -155,5 +155,5 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
         sb.AppendLine(Loc.GetString($"roundend-prepend-vampire-drained{(!string.IsNullOrWhiteSpace(mostDrainedName) ? "-named" : "")}", ("name", mostDrainedName), ("number", mostDrained)));
 
         args.Text = sb.ToString();
-    }*/
+    }
 }

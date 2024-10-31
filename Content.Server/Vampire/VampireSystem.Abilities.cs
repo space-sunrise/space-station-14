@@ -6,6 +6,7 @@ using Content.Server.Speech.Components;
 using Content.Server.Storage.Components;
 using Content.Server.Store.Components;
 using Content.Shared.Actions;
+using Content.Server.Objectives.Components;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Components;
 using Content.Shared.Chat.Prototypes;
