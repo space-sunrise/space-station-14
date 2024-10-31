@@ -101,16 +101,27 @@ public sealed partial class VampireSystem
             if (!action.HasValue)
                 return;
             
-            if (!TryComp<InstantActionComponent>(action, out var instantActionComponent))
+            if (!TryComp<InstantActionComponent>(action, out var instantActionComponent) || !TryComp<EntityTargetAction>(action, out var entityActionComponent))
                 return;
             
-            var actionEvent = instantActionComponent.Event as VampireSelfPowerEvent;
+            if (instantActionComponent != null)
+            {
+                var instantActionEvent = instantActionComponent.Event as VampireSelfPowerEvent;
 
-            if (actionEvent == null)
-                return;
+                if (instantActionEvent == null)
+                r   eturn;
 
-            comp.UnlockedPowers.Add(actionEvent.DefinitionName, action);
-            
+                comp.UnlockedPowers.Add(instantActionEvent.DefinitionName, action);
+            }
+            else if (entityActionComponent != null)
+            {
+                var entityActionEvent = entityActionComponent.Event as VampireSelfPowerEvent;
+
+                if (entityActionEvent == null)
+                r   eturn;
+
+                comp.UnlockedPowers.Add(entityActionEvent.DefinitionName, action);
+            }
         }
 
         UpdateBloodDisplay(vampire);
