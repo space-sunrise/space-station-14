@@ -93,7 +93,7 @@
         amount: 4
       - id: GrenadeFrag
         amount: 4
-      - id: BulletGrenadeEMP
+      - id: GrenadeEMP
         amount: 4
 
 - type: entity
