@@ -1,4 +1,5 @@
 using Content.Server.Antag;
+using Content.Server.Atmos.Components;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Mind;
 using Content.Server.Objectives;
