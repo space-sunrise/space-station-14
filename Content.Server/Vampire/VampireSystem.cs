@@ -241,7 +241,10 @@ public sealed partial class VampireSystem : EntitySystem
             if (newEntity != null)
             {
                 _actionEntities["ActionVampireBloodSteal"] = newEntity.Value;
-                component.UnlockedPowers.Add("BloodSteal", newEntity);
+                if (!component.UnlockedPowers.ContainsKey("BloodSteal"))
+                {
+                    component.UnlockedPowers.Add("BloodSteal", newEntity);
+                }
             }
         }
         else if (GetBloodEssence(uid) < FixedPoint2.New(200) && _actionEntities.TryGetValue("ActionVampireBloodSteal", out entity))
@@ -260,7 +263,10 @@ public sealed partial class VampireSystem : EntitySystem
             if (newEntity != null)
             {
                 _actionEntities["ActionVampireScreech"] = newEntity.Value;
-                component.UnlockedPowers.Add("Screech", newEntity);
+                if (!component.UnlockedPowers.ContainsKey("Screech"))
+                {
+                    component.UnlockedPowers.Add("Screech", newEntity);
+                }
             }
         }
         else if (GetBloodEssence(uid) < FixedPoint2.New(300) && _actionEntities.TryGetValue("ActionVampireScreech", out entity))
@@ -281,7 +287,10 @@ public sealed partial class VampireSystem : EntitySystem
             if (newEntity != null)
             {
                 _actionEntities["ActionVampireGlare"] = newEntity.Value;
-                component.UnlockedPowers.Add("Glare", newEntity);
+                if (!component.UnlockedPowers.ContainsKey("Glare"))
+                {
+                    component.UnlockedPowers.Add("Glare", newEntity);
+                }
             }
         }
         else if (GetBloodEssence(uid) < FixedPoint2.New(200) && _actionEntities.TryGetValue("ActionVampireGlare", out entity))
@@ -300,7 +309,10 @@ public sealed partial class VampireSystem : EntitySystem
             if (newEntity != null)
             {
                 _actionEntities["ActionVampireCloakOfDarkness"] = newEntity.Value;
-                component.UnlockedPowers.Add("CloakOfDarkness", newEntity);
+                if (!component.UnlockedPowers.ContainsKey("CloakOfDarkness"))
+                {
+                    component.UnlockedPowers.Add("CloakOfDarkness", newEntity);
+                }
             }
         }
         else if (GetBloodEssence(uid) < FixedPoint2.New(300) && _actionEntities.TryGetValue("ActionVampireCloakOfDarkness", out entity))
@@ -321,7 +333,7 @@ public sealed partial class VampireSystem : EntitySystem
             
             UnnaturalStrength(vampire);
             
-            component.UnlockedPowers.Add("ActionVampireUnnaturalStrength", vampire);
+            _actionEntities["ActionVampireUnnaturalStrength"] = vampire;
         }
         
         if (GetBloodEssence(uid) >= FixedPoint2.New(300) && !_actionEntities.TryGetValue("ActionVampireSupernaturalStrength", out entity) && component.CurrentMutation == VampireMutationsType.Gargantua)
@@ -330,7 +342,7 @@ public sealed partial class VampireSystem : EntitySystem
             
             SupernaturalStrength(vampire);
             
-            component.UnlockedPowers.Add("ActionVampireSupernaturalStrength", vampire);
+            _actionEntities["ActionVampireSupernaturalStrength"] = vampire;
         }
         
         //Bestia
@@ -341,7 +353,10 @@ public sealed partial class VampireSystem : EntitySystem
             if (newEntity != null)
             {
                 _actionEntities["ActionVampireBatform"] = newEntity.Value;
-                component.UnlockedPowers.Add("PolymorphBat", newEntity);
+                if (!component.UnlockedPowers.ContainsKey("PolymorphBat"))
+                {
+                    component.UnlockedPowers.Add("PolymorphBat", newEntity);
+                }
             }
         }
         else if (GetBloodEssence(uid) < FixedPoint2.New(200) && _actionEntities.TryGetValue("ActionVampireBatform", out entity))
@@ -360,7 +375,10 @@ public sealed partial class VampireSystem : EntitySystem
             if (newEntity != null)
             {
                 _actionEntities["ActionVampireMouseform"] = newEntity.Value;
-                component.UnlockedPowers.Add("PolymorphMouse", newEntity);
+                if (!component.UnlockedPowers.ContainsKey("PolymorphMouse"))
+                {
+                    component.UnlockedPowers.Add("PolymorphMouse", newEntity);
+                }
             }
         }
         else if (GetBloodEssence(uid) < FixedPoint2.New(300) && _actionEntities.TryGetValue("ActionVampireMouseform", out entity))
