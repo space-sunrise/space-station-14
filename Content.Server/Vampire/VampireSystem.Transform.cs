@@ -50,7 +50,7 @@ public sealed partial class VampireSystem
     /// <summary>
     /// Add vulnerability to holy water when ingested or slashed, and take damage from the bible
     /// </summary>
-    private void MakeVulnerableToHoly(Entity<VampireComponent> vampire)
+    public void MakeVulnerableToHoly(Entity<VampireComponent> vampire)
     {
         //React to being beaten with the bible
         EnsureComp<UnholyComponent>(vampire);

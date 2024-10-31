@@ -82,16 +82,19 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
         
         if (HasComp<UserInterfaceComponent>(target))
             _uiSystem.SetUiState(target, VampireMutationUiKey.Key, new VampireMutationBoundUserInterfaceState(vampireComponent.VampireMutations, vampireComponent.CurrentMutation));
+        
+        var vampire = new Entity<VampireComponent>(target, vampireComponent);
+        
+        RemComp<PerishableComponent>(vampire);
+        RemComp<BarotraumaComponent>(vampire);
+        RemComp<ThirstComponent>(vampire);
 
         vampireComponent.Balance = new() { { VampireComponent.CurrencyProto, 0 } };
 
         rule.VampireMinds.Add(mindId);
         
-        if (HasComp<VampireComponent>(target))
-        {
-            _vampire.AddStartingAbilities(target);
-            _vampire.MakeVulnerableToHoly(target);
-        }
+        _vampire.AddStartingAbilities(vampire);
+        _vampire.MakeVulnerableToHoly(vampire);
         
         Random random = new Random();
 
