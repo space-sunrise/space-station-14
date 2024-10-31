@@ -45,7 +45,7 @@ public sealed partial class VampireComponent : Component
         Tags = new() { "Pill" }
     };
     [ValidatePrototypeId<MetabolizerTypePrototype>]
-    public static readonly string MetabolizerVampire = "vampire";
+    public static readonly string MetabolizerVampire = "Vampire";
     [ValidatePrototypeId<MetabolizerTypePrototype>]
     public static readonly string MetabolizerBloodsucker = "Bloodsucker";
 
