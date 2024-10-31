@@ -5,8 +5,8 @@
   description: job-description-station-ai
   playTimeTracker: JobStationAi
   requirements:
-  - !type:RoleTimeRequirement
-    role: JobBorg
+  - !type:DepartmentTimeRequirement
+    department: Silicon
     time: 54000  # 15 hrs
   canBeAntag: false
   icon: JobIconStationAi
@@ -21,7 +21,7 @@
   playTimeTracker: JobBorg
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 72000 #20 hrs # Sunrise-Edit
+      time: 7200 #2 hrs # Sunrise-Edit
   canBeAntag: false
   displayWeight: -10  # Sunrise
   icon: JobIconBorg

@@ -8,7 +8,7 @@
     issuer: objective-issuer-susnet
   - type: RoleRequirement
     roles:
-      components:
+      mindRoles:
       - TerminatorRole
 
 - type: entity
