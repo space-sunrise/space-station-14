@@ -427,7 +427,7 @@ public sealed partial class VampireSystem
 
         if (_doAfter.TryStartDoAfter(doAfterEventArgs))
         {
-            _popup.PopupEntity(Loc.GetString("vampire-hypnotise-other"), target.Value, Shared.Popups.PopupType.SmallCaution);
+            _popup.PopupEntity(Loc.GetString("vampire-hypnotise-other", ("user", vampire.Owner), ("target", target.Value)), target.Value, Shared.Popups.PopupType.SmallCaution);
         }
         else
         {
