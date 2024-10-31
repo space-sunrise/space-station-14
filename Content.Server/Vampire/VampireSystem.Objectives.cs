@@ -19,8 +19,8 @@ public sealed partial class VampireSystem
     private void OnBloodDrainGetProgress(EntityUid uid, BloodDrainConditionComponent comp, ref ObjectiveGetProgressEvent args)
     {
         var target = _number.GetTarget(uid);
-        if (target != 0 && TryComp<VampireComponent>(uid, out var vampirecomp))
-            args.Progress = MathF.Min(vampirecomp.TotalBloodDrank / target, 1f);
+        if (target != 0)
+            args.Progress = MathF.Min(comp.BloodDranked / target, 1f);
         else args.Progress = 1f;
     }
 }
