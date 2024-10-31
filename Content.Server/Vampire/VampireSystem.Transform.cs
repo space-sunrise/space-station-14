@@ -115,7 +115,7 @@ public sealed partial class VampireSystem
             }
             else if (entityActionComponent != null)
             {
-                var entityActionEvent = entityActionComponent.Event as VampireSelfPowerEvent;
+                var entityActionEvent = entityActionComponent.Event as VampireTargetedPowerEvent;
 
                 if (entityActionEvent == null)
                     return;
