@@ -88,7 +88,10 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
         rule.VampireMinds.Add(mindId);
         
         if (HasComp<VampireComponent>(target))
+        {
             _vampire.AddStartingAbilities(target);
+            _vampire.MakeVulnerableToHoly(target);
+        }
         
         Random random = new Random();
 
