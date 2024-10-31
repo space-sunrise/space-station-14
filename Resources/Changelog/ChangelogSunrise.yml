@@ -5661,3 +5661,13 @@
   id: 387
   time: '2024-10-31T16:21:34.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/584
+- author: SplikZerys
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u044B \u043D\u043E\u0432\
+      \u044B\u0435 \u0422\u0422\u0421-\u0433\u043E\u043B\u043E\u0441\u0430 \u0438\u0437\
+      \ Hearthstone: \u041C\u0430\u043B\u0444\u0443\u0440\u0438\u043E\u043D, \u0423\
+      \u0442\u0435\u0440 \u0438 \u0413\u0443\u043B \u0414\u0430\u043D."
+    type: Add
+  id: 388
+  time: '2024-10-31T17:10:58.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/586
