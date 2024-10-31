@@ -131,36 +131,28 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
         return "";
     }
 
-/*    private void OnTextPrepend(EntityUid uid, VampireRuleComponent comp, ref ObjectivesTextPrependEvent args)
+    private void OnTextPrepend(EntityUid uid, VampireRuleComponent comp, ref ObjectivesTextPrependEvent args)
     {
-        var mostAbsorbedName = string.Empty;
-        var mostStolenName = string.Empty;
-        var mostAbsorbed = 0f;
-        var mostStolen = 0f;
+        var mostDrainedName = string.Empty;
+        var mostDrained = 0f;
 
-        foreach (var ling in EntityQuery<ChangelingComponent>())
+        foreach (var vamp in EntityQuery<VampireComponent>())
         {
-            if (!_mind.TryGetMind(ling.Owner, out var mindId, out var mind))
+            if (!_mind.TryGetMind(vamp.Owner, out var mindId, out var mind))
                 continue;
 
-            if (!TryComp<MetaDataComponent>(ling.Owner, out var metaData))
+            if (!TryComp<MetaDataComponent>(vamp.Owner, out var metaData))
                 continue;
 
-            if (ling.TotalAbsorbedEntities > mostAbsorbed)
+            if (vamp.TotalBloodDrank > mostDrained)
             {
-                mostAbsorbed = ling.TotalAbsorbedEntities;
-                mostAbsorbedName = _objective.GetTitle((mindId, mind), metaData.EntityName);
-            }
-            if (ling.TotalStolenDNA > mostStolen)
-            {
-                mostStolen = ling.TotalStolenDNA;
-                mostStolenName = _objective.GetTitle((mindId, mind), metaData.EntityName);
+                mostDrained = vamp.TotalBloodDrank;
+                mostDrainedName = _objective.GetTitle((mindId, mind), metaData.EntityName);
             }
         }
 
         var sb = new StringBuilder();
-        sb.AppendLine(Loc.GetString($"roundend-prepend-changeling-absorbed{(!string.IsNullOrWhiteSpace(mostAbsorbedName) ? "-named" : "")}", ("name", mostAbsorbedName), ("number", mostAbsorbed)));
-        sb.AppendLine(Loc.GetString($"roundend-prepend-changeling-stolen{(!string.IsNullOrWhiteSpace(mostStolenName) ? "-named" : "")}", ("name", mostStolenName), ("number", mostStolen)));
+        sb.AppendLine(Loc.GetString($"roundend-prepend-vampire-drained{(!string.IsNullOrWhiteSpace(mostDrainedName) ? "-named" : "")}", ("name", mostDrainedName), ("number", mostDrained)));
 
         args.Text = sb.ToString();
     }*/
