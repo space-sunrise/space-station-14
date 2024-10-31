@@ -100,6 +100,12 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
             var randomEscapeObjective = rule.EscapeObjectives[random.Next(rule.EscapeObjectives.Count)];
             _mind.TryAddObjective(mindId, mind, randomEscapeObjective);
         }
+        
+        if (rule.StealObjectives.Count > 0)
+        {
+            var randomEscapeObjective = rule.StealObjectives[random.Next(rule.StealObjectives.Count)];
+            _mind.TryAddObjective(mindId, mind, randomEscapeObjective);
+        }
 
         return true;
     }
