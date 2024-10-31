@@ -481,3 +481,30 @@
   provider: sunrise
   roundStart: true
   sponsorOnly: false
+
+- type: ttsVoice
+  id: HearthstoneUter
+  name: tts-voice-name-hearthstone-uter
+  sex: Male
+  speaker: hearthstone_uter
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: false
+
+- type: ttsVoice
+  id: HearthstoneMalfurion
+  name: tts-voice-name-hearthstone-malfurion
+  sex: Male
+  speaker: hearthstone_malfurion
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: false
+
+- type: ttsVoice
+  id: HearthstoneGulDan
+  name: tts-voice-name-hearthstone-gul-dan
+  sex: Male
+  speaker: hearthstone_gul_dan
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: false
