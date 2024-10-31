@@ -358,6 +358,9 @@
     fireCost: 220
   - type: Appearance
   - type: AmmoCounter
+  - type: Battery
+    maxCharge: 220
+    startingCharge: 220
 
 - type: entity
   id: WeaponMechCombatFlashbangLauncher
