@@ -34,5 +34,5 @@ public sealed partial class VampireRuleComponent : Component
         "CaptainIDVampireStealObjective",
         "CaptainJetpackVampireStealObjective",
         "CaptainGunVampireStealObjective"
-    }
+    };
 }
