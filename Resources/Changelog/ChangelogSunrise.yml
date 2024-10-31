@@ -5491,3 +5491,14 @@
   id: 377
   time: '2024-10-30T17:14:26.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/562
+- author: kanopus7
+  changes:
+  - message: "\u0426\u0435\u043D\u0430 \u043D\u0430 \u044F\u0449\u0438\u043A MP5 \u043F\
+      \u043E\u0432\u044B\u0448\u0435\u043D\u0430 \u0434\u043E 15000."
+    type: Tweak
+  - message: "\u0426\u0435\u043D\u0430 \u043D\u0430 \u044F\u0449\u0438\u043A M16A4\
+      \ \u043F\u043E\u0432\u044B\u0448\u0435\u043D\u0430 \u0434\u043E 30000."
+    type: Tweak
+  id: 378
+  time: '2024-10-31T15:53:06.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/578
