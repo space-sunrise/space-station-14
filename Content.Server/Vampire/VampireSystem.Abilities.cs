@@ -643,13 +643,13 @@ public sealed partial class VampireSystem
         }
 
         var volumeToConsume = (FixedPoint2) Math.Min((float) victimBloodRemaining.Value, args.Volume);
-        var volumeToConsume2 = (FixedPoint2) Math.Min((float) victimBloodRemaining.Value, volumeToConsume * 4);
+        var volumeToDrain = (FixedPoint2) Math.Min((float) victimBloodRemaining.Value, args.Volume * 4);
 
         //Slurp
         _audio.PlayPvs(entity.Comp.BloodDrainSound, entity.Owner, AudioParams.Default.WithVolume(-3f));
 
         //Spill an extra 5% on the floor
-        _blood.TryModifyBloodLevel(args.Target.Value, -(volumeToConsume2 * 0.05));
+        _blood.TryModifyBloodLevel(args.Target.Value, -(volumeToDrain * 0.05));
 
         //Thou shall not feed upon the blood of the holy
         //TODO: Replace with raised event?
