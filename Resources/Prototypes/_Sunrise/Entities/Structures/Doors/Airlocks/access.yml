@@ -24,7 +24,7 @@
   - type: ContainerFill
     containers:
       board: [ DoorElectronicsBlueShield ]
-      
+
 - type: entity
   parent: AirlockCommandGlass
   id: AirlockNtrepGlassLocked
@@ -59,8 +59,8 @@
   name: CentCom Hatch
   suffix: CentCom, Locked
   components:
-    - type: AccessReader
-      access: [["CentralCommand"]]
+  - type: AccessReader
+    access: [["CentralCommand"]]
 
 - type: entity
   parent: AirlockHatchMaintenance
@@ -68,8 +68,8 @@
   name: Maintenance Hatch
   suffix: Maint, Locked
   components:
-    - type: AccessReader
-      access: [["Maintenance"]]
+  - type: AccessReader
+    access: [["Maintenance"]]
 
 - type: entity
   parent: AirlockHatch
@@ -77,28 +77,26 @@
   name: Syndicate Hatch
   suffix: Syndicate, Locked
   components:
-    - type: AccessReader
-      access: [["SyndicateAgent"]]
+  - type: AccessReader
+    access: [["SyndicateAgent"]]
 
 #DoubleAirlocks
 
 - type: entity
   parent: DoubleGlassAirlock
-  id: DoubleGlassAirlockCentcomLocked
-  name: Double Glass Airlock
-  suffix: CentCom, Locked
+  id: DoubleGlassAirlockBasicCentralCommandLocked
+  suffix: Central Command, Locked
   components:
-    - type: AccessReader
-      access: [["CentralCommand"]]
+  - type: AccessReader
+    access: [["CentralCommand"]]
 
 - type: entity
   parent: DoubleGlassAirlock
-  id: DoubleGlassAirlockSyndicateLocked
-  name: Double Glass Airlock
+  id: DoubleGlassAirlockBasicSyndicateLocked
   suffix: Syndicate, Locked
   components:
-    - type: AccessReader
-      access: [["SyndicateAgent"]]
+  - type: AccessReader
+    access: [["SyndicateAgent"]]
 
 # Code equipment
 
