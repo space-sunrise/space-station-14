@@ -29,6 +29,7 @@ namespace Content.Server.Holiday
             Subs.CVar(_configManager, CCVars.HolidaysEnabled, OnHolidaysEnableChange);
             SubscribeLocalEvent<GameRunLevelChangedEvent>(OnRunLevelChanged);
             SubscribeLocalEvent<HolidayVisualsComponent, ComponentInit>(OnVisualsInit);
+            SubscribeLocalEvent<PointLightComponent, MapInitEvent>(OnLightMapInit);
         }
 
         public void RefreshCurrentHolidays()
@@ -67,14 +68,6 @@ namespace Content.Server.Holiday
             foreach (var holiday in _currentHolidays)
             {
                 holiday.Celebrate();
-                if (holiday.ID == "Helloween")
-                {
-                    var query = EntityManager.EntityQuery<PointLightComponent>();
-                    foreach (var light in query)
-                    {
-                        _point.SetEnergy(light.Owner, light.Energy / 3, light);
-                    }
-                }
             }
         }
 
@@ -113,6 +106,17 @@ namespace Content.Server.Holiday
                     break;
                 case GameRunLevel.PostRound:
                     break;
+            }
+        }
+        
+        private void OnLightMapInit(Entity<PointLightComponent> ent, ref MapInitEvent args)
+        {
+            foreach (var holiday in _currentHolidays)
+            {
+                if (holiday.ID == "Helloween")
+                {
+                    _point.SetEnergy(ent, ent.Comp.Energy / 3, ent.Comp);
+                }
             }
         }
 
