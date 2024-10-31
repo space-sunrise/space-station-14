@@ -1,39 +1,4 @@
 ﻿Entries:
-- author: themias
-  changes:
-  - message: Butter can be sliced, cookie and toast recipes now use butter slices.
-    type: Tweak
-  - message: Chefvend butter reduced from 4 to 3.
-    type: Tweak
-  id: 7065
-  time: '2024-08-08T23:32:42.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/30789
-- author: EmoGarbage404
-  changes:
-  - message: You should have significantly less friction when moving in space.
-    type: Tweak
-  id: 7066
-  time: '2024-08-09T04:52:25.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/29383
-- author: Plykiya
-  changes:
-  - message: Hardsuits and EVA suits now count as protection for unscrewing lightbulbs.
-    type: Add
-  - message: More gloves were given the ability to unscrew light bulbs.
-    type: Add
-  - message: Behonkers no longer hurt you when melee attacking them or interacting
-      with them.
-    type: Remove
-  id: 7067
-  time: '2024-08-09T05:32:41.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/30244
-- author: Ian321
-  changes:
-  - message: The warden is now an important job.
-    type: Tweak
-  id: 7068
-  time: '2024-08-09T05:45:51.0000000+00:00'
-  url: https://github.com/space-wizards/space-station-14/pull/30745
 - author: slarticodefast
   changes:
   - message: Added tooltips to the agent ID job icons
@@ -3945,3 +3910,36 @@
   id: 7564
   time: '2024-10-30T09:15:30.0000000+00:00'
   url: https://github.com/space-wizards/space-station-14/pull/32720
+- author: Boaz1111
+  changes:
+  - message: Pill bottles can now only store pills.
+    type: Tweak
+  id: 7565
+  time: '2024-10-31T10:56:07.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/33074
+- author: Jarmer123
+  changes:
+  - message: You can now find a spare bible in the PietyVend
+    type: Add
+  id: 7566
+  time: '2024-10-31T13:26:46.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/32363
+- author: justinbrick
+  changes:
+  - message: Added a pop-up notification when extra items are dropped while unequipping
+      something.
+    type: Tweak
+  id: 7567
+  time: '2024-10-31T14:12:26.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/33078
+- author: BramvanZijp
+  changes:
+  - message: The maximum amount of programs that can be installed on a PDA has been
+      increased from 5 to 8
+    type: Tweak
+  - message: The Detective and Head of Security now get the logprobe program pre-installed
+      on their PDA.
+    type: Tweak
+  id: 7568
+  time: '2024-10-31T14:53:38.0000000+00:00'
+  url: https://github.com/space-wizards/space-station-14/pull/32601
