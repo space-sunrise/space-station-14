@@ -20,8 +20,6 @@ public sealed partial class VampireComponent : Component
     public static readonly string SleepStatusEffectProto = "ForcedSleep";
     [ValidatePrototypeId<EmotePrototype>]
     public static readonly string ScreamEmoteProto = "Scream";
-    [ValidatePrototypeId<EntityPrototype>]
-    public static readonly string HeirloomProto = "HeirloomVampire";
     [ValidatePrototypeId<CurrencyPrototype>]
     public static readonly string CurrencyProto = "BloodEssence";
     
