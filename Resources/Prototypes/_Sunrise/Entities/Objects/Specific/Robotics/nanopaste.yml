@@ -15,6 +15,7 @@
     heldPrefix: nanopaste
   - type: Healing
     damageContainers:
+    - Mech
     - Synth
     - Silicon
     damage:

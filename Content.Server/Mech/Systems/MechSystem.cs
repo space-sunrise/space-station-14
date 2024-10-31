@@ -274,12 +274,13 @@ public sealed partial class MechSystem : SharedMechSystem
 
     private void OnDamageChanged(EntityUid uid, MechComponent component, DamageChangedEvent args)
     {
-        /*
         if (TryComp<DamageableComponent>(uid, out var damage))
         {
-            PlayCritSound(uid, component, damage);
+            component.Integrity = damage.TotalDamage;
+            if (_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var critThreshold) && critThreshold != null)
+                component.MaxIntegrity = critThreshold.Value;
         }
-        */
+        
         if (args.DamageIncreased &&
             args.DamageDelta != null &&
             component.PilotSlot.ContainedEntity != null)
