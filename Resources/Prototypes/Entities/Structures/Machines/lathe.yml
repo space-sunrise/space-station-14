@@ -199,13 +199,10 @@
       - WetFloorSign
       - ClothingHeadHatCone
       - FreezerElectronics
-      - Flare
       - ClothingHeadHelmetPubgMore  # Sunrise-edit
-
   - type: EmagLatheRecipes
     emagStaticRecipes:
       - BoxLethalshot
-      - BoxShotgunFlare
       - BoxShotgunSlug
       - CombatKnife
       - MagazineBoxLightRifle
@@ -361,11 +358,15 @@
       - DeviceQuantumSpinInverter
       - EnergyDomeDirectionalTurtle
       # Sunrise-start
+      - MechPhasicScanningModule
       - HandCraftedNVD
       - BasicNVD
       - PowerCageHigh
       - PowerCageMedium
       - PowerCageSmall
+      - ClothingShoesBootsMagCombat
+      - CargoSuit
+      - BluespaceBox
       # Sunrise-end
   - type: EmagLatheRecipes
     emagDynamicRecipes:
@@ -524,6 +525,9 @@
       - GygaxCentralElectronics
       - GygaxPeripheralsElectronics
       - GygaxTargetingElectronics
+      - PhazonCentralElectronics
+      - PhazonPeripheralsElectronics
+      - PhazonTargetingElectronics
       - DurandCentralElectronics
       - DurandPeripheralsElectronics
       - DurandTargetingElectronics
@@ -718,6 +722,13 @@
     - GygaxLLeg
     - GygaxRArm
     - GygaxRLeg
+    - PhazonHarness
+    - PhazonArmor
+    - PhazonHead
+    - PhazonLArm
+    - PhazonLLeg
+    - PhazonRArm
+    - PhazonRLeg
     - MechEquipmentDrill
     - MechEquipmentDrillDiamond
     - MechEquipmentKineticAccelerator
@@ -817,7 +828,6 @@
     runningState: icon
     staticRecipes:
       - BoxLethalshot
-      - BoxShotgunFlare
       - BoxShotgunPractice
       - BoxShotgunSlug
       - ClothingEyesHudSecurity
@@ -933,6 +943,7 @@
       - WeaponLaserCannon
       - WeaponLaserCarbine
       - WeaponXrayCannon
+    # Sunrise-Start
       - WeaponMechCombatImmolationGun # Sunrise - Mechs
       - WeaponMechCombatSolarisLaser # Sunrise - Mechs
       - WeaponMechCombatFiredartLaser # Sunrise - Mechs
@@ -946,6 +957,22 @@
       - WeaponEnergyGunMini   # Sunrise - Miniature Energy Gun
       - WeaponEnergyGunPistol # Sunrise - PDW-9 Energy Pistol
       - WeaponGunLaserCarbineAutomatic # Sunrise - IK-60 Laser Carbine
+      - ClothingShoesBootsMagCombat # Sunrise - Combat Magboots
+      - BaseMagazinePistolCaselessRifleExtended
+      - MagazinePPSH41Extended
+      - MagazineMP5Extended
+      - MagazineMP7Extended
+      - MagazineP90Extended
+      - MagazineM16A4Extended
+      - MagazineAR18Extended
+      - MagazineM28Extended
+      - MagazineG36Extended
+      - MagazineFamasExtended
+      - MagazineV31Extended
+      - MagazineBauer127Extended
+      - MagazineBR64Extended
+      - MagazineDragunovExtended
+    # Sunrise-End
   - type: MaterialStorage
     whitelist:
       tags:
@@ -979,7 +1006,6 @@
       runningState: icon
       staticRecipes:
         - BoxLethalshot
-        - BoxShotgunFlare
         - BoxShotgunSlug
         - BoxShellTranquilizer
         - MagazineBoxLightRifle
@@ -1300,8 +1326,6 @@
   - type: Machine
     board: BiogeneratorMachineCircuitboard
   - type: MaterialStorage
-    insertOnInteract: false
-    canEjectStoredMaterials: false
   - type: ProduceMaterialExtractor
   - type: ItemSlots
     slots:

@@ -107,3 +107,23 @@
     zeroVisible: false
   - type: Appearance
 
+- type: entity
+  parent: MagazineDragunov
+  id: MagazineDragunovExtended
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 25
+
+- type: entity
+  parent: MagazineBR64
+  id: MagazineBR64Extended
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 25
+
+- type: entity
+  parent: MagazineBauer127
+  id: MagazineBauer127Extended
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 15

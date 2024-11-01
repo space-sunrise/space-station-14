@@ -188,6 +188,43 @@
         },
         {
             "name": "plushie-peacemaker"
+        },
+        {
+            "name": "plushie-eblan"
+        },
+        {
+            "name": "plushie-klim"
+        },
+        {
+            "name": "plushie-melania"
+        },
+        {
+            "name": "plushie-okobius"
+        },
+        {
+            "name": "plushie-vyacheslav"
+        },
+        {
+            "name": "plushie-lu"
+        },
+        {
+            "name": "plushie-agata"
+        },
+        {
+            "name": "plushie-milos-tan"
+        },
+        {
+            "name": "syndie-visor",
+            "delays": [
+                [
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3,
+                    0.3
+                ]
+            ]
         }
     ]
 }

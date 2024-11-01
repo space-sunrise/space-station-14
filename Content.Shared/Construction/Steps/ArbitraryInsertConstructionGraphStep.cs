@@ -39,35 +39,15 @@ namespace Content.Shared.Construction.Steps
                 {
                     if (item.TryGetComponent<TagComponent>(out var entityTag) && entityManager.System<TagSystem>().HasTag(entityTag, Tag))
                     {
-                        //Sunrise-start
-                        if(item.Name == "левая рука киборга-официанта")
-                        {
-                            nameLocale = "левая рука киборга";
-                        }
-                        else if(item.Name == "голова киборга-уборщика")
-                        {
-                            nameLocale = "голова киборга";
-                        }
-                        else
-                        {
-                            nameLocale = item.Name;
-                        }
-                        //Sunrise-End
+                        nameLocale = item.Name;
                         break;
                     }
                 }
             }
-
-            if (nameLocale == null)
-            {
-                var formattedName = Name.Replace(" ", "-").ToLower();
-                nameLocale = Loc.GetString($"material-{formattedName}-name");
-            }
-
             return new ConstructionGuideEntry
             {
                 Localization = "construction-presenter-arbitrary-step",
-                Arguments = new (string, object)[] { ("name", nameLocale ?? Name) },
+                Arguments = new (string, object)[] { ("name", Loc.TryGetString($"{Name}", out var translatedname) ? translatedname : nameLocale ?? Name) },
                 Icon = Icon,
             };
         }

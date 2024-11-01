@@ -146,6 +146,42 @@
 
 - type: Tag
   id: BorgMedicalTorso
+  
+- type: Tag
+  id: BorgPeaceHead
+
+- type: Tag
+  id: BorgPeaceLArm
+
+- type: Tag
+  id: BorgPeaceLLeg
+
+- type: Tag
+  id: BorgPeaceRArm
+
+- type: Tag
+  id: BorgPeaceRLeg
+
+- type: Tag
+  id: BorgPeaceTorso
+  
+- type: Tag
+  id: BorgClownHead
+
+- type: Tag
+  id: BorgClownLArm
+
+- type: Tag
+  id: BorgClownLLeg
+
+- type: Tag
+  id: BorgClownRArm
+
+- type: Tag
+  id: BorgClownRLeg
+
+- type: Tag
+  id: BorgClownTorso
 
 - type: Tag
   id: BorgMiningHead
@@ -772,6 +808,33 @@
 
 - type: Tag
   id: GygaxRLeg
+  
+- type: Tag
+  id: PhazonArmor
+
+- type: Tag
+  id: PhazonCentralControlModule
+
+- type: Tag
+  id: PhazonPeripheralsControlModule
+
+- type: Tag
+  id: PhazonTargetingControlModule
+
+- type: Tag
+  id: PhazonHead
+
+- type: Tag
+  id: PhazonLArm
+
+- type: Tag
+  id: PhazonLLeg
+
+- type: Tag
+  id: PhazonRArm
+
+- type: Tag
+  id: PhazonRLeg
 
 - type: Tag
   id: HudMedical
@@ -1013,6 +1076,9 @@
 
 - type: Tag
   id: MechThruster
+  
+- type: Tag
+  id: MechPhasicScanningModule
 
 - type: Tag
   id: Medal
@@ -1070,6 +1136,9 @@
 
 - type: Tag
   id: NoBlockAnchoring
+
+- type: Tag
+  id: NoConsoleSound
 
 - type: Tag
   id: NozzleBackTank
@@ -1151,6 +1220,9 @@
 
 - type: Tag
   id: Plunger
+
+- type: Tag
+  id: PlushieCarp
 
 - type: Tag
   id: PlushieGhost
@@ -1393,6 +1465,9 @@
 
 - type: Tag
   id: Syringe
+
+- type: Tag
+  id: SyringeGunAmmo
 
 - type: Tag
   id: Spellbook

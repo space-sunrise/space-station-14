@@ -7,15 +7,15 @@
     issuer: EvilTwinCorp
   - type: RoleRequirement
     roles:
-      components:
+      mindRoles:
       - EvilTwinRole
 
 - type: entity
   categories: [ HideSpawnMenu ]
   parent: [BaseEvilTwinObjective, BaseLivingObjective]
   id: EscapeShuttleTwinObjective
-  name: Улететь на эвакуационном шаттле
-  description: Успешно заменив свою цель улетите со станции.
+  name: Escape to centcomm alive and unrestrained.
+  description: Successfully replace your target and escape to centcomm.
   components:
     - type: Objective
       difficulty: 1.0
@@ -28,8 +28,8 @@
   categories: [ HideSpawnMenu ]
   parent: [BaseEvilTwinObjective, BaseKillObjective]
   id: KillTwinObjective
-  name: Устранить оригинал
-  description: Устраните оригинал и замените его.
+  name: Eliminate the original
+  description: Eliminate the original and replace it.
   components:
     - type: Objective
       difficulty: 1.75

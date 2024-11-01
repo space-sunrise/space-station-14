@@ -13,16 +13,16 @@
   categories: [ HideSpawnMenu ]
   parent: BaseBulletTrigger
   id: BulletRocket20
-  name: bullet (рельсотрон)
+  name: bullet (railgun)
   components:
   - type: Projectile
     damage:
       types:
-        Piercing: 10
+        Piercing: 1
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    maxIntensity: 3
+    maxIntensity: 1
     intensitySlope: 1
     totalIntensity: 1
     maxTileBreak: 0

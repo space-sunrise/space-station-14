@@ -133,13 +133,13 @@
       path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
     damage:
       types:
-        Piercing: 15
-        Slash: 15
+        Piercing: 25 #Sunrise-edit
+        Slash: 25 #Sunrise-edit
   - type: Devourer
     foodPreference: Humanoid
     shouldStoreDevoured: true
     chemical: Ichor
-    healRate: 15.0
+    healRate: 20.0 #Sunrise-edit
     whitelist:
       components:
       - MobState
@@ -159,6 +159,12 @@
   - type: NightVision
     isToggle: true
     color: "#808080"
+  - type: Reflect
+    reflectProb: 0.25
+    spread: 45
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Dragon
   # Sunrise-End
 
 - type: entity

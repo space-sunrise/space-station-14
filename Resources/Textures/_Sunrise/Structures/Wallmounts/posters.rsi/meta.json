@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "license": "CLA",
+  "copyright": "Made for SUNRISE    sunriseposter1_contraband made by discord: pressf6151.      sunriseposter1_legit made by discord: rinary.",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "sunriseposter1_contraband"
+    },
+    {
+      "name": "sunriseposter1_legit"
+    }
+  ]
+}

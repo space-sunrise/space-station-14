@@ -206,6 +206,13 @@
   - JumpskirtSeniorPhysician
 
 - type: loadoutGroup
+  id: SeniorPhysicianBelt
+  name: loadout-group-senior-physician-belt
+  loadouts:
+  - BeltMedicalSeniorPhysician
+  - ChemBagSeniorPhysician
+
+- type: loadoutGroup
   id: SeniorEngineerJumpsuit
   name: loadout-group-senior-engineer-jumpsuit
   loadouts:
@@ -301,3 +308,4 @@
   name: loadout-group-adj-outerClothing
   loadouts:
   - AdjutantCoat
+

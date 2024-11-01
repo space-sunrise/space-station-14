@@ -24,7 +24,7 @@
           steps:
             - component: ComputerBoard
               store: board
-              name: any computer circuit board
+              name: step-computer-circuit-board-name
               icon:
                 sprite: "Objects/Misc/module.rsi"
                 state: "id_mod"

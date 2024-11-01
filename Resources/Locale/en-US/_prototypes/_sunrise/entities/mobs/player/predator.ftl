@@ -1,2 +1,2 @@
-ent-MobPredator = Хищник
+ent-MobPredator = Predator
     .desc = { ent-BaseMobPredator.desc }

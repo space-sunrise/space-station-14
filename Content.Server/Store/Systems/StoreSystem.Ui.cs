@@ -161,8 +161,8 @@ public sealed partial class StoreSystem
             {
                 return;
             }
-        }
 
+        }
         if (!IsOnStartingMap(uid, component))
             component.RefundAllowed = false;
 
@@ -180,7 +180,8 @@ public sealed partial class StoreSystem
             RaiseLocalEvent(buyer, ref ev);
             // Sunrise-End
        
- }
+        }
+
         //spawn entity
         if (listing.ProductEntity != null)
         {
@@ -257,6 +258,7 @@ public sealed partial class StoreSystem
 
             if (upgradeActionId != null)
                 HandleRefundComp(uid, component, upgradeActionId.Value);
+
         }
 
         if (listing.ProductEvent != null)
@@ -266,6 +268,7 @@ public sealed partial class StoreSystem
             else
                 RaiseLocalEvent(buyer, listing.ProductEvent);
         }
+
 
         //log dat shit.
         _admin.Add(LogType.StorePurchase,

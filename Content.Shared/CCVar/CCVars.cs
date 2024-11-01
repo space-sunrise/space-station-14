@@ -32,6 +32,21 @@ namespace Content.Shared.CCVar
         public static readonly CVarDef<string> DefaultGuide =
             CVarDef.Create("server.default_guide", "NewPlayer", CVar.REPLICATED | CVar.SERVER);
 
+        /// <summary>
+        /// If greater than 0, automatically restart the server after this many minutes of uptime.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// This is intended to work around various bugs and performance issues caused by long continuous server uptime.
+        /// </para>
+        /// <para>
+        /// This uses the same non-disruptive logic as update restarts,
+        /// i.e. the game will only restart at round end or when there is nobody connected.
+        /// </para>
+        /// </remarks>
+        public static readonly CVarDef<int> ServerUptimeRestartMinutes =
+            CVarDef.Create("server.uptime_restart_minutes", 0, CVar.SERVERONLY);
+
         /*
          * Ambience
          */
@@ -435,6 +450,12 @@ namespace Content.Shared.CCVar
         /// </summary>
         public static readonly CVarDef<float> GameEntityMenuLookup =
             CVarDef.Create("game.entity_menu_lookup", 0.25f, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+        /// <summary>
+        /// Should the clients window show the server hostname in the title?
+        /// </summary>
+        public static readonly CVarDef<bool> GameHostnameInTitlebar =
+            CVarDef.Create("game.hostname_in_titlebar", true, CVar.SERVER | CVar.REPLICATED);
 
         /*
          * Discord
@@ -2346,6 +2367,19 @@ namespace Content.Shared.CCVar
 
         public static readonly CVarDef<bool> HoldLookUp =
             CVarDef.Create("rest.hold_look_up", true, CVar.CLIENT | CVar.ARCHIVE);
+
+        #endregion
+
+        #region Mood System
+
+        public static readonly CVarDef<bool> MoodEnabled =
+            CVarDef.Create("mood.enabled", true, CVar.SERVER);
+
+        public static readonly CVarDef<bool> MoodIncreasesSpeed =
+            CVarDef.Create("mood.increases_speed", true, CVar.SERVER);
+
+        public static readonly CVarDef<bool> MoodDecreasesSpeed =
+            CVarDef.Create("mood.decreases_speed", true, CVar.SERVER);
 
         #endregion
     }

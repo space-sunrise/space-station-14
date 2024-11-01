@@ -31,6 +31,7 @@
   - type: RandomSpawner
     offset: 0
     prototypes:
+      - PosterContrabandAriralInSpace # Sunrise-edit
       - PosterContrabandFreeTonto
       - PosterContrabandAtmosiaDeclarationIndependence
       - PosterContrabandFunPolice
@@ -42,7 +43,6 @@
       - PosterContrabandMissingGloves
       - PosterContrabandHackingGuide
       - PosterContrabandRIPBadger
-      - PosterAriralInSpace # Sunrise-edit
       - PosterContrabandAmbrosiaVulgaris
       - PosterContrabandDonutCorp
       - PosterContrabandEAT
@@ -108,6 +108,7 @@
   - type: RandomSpawner
     offset: 0
     prototypes:
+      - PosterLegitAIOverseer #Sunrise-edit
       - PosterLegitHereForYourSafety
       - PosterLegitNanotrasenLogo
       - PosterLegitCleanliness
@@ -150,4 +151,10 @@
       - PosterLegitPeriodicTable
       - PosterLegitRenault
       - PosterLegitNTTGC
+      - PosterLegitSafetyMothDelam
+      - PosterLegitSafetyMothEpi
+      - PosterLegitSafetyMothPiping
+      - PosterLegitSafetyMothMeth
+      - PosterLegitSafetyMothHardhat
+      - PosterLegitSafetyMothSSD
     chance: 1

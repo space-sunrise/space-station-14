@@ -1,33 +1,33 @@
 - type: construction
-  name: ящик для скота  # Sunrise-recipes
+  name: livestock crate
   id: CrateLivestock
   graph: CrateLivestock
   startNode: start
   targetNode: cratelivestock
   category: construction-category-storage
-  description: Деревянный ящик для содержания скота.  # Sunrise-recipes
+  description: A wooden crate for holding livestock.
   icon: { sprite: Structures/Storage/Crates/livestock.rsi, state: base }
   objectType: Structure
 
 - type: construction
-  name: стальной ящик  # Sunrise-recipes
+  name: steel crate
   id: CrateGenericSteel
   graph: CrateGenericSteel
   startNode: start
   targetNode: crategenericsteel
   category: construction-category-storage
-  description: Металлический ящик для хранения вещей.  # Sunrise-recipes
+  description: A metal crate for storing things.
   icon: { sprite: Structures/Storage/Crates/generic.rsi, state: icon }
   objectType: Structure
 
 - type: construction
-  name: защищенный ящик  # Sunrise-recipes
+  name: secure crate
   id: CrateSecure
   graph: CrateSecure
   startNode: start
   targetNode: cratesecure
   category: construction-category-storage
-  description: Надежный металлический ящик для хранения вещей. Не требует специального доступа, но доступ можно настроить.  # Sunrise-recipes
+  description: A secure metal crate for storing things. Requires no special access, can be configured with an Access Configurator.
   icon: { sprite: Structures/Storage/Crates/secure.rsi, state: icon }
   objectType: Structure
 
@@ -43,35 +43,35 @@
   objectType: Structure
 
 - type: construction
-  name: пластиковый ящик  # Sunrise-recipes
+  name: plastic crate
   id: CratePlastic
   graph: CratePlastic
   startNode: start
   targetNode: crateplastic
   category: construction-category-storage
-  description: Пластиковый ящик для хранения вещей.  # Sunrise-recipes
+  description: A plastic crate for storing things.
   icon: { sprite: Structures/Storage/Crates/plastic.rsi, state: icon }
   objectType: Structure
 
 - type: construction
-  name: картонная коробка  # Sunrise-recipes
+  name: cardboard box
   id: BigBox
   graph: BaseBigBox
   startNode: start
   targetNode: basebigbox
   category: construction-category-storage
-  description: Большая коробка для хранения вещей или для того, чтобы прятаться.  # Sunrise-recipes
+  description: A big box for storing things or hiding in.
   icon: { sprite: Structures/Storage/closet.rsi, state: cardboard }
   objectType: Structure
 
 - type: construction
-  name: картонная коробка  # Sunrise-recipes
+  name: cardboard box
   id: BoxCardboard
   graph: BoxCardboard
   startNode: start
   targetNode: boxcardboard
   category: construction-category-storage
-  description: Небольшая коробка для хранения вещей.  # Sunrise-recipes
+  description: A small box for storing things.
   icon: { sprite: Objects/Storage/boxes.rsi, state: box }
   objectType: Item
 
@@ -83,18 +83,18 @@
   targetNode: foodboxpizza
   category: construction-category-storage
   description: A box for pizza.
-  icon:
+  icon: 
     sprite: Objects/Consumable/Food/Baked/pizza.rsi
     state: box
   objectType: Item
 
 - type: construction
-  name: гроб  # Sunrise-recipes
+  name: coffin
   id: CrateCoffin
   graph: CrateCoffin
   startNode: start
   targetNode: cratecoffin
   category: construction-category-storage
-  description: Гроб для хранения трупов.  # Sunrise-recipes
+  description: A coffin for storing corpses.
   icon: { sprite: Structures/Storage/Crates/coffin.rsi, state: base }
   objectType: Structure

@@ -23,3 +23,10 @@
   - type: StealCondition
     stealGroup: WeaponEnergyGunMultiphase
     owner: офицер "Синий Щит"
+
+- type: entity
+  parent: BaseCMOStealObjective
+  id: CMOAdvancedDefibrillatorStealObjective
+  components:
+  - type: StealCondition
+    stealGroup: AdvancedDefibrillator

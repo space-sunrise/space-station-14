@@ -142,7 +142,7 @@ public sealed class SunriseCCVars
      */
 
     public static readonly CVarDef<bool> ServersHubEnable =
-        CVarDef.Create("servers_hub.enable", true, CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("servers_hub.enable", false, CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     /// Список серверов отображаемых в хабе. Разделяются через запятую.
@@ -187,14 +187,23 @@ public sealed class SunriseCCVars
      * Lobby
      */
 
-    public static readonly CVarDef<string> LobbyBackground =
-        CVarDef.Create("lobby.background", "Art", CVar.CLIENTONLY | CVar.ARCHIVE);
+    public static readonly CVarDef<string> LobbyBackgroundType =
+        CVarDef.Create("lobby.background", "Random", CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<string> LobbyArt =
+        CVarDef.Create("lobby.art", "Random", CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<string> LobbyAnimation =
+        CVarDef.Create("lobby.animation", "Random", CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<string> LobbyParallax =
+        CVarDef.Create("lobby.parallax", "Random", CVar.CLIENTONLY | CVar.ARCHIVE);
 
     public static readonly CVarDef<float> LobbyOpacity =
         CVarDef.Create("lobby.lobby_opacity", 0.90f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     public static readonly CVarDef<string> ServerName =
-        CVarDef.Create("lobby.server_name", "SS14", CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("lobby.server_name", "Sunrise Station", CVar.SERVER | CVar.REPLICATED);
 
     /*
      * Planet Prison
@@ -277,4 +286,14 @@ public sealed class SunriseCCVars
      */
 
     public static readonly CVarDef<bool> ResetPresetAfterRestart = CVarDef.Create("game.reset_preset_after_restart", false);
+
+    /*
+     * Ban links.
+     */
+
+    public static readonly CVarDef<string> BanForumLink =
+        CVarDef.Create("cl.forum_link", "", CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
+
+    public static readonly CVarDef<string> BanDiscordLink =
+        CVarDef.Create("cl.discord_link", "", CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
 }

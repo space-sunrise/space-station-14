@@ -8,3 +8,7 @@ reagent-physical-desc-honkpower = Дрожащее
 reagent-physical-desc-strong-smell = Сильно пахнущее
 reagent-name-nastoyka-romashki = настойка ромашки
 reagent-desc-nastoyka-romashki = Лепестки ромашки настояные в спирте.
+reagent-name-h-32 = Н-32
+reagent-desc-h-32 = Реагент, разработанный в полевых условиях с повышенной радиацией
+reagent-name-celliminol = Целлиминол
+reagent-desc-celliminol = Химикат криогенного действия. Мощный химикат разработанный компанией.

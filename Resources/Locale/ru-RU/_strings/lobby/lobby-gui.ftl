@@ -1,4 +1,4 @@
-ui-lobby-welcome = Добро пожаловать в SS14
+ui-lobby-welcome = Добро пожаловать на { $name }
 ui-lobby-title = Лобби
 ui-lobby-ahelp-button = AHelp
 ui-lobby-options-button = Настройки

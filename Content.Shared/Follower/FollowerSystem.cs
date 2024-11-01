@@ -32,6 +32,7 @@ public sealed class FollowerSystem : EntitySystem
     [Dependency] private readonly INetManager _netMan = default!;
     [Dependency] private readonly ISharedAdminManager _adminManager = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
 
     public override void Initialize()
     {
@@ -246,6 +247,16 @@ public sealed class FollowerSystem : EntitySystem
 
         if (removeComp)
         {
+            // Sunrise-Edit
+            RemComp<BlockMovementComponent>(uid);
+
+            if (TryComp<FollowerComponent>(uid, out var followerComponent) && followerComponent.StopFollowActionEntity != null)
+            {
+                _actions.RemoveAction(uid, followerComponent.StopFollowActionEntity);
+                _actionContainer.RemoveAction(followerComponent.StopFollowActionEntity.Value);
+            }
+            // Sunrise-Edit
+
             RemComp<FollowerComponent>(uid);
             RemComp<OrbitVisualsComponent>(uid);
         }

@@ -21,7 +21,7 @@ public sealed partial class DragonRiftComponent : SharedDragonRiftComponent
     /// <summary>
     /// The maximum amount we can accumulate before becoming impervious.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), DataField("maxAccumuluator")] public float MaxAccumulator = 300f;
+    [ViewVariables(VVAccess.ReadWrite), DataField("maxAccumuluator")] public float MaxAccumulator = 200f;
 
     /// <summary>
     /// Accumulation of the spawn timer.
@@ -33,7 +33,7 @@ public sealed partial class DragonRiftComponent : SharedDragonRiftComponent
     /// How long it takes for a new spawn to be added.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField("spawnCooldown")]
-    public float SpawnCooldown = 30f;
+    public float SpawnCooldown = 20f;
 
     [ViewVariables(VVAccess.ReadWrite), DataField("spawn", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string SpawnPrototype = "MobCarpDragon";

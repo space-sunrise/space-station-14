@@ -1,7 +1,9 @@
 using Content.Shared.FixedPoint;
 using Content.Shared.Whitelist;
+using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
+using Robust.Shared.Serialization;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Mech.Components;
@@ -67,6 +69,12 @@ public sealed partial class MechComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public bool Broken = false;
+    
+    /// <summary>
+    /// Whether the mech has toggled lights.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+    public bool Lights = false;
 
     /// <summary>
     /// The slot the pilot is stored in.
@@ -119,7 +127,7 @@ public sealed partial class MechComponent : Component
     /// outside of the mech. You can exit instantly yourself.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public float ExitDelay = 3;
+    public float ExitDelay = 6;
 
     /// <summary>
     /// How long it takes to pull out the battery.
@@ -143,6 +151,21 @@ public sealed partial class MechComponent : Component
     /// </summary>
     [DataField]
     public List<EntProtoId> StartingEquipment = new();
+    
+    #region Sounds
+    [DataField]
+    public SoundSpecifier EnableLightSound = new SoundPathSpecifier("/Audio/_Sunrise/Mechs/mech_lights_enabled.ogg");
+    [DataField]
+    public SoundSpecifier DisableLightSound = new SoundPathSpecifier("/Audio/_Sunrise/Mechs/mech_lights_disabled.ogg");
+    [DataField]
+    public SoundSpecifier HelloSound = new SoundPathSpecifier("/Audio/_Sunrise/Mechs/mech_hello.ogg");
+    [DataField]
+    public SoundSpecifier Alert50 = new SoundPathSpecifier("/Audio/_Sunrise/Mechs/mech_alert_50.ogg");
+    [DataField]
+    public SoundSpecifier Alert25 = new SoundPathSpecifier("/Audio/_Sunrise/Mechs/mech_alert_25.ogg");
+    [DataField]
+    public SoundSpecifier Alert5 = new SoundPathSpecifier("/Audio/_Sunrise/Mechs/mech_alert_5.ogg");
+    #endregion
 
     #region Action Prototypes
     [DataField]
@@ -151,18 +174,21 @@ public sealed partial class MechComponent : Component
     public EntProtoId MechUiAction = "ActionMechOpenUI";
     [DataField]
     public EntProtoId MechEjectAction = "ActionMechEject";
+    [DataField]
+    public EntProtoId MechLightsAction = "ActionMechLights";
     #endregion
 
     #region Visualizer States
-    [DataField]
+    [DataField, AutoNetworkedField]
     public string? BaseState;
-    [DataField]
+    [DataField, AutoNetworkedField]
     public string? OpenState;
-    [DataField]
+    [DataField, AutoNetworkedField]
     public string? BrokenState;
     #endregion
 
     [DataField] public EntityUid? MechCycleActionEntity;
     [DataField] public EntityUid? MechUiActionEntity;
     [DataField] public EntityUid? MechEjectActionEntity;
+    [DataField] public EntityUid? MechLightsActionEntity;
 }

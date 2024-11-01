@@ -60,10 +60,11 @@
       components:
       - SurplusBundle
 
+# For the SIAR52
 - type: listing
   id: UplinkMagazinePistolSubMachineGunSIAR52
-  name: Магазин ПП (.25 безгильзовый)
-  description: Магазин ПП на 30 патронов. Совместим с SIAR-52.
+  name: uplink-magazine-siar52-name
+  description: uplink-magazine-siar52-desc
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/IAR-52mag.rsi, state: base }
   productEntity: MagazinePistolSubMachineGunSIAR52
   cost:
@@ -79,7 +80,7 @@
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: frag }
   productEntity: GrenadeFrag
   cost:
-    Telecrystal: 3
+    Telecrystal: 2
   categories:
   - UplinkAmmo
   conditions:
@@ -95,7 +96,23 @@
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: blast }
   productEntity: GrenadeBlast
   cost:
-    Telecrystal: 3
+    Telecrystal: 2
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: UplinkGrenadeEMP
+  name: uplink-grenade-emp-name
+  description: uplink-grenade-emp-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi, state: emp }
+  productEntity: GrenadeEMP
+  cost:
+    Telecrystal: 2
   categories:
   - UplinkAmmo
   conditions:
@@ -106,8 +123,8 @@
 
 - type: listing
   id: UplinkBoomboxBundle
-  name: Музыкальный набор синдиката
-  description: Содержит бумбокс синдиката и несколько кассет к нему.
+  name: uplink-music-boombox-name
+  description: uplink-music-boombox-desc
   productEntity: ClothingBackpackDuffelBoomboxBundle
   cost:
     Telecrystal: 4
@@ -116,7 +133,7 @@
 
 - type: listing
   id: UplinkClothingBackpackSyndie
-  name: Рюкзак Синдиката
+  name: uplink-clothing-backpack-syndie-name
   productEntity: ClothingBackpackSyndie
   cost:
     Telecrystal: 4
@@ -125,9 +142,9 @@
 
 - type: listing
   id: UplinkClothingBackpackSyndieAJ100Filled
-  name: Набор ПП AJ-100
+  name: uplink-clothing-backpack-syndie-aj100-name
   productEntity: ClothingBackpackSyndieAJ100Filled
-  description: Включает в себя пистолет-пулемёт AJ-100 и два магазина патрон.
+  description: uplink-clothing-backpack-syndie-aj100-desc
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/SMGs/AJ-100.rsi, state: icon }
   cost:
     Telecrystal: 20
@@ -141,7 +158,7 @@
 
 - type: listing
   id: UplinkWeaponSyndieLaserPistol
-  name: SAM-300
+  name: uplink-weapon-syndie-laser-pistol-name
   productEntity: WeaponSyndieLaserPistolBiocode
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Battery/syndielaserpistol.rsi, state: icon }
   cost:
@@ -156,9 +173,9 @@
 
 - type: listing
   id: UplinkClothingBackpackSyndieDL6902Filled
-  name: Набор DL6902
+  name: uplink-clothing-backpack-syndie-dl6902-name
   productEntity: ClothingBackpackSyndieDL6902Filled
-  description: Включает в себя пулемёт DL6902 и один магазин патрон.
+  description: uplink-clothing-backpack-syndie-dl6902-desc
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/LMGs/DL6902.rsi, state: icon }
   cost:
     Telecrystal: 30
@@ -172,9 +189,9 @@
 
 - type: listing
   id: UplinkClothingBackpackSyndieSIAR52Filled
-  name: Набор SIAR-52
+  name: uplink-clothing-backpack-syndie-siar52-name
   productEntity: ClothingBackpackSyndieSIAR52Filled
-  description: Включает в себя пулемёт SIAR-52 и два магазина патрон.
+  description: uplink-clothing-backpack-syndie-siar52-name
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/SMGs/IAR-52.rsi, state: icon }
   cost:
     Telecrystal: 20
@@ -188,7 +205,7 @@
 
 - type: listing
   id: UplinkWeaponLaserMinigun
-  name: UVL-21 «Виверна»
+  name: uplink-weapon-syndie-laser-minigun-name
   productEntity: WeaponLaserMinigunBiocode
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Battery/laserminigun.rsi, state: icon }
   cost:
@@ -203,7 +220,7 @@
 
 - type: listing
   id: UplinkWeaponSyndieLaserGun
-  name: S-13 «Чёрная мамба»
+  name: uplink-weapon-syndie-laser-gun-name
   productEntity: WeaponSyndieLaserGunBiocode
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Battery/syndielasergun.rsi, state: icon }
   cost:
@@ -274,8 +291,8 @@
 
 - type: listing
   id: UplinkReinforcementRadioSyndicateCyborgAssault
-  name: Телепорт подкрепления боевого борга синдиката
-  description: Отправляет вам в поддержку борга синдиката.
+  name: uplink-reinforcement-radio-syndicate-cyborg-assault-name
+  description: uplink-reinforcement-radio-syndicate-cyborg-assault-desc
   productEntity: ReinforcementRadioSyndicateCyborgAssault
   icon: { sprite: Mobs/Silicon/chassis.rsi, state: synd_sec }
   cost:
@@ -290,8 +307,8 @@
 
 - type: listing
   id: UplinkReinforcementRadioSyndicateCyborgHeavy
-  name:  Телепорт подкрепления тяжелого боевого борга синдиката
-  description: Отправляет вам в поддержку борга синдиката.
+  name: uplink-reinforcement-radio-syndicate-cyborg-heavy-name
+  description: uplink-reinforcement-radio-syndicate-cyborg-heavy-desc
   productEntity: ReinforcementRadioSyndicateCyborgHeavy
   icon: { sprite: _Sunrise/Mobs/Silicon/heavy_syndicate_borg.rsi, state: heavy }
   cost:
@@ -306,8 +323,8 @@
 
 - type: listing
   id: UplinkReinforcementRadioSyndicateCyborgSpider
-  name: Телепорт подкрепления диверсионного боевого борга синдиката
-  description: Отправляет вам в поддержку борга синдиката.
+  name: uplink-reinforcement-radio-syndicate-cyborg-spider-name
+  description: uplink-reinforcement-radio-syndicate-cyborg-spider-name
   productEntity: ReinforcementRadioSyndicateCyborgSpider
   icon: { sprite: _Sunrise/Mobs/Silicon/chassis.rsi, state: spider }
   cost:
@@ -322,8 +339,8 @@
 
 - type: listing
   id: UplinkReinforcementRadioSyndicateCyborgMedical
-  name: Телепорт подкрепления медицинского борга синдиката
-  description: Отправляет вам в поддержку борга синдиката.
+  name: uplink-reinforcement-radio-syndicate-cyborg-medical-name
+  description: uplink-reinforcement-radio-syndicate-cyborg-medical-desc
   productEntity: ReinforcementRadioSyndicateCyborgMedical
   icon: { sprite: Mobs/Silicon/chassis.rsi, state: synd_medical }
   cost:
@@ -338,8 +355,8 @@
 
 - type: listing
   id: UplinkReinforcementRadioSyndicateCyborgReaper
-  name: Телепорт подкрепления борга синдиката "Жнец"
-  description: Отправляет вам в поддержку борга синдиката.
+  name: uplink-reinforcement-radio-syndicate-cyborg-reaper-name
+  description: uplink-reinforcement-radio-syndicate-cyborg-reaper-desc
   productEntity: ReinforcementRadioSyndicateCyborgReaper
   icon: { sprite: _Sunrise/Mobs/Silicon/chassis.rsi, state: syndi_reaper }
   cost:
@@ -362,3 +379,269 @@
     Telecrystal: 12
   categories:
   - UplinkDisruption
+
+- type: listing
+  id: UplinkSyndicateRapier
+  name: uplink-syndicate-rapier-name
+  description: uplink-syndicate-rapier-desc
+  icon: { sprite: _Sunrise/Clothing/Belt/syndie_sheath.rsi, state: sheath-rapier }
+  productEntity: BeltSheathSyndieFilledBox
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 5
+  cost:
+    Telecrystal: 11
+  categories:
+  - UplinkWeaponry
+
+- type: listing
+  id: UplinkHypo
+  name: uplink-hypo-name
+  description: uplink-hypo-desc
+  icon: { sprite: /Textures/Objects/Specific/Medical/syndihypo.rsi, state: hypo }
+  productEntity: SyndiHypo
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkChemicals
+
+- type: listing
+  id: UplinkPolytrinicAcidChemistryBottle
+  name: uplink-polytrinic-acid-chemistry-bottle-name
+  description: uplink-polytrinic-acid-chemistry-bottle-desc
+  productEntity: PolytrinicAcidChemistryBottle
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 4
+  cost:
+    Telecrystal: 8
+  categories:
+  - UplinkChemicals
+
+- type: listing
+  id: UplinkExplosiveCollarsKit
+  name: uplink-exp-collars-kit-name
+  description: uplink-exp-collars-kit-desc
+  icon:
+    sprite: _Sunrise/Objects/Devices/red_collar.rsi
+    state: item
+  productEntity: ExpCollarsKit
+  cost:
+    Telecrystal: 10
+  categories:
+  - UplinkExplosives
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+
+- type: listing
+  id: UplinkBouquet
+  name: uplink-bouquet-name
+  description: uplink-bouquet-desc
+  icon:
+    sprite: _Sunrise/Objects/Misc/bouquet.rsi
+    state: item
+  productEntity: Bouquet
+  cost:
+    Telecrystal: 1
+  categories:
+  - UplinkPointless
+
+# Mechs
+
+- type: listing
+  id: UplinkDarkGygax
+  name: uplink-mech-teleporter-assault-name
+  description: uplink-mech-teleporter-assault-desc
+  icon: { sprite: /Textures/Objects/Specific/Mech/gygax.rsi, state: darkgygax }
+  productEntity: CrateCybersunDarkGygaxBundle
+  cost:
+    Telecrystal: 65
+  categories:
+  - UplinkMechs
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkDarkDurand
+  name: uplink-mech-teleporter-medium-name
+  description: uplink-mech-teleporter-medium-desc
+  icon: { sprite: /Textures/Objects/Specific/Mech/durand.rsi, state: darkdurand }
+  productEntity: CrateCybersunRoverBundle
+  cost:
+    Telecrystal: 75
+  categories:
+  - UplinkMechs
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkMauler
+  name: uplink-mech-teleporter-heavy-name
+  description: uplink-mech-teleporter-heavy-desc
+  icon: { sprite: /Textures/Objects/Specific/Mech/mecha.rsi, state: mauler }
+  productEntity: CrateCybersunMaulerBundle
+  cost:
+    Telecrystal: 90
+  categories:
+  - UplinkMechs
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+# Mechs equipment
+
+- type: listing
+  id: UplinkMechImmolationGun
+  name: uplink-mech-equipment-immolation-gun-name
+  description: uplink-mech-equipment-immolation-gun-desc
+  icon: { sprite: /Textures/Objects/Specific/Mech/mecha_equipment.rsi, state: mecha_laser }
+  productEntity: WeaponMechCombatImmolationGun
+  cost:
+    Telecrystal: 7
+  categories:
+  - UplinkMechs
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkMechTeslaCannon
+  name: uplink-mech-equipment-tesla-cannon-name
+  description: uplink-mech-equipment-tesla-cannon-desc
+  icon: { sprite: /Textures/Objects/Specific/Mech/mecha_equipment.rsi, state: mecha_wholegen }
+  productEntity: WeaponMechCombatTeslaCannon
+  cost:
+    Telecrystal: 15
+  categories:
+  - UplinkMechs
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkMechShotgun
+  name: uplink-mech-equipment-shotgun-name
+  description: uplink-mech-equipment-shotgun-desc
+  icon: { sprite: /Textures/Objects/Specific/Mech/mecha_equipment.rsi, state: mecha_scatter }
+  productEntity: WeaponMechCombatShotgun
+  cost:
+    Telecrystal: 7
+  categories:
+  - UplinkMechs
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkMechShotgunIncendiary
+  name: uplink-mech-equipment-shotgun-incendiary-name
+  description: uplink-mech-equipment-shotgun-incendiary-desc
+  icon: { sprite: /Textures/Objects/Specific/Mech/mecha_equipment.rsi, state: mecha_carbine }
+  productEntity: WeaponMechCombatShotgunIncendiary
+  cost:
+    Telecrystal: 12
+  categories:
+  - UplinkMechs
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkMechUltraRifle
+  name: uplink-mech-equipment-ultra-rifle-name
+  description: uplink-mech-equipment-ultra-rifle-desc
+  icon: { sprite: /Textures/Objects/Specific/Mech/mecha_equipment.rsi, state: mecha_uac2 }
+  productEntity: WeaponMechCombatUltraRifle
+  cost:
+    Telecrystal: 10
+  categories:
+  - UplinkMechs
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkMechIon
+  name: uplink-mech-equipment-ion-name
+  description: uplink-mech-equipment-ion-desc
+  icon: { sprite: /Textures/Objects/Specific/Mech/mecha_equipment.rsi, state: mecha_ion }
+  productEntity: WeaponMechCombatIon
+  cost:
+    Telecrystal: 12
+  categories:
+  - UplinkMechs
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkMechAMLG90
+  name: uplink-mech-equipment-amlg90-name
+  description: uplink-mech-equipment-amlg90-desc
+  icon: { sprite: /Textures/Objects/Specific/Mech/mecha_equipment.rsi, state: mecha_amlg90 }
+  productEntity: WeaponMechCombatAMLG90
+  cost:
+    Telecrystal: 15
+  categories:
+  - UplinkMechs
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkMechVindictor
+  name: uplink-mech-equipment-vindictor-name
+  description: uplink-mech-equipment-vindictor-desc
+  icon: { sprite: /Textures/_Sunrise/Objects/Specific/Mech/mecha_vindictor.rsi, state:  mecha_vindictor }
+  productEntity: WeaponMechCombatVindictor
+  cost:
+    Telecrystal: 30
+  categories:
+  - UplinkMechs
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkMechUVM31
+  name: uplink-mech-equipment-uvm31-name
+  description: uplink-mech-equipment-uvm31-desc
+  icon: { sprite: /Textures/_Sunrise/Objects/Specific/Mech/mecha_uvm31.rsi, state: mecha_uvm31 }
+  productEntity: WeaponMechCombatUVM31
+  cost:
+    Telecrystal: 20
+  categories:
+  - UplinkMechs
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
