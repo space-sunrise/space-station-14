@@ -229,22 +229,20 @@ public sealed class SynthSystem : SharedSynthSystem
         _doAfter.TryStartDoAfter(doAfterArgs);
     }
 
-    private bool TryGetBattery(EntityUid uid, [NotNullWhen(true)]  out EntityUid? powercell, [NotNullWhen(true)]  out BatteryComponent? batteryComponent)
+    private bool TryGetBattery(EntityUid uid, [NotNullWhen(true)] out EntityUid? powercell, [NotNullWhen(true)] out BatteryComponent? batteryComponent)
     {
         powercell = null;
         batteryComponent = null;
 
-        var bodyContainers = _bodySystem.GetBodyContainers(uid);
-        
         if (_containerSystem.TryGetContainer(uid, "cell_slot", out var container) && container.ContainedEntities.Count > 0)
         {
             foreach (var content in container.ContainedEntities)
             {
-                if (HasComp<PowerCellComponent>(content) && TryComp<BatteryComponent>(content, out var BatteryComp))
+                if (HasComp<PowerCellComponent>(content) && TryComp<BatteryComponent>(content, out var batteryComp))
                 {
                     powercell = content;
-                    batteryComponent = BatteryComp;
-                    
+                    batteryComponent = batteryComp;
+
                     return true;
                 }
             }
@@ -304,8 +302,11 @@ public sealed class SynthSystem : SharedSynthSystem
 
         var newEnergy = FixedPoint2.Clamp(component.Energy + delta, 0, component.MaxEnergy);
 
-        _batterySystem.SetCharge(battery.Value, newEnergy.Float(), batteryComponent);
-        component.Energy = newEnergy.Float();
+        if (newEnergy != component.Energy)
+        {
+            _batterySystem.SetCharge(battery.Value, newEnergy.Float(), batteryComponent);
+            component.Energy = newEnergy.Float();
+        }
 
         switch (component.SlowState)
         {
@@ -324,12 +325,7 @@ public sealed class SynthSystem : SharedSynthSystem
                 }
                 break;
         }
-
-        if (batteryComponent.CurrentCharge == component.Energy) //if there's a discrepency, we have to resync them
-            return true;
-
-        _sawmill.Debug($"Battery charge was not equal to synth charge. Battery {batteryComponent.CurrentCharge}. Synth {component.Energy}");
-        component.Energy = batteryComponent.CurrentCharge;
+        
         Dirty(uid, component);
 
         return true;
