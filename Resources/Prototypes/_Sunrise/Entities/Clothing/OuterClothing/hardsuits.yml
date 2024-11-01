@@ -208,7 +208,7 @@
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding. Very compact.
   components:
   - type: Item
-    size: Normal
+    size: Huge # Хотя бы вмещается в отличие от инженерного
   - type: ClothingSpeedModifier
     walkModifier: 0.75
     sprintModifier: 0.75
