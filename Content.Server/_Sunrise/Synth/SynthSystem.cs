@@ -18,6 +18,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
+using Content.Shared.PowerCell;
 using Content.Shared.Rejuvenate;
 using Content.Shared.Rounding;
 using Content.Shared.Stunnable;
@@ -26,6 +27,7 @@ using Content.Shared.Synth.EntitySystems;
 using Content.Shared.Verbs;
 using Robust.Shared.Utility;
 using Robust.Server.GameObjects;
+using Robust.Server.Containers;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -37,9 +39,9 @@ public sealed class SynthSystem : SharedSynthSystem
 {
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly BatterySystem _batterySystem = default!;
+    [Dependency] private readonly ContainerSystem _containerSystem = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private readonly BodySystem _bodySystem = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
@@ -53,9 +55,6 @@ public sealed class SynthSystem : SharedSynthSystem
     [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
 
     private ISawmill _sawmill = default!;
-
-    [ValidatePrototypeId<AlertPrototype>]
-    private const string SynthChargeAlert = "SynthCharge";
 
     public override void Initialize()
     {
@@ -230,29 +229,22 @@ public sealed class SynthSystem : SharedSynthSystem
         _doAfter.TryStartDoAfter(doAfterArgs);
     }
 
-    private bool TryGetBattery(EntityUid uid, [NotNullWhen(true)]  out EntityUid? battery, [NotNullWhen(true)]  out BatteryComponent? batteryComponent)
+    private bool TryGetBattery(EntityUid uid, [NotNullWhen(true)]  out EntityUid? powercell, [NotNullWhen(true)]  out PowerCellComponent? powercellComponent)
     {
-        battery = null;
-        batteryComponent = null;
+        powercell = null;
+        powercellComponent = null;
 
         var bodyContainers = _bodySystem.GetBodyContainers(uid);
-
-        foreach (var container in bodyContainers)
+        
+        if (_containerSystem.TryGetContainer(uid, "cell_slot", out var container) && container.ContainedEntities.Count > 0)
         {
-            if (container.ID != "body_root_part")
-                continue;
-
-            foreach (var containerContainedEntity in container.ContainedEntities)
+            foreach (var content in container.ContainedEntities)
             {
-                var partOrgans = _bodySystem.GetPartOrgans(containerContainedEntity);
-
-                foreach (var partOrgan in partOrgans)
+                if (TryComp<PowerCellComponent>(content, out var PowerCellComp))
                 {
-                    if (!TryComp(partOrgan.Id, out batteryComponent))
-                        continue;
-
-                    battery = partOrgan.Id;
-
+                    powercell = content;
+                    powercellComponent = PowerCellComp;
+                    
                     return true;
                 }
             }
@@ -309,10 +301,6 @@ public sealed class SynthSystem : SharedSynthSystem
 
         if (!TryGetBattery(uid, out var battery, out var batteryComponent))
             return false;
-
-        var severity = ContentHelpers.RoundToNearestLevels(MathF.Max(0f, component.Energy.Float()), component.MaxEnergy.Float(), 4);
-
-        _alerts.ShowAlert(uid, SynthChargeAlert, (short) severity);
 
         var newEnergy = FixedPoint2.Clamp(component.Energy + delta, 0, component.MaxEnergy);
 
