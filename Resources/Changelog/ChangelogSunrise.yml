@@ -5731,3 +5731,12 @@
   id: 391
   time: '2024-11-01T22:24:06.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/592
+- author: Kaiser Maus
+  changes:
+  - message: "\u0418\u0441\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0430 \u0441\u0438\
+      \u0441\u0442\u0435\u043C\u0430 \u043C\u0443\u0441\u043E\u0440\u043D\u044B\u0445\
+      \ \u0442\u0440\u0443\u0431 \u043D\u0430 Box Station"
+    type: Tweak
+  id: 392
+  time: '2024-11-01T23:36:39.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/593
