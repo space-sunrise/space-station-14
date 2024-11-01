@@ -229,10 +229,10 @@ public sealed class SynthSystem : SharedSynthSystem
         _doAfter.TryStartDoAfter(doAfterArgs);
     }
 
-    private bool TryGetBattery(EntityUid uid, [NotNullWhen(true)]  out EntityUid? powercell, [NotNullWhen(true)]  out PowerCellComponent? powercellComponent)
+    private bool TryGetBattery(EntityUid uid, [NotNullWhen(true)]  out EntityUid? powercell, [NotNullWhen(true)]  out BatteryComponent? batteryComponent)
     {
         powercell = null;
-        powercellComponent = null;
+        batteryComponent = null;
 
         var bodyContainers = _bodySystem.GetBodyContainers(uid);
         
@@ -240,10 +240,10 @@ public sealed class SynthSystem : SharedSynthSystem
         {
             foreach (var content in container.ContainedEntities)
             {
-                if (TryComp<PowerCellComponent>(content, out var PowerCellComp))
+                if (HasComp<PowerCellComponent>(content) && TryComp<BatteryComponent>(content, out var BatteryComp))
                 {
                     powercell = content;
-                    powercellComponent = PowerCellComp;
+                    batteryComponent = BatteryComp;
                     
                     return true;
                 }
