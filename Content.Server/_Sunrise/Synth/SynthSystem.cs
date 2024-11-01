@@ -27,7 +27,7 @@ using Content.Shared.Synth.EntitySystems;
 using Content.Shared.Verbs;
 using Robust.Shared.Utility;
 using Robust.Server.GameObjects;
-using Robust.Server.Containers;
+using Robust.Shared.Containers;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -41,7 +41,7 @@ public sealed class SynthSystem : SharedSynthSystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly BatterySystem _batterySystem = default!;
-    [Dependency] private readonly ContainerSystem _containerSystem = default!;
+    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private readonly BodySystem _bodySystem = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
@@ -233,8 +233,11 @@ public sealed class SynthSystem : SharedSynthSystem
     {
         powercell = null;
         batteryComponent = null;
+        
+        if (!TryComp(uid, out ContainerManagerComponent? containerComp))
+            return false;
 
-        if (_containerSystem.TryGetContainer(uid, "cell_slot", out var container) && container.ContainedEntities.Count > 0)
+        if (_containerSystem.TryGetContainer(uid, "cell_slot", out var container, containerComp) && container.ContainedEntities.Count > 0)
         {
             foreach (var content in container.ContainedEntities)
             {
@@ -306,6 +309,7 @@ public sealed class SynthSystem : SharedSynthSystem
         {
             _batterySystem.SetCharge(battery.Value, newEnergy.Float(), batteryComponent);
             component.Energy = newEnergy.Float();
+            component.MaxEnergy = batteryComponent.MaxCharge;
         }
 
         switch (component.SlowState)
