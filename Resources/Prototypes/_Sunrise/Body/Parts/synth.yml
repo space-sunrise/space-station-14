@@ -22,6 +22,11 @@
   components:
   - type: Sprite
     state: "head"
+  - type: Tag
+    tags:
+    - Trash
+    - SynthHead
+    - BaseSynthHead
 
 - type: entity
   id: LeftArmSynthMob
@@ -30,6 +35,11 @@
   components:
   - type: Sprite
     state: "l_arm"
+  - type: Tag
+    tags:
+    - Trash
+    - SynthArm
+    - BaseSynthLArm
 
 - type: entity
   id: RightArmSynthMob
@@ -38,6 +48,11 @@
   components:
   - type: Sprite
     state: "r_arm"
+  - type: Tag
+    tags:
+    - Trash
+    - SynthArm
+    - BaseSynthRArm
 
 - type: entity
   id: LeftHandSynthMob
@@ -62,6 +77,11 @@
   components:
   - type: Sprite
     state: "l_leg"
+  - type: Tag
+    tags:
+    - Trash
+    - SynthLeg
+    - BaseSynthLLeg
 
 - type: entity
   id: RightLegSynthMob
@@ -70,6 +90,11 @@
   components:
   - type: Sprite
     state: "r_leg"
+  - type: Tag
+    tags:
+    - Trash
+    - SynthLeg
+    - BaseSynthRLeg
 
 - type: entity
   id: LeftFootSynthMob
