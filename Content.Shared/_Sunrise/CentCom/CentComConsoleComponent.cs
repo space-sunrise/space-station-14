@@ -25,11 +25,11 @@ public sealed class LinkedStation
     public string CurrentAlert = string.Empty;
     public List<string> AlertLevels = [];
     public TimeSpan DefaultDelay = TimeSpan.FromMinutes(10);
-    public List<ShuttleDelay> Delays =
-    [
+    public List<ShuttleDelay> Delays = new List<ShuttleDelay>()
+    {
         new ShuttleDelay("5min", TimeSpan.FromMinutes(5)),
         new ShuttleDelay("10min", TimeSpan.FromMinutes(10)),
-    ];
+    };
 }
 
 [RegisterComponent]
