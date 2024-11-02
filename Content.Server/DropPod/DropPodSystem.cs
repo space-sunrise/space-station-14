@@ -160,7 +160,7 @@ namespace Content.Server.DropPod
             if (!component.WarDeclared & component.Announcement) // If war has not been declared, then the landing will be loud
             {
                 _alertLevelSystem.SetLevel(end_stationAlert_uid, "red", true, true, true);
-                _chat.DispatchGlobalAnnouncement($"{component.Text} X: {Coords.X} Y: {Coords.Y}", "Central Command", true, component.Sound, component.Color);
+                _chat.DispatchGlobalAnnouncement($"{component.Text} X: {Coords.X} Y: {Coords.Y}", sender: "Central Command", playDefault: true, announcementSound: component.Sound, colorOverride: component.Color);
                 Thread.Sleep(component.Time * 1000);
             }
 
