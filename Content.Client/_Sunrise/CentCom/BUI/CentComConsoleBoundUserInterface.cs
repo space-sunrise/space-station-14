@@ -13,28 +13,25 @@ public sealed class CentComConsoleBoundUserInterface : BoundUserInterface
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
     private CentComConsoleWindow? _window;
+    private EntityUid? _owner;
 
     public CentComConsoleBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
-
+        _owner = owner;
     }
 
     protected override void Open()
     {
         base.Open();
 
-        if (!EntMan.TryGetComponent<CentComConsoleComponent>(Owner, out var centComConsoleComponent))
-        {
-            Dispose();
-            return;
-        }
-
-        if (centComConsoleComponent.Station == null)
-            return;
-
         _window = this.CreateWindow<CentComConsoleWindow>();
+
+        // if (!EntMan.TryGetComponent<CentComConsoleComponent>(_owner, out var centComConsoleComponent) &&
+        //     centComConsoleComponent?.Station != null)
+        // {
+        //
+        // }
         _window.OnClose += Close;
-        _window.OpenCentered();
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
@@ -47,6 +44,7 @@ public sealed class CentComConsoleBoundUserInterface : BoundUserInterface
             return;
 
         _window.UpdateState(commsState);
+        _owner = EntMan.GetEntity(commsState.Owner);
     }
 
     protected override void Dispose(bool disposing)

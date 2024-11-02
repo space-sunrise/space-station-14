@@ -14,7 +14,7 @@
             </BoxContainer>
         </GridContainer>
         <TabContainer Name="TabContainer">
-            <PanelContainer Name="AlertLevelsPanel" StyleClasses="BackgroundDark">
+            <PanelContainer Name="{Loc 'centcom-console-alert-levels-control'}" StyleClasses="BackgroundDark">
                 <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" Margin="5"><TextEdit Name="MessageInput" HorizontalExpand="True" VerticalExpand="True" Margin="0 0 0 5" MinHeight="100" />
                     <Button Name="AnnounceButton" Text="{Loc 'comms-console-menu-announcement-button'}" ToolTip="{Loc 'comms-console-menu-announcement-button-tooltip'}" StyleClasses="OpenLeft" Access="Public" />
 
@@ -29,7 +29,7 @@
                     </GridContainer>
                 </BoxContainer>
             </PanelContainer>
-            <PanelContainer Name="ErtCallContainer" StyleClasses="BackgroundDark">
+            <PanelContainer Name="{Loc 'centcom-console-ert-control'}" StyleClasses="BackgroundDark">
                 <GridContainer Rows="2">
                     <Label Text="{Loc 'centcom-console-window-ert-alert'}"/>
                     <ScrollContainer Name="ErtGroups"/>

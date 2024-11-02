@@ -9,38 +9,32 @@ using Robust.Shared.Containers;
 
 namespace Content.Server._Sunrise.CentCom;
 
-/// <summary>
-/// This handles...
-/// </summary>
-public sealed class CentComConsoleSystem : EntitySystem
+public sealed class CentComConsoleSystem : SharedCentComConsoleSystem
 {
     [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly AlertLevelSystem _alertLevel = default!;
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<CentComConsoleComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<CentComConsoleComponent, UnanchorAttemptEvent>(OnUnanchor);
         SubscribeLocalEvent<CentComConsoleComponent, AnchorStateChangedEvent>(OnAnchorStateChanged);
         SubscribeLocalEvent<CentComConsoleComponent, EntInsertedIntoContainerMessage>(UpdateUi);
         SubscribeLocalEvent<CentComConsoleComponent, EntRemovedFromContainerMessage>(UpdateUi);
-    }
-
-    private void OnInit(EntityUid uid, CentComConsoleComponent component, ComponentInit args)
-    {
-        UpdateStation(uid, component);
+        SubscribeLocalEvent<CentComConsoleComponent, BoundUIOpenedEvent>(UpdateUi);
     }
 
     private void UpdateStation(EntityUid uid, CentComConsoleComponent component)
     {
-        var stationUid = _station.GetOwningStation(uid);
-        if (stationUid == null)
+        var uUid = _station.GetStationInMap(_transform.GetMapId(uid));
+        if (uUid == null)
             return;
-        if (!TryComp<CentCommStationComponent>(stationUid, out var centCommComponent))
+        if (!TryComp<CentCommStationComponent>(uUid, out var centCommStationComponent))
             return;
-        var meta = MetaData(stationUid.Value);
+
+        var stationUid = centCommStationComponent.ParentStation;
+
+        var meta = MetaData(stationUid);
         if (!TryComp<AlertLevelComponent>(stationUid, out var alertLevelComponent))
             return;
         List<string> alertLevels = [];
@@ -57,7 +51,6 @@ public sealed class CentComConsoleSystem : EntitySystem
             AlertLevels = alertLevels,
             CurrentAlert = alertLevelComponent.CurrentLevel,
             DefaultDelay = TimeSpan.FromMinutes(10),
-            // Uid = GetNetEntity(uid),
         };
     }
 
@@ -78,15 +71,16 @@ public sealed class CentComConsoleSystem : EntitySystem
     {
         if (!component.Initialized)
             return;
+        UpdateStation(uid, component);
 
         var idName = string.Empty;
-        var idPresent = false;
-        if (component.IdSlot.Item is { Valid: true } item)
+        var idPresent = component.IdSlot.Item.HasValue;
+
+        if (idPresent && component.IdSlot.Item != null)
         {
-            idName = EntityManager.GetComponent<MetaDataComponent>(item).EntityName;
-            idPresent = true;
+            idName = MetaData(component.IdSlot.Item.Value).EntityName;
         }
-        var newState = new CentComConsoleBoundUserInterfaceState(idPresent, idName, component.Station);
+        var newState = new CentComConsoleBoundUserInterfaceState(idPresent, idName, component.Station, GetNetEntity(uid));
 
         _userInterface.SetUiState(uid, CentComConsoleUiKey.Key, newState);
     }

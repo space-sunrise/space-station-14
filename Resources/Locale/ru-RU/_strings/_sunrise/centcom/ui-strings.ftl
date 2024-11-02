@@ -6,7 +6,7 @@ centcom-card-console-id = ID карта
 centcom-console-window-empty-id = Карта не вставлена
 centcom-console-window-send = Отправить
 centcom-console-window-station = Станция не выбрана
-centcom-console-window-ert-alert = [color=red]Вызов черезмерного количества ОБР запрещен![/color]
+centcom-console-window-ert-alert = Вызов черезмерного количества ОБР запрещен!
 centcom-console-duration-5min = 5 минут
 centcom-console-duration-10min = 10 минут
 centcom-console-duration-15min = 15 минут

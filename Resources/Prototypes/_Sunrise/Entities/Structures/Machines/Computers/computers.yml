@@ -22,7 +22,7 @@
     energy: 1.6
     color: "#009900"
   - type: CentComConsole
-    CentCom-IdSlot:
+    IdSlot:
       name: centcom-card-console-id
       ejectSound: /Audio/Machines/id_swipe.ogg
       insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
@@ -60,7 +60,7 @@
   - type: ContainerContainer
     containers:
       board: !type:Container
-      CentCom-IdSlot: !type:ContainerSlot
+      CentComConsole-IdSlot: !type:ContainerSlot
 
 - type: entity
   parent: BaseComputerShuttle
