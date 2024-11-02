@@ -2,6 +2,7 @@ using Content.Server._Sunrise.StationCentComm;
 using Content.Server.GameTicking;
 using Content.Server.Maps;
 using Content.Server.Shuttles.Systems;
+using Content.Server.Station.Systems;
 using Robust.Server.GameObjects;
 using Robust.Server.Maps;
 using Robust.Shared.Map;
@@ -16,6 +17,7 @@ public sealed partial class StationCentCommSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly ShuttleSystem _shuttle = default!;
     [Dependency] private readonly MapSystem _map = default!;
+    [Dependency] private readonly StationSystem _station = default!;
 
     private ISawmill _sawmill = default!;
 
@@ -46,10 +48,15 @@ public sealed partial class StationCentCommSystem : EntitySystem
             return;
         }
 
-        AddCentcomm(component);
+        var centcomm = AddCentcomm(component);
+        if (centcomm == null)
+            return;
+        component.Entity = centcomm.Value;
+        var centCommStationComponent = EnsureComp<CentCommStationComponent>(centcomm.Value);
+        centCommStationComponent.ParentStation = uid;
     }
 
-    private void AddCentcomm(StationCentCommComponent component)
+    private EntityUid? AddCentcomm(StationCentCommComponent component)
     {
         var query = AllEntityQuery<StationCentCommComponent>();
 
@@ -59,7 +66,7 @@ public sealed partial class StationCentCommSystem : EntitySystem
                 continue;
 
             component.MapId = otherComp.MapId;
-            return;
+            return null;
         }
 
         var mapId = _mapManager.CreateMap();
@@ -75,11 +82,20 @@ public sealed partial class StationCentCommSystem : EntitySystem
                     ftlDestination.Whitelist = component.ShuttleWhitelist;
 
                 _map.InitializeMap(mapId);
+                var centCommUid = _station.GetStationInMap(mapId);
+                if (centCommUid != null)
+                {
+                    return centCommUid;
+                    // var centCommStationComponent = EnsureComp<CentCommStationComponent>(centCommUid.Value);
+                    // centCommStationComponent.ParentStation = component.Entity;
+                }
             }
             else
             {
                 _sawmill.Warning("No Centcomm map found, skipping setup.");
             }
         }
+
+        return null;
     }
 }

@@ -20,7 +20,7 @@
     # Пока что там нечего спавнить
     #- BaseStationShuttles
     # Нету смысла пока не будет консоли отправки ОБР
-    #- BaseStationCentComm # Sunrise-Edit
+    - BaseStationCentComm # Sunrise-Edit
     - BaseStationEvacuation
     - BaseStationAlertLevels
     - BaseStationMagnet
