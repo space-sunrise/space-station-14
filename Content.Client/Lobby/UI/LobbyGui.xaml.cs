@@ -30,6 +30,7 @@ namespace Content.Client.Lobby.UI
 
         public string LobbyParallax = "FastSpace"; // Sunrise-edit
         public bool ShowParallax; // Sunrise-edit
+        private string _serverName = string.Empty;
         [ViewVariables(VVAccess.ReadWrite)] public Vector2 Offset { get; set; } // Sunrise-edit
         public const string DefaultIconExpanded = "/Textures/Interface/Nano/inverted_triangle.svg.png";
         public const string DefaultIconCollapsed = "/Textures/Interface/Nano/top_triangle.svg.png";
@@ -131,18 +132,25 @@ namespace Content.Client.Lobby.UI
 
             _configurationManager.OnValueChanged(SunriseCCVars.LobbyOpacity, OnLobbyOpacityChanged);
             _configurationManager.OnValueChanged(SunriseCCVars.ServersHubEnable, OnServersHubEnableChanged);
+            _configurationManager.OnValueChanged(SunriseCCVars.InfoLinksDonate, OnServerNameChanged, true);
 
             SetLobbyOpacity(_configurationManager.GetCVar(SunriseCCVars.LobbyOpacity));
             SetServersHubEnable(_configurationManager.GetCVar(SunriseCCVars.ServersHubEnable));
 
             Chat.SetChatOpacity();
 
-            ServerName.Text = Loc.GetString("ui-lobby-welcome", ("name", _configurationManager.GetCVar(SunriseCCVars.ServerName)));
+            ServerName.Text = Loc.GetString("ui-lobby-welcome", ("name", _serverName));
             LoadIcons();
             // Sunrise-end
         }
 
         // Sunrise-Start
+        private void OnServerNameChanged(string serverName)
+        {
+            ServerName.Text = Loc.GetString("ui-lobby-welcome", ("name", serverName));
+            _serverName = serverName;
+        }
+
         private void LoadIcons()
         {
             if (!TryGetStyleProperty(StylePropertyIconExpanded, out IconExpanded))
