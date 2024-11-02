@@ -223,7 +223,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             ("ip", addressRangeString),
             ("hwid", hwidString),
             ("reason", reason),
-            ("round", roundId));
+            ("round", roundId == null ? Loc.GetString("server-ban-unknown-round") : roundId));
 
         _sawmill.Info(logMessage);
         _chat.SendAdminAlert(logMessage);
