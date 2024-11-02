@@ -222,8 +222,8 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             ("name", targetName),
             ("ip", addressRangeString),
             ("hwid", hwidString),
-            ("reason", reason)),
-            ("round", roundId);
+            ("reason", reason),
+            ("round", roundId));
 
         _sawmill.Info(logMessage);
         _chat.SendAdminAlert(logMessage);
