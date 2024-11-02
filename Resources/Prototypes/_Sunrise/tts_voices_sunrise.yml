@@ -294,7 +294,7 @@
   id: HearthstoneZverolovTavish
   name: tts-voice-name-hearthstone-zverolov-tavish
   sex: Male
-  speaker: hearthstone_zverolov_tavish
+  speaker: hearthstone_zverolov_tavish_2
   provider: sunrise
 
 - type: ttsVoice
@@ -508,3 +508,10 @@
   provider: sunrise
   roundStart: true
   sponsorOnly: false
+
+- type: ttsVoice
+  id: HearthstoneTiranda
+  name: tts-voice-name-hearthstone-tiranda
+  sex: Female
+  speaker: hearthstone_tiranda
+  provider: sunrise

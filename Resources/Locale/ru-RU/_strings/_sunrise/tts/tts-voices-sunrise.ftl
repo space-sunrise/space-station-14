@@ -58,3 +58,4 @@ tts-voice-name-hearthstone-tarkus = (NEW) [Hearthstone] Таркус
 tts-voice-name-hearthstone-uter = (NEW) [Hearthstone] Утер
 tts-voice-name-hearthstone-malfurion = (NEW) [Hearthstone] Малфурион
 tts-voice-name-hearthstone-gul-dan = (NEW) [Hearthstone] ГулДан
+tts-voice-name-hearthstone-tiranda = (NEW) [Hearthstone] Тиранда
