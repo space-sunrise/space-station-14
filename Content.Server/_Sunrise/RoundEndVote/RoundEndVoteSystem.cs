@@ -26,7 +26,7 @@ public sealed class RoundEndVoteSystem : EntitySystem
 
     public void OnRoundEndSystemChange(RoundEndSystemChangedEvent args)
     {
-        _voteStartTime = _gameTiming.CurTime + _gameTicker.LobbyDuration - TimeSpan.FromSeconds(75);
+        _voteStartTime = _gameTiming.CurTime + _gameTicker.LobbyDuration - TimeSpan.FromSeconds(_cfg.GetCVar(SunriseCCVars.VotingsDelay));
         Log.Warning($"Vote will start at {_voteStartTime}");
 
         if (_cfg.GetCVar(SunriseCCVars.ResetPresetAfterRestart))
