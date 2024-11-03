@@ -63,7 +63,7 @@
           id: mechs
           name: Mechs
           desc: Controlled mechanoids, created to work in difficult places, as well as in facilitating the transportation of goods and other tasks where man himself can not cope.
-          state: Partial
+          state: Complete
         ipc:
           id: ipc
           name: IPC
@@ -109,31 +109,6 @@
           name: Economy
           desc: Adding money, wages, the post office will give money and vendomats will take money for food.
           state: InProgress
-        extend-med:
-          id: extend-med
-          name: Medical Department Expansion
-          desc: Adding new mechanics, roles.
-          state: Planned
-        pathologist:
-          id: pathologist
-          name: Pathologist
-          desc: A new role for the medical department. To keep an eye on the morgue.
-          state: Planned
-        arena:
-          id: arena
-          name: Ghosts Arena
-          desc: An arena where ghosts can occupy their time so they don't have to fly around the station waiting for the end of the round.
-          state: Planned
-        limbo:
-          id: limbo
-          name: Limbo
-          desc: A separate world for ghosts where there are no rules.
-          state: Planned
-        taipan:
-          id: taipan
-          name: Taipan
-          desc: A separate syndicate station with its own shift tasks.
-          state: Planned
     2025:
       name: 2025
       goals:
@@ -206,6 +181,31 @@
           id: centcomm-update
           name: Centcomm Update
           desc: Central Command map update and possible role update.
+          state: Planned
+        extend-med:
+          id: extend-med
+          name: Medical Department Expansion
+          desc: Adding new mechanics, roles.
+          state: Planned
+        pathologist:
+          id: pathologist
+          name: Pathologist
+          desc: A new role for the medical department. To keep an eye on the morgue.
+          state: Planned
+        arena:
+          id: arena
+          name: Ghosts Arena
+          desc: An arena where ghosts can occupy their time so they don't have to fly around the station waiting for the end of the round.
+          state: Planned
+        limbo:
+          id: limbo
+          name: Limbo
+          desc: A separate world for ghosts where there are no rules.
+          state: Planned
+        taipan:
+          id: taipan
+          name: Taipan
+          desc: A separate syndicate station with its own shift tasks.
           state: Planned
     2026:
       name: 2026
