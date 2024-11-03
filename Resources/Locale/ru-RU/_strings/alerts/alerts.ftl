@@ -78,5 +78,3 @@ alerts-changeling-chemicals-name = Химикаты
 alerts-changeling-chemicals-desc = Расходуйте химические вещества для использования своих способностей. Медленно регенерируются.
 alerts-changeling-biomass-name = Биомасса
 alerts-changeling-biomass-desc = Это ваше здоровье. Если оно достигнет 0 - это [color=red]конец игры[/color]. Поглощайте гуманоидов, чтобы восстановить часть его.
-alerts-changeling-hive-name = Улей
-alerts-changeling-hive-desc = Ваша принадлежность к улею

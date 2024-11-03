@@ -94,10 +94,6 @@ public sealed partial class ChangelingRuleSystem : GameRuleSystem<ChangelingRule
         var mostAbsorbed = 0f;
         var mostStolen = 0f;
 
-        var limaCount = 0;
-        var kiloCount = 0;
-        var mikeCount = 0;
-
         foreach (var ling in EntityQuery<ChangelingComponent>())
         {
             if (!_mind.TryGetMind(ling.Owner, out var mindId, out var mind))
@@ -116,28 +112,11 @@ public sealed partial class ChangelingRuleSystem : GameRuleSystem<ChangelingRule
                 mostStolen = ling.TotalStolenDNA;
                 mostStolenName = _objective.GetTitle((mindId, mind), metaData.EntityName);
             }
-
-            switch (ling.Hive)
-            {
-                case ChangelingHive.Kilo:
-                    kiloCount += 1;
-                    break;
-                case ChangelingHive.Lima:
-                    limaCount += 1;
-                    break;
-                case ChangelingHive.Mike:
-                    mikeCount += 1;
-                    break;
-            }
         }
 
         var sb = new StringBuilder();
         sb.AppendLine(Loc.GetString($"roundend-prepend-changeling-absorbed{(!string.IsNullOrWhiteSpace(mostAbsorbedName) ? "-named" : "")}", ("name", mostAbsorbedName), ("number", mostAbsorbed)));
         sb.AppendLine(Loc.GetString($"roundend-prepend-changeling-stolen{(!string.IsNullOrWhiteSpace(mostStolenName) ? "-named" : "")}", ("name", mostStolenName), ("number", mostStolen)));
-
-        sb.AppendLine($"В улье [color=purple]Лима[/color] осталось {limaCount} особей.");
-        sb.AppendLine($"В улье [color=green]Кило[/color] осталось {kiloCount} особей.");
-        sb.AppendLine($"В улье [color=blue]Майк[/color] осталось {mikeCount} особей.");
 
         args.Text = sb.ToString();
     }

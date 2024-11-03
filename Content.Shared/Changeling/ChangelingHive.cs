@@ -2,12 +2,7 @@
 
 public enum ChangelingHive : byte
 {
-    Kilo,
-    Lima,
-    Mike,
-}
-
-public enum ChangelingHiveVisualLayers : byte
-{
-    Base,
+    Kilo = 1,
+    Lima = 2,
+    Mike = 3,
 }

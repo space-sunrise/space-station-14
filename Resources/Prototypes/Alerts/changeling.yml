@@ -16,14 +16,6 @@
   name: alerts-changeling-biomass-name
   description: alerts-changeling-biomass-desc
 
-- type: alert
-  id: ChangelingHive
-  icons:
-  - sprite: /Textures/Changeling/changeling_hive.rsi
-    state: undefined
-  name: alerts-changeling-hive-name
-  description: alerts-changeling-hive-desc
-
 - type: entity
   id: AlertChangelingChemicalsSpriteView
   categories: [ HideSpawnMenu ]
@@ -41,12 +33,3 @@
     sprite: /Textures/Changeling/changeling_biomass.rsi
     layers:
     - map: [ "enum.AlertVisualLayers.Base" ]
-
-- type: entity
-  id: AlertChangelingHiveSpriteView
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Sprite
-    sprite: /Textures/Changeling/changeling_hive.rsi
-    layers:
-    - map: [ "enum.ChangelingHiveVisualLayers.Base" ]

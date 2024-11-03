@@ -21,7 +21,6 @@ public sealed partial class ChangelingSystem : EntitySystem
     private void OnUpdateAlert(EntityUid uid, ChangelingComponent comp, ref UpdateAlertSpriteEvent args)
     {
         var stateNormalized = 0f;
-        var sprite = args.SpriteViewEnt.Comp;
 
         // hardcoded because uhh umm i don't know. send help.
         switch (args.Alert.AlertKey.AlertType)
@@ -33,18 +32,10 @@ public sealed partial class ChangelingSystem : EntitySystem
             case "ChangelingBiomass":
                 stateNormalized = (int)(comp.Biomass / comp.MaxBiomass * 16);
                 break;
-
-            case "ChangelingHive":
-                if (sprite.BaseRSI == null)
-                    break;
-                if (!sprite.BaseRSI.TryGetState($"{comp.Hive}", out _))
-                    throw new Exception("testexception");
-                sprite.LayerSetState(ChangelingHiveVisualLayers.Base, $"{comp.Hive}");
-                return;
-
             default:
                 return;
         }
+        var sprite = args.SpriteViewEnt.Comp;
         sprite.LayerSetState(AlertVisualLayers.Base, $"{stateNormalized}");
     }
 
