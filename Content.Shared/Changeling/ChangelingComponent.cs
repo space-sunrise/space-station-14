@@ -135,9 +135,6 @@ public sealed partial class ChangelingComponent : Component
 
     [ViewVariables(VVAccess.ReadOnly)]
     public TransformData? SelectedForm;
-
-    [DataField, ViewVariables(VVAccess.ReadOnly)]
-    public ChangelingHive Hive;
 }
 
 [DataDefinition]
