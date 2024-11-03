@@ -36,6 +36,31 @@ Space Station 14 — это ролевая игра, вдохновлённая 
 
 [![Участники](https://contrib.rocks/image?repo=space-sunrise/space-station-14)](https://github.com/space-sunrise/space-station-14/graphs/contributors)
 
+---
+
 ## Лицензия
 
-Код репозитория лицензирован как под MIT - это касается кода Space Wizards Federation, так и под CLA - это касается наших изменений, определение которых дано в тексте CLA. Мы не стремимся к полному разграничению нашего кода и кода Space Wizards Federation, поэтому во избежание инцидентов рекомендуется брать их код из их репозитория.
+> [!CAUTION]
+> Код репозитория лицензирован как под MIT - это касается кода Space Wizards Federation, так и под CLA - это касается наших изменений, определение которых дано в тексте CLA. Мы не стремимся к полному разграничению нашего кода и кода Space Wizards Federation, поэтому во избежание инцидентов рекомендуется брать их код из их репозитория.
+
+### Нажмите на каждый баннер, чтобы получить дополнительную информацию
+
+---
+
+<details>
+<summary><a href="#"><img src="https://img.shields.io/badge/licence-MIT-green?style=for-the-badge" alt="MIT license"></a></summary>
+
+>Некоторые файлы лицензированы в соответствии с [MIT license](https://opensource.org/license/MIT), эти файлы являються кодом Space Wizards Federation.
+</details>
+
+<details>
+<summary><a href="#"><img src="https://img.shields.io/badge/licence-CC_3.0_BY--SA-lightblue?style=for-the-badge" alt="Creative Commons 3.0 BY-SA"></a></summary>
+
+>Все остальные ассеты которые не являються ассетами Sunrise, не относящиеся к коду, включая иконки и звуковые файлы, лицензированы по лицензии [Creative Commons 3.0 BY-SA](https://creativecommons.org/licenses/by-sa/3.0/), если иное не указано в папке или файле.
+</details>
+
+<details>
+<summary><a href="#"><img src="https://img.shields.io/badge/licence-CLA-orange?style=for-the-badge" alt="CLA"></a></summary>
+
+>Весь код а так-же ассеты Sunrise, защищены лицензией [CLA](https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt).
+</details>
