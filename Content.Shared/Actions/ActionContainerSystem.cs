@@ -243,7 +243,7 @@ public sealed class ActionContainerSystem : EntitySystem
         if (!TryPrototype(actionId, out var actionProto, actionData))
             return false;
 
-        if (HasAction(uid, actionProto.ID))
+        if (HasAction(uid, actionProto.ID, comp))
         {
             Log.Debug($"Tried to insert action {ToPrettyString(actionId)} into {ToPrettyString(uid)}. Failed due to duplicate actions.");
             return false;

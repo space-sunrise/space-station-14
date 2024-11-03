@@ -439,8 +439,8 @@
 - type: entity
   id: BorgChassisERT
   parent: BaseBorgChassisNT
-  name: Боевой киборг ОБР
-  description: Боевой робот НТ, разработанный для поддержки ОБР в выполнении боевых задач.
+  name: ERT combat cyborg
+  description: An NT combat robot designed to support the OBR in combat missions.
   components:
   - type: Sprite
     sprite: _Sunrise/Mobs/Silicon/chassis.rsi
@@ -466,9 +466,9 @@
   - type: GhostRole
     makeSentient: true
     allowMovement: true
-    name: Боевой киборг ОБР
-    description: Слава НТ!.
-    rules: Подчиняйтесь ОБР и Центральному Командованию.
+    name: ghost-role-information-ert-cyborg-name
+    description: ghost-role-information-ert-cyborg-description
+    rules: ghost-role-information-ert-cyborg-rules
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
@@ -599,8 +599,8 @@
 - type: entity
   id: BorgChassisSyndicateHeavy
   parent: BaseBorgChassisSyndicate
-  name: Тяжёлый боевой киборг Синдиката
-  description: Модернизированная версия боевого киборга Синдиката, оборудованный тяжёлым оружием и крепким корпусом.
+  name: syndicate's heavy combat cyborg
+  description: A modernized version of the Syndicate's combat cyborg, equipped with heavy weapons and a sturdy hull.
   components:
   - type: Sprite
     sprite: _Sunrise/Mobs/Silicon/heavy_syndicate_borg.rsi
@@ -620,7 +620,7 @@
     sprite:
       sprite: _Sunrise/Mobs/Silicon/heavy_syndicate_borg.rsi
       state: heavy
-    name: Тяжёлый боевой киборг Синдиката
+    name: syndicate's heavy combat cyborg.
   - type: BorgChassis
     maxModules: 4
     moduleWhitelist:
@@ -707,25 +707,11 @@
     worldTargetActions:
     - Emag
 
-- type: dataset
-  id: BorgHeavyNames
-  values:
-  - Разрушитель
-  - Судный день
-  - Большой Карл
-  - Танк
-  - Страйкер
-  - Трак
-  - Титан
-  - Кронос
-  - Инфильтратор
-
-
 - type: entity
   id: BorgChassisSyndicateSpider
   parent: BaseBorgChassisSyndicate
-  name: Киборг диверсант Синдиката
-  description: Маленький робот Синдиката, разработанный для Диверсионного Отряда, оснащён всем необходимым для крупного саботажа.
+  name: syndicate's cyborg-saboteur
+  description: The Syndicate's small robot, designed for the Diversion Squad, is equipped with everything you need for major sabotage.
   components:
   - type: Sprite
     sprite: _Sunrise/Mobs/Silicon/chassis.rsi
@@ -746,7 +732,7 @@
     sprite:
       sprite: _Sunrise/Mobs/Silicon/chassis.rsi
       state: spider
-    name: Киборг диверсант Синдиката
+    name: syndicate's cyborg-saboteur
   - type: BorgChassis
     maxModules: 4
     moduleWhitelist:
@@ -802,15 +788,3 @@
   - type: InnateItem
     worldTargetActions:
     - Emag
-
-- type: dataset
-  id: BorgScoutNames
-  values:
-  - UNO-3
-  - Рейдер
-  - Бродяга
-  - Чип
-  - НОВА
-  - С-14
-  - Омега
-  - Пиксель

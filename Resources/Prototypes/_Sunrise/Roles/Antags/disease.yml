@@ -1,6 +1,6 @@
 - type: entity
   id: MobDisease
-  name: разумная болезнь
+  name: sensible disease
   description: plague inc 2.0
   components:
   - type: MindContainer

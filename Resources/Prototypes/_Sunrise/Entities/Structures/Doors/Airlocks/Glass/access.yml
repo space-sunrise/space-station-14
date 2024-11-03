@@ -1,0 +1,222 @@
+# == airlocks == #
+
+# == Double airlocks == #
+
+- type: entity
+  id: DoubleGlassAirlockAtmosphericsLocked
+  parent: [ DoubleGlassAirlockAtmospherics ]
+  suffix: Atmospherics, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsAtmospherics ]
+
+- type: entity
+  id: DoubleGlassAirlockCargoLocked
+  parent: [ DoubleGlassAirlockCargo ]
+  suffix: Cargo, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCargo ]
+
+- type: entity
+  id: DoubleGlassAirlockSalvageLocked
+  parent: [ DoubleGlassAirlockCargo ]
+  suffix: Salvage, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSalvage ]
+
+- type: entity
+  id: DoubleGlassAirlockChemistryLocked
+  parent: [ DoubleGlassAirlockChemistry ]
+  suffix: Chemistry, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsChemistry ]
+
+
+- type: entity
+  id: DoubleGlassAirlockCommandLocked
+  parent: [ DoubleGlassAirlockCommand ]
+  suffix: Command, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCommand ]
+
+- type: entity
+  id: DoubleGlassAirlockCentralCommandLocked
+  parent: [ DoubleGlassAirlockCentralCommand ]
+  suffix: Central Command, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCentralCommand ]
+
+- type: entity
+  id: DoubleGlassAirlockEngineeringLocked
+  parent: [ DoubleGlassAirlockEngineering ]
+  suffix: Engineering, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsEngineering ]
+
+- type: entity
+  id: DoubleGlassAirlockMaintLocked
+  parent: [ DoubleGlassAirlockMaint ]
+  suffix: Maintenance, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMaintenance ]
+
+- type: entity
+  id: DoubleGlassAirlockMedicalLocked
+  parent: [ DoubleGlassAirlockMedical ]
+  suffix: Medical, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMedical ]
+
+- type: entity
+  id: DoubleGlassAirlockScienceLocked
+  parent: [ DoubleGlassAirlockScience ]
+  suffix: Science, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsResearch ]
+
+- type: entity
+  id: DoubleGlassAirlockSecurityLocked
+  parent: [ DoubleGlassAirlockSecurity ]
+  suffix: Security, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSecurity ]
+
+- type: entity
+  id: DoubleGlassAirlockVirologyLocked
+  parent: [ DoubleGlassAirlockVirology ]
+  suffix: Virology, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMedical ]
+
+# == Triple airlocks ==
+
+- type: entity
+  id: TripleGlassAirlockAtmosphericsLocked
+  parent: [ TripleGlassAirlockAtmospherics ]
+  suffix: Atmospherics, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsAtmospherics ]
+
+- type: entity
+  id: TripleGlassAirlockCargoLocked
+  parent: [ TripleGlassAirlockCargo ]
+  suffix: Cargo, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCargo ]
+
+- type: entity
+  id: TripleGlassAirlockSalvageLocked
+  parent: [ TripleGlassAirlockCargo ]
+  suffix: Salvage, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSalvage ]
+
+- type: entity
+  id: TripleGlassAirlockCentralCommandLocked
+  parent: [ TripleGlassAirlockCentralCommand ]
+  suffix: Central Command, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCentralCommand ]
+
+- type: entity
+  id: TripleGlassAirlockChemistryLocked
+  parent: [ TripleGlassAirlockChemistry ]
+  suffix: Chemistry, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsChemistry ]
+
+- type: entity
+  id: TripleGlassAirlockCommandLocked
+  parent: [ TripleGlassAirlockCommand ]
+  suffix: Command, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCommand ]
+
+- type: entity
+  id: TripleGlassAirlockEngineeringLocked
+  parent: [ TripleGlassAirlockEngineering ]
+  suffix: Engineering, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsEngineering ]
+
+- type: entity
+  id: TripleGlassAirlockMaintLocked
+  parent: [ TripleGlassAirlockMaint ]
+  suffix: Maintenance, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMaintenance ]
+
+- type: entity
+  id: TripleGlassAirlockMedicalLocked
+  parent: [ TripleGlassAirlockMedical ]
+  suffix: Medical, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMedical ]
+
+- type: entity
+  id: TripleGlassAirlockScienceLocked
+  parent: [ TripleGlassAirlockScience ]
+  suffix: Science, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsResearch ]
+
+- type: entity
+  id: TripleGlassAirlockSecurityLocked
+  parent: [ TripleGlassAirlockSecurity ]
+  suffix: Security, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSecurity ]
+
+- type: entity
+  id: TripleGlassAirlockVirologyLocked
+  parent: [ TripleGlassAirlockVirology ]
+  suffix: Virology, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMedical ]

@@ -396,7 +396,7 @@
 
 - type: entity
   id: MagazineDl6902
-  name: "Коробка-магазин DL6902"
+  name: box-magazine DL6902
   parent: BaseMagazineLightRifle
   components:
   - type: Tag
@@ -416,7 +416,7 @@
 
 - type: entity
   id: MagazinePistolSubMachineGunSIAR52
-  name: "Расширенный магазин (безгильзовые)"
+  name: extended magazine (caseless)
   parent: BaseMagazineLightRifle
   components:
   - type: Tag

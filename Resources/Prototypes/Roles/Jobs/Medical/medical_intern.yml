@@ -4,15 +4,13 @@
   description: job-description-intern
   playTimeTracker: JobMedicalIntern
   requirements:
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 36000 # 10 hrs Sunrise-RoleTime
-      inverted: true # stop playing intern if you're good at med!
+    - !type:OverallPlaytimeRequirement
+      time: 3600 #1 hr # Sunrise-RoleTime
   startingGear: MedicalInternGear
   icon: "JobIconMedicalIntern"
   supervisors: job-supervisors-medicine
-  canBeAntag: false
-  displayWeight: 0  # Sunrise
+  canBeAntag: true # Sunrise-Edit
+  displayWeight: 0  # Sunrise-Edit
   access:
   - Medical
   - Maintenance

@@ -1,6 +1,6 @@
-ent-ClothingBackpackSyndieAJ100Filled = набор AJ-10
-    .desc = Включает в себя пистолет-пулемёт AJ-100 и два магазина патрон.
-ent-ClothingBackpackSyndieDL6902Filled = набор DL-6902
-    .desc = Включает в себя пулемёт DL6902 и один магазин патрон.
-ent-ClothingBackpackSyndieSIAR52Filled = набор SIAR-52
-    .desc = Включает в себя пулемёт SIAR-52 и два магазина патрон.
+ent-ClothingBackpackSyndieAJ100Filled = AJ-100 kit
+    .desc = Includes an AJ-100 submachine gun and two magazines of ammunition.
+ent-ClothingBackpackSyndieDL6902Filled = DL-6902 kit
+    .desc = Includes a DL6902 machine gun and one magazine of ammunition.
+ent-ClothingBackpackSyndieSIAR52Filled = SIAR-52 kit
+    .desc = Includes a SIAR-52 machine gun and two magazines of ammunition.

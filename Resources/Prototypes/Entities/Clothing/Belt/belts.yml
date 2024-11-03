@@ -487,7 +487,6 @@
         - CartridgeAmmo
         - DoorRemote
         - Whistle
-        - HolosignProjector
         - BalloonPopper
   - type: ItemMapper
     mapLayers:
@@ -610,7 +609,7 @@
         - CartridgeAmmo
 
 - type: entity
-  parent: ClothingBeltSecurity
+  parent: [ ClothingBeltStorageBase, BaseSecurityContraband ]
   id: ClothingBeltSecurityWebbing
   name: security carrier
   description: Unique and versatile chest rig, can hold security gear.

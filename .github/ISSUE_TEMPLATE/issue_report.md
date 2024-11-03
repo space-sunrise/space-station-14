@@ -1,20 +1,20 @@
 ---
-name: Report an Issue
-about: "..."
+name: Сообщить о проблеме
+about: "Сообщить о баге, недоработке разработчикам для решения проблемы."
 title: ''
 labels: ''
 assignees: ''
 
 ---
 
-## Description
-<!-- Explain your issue in detail. Issues without proper explanation are liable to be closed by maintainers. -->
+## Описание
+<!-- Подробно объясните вашу проблему. Проблемы без должного объяснения могут быть закрыты поддерживающими проект. -->
 
-**Reproduction**
-<!-- Include the steps to reproduce if applicable. -->
+**Воспроизведение**
+<!-- Включите шаги для воспроизведения, если это возможно. -->
 
-**Screenshots**
-<!-- If applicable, add screenshots to help explain your problem. -->
+**Медиа**
+<!-- Если есть возможность, прикрепите скриншот/видео, показывающие саму проблему и шаги ее воспроизведения. -->
 
-**Additional context**
-<!-- Add any other context about the problem here. Anything you think is related to the issue. -->
+**Дополнительный контекст**
+<!-- Добавьте сюда любой другой контекст или скриншоты, связанные с проблемой. -->

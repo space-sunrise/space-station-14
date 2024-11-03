@@ -18918,6 +18918,8 @@ entities:
       linkedPorts:
         722:
         - CloningPodSender: CloningPodReceiver
+        723:
+        - MedicalScannerSender: MedicalScannerReceiver
 - proto: ComputerComms
   entities:
   - uid: 652

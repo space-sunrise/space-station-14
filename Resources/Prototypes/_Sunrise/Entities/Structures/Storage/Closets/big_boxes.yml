@@ -1,7 +1,7 @@
 ﻿- type: entity
   id: BarberBigBox
-  name: картонная коробка
-  description: Картонная коробка для хранения вещей.
+  name: cardboard box
+  description: A cardboard box for storing things.
   parent: BaseBigBox
   components:
   - type: Sprite

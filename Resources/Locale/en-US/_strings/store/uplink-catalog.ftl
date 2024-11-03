@@ -133,6 +133,12 @@ uplink-reinforcement-radio-nukeops-desc =  Radio in a nuclear operative of extre
 uplink-reinforcement-radio-cyborg-assault-name = Syndicate Assault Cyborg Teleporter
 uplink-reinforcement-radio-cyborg-assault-desc =  A lean, mean killing machine with access to an Energy Sword, LMG, Cryptographic Sequencer, and a Pinpointer.
 
+uplink-mech-teleporter-heavy-name = Heavy Mech teleporter
+uplink-mech-teleporter-heavy-desc = Contains Cybersan heavy armored mech with integrated chainsword, Ultra AC-2, LBX AC 10 "Scattershot", BRM-6 Missile Rack and P-X Tesla Cannon.
+
+uplink-mech-teleporter-assault-name = Assault Mech teleporter
+uplink-mech-teleporter-assault-desc = Contains Cybersan lightly armored mech with integrated chainsword, LBX AC 10 "Scattershot", SRM-8 Light Missile Rack and P-X Tesla Cannon.
+
 uplink-stealth-box-name = Stealth Box
 uplink-stealth-box-desc = A box outfitted with stealth technology. Sneak around unnoticed, but don't move too fast or you'll be revealed!
 
@@ -216,8 +222,8 @@ uplink-chemistry-kit-desc = A starter kit for the aspiring chemist, includes tox
 uplink-knives-kit-name = Throwing Knives Kit
 uplink-knives-kit-desc = A set of 4 syndicate branded throwing knives, perfect for embedding into the body of your victims.
 
-uplink-meds-bundle-name = Medical Bundle
-uplink-meds-bundle-desc = All you need to get your comrades back in the fight: mainly a combat medkit, a defibrillator and three combat medipens.
+uplink-meds-bundle-name = Interdyne Medical Bundle
+uplink-meds-bundle-desc = An assortment of autoinjectors and premium medical equipment to cover for every possible situation. Contains an elite compact defibrillator that can be used as a weapon.
 
 uplink-ammo-bundle-name = Ammo Bundle
 uplink-ammo-bundle-desc = Reloading! Contains 4 magazines for the C-20r, 4 drums for the Bulldog, and 2 ammo boxes for the L6 SAW.
@@ -446,8 +452,14 @@ uplink-barber-scissors-desc = A good tool to give your fellow agent a nice hairc
 uplink-backpack-syndicate-name = Syndicate backpack
 uplink-backpack-syndicate-desc = A lightweight explosion-proof backpack for holding various traitor goods
 
+uplink-cameraBug-name = Camera bug
+uplink-cameraBug-desc = A portable device that allows you to view the station's cameras.
+
 uplink-combat-bakery-name = Combat Bakery Kit
 uplink-combat-bakery-desc = A kit of clandestine baked weapons. Contains a baguette sword, a pair of throwing croissants, and a syndicate microwave board for making more. Once the job is done, eat the evidence.
+
+uplink-business-card-name = Syndicate Business Card
+uplink-business-card-desc = A business card that you can give to someone to demonstrate your involvement in the syndicate or leave at the crime scene in order to make fun of the detective. You can buy no more than three of them.
 
 uplink-syndicate-teleporter-name = Hand syndicate teleporter
 uplink-syndicate-teleporter-desc = An experimental hand teleporting device. Teleports its owner forward in a small area. Be careful not to end up in the wall.

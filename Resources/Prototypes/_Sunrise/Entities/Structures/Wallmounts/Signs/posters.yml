@@ -1,0 +1,19 @@
+- type: entity
+  parent: PosterBase
+  id: PosterContrabandAriralInSpace
+  name: "Ariral in Space"
+  description: "This is clearly a message..I think I forgot something..."
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Wallmounts/posters.rsi
+    state: sunriseposter1_contraband
+
+- type: entity
+  parent: PosterBase
+  id: PosterLegitAIOverseer
+  name: "AI is watching"
+  description: "Anything can be automated, Security included"
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Wallmounts/posters.rsi
+    state: sunriseposter1_legit

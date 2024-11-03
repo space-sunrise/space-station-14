@@ -1,97 +1,101 @@
+# donate plinks
+
 - type: storeCategory
   id: General
-  name: Общее
+  name: store-category-general
   priority: 0
 
 - type: storeCategory
   id: Music
-  name: Музыка
+  name: store-category-music
   priority: 1
 
 - type: storeCategory
   id: Cloaks
-  name: Плащи
+  name: store-category-cloaks
   priority: 2
 
 - type: storeCategory
   id: Friends
-  name: Друзья
+  name: store-category-friends
   priority: 3
 
 - type: storeCategory
   id: SpecialThings
-  name: Плюшки
+  name: store-category-special
   priority: 4
 
 - type: storeCategory
   id: HOSHeadOfDepartment
-  name: ГСБ
+  name: store-category-hos
   priority: 5
 
 - type: storeCategory
   id: CEHeadOfDepartment
-  name: Старший инженер
+  name: store-category-ce
   priority: 5
 
 - type: storeCategory
   id: CMOHeadOfDepartment
-  name: Главный врач
+  name: store-category-cmo
   priority: 5
 
 - type: storeCategory
   id: RDHeadOfDepartment
-  name: Научный руководитель
+  name: store-category-rd
   priority: 5
 
 - type: storeCategory
   id: QMHeadOfDepartment
-  name: Квартирмейстер
+  name: store-category-qm
   priority: 5
 
 - type: storeCategory
   id: HOPHeadOfDepartment
-  name: Глава персонала
+  name: store-category-hop
   priority: 5
 
 - type: storeCategory
   id: IAAHeadOfDepartment
-  name: АВД
+  name: store-category-iaa
   priority: 5
 
 - type: storeCategory
   id: CaptainHeadOfDepartment
-  name: Капитан
+  name: store-category-captain
   priority: 5
 
 - type: storeCategory
   id: ServiceThings
-  name: Сервисный отдел
+  name: store-category-service
   priority: 5
 
 - type: storeCategory
   id: MedicalThings
-  name: Медицинский отдел
+  name: store-category-medical
   priority: 5
 
 - type: storeCategory
   id: ScienceThings
-  name: Научный отдел
+  name: store-category-science
   priority: 5
 
 - type: storeCategory
   id: EngineeringThings
-  name: Инженерный отдел
+  name: store-category-engineering
   priority: 5
 
 - type: storeCategory
   id: CargoThings
-  name: Отдел снабжения
+  name: store-category-cargo
   priority: 5
 
 - type: storeCategory
   id: SecurityThings
-  name: Служба Безопасности
+  name: store-category-security
   priority: 5
+  
+# disease
   
 - type: storeCategory
   id: DiseaseInfectCategory
@@ -114,26 +118,6 @@
 #uplink categoires
 
 - type: storeCategory
-  id: UplinkWeaponrySilent
-  name: store-category-weapons
-  priority: 0
-  
-- type: storeCategory
-  id: UplinkAmmoSilent
-  name: store-category-ammo
-  priority: 1
-
-- type: storeCategory
-  id: UplinkExplosivesSilent
-  name: store-category-explosives
-  priority: 2
-
-- type: storeCategory
-  id: UplinkWearablesSilent
-  name: store-category-wearables
-  priority: 3
-  
-- type: storeCategory
-  id: UplinkDisruptionSilent
-  name: store-category-disruption
-  priority: 6
+  id: UplinkMechs
+  name: store-category-mechs
+  priority: 8

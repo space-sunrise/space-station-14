@@ -423,7 +423,7 @@
   name: MS-42
   parent: BaseWeaponSubMachineGun
   id: WeaponAMS-42
-  description: Более совершенная версия Лектера.
+  description: A more advanced version of Lecter.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/MS-42.rsi
@@ -477,7 +477,7 @@
   name: AJ-100
   parent: BaseWeaponSubMachineGun
   id: WeaponAJ100
-  description: Высокоскорострельный ПП, оборудован универсальным разъёмом для других типов пистолетных магазинов.
+  description: High-speed SMG, equipped with a universal connector for other types of pistol magazines.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/AJ-100.rsi
@@ -530,10 +530,10 @@
   - type: Appearance
 
 - type: entity
-  name: Пистолет-пулёмет SIAR-52
+  name: SIAR-52 SMG
   parent: BaseWeaponSubMachineGun
   id: WeaponSIAR52
-  description: Высокоскорострельный ПП, оборудован интегрированым глушителем.
+  description: A high rate of fire weapon, equipped with integrated silencer.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/IAR-52.rsi

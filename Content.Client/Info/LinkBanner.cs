@@ -3,6 +3,7 @@ using Content.Client.Changelog;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Systems.EscapeMenu;
 using Content.Client.UserInterface.Systems.Guidebook;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
@@ -49,22 +50,15 @@ namespace Content.Client.Info
             changelogButton.OnPressed += args => UserInterfaceManager.GetUIController<ChangelogUIController>().ToggleWindow();
             buttons.AddChild(changelogButton);
 
+            // Sunrise-Start
             var roadmapButton = new Button
             {
                 Text = Loc.GetString("server-info-roadmap-button"),
                 StyleClasses = { StyleBase.ButtonCaution },
             };
-            // Sunrise-Start
             roadmapButton.OnPressed += _ => UserInterfaceManager.GetUIController<RoadmapUIController>().ToggleRoadmap();
             buttons.AddChild(roadmapButton);
-
-            var donateButton = new Button
-            {
-                Text = Loc.GetString("server-info-donate-button"),
-                Disabled = true,
-            };
-            //donateButton.OnPressed += args =>
-            buttons.AddChild(donateButton);
+            AddInfoButton("server-info-telegram-button", SunriseCCVars.InfoLinksTelegram);
             // Sunrise-End
 
             void AddInfoButton(string loc, CVarDef<string> cVar)

@@ -10,23 +10,23 @@
         icon:
           sprite: Objects/Storage/Happyhonk/clown.rsi
           state: box
-        name: Хэппи Хонк  # Sunrise-recipes
+        name: happy honk meal
       - tag: BikeHorn
         icon:
             sprite: Objects/Fun/bikehorn.rsi
             state: icon
-        name: велосипедный клаксон  # Sunrise-recipes
+        name: bike horn
         doAfter: 2
       - tag: ProximitySensor
         icon:
           sprite: Objects/Misc/proximity_sensor.rsi
           state: icon
-        name: датчик движения  # Sunrise-recipes
+        name: step-proximity-sensor-name
       - tag: BorgArm
         icon:
           sprite: Mobs/Silicon/drone.rsi
           state: l_hand
-        name: руку борга  # Sunrise-recipes
+        name: step-borg-arm-name
         doAfter: 2
   - node: bot
     entity: MobHonkBot
@@ -43,23 +43,23 @@
         icon:
           sprite: Objects/Storage/Happyhonk/cluwne.rsi
           state: box
-        name: обед Жалкий Клувень  # Sunrise-recipes
+        name: woeful cluwne meal
       - tag: CluwneHorn
         icon:
           sprite: Objects/Fun/cluwnehorn.rsi
           state: icon
-        name: сломанный велосипедный клаксон  # Sunrise-recipes
+        name: broken bike horn
         doAfter: 2
       - tag: ProximitySensor
         icon:
           sprite: Objects/Misc/proximity_sensor.rsi
           state: icon
-        name: датчик движения  # Sunrise-recipes
+        name: step-proximity-sensor-name
       - tag: BorgArm
         icon:
           sprite: Mobs/Silicon/drone.rsi
           state: l_hand
-        name: руку борга  # Sunrise-recipes
+        name: step-borg-arm-name
         doAfter: 2
   - node: bot
     entity: MobJonkBot

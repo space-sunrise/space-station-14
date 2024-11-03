@@ -77,22 +77,22 @@
 - type: storeCategory
   id: UplinkAllies
   name: store-category-allies
-  priority: 8
+  priority: 9 #Sunrise-mechs
 
 - type: storeCategory
   id: UplinkJob
   name: store-category-job
-  priority: 9
+  priority: 10 #Sunrise-mechs
 
 - type: storeCategory
   id: UplinkPointless
   name: store-category-pointless
-  priority: 10
+  priority: 11 #Sunrise-mechs
 
 - type: storeCategory
   id: UplinkObjectives
   name: store-category-objectives
-  priority: 11
+  priority: 12 #Sunrise-mechs
 
 #revenant
 - type: storeCategory

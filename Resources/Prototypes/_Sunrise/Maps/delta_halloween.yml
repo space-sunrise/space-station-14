@@ -1,0 +1,109 @@
+- type: gameMap
+  id: SunriseHalloweenDelta
+  mapName: 'Halloween Delta Station'
+  mapPath: /Maps/_Sunrise/Station/delta_halloween.yml
+  maxRandomOffset: 0
+  randomRotation: false
+  minPlayers: 40
+  stations:
+    Delta:
+      stationProto: StandardNanotrasenStation
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Дельта {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: 'TG'
+        - type: StationEmergencyShuttle
+          emergencyShuttlePath: /Maps/_Sunrise/Shuttles/emergency_delta.yml
+        - type: StationJobs
+          availableJobs:
+            CargoTechnician: [ 4, 6 ]
+            Passenger: [ -1, -1 ]
+            Bartender: [ 2, 2 ]
+            Botanist: [ 3, 4 ]
+            Chef: [ 2, 3 ]
+            Clown: [ 1, 1 ]
+            Janitor: [ 1, 2 ]
+            Mime: [ 1, 1 ]
+            Zookeeper: [ 1, 1 ]
+            Captain: [ 1, 1 ]
+            HeadOfPersonnel: [ 1, 1 ]
+            Adjutant: [ 1, 1 ]
+            ChiefEngineer: [ 1, 1 ]
+            StationEngineer: [ 5, 5 ]
+            SeniorEngineer: [ 1, 1 ]
+            ChiefMedicalOfficer: [ 1, 1 ]
+            MedicalDoctor: [ 5, 5 ]
+            Chemist: [ 2, 2 ]
+            ResearchDirector: [ 1, 1 ]
+            Scientist: [ 6, 6 ]
+            HeadOfSecurity: [ 1, 1 ]
+            SecurityOfficer: [ 6, 6 ]
+            #SecurityPilot: [ 1, 1 ]
+            Chaplain: [ 1, 1 ]
+            Warden: [ 1, 1 ]
+            Librarian: [ 1, 1 ]
+            Quartermaster: [ 1, 1 ]
+            SalvageSpecialist: [ 3, 3 ]
+            Musician: [ 2, 2 ]
+            AtmosphericTechnician: [ 2, 3 ]
+            TechnicalAssistant: [ -1, -1 ]
+            ResearchAssistant: [ -1, -1 ]
+            Reporter: [ 2, 2 ]
+            MedicalIntern: [ -1, -1 ]
+            ServiceWorker: [ -1, -1 ]
+            SecurityCadet: [ -1, -1 ]
+            Psychologist: [ 1, 1 ]
+            Detective: [ 1, 1 ]
+            Paramedic: [ 1, 1 ]
+            NanoTrasenRepresentative: [ 1, 1 ]
+            # Sunrise-Law
+            IAA: [ 1, 1 ]
+            Lawyer: [ 2, 2 ]
+            Magistrat: [ 1, 1 ]
+            # Sunrise-Blueshield
+            BlueShield: [ 1, 1 ]
+            # Sunrise-Security
+            Brigmedic: [ 1, 1 ]
+            # Sunrise-Senior
+            SeniorPhysician: [ 1, 1 ]
+            SeniorResearcher: [ 1, 1 ]
+            SeniorOfficer: [ 1, 1 ]
+            # Sunrise-Science
+            Roboticist: [ 2, 2 ]
+            # silicon
+            StationAi: [ 1, 1 ]
+            Borg: [ 2, 2 ]
+            MedicalBorg: [ 4, 4 ]
+            EngineerBorg: [ 2, 2 ]
+            MinerBorg: [ 2, 2 ]
+            JanitorBorg: [ 2, 2 ]
+            ServiceBorg: [ 2, 2 ]
+            ClownBorg: [ 2, 2 ]
+            PeaceBorg: [ 2, 2 ]
+            SecurityBorg: [ 4, 4 ]
+            SecurityCombatBorg: [ 2, 2 ]
+            # Sunrise-Civillian
+            Barber: [ 1, 1 ]
+        - type: StationGoal
+          goals:
+          - Shuttle
+          - Singularity
+          - SolarPanels
+          - Artifacts
+          - Bank
+          - Zoo
+          - MiningOutpost
+          - Tesla
+          - XenobiologyRepair
+          - VirusologyAmbusol
+          - Containment
+          - WeaponsSecurity
+          - MaintsRepair
+          - DormsBuild
+          - BattleShuttle
+          - Transit
+          - NukeRoom
+          - Permabrig
+          - Farm

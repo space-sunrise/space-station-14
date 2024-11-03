@@ -24,11 +24,10 @@
       allowNonHumans: true
       multiAntagSetting: NotExclusive
       startingGear: ThiefGear
-#      components:
-#      - type: Pacified # Sunrise-Edit: Воры не терпилы
-      mindComponents:
-      - type: ThiefRole
-        prototype: Thief
+      #components:
+      #- type: Pacified    # Sunrise-Edit: Воры не терпилы
+      mindRoles:
+      - MindRoleThief
       briefing:
         sound: "/Audio/Misc/thief_greeting.ogg"
 
@@ -37,44 +36,30 @@
   id: Changeling
   components:
   - type: ChangelingRule
-  - type: MultiAntagSelection
-    components:
-      - type: AntagSelection
-        agentName: changeling-roundend-name
-        definitions:
-        - prefRoles: [ Changeling ]
-          max: 3
-          playerRatio: 30
-          lateJoinAdditional: false
-          mindComponents:
-          - type: ChangelingRole
-            prototype: Changeling
-          - type: ChangelingHive
-            hive: "enum.ChangelingHive.Kilo"
-      - type: AntagSelection
-        agentName: changeling-roundend-name
-        definitions:
-        - prefRoles: [ Changeling ]
-          max: 3
-          playerRatio: 30
-          lateJoinAdditional: false
-          mindComponents:
-          - type: ChangelingRole
-            prototype: Changeling
-          - type: ChangelingHive
-            hive: "enum.ChangelingHive.Lima"
-      - type: AntagSelection
-        agentName: changeling-roundend-name
-        definitions:
-        - prefRoles: [ Changeling ]
-          max: 3
-          playerRatio: 30
-          lateJoinAdditional: false
-          mindComponents:
-          - type: ChangelingRole
-            prototype: Changeling
-          - type: ChangelingHive
-            hive: "enum.ChangelingHive.Mike"
+  - type: AntagSelection
+    agentName: changeling-roundend-name
+    definitions:
+    - prefRoles: [ Changeling ]
+      max: 4
+      playerRatio: 30
+      lateJoinAdditional: true
+      mindRoles:
+      - MindRoleChangeling
+
+- type: entity
+  parent: BaseGameRule
+  id: Vampire
+  components:
+  - type: VampireRule
+  - type: AntagSelection
+    agentName: vampire-roundend-name
+    definitions:
+    - prefRoles: [ Vampire ]
+      max: 4
+      playerRatio: 30
+      lateJoinAdditional: true
+      mindRoles:
+      - MindRoleVampire
 
 - type: entity
   categories: [ HideSpawnMenu ]

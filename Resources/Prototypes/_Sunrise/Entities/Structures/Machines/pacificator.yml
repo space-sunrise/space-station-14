@@ -1,8 +1,8 @@
 - type: entity
   id: Pacificator
   parent: BaseMachinePowered
-  name: генератор пацифизма
-  description: Делает всех разумных существ в радиусе действия пацифистами.
+  name: pacifism generator
+  description: Makes all sentient beings within range pacifists.
   placement:
     mode: AlignTileAny
   components:
@@ -82,18 +82,3 @@
     range: 7
     sound:
       path: /Audio/Ambience/Objects/gravity_gen_hum.ogg
-
-- type: entity
-  parent: BaseMachineCircuitboard
-  id: PacificatorCircuitboard
-  name: генератор пацифизма (машинная плата)
-  description:
-  components:
-  - type: MachineBoard
-    prototype: Pacificator
-    stackRequirements:
-      Capacitor: 4
-      MatterBin: 3
-      Steel: 5
-      CableHV: 5
-      Uranium: 2

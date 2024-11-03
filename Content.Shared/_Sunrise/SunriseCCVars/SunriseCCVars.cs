@@ -59,20 +59,23 @@ public sealed class SunriseCCVars
         CVarDef.Create("discord.ban_webhook", string.Empty, CVar.SERVERONLY);
 
     /*
-     * Discord Auth
+     * Service Authorization
      */
 
-    public static readonly CVarDef<bool> DiscordAuthEnabled =
-        CVarDef.Create("discord_auth.enabled", false, CVar.SERVERONLY);
+    public static readonly CVarDef<bool> ServiceAuthEnabled =
+        CVarDef.Create("service_auth.enabled", false, CVar.SERVERONLY);
 
-    public static readonly CVarDef<string> DiscordAuthApiUrl =
-        CVarDef.Create("discord_auth.api_url", "", CVar.SERVERONLY);
+    public static readonly CVarDef<string> ServiceAuthApiUrl =
+        CVarDef.Create("service_auth.api_url", "", CVar.SERVERONLY);
 
-    public static readonly CVarDef<string> DiscordAuthApiToken =
-        CVarDef.Create("discord_auth.api_token", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+    public static readonly CVarDef<string> ServiceAuthApiToken =
+        CVarDef.Create("service_auth.api_token", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
 
-    public static readonly CVarDef<bool> DiscordAuthCheckMember =
-        CVarDef.Create("discord_auth.check_member", false, CVar.SERVERONLY);
+    public static readonly CVarDef<bool> ServiceAuthCheckTelegramMember =
+        CVarDef.Create("service_auth.check_telegram_member", false, CVar.SERVERONLY);
+
+    public static readonly CVarDef<bool> ServiceAuthCheckDiscordMember =
+        CVarDef.Create("service_auth.check_discord_member", false, CVar.SERVERONLY);
 
     /*
      * GodMode RoundEnd
@@ -139,7 +142,7 @@ public sealed class SunriseCCVars
      */
 
     public static readonly CVarDef<bool> ServersHubEnable =
-        CVarDef.Create("servers_hub.enable", true, CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("servers_hub.enable", false, CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     /// Список серверов отображаемых в хабе. Разделяются через запятую.
@@ -164,31 +167,60 @@ public sealed class SunriseCCVars
     public static readonly CVarDef<bool> TapePlayerClientEnabled =
         CVarDef.Create("tape_player.client_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
+    /*
+     * INFOLINKS
+     */
+
     /// <summary>
     /// Link to boosty to show in the launcher.
     /// </summary>
     public static readonly CVarDef<string> InfoLinksDonate =
         CVarDef.Create("infolinks.donate", "", CVar.SERVER | CVar.REPLICATED);
 
+    /// <summary>
+    /// Link to Telegram channel to show in the launcher.
+    /// </summary>
+    public static readonly CVarDef<string> InfoLinksTelegram =
+        CVarDef.Create("infolinks.telegram", "", CVar.SERVER | CVar.REPLICATED);
+
     /**
      * Lobby
      */
 
-    public static readonly CVarDef<string> LobbyBackground =
-        CVarDef.Create("lobby.background", "Art", CVar.CLIENTONLY | CVar.ARCHIVE);
+    public static readonly CVarDef<string> LobbyBackgroundType =
+        CVarDef.Create("lobby.background", "Random", CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<string> LobbyArt =
+        CVarDef.Create("lobby.art", "Random", CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<string> LobbyAnimation =
+        CVarDef.Create("lobby.animation", "Random", CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<string> LobbyParallax =
+        CVarDef.Create("lobby.parallax", "Random", CVar.CLIENTONLY | CVar.ARCHIVE);
 
     public static readonly CVarDef<float> LobbyOpacity =
         CVarDef.Create("lobby.lobby_opacity", 0.90f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     public static readonly CVarDef<string> ServerName =
-        CVarDef.Create("lobby.server_name", "SS14", CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("lobby.server_name", "Sunrise Station", CVar.SERVER | CVar.REPLICATED);
 
     /*
      * Planet Prison
      */
 
+    public static readonly CVarDef<bool> MinPlayersEnable =
+            CVarDef.Create("planet_prison.enable", true, CVar.SERVERONLY);
+
     public static readonly CVarDef<int> MinPlayersPlanetPrison =
         CVarDef.Create("planet_prison.min_players", 60, CVar.SERVERONLY);
+
+    /*
+     * MaxLoadedChunks
+     */
+
+    public static readonly CVarDef<int> MaxLoadedChunks =
+        CVarDef.Create("chunk.max", 100, CVar.ARCHIVE | CVar.REPLICATED | CVar.SERVER);
 
     /**
      * Roadmap
@@ -234,4 +266,42 @@ public sealed class SunriseCCVars
     public static readonly CVarDef<bool> NPCDisableWithoutPlayers = CVarDef.Create("npc.disable_without_players", true);
 
     public static readonly CVarDef<float> NPCDisableDistance = CVarDef.Create("npc.disable_distance", 15f);
+
+    /*
+     * Vote
+     */
+
+    public static readonly CVarDef<bool> ShowRestartVotes = CVarDef.Create("vote.show_restart_votes", true);
+
+    public static readonly CVarDef<bool> ShowPresetVotes = CVarDef.Create("vote.show_preset_votes", true);
+
+    public static readonly CVarDef<bool> ShowMapVotes = CVarDef.Create("vote.show_map_votes", true);
+
+    public static readonly CVarDef<bool> RunMapVoteAfterRestart = CVarDef.Create("vote.run_map_vote_after_restart", false);
+
+    public static readonly CVarDef<bool> RunPresetVoteAfterRestart = CVarDef.Create("vote.run_preset_vote_after_restart", false);
+    
+    public static readonly CVarDef<int> VotingsDelay = CVarDef.Create("vote.votings_delay", 90);
+    
+    public static readonly CVarDef<int> MapVotingCount = CVarDef.Create("vote.map_voting_count", 3);
+    
+    public static readonly CVarDef<int> RoundVotingCount = CVarDef.Create("vote.round_voting_count", 3);
+    
+    public static readonly CVarDef<string> RoundVotingChancesPrototype = CVarDef.Create("vote.round_voting_chances_prototype", "");
+
+    /*
+     * Preset
+     */
+
+    public static readonly CVarDef<bool> ResetPresetAfterRestart = CVarDef.Create("game.reset_preset_after_restart", false);
+
+    /*
+     * Ban links.
+     */
+
+    public static readonly CVarDef<string> BanForumLink =
+        CVarDef.Create("cl.forum_link", "", CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
+
+    public static readonly CVarDef<string> BanDiscordLink =
+        CVarDef.Create("cl.discord_link", "", CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
 }

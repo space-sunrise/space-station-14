@@ -70,3 +70,4 @@
       emergencyLightColor: DarkViolet
       forceEnableEmergencyLights: true
       shuttleTime: 1200
+      forceEndRound: true # Sunrise_Edit

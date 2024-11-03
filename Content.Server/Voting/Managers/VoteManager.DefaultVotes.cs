@@ -3,11 +3,13 @@ using System.Linq;
 using Content.Server.Administration;
 using Content.Server.Administration.Managers;
 using Content.Server.Database;
+using Content.Server.Discord.WebhookMessages;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
 using Content.Server.Maps;
 using Content.Server.Roles;
 using Content.Server.RoundEnd;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Database;
@@ -15,6 +17,7 @@ using Content.Shared.Ghost;
 using Content.Shared.Players;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Voting;
+using Content.Shared.Voting.Prototypes;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Player;
@@ -28,6 +31,7 @@ namespace Content.Server.Voting.Managers
         [Dependency] private readonly ILogManager _logManager = default!;
         [Dependency] private readonly IBanManager _bans = default!;
         [Dependency] private readonly IServerDbManager _dbManager = default!;
+        [Dependency] private readonly VoteWebhooks _voteWebhooks = default!;
 
         private VotingSystem? _votingSystem;
         private RoleSystem? _roleSystem;
@@ -84,9 +88,13 @@ namespace Content.Server.Voting.Managers
             var ghostVotePercentageRequirement = _cfg.GetCVar(CCVars.VoteRestartGhostPercentage);
             var ghostVoterPercentage = CalculateEligibleVoterPercentage(VoterEligibility.Ghost);
 
+            // Sunrise-Start
+            var showRestartVotes = _cfg.GetCVar(SunriseCCVars.ShowRestartVotes);
+            // Sunrise-End
+
             if (totalPlayers <= playerVoteMaximum || ghostVoterPercentage >= ghostVotePercentageRequirement)
             {
-                StartVote(initiator, false);
+                StartVote(initiator, showRestartVotes);
             }
             else
             {
@@ -134,7 +142,7 @@ namespace Content.Server.Voting.Managers
             return eligibleCount;
         }
 
-        private void StartVote(ICommonSession? initiator, bool displayVotes = true)
+        private void StartVote(ICommonSession? initiator, bool displayVotes)
         {
             var alone = _playerManager.PlayerCount == 1 && initiator != null;
             var options = new VoteOptions
@@ -225,7 +233,7 @@ namespace Content.Server.Voting.Managers
                 Duration = alone
                     ? TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerAlone))
                     : TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerPreset)),
-                DisplayVotes = false // Sunrise-Edit
+                DisplayVotes = _cfg.GetCVar(SunriseCCVars.ShowPresetVotes), // Sunrise-Edit
             };
 
             if (alone)
@@ -265,8 +273,9 @@ namespace Content.Server.Voting.Managers
         {
             var maps = new Dictionary<string, GameMapPrototype>();
             var eligibleMaps = _gameMapManager.CurrentlyEligibleMaps().ToList();
-            maps.Add(Loc.GetString("ui-vote-secret-map"), _random.Pick(eligibleMaps));
-            foreach (var map in eligibleMaps)
+            var selectedMaps = eligibleMaps.OrderBy(_ => _random.Next()).Take(_cfg.GetCVar(SunriseCCVars.MapVotingCount)).ToList();
+            maps.Add(Loc.GetString("ui-vote-secret-map"), _random.Pick(selectedMaps));
+            foreach (var map in selectedMaps)
             {
                 maps.Add(map.MapName, map);
             }
@@ -278,7 +287,7 @@ namespace Content.Server.Voting.Managers
                 Duration = alone
                     ? TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerAlone))
                     : TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VoteTimerMap)),
-                DisplayVotes = false // Sunrise-Edit
+                DisplayVotes = _cfg.GetCVar(SunriseCCVars.ShowMapVotes), // Sunrise-Edit
             };
 
             if (alone)
@@ -458,10 +467,13 @@ namespace Content.Server.Voting.Managers
             var vote = CreateVote(options);
             _adminLogger.Add(LogType.Vote, LogImpact.Extreme, $"Votekick for {located.Username} ({targetEntityName}) due to {reason} started, initiated by {initiator}.");
 
+            // Create Discord webhook
+            var webhookState = _voteWebhooks.CreateWebhookIfConfigured(options, _cfg.GetCVar(CCVars.DiscordVotekickWebhook), Loc.GetString("votekick-webhook-name"), options.Title + "\n" + Loc.GetString("votekick-webhook-description", ("initiator", initiatorName), ("target", targetSession)));
+
             // Time out the vote now that we know it will happen
             TimeoutStandardVote(StandardVoteType.Votekick);
 
-            vote.OnFinished += (_, _) =>
+            vote.OnFinished += (_, eventArgs) =>
             {
 
                 var votesYes = vote.VotesPerOption["yes"];
@@ -496,6 +508,7 @@ namespace Content.Server.Voting.Managers
                     {
                         _adminLogger.Add(LogType.Vote, LogImpact.Extreme, $"Votekick for {located.Username} attempted to pass, but an admin was online. Yes: {votesYes} / No: {votesNo}. Yes: {yesVotersString} / No: {noVotersString}");
                         AnnounceCancelledVotekickForVoters(targetEntityName);
+                        _voteWebhooks.UpdateCancelledWebhookIfConfigured(webhookState, Loc.GetString("votekick-webhook-cancelled-admin-online"));
                         return;
                     }
                     // Check if the target is an antag and the vote reason is raiding (this is to prevent false positives)
@@ -503,6 +516,7 @@ namespace Content.Server.Voting.Managers
                     {
                         _adminLogger.Add(LogType.Vote, LogImpact.Extreme, $"Votekick for {located.Username} due to {reason} finished, created by {initiator}, but was cancelled due to the target being an antagonist.");
                         AnnounceCancelledVotekickForVoters(targetEntityName);
+                        _voteWebhooks.UpdateCancelledWebhookIfConfigured(webhookState, Loc.GetString("votekick-webhook-cancelled-antag-target"));
                         return;
                     }
                     // Check if the target is an admin/de-admined admin
@@ -510,6 +524,7 @@ namespace Content.Server.Voting.Managers
                     {
                         _adminLogger.Add(LogType.Vote, LogImpact.Extreme, $"Votekick for {located.Username} due to {reason} finished, created by {initiator}, but was cancelled due to the target being a de-admined admin.");
                         AnnounceCancelledVotekickForVoters(targetEntityName);
+                        _voteWebhooks.UpdateCancelledWebhookIfConfigured(webhookState, Loc.GetString("votekick-webhook-cancelled-admin-target"));
                         return;
                     }
                     else
@@ -524,6 +539,9 @@ namespace Content.Server.Voting.Managers
                             severity = NoteSeverity.High;
                         }
 
+                        // Discord webhook, success
+                        _voteWebhooks.UpdateWebhookIfConfigured(webhookState, eventArgs);
+
                         uint minutes = (uint)_cfg.GetCVar(CCVars.VotekickBanDuration);
 
                         _bans.CreateServerBan(targetUid, target, null, null, targetHWid, minutes, severity, reason);
@@ -531,6 +549,10 @@ namespace Content.Server.Voting.Managers
                 }
                 else
                 {
+
+                    // Discord webhook, failure
+                    _voteWebhooks.UpdateWebhookIfConfigured(webhookState, eventArgs);
+
                     _adminLogger.Add(LogType.Vote, LogImpact.Extreme, $"Votekick failed: Yes: {votesYes} / No: {votesNo}. Yes: {yesVotersString} / No: {noVotersString}");
                     _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-votekick-failure", ("target", targetEntityName), ("reason", reason)));
                 }
@@ -566,21 +588,74 @@ namespace Content.Server.Voting.Managers
         private Dictionary<string, string> GetGamePresets()
         {
             var presets = new Dictionary<string, string>();
+            
+            var prototypeId = _cfg.GetCVar(SunriseCCVars.RoundVotingChancesPrototype);
+
+            if (!_prototypeManager.TryIndex<RoundVotingChancesPrototype>(prototypeId, out var chancesPrototype))
+            {
+                Logger.Warning($"Не удалось найти прототип шансов с ID: {prototypeId}");
+                return presets;
+            }
+
+            var validPresets = new List<(GamePresetPrototype preset, float chance)>();
 
             foreach (var preset in _prototypeManager.EnumeratePrototypes<GamePresetPrototype>())
             {
-                if(!preset.ShowInVote)
+                if (!preset.ShowInVote)
                     continue;
 
-                if(_playerManager.PlayerCount < (preset.MinPlayers ?? int.MinValue))
+                if (_playerManager.PlayerCount < (preset.MinPlayers ?? int.MinValue))
                     continue;
 
-                if(_playerManager.PlayerCount > (preset.MaxPlayers ?? int.MaxValue))
+                if (_playerManager.PlayerCount > (preset.MaxPlayers ?? int.MaxValue))
                     continue;
 
-                presets[preset.ID] = preset.ModeTitle;
+                if (chancesPrototype.Chances.TryGetValue(preset.ID, out var chance))
+                {
+                    validPresets.Add((preset, chance));
+                }
             }
+
+            if (validPresets.Count == 0)
+            {
+                Logger.Warning("Нет подходящих игровых режимов для текущего количества игроков.");
+                return presets;
+            }
+
+            var selectedPresets = SelectPresetsByChance(validPresets, _cfg.GetCVar(SunriseCCVars.RoundVotingCount));
+            foreach (var preset in selectedPresets)
+            {
+                presets[preset.preset.ID] = preset.preset.ModeTitle;
+            }
+
             return presets;
+        }
+
+        private List<(GamePresetPrototype preset, float chance)> SelectPresetsByChance(List<(GamePresetPrototype preset, float chance)> validPresets, int count)
+        {
+            var selectedPresets = new List<(GamePresetPrototype preset, float chance)>();
+            var random = new Random();
+
+            while (selectedPresets.Count < count && validPresets.Count > 0)
+            {
+                var totalChance = validPresets.Sum(p => p.chance);
+
+                var roll = random.NextDouble() * totalChance;
+                float cumulativeChance = 0;
+
+                foreach (var preset in validPresets)
+                {
+                    cumulativeChance += preset.chance;
+                    if (roll < cumulativeChance)
+                    {
+                        selectedPresets.Add(preset);
+                        validPresets.Remove(preset);
+                        break;
+                    }
+                }
+            }
+
+            return selectedPresets;
         }
     }
 }

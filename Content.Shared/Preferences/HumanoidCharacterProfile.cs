@@ -227,7 +227,8 @@ namespace Content.Shared.Preferences
 
             var species = random.Pick(prototypeManager
                 .EnumeratePrototypes<SpeciesPrototype>()
-                .Where(x => ignoredSpecies == null ? x.RoundStart : x.RoundStart && !ignoredSpecies.Contains(x.ID))
+                .Where(x => (ignoredSpecies == null ? x.RoundStart : x.RoundStart && !ignoredSpecies.Contains(x.ID))
+                            && !x.SponsorOnly)
                 .ToArray()
             ).ID;
 
@@ -250,7 +251,8 @@ namespace Content.Shared.Preferences
             // Sunrise-TTS-Start
             var voiceId = random.Pick(prototypeManager
                 .EnumeratePrototypes<TTSVoicePrototype>()
-                .Where(o => CanHaveVoice(o, sex)).ToArray()
+                .Where(o => CanHaveVoice(o, sex) && !o.SponsorOnly)
+                .ToArray()
             ).ID;
             // Sunrise-TTS-End
 

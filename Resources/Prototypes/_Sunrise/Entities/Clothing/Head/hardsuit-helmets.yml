@@ -6,8 +6,7 @@
   description: A pressure resistant and fireproof hood worn by special cleanup units.
   components:
   - type: Sprite
-    netsync: false
-    sprite: _Sunrise/Clothing/Head/hardsuits/cburncommander.rsi
+    sprite: _Sunrise/Clothing/Head/Hardsuits/cburn-commander.rsi
     layers:
     - state: icon
     - state: icon-unshaded
@@ -47,13 +46,13 @@
   parent: ClothingHeadHardsuitWithLightBase
   id: ClothingHeadHelmetHardsuitBlueshield
   categories: [ HideSpawnMenu ]
-  name: шлем скафандра офицера «синий щит»
-  description: Синий.
+  name: blueshield's hardsuit helmet
+  description: Blue.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Head/hardsuits/blueshield.rsi
+    sprite: _Sunrise/Clothing/Head/Hardsuits/blueshield.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Head/hardsuits/blueshield.rsi
+    sprite: _Sunrise/Clothing/Head/Hardsuits/blueshield.rsi
   - type: PointLight
     color: "#adeeff"
   - type: PressureProtection
@@ -71,22 +70,22 @@
   id: ClothingHeadHelmetHardsuitSecuritySunrise
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/Head/hardsuits/secoff.rsi
+    sprite: _Sunrise/Clothing/Head/Hardsuits/secoff.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Head/hardsuits/secoff.rsi
+    sprite: _Sunrise/Clothing/Head/Hardsuits/secoff.rsi
 
 - type: entity
   parent: ClothingHeadHardsuitWithLightBase
   id: ClothingHeadHelmetHardsuitPilot
   categories: [ HideSpawnMenu ]
-  name: Шлем скафандра пилота Службы Безопасности
-  description: Футуристичный шлем с отличным обзором.
+  name: security pilot's hardsuit helmet
+  description: A futuristic helmet with excellent visibility.
   components:
   - type: BreathMask
   - type: Sprite
-    sprite: _Sunrise/Clothing/Head/Hardsuit/pilothardsuithelmet.rsi
+    sprite: _Sunrise/Clothing/Head/Hardsuits/pilothardsuithelmet.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/Head/Hardsuit/pilothardsuithelmet.rsi
+    sprite: _Sunrise/Clothing/Head/Hardsuits/pilothardsuithelmet.rsi
   - type: PointLight
     color: cyan
   - type: PressureProtection
@@ -99,3 +98,123 @@
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
+
+#USSP
+
+- type: entity
+  parent: ClothingHeadHardsuitBase
+  id: ClothingHeadHelmetHeavyHardsuitUSSP
+  name: Bulat-M helmet
+  description: A heavily armored USSP spacesuit designed for combat operations in extreme conditions. Reinforced armor protects against firearms and energy weapons, radiation and explosions. It is used by elite units to protect strategic facilities.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hardsuits/ussp-heavy.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hardsuits/ussp-heavy.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+
+- type: entity
+  parent: ClothingHeadHardsuitBase
+  id: ClothingHeadHelmetLightHardsuitUSSP
+  name: Thunder-P helmet
+  description: A lightweight combat suit designed for rapid response and mobile operations. The light armor provides protection against firearms and allows for high maneuverability. The Grom-P is used by assault troops for fast and effective combat operations.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hardsuits/ussp-light.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hardsuits/ussp-light.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: FlashImmunity
+
+- type: entity
+  parent: ClothingHeadHardsuitWithLightBase
+  id: ClothingHeadHelmetHardsuitEngineeringCompact
+  name: engineering hardsuit helmet
+  description: An engineering hardsuit helmet designed for working in low-pressure, high radioactive environments.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hardsuits/engineering-compact.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hardsuits/engineering-compact.rsi
+  - type: PointLight
+    color: cyan
+  - type: PressureProtection
+    highPressureMultiplier: 0.1
+    lowPressureMultiplier: 1000
+  - type: EyeProtection
+  - type: FlashImmunity
+  - type: NightVisionDevice
+    displayColor: "#ebeb00"
+    displayShader: NVDDisplay
+
+#Для ивентов
+
+- type: entity
+  parent: ClothingHeadHardsuitWithLightBase
+  id: ClothingHeadHelmetHardsuitUegParatrooper
+  name: space marine spacesuit helmet
+  description: The helmet from a paratrooper spacesuit.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hardsuits/ueg_paratrooperh.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hardsuits/ueg_paratrooperh.rsi
+  - type: PointLight
+    color: cyan
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: ShowJobIcons
+
+- type: entity
+  parent: ClothingHeadHardsuitWithLightBase
+  id: ClothingHeadHelmetHardsuitUegCap
+  name: space suit helmet of a space marines captain.
+  description: The helmet from a paratrooper captain spacesuit.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hardsuits/ueg_captainh.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hardsuits/ueg_captainh.rsi
+  - type: PointLight
+    color: cyan
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: ShowJobIcons

@@ -195,6 +195,8 @@
         type: StrippableBoundUserInterface
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
+      enum.VampireMutationUiKey.Key:
+        type: VampireMutationBoundUserInterface
   - type: Puller
   - type: Speech
     speechSounds: Alto
@@ -240,6 +242,8 @@
   # Sunrise-Start
   - type: Carriable
   - type: CanEscapeInventory
+  - type: LayingDown
+  - type: Mood
   # Sunrise-End
   - type: Barotrauma
     damage:
