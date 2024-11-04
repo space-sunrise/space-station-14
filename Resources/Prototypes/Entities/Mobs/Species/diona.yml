@@ -114,6 +114,10 @@
   - type: CollectiveMind
     minds:
     - Dioneas
+
+  - type: FootprintEmitter
+    LeftBareFootState: "footprint-left-bare-diona"
+    RightBareFootState: "footprint-right-bare-diona"
   # Sunrise-End
 
 - type: entity

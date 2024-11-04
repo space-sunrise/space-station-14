@@ -98,6 +98,11 @@
       sprite: "Effects/creampie.rsi"
       state: "creampie_vox" # Not default
       visible: false
+  # Sunrise ed!
+  - type: FootprintEmitter
+    LeftBareFootState: "footprint-left-bare-lizard"
+    RightBareFootState: "footprint-right-bare-lizard"
+  # Sunrise edit end.
   - type: Inventory
     speciesId: vox
     displacements:

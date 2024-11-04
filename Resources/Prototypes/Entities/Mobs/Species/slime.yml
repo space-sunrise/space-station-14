@@ -119,6 +119,11 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+  # Sunrise edit OwO
+  - type: FootprintEmitter
+    LeftBareFootState: "footprint-left-bare-slime"
+    RightBareFootState: "footprint-right-bare-slime"
+  # Sunrise edit end.
 
 - type: entity
   parent: MobHumanDummy
