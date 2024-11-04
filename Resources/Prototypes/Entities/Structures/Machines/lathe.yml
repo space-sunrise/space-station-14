@@ -299,13 +299,17 @@
       - AnomalyLocator
       - AnomalyLocatorWide
       - Scalpel
+      - ScalpelAdvanced
       - Retractor
       - Cautery
       - Drill
       - WeaponParticleDecelerator
       - HoloprojectorField
       - Saw
+      - SawAdvanced
       - Hemostat
+      - BoneGel
+      - BoneSetter
       - CryostasisBeaker
       - SyringeCryostasis
       - Syringe
@@ -1084,12 +1088,6 @@
       - MedkitAdvanced
       - MedkitRadiation
       - MedkitCombat
-      - Scalpel
-      - Retractor
-      - Cautery
-      - Drill
-      - Saw
-      - Hemostat
       - ClothingEyesGlassesChemical
       - WhiteCane
     dynamicRecipes:
@@ -1098,6 +1096,27 @@
       - BluespaceBeaker
       - SyringeBluespace
       - SyringeCryostasis
+      - BoneSetter
+      - BoneSetterAdvanced
+      - BoneGel
+      - Scalpel
+      - ScalpelAdvanced
+      - Retractor
+      - RetractorAdvanced
+      - Cautery
+      - Drill
+      - Saw
+      - SawAdvanced
+      - Hemostat
+      - HemostatAdvanced
+      - LeftArmCyber
+      - RightArmCyber
+      - LeftHandCyber
+      - RightHandCyber
+      - LeftLegCyber
+      - RightLegCyber
+      - LeftFootCyber
+      - RightFootCyber
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
