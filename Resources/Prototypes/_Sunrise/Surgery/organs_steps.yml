@@ -380,7 +380,9 @@
     tools:
     - type: Scalpel
   - type: SurgeryStepBleedEffect
-    damage: 5
+    damage:
+      types:
+        Slash: 10
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
     state: scalpel
@@ -424,7 +426,9 @@
     tools:
     - type: BoneSaw
   - type: SurgeryStepBleedEffect
-    damage: 10
+    damage:
+      types:
+        Slash: 10
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/saw.rsi
     state: saw
@@ -468,7 +472,9 @@
     tools:
     - type: Scalpel
   - type: SurgeryStepBleedEffect
-    damage: 8
+    damage:
+      types:
+        Slash: 10
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
     state: scalpel
@@ -498,7 +504,9 @@
     tools:
     - type: Scalpel
   - type: SurgeryStepBleedEffect
-    damage: 12
+    damage:
+      types:
+        Slash: 10
   - type: Sprite
     sprite: Objects/Specific/Medical/Surgery/scalpel.rsi
     state: scalpel
