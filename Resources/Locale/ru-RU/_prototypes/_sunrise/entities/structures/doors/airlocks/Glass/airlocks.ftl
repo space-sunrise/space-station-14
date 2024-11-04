@@ -1,6 +1,6 @@
 ent-DoubleGlassAirlock = двойной стеклянный шлюз
     .desc = Он открывается, он закрывается, и он может вас раздавить, но он больше, чем обычно.
-ent-TripleGlassAirlock =тройной стеклянный шлюз
+ent-TripleGlassAirlock = тройной стеклянный шлюз
     .desc = Он открывается, он закрывается, и он может вас раздавить, но он значительно больше, чем обычно.
 ent-DoubleGlassAirlockAtmospherics = { ent-DoubleGlassAirlockEngineering }
     .suffix = Атмосферный
@@ -35,7 +35,7 @@ ent-DoubleGlassAirlockSecurity = { ent-DoubleGlassAirlock }
 ent-DoubleGlassAirlockVirology = { ent-DoubleGlassAirlock }
     .suffix = Вирусология
     .desc = { ent-DoubleGlassAirlock.desc }
-ent-TripleGlassAirlockBasic = triple basic glass airlock
+ent-TripleGlassAirlockBasic = тройной стандартный стеклянный шлюз
     .desc = { ent-TripleGlassAirlock.desc }
 ent-TripleGlassAirlockAtmospherics = { ent-TripleGlassAirlock }
     .suffix = Атмосферный

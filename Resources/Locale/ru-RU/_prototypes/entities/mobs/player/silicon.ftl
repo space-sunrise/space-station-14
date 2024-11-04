@@ -1,5 +1,7 @@
 ent-AiHeld = { "" }
     .desc = Компоненты, добавленные или удаленные из сущности, которые вставляются в ядро ИИ.
+ent-AiHeldIntellicard = { "" }
+    .desc = Компоненты, добавленные/удаленные из сущности, которая вставляется в Intellicard.
 ent-PlayerBorgGeneric = { ent-BorgChassisGeneric }
     .desc = { ent-BorgChassisGeneric.desc }
     .suffix = Батарея, Инструменты
