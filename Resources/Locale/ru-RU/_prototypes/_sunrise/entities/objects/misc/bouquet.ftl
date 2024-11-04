@@ -1,2 +1,2 @@
-﻿ent-bouquet = Букет
+ent-bouquet = Букет
     .desc = Букет душистых цветов.
