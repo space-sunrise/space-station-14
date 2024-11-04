@@ -164,8 +164,8 @@
       sprite: Interface/Actions/actions_vampire.rsi
       state: blood_drain_icon
   - type: NumberObjective
-    min: 100
-    max: 500
+    min: 300
+    max: 600
     title: objective-condition-drain-title
     description: objective-condition-drain-description
   - type: BloodDrainCondition
