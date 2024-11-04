@@ -25,7 +25,7 @@
                     <RichTextLabel Name="CountdownLabel" VerticalExpand="True"/>
                     <GridContainer Columns="2">
                         <OptionButton Name="DurationButton" StyleClasses="OpenRight" Access="Public" />
-                        <Button Name="EmergencyShuttleButton" Text="Placeholder Text" ToolTip="{Loc 'comms-console-menu-emergency-shuttle-button-tooltip'}" Access="Public" />
+                        <Button Name="EmergencyShuttleButton" StyleClasses="OpenLeft" Text="Placeholder Text" ToolTip="{Loc 'comms-console-menu-emergency-shuttle-button-tooltip'}" Access="Public" HorizontalExpand="True"/>
                     </GridContainer>
                 </BoxContainer>
             </PanelContainer>

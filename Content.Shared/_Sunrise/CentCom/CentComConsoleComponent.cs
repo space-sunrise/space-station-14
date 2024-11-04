@@ -35,7 +35,7 @@ public sealed class LinkedStation
 [RegisterComponent]
 public sealed partial class CentComConsoleComponent : Component
 {
-    public static readonly string IdCardSlotId = "CentComConsole-IdSlot";
+    public static string IdCardSlotId = "CentComConsole-IdSlot";
 
     [DataField]
     public ItemSlot IdSlot = new();

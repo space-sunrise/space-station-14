@@ -1,5 +1,7 @@
 ﻿using Content.Server._Sunrise.StationCentComm;
 using Content.Server.AlertLevel;
+using Content.Server.RoundEnd;
+using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared._Sunrise.CentCom;
 using Content.Shared._Sunrise.CentCom.BUIStates;
@@ -16,6 +18,7 @@ public sealed class CentComConsoleSystem : EntitySystem
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
+    [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -26,6 +29,16 @@ public sealed class CentComConsoleSystem : EntitySystem
         SubscribeLocalEvent<CentComConsoleComponent, EntInsertedIntoContainerMessage>(UpdateUi);
         SubscribeLocalEvent<CentComConsoleComponent, EntRemovedFromContainerMessage>(UpdateUi);
         SubscribeLocalEvent<CentComConsoleComponent, BoundUIOpenedEvent>(UpdateUi);
+        SubscribeLocalEvent<RoundEndSystemChangedEvent>(OnRoundEnd);
+    }
+
+    private void OnRoundEnd(RoundEndSystemChangedEvent args)
+    {
+        var query = EntityQueryEnumerator<CentComConsoleComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            UpdateUi(uid, comp, args);
+        }
     }
 
     private void OnComponentInit(EntityUid uid, CentComConsoleComponent component, ComponentInit args)
@@ -94,7 +107,11 @@ public sealed class CentComConsoleSystem : EntitySystem
         {
             idName = MetaData(component.IdSlot.Item.Value).EntityName;
         }
-        var newState = new CentComConsoleBoundUserInterfaceState(idPresent, idName, component.Station, GetNetEntity(uid));
+
+        var sentEvac = _roundEndSystem.ShuttleTimeLeft != null;
+        var dockTime = _roundEndSystem.ShuttleTimeLeft;
+
+        var newState = new CentComConsoleBoundUserInterfaceState(idPresent, idName, component.Station, GetNetEntity(uid), sentEvac, dockTime);
 
         _userInterface.SetUiState(uid, CentComConsoleUiKey.Key, newState);
     }

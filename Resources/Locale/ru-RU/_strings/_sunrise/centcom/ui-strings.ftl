@@ -11,3 +11,4 @@ centcom-console-duration-5min = 5 минут
 centcom-console-duration-10min = 10 минут
 centcom-console-duration-15min = 15 минут
 centcom-console-duration-30min = 30 минут
+centcom-console-call-shuttle-label = Вызвать

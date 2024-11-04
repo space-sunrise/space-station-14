@@ -1,9 +1,10 @@
 ﻿using Content.Client._Sunrise.CentCom.UI;
-using Content.Shared._Sunrise.CentCom;
 using Content.Shared._Sunrise.CentCom.BUIStates;
+using Content.Shared.Containers.ItemSlots;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 using Robust.Shared.Prototypes;
+using static Content.Shared._Sunrise.CentCom.CentComConsoleComponent;
 
 namespace Content.Client._Sunrise.CentCom.BUI;
 
@@ -31,7 +32,10 @@ public sealed class CentComConsoleBoundUserInterface : BoundUserInterface
         // {
         //
         // }
+        _window.IdButton.OnPressed += _ => SendMessage(new ItemSlotButtonPressedEvent(IdCardSlotId));
+
         _window.OnClose += Close;
+        _window.OpenCentered();
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
