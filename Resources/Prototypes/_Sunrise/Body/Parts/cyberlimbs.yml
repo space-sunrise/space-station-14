@@ -18,10 +18,10 @@
     - type: BaseLayerId
       layer: CyberLArm
     - type: Sprite
-      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_arm"
     - type: Icon
-      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_arm"
 
 - type: entity
@@ -32,10 +32,10 @@
     - type: BaseLayerId
       layer: CyberRArm
     - type: Sprite
-      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_arm"
     - type: Icon
-      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_arm"
 
 - type: entity
@@ -46,10 +46,10 @@
     - type: BaseLayerId
       layer: CyberLHand
     - type: Sprite
-      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_hand"
     - type: Icon
-      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_hand"
 
 - type: entity
@@ -60,10 +60,10 @@
     - type: BaseLayerId
       layer: CyberRHand
     - type: Sprite
-      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_hand"
     - type: Icon
-      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_hand"
 
 - type: entity
@@ -74,10 +74,10 @@
     - type: BaseLayerId
       layer: CyberLLeg
     - type: Sprite
-      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_leg"
     - type: Icon
-      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_leg"
 
 - type: entity
@@ -88,10 +88,10 @@
     - type: BaseLayerId
       layer: CyberRLeg
     - type: Sprite
-      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_leg"
     - type: Icon
-      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_leg"
 
 - type: entity
@@ -102,10 +102,10 @@
     - type: BaseLayerId
       layer: CyberLFoot
     - type: Sprite
-      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_foot"
     - type: Icon
-      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
       state: "l_foot"
 
 - type: entity
@@ -116,8 +116,8 @@
     - type: BaseLayerId
       layer: "CyberRFoot"
     - type: Sprite
-      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_foot"
     - type: Icon
-      sprite: _Starlight/Mobs/Species/Cyberlimbs/parts.rsi
+      sprite: _Sunrise/Mobs/Species/Cyberlimbs/parts.rsi
       state: "r_foot"
