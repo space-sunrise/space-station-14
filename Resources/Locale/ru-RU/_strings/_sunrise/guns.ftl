@@ -43,4 +43,4 @@ ent-MagazineFamasExtended = расширенный магазин Famas
 ent-MagazineV31Extended = расширенный магазин V31
 ent-MagazineBauer127Extended = расширенный магазин Bauer127
 ent-MagazineBR64Extended = расширенный магазин BR64
-ent-MagazineDragunovExtended =  расширенный магазин Dragunov
+ent-MagazineDragunovExtended = расширенный магазин Dragunov
