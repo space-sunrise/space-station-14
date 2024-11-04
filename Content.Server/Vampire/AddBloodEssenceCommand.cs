@@ -9,7 +9,7 @@ public sealed partial class VampireSystem
 {
     [Dependency] private readonly IConsoleHost _consoleHost = default!;
 
-    public void InitializeCommand()
+    private void InitializeCommand()
     {
         _consoleHost.RegisterCommand("addbloodessence",
             "Adds blood essence to vampire. Debug command.",
