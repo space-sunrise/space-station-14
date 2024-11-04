@@ -78,8 +78,8 @@
     - AnomalyHost
     - NoInjectable
   - type: FootprintEmitter
-    LeftBareFootState: "footprint-left-bare-lizard"
-    RightBareFootState: "footprint-right-bare-lizard"
+    leftBareFootState: "footprint-left-bare-lizard"
+    rightBareFootState: "footprint-right-bare-lizard"
 #Sunrise-end
   - type: Inventory
     speciesId: reptilian

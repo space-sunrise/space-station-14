@@ -132,8 +132,8 @@
     - Arachnids
 
   - type: FootprintEmitter
-    LeftBareFootState: "footprint-left-bare-spider"
-    RightBareFootState: "footprint-right-bare-spider"
+    leftBareFootState: "footprint-left-bare-spider"
+    rightBareFootState: "footprint-right-bare-spider"
   # Sunrise-end
 
 - type: entity

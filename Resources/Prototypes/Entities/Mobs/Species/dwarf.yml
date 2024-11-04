@@ -67,8 +67,8 @@
 
   # Sunrise edit ;3
   - type: FootprintEmitter
-    LeftBareFootState: "footprint-left-bare-dwarf"
-    RightBareFootState: "footprint-right-bare-dwarf"
+    leftBareFootState: "footprint-left-bare-dwarf"
+    rightBareFootState: "footprint-right-bare-dwarf"
   # Sunrise edit end 0_0
 
 - type: entity
