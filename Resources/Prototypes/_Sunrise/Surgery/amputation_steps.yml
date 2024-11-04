@@ -12,5 +12,7 @@
     state: saw
   - type: SurgeryStepEmoteEffect
   - type: SurgeryStepBleedEffect
-    damage: 24
+    damage:
+      types:
+        Slash: 24
   - type: SurgeryStepAmputationEffect
