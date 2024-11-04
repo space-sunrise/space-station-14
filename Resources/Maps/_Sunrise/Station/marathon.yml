@@ -10448,7 +10448,7 @@ entities:
       pos: -27.5,18.5
       parent: 30
     - type: Door
-      secondsUntilStateChange: -10399.46
+      secondsUntilStateChange: -10715.332
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -52346,13 +52346,6 @@ entities:
       parent: 30
     missingComponents:
     - NoSlip
-- proto: ClothingShoesLeather
-  entities:
-  - uid: 5062
-    components:
-    - type: Transform
-      pos: -21.532825,34.204502
-      parent: 30
 - proto: ClothingShoeSlippersDuck
   entities:
   - uid: 11363
@@ -61159,11 +61152,6 @@ entities:
       parent: 30
 - proto: filingCabinetRandom
   entities:
-  - uid: 21370
-    components:
-    - type: Transform
-      pos: -21.5,32.5
-      parent: 30
   - uid: 22833
     components:
     - type: Transform
@@ -88933,6 +88921,13 @@ entities:
     - type: Transform
       pos: 43.5,29.5
       parent: 30
+- proto: GlassBoxLaserFilled
+  entities:
+  - uid: 5035
+    components:
+    - type: Transform
+      pos: -21.5,34.5
+      parent: 30
 - proto: GlowstickRed
   entities:
   - uid: 10025
@@ -98173,9 +98168,9 @@ entities:
     - type: Transform
       pos: -49.5,53.5
       parent: 30
-- proto: LockerCaptainFilledHardsuit
+- proto: LockerCaptainFilledNoLaser
   entities:
-  - uid: 1440
+  - uid: 5062
     components:
     - type: Transform
       pos: -17.5,32.5
@@ -102230,14 +102225,6 @@ entities:
     - type: ContainerContainer
       containers:
         stash: !type:ContainerSlot {}
-  - uid: 5035
-    components:
-    - type: Transform
-      pos: -21.5,32.5
-      parent: 30
-    - type: ContainerContainer
-      containers:
-        stash: !type:ContainerSlot {}
   - uid: 5443
     components:
     - type: Transform
@@ -104881,6 +104868,12 @@ entities:
       powerLoad: 0
 - proto: PoweredlightLED
   entities:
+  - uid: 1440
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -18.5,42.5
+      parent: 30
   - uid: 10291
     components:
     - type: Transform
@@ -116067,7 +116060,7 @@ entities:
       parent: 30
 - proto: SpawnPointSeniorEngineer
   entities:
-  - uid: 14534
+  - uid: 15272
     components:
     - type: Transform
       pos: -23.5,-40.5
@@ -116081,7 +116074,7 @@ entities:
       parent: 30
 - proto: SpawnPointSeniorResearcher
   entities:
-  - uid: 14532
+  - uid: 15273
     components:
     - type: Transform
       pos: 18.5,11.5
@@ -116917,6 +116910,13 @@ entities:
     - type: Transform
       pos: 9.5,-27.5
       parent: 30
+- proto: SuitStorageCaptain
+  entities:
+  - uid: 14532
+    components:
+    - type: Transform
+      pos: -21.5,32.5
+      parent: 30
 - proto: SuitStorageCE
   entities:
   - uid: 773
@@ -117067,6 +117067,11 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -0.5,88.5
+      parent: 30
+  - uid: 14534
+    components:
+    - type: Transform
+      pos: -20.5,42.5
       parent: 30
   - uid: 16746
     components:
