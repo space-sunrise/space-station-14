@@ -14,9 +14,6 @@
   parent: BaseComputer
   id: CentcomComputer
   components:
-  - type: AccessReader
-    access:
-    - [ CentCom ]
   - type: PointLight
     radius: 1.5
     energy: 1.6

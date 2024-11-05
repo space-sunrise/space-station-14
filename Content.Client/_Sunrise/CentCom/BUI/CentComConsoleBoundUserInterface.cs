@@ -13,7 +13,6 @@ namespace Content.Client._Sunrise.CentCom.BUI;
 [UsedImplicitly]
 public sealed class CentComConsoleBoundUserInterface : BoundUserInterface
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
 
     private CentComConsoleWindow? _window;
     private EntityUid? _owner;
@@ -29,25 +28,30 @@ public sealed class CentComConsoleBoundUserInterface : BoundUserInterface
 
         _window = this.CreateWindow<CentComConsoleWindow>();
 
-        // if (!EntMan.TryGetComponent<CentComConsoleComponent>(_owner, out var centComConsoleComponent) &&
-        //     centComConsoleComponent?.Station != null)
-        // {
-        //
-        // }
         _window.IdButton.OnPressed += _ => SendMessage(new ItemSlotButtonPressedEvent(IdCardSlotId));
 
-        _window.EmergencyShuttleButton.OnPressed += EmergencyShuttleButtonOnOnPressed;
+        _window.OnEmergencyShuttle += args => EmergencyShuttleButtonOnOnPressed(args);
 
         _window.OnClose += Close;
+        _window.OnAnnounce += s => SendMessage(new CentComConsoleAnnounceMessage(s));
+        _window.OnAlertLevel += s => SendMessage(new CentComConsoleAlertLevelChangeMessage(s));
         _window.OpenCentered();
     }
 
-    private void EmergencyShuttleButtonOnOnPressed(BaseButton.ButtonEventArgs obj)
+    private void EmergencyShuttleButtonOnOnPressed(object? args)
     {
+        if (args == null)
+            return;
         if (_window?.LastTime == null)
-            SendMessage(new CentComConsoleCallEmergencyShuttleMessage(TimeSpan.FromMinutes(10))); // Тут ты закончил в прошлый раз
+        {
+            SendMessage(args.ToString() == "10 минут"
+                ? new CentComConsoleCallEmergencyShuttleMessage(TimeSpan.FromMinutes(10))
+                : new CentComConsoleCallEmergencyShuttleMessage(TimeSpan.FromMinutes(5)));
+        }
         else
+        {
             SendMessage(new CentComConsoleRecallEmergencyShuttleMessage());
+        }
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)

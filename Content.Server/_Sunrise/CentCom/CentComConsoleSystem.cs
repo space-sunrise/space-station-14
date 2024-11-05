@@ -1,12 +1,15 @@
 ﻿using Content.Server._Sunrise.StationCentComm;
 using Content.Server.Access.Systems;
 using Content.Server.AlertLevel;
+using Content.Server.Chat.Systems;
 using Content.Server.RoundEnd;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared._Sunrise.CentCom;
 using Content.Shared._Sunrise.CentCom.BUIStates;
+using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
+using Content.Shared.Chat;
 using Content.Shared.Construction.Components;
 using Content.Shared.Containers.ItemSlots;
 using Robust.Server.GameObjects;
@@ -14,7 +17,7 @@ using Robust.Shared.Containers;
 
 namespace Content.Server._Sunrise.CentCom;
 
-public sealed class CentComConsoleSystem : EntitySystem
+public sealed partial class CentComConsoleSystem : EntitySystem
 {
     [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
@@ -23,6 +26,8 @@ public sealed class CentComConsoleSystem : EntitySystem
     [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
     [Dependency] private readonly AccessReaderSystem _accessReader = default!;
     [Dependency] private readonly EmergencyShuttleSystem _emergencyShuttle = default!;
+    [Dependency] private readonly AlertLevelSystem _alertLevelSystem = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -38,35 +43,44 @@ public sealed class CentComConsoleSystem : EntitySystem
         SubscribeLocalEvent<CentComConsoleComponent, CentComConsoleRecallEmergencyShuttleMessage>(OnRecall);
         SubscribeLocalEvent<CentComConsoleComponent, CentComConsoleAnnounceMessage>(OnAnnounce);
         SubscribeLocalEvent<CentComConsoleComponent, CentComConsoleAlertLevelChangeMessage>(OnAlert);
+
+        InitializeCommands();
     }
 
     private void OnCall(EntityUid uid,
         CentComConsoleComponent component,
         CentComConsoleCallEmergencyShuttleMessage args)
     {
-        if (!(component.IdSlot.Item.HasValue && CheckPermissions(uid, component.IdSlot.Item.Value)))
+        if (!(component.IdSlot.Item.HasValue && CheckPermissions(component.IdSlot.Item.Value, component)))
             return;
         _roundEndSystem.RequestRoundEnd(args.Actor);
+        UpdateUi(uid, component, args);
     }
 
     private void OnRecall(EntityUid uid,
         CentComConsoleComponent component,
         CentComConsoleRecallEmergencyShuttleMessage args)
     {
-        if (!(component.IdSlot.Item.HasValue && CheckPermissions(uid, component.IdSlot.Item.Value)))
+        if (!(component.IdSlot.Item.HasValue && CheckPermissions(component.IdSlot.Item.Value, component)))
             return;
+        _roundEndSystem.CancelRoundEndCountdown(args.Actor);
+        UpdateUi(uid, component, args);
     }
 
     private void OnAnnounce(EntityUid uid, CentComConsoleComponent component, CentComConsoleAnnounceMessage args)
     {
-        if (!(component.IdSlot.Item.HasValue && CheckPermissions(uid, component.IdSlot.Item.Value)))
+        if (!(component.IdSlot.Item.HasValue && CheckPermissions(component.IdSlot.Item.Value, component)))
             return;
+        var meta = MetaData(component.IdSlot.Item.Value);
+        _chat.DispatchGlobalAnnouncement(args.Message, meta.EntityName);
     }
 
     private void OnAlert(EntityUid uid, CentComConsoleComponent component, CentComConsoleAlertLevelChangeMessage args)
     {
-        if (!(component.IdSlot.Item.HasValue && CheckPermissions(uid, component.IdSlot.Item.Value)))
+        if (!(component.IdSlot.Item.HasValue && CheckPermissions(component.IdSlot.Item.Value, component)))
             return;
+        _alertLevelSystem.SetLevel(component.StationUid, args.TargetLevel, true, true, true, false);
+        UpdateUi(uid, component, args);
     }
 
     private void OnRoundEnd(RoundEndSystemChangedEvent args)
@@ -111,11 +125,13 @@ public sealed class CentComConsoleSystem : EntitySystem
         }
         component.Station = new LinkedStation()
         {
+            Uid = GetNetEntity(stationUid),
             Name = meta.EntityName,
             AlertLevels = alertLevels,
             CurrentAlert = alertLevelComponent.CurrentLevel,
             DefaultDelay = TimeSpan.FromMinutes(10),
         };
+        component.StationUid = stationUid;
     }
 
     private void OnAnchorStateChanged(EntityUid uid, CentComConsoleComponent component, AnchorStateChangedEvent args)
@@ -139,7 +155,7 @@ public sealed class CentComConsoleSystem : EntitySystem
 
         var idName = string.Empty;
         var idPresent = component.IdSlot.Item.HasValue;
-        var idEnoughPermissions = component.IdSlot.Item.HasValue && CheckPermissions(uid, component.IdSlot.Item.Value);
+        var idEnoughPermissions = component.IdSlot.Item.HasValue && CheckPermissions(component.IdSlot.Item.Value, component);
 
         if (idPresent && component.IdSlot.Item != null)
         {
@@ -161,8 +177,10 @@ public sealed class CentComConsoleSystem : EntitySystem
         _userInterface.SetUiState(uid, CentComConsoleUiKey.Key, newState);
     }
 
-    private bool CheckPermissions(EntityUid target, EntityUid idCard)
+    private bool CheckPermissions(EntityUid idCard, CentComConsoleComponent console)
     {
-        return _accessReader.IsAllowed(idCard, target);
+        if (!TryComp<AccessComponent>(idCard, out var idReaderComponent))
+            return false;
+        return idReaderComponent.Tags.Contains(console.TargetAccess);
     }
 }

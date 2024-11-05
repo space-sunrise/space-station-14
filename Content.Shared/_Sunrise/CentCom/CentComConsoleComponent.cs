@@ -61,7 +61,7 @@ public sealed class ShuttleDelay
 [Serializable, NetSerializable]
 public sealed class LinkedStation
 {
-    // public NetEntity Uid;
+    public NetEntity Uid;
     public string Name = string.Empty;
     public string CurrentAlert = string.Empty;
     public List<string> AlertLevels = [];
@@ -83,4 +83,10 @@ public sealed partial class CentComConsoleComponent : Component
 
     [DataField]
     public LinkedStation? Station;
+
+    [DataField]
+    public EntityUid StationUid;
+
+    [DataField]
+    public string TargetAccess = "CentralCommand";
 }
