@@ -9,7 +9,7 @@ namespace Content.Client._Sunrise.CentCom.UI;
 [GenerateTypedNameReferences]
 public sealed partial class CentComConsoleWindow : FancyWindow
 {
-    private TimeSpan? LastTime;
+    public TimeSpan? LastTime;
 
     public CentComConsoleWindow()
     {
@@ -70,17 +70,16 @@ public sealed partial class CentComConsoleWindow : FancyWindow
             {
                 if (state.LeftBeforeEvac != null)
                 {
-                    EmergencyShuttleButton.Text =
-                        $"Осталось {(int)Math.Floor(state.LeftBeforeEvac.Value.TotalSeconds)}с";
+                    EmergencyShuttleButton.Text = $"Осталось {(int)Math.Floor(state.LeftBeforeEvac.Value.TotalSeconds)}с";
                     LastTime = state.LeftBeforeEvac;
                 }
             }
         }
 
-        AnnounceButton.Disabled = !state.IsIdPresent;
-        DurationButton.Disabled = !state.IsIdPresent;
-        EmergencyShuttleButton.Disabled = !state.IsIdPresent;
-        AlertLevelButton.Disabled = !state.IsIdPresent;
+        AnnounceButton.Disabled = state is { IsIdPresent: false, IdEnoughPermissions: true };
+        DurationButton.Disabled = state is { IsIdPresent: false, IdEnoughPermissions: true };
+        EmergencyShuttleButton.Disabled = state is { IsIdPresent: false, IdEnoughPermissions: true };
+        AlertLevelButton.Disabled = state is { IsIdPresent: false, IdEnoughPermissions: true };
     }
 
     protected override void FrameUpdate(FrameEventArgs args)

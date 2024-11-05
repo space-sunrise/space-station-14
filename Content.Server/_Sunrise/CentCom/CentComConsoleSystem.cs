@@ -1,10 +1,12 @@
 ﻿using Content.Server._Sunrise.StationCentComm;
+using Content.Server.Access.Systems;
 using Content.Server.AlertLevel;
 using Content.Server.RoundEnd;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared._Sunrise.CentCom;
 using Content.Shared._Sunrise.CentCom.BUIStates;
+using Content.Shared.Access.Systems;
 using Content.Shared.Construction.Components;
 using Content.Shared.Containers.ItemSlots;
 using Robust.Server.GameObjects;
@@ -19,6 +21,8 @@ public sealed class CentComConsoleSystem : EntitySystem
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
     [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
+    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
+    [Dependency] private readonly EmergencyShuttleSystem _emergencyShuttle = default!;
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -30,6 +34,39 @@ public sealed class CentComConsoleSystem : EntitySystem
         SubscribeLocalEvent<CentComConsoleComponent, EntRemovedFromContainerMessage>(UpdateUi);
         SubscribeLocalEvent<CentComConsoleComponent, BoundUIOpenedEvent>(UpdateUi);
         SubscribeLocalEvent<RoundEndSystemChangedEvent>(OnRoundEnd);
+        SubscribeLocalEvent<CentComConsoleComponent, CentComConsoleCallEmergencyShuttleMessage>(OnCall);
+        SubscribeLocalEvent<CentComConsoleComponent, CentComConsoleRecallEmergencyShuttleMessage>(OnRecall);
+        SubscribeLocalEvent<CentComConsoleComponent, CentComConsoleAnnounceMessage>(OnAnnounce);
+        SubscribeLocalEvent<CentComConsoleComponent, CentComConsoleAlertLevelChangeMessage>(OnAlert);
+    }
+
+    private void OnCall(EntityUid uid,
+        CentComConsoleComponent component,
+        CentComConsoleCallEmergencyShuttleMessage args)
+    {
+        if (!(component.IdSlot.Item.HasValue && CheckPermissions(uid, component.IdSlot.Item.Value)))
+            return;
+        _roundEndSystem.RequestRoundEnd(args.Actor);
+    }
+
+    private void OnRecall(EntityUid uid,
+        CentComConsoleComponent component,
+        CentComConsoleRecallEmergencyShuttleMessage args)
+    {
+        if (!(component.IdSlot.Item.HasValue && CheckPermissions(uid, component.IdSlot.Item.Value)))
+            return;
+    }
+
+    private void OnAnnounce(EntityUid uid, CentComConsoleComponent component, CentComConsoleAnnounceMessage args)
+    {
+        if (!(component.IdSlot.Item.HasValue && CheckPermissions(uid, component.IdSlot.Item.Value)))
+            return;
+    }
+
+    private void OnAlert(EntityUid uid, CentComConsoleComponent component, CentComConsoleAlertLevelChangeMessage args)
+    {
+        if (!(component.IdSlot.Item.HasValue && CheckPermissions(uid, component.IdSlot.Item.Value)))
+            return;
     }
 
     private void OnRoundEnd(RoundEndSystemChangedEvent args)
@@ -102,6 +139,7 @@ public sealed class CentComConsoleSystem : EntitySystem
 
         var idName = string.Empty;
         var idPresent = component.IdSlot.Item.HasValue;
+        var idEnoughPermissions = component.IdSlot.Item.HasValue && CheckPermissions(uid, component.IdSlot.Item.Value);
 
         if (idPresent && component.IdSlot.Item != null)
         {
@@ -111,8 +149,20 @@ public sealed class CentComConsoleSystem : EntitySystem
         var sentEvac = _roundEndSystem.ShuttleTimeLeft != null;
         var dockTime = _roundEndSystem.ShuttleTimeLeft;
 
-        var newState = new CentComConsoleBoundUserInterfaceState(idPresent, idName, component.Station, GetNetEntity(uid), sentEvac, dockTime);
+        var newState = new CentComConsoleBoundUserInterfaceState(
+            idPresent,
+            idEnoughPermissions,
+            idName,
+            component.Station,
+            GetNetEntity(uid),
+            sentEvac,
+            dockTime);
 
         _userInterface.SetUiState(uid, CentComConsoleUiKey.Key, newState);
+    }
+
+    private bool CheckPermissions(EntityUid target, EntityUid idCard)
+    {
+        return _accessReader.IsAllowed(idCard, target);
     }
 }

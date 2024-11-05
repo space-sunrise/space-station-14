@@ -1,8 +1,10 @@
 ﻿using Content.Client._Sunrise.CentCom.UI;
+using Content.Shared._Sunrise.CentCom;
 using Content.Shared._Sunrise.CentCom.BUIStates;
 using Content.Shared.Containers.ItemSlots;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
+using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Prototypes;
 using static Content.Shared._Sunrise.CentCom.CentComConsoleComponent;
 
@@ -34,8 +36,18 @@ public sealed class CentComConsoleBoundUserInterface : BoundUserInterface
         // }
         _window.IdButton.OnPressed += _ => SendMessage(new ItemSlotButtonPressedEvent(IdCardSlotId));
 
+        _window.EmergencyShuttleButton.OnPressed += EmergencyShuttleButtonOnOnPressed;
+
         _window.OnClose += Close;
         _window.OpenCentered();
+    }
+
+    private void EmergencyShuttleButtonOnOnPressed(BaseButton.ButtonEventArgs obj)
+    {
+        if (_window?.LastTime == null)
+            SendMessage(new CentComConsoleCallEmergencyShuttleMessage(TimeSpan.FromMinutes(10))); // Тут ты закончил в прошлый раз
+        else
+            SendMessage(new CentComConsoleRecallEmergencyShuttleMessage());
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)

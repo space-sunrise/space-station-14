@@ -3,6 +3,47 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared._Sunrise.CentCom;
 
+
+
+[Serializable, NetSerializable]
+public sealed class CentComConsoleCallEmergencyShuttleMessage : BoundUserInterfaceMessage
+{
+    public TimeSpan Time;
+
+    public CentComConsoleCallEmergencyShuttleMessage(TimeSpan time)
+    {
+        Time = time;
+    }
+}
+
+[Serializable, NetSerializable]
+public sealed class CentComConsoleRecallEmergencyShuttleMessage : BoundUserInterfaceMessage
+{
+}
+
+[Serializable, NetSerializable]
+public sealed class CentComConsoleAnnounceMessage : BoundUserInterfaceMessage
+{
+    public string Message;
+
+    public CentComConsoleAnnounceMessage(string msg)
+    {
+        Message = msg;
+    }
+}
+
+
+[Serializable, NetSerializable]
+public sealed class CentComConsoleAlertLevelChangeMessage : BoundUserInterfaceMessage
+{
+    public string TargetLevel;
+
+    public CentComConsoleAlertLevelChangeMessage(string targetLevel)
+    {
+        TargetLevel = targetLevel;
+    }
+}
+
 [Serializable, NetSerializable]
 public sealed class ShuttleDelay
 {
