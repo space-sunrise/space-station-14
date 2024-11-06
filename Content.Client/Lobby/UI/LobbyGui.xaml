@@ -11,11 +11,12 @@
     xmlns:widgets="clr-namespace:Content.Client.UserInterface.Systems.Chat.Widgets"
     xmlns:serversHub="clr-namespace:Content.Client._Sunrise.ServersHub"
     xmlns:changelog="clr-namespace:Content.Client.Changelog"
-    xmlns:userProfile="clr-namespace:Content.Client._Sunrise.UserProfile">
+    xmlns:userProfile="clr-namespace:Content.Client._Sunrise.UserProfile"
+    xmlns:texture="clr-namespace:Content.Client._Sunrise.Texture">
     <!-- Background -->
     <TextureRect Name="LobbyArt" Access="Public" VerticalExpand="True" HorizontalExpand="True"
                  Stretch="KeepAspectCovered" />
-    <AnimatedTextureRect Name="LobbyAnimation" HorizontalExpand="True" VerticalExpand="True" Access="Public" />
+    <texture:RawAnimatedTexture Name="LobbyAnimation" HorizontalExpand="True" VerticalExpand="True" Access="Public" />
     <BoxContainer Name="MainContainer" VerticalExpand="True" HorizontalExpand="True" Orientation="Horizontal"
                   Margin="10 10 10 10" SeparationOverride="2">
         <!-- LHS Controls -->
