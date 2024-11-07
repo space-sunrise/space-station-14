@@ -19,6 +19,10 @@ public sealed partial class CentComConsoleWindow : FancyWindow
     public CentComConsoleWindow()
     {
         RobustXamlLoader.Load(this);
+
+        // А вот так вот
+        Resizable = false;
+
         AnnounceButton.OnPressed += _ => OnAnnounce?.Invoke(Rope.Collapse(MessageInput.TextRope));
 
         AlertLevelButton.OnItemSelected += args =>

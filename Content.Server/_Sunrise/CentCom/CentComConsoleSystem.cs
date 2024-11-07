@@ -84,7 +84,9 @@ public sealed partial class CentComConsoleSystem : EntitySystem
         }
 
         msg += "\n" + Loc.GetString("comms-console-announcement-sent-by") + " " + author;
-        _chat.DispatchGlobalAnnouncement(msg, announceVoice: component.AnnounceVoice);
+        _chat.DispatchGlobalAnnouncement(msg,
+            announceVoice: component.AnnounceVoice,
+            announcementSound: component.Sound);
         UpdateUi(uid, component, args);
     }
 

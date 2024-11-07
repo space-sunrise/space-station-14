@@ -1,4 +1,5 @@
 ﻿using Content.Shared.Containers.ItemSlots;
+using Robust.Shared.Audio;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._Sunrise.CentCom;
@@ -98,4 +99,10 @@ public sealed partial class CentComConsoleComponent : Component
     {
         "epsilon",
     };
+
+    /// <summary>
+    /// Announce sound file path
+    /// </summary>
+    [DataField]
+    public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/_Sunrise/Announcements/centcomm.ogg");
 }
