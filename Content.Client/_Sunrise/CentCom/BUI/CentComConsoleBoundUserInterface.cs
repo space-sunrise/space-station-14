@@ -13,6 +13,7 @@ namespace Content.Client._Sunrise.CentCom.BUI;
 [UsedImplicitly]
 public sealed class CentComConsoleBoundUserInterface : BoundUserInterface
 {
+    private static readonly string MinuteString = "минут";
 
     private CentComConsoleWindow? _window;
     private EntityUid? _owner;
@@ -42,16 +43,24 @@ public sealed class CentComConsoleBoundUserInterface : BoundUserInterface
     {
         if (args == null)
             return;
+        var arg = (ShuttleDelay)args;
+        // TODO: Check if arg is valid
         if (_window?.LastTime == null)
         {
-            SendMessage(args.ToString() == "10 минут"
-                ? new CentComConsoleCallEmergencyShuttleMessage(TimeSpan.FromMinutes(10))
-                : new CentComConsoleCallEmergencyShuttleMessage(TimeSpan.FromMinutes(5)));
+            SendMessage(new CentComConsoleCallEmergencyShuttleMessage(arg.Time));
         }
         else
         {
             SendMessage(new CentComConsoleRecallEmergencyShuttleMessage());
         }
+    }
+
+    private TimeSpan ConvertHumanReadableToTimeSpan(string time)
+    {
+        var minutesString = time.Replace(MinuteString, "");
+        if (!int.TryParse(minutesString, out var minutes))
+            return TimeSpan.Zero;
+        return TimeSpan.FromMinutes(minutes);
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)

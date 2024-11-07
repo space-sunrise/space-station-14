@@ -14,6 +14,7 @@ public sealed partial class CentComConsoleWindow : FancyWindow
     public event Action<string>? OnAnnounce;
     public event Action<string>? OnAlertLevel;
     public event Action<object?>? OnEmergencyShuttle;
+    private bool SelectedTimeFlag = false;
 
     public CentComConsoleWindow()
     {
@@ -32,6 +33,7 @@ public sealed partial class CentComConsoleWindow : FancyWindow
         DurationButton.OnItemSelected += args =>
         {
             DurationButton.SelectId(args.Id);
+            SelectedTimeFlag = true;
         };
 
         EmergencyShuttleButton.OnPressed += _ =>
@@ -78,7 +80,7 @@ public sealed partial class CentComConsoleWindow : FancyWindow
                 DurationButton.AddItem(delay.Label);
                 DurationButton.SetItemMetadata(DurationButton.ItemCount - 1, delay);
 
-                if (delay.Time == state.Station.DefaultDelay)
+                if (delay.Time == state.Station.DefaultDelay && !SelectedTimeFlag)
                 {
                     DurationButton.Select(DurationButton.ItemCount - 1);
                 }
@@ -87,6 +89,7 @@ public sealed partial class CentComConsoleWindow : FancyWindow
             if (!state.SentEvac)
             {
                 EmergencyShuttleButton.Text = Loc.GetString("centcom-console-call-shuttle-label");
+                LastTime = null;
             }
             else
             {

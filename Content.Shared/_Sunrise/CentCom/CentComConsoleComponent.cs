@@ -89,4 +89,13 @@ public sealed partial class CentComConsoleComponent : Component
 
     [DataField]
     public string TargetAccess = "CentralCommand";
+
+    [DataField]
+    public string AnnounceVoice = "Villager";
+
+    [DataField]
+    public HashSet<string> BlackListAlertLevels = new HashSet<string>()
+    {
+        "epsilon",
+    };
 }
