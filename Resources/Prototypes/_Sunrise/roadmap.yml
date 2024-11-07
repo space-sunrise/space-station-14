@@ -54,11 +54,6 @@
           name: Full Translation Of Everything
           desc: translation of all the items, menus. In order to simplify gameplay.
           state: Complete
-        night-vision:
-          id: night-vision
-          name: Night Vision
-          desc: NVD, night vision in some animals/race.
-          state: Complete
         mechs:
           id: mechs
           name: Mechs
@@ -68,7 +63,7 @@
           id: ipc
           name: IPC
           desc: A race of intelligent machines, in reworking.
-          state: Partial
+          state: InProgress
         blob:
           id: blob
           name: Blob
@@ -177,20 +172,10 @@
           name: A race of plasmamens
           desc: A race of cool plasma dudes.
           state: Planned
-        centcomm-update:
-          id: centcomm-update
-          name: Centcomm Update
-          desc: Central Command map update and possible role update.
-          state: Planned
         extend-med:
           id: extend-med
           name: Medical Department Expansion
           desc: Adding new mechanics, roles.
-          state: Planned
-        pathologist:
-          id: pathologist
-          name: Pathologist
-          desc: A new role for the medical department. To keep an eye on the morgue.
           state: Planned
         arena:
           id: arena
