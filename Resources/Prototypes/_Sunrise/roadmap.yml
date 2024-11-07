@@ -107,16 +107,21 @@
     2025:
       name: 2025
       goals:
-        mail:
-          id: mail
-          name: Mail
-          desc: Sending parcels to different parts of the station for which the station will receive money.
-          state: InProgress
+        extend-med:
+          id: extend-med
+          name: Medical Department Expansion
+          desc: Adding new mechanics, roles.
+          state: Partial
         ai:
           id: ai
           name: AI
           desc: A new artificial intelligence profession aimed at helping the station destroy itself?
           state: Partial
+        mail:
+          id: mail
+          name: Mail
+          desc: Sending parcels to different parts of the station for which the station will receive money.
+          state: InProgress
         borer:
           id: borer
           name: Brainworm
@@ -171,11 +176,6 @@
           id: plasmamens
           name: A race of plasmamens
           desc: A race of cool plasma dudes.
-          state: Planned
-        extend-med:
-          id: extend-med
-          name: Medical Department Expansion
-          desc: Adding new mechanics, roles.
           state: Planned
         arena:
           id: arena
