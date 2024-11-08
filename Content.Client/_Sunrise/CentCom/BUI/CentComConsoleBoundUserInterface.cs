@@ -4,8 +4,6 @@ using Content.Shared._Sunrise.CentCom.BUIStates;
 using Content.Shared.Containers.ItemSlots;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
-using Robust.Client.UserInterface.Controls;
-using Robust.Shared.Prototypes;
 using static Content.Shared._Sunrise.CentCom.CentComConsoleComponent;
 
 namespace Content.Client._Sunrise.CentCom.BUI;

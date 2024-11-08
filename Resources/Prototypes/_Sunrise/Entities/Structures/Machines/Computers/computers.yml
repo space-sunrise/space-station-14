@@ -60,6 +60,37 @@
       CentComConsole-IdSlot: !type:ContainerSlot
 
 - type: entity
+  parent: BaseComputer
+  id: CentcomCargoComputer
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: supply
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: Tag
+    tags:
+    - EmagImmune
+  - type: Computer
+    board: CentComCargoConsoleCircuitboard
+  - type: ActivatableUI
+    key: enum.CentComCargoConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.CentComCargoConsoleUiKey.Key:
+        type: CentComCargoConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: CentComCargoConsole
+
+- type: entity
   parent: BaseComputerShuttle
   id: ComputerShuttleCentComm
   name: RCC shuttle console

@@ -74,6 +74,13 @@ public sealed class LinkedStation
     };
 }
 
+[Serializable, NetSerializable]
+public sealed class CargoLinkedStation
+{
+    public NetEntity Uid;
+    public List<string> AcceptableGifts = [];
+}
+
 [RegisterComponent]
 public sealed partial class CentComConsoleComponent : Component
 {

@@ -1,0 +1,16 @@
+﻿<controls:FancyWindow
+    xmlns="https://spacestation14.io"
+    xmlns:centcom="clr-namespace:Content.Client._Sunrise.CentCom.UI"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    Title="{Loc 'centcom-gifts-console-title'}"
+    MinSize="600 600">
+    <ScrollContainer Name="ScrollContainer"
+                     VerticalExpand="True">
+        <BoxContainer Name="Container"
+                      Orientation="Vertical"
+                      HorizontalExpand="True"
+                      Margin="0 0 10 0">
+
+        </BoxContainer>
+    </ScrollContainer>
+</controls:FancyWindow>

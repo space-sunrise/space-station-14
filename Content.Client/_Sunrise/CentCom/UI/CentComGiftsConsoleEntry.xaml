@@ -1,0 +1,17 @@
+﻿<BoxContainer
+    xmlns="https://spacestation14.io"
+    Margin="10 10 10 10"
+    HorizontalExpand="True"
+    Visible="True">
+    <PanelContainer StyleClasses="BackgroundDark">
+        <BoxContainer Orientation="Vertical">
+            <BoxContainer Orientation="Horizontal">
+                <RichTextLabel Name="TitleLabel" Text="{Loc 'centcom-gifts-console-unknown'}"/>
+                <Button Text="{Loc 'centcom-gifts-console-send'}" HorizontalAlignment="Right" StyleClasses="OpenLeft"/>
+            </BoxContainer>
+            <RichTextLabel Name="DescriptionLabel" Text="{Loc 'centcom-gifts-console-unknown'}"/>
+            <Control MinSize="10 10"/>
+            <RichTextLabel Name="ContentLabel" Text="{Loc 'centcom-gifts-console-unknown'}"/>
+        </BoxContainer>
+    </PanelContainer>
+</BoxContainer>
