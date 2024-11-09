@@ -4,13 +4,21 @@
     xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
     Title="{Loc 'centcom-gifts-console-title'}"
     MinSize="600 600">
-    <ScrollContainer Name="ScrollContainer"
-                     VerticalExpand="True">
-        <BoxContainer Name="Container"
-                      Orientation="Vertical"
-                      HorizontalExpand="True"
-                      Margin="0 0 10 0">
+    <PanelContainer VerticalExpand="True" HorizontalExpand="True" HorizontalAlignment="Stretch"
+                    StyleClasses="PdaBackground" Margin="5 5 5 5">
+        <ScrollContainer Name="ScrollContainer"
+                         VerticalExpand="True"
+                         HorizontalAlignment="Stretch"
+                         HorizontalExpand="True">
+            <BoxContainer Name="Container"
+                          Orientation="Vertical"
+                          HorizontalExpand="True"
+                          HorizontalAlignment="Stretch"
+                          Margin="10 0 10 0">
 
-        </BoxContainer>
-    </ScrollContainer>
+            </BoxContainer>
+        </ScrollContainer>
+    </PanelContainer>
+    <TextureRect StyleClasses="NTLogoDark" Stretch="KeepAspectCentered"
+                 VerticalAlignment="Bottom" HorizontalAlignment="Right" SetSize="19 19"/>
 </controls:FancyWindow>
