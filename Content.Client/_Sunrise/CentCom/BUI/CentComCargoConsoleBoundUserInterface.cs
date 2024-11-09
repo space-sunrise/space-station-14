@@ -24,7 +24,28 @@ public sealed class CentComCargoConsoleBoundUserInterface : BoundUserInterface
         base.Open();
 
         _window = this.CreateWindow<CentComCargoConsoleWindow>();
+
+        _window.OnSendGifts += WindowOnOnSendGifts;
+
         _window.OpenCentered();
+
+        if (!EntMan.TryGetComponent(_owner, out CentComCargoConsoleComponent? component))
+            return;
+
+        foreach (var i in component.Gifts)
+        {
+            _window.AddElement(i.Title, i.Description, i.Contents, i.Event);
+        }
+    }
+
+    private void WindowOnOnSendGifts(string? obj)
+    {
+        if (obj == null)
+        {
+            return;
+        }
+
+        SendMessage(new CentComCargoSendGiftMessage(obj));
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)

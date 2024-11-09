@@ -9,60 +9,11 @@ namespace Content.Client._Sunrise.CentCom.UI;
 [GenerateTypedNameReferences]
 public sealed partial class CentComCargoConsoleWindow : FancyWindow
 {
+    public event Action<string?>? OnSendGifts;
+
     public CentComCargoConsoleWindow()
     {
         RobustXamlLoader.Load(this);
-
-
-        AddElement("test124123",
-            "test description",
-            new List<string>()
-            {
-                "test1",
-                "test2",
-                "test3",
-            });
-        AddElement("test124213",
-            "test description",
-            new List<string>()
-            {
-                "test1",
-                "test2",
-                "test3",
-            });
-        AddElement("test124",
-            "test description",
-            new List<string>()
-            {
-                "test1",
-                "test2",
-                "test3",
-            });
-        AddElement("test1321",
-            "test description",
-            new List<string>()
-            {
-                "test1",
-                "test2",
-                "test3",
-            });
-        AddElement("test12",
-            "test description",
-            new List<string>()
-            {
-                "test1",
-                "test2",
-                "test3",
-            });
-        AddElement("test21",
-            "test description",
-            new List<string>()
-            {
-                "test1",
-                "test2",
-                "test3",
-            });
-        // Ты тут закончил
     }
 
     public void UpdateState(CentComCargoConsoleBoundUserInterfaceState state)
@@ -70,9 +21,10 @@ public sealed partial class CentComCargoConsoleWindow : FancyWindow
 
     }
 
-    public void AddElement(string title, string description, List<string> contents)
+    public void AddElement(string title, string description, List<string> contents, string? prototype=null)
     {
-        var newControl = new CentComGiftsConsoleEntry(title, description, contents);
+        var newControl = new CentComGiftsConsoleEntry(title, description, contents, prototype);
+        newControl.OnSendButton += s => OnSendGifts?.Invoke(s);
         Container.AddChild(newControl);
     }
 }

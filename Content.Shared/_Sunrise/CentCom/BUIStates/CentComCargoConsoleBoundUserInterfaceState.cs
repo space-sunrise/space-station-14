@@ -7,10 +7,12 @@ public sealed class CentComCargoConsoleBoundUserInterfaceState : BoundUserInterf
 {
     public NetEntity Owner;
     public readonly CargoLinkedStation? Station;
+    // public CentComCargoConsoleComponent Component;
 
     public CentComCargoConsoleBoundUserInterfaceState(NetEntity owner, CargoLinkedStation? station)
     {
         Owner = owner;
         Station = station;
+        // Component = component;
     }
 }

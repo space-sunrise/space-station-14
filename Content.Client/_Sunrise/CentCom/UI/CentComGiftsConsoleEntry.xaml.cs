@@ -10,14 +10,20 @@ public sealed partial class CentComGiftsConsoleEntry : PanelContainer
     public string Title;
     public string Description;
     public List<string> Content;
+    public string? Prototype;
 
-    public CentComGiftsConsoleEntry(string title, string description, List<string> content)
+    public event Action<string?>? OnSendButton;
+
+    public CentComGiftsConsoleEntry(string title, string description, List<string> content, string? prototype = null)
     {
         RobustXamlLoader.Load(this);
 
         Title = title;
         Description = description;
         Content = content;
+        Prototype = prototype;
+
+        SendGiftButton.OnPressed += _ => OnSendButton?.Invoke(prototype);
 
         InitFields();
     }

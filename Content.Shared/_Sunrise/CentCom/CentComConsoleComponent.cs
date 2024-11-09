@@ -46,6 +46,17 @@ public sealed class CentComConsoleAlertLevelChangeMessage : BoundUserInterfaceMe
 }
 
 [Serializable, NetSerializable]
+public sealed class CentComCargoSendGiftMessage : BoundUserInterfaceMessage
+{
+    public string TargetGift;
+
+    public CentComCargoSendGiftMessage(string targetGift)
+    {
+        TargetGift = targetGift;
+    }
+}
+
+[Serializable, NetSerializable]
 public sealed class ShuttleDelay
 {
     public string Label;

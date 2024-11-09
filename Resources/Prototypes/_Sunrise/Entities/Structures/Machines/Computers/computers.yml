@@ -89,6 +89,20 @@
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
   - type: CentComCargoConsole
+    gifts:
+    - title: TEST TITLE
+      description: TEST DESCRIPTION
+      contents:
+      - Some contents
+      - Some other contents
+      - Some contents
+      - Some other contents
+      - Some contents
+      - Some other contents
+      - Some contents
+      - Some other contents
+      event: GiftsEngineering
+    # TODO: gifts
 
 - type: entity
   parent: BaseComputerShuttle
