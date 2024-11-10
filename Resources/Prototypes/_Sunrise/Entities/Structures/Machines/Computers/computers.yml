@@ -89,20 +89,25 @@
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
   - type: CentComCargoConsole
-    gifts:
-    - title: TEST TITLE
-      description: TEST DESCRIPTION
-      contents:
-      - Some contents
-      - Some other contents
-      - Some contents
-      - Some other contents
-      - Some contents
-      - Some other contents
-      - Some contents
-      - Some other contents
-      event: GiftsEngineering
+    targetTable: CargoGiftsTable
     # TODO: gifts
+
+- type: entity
+  abstract: true
+  id: CentComGiftsTable
+  components:
+  - type: CentComGiftsTable
+    gifts:
+    - id: GiftsEngineering
+    - id: GiftsFireProtection
+    - id: GiftsJanitor
+    - id: GiftsMedical
+    - id: GiftsPizzaPartyLarge
+    - id: GiftsPizzaPartySmall
+    - id: GiftsSecurityGuns
+    - id: GiftsSecurityRiot
+    - id: GiftsSpacingSupplies
+    - id: GiftsVendingRestock
 
 - type: entity
   parent: BaseComputerShuttle

@@ -1,8 +1,11 @@
 ﻿using Content.Server._Sunrise.StationCentComm;
 using Content.Server.GameTicking;
 using Content.Server.Station.Systems;
+using Content.Server.StationEvents.Components;
 using Content.Shared._Sunrise.CentCom;
 using Content.Shared._Sunrise.CentCom.BUIStates;
+using Content.Shared.EntityTable;
+using Content.Shared.EntityTable.EntitySelectors;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 
@@ -15,6 +18,8 @@ public sealed class CentComCargoConsoleSystem : EntitySystem
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly IPrototypeManager _prototypeMan = default!;
     [Dependency] private readonly GameTicker _ticker = default!;
+    [Dependency] private readonly EntityTableSystem _entityTable = default!;
+
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -25,7 +30,19 @@ public sealed class CentComCargoConsoleSystem : EntitySystem
 
     private void OnCargoInit(EntityUid uid, CentComCargoConsoleComponent component, ComponentInit args)
     {
+        // Init gifts
+        if (component.Gifts.Count != 0) // используют кастомные подарки
+            return;
 
+        var proto = _prototypeMan.Index<EntityTablePrototype>("CargoGiftsTable");
+        foreach (var entProtoId in _entityTable.GetSpawns(proto.Table))
+        {
+            var i = _prototypeMan.Index<EntityPrototype>(entProtoId);
+
+            var pr = _prototypeMan.GetPrototypeData(i);
+
+            var name = pr["name"].ToString();
+        }
     }
 
     private void OnSendGift(EntityUid uid, CentComCargoConsoleComponent component, CentComCargoSendGiftMessage args)

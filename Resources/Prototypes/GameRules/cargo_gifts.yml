@@ -11,12 +11,12 @@
     - id: GiftsPizzaPartyLarge
     - id: GiftsPizzaPartySmall
     - id: GiftsSecurityGuns
-    - id: GiftsSecurityRiot
+    - id: GiftsSecurityRiot+
     - id: GiftsSpacingSupplies
     - id: GiftsVendingRestock
 
 # Game Rules
-    
+
 - type: entity
   id: CargoGiftsBase
   parent: BaseGameRule

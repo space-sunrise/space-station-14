@@ -23,5 +23,5 @@ public sealed partial class CentComCargoConsoleComponent : Component
     public CargoLinkedStation? LinkedStation;
 
     [DataField]
-    public List<CentComGift> Gifts;
+    public List<CentComGift> Gifts = [];
 }
