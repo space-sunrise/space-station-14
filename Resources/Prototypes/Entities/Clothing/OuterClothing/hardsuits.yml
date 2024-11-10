@@ -579,7 +579,7 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.5 #Sunrise-edit
+        Blunt: 0.6
         Slash: 0.6
         Piercing: 0.6
         Heat: 0.2
@@ -593,6 +593,31 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieElite
+  #Sunrise-start
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+      toggleable-clothing: !type:ContainerSlot
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSmall
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 6
+    domePrototype: EnergyDomeSmallRed
+  - type: PowerCellDraw
+    drawRate: 8
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0
+  #Sunrise-end
 
 #Syndicate Commander Hardsuit
 - type: entity
