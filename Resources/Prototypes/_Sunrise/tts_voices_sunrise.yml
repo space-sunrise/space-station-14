@@ -498,3 +498,10 @@
   sex: Male
   speaker: hearthstone_mediv2
   provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneThrall
+  name: tts-voice-name-hearthstone-thrall
+  sex: Male
+  speaker: hearthstone_thrall
+  provider: sunrise
