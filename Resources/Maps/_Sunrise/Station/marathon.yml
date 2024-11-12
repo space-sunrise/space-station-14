@@ -10496,7 +10496,7 @@ entities:
       pos: -27.5,18.5
       parent: 30
     - type: Door
-      secondsUntilStateChange: -12356.6
+      secondsUntilStateChange: -12516.567
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -14929,11 +14929,6 @@ entities:
     - type: Transform
       pos: 30.5,39.5
       parent: 30
-  - uid: 1362
-    components:
-    - type: Transform
-      pos: -8.5,-14.5
-      parent: 30
   - uid: 1371
     components:
     - type: Transform
@@ -18847,7 +18842,7 @@ entities:
   - uid: 4976
     components:
     - type: Transform
-      pos: -7.5,-14.5
+      pos: -8.5,-13.5
       parent: 30
   - uid: 5188
     components:
@@ -54706,12 +54701,6 @@ entities:
       parent: 30
 - proto: DisposalBend
   entities:
-  - uid: 6965
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -12.5,-9.5
-      parent: 30
   - uid: 7196
     components:
     - type: Transform
@@ -55511,6 +55500,12 @@ entities:
       parent: 30
 - proto: DisposalPipe
   entities:
+  - uid: 1362
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -11.5,-9.5
+      parent: 30
   - uid: 4930
     components:
     - type: Transform
@@ -59930,6 +59925,12 @@ entities:
       parent: 30
 - proto: DisposalYJunction
   entities:
+  - uid: 6965
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -12.5,-9.5
+      parent: 30
   - uid: 14077
     components:
     - type: Transform
