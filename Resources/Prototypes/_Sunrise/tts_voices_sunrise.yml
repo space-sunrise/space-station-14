@@ -1,4 +1,9 @@
-﻿- type: ttsVoice
+﻿# всего 66 голосов
+# 51 уникальных доступных раундстартом
+# 8 недоступных раундстартом
+# 7 вторых версий
+
+- type: ttsVoice
   id: Minkir
   name: tts-voice-name-minkir
   sex: Male
@@ -408,7 +413,7 @@
   sponsorOnly: true
 
 - type: ttsVoice
-  id: Crysis2Operator3v1 # недообучена
+  id: Crysis2Operator3v1
   name: tts-voice-name-crysis2-ai-blackops-03-v1
   sex: Male
   speaker: crysis2_ai_blackops_03_v1
@@ -505,3 +510,39 @@
   sex: Male
   speaker: hearthstone_thrall
   provider: sunrise
+
+- type: ttsVoice
+  id: Crysis2AIUsafrican01
+  name: tts-voice-name-crysis2-ai-usafrican-01
+  sex: Male
+  speaker: ai_usafrican_01
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: false
+
+- type: ttsVoice
+  id: WarcraftLordGarithos
+  name: tts-voice-name-warcraft-lord-garithos
+  sex: Male
+  speaker: warcraft_lord_garithos
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: false
+
+- type: ttsVoice
+  id: WarcraftArtas2
+  name: tts-voice-name-warcraft-artas-2
+  sex: Male
+  speaker: warcraft_artas
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: false
+
+- type: ttsVoice
+  id: WarcraftMuradin
+  name: tts-voice-name-warcraft-muradin
+  sex: Male
+  speaker: warcraft_muradin
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: false
