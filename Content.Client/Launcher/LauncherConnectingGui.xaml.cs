@@ -38,6 +38,7 @@ namespace Content.Client.Launcher
 
         private string _forumLink = ""; // Sunrise-Edit
         private string _discordLink = ""; // Sunrise-Edit
+        private string _telegramLink = ""; // Sunrise-Edit
 
         public LauncherConnectingGui(LauncherConnecting state, IRobustRandom random,
             IPrototypeManager prototype, IConfigurationManager config, IClipboardManager clipboard,
@@ -67,9 +68,11 @@ namespace Content.Client.Launcher
 
             _cfg.OnValueChanged(SunriseCCVars.BanForumLink, s => _forumLink = s, true); // Sunrise-Edit
             _cfg.OnValueChanged(SunriseCCVars.BanDiscordLink, s => _discordLink = s, true); // Sunrise-Edit
+            _cfg.OnValueChanged(SunriseCCVars.BanTelegramLink, s => _telegramLink = s, true); // Sunrise-Edit
 
             Forum.OnPressed += _ => _uri.OpenUri(_forumLink); // Sunrise-Edit
             Discord.OnPressed += _ => _uri.OpenUri(_discordLink); // Sunrise-Edit
+            Telegram.OnPressed += _ => _uri.OpenUri(_telegramLink); // Sunrise-Edit
 
             var addr = state.Address;
             if (addr != null)
