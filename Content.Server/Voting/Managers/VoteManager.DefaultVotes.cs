@@ -17,7 +17,6 @@ using Content.Shared.Ghost;
 using Content.Shared.Players;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Voting;
-using Content.Shared.Voting.Prototypes;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Player;
@@ -598,7 +597,7 @@ namespace Content.Server.Voting.Managers
             
             var prototypeId = _cfg.GetCVar(SunriseCCVars.RoundVotingChancesPrototype);
 
-            if (!_prototypeManager.TryIndex<RoundVotingChancesPrototype>(prototypeId, out var chancesPrototype))
+            if (!_prototypeManager.TryIndex<VoteRandomPrototype>(prototypeId, out var chancesPrototype))
             {
                 Logger.Warning($"Не удалось найти прототип шансов с ID: {prototypeId}");
                 return presets;
