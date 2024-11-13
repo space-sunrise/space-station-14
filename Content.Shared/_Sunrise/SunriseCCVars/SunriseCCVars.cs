@@ -281,7 +281,7 @@ public sealed class SunriseCCVars
 
     public static readonly CVarDef<bool> RunPresetVoteAfterRestart = CVarDef.Create("vote.run_preset_vote_after_restart", false);
 
-    public static readonly CVarDef<int> VotingsDelay = CVarDef.Create("vote.votings_delay", 45);
+    public static readonly CVarDef<int> VotingsDelay = CVarDef.Create("vote.votings_delay", 60);
 
     public static readonly CVarDef<int> MapVotingCount = CVarDef.Create("vote.map_voting_count", 3);
 

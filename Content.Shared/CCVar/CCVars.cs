@@ -1447,7 +1447,7 @@ namespace Content.Shared.CCVar
         ///     Sets the duration of the map vote timer.
         /// </summary>
         public static readonly CVarDef<int>
-            VoteTimerMap = CVarDef.Create("vote.timermap", 90, CVar.SERVERONLY);
+            VoteTimerMap = CVarDef.Create("vote.timermap", 30, CVar.SERVERONLY); // Sunrise-Edit
 
         /// <summary>
         ///     Sets the duration of the restart vote timer.
@@ -1562,7 +1562,7 @@ namespace Content.Shared.CCVar
             CVarDef.Create("votekick.ban_duration", 180, CVar.SERVERONLY);
 
         /// <summary>
-        ///     Whether the ghost requirement settings for votekicks should be ignored for the lobby. 
+        ///     Whether the ghost requirement settings for votekicks should be ignored for the lobby.
         /// </summary>
         public static readonly CVarDef<bool> VotekickIgnoreGhostReqInLobby =
             CVarDef.Create("votekick.ignore_ghost_req_in_lobby", true, CVar.SERVERONLY);
