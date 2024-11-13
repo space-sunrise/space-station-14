@@ -521,28 +521,37 @@
   sponsorOnly: false
 
 - type: ttsVoice
-  id: WarcraftLordGarithos
+  id: Warcraft3LordGarithos
   name: tts-voice-name-warcraft-lord-garithos
   sex: Male
-  speaker: warcraft_lord_garithos
+  speaker: warcraft3_lord_garithos
   provider: sunrise
   roundStart: true
   sponsorOnly: false
 
 - type: ttsVoice
-  id: WarcraftArtas2
+  id: Warcraft3Artas2
   name: tts-voice-name-warcraft-artas-2
   sex: Male
-  speaker: warcraft_artas
+  speaker: warcraft3_artas
   provider: sunrise
   roundStart: true
   sponsorOnly: false
 
 - type: ttsVoice
-  id: WarcraftMuradin
+  id: Warcraft3Muradin
   name: tts-voice-name-warcraft-muradin
   sex: Male
-  speaker: warcraft_muradin
+  speaker: warcraft3_muradin
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: false
+
+- type: ttsVoice
+  id: Warcraft3Witcher
+  name: tts-voice-name-warcraft3-witcher
+  sex: Male
+  speaker: warcraft3_witcher
   provider: sunrise
   roundStart: true
   sponsorOnly: false
