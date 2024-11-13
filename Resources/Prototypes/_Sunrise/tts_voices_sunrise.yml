@@ -553,5 +553,5 @@
   sex: Male
   speaker: warcraft3_witcher
   provider: sunrise
-  roundStart: true
+  roundStart: false # перетренировать
   sponsorOnly: false
