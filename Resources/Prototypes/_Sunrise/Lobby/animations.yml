@@ -1,199 +1,199 @@
 - type: lobbyAnimation
   id: Bar
-  animation: _Sunrise/Lobby/Animations/bar
+  rawPath: _Sunrise/Lobby/Animations/bar
   scale: 5, 5
 
 - type: lobbyAnimation
   id: Billy
-  animation: _Sunrise/Lobby/Animations/billy
+  rawPath: _Sunrise/Lobby/Animations/billy
   scale: 13, 13
 
 - type: lobbyAnimation
   id: BlackHole
-  animation: _Sunrise/Lobby/Animations/black_hole
+  rawPath: _Sunrise/Lobby/Animations/black_hole
   scale: 8, 8
 
 - type: lobbyAnimation
   id: BlackHole2
-  animation: _Sunrise/Lobby/Animations/black_hole2
+  rawPath: _Sunrise/Lobby/Animations/black_hole2
   scale: 8, 8
 
 - type: lobbyAnimation
   id: BlackHoleIsland
-  animation: _Sunrise/Lobby/Animations/black_hole_island
+  rawPath: _Sunrise/Lobby/Animations/black_hole_island
   scale: 8, 8
 
 - type: lobbyAnimation
   id: BladeRunner
-  animation: _Sunrise/Lobby/Animations/blade_runner
+  rawPath: _Sunrise/Lobby/Animations/blade_runner
   scale: 12, 12
 
 - type: lobbyAnimation
   id: Boats
-  animation: _Sunrise/Lobby/Animations/boats
+  rawPath: _Sunrise/Lobby/Animations/boats
   scale: 8, 8
 
 - type: lobbyAnimation
   id: Earth
-  animation: _Sunrise/Lobby/Animations/earth
+  rawPath: _Sunrise/Lobby/Animations/earth
   scale: 8, 8
 
 - type: lobbyAnimation
   id: Eclipse
-  animation: _Sunrise/Lobby/Animations/eclipse
+  rawPath: _Sunrise/Lobby/Animations/eclipse
   scale: 8, 8
 
 - type: lobbyAnimation
   id: EvangelionElevator
-  animation: _Sunrise/Lobby/Animations/evangelion_elevator
+  rawPath: _Sunrise/Lobby/Animations/evangelion_elevator
   scale: 4, 4
 
 - type: lobbyAnimation
   id: EveningBridge
-  animation: _Sunrise/Lobby/Animations/evening_bridge
+  rawPath: _Sunrise/Lobby/Animations/evening_bridge
   scale: 8, 8
 
 - type: lobbyAnimation
   id: EveningSun
-  animation: _Sunrise/Lobby/Animations/evening_sun
+  rawPath: _Sunrise/Lobby/Animations/evening_sun
   scale: 8, 8
 
 - type: lobbyAnimation
   id: EveningSun2
-  animation: _Sunrise/Lobby/Animations/evening_sun2
+  rawPath: _Sunrise/Lobby/Animations/evening_sun2
   scale: 8, 8
 
 - type: lobbyAnimation
   id: EveningSun3
-  animation: _Sunrise/Lobby/Animations/evening_sun3
+  rawPath: _Sunrise/Lobby/Animations/evening_sun3
   scale: 8, 8
 
 - type: lobbyAnimation
   id: EveningSun4
-  animation: _Sunrise/Lobby/Animations/evening_sun4
+  rawPath: _Sunrise/Lobby/Animations/evening_sun4
   scale: 8, 8
 
 - type: lobbyAnimation
   id: EveningSun5
-  animation: _Sunrise/Lobby/Animations/evening_sun5
+  rawPath: _Sunrise/Lobby/Animations/evening_sun5
   scale: 8, 8
 
 - type: lobbyAnimation
   id: EveningSun6
-  animation: _Sunrise/Lobby/Animations/evening_sun6
+  rawPath: _Sunrise/Lobby/Animations/evening_sun6
   scale: 8, 8
 
 - type: lobbyAnimation
   id: EveningSun7
-  animation: _Sunrise/Lobby/Animations/evening_sun7
+  rawPath: _Sunrise/Lobby/Animations/evening_sun7
   scale: 6, 6
 
 - type: lobbyAnimation
   id: EveningSun8
-  animation: _Sunrise/Lobby/Animations/evening_sun8
+  rawPath: _Sunrise/Lobby/Animations/evening_sun8
   scale: 8, 8
 
 - type: lobbyAnimation
   id: EveningWindow
-  animation: _Sunrise/Lobby/Animations/evening_window
+  rawPath: _Sunrise/Lobby/Animations/evening_window
   scale: 8, 8
 
 - type: lobbyAnimation
   id: Frieren
-  animation: _Sunrise/Lobby/Animations/frieren
+  rawPath: _Sunrise/Lobby/Animations/frieren
   scale: 6, 6
 
 - type: lobbyAnimation
   id: Graveyard
-  animation: _Sunrise/Lobby/Animations/graveyard
+  rawPath: _Sunrise/Lobby/Animations/graveyard
   scale: 3, 3
 
 - type: lobbyAnimation
   id: GutsVsGriffit
-  animation: _Sunrise/Lobby/Animations/guts_vs_griffit
+  rawPath: _Sunrise/Lobby/Animations/guts_vs_griffit
   scale: 5, 5
 
 - type: lobbyAnimation
   id: HomerStarfall
-  animation: _Sunrise/Lobby/Animations/homer_starfall
+  rawPath: _Sunrise/Lobby/Animations/homer_starfall
   scale: 8, 8
 
 - type: lobbyAnimation
   id: IslandEvening
-  animation: _Sunrise/Lobby/Animations/island_evening
+  rawPath: _Sunrise/Lobby/Animations/island_evening
   scale: 4, 4
 
 - type: lobbyAnimation
   id: Jungle
-  animation: _Sunrise/Lobby/Animations/jungle
+  rawPath: _Sunrise/Lobby/Animations/jungle
   scale: 4, 4
 
 - type: lobbyAnimation
   id: Kvazar
-  animation: _Sunrise/Lobby/Animations/kvazar
+  rawPath: _Sunrise/Lobby/Animations/kvazar
   scale: 8, 8
 
 - type: lobbyAnimation
   id: Lain
-  animation: _Sunrise/Lobby/Animations/lain
+  rawPath: _Sunrise/Lobby/Animations/lain
   scale: 5, 5
 
 - type: lobbyAnimation
   id: Monolith
-  animation: _Sunrise/Lobby/Animations/monolith
+  rawPath: _Sunrise/Lobby/Animations/monolith
   scale: 8, 8
 
 - type: lobbyAnimation
   id: Nebula
-  animation: _Sunrise/Lobby/Animations/nebula
+  rawPath: _Sunrise/Lobby/Animations/nebula
   scale: 8, 8
 
 - type: lobbyAnimation
   id: NeonSity
-  animation: _Sunrise/Lobby/Animations/neon_sity
+  rawPath: _Sunrise/Lobby/Animations/neon_sity
   scale: 9, 9
 
 - type: lobbyAnimation
   id: NightMoon
-  animation: _Sunrise/Lobby/Animations/night_moon
+  rawPath: _Sunrise/Lobby/Animations/night_moon
   scale: 8, 8
 
 - type: lobbyAnimation
   id: RedSkull
-  animation: _Sunrise/Lobby/Animations/red_skull
+  rawPath: _Sunrise/Lobby/Animations/red_skull
   scale: 14, 14
 
 - type: lobbyAnimation
   id: Sky
-  animation: _Sunrise/Lobby/Animations/sky
+  rawPath: _Sunrise/Lobby/Animations/sky
   scale: 8, 8
 
 - type: lobbyAnimation
   id: SpaceDesert
-  animation: _Sunrise/Lobby/Animations/space_desert
+  rawPath: _Sunrise/Lobby/Animations/space_desert
   scale: 8, 8
 
 - type: lobbyAnimation
   id: SpaceGirl
-  animation: _Sunrise/Lobby/Animations/space_girl
+  rawPath: _Sunrise/Lobby/Animations/space_girl
   scale: 6, 6
 
 - type: lobbyAnimation
   id: SpaceStarts
-  animation: _Sunrise/Lobby/Animations/space_starts
+  rawPath: _Sunrise/Lobby/Animations/space_starts
   scale: 8, 8
 
 - type: lobbyAnimation
   id: SunnyCity
-  animation: _Sunrise/Lobby/Animations/sunny_city
+  rawPath: _Sunrise/Lobby/Animations/sunny_city
   scale: 8, 8
 
 - type: lobbyAnimation
   id: SunnyPtl
-  animation: _Sunrise/Lobby/Animations/sunny_PTL
+  rawPath: _Sunrise/Lobby/Animations/sunny_PTL
   scale: 8, 8
 
 - type: lobbyAnimation
   id: SunnyPtl2
-  animation: _Sunrise/Lobby/Animations/sunny_PTL2
+  rawPath: _Sunrise/Lobby/Animations/sunny_PTL2
   scale: 8, 8

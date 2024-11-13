@@ -26,6 +26,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Serialization.Markdown;
 using Robust.Shared.Serialization.Markdown.Mapping;
+using Serilog;
 
 
 namespace Content.Client.Lobby
@@ -89,10 +90,10 @@ namespace Content.Client.Lobby
             }
             var combinedChangelog = _changelogManager.MergeChangelogs(changelogs);
 
-            Lobby!.LocalChangelogBody.PopulateChangelog(combinedChangelog);
-            Lobby!.LobbyAnimation.DisplayRect.Stretch = TextureRect.StretchMode.KeepAspectCovered;
-            Lobby!.LobbyAnimation.DisplayRect.HorizontalExpand = true;
-            Lobby!.LobbyAnimation.DisplayRect.VerticalExpand = true;
+            Lobby.LocalChangelogBody.PopulateChangelog(combinedChangelog);
+            Lobby.LobbyAnimation.DisplayRect.Stretch = TextureRect.StretchMode.KeepAspectCovered;
+            Lobby.LobbyAnimation.DisplayRect.HorizontalExpand = true;
+            Lobby.LobbyAnimation.DisplayRect.VerticalExpand = true;
 
 
             _cfg.OnValueChanged(SunriseCCVars.LobbyBackgroundType, OnLobbyBackgroundTypeChanged, true);
@@ -294,6 +295,12 @@ namespace Content.Client.Lobby
                 lobbyBackgroundTypeString = default;
             }
 
+            if (Lobby == null)
+            {
+                Logger.Error("Error in SetLobbyBackgroundType. Lobby is null");
+                return;
+            }
+
             switch (lobbyBackgroundTypeString)
             {
                 case LobbyBackgroundType.Parallax:
@@ -349,7 +356,13 @@ namespace Content.Client.Lobby
             if (!_prototypeManager.TryIndex<LobbyAnimationPrototype>(lobbyAnimation, out var lobbyAnimationPrototype))
                 return;
 
-            Lobby!.LobbyAnimation.SetFromSpriteSpecifier(new SpriteSpecifier.Rsi(new ResPath(lobbyAnimationPrototype.Animation), lobbyAnimationPrototype.State));
+            if (Lobby == null)
+            {
+                Logger.Error("Error in SetLobbyAnimation. Lobby is null");
+                return;
+            }
+
+            Lobby!.LobbyAnimation.SetFromSpriteSpecifier(new SpriteSpecifier.Rsi(new ResPath(lobbyAnimationPrototype.RawPath), lobbyAnimationPrototype.State));
             Lobby!.LobbyAnimation.DisplayRect.TextureScale = lobbyAnimationPrototype.Scale;
         }
 
@@ -358,6 +371,12 @@ namespace Content.Client.Lobby
             if (!_prototypeManager.TryIndex<LobbyBackgroundPrototype>(lobbyArt, out var lobbyArtPrototype))
                 return;
 
+            if (Lobby == null)
+            {
+                Logger.Error("Error in SetLobbyArt. Lobby is null");
+                return;
+            }
+
             Lobby!.LobbyArt.Texture = _resourceCache.GetResource<TextureResource>(lobbyArtPrototype.Background);
         }
 
@@ -365,6 +384,12 @@ namespace Content.Client.Lobby
         {
             if (!_prototypeManager.TryIndex<LobbyParallaxPrototype>(lobbyParallax, out var lobbyParallaxPrototype))
                 return;
+
+            if (Lobby == null)
+            {
+                Logger.Error("Error in SetLobbyParallax. Lobby is null");
+                return;
+            }
 
             _parallaxManager.LoadParallaxByName(lobbyParallaxPrototype.Parallax);
             Lobby!.LobbyParallax = lobbyParallaxPrototype.Parallax;
