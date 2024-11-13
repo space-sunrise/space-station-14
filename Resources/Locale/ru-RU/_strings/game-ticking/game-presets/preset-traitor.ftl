@@ -38,4 +38,8 @@ traitor-role-uplink-code =
 traitor-role-codewords-short =
     Кодовые слова:
     { $codewords }.
+traitor-role-uplink-implant =
+    Ваш имплант аплинка активирован, зайдите в него с хотбара.
+    Подключение безопасно, если только кто-то не удалит его из вашего тела.
 traitor-role-uplink-code-short = Ваш код аплинка: { $code }. Установите его в качестве рингтона КПК для доступа к аплинку.
+traitor-role-uplink-implant-short = Ваш аплинк был имплантирован. Зайдите на него с хотбара.

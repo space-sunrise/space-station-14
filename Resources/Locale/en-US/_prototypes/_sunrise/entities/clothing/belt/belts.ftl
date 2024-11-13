@@ -11,3 +11,5 @@ ent-ClothingBeltMedicalCMO = CMO's medical belt
     .desc = A sterile belt with many pockets for pills and other medications, emphasizing that you should treat with style.
 ent-ClothingBeltReaperWebbing = chest rig
     .desc = A set of tactical webbing worn by Syndicate boarding parties.
+ent-ClothingBeltSheathSyndicate = rapier sheath
+    .desc = A sinister, thin sheath, suitable for a rapier.

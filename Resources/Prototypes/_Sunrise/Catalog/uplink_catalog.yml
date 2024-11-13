@@ -232,6 +232,22 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      
+- type: listing
+  id: UplinkWeaponBauer127
+  name: uplink-weapon-bauer-127-name
+  productEntity: ClothingBackpackDuffelSyndicateFilledBauer
+  description: uplink-weapon-bauer-127-name
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Snipers/bauer127/big.rsi, state: icon }
+  cost:
+    Telecrystal: 18
+  categories:
+  - UplinkWeaponry
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
 
 - type: listing
   id: UplinkHardsuitSyndieCommander

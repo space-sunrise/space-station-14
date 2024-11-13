@@ -1,4 +1,4 @@
-﻿expcollar-connect = Ошейники связываются!
+expcollar-connect = Ошейники связываются!
 expcollar-connected = Ошейник уже привязан.
 expcollar-bolts-down = Болты ошейника отключаются!
 expcollar-kill = Зафиксирована смерть хоста!

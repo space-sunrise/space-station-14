@@ -15,3 +15,8 @@
   - Heat
   - Shock
   - Caustic
+
+- type: damageContainer
+  id: Rift
+  supportedGroups:
+  - Brute

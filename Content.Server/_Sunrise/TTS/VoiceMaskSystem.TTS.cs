@@ -1,4 +1,5 @@
 ﻿using Content.Server._Sunrise.TTS;
+using Content.Shared._Sunrise.TTS;
 using Content.Shared.VoiceMask;
 
 namespace Content.Server.VoiceMask;
@@ -7,18 +8,22 @@ public partial class VoiceMaskSystem
 {
     private void InitializeTTS()
     {
-        SubscribeLocalEvent<VoiceMaskComponent, TransformSpeakerVoiceEvent>(OnSpeakerVoiceTransform);
+        SubscribeLocalEvent<TTSComponent, TransformSpeakerVoiceEvent>(OnSpeakerVoiceTransform);
         SubscribeLocalEvent<VoiceMaskComponent, VoiceMaskChangeVoiceMessage>(OnChangeVoice);
     }
 
-    private void OnSpeakerVoiceTransform(EntityUid uid, VoiceMaskComponent component, TransformSpeakerVoiceEvent args)
+    private void OnSpeakerVoiceTransform(EntityUid uid, TTSComponent component, TransformSpeakerVoiceEvent args)
     {
-        args.VoiceId = component.VoiceId;
+        if (TryComp<VoiceMaskerComponent>(uid, out var maskerComponent))
+            args.VoiceId = maskerComponent.VoiceId;
     }
 
     private void OnChangeVoice(EntityUid uid, VoiceMaskComponent component, VoiceMaskChangeVoiceMessage message)
     {
         component.VoiceId = message.Voice;
+
+        if (TryComp<VoiceMaskerComponent>(message.Actor, out var maskerComponent))
+            maskerComponent.VoiceId = message.Voice;
 
         _popupSystem.PopupEntity(Loc.GetString("voice-mask-voice-popup-success"), uid);
 

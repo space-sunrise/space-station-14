@@ -2,7 +2,6 @@ background-type-Parallax = Паралакс
 background-type-Animation = Анимация
 background-type-Art = Арт
 background-type-Random = Случайный
-
 # Animations
 lobby-animation-Random = Случайный
 lobby-animation-AyakaAduare = Ayaka by Aduare
@@ -50,7 +49,6 @@ lobby-animation-SpaceStarts = Space Starts
 lobby-animation-SunnyCity = Sunny City
 lobby-animation-SunnyPtl = Sunny PTL
 lobby-animation-SunnyPtl2 = Sunny PTL 2
-
 # Arts
 lobby-art-Random = Случайный
 lobby-art-BarLife = Bar Life
@@ -106,7 +104,6 @@ lobby-art-Behonker = Behonker
 lobby-art-TerminalStation = Terminal Station
 lobby-art-JustAWeekAway = Just A Week Away
 lobby-art-JaniShootout = Jani Shootout
-
 # Parallaxes
 lobby-parallax-Random = Случайный
 lobby-parallax-FastSpace = Fast Space

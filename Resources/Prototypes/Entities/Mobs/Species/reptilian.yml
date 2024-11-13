@@ -77,6 +77,9 @@
     - DoorBumpOpener
     - AnomalyHost
     - NoInjectable
+  - type: FootprintEmitter
+    leftBareFootState: "footprint-left-bare-lizard"
+    rightBareFootState: "footprint-right-bare-lizard"
 #Sunrise-end
   - type: Inventory
     speciesId: reptilian

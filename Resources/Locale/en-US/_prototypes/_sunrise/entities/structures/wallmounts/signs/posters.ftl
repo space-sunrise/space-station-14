@@ -1,4 +1,4 @@
-ent-PosterContrabandAriralInSpace = Ariral in space
-    .desc = It's clearly a message.. I've forgotten something...
+ent-PosterContrabandAriralInSpace = Ariral in Space
+    .desc = This is clearly a message..I think I forgot something...
 ent-PosterLegitAIOverseer = AI is watching
-    .desc = Anything can be automated, Security included.
+    .desc = Anything can be automated, Security included
