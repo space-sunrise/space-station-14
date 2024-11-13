@@ -14,6 +14,7 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Mech.Components;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
+using Content.Shared.Standing;
 using Content.Shared.Tag;
 using Content.Shared.Throwing;
 using Content.Shared.Timing;
@@ -276,6 +277,14 @@ public abstract partial class SharedGunSystem : EntitySystem
         RaiseLocalEvent(user, ref prevention);
         if (prevention.Cancelled)
             return;
+
+        // Sunrise-Edit
+        if (TryComp<StandingStateComponent>(user, out var standingStateComponent))
+        {
+            if (standingStateComponent.CurrentState is StandingState.Lying or StandingState.GettingUp)
+                return;
+        }
+        // Sunrise-Edit
 
         // Need to do this to play the clicking sound for empty automatic weapons
         // but not play anything for burst fire.
