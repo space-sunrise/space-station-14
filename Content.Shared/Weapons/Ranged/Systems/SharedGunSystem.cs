@@ -294,7 +294,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         var fireRate = TimeSpan.FromSeconds(1f / gun.FireRateModified);
 
         if (gun.SelectedMode == SelectiveFire.Burst || gun.BurstActivated)
-            fireRate = fireRate / gun.BurstFireRateModifier;
+            fireRate = TimeSpan.FromSeconds(1f / gun.BurstFireRate);
 
         // First shot
         // Previously we checked shotcounter but in some cases all the bullets got dumped at once
@@ -474,7 +474,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         RaiseLocalEvent(uid, ref ev);
         // Sunrise-End
 
-        TransformSystem.SetWorldRotation(uid, direction.ToWorldAngle());
+        TransformSystem.SetWorldRotation(uid, direction.ToWorldAngle() + projectile.Angle);
     }
 
     protected abstract void Popup(string message, EntityUid? uid, EntityUid? user);
