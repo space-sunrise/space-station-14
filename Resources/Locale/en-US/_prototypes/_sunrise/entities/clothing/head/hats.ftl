@@ -48,3 +48,5 @@ ent-ClothingHeadHatGarrisonCapAdjutant = adjutant garrisoncap
     .desc = A little cotton cap that's just about to fall off his head.
 ent-ClothingHeadHatCapAdjutant = adjutant cap
     .desc = Blue and white, suspiciously reminiscent of the captain's.
+ent-ClothingHeadHatWithPaces = Hat with paces
+    .desc = A black hat with paces, usually worn by Jews.
