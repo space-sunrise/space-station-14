@@ -678,14 +678,6 @@
   - type: Sprite
     state: plushie-nara
     sprite: _Sunrise/Objects/Fun/toys.rsi
-  - type: EmitSoundOnUse
-    sound:
-      path: /Audio/_Sunrise/papich_naaa.ogg
-  - type: EmitSoundOnTrigger
-    sound:
-      path: /Audio/_Sunrise/papich_naaa.ogg
-  - type: UseDelay
-    delay: 20.0
 
 - type: entity
   parent: BasePlushie
@@ -708,8 +700,8 @@
 - type: entity
   parent: BasePlushie
   id: PlushieEblan
-  name: Плюшевый Милос-Танака
-  description: Защитник станции, всегда готовый к неожиданным приключениям!
+  name: Plush Milos-Tanaka
+  description: Protector of the station, always ready for unexpected adventures!
   components:
   - type: Sprite
     state: plushie-eblan
@@ -718,8 +710,8 @@
 - type: entity
   parent: BasePlushie
   id: PlushieKlim
-  name: Плюшевый Клим Кузьмин
-  description: Вульпа атмос, от него пахнет плазмой. Заделает любую дыру, даже в вашем сердце.
+  name: Plush Klim Kuzmin
+  description: Vulpa atm, he smells like plasma. It'll fix any hole, even in your heart.
   components:
   - type: Sprite
     state: plushie-klim
@@ -728,8 +720,8 @@
 - type: entity
   parent: BasePlushie
   id: PlushieMelania
-  name: Плюшевая Мелания Киселёва
-  description: Величайшая желешка во вселенной, любящая своих сестер. Хлюп!
+  name: Plush Melania Kiseleva
+  description: The greatest jellybean in the universe, loving her sisters. Squish!
   components:
   - type: Sprite
     state: plushie-melania
@@ -738,8 +730,8 @@
 - type: entity
   parent: BasePlushie
   id: PlushieOkobius
-  name: Плюшевый Окобиус Акватика
-  description: Один из худших бригмедиков, что когда либо существовали.
+  name: Plush Ocobius Aquatica
+  description: One of the worst brig medics that ever existed.
   components:
   - type: Sprite
     state: plushie-okobius
@@ -748,9 +740,42 @@
 - type: entity
   parent: BasePlushie
   id: PlushieVyacheslav
-  name: Плюшевый Вячеслав Некрасов
-  description: Популярная в соответствующих кругах личность.
+  name: Plushy Vyacheslav Nekrasov
+  description: A popular personality in relevant circles.
   components:
   - type: Sprite
     state: plushie-vyacheslav
     sprite: _Sunrise/Objects/Fun/toys.rsi
+
+- type: entity
+  parent: [ EmitVulpGrowl, BasePlushie ]
+  id: PlushieLu
+  name: Plush Lou'Slime
+  description: You think this vulpa chemist is a woman? Keep thinking that... Sometimes she snorts
+  components:
+  - type: Sprite
+    state: plushie-lu
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieAgata
+  name: Plush Agent Agata Katsuhiro
+  description: This plushie was made on a planetary prison by convicted Syndicate agents. Wear it proudly, corporate
+  components:
+  - type: Sprite
+    state: plushie-agata
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieMilosTanka
+  name: Plush Milos-Tanaka
+  description: Unathi in a Central Command uniform, what could he possibly be hiding in him besides two knives and a revolver?
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    layers:
+    - state: plushie-milos-tan
+    - state: syndie-visor
+      shader: unshaded

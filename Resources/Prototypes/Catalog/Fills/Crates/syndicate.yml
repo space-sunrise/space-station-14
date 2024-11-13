@@ -41,11 +41,13 @@
   - type: StorageFill
     contents:
       - id: MechGygaxSyndieFilled
+      - id: HandheldMechAnalyzer
       - id: DoubleEmergencyOxygenTankFilled
       - id: DoubleEmergencyNitrogenTankFilled
       - id: ToolboxSyndicateFilled
       - id: PlushieNuke
-      
+      - id: WelderIndustrial # Удалить когда ремонт мехов будет дешевле по сварочному топливу
+
 - type: entity
   id: CrateCybersunRoverBundle
   suffix: Filled
@@ -56,10 +58,12 @@
   - type: StorageFill
     contents:
       - id: MechRoverSyndieFilled
+      - id: HandheldMechAnalyzer
       - id: DoubleEmergencyOxygenTankFilled
       - id: DoubleEmergencyNitrogenTankFilled
       - id: ToolboxSyndicateFilled
       - id: PlushieNuke
+      - id: WelderIndustrial # Удалить когда ремонт мехов будет дешевле по сварочному топливу
 
 - type: entity
   id: CrateCybersunMaulerBundle
@@ -71,7 +75,9 @@
   - type: StorageFill
     contents:
       - id: MechMaulerSyndieFilled
+      - id: HandheldMechAnalyzer
       - id: DoubleEmergencyOxygenTankFilled
       - id: DoubleEmergencyNitrogenTankFilled
       - id: ToolboxSyndicateFilled
       - id: PlushieNuke
+      - id: WelderIndustrial # Удалить когда ремонт мехов будет дешевле по сварочному топливу

@@ -44,6 +44,7 @@
       - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
+    projectileSpeed: 15 # Sunrise-Edit
   - type: BallisticAmmoProvider
     whitelist:
       tags:

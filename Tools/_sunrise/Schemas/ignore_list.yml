@@ -137,13 +137,14 @@ ignore_list:
   - 'TR-263'
 
 ignore_files:
-  - italian.ftl
-  - russian.ftl
-  - popup.ftl
-  - controls.ftl
-  - input.ftl
-  - speech-chatsan.ftl 
-  - speech-liar.ftl
-  - german.ftl
-  - southern.ftl
-  - tts-voices-sunrise.ftl
+  - 'italian.ftl'
+  - 'russian.ftl'
+  - 'popup.ftl'
+  - 'controls.ftl'
+  - 'input.ftl'
+  - 'speech-chatsan.ftl'
+  - 'speech-liar.ftl'
+  - 'german.ftl'
+  - 'southern.ftl'
+  - 'tts-voices-sunrise.ftl'
+  - 'lobby.ftl'

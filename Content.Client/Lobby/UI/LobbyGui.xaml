@@ -11,16 +11,16 @@
     xmlns:widgets="clr-namespace:Content.Client.UserInterface.Systems.Chat.Widgets"
     xmlns:serversHub="clr-namespace:Content.Client._Sunrise.ServersHub"
     xmlns:changelog="clr-namespace:Content.Client.Changelog"
-    xmlns:userProfile="clr-namespace:Content.Client._Sunrise.UserProfile">
+    xmlns:userProfile="clr-namespace:Content.Client._Sunrise.UserProfile"
+    xmlns:texture="clr-namespace:Content.Client._Sunrise.Texture">
     <!-- Background -->
-    <TextureRect Access="Public" VerticalExpand="True" HorizontalExpand="True" Name="Background" Stretch="KeepAspectCovered" />
+    <TextureRect Name="LobbyArt" Access="Public" VerticalExpand="True" HorizontalExpand="True"
+                 Stretch="KeepAspectCovered" />
+    <texture:RawAnimatedTexture Name="LobbyAnimation" HorizontalExpand="True" VerticalExpand="True" Access="Public" />
     <BoxContainer Name="MainContainer" VerticalExpand="True" HorizontalExpand="True" Orientation="Horizontal"
                   Margin="10 10 10 10" SeparationOverride="2">
         <!-- LHS Controls -->
         <Control Name="DefaultState" VerticalExpand="True" HorizontalExpand="True">
-            <BoxContainer Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Center" >
-                <AnimatedTextureRect Name="LobbyImage" VerticalAlignment="Center" HorizontalAlignment="Center" Access="Public" />
-            </BoxContainer>
             <BoxContainer Orientation="Vertical" HorizontalAlignment="Left" HorizontalExpand="True">
                 <PanelContainer Name="LeftTopPanel" StyleClasses="AngleRect" >
                     <BoxContainer Orientation="Vertical" HorizontalExpand="True" HorizontalAlignment="Center" VerticalAlignment="Top">

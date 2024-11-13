@@ -1,4 +1,12 @@
 - type: latheCategory
+  id: Surgery
+  name: lathe-category-surgery
+
+- type: latheCategory
+  id: Cyberlimbs
+  name: lathe-category-cyberlimbs
+
+- type: latheCategory
   id: Reports
   name: lathe-category-reports
 

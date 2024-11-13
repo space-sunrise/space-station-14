@@ -84,7 +84,7 @@ public abstract class SharedTelescopeSystem : EntitySystem
         if (TryComp(ent, out CameraRecoilComponent? recoil))
         {
             recoil.BaseOffset = offset;
-            _eye.SetOffset(ent, offset + recoil.CurrentKick, ent);
+            _eye.SetOffset(ent, offset, ent);
         }
         else
         {

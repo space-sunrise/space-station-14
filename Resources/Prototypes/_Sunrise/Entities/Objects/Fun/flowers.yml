@@ -1,0 +1,19 @@
+- type: entity
+  parent: BaseItem
+  id: RedFlowers
+  name: red flower bouquet
+  description: A beautifully arranged bouquet of blood-red flowers. Smells good.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/red_flowers.rsi
+    state: item
+
+- type: entity
+  parent: BaseItem
+  id: BlueFlowers
+  name: red flower bouquet
+  description: A beautifully arranged bouquet of sky-blue flowers. Smells good.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/blue_flowers.rsi
+    state: item

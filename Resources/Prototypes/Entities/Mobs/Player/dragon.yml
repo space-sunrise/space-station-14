@@ -139,7 +139,7 @@
     foodPreference: Humanoid
     shouldStoreDevoured: true
     chemical: Ichor
-    healRate: 15.0
+    healRate: 20.0 #Sunrise-edit
     whitelist:
       components:
       - MobState
@@ -159,6 +159,14 @@
   - type: NightVision
     isToggle: true
     color: "#808080"
+  - type: Reflect
+    reflectProb: 0.25
+    spread: 45
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Dragon
+  - type: TTS
+    voice: HearthstoneLordOfThunder
   # Sunrise-End
 
 - type: entity

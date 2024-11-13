@@ -7,7 +7,7 @@
     issuer: EvilTwinCorp
   - type: RoleRequirement
     roles:
-      components:
+      mindRoles:
       - EvilTwinRole
 
 - type: entity

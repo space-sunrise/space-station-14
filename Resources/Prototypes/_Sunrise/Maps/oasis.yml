@@ -25,33 +25,31 @@
             Janitor: [ 3, 3 ]
             Chaplain: [ 1, 1 ]
             Librarian: [ 1, 1 ]
-            ServiceWorker: [ 2, 2 ]
+            ServiceWorker: [ -1, -1 ]
             Zookeeper: [ 1, 1 ]
             Reporter: [ 1, 1 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 3, 3 ]
             StationEngineer: [ 5, 5 ]
-            TechnicalAssistant: [ 4, 4 ]
+            TechnicalAssistant: [ -1, -1 ]
             #medical
             ChiefMedicalOfficer: [ 1, 1 ]
             Chemist: [ 2, 2 ]
             MedicalDoctor: [ 6, 6 ]
             Paramedic: [ 2, 2 ]
-            MedicalIntern: [ 4, 4 ]
+            MedicalIntern: [ -1, -1 ]
             Psychologist: [ 1, 1 ]
             #science
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 5, 5 ]
-            ResearchAssistant: [ 6, 6 ]
-            StationAi: [ 1, 1 ]
-            Borg: [ 2, 2 ]
+            ResearchAssistant: [ -1, -1 ]
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
             SecurityOfficer: [ 8, 8 ]
             Detective: [ 1, 1 ]
-            SecurityCadet: [ 4, 4 ]
+            SecurityCadet: [ -1, -1 ]
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]
@@ -84,8 +82,33 @@
             # Sunrise-Security
             Brigmedic: [ 1, 1 ]
             # Sunrise-Senior
+            SeniorEngineer: [ 1, 1 ]
             SeniorPhysician: [ 1, 1 ]
             SeniorResearcher: [ 1, 1 ]
             SeniorOfficer: [ 1, 1 ]
             # Sunrise-Science
             Roboticist: [ 2, 2 ]
+            # Sunrise-Command
+            Adjutant: [ 1, 1 ]
+            NanoTrasenRepresentative: [ 1, 1 ]
+        - type: StationGoal
+          goals:
+          - Shuttle
+          - Singularity
+          - SolarPanels
+          - Artifacts
+          - Bank
+          - Zoo
+          - MiningOutpost
+          - Tesla
+          - XenobiologyRepair
+          - VirusologyAmbusol
+          - Containment
+          - WeaponsSecurity
+          - MaintsRepair
+          - DormsBuild
+          - BattleShuttle
+          - Transit
+          - NukeRoom
+          - Permabrig
+          - Farm

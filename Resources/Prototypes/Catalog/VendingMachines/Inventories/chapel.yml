@@ -22,6 +22,9 @@
     BoxCandle: 2
     BoxCandleSmall: 2
     Urn: 5
+    Bible: 1
+    RedFlowers: 3 # Sunrise
+    BlueFlowers: 3 # Sunrise
   emaggedInventory:
     ClothingOuterArmorCult: 1
     ClothingHeadHelmetCult: 1

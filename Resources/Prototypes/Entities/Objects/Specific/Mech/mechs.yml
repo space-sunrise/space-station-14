@@ -76,8 +76,8 @@
     joinSystem: true
   - type: DoAfter
   - type: Repairable
-    fuelCost: 25
-    doAfterDelay: 3
+    fuelCost: 30
+    doAfterDelay: 5
     damage:
       types:
         Blunt: -15
@@ -397,6 +397,8 @@
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepClown
+      params:
+        variation: 0.17
   - type: Mech
     baseState: honker
     openState: honker-open
@@ -694,9 +696,6 @@
     damageModifierSet: MediumArmorNT
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
-  - type: Repairable
-    fuelCost: 30
-    doAfterDelay: 15
   - type: Reflect
     reflectProb: 0.25
     spread: 180
@@ -915,9 +914,6 @@
     damageModifierSet: HeavyArmorNT
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
-  - type: Repairable
-    fuelCost: 30
-    doAfterDelay: 15
   - type: Reflect
     reflectProb: 0.4
     spread: 180
@@ -996,9 +992,6 @@
     damageModifierSet: HeavyArmorNT
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
-  - type: Repairable
-    fuelCost: 30
-    doAfterDelay: 20
   - type: Reflect
     reflectProb: 0.4
     spread: 180
@@ -1080,9 +1073,6 @@
     damageModifierSet: MediumArmorSyndi
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
-  - type: Repairable
-    fuelCost: 40
-    doAfterDelay: 20
   - type: Reflect
     reflectProb: 0.30
     spread: 180
@@ -1159,9 +1149,6 @@
     damageModifierSet: MediumArmorSyndi
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
-  - type: Repairable
-    fuelCost: 30
-    doAfterDelay: 20
   - type: Reflect
     reflectProb: 0.35
     spread: 180
@@ -1238,9 +1225,6 @@
     damageModifierSet: HeavyArmorSyndi
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
-  - type: Repairable
-    fuelCost: 50
-    doAfterDelay: 25
   - type: Reflect
     reflectProb: 0.45
     spread: 180
