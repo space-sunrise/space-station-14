@@ -5894,3 +5894,36 @@
   id: 401
   time: '2024-11-13T01:05:19.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/606
+- author: J C Denton
+  changes:
+  - message: "\u041A\u0430\u0440\u0442\u0430 Train \u043E\u0431\u043D\u043E\u0432\u043B\
+      \u0435\u043D\u0430."
+    type: Tweak
+  id: 402
+  time: '2024-11-13T01:07:33.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/611
+- author: Rinary
+  changes:
+  - message: "\u041E\u0431\u043D\u043E\u0432\u043B\u0435\u043D\u0430 \u043B\u043E\u043A\
+      \u0430\u043B\u0438\u0437\u0430\u0446\u0438\u044F(04.11)"
+    type: Tweak
+  id: 403
+  time: '2024-11-13T01:07:13.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/610
+- author: rhailrake
+  changes:
+  - message: "\u0411\u043E\u043B\u044C\u0448\u0435 \u043D\u0435\u043B\u044C\u0437\u044F\
+      \ \u0441\u0442\u0440\u0435\u043B\u044F\u0442\u044C \u0432 \u043F\u043E\u043B\
+      \u043E\u0436\u0435\u043D\u0438\u0438 \u043B\u0435\u0436\u0430."
+    type: Fix
+  id: 404
+  time: '2024-11-13T01:08:18.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/612
+- author: rhailrake
+  changes:
+  - message: "\u0412\u043E\u0439\u0441 \u043C\u0430\u0441\u043A\u0430 \u0442\u0435\
+      \u043F\u0435\u0440\u044C \u0440\u0430\u0431\u043E\u0442\u0430\u0435\u0442."
+    type: Fix
+  id: 405
+  time: '2024-11-13T01:08:49.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/615
