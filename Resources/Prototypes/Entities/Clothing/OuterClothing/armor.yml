@@ -126,7 +126,7 @@
     damageCoefficient: 0.35
   - type: ClothingSpeedModifier
     walkModifier: 0.9
-    sprintModifier: 0.9
+    sprintModifier: 0.95 #Sunrise-edit
   #Shoulder mounted flashlight
   - type: ToggleableLightVisuals
     spriteLayer: light
