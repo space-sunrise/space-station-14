@@ -2,12 +2,6 @@
   <img alt="Space Station 14" width="650" src="https://i.postimg.cc/wBtLj7y3/323131321-3.png" />
 </p>
 
-
-🌐 **Read this in other languages:**
-
-- 🇺🇸 [English](README.en.md)
-- 🇷🇺 [Русский](README.ru.md)
-
 <div class="header" align="center">
 
 [![Discord](https://img.shields.io/discord/831352358520725506?label=Discord&logo=discord&logoColor=white)](https://discord.gg/ssJTANEa)
