@@ -4,10 +4,14 @@
   placement:
     mode: SnapgridCenter
   components:
+  - type: Transform
+    anchored: true
   - type: MeleeSound
     soundGroups:
       Brute:
         collection: GlassSmack
+  - type: InteractionOutline
+  - type: Clickable
   - type: Anchorable
   - type: Pullable
   - type: Rotatable
@@ -32,7 +36,7 @@
       - Energy
   - type: RCDDeconstructable
     deconstructable: false
-  - type: Sprite 
+  - type: Sprite
     sprite: _Sunrise/Structures/Reflector/reflector.rsi
     layers:
     - state: reflector_box
