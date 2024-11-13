@@ -43,6 +43,7 @@ namespace Content.IntegrationTests.Tests
             "/Maps/Shuttles/cargo.yml",
             "/Maps/Shuttles/emergency.yml",
             "/Maps/Shuttles/infiltrator.yml",
+            "/Maps/_Sunrise/Shuttles/infiltrator.yml",
         };
 
         private static readonly string[] GameMaps =

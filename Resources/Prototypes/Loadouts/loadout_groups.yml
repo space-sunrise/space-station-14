@@ -1033,6 +1033,7 @@
   - DetectiveArmorVest
   - DetectiveCoat
   - DetectiveCoatGrey
+  - DetectiveCoatDark # Sunrise-edit
 
 - type: loadoutGroup
   id: SecurityCadetJumpsuit
