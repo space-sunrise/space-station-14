@@ -1,12 +1,13 @@
-﻿<ui:ChoiceControl
+﻿<choice:ChoiceControl
     xmlns="https://spacestation14.io"
-    xmlns:ui="clr-namespace:Content.Client._Sunrise">
+    xmlns:ui="clr-namespace:Content.Client._Sunrise"
+    xmlns:choice="clr-namespace:Content.Client._Sunrise.Choice">
     <BoxContainer Orientation="Horizontal">
         <Button Name="Button" Access="Public"
                 HorizontalExpand="True" VerticalExpand="False"
                 StyleClasses="ButtonSquare" Margin="0">
             <BoxContainer Orientation="Horizontal" Margin="0">
-                <TextureRect Name="Texture" Access="Public"
+                <TextureRect Name="Icon" Access="Public"
                              HorizontalExpand="False" VerticalExpand="False"
                              Margin="1"/>
                 <Control MinWidth="5"/>
@@ -14,4 +15,4 @@
             </BoxContainer>
         </Button>
     </BoxContainer>
-</ui:ChoiceControl>
+</choice:ChoiceControl>

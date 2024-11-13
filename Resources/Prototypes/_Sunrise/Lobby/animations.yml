@@ -6,7 +6,7 @@
 - type: lobbyAnimation
   id: Billy
   animation: _Sunrise/Lobby/Animations/billy
-  scale: 12, 12
+  scale: 13, 13
 
 - type: lobbyAnimation
   id: BlackHole
