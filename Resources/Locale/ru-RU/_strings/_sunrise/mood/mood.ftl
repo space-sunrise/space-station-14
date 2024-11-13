@@ -1,38 +1,26 @@
-﻿alerts-mood-insane-name = Воодушевлён
+alerts-mood-insane-name = Воодушевлён
 alerts-mood-insane-desc = Я полон энергии и энтузиазма, готов горы свернуть!
-
 alerts-mood-horrible-name = Подавлен
 alerts-mood-horrible-desc = Сейчас тяжело, но это временно. Нужно собраться с силами.
-
 alerts-mood-terrible-name = Расстроен
 alerts-mood-terrible-desc = День выдался не из лёгких. Стоит немного отдохнуть.
-
 alerts-mood-bad-name = Не в духе
 alerts-mood-bad-desc = Что-то сегодня всё не так. Может, стоит сменить обстановку?
-
 alerts-mood-meh-name = Так себе
 alerts-mood-meh-desc = Ничего особенного. Обычный будний день.
-
 alerts-mood-neutral-name = Спокоен
 alerts-mood-neutral-desc = Всё идёт своим чередом, без особых взлётов и падений.
-
 alerts-mood-good-name = Доволен
 alerts-mood-good-desc = Дела идут неплохо, и это радует!
-
 alerts-mood-great-name = Воодушевлён
 alerts-mood-great-desc = Сегодня определённо удачный день! Хочется сделать что-то хорошее.
-
 alerts-mood-exceptional-name = Вдохновлён
 alerts-mood-exceptional-desc = Чувствую прилив сил и энергии. Горы готов свернуть!
-
 alerts-mood-perfect-name = На высоте
 alerts-mood-perfect-desc = Потрясающее настроение! Кажется, сегодня всё по плечу!
-
 alerts-mood-dead-name = Мертв
 alerts-mood-dead-desc = ...
-
 mood-show-effects-start = [font size=12]Текущее настроение:[/font]
-
 mood-effect-HungerOverfed = Я так наелся, что вот-вот лопну!
 mood-effect-HungerOkay = Чувствую себя сытым.
 mood-effect-HungerPeckish = Не отказался бы от перекуса.
