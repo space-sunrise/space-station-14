@@ -65,6 +65,12 @@
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
 
+  # Sunrise edit ;3
+  - type: FootprintEmitter
+    leftBareFootState: "footprint-left-bare-dwarf"
+    rightBareFootState: "footprint-right-bare-dwarf"
+  # Sunrise edit end 0_0
+
 - type: entity
   parent: BaseSpeciesDummy
   id: MobDwarfDummy
