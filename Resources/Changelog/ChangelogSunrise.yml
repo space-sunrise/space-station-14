@@ -6024,3 +6024,10 @@
   id: 413
   time: '2024-11-13T01:15:40.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/629
+- author: rhailrake
+  changes:
+  - message: "\u0418\u0441\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u044B \u0430\u043D\
+      \u0438\u043C\u0430\u0446\u0438\u0438 \u0432 \u043B\u043E\u0431\u0431\u0438."
+    type: Fix
+  id: 414
+  time: '2024-11-13T02:21:19.167600+00:00'
