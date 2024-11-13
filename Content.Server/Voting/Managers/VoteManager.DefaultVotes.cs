@@ -226,6 +226,11 @@ namespace Content.Server.Voting.Managers
         {
             var presets = GetGamePresets();
 
+            // Sunrise-Start
+            if (presets.Count < 1)
+                return;
+            // Sunrise-End
+
             var alone = _playerManager.PlayerCount == 1 && initiator != null;
             var options = new VoteOptions
             {
@@ -594,7 +599,7 @@ namespace Content.Server.Voting.Managers
         private Dictionary<string, string> GetGamePresets()
         {
             var presets = new Dictionary<string, string>();
-            
+
             var prototypeId = _cfg.GetCVar(SunriseCCVars.RoundVotingChancesPrototype);
 
             if (!_prototypeManager.TryIndex<VoteRandomPrototype>(prototypeId, out var chancesPrototype))
