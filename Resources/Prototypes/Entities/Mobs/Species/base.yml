@@ -229,6 +229,9 @@
     screamInterval: 3
     thresholdDamage: 5
     coughInterval: 5
+    emotesTakeDamage:
+    - Scream
+    - Crying
   # Sunrise-End
 
 - type: entity
