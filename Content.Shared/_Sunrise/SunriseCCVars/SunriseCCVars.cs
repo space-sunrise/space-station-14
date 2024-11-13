@@ -281,13 +281,13 @@ public sealed class SunriseCCVars
 
     public static readonly CVarDef<bool> RunPresetVoteAfterRestart = CVarDef.Create("vote.run_preset_vote_after_restart", false);
 
-    public static readonly CVarDef<int> VotingsDelay = CVarDef.Create("vote.votings_delay", 90);
+    public static readonly CVarDef<int> VotingsDelay = CVarDef.Create("vote.votings_delay", 45);
 
     public static readonly CVarDef<int> MapVotingCount = CVarDef.Create("vote.map_voting_count", 3);
 
     public static readonly CVarDef<int> RoundVotingCount = CVarDef.Create("vote.round_voting_count", 3);
 
-    public static readonly CVarDef<string> RoundVotingChancesPrototype = CVarDef.Create("vote.round_voting_chances_prototype", "");
+    public static readonly CVarDef<string> RoundVotingChancesPrototype = CVarDef.Create("vote.round_voting_chances_prototype", "SunriseVoteSecret");
 
     /*
      * Preset
