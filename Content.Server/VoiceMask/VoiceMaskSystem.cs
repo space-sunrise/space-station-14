@@ -27,6 +27,7 @@ public sealed partial class VoiceMaskSystem : EntitySystem
         SubscribeLocalEvent<VoiceMaskComponent, VoiceMaskChangeNameMessage>(OnChangeName);
         SubscribeLocalEvent<VoiceMaskComponent, VoiceMaskChangeVerbMessage>(OnChangeVerb);
         SubscribeLocalEvent<VoiceMaskComponent, ClothingGotEquippedEvent>(OnEquip);
+        SubscribeLocalEvent<VoiceMaskComponent, ClothingGotUnequippedEvent>(OnUnequip);
         SubscribeLocalEvent<VoiceMaskSetNameEvent>(OpenUI);
         InitializeTTS(); // Sunrise-TTS
     }
@@ -72,6 +73,14 @@ public sealed partial class VoiceMaskSystem : EntitySystem
     private void OnEquip(EntityUid uid, VoiceMaskComponent component, ClothingGotEquippedEvent args)
     {
         _actions.AddAction(args.Wearer, ref component.ActionEntity, component.Action, uid);
+        EnsureComp<VoiceMaskerComponent>(args.Wearer, out var maskerComponent);
+        maskerComponent.VoiceId = component.VoiceId;
+    }
+
+
+    private void OnUnequip(Entity<VoiceMaskComponent> ent, ref ClothingGotUnequippedEvent args)
+    {
+        RemCompDeferred<VoiceMaskerComponent>(args.Wearer);
     }
 
     private void OpenUI(VoiceMaskSetNameEvent ev)
