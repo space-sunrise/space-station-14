@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared._Sunrise.Mood;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Alert;
 using Content.Shared.CCVar;
 using Content.Shared.Damage;
@@ -64,7 +65,7 @@ public sealed class HungerSystem : EntitySystem
 
     private void OnRefreshMovespeed(EntityUid uid, HungerComponent component, RefreshMovementSpeedModifiersEvent args)
     {
-        if (_config.GetCVar(CCVars.MoodEnabled) // Sunrise Edit
+        if (_config.GetCVar(SunriseCCVars.MoodEnabled) // Sunrise Edit
             || component.CurrentThreshold > HungerThreshold.Starving
             || _jetpack.IsUserFlying(uid))
             return;
@@ -131,7 +132,7 @@ public sealed class HungerSystem : EntitySystem
         if (GetMovementThreshold(component.CurrentThreshold) != GetMovementThreshold(component.LastThreshold))
         {
             // Sunrise Edit
-            if (!_config.GetCVar(CCVars.MoodEnabled))
+            if (!_config.GetCVar(SunriseCCVars.MoodEnabled))
                 _movementSpeedModifier.RefreshMovementSpeedModifiers(uid);
             else if (_net.IsServer)
             {

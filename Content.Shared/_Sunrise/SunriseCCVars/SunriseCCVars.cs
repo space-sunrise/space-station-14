@@ -307,4 +307,27 @@ public sealed class SunriseCCVars
 
     public static readonly CVarDef<string> BanTelegramLink =
         CVarDef.Create("cl.telegram_link", "", CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
+
+    /*
+     * Lying Down.
+     */
+
+    public static readonly CVarDef<bool> AutoGetUp =
+        CVarDef.Create("rest.auto_get_up", true, CVar.CLIENT | CVar.ARCHIVE | CVar.REPLICATED);
+
+    public static readonly CVarDef<bool> HoldLookUp =
+        CVarDef.Create("rest.hold_look_up", true, CVar.CLIENT | CVar.ARCHIVE);
+
+    /*
+     * Mood.
+     */
+
+    public static readonly CVarDef<bool> MoodEnabled =
+        CVarDef.Create("mood.enabled", true, CVar.SERVER);
+
+    public static readonly CVarDef<bool> MoodIncreasesSpeed =
+        CVarDef.Create("mood.increases_speed", true, CVar.SERVER);
+
+    public static readonly CVarDef<bool> MoodDecreasesSpeed =
+        CVarDef.Create("mood.decreases_speed", true, CVar.SERVER);
 }

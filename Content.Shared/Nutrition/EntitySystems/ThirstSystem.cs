@@ -13,6 +13,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared._Sunrise.SunriseCCVars;
 
 namespace Content.Shared.Nutrition.EntitySystems;
 
@@ -67,7 +68,7 @@ public sealed class ThirstSystem : EntitySystem
     private void OnRefreshMovespeed(EntityUid uid, ThirstComponent component, RefreshMovementSpeedModifiersEvent args)
     {
         // TODO: This should really be taken care of somewhere else
-        if (_config.GetCVar(CCVars.MoodEnabled)
+        if (_config.GetCVar(SunriseCCVars.MoodEnabled)
             || _jetpack.IsUserFlying(uid))
             return;
 
@@ -152,7 +153,7 @@ public sealed class ThirstSystem : EntitySystem
 
     private void UpdateEffects(EntityUid uid, ThirstComponent component)
     {
-        if (!_config.GetCVar(CCVars.MoodEnabled)
+        if (!_config.GetCVar(SunriseCCVars.MoodEnabled)
             && IsMovementThreshold(component.LastThirstThreshold) != IsMovementThreshold(component.CurrentThirstThreshold)
             && TryComp(uid, out MovementSpeedModifierComponent? movementSlowdownComponent))
         {

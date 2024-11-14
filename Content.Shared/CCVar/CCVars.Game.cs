@@ -45,7 +45,7 @@ public sealed partial class CCVars
         ///     The preset for the game to fall back to if the selected preset could not be used, and fallback is enabled.
         /// </summary>
         public static readonly CVarDef<string>
-            GameLobbyFallbackPreset = CVarDef.Create("game.fallbackpreset", "Traitor,Extended", CVar.ARCHIVE);
+            GameLobbyFallbackPreset = CVarDef.Create("game.fallbackpreset", "Traitor,Extra", CVar.ARCHIVE); // Sunrise-Edit
 
         /// <summary>
         ///     Controls if people can win the game in Suspicion or Deathmatch.
@@ -82,7 +82,7 @@ public sealed partial class CCVars
         ///     Prototype to use for map pool.
         /// </summary>
         public static readonly CVarDef<string>
-            GameMapPool = CVarDef.Create("game.map_pool", "DefaultMapPool", CVar.SERVERONLY);
+            GameMapPool = CVarDef.Create("game.map_pool", "SunriseMapPool", CVar.SERVERONLY); // Sunrise-Edit
 
         /// <summary>
         ///     The depth of the queue used to calculate which map is next in rotation.
@@ -289,13 +289,13 @@ public sealed partial class CCVars
         ///     The prototype to use for secret weights.
         /// </summary>
         public static readonly CVarDef<string> SecretWeightPrototype =
-            CVarDef.Create("game.secret_weight_prototype", "Secret", CVar.SERVERONLY);
+            CVarDef.Create("game.secret_weight_prototype", "SunriseSecret", CVar.SERVERONLY); // Sunrise-Edit
 
         /// <summary>
         ///     The id of the sound collection to randomly choose a sound from and play when the round ends.
         /// </summary>
         public static readonly CVarDef<string> RoundEndSoundCollection =
-            CVarDef.Create("game.round_end_sound_collection", "RoundEnd", CVar.SERVERONLY);
+            CVarDef.Create("game.round_end_sound_collection", "SunriseRoundEnd", CVar.SERVERONLY); // Sunrise-Edit
 
         /// <summary>
         ///     Whether or not to add every player as a global override to PVS at round end.
