@@ -40,12 +40,12 @@
     agentName: changeling-roundend-name
     definitions:
     - prefRoles: [ Changeling ]
-      max: 4
+      max: 3
       playerRatio: 30
       lateJoinAdditional: true
       mindRoles:
       - MindRoleChangeling
-      
+
 - type: entity
   parent: BaseGameRule
   id: Vampire
