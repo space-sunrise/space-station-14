@@ -3,7 +3,7 @@
 
 - type: Tag
   id: IgnoreMelee
-  
+
 - type: Tag
   id: NoInjectable
 
@@ -36,7 +36,7 @@
 
 - type: Tag
   id: SyndieAgentUplink
-  
+
 - type: Tag
   id: AnomalyCore
 
@@ -147,10 +147,10 @@
 
 - type: Tag
   id: BluespaceBox
-  
+
 - type: Tag
   id: SyndicateRapier
-  
+
 # Material bag:
 
 - type: Tag
@@ -167,20 +167,25 @@
 
 - type: Tag
   id: Board
-  
+
 # Mechs
 
 - type: Tag
   id: Ripley
-  
+
 - type: Tag
   id: Clarke
 
 - type: Tag
   id: Gygax
-  
+
 - type: Tag
   id: Durand
-  
+
 - type: Tag
   id: Phazon
+
+# For friendship and duster
+
+- type: Tag
+  id: ArtilleryShell
