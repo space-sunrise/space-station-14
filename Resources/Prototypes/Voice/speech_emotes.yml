@@ -365,6 +365,9 @@
    - gasp
    - gasps
    - gasped
+#Sunrise-start
+   - задыхается
+#Sunrise-end
 
 - type: emote
   id: DefaultDeathgasp

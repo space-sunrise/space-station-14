@@ -10,6 +10,8 @@
   - type: Accentless
     removes:
     - type: OwOAccent  # Sunrise-traits
+    - type: VulpaAccent # Sunrise-traits
+    - type: TajaranAccent # Sunrise-traits
     - type: LizardAccent
     - type: MothAccent
     - type: ReplacementAccent

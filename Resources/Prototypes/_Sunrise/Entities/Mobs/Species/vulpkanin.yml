@@ -8,7 +8,7 @@
   - type: Absorbable
   - type: Speech
     speechVerb: Vulpkanin
-    allowedEmotes: ['Growl', 'Bark', 'Howl']
+    allowedEmotes: ['Growl', 'Bark', 'Howl', 'Whines']
   - type: HumanoidAppearance
     species: Vulpkanin
   - type: Icon
