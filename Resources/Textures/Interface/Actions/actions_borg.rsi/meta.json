@@ -105,6 +105,9 @@
         },
         {
             "name":"syndicate-martyr-module"
+        },
+        {
+            "name": "select-type"
         }
     ]
 }
