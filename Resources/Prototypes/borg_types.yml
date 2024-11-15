@@ -1,0 +1,446 @@
+﻿# Generic borg
+- type: borgType
+  id: generic
+
+  # Description
+  dummyPrototype: BorgChassisGeneric
+
+  # Functional
+  extraModuleCount: 5
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+
+  defaultModules:
+  - BorgModuleTool
+
+  radioChannels:
+  - Science
+
+  # Visual
+  inventoryTemplateId: borgShort
+  spriteBodyState: robot
+  spriteHasMindState: robot_e
+  spriteNoMindState: robot_e_r
+  spriteToggleLightState: robot_l
+
+  # Pet
+  petSuccessString: petting-success-generic-cyborg
+  petFailureString: petting-failure-generic-cyborg
+
+
+# Engineering borg
+- type: borgType
+  id: engineering
+
+  # Description
+  dummyPrototype: BorgChassisEngineer
+
+  # Functional
+  extraModuleCount: 5
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleEngineering
+
+  defaultModules:
+  - BorgModuleStandart
+  - BorgModuleAdvancedTool
+  - BorgModuleCable
+  - BorgModuleConstruction
+  - BorgModuleRCD
+
+  radioChannels:
+  - Engineering
+  - Science
+
+  # Visual
+  inventoryTemplateId: borgShort
+  spriteBodyState: engineer
+  spriteHasMindState: engineer_e
+  spriteNoMindState: engineer_e_r
+  spriteToggleLightState: engineer_l
+
+  # Pet
+  petSuccessString: petting-success-engineer-cyborg
+  petFailureString: petting-failure-engineer-cyborg
+
+
+# Salvage borg
+- type: borgType
+  id: mining
+
+  # Description
+  dummyPrototype: BorgChassisMining
+
+  # Functional
+  extraModuleCount: 4
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleCargo
+
+  defaultModules:
+  - BorgModuleStandart
+  - BorgModuleMining
+  - BorgModuleGPS
+  - BorgModuleJetpack
+
+  radioChannels:
+  - Supply
+  - Science
+
+  addComponent:
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepCyborgSpider
+      params:
+        volume: -15
+
+  # Visual
+  inventoryTemplateId: borgTall
+  spriteBodyState: miner
+  spriteBodyMovementState: miner_moving
+  spriteHasMindState: miner_e
+  spriteNoMindState: miner_e_r
+  spriteToggleLightState: miner_l
+
+  # Pet
+  petSuccessString: petting-success-salvage-cyborg
+  petFailureString: petting-failure-salvage-cyborg
+
+
+# Janitor borg
+- type: borgType
+  id: janitor
+
+  # Description
+  dummyPrototype: BorgChassisJanitor
+
+  # Functional
+  extraModuleCount: 3
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleJanitor
+
+  defaultModules:
+  - BorgModuleStandart
+  - BorgModuleLightReplacer
+  - BorgModuleCleaning
+
+  radioChannels:
+  - Science
+  - Service
+
+  addComponent:
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Effects/Fluids/watersplash.ogg
+      params:
+        volume: -5
+
+  # Visual
+  inventoryTemplateId: borgShort
+  spriteBodyState: janitor
+  spriteBodyMovementState: janitor_moving
+  spriteHasMindState: janitor_e
+  spriteNoMindState: janitor_e_r
+  spriteToggleLightState: janitor_l
+
+  # Pet
+  petSuccessString: petting-success-janitor-cyborg
+  petFailureString: petting-failure-janitor-cyborg
+
+
+# Medical borg
+- type: borgType
+  id: medical
+
+  # Description
+  dummyPrototype: BorgChassisMedical
+
+  # Functional
+  extraModuleCount: 4
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleMedical
+
+  defaultModules:
+  - BorgModuleStandart
+  - BorgModuleAdvancedTreatment
+  - BorgModuleTreatment
+  - BorgModuleDefibrillator
+
+  radioChannels:
+  - Science
+  - Medical
+
+  addComponents:
+  - type: SolutionScanner
+  - type: ShowHealthBars
+    damageContainers:
+    - Biological
+  - type: ShowHealthIcons
+    damageContainers:
+    - Biological
+  - type: TTS
+    voice: TurretFloor
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 5
+  - type: FabricateCandy
+  - type: InnateItem
+    instantActions:
+    - HandheldCrewMonitorBorg
+    worldTargetActions:
+    - HandheldHealthAnalyzerUnpowered
+
+  # Visual
+  inventoryTemplateId: borgDutch
+  spriteBodyState: medical
+  spriteBodyMovementState: medical_moving
+  spriteHasMindState: medical_e
+  spriteNoMindState: medical_e_r
+  spriteToggleLightState: medical_l
+
+  # Pet
+  petSuccessString: petting-success-medical-cyborg
+  petFailureString: petting-failure-medical-cyborg
+
+  # Sounds
+  footstepCollection:
+    collection: FootstepHoverBorg
+
+
+# Service borg
+- type: borgType
+  id: service
+
+  # Description
+  dummyPrototype: BorgChassisService
+
+  # Functional
+  extraModuleCount: 3
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleService
+
+  defaultModules:
+  - BorgModuleStandart
+  - BorgModuleMusique
+  - BorgModuleService
+
+  radioChannels:
+  - Science
+  - Service
+
+  # Visual
+  inventoryTemplateId: borgTall
+  spriteBodyState: service
+  spriteHasMindState: service_e
+  spriteNoMindState: service_e_r
+  spriteToggleLightState: service_l
+
+  # Pet
+  petSuccessString: petting-success-service-cyborg
+  petFailureString: petting-failure-service-cyborg
+
+
+# Peace borg
+- type: borgType
+  id: peace
+
+  # Description
+  dummyPrototype: BorgChassisPeace
+
+  # Functional
+  extraModuleCount: 2
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleSecurity
+
+  defaultModules:
+  - BorgModuleStandart
+  - BorgModulePeace
+
+  radioChannels:
+  - Science
+  - Security
+
+  addComponents:
+  - type: ShowCriminalRecordIcons
+  - type: SiliconLawProvider
+    laws: PeaceStatic
+  - type: Pacified
+  - type: FlashImmunity
+  - type: FabricateCookie
+    cookieList:
+    - FoodBakedCookieOatmeal
+    - FoodBakedCookieRaisin
+    - FoodBakedCookie
+    - FoodBakedCookieSugar
+    - FoodSnackCookieFortune
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepCyborgSpider
+  - type: BorgCuffed
+  - type: InnateItem
+    instantActions:
+    - PortableSurveillanceCameraMonitor
+  - type: Access
+    tags:
+    - EmergencyShuttleRepealAll
+    - Command
+    - Lawyer
+    - Engineering
+    - Medical
+    - Salvage
+    - Cargo
+    - Research
+    - Service
+    - Maintenance
+    - Brig
+    - Security
+    - External
+    - Janitor
+    - Theatre
+    - Bar
+    - Chemistry
+    - Kitchen
+    - Chapel
+    - Hydroponics
+    - Atmospherics
+
+  # Visual
+  inventoryTemplateId: borgTall
+  spriteBodyState: peace
+  spriteHasMindState: peace_e
+  spriteNoMindState: peace_e_r
+  spriteToggleLightState: peace_l
+
+  # Pet
+  petSuccessString: petting-success-peace-cyborg
+  petFailureString: petting-failure-peace-cyborg
+
+
+# Peace borg
+- type: borgType
+  id: clown
+
+  # Description
+  dummyPrototype: BorgChassisClown
+
+  # Functional
+  extraModuleCount: 2
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleService
+
+  defaultModules:
+  - BorgModuleStandart
+  - BorgModuleClowning
+
+  radioChannels:
+  - Science
+  - Service
+
+  addComponents:
+  - type: FabricateSoap
+    soapList:
+    - Soap
+    - SoapNT
+    - SoapDeluxe
+    - SoapHomemade
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepClown
+  - type: TTS
+    voice: NecoArcTwo
+
+  # Visual
+  inventoryTemplateId: borgTall
+  spriteBodyState: clown
+  spriteHasMindState: clown_e
+  spriteNoMindState: clown_e_r
+  spriteToggleLightState: clown_l
+
+  # Pet
+  petSuccessString: petting-success-clown-cyborg
+  petFailureString: petting-failure-clown-cyborg
+
+
+# Security borg
+- type: borgType
+  id: security
+
+  # Description
+  dummyPrototype: BorgChassisSecurity
+
+  # Functional
+  extraModuleCount: 3
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleSecurity
+
+  defaultModules:
+  - BorgModuleStandart
+  - BorgModuleCombat
+  - BorgModuleStun
+
+  radioChannels:
+  - Science
+  - Security
+
+  addComponents:
+  - type: TTS
+    voice: Sentrybot
+  - type: InnateItem
+    instantActions:
+    - PortableSurveillanceCameraMonitor
+    worldTargetActions:
+    - ForensicScanner
+  - type: ShowCriminalRecordIcons
+  - type: BorgCuffed
+  - type: FlashImmunity
+  - type: SiliconLawProvider
+    laws: SecurityStatic
+  - type: Access
+    tags:
+    - EmergencyShuttleRepealAll
+    - Command
+    - Lawyer
+    - Engineering
+    - Medical
+    - Salvage
+    - Cargo
+    - Research
+    - Service
+    - Maintenance
+    - Brig
+    - Security
+    - External
+    - Janitor
+    - Theatre
+    - Bar
+    - Chemistry
+    - Kitchen
+    - Chapel
+    - Hydroponics
+    - Atmospherics
+
+  # Visual
+  inventoryTemplateId: borgTall
+  spriteBodyState: sec
+  spriteHasMindState: sec_e
+  spriteNoMindState: sec_e_r
+  spriteToggleLightState: sec_l
+
+  # Pet
+  petSuccessString: petting-success-sec-cyborg
+  petFailureString: petting-failure-sec-cyborg
