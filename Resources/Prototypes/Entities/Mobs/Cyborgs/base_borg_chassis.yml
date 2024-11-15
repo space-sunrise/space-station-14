@@ -331,6 +331,10 @@
   # Sunrise-Start
   - type: StationAiVision
     range: 3
+  - type: InnateItem
+    instantActions:
+    - HandheldStationMapUnpowered
+  - type: BorgCrewManifestViewer
   # Sunrise-End
 
 - type: entity

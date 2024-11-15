@@ -61,4 +61,14 @@ borg-type-service-name = Service
 borg-type-service-desc = Help out with a wide range of crew services, ranging from serving snacks and drinks to botany to entertainment.
 borg-type-service-transponder = service cyborg
 
+borg-type-clown-name = Clown
+borg-type-clown-desc = TODO
+borg-type-clown-transponder = clown cyborg
 
+borg-type-peace-name = Peace
+borg-type-peace-desc = TODO
+borg-type-peace-transponder = peace cyborg
+
+borg-type-security-name = Security
+borg-type-security-desc = TODO
+borg-type-security-transponder = security cyborg
