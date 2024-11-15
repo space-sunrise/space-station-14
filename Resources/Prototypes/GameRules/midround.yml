@@ -22,7 +22,7 @@
       playerRatio: 13 # Sunrise-Edit
       lateJoinAdditional: true
       allowNonHumans: true
-      multiAntagSetting: NotExclusive
+      multiAntagSetting: None
       startingGear: ThiefGear
       #components:
       #- type: Pacified    # Sunrise-Edit: Воры не терпилы
