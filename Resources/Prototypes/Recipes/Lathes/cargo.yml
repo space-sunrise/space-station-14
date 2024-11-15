@@ -1,14 +1,10 @@
-﻿# Sunrise-Edit Start
-
-#- type: latheRecipe
-#  id: ConveyorBeltAssembly
-#  result: ConveyorBeltAssembly
-#  completetime: 4
-#  materials:
-#    Steel: 250
-#    Plastic: 50
-
-# Sunrise-Edit End
+﻿- type: latheRecipe
+  id: ConveyorBeltAssembly
+  result: ConveyorBeltAssembly
+  completetime: 4
+  materials:
+    Steel: 250
+    Plastic: 50
 
 - type: latheRecipe
   id: AppraisalTool
