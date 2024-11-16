@@ -390,9 +390,9 @@
       - BoxShotgunUranium
       - BoxShellTranquilizer
       - ExplosivePayload
-      - GrenadeBlast
-      - GrenadeEMP
-      - GrenadeFlash
+      - ShellBlastArtillery #Sunrise-edit
+      - ShellEMPArtillery #Sunrise-edit
+      - ShellFlashArtillery #Sunrise-edit
       - HoloprojectorSecurity
       - MagazineBoxLightRifleIncendiary
       - MagazineBoxLightRifleUranium
@@ -864,9 +864,9 @@
       - ClothingBackpackElectropack
       - ExplosivePayload
       - FlashPayload
-      - GrenadeBlast
-      - GrenadeEMP
-      - GrenadeFlash
+      - ShellBlastArtillery #Sunrise-edit
+      - ShellEMPArtillery #Sunrise-edit
+      - ShellFlashArtillery #Sunrise-edit
       - HoloprojectorSecurity
       - MagazineBoxLightRifleIncendiary
       - MagazineBoxLightRifleUranium

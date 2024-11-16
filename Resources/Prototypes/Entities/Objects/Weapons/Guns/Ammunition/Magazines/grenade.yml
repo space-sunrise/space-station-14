@@ -11,7 +11,7 @@
     mayTransfer: true
     whitelist:
       tags:
-        - ArtilleryGrenade #Sunrise-edit
+        - ArtilleryShell #Sunrise-edit
     capacity: 5
     soundRack:
       path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
