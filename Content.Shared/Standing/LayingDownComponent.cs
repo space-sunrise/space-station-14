@@ -10,7 +10,7 @@ public sealed partial class LayingDownComponent : Component
     public float StandingUpTime { get; set; } = 1f;
 
     [DataField, AutoNetworkedField]
-    public float SpeedModify { get; set; } = 0.4f;
+    public float SpeedModify { get; set; } = 0.25f;
 
     [DataField, AutoNetworkedField]
     public bool AutoGetUp;

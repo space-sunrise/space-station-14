@@ -9,6 +9,7 @@
   id: BaseMobSpecies
   abstract: true
   components:
+  - type: SurgeryTarget
   - type: Sprite
     layers:
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
@@ -193,6 +194,8 @@
         type: HumanoidMarkingModifierBoundUserInterface
       enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
+      enum.SurgeryUIKey.Key:
+        type: SurgeryBui
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
       enum.VampireMutationUiKey.Key:
@@ -226,6 +229,9 @@
     screamInterval: 3
     thresholdDamage: 5
     coughInterval: 5
+    emotesTakeDamage:
+    - Scream
+    - Crying
   # Sunrise-End
 
 - type: entity

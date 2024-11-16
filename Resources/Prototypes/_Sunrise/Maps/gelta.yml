@@ -74,15 +74,7 @@
             Roboticist: [ 2, 2 ]
             # silicon
             StationAi: [ 1, 1 ]
-            Borg: [ 2, 2 ]
-            MedicalBorg: [ 4, 4 ]
-            EngineerBorg: [ 2, 2 ]
-            MinerBorg: [ 2, 2 ]
-            JanitorBorg: [ 2, 2 ]
-            ServiceBorg: [ 2, 2 ]
-            ClownBorg: [ 2, 2 ]
-            PeaceBorg: [ 2, 2 ]
-            SecurityBorg: [ 4, 4 ]
+            Borg: [ 22, 22 ]
             SecurityCombatBorg: [ 2, 2 ]
             # Sunrise-Civillian
             Barber: [ 1, 1 ]

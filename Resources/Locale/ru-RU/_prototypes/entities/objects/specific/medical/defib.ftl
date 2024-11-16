@@ -8,3 +8,7 @@ ent-DefibrillatorEmpty = { ent-Defibrillator }
 ent-DefibrillatorOneHandedUnpowered = { ent-BaseDefibrillator }
     .suffix = Одноручный, Не требует питания
     .desc = { ent-BaseDefibrillator.desc }
+ent-DefibrillatorCompact = компактный дефибриллятор
+    .desc = Теперь в забавном размере!
+ent-DefibrillatorSyndicate = дефибриллятор интердин
+    .desc = Двойное оружие самообороны против склонных к военным преступлениям тайдеров.

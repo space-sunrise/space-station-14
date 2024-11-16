@@ -1,5 +1,6 @@
 ﻿using System.Numerics;
 using Content.Client.Viewport;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
 using Content.Shared.Input;
 using Content.Shared.Telescope;
@@ -33,7 +34,7 @@ public sealed class TelescopeSystem : SharedTelescopeSystem
     {
         base.Initialize();
 
-        _cfg.OnValueChanged(CCVars.HoldLookUp,
+        _cfg.OnValueChanged(SunriseCCVars.HoldLookUp,
             val =>
             {
                 var input = val ? null : InputCmdHandler.FromDelegate(_ => _toggled = !_toggled);

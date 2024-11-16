@@ -22,7 +22,7 @@
       playerRatio: 13 # Sunrise-Edit
       lateJoinAdditional: true
       allowNonHumans: true
-      multiAntagSetting: NotExclusive
+      multiAntagSetting: None
       startingGear: ThiefGear
       #components:
       #- type: Pacified    # Sunrise-Edit: Воры не терпилы
@@ -40,12 +40,12 @@
     agentName: changeling-roundend-name
     definitions:
     - prefRoles: [ Changeling ]
-      max: 4
+      max: 3
       playerRatio: 30
       lateJoinAdditional: true
       mindRoles:
       - MindRoleChangeling
-      
+
 - type: entity
   parent: BaseGameRule
   id: Vampire

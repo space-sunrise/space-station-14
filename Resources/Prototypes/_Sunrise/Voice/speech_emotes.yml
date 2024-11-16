@@ -207,3 +207,23 @@
   name: chat-emote-name-insult
   category: Vocal
   chatMessages: [инсульт]
+
+- type: emote
+  id: Whines
+  name: chat-emote-name-whines
+  category: Vocal
+  icon: Interface/Emotes/cry.png
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-whines"]
+  chatTriggers:
+  - скулит.
+  - скулит!
+  - скулить.
+  - скулить!
+  - скулит
+  - скулить

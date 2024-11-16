@@ -9,7 +9,6 @@
       time: 54000 #15 hrs # Sunrise-RoleTime
   startingGear: WardenGear
   icon: "JobIconWarden"
-  requireAdminNotify: true
   supervisors: job-supervisors-hos
   canBeAntag: false
   displayWeight: 70  # Sunrise

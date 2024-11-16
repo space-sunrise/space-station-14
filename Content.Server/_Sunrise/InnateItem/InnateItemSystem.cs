@@ -1,7 +1,6 @@
 using Content.Shared.Actions;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
-using Content.Shared.Mind.Components;
 using Content.Shared.UserInterface;
 using Robust.Shared.Utility;
 
@@ -16,20 +15,26 @@ namespace Content.Server._Sunrise.InnateItem
         public override void Initialize()
         {
             base.Initialize();
-            SubscribeLocalEvent<InnateItemComponent, MindAddedMessage>(OnMindAdded);
+            SubscribeLocalEvent<InnateItemComponent, ComponentStartup>(OnStartup);
             SubscribeLocalEvent<InnateItemComponent, InnateWorldTargetActionEvent>(WorldTargetActionActivate);
             SubscribeLocalEvent<InnateItemComponent, InnateInstantActionEvent>(InstantActionActivate);
+            SubscribeLocalEvent<InnateItemComponent, ComponentShutdown>(OnShutdown);
         }
 
-        private void OnMindAdded(EntityUid uid, InnateItemComponent component, MindAddedMessage args)
+        private void OnShutdown(EntityUid uid, InnateItemComponent component, ComponentShutdown args)
         {
-            if (!component.AlreadyInitialized)
-                RefreshItems(uid, component);
-
-            component.AlreadyInitialized = true;
+            foreach (var action in component.Actions)
+            {
+                _actionContainer.RemoveAction(action);
+            }
         }
 
-        private void RefreshItems(EntityUid uid, InnateItemComponent component)
+        private void OnStartup(EntityUid uid, InnateItemComponent component, ComponentStartup args)
+        {
+            AddItems(uid, component);
+        }
+
+        private void AddItems(EntityUid uid, InnateItemComponent component)
         {
             foreach (var itemProto in component.WorldTargetActions)
             {
@@ -37,6 +42,7 @@ namespace Content.Server._Sunrise.InnateItem
                 var action = CreateWorldTargetAction(item);
                 _actionContainer.AddAction(uid, action);
                 _actionsSystem.AddAction(uid, action, uid);
+                component.Actions.Add(action);
             }
 
             foreach (var itemProto in component.InstantActions)
@@ -45,6 +51,7 @@ namespace Content.Server._Sunrise.InnateItem
                 var action = CreateInstantAction(item);
                 _actionContainer.AddAction(uid, action);
                 _actionsSystem.AddAction(uid, action, uid);
+                component.Actions.Add(action);
             }
         }
 
@@ -85,8 +92,14 @@ namespace Content.Server._Sunrise.InnateItem
 
         private void WorldTargetActionActivate(EntityUid uid, InnateItemComponent component, InnateWorldTargetActionEvent args)
         {
-            _interactionSystem.InteractUsing(args.Performer, args.Item, args.Target, Transform(args.Target).Coordinates,
-                false, false, false);
+            _interactionSystem.InteractUsing(
+                args.Performer,
+                args.Item,
+                args.Target,
+                Transform(args.Target).Coordinates,
+                false,
+                false,
+                false);
         }
 
         private void InstantActionActivate(EntityUid uid, InnateItemComponent component, InnateInstantActionEvent args)

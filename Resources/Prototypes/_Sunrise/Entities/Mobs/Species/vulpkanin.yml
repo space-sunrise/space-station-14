@@ -20,6 +20,10 @@
   - type: Inventory
     speciesId: human
   - type: VulpaAccent
+  - type: Paws
+    emotesTakeDamage:
+    - Scream
+    - Whines
 
 
 - type: entity

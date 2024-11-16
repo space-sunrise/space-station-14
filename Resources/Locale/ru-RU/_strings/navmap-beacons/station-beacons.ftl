@@ -64,4 +64,5 @@ station-beacon-tools = Хранилище инструментов
 station-beacon-disposals = Мусоросброс
 station-beacon-cryosleep = Криосон
 station-beacon-escape-pod = Спасательная капсула
+station-beacon-vox = Комната отдыха воксов
 station-beacon-blueshield = Синий щит

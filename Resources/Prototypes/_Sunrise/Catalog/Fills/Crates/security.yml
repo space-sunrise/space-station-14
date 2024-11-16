@@ -19,3 +19,20 @@
     contents:
       - id: ClothingHandsGlovesCombat
         amount: 3
+
+- type: entity
+  id: CrateSecuritySWAT
+  parent: CrateSecgear
+  name: SWAT armor crate 
+  description: Contains a SWAT kit. 2 heavy armor suit, 2 special forces helmet, 2special forces gas mask and 2 combat magnetic boots. To open it, the Security Service access level is required.
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterArmorSWAT
+        amount: 2
+      - id: ClothingMaskGasSwat
+        amount: 2
+      - id: ClothingShoesBootsMagCombat
+        amount: 2
+      - id: ClothingHeadHelmetSwat
+        amount: 2     
