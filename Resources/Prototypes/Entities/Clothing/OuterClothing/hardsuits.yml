@@ -534,7 +534,7 @@
   - type: Tag
     tags:
     - MonkeyWearable
-    - Hardsuit
+    # - Hardsuit  # Sunrise-edit
     - WhitelistChameleon
 
 # Syndicate Medic Hardsuit
