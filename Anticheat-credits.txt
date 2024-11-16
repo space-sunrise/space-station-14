@@ -1,0 +1,1 @@
+﻿This project uses anticheat system, original code for which you can find at https://github.com/SS14AC/SS14.Anticheat.

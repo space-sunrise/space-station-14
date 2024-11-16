@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Content.Server\Content.Server.csproj" />
+      <ProjectReference Include="..\..\RobustToolbox\Robust.Shared\Robust.Shared.csproj" />
+      <ProjectReference Include="..\Content.Anticheat.Server\Content.Anticheat.Server.csproj" />
+      <ProjectReference Include="..\Content.Anticheat.Shared\Content.Anticheat.Shared.csproj" />
+    </ItemGroup>
+
+</Project>

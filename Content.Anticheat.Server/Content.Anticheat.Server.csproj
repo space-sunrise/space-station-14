@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Library</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <OutputPath>..\..\bin\Content.Server\</OutputPath>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <RootNamespace>Content.Anticheat.Server</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Content.Shared\Content.Shared.csproj" />
+      <ProjectReference Include="..\..\RobustToolbox\Robust.Shared\Robust.Shared.csproj" Private="false"/>
+      <ProjectReference Include="..\..\RobustToolbox\Robust.Server\Robust.Server.csproj" Private="false"/>
+      
+      <ProjectReference Include="..\Content.Anticheat.Shared\Content.Anticheat.Shared.csproj" />
+      
+      <ProjectReference Include="..\Content.Anticheat.Shared\Content.Anticheat.Shared.csproj" />
+    </ItemGroup>
+
+  <Import Project="..\..\RobustToolbox\MSBuild\Robust.Properties.targets" />
+</Project>

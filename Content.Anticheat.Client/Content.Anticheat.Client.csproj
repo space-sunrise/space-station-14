@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <OutputPath>..\..\bin\Content.Client\</OutputPath>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <RootNamespace>Content.Anticheat.Client</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Content.Shared\Content.Shared.csproj" />
+      <ProjectReference Include="..\..\RobustToolbox\Robust.Client\Robust.Client.csproj" />
+      <ProjectReference Include="..\..\RobustToolbox\Robust.Shared\Robust.Shared.csproj" />
+      <ProjectReference Include="..\Content.Anticheat.Shared\Content.Anticheat.Shared.csproj" />
+      <ProjectReference Include="..\Content.Anticheat.Shared\Content.Anticheat.Shared.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Remove="Systems\JoinDataSystem.cs" />
+    </ItemGroup>
+
+  <Import Project="..\..\RobustToolbox\MSBuild\Robust.Properties.targets" />
+</Project>
