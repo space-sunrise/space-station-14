@@ -14,7 +14,6 @@
   - type: Tag
     tags:
       - HideContextMenu
-      - Laser
   - type: AnimationPlayer
 
 - type: hitscan
