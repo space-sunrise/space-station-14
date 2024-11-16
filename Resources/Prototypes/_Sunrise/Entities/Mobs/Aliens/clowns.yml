@@ -125,118 +125,119 @@
   - type: SleepEmitSound
     snore: /Audio/Voice/Misc/silly_snore.ogg
     interval: 10
-    
-- type: entity
-  parent: [ BaseSimpleMob, MobCombat, MobBloodstream, MobFlammable ]
-  id: MobClownHulk
-  name: clown champion
-  description: A BiG JoKe! Just try crossing him, and he'll cross you in his HuGe ShOeS.
-  components:
-  - type: ComplexInteraction
-  - type: Sprite
-    sprite: _Sunrise/Mobs/Aliens/hulk.rsi
-    state: Champion_of_Honk
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      250: Critical
-      350: Dead
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      150: 0.9
-      200: 0.8
-      230: 0.7
-  - type: RotationVisuals
-    defaultRotation: 90
-    horizontalRotation: 90
-  - type: Stamina
-    critThreshold: 350
-  - type: Physics
-    bodyType: Dynamic
-  - type: SleepEmitSound
-    snore: /Audio/Voice/Misc/silly_snore.ogg
-    interval: 10
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.48
-        density: 1000
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
-  - type: MobState
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 3
-    baseSprintSpeed : 4
-  - type: NpcFactionMember
-    factions:
-    - NanoTrasen
-  - type: Appearance
-  - type: TTS
-    voice: Ziggs
-  - type: Tag
-    tags:
-    - DoorBumpOpener
-    - FootstepSound
-  - type: Respirator
-    damage:
-      types:
-        Asphyxiation: 0.25
-    damageRecovery:
-      types:
-        Asphyxiation: -0.25
-  - type: Barotrauma
-    damage:
-      types:
-        Blunt: 0.0
-  - type: Bloodstream
-    bloodMaxVolume: 300
-    bloodReagent: Honk
-  - type: FootstepModifier
-    footstepSoundCollection:
-      collection: FootstepClown
-  - type: CombatMode
-  - type: MeleeWeapon
-    altDisarm: false
-    angle: 1
-    attackRate: 1
-    soundHit:
-      collection: GenericHit
-    damage:
-      types:
-        Blunt: 15
-        Structural: 65
-    animation: WeaponArcFist
-    wideAnimation: WeaponArcFist
-  - type: StaminaDamageOnHit
-    damage: 30
-  - type: IntrinsicRadioReceiver
-  - type: FloatingVisuals
-  - type: AlwaysRevolutionaryConvertible
-  - type: Hands
-  - type: Puller
-  - type: FlashImmunity
-  - type: PressureImmunity
-  - type: NoSlip
-  - type: MovementAlwaysTouching
-  - type: Stripping
-  - type: Strippable
-  - type: Body
-    prototype: SVBodyDoubleClown
-  - type: InventorySlots
-  - type: Inventory
-    templateId: clownhulk
-  - type: Tool
-    speedModifier: 5
-    qualities:
-      - Prying
-  - type: Prying
-    pryPowered: !type:Bool
-      true
-    force: !type:Bool
-      true
-    useSound:
-      path: /Audio/Items/crowbar.ogg
+
+# TODO: Генетика
+#- type: entity
+#  parent: [ BaseSimpleMob, MobCombat, MobBloodstream, MobFlammable ]
+#  id: MobClownHulk
+#  name: clown champion
+#  description: A BiG JoKe! Just try crossing him, and he'll cross you in his HuGe ShOeS.
+#  components:
+#  - type: ComplexInteraction
+#  - type: Sprite
+#    sprite: _Sunrise/Mobs/Aliens/hulk.rsi
+#    state: Champion_of_Honk
+#  - type: MobThresholds
+#    thresholds:
+#      0: Alive
+#      250: Critical
+#      350: Dead
+#  - type: SlowOnDamage
+#    speedModifierThresholds:
+#      150: 0.9
+#      200: 0.8
+#      230: 0.7
+#  - type: RotationVisuals
+#    defaultRotation: 90
+#    horizontalRotation: 90
+#  - type: Stamina
+#    critThreshold: 350
+#  - type: Physics
+#    bodyType: Dynamic
+#  - type: SleepEmitSound
+#    snore: /Audio/Voice/Misc/silly_snore.ogg
+#    interval: 10
+#  - type: Fixtures
+#    fixtures:
+#      fix1:
+#        shape:
+#          !type:PhysShapeCircle
+#          radius: 0.48
+#        density: 1000
+#        mask:
+#        - MobMask
+#        layer:
+#        - MobLayer
+#  - type: MobState
+#  - type: MovementSpeedModifier
+#    baseWalkSpeed : 3
+#    baseSprintSpeed : 4
+#  - type: NpcFactionMember
+#    factions:
+#    - NanoTrasen
+#  - type: Appearance
+#  - type: TTS
+#    voice: Ziggs
+#  - type: Tag
+#    tags:
+#    - DoorBumpOpener
+#    - FootstepSound
+#  - type: Respirator
+#    damage:
+#      types:
+#        Asphyxiation: 0.25
+#    damageRecovery:
+#      types:
+#        Asphyxiation: -0.25
+#  - type: Barotrauma
+#    damage:
+#      types:
+#        Blunt: 0.0
+#  - type: Bloodstream
+#    bloodMaxVolume: 300
+#    bloodReagent: Honk
+#  - type: FootstepModifier
+#    footstepSoundCollection:
+#      collection: FootstepClown
+#  - type: CombatMode
+#  - type: MeleeWeapon
+#    altDisarm: false
+#    angle: 1
+#    attackRate: 1
+#    soundHit:
+#      collection: GenericHit
+#    damage:
+#      types:
+#        Blunt: 15
+#        Structural: 65
+#    animation: WeaponArcFist
+#    wideAnimation: WeaponArcFist
+#  - type: StaminaDamageOnHit
+#    damage: 30
+#  - type: IntrinsicRadioReceiver
+#  - type: FloatingVisuals
+#  - type: AlwaysRevolutionaryConvertible
+#  - type: Hands
+#  - type: Puller
+#  - type: FlashImmunity
+#  - type: PressureImmunity
+#  - type: NoSlip
+#  - type: MovementAlwaysTouching
+#  - type: Stripping
+#  - type: Strippable
+#  - type: Body
+#    prototype: SVBodyDoubleClown
+#  - type: InventorySlots
+#  - type: Inventory
+#    templateId: clownhulk
+#  - type: Tool
+#    speedModifier: 5
+#    qualities:
+#      - Prying
+#  - type: Prying
+#    pryPowered: !type:Bool
+#      true
+#    force: !type:Bool
+#      true
+#    useSound:
+#      path: /Audio/Items/crowbar.ogg

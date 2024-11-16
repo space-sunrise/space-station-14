@@ -605,6 +605,15 @@
 
 - type: latheRecipe
   parent: BaseWeaponRecipe
+  id: WeaponFlareGunSecurity
+  result: WeaponFlareGunSecurity
+  completetime: 6
+  materials:
+    Plastic: 100
+    Steel: 400
+
+- type: latheRecipe
+  parent: BaseWeaponRecipe
   id: WeaponDisabler
   result: WeaponDisabler
   completetime: 6
@@ -631,7 +640,7 @@
     Plastic: 500
     Gold: 250
     Uranium: 50
-     
+
 - type: latheRecipe
   id: MagazineGrenadeEmpty
   result: MagazineGrenadeEmpty
@@ -641,8 +650,8 @@
     Plastic: 50
 
 - type: latheRecipe
-  id: GrenadeEMP
-  result: GrenadeEMP
+  id: ShellEMPArtillery
+  result: ShellEMPArtillery
   completetime: 3
   materials:
     Steel: 150
@@ -650,8 +659,8 @@
     Glass: 20
 
 - type: latheRecipe
-  id: GrenadeBlast
-  result: GrenadeBlast
+  id: ShellBlastArtillery
+  result: ShellBlastArtillery
   completetime: 3
   materials:
     Steel: 450
@@ -659,8 +668,8 @@
     Gold: 150
 
 - type: latheRecipe
-  id: GrenadeFlash
-  result: GrenadeFlash
+  id: ShellFlashArtillery
+  result: ShellFlashArtillery
   completetime: 3
   materials:
     Steel: 150

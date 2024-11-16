@@ -12,6 +12,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using System.Diagnostics.CodeAnalysis;
+using Content.Shared._Sunrise.SunriseCCVars;
 
 namespace Content.Shared.Nutrition.EntitySystems;
 
@@ -35,17 +37,9 @@ public sealed class ThirstSystem : EntitySystem
     [ValidatePrototypeId<SatiationIconPrototype>]
     private const string ThirstIconParchedId = "ThirstIconParched";
 
-    private SatiationIconPrototype? _thirstIconOverhydrated = null;
-    private SatiationIconPrototype? _thirstIconThirsty = null;
-    private SatiationIconPrototype? _thirstIconParched = null;
-
     public override void Initialize()
     {
         base.Initialize();
-
-        DebugTools.Assert(_prototype.TryIndex(ThirstIconOverhydratedId, out _thirstIconOverhydrated) &&
-                          _prototype.TryIndex(ThirstIconThirstyId, out _thirstIconThirsty) &&
-                          _prototype.TryIndex(ThirstIconParchedId, out _thirstIconParched));
 
         SubscribeLocalEvent<ThirstComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovespeed);
         SubscribeLocalEvent<ThirstComponent, MapInitEvent>(OnMapInit);
@@ -74,7 +68,7 @@ public sealed class ThirstSystem : EntitySystem
     private void OnRefreshMovespeed(EntityUid uid, ThirstComponent component, RefreshMovementSpeedModifiersEvent args)
     {
         // TODO: This should really be taken care of somewhere else
-        if (_config.GetCVar(CCVars.MoodEnabled)
+        if (_config.GetCVar(SunriseCCVars.MoodEnabled)
             || _jetpack.IsUserFlying(uid))
             return;
 
@@ -133,31 +127,33 @@ public sealed class ThirstSystem : EntitySystem
         }
     }
 
-    public bool TryGetStatusIconPrototype(ThirstComponent component, out SatiationIconPrototype? prototype)
+    public bool TryGetStatusIconPrototype(ThirstComponent component, [NotNullWhen(true)] out SatiationIconPrototype? prototype)
     {
         switch (component.CurrentThirstThreshold)
         {
             case ThirstThreshold.OverHydrated:
-                prototype = _thirstIconOverhydrated;
-                return true;
+                _prototype.TryIndex(ThirstIconOverhydratedId, out prototype);
+                break;
 
             case ThirstThreshold.Thirsty:
-                prototype = _thirstIconThirsty;
-                return true;
+                _prototype.TryIndex(ThirstIconThirstyId, out prototype);
+                break;
 
             case ThirstThreshold.Parched:
-                prototype = _thirstIconParched;
-                return true;
+                _prototype.TryIndex(ThirstIconParchedId, out prototype);
+                break;
 
             default:
                 prototype = null;
-                return false;
+                break;
         }
+
+        return prototype != null;
     }
 
     private void UpdateEffects(EntityUid uid, ThirstComponent component)
     {
-        if (!_config.GetCVar(CCVars.MoodEnabled)
+        if (!_config.GetCVar(SunriseCCVars.MoodEnabled)
             && IsMovementThreshold(component.LastThirstThreshold) != IsMovementThreshold(component.CurrentThirstThreshold)
             && TryComp(uid, out MovementSpeedModifierComponent? movementSlowdownComponent))
         {

@@ -42,4 +42,11 @@
     Blunt: 0.8
     Slash: 0.8
     Piercing: 0.8
-    Heat: 0.3
+    Heat: 0.6
+
+- type: damageModifierSet
+  id: Rift
+  coefficients:
+    Blunt: 0.6
+    Slash: 0.6
+    Piercing: 0.6

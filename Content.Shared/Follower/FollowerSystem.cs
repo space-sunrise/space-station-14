@@ -58,8 +58,6 @@ public sealed class FollowerSystem : EntitySystem
     private void OnStopFollowAction(EntityUid uid, FollowerComponent component, StopFollowActionEvent args)
     {
         StopFollowingEntity(uid, component.Following);
-        _actions.RemoveAction(uid, component.StopFollowActionEntity);
-        RemComp<BlockMovementComponent>(uid);
     }
 
     private void OnStartedFollowingEntity(Entity<FollowerComponent> ent, ref StartedFollowingEntityEvent args)

@@ -1,24 +1,5 @@
 ﻿- Flags: QUERY
   Commands:
-    - entities
-    - nearby
-    - map
-    - physics
-    - player
-    - splat
-    - emplace
-    - bin
-    - extremes
-    - reduce
-    - sortby
-    - sort
-    - sortdownby
-    - sortdown
-    - sortmapby
-    - sortmapdownby
-    - iota
-    - rep
-    - to
     - iterate
 
 - Flags: DEBUG
@@ -49,6 +30,25 @@
   Commands:
     - methods
     - ioc
+    - entities
+    - nearby
+    - map
+    - physics
+    - player
+    - splat
+    - emplace
+    - bin
+    - extremes
+    - reduce
+    - sortby
+    - sort
+    - sortdownby
+    - sortdown
+    - sortmapby
+    - sortmapdownby
+    - iota
+    - rep
+    - to
 
 - Commands:
     - fuck

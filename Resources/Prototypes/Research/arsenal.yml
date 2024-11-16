@@ -193,8 +193,8 @@
   - PowerCageSmall
   - PowerCageMedium
   - MagazineGrenadeEmpty
-  - GrenadeFlash
-  - GrenadeBlast
+  - ShellFlashArtillery
+  - ShellBlastArtillery
   - ShuttleGunSvalinnMachineGunCircuitboard
   - ShuttleGunPerforatorCircuitboard
   - ShuttleGunFriendshipCircuitboard
@@ -277,7 +277,7 @@
   tier: 3
   cost: 15000
   recipeUnlocks:
-  - GrenadeEMP
+  - ShellEMPArtillery
   - PowerCageHigh
   - ShuttleGunDusterCircuitboard
   technologyPrerequisites:

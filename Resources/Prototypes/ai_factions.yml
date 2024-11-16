@@ -75,6 +75,8 @@
   - Passive
   - PetsNT
   - Revolutionary
+  - Changeling
+  - Vampire
 
 - type: npcFaction
   id: Revolutionary
@@ -99,3 +101,5 @@
   - Syndicate
   - Zombie
   - Revolutionary
+  - Changeling
+  - Xeno

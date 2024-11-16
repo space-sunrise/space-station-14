@@ -125,63 +125,6 @@
     injectOnly: true
   - type: UseDelay
     delay: 0.5
-  # - type: HiddenDescription
-  #   entries:
-  #   - label: "[color=#D381C9]Перед вами обычный инъектор с 10 юнитами ипепака. Он однозарядный и не подлежит повторному использованию. Безопасная безделушка клоунов.[/color]"
-  #     jobRequired:
-  #       - ResearchAssistant
-  #       - ResearchDirector
-  #       - Scientist
-  #       - SeniorResearcher
-  #       - Roboticist
-  #       - Borg
-  #       - MedicalBorg
-  #       - EngineerBorg
-  #       - MinerBorg
-  #       - JanitorBorg
-  #       - ServiceBorg
-  #       - SecurityBorg
-  #       - ClownBorg
-  #       - PeaceBorg
-  #   - label: "[color=#C18199]А шо эта тут? ТоШнИлОвКа с 10 юнитами ипепака! Покажи это СБ и убеги, посмотрим как быстро они посадят тебя в перму! (Однозарядная)[/color]"
-  #     jobRequired:
-  #       - Clown
-
-- type: entity
-  name: holo-parasite injector
-  description: A complex work of art based on... Wait a minute. It's a fake. You can see a drawing from the "Hohohonkers" shop on the side.
-  suffix: Polymorph Gigaclown
-  id: HoloparasiteFakeInjectorHonkPower
-  parent: HoloparasiteFakeInjector
-  components:
-  - type: SolutionContainerManager
-    solutions:
-      hypospray:
-        maxVol: 10
-        reagents:
-        - ReagentId: HonkPower
-          Quantity: 5
-  # - type: HiddenDescription
-  #   entries:
-  #   - label: "[color=#D381C9]Перед вами обычный инъектор с 5 юнитами неизвестной жидкости. Он однозарядный и не подлежит повторному использованию.[/color]"
-  #     jobRequired:
-  #       - ResearchAssistant
-  #       - ResearchDirector
-  #       - Scientist
-  #       - SeniorResearcher
-  #       - Roboticist
-  #       - Borg
-  #       - MedicalBorg
-  #       - EngineerBorg
-  #       - MinerBorg
-  #       - JanitorBorg
-  #       - ServiceBorg
-  #       - SecurityBorg
-  #       - ClownBorg
-  #       - PeaceBorg
-  #   - label: "[color=#C18199]А шо эта тут? О боже мой... Это же Бабушкины Стеройды! Хочеш быть Гигачадом? Коли![/color]"
-  #     jobRequired:
-  #       - Clown
 
 - type: entity
   name: toy dual-bladed sword
@@ -247,7 +190,7 @@
     - state: overlay
       color: "#cec8ac"
     - state: icon-default
-    
+
 - type: entity
   name: anomaly
   description: An incomprehensible joke in space. Should you really be standing this close to it?

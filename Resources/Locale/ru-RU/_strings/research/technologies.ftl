@@ -44,6 +44,7 @@ research-technology-energy-gun = Энергетическое вооружени
 research-technology-energy-gun-advance = Продвинутое энергетическое вооружение
 research-technology-advance-laser = Военное энергетическое вооружение
 research-technology-energy_barriers = Энергетические барьеры
+research-technology-combat-equipment = Боевое снаряжение
 research-technology-basic-shuttle-armament = Базовое корабельное вооружение
 research-technology-advanced-shuttle-weapon = Продвинутое корабельное оружие
 research-technology-explosive-mech-ammunition = Взрывоопасные боеприпасы для меха

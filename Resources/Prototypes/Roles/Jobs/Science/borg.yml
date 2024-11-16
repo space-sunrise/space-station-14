@@ -21,10 +21,10 @@
   playTimeTracker: JobBorg
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 7200 #2 hrs # Sunrise-Edit
+      time: 72000 #20 hrs # Sunrise-Edit
   canBeAntag: false
   displayWeight: -10  # Sunrise
   icon: JobIconBorg
   supervisors: job-supervisors-rd
-  jobEntity: PlayerBorgGeneric
+  jobEntity: PlayerBorgBattery
   applyTraits: false
