@@ -1,4 +1,4 @@
-﻿using Robust.Shared.Configuration;
+using Robust.Shared.Configuration;
 
 namespace Content.Shared._Sunrise.SunriseCCVars;
 
@@ -330,4 +330,10 @@ public sealed class SunriseCCVars
 
     public static readonly CVarDef<bool> MoodDecreasesSpeed =
         CVarDef.Create("mood.decreases_speed", true, CVar.SERVER);
+
+    /// <summary>
+    /// Whether to show footprints
+    /// </summary>
+    public static readonly CVarDef<bool> ShowFootprints =
+        CVarDef.Create("game.show_footprints", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 }
