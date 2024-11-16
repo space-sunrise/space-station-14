@@ -38,8 +38,8 @@ public sealed partial class ChangelingComponent : Component
     ///     The status icon corresponding to the Changlings.
     /// </summary>
 
-    [DataField, ViewVariables(VVAccess.ReadOnly)]
-    public ProtoId<StatusIconPrototype> StatusIcon { get; set; } = "HivemindFaction";
+    [DataField("changelingStatusIcon")]
+    public ProtoId<FactionIconPrototype> StatusIcon { get; set; } = "HivemindFaction";
 
     #endregion
 

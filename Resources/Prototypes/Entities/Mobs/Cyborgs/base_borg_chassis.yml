@@ -323,7 +323,6 @@
   - type: AccessReader
     access: [["Command"], ["Research"]]
   - type: ShowJobIcons
-#  - type: ShowMindShieldIcons Sunrise-Edit
   - type: BorgCrewManifestViewer # Sunrise-Edit
 
 

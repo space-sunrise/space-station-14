@@ -73,6 +73,8 @@
       collection: MaleCoughs
     Crying:
       collection: MaleCry
+    Whines:
+      collection: VulpkaninWhines
     Whistle:
       collection: Whistles
     Sigh:
@@ -99,6 +101,8 @@
       collection: FemaleCoughs
     Crying:
       collection: FemaleCry
+    Whines:
+      collection: VulpkaninWhines
     Whistle:
       collection: Whistles
     Sigh:

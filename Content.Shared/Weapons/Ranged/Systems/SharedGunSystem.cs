@@ -14,6 +14,7 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Mech.Components;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
+using Content.Shared.Standing;
 using Content.Shared.Tag;
 using Content.Shared.Throwing;
 using Content.Shared.Timing;
@@ -277,6 +278,14 @@ public abstract partial class SharedGunSystem : EntitySystem
         if (prevention.Cancelled)
             return;
 
+        // Sunrise-Edit
+        if (TryComp<StandingStateComponent>(user, out var standingStateComponent))
+        {
+            if (standingStateComponent.CurrentState is StandingState.Lying or StandingState.GettingUp)
+                return;
+        }
+        // Sunrise-Edit
+
         // Need to do this to play the clicking sound for empty automatic weapons
         // but not play anything for burst fire.
         if (gun.NextFire > curTime)
@@ -285,7 +294,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         var fireRate = TimeSpan.FromSeconds(1f / gun.FireRateModified);
 
         if (gun.SelectedMode == SelectiveFire.Burst || gun.BurstActivated)
-            fireRate = fireRate / gun.BurstFireRateModifier;
+            fireRate = TimeSpan.FromSeconds(1f / gun.BurstFireRate);
 
         // First shot
         // Previously we checked shotcounter but in some cases all the bullets got dumped at once
@@ -465,7 +474,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         RaiseLocalEvent(uid, ref ev);
         // Sunrise-End
 
-        TransformSystem.SetWorldRotation(uid, direction.ToWorldAngle());
+        TransformSystem.SetWorldRotation(uid, direction.ToWorldAngle() + projectile.Angle);
     }
 
     protected abstract void Popup(string message, EntityUid? uid, EntityUid? user);

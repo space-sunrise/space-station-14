@@ -31,7 +31,7 @@ class FluentFormatter:
         for line in lines:
             if (line.strip().startswith('[color=') or 
                 line.strip().startswith('[bold]') or 
-                line.strip().startswith('[font=') or
+                line.strip().startswith('[font') or
                 line.strip().startswith('**')):
                 if formatted_lines:
                     formatted_lines[-1] += ' ' + line.strip()

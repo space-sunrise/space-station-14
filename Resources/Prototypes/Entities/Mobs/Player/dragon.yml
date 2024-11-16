@@ -133,8 +133,8 @@
       path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
     damage:
       types:
-        Piercing: 25 #Sunrise-edit
-        Slash: 25 #Sunrise-edit
+        Piercing: 15
+        Slash: 15
   - type: Devourer
     foodPreference: Humanoid
     shouldStoreDevoured: true
@@ -165,6 +165,8 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Dragon
+  - type: TTS
+    voice: HearthstoneLordOfThunder
   # Sunrise-End
 
 - type: entity

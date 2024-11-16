@@ -11,6 +11,7 @@ health-analyzer-window-entity-status-text = Статус:
 health-analyzer-window-entity-damage-total-text = Общие повреждения:
 health-analyzer-window-damage-group-text = { $damageGroup }: { $amount }
 health-analyzer-window-damage-type-text = { $damageType }: { $amount }
+health-analyzer-window-entity-unrevivable-text = [color=red]Обнаружен уникальный состав тела! Пациент не может быть реанимирован обычными средствами![/color]
 health-analyzer-window-entity-bleeding-text = У пациента кровотечение!
 health-analyzer-window-scan-mode-text = Режим сканирования:
 health-analyzer-window-scan-mode-active = АКТИВЕН

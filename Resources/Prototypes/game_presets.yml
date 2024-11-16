@@ -20,7 +20,7 @@
     - junk
     - meteorhell
   name: kessler-syndrome-title
-  showInVote: true # Sunrise-Edit
+  showInVote: false # Sunrise-Edit
   hide: true # Sunrise-Edit
   description: kessler-syndrome-description
   rules:
@@ -208,7 +208,7 @@
   description: rev-description
   showInVote: true # Sunrise-Edit
   hide: true # Sunrise-Edit
-  minPlayers: 15 # Sunrise-Edit: 50 players for REVOLUTIONARY
+  minPlayers: 15 # Sunrise-Edit: 15 players for REVOLUTIONARY
   rules:
     - Revolutionary
     - SubGamemodesRule
@@ -245,9 +245,9 @@
   - meteombies
   name: zombieteors-title
   description: zombieteors-description
-  showInVote: true # Sunrise-Edit
+  showInVote: false # Sunrise-Edit
   hide: true # Sunrise-Edit
-  minPlayers: 20 # Sunrise-Edit: 50 players for ZOMBIES
+  minPlayers: 20 # Sunrise-Edit: 20 players for ZOMBIES
   rules:
   - Zombie
   - BasicStationEventScheduler
@@ -271,7 +271,7 @@
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - BasicRoundstartVariation
-  
+
 - type: gamePreset
   id: Vampire
   alias:

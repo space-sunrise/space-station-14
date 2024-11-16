@@ -188,7 +188,7 @@
     heatingCoefficient: 0.001
     coolingCoefficient: 0.001
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitMaxim  
+    clothingPrototype: ClothingHeadHelmetHardsuitMaxim
   - type: ContainerContainer
     containers:
       cell_slot: !type:ContainerSlot
@@ -589,10 +589,35 @@
     size: Huge
   - type: ClothingSpeedModifier
     walkModifier: 1.0
-    sprintModifier: 0.9
+    sprintModifier: 0.95 #Sunrise-edit
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieElite
+  #Sunrise-start
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+      toggleable-clothing: !type:ContainerSlot
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSmall
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 6
+    domePrototype: EnergyDomeSmallRed
+  - type: PowerCellDraw
+    drawRate: 8
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0
+  #Sunrise-end
 
 #Syndicate Commander Hardsuit
 - type: entity
@@ -1030,7 +1055,7 @@
     clothingPrototype: ClothingHeadHelmetHardsuitSanta
 
 - type: entity
-  parent: ClothingOuterBaseLarge
+  parent: [ ClothingOuterBaseLarge, AllowSuitStorageClothing ]
   id: ChangelingClothingOuterHardsuit
   name: organic space suit
   description: A spaceworthy biomass of pressure and temperature resistant tissue.

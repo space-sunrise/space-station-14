@@ -63,6 +63,7 @@
           - AirlockLayer
     - type: Door
       openDrawDepth: WallTops
+      closedDrawDepth: BlastDoors # Sunrise-edit
       closeTimeOne: 0.1
       closeTimeTwo: 0.6
       openTimeOne: 0.1

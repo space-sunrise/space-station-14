@@ -12,15 +12,27 @@
     wideAnimationRotation: -135
     angle: 0
     animation: WeaponArcThrust
-    attackRate: 1.4
+    attackRate: 1.5
     damage:
       types:
-        Piercing: 18
+        Piercing: 19
     resistanceBypass: true
     soundHit:
         path: /Audio/Weapons/bladeslice.ogg
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        maxVol: 2
+  - type: MeleeChemicalInjector
+    solution: melee
+  - type: RefillableSolution
+    solution: melee
+  - type: InjectableSolution
+    solution: melee
+  - type: SolutionTransfer
+    maxTransferAmount: 2
   - type: Reflect
-    reflectProb: 0.2
+    reflectProb: 0.3
     spread: 90
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Melee/syndicate_rapier.rsi

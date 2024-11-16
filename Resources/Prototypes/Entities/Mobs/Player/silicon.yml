@@ -33,7 +33,6 @@
   - type: ActionGrant
     actions:
     - ActionJumpToCore
-    - ActionShowJobIcons
     - ActionSurvCameraLights
     - ActionAIViewLaws
   - type: UserInterface
@@ -71,8 +70,9 @@
     title: comms-console-announcement-title-station-ai
     color: "#2ed2fd"
     announceVoice: PortalGlados
-  - type: Speech
-    speechVerb: Robotic
+  - type: ShowJobIcons
+  - type: Speech # Sunrise-Edit
+    speechVerb: Robotic # Sunrise-Edit
 
 - type: entity
   id: AiHeldIntellicard
@@ -304,6 +304,7 @@
         unshaded:
           Empty: { state: empty }
           Occupied: { state: full }
+  - type: Intellicard
 
 - type: entity
   id: PlayerStationAiEmpty
@@ -397,6 +398,9 @@
     drawFov: false
   - type: Examiner
   - type: InputMover
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Borg
   - type: Tag
     tags:
     - HideContextMenu
