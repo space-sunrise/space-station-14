@@ -146,42 +146,6 @@
 
 - type: Tag
   id: BorgMedicalTorso
-  
-- type: Tag
-  id: BorgPeaceHead
-
-- type: Tag
-  id: BorgPeaceLArm
-
-- type: Tag
-  id: BorgPeaceLLeg
-
-- type: Tag
-  id: BorgPeaceRArm
-
-- type: Tag
-  id: BorgPeaceRLeg
-
-- type: Tag
-  id: BorgPeaceTorso
-  
-- type: Tag
-  id: BorgClownHead
-
-- type: Tag
-  id: BorgClownLArm
-
-- type: Tag
-  id: BorgClownLLeg
-
-- type: Tag
-  id: BorgClownRArm
-
-- type: Tag
-  id: BorgClownRLeg
-
-- type: Tag
-  id: BorgClownTorso
 
 - type: Tag
   id: BorgMiningHead

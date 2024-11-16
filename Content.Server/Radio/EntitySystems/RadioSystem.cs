@@ -199,7 +199,7 @@ public sealed class RadioSystem : EntitySystem
     private string GetIdCardName(EntityUid senderUid)
     {
         var idCardTitle = Loc.GetString("chat-radio-no-id");
-        idCardTitle = GetIdCard(senderUid)?.LocalizedJobTitle ?? idCardTitle;
+        idCardTitle = GetIdCard(senderUid)?.JobTitle ?? idCardTitle;
 
         var textInfo = CultureInfo.CurrentCulture.TextInfo;
         idCardTitle = textInfo.ToTitleCase(idCardTitle);

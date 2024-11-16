@@ -145,7 +145,7 @@
   suffix: Hydroponics
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Doors/Airlocks/Standard/hydroponics.rsi #Sunrise-Resprite
+    sprite: Structures/Doors/Airlocks/Standard/hydroponics.rsi
     state: "assembly"
 
 - type: entity
@@ -154,7 +154,7 @@
   suffix: Hydroponics, Glass
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/hydroponics.rsi #Sunrise-Resprite
+    sprite: Structures/Doors/Airlocks/Glass/hydroponics.rsi
     state: "assembly"
 
 #Maintenance
