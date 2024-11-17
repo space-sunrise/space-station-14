@@ -152,8 +152,3 @@
   text: station-goal-delegates
   lockBoxPrototypeId: LockboxCaptain
 
-- type: stationGoal
-  id: Cleaning
-  text: station-goal-cleaning-up
-  lockBoxPrototypeId: LockboxCaptain
-
