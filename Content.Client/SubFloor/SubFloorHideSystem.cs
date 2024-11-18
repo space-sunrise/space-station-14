@@ -16,6 +16,7 @@ public sealed class SubFloorHideSystem : SharedSubFloorHideSystem
     [Dependency] private readonly IUserInterfaceManager _ui = default!;
 
     private bool _showAll;
+    private bool _showVentPipe;
 
     [ViewVariables(VVAccess.ReadWrite)]
     public bool ShowAll
@@ -32,6 +33,19 @@ public sealed class SubFloorHideSystem : SharedSubFloorHideSystem
                 Value = value,
             };
             RaiseNetworkEvent(ev);
+        }
+    }
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public bool ShowVentPipe
+    {
+        get => _showVentPipe;
+        set
+        {
+            if (_showVentPipe == value) return;
+            _showVentPipe = value;
+
+            UpdateAll();
         }
     }
 
@@ -66,7 +80,13 @@ public sealed class SubFloorHideSystem : SharedSubFloorHideSystem
 
         scannerRevealed &= !ShowAll; // no transparency for show-subfloor mode.
 
-        var revealed = !covered || ShowAll || scannerRevealed;
+        var showVentPipe = false;
+        if (HasComp<PipeAppearanceComponent>(uid))
+        {
+            showVentPipe = ShowVentPipe;
+        }
+
+        var revealed = !covered || ShowAll || scannerRevealed || showVentPipe;
 
         // set visibility & color of each layer
         foreach (var layer in args.Sprite.AllLayers)

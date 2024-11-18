@@ -9,6 +9,7 @@
     name: ghost-panel-antagonist-rats-name
     description: ghost-panel-antagonist-rats-description
     priority: 110
+  - type: VentCrawler
   # Sunrise edit end
   - type: CombatMode
   - type: MovementSpeedModifier
@@ -187,6 +188,7 @@
   categories: [ HideSpawnMenu ] #Must be configured to a King or the AI breaks.
   components:
   # Sunrise edit start
+  - type: VentCrawler
   - type: GhostPanelAntagonistMarker
     name: ghost-panel-antagonist-rats-name
     description: ghost-panel-antagonist-rats-description

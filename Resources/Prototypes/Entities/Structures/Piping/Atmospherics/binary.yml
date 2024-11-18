@@ -91,6 +91,12 @@
   - type: GuideHelp
     guides:
     - Pumps
+  - type: VentCrawTube
+    containerId: VentCrawTube
+  - type: VentCrawTransit
+  - type: ContainerContainer
+    containers:
+      VentCrawTube: !type:Container
 
 - type: entity
   parent: GasBinaryBase
@@ -225,6 +231,12 @@
   - type: GuideHelp
     guides:
     - PressureRegulator
+  - type: VentCrawTube
+    containerId: VentCrawTube
+  - type: VentCrawTransit
+  - type: ContainerContainer
+    containers:
+      VentCrawTube: !type:Container
 
 - type: entity
   parent: GasBinaryBase
@@ -267,6 +279,12 @@
     - type: GuideHelp
       guides:
       - PassiveGate
+    - type: VentCrawTube
+      containerId: VentCrawTube
+    - type: VentCrawTransit
+    - type: ContainerContainer
+      containers:
+        VentCrawTube: !type:Container
 
 - type: entity
   parent: GasBinaryBase
@@ -328,6 +346,12 @@
     - type: GuideHelp
       guides:
       - ManualValve
+    - type: VentCrawTube
+      containerId: VentCrawTube
+    - type: VentCrawTransit
+    - type: ContainerContainer
+      containers:
+        VentCrawTube: !type:Container
 
 - type: entity
   parent: GasBinaryBase
@@ -400,6 +424,12 @@
   - type: GuideHelp
     guides:
     - SignalValve
+  - type: VentCrawTube
+    containerId: VentCrawTube
+  - type: VentCrawTransit
+  - type: ContainerContainer
+    containers:
+      VentCrawTube: !type:Container
 
 - type: entity
   parent: GasBinaryBase
@@ -439,6 +469,14 @@
     - type: GuideHelp
       guides:
       - GasCanisters
+    - type: VentCrawTube
+      containerId: VentCrawTube
+    - type: VentCrawJunction
+      degrees:
+        - 0
+    - type: ContainerContainer
+      containers:
+        VentCrawTube: !type:Container
 
 - type: entity
   parent: GasVentPump

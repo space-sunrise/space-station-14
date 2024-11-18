@@ -69,7 +69,22 @@
     requireSameRotation: true
   # Sunrise edit end
   - type: StaticPrice
-    price: 30
+    price: 22
+  - type: ContainerContainer
+    containers:
+      VentCrawTube: !type:Container
+
+- type: entity
+  id: VentCrawHolder
+  categories: [ HideSpawnMenu ]
+  name: vent claw holder
+  components:
+    - type: VentCrawHolder
+    - type: InputMover
+    - type: ContainerContainer
+      containers:
+        VentCrawHolderComponent: !type:Container
+
 
 - type: entity
   abstract: true
@@ -133,6 +148,12 @@
         !type:PipeNode
         nodeGroupID: Pipe
         pipeDirection: Longitudinal
+  - type: VentCrawTube
+    containerId: VentCrawTube
+  - type: VentCrawTransit
+  - type: ContainerContainer
+    containers:
+      VentCrawTube: !type:Container
   - type: Sprite
     layers:
     - state: pipeStraight
@@ -176,6 +197,12 @@
         !type:PipeNode
         nodeGroupID: Pipe
         pipeDirection: SWBend
+  - type: VentCrawTube
+    containerId: VentCrawTube
+  - type: VentCrawBend
+  - type: ContainerContainer
+    containers:
+      VentCrawTube: !type:Container
   - type: Sprite
     layers:
       - state: pipeBend
@@ -255,6 +282,16 @@
     guides:
     - Pipes
     - PipeNetworks
+  - type: VentCrawTube
+    containerId: VentCrawTube
+  - type: VentCrawJunction
+    degrees:
+      - 0
+      - 90
+      - -90
+  - type: ContainerContainer
+    containers:
+      VentCrawTube: !type:Container
 
 - type: entity
   parent: GasPipeBase
@@ -283,6 +320,17 @@
   - type: Construction
     graph: GasPipe
     node: fourway
+  - type: VentCrawTube
+    containerId: VentCrawTube
+  - type: VentCrawJunction
+    degrees:
+      - 0
+      - 90
+      - -90
+      - 180
+  - type: ContainerContainer
+    containers:
+      VentCrawTube: !type:Container
   - type: Item
     heldPrefix: Fourway
     storedSprite:
