@@ -233,6 +233,8 @@
       Quantity: 2
     - ReagentId: DexalinPlus
       Quantity: 2
+  - type: Hypospray
+    pierceArmor: true
 
 - type: entity
   parent: Holoprojector
@@ -635,6 +637,7 @@
     solution: hypospray
   - type: Hypospray
     onlyAffectsMobs: false
+    pierceArmor: true
 
 - type: entity
   name: the saboteur's communications jammer
