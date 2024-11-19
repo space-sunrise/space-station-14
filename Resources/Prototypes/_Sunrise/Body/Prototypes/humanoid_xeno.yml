@@ -10,6 +10,7 @@
       - torso
       organs:
         brain: OrganHumanoidXenoBrain
+        eyes: OrganHumanoidXenoEyes
     torso:
       part: TorsoHumanoidXeno
       organs:

@@ -53,6 +53,7 @@
         color: "#008000"
   - type: Body
     prototype: Predator
+  - type: FootprintEmitter
 
 - type: entity
   parent: BaseSpeciesDummy

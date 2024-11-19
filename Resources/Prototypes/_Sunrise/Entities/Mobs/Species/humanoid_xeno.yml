@@ -130,6 +130,7 @@
   - type: CollectiveMind
     minds:
     - Xeno
+  - type: FootprintEmitter
 
 - type: entity
   parent: BaseSpeciesDummy
