@@ -96,3 +96,59 @@
   id: Farm
   text: station-goal-farm
   lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: Crew
+  text: station-goal-training-crew
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: Furs
+  text: station-goal-creation-of-furs
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: Saboteurs
+  text: station-goal-saboteurs
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: Reconnaissance
+  text: station-goal-reconnaissance-in-force
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: Reports
+  text: station-goal-reports
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: IntelWeapons
+  text: station-goal-intelligent-weapons
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: Replenishment
+  text: station-goal-medical-replenishment
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: Anomaly
+  text: station-goal-anomaly
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: Testing
+  text: station-goal-testing-sb
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: Cyborgs
+  text: station-goal-cyborgs
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: Delegates
+  text: station-goal-delegates
+  lockBoxPrototypeId: LockboxCaptain
+
