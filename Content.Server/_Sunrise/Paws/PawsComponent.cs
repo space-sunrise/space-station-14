@@ -18,11 +18,9 @@ namespace Content.Server.Sunrise.Paws
         [DataField("thresholdDamage")]
         public FixedPoint2 ThresholdDamage = 5;
 
-        public List<string> EmotesTakeDamage = new()
-        {
-            "Scream",
-            "Crying"
-        };
+        [ViewVariables(VVAccess.ReadWrite)]
+        [DataField("emotesTakeDamage")]
+        public List<string> EmotesTakeDamage = new();
 
         [DataField("nextChargeTime", customTypeSerializer: typeof(TimeOffsetSerializer)), ViewVariables(VVAccess.ReadWrite)]
         public TimeSpan NextScreamTime = TimeSpan.FromSeconds(0);

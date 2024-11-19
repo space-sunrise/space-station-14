@@ -5,23 +5,26 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Component = Robust.Shared.GameObjects.Component;
 
 namespace Content.Shared.VendingMachines
 {
-    [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+    [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
     public sealed partial class VendingMachineComponent : Component
     {
         /// <summary>
         /// PrototypeID for the vending machine's inventory, see <see cref="VendingMachineInventoryPrototype"/>
         /// </summary>
-        [DataField("pack", customTypeSerializer: typeof(PrototypeIdSerializer<VendingMachineInventoryPrototype>), required: true)]
+        [DataField("pack",
+            customTypeSerializer: typeof(PrototypeIdSerializer<VendingMachineInventoryPrototype>),
+            required: true)]
         public string PackPrototypeId = string.Empty;
 
         /// <summary>
         /// Used by the server to determine how long the vending machine stays in the "Deny" state.
         /// Used by the client to determine how long the deny animation should be played.
         /// </summary>
-        [DataField("denyDelay")]
+        [DataField]
         public float DenyDelay = 2.0f;
 
         /// <summary>
@@ -29,18 +32,19 @@ namespace Content.Shared.VendingMachines
         /// The selected item is dispensed afer this delay.
         /// Used by the client to determine how long the deny animation should be played.
         /// </summary>
-        [DataField("ejectDelay")]
+        [DataField]
         public float EjectDelay = 1.2f;
 
-        [ViewVariables]
+        [DataField, AutoNetworkedField]
         public Dictionary<string, VendingMachineInventoryEntry> Inventory = new();
 
-        [ViewVariables]
+        [DataField, AutoNetworkedField]
         public Dictionary<string, VendingMachineInventoryEntry> EmaggedInventory = new();
 
-        [ViewVariables]
+        [DataField, AutoNetworkedField]
         public Dictionary<string, VendingMachineInventoryEntry> ContrabandInventory = new();
 
+        [DataField, AutoNetworkedField]
         public bool Contraband;
 
         public bool Ejecting;
@@ -86,12 +90,13 @@ namespace Content.Shared.VendingMachines
         ///     Sound that plays when ejecting an item
         /// </summary>
         [DataField("soundVend")]
-        // Grabbed from: https://github.com/discordia-space/CEV-Eris/blob/f702afa271136d093ddeb415423240a2ceb212f0/sound/machines/vending_drop.ogg
+        // Grabbed from: https://github.com/tgstation/tgstation/blob/d34047a5ae911735e35cd44a210953c9563caa22/sound/machines/machine_vend.ogg
         public SoundSpecifier SoundVend = new SoundPathSpecifier("/Audio/Machines/machine_vend.ogg")
         {
             Params = new AudioParams
             {
-                Volume = -2f
+                Volume = -4f,
+                Variation = 0.15f
             }
         };
 
@@ -101,17 +106,6 @@ namespace Content.Shared.VendingMachines
         [DataField("soundDeny")]
         // Yoinked from: https://github.com/discordia-space/CEV-Eris/blob/35bbad6764b14e15c03a816e3e89aa1751660ba9/sound/machines/Custom_deny.ogg
         public SoundSpecifier SoundDeny = new SoundPathSpecifier("/Audio/Machines/custom_deny.ogg");
-
-        /// <summary>
-        ///     The action available to the player controlling the vending machine
-        /// </summary>
-        [DataField("action", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-        [AutoNetworkedField]
-        public string? Action = "ActionVendingThrow";
-
-        [DataField("actionEntity")]
-        [AutoNetworkedField]
-        public EntityUid? ActionEntity;
 
         public float NonLimitedEjectForce = 7.5f;
 
@@ -136,6 +130,7 @@ namespace Content.Shared.VendingMachines
         public TimeSpan NextEmpEject = TimeSpan.Zero;
 
         #region Client Visuals
+
         /// <summary>
         /// RSI state for when the vending machine is unpowered.
         /// Will be displayed on the layer <see cref="VendingMachineVisualLayers.Base"/>
@@ -186,6 +181,7 @@ namespace Content.Shared.VendingMachines
         /// </summary>
         [DataField("loopDeny")]
         public bool LoopDenyAnimation = true;
+
         #endregion
     }
 
@@ -194,10 +190,13 @@ namespace Content.Shared.VendingMachines
     {
         [ViewVariables(VVAccess.ReadWrite)]
         public InventoryType Type;
+
         [ViewVariables(VVAccess.ReadWrite)]
         public string ID;
+
         [ViewVariables(VVAccess.ReadWrite)]
         public uint Amount;
+
         public VendingMachineInventoryEntry(InventoryType type, string id, uint amount)
         {
             Type = type;
@@ -236,10 +235,12 @@ namespace Content.Shared.VendingMachines
         /// Off / Broken. The other layers will overlay this if the machine is on.
         /// </summary>
         Base,
+
         /// <summary>
         /// Normal / Deny / Eject
         /// </summary>
         BaseUnshaded,
+
         /// <summary>
         /// Screens that are persistent (where the machine is not off or broken)
         /// </summary>
@@ -261,6 +262,5 @@ namespace Content.Shared.VendingMachines
 
     public sealed partial class VendingMachineSelfDispenseEvent : InstantActionEvent
     {
-
     };
 }

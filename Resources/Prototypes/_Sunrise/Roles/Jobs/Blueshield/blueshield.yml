@@ -1,15 +1,17 @@
 - type: job
   id: BlueShield
-  name: офицер «синий щит»
-  description: Ваша главная задача - защита глав. Помните, вы не офицер службы безопасности.
+  name: job-name-blueshield
+  description: job-description-blueshield
   playTimeTracker: JobBlueShield
   requirements:
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 36000 # 10 hrs
+      time: 62000 # 20 hrs
     - !type:DepartmentTimeRequirement
       department: Command
-      time: 36000 # 10 hrs
+      time: 62000 # 20 hrs
+    - !type:AgeRequirement
+      requiredAge: 30
   startingGear: BlueShieldGear
   icon: JobIconBlueShield
   supervisors: job-supervisors-centcom
@@ -36,6 +38,7 @@
     - Atmospherics
     - Cargo
     - Medical
+    - BlueShield
   special:
     - !type:AddImplantSpecial
       implants: [MindShieldImplant]
@@ -53,5 +56,4 @@
     gloves: ClothingHandsGlovesCombat
   storage:
     back:
-    - BoxSurvivalSecurity
-    - Flash
+    - HandheldCrewMonitor

@@ -1,4 +1,3 @@
-﻿using Content.Server.Store.Components;
 using Content.Server.Store.Systems;
 using Content.Shared.Store;
 using Content.Shared.Store.Components;
@@ -17,6 +16,7 @@ public sealed partial class BuyBeforeCondition : ListingCondition
     /// <summary>
     ///     Listing(s) that if bought, block this purchase, if any.
     /// </summary>
+    [DataField]
     public HashSet<ProtoId<ListingPrototype>>? Blacklist;
 
     public override bool Condition(ListingConditionArgs args)
@@ -24,7 +24,7 @@ public sealed partial class BuyBeforeCondition : ListingCondition
         if (!args.EntityManager.TryGetComponent<StoreComponent>(args.StoreEntity, out var storeComp))
             return false;
 
-        var allListings = storeComp.Listings;
+        var allListings = storeComp.FullListingsCatalog;
 
         var purchasesFound = false;
 

@@ -1,16 +1,18 @@
 name: Build & Test Debug
 
-on:
-  push:
-    branches: [ master, staging, trying ]
-  merge_group:
-  pull_request:
-    types: [ opened, reopened, synchronize, ready_for_review ]
-    branches: [ master ]
+on: workflow_dispatch
+# Sunrise-Edit: disable auto-test
+#on:
+#  push:
+#    branches: [ master, staging, trying ]
+#  merge_group:
+#  pull_request:
+#    types: [ opened, reopened, synchronize, ready_for_review ]
+#    branches: [ master ]
 
 jobs:
   build:
-    if: github.actor != 'GitHubActions' && github.event.pull_request.draft == false
+    if: github.actor != 'GayBot' && github.event.pull_request.draft == false
     strategy:
       matrix:
         os: [ubuntu-latest]
@@ -55,8 +57,8 @@ jobs:
   ci-success:
     name: Build & Test Debug
     needs:
-      - build
+    - build
     runs-on: ubuntu-latest
     steps:
-      - name: CI succeeded
-        run: exit 0
+    - name: CI succeeded
+      run: exit 0

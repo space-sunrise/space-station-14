@@ -42,9 +42,15 @@ def main():
     session.headers["X-GitHub-Api-Version"] = "2022-11-28"
 
     most_recent = get_most_recent_workflow(session)
+
+    if most_recent is None:
+        print("No successful publish jobs found.")
+        return
+
     last_sha = most_recent['head_commit']['id']
     print(f"Last successful publish job was {most_recent['id']}: {last_sha}")
     last_changelog = yaml.safe_load(get_last_changelog(session, last_sha))
+
     with open(CHANGELOG_FILE, "r") as f:
         cur_changelog = yaml.safe_load(f)
 
@@ -124,49 +130,44 @@ def send_discord(content: str):
     response = requests.post(DISCORD_WEBHOOK_URL, json=body)
     response.raise_for_status()
 
-
-def send_embed_discord(embed):
-    data = {
-        "embeds": [embed],
-        "allowed_mentions": {
-            "parse": []
-        }
+def send_embed_discord(embed: dict) -> None:
+    headers = {
+        "Content-Type": "application/json"
     }
-    response = requests.post(DISCORD_WEBHOOK_URL, json=data)
-    response.raise_for_status()
+
+    payload = {
+        "embeds": [embed]
+    }
+
+    response = requests.post(DISCORD_WEBHOOK_URL, json=payload, headers=headers)
+
+    if response.status_code != 204:
+        print(f"Failed to send message to Discord: {response.status_code} {response.text}")
 
 
 def send_to_discord(entries: Iterable[ChangelogEntry]) -> None:
     if not DISCORD_WEBHOOK_URL:
-        print(f"No discord webhook URL found, skipping discord send")
+        print("No discord webhook URL found, skipping discord send")
         return
 
-
-    # We need to manually split messages to avoid discord's character limit
-    # With that being said this isn't entirely robust
-    # e.g. a sufficiently large CL breaks it, but that's a future problem
-
-    for name, group in itertools.groupby(entries, lambda x: x["author"]):
-        # Need to split text to avoid discord character limit
-        group_content = io.StringIO()
-
-        for entry in group:
-            for change in entry["changes"]:
-                emoji = TYPES_TO_EMOJI.get(change['type'], "❓")
-                message = change['message']
-                url = entry.get("url")
-                if url and url.strip():
-                    group_content.write(f"{emoji} [-]({url}) {message}\n")
-                else:
-                    group_content.write(f"{emoji} {message}\n")
+    for entry in entries:
+        content_string = io.StringIO()
+        for change in entry["changes"]:
+            emoji = TYPES_TO_EMOJI.get(change['type'], "❓")
+            message = change['message']
+            content_string.write(f"{emoji} {message}\n")
+        url = entry.get("url")
+        if url and url.strip():
+            content_string.write(f"[GitHub Pull Request]({url})\n")
 
         embed = {
-            "title": f"Автор: **{name}**",
-            "description": group_content,
+            "title": f"Автор: **{entry["author"]}**",
+            "description": content_string.getvalue(),
             "color": 0x3498db
         }
 
-        if len(group_content) > 0:
+        if len(content_string.getvalue()) > 0:
             send_embed_discord(embed)
+
 
 main()

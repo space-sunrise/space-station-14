@@ -33,14 +33,17 @@ namespace Content.Shared.Interaction
         /// </summary>
         public bool CanReach { get; }
 
+        public bool NeedHand { get; } // Sunrise-Edit
+
         public InteractEvent(EntityUid user, EntityUid used, EntityUid? target,
-            EntityCoordinates clickLocation, bool canReach)
+            EntityCoordinates clickLocation, bool canReach, bool needHand = true) // Sunrise-Edit
         {
             User = user;
             Used = used;
             Target = target;
             ClickLocation = clickLocation;
             CanReach = canReach;
+            NeedHand = needHand; // Sunrise-Edit
         }
     }
 
@@ -51,7 +54,7 @@ namespace Content.Shared.Interaction
     public sealed class AfterInteractEvent : InteractEvent
     {
         public AfterInteractEvent(EntityUid user, EntityUid used, EntityUid? target,
-            EntityCoordinates clickLocation, bool canReach) : base(user, used, target, clickLocation, canReach)
+            EntityCoordinates clickLocation, bool canReach, bool needHand = true) : base(user, used, target, clickLocation, canReach, needHand) // Sunrise-Edit
         { }
     }
 

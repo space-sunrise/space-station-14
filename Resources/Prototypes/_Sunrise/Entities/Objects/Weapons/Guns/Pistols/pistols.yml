@@ -1,0 +1,352 @@
+- type: entity
+  id: WeaponPistolMk58Nonlethal
+  parent: WeaponPistolMk58
+  suffix: Non-lethal
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistolRubber
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistolRubber
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol
+
+- type: entity
+  name: N1984
+  parent: WeaponPistolN1984
+  id: WeaponPistolN1984Nonlethal
+  suffix: Non-lethal
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineMagnumRubber
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineMagnum
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeMagnumRubber
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeMagnum
+
+- type: entity
+  name: combat pistol VP-70
+  parent: BaseWeaponPistol
+  id: WeaponPistolVP78
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/vp78/big.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/vp78/tiny.rsi
+  - type: Gun
+    selectedMode: FullAuto
+    availableModes:
+    - SemiAuto
+    - Burst
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_shot.ogg
+    soundEmpty:
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_empty.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineVP70
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazinePistol
+          - MagazineVP70
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgePistol
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+
+
+- type: entity
+  name: Glock-22
+  parent: BaseWeaponPistol
+  id: WeaponPistolG22
+  suffix: Lethal
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/glock22/big.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/glock22/tiny.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    - Burst
+    - FullAuto
+    soundGunshot:
+      collection: glock22
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineGlock22
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazinePistol
+          - MagazineGlock22
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgePistol
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_cocked.ogg
+
+- type: entity
+  name: Glock-22
+  parent: BaseWeaponPistol
+  id: WeaponPistolG22NonLethal
+  suffix: NonLethal
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/glock22/big.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/glock22/tiny.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    - Burst
+    - FullAuto
+    soundGunshot:
+      collection: glock22
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineGlock22
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazinePistol
+          - MagazineGlock22
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgePistol
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_cocked.ogg
+
+
+- type: entity
+  name: HI Browning-88 M4
+  parent: BaseWeaponPistol
+  id: WeaponPistolHIB88M4
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/hi_browning/big.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/hi_browning/tiny.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    - Burst
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_shot.ogg
+    soundEmpty:
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_empty.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineHIBrowning
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazinePistol
+          - MagazineHIBrowning
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgePistol
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+
+- type: entity
+  name: ACP-14
+  parent: BaseWeaponPistol
+  id: WeaponPistolACP14
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/acp14/big.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/acp14/tiny.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    - Burst
+    - FullAuto
+    soundGunshot:
+      collection: glock22
+  - type: ChamberMagazineAmmoProvider
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineACP14
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazinePistol
+          - MagazineACP14
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgePistol
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+
+- type: entity
+  name: Mateba
+  parent: BaseWeaponRevolver
+  id: WeaponRevolverMatebaNew
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/mateba/big.rsi
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/mateba/tiny.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/mateba/tiny.rsi
+  - type: Gun
+    fireRate: 3
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
+
+- type: entity
+  name: Desert Eagle
+  parent: BaseWeaponPistol
+  id: WeaponPistolDeagle
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/deagle/big.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/deagle/tiny.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      collection: deagle
+      params:
+        volume: 100
+    soundEmpty:
+      path: /Audio/_Sunrise/Weapons/Guns/Pistols/deagle/deagle_empty.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineDeagle
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/deagle/deagle_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/deagle/deagle_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineMagnum
+          - MagazineDeagle
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeMagnum
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeMagnum
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot

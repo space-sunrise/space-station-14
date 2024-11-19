@@ -8,3 +8,58 @@
       sprite: _Sunrise/Clothing/Head/Helmets/security_medic.rsi
     - type: Clothing
       sprite: _Sunrise/Clothing/Head/Helmets/security_medic.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetPilot
+  name: security pilot's helmet
+  description: A thick pilot's helmet that provides good head protection.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/pilothelmet.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/pilothelmet.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+
+- type: entity
+  parent: [ClothingHeadBase, BaseRestrictedContraband, BaseFoldable]
+  id: ClothingHeadHelmetPubg
+  name: Altyn
+  description: A fortified helmet used to suppress and incite riots.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Helmets/tfhelm.rsi
+    layers:
+    - state: icon
+      map: [ "unfoldedLayer" ]
+    - state: icon-up
+      map: ["foldedLayer"]
+      visible: false
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Helmets/tfhelm.rsi
+  - type: Appearance
+  - type: Foldable
+    canFoldInsideContainer: true
+  - type: FoldableClothing
+    foldedEquippedPrefix: up
+    foldedHeldPrefix: up
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.80
+        Slash: 0.80
+        Piercing: 0.80
+        Heat: 0.80
+        Radiation: 0.80
+        Caustic: 0.95
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: ExplosionResistance
+    damageCoefficient: 0.75

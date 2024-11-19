@@ -1,5 +1,5 @@
 ﻿using Content.Shared.Interaction;
-using Robust.Shared.Timing;
+using Content.Shared.Mech.Components;
 
 namespace Content.Shared.MouseRotator;
 
@@ -10,13 +10,13 @@ namespace Content.Shared.MouseRotator;
 public abstract class SharedMouseRotatorSystem : EntitySystem
 {
     [Dependency] private readonly RotateToFaceSystem _rotate = default!;
+    
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeAllEvent<RequestMouseRotatorRotationEvent>(OnRequestRotation);
-        SubscribeAllEvent<RequestMouseRotatorRotationSimpleEvent>(OnRequestSimpleRotation);
     }
 
     public override void Update(float frameTime)
@@ -31,9 +31,17 @@ public abstract class SharedMouseRotatorSystem : EntitySystem
         {
             if (rotator.GoalRotation == null)
                 continue;
+            
+            var target = uid;
+            
+            if (TryComp<MechPilotComponent>(uid, out var mechPilot))
+            {
+                target = mechPilot.Mech;
+                xform = Transform(mechPilot.Mech);
+            }
 
             if (_rotate.TryRotateTo(
-                    uid,
+                    target,
                     rotator.GoalRotation.Value,
                     frameTime,
                     rotator.AngleTolerance,
@@ -50,26 +58,13 @@ public abstract class SharedMouseRotatorSystem : EntitySystem
     private void OnRequestRotation(RequestMouseRotatorRotationEvent msg, EntitySessionEventArgs args)
     {
         if (args.SenderSession.AttachedEntity is not { } ent
-            || !TryComp<MouseRotatorComponent>(ent, out var rotator) || rotator.Simple4DirMode)
+            || !TryComp<MouseRotatorComponent>(ent, out var rotator))
         {
             Log.Error($"User {args.SenderSession.Name} ({args.SenderSession.UserId}) tried setting local rotation directly without a valid mouse rotator component attached!");
             return;
         }
 
         rotator.GoalRotation = msg.Rotation;
-        Dirty(ent, rotator);
-    }
-
-    private void OnRequestSimpleRotation(RequestMouseRotatorRotationSimpleEvent ev, EntitySessionEventArgs args)
-    {
-        if (args.SenderSession.AttachedEntity is not { } ent
-            || !TryComp<MouseRotatorComponent>(ent, out var rotator) || !rotator.Simple4DirMode)
-        {
-            Log.Error($"User {args.SenderSession.Name} ({args.SenderSession.UserId}) tried setting 4-dir rotation directly without a valid mouse rotator component attached!");
-            return;
-        }
-
-        rotator.GoalRotation = ev.Direction.ToAngle();
         Dirty(ent, rotator);
     }
 }

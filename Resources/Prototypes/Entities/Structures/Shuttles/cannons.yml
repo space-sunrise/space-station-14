@@ -32,7 +32,7 @@
         layer:
         - MachineLayer
   - type: Damageable
-    damageContainer: Inorganic
+    damageContainer: StructuralInorganic
     damageModifierSet: Electronic
   - type: Transform
     anchored: true
@@ -209,7 +209,7 @@
   - type: BallisticAmmoProvider
     whitelist:
       tags:
-        - Grenade
+        - ArtilleryShell #Sunrise-edit
     capacity: 2
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
@@ -291,7 +291,7 @@
     containers:
       ballistic-ammo: !type:Container
   - type: Damageable
-    damageContainer: Inorganic
+    damageContainer: StructuralInorganic
     damageModifierSet: Metallic
   - type: Destructible
     thresholds:

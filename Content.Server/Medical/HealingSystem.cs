@@ -1,21 +1,23 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
-using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Medical.Components;
 using Content.Server.Popups;
 using Content.Server.Stack;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Audio;
 using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Medical;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Popups;
 using Content.Shared.Stacks;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
@@ -34,7 +36,7 @@ public sealed class HealingSystem : EntitySystem
     [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly SolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
 
     public override void Initialize()
     {
@@ -125,7 +127,7 @@ public sealed class HealingSystem : EntitySystem
         var healingDict = healing.Damage.DamageDict;
         foreach (var type in healingDict)
         {
-            if (damageableDict[type.Key].Value > 0)
+            if (damageableDict.TryGetValue(type.Key, out var damageValue) && damageValue.Value > 0) //Sunrise-edit: fix server crashes
             {
                 return true;
             }
@@ -187,6 +189,12 @@ public sealed class HealingSystem : EntitySystem
                 AudioHelpers.WithVariation(0.125f, _random).WithVolume(1f));
 
         var isNotSelf = user != target;
+
+        if (isNotSelf)
+        {
+            var msg = Loc.GetString("medical-item-popup-target", ("user", Identity.Entity(user, EntityManager)), ("item", uid));
+            _popupSystem.PopupEntity(msg, target, target, PopupType.Medium);
+        }
 
         var delay = isNotSelf
             ? component.Delay

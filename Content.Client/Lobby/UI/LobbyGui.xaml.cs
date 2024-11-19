@@ -7,11 +7,14 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using System.Numerics;
-using Content.Client._Sunrise.ServersHub;
 using Content.Client.Parallax.Managers;
 using Content.Client.Resources;
+using Content.Client.Stylesheets;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
+using Robust.Shared.Configuration;
+using Robust.Shared.Input;
 
 namespace Content.Client.Lobby.UI
 {
@@ -19,21 +22,32 @@ namespace Content.Client.Lobby.UI
     public sealed partial class LobbyGui : UIScreen
     {
         [Dependency] private readonly IClientConsoleHost _consoleHost = default!;
-        [Dependency] private readonly IUserInterfaceManager _userInterfaceManager = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly IParallaxManager _parallaxManager = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly IResourceCache _resourceCache = default!;
+        [Dependency] private readonly IConfigurationManager _configurationManager = default!;
 
-        public string LobbyParalax = "FastSpace"; // Sunrise-edit
-        [ViewVariables(VVAccess.ReadWrite)] public Vector2 Offset { get; set; }// Sunrise-edit
+        public string LobbyParallax = "FastSpace"; // Sunrise-edit
+        public bool ShowParallax; // Sunrise-edit
+        private string _serverName = string.Empty;
+        [ViewVariables(VVAccess.ReadWrite)] public Vector2 Offset { get; set; } // Sunrise-edit
+        public const string DefaultIconExpanded = "/Textures/Interface/Nano/inverted_triangle.svg.png";
+        public const string DefaultIconCollapsed = "/Textures/Interface/Nano/top_triangle.svg.png";
+        public const string StylePropertyIconExpanded = "IconExpanded";
+        public const string StylePropertyIconCollapsed = "IconCollapsed";
+
+        public Texture? IconExpanded;
+        public Texture? IconCollapsed;
+
+        private readonly StyleBoxTexture _back;
 
         public LobbyGui()
         {
             RobustXamlLoader.Load(this);
             IoCManager.InjectDependencies(this);
             SetAnchorPreset(MainContainer, LayoutPreset.Wide);
-            SetAnchorPreset(LogoContainer, LayoutPreset.Wide); // Sunrise-edit
+            SetAnchorPreset(LobbyArt, LayoutPreset.Wide); // Sunrise-Edit
 
             LobbySong.SetMarkup(Loc.GetString("lobby-state-song-no-song-text"));
 
@@ -41,31 +55,147 @@ namespace Content.Client.Lobby.UI
             OptionsButton.OnPressed += _ => UserInterfaceManager.GetUIController<OptionsUIController>().ToggleWindow();
 
             // Sunrise-start
-            Offset = new Vector2(_random.Next(0, 1000), _random.Next(0, 1000));
+            ChatHider.OnKeyBindUp += args =>
+            {
+                if (args.Function != EngineKeyFunctions.Use)
+                    return;
 
-            _parallaxManager.LoadParallaxByName(LobbyParalax);
+                ChatContent.Visible = !ChatContent.Visible;
+                ChatHider.Texture = ChatContent.Visible ? IconExpanded : IconCollapsed;
+            };
+
+            ServerInfoHider.OnKeyBindUp += args =>
+            {
+                if (args.Function != EngineKeyFunctions.Use)
+                    return;
+
+                ServerInfoContent.Visible = !ServerInfoContent.Visible;
+                ServerInfoHider.Texture = ServerInfoContent.Visible ? IconExpanded : IconCollapsed;
+            };
+
+            CharacterInfoHider.OnKeyBindUp += args =>
+            {
+                if (args.Function != EngineKeyFunctions.Use)
+                    return;
+
+                CharacterInfoContent.Visible = !CharacterInfoContent.Visible;
+                CharacterInfoHider.Texture = CharacterInfoContent.Visible ? IconExpanded : IconCollapsed;
+            };
+
+            UserProfileHider.OnKeyBindUp += args =>
+            {
+                if (args.Function != EngineKeyFunctions.Use)
+                    return;
+
+                UserProfileContent.Visible = !UserProfileContent.Visible;
+                UserProfileHider.Texture = UserProfileContent.Visible ? IconExpanded : IconCollapsed;
+            };
+
+            ServersHubHider.OnKeyBindUp += args =>
+            {
+                if (args.Function != EngineKeyFunctions.Use)
+                    return;
+
+                ServersHubContent.Visible = !ServersHubContent.Visible;
+                ServersHubHider.Texture = ServersHubContent.Visible ? IconExpanded : IconCollapsed;
+            };
+
+            ChangelogHider.OnKeyBindUp += args =>
+            {
+                if (args.Function != EngineKeyFunctions.Use)
+                    return;
+
+                ChangelogContent.Visible = !ChangelogContent.Visible;
+                ChangelogHider.Texture = ChangelogContent.Visible ? IconExpanded : IconCollapsed;
+            };
+
+            Offset = new Vector2(_random.Next(0, 1000), _random.Next(0, 1000));
             RectClipContent = true;
 
             var panelTex = _resourceCache.GetTexture("/Textures/Interface/Nano/button.svg.96dpi.png");
-            var back = new StyleBoxTexture
+            _back = new StyleBoxTexture
             {
                 Texture = panelTex,
-                Modulate = new Color(37, 37, 42).WithAlpha(0.5f)
+                Modulate = new Color(37, 37, 42),
             };
-            back.SetPatchMargin(StyleBox.Margin.All, 10);
+            _back.SetPatchMargin(StyleBox.Margin.All, 10);
 
-            LeftSideTop.PanelOverride = back;
+            LeftTopPanel.PanelOverride = _back;
 
-            RightSide.PanelOverride = back;
+            RightPanel.PanelOverride = _back;
 
-            LocalChangelog.PanelOverride = back;
+            LeftBottomPanel.PanelOverride = _back;
 
-            LobbySongPanel.PanelOverride = back;
+            LeftTopPanel.PanelOverride = _back;
 
-            ServersHub.PanelOverride = back;
+            LobbySongPanel.PanelOverride = _back;
 
+            _configurationManager.OnValueChanged(SunriseCCVars.LobbyOpacity, OnLobbyOpacityChanged);
+            _configurationManager.OnValueChanged(SunriseCCVars.ServersHubEnable, OnServersHubEnableChanged);
+            _configurationManager.OnValueChanged(SunriseCCVars.InfoLinksDonate, OnServerNameChanged, true);
+
+            SetLobbyOpacity(_configurationManager.GetCVar(SunriseCCVars.LobbyOpacity));
+            SetServersHubEnable(_configurationManager.GetCVar(SunriseCCVars.ServersHubEnable));
+
+            Chat.SetChatOpacity();
+
+            ServerName.Text = Loc.GetString("ui-lobby-welcome", ("name", _serverName));
+            LoadIcons();
             // Sunrise-end
         }
+
+        // Sunrise-Start
+        private void OnServerNameChanged(string serverName)
+        {
+            ServerName.Text = Loc.GetString("ui-lobby-welcome", ("name", serverName));
+            _serverName = serverName;
+        }
+
+        private void LoadIcons()
+        {
+            if (!TryGetStyleProperty(StylePropertyIconExpanded, out IconExpanded))
+                IconExpanded = _resourceCache.GetTexture(DefaultIconExpanded);
+
+            if (!TryGetStyleProperty(StylePropertyIconCollapsed, out IconCollapsed))
+            {
+                IconCollapsed = _resourceCache.GetTexture(DefaultIconCollapsed);
+            }
+
+            ServersHubHider.Texture = ServersHubContent.Visible ? IconExpanded : IconCollapsed;
+            ChangelogHider.Texture = ChangelogContent.Visible ? IconExpanded : IconCollapsed;
+            ServerInfoHider.Texture = ServerInfoContent.Visible ? IconExpanded : IconCollapsed;
+            CharacterInfoHider.Texture = CharacterInfoContent.Visible ? IconExpanded : IconCollapsed;
+            ChatHider.Texture = ChatContent.Visible ? IconExpanded : IconCollapsed;
+            UserProfileHider.Texture = CharacterInfoContent.Visible ? IconExpanded : IconCollapsed;
+            ServersHubHider.Modulate = StyleNano.NanoGold;
+            ChangelogHider.Modulate = StyleNano.NanoGold;
+            ServerInfoHider.Modulate = StyleNano.NanoGold;
+            CharacterInfoHider.Modulate = StyleNano.NanoGold;
+            ChatHider.Modulate = StyleNano.NanoGold;
+            UserProfileHider.Modulate = StyleNano.NanoGold;
+        }
+
+        private void OnServersHubEnableChanged(bool enable)
+        {
+            SetServersHubEnable(enable);
+        }
+
+        private void SetServersHubEnable(bool enable)
+        {
+            ServersHubBox.Visible = enable;
+        }
+        // Sunrise-End
+
+        private void OnLobbyOpacityChanged(float opacity)
+        {
+            SetLobbyOpacity(opacity);
+        }
+
+        private void SetLobbyOpacity(float opacity)
+        {
+            _back.Modulate = new Color(37, 37, 42).WithAlpha(opacity);
+        }
+        // Sunrise-End
 
         public void SwitchState(LobbyGuiState state)
         {
@@ -76,18 +206,9 @@ namespace Content.Client.Lobby.UI
             {
                 case LobbyGuiState.Default:
                     DefaultState.Visible = true;
-                    RightSide.Visible = true;
                     break;
                 case LobbyGuiState.CharacterSetup:
                     CharacterSetupState.Visible = true;
-
-                    var actualWidth = (float) UserInterfaceManager.RootControl.PixelWidth;
-                    var setupWidth = (float) LeftSide.PixelWidth;
-
-                    if (1 - (setupWidth / actualWidth) > 0.30)
-                    {
-                        RightSide.Visible = false;
-                    }
 
                     UserInterfaceManager.GetUIController<LobbyUIController>().ReloadCharacterSetup();
 
@@ -98,7 +219,10 @@ namespace Content.Client.Lobby.UI
         // Sunrise-start
         protected override void Draw(DrawingHandleScreen handle)
         {
-            foreach (var layer in _parallaxManager.GetParallaxLayers(LobbyParalax))
+            if (!ShowParallax)
+                return;
+
+            foreach (var layer in _parallaxManager.GetParallaxLayers(LobbyParallax))
             {
                 var tex = layer.Texture;
                 var texSize = new Vector2i(

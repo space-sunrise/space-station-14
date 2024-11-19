@@ -1,6 +1,7 @@
 - type: job
   id: IAA
   name: job-name-iaa
+  description: job-description-iaa
   playTimeTracker: JobIAA
   requirements:
   - !type:DepartmentTimeRequirement
@@ -11,13 +12,13 @@
     time: 18000 # 5h Sunrise-RoleTime
   startingGear: IAAGear
   icon: "JobIconIAA"
-  supervisors: job-supervisors-centcom
+  supervisors: job-supervisors-magistrate
   canBeAntag: false
+  displayWeight: 40
   access:
   - Service
   - Brig
   - Maintenance
-  - Command
   - External
   - Lawyer
   special:

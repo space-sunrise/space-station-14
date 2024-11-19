@@ -5,7 +5,9 @@
   minLimit: 0
   maxLimit: 3
   loadouts:
-  - CorporateLaw # Sunrise-edit
+  - FlowerWreath
+  - Hairflower
+  - Headphones
   - PlushieLizard
   - PlushieSpaceLizard
   - Lighter
@@ -15,10 +17,21 @@
   - CigPackBlack
   - CigarCase
   - CigarGold
+  - ClothingNeckNanoTrasenPin  # Sunrise
+  - ClothingNeckNakamuraPin  # Sunrise
+  - ClothingNeckLogistikaPin  # Sunrise
+  - ClothingNeckDeForestPin  # Sunrise
+  - ClothingNeckDonkPin  # Sunrise
+  - ClothingNeckVitezstviPin  # Sunrise
+  - ClothingNeckEarthPin  # Sunrise
+  - ClothingNeckUSSPPin  # Sunrise
+  - ClothingNeckReedIndustriesPin  # Sunrise
+  - CorporateLaw # Sunrise-edit
   - ClothingNeckLGBTPin
   - ClothingNeckAromanticPin
   - ClothingNeckAsexualPin
   - ClothingNeckBisexualPin
+  - ClothingNeckGayPin
   - ClothingNeckIntersexPin
   - ClothingNeckLesbianPin
   - ClothingNeckNonBinaryPin
@@ -26,6 +39,22 @@
   - ClothingNeckTransPin
   - ClothingNeckAutismPin
   - ClothingNeckGoldAutismPin
+  - TowelColorBlack
+  - TowelColorDarkBlue
+  - TowelColorDarkGreen
+  - TowelColorGold
+  - TowelColorGray
+  - TowelColorGreen
+  - TowelColorLightBlue
+  - TowelColorLightBrown
+  - TowelColorMaroon
+  - TowelColorMime
+  - TowelColorOrange
+  - TowelColorPurple
+  - TowelColorRed
+  - TowelColorSilver
+  - TowelColorWhite
+  - TowelColorYellow
 
 - type: loadoutGroup
   id: Glasses
@@ -35,6 +64,41 @@
   - Glasses
   - GlassesJamjar
   - GlassesJensen
+
+- type: loadoutGroup
+  id: GroupTankHarness
+  name: loadout-group-tank-harness
+  minLimit: 1
+  hidden: true
+  loadouts:
+  - LoadoutTankHarness
+
+- type: loadoutGroup
+  id: Survival
+  name: loadout-group-survival-basic
+  minLimit: 3
+  hidden: true
+  loadouts:
+  - EmergencyNitrogen
+  - EmergencyOxygen
+  - EmergencyWithoutGas  # Sunrise-Edit
+  - LoadoutSpeciesVoxNitrogen
+
+- type: loadoutGroup
+  id: GroupEVATank
+  name: loadout-group-EVA-tank
+  hidden: true
+  loadouts:
+  - LoadoutSpeciesEVANitrogen
+  - LoadoutSpeciesEVAOxygen
+
+- type: loadoutGroup
+  id: GroupPocketTankDouble
+  name: loadout-group-pocket-tank-double
+  hidden: true
+  loadouts:
+  - LoadoutSpeciesPocketDoubleNitrogen
+  - LoadoutSpeciesPocketDoubleOxygen
 
 # Command
 - type: loadoutGroup
@@ -147,6 +211,13 @@
   - CommonBackpack
   - CommonSatchel
   - CommonDuffel
+
+- type: loadoutGroup
+  id: PassengerNeck
+  name: loadout-group-passenger-neck
+  minLimit: 0
+  loadouts:
+  - Mantle
 
 - type: loadoutGroup
   id: PassengerOuterClothing
@@ -305,6 +376,7 @@
   loadouts:
   - JanitorJumpsuit
   - JanitorJumpskirt
+  - MaidJumpskirt
 
 - type: loadoutGroup
   id: JanitorGloves
@@ -321,6 +393,13 @@
   minLimit: 0
   loadouts:
   - JanitorWintercoat
+
+- type: loadoutGroup
+  id: JanitorPlunger
+  name: loadout-group-janitor-plunger
+  minLimit: 0
+  loadouts:
+  - JanitorGoldenPlunger
 
 - type: loadoutGroup
   id: BotanistHead
@@ -360,13 +439,16 @@
   minLimit: 0
   loadouts:
   - JesterHat
+  - JesterAltHat
 
 - type: loadoutGroup
   id: ClownJumpsuit
   name: loadout-group-clown-jumpsuit
   loadouts:
   - ClownSuit
+  - ClownSkirt
   - JesterSuit
+  - JesterAltSuit
 
 - type: loadoutGroup
   id: ClownBackpack
@@ -392,6 +474,17 @@
   - JesterShoes
 
 - type: loadoutGroup
+  id: SurvivalClown
+  name: loadout-group-survival-clown
+  minLimit: 2
+  hidden: true
+  loadouts:
+  - EmergencyNitrogenClown
+  - EmergencyOxygenClown
+  - LoadoutSpeciesVoxNitrogen
+  - EmergencyWithoutGasClown # Sunrise-Edit
+
+- type: loadoutGroup
   id: MimeHead
   name: loadout-group-mime-head
   minLimit: 0
@@ -403,7 +496,6 @@
 - type: loadoutGroup
   id: MimeMask
   name: loadout-group-mime-mask
-  minLimit: 0
   loadouts:
   - MimeMask
   - MimeMaskSad
@@ -432,11 +524,70 @@
   - MimeWintercoat
 
 - type: loadoutGroup
+  id: MimeBelt
+  name: loadout-group-mime-belt
+  loadouts:
+  - MimeSuspendersRed
+  - MimeSuspendersBlack
+
+- type: loadoutGroup
+  id: SurvivalMime
+  name: loadout-group-survival-mime
+  minLimit: 2
+  hidden: true
+  loadouts:
+  - EmergencyNitrogenMime
+  - EmergencyOxygenMime
+  - LoadoutSpeciesVoxNitrogen
+
+- type: loadoutGroup
+  id: MusicianJumpsuit
+  name: loadout-group-musician-jumpsuit
+  loadouts:
+  - MusicianJumpsuit
+  - MusicianJumpskirt
+
+- type: loadoutGroup
   id: MusicianOuterClothing
   name: loadout-group-musician-outerclothing
   minLimit: 0
   loadouts:
   - MusicianWintercoat
+
+- type: loadoutGroup
+  id: Instruments
+  name: loadout-group-instruments
+  minLimit: 0
+  maxLimit: 2
+  loadouts:
+  - Glockenspiel
+  - MusicBox
+  - Xylophone
+  - Microphone
+  - Synthesizer
+  - Kalimba
+  - Woodblock
+  - ElectricGuitar
+  - BassGuitar
+  - RockGuitar
+  - AcousticGuitar
+  - Banjo
+  - Violin
+  - Viola
+  - Cello
+  - Trumpet
+  - Trombone
+  - FrenchHorn
+  - Euphonium
+  - Saxophone
+  - Accordion
+  - Harmonica
+  - Clarinet
+  - Flute
+  - Recorder
+  - PanFlute
+  - Ocarina
+  - Bagpipe
 
 # Cargo
 - type: loadoutGroup
@@ -539,14 +690,6 @@
 
 # Engineering
 - type: loadoutGroup
-  id: ChiefEngineerHead
-  name: loadout-group-chief-engineer-head
-  minLimit: 0
-  loadouts:
-  - ChiefEngineerHead
-  - ChiefEngineerBeret
-
-- type: loadoutGroup
   id: ChiefEngineerJumpsuit
   name: loadout-group-chief-engineer-jumpsuit
   loadouts:
@@ -591,7 +734,6 @@
   - StationEngineerHardhatYellow
   - StationEngineerHardhatOrange
   - StationEngineerHardhatRed
-  - SeniorEngineerBeret
 
 - type: loadoutGroup
   id: StationEngineerJumpsuit
@@ -600,8 +742,6 @@
   - StationEngineerJumpsuit
   - StationEngineerJumpskirt
   - StationEngineerHazardsuit
-  - SeniorEngineerJumpsuit
-  - SeniorEngineerJumpskirt
 
 - type: loadoutGroup
   id: StationEngineerBackpack
@@ -625,13 +765,6 @@
   loadouts:
   - WorkBoots
   - EngineeringWinterBoots
-
-- type: loadoutGroup
-  id: StationEngineerID
-  name: loadout-group-station-engineer-id
-  loadouts:
-  - StationEngineerPDA
-  - SeniorEngineerPDA
 
 - type: loadoutGroup
   id: AtmosphericTechnicianJumpsuit
@@ -663,14 +796,18 @@
   - WhiteShoes
   - EngineeringWinterBoots
 
-# Science
 - type: loadoutGroup
-  id: ResearchDirectorHead
-  name: loadout-group-research-director-head
-  minLimit: 0
+  id: SurvivalExtended
+  name: loadout-group-survival-extended
+  minLimit: 2
+  hidden: true
   loadouts:
-  - ResearchDirectorBeret
+  - EmergencyNitrogenExtended
+  - EmergencyOxygenExtended
+  - LoadoutSpeciesVoxNitrogen
+  - EmergencyWithoutGasExtended # Sunrise-Edit
 
+# Science
 - type: loadoutGroup
   id: ResearchDirectorNeck
   name: loadout-group-research-director-neck
@@ -702,15 +839,6 @@
   - ScienceWinterBoots
 
 - type: loadoutGroup
-  id: ScientistHead
-  name: loadout-group-scientist-head
-  minLimit: 0
-  loadouts:
-  - RoboticistCap
-  - SkullBandana
-  - ScientificBeret
-
-- type: loadoutGroup
   id: ScientistNeck
   name: loadout-group-scientist-neck
   minLimit: 0
@@ -723,10 +851,6 @@
   loadouts:
   - ScientistJumpsuit
   - ScientistJumpskirt
-  - RoboticistJumpsuit
-  - RoboticistJumpskirt
-  - SeniorResearcherJumpsuit
-  - SeniorResearcherJumpskirt
 
 - type: loadoutGroup
   id: ScientistBackpack
@@ -744,9 +868,6 @@
   - RegularLabCoat
   - ScienceLabCoat
   - ScienceWintercoat
-  - RoboticistLabCoat
-  - RoboticistWintercoat
-  - SeniorResearcherLabCoat
 
 - type: loadoutGroup
   id: ScientistShoes
@@ -763,14 +884,6 @@
   loadouts:
   - LatexGloves
   - PurpleGloves
-  - RobohandsGloves
-
-- type: loadoutGroup
-  id: ScientistPDA
-  name: loadout-group-scientist-id
-  loadouts:
-  - ScientistPDA
-  - SeniorResearcherPDA
 
 - type: loadoutGroup
   id: ResearchAssistantJumpsuit
@@ -844,6 +957,7 @@
   - SecurityHelmet
   - SecurityBeret
   - SecurityHat
+  - TrooperHat
 
 - type: loadoutGroup
   id: SecurityJumpsuit
@@ -853,8 +967,9 @@
   - SecurityJumpskirt
   - SecurityJumpsuitGrey
   - SecurityJumpskirtGrey
-  - SeniorOfficerJumpsuit
-  - SeniorOfficerJumpskirt
+#  - SeniorOfficerJumpsuit # Sunrise-Edit
+#  - SeniorOfficerJumpskirt # Sunrise-Edit
+  - TrooperUniform
 
 - type: loadoutGroup
   id: SecurityBackpack
@@ -883,15 +998,8 @@
   id: SecurityShoes
   name: loadout-group-security-shoes
   loadouts:
-  - CombatBoots
+  - JackBoots
   - SecurityWinterBoots
-
-- type: loadoutGroup
-  id: SecurityPDA
-  name: loadout-group-security-id
-  loadouts:
-  - SecurityPDA
-  - SeniorOfficerPDA
 
 - type: loadoutGroup
   id: DetectiveHead
@@ -924,6 +1032,8 @@
   loadouts:
   - DetectiveArmorVest
   - DetectiveCoat
+  - DetectiveCoatGrey
+  - DetectiveCoatDark # Sunrise-edit
 
 - type: loadoutGroup
   id: SecurityCadetJumpsuit
@@ -931,6 +1041,24 @@
   loadouts:
   - RedJumpsuit
   - RedJumpskirt
+
+- type: loadoutGroup
+  id: SurvivalSecurity
+  name: loadout-group-survival-security
+  minLimit: 2
+  hidden: true
+  loadouts:
+  - EmergencyNitrogenSecurity
+  - EmergencyOxygenSecurity
+  - LoadoutSpeciesVoxNitrogen
+  - EmergencyWithoutGasSecurity # Sunrise-Edit
+
+- type: loadoutGroup
+  id: SecurityStar
+  name: loadout-group-security-star
+  minLimit: 0
+  loadouts:
+  - SecStar
 
 # Medical
 - type: loadoutGroup
@@ -979,7 +1107,6 @@
   minLimit: 0
   loadouts:
   - MedicalBeret
-  - SeniorPhysicianBeret
   - MedicalHeadMirror
   - BlueSurgeryCap
   - GreenSurgeryCap
@@ -992,8 +1119,6 @@
   loadouts:
   - MedicalDoctorJumpsuit
   - MedicalDoctorJumpskirt
-  - SeniorPhysicianJumpsuit
-  - SeniorPhysicianJumpskirt
   - MedicalBlueScrubs
   - MedicalGreenScrubs
   - MedicalPurpleScrubs
@@ -1005,7 +1130,6 @@
   loadouts:
   - RegularLabCoat
   - MedicalDoctorWintercoat
-  - SeniorPhysicianLabCoat
 
 - type: loadoutGroup
   id: MedicalBackpack
@@ -1021,13 +1145,6 @@
   loadouts:
   - WhiteShoes
   - MedicalWinterBoots
-
-- type: loadoutGroup
-  id: MedicalDoctorPDA
-  name: loadout-group-medical-doctor-id
-  loadouts:
-  - MedicalDoctorPDA
-  - SeniorPhysicianPDA
 
 - type: loadoutGroup
   id: MedicalGloves
@@ -1104,6 +1221,17 @@
   - BlueShoes
   - MedicalWinterBoots
 
+- type: loadoutGroup
+  id: SurvivalMedical
+  name: loadout-group-survival-medical
+  minLimit: 2
+  hidden: true
+  loadouts:
+  - EmergencyNitrogenMedical
+  - EmergencyOxygenMedical
+  - LoadoutSpeciesVoxNitrogen
+  - EmergencyWithoutGasMedical # Sunrise-Edit
+
 # Wildcards
 - type: loadoutGroup
   id: ReporterJumpsuit
@@ -1111,6 +1239,13 @@
   loadouts:
   - ReporterJumpsuit
   - JournalistJumpsuit
+
+- type: loadoutGroup
+  id: PsychologistJumpsuit
+  name: loadout-group-psychologist-jumpsuit
+  loadouts:
+  - PsychologistJumpsuit
+  - PsychologistJumpskirt
 
 - type: loadoutGroup
   id: BoxerJumpsuit
@@ -1127,3 +1262,42 @@
   - BlueBoxingGloves
   - GreenBoxingGloves
   - YellowBoxingGloves
+
+# Other
+- type: loadoutGroup
+  id: SurvivalSyndicate
+  name: loadout-group-survival-syndicate
+  minLimit: 2
+  hidden: true
+  loadouts:
+  - EmergencyNitrogenSyndicate
+  - EmergencyOxygenSyndicate
+  - LoadoutSpeciesVoxNitrogen
+  - EmergencyWithoutGasSyndicate # Sunrise-Edit
+
+- type: loadoutGroup
+  id: GroupSpeciesBreathTool
+  name: loadout-group-breath-tool
+  minLimit: 1
+  maxLimit: 1
+  hidden: true
+  loadouts:
+  - LoadoutSpeciesBreathTool
+
+- type: loadoutGroup
+  id: GroupSpeciesBreathToolMedical
+  name: loadout-group-breath-tool
+  minLimit: 1
+  maxLimit: 1
+  hidden: true
+  loadouts:
+  - LoadoutSpeciesBreathToolMedical
+
+- type: loadoutGroup
+  id: GroupSpeciesBreathToolSecurity
+  name: loadout-group-breath-tool
+  minLimit: 1
+  maxLimit: 1
+  hidden: true
+  loadouts:
+  - LoadoutSpeciesBreathToolSecurity

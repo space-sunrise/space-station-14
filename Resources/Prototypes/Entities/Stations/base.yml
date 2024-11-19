@@ -5,12 +5,6 @@
     - type: StationData
 
 - type: entity
-  id: BaseRandomStation
-  abstract: true
-  components:
-    - type: StationRandomTransform
-
-- type: entity
   id: BaseStationCargo
   abstract: true
   components:
@@ -45,39 +39,56 @@
   components:
     - type: GatewayGenerator
 
-- type: entity
-  id: BaseStationShuttles
-  abstract: true
-  components:
-    - type: StationCargoShuttle
-      path: /Maps/Shuttles/cargo.yml
-    - type: GridSpawn
-      groups:
-        trade:
-          addComponents:
-            - type: ProtectedGrid
-            - type: TradeStation
-          paths:
-            - /Maps/Shuttles/trading_outpost.yml
-        mining:
-          paths:
-          - /Maps/_Sunrise/Shuttles/mining_shuttle.yml # Sunrise-edit
-        # Spawn last
-        ruins:
-          hide: true
-          nameGrid: true
-          minCount: 2
-          maxCount: 2
-          stationGrid: false
-          paths:
-          - /Maps/Ruins/biodome_satellite.yml
-          - /Maps/Ruins/derelict.yml
-          - /Maps/Ruins/djstation.yml
-          - /Maps/Ruins/old_ai_sat.yml
-          - /Maps/Ruins/relaystation.yml
-          - /Maps/Ruins/syndicate_dropship.yml
-          - /Maps/Ruins/whiteship_ancient.yml
-          - /Maps/Ruins/whiteship_bluespacejumper.yml
+# Sunrise-Start
+#- type: entity
+#  id: BaseStationShuttles
+#  abstract: true
+#  components:
+#  - type: StationCargoShuttle
+#    path: /Maps/Shuttles/cargo.yml
+#  - type: GridSpawn
+#    groups:
+#      trade: !type:GridSpawnGroup
+#        addComponents:
+#        - type: ProtectedGrid
+#        - type: TradeStation
+#        paths:
+#        - /Maps/Shuttles/trading_outpost.yml
+#      ruins: !type:GridSpawnGroup
+#        hide: true
+#        nameGrid: true
+#        minCount: 2
+#        maxCount: 2
+#        stationGrid: false
+#        paths:
+#        - /Maps/Ruins/chunked_tcomms.yml
+#        - /Maps/Ruins/biodome_satellite.yml
+#        - /Maps/Ruins/derelict.yml
+#        - /Maps/Ruins/djstation.yml
+#        - /Maps/Ruins/empty_flagship.yml
+#        - /Maps/Ruins/old_ai_sat.yml
+#        - /Maps/Ruins/syndicate_dropship.yml
+#        - /Maps/Ruins/whiteship_ancient.yml
+#        - /Maps/Ruins/whiteship_bluespacejumper.yml
+#      vgroid: !type:DungeonSpawnGroup
+#        minimumDistance: 300
+#        maximumDistance: 350
+#        nameDataset: names_borer
+#        stationGrid: false
+#        addComponents:
+#        - type: Gravity
+#          enabled: true
+#          inherent: true
+#        protos:
+#        - VGRoid
+#Sunrise-End
+
+# Sunrise-Edit: Вынесено в _Sunrise
+#- type: entity
+#  id: BaseStationCentcomm
+#  abstract: true
+#  components:
+#    - type: StationCentcomm
 
 - type: entity
   id: BaseStationEvacuation
@@ -122,51 +133,3 @@
   abstract: true
   components:
     - type: StationEventEligible # For when someone makes this more granular in the future.
-
-# Sunrise-start
-- type: entity
-  id: BaseCentCommShuttles
-  abstract: true
-  components:
-  - type: GridSpawn
-    groups:
-      shuttles:
-        addComponents:
-        - type: CentCommShuttle
-        paths:
-        - /Maps/_Sunrise/Shuttles/centcom_shuttle.yml
-
-- type: entity
-  id: BaseStationCentComm
-  abstract: true
-  components:
-  - type: StationCentComm
-    station: SunriseCentComm
-    shuttleWhitelist:
-      components:
-      - CentCommShuttle
-      - ErtShuttle
-
-- type: entity
-  id: BaseStationImmortal
-  abstract: true
-  components:
-  - type: StationImmortal
-
-- type: entity
-  id: BaseStationDontSelling
-  abstract: true
-  components:
-  - type: StationDontSellingGrid
-
-- type: entity
-  id: BaseStationTransitHub
-  abstract: true
-  components:
-  - type: StationTransitHub
-    map: /Maps/_Sunrise/Nonstations/transit_hub.yml
-    biomes:
-    - Grasslands
-    - LowDesert
-    - Snow
-# Sunrise-end

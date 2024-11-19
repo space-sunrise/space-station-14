@@ -8,6 +8,7 @@ using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Content.Shared.Traits;
+using Content.Sunrise.Interfaces.Shared;
 using Robust.Shared.Collections;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
@@ -62,6 +63,8 @@ namespace Content.Shared.Preferences
 
         [DataField]
         private Dictionary<string, RoleLoadout> _loadouts = new();
+
+        private ISharedSponsorsManager? _sponsorsMgr;  // Sunrise-Sponsors
 
         [DataField]
         public string Name { get; set; } = "John Doe";
@@ -127,7 +130,7 @@ namespace Content.Shared.Preferences
         /// </summary>
         [DataField]
         public PreferenceUnavailableMode PreferenceUnavailable { get; private set; } =
-            PreferenceUnavailableMode.SpawnAsOverflow;
+            PreferenceUnavailableMode.StayInLobby; // Sunrise-Edit
 
         public HumanoidCharacterProfile(
             string name,
@@ -224,7 +227,8 @@ namespace Content.Shared.Preferences
 
             var species = random.Pick(prototypeManager
                 .EnumeratePrototypes<SpeciesPrototype>()
-                .Where(x => ignoredSpecies == null ? x.RoundStart : x.RoundStart && !ignoredSpecies.Contains(x.ID))
+                .Where(x => (ignoredSpecies == null ? x.RoundStart : x.RoundStart && !ignoredSpecies.Contains(x.ID))
+                            && !x.SponsorOnly)
                 .ToArray()
             ).ID;
 
@@ -247,7 +251,8 @@ namespace Content.Shared.Preferences
             // Sunrise-TTS-Start
             var voiceId = random.Pick(prototypeManager
                 .EnumeratePrototypes<TTSVoicePrototype>()
-                .Where(o => CanHaveVoice(o, sex)).ToArray()
+                .Where(o => CanHaveVoice(o, sex) && !o.SponsorOnly)
+                .ToArray()
             ).ID;
             // Sunrise-TTS-End
 
@@ -408,48 +413,58 @@ namespace Content.Shared.Preferences
             };
         }
 
-        public HumanoidCharacterProfile WithTraitPreference(ProtoId<TraitPrototype> traitId, string? categoryId, bool pref)
+        public HumanoidCharacterProfile WithTraitPreference(ProtoId<TraitPrototype> traitId, IPrototypeManager protoManager)
         {
-            var prototypeManager = IoCManager.Resolve<IPrototypeManager>();
-            var traitProto = prototypeManager.Index(traitId);
+            // null category is assumed to be default.
+            if (!protoManager.TryIndex(traitId, out var traitProto))
+                return new(this);
 
-            TraitCategoryPrototype? categoryProto = null;
-            if (categoryId != null && categoryId != "default")
-                categoryProto = prototypeManager.Index<TraitCategoryPrototype>(categoryId);
+            var category = traitProto.Category;
 
+            // Category not found so dump it.
+            TraitCategoryPrototype? traitCategory = null;
+
+            if (category != null && !protoManager.TryIndex(category, out traitCategory))
+                return new(this);
+
+            var list = new HashSet<ProtoId<TraitPrototype>>(_traitPreferences) { traitId };
+
+            if (traitCategory == null || traitCategory.MaxTraitPoints < 0)
+            {
+                return new(this)
+                {
+                    _traitPreferences = list,
+                };
+            }
+
+            var count = 0;
+            foreach (var trait in list)
+            {
+                // If trait not found or another category don't count its points.
+                if (!protoManager.TryIndex<TraitPrototype>(trait, out var otherProto) ||
+                    otherProto.Category != traitCategory)
+                {
+                    continue;
+                }
+
+                count += otherProto.Cost;
+            }
+
+            if (count > traitCategory.MaxTraitPoints && traitProto.Cost != 0)
+            {
+                return new(this);
+            }
+
+            return new(this)
+            {
+                _traitPreferences = list,
+            };
+        }
+
+        public HumanoidCharacterProfile WithoutTraitPreference(ProtoId<TraitPrototype> traitId, IPrototypeManager protoManager)
+        {
             var list = new HashSet<ProtoId<TraitPrototype>>(_traitPreferences);
-
-            if (pref)
-            {
-                list.Add(traitId);
-
-                if (categoryProto == null || categoryProto.MaxTraitPoints < 0)
-                {
-                    return new(this)
-                    {
-                        _traitPreferences = list,
-                    };
-                }
-
-                var count = 0;
-                foreach (var trait in list)
-                {
-                    var traitProtoTemp = prototypeManager.Index(trait);
-                    count += traitProtoTemp.Cost;
-                }
-
-                if (count > categoryProto.MaxTraitPoints && traitProto.Cost != 0)
-                {
-                    return new(this)
-                    {
-                        _traitPreferences = _traitPreferences,
-                    };
-                }
-            }
-            else
-            {
-                list.Remove(traitId);
-            }
+            list.Remove(traitId);
 
             return new(this)
             {
@@ -560,11 +575,11 @@ namespace Content.Shared.Preferences
             string flavortext;
             if (FlavorText.Length > MaxDescLength)
             {
-                flavortext = FormattedMessage.RemoveMarkup(FlavorText)[..MaxDescLength];
+                flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText)[..MaxDescLength];
             }
             else
             {
-                flavortext = FormattedMessage.RemoveMarkup(FlavorText);
+                flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText);
             }
 
             var appearance = HumanoidCharacterAppearance.EnsureValid(Appearance, Species, Sex, sponsorPrototypes);
@@ -572,7 +587,7 @@ namespace Content.Shared.Preferences
             var prefsUnavailableMode = PreferenceUnavailable switch
             {
                 PreferenceUnavailableMode.StayInLobby => PreferenceUnavailableMode.StayInLobby,
-                PreferenceUnavailableMode.SpawnAsOverflow => PreferenceUnavailableMode.SpawnAsOverflow,
+                //PreferenceUnavailableMode.SpawnAsOverflow => PreferenceUnavailableMode.SpawnAsOverflow, // Sunrise-Edit
                 _ => PreferenceUnavailableMode.StayInLobby // Invalid enum values.
             };
 
@@ -606,11 +621,11 @@ namespace Content.Shared.Preferences
             }
 
             var antags = AntagPreferences
-                .Where(id => prototypeManager.TryIndex<AntagPrototype>(id, out var antag) && antag.SetPreference)
+                .Where(id => prototypeManager.TryIndex(id, out var antag) && antag.SetPreference)
                 .ToList();
 
             var traits = TraitPreferences
-                         .Where(prototypeManager.HasIndex<TraitPrototype>)
+                         .Where(prototypeManager.HasIndex)
                          .ToList();
 
             Name = name;
@@ -634,7 +649,7 @@ namespace Content.Shared.Preferences
             _antagPreferences.UnionWith(antags);
 
             _traitPreferences.Clear();
-            _traitPreferences.UnionWith(traits);
+            _traitPreferences.UnionWith(GetValidTraits(traits, prototypeManager));
 
             // Sunrise-TTS-Start
             prototypeManager.TryIndex<TTSVoicePrototype>(Voice, out var voice);
@@ -662,8 +677,46 @@ namespace Content.Shared.Preferences
             }
         }
 
+        /// <summary>
+        /// Takes in an IEnumerable of traits and returns a List of the valid traits.
+        /// </summary>
+        public List<ProtoId<TraitPrototype>> GetValidTraits(IEnumerable<ProtoId<TraitPrototype>> traits, IPrototypeManager protoManager)
+        {
+            // Track points count for each group.
+            var groups = new Dictionary<string, int>();
+            var result = new List<ProtoId<TraitPrototype>>();
+
+            foreach (var trait in traits)
+            {
+                if (!protoManager.TryIndex(trait, out var traitProto))
+                    continue;
+
+                // Always valid.
+                if (traitProto.Category == null)
+                {
+                    result.Add(trait);
+                    continue;
+                }
+
+                // No category so dump it.
+                if (!protoManager.TryIndex(traitProto.Category, out var category))
+                    continue;
+
+                var existing = groups.GetOrNew(category.ID);
+                existing += traitProto.Cost;
+
+                // Too expensive.
+                if (existing > category.MaxTraitPoints)
+                    continue;
+
+                groups[category.ID] = existing;
+                result.Add(trait);
+            }
+
+            return result;
+        }
+
         // Sunrise-TTS-Start
-        // SHOULD BE NOT PUBLIC, BUT....
         public static bool CanHaveVoice(TTSVoicePrototype voice, Sex sex)
         {
             return voice.RoundStart && sex == Sex.Unsexed || (voice.Sex == sex || voice.Sex == Sex.Unsexed);
@@ -733,15 +786,15 @@ namespace Content.Shared.Preferences
             return profile;
         }
 
-        public RoleLoadout GetLoadoutOrDefault(string id, ProtoId<SpeciesPrototype>? species, IEntityManager entManager, IPrototypeManager protoManager)
+        public RoleLoadout GetLoadoutOrDefault(string id, ICommonSession? session, ProtoId<SpeciesPrototype>? species, IEntityManager entManager, IPrototypeManager protoManager, string [] sponsorPrototypes)
         {
             if (!_loadouts.TryGetValue(id, out var loadout))
             {
                 loadout = new RoleLoadout(id);
-                loadout.SetDefault(protoManager, force: true);
+                loadout.SetDefault(this, session, protoManager, sponsorPrototypes, force: true);
             }
 
-            loadout.SetDefault(protoManager);
+            loadout.SetDefault(this, session, protoManager, sponsorPrototypes);
             return loadout;
         }
 

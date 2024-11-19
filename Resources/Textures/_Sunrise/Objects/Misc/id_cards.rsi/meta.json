@@ -1,12 +1,31 @@
 {
     "version": 1,
     "license": "CLA",
-    "copyright": "SUNRISE",
+    "copyright": "© SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt",
     "size": {
         "x": 32,
         "y": 32
     },
     "states": [
+        {
+            "name": "default"
+        },
+        {
+            "name": "adj-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "adj-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "default-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "default-inhand-right",
+            "directions": 4
+        },
         {
             "name": "silver"
         },
@@ -19,7 +38,31 @@
             "directions": 4
         },
         {
+            "name": "idadjutant"
+        },
+        {
+            "name": "idbarber"
+        },
+        {
             "name": "idblueshield"
+        },
+        {
+            "name": "idguardian-space-prison"
+        },
+        {
+            "name": "idheadofprison-space-prison"
+        },
+        {
+            "name": "idprisoner-space-prison"
+        },
+        {
+            "name": "idprisonpilot-space-prison"
+        },
+        {
+            "name": "orange-space-prison"
+        },
+        {
+            "name": "prisoner-space-prison"
         }
     ]
 }

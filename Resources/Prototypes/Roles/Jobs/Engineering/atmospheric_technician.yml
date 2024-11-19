@@ -10,11 +10,16 @@
   startingGear: AtmosphericTechnicianGear
   icon: "JobIconAtmosphericTechnician"
   supervisors: job-supervisors-ce
+  canBeAntag: false # Sunrise MRP
+  displayWeight: 20  # Sunrise
   access:
   - Maintenance
   - Engineering
   - External
   - Atmospherics
+  special: # Sunrise MRP - МЩ для того, чтобы у тех кто имеет приоритет на антагов не было вопросов почему на атмосе не дропает
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
 
 - type: startingGear
   id: AtmosphericTechnicianGear
@@ -23,6 +28,6 @@
     id: AtmosPDA
     belt: ClothingBeltUtilityEngineering
     ears: ClothingHeadsetEngineering
-  storage:
-    back:
-    - BoxSurvivalEngineering
+  #storage:
+    #back:
+    #- Stuff

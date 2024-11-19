@@ -1,0 +1,4 @@
+﻿- type: shader
+  id: SaturationScale
+  kind: source
+  path: "/Textures/Shaders/saturationscale.swsl"

@@ -1,4 +1,45 @@
 - type: entity
+  id: CombatMech
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Magboots
+  - type: Mech
+    equipmentWhitelist:
+      tags:
+      - CombatMech
+
+- type: entity
+  id: IndustrialMech
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Mech
+    equipmentWhitelist:
+      tags:
+      - IndustrialMech
+
+- type: entity
+  id: SpecialMech
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Mech
+    equipmentWhitelist:
+      tags:
+      - SpecialMech
+
+- type: entity
+  id: SmallMech
+  abstract: true
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Mech
+    equipmentWhitelist:
+      tags:
+      - SmallMech
+
+- type: entity
   id: BaseMech
   save: false
   abstract: true
@@ -35,8 +76,13 @@
     joinSystem: true
   - type: DoAfter
   - type: Repairable
-    fuelCost: 25
-    doAfterDelay: 10
+    fuelCost: 30
+    doAfterDelay: 5
+    damage:
+      types:
+        Blunt: -15
+        Slash: -15
+        Piercing: -15
   - type: UserInterface
     interfaces:
       enum.MechUiKey.Key:
@@ -62,10 +108,10 @@
     - DoorBumpOpener
     - FootstepSound
   - type: Pullable
-  - type: Physics
-    bodyType: KinematicController
   - type: Clickable
   - type: WiresPanel
+  - type: Physics
+    bodyType: Dynamic
   - type: Fixtures
     fixtures:
       fix1:
@@ -77,6 +123,25 @@
         - MobMask
         layer:
         - MobLayer
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Critical
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      500: Critical
+    showOverlays: false
+    allowRevives: true
+  - type: HealthExaminable
+    examinableTypes:
+      - Blunt
+      - Slash
+      - Piercing
+      - Heat
+      - Shock
+    locPrefix: mech
   - type: Appearance
   - type: ContainerContainer
     containers:
@@ -84,25 +149,49 @@
       mech-equipment-container: !type:Container
       mech-battery-slot: !type:ContainerSlot
   - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Metallic
+    damageContainer: Mech
+    damageModifierSet: LightArmor
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/mechmove03.ogg
   - type: GuideHelp
     guides:
     - Robotics
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 700
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: start
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Prying
+  - type: StatusIcon
+    bounds: "-0.6,-0.6, 0.6, 0.6"
+  - type: PointLight
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    radius: 4
+    netsync: false
 
+# Ripley MK-I
 - type: entity
   id: MechRipley
-  parent: BaseMech
+  parent: [ BaseMech, IndustrialMech, BaseCargoContraband ]
   name: Ripley APLU
   description: Versatile and lightly armored, the Ripley is useful for almost any heavy work scenario. The "APLU" stands for Autonomous Power Loading Unit.
   components:
   - type: Sprite
     drawdepth: Mobs
     noRot: true
-    sprite: Objects/Specific/Mech/mecha.rsi
+    sprite: Objects/Specific/Mech/ripley.rsi
+    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: ripley
@@ -126,6 +215,24 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.25
     baseSprintSpeed: 3.6
+  - type: Reflect
+    reflectProb: 0.15
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    reflects:
+    - NonEnergy
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - Ripley
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      200: Critical
+    showOverlays: false
+    allowRevives: true
 
 - type: entity
   id: MechRipleyBattery
@@ -135,11 +242,146 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHigh
+      - PowerCageSmall
 
-# TODO: have a whitelist for honker equipment
+# Ripley MK-II
 - type: entity
-  parent: BaseMech
+  id: MechRipley2
+  parent: [ BaseMech, IndustrialMech, BaseCargoContraband ]
+  name: Ripley APLU MK-II
+  description: The "MK-II" has a pressurized cabin for space operations, but the added weight has slowed it down.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/ripley.rsi
+    scale: 1.08, 1.08
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: ripleymkii
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Mech
+    baseState: ripleymkii
+    openState: ripleymkii-open
+    brokenState: ripleymkii-broken
+    mechToPilotDamageMultiplier: 0.4
+    airtight: true
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 20
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1
+    baseSprintSpeed: 2
+  - type: Damageable
+    damageModifierSet: MediumArmorNT
+  - type: Reflect
+    reflectProb: 0.25
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    reflects:
+    - NonEnergy
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      250: Critical
+    showOverlays: false
+    allowRevives: true
+
+- type: entity
+  id: MechRipley2Battery
+  parent: MechRipley2
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCageSmall
+
+# Clarke
+- type: entity
+  id: MechClarke
+  parent: [ BaseMech, IndustrialMech, BaseCargoContraband ]
+  name: Clarke
+  description: A fast-moving mech for space travel. It has built-in trusts.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/clarke.rsi
+    scale: 1.08, 1.08
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: clarke
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Mech
+    baseState: clarke
+    openState: clarke-open
+    brokenState: clarke-broken
+    mechToPilotDamageMultiplier: 0.5
+    airtight: true
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 26
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 4.5
+  - type: CanMoveInAir
+  - type: MovementAlwaysTouching
+  - type: Reflect
+    reflectProb: 0.25
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    reflects:
+    - NonEnergy
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      250: Critical
+    showOverlays: false
+    allowRevives: true
+  - type: PointLight
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    radius: 8
+    netsync: false
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - Clarke
+
+- type: entity
+  id: MechClarkeBattery
+  parent: MechClarke
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCageSmall
+
+# H.O.N.K.
+- type: entity
+  parent: [ BaseMech, SpecialMech, BaseCivilianContraband ]
   id: MechHonker
   name: H.O.N.K.
   description: "Produced by \"Tyranny of Honk, INC\", this exosuit is designed as heavy clown-support. Used to spread the fun and joy of life. HONK!"
@@ -148,20 +390,37 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: honker
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepClown
+      params:
+        variation: 0.17
   - type: Mech
     baseState: honker
     openState: honker-open
     brokenState: honker-broken
     mechToPilotDamageMultiplier: 0.5
+    airtight: true # Space Honks is real.
     pilotWhitelist:
       components:
       - HumanoidAppearance
+  - type: Reflect
+    reflectProb: 0.15
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    reflects:
+    - NonEnergy
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      150: Critical
+    showOverlays: false
+    allowRevives: true
 
 - type: entity
   parent: MechHonker
@@ -171,10 +430,22 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHigh
+      - PowerCageSmall
 
 - type: entity
-  parent: BaseMech
+  parent: MechHonkerBattery
+  id: MechHonkerFilled
+  suffix: Battery, Filled
+  components:
+  - type: Mech
+    startingEquipment:
+      - WeaponMechSpecialBananaMortar
+      - WeaponMechSpecialMousetrapMortar
+      - MechEquipmentHorn
+
+# HAMTR
+- type: entity
+  parent: [ BaseMech, SmallMech ]
   id: MechHamtr
   name: HAMTR
   description: "An experimental mech which uses a brain–computer interface to connect directly to a hamsters brain."
@@ -183,6 +454,7 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: hamtr
@@ -196,9 +468,6 @@
     mechToPilotDamageMultiplier: 0.2
     maxEquipmentAmount: 2
     airtight: true
-    equipmentWhitelist:
-      tags:
-      - SmallMech
     pilotWhitelist:
       tags:
       - Hamster
@@ -212,7 +481,20 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.4
     baseSprintSpeed: 3.7
-
+  - type: Reflect
+    reflectProb: 0.15
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    reflects:
+    - NonEnergy
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      150: Critical
+    showOverlays: false
+    allowRevives: true
+    
 - type: entity
   parent: MechHamtr
   id: MechHamtrBattery
@@ -221,7 +503,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHigh
+      - PowerCageSmall
 
 # Vim!!!!!!!
 
@@ -235,6 +517,7 @@
     drawdepth: Mobs
     noRot: true
     sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
     layers:
     - map: [ "enum.MechVisualLayers.Base" ]
       state: vim
@@ -275,6 +558,22 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.25
     baseSprintSpeed: 3.6
+  - type: Access
+    tags:
+    - Maintenance
+  - type: Reflect
+    reflectProb: 0.15
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    reflects:
+    - NonEnergy
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      150: Critical
+    showOverlays: false
+    allowRevives: true
   # TOOD: buzz / chime actions
   # TODO: builtin flashlight
 
@@ -286,4 +585,676 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCellHigh
+      - PowerCageSmall
+
+# Combat-Station Mechs
+
+# Gygax
+- type: entity
+  id: MechGygax
+  parent: [ BaseMech, CombatMech, BaseRestrictedContraband ]
+  name: Gygax
+  description: While lightly armored, the Gygax has incredible mobility thanks to its ability that lets it smash through walls at high speeds.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/gygax.rsi
+    scale: 1.08, 1.08
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: gygax
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Mech
+    baseState: gygax
+    openState: gygax-open
+    brokenState: gygax-broken
+    mechToPilotDamageMultiplier: 0.3
+    airtight: true
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 25
+        Structural: 180
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 2.6
+  - type: Reflect
+    reflectProb: 0.25
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    reflects:
+    - NonEnergy
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      300: Critical
+    showOverlays: false
+    allowRevives: true
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - Gygax
+
+- type: entity
+  id: MechGygaxBattery
+  parent: MechGygax
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCageHigh
+
+# Durand
+- type: entity
+  id: MechDurand
+  parent: [ BaseMech, CombatMech, BaseRestrictedContraband ]
+  name: Durand
+  description: A slow but beefy combat exosuit that is extra scary in confined spaces due to its punches. Xenos hate it!
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/durand.rsi
+    scale: 1.08, 1.08
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: durand
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Mech
+    baseState: durand
+    openState: durand-open
+    brokenState: durand-broken
+    mechToPilotDamageMultiplier: 0.25
+    airtight: true
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 40
+        Structural: 220
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 2
+  - type: Damageable
+    damageModifierSet: MediumArmorNT
+  - type: CanMoveInAir
+  - type: MovementAlwaysTouching
+  - type: Reflect
+    reflectProb: 0.25
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    reflects:
+    - NonEnergy
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      450: Critical
+    showOverlays: false
+    allowRevives: true
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - Durand
+
+- type: entity
+  id: MechDurandBattery
+  parent: MechDurand
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCageHigh
+      
+# Phazon
+
+- type: entity
+  id: MechPhazon
+  parent: [ BaseMech, CombatMech, BaseRestrictedContraband ]
+  name: Phazon
+  description: The most advanced mech on the market, the pinnacle of technological development, extremely mobile and deadly.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: phazon
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Mech
+    baseState: phazon
+    openState: phazon-open
+    brokenState: phazon-broken
+    mechToPilotDamageMultiplier: 0.4
+    maxEquipmentAmount: 6
+    airtight: true
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 20
+        Structural: 130
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.2
+    baseSprintSpeed: 4
+  - type: Reflect
+    reflectProb: 0.65
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    reflects:
+    - NonEnergy
+    - Energy
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      200: Critical
+    showOverlays: false
+    allowRevives: true
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - Phazon
+
+- type: entity
+  id: MechPhazonBattery
+  parent: MechPhazon
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCageHigh
+
+# Nanotrasen Combat Mechs
+
+# NT Gygax
+- type: entity
+  id: MechNTGygax
+  parent: [ BaseMech, CombatMech, BaseRestrictedContraband ]
+  name: Nanotrasen Special Gygax
+  description: "Nanotrasen's trump card when solving problems. High durability, increased protection against shock, explosions, temperature, shots: conventional, laser and energy, as well as expanded equipment slots allow to turn the situation on the station upside down. Gas pedals consume a colossal amount of energy."
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/gygax.rsi
+    scale: 1.08, 1.08
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: ntgygax
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Mech
+    baseState: ntgygax
+    openState: ntgygax-open
+    brokenState: ntgygax-broken
+    mechToPilotDamageMultiplier: 0.2
+    airtight: true
+    maxEquipmentAmount: 4
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 30
+        Structural: 180
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.4
+    baseSprintSpeed: 3
+  - type: Reflect
+    reflectProb: 0.30
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    reflects:
+    - NonEnergy
+  - type: Damageable
+    damageModifierSet: MediumArmorNT
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      400: Critical
+    showOverlays: false
+    allowRevives: true
+
+- type: entity
+  id: MechNTGygaxBattery
+  parent: MechNTGygax
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCageHigh
+      
+- type: entity
+  id: MechNTGygaxFilled
+  parent: MechNTGygaxBattery
+  suffix: Battery, Filled
+  components:
+  - type: Mech
+    startingEquipment:
+      - WeaponMechChainSword
+      - WeaponMechCombatPulseRifle
+      - WeaponMechCombatXray
+      - WeaponMechCombatMissileRack6
+
+# Marauder
+- type: entity
+  id: MechMarauder
+  parent: [ BaseMech, CombatMech, BaseCentcommContraband ]
+  name: Marauder
+  description: Looks like we're all saved. # ERT mech
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: marauder
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Mech
+    baseState: marauder
+    openState: marauder-open
+    brokenState: marauder-broken
+    mechToPilotDamageMultiplier: 0.1
+    airtight: true
+    maxEquipmentAmount: 4
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 40
+        Structural: 200
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1
+    baseSprintSpeed: 1.5
+  - type: Damageable
+    damageModifierSet: HeavyArmorNT
+  - type: CanMoveInAir
+  - type: MovementAlwaysTouching
+  - type: Reflect
+    reflectProb: 0.4
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    reflects:
+    - NonEnergy
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      500: Critical
+    showOverlays: false
+    allowRevives: true
+
+- type: entity
+  id: MechMarauderBattery
+  parent: MechMarauder
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCageHigh
+
+- type: entity
+  id: MechMarauderFilled
+  parent: MechMarauderBattery
+  suffix: Battery, Filled
+  components:
+  - type: Mech
+    startingEquipment:
+      - WeaponMechChainSword
+      - WeaponMechCombatPulseRifle
+      - WeaponMechCombatUltraRifle
+      - WeaponMechCombatMissileRack8
+
+# Seraph
+- type: entity
+  id: MechSeraph
+  parent: [ BaseMech, CombatMech, BaseCentcommContraband ]
+  name: Seraph
+  description: That's the last thing you'll see.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: seraph
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Mech
+    baseState: seraph
+    openState: seraph-open
+    brokenState: seraph-broken
+    mechToPilotDamageMultiplier: 0.05
+    airtight: true
+    maxEquipmentAmount: 5
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 60
+        Structural: 400
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.2
+    baseSprintSpeed: 3.7
+  - type: Damageable
+    damageModifierSet: HeavyArmorNT
+  - type: CanMoveInAir
+  - type: MovementAlwaysTouching
+  - type: Reflect
+    reflectProb: 0.4
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    reflects:
+    - NonEnergy
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      550: Critical
+    showOverlays: false
+    allowRevives: true
+
+- type: entity
+  id: MechSeraphBattery
+  parent: MechSeraph
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCageHigh
+
+- type: entity
+  id: MechSeraphFilled
+  parent: MechSeraphBattery
+  suffix: Battery, Filled
+  components:
+  - type: Mech
+    startingEquipment:
+      - WeaponMechChainSword
+      - WeaponMechCombatPulseRifle
+      - WeaponMechCombatShotgun
+      - WeaponMechCombatMissileRack6
+      - WeaponMechCombatUltraRifle
+
+# Syndicate Combat Mech
+
+# Dark Gygax
+- type: entity
+  id: MechGygaxSyndie
+  parent: [ BaseMech, CombatMech, BaseSyndicateContraband ]
+  name: Dark Gygax
+  description: A modified Gygax used for nefarious purposes. On the back of the armor plate there is an inscription "Cybersun Inc."
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/gygax.rsi
+    scale: 1.08, 1.08
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: darkgygax
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Mech
+    baseState: darkgygax
+    openState: darkgygax-open
+    brokenState: darkgygax-broken
+    mechToPilotDamageMultiplier: 0.2
+    airtight: true
+    maxEquipmentAmount: 4
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 30
+        Structural: 200
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.2
+    baseSprintSpeed: 3.7
+  - type: Damageable
+    damageModifierSet: MediumArmorSyndi
+  - type: CanMoveInAir
+  - type: MovementAlwaysTouching
+  - type: Reflect
+    reflectProb: 0.30
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    reflects:
+    - NonEnergy
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      350: Critical
+    showOverlays: false
+    allowRevives: true
+
+- type: entity
+  id: MechGygaxSyndieBattery
+  parent: MechGygaxSyndie
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCageHigh
+
+- type: entity
+  id: MechGygaxSyndieFilled
+  parent: MechGygaxSyndieBattery
+  suffix: Battery, Filled
+  components:
+  - type: Mech
+    startingEquipment:
+      - WeaponMechChainSword
+      - WeaponMechCombatMissileRack8
+      
+# Rover
+- type: entity
+  id: MechRoverSyndie
+  parent: [ BaseMech, CombatMech, BaseSyndicateContraband ]
+  name: Rover
+  description: A modified Durand used for nefarious purposes. On the back of the armor plate there is an inscription "Cybersun Inc."
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/durand.rsi
+    scale: 1.08, 1.08
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: darkdurand
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Mech
+    baseState: darkdurand
+    openState: darkdurand-open
+    brokenState: darkdurand-broken
+    mechToPilotDamageMultiplier: 0.15
+    airtight: true
+    maxEquipmentAmount: 5
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 30
+        Structural: 200
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 3
+  - type: Damageable
+    damageModifierSet: MediumArmorSyndi
+  - type: CanMoveInAir
+  - type: MovementAlwaysTouching
+  - type: Reflect
+    reflectProb: 0.35
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    reflects:
+    - NonEnergy
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      450: Critical
+    showOverlays: false
+    allowRevives: true
+
+- type: entity
+  id: MechRoverSyndieBattery
+  parent: MechRoverSyndie
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCageHigh
+
+- type: entity
+  id: MechRoverSyndieFilled
+  parent: MechRoverSyndieBattery
+  suffix: Battery, Filled
+  components:
+  - type: Mech
+    startingEquipment:
+      - WeaponMechChainSword
+      - WeaponMechCombatMissileRack8
+
+# Mauler
+- type: entity
+  id: MechMaulerSyndie
+  parent: [ BaseMech, CombatMech, BaseSyndicateContraband ]
+  name: Mauler
+  description: A modified Marauder used by the Syndicate that's not as maneuverable as the Dark Gygax, but it makes up for that in armor and sheer firepower. On the back of the armor plate there is an inscription "Cybersun Inc."
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/mecha.rsi
+    scale: 1.08, 1.08
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: mauler
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: Mech
+    baseState: mauler
+    openState: mauler-open
+    brokenState: mauler-broken
+    mechToPilotDamageMultiplier: 0.1
+    airtight: true
+    maxEquipmentAmount: 5
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+  - type: MeleeWeapon
+    hidden: true
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 50
+        Structural: 400
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 1
+    baseSprintSpeed: 1.5
+  - type: Damageable
+    damageModifierSet: HeavyArmorSyndi
+  - type: CanMoveInAir
+  - type: MovementAlwaysTouching
+  - type: Reflect
+    reflectProb: 0.45
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    reflects:
+    - NonEnergy
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      500: Critical
+    showOverlays: false
+    allowRevives: true
+
+- type: entity
+  id: MechMaulerSyndieBattery
+  parent: MechMaulerSyndie
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCageHigh
+
+- type: entity
+  id: MechMaulerSyndieFilled
+  parent: MechMaulerSyndieBattery
+  suffix: Battery, Filled
+  components:
+  - type: Mech
+    startingEquipment:
+      - WeaponMechChainSword
+      - WeaponMechCombatMissileRack6

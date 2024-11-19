@@ -1,0 +1,24 @@
+# © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt;
+
+- type: job
+  id: Barber
+  name: job-name-barber
+  description: job-description-barber
+  playTimeTracker: JobBarber
+  startingGear: BarberGear
+  icon: "JobIconBarber"
+  supervisors: job-supervisors-hop
+  access:
+  - Barber
+  - Service
+  - Maintenance
+
+- type: startingGear
+  id: BarberGear
+  equipment:
+    shoes: ClothingShoesColorBlack
+    id: BarberPDA
+    ears: ClothingHeadsetService
+  storage:
+    back:
+    - BarberRazor

@@ -4,14 +4,225 @@
   name: special operations officer cloak
   description: The NanoTrasen logo embroidered in gold speaks for itself.
   components:
-    - type: Sprite
-      sprite: _Sunrise/Clothing/Neck/Cloaks/centcom_officer_black.rsi
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Cloaks/centcom_officer_black.rsi
 
 - type: entity
   parent: ClothingNeckBase
   id: ClothingNeckCloakCentcomAdmiral
-  name: admiral's cape
+  name: admiral's cloak
   description: A vibrant green cape with gold stitching, worn by Nanotrasen Navy Admirals.
   components:
-    - type: Sprite
-      sprite: _Sunrise/Clothing/Neck/Cloaks/admiral.rsi
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Cloaks/admiral.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakHOSCloak
+  name: head of security's cloak
+  description: The black and red cloak of HOS, symbolizes safety and brutality.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Cloaks/hoscloak.rsi
+    state: icon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakResearchDirector
+  name: research director's cloak
+  description: The purple cape with the DNA helix depicted, demonstrates your omniscience and phenomenality.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Cloaks/rd.rsi
+    state: icon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingEliteNeckCloakCaptain
+  name: captain's cloak
+  description: The large amount of 24 korat gold, lets you understand your status from afar.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Cloaks/cptcloak.rsi
+    state: icon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckEliteCloakCECloak
+  name: chief engineer's cloak
+  description: Weighty but very luxurious white coat with gold ribbons. There is a small label on the back "Change fuel at DAM".
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Cloaks/cecloak.rsi
+    state: icon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakIAACloak
+  name: internal affairs agent's cloak
+  description: Dark fleece head cover. Effectively combines with the general style of an internal affairs agent.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Cloaks/iaa.rsi
+    state: icon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCMOCloak
+  name: chief medical officer's cloak
+  description: Only the best of the best get it. Human who wears it has saved hundreds of lives.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Cloaks/cmocloak.rsi
+    state: icon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakQM
+  name: quartermaster's cloak
+  description: A cloak ready to walk with you through blood, pain, mats, xenomorphs, or something more exotic. Emphasizes the wearer's wealth with a large chiseled diamond, until you find out it's junk.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Cloaks/qmcloak.rsi
+    state: icon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakHOPCloak
+  name: head of personal's cloak
+  description: Head of Personal's cloak. A blue, gold-embroidered cape that reminds you who's the Boss.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Cloaks/hopcloak.rsi
+    state: icon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakBlackSec
+  name: security's cloak
+  description: Black and mysterious.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Cloaks/blackcloak.rsi
+    state: icon
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodBlackCloak
+    requiredSlot:
+    - neck
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakDarthHOSCloak
+  name: Dark Lord's cloak
+  description: A symbolic and awe-inspiring mantle that perfectly depicts the somber majesty of its wearer.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Cloaks/darth-hos.rsi
+    state: icon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakWhite
+  name: republican army officer's shoulder pad
+  description: An item of equipment of an elite soldier with the rank of officer.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Cloaks/securityofficer.rsi
+    state: icon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakAlpha
+  name: alpha cloak
+  description: A cloak that allowed him to hide from his enemies as successfully as an operative could hide from his merits.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Cloaks/alpha.rsi
+    state: icon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakLima
+  name: lima cloak
+  description: A cloak that allowed him to hide from his enemies as successfully as an operative could hide from his merits.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Cloaks/lima.rsi
+    state: icon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakDelta
+  name: delta cloak
+  description: A cloak that allowed him to hide from his enemies as successfully as an operative could hide from his merits.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Cloaks/delta.rsi
+    state: icon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakEcho
+  name: echo cloak
+  description: A cloak that allowed him to hide from his enemies as successfully as an operative could hide from his merits.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Cloaks/echo.rsi
+    state: icon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNecRepublicBodyguard
+  name: imperial guard's robe
+  description: The elite uniforms of the Imperial Guard.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Cloaks/republicbodyguard.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Cloaks/republicbodyguard.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckKailoRen
+  name: black cloak
+  description: Symbolic and capable of evoking awe and fear. Perfectly emphasizes the dark greatness of its owner.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Cloaks/kailo_ren.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Cloaks/kailo_ren.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingCloakGamer
+  name: legendary gamer's cloak
+  description: It is worn by the most experienced professional gamers.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Cloaks/gamer.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingCloakAtmosian
+  name: atmosian's cloak
+  description: The cloak of the legendary Atmosian.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Cloaks/atmosian.rsi
+
+ #Для ивентов
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckCloakUeg
+  name: paratrooper cape
+  description: The cloak of the famous space troopers of the United Government of Earth. It is worn only by those truly honored to be OPZ Space Troopers. This cape represents the freedom and democracy that civilization must strive for. Otherwise, democracy and liberation will be brought by the Earth Government.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Cloaks/ueg_cloak.rsi

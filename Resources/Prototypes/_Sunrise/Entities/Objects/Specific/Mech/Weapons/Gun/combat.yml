@@ -1,0 +1,52 @@
+- type: entity
+  id: WeaponMechCombatVindictor
+  name: Mounted MG-100 Vindicator Minigun
+  suffix: Mech Weapon, Gun, Combat, Minigun
+  parent: [ BaseMechWeaponRange, CombatMechEquipment ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_vindictor.rsi
+    state: mecha_vindictor
+  - type: Gun
+    minAngle: -25
+    maxAngle: 25
+    fireRate: 7
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/HMGs/minigun_shot.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: CartridgeLightRifle
+    fireCost: 20
+  - type: Appearance
+  - type: AmmoCounter
+  
+- type: entity
+  id: WeaponMechCombatUVM31
+  name: UVM-31 "Drake"
+  description: A heavy weapon of mass destruction developed by Cybersun based on the minigun. now on a sturdy tripod that allows you to fire directly from the MECH!
+  suffix: Mech Weapon, Gun, Combat, Laser , Minigun
+  parent: [ BaseMechWeaponRange, CombatMechEquipment ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_uvm31.rsi
+    state: mecha_uvm31
+  - type: Gun
+    minAngle: 8
+    maxAngle: 15
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 4.75
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      collection: syndi_plasma
+      params:
+        volume: -1
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletSyndiPlasma2
+    fireCost: 30
+  - type: Appearance
+  - type: AmmoCounter

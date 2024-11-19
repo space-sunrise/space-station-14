@@ -13,11 +13,20 @@
     {
         "name": "green"
     },
+    {
+        "name": "adjutant"
+    },
 	{
 	    "name": "magistrat"
 	},
     {
+        "name": "ntrep"
+    },
+    {
         "name": "blueshield"
+    },
+    {
+        "name": "barber"
     }
   ]
 }

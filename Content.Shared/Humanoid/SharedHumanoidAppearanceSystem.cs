@@ -8,7 +8,6 @@ using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Preferences;
-using Content.Sunrise.Interfaces.Shared;
 using Robust.Shared;
 using Robust.Shared.Configuration;
 using Robust.Shared.GameObjects.Components.Localization;
@@ -19,6 +18,7 @@ using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Serialization.Markdown;
 using Robust.Shared.Utility;
 using YamlDotNet.RepresentationModel;
+using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Shared.Humanoid;
 
@@ -88,7 +88,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         var profile = export.Profile;
         var collection = IoCManager.Instance;
-        var sponsorPrototypes = _sponsors != null && _sponsors.TryGetPrototypes(session.UserId, out var prototypes) ? prototypes.ToArray() : []; // Sunrise-Sponsors
+        var sponsorPrototypes = _sponsors?.GetClientPrototypes().ToArray() ?? []; // Sunrise-Sponsors
         profile.EnsureValid(session, collection!, sponsorPrototypes);
         return profile;
     }

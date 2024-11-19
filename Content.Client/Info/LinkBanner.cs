@@ -1,7 +1,9 @@
-﻿using Content.Client.Changelog;
-using Content.Client.Credits;
+using Content.Client._Sunrise.Roadmap;
+using Content.Client.Changelog;
+using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Systems.EscapeMenu;
 using Content.Client.UserInterface.Systems.Guidebook;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
@@ -20,7 +22,7 @@ namespace Content.Client.Info
         {
             var buttons = new BoxContainer
             {
-                Orientation = LayoutOrientation.Horizontal
+                Orientation = LayoutOrientation.Horizontal,
             };
             AddChild(buttons);
 
@@ -35,12 +37,8 @@ namespace Content.Client.Info
             AddInfoButton("server-info-website-button", CCVars.InfoLinksWebsite);
             AddInfoButton("server-info-wiki-button", CCVars.InfoLinksWiki);
             AddInfoButton("server-info-forum-button", CCVars.InfoLinksForum);
-
             // Sunrise-Start
-            AddInfoButton("server-info-github-button", CCVars.InfoLinksGithub);
-            var creditsButton = new Button {Text = Loc.GetString("server-info-credits-button")};
-            creditsButton.OnPressed += _ => new CreditsWindow().Open();
-            buttons.AddChild(creditsButton);
+            AddInfoButton("server-info-telegram-button", SunriseCCVars.InfoLinksTelegram);
             // Sunrise-End
 
             var guidebookController = UserInterfaceManager.GetUIController<GuidebookUIController>();
@@ -54,6 +52,16 @@ namespace Content.Client.Info
             var changelogButton = new ChangelogButton();
             changelogButton.OnPressed += args => UserInterfaceManager.GetUIController<ChangelogUIController>().ToggleWindow();
             buttons.AddChild(changelogButton);
+
+            // Sunrise-Start
+            var roadmapButton = new Button
+            {
+                Text = Loc.GetString("server-info-roadmap-button"),
+                StyleClasses = { StyleBase.ButtonCaution },
+            };
+            roadmapButton.OnPressed += _ => UserInterfaceManager.GetUIController<RoadmapUIController>().ToggleRoadmap();
+            buttons.AddChild(roadmapButton);
+            // Sunrise-End
 
             void AddInfoButton(string loc, CVarDef<string> cVar)
             {

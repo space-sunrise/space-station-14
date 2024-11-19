@@ -1,10 +1,10 @@
 using System.Linq;
 using Content.Shared.Preferences;
-using Content.Sunrise.Interfaces.Shared;
 using Robust.Client;
 using Robust.Client.Player;
 using Robust.Shared.Network;
 using Robust.Shared.Utility;
+using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Client.Lobby
 {

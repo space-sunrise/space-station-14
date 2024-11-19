@@ -3,6 +3,7 @@ using Content.Shared.UserInterface;
 using Content.Server.Advertise;
 using Content.Server.Advertise.Components;
 using Content.Shared.Arcade;
+using Content.Shared.Power;
 using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 
@@ -109,7 +110,7 @@ public sealed class BlockGameArcadeSystem : EntitySystem
         }
 
         if (TryComp<SpeakOnUIClosedComponent>(uid, out var speakComponent))
-            _speakOnUIClosed.TrySetFlag((uid, speakComponent));
+            _speakOnUIClosed.TrySetFlag(uid, speakComponent);
 
         component.Game.ProcessInput(msg.PlayerAction);
     }

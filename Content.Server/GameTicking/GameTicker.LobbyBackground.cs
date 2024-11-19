@@ -1,6 +1,7 @@
 using Robust.Shared.Random;
 using System.Linq;
-using System.Numerics;
+using Content.Server.GameTicking.Prototypes;
+using Content.Shared._Sunrise.Lobby;
 using Content.Shared.GameTicking;
 
 namespace Content.Server.GameTicking;
@@ -9,61 +10,61 @@ public sealed partial class GameTicker
 {
     // Sunrise-Start
     [ViewVariables]
-    public string? LobbyParalax { get; private set; }
+    public string? LobbyType { get; private set; }
+    [ViewVariables]
+    public string? LobbyAnimation { get; private set; }
+    [ViewVariables]
+    public string? LobbyParallax { get; private set; }
+    [ViewVariables]
+    public string? LobbyBackground { get; private set; }
 
     [ViewVariables]
-    private readonly List<string> _lobbyParalaxes =
-    [
-        "AspidParallax",
-        "LighthouseStation",
-        "AngleStation",
-        "FastSpace",
-        "Default",
-        "BagelStation",
-        "KettleStation",
-        "AvriteStation",
-        "DeltaStation",
-        "TortugaStation",
-        "ShipwreckedTurbulence1",
-        "PebbleStation",
-        "OutpostStation",
-        "TrainStation",
-        "CoreStation",
-        // Яркие паралаксы, выглядят прикольно но кому-то мешают.
-        //"Grass",
-        //"SillyIsland",
-        //"PilgrimAiur"
-    ];
-
-    [ViewVariables] private LobbyImage? LobbyImage { get; set; }
+    private List<string>? _lobbyParallaxes;
 
     [ViewVariables]
-    private readonly List<LobbyImage> _lobbyImages = new ()
-    {
-        new LobbyImage(){Path = "Mobs/Demons/ratvar.rsi", State = "ratvar", Scale = new Vector2(1.15f, 1.15f)},
-        new LobbyImage(){Path = "_Sunrise/96x96megafauna.rsi", State = "bubblegum", Scale = new Vector2(4f, 4f)},
-        new LobbyImage(){Path = "_Sunrise/96x96megafauna.rsi", State = "mega_legion", Scale = new Vector2(4f, 4f)},
-        new LobbyImage(){Path = "_Sunrise/hulk.rsi", State = "Champion of Honk", Scale = new Vector2(6f, 6f)},
-        new LobbyImage(){Path = "_Sunrise/narsie.rsi", State = "kha'rin", Scale = new Vector2(1f, 1f)},
-        new LobbyImage(){Path = "_Sunrise/narsie.rsi", State = "narbee", Scale = new Vector2(1f, 1f)},
-        new LobbyImage(){Path = "_Sunrise/narsie.rsi", State = "narsie", Scale = new Vector2(1f, 1f)},
-        new LobbyImage(){Path = "_Sunrise/narsie.rsi", State = "reaper", Scale = new Vector2(1f, 1f)},
-        new LobbyImage(){Path = "_Sunrise/narsie.rsi", State = "legion", Scale = new Vector2(1f, 1f)},
-        new LobbyImage(){Path = "_Sunrise/narsie.rsi", State = "narsie-chains", Scale = new Vector2(1f, 1f)}
-    };
+    private List<string>? _lobbyArts;
+
+    [ViewVariables]
+    private List<string>? _lobbyAnimations;
 
     private void InitializeLobbyBackground()
     {
-        RandomizeLobbyParalax();
-        RandomizeLobbyImage();
+        _lobbyArts = _prototypeManager.EnumeratePrototypes<LobbyBackgroundPrototype>()
+            .Select(x => x.ID)
+            .ToList();
+
+        _lobbyParallaxes = _prototypeManager.EnumeratePrototypes<LobbyParallaxPrototype>()
+            .Select(x => x.ID)
+            .ToList();
+
+        _lobbyAnimations = _prototypeManager.EnumeratePrototypes<LobbyAnimationPrototype>()
+            .Select(x => x.ID)
+            .ToList();
+        RandomizeLobbyBackgroundArt();
+        RandomizeLobbyBackgroundParallax();
+        RandomizeLobbyBackgroundAnimation();
+        RandomizeLobbyBackgroundType();
     }
 
-    private void RandomizeLobbyParalax() {
-        LobbyParalax = _lobbyParalaxes.Any() ? _robustRandom.Pick(_lobbyParalaxes) : null;
+    private void RandomizeLobbyBackgroundParallax()
+    {
+        LobbyParallax = _lobbyParallaxes!.Any() ? _robustRandom.Pick(_lobbyParallaxes!) : null;
     }
 
-    private void RandomizeLobbyImage() {
-        LobbyImage = _lobbyImages.Any() ? _robustRandom.Pick(_lobbyImages) : null;
+    private void RandomizeLobbyBackgroundAnimation()
+    {
+        LobbyAnimation = _lobbyAnimations!.Any() ? _robustRandom.Pick(_lobbyAnimations!) : null;
+    }
+
+    private void RandomizeLobbyBackgroundType()
+    {
+        var values = (LobbyBackgroundType[])Enum.GetValues(typeof(LobbyBackgroundType));
+        LobbyType = values[_robustRandom.Next(values.Length)].ToString();
+    }
+
+    private void RandomizeLobbyBackgroundArt()
+    {
+        LobbyBackground = _lobbyArts!.Any() ? _robustRandom.Pick(_lobbyArts!) : null;
     }
     // Sunrise-End
 }

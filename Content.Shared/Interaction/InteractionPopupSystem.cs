@@ -1,6 +1,8 @@
+using Content.Shared._Sunrise.Mood;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction.Components;
+using Content.Shared.Interaction.Events;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
@@ -92,14 +94,31 @@ public sealed class InteractionPopupSystem : EntitySystem
 
         if (_random.Prob(component.SuccessChance))
         {
+            // Sunrise Edit
             if (component.InteractSuccessString != null)
+            {
                 msg = Loc.GetString(component.InteractSuccessString, ("target", Identity.Entity(uid, EntityManager))); // Success message (localized).
+                if (component.InteractSuccessString == "hugging-success-generic")
+                {
+                    var moodEffectEvent = new MoodEffectEvent("BeingHugged");
+                    RaiseLocalEvent(target, moodEffectEvent);
+                }
+                else if (component.InteractSuccessString.Contains("petting-success-"))
+                {
+                    var moodEffectEvent = new MoodEffectEvent("PetAnimal");
+                    RaiseLocalEvent(user, moodEffectEvent);
+                }
+            }
+            // Sunrise Edit
 
             if (component.InteractSuccessSound != null)
                 sfx = component.InteractSuccessSound;
 
             if (component.InteractSuccessSpawn != null)
                 Spawn(component.InteractSuccessSpawn, _transform.GetMapCoordinates(uid));
+
+            var ev = new InteractionSuccessEvent(user);
+            RaiseLocalEvent(target, ref ev);
         }
         else
         {
@@ -111,9 +130,12 @@ public sealed class InteractionPopupSystem : EntitySystem
 
             if (component.InteractFailureSpawn != null)
                 Spawn(component.InteractFailureSpawn, _transform.GetMapCoordinates(uid));
+
+            var ev = new InteractionFailureEvent(user);
+            RaiseLocalEvent(target, ref ev);
         }
 
-        if (component.MessagePerceivedByOthers != null)
+        if (!string.IsNullOrEmpty(component.MessagePerceivedByOthers))
         {
             var msgOthers = Loc.GetString(component.MessagePerceivedByOthers,
                 ("user", Identity.Entity(user, EntityManager)), ("target", Identity.Entity(uid, EntityManager)));
@@ -131,7 +153,7 @@ public sealed class InteractionPopupSystem : EntitySystem
             return;
         }
 
-        _popupSystem.PopupPredicted(msg, uid, user);
+        _popupSystem.PopupClient(msg, uid, user);
 
         if (sfx == null)
             return;
@@ -151,5 +173,27 @@ public sealed class InteractionPopupSystem : EntitySystem
         {
             _audio.PlayEntity(sfx, Filter.Empty().FromEntities(target), target, false);
         }
+    }
+
+    /// <summary>
+    /// Sets <see cref="InteractionPopupComponent.InteractSuccessString"/>.
+    /// </summary>
+    /// <para>
+    /// This field is not networked automatically, so this method must be called on both sides of the network.
+    /// </para>
+    public void SetInteractSuccessString(Entity<InteractionPopupComponent> ent, string str)
+    {
+        ent.Comp.InteractSuccessString = str;
+    }
+
+    /// <summary>
+    /// Sets <see cref="InteractionPopupComponent.InteractFailureString"/>.
+    /// </summary>
+    /// <para>
+    /// This field is not networked automatically, so this method must be called on both sides of the network.
+    /// </para>
+    public void SetInteractFailureString(Entity<InteractionPopupComponent> ent, string str)
+    {
+        ent.Comp.InteractFailureString = str;
     }
 }

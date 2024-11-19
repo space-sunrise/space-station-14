@@ -8993,7 +8993,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -17.5,-12.5
       parent: 410
-- proto: WeaponDisabler
+- proto: WeaponEnergyGunMini
   entities:
   - uid: 438
     components:

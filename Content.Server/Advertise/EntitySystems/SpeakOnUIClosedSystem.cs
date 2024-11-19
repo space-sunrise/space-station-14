@@ -1,58 +1,65 @@
 using Content.Server.Advertise.Components;
 using Content.Server.Chat.Systems;
 using Content.Shared.Dataset;
+using Robust.Shared.Log;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.GameObjects;
+using Robust.Shared.IoC;
 using ActivatableUIComponent = Content.Shared.UserInterface.ActivatableUIComponent;
 
-namespace Content.Server.Advertise;
-
-public sealed partial class SpeakOnUIClosedSystem : EntitySystem
+namespace Content.Server.Advertise
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-
-    public override void Initialize()
+    public sealed partial class SpeakOnUIClosedSystem : EntitySystem
     {
-        base.Initialize();
+        [Dependency] private readonly IRobustRandom _random = default!;
+        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+        [Dependency] private readonly ChatSystem _chat = default!;
 
-        SubscribeLocalEvent<SpeakOnUIClosedComponent, BoundUIClosedEvent>(OnBoundUIClosed);
-    }
-    private void OnBoundUIClosed(Entity<SpeakOnUIClosedComponent> entity, ref BoundUIClosedEvent args)
-    {
-        if (!TryComp(entity, out ActivatableUIComponent? activatable) || !args.UiKey.Equals(activatable.Key))
-            return;
+        public override void Initialize()
+        {
+            base.Initialize();
+            SubscribeLocalEvent<SpeakOnUIClosedComponent, BoundUIClosedEvent>(OnBoundUIClosed);
+        }
 
-        if (entity.Comp.RequireFlag && !entity.Comp.Flag)
-            return;
+        private void OnBoundUIClosed(EntityUid uid, SpeakOnUIClosedComponent component, BoundUIClosedEvent args)
+        {
+            if (!TryComp<ActivatableUIComponent>(uid, out var activatable) || !args.UiKey.Equals(activatable.Key))
+                return;
 
-        TrySpeak((entity, entity.Comp));
-    }
+            if (component.RequireFlag && !component.Flag)
+                return;
 
-    public bool TrySpeak(Entity<SpeakOnUIClosedComponent?> entity)
-    {
-        if (!Resolve(entity, ref entity.Comp))
-            return false;
+            TrySpeak(uid, component);
+        }
 
-        if (!entity.Comp.Enabled)
-            return false;
+        public bool TrySpeak(EntityUid uid, SpeakOnUIClosedComponent? component)
+        {
+            if (component == null || !component.Enabled)
+                return false;
 
-        if (!_prototypeManager.TryIndex(entity.Comp.Pack, out var messagePack))
-            return false;
+            if (!_prototypeManager.TryIndex(component.Pack, out LocalizedDatasetPrototype? messagePack))
+            {
+                Logger.Warning($"Failed to find localized dataset prototype with ID: {component.Pack}");
+                return false;
+            }
 
-        var message = Loc.GetString(_random.Pick(messagePack.Values), ("name", Name(entity)));
-        _chat.TrySendInGameICMessage(entity, message, InGameICChatType.Speak, true);
-        entity.Comp.Flag = false;
-        return true;
-    }
+            var messageKey = _random.Pick(messagePack.Values);
+            var message = Loc.GetString(messageKey, ("name", Name(uid)));
 
-    public bool TrySetFlag(Entity<SpeakOnUIClosedComponent?> entity, bool value = true)
-    {
-        if (!Resolve(entity, ref entity.Comp))
-            return false;
+            //Logger.Info($"Localized message: {message}, messageKey: {messageKey}");
+            _chat.TrySendInGameICMessage(uid, message, InGameICChatType.Speak, true);
+            component.Flag = false;
+            return true;
+        }
 
-        entity.Comp.Flag = value;
-        return true;
+        public bool TrySetFlag(EntityUid uid, SpeakOnUIClosedComponent? component, bool value = true)
+        {
+            if (component == null)
+                return false;
+            
+            component.Flag = value;
+            return true;
+        }
     }
 }

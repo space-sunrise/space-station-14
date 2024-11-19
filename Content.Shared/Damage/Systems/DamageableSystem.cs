@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
@@ -7,10 +8,13 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Radiation.Events;
 using Content.Shared.Rejuvenate;
+using Content.Shared.CCVar;
 using Robust.Shared.GameStates;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Robust.Shared.Configuration;
+using Robust.Shared.Random;
 
 namespace Content.Shared.Damage
 {
@@ -20,10 +24,16 @@ namespace Content.Shared.Damage
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
         [Dependency] private readonly INetManager _netMan = default!;
         [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
+        [Dependency] private readonly IRobustRandom _random = default!;
+        [Dependency] private readonly IConfigurationManager _configurationManager = default!;
 
         private EntityQuery<AppearanceComponent> _appearanceQuery;
         private EntityQuery<DamageableComponent> _damageableQuery;
         private EntityQuery<MindContainerComponent> _mindContainerQuery;
+
+        public float Variance = 0.15f; // Sunrise-Edit
+        public float DamageModifier = 1f; // Sunrise-Edit
+        public float HealModifier = 1f; // Sunrise-Edit
 
         public override void Initialize()
         {
@@ -36,6 +46,10 @@ namespace Content.Shared.Damage
             _appearanceQuery = GetEntityQuery<AppearanceComponent>();
             _damageableQuery = GetEntityQuery<DamageableComponent>();
             _mindContainerQuery = GetEntityQuery<MindContainerComponent>();
+
+            _configurationManager.OnValueChanged(SunriseCCVars.DamageVariance, UpdateVariance, true); // Sunrise-Edit
+            _configurationManager.OnValueChanged(SunriseCCVars.DamageModifier, UpdateDamageModifier, true); // Sunrise-Edit
+            _configurationManager.OnValueChanged(SunriseCCVars.HealModifier, UpdateHealModifier, true); // Sunrise-Edit
         }
 
         /// <summary>
@@ -142,6 +156,13 @@ namespace Content.Shared.Damage
 
             if (before.Cancelled)
                 return null;
+
+            // Sunrise-Start
+            damage = DamageSpecifier.ApplyModifier(damage, DamageModifier, HealModifier);
+
+            var varianceMultiplier = 1f + Variance - _random.NextFloat(0, Variance * 2f);
+            damage *= varianceMultiplier;
+            // Sunrise-End
 
             // Apply resistances
             if (!ignoreResistances)
@@ -280,6 +301,23 @@ namespace Content.Shared.Damage
                 DamageChanged(uid, component, delta);
             }
         }
+
+        // Sunrise-Start
+        private void UpdateVariance(float value)
+        {
+            Variance = value;
+        }
+
+        private void UpdateHealModifier(float value)
+        {
+            HealModifier = value;
+        }
+
+        private void UpdateDamageModifier(float value)
+        {
+            DamageModifier = value;
+        }
+        // Sunrise-End
     }
 
     /// <summary>

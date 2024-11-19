@@ -36,7 +36,7 @@
 
 - type: entity
   id: OrganHumanBrain
-  parent: BaseHumanOrganUnGibbable
+  parent: [BaseHumanOrganUnGibbable, BaseOrganBrain]
   name: brain
   description: "The source of incredible, unending intelligence. Honk."
   components:
@@ -67,10 +67,17 @@
   - type: FlavorProfile
     flavors:
       - people
+  - type: FoodSequenceElement
+    entries:
+      Burger: Brain
+      Taco: Brain
+  - type: Item
+    size: Small
+    heldPrefix: brain
   
 - type: entity
   id: OrganHumanEyes
-  parent: BaseHumanOrgan
+  parent: [BaseHumanOrgan, BaseOrganEyes]
   name: eyes
   description: "I see you!"
   components:
@@ -78,10 +85,13 @@
     layers:
       - state: eyeball-l
       - state: eyeball-r
+  - type: Item
+    size: Small
+    heldPrefix: eyeballs
 
 - type: entity
   id: OrganHumanTongue
-  parent: BaseHumanOrgan
+  parent: [BaseHumanOrgan, BaseOrganTongue]
   name: tongue
   description: "A fleshy muscle mostly used for lying."
   components:
@@ -90,7 +100,7 @@
 
 - type: entity
   id: OrganHumanAppendix
-  parent: BaseHumanOrgan
+  parent: [BaseHumanOrgan, BaseOrganAppendix]
   name: appendix
   components:
   - type: Sprite
@@ -101,7 +111,7 @@
 
 - type: entity
   id: OrganHumanEars
-  parent: BaseHumanOrgan
+  parent: [BaseHumanOrgan, BaseOrganEars]
   name: ears
   description: "There are three parts to the ear. Inner, middle and outer. Only one of these parts should normally be visible."
   components:
@@ -110,7 +120,7 @@
 
 - type: entity
   id: OrganHumanLungs
-  parent: BaseHumanOrgan
+  parent: [BaseHumanOrgan, BaseOrganLungs]
   name: lungs
   description: "Filters oxygen from an atmosphere, which is then sent into the bloodstream to be used as an electron carrier."
   components:
@@ -118,6 +128,9 @@
     layers:
       - state: lung-l
       - state: lung-r
+  - type: Item
+    size: Small
+    heldPrefix: lungs
   - type: Lung
   - type: Metabolizer
     removeEmpty: true
@@ -144,7 +157,7 @@
 
 - type: entity
   id: OrganHumanHeart
-  parent: BaseHumanOrgan
+  parent: [BaseHumanOrgan, BaseOrganHeart]
   name: heart
   description: "I feel bad for the heartless bastard who lost this."
   components:
@@ -160,15 +173,21 @@
     - id: Medicine
     - id: Poison
     - id: Narcotic
+  - type: Item
+    size: Small
+    heldPrefix: heart
 
 - type: entity
   id: OrganHumanStomach
-  parent: BaseHumanOrgan
+  parent: [BaseHumanOrgan, BaseOrganStomach]
   name: stomach
   description: "Gross. This is hard to stomach."
   components:
   - type: Sprite
     state: stomach
+  - type: Item
+    size: Small
+    heldPrefix: stomach
   - type: SolutionContainerManager
     solutions:
       stomach:
@@ -192,12 +211,15 @@
 
 - type: entity
   id: OrganHumanLiver
-  parent: BaseHumanOrgan
+  parent: [BaseHumanOrgan, BaseOrganLiver]
   name: liver
   description: "Pairing suggestion: chianti and fava beans."
   components:
   - type: Sprite
     state: liver
+  - type: Item
+    size: Small
+    heldPrefix: liver
   - type: Metabolizer # The liver metabolizes certain chemicals only, like alcohol.
     maxReagents: 1
     metabolizerTypes: [Human]
@@ -207,7 +229,7 @@
 
 - type: entity
   id: OrganHumanKidneys
-  parent: BaseHumanOrgan
+  parent: [BaseHumanOrgan, BaseOrganKidneys]
   name: kidneys
   description: "Filters toxins from the bloodstream."
   components:
@@ -215,6 +237,9 @@
     layers:
       - state: kidney-l
       - state: kidney-r
+  - type: Item
+    size: Small
+    heldPrefix: kidneys
   # The kidneys just remove anything that doesn't currently have any metabolisms, as a stopgap.
   - type: Metabolizer
     maxReagents: 5

@@ -1,5 +1,7 @@
 using Content.Server.Chemistry.EntitySystems;
+using Content.Server.Sunrise.SolutionRegenerationSwitcher;
 using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Server.Chemistry.Components;
@@ -8,37 +10,45 @@ namespace Content.Server.Chemistry.Components;
 /// Passively increases a solution's quantity of a reagent.
 /// </summary>
 [RegisterComponent, AutoGenerateComponentPause]
-[Access(typeof(SolutionRegenerationSystem))]
+[Access(typeof(SolutionRegenerationSystem), typeof(SolutionRegenerationSwitcherSystem))] // Sunrise-Edit
 public sealed partial class SolutionRegenerationComponent : Component
 {
     /// <summary>
     /// The name of the solution to add to.
     /// </summary>
-    [DataField("solution", required: true), ViewVariables(VVAccess.ReadWrite)]
+    [DataField("solution", required: true)]
     public string SolutionName = string.Empty;
 
     /// <summary>
     /// The solution to add reagents to.
     /// </summary>
-    [DataField("solutionRef")]
-    public Entity<SolutionComponent>? Solution = null;
+    [DataField]
+    public Entity<SolutionComponent>? SolutionRef = null;
 
     /// <summary>
     /// The reagent(s) to be regenerated in the solution.
     /// </summary>
-    [DataField("generated", required: true), ViewVariables(VVAccess.ReadWrite)]
+    [DataField(required: true)]
     public Solution Generated = default!;
 
     /// <summary>
     /// How long it takes to regenerate once.
     /// </summary>
-    [DataField("duration"), ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
     public TimeSpan Duration = TimeSpan.FromSeconds(1);
 
     /// <summary>
     /// The time when the next regeneration will occur.
     /// </summary>
-    [DataField("nextChargeTime", customTypeSerializer: typeof(TimeOffsetSerializer)), ViewVariables(VVAccess.ReadWrite)]
+    [DataField("nextChargeTime", customTypeSerializer: typeof(TimeOffsetSerializer))]
     [AutoPausedField]
     public TimeSpan NextRegenTime = TimeSpan.FromSeconds(0);
+
+    // Sunrise-start
+    public void ChangeGenerated(ReagentQuantity reagent)
+    {
+        Generated.RemoveAllSolution();
+        Generated.AddReagent(reagent);
+    }
+    // Sunrise-end
 }

@@ -1,7 +1,7 @@
 - type: loadoutGroup
   id: Socks
   name: loadout-group-socks
-  minLimit: 0
+  minLimit: 1
   loadouts:
   - ThighWhiteSocks
   - ShortWhiteSocks
@@ -41,7 +41,7 @@
 - type: loadoutGroup
   id: Bra
   name: loadout-group-bra
-  minLimit: 0
+  minLimit: 1
   loadouts:
   - StraplessBra
   - WhiteNekoBra
@@ -59,7 +59,7 @@
 - type: loadoutGroup
   id: Pants
   name: loadout-group-pants
-  minLimit: 0
+  minLimit: 1
   loadouts:
   - StraplessWomanPants
   - BoxersManPants
@@ -100,12 +100,22 @@
   - BrigmedicJumpskirt
 
 - type: loadoutGroup
-  id: PsychologistBackpack
-  name: loadout-group-brigmedic-backpack
+  id: NanoTrasenRepresentativeJumpsuit
+  name: loadout-group-nanotrasenrepresentative-jumpsuit
+  minLimit: 1
   loadouts:
-  - PsychologistBackpack
-  - PsychologistSatchel
-  - PsychologistDuffel
+  - NanoTrasenRepresentativeJumpsuit
+  - NanoTrasenRepresentativeJumpskirt
+  - NanoTrasenRepresentativeJumpsuitFormal
+
+- type: loadoutGroup
+  id: NanoTrasenRepresentativeOuterClothing
+  name: loadout-group-nanotrasenrepresentative-outerclothing
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - NanoTrasenRepresentativeCoat
+  - NanoTrasenRepresentativeCoatOpen
 
 - type: loadoutGroup
   id: BlueShieldBackpack
@@ -121,3 +131,181 @@
   loadouts:
   - BlueShieldJumpsuit
   - BlueShieldJumpskirt
+
+- type: loadoutGroup
+  id: BarberJumpsuit
+  name: loadout-group-barber-jumpsuit
+  loadouts:
+  - BarberJumpsuit
+  - BarberJumpskirt
+
+- type: loadoutGroup
+  id: SecurityTrinkets
+  name: loadout-group-security-trinkets
+  minLimit: 0
+  maxLimit: 3
+  loadouts:
+  - SecurityBodycam
+  - SecurityPepperspray
+  - SecurityWhistle
+  - SecurityRadioHandheld
+  - SecurityTourniquet
+  - SecurityWeaponMeleeNeedle
+  - SecurityHoloprojector
+
+- type: loadoutGroup
+  id: CorporateLaw
+  name: loadout-group-corporate-law
+  minLimit: 0
+  loadouts:
+  - CorporateLaw
+
+- type: loadoutGroup
+  id: CentCommOperatorJumpsuit
+  name: loadout-group-centcomm-operator-jumpsuit
+  loadouts:
+  - CentCommOfficerJumpsuit
+  - CentCommOfficerJumpskirt
+  - CentCommOfficialJumpsuit
+  - CentCommOfficialJumpskirt
+
+- type: loadoutGroup
+  id: CentCommOperatorHats
+  name: loadout-group-centcomm-operator-head-hat
+  loadouts:
+  - HeadHatBeretCentcomNaval
+  - HeadHatCentcomcap
+
+- type: loadoutGroup
+  id: ChiefEngineerBackpack
+  name: loadout-group-chief-engineer-backpack
+  loadouts:
+  - ChiefEngineerBackpack
+  - ChiefEngineerSatchel
+  - ChiefEngineerDuffel
+
+- type: loadoutGroup
+  id: SeniorOfficerJumpsuit
+  name: loadout-group-senior-officer-jumpsuit
+  loadouts:
+  - JumpsuitSeniorOfficer
+  - JumpskirtSeniorOfficer
+
+- type: loadoutGroup
+  id: SeniorResearcherJumpsuit
+  name: loadout-group-senior-researcher-jumpsuit
+  loadouts:
+  - JumpsuitSeniorResearcher
+  - JumpskirtSeniorResearcher
+
+- type: loadoutGroup
+  id: SeniorPhysicianJumpsuit
+  name: loadout-group-senior-physician-jumpsuit
+  loadouts:
+  - JumpsuitSeniorPhysician
+  - JumpskirtSeniorPhysician
+
+- type: loadoutGroup
+  id: SeniorPhysicianBelt
+  name: loadout-group-senior-physician-belt
+  loadouts:
+  - BeltMedicalSeniorPhysician
+  - ChemBagSeniorPhysician
+
+- type: loadoutGroup
+  id: SeniorEngineerJumpsuit
+  name: loadout-group-senior-engineer-jumpsuit
+  loadouts:
+  - JumpsuitSeniorEngineer
+  - JumpskirtSeniorEngineer
+
+- type: loadoutGroup
+  id: RoboticistJumpsuit
+  name: loadout-group-roboticist-jumpsuit
+  loadouts:
+  - RoboticistJumpsuit
+  - RoboticistJumpskirt
+
+- type: loadoutGroup
+  id: RoboticistOuterClothing
+  name: loadout-group-roboticist-outerclothing
+  minLimit: 0
+  loadouts:
+  - RoboticistLabCoat
+  - RoboticistWintercoat
+
+- type: loadoutGroup
+  id: RoboticistHead
+  name: loadout-group-roboticist-head
+  minLimit: 0
+  loadouts:
+  - RoboticistCap
+  - SkullBandana
+
+- type: loadoutGroup
+  id: PrisonGuardJumpsuit
+  name: loadout-group-prison-guard-jumpsuit
+  loadouts:
+  - PrisonGuardJumpsuit
+  - PrisonGuardJumpskirt
+
+- type: loadoutGroup
+  id: PrisonerJumpsuit
+  name: loadout-group-prisoner-jumpsuit
+  loadouts:
+  - PrisonerJumpsuit
+  - PrisonerJumpskirt
+
+- type: loadoutGroup
+  id: PrisonGuardBackpack
+  name: loadout-group-prison-guard-backpack
+  loadouts:
+  - PrisonGuardBackpack
+  - PrisonGuardSatchel
+  - PrisonGuardDuffel
+
+- type: loadoutGroup
+  id: PrisonGuardHead
+  name: loadout-group-prison-guard-head
+  minLimit: 0
+  loadouts:
+  - HeadHatBeretPrisonGuard
+  - HeadPrisonGuard
+  - HeadCapPrisonGuard
+
+- type: loadoutGroup
+  id: SecurityPilotJumpsuit
+  name: loadout-group-security-pilot-jumpsuit
+  loadouts:
+  - SecurityPilotJumpsuit
+  - SecurityPilotJumpskirt
+
+- type: loadoutGroup
+  id: AdjutantJumpsuit
+  name: loadout-group-adj-jumpsuit
+  loadouts:
+  - AdjutantJumpsuit
+  - AdjutantJumpskirt
+
+- type: loadoutGroup
+  id: AdjutantBackpack
+  name: loadout-group-adj-backpack
+  loadouts:
+  - AdjutantBackpack
+  - AdjutantSatchel
+  - AdjutantDuffel
+
+- type: loadoutGroup
+  id: AdjutantHead
+  name: loadout-group-adj-head
+  loadouts:
+  - AdjutantCap
+  - AdjutantBeret
+  - AdjutantGarrisonCap
+
+- type: loadoutGroup
+  id: AdjutantOuterClothing
+  name: loadout-group-adj-outerClothing
+  loadouts:
+  - AdjutantCoat
+

@@ -1,0 +1,71 @@
+{
+    "version": 1,
+    "license": "CLA",
+    "copyright": "Maded by Rinary1 (github)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "loading_line"
+        },
+        {
+            "name": "loading_arrow"
+        },
+        {
+            "name": "loading_line_greyscale"
+        },
+        {
+            "name": "loading_arrow_greyscale"
+        },
+        {
+            "name": "siding_line_e"
+        },
+        {
+            "name": "siding_line_n"
+        },
+        {
+            "name": "siding_line_s"
+        },
+        {
+            "name": "siding_line_w"
+        },
+        {
+            "name": "siding_corner_ne"
+        },
+        {
+            "name": "siding_corner_nw"
+        },
+        {
+            "name": "siding_corner_se"
+        },
+        {
+            "name": "siding_corner_sw"
+        },
+        {
+            "name": "siding_corner_small_ne"
+        },
+        {
+            "name": "siding_corner_small_nw"
+        },
+        {
+            "name": "siding_corner_small_se"
+        },
+        {
+            "name": "siding_corner_small_sw"
+        },
+        {
+            "name": "siding_end_e"
+        },
+        {
+            "name": "siding_end_n"
+        },
+        {
+            "name": "siding_end_s"
+        },
+        {
+            "name": "siding_end_w"
+        }
+    ]
+}

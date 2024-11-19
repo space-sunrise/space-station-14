@@ -188,7 +188,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
     {
         DebugTools.Assert(args.Broadcast || Exists(args.EventTarget) || args.Event.GetType() == typeof(AwaitedDoAfterEvent));
         DebugTools.Assert(args.Event.GetType().HasCustomAttribute<NetSerializableAttribute>()
-            || args.Event.GetType().Namespace is {} ns && ns.StartsWith("Content.IntegrationTests"), // classes defined in tests cannot be marked as serializable.
+            || args.Event.GetType().Namespace is { } ns && ns.StartsWith("Content.IntegrationTests"), // classes defined in tests cannot be marked as serializable.
             $"Do after event is not serializable. Event: {args.Event.GetType()}");
 
         if (!Resolve(args.User, ref comp))
@@ -227,7 +227,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
 
         // For this we need to stay on the same hand slot and need the same item in that hand slot
         // (or if there is no item there we need to keep it free).
-        if (args.NeedHand && args.BreakOnHandChange)
+        if (args.NeedHand && (args.BreakOnHandChange || args.BreakOnDropItem))
         {
             if (!TryComp(args.User, out HandsComponent? handsComponent))
                 return false;
@@ -251,7 +251,10 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         {
             RaiseDoAfterEvents(doAfter, comp);
             // We don't store instant do-afters. This is just a lazy way of hiding them from client-side visuals.
-            return true;
+            if (!args.ForceNet)
+                return true;
+            else
+                args.Delay = TimeSpan.FromMilliseconds(100);
         }
 
         comp.DoAfters.Add(doAfter.Index, doAfter);
@@ -295,7 +298,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         return IsDuplicate(args, otherArgs, otherArgs.DuplicateCondition);
     }
 
-    private bool IsDuplicate(DoAfterArgs args, DoAfterArgs otherArgs, DuplicateConditions conditions )
+    private bool IsDuplicate(DoAfterArgs args, DoAfterArgs otherArgs, DuplicateConditions conditions)
     {
         if ((conditions & DuplicateConditions.SameTarget) != 0
             && args.Target != otherArgs.Target)
@@ -310,7 +313,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         }
 
         if ((conditions & DuplicateConditions.SameEvent) != 0
-            && args.Event.GetType() != otherArgs.Event.GetType())
+            && !args.Event.IsDuplicate(otherArgs.Event))
         {
             return false;
         }
@@ -392,6 +395,19 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         // This would also mean the post-DoAfter checks haven't run yet. But whatever, I can't be bothered tracking and
         // networking whether a do-after has raised its events or not.
         return DoAfterStatus.Finished;
+    }
+
+    public bool IsRunning(DoAfterId? id, DoAfterComponent? comp = null)
+    {
+        if (id == null)
+            return false;
+
+        return GetStatus(id.Value.Uid, id.Value.Index, comp) == DoAfterStatus.Running;
+    }
+
+    public bool IsRunning(EntityUid entity, ushort id, DoAfterComponent? comp = null)
+    {
+        return GetStatus(entity, id, comp) == DoAfterStatus.Running;
     }
     #endregion
 }

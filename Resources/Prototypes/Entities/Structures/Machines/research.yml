@@ -18,6 +18,7 @@
     - Arsenal
     - Experimental
     - CivilianServices
+    - Biochemical
   - type: ApcPowerReceiver
     powerLoad: 200
   - type: ExtensionCableReceiver
@@ -48,6 +49,7 @@
             min: 1
             max: 2
   - type: Appearance
+  - type: AmbientOnPowered
   - type: AmbientSound
     volume: -9
     range: 5

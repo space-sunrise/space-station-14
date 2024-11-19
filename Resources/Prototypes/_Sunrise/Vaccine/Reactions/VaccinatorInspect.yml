@@ -1,0 +1,33 @@
+- type: reaction
+  id: VaccineInspectFirst
+  source: true
+  requiredMixerCategories:
+  - Vaccinator
+  reactants:
+    DiseaseBloodFirst:
+      amount: 20
+  products:
+    DiseaseBloodFirst: 1
+
+- type: reaction
+  id: VaccineInspectSecond
+  source: true
+  requiredMixerCategories:
+  - Vaccinator
+  reactants:
+    DiseaseBloodSecond:
+      amount: 20
+  products:
+    DiseaseBloodSecond: 1
+
+- type: reaction
+  id: VaccineInspectThird
+  source: true
+  requiredMixerCategories:
+  - Vaccinator
+  reactants:
+    DiseaseBloodThird:
+      amount: 20
+  products:
+    DiseaseBloodThird: 1
+  

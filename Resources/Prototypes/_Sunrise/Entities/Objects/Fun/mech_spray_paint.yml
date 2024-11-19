@@ -1,0 +1,434 @@
+# Base Paints
+- type: entity
+  parent: BaseItem
+  id: MechPaintBase
+  name: mech spray paint
+  description: A tin of mech spray paint.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: Objects/Fun/spraycans.rsi
+    state: clown_cap
+    layers:
+      - state: clown_cap
+        map: ["enum.OpenableVisuals.Layer"]
+  - type: MechPaint
+    used: false
+    whitelist:
+      tags:
+        - Gygax
+    baseState: gygax
+    openState: gygax-open
+    brokenState: gygax-broken
+  - type: Item
+    sprite: Objects/Fun/spraycans.rsi
+    heldPrefix: spray
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 50
+        reagents:
+        - ReagentId: SpaceGlue
+          Quantity: 50
+  - type: TrashOnSolutionEmpty
+    solution: drink
+  - type: Sealable
+  - type: Openable
+    sound:
+      path: /Audio/Effects/pop_high.ogg
+    closeable: true
+    closeSound:
+      path: /Audio/Effects/pop_high.ogg
+
+# Paints
+
+# Ripley-Aluminizer
+- type: entity
+  parent: MechPaintBase
+  suffix: DEBUG, Ripley, Aluminizer
+  id: MechPaintRipleyAluminizer
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/ripley.rsi
+    state: aluminizer-cap
+    layers:
+      - state: aluminizer-cap
+        map: ["enum.OpenableVisuals.Layer"]
+  - type: Item
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/ripley.rsi
+    heldPrefix: aluminizer
+  - type: MechPaint
+    used: false
+    whitelist:
+      tags:
+        - Ripley
+    baseState: aluminizer
+    openState: aluminizer-open
+    brokenState: aluminizer-broken
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "aluminizer"}
+          False: {state: "aluminizer-cap"}
+
+# Ripley-Combat Ripley
+- type: entity
+  parent: MechPaintBase
+  suffix: DEBUG, Ripley, Combat Ripley
+  id: MechPaintRipleyCombatRipley
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/ripley.rsi
+    state: combat-ripley-cap
+    layers:
+      - state: combat-ripley-cap
+        map: ["enum.OpenableVisuals.Layer"]
+  - type: Item
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/ripley.rsi
+    heldPrefix: combat-ripley
+  - type: MechPaint
+    used: false
+    whitelist:
+      tags:
+        - Ripley
+    baseState: combatripley
+    openState: combatripley-open
+    brokenState: combatripley-broken
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "combat-ripley"}
+          False: {state: "combat-ripley-cap"}
+
+# Ripley-Firestarter
+- type: entity
+  parent: MechPaintBase
+  suffix: DEBUG, Ripley, Firestarter
+  id: MechPaintRipleyFirestarter
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/ripley.rsi
+    state: firestarter-cap
+    layers:
+      - state: firestarter-cap
+        map: ["enum.OpenableVisuals.Layer"]
+  - type: Item
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/ripley.rsi
+    heldPrefix: firestarter
+  - type: MechPaint
+    used: false
+    whitelist:
+      tags:
+        - Ripley
+    baseState: ripley_flames_red
+    openState: ripley_flames_red-open
+    brokenState: ripley_flames_red-broken
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "firestarter"}
+          False: {state: "firestarter-cap"}
+
+# Ripley-Hauler
+- type: entity
+  parent: MechPaintBase
+  suffix: DEBUG, Ripley, Hauler
+  id: MechPaintRipleyHauler
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/ripley.rsi
+    state: hauler-cap
+    layers:
+      - state: hauler-cap
+        map: ["enum.OpenableVisuals.Layer"]
+  - type: Item
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/ripley.rsi
+    heldPrefix: hauler
+  - type: MechPaint
+    used: false
+    whitelist:
+      tags:
+        - Ripley
+    baseState: hauler
+    openState: hauler-open
+    brokenState: hauler-broken
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "hauler"}
+          False: {state: "hauler-cap"}
+
+# Ripley-Reaper
+- type: entity
+  parent: MechPaintBase
+  suffix: DEBUG, Ripley, Reaper
+  id: MechPaintRipleyReaper
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/ripley.rsi
+    state: reaper-cap
+    layers:
+      - state: reaper-cap
+        map: ["enum.OpenableVisuals.Layer"]
+  - type: Item
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/ripley.rsi
+    heldPrefix: reaper
+  - type: MechPaint
+    used: false
+    whitelist:
+      tags:
+        - Ripley
+    baseState: deathripley
+    openState: deathripley-open
+    brokenState: deathripley-broken
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "reaper"}
+          False: {state: "reaper-cap"}
+
+# Ripley-Zairjah
+- type: entity
+  parent: MechPaintBase
+  suffix: DEBUG, Ripley, Zairjah
+  id: MechPaintRipleyZairjah
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/ripley.rsi
+    state: zairjah-cap
+    layers:
+      - state: zairjah-cap
+        map: ["enum.OpenableVisuals.Layer"]
+  - type: Item
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/ripley.rsi
+    heldPrefix: zairjah
+  - type: MechPaint
+    used: false
+    whitelist:
+      tags:
+        - Ripley
+    baseState: ripley_zairjah
+    openState: ripley_zairjah-open
+    brokenState: ripley_zairjah-broken
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "zairjah"}
+          False: {state: "zairjah-cap"}
+
+# Clarke-Orangey
+- type: entity
+  parent: MechPaintBase
+  suffix: DEBUG, Clarke, Orangey
+  id: MechPaintClarkeOrangey
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/clarke.rsi
+    state: orangey-cap
+    layers:
+      - state: orangey-cap
+        map: ["enum.OpenableVisuals.Layer"]
+  - type: Item
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/clarke.rsi
+    heldPrefix: orangey
+  - type: MechPaint
+    used: false
+    whitelist:
+      tags:
+        - Clarke
+    baseState: orangey
+    openState: orangey-open
+    brokenState: orangey-broken
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "orangey"}
+          False: {state: "orangey-cap"}
+
+# Gygax-Molot
+- type: entity
+  parent: MechPaintBase
+  suffix: DEBUG, Gygax, Molot
+  id: MechPaintGygaxMolot
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/gygax.rsi
+    state: pobeda-cap
+    layers:
+      - state: pobeda-cap
+        map: ["enum.OpenableVisuals.Layer"]
+  - type: Item
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/gygax.rsi
+    heldPrefix: pobeda
+  - type: MechPaint
+    used: false
+    whitelist:
+      tags:
+        - Gygax
+    baseState: molot
+    openState: molot-open
+    brokenState: molot-broken
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "pobeda"}
+          False: {state: "pobeda-cap"}
+
+#Gygax-Old
+
+- type: entity
+  parent: MechPaintBase
+  suffix: DEBUG, Gygax, Old
+  id: MechPaintGygaxOld
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/spraycans.rsi
+    layers:
+      - state: spray
+        map: ["Base"]
+      - state: spray_cap_colors
+        map: ["enum.OpenableVisuals.Layer"]
+        color: "#ed5f3b"
+  - type: MechPaint
+    used: false
+    whitelist:
+      tags:
+        - Gygax
+    baseState: gygax_alt
+    openState: gygax_alt-open
+    brokenState: gygax_alt-broken
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "spray_colors" , color: "#ed5f3b"}
+          False: {state: "spray_cap_colors" , color: "#ed5f3b"}
+
+#Durand-Unathi
+
+- type: entity
+  parent: MechPaintBase
+  suffix: DEBUG, Durand, Unathi
+  id: MechPaintDurandUnathi
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/durand.rsi
+    layers:
+      - state: kharn-cap
+        map: ["enum.OpenableVisuals.Layer"]
+  - type: Item
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/durand.rsi
+    heldPrefix: kharn
+  - type: MechPaint
+    used: false
+    whitelist:
+      tags:
+        - Durand
+    baseState: unathi
+    openState: unathi-open
+    brokenState: unathi-broken
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "kharn"}
+          False: {state: "kharn-cap"}
+
+#Durand-Shire
+
+- type: entity
+  parent: MechPaintBase
+  suffix: DEBUG, Durand , Shire
+  id: MechPaintDurandShire
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/durand.rsi
+    layers:
+      - state: shire-cap
+        map: ["enum.OpenableVisuals.Layer"]
+  - type: Item
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/durand.rsi
+    heldPrefix: shire
+  - type: MechPaint
+    used: false
+    whitelist:
+      tags:
+        - Durand
+    baseState: shire
+    openState: shire-open
+    brokenState: shire-broken
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "shire"}
+          False: {state: "shire-cap"}
+
+#Durand-Dollhouse
+
+- type: entity
+  parent: MechPaintBase
+  suffix: DEBUG, Durand , Dollhouse
+  id: MechPaintDurandDollhouse
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/durand.rsi
+    layers:
+      - state: dollhouse-cap
+        map: ["enum.OpenableVisuals.Layer"]
+  - type: Item
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/durand.rsi
+    heldPrefix: dollhouse
+  - type: MechPaint
+    used: false
+    whitelist:
+      tags:
+        - Durand
+    baseState: dollhouse
+    openState: dollhouse-open
+    brokenState: dollhouse-broken
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "dollhouse"}
+          False: {state: "dollhouse-cap"}
+
+#Durand-Executor
+
+- type: entity
+  parent: MechPaintBase
+  suffix: DEBUG, Durand , Executor
+  id: MechPaintDurandExecutor
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/durand.rsi
+    layers:
+      - state: executioner-cap
+        map: ["enum.OpenableVisuals.Layer"]
+  - type: Item
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/durand.rsi
+    heldPrefix: executioner
+  - type: MechPaint
+    used: false
+    whitelist:
+      tags:
+        - Durand
+    baseState: executor
+    openState: executor-open
+    brokenState: executor-broken
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "executioner"}
+          False: {state: "executioner-cap"}

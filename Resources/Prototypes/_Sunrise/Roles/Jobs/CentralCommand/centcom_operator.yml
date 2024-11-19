@@ -19,17 +19,20 @@
   - CentralCommand
   speciesBlacklist:
   - Vox
+  special:
+  - !type:AddImplantSpecial
+    implants: [MindShieldImplant]
 
 - type: startingGear
   id: CentCommOperatorGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitCentcomAdmiral
-    shoes: ClothingShoesBootsJack
-    head: ClothingHeadCapCentcomNaval
+    shoes: ClothingShoesBootsCombatFilled
     eyes: ClothingEyesGlassesSunglasses
-    gloves: ClothingHandsGlovesCentcomNaval
-    outerClothing: ClothingOuterArmorCentcomCarapace
-    neck: ClothingNeckCloakCentcomAdmiral
+    gloves: ClothingHandsGlovesColorBlack
+    outerClothing: ClothingOuterArmorBasic
     id: CentcomPDA
     ears: ClothingHeadsetCentCom
-    pocket1: RubberStampCentcom
+    belt: WeaponPistolN1984
+  storage:
+    back:
+    - RubberStampCentcom

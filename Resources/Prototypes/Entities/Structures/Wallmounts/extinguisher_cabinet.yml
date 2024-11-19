@@ -16,7 +16,6 @@
     - type: InteractionOutline
     - type: Sprite
       sprite: Structures/Wallmounts/extinguisher_cabinet.rsi
-      snapCardinals: true
       layers:
       - state: frame
       - state: extinguisher
@@ -30,9 +29,9 @@
           ejectOnInteract: true
           whitelist:
             components:
-            - FireExtinguisher
+            - SpraySafety
     - type: Damageable
-      damageContainer: Inorganic
+      damageContainer: StructuralInorganic
       damageModifierSet: Metallic
     - type: Destructible
       thresholds:

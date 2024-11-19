@@ -26,6 +26,11 @@
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
 
+- files: ["grass.png", "junglegrass.png", "grassdark.png", "grassjungle.png", "grasslight.png"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Created by Ko4erga (discord)"
+  source: "https://github.com/space-wizards/space-station-14/pull/29134"
+
 - files: ["super_reinforced.png"]
   license: "CLA"
   copyright: "Sprited by discord: odlieerr"
@@ -90,6 +95,7 @@
   license: "CLA"
   copyright: "Sprited by discord: odlieerr"
   source: "https://github.com/space-sunrise/space-station-14"
+
 - files: ["grassdark.png", "grasslight.png", "dirt.png"]
   license: "CLA"
   copyright: "Sprited by discord: odlieerr"

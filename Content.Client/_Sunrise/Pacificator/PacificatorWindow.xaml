@@ -1,6 +1,6 @@
 <controls:FancyWindow xmlns="https://spacestation14.io"
                 xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
-                Title="Генератор пацифизма"
+                Title="pacificator-window-title"
                 MinSize="270 130"
                 SetSize="360 180">
     <BoxContainer Margin="4 0" Orientation="Horizontal">

@@ -1,5 +1,4 @@
 using System.Numerics;
-using Content.Server.Chemistry.Containers.EntitySystems;
 using Content.Server.Popups;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
@@ -26,7 +25,7 @@ public sealed class AbsorbentSystem : SharedAbsorbentSystem
     [Dependency] private readonly PuddleSystem _puddleSystem = default!;
     [Dependency] private readonly SharedMeleeWeaponSystem _melee = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
     [Dependency] private readonly MapSystem _mapSystem = default!;
 
@@ -322,6 +321,11 @@ public sealed class AbsorbentSystem : SharedAbsorbentSystem
         localPos = userXform.LocalRotation.RotateVec(localPos);
 
         _melee.DoLunge(user, used, Angle.Zero, localPos, null, false);
+
+        // Sunrise-Start
+        var ev = new AbsorberPudleEvent(user);
+        RaiseLocalEvent(user, ref ev);
+        // Sunrise-End
 
         return true;
     }

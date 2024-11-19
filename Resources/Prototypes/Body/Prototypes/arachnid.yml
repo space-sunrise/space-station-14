@@ -1,6 +1,6 @@
 ﻿- type: body
   id: Arachnid
-  name: "Arachnid"
+  name: "arachnid"
   root: torso
   slots:
     head:
@@ -10,6 +10,7 @@
       organs:
         brain: OrganHumanBrain
         eyes: OrganArachnidEyes
+        tongue: OrganHumanTongue
     torso:
       part: TorsoArachnid
       organs:

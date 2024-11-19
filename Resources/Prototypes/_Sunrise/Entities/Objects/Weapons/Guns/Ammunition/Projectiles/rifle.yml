@@ -1,0 +1,30 @@
+- type: entity
+  id: BulletRifleRubber
+  name: bullet (0.20 rifle rubber)
+  parent: BaseBulletRubber
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 1
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseBulletTrigger
+  id: BulletRocket20
+  name: bullet (railgun)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 1
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 1
+    intensitySlope: 1
+    totalIntensity: 1
+    maxTileBreak: 0
+    tileBreakScale: 0
+    canCreateVacuum: false

@@ -1,0 +1,10 @@
+- type: entity
+  parent: SurveillanceCameraRouterBase
+  id: SurveillanceCameraRouterHandheld
+  name: Camerahelds
+  description:
+  suffix: Handheld
+  components:
+    - type: SurveillanceCameraRouter
+      subnetFrequency: SurveillanceCameraHandheld
+      subnetColor: "#DE20AA"

@@ -1,0 +1,29 @@
+- type: cargoProduct
+  id: SecurityWebbing
+  icon:
+    sprite: Clothing/Belt/securitywebbing.rsi
+    state: icon
+  product: CrateSecurityWebbing
+  cost: 2500
+  category: cargoproduct-category-name-security
+  group: market
+
+- type: cargoProduct
+  id: SecurityGlovesCombat
+  icon:
+    sprite: Clothing/Hands/Gloves/combat.rsi
+    state: icon
+  product: CrateSecurityGlovesCombat
+  cost: 3500
+  category: cargoproduct-category-name-security
+  group: market
+
+- type: cargoProduct
+  id: SecuritySWAT
+  icon:
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/swat_armor.rsi
+    state: icon
+  product: CrateSecuritySWAT
+  cost: 8000
+  category: cargoproduct-category-name-security
+  group: market

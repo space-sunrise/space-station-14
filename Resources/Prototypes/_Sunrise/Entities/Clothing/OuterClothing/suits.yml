@@ -1,21 +1,30 @@
-﻿- type: entity
-  parent: ClothingOuterBase
-  id: ClothingOuterAerostaticBomberJacket
-  name: aerostatic bomber jacket
-  description: A jacket once worn by the revolutionary air brigades during the Antecentennial Revolution. There are quite a few pockets on the inside, mostly for storing notebooks and compasses.
-  components:
-    - type: Sprite
-      sprite: _Sunrise/Clothing/OuterClothing/Coats/kim.rsi
-    - type: Clothing
-      sprite: _Sunrise/Clothing/OuterClothing/Coats/kim.rsi
-
 - type: entity
-  parent: ClothingOuterBase
-  id: ClothingOuterDiscoAssBlazer
-  name: disco ass blazer
-  description: Looks like someone skinned this blazer off some long extinct disco-animal. It has an enigmatic white rectangle on the back and the right sleeve.
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, ClothingOuterStorageBase]
+  id: ClothingOuterSuitCargo
+  name: cargo suit
+  description: A special suit for cargo workers, somewhat reminiscent of an old suit from another universe.
+  suffix: Sunrise
   components:
-    - type: Sprite
-      sprite: _Sunrise/Clothing/OuterClothing/Coats/disco.rsi
-    - type: Clothing
-      sprite: _Sunrise/Clothing/OuterClothing/Coats/disco.rsi
+  - type: Storage
+    grid:
+    - 0,0,3,3
+    whitelist:
+      tags:
+        - BluespaceBox
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Suits/cargo-suit.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Suits/cargo-suit.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Heat: 1.2
+        Slash: 0.8
+        Piercing: 0.8
+        Caustic: 0.8
+        Cold: 0.8
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: HeldSpeedModifier

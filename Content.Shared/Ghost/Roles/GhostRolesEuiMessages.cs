@@ -8,6 +8,7 @@ namespace Content.Shared.Ghost.Roles
     public struct GhostRoleInfo
     {
         public uint Identifier { get; set; }
+        public string PrototypeId { get; set; } // Sunrise-Sponsors
         public string Name { get; set; }
         public string Description { get; set; }
         public string Rules { get; set; }

@@ -1,5 +1,319 @@
 - type: Tag
+  id: NoPaint
+
+- type: Tag
+  id: IgnoreMelee
+
+- type: Tag
+  id: NoInjectable
+
+- type: Tag
   id: Nanopaste
 
 - type: Tag
   id: SunriseUplink
+
+- type: Tag
+  id: PlutoniumCore
+
+- type: Tag
+  id: Predator
+
+- type: Tag
+  id: HumanoidXeno
+
+- type: Tag
+  id: DockGamma
+
+- type: Tag
+  id: BorgModuleSecurity
+
+- type: Tag
+  id: BorgModuleERT
+
+- type: Tag
+  id: AssaultOpsUplink
+
+- type: Tag
+  id: SyndieAgentUplink
+
+- type: Tag
+  id: AnomalyCore
+
+# Catridges:
+
+- type: Tag
+  id: CartridgeRifleMachine
+
+- type: Tag
+  id: FireThrowerBall
+
+- type: Tag
+  id: PowerpackMinigunMG100
+
+- type: Tag
+  id: CartridgeRocket20
+
+# Magazines:
+- type: Tag
+  id: MagazineM28
+
+- type: Tag
+  id: MagazineDragunov
+
+- type: Tag
+  id: MagazineBR64
+
+- type: Tag
+  id: MagazineBauer127
+
+- type: Tag
+  id: MagazineAK
+
+- type: Tag
+  id: MagazineFamas
+
+- type: Tag
+  id: MagazineG36
+
+- type: Tag
+  id: MagazineAR18
+
+- type: Tag
+  id: MagazineP90
+
+- type: Tag
+  id: MagazineMP38
+
+- type: Tag
+  id: MagazineMP7
+
+- type: Tag
+  id: MagazineMP5
+
+- type: Tag
+  id: MagazineScorpion
+
+- type: Tag
+  id: MagazineNewVector
+
+- type: Tag
+  id: MagazineRPD
+
+- type: Tag
+  id: MagazineMachineGunMG42
+
+- type: Tag
+  id: MagazineLightMachineGunMG60
+
+- type: Tag
+  id: MagazineVP70
+
+- type: Tag
+  id: MagazineDeagle
+
+- type: Tag
+  id: MagazineGlock22
+
+- type: Tag
+  id: MagazineHIBrowning
+
+- type: Tag
+  id: MagazineACP14
+
+- type: Tag
+  id: FuelTankFlamethrower
+
+- type: Tag
+  id: NoSpinOnThrow
+
+- type: Tag
+  id: MagazineM16A4
+
+- type: Tag
+  id: MagazineSTG44
+
+- type: Tag
+  id: MagazineV31
+
+- type: Tag
+  id: PowerpackFlame
+
+- type: Tag
+  id: MagazinePPSH41
+
+- type: Tag
+  id: MagazineDl6902
+
+- type: Tag
+  id: BluespaceBox
+
+- type: Tag
+  id: SyndicateRapier
+
+# Material bag:
+
+- type: Tag
+  id: Tile
+
+- type: Tag
+  id: MicroManipulatorStockPart
+
+- type: Tag
+  id: MatterBinStockPart
+
+- type: Tag
+  id: PartRodMetal
+
+- type: Tag
+  id: Board
+
+# Mechs
+
+- type: Tag
+  id: Ripley
+
+- type: Tag
+  id: Clarke
+
+- type: Tag
+  id: Gygax
+
+- type: Tag
+  id: Durand
+
+- type: Tag
+  id: Phazon
+
+- type: Tag
+  id: ClarkeCentralControlModule
+
+- type: Tag
+  id: ClarkePeripheralsControlModule
+
+- type: Tag
+  id: ClarkeHead
+
+- type: Tag
+  id: ClarkeLArm
+
+- type: Tag
+  id: ClarkeRArm
+
+- type: Tag
+  id: ClarkeTreads
+
+- type: Tag
+  id: DurandArmor
+
+- type: Tag
+  id: DurandCentralControlModule
+
+- type: Tag
+  id: DurandPeripheralsControlModule
+
+- type: Tag
+  id: DurandTargetingControlModule
+
+- type: Tag
+  id: DurandHead
+
+- type: Tag
+  id: DurandLArm
+
+- type: Tag
+  id: DurandLLeg
+
+- type: Tag
+  id: DurandRArm
+
+- type: Tag
+  id: DurandRLeg
+
+- type: Tag
+  id: EnergySword
+
+- type: Tag
+  id: GygaxArmor
+
+- type: Tag
+  id: GygaxCentralControlModule
+
+- type: Tag
+  id: GygaxPeripheralsControlModule
+
+- type: Tag
+  id: GygaxTargetingControlModule
+
+- type: Tag
+  id: GygaxHead
+
+- type: Tag
+  id: GygaxLArm
+
+- type: Tag
+  id: GygaxLLeg
+
+- type: Tag
+  id: GygaxRArm
+
+- type: Tag
+  id: GygaxRLeg
+
+- type: Tag
+  id: PhazonArmor
+
+- type: Tag
+  id: PhazonCentralControlModule
+
+- type: Tag
+  id: PhazonPeripheralsControlModule
+
+- type: Tag
+  id: PhazonTargetingControlModule
+
+- type: Tag
+  id: PhazonHead
+
+- type: Tag
+  id: PhazonLArm
+
+- type: Tag
+  id: PhazonLLeg
+
+- type: Tag
+  id: PhazonRArm
+
+- type: Tag
+  id: PhazonRLeg
+
+- type: Tag
+  id: Laser
+
+- type: Tag
+  id: MechAirTank
+
+- type: Tag
+  id: MechThruster
+
+- type: Tag
+  id: MechPhasicScanningModule
+
+- type: Tag
+  id: RipleyMKIIUpgradeKit
+
+- type: Tag
+  id: IndustrialMech
+
+- type: Tag
+  id: CombatMech
+# TODO: Make medical mech
+
+- type: Tag
+  id: SpecialMech
+
+- type: Tag
+  id: SolarAssemblyFlatpack
+  
+- type: Tag
+  id: ArtilleryShell

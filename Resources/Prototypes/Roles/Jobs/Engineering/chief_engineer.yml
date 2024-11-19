@@ -6,16 +6,21 @@
   requirements:
     - !type:RoleTimeRequirement
       role: JobAtmosphericTechnician
-      time: 18000 #5 hrs # Sunrise-RoleTime
+      time: 21600 #6 hrs
+    - !type:RoleTimeRequirement
+      role: JobStationEngineer
+      time: 21600 #6 hrs
     - !type:DepartmentTimeRequirement
       department: Engineering
-      time: 36000 #10 hrs # Sunrise-RoleTime
+      time: 36000 #10 hrs
+    - !type:OverallPlaytimeRequirement
+      time: 144000 #40 hrs
   weight: 10
   startingGear: ChiefEngineerGear
   icon: "JobIconChiefEngineer"
-  requireAdminNotify: true
   supervisors: job-supervisors-captain
-  radioBold: true
+  radioBold: true # Sunrise-Edit
+  displayWeight: 70 # Sunrise-Edit
   canBeAntag: false
   access:
   - Maintenance
@@ -33,16 +38,17 @@
     components:
       - type: CommandStaff
   speciesBlacklist:
-  - Vox
+  - Vox # Sunrise-Edit
 
 - type: startingGear
   id: ChiefEngineerGear
   equipment:
     id: CEPDA
+    head: ClothingHeadHatHardhatWhite # Sunrise-Edit
     eyes: ClothingEyesGlassesMeson
     ears: ClothingHeadsetCE
     belt: ClothingBeltUtilityEngineering
   storage:
     back:
-    - BoxSurvivalEngineering
     - Flash
+    - Telebaton # Sunrise-Edit

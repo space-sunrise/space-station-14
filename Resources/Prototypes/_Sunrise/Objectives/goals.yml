@@ -1,48 +1,98 @@
 - type: stationGoal
-  id: StationGoalShuttle
+  id: Shuttle
   text: station-goal-shuttle
   lockBoxPrototypeId: LockboxCaptain
 
 - type: stationGoal
-  id: StationGoalSingularity
+  id: Singularity
   text: station-goal-singularity
   lockBoxPrototypeId: LockboxCaptain
 
 - type: stationGoal
-  id: StationGoalSolarPanels
+  id: SolarPanels
   text: station-goal-solar-panels
   lockBoxPrototypeId: LockboxCaptain
 
 - type: stationGoal
-  id: StationGoalArtifacts
+  id: Artifacts
   text: station-goal-artifacts
   lockBoxPrototypeId: LockboxCaptain
 
 - type: stationGoal
-  id: StationGoalBank
+  id: Bank
   text: station-goal-bank
   lockBoxPrototypeId: LockboxCaptain
 
 - type: stationGoal
-  id: StationGoalZoo
+  id: Zoo
   text: station-goal-zoo
   lockBoxPrototypeId: LockboxCaptain
 
 - type: stationGoal
-  id: StationGoalMiningOutpost
+  id: MiningOutpost
   text: station-goal-mining-outpost
   lockBoxPrototypeId: LockboxCaptain
 
 - type: stationGoal
-  id: StationGoalVirusZombie
-  text: station-goal-virus
+  id: Tesla
+  text: station-goal-tesla
   lockBoxPrototypeId: LockboxCaptain
-  extraItems:
-    - SyringeRomerolNT
-    - SyringeRomerolNT
-    - SyringeRomerolNT
 
 - type: stationGoal
-  id: StationGoalTesla
-  text: station-goal-tesla
+  id: XenobiologyRepair
+  text: station-goal-delta-xeno-repair
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: VirusologyAmbusol
+  text: station-goal-delta-ambusol
+  lockBoxPrototypeId: LockboxCaptain
+  extraItems:
+    - PillRomerol
+    - PillRomerol
+    - PillRomerol
+
+- type: stationGoal
+  id: Containment
+  text: station-goal-containment
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: WeaponsSecurity
+  text: station-goal-weapon-sec
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: MaintsRepair
+  text: station-goal-maints-repair
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: DormsBuild
+  text: station-goal-dorms-build
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: BattleShuttle
+  text: station-goal-battle-shuttle
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: Transit
+  text: station-goal-transit-time
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: NukeRoom
+  text: station-goal-nuke-room
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: Permabrig
+  text: station-goal-permabrig
+  lockBoxPrototypeId: LockboxCaptain
+
+- type: stationGoal
+  id: Farm
+  text: station-goal-farm
   lockBoxPrototypeId: LockboxCaptain

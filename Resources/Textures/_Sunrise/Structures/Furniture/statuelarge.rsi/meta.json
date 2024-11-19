@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Спизжено из SS13 Paradise",
+  "size": {
+    "x": 32,
+    "y": 64
+  },
+  "states": [
+    {
+      "name": "venus",
+      "directions": 4
+    },
+    {
+      "name": "furukai"
+    },
+    {
+      "name": "ell_good"
+    },
+    {
+      "name": "mooniverse"
+    },
+    {
+      "name": "rib",
+      "directions": 4
+    },
+    {
+      "name": "frank"
+    },
+    {
+      "name": "dude"
+    }
+  ]
+}

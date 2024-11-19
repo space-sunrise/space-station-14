@@ -1,0 +1,213 @@
+{
+  "copyright" : "Taken from https://github.com/tgstation/tgstation at at https://github.com/tgstation/tgstation/commit/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a, hamtr made by brainfood1183 (github)",
+  "license" : "CC-BY-SA-3.0",
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "gygax",
+      "directions": 4
+    },
+    {
+      "name": "gygax-open",
+      "delays": [
+        [
+          0.1,
+          0.05,
+          0.05,
+          0.05,
+          0.1,
+          0.05,
+          0.05,
+          0.05,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "gygax-broken",
+      "delays": [
+        [
+          5,
+          0.05,
+          0.05,
+          0.05,
+          0.1,
+          0.1,
+          0.5,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "ntgygax",
+      "directions": 4
+    },
+    {
+      "name": "ntgygax-open",
+      "delays": [
+        [
+          0.1,
+          0.05,
+          0.05,
+          0.05,
+          0.1,
+          0.05,
+          0.05,
+          0.05,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "ntgygax-broken",
+      "delays": [
+        [
+          5,
+          0.05,
+          0.05,
+          0.05,
+          0.1,
+          0.1,
+          0.5,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "gygax_black",
+      "directions": 4
+    },
+    {
+      "name": "gygax_black-open",
+      "delays": [
+        [
+          0.1,
+          0.05,
+          0.05,
+          0.05,
+          0.1,
+          0.05,
+          0.05,
+          0.05,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "gygax_black-broken",
+      "delays": [
+        [
+          0.3,
+          0.5,
+          0.3,
+          0.5,
+          0.3,
+          0.4,
+          0.5,
+          0.3
+        ]
+      ]
+    },
+    {
+      "name": "gygax_white",
+      "directions": 4
+    },
+    {
+      "name": "gygax_white-open",
+      "delays": [
+        [
+          0.1,
+          0.05,
+          0.05,
+          0.05,
+          0.1,
+          0.05,
+          0.05,
+          0.05,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "gygax_white-broken",
+      "delays": [
+        [
+          0.3,
+          0.5,
+          0.4,
+          0.3,
+          0.5,
+          0.3,
+          0.4,
+          0.5,
+          0.3
+        ]
+      ]
+    },
+    {
+      "name": "darkgygax",
+      "directions": 4
+    },
+    {
+      "name": "darkgygax-open"
+    },
+    {
+      "name": "darkgygax-broken"
+    },
+    {
+      "name": "gygax_alt",
+      "directions": 4
+    },
+    {
+      "name": "gygax_alt-open"
+    },
+    {
+      "name": "gygax_alt-broken"
+    },
+    {
+      "name": "piratgygax",
+      "directions": 4
+    },
+    {
+      "name": "piratgygax-open"
+    },
+    {
+      "name": "piratgygax-broken",
+      "delays": [
+        [
+          0.3,
+          0.5,
+          0.3,
+          0.5,
+          0.3,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "molot",
+      "directions": 4
+    },
+    {
+      "name": "molot-broken",
+      "directions": 4
+    },
+    {
+      "name": "molot-open",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    }
+  ]
+}

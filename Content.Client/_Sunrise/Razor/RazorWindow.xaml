@@ -1,0 +1,9 @@
+﻿<DefaultWindow xmlns="https://spacestation14.io"
+    xmlns:razor="clr-namespace:Content.Client._Sunrise.Razor"
+    Title="{Loc 'razor-window-title'}"
+    MinSize="600 400">
+    <BoxContainer>
+        <razor:RazorSingleMarkingPicker Name="HairPicker" Category="Hair" />
+        <razor:RazorSingleMarkingPicker Name="FacialHairPicker" Category="FacialHair" />
+    </BoxContainer>
+</DefaultWindow>

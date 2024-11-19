@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "license": "CLA",
+  "copyright": "© SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "appendix"
+    },
+    {
+      "name": "appendix-inflamed"
+    },
+    {
+      "name": "brain"
+    },
+    {
+      "name": "brain-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "brain-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "ears"
+    },
+    {
+      "name": "heart-off"
+    },
+    {
+      "name": "heart-on",
+      "delays": [
+        [
+          0.6,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "kidney-l"
+    },
+    {
+      "name": "kidney-r"
+    },
+    {
+      "name": "liver"
+    },
+    {
+      "name": "lung-l"
+    },
+    {
+      "name": "lung-r"
+    },
+    {
+      "name": "stomach"
+    },
+    {
+      "name": "tongue"
+    },
+    {
+      "name": "muscle"
+    },
+    {
+      "name": "nerve"
+    },
+    {
+      "name": "vessel"
+    }
+  ]
+}

@@ -11,6 +11,9 @@
             "name": "Detective"
         },
         {
+            "name": "Adjutant"
+        },
+        {
             "name": "QuarterMaster"
         },
         {
@@ -175,15 +178,18 @@
         {
             "name": "HeadRevolutionary"
         },
-		{
-			"name": "Magistrat"
-		},
+        {
+            "name": "Magistrat"
+        },
         {
             "name": "MindShield",
             "delays":
             [
                 [1.0,1.0]
             ]
+        },
+        {
+            "name": "StationAi"
         },
         {
             "name": "Syndicate"
@@ -196,6 +202,12 @@
         },
         {
             "name": "Admin"
+        },
+        {
+            "name": "Changeling"
+        },
+        {
+            "name": "Vampire"
         }
     ]
 }

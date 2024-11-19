@@ -1,0 +1,112 @@
+# © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
+- type: reagent
+  id: FluorosulfuricAcidHumanoidXeno
+  name: reagent-name-fluorosulfuric-acid
+  group: Toxins
+  desc: reagent-desc-fluorosulfuric-acid
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: acid
+  color: "#44944A"
+  boilingPoint: 165
+  meltingPoint: -87
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:HasTag
+          tag: "HumanoidXeno"
+          invert: true
+        scaleByQuantity: true
+        ignoreResistances: false
+        damage:
+          types:
+            Caustic: 0.2
+      - !type:Emote
+        conditions:
+        - !type:HasTag
+          tag: "HumanoidXeno"
+          invert: true
+        emote: Scream
+        probability: 0.2
+  metabolisms:
+    Poison:
+      metabolismRate: 3.00 # High damage, high metabolism rate. You need a lot of units to crit. Simulates acid burning through you fast.
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:HasTag
+          tag: "HumanoidXeno"
+          invert: true
+        damage:
+          types:
+            Caustic: 1
+      - !type:PopupMessage
+        conditions:
+        - !type:HasTag
+          tag: "HumanoidXeno"
+          invert: true
+        type: Local
+        visualType: Large
+        messages: [ "generic-reagent-effect-burning-insides" ]
+        probability: 0.33
+      - !type:Emote
+        conditions:
+        - !type:HasTag
+          tag: "HumanoidXeno"
+          invert: true
+        emote: Scream
+        probability: 0.25
+
+- type: reagent
+  id: FluorosulfuricAcidPredator
+  name: reagent-name-predator-acid
+  group: Toxins
+  desc: reagent-desc-predator-acid
+  flavor: terrible
+  color: "#008000"
+  physicalDesc: reagent-physical-desc-strong-smelling
+  slippery: false
+  viscosity: 0.25
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+        - !type:HealthChange
+          conditions:
+          - !type:HasTag
+            tag: "Predator"
+            invert: true
+          scaleByQuantity: true
+          ignoreResistances: false
+          damage:
+            types:
+              Caustic: 1
+        - !type:Emote
+          conditions:
+          - !type:HasTag
+            tag: "Predator"
+            invert: true
+          emote: Scream
+          probability: 0.8
+  metabolisms:
+    Poison:
+      effects:
+        - !type:HealthChange
+          conditions:
+          - !type:HasTag
+            tag: "Predator"
+            invert: true
+          damage:
+            types:
+              Caustic: 3
+        - !type:PopupMessage
+          conditions:
+          - !type:HasTag
+            tag: "Predator"
+            invert: true
+          type: Local
+          visualType: Large
+          messages: [ "generic-reagent-effect-burning-insides" ]
+          probability: 0.33

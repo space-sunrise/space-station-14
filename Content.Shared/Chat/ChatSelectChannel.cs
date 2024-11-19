@@ -51,6 +51,13 @@
         /// </summary>
         Admin = ChatChannel.AdminChat,
 
+        // Sunrise-Start
+        /// <summary>
+        ///     CollectiveMind
+        /// </summary>
+        CollectiveMind = ChatChannel.CollectiveMind,
+        // Sunrise-End
+
         Console = ChatChannel.Unspecified
     }
 }

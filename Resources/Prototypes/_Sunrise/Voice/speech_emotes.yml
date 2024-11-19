@@ -1,8 +1,15 @@
 # vocal emotes
 - type: emote
-  id: Mews
+  id: Mew
   name: chat-emote-name-mews
   category: Vocal
+  available: false
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
   chatMessages: [мя!]
   chatTriggers:
     - mew
@@ -16,9 +23,16 @@
     - мя!
 
 - type: emote
-  id: Meows
+  id: Meow
   name: chat-emote-name-meows
   category: Vocal
+  available: false
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
   chatMessages: [мяу!]
   chatTriggers:
     - Meows
@@ -38,6 +52,13 @@
   id: Hisses
   name: chat-emote-name-hisses
   category: Vocal
+  available: false
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
   chatMessages: [шипит!]
   chatTriggers:
   - шипит
@@ -51,9 +72,16 @@
   - hissing!
 
 - type: emote
-  id: Purrs
+  id: Purr
   name: chat-emote-name-purrs
   category: Vocal
+  available: false
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
   chatMessages: [мурчит!]
   chatTriggers:
     - мурчит
@@ -64,9 +92,16 @@
     - Purrs!
 
 - type: emote
-  id: Growls
+  id: Growl
   name: chat-emote-name-growls
   category: Vocal
+  available: false
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
   chatMessages: [рычит!]
   chatTriggers:
   - рычит
@@ -80,8 +115,22 @@
   id: Bark
   name: chat-emote-name-bark
   category: Vocal
-  chatMessages: [barks.]
+  available: false
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: [лает.]
   chatTriggers:
+  - гав
+  - гав.
+  - гав!
+  - лает
+  - лаять
+  - лает!
+  - лает.
   - bark.
   - bark!
   - barks.
@@ -94,8 +143,21 @@
   id: Howl
   name: chat-emote-name-howl
   category: Vocal
-  chatMessages: [howls.]
+  available: false
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: [воет.]
   chatTriggers:
+  - выть
+  - воет
+  - воет!
+  - воет.
+  - выть.
+  - выть!
   - howl.
   - howl!
   - howls.
@@ -107,7 +169,61 @@
   id: Oink
   name: chat-emote-name-oink
   category: Vocal
+  available: false
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
   chatMessages: [хрю!]
   chatTriggers:
+  - хрюкает.
+  - хрюкает!
+  - хрюкать.
+  - хрюкать!
+  - хрюкать
+  - хрю.
+  - хрю!
   - хрю
   - хряк.
+  - хряк
+  - хряк!
+
+- type: emote
+  id: Vomit
+  name: chat-emote-name-vomit
+  category: Vocal
+  chatMessages: [тошнит]
+
+- type: emote
+  id: Headache
+  name: chat-emote-name-headache
+  category: Vocal
+  chatMessages: [голова болит]
+
+- type: emote
+  id: Insult
+  name: chat-emote-name-insult
+  category: Vocal
+  chatMessages: [инсульт]
+
+- type: emote
+  id: Whines
+  name: chat-emote-name-whines
+  category: Vocal
+  icon: Interface/Emotes/cry.png
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-whines"]
+  chatTriggers:
+  - скулит.
+  - скулит!
+  - скулить.
+  - скулить!
+  - скулит
+  - скулить

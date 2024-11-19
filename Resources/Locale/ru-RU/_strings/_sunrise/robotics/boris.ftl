@@ -1,0 +1,11 @@
+boris-installed = Обнаружена нейронная активность.
+boris-off = Нейронная активность не обнаружена.
+boris-still-searching = Идёт процесс синтетического нейронного дескремблирования...
+boris-searching = Начинается процесс синтетического нейронного дескремблирования...
+boris-role-name = роботический мозг
+boris-role-description = Служите экипажу станции.
+boris-wipe-device-verb-text = Стереть мозг
+boris-wiped-device = Нейронная активность была прекращена.
+boris-stop-searching-verb-text = Прекратить поиск
+boris-stopped-searching = Нейронное дескремблирование прекращено.
+boris-slot-component-slot-name-brain = Мозг

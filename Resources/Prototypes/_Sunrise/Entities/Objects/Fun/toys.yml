@@ -1,0 +1,781 @@
+- type: entity
+  id: PlushieOne
+  parent: BasePlushie
+  name: Dekus-Kiurs
+  description: Unath, whom no one is expecting.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-ce
+
+- type: entity
+  id: PlushieTwo
+  parent: BasePlushie
+  name: Unknown
+  description: A plush, polite man with refined taste and a moustache.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-atmos
+
+- type: entity
+  id: PlushieThree
+  parent: BasePlushie
+  name: Teresa Sharapova
+  description: The plush head of staff, he's pissing you off.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-hop
+
+- type: entity
+  id: PlushieFour
+  parent: BasePlushie
+  name: Yasly Chunkanjuk
+  description: A plush orange fox in an officer's uniform.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-secvulp
+
+- type: entity
+  id: PlushieFive
+  parent: BasePlushie
+  name: Robert Krapivin
+  description: A plush toy of a caretaker in a strange blue uniform.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-warden
+
+- type: entity
+  id: PlushieSix
+  parent: BasePlushie
+  name: Anatoly Bobrov
+  description: A plush disposer with a hole in his spacesuit.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-util
+
+- type: entity
+  id: PlushieSeven
+  parent: BasePlushie
+  name: Cain De La Mace
+  description: The plush commander of the nuclear operatives. Very scary.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-nukeleader
+
+- type: entity
+  id: PlushieEight
+  parent: BasePlushie
+  name: Artem Spirin Jr.
+  description: A plush toy of the Chief of Staff of Central Command. A rejection note can be seen in his hand.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-nhc
+
+- type: entity
+  id: PlushieNine
+  parent: BasePlushie
+  name: Victoria Hoffmann
+  description: A plush caretaker with a bloody nose and an electric guitar.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-janitor
+
+- type: entity
+  id: PlushieTen
+  parent: BasePlushie
+  name: Artyom Spirin Sr.
+  description: A plush, heavily dusted scientist.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-doctor
+
+- type: entity
+  id: PlushieEleven
+  parent: BasePlushie
+  name: Akepa Gryaznov
+  description: A plush manly dwarf in a Central Command operator's turtleneck.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-cc
+
+- type: entity
+  id: PlushieTwelve
+  parent: BasePlushie
+  name: Vouiar Teriyakin
+  description: Plush Captain toy with green cabbage coloured hair.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-capitan
+
+- type: entity
+  id: PlushieThirteen
+  parent: BasePlushie
+  name: Marianna Bragina
+  description: A very cute plush toy of an atmospheric technician.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-atmos2
+
+- type: entity
+  id: PlushieFourteen
+  parent: BasePlushie
+  name: Drakosha
+  description: A plush humongoid dragon toy with brown scales.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-dragon
+
+- type: entity
+  id: PlushieFifteen
+  parent: BasePlushie
+  name: Puro
+  description: A plush vulpas toy with a white mask on its face.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-doctorvulp
+
+- type: entity
+  id: PlushieSixteen
+  parent: BasePlushie
+  name: Rudolf Von-Weiner
+  description: A plush toy of a senior engineer with hair as purple as plasma.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: RudolfAsp
+
+- type: entity
+  id: PlushieSeventeen
+  parent: BasePlushie
+  name: TR-263
+  description: A robotic Raptor. You don't want to put your hands on his plush face. Everyone knows how that usually ends, right?
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: raptor-trs
+
+- type: entity
+  id: PlushieEighteen
+  parent: BasePlushie
+  name: Commissioner
+  description: The Commissioner is a super-specialised investigator of plush offences. The most formidable and gentle justice in the plush universe.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: commisar-trs
+
+- type: entity
+  id: PlushieNineteen
+  parent: BasePlushie
+  name: Sneaky crook
+  description: Some call him bad, some say he's the worst, but we all know who he is.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: radik-sh
+
+- type: entity
+  id: PlushieTwenty
+  parent: BasePlushie
+  name: Louras-Ma
+  description: His scales may be black, but his thoughts are pure! And don't ask him where he got his hypo-arm and why he needs nocturine in it!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: Lurash-MaASP
+
+- type: entity
+  id: PlushieTwentyOne
+  parent: BasePlushie
+  name: Gentuhw Anmimisz
+  description: A great warrior of the green robusta clan. Was wounded in the knee and forced to suspend his journey in your soft or not so soft hands. Katana not included.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: Gentuhv-UnminishASP
+
+- type: entity
+  id: PlushieTwentyTwo
+  parent: BasePlushie
+  name: Kondrat Seran
+  description: Legend has it that the red-haired Seran has successfully completed many cases and closed his lawyer's office because of the new NT decree. He lives in a dark corner, weaving silk thread, and he's sneaking in here to build a new house.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: condrat-trs
+
+- type: entity
+  id: PlushieTwentyThree
+  parent: BasePlushie
+  name: Darth Vader
+  description: A long time ago, in a galaxy far, far away...
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: dart-trs
+
+- type: entity
+  id: PlushieTwentyFour
+  parent: BasePlushie
+  name: Uzo-Kur-Petaksay
+  description: A grey Unath dressed in the garb of the so-called ‘Arbiter’. A kind enough Master.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: Uzo-kur
+
+- type: entity
+  id: PlushieTwentyFive
+  parent: BasePlushie
+  name: Roman Filchenkov
+  description: The most famous square plush on the plush world!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: roman-fill
+
+- type: entity
+  id: PlushieTwentySix
+  parent: BasePlushie
+  name: Konradra Alexeev
+  description: Let this young girl with long blue hair, red eyes and a love for beer and NanoTrasen Corporation continue her adventure of bringing her uniqueness and joie de vivre to the world.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: konrada-alex
+
+- type: entity
+  id: PlushieTwentySeven
+  parent: BasePlushie
+  name: Igor
+  description: "A teddy bear in a black hooded sweatshirt. Don't ask him why Vim is better. It says on the label: \"I use Arch btw\""
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: igor
+
+- type: entity
+  id: PlushieTwentyEight
+  parent: BasePlushie
+  name: Husky Huskovic
+  description: Anthroporiforma Grey and white dog wearing a blue suit and lime shoes.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: husky
+
+- type: entity
+  id: PlushieTwentyNine
+  parent: BasePlushie
+  name: Ah Wadumiek
+  description: A regular purple lizard that likes technical tunnels and digging-digging the ground.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: ah-vadimiek
+
+- type: entity
+  id: PlushieThirty
+  parent: BasePlushie
+  name: Nanati
+  description: Naaa, a fluffy and delicious smelling toy.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: nanati
+
+- type: entity
+  id: PlushieThirtyOne
+  parent: BasePlushie
+  name: Scout bird
+  description: "The bird is red in colour. The label says: \"I'm Scout main and Scout gaming.\""
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: scaut
+
+- type: entity
+  id: PlushieThirtyTwo
+  parent: BasePlushie
+  name: Kirieszka
+  description: Cat-man.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: kirieshka
+
+- type: entity
+  id: PlushieThirtyThree
+  parent: BasePlushie
+  name: Allan Haskovic
+  description: The suspicious type.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: allan-haskovich
+
+- type: entity
+  id: PlushieThirtyFour
+  parent: BasePlushie
+  name: Spiffo
+  description: This little raccoon will do anything to make you DIE from zombies!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: spiffo
+
+- type: entity
+  id: PlushieThirtyFive
+  parent: BasePlushie
+  name: Brick Jim
+  description: Surprisingly. looks like a brick. It reeks of the power of bureaucracy.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: brisck_trs
+
+- type: entity
+  id: PlushieThirtySixBig
+  name: Big Brick Jim
+  description: Gigachad brick. Very big. It reeks of the power of bureaucracy.
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: MovedByPressure
+  - type: DamageOnHighSpeedImpact
+    damage:
+      types:
+        Blunt: 5
+    soundHit:
+      path: /Audio/Effects/hit_kick.ogg
+  - type: CollisionWake
+  - type: TileFrictionModifier
+    modifier: 0.5
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3  # fite me
+        friction: 0.2
+  - type: Pullable
+  - type: DamageExaminable
+#
+  - type: EmitSoundOnUse
+    sound:
+      collection: ToySqueak
+  - type: EmitSoundOnActivate
+    sound:
+      collection: ToySqueak
+  - type: EmitSoundOnCollide
+    sound:
+      collection: ToySqueak
+  - type: EmitSoundOnLand
+    sound:
+      collection: ToyFall
+  - type: UseDelay
+    delay: 1.0
+  - type: MeleeWeapon
+    soundHit:
+      collection: ToySqueak
+    damage:
+      types:
+        Blunt: 0
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 100
+  - type: StaticPrice
+    price: 5
+  - type: Sprite
+    drawdepth: Items
+    noRot: false
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    scale: 2.5, 2.5
+    state: brisck_trs
+
+- type: entity
+  id: PlushieThirtySeven
+  parent: BasePlushie
+  name: V.O.R.T.E.X.
+  description: They say there's always light where this toy lies, but we don't believe it.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: vortex
+
+- type: entity
+  id: PlushieThirtyEight
+  parent: BasePlushie
+  name: Dan Heng Moon Eater
+  description: Cloud dragon. Rise up!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: vampire
+
+- type: entity
+  id: PlushieRichardDetective
+  parent: BasePlushie
+  name: Unlucky Detective Richard Reid
+  description: Honourably lost at Russian roulette with myself..... 17 times....
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: richard_detective
+
+- type: entity
+  id: PlushieCaptainTartarus
+  parent: BasePlushie
+  name: Captain Tartarus
+  description: In my pocket is a picture of a gallows with the caption "sps for cyberbullying", addressed to "Elik"
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: captain_tartarus
+
+- type: entity
+  id: PlushieCaptainEmily
+  parent: BasePlushie
+  name: Captain Emily
+  description: Captain Emily Fill, usually when you see her you shout something like "AAA, WOMAN", but when you see the toy you only shout "AAA FURRY"
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: captain_emily
+
+- type: entity
+  id: PlushieCrusader
+  parent: BasePlushie
+  name: Plushie Crusader
+  description: Deus vult! Ave maria!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: crusader
+
+- type: entity
+  id: PlushieGenok
+  parent: BasePlushie
+  name: Plushie librarian
+  description: A quiet and demure toy with brightly coloured hair, perfect for library work. She smells like a scribe
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    layers:
+    - state: genok-librarian-shaded
+    - state: genok-librarian-unshaded
+      shader: unshaded
+  - type: PointLight
+    radius: 1.5
+    color: "#00CCFF"
+
+- type: entity
+  id: PlushieMegane
+  parent: BasePlushie
+  name: The missing Richard Reed
+  description: No body was found, so it never existed. The last thing eyewitnesses heard was the opening guitar riffs of «(Don't Fear) The Reaper», you don't want to get into that.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: richard_industries
+
+- type: entity
+  abstract: true
+  id: EmitVulpGrowl
+  components:
+  - type: MeleeWeapon
+    soundHit:
+      collection: PlushieVulpkaninGrowls
+      params:
+        volume: 100
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: PlushieVulpkaninGrowls
+  - type: EmitSoundOnCollide
+    sound:
+      collection: PlushieVulpkaninGrowls
+  - type: EmitSoundOnUse
+    sound:
+      collection: PlushieVulpkaninGrowls
+  - type: EmitSoundOnLand
+    sound:
+      collection: PlushieVulpkaninGrowls
+  - type: EmitSoundOnActivate
+    sound:
+      collection: PlushieVulpkaninGrowls
+
+- type: entity
+  id: PlushieFrizko
+  parent: [ EmitVulpGrowl, BasePlushie ]
+  name: Plush Eustace Lauda
+  description: A plush toy of a psychologist who takes her job seriously. The tag says "I eat vulpine"
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-frizko
+
+- type: entity
+  id: PlushieMiron
+  parent: [ EmitVulpGrowl, BasePlushie ]
+  name: Plush Miron Potapov
+  description: A plush toy of a medical department veteran ready to share his expertise with others. The tag says "Made from natural chemicals"
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-miron
+
+- type: entity
+  id: PlushieBublegum
+  parent: BasePlushie
+  name: Plush Bubblegum
+  description: A cute toy of a terrifying monster from the depths of lavaland. She can't hurt you
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-bublegum
+
+- type: entity
+  id: PlushieCikuus
+  parent: BasePlushie
+  name: Plush Lilith Bonaventure
+  description: Cute vulpochka in a maid costume, she smells nice with flowers and will be happy to clean your house. Who hasn't dreamed of one?
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-cikuus
+
+- type: entity
+  id: PlushieSuvagesi
+  parent: BasePlushie
+  name: Plush Holo Suwageshi
+  description: A regular vulpa, huh? Wait, is that a knife? Wait. No, run! SHE'S FINISHED!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-suvagesi
+
+- type: entity
+  id: PlushiePrototupus
+  parent: BasePlushie
+  name: Plush Lily Barton
+  description: and every question has a definite answer - "squelch squelch squelch".
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-prototupus
+
+- type: entity
+  abstract: true
+  id: EmitSquish
+  components:
+  - type: MeleeWeapon
+    soundHit:
+      collection: PlushieSlimeSounds
+      params:
+        volume: 100
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: PlushieSlimeSounds
+  - type: EmitSoundOnCollide
+    sound:
+      collection: PlushieSlimeSounds
+  - type: EmitSoundOnUse
+    sound:
+      collection: PlushieSlimeSounds
+  - type: EmitSoundOnLand
+    sound:
+      collection: PlushieSlimeSounds
+  - type: EmitSoundOnActivate
+    sound:
+      collection: PlushieSlimeSounds
+
+- type: entity
+  id: PlushieSmile
+  parent:
+  - EmitSquish
+  - BasePlushie
+  name: Plush Smile
+  description: Plush Smile is ready to listen to all your complaints and be your best friend.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-smile
+
+- type: entity
+  id: EmitMeow
+  abstract: true
+  components:
+  - type: MeleeWeapon
+    soundHit:
+      collection: CatMeows
+      params:
+        volume: 100
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: CatMeows
+  - type: EmitSoundOnCollide
+    sound:
+      collection: CatMeows
+  - type: EmitSoundOnUse
+    sound:
+      collection: CatMeows
+  - type: EmitSoundOnLand
+    sound:
+      collection: CatMeows
+  - type: EmitSoundOnActivate
+    sound:
+      collection: CatMeows
+
+- type: entity
+  id: PlushieCFB
+  parent:
+  - EmitMeow
+  - BasePlushie
+  name: Victoria Belaya
+  description: A person in the strict costume of a PST employee. Constantly punishing and unsparing. Loves to spoil and meow.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-CFB
+
+- type: entity
+  id: PlushieSebastian
+  parent: BasePlushie
+  name: Plush Commander Sebastian Hayes
+  description: He's actually an agent who forgot to go undercover.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-sebastian
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieNara
+  name: Na-Ra
+  description: A noir unath just came out of the dormitories.
+  components:
+  - type: Sprite
+    state: plushie-nara
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+
+- type: entity
+  parent: BasePlushie
+  id: PlushiePeacemaker
+  name: Peacemaker
+  description: Where he is, there is peace, but where there is war, he brings death.
+  components:
+  - type: Sprite
+    state: plushie-peacemaker
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Sunrise/vizhu_pidorasa.ogg
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /Audio/_Sunrise/vizhu_pidorasa.ogg
+  - type: UseDelay
+    delay: 20.0
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieEblan
+  name: Plush Milos-Tanaka
+  description: Protector of the station, always ready for unexpected adventures!
+  components:
+  - type: Sprite
+    state: plushie-eblan
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieKlim
+  name: Plush Klim Kuzmin
+  description: Vulpa atm, he smells like plasma. It'll fix any hole, even in your heart.
+  components:
+  - type: Sprite
+    state: plushie-klim
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieMelania
+  name: Plush Melania Kiseleva
+  description: The greatest jellybean in the universe, loving her sisters. Squish!
+  components:
+  - type: Sprite
+    state: plushie-melania
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieOkobius
+  name: Plush Ocobius Aquatica
+  description: One of the worst brig medics that ever existed.
+  components:
+  - type: Sprite
+    state: plushie-okobius
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieVyacheslav
+  name: Plushy Vyacheslav Nekrasov
+  description: A popular personality in relevant circles.
+  components:
+  - type: Sprite
+    state: plushie-vyacheslav
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+
+- type: entity
+  parent: [ EmitVulpGrowl, BasePlushie ]
+  id: PlushieLu
+  name: Plush Lou'Slime
+  description: You think this vulpa chemist is a woman? Keep thinking that... Sometimes she snorts
+  components:
+  - type: Sprite
+    state: plushie-lu
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieAgata
+  name: Plush Agent Agata Katsuhiro
+  description: This plushie was made on a planetary prison by convicted Syndicate agents. Wear it proudly, corporate
+  components:
+  - type: Sprite
+    state: plushie-agata
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieMilosTanka
+  name: Plush Milos-Tanaka
+  description: Unathi in a Central Command uniform, what could he possibly be hiding in him besides two knives and a revolver?
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    layers:
+    - state: plushie-milos-tan
+    - state: syndie-visor
+      shader: unshaded

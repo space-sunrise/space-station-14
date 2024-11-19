@@ -308,6 +308,78 @@
     accent-pirate-replaced-30: accent-pirate-replacement-30
     accent-pirate-replaced-31: accent-pirate-replacement-31
     accent-pirate-replaced-32: accent-pirate-replacement-32
+#Sunrise-start
+    accent-pirate-replaced-33: accent-pirate-replacement-33
+    accent-pirate-replaced-34: accent-pirate-replacement-34
+    accent-pirate-replaced-35: accent-pirate-replacement-35
+    accent-pirate-replaced-36: accent-pirate-replacement-36
+    accent-pirate-replaced-37: accent-pirate-replacement-37
+    accent-pirate-replaced-38: accent-pirate-replacement-38
+    accent-pirate-replaced-39: accent-pirate-replacement-39
+    accent-pirate-replaced-40: accent-pirate-replacement-40
+    accent-pirate-replaced-41: accent-pirate-replacement-41
+    accent-pirate-replaced-42: accent-pirate-replacement-42
+    accent-pirate-replaced-43: accent-pirate-replacement-43
+    accent-pirate-replaced-44: accent-pirate-replacement-44
+    accent-pirate-replaced-45: accent-pirate-replacement-45
+    accent-pirate-replaced-46: accent-pirate-replacement-46
+    accent-pirate-replaced-47: accent-pirate-replacement-47
+    accent-pirate-replaced-48: accent-pirate-replacement-48
+    accent-pirate-replaced-49: accent-pirate-replacement-49
+    accent-pirate-replaced-50: accent-pirate-replacement-50
+    accent-pirate-replaced-51: accent-pirate-replacement-51
+    accent-pirate-replaced-52: accent-pirate-replacement-52
+    accent-pirate-replaced-53: accent-pirate-replacement-53
+    accent-pirate-replaced-54: accent-pirate-replacement-54
+    accent-pirate-replaced-55: accent-pirate-replacement-55
+    accent-pirate-replaced-56: accent-pirate-replacement-56
+    accent-pirate-replaced-57: accent-pirate-replacement-57
+    accent-pirate-replaced-58: accent-pirate-replacement-58
+    accent-pirate-replaced-59: accent-pirate-replacement-59
+    accent-pirate-replaced-60: accent-pirate-replacement-60
+    accent-pirate-replaced-61: accent-pirate-replacement-61
+    accent-pirate-replaced-62: accent-pirate-replacement-62
+    accent-pirate-replaced-63: accent-pirate-replacement-63
+    accent-pirate-replaced-64: accent-pirate-replacement-64
+    accent-pirate-replaced-65: accent-pirate-replacement-65
+    accent-pirate-replaced-66: accent-pirate-replacement-66
+    accent-pirate-replaced-67: accent-pirate-replacement-67
+    accent-pirate-replaced-68: accent-pirate-replacement-68
+    accent-pirate-replaced-69: accent-pirate-replacement-69
+    accent-pirate-replaced-70: accent-pirate-replacement-70
+    accent-pirate-replaced-71: accent-pirate-replacement-71
+    accent-pirate-replaced-72: accent-pirate-replacement-72
+    accent-pirate-replaced-73: accent-pirate-replacement-73
+    accent-pirate-replaced-74: accent-pirate-replacement-74
+    accent-pirate-replaced-75: accent-pirate-replacement-75
+    accent-pirate-replaced-76: accent-pirate-replacement-76
+    accent-pirate-replaced-77: accent-pirate-replacement-77
+    accent-pirate-replaced-78: accent-pirate-replacement-78
+    accent-pirate-replaced-79: accent-pirate-replacement-79
+    accent-pirate-replaced-80: accent-pirate-replacement-80
+    accent-pirate-replaced-81: accent-pirate-replacement-81
+    accent-pirate-replaced-82: accent-pirate-replacement-82
+    accent-pirate-replaced-83: accent-pirate-replacement-83
+    accent-pirate-replaced-84: accent-pirate-replacement-84
+    accent-pirate-replaced-85: accent-pirate-replacement-85
+    accent-pirate-replaced-86: accent-pirate-replacement-86
+    accent-pirate-replaced-87: accent-pirate-replacement-87
+    accent-pirate-replaced-88: accent-pirate-replacement-88
+    accent-pirate-replaced-89: accent-pirate-replacement-89
+    accent-pirate-replaced-90: accent-pirate-replacement-90
+    accent-pirate-replaced-91: accent-pirate-replacement-91
+    accent-pirate-replaced-92: accent-pirate-replacement-92
+    accent-pirate-replaced-93: accent-pirate-replacement-93
+    accent-pirate-replaced-94: accent-pirate-replacement-94
+    accent-pirate-replaced-95: accent-pirate-replacement-95
+    accent-pirate-replaced-96: accent-pirate-replacement-96
+    accent-pirate-replaced-97: accent-pirate-replacement-97
+    accent-pirate-replaced-98: accent-pirate-replacement-98
+    accent-pirate-replaced-99: accent-pirate-replacement-99
+    accent-pirate-replaced-100: accent-pirate-replacement-100
+    accent-pirate-replaced-101: accent-pirate-replacement-101
+    accent-pirate-replaced-102: accent-pirate-replacement-102
+    #Sunrise-end
 
 - type: accent
   id: cowboy
@@ -503,7 +575,7 @@
 - type: accent
   id: chatsanitize
   wordReplacements:
-   # Russian-ChatSanitize-Start
+    # Russian-ChatSanitize-Start
 #    chatsan-word-1: chatsan-replacement-1
 #    chatsan-word-2: chatsan-replacement-2
 #    chatsan-word-3: chatsan-replacement-3
@@ -548,6 +620,29 @@
 #    chatsan-word-42: chatsan-replacement-42
 #    chatsan-word-43: chatsan-replacement-43
 #    chatsan-word-44: chatsan-replacement-44
+#    chatsan-word-45: chatsan-replacement-45
+#    chatsan-word-46: chatsan-replacement-46
+#    chatsan-word-47: chatsan-replacement-47
+#    chatsan-word-48: chatsan-replacement-48
+#    chatsan-word-49: chatsan-replacement-49
+#    chatsan-word-50: chatsan-replacement-50
+#    chatsan-word-51: chatsan-replacement-51
+#    chatsan-word-52: chatsan-replacement-52
+#    chatsan-word-53: chatsan-replacement-53
+#    chatsan-word-54: chatsan-replacement-54
+#    chatsan-word-55: chatsan-replacement-55
+#    chatsan-word-56: chatsan-replacement-56
+#    chatsan-word-57: chatsan-replacement-57
+#    chatsan-word-58: chatsan-replacement-58
+#    chatsan-word-59: chatsan-replacement-59
+#    chatsan-word-60: chatsan-replacement-60
+#    chatsan-word-61: chatsan-replacement-61
+#    chatsan-word-62: chatsan-replacement-62
+#    chatsan-word-63: chatsan-replacement-63
+#    chatsan-word-64: chatsan-replacement-64
+#    chatsan-word-65: chatsan-replacement-65
+#    chatsan-word-66: chatsan-replacement-66
+#    chatsan-word-67: chatsan-replacement-67
     russian-chatsan-word-1: russian-chatsan-replacement-1
     russian-chatsan-word-2: russian-chatsan-replacement-2
     russian-chatsan-word-3: russian-chatsan-replacement-3
@@ -722,3 +817,113 @@
     liar-word-40: liar-word-replacement-40
     liar-word-41: liar-word-replacement-41
     liar-word-42: liar-word-replacement-42
+
+- type: accent
+  id: german
+  wordReplacements:
+    accent-german-words-1: accent-german-words-replace-1
+    accent-german-words-1-2: accent-german-words-replace-1
+    accent-german-words-2: accent-german-words-replace-2
+    accent-german-words-3: accent-german-words-replace-3
+    accent-german-words-4: accent-german-words-replace-4
+    accent-german-words-5: accent-german-words-replace-5
+    accent-german-words-6: accent-german-words-replace-6
+    accent-german-words-7: accent-german-words-replace-7
+    accent-german-words-8: accent-german-words-replace-8
+    accent-german-words-9: accent-german-words-replace-9
+    accent-german-words-9-2: accent-german-words-replace-9
+    accent-german-words-10: accent-german-words-replace-10
+    accent-german-words-10-2: accent-german-words-replace-10
+    accent-german-words-11: accent-german-words-replace-11
+    accent-german-words-12: accent-german-words-replace-12
+    accent-german-words-13: accent-german-words-replace-13
+    accent-german-words-14: accent-german-words-replace-14
+    accent-german-words-15: accent-german-words-replace-15
+    accent-german-words-16: accent-german-words-replace-16
+    accent-german-words-17: accent-german-words-replace-17
+    accent-german-words-18: accent-german-words-replace-18
+    accent-german-words-19: accent-german-words-replace-19
+    accent-german-words-20: accent-german-words-replace-20
+    accent-german-words-21: accent-german-words-replace-21
+    accent-german-words-22: accent-german-words-replace-22
+    accent-german-words-23: accent-german-words-replace-23
+    accent-german-words-24: accent-german-words-replace-24
+    accent-german-words-25: accent-german-words-replace-25
+    accent-german-words-26: accent-german-words-replace-26
+    accent-german-words-27: accent-german-words-replace-27
+    accent-german-words-28: accent-german-words-replace-28
+    accent-german-words-29: accent-german-words-replace-29
+    accent-german-words-30: accent-german-words-replace-30
+    accent-german-words-31: accent-german-words-replace-31
+    accent-german-words-32: accent-german-words-replace-32
+    accent-german-words-32-2: accent-german-words-replace-32
+    accent-german-words-33: accent-german-words-replace-33
+    accent-german-words-34: accent-german-words-replace-34
+    accent-german-words-35: accent-german-words-replace-35
+    accent-german-words-36: accent-german-words-replace-36
+    accent-german-words-37: accent-german-words-replace-37
+    accent-german-words-38: accent-german-words-replace-38
+    accent-german-words-38-2: accent-german-words-replace-38
+    accent-german-words-39: accent-german-words-replace-39
+    accent-german-words-40: accent-german-words-replace-40
+    accent-german-words-41: accent-german-words-replace-41
+    accent-german-words-42: accent-german-words-replace-42
+    accent-german-words-43: accent-german-words-replace-43
+    accent-german-words-44: accent-german-words-replace-44
+    accent-german-words-45: accent-german-words-replace-45
+    accent-german-words-46: accent-german-words-replace-46
+    accent-german-words-47: accent-german-words-replace-47
+    accent-german-words-47-2: accent-german-words-replace-47
+    accent-german-words-48: accent-german-words-replace-48
+    accent-german-words-49: accent-german-words-replace-49
+    accent-german-words-50: accent-german-words-replace-50
+    accent-german-words-51: accent-german-words-replace-51
+    accent-german-words-52: accent-german-words-replace-52
+    accent-german-words-53: accent-german-words-replace-53
+    accent-german-words-53-2: accent-german-words-replace-53
+    accent-german-words-54: accent-german-words-replace-54
+    accent-german-words-55: accent-german-words-replace-55
+    accent-german-words-56: accent-german-words-replace-56
+    accent-german-words-56-2: accent-german-words-replace-56
+    accent-german-words-56-3: accent-german-words-replace-56
+    accent-german-words-57: accent-german-words-replace-57
+    accent-german-words-57-2: accent-german-words-replace-57
+    accent-german-words-58: accent-german-words-replace-58
+    accent-german-words-59: accent-german-words-replace-59
+    accent-german-words-60: accent-german-words-replace-60
+    accent-german-words-61: accent-german-words-replace-61
+    accent-german-words-61-2: accent-german-words-replace-61
+    accent-german-words-61-3: accent-german-words-replace-61
+    accent-german-words-61-4: accent-german-words-replace-61
+    accent-german-words-62: accent-german-words-replace-62
+
+- type: accent
+  id: russian
+  wordReplacements:
+    accent-russian-words-1: accent-russian-words-replace-1
+    accent-russian-words-2: accent-russian-words-replace-2
+    accent-russian-words-3: accent-russian-words-replace-3
+    accent-russian-words-3-2: accent-russian-words-replace-3
+    accent-russian-words-3-3: accent-russian-words-replace-3
+    accent-russian-words-4: accent-russian-words-replace-4
+    accent-russian-words-5: accent-russian-words-replace-5
+    accent-russian-words-6: accent-russian-words-replace-6
+
+- type: accent
+  id: skeleton
+  wordReplacements:
+    accent-skeleton-words-1: accent-skeleton-words-replace-1
+    accent-skeleton-words-2: accent-skeleton-words-replace-2
+    accent-skeleton-words-3: accent-skeleton-words-replace-3
+    accent-skeleton-words-3-2: accent-skeleton-words-replace-3
+    accent-skeleton-words-3-3: accent-skeleton-words-replace-3
+    accent-skeleton-words-4: accent-skeleton-words-replace-4
+    accent-skeleton-words-4-2: accent-skeleton-words-replace-4
+    accent-skeleton-words-5: accent-skeleton-words-replace-5
+    accent-skeleton-words-5-2: accent-skeleton-words-replace-5
+    accent-skeleton-words-5-3: accent-skeleton-words-replace-5
+    accent-skeleton-words-5-4: accent-skeleton-words-replace-5
+    accent-skeleton-words-6: accent-skeleton-words-replace-6
+    accent-skeleton-words-7: accent-skeleton-words-replace-7
+    accent-skeleton-words-8: accent-skeleton-words-replace-8
+    accent-skeleton-words-9: accent-skeleton-words-replace-9

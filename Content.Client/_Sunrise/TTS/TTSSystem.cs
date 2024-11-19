@@ -20,26 +20,41 @@ public sealed class TTSSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IResourceManager _res = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private readonly SharedAudioSystem _sharedAudio = default!;
     [Dependency] private readonly IResourceCache _resourceCache = default!;
     [Dependency] private readonly IDependencyCollection _dependencyCollection = default!;
 
     private ISawmill _sawmill = default!;
-    private readonly MemoryContentRoot _contentRoot = new();
+    private static readonly MemoryContentRoot ContentRoot = new();
     private static readonly ResPath Prefix = ResPath.Root / "TTS";
 
     private float _volume;
     private float _radioVolume;
     private int _fileIdx;
     private float _volumeAnnounce;
-    private EntityUid _announcementUid = EntityUid.Invalid;
 
-    private Queue<AnnounceTtsEvent> _announceQueue = new();
+    private readonly Queue<QueuedTts> _ttsQueue = new();
     private (EntityUid Entity, AudioComponent Component)? _currentPlaying;
+    private static readonly AudioResource EmptyAudioResource = new();
+
+    public sealed class QueuedTts(byte[] data, TtsType ttsType, SoundSpecifier? announcementSound = null)
+    {
+        public byte[] Data = data;
+        public SoundSpecifier? AnnouncementSound = announcementSound;
+        public TtsType TtsType = ttsType;
+    }
+
+    public enum TtsType
+    {
+        Voice,
+        Radio,
+        Announce
+    }
 
     public override void Initialize()
     {
         _sawmill = Logger.GetSawmill("tts");
-        _res.AddRoot(Prefix, _contentRoot);
+        _res.AddRoot(Prefix, ContentRoot);
         _cfg.OnValueChanged(SunriseCCVars.TTSVolume, OnTtsVolumeChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.TTSRadioVolume, OnTtsRadioVolumeChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.TTSAnnounceVolume, OnTtsAnnounceVolumeChanged, true);
@@ -55,10 +70,13 @@ public sealed class TTSSystem : EntitySystem
         _cfg.UnsubValueChanged(SunriseCCVars.TTSRadioVolume, OnTtsRadioVolumeChanged);
         _cfg.UnsubValueChanged(SunriseCCVars.TTSAnnounceVolume, OnTtsAnnounceVolumeChanged);
         _cfg.UnsubValueChanged(SunriseCCVars.TTSClientEnabled, OnTtsClientOptionChanged);
-        _contentRoot.Dispose();
+
+        ContentRoot.Clear();
+        _currentPlaying = null;
+        _ttsQueue.Clear();
     }
 
-    public void RequestPreviewTTS(string voiceId)
+    public void RequestPreviewTts(string voiceId)
     {
         RaiseNetworkEvent(new RequestPreviewTTSEvent(voiceId));
     }
@@ -88,28 +106,41 @@ public sealed class TTSSystem : EntitySystem
         if (_volumeAnnounce == 0)
             return;
 
-        _announceQueue.Enqueue(ev);
+        var entry = new QueuedTts(ev.Data, TtsType.Announce, ev.AnnouncementSound);
+
+        _ttsQueue.Enqueue(entry);
     }
 
     private void PlayNextInQueue()
     {
-        if (_announceQueue.Count == 0)
+        if (_ttsQueue.Count == 0)
         {
             return;
         }
 
-        var ev = _announceQueue.Dequeue();
+        var entry = _ttsQueue.Dequeue();
 
-        if (_announcementUid == EntityUid.Invalid)
-            _announcementUid = Spawn(null);
-
-        var finalParams = new AudioParams() { Volume = SharedAudioSystem.GainToVolume(_volumeAnnounce) };
-
-        if (ev.AnnouncementSound != null)
+        var volume = 0f;
+        switch (entry.TtsType)
         {
-            _currentPlaying = _audio.PlayGlobal(ev.AnnouncementSound, _announcementUid, finalParams.AddVolume(-5f));
+            case TtsType.Radio:
+                volume = _radioVolume;
+                break;
+            case TtsType.Announce:
+                volume = _volumeAnnounce;
+                break;
+            case TtsType.Voice:
+                volume = _volume;
+                break;
         }
-        _currentPlaying = PlayTTSBytes(ev.Data, _announcementUid, finalParams, true);
+
+        var finalParams = AudioParams.Default.WithVolume(SharedAudioSystem.GainToVolume(volume));
+
+        if (entry.AnnouncementSound != null)
+        {
+            _currentPlaying = _audio.PlayGlobal(_sharedAudio.GetSound(entry.AnnouncementSound), new EntityUid(), finalParams.AddVolume(-5f));
+        }
+        _currentPlaying = PlayTTSBytes(entry.Data, null, finalParams, true);
     }
 
     private void OnPlayTTS(PlayTTSEvent ev)
@@ -118,6 +149,14 @@ public sealed class TTSSystem : EntitySystem
 
         if (volume == 0)
             return;
+
+        if (ev.IsRadio)
+        {
+            var entry = new QueuedTts(ev.Data, TtsType.Radio);
+
+            _ttsQueue.Enqueue(entry);
+            return;
+        }
 
         volume = SharedAudioSystem.GainToVolume(volume * ev.VolumeModifier);
 
@@ -133,7 +172,7 @@ public sealed class TTSSystem : EntitySystem
             return null;
 
         // если sourceUid.Value.Id == 0 то значит эта сущность не прогружена на стороне клиента
-        if ((sourceUid != null && sourceUid.Value.Id == 0) && !globally)
+        if (sourceUid is { Id: 0 } && !globally)
             return null;
 
         _sawmill.Debug($"Play TTS audio {data.Length} bytes from {sourceUid} entity");
@@ -141,10 +180,20 @@ public sealed class TTSSystem : EntitySystem
         var finalParams = audioParams ?? AudioParams.Default;
 
         var filePath = new ResPath($"{_fileIdx}.ogg");
-        _contentRoot.AddOrUpdateFile(filePath, data);
+        ContentRoot.AddOrUpdateFile(filePath, data);
 
         var res = new AudioResource();
         res.Load(_dependencyCollection, Prefix / filePath);
+        try
+        {
+            ContentRoot.AddOrUpdateFile(filePath, data);
+        }
+        catch (Exception ex)
+        {
+            _sawmill.Error($"Failed to add or update file: {ex.Message}");
+            _fileIdx++;
+            return null;
+        }
         _resourceCache.CacheResource(Prefix / filePath, res);
 
         (EntityUid Entity, AudioComponent Component)? playing;
@@ -165,10 +214,18 @@ public sealed class TTSSystem : EntitySystem
             }
         }
 
-        _contentRoot.RemoveFile(filePath);
+        RemoveFileCursed(filePath);
 
         _fileIdx++;
         return playing;
+    }
+
+    private void RemoveFileCursed(ResPath resPath)
+    {
+        ContentRoot.RemoveFile(resPath);
+
+        // Push old audio out of the cache to save memory. It is cursed, but should work.
+        _resourceCache.CacheResource(Prefix / resPath, EmptyAudioResource);
     }
 
     public override void Update(float frameTime)

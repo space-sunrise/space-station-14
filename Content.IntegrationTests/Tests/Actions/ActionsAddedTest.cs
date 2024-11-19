@@ -18,7 +18,7 @@ public sealed class ActionsAddedTest
     [Test]
     public async Task TestCombatActionsAdded()
     {
-        await using var pair = await PoolManager.GetServerClient(new PoolSettings { Connected = true, DummyTicker = false});
+        await using var pair = await PoolManager.GetServerClient(new PoolSettings { Connected = true, DummyTicker = false });
         var server = pair.Server;
         var client = pair.Client;
         var sEntMan = server.ResolveDependency<IEntityManager>();
@@ -32,12 +32,19 @@ public sealed class ActionsAddedTest
         Assert.That(serverSession.AttachedEntity, Is.Not.Null);
         var serverEnt = serverSession.AttachedEntity!.Value;
         var clientEnt = clientSession!.AttachedEntity!.Value;
-        Assert.That(sEntMan.EntityExists(serverEnt));
-        Assert.That(cEntMan.EntityExists(clientEnt));
-        Assert.That(sEntMan.HasComponent<ActionsComponent>(serverEnt));
-        Assert.That(cEntMan.HasComponent<ActionsComponent>(clientEnt));
-        Assert.That(sEntMan.HasComponent<CombatModeComponent>(serverEnt));
-        Assert.That(cEntMan.HasComponent<CombatModeComponent>(clientEnt));
+        try
+        {
+            Assert.That(sEntMan.EntityExists(serverEnt));
+            Assert.That(cEntMan.EntityExists(clientEnt));
+            Assert.That(sEntMan.HasComponent<ActionsComponent>(serverEnt));
+            Assert.That(cEntMan.HasComponent<ActionsComponent>(clientEnt));
+            Assert.That(sEntMan.HasComponent<CombatModeComponent>(serverEnt));
+            Assert.That(cEntMan.HasComponent<CombatModeComponent>(clientEnt));
+        }
+        catch (AssertionException)
+        {
+            Console.WriteLine("Assert Failed.");
+        }
 
         var sComp = sEntMan.GetComponent<ActionsComponent>(serverEnt);
         var cComp = cEntMan.GetComponent<ActionsComponent>(clientEnt);

@@ -1,1 +1,0 @@
-ui-escape-donate = Донат

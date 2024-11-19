@@ -1,6 +1,6 @@
 using Content.Client.GameTicking.Managers;
 using Content.Shared.PDA;
-using Content.Shared._Sunrise.Time;
+using Content.Client._Sunrise.Time;
 using Content.Shared.CartridgeLoader;
 using Content.Client.Message;
 using Robust.Client.UserInterface;
@@ -121,14 +121,27 @@ namespace Content.Client.PDA
 
             StationTimeButton.OnPressed += _ =>
             {
-                var stationTime = _entitySystem.GetEntitySystem<TimeSystem>().GetStationTime();
-                _clipboard.SetText((stationTime.Time.ToString("hh\\:mm\\:ss")));
-            };
-			StationDateButton.OnPressed += _ =>
-            {
+                var stationTime = _entitySystem.GetEntitySystem<TimeSystem>().GetTime();
                 var stationDate = _entitySystem.GetEntitySystem<TimeSystem>().GetDate();
-                _clipboard.SetText((stationDate));
+                _clipboard.SetText($"{stationTime.ToString("hh\\:mm")} {stationDate}");
             };
+
+            StartTimeButton.OnPressed += _ =>
+            {
+                var stationTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
+                _clipboard.SetText(stationTime.ToString("hh\\:mm"));
+            };
+
+            ShuttleTimeButton.OnPressed += _ =>
+            {
+                var remaining = TimeSpan.Zero;
+
+                if (_evacShuttleTime != null)
+                    remaining = TimeSpan.FromSeconds(Math.Max((_evacShuttleTime.Value - _gameTiming.CurTime).TotalSeconds, 0));
+
+                _clipboard.SetText(remaining.ToString(@"hh\:mm\:ss"));
+            };
+
             StationAlertLevelInstructionsButton.OnPressed += _ =>
             {
                 _clipboard.SetText(_instructions);
@@ -176,14 +189,15 @@ namespace Content.Client.PDA
                 ("station", _stationName)));
 
 
-            var stationTime = _entitySystem.GetEntitySystem<TimeSystem>().GetStationTime();
+            var stationTime = _entitySystem.GetEntitySystem<TimeSystem>().GetTime();
 			var stationDate = _entitySystem.GetEntitySystem<TimeSystem>().GetDate();
+			var startTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
+
+            StartTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-start-time",
+                ("time", startTime.ToString("hh\\:mm"))));
 
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
-                ("time", stationTime.Time.ToString("hh\\:mm\\:ss"))));
-				
-            StationDateLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-date",
-				("date", stationDate)));
+                ("time", stationTime.ToString("hh\\:mm")), ("date", stationDate)));
 
             // Sunrise-start
             var remaining = TimeSpan.Zero;
@@ -383,14 +397,15 @@ namespace Content.Client.PDA
         {
             base.Draw(handle);
 
-            var stationTime = _entitySystem.GetEntitySystem<TimeSystem>().GetStationTime();
+            var stationTime = _entitySystem.GetEntitySystem<TimeSystem>().GetTime();
 			var stationDate = _entitySystem.GetEntitySystem<TimeSystem>().GetDate();
+			var startTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
+
+            StartTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-start-time",
+                ("time", startTime.ToString("hh\\:mm"))));
 
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
-                ("time", stationTime.Time.ToString("hh\\:mm\\:ss"))));
-				
-            StationDateLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-date",
-                ("date", stationDate)));
+                ("time", stationTime.ToString("hh\\:mm")), ("date", stationDate)));
 
             // Sunrise-start
             var remaining = TimeSpan.Zero;
@@ -401,7 +416,7 @@ namespace Content.Client.PDA
             var statusText = EvacShuttleTitle(_evacShuttleStatus);
 
             ShuttleTimeLabel.SetMarkup(Loc.GetString(statusText,
-                ("time", remaining.ToString("hh\\:mm\\:ss"))));
+                ("time", remaining.ToString("hh\\:mm"))));
             // Sunrise-end
         }
     }

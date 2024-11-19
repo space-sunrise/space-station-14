@@ -3,6 +3,7 @@ using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.Power.Components;
 using Content.Server.Power.NodeGroups;
 using Content.Server.Power.Pow3r;
+using Content.Shared._Sunrise.AlwaysPoweredMap;
 using Content.Shared.CCVar;
 using Content.Shared.Power;
 using JetBrains.Annotations;
@@ -22,7 +23,6 @@ namespace Content.Server.Power.EntitySystems
         [Dependency] private readonly PowerNetConnectorSystem _powerNetConnector = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly IParallelManager _parMan = default!;
-        [Dependency] private readonly PowerReceiverSystem _powerReceiver = default!;
 
         private readonly PowerState _powerState = new();
         private readonly HashSet<PowerNet> _powerNetReconnectQueue = new();
@@ -314,12 +314,12 @@ namespace Content.Server.Power.EntitySystems
             var enumerator = AllEntityQuery<ApcPowerReceiverComponent>();
             while (enumerator.MoveNext(out var uid, out var apcReceiver))
             {
-                var powered = !apcReceiver.PowerDisabled
-                              && (!apcReceiver.NeedsPower
-                                  || MathHelper.CloseToPercent(apcReceiver.NetworkLoad.ReceivingPower,
-                                      apcReceiver.Load));
+                var mapId = Transform(uid).MapUid;
+                var isAlwaysPowered = HasComp<AlwaysPoweredMapComponent>(mapId);
 
-                // If new value is the same as the old, then exit
+                var powered = isAlwaysPowered || (!apcReceiver.PowerDisabled &&
+                                                  (!apcReceiver.NeedsPower || MathHelper.CloseToPercent(apcReceiver.NetworkLoad.ReceivingPower, apcReceiver.Load)));
+
                 if (!apcReceiver.Recalculate && apcReceiver.Powered == powered)
                     continue;
 
@@ -331,7 +331,7 @@ namespace Content.Server.Power.EntitySystems
                 apcReceiver.Powered = powered;
                 Dirty(uid, apcReceiver, metadata);
 
-                var ev = new PowerChangedEvent(powered, apcReceiver.NetworkLoad.ReceivingPower);
+                var ev = new PowerChangedEvent(powered, isAlwaysPowered ? apcReceiver.Load : apcReceiver.NetworkLoad.ReceivingPower);
                 RaiseLocalEvent(uid, ref ev);
 
                 if (appearanceQuery.TryComp(uid, out var appearance))
@@ -345,7 +345,10 @@ namespace Content.Server.Power.EntitySystems
             var enumerator = AllEntityQuery<PowerConsumerComponent>();
             while (enumerator.MoveNext(out var uid, out var consumer))
             {
-                var newRecv = consumer.NetworkLoad.ReceivingPower;
+                var mapId = Transform(uid).MapUid;
+                var isAlwaysPowered = HasComp<AlwaysPoweredMapComponent>(mapId);
+
+                var newRecv = isAlwaysPowered ? consumer.DrawRate : consumer.NetworkLoad.ReceivingPower;
                 ref var lastRecv = ref consumer.LastReceived;
                 if (MathHelper.CloseToPercent(lastRecv, newRecv))
                     continue;
@@ -364,8 +367,11 @@ namespace Content.Server.Power.EntitySystems
             var enumerator = EntityQueryEnumerator<PowerNetworkBatteryComponent>();
             while (enumerator.MoveNext(out var uid, out var powerNetBattery))
             {
+                var mapId = Transform(uid).MapUid;
+                var isAlwaysPowered = HasComp<AlwaysPoweredMapComponent>(mapId);
+
                 var lastSupply = powerNetBattery.LastSupply;
-                var currentSupply = powerNetBattery.CurrentSupply;
+                var currentSupply = isAlwaysPowered ? powerNetBattery.MaxSupply : powerNetBattery.CurrentSupply;
 
                 if (lastSupply == 0f && currentSupply != 0f)
                 {
@@ -379,6 +385,14 @@ namespace Content.Server.Power.EntitySystems
                 }
 
                 powerNetBattery.LastSupply = currentSupply;
+
+                if (isAlwaysPowered)
+                {
+                    powerNetBattery.CurrentSupply = powerNetBattery.MaxSupply;
+                    powerNetBattery.CurrentReceiving = 0;
+                    powerNetBattery.CanCharge = false;
+                    powerNetBattery.CanDischarge = true;
+                }
             }
         }
 

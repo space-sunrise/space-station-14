@@ -5,6 +5,7 @@ using Content.Server.Stunnable;
 using Content.Server.Temperature.Components;
 using Content.Server.Temperature.Systems;
 using Content.Server.Damage.Components;
+using Content.Shared._Sunrise.Mood;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Alert;
 using Content.Shared.Atmos;
@@ -72,6 +73,7 @@ namespace Content.Server.Atmos.EntitySystems
             SubscribeLocalEvent<FlammableComponent, IsHotEvent>(OnIsHot);
             SubscribeLocalEvent<FlammableComponent, TileFireEvent>(OnTileFire);
             SubscribeLocalEvent<FlammableComponent, RejuvenateEvent>(OnRejuvenate);
+            SubscribeLocalEvent<FlammableComponent, ResistFireAlertEvent>(OnResistFireAlert);
 
             SubscribeLocalEvent<IgniteOnCollideComponent, StartCollideEvent>(IgniteOnCollide);
             SubscribeLocalEvent<IgniteOnCollideComponent, LandEvent>(OnIgniteLand);
@@ -250,6 +252,15 @@ namespace Content.Server.Atmos.EntitySystems
             Extinguish(uid, component);
         }
 
+        private void OnResistFireAlert(Entity<FlammableComponent> ent, ref ResistFireAlertEvent args)
+        {
+            if (args.Handled)
+                return;
+
+            Resist(ent, ent);
+            args.Handled = true;
+        }
+
         public void UpdateAppearance(EntityUid uid, FlammableComponent? flammable = null, AppearanceComponent? appearance = null)
         {
             if (!Resolve(uid, ref flammable, ref appearance))
@@ -286,7 +297,7 @@ namespace Content.Server.Atmos.EntitySystems
             }
             else
             {
-                flammable.OnFire = ignite;
+                flammable.OnFire |= ignite;
                 UpdateAppearance(uid, flammable);
             }
         }
@@ -415,10 +426,12 @@ namespace Content.Server.Atmos.EntitySystems
 
                 if (!flammable.OnFire)
                 {
+                    RaiseLocalEvent(uid, new MoodRemoveEffectEvent("OnFire")); // Sunrise Edit
                     _alertsSystem.ClearAlert(uid, flammable.FireAlert);
                     continue;
                 }
 
+                RaiseLocalEvent(uid, new MoodEffectEvent("OnFire")); // Sunrise Edit
                 _alertsSystem.ShowAlert(uid, flammable.FireAlert);
 
                 if (flammable.FireStacks > 0)

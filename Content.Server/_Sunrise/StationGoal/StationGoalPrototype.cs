@@ -22,5 +22,11 @@ namespace Content.Server._Sunrise.StationGoal
          DataField("extraItems", customTypeSerializer: typeof(PrototypeIdListSerializer<EntityPrototype>))]
         public List<string?> ExtraItems = new();
         // Sunrise-end
+
+        [DataField]
+        public int? MinPlayers;
+
+        [DataField]
+        public int? MaxPlayers;
     }
 }

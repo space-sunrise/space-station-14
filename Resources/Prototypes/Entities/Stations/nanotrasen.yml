@@ -7,6 +7,7 @@
         - NanoTrasen
 
 - type: entity
+  categories: [ HideSpawnMenu ]
   id: StandardNanotrasenStation
   parent:
     - BaseStation
@@ -16,7 +17,10 @@
     - BaseStationRecords
     - BaseStationArrivals
     - BaseStationGateway
-    - BaseStationShuttles
+    # Пока что там нечего спавнить
+    #- BaseStationShuttles
+    # Нету смысла пока не будет консоли отправки ОБР
+    #- BaseStationCentComm # Sunrise-Edit
     - BaseStationEvacuation
     - BaseStationAlertLevels
     - BaseStationMagnet
@@ -24,31 +28,34 @@
     - BaseStationSiliconLawCrewsimov
     - BaseStationAllEventsEligible
     - BaseStationNanotrasen
-    - BaseRandomStation
-    - BaseStationCentComm
     # Sunrise-Start
     - BaseStationTransitHub
     - BaseStationDontSelling
+    - BaseStationPlanetPrison
+    - BaseStationGoal
+    - BaseStationGammaArmory
+    - BaseStationAntagsTargets
+    - BaseStationCryoTeleport
+    - BaseStationMeteorSwarmTarget
     # Sunrise-End
-  noSpawn: true
   components:
     - type: Transform
 
 - type: entity
+  categories: [ HideSpawnMenu ]
   id: NanotrasenCentralCommand
   parent:
     - BaseStation
     - BaseStationAlertLevels
     - BaseStationNanotrasen
     - BaseStationRecords
-    - BaseRandomStation
     - BaseStationJobsSpawning
     # Sunrise-Start
     - BaseCentCommShuttles
     - BaseStationImmortal
     - BaseStationDontSelling
+    - BaseStationCryoTeleport
     # Sunrise-End
-  noSpawn: true
   components:
     - type: Transform
 
@@ -59,6 +66,6 @@
   - BaseStationJobsSpawning
   - BaseStationRecords
   - BaseStationNanotrasen
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
     - type: Transform

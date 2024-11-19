@@ -2,6 +2,8 @@
   id: SunriseCentComm
   mapName: 'Central Command'
   mapPath: /Maps/_Sunrise/Station/centcomm.yml
+  maxRandomOffset: 0
+  randomRotation: false
   minPlayers: 10
   stations:
     centcomm:
@@ -15,4 +17,3 @@
         - type: StationJobs
           availableJobs:
             CentCommOperator: [ 1, 1 ]
-            CentCommOfficial: [ 1, 1 ]

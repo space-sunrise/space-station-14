@@ -1,0 +1,28 @@
+- type: job
+  id: SeniorResearcher
+  name: job-name-senior-researcher
+  description: job-description-senior-researcher
+  playTimeTracker: JobSeniorResearcher
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Science
+      time: 216000 #60 hrs
+  startingGear: SeniorResearcherGear
+  icon: "JobIconSeniorResearcher"
+  supervisors: job-supervisors-rd
+  displayWeight: 35
+  access:
+  - Research
+  - Maintenance
+
+- type: startingGear
+  id: SeniorResearcherGear
+  equipment:
+    head: ClothingHeadHatBeretRND
+    id: SeniorResearcherPDA
+    ears: ClothingHeadsetScience
+    outerClothing: ClothingOuterCoatLabSeniorResearcher
+  storage:
+    back:
+    - WeaponPistolCHIMP
+    - RadiationEmitter

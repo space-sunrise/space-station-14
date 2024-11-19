@@ -10,7 +10,7 @@ public sealed partial class SexLoadoutEffect : LoadoutEffect
     [DataField(required: true)]
     public List<Sex> Sex = new();
 
-    public override bool Validate(HumanoidCharacterProfile profile, RoleLoadout loadout, ICommonSession session, IDependencyCollection collection, [NotNullWhen(false)] out FormattedMessage? reason)
+    public override bool Validate(HumanoidCharacterProfile profile, RoleLoadout loadout, ICommonSession? session, IDependencyCollection collection, [NotNullWhen(false)] out FormattedMessage? reason)
     {
         if (Sex.Contains(profile.Sex))
         {

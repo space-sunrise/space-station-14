@@ -3,6 +3,9 @@ using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Repairable;
 using SharedToolSystem = Content.Shared.Tools.Systems.SharedToolSystem;
@@ -15,6 +18,7 @@ namespace Content.Server.Repairable
         [Dependency] private readonly DamageableSystem _damageableSystem = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly IAdminLogManager _adminLogger= default!;
+        [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
 
         public override void Initialize()
         {
@@ -47,6 +51,9 @@ namespace Content.Server.Repairable
                 ("target", uid),
                 ("tool", args.Used!));
             _popup.PopupEntity(str, uid, args.User);
+
+            var ev = new RepairedEvent((uid, component), args.User);
+            RaiseLocalEvent(uid, ref ev);
         }
 
         // Sunrise-start
@@ -78,19 +85,39 @@ namespace Content.Server.Repairable
                 return;
             // Sunrise-end
 
-            float delay = component.DoAfterDelay;
-
             // Add a penalty to how long it takes if the user is repairing itself
-            if (args.User == args.Target)
-            {
-                if (!component.AllowSelfRepair)
-                    return;
+            var isNotSelf = args.User != args.Target;
 
-                delay *= component.SelfRepairPenalty;
-            }
+            var delay = isNotSelf
+                ? component.DoAfterDelay
+                : component.DoAfterDelay * GetScaledRepairPenalty(args.User, component);
 
             // Run the repairing doafter
             args.Handled = _toolSystem.UseTool(args.Used, args.User, uid, delay, component.QualityNeeded, new RepairFinishedEvent(), component.FuelCost);
         }
+
+        public float GetScaledRepairPenalty(EntityUid uid, RepairableComponent component)
+        {
+            var output = component.DoAfterDelay;
+            if (!TryComp<MobThresholdsComponent>(uid, out var mobThreshold) ||
+                !TryComp<DamageableComponent>(uid, out var damageable))
+                return output;
+            if (!_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var amount, mobThreshold))
+                return 1;
+
+            var percentDamage = (float) (damageable.TotalDamage / amount);
+            //basically make it scale from 1 to the multiplier.
+            var modifier = percentDamage * (component.SelfRepairPenalty - 1) + 1;
+            return Math.Max(modifier, 1);
+        }
     }
+
+    /// <summary>
+    /// Event raised on an entity when its successfully repaired.
+    /// </summary>
+    /// <param name="Ent"></param>
+    /// <param name="User"></param>
+    [ByRefEvent]
+    public readonly record struct RepairedEvent(Entity<RepairableComponent> Ent, EntityUid User);
+
 }

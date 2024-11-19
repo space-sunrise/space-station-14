@@ -1,287 +1,197 @@
 # Для тяночек
-
 - type: loadout
   id: StraplessWomanPants
-  equipment: StraplessWomanPants
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: StraplessWomanPants
   equipment:
     pants: ClothingPantsWomanStrapless
 
 - type: loadout
   id: NekoWhiteWomanPants
-  equipment: NekoWhiteWomanPants
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: NekoWhiteWomanPants
   equipment:
     pants: ClothingPantsWomanNekoWhite
 
 - type: loadout
   id: NekoBlackWomanPants
-  equipment: NekoBlackWomanPants
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: NekoBlackWomanPants
   equipment:
     pants: ClothingPantsWomanNekoBlack
 
 - type: loadout
   id: AssblastusaWomanPants
-  equipment: AssblastusaWomanPants
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: AssblastusaWomanPants
   equipment:
     pants: ClothingPantsWomanAssblastusa
 
 - type: loadout
   id: BikiniWomanPants
-  equipment: BikiniWomanPants
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: BikiniWomanPants
   equipment:
     pants: ClothingPantsWomanBikini
 
 - type: loadout
   id: BraletteWomanPants
-  equipment: BraletteWomanPants
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: BraletteWomanPants
   equipment:
     pants: ClothingPantsWomanBralette
 
 - type: loadout
   id: CommieWomanPants
-  equipment: CommieWomanPants
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: CommieWomanPants
   equipment:
     pants: ClothingPantsWomanCommie
 
 - type: loadout
   id: KinkyWomanPants
-  equipment: KinkyWomanPants
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: KinkyWomanPants
   equipment:
     pants: ClothingPantsWomanKinky
 
 - type: loadout
   id: LaceWomanPants
-  equipment: LaceWomanPants
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: LaceWomanPants
   equipment:
     pants: ClothingPantsWomanLace
 
 - type: loadout
   id: SportWomanPants
-  equipment: SportWomanPants
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: SportWomanPants
   equipment:
     pants: ClothingPantsWomanSport
 
 - type: loadout
   id: ThongWomanPants
-  equipment: ThongWomanPants
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: ThongWomanPants
   equipment:
     pants: ClothingPantsWomanThong
 
 - type: loadout
   id: UkWomanPants
-  equipment: UkWomanPants
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: WomanMoment
-
-- type: startingGear
-  id: UkWomanPants
   equipment:
     pants: ClothingPantsWomanUk
 
 # Для мужиков
-
 - type: loadout
   id: BoxersManPants
-  equipment: BoxersManPants
   effects:
   - !type:GroupLoadoutEffect
     proto: MaleMoment
-
-- type: startingGear
-  id: BoxersManPants
   equipment:
     pants: ClothingPantsManBoxers
 
 - type: loadout
   id: AssblastusaManPants
-  equipment: AssblastusaManPants
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: MaleMoment
-
-- type: startingGear
-  id: AssblastusaManPants
   equipment:
     pants: ClothingPantsManAssblastusa
 
 - type: loadout
   id: BriefsManPants
-  equipment: BriefsManPants
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: MaleMoment
-
-- type: startingGear
-  id: BriefsManPants
   equipment:
     pants: ClothingPantsManBriefs
 
 - type: loadout
   id: CommieManPants
-  equipment: CommieManPants
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: MaleMoment
-
-- type: startingGear
-  id: CommieManPants
   equipment:
     pants: ClothingPantsManCommie
 
 - type: loadout
   id: HeartsManPants
-  equipment: HeartsManPants
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: MaleMoment
-
-- type: startingGear
-  id: HeartsManPants
   equipment:
     pants: ClothingPantsManHearts
 
 - type: loadout
   id: KinkyManPants
-  equipment: KinkyManPants
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: MaleMoment
-
-- type: startingGear
-  id: KinkyManPants
   equipment:
     pants: ClothingPantsManKinky
 
 - type: loadout
   id: LongjohnsManPants
-  equipment: LongjohnsManPants
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: MaleMoment
-
-- type: startingGear
-  id: LongjohnsManPants
   equipment:
     pants: ClothingPantsManLongjohns
 
 - type: loadout
   id: MankiniManPants
-  equipment: MankiniManPants
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: MaleMoment
-
-- type: startingGear
-  id: MankiniManPants
   equipment:
     pants: ClothingPantsManMankini
 
 - type: loadout
   id: StripeManPants
-  equipment: StripeManPants
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: MaleMoment
-
-- type: startingGear
-  id: StripeManPants
   equipment:
     pants: ClothingPantsManStripe
 
 - type: loadout
   id: UkManPants
-  equipment: UkManPants
   sponsorOnly: true
   effects:
   - !type:GroupLoadoutEffect
     proto: MaleMoment
-
-- type: startingGear
-  id: UkManPants
   equipment:
     pants: ClothingPantsManUk

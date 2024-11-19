@@ -6,23 +6,24 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Engineering
-      time: 36000 #10 hrs # Sunrise-RoleTime
+      time: 54000 # 15 hours
     - !type:DepartmentTimeRequirement
       department: Medical
-      time: 36000 #10 hrs # Sunrise-RoleTime
+      time: 54000 # 15 hours
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 36000 #10 hrs # Sunrise-RoleTime
-    - !type:OverallPlaytimeRequirement
-      time: 72000 #20 hrs # Sunrise-RoleTime
+      time: 54000 # 15 hours
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 54000 # 15 hours
   weight: 20
   startingGear: CaptainGear
   icon: "JobIconCaptain"
-  requireAdminNotify: true
   joinNotifyCrew: true
   supervisors: job-supervisors-centcom
-  radioBold: true
   canBeAntag: false
+  displayWeight: 100 # Sunrise-Edit
+  radioBold: true # Sunrise-Edit
   accessGroups:
   - AllAccess
   special:
@@ -32,7 +33,7 @@
     components:
       - type: CommandStaff
   speciesBlacklist:
-  - Vox
+  - Vox # Sunrise-Edit
 
 - type: startingGear
   id: CaptainGear
@@ -44,6 +45,6 @@
     ears: ClothingHeadsetAltCommand
   storage:
     back:
-    - BoxSurvival
     - Flash
+    - Telebaton # Sunrise-Edit
     # - StationCharter

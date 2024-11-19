@@ -8,7 +8,7 @@ namespace Content.Server.Cargo.Components;
 [RegisterComponent, Access(typeof(SharedCargoSystem))]
 public sealed partial class StationBankAccountComponent : Component
 {
-    [ViewVariables(VVAccess.ReadWrite), DataField("balance")]
+    [ViewVariables(VVAccess.ReadOnly), DataField("balance")] // Sunrise-edit, ReadOnly, admin buse
     public int Balance = 2000;
 
     /// <summary>

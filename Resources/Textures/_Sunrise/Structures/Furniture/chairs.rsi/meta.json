@@ -14,6 +14,22 @@
     {
       "name": "carp-overlay",
       "directions": 4
+    },
+    {
+      "name": "comfy-brown",
+      "directions": 4
+    },
+    {
+      "name": "comfy-brown-overlay",
+      "directions": 4
+    },
+    {
+      "name": "office-grey",
+      "directions": 4
+    },
+    {
+      "name": "barber",
+      "directions": 4
     }
   ]
 }

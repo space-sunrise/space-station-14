@@ -101,11 +101,29 @@
           probability: 0.5
   - type: FireVisuals
     alternateState: Standing
+  - type: FlashImmunity
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
+  # Sunrise edit ;3
+  - type: FootprintEmitter
+  # Sunrise edit end 0_0
 
 - type: entity
   parent: BaseSpeciesDummy
   id: MobSkeletonPersonDummy
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
-    - type: HumanoidAppearance
-      species: Skeleton
+  - type: HumanoidAppearance
+    species: Skeleton
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female

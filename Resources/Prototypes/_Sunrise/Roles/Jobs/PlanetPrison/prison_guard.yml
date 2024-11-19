@@ -1,0 +1,43 @@
+﻿- type: job
+  id: PrisonGuard
+  name: job-name-prison-guard
+  description: job-description-prison-guard
+  playTimeTracker: JobPrisonGuard
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 7200 #2 hrs
+  startingGear: PrisonGuardGear
+  alwaysUseSpawner: true
+  canBeAntag: false
+  icon: "JobIconPrisonGuard"
+  supervisors: job-supervisors-head-of-prison
+  displayWeight: 90
+  access:
+  - Security
+  - Brig
+  - Maintenance
+  - External
+  - Service
+  - Chemistry
+  - Medical
+  - Engineering
+  - Atmospherics
+  - Janitor
+  - Bar
+  - Hydroponics
+  - Kitchen
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  speciesBlacklist:
+  - Vox
+
+- type: startingGear
+  id: PrisonGuardGear
+  equipment:
+    eyes: ClothingEyesGlassesSecurity
+    id: GuardPDA
+    ears: ClothingHeadsetSecurity
+    belt: ClothingBeltPrisonGuardianFilled
+    pocket1: WeaponSubMachineGunSkorpion  # Почему бы и нет, ппшка на резине
