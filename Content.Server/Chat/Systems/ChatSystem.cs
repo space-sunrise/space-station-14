@@ -535,6 +535,11 @@ public sealed partial class ChatSystem : SharedChatSystem
             }
         }
 
+        var Number = $"{sourseCollectiveMindComp.UniqueId}";
+
+        if (sourseCollectiveMindComp.UniqueId == null)
+            Number = "Unknown";
+
         var Number = $"{sourceCollectiveMindComp.Minds[collectiveMind].MindId}";
 
         var admins = _adminManager.ActiveAdmins
@@ -553,7 +558,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         {
             messageWrap = Loc.GetString("collective-mind-chat-wrap-message",
                 ("message", message),
-                ("channel", collectiveMind.LocalizedName));
+                ("channel", collectiveMind.LocalizedName),
+                ("number", Number));
         }
 
         adminMessageWrap = Loc.GetString("collective-mind-chat-wrap-message-admin",
