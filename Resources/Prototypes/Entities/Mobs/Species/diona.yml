@@ -32,7 +32,7 @@
       groups:
         Brute: -0.5
       #Sunrise-Start
-      types: 
+      types:
         Mangleness: -0.03
       #Sunrise-End
   - type: DamageVisuals
@@ -130,9 +130,13 @@
             state: jumpsuit-female
   - type: Rootable
   # Sunrise-Start
-  - type: CollectiveMind
-    minds:
-    - Dioneas
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+    - Diona
   - type: FootprintEmitter
     leftBareFootState:
       - "footprint-left-bare-diona"

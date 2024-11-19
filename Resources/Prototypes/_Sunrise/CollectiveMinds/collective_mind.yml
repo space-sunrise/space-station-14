@@ -20,11 +20,12 @@
   voiceId: legion_commander_demon_dota_2
 
 - type: collectiveMind
-  id: Dioneas
+  id: Dionas
   name: collective-mind-dioneas
   keycode: 'д'
   color: "#0f6b1e"
   voiceId: shadow_shaman_dota_2
+  requiredTag: Diona
 
 - type: collectiveMind
   id: Arachnids
@@ -32,6 +33,7 @@
   keycode: 'а'
   color: "#706d0d"
   voiceId: shadow_fiend_dota_2
+  requiredTag: Arachnid
 
 - type: collectiveMind
   id: Carp
@@ -46,6 +48,7 @@
   keycode: 'з'
   color: "#508053"
   voiceId: shadow_fiend_dota_2
+  requiredComponent: Zombie
 
 - type: collectiveMind
   id: Changeling

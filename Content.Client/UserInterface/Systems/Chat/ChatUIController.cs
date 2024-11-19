@@ -760,6 +760,14 @@ public sealed partial class ChatUIController : UIController
                && _chatSys.TryProccessCollectiveMindMessage(uid, text, out _, out collectiveMind, quiet: true);
     }
 
+    private bool TryGetCollectiveMind(string text, out CollectiveMindPrototype? collectiveMind)
+    {
+        collectiveMind = null;
+        return _player.LocalEntity is { Valid: true } uid
+               && _chatSys != null
+               && _chatSys.TryProccessCollectiveMindMessage(uid, text, out _, out collectiveMind, quiet: true);
+    }
+
     public void UpdateSelectedChannel(ChatBox box)
     {
         var (prefixChannel, _, radioChannel, collectiveMind) = SplitInputContents(box.ChatInput.Input.Text.ToLower());

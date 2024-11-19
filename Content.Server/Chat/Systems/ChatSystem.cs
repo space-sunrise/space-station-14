@@ -176,6 +176,9 @@ public sealed partial class ChatSystem : SharedChatSystem
             return;
         }
 
+        if (TryComp<CollectiveMindComponent>(source, out var collective))
+            _collectiveMind.UpdateCollectiveMind(source, collective);
+
         if (player != null && _chatManager.HandleRateLimit(player) != RateLimitStatus.Allowed)
             return;
 
@@ -244,6 +247,15 @@ public sealed partial class ChatSystem : SharedChatSystem
             if (TryProcessRadioMessage(source, message, out var modMessage, out var channel))
             {
                 SendEntityWhisper(source, modMessage, range, channel, nameOverride, hideLog, ignoreActionBlocker, isFormatted); //sunrise-edit
+                return;
+            }
+        }
+
+        if (desiredType == InGameICChatType.CollectiveMind)
+        {
+            if (TryProccessCollectiveMindMessage(source, message, out var modMessage, out var channel))
+            {
+                SendCollectiveMindChat(source, modMessage, channel);
                 return;
             }
         }

@@ -6,24 +6,30 @@ namespace Content.Shared._Sunrise.CollectiveMind;
 [Prototype]
 public sealed partial class CollectiveMindPrototype : IPrototype
 {
-    [DataField("name")]
+    [DataField]
     public string Name { get; private set; } = string.Empty;
 
     [ViewVariables(VVAccess.ReadOnly)]
     public string LocalizedName => Loc.GetString(Name);
 
-    [DataField("keycode")]
+    [DataField]
     public char KeyCode { get; private set; } = '\0';
 
-    [DataField("color")]
+    [DataField]
     public Color Color { get; private set; } = Color.Lime;
 
-    [DataField("voiceId")]
+    [DataField]
     public ProtoId<TTSVoicePrototype>? VoiceId;
 
-    [DataField("showAuthor")]
+    [DataField]
     public bool ShowAuthor { get; private set; } = false;
 
     [IdDataField, ViewVariables]
     public string ID { get; private set; } = default!;
+
+    [DataField]
+    public string? RequiredComponent { get; set; } = null;
+
+    [DataField]
+    public string? RequiredTag { get; set; } = null;
 }
