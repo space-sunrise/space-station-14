@@ -535,11 +535,6 @@ public sealed partial class ChatSystem : SharedChatSystem
             }
         }
 
-        var Number = $"{sourseCollectiveMindComp.UniqueId}";
-
-        if (sourseCollectiveMindComp.UniqueId == null)
-            Number = "Unknown";
-
         var Number = $"{sourceCollectiveMindComp.Minds[collectiveMind].MindId}";
 
         var admins = _adminManager.ActiveAdmins
@@ -565,7 +560,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         adminMessageWrap = Loc.GetString("collective-mind-chat-wrap-message-admin",
             ("source", source),
             ("message", message),
-            ("channel", collectiveMind.LocalizedName));
+            ("channel", collectiveMind.LocalizedName),
+            ("number", Number));
 
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"CollectiveMind chat from {ToPrettyString(source):Player}: {message}");
 
@@ -576,6 +572,16 @@ public sealed partial class ChatSystem : SharedChatSystem
             source,
             false,
             true,
+            collectiveMind.Color);
+
+        // FOR ADMINS
+        _chatManager.ChatMessageToMany(ChatChannel.CollectiveMind,
+            message,
+            adminMessageWrap,
+            source,
+            false,
+            true,
+            admins,
             collectiveMind.Color);
 
         _chatManager.ChatMessageToMany(ChatChannel.CollectiveMind,
