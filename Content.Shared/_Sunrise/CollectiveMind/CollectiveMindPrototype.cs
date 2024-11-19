@@ -28,8 +28,8 @@ public sealed partial class CollectiveMindPrototype : IPrototype
     public string ID { get; private set; } = default!;
 
     [DataField]
-    public string? RequiredComponent { get; set; } = null;
+    public List<string> RequiredComponents { get; set; } = new();
 
     [DataField]
-    public string? RequiredTag { get; set; } = null;
+    public List<string> RequiredTags { get; set; } = new();
 }

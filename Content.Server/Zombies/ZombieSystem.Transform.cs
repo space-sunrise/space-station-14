@@ -182,15 +182,6 @@ public sealed partial class ZombieSystem
 
         // Sunrise-Start
         RemComp<CuffableComponent>(target);
-
-        var collectiveMindComponent = EnsureComp<CollectiveMindComponent>(target);
-        foreach (var collectiveMind in collectiveMindComponent.Minds.ToArray())
-        {
-            collectiveMindComponent.Minds.Remove(collectiveMind);
-        }
-
-        if (!collectiveMindComponent.Minds.Contains("Zombie"))
-            collectiveMindComponent.Minds.Add("Zombie");
         // Sunrise-End
 
         if (mobState.CurrentState == MobState.Alive)

@@ -41,14 +41,19 @@
   keycode: 'р'
   color: "#787878"
   voiceId: EvilThalya
+  requiredComponents:
+  - Dragon
+  requiredTags:
+  - Carp
 
 - type: collectiveMind
   id: Zombie
-  name: collective-mind-zombie
+  name: collective-smind-zombie
   keycode: 'з'
   color: "#508053"
   voiceId: shadow_fiend_dota_2
-  requiredComponent: Zombie
+  requiredComponents:
+  - Zombie
 
 - type: collectiveMind
   id: Changeling

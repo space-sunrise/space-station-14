@@ -88,9 +88,6 @@
       interactFailureSound:
         path: /Audio/Effects/bite.ogg
     # Sunrise-Start
-    - type: CollectiveMind
-      minds:
-      - Carp
     - type: ToggleableNightVision
     # Sunrise-End
 
