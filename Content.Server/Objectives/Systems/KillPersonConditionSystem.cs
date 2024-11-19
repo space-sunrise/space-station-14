@@ -61,7 +61,6 @@ public sealed class KillPersonConditionSystem : EntitySystem
 
         // no other humans to kill
         var allHumans = GetAliveTargetsExcept(args.MindId);
-
         if (allHumans.Count == 0)
         {
             args.Cancelled = true;
@@ -86,14 +85,13 @@ public sealed class KillPersonConditionSystem : EntitySystem
 
         // no other humans to kill
         var allHumans = GetAliveTargetsExcept(args.MindId);
-
         if (allHumans.Count == 0)
         {
             args.Cancelled = true;
             return;
         }
 
-        var allHeads = new List<EntityUid>();
+        var allHeads = new HashSet<Entity<MindComponent>>();
         foreach (var person in allHumans)
         {
             if (TryComp<MindComponent>(person, out var mind) && mind.OwnedEntity is { } ent && HasComp<CommandStaffComponent>(ent))

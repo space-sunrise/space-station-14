@@ -196,19 +196,9 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         if (component.SelectionsComplete)
             return;
 
-        // Sunrise-Start
         var players = _playerManager.Sessions
-            .Where(x =>
-            {
-                // Try to get the PlayerGameStatus for the current player's UserId
-                if (GameTicker.PlayerGameStatuses.TryGetValue(x.UserId, out var status))
-                {
-                    return status == PlayerGameStatus.JoinedGame;
-                }
-                return false;
-            })
+            .Where(x => GameTicker.PlayerGameStatuses.TryGetValue(x.UserId, out var status) && status == PlayerGameStatus.JoinedGame)
             .ToList();
-        // Sunrise-End
 
         ChooseAntags((uid, component), players, midround: true);
     }
