@@ -134,22 +134,17 @@ public sealed class KillPersonConditionSystem : EntitySystem
         return _emergencyShuttle.EmergencyShuttleArrived ? 0.5f : 0f;
     }
 
-    public List<EntityUid> GetAliveTargetsExcept(EntityUid exclude)
+    public HashSet<Entity<MindComponent>> GetAliveTargetsExcept(EntityUid exclude)
     {
-        var mindQuery = EntityQuery<MindComponent>();
+        var allTargets = new HashSet<Entity<MindComponent>>();
 
-        var allTargets = new List<EntityUid>();
-        // HumanoidAppearanceComponent is used to prevent mice, pAIs, etc from being chosen
-        var query = EntityQueryEnumerator<MindContainerComponent, MobStateComponent, AntagTargetComponent, HumanoidAppearanceComponent>();
+        var query = EntityQueryEnumerator<MindComponent, MobStateComponent, AntagTargetComponent, HumanoidAppearanceComponent>();
         while (query.MoveNext(out var uid, out var mc, out var mobState, out _, out _))
         {
-            // the player needs to have a mind and not be the excluded one
-            if (mc.Mind == null || mc.Mind == exclude)
+            if (!_mind.TryGetMind(uid, out var mind, out var mindComp) || mind == exclude || !_mobState.IsAlive(uid, mobState))
                 continue;
 
-            // the player has to be alive
-            if (_mobState.IsAlive(uid, mobState))
-                allTargets.Add(mc.Mind.Value);
+            allTargets.Add(new Entity<MindComponent>(mind, mindComp));
         }
 
         return allTargets;

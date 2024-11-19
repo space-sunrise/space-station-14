@@ -6,6 +6,7 @@ using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared._Sunrise.Execution;
+using Content.Shared.Clumsy;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
@@ -170,7 +171,7 @@ public sealed class ExecutionSystem : EntitySystem
         // We must be able to actually fire the gun
         if (!TryComp<GunComponent>(weapon, out var gun) && _gunSystem.CanShoot(gun!))
             return false;
-    
+
         if (_containerSystem.TryGetContainer(weapon, "gun_chamber", out var chamberContainer))
         {
             foreach (var contained in chamberContainer.ContainedEntities)
@@ -377,21 +378,6 @@ public sealed class ExecutionSystem : EntitySystem
 
             default:
                 throw new ArgumentOutOfRangeException();
-        }
-
-        // Clumsy people have a chance to shoot themselves
-        if (TryComp<ClumsyComponent>(attacker, out var clumsy) && component.ClumsyProof == false)
-        {
-            if (_interactionSystem.TryRollClumsy(attacker, 0.33333333f, clumsy))
-            {
-                ShowExecutionPopup("execution-popup-gun-clumsy-internal", Filter.Entities(attacker), PopupType.Medium, attacker, victim, weapon);
-                ShowExecutionPopup("execution-popup-gun-clumsy-external", Filter.PvsExcept(attacker), PopupType.MediumCaution, attacker, victim, weapon);
-
-                // You shoot yourself with the gun (no damage multiplier)
-                _damageableSystem.TryChangeDamage(attacker, damage, origin: attacker);
-                _audioSystem.PlayEntity(component.SoundGunshot, Filter.Pvs(weapon), weapon, true, AudioParams.Default);
-                return;
-            }
         }
 
         // Gun successfully fired, deal damage

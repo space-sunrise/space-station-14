@@ -47,7 +47,7 @@ namespace Content.Client.Lobby.UI
             };
             _back.SetPatchMargin(StyleBox.Margin.All, 10);
 
-            SetLobbyOpacity(configurationManager1.GetCVar(SunriseCCVars.LobbyOpacity));
+            SetLobbyOpacity(_cfg.GetCVar(SunriseCCVars.LobbyOpacity));
 
             BackgroundPanel.PanelOverride = _back;
 
