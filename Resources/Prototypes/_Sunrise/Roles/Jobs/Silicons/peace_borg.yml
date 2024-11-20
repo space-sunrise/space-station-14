@@ -1,5 +1,5 @@
 - type: job
-  id: BorgChassisPeace
+  id: PeaceBorg
   name: job-name-peace-borg
   description: job-description-peace-borg
   playTimeTracker: JobPeaceBorg
