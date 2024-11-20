@@ -18,3 +18,10 @@
   files:
     - /Audio/_Sunrise/Cyborg/robot_legs_2_1.ogg
     - /Audio/_Sunrise/Cyborg/robot_legs_2_2.ogg
+
+- type: soundCollection
+  id: FootstepJanitorBorg
+  files:
+    - /Audio/Effects/Fluids/watersplash.ogg
+  params:
+    volume: -5

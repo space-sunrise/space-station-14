@@ -140,10 +140,7 @@
 
   # Sounds
   footstepCollection:
-    collection:
-      path: /Audio/Effects/Fluids/watersplash.ogg
-      params:
-        volume: -5
+    collection: FootstepJanitorBorg
 
   # Visual
   inventoryTemplateId: borgShort
