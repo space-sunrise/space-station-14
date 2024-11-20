@@ -54,6 +54,12 @@
   - Engineering
   - Science
 
+  # Sounds
+  footstepCollection:
+    collection: FootstepCyborgSpider
+    params:
+      volume: -15
+
   # Visual
   inventoryTemplateId: borgShort
   spriteBodyState: engineer
@@ -90,12 +96,11 @@
   - Supply
   - Science
 
-  addComponents:
-  - type: FootstepModifier
-    footstepSoundCollection:
-      collection: FootstepCyborgSpider
-      params:
-        volume: -15
+  # Sounds
+  footstepCollection:
+    collection: FootstepCyborgSpider
+    params:
+      volume: -15
 
   # Visual
   inventoryTemplateId: borgTall
@@ -133,9 +138,9 @@
   - Science
   - Service
 
-  addComponents:
-  - type: FootstepModifier
-    footstepSoundCollection:
+  # Sounds
+  footstepCollection:
+    collection:
       path: /Audio/Effects/Fluids/watersplash.ogg
       params:
         volume: -5
@@ -284,9 +289,6 @@
     - FoodBakedCookie
     - FoodBakedCookieSugar
     - FoodSnackCookieFortune
-  - type: FootstepModifier
-    footstepSoundCollection:
-      collection: FootstepCyborgSpider
   - type: BorgCuffed
   - type: InnateItem
     instantActions:
@@ -314,6 +316,14 @@
     - Chapel
     - Hydroponics
     - Atmospherics
+  - type: AccessReader
+    access: [ [ "Command" ], [ "Security" ] ]
+
+  # Sounds
+  footstepCollection:
+    collection: FootstepCyborgSpider
+    params:
+      volume: -15
 
   # Visual
   inventoryTemplateId: borgTall
@@ -356,11 +366,12 @@
     - SoapNT
     - SoapDeluxe
     - SoapHomemade
-  - type: FootstepModifier
-    footstepSoundCollection:
-      collection: FootstepClown
   - type: TTS
     voice: NecoArcTwo
+
+  # Sounds
+  footstepCollection:
+    collection: FootstepClown
 
   # Visual
   inventoryTemplateId: borgTall
@@ -433,6 +444,8 @@
     - Chapel
     - Hydroponics
     - Atmospherics
+  - type: AccessReader
+    access: [ [ "Command" ], [ "Security" ] ]
 
   # Visual
   inventoryTemplateId: borgTall
