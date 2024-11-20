@@ -23,5 +23,3 @@
   id: FootstepJanitorBorg
   files:
     - /Audio/Effects/Fluids/watersplash.ogg
-  params:
-    volume: -5

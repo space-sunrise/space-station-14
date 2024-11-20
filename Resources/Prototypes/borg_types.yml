@@ -166,6 +166,8 @@
   # Sunrise-Start
   footstepCollection:
     collection: FootstepJanitorBorg
+    params:
+      volume: -5
   # Sunrise-Start
 
   # Visual
