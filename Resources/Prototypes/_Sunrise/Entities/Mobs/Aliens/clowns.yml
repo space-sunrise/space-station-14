@@ -18,6 +18,8 @@
     allowMovement: true
     name: ghost-role-information-clown-goblin-name
     description: ghost-role-information-clown-goblin-description
+    raffle:
+      settings: short
   - type: Speech
     speechSounds: BikeHorn
   - type: Sprite

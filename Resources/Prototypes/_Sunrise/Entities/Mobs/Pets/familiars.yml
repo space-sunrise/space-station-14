@@ -50,6 +50,8 @@
     name: ghost-role-information-foliant-name
     description: ghost-role-information-foliant-description
     rules: ghost-role-information-foliant-rules
+    raffle:
+      settings: short
   - type: GhostTakeoverAvailable
   - type: Grammar
     attributes:

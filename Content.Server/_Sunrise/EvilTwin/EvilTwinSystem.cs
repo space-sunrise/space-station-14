@@ -50,7 +50,7 @@ public sealed class EvilTwinSystem : EntitySystem
     [ValidatePrototypeId<EntityPrototype>]
     private const string GameRule = "EvilTwin";
     [ValidatePrototypeId<AntagPrototype>]
-    private const string EvilTwinRole = "EvilTwin";
+    private const string MindRole = "MindRoleEvilTwin";
     [ValidatePrototypeId<EntityPrototype>]
     private const string KillObjective = "KillTwinObjective";
     [ValidatePrototypeId<EntityPrototype>]
@@ -119,7 +119,7 @@ public sealed class EvilTwinSystem : EntitySystem
             !_mindSystem.TryGetMind(uid, out var mindId, out var mind))
             return;
 
-        _roleSystem.MindAddRole(mindId, "MindRoleEvilTwin");
+        _roleSystem.MindAddRole(mindId, MindRole);
         _mindSystem.TryAddObjective(mindId, mind, EscapeObjective);
         _mindSystem.TryAddObjective(mindId, mind, KillObjective);
         if (_mindSystem.TryGetObjectiveComp<TargetObjectiveComponent>(uid, out var obj))

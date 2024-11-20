@@ -21,9 +21,8 @@
       name: ghost-role-information-fugitive-name
       description: ghost-role-information-fugitive-description
       rules: ghost-role-information-freeagent-rules
-      requirements:
-        - !type:OverallPlaytimeRequirement
-          time: 7200 # 2 hrs
+      raffle:
+        settings: default
     - type: Sprite
       sprite: Markers/jobs.rsi
       layers:
