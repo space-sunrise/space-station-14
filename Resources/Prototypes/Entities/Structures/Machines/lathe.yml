@@ -625,6 +625,10 @@
     - RightLegBorg
     - LightHeadBorg
     - TorsoBorg
+#Sunrise-start
+    - MechAirTank
+    - MechThruster
+#Sunrise-end
     dynamicRecipes:
 #Sunrise-edit start
     - CartridgeLightRifleRubber
