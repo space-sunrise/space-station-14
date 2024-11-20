@@ -314,6 +314,12 @@
 
 - type: Tag
   id: SolarAssemblyFlatpack
-  
+
 - type: Tag
   id: ArtilleryShell
+
+- type: Tag
+  id: PokerCardClassic
+
+- type: Tag
+  id: PokerCard
