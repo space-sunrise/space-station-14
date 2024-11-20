@@ -1,6 +1,10 @@
 - type: vendingMachineInventory
   id: GoodCleanFunInventory
   startingInventory:
+#Sunrise-start
+    PokerCardClassicBoxFilled: 2
+    PokerCardBoxFilled: 2
+#Sunrise-end
     DiceBag: 6
     Paper: 8
     d6Dice: 8
