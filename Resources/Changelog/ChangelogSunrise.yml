@@ -6211,3 +6211,20 @@
   id: 425
   time: '2024-11-20T14:40:32.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/674
+- author: SplikZerys
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u043E 8 \u043D\u043E\
+      \u0432\u044B\u0445 \u0422\u0422\u0421-\u0433\u043E\u043B\u043E\u0441\u043E\u0432\
+      \ \u043D\u0430 \u0437\u0430\u043A\u0430\u0437."
+    type: Add
+  id: 426
+  time: '2024-11-20T14:42:35.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/670
+- author: kanopus7
+  changes:
+  - message: "\u0418\u0441\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u0430 \u0441\u0431\
+      \u043E\u0440\u043A\u0430 \u043C\u0435\u0445\u043E\u0432."
+    type: Fix
+  id: 427
+  time: '2024-11-20T14:41:28.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/671
