@@ -303,7 +303,7 @@ public sealed partial class CCVars
         ///     but may cause lag during round end with very high player counts.
         /// </summary>
         public static readonly CVarDef<bool> RoundEndPVSOverrides =
-            CVarDef.Create("game.round_end_pvs_overrides", true, CVar.SERVERONLY);
+            CVarDef.Create("game.round_end_pvs_overrides", false, CVar.SERVERONLY); // Sunrise-Edit
 
         /// <summary>
         ///     If true, players can place objects onto tabletop games like chess boards.
@@ -319,7 +319,7 @@ public sealed partial class CCVars
         ///     If true, contraband severity can be viewed in the examine menu
         /// </summary>
         public static readonly CVarDef<bool> ContrabandExamine =
-            CVarDef.Create("game.contraband_examine", true, CVar.SERVER | CVar.REPLICATED);
+            CVarDef.Create("game.contraband_examine", false, CVar.SERVER | CVar.REPLICATED); // Sunrise-Edit
 
         /// <summary>
         ///     Size of the lookup area for adding entities to the context menu
