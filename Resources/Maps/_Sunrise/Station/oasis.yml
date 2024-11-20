@@ -133496,12 +133496,6 @@ entities:
     - type: Transform
       pos: -34.5,-9.5
       parent: 2
-  - uid: 21609
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -28.5,-51.5
-      parent: 2
 - proto: SpaceCash
   entities:
   - uid: 7965
