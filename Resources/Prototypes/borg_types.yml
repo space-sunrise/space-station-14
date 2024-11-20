@@ -2,6 +2,10 @@
 - type: borgType
   id: generic
 
+  # Sunrise-Start
+  job: Borg
+  # Sunrise-End
+
   # Description
   dummyPrototype: BorgChassisGeneric
 
@@ -16,6 +20,13 @@
 
   radioChannels:
   - Science
+
+  # Sunrise-Start
+  footstepCollection:
+    collection: FootstepCyborgSpider
+    params:
+      volume: -15
+  # Sunrise-End
 
   # Visual
   inventoryTemplateId: borgShort
@@ -32,6 +43,10 @@
 # Engineering borg
 - type: borgType
   id: engineering
+
+  # Sunrise-Start
+  job: EngineerBorg
+  # Sunrise-End
 
   # Description
   dummyPrototype: BorgChassisEngineer
@@ -54,11 +69,12 @@
   - Engineering
   - Science
 
-  # Sounds
+  # Sunrise-Start
   footstepCollection:
     collection: FootstepCyborgSpider
     params:
       volume: -15
+  # Sunrise-End
 
   # Visual
   inventoryTemplateId: borgShort
@@ -76,6 +92,10 @@
 - type: borgType
   id: mining
 
+  # Sunrise-Start
+  job: MinerBorg
+  # Sunrise-End
+
   # Description
   dummyPrototype: BorgChassisMining
 
@@ -90,17 +110,18 @@
   - BorgModuleStandart
   - BorgModuleMining
   - BorgModuleGPS
-  - BorgModuleJetpack
+  - BorgModuleJetpack # Sunrise-Edit
 
   radioChannels:
   - Supply
   - Science
 
-  # Sounds
+  # Sunrise-Start
   footstepCollection:
     collection: FootstepCyborgSpider
     params:
       volume: -15
+  # Sunrise-End
 
   # Visual
   inventoryTemplateId: borgTall
@@ -119,6 +140,10 @@
 - type: borgType
   id: janitor
 
+  # Sunrise-Start
+  job: JanitorBorg
+  # Sunrise-End
+
   # Description
   dummyPrototype: BorgChassisJanitor
 
@@ -132,15 +157,16 @@
   defaultModules:
   - BorgModuleStandart
   - BorgModuleLightReplacer
-  - BorgModuleCleaning
+  - BorgModuleAdvancedCleaning # Sunrise-Edit
 
   radioChannels:
   - Science
   - Service
 
-  # Sounds
+  # Sunrise-Start
   footstepCollection:
     collection: FootstepJanitorBorg
+  # Sunrise-Start
 
   # Visual
   inventoryTemplateId: borgShort
@@ -159,6 +185,10 @@
 - type: borgType
   id: medical
 
+  # Sunrise-Start
+  job: MedicalBorg
+  # Sunrise-End
+
   # Description
   dummyPrototype: BorgChassisMedical
 
@@ -171,9 +201,9 @@
 
   defaultModules:
   - BorgModuleStandart
-  - BorgModuleAdvancedTreatment
+  - BorgModuleAdvancedTreatment # Sunrise-Edit
   - BorgModuleTreatment
-  - BorgModuleDefibrillator
+  - BorgModuleDefibrillator # Sunrise-Edit
 
   radioChannels:
   - Science
@@ -187,6 +217,7 @@
   - type: ShowHealthIcons
     damageContainers:
     - Biological
+  # Sunrise-Start
   - type: TTS
     voice: TurretFloor
   - type: MovementSpeedModifier
@@ -198,6 +229,7 @@
     - HandheldCrewMonitorBorg
     worldTargetActions:
     - HandheldHealthAnalyzerUnpowered
+  # Sunrise-End
 
   # Visual
   inventoryTemplateId: borgDutch
@@ -219,6 +251,10 @@
 # Service borg
 - type: borgType
   id: service
+
+  # Sunrise-Start
+  job: ServiceBorg
+  # Sunrise-End
 
   # Description
   dummyPrototype: BorgChassisService
@@ -254,6 +290,8 @@
 # Peace borg
 - type: borgType
   id: peace
+
+  job: PeaceBorg
 
   # Description
   dummyPrototype: BorgChassisPeace
@@ -338,6 +376,8 @@
 - type: borgType
   id: clown
 
+  job: ClownBorg
+
   # Description
   dummyPrototype: BorgChassisClown
 
@@ -405,6 +445,19 @@
   - Science
   - Security
 
+  # Visual
+  inventoryTemplateId: borgTall
+  spriteBodyState: sec
+  spriteHasMindState: sec_e
+  spriteNoMindState: sec_e_r
+  spriteToggleLightState: sec_l
+
+  # Pet
+  petSuccessString: petting-success-sec-cyborg
+  petFailureString: petting-failure-sec-cyborg
+
+  job: SecurityBorg
+
   addComponents:
   - type: TTS
     voice: Sentrybot
@@ -443,14 +496,3 @@
     - Atmospherics
   - type: AccessReader
     access: [ [ "Command" ], [ "Security" ] ]
-
-  # Visual
-  inventoryTemplateId: borgTall
-  spriteBodyState: sec
-  spriteHasMindState: sec_e
-  spriteNoMindState: sec_e_r
-  spriteToggleLightState: sec_l
-
-  # Pet
-  petSuccessString: petting-success-sec-cyborg
-  petFailureString: petting-failure-sec-cyborg

@@ -335,6 +335,7 @@
     instantActions:
     - HandheldStationMapUnpowered
   - type: BorgCrewManifestViewer
+  - type: StationRecordKeyStorage
   # Sunrise-End
 
 - type: entity

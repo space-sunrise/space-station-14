@@ -89,10 +89,11 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
             return;
 
         // Sunrise-Start
+        // Чтобы борги отображались в манифесте экипажа.
         var name = profile.Name;
         if (!_inventory.TryGetSlotEntity(player, "id", out var idUid))
         {
-            idUid = null;
+            idUid = player;
             name = MetaData(player).EntityName;
         }
         // Sunrise-End
