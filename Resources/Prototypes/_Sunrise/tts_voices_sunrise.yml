@@ -1,4 +1,9 @@
-﻿- type: ttsVoice
+﻿# всего 67 голосов
+# 52 уникальных доступных раундстартом
+# 8 недоступных раундстартом
+# 7 вторых версий
+
+- type: ttsVoice
   id: Minkir
   name: tts-voice-name-minkir
   sex: Male
@@ -80,15 +85,6 @@
   sponsorOnly: true
 
 - type: ttsVoice
-  id: Livsey
-  name: tts-voice-name-livsey
-  sex: Male
-  speaker: livsey
-  roundStart: false # устаревший способ обучения моделей
-  provider: sunrise
-  sponsorOnly: true
-
-- type: ttsVoice
   id: HL2Barni
   name: tts-voice-name-hl2-barni
   sex: Male
@@ -146,7 +142,7 @@
   id: Livsey2
   name: tts-voice-name-livsey
   sex: Male
-  speaker: livsey_2
+  speaker: livsey
   roundStart: true
   provider: sunrise
   sponsorOnly: true
@@ -170,13 +166,6 @@
   sponsorOnly: true
 
 - type: ttsVoice
-  id: Ludvig
-  name: tts-voice-name-ludvig
-  sex: Male
-  speaker: ludvig
-  provider: sunrise
-
-- type: ttsVoice
   id: IcarusRevenge
   name: tts-voice-name-icarus-revenge
   sex: Male
@@ -197,14 +186,6 @@
   sex: Male
   speaker: kendrick
   provider: sunrise
-
-- type: ttsVoice
-  id: SplikZerys
-  name: tts-voice-name-splikzerys
-  sex: Male
-  speaker: splikzerys
-  provider: sunrise
-  roundStart: false # предстоит перетренировка модели
 
 - type: ttsVoice
   id: Dota2Riki
@@ -309,13 +290,6 @@
   name: tts-voice-name-hearthstone-sotis
   sex: Male
   speaker: hearthstone_sotis
-  provider: sunrise
-
-- type: ttsVoice
-  id: HearthstoneMediv
-  name: tts-voice-name-hearthstone-mediv
-  sex: Male
-  speaker: hearthstone_mediv
   provider: sunrise
 
 - type: ttsVoice
@@ -439,7 +413,7 @@
   sponsorOnly: true
 
 - type: ttsVoice
-  id: Crysis2Operator3v1 # недообучена
+  id: Crysis2Operator3v1
   name: tts-voice-name-crysis2-ai-blackops-03-v1
   sex: Male
   speaker: crysis2_ai_blackops_03_v1
@@ -507,4 +481,77 @@
   speaker: hearthstone_gul_dan
   provider: sunrise
   roundStart: true
+  sponsorOnly: false
+
+- type: ttsVoice
+  id: HearthstoneTiranda
+  name: tts-voice-name-hearthstone-tiranda
+  sex: Female
+  speaker: hearthstone_tiranda
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneMediv1
+  name: tts-voice-name-hearthstone-mediv1
+  sex: Male
+  speaker: hearthstone_mediv1
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneMediv2
+  name: tts-voice-name-hearthstone-mediv2
+  sex: Male
+  speaker: hearthstone_mediv2
+  provider: sunrise
+
+- type: ttsVoice
+  id: HearthstoneThrall
+  name: tts-voice-name-hearthstone-thrall
+  sex: Male
+  speaker: hearthstone_thrall
+  provider: sunrise
+
+- type: ttsVoice
+  id: Crysis2AIUsafrican01
+  name: tts-voice-name-crysis2-ai-usafrican-01
+  sex: Male
+  speaker: ai_usafrican_01
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: false
+
+- type: ttsVoice
+  id: Warcraft3LordGarithos
+  name: tts-voice-name-warcraft3-lord-garithos
+  sex: Male
+  speaker: warcraft3_lord_garithos
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: false
+
+- type: ttsVoice
+  id: Warcraft3Artas2
+  name: tts-voice-name-warcraft3-artas-2
+  sex: Male
+  speaker: warcraft3_artas
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: false
+
+- type: ttsVoice
+  id: Warcraft3Muradin
+  name: tts-voice-name-warcraft3-muradin
+  sex: Male
+  speaker: warcraft3_muradin
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: false
+
+- type: ttsVoice
+  id: Warcraft3Witcher
+  name: tts-voice-name-warcraft3-witcher
+  sex: Male
+  speaker: warcraft3_witcher
+  provider: sunrise
+  roundStart: false # перетренировать
   sponsorOnly: false
