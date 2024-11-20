@@ -119,6 +119,7 @@
       - BorgChassis
       - RoboticsConsole
   - type: WiresPanel
+    openDelay: 3
   - type: ActivatableUIRequiresPanel
   - type: NameIdentifier
     group: Silicon
@@ -259,6 +260,9 @@
   - type: BorgMagboots
     walkModifier: 0.8
     sprintModifier: 0.8
+  - type: Strap
+    position: Stand
+    buckleOffset: "0,0.15"
   # Sunrise-end
 
 - type: entity

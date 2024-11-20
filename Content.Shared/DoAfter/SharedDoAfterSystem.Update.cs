@@ -1,8 +1,11 @@
+using System.Numerics;
 using Content.Shared.Gravity;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Physics;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Systems;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.DoAfter;
@@ -13,6 +16,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physicsSystem = default!;
 
     private DoAfter[] _doAfters = Array.Empty<DoAfter>();
 
@@ -174,6 +178,13 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
             // Whether the user has moved too much from their original position.
             if (!_transform.InRange(userXform.Coordinates, doAfter.UserPosition, args.MovementThreshold))
                 return true;
+
+            if (args.Target is not null && TryComp<PhysicsComponent>(args.Target, out var physics))
+            {
+                var linearVelocity = _physicsSystem.GetMapLinearVelocity(args.Target.Value, physics);
+                if (linearVelocity.X > 0 || linearVelocity.Y > 0)
+                    return true;
+            }
 
             // Whether the distance between the user and target(if any) has changed too much.
             if (targetXform != null &&
