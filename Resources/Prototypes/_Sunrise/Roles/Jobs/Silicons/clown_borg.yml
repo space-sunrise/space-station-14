@@ -1,0 +1,11 @@
+- type: job
+  id: ClownBorg
+  name: job-name-clown-borg
+  description: job-description-clown-borg
+  playTimeTracker: JobClownBorg
+  icon: JobIconClownBorg
+  supervisors: job-supervisors-human
+  canBeAntag: false
+  setPreference: false
+  displayWeight: -10  # Sunrise
+  jobEntity: PlayerBorgBattery

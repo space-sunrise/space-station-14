@@ -1,0 +1,11 @@
+- type: job
+  id: SecurityBorg
+  name: job-name-sec-borg
+  description: job-description-sec-borg
+  playTimeTracker: JobSecurityBorg
+  icon: JobIconSecurityBorg
+  supervisors: job-supervisors-hos
+  canBeAntag: false
+  setPreference: false
+  displayWeight: -10  # Sunrise
+  jobEntity: PlayerBorgBattery
