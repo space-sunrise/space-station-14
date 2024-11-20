@@ -36,7 +36,6 @@
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Vox
-  - Vulpkanin
   - Felinid
   parent: EventHumanoidMindShielded
   randomizeName: false
@@ -78,7 +77,6 @@
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Vox
-  - Vulpkanin
   - Felinid
   parent: EventHumanoidMindShielded
   randomizeName: false
@@ -115,7 +113,6 @@
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Vox
-  - Vulpkanin
   - Felinid
   parent: ERTLeader
   components:
@@ -143,7 +140,6 @@
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Vox
-  - Vulpkanin
   - Felinid
   parent: ERTLeaderEVA
   components:
@@ -218,7 +214,6 @@
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Vox
-  - Vulpkanin
   - Felinid
   parent: ERTChaplain
   components:
@@ -257,7 +252,6 @@
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Vox
-  - Vulpkanin
   - Felinid
   parent: ERTLeader
   components:

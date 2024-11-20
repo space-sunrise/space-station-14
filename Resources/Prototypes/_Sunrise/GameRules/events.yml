@@ -42,3 +42,17 @@
     duration: null
   - type: LateJoinSpawnRule
     prototype: SpawnPointEvilTwin
+
+
+- type: entity
+  parent: BaseGameRule
+  id: TerminatorSpawn
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    weight: 10
+    earliestStart: 30
+    minimumPlayers: 20
+    duration: null
+  - type: LateJoinSpawnRule
+    prototype: SpawnPointGhostTerminator
