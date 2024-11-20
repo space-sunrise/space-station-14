@@ -522,7 +522,7 @@
 
 - type: ttsVoice
   id: Warcraft3LordGarithos
-  name: tts-voice-name-warcraft-lord-garithos
+  name: tts-voice-name-warcraft3-lord-garithos
   sex: Male
   speaker: warcraft3_lord_garithos
   provider: sunrise
@@ -531,7 +531,7 @@
 
 - type: ttsVoice
   id: Warcraft3Artas2
-  name: tts-voice-name-warcraft-artas-2
+  name: tts-voice-name-warcraft3-artas-2
   sex: Male
   speaker: warcraft3_artas
   provider: sunrise
@@ -540,7 +540,7 @@
 
 - type: ttsVoice
   id: Warcraft3Muradin
-  name: tts-voice-name-warcraft-muradin
+  name: tts-voice-name-warcraft3-muradin
   sex: Male
   speaker: warcraft3_muradin
   provider: sunrise
