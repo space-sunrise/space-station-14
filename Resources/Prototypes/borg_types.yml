@@ -360,7 +360,7 @@
   footstepCollection:
     collection: FootstepCyborgSpider
     params:
-      volume: -15
+      volume: -10
 
   # Visual
   inventoryTemplateId: borgTall
@@ -428,6 +428,8 @@
 - type: borgType
   id: security
 
+  job: SecurityBorg
+
   # Description
   dummyPrototype: BorgChassisSecurity
 
@@ -458,14 +460,19 @@
   petSuccessString: petting-success-sec-cyborg
   petFailureString: petting-failure-sec-cyborg
 
-  job: SecurityBorg
+  # Sounds
+  footstepCollection:
+    collection: FootstepCyborgSpider
+    params:
+      volume: -10
 
   addComponents:
   - type: TTS
     voice: Sentrybot
   - type: InnateItem
     instantActions:
-    - PortableSurveillanceCameraMonitor
+    - PortableSurveillanceCameraMonitorUnpowered
+    - HandheldCriminalRecordsMonitorUnpowered
     worldTargetActions:
     - ForensicScanner
   - type: ShowCriminalRecordIcons
