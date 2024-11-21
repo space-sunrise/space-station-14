@@ -40,12 +40,12 @@
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/akms/tiny.rsi
   - type: GunWieldBonus
-    minAngle: -23
-    maxAngle: -43
+    minAngle: -15
+    maxAngle: -35
   - type: Gun
     minAngle: 24
     maxAngle: 45
-    fireRate: 7  # 10 в секунду - реалистично. 5, так как сс14
+    fireRate: 6.5  # 10 в секунду - реалистично. 5, так как сс14
     soundGunshot:
       collection: ak47
   - type: ItemSlots
@@ -95,12 +95,12 @@
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
   - type: GunWieldBonus
-    minAngle: -23
-    maxAngle: -43
+    minAngle: -10
+    maxAngle: -25
   - type: Gun
     minAngle: 24
     maxAngle: 45
-    fireRate: 5
+    fireRate: 7
     soundGunshot:
       collection: ak47
   - type: ChamberMagazineAmmoProvider
@@ -383,10 +383,10 @@
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/m16a4/tiny.rsi
   - type: GunWieldBonus
-    minAngle: -23
-    maxAngle: -43
+    minAngle: -20
+    maxAngle: -40
   - type: Gun
-    minAngle: 24
+    minAngle: 25
     maxAngle: 45
     fireRate: 6
     soundGunshot:
