@@ -479,7 +479,7 @@
   - type: BorgCuffed
   - type: FlashImmunity
   - type: SiliconLawProvider
-    laws: SecurityStatic
+    laws: NTDefault
   - type: Access
     tags:
     - EmergencyShuttleRepealAll
