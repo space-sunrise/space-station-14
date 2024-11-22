@@ -1,3 +1,4 @@
+# Security borg laws
 - type: siliconLawset
   id: SecurityStatic
   laws:
@@ -39,6 +40,7 @@
   order: 6
   lawString: law-sec-6
 
+# Peace borg laws
 - type: siliconLawset
   id: PeaceStatic
   laws:
@@ -74,6 +76,7 @@
   order: 5
   lawString: law-peace-5
 
+# ERT laws (not ert directives)
 - type: siliconLawset
   id: ERTStatic
   laws:
@@ -126,3 +129,77 @@
   id: ERT8
   order: 8
   lawString: "Бездействие и нанесение вреда членам экипажа и отряду запрещено, если это не противоречит остальным законам."
+
+# Deathsquad Directives laws
+- type: siliconLaw
+  id: DeathSquadLaw1
+  order: 1
+  lawString: law-deathsquad-1
+
+- type: siliconLaw
+  id: DeathSquadLaw2
+  order: 2
+  lawString: law-deathsquad-2
+
+- type: siliconLaw
+  id: DeathSquadLaw3
+  order: 3
+  lawString: law-deathsquad-3
+
+- type: siliconLaw
+  id: DeathSquadLaw4
+  order: 4
+  lawString: law-deathsquad-4
+
+- type: siliconLaw
+  id: DeathSquadLaw5
+  order: 5
+  lawString: law-deathsquad-5
+
+
+- type: siliconLawset
+  id: DeathSquadLawset
+  laws:
+  - DeathSquadLaw1
+  - DeathSquadLaw2
+  - DeathSquadLaw3
+  - DeathSquadLaw4
+  - DeathSquadLaw5
+  obeysTo: laws-owner-centcomm
+
+# ERT Directives laws
+- type: siliconLaw
+  id: ERTDirective1
+  order: 1
+  lawString: law-ert-1
+
+- type: siliconLaw
+  id: ERTDirective2
+  order: 2
+  lawString: law-ert-2
+
+- type: siliconLaw
+  id: ERTDirective3
+  order: 3
+  lawString: law-ert-3
+
+- type: siliconLaw
+  id: ERTDirective4
+  order: 4
+  lawString: law-ert-4
+
+- type: siliconLaw
+  id: ERTDirective5
+  order: 5
+  lawString: law-ert-5
+
+
+- type: siliconLawset
+  id: ERTLawset
+  laws:
+  - ERTDirective1
+  - ERTDirective2
+  - ERTDirective3
+  - ERTDirective4
+  - ERTDirective5
+  obeysTo: laws-owner-centcomm
