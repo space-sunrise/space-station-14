@@ -53,7 +53,7 @@
   - type: AccessReader
     access: [["Security"], ["Command"]]
   - type: SiliconLawProvider
-    laws: SecurityStatic
+    laws: NTDefault
   - type: TTS
     voice: Sentrybot
   - type: PointLight
@@ -261,7 +261,7 @@
   - type: AccessReader
     access: [["Security"], ["Command"], ["Research"]]
   - type: SiliconLawProvider
-    laws: ERTStatic
+    laws: ERTLawset
   - type: PointLight
     color: "#9efce0"
     radius: 6
@@ -346,6 +346,12 @@
   - Вавилон
   - Логан
   - Гэбриэл
+  - Майкл
+  - Рафаэль
+  - Уриэль
+  - Иеримиил
+  - Сариэль
+  - Рамиэль
 
 - type: entity
   id: BorgChassisSyndicateHeavy

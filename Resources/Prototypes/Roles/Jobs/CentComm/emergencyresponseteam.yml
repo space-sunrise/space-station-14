@@ -37,6 +37,7 @@
     - BoxZiptie
     - CrowbarRed
     - MagazineMagnum
+    - ERTDirectivesCircuitBoard # Sunrise-edit
 
 - type: startingGear
   id: ERTLeaderGearEVA
@@ -61,6 +62,7 @@
     - BoxZiptie
     - CrowbarRed
     - MagazineMagnum
+    - ERTDirectivesCircuitBoard # Sunrise-edit
 
 - type: startingGear
   id: ERTLeaderGearEVALecter
@@ -87,6 +89,7 @@
     - BoxZiptie
     - CrowbarRed
     - MagazineMagnum
+    - ERTDirectivesCircuitBoard # Sunrise-edit
 
 # Chaplain
 - type: job
