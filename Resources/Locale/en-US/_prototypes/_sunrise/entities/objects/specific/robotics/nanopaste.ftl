@@ -1,4 +1,4 @@
-ent-Nanopaste = нанопаста
+ent-Nanopaste = nanopaste
     .suffix = Full
     .desc = { ent-BaseHealingItem.desc }
 ent-Nanopaste1 = { ent-Nanopaste }

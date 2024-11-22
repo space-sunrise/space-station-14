@@ -34,6 +34,7 @@ namespace Content.Server.Voting.Managers
 
         private VotingSystem? _votingSystem;
         private RoleSystem? _roleSystem;
+        private GameTicker? _gameTicker;
 
         private static readonly Dictionary<StandardVoteType, CVarDef<bool>> _voteTypesToEnableCVars = new()
         {
@@ -72,8 +73,8 @@ namespace Content.Server.Voting.Managers
                 default:
                     throw new ArgumentOutOfRangeException(nameof(voteType), voteType, null);
             }
-            var ticker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
-            ticker.UpdateInfoText();
+            _gameTicker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
+            _gameTicker.UpdateInfoText();
             if (timeoutVote)
                 TimeoutStandardVote(voteType);
         }
@@ -225,6 +226,11 @@ namespace Content.Server.Voting.Managers
         {
             var presets = GetGamePresets();
 
+            // Sunrise-Start
+            if (presets.Count < 1)
+                return;
+            // Sunrise-End
+
             var alone = _playerManager.PlayerCount == 1 && initiator != null;
             var options = new VoteOptions
             {
@@ -272,8 +278,9 @@ namespace Content.Server.Voting.Managers
         {
             var maps = new Dictionary<string, GameMapPrototype>();
             var eligibleMaps = _gameMapManager.CurrentlyEligibleMaps().ToList();
-            maps.Add(Loc.GetString("ui-vote-secret-map"), _random.Pick(eligibleMaps));
-            foreach (var map in eligibleMaps)
+            var selectedMaps = eligibleMaps.OrderBy(_ => _random.Next()).Take(_cfg.GetCVar(SunriseCCVars.MapVotingCount)).ToList();
+            maps.Add(Loc.GetString("ui-vote-secret-map"), _random.Pick(selectedMaps));
+            foreach (var map in selectedMaps)
             {
                 maps.Add(map.MapName, map);
             }
@@ -360,8 +367,14 @@ namespace Content.Server.Voting.Managers
                 return;
             }
 
+
+
+            var voterEligibility = _cfg.GetCVar(CCVars.VotekickVoterGhostRequirement) ? VoterEligibility.GhostMinimumPlaytime : VoterEligibility.MinimumPlaytime;
+            if (_cfg.GetCVar(CCVars.VotekickIgnoreGhostReqInLobby) && _gameTicker!.RunLevel == GameRunLevel.PreRoundLobby)
+                voterEligibility = VoterEligibility.MinimumPlaytime;
+
             var eligibleVoterNumberRequirement = _cfg.GetCVar(CCVars.VotekickEligibleNumberRequirement);
-            var eligibleVoterNumber = _cfg.GetCVar(CCVars.VotekickVoterGhostRequirement) ? CalculateEligibleVoterNumber(VoterEligibility.GhostMinimumPlaytime) : CalculateEligibleVoterNumber(VoterEligibility.MinimumPlaytime);
+            var eligibleVoterNumber = CalculateEligibleVoterNumber(voterEligibility);
 
             string target = args[0];
             string reason = args[1];
@@ -455,7 +468,7 @@ namespace Content.Server.Voting.Managers
                 },
                 Duration = TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VotekickTimer)),
                 InitiatorTimeout = TimeSpan.FromMinutes(_cfg.GetCVar(CCVars.VotekickTimeout)),
-                VoterEligibility = _cfg.GetCVar(CCVars.VotekickVoterGhostRequirement) ? VoterEligibility.GhostMinimumPlaytime : VoterEligibility.MinimumPlaytime,
+                VoterEligibility = voterEligibility,
                 DisplayVotes = false,
                 TargetEntity = targetNetEntity
             };
@@ -587,20 +600,73 @@ namespace Content.Server.Voting.Managers
         {
             var presets = new Dictionary<string, string>();
 
+            var prototypeId = _cfg.GetCVar(SunriseCCVars.RoundVotingChancesPrototype);
+
+            if (!_prototypeManager.TryIndex<VoteRandomPrototype>(prototypeId, out var chancesPrototype))
+            {
+                Logger.Warning($"Не удалось найти прототип шансов с ID: {prototypeId}");
+                return presets;
+            }
+
+            var validPresets = new List<(GamePresetPrototype preset, float chance)>();
+
             foreach (var preset in _prototypeManager.EnumeratePrototypes<GamePresetPrototype>())
             {
-                if(!preset.ShowInVote)
+                if (!preset.ShowInVote)
                     continue;
 
-                if(_playerManager.PlayerCount < (preset.MinPlayers ?? int.MinValue))
+                if (_playerManager.PlayerCount < (preset.MinPlayers ?? int.MinValue))
                     continue;
 
-                if(_playerManager.PlayerCount > (preset.MaxPlayers ?? int.MaxValue))
+                if (_playerManager.PlayerCount > (preset.MaxPlayers ?? int.MaxValue))
                     continue;
 
-                presets[preset.ID] = preset.ModeTitle;
+                if (chancesPrototype.Chances.TryGetValue(preset.ID, out var chance))
+                {
+                    validPresets.Add((preset, chance));
+                }
             }
+
+            if (validPresets.Count == 0)
+            {
+                Logger.Warning("Нет подходящих игровых режимов для текущего количества игроков.");
+                return presets;
+            }
+
+            var selectedPresets = SelectPresetsByChance(validPresets, _cfg.GetCVar(SunriseCCVars.RoundVotingCount));
+            foreach (var preset in selectedPresets)
+            {
+                presets[preset.preset.ID] = preset.preset.ModeTitle;
+            }
+
             return presets;
+        }
+
+        private List<(GamePresetPrototype preset, float chance)> SelectPresetsByChance(List<(GamePresetPrototype preset, float chance)> validPresets, int count)
+        {
+            var selectedPresets = new List<(GamePresetPrototype preset, float chance)>();
+            var random = new Random();
+
+            while (selectedPresets.Count < count && validPresets.Count > 0)
+            {
+                var totalChance = validPresets.Sum(p => p.chance);
+
+                var roll = random.NextDouble() * totalChance;
+                float cumulativeChance = 0;
+
+                foreach (var preset in validPresets)
+                {
+                    cumulativeChance += preset.chance;
+                    if (roll < cumulativeChance)
+                    {
+                        selectedPresets.Add(preset);
+                        validPresets.Remove(preset);
+                        break;
+                    }
+                }
+            }
+
+            return selectedPresets;
         }
     }
 }

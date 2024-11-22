@@ -21,9 +21,9 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.85 # Воры отличный антаг
+      prob: 0.90 # Воры отличный антаг
     - id: Changeling
-      prob: 0.50
+      prob: 0.30 # Слишком любители поубивать
 
 - type: entity
   id: DeathMatch31
@@ -192,6 +192,20 @@
       - MindRoleTraitor
 
 - type: entity
+  id: TraitorReinforcement
+  parent: BaseTraitorRule
+  components:
+  - type: TraitorRule
+    giveUplink: false
+    giveCodewords: false # It would actually give them a different set of codewords than the regular traitors, anyway
+    giveBriefing: false
+  - type: AntagSelection
+    definitions:
+    - prefRoles: [ Traitor ]
+      mindRoles:
+      - MindRoleTraitor
+
+- type: entity
   id: Revolutionary
   parent: BaseGameRule
   components:
@@ -283,7 +297,6 @@
         tableId: CalmPestEventsTable
       - !type:NestedSelector
         tableId: SpicyPestEventsTable
-        
 
 - type: entityTable
   id: SpaceTrafficControlTable

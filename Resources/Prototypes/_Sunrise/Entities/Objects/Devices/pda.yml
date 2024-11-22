@@ -34,8 +34,7 @@
 - type: entity
   parent: BasePDA
   id: BlueShieldPDA
-  name: КПК офицера «синий щит»
-  description: КПК для геев.
+  name: blue shield officer's PDA
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/pda.rsi
@@ -59,8 +58,8 @@
 - type: entity
   parent: BasePDA
   id: PrisonerPDA
-  name: ПДА заключенного
-  description: В цвет робы для полного комплекта.
+  name: prisoner's PDA
+  description: In the colour of the robe for a complete set.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/pda.rsi
@@ -74,8 +73,8 @@
 - type: entity
   parent: BasePDA
   id: GuardPDA
-  name: ПДА тюремного охранника
-  description: Изогнутый и потертый, но каждая царапина - свидетельство непрерывной борьбы за безопасность.
+  name: prison guard's PDA
+  description: Bent and scuffed, but every scratch is evidence of a continuous struggle for safety.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/pda.rsi
@@ -89,7 +88,7 @@
 - type: entity
   parent: BasePDA
   id: PrisonEngineerPDA
-  name: ПДА тюремного инженера
+  name: prison engineer's PDA
   components:
   - type: Pda
     id: PrisonEngineeringIDCard
@@ -103,8 +102,8 @@
 - type: entity
   parent: BasePDA
   id: PrisonPilotPDA
-  name: КПК тюремного пилота
-  description: Блестящий и технологичный, словно его только что вытащили из кокпита.
+  name: prison pilot's PDA
+  description: Shiny and technologically advanced, as if it had just been pulled out of the cockpit.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/pda.rsi
@@ -121,8 +120,8 @@
 - type: entity
   parent: BasePDA
   id: HeadOfPrisonPDA
-  name: КПК начальника тюрьмы
-  description: Имеет вид престижного инструмента власти, но немного поцарапанный от постоянных срочных вызовов.
+  name: Prison governor's PDA
+  description: Has the look of a prestigious instrument of power, but a little scratched from constant emergency calls.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/pda.rsi
@@ -139,8 +138,8 @@
 - type: entity
   parent: BasePDA
   id: RoboticistPDA
-  name: КПК робототехника
-  description: Он покрыт чем-то липким.
+  name: roboticist's PDA
+  description: It's covered in something sticky.
   components:
   - type: Pda
     id: RoboticistIDCard
@@ -160,8 +159,7 @@
 - type: entity
   parent: BasePDA
   id: SecurityPilotPDA
-  name: КПК пилота службы безопастности
-  description: Нахуя нам пилот?
+  name: Security pilot's PDA
   components:
   - type: Pda
     id: SecurityPilotIDCard
@@ -194,13 +192,13 @@
 - type: entity
   parent: BasePDA
   id: BarberPDA
-  name: КПК парикмахера
+  name: barber's PDA
   components:
   - type: Pda
     id: BarberIDCard
     state: pda-bartender
   - type: Icon
-    state: pda-bartender  # он достаточно нейтральный, мне лень рисовать отдельный кпк для него
+    state: pda-bartender
 
 - type: entity
   parent: BasePDA

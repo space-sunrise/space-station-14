@@ -170,7 +170,7 @@
 - type: technology
   id: EnergyBarriers
   name: research-technology-energy_barriers
-  icon: 
+  icon:
     sprite: Objects/Tools/EnergyDome/reinhardt.rsi
     state: icon
   discipline: Arsenal
@@ -178,7 +178,7 @@
   cost: 6000
   recipeUnlocks:
   - EnergyDomeDirectionalTurtle
-  
+
 - type: technology
   id: BasicShuttleArmament
   name: research-technology-basic-shuttle-armament
@@ -193,8 +193,8 @@
   - PowerCageSmall
   - PowerCageMedium
   - MagazineGrenadeEmpty
-  - GrenadeFlash
-  - GrenadeBlast
+  - ShellFlashArtillery
+  - ShellBlastArtillery
   - ShuttleGunSvalinnMachineGunCircuitboard
   - ShuttleGunPerforatorCircuitboard
   - ShuttleGunFriendshipCircuitboard
@@ -205,7 +205,7 @@
   id: Gygax
   name: research-technology-gygax
   icon:
-    sprite: Objects/Specific/Mech/mecha.rsi
+    sprite: Objects/Specific/Mech/gygax.rsi
     state: gygax
   discipline: Arsenal
   tier: 2
@@ -277,7 +277,7 @@
   tier: 3
   cost: 15000
   recipeUnlocks:
-  - GrenadeEMP
+  - ShellEMPArtillery
   - PowerCageHigh
   - ShuttleGunDusterCircuitboard
   technologyPrerequisites:
@@ -287,7 +287,7 @@
   id: Durand
   name: research-technology-durand
   icon:
-    sprite: Objects/Specific/Mech/mecha.rsi
+    sprite: Objects/Specific/Mech/durand.rsi
     state: durand
   discipline: Arsenal
   tier: 3

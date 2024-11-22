@@ -81,7 +81,7 @@
 - type: entity
   id: SpawnPointHeadOfPrison
   parent: SpawnPointJobBase
-  name: начальник тюрьмы
+  name: head of prison
   components:
   - type: SpawnPoint
     job_id: HeadOfPrison
@@ -93,7 +93,7 @@
 - type: entity
   id: SpawnPointPrisonChef
   parent: SpawnPointJobBase
-  name: тюремный шеф-повар
+  name: prison's chef
   components:
   - type: SpawnPoint
     job_id: PrisonChef
@@ -105,7 +105,7 @@
 - type: entity
   id: SpawnPointPrisonDoctor
   parent: SpawnPointJobBase
-  name: тюремный доктор
+  name: prison's doctor
   components:
   - type: SpawnPoint
     job_id: PrisonDoctor
@@ -117,7 +117,7 @@
 - type: entity
   id: SpawnPointPrisonEngineer
   parent: SpawnPointJobBase
-  name: тюремный инженер
+  name: prison's engineer
   components:
   - type: SpawnPoint
     job_id: PrisonEngineer
@@ -129,7 +129,7 @@
 - type: entity
   id: SpawnPointPrisonGuard
   parent: SpawnPointJobBase
-  name: охранник
+  name: prison's guard
   components:
   - type: SpawnPoint
     job_id: PrisonGuard
@@ -140,7 +140,7 @@
 - type: entity
   id: SpawnPointPrisonPilot
   parent: SpawnPointJobBase
-  name: тюремный пилот
+  name: prison's pilot
   components:
   - type: SpawnPoint
     job_id: PrisonPilot
@@ -152,7 +152,7 @@
 - type: entity
   id: SpawnPointPlanetPrisoner
   parent: SpawnPointJobBase
-  name: заключенный ПТ
+  name: prisoner
   components:
   - type: SpawnPoint
     job_id: PlanetPrisoner
@@ -164,7 +164,7 @@
 - type: entity
   id: SpawnPointPrisonWorker
   parent: SpawnPointJobBase
-  name: тюремный разнорабочий
+  name: prison's worker
   components:
   - type: SpawnPoint
     job_id: PrisonWorker
@@ -176,7 +176,7 @@
 - type: entity
   id: SpawnPointSeniorEngineer
   parent: SpawnPointJobBase
-  name: seniorengineer
+  name: senior engineer
   components:
   - type: SpawnPoint
     job_id: SeniorEngineer
@@ -188,7 +188,7 @@
 - type: entity
   id: SpawnPointSeniorPhysician
   parent: SpawnPointJobBase
-  name: seniorphysician
+  name: senior physician
   components:
   - type: SpawnPoint
     job_id: SeniorPhysician
@@ -200,7 +200,7 @@
 - type: entity
   id: SpawnPointSeniorResearcher
   parent: SpawnPointJobBase
-  name: seniorresearcher
+  name: senior researcher
   components:
   - type: SpawnPoint
     job_id: SeniorResearcher
@@ -212,7 +212,7 @@
 - type: entity
   id: SpawnPointSeniorOfficer
   parent: SpawnPointJobBase
-  name: seniorofficer
+  name: senior officer
   components:
   - type: SpawnPoint
     job_id: SeniorOfficer
@@ -224,7 +224,7 @@
 - type: entity
   id: SpawnPointBarber
   parent: SpawnPointJobBase
-  name: парикмахер
+  name: barber
   components:
   - type: SpawnPoint
     job_id: Barber

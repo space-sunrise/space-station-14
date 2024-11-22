@@ -1,5 +1,5 @@
 - type: entity
-  name: нанопаста
+  name: nanopaste
   description:
   parent: BaseHealingItem
   id: Nanopaste
@@ -15,6 +15,7 @@
     heldPrefix: nanopaste
   - type: Healing
     damageContainers:
+    - Mech
     - Synth
     - Silicon
     damage:

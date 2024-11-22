@@ -1,0 +1,26 @@
+- type: entity
+  id: ClothingBeltSheathSyndicateFilled
+  parent: ClothingBeltSheathSyndicate
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      item:
+      - SyndicateRapier
+
+- type: entity
+  parent: [BaseItem, BaseSyndicateContraband]
+  id: BeltSheathSyndieFilledBox
+  name: the Wrapped Rapier of the Syndicate
+  description: Unwrap.
+  components:
+  - type: Item
+    size: Ginormous
+  - type: Sprite
+    sprite: _Sunrise/Objects/Storage/sheath-rapier-gift.rsi
+    state: sheath-rapier-gift
+  - type: SpawnItemsOnUse
+    items:
+    - id: ClothingBeltSheathSyndicateFilled
+    sound:
+      path: /Audio/Effects/unwrap.ogg

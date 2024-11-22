@@ -4,7 +4,7 @@
   mapPath: /Maps/_Sunrise/Station/train.yml
   maxRandomOffset: 0
   randomRotation: false
-  minPlayers: 35
+  minPlayers: 0
   stations:
     Train:
       stationProto: StandardNanotrasenStation
@@ -15,14 +15,13 @@
             !type:NanotrasenNameGenerator
             prefixCreator: 'ED'
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/Shuttles/emergency_omega.yml # TODO - add railway station
+          emergencyShuttlePath: /Maps/_Sunrise/Shuttles/emergency_omega.yml # TODO - add railway station
         - type: StationJobs
           availableJobs:
             #service
             Captain: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
-            Adjutant: [ 1, 1 ]
             Bartender: [ 2, 2 ]
             Botanist: [ 3, 3 ]
             Chef: [ 2, 2 ]
@@ -78,18 +77,12 @@
             Magistrat: [ 1, 1 ]
             # silicon
             StationAi: [ 1, 1 ]
-            Borg: [ 2, 2 ]
-            MedicalBorg: [ 4, 4 ]
-            EngineerBorg: [ 2, 2 ]
-            MinerBorg: [ 2, 2 ]
-            JanitorBorg: [ 2, 2 ]
-            ServiceBorg: [ 2, 2 ]
-            ClownBorg: [ 2, 2 ]
-            PeaceBorg: [ 2, 2 ]
-            SecurityBorg: [ 4, 4 ]
+            Borg: [ 22, 22 ]
             SecurityCombatBorg: [ 2, 2 ]
             # Sunrise-Civillian
             Barber: [ 1, 1 ]
+            # Sunrise-Adjutant
+            Adjutant: [ 1, 1 ]
         - type: StationGoal
           goals:
           - Shuttle

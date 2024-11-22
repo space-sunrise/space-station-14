@@ -33,6 +33,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Player;
 using Content.Shared.Coordinates;
+using Content.Shared.Projectiles;
 using Robust.Shared.Utility;
 using Robust.Shared.Timing;
 
@@ -91,6 +92,7 @@ namespace Content.Server.Explosion.EntitySystems
             InitializeMobstate();
 
             SubscribeLocalEvent<TriggerOnSpawnComponent, MapInitEvent>(OnSpawnTriggered);
+            SubscribeLocalEvent<StartTimerOnShootComponent, ProjectileShotEvent>(StartTimerOnShoot); // Sunrise-Edit
             SubscribeLocalEvent<TriggerOnCollideComponent, StartCollideEvent>(OnTriggerCollide);
             SubscribeLocalEvent<TriggerOnActivateComponent, ActivateInWorldEvent>(OnActivate);
             SubscribeLocalEvent<TriggerImplantActionComponent, ActivateImplantEvent>(OnImplantTrigger);
@@ -238,6 +240,14 @@ namespace Content.Server.Explosion.EntitySystems
         {
             Trigger(uid);
         }
+
+        // Sunrise-Start
+        private void StartTimerOnShoot(EntityUid uid, StartTimerOnShootComponent component, ProjectileShotEvent args)
+        {
+            if (TryComp<ProjectileComponent>(uid, out var projectile))
+                StartTimer(uid, projectile.Shooter);
+        }
+        // Sunrise-End
 
         private void OnActivate(EntityUid uid, TriggerOnActivateComponent component, ActivateInWorldEvent args)
         {

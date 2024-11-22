@@ -128,6 +128,30 @@
 # Tier 3
 
 - type: technology
+  id: Phazon
+  name: research-technology-phazon
+  icon:
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: phazon
+  discipline: Experimental
+  tier: 3
+  cost: 20000
+  recipeUnlocks:
+  - MechPhasicScanningModule
+  - PhazonHarness
+  - PhazonArmor
+  - PhazonHead
+  - PhazonLArm
+  - PhazonLLeg
+  - PhazonRArm
+  - PhazonRLeg
+  - PhazonCentralElectronics
+  - PhazonPeripheralsElectronics
+  - PhazonTargetingElectronics
+  technologyPrerequisites:
+  - Ripley2
+
+- type: technology
   id: GravityManipulation
   name: research-technology-gravity-manipulation
   icon:

@@ -1,8 +1,8 @@
 - type: entity
   id: Lockbox
   parent: BaseStorageItem
-  name: Защищенный чемодан
-  description: Высокозащищенный чемодан предназначеный для хранения важных документов и предметов.
+  name: Protected suitcase
+  description: Highly protective suitcase designed for storing important documents and items.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Misc/lockbox.rsi
@@ -28,8 +28,6 @@
 - type: entity
   parent: Lockbox
   id: LockboxCaptain
-  name: Защищенный чемодан
-  description: Высокозащищенный чемодан предназначеный для хранения важных документов и предметов.
   components:
   - type: AccessReader
     access: [["Captain"]]

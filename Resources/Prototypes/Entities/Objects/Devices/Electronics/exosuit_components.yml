@@ -51,6 +51,24 @@
     - type: GuideHelp
       guides:
       - Robotics
+      
+- type: entity
+  id: PhazonArmorPlate
+  parent: BaseExosuitParts
+  name: phazon armor plates
+  description: Armor plates made of steel for Phazon exosuit.
+  components:
+    - type: Item
+      storedRotation: 0
+    - type: Sprite
+      sprite: Objects/Specific/Mech/phazon_construction.rsi
+      state: phazon_armor
+    - type: Tag
+      tags:
+      - PhazonArmor
+    - type: GuideHelp
+      guides:
+      - Robotics
 
 - type: entity
   id: RipleyUpgradeKit
@@ -99,6 +117,23 @@
     - type: Tag
       tags:
       - MechThruster
+    - type: GuideHelp
+      guides:
+      - Robotics
+      
+- type: entity
+  id: MechPhasicScanningModule
+  parent: BaseExosuitParts
+  name: phasic scanning module
+  description: An application part used in the construction of various devices.
+  components:
+    - type: Item
+      storedRotation: 0
+    - type: Sprite
+      state: triphasic_scan_module
+    - type: Tag
+      tags:
+      - MechPhasicScanningModule
     - type: GuideHelp
       guides:
       - Robotics

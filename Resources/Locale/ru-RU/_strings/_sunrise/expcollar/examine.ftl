@@ -1,0 +1,5 @@
+expcollar-examine-armed = Боевой режим [color=red]включен[/color]
+expcoller-examine-disarmed = Боевой режим [color=green]выключен[/color]
+expcollar-examine-virgin = [color=yellow]Ошейник ни разу не использовался до этого[/color]
+expcollar-examine-unvirgin = [color=red]Ошейник уже был использован до этого и потерял свою эффективность[/color]
+expcollar-examine-linked = [color=lightblue]Из ошейника исходят блюспейс импульсы[/color]

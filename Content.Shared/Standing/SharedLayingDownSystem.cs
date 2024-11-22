@@ -74,10 +74,13 @@ public abstract class SharedLayingDownSystem : EntitySystem
     private void OnStandingUpDoAfter(EntityUid uid, StandingStateComponent component, StandingUpDoAfterEvent args)
     {
         if (args.Handled || args.Cancelled
-            || HasComp<KnockedDownComponent>(uid)
-            || _mobState.IsIncapacitated(uid)
-            || !_standing.Stand(uid))
+                         || HasComp<KnockedDownComponent>(uid)
+                         || _mobState.IsIncapacitated(uid)
+                         || !_standing.Stand(uid))
+        {
             component.CurrentState = StandingState.Lying;
+            return;
+        }
 
         component.CurrentState = StandingState.Standing;
     }
@@ -127,7 +130,8 @@ public abstract class SharedLayingDownSystem : EntitySystem
     {
         if (!Resolve(uid, ref standingState, false)
             || !Resolve(uid, ref layingDown, false)
-            || standingState.CurrentState is not StandingState.Standing)
+            || standingState.CurrentState is not StandingState.Standing
+            || _standing.IsDown(uid))
         {
             if (behavior == DropHeldItemsBehavior.AlwaysDrop)
                 RaiseLocalEvent(uid, new DropHandItemsEvent());
@@ -135,7 +139,7 @@ public abstract class SharedLayingDownSystem : EntitySystem
             return false;
         }
 
-        _standing.Down(uid, true, behavior != DropHeldItemsBehavior.NoDrop, standingState);
+        _standing.Down(uid, true, behavior != DropHeldItemsBehavior.NoDrop, standingState: standingState);
         return true;
     }
 }

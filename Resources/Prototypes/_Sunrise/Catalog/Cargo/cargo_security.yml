@@ -17,3 +17,13 @@
   cost: 3500
   category: cargoproduct-category-name-security
   group: market
+
+- type: cargoProduct
+  id: SecuritySWAT
+  icon:
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/swat_armor.rsi
+    state: icon
+  product: CrateSecuritySWAT
+  cost: 8000
+  category: cargoproduct-category-name-security
+  group: market

@@ -46,6 +46,17 @@
     state: jackal-inner
 
 - type: marking
+  id: VulpEarJackalAlt
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Vulpkanin]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    state: jackal_alt
+  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/ear_markings.rsi
+    state: jackal_alt-inner
+
+- type: marking
   id: VulpEarTerrier
   bodyPart: HeadTop
   markingCategory: HeadTop
@@ -500,6 +511,17 @@
   sprites:
   - sprite: _Sunrise/Mobs/Customization/Vulpkanin/tail_markings.rsi
     state: fluffy
+
+- type: marking
+  id: VulpTailFluffyAlt
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Vulpkanin]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    state: fluffy_alt-outer
+  - sprite: _Sunrise/Mobs/Customization/Vulpkanin/tail_markings.rsi
+    state: fluffy_alt-inner
 
 - type: marking
   id: VulpTailDalmatianWag

@@ -1,8 +1,8 @@
 - type: entity
   parent: ClothingBeltStorageBase
   id: ClothingBeltSyndieWebbing
-  name: РПС Синдиката
-  description: Довольно вместительное хранилище для боеприпасов.
+  name: syndie webbing
+  description: Pretty roomy ammunition storage.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Belt/syndieRPS.rsi
@@ -12,8 +12,8 @@
 - type: entity
   parent: ClothingBeltStorageBase
   id: ClothingBeltBlueShieldWebbing
-  name: рпс офицера «синий щит»
-  description: Голубой?!
+  name: blueshield's webbing
+  description: Blue?!
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Belt/blueshield_webbing.rsi
@@ -40,8 +40,8 @@
 - type: entity
   parent: ClothingBeltStorageBase
   id: ClothingBeltHoS
-  name: пояс службы безопасности
-  description: Пояс службы безопасности, но из качественного материала.
+  name: head of security's belt
+  description: A security belt, but made of quality material.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Belt/hos.rsi
@@ -75,8 +75,8 @@
 - type: entity
   parent: ClothingBeltMedical
   id: ClothingBeltMedicalCMO
-  name: медицинский пояс главного врача
-  description: Стерильный пояс со множеством карманов под таблетки и другие лекарства, подчёркивающий, что лечить нужно со стилем.
+  name: CMO's medical belt
+  description: A sterile belt with many pockets for pills and other medications, emphasizing that you should treat with style.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Belt/cmo.rsi
@@ -95,3 +95,35 @@
     sprite: _Sunrise/Clothing/Belt/webbing.rsi
   - type: ExplosionResistance
     damageCoefficient: 0.5
+
+- type: entity
+  parent: [ClothingBeltBase, ClothingSlotBase, BaseSyndicateContraband]
+  id: ClothingBeltSheathSyndicate
+  name: rapier sheath
+  description: A sinister, thin sheath, suitable for a rapier.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Belt/syndie_sheath.rsi
+    state: sheath
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Belt/syndie_sheath.rsi
+  - type: Item
+    size: Ginormous
+  - type: ItemSlots
+    slots:
+      item:
+        name: rapier
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        whitelist:
+          tags:
+          - SyndicateRapier
+  - type: ItemMapper
+    mapLayers:
+      sheath-rapier:
+        whitelist:
+          tags:
+          - SyndicateRapier
+  - type: Appearance

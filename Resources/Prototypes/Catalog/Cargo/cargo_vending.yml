@@ -18,7 +18,7 @@
 
 - type: cargoProduct
   id: CrateVendingMachineRestockChefvend
-  name: ящик пополнения ШефВенд
+  name: ChefVend restock crate
   icon:
     sprite: Objects/Specific/Service/vending_machine_restock.rsi
     state: base
@@ -33,7 +33,7 @@
     sprite: Objects/Specific/Service/vending_machine_restock.rsi
     state: base
   product: CrateVendingMachineRestockClothesFilled
-  cost: 2400
+  cost: 2440
   category: cargoproduct-category-name-service
   group: market
 
@@ -59,7 +59,7 @@
 
 - type: cargoProduct
   id: CrateVendingMachineRestockCondimentStation
-  name: ящик пополнения Островок соусов
+  name: condiment station restock crate
   icon:
     sprite: Objects/Specific/Service/vending_machine_restock.rsi
     state: base

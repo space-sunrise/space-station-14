@@ -26,21 +26,41 @@
         frequency: 5
 
 - type: reagent
-  id: HonkPower
-  name: reagent-name-honkpower
-  group: Toxins
-  desc: reagent-desc-honkpower
-  flavor: funny
-  color: "#F0E68C"
-  physicalDesc: reagent-physical-desc-honkpower
-  recognizable: false
-  slippery: true
+  id: H-32
+  name: reagent-name-h-32
+  group: Medicine
+  desc: reagent-desc-h-32
+  physicalDesc: reagent-physical-desc-h-32
+  flavor: medicine
+  color: "#cc1a79"
+  worksOnTheDead: true
   metabolisms:
-    Food: 
-      metabolismRate: 1.0
+    Medicine:
       effects:
-      - !type:Polymorph
-        prototype: ClowanHulk
+      - !type:HealthChange
         conditions:
-          - !type:ReagentThreshold
-            min: 5
+        - !type:Temperature
+          max: 213.0
+        damage:
+          types:
+            Radiation: -2
+
+- type: reagent
+  id: Celliminol
+  name: reagent-name-celliminol
+  group: Special
+  desc: reagent-desc-celliminol
+  physicalDesc: reagent-physical-desc-celliminol
+  flavor: medicine
+  color: "#81eb81"
+  worksOnTheDead: true
+  metabolisms:
+    Medicine:
+      effects:
+        - !type:HealthChange
+          conditions:
+          - !type:Temperature
+            max: 213.0
+          damage:
+            types:
+             Cellular: -5

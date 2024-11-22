@@ -19,3 +19,7 @@ hypospray-verb-mode-label = Переключить на набор из конт
 hypospray-verb-mode-inject-all = Вы больше не можете набирать из контейнеров.
 hypospray-verb-mode-inject-mobs-only = Теперь вы можете набирать из контейнеров.
 hypospray-cant-inject = Нельзя сделать инъекцию в { $target }!
+
+## failure
+
+hypospay-component-failure-hardsuit = Вы не сможете провести иглу через толстое покрытие!

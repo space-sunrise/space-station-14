@@ -31,6 +31,7 @@
   - type: Speech
     speechSounds: Lizard
     speechVerb: Reptilian
+    allowedEmotes: ['Thump']
   - type: TypingIndicator
     proto: lizard
   - type: Vocal
@@ -38,6 +39,8 @@
       Male: MaleReptilian
       Female: FemaleReptilian
       Unsexed: MaleReptilian
+  - type: BodyEmotes
+    soundsId: ReptilianBodyEmotes
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Scale
@@ -66,6 +69,18 @@
       295: 0.6
       285: 0.4
   - type: Wagging
+# Sunrise-start
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+    - NoInjectable
+  - type: FootprintEmitter
+    leftBareFootState: "footprint-left-bare-lizard"
+    rightBareFootState: "footprint-right-bare-lizard"
+#Sunrise-end
   - type: Inventory
     speciesId: reptilian
     femaleDisplacements:

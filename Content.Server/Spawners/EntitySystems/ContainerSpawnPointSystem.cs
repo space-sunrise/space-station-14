@@ -30,19 +30,11 @@ public sealed class ContainerSpawnPointSystem : EntitySystem
         if (args.SpawnResult != null)
             return;
 
-        // If it's just a spawn pref check if it's for cryo (silly).
-        if (args.HumanoidCharacterProfile?.SpawnPriority != SpawnPriorityPreference.Cryosleep &&
-            (!_proto.TryIndex(args.Job, out var jobProto) || jobProto.JobEntity == null))
-        {
-            return;
-        }
-
-        // DeltaV - Ignore these two desired spawn types
-        if (args.DesiredSpawnPointType is SpawnPointType.Observer or SpawnPointType.LateJoin)
+        if (args.DesiredSpawnPointType == SpawnPointType.Observer)
             return;
 
         var query = EntityQueryEnumerator<ContainerSpawnPointComponent, ContainerManagerComponent, TransformComponent>();
-        var possibleContainers = new List<Entity<ContainerSpawnPointComponent, ContainerManagerComponent, TransformComponent>>();
+        var cryoContainers = new List<Entity<ContainerSpawnPointComponent, ContainerManagerComponent, TransformComponent>>();
 
         while (query.MoveNext(out var uid, out var spawnPoint, out var container, out var xform))
         {
@@ -54,7 +46,7 @@ public sealed class ContainerSpawnPointSystem : EntitySystem
             {
                 // make sure we also check the job here for various reasons.
                 if (spawnPoint.Job == null || spawnPoint.Job == args.Job)
-                    possibleContainers.Add((uid, spawnPoint, container, xform));
+                    cryoContainers.Add((uid, spawnPoint, container, xform));
                 continue;
             }
 
@@ -62,41 +54,38 @@ public sealed class ContainerSpawnPointSystem : EntitySystem
                 spawnPoint.SpawnType == SpawnPointType.LateJoin &&
                 args.DesiredSpawnPointType != SpawnPointType.Job)
             {
-                possibleContainers.Add((uid, spawnPoint, container, xform));
+                cryoContainers.Add((uid, spawnPoint, container, xform));
             }
 
             if ((_gameTicker.RunLevel != GameRunLevel.InRound || args.DesiredSpawnPointType == SpawnPointType.Job) &&
                 spawnPoint.SpawnType == SpawnPointType.Job &&
                 (args.Job == null || spawnPoint.Job == args.Job))
             {
-                possibleContainers.Add((uid, spawnPoint, container, xform));
+                cryoContainers.Add((uid, spawnPoint, container, xform));
             }
         }
 
-        if (possibleContainers.Count == 0)
+        if (cryoContainers.Count == 0)
             return;
-        // we just need some default coords so we can spawn the player entity.
-        var baseCoords = possibleContainers[0].Comp3.Coordinates;
+
+        _random.Shuffle(cryoContainers);
+        var spawnCoords = cryoContainers[0].Comp3.Coordinates;
 
         args.SpawnResult = _stationSpawning.SpawnPlayerMob(
-            baseCoords,
+            spawnCoords,
             args.Job,
             args.HumanoidCharacterProfile,
             args.Station);
 
-        _random.Shuffle(possibleContainers);
-        foreach (var (uid, spawnPoint, manager, xform) in possibleContainers)
+        foreach (var (uid, spawnPoint, manager, xform) in cryoContainers)
         {
             if (!_container.TryGetContainer(uid, spawnPoint.ContainerId, out var container, manager))
                 continue;
 
-            if (!_container.Insert(args.SpawnResult.Value, container, containerXform: xform))
-                continue;
-
-            return;
+            if (_container.Insert(args.SpawnResult.Value, container, containerXform: xform))
+                break;
         }
 
-        Del(args.SpawnResult);
-        args.SpawnResult = null;
+        // Даже если не удалось поместить в контейнер - моб уже заспавнен на координатах криокапсулы
     }
 }

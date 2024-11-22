@@ -4,17 +4,17 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/m16a4/big.rsi
     state: icon
   product: CrateArmoryM16A4
-  cost: 10000
+  cost: 30000
   category: cargoproduct-category-name-armory
   group: market
-  
+
 - type: cargoProduct
   id: ArmoryAKMS
   icon:
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/akms/big.rsi
     state: icon
   product: CrateArmoryAKMS
-  cost: 11000
+  cost: 35000
   category: cargoproduct-category-name-armory
   group: market
 
@@ -24,10 +24,10 @@
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp5/big.rsi
     state: icon
   product: CrateArmoryMP5
-  cost: 9500
+  cost: 15000
   category: cargoproduct-category-name-armory
   group: market
-  
+
 - type: cargoProduct
   id: ArmoryMagazineBoxLightRifleBig
   icon:
@@ -37,7 +37,7 @@
   cost: 2000
   category: cargoproduct-category-name-armory
   group: market
-  
+
 - type: cargoProduct
   id: ArmoryMagazineBoxRifleBig
   icon:

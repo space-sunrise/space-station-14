@@ -35,8 +35,8 @@
 - type: entity
   parent: ClothingOuterHardsuitBase
   id: ClothingOuterHardsuitBlueshield
-  name: скафандр офицера «синий щит»
-  description: Крепкий и надёжныый, как и его владелец.
+  name: blueshield's hardsuit
+  description: Tough and reliable, just like its owner.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/blueshield.rsi
@@ -77,8 +77,8 @@
 - type: entity
   parent: ClothingOuterHardsuitBase
   id: ClothingOuterHardsuitPilot
-  name: Скафандр пилота Службы Безопасности
-  description: Облегченная версия скафандра Службы безопасности, обеспечивает хорошую подвижность, но меньшую защиту.
+  name: security pilot's hardsuit
+  description: A lightweight version of the Security Service spacesuit, it provides good mobility but less protection.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/pilothardsuit.rsi
@@ -102,7 +102,7 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitPilot
-    
+
 - type: entity
   parent: ClothingOuterHardsuitBase
   id: ClothingOuterHardsuitBrigmedicSunrise
@@ -132,7 +132,7 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitBrigmedic
-    
+
 # USSP
 
 - type: entity
@@ -171,7 +171,7 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
-    
+
 - type: entity
   parent: [ClothingOuterHardsuitBase, BaseRestrictedContraband]
   id: ClothingOuterLightHardsuitUSSP
@@ -200,3 +200,93 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetLightHardsuitUSSP
+
+- type: entity
+  parent: [ClothingOuterHardsuitEngineering, BaseEngineeringContraband]
+  id: ClothingOuterHardsuitEngineeringCompact
+  name: senior's engineer hardsuit
+  description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding. Very compact.
+  components:
+  - type: Item
+    size: Normal
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/engineering-compact.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/engineering-compact.rsi
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitEngineeringCompact
+
+#Для ивентов
+
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingHardsuitUegParatrooper
+  name: space marine spacesuit
+  description: This piece is worn exclusively by those who bring democracy and freedom to civilization, freeing it from the oppression of dictatorship and totalitarianism. Thanks to the new technologies of the United Government of Earth, the spacesuit is provided with mobility and high protection. As well as a built-in communication system, which periodically propagandizes propaganda replicas of democracy.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ueg_paratrooper.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ueg_paratrooper.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+  - type: FireProtection
+    reduction: 0.3
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.25
+        Slash: 0.25
+        Piercing: 0.25
+        Heat: 0.25
+        Radiation: 0.25
+        Caustic: 0.25
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitUegParatrooper
+
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingHardsuitUegCap
+  name: spacesuit of the commander of space marines
+  description: As you look at it, you can imagine the pain, suffering and labor that a paratrooper endured to achieve the honor of wearing this suit. It represents the fear and horror before your eyes. If you have seen the wearer of this suit in person, you should thank him for the freedom and democracy he has given you, glory to the United Government of Earth!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ueg_captain.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ueg_captain.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+  - type: FireProtection
+    reduction: 0.3
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.2
+        Slash: 0.2
+        Piercing: 0.2
+        Heat: 0.2
+        Radiation: 0.2
+        Caustic: 0.2
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitUegCap

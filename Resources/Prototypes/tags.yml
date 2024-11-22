@@ -76,94 +76,25 @@
   id: BorgArm
 
 - type: Tag
-  id: BorgEngineerHead
-
-- type: Tag
-  id: BorgEngineerLArm
-
-- type: Tag
-  id: BorgEngineerLLeg
-
-- type: Tag
-  id: BorgEngineerRArm
-
-- type: Tag
-  id: BorgEngineerRLeg
-
-- type: Tag
-  id: BorgEngineerTorso
-
-- type: Tag
-  id: BorgGenericHead
-
-- type: Tag
-  id: BorgGenericLArm
-
-- type: Tag
-  id: BorgGenericLLeg
-
-- type: Tag
-  id: BorgGenericRArm
-
-- type: Tag
-  id: BorgGenericRLeg
-
-- type: Tag
-  id: BorgGenericTorso
-
-- type: Tag
   id: BorgHead
 
 - type: Tag
-  id: BorgJanitorHead
+  id: BorgLArm
 
 - type: Tag
-  id: BorgJanitorLLeg
+  id: BorgLLeg
 
 - type: Tag
-  id: BorgJanitorRLeg
+  id: BorgRArm
 
 - type: Tag
-  id: BorgJanitorTorso
+  id: BorgRLeg
+
+- type: Tag
+  id: BorgTorso
 
 - type: Tag
   id: BorgLeg
-
-- type: Tag
-  id: BorgMedicalHead
-
-- type: Tag
-  id: BorgMedicalLArm
-
-- type: Tag
-  id: BorgMedicalLLeg
-
-- type: Tag
-  id: BorgMedicalRArm
-
-- type: Tag
-  id: BorgMedicalRLeg
-
-- type: Tag
-  id: BorgMedicalTorso
-
-- type: Tag
-  id: BorgMiningHead
-
-- type: Tag
-  id: BorgMiningLArm
-
-- type: Tag
-  id: BorgMiningLLeg
-
-- type: Tag
-  id: BorgMiningRArm
-
-- type: Tag
-  id: BorgMiningRLeg
-
-- type: Tag
-  id: BorgMiningTorso
 
 - type: Tag
   id: BorgModuleCargo
@@ -188,24 +119,6 @@
 
 - type: Tag
   id: BorgModuleSyndicateAssault
-
-- type: Tag
-  id: BorgServiceHead
-
-- type: Tag
-  id: BorgServiceLArm
-
-- type: Tag
-  id: BorgServiceLLeg
-
-- type: Tag
-  id: BorgServiceRArm
-
-- type: Tag
-  id: BorgServiceRLeg
-
-- type: Tag
-  id: BorgServiceTorso
 
 - type: Tag
   id: Bot
@@ -405,24 +318,6 @@
   id: CigPack
 
 - type: Tag
-  id: ClarkeCentralControlModule
-
-- type: Tag
-  id: ClarkePeripheralsControlModule
-
-- type: Tag
-  id: ClarkeHead
-
-- type: Tag
-  id: ClarkeLArm
-
-- type: Tag
-  id: ClarkeRArm
-
-- type: Tag
-  id: ClarkeTreads
-
-- type: Tag
   id: Cleaver
 
 - type: Tag
@@ -603,37 +498,7 @@
   id: Duck
 
 - type: Tag
-  id: DurandArmor
-
-- type: Tag
-  id: DurandCentralControlModule
-
-- type: Tag
-  id: DurandPeripheralsControlModule
-
-- type: Tag
-  id: DurandTargetingControlModule
-
-- type: Tag
-  id: DurandHead
-
-- type: Tag
-  id: DurandLArm
-
-- type: Tag
-  id: DurandLLeg
-
-- type: Tag
-  id: DurandRArm
-
-- type: Tag
-  id: DurandRLeg
-
-- type: Tag
   id: Ectoplasm
-
-- type: Tag
-  id: EnergySword
 
 - type: Tag
   id: Egg
@@ -745,33 +610,6 @@
 
 - type: Tag
   id: Grenade
-
-- type: Tag
-  id: GygaxArmor
-
-- type: Tag
-  id: GygaxCentralControlModule
-
-- type: Tag
-  id: GygaxPeripheralsControlModule
-
-- type: Tag
-  id: GygaxTargetingControlModule
-
-- type: Tag
-  id: GygaxHead
-
-- type: Tag
-  id: GygaxLArm
-
-- type: Tag
-  id: GygaxLLeg
-
-- type: Tag
-  id: GygaxRArm
-
-- type: Tag
-  id: GygaxRLeg
 
 - type: Tag
   id: HudMedical
@@ -921,9 +759,6 @@
   id: Knife
 
 - type: Tag
-  id: Laser
-
-- type: Tag
   id: LavaBrig
 
 - type: Tag
@@ -1009,12 +844,6 @@
   id: Meat
 
 - type: Tag
-  id: MechAirTank
-
-- type: Tag
-  id: MechThruster
-
-- type: Tag
   id: Medal
 
 - type: Tag
@@ -1070,6 +899,9 @@
 
 - type: Tag
   id: NoBlockAnchoring
+
+- type: Tag
+  id: NoConsoleSound
 
 - type: Tag
   id: NozzleBackTank
@@ -1153,6 +985,9 @@
   id: Plunger
 
 - type: Tag
+  id: PlushieCarp
+
+- type: Tag
   id: PlushieGhost
 
 - type: Tag
@@ -1226,9 +1061,6 @@
   id: RipleyLLeg
 
 - type: Tag
-  id: RipleyMKIIUpgradeKit
-
-- type: Tag
   id: RipleyRArm
 
 - type: Tag
@@ -1280,6 +1112,9 @@
   id: ShellShotgun
 
 - type: Tag
+  id: ShellShotgunLight # shotgun shells that are compatible with the flare gun.
+
+- type: Tag
   id: Shiv
 
 - type: Tag
@@ -1305,16 +1140,6 @@
 
 - type: Tag
   id: SmallMech
-
-- type: Tag
-  id: IndustrialMech
-
-- type: Tag
-  id: CombatMech
-# TODO: Make medical mech
-
-- type: Tag
-  id: SpecialMech
 
 - type: Tag
   id: Smokable
@@ -1393,6 +1218,9 @@
 
 - type: Tag
   id: Syringe
+
+- type: Tag
+  id: SyringeGunAmmo
 
 - type: Tag
   id: Spellbook
@@ -1531,8 +1359,5 @@
 
 - type: Tag
   id: WriteIgnoreStamps
-
-- type: Tag
-  id: SolarAssemblyFlatpack
 
 # ALPHABETICAL

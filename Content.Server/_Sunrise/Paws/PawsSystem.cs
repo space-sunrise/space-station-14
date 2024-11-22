@@ -1,3 +1,4 @@
+using Content.Server._Sunrise.NoEmotions;
 using Content.Server.Chat.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Mobs;
@@ -30,6 +31,9 @@ namespace Content.Server.Sunrise.Paws
 
         private void OnDamaged(EntityUid uid, PawsComponent component, DamageChangedEvent args)
         {
+            if (HasComp<NoEmotionsComponent>(uid))
+                return;
+
             if (!_mobStateSystem.IsAlive(uid))
                 return;
 

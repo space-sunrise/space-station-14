@@ -83,6 +83,14 @@
     {
       "name": "dalmatian",
       "directions": 4
+    },
+    {
+      "name": "jackal_alt",
+      "directions": 4
+    },
+    {
+      "name": "jackal_alt-inner",
+      "directions": 4
     }
   ]
 }

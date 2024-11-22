@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Server._Sunrise.TraitorTarget;
 using Content.Server.Objectives.Components;
+using Content.Server.Revolutionary.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Shared.CCVar;
 using Content.Shared.Humanoid;
@@ -9,7 +10,6 @@ using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Objectives.Components;
-using Content.Shared.Roles.Jobs;
 using Robust.Shared.Configuration;
 using Robust.Shared.Random;
 
@@ -23,7 +23,6 @@ public sealed class KillPersonConditionSystem : EntitySystem
     [Dependency] private readonly EmergencyShuttleSystem _emergencyShuttle = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedJobSystem _job = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly TargetObjectiveSystem _target = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
@@ -62,7 +61,6 @@ public sealed class KillPersonConditionSystem : EntitySystem
 
         // no other humans to kill
         var allHumans = GetAliveTargetsExcept(args.MindId);
-
         if (allHumans.Count == 0)
         {
             args.Cancelled = true;
@@ -87,19 +85,17 @@ public sealed class KillPersonConditionSystem : EntitySystem
 
         // no other humans to kill
         var allHumans = GetAliveTargetsExcept(args.MindId);
-
         if (allHumans.Count == 0)
         {
             args.Cancelled = true;
             return;
         }
 
-        var allHeads = new List<EntityUid>();
-        foreach (var mind in allHumans)
+        var allHeads = new HashSet<Entity<MindComponent>>();
+        foreach (var person in allHumans)
         {
-            // RequireAdminNotify used as a cheap way to check for command department
-            if (_job.MindTryGetJob(mind, out var prototype) && prototype.RequireAdminNotify)
-                allHeads.Add(mind);
+            if (TryComp<MindComponent>(person, out var mind) && mind.OwnedEntity is { } ent && HasComp<CommandStaffComponent>(ent))
+                allHeads.Add(person);
         }
 
         if (allHeads.Count == 0)
@@ -138,22 +134,17 @@ public sealed class KillPersonConditionSystem : EntitySystem
         return _emergencyShuttle.EmergencyShuttleArrived ? 0.5f : 0f;
     }
 
-    public List<EntityUid> GetAliveTargetsExcept(EntityUid exclude)
+    public HashSet<Entity<MindComponent>> GetAliveTargetsExcept(EntityUid exclude)
     {
-        var mindQuery = EntityQuery<MindComponent>();
+        var allTargets = new HashSet<Entity<MindComponent>>();
 
-        var allTargets = new List<EntityUid>();
-        // HumanoidAppearanceComponent is used to prevent mice, pAIs, etc from being chosen
-        var query = EntityQueryEnumerator<MindContainerComponent, MobStateComponent, AntagTargetComponent, HumanoidAppearanceComponent>();
+        var query = EntityQueryEnumerator<MindComponent, MobStateComponent, AntagTargetComponent, HumanoidAppearanceComponent>();
         while (query.MoveNext(out var uid, out var mc, out var mobState, out _, out _))
         {
-            // the player needs to have a mind and not be the excluded one
-            if (mc.Mind == null || mc.Mind == exclude)
+            if (!_mind.TryGetMind(uid, out var mind, out var mindComp) || mind == exclude || !_mobState.IsAlive(uid, mobState))
                 continue;
 
-            // the player has to be alive
-            if (_mobState.IsAlive(uid, mobState))
-                allTargets.Add(mc.Mind.Value);
+            allTargets.Add(new Entity<MindComponent>(mind, mindComp));
         }
 
         return allTargets;

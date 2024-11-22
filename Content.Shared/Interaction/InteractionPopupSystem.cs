@@ -1,3 +1,4 @@
+using Content.Shared._Sunrise.Mood;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction.Components;
@@ -93,8 +94,22 @@ public sealed class InteractionPopupSystem : EntitySystem
 
         if (_random.Prob(component.SuccessChance))
         {
+            // Sunrise Edit
             if (component.InteractSuccessString != null)
+            {
                 msg = Loc.GetString(component.InteractSuccessString, ("target", Identity.Entity(uid, EntityManager))); // Success message (localized).
+                if (component.InteractSuccessString == "hugging-success-generic")
+                {
+                    var moodEffectEvent = new MoodEffectEvent("BeingHugged");
+                    RaiseLocalEvent(target, moodEffectEvent);
+                }
+                else if (component.InteractSuccessString.Contains("petting-success-"))
+                {
+                    var moodEffectEvent = new MoodEffectEvent("PetAnimal");
+                    RaiseLocalEvent(user, moodEffectEvent);
+                }
+            }
+            // Sunrise Edit
 
             if (component.InteractSuccessSound != null)
                 sfx = component.InteractSuccessSound;
@@ -158,5 +173,27 @@ public sealed class InteractionPopupSystem : EntitySystem
         {
             _audio.PlayEntity(sfx, Filter.Empty().FromEntities(target), target, false);
         }
+    }
+
+    /// <summary>
+    /// Sets <see cref="InteractionPopupComponent.InteractSuccessString"/>.
+    /// </summary>
+    /// <para>
+    /// This field is not networked automatically, so this method must be called on both sides of the network.
+    /// </para>
+    public void SetInteractSuccessString(Entity<InteractionPopupComponent> ent, string str)
+    {
+        ent.Comp.InteractSuccessString = str;
+    }
+
+    /// <summary>
+    /// Sets <see cref="InteractionPopupComponent.InteractFailureString"/>.
+    /// </summary>
+    /// <para>
+    /// This field is not networked automatically, so this method must be called on both sides of the network.
+    /// </para>
+    public void SetInteractFailureString(Entity<InteractionPopupComponent> ent, string str)
+    {
+        ent.Comp.InteractFailureString = str;
     }
 }

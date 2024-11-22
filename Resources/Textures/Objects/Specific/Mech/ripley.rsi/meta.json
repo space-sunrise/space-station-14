@@ -1,0 +1,129 @@
+{
+  "copyright" : "Taken from https://github.com/tgstation/tgstation at at https://github.com/tgstation/tgstation/commit/40d89d11ea4a5cb81d61dc1018b46f4e7d32c62a, hamtr made by brainfood1183 (github)",
+  "license" : "CC-BY-SA-3.0",
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "aluminizer",
+      "directions": 4
+    },
+    {
+      "name": "aluminizer-open"
+    },
+    {
+      "name": "aluminizer-broken"
+    },
+    {
+      "name": "combatripley",
+      "directions": 4
+    },
+    {
+      "name": "combatripley-open"
+    },
+    {
+      "name": "combatripley-broken"
+    },
+    {
+      "name": "deathripley",
+      "directions": 4
+    },
+    {
+      "name": "deathripley-open"
+    },
+    {
+      "name": "deathripley-broken"
+    },
+    {
+      "name": "firefighter",
+      "directions": 4
+    },
+    {
+      "name": "firefighter-open"
+    },
+    {
+      "name": "firefighter-broken"
+    },
+    {
+      "name": "hauler",
+      "directions": 4
+    },
+    {
+      "name": "hauler-open"
+    },
+    {
+      "name": "hauler-broken"
+    },
+    {
+      "name": "hauler-empty"
+    },
+    {
+      "name": "ripley",
+      "directions": 4
+    },
+    {
+      "name": "ripley-open"
+    },
+    {
+      "name": "ripley-broken"
+    },
+    {
+      "name": "ripley-empty",
+      "directions": 4
+    },
+    {
+      "name": "ripley-old",
+      "directions": 4
+    },
+    {
+      "name": "ripley-broken-old"
+    },
+    {
+      "name": "ripleymkii",
+      "directions": 4
+    },
+    {
+      "name": "ripleymkii-open"
+    },
+    {
+      "name": "ripleymkii-broken"
+    },
+    {
+      "name": "ripley_flames_red",
+      "directions": 4
+    },
+    {
+      "name": "ripley_flames_red-broken"
+    },
+    {
+      "name": "ripley_flames_red-open"
+    },
+    {
+      "name": "ripley_zairjah",
+      "directions": 4
+    },
+    {
+      "name": "ripley_zairjah-broken"
+    },
+    {
+      "name": "ripley_zairjah-open"
+    },
+    {
+      "name": "ripley-g",
+      "directions": 4
+    },
+    {
+      "name": "ripley-g-open"
+    },
+    {
+      "name": "ripley-g-full",
+      "directions": 4
+    },
+    {
+      "name": "ripley-g-full-open"
+    }
+  ]
+}

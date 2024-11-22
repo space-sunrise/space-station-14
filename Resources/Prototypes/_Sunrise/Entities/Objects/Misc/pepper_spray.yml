@@ -1,8 +1,8 @@
 ﻿- type: entity
   parent: BaseItem
   id: BasePepperSpray
-  name: перцовый баллончик
-  description: Баллончик с очень едкой жижей внутри.
+  name: pepper spray
+  description: It's a canister with a very corrosive liquid inside.
   abstract: true
   components:
   - type: Sprite
@@ -49,8 +49,8 @@
       params:
         variation: 0.125
         volume: -4
-  - type: ToggleVerb
-    text: fire-extinguisher-component-verb-text
+    verbToggleOn: fire-extinguisher-component-verb-remove
+    verbToggleOff: fire-extinguisher-component-verb-engage
   - type: SpraySafety
   - type: Appearance
   - type: PhysicalComposition

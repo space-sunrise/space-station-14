@@ -11,6 +11,8 @@
       collection: MaleSneezes
     Cough:
       collection: MaleCoughs
+    Sigh:
+      collection: MaleSigh
     Crying:
       collection: MaleCry
     Whistle:
@@ -39,6 +41,8 @@
       collection: FemaleSneezes
     Cough:
       collection: FemaleCoughs
+    Sigh:
+      collection: FemaleSigh
     Crying:
       collection: FemaleCry
     Whistle:
@@ -69,6 +73,8 @@
       collection: MaleCoughs
     Crying:
       collection: MaleCry
+    Whines:
+      collection: VulpkaninWhines
     Whistle:
       collection: Whistles
     Sigh:
@@ -95,6 +101,8 @@
       collection: FemaleCoughs
     Crying:
       collection: FemaleCry
+    Whines:
+      collection: VulpkaninWhines
     Whistle:
       collection: Whistles
     Sigh:

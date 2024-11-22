@@ -13,11 +13,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: ShowHealthBars
-    damageContainers:
-    - Biological
   - type: ShowHealthIcons
-    damageContainers:
-    - Biological
 
 - type: entity
   parent: ClothingEyesBase
@@ -33,6 +29,7 @@
     damageContainers:
     - Inorganic
     - Silicon
+    - Mech # Sunrise-edit
 
 - type: entity
   parent: [ClothingEyesBase, ShowMedicalIcons]
@@ -223,8 +220,6 @@
     sprite: Clothing/Eyes/Hud/syndagent.rsi
   - type: ShowSyndicateIcons
   - type: ShowHealthBars
-    damageContainers:
-    - Biological
 
 - type: entity
   parent: [ClothingEyesGlassesSunglasses, ShowSecurityIcons]

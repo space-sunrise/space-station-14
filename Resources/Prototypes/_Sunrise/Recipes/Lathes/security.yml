@@ -318,3 +318,140 @@
     Steel: 3000
     Glass: 1500
     Plastic: 300
+
+- type: latheRecipe
+  id: ClothingShoesBootsMagCombat
+  result: ClothingShoesBootsMagCombat
+  category: Weapons
+  completetime: 12
+  materials:
+    Steel: 1500
+    Plastic: 500
+    Plasma: 300
+    Silver: 200
+
+- type: latheRecipe
+  id: BaseMagazinePistolCaselessRifleExtended
+  result: BaseMagazinePistolCaselessRifleExtended
+  category: Weapons
+  completetime: 12
+  materials:
+    Steel: 3000
+    Plastic: 3000
+
+- type: latheRecipe
+  id: MagazinePPSH41Extended
+  result: MagazinePPSH41Extended
+  category: Weapons
+  completetime: 12
+  materials:
+    Steel: 3000
+    Plastic: 3000
+
+- type: latheRecipe
+  id: MagazineMP5Extended
+  result: MagazineMP5Extended
+  category: Weapons
+  completetime: 12
+  materials:
+    Steel: 3000
+    Plastic: 3000
+
+- type: latheRecipe
+  id: MagazineMP7Extended
+  result: MagazineMP7Extended
+  category: Weapons
+  completetime: 12
+  materials:
+    Steel: 3000
+    Plastic: 3000
+
+- type: latheRecipe
+  id: MagazineP90Extended
+  result: MagazineP90Extended
+  category: Weapons
+  completetime: 12
+  materials:
+    Steel: 3000
+    Plastic: 3000
+
+- type: latheRecipe
+  id: MagazineM16A4Extended
+  result: MagazineM16A4Extended
+  category: Weapons
+  completetime: 12
+  materials:
+    Steel: 3000
+    Plastic: 3000
+
+- type: latheRecipe
+  id: MagazineAR18Extended
+  result: MagazineAR18Extended
+  category: Weapons
+  completetime: 12
+  materials:
+    Steel: 3000
+    Plastic: 3000
+
+- type: latheRecipe
+  id: MagazineM28Extended
+  result: MagazineM28Extended
+  category: Weapons
+  completetime: 12
+  materials:
+    Steel: 3000
+    Plastic: 3000
+
+- type: latheRecipe
+  id: MagazineG36Extended
+  result: MagazineG36Extended
+  category: Weapons
+  completetime: 12
+  materials:
+    Steel: 3000
+    Plastic: 3000
+
+- type: latheRecipe
+  id: MagazineFamasExtended
+  result: MagazineFamasExtended
+  category: Weapons
+  completetime: 12
+  materials:
+    Steel: 3000
+    Plastic: 3000
+
+- type: latheRecipe
+  id: MagazineV31Extended
+  result: MagazineV31Extended
+  category: Weapons
+  completetime: 12
+  materials:
+    Steel: 3000
+    Plastic: 3000
+
+- type: latheRecipe
+  id: MagazineBauer127Extended
+  result: MagazineBauer127Extended
+  category: Weapons
+  completetime: 12
+  materials:
+    Steel: 3000
+    Plastic: 3000
+
+- type: latheRecipe
+  id: MagazineBR64Extended
+  result: MagazineBR64Extended
+  category: Weapons
+  completetime: 12
+  materials:
+    Steel: 3000
+    Plastic: 3000
+
+- type: latheRecipe
+  id: MagazineDragunovExtended
+  result: MagazineDragunovExtended
+  category: Weapons
+  completetime: 12
+  materials:
+    Steel: 3000
+    Plastic: 3000

@@ -45,8 +45,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: MagistratUniformSuit
-  name: Костюм магистрата
-  description: Увольте пару срочников!
+  name: magistrat's uniform
+  description: Fire a couple of enlisted men!
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/magistratebel.rsi
@@ -78,8 +78,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitBlueShield
-  name: комбинезон офицера «синий щит»
-  description: На стиле.
+  name: blueshield's uniform
+  description: On style.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/blueshield.rsi
@@ -89,8 +89,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitPrisonerGrey
-  name: комбинезон заключенного
-  description: Почему он не оранжевый?
+  name: prisoner's suit
+  description: Why isn't it orange?
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/prisoner.rsi
@@ -100,8 +100,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitPrisonGuard
-  name: комбинезон охранника
-  description: Почему он не красный?
+  name: prison guard's suit
+  description: Why isn't it red?
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/guard.rsi
@@ -111,8 +111,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitPilot
-  name: Комбинезон пилота Службы Безопасности
-  description: Легкий комбинезон, рекомендуемый 9 пилотами НТ из 10.
+  name: security pilot's suit
+  description: A lightweight jumpsuit recommended by 9 NT pilots out of 10.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/pilotjumpsuit.rsi
@@ -122,8 +122,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitIAA
-  name: рубашка с галстуком
-  description: Костюм из льняной белой рубашки с синим галстуком и брюк. Выглядит роскошно.
+  name: tie-dye shirt
+  description: Suit of linen white shirt with blue tie and pants. Looks luxurious.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/iaa.rsi
@@ -133,8 +133,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitHoSOld
-  name: старый комбинезон главы службы безопасности
-  description: Довольно старая вещь для этих времён, навевающая старые воспоминания...
+  name: head of security's old jumpsuit
+  description: Pretty old stuff for these times, bringing back old memories.....
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/hos.rsi
@@ -144,8 +144,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitUSSPBlack
-  name: старый комбинезон СССП
-  description: Старая вещица, прямиком из СССП.
+  name: USSP's old jumpsuit
+  description: Old stuff, straight out of USSP.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/ussp.rsi
@@ -155,8 +155,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitSkeleton
-  name: комбинезон скелета
-  description: Черный комбинезон с напечатанным на нем белым узором из костей. Жуть!
+  name: skelet's jumpsuit
+  description: A black jumpsuit with a white bone pattern printed on it. Creepy!
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/skeleton.rsi
@@ -166,8 +166,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitBarber
-  name: костюм парикмахера
-  description: Как же он хорош.
+  name: barber's suit
+  description: He's so good.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/barber.rsi
@@ -188,8 +188,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitAdidasBlack
-  name: чёрная спортивка СССП
-  description: Отлично сшитый комплект штанов, футболки и ветровки. Имеет отличительные особенности в две полосы, именной принт "Красный Серп".
+  name: black USSP sweatshirt
+  description: Greatly tailored set of pants, t-shirt and windbreaker. Features a distinctive two stripe, name print "Red Sickle".
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas-black.rsi
@@ -199,8 +199,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitAdidasWhite
-  name: белая спортивка СССП
-  description: Белый вариант популярной спортивной формы олимпийцев СССП, имеет две чёрные полосы на каждой части комплекта. Модно, стильно и ярко!
+  name: white USSP sweatshirt
+  description: White version of the popular USSP Olympians sports uniform, has two black stripes on each part of the set. Fashionable, stylish and bright!
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas-white.rsi

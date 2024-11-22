@@ -16,8 +16,8 @@
 - type: entity
   parent: BaseHyperLinkBook
   id: HyperLinkBookCorporateLaw
-  name: корпоративный закон
-  description: Любимое чтиво щиткюра.
+  name: corporate law
+  description: Shieldcourt's favourite read.
   components:
   - type: Sprite
     sprite: Objects/Misc/books.rsi

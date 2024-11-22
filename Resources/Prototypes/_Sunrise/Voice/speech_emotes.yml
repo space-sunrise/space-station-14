@@ -192,18 +192,39 @@
 
 - type: emote
   id: Vomit
-  name: Тошнота
+  name: chat-emote-name-vomit
   category: Vocal
-  chatMessages: [тошнитыы]
+  chatMessages: [тошнит]
 
 - type: emote
   id: Headache
-  name: Головная боль
+  name: chat-emote-name-headache
   category: Vocal
-  chatMessages: [голова болитыы]
+  chatMessages: [голова болит]
 
 - type: emote
   id: Insult
-  name: Инсульт
+  name: chat-emote-name-insult
   category: Vocal
-  chatMessages: [инсультыы]
+  chatMessages: [инсульт]
+
+- type: emote
+  id: Whines
+  name: chat-emote-name-whines
+  category: Vocal
+  available: false
+  icon: Interface/Emotes/cry.png
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-whines"]
+  chatTriggers:
+  - скулит.
+  - скулит!
+  - скулить.
+  - скулить!
+  - скулит
+  - скулить

@@ -161,8 +161,8 @@ public sealed partial class StoreSystem
             {
                 return;
             }
-        }
 
+        }
         if (!IsOnStartingMap(uid, component))
             component.RefundAllowed = false;
 
@@ -179,13 +179,14 @@ public sealed partial class StoreSystem
             var ev = new SubtractCashEvent(buyer, currency, amount);
             RaiseLocalEvent(buyer, ref ev);
             // Sunrise-End
-       
- }
+
+        }
+
         //spawn entity
         if (listing.ProductEntity != null)
         {
             var product = Spawn(listing.ProductEntity, Transform(buyer).Coordinates);
-            
+
             // Sunrise-Start
             var ev = new ItemPurchasedEvent(buyer);
             RaiseLocalEvent(product, ref ev);
@@ -257,6 +258,7 @@ public sealed partial class StoreSystem
 
             if (upgradeActionId != null)
                 HandleRefundComp(uid, component, upgradeActionId.Value);
+
         }
 
         if (listing.ProductEvent != null)
@@ -265,6 +267,11 @@ public sealed partial class StoreSystem
                 RaiseLocalEvent(listing.ProductEvent);
             else
                 RaiseLocalEvent(buyer, listing.ProductEvent);
+        }
+
+        if (listing.DisableRefund)
+        {
+            component.RefundAllowed = false;
         }
 
         //log dat shit.

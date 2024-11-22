@@ -18,7 +18,13 @@
     - id: RubberStampDenied
     - id: RubberStampQm
     - id: AstroNavCartridge
-    - id: FlippoLighterSunriseQm  # Sunrise-Flippo
+    # Sunrise-start: Flippos + Cargo suit
+    - id: ClothingOuterSuitCargo
+    - id: BluespaceBox
+    - id: BluespaceBox
+      prob: 0.25
+    - id: FlippoLighterSunriseQm
+    # Sunrise-end
 
 - type: entity
   id: LockerQuarterMasterFilled
@@ -212,7 +218,7 @@
     - id: BoxEncryptionKeyMedical
     - id: ClothingBackpackDuffelSurgeryFilled
     - id: ClothingCloakCmo
-    - id: ClothingEyesHudMedical
+#    - id: ClothingEyesHudMedical # Sunrise-edit
     - id: ClothingHandsGlovesNitrile
     - id: ClothingHeadHatBeretCmo
     - id: ClothingHeadsetAltMedical
@@ -220,6 +226,10 @@
     - id: DoorRemoteMedical
     - id: HandheldCrewMonitor
     - id: Hypospray
+    #Sunrise-start
+    - id: ClothingEyesUniversalMedicalHud
+    - id: AdvancedDefibrillator
+    #Sunrise-end
     - id: MedicalTechFabCircuitboard
     - id: MedkitFilled
     - id: RubberStampCMO
@@ -266,6 +276,7 @@
   id: LockerFillResearchDirectorNoHardsuit
   table: !type:AllSelector
     children:
+    - id: Intellicard
     - id: BoxEncryptionKeyScience
     - id: CircuitImprinterMachineCircuitboard
     - id: ClothingBeltUtilityFilled

@@ -16,6 +16,12 @@
   - /Audio/_Sunrise/Voice/Vulpkanin/dog_growl6.ogg
 
 - type: soundCollection
+  id: VulpkaninWhines
+  files:
+  - /Audio/_Sunrise/Voice/Vulpkanin/dog_whimpering_1.ogg
+  - /Audio/_Sunrise/Voice/Vulpkanin/dog_whine.ogg
+
+- type: soundCollection
   id: PlushieVulpkaninGrowls
   files:
   - /Audio/_Sunrise/Voice/Vulpkanin/dog_growl1.ogg
@@ -27,11 +33,6 @@
   - /Audio/_Sunrise/Voice/Vulpkanin/dog_snarl1.ogg
   - /Audio/_Sunrise/Voice/Vulpkanin/dog_snarl2.ogg
   - /Audio/_Sunrise/Voice/Vulpkanin/dog_snarl3.ogg
-
-- type: soundCollection
-  id: VulpkaninWhines
-  files:
-  - /Audio/_Sunrise/Voice/Vulpkanin/dog_whine.ogg
 
 - type: soundCollection
   id: VulpkaninHowls

@@ -2,6 +2,7 @@ using Content.Server.Power.Components;
 using Content.Shared.UserInterface;
 using Content.Server.Advertise;
 using Content.Server.Advertise.Components;
+using Content.Shared._Sunrise.Mood;
 using Content.Shared.Power;
 using static Content.Shared.Arcade.SharedSpaceVillainArcadeComponent;
 using Robust.Server.GameObjects;
@@ -76,6 +77,8 @@ public sealed partial class SpaceVillainArcadeSystem : EntitySystem
             return;
         if (!TryComp<ApcPowerReceiverComponent>(uid, out var power) || !power.Powered)
             return;
+
+        RaiseLocalEvent(msg.Actor, new MoodEffectEvent("ArcadePlay"));
 
         switch (msg.PlayerAction)
         {
