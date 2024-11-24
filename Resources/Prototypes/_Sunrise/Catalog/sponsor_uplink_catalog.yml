@@ -1788,6 +1788,17 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
+- type: listing
+  id: UplinkSunrisePlushieKaioshi
+  productEntity: PlushieKaioshi
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
 # HOS
 
 - type: listing

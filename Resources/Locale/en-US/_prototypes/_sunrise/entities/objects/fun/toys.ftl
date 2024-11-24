@@ -130,3 +130,5 @@ ent-PlushieAgata = Plush Agent Agata Katsuhiro
     .desc = This plushie was made on a planetary prison by convicted Syndicate agents. Wear it proudly, corporate
 ent-PlushieMilosTanka = Plush Milos-Tanaka
     .desc = Unathi in a Central Command uniform, what could he possibly be hiding in him besides two knives and a revolver?
+ent-PlushieKaioshi = Plush Kaioshi
+    .desc = Bartender.. with a chainsaw in his hand?..
