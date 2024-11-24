@@ -779,3 +779,12 @@
     - state: plushie-milos-tan
     - state: syndie-visor
       shader: unshaded
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieAlice
+  name: Plushie Alice
+  components:
+  - type: Sprite
+    state: alice
+    sprite: _Sunrise/Objects/Fun/toys.rsi
