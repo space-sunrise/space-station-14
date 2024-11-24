@@ -1,0 +1,8 @@
+﻿- type: entity
+  parent: ClothingHeadBase
+  id: BunnyEars
+  name: bunny ears
+  suffix: Bunny
+  components:
+  - type: Sprite
+    sprite: _Lust/Clothing/Head/bunny_ears.rsi

@@ -1,0 +1,8 @@
+﻿- type: entity
+  parent: ClothingNeckBase
+  id: BunnyButterfly
+  name: butterfly
+  suffix: Bunny
+  components:
+  - type: Sprite
+    sprite: _Lust/Clothing/Neck/butterfly.rsi

@@ -1,0 +1,8 @@
+﻿- type: entity
+  parent: ClothingHandsBase
+  id: BunnyManjets
+  name: manjets
+  suffix: Bunny
+  components:
+  - type: Sprite
+    sprite: _Lust/Clothing/Hands/manjets.rsi

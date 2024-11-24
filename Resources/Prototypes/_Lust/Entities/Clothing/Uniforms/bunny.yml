@@ -1,0 +1,8 @@
+﻿- type: entity
+  parent: ClothingUniformBase
+  id: BunnyUniform
+  name: bunny uniform
+  suffix: Bunny
+  components:
+  - type: Sprite
+    sprite: _Lust/Clothing/Uniforms/bunny_uniform.rsi
