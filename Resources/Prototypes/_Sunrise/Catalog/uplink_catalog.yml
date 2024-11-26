@@ -232,7 +232,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
-      
+
 - type: listing
   id: UplinkWeaponBauer127
   name: uplink-weapon-bauer-127-name
@@ -661,3 +661,22 @@
     whitelist:
       tags:
       - NukeOpsUplink
+
+- type: listing
+  id: UplinkClothingGlassesNVG
+  name: uplink-clothing-glasses-nvg-name
+  description: uplink-clothing-glasses-nvg-desc
+  productEntity: ClothingEyesGlassesNVG
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 5
+  categories:
+  - UplinkWearables
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - SyndieAgentUplink
+      - AssaultOpsUplink
