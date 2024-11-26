@@ -1,4 +1,4 @@
-using Robust.Shared.Configuration;
+﻿using Robust.Shared.Configuration;
 
 namespace Content.Shared._Sunrise.SunriseCCVars;
 
@@ -176,12 +176,6 @@ public sealed class SunriseCCVars
     /// </summary>
     public static readonly CVarDef<string> InfoLinksDonate =
         CVarDef.Create("infolinks.donate", "", CVar.SERVER | CVar.REPLICATED);
-
-    /// <summary>
-    /// Link to Telegram channel to show in the launcher.
-    /// </summary>
-    public static readonly CVarDef<string> InfoLinksTelegram =
-        CVarDef.Create("infolinks.telegram", "", CVar.SERVER | CVar.REPLICATED);
 
     /**
      * Lobby
