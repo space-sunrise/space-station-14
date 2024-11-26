@@ -13,7 +13,7 @@
             !type:NanotrasenNameGenerator
             prefixCreator: 'R4' # R4407/Goon. GS isn't as cool sounding.
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/_Sunrise/Shuttles/emergency_cog
+          emergencyShuttlePath: /Maps/_Sunrise/Shuttles/emergency_cog.yml
         - type: StationJobs
           availableJobs:
             #service
