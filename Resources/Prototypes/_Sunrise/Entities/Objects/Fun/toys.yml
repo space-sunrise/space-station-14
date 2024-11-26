@@ -788,3 +788,33 @@
   - type: Sprite
     state: alice
     sprite: _Sunrise/Objects/Fun/toys.rsi
+
+- type: entity
+  id: PlushieKaioshi
+  parent: BasePlushie
+  name: Plush Kaioshi
+  description: Bartender.. with a chainsaw in his hand?..
+  components:
+  - type: Sprite
+    state: kaioshi_barmen
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieLuna
+  name: Plushie Luna
+  description: Nya!! Mya!! are the first words of this lovely lady.
+  components:
+  - type: Sprite
+    state: luna
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieRaisya
+  name: Plushie Raisya
+  description: Purr! “Meow! Nya! her favorite UwU words.
+  components:
+  - type: Sprite
+    state: raisya
+    sprite: _Sunrise/Objects/Fun/toys.rsi
