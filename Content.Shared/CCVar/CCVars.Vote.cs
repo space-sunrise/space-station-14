@@ -116,13 +116,13 @@ public sealed partial class CCVars
     ///     Whether a votekick voter must be a ghost or not.
     /// </summary>
     public static readonly CVarDef<bool> VotekickVoterGhostRequirement =
-        CVarDef.Create("votekick.voter_ghost_requirement", true, CVar.SERVERONLY);
+        CVarDef.Create("votekick.voter_ghost_requirement", false, CVar.SERVERONLY); // Sunrise-Edit
 
     /// <summary>
     ///     Config for how many hours playtime a player must have to be able to vote on a votekick.
     /// </summary>
     public static readonly CVarDef<int> VotekickEligibleVoterPlaytime =
-        CVarDef.Create("votekick.voter_playtime", 100, CVar.SERVERONLY);
+        CVarDef.Create("votekick.voter_playtime", 500, CVar.SERVERONLY); // Sunrise-Edit
 
     /// <summary>
     ///     Config for how many seconds a player must have been dead to initiate a votekick / be able to vote on a votekick.
