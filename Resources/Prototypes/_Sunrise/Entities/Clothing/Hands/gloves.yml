@@ -8,8 +8,6 @@
       sprite: _Sunrise/Clothing/Hands/Gloves/kim.rsi
     - type: Clothing
       sprite: _Sunrise/Clothing/Hands/Gloves/kim.rsi
-    - type: GloveHeatResistance
-      heatResistance: 1400
     - type: Insulated
 
 - type: entity
@@ -22,6 +20,15 @@
       sprite: _Sunrise/Clothing/Hands/Gloves/centcom_naval.rsi
     - type: Clothing
       sprite: _Sunrise/Clothing/Hands/Gloves/centcom_naval.rsi
-    - type: GloveHeatResistance
-      heatResistance: 1400
     - type: Insulated
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesLeatherHoS
+  name: leather gloves
+  description: Stylish black leather gloves.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Hands/Gloves/hos.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Hands/Gloves/hos.rsi

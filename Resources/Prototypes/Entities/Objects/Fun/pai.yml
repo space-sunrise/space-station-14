@@ -17,10 +17,11 @@
         type: InstrumentBoundUserInterface
         requireInputValidation: false
       enum.StationMapUiKey.Key:
-        type: UntrackedStationMapBoundUserInterface
+        type: StationMapBoundUserInterface
         requireInputValidation: false
   - type: Sprite
     sprite: Objects/Fun/pai.rsi
+    #noRot: true
     layers:
     - state: pai-base
     - state: pai-off-overlay
@@ -30,6 +31,7 @@
     context: "human"
   - type: PAI
   - type: BlockMovement
+    blockInteraction: false
   - type: ToggleableGhostRole
     examineTextMindPresent: pai-system-pai-installed
     examineTextMindSearching: pai-system-still-searching
@@ -44,19 +46,13 @@
     stopSearchVerbPopup: pai-system-stopped-searching
   - type: Examiner
   - type: IntrinsicRadioReceiver
-  - type: IntrinsicRadioTransmitter
-    channels:
-    - Binary
   - type: ActiveRadio
     channels:
-    - Binary
     - Common
   - type: DoAfter
   - type: Actions
   - type: TypingIndicator
     proto: robot
-#  - type: TTS
-#    voice: TODO add our TTS Voice Sunrise
   - type: Speech
     speechVerb: Robotic
     speechSounds: Pai
@@ -74,10 +70,27 @@
           Off: { state: pai-off-overlay }
           Searching: { state: pai-searching-overlay }
           On: { state: pai-on-overlay }
-  - type: StationMap
+  # Sunrise-Edit
+  - type: StationAiVision
+    range: 1
+  - type: TTS
+    voice: FactCore
+  - type: InnateItem
+    instantActions:
+    - PortableSurveillanceCameraMonitorUnpowered
+    - HandheldStationMapUnpowered
+    - HandheldCrewMonitorBorg
+    worldTargetActions:
+    - HandheldHealthAnalyzerUnpowered
+  - type: BorgBrain
+  # Sunrise-End
+  - type: ChangeVoiceInContainer
+    whitelist:
+      components:
+        - SecretStash
 
 - type: entity
-  parent: PersonalAI
+  parent: [ PersonalAI, BaseSyndicateContraband]
   id: SyndicatePersonalAI
   name: syndicate personal ai device
   description: Your Syndicate pal who's fun to be with!
@@ -107,6 +120,14 @@
           Off: { state: syndicate-pai-off-overlay }
           Searching: { state: syndicate-pai-searching-overlay }
           On: { state: syndicate-pai-on-overlay }
+  # Sunrise-Edit
+  - type: StationAiVision
+    enabled: false
+  - type: InnateItem
+    worldTargetActions:
+    - Emag
+    - HandheldHealthAnalyzerUnpowered
+  # Sunrise-End
 
 - type: entity
   parent: PersonalAI
@@ -136,6 +157,8 @@
   - type: Construction
     graph: PotatoAI
     node: potatoai
+  - type: StationAiVision # Sunrise-edit
+    enabled: false
 
 - type: entity
   id: ActionPAIPlayMidi

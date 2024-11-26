@@ -1,19 +1,19 @@
-﻿- type: entity
+- type: entity
   parent: BaseItem
   id: BaseMusicTape
-  name: кассета
+  name: tape
   abstract: true
   description:
   components:
   - type: Item
     size: Tiny
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Devices/tapes.rsi
+    sprite: _Sunrise/Objects/Devices/tapes.rsi
 
 - type: entity
   parent: BaseMusicTape
   id: MusicTape1
-  name: кассета магнитофона (Sunset by PigeonBeans)
+  name: cassette tape (Sunset by PigeonBeans)
   description:
   components:
   - type: Sprite

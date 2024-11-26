@@ -1,8 +1,9 @@
 using Content.Server.Body.Components;
-using Content.Server.Chemistry.Containers.EntitySystems;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Body.Organ;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
+using Content.Shared.Whitelist;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -11,7 +12,7 @@ namespace Content.Server.Body.Systems
     public sealed class StomachSystem : EntitySystem
     {
         [Dependency] private readonly IGameTiming _gameTiming = default!;
-        [Dependency] private readonly SolutionContainerSystem _solutionContainerSystem = default!;
+        [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
 
         public const string DefaultSolutionName = "stomach";
 
@@ -129,6 +130,11 @@ namespace Content.Server.Body.Systems
             }
 
             return true;
+        }
+
+        public void SetSpecialDigestible(StomachComponent component, EntityWhitelist? whitelist)
+        {
+            component.SpecialDigestible = whitelist;
         }
     }
 }

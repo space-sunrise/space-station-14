@@ -1,0 +1,111 @@
+- type: entity
+  parent: GunSafe
+  id: GunSafeEnergyGunMini
+  name: mini energy cannons safe
+  suffix: SUNRISE
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponEnergyGunMini
+      amount: 5
+
+- type: entity
+  parent: GunSafe
+  id: GunSafePistolG22
+  name: safe
+  suffix: Glock-22
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponPistolG22
+      amount: 4
+    - id: MagazinePistol
+      amount: 8
+
+- type: entity
+  parent: GunSafe
+  id: GunSafeRifleM16A4
+  name: safe
+  suffix: M16A4
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponRifleM16A4
+      amount: 2
+    - id: MagazineM16A4
+      amount: 4
+
+- type: entity
+  parent: GunSafe
+  id: GunSafeSubMachineGunVector
+  name: safe
+  suffix: Vector
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSubMachineGunNewVector
+      amount: 2
+    - id: MagazinePistolSubMachineGun
+      amount: 4
+
+- type: entity
+  parent: GunSafe
+  id: GunSafeShotgunPaladin
+  name: safe
+  suffix: Paladin 12
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponShotgunPaladin12
+      amount: 2
+    - id: BoxLethalshot
+      amount: 2
+    - id: BoxShotgunIncendiary
+      amount: 1
+    - id: BoxShotgunSlug
+      amount: 1
+
+- type: entity
+  parent: GunSafe
+  id: GunSafeShotgunTrenchgun4034
+  name: safe
+  suffix: Trenchgun 4034
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponShotgunTrenchgun4034
+      amount: 2
+    - id: BoxLethalshot
+      amount: 2
+    - id: BoxShotgunIncendiary
+      amount: 1
+    - id: BoxShotgunSlug
+      amount: 1
+
+- type: entity
+  id: GunSafeSubMachineGunMP38
+  parent: GunSafe
+  name: safe
+  suffix: MP-38
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSubMachineGunMP38
+      amount: 2
+    - id: BoxLethalshot
+      amount: 2
+    - id: BoxShotgunIncendiary
+      amount: 1
+    - id: BoxShotgunSlug
+      amount: 1
+
+- type: entity
+  parent: GunSafe
+  id: GunSafeEnergyGun
+  name: safe
+  suffix: Energy guns
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponEnergyGun
+      amount: 3

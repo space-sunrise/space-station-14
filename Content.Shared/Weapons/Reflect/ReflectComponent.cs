@@ -5,16 +5,11 @@ namespace Content.Shared.Weapons.Reflect;
 
 /// <summary>
 /// Entities with this component have a chance to reflect projectiles and hitscan shots
+/// Uses <c>ItemToggleComponent</c> to control reflection.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class ReflectComponent : Component
 {
-    /// <summary>
-    /// Can only reflect when enabled
-    /// </summary>
-    [DataField("enabled"), ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
-    public bool Enabled = true;
-
     /// <summary>
     /// What we reflect.
     /// </summary>
@@ -29,6 +24,9 @@ public sealed partial class ReflectComponent : Component
 
     [DataField("spread"), ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public Angle Spread = Angle.FromDegrees(45);
+
+    [DataField("overrideAngle"), ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+    public Angle? OverrideAngle = null;
 
     [DataField("soundOnReflect")]
     public SoundSpecifier? SoundOnReflect = new SoundPathSpecifier("/Audio/Weapons/Guns/Hits/laser_sear_wall.ogg");

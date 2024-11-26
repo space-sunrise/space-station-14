@@ -12,6 +12,7 @@
   - type: Tag
     tags:
     - Sheet
+    - NoPaint  # Sunrise-edit
   - type: Damageable
     damageContainer: Inorganic
   - type: Destructible
@@ -110,6 +111,17 @@
   - type: Tag
     tags:
     - Sheet
+    - NoPaint  # Sunrise-edit
+
+- type: entity
+  parent: SheetPlasma
+  id: SheetPlasma10
+  suffix: 10
+  components:
+  - type: Sprite
+    state: plasma
+  - type: Stack
+    count: 10
 
 - type: entity
   parent: SheetPlasma
@@ -132,6 +144,7 @@
     tags:
     - Plastic
     - Sheet
+    - NoPaint  # Sunrise-edit
   - type: Material
   - type: PhysicalComposition
     materialComposition:

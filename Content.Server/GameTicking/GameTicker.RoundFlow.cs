@@ -4,6 +4,8 @@ using Content.Server.Discord;
 using Content.Server.GameTicking.Events;
 using Content.Server.Ghost;
 using Content.Server.Maps;
+using Content.Server.Roles;
+using Content.Server.Shuttles.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
@@ -20,13 +22,20 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Server.StatsBoard;
+using Content.Shared._Sunrise.StatsBoard;
+using Robust.Shared.Physics;
+using Robust.Shared.Physics.Systems;
 
 namespace Content.Server.GameTicking
 {
     public sealed partial class GameTicker
     {
         [Dependency] private readonly DiscordWebhook _discord = default!;
+        [Dependency] private readonly RoleSystem _role = default!;
         [Dependency] private readonly ITaskManager _taskManager = default!;
+        [Dependency] private readonly StatsBoardSystem _statsBoardSystem = default!;
+        [Dependency] private readonly SharedPhysicsSystem _physics = default!;
 
         private static readonly Counter RoundNumberMetric = Metrics.CreateCounter(
             "ss14_round_number",
@@ -140,7 +149,14 @@ namespace Content.Server.GameTicking
                     _mapManager.AddUninitializedMap(toLoad);
                 }
 
-                LoadGameMap(map, toLoad, null);
+                if (map == mainStationMap) // Sunrise
+                {
+                    LoadGameMap(map, toLoad, null, anchor: true);
+                }
+                else
+                {
+                    LoadGameMap(map, toLoad, null);
+                }
             }
         }
 
@@ -154,7 +170,7 @@ namespace Content.Server.GameTicking
         /// <param name="loadOptions">Map loading options, includes offset.</param>
         /// <param name="stationName">Name to assign to the loaded station.</param>
         /// <returns>All loaded entities and grids.</returns>
-        public IReadOnlyList<EntityUid> LoadGameMap(GameMapPrototype map, MapId targetMapId, MapLoadOptions? loadOptions, string? stationName = null)
+        public IReadOnlyList<EntityUid> LoadGameMap(GameMapPrototype map, MapId targetMapId, MapLoadOptions? loadOptions, string? stationName = null, bool anchor = false)
         {
             // Okay I specifically didn't set LoadMap here because this is typically called onto a new map.
             // whereas the command can also be used on an existing map.
@@ -171,7 +187,21 @@ namespace Content.Server.GameTicking
 
             var gridIds = _map.LoadMap(targetMapId, ev.GameMap.MapPath.ToString(), ev.Options);
 
-            _metaData.SetEntityName(_mapManager.GetMapEntityId(targetMapId), $"станция - {map.MapName}"); // Sunrise-edit
+            _metaData.SetEntityName(_mapManager.GetMapEntityId(targetMapId), map.MapName);
+
+            // Sunrise
+            if (anchor)
+            {
+                var grids = _mapManager.GetAllMapGrids(targetMapId);
+                foreach (var grid in grids)
+                {
+                    if (HasComp<ShuttleComponent>(grid.Owner))
+                        continue;
+
+                    _physics.SetBodyType(grid.Owner, BodyType.Static);
+                }
+            }
+            // Sunrise
 
             var gridUids = gridIds.ToList();
             RaiseLocalEvent(new PostGameMapLoad(map, targetMapId, gridUids, stationName));
@@ -188,9 +218,6 @@ namespace Content.Server.GameTicking
                     continue;
 
                 if (!_playerManager.TryGetSessionById(userId, out _))
-                    continue;
-
-                if (_banManager.GetRoleBans(userId) == null)
                     continue;
 
                 total++;
@@ -236,11 +263,7 @@ namespace Content.Server.GameTicking
 #if DEBUG
                 DebugTools.Assert(_userDb.IsLoadComplete(session), $"Player was readied up but didn't have user DB data loaded yet??");
 #endif
-                if (_banManager.GetRoleBans(userId) == null)
-                {
-                    Logger.ErrorS("RoleBans", $"Role bans for player {session} {userId} have not been loaded yet.");
-                    continue;
-                }
+
                 readyPlayers.Add(session);
                 HumanoidCharacterProfile profile;
                 if (_prefsManager.TryGetCachedPreferences(userId, out var preferences))
@@ -340,8 +363,23 @@ namespace Content.Server.GameTicking
 
             RunLevel = GameRunLevel.PostRound;
 
-            ShowRoundEndScoreboard(text);
-            SendRoundEndDiscordMessage();
+            try
+            {
+                ShowRoundEndScoreboard(text);
+            }
+            catch (Exception e)
+            {
+                Log.Error($"Error while showing round end scoreboard: {e}");
+            }
+
+            try
+            {
+                SendRoundEndDiscordMessage();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"Error while sending round end Discord message: {e}");
+            }
         }
 
         public void ShowRoundEndScoreboard(string text = "")
@@ -365,7 +403,7 @@ namespace Content.Server.GameTicking
             var listOfPlayerInfo = new List<RoundEndMessageEvent.RoundEndPlayerInfo>();
             // Grab the great big book of all the Minds, we'll need them for this.
             var allMinds = EntityQueryEnumerator<MindComponent>();
-            var pvsOverride = _configurationManager.GetCVar(CCVars.RoundEndPVSOverrides);
+            var pvsOverride = _cfg.GetCVar(CCVars.RoundEndPVSOverrides);
             while (allMinds.MoveNext(out var mindId, out var mind))
             {
                 // TODO don't list redundant observer roles?
@@ -374,7 +412,7 @@ namespace Content.Server.GameTicking
                 var userId = mind.UserId ?? mind.OriginalOwnerUserId;
 
                 var connected = false;
-                var observer = HasComp<ObserverRoleComponent>(mindId);
+                var observer = _role.MindHasRole<ObserverRoleComponent>(mindId);
                 // Continuing
                 if (userId != null && _playerManager.ValidSessionId(userId.Value))
                 {
@@ -401,7 +439,7 @@ namespace Content.Server.GameTicking
                     _pvsOverride.AddGlobalOverride(GetNetEntity(entity.Value), recursive: true);
                 }
 
-                var roles = _roles.MindGetAllRoles(mindId);
+                var roles = _roles.MindGetAllRoleInfo(mindId);
 
                 var playerEndRoundInfo = new RoundEndMessageEvent.RoundEndPlayerInfo()
                 {
@@ -412,9 +450,11 @@ namespace Content.Server.GameTicking
                     PlayerICName = playerIcName,
                     PlayerGuid = userId,
                     PlayerNetEntity = GetNetEntity(entity),
-                    Role = antag
-                        ? roles.First(role => role.Antagonist).Name
-                        : roles.FirstOrDefault().Name ?? Loc.GetString("game-ticker-unknown-role"),
+                    Role = roles.Any()
+                        ? (antag
+                            ? roles.FirstOrDefault(role => role.Antagonist).Name
+                            : roles.FirstOrDefault(role => !role.Antagonist).Name) ?? Loc.GetString("game-ticker-unknown-role")
+                        : Loc.GetString("game-ticker-unknown-role"),
                     Antag = antag,
                     JobPrototypes = roles.Where(role => !role.Antagonist).Select(role => role.Prototype).ToArray(),
                     AntagPrototypes = roles.Where(role => role.Antagonist).Select(role => role.Prototype).ToArray(),
@@ -428,6 +468,12 @@ namespace Content.Server.GameTicking
             var listOfPlayerInfoFinal = listOfPlayerInfo.OrderBy(pi => pi.PlayerOOCName).ToArray();
             var sound = RoundEndSoundCollection == null ? null : _audio.GetSound(new SoundCollectionSpecifier(RoundEndSoundCollection));
 
+            // Sunrise-Start
+            var roundStats = _statsBoardSystem.GetRoundStats();
+            var statisticEntries = _statsBoardSystem.GetStatisticEntries();
+            var sharedEntries = statisticEntries.Select(entry => _statsBoardSystem.ConvertToSharedStatisticEntry(entry)).ToArray();
+            // Sunrise-End
+
             var roundEndMessageEvent = new RoundEndMessageEvent(
                 gamemodeTitle,
                 roundEndText,
@@ -435,6 +481,8 @@ namespace Content.Server.GameTicking
                 RoundId,
                 listOfPlayerInfoFinal.Length,
                 listOfPlayerInfoFinal,
+                roundStats, // Sunrise-Edit
+                sharedEntries, // Sunrise-Edit
                 sound
             );
             RaiseNetworkEvent(roundEndMessageEvent);
@@ -499,9 +547,11 @@ namespace Content.Server.GameTicking
 
             RunLevel = GameRunLevel.PreRoundLobby;
             // Sunrise-Start
-            RandomizeLobbyParalax();
-            RandomizeLobbyImage();
-            RandomizeLobbyBackground();
+            RandomizeLobbyBackgroundType();
+            RandomizeLobbyBackgroundParallax();
+            RandomizeLobbyBackgroundAnimation();
+            RandomizeLobbyBackgroundArt();
+            _statsBoardSystem.CleanEntries();
             // Sunrise-End
             ResettingCleanup();
             IncrementRoundNumber();

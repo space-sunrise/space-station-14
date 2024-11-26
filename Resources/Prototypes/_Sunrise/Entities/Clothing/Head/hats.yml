@@ -4,10 +4,10 @@
   name: special operations officer cap
   description: The NanoTrasen gold-engraved special cap of the higher ranks, which has long gone through more than one blitzkrieg...
   components:
-    - type: Sprite
-      sprite: _Sunrise/Clothing/Head/Hats/centcom_officer_black.rsi
-    - type: Clothing
-      sprite: _Sunrise/Clothing/Head/Hats/centcom_officer_black.rsi
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/centcom_officer_black.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/centcom_officer_black.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -15,10 +15,10 @@
   name: naval cap
   description: A cap worn by those in the Nanotrasen Navy.
   components:
-    - type: Sprite
-      sprite: _Sunrise/Clothing/Head/Hats/centcom_naval_cap.rsi
-    - type: Clothing
-      sprite: _Sunrise/Clothing/Head/Hats/centcom_naval_cap.rsi
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/centcom_naval_cap.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/centcom_naval_cap.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -26,10 +26,10 @@
   name: naval beret
   description: A beret worn by those in the Nanotrasen Navy.
   components:
-    - type: Sprite
-      sprite: _Sunrise/Clothing/Head/Hats/centcom_naval_beret.rsi
-    - type: Clothing
-      sprite: _Sunrise/Clothing/Head/Hats/centcom_naval_beret.rsi
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/centcom_naval_beret.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/centcom_naval_beret.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -37,10 +37,10 @@
   name: leader beret
   description: A blue beret made of durathread with a genuine golden badge, denoting its owner as a Leader of ERT.
   components:
-    - type: Sprite
-      sprite: _Sunrise/Clothing/Head/Hats/ERT_leader_beret.rsi
-    - type: Clothing
-      sprite: _Sunrise/Clothing/Head/Hats/ERT_leader_beret.rsi
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/ERT_leader_beret.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/ERT_leader_beret.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -48,10 +48,10 @@
   name: head of security cap
   description: The robust standard-issue cap of the Head of Security. For showing the officers who's in charge.
   components:
-    - type: Sprite
-      sprite: _Sunrise/Clothing/Head/Hats/hoshat.rsi
-    - type: Clothing
-      sprite: _Sunrise/Clothing/Head/Hats/hoshat.rsi
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/hoshat.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/hoshat.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -59,10 +59,10 @@
   name: warden's police hat
   description: It's a special blue hat issued to the Warden of a security force.
   components:
-    - type: Sprite
-      sprite: _Sunrise/Clothing/Head/Hats/warden_alt.rsi
-    - type: Clothing
-      sprite: _Sunrise/Clothing/Head/Hats/warden_alt.rsi
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/warden_alt.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/warden_alt.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -70,10 +70,10 @@
   name: security medic beret
   description: A robust beret with the medical insignia emblazoned on it. Uses reinforced fabric to offer sufficient protection.
   components:
-    - type: Sprite
-      sprite: _Sunrise/Clothing/Head/Hats/beret_security_medic.rsi
-    - type: Clothing
-      sprite: _Sunrise/Clothing/Head/Hats/beret_security_medic.rsi
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/beret_security_medic.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/beret_security_medic.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -89,10 +89,204 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatBeretBlueShield
-  name: берет офицера «синий щит»
-  description: Синий.
+  name: blueshield's beret
+  description: Blue.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Head/Hats/blueshield.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hats/blueshield.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadPrisonGuard
+  name: prison guard's hat
+  description: Grants complete immunity when depriving others of OPDP, dignity, or respect.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/prisonguard.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/prisonguard.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretPrisonGuard
+  name: prison guard's beret
+  description: Why isn't it red?
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/prisonguard_beret.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/prisonguard_beret.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadCapPrisonGuard
+  name: prison guard's cap
+  description: Why isn't it red?
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/cap.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/cap.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatIAA
+  name: mystery hat
+  description: Black and white style hat. Reminiscent of secret agents from movies and TV shows.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/iaahat.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/iaahat.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatCapUSSPBlack
+  name: old leather USSP cap.
+  description: Black cap with gray visor.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/ussp.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/ussp.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatCapLeatherHoS
+  name: head of security's leather cap
+  description: Pretty old stuff for these times, bringing back old memories...
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/hoscap.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/hoscap.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatMagicRD
+  name: research director's cap
+  description: No plasma rain or acid dripping from the ventilation system. Your hairstyle will be protected by science.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/rdhat.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+  - type: Clothing
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+        shader: unshaded
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatCapQM
+  name: captain duck's hat
+  description: "The hat is depicted in the classic pirate style and appears in the standard color for the cargo department. The hat reads, AR! Three Kinetic Accelerators in my mouth and-- *the rest of the lettering is blacked out."
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/qmhat.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/qmhat.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatHOP
+  name: head of personality's cap
+  description: A navy blue cap with a gilded brim. The visor gives a glimpse of the wearer's literacy and attentiveness.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/hophat.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/hophat.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadEliteCaptainCap
+  name: captain's fedora
+  description: blue fedora with a gold ribbon.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/cptcap.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/cptcap.rsi
+
+- type: entity
+  parent: ClothingHeadHatHardhatBase
+  id: ClothingSpecialHeadHatHardhatCMO
+  name: CMO's medical cap
+  description: Sterile cap with a flashlight.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/cmospecialhat.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/cmospecialhat.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatCapCMO
+  name: medical beret
+  description: White beret with a red cross on the center section.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/cmohat.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/cmohat.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatCapNtrep
+  name: nt representive cap
+  description: The cap of justice over command!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/ntrep.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/ntrep.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretAdjutant
+  name: adjutant beret
+  description: Awarded by passing difficult qualification tests and is a matter of extreme pride.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/adjutant_beret.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/adjutant_beret.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatGarrisonCapAdjutant
+  name: adjutant garrisoncap
+  description: A little cotton cap that's just about to fall off his head.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/garrisoncap_adj.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/garrisoncap_adj.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatCapAdjutant
+  name: adjutant cap
+  description: Blue and white, suspiciously reminiscent of the captain's.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/adjcap.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/adjcap.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatWithPaces
+  name: Hat with paces
+  description: A black hat with paces, usually worn by Jews.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/hat_with_paces.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/hat_with_paces.rsi

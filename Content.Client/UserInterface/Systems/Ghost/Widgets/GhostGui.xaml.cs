@@ -14,6 +14,7 @@ public sealed partial class GhostGui : UIWidget
     public event Action? RequestWarpsPressed;
     public event Action? ReturnToBodyPressed;
     public event Action? GhostRolesPressed;
+    public event Action? RespawnPressed; // Sunrise-Edit
     public event Action? ChangeServerPressed;
 
     public GhostGui()
@@ -27,6 +28,7 @@ public sealed partial class GhostGui : UIWidget
         GhostWarpButton.OnPressed += _ => RequestWarpsPressed?.Invoke();
         ReturnToBodyButton.OnPressed += _ => ReturnToBodyPressed?.Invoke();
         GhostRolesButton.OnPressed += _ => GhostRolesPressed?.Invoke();
+        RespawnButton.OnPressed += _ => RespawnPressed?.Invoke(); // Sunrise-Edit
         ChangeServerButton.OnPressed += _ => ChangeServerPressed?.Invoke();
     }
 
@@ -36,7 +38,7 @@ public sealed partial class GhostGui : UIWidget
         Visible = false;
     }
 
-    public void Update(int? roles, bool? canReturnToBody)
+    public void Update(int? roles, bool? canReturnToBody, bool canRespawn) // Sunrise-Edit
     {
         ReturnToBodyButton.Disabled = !canReturnToBody ?? true;
 
@@ -52,6 +54,19 @@ public sealed partial class GhostGui : UIWidget
                 GhostRolesButton.StyleClasses.Remove(StyleBase.ButtonCaution);
             }
         }
+
+        // Sunrise-Start
+        if (canRespawn)
+        {
+            RespawnButton.Disabled = false;
+            RespawnButton.Text = Loc.GetString("new-life-gui-button");
+        }
+        else
+        {
+            RespawnButton.Disabled = true;
+            RespawnButton.Text = Loc.GetString("new-life-gui-button-disable");
+        }
+        // Sunrise-End
 
         TargetWindow.Populate();
     }

@@ -1,6 +1,7 @@
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Mech.Components;
 using Content.Shared.Standing;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
@@ -12,7 +13,6 @@ public partial class MobStateSystem : EntitySystem
 {
     [Dependency] private readonly ActionBlockerSystem _blocker = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly StandingStateSystem _standing = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
@@ -39,6 +39,8 @@ public partial class MobStateSystem : EntitySystem
     /// <returns>If the entity is alive</returns>
     public bool IsAlive(EntityUid target, MobStateComponent? component = null)
     {
+        if (TryComp<MechComponent>(target, out var mech))
+            return !mech.Broken;
         if (!_mobStateQuery.Resolve(target, ref component, false))
             return false;
         return component.CurrentState == MobState.Alive;

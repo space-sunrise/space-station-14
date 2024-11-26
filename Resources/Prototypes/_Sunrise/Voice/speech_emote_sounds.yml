@@ -11,6 +11,8 @@
       collection: MaleSneezes
     Cough:
       collection: MaleCoughs
+    Sigh:
+      collection: MaleSigh
     Crying:
       collection: MaleCry
     Whistle:
@@ -39,6 +41,8 @@
       collection: FemaleSneezes
     Cough:
       collection: FemaleCoughs
+    Sigh:
+      collection: FemaleSigh
     Crying:
       collection: FemaleCry
     Whistle:
@@ -69,6 +73,8 @@
       collection: MaleCoughs
     Crying:
       collection: MaleCry
+    Whines:
+      collection: VulpkaninWhines
     Whistle:
       collection: Whistles
     Sigh:
@@ -95,6 +101,8 @@
       collection: FemaleCoughs
     Crying:
       collection: FemaleCry
+    Whines:
+      collection: VulpkaninWhines
     Whistle:
       collection: Whistles
     Sigh:
@@ -117,10 +125,6 @@
       collection: MaleSneezes
     Cough:
       collection: MaleCoughs
-    CatMeow:
-      collection: CatMeows
-    CatHisses:
-      collection: CatHisses
     MonkeyScreeches:
       collection: MonkeyScreeches
     RobotBeep:
@@ -158,3 +162,18 @@
       collection: PredatorSigh
     Laugh:
       collection: PredatorLaugh
+
+- type: emoteSounds
+  id: Reaper
+  sound:
+    path: /Audio/_Sunrise/Voice/Reaper/reaper_scream.ogg
+    params:
+      volume: -2
+
+- type: emoteSounds
+  id: ClownGoblin
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: ClownGoblinScream

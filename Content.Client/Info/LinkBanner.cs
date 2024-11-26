@@ -1,6 +1,5 @@
-﻿using Content.Client._Sunrise.ServersHub;
+using Content.Client._Sunrise.Roadmap;
 using Content.Client.Changelog;
-using Content.Client.Credits;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Systems.EscapeMenu;
 using Content.Client.UserInterface.Systems.Guidebook;
@@ -38,6 +37,9 @@ namespace Content.Client.Info
             AddInfoButton("server-info-website-button", CCVars.InfoLinksWebsite);
             AddInfoButton("server-info-wiki-button", CCVars.InfoLinksWiki);
             AddInfoButton("server-info-forum-button", CCVars.InfoLinksForum);
+            // Sunrise-Start
+            AddInfoButton("server-info-telegram-button", SunriseCCVars.InfoLinksTelegram);
+            // Sunrise-End
 
             var guidebookController = UserInterfaceManager.GetUIController<GuidebookUIController>();
             var guidebookButton = new Button() { Text = Loc.GetString("server-info-guidebook-button") };
@@ -51,23 +53,14 @@ namespace Content.Client.Info
             changelogButton.OnPressed += args => UserInterfaceManager.GetUIController<ChangelogUIController>().ToggleWindow();
             buttons.AddChild(changelogButton);
 
+            // Sunrise-Start
             var roadmapButton = new Button
             {
-                Disabled = true,
                 Text = Loc.GetString("server-info-roadmap-button"),
                 StyleClasses = { StyleBase.ButtonCaution },
             };
-            // Sunrise-Start
-            //roadmapButton.OnPressed += _ => UserInterfaceManager.GetUIController<RoadmapUIController>().ToggleRoadmap();
+            roadmapButton.OnPressed += _ => UserInterfaceManager.GetUIController<RoadmapUIController>().ToggleRoadmap();
             buttons.AddChild(roadmapButton);
-
-            var donateButton = new Button
-            {
-                Text = Loc.GetString("server-info-donate-button"),
-                Disabled = true,
-            };
-            //donateButton.OnPressed += args =>
-            buttons.AddChild(donateButton);
             // Sunrise-End
 
             void AddInfoButton(string loc, CVarDef<string> cVar)

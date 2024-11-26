@@ -1,7 +1,7 @@
 - type: entity
   id: LockerBlueshield
   parent: LockerBaseSecure
-  name: шкаф офицера "Синий Щит"
+  name: blueshield officer's locker
   components:
     - type: Appearance
     - type: Sprite
@@ -24,3 +24,39 @@
       stateDoorClosed: bssecure_door
     - type: AccessReader
       access: [["BlueShield"]]
+
+- type: entity
+  id: LockerPilot
+  parent: LockerBaseSecure
+  name: security pilot's locker
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/closet.rsi
+    noRot: true
+    layers:
+    - state: generic
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: generic_door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+  - type: EntityStorageVisuals
+    stateBaseClosed: pilot
+    stateDoorOpen: pilot_open
+    stateDoorClosed: pilot_door
+  - type: AccessReader
+    access: [["Security"]]
+
+- type: entity
+  parent: GunSafe
+  id: GunSafeIonRifle
+  name: ion rifle safe
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponIONRifle

@@ -2,6 +2,7 @@
 using Content.Server.Power.EntitySystems;
 using Content.Shared._Sunrise.TapePlayer;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Power;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Components;
@@ -98,7 +99,8 @@ public sealed class TapePlayerSystem : SharedTapePlayerSystem
                 uid,
                 false,
                 audioParams);
-            component.AudioStream = audio.Value.Entity;
+            if (audio != null)
+                component.AudioStream = audio.Value.Entity;
             Dirty(uid, component);
         }
     }

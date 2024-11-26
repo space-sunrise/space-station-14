@@ -1,6 +1,6 @@
 - type: entity
   id: CrateSyndicateSurplusBundle
-  parent: [ CrateSyndicate, StorePresetUplink ]
+  parent: [ CrateSyndicate, StorePresetUplink, BaseSyndicateContraband ]
   name: Syndicate surplus crate
   description: Contains 50 telecrystals worth of completely random Syndicate items. It can be useless junk or really good.
   components:
@@ -24,9 +24,60 @@
 
 - type: entity
   id: CrateSyndicateSuperSurplusBundle
-  parent: [ CrateSyndicate, StorePresetUplink ]
+  parent: [ CrateSyndicate, StorePresetUplink, BaseSyndicateContraband ]
   name: Syndicate super surplus crate
   description: Contains 125 telecrystals worth of completely random Syndicate items.
   components:
     - type: SurplusBundle
       totalPrice: 125
+
+- type: entity
+  id: CrateCybersunDarkGygaxBundle
+  suffix: Filled
+  parent: CrateSyndicate
+  name: Cybersun gygax bundle
+  description: Contains a set of Cybersan light armored mechs.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MechGygaxSyndieFilled
+      - id: HandheldMechAnalyzer
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: DoubleEmergencyNitrogenTankFilled
+      - id: ToolboxSyndicateFilled
+      - id: PlushieNuke
+      - id: WelderIndustrial # Удалить когда ремонт мехов будет дешевле по сварочному топливу
+
+- type: entity
+  id: CrateCybersunRoverBundle
+  suffix: Filled
+  parent: CrateSyndicate
+  name: Cybersun rover bundle
+  description: Contains a set of Cybersan medium armored mechs.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MechRoverSyndieFilled
+      - id: HandheldMechAnalyzer
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: DoubleEmergencyNitrogenTankFilled
+      - id: ToolboxSyndicateFilled
+      - id: PlushieNuke
+      - id: WelderIndustrial # Удалить когда ремонт мехов будет дешевле по сварочному топливу
+
+- type: entity
+  id: CrateCybersunMaulerBundle
+  suffix: Filled
+  parent: CrateSyndicate
+  name: Cybersun mauler bundle
+  description: Contains a set of Cybersan heavy armored mechs.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MechMaulerSyndieFilled
+      - id: HandheldMechAnalyzer
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: DoubleEmergencyNitrogenTankFilled
+      - id: ToolboxSyndicateFilled
+      - id: PlushieNuke
+      - id: WelderIndustrial # Удалить когда ремонт мехов будет дешевле по сварочному топливу

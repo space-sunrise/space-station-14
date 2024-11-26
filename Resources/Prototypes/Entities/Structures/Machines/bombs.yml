@@ -29,7 +29,10 @@
       delay: 180
       delayOptions: [180, 240, 300, 600, 900]
       initialBeepDelay: 0
-      beepSound: /Audio/Machines/timer.ogg
+      beepSound:
+        path: /Audio/_Sunrise/c4_beep1.ogg # Sunrise-Edit
+        params:
+          volume: 20
     - type: Anchorable
       delay: 5
     - type: Fixtures
@@ -47,7 +50,7 @@
     - type: GuideHelp
       openOnActivation: true
       guides:
-        - Defusal
+      - Defusal
 
 - type: entity
   parent: BaseHardBomb
@@ -92,7 +95,7 @@
       disposable: false
 
 - type: entity
-  parent: BaseHardBomb
+  parent: [BaseHardBomb, BaseSyndicateContraband]
   id: SyndicateBomb
   name: syndicate bomb
   description: A bomb for Syndicate operatives and agents alike. The real deal, no more training, get to it!
@@ -144,7 +147,7 @@
   id: DebugHardBomb
   name: debug bomb
   suffix: DEBUG
-  description: Holy shit this is gonna explode
+  description: Holy shit this is gonna explode.
   components:
     - type: Defusable
       disposable: true

@@ -44,9 +44,11 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
     [UISystemDependency] private readonly ClientInventorySystem _inventory = default!;
     [UISystemDependency] private readonly StationSpawningSystem _spawn = default!;
     [UISystemDependency] private readonly GuidebookSystem _guide = default!;
+    [UISystemDependency] private readonly LoadoutSystem _loadouts = default!;
 
     private CharacterSetupGui? _characterSetup;
     private HumanoidProfileEditor? _profileEditor;
+    private CharacterSetupGuiSavePanel? _savePanel;
     private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
     /// <summary>
@@ -217,6 +219,46 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         ReloadCharacterSetup();
     }
 
+    private void CloseProfileEditor()
+    {
+        if (_profileEditor == null)
+            return;
+
+        _profileEditor.SetProfile(null, null);
+        _profileEditor.Visible = false;
+
+        if (_stateManager.CurrentState is LobbyState lobbyGui)
+        {
+            lobbyGui.SwitchState(LobbyGui.LobbyGuiState.Default);
+        }
+    }
+
+    private void OpenSavePanel()
+    {
+        if (_savePanel is { IsOpen: true })
+            return;
+
+        _savePanel = new CharacterSetupGuiSavePanel();
+
+        _savePanel.SaveButton.OnPressed += _ =>
+        {
+            SaveProfile();
+
+            _savePanel.Close();
+
+            CloseProfileEditor();
+        };
+
+        _savePanel.NoSaveButton.OnPressed += _ =>
+        {
+            _savePanel.Close();
+
+            CloseProfileEditor();
+        };
+
+        _savePanel.OpenCentered();
+    }
+
     private (CharacterSetupGui, HumanoidProfileEditor) EnsureGui()
     {
         if (_characterSetup != null && _profileEditor != null)
@@ -234,23 +276,26 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
             _logManager,
             _playerManager,
             _prototypeManager,
+            _resourceCache,
             _requirements,
             _markings);
 
         _profileEditor.OnOpenGuidebook += _guide.OpenHelp;
 
-        _characterSetup = new CharacterSetupGui(EntityManager, _prototypeManager, _resourceCache, _preferencesManager, _profileEditor, _configurationManager);
+        _characterSetup = new CharacterSetupGui(_profileEditor);
 
         _characterSetup.CloseButton.OnPressed += _ =>
         {
-            // Reset sliders etc.
-            _profileEditor.SetProfile(null, null);
-            _profileEditor.Visible = false;
-
-            if (_stateManager.CurrentState is LobbyState lobbyGui)
+            // Open the save panel if we have unsaved changes.
+            if (_profileEditor.Profile != null && _profileEditor.IsDirty)
             {
-                lobbyGui.SwitchState(LobbyGui.LobbyGuiState.Default);
+                OpenSavePanel();
+
+                return;
             }
+
+            // Reset sliders etc.
+            CloseProfileEditor();
         };
 
         _profileEditor.Save += SaveProfile;
@@ -321,26 +366,29 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         if (roleLoadout == null)
             return;
 
+        // Sunrtise-Start
         var undervearSlots = new List<string> { "bra", "pants", "socks" };
+        // Sunrtise-End
 
         foreach (var group in roleLoadout.SelectedLoadouts.Values)
         {
             foreach (var loadout in group)
             {
-                var wear = true;
+                var wear = true; // Sunrtise-Edit
                 if (!_prototypeManager.TryIndex(loadout.Prototype, out var loadoutProto))
                     continue;
 
-                var startingGear = _prototypeManager.Index(loadoutProto.Equipment);
+                // Sunrtise-Start
 
-                foreach (var keyValuePair in startingGear.Equipment)
+                foreach (var keyValuePair in loadoutProto.Equipment)
                 {
                     if (!undervearSlots.Contains(keyValuePair.Key) && !outerwear)
                         wear = false;
                 }
 
                 if (wear)
-                    _spawn.EquipStartingGear(uid, startingGear);
+                    _spawn.EquipStartingGear(uid, loadoutProto);
+                // Sunrtise-End
             }
         }
     }
@@ -363,36 +411,51 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
                     if (!_prototypeManager.TryIndex(loadout.Prototype, out var loadoutProto))
                         continue;
 
-                    // TODO: Need some way to apply starting gear to an entity coz holy fucking shit dude.
-                    var loadoutGear = _prototypeManager.Index(loadoutProto.Equipment);
-
+                    // TODO: Need some way to apply starting gear to an entity and replace existing stuff coz holy fucking shit dude.
                     foreach (var slot in slots)
                     {
-                        var itemType = loadoutGear.GetGear(slot.Name);
-
-                        if (_inventory.TryUnequip(dummy, slot.Name, out var unequippedItem, silent: true, force: true, reparent: false))
+                        // Try startinggear first
+                        if (_prototypeManager.TryIndex(loadoutProto.StartingGear, out var loadoutGear))
                         {
-                            EntityManager.DeleteEntity(unequippedItem.Value);
+                            var itemType = ((IEquipmentLoadout) loadoutGear).GetGear(slot.Name);
+
+                            if (_inventory.TryUnequip(dummy, slot.Name, out var unequippedItem, silent: true, force: true, reparent: false))
+                            {
+                                EntityManager.DeleteEntity(unequippedItem.Value);
+                            }
+
+                            if (itemType != string.Empty)
+                            {
+                                var item = EntityManager.SpawnEntity(itemType, MapCoordinates.Nullspace);
+                                _inventory.TryEquip(dummy, item, slot.Name, true, true);
+                            }
                         }
-
-                        if (itemType != string.Empty)
+                        else
                         {
-                            var item = EntityManager.SpawnEntity(itemType, MapCoordinates.Nullspace);
-                            _inventory.TryEquip(dummy, item, slot.Name, true, true);
+                            var itemType = ((IEquipmentLoadout) loadoutProto).GetGear(slot.Name);
+
+                            if (_inventory.TryUnequip(dummy, slot.Name, out var unequippedItem, silent: true, force: true, reparent: false))
+                            {
+                                EntityManager.DeleteEntity(unequippedItem.Value);
+                            }
+
+                            if (itemType != string.Empty)
+                            {
+                                var item = EntityManager.SpawnEntity(itemType, MapCoordinates.Nullspace);
+                                _inventory.TryEquip(dummy, item, slot.Name, true, true);
+                            }
                         }
                     }
                 }
             }
         }
 
-        if (job.StartingGear == null)
+        if (!_prototypeManager.TryIndex(job.StartingGear, out var gear))
             return;
-
-        var gear = _prototypeManager.Index<StartingGearPrototype>(job.StartingGear);
 
         foreach (var slot in slots)
         {
-            var itemType = gear.GetGear(slot.Name);
+            var itemType = ((IEquipmentLoadout) gear).GetGear(slot.Name);
 
             if (_inventory.TryUnequip(dummy, slot.Name, out var unequippedItem, silent: true, force: true, reparent: false))
             {

@@ -14,7 +14,7 @@ namespace Content.Server._Sunrise.Stunnable.Systems
     {
         [Dependency] private readonly SharedItemSystem _item = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
-        [Dependency] private readonly SharedItemToggleSystem _itemToggle = default!;
+        [Dependency] private readonly ItemToggleSystem _itemToggle = default!;
 
         public override void Initialize()
         {
@@ -44,6 +44,6 @@ namespace Content.Server._Sunrise.Stunnable.Systems
         private void ToggleDone(Entity<TelescopicbatonComponent> entity, ref ItemToggledEvent args)
         {
             _item.SetHeldPrefix(entity.Owner, args.Activated ? "on" : "off");
-        }        
+        }
     }
 }

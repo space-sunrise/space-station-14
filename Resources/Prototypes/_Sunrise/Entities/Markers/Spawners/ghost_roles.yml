@@ -1,24 +1,4 @@
 ﻿- type: entity
-  id: SpawnPointEvilTwin
-  name: evil twin spawn point
-  parent: MarkerBase
-  components:
-    - type: EvilTwinSpawner
-    - type: GhostRole
-      name: Злой двойник
-      description: Вы - злой двойник какой-то другой персоны.
-      rules: |
-        Старайтесь действовать скрытно, никто не должен прознать о подмене!
-        Действуйте от лица вашего оригинала, хитрите, подставляйте, запутывайте.
-    - type: GhostTakeoverAvailable
-    - type: Sprite
-      sprite: Markers/jobs.rsi
-      layers:
-        - state: green
-        - sprite: Mobs/Ghosts/ghost_human.rsi
-          state: icon
-
-- type: entity
   id: SpawnPointGhostFoliant
   name: ghost role spawn point
   suffix: Foliant
@@ -28,9 +8,9 @@
     makeSentient: true
     allowMovement: true
     allowSpeech: true
-    name: Фолиант
-    description: Помогайте своему библиотекарю просвящать эту станцию.
-    rules: Вы разумная книга-мимик. Помогайте своему хозяину скрасить жизнь, просвящайте всех на станции.
+    name: ghost-role-information-foliant-name
+    description: ghost-role-information-foliant-description
+    rules: ghost-role-information-foliant-rules
     raffle:
       settings: short
   - type: GhostRoleMobSpawner
@@ -41,3 +21,23 @@
       - state: green
       - sprite: _Sunrise/Mobs/Pets/dogbook.rsi
         state: dogbook
+
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnPointGhostTerminator
+  name: terminator spawn point
+  components:
+  - type: GhostRole
+    name: ghost-role-information-exterminator-name
+    description: ghost-role-information-exterminator-description
+    rules: ghost-role-information-exterminator-rules
+    raffle:
+      settings: default
+  - type: GhostRoleMobSpawner
+    prototype: MobHumanTerminator
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Species/Terminator/parts.rsi
+      state: full

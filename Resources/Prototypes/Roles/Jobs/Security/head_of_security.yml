@@ -6,17 +6,22 @@
   requirements:
     - !type:RoleTimeRequirement
       role: JobWarden
-      time: 18000 #5 hrs # Sunrise-RoleTime
+      time: 10800 #3 hrs
+    - !type:RoleTimeRequirement
+      role: JobSecurityOfficer
+      time: 36000 #10 hrs
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 54000 #15 hrs # Sunrise-RoleTime
+      time: 108000 # 30 hrs
+    - !type:OverallPlaytimeRequirement
+      time: 144000 #40 hrs
   weight: 10
   startingGear: HoSGear
   icon: "JobIconHeadOfSecurity"
-  requireAdminNotify: true
   supervisors: job-supervisors-captain
-  radioBold: true
   canBeAntag: false
+  radioBold: true # Sunrise-Edit
+  displayWeight: 80 # Sunrise-Edit
   access:
   - HeadOfSecurity
   - Command
@@ -35,7 +40,7 @@
     components:
       - type: CommandStaff
   speciesBlacklist:
-  - Vox
+  - Vox # Sunrise-Edit
 
 - type: startingGear
   id: HoSGear
@@ -44,7 +49,7 @@
     id: HoSPDA
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltSecurity
-    pocket1: WeaponPistolMk58Nonlethal # Sunrise-Edit
+    pocket1: WeaponPistolG22NonLethal # Sunrise-Edit
   storage:
     back:
     - Flash

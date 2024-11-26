@@ -4,12 +4,14 @@ using Content.Server.DoAfter;
 using Content.Server.Popups;
 using Content.Server.Resist;
 using Content.Shared._Sunrise.Carrying;
+using Content.Shared.IdentityManagement;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Carrying;
 using Content.Shared.Climbing.Events;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands;
+using Content.Shared.Popups;
 using Content.Shared.Hands.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
@@ -25,6 +27,7 @@ using Content.Shared.Standing;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
 using Content.Shared.Verbs;
+using Robust.Shared.Player;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 
@@ -32,6 +35,9 @@ namespace Content.Server._Sunrise.Carrying
 {
     public sealed class CarryingSystem : EntitySystem
     {
+        private readonly TimeSpan _minPickupTime = TimeSpan.FromSeconds(2);
+        private readonly float _maxThrowSpeed = 7f;
+
         [Dependency] private readonly SharedVirtualItemSystem _virtualItemSystem = default!;
         [Dependency] private readonly CarryingSlowdownSystem _slowdown = default!;
         [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
@@ -44,6 +50,7 @@ namespace Content.Server._Sunrise.Carrying
         [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
         [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
         [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
+        [Dependency] private readonly IEntityManager _entityManager = default!;
 
         public override void Initialize()
         {
@@ -125,7 +132,10 @@ namespace Content.Server._Sunrise.Carrying
 
             var multiplier = MassContest(uid, virtItem.BlockingEntity);
 
-            _throwingSystem.TryThrow(virtItem.BlockingEntity, args.Direction, 3f * multiplier, uid);
+            _throwingSystem.TryThrow(virtItem.BlockingEntity,
+                args.Direction,
+                (3f * multiplier > _maxThrowSpeed) ? _maxThrowSpeed : 3f * multiplier,
+                uid);
         }
 
         private void OnParentChanged(EntityUid uid, CarryingComponent component, ref EntParentChangedMessage args)
@@ -233,6 +243,8 @@ namespace Content.Server._Sunrise.Carrying
                 return;
             }
 
+            length = (length < _minPickupTime) ? _minPickupTime : length;
+
             if (!HasComp<KnockedDownComponent>(carried))
                 length *= 2f;
 
@@ -247,7 +259,10 @@ namespace Content.Server._Sunrise.Carrying
 
             _doAfterSystem.TryStartDoAfter(args);
 
-            _popupSystem.PopupEntity(Loc.GetString("carry-started", ("carrier", carrier)), carried, carried);
+
+            ShowCarryPopup("carry-starting", Filter.Entities(carrier), PopupType.Medium, carrier, carried);
+            ShowCarryPopup("carry-started", Filter.Entities(carried), PopupType.Medium, carrier, carried);
+            ShowCarryPopup("carry-observed", Filter.PvsExcept(carrier).RemoveWhereAttachedEntity(e => e == carried), PopupType.MediumCaution, carrier, carried);
         }
 
         private void Carry(EntityUid carrier, EntityUid carried)
@@ -256,9 +271,8 @@ namespace Content.Server._Sunrise.Carrying
                 _pullingSystem.TryStopPull(carried, pullable, carrier);
 
             Transform(carrier).AttachToGridOrMap();
-            Transform(carried).AttachToGridOrMap();
             Transform(carried).Coordinates = Transform(carrier).Coordinates;
-            Transform(carried).AttachParent(Transform(carrier));
+            Transform(carried).AttachParent(carrier);
             _virtualItemSystem.TrySpawnVirtualItemInHand(carried, carrier);
             _virtualItemSystem.TrySpawnVirtualItemInHand(carried, carrier);
             var carryingComp = EnsureComp<CarryingComponent>(carrier);
@@ -280,7 +294,14 @@ namespace Content.Server._Sunrise.Carrying
             RemComp<KnockedDownComponent>(carried);
             _actionBlockerSystem.UpdateCanMove(carried);
             _virtualItemSystem.DeleteInHandsMatching(carrier, carried);
-            Transform(carried).AttachToGridOrMap();
+            if (_entityManager.TryGetComponent<TransformComponent>(carried, out var transformComponent))
+            {
+                transformComponent.AttachToGridOrMap();
+            }
+            else
+            {
+                Console.WriteLine($"TransformComponent отсутствует у сущности {carried}.");
+            }
             _standingState.Stand(carried);
             _movementSpeed.RefreshMovementSpeedModifiers(carrier);
         }
@@ -320,6 +341,11 @@ namespace Content.Server._Sunrise.Carrying
                 return false;
 
             return true;
+        }
+        
+        private void ShowCarryPopup(string locString, Filter filter, PopupType type, EntityUid carrier, EntityUid carried)
+        {
+            _popupSystem.PopupEntity(Loc.GetString(locString, ("carrier", Identity.Name(carrier, EntityManager)), ("target", Identity.Name(carried, EntityManager))),carrier, filter, true, type);
         }
     }
 }

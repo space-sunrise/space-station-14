@@ -9,6 +9,7 @@
         - type: CentCommShuttle
         paths:
         - /Maps/_Sunrise/Shuttles/centcom_shuttle.yml
+        nameGrid: false
 
 - type: entity
   id: BaseStationCentComm
@@ -58,4 +59,45 @@
     - Zoo
     - MiningOutpost
     - Tesla
-    - VirusZombie
+
+- type: entity
+  id: BaseStationPlanetPrison
+  abstract: true
+  components:
+  - type: PlanetPrisonStation
+    stations:
+    - PlanetPrison
+    biomes:
+    - PrisonGrasslands
+    - PrisonLowDesert
+    - PrisonSnow
+    shuttleWhitelist:
+      components:
+      - SecurityShuttle
+      - PrisonShuttle
+      - ErtShuttle
+
+- type: entity
+  id: PrisonStationAlertLevels
+  abstract: true
+  components:
+  - type: AlertLevel
+    alertLevelPrototype: stationPrisonAlerts
+
+- type: entity
+  id: BaseStationAntagsTargets
+  abstract: true
+  components:
+  - type: StationAntagsTargets
+
+- type: entity
+  id: BaseStationCryoTeleport
+  abstract: true
+  components:
+  - type: StationCryoTeleport
+
+- type: entity
+  id: BaseStationMeteorSwarmTarget
+  abstract: true
+  components:
+  - type: StationMeteorSwarmTarget

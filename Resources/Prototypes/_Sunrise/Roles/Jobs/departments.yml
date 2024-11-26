@@ -1,5 +1,6 @@
 - type: department
   id: Law
+  name: department-Law
   description: department-Law-description
   color: "#FF5297"
   weight: 80
@@ -8,20 +9,28 @@
     - IAA
     - Lawyer
 
-- type: department
-  id: CentralCommand
-  description: department-CentralCommand-description
-  color: "#048e0f" # Sunrise-Edit
-  weight: 120
-  roles:
-  - CentCommOperator
-  primary: false
-
 - type: department # Surnise-Blueshield
   id: Blueshield
+  name: department-Blueshield
   description: department-Blueshield-description
-  color: "#1A2AAA"
+  color: "#005bfb"  # Иначе плохо видно
   roles:
     - BlueShield
   primary: false
   weight: 50
+
+- type: department
+  id: PlanetPrison
+  sort: 0
+  name: department-PlanetPrison
+  description: department-PlanetPrison-description
+  color: "#9f4000"
+  roles:
+  - HeadOfPrison
+  - PrisonPilot
+  - PrisonWorker
+  - PrisonChef
+  - PrisonDoctor
+  - PrisonEngineer
+  - PrisonGuard
+  - PlanetPrisoner

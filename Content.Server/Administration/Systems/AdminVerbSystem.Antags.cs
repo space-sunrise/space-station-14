@@ -151,5 +151,33 @@ public sealed partial class AdminVerbSystem
             Message = Loc.GetString("admin-verb-make-thief"),
         };
         args.Verbs.Add(thief);
+
+        Verb ling = new()
+        {
+            Text = Loc.GetString("admin-verb-text-make-changeling"),
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Changeling/changeling_abilities.rsi"), "transform"),
+            Act = () =>
+            {
+                _antag.ForceMakeAntag<ChangelingRuleComponent>(targetPlayer, "Changeling");
+            },
+            Impact = LogImpact.High,
+            Message = Loc.GetString("admin-verb-make-changeling"),
+        };
+        args.Verbs.Add(ling);
+
+        Verb vampire = new()
+        {
+            Text = Loc.GetString("admin-verb-text-make-vampire"),
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Interface/Actions/actions_vampire.rsi"), "unholystrength"),
+            Act = () =>
+            {
+                _antag.ForceMakeAntag<VampireRuleComponent>(targetPlayer, "Vampire");
+            },
+            Impact = LogImpact.High,
+            Message = Loc.GetString("admin-verb-make-vampire"),
+        };
+        args.Verbs.Add(vampire);
     }
 }

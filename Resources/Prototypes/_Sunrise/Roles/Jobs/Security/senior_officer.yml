@@ -20,6 +20,7 @@
   icon: "JobIconSeniorOfficer"
   supervisors: job-supervisors-hos
   canBeAntag: false
+  displayWeight: 60
   access:
   - Security
   - Brig
@@ -37,4 +38,7 @@
     head: ClothingHeadHatBeretSecurity
     id: SeniorOfficerPDA
     ears: ClothingHeadsetSecurity
-    pocket1: WeaponPistolMk58Nonlethal
+    pocket1: WeaponPistolG22NonLethal
+  storage:
+    back:
+    - WeaponDisablerSMG

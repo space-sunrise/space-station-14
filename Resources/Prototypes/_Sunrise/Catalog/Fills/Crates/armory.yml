@@ -1,0 +1,60 @@
+- type: entity
+  id: CrateArmoryM16A4
+  parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
+  name: M16A4 crate
+  description: Contains two M16A4 assault rifle with four mags. Requires Armory access to open.
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponRifleM16A4
+        amount: 2
+      - id: MagazineM16A4
+        amount: 4
+        
+- type: entity
+  id: CrateArmoryAKMS
+  parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
+  name: AKMS crate
+  description: Contains two AKMS assault rifle with four mags. Requires Armory access to open.
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponAKMSRifle
+        amount: 2
+      - id: MagazineLightRifle
+        amount: 4
+        
+- type: entity
+  id: CrateArmoryMP5
+  parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
+  name: MP5 crate
+  description: Contains two MP5 submachine gun with four mags. Requires Armory access to open.
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponSubMachineGunMP5
+        amount: 2
+      - id: MagazineMP5
+        amount: 4
+        
+- type: entity
+  id: CrateArmoryMagazineBoxLightRifleBig
+  parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
+  name: MagazineBoxLightRifleBig crate
+  description: Contains two MagazineBoxLightRifleBig. Requires Armory access to open.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazineBoxLightRifleBig
+        amount: 3
+        
+- type: entity
+  id: CrateArmoryMagazineBoxRifleBig
+  parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
+  name: MagazineBoxRifleBig crate
+  description: Contains two MagazineBoxRifleBig. Requires Armory access to open.
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazineBoxRifleBig
+        amount: 3

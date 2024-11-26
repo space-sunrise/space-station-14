@@ -11,12 +11,17 @@
         Manipulator: 1
         Glass: 1
 
-
 - type: entity
-  parent: BaseComputerCircuitboard
-  id: CentCommShuttleConsoleCircuitboard
-  name: консоль шаттла ПЦК (консольная плата)
-  description: Плата которая используется для создания консоли шаттла ПЦК.
+  parent: BaseMachineCircuitboard
+  id: PacificatorCircuitboard
+  name: pacifism generator machine board
+  description: Makes all sentient beings within range pacifists.
   components:
-  - type: ComputerBoard
-    prototype: ComputerShuttleCentComm
+  - type: MachineBoard
+    prototype: Pacificator
+    stackRequirements:
+      Capacitor: 4
+      MatterBin: 3
+      Steel: 5
+      CableHV: 5
+      Uranium: 2

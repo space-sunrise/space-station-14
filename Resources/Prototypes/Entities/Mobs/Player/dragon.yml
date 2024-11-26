@@ -96,6 +96,17 @@
   - type: Flammable
     damage:
       types: {}
+  - type: StatusEffects # Overwriting basesimplemob to remove flash, getting flashed as dragon just feelsbad
+    allowed:
+    - SlowedDown
+    - Stutter
+    - Electrocution
+    - ForcedSleep
+    - TemporaryBlindness
+    - Pacified
+    - RadiationProtection
+    - Drowsiness
+    - Adrenaline
   - type: Temperature
     heatDamageThreshold: 800
   - type: Metabolizer
@@ -128,7 +139,7 @@
     foodPreference: Humanoid
     shouldStoreDevoured: true
     chemical: Ichor
-    healRate: 15.0
+    healRate: 20.0 #Sunrise-edit
     whitelist:
       components:
       - MobState
@@ -139,6 +150,24 @@
     tags:
     - CannotSuicide
     - DoorBumpOpener
+  - type: Puller
+    needsHands: false
+  # Sunrise-Start
+  - type: CollectiveMind
+    minds:
+    - Carp
+  - type: NightVision
+    isToggle: true
+    color: "#808080"
+  - type: Reflect
+    reflectProb: 0.25
+    spread: 45
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Dragon
+  - type: TTS
+    voice: HearthstoneLordOfThunder
+  # Sunrise-End
 
 - type: entity
   parent: BaseMobDragon
@@ -154,10 +183,10 @@
     - MinorAntagonists
 
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   id: DragonsBreathGun
   name: dragon's lung
-  description: For dragon's breathing
+  description: For dragon's breathing.
   components:
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 5
@@ -236,3 +265,4 @@
     priority: 2
     checkCanAccess: false
     range: 0
+    itemIconStyle: BigAction

@@ -10,18 +10,18 @@
         icon:
           sprite: Objects/Tools/bucket.rsi
           state: icon
-        name: ведро  # Sunrise-recipes
+        name: step-bucket-name
       - tag: ProximitySensor
         icon:
           sprite: Objects/Misc/proximity_sensor.rsi
           state: icon
-        name: датчик движения  # Sunrise-recipes
+        name: step-proximity-sensor-name
         doAfter: 2
       - tag: BorgArm
         icon:
           sprite: Mobs/Silicon/drone.rsi
           state: l_hand
-        name: руку борга  # Sunrise-recipes
+        name: step-borg-arm-name
         doAfter: 2
   - node: bot
     entity: MobCleanBot

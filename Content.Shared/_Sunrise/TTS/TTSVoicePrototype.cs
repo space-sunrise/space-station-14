@@ -3,32 +3,29 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Sunrise.TTS;
 
-/// <summary>
-/// Prototype represent available TTS voices
-/// </summary>
 [Prototype("ttsVoice")]
-// ReSharper disable once InconsistentNaming
 public sealed class TTSVoicePrototype : IPrototype
 {
     [IdDataField]
     public string ID { get; } = default!;
 
-    [DataField("name")]
+    [DataField]
     public string Name { get; } = string.Empty;
 
-    [DataField("sex", required: true)]
-    public Sex Sex { get; } = default!;
+    [DataField(required: true)]
+    public Sex Sex { get; }
 
     [ViewVariables(VVAccess.ReadWrite)]
-    [DataField("speaker", required: true)]
+    [DataField(required: true)]
     public string Speaker { get; } = string.Empty;
 
-    /// <summary>
-    /// Whether the species is available "at round start" (In the character editor)
-    /// </summary>
-    [DataField("roundStart")]
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField(required: true)]
+    public string Provider { get; } = string.Empty;
+
+    [DataField]
     public bool RoundStart { get; } = true;
 
-    [DataField("sponsorOnly")]
-    public bool SponsorOnly { get; } = false;
+    [DataField]
+    public bool SponsorOnly { get; }
 }

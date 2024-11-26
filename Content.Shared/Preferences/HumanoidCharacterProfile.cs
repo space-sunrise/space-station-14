@@ -130,7 +130,7 @@ namespace Content.Shared.Preferences
         /// </summary>
         [DataField]
         public PreferenceUnavailableMode PreferenceUnavailable { get; private set; } =
-            PreferenceUnavailableMode.SpawnAsOverflow;
+            PreferenceUnavailableMode.StayInLobby; // Sunrise-Edit
 
         public HumanoidCharacterProfile(
             string name,
@@ -227,7 +227,8 @@ namespace Content.Shared.Preferences
 
             var species = random.Pick(prototypeManager
                 .EnumeratePrototypes<SpeciesPrototype>()
-                .Where(x => ignoredSpecies == null ? x.RoundStart : x.RoundStart && !ignoredSpecies.Contains(x.ID))
+                .Where(x => (ignoredSpecies == null ? x.RoundStart : x.RoundStart && !ignoredSpecies.Contains(x.ID))
+                            && !x.SponsorOnly)
                 .ToArray()
             ).ID;
 
@@ -250,7 +251,8 @@ namespace Content.Shared.Preferences
             // Sunrise-TTS-Start
             var voiceId = random.Pick(prototypeManager
                 .EnumeratePrototypes<TTSVoicePrototype>()
-                .Where(o => CanHaveVoice(o, sex)).ToArray()
+                .Where(o => CanHaveVoice(o, sex) && !o.SponsorOnly)
+                .ToArray()
             ).ID;
             // Sunrise-TTS-End
 
@@ -573,11 +575,11 @@ namespace Content.Shared.Preferences
             string flavortext;
             if (FlavorText.Length > MaxDescLength)
             {
-                flavortext = FormattedMessage.RemoveMarkup(FlavorText)[..MaxDescLength];
+                flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText)[..MaxDescLength];
             }
             else
             {
-                flavortext = FormattedMessage.RemoveMarkup(FlavorText);
+                flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText);
             }
 
             var appearance = HumanoidCharacterAppearance.EnsureValid(Appearance, Species, Sex, sponsorPrototypes);
@@ -585,7 +587,7 @@ namespace Content.Shared.Preferences
             var prefsUnavailableMode = PreferenceUnavailable switch
             {
                 PreferenceUnavailableMode.StayInLobby => PreferenceUnavailableMode.StayInLobby,
-                PreferenceUnavailableMode.SpawnAsOverflow => PreferenceUnavailableMode.SpawnAsOverflow,
+                //PreferenceUnavailableMode.SpawnAsOverflow => PreferenceUnavailableMode.SpawnAsOverflow, // Sunrise-Edit
                 _ => PreferenceUnavailableMode.StayInLobby // Invalid enum values.
             };
 

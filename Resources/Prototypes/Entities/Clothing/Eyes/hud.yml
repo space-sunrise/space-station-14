@@ -1,23 +1,19 @@
 - type: entity
   id: ShowSecurityIcons
   abstract: true
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: ShowJobIcons
-  - type: ShowMindShieldIcons
+#  - type: ShowMindShieldIcons Sunrise-Edit
   - type: ShowCriminalRecordIcons
 
 - type: entity
   id: ShowMedicalIcons
   abstract: true
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: ShowHealthBars
-    damageContainers:
-    - Biological
   - type: ShowHealthIcons
-    damageContainers: 
-    - Biological
 
 - type: entity
   parent: ClothingEyesBase
@@ -33,6 +29,7 @@
     damageContainers:
     - Inorganic
     - Silicon
+    - Mech # Sunrise-edit
 
 - type: entity
   parent: [ClothingEyesBase, ShowMedicalIcons]
@@ -49,7 +46,7 @@
     - HudMedical
 
 - type: entity
-  parent: [ClothingEyesBase, ShowSecurityIcons]
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseRestrictedContraband]
   id: ClothingEyesHudSecurity
   name: security hud
   description: A heads-up display that scans the humanoids in view and provides accurate data about their ID status and security records.
@@ -61,6 +58,18 @@
   - type: Tag
     tags:
     - HudSecurity
+
+- type: entity
+  parent: [ClothingEyesBase, BaseCommandContraband]
+  id: ClothingEyesHudCommand
+  name: administration hud
+  description: A heads-up display that scans the humanoids in view and provides accurate data about their ID status.
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Hud/command.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Hud/command.rsi
+  - type: ShowJobIcons
 
 - type: entity
   parent: ClothingEyesBase
@@ -140,7 +149,7 @@
   - type: ShowThirstIcons
 
 - type: entity
-  parent: [ClothingEyesBase, ShowSecurityIcons, ShowMedicalIcons]
+  parent: [ClothingEyesBase, ShowSecurityIcons, ShowMedicalIcons, BaseSecurityCommandContraband]
   id: ClothingEyesHudMedSec
   name: medsec hud
   description: An eye display that looks like a mixture of medical and security huds.
@@ -188,7 +197,7 @@
   - type: ShowSyndicateIcons
 
 - type: entity
-  parent: [ClothingEyesBase, ShowSecurityIcons]
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseSyndicateContraband]
   id: ClothingEyesHudSyndicate
   name: syndicate visor
   description: The syndicate's professional head-up display, designed for better detection of humanoids and their subsequent elimination.
@@ -200,7 +209,7 @@
   - type: ShowSyndicateIcons
 
 - type: entity
-  parent: [ClothingEyesBase, ShowSecurityIcons]
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseSyndicateContraband]
   id: ClothingEyesHudSyndicateAgent
   name: syndicate agent visor
   description: The Syndicate Agent's professional heads-up display, designed for quick diagnosis of their team's status.
@@ -211,8 +220,6 @@
     sprite: Clothing/Eyes/Hud/syndagent.rsi
   - type: ShowSyndicateIcons
   - type: ShowHealthBars
-    damageContainers:
-    - Biological
 
 - type: entity
   parent: [ClothingEyesGlassesSunglasses, ShowSecurityIcons]

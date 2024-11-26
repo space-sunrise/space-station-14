@@ -1,0 +1,11 @@
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateFilledBauer
+  name: Bauer-127 bundle
+  description: "The iconic Bauer-127 magazine rifle with 2 raspy magazines in the set."
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponRifleBauer127
+      - id: MagazineBauer127Extended
+      - id: MagazineBauer127Extended

@@ -9,6 +9,7 @@ using Content.Shared.SprayPainter.Prototypes;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using System.Linq;
+using PaintedComponent = Content.Shared._Sunrise.Paint.PaintedComponent;  // Sunrise-edit
 
 namespace Content.Shared.SprayPainter;
 
@@ -129,11 +130,13 @@ public abstract class SharedSprayPainterSystem : EntitySystem
             return;
         }
 
+        RemComp<PaintedComponent>(ent);  // Sunrise-edit
+
         var doAfterEventArgs = new DoAfterArgs(EntityManager, args.User, painter.AirlockSprayTime, new SprayPainterDoorDoAfterEvent(sprite, style.Department), args.Used, target: ent, used: args.Used)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
-            NeedHand = true
+            NeedHand = true,
         };
         if (!DoAfter.TryStartDoAfter(doAfterEventArgs, out var id))
             return;

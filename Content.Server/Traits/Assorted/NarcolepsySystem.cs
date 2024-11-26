@@ -1,6 +1,8 @@
+using System.Numerics;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.StatusEffect;
 using Robust.Shared.Random;
+using System.Numerics;
 
 namespace Content.Server.Traits.Assorted;
 
@@ -35,6 +37,14 @@ public sealed class NarcolepsySystem : EntitySystem
         narcolepsy.NextIncidentTime = TimerReset;
     }
 
+    public void SetNarcolepsy(EntityUid uid, Vector2 timeBetweenIncidents, Vector2 durationOfIncident, NarcolepsyComponent? narcolepsy = null)
+    {
+        if (!Resolve(uid, ref narcolepsy, false))
+            return;
+        narcolepsy.DurationOfIncident = durationOfIncident;
+        narcolepsy.TimeBetweenIncidents = timeBetweenIncidents;
+    }
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -60,4 +70,17 @@ public sealed class NarcolepsySystem : EntitySystem
                 TimeSpan.FromSeconds(duration), false);
         }
     }
+
+    // Sunrise-Start
+    public void SetTime(EntityUid uid, Vector2 timeBetween, Vector2 duration, NarcolepsyComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+        {
+            return;
+        }
+        component.TimeBetweenIncidents = timeBetween;
+        component.DurationOfIncident = duration;
+        Dirty(uid, component);
+    }
+    // Sunrise-End
 }

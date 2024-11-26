@@ -22,6 +22,12 @@
       snapCardinals: true
       layers:
         - state: server
+    - type: AmbientOnPowered
+    - type: AmbientSound
+      volume: -9
+      range: 5
+      sound:
+        path: /Audio/Ambience/Objects/server_fans.ogg
 
 - type: entity
   parent: SurveillanceCameraRouterBase
@@ -113,6 +119,7 @@
       subnetColor: "#088743" # Sunrise-Edit
 
 - type: entity
+  abstract: true
   parent: [ BaseMachinePowered, ConstructibleMachine ]
   id: SurveillanceCameraWirelessRouterBase
   name: wireless camera router
@@ -135,6 +142,12 @@
       sprite: Structures/Machines/server.rsi
       layers:
         - state: server
+    - type: AmbientOnPowered
+    - type: AmbientSound
+      volume: -9
+      range: 5
+      sound:
+        path: /Audio/Ambience/Objects/server_fans.ogg
 
 - type: entity
   parent: SurveillanceCameraWirelessRouterBase

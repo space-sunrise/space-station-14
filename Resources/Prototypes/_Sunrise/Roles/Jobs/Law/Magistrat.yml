@@ -9,9 +9,11 @@
       time: 108000 #30 hrs
   startingGear: MagistratGear
   icon: "JobIconMagistrat"
-  supervisors: job-supervisors-service
+  supervisors: job-supervisors-centcom
   canBeAntag: false
   setPreference: true
+  radioBold: true
+  displayWeight: 75
   access:
   - Magistrat
   - Bar
@@ -49,9 +51,11 @@
     gloves: ClothingHandsGlovesColorWhite
     outerClothing: ClothingOuterRobesJudge
     id: MagistratPDA
-    ears: ClothingHeadsetAltCommand
+    ears: ClothingHeadsetMagistrate
     head: ClothingHeadHatPwig
   storage:
     back:
     - RubberStampMagistrat
     - ClothingNeckLawyerbadge
+    - GavelHammer
+    - GavelBlock

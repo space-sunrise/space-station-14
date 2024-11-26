@@ -1,5 +1,7 @@
 using Content.Shared.Actions;
+using Content.Shared.Mind;
 using Content.Shared.MouseRotator;
+using Content.Shared.Mech.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Popups;
 using Robust.Shared.Network;
@@ -13,6 +15,7 @@ public abstract class SharedCombatModeSystem : EntitySystem
     [Dependency] private   readonly INetManager _netMan = default!;
     [Dependency] private   readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private   readonly SharedPopupSystem _popup = default!;
+    [Dependency] private   readonly SharedMindSystem  _mind = default!;
 
     public override void Initialize()
     {
@@ -82,7 +85,7 @@ public abstract class SharedCombatModeSystem : EntitySystem
             _actionsSystem.SetToggled(component.CombatToggleActionEntity, component.IsInCombatMode);
 
         // Change mouse rotator comps if flag is set
-        if (!component.ToggleMouseRotator || IsNpc(entity))
+        if (!component.ToggleMouseRotator || IsNpc(entity) && !_mind.TryGetMind(entity, out _, out _))
             return;
 
         SetMouseRotatorComponents(entity, value);
@@ -92,11 +95,21 @@ public abstract class SharedCombatModeSystem : EntitySystem
     {
         if (value)
         {
+            if (TryComp<MechPilotComponent>(uid, out var mechPilot) && !HasComp<NoRotateOnMoveComponent>(mechPilot.Mech))
+            {
+                EnsureComp<NoRotateOnMoveComponent>(mechPilot.Mech);
+            }
+            
             EnsureComp<MouseRotatorComponent>(uid);
             EnsureComp<NoRotateOnMoveComponent>(uid);
         }
         else
         {
+            if (TryComp<MechPilotComponent>(uid, out var mechPilot) && HasComp<NoRotateOnMoveComponent>(mechPilot.Mech))
+            {
+                RemComp<NoRotateOnMoveComponent>(mechPilot.Mech);
+            }
+            
             RemComp<MouseRotatorComponent>(uid);
             RemComp<NoRotateOnMoveComponent>(uid);
         }

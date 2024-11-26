@@ -2,7 +2,7 @@
   name: BaseWeaponHeavyMachineGun
   parent: BaseItem
   id: BaseWeaponHeavyMachineGun
-  description: Spray and pray
+  description: Spray and pray.
   abstract: true
   components:
   - type: Sprite
@@ -14,7 +14,7 @@
     availableModes:
     - FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/lmg.ogg
+      collection: m249 # Sunrise-Edit
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: StaticPrice
@@ -24,7 +24,7 @@
 - type: entity
   name: minigun
   id: WeaponMinigun
-  parent: BaseWeaponHeavyMachineGun
+  parent: [ BaseWeaponHeavyMachineGun, BaseMajorContraband ]
   description: Vzzzzzt! Rahrahrahrah! Vrrrrr! Uses .10 rifle ammo.
   components:
   - type: Sprite

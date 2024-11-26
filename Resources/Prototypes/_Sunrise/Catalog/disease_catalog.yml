@@ -1,0 +1,140 @@
+- type: listing
+  id: Cough
+  name: listing-disease-cough-name
+  description: listing-disease-cough-description
+  icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: cough }
+  raiseProductEventOnUser: true
+  productAction: ActionDiseaseCough
+  cost:
+    DiseasePoints: 0
+  categories:
+  - DiseaseInfectCategory
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: Sneeze
+  name: listing-disease-sneeze-name
+  description: listing-disease-sneeze-description
+  icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: sneeze }
+  productAction: ActionDiseaseSneeze
+  cost:
+    DiseasePoints: 20
+  categories:
+  - DiseaseInfectCategory
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: Vomit
+  name: listing-disease-vomit-name
+  description: listing-disease-vomit-description
+  icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: vomit }
+  productAction: ActionDiseaseVomit
+  cost:
+    DiseasePoints: 25
+  categories:
+  - DiseaseSymptomsCategory
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: Narcolepsy
+  name: listing-disease-narcolepsy-name
+  description: listing-disease-narcolepsy-description
+  icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: narcolepsy }
+  productAction: ActionDiseaseNarcolepsy
+  cost:
+    DiseasePoints: 20
+  categories:
+  - DiseaseSymptomsCategory
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: Crying
+  name: listing-disease-cry-name
+  description: listing-disease-cry-description
+  icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: sob }
+  productAction: ActionDiseaseCrying
+  cost:
+    DiseasePoints: 10
+  categories:
+  - DiseaseSymptomsCategory
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: Muted
+  name: listing-disease-muted-name
+  description: listing-disease-muted-description
+  icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: muted }
+  productAction: ActionDiseaseMuted
+  cost:
+    DiseasePoints: 25
+  categories:
+  - DiseaseSymptomsCategory
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: Slowness
+  name: listing-disease-slowness-name
+  description: listing-disease-slowness-description
+  icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: slowness }
+  productAction: ActionDiseaseSlowness
+  cost:
+    DiseasePoints: 15
+  categories:
+  - DiseaseSymptomsCategory
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: Bleed
+  name: listing-disease-bleed-name
+  description: listing-disease-bleed-description
+  icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: bleed }
+  productAction: ActionDiseaseBleed
+  cost:
+    DiseasePoints: 30
+  categories:
+  - DiseaseSymptomsCategory
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: Blindness
+  name: listing-disease-blindness-name
+  description: listing-disease-blindness-description
+  icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: blindness }
+  productAction: ActionDiseaseBlindness
+  cost:
+    DiseasePoints: 40
+  categories:
+  - DiseaseSymptomsCategory
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: Insult
+  name: listing-disease-insult-name
+  description: listing-disease-insult-description
+  icon: { sprite: /Textures/_Sunrise/Actions/disease.rsi, state: lethal }
+  productAction: ActionDiseaseInsult
+  cost:
+    DiseasePoints: 20
+  categories:
+  - DiseaseSymptomsCategory
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1

@@ -17,6 +17,9 @@
       "name": "brain"
     },
     {
+      "name": "eyes"
+    },
+    {
       "name": "brain-inhand-left",
       "directions": 4
     },

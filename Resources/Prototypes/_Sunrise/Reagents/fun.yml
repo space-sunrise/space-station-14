@@ -7,11 +7,60 @@
   flavor: funny
   color: "#FF00E8"
   metabolisms:
-    Poison:
+    Narcotic:
       effects:
       - !type:PopupMessage
         type: Local
         messages: [ "aphrodesiac-effect1", "aphrodesiac-effect2" ]
         probability: 0.1
-      - !type:LoveEffect
-        effectPower: 2
+      - !type:GenericStatusEffect
+        key: LoveEffect
+        component: LoveVision
+        refresh: false
+        time: 10.0  # Полная баночка = 5 минут
+        type: Add
+      - !type:Jitter
+        refresh: false
+        time: 1.0  # Полная баночка = 1 минута тряски
+        amplitude: 2
+        frequency: 5
+
+- type: reagent
+  id: H-32
+  name: reagent-name-h-32
+  group: Medicine
+  desc: reagent-desc-h-32
+  physicalDesc: reagent-physical-desc-h-32
+  flavor: medicine
+  color: "#cc1a79"
+  worksOnTheDead: true
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:Temperature
+          max: 213.0
+        damage:
+          types:
+            Radiation: -2
+
+- type: reagent
+  id: Celliminol
+  name: reagent-name-celliminol
+  group: Special
+  desc: reagent-desc-celliminol
+  physicalDesc: reagent-physical-desc-celliminol
+  flavor: medicine
+  color: "#81eb81"
+  worksOnTheDead: true
+  metabolisms:
+    Medicine:
+      effects:
+        - !type:HealthChange
+          conditions:
+          - !type:Temperature
+            max: 213.0
+          damage:
+            types:
+             Cellular: -5

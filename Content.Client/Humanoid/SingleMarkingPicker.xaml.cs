@@ -195,7 +195,10 @@ public sealed partial class SingleMarkingPicker : BoxContainer
             item.Metadata = marking.ID;
             // Sunrise-Sponsors-Start
             if (marking.SponsorOnly && _sponsorsManager != null)
+            {
                 item.Disabled = !_sponsorsManager.GetClientPrototypes().Contains(marking.ID);
+                item.Text = Loc.GetString("sponsor-marking", ("name", GetMarkingName(marking)));
+            }
             // Sunrise-Sponsors-End
 
             if (_markings[Slot].MarkingId == id)
@@ -290,7 +293,7 @@ public sealed partial class SingleMarkingPicker : BoxContainer
 
         for (var i = 0; i < PointsUsed; i++)
         {
-            SlotSelector.AddItem($"Slot {i + 1}", i);
+            SlotSelector.AddItem(Loc.GetString("marking-slot", ("number", $"{i + 1}")), i);
 
             if (i == _slot)
             {

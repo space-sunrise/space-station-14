@@ -1,12 +1,56 @@
 ﻿- type: entity
-  id: EvilTwin
   parent: BaseGameRule
-  noSpawn: true
+  id: DiseaseSpawn
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    minimumPlayers: 40
+    weight: 10
+    maxOccurrences: 1
+    earliestStart: 30
+    reoccurrenceDelay: 20
+    duration: null
+  - type: LateJoinSpawnRule
+    prototype: MobDisease
+
+- type: entity
+  parent: BaseGameRule
+  id: FugitiveSpawn
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    weight: 10
+    earliestStart: 10
+    minimumPlayers: 10
+    reoccurrenceDelay: 20
+    duration: null
+  - type: LateJoinSpawnRule
+    prototype: SpawnPointGhostFugitive
+
+- type: entity
+  parent: BaseGameRule
+  id: EvilTwinSpawn
+  categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
     minimumPlayers: 2
     weight: 10
-    duration: 1
+    earliestStart: 10
     reoccurrenceDelay: 20
-  - type: LateJoinSpawnRule # Sunrise-edit
-    prototype: SpawnPointEvilTwin # Sunrise-edit
+    duration: null
+  - type: LateJoinSpawnRule
+    prototype: SpawnPointEvilTwin
+
+
+- type: entity
+  parent: BaseGameRule
+  id: TerminatorSpawn
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    weight: 10
+    earliestStart: 30
+    minimumPlayers: 20
+    duration: null
+  - type: LateJoinSpawnRule
+    prototype: SpawnPointGhostTerminator

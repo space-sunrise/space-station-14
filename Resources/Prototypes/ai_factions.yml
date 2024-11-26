@@ -75,6 +75,8 @@
   - Passive
   - PetsNT
   - Revolutionary
+  - Changeling
+  - Vampire
 
 - type: npcFaction
   id: Revolutionary
@@ -83,3 +85,21 @@
   - Zombie
   - SimpleHostile
   - Dragon
+
+- type: npcFaction
+  id: Changeling
+  hostile:
+  - NanoTrasen
+  - Syndicate
+  - Zombie
+  - Revolutionary
+  
+- type: npcFaction
+  id: Vampire
+  hostile:
+  - NanoTrasen
+  - Syndicate
+  - Zombie
+  - Revolutionary
+  - Changeling
+  - Xeno

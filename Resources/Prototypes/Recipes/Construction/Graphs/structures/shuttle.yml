@@ -25,7 +25,7 @@
       steps:
       - component: DoorElectronics
         store: board
-        name: "door electronics circuit board"
+        name: step-door-electronics-circuit-board-name
         icon:
           sprite: "Objects/Misc/module.rsi"
           state: "door_electronics"

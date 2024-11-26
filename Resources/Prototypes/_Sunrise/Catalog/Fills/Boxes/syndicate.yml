@@ -1,0 +1,17 @@
+﻿- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ExpCollarsKit
+  name: explosive collars kit
+  components:
+  - type: Storage
+    grid:
+    - 0,0,3,1
+  - type: StorageFill
+    contents:
+    - id: ExplosiveCollarRed
+    - id: ExplosiveCollarWhite
+    - id: Bouquet
+  - type: Sprite
+    layers:
+    - state: box_of_doom_big
+    - state: implant
