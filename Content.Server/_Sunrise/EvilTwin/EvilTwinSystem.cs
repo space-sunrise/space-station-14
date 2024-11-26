@@ -49,7 +49,7 @@ public sealed class EvilTwinSystem : EntitySystem
 
     [ValidatePrototypeId<EntityPrototype>]
     private const string GameRule = "EvilTwin";
-    [ValidatePrototypeId<AntagPrototype>]
+    [ValidatePrototypeId<EntityPrototype>]
     private const string MindRole = "MindRoleEvilTwin";
     [ValidatePrototypeId<EntityPrototype>]
     private const string KillObjective = "KillTwinObjective";
