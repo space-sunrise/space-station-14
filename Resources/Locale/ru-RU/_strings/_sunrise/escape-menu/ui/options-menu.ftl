@@ -4,3 +4,4 @@ ui-options-lobby-art = Арт лобби
 ui-options-lobby-animation = Анимация лобби
 ui-options-lobby-parallax = Паралакс лобби
 ui-options-damage-overlay = Оверлей урона
+ui-options-show-footprints = Отображать следы
