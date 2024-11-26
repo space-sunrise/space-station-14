@@ -6510,3 +6510,13 @@
   id: 449
   time: '2024-11-26T15:37:21.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/706
+- author: VigersRay
+  changes:
+  - message: "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 \u0441\u043F\u0435\
+      \u0446\u0438\u0444\u0438\u0447\u043D\u044B\u0435 \u0434\u043B\u044F \u0431\u0438\
+      \u043B\u0434\u0430 \u0431\u044B\u043B\u0438 \u0432\u044B\u043D\u0435\u0441\u0435\
+      \u043D\u044B \u0432 \u043E\u0442\u0434\u0435\u043B\u044C\u043D\u0443\u044E \u0432\
+      \u043A\u043B\u0430\u0434\u043A\u0443 \"Sunrise\"."
+    type: Tweak
+  id: 450
+  time: '2024-11-26T16:24:03.686455+00:00'
