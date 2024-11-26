@@ -6339,3 +6339,24 @@
     type: Add
   id: 435
   time: '2024-11-26T13:55:51.678571+00:00'
+- author: kanopus7
+  changes:
+  - message: "\u0411\u043E\u0440\u0433\u0438 \u0442\u0435\u043F\u0435\u0440\u044C\
+      \ \u043D\u0435 \u043C\u043E\u0433\u0443\u0442 \u043A\u0430\u0437\u043D\u0438\
+      \u0442\u044C \u0441\u0435\u0431\u044F."
+    type: Fix
+  - message: "\u041F\u043E\u0447\u0438\u043D\u0435\u043D \u0431\u043E\u0440\u0433\
+      \ \u0432 \u0434\u043E\u043D\u0430\u0442\u043D\u043E\u043C \u0430\u043F\u043B\
+      \u0438\u043D\u043A\u0435."
+    type: Fix
+  id: 436
+  time: '2024-11-26T13:57:14.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/703
+- author: pacable
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0430 \u043F\u043B\u044E\
+      \u0448\u0435\u0432\u0430\u044F \u0410\u043B\u0438\u0441\u0430."
+    type: Add
+  id: 437
+  time: '2024-11-26T13:57:37.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/699
