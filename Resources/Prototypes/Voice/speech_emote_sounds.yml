@@ -42,12 +42,14 @@
 - type: emoteSounds
   id: FemaleHuman
   params:
-    variation: 0.125
+    variation: 0.1
   sounds:
     Scream:
       collection: FemaleScreams
     Laugh:
       collection: FemaleLaugh
+      params:
+        pitch: 0.125
     Sneeze:
       collection: FemaleSneezes
     Cough:
@@ -424,7 +426,7 @@
       path: /Audio/Voice/Diona/diona_salute.ogg
       params:
        volume: -5
-       
+
 - type: emoteSounds
   id: ReptilianBodyEmotes
   sounds:
