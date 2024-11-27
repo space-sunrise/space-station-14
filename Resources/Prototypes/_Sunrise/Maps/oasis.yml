@@ -66,8 +66,8 @@
             # Sunrise-Civillian
             Barber: [ 1, 1 ]
             # Sunrise-Law
-            IAA: [ 1, 1 ]
-            Lawyer: [ 2, 2 ]
+            IAA: [ 1, 2 ]
+            NanoTrasenRepresentative: [ 1, 1 ]
             Magistrat: [ 1, 1 ]
             # Sunrise-Blueshield
             BlueShield: [ 1, 1 ]
@@ -82,7 +82,6 @@
             Roboticist: [ 2, 2 ]
             # Sunrise-Command
             Adjutant: [ 1, 1 ]
-            NanoTrasenRepresentative: [ 1, 1 ]
         - type: StationGoal
           goals:
           - Shuttle
