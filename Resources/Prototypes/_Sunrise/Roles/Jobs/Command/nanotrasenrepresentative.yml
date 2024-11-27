@@ -6,10 +6,10 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Command
-      time: 36000 # 10 hrs
+      time: 540000 # 15 hrs
     - !type:DepartmentTimeRequirement
       department: Law
-      time: 36000 # 10 hrs
+      time: 18000 # 5 hrs
   startingGear: NanoTrasenRepresentativeGear
   icon: JobIconNanotrasen
   joinNotifyCrew: true
