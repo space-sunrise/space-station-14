@@ -226,7 +226,7 @@
         - Syndicate
       - type: AutoImplant
         implants:
-        - DeathAcidifierImplant
+        - MacroBombImplant # Sunrise-Edit
       - type: RandomMetadata
         nameSegments:
         - names_ninja_title
