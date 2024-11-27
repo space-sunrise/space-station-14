@@ -739,7 +739,7 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/energy_shotgun.rsi
   - type: Gun
-    fireRate: 2
+    fireRate: 1.5  # Sunrise-edit
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: ProjectileBatteryAmmoProvider
@@ -766,5 +766,10 @@
     stealGroup: WeaponEnergyShotgun
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Battery
-    maxCharge: 800
-    startingCharge: 800
+  # Sunrise-start
+    maxCharge: 400
+    startingCharge: 400
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 9
+  # Sunrise-end
