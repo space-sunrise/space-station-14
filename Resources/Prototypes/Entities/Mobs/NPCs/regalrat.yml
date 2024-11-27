@@ -122,6 +122,11 @@
     attributes:
       gender: male
   - type: Sharp
+  # Sunrise-start
+  - type: BloodstreamComponent
+    bleedReductionAmount: 1
+    bloodRefreshAmount: 1.5
+  # Sunrise-end
 
 - type: entity
   id: MobRatKingBuff
