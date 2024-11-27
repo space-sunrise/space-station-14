@@ -58,8 +58,7 @@
 - type: entity
   parent: BasePDA
   id: PathologistPDA
-  name: КПК Патологоанатом
-  description: Пахнет миазмами...
+  name: Pathologist PDA
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/pda.rsi
