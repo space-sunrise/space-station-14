@@ -37,7 +37,7 @@
     back:
     - WeaponPistolViper
     - PinpointerSyndicateNuclear
-    - DeathAcidifierImplanter
+    #- DeathAcidifierImplanter
 
 - type: startingGear
   id: SyndicateOperativeClothing

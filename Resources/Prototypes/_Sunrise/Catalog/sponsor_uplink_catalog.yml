@@ -1777,6 +1777,50 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
+- type: listing
+  id: UplinkSunrisePlushieAlice
+  productEntity: PlushieAlice
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieKaioshi
+  productEntity: PlushieKaioshi
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieLuna
+  productEntity: PlushieLuna
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieRaisya
+  productEntity: PlushieRaisya
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
 # HOS
 
 - type: listing
@@ -3094,7 +3138,7 @@
 - type: listing
   id: UplinkSunrisePlayerBorgGeneric
   name: uplink-sunrise-player-borg-generic-name
-  productEntity: BorgChassisGeneric
+  productEntity: PlayerBorgBattery
   cost:
     Suntick: 100
   categories:

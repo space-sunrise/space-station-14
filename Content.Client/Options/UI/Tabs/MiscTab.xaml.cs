@@ -21,14 +21,11 @@ public sealed partial class MiscTab : Control
 {
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
 
     public MiscTab()
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
-
-        _configurationManager.OnValueChanged(SunriseCCVars.LobbyBackgroundType, OnLobbyBackgroundTypeChanged, true);
 
         var themes = _prototypeManager.EnumeratePrototypes<HudThemePrototype>().ToList();
         themes.Sort();
@@ -51,54 +48,6 @@ public sealed partial class MiscTab : Control
         Control.AddOptionDropDown(CVars.InterfaceTheme, DropDownHudTheme, themeEntries);
         Control.AddOptionDropDown(CCVars.UILayout, DropDownHudLayout, layoutEntries);
 
-        // Sunrise-Start
-        var lobbyBackgroundTypes = new List<OptionDropDownCVar<string>.ValueOption>
-        {
-            new("Random", Loc.GetString("background-type-Random")),
-        };
-        var lobbyArts = new List<OptionDropDownCVar<string>.ValueOption>
-        {
-            new("Random", Loc.GetString("lobby-art-Random")),
-        };
-        var lobbyParallaxes = new List<OptionDropDownCVar<string>.ValueOption>
-        {
-            new ("Random", Loc.GetString("lobby-parallax-Random")),
-        };
-        var lobbyAnimations = new List<OptionDropDownCVar<string>.ValueOption>
-        {
-            new("Random", Loc.GetString("lobby-animation-Random")),
-        };
-        foreach (var backgroundType in Enum.GetValues(typeof(LobbyBackgroundType)))
-        {
-            var layoutLoc = Loc.GetString($"background-type-{backgroundType}");
-            lobbyBackgroundTypes.Add(new OptionDropDownCVar<string>.ValueOption(backgroundType.ToString()!, layoutLoc));
-        }
-        var lobbyParallaxesPrototypes = _prototypeManager.EnumeratePrototypes<LobbyParallaxPrototype>();
-        foreach (var lobbyParallax in lobbyParallaxesPrototypes)
-        {
-            var layoutLoc = Loc.GetString($"lobby-parallax-{lobbyParallax.ID}");
-            lobbyParallaxes.Add(new OptionDropDownCVar<string>.ValueOption(lobbyParallax.ID, layoutLoc));
-        }
-        var lobbyArtsPrototypes = _prototypeManager.EnumeratePrototypes<LobbyBackgroundPrototype>();
-        foreach (var lobbyArt in lobbyArtsPrototypes)
-        {
-            var layoutLoc = Loc.GetString($"lobby-art-{lobbyArt.ID}");
-            lobbyArts.Add(new OptionDropDownCVar<string>.ValueOption(lobbyArt.ID, layoutLoc));
-        }
-        var lobbyAnimationsPrototypes = _prototypeManager.EnumeratePrototypes<LobbyAnimationPrototype>();
-        foreach (var lobbyAnimation in lobbyAnimationsPrototypes)
-        {
-            var layoutLoc = Loc.GetString($"lobby-animation-{lobbyAnimation.ID}");
-            lobbyAnimations.Add(new OptionDropDownCVar<string>.ValueOption(lobbyAnimation.ID, layoutLoc));
-        }
-        Control.AddOptionDropDown(SunriseCCVars.LobbyBackgroundType, DropDownLobbyBackgroundType, lobbyBackgroundTypes);
-        Control.AddOptionDropDown(SunriseCCVars.LobbyArt, DropDownLobbyArt, lobbyArts);
-        Control.AddOptionDropDown(SunriseCCVars.LobbyAnimation, DropDownLobbyAnimation, lobbyAnimations);
-        Control.AddOptionDropDown(SunriseCCVars.LobbyParallax, DropDownLobbyParallax, lobbyParallaxes);
-        Control.AddOptionPercentSlider(SunriseCCVars.LobbyOpacity, LobbyOpacitySlider);
-        Control.AddOptionCheckBox(SunriseCCVars.DamageOverlay, DamageOverlayCheckBox);
-        // Sunrise-End
-
         Control.AddOptionCheckBox(CVars.DiscordEnabled, DiscordRich);
         Control.AddOptionCheckBox(CCVars.ShowOocPatronColor, ShowOocPatronColor);
         Control.AddOptionCheckBox(CCVars.LoocAboveHeadShow, ShowLoocAboveHeadCheckBox);
@@ -111,41 +60,4 @@ public sealed partial class MiscTab : Control
 
         Control.Initialize();
     }
-
-    // Sunrise-Start
-    private void OnLobbyBackgroundTypeChanged(string lobbyBackgroundTypeString)
-    {
-        if (lobbyBackgroundTypeString == "Random")
-        {
-            DropDownLobbyArt.Visible = true;
-            DropDownLobbyAnimation.Visible = true;
-            DropDownLobbyParallax.Visible = true;
-            return;
-        }
-
-        if (!Enum.TryParse(lobbyBackgroundTypeString, out LobbyBackgroundType lobbyBackgroundType))
-        {
-            lobbyBackgroundType = default;
-        }
-
-        switch (lobbyBackgroundType)
-        {
-            case LobbyBackgroundType.Parallax:
-                DropDownLobbyArt.Visible = false;
-                DropDownLobbyAnimation.Visible = false;
-                DropDownLobbyParallax.Visible = true;
-                break;
-            case LobbyBackgroundType.Art:
-                DropDownLobbyArt.Visible = true;
-                DropDownLobbyAnimation.Visible = false;
-                DropDownLobbyParallax.Visible = false;
-                break;
-            case LobbyBackgroundType.Animation:
-                DropDownLobbyArt.Visible = false;
-                DropDownLobbyAnimation.Visible = true;
-                DropDownLobbyParallax.Visible = false;
-                break;
-        }
-    }
-    // Sunrise-End
 }

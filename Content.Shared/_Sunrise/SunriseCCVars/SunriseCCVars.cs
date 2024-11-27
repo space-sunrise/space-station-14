@@ -177,12 +177,6 @@ public sealed class SunriseCCVars
     public static readonly CVarDef<string> InfoLinksDonate =
         CVarDef.Create("infolinks.donate", "", CVar.SERVER | CVar.REPLICATED);
 
-    /// <summary>
-    /// Link to Telegram channel to show in the launcher.
-    /// </summary>
-    public static readonly CVarDef<string> InfoLinksTelegram =
-        CVarDef.Create("infolinks.telegram", "", CVar.SERVER | CVar.REPLICATED);
-
     /**
      * Lobby
      */
@@ -330,4 +324,10 @@ public sealed class SunriseCCVars
 
     public static readonly CVarDef<bool> MoodDecreasesSpeed =
         CVarDef.Create("mood.decreases_speed", true, CVar.SERVER);
+
+    /// <summary>
+    /// Whether to show footprints
+    /// </summary>
+    public static readonly CVarDef<bool> ShowFootprints =
+        CVarDef.Create("game.show_footprints", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 }
