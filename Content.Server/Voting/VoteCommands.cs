@@ -31,9 +31,9 @@ namespace Content.Server.Voting
                 shell.WriteError(Loc.GetString("shell-need-exactly-one-argument"));
                 return;
             }
-            if (args.Length != 3 && args[0] == StandardVoteType.Votekick.ToString())
+            if (args.Length != 4 && args[0] == StandardVoteType.Votekick.ToString()) // Sunrise-Edit
             {
-                shell.WriteError(Loc.GetString("shell-wrong-arguments-number-need-specific", ("properAmount", 3), ("currentAmount", args.Length)));
+                shell.WriteError(Loc.GetString("shell-wrong-arguments-number-need-specific", ("properAmount", 4), ("currentAmount", args.Length))); // Sunrise-Edit
                 return;
             }
 

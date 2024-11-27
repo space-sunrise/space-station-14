@@ -100,7 +100,8 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
 
         var netChannel = player.Channel;
         ImmutableArray<byte>? hwId = netChannel.UserData.HWId.Length == 0 ? null : netChannel.UserData.HWId;
-        var roleBans = await _db.GetServerRoleBansAsync(netChannel.RemoteEndPoint.Address, player.UserId, hwId, false);
+        var modernHwids = netChannel.UserData.ModernHWIds;
+        var roleBans = await _db.GetServerRoleBansAsync(netChannel.RemoteEndPoint.Address, player.UserId, hwId, modernHwids, false);
 
         var userRoleBans = new List<ServerRoleBanDef>();
         foreach (var ban in roleBans)
@@ -167,7 +168,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     }
 
     #region Server Bans
-    public async void CreateServerBan(NetUserId? target, string? targetUsername, NetUserId? banningAdmin, (IPAddress, int)? addressRange, ImmutableArray<byte>? hwid, uint? minutes, NoteSeverity severity, string reason)
+    public async void CreateServerBan(NetUserId? target, string? targetUsername, NetUserId? banningAdmin, (IPAddress, int)? addressRange, ImmutableTypedHwid? hwid, uint? minutes, NoteSeverity severity, string reason)
     {
         DateTimeOffset? expires = null;
         if (minutes > 0)
@@ -207,9 +208,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         var addressRangeString = addressRange != null
             ? $"{addressRange.Value.Item1}/{addressRange.Value.Item2}"
             : "null";
-        var hwidString = hwid != null
-            ? string.Concat(hwid.Value.Select(x => x.ToString("x2")))
-            : "null";
+        var hwidString = hwid?.ToString() ?? "null";
         var expiresString = expires == null ? Loc.GetString("server-ban-string-never") : $"{expires}";
 
         var key = _cfg.GetCVar(CCVars.AdminShowPIIOnBan) ? "server-ban-string" : "server-ban-string-no-pii";
@@ -229,7 +228,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         _chat.SendAdminAlert(logMessage);
 
         // Sunrise-start
-        var ban = await _db.GetServerBanAsync(null, target, null);
+        var ban = await _db.GetServerBanAsync(null, target, null, null);
         if (ban != null)
             SendWebhook(await GenerateBanPayload(ban, minutes));
         // Sunrise-end
@@ -256,6 +255,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
             UserId = player.UserId,
             Address = player.Channel.RemoteEndPoint.Address,
             HWId = player.Channel.UserData.HWId,
+            ModernHWIds = player.Channel.UserData.ModernHWIds,
             // It's possible for the player to not have cached data loading yet due to coincidental timing.
             // If this is the case, we assume they have all flags to avoid false-positives.
             ExemptFlags = _cachedBanExemptions.GetValueOrDefault(player, ServerBanExemptFlags.All),
@@ -276,7 +276,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     #region Job Bans
     // If you are trying to remove timeOfBan, please don't. It's there because the note system groups role bans by time, reason and banning admin.
     // Removing it will clutter the note list. Please also make sure that department bans are applied to roles with the same DateTimeOffset.
-    public async void CreateRoleBan(NetUserId? target, string? targetUsername, NetUserId? banningAdmin, (IPAddress, int)? addressRange, ImmutableArray<byte>? hwid, string role, uint? minutes, NoteSeverity severity, string reason, DateTimeOffset timeOfBan)
+    public async void CreateRoleBan(NetUserId? target, string? targetUsername, NetUserId? banningAdmin, (IPAddress, int)? addressRange, ImmutableTypedHwid? hwid, string role, uint? minutes, NoteSeverity severity, string reason, DateTimeOffset timeOfBan)
     {
         if (!_prototypeManager.TryIndex(role, out JobPrototype? _))
         {
@@ -325,7 +325,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     }
 
     // Sunrise-start
-    public async void WebhookUpdateRoleBans(NetUserId? target, string? targetUsername, NetUserId? banningAdmin, (IPAddress, int)? addressRange, ImmutableArray<byte>? hwid, IReadOnlyCollection<string> roles, uint? minutes, NoteSeverity severity, string reason, DateTimeOffset timeOfBan)
+    public async void WebhookUpdateRoleBans(NetUserId? target, string? targetUsername, NetUserId? banningAdmin, (IPAddress, int)? addressRange, ImmutableTypedHwid? hwid, IReadOnlyCollection<string> roles, uint? minutes, NoteSeverity severity, string reason, DateTimeOffset timeOfBan)
     {
         _systems.TryGetEntitySystem(out GameTicker? ticker);
         int? roundId = ticker == null || ticker.RoundId == 0 ? null : ticker.RoundId;
@@ -449,7 +449,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     private async Task<WebhookPayload> GenerateJobBanPayload(ServerRoleBanDef banDef, IReadOnlyCollection<string> roles, uint? minutes = null)
     {
         var hwidString = banDef.HWId != null
-? string.Concat(banDef.HWId.Value.Select(x => x.ToString("x2")))
+? string.Concat(banDef.HWId.Hwid.Select(x => x.ToString("x2")))
 : "null";
         var adminName = banDef.BanningAdmin == null
             ? Loc.GetString("system-user")
@@ -585,7 +585,7 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
     private async Task<WebhookPayload> GenerateBanPayload(ServerBanDef banDef, uint? minutes = null)
     {
         var hwidString = banDef.HWId != null
-    ? string.Concat(banDef.HWId.Value.Select(x => x.ToString("x2")))
+    ? string.Concat(banDef.HWId.Hwid.Select(x => x.ToString("x2")))
     : "null";
         var adminName = banDef.BanningAdmin == null
             ? Loc.GetString("system-user")

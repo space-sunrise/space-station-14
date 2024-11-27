@@ -9,18 +9,6 @@
                        StyleClasses="LabelKeyText"/>
                 <ui:OptionDropDown Name="DropDownHudTheme" Title="{Loc 'ui-options-hud-theme'}" />
                 <ui:OptionDropDown Name="DropDownHudLayout" Title="{Loc 'ui-options-hud-layout'}" />
-                <!-- Sunrise-Start -->
-                <Label Text="{Loc 'ui-options-general-lobby'}"
-                       StyleClasses="LabelKeyText"/>
-                <ui:OptionDropDown Name="DropDownLobbyBackgroundType" Title="{Loc 'ui-options-lobby-background-type'}" />
-                <ui:OptionDropDown Name="DropDownLobbyArt" Title="{Loc 'ui-options-lobby-art'}" />
-                <ui:OptionDropDown Name="DropDownLobbyAnimation" Title="{Loc 'ui-options-lobby-animation'}" />
-                <ui:OptionDropDown Name="DropDownLobbyParallax" Title="{Loc 'ui-options-lobby-parallax'}" />
-                <ui:OptionSlider Name="LobbyOpacitySlider" Title="{Loc 'ui-options-lobby-opacity'}" />
-                <Label Text="{Loc 'ui-options-general-figth'}"
-                       StyleClasses="LabelKeyText"/>
-                <CheckBox Name="DamageOverlayCheckBox" Text="{Loc 'ui-options-damage-overlay'}" />
-                <!-- Sunrise-End -->
                 <Label Text="{Loc 'ui-options-general-discord'}"
                        StyleClasses="LabelKeyText"/>
                 <CheckBox Name="DiscordRich" Text="{Loc 'ui-options-discordrich'}" />

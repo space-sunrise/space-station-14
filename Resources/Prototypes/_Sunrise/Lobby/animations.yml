@@ -1,9 +1,4 @@
 - type: lobbyAnimation
-  id: Bar
-  rawPath: _Sunrise/Lobby/Animations/bar
-  scale: 5, 5
-
-- type: lobbyAnimation
   id: Billy
   rawPath: _Sunrise/Lobby/Animations/billy
   scale: 13, 13
@@ -42,11 +37,6 @@
   id: Eclipse
   rawPath: _Sunrise/Lobby/Animations/eclipse
   scale: 8, 8
-
-- type: lobbyAnimation
-  id: EvangelionElevator
-  rawPath: _Sunrise/Lobby/Animations/evangelion_elevator
-  scale: 4, 4
 
 - type: lobbyAnimation
   id: EveningBridge
@@ -94,21 +84,6 @@
   scale: 8, 8
 
 - type: lobbyAnimation
-  id: EveningWindow
-  rawPath: _Sunrise/Lobby/Animations/evening_window
-  scale: 8, 8
-
-- type: lobbyAnimation
-  id: Frieren
-  rawPath: _Sunrise/Lobby/Animations/frieren
-  scale: 6, 6
-
-- type: lobbyAnimation
-  id: Graveyard
-  rawPath: _Sunrise/Lobby/Animations/graveyard
-  scale: 3, 3
-
-- type: lobbyAnimation
   id: GutsVsGriffit
   rawPath: _Sunrise/Lobby/Animations/guts_vs_griffit
   scale: 5, 5
@@ -117,11 +92,6 @@
   id: HomerStarfall
   rawPath: _Sunrise/Lobby/Animations/homer_starfall
   scale: 8, 8
-
-- type: lobbyAnimation
-  id: IslandEvening
-  rawPath: _Sunrise/Lobby/Animations/island_evening
-  scale: 4, 4
 
 - type: lobbyAnimation
   id: Jungle
@@ -149,11 +119,6 @@
   scale: 8, 8
 
 - type: lobbyAnimation
-  id: NeonSity
-  rawPath: _Sunrise/Lobby/Animations/neon_sity
-  scale: 9, 9
-
-- type: lobbyAnimation
   id: NightMoon
   rawPath: _Sunrise/Lobby/Animations/night_moon
   scale: 8, 8
@@ -172,11 +137,6 @@
   id: SpaceDesert
   rawPath: _Sunrise/Lobby/Animations/space_desert
   scale: 8, 8
-
-- type: lobbyAnimation
-  id: SpaceGirl
-  rawPath: _Sunrise/Lobby/Animations/space_girl
-  scale: 6, 6
 
 - type: lobbyAnimation
   id: SpaceStarts
