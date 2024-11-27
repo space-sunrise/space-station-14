@@ -30,7 +30,7 @@ namespace Content.Server._Sunrise.Fugitive
         [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
         [Dependency] private readonly GameTicker _gameTicker = default!;
 
-        [ValidatePrototypeId<AntagPrototype>]
+        [ValidatePrototypeId<EntityPrototype>]
         private const string MindRole = "MindRoleFugitive";
         [ValidatePrototypeId<EntityPrototype>]
         private const string EscapeObjective = "FugitiveEscapeShuttleObjective";

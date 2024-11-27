@@ -47,7 +47,6 @@ public sealed class CodeEquipmentSystem : EntitySystem
         comp.Shuttles.Add(shuttleUids[0]);
         var gammaArmoryComp = EnsureComp<CodeEquipmentShuttleComponent>(shuttleUids[0]);
         gammaArmoryComp.Station = uid;
-        EnsureComp<ImmortalGridComponent>(shuttleUids[0]);
     }
 
     private void OnFTLShuttleTag(EntityUid uid, CodeEquipmentShuttleComponent comp, ref FTLTagEvent ev)
