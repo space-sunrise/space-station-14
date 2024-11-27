@@ -84,7 +84,7 @@
             Roboticist: [ 2, 2 ]
             # Sunrise-Command
             Adjutant: [ 1, 1 ]
-            NanoTrasenRepresentative: [ 1, 1 ]
+            # NanoTrasenRepresentative: [ 1, 1 ]
         - type: StationGoal
           goals:
           - Shuttle
