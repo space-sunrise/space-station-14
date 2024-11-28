@@ -70,6 +70,7 @@ namespace Content.IntegrationTests.Tests
 			"SunriseFland",
 			"SunriseMarathon",
             "SunriseCentComm",
+            "SunrisePlanetDelta",
             "SunriseBagel",
             "SunriseReach",
             "SunriseTrain",

@@ -2,6 +2,7 @@
   id: SunriseMapPool
   maps:
   - SunriseDelta
+  - SunrisePlanetDelta
   - SunriseBox
   - SunriseFland
   - SunriseMarathon
