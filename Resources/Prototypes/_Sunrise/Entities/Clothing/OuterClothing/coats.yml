@@ -155,6 +155,20 @@
 
 - type: entity
   parent: ClothingOuterStorageBase
+  id: ClothingOuterCoatPatologoanatom
+  name: patologoanatom's coat
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/patolocoat.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/patolocoat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.75
+
+- type: entity
+  parent: ClothingOuterStorageBase
   id: ClothingOuterCoatAdjutant
   name: adjutant's winter jacket
   description: heavy jacket made of 'synthetic' animal fur.

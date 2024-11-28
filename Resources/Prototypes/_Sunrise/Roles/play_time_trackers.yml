@@ -92,4 +92,7 @@
   id: JobBarber
 
 - type: playTimeTracker
+  id: JobMedicalPathologist
+
+- type: playTimeTracker
   id: JobAdjutant

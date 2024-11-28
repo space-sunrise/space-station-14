@@ -26,3 +26,5 @@ ent-BarberIDCard = ID карта парикмахера
     .desc = { ent-IDCardStandard.desc }
 ent-AdjutantIDCard = ID карта адъютанта
     .desc = { ent-IDCardStandard.desc }
+ent-PathologistIDCard = ID Карта патологоанатома
+    .desc = { ent-BasePDA.desc }
