@@ -249,6 +249,16 @@
 
 - type: entity
   parent: ClothingHeadBase
+  id: ClothingHeadHatPatologonatHat
+  name: patologoanatom's hat
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/pathologist_helmet.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/pathologist_helmet.rsi
+
+- type: entity
+  parent: ClothingHeadBase
   id: ClothingHeadHatBeretAdjutant
   name: adjutant beret
   description: Awarded by passing difficult qualification tests and is a matter of extreme pride.
