@@ -5,6 +5,7 @@
   maxRandomOffset: 0
   randomRotation: false
   minPlayers: 0
+  maxPlayers: 40
   stations:
     Train:
       stationProto: StandardNanotrasenStation

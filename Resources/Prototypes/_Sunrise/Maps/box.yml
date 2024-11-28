@@ -4,7 +4,7 @@
   mapPath: /Maps/_Sunrise/Station/box.yml
   maxRandomOffset: 0
   randomRotation: false
-  minPlayers: 0
+  minPlayers: 30
   stations:
     Boxstation:
       stationProto: StandardNanotrasenStation

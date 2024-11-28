@@ -2,7 +2,7 @@
   id: SunriseOasis
   mapName: 'Oasis'
   mapPath: /Maps/_Sunrise/Station/oasis.yml
-  minPlayers: 70
+  minPlayers: 40
   stations:
     Oasis:
       stationProto: StandardNanotrasenStation

@@ -4,7 +4,7 @@
   mapPath: /Maps/_Sunrise/Station/meta.yml
   maxRandomOffset: 0
   randomRotation: false
-  minPlayers: 0
+  minPlayers: 30
   stations:
     Meta:
       stationProto: StandardNanotrasenStation
