@@ -55,9 +55,6 @@ namespace Content.Server.Voting.Managers
 
             bool timeoutVote = true;
 
-            // Sunrise-Edit
-            _gameTicker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
-            _gameTicker.UpdateInfoText();
             switch (voteType)
             {
                 case StandardVoteType.Restart:
@@ -76,6 +73,8 @@ namespace Content.Server.Voting.Managers
                 default:
                     throw new ArgumentOutOfRangeException(nameof(voteType), voteType, null);
             }
+            _gameTicker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
+            _gameTicker.UpdateInfoText();
             if (timeoutVote)
                 TimeoutStandardVote(voteType);
         }
@@ -379,7 +378,6 @@ namespace Content.Server.Voting.Managers
 
             string target = args[0];
             string reason = args[1];
-            string note = args[2]; // Sunrise-Edit
 
             // Start by getting all relevant target data
             var located = await _locator.LookupIdByNameOrIdAsync(target);
@@ -456,9 +454,8 @@ namespace Content.Server.Voting.Managers
             string voteTitle = "";
             NetEntity? targetNetEntity = _entityManager.GetNetEntity(targetSession.AttachedEntity);
             var initiatorName = initiator != null ? initiator.Name : Loc.GetString("ui-vote-votekick-unknown-initiator");
-            var reasonLocalised = Loc.GetString($"ui-vote-votekick-type-{reason.ToLower()}"); // Sunrise-Edit
 
-            voteTitle = Loc.GetString("ui-vote-votekick-title", ("initiator", initiatorName), ("targetEntity", targetEntityName), ("reason", reasonLocalised + ". " + note)); // Sunrise-Edit
+            voteTitle = Loc.GetString("ui-vote-votekick-title", ("initiator", initiatorName), ("targetEntity", targetEntityName), ("reason", reason));
 
             var options = new VoteOptions
             {
@@ -544,7 +541,7 @@ namespace Content.Server.Voting.Managers
                     else
                     {
                         _adminLogger.Add(LogType.Vote, LogImpact.Extreme, $"Votekick for {located.Username} succeeded:  Yes: {votesYes} / No: {votesNo}. Yes: {yesVotersString} / No: {noVotersString}");
-                        _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-votekick-success", ("target", targetEntityName), ("reason", reasonLocalised + ". " + note))); // Sunrise-Edit
+                        _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-votekick-success", ("target", targetEntityName), ("reason", reason)));
 
                         if (!Enum.TryParse(_cfg.GetCVar(CCVars.VotekickBanDefaultSeverity), out NoteSeverity severity))
                         {
@@ -558,7 +555,7 @@ namespace Content.Server.Voting.Managers
 
                         uint minutes = (uint)_cfg.GetCVar(CCVars.VotekickBanDuration);
 
-                        _bans.CreateServerBan(targetUid, target, null, null, targetHWid, minutes, severity, reasonLocalised + ". " + note); // Sunrise-Edit
+                        _bans.CreateServerBan(targetUid, target, null, null, targetHWid, minutes, severity, reason);
                     }
                 }
                 else

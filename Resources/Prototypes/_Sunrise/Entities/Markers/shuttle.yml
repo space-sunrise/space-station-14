@@ -19,4 +19,4 @@
   - type: Sprite
     state: pink
   - type: RoundstartFtlTarget
-    gridPath: "/Maps/_Sunrise/Shuttles/prison.yml"
+    path: "/Maps/_Sunrise/Shuttles/prison.yml"

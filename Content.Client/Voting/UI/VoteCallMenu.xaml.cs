@@ -17,7 +17,6 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
-using Robust.Shared.Utility;
 
 namespace Content.Client.Voting.UI
 {
@@ -49,7 +48,7 @@ namespace Content.Client.Voting.UI
         {
             { VotekickReasonType.Raiding.ToString(), Loc.GetString("ui-vote-votekick-type-raiding") },
             { VotekickReasonType.Cheating.ToString(), Loc.GetString("ui-vote-votekick-type-cheating") },
-            { VotekickReasonType.Spam.ToString(), Loc.GetString("ui-vote-votekick-type-spam") } // Sunrise-Edit
+            { VotekickReasonType.Spam.ToString(), Loc.GetString("ui-vote-votekick-type-spamming") }
         };
 
         public Dictionary<NetUserId, (NetEntity, string)> PlayerList = new();
@@ -73,11 +72,6 @@ namespace Content.Client.Voting.UI
                 var option = AvailableVoteOptions[voteType];
                 VoteTypeButton.AddItem(Loc.GetString(option.Name), (int)voteType);
             }
-
-            // Sunrise-Start
-            var loc = IoCManager.Resolve<ILocalizationManager>();
-            DetailsEdit.Placeholder = new Rope.Leaf(loc.GetString("ui-vote-votekick-details-placeholder"));
-            // Sunrise-End
 
             _state.OnStateChanged += OnStateChanged;
             VoteTypeButton.OnItemSelected += VoteTypeSelected;
@@ -168,8 +162,6 @@ namespace Content.Client.Voting.UI
                         i++;
                     }
                 }
-
-                commandArgs += $"\"{Rope.Collapse(DetailsEdit.TextRope)}\""; // Sunrise-Edit
                 _consoleHost.LocalShell.RemoteExecuteCommand($"createvote {((StandardVoteType)typeId).ToString()} {commandArgs}");
             }
 
