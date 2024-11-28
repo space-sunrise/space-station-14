@@ -265,7 +265,7 @@
   - type: Appearance
 
   - type: entity
-  name: Sec Energy Pistol «Judge»
+  name: Energy Pistol «Judge»
   parent: BaseWeaponBatterySmall
   id: WeaponEnergyGunPistolSecurity
   description: A Security grade sidearm, used by many security forces throughout the local sector. Prepare to Judgement.
