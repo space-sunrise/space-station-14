@@ -268,7 +268,7 @@
   name: Sec Energy Pistol «Judge»
   parent: BaseWeaponBatterySmall
   id: WeaponEnergyGunPistolSecurity
-  description: A Security grade sidearm, used by many security forces throughout the local sector. Prepare to Judgement!.
+  description: A Security grade sidearm, used by many security forces throughout the local sector. Prepare to Judgement.
   components:
   - type: Sprite
     sprite:_Sunrise/Objects/Weapons/Guns/Battery/energygun_security.rsi
