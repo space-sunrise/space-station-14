@@ -6616,3 +6616,11 @@
     type: Add
   id: 460
   time: '2024-11-27T22:14:24.628046+00:00'
+- author: pacable
+  changes:
+  - message: "\u041A\u043E\u0440\u043E\u043B\u044C \u043A\u0440\u044B\u0441 \u0431\
+      \u044B\u043B \u0443\u0441\u0438\u043B\u0435\u043D."
+    type: Tweak
+  id: 461
+  time: '2024-11-28T09:37:31.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/714
