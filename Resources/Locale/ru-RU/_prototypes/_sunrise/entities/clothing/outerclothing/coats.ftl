@@ -50,3 +50,5 @@ ent-ClothingOuterCoatUSSPOvercoatBlack = бронированная шинель
     .desc = Старая вещица, прямиком из СССП.
 ent-ClothingOuterAtmosianBomberJacket = куртка-бомбер атмосианина
     .desc = Плотная, поношенная куртка-бомбер атмосианина.
+ent-ClothingOuterCoatPatologoanatom = Халат патологоанатома
+    .desc = Стерильный чёрный халат патологоанатома для работы с трупами. Немного защищает от проливов кислот.
