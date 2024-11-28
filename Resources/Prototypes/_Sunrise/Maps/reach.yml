@@ -40,7 +40,6 @@
             ServiceWorker: [ -1, -1 ]
             IAA: [ 1, 1 ]
             SeniorOfficer: [ 1, 1 ]
-            # Sunrise-Adjutant
             Adjutant: [ 1, 1 ]
         - type: StationGoal
           goals:
