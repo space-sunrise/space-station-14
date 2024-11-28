@@ -9,4 +9,4 @@ ui-options-sunrise-general-audio = Аудио
 ui-options-sunrise-general-graphics = Графика
 ui-options-sunrise-general-lobby = Лобби
 ui-options-sunrise-general-combat = Бой
-ui-options-tab-sunrise = Sunrise
+ui-options-tab-sunrise = Санрайз
