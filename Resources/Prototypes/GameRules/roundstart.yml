@@ -88,6 +88,11 @@
   - type: AntagLoadProfileRule
     speciesOverride: Human
     speciesOverrideBlacklist:
+    - Vox
+    - Felinid
+    - Diona
+    - HumanoidXeno
+    - Predator
     #Species that do not work with nukies should be included in this list.
     #Once the issues are fixed the species should be removed from this list to be enabled.
     #Balance concerns are not a valid reason to disable a species, except for high-impact Nukie-specific exploits.
@@ -97,8 +102,6 @@
   parent: BaseNukeopsRule
   id: Nukeops
   components:
-  - type: GameRule
-    minPlayers: 50 # Sunrise-edit
   - type: LoadMapRule
     mapPath: /Maps/Nonstations/nukieplanet.yml
   - type: AntagSelection
@@ -142,7 +145,7 @@
       fallbackRoles: [ NukeopsCommander, NukeopsMedic ]
       spawnerPrototype: SpawnPointNukeopsOperative
       max: 5  # Sunrise-edit
-      playerRatio: 10
+      playerRatio: 20
       startingGear: SyndicateOperativeGearFull
       roleLoadout:
       - RoleSurvivalNukie
