@@ -21,9 +21,12 @@
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.90 # Воры отличный антаг
+      prob: 1.0 # Воры будут всегда
     - id: Changeling
-      prob: 0.30 # Слишком любители поубивать
+      prob: 0.20 # Слишком любители поубивать
+    - id: Vampire
+      prob: 0.30 # Не самые рдмные
+
 
 - type: entity
   id: DeathMatch31
