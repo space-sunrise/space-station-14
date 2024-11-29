@@ -6,7 +6,7 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Command
-      time: 540000 # 15 hrs
+      time: 54000 # 15 hrs
     - !type:DepartmentTimeRequirement
       department: Law
       time: 18000 # 5 hrs
