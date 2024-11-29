@@ -42,6 +42,7 @@ job-name-usspcaptain = капитан СССП
 job-name-ntrguard = оперативник ИСН
 job-name-ntrleader = командир ИСН
 job-name-ntrofficer = офицер ИСН
+job-name-commaid = горничная командования
 # Перевод трекеров времени
 JobCentCommOfficial = представитель Центком
 JobCentCommOperator = оператор Центком

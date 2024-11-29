@@ -1,0 +1,42 @@
+- type: job
+  id: ComMaid
+  name: job-name-commaid
+  description: job-description-commaid
+  playTimeTracker: JobComMaid
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Service
+      time: 36000
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 12000
+  startingGear: ComMaidGear
+  icon: "JobIconComMaid"
+  supervisors: job-supervisors-captain
+  canBeAntag: false
+  access:
+  - Command
+  - Service
+  - Maintenance
+  sexBlacklist:
+  - Male
+
+- type: startingGear
+  id: ComMaidGear
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtElegantMaid
+    neck: BunnyButterfly
+    head: ClothingHeadNurseHat
+    eyes: ClothingEyesGlassesSunglasses
+    gloves: ClothingHandsGlovesLatex
+    shoes: BunnyShoesFilled
+    back: ClothingBackpackSatchelLeather
+    id: CommaidPDA
+    ears: ClothingHeadsetCommaid
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconComMaid
+  icon:
+    sprite: /Textures/_Lust/Interface/Misc/job_icons.rsi
+    state: commaid

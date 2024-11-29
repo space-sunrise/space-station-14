@@ -1,0 +1,18 @@
+﻿{
+    "version": 1,
+    "license": "CLA",
+    "copyright": "Made by discord: kitty_meow_cat for SUNRISE: Lust Station",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "equipped-EARS",
+            "directions": 4
+        },
+        {
+            "name": "icon"
+        }
+    ]
+}

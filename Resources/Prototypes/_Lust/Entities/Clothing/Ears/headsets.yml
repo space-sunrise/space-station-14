@@ -1,0 +1,15 @@
+- type: entity
+  parent: [ClothingHeadset, BaseCommandContraband]
+  id: ClothingHeadsetCommaid
+  name: command maid headset
+  description: A headset for command maid.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommon
+      - EncryptionKeyCommand
+  - type: Sprite
+    sprite: _Lust/Clothing/Ears/commaid_headset.rsi
+  - type: Clothing
+    sprite: _Lust/Clothing/Ears/commaid_headset.rsi

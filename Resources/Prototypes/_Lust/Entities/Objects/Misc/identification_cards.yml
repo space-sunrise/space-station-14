@@ -1,0 +1,12 @@
+﻿- type: entity
+  parent: IDCardStandard
+  id: CommaidIDCard
+  name: Commaid ID card
+  components:
+  - type: Sprite
+    sprite: _Lust/Objects/Misc/id_cards.rsi
+    layers:
+    - state: silver
+    - state: idcommaid
+  - type: PresetIdCard
+    job: ComMaid

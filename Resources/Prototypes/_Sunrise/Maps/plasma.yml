@@ -23,6 +23,7 @@
             HeadOfPersonnel: [ 1, 1 ]
             Adjutant: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
+            ComMaid: [ 1, 1 ]
             #law
             IAA: [ 1, 1 ]
             Lawyer: [ 1, 2 ]

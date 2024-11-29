@@ -1,0 +1,9 @@
+- type: roleLoadout
+  id: JobComMaid
+  groups:
+  - Trinkets
+  - Survival
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
