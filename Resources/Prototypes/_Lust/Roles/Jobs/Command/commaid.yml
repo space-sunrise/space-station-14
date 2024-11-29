@@ -14,6 +14,8 @@
   icon: "JobIconComMaid"
   supervisors: job-supervisors-captain
   canBeAntag: false
+  displayWeight: 0
+  weight: 5
   access:
   - Command
   - Service
