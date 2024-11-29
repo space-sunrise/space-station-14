@@ -530,6 +530,8 @@
   id: IonStorm
   components:
   - type: StationEvent
+    startAudio:
+      path: /Audio/_Sunrise/Announcements/ionstorm.ogg
     weight: 8
     reoccurrenceDelay: 20
     duration: 1
