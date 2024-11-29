@@ -6,7 +6,8 @@ ui-vote-type-votekick = Votekick
 # Votekick reasons
 ui-vote-votekick-type-raiding = Raiding
 ui-vote-votekick-type-cheating = Cheating
-ui-vote-votekick-type-spamming = Spamming
+ui-vote-votekick-type-spam = Spamming
+ui-vote-votekick-details-placeholder = Details...
 
 # Window title of the vote create menu
 ui-vote-create-title = Call Vote

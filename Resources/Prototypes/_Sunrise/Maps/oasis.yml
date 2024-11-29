@@ -2,7 +2,7 @@
   id: SunriseOasis
   mapName: 'Oasis'
   mapPath: /Maps/_Sunrise/Station/oasis.yml
-  minPlayers: 70
+  minPlayers: 40
   stations:
     Oasis:
       stationProto: StandardNanotrasenStation
@@ -16,9 +16,12 @@
           emergencyShuttlePath: /Maps/Shuttles/emergency_accordia.yml
         - type: StationJobs
           availableJobs:
-            #service
+            #command
             Captain: [ 1, 1 ]
+            Adjutant: [ 1, 1 ]
+            NanoTrasenRepresentative: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
+            #service
             Bartender: [ 2, 2 ]
             Botanist: [ 2, 3 ]
             Chef: [ 2, 2 ]
@@ -28,11 +31,13 @@
             ServiceWorker: [ -1, -1 ]
             Zookeeper: [ 1, 1 ]
             Reporter: [ 1, 1 ]
+            Barber: [ 1, 1 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 3, 3 ]
             StationEngineer: [ 5, 5 ]
             TechnicalAssistant: [ -1, -1 ]
+            SeniorEngineer: [ 1, 1 ]
             #medical
             ChiefMedicalOfficer: [ 1, 1 ]
             Chemist: [ 2, 2 ]
@@ -40,16 +45,22 @@
             Paramedic: [ 2, 2 ]
             MedicalIntern: [ -1, -1 ]
             Psychologist: [ 1, 1 ]
+            SeniorPhysician: [ 1, 1 ]
+            MedicalPathologist: [ 1, 1 ]
             #science
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 5, 5 ]
             ResearchAssistant: [ -1, -1 ]
+            Roboticist: [ 2, 2 ]
+            SeniorResearcher: [ 1, 1 ]
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
             SecurityOfficer: [ 8, 8 ]
             Detective: [ 1, 1 ]
             SecurityCadet: [ -1, -1 ]
+            SeniorOfficer: [ 1, 1 ]
+            Brigmedic: [ 1, 1 ]
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 3, 3 ]
@@ -59,30 +70,16 @@
             Clown: [ 1, 1 ]
             Mime: [ 1, 1 ]
             Musician: [ 1, 1 ]
-            # silicon
+            #silicon
             StationAi: [ 1, 1 ]
             Borg: [ 22, 22 ]
             SecurityCombatBorg: [ 2, 2 ]
-            # Sunrise-Civillian
-            Barber: [ 1, 1 ]
-            # Sunrise-Law
+            #law
             IAA: [ 1, 1 ]
             Lawyer: [ 2, 2 ]
             Magistrat: [ 1, 1 ]
-            # Sunrise-Blueshield
+            #blueshield
             BlueShield: [ 1, 1 ]
-            # Sunrise-Security
-            Brigmedic: [ 1, 1 ]
-            # Sunrise-Senior
-            SeniorEngineer: [ 1, 1 ]
-            SeniorPhysician: [ 1, 1 ]
-            SeniorResearcher: [ 1, 1 ]
-            SeniorOfficer: [ 1, 1 ]
-            # Sunrise-Science
-            Roboticist: [ 2, 2 ]
-            # Sunrise-Command
-            Adjutant: [ 1, 1 ]
-            NanoTrasenRepresentative: [ 1, 1 ]
         - type: StationGoal
           goals:
           - Shuttle

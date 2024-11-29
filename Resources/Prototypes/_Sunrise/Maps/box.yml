@@ -4,7 +4,7 @@
   mapPath: /Maps/_Sunrise/Station/box.yml
   maxRandomOffset: 0
   randomRotation: false
-  minPlayers: 0
+  minPlayers: 30
   stations:
     Boxstation:
       stationProto: StandardNanotrasenStation
@@ -32,6 +32,7 @@
             ServiceWorker: [ -1, -1 ]
             Reporter: [ 2, 2 ]
             Zookeeper: [ 1, 1 ]
+            Barber: [ 1, 1 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
             SeniorEngineer: [ 1, 1 ]
@@ -46,6 +47,7 @@
             Paramedic: [ 1, 1 ]
             MedicalIntern: [ -1, -1 ]
             Psychologist: [ 1, 1 ]
+            MedicalPathologist: [ 1, 1 ]
             #science
             ResearchDirector: [ 1, 1 ]
             SeniorResearcher: [ 1, 1 ]
@@ -80,8 +82,6 @@
             StationAi: [ 1, 1 ]
             Borg: [ 22, 22 ]
             SecurityCombatBorg: [ 2, 2 ]
-            # Sunrise-Civillian
-            Barber: [ 1, 1 ]
         - type: StationGoal
           goals:
           - Shuttle

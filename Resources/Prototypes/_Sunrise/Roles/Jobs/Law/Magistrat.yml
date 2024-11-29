@@ -38,8 +38,6 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
-  speciesBlacklist:
-  - Vox
 
 - type: startingGear
   id: MagistratGear

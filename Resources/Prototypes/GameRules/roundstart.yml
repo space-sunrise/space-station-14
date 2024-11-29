@@ -16,14 +16,25 @@
 
 - type: entity
   parent: BaseGameRule
-  id: SubGamemodesRule
+  id: LiteSubGamemodesRule
   components:
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.90 # Воры отличный антаг
+      prob: 1.0 # Воры будут всегда
+
+
+- type: entity
+  parent: BaseGameRule
+  id: MiddleSubGamemodesRule
+  components:
+  - type: SubGamemodes
+    rules:
     - id: Changeling
-      prob: 0.30 # Слишком любители поубивать
+      prob: 0.25
+    - id: Vampire
+      prob: 0.25
+
 
 - type: entity
   id: DeathMatch31
@@ -85,6 +96,11 @@
   - type: AntagLoadProfileRule
     speciesOverride: Human
     speciesOverrideBlacklist:
+    - Vox
+    - Felinid
+    - Diona
+    - HumanoidXeno
+    - Predator
     #Species that do not work with nukies should be included in this list.
     #Once the issues are fixed the species should be removed from this list to be enabled.
     #Balance concerns are not a valid reason to disable a species, except for high-impact Nukie-specific exploits.
@@ -95,7 +111,7 @@
   id: Nukeops
   components:
   - type: GameRule
-    minPlayers: 50 # Sunrise-edit
+    minPlayers: 20 # Sunrise-Edit
   - type: LoadMapRule
     mapPath: /Maps/Nonstations/nukieplanet.yml
   - type: AntagSelection
@@ -139,7 +155,7 @@
       fallbackRoles: [ NukeopsCommander, NukeopsMedic ]
       spawnerPrototype: SpawnPointNukeopsOperative
       max: 5  # Sunrise-edit
-      playerRatio: 10
+      playerRatio: 20
       startingGear: SyndicateOperativeGearFull
       roleLoadout:
       - RoleSurvivalNukie
@@ -321,6 +337,8 @@
   id: RampingStationEventScheduler
   parent: BaseGameRule
   components:
+  - type: GameRule
+    minPlayers: 50 # Слишком тяжело для меньшего количества игроков.
   - type: RampingStationEventScheduler
     scheduledGameRules: !type:NestedSelector
       tableId: BasicGameRulesTable

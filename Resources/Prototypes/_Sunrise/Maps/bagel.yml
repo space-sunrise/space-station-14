@@ -3,7 +3,7 @@
   mapName: 'Bagel Station'
   mapPath: /Maps/_Sunrise/Station/bagel.yml
   minPlayers: 0
-  maxPlayers: 70
+  maxPlayers: 40
   maxRandomOffset: 0
   randomRotation: false
   stations:
@@ -33,6 +33,7 @@
           ServiceWorker: [ -1, -1 ]
           Reporter: [ 2, 2 ]
           Zookeeper: [ 1, 1 ]
+          Barber: [ 1, 1 ]
           #engineering
           ChiefEngineer: [ 1, 1 ]
           SeniorEngineer: [ 1, 1 ]
@@ -47,6 +48,7 @@
           Paramedic: [ 1, 1 ]
           MedicalIntern: [ -1, -1 ]
           Psychologist: [ 1, 1 ]
+          MedicalPathologist: [ 1, 1]
           #science
           ResearchDirector: [ 1, 1 ]
           SeniorResearcher: [ 1, 1 ]
@@ -81,5 +83,35 @@
           StationAi: [ 1, 1 ]
           Borg: [ 22, 22 ]
           SecurityCombatBorg: [ 2, 2 ]
-          # Sunrise-Civillian
-          Barber: [ 1, 1 ]
+      - type: StationGoal
+        goals:
+        - Shuttle
+        - Singularity
+        - SolarPanels
+        - Artifacts
+        - Bank
+        - Zoo
+        - MiningOutpost
+        - Tesla
+        - XenobiologyRepair
+        - VirusologyAmbusol
+        - Containment
+        - WeaponsSecurity
+        - MaintsRepair
+        - DormsBuild
+        - BattleShuttle
+        - Transit
+        - NukeRoom
+        - Permabrig
+        - Farm
+        - Delegates
+        - Cyborgs
+        - Testing
+        - Anomaly
+        - Replenishment
+        - IntelWeapons
+        - Reports
+        - Reconnaissance
+        - Saboteurs
+        - Furs
+        - Crew
