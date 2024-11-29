@@ -13,6 +13,7 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
     public sealed partial class GhostRolesWindow : DefaultWindow
     {
         public event Action<GhostRoleInfo>? OnRoleRequestButtonClicked;
+        public event Action<GhostRoleInfo>? OnRoleRulesButtonClicked;
         public event Action<GhostRoleInfo>? OnRoleFollow;
 
         private Dictionary<string, Collapsible> _collapsibleBoxes = new();
@@ -60,6 +61,7 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
             var info = new GhostRoleInfoBox(name, description);
             var buttons = new GhostRoleButtonsBox(hasAccess, reason, ghostRoleInfos, spriteSystem);
             buttons.OnRoleSelected += OnRoleRequestButtonClicked;
+            buttons.OnRoleRules += OnRoleRulesButtonClicked;
             buttons.OnRoleFollow += OnRoleFollow;
 
             EntryContainer.AddChild(info);
