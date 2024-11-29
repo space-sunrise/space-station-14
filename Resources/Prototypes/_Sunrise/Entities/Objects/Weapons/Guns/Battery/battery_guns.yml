@@ -23,8 +23,8 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: Battery
-    maxCharge: 1000
-    startingCharge: 1000
+    maxCharge: 1500
+    startingCharge: 1500
   - type: ProjectileBatteryAmmoProvider
     proto: BulletDisabler
     fireCost: 50
@@ -141,8 +141,8 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: Battery
-    maxCharge: 500
-    startingCharge: 500
+    maxCharge: 600
+    startingCharge: 600
   - type: ProjectileBatteryAmmoProvider
     proto: BulletDisabler
     fireCost: 50
@@ -194,8 +194,8 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: Battery
-    maxCharge: 800
-    startingCharge: 800
+    maxCharge: 1000
+    startingCharge: 1000
   - type: ProjectileBatteryAmmoProvider
     proto: BulletDisabler
     fireCost: 50
@@ -263,15 +263,15 @@
     steps: 5
     zeroVisible: true
   - type: Appearance
-
-  - type: entity
+ 
+- type: entity
   name: Energy Pistol «Judge»
   parent: BaseWeaponBatterySmall
   id: WeaponEnergyGunPistolSecurity
   description: A Security grade sidearm, used by many security forces throughout the local sector. Prepare to Judgement.
   components:
   - type: Sprite
-    sprite:_Sunrise/Objects/Weapons/Guns/Battery/energygun_security.rsi
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_security.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
@@ -289,8 +289,8 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: Battery
-    maxCharge: 1000
-    startingCharge: 1000
+    maxCharge: 1500
+    startingCharge: 1500
   - type: ProjectileBatteryAmmoProvider
     proto: BulletDisabler
     fireCost: 50
@@ -320,6 +320,66 @@
     - Sidearm
   - type: StaticPrice
     price: 750
+
+- type: entity
+  name: Tactical Energy Gun
+  parent: BaseWeaponBattery
+  id: WeaponEnergyGunTactical
+  description: "A Tactical version of basic hybrid energy gun with two settings: disable and kill. Have auto recharge."
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_tactical.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mode-disabler
+      shader: unshaded
+      map: [ "Firemode" ]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_tactical.rsi
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+    selectedMode: SemiAuto
+    fireRate: 2.2
+    availableModes:
+        - SemiAuto
+        - FullAuto
+  - type: Battery
+    maxCharge: 1800
+    startingCharge: 1800
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 6 # 5 minute
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletDisabler
+    fireCost: 50
+  - type: EnergyGun
+    fireModes:
+    - proto: BulletDisabler
+      fireCost: 50
+      name: energy-gun-disable
+      state: disabler
+    - proto: BulletEnergyGunLaser
+      fireCost: 100
+      name: energy-gun-lethal
+      state: lethal
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.EnergyGunFireModeVisuals.State:
+        Firemode:
+          Disabler: { state: mode-disabler }
+          Lethal: { state: mode-lethal }
 
 - type: entity
   parent: BaseWeaponBattery
