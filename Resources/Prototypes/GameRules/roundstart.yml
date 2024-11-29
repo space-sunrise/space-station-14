@@ -16,16 +16,24 @@
 
 - type: entity
   parent: BaseGameRule
-  id: SubGamemodesRule
+  id: LiteSubGamemodesRule
   components:
   - type: SubGamemodes
     rules:
     - id: Thief
       prob: 1.0 # Воры будут всегда
+
+
+- type: entity
+  parent: BaseGameRule
+  id: MiddleSubGamemodesRule
+  components:
+  - type: SubGamemodes
+    rules:
     - id: Changeling
-      prob: 0.20 # Слишком любители поубивать
+      prob: 0.25
     - id: Vampire
-      prob: 0.30 # Не самые рдмные
+      prob: 0.25
 
 
 - type: entity
@@ -102,6 +110,8 @@
   parent: BaseNukeopsRule
   id: Nukeops
   components:
+  - type: GameRule
+    minPlayers: 20 # Sunrise-Edit
   - type: LoadMapRule
     mapPath: /Maps/Nonstations/nukieplanet.yml
   - type: AntagSelection
@@ -327,6 +337,8 @@
   id: RampingStationEventScheduler
   parent: BaseGameRule
   components:
+  - type: GameRule
+    minPlayers: 50 # Слишком тяжело для меньшего количества игроков.
   - type: RampingStationEventScheduler
     scheduledGameRules: !type:NestedSelector
       tableId: BasicGameRulesTable

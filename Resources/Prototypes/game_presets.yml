@@ -6,6 +6,7 @@
   showInVote: true # Sunrise-Edit
   hide: true # Sunrise-Edit
   description: survival-description
+  minPlayers: 50 # Sunrise-Edit
   rules:
     - MeteorSwarmScheduler
     - RampingStationEventScheduler
@@ -162,7 +163,8 @@
   minPlayers: 5 # Sunrise-Edit: 5 players for TRAITORS
   rules:
     - Traitor
-    - SubGamemodesRule
+    - LiteSubGamemodesRule
+    - MiddleSubGamemodesRule
     - BasicStationEventScheduler
     - MeteorSwarmScheduler
     - SpaceTrafficControlEventScheduler
@@ -192,7 +194,7 @@
   minPlayers: 20 # Sunrise-Edit: 20 players for NUKEOPS
   rules:
     - Nukeops
-    - SubGamemodesRule
+    - LiteSubGamemodesRule # Только лайтовые под-антаги, чтобы не было кооперации станции с генокрадами против ЯО.
     - BasicStationEventScheduler
     - MeteorSwarmScheduler
     - SpaceTrafficControlEventScheduler
@@ -211,7 +213,7 @@
   minPlayers: 15 # Sunrise-Edit: 15 players for REVOLUTIONARY
   rules:
     - Revolutionary
-    - SubGamemodesRule
+    - LiteSubGamemodesRule # Только лайтовые под-антаги.
     - BasicStationEventScheduler
     - MeteorSwarmScheduler
     - SpaceTrafficControlEventScheduler
@@ -268,7 +270,7 @@
   minPlayers: 20 # Sunrise-Edit: 20 players for VAMPIRES
   rules:
   - Vampire
-  - SubGamemodesRule
+  - LiteSubGamemodesRule # Только лайтовые под-антаги.
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - BasicRoundstartVariation

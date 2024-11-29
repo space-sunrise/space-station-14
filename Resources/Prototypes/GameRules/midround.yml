@@ -35,6 +35,8 @@
   parent: BaseGameRule
   id: Changeling
   components:
+  - type: GameRule
+    minPlayers: 5
   - type: ChangelingRule
   - type: AntagSelection
     agentName: changeling-roundend-name
@@ -50,6 +52,8 @@
   parent: BaseGameRule
   id: Vampire
   components:
+  - type: GameRule
+    minPlayers: 5
   - type: VampireRule
   - type: AntagSelection
     agentName: vampire-roundend-name
