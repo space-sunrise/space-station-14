@@ -2,12 +2,12 @@
   id: SunriseMapPool
   maps:
   - SunriseDelta
+  - SunrisePlanetDelta
   - SunriseBox
   - SunriseFland
   - SunriseMarathon
   - SunriseBagel
   - SunriseReach
-  - SunriseCorvaxGelta
   - SunriseTrain
   - SunriseMeta
   - SunriseOasis

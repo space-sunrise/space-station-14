@@ -60,3 +60,50 @@
   - type: StorageFill
     contents:
     - id: WeaponIONRifle
+
+- type: entity
+  id: ClosetPatologoanatom
+  name: patologoanatom's locker
+  parent: LockerBaseSecure
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Storage/closet.rsi
+    noRot: true
+    layers:
+    - state: generic
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: generic_door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: patologoanatom
+    stateDoorOpen: patologoanatom_open
+    stateDoorClosed: patologoanatom_door
+  - type: AccessReader
+    access: [["Medical"]]
+
+- type: entity
+  id: ClosetPatologoanatomFilled
+  parent: ClosetPatologoanatom
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingUniformJumpsuitMedicalDoctor
+    - id: HandheldHealthAnalyzer
+    - id: BoxForensicPad
+    - id: ClothingHeadsetMedical
+    - id: HeadSkeleton
+    - id: ClothingHeadHatPatologonatHat
+    - id: Scalpel
+    - id: ClothingHandsGlovesNitrile
+    - id: ClothingShoesColorBlack
+    - id: ClothingOuterHospitalGown
+      amount: 2

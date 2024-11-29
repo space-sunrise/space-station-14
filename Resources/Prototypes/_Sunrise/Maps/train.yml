@@ -5,6 +5,7 @@
   maxRandomOffset: 0
   randomRotation: false
   minPlayers: 0
+  maxPlayers: 40
   stations:
     Train:
       stationProto: StandardNanotrasenStation
@@ -18,9 +19,12 @@
           emergencyShuttlePath: /Maps/_Sunrise/Shuttles/emergency_omega.yml # TODO - add railway station
         - type: StationJobs
           availableJobs:
-            #service
+            #command
             Captain: [ 1, 1 ]
             HeadOfPersonnel: [ 1, 1 ]
+            NanoTrasenRepresentative: [ 1, 1 ]
+            Adjutant: [ 1, 1 ]
+            #service
             Bartender: [ 2, 2 ]
             Botanist: [ 3, 3 ]
             Chef: [ 2, 2 ]
@@ -30,6 +34,7 @@
             ServiceWorker: [ -1, -1 ]
             Reporter: [ 2, 2 ]
             Zookeeper: [ 1, 1 ]
+            Barber: [ 1, 1 ]
             #engineering
             ChiefEngineer: [ 1, 1 ]
             SeniorEngineer: [ 1, 1 ]
@@ -39,11 +44,12 @@
             #medical
             ChiefMedicalOfficer: [ 1, 1 ]
             SeniorPhysician: [ 1, 1 ]
-            Chemist: [ 2, 3 ]
+            Chemist: [ 2, 2 ]
             MedicalDoctor: [ 4, 4 ]
             Paramedic: [ 1, 1 ]
             MedicalIntern: [ -1, -1 ]
             Psychologist: [ 1, 1 ]
+            MedicalPathologist: [ 1, 1 ]
             #science
             ResearchDirector: [ 1, 1 ]
             SeniorResearcher: [ 1, 1 ]
@@ -72,16 +78,11 @@
             BlueShield: [ 1, 1 ]
             #law
             IAA: [ 1, 2 ]
-            NanoTrasenRepresentative: [ 1, 1 ]
             Magistrat: [ 1, 1 ]
-            # silicon
+            #silicon
             StationAi: [ 1, 1 ]
             Borg: [ 22, 22 ]
             SecurityCombatBorg: [ 2, 2 ]
-            # Sunrise-Civillian
-            Barber: [ 1, 1 ]
-            # Sunrise-Adjutant
-            Adjutant: [ 1, 1 ]
         - type: StationGoal
           goals:
           - Shuttle
@@ -114,4 +115,3 @@
           - Saboteurs
           - Furs
           - Crew
-

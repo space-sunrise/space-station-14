@@ -106,6 +106,7 @@
   - MedicalIntern
   - Psychologist
   - Paramedic
+  - MedicalPathologist  # Sunrise-pathologist
 
 - type: department
   id: Security
