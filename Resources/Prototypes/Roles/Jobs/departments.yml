@@ -106,6 +106,7 @@
   - MedicalIntern
   - Psychologist
   - Paramedic
+  - MedicalPathologist  # Sunrise-pathologist
 
 - type: department
   id: Security
@@ -122,7 +123,6 @@
   - Warden
   - Brigmedic  # Sunrise-Brigmedic
   - SecurityPilot # Sunrise-SecurityPilot
-  - SecurityCombatBorg # Sunrise-Edit
 
 - type: department
   id: Science
@@ -145,6 +145,15 @@
   roles:
   - StationAi
   - Borg
+  - MedicalBorg # Sunrise-Edit
+  - EngineerBorg # Sunrise-Edit
+  - MinerBorg # Sunrise-Edit
+  - JanitorBorg # Sunrise-Edit
+  - ServiceBorg # Sunrise-Edit
+  - ClownBorg # Sunrise-Edit
+  - PeaceBorg # Sunrise-Edit
+  - SecurityBorg # Sunrise-Edit
+  - SecurityCombatBorg # Sunrise-Edit
   primary: false
 
 - type: department

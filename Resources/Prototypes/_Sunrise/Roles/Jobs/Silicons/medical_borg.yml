@@ -1,0 +1,11 @@
+- type: job
+  id: MedicalBorg
+  name: job-name-medical-borg
+  description: job-description-medical-borg
+  playTimeTracker: JobMedicalBorg
+  icon: JobIconMedicalBorg
+  supervisors: job-supervisors-human
+  canBeAntag: false
+  setPreference: false
+  displayWeight: -10  # Sunrise
+  jobEntity: PlayerBorgBattery

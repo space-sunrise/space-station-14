@@ -1,0 +1,11 @@
+- type: job
+  id: PeaceBorg
+  name: job-name-peace-borg
+  description: job-description-peace-borg
+  playTimeTracker: JobPeaceBorg
+  icon: JobIconPeaceBorg
+  supervisors: job-supervisors-hos
+  canBeAntag: false
+  setPreference: false
+  displayWeight: -10  # Sunrise
+  jobEntity: PlayerBorgBattery

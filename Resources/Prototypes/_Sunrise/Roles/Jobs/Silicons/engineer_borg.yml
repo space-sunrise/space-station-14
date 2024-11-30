@@ -1,0 +1,11 @@
+- type: job
+  id: EngineerBorg
+  name: job-name-engineer-borg
+  description: job-description-engineer-borg
+  playTimeTracker: JobEngineerBorg
+  icon: JobIconEngineerBorg
+  supervisors: job-supervisors-human
+  canBeAntag: false
+  setPreference: false
+  displayWeight: -10  # Sunrise
+  jobEntity: PlayerBorgBattery

@@ -31,6 +31,9 @@
     inherentRadioChannels:
     - Common
     - Binary
+    notifyChannels:
+    - Binary
+    - Science
 
 - type: entity
   id: BorgChassisGeneric

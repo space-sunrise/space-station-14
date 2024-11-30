@@ -2,6 +2,10 @@
 - type: borgType
   id: generic
 
+  # Sunrise-Start
+  job: Borg
+  # Sunrise-End
+
   # Description
   dummyPrototype: BorgChassisGeneric
 
@@ -16,6 +20,13 @@
 
   radioChannels:
   - Science
+
+  # Sunrise-Start
+  footstepCollection:
+    collection: FootstepCyborgSpider
+    params:
+      volume: -15
+  # Sunrise-End
 
   # Visual
   inventoryTemplateId: borgShort
@@ -32,6 +43,10 @@
 # Engineering borg
 - type: borgType
   id: engineering
+
+  # Sunrise-Start
+  job: EngineerBorg
+  # Sunrise-End
 
   # Description
   dummyPrototype: BorgChassisEngineer
@@ -54,6 +69,13 @@
   - Engineering
   - Science
 
+  # Sunrise-Start
+  footstepCollection:
+    collection: FootstepCyborgSpider
+    params:
+      volume: -15
+  # Sunrise-End
+
   # Visual
   inventoryTemplateId: borgShort
   spriteBodyState: engineer
@@ -70,6 +92,10 @@
 - type: borgType
   id: mining
 
+  # Sunrise-Start
+  job: MinerBorg
+  # Sunrise-End
+
   # Description
   dummyPrototype: BorgChassisMining
 
@@ -84,18 +110,18 @@
   - BorgModuleStandart
   - BorgModuleMining
   - BorgModuleGPS
-  - BorgModuleJetpack
+  - BorgModuleJetpack # Sunrise-Edit
 
   radioChannels:
   - Supply
   - Science
 
-  addComponent:
-  - type: FootstepModifier
-    footstepSoundCollection:
-      collection: FootstepCyborgSpider
-      params:
-        volume: -15
+  # Sunrise-Start
+  footstepCollection:
+    collection: FootstepCyborgSpider
+    params:
+      volume: -15
+  # Sunrise-End
 
   # Visual
   inventoryTemplateId: borgTall
@@ -114,6 +140,10 @@
 - type: borgType
   id: janitor
 
+  # Sunrise-Start
+  job: JanitorBorg
+  # Sunrise-End
+
   # Description
   dummyPrototype: BorgChassisJanitor
 
@@ -127,18 +157,18 @@
   defaultModules:
   - BorgModuleStandart
   - BorgModuleLightReplacer
-  - BorgModuleCleaning
+  - BorgModuleAdvancedCleaning # Sunrise-Edit
 
   radioChannels:
   - Science
   - Service
 
-  addComponent:
-  - type: FootstepModifier
-    footstepSoundCollection:
-      path: /Audio/Effects/Fluids/watersplash.ogg
-      params:
-        volume: -5
+  # Sunrise-Start
+  footstepCollection:
+    collection: FootstepJanitorBorg
+    params:
+      volume: -5
+  # Sunrise-Start
 
   # Visual
   inventoryTemplateId: borgShort
@@ -157,6 +187,10 @@
 - type: borgType
   id: medical
 
+  # Sunrise-Start
+  job: MedicalBorg
+  # Sunrise-End
+
   # Description
   dummyPrototype: BorgChassisMedical
 
@@ -169,9 +203,9 @@
 
   defaultModules:
   - BorgModuleStandart
-  - BorgModuleAdvancedTreatment
+  - BorgModuleAdvancedTreatment # Sunrise-Edit
   - BorgModuleTreatment
-  - BorgModuleDefibrillator
+  - BorgModuleDefibrillator # Sunrise-Edit
 
   radioChannels:
   - Science
@@ -185,6 +219,7 @@
   - type: ShowHealthIcons
     damageContainers:
     - Biological
+  # Sunrise-Start
   - type: TTS
     voice: TurretFloor
   - type: MovementSpeedModifier
@@ -196,6 +231,7 @@
     - HandheldCrewMonitorBorg
     worldTargetActions:
     - HandheldHealthAnalyzerUnpowered
+  # Sunrise-End
 
   # Visual
   inventoryTemplateId: borgDutch
@@ -217,6 +253,10 @@
 # Service borg
 - type: borgType
   id: service
+
+  # Sunrise-Start
+  job: ServiceBorg
+  # Sunrise-End
 
   # Description
   dummyPrototype: BorgChassisService
@@ -253,6 +293,8 @@
 - type: borgType
   id: peace
 
+  job: PeaceBorg
+
   # Description
   dummyPrototype: BorgChassisPeace
 
@@ -284,9 +326,6 @@
     - FoodBakedCookie
     - FoodBakedCookieSugar
     - FoodSnackCookieFortune
-  - type: FootstepModifier
-    footstepSoundCollection:
-      collection: FootstepCyborgSpider
   - type: BorgCuffed
   - type: InnateItem
     instantActions:
@@ -314,6 +353,14 @@
     - Chapel
     - Hydroponics
     - Atmospherics
+  - type: AccessReader
+    access: [ [ "Command" ], [ "Security" ] ]
+
+  # Sounds
+  footstepCollection:
+    collection: FootstepCyborgSpider
+    params:
+      volume: -10
 
   # Visual
   inventoryTemplateId: borgTall
@@ -327,9 +374,11 @@
   petFailureString: petting-failure-peace-cyborg
 
 
-# Peace borg
+# Clown borg
 - type: borgType
   id: clown
+
+  job: ClownBorg
 
   # Description
   dummyPrototype: BorgChassisClown
@@ -356,11 +405,12 @@
     - SoapNT
     - SoapDeluxe
     - SoapHomemade
-  - type: FootstepModifier
-    footstepSoundCollection:
-      collection: FootstepClown
   - type: TTS
     voice: NecoArcTwo
+
+  # Sounds
+  footstepCollection:
+    collection: FootstepClown
 
   # Visual
   inventoryTemplateId: borgTall
@@ -377,6 +427,8 @@
 # Security borg
 - type: borgType
   id: security
+
+  job: SecurityBorg
 
   # Description
   dummyPrototype: BorgChassisSecurity
@@ -397,19 +449,37 @@
   - Science
   - Security
 
+  # Visual
+  inventoryTemplateId: borgTall
+  spriteBodyState: sec
+  spriteHasMindState: sec_e
+  spriteNoMindState: sec_e_r
+  spriteToggleLightState: sec_l
+
+  # Pet
+  petSuccessString: petting-success-sec-cyborg
+  petFailureString: petting-failure-sec-cyborg
+
+  # Sounds
+  footstepCollection:
+    collection: FootstepCyborgSpider
+    params:
+      volume: -10
+
   addComponents:
   - type: TTS
     voice: Sentrybot
   - type: InnateItem
     instantActions:
-    - PortableSurveillanceCameraMonitor
+    - PortableSurveillanceCameraMonitorUnpowered
+    - HandheldCriminalRecordsMonitorUnpowered
     worldTargetActions:
     - ForensicScanner
   - type: ShowCriminalRecordIcons
   - type: BorgCuffed
   - type: FlashImmunity
   - type: SiliconLawProvider
-    laws: SecurityStatic
+    laws: NTDefault
   - type: Access
     tags:
     - EmergencyShuttleRepealAll
@@ -433,14 +503,5 @@
     - Chapel
     - Hydroponics
     - Atmospherics
-
-  # Visual
-  inventoryTemplateId: borgTall
-  spriteBodyState: sec
-  spriteHasMindState: sec_e
-  spriteNoMindState: sec_e_r
-  spriteToggleLightState: sec_l
-
-  # Pet
-  petSuccessString: petting-success-sec-cyborg
-  petFailureString: petting-failure-sec-cyborg
+  - type: AccessReader
+    access: [ [ "Command" ], [ "Security" ] ]

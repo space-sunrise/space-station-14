@@ -2,16 +2,14 @@
   id: SunriseMapPool
   maps:
   - SunriseDelta
+  - SunrisePlanetDelta
   - SunriseBox
   - SunriseFland
   - SunriseMarathon
   - SunriseBagel
   - SunriseReach
-#  - SunriseCorvaxGelta
   - SunriseTrain
   - SunriseMeta
   - SunriseOasis
   - SunriseCog
-  #- SunriseHalloweenDelta
-  #- SunriseHalloweenBox
 # НЕ ДОБАВЛЯТЬ НОВЫЕ КАРТЫ БЕЗ МОЕГО РЕВЬЮ! ~ SplikZerys

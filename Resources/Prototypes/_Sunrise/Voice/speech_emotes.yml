@@ -212,6 +212,7 @@
   id: Whines
   name: chat-emote-name-whines
   category: Vocal
+  available: false
   icon: Interface/Emotes/cry.png
   whitelist:
     components:

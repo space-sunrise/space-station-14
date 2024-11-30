@@ -27,14 +27,12 @@
 - type: startingGear
   id: SecurityCadetGear
   equipment:
-    shoes: ClothingShoesBootsJackFilled
+    shoes: ClothingShoesBootsJack
     outerClothing: ClothingOuterArmorBasic
     id: SecurityCadetPDA
     ears: ClothingHeadsetSecurity
-    belt: ClothingBeltSecurityFilled
+    gloves: ClothingHandsGlovesColorGray
     pocket1: HyperLinkBookCorporateLaw # Sunrise-edit
-    pocket2: WeaponPistolG22NonLethal # Sunrise-Edit
   storage:
     back:
     - Flash
-    #- MagazinePistol # Sunrise-Edit

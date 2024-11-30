@@ -133496,12 +133496,6 @@ entities:
     - type: Transform
       pos: -34.5,-9.5
       parent: 2
-  - uid: 21609
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -28.5,-51.5
-      parent: 2
 - proto: SpaceCash
   entities:
   - uid: 7965
@@ -134823,27 +134817,6 @@ entities:
     components:
     - type: Transform
       pos: 31.5,-33.5
-      parent: 2
-- proto: SpawnPointSeniorEngineer
-  entities:
-  - uid: 21610
-    components:
-    - type: Transform
-      pos: 23.5,22.5
-      parent: 2
-- proto: SpawnPointSeniorPhysician
-  entities:
-  - uid: 21609
-    components:
-    - type: Transform
-      pos: -17.5,-34.5
-      parent: 2
-- proto: SpawnPointSeniorResearcher
-  entities:
-  - uid: 21608
-    components:
-    - type: Transform
-      pos: 15.5,-41.5
       parent: 2
 - proto: SpawnPointServiceWorker
   entities:

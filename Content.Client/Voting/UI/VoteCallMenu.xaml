@@ -15,15 +15,16 @@
         <BoxContainer Orientation="Vertical" Margin="8 2 8 0" VerticalExpand="True" VerticalAlignment="Top">
             <BoxContainer Orientation="Vertical">
                 <OptionButton Margin="2 1" Name="VoteTypeButton" HorizontalExpand="False" />
-                <BoxContainer Name="VoteOptionsButtonContainer" HorizontalExpand="False" Orientation="Vertical"> 
+                <BoxContainer Name="VoteOptionsButtonContainer" HorizontalExpand="False" Orientation="Vertical">
                 </BoxContainer>
+                <TextEdit Margin="2 1" Name="DetailsEdit" Editable="True" MinHeight="50" Visible="False" />
                 <Button Margin="64 4" Name="FollowButton" Text="{Loc 'ui-vote-follow-button'}" Visible="False" />
                 <Label Margin="2 2" Name="VoteNotTrustedLabel" Text="{Loc 'ui-vote-trusted-users-notice'}" Visible="False" />
                 <Label Margin="2 2" Name="VoteWarningLabel" Text="{Loc 'ui-vote-abuse-warning'}" Visible="False" HorizontalAlignment="Center"/>
             </BoxContainer>
             <Label Margin="8 2" Name="VoteTypeTimeoutLabel" Visible="False" />
         </BoxContainer>
-        
+
         <Button Margin="8 32 8 2" Name="CreateButton" Text="{Loc 'ui-vote-create-button'}" />
 
         <PanelContainer StyleClasses="LowDivider" />

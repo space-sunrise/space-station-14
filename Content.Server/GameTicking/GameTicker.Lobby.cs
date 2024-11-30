@@ -192,12 +192,6 @@ namespace Content.Server.GameTicking
             => UserHasJoinedGame(session.UserId);
 
         public bool UserHasJoinedGame(NetUserId userId)
-        {
-            // Sunrise-Edit: Я не понимаю почему, но PlayerGameStatuses[userId] может вернуть ошибку.
-            if (!PlayerGameStatuses.TryGetValue(userId, out var status))
-                return false;
-
-            return status == PlayerGameStatus.JoinedGame;
-        }
+            => PlayerGameStatuses.TryGetValue(userId, out var status) && status == PlayerGameStatus.JoinedGame;
     }
 }

@@ -16,33 +16,28 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
         private GhostRoleRulesWindow? _windowRules = null;
         private uint _windowRulesId = 0;
 
-        private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
-
         public GhostRolesEui()
         {
-            IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
-
             _window = new GhostRolesWindow();
 
             _window.OnRoleRequestButtonClicked += info =>
             {
-                _windowRules?.Close();
-
                 if (info.Kind == GhostRoleKind.RaffleJoined)
                 {
                     SendMessage(new LeaveGhostRoleRaffleMessage(info.Identifier));
                     return;
                 }
 
-                _windowRules = new GhostRoleRulesWindow(info.Rules, _ =>
-                {
-                    SendMessage(new RequestGhostRoleMessage(info.Identifier));
+                SendMessage(new RequestGhostRoleMessage(info.Identifier));
 
-                    // if raffle role, close rules window on request, otherwise do
-                    // old behavior of waiting for the server to close it
-                    if (info.Kind != GhostRoleKind.FirstComeFirstServe)
-                        _windowRules?.Close();
-                });
+                if (info.Kind != GhostRoleKind.FirstComeFirstServe)
+                    _windowRules?.Close();
+            };
+
+            _window.OnRoleRulesButtonClicked += info =>
+            {
+                _windowRules?.Close();
+                _windowRules = new GhostRoleRulesWindow(info.Rules);
                 _windowRulesId = info.Identifier;
                 _windowRules.OnClose += () =>
                 {
@@ -105,14 +100,15 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
             {
                 var name = group.Key.Name;
                 var description = group.Key.Description;
+                var prototypeId = group.Key.PrototypeId;
                 var hasAccess = requirementsManager.CheckRoleRequirements(
                     group.Key.Requirements,
-                    group.Key.PrototypeId,
+                    prototypeId,
                     null,
                     out var reason);
 
                 // Adding a new role
-                _window.AddEntry(name, description, hasAccess, reason, group, spriteSystem);
+                _window.AddEntry(name, description, prototypeId, hasAccess, reason, group, spriteSystem);
             }
 
             // Restore the Collapsible box state if it is saved

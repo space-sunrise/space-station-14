@@ -13,8 +13,6 @@
   setPreference: false
   canBeAntag: false
   displayWeight: 50
-  speciesBlacklist:
-  - Vox
   access:
   - Security
   - Brig

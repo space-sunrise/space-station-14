@@ -5,6 +5,7 @@ using Content.Server.Mind;
 using Content.Server.Objectives;
 using Content.Server.Roles;
 using Content.Server.Vampire;
+using Content.Server.Bible.Components; 
 using Content.Shared.Alert;
 using Content.Shared.Vampire.Components;
 using Content.Shared.NPC.Prototypes;
@@ -48,7 +49,6 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
         base.Initialize();
 
         SubscribeLocalEvent<VampireRuleComponent, GetBriefingEvent>(OnGetBriefing);
-
         SubscribeLocalEvent<VampireRuleComponent, AfterAntagEntitySelectedEvent>(OnSelectAntag);
         SubscribeLocalEvent<VampireRuleComponent, ObjectivesTextPrependEvent>(OnTextPrepend);
     }
@@ -56,6 +56,10 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
     private void OnSelectAntag(EntityUid mindId, VampireRuleComponent comp, ref AfterAntagEntitySelectedEvent args)
     {
         var ent = args.EntityUid;
+        
+        if (HasComp<BibleUserComponent>(ent))
+            return;
+
         _antag.SendBriefing(ent, MakeBriefing(ent), Color.Yellow, BriefingSound);
         MakeVampire(ent, comp);
     }

@@ -150,6 +150,7 @@
       - ExteriorLightTube
       - LightBulb
       - LedLightBulb
+      - DimLightBulb
       - Bucket
       - DrinkMug
       - DrinkMugMetal
@@ -390,9 +391,9 @@
       - BoxShotgunUranium
       - BoxShellTranquilizer
       - ExplosivePayload
-      - GrenadeBlast
-      - GrenadeEMP
-      - GrenadeFlash
+      - ShellBlastArtillery #Sunrise-edit
+      - ShellEMPArtillery #Sunrise-edit
+      - ShellFlashArtillery #Sunrise-edit
       - HoloprojectorSecurity
       - MagazineBoxLightRifleIncendiary
       - MagazineBoxLightRifleUranium
@@ -624,6 +625,10 @@
     - RightLegBorg
     - LightHeadBorg
     - TorsoBorg
+#Sunrise-start
+    - MechAirTank
+    - MechThruster
+#Sunrise-end
     dynamicRecipes:
 #Sunrise-edit start
     - CartridgeLightRifleRubber
@@ -864,9 +869,9 @@
       - ClothingBackpackElectropack
       - ExplosivePayload
       - FlashPayload
-      - GrenadeBlast
-      - GrenadeEMP
-      - GrenadeFlash
+      - ShellBlastArtillery #Sunrise-edit
+      - ShellEMPArtillery #Sunrise-edit
+      - ShellFlashArtillery #Sunrise-edit
       - HoloprojectorSecurity
       - MagazineBoxLightRifleIncendiary
       - MagazineBoxLightRifleUranium
@@ -1200,6 +1205,13 @@
       - ClothingUniformJumpsuitWarden
       - ClothingUniformJumpskirtWarden
       - ClothingHeadHatParamedicsoft
+      #Sunrise-Lust start
+      - ClothingUniformJumpsuitAdjutant
+      - ClothingUniformJumpskirtAdjutant
+      - ClothingHeadHatCapAdjutant
+      - ClothingHeadHatBeretAdjutant
+      - ClothingHeadHatGarrisonCapAdjutant
+      #Sunrise-Lust end
       # Winter outfits
       - ClothingOuterWinterCap
       - ClothingOuterWinterCE
@@ -1229,6 +1241,7 @@
       - ClothingOuterWinterSci
       - ClothingOuterWinterRobo
       - ClothingOuterWinterSec
+      - ClothingOuterCoatAdjutant #Sunrise-Lust add
       # Ties
       - ClothingNeckTieRed
       - ClothingNeckTieDet
