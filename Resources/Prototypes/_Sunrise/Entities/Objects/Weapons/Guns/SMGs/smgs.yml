@@ -382,11 +382,11 @@
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/ppsh41/tiny.rsi
   - type: GunWieldBonus
     minAngle: -20
-    maxAngle: -28
+    maxAngle: -25
   - type: Gun
     minAngle: 24
-    maxAngle: 48
-    fireRate: 9.5
+    maxAngle: 50
+    fireRate: 9
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/ppsh41/ppsh_shot.ogg
       params:
@@ -404,6 +404,7 @@
         whitelist:
           tags:
           - MagazinePPSH41
+          - MagazinePistolSubMachineGun
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistol

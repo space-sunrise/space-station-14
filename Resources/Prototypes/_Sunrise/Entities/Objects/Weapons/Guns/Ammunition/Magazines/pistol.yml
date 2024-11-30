@@ -73,7 +73,7 @@
     whitelist:
       tags:
       - CartridgePistol
-    capacity: 45
+    capacity: 32
   - type: Item
     size: Small
   - type: ContainerContainer
@@ -106,7 +106,7 @@
     whitelist:
       tags:
       - CartridgePistol
-    capacity: 45
+    capacity: 32
   - type: Item
     size: Small
   - type: ContainerContainer
@@ -135,13 +135,13 @@
     - MagazinePPSH41
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgeLightRifle  # 57x28
+    proto: CartridgePistol  # 57x28
     whitelist:
       tags:
-      - CartridgeLightRifle  # 57x28
+      - CartridgePistol  # 57x28
     capacity: 71
   - type: Item
-    size: Small
+    size: Normal
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -170,14 +170,14 @@
   id: MagazineMP5Extended
   components:
   - type: BallisticAmmoProvider
-    capacity: 54
+    capacity: 42
 
 - type: entity
   parent: MagazineMP7
   id: MagazineMP7Extended
   components:
   - type: BallisticAmmoProvider
-    capacity: 51
+    capacity: 42
 
 - type: entity
   parent: MagazineP90
