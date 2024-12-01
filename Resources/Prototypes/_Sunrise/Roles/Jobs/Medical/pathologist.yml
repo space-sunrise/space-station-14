@@ -27,5 +27,5 @@
   parent: JobIcon
   id: JobIconPathologist
   icon:
-    sprite: _Sunrise/Interface/Misc/job_icons.rsi
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
     state: Pathologist
