@@ -1,9 +1,7 @@
-using Content.Shared.Buckle;
-using Content.Shared.Buckle.Components;
 using Content.Shared.Hands.Components;
-using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Rotation;
+using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
@@ -15,8 +13,6 @@ namespace Content.Shared.Standing
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-        [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
-        [Dependency] private readonly SharedBuckleSystem _buckle = default!;
 
         // If StandingCollisionLayer value is ever changed to more than one layer, the logic needs to be edited.
         private const int StandingCollisionLayer = (int) CollisionGroup.MidImpassable;
@@ -26,12 +22,13 @@ namespace Content.Shared.Standing
             if (!Resolve(uid, ref standingState, false))
                 return false;
 
-            return standingState.CurrentState is StandingState.Lying or StandingState.GettingUp;
+            return !standingState.Standing;
         }
 
         public bool Down(EntityUid uid,
             bool playSound = true,
             bool dropHeldItems = true,
+            bool force = false,
             StandingStateComponent? standingState = null,
             AppearanceComponent? appearance = null,
             HandsComponent? hands = null)
@@ -43,7 +40,7 @@ namespace Content.Shared.Standing
             // Optional component.
             Resolve(uid, ref appearance, ref hands, false);
 
-            if (standingState.CurrentState is StandingState.Lying or StandingState.GettingUp)
+            if (!standingState.Standing)
                 return true;
 
             // This is just to avoid most callers doing this manually saving boilerplate
@@ -51,18 +48,20 @@ namespace Content.Shared.Standing
             // We do this BEFORE downing because something like buckle may be blocking downing but we want to drop hand items anyway
             // and ultimately this is just to avoid boilerplate in Down callers + keep their behavior consistent.
             if (dropHeldItems && hands != null)
+            {
                 RaiseLocalEvent(uid, new DropHandItemsEvent(), false);
+            }
 
-            if (TryComp(uid, out BuckleComponent? buckle) && buckle.Buckled && !_buckle.TryUnbuckle(uid, uid, buckleComp: buckle))
-                return false;
+            if (!force)
+            {
+                var msg = new DownAttemptEvent();
+                RaiseLocalEvent(uid, msg, false);
 
-            var msg = new DownAttemptEvent();
-            RaiseLocalEvent(uid, msg, false);
+                if (msg.Cancelled)
+                    return false;
+            }
 
-            if (msg.Cancelled)
-                return false;
-
-            standingState.CurrentState = StandingState.Lying;
+            standingState.Standing = false;
             Dirty(uid, standingState);
             RaiseLocalEvent(uid, new DownedEvent(), false);
 
@@ -88,9 +87,10 @@ namespace Content.Shared.Standing
                 return true;
 
             if (playSound)
-                _audio.PlayPredicted(standingState.DownSound, uid, null);
+            {
+                _audio.PlayPredicted(standingState.DownSound, uid, uid);
+            }
 
-            _movement.RefreshMovementSpeedModifiers(uid);
             return true;
         }
 
@@ -106,9 +106,7 @@ namespace Content.Shared.Standing
             // Optional component.
             Resolve(uid, ref appearance, false);
 
-            if (standingState.CurrentState is StandingState.Standing
-                || TryComp(uid, out BuckleComponent? buckle)
-                && buckle.Buckled && !_buckle.TryUnbuckle(uid, uid, buckleComp: buckle))
+            if (standingState.Standing)
                 return true;
 
             if (!force)
@@ -120,7 +118,7 @@ namespace Content.Shared.Standing
                     return false;
             }
 
-            standingState.CurrentState = StandingState.Standing;
+            standingState.Standing = true;
             Dirty(uid, standingState);
             RaiseLocalEvent(uid, new StoodEvent(), false);
 
@@ -135,7 +133,6 @@ namespace Content.Shared.Standing
                 }
             }
             standingState.ChangedFixtures.Clear();
-            _movement.RefreshMovementSpeedModifiers(uid);
 
             return true;
         }
