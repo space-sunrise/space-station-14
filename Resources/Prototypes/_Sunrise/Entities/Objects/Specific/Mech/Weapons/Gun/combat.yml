@@ -10,7 +10,7 @@
   - type: Gun
     minAngle: -25
     maxAngle: 25
-    fireRate: 7
+    fireRate: 8
     selectedMode: FullAuto
     availableModes:
       - FullAuto
@@ -18,7 +18,7 @@
       path: /Audio/_Sunrise/Weapons/Guns/HMGs/minigun_shot.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: CartridgeLightRifle
-    fireCost: 20
+    fireCost: 5
   - type: Appearance
   - type: AmmoCounter
   
@@ -37,7 +37,7 @@
     maxAngle: 15
     angleIncrease: 4
     angleDecay: 16
-    fireRate: 4.75
+    fireRate: 5
     selectedMode: FullAuto
     availableModes:
       - FullAuto
@@ -46,7 +46,7 @@
       params:
         volume: -1
   - type: ProjectileBatteryAmmoProvider
-    proto: BulletSyndiPlasma2
-    fireCost: 30
+    proto: BulletSyndiPlasma
+    fireCost: 6
   - type: Appearance
   - type: AmmoCounter
