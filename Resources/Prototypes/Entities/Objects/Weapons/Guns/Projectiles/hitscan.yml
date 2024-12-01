@@ -139,3 +139,263 @@
   impactFlash:
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: impact_beam_heavy2
+
+# hitscan bullet
+
+- type: hitscan
+  id: BulletPistol
+  damage:
+    types:
+      Piercing: 16
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: BulletPistolRubber
+  damage:
+    types:
+      Blunt: 1
+  staminaDamage: 20
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: BulletPistolPractice
+  damage:
+    types:
+      Blunt: 2
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: BulletPistolIncendiary
+  damage:
+    types:
+      Blunt: 2
+      Heat: 14
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: BulletPistolUranium
+  damage:
+    types:
+      Radiation: 6
+      Piercing: 10
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: BulletRifle
+  damage:
+    types:
+      Piercing: 17
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: BulletRifleRubber
+  damage:
+    types:
+      Blunt: 1
+  staminaDamage: 20
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: BulletRiflePractice
+  damage:
+    types:
+      Blunt: 2
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: BulletRifleIncendiary
+  damage:
+    types:
+      Blunt: 2
+      Heat: 15
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: BulletRifleUranium
+  damage:
+    types:
+      Radiation: 7
+      Piercing: 8
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: BulletMagnum
+  damage:
+    types:
+      Blunt: 35
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: BulletMagnumRubber
+  damage:
+    types:
+      Blunt: 1
+  staminaDamage: 20
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: BulletMagnumPractice
+  damage:
+    types:
+      Blunt: 1
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: BulletMagnumIncendiary
+  damage:
+    types:
+      Blunt: 3
+      Heat: 32
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: BulletMagnumAP
+  damage:
+    types:
+      Piercing: 26
+  ignoreResistances: true
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: BulletMagnumUranium
+  damage:
+    types:
+      Radiation: 15
+      Piercing: 20
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: BulletLightRifle
+  damage:
+    types:
+      Piercing: 19
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: BulletLightRifleRubber
+  damage:
+    types:
+      Blunt: 1
+  staminaDamage: 20
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: BulletLightRiflePractice
+  damage:
+    types:
+      Blunt: 2
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: BulletLightRifleIncendiary
+  damage:
+    types:
+      Blunt: 3
+      Heat: 16
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: BulletLightRifleUranium
+  damage:
+    types:
+      Radiation: 9
+      Piercing: 10
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: BulletHeavyRifle
+  damage:
+    types:
+      Piercing: 19
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: BulletMinigun
+  damage:
+    types:
+      Piercing: 5
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: BulletCaselessRifle
+  damage:
+    types:
+      Piercing: 19
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: BulletCaselessRifleRubber
+  damage:
+    types:
+      Blunt: 1
+  staminaDamage: 20
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: BulletCaselessRiflePractice
+  damage:
+    types:
+      Blunt: 2
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: BulletAntiMateriel
+  damage:
+    types:
+      Piercing: 40
+      Structural: 30
+  staminaDamage: 35
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: PelletShotgunPractice
+  damage:
+    types:
+      Blunt: 1
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: PelletShotgunBeanbag
+  damage:
+    types:
+      Blunt: 2.5
+  staminaDamage: 15
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: PelletShotgunSlug
+  damage:
+    types:
+      Piercing: 28
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: PelletShotgun
+  damage:
+    types:
+      Piercing: 10
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: PelletShotgunIncendiary
+  damage:
+    types:
+      Blunt: 3
+      Heat: 7
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: PelletShotgunImprovised
+  damage:
+    types:
+      Piercing: 3
+      Slash: 3
+  collisionMask: BulletImpassable
+
+- type: hitscan
+  id: PelletShotgunUranium
+  damage:
+    types:
+      Radiation: 5
+      Piercing: 5
+  collisionMask: BulletImpassable

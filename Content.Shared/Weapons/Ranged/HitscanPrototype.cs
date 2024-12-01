@@ -30,7 +30,7 @@ public sealed partial class HitscanPrototype : IPrototype, IShootable
     public SpriteSpecifier? ImpactFlash;
 
     [DataField("collisionMask")]
-    public int CollisionMask = (int) CollisionGroup.Opaque;
+    public CollisionGroup CollisionMask { get; private set; } = CollisionGroup.Opaque;
 
     /// <summary>
     /// What we count as for reflection.
@@ -54,4 +54,7 @@ public sealed partial class HitscanPrototype : IPrototype, IShootable
     /// </summary>
     [DataField("maxLength")]
     public float MaxLength = 20f;
+
+    [DataField]
+    public bool IgnoreResistances;
 }
