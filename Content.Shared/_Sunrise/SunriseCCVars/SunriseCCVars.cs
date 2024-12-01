@@ -303,17 +303,7 @@ public sealed class SunriseCCVars
         CVarDef.Create("cl.telegram_link", "", CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
 
     /*
-     * Lying Down.
-     */
-
-    public static readonly CVarDef<bool> AutoGetUp =
-        CVarDef.Create("rest.auto_get_up", true, CVar.CLIENT | CVar.ARCHIVE | CVar.REPLICATED);
-
-    public static readonly CVarDef<bool> HoldLookUp =
-        CVarDef.Create("rest.hold_look_up", true, CVar.CLIENT | CVar.ARCHIVE);
-
-    /*
-     * Mood.
+     * Mood
      */
 
     public static readonly CVarDef<bool> MoodEnabled =
@@ -324,10 +314,4 @@ public sealed class SunriseCCVars
 
     public static readonly CVarDef<bool> MoodDecreasesSpeed =
         CVarDef.Create("mood.decreases_speed", true, CVar.SERVER);
-
-    /// <summary>
-    /// Whether to show footprints
-    /// </summary>
-    public static readonly CVarDef<bool> ShowFootprints =
-        CVarDef.Create("game.show_footprints", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 }
