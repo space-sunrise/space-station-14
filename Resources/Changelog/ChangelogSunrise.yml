@@ -6840,3 +6840,12 @@
   id: 476
   time: '2024-12-01T14:56:53.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/747
+- author: VigersRay
+  changes:
+  - message: "\u0412\u043E\u043E\u0440\u0443\u0436\u0435\u043D\u0438\u0435 \u0431\u043E\
+      \u0440\u0433\u043E\u0432 \u0441\u0438\u043D\u0434\u0438\u043A\u0430\u0442\u0430\
+      \ \u043F\u043E\u043B\u0443\u0447\u0438\u043B\u043E \u0430\u0432\u0442\u043E\u0437\
+      \u0430\u0440\u044F\u0434\u043A\u0443."
+    type: Tweak
+  id: 477
+  time: '2024-12-01T22:34:31.108292+00:00'
