@@ -372,9 +372,7 @@
       map: [ "enum.PowerDeviceVisualLayers.Powered" ]
   - type: AtmosAlertsComputer
     beepSound:
-      path: /Audio/Effects/beeps.ogg
-      params:
-        volume: -6
+      path: /Audio/_Sunrise/Effects/beeps.ogg
   - type: ActivatableUI
     singleUser: true
     key: enum.AtmosAlertsComputerUiKey.Key
