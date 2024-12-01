@@ -5,7 +5,6 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
-using Content.Shared.Standing;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 using System.Linq;
@@ -78,9 +77,7 @@ public sealed class FootprintSystem : EntitySystem
             return;
 
         var isBeingDragged =
-            mobState.CurrentThresholdState is MobState.Critical or MobState.Dead ||
-            (TryComp<StandingStateComponent>(uid, out var stateComponent) &&
-             stateComponent.CurrentState is StandingState.Lying);
+            mobState.CurrentThresholdState is MobState.Critical or MobState.Dead;
 
         var distanceMoved = (transform.LocalPosition - emitter.LastStepPosition).Length();
         var requiredDistance = isBeingDragged ? emitter.DragMarkInterval : emitter.WalkStepInterval;

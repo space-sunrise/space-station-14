@@ -98,20 +98,6 @@ namespace Content.Client.Options.UI.Tabs
             _deferCommands.Add(_inputManager.SaveToUserData);
         }
 
-        // Sunrise
-        private void HandleHoldLookUp(BaseButton.ButtonToggledEventArgs args)
-        {
-            _cfg.SetCVar(SunriseCCVars.HoldLookUp, args.Pressed);
-            _cfg.SaveToFile();
-        }
-
-        private void HandleToggleAutoGetUp(BaseButton.ButtonToggledEventArgs args)
-        {
-            _cfg.SetCVar(SunriseCCVars.AutoGetUp, args.Pressed);
-            _cfg.SaveToFile();
-        }
-        // Sunrise
-
         private void HandleStaticStorageUI(BaseButton.ButtonToggledEventArgs args)
         {
             _cfg.SetCVar(CCVars.StaticStorageUI, args.Pressed);
@@ -199,13 +185,6 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(ContentKeyFunctions.MoveStoredItem);
             AddButton(ContentKeyFunctions.RotateStoredItem);
             AddButton(ContentKeyFunctions.SaveItemLocation);
-
-            // Sunrise
-            AddButton(ContentKeyFunctions.ToggleStanding);
-            AddButton(ContentKeyFunctions.LookUp);
-            AddCheckBox("ui-options-function-auto-get-up", _cfg.GetCVar(SunriseCCVars.AutoGetUp), HandleToggleAutoGetUp);
-            AddCheckBox("ui-options-function-hold-look-up", _cfg.GetCVar(SunriseCCVars.HoldLookUp), HandleHoldLookUp);
-            // Sunrise
 
             AddHeader("ui-options-header-interaction-adv");
             AddButton(ContentKeyFunctions.SmartEquipBackpack);

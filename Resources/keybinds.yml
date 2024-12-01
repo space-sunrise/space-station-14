@@ -584,13 +584,3 @@ binds:
   type: State
   key: MouseRight
   canFocus: true
-
-
-# Sunrise
-- function: ToggleStanding
-  type: State
-  key: R
-
-- function: LookUp
-  type: State
-  key: MouseRight

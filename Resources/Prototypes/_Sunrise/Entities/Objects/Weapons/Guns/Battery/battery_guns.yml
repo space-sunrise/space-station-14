@@ -557,7 +557,7 @@
   - type: Wieldable
   - type: UseDelay
     delay: 0.5
-  - type: Telescope
+  - type: ZoomableGun
 
 - type: entity
   name: S-13 «Black mamba»
@@ -601,7 +601,7 @@
   - type: Battery
     maxCharge: 3000
     startingCharge: 3000
-
+    
 - type: entity
   name: SAM-300
   parent: BaseWeaponBattery
