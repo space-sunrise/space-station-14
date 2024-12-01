@@ -667,7 +667,7 @@
     maxAngle: 15
     angleIncrease: 4
     angleDecay: 16
-    fireRate: 4.75
+    fireRate: 5
     selectedMode: FullAuto
     soundGunshot:
       collection: syndi_plasma
@@ -676,7 +676,7 @@
     availableModes:
     - FullAuto
   - type: ProjectileBatteryAmmoProvider
-    proto: BulletSyndiPlasma2
+    proto: BulletSyndiPlasma
     fireCost: 25
   - type: MultiHandedItem
   - type: Battery
