@@ -74,6 +74,10 @@
     collection: FootstepCyborgSpider
     params:
       volume: -15
+  addComponents:
+  - type: InnateItem
+    instantActions:
+    - AtmosAlertsMonitor
   # Sunrise-End
 
   # Visual
