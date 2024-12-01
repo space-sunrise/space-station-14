@@ -41,4 +41,5 @@
     pocket1: WeaponPistolG22NonLethal
   storage:
     back:
-    - WeaponDisablerSMG
+    - WeaponDisabler
+    - WeaponDisabler
