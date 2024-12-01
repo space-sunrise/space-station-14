@@ -1,6 +1,6 @@
 - type: construction
   id: StorageCanister
-  name: сanister
+  name: canister
   graph: StorageCanister
   startNode: start
   targetNode: done
