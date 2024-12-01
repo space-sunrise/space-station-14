@@ -1261,7 +1261,7 @@
     deleteOnCollide: false
   - type: StartTimerOnShoot
   - type: OnUseTimerTrigger
-    delay: 2
+    delay: 1
   - type: Fixtures
     fixtures:
       fix1:
