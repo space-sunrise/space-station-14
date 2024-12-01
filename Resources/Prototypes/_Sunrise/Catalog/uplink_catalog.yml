@@ -178,7 +178,7 @@
   description: uplink-clothing-backpack-syndie-dl6902-desc
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/LMGs/DL6902.rsi, state: icon }
   cost:
-    Telecrystal: 30
+    Telecrystal: 40
   categories:
   - UplinkWeaponry
   conditions:
@@ -240,7 +240,7 @@
   description: uplink-weapon-bauer-127-name
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/Snipers/bauer127/big.rsi, state: icon }
   cost:
-    Telecrystal: 18
+    Telecrystal: 16
   categories:
   - UplinkWeaponry
   conditions:
@@ -256,7 +256,7 @@
   icon: { sprite: /Textures/Clothing/OuterClothing/Hardsuits/syndiecommander.rsi, state: icon }
   productEntity: ClothingOuterHardsuitSyndieCommanderBiocode
   cost:
-    Telecrystal: 10
+    Telecrystal: 13
   categories:
   - UplinkWearables
   conditions:
@@ -637,7 +637,7 @@
   icon: { sprite: /Textures/_Sunrise/Objects/Specific/Mech/mecha_vindictor.rsi, state:  mecha_vindictor }
   productEntity: WeaponMechCombatVindictor
   cost:
-    Telecrystal: 24
+    Telecrystal: 26
   categories:
   - UplinkMechs
   conditions:
