@@ -33,4 +33,8 @@
     outerClothing: ClothingOuterCoatPilot
     id: SecurityPilotPDA
     ears: ClothingHeadsetSecurity
-    pocket1: WeaponPistolG22NonLethal
+    pocket1: WeaponPistolG22
+  storage:
+    back:
+    - Flash
+    - MagazineGlock22

@@ -38,7 +38,8 @@
     head: ClothingHeadHatBeretSecurity
     id: SeniorOfficerPDA
     ears: ClothingHeadsetSecurity
-    pocket1: WeaponPistolG22NonLethal
+    pocket1: WeaponPistolG22
   storage:
     back:
     - WeaponDisablerSMG
+    - MagazineGlock22
