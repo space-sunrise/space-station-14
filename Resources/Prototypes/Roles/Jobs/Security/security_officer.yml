@@ -33,9 +33,8 @@
     ears: ClothingHeadsetSecurity
     head: ClothingHeadHelmetBasic
     gloves: ClothingHandsGlovesColorBlack
-    pocket1: WeaponPistolG22 # Sunrise-Edit
+    pocket1: WeaponPistolG22NonLethal # Sunrise-Edit
   storage:
     back:
     - Flash
-    - MagazineGlock22
-    - WeaponDisabler
+    - MagazineGlock22Rubber

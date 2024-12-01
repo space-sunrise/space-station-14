@@ -55,7 +55,7 @@
     soundHit:
       path: /Audio/Weapons/Guns/Hits/snap.ogg
   - type: StaminaDamageOnCollide
-    damage: 12 # 9 hits to stun sounds reasonable
+    damage: 20 # 5 hits to stun sounds reasonable
 
 - type: entity
   parent: BaseBullet
