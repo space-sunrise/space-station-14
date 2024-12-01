@@ -21,9 +21,9 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
-    minAngle: 24
-    maxAngle: 45
-    fireRate: 1.5
+    minAngle: 25
+    maxAngle: 46
+    fireRate: 1.6
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Snipers/Dragunov/dragunov_shot.ogg
       params:
@@ -45,11 +45,11 @@
             - MagazineDragunov
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeMagnum  # 762x54
+        startingItem: CartridgeAntiMateriel  # 762x54
         priority: 1
         whitelist:
           tags:
-            - CartridgeMagnum  # 762x54
+            - CartridgeAntiMateriel  # 762x54
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -59,9 +59,10 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
-  - type: Telescope
+  - type: ZoomableGun
   - type: UseDelay
     delay: 0.5
+  - type: GunRequiresWield
 
 - type: entity
   name: BR-64
@@ -80,12 +81,12 @@
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/br-64/tiny.rsi
   - type: GunWieldBonus
-    minAngle: -23
-    maxAngle: -43
+    minAngle: -20
+    maxAngle: -40
   - type: Gun
-    fireRate: 1.25
-    minAngle: 24
-    maxAngle: 45
+    fireRate: 3
+    minAngle: 28
+    maxAngle: 48
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Snipers/SR-64/SR64_shot.ogg
       params:
@@ -105,11 +106,11 @@
             - MagazineBR64
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeAntiMateriel  # 062
+        startingItem: CartridgeMagnum  # 062
         priority: 1
         whitelist:
           tags:
-          - CartridgeAntiMateriel  # 062
+          - CartridgeMagnum  # 062
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -122,7 +123,7 @@
   - type: Wieldable
   - type: UseDelay
     delay: 0.5
-  - type: Telescope
+  - type: ZoomableGun
   - type: ChamberMagazineAmmoProvider
     autoEject: true
     boltClosed: null
@@ -147,7 +148,7 @@
     minAngle: -23
     maxAngle: -43
   - type: Gun
-    fireRate: 1.25
+    fireRate: 1.4
     minAngle: 24
     maxAngle: 45
     soundGunshot:
@@ -191,7 +192,7 @@
   - type: Wieldable
   - type: UseDelay
     delay: 0.5
-  - type: Telescope
+  - type: ZoomableGun
 
 - type: entity
   name: M1 Garand

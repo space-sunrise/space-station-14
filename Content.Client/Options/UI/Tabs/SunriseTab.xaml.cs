@@ -87,7 +87,6 @@ public sealed partial class SunriseTab : Control
         Control.AddOptionDropDown(SunriseCCVars.LobbyParallax, DropDownLobbyParallax, lobbyParallaxes);
         Control.AddOptionPercentSlider(SunriseCCVars.LobbyOpacity, LobbyOpacitySlider);
         Control.AddOptionCheckBox(SunriseCCVars.DamageOverlay, DamageOverlayCheckBox);
-        Control.AddOptionCheckBox(SunriseCCVars.ShowFootprints, ShowFootprintsCheckBox);
 
         Control.Initialize();
     }

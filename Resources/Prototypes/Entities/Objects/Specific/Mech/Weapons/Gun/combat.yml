@@ -9,7 +9,7 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_pulse
   - type: Gun
-    fireRate: 1.5
+    fireRate: 1.4
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
@@ -17,7 +17,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: HitscanBatteryAmmoProvider
     proto: Pulse
-    fireCost: 80
+    fireCost: 50
   - type: Appearance
   - type: AmmoCounter
 
@@ -40,7 +40,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
     proto: RedHeavyLaser
-    fireCost: 80
+    fireCost: 45
   - type: Appearance
   - type: AmmoCounter
 
@@ -63,7 +63,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
   - type: HitscanBatteryAmmoProvider
     proto: RedMediumLaser
-    fireCost: 120
+    fireCost: 35
   - type: Appearance
   - type: AmmoCounter
 
@@ -78,7 +78,7 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_firedart
   - type: Gun
-    fireRate: 0.8
+    fireRate: 2.2
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
@@ -86,7 +86,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
   - type: HitscanBatteryAmmoProvider
     proto: RedLaser
-    fireCost: 80
+    fireCost: 20
   - type: Appearance
   - type: AmmoCounter
 
@@ -101,7 +101,7 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_wholegen
   - type: Gun
-    projectileSpeed: 3
+    projectileSpeed: 6
     projectileSpeedModified: 6
     fireRate: 0.8
     selectedMode: SemiAuto
@@ -113,7 +113,7 @@
         variation: 0.2
   - type: ProjectileBatteryAmmoProvider
     proto: TeslaGunBullet
-    fireCost: 100
+    fireCost: 35
   - type: Appearance
   - type: AmmoCounter
 
@@ -136,7 +136,7 @@
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: BulletDisablerSmgSpread
-    fireCost: 60
+    fireCost: 20
   - type: Appearance
   - type: AmmoCounter
 
@@ -159,7 +159,7 @@
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: BulletTaser
-    fireCost: 40
+    fireCost: 15
   - type: Appearance
   - type: AmmoCounter
 
@@ -175,14 +175,14 @@
     state: mecha_scatter
   - type: Gun
     fireRate: 1
-    selectedMode: SemiAuto
+    selectedMode: FullAuto
     availableModes:
-      - SemiAuto
+      - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: ShellShotgun
-    fireCost: 100
+    fireCost: 40
   - type: Appearance
   - type: AmmoCounter
 
@@ -197,15 +197,15 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_carbine
   - type: Gun
-    fireRate: 1.2
-    selectedMode: SemiAuto
+    fireRate: 1.6
+    selectedMode: FullAuto
     availableModes:
-      - SemiAuto
+      - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: ShellShotgunIncendiary
-    fireCost: 90
+    fireCost: 45
   - type: Appearance
   - type: AmmoCounter
 
@@ -222,7 +222,7 @@
   - type: Gun
     fireRate: 5
     shotsPerBurst: 3
-    burstCooldown: 1.2
+    burstCooldown: 0.8
     selectedMode: Burst
     availableModes:
       - Burst
@@ -230,7 +230,7 @@
       path: /Audio/_Sunrise/Weapons/Guns/Snipers/garand/garand.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: CartridgeLightRifle
-    fireCost: 20
+    fireCost: 10
   - type: Appearance
   - type: AmmoCounter
   
@@ -245,7 +245,7 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_ion
   - type: Gun
-    projectileSpeed: 20
+    projectileSpeed: 18
     fireRate: 0.6
     selectedMode: SemiAuto
     availableModes:
@@ -256,7 +256,7 @@
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: BulletEMP
-    fireCost: 400
+    fireCost: 200
   - type: Appearance
   - type: AmmoCounter
   - type: Battery
@@ -274,9 +274,9 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_amlg90
   - type: Gun
-    fireRate: 4
+    fireRate: 5
     shotsPerBurst: 3
-    burstCooldown: 1.2
+    burstCooldown: 0.8
     selectedMode: Burst
     availableModes:
       - Burst
@@ -286,7 +286,7 @@
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: BulletSyndiPlasma
-    fireCost: 20
+    fireCost: 10
   - type: Appearance
   - type: AmmoCounter
     
@@ -309,7 +309,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: HitscanBatteryAmmoProvider
     proto: XrayLaser
-    fireCost: 200
+    fireCost: 60
   - type: Appearance
   - type: AmmoCounter
 
@@ -324,10 +324,10 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_missilerack
   - type: Gun
-    fireRate: 1.2
-    selectedMode: SemiAuto
+    fireRate: 1.3
+    selectedMode: FullAuto
     availableModes:
-      - SemiAuto
+      - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
   - type: ProjectileBatteryAmmoProvider
@@ -355,7 +355,7 @@
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: GrenadeBlast
-    fireCost: 220
+    fireCost: 160
   - type: Appearance
   - type: AmmoCounter
   - type: Battery

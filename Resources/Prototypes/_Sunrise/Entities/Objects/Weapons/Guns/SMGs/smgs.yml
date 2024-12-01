@@ -68,7 +68,7 @@
   - type: Gun
     minAngle: 43
     maxAngle: 60
-    fireRate: 6
+    fireRate: 7.5
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/p90_shot.ogg
       params:
@@ -121,11 +121,11 @@
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp38/tiny.rsi
   - type: GunWieldBonus
     minAngle: -22
-    maxAngle: -28
+    maxAngle: -30
   - type: Gun
     minAngle: 24
     maxAngle: 45
-    fireRate: 5
+    fireRate: 6
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
   - type: ItemSlots
@@ -177,7 +177,7 @@
   - type: Gun
     minAngle: 24
     maxAngle: 45
-    fireRate: 8
+    fireRate: 7.5
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/mp7/mp7_shot.ogg
   - type: ItemSlots
@@ -226,11 +226,11 @@
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp5/tiny.rsi
   - type: GunWieldBonus
     minAngle: -22
-    maxAngle: -28
+    maxAngle: -30
   - type: Gun
     minAngle: 24
     maxAngle: 45
-    fireRate: 6
+    fireRate: 6.5
     soundGunshot:
       collection: mp5
       params:
@@ -298,6 +298,7 @@
         whitelist:
           tags:
           - MagazinePistolSubMachineGun
+          - MagazinePistolHighCapacity
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistolRubber  # 57x28
@@ -328,8 +329,8 @@
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/vector/tiny.rsi
   - type: GunWieldBonus
-    minAngle: -22
-    maxAngle: -28
+    minAngle: -23
+    maxAngle: -29
   - type: Gun
     minAngle: 24
     maxAngle: 45
@@ -380,12 +381,12 @@
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/ppsh41/tiny.rsi
   - type: GunWieldBonus
-    minAngle: -22
-    maxAngle: -28
+    minAngle: -20
+    maxAngle: -25
   - type: Gun
     minAngle: 24
-    maxAngle: 45
-    fireRate: 6.5
+    maxAngle: 50
+    fireRate: 9
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/ppsh41/ppsh_shot.ogg
       params:
@@ -403,6 +404,7 @@
         whitelist:
           tags:
           - MagazinePPSH41
+          - MagazinePistolSubMachineGun
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistol
@@ -549,7 +551,7 @@
     maxAngle: 4
     angleIncrease: 4
     angleDecay: 16
-    fireRate: 6.5
+    fireRate: 7
     selectedMode: FullAuto
     soundGunshot:
       collection: usp # SUNRISE new gun sounds

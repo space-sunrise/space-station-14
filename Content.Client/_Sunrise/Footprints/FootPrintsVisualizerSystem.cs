@@ -1,8 +1,6 @@
-using Content.Shared._Sunrise.Footprints;
-using Content.Shared._Sunrise.SunriseCCVars;
+﻿using Content.Shared._Sunrise.Footprints;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
-using Robust.Shared.Configuration;
 using Robust.Shared.Random;
 
 namespace Content.Client._Sunrise.Footprints;
@@ -14,29 +12,14 @@ public sealed class FootprintVisualizerSystem : VisualizerSystem<FootprintCompon
 {
     [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-
-    private bool _showFootprints;
 
     /// <inheritdoc/>
     public override void Initialize()
     {
         base.Initialize();
 
-        _cfg.OnValueChanged(SunriseCCVars.ShowFootprints, OnShowFootprintsChanged, true);
-
         SubscribeLocalEvent<FootprintComponent, ComponentInit>(OnFootprintInitialized);
         SubscribeLocalEvent<FootprintComponent, ComponentShutdown>(OnFootprintShutdown);
-    }
-
-    private void OnShowFootprintsChanged(bool value)
-    {
-        _showFootprints = value;
-        var query = EntityManager.AllEntityQueryEnumerator<FootprintComponent, SpriteComponent>();
-        while (query.MoveNext(out var uid, out var footprint, out var sprite))
-        {
-            UpdateFootprintVisuals(uid, footprint, sprite);
-        }
     }
 
     /// <summary>
@@ -90,15 +73,6 @@ public sealed class FootprintVisualizerSystem : VisualizerSystem<FootprintCompon
             || !TryComp<FootprintEmitterComponent>(footprint.CreatorEntity, out var emitterComponent)
             || !TryComp<AppearanceComponent>(uid, out var appearance))
             return;
-
-        // Hide footprints if disabled in settings
-        if (!_showFootprints)
-        {
-            sprite.Visible = false;
-            return;
-        }
-
-        sprite.Visible = true;
 
         if (!_appearanceSystem.TryGetData<FootprintVisualType>(
                 uid,

@@ -53,7 +53,7 @@
           Heat: 0.8
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterArmorBasic, ClothingOuterStorageBase, BaseSecurityContraband]
   id: ClothingOuterCoatSecurityOvercoat
   name: security overcoat
   description: Lightly armored leather overcoat meant as casual wear for high-ranking officers. Bears the crest of Nanotrasen Security.
@@ -86,7 +86,7 @@
           Caustic: 0.75
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterArmorBasic, ClothingOuterStorageBase, BaseSecurityCommandContraband]
   id: ClothingOuterCoatCaptain
   name: captain's jacket
   description: Captain's formal jacket, inlaid with gold.
@@ -217,7 +217,7 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/hopcoat.rsi
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterArmorBasic, ClothingOuterStorageBase, BaseSecurityContraband]
   id: ClothingOuterCoatHOSOvercoatBlack
   name: armored overcoat
   description: Black overcoat with red lines, silver rivets and a gold plaque.
@@ -278,7 +278,7 @@
 
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterArmorBasic, ClothingOuterStorageBase, BaseSecurityContraband]
   id: ClothingOuterCoatHoSOvercoat
   name: armored overcoat
   description: Pretty old stuff for these times, bringing back old memories...
@@ -318,7 +318,7 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/disco.rsi
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterArmorBasic, ClothingOuterStorageBase, BaseSecurityCommandContraband]
   id: ClothingOuterCoatCaptainOvercoat
   name: captain's overcoat
   description: Made specifically to the measurements of the current captain and made by the best seamstresses at NanoTrasen.
@@ -340,7 +340,7 @@
   - type: GroupExamine
 
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ClothingOuterArmorBasic, ClothingOuterStorageBase, BaseSecurityContraband]
   id: ClothingOuterCoatUSSPOvercoatBlack
   name: USSP armored overcoat
   description: Old stuff, straight out of USSP.
