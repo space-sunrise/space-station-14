@@ -690,7 +690,7 @@ namespace Content.Server.GameTicking
             var proto = _robustRandom.Pick(options);
 
             if (proto.Message != null)
-                _chatSystem.DispatchGlobalAnnouncement(Loc.GetString(proto.Message), playDefault: true, playTts: false);
+                _chatSystem.DispatchGlobalAnnouncement(Loc.GetString(proto.Message), playDefault: true, playTts: true);
 
             if (proto.Sound != null)
                 _audio.PlayGlobal(proto.Sound, Filter.Broadcast(), true);

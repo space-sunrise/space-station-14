@@ -1,9 +1,11 @@
 using Content.Client.Movement.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Ghost;
+using Robust.Client.Audio;
 using Robust.Client.Console;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
+using Robust.Shared.Audio;
 using Robust.Shared.Player;
 
 namespace Content.Client.Ghost
@@ -14,6 +16,7 @@ namespace Content.Client.Ghost
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly SharedActionsSystem _actions = default!;
         [Dependency] private readonly ContentEyeSystem _contentEye = default!;
+        [Dependency] private readonly AudioSystem _audioSystem = default!;
 
         public int AvailableGhostRoleCount { get; private set; }
 
@@ -156,6 +159,17 @@ namespace Content.Client.Ghost
 
         private void OnUpdateGhostRoleCount(GhostUpdateGhostRoleCountEvent msg)
         {
+
+            if (msg.AvailableGhostRoles > AvailableGhostRoleCount && IsGhost)
+            {
+                _audioSystem.PlayGlobal(
+                    "/Audio/_Sunrise/Misc/ping.ogg",
+                    Filter.Local(),
+                    false,
+                    new AudioParams().WithVolume(10f)
+                );
+            }
+
             AvailableGhostRoleCount = msg.AvailableGhostRoles;
             GhostRoleCountUpdated?.Invoke(msg);
         }

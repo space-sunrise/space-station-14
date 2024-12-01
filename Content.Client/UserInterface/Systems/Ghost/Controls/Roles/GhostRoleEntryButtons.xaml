@@ -6,10 +6,17 @@
             Text="{Loc 'ghost-roles-window-request-role-button'}"
             StyleClasses="OpenRight"
             HorizontalExpand="True"
-            SizeFlagsStretchRatio="3"/>
+            SizeFlagsStretchRatio="2"/>
+    <Button Name="RulesButton"
+            Access="Public"
+            Text="{Loc 'ghost-roles-window-rules-role-button'}"
+            StyleClasses="OpenBoth"
+            HorizontalExpand="True"
+            SizeFlagsStretchRatio="1"/>
     <Button Name="FollowButton"
             Access="Public"
             Text="{Loc 'ghost-roles-window-follow-role-button'}"
             StyleClasses="OpenLeft"
-            HorizontalExpand="True"/>
+            HorizontalExpand="True"
+            SizeFlagsStretchRatio="1"/>
 </BoxContainer>

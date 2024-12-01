@@ -6,7 +6,7 @@ ui-vote-type-votekick = Исключение
 ui-vote-votekick-type-raiding = Рейд
 ui-vote-votekick-type-cheating = Читерство
 ui-vote-votekick-details-placeholder = Подробности...
-ui-vote-votekick-type-spamming = Спам
+ui-vote-votekick-type-spam = Спам
 # Window title of the vote create menu
 ui-vote-create-title = Голосование
 # Submit button in the vote create button

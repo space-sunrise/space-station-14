@@ -23,8 +23,8 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: Battery
-    maxCharge: 1000
-    startingCharge: 1000
+    maxCharge: 1500
+    startingCharge: 1500
   - type: ProjectileBatteryAmmoProvider
     proto: BulletDisabler
     fireCost: 50
@@ -80,7 +80,7 @@
     startingCharge: 1000
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 35
+    autoRechargeRate: 20
   - type: ProjectileBatteryAmmoProvider
     proto: BulletDisabler
     fireCost: 50
@@ -141,8 +141,8 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: Battery
-    maxCharge: 500
-    startingCharge: 500
+    maxCharge: 600
+    startingCharge: 600
   - type: ProjectileBatteryAmmoProvider
     proto: BulletDisabler
     fireCost: 50
@@ -194,8 +194,8 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: Battery
-    maxCharge: 800
-    startingCharge: 800
+    maxCharge: 1000
+    startingCharge: 1000
   - type: ProjectileBatteryAmmoProvider
     proto: BulletDisabler
     fireCost: 50
@@ -263,6 +263,123 @@
     steps: 5
     zeroVisible: true
   - type: Appearance
+ 
+- type: entity
+  name: Energy Pistol «Judge»
+  parent: BaseWeaponBatterySmall
+  id: WeaponEnergyGunPistolSecurity
+  description: A Security grade sidearm, used by many security forces throughout the local sector. Prepare to Judgement.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_security.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mode-disabler
+      shader: unshaded
+      map: [ "Firemode" ]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_security.rsi
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: Battery
+    maxCharge: 1500
+    startingCharge: 1500
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletDisabler
+    fireCost: 50
+  - type: EnergyGun
+    fireModes:
+    - proto: BulletDisabler
+      fireCost: 50
+      name: energy-gun-disable
+      state: disabler
+    - proto: BulletEnergyGunLaser
+      fireCost: 100
+      name: energy-gun-lethal
+      state: lethal
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.EnergyGunFireModeVisuals.State:
+        Firemode:
+          Disabler: { state: mode-disabler }
+          Lethal: { state: mode-lethal }
+  - type: Tag
+    tags:
+    - Sidearm
+  - type: StaticPrice
+    price: 750
+
+- type: entity
+  name: Tactical Energy Gun
+  parent: BaseWeaponBattery
+  id: WeaponEnergyGunTactical
+  description: "A Tactical version of basic hybrid energy gun with two settings: disable and kill. Have auto recharge."
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_tactical.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mode-disabler
+      shader: unshaded
+      map: [ "Firemode" ]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_tactical.rsi
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+    selectedMode: SemiAuto
+    fireRate: 2.2
+    availableModes:
+        - SemiAuto
+        - FullAuto
+  - type: Battery
+    maxCharge: 1800
+    startingCharge: 1800
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 6 # 5 minute
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletDisabler
+    fireCost: 50
+  - type: EnergyGun
+    fireModes:
+    - proto: BulletDisabler
+      fireCost: 50
+      name: energy-gun-disable
+      state: disabler
+    - proto: BulletEnergyGunLaser
+      fireCost: 100
+      name: energy-gun-lethal
+      state: lethal
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.EnergyGunFireModeVisuals.State:
+        Firemode:
+          Disabler: { state: mode-disabler }
+          Lethal: { state: mode-lethal }
 
 - type: entity
   parent: BaseWeaponBattery
@@ -362,8 +479,8 @@
     steps: 3
     zeroVisible: true
   - type: Battery
-    maxCharge: 1500
-    startingCharge: 1500
+    maxCharge: 3000
+    startingCharge: 3000
   - type: HitscanBatteryAmmoProvider
     proto: RedLaser
     fireCost: 50
@@ -504,8 +621,8 @@
     steps: 6
     zeroVisible: true
   - type: Battery
-    maxCharge: 1500
-    startingCharge: 1500
+    maxCharge: 2500
+    startingCharge: 2500
   - type: HitscanBatteryAmmoProvider
     proto: XrayLaser
     fireCost: 100
@@ -549,15 +666,15 @@
     steps: 3
     zeroVisible: true
   - type: Battery
-    maxCharge: 1500
-    startingCharge: 1500
+    maxCharge: 1800
+    startingCharge: 1800
   - type: HitscanBatteryAmmoProvider
     proto: RedHeavyLaser
     fireCost: 100
   - type: Wieldable
   - type: UseDelay
     delay: 0.5
-  - type: Telescope
+  - type: ZoomableGun
 
 - type: entity
   name: S-13 «Black mamba»
@@ -579,21 +696,22 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/syndielasergun.rsi
   - type: Gun
-    minAngle: 20
-    maxAngle: 30
-    angleIncrease: 4
-    angleDecay: 16
-    fireRate: 1.1
-    selectedMode: SemiAuto
+    projectileSpeed: 5
+    minAngle: 40
+    maxAngle: 55
+    angleIncrease: 14
+    angleDecay: 7
+    fireRate: 1.4
+    selectedMode: FullAuto
     soundGunshot:
       collection: red_mamba
       params:
         volume: 5
     availableModes:
-    - SemiAuto
+    - FullAuto
   - type: ProjectileBatteryAmmoProvider
-    proto: BulletSyndiPlasma3
-    fireCost: 100
+    proto: ProjectileDragonsBreath
+    fireCost: 75 #40
   - type: Wieldable
   - type: GunWieldBonus
     minAngle: -18
@@ -601,7 +719,7 @@
   - type: Battery
     maxCharge: 3000
     startingCharge: 3000
-
+    
 - type: entity
   name: SAM-300
   parent: BaseWeaponBattery
@@ -666,7 +784,7 @@
     maxAngle: 15
     angleIncrease: 4
     angleDecay: 16
-    fireRate: 4.75
+    fireRate: 5
     selectedMode: FullAuto
     soundGunshot:
       collection: syndi_plasma
@@ -675,7 +793,7 @@
     availableModes:
     - FullAuto
   - type: ProjectileBatteryAmmoProvider
-    proto: BulletSyndiPlasma2
+    proto: BulletSyndiPlasma
     fireCost: 25
   - type: MultiHandedItem
   - type: Battery

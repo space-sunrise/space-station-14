@@ -76,8 +76,8 @@
     joinSystem: true
   - type: DoAfter
   - type: Repairable
-    fuelCost: 30
-    doAfterDelay: 5
+    fuelCost: 20
+    doAfterDelay: 2
     damage:
       types:
         Blunt: -15
@@ -161,7 +161,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 700
+        damage: 1200
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -202,7 +202,7 @@
     baseState: ripley
     openState: ripley-open
     brokenState: ripley-broken
-    mechToPilotDamageMultiplier: 0.75
+    mechToPilotDamageMultiplier: 0.70
     pilotWhitelist:
       components:
         - HumanoidAppearance
@@ -230,7 +230,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      200: Critical
+      250: Critical
     showOverlays: false
     allowRevives: true
 
@@ -292,7 +292,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      250: Critical
+      360: Critical
     showOverlays: false
     allowRevives: true
 
@@ -354,7 +354,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      250: Critical
+      320: Critical
     showOverlays: false
     allowRevives: true
   - type: PointLight
@@ -418,7 +418,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      150: Critical
+      250: Critical
     showOverlays: false
     allowRevives: true
 
@@ -636,7 +636,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      300: Critical
+      400: Critical
     showOverlays: false
     allowRevives: true
   - type: Tag
@@ -688,7 +688,7 @@
     damage:
       types:
         Blunt: 40
-        Structural: 220
+        Structural: 250
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.5
     baseSprintSpeed: 2
@@ -697,7 +697,7 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.25
+    reflectProb: 0.30
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -706,7 +706,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      450: Critical
+      600: Critical
     showOverlays: false
     allowRevives: true
   - type: Tag
@@ -775,7 +775,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      200: Critical
+      280: Critical
     showOverlays: false
     allowRevives: true
   - type: Tag
@@ -830,7 +830,7 @@
     damage:
       types:
         Blunt: 30
-        Structural: 180
+        Structural: 200
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.4
     baseSprintSpeed: 3
@@ -846,7 +846,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      400: Critical
+      450: Critical
     showOverlays: false
     allowRevives: true
 
@@ -906,7 +906,7 @@
     damage:
       types:
         Blunt: 40
-        Structural: 200
+        Structural: 250
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
     baseSprintSpeed: 1.5
@@ -915,7 +915,7 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.4
+    reflectProb: 0.35
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -924,7 +924,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      500: Critical
+      700: Critical
     showOverlays: false
     allowRevives: true
 
@@ -984,7 +984,7 @@
     damage:
       types:
         Blunt: 60
-        Structural: 400
+        Structural: 460
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.2
     baseSprintSpeed: 3.7
@@ -1002,7 +1002,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      550: Critical
+      800: Critical
     showOverlays: false
     allowRevives: true
 
@@ -1064,8 +1064,8 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 30
-        Structural: 200
+        Blunt: 35
+        Structural: 250
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.2
     baseSprintSpeed: 3.7
@@ -1083,7 +1083,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      350: Critical
+      500: Critical
     showOverlays: false
     allowRevives: true
 
@@ -1140,8 +1140,8 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 30
-        Structural: 200
+        Blunt: 40
+        Structural: 380
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 3
@@ -1150,7 +1150,7 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.35
+    reflectProb: 0.30
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -1159,7 +1159,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      450: Critical
+      650: Critical
     showOverlays: false
     allowRevives: true
 
@@ -1217,7 +1217,7 @@
     damage:
       types:
         Blunt: 50
-        Structural: 400
+        Structural: 450
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
     baseSprintSpeed: 1.5
@@ -1226,7 +1226,7 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.45
+    reflectProb: 0.40
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -1235,7 +1235,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      500: Critical
+      800: Critical
     showOverlays: false
     allowRevives: true
 

@@ -14,6 +14,7 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
     {
         private SpriteSystem _spriteSystem;
         public event Action<GhostRoleInfo>? OnRoleSelected;
+        public event Action<GhostRoleInfo>? OnRoleRules;
         public event Action<GhostRoleInfo>? OnRoleFollow;
 
         public GhostRoleButtonsBox(bool hasAccess, FormattedMessage? reason, IEnumerable<GhostRoleInfo> roles, SpriteSystem spriteSystem)
@@ -25,6 +26,7 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
             {
                 var button = new GhostRoleEntryButtons(role);
                 button.RequestButton.OnPressed += _ => OnRoleSelected?.Invoke(role);
+                button.RulesButton.OnPressed += _ => OnRoleRules?.Invoke(role);
                 button.FollowButton.OnPressed += _ => OnRoleFollow?.Invoke(role);
 
                 if (!hasAccess)
