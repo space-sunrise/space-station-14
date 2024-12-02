@@ -234,7 +234,7 @@
   - type: ItemBorgModule
     items:
     - EnergySword
-    - LightMachineGunBorg
+    - WeaponLightMachineGunL6C
 
 - type: entity
   id: BorgModuleStandart
