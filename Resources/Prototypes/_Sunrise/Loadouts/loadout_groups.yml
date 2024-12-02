@@ -309,3 +309,8 @@
   loadouts:
   - AdjutantCoat
 
+- type: loadoutGroup
+  id: AtmosphericsConsole
+  name: loadout-group-atmos-console
+  loadouts:
+  - AtmosphericsConsole
