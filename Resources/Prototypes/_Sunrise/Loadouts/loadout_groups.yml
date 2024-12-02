@@ -309,3 +309,28 @@
   loadouts:
   - AdjutantCoat
 
+- type: loadoutGroup
+  id: CommonPets
+  name: loadout-group-pets
+  loadouts:
+  - PetRabbit
+  - PetAnteater
+  - PetOctopus
+  - PetNavySeal
+  - PetOtter
+  - PetAlexander
+  - PetMobCrabAtmos
+  - PetMobCorgiIan
+  - PetMobSlimesPet
+  - PetMobCatRuntime
+  - PetMobCorgiLisa
+  - PetMobCatFloppa
+  - PetMobWalter
+  - PetMcGriff
+  - PetMobPossumMorty
+  - MobPossumPoppy
+  - PetMobCorgiIanOld
+  - PetMobGoose
+  - PetMobClownGoblin
+  - PetMobCorgiIanPup
+  - PetMobParrot

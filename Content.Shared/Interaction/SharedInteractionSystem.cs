@@ -488,7 +488,7 @@ namespace Content.Shared.Interaction
             }
 
             // allow for special logic before main interaction
-            var ev = new BeforeInteractHandEvent(target);
+            var ev = new BeforeInteractHandEvent(target, user); // Sunrise edit
             RaiseLocalEvent(user, ev);
             if (ev.Handled)
             {
