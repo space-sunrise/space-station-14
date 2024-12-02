@@ -636,6 +636,7 @@ namespace Content.Server.Voting.Managers
             }
 
             var selectedPresets = SelectPresetsByChance(validPresets, _cfg.GetCVar(SunriseCCVars.RoundVotingCount));
+            presets.Add("Secret", "secret-title");
             foreach (var preset in selectedPresets)
             {
                 presets[preset.preset.ID] = preset.preset.ModeTitle;
