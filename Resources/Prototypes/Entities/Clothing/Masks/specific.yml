@@ -23,6 +23,11 @@
     - type: HideLayerClothing
       slots:
       - Snout
+  # Sunrise-Start
+    - type: Biocode
+      factions:
+      - Syndicate
+  # Sunrise-End
 
 - type: entity
   parent: ClothingMaskGasChameleon

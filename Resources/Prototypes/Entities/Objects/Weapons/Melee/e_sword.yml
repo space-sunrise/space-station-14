@@ -39,15 +39,15 @@
         variation: 0.125
     activatedDamage:
       types:
-        Slash: 15
-        Heat: 15
+        Slash: 12
+        Heat: 12
         Structural: 20
   - type: MeleeWeapon
     wideAnimationRotation: -135
     attackRate: 1
     damage:
       types:
-        Blunt: 4.5
+        Blunt: 1
   - type: Item
     size: Small
   - type: UseDelay
@@ -188,8 +188,8 @@
         variation: 0.250
     activatedDamage:
       types:
-        Slash: 10
-        Heat: 10
+        Slash: 8
+        Heat: 8
   - type: ComponentToggler
     components:
     - type: Sharp
@@ -244,7 +244,7 @@
     state: e_dagger
   - type: SpawnItemsOnUse
     items:
-    - id: EnergyDagger
+    - id: EnergyDaggerBiocode # Sunrise-Edit
     sound:
       path: /Audio/Effects/unwrap.ogg
 
@@ -297,9 +297,9 @@
         variation: 0.250
     activatedDamage:
         types:
-            Slash: 12
-            Heat: 12
-            Structural: 15
+            Slash: 6
+            Heat: 6
+            Structural: 10
   - type: ItemToggleActiveSound
     activeSound:
       path: /Audio/Weapons/ebladehum.ogg
@@ -316,11 +316,11 @@
     wieldSound: null # esword light sound instead
   - type: MeleeWeapon
     wideAnimationRotation: -135
-    attackRate: 1.5
+    attackRate: 1.75
     angle: 100
     damage:
       types:
-        Blunt: 4.5
+        Blunt: 1
   - type: Sprite
     sprite: Objects/Weapons/Melee/e_sword_double.rsi
     layers:
@@ -334,8 +334,8 @@
     size: Small
     sprite: Objects/Weapons/Melee/e_sword_double-inhands.rsi
   - type: Reflect
-    reflectProb: .75
-    spread: 75
+    reflectProb: .50
+    spread: 100
 
 - type: entity
   suffix: One-Handed, For Borgs

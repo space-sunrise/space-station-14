@@ -18,6 +18,11 @@
           type: StorageBoundUserInterface
         enum.ChameleonUiKey.Key:
           type: ChameleonBoundUserInterface
+  # Sunrise-Start
+    - type: Biocode
+      factions:
+      - Syndicate
+  # Sunrise-End
 
 - type: entity
   parent: Clothing
