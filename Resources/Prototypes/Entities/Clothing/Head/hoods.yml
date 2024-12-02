@@ -228,7 +228,7 @@
   # this is on the hood so you only fool the fish if you wear the whole set
   # wear carp suit and security helmet, they'll know you are fake
   - type: FactionClothing
-    faction: Dragon
+    faction: Carps
 
 - type: entity
   parent: ClothingHeadBase

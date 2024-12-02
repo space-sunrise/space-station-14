@@ -935,13 +935,6 @@ entities:
     - type: Transform
       pos: 6.581032,3.4765759
       parent: 1
-- proto: ClothingShoesBootsSpeed
-  entities:
-  - uid: 209
-    components:
-    - type: Transform
-      pos: 6.549782,2.3672009
-      parent: 1
 - proto: ComputerIFF
   entities:
   - uid: 358

@@ -39,8 +39,8 @@
         variation: 0.125
     activatedDamage:
       types:
-        Slash: 12
-        Heat: 12
+        Slash: 10
+        Heat: 10
         Structural: 20
   - type: MeleeWeapon
     wideAnimationRotation: -135
@@ -69,6 +69,8 @@
       - state: inhand-right-blade
         shader: unshaded
   - type: Reflect
+    reflectProb: .20
+    spread: 45
   # Sunrise-start
   - type: Tag
     tags:
@@ -188,8 +190,8 @@
         variation: 0.250
     activatedDamage:
       types:
-        Slash: 8
-        Heat: 8
+        Slash: 6
+        Heat: 6
   - type: ComponentToggler
     components:
     - type: Sharp
@@ -225,6 +227,9 @@
     damage:
       types:
         Blunt: 1
+  - type: Reflect
+    reflectProb: .15
+    spread: 45
   - type: Tag
     tags:
     - Write
@@ -334,8 +339,8 @@
     size: Small
     sprite: Objects/Weapons/Melee/e_sword_double-inhands.rsi
   - type: Reflect
-    reflectProb: .50
-    spread: 100
+    reflectProb: .40
+    spread: 90
 
 - type: entity
   suffix: One-Handed, For Borgs
