@@ -32,7 +32,9 @@
   - type: SolutionTransfer
     maxTransferAmount: 2
   - type: Reflect
-    reflectProb: 0.3
+    reflects:
+    - NonEnergy
+    reflectProb: 0.20
     spread: 90
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Melee/syndicate_rapier.rsi

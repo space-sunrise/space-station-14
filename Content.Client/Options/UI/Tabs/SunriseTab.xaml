@@ -29,7 +29,6 @@
 
                 <!-- Graphics -->
                 <Label Text="{Loc 'ui-options-sunrise-general-graphics'}" StyleClasses="LabelKeyText"/>
-                <CheckBox Name="ShowFootprintsCheckBox" Text="{Loc 'ui-options-show-footprints'}" />
 
             </BoxContainer>
         </ScrollContainer>

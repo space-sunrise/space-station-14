@@ -532,6 +532,8 @@
   - type: StationEvent
     startAudio:
       path: /Audio/_Sunrise/Announcements/ionstorm.ogg
+      params:
+        volume: -10
     weight: 8
     reoccurrenceDelay: 20
     duration: 1

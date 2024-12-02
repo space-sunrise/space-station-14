@@ -146,27 +146,15 @@
 
 - type: entity
   name: Glock-22
-  parent: BaseWeaponPistol
+  parent: WeaponPistolG22
   id: WeaponPistolG22NonLethal
   suffix: NonLethal
   components:
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/glock22/big.rsi
-  - type: Item
-    sprite: _Sunrise/Objects/Weapons/Guns/Pistols/glock22/tiny.rsi
-  - type: Gun
-    selectedMode: SemiAuto
-    availableModes:
-    - SemiAuto
-    - Burst
-    - FullAuto
-    soundGunshot:
-      collection: glock22
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineGlock22
+        startingItem: MagazineGlock22Rubber
         insertSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_unload.ogg
         priority: 2
@@ -181,17 +169,6 @@
         whitelist:
           tags:
           - CartridgePistol
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: ContainerContainer
-    containers:
-      gun_magazine: !type:ContainerSlot
-      gun_chamber: !type:ContainerSlot
-  - type: ChamberMagazineAmmoProvider
-    soundRack:
-      path: /Audio/_Sunrise/Weapons/Guns/Pistols/glock22/glock22_cocked.ogg
 
 
 - type: entity

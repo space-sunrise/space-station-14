@@ -198,6 +198,12 @@
       interfaces:
         enum.ChameleonUiKey.Key:
           type: ChameleonBoundUserInterface
+    # Sunrise-Start
+    - type: Biocode
+      factions:
+      - Syndicate
+      - Thief
+    # Sunrise-End
 
 - type: entity
   parent: ClothingShoesChameleon

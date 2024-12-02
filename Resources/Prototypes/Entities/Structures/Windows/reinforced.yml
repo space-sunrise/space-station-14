@@ -9,8 +9,7 @@
   - type: Icon
     sprite: Structures/Windows/reinforced_window.rsi
   - type: Repairable
-    fuelCost: 10
-    doAfterDelay: 2
+    doAfterDelay: 5 # Sunrise-Edit
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: RGlass

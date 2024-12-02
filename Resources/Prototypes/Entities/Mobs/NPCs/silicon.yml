@@ -56,8 +56,14 @@
   - type: NameIdentifier
     group: GenericNumber
   - type: Repairable
-    doAfterDelay: 8
-    fuelCost: 15
+    # Sunrise-Start
+    doAfterDelay: 3
+    damage:
+      types:
+        Blunt: -15
+        Slash: -15
+        Piercing: -15
+    # Sunrise-End
   - type: Pullable
   - type: Tag
     tags:

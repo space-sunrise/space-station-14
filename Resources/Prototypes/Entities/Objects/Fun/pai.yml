@@ -127,6 +127,10 @@
     worldTargetActions:
     - Emag
     - HandheldHealthAnalyzerUnpowered
+  - type: Biocode
+    factions:
+    - Syndicate
+    - Thief
   # Sunrise-End
 
 - type: entity

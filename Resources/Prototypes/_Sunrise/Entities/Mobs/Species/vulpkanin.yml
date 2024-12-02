@@ -24,6 +24,7 @@
     emotesTakeDamage:
     - Scream
     - Whines
+  - type: FootprintEmitter
 
 
 - type: entity

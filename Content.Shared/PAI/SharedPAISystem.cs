@@ -26,13 +26,15 @@ namespace Content.Shared.PAI
         private void OnMapInit(EntityUid uid, PAIComponent component, MapInitEvent args)
         {
             _actionsSystem.AddAction(uid, ref component.MidiAction, component.MidiActionId);
-            _actionsSystem.AddAction(uid, ref component.MapAction, component.MapActionId);
+            // Sunrise-Edit
+            //_actionsSystem.AddAction(uid, ref component.MapAction, component.MapActionId);
         }
 
         private void OnShutdown(EntityUid uid, PAIComponent component, ComponentShutdown args)
         {
             _actionsSystem.RemoveAction(uid, component.MidiAction);
-            _actionsSystem.RemoveAction(uid, component.MapAction);
+            // Sunrise-Edit
+            //_actionsSystem.RemoveAction(uid, component.MapAction);
         }
     }
 }

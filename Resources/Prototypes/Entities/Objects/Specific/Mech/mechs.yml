@@ -76,7 +76,6 @@
     joinSystem: true
   - type: DoAfter
   - type: Repairable
-    fuelCost: 20
     doAfterDelay: 2
     damage:
       types:
@@ -494,7 +493,7 @@
       150: Critical
     showOverlays: false
     allowRevives: true
-    
+
 - type: entity
   parent: MechHamtr
   id: MechHamtrBattery
@@ -724,7 +723,7 @@
     containers:
       mech-battery-slot:
       - PowerCageHigh
-      
+
 # Phazon
 
 - type: entity
@@ -859,7 +858,7 @@
     containers:
       mech-battery-slot:
       - PowerCageHigh
-      
+
 - type: entity
   id: MechNTGygaxFilled
   parent: MechNTGygaxBattery
@@ -1106,7 +1105,7 @@
     startingEquipment:
       - WeaponMechChainSword
       - WeaponMechCombatMissileRack8
-      
+
 # Rover
 - type: entity
   id: MechRoverSyndie

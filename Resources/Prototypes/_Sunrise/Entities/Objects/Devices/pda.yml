@@ -21,11 +21,7 @@
     id: MagistratIDCard
     state: pda-captain
     penSlot:
-      startingItem: Pen
-      priority: -1
-      whitelist:
-        tags:
-        - Write
+      startingItem: UEGPen
   - type: PdaBorderColor
     borderColor: "#7C5D00"
   - type: Icon
