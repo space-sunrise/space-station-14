@@ -12,6 +12,25 @@
   categories:
   - UplinkWearables
 
+- type: listing
+  id: UplinkClothingEyesHudSyndicateMech
+  name: uplink-syndie-diagnostic-hud-name
+  description: uplink-syndie-diagnostic-hud-desc
+  icon: { sprite: /Textures/_Sunrise/Clothing/Eyes/Hud/syndmech.rsi, state: icon }
+  productEntity: ClothingEyesHudSyndicateMech
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 3
+  categories:
+  - UplinkWearables
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
 # For the Buldog
 - type: listing
   id: UplinkMagazineShotgun
