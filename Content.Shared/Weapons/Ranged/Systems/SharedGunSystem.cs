@@ -599,7 +599,7 @@ public abstract partial class SharedGunSystem : EntitySystem
     [Serializable, NetSerializable]
     public sealed class HitscanEvent : EntityEventArgs
     {
-        public List<(NetCoordinates coordinates, Angle angle, SpriteSpecifier Sprite, float Distance)> Sprites = new();
+        public List<(NetCoordinates coordinates, Angle angle, SpriteSpecifier sprite, float distance, EffectType effectType)> Sprites = new();
     }
 }
 
@@ -625,6 +625,12 @@ public record struct GunShotEvent(EntityUid User, List<(EntityUid? Uid, IShootab
 public enum EffectLayers : byte
 {
     Unshaded,
+}
+
+public enum EffectType : byte
+{
+    Tracer,
+    Static
 }
 
 [Serializable, NetSerializable]

@@ -447,7 +447,7 @@ public sealed partial class GunSystem : SharedGunSystem
         // Lord
         // Forgive me for the shitcode I am about to do
         // Effects tempt me not
-        var sprites = new List<(NetCoordinates coordinates, Angle angle, SpriteSpecifier sprite, float scale)>();
+        var sprites = new List<(NetCoordinates coordinates, Angle angle, SpriteSpecifier sprite, float scale, EffectType)>();
         var gridUid = fromCoordinates.GetGridUid(EntityManager);
         var angle = mapDirection;
 
@@ -473,7 +473,7 @@ public sealed partial class GunSystem : SharedGunSystem
                 var coords = fromCoordinates.Offset(angle.ToVec().Normalized() / 2);
                 var netCoords = GetNetCoordinates(coords);
 
-                sprites.Add((netCoords, angle, hitscan.MuzzleFlash, 1f));
+                sprites.Add((netCoords, angle, hitscan.MuzzleFlash, 1f, EffectType.Static));
             }
 
             if (hitscan.TravelFlash != null)
@@ -481,7 +481,14 @@ public sealed partial class GunSystem : SharedGunSystem
                 var coords = fromCoordinates.Offset(angle.ToVec() * (distance + 0.5f) / 2);
                 var netCoords = GetNetCoordinates(coords);
 
-                sprites.Add((netCoords, angle, hitscan.TravelFlash, distance - 1.5f));
+                sprites.Add((netCoords, angle, hitscan.TravelFlash, distance - 1.5f, EffectType.Static));
+            }
+
+            if (hitscan.BulletTracer != null)
+            {
+                var coords = fromCoordinates.Offset(angle.ToVec().Normalized() / 2);
+                var netCoords = GetNetCoordinates(coords);
+                sprites.Add((netCoords, angle, hitscan.BulletTracer, distance - 1.5f, EffectType.Tracer));
             }
         }
 
@@ -490,15 +497,16 @@ public sealed partial class GunSystem : SharedGunSystem
             var coords = fromCoordinates.Offset(angle.ToVec() * distance);
             var netCoords = GetNetCoordinates(coords);
 
-            sprites.Add((netCoords, angle.FlipPositive(), hitscan.ImpactFlash, 1f));
+            sprites.Add((netCoords, angle.FlipPositive(), hitscan.ImpactFlash, 1f, EffectType.Static));
         }
 
         if (sprites.Count > 0)
         {
             RaiseNetworkEvent(new HitscanEvent
             {
-                Sprites = sprites,
-            }, Filter.Pvs(fromCoordinates, entityMan: EntityManager));
+                Sprites = sprites
+            },
+                Filter.Pvs(fromCoordinates, entityMan: EntityManager));
         }
     }
 

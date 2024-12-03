@@ -29,6 +29,9 @@ public sealed partial class HitscanPrototype : IPrototype, IShootable
     [ViewVariables(VVAccess.ReadOnly), DataField("impactFlash")]
     public SpriteSpecifier? ImpactFlash;
 
+    [DataField("bulletTracer")]
+    public SpriteSpecifier? BulletTracer { get; set; }
+
     [DataField("collisionMask")]
     public CollisionGroup CollisionMask { get; private set; } = CollisionGroup.Opaque;
 
