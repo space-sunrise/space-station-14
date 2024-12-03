@@ -35,7 +35,7 @@
     damage:
       types:
         Blunt: 2
-        Slash: 2
+        Slash: 3
 
 
 - type: entity
