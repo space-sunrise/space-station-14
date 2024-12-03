@@ -1,37 +1,6 @@
 ﻿Entries:
 - author: VigersRay
   changes:
-  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0430 \u043E\u0437\u0432\
-      \u0443\u0447\u043A\u0430 \u0440\u0430\u0434\u0438\u043E \u0441\u043E\u043E\u0431\
-      \u0449\u0435\u043D\u0438\u0439 \u0438 \u043E\u043F\u043E\u0432\u0435\u0449\u0435\
-      \u043D\u0438\u0439 \u043D\u0430 \u0441\u0442\u0430\u043D\u0446\u0438\u0438."
-    type: Tweak
-  id: 2
-  time: '2024-05-03T19:35:13.510960+00:00'
-- author: VigersRay
-  changes:
-  - message: "\u0426\u0435\u043B\u0438 \u0441\u0442\u0430\u043D\u0446\u0438\u0438\
-      \ \u0442\u0435\u043F\u0435\u0440\u044C \u043E\u0442\u043F\u0440\u0430\u0432\u043B\
-      \u044F\u044E\u0442\u0441\u044F \u0432 \u043A\u0435\u0439\u0441\u0435 \u0441\
-      \ \u0434\u043E\u0441\u0442\u0443\u043F\u043E\u043C \u043A\u0430\u043F\u0438\u0442\
-      \u0430\u043D\u0430."
-    type: Tweak
-  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0430 \u0441\u0435\u043A\
-      \u0440\u0435\u0442\u043D\u0430\u044F \u0446\u0435\u043B\u044C."
-    type: Add
-  id: 3
-  time: '2024-05-03T19:39:33.748637+00:00'
-- author: VigersRay
-  changes:
-  - message: "\u0417\u043B\u043E\u0439 \u0434\u0432\u043E\u0439\u043D\u0438\u043A\
-      \ \u0442\u0435\u043F\u0435\u0440\u044C \u0432\u0441\u0435\u0433\u0434\u0430\
-      \ \u043F\u043E\u044F\u0432\u043B\u044F\u0435\u0442\u0441\u044F \u0432 \u043F\
-      \u0440\u0438\u0431\u044B\u0442\u0438\u0438."
-    type: Tweak
-  id: 4
-  time: '2024-05-03T19:52:28.182622+00:00'
-- author: VigersRay
-  changes:
   - message: "\u0417\u0430\u043C\u0435\u043D\u0438\u043B \u0444\u043E\u043D\u044B\
       \ \u0432 \u043B\u043E\u0431\u0431\u0438 \u043D\u0430 \u043F\u0430\u0440\u0430\
       \u043B\u0430\u043A\u0441\u044B \u0441 \u043F\u0440\u0438\u043A\u043E\u043B\u044C\
@@ -7107,3 +7076,35 @@
   id: 498
   time: '2024-12-03T23:44:58.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/766
+- author: KaiserMaus
+  changes:
+  - message: "\u041E\u043F\u0438\u0441\u0430\u043D\u0438\u0435 \u041E\u0440\u0443\u0436\
+      \u0438\u044F."
+    type: Fix
+  id: 499
+  time: '2024-12-03T23:46:46.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/773
+- author: KaiserMaus
+  changes:
+  - message: "\u0441\u0435\u0439\u0444 \u044D\u043D\u0435\u0440\u0433\u0435\u0442\u0438\
+      \u0447\u0435\u0441\u043A\u0438\u0445 \u043F\u0438\u0441\u0442\u043E\u043B\u0435\
+      \u0442\u043E\u0432 \"\u0421\u0443\u0434\u044C\u044F\""
+    type: Add
+  - message: "\u0421\u0435\u0439\u0444 Mp38."
+    type: Remove
+  - message: "EnergyGun \u0421\u0435\u0439\u0444 \u0441\u043E\u0434\u0435\u0440\u0436\
+      \u0438\u0442 \u0442\u0430\u043A\u0442\u0438\u0447\u0435\u0441\u043A\u0438\u0439\
+      \ \u0432\u0430\u0440\u0438\u0430\u043D\u0442."
+    type: Tweak
+  id: 500
+  time: '2024-12-03T23:47:05.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/775
+- author: pacable
+  changes:
+  - message: "\u0412\u0443\u043B\u044C\u043F\u043A\u0430\u043D\u0438\u043D\u0430\u043C\
+      \ \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u044B \u043A\u043E\u0433\u0442\
+      \u0438."
+    type: Add
+  id: 501
+  time: '2024-12-03T23:47:44.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/774
