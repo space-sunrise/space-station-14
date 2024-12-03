@@ -3,7 +3,7 @@
   name: cartridge (.25 caseless rubber)
   parent: BaseCartridgeCaselessRifle
   components:
-  - type: CartridgeAmmo
+  - type: HitScanCartridgeAmmo
     proto: BulletCaselessRifleRubber
   - type: Sprite
     layers:

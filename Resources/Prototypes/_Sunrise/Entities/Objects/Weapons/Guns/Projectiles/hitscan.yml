@@ -1,0 +1,377 @@
+- type: entity
+  id: HitscanEffectTracer
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.05
+  - type: Sprite
+    drawdepth: Effects
+    layers:
+    - shader: unshaded
+      map: ["enum.EffectLayers.Unshaded"]
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+    - HideContextMenu
+  - type: AnimationPlayer
+# hitscan bullet
+
+- type: hitscan
+  id: BulletPistol
+  damage:
+    types:
+      Piercing: 16
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: BulletPistolRubber
+  damage:
+    types:
+      Blunt: 1
+  staminaDamage: 20
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: BulletPistolPractice
+  damage:
+    types:
+      Blunt: 2
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: BulletPistolIncendiary
+  damage:
+    types:
+      Blunt: 2
+      Heat: 14
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: BulletPistolUranium
+  damage:
+    types:
+      Radiation: 6
+      Piercing: 10
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: BulletRifle
+  damage:
+    types:
+      Piercing: 17
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: BulletRifleRubber
+  damage:
+    types:
+      Blunt: 1
+  staminaDamage: 20
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: BulletRiflePractice
+  damage:
+    types:
+      Blunt: 2
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: BulletRifleIncendiary
+  damage:
+    types:
+      Blunt: 2
+      Heat: 15
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: BulletRifleUranium
+  damage:
+    types:
+      Radiation: 7
+      Piercing: 8
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: BulletMagnum
+  damage:
+    types:
+      Blunt: 35
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: BulletMagnumRubber
+  damage:
+    types:
+      Blunt: 1
+  staminaDamage: 20
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: BulletMagnumPractice
+  damage:
+    types:
+      Blunt: 1
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: BulletMagnumIncendiary
+  damage:
+    types:
+      Blunt: 3
+      Heat: 32
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: BulletMagnumAP
+  damage:
+    types:
+      Piercing: 26
+  ignoreResistances: true
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: BulletMagnumUranium
+  damage:
+    types:
+      Radiation: 15
+      Piercing: 20
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: BulletLightRifle
+  damage:
+    types:
+      Piercing: 19
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: BulletLightRifleRubber
+  damage:
+    types:
+      Blunt: 1
+  staminaDamage: 20
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: BulletLightRiflePractice
+  damage:
+    types:
+      Blunt: 2
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: BulletLightRifleIncendiary
+  damage:
+    types:
+      Blunt: 3
+      Heat: 16
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: BulletLightRifleUranium
+  damage:
+    types:
+      Radiation: 9
+      Piercing: 10
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: BulletHeavyRifle
+  damage:
+    types:
+      Piercing: 19
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: BulletMinigun
+  damage:
+    types:
+      Piercing: 5
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: BulletCaselessRifle
+  damage:
+    types:
+      Piercing: 19
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: BulletCaselessRifleRubber
+  damage:
+    types:
+      Blunt: 1
+  staminaDamage: 20
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: BulletCaselessRiflePractice
+  damage:
+    types:
+      Blunt: 2
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: BulletAntiMateriel
+  damage:
+    types:
+      Piercing: 40
+      Structural: 30
+  staminaDamage: 35
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: PelletShotgunPractice
+  damage:
+    types:
+      Blunt: 1
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: PelletShotgunBeanbag
+  damage:
+    types:
+      Blunt: 2.5
+  staminaDamage: 15
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: PelletShotgunSlug
+  damage:
+    types:
+      Piercing: 28
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: PelletShotgun
+  damage:
+    types:
+      Piercing: 10
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: PelletShotgunIncendiary
+  damage:
+    types:
+      Blunt: 3
+      Heat: 7
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: PelletShotgunImprovised
+  damage:
+    types:
+      Piercing: 3
+      Slash: 3
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: PelletShotgunUranium
+  damage:
+    types:
+      Radiation: 5
+      Piercing: 5
+  collisionMask: BulletImpassable
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet

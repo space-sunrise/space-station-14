@@ -39,3 +39,20 @@ public sealed partial class CartridgeAmmoComponent : AmmoComponent
     [DataField("soundEject")]
     public SoundSpecifier? EjectSound = new SoundCollectionSpecifier("CasingEject");
 }
+
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+public sealed partial class HitScanCartridgeAmmoComponent : AmmoComponent
+{
+    [ViewVariables(VVAccess.ReadWrite), DataField("proto", required: true, customTypeSerializer: typeof(PrototypeIdSerializer<HitscanPrototype>))]
+    public string Prototype = default!;
+
+    [ViewVariables(VVAccess.ReadWrite), DataField("spent")]
+    [AutoNetworkedField]
+    public bool Spent = false;
+
+    [DataField("deleteOnSpawn")]
+    public bool DeleteOnSpawn;
+
+    [DataField("soundEject")]
+    public SoundSpecifier? EjectSound = new SoundCollectionSpecifier("CasingEject");
+}
