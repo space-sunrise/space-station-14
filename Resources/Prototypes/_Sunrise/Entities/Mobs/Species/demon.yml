@@ -53,6 +53,7 @@
     baseWalkSpeed : 2.5
     baseSprintSpeed : 4.5
   - type: Perishable
+  - type: FootprintEmitter
 
 - type: entity
   save: false

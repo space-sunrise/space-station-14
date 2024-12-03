@@ -2,12 +2,14 @@ using Content.Server.Antag;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Roles;
 using Content.Shared.Humanoid;
+using Content.Shared.NPC.Systems;
 
 namespace Content.Server.GameTicking.Rules;
 
 public sealed class ThiefRuleSystem : GameRuleSystem<ThiefRuleComponent>
 {
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
+    [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
 
     public override void Initialize()
     {
@@ -23,6 +25,10 @@ public sealed class ThiefRuleSystem : GameRuleSystem<ThiefRuleComponent>
     {
         var ent = args.EntityUid;
         _antag.SendBriefing(ent, MakeBriefing(ent), null, null);
+
+        Log.Debug($"MakeThief {ToPrettyString(ent)} - Change faction");
+        _npcFaction.RemoveFaction(ent, mindId.Comp.NanoTrasenFaction, false);
+        _npcFaction.AddFaction(ent, mindId.Comp.SyndicateFaction);
     }
 
     // Character screen briefing

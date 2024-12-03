@@ -16,6 +16,9 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Timing;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Player;
 
 namespace Content.Server.Atmos.Monitor.Systems;
 
@@ -31,6 +34,7 @@ public sealed class AtmosAlertsComputerSystem : SharedAtmosAlertsComputerSystem
     [Dependency] private readonly NavMapSystem _navMapSystem = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly DeviceListSystem _deviceListSystem = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
 
     private const float UpdateTime = 1.0f;
 
@@ -54,7 +58,7 @@ public sealed class AtmosAlertsComputerSystem : SharedAtmosAlertsComputerSystem
         SubscribeLocalEvent<AtmosAlertsDeviceComponent, AnchorStateChangedEvent>(OnDeviceAnchorChanged);
     }
 
-    #region Event handling 
+    #region Event handling
 
     private void OnConsoleInit(EntityUid uid, AtmosAlertsComputerComponent component, ComponentInit args)
     {
@@ -193,6 +197,14 @@ public sealed class AtmosAlertsComputerSystem : SharedAtmosAlertsComputerSystem
                 // Update the appearance of the console based on the highest recorded level of alert
                 if (TryComp<AppearanceComponent>(ent, out var entAppearance))
                     _appearance.SetData(ent, AtmosAlertsComputerVisuals.ComputerLayerScreen, (int) highestAlert, entAppearance);
+
+                // Sunrise-start
+                if (entConsole.NextBeep < _gameTiming.CurTime && highestAlert == AtmosAlarmType.Danger && entConsole.BeepSound != null)
+                {
+                    _audio.PlayPvs(entConsole.BeepSound, ent);
+                    entConsole.NextBeep = _gameTiming.CurTime + entConsole.Timer;
+                }
+                // Sunrise-end
 
                 // If the console UI is open, send UI data to each subscribed session
                 UpdateUIState(ent, airAlarmEntries, fireAlarmEntries, entConsole, entXform);
