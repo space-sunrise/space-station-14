@@ -47,7 +47,7 @@ public sealed class PuddleFootprintSystem : EntitySystem
             && _appearanceSystem.TryGetData(uid, PuddleVisuals.CurrentVolume, out var volume, appearance))
             UpdateTrackColor((Color)color, (float)volume * component.ColorTransferRatio, emitter);
 
-        _solutionSystem.RemoveEachReagent(puddle.Solution.Value, 1);
+        _solutionSystem.RemoveEachReagent(puddle.Solution.Value, 0.5f);
     }
 
     /// <summary>

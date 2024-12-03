@@ -70,3 +70,16 @@
     state: pen_rd
   - type: Item
     heldPrefix: pen_rd
+
+- type: entity
+  name: pen-UEG-name
+  parent: [BaseAdvancedPen, BaseCentcommContraband]
+  id: UEGPen
+  description: pen-UEG-description
+  components:
+  - type: Sprite
+    state: pen_ueg
+    sprite: _Sunrise/Objects/Misc/pens.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Misc/pens.rsi
+    heldPrefix: pen_ueg

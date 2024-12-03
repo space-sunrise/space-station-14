@@ -23,6 +23,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Containers;
+using Content.Shared.Silicons.Borgs.Components;
 
 namespace Content.Server._Sunrise.Execution;
 
@@ -129,6 +130,10 @@ public sealed class ExecutionSystem : EntitySystem
 
         // You can't execute something that cannot die
         if (!TryComp<MobStateComponent>(victim, out var mobState))
+            return false;
+
+        // You can't execute borgs
+        if (TryComp<BorgChassisComponent>(victim, out var borgChassis))
             return false;
 
         // You're not allowed to execute dead people (no fun allowed)

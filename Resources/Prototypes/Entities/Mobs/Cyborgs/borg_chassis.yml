@@ -65,6 +65,7 @@
   parent: BorgChassisSelectable
   name: janitor cyborg
   components:
+  - type: FootprintAreaCleaner
   - type: BorgSwitchableType
     selectedBorgType: janitor
 

@@ -42,8 +42,7 @@
     - state: reflector_box
       shader: unshaded
   - type: Repairable
-    fuelCost: 15
-    doAfterDelay: 3
+    doAfterDelay: 5 # Sunrise-Edit
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: RGlass

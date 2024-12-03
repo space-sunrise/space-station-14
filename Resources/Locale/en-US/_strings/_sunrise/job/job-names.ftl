@@ -26,6 +26,8 @@ job-name-sec-combat-borg = боевой киборг СБ
 job-name-peace-borg = миротворец
 job-name-clown-borg = клоун киборг
 job-name-barber = парикмахер
+job-name-pathologist = патологоанатом
+job-name-adjutant = адъютант
 # Перевод трекеров времени
 JobCentCommOfficial = представитель Центком
 JobMagistrat = магистрат
@@ -53,4 +55,4 @@ JobSecurityBorg = киборг СБ
 JobSecurityCombatBorg = боевой киборг СБ
 JobPeaceBorg = миротворец
 JobClownBorg = клоун киборг
-job-name-adjutant = адъютант
+JobMedicalPathologist = Патологоанатом

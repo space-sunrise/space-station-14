@@ -7,6 +7,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Implants;
 using Content.Shared.Implants.Components;
 using Content.Shared.Maps;
+using Content.Shared.NPC.Systems;
 using Content.Shared.Store.Components;
 using Content.Shared.Tag;
 using Robust.Server.Audio;
@@ -27,7 +28,6 @@ namespace Content.Server._Sunrise.Fugitive
         [Dependency] private readonly PopupSystem _popupSystem = default!;
         [Dependency] private readonly AudioSystem _audioSystem = default!;
         [Dependency] private readonly StunSystem _stun = default!;
-        [Dependency] private readonly IMapManager _mapManager = default!;
         [Dependency] private readonly TileSystem _tile = default!;
         [Dependency] private readonly MindSystem _mindSystem = default!;
         [Dependency] private readonly StoreSystem _store = default!;
@@ -61,14 +61,7 @@ namespace Content.Server._Sunrise.Fugitive
             if (!TryComp<MapGridComponent>(xform.GridUid, out var map))
                 return;
             var currentTile = map.GetTileRef(xform.Coordinates);
-            if (currentTile != null)
-            {
-                _tile.PryTile(currentTile);
-            }
-            else
-            {
-                return;
-            }
+            _tile.PryTile(currentTile);
 
             if (!_mindSystem.TryGetMind(args.Player.UserId, out var mindId, out var mind))
                 return;

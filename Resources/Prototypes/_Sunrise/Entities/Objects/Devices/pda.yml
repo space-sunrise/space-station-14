@@ -21,11 +21,7 @@
     id: MagistratIDCard
     state: pda-captain
     penSlot:
-      startingItem: Pen
-      priority: -1
-      whitelist:
-        tags:
-        - Write
+      startingItem: UEGPen
   - type: PdaBorderColor
     borderColor: "#7C5D00"
   - type: Icon
@@ -54,6 +50,30 @@
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-blueshield
+
+- type: entity
+  parent: BasePDA
+  id: PathologistPDA
+  name: Pathologist PDA
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Pda
+    id: PathologistIDCard
+    state: pda-patologoanatom
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-patologoanatom
 
 - type: entity
   parent: BasePDA

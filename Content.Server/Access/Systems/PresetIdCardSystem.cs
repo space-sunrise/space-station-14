@@ -82,29 +82,9 @@ public sealed class PresetIdCardSystem : EntitySystem
 
         _cardSystem.TryChangeJobTitle(uid, job.LocalizedName);
         _cardSystem.TryChangeJobDepartment(uid, job);
-        _cardSystem.TryChangeJobColor(uid, GetJobColor(_prototypeManager, job), job.RadioIsBold); // Sunrise-End
+        _cardSystem.TryChangeJobColor(uid, _cardSystem.GetJobColor(_prototypeManager, job), job.RadioIsBold); // Sunrise-End
 
         if (_prototypeManager.TryIndex(job.Icon, out var jobIcon))
             _cardSystem.TryChangeJobIcon(uid, jobIcon);
     }
-
-    // Sunrise-Start
-    public static string GetJobColor(IPrototypeManager prototypeManager, IPrototype job)
-    {
-        var jobCode = job.ID;
-
-        var departments = prototypeManager.EnumeratePrototypes<DepartmentPrototype>().ToList();
-        departments.Sort((a, b) => a.Sort.CompareTo(b.Sort));
-
-        foreach (var department in from department in departments
-                 from jobId in department.Roles
-                 where jobId == jobCode
-                 select department)
-        {
-            return department.Color.ToHex();
-        }
-
-        return string.Empty;
-    }
-    // Sunrise-End
 }

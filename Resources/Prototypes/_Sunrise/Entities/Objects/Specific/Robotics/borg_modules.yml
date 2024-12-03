@@ -206,6 +206,7 @@
     items:
     - SyndicateJawsOfLife
     - PinpointerNuclear
+    - WeaponPistolEchis
 
 - type: entity
   id: BorgModuleSyndicateMedical
@@ -233,7 +234,7 @@
     - state: icon-syndicate
   - type: ItemBorgModule
     items:
-    - EnergySword
+    - EnergyDaggerLoud
     - LightMachineGunBorg
 
 - type: entity

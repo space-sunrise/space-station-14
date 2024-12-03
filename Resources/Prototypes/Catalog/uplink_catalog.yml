@@ -81,14 +81,6 @@
     Telecrystal: 8
   categories:
   - UplinkWeaponry
-#Sunrise-start
-  conditions:
-    - !type:StoreWhitelistCondition
-      blacklist:
-        tags:
-          - SyndieAgentUplink
-          - AssaultOpsUplink
-#Sunrise-end
 
 - type: listing
   id: UplinkEnergyDagger
@@ -244,9 +236,9 @@
   productEntity: ClothingBackpackDuffelSyndicateFilledGrenadeLauncher
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 15
+    Telecrystal: 8
   cost:
-    Telecrystal: 20
+    Telecrystal: 12
   categories:
   - UplinkWeaponry
 #Sunrise-start
@@ -824,6 +816,15 @@
     Telecrystal: 4
   categories:
   - UplinkChemicals
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkStimpack
@@ -837,6 +838,15 @@
     Telecrystal: 4
   categories:
   - UplinkChemicals
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkStimkit
@@ -850,6 +860,15 @@
     Telecrystal: 12
   categories:
   - UplinkChemicals
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
 
 - type: listing
   id: UplinkCigarettes
@@ -1547,15 +1566,15 @@
   description: uplink-death-acidifier-implant-desc
   icon: { sprite: /Textures/Objects/Magic/magicactions.rsi, state: gib }
   productEntity: DeathAcidifierImplanter
-  cost:
-    Telecrystal: 4
   categories:
     - UplinkImplants
   conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - NukeOpsUplink
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - SyndieAgentUplink
+  - !type:ListingLimitedStockCondition
+    stock: 1
 
 - type: listing
   id: UplinkUplinkImplanter # uplink uplink real
@@ -1790,11 +1809,10 @@
   - UplinkWearables
 #Sunrise-start
   conditions:
-    - !type:StoreWhitelistCondition
-      blacklist:
-        tags:
-          - SyndieAgentUplink
-          - AssaultOpsUplink
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
 #Sunrise-end
 
 - type: listing
@@ -1812,11 +1830,10 @@
   - UplinkWearables
 #Sunrise-start
   conditions:
-    - !type:StoreWhitelistCondition
-      blacklist:
-        tags:
-          - SyndieAgentUplink
-          - AssaultOpsUplink
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
 #Sunrise-end
 
 - type: listing

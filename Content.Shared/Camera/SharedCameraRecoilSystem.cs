@@ -1,7 +1,4 @@
 using System.Numerics;
-using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Item;
-using Content.Shared.Telescope;
 using JetBrains.Annotations;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
@@ -33,7 +30,6 @@ public abstract class SharedCameraRecoilSystem : EntitySystem
 
     [Dependency] private readonly SharedEyeSystem _eye = default!;
     [Dependency] private readonly INetManager _net = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
 
 
     public override void Initialize()
@@ -43,14 +39,7 @@ public abstract class SharedCameraRecoilSystem : EntitySystem
 
     private void OnCameraRecoilGetEyeOffset(Entity<CameraRecoilComponent> ent, ref GetEyeOffsetEvent args)
     {
-        if (_hands.TryGetActiveItem(ent.Owner, out var item) && HasComp<TelescopeComponent>(item.Value))
-        {
-            args.Offset += ent.Comp.BaseOffset;
-        }
-        else
-        {
-            args.Offset += ent.Comp.BaseOffset + ent.Comp.CurrentKick;
-        }
+        args.Offset += ent.Comp.BaseOffset + ent.Comp.CurrentKick;
     }
 
     /// <summary>
