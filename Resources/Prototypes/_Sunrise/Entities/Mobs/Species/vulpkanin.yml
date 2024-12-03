@@ -25,6 +25,17 @@
     - Scream
     - Whines
   - type: FootprintEmitter
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      collection: Punch
+    angle: 30
+    animation: WeaponArcClaw
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 2
+        Slash: 2
 
 
 - type: entity
