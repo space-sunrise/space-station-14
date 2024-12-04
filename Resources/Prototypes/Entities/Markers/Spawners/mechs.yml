@@ -127,9 +127,8 @@
       - MechMarauderFilled
 
 - type: entity
-  name: Marauder Spawner
-  suffix: Filled
-  id: SpawnMechNTGygaxBattery
+  name: NTGygax Spawner
+  id: SpawnMechNTGygax
   parent: MarkerBase
   components:
   - type: Sprite
@@ -142,7 +141,7 @@
       - MechNTGygaxBattery
 
 - type: entity
-  name: Marauder Spawner
+  name: NTGygax Spawner
   suffix: Filled
   id: SpawnMechNTGygaxFilled
   parent: MarkerBase
