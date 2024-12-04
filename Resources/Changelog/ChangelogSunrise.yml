@@ -2,13 +2,6 @@
 - author: VigersRay
   changes:
   - message: "\u0414\u043E\u0431\u0430\u0432\u0438\u043B \u0440\u0430\u0441\u0441\u0443\
-      \ \u041A\u041F\u0411."
-    type: Add
-  id: 6
-  time: '2024-05-03T22:40:50.944858+00:00'
-- author: VigersRay
-  changes:
-  - message: "\u0414\u043E\u0431\u0430\u0432\u0438\u043B \u0440\u0430\u0441\u0441\u0443\
       \ \u0444\u0435\u043B\u0438\u043D\u0438\u0434\u043E\u0432."
     type: Add
   id: 7
@@ -7102,3 +7095,11 @@
     type: Add
   id: 502
   time: '2024-12-04T04:34:12.925515+00:00'
+- author: VigersRay
+  changes:
+  - message: "\u043F\u0418\u0418 \u043C\u043E\u0436\u0435\u0442 \u0433\u043E\u0432\
+      \u043E\u0440\u0438\u0442\u044C \u0432 \u043E\u0431\u0449\u0438\u0439 \u0440\u0430\
+      \u0434\u0438\u043E \u043A\u0430\u043D\u0430\u043B."
+    type: Tweak
+  id: 503
+  time: '2024-12-04T04:53:58.721154+00:00'
