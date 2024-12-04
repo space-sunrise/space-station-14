@@ -164,7 +164,7 @@
     - WeaponForceGun
     - WeaponTetherGun
 
-#- type: technology
+#- type: technology              Sunrise Edit
   #id: QuantumLeaping
   #name: research-technology-quantum-leaping
   #icon:
