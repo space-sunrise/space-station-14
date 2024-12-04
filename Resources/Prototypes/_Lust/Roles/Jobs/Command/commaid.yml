@@ -19,6 +19,11 @@
   access:
   - Command
   - Service
+  - Janitor
+  - Hydroponics
+  - Kitchen
+  - Bar
+  - Theatre
   - Maintenance
   sexBlacklist:
   - Male
