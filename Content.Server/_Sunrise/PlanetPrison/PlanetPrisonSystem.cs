@@ -28,7 +28,7 @@ namespace Content.Server._Sunrise.PlanetPrison
         [ValidatePrototypeId<EntityPrototype>]
         private const string GameRule = "PlanetPrison";
 
-        private const float EscapeDistance = 175f;
+        private const float EscapeDistance = 125f;
 
         public TimeSpan NextTick = TimeSpan.Zero;
         public TimeSpan RefreshCooldown = TimeSpan.FromSeconds(5);
