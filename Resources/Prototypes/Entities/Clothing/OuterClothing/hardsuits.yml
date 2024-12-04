@@ -604,16 +604,16 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellSmall
+        startingItem: PowerCellHyper
         whitelist:
           tags:
             - PowerCell
-            - PowerCellSmall
+            - PowerCellHyper
   - type: EnergyDomeGenerator
-    damageEnergyDraw: 6
+    damageEnergyDraw: 4
     domePrototype: EnergyDomeSmallRed
   - type: PowerCellDraw
-    drawRate: 8
+    drawRate: 1
     useRate: 0
   - type: UseDelay
     delay: 10.0
