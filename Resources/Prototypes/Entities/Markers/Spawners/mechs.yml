@@ -127,6 +127,36 @@
       - MechMarauderFilled
 
 - type: entity
+  name: Marauder Spawner
+  suffix: Filled
+  id: SpawnMechNTGygaxBattery
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Specific/Mech/gygax.rsi
+        state: ntgygax
+  - type: ConditionalSpawner
+    prototypes:
+      - MechNTGygaxBattery
+
+- type: entity
+  name: Marauder Spawner
+  suffix: Filled
+  id: SpawnMechNTGygaxFilled
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Specific/Mech/gygax.rsi
+        state: ntgygax
+  - type: ConditionalSpawner
+    prototypes:
+      - MechNTGygaxFilled
+
+- type: entity
   name: Seraph Spawner
   id: SpawnMechSeraph
   parent: MarkerBase
