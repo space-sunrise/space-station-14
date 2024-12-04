@@ -1,0 +1,133 @@
+- type: marking
+  id: DemonTail1
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: demon_tail
+
+- type: marking
+  id: DemonTailLong
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: long
+
+- type: marking
+  id: DemonTailUp
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: up
+
+- type: marking
+  id: DemonCowEars
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: cow_ears
+
+- type: marking
+  id: DemonEars
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: demon_ears
+
+- type: marking
+  id: DemonCowHorns
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: cow_horns
+
+- type: marking
+  id: DemonHornsDeer
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: deer_antlers_horns
+
+- type: marking
+  id: DemonHornsSmall
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: small_horns
+
+- type: marking
+  id: DemonChestCowSpots
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: cow_spots
+
+- type: marking
+  id: DemonChestGuard
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: guards_stripes
+
+- type: marking
+  id: DemonChestLinesEmperos
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: lines_emperos
+
+- type: marking
+  id: DemonChestQueenLines
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: queen_lines
+
+- type: marking
+  id: DemonChestTreeLines
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: tree_lines
+
+- type: marking
+  id: DemonChestTrinitySpots
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Demon]
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: trinity_spots
+
+- type: marking
+  id: DemonGoatee
+  bodyPart: FacialHair
+  markingCategory: FacialHair
+  sprites:
+  - sprite: _Sunrise/Mobs/Species/Demon/markings.rsi
+    state: goatee

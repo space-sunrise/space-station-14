@@ -24,8 +24,6 @@
     minimumPlayers: 10
     reoccurrenceDelay: 20
     duration: null
-    raffle:
-      settings: default
   - type: LateJoinSpawnRule
     prototype: SpawnPointGhostFugitive
 

@@ -46,6 +46,9 @@
     stopSearchVerbPopup: pai-system-stopped-searching
   - type: Examiner
   - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Common
   - type: ActiveRadio
     channels:
     - Common
@@ -127,6 +130,10 @@
     worldTargetActions:
     - Emag
     - HandheldHealthAnalyzerUnpowered
+  - type: Biocode
+    factions:
+    - Syndicate
+    - Thief
   # Sunrise-End
 
 - type: entity

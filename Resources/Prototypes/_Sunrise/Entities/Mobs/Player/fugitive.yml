@@ -9,6 +9,9 @@
     - type: Fugitive
     - type: FugitiveCountdown
     - type: RandomHumanoidAppearance
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
 
 - type: entity
   id: SpawnPointGhostFugitive

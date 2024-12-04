@@ -133,7 +133,7 @@
     minimumPlayers: 0
   - type: MeteorSwarm
     announcement: station-event-space-dust-start-announcement
-    announcementSound: /Audio/Announcements/announce.ogg # Sunrise-edit
+    announcementSound: /Audio/_Sunrise/Announcements/announce_dig.ogg # Sunrise-edit
     nonDirectional: true
     meteors:
       MeteorSpaceDust: 1
@@ -188,7 +188,7 @@
     weight: 0.05
   - type: MeteorSwarm
     announcement: station-event-meteor-urist-start-announcement
-    announcementSound: /Audio/Announcements/announce.ogg # Sunrise-edit
+    announcementSound: /Audio/_Sunrise/Announcements/announce_dig.ogg # Sunrise-edit
     meteors:
       MeteorUrist: 1
     waves:

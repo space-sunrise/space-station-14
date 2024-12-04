@@ -104,8 +104,7 @@
     damageOverlay:
       sprite: Structures/Windows/cracks.rsi
   - type: Repairable
-    fuelCost: 15
-    doAfterDelay: 3
+    doAfterDelay: 5 # Sunrise-Edit
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: RGlass
@@ -191,8 +190,7 @@
     damageOverlay:
       sprite: Structures/Windows/cracks_diagonal.rsi
   - type: Repairable
-    fuelCost: 15
-    doAfterDelay: 3
+    doAfterDelay: 5 # Sunrise-Edit
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: RGlass

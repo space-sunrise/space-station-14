@@ -14,7 +14,6 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Mech.Components;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
-using Content.Shared.Standing;
 using Content.Shared.Tag;
 using Content.Shared.Throwing;
 using Content.Shared.Timing;
@@ -218,18 +217,6 @@ public abstract partial class SharedGunSystem : EntitySystem
         Dirty(uid, gun);
     }
 
-    // Sunrise START
-
-    /// <summary>
-    /// Sets the targeted entity of the gun. Should be called before attempting to shoot to avoid shooting over the target.
-    /// </summary>
-    public void SetTarget(GunComponent gun, EntityUid target)
-    {
-        gun.Target = target;
-    }
-
-    // Sunrise END
-
     /// <summary>
     /// Attempts to shoot at the target coordinates. Resets the shot counter after every shot.
     /// </summary>
@@ -277,14 +264,6 @@ public abstract partial class SharedGunSystem : EntitySystem
         RaiseLocalEvent(user, ref prevention);
         if (prevention.Cancelled)
             return;
-
-        // Sunrise-Edit
-        if (TryComp<StandingStateComponent>(user, out var standingStateComponent))
-        {
-            if (standingStateComponent.CurrentState is StandingState.Lying or StandingState.GettingUp)
-                return;
-        }
-        // Sunrise-Edit
 
         // Need to do this to play the clicking sound for empty automatic weapons
         // but not play anything for burst fire.
@@ -493,6 +472,15 @@ public abstract partial class SharedGunSystem : EntitySystem
         Appearance.SetData(uid, AmmoVisuals.Spent, spent);
     }
 
+    protected void SetHitscanCartridgeSpent(EntityUid uid, HitScanCartridgeAmmoComponent hitScanCartridgeAmmo, bool spent)
+    {
+        if (hitScanCartridgeAmmo.Spent != spent)
+            Dirty(uid, hitScanCartridgeAmmo);
+
+        hitScanCartridgeAmmo.Spent = spent;
+        Appearance.SetData(uid, AmmoVisuals.Spent, spent);
+    }
+
     /// <summary>
     /// Drops a single cartridge / shell
     /// </summary>
@@ -529,12 +517,16 @@ public abstract partial class SharedGunSystem : EntitySystem
         if (TryComp<CartridgeAmmoComponent>(uid, out var cartridge))
             return cartridge;
 
+        if (TryComp<HitScanCartridgeAmmoComponent>(uid, out var hitscan))
+            return hitscan;
+
         return EnsureComp<AmmoComponent>(uid);
     }
 
     protected void RemoveShootable(EntityUid uid)
     {
         RemCompDeferred<CartridgeAmmoComponent>(uid);
+        RemCompDeferred<HitScanCartridgeAmmoComponent>(uid);
         RemCompDeferred<AmmoComponent>(uid);
     }
 
@@ -607,7 +599,7 @@ public abstract partial class SharedGunSystem : EntitySystem
     [Serializable, NetSerializable]
     public sealed class HitscanEvent : EntityEventArgs
     {
-        public List<(NetCoordinates coordinates, Angle angle, SpriteSpecifier Sprite, float Distance)> Sprites = new();
+        public List<(NetCoordinates coordinates, Angle angle, SpriteSpecifier sprite, float distance, EffectType effectType)> Sprites = new();
     }
 }
 
@@ -633,6 +625,12 @@ public record struct GunShotEvent(EntityUid User, List<(EntityUid? Uid, IShootab
 public enum EffectLayers : byte
 {
     Unshaded,
+}
+
+public enum EffectType : byte
+{
+    Tracer,
+    Static
 }
 
 [Serializable, NetSerializable]

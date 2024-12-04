@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "bullet_tracer",
+      "delays": [
+        [
+          0.0333333333333,
+          0.0333333333333,
+          0.0333333333333
+        ]
+      ]
+    },
+    {
+      "name": "bullet"
+    }
+  ]
+}

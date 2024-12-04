@@ -89,8 +89,7 @@
   - type: Conveyor
   - type: Rotatable
   - type: Repairable
-    doAfterDelay: 5
-    fuelCost: 25
+    doAfterDelay: 5 # Sunrise-Edit
   - type: Destructible
     thresholds:
     - trigger:

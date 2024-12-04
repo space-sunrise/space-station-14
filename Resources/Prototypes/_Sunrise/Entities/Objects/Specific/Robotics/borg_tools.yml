@@ -125,7 +125,7 @@
   - type: ExaminableSolution
     solution: hypospray
   - type: Hypospray
-    onlyAffectsMobs: false
+    onlyAffectsMobs: true
     injectOnly: true
 
 - type: entity
@@ -260,51 +260,6 @@
         locked: true
 
 - type: entity
-  name: machine gun borg
-  id: LightMachineGunBorg
-  parent: BaseItem
-  categories: [ HideSpawnMenu ]
-  description:
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/LMGs/l6.rsi
-    layers:
-    - state: icon
-      map: ["enum.GunVisualLayers.Base"]
-  - type: Item
-    sprite: Objects/Weapons/Guns/LMGs/l6.rsi
-  - type: Gun
-    minAngle: 4
-    maxAngle: 20
-    angleIncrease: 4
-    angleDecay: 16
-    fireRate: 8
-    selectedMode: FullAuto
-    availableModes:
-    - FullAuto
-    soundGunshot:
-      collection: m249
-      params:
-        volume: 10
-    soundEmpty:
-      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-  - type: MagazineVisuals
-    magState: mag
-    steps: 4
-    zeroVisible: true
-  - type: Appearance
-  - type: BallisticAmmoProvider
-    proto: CartridgeLightRifle
-    capacity: 200
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-        ents: []
-  - type: UseDelay
-    delay: 1
-
-
-- type: entity
   name: robot china lake
   parent: WeaponLauncherChinaLake
   id: WeaponLauncherChinaLakeBorg
@@ -318,19 +273,17 @@
     - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
-  - type: BallisticAmmoProvider
-    whitelist:
-      tags:
-      - Grenade
-    capacity: 10
-    proto: GrenadeFrag
-    soundInsert:
-      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
   - type: Appearance
+  - type: ProjectileBatteryAmmoProvider
+    proto: GrenadeFrag
+    fireCost: 1000
+  - type: Battery
+    maxCharge: 10000
+    startingCharge: 10000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 25
+  - type: AmmoCounter
 
 - type: entity
   id: FireExtinguisherBorg
@@ -558,18 +511,16 @@
         volume: 10
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-  - type: MagazineVisuals
-    magState: mag
-    steps: 4
-    zeroVisible: true
-  - type: Appearance
-  - type: BallisticAmmoProvider
+  - type: HitscanBatteryAmmoProvider
     proto: CartridgeLightRifle
-    capacity: 500
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-        ents: [ ]
+    fireCost: 50
+  - type: Battery
+    maxCharge: 10000
+    startingCharge: 10000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 25
+  - type: AmmoCounter
 
 - type: entity
   name: cyborg's IAR-52
@@ -599,18 +550,16 @@
     - FullAuto
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-  - type: BallisticAmmoProvider
+  - type: HitscanBatteryAmmoProvider
     proto: CartridgeCaselessRifle
-    capacity: 100
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-        ents: [ ]
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: Appearance
+    fireCost: 50
+  - type: Battery
+    maxCharge: 5000
+    startingCharge: 5000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 25
+  - type: AmmoCounter
 
 - type: entity
   name: the cyborg saboteur's hypospray

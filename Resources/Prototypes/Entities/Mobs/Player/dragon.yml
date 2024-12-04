@@ -30,7 +30,7 @@
         true
   - type: NpcFactionMember
     factions:
-    - Dragon
+    - Carps
   - type: Speech
     speechVerb: LargeMob
   - type: CombatMode

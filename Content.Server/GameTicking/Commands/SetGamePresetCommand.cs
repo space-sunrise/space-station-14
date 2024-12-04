@@ -33,14 +33,6 @@ namespace Content.Server.GameTicking.Commands
                 return;
             }
 
-            // Sunrise-Start
-            if (preset.Hide)
-            {
-                shell.WriteError(Loc.GetString("set-game-preset-preset-error", ("preset", args[0])));
-                return;
-            }
-            // Sunrise-End
-
             ticker.SetGamePreset(preset);
             shell.WriteLine(Loc.GetString("set-game-preset-preset-set", ("preset", preset.ID)));
         }
@@ -54,11 +46,6 @@ namespace Content.Server.GameTicking.Commands
                 var options = new List<string>();
                 foreach (var preset in gamePresets)
                 {
-                    // Sunrise-Start
-                    if (preset.Hide)
-                        continue;
-                    // Sunrise-End
-
                     options.Add(preset.ID);
                     options.AddRange(preset.Alias);
                 }

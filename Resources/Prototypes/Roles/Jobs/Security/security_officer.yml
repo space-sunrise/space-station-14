@@ -31,8 +31,10 @@
     eyes: ClothingEyesGlassesSecurity
     id: SecurityPDA
     ears: ClothingHeadsetSecurity
+    head: ClothingHeadHelmetBasic
+    gloves: ClothingHandsGlovesColorBlack
     pocket1: WeaponPistolG22NonLethal # Sunrise-Edit
   storage:
     back:
     - Flash
-    #- MagazinePistol # Sunrise-Edit
+    - MagazineGlock22Rubber

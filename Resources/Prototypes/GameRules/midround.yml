@@ -19,7 +19,7 @@
     definitions:
     - prefRoles: [ Thief ]
       max: 15 # Sunrise-Edit
-      playerRatio: 13 # Sunrise-Edit
+      playerRatio: 10 # Sunrise-Edit
       lateJoinAdditional: true
       allowNonHumans: true
       multiAntagSetting: None
@@ -35,6 +35,8 @@
   parent: BaseGameRule
   id: Changeling
   components:
+  - type: GameRule
+    minPlayers: 5
   - type: ChangelingRule
   - type: AntagSelection
     agentName: changeling-roundend-name
@@ -50,13 +52,15 @@
   parent: BaseGameRule
   id: Vampire
   components:
+  - type: GameRule
+    minPlayers: 5
   - type: VampireRule
   - type: AntagSelection
     agentName: vampire-roundend-name
     definitions:
     - prefRoles: [ Vampire ]
-      max: 4
-      playerRatio: 30
+      max: 5
+      playerRatio: 20
       lateJoinAdditional: true
       mindRoles:
       - MindRoleVampire

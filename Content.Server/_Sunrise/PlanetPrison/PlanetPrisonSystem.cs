@@ -21,14 +21,14 @@ namespace Content.Server._Sunrise.PlanetPrison
         [Dependency] private readonly TransformSystem _transformSystem = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
 
-        [ValidatePrototypeId<AntagPrototype>]
-        private const string AntagRole = "PlanetPrisoner";
+        [ValidatePrototypeId<EntityPrototype>]
+        private const string MindRole = "MindRolePlanetPrisoner";
         [ValidatePrototypeId<EntityPrototype>]
         private const string EscapeObjective = "PlanetPrisonerEscapeObjective";
         [ValidatePrototypeId<EntityPrototype>]
         private const string GameRule = "PlanetPrison";
 
-        private const float EscapeDistance = 175f;
+        private const float EscapeDistance = 125f;
 
         public TimeSpan NextTick = TimeSpan.Zero;
         public TimeSpan RefreshCooldown = TimeSpan.FromSeconds(5);
@@ -159,7 +159,7 @@ namespace Content.Server._Sunrise.PlanetPrison
                 _roleSystem.MindTryRemoveRole<PlanetPrisonerRoleComponent>(mindId);
             }
 
-            _roleSystem.MindAddRole(mindId, "MindRolePlanetPrisoner");
+            _roleSystem.MindAddRole(mindId, MindRole);
 
             _mindSystem.TryAddObjective(mindId, mind, EscapeObjective);
 

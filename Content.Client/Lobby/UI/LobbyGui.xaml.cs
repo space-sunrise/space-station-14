@@ -132,7 +132,7 @@ namespace Content.Client.Lobby.UI
 
             _configurationManager.OnValueChanged(SunriseCCVars.LobbyOpacity, OnLobbyOpacityChanged);
             _configurationManager.OnValueChanged(SunriseCCVars.ServersHubEnable, OnServersHubEnableChanged);
-            _configurationManager.OnValueChanged(SunriseCCVars.InfoLinksDonate, OnServerNameChanged, true);
+            _configurationManager.OnValueChanged(SunriseCCVars.ServerName, OnServerNameChanged, true);
 
             SetLobbyOpacity(_configurationManager.GetCVar(SunriseCCVars.LobbyOpacity));
             SetServersHubEnable(_configurationManager.GetCVar(SunriseCCVars.ServersHubEnable));

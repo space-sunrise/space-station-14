@@ -41,8 +41,7 @@
         layer:
         - WallLayer
   - type: Repairable
-    fuelCost: 10
-    doAfterDelay: 5
+    doAfterDelay: 5 # Sunrise-Edit
   - type: Destructible
     thresholds:
     - trigger:
