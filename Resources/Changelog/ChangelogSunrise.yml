@@ -7262,3 +7262,13 @@
     type: Tweak
   id: 508
   time: '2024-12-05T11:59:20.701354+00:00'
+- author: pacable
+  changes:
+  - message: "\u0422\u0435\u043F\u0435\u0440\u044C \u043D\u0435\u043B\u044C\u0437\u044F\
+      \ \u043F\u043E\u043B\u043E\u0436\u0438\u0442\u044C \u043B\u044E\u0431\u043E\u0439\
+      \ \u043F\u0440\u0435\u0434\u043C\u0435\u0442 \u0432 \u041A\u041F\u041A \u043C\
+      \u0430\u0433\u0438\u0441\u0442\u0440\u0430\u0442\u0430."
+    type: Fix
+  id: 509
+  time: '2024-12-05T12:04:39.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/780
