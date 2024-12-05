@@ -366,41 +366,41 @@
       tags:
       - NukeOpsUplink
 
-#- type: listing
-#  id: UplinkHardsuitSyndieCommander
-#  name: uplink-hardsuit-syndie-commander-name
-#  description: uplink-hardsuit-syndie-commander-desc
-#  icon: { sprite: /Textures/Clothing/OuterClothing/Hardsuits/syndiecommander.rsi, state: icon }
-#  productEntity: ClothingOuterHardsuitSyndieCommanderBiocode
-#  cost:
-#    Telecrystal: 13
-#  categories:
-#  - UplinkWearables
-#  conditions:
-#  - !type:ListingLimitedStockCondition
-#    stock: 1
-#  - !type:StoreWhitelistCondition
-#    whitelist:
-#      tags:
-#      - NukeOpsUplink
+- type: listing
+  id: UplinkHardsuitSyndieCommander
+  name: uplink-hardsuit-syndie-commander-name
+  description: uplink-hardsuit-syndie-commander-desc
+  icon: { sprite: /Textures/Clothing/OuterClothing/Hardsuits/syndiecommander.rsi, state: icon }
+  productEntity: ClothingOuterHardsuitSyndieCommanderBiocode
+  cost:
+    Telecrystal: 12
+  categories:
+  - UplinkWearables
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
 
-#- type: listing
-#  id: UplinkHardsuitSyndieMedic
-#  name: uplink-hardsuit-syndie-medic-name
-#  description: uplink-hardsuit-syndie-medic-desc
-#  icon: { sprite: /Textures/Clothing/OuterClothing/Hardsuits/syndiemedic.rsi, state: icon }
-#  productEntity: ClothingOuterHardsuitSyndieMedicBiocode
-#  cost:
-#    Telecrystal: 10
-#  categories:
-#  - UplinkWearables
-#  conditions:
-#  - !type:ListingLimitedStockCondition
-#    stock: 1
-#  - !type:StoreWhitelistCondition
-#    whitelist:
-#      tags:
-#      - NukeOpsUplink
+- type: listing
+  id: UplinkHardsuitSyndieMedic
+  name: uplink-hardsuit-syndie-medic-name
+  description: uplink-hardsuit-syndie-medic-desc
+  icon: { sprite: /Textures/Clothing/OuterClothing/Hardsuits/syndiemedic.rsi, state: icon }
+  productEntity: ClothingOuterHardsuitSyndieMedicBiocode
+  cost:
+    Telecrystal: 10
+  categories:
+  - UplinkWearables
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
 
 # Objective-specific
 - type: listing
