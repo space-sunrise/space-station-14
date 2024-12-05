@@ -46,10 +46,10 @@
   categories:
   - UplinkAmmo
   conditions:
-  - !type:BuyerWhitelistCondition
-    blacklist:
-      components:
-      - SurplusBundle
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
 
 - type: listing
   id: UplinkMagazineShotgunIncendiary
@@ -65,11 +65,10 @@
   categories:
   - UplinkAmmo
   conditions:
-  - !type:BuyerWhitelistCondition
-    blacklist:
-      components:
-      - SurplusBundle
-
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
 
 # For the LMG
 - type: listing
@@ -86,10 +85,10 @@
   categories:
   - UplinkAmmo
   conditions:
-  - !type:BuyerWhitelistCondition
-    blacklist:
-      components:
-      - SurplusBundle
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
 
 # For the SIAR52
 - type: listing
@@ -105,6 +104,49 @@
     Telecrystal: 3
   categories:
   - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkMagazineDl6902
+  name: uplink-magazine-dl6902-name
+  description: uplink-magazine-dl6902-desc
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Dl6902mag.rsi, state: base }
+  productEntity: MagazineDl6902
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 6
+  cost:
+    Telecrystal: 12
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkMagazineBauer127Extended
+  name: uplink-magazine-bauer127-extended-name
+  description: uplink-magazine-bauer127-extended-desc
+  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/Rifle/sr127_mag.rsi, state: base }
+  productEntity: MagazineBauer127Extended
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 3
+  cost:
+    Telecrystal: 6
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
 
 # For the China-Lake
 - type: listing
@@ -121,10 +163,10 @@
   categories:
   - UplinkAmmo
   conditions:
-  - !type:BuyerWhitelistCondition
-    blacklist:
-      components:
-      - SurplusBundle
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
 
 - type: listing
   id: UplinkGrenadeBlast
@@ -140,10 +182,10 @@
   categories:
   - UplinkAmmo
   conditions:
-  - !type:BuyerWhitelistCondition
-    blacklist:
-      components:
-      - SurplusBundle
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
 
 - type: listing
   id: UplinkGrenadeEMP
@@ -159,10 +201,10 @@
   categories:
   - UplinkAmmo
   conditions:
-  - !type:BuyerWhitelistCondition
-    blacklist:
-      components:
-      - SurplusBundle
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
 
 - type: listing
   id: UplinkBoomboxBundle
@@ -188,6 +230,11 @@
     Telecrystal: 4
   categories:
   - UplinkWearables
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
 
 - type: listing
   id: UplinkClothingBackpackSyndieAJ100Filled
@@ -319,41 +366,41 @@
       tags:
       - NukeOpsUplink
 
-- type: listing
-  id: UplinkHardsuitSyndieCommander
-  name: uplink-hardsuit-syndie-commander-name
-  description: uplink-hardsuit-syndie-commander-desc
-  icon: { sprite: /Textures/Clothing/OuterClothing/Hardsuits/syndiecommander.rsi, state: icon }
-  productEntity: ClothingOuterHardsuitSyndieCommanderBiocode
-  cost:
-    Telecrystal: 13
-  categories:
-  - UplinkWearables
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
+#- type: listing
+#  id: UplinkHardsuitSyndieCommander
+#  name: uplink-hardsuit-syndie-commander-name
+#  description: uplink-hardsuit-syndie-commander-desc
+#  icon: { sprite: /Textures/Clothing/OuterClothing/Hardsuits/syndiecommander.rsi, state: icon }
+#  productEntity: ClothingOuterHardsuitSyndieCommanderBiocode
+#  cost:
+#    Telecrystal: 13
+#  categories:
+#  - UplinkWearables
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+#  - !type:StoreWhitelistCondition
+#    whitelist:
+#      tags:
+#      - NukeOpsUplink
 
-- type: listing
-  id: UplinkHardsuitSyndieMedic
-  name: uplink-hardsuit-syndie-medic-name
-  description: uplink-hardsuit-syndie-medic-desc
-  icon: { sprite: /Textures/Clothing/OuterClothing/Hardsuits/syndiemedic.rsi, state: icon }
-  productEntity: ClothingOuterHardsuitSyndieMedicBiocode
-  cost:
-    Telecrystal: 10
-  categories:
-  - UplinkWearables
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
+#- type: listing
+#  id: UplinkHardsuitSyndieMedic
+#  name: uplink-hardsuit-syndie-medic-name
+#  description: uplink-hardsuit-syndie-medic-desc
+#  icon: { sprite: /Textures/Clothing/OuterClothing/Hardsuits/syndiemedic.rsi, state: icon }
+#  productEntity: ClothingOuterHardsuitSyndieMedicBiocode
+#  cost:
+#    Telecrystal: 10
+#  categories:
+#  - UplinkWearables
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+#  - !type:StoreWhitelistCondition
+#    whitelist:
+#      tags:
+#      - NukeOpsUplink
 
 # Objective-specific
 - type: listing
@@ -789,7 +836,86 @@
   - UplinkWearables
   conditions:
   - !type:StoreWhitelistCondition
-    blacklist:
+    whitelist:
       tags:
-      - SyndieAgentUplink
-      - AssaultOpsUplink
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkEnergyDomePersonalSyndie
+  name: uplink-energy-dome-personal-name
+  description: uplink-energy-dome-personal-desc
+  productEntity: EnergyDomeGeneratorPersonalSyndieBiocode
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 5
+  cost:
+    Telecrystal: 10
+  categories:
+  - UplinkWearables
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkEnergyDomeBackpackSyndie
+  name: uplink-energy-dome-backpack-name
+  description: uplink-energy-dome-backpack-desc
+  productEntity: EnergyDomeGeneratorBackpackSyndieBiocode
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 10
+  cost:
+    Telecrystal: 20
+  categories:
+  - UplinkDisruption
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkSurplusBundleNuke
+  name: uplink-surplus-bundle-name
+  description: uplink-surplus-bundle-desc
+  productEntity: CrateSyndicateSurplusBundleNuke
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 10
+  cost:
+    Telecrystal: 20
+  categories:
+  - UplinkLootBoxes
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle
+
+- type: listing
+  id: UplinkSuperSurplusBundleNuke
+  name: uplink-super-surplus-bundle-name
+  description: uplink-super-surplus-bundle-desc
+  productEntity: CrateSyndicateSuperSurplusBundleNuke
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 20
+  cost:
+    Telecrystal: 40
+  categories:
+  - UplinkLootBoxes
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+  - !type:BuyerWhitelistCondition
+    blacklist:
+      components:
+      - SurplusBundle

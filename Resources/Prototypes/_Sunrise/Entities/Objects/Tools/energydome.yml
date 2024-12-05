@@ -24,20 +24,16 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellSmall
+        startingItem: PowerCellSyndicate
         whitelist:
           tags:
             - PowerCell
-            - PowerCellSmall
   - type: EnergyDomeGenerator
     damageEnergyDraw: 3
     domePrototype: EnergyDomeMediumRed
-  - type: PowerCellDraw
-    drawRate: 2
-    useRate: 0
   - type: UseDelay
     delay: 10.0
-    
+
 - type: entity
   name: BR-50c "Bastion"
   description: A backpack shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Uses a power cell.
@@ -64,11 +60,10 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellSmall
+        startingItem: PowerCellSyndicate
         whitelist:
           tags:
             - PowerCell
-            - PowerCellSmall
   - type: EnergyDomeGenerator
     damageEnergyDraw: 3
     domePrototype: EnergyDomeMediumBlue
@@ -77,7 +72,7 @@
     useRate: 0
   - type: UseDelay
     delay: 10.0
-    
+
 - type: entity
   name: BT-21b "Barrier"
   description: A personal shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Uses a power cell.
@@ -103,11 +98,10 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellSmall
+        startingItem: PowerCellHyper
         whitelist:
           tags:
             - PowerCell
-            - PowerCellSmall
   - type: EnergyDomeGenerator
     damageEnergyDraw: 5
     domePrototype: EnergyDomeSmallBlue
