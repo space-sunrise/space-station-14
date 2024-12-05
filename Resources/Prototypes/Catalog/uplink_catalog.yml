@@ -714,6 +714,45 @@
         components:
           - SurplusBundle
 
+#Sunrise-start
+- type: listing
+  id: UplinkAmmoBundleIncendiary
+  name: uplink-incendiary-ammo-bundle-name
+  description: uplink-incendiary-ammo-bundle-desc
+  productEntity: ClothingBackpackDuffelSyndicateAmmoIncendiaryFilled
+  cost:
+    Telecrystal: 16
+  categories:
+  - UplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+
+- type: listing
+  id: UplinkAmmoBundleUranium
+  name: uplink-uranium-ammo-bundle-name
+  description: uplink-uranium-ammo-bundle-desc
+  productEntity: ClothingBackpackDuffelSyndicateAmmoUraniumFilled
+  cost:
+    Telecrystal: 17
+  categories:
+  - UplinkAmmo
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
+    - !type:BuyerWhitelistCondition
+      blacklist:
+        components:
+          - SurplusBundle
+#Sunrise-end
 #Chemicals
 
 - type: listing

@@ -130,9 +130,41 @@
         amount: 4
       - id: MagazineShotgun
         amount: 4
+      - id: MagazineShotgunSlug # Sunrise-edit
+        amount: 2 # Sunrise-edit
       - id: MagazineLightRifleBox
         amount: 2
+# Sunrise-Start
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateAmmo
+  id: ClothingBackpackDuffelSyndicateAmmoIncendiaryFilled
+  name: Incendiary ammo bundle
+  description: "Reloading! Contains 4 magazines for the C-20r, 4 drums for the Bulldog, and 2 ammo boxes for the L6 SAW."
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazinePistolSubMachineGunIncendiary
+        amount: 4
+      - id: MagazineShotgunIncendiary
+        amount: 4
+      - id: MagazineLightRifleBoxIncendiary
+        amount: 2
 
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateAmmo
+  id: ClothingBackpackDuffelSyndicateAmmoUraniumFilled
+  name: Uranium ammo bundle
+  description: "Reloading! Contains 4 magazines for the C-20r, 4 drums for the Bulldog, and 2 ammo boxes for the L6 SAW."
+  components:
+  - type: StorageFill
+    contents:
+      - id: MagazinePistolSubMachineGunUranium
+        amount: 4
+      - id: MagazineShotgunUranium
+        amount: 4
+      - id: MagazineLightRifleBoxUranium
+        amount: 2
+# Sunrise-End
 - type: entity
   parent: ClothingBackpackDuffelClown
   id: ClothingBackpackDuffelSyndicateCostumeClown
