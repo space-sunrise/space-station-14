@@ -1,11 +1,54 @@
 - type: entity
-  id: CrateSyndicateSurplusBundle
+  id: CrateSyndicateSurplusBundleAgent
   parent: [ CrateSyndicate, StorePresetUplink, BaseSyndicateContraband ]
   name: Syndicate surplus crate
   description: Contains 50 telecrystals worth of completely random Syndicate items. It can be useless junk or really good.
+  suffix: Agent
   components:
-    - type: SurplusBundle
-      totalPrice: 50
+  - type: SurplusBundle
+    totalPrice: 50
+  - type: Tag
+    tags:
+    - SyndieAgentUplink
+
+- type: entity
+  id: CrateSyndicateSuperSurplusBundleAgent
+  parent: [ CrateSyndicate, StorePresetUplink, BaseSyndicateContraband ]
+  name: Syndicate super surplus crate
+  description: Contains 125 telecrystals worth of completely random Syndicate items.
+  suffix: Agent
+  components:
+  - type: SurplusBundle
+    totalPrice: 125
+  - type: Tag
+    tags:
+    - SyndieAgentUplink
+
+- type: entity
+  id: CrateSyndicateSurplusBundleNuke
+  parent: [ CrateSyndicate, StorePresetUplink, BaseSyndicateContraband ]
+  name: Syndicate surplus crate
+  description: Contains 50 telecrystals worth of completely random Syndicate items. It can be useless junk or really good.
+  suffix: NUKE
+  components:
+  - type: SurplusBundle
+    totalPrice: 50
+  - type: Tag
+    tags:
+    - NukeOpsUplink
+
+- type: entity
+  id: CrateSyndicateSuperSurplusBundleNuke
+  parent: [ CrateSyndicate, StorePresetUplink, BaseSyndicateContraband ]
+  name: Syndicate super surplus crate
+  description: Contains 125 telecrystals worth of completely random Syndicate items.
+  suffix: NUKE
+  components:
+  - type: SurplusBundle
+    totalPrice: 125
+  - type: Tag
+    tags:
+    - NukeOpsUplink
 
 - type: entity
   id: CrateCybersunJuggernautBundle
@@ -21,15 +64,6 @@
       - id: ClothingHandsGlovesCombat
       - id: DoubleEmergencyOxygenTankFilled
       - id: DoubleEmergencyNitrogenTankFilled
-
-- type: entity
-  id: CrateSyndicateSuperSurplusBundle
-  parent: [ CrateSyndicate, StorePresetUplink, BaseSyndicateContraband ]
-  name: Syndicate super surplus crate
-  description: Contains 125 telecrystals worth of completely random Syndicate items.
-  components:
-    - type: SurplusBundle
-      totalPrice: 125
 
 - type: entity
   id: CrateCybersunDarkGygaxBundle

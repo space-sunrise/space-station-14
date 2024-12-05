@@ -17,6 +17,7 @@
     - UplinkJob
     - UplinkPointless
     - UplinkObjectives
+    - UplinkLootBoxes # Sunrise-Edit
     - UplinkMechs #Sunrise-mechs
     currencyWhitelist:
     - Telecrystal

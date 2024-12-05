@@ -973,6 +973,9 @@
   - type: EmbeddableProjectile
   - type: Projectile
     deleteOnCollide: false
+    damage:
+      types:
+        Shock: 30 # Sunrise-Edit
     soundHit:
       path: /Audio/Weapons/Guns/Hits/bullet_hit.ogg
   - type: LightningArcShooter
