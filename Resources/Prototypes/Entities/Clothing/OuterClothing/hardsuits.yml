@@ -604,11 +604,10 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellHyper
+        startingItem: PowerCellSyndicate
         whitelist:
           tags:
             - PowerCell
-            - PowerCellHyper
   - type: EnergyDomeGenerator
     damageEnergyDraw: 4
     domePrototype: EnergyDomeSmallRed
