@@ -1,14 +1,16 @@
 ﻿using Content.Server.Atmos.Components;
 using Content.Shared._Sunrise.Footprints;
+using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
+using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
-using System.Linq;
 using Content.Shared.GameTicking;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.Footprints;
 
@@ -24,6 +26,7 @@ public sealed class FootprintSystem : EntitySystem
     [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     #endregion
 
     #region Entity Queries
@@ -31,6 +34,8 @@ public sealed class FootprintSystem : EntitySystem
     private EntityQuery<MobThresholdsComponent> _mobStateQuery;
     private EntityQuery<AppearanceComponent> _appearanceQuery;
     #endregion
+
+    public static readonly float FootsVolume = 5;
 
     // Dictionary to track footprints per tile to prevent overcrowding
     private readonly Dictionary<(EntityUid GridId, Vector2i TilePosition), HashSet<EntityUid>> _tileFootprints = new();
@@ -51,6 +56,12 @@ public sealed class FootprintSystem : EntitySystem
         SubscribeLocalEvent<FootprintEmitterComponent, ComponentStartup>(OnEmitterStartup);
         SubscribeLocalEvent<FootprintEmitterComponent, MoveEvent>(OnEntityMove);
         SubscribeNetworkEvent<RoundRestartCleanupEvent>(Reset);
+        SubscribeLocalEvent<FootprintEmitterComponent, ComponentInit>(OnFootprintEmitterInit);
+    }
+
+    private void OnFootprintEmitterInit(Entity<FootprintEmitterComponent> entity, ref ComponentInit args)
+    {
+        _solutionSystem.EnsureSolution(entity.Owner, entity.Comp.SolutionName, out _, FixedPoint2.New(FootsVolume));
     }
 
     /// <summary>
@@ -70,10 +81,14 @@ public sealed class FootprintSystem : EntitySystem
     private void OnEntityMove(EntityUid uid, FootprintEmitterComponent emitter, ref MoveEvent args)
     {
         // Check if footprints should be created
-        if (emitter.TrackColor.A <= 0f
-            || !_transformQuery.TryComp(uid, out var transform)
+        if (!_transformQuery.TryComp(uid, out var transform)
             || !_mobStateQuery.TryComp(uid, out var mobState)
-            || !_mapManager.TryFindGridAt(_transformSystem.GetMapCoordinates((uid, transform)), out var gridUid, out var grid))
+            || !_mapManager.TryFindGridAt(_transformSystem.GetMapCoordinates((uid, transform)), out var gridUid, out var grid)
+            || !TryComp<SolutionContainerManagerComponent>(uid, out var container)
+            || !_solutionSystem.ResolveSolution((uid, container), emitter.SolutionName, ref emitter.Solution, out var emitterSolution))
+            return;
+
+        if (emitterSolution.Volume <= 0)
             return;
 
         var isBeingDragged =
@@ -95,7 +110,7 @@ public sealed class FootprintSystem : EntitySystem
         emitter.IsRightStep = !emitter.IsRightStep;
 
         // Create new footprint entity
-        var footprintEntity = SpawnFootprint(gridUid, emitter, uid, transform, isBeingDragged);
+        var footprintEntity = SpawnFootprint(gridUid, emitter, emitterSolution, uid, transform, isBeingDragged);
 
         // Add the new footprint to tile tracking
         if (!_tileFootprints.ContainsKey(tileKey))
@@ -104,7 +119,7 @@ public sealed class FootprintSystem : EntitySystem
         _tileFootprints[tileKey].Add(footprintEntity);
 
         // Update footprint and emitter state
-        UpdateFootprint(footprintEntity, emitter, transform, isBeingDragged);
+        UpdateFootprint(footprintEntity, (uid, emitter), emitterSolution, emitter.Solution.Value, transform, isBeingDragged);
 
         // Update emitter state.
         UpdateEmitterState(emitter, transform);
@@ -124,6 +139,7 @@ public sealed class FootprintSystem : EntitySystem
     private EntityUid SpawnFootprint(
         EntityUid gridUid,
         FootprintEmitterComponent emitter,
+        Solution emitterSolution,
         EntityUid emitterOwner,
         TransformComponent transform,
         bool isDragging)
@@ -142,9 +158,11 @@ public sealed class FootprintSystem : EntitySystem
                 DetermineVisualState(emitterOwner, isDragging),
                 appearance);
 
+            var alpha = Math.Clamp(emitterSolution.Volume.Float() / emitterSolution.MaxVolume.Float(), 0f, 1f);
+
             _appearanceSystem.SetData(entity,
                 FootprintVisualParameter.TrackColor,
-                emitter.TrackColor,
+                emitterSolution.GetColor(_prototypeManager).WithAlpha(alpha),
                 appearance);
         }
 
@@ -156,7 +174,9 @@ public sealed class FootprintSystem : EntitySystem
     /// </summary>
     private void UpdateFootprint(
         EntityUid footprintEntity,
-        FootprintEmitterComponent emitter,
+        Entity<FootprintEmitterComponent> emitter,
+        Solution emitterSolution,
+        Entity<SolutionComponent> emitterEntSolution,
         TransformComponent transform,
         bool isDragging)
     {
@@ -164,10 +184,10 @@ public sealed class FootprintSystem : EntitySystem
             return;
 
         footprintTransform.LocalRotation = isDragging
-            ? (transform.LocalPosition - emitter.LastStepPosition).ToAngle() + Angle.FromDegrees(-90f)
+            ? (transform.LocalPosition - emitter.Comp.LastStepPosition).ToAngle() + Angle.FromDegrees(-90f)
             : transform.LocalRotation + Angle.FromDegrees(180f);
 
-        TransferReagents(footprintEntity, emitter);
+        TransferReagents(footprintEntity, emitter, emitterEntSolution);
     }
     #endregion
 
@@ -177,29 +197,25 @@ public sealed class FootprintSystem : EntitySystem
     /// </summary>
     private void UpdateEmitterState(FootprintEmitterComponent emitter, TransformComponent transform)
     {
-        emitter.TrackColor = emitter.TrackColor.WithAlpha(Math.Max(0f, emitter.TrackColor.A - emitter.ColorFadeRate));
         emitter.LastStepPosition = transform.LocalPosition;
     }
 
     /// <summary>
     /// Transfers reagents from emitter to footprint if applicable.
     /// </summary>
-    private void TransferReagents(EntityUid footprintEntity, FootprintEmitterComponent emitter)
+    private void TransferReagents(EntityUid footprintEntity, Entity<FootprintEmitterComponent> emitter, Entity<SolutionComponent> emitterSolution)
     {
         if (!TryComp<SolutionContainerManagerComponent>(footprintEntity, out var container)
             || !TryComp<FootprintComponent>(footprintEntity, out var footprint)
             || !_solutionSystem.ResolveSolution((footprintEntity, container),
                 footprint.ContainerName,
                 ref footprint.SolutionContainer,
-                out var solution)
-            || string.IsNullOrWhiteSpace(emitter.CurrentReagent)
-            || solution.Volume >= 1)
+                out var solution))
             return;
 
-        _solutionSystem.TryAddReagent(footprint.SolutionContainer.Value,
-            emitter.CurrentReagent,
-            1,
-            out _);
+        var splitSolution = _solutionSystem.SplitSolution(emitterSolution, emitter.Comp.TransferVolume);
+
+        _solutionSystem.AddSolution(footprint.SolutionContainer.Value, splitSolution);
     }
     #endregion
 
