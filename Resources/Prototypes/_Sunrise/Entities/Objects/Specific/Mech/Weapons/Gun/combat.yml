@@ -23,6 +23,31 @@
   - type: AmmoCounter
 
 - type: entity
+  id: WeaponMechCombatMaxim
+  name: Mounted Kardashev-Maxim
+  description: An ancient heavy machine gun given new life as a mech-mounted gun
+  suffix: Mech Weapon, Gun, Combat, USSP
+  parent: [ BaseMechWeaponRange, CombatMechEquipment ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_maxim.rsi
+    state: mecha_maxim
+  - type: Gun
+    minAngle: -15
+    maxAngle: 25
+    fireRate: 4
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: ShellShotgunSlug
+    fireCost: 7
+  - type: Appearance
+  - type: AmmoCounter
+
+- type: entity
   id: WeaponMechCombatUVM31
   name: UVM-31 "Drake"
   description: A heavy weapon of mass destruction developed by Cybersun based on the minigun. now on a sturdy tripod that allows you to fire directly from the MECH!
