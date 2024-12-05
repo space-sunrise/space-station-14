@@ -56,9 +56,6 @@
         map: [ "enum.AmmoVisualLayers.Base" ]
   - type: HitScanCartridgeAmmo
     proto: PelletShotgunBeanbag
-  - type: HitScanSpread
-    count: 3
-    spread: 4.5
   - type: SpentAmmoVisuals
     state: "beanbag"
 
@@ -106,9 +103,6 @@
         map: [ "enum.AmmoVisualLayers.Base" ]
   - type: HitScanCartridgeAmmo
     proto: PelletShotgun
-  - type: HitScanSpread
-    count: 6
-    spread: 15
 
 - type: entity
   id: ShellShotgunIncendiary
@@ -121,9 +115,8 @@
         map: [ "enum.AmmoVisualLayers.Base" ]
   - type: HitScanCartridgeAmmo
     proto: PelletShotgunIncendiarySpread
-  - type: HitScanSpread
-    count: 6
-    spread: 15
+  - type: IgniteOnAmmoHit
+    fireStacks: 0.25
   - type: SpentAmmoVisuals
     state: "incendiary"
 
@@ -137,10 +130,7 @@
       - state: practice
         map: [ "enum.AmmoVisualLayers.Base" ]
   - type: HitScanCartridgeAmmo
-    proto: PelletShotgunPractice
-  - type: HitScanSpread
-    count: 6
-    spread: 15
+    proto: PelletShotgunPracticeSpread
   - type: SpentAmmoVisuals
     state: "practice"
 
@@ -192,9 +182,6 @@
     node: shell
   - type: HitScanCartridgeAmmo
     proto: PelletShotgunImprovisedSpread
-  - type: HitScanSpread
-    count: 10
-    spread: 45
   - type: SpentAmmoVisuals
     state: "improvised"
 
@@ -209,8 +196,5 @@
           map: [ "enum.AmmoVisualLayers.Base" ]
     - type: HitScanCartridgeAmmo
       proto: PelletShotgunUraniumSpread
-    - type: HitScanSpread
-      count: 5
-      spread: 6
     - type: SpentAmmoVisuals
       state: "depleted-uranium"
