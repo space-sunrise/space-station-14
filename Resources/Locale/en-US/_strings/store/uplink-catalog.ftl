@@ -229,7 +229,7 @@ uplink-ammo-bundle-name = Ammo Bundle
 uplink-ammo-bundle-desc = Reloading! Contains 4 magazines for the C-20r, 4 drums for the Bulldog, and 2 ammo boxes for the L6 SAW.
 
 uplink-incendiary-ammo-bundle-name = Ammo Bundle
-uplink-uranium-ammo-bundle-desc = Reloading! Contains 4 incendiary magazines for the C-20r, 4 incendiary drums for the Bulldog, and 2 incendiary ammo boxes for the L6 SAW.
+uplink-incendiary-ammo-bundle-desc = Reloading! Contains 4 incendiary magazines for the C-20r, 4 incendiary drums for the Bulldog, and 2 incendiary ammo boxes for the L6 SAW.
 
 uplink-uranium-ammo-bundle-name = Ammo Bundle
 uplink-uranium-ammo-bundle-desc = Reloading! Contains 4 uranium magazines for the C-20r, 4 uranium drums for the Bulldog, and 2 uranium ammo boxes for the L6 SAW.
