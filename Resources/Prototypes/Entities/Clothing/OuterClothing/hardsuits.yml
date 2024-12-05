@@ -208,7 +208,7 @@
     damageEnergyDraw: 6
     domePrototype: EnergyDomeSmallPink
   - type: PowerCellDraw
-    drawRate: 8
+    drawRate: 0
     useRate: 0
   - type: UseDelay
     delay: 10.0
@@ -612,7 +612,7 @@
     damageEnergyDraw: 4
     domePrototype: EnergyDomeSmallRed
   - type: PowerCellDraw
-    drawRate: 1
+    drawRate: 0
     useRate: 0
   - type: UseDelay
     delay: 10.0
