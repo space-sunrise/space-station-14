@@ -61,7 +61,7 @@
   parent: MagazineLightRifleBox
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifle
+    proto: CartridgeLightRifleIncendiary
   - type: Sprite
     layers:
     - state: red
@@ -75,7 +75,7 @@
   parent: MagazineLightRifleBox
   components:
   - type: BallisticAmmoProvider
-    proto: CartridgeLightRifle
+    proto: CartridgeLightRifleUranium
   - type: Sprite
     layers:
     - state: uranium
