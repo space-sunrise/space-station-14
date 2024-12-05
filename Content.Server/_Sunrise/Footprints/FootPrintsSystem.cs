@@ -7,6 +7,8 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
+using System.Linq;
+using Content.Shared.GameTicking;
 
 namespace Content.Server._Sunrise.Footprints;
 
@@ -30,6 +32,10 @@ public sealed class FootprintSystem : EntitySystem
     private EntityQuery<AppearanceComponent> _appearanceQuery;
     #endregion
 
+    // Dictionary to track footprints per tile to prevent overcrowding
+    private readonly Dictionary<(EntityUid GridId, Vector2i TilePosition), HashSet<EntityUid>> _tileFootprints = new();
+    private const int MaxFootprintsPerTile = 2; // Maximum footprints allowed per tile
+
     #region Initialization
     /// <summary>
     /// Initializes the footprint system and sets up required queries and subscriptions.
@@ -44,6 +50,7 @@ public sealed class FootprintSystem : EntitySystem
 
         SubscribeLocalEvent<FootprintEmitterComponent, ComponentStartup>(OnEmitterStartup);
         SubscribeLocalEvent<FootprintEmitterComponent, MoveEvent>(OnEntityMove);
+        SubscribeNetworkEvent<RoundRestartCleanupEvent>(Reset);
     }
 
     /// <summary>
@@ -62,11 +69,11 @@ public sealed class FootprintSystem : EntitySystem
     /// </summary>
     private void OnEntityMove(EntityUid uid, FootprintEmitterComponent emitter, ref MoveEvent args)
     {
-        // Check if footprints should be created.
+        // Check if footprints should be created
         if (emitter.TrackColor.A <= 0f
             || !_transformQuery.TryComp(uid, out var transform)
             || !_mobStateQuery.TryComp(uid, out var mobState)
-            || !_mapManager.TryFindGridAt(_transformSystem.GetMapCoordinates((uid, transform)), out var gridUid, out _))
+            || !_mapManager.TryFindGridAt(_transformSystem.GetMapCoordinates((uid, transform)), out var gridUid, out var grid))
             return;
 
         var isBeingDragged =
@@ -78,17 +85,43 @@ public sealed class FootprintSystem : EntitySystem
         if (!(distanceMoved > requiredDistance))
             return;
 
+        var tilePos = grid.TileIndicesFor(transform.Coordinates);
+        var tileKey = (gridUid, tilePos);
+
+        if (_tileFootprints.TryGetValue(tileKey, out var existingPrints) &&
+            existingPrints.Count >= MaxFootprintsPerTile)
+        {
+            if (existingPrints.Count > 0)
+            {
+                var oldestPrint = existingPrints.First();
+                existingPrints.Remove(oldestPrint);
+                QueueDel(oldestPrint);
+            }
+        }
+
         emitter.IsRightStep = !emitter.IsRightStep;
 
-        // Create new footprint entity.
+        // Create new footprint entity
         var footprintEntity = SpawnFootprint(gridUid, emitter, uid, transform, isBeingDragged);
 
-        // Update footprint position and transfer reagents if applicable.
+        // Add the new footprint to tile tracking
+        if (!_tileFootprints.ContainsKey(tileKey))
+            _tileFootprints[tileKey] = new HashSet<EntityUid>();
+
+        _tileFootprints[tileKey].Add(footprintEntity);
+
+        // Update footprint and emitter state
         UpdateFootprint(footprintEntity, emitter, transform, isBeingDragged);
 
         // Update emitter state.
         UpdateEmitterState(emitter, transform);
     }
+
+    private void Reset(RoundRestartCleanupEvent msg)
+    {
+        _tileFootprints.Clear();
+    }
+
     #endregion
 
     #region Footprint Creation and Management
