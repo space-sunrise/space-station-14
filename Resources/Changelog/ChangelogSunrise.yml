@@ -7313,3 +7313,12 @@
   id: 512
   time: '2024-12-05T12:21:34.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/783
+- author: KaiserMaus
+  changes:
+  - message: "\u0423\u043B\u0443\u0447\u0448\u0435\u043D \u0422\u0435\u043B\u0435\u043F\
+      \u043E\u0440\u0442\u0435\u0440 \u0441\u0438\u043D\u0434\u0438\u043A\u0430\u0442\
+      \u0430."
+    type: Tweak
+  id: 513
+  time: '2024-12-05T12:29:19.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/787
