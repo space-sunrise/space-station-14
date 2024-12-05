@@ -61,7 +61,7 @@ public sealed class UplinkSystem : EntitySystem
     /// <summary>
     /// Configure TC for the uplink
     /// </summary>
-    private void SetUplink(EntityUid user, EntityUid uplink, FixedPoint2 balance, bool giveDiscounts)
+    public void SetUplink(EntityUid user, EntityUid uplink, FixedPoint2 balance, bool giveDiscounts)
     {
         var store = EnsureComp<StoreComponent>(uplink);
         store.AccountOwner = user;

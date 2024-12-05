@@ -279,7 +279,7 @@ public sealed class SunriseCCVars
 
     public static readonly CVarDef<int> MapVotingCount = CVarDef.Create("vote.map_voting_count", 3);
 
-    public static readonly CVarDef<int> RoundVotingCount = CVarDef.Create("vote.round_voting_count", 3);
+    public static readonly CVarDef<int> RoundVotingCount = CVarDef.Create("vote.round_voting_count", 2);
 
     public static readonly CVarDef<string> RoundVotingChancesPrototype = CVarDef.Create("vote.round_voting_chances_prototype", "SunriseVoteSecret");
 

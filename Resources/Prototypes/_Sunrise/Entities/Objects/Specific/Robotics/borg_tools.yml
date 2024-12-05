@@ -470,21 +470,6 @@
     autoRecharge: true
     autoRechargeRate: 30
 
-- type: hitscan
-  id: PulseERTBorg
-  damage:
-    types:
-      Heat: 17
-  muzzleFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: muzzle_blue
-  travelFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: beam_blue
-  impactFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: impact_blue
-
 - type: entity
   name: cyborg's DL6902
   id: DL6902Borg
@@ -512,7 +497,7 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: CartridgeLightRifle
+    proto: BulletLightRifle
     fireCost: 50
   - type: Battery
     maxCharge: 10000
@@ -551,7 +536,7 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: CartridgeCaselessRifle
+    proto: BulletPistol
     fireCost: 50
   - type: Battery
     maxCharge: 5000

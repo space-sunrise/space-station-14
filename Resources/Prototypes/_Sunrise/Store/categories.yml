@@ -94,9 +94,9 @@
   id: SecurityThings
   name: store-category-security
   priority: 5
-  
+
 # disease
-  
+
 - type: storeCategory
   id: DiseaseInfectCategory
   name: shop-disease-category-infect
@@ -121,3 +121,8 @@
   id: UplinkMechs
   name: store-category-mechs
   priority: 8
+
+- type: storeCategory
+  id: UplinkLootBoxes
+  name: store-category-lootbox
+  priority: 11

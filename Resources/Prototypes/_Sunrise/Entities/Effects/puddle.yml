@@ -35,6 +35,8 @@
   - type: Puddle
     solution: step
   - type: Appearance
+  - type: TimedDespawn
+    lifetime: 360
   - type: Tag
     tags:
     - HideContextMenu
