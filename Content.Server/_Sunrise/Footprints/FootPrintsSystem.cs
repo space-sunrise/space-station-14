@@ -90,14 +90,7 @@ public sealed class FootprintSystem : EntitySystem
 
         if (_tileFootprints.TryGetValue(tileKey, out var existingPrints) &&
             existingPrints.Count >= MaxFootprintsPerTile)
-        {
-            if (existingPrints.Count > 0)
-            {
-                var oldestPrint = existingPrints.First();
-                existingPrints.Remove(oldestPrint);
-                QueueDel(oldestPrint);
-            }
-        }
+            return;
 
         emitter.IsRightStep = !emitter.IsRightStep;
 
