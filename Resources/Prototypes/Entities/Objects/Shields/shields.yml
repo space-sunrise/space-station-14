@@ -102,6 +102,13 @@
           Heat: 0.5
         flatReductions:
           Heat: 1
+  # Sunrise-Start
+    - type: Reflect
+      reflectProb: 0.75
+      reflects:
+      - Energy
+      needHand: true
+  # Sunrise-End
 
 - type: entity
   name: riot bullet shield
@@ -332,6 +339,7 @@
       reflectProb: 0.95
       reflects:
         - Energy
+      needHand: true # Sunrise-Edit
     - type: Blocking #Mirror shield reflects heat/laser, but is relatively weak to everything else.
       passiveBlockModifier:
         coefficients:
@@ -421,6 +429,7 @@
       reflectProb: 0.95
       reflects:
         - Energy
+      needHand: true # Sunrise-Edit
     - type: Blocking
       passiveBlockModifier:
         coefficients:
