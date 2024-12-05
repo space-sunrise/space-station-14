@@ -67,9 +67,15 @@
 #Nuclear Operative Gear
 - type: startingGear
   id: SyndicateOperativeGearFull
-  parent: SyndicateOperativeGearFullNoUplink
   equipment:
-    pocket2: BaseUplinkRadio40TC
+    jumpsuit: ClothingUniformJumpsuitOperative
+    back: ClothingBackpackDuffelSyndicate
+    shoes: ClothingShoesBootsCombatFilled
+    id: SyndiPDA
+  storage:
+    back:
+    - PinpointerSyndicateNuclear
+    #- DeathAcidifierImplanter
 
 #Nuclear Operative Commander Gear
 - type: startingGear
@@ -77,7 +83,8 @@
   parent: SyndicateOperativeGearFull
   equipment:
     neck: SyndicateWhistle
-    outerClothing: ClothingOuterHardsuitSyndieCommanderBiocode # Sunrise-Edit
+    #outerClothing: ClothingOuterHardsuitSyndieCommanderBiocode # Sunrise-Edit
+    pocket1: BaseUplinkRadio0TC
   inhand:
   - NukeOpsDeclarationOfWar
 
@@ -86,11 +93,11 @@
   id: SyndicateOperativeMedicFull
   parent: SyndicateOperativeGearFull
   equipment:
-    eyes: ClothingEyesHudSyndicateAgent
-    outerClothing: ClothingOuterHardsuitSyndieMedicBiocode # Sunrise-Edit
-    shoes: ClothingShoesBootsMagSyndie
+    #eyes: ClothingEyesHudSyndicateAgent # Sunrise-Edit
+    #outerClothing: ClothingOuterHardsuitSyndieMedicBiocode # Sunrise-Edit
+    #shoes: ClothingShoesBootsMagSyndie # Sunrise-Edit
     id: SyndiAgentPDA
-    belt: ClothingBeltMilitaryWebbingMedFilled
+    #belt: ClothingBeltMilitaryWebbingMedFilled # Sunrise-Edit
   storage:
     back:
     - SyndiHypo
@@ -106,7 +113,7 @@
 #Lone Operative Gear
 - type: startingGear
   id: SyndicateLoneOperativeGearFull
-  parent: SyndicateOperativeGearFull
+  parent: SyndicateOperativeGearFullNoUplink
   equipment:
     pocket2: BaseUplinkRadio60TC
 

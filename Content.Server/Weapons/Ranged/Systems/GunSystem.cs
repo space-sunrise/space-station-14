@@ -138,27 +138,41 @@ public sealed partial class GunSystem : SharedGunSystem
                     break;
                 case HitScanCartridgeAmmoComponent hitScanCartridge:
                     var hitscanProto = ProtoManager.Index<HitscanPrototype>(hitScanCartridge.Prototype);
-                    if (TryComp<HitScanSpreadComponent>(ent!.Value, out var hitscanSpreadComp))
+                    if (hitscanProto.ShootModifier == ShootModifier.Split)
                     {
-                        var spreadEvent = new GunGetAmmoSpreadEvent(hitscanSpreadComp.Spread);
+                        var perpendicularOffset = new Vector2(-mapDirection.Y, mapDirection.X).Normalized();
+
+                        for (var i = 0; i < hitscanProto.SplitCount; i++)
+                        {
+                            var offset = hitscanProto.SplitOffset * (i - (hitscanProto.SplitCount - 1) / 2.0f);
+
+                            var startCoordinates = fromCoordinates.Offset(perpendicularOffset * offset);
+                            var startMapCoordinates = fromMap.Offset(perpendicularOffset * offset);
+
+                            HitscanShoot(startMapCoordinates, startCoordinates, mapDirection, hitscanProto, gunUid, user, gun);
+                        }
+                    }
+                    else if (hitscanProto.ShootModifier == ShootModifier.Spread)
+                    {
+                        var spreadEvent = new GunGetAmmoSpreadEvent(hitscanProto.SpreadAngle);
                         RaiseLocalEvent(gunUid, ref spreadEvent);
 
                         var angles = LinearSpread(mapAngle - spreadEvent.Spread / 2,
-                            mapAngle + spreadEvent.Spread / 2, hitscanSpreadComp.Count);
+                            mapAngle + spreadEvent.Spread / 2, hitscanProto.SpreadCount);
 
-                        HitscanShoot(fromMap, fromCoordinates, angles[0].ToVec(), hitscanProto, gunUid, user, gun, ent.Value);
+                        HitscanShoot(fromMap, fromCoordinates, angles[0].ToVec(), hitscanProto, gunUid, user, gun, ent!.Value);
 
-                        for (var i = 1; i < hitscanSpreadComp.Count; i++)
+                        for (var i = 1; i < hitscanProto.SpreadCount; i++)
                         {
                             HitscanShoot(fromMap, fromCoordinates, angles[i].ToVec(), hitscanProto, gunUid, user, gun, ent.Value);
                         }
                     }
                     else
                     {
-                        HitscanShoot(fromMap, fromCoordinates, mapDirection, hitscanProto, gunUid, user, gun, ent.Value);
+                        HitscanShoot(fromMap, fromCoordinates, mapDirection, hitscanProto, gunUid, user, gun, ent!.Value);
                     }
 
-                    SetHitscanCartridgeSpent(ent.Value, hitScanCartridge, true);
+                    SetHitscanCartridgeSpent(ent!.Value, hitScanCartridge, true);
 
                     if (hitScanCartridge.DeleteOnSpawn)
                         Del(ent.Value);
@@ -176,7 +190,39 @@ public sealed partial class GunSystem : SharedGunSystem
 
                     break;
                 case HitscanPrototype hitscan:
-                    HitscanShoot(fromMap, fromCoordinates, mapDirection, hitscan, gunUid, user, gun);
+                    if (hitscan.ShootModifier == ShootModifier.Split)
+                    {
+                        var perpendicularOffset = new Vector2(-mapDirection.Y, mapDirection.X).Normalized();
+
+                        for (var i = 0; i < hitscan.SplitCount; i++)
+                        {
+                            var offset = hitscan.SplitOffset * (i - (hitscan.SplitCount - 1) / 2.0f);
+
+                            var startCoordinates = fromCoordinates.Offset(perpendicularOffset * offset);
+                            var startMapCoordinates = fromMap.Offset(perpendicularOffset * offset);
+
+                            HitscanShoot(startMapCoordinates, startCoordinates, mapDirection, hitscan, gunUid, user, gun);
+                        }
+                    }
+                    else if (hitscan.ShootModifier == ShootModifier.Spread)
+                    {
+                        var spreadEvent = new GunGetAmmoSpreadEvent(hitscan.SpreadAngle);
+                        RaiseLocalEvent(gunUid, ref spreadEvent);
+
+                        var angles = LinearSpread(mapAngle - spreadEvent.Spread / 2,
+                            mapAngle + spreadEvent.Spread / 2, hitscan.SpreadCount);
+
+                        HitscanShoot(fromMap, fromCoordinates, angles[0].ToVec(), hitscan, gunUid, user, gun);
+
+                        for (var i = 1; i < hitscan.SpreadCount; i++)
+                        {
+                            HitscanShoot(fromMap, fromCoordinates, angles[i].ToVec(), hitscan, gunUid, user, gun);
+                        }
+                    }
+                    else
+                    {
+                        HitscanShoot(fromMap, fromCoordinates, mapDirection, hitscan, gunUid, user, gun);
+                    }
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -218,6 +264,7 @@ public sealed partial class GunSystem : SharedGunSystem
             Audio.PlayPredicted(gun.SoundGunshotModified, gunUid, user);
         }
     }
+
 
     private void HitscanShoot(MapCoordinates fromMap,
         EntityCoordinates fromCoordinates,

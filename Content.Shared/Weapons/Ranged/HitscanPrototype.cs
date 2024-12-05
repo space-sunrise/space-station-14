@@ -60,4 +60,27 @@ public sealed partial class HitscanPrototype : IPrototype, IShootable
 
     [DataField]
     public bool IgnoreResistances;
+
+    [DataField]
+    public ShootModifier ShootModifier = ShootModifier.None;
+
+    [DataField]
+    public float SplitOffset = 3;
+
+    [DataField]
+    public int SplitCount = 2;
+
+    [DataField]
+    public Angle SpreadAngle = Angle.FromDegrees(5);
+
+    [DataField]
+    public int SpreadCount = 2;
+}
+
+[Flags]
+public enum ShootModifier
+{
+    None,
+    Spread,
+    Split
 }

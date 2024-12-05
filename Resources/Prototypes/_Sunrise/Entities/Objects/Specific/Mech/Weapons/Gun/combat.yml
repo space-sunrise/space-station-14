@@ -21,7 +21,7 @@
     fireCost: 5
   - type: Appearance
   - type: AmmoCounter
-  
+
 - type: entity
   id: WeaponMechCombatUVM31
   name: UVM-31 "Drake"
@@ -45,8 +45,8 @@
       collection: syndi_plasma
       params:
         volume: -1
-  - type: ProjectileBatteryAmmoProvider
-    proto: BulletSyndiPlasma
+  - type: HitscanBatteryAmmoProvider
+    proto: BulletSyndiPlasmaDouble
     fireCost: 6
   - type: Appearance
   - type: AmmoCounter

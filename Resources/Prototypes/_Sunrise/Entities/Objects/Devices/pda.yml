@@ -22,6 +22,10 @@
     state: pda-captain
     penSlot:
       startingItem: UEGPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
   - type: PdaBorderColor
     borderColor: "#7C5D00"
   - type: Icon
@@ -52,7 +56,7 @@
     state: pda-blueshield
 
 - type: entity
-  parent: BasePDA
+  parent: BaseMedicalPDA
   id: PathologistPDA
   name: Pathologist PDA
   components:
@@ -71,9 +75,15 @@
   - type: Pda
     id: PathologistIDCard
     state: pda-patologoanatom
+  - type: PdaBorderColor
+    borderColor: "#717059"
+    accentVColor: "#447987"
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-patologoanatom
+  - type: GuideHelp
+    guides:
+    - Medical Doctor
 
 - type: entity
   parent: BasePDA

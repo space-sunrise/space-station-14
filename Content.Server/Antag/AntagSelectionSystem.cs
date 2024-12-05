@@ -220,6 +220,10 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         }
 
         ent.Comp.SelectionsComplete = true;
+        // Sunrise-Start
+        var selectionCompleteEv = new AntagSelectionCompleteEvent(ent);
+        RaiseLocalEvent(ent, ref selectionCompleteEv, true);
+        // Sunrise-End
     }
 
     /// <summary>
@@ -377,6 +381,10 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
             spawnerComp.Rule = ent;
             spawnerComp.Definition = def;
+            // Sunrise-Start
+            ent.Comp.UseSpawners = true;
+            ent.Comp.SpawnersCount += 1;
+            // Sunrise-End
             return;
         }
 
@@ -560,3 +568,7 @@ public record struct AntagSelectLocationEvent(ICommonSession? Session, Entity<An
 /// </summary>
 [ByRefEvent]
 public readonly record struct AfterAntagEntitySelectedEvent(ICommonSession? Session, EntityUid EntityUid, Entity<AntagSelectionComponent> GameRule, AntagSelectionDefinition Def);
+// Sunrise-Start
+[ByRefEvent]
+public readonly record struct AntagSelectionCompleteEvent(Entity<AntagSelectionComponent> GameRule);
+// Sunrise-End

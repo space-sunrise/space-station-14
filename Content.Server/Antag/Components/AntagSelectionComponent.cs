@@ -43,6 +43,12 @@ public sealed partial class AntagSelectionComponent : Component
     /// </summary>
     public HashSet<ICommonSession> SelectedSessions = new();
 
+    // Sunrise-Start
+    public bool UseSpawners;
+
+    public int SpawnersCount;
+    // Sunrise-End
+
     /// <summary>
     /// Locale id for the name of the antag.
     /// If this is set then the antag is listed in the round-end summary.
