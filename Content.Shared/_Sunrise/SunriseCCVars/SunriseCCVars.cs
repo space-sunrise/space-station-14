@@ -51,6 +51,8 @@ public sealed class SunriseCCVars
     public static readonly CVarDef<float> TTSAnnounceVolume =
         CVarDef.Create("tts.announce_volume", 0.50f, CVar.CLIENTONLY | CVar.ARCHIVE);
 
+    public static readonly CVarDef<bool> GhostRoleNotify = 
+        CVarDef.Create("ghost.role_notify", true, CVar.CLIENTONLY | CVar.ARCHIVE);
     /**
      * Ban Webhook
      */

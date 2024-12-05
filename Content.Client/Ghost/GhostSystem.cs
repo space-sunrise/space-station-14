@@ -7,6 +7,8 @@ using Robust.Client.GameObjects;
 using Robust.Client.Player;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
+using Robust.Shared.Configuration;
+using Content.Shared._Sunrise.SunriseCCVars;
 
 namespace Content.Client.Ghost
 {
@@ -14,6 +16,7 @@ namespace Content.Client.Ghost
     {
         [Dependency] private readonly IClientConsoleHost _console = default!;
         [Dependency] private readonly IPlayerManager _playerManager = default!;
+        [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly SharedActionsSystem _actions = default!;
         [Dependency] private readonly ContentEyeSystem _contentEye = default!;
         [Dependency] private readonly AudioSystem _audioSystem = default!;
@@ -159,8 +162,8 @@ namespace Content.Client.Ghost
 
         private void OnUpdateGhostRoleCount(GhostUpdateGhostRoleCountEvent msg)
         {
-
-            if (msg.AvailableGhostRoles > AvailableGhostRoleCount && IsGhost)
+        
+            if (_cfg.GetCVar(SunriseCCVars.GhostRoleNotify) && msg.AvailableGhostRoles > AvailableGhostRoleCount && IsGhost)
             {
                 _audioSystem.PlayGlobal(
                     "/Audio/_Sunrise/Misc/ping.ogg",
