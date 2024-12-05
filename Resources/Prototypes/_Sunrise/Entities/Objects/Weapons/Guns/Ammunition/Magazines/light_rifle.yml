@@ -177,9 +177,9 @@
     whitelist:
       tags:
       - CartridgeLightRifle  # 762x39
-    capacity: 250
+    capacity: 200
   - type: Item
-    size: Small
+    size: Normal
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -210,9 +210,9 @@
     whitelist:
       tags:
       - CartridgeLightRifle  # 762x39
-    capacity: 250
+    capacity: 200
   - type: Item
-    size: Small
+    size: Normal
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
