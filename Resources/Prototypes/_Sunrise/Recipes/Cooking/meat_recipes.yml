@@ -19,4 +19,27 @@
     Water: 10
   solids:
     FoodBowlBig: 1
-    MaterialWoodPlank: 2
+    Log: 2
+
+- type: microwaveMealRecipe
+  id: RecipeSoupSawdustSteel
+  name: sawdust soup recipe steel
+  result: FoodSoupSawdust
+  time: 15
+  reagents:
+    Water: 10
+  solids:
+    FoodBowlBig: 1
+    SteelLog: 2
+
+- type: microwaveMealRecipe
+  id: RecipeSoupSawdustLog
+  name: sawdust soup recipe log
+  result: FoodSoupSawdust
+  time: 15
+  reagents:
+    Water: 10
+  solids:
+    FoodBowlBig: 1
+    SteelLog: 1
+    Log: 1
