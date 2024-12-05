@@ -13,8 +13,8 @@
   - type: UseDelay
     delay: 0.5
   - type: LimitedCharges
-    charges: 2
-    maxCharges: 2
+    charges: 3
+    maxCharges: 3
   - type: AutoRecharge
     rechargeDuration: 30
   - type: EmitSoundOnUse
