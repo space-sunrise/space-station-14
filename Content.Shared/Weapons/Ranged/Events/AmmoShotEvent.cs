@@ -7,3 +7,10 @@ public sealed class AmmoShotEvent : EntityEventArgs
 {
     public List<EntityUid> FiredProjectiles = default!;
 }
+
+public sealed class HitscanAmmoShotEvent : EntityEventArgs
+{
+    public EntityUid Target = default!;
+
+    public EntityUid? Shooter = default!;
+}

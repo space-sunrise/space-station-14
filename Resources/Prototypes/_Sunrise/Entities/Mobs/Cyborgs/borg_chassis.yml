@@ -377,7 +377,7 @@
       state: heavy
     name: syndicate's heavy combat cyborg.
   - type: BorgChassis
-    maxModules: 4
+    maxModules: 2
     moduleWhitelist:
       tags:
       - BorgModuleSyndicate
@@ -412,8 +412,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      400: Critical
-      500: Dead
+      500: Critical
+      600: Dead
   - type: PointLight
     color: "#f51e0f"
     radius: 9
@@ -424,7 +424,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 350
+        damage: 400
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -456,8 +456,8 @@
       params:
         volume: -5
   - type: MovementSpeedModifier
-    baseWalkSpeed : 1.5
-    baseSprintSpeed : 2.5
+    baseWalkSpeed : 2
+    baseSprintSpeed : 3
   - type: InnateItem
     worldTargetActions:
     - Emag

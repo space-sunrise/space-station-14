@@ -24,6 +24,10 @@ using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using System.Linq;
+using Content.Server.Antag.Components;
+using Content.Server.Traitor.Uplink;
+using Content.Shared.Mind;
+using Content.Shared.Roles;
 using Content.Shared.Store.Components;
 
 namespace Content.Server.GameTicking.Rules;
@@ -37,12 +41,20 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
     [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
     [Dependency] private readonly StoreSystem _store = default!;
     [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly UplinkSystem _uplinkSystem = default!;
+    [Dependency] private readonly SharedRoleSystem _roles = default!;
 
     [ValidatePrototypeId<CurrencyPrototype>]
     private const string TelecrystalCurrencyPrototype = "Telecrystal";
 
     [ValidatePrototypeId<TagPrototype>]
     private const string NukeOpsUplinkTagPrototype = "NukeOpsUplink";
+
+    // Sunrise-Start
+    [ValidatePrototypeId<AntagPrototype>]
+    private const string CommanderAntagProto = "NukeopsCommander";
+    // Sunrise-End
+
 
     public override void Initialize()
     {
@@ -63,6 +75,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
         SubscribeLocalEvent<CommunicationConsoleCallShuttleAttemptEvent>(OnShuttleCallAttempt);
 
         SubscribeLocalEvent<NukeopsRuleComponent, AfterAntagEntitySelectedEvent>(OnAfterAntagEntSelected);
+        SubscribeLocalEvent<NukeopsRuleComponent, AntagSelectionCompleteEvent>(OnAfterAntagSelectionComplete); // Sunrise-Edit
         SubscribeLocalEvent<NukeopsRuleComponent, RuleLoadedGridsEvent>(OnRuleLoadedGrids);
     }
 
@@ -383,7 +396,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
             if (Transform(uid).MapID != Transform(outpost).MapID) // Will receive bonus TC only on their start outpost
                 continue;
 
-            _store.TryAddCurrency(new() { { TelecrystalCurrencyPrototype, nukieRule.Comp.WarTcAmountPerNukie } }, uid, component);
+            _store.TryAddCurrency(new() { { TelecrystalCurrencyPrototype, nukieRule.Comp.WarTcAmountPerNukie * nukieRule.Comp.RoundstartOperatives } }, uid, component); // Sunrise-Edit
 
             var msg = Loc.GetString("store-currency-war-boost-given", ("target", uid));
             _popupSystem.PopupEntity(msg, uid);
@@ -482,7 +495,55 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
                 ("name", Name(ent))),
             Color.Red,
             ent.Comp.GreetSoundNotification);
+
+        // Sunrise-Start
+        if (!args.GameRule.Comp.UseSpawners)
+            return;
+
+        ent.Comp.RoundstartOperatives = args.GameRule.Comp.SpawnersCount;
+        var commander = GetCommander(args.GameRule);
+        if (commander != null)
+            SetupUplink(commander.Value, ent.Comp);
+        // Sunrise-End
     }
+
+    // Sunrise-Start
+    private void OnAfterAntagSelectionComplete(Entity<NukeopsRuleComponent> ent, ref AntagSelectionCompleteEvent args)
+    {
+        ent.Comp.RoundstartOperatives = args.GameRule.Comp.SelectedMinds.Count;
+
+        var commander = GetCommander(args.GameRule);
+        if (commander != null)
+            SetupUplink(commander.Value, ent.Comp);
+    }
+
+    private EntityUid? GetCommander(Entity<AntagSelectionComponent> antagSelection)
+    {
+        EntityUid? commander = null;
+        foreach (var compSelectedMind in antagSelection.Comp.SelectedMinds)
+        {
+            if (!TryComp<MindComponent>(compSelectedMind.Item1, out var mindComp))
+                continue;
+
+            foreach (var roleInfo in _roles.MindGetAllRoleInfo((compSelectedMind.Item1, mindComp)))
+            {
+                if (roleInfo.Prototype != CommanderAntagProto || mindComp.CurrentEntity == null)
+                    continue;
+
+                commander = mindComp.CurrentEntity.Value;
+            }
+        }
+
+        return commander;
+    }
+
+    private void SetupUplink(EntityUid user, NukeopsRuleComponent nukeopsRule)
+    {
+        var uplink = _uplinkSystem.FindUplinkByTag(user, NukeOpsUplinkTagPrototype);
+        if (uplink != null)
+            _uplinkSystem.SetUplink(user, uplink.Value, nukeopsRule.WarTcAmountPerNukie * nukeopsRule.RoundstartOperatives, true);
+    }
+    // Sunrise-End
 
     private void OnGetBriefing(Entity<NukeopsRoleComponent> role, ref GetBriefingEvent args)
     {

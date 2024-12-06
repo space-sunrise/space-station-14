@@ -122,6 +122,18 @@
 
 - type: entity
   parent: BaseUplinkRadio
+  id: BaseUplinkRadio0TC
+  suffix: NukeOps
+  components:
+  - type: Store
+    balance:
+      Telecrystal: 0
+  - type: Tag
+    tags:
+    - NukeOpsUplink
+
+- type: entity
+  parent: BaseUplinkRadio
   id: BaseUplinkRadioDebug
   suffix: DEBUG
   components:

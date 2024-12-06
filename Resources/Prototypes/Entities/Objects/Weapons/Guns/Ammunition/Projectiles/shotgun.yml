@@ -30,17 +30,6 @@
   - type: StaminaDamageOnCollide
     damage: 15 # 3 hits to stun # Sunrise-Edit
 
-- type: entity # Sunrise-Edit
-  id: PelletShotgunBeanbagSpread
-  categories: [ HideSpawnMenu ]
-  parent: PelletShotgunBeanbag
-  components:
-  - type: ProjectileSpread
-    proto: PelletShotgunBeanbag
-    count: 3
-    spread: 4.5
-
-
 - type: entity
   id: PelletShotgun
   name: pellet (.50)

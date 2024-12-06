@@ -5,6 +5,7 @@
   id: BaseMobDemon
   abstract: true
   components:
+  - type: Absorbable
   - type: HumanoidAppearance
     species: Demon
   - type: Hunger

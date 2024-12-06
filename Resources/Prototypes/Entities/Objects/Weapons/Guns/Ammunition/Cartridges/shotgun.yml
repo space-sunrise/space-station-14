@@ -20,9 +20,30 @@
   - type: SpentAmmoVisuals
 
 - type: entity
+  id: BaseShellHitscanShotgun
+  name: shell (.50)
+  parent: [ BaseCartridge, BaseRestrictedContraband ]
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - ShellShotgun
+  - type: HitScanCartridgeAmmo
+    soundEject:
+      collection: ShellEject
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/shotgun_shell.rsi
+    layers:
+    - state: base
+      map: [ "enum.AmmoVisualLayers.Base" ]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
   id: ShellShotgunBeanbag
   name: shell (.50 beanbag)
-  parent: BaseShellShotgun
+  parent: BaseShellHitscanShotgun
   components:
   - type: Tag
     tags:
@@ -33,21 +54,21 @@
     layers:
       - state: beanbag
         map: [ "enum.AmmoVisualLayers.Base" ]
-  - type: CartridgeAmmo
-    proto: PelletShotgunBeanbagSpread # Sunrise-Edit
+  - type: HitScanCartridgeAmmo
+    proto: PelletShotgunBeanbag
   - type: SpentAmmoVisuals
     state: "beanbag"
 
 - type: entity
   id: ShellShotgunSlug
   name: shell (.50 slug)
-  parent: BaseShellShotgun
+  parent: BaseShellHitscanShotgun
   components:
   - type: Sprite
     layers:
       - state: slug
         map: [ "enum.AmmoVisualLayers.Base" ]
-  - type: CartridgeAmmo
+  - type: HitScanCartridgeAmmo
     proto: PelletShotgunSlug
   - type: SpentAmmoVisuals
     state: "slug"
@@ -74,39 +95,41 @@
 - type: entity
   id: ShellShotgun
   name: shell (.50)
-  parent: BaseShellShotgun
+  parent: BaseShellHitscanShotgun
   components:
   - type: Sprite
     layers:
       - state: base
         map: [ "enum.AmmoVisualLayers.Base" ]
-  - type: CartridgeAmmo
-    proto: PelletShotgunSpread
+  - type: HitScanCartridgeAmmo
+    proto: PelletShotgun
 
 - type: entity
   id: ShellShotgunIncendiary
   name: shell (.50 incendiary)
-  parent: BaseShellShotgun
+  parent: BaseShellHitscanShotgun
   components:
   - type: Sprite
     layers:
       - state: incendiary
         map: [ "enum.AmmoVisualLayers.Base" ]
-  - type: CartridgeAmmo
+  - type: HitScanCartridgeAmmo
     proto: PelletShotgunIncendiarySpread
+  - type: IgniteOnAmmoHit
+    fireStacks: 0.25
   - type: SpentAmmoVisuals
     state: "incendiary"
 
 - type: entity
   id: ShellShotgunPractice
   name: shell (.50 practice)
-  parent: BaseShellShotgun
+  parent: BaseShellHitscanShotgun
   components:
   - type: Sprite
     layers:
       - state: practice
         map: [ "enum.AmmoVisualLayers.Base" ]
-  - type: CartridgeAmmo
+  - type: HitScanCartridgeAmmo
     proto: PelletShotgunPracticeSpread
   - type: SpentAmmoVisuals
     state: "practice"
@@ -114,7 +137,7 @@
 - type: entity
   id: ShellTranquilizer
   name: shell (.50 tranquilizer)
-  parent: BaseShellShotgun
+  parent: BaseShellHitscanShotgun
   components:
   - type: Tag
     tags:
@@ -125,17 +148,17 @@
     layers:
       - state: tranquilizer
         map: [ "enum.AmmoVisualLayers.Base" ]
-  - type: CartridgeAmmo
-    proto: PelletShotgunTranquilizer
-  - type: ChemicalAmmo
+  - type: HitScanCartridgeAmmo
+    proto: PelletShotgunPractice
   - type: SolutionContainerManager
     solutions:
       ammo:
         reagents:
         - ReagentId: ChloralHydrate
-          Quantity: 7
-  - type: SolutionTransfer
-    maxTransferAmount: 7
+          Quantity: 15
+  - type: SolutionInjectOnProjectileHit
+    transferAmount: 15
+    solution: ammo
   - type: SpentAmmoVisuals
     state: "tranquilizer"
 
@@ -143,7 +166,7 @@
   id: ShellShotgunImprovised
   name: improvised shotgun shell
   description: A homemade shotgun shell that shoots painful glass shrapnel. The spread is so wide that it couldn't hit the broad side of a barn.
-  parent: BaseShellShotgun
+  parent: BaseShellHitscanShotgun
   components:
   - type: Tag
     tags:
@@ -157,7 +180,7 @@
   - type: Construction
     graph: ImprovisedShotgunShellGraph
     node: shell
-  - type: CartridgeAmmo
+  - type: HitScanCartridgeAmmo
     proto: PelletShotgunImprovisedSpread
   - type: SpentAmmoVisuals
     state: "improvised"
@@ -165,13 +188,13 @@
 - type: entity
   id: ShellShotgunUranium
   name: uranium shotgun shell
-  parent: BaseShellShotgun
+  parent: BaseShellHitscanShotgun
   components:
     - type: Sprite
       layers:
         - state: depleted-uranium
           map: [ "enum.AmmoVisualLayers.Base" ]
-    - type: CartridgeAmmo
+    - type: HitScanCartridgeAmmo
       proto: PelletShotgunUraniumSpread
     - type: SpentAmmoVisuals
       state: "depleted-uranium"

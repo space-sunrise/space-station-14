@@ -260,47 +260,6 @@
         locked: true
 
 - type: entity
-  name: machine gun borg
-  id: LightMachineGunBorg
-  parent: BaseItem
-  categories: [ HideSpawnMenu ]
-  description:
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/LMGs/l6.rsi
-    layers:
-    - state: icon
-      map: ["enum.GunVisualLayers.Base"]
-  - type: Item
-    sprite: Objects/Weapons/Guns/LMGs/l6.rsi
-  - type: Gun
-    minAngle: 4
-    maxAngle: 20
-    angleIncrease: 4
-    angleDecay: 16
-    fireRate: 8
-    selectedMode: FullAuto
-    availableModes:
-    - FullAuto
-    soundGunshot:
-      collection: m249
-      params:
-        volume: 10
-    soundEmpty:
-      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-  - type: Appearance
-  - type: ProjectileBatteryAmmoProvider
-    proto: BulletLightRifle
-    fireCost: 100
-  - type: Battery
-    maxCharge: 10000
-    startingCharge: 10000
-  - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 25
-  - type: AmmoCounter
-
-- type: entity
   name: robot china lake
   parent: WeaponLauncherChinaLake
   id: WeaponLauncherChinaLakeBorg
@@ -511,21 +470,6 @@
     autoRecharge: true
     autoRechargeRate: 30
 
-- type: hitscan
-  id: PulseERTBorg
-  damage:
-    types:
-      Heat: 17
-  muzzleFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: muzzle_blue
-  travelFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: beam_blue
-  impactFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: impact_blue
-
 - type: entity
   name: cyborg's DL6902
   id: DL6902Borg
@@ -552,8 +496,8 @@
         volume: 10
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-  - type: ProjectileBatteryAmmoProvider
-    proto: CartridgeLightRifle
+  - type: HitscanBatteryAmmoProvider
+    proto: BulletLightRifle
     fireCost: 50
   - type: Battery
     maxCharge: 10000
@@ -591,8 +535,8 @@
     - FullAuto
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-  - type: ProjectileBatteryAmmoProvider
-    proto: CartridgeCaselessRifle
+  - type: HitscanBatteryAmmoProvider
+    proto: BulletPistol
     fireCost: 50
   - type: Battery
     maxCharge: 5000

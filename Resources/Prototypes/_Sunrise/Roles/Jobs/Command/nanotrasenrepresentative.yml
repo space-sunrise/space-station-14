@@ -6,13 +6,16 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Command
-      time: 62000 # 20 hrs
+      time: 54000 # 15 hrs
+    - !type:DepartmentTimeRequirement
+      department: Law
+      time: 18000 # 5 hrs
   startingGear: NanoTrasenRepresentativeGear
   icon: JobIconNanotrasen
+  joinNotifyCrew: true
   supervisors: job-supervisors-centcom
   canBeAntag: false
   access:
-    - Armory
     - Cryogenics
     - Lawyer
     - Command
@@ -50,6 +53,7 @@
     id: NanoTrasenRepresentativePDA
     ears: ClothingHeadsetAltCommand
     pocket1: FlippoEngravedLighter
+    pocket2: PenCentcom
   storage:
     back:
     - RubberStampNtrep

@@ -69,8 +69,9 @@
       - state: inhand-right-blade
         shader: unshaded
   - type: Reflect
-    reflectProb: .20
+    reflectProb: .35
     spread: 45
+    needActiveHand: true
   # Sunrise-start
   - type: Tag
     tags:
@@ -230,6 +231,7 @@
   - type: Reflect
     reflectProb: .15
     spread: 45
+    needActiveHand: true
   - type: Tag
     tags:
     - Write
@@ -321,7 +323,7 @@
     wieldSound: null # esword light sound instead
   - type: MeleeWeapon
     wideAnimationRotation: -135
-    attackRate: 1.75
+    attackRate: 2
     angle: 100
     damage:
       types:
@@ -339,8 +341,9 @@
     size: Small
     sprite: Objects/Weapons/Melee/e_sword_double-inhands.rsi
   - type: Reflect
-    reflectProb: .40
+    reflectProb: .50
     spread: 90
+    needActiveHand: true
 
 - type: entity
   suffix: One-Handed, For Borgs
