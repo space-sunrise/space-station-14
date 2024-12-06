@@ -7359,3 +7359,11 @@
   id: 516
   time: '2024-12-06T18:32:12.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/791
+- author: pacable
+  changes:
+  - message: "\u0418\u0441\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u043E \u043E\u043F\
+      \u0438\u0441\u0430\u043D\u0438\u0435 BR-64."
+    type: Fix
+  id: 517
+  time: '2024-12-06T19:26:36.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/784
