@@ -63,7 +63,12 @@ public sealed partial class NukeopsRuleComponent : Component
     ///     This amount of TC will be given to each nukie
     /// </summary>
     [DataField]
-    public int WarTcAmountPerNukie = 40;
+    public int WarTcAmountPerNukie = 50; // Sunrise-Edit
+
+    // Sunrise-Start
+    [DataField]
+    public int RoundstartOperatives;
+    // Sunrise-End
 
     /// <summary>
     ///     Delay between war declaration and nuke ops arrival on station map. Gives crew time to prepare

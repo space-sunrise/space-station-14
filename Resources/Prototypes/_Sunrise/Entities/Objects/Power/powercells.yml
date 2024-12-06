@@ -1,0 +1,18 @@
+- type: entity
+  name: syndicate power cell
+  description: A rechargeable standardized power cell. This one looks like a rare and powerful prototype.
+  id: PowerCellSyndicate
+  suffix: Full
+  parent: BasePowerCell
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: hyper
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 2800
+    startingCharge: 2800
+  - type: EmpImmune

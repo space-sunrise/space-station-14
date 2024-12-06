@@ -42,7 +42,7 @@ public sealed partial class PuddleFootprintComponent : Component
     /// Ratio determining how much of puddle's color transfers to footprints
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    public float ColorTransferRatio = 0.5f;
+    public float TransferVolume = 2.5f;
 
     /// <summary>
     /// Percentage of water content above which footprints won't be created
@@ -107,12 +107,6 @@ public sealed partial class FootprintEmitterComponent : Component
     public EntProtoId<FootprintComponent> FootprintPrototype = "Footstep";
 
     /// <summary>
-    /// Current color of footprints
-    /// </summary>
-    [ViewVariables(VVAccess.ReadOnly), DataField]
-    public Color TrackColor = Color.FromHex("#00000000");
-
-    /// <summary>
     /// Distance between footprints when walking
     /// </summary>
     [DataField]
@@ -124,23 +118,20 @@ public sealed partial class FootprintEmitterComponent : Component
     [DataField]
     public float DragMarkInterval = 0.5f;
 
-    /// <summary>
-    /// Amount of color accumulated from puddles
-    /// </summary>
-    [DataField]
-    public float AccumulatedColor;
+    [ViewVariables(VVAccess.ReadOnly), DataField("solution")]
+    public string SolutionName = "foots";
+
+    [ViewVariables(VVAccess.ReadOnly), DataField("solutionRef")]
+    public Entity<SolutionComponent>? Solution;
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float TransferVolume = 0.1f;
 
     /// <summary>
     /// Rate at which footprint color fades
     /// </summary>
     [DataField]
     public float ColorFadeRate = 0.05f;
-
-    /// <summary>
-    /// Current reagent being transferred to footprints
-    /// </summary>
-    [DataField]
-    public string? CurrentReagent;
 
     /// <summary>
     /// Offset from entity center for footprint placement
@@ -157,11 +148,6 @@ public sealed partial class FootprintEmitterComponent : Component
     /// Position of last footprint
     /// </summary>
     public Vector2 LastStepPosition = Vector2.Zero;
-
-    /// <summary>
-    /// Factor for interpolating between colors when mixing
-    /// </summary>
-    public float ColorBlendFactor = 0.2f;
 }
 
 /// <summary>

@@ -8,7 +8,7 @@
     tags:
       - Cartridge
       - CartridgeMagnum
-  - type: CartridgeAmmo
+  - type: HitScanCartridgeAmmo
     proto: BulletMagnum
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
@@ -23,7 +23,7 @@
   name: cartridge (.45 magnum)
   parent: BaseCartridgeMagnum
   components:
-  - type: CartridgeAmmo
+  - type: HitScanCartridgeAmmo
     proto: BulletMagnum
 
 - type: entity
@@ -31,7 +31,7 @@
   name: cartridge (.45 magnum practice)
   parent: BaseCartridgeMagnum
   components:
-  - type: CartridgeAmmo
+  - type: HitScanCartridgeAmmo
     proto: BulletMagnumPractice
   - type: Sprite
     layers:
@@ -46,8 +46,10 @@
   name: cartridge (.45 magnum incendiary)
   parent: BaseCartridgeMagnum
   components:
-  - type: CartridgeAmmo
+  - type: HitScanCartridgeAmmo
     proto: BulletMagnumIncendiary
+  - type: IgniteOnAmmoHit
+    fireStacks: 0.25
   - type: Sprite
     layers:
       - state: base
@@ -61,7 +63,7 @@
   name: cartridge (.45 magnum armor-piercing)
   parent: BaseCartridgeMagnum
   components:
-  - type: CartridgeAmmo
+  - type: HitScanCartridgeAmmo
     proto: BulletMagnumAP
   - type: Sprite
     layers:
@@ -76,7 +78,7 @@
   name: cartridge (.45 magnum uranium)
   parent: BaseCartridgeMagnum
   components:
-  - type: CartridgeAmmo
+  - type: HitScanCartridgeAmmo
     proto: BulletMagnumUranium
   - type: Sprite
     layers:

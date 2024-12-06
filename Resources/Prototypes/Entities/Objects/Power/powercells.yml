@@ -391,3 +391,22 @@
       visible: false
   - type: Battery
     startingCharge: 0
+
+- type: entity
+  id: PowerCageSyndicate
+  parent: BasePowerCage
+  name: syndicate power cage
+  description: A rechargeable power cage for big devices. Increased capacity for increased power levels.
+  components:
+  - type: Sprite
+    sprite: Objects/Power/power_cages.rsi
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: high
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 8000
+    startingCharge: 8000
+  - type: EmpImmune

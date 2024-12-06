@@ -467,7 +467,7 @@
     wideAnimationRotation: 45
     damage:
       types:
-        Blunt: 14
+        Blunt: 12 # Sunrise-Edit
     soundHit:
       collection: MetalThud
   - type: Item

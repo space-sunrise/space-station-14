@@ -3,7 +3,7 @@
   name: cartridge (.20 rifle rubber)
   parent: BaseCartridgeRifle
   components:
-  - type: CartridgeAmmo
+  - type: HitScanCartridgeAmmo
     proto: BulletRifleRubber
   - type: Sprite
     layers:

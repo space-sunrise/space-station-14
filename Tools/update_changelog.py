@@ -7,7 +7,7 @@ import yaml
 import argparse
 import datetime
 
-MAX_ENTRIES = 500
+MAX_ENTRIES = 5000
 
 HEADER_RE = r"(?::cl:|🆑) *\r?\n(.+)$"
 ENTRY_RE = r"^ *[*-]? *(\S[^\n\r]+)\r?$"

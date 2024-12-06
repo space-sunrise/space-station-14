@@ -32,6 +32,7 @@
   - Salvage
   - Command
   - Hydroponics
+  - Maintenance
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]

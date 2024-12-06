@@ -133682,7 +133682,7 @@ entities:
     - type: Transform
       pos: 47.5,-26.5
       parent: 2
-- proto: SpawnMechGygax
+- proto: SpawnMechDurand
   entities:
   - uid: 21114
     components:
