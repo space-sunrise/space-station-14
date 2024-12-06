@@ -7338,3 +7338,24 @@
   id: 514
   time: '2024-12-06T18:29:42.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/793
+- author: KaiserMaus
+  changes:
+  - message: "\u0411\u043E\u0442\u0438\u043D\u043A\u0438 SWAT."
+    type: Add
+  - message: "\u042F\u0449\u0438\u043A SWAT \u0446\u0435\u043D\u0430: 6000."
+    type: Tweak
+  - message: "\u0411\u0440\u043E\u043D\u044F SWAT \u0443\u043C\u0435\u043D\u044C\u0448\
+      \u0435\u043D\u0438\u0435 \u0441\u043A\u043E\u0440\u043E\u0441\u0442\u0438 15%\
+      \ >10%."
+    type: Tweak
+  id: 515
+  time: '2024-12-06T18:31:33.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/792
+- author: KaiserMaus
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D \u041F\u0443\u043B\u0435\
+      \u043C\u0451\u0442 \u041C\u0430\u043A\u0441\u0438\u043C."
+    type: Add
+  id: 516
+  time: '2024-12-06T18:32:12.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/791
