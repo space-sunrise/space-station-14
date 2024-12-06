@@ -1,4 +1,4 @@
 ent-FoodPelmeniBowl = пельмени
     .desc = Много мяса, мало теста.
-ent-FoodSoupSawdust = cуп из опилок
+ent-FoodSoupSawdust = суп из опилок
     .desc = Пахнет опилками
