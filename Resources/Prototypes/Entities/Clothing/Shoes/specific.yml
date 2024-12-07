@@ -147,6 +147,17 @@
     sprite: Clothing/Shoes/Specific/swat.rsi
   - type: Clothing
     sprite: Clothing/Shoes/Specific/swat.rsi
+  - type: NoSlip
+  - type: SlowedOverSlippery
+    slowdownModifier: 0.5
+  - type: SpeedModifierContactCapClothing
+    maxContactSprintSlowdown: 0.3
+    maxContactWalkSlowdown: 0.3
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.5
+  - type: ClothingSpeedModifier
+    walkModifier: 0.90
+    sprintModifier: 0.90
 
 - type: entity
   parent: ClothingShoesBaseButcherable

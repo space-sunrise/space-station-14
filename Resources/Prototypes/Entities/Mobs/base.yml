@@ -232,6 +232,9 @@
   abstract: true
   components:
   - type: SolutionContainerManager
+    solutions:
+      foots:
+        maxVol: 5
   - type: InjectableSolution
     solution: chemicals
   - type: Bloodstream

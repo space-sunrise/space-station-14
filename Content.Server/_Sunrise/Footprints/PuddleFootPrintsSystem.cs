@@ -2,7 +2,6 @@
 using Content.Shared._Sunrise.Footprints;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
-using Content.Shared.Fluids;
 using Content.Shared.Fluids.Components;
 using Robust.Shared.Physics.Events;
 
@@ -27,35 +26,37 @@ public sealed class PuddleFootprintSystem : EntitySystem
     /// Handles puddle interaction and footprint creation when entity exits the puddle
     /// </summary>
     private void OnPuddleInteraction(EntityUid uid, PuddleFootprintComponent component, ref EndCollideEvent args)
-    {
-        if (!TryComp<AppearanceComponent>(uid, out var appearance)
-            || !TryComp<PuddleComponent>(uid, out var puddle)
-            || !TryComp<FootprintEmitterComponent>(args.OtherEntity, out var emitter)
-            || !TryComp<SolutionContainerManagerComponent>(uid, out var solutionManager)
-            || !_solutionSystem.ResolveSolution((uid, solutionManager), puddle.SolutionName, ref puddle.Solution, out var solutions))
-            return;
+{
+    if (!TryComp<AppearanceComponent>(uid, out var appearance)
+        || !TryComp<PuddleComponent>(uid, out var puddle)
+        || !TryComp<FootprintEmitterComponent>(args.OtherEntity, out var emitter)
+        || !TryComp<SolutionContainerManagerComponent>(uid, out var solutionManager)
+        || !_solutionSystem.ResolveSolution((uid, solutionManager), puddle.SolutionName, ref puddle.Solution, out var puddleSolutions)
+        || !TryComp<SolutionContainerManagerComponent>(args.OtherEntity, out var emitterSolutionManager)
+        || !_solutionSystem.ResolveSolution((args.OtherEntity, emitterSolutionManager), emitter.SolutionName, ref emitter.Solution, out var emitterSolutions))
+        return;
 
-        var totalSolutionQuantity = solutions.Contents.Sum(sol => (float)sol.Quantity);
-        var waterQuantity = (from sol in solutions.Contents where sol.Reagent.Prototype == "Water" select (float)sol.Quantity).FirstOrDefault();
+    var totalSolutionQuantity = puddleSolutions.Contents.Sum(sol => (float)sol.Quantity);
+    var waterQuantity = (from sol in puddleSolutions.Contents where sol.Reagent.Prototype == "Water" select (float)sol.Quantity).FirstOrDefault();
 
-        if (waterQuantity / (totalSolutionQuantity / 100f) > component.WaterThresholdPercent || solutions.Contents.Count <= 0)
-            return;
+    if (waterQuantity / (totalSolutionQuantity / 100f) > component.WaterThresholdPercent || puddleSolutions.Contents.Count <= 0)
+        return;
 
-        emitter.CurrentReagent = solutions.Contents.Aggregate((l, r) => l.Quantity > r.Quantity ? l : r).Reagent.Prototype;
+    var availableSpace = emitterSolutions.MaxVolume.Float() - emitterSolutions.Volume.Float();
 
-        if (_appearanceSystem.TryGetData(uid, PuddleVisuals.SolutionColor, out var color, appearance)
-            && _appearanceSystem.TryGetData(uid, PuddleVisuals.CurrentVolume, out var volume, appearance))
-            UpdateTrackColor((Color)color, (float)volume * component.ColorTransferRatio, emitter);
+    if (availableSpace <= 0)
+        return;
 
-        _solutionSystem.RemoveEachReagent(puddle.Solution.Value, 0.5f);
-    }
+    var transferVolume = Math.Min(component.TransferVolume, availableSpace);
 
-    /// <summary>
-    /// Updates the color of footprints based on puddle properties
-    /// </summary>
-    private void UpdateTrackColor(Color color, float quantity, FootprintEmitterComponent emitter)
-    {
-        emitter.TrackColor = emitter.AccumulatedColor == 0f ? color : Color.InterpolateBetween(emitter.TrackColor, color, emitter.ColorBlendFactor);
-        emitter.AccumulatedColor += quantity;
-    }
+    if (puddleSolutions.Volume < transferVolume)
+        transferVolume = puddleSolutions.Volume.Float();
+
+    if (transferVolume <= 0)
+        return;
+
+    var splitSolution = _solutionSystem.SplitSolution(puddle.Solution.Value, transferVolume);
+
+    _solutionSystem.AddSolution(emitter.Solution.Value, splitSolution);
+}
 }

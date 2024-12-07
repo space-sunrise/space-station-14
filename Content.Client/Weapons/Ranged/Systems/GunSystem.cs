@@ -326,6 +326,27 @@ public sealed partial class GunSystem : SharedGunSystem
                         Del(ent.Value);
 
                     break;
+                case HitScanCartridgeAmmoComponent hitScanCartridge:
+                    if (!hitScanCartridge.Spent)
+                    {
+                        SetHitscanCartridgeSpent(ent!.Value, hitScanCartridge, true);
+                        MuzzleFlash(gunUid, hitScanCartridge, worldAngle, user);
+                        Audio.PlayPredicted(gun.SoundGunshotModified, gunUid, user);
+                        Recoil(user, direction, gun.CameraRecoilScalarModified);
+                        // TODO: Can't predict entity deletions.
+                        //if (cartridge.DeleteOnSpawn)
+                        //    Del(cartridge.Owner);
+                    }
+                    else
+                    {
+                        userImpulse = false;
+                        Audio.PlayPredicted(gun.SoundEmpty, gunUid, user);
+                    }
+
+                    if (IsClientSide(ent!.Value))
+                        Del(ent.Value);
+
+                    break;
                 case AmmoComponent newAmmo:
                     MuzzleFlash(gunUid, newAmmo, worldAngle, user);
                     Audio.PlayPredicted(gun.SoundGunshotModified, gunUid, user);

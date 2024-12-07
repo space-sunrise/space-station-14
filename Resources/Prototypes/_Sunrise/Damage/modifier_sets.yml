@@ -33,7 +33,7 @@
     Blunt: 0.7
     Slash: 0.7
     Piercing: 0.7
-    Heat: 0.7
+    Heat: 0.5
     Shock: 1.3
 
 - type: damageModifierSet
@@ -52,7 +52,7 @@
     Piercing: 0.6
 
 - type: damageModifierSet
-  id: Demon # Lust Station
+  id: Demon
   coefficients:
     Blunt: 1
     Piercing: 1

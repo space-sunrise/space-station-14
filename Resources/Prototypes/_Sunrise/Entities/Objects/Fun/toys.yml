@@ -801,16 +801,6 @@
 
 - type: entity
   parent: BasePlushie
-  id: PlushieLuna
-  name: Plushie Luna
-  description: Nya!! Mya!! are the first words of this lovely lady.
-  components:
-  - type: Sprite
-    state: luna
-    sprite: _Sunrise/Objects/Fun/toys.rsi
-
-- type: entity
-  parent: BasePlushie
   id: PlushieRaisya
   name: Plushie Raisya
   description: Purr! “Meow! Nya! her favorite UwU words.

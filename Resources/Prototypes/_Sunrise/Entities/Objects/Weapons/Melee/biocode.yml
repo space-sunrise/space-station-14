@@ -10,11 +10,9 @@
   - type: Construction
     graph: EnergySwordDoubleGraph
     node: DoubleEnergySwordNode
-  # Sunrise-Start
   - type: Biocode
     factions:
     - Syndicate
-  # Sunrise-End
 
 - type: entity
   parent: EnergySword
@@ -31,15 +29,26 @@
   - type: Construction
     graph: EnergySwordDoubleGraph
     node: start
-  # Sunrise-Start
   - type: Biocode
     factions:
     - Syndicate
-  # Sunrise-End
 
 - type: entity
   parent: EnergyDagger
   id: EnergyDaggerBiocode
+  suffix: BIOCODE
+  components:
+  - type: FactionWeaponBlocker
+    factions:
+    - Syndicate
+    alertText: Данное оружие биокодировано. Вы не можете его использовать.
+  - type: Biocode
+    factions:
+    - Syndicate
+
+- type: entity
+  parent: SyndicateRapier
+  id: SyndicateRapierBiocode
   suffix: BIOCODE
   components:
   - type: FactionWeaponBlocker

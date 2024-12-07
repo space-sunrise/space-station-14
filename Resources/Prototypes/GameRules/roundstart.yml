@@ -154,7 +154,7 @@
     - prefRoles: [ Nukeops ]
       fallbackRoles: [ NukeopsCommander, NukeopsMedic ]
       spawnerPrototype: SpawnPointNukeopsOperative
-      max: 5  # Sunrise-edit
+      max: 6  # Sunrise-edit
       playerRatio: 20
       startingGear: SyndicateOperativeGearFull
       roleLoadout:

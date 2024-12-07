@@ -25,19 +25,18 @@
   - type: Battery
     maxCharge: 1500
     startingCharge: 1500
-  - type: ProjectileBatteryAmmoProvider
-    proto: BulletDisabler
-    fireCost: 50
-  - type: EnergyGun
+  - type: EnergyGunFireModes
     fireModes:
-    - proto: BulletDisabler
+    - hitscanProto: BulletDisabler
       fireCost: 50
       name: energy-gun-disable
       state: disabler
-    - proto: BulletEnergyGunLaser
+      shotType: Hitscan
+    - hitscanProto: BulletEnergyGunLaser
       fireCost: 100
       name: energy-gun-lethal
       state: lethal
+      shotType: Hitscan
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -81,23 +80,23 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 20
-  - type: ProjectileBatteryAmmoProvider
-    proto: BulletDisabler
-    fireCost: 50
-  - type: EnergyGun
+  - type: EnergyGunFireModes
     fireModes:
-    - proto: BulletDisabler
+    - hitscanProto: BulletDisabler
       fireCost: 50
       name: energy-gun-disable
       state: disabler
-    - proto: BulletEnergyGunLaser
+      shotType: Hitscan
+    - hitscanProto: BulletEnergyGunLaser
       fireCost: 100
       name: energy-gun-lethal
       state: lethal
-    # - proto: BulletEnergyGunIon
+      shotType: Hitscan
+    # - projectileProto: BulletEnergyGunIon
     #   fireCost: 250
     #   name: ion
     #   state: special
+    #  shotType: Projectile
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -143,19 +142,18 @@
   - type: Battery
     maxCharge: 600
     startingCharge: 600
-  - type: ProjectileBatteryAmmoProvider
-    proto: BulletDisabler
-    fireCost: 50
-  - type: EnergyGun
+  - type: EnergyGunFireModes
     fireModes:
-    - proto: BulletDisabler
+    - hitscanProto: BulletDisabler
       fireCost: 50
       name: energy-gun-disable
       state: disabler
-    - proto: BulletEnergyGunLaser
+      shotType: Hitscan
+    - hitscanProto: BulletEnergyGunLaser
       fireCost: 100
       name: energy-gun-lethal
       state: lethal
+      shotType: Hitscan
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -196,19 +194,18 @@
   - type: Battery
     maxCharge: 1000
     startingCharge: 1000
-  - type: ProjectileBatteryAmmoProvider
-    proto: BulletDisabler
-    fireCost: 50
-  - type: EnergyGun
+  - type: EnergyGunFireModes
     fireModes:
-    - proto: BulletDisabler
+    - hitscanProto: BulletDisabler
       fireCost: 50
       name: energy-gun-disable
       state: disabler
-    - proto: BulletEnergyGunLaser
+      shotType: Hitscan
+    - hitscanProto: BulletEnergyGunLaser
       fireCost: 100
       name: energy-gun-lethal
       state: lethal
+      shotType: Hitscan
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -255,7 +252,7 @@
   - type: Battery
     maxCharge: 2000
     startingCharge: 2000
-  - type: ProjectileBatteryAmmoProvider
+  - type: HitscanBatteryAmmoProvider
     proto: BulletEnergyGunLaser
     fireCost: 100
   - type: MagazineVisuals
@@ -263,7 +260,7 @@
     steps: 5
     zeroVisible: true
   - type: Appearance
- 
+
 - type: entity
   name: Energy Pistol «Judge»
   parent: BaseWeaponBatterySmall
@@ -291,19 +288,18 @@
   - type: Battery
     maxCharge: 1500
     startingCharge: 1500
-  - type: ProjectileBatteryAmmoProvider
-    proto: BulletDisabler
-    fireCost: 50
-  - type: EnergyGun
+  - type: EnergyGunFireModes
     fireModes:
-    - proto: BulletDisabler
+    - hitscanProto: BulletDisabler
       fireCost: 50
       name: energy-gun-disable
       state: disabler
-    - proto: BulletEnergyGunLaser
+      shotType: Hitscan
+    - hitscanProto: BulletEnergyGunLaser
       fireCost: 100
       name: energy-gun-lethal
       state: lethal
+      shotType: Hitscan
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -356,19 +352,18 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 6 # 5 minute
-  - type: ProjectileBatteryAmmoProvider
-    proto: BulletDisabler
-    fireCost: 50
-  - type: EnergyGun
+  - type: EnergyGunFireModes
     fireModes:
-    - proto: BulletDisabler
+    - hitscanProto: BulletDisabler
       fireCost: 50
       name: energy-gun-disable
       state: disabler
-    - proto: BulletEnergyGunLaser
+      shotType: Hitscan
+    - hitscanProto: BulletEnergyGunLaser
       fireCost: 100
       name: energy-gun-lethal
       state: lethal
+      shotType: Hitscan
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -436,7 +431,7 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
+    proto: BulletRedLaser
     fireCost: 62.5
   - type: MagazineVisuals
     magState: mag
@@ -446,7 +441,7 @@
 
 - type: entity
   name: EarthGov laser rifle
-  parent: BaseWeaponBattery
+  parent: [BaseWeaponBattery, BaseGunWieldable]
   id: WeaponEarthGovLaserRifle
   components:
   - type: Sprite
@@ -482,7 +477,7 @@
     maxCharge: 3000
     startingCharge: 3000
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
+    proto: BulletRedLaser
     fireCost: 50
   - type: Wieldable
   - type: UseDelay
@@ -490,7 +485,7 @@
 
 - type: entity
   name: EarthGov laser carbine
-  parent: BaseWeaponBattery
+  parent: [BaseWeaponBattery, BaseGunWieldable]
   id: WeaponEarthGovLaserCarbine
   components:
   - type: Sprite
@@ -506,12 +501,7 @@
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/EG_C/tiny.rsi
     size: Large
-  - type: GunWieldBonus
-    minAngle: -23
-    maxAngle: -43
   - type: Gun
-    minAngle: 33
-    maxAngle: 50
     fireRate: 3
     selectedMode: SemiAuto
     availableModes:
@@ -529,7 +519,7 @@
     maxCharge: 2000
     startingCharge: 2000
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
+    proto: BulletRedLaser
     fireCost: 50
   - type: Wieldable
   - type: UseDelay
@@ -537,7 +527,7 @@
 
 - type: entity
   name: EarthGov laser machine gun
-  parent: BaseWeaponBattery
+  parent: [BaseWeaponBattery, BaseGunWieldable]
   id: WeaponEarthGovLaserMG
   components:
   - type: Sprite
@@ -553,12 +543,9 @@
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/EG_MG/tiny.rsi
     size: Huge
-  - type: GunWieldBonus
-    minAngle: -12
-    maxAngle: -18
   - type: Gun
-    minAngle: 16
-    maxAngle: 14
+    minAngle: 24
+    maxAngle: 34
     angleIncrease: 4
     angleDecay: 16
     fireRate: 3.6
@@ -578,7 +565,7 @@
     maxCharge: 7500
     startingCharge: 7500
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
+    proto: BulletRedLaser
     fireCost: 50
   - type: Wieldable
   - type: UseDelay
@@ -669,7 +656,7 @@
     maxCharge: 1800
     startingCharge: 1800
   - type: HitscanBatteryAmmoProvider
-    proto: RedHeavyLaser
+    proto: BulletRedHeavyLaser
     fireCost: 100
   - type: Wieldable
   - type: UseDelay
@@ -697,11 +684,11 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/syndielasergun.rsi
   - type: Gun
     projectileSpeed: 5
-    minAngle: 40
-    maxAngle: 55
-    angleIncrease: 14
-    angleDecay: 7
-    fireRate: 1.4
+    minAngle: 30
+    maxAngle: 50
+    angleIncrease: 2
+    angleDecay: 4
+    fireRate: 1.5
     selectedMode: FullAuto
     soundGunshot:
       collection: red_mamba
@@ -709,17 +696,17 @@
         volume: 5
     availableModes:
     - FullAuto
-  - type: ProjectileBatteryAmmoProvider
-    proto: ProjectileDragonsBreath
-    fireCost: 75 #40
+  - type: HitscanBatteryAmmoProvider
+    proto: BulletSyndiPlasmaTriple
+    fireCost: 40
   - type: Wieldable
   - type: GunWieldBonus
-    minAngle: -18
-    maxAngle: -29
+    minAngle: -28
+    maxAngle: -45
   - type: Battery
     maxCharge: 3000
     startingCharge: 3000
-    
+
 - type: entity
   name: SAM-300
   parent: BaseWeaponBattery
@@ -751,8 +738,8 @@
     availableModes:
       - SemiAuto
       - FullAuto
-  - type: ProjectileBatteryAmmoProvider
-    proto: BulletSyndiPlasma
+  - type: HitscanBatteryAmmoProvider
+    proto: BulletSyndiPlasmaDouble
     fireCost: 50
   - type: BatterySelfRecharger
     autoRecharge: true
@@ -780,10 +767,10 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/laserminigun.rsi
     size: Huge
   - type: Gun
-    minAngle: 8
-    maxAngle: 15
-    angleIncrease: 4
-    angleDecay: 16
+    minAngle: 5
+    maxAngle: 10
+    angleIncrease: 2
+    angleDecay: 8
     fireRate: 5
     selectedMode: FullAuto
     soundGunshot:
@@ -792,8 +779,8 @@
         volume: -1
     availableModes:
     - FullAuto
-  - type: ProjectileBatteryAmmoProvider
-    proto: BulletSyndiPlasma
+  - type: HitscanBatteryAmmoProvider
+    proto: BulletSyndiPlasmaDouble
     fireCost: 25
   - type: MultiHandedItem
   - type: Battery

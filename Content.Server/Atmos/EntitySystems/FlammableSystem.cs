@@ -24,6 +24,7 @@ using Content.Shared.Timing;
 using Content.Shared.Toggleable;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.FixedPoint;
+using Content.Shared.Weapons.Ranged.Events;
 using Robust.Server.Audio;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
@@ -83,7 +84,19 @@ namespace Content.Server.Atmos.EntitySystems
             SubscribeLocalEvent<ExtinguishOnInteractComponent, ActivateInWorldEvent>(OnExtinguishActivateInWorld);
 
             SubscribeLocalEvent<IgniteOnHeatDamageComponent, DamageChangedEvent>(OnDamageChanged);
+            SubscribeLocalEvent<IgniteOnAmmoHitComponent, HitscanAmmoShotEvent>(HandleHitscanHit); // Sunrise-Edit
         }
+
+        // Sunrise-Start
+        private void HandleHitscanHit(EntityUid uid, IgniteOnAmmoHitComponent component, ref HitscanAmmoShotEvent args)
+        {
+            if (!EntityManager.TryGetComponent(args.Target, out FlammableComponent? flammable))
+                return;
+
+            flammable.FireStacks += component.FireStacks;
+            Ignite(args.Target, uid, flammable);
+        }
+        // Sunrise-End
 
         private void OnMeleeHit(EntityUid uid, IgniteOnMeleeHitComponent component, MeleeHitEvent args)
         {

@@ -21,7 +21,32 @@
     fireCost: 5
   - type: Appearance
   - type: AmmoCounter
-  
+
+- type: entity
+  id: WeaponMechCombatMaxim
+  name: Mounted Kardashev-Maxim
+  description: An ancient heavy machine gun given new life as a mech-mounted gun
+  suffix: Mech Weapon, Gun, Combat, USSP
+  parent: [ BaseMechWeaponRange, CombatMechEquipment ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_maxim.rsi
+    state: mecha_maxim
+  - type: Gun
+    minAngle: -15
+    maxAngle: 25
+    fireRate: 4
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: ShellShotgunSlug
+    fireCost: 7
+  - type: Appearance
+  - type: AmmoCounter
+
 - type: entity
   id: WeaponMechCombatUVM31
   name: UVM-31 "Drake"
@@ -37,7 +62,7 @@
     maxAngle: 15
     angleIncrease: 4
     angleDecay: 16
-    fireRate: 5
+    fireRate: 7.5
     selectedMode: FullAuto
     availableModes:
       - FullAuto
@@ -45,8 +70,8 @@
       collection: syndi_plasma
       params:
         volume: -1
-  - type: ProjectileBatteryAmmoProvider
-    proto: BulletSyndiPlasma
+  - type: HitscanBatteryAmmoProvider
+    proto: BulletSyndiPlasmaDouble
     fireCost: 6
   - type: Appearance
   - type: AmmoCounter

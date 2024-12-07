@@ -102,6 +102,13 @@
           Heat: 0.5
         flatReductions:
           Heat: 1
+  # Sunrise-Start
+    - type: Reflect
+      reflectProb: 0.75
+      reflects:
+      - Energy
+      needHand: true
+  # Sunrise-End
 
 - type: entity
   name: riot bullet shield
@@ -332,6 +339,7 @@
       reflectProb: 0.95
       reflects:
         - Energy
+      needHand: true # Sunrise-Edit
     - type: Blocking #Mirror shield reflects heat/laser, but is relatively weak to everything else.
       passiveBlockModifier:
         coefficients:
@@ -377,6 +385,7 @@
         path: /Audio/Weapons/ebladeon.ogg
       soundDeactivate:
         path: /Audio/Weapons/ebladeoff.ogg
+      deactivateUnequippedHand: true
     - type: ItemToggleActiveSound
       activeSound:
         path: /Audio/Weapons/ebladehum.ogg
@@ -421,6 +430,7 @@
       reflectProb: 0.95
       reflects:
         - Energy
+      needHand: true # Sunrise-Edit
     - type: Blocking
       passiveBlockModifier:
         coefficients:
