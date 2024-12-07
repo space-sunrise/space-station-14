@@ -139,50 +139,58 @@ public sealed partial class GunSystem : SharedGunSystem
                     Dirty(ent!.Value, cartridge);
                     break;
                 case HitScanCartridgeAmmoComponent hitScanCartridge:
-                    var hitscanProto = ProtoManager.Index<HitscanPrototype>(hitScanCartridge.Prototype);
-                    if (hitscanProto.ShootModifier == ShootModifier.Split)
+                    if (!hitScanCartridge.Spent)
                     {
-                        var perpendicularOffset = new Vector2(-mapDirection.Y, mapDirection.X).Normalized();
-
-                        for (var i = 0; i < hitscanProto.SplitCount; i++)
+                        var hitscanProto = ProtoManager.Index<HitscanPrototype>(hitScanCartridge.Prototype);
+                        if (hitscanProto.ShootModifier == ShootModifier.Split)
                         {
-                            var offset = hitscanProto.SplitOffset * (i - (hitscanProto.SplitCount - 1) / 2.0f);
+                            var perpendicularOffset = new Vector2(-mapDirection.Y, mapDirection.X).Normalized();
 
-                            var startCoordinates = fromCoordinates.Offset(perpendicularOffset * offset);
-                            var startMapCoordinates = fromMap.Offset(perpendicularOffset * offset);
+                            for (var i = 0; i < hitscanProto.SplitCount; i++)
+                            {
+                                var offset = hitscanProto.SplitOffset * (i - (hitscanProto.SplitCount - 1) / 2.0f);
 
-                            HitscanShoot(startMapCoordinates, startCoordinates, mapDirection, hitscanProto, gunUid, user, gun);
+                                var startCoordinates = fromCoordinates.Offset(perpendicularOffset * offset);
+                                var startMapCoordinates = fromMap.Offset(perpendicularOffset * offset);
+
+                                HitscanShoot(startMapCoordinates, startCoordinates, mapDirection, hitscanProto, gunUid, user, gun);
+                            }
                         }
-                    }
-                    else if (hitscanProto.ShootModifier == ShootModifier.Spread)
-                    {
-                        var spreadEvent = new GunGetAmmoSpreadEvent(hitscanProto.SpreadAngle);
-                        RaiseLocalEvent(gunUid, ref spreadEvent);
-
-                        var angles = LinearSpread(mapAngle - spreadEvent.Spread / 2,
-                            mapAngle + spreadEvent.Spread / 2, hitscanProto.SpreadCount);
-
-                        HitscanShoot(fromMap, fromCoordinates, angles[0].ToVec(), hitscanProto, gunUid, user, gun, ent!.Value);
-
-                        for (var i = 1; i < hitscanProto.SpreadCount; i++)
+                        else if (hitscanProto.ShootModifier == ShootModifier.Spread)
                         {
-                            HitscanShoot(fromMap, fromCoordinates, angles[i].ToVec(), hitscanProto, gunUid, user, gun, ent.Value);
+                            var spreadEvent = new GunGetAmmoSpreadEvent(hitscanProto.SpreadAngle);
+                            RaiseLocalEvent(gunUid, ref spreadEvent);
+
+                            var angles = LinearSpread(mapAngle - spreadEvent.Spread / 2,
+                                mapAngle + spreadEvent.Spread / 2, hitscanProto.SpreadCount);
+
+                            HitscanShoot(fromMap, fromCoordinates, angles[0].ToVec(), hitscanProto, gunUid, user, gun, ent!.Value);
+
+                            for (var i = 1; i < hitscanProto.SpreadCount; i++)
+                            {
+                                HitscanShoot(fromMap, fromCoordinates, angles[i].ToVec(), hitscanProto, gunUid, user, gun, ent.Value);
+                            }
                         }
+                        else
+                        {
+                            HitscanShoot(fromMap, fromCoordinates, mapDirection, hitscanProto, gunUid, user, gun, ent!.Value);
+                        }
+
+                        SetHitscanCartridgeSpent(ent!.Value, hitScanCartridge, true);
+
+                        if (hitScanCartridge.DeleteOnSpawn)
+                            Del(ent.Value);
                     }
                     else
                     {
-                        HitscanShoot(fromMap, fromCoordinates, mapDirection, hitscanProto, gunUid, user, gun, ent!.Value);
+                        userImpulse = false;
+                        Audio.PlayPredicted(gun.SoundEmpty, gunUid, user);
                     }
-
-                    SetHitscanCartridgeSpent(ent!.Value, hitScanCartridge, true);
-
-                    if (hitScanCartridge.DeleteOnSpawn)
-                        Del(ent.Value);
 
                     if (!hitScanCartridge.DeleteOnSpawn && !Containers.IsEntityInContainer(ent!.Value))
                         EjectCartridge(ent.Value, angle);
 
-                    Dirty(ent.Value, hitScanCartridge);
+                    Dirty(ent!.Value, hitScanCartridge);
                     break;
                 // Ammo shoots itself
                 case AmmoComponent newAmmo:
