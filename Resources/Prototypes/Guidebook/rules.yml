@@ -392,12 +392,19 @@
   text: "/ServerInfo/Guidebook/ServerRules/SpaceLaw/SpaceLaw.xml"
   children:
   - SpaceLawCrimeList
+  - SpaceLawFROIB
 
 - type: guideEntry
   id: SpaceLawCrimeList
   name: guide-entry-rules-sl-crime-list
   priority: 5
   text: "/ServerInfo/Guidebook/ServerRules/SpaceLaw/SLCrimeList.xml"
+
+- type: guideEntry
+  id: SpaceLawFROIB
+  priority: 4
+  name: guide-enty-rules-fundamental-rights-of-intelligent-beings
+  text: "/ServerInfo/Guidebook/ServerRules/SpaceLaw/FundamentalRightsOfIntelligentBeings.xml"
 
 - type: guideEntry
   id: BanTypes

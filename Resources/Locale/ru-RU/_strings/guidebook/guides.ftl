@@ -128,6 +128,7 @@ guide-entry-rules-s9 = С9
 guide-entry-rules-s10 = С10
 guide-entry-rules-space-law = Корпоративный закон
 guide-entry-rules-sl-crime-list = Справочник статей
+guide-enty-rules-fundamental-rights-of-intelligent-beings = Основные Права Разумных Существ
 guide-entry-rules-sl-controlled-substances = Регулируемые вещества
 guide-entry-rules-sl-restricted-gear = Запрещённое обмундерование
 guide-entry-rules-sl-restricted-weapons = Запрещённое вооружение
