@@ -641,7 +641,7 @@
   description: uplink-sniper-ammo-desc
   productEntity: MagazineBoxAntiMateriel
   cost:
-    Telecrystal: 2
+    Telecrystal: 1
   categories:
   - UplinkAmmo
 #Sunrise-start
@@ -668,43 +668,175 @@
       - NukeOpsUplink
 
 #Sunrise-start
+
 - type: listing
-  id: UplinkAmmoBundleIncendiary
-  name: uplink-incendiary-ammo-bundle-name
-  description: uplink-incendiary-ammo-bundle-desc
-  productEntity: ClothingBackpackDuffelSyndicateAmmoIncendiaryFilled
+  id: UplinkSMGAmmoKit
+  name: uplink-ammo-smgkit-name
+  description: uplink-ammo-smgkit-desc
+  productEntity: SMGAmmoKit
+  cost:
+    Telecrystal: 9
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkCaselessAmmoKit
+  name: uplink-ammo-caselesskit-name
+  description: uplink-ammo-caselesskit-desc
+  productEntity: CaselessAmmoKit
+  cost:
+    Telecrystal: 13
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkSMGIncendiaryAmmoKit
+  name: uplink-ammo-smgincendiarykit-name
+  description: uplink-ammo-smgincendiarykit-desc
+  productEntity: SMGIncendiaryAmmoKit
+  cost:
+    Telecrystal: 14
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkSMGUraniumAmmoKit
+  name: uplink-ammo-smguraniumkit-name
+  description: uplink-ammo-smguraniumkit-desc
+  productEntity: SMGUraniumAmmoKit
+  cost:
+    Telecrystal: 18
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkShotGunAmmoKit
+  name: uplink-ammo-shotgunkit-name
+  description: uplink-ammo-shotgunkit-desc
+  productEntity: ShotGunKit
+  cost:
+    Telecrystal: 15
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkShotGunIncendiaryAmmoKit
+  name: uplink-ammo-shotgunincendiarykit-name
+  description: uplink-ammo-shotgunincendiarykit-desc
+  productEntity: ShotGunIncendiaryKit
   cost:
     Telecrystal: 16
   categories:
   - UplinkAmmo
   conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - NukeOpsUplink
-    - !type:BuyerWhitelistCondition
-      blacklist:
-        components:
-          - SurplusBundle
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
 
 - type: listing
-  id: UplinkAmmoBundleUranium
-  name: uplink-uranium-ammo-bundle-name
-  description: uplink-uranium-ammo-bundle-desc
-  productEntity: ClothingBackpackDuffelSyndicateAmmoUraniumFilled
+  id: UplinkShotGunUraniumAmmoKit
+  name: uplink-ammo-shotgunuraniumkit-name
+  description: uplink-ammo-shotgunuraniumkit-desc
+  productEntity: ShotGunUraniumKit
   cost:
-    Telecrystal: 17
+    Telecrystal: 18
   categories:
   - UplinkAmmo
   conditions:
-    - !type:StoreWhitelistCondition
-      whitelist:
-        tags:
-          - NukeOpsUplink
-    - !type:BuyerWhitelistCondition
-      blacklist:
-        components:
-          - SurplusBundle
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      
+- type: listing
+  id: UplinkLMGAmmoKit
+  name: uplink-ammo-lmgkit-name
+  description: uplink-ammo-lmgkit-desc
+  productEntity: LMGKit
+  cost:
+    Telecrystal: 10
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      
+- type: listing
+  id: UplinkLMGIncendiaryAmmoKit
+  name: uplink-ammo-lmgincendiarykit-name
+  description: uplink-ammo-lmgincendiarykit-desc
+  productEntity: LMGIncendiaryKit
+  cost:
+    Telecrystal: 14
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      
+- type: listing
+  id: UplinkLMGUraniumAmmoKit
+  name: uplink-ammo-lmguraniumkit-name
+  description: uplink-ammo-lmguraniumkit-desc
+  productEntity: LMGUraniumKit
+  cost:
+    Telecrystal: 18
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+      
+- type: listing
+  id: UplinkCrateAmmokitBundle
+  name: uplink-ammo-crate-ammokit-bundle-name
+  description: uplink-ammo-crate-ammokit-bundle-desc
+  icon: { sprite: /Textures/Structures/Storage/Crates/syndicate.rsi, state: icon }
+  productEntity: CrateAmmokitBundle
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 90
+  cost:
+    Telecrystal: 120
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
 #Sunrise-end
 #Chemicals
 

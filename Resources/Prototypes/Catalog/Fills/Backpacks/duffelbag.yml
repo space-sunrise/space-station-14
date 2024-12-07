@@ -139,31 +139,35 @@
   parent: ClothingBackpackDuffelSyndicateAmmo
   id: ClothingBackpackDuffelSyndicateAmmoIncendiaryFilled
   name: Incendiary ammo bundle
-  description: "Reloading! Contains 4 magazines for the C-20r, 4 drums for the Bulldog, and 2 ammo boxes for the L6 SAW."
+  description: "Reloading! Contains 4 magazines for the C-20r, 4 drums for the Bulldog, and 2 ammo boxes for the L6 SAW. contains Medkit Burn"
   components:
   - type: StorageFill
     contents:
-      - id: MagazinePistolSubMachineGunIncendiary
-        amount: 4
-      - id: MagazineShotgunIncendiary
-        amount: 4
-      - id: MagazineLightRifleBoxIncendiary
-        amount: 2
+      - id: SMGIncendiaryAmmoKit
+        amount: 1
+      - id: ShotGunIncendiaryKit
+        amount: 1
+      - id: LMGIncendiaryKit
+        amount: 1
+      - id: MedkitBurnFilled
+        amount: 1
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateAmmo
   id: ClothingBackpackDuffelSyndicateAmmoUraniumFilled
   name: Uranium ammo bundle
-  description: "Reloading! Contains 4 magazines for the C-20r, 4 drums for the Bulldog, and 2 ammo boxes for the L6 SAW."
+  description: "Reloading! Contains Uranium Ammo Kit for the C-20r, Uranium Kit for the Bulldog, and Uranium Kit for the L6 SAW. Medkit Radiation"
   components:
   - type: StorageFill
     contents:
-      - id: MagazinePistolSubMachineGunUranium
-        amount: 4
-      - id: MagazineShotgunUranium
-        amount: 4
-      - id: MagazineLightRifleBoxUranium
-        amount: 2
+      - id: SMGUraniumAmmoKit
+        amount: 1
+      - id: ShotGunUraniumKit
+        amount: 1
+      - id: LMGUraniumKit
+        amount: 1
+      - id: MedkitRadiationFilled
+        amount: 1
 # Sunrise-End
 - type: entity
   parent: ClothingBackpackDuffelClown
