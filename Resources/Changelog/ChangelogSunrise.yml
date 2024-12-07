@@ -7469,3 +7469,12 @@
     type: Fix
   id: 523
   time: '2024-12-07T05:22:58.069374+00:00'
+- author: Luna3
+  changes:
+  - message: "\u0423\u0434\u0430\u043B\u0435\u043D\u0430 \u043F\u043B\u044E\u0448\u0435\
+      \u0432\u0430\u044F \u0438\u0433\u0440\u0443\u0448\u043A\u0430 \u041B\u0443\u043D\
+      \u044B \u0420\u044F\u0437\u0430\u043D\u043E\u0432\u043E\u0439"
+    type: Remove
+  id: 524
+  time: '2024-12-07T05:44:01.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/803
