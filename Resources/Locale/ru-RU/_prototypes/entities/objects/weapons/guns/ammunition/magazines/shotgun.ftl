@@ -11,3 +11,5 @@ ent-MagazineShotgunSlug = барабан (.50 пуля)
     .desc = { ent-BaseMagazineShotgun.desc }
 ent-MagazineShotgunIncendiary = барабан (.50 зажигательные)
     .desc = { ent-BaseMagazineShotgun.desc }
+ent-MagazineShotgunUranium = барабан (.50 урановые)
+    .desc = { ent-BaseMagazineShotgun.desc }

@@ -128,6 +128,33 @@
             "name": "magazine"
         },
         {
+            "name": "l6_base"
+        },
+        {
+            "name": "l6_red"
+        },
+        {
+            "name": "l6_uranium"
+        },
+        {
+            "name": "shotgun_base"
+        },
+        {
+            "name": "shotgun_red"
+        },
+        {
+            "name": "shotgun_uranium"
+        },
+        {
+            "name": "smg_base"
+        },
+        {
+            "name": "smg_red"
+        },
+        {
+            "name": "smg_uranium"
+        },
+        {
             "name": "mousetraps"
         },
         {

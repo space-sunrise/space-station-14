@@ -15,3 +15,219 @@
     layers:
     - state: box_of_doom_big
     - state: implant
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: SMGAmmoKit
+  name: C20r ammo kit
+  components:
+  - type: Storage
+    grid:
+    - 0,0,3,3
+  - type: StorageFill
+    contents:
+    - id: MagazinePistolSubMachineGun
+    - id: MagazinePistolSubMachineGun
+    - id: MagazinePistolSubMachineGun
+    - id: MagazinePistolSubMachineGun
+    - id: MagazinePistolSubMachineGun
+    - id: MagazinePistolSubMachineGun
+    - id: MagazinePistolSubMachineGun
+    - id: MagazinePistolSubMachineGun
+  - type: Sprite
+    layers:
+    - state: box_of_doom_big
+    - state: smg_base
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: CaselessAmmoKit
+  name: Siar52 ammo kit
+  components:
+  - type: Storage
+    grid:
+    - 0,0,2,3
+  - type: StorageFill
+    contents:
+    - id: MagazineCaselessRifle10x24
+    - id: MagazineCaselessRifle10x24
+    - id: MagazineCaselessRifle10x24
+    - id: MagazinePistolSubMachineGunSIAR52
+    - id: MagazinePistolSubMachineGunSIAR52
+    - id: MagazinePistolSubMachineGunSIAR52
+  - type: Sprite
+    layers:
+    - state: box_of_doom_big
+    - state: smg_base
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: SMGIncendiaryAmmoKit
+  name: C20r Incendiary ammo kit
+  components:
+  - type: Storage
+    grid:
+    - 0,0,3,3
+  - type: StorageFill
+    contents:
+    - id: MagazinePistolSubMachineGunIncendiary
+    - id: MagazinePistolSubMachineGunIncendiary
+    - id: MagazinePistolSubMachineGunIncendiary
+    - id: MagazinePistolSubMachineGunIncendiary
+    - id: MagazinePistolSubMachineGunIncendiary
+    - id: MagazinePistolSubMachineGunIncendiary
+    - id: MagazinePistolSubMachineGunIncendiary
+    - id: MagazinePistolSubMachineGunIncendiary
+  - type: Sprite
+    layers:
+    - state: box_of_doom_big
+    - state: smg_red
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: SMGUraniumAmmoKit
+  name: C20r Uranium ammo kit
+  components:
+  - type: Storage
+    grid:
+    - 0,0,3,3
+  - type: StorageFill
+    contents:
+    - id: MagazinePistolSubMachineGunUranium
+    - id: MagazinePistolSubMachineGunUranium
+    - id: MagazinePistolSubMachineGunUranium
+    - id: MagazinePistolSubMachineGunUranium
+    - id: MagazinePistolSubMachineGunUranium
+    - id: MagazinePistolSubMachineGunUranium
+    - id: MagazinePistolSubMachineGunUranium
+    - id: MagazinePistolSubMachineGunUranium
+  - type: Sprite
+    layers:
+    - state: box_of_doom_big
+    - state: smg_uranium
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ShotGunKit
+  name: Bulldog ammo kit
+  components:
+  - type: Storage
+    grid:
+    - 0,0,3,3
+  - type: StorageFill
+    contents:
+    - id: MagazineShotgun
+    - id: MagazineShotgun
+    - id: MagazineShotgun
+    - id: MagazineShotgun
+    - id: MagazineShotgun
+    - id: MagazineShotgunSlug
+    - id: MagazineShotgunSlug
+    - id: MagazineShotgunSlug
+  - type: Sprite
+    layers:
+    - state: box_of_doom_big
+    - state: shotgun_base
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ShotGunIncendiaryKit
+  name: Bulldog Incendiary ammo kit
+  components:
+  - type: Storage
+    grid:
+    - 0,0,3,3
+  - type: StorageFill
+    contents:
+    - id: MagazineShotgunIncendiary
+    - id: MagazineShotgunIncendiary
+    - id: MagazineShotgunIncendiary
+    - id: MagazineShotgunIncendiary
+    - id: MagazineShotgunIncendiary
+    - id: MagazineShotgunIncendiary
+    - id: MagazineShotgunIncendiary
+    - id: MagazineShotgunIncendiary
+  - type: Sprite
+    layers:
+    - state: box_of_doom_big
+    - state: shotgun_red
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: ShotGunUraniumKit
+  name: Bulldog Uranium ammo kit
+  components:
+  - type: Storage
+    grid:
+    - 0,0,3,3
+  - type: StorageFill
+    contents:
+    - id: MagazineShotgunUranium
+    - id: MagazineShotgunUranium
+    - id: MagazineShotgunUranium
+    - id: MagazineShotgunUranium
+    - id: MagazineShotgunUranium
+    - id: MagazineShotgunUranium
+    - id: MagazineShotgunUranium
+    - id: MagazineShotgunUranium
+  - type: Sprite
+    layers:
+    - state: box_of_doom_big
+    - state: shotgun_uranium
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: LMGKit
+  name: L6 Saw ammo kit
+  components:
+  - type: Storage
+    grid:
+    - 0,0,3,1
+  - type: StorageFill
+    contents:
+    - id: MagazineLightRifleBox
+    - id: MagazineLightRifleBox
+    - id: MagazineLightRifleBox
+    - id: MagazineLightRifleBox
+  - type: Sprite
+    layers:
+    - state: box_of_doom_big
+    - state: l6_base
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: LMGIncendiaryKit
+  name: L6 Saw Incendiary ammo kit
+  components:
+  - type: Storage
+    grid:
+    - 0,0,3,1
+  - type: StorageFill
+    contents:
+    - id: MagazineLightRifleBoxIncendiary
+    - id: MagazineLightRifleBoxIncendiary
+    - id: MagazineLightRifleBoxIncendiary
+    - id: MagazineLightRifleBoxIncendiary
+  - type: Sprite
+    layers:
+    - state: box_of_doom_big
+    - state: l6_red
+
+- type: entity
+  parent: [BoxCardboard, BaseSyndicateContraband]
+  id: LMGUraniumKit
+  name: L6 Saw Uranium ammo kit
+  components:
+  - type: Storage
+    grid:
+    - 0,0,3,1
+  - type: StorageFill
+    contents:
+    - id: MagazineLightRifleBoxUranium
+    - id: MagazineLightRifleBoxUranium
+    - id: MagazineLightRifleBoxUranium
+    - id: MagazineLightRifleBoxUranium
+  - type: Sprite
+    layers:
+    - state: box_of_doom_big
+    - state: l6_uranium

@@ -5,7 +5,7 @@ uplink-core-extraction-toolbox-desc = Ящик с инструментами, в
 
 ## Magazines
 
-uplink-magazine-shotgun-name = Барабан (.50 дробь).
+uplink-magazine-shotgun-name = Барабан (.50 ружейный).
 uplink-magazine-shotgun-desc = Барабан на 8 выстрелов для дробовика. Совместим с "Бульдогом".
 uplink-magazine-lmg-name = Коробка патронов (.30 винтовочные)
 uplink-magazine-lmg-desc = Коробка патронов на 100 выстрелов. Совместим с "L6-SAW".

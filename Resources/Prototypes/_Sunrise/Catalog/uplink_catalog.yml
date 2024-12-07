@@ -33,6 +33,17 @@
 
 # For the Buldog
 - type: listing
+  id: UplinkMagazineShotgunSlug
+  name: uplink-magazine-shotgun-name
+  description: uplink-magazine-shotgun-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: slug }
+  productEntity: MagazineShotgunSlug
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkAmmo
+
+- type: listing
   id: UplinkMagazineShotgun
   name: uplink-magazine-shotgun-name
   description: uplink-magazine-shotgun-desc
@@ -55,7 +66,7 @@
   id: UplinkMagazineShotgunIncendiary
   name: uplink-magazine-shotgun-name
   description: uplink-magazine-shotgun-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: slug }
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: base }
   productEntity: MagazineShotgunIncendiary
   discountCategory: usualDiscounts
   discountDownTo:
@@ -70,6 +81,17 @@
       tags:
       - NukeOpsUplink
 
+- type: listing
+  id: UplinkMagazineShotgunUranium
+  name: uplink-magazine-shotgun-name
+  description: uplink-magazine-shotgun-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: uranium }
+  productEntity: MagazineShotgunUranium
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkAmmo
+
 # For the LMG
 - type: listing
   id: UplinkMagazineLightRifleBox
@@ -79,9 +101,9 @@
   productEntity: MagazineLightRifleBox
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 4
+    Telecrystal: 2
   cost:
-    Telecrystal: 8
+    Telecrystal: 4
   categories:
   - UplinkAmmo
   conditions:
@@ -89,6 +111,29 @@
     whitelist:
       tags:
       - NukeOpsUplink
+
+
+- type: listing
+  id: UplinkMagazineLightRifleBoxIncendiary
+  name: uplink-magazine-lmg-name
+  description: uplink-magazine-lmg-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi, state: red }
+  productEntity: MagazineLightRifleBoxIncendiary
+  cost:
+    Telecrystal: 6
+  categories:
+  - UplinkAmmo
+
+- type: listing
+  id: UplinkMagazineLightRifleBoxUranium
+  name: uplink-magazine-lmg-name
+  description: uplink-magazine-lmg-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi, state: uranium }
+  productEntity: MagazineLightRifleBoxUranium
+  cost:
+    Telecrystal: 8
+  categories:
+  - UplinkAmmo
 
 # For the SIAR52
 - type: listing
@@ -118,9 +163,9 @@
   productEntity: MagazineDl6902
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 6
+    Telecrystal: 3
   cost:
-    Telecrystal: 12
+    Telecrystal: 6
   categories:
   - UplinkAmmo
   conditions:
@@ -139,7 +184,7 @@
   discountDownTo:
     Telecrystal: 3
   cost:
-    Telecrystal: 6
+    Telecrystal: 5
   categories:
   - UplinkAmmo
   conditions:
@@ -576,6 +621,8 @@
   conditions:
   - !type:StoreWhitelistCondition
     blacklist:
+      tags:
+      - NukeOpsUplink
 
 - type: listing
   id: UplinkBouquet
