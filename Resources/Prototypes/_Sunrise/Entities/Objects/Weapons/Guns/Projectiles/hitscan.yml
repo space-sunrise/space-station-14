@@ -37,7 +37,7 @@
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: bullet
+    state: rubber
 
 - type: hitscan
   id: BulletPistolPractice
@@ -48,7 +48,7 @@
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: bullet
+    state: practice
 
 - type: hitscan
   id: BulletPistolIncendiary
@@ -60,7 +60,7 @@
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: bullet
+    state: practice
 
 - type: hitscan
   id: BulletPistolUranium
@@ -72,7 +72,7 @@
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: bullet
+    state: uranium
 
 - type: hitscan
   id: BulletRifle
@@ -95,7 +95,7 @@
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: bullet
+    state: rubber
 
 - type: hitscan
   id: BulletRiflePractice
@@ -106,7 +106,7 @@
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: bullet
+    state: practice
 
 - type: hitscan
   id: BulletRifleIncendiary
@@ -118,7 +118,7 @@
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: bullet
+    state: practice
 
 - type: hitscan
   id: BulletRifleUranium
@@ -130,7 +130,7 @@
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: bullet
+    state: uranium
 
 - type: hitscan
   id: BulletMagnum
@@ -153,7 +153,7 @@
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: bullet
+    state: rubber
 
 - type: hitscan
   id: BulletMagnumPractice
@@ -164,7 +164,7 @@
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: bullet
+    state: practice
 
 - type: hitscan
   id: BulletMagnumIncendiary
@@ -176,7 +176,7 @@
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: bullet
+    state: practice
 
 - type: hitscan
   id: BulletMagnumAP
@@ -188,7 +188,7 @@
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: bullet
+    state: piercing
 
 - type: hitscan
   id: BulletMagnumUranium
@@ -200,7 +200,7 @@
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: bullet
+    state: uranium
 
 - type: hitscan
   id: BulletLightRifle
@@ -223,7 +223,7 @@
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: bullet
+    state: rubber
 
 - type: hitscan
   id: BulletLightRiflePractice
@@ -234,7 +234,7 @@
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: bullet
+    state: practice
 
 - type: hitscan
   id: BulletLightRifleIncendiary
@@ -246,7 +246,7 @@
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: bullet
+    state: practice
 
 - type: hitscan
   id: BulletLightRifleUranium
@@ -258,7 +258,7 @@
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: bullet
+    state: uranium
 
 - type: hitscan
   id: BulletHeavyRifle
@@ -280,7 +280,7 @@
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: bullet
+    state: piercing
 
 - type: hitscan
   id: BulletCaselessRifle
@@ -303,7 +303,7 @@
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: bullet
+    state: rubber
 
 - type: hitscan
   id: BulletCaselessRiflePractice
@@ -314,7 +314,7 @@
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: bullet
+    state: practice
 
 - type: hitscan
   id: BulletAntiMateriel
@@ -338,7 +338,7 @@
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: bullet
+    state: grapeshot
 
 - type: hitscan
   id: PelletShotgunPracticeSpread
@@ -349,7 +349,7 @@
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: bullet
+    state: grapeshot
   shootModifier: Spread
   spreadCount: 6
   spreadAngle: 15
@@ -364,7 +364,7 @@
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: bullet
+    state: grapeshot
   shootModifier: Spread
   spreadCount: 3
   spreadAngle: 4.5
@@ -378,7 +378,7 @@
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: bullet
+    state: slug
 
 - type: hitscan
   id: PelletShotgun
@@ -389,7 +389,7 @@
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: bullet
+    state: buckshot
   shootModifier: Spread
   spreadCount: 6
   spreadAngle: 15
@@ -404,7 +404,7 @@
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: bullet
+    state: buckshot-flare
   shootModifier: Spread
   spreadCount: 6
   spreadAngle: 15
@@ -419,7 +419,7 @@
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: bullet
+    state: shard
   shootModifier: Spread
   spreadCount: 10
   spreadAngle: 45
@@ -434,31 +434,110 @@
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: bullet
+    state: depleted-uranium
   shootModifier: Spread
   spreadCount: 5
   spreadAngle: 6
 
 - type: hitscan
-  id: PulseERTBorg
+  id: BulletRail
+  damage:
+    types:
+      Piercing: 35
+  collisionMask: BulletImpassable
+  reflective: NonEnergy
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: BulletDebug
+  damage:
+    types:
+      Blunt: 20000
+  collisionMask: BulletImpassable
+  reflective: NonEnergy
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: BulletPulse
+  damage:
+    types:
+      Heat: 35
+  reflective: Energy
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: blue_laser
+
+- type: hitscan
+  id: BulletRedLaserPractice
+  damage:
+    types:
+      Heat: 1
+  reflective: Energy
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: red_laser
+
+- type: hitscan
+  id: BulletRedMediumLaser
   damage:
     types:
       Heat: 17
-  muzzleFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: muzzle_blue
-  travelFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: beam_blue
-  impactFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: impact_blue
+  reflective: Energy
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: red_laser
+
+- type: hitscan
+  id: BulletRedLightLaser
+  damage:
+    types:
+      Heat: 17
+  reflective: Energy
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: red_laser
+
+- type: hitscan
+  id: BulletRedLaser
+  damage:
+    types:
+      Heat: 14
+  reflective: Energy
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: red_laser
+
+- type: hitscan
+  id: BulletRedHeavyLaser
+  damage:
+    types:
+      Heat: 28
+  reflective: Energy
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: heavy_laser
+
+- type: hitscan
+  id: BulletRedShuttleLaser
+  maxLength: 60
+  damage:
+    types:
+      Heat: 45
+      Structural: 100
+  reflective: Energy
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: heavy_laser
 
 - type: hitscan
   id: BulletSyndiPlasma
   damage:
     types:
-      Heat: 6
+      Heat: 8
   reflective: Energy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi

@@ -164,7 +164,7 @@
           - MagazineGlock22
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistol
+        startingItem: CartridgePistolRubber
         priority: 1
         whitelist:
           tags:

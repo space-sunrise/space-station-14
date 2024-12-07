@@ -1,4 +1,4 @@
-﻿- type: microwaveMealRecipe
+- type: microwaveMealRecipe
   id: RecipePelmeni
   name: pelmeni recipe
   result: FoodPelmeniBowl
@@ -9,3 +9,37 @@
     FoodBowlBig: 1
     FoodMeatMeatball: 1
     FoodDoughSlice: 3
+
+- type: microwaveMealRecipe
+  id: RecipeSoupSawdust
+  name: sawdust soup recipe
+  result: FoodSoupSawdust
+  time: 15
+  reagents:
+    Water: 10
+  solids:
+    FoodBowlBig: 1
+    Log: 2
+
+- type: microwaveMealRecipe
+  id: RecipeSoupSawdustSteel
+  name: sawdust soup recipe steel
+  result: FoodSoupSawdust
+  time: 15
+  reagents:
+    Water: 10
+  solids:
+    FoodBowlBig: 1
+    SteelLog: 2
+
+- type: microwaveMealRecipe
+  id: RecipeSoupSawdustLog
+  name: sawdust soup recipe log
+  result: FoodSoupSawdust
+  time: 15
+  reagents:
+    Water: 10
+  solids:
+    FoodBowlBig: 1
+    SteelLog: 1
+    Log: 1

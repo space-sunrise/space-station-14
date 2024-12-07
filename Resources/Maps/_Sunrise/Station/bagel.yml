@@ -157758,7 +157758,7 @@ entities:
     - type: Transform
       pos: -26.5,35.5
       parent: 2
-- proto: WeaponAKMSRifle
+- proto: WeaponRifleAKM
   entities:
   - uid: 24157
     components:

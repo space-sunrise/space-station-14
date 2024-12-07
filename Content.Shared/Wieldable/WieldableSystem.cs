@@ -75,6 +75,8 @@ public sealed class WieldableSystem : EntitySystem
         if (TryComp<WieldableComponent>(uid, out var wieldable) &&
             !wieldable.Wielded)
         {
+            // Sunrise-Edit
+            args.Message = Loc.GetString("wieldable-component-requires", ("item", uid));
             args.Cancel();
 
             var time = _timing.CurTime;

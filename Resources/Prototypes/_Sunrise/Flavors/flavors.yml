@@ -7,3 +7,8 @@
   id: chamomile_tincture
   flavorType: Complex
   description: flavor-complex-chamomile-tincture
+
+- type: flavor
+  id: woodsawdust
+  flavorType: Complex
+  description: flavor-complex-sawdust
