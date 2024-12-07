@@ -560,7 +560,7 @@
   name: uplink-pistol-magazine-name
   description: uplink-pistol-magazine-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon }
-  productEntity: MagazinePistol
+  productEntity: MagazinePistolHighCapacity
   cost:
     Telecrystal: 1
   categories:
@@ -591,7 +591,7 @@
   name: uplink-pistol-magazine-caseless-name
   description: uplink-pistol-magazine-caseless-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/CaselessRifle/caseless_pistol_mag.rsi, state: red-icon }
-  productEntity: MagazinePistolCaselessRifle
+  productEntity: BaseMagazinePistolCaselessRifleExtended
   cost:
     Telecrystal: 1
   categories:

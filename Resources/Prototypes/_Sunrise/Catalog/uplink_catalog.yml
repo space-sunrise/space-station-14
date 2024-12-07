@@ -576,6 +576,8 @@
   conditions:
   - !type:StoreWhitelistCondition
     blacklist:
+      tags:
+      - NukeOpsUplink
 
 - type: listing
   id: UplinkBouquet
