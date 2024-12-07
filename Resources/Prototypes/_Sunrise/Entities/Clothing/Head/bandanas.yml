@@ -7,3 +7,8 @@
   parent: [ClothingHeadBandBase, ClothingMaskBandYellow]
   id: ClothingHeadBandYellow
   name: yellow bandana
+
+- type: entity
+  parent: [ClothingHeadBandBase, ClothingMaskBandCyan]
+  id: ClothingHeadBandCyan
+  name: cyan bandana

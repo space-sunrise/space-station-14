@@ -19,3 +19,14 @@
     sprite: _Sunrise/Clothing/Head/Bandanas/yellow.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Bandanas/yellow.rsi
+
+- type: entity
+  parent: ClothingMaskBandanaBase
+  id: ClothingMaskBandCyan
+  name: cyan bandana
+  description: cyan bandana to make you look cool.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Bandanas/cyan.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Bandanas/cyan.rsi

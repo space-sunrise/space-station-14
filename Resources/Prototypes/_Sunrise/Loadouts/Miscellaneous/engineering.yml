@@ -123,9 +123,25 @@
  #Neck
 
 - type: loadout
+  id: EngineerNeckCNSSR
+  equipment:
+    neck: ClothingNeckScarfStripedRed
+
+- type: loadout
   id: EngineerNeckCNSSO
   equipment:
     neck: ClothingNeckScarfStripedOrange
+
+- type: loadout
+  id: EngineerNeckCNSSB
+  equipment:
+    neck: ClothingNeckScarfStripedBlue
+
+- type: loadout
+  id: EngineerNeckCNSSY
+  equipment:
+    neck: ClothingNeckScarfStripedYellow
+
 
  #Mask
 
@@ -133,6 +149,11 @@
   id: EngineerMaskCMG
   equipment:
     mask: ClothingMaskGas
+
+- type: loadout
+  id: EngineerMaskCMBR
+  equipment:
+    mask: ClothingMaskBandRed
 
 - type: loadout
   id: EngineerMaskCMBO
@@ -143,3 +164,108 @@
   id: EngineerMaskCMBY
   equipment:
     mask: ClothingMaskBandYellow
+
+- type: loadout
+  id: EngineerMaskCMBC
+  equipment:
+    mask: ClothingMaskBandCyan
+
+ #Head
+
+- type: loadout
+  id: EngineerHeadCHHBE
+  equipment:
+    head: ClothingHeadHatBeretEngineering
+
+- type: loadout
+  id: EngineerHeadCHBR
+  equipment:
+    head: ClothingHeadBandRed
+
+- type: loadout
+  id: EngineerHeadCHBO
+  equipment:
+    head: ClothingHeadBandOrange
+
+- type: loadout
+  id: EngineerHeadCHBY
+  equipment:
+    head: ClothingHeadBandYellow
+
+- type: loadout
+  id: EngineerHeadCHBC
+  equipment:
+    head: ClothingHeadBandCyan
+
+- type: loadout
+  id: EngineerHeadCHHHYD
+  equipment:
+    head: ClothingHeadHatHardhatYellowDark
+
+- type: loadout
+  id: EngineerHeadCHHHB
+  equipment:
+    head: ClothingHeadHatHardhatBlue
+
+- type: loadout
+  id: EngineerHeadCHHHW
+  equipment:
+    head: ClothingHeadHatHardhatWhite
+
+- type: loadout
+  id: EngineerHeadCHHHA
+  equipment:
+    head: ClothingHeadHatHardhatArmored
+
+- type: loadout
+  id: EngineerHeadCHHR
+  equipment:
+    head: ClothingHeadHatRedsoft
+
+- type: loadout
+  id: EngineerHeadCHHO
+  equipment:
+    head: ClothingHeadHatOrangesoft
+
+- type: loadout
+  id: EngineerHeadCHHY
+  equipment:
+    head: ClothingHeadHatYellowsoft
+
+- type: loadout
+  id: EngineerHeadCHHB
+  equipment:
+    head: ClothingHeadHatBluesoft
+
+# Shoes
+- type: loadout
+  id: RedShoes
+  equipment:
+    shoes: ClothingShoesColorRed
+
+- type: loadout
+  id: OrangeShoes
+  equipment:
+    shoes: ClothingShoesColorOrange
+
+- type: loadout
+  id: YellowShoes
+  equipment:
+    shoes: ClothingShoesColorYellow
+
+# OuterClothing
+
+- type: loadout
+  id: StationClothingOuterWinterColorRed
+  equipment:
+    outerClothing: ClothingOuterWinterColorRed
+
+- type: loadout
+  id: StationClothingOuterWinterColorOrange
+  equipment:
+    outerClothing: ClothingOuterWinterColorOrange
+
+- type: loadout
+  id: StationClothingOuterWinterColorYellow
+  equipment:
+    outerClothing: ClothingOuterWinterColorYellow

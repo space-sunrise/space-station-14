@@ -10,7 +10,14 @@
     ClothingHeadHatBeret: 4
     ClothingHeadBandBlack: 2
     ClothingHeadBandBlue: 2
+#sunrise-start
+    ClothingHeadBandCyan: 2
+    ClothingHeadBandYellow: 2
+#sunrise-end
     ClothingHeadBandGreen: 2
+#sunrise-start
+    ClothingHeadBandOrange: 2
+#sunrise-end
     ClothingHeadBandRed: 2
     ClothingHeadBandSkull: 2
     ClothingHeadHatGreyFlatcap: 3

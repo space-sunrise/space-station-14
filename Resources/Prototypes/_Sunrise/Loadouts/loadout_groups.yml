@@ -327,19 +327,83 @@
   - TrinketsEngineeringST
 
 - type: loadoutGroup
-  id: EngineerNeck
-  name: loadout-group-engineering-neck
+  id: SeniorEngineerNeck
+  name: loadout-group-senior-engineering-neck
   minLimit: 0
   maxLimit: 1
   loadouts:
+  - EngineerNeckCNSSR
   - EngineerNeckCNSSO
+  - EngineerNeckCNSSB
+  - EngineerNeckCNSSY
 
 - type: loadoutGroup
-  id: EngineerMask
-  name: loadout-group-engineering-mask
+  id: SeniorEngineerMask
+  name: loadout-group-senior-engineering-mask
   minLimit: 0
   maxLimit: 1
   loadouts:
   - EngineerMaskCMG
+  - EngineerMaskCMBR
   - EngineerMaskCMBO
   - EngineerMaskCMBY
+  - EngineerMaskCMBC
+
+- type: loadoutGroup
+  id: SeniorEngineerHead
+  name: loadout-group-senior-engineering-head
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - EngineerHeadCHHBE
+  - EngineerHeadCHBR
+  - EngineerHeadCHBO
+  - EngineerHeadCHBY
+  - EngineerHeadCHBC
+  - StationEngineerHardhatRed
+  - StationEngineerHardhatOrange
+  - StationEngineerHardhatYellow
+  - EngineerHeadCHHHYD
+  - EngineerHeadCHHHB
+  - EngineerHeadCHHR
+  - EngineerHeadCHHO
+  - EngineerHeadCHHY
+
+- type: loadoutGroup
+  id: SeniorEngineerShoes
+  name: loadout-group-senior-engineering-shoes
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - WorkBoots
+  - EngineeringWinterBoots
+  - RedShoes
+  - OrangeShoes
+  - YellowShoes
+  - WhiteShoes
+
+- type: loadoutGroup
+  id: SeniorEngineerOuterClothing
+  name: loadout-group-senior-engineering-outer-clothing
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - StationEngineerOuterVest
+  - StationEngineerWintercoat
+  - AtmosphericTechnicianWintercoat
+  - StationClothingOuterWinterColorRed
+  - StationClothingOuterWinterColorOrange
+  - StationClothingOuterWinterColorYellow
+
+- type: loadoutGroup
+  id: StationSeniorEngineerBackpack
+  name: loadout-group-senior-engineering-backpack
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - StationEngineerBackpack
+  - StationEngineerSatchel
+  - StationEngineerDuffel
+  - AtmosphericTechnicianBackpack
+  - AtmosphericTechnicianSatchel
+  - AtmosphericTechnicianDuffel

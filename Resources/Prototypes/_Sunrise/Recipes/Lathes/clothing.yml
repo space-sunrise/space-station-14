@@ -28,3 +28,8 @@
   parent: BaseCommandJumpsuitRecipe
   id: ClothingUniformJumpskirtAdjutant
   result: ClothingUniformJumpskirtAdjutant
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckScarfStripedYellow
+  result: ClothingNeckScarfStripedYellow
