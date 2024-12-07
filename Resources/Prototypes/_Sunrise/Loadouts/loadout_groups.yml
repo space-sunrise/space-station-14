@@ -310,7 +310,36 @@
   - AdjutantCoat
 
 - type: loadoutGroup
-  id: AtmosphericsConsole
-  name: loadout-group-atmos-console
+  id: TrinketsEngineering
+  name: loadout-group-engineering-trinkets
+  minLimit: 0
+  maxLimit: 3
   loadouts:
-  - AtmosphericsConsole
+  - TrinketsEngineeringAAM
+  - TrinketsEngineeringTS
+  - TrinketsEngineeringFL
+  - TrinketsEngineeringGA
+  - TrinketsEngineeringGC
+  - TrinketsEngineeringTFE
+  - TrinketsEngineeringTFAT
+  - TrinketsEngineeringTFCF
+  - TrinketsEngineeringTT
+  - TrinketsEngineeringST
+
+- type: loadoutGroup
+  id: EngineerNeck
+  name: loadout-group-engineering-neck
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - EngineerNeckCNSSO
+
+- type: loadoutGroup
+  id: EngineerMask
+  name: loadout-group-engineering-mask
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - EngineerMaskCMG
+  - EngineerMaskCMBO
+  - EngineerMaskCMBY

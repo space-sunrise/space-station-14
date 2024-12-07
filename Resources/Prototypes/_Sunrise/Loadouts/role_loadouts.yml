@@ -124,9 +124,11 @@
   groups:
   - SeniorEngineerJumpsuit
   - StationEngineerBackpack
+  - EngineerNeck
+  - EngineerMask
   - StationEngineerOuterClothing
   - StationEngineerShoes
-  - AtmosphericsConsole
+  - TrinketsEngineering
   - SurvivalExtended
   - Trinkets
   - GroupSpeciesBreathTool
@@ -156,9 +158,11 @@
   - StationEngineerHead
   - StationEngineerJumpsuit
   - StationEngineerBackpack
+  - EngineerNeck
+  - EngineerMask
   - StationEngineerOuterClothing
   - StationEngineerShoes
-  - AtmosphericsConsole
+  - TrinketsEngineering
   - Trinkets
   - SurvivalExtended
   - GroupSpeciesBreathTool

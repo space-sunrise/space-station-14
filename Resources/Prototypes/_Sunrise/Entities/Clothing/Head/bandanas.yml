@@ -1,0 +1,9 @@
+- type: entity
+  parent: [ClothingHeadBandBase, ClothingMaskBandOrange]
+  id: ClothingHeadBandOrange
+  name: orange bandana
+
+- type: entity
+  parent: [ClothingHeadBandBase, ClothingMaskBandYellow]
+  id: ClothingHeadBandYellow
+  name: yellow bandana
