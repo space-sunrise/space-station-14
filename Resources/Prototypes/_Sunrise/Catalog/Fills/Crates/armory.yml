@@ -19,7 +19,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: WeaponAKMRifle
+      - id: WeaponRifleAKM
         amount: 2
       - id: MagazineLightRifle
         amount: 4

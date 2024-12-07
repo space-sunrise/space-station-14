@@ -48,6 +48,9 @@
     },
     {
       "name": "heavy_laser"
+    },
+    {
+      "name": "blue_laser"
     }
   ]
 }
