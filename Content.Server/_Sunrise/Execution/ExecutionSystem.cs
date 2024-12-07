@@ -1,13 +1,10 @@
-﻿using Content.Server.Interaction;
-using Content.Server.Kitchen.Components;
+﻿using Content.Server.Kitchen.Components;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared._Sunrise.Execution;
-using Content.Shared.Clumsy;
-using Content.Shared.Interaction.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
@@ -36,7 +33,6 @@ public sealed class ExecutionSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
-    [Dependency] private readonly InteractionSystem _interactionSystem = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -72,6 +68,7 @@ public sealed class ExecutionSystem : EntitySystem
         var attacker = args.User;
         var weapon = args.Using!.Value;
         var victim = args.Target;
+        var suicide = attacker == victim;
 
         if (!CanExecuteWithMelee(weapon, victim, attacker))
             return;
@@ -83,8 +80,8 @@ public sealed class ExecutionSystem : EntitySystem
                 TryStartMeleeExecutionDoafter(weapon, victim, attacker);
             },
             Impact = LogImpact.High,
-            Text = Loc.GetString("execution-verb-name"),
-            Message = Loc.GetString("execution-verb-message"),
+            Text = suicide ? Loc.GetString("suicide-verb-name") : Loc.GetString("execution-verb-name"),
+            Message = suicide ? Loc.GetString("suicide-verb-message") : Loc.GetString("execution-verb-message"),
         };
 
         args.Verbs.Add(verb);
@@ -101,6 +98,7 @@ public sealed class ExecutionSystem : EntitySystem
         var attacker = args.User;
         var weapon = args.Using!.Value;
         var victim = args.Target;
+        var suicide = attacker == victim;
 
         if (!CanExecuteWithGun(weapon, victim, attacker))
             return;
@@ -112,8 +110,9 @@ public sealed class ExecutionSystem : EntitySystem
                 TryStartGunExecutionDoafter(weapon, victim, attacker);
             },
             Impact = LogImpact.High,
-            Text = Loc.GetString("execution-verb-name"),
-            Message = Loc.GetString("execution-verb-message"),
+
+            Text = suicide ? Loc.GetString("suicide-verb-name") : Loc.GetString("execution-verb-name"),
+            Message = suicide ? Loc.GetString("suicide-verb-message") : Loc.GetString("execution-verb-message"),
         };
 
         args.Verbs.Add(verb);
@@ -223,6 +222,23 @@ public sealed class ExecutionSystem : EntitySystem
         if (!CanExecuteWithGun(weapon, victim, attacker))
             return;
 
+        if (!TryComp<GunComponent>(weapon, out var gunComponent))
+            return;
+
+        var shotAttempted = new ShotAttemptedEvent
+        {
+            User = attacker,
+            Used = (weapon, gunComponent),
+        };
+
+        RaiseLocalEvent(weapon, ref shotAttempted);
+        if (shotAttempted.Cancelled)
+        {
+            if (shotAttempted.Message != null)
+                _popupSystem.PopupEntity(shotAttempted.Message, weapon, attacker);
+            return;
+        }
+
         if (attacker == victim)
         {
             ShowExecutionPopup("suicide-popup-gun-initial-internal", Filter.Entities(attacker), PopupType.Medium, attacker, victim, weapon);
@@ -235,7 +251,7 @@ public sealed class ExecutionSystem : EntitySystem
         }
 
         var doAfter =
-            new DoAfterArgs(EntityManager, attacker, GunExecutionTime, new ExecutionDoAfterEvent(), weapon, target: victim, used: weapon)
+            new DoAfterArgs(EntityManager, attacker, attacker == victim ? GunExecutionTime / 2 : GunExecutionTime, new ExecutionDoAfterEvent(), weapon, target: victim, used: weapon)
             {
                 BreakOnMove = true,
                 BreakOnDamage = true,
@@ -271,7 +287,7 @@ public sealed class ExecutionSystem : EntitySystem
         if (!TryComp<MeleeWeaponComponent>(weapon, out var melee) && melee!.Damage.GetTotal() > 0.0f)
             return;
 
-        _damageableSystem.TryChangeDamage(victim, melee.Damage * DamageModifier, true);
+        _damageableSystem.TryChangeDamage(victim, melee.Damage * DamageModifier, true, useVariance: false, useModifier: false);
         _audioSystem.PlayEntity(melee.HitSound, Filter.Pvs(weapon), weapon, true, AudioParams.Default);
 
         if (attacker == victim)
@@ -321,10 +337,8 @@ public sealed class ExecutionSystem : EntitySystem
         if (attemptEv.Cancelled)
         {
             if (attemptEv.Message != null)
-            {
                 _popupSystem.PopupClient(attemptEv.Message, weapon, attacker);
-                return;
-            }
+            return;
         }
 
         // Take some ammunition for the shot (one bullet)
@@ -368,6 +382,29 @@ public sealed class ExecutionSystem : EntitySystem
 
                 break;
 
+            case HitScanCartridgeAmmoComponent hitScanCartridge:
+                // Get the damage value
+                var hitScanPrototype = _prototypeManager.Index<HitscanPrototype>(hitScanCartridge.Prototype);
+                if (hitScanPrototype.Damage != null)
+                {
+                    damage = hitScanPrototype.Damage;
+                    if (hitScanPrototype.ShootModifier == ShootModifier.Split)
+                    {
+                        damage *= hitScanPrototype.SplitCount;
+                    }
+                    else if (hitScanPrototype.ShootModifier == ShootModifier.Spread)
+                    {
+                        damage *= hitScanPrototype.SpreadCount;
+                    }
+
+                    // Expend the cartridge
+                    hitScanCartridge.Spent = true;
+                    _appearanceSystem.SetData(ammoUid!.Value, AmmoVisuals.Spent, true);
+                    Dirty(ammoUid.Value, hitScanCartridge);
+                }
+
+                break;
+
             case AmmoComponent newAmmo:
                 TryComp<ProjectileComponent>(ammoUid, out var projectileB);
                 if (projectileB != null)
@@ -386,7 +423,7 @@ public sealed class ExecutionSystem : EntitySystem
         }
 
         // Gun successfully fired, deal damage
-        _damageableSystem.TryChangeDamage(victim, damage * DamageModifier, true);
+        _damageableSystem.TryChangeDamage(victim, damage * DamageModifier, true, useVariance: false, useModifier: false);
         _audioSystem.PlayEntity(component.SoundGunshot, Filter.Pvs(weapon), weapon, false, AudioParams.Default);
 
         // Popups

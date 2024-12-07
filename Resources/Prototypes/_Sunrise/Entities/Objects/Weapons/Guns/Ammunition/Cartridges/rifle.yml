@@ -14,13 +14,13 @@
         color: "#43c4f7"
 
 - type: entity
-  id: CartridgeRocket20
+  id: CartridgeRail
   parent: BaseCartridge
   components:
   - type: Tag
     tags:
     - Cartridge
-    - CartridgeRocket20
+    - CartridgeRail
   - type: Sprite
     netsync: false
     sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
@@ -29,9 +29,9 @@
       map: ["enum.AmmoVisualLayers.Base"]
   - type: SpentAmmoVisuals
     state: relsotrone-combat
-  - type: CartridgeAmmo
+  - type: HitScanCartridgeAmmo
     deleteOnSpawn: true
-    proto: BulletRocket20
+    proto: BulletRail
   - type: Appearance
   - type: StaticPrice
     price: 10

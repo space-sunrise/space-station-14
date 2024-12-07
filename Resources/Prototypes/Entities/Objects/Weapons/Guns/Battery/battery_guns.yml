@@ -138,7 +138,7 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: HitscanBatteryAmmoProvider
-    proto: RedMediumLaser
+    proto: BulletRedMediumLaser # Sunrise-Edit
     fireCost: 62.5
   - type: MagazineVisuals
     magState: mag
@@ -163,7 +163,7 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/makeshift.rsi
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
+    proto: BulletRedLaser # Sunrise-Edit
     fireCost: 62.5
   - type: Battery
     maxCharge: 500
@@ -220,7 +220,7 @@
     - SemiAuto
   - type: EmpImmune  # Sunrise-EMP
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaserPractice
+    proto: BulletRedLaserPractice # Sunrise-Edit
     fireCost: 62.5
   - type: StaticPrice
     price: 300
@@ -234,7 +234,7 @@
   - type: StaticPrice
     price: 420
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
+    proto: BulletRedLaser # Sunrise-Edit
     fireCost: 62.5
 
 - type: entity
@@ -261,7 +261,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: EmpImmune  # Sunrise-EMP
   - type: HitscanBatteryAmmoProvider
-    proto: Pulse
+    proto: BulletPulse # Sunrise-Edit
     fireCost: 200
   - type: Battery
     maxCharge: 2000
@@ -293,7 +293,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: EmpImmune  # Sunrise-EMP
   - type: HitscanBatteryAmmoProvider
-    proto: Pulse
+    proto: BulletPulse # Sunrise-Edit
     fireCost: 200
   - type: Battery
     maxCharge: 5000
@@ -321,7 +321,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: EmpImmune
   - type: HitscanBatteryAmmoProvider
-    proto: Pulse
+    proto: BulletPulse # Sunrise-Edit
     fireCost: 100
   - type: Battery
     maxCharge: 40000
@@ -348,7 +348,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: RedHeavyLaser
+    proto: BulletRedHeavyLaser # Sunrise-Edit
     fireCost: 100
 
 - type: entity
@@ -569,7 +569,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: RedMediumLaser
+    proto: BulletRedMediumLaser # Sunrise-Edit
     fireCost: 100
   - type: BatterySelfRecharger
     autoRecharge: true
@@ -615,7 +615,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: RedMediumLaser
+    proto: BulletRedMediumLaser # Sunrise-Edit
     fireCost: 100
   - type: BatterySelfRecharger
     autoRecharge: true
@@ -709,7 +709,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_clown.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: RedMediumLaser
+    proto: BulletRedMediumLaser # Sunrise-Edit
     fireCost: 100
   - type: BatterySelfRecharger
     autoRecharge: true

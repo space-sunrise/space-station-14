@@ -31,9 +31,9 @@
   - type: SubGamemodes
     rules:
     - id: Changeling
-      prob: 0.25
+      prob: 0.50
     - id: Vampire
-      prob: 0.25
+      prob: 0.50
 
 
 - type: entity
