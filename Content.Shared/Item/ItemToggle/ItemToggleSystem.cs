@@ -50,16 +50,19 @@ public sealed class ItemToggleSystem : EntitySystem
 
         SubscribeLocalEvent<ItemToggleActiveSoundComponent, ItemToggledEvent>(UpdateActiveSound);
 
+        // Sunrise-Edit
         SubscribeLocalEvent<ItemToggleComponent, GotUnequippedHandEvent>(OnItemToggleHandUnequipped);
     }
 
+    // Sunrise-Start
     private void OnItemToggleHandUnequipped(Entity<ItemToggleComponent> ent, ref GotUnequippedHandEvent args)
     {
-        if (!ent.Comp.Activated || ent.Owner != args.Unequipped)
+        if (!ent.Comp.Activated || ent.Owner != args.Unequipped || !ent.Comp.DeactivateUnequippedHand)
             return;
 
         Toggle((ent.Owner, ent.Comp), args.User, predicted: ent.Comp.Predictable);
     }
+    // Sunrise-End
 
     private void OnStartup(Entity<ItemToggleComponent> ent, ref ComponentStartup args)
     {
