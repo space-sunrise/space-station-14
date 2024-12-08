@@ -455,6 +455,8 @@
   categories:
   - UplinkAllies
   conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
@@ -512,6 +514,8 @@
   categories:
   - UplinkAllies
   conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
@@ -576,6 +580,8 @@
   conditions:
   - !type:StoreWhitelistCondition
     blacklist:
+     tags:
+      - NukeOpsUplink
 
 - type: listing
   id: UplinkBouquet
@@ -606,6 +612,8 @@
   categories:
   - UplinkMechs
   conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
@@ -625,6 +633,8 @@
   categories:
   - UplinkMechs
   conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
@@ -644,6 +654,8 @@
   categories:
   - UplinkMechs
   conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
