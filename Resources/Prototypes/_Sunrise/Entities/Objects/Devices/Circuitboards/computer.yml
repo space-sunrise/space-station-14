@@ -33,3 +33,17 @@
   components:
   - type: ComputerBoard
     prototype: ComputerShuttleSecurity
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: CentComConsoleCircuitboard
+  components:
+  - type: ComputerBoard
+    prototype: CentcomComputer
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: CentComCargoConsoleCircuitboard
+  components:
+  - type: ComputerBoard
+    prototype: CentcomCargoComputer
