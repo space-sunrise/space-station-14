@@ -386,7 +386,7 @@
     Blunt: 0.6
     Slash: 0.6
     Piercing: 0.65
-    Shock: 1.4
+    Shock: 1.8
     Heat: 0.7
   flatReductions:
     Blunt: 8
@@ -398,7 +398,7 @@
     Blunt: 0.5
     Slash: 0.5
     Piercing: 0.35
-    Shock: 1.8
+    Shock: 2.8
     Heat: 0.6
   flatReductions:
     Blunt: 15
@@ -410,7 +410,7 @@
     Blunt: 0.6
     Slash: 0.6
     Piercing: 0.6
-    Shock: 1.4
+    Shock: 1.8
     Heat: 0.75
   flatReductions:
     Blunt: 8
@@ -422,7 +422,7 @@
     Blunt: 0.5
     Slash: 0.5
     Piercing: 0.4
-    Shock: 1.8
+    Shock: 2.8
     Heat: 0.7
   flatReductions:
     Blunt: 10

@@ -659,9 +659,9 @@
   productEntity: WeaponMechCombatImmolationGun
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 3
+    Telecrystal: 5
   cost:
-    Telecrystal: 6
+    Telecrystal: 7
   categories:
   - UplinkMechs
   conditions:
@@ -737,7 +737,7 @@
   discountDownTo:
     Telecrystal: 3
   cost:
-    Telecrystal: 6
+    Telecrystal: 5
   categories:
   - UplinkMechs
   conditions:
@@ -773,9 +773,9 @@
   productEntity: WeaponMechCombatAMLG90
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 5
+    Telecrystal: 4
   cost:
-    Telecrystal: 10
+    Telecrystal: 8
   categories:
   - UplinkMechs
   conditions:

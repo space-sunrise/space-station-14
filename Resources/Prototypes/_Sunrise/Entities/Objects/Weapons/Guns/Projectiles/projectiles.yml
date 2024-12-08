@@ -26,6 +26,11 @@
     sprite: Effects/emp.rsi
     layers:
     - state: emp_pulse
+  - type: Projectile
+    deleteOnCollide: true
+    damage:
+      types:
+        Shock: 25 # Sunrise-Edit
   - type: EmpOnTrigger
     range: 2
     energyConsumption: 30000
