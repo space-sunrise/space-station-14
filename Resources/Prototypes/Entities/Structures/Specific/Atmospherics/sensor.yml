@@ -25,6 +25,8 @@
         Ammonia: stationAmmonia
         NitrousOxide: stationNO
         Frezon: danger
+        BZ: danger #SunRise edit
+        Healium: stationNO #SunRise edit
     - type: Tag
       tags:
         - AirSensor
