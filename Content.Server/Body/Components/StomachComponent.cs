@@ -52,7 +52,7 @@ namespace Content.Server.Body.Components
         /// <summary>
         ///     If true, whitelist from the top will only be used as an addition to the already digestible by default food
         /// </summary>
-        [DataField("isDigestibleAddition")]
+        [DataField]
         public bool IsDigestibleAddition = false;
 
         //Sunrise-end
