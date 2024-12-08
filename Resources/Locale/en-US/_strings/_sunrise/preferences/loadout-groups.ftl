@@ -39,3 +39,6 @@ loadout-group-senior-engineering-head = Ведущий инженер, голо�
 loadout-group-senior-engineering-shoes = Ведущий инженер, ботинки
 loadout-group-senior-engineering-outer-clothing = Ведущий инженер, верхняя одежда
 loadout-group-senior-engineering-backpack = Ведущий инженер, рюкзак
+loadout-group-atmospheric-technician-mask = Атмосферный техник, маска 
+loadout-group-atmospheric-technician-neck = Атмосферный техник, шея
+loadout-group-atmospheric-technician-head = Атмосферный техник, голова
