@@ -705,6 +705,9 @@
   loadouts:
   - ChiefEngineerCloak
   - ChiefEngineerMantle
+  #sunrise-start
+  - Sunrise-TieRed
+  #Sunrise-end
 
 - type: loadoutGroup
   id: ChiefEngineerOuterClothing
@@ -719,7 +722,9 @@
   loadouts:
   - BrownShoes
   - EngineeringWinterBoots
-
+#sunrise-start
+  - WhiteShoes
+#Sunrise-end
 - type: loadoutGroup
   id: TechnicalAssistantJumpsuit
   name: loadout-group-technical-assistant-jumpsuit
@@ -731,9 +736,21 @@
   id: StationEngineerHead
   name: loadout-group-station-engineer-head
   loadouts:
+#sunrise-start
+  - Sunrise-EngineerHeadBeret
+  - Sunrise-BandRed
+  - Sunrise-BandOrange
+  - Sunrise-BandYellow
+  - Sunrise-HardhatYellowDark
+#Sunrise-end
   - StationEngineerHardhatYellow
   - StationEngineerHardhatOrange
   - StationEngineerHardhatRed
+#sunrise-start
+  - Sunrise-HatRedsoft
+  - Sunrise-HatOrangesoft
+  - Sunrise-HatYellowsoft
+#Sunrise-end
 
 - type: loadoutGroup
   id: StationEngineerJumpsuit
@@ -758,13 +775,22 @@
   loadouts:
   - StationEngineerOuterVest
   - StationEngineerWintercoat
-
+#sunrise-start
+  - Sunrise-WinterColorrColorRed
+  - Sunrise-WinterColorOrange
+  - Sunrise-WinterColorYellow
+#sunrise-end
 - type: loadoutGroup
   id: StationEngineerShoes
   name: loadout-group-station-engineer-shoes
   loadouts:
   - WorkBoots
   - EngineeringWinterBoots
+#sunrise-start
+  - Sunrise-RedShoes
+  - Sunrise-OrangeShoes
+  - Sunrise-YellowShoes
+#sunrise-end
 
 - type: loadoutGroup
   id: AtmosphericTechnicianJumpsuit
@@ -780,6 +806,12 @@
   minLimit: 0
   loadouts:
   - AtmosphericTechnicianWintercoat
+#sunrise-start
+  - StationEngineerOuterVest
+  - Sunrise-WinterColorrColorRed
+  - Sunrise-WinterColorOrange
+  - Sunrise-WinterColorYellow
+#sunrise-end
 
 - type: loadoutGroup
   id: AtmosphericTechnicianBackpack
@@ -795,6 +827,11 @@
   loadouts:
   - WhiteShoes
   - EngineeringWinterBoots
+#sunrise-start
+  - Sunrise-RedShoes
+  - Sunrise-OrangeShoes
+  - Sunrise-YellowShoes
+#sunrise-end
 
 - type: loadoutGroup
   id: SurvivalExtended

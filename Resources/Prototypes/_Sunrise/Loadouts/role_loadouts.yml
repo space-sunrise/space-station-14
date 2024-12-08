@@ -123,10 +123,12 @@
   id: JobSeniorEngineer
   groups:
   - SeniorEngineerJumpsuit
+  - SeniorEngineerHead
   - StationSeniorEngineerBackpack
   - SeniorEngineerNeck
   - SeniorEngineerMask
   - SeniorEngineerOuterClothing
+  - SeniorEngineerGloves
   - SeniorEngineerShoes
   - TrinketsEngineering
   - SurvivalExtended
@@ -340,3 +342,4 @@
   - Bra
   - Pants
   - Socks
+

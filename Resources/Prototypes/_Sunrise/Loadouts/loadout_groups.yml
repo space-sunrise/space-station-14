@@ -332,10 +332,12 @@
   minLimit: 0
   maxLimit: 1
   loadouts:
-  - EngineerNeckCNSSR
-  - EngineerNeckCNSSO
-  - EngineerNeckCNSSB
-  - EngineerNeckCNSSY
+  - Sunrise-ScarfRed
+  - Sunrise-ScarfOrange
+  - Sunrise-ScarfYellow
+  - Sunrise-ScarfCyan
+  - Sunrise-ScarfLightBlue 
+  - Sunrise-TieRed
 
 - type: loadoutGroup
   id: SeniorEngineerMask
@@ -344,10 +346,11 @@
   maxLimit: 1
   loadouts:
   - EngineerMaskCMG
-  - EngineerMaskCMBR
-  - EngineerMaskCMBO
-  - EngineerMaskCMBY
-  - EngineerMaskCMBC
+  - EngineerMaskCMGA 
+  - Sunrise-MBandRed
+  - Sunrise-MBandOrange
+  - Sunrise-MBandYellow
+  - Sunrise-MBandCyan
 
 - type: loadoutGroup
   id: SeniorEngineerHead
@@ -355,19 +358,19 @@
   minLimit: 0
   maxLimit: 1
   loadouts:
-  - EngineerHeadCHHBE
-  - EngineerHeadCHBR
-  - EngineerHeadCHBO
-  - EngineerHeadCHBY
-  - EngineerHeadCHBC
+  - Sunrise-EngineerHeadBeret
+  - Sunrise-BandRed
+  - Sunrise-BandOrange
+  - Sunrise-BandYellow
+  - Sunrise-BandCyan
   - StationEngineerHardhatRed
   - StationEngineerHardhatOrange
   - StationEngineerHardhatYellow
-  - EngineerHeadCHHHYD
-  - EngineerHeadCHHHB
-  - EngineerHeadCHHR
-  - EngineerHeadCHHO
-  - EngineerHeadCHHY
+  - Sunrise-HardhatYellowDark
+  - Sunrise-HardhatBlue
+  - Sunrise-HatRedsoft
+  - Sunrise-HatOrangesoft
+  - Sunrise-HatYellowsoft
 
 - type: loadoutGroup
   id: SeniorEngineerShoes
@@ -377,9 +380,9 @@
   loadouts:
   - WorkBoots
   - EngineeringWinterBoots
-  - RedShoes
-  - OrangeShoes
-  - YellowShoes
+  - Sunrise-RedShoes
+  - Sunrise-OrangeShoes
+  - Sunrise-YellowShoes
   - WhiteShoes
 
 - type: loadoutGroup
@@ -391,9 +394,9 @@
   - StationEngineerOuterVest
   - StationEngineerWintercoat
   - AtmosphericTechnicianWintercoat
-  - StationClothingOuterWinterColorRed
-  - StationClothingOuterWinterColorOrange
-  - StationClothingOuterWinterColorYellow
+  - Sunrise-WinterColorrColorRed
+  - Sunrise-WinterColorOrange
+  - Sunrise-WinterColorYellow
 
 - type: loadoutGroup
   id: StationSeniorEngineerBackpack
@@ -407,3 +410,134 @@
   - AtmosphericTechnicianBackpack
   - AtmosphericTechnicianSatchel
   - AtmosphericTechnicianDuffel
+
+- type: loadoutGroup
+  id: SeniorEngineerGloves
+  name: loadout-group-senior-engineering-gloves
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - PassengerGloves
+  - Sunrise-YellowBudgetGloves
+  - Sunrise-RedGloves
+  - OrangeGloves
+  - Sunrise-TealGloves
+  - Sunrise-WhiteGloves
+
+- type: loadoutGroup
+  id: StationSunriseEngineerGloves
+  name: loadout-group-station-engineer-gloves
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - PassengerGloves
+  - Sunrise-YellowBudgetGloves
+  - Sunrise-RedGloves
+  - OrangeGloves
+
+- type: loadoutGroup
+  id: StationSunriseEngineerMask
+  name: loadout-group-station-engineer-mask
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - Sunrise-MBandRed
+  - Sunrise-MBandOrange
+  - Sunrise-MBandYellow
+  - EngineerMaskCMG
+
+- type: loadoutGroup
+  id: StationSunriseEngineerNeck
+  name: loadout-group-station-engineer-neck
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - Sunrise-ScarfRed
+  - Sunrise-ScarfOrange
+  - Sunrise-ScarfYellow
+  - Sunrise-TieRed
+
+- type: loadoutGroup
+  id: SunriseAtmosGloves
+  name: loadout-group-atmospheric-technician-gloves
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - PassengerGloves
+  - Sunrise-YellowBudgetGloves
+  - Sunrise-RedGloves
+  - OrangeGloves
+  - Sunrise-TealGloves
+  - Sunrise-WhiteGloves
+
+- type: loadoutGroup
+  id: SunriseAtmosHead
+  name: loadout-group-atmospheric-technician-head
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - Sunrise-EngineerHeadBeret
+  - Sunrise-BandRed
+  - Sunrise-BandOrange
+  - Sunrise-BandYellow
+  - Sunrise-BandCyan
+  - StationEngineerHardhatRed
+  - StationEngineerHardhatOrange
+  - StationEngineerHardhatYellow
+  - Sunrise-HardhatYellowDark
+  - Sunrise-HardhatBlue
+  - Sunrise-HatRedsoft
+  - Sunrise-HatOrangesoft
+  - Sunrise-HatYellowsoft
+
+- type: loadoutGroup
+  id: SunriseAtmosMask
+  name: loadout-group-atmospheric-technician-mask
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - EngineerMaskCMG
+  - EngineerMaskCMGA 
+  - Sunrise-MBandRed
+  - Sunrise-MBandOrange
+  - Sunrise-MBandYellow
+  - Sunrise-MBandCyan
+
+- type: loadoutGroup
+  id: SunriseAtmosNeck
+  name: loadout-group-atmospheric-technician-neck
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - Sunrise-ScarfRed
+  - Sunrise-ScarfOrange
+  - Sunrise-ScarfYellow
+  - Sunrise-ScarfCyan
+  - Sunrise-ScarfLightBlue  
+  - Sunrise-TieRed
+
+- type: loadoutGroup
+  id: SunriseCEGloves
+  name: loadout-group-chief-engineer-gloves
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - PassengerGloves
+  - Sunrise-YellowBudgetGloves
+  - Sunrise-RedGloves
+  - OrangeGloves
+  - Sunrise-TealGloves
+  - Sunrise-WhiteGloves
+
+- type: loadoutGroup
+  id: SunriseCEMask
+  name: loadout-group-chief-engineer-mask
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - EngineerMaskCMG
+  - EngineerMaskCMGA 
+  - Sunrise-MBandRed
+  - Sunrise-MBandOrange
+  - Sunrise-MBandYellow
+  - Sunrise-MBandCyan
