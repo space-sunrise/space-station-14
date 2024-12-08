@@ -71,7 +71,8 @@
   materials:
     Steel: 1500
     Glass: 800
-    Silver: 500
+    Silver: 250
+    Uranium: 100
 
 - type: latheRecipe
   id: DurandLArm
