@@ -553,5 +553,14 @@
   sex: Male
   speaker: warcraft3_witcher
   provider: sunrise
-  roundStart: false # перетренировать
+  roundStart: true # перетренировать
+  sponsorOnly: false
+
+- type: ttsVoice
+  id: Warcraft3Kel
+  name: tts-voice-name-warcraft3-kel
+  sex: Male
+  speaker: warcraft3_kel
+  provider: sunrise
+  roundStart: true # перетренировать
   sponsorOnly: false
