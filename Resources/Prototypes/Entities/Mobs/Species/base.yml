@@ -224,6 +224,7 @@
     - FootstepSound
     - DoorBumpOpener
     - AnomalyHost
+    - Specie
   # Sunrise-Start
   - type: Paws
     screamInterval: 3
@@ -232,16 +233,25 @@
     emotesTakeDamage:
     - Scream
     - Crying
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 30
+  - type: Food
+    requiresSpecialDigestion: true
   # Sunrise-End
 
 - type: entity
   save: false
   parent:
+  - BaseMobSpecies
   - MobBloodstream
   - MobRespirator
   - MobAtmosStandard
   - MobFlammable
-  - BaseMobSpecies
   id: BaseMobSpeciesOrganic
   abstract: true
   components:

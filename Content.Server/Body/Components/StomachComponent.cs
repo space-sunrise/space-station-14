@@ -48,6 +48,12 @@ namespace Content.Server.Body.Components
         public EntityWhitelist? SpecialDigestible = null;
 
         /// <summary>
+        ///     If true, whitelist from the top will only be used as an addition to the already digestible by default food
+        /// </summary>
+        [DataField("isDigestibleAddition")]
+        public bool IsDigestibleAddition = false;
+
+        /// <summary>
         ///     Used to track how long each reagent has been in the stomach
         /// </summary>
         [ViewVariables]

@@ -3409,6 +3409,8 @@
   - type: HTN
     rootTask:
       task: RuminantCompound
+  - type: Body
+    prototype: ManeaterAnimal
 
 - type: entity
   name: diona nymph
