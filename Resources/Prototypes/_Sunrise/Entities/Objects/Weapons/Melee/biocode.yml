@@ -10,11 +10,9 @@
   - type: Construction
     graph: EnergySwordDoubleGraph
     node: DoubleEnergySwordNode
-  # Sunrise-Start
   - type: Biocode
     factions:
     - Syndicate
-  # Sunrise-End
 
 - type: entity
   parent: EnergySword
@@ -31,11 +29,9 @@
   - type: Construction
     graph: EnergySwordDoubleGraph
     node: start
-  # Sunrise-Start
   - type: Biocode
     factions:
     - Syndicate
-  # Sunrise-End
 
 - type: entity
   parent: EnergyDagger
