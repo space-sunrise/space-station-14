@@ -338,6 +338,8 @@ public sealed class FoodSystem : EntitySystem
         var dev = new DestructionEventArgs();
         RaiseLocalEvent(food, dev);
 
+        //Sunrise-start
+
         if (TryComp(food, out InventoryComponent? inventory))
         {
             foreach (SlotDefinition sl in inventory.Slots)
@@ -348,6 +350,8 @@ public sealed class FoodSystem : EntitySystem
                 _transform.DropNextTo((EntityUid)item, food);
             }
         }
+
+        //Sunrise-end
 
         if (component.Trash.Count == 0)
         {
@@ -443,9 +447,11 @@ public sealed class FoodSystem : EntitySystem
             // Check if the food is in the whitelist
             if (_whitelistSystem.IsWhitelistPass(ent.Comp1.SpecialDigestible, food))
                 return true;
+            //Sunrise-start
             // If food is not in whitelist, but whitelist is optinal, go on
             if (ent.Comp1.IsDigestibleAddition)
                 continue;
+            //Sunrise-end
             // They can only eat whitelist food and the food isn't in the whitelist. It's not edible.
             return false;
         }

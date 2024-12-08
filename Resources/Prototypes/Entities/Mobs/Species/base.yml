@@ -224,7 +224,6 @@
     - FootstepSound
     - DoorBumpOpener
     - AnomalyHost
-    - Specie
   # Sunrise-Start
   - type: Paws
     screamInterval: 3
@@ -247,11 +246,12 @@
 - type: entity
   save: false
   parent:
-  - BaseMobSpecies
+  - BaseMobSpecies # Sunrise
   - MobBloodstream
   - MobRespirator
   - MobAtmosStandard
   - MobFlammable
+ #- BaseMobSpecies # Wizards
   id: BaseMobSpeciesOrganic
   abstract: true
   components:

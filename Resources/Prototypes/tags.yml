@@ -1158,9 +1158,6 @@
 
 - type: Tag
   id: Spear
- 
-- type: Tag
-  id: Specie
 
 - type: Tag
   id: SpeedLoaderCap

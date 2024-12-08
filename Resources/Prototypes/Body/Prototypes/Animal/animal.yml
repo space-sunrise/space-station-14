@@ -20,6 +20,8 @@
     feet:
       part: FeetAnimal
       
+# Sunrise-start
+
 - type: body
   id: ManeaterAnimal
   name: "maneater animal"
@@ -41,6 +43,8 @@
       - feet
     feet:
       part: FeetAnimal
+
+# Sunrise-end
 
 - type: body
   id: Mouse

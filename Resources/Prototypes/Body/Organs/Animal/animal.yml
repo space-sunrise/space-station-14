@@ -93,6 +93,8 @@
     size: Small
     heldPrefix: stomach
     
+# Sunrise-start
+
 - type: entity
   id: OrganManeaterAnimalStomach
   parent: OrganAnimalStomach
@@ -101,9 +103,11 @@
   components:
   - type: Stomach
     specialDigestible:
-      tags:
-      - Specie
+      components:
+        - Identity
     isDigestibleAddition: true
+
+# Sunrise-end
 
 - type: entity
   id: OrganMouseStomach
