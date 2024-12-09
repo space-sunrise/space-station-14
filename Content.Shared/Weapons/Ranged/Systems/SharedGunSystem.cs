@@ -11,6 +11,8 @@ using Content.Shared.Examine;
 using Content.Shared.Gravity;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
+using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Input;
 using Content.Shared.Mech.Components;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
@@ -26,10 +28,12 @@ using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
@@ -66,6 +70,7 @@ public abstract partial class SharedGunSystem : EntitySystem
     [Dependency] protected readonly ThrowingSystem ThrowingSystem = default!;
     [Dependency] private   readonly UseDelaySystem _useDelay = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
 
     private const float InteractNextFire = 0.3f;
     private const double SafetyNextFire = 0.5;
@@ -98,6 +103,33 @@ public abstract partial class SharedGunSystem : EntitySystem
         SubscribeLocalEvent<GunComponent, CycleModeEvent>(OnCycleMode);
         SubscribeLocalEvent<GunComponent, HandSelectedEvent>(OnGunSelected);
         SubscribeLocalEvent<GunComponent, MapInitEvent>(OnMapInit);
+
+        // Sunrise-Start
+        CommandBinds.Builder
+            .Bind(ContentKeyFunctions.CockGun, InputCmdHandler.FromDelegate(HandleCockGun, handle: false, outsidePrediction: false))
+            .Register<SharedGunSystem>();
+        // Sunrise-End
+    }
+
+    private void HandleCockGun(ICommonSession? session)
+    {
+        if (session?.AttachedEntity == null)
+            return;
+
+        if (!TryComp<HandsComponent>(session.AttachedEntity.Value, out var handsComp))
+            return;
+
+        if (!_hands.TryGetActiveItem((session.AttachedEntity.Value, handsComp), out var itemInHand))
+            return;
+
+        if (TryComp<ChamberMagazineAmmoProviderComponent>(itemInHand.Value, out var chamberMagazineProvider))
+            ChamberMagazineUseInHand(session.AttachedEntity.Value, itemInHand.Value, chamberMagazineProvider);
+
+        if (TryComp<BallisticAmmoProviderComponent>(itemInHand.Value, out var ballisticAmmoProvider))
+            BallisticAmmoCockGun(session.AttachedEntity.Value, itemInHand.Value, ballisticAmmoProvider);
+
+        if (TryComp<MagazineAmmoProviderComponent>(itemInHand.Value, out var magazineAmmoProvider))
+            MagazineAmmoCockGun(session.AttachedEntity.Value, itemInHand.Value, magazineAmmoProvider);
     }
 
     private void OnMapInit(Entity<GunComponent> gun, ref MapInitEvent args)
