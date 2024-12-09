@@ -634,7 +634,7 @@
   - UplinkMechs
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 2
+    stock: 1
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
@@ -655,7 +655,7 @@
   - UplinkMechs
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 2
+    stock: 1
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
@@ -804,9 +804,9 @@
   productEntity: WeaponMechCombatVindictor
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 13
+    Telecrystal: 15
   cost:
-    Telecrystal: 26
+    Telecrystal: 28
   categories:
   - UplinkMechs
   conditions:
