@@ -651,6 +651,8 @@
   categories:
   - UplinkAllies
   conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
@@ -670,6 +672,8 @@
   categories:
   - UplinkAllies
   conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
@@ -689,6 +693,8 @@
   categories:
   - UplinkAllies
   conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
@@ -708,6 +714,8 @@
   categories:
   - UplinkAllies
   conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
@@ -727,6 +735,8 @@
   categories:
   - UplinkAllies
   conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
