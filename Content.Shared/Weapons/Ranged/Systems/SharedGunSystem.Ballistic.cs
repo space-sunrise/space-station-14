@@ -28,16 +28,21 @@ public abstract partial class SharedGunSystem
         SubscribeLocalEvent<BallisticAmmoProviderComponent, InteractUsingEvent>(OnBallisticInteractUsing);
         SubscribeLocalEvent<BallisticAmmoProviderComponent, AfterInteractEvent>(OnBallisticAfterInteract);
         SubscribeLocalEvent<BallisticAmmoProviderComponent, AmmoFillDoAfterEvent>(OnBallisticAmmoFillDoAfter);
-        SubscribeLocalEvent<BallisticAmmoProviderComponent, UseInHandEvent>(OnBallisticUse);
+        //SubscribeLocalEvent<BallisticAmmoProviderComponent, UseInHandEvent>(OnBallisticUse);
     }
 
-    private void OnBallisticUse(EntityUid uid, BallisticAmmoProviderComponent component, UseInHandEvent args)
-    {
-        if (args.Handled)
-            return;
+    // private void OnBallisticUse(EntityUid uid, BallisticAmmoProviderComponent component, UseInHandEvent args)
+    // {
+    //     if (args.Handled)
+    //         return;
+    //
+    //     ManualCycle(uid, component, TransformSystem.GetMapCoordinates(uid), args.User);
+    //     args.Handled = true;
+    // }
 
-        ManualCycle(uid, component, TransformSystem.GetMapCoordinates(uid), args.User);
-        args.Handled = true;
+    public void BallisticAmmoCockGun(EntityUid user, EntityUid uid, BallisticAmmoProviderComponent component)
+    {
+        ManualCycle(uid, component, TransformSystem.GetMapCoordinates(uid), user);
     }
 
     private void OnBallisticInteractUsing(EntityUid uid, BallisticAmmoProviderComponent component, InteractUsingEvent args)

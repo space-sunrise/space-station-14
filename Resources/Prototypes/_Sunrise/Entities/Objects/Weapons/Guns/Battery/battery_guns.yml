@@ -431,7 +431,7 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
+    proto: BulletRedLaser
     fireCost: 62.5
   - type: MagazineVisuals
     magState: mag
@@ -441,7 +441,7 @@
 
 - type: entity
   name: EarthGov laser rifle
-  parent: BaseWeaponBattery
+  parent: [BaseWeaponBattery, BaseGunWieldable]
   id: WeaponEarthGovLaserRifle
   components:
   - type: Sprite
@@ -477,7 +477,7 @@
     maxCharge: 3000
     startingCharge: 3000
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
+    proto: BulletRedLaser
     fireCost: 50
   - type: Wieldable
   - type: UseDelay
@@ -485,7 +485,7 @@
 
 - type: entity
   name: EarthGov laser carbine
-  parent: BaseWeaponBattery
+  parent: [BaseWeaponBattery, BaseGunWieldable]
   id: WeaponEarthGovLaserCarbine
   components:
   - type: Sprite
@@ -501,12 +501,7 @@
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/EG_C/tiny.rsi
     size: Large
-  - type: GunWieldBonus
-    minAngle: -23
-    maxAngle: -43
   - type: Gun
-    minAngle: 33
-    maxAngle: 50
     fireRate: 3
     selectedMode: SemiAuto
     availableModes:
@@ -524,7 +519,7 @@
     maxCharge: 2000
     startingCharge: 2000
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
+    proto: BulletRedLaser
     fireCost: 50
   - type: Wieldable
   - type: UseDelay
@@ -532,7 +527,7 @@
 
 - type: entity
   name: EarthGov laser machine gun
-  parent: BaseWeaponBattery
+  parent: [BaseWeaponBattery, BaseGunWieldable]
   id: WeaponEarthGovLaserMG
   components:
   - type: Sprite
@@ -548,12 +543,9 @@
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/EG_MG/tiny.rsi
     size: Huge
-  - type: GunWieldBonus
-    minAngle: -12
-    maxAngle: -18
   - type: Gun
-    minAngle: 16
-    maxAngle: 14
+    minAngle: 24
+    maxAngle: 34
     angleIncrease: 4
     angleDecay: 16
     fireRate: 3.6
@@ -573,7 +565,7 @@
     maxCharge: 7500
     startingCharge: 7500
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
+    proto: BulletRedLaser
     fireCost: 50
   - type: Wieldable
   - type: UseDelay
@@ -664,7 +656,7 @@
     maxCharge: 1800
     startingCharge: 1800
   - type: HitscanBatteryAmmoProvider
-    proto: RedHeavyLaser
+    proto: BulletRedHeavyLaser
     fireCost: 100
   - type: Wieldable
   - type: UseDelay

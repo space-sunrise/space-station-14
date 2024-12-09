@@ -440,25 +440,104 @@
   spreadAngle: 6
 
 - type: hitscan
-  id: PulseERTBorg
+  id: BulletRail
+  damage:
+    types:
+      Piercing: 35
+  collisionMask: BulletImpassable
+  reflective: NonEnergy
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: BulletDebug
+  damage:
+    types:
+      Blunt: 20000
+  collisionMask: BulletImpassable
+  reflective: NonEnergy
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: bullet
+
+- type: hitscan
+  id: BulletPulse
+  damage:
+    types:
+      Heat: 35
+  reflective: Energy
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: blue_laser
+
+- type: hitscan
+  id: BulletRedLaserPractice
+  damage:
+    types:
+      Heat: 1
+  reflective: Energy
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: red_laser
+
+- type: hitscan
+  id: BulletRedMediumLaser
   damage:
     types:
       Heat: 17
-  muzzleFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: muzzle_blue
-  travelFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: beam_blue
-  impactFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: impact_blue
+  reflective: Energy
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: red_laser
+
+- type: hitscan
+  id: BulletRedLightLaser
+  damage:
+    types:
+      Heat: 17
+  reflective: Energy
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: red_laser
+
+- type: hitscan
+  id: BulletRedLaser
+  damage:
+    types:
+      Heat: 14
+  reflective: Energy
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: red_laser
+
+- type: hitscan
+  id: BulletRedHeavyLaser
+  damage:
+    types:
+      Heat: 28
+  reflective: Energy
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: heavy_laser
+
+- type: hitscan
+  id: BulletRedShuttleLaser
+  maxLength: 60
+  damage:
+    types:
+      Heat: 45
+      Structural: 100
+  reflective: Energy
+  bulletTracer:
+    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
+    state: heavy_laser
 
 - type: hitscan
   id: BulletSyndiPlasma
   damage:
     types:
-      Heat: 6
+      Heat: 8
   reflective: Energy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
