@@ -24,16 +24,19 @@
       - id: BoxLethalshot
         amount: 3
 
-#- type: entity
- # id: CrateTrackingImplants
-  #parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
-  #name: tracking implants
-  #description: Contains a handful of tracking implanters. Good for prisoners you'd like to release but still keep track of.
-  #components:
-  #- type: StorageFill
-   # contents:
-   #   - id: TrackingImplanter
-   #     amount: 5
+- type: entity
+  id: CrateTrackingImplants
+  parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
+  name: tracking implants
+  description: Contains a handful of tracking implanters. Good for prisoners you'd like to release but still keep track of.
+  components:
+  - type: StorageFill
+    contents:
+      - id: TrackingImplanter
+        amount: 5
+  # Sunrise-Edit
+  - type: AccessReader
+    access: [ [ "Armory" ],[ "BlueShield" ] ]
 
 - type: entity
   parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
