@@ -48,6 +48,81 @@
   - type: AmmoCounter
 
 - type: entity
+  id: WeaponMechCombatPirateCannon
+  name: Mounted PirateCannon
+  description: An ancient heavy machine gun given new life as a mech-mounted gun
+  suffix: Mech Weapon, Gun, Combat, Pirate
+  parent: [ BaseMechWeaponRange, CombatMechEquipment ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_piratecannon.rsi
+    state: mecha_piratecannon
+  - type: Gun
+    minAngle: -10
+    maxAngle: 15
+    fireRate: 0.4
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: CannonBall
+    fireCost: 85
+  - type: Appearance
+  - type: AmmoCounter
+
+- type: entity
+  id: WeaponMechCombatPirateGrapeshot
+  name: Mounted PirateGrapeshot
+  description: An ancient heavy machine gun given new life as a mech-mounted gun
+  suffix: Mech Weapon, Gun, Combat, Pirate
+  parent: [ BaseMechWeaponRange, CombatMechEquipment ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_piratecannon.rsi
+    state: mecha_piratecannon
+  - type: Gun
+    minAngle: -10
+    maxAngle: 15
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: CannonBallGrapeshot
+    fireCost: 35
+  - type: Appearance
+  - type: AmmoCounter
+
+- type: entity
+  id: WeaponMechCombatPirateGlassshot
+  name: Mounted PirateGlassshot
+  description: An ancient heavy machine gun given new life as a mech-mounted gun
+  suffix: Mech Weapon, Gun, Combat, Pirate
+  parent: [ BaseMechWeaponRange, CombatMechEquipment ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_piratecannon.rsi
+    state: mecha_piratecannon
+  - type: Gun
+    minAngle: -10
+    maxAngle: 15
+    fireRate: 0.7
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: CannonBallGlassshot
+    fireCost: 55
+  - type: Appearance
+  - type: AmmoCounter
+
+- type: entity
   id: WeaponMechCombatUVM31
   name: UVM-31 "Drake"
   description: A heavy weapon of mass destruction developed by Cybersun based on the minigun. now on a sturdy tripod that allows you to fire directly from the MECH!
