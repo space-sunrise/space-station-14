@@ -53,7 +53,7 @@
   - type: AccessReader
     access: [["Security"], ["Command"]]
   - type: SiliconLawProvider
-    laws: NTDefault
+    laws: RobocopLawset
   - type: TTS
     voice: Sentrybot
   - type: PointLight

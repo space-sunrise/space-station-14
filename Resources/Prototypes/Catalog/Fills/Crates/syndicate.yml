@@ -65,6 +65,25 @@
       - id: DoubleEmergencyOxygenTankFilled
       - id: DoubleEmergencyNitrogenTankFilled
 
+#Sunrise-start
+
+- type: entity
+  id: CrateAmmokitBundle
+  suffix: Filled
+  parent: CrateSyndicate
+  name: Syndicate super ammo bundle
+  description: Contains everything except a big gun to go postal.
+  components:
+  - type: StorageFill
+    contents:
+      - id: CaselessAmmoKit
+      - id: SMGAmmoKit
+      - id: ClothingBackpackDuffelSyndicateAmmoIncendiaryFilled
+      - id: ClothingBackpackDuffelSyndicateAmmoUraniumFilled
+      - id: ShotGunKit
+      - id: LMGKit
+
+
 - type: entity
   id: CrateCybersunDarkGygaxBundle
   suffix: Filled
@@ -115,3 +134,5 @@
       - id: ToolboxSyndicateFilled
       - id: PlushieNuke
       - id: WelderIndustrial # Удалить когда ремонт мехов будет дешевле по сварочному топливу
+
+#sunrise-end
