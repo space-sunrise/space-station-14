@@ -506,10 +506,10 @@
       - NukeOpsUplink
 
 - type: listing
-  id: UplinkReinforcementRadioSyndicateCyborgSpider
+  id: UplinkReinforcementRadioSyndicateCyborgSaboteur
   name: uplink-reinforcement-radio-syndicate-cyborg-spider-name
   description: uplink-reinforcement-radio-syndicate-cyborg-spider-name
-  productEntity: ReinforcementRadioSyndicateCyborgSpider
+  productEntity: ReinforcementRadioSyndicateCyborgSaboteur
   icon: { sprite: _Sunrise/Mobs/Silicon/chassis.rsi, state: spider }
   discountCategory: veryRareDiscounts
   discountDownTo:
