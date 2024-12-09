@@ -14,7 +14,7 @@
       - id: Scalpel
       - id: BoneGel
       - id: BoneSetter
-      
+
 - type: entity
   parent: ClothingBackpackDuffelSyndicateMedicalBundle
   id: ClothingBackpackDuffelSyndicateFilledMedical
@@ -126,14 +126,12 @@
   components:
   - type: StorageFill
     contents:
-      - id: MagazinePistolSubMachineGun
+      - id: SMGAmmoKit # Sunrise-edit
+        amount: 1
+      - id: ShotGunKit # Sunrise-edit
         amount: 4
-      - id: MagazineShotgun
-        amount: 4
-      - id: MagazineShotgunSlug # Sunrise-edit
-        amount: 2 # Sunrise-edit
-      - id: MagazineLightRifleBox
-        amount: 2
+      - id: LMGKit # Sunrise-edit
+        amount: 1
 # Sunrise-Start
 - type: entity
   parent: ClothingBackpackDuffelSyndicateAmmo
