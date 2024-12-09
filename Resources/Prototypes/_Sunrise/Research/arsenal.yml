@@ -1,19 +1,6 @@
 # Tier 2
 
 - type: technology
-  id: EnergyGuns
-  name: research-technology-energy-gun #
-  icon:
-    sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun.rsi
-    state: icon
-  discipline: Arsenal
-  tier: 1
-  cost: 7500
-  recipeUnlocks:
-  - WeaponEnergyGun
-  - WeaponEnergyGunMini
-
-- type: technology
   id: ExtendedAmunitions
   name: research-technology-extended-amunitions
   icon:
@@ -38,17 +25,6 @@
   - MagazineBR64Extended
   - MagazineDragunovExtended
 
-- type: technology
-  id: EnergyGunsAdvanced
-  name: research-technology-energy-gun-advance #
-  icon:
-    sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_pistol.rsi
-    state: icon
-  discipline: Arsenal
-  tier: 2
-  cost: 7500
-  recipeUnlocks:
-  - WeaponEnergyGunPistol
 
 - type: technology
   id: CombatEquipment
@@ -73,3 +49,4 @@
   cost: 12500
   recipeUnlocks:
   - WeaponGunLaserCarbineAutomatic
+  - WeaponEnergyGunPistol
