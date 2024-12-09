@@ -46,10 +46,16 @@ namespace Content.Server.RatKing
             if (!TryComp<HungerComponent>(uid, out var hunger))
                 return;
 
+            if (component.Servants.Count >= component.MaxArmyCount)
+            {
+                _popup.PopupEntity(Loc.GetString("rat-king-max-army"), uid, uid);
+                return;
+            }
+
             //make sure the hunger doesn't go into the negatives
             if (hunger.CurrentHunger < component.HungerPerArmyUse)
             {
-                _popup.PopupEntity(Loc.GetString("rat-king-too-hungry"), uid, uid);
+                _popup.PopupEntity(Loc.GetString("rat-king-too-hungry", ("amount", component.MaxArmyCount)), uid, uid);
                 return;
             }
             args.Handled = true;

@@ -99,6 +99,11 @@ public sealed partial class RatKingComponent : Component
         { RatKingOrderType.CheeseEm, "RatKingCommandCheeseEm" },
         { RatKingOrderType.Loose, "RatKingCommandLoose" }
     };
+
+    // Sunrise-start
+    [DataField]
+    public int MaxArmyCount = 12;
+    // Sunrise-end
 }
 
 [Serializable, NetSerializable]
