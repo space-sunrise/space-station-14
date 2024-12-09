@@ -724,6 +724,9 @@
   - EngineeringWinterBoots
 #sunrise-start
   - WhiteShoes
+  - Sunrise-RedShoes
+  - Sunrise-OrangeShoes
+  - Sunrise-YellowShoes
 #Sunrise-end
 - type: loadoutGroup
   id: TechnicalAssistantJumpsuit

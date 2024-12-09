@@ -323,7 +323,7 @@
   - TrinketsEngineeringTFE
   - TrinketsEngineeringTFAT
   - TrinketsEngineeringTFCF
-  - TrinketsEngineeringTT
+#  - TrinketsEngineeringTT
   - TrinketsEngineeringST
 
 - type: loadoutGroup
@@ -378,6 +378,7 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
+  - BrownShoes
   - WorkBoots
   - EngineeringWinterBoots
   - Sunrise-RedShoes
@@ -541,3 +542,13 @@
   - Sunrise-MBandOrange
   - Sunrise-MBandYellow
   - Sunrise-MBandCyan
+
+- type: loadoutGroup
+  id: ChiefEngineerHead
+  name: loadout-group-chief-engineer-head
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - Sunrise-HardhatWhite
+
+

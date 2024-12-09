@@ -12,3 +12,13 @@
   parent: [ClothingHeadBandBase, ClothingMaskBandCyan]
   id: ClothingHeadBandCyan
   name: cyan bandana
+
+- type: entity
+  parent: [ClothingHeadBandBase, ClothingMaskBandWhite]
+  id: ClothingHeadBandWhite
+  name: white bandana
+
+- type: entity
+  parent: [ClothingHeadBandBase, ClothingMaskBandPurple]
+  id: ClothingHeadBandPurple
+  name: purple bandana

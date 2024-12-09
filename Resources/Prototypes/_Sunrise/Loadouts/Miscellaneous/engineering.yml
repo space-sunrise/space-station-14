@@ -115,7 +115,7 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Engineering
-      time: 1080000 # 300hr
+      time: 720000 # 200hr
   storage:
     back:
     - SingularityToy

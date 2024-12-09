@@ -8,6 +8,9 @@
     ClothingBackpackSatchelLeather: 2
     ClothingRandomSpawner: 8
     ClothingHeadHatBeret: 4
+#sunrise-start
+    ClothingHeadBandWhite: 2
+#sunrise-end
     ClothingHeadBandBlack: 2
     ClothingHeadBandBlue: 2
 #sunrise-start
@@ -19,6 +22,9 @@
     ClothingHeadBandOrange: 2
 #sunrise-end
     ClothingHeadBandRed: 2
+#sunrise-start
+    ClothingHeadBandPurple: 2
+#sunrise-end
     ClothingHeadBandSkull: 2
     ClothingHeadHatGreyFlatcap: 3
     ClothingHeadHatBrownFlatcap: 3

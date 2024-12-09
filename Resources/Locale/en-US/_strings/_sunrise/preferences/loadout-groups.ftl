@@ -49,3 +49,13 @@ loadout-group-station-engineer-mask = Инженер, маска
 loadout-group-station-engineer-gloves = Инженер, перчатки
 loadout-group-chief-engineer-gloves = Старший инженер, перчатки
 loadout-group-chief-engineer-mask = Старший инженер, маска
+loadout-group-quartermaster-gloves = Квартирмейстер, перчатки
+loadout-group-quartermaster-mask = Квартирмейстер, маска
+loadout-group-cargo-technician-gloves = Грузчик, перчатки
+loadout-group-cargo-technician-mask = Грузчик, маска
+loadout-group-cargo-technician-neck = Грузчик, шея
+loadout-group-salvage-specialist-gloves = Утилизатор, перчатки
+loadout-group-salvage-specialist-mask = Утилизатор, маска
+loadout-group-salvage-specialist-neck = Утилизатор, шея
+loadout-group-salvage-specialist-head = Утилизатор, голова
+
