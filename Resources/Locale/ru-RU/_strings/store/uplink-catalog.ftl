@@ -63,7 +63,7 @@ uplink-speedloader-magnum-name = Спидлоадер (.45 магнум ББ)
 uplink-speedloader-magnu-desc = Спидлоадер с 6 бронебойными, полностью игнорирующими броню, патронами для револьвера. Совместим с "Питоном".
 uplink-mosin-ammo-name = Коробка патронов (.30 винтовочные)
 uplink-mosin-ammo-desc = Коробка с 60 патронами для резервной винтовки.
-uplink-sniper-ammo-name = Коробка патронов (.60 крупнокалиберные)
+uplink-sniper-ammo-name = Коробка патронов (.60 антиматериальные)
 uplink-sniper-ammo-desc = Коробка с 10 патронами для снайперской винтовки Христов.
 # Utility
 uplink-holopara-kit-name = Набор "Голопаразит"

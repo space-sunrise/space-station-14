@@ -16,7 +16,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: Pulse
+    proto: BulletPulse # Sunrise-Edit
     fireCost: 50
   - type: Appearance
   - type: AmmoCounter
@@ -39,7 +39,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: RedHeavyLaser
+    proto: BulletRedHeavyLaser # Sunrise-Edit
     fireCost: 45
   - type: Appearance
   - type: AmmoCounter
@@ -62,7 +62,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: RedMediumLaser
+    proto: BulletRedMediumLaser # Sunrise-Edit
     fireCost: 35
   - type: Appearance
   - type: AmmoCounter
@@ -85,7 +85,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
+    proto: BulletRedLaser # Sunrise-Edit
     fireCost: 20
   - type: Appearance
   - type: AmmoCounter
@@ -285,7 +285,7 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: BulletSyndiPlasma
+    proto: BulletSyndiPlasmaDouble # Sunrise-Edit
     fireCost: 10
   - type: Appearance
   - type: AmmoCounter

@@ -1,9 +1,9 @@
 ent-MagazineDragunov = магазин винтовки Драгунов
-    .desc = Использует патроны калибра .60 крупнокалиберный.
+    .desc = Использует патроны калибра .60 антиматериальные.
 ent-MagazineBR64 = магазин винтовки BR-64
     .desc = Использует патроны калибра .45 магнум.
 ent-MagazineBauer127 = магазин Bauer-127
-    .desc = Использует патроны калибра .60 крупнокалиберный.
+    .desc = Использует патроны калибра .60 антиматериальные.
 ent-MagazineDragunovExtended = Увеличеный магазин Dragunov
     .desc = { ent-MagazineDragunov.desc }
 ent-MagazineBR64Extended = расширенный магазин BR64

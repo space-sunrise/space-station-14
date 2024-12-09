@@ -67,7 +67,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
+    proto: BulletRedLaser
     fireCost: 100
   - type: BatterySelfRecharger
     autoRecharge: true
@@ -461,7 +461,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: PulseERTBorg
+    proto: BulletPulse
     fireCost: 200
   - type: Battery
     maxCharge: 5000

@@ -17,7 +17,7 @@ uplink-grenade-emp-name = ЭМИ граната
 uplink-grenade-emp-desc = ЭМИ граната. Совместима с "China-Lake".
 uplink-magazine-siar52-name = Магазин ПП (.25 безгильзовый)
 uplink-magazine-siar52-desc = Магазин ПП на 30 патронов. Совместим с SIAR-52.
-uplink-magazine-bauer127-extended-name = расширенный магазин Bauer127 (.60 крупнокалиберные)
+uplink-magazine-bauer127-extended-name = расширенный магазин Bauer127 (.60 антиматериальные)
 uplink-magazine-bauer127-extended-desc = Коробка с 10 патронами для снайперской винтовки Христов.
 uplink-magazine-dl6902-name = Короб-магазин DL6902 (.30 винтовочные)
 uplink-magazine-dl6902-desc = Магазин для Dl6902. Содержит 200 патронов.
@@ -38,10 +38,10 @@ uplink-hardsuit-syndie-commander-name = скафандр Командира Си
 uplink-hardsuit-syndie-commander-desc = Скафандр предназначеный для командиров отрядов Горлекса.
 uplink-hardsuit-syndie-medic-name = скафандр Медика Синдиката
 uplink-hardsuit-syndie-medic-desc = Скафандр предназначеный для боевых врачей отрядов Горлекса.
-uplink-energy-dome-backpack-name = Персональный Энергетический барьер
-uplink-energy-dome-backpack-desc = Генератор малого щита, защищающий владельца от лазеров и пуль, но не позволяющий самому использовать оружие дальнего боя. Использует батареи.
-uplink-energy-dome-personal-name = Наспирнный Энергетический барьер
-uplink-energy-dome-personal-desc = Генератор большого барьера, защищающий владельца от лазеров и пуль, но не позволяющий самому использовать оружие дальнего боя. Использует батареи.
+uplink-energy-dome-personal-name = Поясной Энергетический барьер
+uplink-energy-dome-personal-desc = Генератор малого щита, защищающий владельца от лазеров и пуль, но не позволяющий самому использовать оружие дальнего боя. Использует батареи.
+uplink-energy-dome-backpack-name = Наспинный Энергетический барьер
+uplink-energy-dome-backpack-desc = Генератор большого барьера, защищающий владельца от лазеров и пуль, но не позволяющий самому использовать оружие дальнего боя. Использует батареи.
 
 ## Weapon
 
