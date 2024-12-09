@@ -283,6 +283,36 @@
           True: {state: "pobeda"}
           False: {state: "pobeda-cap"}
 
+#Gegax-Pirate
+- type: entity
+  parent: MechPaintBase
+  suffix: DEBUG, Gygax, Pirate
+  id: MechPaintGygaxPirate
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/gygax.rsi
+    state: pirategax-cap
+    layers:
+      - state: pirategax-cap
+        map: ["enum.OpenableVisuals.Layer"]
+  - type: Item
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/gygax.rsi
+    heldPrefix: pirategax
+  - type: MechPaint
+    used: false
+    whitelist:
+      tags:
+        - Gygax
+    baseState: piratgygax
+    openState: piratgygax-open
+    brokenState: piratgygax-broken
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "pirategax"}
+          False: {state: "pirategax-cap"}
+
 #Gygax-Old
 
 - type: entity
