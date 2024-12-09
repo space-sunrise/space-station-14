@@ -7498,6 +7498,15 @@
     type: Tweak
   id: 526
   time: '2024-12-07T06:18:28.863739+00:00'
+- author: Luna3
+  changes:
+  - message: "\u0424\u0435\u043B\u0438\u043D\u0438\u0434\u0430\u043C \u0443\u0431\u0440\
+      \u0430\u043D \u0443\u0440\u043E\u043D \u043E\u0442 \u0432\u0441\u043F\u044B\u0448\
+      \u0435\u043A."
+    type: Remove
+  id: 527
+  time: '2024-12-07T23:32:39.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/807
 - author: VigersRay
   changes:
   - message: "\u0421\u0442\u0430\u043D\u0446\u0438\u043E\u043D\u043D\u044B\u0435 \u0431\
@@ -7511,5 +7520,5 @@
       \u0430\u0431\u043E\u0440 \u0437\u0430\u043A\u043E\u043D\u043E\u0432 \"\u0420\
       \u043E\u0431\u043E\u043A\u043E\u043F\""
     type: Tweak
-  id: 527
+  id: 528
   time: '2024-12-09T17:27:04.573584+00:00'
