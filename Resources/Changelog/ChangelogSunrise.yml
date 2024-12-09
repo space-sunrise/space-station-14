@@ -7542,3 +7542,13 @@
   id: 529
   time: '2024-12-09T17:29:40.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/814
+- author: KaiserMaus
+  changes:
+  - message: "\u0411\u043E\u0440\u0433\u0438 \u0441\u0442\u0430\u043D\u0446\u0438\u0438\
+      \ \u0442\u0435\u043F\u0435\u0440\u044C \u0438\u043C\u0435\u044E\u0442 \u0431\
+      \u0430\u0442\u0430\u0440\u0435\u0439\u043A\u0438 \u0432\u044B\u0441\u043E\u043A\
+      \u043E\u0439 \u0435\u043C\u043A\u043E\u0441\u0442\u0438."
+    type: Tweak
+  id: 530
+  time: '2024-12-09T17:48:02.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/816
