@@ -706,6 +706,11 @@
   - ChiefEngineerCloak
   - ChiefEngineerMantle
   #sunrise-start
+  - Sunrise-ScarfRed
+  - Sunrise-ScarfOrange
+  - Sunrise-ScarfYellow
+  - Sunrise-ScarfCyan
+  - Sunrise-ScarfLightBlue  
   - Sunrise-TieRed
   #Sunrise-end
 
@@ -715,6 +720,16 @@
   minLimit: 0
   loadouts:
   - ChiefEngineerWintercoat
+  #Sunrise-start
+  - Sunrise-WinterColorrColorWhite
+  - Sunrise-ClothingOuterFlannelWhite
+  - StationEngineerOuterVest
+  - StationEngineerWintercoat
+  - AtmosphericTechnicianWintercoat
+  - Sunrise-WinterColorrColorRed
+  - Sunrise-WinterColorOrange
+  - Sunrise-WinterColorYellow
+  #Sunrise-end
 
 - type: loadoutGroup
   id: ChiefEngineerShoes
@@ -745,6 +760,7 @@
   - Sunrise-BandOrange
   - Sunrise-BandYellow
   - Sunrise-HardhatYellowDark
+  - Sunrise-BandWhite
 #Sunrise-end
   - StationEngineerHardhatYellow
   - StationEngineerHardhatOrange

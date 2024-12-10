@@ -77,21 +77,22 @@
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
-      !type:DepartmentTimeRequirement
-      department: Engineering
-      time: 360000 # 100hr
+      !type:RoleTimeRequirement
+      role: JobChiefEngineer
+      time: 72000 # 20 hour
   storage:
     back:
     - ToyFigurineChiefEngineer
+
 
 - type: loadout
   id: TrinketsEngineeringTFAT
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
-      !type:DepartmentTimeRequirement
-      department: Engineering
-      time: 180000 # 50hr
+      !type:RoleTimeRequirement
+      role: JobAtmosphericTechnician
+      time: 72000 # 20 hour
   storage:
     back:
     - ToyFigurineAtmosTech
@@ -101,9 +102,9 @@
   effects:
   - !type:JobRequirementLoadoutEffect
     requirement:
-      !type:DepartmentTimeRequirement
-      department: Engineering
-      time: 36000 # 10hr
+      !type:RoleTimeRequirement
+      role: JobStationEngineer
+      time: 72000 # 20 hour
   storage:
     back:
     - ToyFigurineEngineer

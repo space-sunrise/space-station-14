@@ -309,6 +309,8 @@
   loadouts:
   - AdjutantCoat
 
+#Engineer
+
 - type: loadoutGroup
   id: TrinketsEngineering
   name: loadout-group-engineering-trinkets
@@ -537,11 +539,12 @@
   maxLimit: 1
   loadouts:
   - EngineerMaskCMG
-  - EngineerMaskCMGA 
+  - EngineerMaskCMGA
   - Sunrise-MBandRed
   - Sunrise-MBandOrange
   - Sunrise-MBandYellow
   - Sunrise-MBandCyan
+  - Sunrise-MBandWhite
 
 - type: loadoutGroup
   id: ChiefEngineerHead
@@ -550,5 +553,19 @@
   maxLimit: 1
   loadouts:
   - Sunrise-HardhatWhite
+  - Sunrise-BandWhite
+  - Sunrise-EngineerHeadBeret
+  - Sunrise-BandRed
+  - Sunrise-BandOrange
+  - Sunrise-BandYellow
+  - Sunrise-BandCyan
+  - StationEngineerHardhatRed
+  - StationEngineerHardhatOrange
+  - StationEngineerHardhatYellow
+  - Sunrise-HardhatYellowDark
+  - Sunrise-HardhatBlue
+  - Sunrise-HatRedsoft
+  - Sunrise-HatOrangesoft
+  - Sunrise-HatYellowsoft
 
 

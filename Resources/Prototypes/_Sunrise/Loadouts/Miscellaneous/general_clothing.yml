@@ -7,6 +7,11 @@
     head: ClothingHeadBandRed
 
 - type: loadout
+  id: Sunrise-BandWhite
+  equipment:
+    head: ClothingHeadBandWhite
+
+- type: loadout
   id: Sunrise-BandOrange
   equipment:
     head: ClothingHeadBandOrange
@@ -42,6 +47,12 @@
     head: ClothingHeadHatBluesoft
 
 #Mask
+
+
+- type: loadout
+  id: Sunrise-MBandWhite
+  equipment:
+    mask: ClothingMaskBandWhite
 
 - type: loadout
   id: Sunrise-MBandRed
@@ -115,6 +126,16 @@
   id: Sunrise-WinterColorrColorRed
   equipment:
     outerClothing: ClothingOuterWinterColorRed
+
+- type: loadout
+  id: Sunrise-WinterColorrColorWhite
+  equipment:
+    outerClothing: ClothingOuterWinterColorWhite
+
+- type: loadout
+  id: Sunrise-ClothingOuterFlannelWhite
+  equipment:
+    outerClothing: ClothingOuterFlannelWhite
 
 #Shoes
 

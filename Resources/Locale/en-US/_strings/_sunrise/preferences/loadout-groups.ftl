@@ -59,3 +59,4 @@ loadout-group-salvage-specialist-mask = Утилизатор, маска
 loadout-group-salvage-specialist-neck = Утилизатор, шея
 loadout-group-salvage-specialist-head = Утилизатор, голова
 
+
