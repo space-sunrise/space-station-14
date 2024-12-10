@@ -47,8 +47,8 @@
     deleteOnCollide: false
     damage:
       types:
-        Blunt: 1
-        Heat: 2
+        Blunt: 2  # Sunrise-edit
+        # Heat: 2  # Sunrise-edit
   - type: IgniteOnCollide
     fireStacks: 1
     count: 10

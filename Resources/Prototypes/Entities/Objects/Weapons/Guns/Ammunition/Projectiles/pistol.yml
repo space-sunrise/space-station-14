@@ -30,7 +30,7 @@
     damage:
       types:
         Blunt: 2
-        Heat: 14
+        # Heat: 14  # Sunrise-edit
 
 - type: entity
   id: BulletPistolUranium
