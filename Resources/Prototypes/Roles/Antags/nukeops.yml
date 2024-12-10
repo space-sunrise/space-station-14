@@ -22,7 +22,7 @@
   - !type:OverallPlaytimeRequirement
     time: 36000 # 10h # Sunrise-RoleTime
   - !type:RoleTimeRequirement
-    role: MedicalDoctor
+    role: JobMedicalDoctor
     time: 18000 # 5h # Sunrise-RoleTime
   - !type:DepartmentTimeRequirement
     department: Security
