@@ -7700,3 +7700,12 @@
     type: Add
   id: 541
   time: '2024-12-09T23:52:11.743515+00:00'
+- author: PuroSlavKing
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0430 \u043D\u043E\u0432\
+      \u0430\u044F \u0442\u0435\u043C\u0430 UI \"\u041E\u043F\u0435\u0440\u0430\u0442\
+      \u0438\u0432\u043D\u0438\u043A\"."
+    type: Add
+  id: 542
+  time: '2024-12-10T02:00:01.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/702
