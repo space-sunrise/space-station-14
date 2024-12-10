@@ -14,7 +14,7 @@
       - id: Scalpel
       - id: BoneGel
       - id: BoneSetter
-      
+
 - type: entity
   parent: ClothingBackpackDuffelSyndicateMedicalBundle
   id: ClothingBackpackDuffelSyndicateFilledMedical
@@ -126,13 +126,47 @@
   components:
   - type: StorageFill
     contents:
-      - id: MagazinePistolSubMachineGun
+      - id: SMGAmmoKit # Sunrise-edit
+        amount: 1
+      - id: ShotGunKit # Sunrise-edit
         amount: 4
-      - id: MagazineShotgun
-        amount: 4
-      - id: MagazineLightRifleBox
-        amount: 2
+      - id: LMGKit # Sunrise-edit
+        amount: 1
+# Sunrise-Start
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateAmmo
+  id: ClothingBackpackDuffelSyndicateAmmoIncendiaryFilled
+  name: Incendiary ammo bundle
+  description: "Reloading! Contains 4 magazines for the C-20r, 4 drums for the Bulldog, and 2 ammo boxes for the L6 SAW. contains Medkit Burn"
+  components:
+  - type: StorageFill
+    contents:
+      - id: SMGIncendiaryAmmoKit
+        amount: 1
+      - id: ShotGunIncendiaryKit
+        amount: 1
+      - id: LMGIncendiaryKit
+        amount: 1
+      - id: MedkitBurnFilled
+        amount: 1
 
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateAmmo
+  id: ClothingBackpackDuffelSyndicateAmmoUraniumFilled
+  name: Uranium ammo bundle
+  description: "Reloading! Contains Uranium Ammo Kit for the C-20r, Uranium Kit for the Bulldog, and Uranium Kit for the L6 SAW. Medkit Radiation"
+  components:
+  - type: StorageFill
+    contents:
+      - id: SMGUraniumAmmoKit
+        amount: 1
+      - id: ShotGunUraniumKit
+        amount: 1
+      - id: LMGUraniumKit
+        amount: 1
+      - id: MedkitRadiationFilled
+        amount: 1
+# Sunrise-End
 - type: entity
   parent: ClothingBackpackDuffelClown
   id: ClothingBackpackDuffelSyndicateCostumeClown

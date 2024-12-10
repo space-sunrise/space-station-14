@@ -30,6 +30,15 @@ public sealed partial class FootprintComponent : Component
     /// </summary>
     [DataField]
     public Entity<SolutionComponent>? SolutionContainer;
+
+    [DataField]
+    public PrintType PrintType;
+}
+
+public enum PrintType
+{
+    DragMark,
+    Foot
 }
 
 /// <summary>
@@ -42,7 +51,7 @@ public sealed partial class PuddleFootprintComponent : Component
     /// Ratio determining how much of puddle's color transfers to footprints
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    public float TransferVolume = 2.5f;
+    public float TransferVolume = 25f;
 
     /// <summary>
     /// Percentage of water content above which footprints won't be created
@@ -106,6 +115,9 @@ public sealed partial class FootprintEmitterComponent : Component
     [ViewVariables(VVAccess.ReadOnly), DataField]
     public EntProtoId<FootprintComponent> FootprintPrototype = "Footstep";
 
+    [ViewVariables(VVAccess.ReadOnly), DataField]
+    public EntProtoId<FootprintComponent> DragMarkPrototype = "DragMark";
+
     /// <summary>
     /// Distance between footprints when walking
     /// </summary>
@@ -118,14 +130,23 @@ public sealed partial class FootprintEmitterComponent : Component
     [DataField]
     public float DragMarkInterval = 0.5f;
 
-    [ViewVariables(VVAccess.ReadOnly), DataField("solution")]
-    public string SolutionName = "foots";
+    [ViewVariables(VVAccess.ReadOnly), DataField("footsSolution")]
+    public string FootsSolutionName = "foots";
 
-    [ViewVariables(VVAccess.ReadOnly), DataField("solutionRef")]
-    public Entity<SolutionComponent>? Solution;
+    [ViewVariables(VVAccess.ReadOnly), DataField("footssolutionRef")]
+    public Entity<SolutionComponent>? FootsSolution;
+
+    [ViewVariables(VVAccess.ReadOnly), DataField("bodySurfaceSolution")]
+    public string BodySurfaceSolutionName = "body_surface";
+
+    [ViewVariables(VVAccess.ReadOnly), DataField("bodySurfacesolutionRef")]
+    public Entity<SolutionComponent>? BodySurfaceSolution;
 
     [ViewVariables(VVAccess.ReadWrite)]
-    public float TransferVolume = 0.1f;
+    public float TransferVolumeFoot = 0.1f;
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float TransferVolumeDragMark = 0.5f;
 
     /// <summary>
     /// Rate at which footprint color fades
