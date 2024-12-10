@@ -8,9 +8,9 @@
   productEntity: WeaponPistolViperBiocode # Sunrise-edit
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 2
+    Telecrystal: 1 # Sunrise-Edit
   cost:
-    Telecrystal: 3
+    Telecrystal: 2 # Sunrise-Edit
   categories:
   - UplinkWeaponry
 
@@ -560,7 +560,7 @@
   name: uplink-pistol-magazine-name
   description: uplink-pistol-magazine-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon }
-  productEntity: MagazinePistol
+  productEntity: MagazinePistolHighCapacity
   cost:
     Telecrystal: 1
   categories:
@@ -591,7 +591,7 @@
   name: uplink-pistol-magazine-caseless-name
   description: uplink-pistol-magazine-caseless-desc
   icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/CaselessRifle/caseless_pistol_mag.rsi, state: red-icon }
-  productEntity: MagazinePistolCaselessRifle
+  productEntity: BaseMagazinePistolCaselessRifleExtended # Sunrise-Edit
   cost:
     Telecrystal: 1
   categories:
@@ -639,9 +639,9 @@
   id: UplinkHristovAmmo
   name: uplink-sniper-ammo-name
   description: uplink-sniper-ammo-desc
-  productEntity: MagazineBoxAntiMateriel
+  productEntity: MagazineBoxAntiMateriel # Sunrise-Edit
   cost:
-    Telecrystal: 2
+    Telecrystal: 1
   categories:
   - UplinkAmmo
 #Sunrise-start
@@ -657,8 +657,11 @@
   name: uplink-ammo-bundle-name
   description: uplink-ammo-bundle-desc
   productEntity: ClothingBackpackDuffelSyndicateAmmoFilled
-  cost:
+  discountCategory: rareDiscounts
+  discountDownTo:
     Telecrystal: 15
+  cost:
+    Telecrystal: 25
   categories:
   - UplinkAmmo
   conditions:
@@ -677,7 +680,7 @@
   productEntity: HypopenBox
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 4
+    Telecrystal: 3
   cost:
     Telecrystal: 6
   categories:

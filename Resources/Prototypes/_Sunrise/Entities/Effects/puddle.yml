@@ -30,13 +30,22 @@
         hard: false
   - type: SolutionContainerManager
     solutions:
-      step: { maxVol: 2 }
+      step: { maxVol: 1 }
   - type: Footprint
+    printType: Foot
   - type: Puddle
     solution: step
   - type: Appearance
   - type: TimedDespawn
     lifetime: 360
-  - type: Tag
-    tags:
-    - HideContextMenu
+
+- type: entity
+  name: drag mark
+  parent: Footstep
+  id: DragMark
+  components:
+  - type: Footprint
+    printType: DragMark
+  - type: SolutionContainerManager
+    solutions:
+      step: { maxVol: 5 }

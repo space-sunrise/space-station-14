@@ -137,6 +137,7 @@
     - prefRoles: [ NukeopsMedic ]
       fallbackRoles: [ Nukeops, NukeopsCommander ]
       spawnerPrototype: SpawnPointNukeopsMedic
+      max: 2
       startingGear: SyndicateOperativeMedicFull
       roleLoadout:
       - RoleSurvivalNukie
@@ -144,7 +145,7 @@
       - type: NukeOperative
       - type: RandomMetadata
         nameSegments:
-        - nukeops-role-agent
+        - nukeops-role-medic
         - SyndicateNamesNormal
       - type: NpcFactionMember
         factions:
@@ -155,7 +156,7 @@
       fallbackRoles: [ NukeopsCommander, NukeopsMedic ]
       spawnerPrototype: SpawnPointNukeopsOperative
       max: 6  # Sunrise-edit
-      playerRatio: 20
+      playerRatio: 15
       startingGear: SyndicateOperativeGearFull
       roleLoadout:
       - RoleSurvivalNukie

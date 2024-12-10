@@ -301,6 +301,21 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+#Sunrise-Start
+- type: entity
+  id: MagazinePistolSubMachineGunIncendiary
+  name: SMG magazine (.35 auto Incendiary)
+  parent: BaseMagazinePistolSubMachineGun
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgePistolIncendiary
+  - type: Sprite
+    layers:
+    - state: practice
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+#Sunrise-End
 
 - type: entity
   id: MagazinePistolSubMachineGunUranium

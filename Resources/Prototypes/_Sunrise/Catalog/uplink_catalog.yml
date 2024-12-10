@@ -33,6 +33,17 @@
 
 # For the Buldog
 - type: listing
+  id: UplinkMagazineShotgunSlug
+  name: uplink-magazine-shotgun-name
+  description: uplink-magazine-shotgun-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: slug }
+  productEntity: MagazineShotgunSlug
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkAmmo
+
+- type: listing
   id: UplinkMagazineShotgun
   name: uplink-magazine-shotgun-name
   description: uplink-magazine-shotgun-desc
@@ -55,7 +66,7 @@
   id: UplinkMagazineShotgunIncendiary
   name: uplink-magazine-shotgun-name
   description: uplink-magazine-shotgun-desc
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: slug }
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: base }
   productEntity: MagazineShotgunIncendiary
   discountCategory: usualDiscounts
   discountDownTo:
@@ -70,6 +81,17 @@
       tags:
       - NukeOpsUplink
 
+- type: listing
+  id: UplinkMagazineShotgunUranium
+  name: uplink-magazine-shotgun-name
+  description: uplink-magazine-shotgun-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: uranium }
+  productEntity: MagazineShotgunUranium
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkAmmo
+
 # For the LMG
 - type: listing
   id: UplinkMagazineLightRifleBox
@@ -79,9 +101,202 @@
   productEntity: MagazineLightRifleBox
   discountCategory: usualDiscounts
   discountDownTo:
+    Telecrystal: 2
+  cost:
     Telecrystal: 4
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+
+- type: listing
+  id: UplinkMagazineLightRifleBoxIncendiary
+  name: uplink-magazine-lmg-name
+  description: uplink-magazine-lmg-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi, state: red }
+  productEntity: MagazineLightRifleBoxIncendiary
+  cost:
+    Telecrystal: 6
+  categories:
+  - UplinkAmmo
+
+- type: listing
+  id: UplinkMagazineLightRifleBoxUranium
+  name: uplink-magazine-lmg-name
+  description: uplink-magazine-lmg-desc
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi, state: uranium }
+  productEntity: MagazineLightRifleBoxUranium
   cost:
     Telecrystal: 8
+  categories:
+  - UplinkAmmo
+
+
+- type: listing
+  id: UplinkSMGAmmoKit
+  name: uplink-ammo-smgkit-name
+  description: uplink-ammo-smgkit-desc
+  productEntity: SMGAmmoKit
+  cost:
+    Telecrystal: 9
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkCaselessAmmoKit
+  name: uplink-ammo-caselesskit-name
+  description: uplink-ammo-caselesskit-desc
+  productEntity: CaselessAmmoKit
+  cost:
+    Telecrystal: 13
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkSMGIncendiaryAmmoKit
+  name: uplink-ammo-smgincendiarykit-name
+  description: uplink-ammo-smgincendiarykit-desc
+  productEntity: SMGIncendiaryAmmoKit
+  cost:
+    Telecrystal: 14
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkSMGUraniumAmmoKit
+  name: uplink-ammo-smguraniumkit-name
+  description: uplink-ammo-smguraniumkit-desc
+  productEntity: SMGUraniumAmmoKit
+  cost:
+    Telecrystal: 18
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkShotGunAmmoKit
+  name: uplink-ammo-shotgunkit-name
+  description: uplink-ammo-shotgunkit-desc
+  productEntity: ShotGunKit
+  cost:
+    Telecrystal: 15
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkShotGunIncendiaryAmmoKit
+  name: uplink-ammo-shotgunincendiarykit-name
+  description: uplink-ammo-shotgunincendiarykit-desc
+  productEntity: ShotGunIncendiaryKit
+  cost:
+    Telecrystal: 16
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkShotGunUraniumAmmoKit
+  name: uplink-ammo-shotgunuraniumkit-name
+  description: uplink-ammo-shotgunuraniumkit-desc
+  productEntity: ShotGunUraniumKit
+  cost:
+    Telecrystal: 18
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkLMGAmmoKit
+  name: uplink-ammo-lmgkit-name
+  description: uplink-ammo-lmgkit-desc
+  productEntity: LMGKit
+  cost:
+    Telecrystal: 10
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkLMGIncendiaryAmmoKit
+  name: uplink-ammo-lmgincendiarykit-name
+  description: uplink-ammo-lmgincendiarykit-desc
+  productEntity: LMGIncendiaryKit
+  cost:
+    Telecrystal: 14
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkLMGUraniumAmmoKit
+  name: uplink-ammo-lmguraniumkit-name
+  description: uplink-ammo-lmguraniumkit-desc
+  productEntity: LMGUraniumKit
+  cost:
+    Telecrystal: 18
+  categories:
+  - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
+  id: UplinkCrateAmmokitBundle
+  name: uplink-ammo-crate-ammokit-bundle-name
+  description: uplink-ammo-crate-ammokit-bundle-desc
+  icon: { sprite: /Textures/Structures/Storage/Crates/syndicate.rsi, state: icon }
+  productEntity: CrateAmmokitBundle
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 90
+  cost:
+    Telecrystal: 120
   categories:
   - UplinkAmmo
   conditions:
@@ -118,9 +333,9 @@
   productEntity: MagazineDl6902
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 6
+    Telecrystal: 3
   cost:
-    Telecrystal: 12
+    Telecrystal: 6
   categories:
   - UplinkAmmo
   conditions:
@@ -139,7 +354,7 @@
   discountDownTo:
     Telecrystal: 3
   cost:
-    Telecrystal: 6
+    Telecrystal: 5
   categories:
   - UplinkAmmo
   conditions:
@@ -436,6 +651,8 @@
   categories:
   - UplinkAllies
   conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
@@ -455,16 +672,18 @@
   categories:
   - UplinkAllies
   conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
       - NukeOpsUplink
 
 - type: listing
-  id: UplinkReinforcementRadioSyndicateCyborgSpider
+  id: UplinkReinforcementRadioSyndicateCyborgSaboteur
   name: uplink-reinforcement-radio-syndicate-cyborg-spider-name
   description: uplink-reinforcement-radio-syndicate-cyborg-spider-name
-  productEntity: ReinforcementRadioSyndicateCyborgSpider
+  productEntity: ReinforcementRadioSyndicateCyborgSaboteur
   icon: { sprite: _Sunrise/Mobs/Silicon/chassis.rsi, state: spider }
   discountCategory: veryRareDiscounts
   discountDownTo:
@@ -474,6 +693,8 @@
   categories:
   - UplinkAllies
   conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
@@ -493,6 +714,8 @@
   categories:
   - UplinkAllies
   conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
@@ -512,6 +735,8 @@
   categories:
   - UplinkAllies
   conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
@@ -576,6 +801,8 @@
   conditions:
   - !type:StoreWhitelistCondition
     blacklist:
+      tags:
+      - NukeOpsUplink
 
 - type: listing
   id: UplinkBouquet

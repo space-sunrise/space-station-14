@@ -5,11 +5,11 @@ using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Inventory;
-using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Content.Shared.GameTicking;
+using Content.Shared.Standing;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.Footprints;
@@ -27,6 +27,9 @@ public sealed class FootprintSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
+    [Dependency] private readonly StandingStateSystem _standingStateSystem = default!;
     #endregion
 
     #region Entity Queries
@@ -36,10 +39,12 @@ public sealed class FootprintSystem : EntitySystem
     #endregion
 
     public static readonly float FootsVolume = 5;
+    public static readonly float BodySurfaceVolume = 15;
 
     // Dictionary to track footprints per tile to prevent overcrowding
     private readonly Dictionary<(EntityUid GridId, Vector2i TilePosition), HashSet<EntityUid>> _tileFootprints = new();
     private const int MaxFootprintsPerTile = 2; // Maximum footprints allowed per tile
+    private const int MaxMarksPerTile = 1;
 
     #region Initialization
     /// <summary>
@@ -61,7 +66,8 @@ public sealed class FootprintSystem : EntitySystem
 
     private void OnFootprintEmitterInit(Entity<FootprintEmitterComponent> entity, ref ComponentInit args)
     {
-        _solutionSystem.EnsureSolution(entity.Owner, entity.Comp.SolutionName, out _, FixedPoint2.New(FootsVolume));
+        _solutionSystem.EnsureSolution(entity.Owner, entity.Comp.FootsSolutionName, out _, FixedPoint2.New(FootsVolume));
+        _solutionSystem.EnsureSolution(entity.Owner, entity.Comp.BodySurfaceSolutionName, out _, FixedPoint2.New(BodySurfaceVolume));
     }
 
     /// <summary>
@@ -82,44 +88,79 @@ public sealed class FootprintSystem : EntitySystem
     {
         // Check if footprints should be created
         if (!_transformQuery.TryComp(uid, out var transform)
-            || !_mobStateQuery.TryComp(uid, out var mobState)
             || !_mapManager.TryFindGridAt(_transformSystem.GetMapCoordinates((uid, transform)), out var gridUid, out var grid)
-            || !TryComp<SolutionContainerManagerComponent>(uid, out var container)
-            || !_solutionSystem.ResolveSolution((uid, container), emitter.SolutionName, ref emitter.Solution, out var emitterSolution))
+            || !TryComp<SolutionContainerManagerComponent>(uid, out var container))
             return;
 
-        if (emitterSolution.Volume <= 0)
-            return;
+        var stand = !_standingStateSystem.IsDown(uid);
 
-        var isBeingDragged =
-            mobState.CurrentThresholdState is MobState.Critical or MobState.Dead;
+        var solCont = (uid, container);
+        Solution solution;
+        Entity<SolutionComponent> solComp;
+
+        if (stand)
+        {
+            if (!_solutionSystem.ResolveSolution(solCont, emitter.FootsSolutionName, ref emitter.FootsSolution, out var footsSolution))
+                return;
+
+            solution = footsSolution;
+            solComp = emitter.FootsSolution.Value;
+        }
+        else
+        {
+            if (!_solutionSystem.ResolveSolution(solCont, emitter.BodySurfaceSolutionName, ref emitter.BodySurfaceSolution, out var bodySurfaceSolution))
+                return;
+
+            solution = bodySurfaceSolution;
+            solComp = emitter.BodySurfaceSolution.Value;
+        }
+
+        if (solution.Volume <= 0)
+            return;
 
         var distanceMoved = (transform.LocalPosition - emitter.LastStepPosition).Length();
-        var requiredDistance = isBeingDragged ? emitter.DragMarkInterval : emitter.WalkStepInterval;
+        var requiredDistance = stand ? emitter.WalkStepInterval : emitter.DragMarkInterval;
 
         if (!(distanceMoved > requiredDistance))
             return;
 
-        var tilePos = grid.TileIndicesFor(transform.Coordinates);
-        var tileKey = (gridUid, tilePos);
+        var tileRef = _mapSystem.GetTileRef((gridUid, grid), transform.Coordinates);
 
-        if (_tileFootprints.TryGetValue(tileKey, out var existingPrints) &&
-            existingPrints.Count >= MaxFootprintsPerTile)
-            return;
+
+        var footPrints = new HashSet<Entity<FootprintComponent>>();
+        _lookup.GetLocalEntitiesIntersecting(gridUid, tileRef.GridIndices, footPrints);
+        var dragMarkCount = 0;
+        var footPrintCount = 0;
+        foreach (var footPrint in footPrints)
+        {
+            switch (footPrint.Comp.PrintType)
+            {
+                case PrintType.Foot:
+                    footPrintCount += 1;
+                    break;
+                case PrintType.DragMark:
+                    dragMarkCount += 1;
+                    break;
+            }
+        }
+        if (stand)
+        {
+            if (footPrintCount >= MaxFootprintsPerTile)
+                return;
+        }
+        else
+        {
+            if (dragMarkCount >= MaxMarksPerTile)
+                return;
+        }
 
         emitter.IsRightStep = !emitter.IsRightStep;
 
         // Create new footprint entity
-        var footprintEntity = SpawnFootprint(gridUid, emitter, emitterSolution, uid, transform, isBeingDragged);
-
-        // Add the new footprint to tile tracking
-        if (!_tileFootprints.ContainsKey(tileKey))
-            _tileFootprints[tileKey] = new HashSet<EntityUid>();
-
-        _tileFootprints[tileKey].Add(footprintEntity);
+        var footprintEntity = SpawnFootprint(gridUid, emitter, solution, uid, transform, stand);
 
         // Update footprint and emitter state
-        UpdateFootprint(footprintEntity, (uid, emitter), emitterSolution, emitter.Solution.Value, transform, isBeingDragged);
+        UpdateFootprint(footprintEntity, (uid, emitter), solComp, transform, stand);
 
         // Update emitter state.
         UpdateEmitterState(emitter, transform);
@@ -142,10 +183,10 @@ public sealed class FootprintSystem : EntitySystem
         Solution emitterSolution,
         EntityUid emitterOwner,
         TransformComponent transform,
-        bool isDragging)
+        bool stand)
     {
-        var coords = CalculateFootprintPosition(gridUid, emitter, transform, isDragging);
-        var entity = Spawn(emitter.FootprintPrototype, coords);
+        var coords = CalculateFootprintPosition(gridUid, emitter, transform, stand);
+        var entity = Spawn(stand ? emitter.FootprintPrototype : emitter.DragMarkPrototype, coords);
 
         var footprint = EnsureComp<FootprintComponent>(entity);
         footprint.CreatorEntity = emitterOwner;
@@ -155,10 +196,11 @@ public sealed class FootprintSystem : EntitySystem
         {
             _appearanceSystem.SetData(entity,
                 FootprintVisualParameter.VisualState,
-                DetermineVisualState(emitterOwner, isDragging),
+                DetermineVisualState(emitterOwner, stand),
                 appearance);
 
-            var alpha = Math.Clamp(emitterSolution.Volume.Float() / emitterSolution.MaxVolume.Float(), 0f, 1f);
+            var rawAlpha = emitterSolution.Volume.Float() / emitterSolution.MaxVolume.Float();
+            var alpha = Math.Clamp((0.8f * rawAlpha) + 0.3f, 0f, 1f);
 
             _appearanceSystem.SetData(entity,
                 FootprintVisualParameter.TrackColor,
@@ -175,19 +217,18 @@ public sealed class FootprintSystem : EntitySystem
     private void UpdateFootprint(
         EntityUid footprintEntity,
         Entity<FootprintEmitterComponent> emitter,
-        Solution emitterSolution,
         Entity<SolutionComponent> emitterEntSolution,
         TransformComponent transform,
-        bool isDragging)
+        bool stand)
     {
         if (!_transformQuery.TryComp(footprintEntity, out var footprintTransform))
             return;
 
-        footprintTransform.LocalRotation = isDragging
-            ? (transform.LocalPosition - emitter.Comp.LastStepPosition).ToAngle() + Angle.FromDegrees(-90f)
-            : transform.LocalRotation + Angle.FromDegrees(180f);
+        footprintTransform.LocalRotation = stand
+            ? transform.LocalRotation + Angle.FromDegrees(180f)
+            : (transform.LocalPosition - emitter.Comp.LastStepPosition).ToAngle() + Angle.FromDegrees(-90f);
 
-        TransferReagents(footprintEntity, emitter, emitterEntSolution);
+        TransferReagents(footprintEntity, emitter, emitterEntSolution, stand);
     }
     #endregion
 
@@ -203,7 +244,7 @@ public sealed class FootprintSystem : EntitySystem
     /// <summary>
     /// Transfers reagents from emitter to footprint if applicable.
     /// </summary>
-    private void TransferReagents(EntityUid footprintEntity, Entity<FootprintEmitterComponent> emitter, Entity<SolutionComponent> emitterSolution)
+    private void TransferReagents(EntityUid footprintEntity, Entity<FootprintEmitterComponent> emitter, Entity<SolutionComponent> emitterSolution, bool stand)
     {
         if (!TryComp<SolutionContainerManagerComponent>(footprintEntity, out var container)
             || !TryComp<FootprintComponent>(footprintEntity, out var footprint)
@@ -213,7 +254,7 @@ public sealed class FootprintSystem : EntitySystem
                 out var solution))
             return;
 
-        var splitSolution = _solutionSystem.SplitSolution(emitterSolution, emitter.Comp.TransferVolume);
+        var splitSolution = _solutionSystem.SplitSolution(emitterSolution, stand ? emitter.Comp.TransferVolumeFoot : emitter.Comp.TransferVolumeDragMark);
 
         _solutionSystem.AddSolution(footprint.SolutionContainer.Value, splitSolution);
     }
@@ -227,9 +268,9 @@ public sealed class FootprintSystem : EntitySystem
         EntityUid uid,
         FootprintEmitterComponent emitter,
         TransformComponent transform,
-        bool isDragging)
+        bool stand)
     {
-        if (isDragging)
+        if (!stand)
             return new EntityCoordinates(uid, transform.LocalPosition);
 
         var offset = emitter.IsRightStep
@@ -238,14 +279,15 @@ public sealed class FootprintSystem : EntitySystem
             : new Angle(transform.LocalRotation).RotateVec(emitter.PlacementOffset);
 
         return new EntityCoordinates(uid, transform.LocalPosition + offset);
+
     }
 
     /// <summary>
     /// Determines the visual state for a footprint based on entity equipment.
     /// </summary>
-    private FootprintVisualType DetermineVisualState(EntityUid uid, bool isDragging)
+    private FootprintVisualType DetermineVisualState(EntityUid uid, bool stand)
     {
-        if (isDragging)
+        if (!stand)
             return FootprintVisualType.DragMark;
 
         var state = FootprintVisualType.BareFootprint;
