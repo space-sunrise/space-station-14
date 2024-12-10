@@ -564,3 +564,12 @@
   provider: sunrise
   roundStart: true # перетренировать
   sponsorOnly: false
+
+- type: ttsVoice
+  id: Shit
+  name: shitttttttttttt
+  sex: Male
+  speaker: shit
+  provider: sunrise
+  roundStart: true # перетренировать
+  sponsorOnly: false
