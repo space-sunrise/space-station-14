@@ -232,9 +232,12 @@
   abstract: true
   components:
   - type: SolutionContainerManager
+    # Sunrise-Edit
     solutions:
       foots:
         maxVol: 5
+      body_surface:
+        maxVol: 15
   - type: InjectableSolution
     solution: chemicals
   - type: Bloodstream
