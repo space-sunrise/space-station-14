@@ -580,7 +580,7 @@
   conditions:
   - !type:StoreWhitelistCondition
     blacklist:
-     tags:
+      tags:
       - NukeOpsUplink
 
 - type: listing
