@@ -287,6 +287,11 @@
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - Ripley
   - type: MobThresholds
     currentThresholdState : Alive
     thresholds:
