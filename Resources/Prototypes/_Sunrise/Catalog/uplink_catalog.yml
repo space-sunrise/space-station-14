@@ -613,7 +613,7 @@
   - UplinkMechs
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 2
+    stock: 1
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
