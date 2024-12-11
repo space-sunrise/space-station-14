@@ -9,10 +9,10 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_pulse
   - type: Gun
-    fireRate: 1.4
-    selectedMode: SemiAuto
+    fireRate: 1.8
+    selectedMode: FullAuto
     availableModes:
-      - SemiAuto
+      - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
   - type: HitscanBatteryAmmoProvider
@@ -78,7 +78,7 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_solaris
   - type: Gun
-    fireRate: 1
+    fireRate: 2
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
@@ -101,7 +101,7 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_firedart
   - type: Gun
-    fireRate: 2.2
+    fireRate: 2.5
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
@@ -124,9 +124,9 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_wholegen
   - type: Gun
-    projectileSpeed: 6
-    projectileSpeedModified: 6
-    fireRate: 0.8
+    projectileSpeed: 10
+    projectileSpeedModified: 10
+    fireRate: 1
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
@@ -151,7 +151,7 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_disabler
   - type: Gun
-    fireRate: 1
+    fireRate: 1.2
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
@@ -197,7 +197,7 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_scatter
   - type: Gun
-    fireRate: 1
+    fireRate: 1.5
     selectedMode: FullAuto
     availableModes:
       - FullAuto
@@ -245,7 +245,7 @@
   - type: Gun
     fireRate: 5
     shotsPerBurst: 3
-    burstCooldown: 0.8
+    burstCooldown: 0.6
     selectedMode: Burst
     availableModes:
       - Burst
@@ -299,7 +299,7 @@
   - type: Gun
     fireRate: 5
     shotsPerBurst: 3
-    burstCooldown: 0.8
+    burstCooldown: 0.6
     selectedMode: Burst
     availableModes:
       - Burst
@@ -324,7 +324,7 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_xray
   - type: Gun
-    fireRate: 1
+    fireRate: 1.5
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
@@ -370,7 +370,7 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_missilerack_six
   - type: Gun
-    fireRate: 0.8
+    fireRate: 0.4
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
@@ -382,8 +382,8 @@
   - type: Appearance
   - type: AmmoCounter
   - type: Battery
-    maxCharge: 220
-    startingCharge: 220
+    maxCharge: 500
+    startingCharge: 500
 
 - type: entity
   id: WeaponMechCombatFlashbangLauncher

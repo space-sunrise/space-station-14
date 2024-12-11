@@ -833,6 +833,8 @@
   categories:
   - UplinkMechs
   conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
@@ -852,6 +854,8 @@
   categories:
   - UplinkMechs
   conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
@@ -871,6 +875,8 @@
   categories:
   - UplinkMechs
   conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
@@ -886,9 +892,9 @@
   productEntity: WeaponMechCombatImmolationGun
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 3
+    Telecrystal: 5
   cost:
-    Telecrystal: 6
+    Telecrystal: 7
   categories:
   - UplinkMechs
   conditions:
@@ -964,7 +970,7 @@
   discountDownTo:
     Telecrystal: 3
   cost:
-    Telecrystal: 6
+    Telecrystal: 5
   categories:
   - UplinkMechs
   conditions:
@@ -1000,9 +1006,9 @@
   productEntity: WeaponMechCombatAMLG90
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 5
+    Telecrystal: 4
   cost:
-    Telecrystal: 10
+    Telecrystal: 8
   categories:
   - UplinkMechs
   conditions:
@@ -1019,9 +1025,9 @@
   productEntity: WeaponMechCombatVindictor
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 13
+    Telecrystal: 15
   cost:
-    Telecrystal: 26
+    Telecrystal: 28
   categories:
   - UplinkMechs
   conditions:
