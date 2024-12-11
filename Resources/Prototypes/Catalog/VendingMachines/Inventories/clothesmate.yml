@@ -79,6 +79,9 @@
     ClothingShoesColorRed: 2
     ClothingShoesColorPurple: 2
     ClothingHeadHatGreysoft: 8
+#Sunrise-start
+    ClothingHeadHatBrownsoft: 2
+#Sunrise-end
     ClothingHeadHatMimesoft: 3
     ClothingHeadHatBluesoft: 2
     ClothingHeadHatYellowsoft: 2

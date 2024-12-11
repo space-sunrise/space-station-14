@@ -268,12 +268,21 @@
   - GroupTankHarness
   - QuartermasterHead
   - QuartermasterNeck
+  # Sunrise-start
+  - SunriseQuartermasterMask
+  # Sunrise-end
   - QuartermasterJumpsuit
   - CargoTechnicianBackpack
   - QuartermasterOuterClothing
+  # Sunrise-start
+  - SunriseQuartermasterGloves
+  # Sunrise-end
   - QuartermasterShoes
   - Glasses
   - Survival
+  # Sunrise-start
+  - TrinketsCargo
+  # Sunrise-end
   - Trinkets
   - GroupSpeciesBreathTool
   # Sunrise-start
@@ -287,10 +296,20 @@
   groups:
   - GroupTankHarness
   - CargoTechnicianHead
+  # Sunrise-start
+  - SunriseCargoTechNeck
+  - SunriseCargoTechMask
+  # Sunrise-end
   - CargoTechnicianJumpsuit
   - CargoTechnicianBackpack
   - CargoTechnicianOuterClothing
+  # Sunrise-start
+  - SunriseCargoTechGloves
+  # Sunrise-end
   - CargoTechnicianShoes
+  # Sunrise-start
+  - TrinketsCargo
+  # Sunrise-end
   - Glasses
   - Survival
   - Trinkets
@@ -305,9 +324,20 @@
   id: JobSalvageSpecialist
   groups:
   - GroupTankHarness
+  # Sunrise-start
+  - SunriseSalvageHead
+  - SunriseSalvageNeck
+  - SunriseSalvageMask
+  # Sunrise-end
   - SalvageSpecialistBackpack
   - SalvageSpecialistOuterClothing
+  # Sunrise-start
+  - SunriseSalvageGloves
+  # Sunrise-end
   - SalvageSpecialistShoes
+  # Sunrise-start
+  - TrinketsCargo
+  # Sunrise-end
   - Glasses
   - Survival
   - Trinkets

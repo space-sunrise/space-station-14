@@ -58,3 +58,4 @@ loadout-group-salvage-specialist-gloves = Утилизатор, перчатки
 loadout-group-salvage-specialist-mask = Утилизатор, маска
 loadout-group-salvage-specialist-neck = Утилизатор, шея
 loadout-group-salvage-specialist-head = Утилизатор, голова
+loadout-group-cargo-trinkets = Безделушки СНБ

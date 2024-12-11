@@ -830,9 +830,13 @@
   - type: EmitSoundOnLand
     sound:
       path: /Audio/_Sunrise/Tovarish.ogg
+  - type: UseDelay
+    delay: 2.0
   - type: EmitSoundOnActivate
     sound:
       path: /Audio/_Sunrise/not_for_long_weh.ogg
+      params:
+        maxDistance: 10
 
 - type: entity
   parent:

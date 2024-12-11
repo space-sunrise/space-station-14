@@ -315,7 +315,7 @@
   id: TrinketsEngineering
   name: loadout-group-engineering-trinkets
   minLimit: 0
-  maxLimit: 3
+  maxLimit: 2
   loadouts:
   - TrinketsEngineeringAAM
   - TrinketsEngineeringTS
@@ -568,4 +568,129 @@
   - Sunrise-HatOrangesoft
   - Sunrise-HatYellowsoft
 
+#Cargo
 
+- type: loadoutGroup
+  id: SunriseQuartermasterGloves
+  name: loadout-group-quartermaster-gloves
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - OrangeGloves
+  - Sunrise-LightBrownGloves
+  - Sunrise-BrownGloves
+  - PurpleGloves
+
+- type: loadoutGroup
+  id: SunriseCargoTechGloves
+  name: loadout-group-cargo-technician-gloves
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - OrangeGloves
+  - Sunrise-LightBrownGloves
+  - Sunrise-BrownGloves
+
+- type: loadoutGroup
+  id: SunriseSalvageGloves
+  name: loadout-group-salvage-specialist-gloves
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - OrangeGloves
+  - Sunrise-LightBrownGloves
+  - Sunrise-BrownGloves
+  - PurpleGloves
+
+- type: loadoutGroup
+  id: SunriseQuartermasterMask
+  name: loadout-group-quartermaster-mask
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - Sunrise-MaskGasExplorer
+  - Sunrise-MBandOrange
+  - Sunrise-MBandYellow
+  - Sunrise-MBandPurple
+
+- type: loadoutGroup
+  id: SunriseCargoTechMask
+  name: loadout-group-cargo-technician-mask
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - Sunrise-MBandOrange
+  - Sunrise-MBandYellow
+
+- type: loadoutGroup
+  id: SunriseSalvageMask
+  name: loadout-group-salvage-specialist-mask
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - Sunrise-MaskGasExplorer
+  - Sunrise-MBandOrange
+  - Sunrise-MBandYellow
+  - Sunrise-MBandPurple
+
+- type: loadoutGroup
+  id: SunriseCargoTechNeck
+  name: loadout-group-cargo-technician-neck
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - Sunrise-ScarfOrange
+  - Sunrise-ScarfYellow
+  - Sunrise-ScarfBrown
+
+- type: loadoutGroup
+  id: SunriseSalvageNeck
+  name: loadout-group-salvage-specialist-neck
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - Sunrise-ScarfOrange
+  - Sunrise-ScarfYellow
+  - Sunrise-ScarfBrown
+  - Sunrise-ScarfPurple
+  - Sunrise-BedsheetCosmos
+
+- type: loadoutGroup
+  id: SunriseSalvageHead
+  name: loadout-group-salvage-specialist-head
+  minLimit: 0
+  maxLimit: 1
+  loadouts:
+  - Sunrise-BandOrange
+  - Sunrise-BandYellow
+  - Sunrise-BandBrown
+  - Sunrise-BandPurple
+  - StationEngineerHardhatOrange
+  - StationEngineerHardhatYellow
+  - Sunrise-HardhatYellowDark
+  - Sunrise-HatOrangesoft
+  - Sunrise-HatYellowsoft
+  - Sunrise-HatBrownsoft
+  - Sunrise-BrownFlatcap
+  - Sunrise-FedoraBrown
+  - Sunrise-CowboyBrown
+  - Sunrise-CatBrown
+  - Sunrise-HelmetCosmonaut
+
+- type: loadoutGroup
+  id: TrinketsCargo
+  name: loadout-group-cargo-trinkets
+  minLimit: 0
+  maxLimit: 2
+  loadouts:
+  - TrinketsCargoGPS
+  - TrinketsCargoFL
+  - TrinketsCargoF
+  - TrinketsCargoLB
+  - TrinketsCargoRH
+  - TrinketsCargoT
+  - TrinketsCargoS
+  - TrinketsCargoSD
+  - TrinketsCargoQueen
+  - TrinketsCargoQ
+  - TrinketsCargoLGW
