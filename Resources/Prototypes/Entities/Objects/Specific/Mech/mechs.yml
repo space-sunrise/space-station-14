@@ -201,7 +201,7 @@
     baseState: ripley
     openState: ripley-open
     brokenState: ripley-broken
-    mechToPilotDamageMultiplier: 0.70
+    mechToPilotDamageMultiplier: 0.50
     pilotWhitelist:
       components:
         - HumanoidAppearance
@@ -212,8 +212,8 @@
       types:
         Blunt: 14 #intentionally shit so people realize that going into combat with the ripley is usually a bad idea.
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.25
-    baseSprintSpeed: 3.6
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 3.8
   - type: Reflect
     reflectProb: 0.15
     spread: 180
@@ -229,7 +229,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      250: Critical
+      320: Critical
     showOverlays: false
     allowRevives: true
 
@@ -265,7 +265,7 @@
     baseState: ripleymkii
     openState: ripleymkii-open
     brokenState: ripleymkii-broken
-    mechToPilotDamageMultiplier: 0.4
+    mechToPilotDamageMultiplier: 0.35
     airtight: true
     pilotWhitelist:
       components:
@@ -282,16 +282,21 @@
   - type: Damageable
     damageModifierSet: MediumArmorNT
   - type: Reflect
-    reflectProb: 0.25
+    reflectProb: 0.20
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - Ripley
   - type: MobThresholds
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      360: Critical
+      400: Critical
     showOverlays: false
     allowRevives: true
 
@@ -344,7 +349,7 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.25
+    reflectProb: 0.15
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -417,7 +422,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      250: Critical
+      350: Critical
     showOverlays: false
     allowRevives: true
 
@@ -624,9 +629,9 @@
         Structural: 180
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 2.6
+    baseSprintSpeed: 3
   - type: Reflect
-    reflectProb: 0.25
+    reflectProb: 0.20
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -635,7 +640,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      400: Critical
+      450: Critical
     showOverlays: false
     allowRevives: true
   - type: Tag
@@ -696,7 +701,7 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.30
+    reflectProb: 0.25
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -705,7 +710,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      600: Critical
+      650: Critical
     showOverlays: false
     allowRevives: true
   - type: Tag
@@ -834,7 +839,7 @@
     baseWalkSpeed: 2.4
     baseSprintSpeed: 3
   - type: Reflect
-    reflectProb: 0.30
+    reflectProb: 0.20
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -905,7 +910,7 @@
     damage:
       types:
         Blunt: 40
-        Structural: 250
+        Structural: 350
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
     baseSprintSpeed: 1.5
@@ -914,7 +919,7 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.35
+    reflectProb: 0.25
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -986,7 +991,7 @@
         Structural: 460
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.2
-    baseSprintSpeed: 3.7
+    baseSprintSpeed: 3
   - type: Damageable
     damageModifierSet: HeavyArmorNT
   - type: CanMoveInAir
@@ -1064,7 +1069,7 @@
     damage:
       types:
         Blunt: 35
-        Structural: 250
+        Structural: 280
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.2
     baseSprintSpeed: 3.7
@@ -1073,7 +1078,7 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.30
+    reflectProb: 0.25
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -1225,7 +1230,7 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.40
+    reflectProb: 0.30
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
