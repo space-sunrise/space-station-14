@@ -54,6 +54,9 @@
     },
     {
       "name": "blue_laser"
+    },
+    {
+      "name": "empty"
     }
   ]
 }

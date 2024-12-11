@@ -111,8 +111,7 @@ public sealed partial class GunSystem : SharedGunSystem
 
     private void OnHitscan(HitscanEvent ev)
     {
-        const float tracerInterval = 0.01f;
-        var activeTracers = new Dictionary<int, EntityUid>();
+        const double tracerInterval = 0.01f;
 
         foreach (var a in ev.Sprites)
         {
@@ -137,13 +136,7 @@ public sealed partial class GunSystem : SharedGunSystem
 
                     Timer.Spawn(TimeSpan.FromSeconds(delay), () =>
                     {
-                        if (activeTracers.TryGetValue(localIndex, out var existingTracer) && EntityManager.EntityExists(existingTracer))
-                        {
-                            EntityManager.DeleteEntity(existingTracer);
-                        }
-
-                        var tracerEntity = CreateTracerEffect(stepCoords, a.angle, rsi);
-                        activeTracers[localIndex] = tracerEntity;
+                        CreateTracerEffect(stepCoords, a.angle, rsi);
                     });
 
                     stepIndex++;
@@ -179,6 +172,7 @@ public sealed partial class GunSystem : SharedGunSystem
                     KeyFrames =
                     {
                         new AnimationTrackSpriteFlick.KeyFrame(rsi.RsiState, 0f),
+                        new AnimationTrackSpriteFlick.KeyFrame("empty", 0.02f),
                     }
                 }
             }
