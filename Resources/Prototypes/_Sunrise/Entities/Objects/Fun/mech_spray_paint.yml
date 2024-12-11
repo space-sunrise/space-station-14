@@ -283,7 +283,67 @@
           True: {state: "pobeda"}
           False: {state: "pobeda-cap"}
 
-#Gegax-Pirate
+# Gygax-Black
+- type: entity
+  parent: MechPaintBase
+  suffix: DEBUG, Gygax, Contraband
+  id: MechPaintGygaxBlack
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/gygax.rsi
+    state: syndiegax-cap
+    layers:
+      - state: syndiegax-cap
+        map: ["enum.OpenableVisuals.Layer"]
+  - type: Item
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/gygax.rsi
+    heldPrefix: syndiegax
+  - type: MechPaint
+    used: false
+    whitelist:
+      tags:
+        - Gygax
+    baseState: gygax_black
+    openState: gygax_black-open
+    brokenState: gygax_black-broken
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "syndiegax"}
+          False: {state: "syndiegax-cap"}
+
+# Gygax-White
+- type: entity
+  parent: MechPaintBase
+  suffix: DEBUG, Gygax, Legal
+  id: MechPaintGygaxWhite
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/gygax.rsi
+    state: gygax-white-cap
+    layers:
+      - state: gygax-white-cap
+        map: ["enum.OpenableVisuals.Layer"]
+  - type: Item
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/gygax.rsi
+    heldPrefix: gygax-white
+  - type: MechPaint
+    used: false
+    whitelist:
+      tags:
+        - Gygax
+    baseState: gygax_white
+    openState: gygax_white-open
+    brokenState: gygax_white-broken
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "gygax-white"}
+          False: {state: "gygax-white-cap"}
+
+#Gygax-Pirate
 - type: entity
   parent: MechPaintBase
   suffix: DEBUG, Gygax, Pirate
