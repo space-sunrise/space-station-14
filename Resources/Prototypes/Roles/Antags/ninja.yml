@@ -21,7 +21,7 @@
     id: AgentIDCard
     ears: ClothingHeadsetGrey
     pocket1: SpiderCharge
-    pocket2: PinpointerStation
+    pocket2: HandHeldMassScanner
     belt: EnergyKatana
   inhand:
     - JetpackBlackFilled
