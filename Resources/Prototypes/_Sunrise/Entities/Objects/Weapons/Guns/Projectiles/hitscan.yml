@@ -583,7 +583,8 @@
   id: BulletDisabler
   damage:
     types:
-      Heat: 5
+      Shock: 5
+  collisionMask: BulletImpassable
   staminaDamage: 30
   reflective: Energy
   bulletTracer:
@@ -594,7 +595,8 @@
   id: BulletDisablerPractice
   damage:
     types:
-      Heat: 1
+      Shock: 1
+  collisionMask: BulletImpassable
   staminaDamage: 1
   reflective: Energy
   bulletTracer:
@@ -605,7 +607,8 @@
   id: BulletDisablerSmg
   damage:
     types:
-      Heat: 2
+      Shock: 2
+  collisionMask: BulletImpassable
   staminaDamage: 15
   reflective: Energy
   bulletTracer:
@@ -652,8 +655,9 @@
   id: BulletDisablerSmgSpread
   damage:
     types:
-      Heat: 2
+      Shock: 2
   staminaDamage: 15
+  collisionMask: BulletImpassable
   reflective: Energy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
