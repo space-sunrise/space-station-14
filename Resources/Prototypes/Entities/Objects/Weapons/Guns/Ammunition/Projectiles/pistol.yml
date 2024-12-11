@@ -29,8 +29,7 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 4 #Sunrise-Start
-        Piercing: 10
+        Blunt: 8 #Sunrise-Start
         Heat: 2 #Sunrise-End
 
 - type: entity
