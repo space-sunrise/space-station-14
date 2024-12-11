@@ -29,8 +29,9 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 2
-        Heat: 15
+        Blunt: 7 #Sunrise-Start
+        Piercing: 10
+        Heat: 2 #Sunrise-End
 
 - type: entity
   id: BulletRifleUranium

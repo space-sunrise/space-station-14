@@ -116,7 +116,7 @@
   - type: HitScanCartridgeAmmo
     proto: PelletShotgunIncendiarySpread
   - type: IgniteOnAmmoHit
-    fireStacks: 0.25
+    fireStacks: 0.45
   - type: SpentAmmoVisuals
     state: "incendiary"
 
