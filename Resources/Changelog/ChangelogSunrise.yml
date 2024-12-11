@@ -7826,3 +7826,11 @@
   id: 550
   time: '2024-12-11T15:55:49.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/825
+- author: banumbas
+  changes:
+  - message: "\u0418\u0437\u043C\u0435\u043D\u0435\u043D \u0440\u0430\u0437\u043C\u0435\
+      \u0440 AKM-\u0423"
+    type: Tweak
+  id: 551
+  time: '2024-12-11T21:11:52.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/827
