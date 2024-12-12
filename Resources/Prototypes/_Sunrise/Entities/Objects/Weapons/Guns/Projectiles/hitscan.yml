@@ -136,7 +136,8 @@
   id: BulletMagnum
   damage:
     types:
-      Blunt: 35
+      Piercing: 27
+      Blunt: 8
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
