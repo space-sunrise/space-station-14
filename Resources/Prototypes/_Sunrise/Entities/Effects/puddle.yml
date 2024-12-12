@@ -35,6 +35,8 @@
     printType: Foot
   - type: Puddle
     solution: step
+    canSlow: false
+    canSlip: false
   - type: Appearance
   - type: TimedDespawn
     lifetime: 360

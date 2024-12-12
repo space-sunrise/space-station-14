@@ -29,8 +29,9 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 3
-        Heat: 32
+        Blunt: 10 #Sunrise-Start
+        Piercing: 10
+        Heat: 5 #Sunrise-End
 
 - type: entity
   id: BulletMagnumAP

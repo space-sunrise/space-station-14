@@ -61,7 +61,7 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
     private float _loadRange = DefaultLoadRange;
 
     // Sunrise
-    private int _maxChunks = 100;
+    private int _maxChunks = 1000;
     // Sunrise
 
     private List<(Vector2i, Tile)> _tiles = new();
