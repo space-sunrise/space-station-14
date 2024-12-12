@@ -39,7 +39,7 @@ public sealed partial class NukeopsRuleComponent : Component
     /// Time to emergency shuttle to arrive if RoundEndBehavior is ShuttleCall.
     /// </summary>
     [DataField]
-    public TimeSpan EvacShuttleTime = TimeSpan.FromMinutes(3);
+    public TimeSpan EvacShuttleTime = TimeSpan.FromMinutes(1);
 
     /// <summary>
     /// Whether or not nukie left their outpost
@@ -63,7 +63,7 @@ public sealed partial class NukeopsRuleComponent : Component
     ///     This amount of TC will be given to each nukie
     /// </summary>
     [DataField]
-    public int WarTcAmountPerNukie = 50; // Sunrise-Edit
+    public int WarTcAmountPerNukie = 40;
 
     // Sunrise-Start
     [DataField]
