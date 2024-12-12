@@ -12,6 +12,8 @@
     damage:
       types:
         Piercing: 28
+        Blunt: 10
+        Structural: 10
 
 - type: entity
   id: PelletShotgunBeanbag
@@ -68,8 +70,8 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 3
-        Heat: 7
+        Blunt: 5 #Sunrise-Start
+        Heat: 3 #Sunrise-End
   - type: IgnitionSource
     ignited: true
 
