@@ -114537,7 +114537,7 @@ entities:
     - type: Transform
       pos: -47.520466,-22.794298
       parent: 2
-- proto: MagazineBoxAntiMateriel
+- proto: WeaponLaserSvalinn
   entities:
   - uid: 21148
     components:
@@ -133682,7 +133682,7 @@ entities:
     - type: Transform
       pos: 47.5,-26.5
       parent: 2
-- proto: SpawnMechDurand
+- proto: SpawnMechRipley2
   entities:
   - uid: 21114
     components:
@@ -157740,7 +157740,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: WeaponMechSpecialMousetrapMortar
+- proto: MechPaintRipleyCombatRipley
   entities:
   - uid: 447
     components:

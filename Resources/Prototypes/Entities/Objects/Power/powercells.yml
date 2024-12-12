@@ -367,7 +367,7 @@
     sprite: Objects/Power/power_cages.rsi
     layers:
     - map: [ "enum.PowerCellVisualLayers.Base" ]
-      state: small
+      state: medium
     - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
       state: o2
       shader: unshaded
@@ -384,13 +384,32 @@
     sprite: Objects/Power/power_cages.rsi
     layers:
     - map: [ "enum.PowerCellVisualLayers.Base" ]
-      state: small
+      state: high
     - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
       state: o2
       shader: unshaded
       visible: false
   - type: Battery
     startingCharge: 0
+
+- type: entity
+  id: PowerCageCombat
+  parent: BasePowerCage
+  name: Combat power cage
+  description: A rechargeable power cage for big devices. Increased capacity for increased power levels.
+  components:
+  - type: Sprite
+    sprite: Objects/Power/power_cages.rsi
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: combat
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 7800
+    startingCharge: 7800
+  - type: EmpImmune
 
 - type: entity
   id: PowerCageSyndicate
@@ -402,11 +421,30 @@
     sprite: Objects/Power/power_cages.rsi
     layers:
     - map: [ "enum.PowerCellVisualLayers.Base" ]
-      state: high
+      state: syndicate
     - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
       state: o2
       shader: unshaded
   - type: Battery
-    maxCharge: 8000
-    startingCharge: 8000
+    maxCharge: 12400
+    startingCharge: 12400
+  - type: EmpImmune
+
+- type: entity
+  id: PowerCageERT
+  parent: BasePowerCage
+  name: NanoTrasen combat power cage
+  description: A rechargeable power cage for big devices. Increased capacity for increased power levels. Immune to EMP.
+  components:
+  - type: Sprite
+    sprite: Objects/Power/power_cages.rsi
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: nanotrasen
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 12400
+    startingCharge: 12400
   - type: EmpImmune

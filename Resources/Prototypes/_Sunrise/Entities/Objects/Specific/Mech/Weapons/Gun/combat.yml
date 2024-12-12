@@ -18,7 +18,7 @@
       path: /Audio/_Sunrise/Weapons/Guns/HMGs/minigun_shot.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: CartridgeRifle
-    fireCost: 6
+    fireCost: 7
   - type: Appearance
   - type: AmmoCounter
 
@@ -35,15 +35,15 @@
   - type: Gun
     minAngle: -15
     maxAngle: 25
-    fireRate: 4
+    fireRate: 6.8
     selectedMode: FullAuto
     availableModes:
       - FullAuto
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
   - type: ProjectileBatteryAmmoProvider
-    proto: ShellShotgunSlug
-    fireCost: 7
+    proto: CartridgeLightRifle
+    fireCost: 8
   - type: Appearance
   - type: AmmoCounter
 
@@ -68,7 +68,7 @@
       path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: CannonBall
-    fireCost: 85
+    fireCost: 160
   - type: Appearance
   - type: AmmoCounter
 
@@ -93,7 +93,7 @@
       path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: CannonBallGrapeshot
-    fireCost: 35
+    fireCost: 50
   - type: Appearance
   - type: AmmoCounter
 
@@ -118,7 +118,7 @@
       path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: CannonBallGlassshot
-    fireCost: 55
+    fireCost: 80
   - type: Appearance
   - type: AmmoCounter
 
@@ -146,8 +146,8 @@
       params:
         volume: -1
   - type: HitscanBatteryAmmoProvider
-    proto: BulletSyndiPlasmaDouble
-    fireCost: 6
+    proto: BulletSyndiPlasma
+    fireCost: 7
   - type: Appearance
   - type: AmmoCounter
 
@@ -170,6 +170,6 @@
       path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: GrenadeFrag
-    fireCost: 140
+    fireCost: 250
   - type: Appearance
   - type: AmmoCounter

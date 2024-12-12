@@ -368,6 +368,7 @@
       - MechPhasicScanningModule
       - HandCraftedNVD
       - BasicNVD
+      - PowerCageCombat
       - PowerCageHigh
       - PowerCageMedium
       # PowerCageSmall
@@ -688,6 +689,9 @@
     - PhazonLLeg
     - PhazonRArm
     - PhazonRLeg
+    - PowerCageCombat
+    - PowerCageHigh
+    - PowerCageMedium
     - MechEquipmentDrill
     - MechEquipmentDrillDiamond
     - MechEquipmentKineticAccelerator
@@ -697,10 +701,10 @@
     - WeaponMechCombatFlashbangLauncher
     - WeaponMechCombatSolarisLaser
     - WeaponMechCombatFiredartLaser
+    - WeaponMechCombatUltraRifle
   - type: EmagLatheRecipes
     emagDynamicRecipes:
     - WeaponMechCombatImmolationGun
-    - WeaponMechCombatUltraRifle
     - WeaponMechCombatShotgun
     - WeaponMechCombatShotgunIncendiary
     - WeaponMechCombatMissileRack8

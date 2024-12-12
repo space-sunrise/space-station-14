@@ -894,7 +894,7 @@
   discountDownTo:
     Telecrystal: 5
   cost:
-    Telecrystal: 7
+    Telecrystal: 10
   categories:
   - UplinkMechs
   conditions:
@@ -913,7 +913,7 @@
   discountDownTo:
     Telecrystal: 6
   cost:
-    Telecrystal: 12
+    Telecrystal: 10
   categories:
   - UplinkMechs
   conditions:
@@ -949,9 +949,9 @@
   productEntity: WeaponMechCombatShotgunIncendiary
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 6
+    Telecrystal: 7
   cost:
-    Telecrystal: 12
+    Telecrystal: 14
   categories:
   - UplinkMechs
   conditions:
@@ -968,9 +968,9 @@
   productEntity: WeaponMechCombatUltraRifle
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 3
+    Telecrystal: 2
   cost:
-    Telecrystal: 5
+    Telecrystal: 4
   categories:
   - UplinkMechs
   conditions:
@@ -1027,7 +1027,7 @@
   discountDownTo:
     Telecrystal: 15
   cost:
-    Telecrystal: 28
+    Telecrystal: 35
   categories:
   - UplinkMechs
   conditions:
@@ -1044,9 +1044,9 @@
   productEntity: WeaponMechCombatUVM31
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 9
+    Telecrystal: 15
   cost:
-    Telecrystal: 18
+    Telecrystal: 25
   categories:
   - UplinkMechs
   conditions:

@@ -76,12 +76,12 @@
     joinSystem: true
   - type: DoAfter
   - type: Repairable
-    doAfterDelay: 2
+    doAfterDelay: 1
     damage:
       types:
-        Blunt: -15
-        Slash: -15
-        Piercing: -15
+        Blunt: -10
+        Slash: -10
+        Piercing: -10
   - type: UserInterface
     interfaces:
       enum.MechUiKey.Key:
@@ -241,7 +241,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageSmall
+      - PowerCageMedium
 
 # Ripley MK-II
 - type: entity
@@ -308,7 +308,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageSmall
+      - PowerCageMedium
 
 # Clarke
 - type: entity
@@ -381,7 +381,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageSmall
+      - PowerCageMedium
 
 # H.O.N.K.
 - type: entity
@@ -434,7 +434,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageSmall
+      - PowerCageMedium
 
 - type: entity
   parent: MechHonkerBattery
@@ -657,7 +657,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageHigh
+      - PowerCageCombat
 
 # Durand
 - type: entity
@@ -727,7 +727,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageHigh
+      - PowerCageCombat
 
 # Phazon
 
@@ -869,7 +869,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageHigh
+      - PowerCageERT
 
 - type: entity
   id: MechNTGygaxFilled
@@ -947,7 +947,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageHigh
+      - PowerCageERT
 
 - type: entity
   id: MechMarauderFilled
@@ -1004,7 +1004,7 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.4
+    reflectProb: 0.30
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -1025,7 +1025,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageHigh
+      - PowerCageERT
 
 - type: entity
   id: MechSeraphFilled
@@ -1036,9 +1036,9 @@
     startingEquipment:
       - WeaponMechChainSword
       - WeaponMechCombatPulseRifle
-      - WeaponMechCombatShotgun
+      - WeaponMechCombatVindictor
       - WeaponMechCombatMissileRack6
-      - WeaponMechCombatUltraRifle
+      - WeaponMechCombatDuster
 
 # Syndicate Combat Mech
 
@@ -1166,7 +1166,7 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.30
+    reflectProb: 0.25
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -1242,11 +1242,16 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.30
+    reflectProb: 0.25
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - Mauler
   - type: MobThresholds
     currentThresholdState : Alive
     thresholds:
@@ -1254,11 +1259,6 @@
       800: Critical
     showOverlays: false
     allowRevives: true
-  - type: Tag
-    tags:
-    - DoorBumpOpener
-    - FootstepSound
-    - Mauler
 
 - type: entity
   id: MechMaulerSyndieBattery
