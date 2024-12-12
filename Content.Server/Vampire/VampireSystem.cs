@@ -15,6 +15,7 @@ using Content.Shared.Bed.Sleep;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Construction.Components;
 using Content.Shared.Damage;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
@@ -131,21 +132,41 @@ public sealed partial class VampireSystem : EntitySystem
             healing.NextHealTick -= frameTime;
         }
 
-        /*var query = EntityQueryEnumerator<VampireComponent>();
-        while (query.MoveNext(out var uid, out var vampireComponent))
+        var spaceQuery = EntityQueryEnumerator<VampireComponent, VampireSpaceDamageComponent, DamageableComponent>();
+        while (spaceQuery.MoveNext(out var uid, out var vampire, out var spacedamage, out var damage))
         {
-            var vampire = (uid, vampireComponent);
-
+            if (vampire == null || spacedamage == null)
+                continue;
             if (IsInSpace(uid))
             {
-                if (vampireComponent.NextSpaceDamageTick <= 0)
+                if (spacedamage.NextSpaceDamageTick <= 0)
                 {
-                    vampireComponent.NextSpaceDamageTick = 1;
-                    DoSpaceDamage(vampire);
+                    spacedamage.NextSpaceDamageTick = 1;
+                    if (!SubtractBloodEssence((uid, vampire), FixedPoint2.New(1)))
+                        DoSpaceDamage(uid, vampire, damage);
                 }
-                vampireComponent.NextSpaceDamageTick -= frameTime;
+                spacedamage.NextSpaceDamageTick -= frameTime;
             }
-        }*/
+        }
+        
+        var strengthQuery = EntityQueryEnumerator<VampireComponent, VampireStrengthComponent>();
+        while (strengthQuery.MoveNext(out var uid, out var vampire, out var strength))
+        {
+            if (vampire == null || strength == null)
+                continue;
+            
+            if (strength.NextTick <= 0)
+            {
+                strength.NextTick = 1;
+                if (!SubtractBloodEssence((uid, vampire), strength.Upkeep) || _vampire.GetBloodEssence(uid) < FixedPoint2.New(200))
+                {
+                    var vampireUid = new Entity<VampireComponent>(uid, vampire);
+                    UnnaturalStrength(vampireUid);
+                    _popup.PopupEntity(Loc.GetString("vampire-cloak-disable"), uid, uid);
+                }
+            }
+            strength.NextTick -= frameTime;
+        }
     }
 
     private void OnComponentStartup(EntityUid uid, VampireComponent component, ComponentStartup args)
@@ -244,25 +265,9 @@ public sealed partial class VampireSystem : EntitySystem
         
         //Gargantua
         
-        /*
-        if (_vampire.GetBloodEssence(uid) >= FixedPoint2.New(200) && !_actionEntities.TryGetValue("ActionVampireUnnaturalStrength", out entity) && component.CurrentMutation == VampireMutationsType.Gargantua)
-        {
-            var vampire = new Entity<VampireComponent>(uid, component);
-            
-            UnnaturalStrength(vampire);
-            
-            _actionEntities["ActionVampireUnnaturalStrength"] = vampire;
-        }
+        UpdateAbilities(uid, component , "ActionVampireUnholyStrength", "UnholyStrength" , bloodEssence >= FixedPoint2.New(200) && component.CurrentMutation == VampireMutationsType.Gargantua);
         
-        if (_vampire.GetBloodEssence(uid) >= FixedPoint2.New(300) && !_actionEntities.TryGetValue("ActionVampireSupernaturalStrength", out entity) && component.CurrentMutation == VampireMutationsType.Gargantua)
-        {
-            var vampire = new Entity<VampireComponent>(uid, component);
-            
-            SupernaturalStrength(vampire);
-            
-            _actionEntities["ActionVampireSupernaturalStrength"] = vampire;
-        }
-        */
+        UpdateAbilities(uid, component , "ActionVampireSupernaturalStrength", "SupernaturalStrength" , bloodEssence >= FixedPoint2.New(300) && component.CurrentMutation == VampireMutationsType.Gargantua);
         
         //Bestia
         
@@ -302,23 +307,21 @@ public sealed partial class VampireSystem : EntitySystem
         }
     }
 
-    private void DoSpaceDamage(Entity<VampireComponent> vampire)
+    private void DoSpaceDamage(EntityUid uid, VampireComponent comp, DamageableComponent damage)
     {
-        _damageableSystem.TryChangeDamage(vampire, VampireComponent.SpaceDamage, true, origin: vampire);
-        _popup.PopupEntity(Loc.GetString("vampire-startlight-burning"), vampire, vampire, PopupType.LargeCaution);
+        var damageSpec = new DamageSpecifier(_prototypeManager.Index<DamageTypePrototype>("Heat"), 2.5);
+        _damageableSystem.TryChangeDamage(uid, damageSpec, true, false, damage, uid);
+        _popup.PopupEntity(Loc.GetString("vampire-startlight-burning"), uid, uid, PopupType.LargeCaution);
     }
     private bool IsInSpace(EntityUid vampireUid)
     {
         var vampireTransform = Transform(vampireUid);
         var vampirePosition = _transform.GetMapCoordinates(vampireTransform);
-
         if (!_mapMan.TryFindGridAt(vampirePosition, out _, out var grid))
             return true;
-
         if (!_mapSystem.TryGetTileRef(vampireUid, grid, vampireTransform.Coordinates, out var tileRef))
             return true;
-
-        return tileRef.Tile.IsEmpty || tileRef.IsSpace();
+        return tileRef.Tile.IsEmpty || tileRef.IsSpace() || tileRef.Tile.GetContentTileDefinition().ID == "Lattice";
     }
 
     private bool IsNearPrayable(EntityUid vampireUid)

@@ -194,6 +194,15 @@ public sealed partial class CoffinComponent : Component { }
 public sealed partial class VampireFangsExtendedComponent : Component { }
 
 /// <summary>
+/// When added, damage the entity if its on the space
+/// </summary>
+[RegisterComponent]
+public sealed partial class VampireSpaceDamageComponent : Component
+{
+    public double NextSpaceDamageTick = 0;
+}
+
+/// <summary>
 /// When added, heals the entity by the specified amount
 /// </summary>
 [RegisterComponent]
@@ -223,6 +232,18 @@ public sealed partial class VampireSealthComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     public float NextStealthTick = 0;
 
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float Upkeep = 0;
+}
+[RegisterComponent]
+public sealed partial class VampireStrengthComponent : Component
+{
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float NextTick = 0;
+    
+    [ViewVariables(VVAccess.ReadOnly)]
+    public string Power = "";
+    
     [ViewVariables(VVAccess.ReadWrite)]
     public float Upkeep = 0;
 }
