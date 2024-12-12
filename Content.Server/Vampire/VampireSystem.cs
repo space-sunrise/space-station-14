@@ -74,7 +74,6 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly EntityLookupSystem _entityLookup = default!;
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly MetabolizerSystem _metabolism = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly SharedVampireSystem _vampire = default!;
@@ -299,6 +298,7 @@ public sealed partial class VampireSystem : EntitySystem
                 if (TryComp(uid, out ActionsComponent? comp))
                 {
                     _action.RemoveAction(uid, _entityManager.GetEntity(abilityInfo.Action), comp);
+                    _actionContainer.RemoveAction(_entityManager.GetEntity(abilityInfo.Action));
                     component.actionEntities.Remove(actionId);
                     if (powerId != null && component.UnlockedPowers.ContainsKey(powerId))
                         component.UnlockedPowers.Remove(powerId);
@@ -357,13 +357,10 @@ public sealed partial class VampireSystem : EntitySystem
         }
     }
     
-    private void GetState(EntityUid uid, VampireComponent component, ref AfterAutoHandleStateEvent args)
+    private void GetState(EntityUid uid, VampireComponent component, ref AfterAutoHandleStateEvent args) => args.State = new VampireMutationComponentState
     {
-        args.State = new VampireMutationComponentState
-        {
-            SelectedMutation = component.CurrentMutation
-        };
-    }
+        SelectedMutation = component.CurrentMutation
+    };
     
     private void TryOpenUi(EntityUid uid, EntityUid user, VampireComponent? component = null)
     {
