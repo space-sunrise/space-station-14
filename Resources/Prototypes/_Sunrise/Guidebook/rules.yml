@@ -256,3 +256,40 @@
   ruleEntry: true
   priority: 3
   text: "/ServerInfo/Guidebook/ServerRules/RulesSR/AdditionalRules/PANA.xml"
+
+### Корпоративниый закон
+
+- type: guideEntry
+  id: SunriseSpaceLaw
+  name: guide-entry-sr-rule-space-law
+  priority: 1
+  text: "/ServerInfo/Guidebook/ServerRules/SpaceLawSR/SpaceLaw.xml"
+  children:
+  - SunriseSpaceLawFRSB
+  - SunriseSpaceLawPunishments
+  - SunriseSpaceLawCrimeList
+  - SunriseSpaceLawModifiers
+
+- type: guideEntry
+  id: SunriseSpaceLawFRSB
+  name: guide-entry-sr-rule-sl-frsb
+  priority: 2
+  text: "/ServerInfo/Guidebook/ServerRules/SpaceLawSR/SLFRSB.xml"
+
+- type: guideEntry
+  id: SunriseSpaceLawPunishments
+  name: guide-entry-sr-rule-sl-punishments
+  priority: 3
+  text: "/ServerInfo/Guidebook/ServerRules/SpaceLawSR/SLPunishments.xml"
+
+- type: guideEntry
+  id: SunriseSpaceLawCrimeList
+  name: guide-entry-sr-rule-sl-crime-list
+  priority: 4
+  text: "/ServerInfo/Guidebook/ServerRules/SpaceLawSR/SLCrimeList.xml"
+
+- type: guideEntry
+  id: SunriseSpaceLawModifiers
+  name: guide-entry-sr-rule-sl-modifiers
+  priority: 5
+  text: "/ServerInfo/Guidebook/ServerRules/SpaceLawSR/SLModifiers.xml"
