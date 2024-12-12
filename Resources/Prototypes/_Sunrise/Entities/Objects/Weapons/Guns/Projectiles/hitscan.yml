@@ -54,8 +54,9 @@
   id: BulletPistolIncendiary
   damage:
     types:
-      Blunt: 2
-      Heat: 14
+      Blunt: 6
+      Piercing: 4
+      Heat: 2
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -112,8 +113,9 @@
   id: BulletRifleIncendiary
   damage:
     types:
-      Blunt: 2
-      Heat: 15
+      Blunt: 8
+      Piercing: 4
+      Heat: 3
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -170,8 +172,9 @@
   id: BulletMagnumIncendiary
   damage:
     types:
-      Blunt: 3
-      Heat: 32
+      Blunt: 12
+      Piercing: 10
+      Heat: 5
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -240,8 +243,9 @@
   id: BulletLightRifleIncendiary
   damage:
     types:
-      Blunt: 3
-      Heat: 16
+      Blunt: 8
+      Piercing: 4
+      Heat: 4
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -373,7 +377,9 @@
   id: PelletShotgunSlug
   damage:
     types:
-      Piercing: 28
+      Piercing: 38
+      Structural: 15
+    staminaDamage: 5
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -398,8 +404,8 @@
   id: PelletShotgunIncendiarySpread
   damage:
     types:
-      Blunt: 3
-      Heat: 7
+      Blunt: 5
+      Heat: 2
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
