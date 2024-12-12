@@ -77,7 +77,7 @@ public sealed partial class VampireSystem : EntitySystem
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly SharedVampireSystem _vampire = default!;
     
-    private Dictionary<string, EntityUid> _actionEntities = new();
+    private Dictionary<string, AbilityInfo> _actionEntities = new();
 
     public override void Initialize()
     {
@@ -218,119 +218,35 @@ public sealed partial class VampireSystem : EntitySystem
         if (TryComp<VampireAlertComponent>(uid, out var alertComp))
             _vampire.SetAlertBloodAmount(alertComp,_vampire.GetBloodEssence(uid).Int());
         
+        if (_actionEntities.TryGetValue("ActionVampireCloakOfDarkness", out entity) && !HasComp<VampireSealthComponent>(uid) && _vampire.GetBloodEssence(uid) < FixedPoint2.New(300))
+            _actionEntities.Remove("ActionVampireCloakOfDarkness");
+        
+        var bloodEssence = _vampire.GetBloodEssence(uid);
+        
         EntityUid? newEntity = null;
-        EntityUid entity = default;
-        // Mutations
-        if (_vampire.GetBloodEssence(uid) >= FixedPoint2.New(50) && !_actionEntities.TryGetValue(VampireComponent.MutationsActionPrototype, out entity))
-        {
-            _action.AddAction(uid, ref newEntity, VampireComponent.MutationsActionPrototype);
-            if (newEntity != null)
-                _actionEntities[VampireComponent.MutationsActionPrototype] = newEntity.Value;
-        }
-        else if (_vampire.GetBloodEssence(uid) < FixedPoint2.New(50) && _actionEntities.TryGetValue(VampireComponent.MutationsActionPrototype, out entity))
-        {
-            if (!TryComp(uid, out ActionsComponent? comp))
-                return;
-            
-            _action.RemoveAction(uid, entity, comp);
-            _actionContainer.RemoveAction(entity);
-            _actionEntities.Remove(VampireComponent.MutationsActionPrototype);
-        }
+        AbilityInfo entity = default;
+        
+        UpdateAbilities(uid, component , VampireComponent.MutationsActionPrototype, null , bloodEssence >= FixedPoint2.New(50) && !HasComp<VampireSealthComponent>(uid));
         
         //Hemomancer
         
-        if (_vampire.GetBloodEssence(uid) >= FixedPoint2.New(200) && !_actionEntities.TryGetValue("ActionVampireBloodSteal", out entity) && component.CurrentMutation == VampireMutationsType.Hemomancer)
-        {
-            _action.AddAction(uid, ref newEntity , "ActionVampireBloodSteal");
-            if (newEntity != null)
-            {
-                _actionEntities["ActionVampireBloodSteal"] = newEntity.Value;
-                if (!component.UnlockedPowers.ContainsKey("BloodSteal"))
-                {
-                    component.UnlockedPowers.Add("BloodSteal", newEntity);
-                }
-            }
-        }
-        else if (_vampire.GetBloodEssence(uid) < FixedPoint2.New(200) && _actionEntities.TryGetValue("ActionVampireBloodSteal", out entity))
-        {
-            if (!TryComp(uid, out ActionsComponent? comp))
-                return;
-            
-            _action.RemoveAction(uid, entity, comp);
-            _actionContainer.RemoveAction(entity);
-            _actionEntities.Remove("ActionVampireBloodSteal");
-        }
+        // Blood Steal
+        UpdateAbilities(uid, component , "ActionVampireBloodSteal", "BloodSteal" , bloodEssence >= FixedPoint2.New(200) && component.CurrentMutation == VampireMutationsType.Hemomancer);
         
-        if (_vampire.GetBloodEssence(uid) >= FixedPoint2.New(300) && !_actionEntities.TryGetValue("ActionVampireScreech", out entity) && component.CurrentMutation == VampireMutationsType.Hemomancer)
-        {
-            _action.AddAction(uid, ref newEntity , "ActionVampireScreech");
-            if (newEntity != null)
-            {
-                _actionEntities["ActionVampireScreech"] = newEntity.Value;
-                if (!component.UnlockedPowers.ContainsKey("Screech"))
-                {
-                    component.UnlockedPowers.Add("Screech", newEntity);
-                }
-            }
-        }
-        else if (_vampire.GetBloodEssence(uid) < FixedPoint2.New(300) && _actionEntities.TryGetValue("ActionVampireScreech", out entity))
-        {
-            if (!TryComp(uid, out ActionsComponent? comp))
-                return;
-            
-            _action.RemoveAction(uid, entity, comp);
-            _actionContainer.RemoveAction(entity);
-            _actionEntities.Remove("ActionVampireScreech");
-        }
+        // Screech
+        UpdateAbilities(uid, component , "ActionVampireScreech", "Screech" , bloodEssence >= FixedPoint2.New(300) && component.CurrentMutation == VampireMutationsType.Hemomancer);
         
         //Umbrae
         
-        if (_vampire.GetBloodEssence(uid) >= FixedPoint2.New(200) && !_actionEntities.TryGetValue("ActionVampireGlare", out entity) && component.CurrentMutation == VampireMutationsType.Umbrae)
-        {
-            _action.AddAction(uid, ref newEntity , "ActionVampireGlare");
-            if (newEntity != null)
-            {
-                _actionEntities["ActionVampireGlare"] = newEntity.Value;
-                if (!component.UnlockedPowers.ContainsKey("Glare"))
-                {
-                    component.UnlockedPowers.Add("Glare", newEntity);
-                }
-            }
-        }
-        else if (_vampire.GetBloodEssence(uid) < FixedPoint2.New(200) && _actionEntities.TryGetValue("ActionVampireGlare", out entity))
-        {
-            if (!TryComp(uid, out ActionsComponent? comp))
-                return;
-            
-            _action.RemoveAction(uid, entity, comp);
-            _actionContainer.RemoveAction(entity);
-            _actionEntities.Remove("ActionVampireGlare");
-        }
+        //Glare
+        UpdateAbilities(uid, component , "ActionVampireGlare", "Glare" , bloodEssence >= FixedPoint2.New(200) && component.CurrentMutation == VampireMutationsType.Umbrae);
         
-        if (_vampire.GetBloodEssence(uid) >= FixedPoint2.New(300) && !_actionEntities.TryGetValue("ActionVampireCloakOfDarkness", out entity) && component.CurrentMutation == VampireMutationsType.Umbrae)
-        {
-            _action.AddAction(uid, ref newEntity , "ActionVampireCloakOfDarkness");
-            if (newEntity != null)
-            {
-                _actionEntities["ActionVampireCloakOfDarkness"] = newEntity.Value;
-                if (!component.UnlockedPowers.ContainsKey("CloakOfDarkness"))
-                {
-                    component.UnlockedPowers.Add("CloakOfDarkness", newEntity);
-                }
-            }
-        }
-        else if (_vampire.GetBloodEssence(uid) < FixedPoint2.New(300) && _actionEntities.TryGetValue("ActionVampireCloakOfDarkness", out entity))
-        {
-            if (!TryComp(uid, out ActionsComponent? comp))
-                return;
-            
-            _action.RemoveAction(uid, entity, comp);
-            _actionContainer.RemoveAction(entity);
-            _actionEntities.Remove("ActionVampireCloakOfDarkness");
-        }
+        //CloakOfDarkness
+        UpdateAbilities(uid, component , "ActionVampireCloakOfDarkness", "CloakOfDarkness" , bloodEssence >= FixedPoint2.New(300) && component.CurrentMutation == VampireMutationsType.Umbrae);
         
         //Gargantua
         
+        /*
         if (_vampire.GetBloodEssence(uid) >= FixedPoint2.New(200) && !_actionEntities.TryGetValue("ActionVampireUnnaturalStrength", out entity) && component.CurrentMutation == VampireMutationsType.Gargantua)
         {
             var vampire = new Entity<VampireComponent>(uid, component);
@@ -348,51 +264,43 @@ public sealed partial class VampireSystem : EntitySystem
             
             _actionEntities["ActionVampireSupernaturalStrength"] = vampire;
         }
+        */
         
         //Bestia
         
-        if (_vampire.GetBloodEssence(uid) >= FixedPoint2.New(200) && !_actionEntities.TryGetValue("ActionVampireBatform", out entity) && component.CurrentMutation == VampireMutationsType.Bestia)
-        {
-            _action.AddAction(uid, ref newEntity , "ActionVampireBatform");
-            if (newEntity != null)
-            {
-                _actionEntities["ActionVampireBatform"] = newEntity.Value;
-                if (!component.UnlockedPowers.ContainsKey("PolymorphBat"))
-                {
-                    component.UnlockedPowers.Add("PolymorphBat", newEntity);
-                }
-            }
-        }
-        else if (_vampire.GetBloodEssence(uid) < FixedPoint2.New(200) && _actionEntities.TryGetValue("ActionVampireBatform", out entity))
-        {
-            if (!TryComp(uid, out ActionsComponent? comp))
-                return;
-            
-            _action.RemoveAction(uid, entity, comp);
-            _actionContainer.RemoveAction(entity);
-            _actionEntities.Remove("ActionVampireBatform");
-        }
+        UpdateAbilities(uid, component , "ActionVampireBatform", "PolymorphBat" , bloodEssence >= FixedPoint2.New(200) && component.CurrentMutation == VampireMutationsType.Bestia);
         
-        if (_vampire.GetBloodEssence(uid) >= FixedPoint2.New(300) && !_actionEntities.TryGetValue("ActionVampireMouseform", out entity) && component.CurrentMutation == VampireMutationsType.Bestia)
+        UpdateAbilities(uid, component , "ActionVampireMouseform", "PolymorphMouse" , bloodEssence >= FixedPoint2.New(300) && component.CurrentMutation == VampireMutationsType.Bestia);
+    }
+    
+    private void UpdateAbilities(EntityUid uid, VampireComponent component, string actionId, string? powerId, bool addAction)
+    {
+        EntityUid? actionEntity = null;
+        if (addAction)
         {
-            _action.AddAction(uid, ref newEntity , "ActionVampireMouseform");
-            if (newEntity != null)
+            if (!_actionEntities.ContainsKey(actionId))
             {
-                _actionEntities["ActionVampireMouseform"] = newEntity.Value;
-                if (!component.UnlockedPowers.ContainsKey("PolymorphMouse"))
+                _action.AddAction(uid, ref actionEntity, actionId);
+                if (actionEntity != null)
                 {
-                    component.UnlockedPowers.Add("PolymorphMouse", newEntity);
+                    _actionEntities[actionId] = new AbilityInfo(uid, actionEntity.Value);
+                    if (powerId != null && !component.UnlockedPowers.ContainsKey(powerId))
+                        component.UnlockedPowers.Add(powerId, actionEntity.Value);
                 }
             }
         }
-        else if (_vampire.GetBloodEssence(uid) < FixedPoint2.New(300) && _actionEntities.TryGetValue("ActionVampireMouseform", out entity))
+        else
         {
-            if (!TryComp(uid, out ActionsComponent? comp))
-                return;
-            
-            _action.RemoveAction(uid, entity, comp);
-            _actionContainer.RemoveAction(entity);
-            _actionEntities.Remove("ActionVampireMouseform");
+            if (_actionEntities.TryGetValue(actionId, out var abilityInfo) && abilityInfo.Owner == uid)
+            {
+                if (TryComp(uid, out ActionsComponent? comp))
+                {
+                    _action.RemoveAction(uid, abilityInfo.Action, comp);
+                    _actionEntities.Remove(actionId);
+                    if (powerId != null && component.UnlockedPowers.ContainsKey(powerId))
+                        component.UnlockedPowers.Remove(powerId);
+                }
+            }
         }
     }
 
