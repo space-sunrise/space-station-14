@@ -54,22 +54,3 @@
     maxCharge: 2700
     startingCharge: 2700
   - type: EmpImmune
-
-- type: entity
-  name: combat power cell
-  description: A rechargeable standardized power cell. This one looks like a rare combat variant.
-  id: PowerCellPowerCellCombatPrinted
-  suffix: Full
-  parent: BasePowerCell
-  components:
-  - type: Sprite
-    layers:
-    - map: [ "enum.PowerCellVisualLayers.Base" ]
-      state: combat
-    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
-      state: o2
-      shader: unshaded
-  - type: Battery
-    maxCharge: 2700
-    startingCharge: 0
-  - type: EmpImmune
