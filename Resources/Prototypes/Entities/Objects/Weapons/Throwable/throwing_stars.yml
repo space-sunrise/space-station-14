@@ -63,4 +63,4 @@
     - state: icon
       map: ["base"]
   - type: TimedDespawn
-    lifetime: 30
+    lifetime: 45

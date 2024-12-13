@@ -36,7 +36,7 @@
       state: absorb_dna
     event: !type:AbsorbDNAEvent {}
   - type: ChangelingAction
-    chemicalCost: 25
+    chemicalCost: 5
     requireBiomass: false
     useInLesserForm: true
 
@@ -58,7 +58,7 @@
       state: sting_extractdna
     event: !type:StingExtractDNAEvent {}
   - type: ChangelingAction
-    chemicalCost: 25
+    chemicalCost: 15
     useInLesserForm: true
 
 - type: entity
@@ -127,7 +127,7 @@
       state: stasis_exit
     event: !type:ExitStasisEvent {}
   - type: ChangelingAction
-    chemicalCost: 60
+    chemicalCost: 50
     useInLesserForm: true
 
 # combat
@@ -145,8 +145,8 @@
       state: armblade
     event: !type:ToggleArmbladeEvent {}
   - type: ChangelingAction
-    chemicalCost: 30
-    requireAbsorbed: 2
+    chemicalCost: 20
+  #  requireAbsorbed: 1
 
 - type: entity
   id: ActionCreateBoneShard
@@ -162,7 +162,7 @@
       state: bone_shard
     event: !type:CreateBoneShardEvent {}
   - type: ChangelingAction
-    chemicalCost: 15
+    chemicalCost: 10
 
 - type: entity
   id: ActionToggleChitinousArmor
@@ -178,8 +178,8 @@
       state: chitinous_armor
     event: !type:ToggleChitinousArmorEvent {}
   - type: ChangelingAction
-    chemicalCost: 25
-    requireAbsorbed: 2
+    chemicalCost: 20 #Use for equip and uneuip
+  #  requireAbsorbed: 1
 
 - type: entity
   id: ActionToggleOrganicShield
@@ -195,8 +195,8 @@
       state: organic_shield
     event: !type:ToggleOrganicShieldEvent {}
   - type: ChangelingAction
-    chemicalCost: 20
-    requireAbsorbed: 1
+    chemicalCost: 15
+  #  requireAbsorbed: 1
 
 - type: entity
   id: ActionShriekDissonant
@@ -205,7 +205,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
-    useDelay: 10
+    useDelay: 25
     itemIconStyle: NoItem
     icon:
       sprite: Changeling/changeling_abilities.rsi
@@ -214,7 +214,7 @@
   - type: ChangelingAction
     chemicalCost: 30
     useInLesserForm: true
-    requireAbsorbed: 1
+  #  requireAbsorbed: 1
 
 - type: entity
   id: ActionShriekResonant
@@ -230,9 +230,9 @@
       state: shriek_resonant
     event: !type:ShriekResonantEvent {}
   - type: ChangelingAction
-    chemicalCost: 30
+    chemicalCost: 10
     useInLesserForm: true
-    requireAbsorbed: 1
+  #  requireAbsorbed: 1
 
 - type: entity
   id: ActionToggleStrainedMuscles
@@ -248,7 +248,7 @@
       state: strained_muscles
     event: !type:ToggleStrainedMusclesEvent {}
   - type: ChangelingAction
-    chemicalCost: 30
+    chemicalCost: 20
     useInLesserForm: true
 
 # stings
@@ -291,7 +291,7 @@
       state: sting_cryo
     event: !type:StingCryoEvent {}
   - type: ChangelingAction
-    chemicalCost: 35
+    chemicalCost: 45
     useInLesserForm: true
 
 - type: entity
@@ -312,7 +312,7 @@
       state: sting_lethargic
     event: !type:StingLethargicEvent {}
   - type: ChangelingAction
-    chemicalCost: 35
+    chemicalCost: 45
     useInLesserForm: true
 
 - type: entity
@@ -354,7 +354,7 @@
       state: sting_armblade
     event: !type:StingFakeArmbladeEvent {}
   - type: ChangelingAction
-    chemicalCost: 50
+    chemicalCost: 40
     useInLesserForm: true
 
 #- type: entity
@@ -395,7 +395,7 @@
       state: anatomic_panacea
     event: !type:ActionAnatomicPanaceaEvent {}
   - type: ChangelingAction
-    chemicalCost: 30
+    chemicalCost: 20
     useInLesserForm: true
 
 - type: entity
@@ -429,7 +429,7 @@
       state: biodegrade
     event: !type:ActionBiodegradeEvent {}
   - type: ChangelingAction
-    chemicalCost: 30
+    chemicalCost: 10
 
 - type: entity
   id: ActionChameleonSkin
@@ -465,7 +465,7 @@
       state: epinephrine_overdose
     event: !type:ActionEphedrineOverdoseEvent {}
   - type: ChangelingAction
-    chemicalCost: 30
+    chemicalCost: 25
     useInLesserForm: true
 
 - type: entity
@@ -501,7 +501,7 @@
       state: lesser_form
     event: !type:ActionLesserFormEvent {}
   - type: ChangelingAction
-    chemicalCost: 20
+    chemicalCost: 10
 
 - type: entity
   id: ActionToggleSpacesuit
