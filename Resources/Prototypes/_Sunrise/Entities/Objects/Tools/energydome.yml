@@ -63,10 +63,11 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellMedium
+        startingItem: PowerCellNanoTrasen
         whitelist:
           tags:
-            - PowerCell
+            - PowerCell 
+            - PowerCellNanoTrasen 
   - type: EnergyDomeGenerator
     damageEnergyDraw: 3
     domePrototype: EnergyDomeMediumBlue
@@ -101,10 +102,11 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellMedium
+        startingItem: PowerCellNanoTrasen
         whitelist:
           tags:
-            - PowerCell
+            - PowerCell 
+            - PowerCellNanoTrasen 
   - type: EnergyDomeGenerator
     damageEnergyDraw: 5
     domePrototype: EnergyDomeSmallBlue
