@@ -10,10 +10,11 @@ using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using Robust.Shared.GameStates;
 
 namespace Content.Shared.Vampire.Components;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class VampireComponent : Component
 {
     //Static prototype references
@@ -91,7 +92,16 @@ public sealed partial class VampireComponent : Component
     /// <summary>
     /// All unlocked abilities
     /// </summary>
+    [ViewVariables(VVAccess.ReadOnly)]
+    [AutoNetworkedField]
     public Dictionary<string, EntityUid?> UnlockedPowers = new();
+    
+    /// <summary>
+    /// All abilities
+    /// </summary>
+    [ViewVariables(VVAccess.ReadOnly)]
+    [AutoNetworkedField]
+    public Dictionary<string, AbilityInfo> actionEntities = new();
 
     /// <summary>
     /// Current available balance, used to sync currency across heirlooms and add essence as we feed
@@ -100,6 +110,22 @@ public sealed partial class VampireComponent : Component
 
     public readonly SoundSpecifier BloodDrainSound = new SoundPathSpecifier("/Audio/Items/drink.ogg", new AudioParams() { Volume = -3f, MaxDistance = 3f });
     public readonly SoundSpecifier AbilityPurchaseSound = new SoundPathSpecifier("/Audio/Items/drink.ogg");
+}
+
+/// <summary>
+/// Struct contains Action and Owner
+/// </summary>
+[Serializable, NetSerializable]
+public struct AbilityInfo
+{
+    public NetEntity Owner;
+    public NetEntity Action;
+
+    public AbilityInfo(NetEntity owner, NetEntity action)
+    {
+        Owner = owner;
+        Action = action;
+    }
 }
 
 
@@ -168,6 +194,15 @@ public sealed partial class CoffinComponent : Component { }
 public sealed partial class VampireFangsExtendedComponent : Component { }
 
 /// <summary>
+/// When added, damage the entity if its on the space
+/// </summary>
+[RegisterComponent]
+public sealed partial class VampireSpaceDamageComponent : Component
+{
+    public double NextSpaceDamageTick = 0;
+}
+
+/// <summary>
 /// When added, heals the entity by the specified amount
 /// </summary>
 [RegisterComponent]
@@ -197,6 +232,18 @@ public sealed partial class VampireSealthComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     public float NextStealthTick = 0;
 
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float Upkeep = 0;
+}
+[RegisterComponent]
+public sealed partial class VampireStrengthComponent : Component
+{
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float NextTick = 0;
+    
+    [ViewVariables(VVAccess.ReadOnly)]
+    public string Power = "";
+    
     [ViewVariables(VVAccess.ReadWrite)]
     public float Upkeep = 0;
 }
