@@ -379,7 +379,7 @@
     types:
       Piercing: 38
       Structural: 15
-    staminaDamage: 5
+  staminaDamage: 5
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
