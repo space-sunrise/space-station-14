@@ -67,7 +67,6 @@
         whitelist:
           tags:
             - PowerCell 
-            - PowerCellNanoTrasen 
   - type: EnergyDomeGenerator
     damageEnergyDraw: 3
     domePrototype: EnergyDomeMediumBlue
@@ -106,7 +105,6 @@
         whitelist:
           tags:
             - PowerCell 
-            - PowerCellNanoTrasen 
   - type: EnergyDomeGenerator
     damageEnergyDraw: 5
     domePrototype: EnergyDomeSmallBlue
