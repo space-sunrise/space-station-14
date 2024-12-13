@@ -299,13 +299,12 @@ public sealed partial class StationJobsSystem
                 continue;
             }
 
-            // Sunrise-Edit
-            //var profile = profiles[player];
-            // if (profile.PreferenceUnavailable != PreferenceUnavailableMode.SpawnAsOverflow)
-            // {
-            //     assignedJobs.Add(player, (null, EntityUid.Invalid));
-            //     continue;
-            // }
+            var profile = profiles[player];
+             if (profile.PreferenceUnavailable != PreferenceUnavailableMode.SpawnAsOverflow)
+             {
+                 assignedJobs.Add(player, (null, EntityUid.Invalid));
+                 continue;
+             }
 
             _random.Shuffle(givenStations);
 

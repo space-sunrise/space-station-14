@@ -36,7 +36,7 @@
             Reporter: [ 1, 1 ]
             SeniorEngineer: [ 1, 1 ]
             Paramedic: [ 1, 1 ]
-            ServiceWorker: [ -1, -1 ]
+            ServiceWorker: [ 5, -1 ]
             IAA: [ 1, 1 ]
             SeniorOfficer: [ 1, 1 ]
             Adjutant: [ 1, 1 ]
