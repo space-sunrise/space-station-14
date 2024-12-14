@@ -1,7 +1,7 @@
 ﻿- type: cultistFactoryProduction
   id: FactoryWhetstone
   icon:
-    sprite: /Textures/White/Items/Misc/wetstone.rsi
+    sprite: /Textures/_Sunrise/BloodCult/Entities/wetstone.rsi
     state: cult_sharpener
   name: Точильный камень
   item:
