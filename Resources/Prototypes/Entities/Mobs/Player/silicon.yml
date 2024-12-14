@@ -71,7 +71,7 @@
   - type: CommunicationsConsole
     canShuttle: false
     title: comms-console-announcement-title-station-ai
-    color: "#2ed2fd"
+    color: "#5ed7aa"
     announceVoice: PortalGlados
     sound: /Audio/_Sunrise/Announcements/announce_dig.ogg
   - type: ShowJobIcons
