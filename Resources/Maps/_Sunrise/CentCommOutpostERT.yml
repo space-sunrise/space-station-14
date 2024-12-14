@@ -21898,7 +21898,7 @@ entities:
     - type: Transform
       pos: -8.5,9.5
       parent: 2
-- proto: PowerCageHigh
+- proto: PowerCageERT
   entities:
   - uid: 920
     components:
@@ -21910,7 +21910,7 @@ entities:
     - type: Transform
       pos: 8.502306,-18.308302
       parent: 2
-- proto: PowerCellAntiqueProto
+- proto: PowerCellNanoTrasen
   entities:
   - uid: 973
     components:
