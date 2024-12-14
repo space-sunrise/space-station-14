@@ -144,7 +144,7 @@
   - type: Gun
     minAngle: 30
     maxAngle: 90
-    fireRate: 8
+    fireRate: 8.5
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/shot.ogg
       params:
@@ -160,14 +160,13 @@
         whitelist:
           tags:
           - MagazineMachineGunMG42
-          - MagazineLightRifleBox
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifle  # 762x39
+        startingItem: CartridgeRifle  # 556
         priority: 1
         whitelist:
           tags:
-          - CartridgeLightRifle  # 762x39
+          - CartridgeRifle  # 556
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot

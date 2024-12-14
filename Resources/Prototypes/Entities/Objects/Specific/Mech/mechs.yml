@@ -76,12 +76,12 @@
     joinSystem: true
   - type: DoAfter
   - type: Repairable
-    doAfterDelay: 2
+    doAfterDelay: 1
     damage:
       types:
-        Blunt: -15
-        Slash: -15
-        Piercing: -15
+        Blunt: -10
+        Slash: -10
+        Piercing: -10
   - type: UserInterface
     interfaces:
       enum.MechUiKey.Key:
@@ -229,7 +229,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      320: Critical
+      400: Critical
     showOverlays: false
     allowRevives: true
 
@@ -241,7 +241,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageSmall
+      - PowerCageMedium
 
 # Ripley MK-II
 - type: entity
@@ -277,8 +277,8 @@
       types:
         Blunt: 20
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1
-    baseSprintSpeed: 2
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 2.2
   - type: Damageable
     damageModifierSet: MediumArmorNT
   - type: Reflect
@@ -296,7 +296,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      400: Critical
+      520: Critical
     showOverlays: false
     allowRevives: true
 
@@ -308,7 +308,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageSmall
+      - PowerCageMedium
 
 # Clarke
 - type: entity
@@ -358,7 +358,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      320: Critical
+      380: Critical
     showOverlays: false
     allowRevives: true
   - type: PointLight
@@ -381,7 +381,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageSmall
+      - PowerCageMedium
 
 # H.O.N.K.
 - type: entity
@@ -434,7 +434,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageSmall
+      - PowerCageMedium
 
 - type: entity
   parent: MechHonkerBattery
@@ -625,11 +625,11 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 25
+        Blunt: 30
         Structural: 180
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 3
+    baseSprintSpeed: 3.5
   - type: Reflect
     reflectProb: 0.20
     spread: 180
@@ -640,7 +640,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      450: Critical
+      560: Critical
     showOverlays: false
     allowRevives: true
   - type: Tag
@@ -657,7 +657,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageHigh
+      - PowerCageCombat
 
 # Durand
 - type: entity
@@ -691,11 +691,11 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 40
+        Blunt: 50
         Structural: 250
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.5
-    baseSprintSpeed: 2
+    baseSprintSpeed: 2.5
   - type: Damageable
     damageModifierSet: MediumArmorNT
   - type: CanMoveInAir
@@ -710,7 +710,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      650: Critical
+      770: Critical
     showOverlays: false
     allowRevives: true
   - type: Tag
@@ -727,7 +727,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageHigh
+      - PowerCageCombat
 
 # Phazon
 
@@ -779,7 +779,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      280: Critical
+      300: Critical
     showOverlays: false
     allowRevives: true
   - type: Tag
@@ -833,11 +833,11 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 30
+        Blunt: 35
         Structural: 200
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.4
-    baseSprintSpeed: 3
+    baseSprintSpeed: 3.6
   - type: Reflect
     reflectProb: 0.20
     spread: 180
@@ -846,13 +846,20 @@
     - NonEnergy
   - type: Damageable
     damageModifierSet: MediumArmorNT
+  - type: CanMoveInAir
+  - type: MovementAlwaysTouching
   - type: MobThresholds
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      450: Critical
+      570: Critical
     showOverlays: false
     allowRevives: true
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - Gygax
 
 - type: entity
   id: MechNTGygaxBattery
@@ -862,7 +869,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageHigh
+      - PowerCageERT
 
 - type: entity
   id: MechNTGygaxFilled
@@ -873,8 +880,8 @@
     startingEquipment:
       - WeaponMechChainSword
       - WeaponMechCombatPulseRifle
-      - WeaponMechCombatXray
-      - WeaponMechCombatMissileRack6
+      - WeaponMechCombatHeavyRifle
+      - WeaponMechCombatMissileRack8
 
 # Marauder
 - type: entity
@@ -909,7 +916,7 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 40
+        Blunt: 55
         Structural: 350
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
@@ -928,7 +935,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      700: Critical
+      800: Critical
     showOverlays: false
     allowRevives: true
 
@@ -940,7 +947,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageHigh
+      - PowerCageERT
 
 - type: entity
   id: MechMarauderFilled
@@ -951,7 +958,7 @@
     startingEquipment:
       - WeaponMechChainSword
       - WeaponMechCombatPulseRifle
-      - WeaponMechCombatUltraRifle
+      - WeaponMechCombatHeavyRifle
       - WeaponMechCombatMissileRack8
 
 # Seraph
@@ -997,7 +1004,7 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.4
+    reflectProb: 0.30
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -1018,7 +1025,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageHigh
+      - PowerCageERT
 
 - type: entity
   id: MechSeraphFilled
@@ -1029,9 +1036,9 @@
     startingEquipment:
       - WeaponMechChainSword
       - WeaponMechCombatPulseRifle
-      - WeaponMechCombatShotgun
+      - WeaponMechCombatVindictor
       - WeaponMechCombatMissileRack6
-      - WeaponMechCombatUltraRifle
+      - WeaponMechCombatDuster
 
 # Syndicate Combat Mech
 
@@ -1072,7 +1079,7 @@
         Structural: 280
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.2
-    baseSprintSpeed: 3.7
+    baseSprintSpeed: 3.8
   - type: Damageable
     damageModifierSet: MediumArmorSyndi
   - type: CanMoveInAir
@@ -1087,9 +1094,14 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      500: Critical
+      580: Critical
     showOverlays: false
     allowRevives: true
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - Gygax
 
 - type: entity
   id: MechGygaxSyndieBattery
@@ -1144,17 +1156,17 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 40
+        Blunt: 50
         Structural: 380
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 3
+    baseSprintSpeed: 2.8
   - type: Damageable
     damageModifierSet: MediumArmorSyndi
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.30
+    reflectProb: 0.25
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -1163,7 +1175,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      650: Critical
+      780: Critical
     showOverlays: false
     allowRevives: true
 
@@ -1220,7 +1232,7 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 50
+        Blunt: 60
         Structural: 450
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
@@ -1230,11 +1242,16 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.30
+    reflectProb: 0.25
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - Mauler
   - type: MobThresholds
     currentThresholdState : Alive
     thresholds:

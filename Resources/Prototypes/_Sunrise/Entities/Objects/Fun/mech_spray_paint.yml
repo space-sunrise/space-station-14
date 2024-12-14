@@ -522,3 +522,33 @@
         enum.OpenableVisuals.Layer:
           True: {state: "executioner"}
           False: {state: "executioner-cap"}
+
+#Mauler-Meowler
+
+- type: entity
+  parent: MechPaintBase
+  suffix: DEBUG, Mauler , Meowler
+  id: MechPaintMaulerMeowler
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/mauler.rsi
+    layers:
+      - state: mauler-meow-cap
+        map: ["enum.OpenableVisuals.Layer"]
+  - type: Item
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/mauler.rsi
+    heldPrefix: meowler
+  - type: MechPaint
+    used: false
+    whitelist:
+      tags:
+        - Mauler
+    baseState: meowler
+    openState: meowler-open
+    brokenState: meowler-broken
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "mauler-meow"}
+          False: {state: "mauler-meow-cap"}

@@ -13317,7 +13317,7 @@ entities:
     - type: Transform
       pos: -6.5,2.5
       parent: 2
-- proto: MagazineBoxAntiMaterielBig
+- proto: MagazineBoxMagnum
   entities:
   - uid: 2229
     components:
@@ -13329,7 +13329,7 @@ entities:
     - type: Transform
       pos: -10.337909,-10.608285
       parent: 2
-- proto: MagazineBoxLightRifleBig
+- proto: MagazineBoxRifleBig
   entities:
   - uid: 2116
     components:
@@ -20400,7 +20400,7 @@ entities:
     - type: Transform
       pos: 10.526651,-7.582013
       parent: 2
-- proto: WeaponLightMachineGunRPD
+- proto: WeaponMachineGunMG42
   entities:
   - uid: 2211
     components:
