@@ -18,7 +18,7 @@
     visuals:
       enum.HolidayVisuals.Holiday:
         base:
-          festive: { state: festive }
+          festive: { state: icon }
   - type: Fixtures
     fixtures:
       fix1:
@@ -63,4 +63,4 @@
     - state: icon
       map: ["base"]
   - type: TimedDespawn
-    lifetime: 45
+    lifetime: 30
