@@ -1,0 +1,107 @@
+﻿- type: construction
+  id: CultGirder
+  name: руническая балка
+  description: Большой конструктивный элемент, изготовленный из металла. На этом есть руна.
+  graph: CultGirder
+  startNode: start
+  targetNode: girder
+  hide: true
+  category: construction-category-structures
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/Structures/cult_girder.rsi
+    state: cultgirder
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: AirlockGlassCult
+  name: рунический шлюз
+  description: Странный стеклянный шлюз с руной.
+  graph: AirlockGlassCult
+  startNode: start
+  targetNode: airlock
+  hide: true
+  category: construction-category-structures
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/Structures/cult_airlock.rsi
+    state: closed
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: CultPylon
+  name: пилон
+  description: Мистический конструкция.
+  graph: CultPylon
+  startNode: start
+  targetNode: pylon
+  hide: true
+  category: construction-category-structures
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/Structures/pylon.rsi
+    state: pylon_off
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: AltarTome
+  name: архивы
+  description: Стол, заваленный тайными рукописями и книгами на неизвестных языках.
+  graph: AltarTome
+  startNode: start
+  targetNode: tome
+  hide: true
+  category: construction-category-structures
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/Structures/tome_altar.rsi
+    state: icon-off
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: CultBloodAltar
+  name: алтарь
+  description: Кровавый алтарь, посвященный какому-то существу.
+  graph: CultBloodAltar
+  startNode: start
+  targetNode: altar
+  hide: true
+  category: construction-category-structures
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/Structures/blood_altar.rsi
+    state: icon-off
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: CultForge
+  name: кузница
+  description: Кузница, в которой изготавливается нечестивое оружие.
+  graph: CultForge
+  startNode: start
+  targetNode: forge
+  hide: true
+  category: construction-category-structures
+  icon:
+    sprite: /Textures/_Sunrise/BloodCult/Structures/forge.rsi
+    state: icon-off
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked

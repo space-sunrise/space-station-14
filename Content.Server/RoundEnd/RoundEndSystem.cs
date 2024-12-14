@@ -372,6 +372,32 @@ namespace Content.Server.RoundEnd
                 : _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallTime);
             return AutoCallStartTime + TimeSpan.FromMinutes(autoCalledBefore);
         }
+
+        public void DelayCursedShuttle(TimeSpan delay)
+        {
+            if (_gameTicker.RunLevel != GameRunLevel.InRound)
+                return;
+
+            if (_countdownTokenSource == null)
+                return;
+
+            var countdown =  ExpectedCountdownEnd - _gameTiming.CurTime + delay;
+            ExpectedCountdownEnd = _gameTiming.CurTime + countdown;
+
+            _countdownTokenSource.Cancel();
+            _countdownTokenSource = new ();
+
+            if (countdown != null)
+                Timer.Spawn(countdown.Value, _shuttle.DockEmergencyShuttle, _countdownTokenSource.Token);
+
+            _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("round-end-system-shuttle-curse-delayed-announcement"),
+                Loc.GetString("Station"), colorOverride: Color.Gold);
+        }
+
+        public bool ShuttleCalled()
+        {
+            return ExpectedCountdownEnd != null;
+        }
         // Sunrise-end
     }
 

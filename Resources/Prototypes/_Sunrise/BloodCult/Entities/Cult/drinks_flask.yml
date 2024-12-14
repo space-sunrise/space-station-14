@@ -1,0 +1,31 @@
+- type: entity
+  parent: DrinkBottleGlassBaseFull
+  id: DrinkHolyWaterFull
+  name: флакон святой воды
+  description: Флакон который содержит святую воду.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Holywater
+          Quantity: 40
+  - type: Sprite
+    sprite: _Sunrise/BloodCult/holy_flask.rsi
+
+
+- type: entity
+  parent: DrinkBottleGlassBaseFull
+  id: DrinkUnholyWaterFull
+  name: флакон нечестивой воды
+  description: Флакон который содержит нечестивую воду.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        reagents:
+        - ReagentId: Unholywater
+          Quantity: 40
+  - type: Sprite
+    sprite: _Sunrise/BloodCult/holy_flask.rsi
+    color: "#333333"

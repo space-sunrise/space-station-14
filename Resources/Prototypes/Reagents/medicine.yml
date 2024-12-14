@@ -1057,6 +1057,12 @@
       effects:
       - !type:SatiateThirst
         factor: 3
+      # Sunrise-Start
+      - !type:DeconvertCultist
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      # Sunrise-End
     Medicine:
       effects:
       #If vampire
@@ -1187,7 +1193,7 @@
         conditions:
         - !type:ReagentThreshold
           min: 12
-          
+
 - type: reagent
   id: Opporozidone #Name based of an altered version of the startreck chem "Opporozine"
   name: reagent-name-opporozidone

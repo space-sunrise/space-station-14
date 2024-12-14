@@ -1,0 +1,7 @@
+﻿<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               Title="{Loc agent-id-menu-title}">
+    <RichTextLabel Name="TimerLabel"></RichTextLabel>
+    <BoxContainer Name="ListingContainer" Orientation="Horizontal" SeparationOverride="4" MinWidth="150">
+    </BoxContainer>
+</DefaultWindow>

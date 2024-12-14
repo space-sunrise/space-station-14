@@ -1,0 +1,36 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from tgstation",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "sharpener"
+        },
+        {
+            "name": "sharpener_used"
+        },
+        {
+            "name": "cult_sharpener",
+            "delays": [[
+                0.2,
+                0.2,
+                0.2,
+                0.2,
+                0.2,
+                0.2,
+                0.2,
+                0.2,
+                0.2,
+                0.2,
+                0.2
+            ]]
+        },
+        {
+            "name": "cult_sharpener_used"
+        }
+    ]
+}

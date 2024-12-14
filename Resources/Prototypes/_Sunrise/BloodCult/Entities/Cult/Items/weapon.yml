@@ -1,0 +1,177 @@
+- type: entity
+  name: ritual dagger
+  parent: BaseItem
+  id: NarsieRitualDagger
+  description: A strange dagger used by sinister groups for rituals and sacrifices.
+  components:
+  - type: Sharp
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/cult_dagger.rsi
+    state: icon
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 1.5
+    damage:
+      types:
+        Slash: 12
+  - type: Item
+    size: Normal
+  - type: Clothing
+    sprite: Objects/Weapons/Melee/cult_dagger.rsi
+    slots:
+    - back
+  - type: DisarmMalus
+  - type: RuneDrawerProvider
+    runePrototypes: [ OfferingRune,
+                      EmpoweringRune,
+                      BuffRune,
+                      TeleportRune,
+                      ReviveRune,
+                      BarrierRune,
+                      SummoningRune,
+                      BloodBoilRune,
+                      ApocalypseRune ]
+  - type: UserInterface
+    interfaces:
+      enum.ListViewSelectorUiKey.Key:
+        type: ListViewSelectorBUI
+  - type: Tool
+    qualities:
+    - CultAnchoring
+    useSound:
+      path: /Audio/White/Cult/curse.ogg
+
+- type: entity
+  name: eldritch blade
+  parent: BaseItem
+  id: NarsieEldritchBlade
+  description: A sword humming with unholy energy.
+  components:
+  - type: Sharp
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/cult_blade.rsi
+    state: icon
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 0.75
+    damage:
+      types:
+        Slash: 16
+  - type: Item
+    size: Normal
+  - type: Clothing
+    sprite: Objects/Weapons/Melee/cult_blade.rsi
+    slots:
+    - back
+  - type: DisarmMalus
+  - type: CultWeapon
+    stuhTime: 5
+    damage:
+      types:
+        Slash: 10
+  - type: Tool
+    qualities:
+    - CultAnchoring
+    useSound:
+      path: /Audio/White/Cult/curse.ogg
+
+- type: entity
+  name: unholy halberd
+  parent: BaseItem
+  id: NarsieHalberd
+  description: A poleaxe that seems to be linked to its wielder.
+  components:
+  - type: Tag
+    tags:
+    - FireAxe
+  - type: Sharp
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/cult_halberd.rsi
+    state: icon
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    attackRate: 0.75
+    damage:
+      types:
+        Blunt: 10
+        Slash: 10
+        Structural: 5
+    soundHit:
+      collection: MetalThud
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 5
+        Slash: 5
+        Structural: 10
+  - type: Item
+    size: Ginormous
+  - type: Clothing
+    sprite: Objects/Weapons/Melee/cult_halberd.rsi
+    quickEquip: false
+    slots:
+    - back
+  - type: UseDelay
+    delay: 1
+  - type: CultWeapon
+    stuhTime: 5
+    damage:
+      types:
+        Slash: 10
+  - type: Tool
+    qualities:
+    - CultAnchoring
+    useSound:
+      path: /Audio/White/Cult/curse.ogg
+
+- type: entity
+  name: Blood spear
+  parent: BaseItem
+  id: BloodSpear
+  description: ""
+  components:
+  - type: Item
+    size: Ginormous
+  - type: Sprite
+    sprite: _Sunrise/BloodCult/blood_spear.rsi
+    state: icon
+  - type: ThrowingAngle
+    angle: 225
+  - type: Sharp
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Piercing: 15
+    angle: 0
+    animation: WeaponArcThrust
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Piercing: 10
+  - type: UseDelay
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+  - type: Tag
+    tags:
+    - Spear
+  - type: CultWeapon
+    stuhTime: 5
+    damage:
+      types:
+        Slash: 10
+  - type: CultBloodSpear
+    breakSound:
+      collection: GlassBreak
+      params:
+        volume: -4
+    stuhTime: 5
+    damage:
+      types:
+        Piercing: 40

@@ -1,0 +1,9 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               Title="Time to choose..">
+    <BoxContainer Orientation="Vertical">
+        <Label Text="Задайте название для метки." />
+        <LineEdit Name="NameSelector" HorizontalExpand="True" />
+        <Button Name="NameSelectorSet" Text="Принять" />
+    </BoxContainer>
+</DefaultWindow>

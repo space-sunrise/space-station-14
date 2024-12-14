@@ -1,0 +1,165 @@
+- type: entity
+  id: ActionCultTwistedConstruction
+  name: Проклятие конструкции
+  description: Зловещее заклинание, используемое для превращения металла в рунический металл.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: EntityTargetAction
+      useDelay: 50
+      canTargetSelf: false
+      icon:
+        sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+        state: transmute
+      itemIconStyle: NoItem
+      event: !type:CultTwistedConstructionActionEvent
+      charges: 1
+      renewCharges: false
+      deleteActionsWithoutCharges: true
+
+- type: entity
+  id: InstantActionBloodRitual
+  name: Кровавые обряды
+  description: Дает возможность собирать кровь, лечить культистов и создавать кровавые предметы.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    useDelay: 3
+    icon:
+      sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+      state: manip
+    itemIconStyle: NoItem
+    event: !type:CultBloodRitualInstantActionEvent
+
+- type: entity
+  id: ActionCultStun
+  name: Ошеломление
+  description: Мощное заклинание, которое вырубит и обеззвучит жертв при контакте.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTargetAction
+    useDelay: 5
+    whitelist:
+      components:
+        - HumanoidAppearance
+        - BorgChassis
+    canTargetSelf: false
+    icon:
+      sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+      state: stun
+    itemIconStyle: NoItem
+    event: !type:CultStunTargetActionEvent
+    charges: 1
+    renewCharges: false
+    deleteActionsWithoutCharges: true
+
+- type: entity
+  id: ActionShadowShackles
+  name: Теневые оковы
+  description: Заковывает жертву в теневые наручники.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTargetAction
+    useDelay: 1
+    whitelist:
+      components:
+      - Cuffable
+    canTargetSelf: false
+    icon:
+      sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+      state: shackles
+    itemIconStyle: NoItem
+    event: !type:CultShadowShacklesTargetActionEvent
+    charges: 4
+    renewCharges: false
+    deleteActionsWithoutCharges: true
+
+
+- type: entity
+  id: InstantActionEmpPulse
+  name: Электромагнитный импульс
+  description: Выплеснуть темную энергию в виде ЭМИ всплеска
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    icon:
+      sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+      state: emp
+    event: !type:CultEmpPulseTargetActionEvent
+    useDelay: 5
+    charges: 1
+    renewCharges: false
+    deleteActionsWithoutCharges: true
+
+- type: entity
+  id: ActionCultTeleport
+  name: Телепорт
+  description: Полезное заклинание, телепортирующее культистов в выбранное место.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: EntityTargetAction
+      useDelay: 5
+      whitelist:
+        components:
+          - Cultist
+      canTargetSelf: true
+      deselectOnMiss: true
+      repeat: false
+      icon:
+        sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+        state: teleport
+      itemIconStyle: NoItem
+      event: !type:CultTeleportTargetActionEvent
+
+- type: entity
+  id: ActionCultSummonCombatEquipment
+  name: Призыв боевой экипировки
+  description: Важнейшее заклинание, позволяющее призвать полный комплект боевого снаряжения.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: EntityTargetAction
+      useDelay: 5
+      whitelist:
+        components:
+          - HumanoidAppearance
+          - Cultist
+      canTargetSelf: true
+      deselectOnMiss: true
+      repeat: false
+      icon:
+        sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+        state: equip
+      itemIconStyle: NoItem
+      event: !type:CultSummonCombatEquipmentTargetActionEvent
+      charges: 1
+      renewCharges: false
+      deleteActionsWithoutCharges: true
+
+- type: entity
+  id: InstantActionSummonCultDagger
+  name: Призыв кинжала
+  description: Позволяет получить ритуальный кинжал.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: InstantAction
+      icon:
+        sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+        state: blood_dagger
+      event: !type:CultSummonDaggerActionEvent
+      useDelay: 5
+      charges: 1
+      renewCharges: false
+      deleteActionsWithoutCharges: true
+
+- type: entity
+  id: ActionCultReturnBloodSpear
+  name: Возврат копья
+  description: Бросит копье в направлении владельца если дистанция к нему не превышает 15 клеток.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    useDelay: 5
+    icon:
+      sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+      state: bloodspear
+    itemIconStyle: NoItem
+    event: !type:CultReturnBloodSpearActionEvent

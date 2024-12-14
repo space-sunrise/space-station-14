@@ -1,0 +1,19 @@
+﻿- type: entity
+  id: ProjectileCult
+  parent: BaseBullet
+  name: Blood
+  description: FUCK.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/BloodCult/suka.rsi
+  - type: Projectile
+    damage:
+      groups:
+        Burn: 10
+        Brute: 10
+  - type: PointLight
+    enabled: true
+    color: "#ff4300"
+    radius: 2.0
+    energy: 7.0

@@ -1,0 +1,102 @@
+﻿- type: entity
+  id: ArtificerCreateSoulStone
+  name: artificer-create-soul-stone-action-name
+  description: artificer-create-soul-stone-action-description
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: InstantAction
+      icon:
+        sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+        state: phaseshift
+      event: !type:ArtificerCreateSoulStoneActionEvent
+      useDelay: 300
+      sound: /Audio/_Sunrise/BloodCult/curse.ogg
+
+- type: entity
+  id: ArtificerCreateConstructShell
+  name: artificer-create-construct-shell-action-name
+  description: artificer-create-construct-shell-action-description
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: InstantAction
+      itemIconStyle: NoItem
+      icon:
+        sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+        state: artificer
+      sound: /Audio/_Sunrise/BloodCult/curse.ogg
+      useDelay: 180
+      event: !type:ArtificerCreateConstructShellActionEvent
+
+- type: entity
+  id: ArtificerConvertCultistFloor
+  name: artificer-convert-cultist-floor-action-name
+  description: artificer-convert-cultist-floor-action-description
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: InstantAction
+      itemIconStyle: NoItem
+      icon:
+        sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+        state: floorconstruct
+      sound: /Audio/_Sunrise/BloodCult/curse.ogg
+      useDelay: 2
+      event: !type:ArtificerConvertCultistFloorActionEvent
+
+- type: entity
+  id: ArtificerCreateCultistWall
+  name: artificer-create-cultist-wall-action-name
+  description: artificer-create-cultist-wall-action-description
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: InstantAction
+      itemIconStyle: NoItem
+      icon:
+        sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+        state: lesserconstruct
+      sound: /Audio/_Sunrise/BloodCult/curse.ogg
+      useDelay: 20
+      event: !type:ArtificerCreateCultistWallActionEvent
+
+- type: entity
+  id: ArtificerCreateCultistAirlock
+  name: artificer-create-cultist-airlock-action-name
+  description: artificer-create-cultist-airlock-action-description
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: InstantAction
+      itemIconStyle: NoItem
+      icon:
+        sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+        state: lesserconstruct
+      sound: /Audio/_Sunrise/BloodCult/curse.ogg
+      useDelay: 60
+      event: !type:ArtificerCreateCultistAirlockActionEvent
+
+- type: entity
+  id: WraithPhase
+  name: wraith-phase-action-name
+  description: wraith-phase-action-description
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: InstantAction
+      itemIconStyle: NoItem
+      icon:
+        sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+        state: phaseshift
+      sound: /Audio/_Sunrise/BloodCult/wraith_phase.ogg
+      useDelay: 20
+      event: !type:WraithPhaseActionEvent
+
+- type: entity
+  id: JuggernautCreateWall
+  name: juggernaut-create-wall-action-name
+  description: juggernaut-create-wall-action-description
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: InstantAction
+      itemIconStyle: NoItem
+      icon:
+        sprite: /Textures/_Sunrise/BloodCult/actions_cult.rsi
+        state: cultforcewall
+      useDelay: 35
+      event: !type:JuggernautCreateWallActionEvent

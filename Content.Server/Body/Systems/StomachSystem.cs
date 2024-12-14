@@ -1,8 +1,10 @@
+using System.Linq;
 using Content.Server.Body.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Body.Organ;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Whitelist;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
@@ -136,5 +138,45 @@ namespace Content.Server.Body.Systems
         {
             component.SpecialDigestible = whitelist;
         }
+
+        // Sunrise-Start
+        public bool TryChangeReagent(EntityUid uid, string fromReagent, string toReagent,
+            StomachComponent? stomach = null,
+            SolutionContainerManagerComponent? solutions = null)
+        {
+            if (!Resolve(uid, ref stomach, ref solutions, false))
+                return false;
+
+            if (!_solutionContainerSystem.ResolveSolution((uid, solutions), DefaultSolutionName, ref stomach.Solution))
+                return false;
+
+            foreach (var reagent in stomach.Solution.Value.Comp.Solution.Contents.ToList())
+            {
+                if (reagent.Reagent.Prototype != fromReagent)
+                    continue;
+
+                var amount = reagent.Quantity;
+
+                stomach.Solution.Value.Comp.Solution.RemoveReagent(reagent.Reagent.Prototype, amount);
+                foreach (var stomachReagentDelta in stomach.ReagentDeltas.ToList())
+                {
+                    if (stomachReagentDelta.ReagentQuantity.Reagent.Prototype != reagent.Reagent.Prototype)
+                        continue;
+
+                    stomach.ReagentDeltas.Remove(stomachReagentDelta);
+                    var newDelta = new StomachComponent.ReagentDelta(new ReagentQuantity(
+                        new ReagentId(toReagent, stomachReagentDelta.ReagentQuantity.Reagent.Data),
+                        stomachReagentDelta.ReagentQuantity.Quantity));
+                    stomach.ReagentDeltas.Add(newDelta);
+                }
+
+                stomach.Solution.Value.Comp.Solution.AddReagent(toReagent, amount);
+
+                return true;
+            }
+
+            return false;
+        }
+        // Sunrise-End
     }
 }

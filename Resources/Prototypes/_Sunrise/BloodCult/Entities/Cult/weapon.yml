@@ -1,0 +1,31 @@
+- type: entity
+  name: стальной молот
+  parent: BaseItem
+  id: HammerJuggernaut
+  description: "Молот Джаггерната, созданный из невероятно прочных материалов и способный разрушать все на своем пути с могучим ударом."
+  components:
+  - type: Sprite
+    sprite: _Sunrise/BloodCult/hammer_juggernaut.rsi
+    state: icon
+  - type: MeleeWeapon
+    Range: 2
+    angle: 30
+    animation: WeaponArcSmash
+    attackRate: 1
+    damage:
+      types:
+        Structural: 100
+        Blunt: 25
+  - type: MultiHandedItem
+  - type: Clothing
+    QuickEquip: false
+    sprite: _Sunrise/BloodCult/hammer_juggernaut.rsi
+    slots:
+    - back
+  - type: Appearance
+  - type: StaticPrice
+    price: 1000
+  - type: Item
+    size: Normal
+  - type: Unremoveable
+

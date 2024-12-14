@@ -1,0 +1,28 @@
+﻿- type: entity
+  id: WetStone
+  parent: BaseItem
+  name: wet stone
+  description: wet stone
+  components:
+    - type: Sharpener
+      damageModifier: 5
+    - type: Sprite
+      sprite: White/Items/Misc/wetstone.rsi
+      size: 1
+      state: sharpener
+    - type: Item
+      size: Small
+      sprite: White/Items/Misc/wetstone.rsi
+
+- type: entity
+  id: CultSharpener
+  parent: BaseItem
+  name: eldritch whetstone
+  description: wet stone
+  components:
+    - type: Sharpener
+      damageModifier: 15
+    - type: Sprite
+      sprite: White/Items/Misc/wetstone.rsi
+      size: 1
+      state: cult_sharpener

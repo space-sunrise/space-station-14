@@ -1,0 +1,105 @@
+﻿- type: entity
+  id: CultTileSpawnEffect
+  name: Sparkle
+  placement:
+    mode: SnapgridCenter
+  components:
+    # Animation is like 3 something seconds so we just need to despawn it before then.
+    - type: TimedDespawn
+      lifetime: 0.5
+    - type: EvaporationSparkle
+    - type: Transform
+      noRot: true
+      anchored: true
+    - type: Sprite
+      layers:
+        - sprite: _Sunrise/BloodCult/Effects/tiles_spawn.rsi
+          state: floorglow
+          shader: unshaded
+      netsync: false
+      drawdepth: FloorObjects
+      color: "#FF0000"
+    - type: PointLight
+      color: "#FF0000"
+
+- type: entity
+  id: CultTeleportInEffect
+  name: Teleport in
+  components:
+    # Animation is like 3 something seconds so we just need to despawn it before then.
+    - type: TimedDespawn
+      lifetime: 0.8
+    - type: EvaporationSparkle
+    - type: Transform
+      noRot: true
+      anchored: true
+    - type: Sprite
+      layers:
+        - sprite: _Sunrise/BloodCult/Effects/cult_inout.rsi
+          state: cultin
+          shader: unshaded
+      netsync: false
+      drawdepth: Effects
+    - type: PointLight
+      color: "#FF0000"
+
+- type: entity
+  id: CultTeleportOutEffect
+  name: Teleport out
+  components:
+    # Animation is like 3 something seconds so we just need to despawn it before then.
+    - type: TimedDespawn
+      lifetime: 0.8
+    - type: EvaporationSparkle
+    - type: Transform
+      noRot: true
+      anchored: true
+    - type: Sprite
+      layers:
+        - sprite: _Sunrise/BloodCult/Effects/cult_inout.rsi
+          state: cultout
+          shader: unshaded
+      netsync: false
+      drawdepth: Effects
+    - type: PointLight
+      color: "#FF0000"
+
+- type: entity
+  id: CultWallGlow
+  name: wall glow
+  components:
+    - type: TimedDespawn
+      lifetime: 1
+    - type: EvaporationSparkle
+    - type: Transform
+      noRot: true
+      anchored: true
+    - type: Sprite
+      layers:
+        - sprite: _Sunrise/BloodCult/Effects/wall_glow.rsi
+          state: wallglow
+          shader: unshaded
+      netsync: false
+      drawdepth: Effects
+    - type: PointLight
+      color: "#FF0000"
+
+- type: entity
+  id: CultAirlockGlow
+  name: airlock glow
+  components:
+    - type: TimedDespawn
+      lifetime: 1
+    - type: EvaporationSparkle
+    - type: Transform
+      noRot: true
+      anchored: true
+    - type: Sprite
+      layers:
+        - sprite: _Sunrise/BloodCult/Effects/airlock_glow.rsi
+          state: doorglow
+          shader: unshaded
+      netsync: false
+      drawdepth: Effects
+    - type: PointLight
+      color: "#FF0000"

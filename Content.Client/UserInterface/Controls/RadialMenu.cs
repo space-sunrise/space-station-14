@@ -3,6 +3,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using System.Linq;
 using System.Numerics;
+using Robust.Client.Graphics;
 
 namespace Content.Client.UserInterface.Controls;
 
@@ -16,7 +17,7 @@ public class RadialMenu : BaseWindow
 
     /// <summary>
     /// Set a style class to be applied to the contextual button when it is set to move the user back through previous layers of the radial menu
-    /// </summary>  
+    /// </summary>
     public string? BackButtonStyleClass
     {
         get
@@ -60,8 +61,8 @@ public class RadialMenu : BaseWindow
     /// A free floating menu which enables the quick display of one or more radial containers
     /// </summary>
     /// <remarks>
-    /// Only one radial container is visible at a time (each container forming a separate 'layer' within 
-    /// the menu), along with a contextual button at the menu center, which will either return the user  
+    /// Only one radial container is visible at a time (each container forming a separate 'layer' within
+    /// the menu), along with a contextual button at the menu center, which will either return the user
     /// to the previous layer or close the menu if there are no previous layers left to traverse.
     /// To create a functional radial menu, simply parent one or more named radial containers to it,
     /// and populate the radial containers with RadialMenuButtons. Setting the TargetLayer field of these

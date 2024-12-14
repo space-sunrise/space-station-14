@@ -1,0 +1,30 @@
+﻿- type: entity
+  id: BloodCult
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: GameRule
+    minPlayers: 20
+    delay:
+      min: 360
+      max: 720
+  - type: BloodCultRule
+    cultistStartingItems:
+    - NarsieRitualDagger
+    - CultRunicMetal10
+  - type: AntagObjectives
+    objectives:
+    - CultistKillObjective
+  - type: AntagSelection
+    definitions:
+    - prefRoles: [ Traitor ]
+      max: 6 # Sunrise-Edit
+      playerRatio: 15
+      blacklist:
+        components:
+        - AntagImmune
+        - Synth
+        - BibleUser
+      lateJoinAdditional: true
+      mindRoles:
+      - MindRoleCultist
