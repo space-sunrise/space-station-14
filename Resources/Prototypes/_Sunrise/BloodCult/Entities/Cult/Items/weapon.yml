@@ -39,7 +39,7 @@
     qualities:
     - CultAnchoring
     useSound:
-      path: /Audio/White/Cult/curse.ogg
+      path: /Audio/_Sunrise/BloodCult/curse.ogg
 
 - type: entity
   name: eldritch blade
@@ -73,7 +73,7 @@
     qualities:
     - CultAnchoring
     useSound:
-      path: /Audio/White/Cult/curse.ogg
+      path: /Audio/_Sunrise/BloodCult/curse.ogg
 
 - type: entity
   name: unholy halberd
@@ -123,7 +123,7 @@
     qualities:
     - CultAnchoring
     useSound:
-      path: /Audio/White/Cult/curse.ogg
+      path: /Audio/_Sunrise/BloodCult/curse.ogg
 
 - type: entity
   name: Blood spear
@@ -175,3 +175,34 @@
     damage:
       types:
         Piercing: 40
+
+- type: entity
+  name: стальной молот
+  parent: BaseItem
+  id: HammerJuggernaut
+  description: "Молот Джаггерната, созданный из невероятно прочных материалов и способный разрушать все на своем пути с могучим ударом."
+  components:
+  - type: Sprite
+    sprite: _Sunrise/BloodCult/hammer_juggernaut.rsi
+    state: icon
+  - type: MeleeWeapon
+    range: 2
+    angle: 30
+    animation: WeaponArcSmash
+    attackRate: 1
+    damage:
+      types:
+        Structural: 100
+        Blunt: 25
+  - type: MultiHandedItem
+  - type: Clothing
+    quickEquip: false
+    sprite: _Sunrise/BloodCult/hammer_juggernaut.rsi
+    slots:
+    - back
+  - type: Appearance
+  - type: StaticPrice
+    price: 1000
+  - type: Item
+    size: Normal
+  - type: Unremoveable

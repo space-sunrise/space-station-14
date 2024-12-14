@@ -27,10 +27,10 @@
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
     - type: Reflect
-      reflectProb: 0.5
-      passiveReflect: true
+      reflectProb: 0.95
       reflects:
         - Energy
+      needHand: true
     - type: ReturnItemOnThrow
 
 

@@ -17,7 +17,7 @@
     - CultistKillObjective
   - type: AntagSelection
     definitions:
-    - prefRoles: [ Traitor ]
+    - prefRoles: [ Cultist ]
       max: 6 # Sunrise-Edit
       playerRatio: 15
       blacklist:

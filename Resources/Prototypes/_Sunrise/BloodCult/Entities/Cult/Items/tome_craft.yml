@@ -12,7 +12,6 @@
   icon: { sprite: /Textures/_Sunrise/BloodCult/Entities/runic_metal.rsi, state: runic}
   spawn: CultRunicMetal1
   maxCount: 30
-  itemSize: 1
 
 - type: entity
   name: curse orb
@@ -172,7 +171,6 @@
         - runic
         - runic_2
         - runic_3
-      sizeMultiplier: 0.17
     - type: Appearance
     - type: RunicMetal
     - type: UserInterface
@@ -190,7 +188,6 @@
       state: runic
     - type: Stack
       count: 1
-      sizeMultiplier: 0.17
 
 - type: entity
   parent: CultRunicMetal
@@ -201,7 +198,6 @@
       state: runic
     - type: Stack
       count: 20
-      sizeMultiplier: 0.17
 
 - type: entity
   parent: CultRunicMetal
@@ -212,4 +208,3 @@
     state: runic
   - type: Stack
     count: 10
-    sizeMultiplier: 0.17

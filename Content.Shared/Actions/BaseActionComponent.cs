@@ -186,6 +186,11 @@ public abstract partial class BaseActionComponent : Component
     ///     If not null, this sound will be played when performing this action.
     /// </summary>
     [DataField("sound")] public SoundSpecifier? Sound;
+
+    // Sunrise-Start
+    [DataField("deleteActionsWithoutCharges")]
+    public bool DeleteActionsWithoutCharges;
+    // Sunrise-End
 }
 
 [Serializable, NetSerializable]
@@ -216,6 +221,7 @@ public abstract class BaseActionComponentState : ComponentState
     public bool Temporary;
     public ItemActionIconStyle ItemIconStyle;
     public SoundSpecifier? Sound;
+    public bool DeleteActionsWithoutCharges; // Sunrise-Edit
 
     protected BaseActionComponentState(BaseActionComponent component, IEntityManager entManager)
     {
@@ -244,5 +250,6 @@ public abstract class BaseActionComponentState : ComponentState
         Temporary = component.Temporary;
         ItemIconStyle = component.ItemIconStyle;
         Sound = component.Sound;
+        DeleteActionsWithoutCharges = component.DeleteActionsWithoutCharges; // Sunrise-Edit
     }
 }

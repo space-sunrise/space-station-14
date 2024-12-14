@@ -39,9 +39,6 @@ public sealed partial class BloodCultRuleComponent : Component
     [DataField("cultistStartingItems", customTypeSerializer: typeof(PrototypeIdListSerializer<EntityPrototype>))]
     public List<string> StartingItems = new();
 
-    [DataField("cultistRolePrototype", customTypeSerializer: typeof(PrototypeIdSerializer<AntagPrototype>))]
-    public string CultistRolePrototype = "Cultist";
-
     public List<EntityUid> CultTargets = new();
 
     public CultWinCondition WinCondition;
