@@ -28,6 +28,7 @@ job-name-clown-borg = клоун киборг
 job-name-barber = парикмахер
 # Перевод трекеров времени
 JobCentCommOfficial = представитель Центком
+JobCentCommOperator = оператор Центком
 JobMagistrat = магистрат
 JobSeniorEngineer = ведущий инженер
 JobSeniorOfficer = инструктор СБ
