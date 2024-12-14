@@ -24,10 +24,6 @@ public sealed partial class BloodCultRuleComponent : Component
     [DataField("eyeColor")]
     public static Color EyeColor = Color.FromHex("#f80000");
 
-    public static string HolyWaterReagent = "Holywater";
-
-    public static string ChaplainProtoId = "Chaplain";
-
     [DataField("redEyeThreshold")]
     public static int ReadEyeThreshold = 5;
 

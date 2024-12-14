@@ -9,7 +9,7 @@
     - Zombie
     - Revolutionary
     - SimpleHostile
-    - BloodCultist
+    - BloodCult
     - Vampire
 
 - type: npcFaction
@@ -50,7 +50,7 @@
   - Revolutionary
   - Carps
   - Vampire
-  - BloodCultist
+  - BloodCult
 
 - type: npcFaction
   id: SimpleNeutral
@@ -84,7 +84,7 @@
   - Zombie
   - Revolutionary
   - Vampire
-  - BloodCultist
+  - BloodCult
 
 - type: npcFaction
   id: Zombie
@@ -99,7 +99,7 @@
   - Revolutionary
   - Changeling
   - Vampire
-  - BloodCultist
+  - BloodCult
 
 - type: npcFaction
   id: Revolutionary
@@ -118,7 +118,7 @@
   - Zombie
   - Revolutionary
   - Xeno
-  - BloodCultist
+  - BloodCult
 
 - type: npcFaction
   id: Vampire
@@ -130,10 +130,10 @@
   - Revolutionary
   - Changeling
   - Xeno
-  - BloodCultist
+  - BloodCult
 
 - type: npcFaction
-  id: BloodCultist
+  id: BloodCult
   hostile:
   - NanoTrasen
   - Syndicate

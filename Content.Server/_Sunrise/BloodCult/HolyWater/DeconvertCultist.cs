@@ -59,6 +59,6 @@ public sealed partial class DeconvertCultist : EntityEffect
             entityManager.RemoveComponent<PentagramComponent>(uid);
         if (entityManager.HasComponent<CultMemberComponent>(uid))
             entityManager.RemoveComponent<CultMemberComponent>(uid);
-        entityManager.System<TagSystem>().RemoveTag(uid, "Cultist");
+        entityManager.System<TagSystem>().RemoveTag(uid, "BloodCultist");
     }
 }

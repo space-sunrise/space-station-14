@@ -10,6 +10,7 @@ cult-cond-cultfailure = Экипаж уничтожил культ
 
 cultists-list-start = Культистами были:
 cultists-list-name = - [color=White]{ $name }[/color] ([color=gray]{ $user }[/color])
+objective-issuer-blood-cult = [color=red]Культ крови[/color]
 soul-shard-name = Душа { $soul }
 soul-shard-description = В этом камне заключена душа { $soul }
 cult-too-much-empowers = Слишком много способностей
