@@ -94,7 +94,7 @@
   result: WeaponLaserSvalinn
   materials:
     Steel: 2000
-    Gold: 500
+    Gold: 200 #sunrise-Edit
 
 - type: latheRecipe
   parent: BaseWeaponRecipeLong
