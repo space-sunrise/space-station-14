@@ -67,3 +67,13 @@
     Glass: 800
     Plastic: 400
     Gold: 100
+
+- type: latheRecipe
+  id: PowerCageCombat
+  result: PowerCageCombat
+  completetime: 15
+  materials:
+    Steel: 700
+    Glass: 1200
+    Plastic: 500
+    Gold: 200

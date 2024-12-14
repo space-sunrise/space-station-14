@@ -206,7 +206,7 @@
   recipeUnlocks:
   - PowerCageRechargerCircuitboard
   #PowerCageSmall
-  - PowerCageMedium
+  #PowerCageMedium
   - MagazineGrenadeEmpty
   - ShellFlashArtillery
   - ShellBlastArtillery
@@ -310,5 +310,6 @@
   - DurandTargetingElectronics
   - WeaponMechCombatShotgun
   - WeaponMechCombatShotgunIncendiary
+  - PowerCageCombat
   technologyPrerequisites:
   - Gygax

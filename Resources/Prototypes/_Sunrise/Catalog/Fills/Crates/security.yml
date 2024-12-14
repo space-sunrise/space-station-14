@@ -38,3 +38,18 @@
         amount: 2
       - id: ClothingHandsGlovesCombat
         amount: 2 
+
+- type: entity
+  id: CrateSecurityArmorReflective
+  parent: CrateSecgear
+  name: reflective armor crate 
+  description: Contains a reflective armor. 2 reflective armor, 2 RiotLaserShield, 2 EnergyGun. To open it, the Security Service access level is required.
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterArmorReflective
+        amount: 2
+      - id: RiotLaserShield 
+        amount: 2
+      - id: WeaponEnergyGun
+        amount: 2 

@@ -84,7 +84,7 @@
     minAngle: -20
     maxAngle: -40
   - type: Gun
-    fireRate: 3
+    fireRate: 2
     minAngle: 28
     maxAngle: 48
     soundGunshot:
@@ -122,7 +122,7 @@
   - type: Appearance
   - type: Wieldable
   - type: UseDelay
-    delay: 0.5
+    delay: 1
   - type: ZoomableGun
   - type: ChamberMagazineAmmoProvider
     autoEject: true
