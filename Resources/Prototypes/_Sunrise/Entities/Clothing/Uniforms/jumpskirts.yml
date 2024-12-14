@@ -130,3 +130,14 @@
     sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/adjutant.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/adjutant.rsi
+    
+- type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtLoona
+  name: Moon top with black shorts
+  description: It seems these clothes have been worn before you, unremoved, torn and worn in places, the urge to howl at the top of your lungs comes over you.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/loona.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpskirt/loona.rsi
