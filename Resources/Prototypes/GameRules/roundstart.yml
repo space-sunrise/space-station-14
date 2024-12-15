@@ -235,6 +235,8 @@
     definitions:
     - prefRoles: [ HeadRev ]
       max: 3
+      pickCommandStaff: true # Sunrise-Edit
+      maxCommandStaff: 3 # Sunrise-Edit
       playerRatio: 15
       briefing:
         text: head-rev-role-greeting
