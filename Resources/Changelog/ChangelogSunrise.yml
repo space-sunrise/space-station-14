@@ -8059,3 +8059,15 @@
   id: 566
   time: '2024-12-15T12:27:26.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/848
+- author: RaMbUt878
+  changes:
+  - message: "\u0413\u043B\u0430\u0432\u0430 \u041F\u0435\u0440\u0441\u043E\u043D\u0430\
+      \u043B\u0430, \u041A\u041C, \u041D\u0420, \u0413\u0412 \u0438 \u0421\u0418 \u0431\
+      \u043E\u043B\u044C\u0448\u0435 \u043D\u0435 \u0438\u043C\u0435\u044E\u0442 \u041C\
+      \u0428 \u0438 \u043C\u043E\u0433\u0443\u0442 \u0441\u0442\u0430\u0442\u044C\
+      \ \u0430\u043D\u0442\u0430\u0433\u043E\u043D\u0438\u0441\u0442\u0430\u043C\u0438\
+      ."
+    type: Add
+  id: 567
+  time: '2024-12-15T13:05:24.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/858
