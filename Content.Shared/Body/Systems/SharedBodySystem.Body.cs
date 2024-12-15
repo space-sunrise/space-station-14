@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Shared.Body.Components;
+using Content.Shared.Body.Events;
 using Content.Shared.Body.Organ;
 using Content.Shared.Body.Part;
 using Content.Shared.Body.Prototypes;
@@ -126,6 +127,10 @@ public partial class SharedBodySystem
         // Sunrise-End
 
         MapInitParts(rootPartUid, prototype);
+
+        // Sunrise-Start
+        RaiseLocalEvent(bodyEntity, new BodyInitEvent());
+        // Sunrise-End
     }
 
     private void OnBodyCanDrag(Entity<BodyComponent> ent, ref CanDragEvent args)

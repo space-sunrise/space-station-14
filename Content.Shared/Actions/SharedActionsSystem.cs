@@ -708,8 +708,15 @@ public abstract class SharedActionsSystem : EntitySystem
         {
             dirty = true;
             action.Charges--;
+            // Sunrise-Start
             if (action is { Charges: 0, RenewCharges: false })
-                action.Enabled = false;
+            {
+                if (action.DeleteActionsWithoutCharges)
+                    _actionContainer.RemoveAction(actionId, action);
+                else
+                    action.Enabled = false;
+            }
+            // Sunrise-End
         }
 
         action.Cooldown = null;

@@ -1,0 +1,293 @@
+﻿- type: entity
+  id: CultPylon
+  parent: BaseStructure
+  name: pylon
+  description: A mysterious structure.
+  components:
+  - type: Transform
+    noRot: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      pylonFix:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.3,0.1,0.3"
+        density: 190
+        mask:
+        - TabletopMachineMask
+        layer:
+        - TabletopMachineLayer
+  - type: Sprite
+    netsync: false
+    noRot: true
+    drawdepth: SmallObjects
+    sprite: /Textures/_Sunrise/BloodCult/Structures/pylon.rsi
+    layers:
+    - state: pylon
+      map: [ "enum.PylonVisualsLayers.Activated" ]
+  - type: PylonVisuals
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Glass
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 2
+  - type: Appearance
+  - type: Pylon
+    healingAuraDamage:
+      groups:
+        Brute: -10
+        Burn: -10
+        Toxin: -6
+        Genetic: -5
+        Airloss: -20
+    burnDamageOnInteract:
+      groups:
+        Burn: 5
+  - type: PointLight
+    color: "#FF0000"
+    radius: 2
+    energy: 2
+    enabled: true
+  - type: Construction
+    graph: CultPylon
+    node: pylon
+  - type: Anchorable
+    tool: CultAnchoring
+
+- type: entity
+  id: AltarTome
+  parent: BaseStructure
+  name: archives
+  description: A table littered with secret manuscripts and books in unknown languages.
+  components:
+  - type: Transform
+    noRot: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      tomeFix:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.3,0.1,0.3"
+        density: 190
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Sprite
+    netsync: false
+    noRot: true
+    drawdepth: SmallObjects
+    sprite: /Textures/_Sunrise/BloodCult/Structures/tome_altar.rsi
+    layers:
+    - state: icon
+      map: [ "enum.CultCraftStructureVisualsLayers.Activated" ]
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: Appearance
+  - type: CultCraftStructureVisuals
+  - type: CultistFactory
+    products:
+    - FactoryCultShuttleCurse
+    - FactoryCultClothingBlindfold
+    - FactoryCultVeilShifter
+  - type: UserInterface
+    interfaces:
+      enum.CultistAltarUiKey.Key:
+        type: CultistFactoryBUI
+  - type: Construction
+    graph: AltarTome
+    node: tome
+  - type: Anchorable
+    tool: CultAnchoring
+
+- type: entity
+  id: CultBloodAltar
+  parent: BaseStructure
+  name: altar
+  description: A bloody altar dedicated to some creature.
+  components:
+  - type: Transform
+    noRot: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      tomeFix:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.3,0.1,0.3"
+        density: 190
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Sprite
+    netsync: false
+    noRot: true
+    drawdepth: SmallObjects
+    sprite: /Textures/_Sunrise/BloodCult/Structures/blood_altar.rsi
+    layers:
+    - state: icon
+      map: [ "enum.CultCraftStructureVisualsLayers.Activated" ]
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: Appearance
+  - type: CultCraftStructureVisuals
+  - type: CultistFactory
+    products:
+    - FactoryWhetstone
+    - FactoryConstructShell
+    - FactoryUnholyWater
+  - type: UserInterface
+    interfaces:
+      enum.CultistAltarUiKey.Key:
+        type: CultistFactoryBUI
+  - type: Construction
+    graph: CultBloodAltar
+    node: altar
+  - type: Anchorable
+    tool: CultAnchoring
+
+- type: entity
+  id: CultForge
+  parent: BaseStructure
+  name: forge
+  description: A forge where unholy weapons are made.
+  components:
+  - type: Transform
+    noRot: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      tomeFix:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.3,0.1,0.3"
+        density: 190
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Sprite
+    netsync: false
+    noRot: true
+    drawdepth: SmallObjects
+    sprite: /Textures/_Sunrise/BloodCult/Structures/forge.rsi
+    layers:
+    - state: icon
+      map: [ "enum.CultCraftStructureVisualsLayers.Activated" ]
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: Appearance
+  - type: CultCraftStructureVisuals
+  - type: CultistFactory
+    products:
+    - FactoryEldritchBlade
+    - FactoryArmorCult
+    - FactoryCultRobeModify
+    - FactoryCultMirrorShield
+  - type: UserInterface
+    interfaces:
+      enum.CultistAltarUiKey.Key:
+        type: CultistFactoryBUI
+  - type: Construction
+    graph: CultForge
+    node: forge
+  - type: Anchorable
+    tool: CultAnchoring
+
+- type: cultStructure
+  id: CultStructureAltarTome
+  name: Архивы
+  structureId: AltarTome
+  icon: "/Textures/_Sunrise/BloodCult/Structures/tome_altar.rsi/icon-off.png"
+
+- type: cultStructure
+  id: CultStructureCultPylon
+  name: Пилон
+  structureId: CultPylon
+  icon: "/Textures/_Sunrise/BloodCult/Structures/pylon.rsi/pylon_off.png"
+
+- type: cultStructure
+  id: CultStructureCultBloodAltar
+  name: Алтарь
+  structureId: CultBloodAltar
+  icon: "/Textures/_Sunrise/BloodCult/Structures/blood_altar.rsi/icon-off.png"
+
+- type: cultStructure
+  id: CultStructureCultForge
+  name: Кузница
+  structureId: CultForge
+  icon: "/Textures/_Sunrise/BloodCult/Structures/forge.rsi/icon-off.png"
+
+- type: cultStructure
+  id: CultStructureAirlockGlassCult
+  name: Шлюз
+  structureId: AirlockGlassCult
+  icon: "/Textures/_Sunrise/BloodCult/Structures/cult_airlock.rsi/closed.png"
+
+- type: cultStructure
+  id: CultStructureCultGirder
+  name: Балка
+  structureId: CultGirder
+  icon: "/Textures/_Sunrise/BloodCult/Structures/cult_girder.rsi/cultgirder.png"
+

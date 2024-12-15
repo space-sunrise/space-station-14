@@ -308,6 +308,13 @@ public abstract class SharedStunSystem : EntitySystem
             args.Cancel();
     }
 
+    // Sunrise-Start
+    public bool IsParalyzed(EntityUid uid)
+    {
+        return HasComp<StunnedComponent>(uid) || HasComp<KnockedDownComponent>(uid);
+    }
+    // Sunrise-End
+
     #endregion
 }
 

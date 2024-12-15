@@ -198,8 +198,16 @@
         type: SurgeryBui
       enum.StoreUiKey.Key:
         type: StoreBoundUserInterface
+      # Sunrise-Start
       enum.VampireMutationUiKey.Key:
         type: VampireMutationBoundUserInterface
+      enum.NameSelectorUIKey.Key:
+        type: NameSelectorBUI
+      enum.RuneTeleporterUiKey.Key:
+        type: TeleportRunesListWindowBUI
+      enum.SummonCultistUiKey.Key:
+        type: SummonCultistListWindowBUI
+      # Sunrise-End
   - type: Puller
   - type: Speech
     speechSounds: Alto

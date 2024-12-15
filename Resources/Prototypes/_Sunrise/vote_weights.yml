@@ -1,21 +1,23 @@
 - type: voteRandom
   id: SunriseVoteSecret
   chances:
-    Traitor: 0.45
-    Extra: 0.3
+    Traitor: 0.35
+    Extra: 0.25
     Nukeops: 0.15
-    Survival: 0.15
-    Greenshift: 0.1
-    Revolutionary: 0.05
-    Zombie: 0.1
+    BloodCult: 0.15
+    Survival: 0.10
+    Greenshift: 0.10
+    Revolutionary: 0.10
+    Zombie: 0.10
 
 - type: voteRandom
   id: LustVoteSecret
   chances:
-    Extra: 0.45
-    Traitor: 0.4
-    Greenshift: 0.25
-    Survival: 0.1
-    Nukeops: 0.1
+    Extra: 0.50
+    Traitor: 0.35
+    Greenshift: 0.15
+    BloodCult: 0.10
+    Survival: 0.10
+    Nukeops: 0.10
     Revolutionary: 0.05
     Zombie: 0.05
