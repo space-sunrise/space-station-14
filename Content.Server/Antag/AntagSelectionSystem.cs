@@ -161,6 +161,30 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             if (!TryGetNextAvailableDefinition((uid, antag), out var def))
                 continue;
 
+            // Sunrise-Start
+            if (_jobs.IsCommandStaff(args.Player) && def.Value.PickCommandStaff)
+            {
+                var selectedCommandStaff = 0;
+
+                foreach (var compSelectedSession in antag.SelectedSessions)
+                {
+                    if (_jobs.IsCommandStaff(compSelectedSession))
+                    {
+                        selectedCommandStaff += 1;
+                    }
+                }
+
+                if (def.Value.MaxCommandStaff != 0 && selectedCommandStaff >= def.Value.MaxCommandStaff)
+                {
+                    continue;
+                }
+            }
+            else
+            {
+                continue;
+            }
+            // Sunrise-End
+
             if (TryMakeAntag((uid, antag), args.Player, def.Value))
                 break;
         }
