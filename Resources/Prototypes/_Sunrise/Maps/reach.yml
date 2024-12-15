@@ -40,6 +40,7 @@
             IAA: [ 1, 1 ]
             SeniorOfficer: [ 1, 1 ]
             Adjutant: [ 1, 1 ]
+            Lawyer: [ 1, 1 ]
         - type: StationGoal
           goals:
           - Shuttle
