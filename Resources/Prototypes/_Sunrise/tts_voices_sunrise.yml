@@ -573,3 +573,12 @@
   provider: sunrise
   roundStart: true # перетренировать
   sponsorOnly: false
+
+- type: ttsVoice
+  id: Crysis2AIUscaucasain03
+  name: tts-voice-name-crysis2-ai-uscaucasian_03
+  sex: Male
+  speaker: crysis2_ai_uscaucasian_03
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: false
