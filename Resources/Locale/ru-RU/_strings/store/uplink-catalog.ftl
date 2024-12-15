@@ -157,7 +157,41 @@ uplink-knives-kit-desc = Набор из 4 фирменных метательн
 uplink-meds-bundle-name = Медицинский набор
 uplink-meds-bundle-desc = Всё, что нужно для возвращения в строй ваших товарищей: главным образом, боевая аптечка, дефибриллятор и три боевых медипена.
 uplink-ammo-bundle-name = Набор боеприпасов
-uplink-ammo-bundle-desc = Перезаряжаю! Содержит 4 магазина для C-20r, 4 барабана для Бульдога и 2 короба патронов для L6 SAW.
+uplink-ammo-bundle-desc = Перезаряжаю! Содержит 1 коробку с магазинами для c20r, 1 коробка с магазинами для Бульдога и 1 коробка с магазинами L6 Saw.
+
+uplink-ammo-crate-ammokit-bundle-name = ящик супер набора боеприпасов синдиката
+uplink-ammo-crate-ammokit-bundle-desc = Перезаряжаю! Перезаряжаю! Перезаряжаю! Содержит все виды и наборы патронов, исключая боеприпасов для больших пушек.
+
+uplink-ammo-caselesskit-name = Набор безгильзовых патронов
+uplink-ammo-caselesskit-desc = Перезаряжаю! Содержит 3 расширеных магазина and 3 базовых магазина для Siar-52.
+
+uplink-ammo-smgkit-name = Набор магазинов для C-20r
+uplink-ammo-smgkit-desc = Перезаряжаю! Содержит 8 магазинов для C-20r.
+
+uplink-ammo-smgincendiarykit-name = Набор зажигательных магазинов для C-20r
+uplink-ammo-smgincendiarykit-desc = Перезаряжаю! Содержит 8 зажигательных магазина для C-20r.
+
+uplink-ammo-smguraniumkit-name = Набор урановых магазинов для C-20r
+uplink-ammo-smguraniumkit-desc = Перезаряжаю! Содержит 8 урановых магазина для C-20r.
+
+uplink-ammo-shotgunkit-name = Набор магазинов для дробовика
+uplink-ammo-shotgunkit-desc = Перезаряжаю! Содержит 5 магазина дроби and 3 магазина пуля для Bulldog.
+
+uplink-ammo-shotgunincendiarykit-name = Набор зажигательных магазинов для дробовика
+uplink-ammo-shotgunincendiarykit-desc = Перезаряжаю! Содержит 8 зажигательные магазины для Bulldog.
+
+uplink-ammo-shotgunuraniumkit-name = Набор урановых магазинов для дробовика
+uplink-ammo-shotgunuraniumkit-desc = Перезаряжаю! Содержит 8 урановые магазины для Bulldog.
+
+uplink-ammo-lmgkit-name = Набор коробов
+uplink-ammo-lmgkit-desc = Перезаряжаю! Содержит 4 магазина для L6 Saw или DL6902.
+
+uplink-ammo-lmgincendiarykit-name = Набор зажигательных коробов
+uplink-ammo-lmgincendiarykit-desc = Перезаряжаю! Содержит 4 зажигательных магазина для L6 Saw или DL6902.
+
+uplink-ammo-lmguraniumkit-name = Набор урановых коробов
+uplink-ammo-lmguraniumkit-desc = Перезаряжаю! Содержит 4 урановых магазина для L6 Saw или DL6902.
+
 uplink-sniper-bundle-name = Набор снайпера
 uplink-sniper-bundle-desc = Неприметный чемодан, в котором находятся Христов, 10 запасных патронов и удобная маскировка.
 # Bundles

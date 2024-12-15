@@ -167,6 +167,9 @@
     damageModifierSet: Dragon
   - type: TTS
     voice: HearthstoneLordOfThunder
+  - type: InnateItem
+    instantActions:
+    - HandHeldMassScannerBorg
   # Sunrise-End
 
 - type: entity

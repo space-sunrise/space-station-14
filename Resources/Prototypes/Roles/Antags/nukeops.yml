@@ -14,15 +14,15 @@
 
 - type: antag
   id: NukeopsMedic
-  name: roles-antag-nuclear-operative-agent-name
+  name: roles-antag-nuclear-operative-medic-name
   antagonist: true
   setPreference: true
-  objective: roles-antag-nuclear-operative-agent-objective
+  objective: roles-antag-nuclear-operative-medic-objective
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 36000 # 10h # Sunrise-RoleTime
   - !type:RoleTimeRequirement
-    role: JobChemist
+    role: JobMedicalDoctor
     time: 18000 # 5h # Sunrise-RoleTime
   - !type:DepartmentTimeRequirement
     department: Security
@@ -93,11 +93,11 @@
   id: SyndicateOperativeMedicFull
   parent: SyndicateOperativeGearFull
   equipment:
-    #eyes: ClothingEyesHudSyndicateAgent # Sunrise-Edit
+    eyes: ClothingEyesHudSyndicateMedic # Sunrise-Edit
     #outerClothing: ClothingOuterHardsuitSyndieMedicBiocode # Sunrise-Edit
     #shoes: ClothingShoesBootsMagSyndie # Sunrise-Edit
     id: SyndiAgentPDA
-    #belt: ClothingBeltMilitaryWebbingMedFilled # Sunrise-Edit
+    belt: ClothingBeltMilitaryWebbingMedFilled # Sunrise-Edit
   storage:
     back:
     - SyndiHypo

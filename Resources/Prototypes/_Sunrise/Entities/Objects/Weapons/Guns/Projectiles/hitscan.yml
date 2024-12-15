@@ -3,7 +3,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: TimedDespawn
-    lifetime: 0.05
+    lifetime: 0.5
   - type: Sprite
     drawdepth: Effects
     layers:
@@ -54,8 +54,9 @@
   id: BulletPistolIncendiary
   damage:
     types:
-      Blunt: 2
-      Heat: 14
+      Blunt: 6
+      Piercing: 4
+      Heat: 2
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -112,8 +113,9 @@
   id: BulletRifleIncendiary
   damage:
     types:
-      Blunt: 2
-      Heat: 15
+      Blunt: 8
+      Piercing: 4
+      Heat: 3
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -136,7 +138,8 @@
   id: BulletMagnum
   damage:
     types:
-      Blunt: 35
+      Piercing: 27
+      Blunt: 8
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -170,8 +173,9 @@
   id: BulletMagnumIncendiary
   damage:
     types:
-      Blunt: 3
-      Heat: 32
+      Blunt: 12
+      Piercing: 10
+      Heat: 5
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -240,8 +244,9 @@
   id: BulletLightRifleIncendiary
   damage:
     types:
-      Blunt: 3
-      Heat: 16
+      Blunt: 8
+      Piercing: 4
+      Heat: 4
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -373,7 +378,9 @@
   id: PelletShotgunSlug
   damage:
     types:
-      Piercing: 28
+      Piercing: 38
+      Structural: 15
+  staminaDamage: 5
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -398,8 +405,8 @@
   id: PelletShotgunIncendiarySpread
   damage:
     types:
-      Blunt: 3
-      Heat: 7
+      Blunt: 5
+      Heat: 2
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -583,7 +590,8 @@
   id: BulletDisabler
   damage:
     types:
-      Heat: 5
+      Shock: 5
+  collisionMask: BulletImpassable
   staminaDamage: 30
   reflective: Energy
   bulletTracer:
@@ -594,7 +602,8 @@
   id: BulletDisablerPractice
   damage:
     types:
-      Heat: 1
+      Shock: 1
+  collisionMask: BulletImpassable
   staminaDamage: 1
   reflective: Energy
   bulletTracer:
@@ -605,7 +614,8 @@
   id: BulletDisablerSmg
   damage:
     types:
-      Heat: 2
+      Shock: 2
+  collisionMask: BulletImpassable
   staminaDamage: 15
   reflective: Energy
   bulletTracer:
@@ -652,8 +662,9 @@
   id: BulletDisablerSmgSpread
   damage:
     types:
-      Heat: 2
+      Shock: 2
   staminaDamage: 15
+  collisionMask: BulletImpassable
   reflective: Energy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi

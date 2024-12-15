@@ -180,6 +180,9 @@
   id: Gygax
 
 - type: Tag
+  id: Mauler
+
+- type: Tag
   id: Durand
 
 - type: Tag

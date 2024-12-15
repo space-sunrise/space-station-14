@@ -90,6 +90,17 @@ public partial struct AntagSelectionDefinition()
     [DataField]
     public int Max = 1;
 
+    // Sunrise-Start
+    [DataField]
+    public int MaxCommandStaff;
+
+    [DataField]
+    public bool PickCommandStaff;
+
+    [DataField]
+    public bool IgnoreCanBeAntag;
+    // Sunrise-End
+
     /// <summary>
     /// A range used to randomly select <see cref="Min"/>
     /// </summary>

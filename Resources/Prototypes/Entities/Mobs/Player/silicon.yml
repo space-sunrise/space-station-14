@@ -71,7 +71,7 @@
   - type: CommunicationsConsole
     canShuttle: false
     title: comms-console-announcement-title-station-ai
-    color: "#2ed2fd"
+    color: "#5ed7aa"
     announceVoice: PortalGlados
     sound: /Audio/_Sunrise/Announcements/announce_dig.ogg
   - type: ShowJobIcons
@@ -311,6 +311,17 @@
   - type: Intellicard
 
 - type: entity
+  id: PlayerStationAiPreview
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Mobs/Silicon/station_ai.rsi
+    layers:
+    - state: base
+    - state: ai
+      shader: unshaded
+
+- type: entity
   id: PlayerStationAiEmpty
   name: AI Core
   description: The latest in Artificial Intelligences.
@@ -348,6 +359,12 @@
       map: ["unshaded"]
       shader: unshaded
   - type: Appearance
+  - type: InteractionPopup
+    interactSuccessString: petting-success-station-ai
+    interactFailureString: petting-failure-station-ai
+    messagePerceivedByOthers: petting-success-station-ai-others # Otherwise AI cannot tell its being pet as It's just a brain inside of the core, not the core itself.
+    interactSuccessSound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg
   - type: GenericVisualizer
     visuals:
       enum.StationAiVisualState.Key:
@@ -450,7 +467,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellMedium
+        startingItem: PowerCellHigh
 
 # Move to _Sunrise
 #- type: entity
@@ -486,25 +503,25 @@
         settings: default
     - type: GhostTakeoverAvailable
 
-- type: entity
-  id: PlayerBorgSyndicateSaboteurBattery
-  parent: BorgChassisSyndicateSaboteur
-  suffix: Battery, Module, Operative
-  components:
-  - type: NukeOperative
-  - type: ContainerFill
-    containers:
-      borg_brain:
-        - PositronicBrain
-      borg_module:
-        - BorgModuleTool
-        - BorgModuleOperative
-        - BorgModuleSyndicateWeapon
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellHyper
+#- type: entity
+#  id: PlayerBorgSyndicateSaboteurBattery
+#  parent: BorgChassisSyndicateSaboteur
+#  suffix: Battery, Module, Operative
+#  components:
+#  - type: NukeOperative
+#  - type: ContainerFill
+#    containers:
+#      borg_brain:
+#        - PositronicBrain
+#      borg_module:
+#        - BorgModuleTool
+#        - BorgModuleOperative
+#        - BorgModuleSyndicateWeapon
+#  - type: ItemSlots
+#    slots:
+#      cell_slot:
+#        name: power-cell-slot-component-slot-name-default
+#        startingItem: PowerCellHyper
 
 - type: entity
   id: PlayerBorgSyndicateSaboteurGhostRole

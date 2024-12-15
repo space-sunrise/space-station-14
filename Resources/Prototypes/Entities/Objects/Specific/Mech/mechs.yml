@@ -76,12 +76,12 @@
     joinSystem: true
   - type: DoAfter
   - type: Repairable
-    doAfterDelay: 2
+    doAfterDelay: 1
     damage:
       types:
-        Blunt: -15
-        Slash: -15
-        Piercing: -15
+        Blunt: -10
+        Slash: -10
+        Piercing: -10
   - type: UserInterface
     interfaces:
       enum.MechUiKey.Key:
@@ -201,7 +201,7 @@
     baseState: ripley
     openState: ripley-open
     brokenState: ripley-broken
-    mechToPilotDamageMultiplier: 0.70
+    mechToPilotDamageMultiplier: 0.50
     pilotWhitelist:
       components:
         - HumanoidAppearance
@@ -212,8 +212,8 @@
       types:
         Blunt: 14 #intentionally shit so people realize that going into combat with the ripley is usually a bad idea.
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.25
-    baseSprintSpeed: 3.6
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 3.8
   - type: Reflect
     reflectProb: 0.15
     spread: 180
@@ -229,7 +229,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      250: Critical
+      400: Critical
     showOverlays: false
     allowRevives: true
 
@@ -241,7 +241,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageSmall
+      - PowerCageMedium
 
 # Ripley MK-II
 - type: entity
@@ -265,7 +265,7 @@
     baseState: ripleymkii
     openState: ripleymkii-open
     brokenState: ripleymkii-broken
-    mechToPilotDamageMultiplier: 0.4
+    mechToPilotDamageMultiplier: 0.35
     airtight: true
     pilotWhitelist:
       components:
@@ -277,21 +277,26 @@
       types:
         Blunt: 20
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1
-    baseSprintSpeed: 2
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 2.2
   - type: Damageable
     damageModifierSet: MediumArmorNT
   - type: Reflect
-    reflectProb: 0.25
+    reflectProb: 0.20
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - Ripley
   - type: MobThresholds
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      360: Critical
+      520: Critical
     showOverlays: false
     allowRevives: true
 
@@ -303,7 +308,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageSmall
+      - PowerCageMedium
 
 # Clarke
 - type: entity
@@ -344,7 +349,7 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.25
+    reflectProb: 0.15
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -353,7 +358,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      320: Critical
+      380: Critical
     showOverlays: false
     allowRevives: true
   - type: PointLight
@@ -376,7 +381,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageSmall
+      - PowerCageMedium
 
 # H.O.N.K.
 - type: entity
@@ -417,7 +422,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      250: Critical
+      350: Critical
     showOverlays: false
     allowRevives: true
 
@@ -429,7 +434,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageSmall
+      - PowerCageMedium
 
 - type: entity
   parent: MechHonkerBattery
@@ -620,13 +625,13 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 25
+        Blunt: 30
         Structural: 180
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 2.6
+    baseSprintSpeed: 3.5
   - type: Reflect
-    reflectProb: 0.25
+    reflectProb: 0.20
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -635,7 +640,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      400: Critical
+      560: Critical
     showOverlays: false
     allowRevives: true
   - type: Tag
@@ -652,7 +657,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageHigh
+      - PowerCageCombat
 
 # Durand
 - type: entity
@@ -686,17 +691,17 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 40
+        Blunt: 50
         Structural: 250
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.5
-    baseSprintSpeed: 2
+    baseSprintSpeed: 2.5
   - type: Damageable
     damageModifierSet: MediumArmorNT
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.30
+    reflectProb: 0.25
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -705,7 +710,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      600: Critical
+      770: Critical
     showOverlays: false
     allowRevives: true
   - type: Tag
@@ -722,7 +727,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageHigh
+      - PowerCageCombat
 
 # Phazon
 
@@ -774,7 +779,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      280: Critical
+      300: Critical
     showOverlays: false
     allowRevives: true
   - type: Tag
@@ -828,26 +833,33 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 30
+        Blunt: 35
         Structural: 200
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.4
-    baseSprintSpeed: 3
+    baseSprintSpeed: 3.6
   - type: Reflect
-    reflectProb: 0.30
+    reflectProb: 0.20
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
   - type: Damageable
     damageModifierSet: MediumArmorNT
+  - type: CanMoveInAir
+  - type: MovementAlwaysTouching
   - type: MobThresholds
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      450: Critical
+      570: Critical
     showOverlays: false
     allowRevives: true
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - Gygax
 
 - type: entity
   id: MechNTGygaxBattery
@@ -857,7 +869,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageHigh
+      - PowerCageERT
 
 - type: entity
   id: MechNTGygaxFilled
@@ -868,8 +880,8 @@
     startingEquipment:
       - WeaponMechChainSword
       - WeaponMechCombatPulseRifle
-      - WeaponMechCombatXray
-      - WeaponMechCombatMissileRack6
+      - WeaponMechCombatHeavyRifle
+      - WeaponMechCombatMissileRack8
 
 # Marauder
 - type: entity
@@ -904,8 +916,8 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 40
-        Structural: 250
+        Blunt: 55
+        Structural: 350
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
     baseSprintSpeed: 1.5
@@ -914,7 +926,7 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.35
+    reflectProb: 0.25
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -923,7 +935,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      700: Critical
+      800: Critical
     showOverlays: false
     allowRevives: true
 
@@ -935,7 +947,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageHigh
+      - PowerCageERT
 
 - type: entity
   id: MechMarauderFilled
@@ -946,7 +958,7 @@
     startingEquipment:
       - WeaponMechChainSword
       - WeaponMechCombatPulseRifle
-      - WeaponMechCombatUltraRifle
+      - WeaponMechCombatHeavyRifle
       - WeaponMechCombatMissileRack8
 
 # Seraph
@@ -986,13 +998,13 @@
         Structural: 460
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.2
-    baseSprintSpeed: 3.7
+    baseSprintSpeed: 3
   - type: Damageable
     damageModifierSet: HeavyArmorNT
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.4
+    reflectProb: 0.30
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -1013,7 +1025,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageHigh
+      - PowerCageERT
 
 - type: entity
   id: MechSeraphFilled
@@ -1024,9 +1036,9 @@
     startingEquipment:
       - WeaponMechChainSword
       - WeaponMechCombatPulseRifle
-      - WeaponMechCombatShotgun
+      - WeaponMechCombatVindictor
       - WeaponMechCombatMissileRack6
-      - WeaponMechCombatUltraRifle
+      - WeaponMechCombatDuster
 
 # Syndicate Combat Mech
 
@@ -1064,16 +1076,16 @@
     damage:
       types:
         Blunt: 35
-        Structural: 250
+        Structural: 280
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.2
-    baseSprintSpeed: 3.7
+    baseSprintSpeed: 3.8
   - type: Damageable
     damageModifierSet: MediumArmorSyndi
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.30
+    reflectProb: 0.25
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -1082,9 +1094,14 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      500: Critical
+      580: Critical
     showOverlays: false
     allowRevives: true
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - Gygax
 
 - type: entity
   id: MechGygaxSyndieBattery
@@ -1139,17 +1156,17 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 40
+        Blunt: 50
         Structural: 380
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 3
+    baseSprintSpeed: 2.8
   - type: Damageable
     damageModifierSet: MediumArmorSyndi
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.30
+    reflectProb: 0.25
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -1158,7 +1175,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      650: Critical
+      780: Critical
     showOverlays: false
     allowRevives: true
 
@@ -1215,7 +1232,7 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 50
+        Blunt: 60
         Structural: 450
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
@@ -1225,11 +1242,16 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.40
+    reflectProb: 0.25
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - Mauler
   - type: MobThresholds
     currentThresholdState : Alive
     thresholds:

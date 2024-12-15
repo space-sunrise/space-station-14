@@ -172,7 +172,7 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     Total number of gases. Increase this if you want to add more!
         /// </summary>
-        public const int TotalNumberOfGases = 9;
+        public const int TotalNumberOfGases = 11; //SunRise edit
 
         /// <summary>
         ///     This is the actual length of the gases arrays in mixtures.
@@ -250,6 +250,25 @@ namespace Content.Shared.Atmos
         /// </summary>
         public const float AmmoniaOxygenReactionRate = 10f;
 
+        ///SunRise start
+
+        /// <summary>
+        ///     The amount of energy 1 mole of BZ forming from N2O and plasma releases.
+        /// </summary>
+        public const float BZFormationEnergy = 80e3f;
+
+        /// <summary>
+        ///     Some number taken from the air to keep BZ from instantly converting everything.
+        /// </summary>
+        public const float BZFormationRate = 5f;
+
+        /// <summary>
+        ///     The amount of energy 1 mol of Healium forming from BZ and frezon releases.
+        /// </summary>
+        public const float HealiumProductionEnergy = 10e3f;
+
+        ///SunRise end
+
         /// <summary>
         ///     Determines at what pressure the ultra-high pressure red icon is displayed.
         /// </summary>
@@ -274,12 +293,12 @@ namespace Content.Shared.Atmos
         ///    The amount of pressure damage someone takes is equal to ((pressure / HAZARD_HIGH_PRESSURE) - 1)*PRESSURE_DAMAGE_COEFFICIENT,
         ///     with the maximum of MaxHighPressureDamage.
         /// </summary>
-        public const float PressureDamageCoefficient = 4;
+        public const float PressureDamageCoefficient = 1; // Sunrise-Casual
 
         /// <summary>
         ///     Maximum amount of damage that can be endured with high pressure.
         /// </summary>
-        public const int MaxHighPressureDamage = 4;
+        public const int MaxHighPressureDamage = 1; // Sunrise-Casual
 
         /// <summary>
         ///     The amount of damage someone takes when in a low pressure area
@@ -336,6 +355,8 @@ namespace Content.Shared.Atmos
         WaterVapor = 5,
         Ammonia = 6,
         NitrousOxide = 7,
-        Frezon = 8
+        Frezon = 8,
+        BZ = 9, //SunRise edit
+        Healium = 10, //SunRise edit
     }
 }

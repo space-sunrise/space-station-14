@@ -19,54 +19,55 @@
         emergencyShuttlePath: /Maps/_Sunrise/Shuttles/emergency_lox.yml
       - type: StationJobs
         availableJobs:
-          #service
+          #command
           Captain: [ 1, 1 ]
-          HeadOfPersonnel: [ 1, 1 ]
-          NanoTrasenRepresentative: [ 1, 1 ]
           Adjutant: [ 1, 1 ]
+          NanoTrasenRepresentative: [ 1, 1 ]
+          HeadOfPersonnel: [ 1, 1 ]
+          #service
           Bartender: [ 2, 2 ]
           Botanist: [ 3, 3 ]
           Chef: [ 2, 2 ]
           Janitor: [ 2, 2 ]
           Chaplain: [ 1, 1 ]
           Librarian: [ 1, 1 ]
-          ServiceWorker: [ -1, -1 ]
+          ServiceWorker: [ 5, -1 ]
           Reporter: [ 2, 2 ]
           Zookeeper: [ 1, 1 ]
           Barber: [ 1, 1 ]
           #engineering
           ChiefEngineer: [ 1, 1 ]
           SeniorEngineer: [ 1, 1 ]
-          AtmosphericTechnician: [ 3, 3 ]
+          AtmosphericTechnician: [ 6, 6 ]
           StationEngineer: [ 5, 5 ]
-          TechnicalAssistant: [ -1, -1 ]
+          TechnicalAssistant: [ 5, -1 ]
           #medical
           ChiefMedicalOfficer: [ 1, 1 ]
           SeniorPhysician: [ 1, 1 ]
           Chemist: [ 2, 3 ]
           MedicalDoctor: [ 4, 4 ]
-          Paramedic: [ 1, 1 ]
-          MedicalIntern: [ -1, -1 ]
-          Psychologist: [ 1, 1 ]
-          MedicalPathologist: [ 1, 1]
+          Paramedic: [ 4, 4 ]
+          MedicalIntern: [ 5, -1 ]
+          Psychologist: [ 2, 2 ]
+          MedicalPathologist: [ 1, 1 ]
           #science
           ResearchDirector: [ 1, 1 ]
           SeniorResearcher: [ 1, 1 ]
           Scientist: [ 5, 5 ]
-          ResearchAssistant: [ -1, -1 ]
-          Roboticist: [ 2, 2 ]
+          ResearchAssistant: [ 5, -1 ]
+          Roboticist: [ 4, 4 ]
           #security
           HeadOfSecurity: [ 1, 1 ]
           Warden: [ 1, 1 ]
           SeniorOfficer: [ 1, 1 ]
-          Detective: [ 1, 1 ]
-          Brigmedic: [ 1, 1 ]
+          Detective: [ 2, 2 ]
+          Brigmedic: [ 2, 2 ]
           #SecurityPilot: [ 1, 1 ]
           SecurityOfficer: [ 5, 5 ]
-          SecurityCadet: [ -1, -1 ]
+          SecurityCadet: [ 5, -1 ]
           #supply
           Quartermaster: [ 1, 1 ]
-          SalvageSpecialist: [ 3, 3 ]
+          SalvageSpecialist: [ 6, 6 ]
           CargoTechnician: [ 3, 3 ]
           #civilian
           Passenger: [ -1, -1 ]
@@ -76,8 +77,9 @@
           #blueshield
           BlueShield: [ 1, 1 ]
           #law
-          IAA: [ 1, 2 ]
+          IAA: [ 1, 1 ]
           Magistrat: [ 1, 1 ]
+          Lawyer: [ 3, 3 ]
           # silicon
           StationAi: [ 1, 1 ]
           Borg: [ 22, 22 ]
