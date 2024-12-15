@@ -610,7 +610,6 @@
   - Sunrise-HatBrownsoft
   - Sunrise-BrownFlatcap
   - Sunrise-FedoraBrown
-  - Sunrise-CowboyBrown
   - Sunrise-CatBrown
   - Sunrise-HelmetCosmonaut
 #Sunrise-end
@@ -654,6 +653,8 @@
   - Sunrise-WinterColorLightBrown
   - Sunrise-WinterColorPurple
   - Sunrise-PonchoClassic
+  - Sunrise-CoatBomber
+  - Sunrise-CoatTrench
 #Sunrise-end
 
 - type: loadoutGroup
@@ -663,10 +664,11 @@
   - BrownShoes
   - CargoWinterBoots
 #Sunrise-start
+  - BlackShoes
   - Sunrise-OrangeShoes
   - Sunrise-YellowShoes
   - Sunrise-ShoesPurple
-  - Sunrise-ShoesCowboyBrown
+  - Sunrise-ShoesLeather
 #Sunrise-end
 
 - type: loadoutGroup
@@ -684,8 +686,6 @@
   - Sunrise-HatYellowsoft
   - Sunrise-HatBrownsoft
   - Sunrise-BrownFlatcap
-  - Sunrise-FedoraBrown
-  - Sunrise-CowboyBrown
   - Sunrise-CatBrown
   - Sunrise-HelmetCosmonaut
 #Sunrise-end
@@ -717,6 +717,7 @@
   - Sunrise-WinterColorBrown
   - Sunrise-WinterColorLightBrown
   - Sunrise-PonchoClassic
+  - Sunrise-CoatBomber
 #Sunrise-end
 
 - type: loadoutGroup
@@ -728,7 +729,7 @@
 #Sunrise-start
   - Sunrise-OrangeShoes
   - Sunrise-YellowShoes
-  - Sunrise-ShoesCowboyBrown
+  - BrownShoes
 #Sunrise-end
 
 - type: loadoutGroup
@@ -752,6 +753,7 @@
   - Sunrise-WinterColorLightBrown
   - Sunrise-WinterColorPurple
   - Sunrise-PonchoClassic
+  - Sunrise-CoatBomber
 #Sunrise-end
 
 - type: loadoutGroup
@@ -761,10 +763,11 @@
   - SalvageBoots
   - CargoWinterBoots
 #Sunrise-start
+  - BlackShoes
   - Sunrise-OrangeShoes
   - Sunrise-YellowShoes
+  - BrownShoes
   - Sunrise-ShoesPurple
-  - Sunrise-ShoesCowboyBrown
 #Sunrise-end
 
 # Engineering

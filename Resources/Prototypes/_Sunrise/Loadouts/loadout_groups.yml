@@ -322,6 +322,7 @@
   - TrinketsEngineeringFL
   - TrinketsEngineeringGA
   - TrinketsEngineeringGC
+  - TrinketsEngineeringHSM
   - TrinketsEngineeringTFE
   - TrinketsEngineeringTFAT
   - TrinketsEngineeringTFCF
@@ -611,6 +612,7 @@
   - Sunrise-MaskGasExplorer
   - Sunrise-MBandOrange
   - Sunrise-MBandYellow
+  - Sunrise-MBandBrown
   - Sunrise-MBandPurple
 
 - type: loadoutGroup
@@ -621,6 +623,7 @@
   loadouts:
   - Sunrise-MBandOrange
   - Sunrise-MBandYellow
+  - Sunrise-MBandBrown
 
 - type: loadoutGroup
   id: SunriseSalvageMask
@@ -631,6 +634,7 @@
   - Sunrise-MaskGasExplorer
   - Sunrise-MBandOrange
   - Sunrise-MBandYellow
+  - Sunrise-MBandBrown
   - Sunrise-MBandPurple
 
 - type: loadoutGroup
@@ -672,8 +676,6 @@
   - Sunrise-HatYellowsoft
   - Sunrise-HatBrownsoft
   - Sunrise-BrownFlatcap
-  - Sunrise-FedoraBrown
-  - Sunrise-CowboyBrown
   - Sunrise-CatBrown
   - Sunrise-HelmetCosmonaut
 

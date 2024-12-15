@@ -127,7 +127,7 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Cargo
-      time: 720000 # 200hr
+      time: 1080000 # 300hr
   storage:
     back:
     - LegendaryGoldenWeh

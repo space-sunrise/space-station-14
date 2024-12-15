@@ -124,6 +124,11 @@
   equipment:
     mask: ClothingMaskGasExplorer
 
+- type: loadout
+  id: Sunrise-MBandBrown
+  equipment:
+    mask: ClothingMaskBandBrown
+
 #Neck
 
 - type: loadout
@@ -225,6 +230,16 @@
   equipment:
     outerClothing: ClothingOuterWinterColorLightBrown
 
+- type: loadout
+  id: Sunrise-CoatBomber
+  equipment:
+    outerClothing: ClothingOuterCoatBomber
+
+- type: loadout
+  id: Sunrise-CoatTrench
+  equipment:
+    outerClothing: ClothingOuterCoatTrench
+
 #Shoes
 
 - type: loadout
@@ -251,6 +266,11 @@
   id: Sunrise-ShoesCowboyBrown
   equipment:
     shoes: ClothingShoesBootsCowboyBrown
+
+- type: loadout
+  id: Sunrise-ShoesLeather
+  equipment:
+    shoes: ClothingShoesLeather
 
 #gloves
 

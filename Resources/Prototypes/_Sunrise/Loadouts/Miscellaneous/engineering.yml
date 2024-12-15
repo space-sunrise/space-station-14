@@ -67,7 +67,7 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Engineering
-      time: 720000 # 200hr
+      time: 1080000 # 300hr
   storage:
     back:
     - TeslaToy
@@ -116,10 +116,22 @@
     requirement:
       !type:DepartmentTimeRequirement
       department: Engineering
-      time: 720000 # 200hr
+      time: 1080000 # 300hr
   storage:
     back:
     - SingularityToy
+
+- type: loadout
+  id: TrinketsEngineeringHSM
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 36000 # 10hr
+  storage:
+    back:
+    - HandheldStationMap
 
  #Neck
 
