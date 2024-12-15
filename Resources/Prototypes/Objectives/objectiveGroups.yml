@@ -22,7 +22,12 @@
     CaptainJetpackStealObjective: 0.5
     HandTeleporterStealObjective: 0.5
     EnergyShotgunStealObjective: 0.5
-    PlutoniumCoreStealObjective: 0.5 # Sunrise-Edit
+    # Sunrise-Start
+    PlutoniumCoreStealObjective: 0.5
+    MultiphaseEnergygunStealObjective: 1
+    CMOAdvancedDefibrillatorStealObjective: 1
+    StealSupermatterSliverObjective: 1
+    # Sunrise-End
 
 - type: weightedRandom
   id: TraitorObjectiveGroupKill
