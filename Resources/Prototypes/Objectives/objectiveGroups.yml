@@ -34,7 +34,7 @@
   id: TraitorObjectiveGroupState
   weights:
     EscapeShuttleObjective: 1
-    DieObjective: 0.02 # Скучная задача на самом деле.
+    #DieObjective: 0.02 # Почему-то трейторы думают что умереть = убить как можно больше.
     #HijackShuttleObjective: 0.02 # Нам незачем разрешать рдм в не рдм режиме.
 
 - type: weightedRandom
