@@ -300,3 +300,14 @@
     sprite: _Sunrise/Clothing/Head/Hats/hat_with_paces.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hats/hat_with_paces.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatSingulo
+  name: корона Сингуло
+  description: Величайшее достижение инженеров и ученых - компактная установка сингулярности, позволяющая владельцу продемонстрировать свой статус и уникальность на станции.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/crown_singulo_icon.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/crown_singulo.rsi
