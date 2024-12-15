@@ -13,7 +13,7 @@
   startingGear: ResearchDirectorGear
   icon: "JobIconResearchDirector"
   supervisors: job-supervisors-captain
-  canBeAntag: false
+  canBeAntag: true # Edit-by-RaMbUt878
   radioBold: true # Sunrise-Edit
   displayWeight: 50 # Sunrise-Edit
   access:
@@ -24,8 +24,6 @@
   - Brig
   - Cryogenics
   special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
