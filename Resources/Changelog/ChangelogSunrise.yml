@@ -8026,3 +8026,12 @@
   id: 562
   time: '2024-12-15T10:23:04.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/855
+- author: Odleer
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0430 \u043A\u043E\u0440\
+      \u043E\u043D\u0430 \u0421\u0438\u043D\u0433\u0443\u043B\u043E, \u0437\u0430\
+      \ 100 \u0447\u0430\u0441\u043E\u0432 \u043D\u0430 \u0421\u0418"
+    type: Add
+  id: 563
+  time: '2024-12-15T10:24:43.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/849
