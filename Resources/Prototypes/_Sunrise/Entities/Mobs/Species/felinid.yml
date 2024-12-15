@@ -91,6 +91,7 @@
       - !type:Emote
         emote: Hisses
         showInChat: true
+        probability: 0.35
   - type: MovementSpeedModifier
     baseSprintSpeed: 4.0
     baseWalkSpeed: 2.0
