@@ -428,6 +428,7 @@
     definitions:
     - prefRoles: [ InitialInfected ]
       max: 3
+      ignoreCanBeAntag: true # Sunrise-Edit
       playerRatio: 10
       blacklist:
         components:
@@ -503,6 +504,8 @@
       fallbackRoles: [ Traitor ]
       min: 5 # Sunrise-Edit
       max: 10 # Sunrise-Edit
+      pickCommandStaff: true # Sunrise-Edit
+      maxCommandStaff: 1 # Sunrise-Edit
       playerRatio: 10
       blacklist:
         components:

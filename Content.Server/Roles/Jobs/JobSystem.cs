@@ -1,9 +1,13 @@
 ﻿using System.Globalization;
 using Content.Server.Chat.Managers;
+using Content.Server.Jobs;
 using Content.Server.Mind;
+using Content.Server.Revolutionary.Components;
 using Content.Shared.Mind;
+using Content.Shared.Players;
 using Content.Shared.Roles;
 using Content.Shared.Roles.Jobs;
+using Robust.Shared.Player;
 
 namespace Content.Server.Roles.Jobs;
 
@@ -15,6 +19,8 @@ public sealed class JobSystem : SharedJobSystem
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly RoleSystem _roles = default!;
+    [Dependency] private readonly SharedPlayerSystem _playerSystem = default!;
+    [Dependency] private readonly IComponentFactory _componentFactory = default!;
 
     public override void Initialize()
     {
@@ -49,4 +55,32 @@ public sealed class JobSystem : SharedJobSystem
 
         _roles.MindAddJobRole(mindId, null, false, jobPrototypeId);
     }
+
+    // Sunrise-Start
+    public bool IsCommandStaff(ICommonSession session)
+    {
+        if (_playerSystem.ContentData(session) is not { Mind: { } mindId })
+            return true;
+
+        if (!MindTryGetJob(mindId, out var jobPrototype))
+            return false;
+
+        foreach (var special in jobPrototype.Special)
+        {
+            if (special is not AddComponentSpecial componentSpecial)
+                continue;
+
+            foreach (var componentSpecialComponent in componentSpecial.Components)
+            {
+                var copy = _componentFactory.GetComponent(componentSpecialComponent.Value);
+                if (copy is CommandStaffComponent)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+    // Sunrise-End
 }

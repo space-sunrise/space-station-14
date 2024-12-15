@@ -33,7 +33,8 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
-using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
+using Content.Sunrise.Interfaces.Shared;
+using AddComponentSpecial = Content.Server.Jobs.AddComponentSpecial; // Sunrise-Sponsors
 
 namespace Content.Server.Antag;
 
@@ -263,6 +264,30 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
                     break;
                 // Sunrise-Sponsors-End
 
+                // Sunrise-Start
+                if (_jobs.IsCommandStaff(session) && def.PickCommandStaff)
+                {
+                    var selectedCommandStaff = 0;
+
+                    foreach (var compSelectedSession in ent.Comp.SelectedSessions)
+                    {
+                        if (_jobs.IsCommandStaff(compSelectedSession))
+                        {
+                            selectedCommandStaff += 1;
+                        }
+                    }
+
+                    if (def.MaxCommandStaff != 0 && selectedCommandStaff >= def.MaxCommandStaff)
+                    {
+                        continue;
+                    }
+                }
+                else
+                {
+                    continue;
+                }
+                // Sunrise-End
+
                 if (session != null && ent.Comp.SelectedSessions.Contains(session))
                 {
                     Log.Warning($"Somehow picked {session} for an antag when this rule already selected them previously");
@@ -489,7 +514,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         }
 
         // todo: expand this to allow for more fine antag-selection logic for game rules.
-        if (!_jobs.CanBeAntag(session))
+        if (!_jobs.CanBeAntag(session) && !def.IgnoreCanBeAntag)
             return false;
 
         return true;

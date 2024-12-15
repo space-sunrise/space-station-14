@@ -201,6 +201,8 @@
     - prefRoles: [ Traitor ]
       max: 12 # Sunrise-Edit
       playerRatio: 10
+      pickCommandStaff: true # Sunrise-Edit
+      maxCommandStaff: 1 # Sunrise-Edit
       blacklist:
         components:
         - AntagImmune
