@@ -38,6 +38,10 @@
     - id: ZombieOutbreak
     - id: LoneOpsSpawn
     - id: DerelictCyborgSpawn
+    - id: DiseaseSpawn
+    - id: FugitiveSpawn
+    - id: EvilTwinSpawn
+    - id: TerminatorSpawn
 
 - type: entity
   id: BaseStationEvent
@@ -504,7 +508,6 @@
       fallbackRoles: [ Traitor ]
       min: 5 # Sunrise-Edit
       max: 10 # Sunrise-Edit
-      pickCommandStaff: false # Sunrise-Edit
       playerRatio: 10
       blacklist:
         components:
