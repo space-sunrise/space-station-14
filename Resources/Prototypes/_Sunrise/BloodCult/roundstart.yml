@@ -4,7 +4,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: GameRule
-    minPlayers: 20
+    minPlayers: 30
     delay:
       min: 360
       max: 720
@@ -17,8 +17,8 @@
     - CultistKillObjective
   - type: AntagSelection
     definitions:
-    - prefRoles: [ Cultist ]
-      max: 6 # Sunrise-Edit
+    - prefRoles: [ BloodCultist ]
+      max: 4 # Sunrise-Edit
       playerRatio: 15
       blacklist:
         components:
