@@ -164,7 +164,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             // Sunrise-Start
             if (_jobs.IsCommandStaff(args.Player))
             {
-                if (def.Value.PickCommandStaff)
+                if (!def.Value.PickCommandStaff)
                     continue;
 
                 var selectedCommandStaff = 0;
