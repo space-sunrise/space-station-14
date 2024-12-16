@@ -19,7 +19,8 @@
   startingGear: QuartermasterGear
   icon: "JobIconQuarterMaster"
   supervisors: job-supervisors-captain
-  canBeAntag: true # Edit-by-RaMbUt878
+  canBeAntag: true # Sunrise-Edit
+  antagAdvantage: 20 # Sunrise-Edit
   radioBold: true # Sunrise-Edit
   displayWeight: 40  # Sunrise-Edit
   access:

@@ -33,7 +33,8 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
-using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
+using Content.Sunrise.Interfaces.Shared;
+using AddComponentSpecial = Content.Server.Jobs.AddComponentSpecial; // Sunrise-Sponsors
 
 namespace Content.Server.Antag;
 
@@ -160,6 +161,29 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             if (!TryGetNextAvailableDefinition((uid, antag), out var def))
                 continue;
 
+            // Sunrise-Start
+            if (_jobs.IsCommandStaff(args.Player))
+            {
+                if (!def.Value.PickCommandStaff)
+                    continue;
+
+                var selectedCommandStaff = 0;
+
+                foreach (var compSelectedSession in antag.SelectedSessions)
+                {
+                    if (_jobs.IsCommandStaff(compSelectedSession))
+                    {
+                        selectedCommandStaff += 1;
+                    }
+                }
+
+                if (def.Value.MaxCommandStaff != 0 && selectedCommandStaff >= def.Value.MaxCommandStaff)
+                {
+                    continue;
+                }
+            }
+            // Sunrise-End
+
             if (TryMakeAntag((uid, antag), args.Player, def.Value))
                 break;
         }
@@ -262,6 +286,29 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
                 if (!TryPickAntagSession(playerPool.List, def.PrefRoles, out session))
                     break;
                 // Sunrise-Sponsors-End
+
+                // Sunrise-Start
+                if (_jobs.IsCommandStaff(session))
+                {
+                    if (!def.PickCommandStaff)
+                        continue;
+
+                    var selectedCommandStaff = 0;
+
+                    foreach (var compSelectedSession in ent.Comp.SelectedSessions)
+                    {
+                        if (_jobs.IsCommandStaff(compSelectedSession))
+                        {
+                            selectedCommandStaff += 1;
+                        }
+                    }
+
+                    if (def.MaxCommandStaff != 0 && selectedCommandStaff >= def.MaxCommandStaff)
+                    {
+                        continue;
+                    }
+                }
+                // Sunrise-End
 
                 if (session != null && ent.Comp.SelectedSessions.Contains(session))
                 {
@@ -489,7 +536,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         }
 
         // todo: expand this to allow for more fine antag-selection logic for game rules.
-        if (!_jobs.CanBeAntag(session))
+        if (!_jobs.CanBeAntag(session) && !def.IgnoreCanBeAntag)
             return false;
 
         return true;

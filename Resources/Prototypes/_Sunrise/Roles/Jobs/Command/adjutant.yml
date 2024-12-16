@@ -16,7 +16,8 @@
   startingGear: AdjutantGear
   icon: JobIconAdjutant
   supervisors: job-supervisors-command
-  canBeAntag: false
+  canBeAntag: true # Sunrise-Edit
+  antagAdvantage: 20 # Sunrise-Edit
   access:
     - Command
     - Bar
@@ -34,8 +35,11 @@
     - Medical
     - Barber
   special:
-    - !type:AddImplantSpecial
-      implants: [MindShieldImplant]
+  - !type:AddImplantSpecial
+    implants: [MindShieldImplant]
+  - !type:AddComponentSpecial
+    components:
+    - type: CommandStaff
 
 - type: startingGear
   id: AdjutantGear
