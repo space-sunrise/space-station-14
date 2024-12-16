@@ -70,7 +70,7 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 5 #Sunrise-Start
+        Blunt: 4 #Sunrise-Start
         Heat: 3 #Sunrise-End
   - type: IgnitionSource
     ignited: true

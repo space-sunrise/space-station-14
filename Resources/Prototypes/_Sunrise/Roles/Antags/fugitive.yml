@@ -4,9 +4,6 @@
   antagonist: true
   setPreference: false
   objective: roles-antag-fugitive-objective
-  requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 7200 # 2h
 
 - type: startingGear
   id: FugitiveStartingGear

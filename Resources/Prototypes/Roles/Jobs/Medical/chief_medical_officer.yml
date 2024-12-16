@@ -21,7 +21,8 @@
   startingGear: CMOGear
   icon: "JobIconChiefMedicalOfficer"
   supervisors: job-supervisors-captain
-  canBeAntag: true # Edit-by-RaMbUt878
+  canBeAntag: true # Sunrise-Edit
+  antagAdvantage: 20 # Sunrise-Edit
   radioBold: true # Sunrise-Edit
   displayWeight: 60 # Sunrise-Edit
   access:
