@@ -9,6 +9,8 @@
     - Zombie
     - Revolutionary
     - SimpleHostile
+    - FleshHuman
+    - Flesh
 
 - type: npcFaction
   id: NanoTrasen
@@ -19,6 +21,7 @@
   - Xeno
   - Zombie
   - Revolutionary
+  - Flesh
 
 - type: npcFaction
   id: Mouse
@@ -35,6 +38,7 @@
   - SimpleHostile
   - Zombie
   - Xeno
+  - Flesh
 
 - type: npcFaction
   id: SimpleHostile
@@ -47,6 +51,8 @@
   - Zombie
   - Revolutionary
   - Carps
+  - FleshHuman
+  - Flesh
 
 - type: npcFaction
   id: SimpleNeutral
@@ -59,6 +65,8 @@
   - Xeno
   - PetsNT
   - Zombie
+  - FleshHuman
+  - Flesh
 
 - type: npcFaction
   id: Thief
@@ -68,6 +76,8 @@
   - Xeno
   - PetsNT
   - Zombie
+  - FleshHuman
+  - Flesh
 
 - type: npcFaction
   id: Xeno
@@ -79,6 +89,8 @@
   - PetsNT
   - Zombie
   - Revolutionary
+  - FleshHuman
+  - Flesh
 
 - type: npcFaction
   id: Zombie
@@ -93,6 +105,8 @@
   - Revolutionary
   - Changeling
   - Vampire
+  - FleshHuman
+  - Flesh
 
 - type: npcFaction
   id: Revolutionary
@@ -101,6 +115,7 @@
   - Zombie
   - SimpleHostile
   - Carps
+  - Flesh
 
 - type: npcFaction
   id: Changeling
@@ -110,6 +125,8 @@
   - Thief
   - Zombie
   - Revolutionary
+  - FleshHuman
+  - Flesh
 
 - type: npcFaction
   id: Vampire
@@ -121,3 +138,5 @@
   - Revolutionary
   - Changeling
   - Xeno
+  - FleshHuman
+  - Flesh

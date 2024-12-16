@@ -1,0 +1,28 @@
+- type: entity
+  parent: SpiderWeb
+  id: FleshSpiderWeb
+  name: spider web
+  description: It's stringy and sticky.
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Sprite
+    sprite: _Sunrise/FleshCult/fleshspiderweb.rsi
+    layers:
+    - state: spider_web_1
+      map: [ "spiderWebLayer" ]
+    drawdepth: WallMountedItems
+  - type: GenericVisualizer
+    visuals:
+      enum.SpiderWebVisuals.Variant:
+        spiderWebLayer:
+          1:  {state: spider_web_1}
+          2:  {state: spider_web_2}
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.3
+    sprintSpeedModifier: 0.3
+    ignoreWhitelist:
+      components:
+      - IgnoreFleshSpiderWeb

@@ -1,0 +1,25 @@
+﻿- type: entity
+  id: FleshHuggerJump
+  name: flesh-hugger-jump-name
+  description: flesh-hugger-jump-description
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: WorldTargetAction
+    useDelay: 3
+    icon: _Sunrise/FleshCult/Interface/Actions/fleshThrowHugger.png
+    itemIconStyle: NoItem
+    checkCanAccess: false
+    range: 200
+    event: !type:FleshHuggerJumpActionEvent
+
+- type: entity
+  id: FleshHuggerGetOff
+  name: flesh-hugger-get-off-name
+  description: flesh-hugger-get-off-description
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    useDelay: 5
+    icon: _Sunrise/FleshCult/Interface/Actions/fleshHuggerGetOff.png
+    itemIconStyle: NoItem
+    event: !type:FleshHuggerGetOffFromFaceActionEvent

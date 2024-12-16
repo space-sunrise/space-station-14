@@ -1,0 +1,21 @@
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleFleshCultist
+  name: Flesh Cultist Role
+  #  description: mind-role-flesh-cultist-description
+  components:
+  - type: MindRole
+    antagPrototype: FleshCultist
+    exclusiveAntag: true
+  - type: FleshCultistRole
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleFleshCultistLeader
+  name: Flesh Leader Cultist Role
+  #  description: mind-role-flesh-leader-cultist-description
+  components:
+  - type: MindRole
+    antagPrototype: FleshCultistLeader
+    exclusiveAntag: true
+  - type: FleshCultistRole
