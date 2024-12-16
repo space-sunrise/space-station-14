@@ -486,6 +486,9 @@ CrateCrewMonitoringBoards: CrateCrewMonitoring
 # 2024-11-25
 CrateSlimepersonLifeSupport: CrateNitrogenInternals
 
+# 2024-12-01
+DungeonMasterCircuitBoard: GameMasterCircuitBoard
+
 # Sunrise migrations
 AirlockExternalGlassShuttleArrivals: AirlockExternalGlassShuttleArrivalsLocked
 AirlockHatchSyndicate: AirlockHatchSyndicateLocked
