@@ -473,6 +473,20 @@
   - type: PresetIdCard
     job: CentCommOfficial # Sunrise-Edit
 
+- type: entity  # Sunrise-Start
+  parent: IDCardStandard
+  id: CentcomOperatorIDCard
+  name: command operator ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: centcom
+    - state: idcentcom
+  - type: Item
+    heldPrefix: blue
+  - type: PresetIdCard
+    job: CentCommOperator # Sunrise-end
+
 - type: entity
   parent: IDCardStandard
   id: ERTLeaderIDCard
