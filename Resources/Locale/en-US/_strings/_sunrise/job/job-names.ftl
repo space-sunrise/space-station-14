@@ -30,6 +30,7 @@ job-name-pathologist = патологоанатом
 job-name-adjutant = адъютант
 # Перевод трекеров времени
 JobCentCommOfficial = представитель Центком
+JobCentCommOperator = оператор Центком
 JobMagistrat = магистрат
 JobSeniorEngineer = ведущий инженер
 JobSeniorOfficer = инструктор СБ

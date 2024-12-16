@@ -626,7 +626,7 @@
     damage:
       types:
         Blunt: 30
-        Structural: 180
+        Structural: 190
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 3.5
@@ -834,7 +834,7 @@
     damage:
       types:
         Blunt: 35
-        Structural: 200
+        Structural: 250
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.4
     baseSprintSpeed: 3.6
@@ -917,7 +917,7 @@
     damage:
       types:
         Blunt: 55
-        Structural: 350
+        Structural: 370
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
     baseSprintSpeed: 1.5
@@ -995,7 +995,7 @@
     damage:
       types:
         Blunt: 60
-        Structural: 460
+        Structural: 400
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.2
     baseSprintSpeed: 3
@@ -1157,10 +1157,10 @@
     damage:
       types:
         Blunt: 50
-        Structural: 380
+        Structural: 360
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 2.8
+    baseSprintSpeed: 2.6
   - type: Damageable
     damageModifierSet: MediumArmorSyndi
   - type: CanMoveInAir
@@ -1233,10 +1233,10 @@
     damage:
       types:
         Blunt: 60
-        Structural: 450
+        Structural: 390
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
-    baseSprintSpeed: 1.5
+    baseSprintSpeed: 1.6
   - type: Damageable
     damageModifierSet: HeavyArmorSyndi
   - type: CanMoveInAir
