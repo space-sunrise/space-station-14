@@ -1,7 +1,4 @@
 - type: Tag
-  id: HidesLegs # for spider legs.
-
-- type: Tag
   id: FullBodyOuter
 
 - type: Tag

@@ -16,14 +16,17 @@
   - type: Unremoveable
     deleteOnDrop: true
   - type: NoSlip
-  - type: Tag
-    tags:
-    - HidesLegs
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepSpiderLegs
       params:
         volume: 10
+  - type: HideLayerClothingComponent
+    slots:
+      - LFoot
+      - RFoot
+      - LLeg
+      - RLeg
 
 - type: entity
   categories: [ HideSpawnMenu ]
