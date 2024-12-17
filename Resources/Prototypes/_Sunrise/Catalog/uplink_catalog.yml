@@ -862,9 +862,9 @@
   productEntity: CrateCybersunDarkGygaxBundle
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 30
+    Telecrystal: 40
   cost:
-    Telecrystal: 60
+    Telecrystal: 80
   categories:
   - UplinkMechs
   conditions:
@@ -883,9 +883,9 @@
   productEntity: CrateCybersunRoverBundle
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 40
+    Telecrystal: 50
   cost:
-    Telecrystal: 80
+    Telecrystal: 100
   categories:
   - UplinkMechs
   conditions:
@@ -904,9 +904,9 @@
   productEntity: CrateCybersunMaulerBundle
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 50
+    Telecrystal: 60
   cost:
-    Telecrystal: 100
+    Telecrystal: 120
   categories:
   - UplinkMechs
   conditions:
@@ -946,9 +946,9 @@
   productEntity: WeaponMechCombatTeslaCannon
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 6
+    Telecrystal: 4
   cost:
-    Telecrystal: 10
+    Telecrystal: 8
   categories:
   - UplinkMechs
   conditions:
@@ -967,7 +967,7 @@
   discountDownTo:
     Telecrystal: 3
   cost:
-    Telecrystal: 7
+    Telecrystal: 11
   categories:
   - UplinkMechs
   conditions:
