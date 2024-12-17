@@ -162,7 +162,7 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_autocannon
   - type: Gun
-    fireRate: 0.35
+    fireRate: 0.3
     selectedMode: FullAuto
     availableModes:
       - FullAuto
