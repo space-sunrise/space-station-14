@@ -303,3 +303,11 @@
   id: Sunrise-LightBrownGloves
   equipment:
     gloves: ClothingHandsGlovesColorLightBrown
+
+#Back
+
+- type: loadout
+  id: Sunrise-Clipboard
+  storage:
+    back:
+    - BoxFolderClipboard

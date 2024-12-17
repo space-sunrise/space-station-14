@@ -686,6 +686,7 @@
   minLimit: 0
   maxLimit: 2
   loadouts:
+  - Sunrise-Clipboard
   - TrinketsCargoGPS
   - TrinketsCargoFL
   - TrinketsCargoF
