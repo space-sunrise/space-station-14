@@ -146,8 +146,8 @@
       params:
         volume: -1
   - type: HitscanBatteryAmmoProvider
-    proto: BulletSyndiPlasma
-    fireCost: 7
+    proto: BulletSyndiPlasmaDouble
+    fireCost: 25
   - type: Appearance
   - type: AmmoCounter
 
