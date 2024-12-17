@@ -23,23 +23,21 @@
     sprite: _Sunrise/Objects/Weapons/Melee/telebaton.rsi
     layers:
     - state: telebaton_off
-    - state: telebaton_on
-      visible: false
-      map: [ "blade" ]
+      map: [ "enum.ToggleVisuals.Layer" ]
   - type: ItemToggleMeleeWeapon
     activatedDamage:
       types:
-        Blunt: 3
+        Blunt: 0
     deactivatedSecret: true
   - type: MeleeWeapon
     attackRate: 1.5
     wideAnimationRotation: -135
     damage:
       types:
-        Blunt: 0
+        Blunt: 3
   - type: Telescopicbaton
   - type: StaminaDamageOnHit
-    damage: 20
+    damage: 25
   - type: UseDelay
     delay: 0.4
   - type: Item
@@ -48,12 +46,11 @@
     shape:
     - 0,0,0,0
   - type: Appearance
-  - type: ToggleableLightVisuals
-    spriteLayer: blade
-    inhandVisuals:
-      left:
-        - state: on-inhand-left
-      right:
-        - state: on-inhand-right
+  - type: GenericVisualizer
+    visuals:
+     enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
+          True: {state: telebaton_on}
+          False: {state: telebaton_off}
   - type: StaticPrice
     price: 100
