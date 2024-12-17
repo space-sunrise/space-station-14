@@ -162,8 +162,11 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
                 continue;
 
             // Sunrise-Start
-            if (_jobs.IsCommandStaff(args.Player) && def.Value.PickCommandStaff)
+            if (_jobs.IsCommandStaff(args.Player))
             {
+                if (!def.Value.PickCommandStaff)
+                    continue;
+
                 var selectedCommandStaff = 0;
 
                 foreach (var compSelectedSession in antag.SelectedSessions)
@@ -178,10 +181,6 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
                 {
                     continue;
                 }
-            }
-            else
-            {
-                continue;
             }
             // Sunrise-End
 
@@ -289,8 +288,11 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
                 // Sunrise-Sponsors-End
 
                 // Sunrise-Start
-                if (_jobs.IsCommandStaff(session) && def.PickCommandStaff)
+                if (_jobs.IsCommandStaff(session))
                 {
+                    if (!def.PickCommandStaff)
+                        continue;
+
                     var selectedCommandStaff = 0;
 
                     foreach (var compSelectedSession in ent.Comp.SelectedSessions)
@@ -305,10 +307,6 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
                     {
                         continue;
                     }
-                }
-                else
-                {
-                    continue;
                 }
                 // Sunrise-End
 

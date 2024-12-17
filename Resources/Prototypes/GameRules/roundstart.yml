@@ -235,8 +235,6 @@
     definitions:
     - prefRoles: [ HeadRev ]
       max: 3
-      pickCommandStaff: true # Sunrise-Edit
-      maxCommandStaff: 3 # Sunrise-Edit
       playerRatio: 15
       briefing:
         text: head-rev-role-greeting
@@ -335,6 +333,12 @@
   parent: BaseGameRule
   components:
   - type: BasicStationEventScheduler
+    # Sunrise-Start
+    minimumTimeUntilFirstEvent: 480 # 8 mins
+    minMaxEventTiming:
+      min: 360 # 6 mins
+      max: 720 # 12 mins
+    # Sunrise-End
     scheduledGameRules: !type:NestedSelector
       tableId: BasicGameRulesTable
 

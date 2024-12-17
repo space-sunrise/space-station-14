@@ -42,6 +42,11 @@
     Telecrystal: 2
   categories:
   - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
 
 - type: listing
   id: UplinkMagazineShotgun
@@ -91,6 +96,11 @@
     Telecrystal: 4
   categories:
   - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
 
 # For the LMG
 - type: listing
@@ -123,6 +133,11 @@
     Telecrystal: 6
   categories:
   - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
 
 - type: listing
   id: UplinkMagazineLightRifleBoxUranium
@@ -134,6 +149,11 @@
     Telecrystal: 8
   categories:
   - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
 
 
 - type: listing
@@ -294,9 +314,9 @@
   productEntity: CrateAmmokitBundle
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 90
+    Telecrystal: 50
   cost:
-    Telecrystal: 120
+    Telecrystal: 100
   categories:
   - UplinkAmmo
   conditions:
@@ -511,9 +531,9 @@
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/LMGs/DL6902.rsi, state: icon }
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 20
+    Telecrystal: 15
   cost:
-    Telecrystal: 40
+    Telecrystal: 35
   categories:
   - UplinkWeaponry
   conditions:
@@ -808,9 +828,9 @@
   productEntity: ExpCollarsKit
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 5
+    Telecrystal: 4
   cost:
-    Telecrystal: 10
+    Telecrystal: 8
   categories:
   - UplinkExplosives
   conditions:
@@ -863,9 +883,9 @@
   productEntity: CrateCybersunRoverBundle
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 35
+    Telecrystal: 40
   cost:
-    Telecrystal: 70
+    Telecrystal: 80
   categories:
   - UplinkMechs
   conditions:
@@ -884,9 +904,9 @@
   productEntity: CrateCybersunMaulerBundle
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 40
+    Telecrystal: 50
   cost:
-    Telecrystal: 85
+    Telecrystal: 100
   categories:
   - UplinkMechs
   conditions:
