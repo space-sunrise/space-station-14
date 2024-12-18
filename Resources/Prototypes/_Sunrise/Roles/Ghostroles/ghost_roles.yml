@@ -5,6 +5,13 @@
   rules: ghost-role-information-syndicate-reinforcement-rules
   entityPrototype: MobKoboldSyndicateAgent
 
+- type: ghostRole
+  id: MobHumanUSSPBase
+  name: ghost-role-information-ussp-crew-name
+  description: ghost-role-information-ussp-crew-description
+  rules: ghost-role-information-ussp-crew-rules
+  entityPrototype: MobHumanUSSP
+
 - type: entity
   name: Сотрудник СССП
   parent: MobHuman
