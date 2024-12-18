@@ -27,17 +27,17 @@
   - type: ItemToggleMeleeWeapon
     activatedDamage:
       types:
-        Blunt: 0
+        Blunt: 3
     deactivatedSecret: true
   - type: MeleeWeapon
     attackRate: 1.5
     wideAnimationRotation: -135
     damage:
       types:
-        Blunt: 3
+        Blunt: 0
   - type: Telescopicbaton
   - type: StaminaDamageOnHit
-    damage: 25
+    damage: 20
   - type: UseDelay
     delay: 0.4
   - type: Item
