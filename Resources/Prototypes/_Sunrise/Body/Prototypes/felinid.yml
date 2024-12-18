@@ -14,7 +14,7 @@
       part: TorsoHuman
       connections:
       - right arm
-      - left arm      
+      - left arm 
       - left leg
       - right leg
       organs:
