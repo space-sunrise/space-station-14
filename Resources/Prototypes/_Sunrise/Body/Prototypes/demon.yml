@@ -10,7 +10,6 @@
       organs:
         brain: OrganHumanBrain
         eyes: OrganHumanEyes
-        tongue: OrganHumanTongue
     torso:
       part: TorsoDemon
       organs:
@@ -20,31 +19,31 @@
         liver: OrganAnimalLiver
         kidneys: OrganHumanKidneys
       connections:
-      - right_arm
-      - left_arm
-      - right_leg
-      - left_leg
-    right_arm:
+      - right arm
+      - left arm
+      - left leg
+      - right leg
+    right arm:
       part: RightArmDemon
       connections:
-      - right_hand
-    left_arm:
+      - right hand
+    left arm:
       part: LeftArmDemon
       connections:
-      - left_hand
-    right_hand:
+      - left hand
+    right hand:
       part: RightHandDemon
-    left_hand:
+    left hand:
       part: LeftHandDemon
-    right_leg:
+    right leg:
       part: RightLegDemon
       connections:
-      - right_foot
-    left_leg:
+      - right foot
+    left leg:
       part: LeftLegDemon
       connections:
-      - left_foot
-    right_foot:
+      - left foot
+    right foot:
       part: RightFootDemon
-    left_foot:
+    left foot:
       part: LeftFootDemon
