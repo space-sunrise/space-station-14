@@ -510,3 +510,12 @@
   components:
     - type: Paper
       content: doc-text-printer-report-accomplishment-goals
+
+- type: entity
+  parent: Paper
+  id: PaperUSSPInfo
+  name: "Protocol report: Exit of the USSP employee from cryosleep."
+  description: A sheet of white paper with some report on it.
+  components:
+  - type: Paper
+    content: doc-text-printer-ussp-info

@@ -126,3 +126,5 @@ ent-PrintedDocumentNoteBeginningMilitaryActions = НоТа О нАчАлЕ вО�
     .desc = { ent-PrintedDocument.desc }
 ent-PrintedDocumentReportAccomplishmentGoals = ОтЧёТ о ВыПоЛнЕнИи ЦеЛеЙ
     .desc = { ent-PrintedDocument.desc }
+ent-PaperUSSPInfo = "Протокольный отчёт: Выход сотрудника СССП из криосна"
+    .desc = Лист белой бумаги с каким-то отчётом.

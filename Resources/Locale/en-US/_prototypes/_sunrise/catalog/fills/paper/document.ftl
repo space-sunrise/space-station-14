@@ -126,3 +126,5 @@ ent-PrintedDocumentNoteBeginningMilitaryActions = NOTE BEGINNING MILITARY ACTION
     .desc = { ent-PrintedDocument.desc }
 ent-PrintedDocumentReportAccomplishmentGoals = REPORT ACCOMPLISHMENT GOALS
     .desc = { ent-PrintedDocument.desc }
+ent-PaperUSSPInfo = "Protocol report: Exit of the USSP employee from cryosleep."
+    .desc = A sheet of white paper with some report on it.

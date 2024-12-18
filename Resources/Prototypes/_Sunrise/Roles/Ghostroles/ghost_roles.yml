@@ -1,0 +1,229 @@
+- type: ghostRole
+  id: SyndicateKobold
+  name: ghost-role-information-syndicate-kobold-reinforcement-name
+  description: ghost-role-information-syndicate-kobold-reinforcement-description
+  rules: ghost-role-information-syndicate-reinforcement-rules
+  entityPrototype: MobKoboldSyndicateAgent
+
+- type: entity
+  name: Сотрудник СССП
+  parent: MobHuman
+  suffix: СССП
+  id: MobHumanUSSP
+  components:
+  - type: GhostRole
+    name: Сотрудник СССП
+    description: "Вы — универсальный специалист станции СССП, обученный справляться с любыми задачами, от технических до медицинских."
+    rules: Вы [color=red][bold]Командный Не Антагонист[/bold][/color]. Вы должны [bold]кооперироваться и работать сообща[/bold] со своими Комрадами! Ваш опыт и гибкость сделали вас незаменимым членом экипажа, отправленного в отдалённый сектор для выполнения важной миссии. Вместе с командой вы погружаетесь в криосон, готовясь к долгому полёту. Но внезапно что-то идёт не так. Вас пробуждает резкая головная боль и тревожный писк консоли. Внезапные удары сотрясают станцию, и паника охватывает вас. Вы понимаете, что что-то серьёзно нарушило планы. Без приказов и времени на раздумья вы мгновенно начинаете действовать, осознавая, что от вашей реакции зависит жизнь всего экипажа и судьба станции.
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: Loadout
+    prototypes: [ USSPJobAltA, USSPJobAltB, USSPJobAltC, USSPJobAltD, USSPJobAltE, USSPJobAltF ]
+    roleLoadout: [ RoleSurvivalEVA ]
+  - type: RandomHumanoidAppearance
+    randomizeName: true
+
+- type: entity
+  name: Офицер СССП
+  parent: MobHuman
+  suffix: СССП
+  id: MobHumanUSSPOfficer
+  components:
+  - type: GhostRole
+    name: Офицер СССП
+    description: "Вы — Офицер Охраны СССП, обученный справляться с любыми задачами, от боевых до медицинских."
+    rules: Вы [color=red][bold]Командный Не Антагонист[/bold][/color]. Вы должны [bold]кооперироваться и работать сообща[/bold] со своими Комрадами! Ваш опыт и гибкость сделали вас незаменимым членом экипажа, отправленного в отдалённый сектор для выполнения важной миссии. Вместе с командой вы погружаетесь в криосон, готовясь к долгому полёту. Но внезапно что-то идёт не так. Вас пробуждает резкая головная боль и тревожный писк консоли. Внезапные удары сотрясают станцию, и паника охватывает вас. Вы понимаете, что что-то серьёзно нарушило планы. Без приказов и времени на раздумья вы мгновенно начинаете действовать, осознавая, что от вашей реакции зависит жизнь всего экипажа и судьба станции.
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: Loadout
+    prototypes: [ USSPOfficer ]
+    roleLoadout: [ RoleSurvivalEVA ]
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: RandomMetadata
+    nameSegments:
+    - NamesFirstMilitary
+    - names_last_male
+
+- type: entity
+  name: Солдат СССП
+  parent: MobHuman
+  suffix: СССП | Антагонист
+  id: MobHumanUSSPSoldier
+  components:
+  - type: GhostRole
+    name: Офицер СССП
+    description: "Вы — Солдат великой армии СССП! Выполняйте любые приказы своего Офицера без вопросов! ВО СЛАВУ РОДИНЫ!"
+    rules: Вы [color=red][bold]Командный Антагонист[/bold][/color]. Вы должны [bold]кооперироваться и работать сообща[/bold] со своими Товарищами! Выслушайте брифинг от своего Капитана и действуйте строго по его указаниям.
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: Loadout
+    prototypes: [ USSPSoldier ]
+    roleLoadout: [ RoleSurvivalEVA ]
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: RandomMetadata
+    nameSegments:
+    - NamesFirstMilitary
+    - names_last_male
+
+- type: entity
+  name: Капитан СССП
+  parent: MobHuman
+  suffix: СССП
+  id: MobHumanUSSPCaptain
+  components:
+  - type: GhostRole
+    name: Капитан СССП
+    description: "Вы — Капитан станции СССП. Ваша задача понять что стряслось со станцией, и сплотить всех сотрудников в борьбе за выживание."
+    rules: Вы [color=red][bold]Командный Не Антагонист[/bold][/color]. Вы должны [bold]кооперироваться и работать сообща[/bold] со своими Комрадами! Ваш опыт и гибкость сделали вас незаменимым членом экипажа, отправленного в отдалённый сектор для выполнения важной миссии. Вместе с командой вы погружаетесь в криосон, готовясь к долгому полёту. Но внезапно что-то идёт не так. Вас пробуждает резкая головная боль и тревожный писк консоли. Вы понимаете что ваши дела обстоят не самым лучшим образом. Вы обязаны взять всё в свои руки!
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: Loadout
+    prototypes: [ USSPCaptain ]
+    roleLoadout: [ RoleSurvivalEVA ]
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: RandomMetadata
+    nameSegments:
+    - NamesFirstMilitaryLeader
+    - names_last_male
+
+- type: startingGear
+  id: USSPJobAltA
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitUSSPBlack
+    outerClothing: ClothingOuterCoatTrench
+    shoes: ClothingShoesUSSPBlack
+    neck: ClothingNeckUSSPPin
+    id: USSPPDA
+    back: ClothingBackpackSatchelLeather
+    ears: ClothingHeadsetUSSP
+    pocket1: DrinkShotGlass
+  inhand:
+    - PaperUSSPInfo
+
+- type: startingGear
+  id: USSPJobAltB
+  parent: USSPJobAltA
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAdidasWhite
+    shoes: ClothingShoesBootsWinter
+    outerClothing: ClothingOuterCoatGentle
+
+- type: startingGear
+  id: USSPJobAltC
+  parent: USSPJobAltA
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAdidasBlack
+    shoes: ClothingShoesBootsWinter
+
+- type: startingGear
+  id: USSPJobAltD
+  parent: USSPJobAltA
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAdidasWhite
+    outerClothing: ClothingOuterWinterCoat
+    head: ClothingHeadHatUshanka
+    
+- type: startingGear
+  id: USSPJobAltE
+  parent: USSPJobAltA
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAdidasBlack
+    outerClothing: ClothingOuterWinterCoat
+    head: ClothingHeadHatUshanka
+
+- type: startingGear
+  id: USSPJobAltF
+  parent: USSPJobAltA
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitUSSPBlack
+    outerClothing: ClothingOuterWinterCoat
+    shoes: ClothingShoesBootsWinter
+    head: ClothingHeadHatUshanka
+
+- type: startingGear
+  id: USSPOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitUSSPBlack
+    back: ClothingBackpackMilitarySatchel
+    shoes: ClothingShoesBootsCombatFilled
+    head: ClothingHeadHatCapUSSPBlack
+    mask: ClothingMaskGasMerc
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesCombat
+    neck: ClothingNeckUSSPPin
+    outerClothing: ClothingOuterCoatHOSOvercoatBlack
+    id: USSPOfficerPDA
+    ears: ClothingHeadsetUSSPSec
+    belt: ClothingBeltSecurityFilled
+    pocket1: WeaponLaserSvalinn
+  storage:
+    back:
+    - Gauze
+    - Truncheon
+    - DrinkFlaskOld
+    
+- type: startingGear
+  id: USSPSoldier
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMercenary
+    back: ClothingMilitaryBackpack
+    shoes: ClothingShoesBootsMercFilled
+    mask: ClothingMaskGasMerc
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsMercGlovesCombat
+    neck: ClothingNeckUSSPPin
+    outerClothing: ClothingOuterLightHardsuitUSSP
+    id: USSPSoldierPDA
+    ears: ClothingHeadsetUSSP
+    belt: ClothingBeltMercWebbing
+    pocket1: FlashlightSeclite
+    pocket2: Gauze
+  storage:
+    back:
+    - WeaponSubMachineGunPPSH41
+    - MagazinePPSH41
+    - MagazinePPSH41
+    - Crowbar
+
+- type: startingGear
+  id: USSPCaptain
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitUSSPBlack
+    back: ClothingBackpackMilitarySatchel
+    shoes: ClothingShoesUSSPBlack
+    head: ClothingHeadHatCapHoS
+    eyes: ClothingEyesGlassesCommand
+    gloves: ClothingHandsGlovesLeatherHoS
+    neck: ClothingNeckCloakDarthHOSCloak
+    outerClothing: ClothingOuterHeavyHardsuitUSSP
+    id: USSPCaptainPDA
+    ears: ClothingHeadsetAltUSSP
+    belt: ClothingBeltHolster
+    pocket1: WeaponRevolverPython
+  storage:
+    back:
+    - DrinkVodkaBottleFull
+    - SpeedLoaderMagnum
+    - SpeedLoaderMagnum
+    - DrinkFlask
+    - CigPackSyndicate
+    - FlippoLighterSunriseContractor
