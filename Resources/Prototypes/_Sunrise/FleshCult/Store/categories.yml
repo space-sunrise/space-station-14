@@ -1,0 +1,15 @@
+- type: storeCategory
+  id: FleshCultistPassiveSkills
+  name: store-category-flesh-passive-skills
+
+- type: storeCategory
+  id: FleshCultistActiveSkills
+  name: store-category-flesh-active-skills
+
+- type: storeCategory
+  id: FleshCultistWeapon
+  name: store-category-flesh-weapon
+
+- type: storeCategory
+  id: FleshCultistArmor
+  name: store-category-flesh-armor

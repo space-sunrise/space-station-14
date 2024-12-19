@@ -83,35 +83,3 @@
             StationAi: [ 1, 1 ]
             Borg: [ 22, 22 ]
             SecurityCombatBorg: [ 2, 2 ]
-        - type: StationGoal
-          goals:
-          - Shuttle
-          - Singularity
-          - SolarPanels
-          - Artifacts
-          - Bank
-          - Zoo
-          - MiningOutpost
-          - Tesla
-          - XenobiologyRepair
-          - VirusologyAmbusol
-          - Containment
-          - WeaponsSecurity
-          - MaintsRepair
-          - DormsBuild
-          - BattleShuttle
-          - Transit
-          - NukeRoom
-          - Permabrig
-          - Farm
-          - Delegates
-          - Cyborgs
-          - Testing
-          - Anomaly
-          - Replenishment
-          - IntelWeapons
-          - Reports
-          - Reconnaissance
-          - Saboteurs
-          - Furs
-          - Crew

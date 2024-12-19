@@ -1,0 +1,66 @@
+- type: entity
+  id: FleshHeart
+  parent: BaseStructure
+  name: Flesh Heart
+  description: Flesh Heart
+  placement:
+    mode: AlignTileAny
+  components:
+    - type: ContainerContainer
+      containers:
+        bodyContainer: !type:Container
+    - type: Appearance
+    - type: SpriteFade
+    - type: Sprite
+      netsync: false
+      drawdepth: Mobs
+      sprite: _Sunrise/FleshCult/flesh_heart.rsi
+      layers:
+        - state: base_heart
+          map: ["enum.FleshHeartLayers.Base"]
+    - type: Transform
+      anchored: true
+    - type: Physics
+      bodyType: Static
+    - type: Climbable
+      delay: 5
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-1.5,-1.4,1.5,0.3"
+          density: 50
+          mask:
+            - MachineMask
+          layer:
+            - MachineLayer
+    - type: Damageable
+      damageContainer: Biological
+      damageModifierSet: FleshHeart
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 1000
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+    - type: PointLight
+      radius: 10
+      energy: 1
+      castShadows: true
+      color: "#87031f"
+    - type: FleshHeart
+      finalState: "final_heart"
+      fleshTileId: Flesh
+      damageMobsIfHeartDestruct:
+        types:
+          Slash: 700
+      spawns:
+        MobFleshSpider: 0.20
+        MobFleshPudge: 0.20
+        MobFleshBall: 0.30
+        MobFleshBat: 0.30
+      spawnMobsAmount: 3
+      spawnMobsFrequency: 180
