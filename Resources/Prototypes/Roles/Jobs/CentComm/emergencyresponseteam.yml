@@ -200,7 +200,7 @@
     shoes: ClothingShoesSwat # Sunrise-edit
     mask: ClothingMaskGasERT # Sunrise-edit
     head: ClothingHeadHelmetERTEngineer
-    eyes: ClothingEyesHudDiagnostic # Sunrise-edit
+    eyes: ClothingEyesHudDiagnosticERT # Sunrise-edit
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorAmberEng
     id: ERTEngineerPDA
@@ -228,7 +228,7 @@
     back: ClothingBackpackERTEngineer
     shoes: ClothingShoesBootsMagAdv
     mask: ClothingMaskGasERT
-    eyes: ClothingEyesHudDiagnostic # Sunrise-edit
+    eyes: ClothingEyesHudDiagnosticERT # Sunrise-edit
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTEngineer
     id: ERTEngineerPDA
