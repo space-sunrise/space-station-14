@@ -507,10 +507,8 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
 
         _humanoid.LoadProfile(dummyEnt, humanoid);
 
-        if (humanoid != null)
+        if (humanoid != null && job != null && jobClothes) // Sunrise-Edit
         {
-            DebugTools.Assert(job != null);
-
             GiveDummyJobClothes(dummyEnt, humanoid, job);
 
             if (_prototypeManager.HasIndex<RoleLoadoutPrototype>(LoadoutSystem.GetJobPrototype(job.ID)))
