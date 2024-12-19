@@ -191,6 +191,11 @@
         whitelist:
           tags:
             - PowerCell
+# Sunrise-Edit
+  - type: Tag
+    tags:
+      - Hardsuit
+# Sunrise-Edit
 
 - type: entity
   parent: ClothingOuterBase
