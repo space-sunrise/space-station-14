@@ -251,7 +251,7 @@
   - type: Sprite
     layers:
       - state: green
-      - sprite: /Uploaded/sec_pod/sec_pod.rsi
+      - sprite: _Sunrise/Objects/Specific/Mech/sec_pod.rsi
         state: sec_pod
   - type: ConditionalSpawner
     prototypes:
