@@ -71,13 +71,14 @@
     - Gauze
     - Truncheon
     - DrinkFlaskOld
+    - ClothingPantsManCommie
     
 - type: startingGear
   id: USSPSoldier
   equipment:
     jumpsuit: ClothingUniformJumpsuitMercenary
     back: ClothingMilitaryBackpack
-    shoes: ClothingShoesBootsMercFilled
+    shoes: ClothingShoesBootsMagPirate
     mask: ClothingMaskGasMerc
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsMercGlovesCombat
@@ -94,6 +95,7 @@
     - MagazinePPSH41
     - MagazinePPSH41
     - Crowbar
+    - ClothingPantsManCommie
 
 - type: startingGear
   id: USSPCaptain
@@ -118,3 +120,4 @@
     - DrinkFlask
     - CigPackSyndicate
     - FlippoLighterSunriseContractor
+    - ClothingPantsManCommie
