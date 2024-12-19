@@ -138,6 +138,68 @@
     delay: 0.5
 
 - type: entity
+  name: AK-514
+  parent: BaseWeaponRifle
+  id: WeaponRifleAK514
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ak514/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ak514/tiny.rsi
+  - type: Item
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ak514/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -15
+    maxAngle: -35
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    fireRate: 7.5  # 10 в секунду - реалистично. 5, так как сс14
+    soundGunshot:
+      collection: ak47
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineCaselessRifleShort
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineLightRifle
+            - MagazineCaselessRifle
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeCaselessRifle
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeLightRifle
+            - CartridgeCaselessRifle
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.5
+  - type: ChamberMagazineAmmoProvider
+    autoEject: true
+    soundRack:
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_cocked.ogg
+
+- type: entity
   name: Famas
   parent: BaseWeaponRifle
   id: WeaponRifleFamas
@@ -157,9 +219,9 @@
     minAngle: -23
     maxAngle: -43
   - type: Gun
-    minAngle: 24
-    maxAngle: 45
-    fireRate: 7
+    minAngle: 26
+    maxAngle: 48
+    fireRate: 6.9
     soundGunshot:
       collection: famas
   - type: ItemSlots
