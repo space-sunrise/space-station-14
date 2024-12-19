@@ -184,6 +184,12 @@
         orGroup: dressermainloot
       - id: ClothingNeckScarfStripedBlue
         prob: 0.03
+#sunrise-start
+      - id: ClothingNeckScarfStripedCyan
+        prob: 0.03
+      - id: ClothingNeckScarfStripedYellow
+        prob: 0.03
+#sunrise-end
         orGroup: dressermainloot
       - id: ClothingNeckScarfStripedGreen
         prob: 0.03

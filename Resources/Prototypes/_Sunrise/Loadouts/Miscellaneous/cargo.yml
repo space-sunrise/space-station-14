@@ -1,0 +1,133 @@
+ #Back
+
+- type: loadout
+  id: TrinketsCargoGPS
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Cargo
+      time: 7200 # 2hr
+  storage:
+    back:
+    - HandheldGPSBasic
+
+- type: loadout
+  id: TrinketsCargoFL
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Cargo
+      time: 7200 # 2hr
+  storage:
+    back:
+    - FlashlightLantern
+
+- type: loadout
+  id: TrinketsCargoF
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Cargo
+      time: 7200 # 2hr
+  storage:
+    back:
+    - Flare
+
+- type: loadout
+  id: TrinketsCargoLB
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Cargo
+      time: 7200 # 2hr
+  storage:
+    back:
+    - HandLabeler
+
+- type: loadout
+  id: TrinketsCargoRH
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Cargo
+      time: 36000 # 10hr
+  storage:
+    back:
+    - RadioHandheld
+
+- type: loadout
+  id: TrinketsCargoT
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobCargoTechnician
+      time: 72000 # 20hr
+  storage:
+    back:
+    - ToyFigurineCargoTech
+
+- type: loadout
+  id: TrinketsCargoS
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobSalvageSpecialist
+      time: 72000 # 20hr
+  storage:
+    back:
+    - ToyFigurineSalvage
+
+- type: loadout
+  id: TrinketsCargoQ
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobQuartermaster
+      time: 72000 # 20hr
+  storage:
+    back:
+    - ToyFigurineQuartermaster
+
+- type: loadout
+  id: TrinketsCargoSD
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobSalvageSpecialist
+      time: 108000 # 30hr
+  storage:
+    back:
+    - ToyFigurineSpaceDragon
+
+- type: loadout
+  id: TrinketsCargoQueen
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobSalvageSpecialist
+      time: 180000 # 50hr
+  storage:
+    back:
+    - ToyFigurineQueen
+
+- type: loadout
+  id: TrinketsCargoLGW
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Cargo
+      time: 1080000 # 300hr
+  storage:
+    back:
+    - LegendaryGoldenWeh
