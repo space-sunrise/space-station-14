@@ -1,2 +1,2 @@
 ent-MechSecPod = Security Pod
-    .desc = While lightly armored, the Gygax has incredible mobility thanks to its ability that lets it smash through walls at high speeds.
+    .desc = Despite its size, the Security Pod has incredible mobility in space thanks to its engines.
