@@ -1,0 +1,102 @@
+### USSP
+
+- type: entity
+  name: USSP Crew
+  parent: MobHuman
+  suffix: USSP
+  id: MobHumanUSSP
+  components:
+  - type: GhostRole
+    name: ghost-role-information-ussp-crew-name
+    description: ghost-role-information-ussp-crew-description
+    rules: ghost-role-information-ussp-crew-rules
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: Loadout
+    prototypes: [ USSPJobAltA, USSPJobAltB, USSPJobAltC, USSPJobAltD, USSPJobAltE, USSPJobAltF ]
+    roleLoadout: [ RoleSurvivalEVA ]
+  - type: RandomHumanoidAppearance
+    randomizeName: true
+
+- type: entity
+  name: USSP Officer
+  parent: MobHuman
+  suffix: USSP
+  id: MobHumanUSSPOfficer
+  components:
+  - type: GhostRole
+    name: ghost-role-information-ussp-sec-name
+    description: ghost-role-information-ussp-sec-description
+    rules: ghost-role-information-ussp-sec-rules
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: Loadout
+    prototypes: [ USSPOfficer ]
+    roleLoadout: [ RoleSurvivalEVA ]
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: RandomMetadata
+    nameSegments:
+    - NamesFirstMilitary
+    - names_last_male
+
+- type: entity
+  name: USSP Soldier
+  parent: MobHuman
+  suffix: USSP | ANTAG
+  id: MobHumanUSSPSoldier
+  components:
+  - type: GhostRole
+    name: ghost-role-information-ussp-war-name
+    description: ghost-role-information-ussp-war-description 
+    rules: ghost-role-information-ussp-war-rules 
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: Loadout
+    prototypes: [ USSPSoldier ]
+    roleLoadout: [ RoleSurvivalEVA ]
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: RandomMetadata
+    nameSegments:
+    - NamesFirstMilitary
+    - names_last_male
+
+- type: entity
+  name: USSP Captain
+  parent: MobHuman
+  suffix: USSP
+  id: MobHumanUSSPCaptain
+  components:
+  - type: GhostRole
+    name: ghost-role-information-ussp-com-name
+    description: ghost-role-information-ussp-com-description
+    rules: ghost-role-information-ussp-com-rules
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: Loadout
+    prototypes: [ USSPCaptain ]
+    roleLoadout: [ RoleSurvivalEVA ]
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: RandomMetadata
+    nameSegments:
+    - NamesFirstMilitaryLeader
+    - names_last_male
+
