@@ -174,7 +174,6 @@
           tags:
             - MagazineLightRifle
             - MagazineCaselessRifle
-            - MagazineCaselessRifleShort
       gun_chamber:
         name: Chamber
         startingItem: CartridgeCaselessRifle

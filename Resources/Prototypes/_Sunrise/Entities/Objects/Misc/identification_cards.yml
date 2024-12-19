@@ -203,7 +203,7 @@
     tags:
     - Maintenance
   - type: IdCard
-    jobTitle: USSP Crew
+    jobTitle: JobUSSPCrew
 
 - type: entity
   parent: IDCardStandard
@@ -221,7 +221,7 @@
     - NuclearOperative
     - SyndicateAgent
   - type: IdCard
-    jobTitle: USSP Guard
+    jobTitle: JobUSSPGuard
 
 - type: entity
   parent: IDCardStandard
@@ -238,7 +238,7 @@
     - NuclearOperative
     - SyndicateAgent
   - type: IdCard
-    jobTitle: USSP Soldier
+    jobTitle: JobUSSPSoldier
 
 - type: entity
   parent: IDCardStandard
@@ -257,4 +257,4 @@
     - NuclearOperative
     - SyndicateAgent
   - type: IdCard
-    jobTitle: USSP Officer
+    jobTitle: JobUSSPOfficer
