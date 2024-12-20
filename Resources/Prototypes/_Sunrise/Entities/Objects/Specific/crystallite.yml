@@ -6,10 +6,10 @@
   description: It seems to shimmer with a attractive energy.
   components:
   - type: Sprite
-    sprite: _Sunrise/Entities/Objects/Specific/crystallite.rsi
+    sprite: _Sunrise/Objects/Specific/crystallite.rsi
     state: crystallite
   - type: Item
-    sprite: _Sunrise/Entities/Objects/Specific/crystallite.rsi
+    sprite: _Sunrise/Objects/Specific/crystallite.rsi
     size: Tiny
   - type: Stack
     count: 20

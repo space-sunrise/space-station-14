@@ -25,18 +25,18 @@
     - !type:ListingLimitedStockCondition
       stock: 5
 
-    - type: listing
-    id: NTUplinkSunriseClothingBackpackDuffelWeaponRifleLecter
-    name: bundle Lecter
-    productEntity: ClothingBackpackDuffelWeaponRifleLecterFilled
-    icon: { sprite: Objects/Weapons/Guns/Rifles/lecter.rsi, state: icon }
-    cost:
-      Bluecrystal: 3
-    categories:
-    - NTAutoGun
-    conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 5
+- type: listing
+  id: NTUplinkSunriseClothingBackpackDuffelWeaponRifleLecter
+  name: bundle Lecter
+  productEntity: ClothingBackpackDuffelWeaponRifleLecterFilled
+  icon: { sprite: Objects/Weapons/Guns/Rifles/lecter.rsi, state: icon }
+  cost:
+    Bluecrystal: 3
+  categories:
+  - NTAutoGun
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
 
 - type: listing
   id: NTUplinkSunriseClothingBackpackDuffelWeaponSubMachineGunP90
@@ -52,17 +52,17 @@
     stock: 3
 
 - type: listing
-  id: NTUplinkSunriseClothingBackpackDuffelWeaponAMS-42Filled
+  id: NTUplinkSunriseClothingBackpackDuffelWeaponAMS42Filled
   name: bundle AMS-42
   icon: { sprite: _Sunrise/Objects/Weapons/Guns/SMGs/MS-42.rsi, state: icon }
-  productEntity: ClothingBackpackDuffelWeaponAMS-42Filled
+  productEntity: ClothingBackpackDuffelWeaponAMS42Filled
   cost:
     Bluecrystal: 5
   categories:
-    - NTAutoGun
+  - NTAutoGun
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 3
+  - !type:ListingLimitedStockCondition
+    stock: 3
 
 
 # Дробовики:
@@ -74,10 +74,10 @@
   cost:
     Bluecrystal: 12
   categories:
-    - NTShotguns
+  - NTShotguns
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
+  - !type:ListingLimitedStockCondition
+    stock: 1
 
 - type: listing
   id: NTUplinkSunriseClothingBackpackDuffelWeaponXM1014
@@ -100,10 +100,10 @@
   cost:
     Bluecrystal: 6
   categories:
-    - NTShotguns
+  - NTShotguns
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 2
+  - !type:ListingLimitedStockCondition
+    stock: 2
 
 # Лазеры:
 
@@ -115,10 +115,10 @@
   cost:
     Bluecrystal: 10
   categories:
-    - NTLasers
+  - NTLasers
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 2
+  - !type:ListingLimitedStockCondition
+    stock: 2
 
 - type: listing
   id: NTUplinkSunriseWeaponPulseCarbine
@@ -376,7 +376,7 @@
   productEntity: MagazineBR64
   icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag_top_mounted.rsi, state: icon }
   cost:
-    Crystallite: 8
+    Crystallite: 6
   categories:
   - NTAmmo
   conditions:

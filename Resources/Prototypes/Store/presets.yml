@@ -40,24 +40,27 @@
     - WizCoin
 
 # NTUplink Sunrise-start
-- type: storePreset
+- type: entity
   id: StorePresetNT
-  storeName: NT Uplink
-  categories:
-  - NTAutoGun
-  - NTShotguns
-  - NTLasers
-  - NTHeavyGun
-  - NTPistols
-  - NTAmmo
-  - NTMedicine
-  - NTAdditional
-  - NTSanitary
-  - NTEngineering
-  - NTNonLethalEquipment
-  - NTCBURN
-  - NTEquipment
-  currencyWhitelist:
-  - Bluecrystal
-  - Crystallite
+  abstract: true
+  components:
+  - type: Store
+    name: NT Uplink #store-preset-name-ntuplink
+    categories:
+    - NTAutoGun
+    - NTShotguns
+    - NTLasers
+    - NTHeavyGun
+    - NTPistols
+    - NTAmmo
+    - NTMedicine
+    - NTAdditional
+    #- NTSanitary
+    #- NTEngineering
+    #- NTNonLethalEquipment
+    #- NTCBURN
+    - NTEquipment
+    currencyWhitelist:
+    - Bluecrystal
+    - Crystallite
 # Sunrise-end
