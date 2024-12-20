@@ -7,9 +7,13 @@ using Content.Shared.Toggleable;
 using Content.Shared.PowerCell;
 using Content.Shared.PowerCell.Components;
 using Content.Shared.Popups;
+using Content.Shared.Containers.ItemSlots;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using JetBrains.Annotations;
+using Robust.Shared.GameObjects;
+using Robust.Shared.GameStates;
+using Content.Shared.Examine;
 
 namespace Content.Shared._Sunrise.Eye.NightVision.Systems;
 
@@ -23,11 +27,12 @@ public sealed class NightVisionDeviceSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedPowerCellSystem _cell = default!;
+    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-
+        
         SubscribeLocalEvent<NightVisionDeviceComponent, InventoryRelayedEvent<CanVisionAttemptEvent>>(OnNVDTrySee);
         SubscribeLocalEvent<NightVisionDeviceComponent, NightVisionDeviceUpdateVisualsEvent>(OnNightVisionDeviceUpdateVisuals);
         
@@ -39,6 +44,17 @@ public sealed class NightVisionDeviceSystem : EntitySystem
         SubscribeLocalEvent<NightVisionDeviceComponent, ComponentShutdown>(OnShutdown);
     }
 
+    private bool HasPowerAndBattery(EntityUid uid)
+    {
+        if (!TryComp<PowerCellSlotComponent>(uid, out var slot))
+            return false;
+            
+        if (!_itemSlots.TryGetSlot(uid, slot.CellSlotId, out var itemSlot))
+            return false;
+
+        return itemSlot.Item != null && _powerCell.HasDrawCharge(uid);
+    }
+
     private void OnNVDTrySee(EntityUid uid, NightVisionDeviceComponent component, InventoryRelayedEvent<CanVisionAttemptEvent> args)
     {
         args.Args.Cancel();
@@ -48,6 +64,8 @@ public sealed class NightVisionDeviceSystem : EntitySystem
     {
         var updVisEv = new AfterNvdUpdateVisualsEvent();
         RaiseLocalEvent(uid, ref updVisEv);
+        
+        _appearance.SetData(uid, NVDVisuals.Light, component.Activated);
     }
 
     private void OnGetActions(EntityUid uid, NightVisionDeviceComponent component, GetItemActionsEvent args)
@@ -65,15 +83,17 @@ public sealed class NightVisionDeviceSystem : EntitySystem
     
     private void OnPowerCellSlotEmpty(Entity<NightVisionDeviceComponent> ent, ref PowerCellSlotEmptyEvent args)
     {
-        if (ent.Comp.isPowered)
-            Toggle(ent);
+        if (ent.Comp.Activated)
+            ForceDisable(ent);
     }
 
     private void OnPowerCellChanged(Entity<NightVisionDeviceComponent> ent, ref PowerCellChangedEvent args)
     {
-        if (args.Ejected || !_powerCell.HasDrawCharge(ent))
-            if (ent.Comp.isPowered)
-                Toggle(ent);
+        if (args.Ejected || !HasPowerAndBattery(ent.Owner))
+        {
+            if (ent.Comp.Activated)
+                ForceDisable(ent);
+        }
     }
     
     private void OnToggleAction(Entity<NightVisionDeviceComponent> ent, ref ToggleActionEvent args)
@@ -81,21 +101,46 @@ public sealed class NightVisionDeviceSystem : EntitySystem
         if (args.Handled)
             return;
         
-        if (ent.Comp.isPowered && !_powerCell.HasDrawCharge(ent.Owner))
+        if (!HasPowerAndBattery(ent.Owner))
         {
             _popup.PopupClient(Loc.GetString("base-computer-ui-component-not-powered", ("machine", ent.Owner)), args.Performer, args.Performer);
             return;
         }
 
         Toggle(ent);
-
         args.Handled = true;
+    }
+
+    private void ForceDisable(Entity<NightVisionDeviceComponent> ent)
+    {
+        ent.Comp.Activated = false;
+        
+        if (!_light.TryGetLight(ent.Owner, out var light))
+            return;
+            
+        var draw = Comp<PowerCellDrawComponent>(ent.Owner);
+        _cell.SetDrawEnabled((ent.Owner, draw), false);
+        
+        _appearance.SetData(ent, ToggleableLightVisuals.Enabled, false);
+        _light.SetEnabled(ent.Owner, false, comp: light);
+        
+        var updVisEv = new NightVisionDeviceUpdateVisualsEvent();
+        RaiseLocalEvent(ent, ref updVisEv);
+        
+        if (TryComp<TransformComponent>(ent.Owner, out var transform))
+        {
+            var equipped = transform.ParentUid;
+            var changeEv = new NightVisionDeviceToggledEvent(equipped);
+            RaiseLocalEvent(ent.Owner, ref changeEv);
+        }
+        
+        Dirty(ent);
     }
     
     public void Toggle(Entity<NightVisionDeviceComponent> ent)
     {
-        var updVisEv = new NightVisionDeviceUpdateVisualsEvent();
-        RaiseLocalEvent(ent, ref updVisEv);
+        if (!HasPowerAndBattery(ent.Owner))
+            return;
 
         ent.Comp.Activated = !ent.Comp.Activated;
 
@@ -115,13 +160,16 @@ public sealed class NightVisionDeviceSystem : EntitySystem
         _appearance.SetData(ent, ToggleableLightVisuals.Enabled, ent.Comp.Activated);
         _light.SetEnabled(ent.Owner, ent.Comp.Activated, comp: light);
 
+        var updVisEv = new NightVisionDeviceUpdateVisualsEvent();
+        RaiseLocalEvent(ent, ref updVisEv);
+
         if (TryComp<TransformComponent>(ent.Owner, out var transform))
         {
             var equipped = transform.ParentUid;
-
             var changeEv = new NightVisionDeviceToggledEvent(equipped);
             RaiseLocalEvent(ent.Owner, ref changeEv);
         }
+        
         Dirty(ent);
     }
 }
@@ -134,11 +182,9 @@ public sealed class NightVisionDeviceToggledEvent : EntityEventArgs
     {
         Equipped = equipped;
     }
-
 };
 
 [PublicAPI, ByRefEvent]
 public sealed class AfterNvdUpdateVisualsEvent : EntityEventArgs
 {
-
 }
