@@ -67,3 +67,4 @@ tts-voice-name-warcraft3-muradin = (NEW) [Warcraft 3] Мурадин
 tts-voice-name-warcraft3-artas-2 = (NEW) [Warcraft 3] Артас 2.0
 tts-voice-name-warcraft3-witcher = (NEW) [Warcraft 3] Ведьмак
 tts-voice-name-warcraft3-kel = (NEW) [Warcraft 3] Кел
+tts-voice-name-warcraft3-dreney = (NEW) [Warcraft 3] Дреней
