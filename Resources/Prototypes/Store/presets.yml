@@ -38,3 +38,26 @@
     - SpellbookEvents       #Summon Weapons, Summon Ghosts
     currencyWhitelist:
     - WizCoin
+
+# NTUplink Sunrise-start
+- type: storePreset
+  id: StorePresetNT
+  storeName: NT Uplink
+  categories:
+  - NTAutoGun
+  - NTShotguns
+  - NTLasers
+  - NTHeavyGun
+  - NTPistols
+  - NTAmmo
+  - NTMedicine
+  - NTAdditional
+  - NTSanitary
+  - NTEngineering
+  - NTNonLethalEquipment
+  - NTCBURN
+  - NTEquipment
+  currencyWhitelist:
+  - Bluecrystal
+  - Crystallite
+# Sunrise-end

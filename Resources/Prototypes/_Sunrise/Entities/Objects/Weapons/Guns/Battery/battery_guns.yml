@@ -404,7 +404,7 @@
     startingCharge: 4000
   - type: ProjectileBatteryAmmoProvider
     proto: BulletEMP
-    fireCost: 1000
+    fireCost: 500
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -661,6 +661,39 @@
   - type: Wieldable
   - type: UseDelay
     delay: 0.5
+  - type: ZoomableGun
+
+- type: entity
+  name: heavy pulse carbine
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband]
+  id: WeaponSniperPulseCarbine
+  description: "A high tech heavy carbine. favoured by the NT-ERT operatives." 
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/sniper_pulse_carbine.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/sniper_pulse_carbine.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 2.2
+    availableModes:
+      - SemiAuto
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: EmpImmune  # Sunrise-EMP
+  - type: HitscanBatteryAmmoProvider
+    proto: BulletPulse # Sunrise-Edit
+    fireCost: 200
+  - type: Battery
+    maxCharge: 8000
+    startingCharge: 8000
   - type: ZoomableGun
 
 - type: entity

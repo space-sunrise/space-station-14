@@ -1,0 +1,42 @@
+- type: entity
+  parent: BaseUplinkRadio
+  id: BaseUplinkNTERT
+  name: Блюспейс Визионер ОБР
+  description: Сверхинновационный портативный блюспейс-телепортатор.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Devices/nt_uplink.rsi
+    layers:
+      - state: icon
+      - state: active
+        shader: unshaded
+  - type: Store
+    preset: StorePresetNT
+    balance:
+      Bluecrystal: 100
+      Crystallite: 100
+    buySuccessSound:
+      path: /Audio/Effects/Arcade/newgame.ogg
+  - type: Tag
+    tags:
+      - NTUplinkERT
+
+#- type: entity
+#  parent: BaseUplinkRadio
+#  id: BaseUplinkNTCBURN
+#  name: Блюспейс Визионер РХБЗЗ
+#  description: Сверхинновационный портативный блюспейс-телепортатор.
+#  components:
+#    - type: Sprite
+#      sprite: _Sunrise/Entities/Objects/Devices/nt_uplink.rsi
+#      layers:
+#        - state: icon
+#        - state: active
+#          shader: unshaded
+#    - type: Store
+#      preset: StorePresetNT
+#      balance:
+#        Bluecrystal: 80
+#        Crystallite: 80
+#      buySuccessSound:
+#        path: /Audio/Effects/Arcade/newgame.ogg

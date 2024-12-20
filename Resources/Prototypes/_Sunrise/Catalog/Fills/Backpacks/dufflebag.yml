@@ -1,0 +1,320 @@
+- type: entity
+  id: ClothingBackpackDuffelWeaponAKMSRifleFilled
+  parent: ClothingBackpackDuffelMilitary
+  name: Набор AKMS
+  description: Содержит АКМС и две обоймы.
+  components:
+  - type: StorageFill
+    contents:
+    - id: SUNRISECM14WeaponAKMSRifle
+    - id: SUNRISECM14MagazineAK
+      amount: 2
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponRifleG36Filled
+  parent: ClothingBackpackDuffelMilitary
+  name: Набор G-36
+  description: Содержит G-36 и две обоймы.
+  components:
+  - type: StorageFill
+    contents:
+    - id: SUNRISECM14WeaponRifleG36
+    - id: SUNRISECM14MagazineG36
+      amount: 2
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponRifleM28Filled
+  parent: ClothingBackpackDuffelMilitary
+  name: Набор M-28
+  description: Содержит M-28 и две обоймы.
+  components:
+    - type: StorageFill
+      contents:
+        - id: SUNRISECM14WeaponRifleM28
+        - id: SUNRISECM14MagazineM28
+          amount: 2
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponRifleFamasFilled
+  parent: ClothingBackpackDuffelMilitary
+  name: Набор Фамас
+  description: Содержит Фамас и две обоймы.
+  components:
+    - type: StorageFill
+      contents:
+        - id: SUNRISECM14WeaponRifleFamas
+        - id: SUNRISECM14MagazineFamas
+          amount: 2
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponRifleAR18Filled
+  parent: ClothingBackpackDuffelMilitary
+  name: Набор AR-18
+  description: Содержит AR-18 и две обоймы.
+  components:
+    - type: StorageFill
+      contents:
+        - id: SUNRISECM14WeaponRifleAR18
+        - id: SUNRISECM14MagazineAR18
+          amount: 2
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponRifleAKSUFilled
+  parent: ClothingBackpackDuffelMilitary
+  name: Набор AK74-U
+  description: Содержит AK74-U и две обоймы.
+  components:
+    - type: StorageFill
+      contents:
+        - id: SUNRISECM14WeaponRifleAKSU
+        - id: SUNRISECM14MagazineAK
+          amount: 2
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponRifleV31Filled
+  parent: ClothingBackpackDuffelMilitary
+  name: Набор Штурмовая винтовка V-31
+  description: Содержит V-31 и одну обойму.
+  components:
+    - type: StorageFill
+      contents:
+        - id: SUNRISECM14WeaponRifleV31
+        - id: SUNRISECM14MagazineV31
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponRifleBR64Filled
+  parent: ClothingBackpackDuffelMilitary
+  name: Набор BR-64
+  description: Содержит BR-64 и две обоймы.
+  components:
+    - type: StorageFill
+      contents:
+        - id: SUNRISECM14WeaponRifleBR64
+        - id: SUNRISECM14MagazineBR64
+          amount: 2
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponRifleSR127Filled
+  parent: ClothingBackpackDuffelMilitary
+  name: Набор Bauer SR-127
+  description: Содержит Bauer SR-127 и две обоймы.
+  components:
+    - type: StorageFill
+      contents:
+        - id: SUNRISECM14WeaponRifleBauer127
+        - id: SUNRISECM14MagazineBauer127
+          amount: 2
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponRifleDragunovFilled
+  parent: ClothingBackpackDuffelMilitary
+  name: Набор Драгунов
+  description: Содержит Драгунов и две обоймы.
+  components:
+    - type: StorageFill
+      contents:
+        - id: SUNRISECM14WeaponSniperDragunov
+        - id: SUNRISECM14MagazineDragunov
+          amount: 2
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponLightMachineGunRPD
+  parent: ClothingBackpackDuffelMilitary
+  name: Набор RPD
+  description: Содержит пулемет RPD и два патрон.
+  components:
+    - type: StorageFill
+      contents:
+        - id: SUNRISECM14WeaponLightMachineGunRPD
+        - id: SUNRISECM14MagazineRPD
+          amount: 2
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponLightMachineGunMG60
+  parent: ClothingBackpackDuffelMilitary
+  name: Набор MG-60
+  description: Содержит пулемет MG-60 и один короб патрон.
+  components:
+    - type: StorageFill
+      contents:
+        - id: SUNRISECM14WeaponLightMachineGunMG60
+        - id: SUNRISECM14MagazineLightMachineGunMG60
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponLightMachineGunMG42
+  parent: ClothingBackpackDuffelMilitary
+  name: Набор MG-42
+  description: Содержит пулемет MG-42 и один барабанный магазин.
+  components:
+    - type: StorageFill
+      contents:
+        - id: SUNRISECM14WeaponMachineGunMG42
+        - id: MagazineMachineGunMG42
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponSubMachineGunSkorpion
+  parent: ClothingBackpackDuffelMilitary
+  name: Набор Скорпион VZ-61
+  description: Содержит Скорпион VZ-61 и две обоймы.
+  components:
+    - type: StorageFill
+      contents:
+        - id: SUNRISECM14WeaponSubMachineGunSkorpion
+        - id: SUNRISECM14MagazineScorpion
+          amount: 2
+
+- type: entity
+  id: ClothingBackpackDuffelFirethrowerGun
+  parent: ClothingBackpackDuffelMilitary
+  name: Набор ручной огнемёт М6
+  description: Содержит ручной огнемёт М6 и два топливных бака.
+  components:
+    - type: StorageFill
+      contents:
+        - id: SUNRISECM14FirethrowerGun
+        - id: SUNRISECM14FuelTankFlamethrower
+          amount: 2
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponShotgunZauer
+  parent: ClothingBackpackDuffelMilitary
+  name: Набор Зауэр
+  description: Содержит Зауэр и два барабана.
+  components:
+    - type: StorageFill
+      contents:
+        - id: SUNRISECM14WeaponShotgunZauer
+        - id: MagazineShotgun
+          amount: 2
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponShotgun39
+  parent: ClothingBackpackDuffelMilitary
+  name: Набор XM1014
+  description: Содержит XM1014 и коробку ружейных патрон.
+  components:
+    - type: StorageFill
+      contents:
+        - id: SUNRISECM14WeaponXM1014
+        - id: BoxLethalshot
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponShotgun12
+  parent: ClothingBackpackDuffelMilitary
+  name: Набор Спас-12
+  description: Содержит Спас-12 и коробку ружейных патрон.
+  components:
+    - type: StorageFill
+      contents:
+        - id: SUNRISECM14WeaponShotgunSPAS12
+        - id: BoxLethalshot
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponShotgunPaladin12
+  parent: ClothingBackpackDuffelMilitary
+  name: Набор Паладин
+  description: Содержит Паладин и коробку ружейных патрон.
+  components:
+    - type: StorageFill
+      contents:
+        - id: SUNRISECM14WeaponShotgunPaladin12
+        - id: BoxLethalshot
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponShotguntrenchgun4034
+  parent: ClothingBackpackDuffelMilitary
+  name: Набор Тренчган L-4034
+  description: Содержит Тренчган L-4034 и коробку ружейных.
+  components:
+    - type: StorageFill
+      contents:
+        - id: SUNRISECM14WeaponShotguntrenchgun4034
+        - id: BoxLethalshot
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponSubMachineGunVectorSpecial
+  parent: ClothingBackpackDuffelMilitary
+  name: Набор Вектор
+  description: Содержит Вектор и две обоймы.
+  components:
+    - type: StorageFill
+      contents:
+        - id: SUNRISECM14WeaponSubMachineGunNewVector
+        - id: SUNRISECM14MagazineNewVector
+          amount: 2
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponSubMachineGunMP38
+  parent: ClothingBackpackDuffelMilitary
+  name: Набор MP-38
+  description: Содержит MP-38 и две обоймы.
+  components:
+    - type: StorageFill
+      contents:
+        - id: SUNRISECM14WeaponSubMachineGunMP38
+        - id: SUNRISECM14MagazineMP38
+          amount: 2
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponSubMachineGunMP5
+  parent: ClothingBackpackDuffelMilitary
+  name: Набор MP5
+  description: Содержит MP5 и две обоймы.
+  components:
+    - type: StorageFill
+      contents:
+        - id: SUNRISECM14WeaponSubMachineGunMP5
+        - id: SUNRISECM14MagazineMP5
+          amount: 2
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponSubMachineGunP90
+  parent: ClothingBackpackDuffelMilitary
+  name: Набор P90
+  description: Содержит P90 и две обоймы.
+  components:
+    - type: StorageFill
+      contents:
+        - id: SUNRISECM14WeaponSubMachineGunP90
+        - id: SUNRISECM14MagazineP90
+          amount: 2
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponSubMachineGunMP7
+  parent: ClothingBackpackDuffelMilitary
+  name: Набор MP7
+  description: Содержит MP7 и две обоймы.
+  components:
+    - type: StorageFill
+      contents:
+        - id: SUNRISECM14WeaponSubMachineGunMP7
+        - id: SUNRISECM14MagazineMP7
+          amount: 2
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackDuffelSecurityPilot
+  id: ClothingBackpackDuffelSecurityPilotFilled
+  components:
+  - type: StorageFill
+    contents:
+    - id: BoxSurvivalSecurity
+    - id: Flash
+    - id: MagazinePistol
+    - id: RemoteSecurityShuttleController
+    - id: ClothingOuterHardsuitPilot
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackDuffelBlueShield
+  id: ClothingBackpackDuffelBlueShieldFilled
+  components:
+  - type: StorageFill
+    contents:
+    - id: BoxSurvivalSecurity
+    - id: Flash
+    - id: TrackingImplanter
+    - id: TrackingImplanter
+    - id: TrackingImplanter
+    - id: TrackingImplanter
+    - id: ClothingOuterHardsuitBlueshield
