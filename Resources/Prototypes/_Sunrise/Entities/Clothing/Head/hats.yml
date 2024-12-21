@@ -304,8 +304,8 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatSingulo
-  name: корона Сингуло
-  description: Величайшее достижение инженеров и ученых - компактная установка сингулярности, позволяющая владельцу продемонстрировать свой статус и уникальность на станции.
+  name: Singulo Crown
+  description: The greatest achievement of engineers and scientists - a compact singularity installation that allows the owner to demonstrate their status and uniqueness on the station.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Head/Hats/crown_singulo_icon.rsi
