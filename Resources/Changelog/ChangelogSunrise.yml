@@ -8300,3 +8300,45 @@
   id: 582
   time: '2024-12-21T15:04:47.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/877
+- author: Parashut & KaiserMaus
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D \u041F\u0430\u0442\u0440\
+      \u0443\u043B\u044C\u043D\u044B\u0439 \u041F\u043E\u0434 \u0421\u0411."
+    type: Add
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u044B \u0434\u043E\u0441\
+      \u0442\u0443\u043F\u044B \u0434\u043B\u044F \u041C\u0435\u0445\u043E\u0432."
+    type: Add
+  - message: "\u0422\u0435\u043F\u0435\u0440\u044C \u043B\u044E\u0431\u043E\u043C\u0443\
+      \ \u041C\u0435\u0445\u0443 \u043C\u043E\u0436\u043D\u043E \u043D\u0430\u0441\
+      \u0442\u0440\u043E\u0438\u0442\u044C \u0434\u043E\u0441\u0442\u0443\u043F\u044B\
+      \ \u043A\u043E\u043D\u0444\u0438\u0433\u0443\u0440\u0430\u0442\u043E\u0440\u043E\
+      \u043C."
+    type: Tweak
+  id: 583
+  time: '2024-12-21T15:06:33.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/883
+- author: KaiserMaus & Parashut
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D \u0410\u041A-514."
+    type: Add
+  - message: "\u0421\u043E\u043B\u0434\u0430\u0442 \u0410\u0440\u043C\u0438\u0438\
+      \ \u0421\u0421\u0421\u041F."
+    type: Add
+  - message: "\u0427\u043B\u0435\u043D\u044B \u044D\u043A\u0438\u043F\u0430\u0436\u0430\
+      \ \u0441\u0442\u0430\u043D\u0446\u0438\u0438 \u0421\u0421\u0421\u041F."
+    type: Add
+  - message: "\u0421\u0421\u0421\u041F \u043F\u043E\u043B\u0443\u0447\u0438\u043B\u0438\
+      \ \u0441\u043E\u0431\u0441\u0442\u0432\u0435\u043D\u043D\u0443\u044E \u043B\u0438\
+      \u043D\u0438\u044E \u0442\u0435\u043B\u0435\u043A\u043E\u043C\u043C\u0443\u043D\
+      \u0438\u043A\u0430\u0446\u0438\u0439."
+    type: Add
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D \u0411\u0430\u043D\u043D\
+      \u0435\u0440 \u0421\u0421\u0421\u041F."
+    type: Add
+  - message: "\u041F\u0438\u043B\u043E\u043C\u0435\u0447 \u041C\u0435\u0445\u0430\
+      \ \u0441\u043B\u0435\u0433\u043A\u0430 \u0437\u0430\u0442\u0443\u043F\u0438\u043B\
+      \u0441\u044F."
+    type: Tweak
+  id: 584
+  time: '2024-12-21T15:06:05.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/882
