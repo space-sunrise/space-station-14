@@ -3,3 +3,6 @@ ent-ClothingEyesUniversalMedicalHud = universal medical hud
 
 ent-ClothingEyesHudSyndicateMech = syndicate Mech pilot visor
     .desc = The syndicate Mech pilote`s professional head-up display, designed for quick diagnosis of their Mech's status.
+
+ent-ClothingEyesHudDiagnosticERT = ERT Mech pilot visor
+    .desc = Mech pilote`s professional head-up display, designed for quick diagnosis of their Mech's status.

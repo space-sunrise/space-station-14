@@ -145,7 +145,7 @@
       state: armblade
     event: !type:ToggleArmbladeEvent {}
   - type: ChangelingAction
-    chemicalCost: 20
+    chemicalCost: 15
   #  requireAbsorbed: 1
 
 - type: entity
@@ -162,7 +162,7 @@
       state: bone_shard
     event: !type:CreateBoneShardEvent {}
   - type: ChangelingAction
-    chemicalCost: 10
+    chemicalCost: 15
 
 - type: entity
   id: ActionToggleChitinousArmor
@@ -447,7 +447,7 @@
       state: chameleon_skin
     event: !type:ActionChameleonSkinEvent {}
   - type: ChangelingAction
-    chemicalCost: 20
+    chemicalCost: 8 #need lower to turn off
 
 - type: entity
   id: ActionEphedrineOverdose
