@@ -10,6 +10,7 @@
       - id: MagazineBauer127Extended
       - id: MagazineBauer127Extended
 
+#ERT_Uplink
 - type: entity
   id: ClothingBackpackDuffelWeaponSubMachineGunWt550Filled
   parent: ClothingBackpackDuffelMilitary
@@ -37,7 +38,7 @@
       amount: 2
 
 - type: entity
-  id: NTUplinkSunriseClothingBackpackDuffelWeaponRifleLecter
+  id: ClothingBackpackDuffelWeaponRifleLecterFilled
   parent: ClothingBackpackDuffelMilitary
   name: bundle Lecter
   description: Содержит Lecter и 4 обоймы.

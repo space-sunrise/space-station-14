@@ -3,7 +3,7 @@
   id: NTUplinkSunriseClothingBackpackDuffelWeaponSubMachineGunWt550Filled
   name: bundle WT550
   productEntity: ClothingBackpackDuffelWeaponSubMachineGunWt550Filled
-  icon: { sprite: Objects/Weapons/Guns/SMGs/wt550.rsi, state: icon }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: wt550 }
   cost:
     Bluecrystal: 1
   categories:
@@ -13,10 +13,10 @@
     stock: 5
 
 - type: listing
-  id: NTUplinkSunriseClothingBackpackDuffelWeaponSubMachineGunMP5 #проверочный
+  id: NTUplinkSunriseClothingBackpackDuffelWeaponSubMachineGunMP5
   name: bundle MP5
   productEntity: ClothingBackpackDuffelWeaponSubMachineGunMP5Filled
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp5/big.rsi, state: icon }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mp5 }
   cost:
     Bluecrystal: 2
   categories:
@@ -29,7 +29,7 @@
   id: NTUplinkSunriseClothingBackpackDuffelWeaponRifleLecter
   name: bundle Lecter
   productEntity: ClothingBackpackDuffelWeaponRifleLecterFilled
-  icon: { sprite: Objects/Weapons/Guns/Rifles/lecter.rsi, state: icon }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: lecter }
   cost:
     Bluecrystal: 3
   categories:
@@ -42,7 +42,7 @@
   id: NTUplinkSunriseClothingBackpackDuffelWeaponSubMachineGunP90
   name: bundle P-90
   productEntity: ClothingBackpackDuffelWeaponSubMachineGunP90Filled
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/SMGs/p90.rsi, state: icon }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: p90 }
   cost:
     Bluecrystal: 4
   categories:
@@ -54,7 +54,7 @@
 - type: listing
   id: NTUplinkSunriseClothingBackpackDuffelWeaponAMS42Filled
   name: bundle AMS-42
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/SMGs/MS-42.rsi, state: icon }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: ams42 }
   productEntity: ClothingBackpackDuffelWeaponAMS42Filled
   cost:
     Bluecrystal: 5
@@ -64,17 +64,41 @@
   - !type:ListingLimitedStockCondition
     stock: 3
 
+- type: listing
+  id: NTUplinkSunriseClothingBackpackDuffelWeaponLightMachineGunMG42
+  name: Bundle MG-342
+  productEntity: ClothingBackpackDuffelWeaponLightMachineGunMG42
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mg42 }
+  cost:
+    Bluecrystal: 16
+  categories:
+    - NTAutoGun
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
 
-# Дробовики:
+- type: listing
+  id: NTUplinkSunriseClothingBackpackDuffelWeaponRifleBR64Filled
+  name: BR-64 Bundle
+  productEntity: ClothingBackpackDuffelWeaponRifleBR64Filled
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: br64 }
+  cost:
+    Bluecrystal: 12
+  categories:
+  - NTAutoGun
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
 - type: listing
   id: NTUplinkSunriseClothingBackpackDuffelWeaponShotgunZauer
   name: bundle Zauer
   productEntity: ClothingBackpackDuffelWeaponShotgunZauerFilled
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Shotgun/zauer/big.rsi, state: icon }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: zauer }
   cost:
     Bluecrystal: 12
   categories:
-  - NTShotguns
+  - NTAutoGun
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
@@ -83,11 +107,11 @@
   id: NTUplinkSunriseClothingBackpackDuffelWeaponXM1014
   name: bundle XM1014
   productEntity: ClothingBackpackDuffelWeaponXM1014Filled
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Shotgun/XM1014/big.rsi, state: icon }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: xm1014 }
   cost:
     Bluecrystal: 8
   categories:
-  - NTShotguns
+  - NTAutoGun
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 2
@@ -96,22 +120,34 @@
   id: NTUplinkSunriseClothingBackpackDuffelWeaponShotgun12
   name: bundle LAW-12
   productEntity: ClothingBackpackDuffelWeaponShotgun12Filled
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Shotgun/spas_12/big.rsi, state: icon }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: spas12 }
   cost:
     Bluecrystal: 6
   categories:
-  - NTShotguns
+  - NTAutoGun
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 2
 
 # Лазеры:
+- type: listing
+  id: NTUplinkSunriseWeaponWeaponPulseRifle
+  name: Heavy Pulse Rifle
+  productEntity: WeaponPulseRifle
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: pulse-r }
+  cost:
+    Bluecrystal: 20
+  categories:
+  - NTLasers
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
 
 - type: listing
   id: NTUplinkSunriseWeaponSniperPulseCarbine
   name: Heavy Pulse Carbine
   productEntity: WeaponSniperPulseCarbine
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Battery/sniper_pulse_carbine.rsi, state: icon }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: pulse-sc }
   cost:
     Bluecrystal: 10
   categories:
@@ -121,10 +157,23 @@
     stock: 2
 
 - type: listing
+  id: NTUplinkSunriseWeaponIONRifle
+  name: ION Rifle
+  productEntity: WeaponIONRifle
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: ion-r }
+  cost:
+    Bluecrystal: 8
+  categories:
+    - NTMachineGun
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2
+
+- type: listing
   id: NTUplinkSunriseWeaponPulseCarbine
   name: Импульсный карабин
   productEntity: WeaponPulseCarbine
-  icon: { sprite: Objects/Weapons/Guns/Battery/pulse_carbine.rsi, state: icon }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: pulse-c }
   cost:
     Bluecrystal: 6
   categories:
@@ -137,7 +186,7 @@
   id: NTUplinkSunriseWeaponEnergyGunTactical
   name: Energy Gun Tactical
   productEntity: WeaponEnergyGunTactical
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_tactical.rsi, state: icon }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: energygun_tac }
   cost:
     Bluecrystal: 4
   categories:
@@ -150,7 +199,7 @@
   id: NTUplinkSunriseWeaponWeaponEnergyGun
   name: Energy Gun
   productEntity: WeaponEnergyGun
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun.rsi, state: icon }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: energygun }
   cost:
     Bluecrystal: 1
   categories:
@@ -165,7 +214,7 @@
   id: NTUplinkSunriseWeaponPulsePistol
   name: Pulse Pistol
   productEntity: WeaponPulsePistol
-  icon: { sprite: Objects/Weapons/Guns/Battery/pulse_pistol.rsi, state: icon }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: pulse-p }
   cost:
     Bluecrystal: 3
   categories:
@@ -178,7 +227,7 @@
   id: NTUplinkSunriseWeaponEnergyGunPistolSecurity
   name: Energy Gun "Judge"
   productEntity: WeaponEnergyGunPistolSecurity
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_security.rsi, state: icon}
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: energygun-psec }
   cost:
     Bluecrystal: 2
   categories:
@@ -191,7 +240,7 @@
   id: NTUplinkSunriseWeaponPistolN1984
   name: N1984
   productEntity: WeaponPistolN1984
-  icon: { sprite: Objects/Weapons/Guns/Pistols/N1984.rsi, state: icon }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: n1984 }
   cost:
     Bluecrystal: 1
   categories:
@@ -205,7 +254,7 @@
   id: NTUplinkSunriseBoxMagazineSubMachineGunTopMounted
   name: Box Magazine WT550
   productEntity: BoxMagazinePistolSubMachineGunTopMounted 
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag_top_mounted.rsi, state: base }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_wt550 }
   cost:
     Crystallite: 3
   categories:
@@ -218,7 +267,7 @@
   id: NTUplinkSunriseBoxMagazineRifle
   name: Box Magazine (.20 Rifle)
   productEntity: BoxMagazineRifle
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Rifle/rifle_mag.rsi, state: red }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_rifle }
   cost:
     Crystallite: 4
   categories:
@@ -231,7 +280,7 @@
   id: NTUplinkSunriseMagazineMagnum
   name: Magazine Magnum
   productEntity: MagazineMagnum
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: base }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mag_magnum }
   cost:
     Crystallite: 1
   categories:
@@ -244,7 +293,7 @@
   id: NTUplinkSunriseMagazineBoxMagnumIncendiary
   name: Box Magnum (Incendiary)
   productEntity: MagazineBoxMagnumIncendiary
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi, state: base }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_magnum_ince }
   cost:
     Crystallite: 2
   categories:
@@ -257,7 +306,7 @@
   id: NTUplinkSunriseMagazineBoxMagnumUranium
   name: Box Magnum (Uranium)
   productEntity: MagazineBoxMagnumUranium
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Boxes/magnum.rsi, state: base }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_magnum_uran }
   cost:
     Crystallite: 4
   categories:
@@ -270,7 +319,7 @@
   id: NTUplinkSunriseMagazineP90
   name: Magazine P90
   productEntity: MagazineP90
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag_top_mounted.rsi, state: base }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mag_p90 }
   cost:
     Crystallite: 4
   categories:
@@ -283,20 +332,20 @@
   id: NTUplinkSunriseSMGAmmoKit
   name: SMG Ammo Kit
   productEntity: SMGAmmoKit
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: red }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_smg }
   cost:
-    Crystallite: 10
+    Crystallite: 8
   categories:
   - NTAmmo
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 4
+    stock: 8
 
 - type: listing
   id: NTUplinkSunriseSMGIncendiaryAmmoKit
   name: SMG Ammo Kit (Incendiary)
   productEntity: SMGIncendiaryAmmoKit
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: practice }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_smg_red }
   cost:
     Crystallite: 15
   categories:
@@ -309,7 +358,7 @@
   id: NTUplinkSunriseSMGUraniumAmmoKit
   name: SMG Ammo Kit (Uranium)
   productEntity: SMGUraniumAmmoKit
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag.rsi, state: uranium }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_smg_uran }
   cost:
     Crystallite: 20
   categories:
@@ -322,7 +371,7 @@
   id: NTUplinkSunriseBoxMagazineShotgun
   name: Box Magazine Shotgun (.50 pellet)
   productEntity: BoxMagazineShotgun
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Pistol/m12.rsi, state: pellets }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_shot }
   cost:
     Crystallite: 8
   categories:
@@ -335,7 +384,7 @@
   id: NTUplinkSunriseBoxMagazineShotgunIncendiary
   name: Box Magazine Shotgun (.50 Incendiary)
   productEntity: BoxMagazineShotgunIncendiary
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: base }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_shot_red }
   cost:
     Crystallite: 18
   categories:
@@ -348,7 +397,7 @@
   id: NTUplinkSunriseBoxMagazineShotgunSlug
   name: Box Magazine Shotgun (.50 Slug )
   productEntity: BoxMagazineShotgunSlug
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: slug }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_shot_slug }
   cost:
     Crystallite: 12
   categories:
@@ -361,7 +410,7 @@
   id: NTUplinkSunriseBoxMagazineShotgunBeanbag
   name: Box Magazine Shotgun (.50 Beanbag)
   productEntity: BoxMagazineShotgunBeanbag
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Shotgun/m12.rsi, state: beanbag }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_shot }
   cost:
     Crystallite: 8
   categories:
@@ -374,7 +423,7 @@
   id: NTUplinkSunriseMagazineBR64
   name: Magazine BR-64 Extended
   productEntity: MagazineBR64
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag_top_mounted.rsi, state: icon }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mag_br64 }
   cost:
     Crystallite: 6
   categories:
@@ -387,7 +436,7 @@
   id: NTUplinkSunriseMagazineMachineGunMG42
   name: Ammo MG-342
   productEntity: MagazineMachineGunMG42
-  icon: { sprite: Objects/Weapons/Guns/Ammunition/Magazine/Pistol/smg_mag_top_mounted.rsi, state: icon }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mag_mg342 }
   cost:
     Crystallite: 6
   categories:
@@ -396,52 +445,12 @@
   - !type:ListingLimitedStockCondition
     stock: 3
 
-#Тяжелое Вооружение
-- type: listing
-  id: NTUplinkSunriseClothingBackpackDuffelWeaponLightMachineGunMG42
-  name: Bundle MG-342
-  productEntity: ClothingBackpackDuffelWeaponLightMachineGunMG42
-  icon: { sprite: _Sunrise/Objects/Weapons/LMGs/mg42/big.rsi, state: icon }
-  cost:
-    Bluecrystal: 15
-  categories:
-    - NTMachineGun
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
-
-- type: listing
-  id: NTUplinkSunriseClothingBackpackDuffelWeaponRifleBR64Filled
-  name: BR-64 Bundle
-  productEntity: ClothingBackpackDuffelWeaponRifleBR64Filled
-  icon: { sprite: _Sunrise/Objects/Weapons/GunsSnipers/br-64/big.rsi, state: icon }
-  cost:
-    Bluecrystal: 12
-  categories:
-  - NTRifles
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-
-- type: listing
-  id: NTUplinkSunriseWeaponIONRifle
-  name: ION Rifle
-  productEntity: WeaponIONRifle
-  icon: { sprite: _Sunrise/Objects/Weapons/Guns/Battery/ion_rifle.rsi, state: icon }
-  cost:
-    Bluecrystal: 8
-  categories:
-    - NTMachineGun
-  conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
-
 # Медицина:
 - type: listing
   id: NTUplinkSunriseMaterialBiomass
   name: Biomass
   productEntity: MaterialBiomass
-  icon: { sprite: /Textures/Objects/Misc/monkeycube.rsi, state: cube }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: monkeycube }
   cost:
     Crystallite: 1
   categories:
@@ -454,7 +463,7 @@
   id: NTUplinkSunriseDefibrillator
   name: Compact Defibrillator
   productEntity: DefibrillatorCompact
-  icon: { sprite: Objects/Specific/Medical/defibsmall.rsi, state: icon }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: comp_defib }
   cost:
     Crystallite: 4
   categories:
@@ -467,7 +476,7 @@
   id: NTUplinkSunriseMedkitOxygenFilled
   name: Medkit Oxygen
   productEntity: MedkitOxygenFilled
-  icon: { sprite: Objects/Specific/Medical/firstaidkits.rsi, state: o2kit }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: med-oxygen }
   cost:
     Crystallite: 2
   categories:
@@ -480,7 +489,7 @@
   id: NTUplinkSunriseMedkitBruteFilled
   name: Medkit Brute
   productEntity: MedkitBruteFilled
-  icon: { sprite: Objects/Specific/Medical/firstaidkits.rsi, state: brutekit }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: med-brute }
   cost:
     Crystallite: 2
   categories:
@@ -493,7 +502,7 @@
   id: NTUplinkSunriseMedkitRadiationFilled
   name: Medkit Radiation
   productEntity: MedkitRadiationFilled
-  icon: { sprite: Objects/Specific/Medical/firstaidkits.rsi, state: radkit }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: med-rad }
   cost:
     Crystallite: 2
   categories:
@@ -506,7 +515,7 @@
   id: NTUplinkSunriseMedkitToxinFilled
   name: Medkit Toxin
   productEntity: MedkitToxinFilled
-  icon: { sprite: Objects/Specific/Medical/firstaidkits.rsi, state: toxinkit }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: med-toxin }
   cost:
     Crystallite: 2
   categories:
@@ -518,7 +527,7 @@
 - type: listing
   id: NTUplinkSunriseMedkitBurnFilled
   name: Medkit Burn
-  icon: { sprite: Objects/Specific/Medical/firstaidkits.rsi, state: burnkit }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: med-burn }
   productEntity: MedkitBurnFilled
   cost:
     Crystallite: 2
@@ -532,7 +541,7 @@
   id: NTUplinkSunriseMedkitCombatFilled
   name: Medkit Combat
   productEntity: MedkitCombatFilled
-  icon: { sprite: Objects/Specific/Medical/firstaidkits.rsi, state: blackkit }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: med-black }
   cost:
     Crystallite: 4
   categories:
@@ -547,7 +556,7 @@
   id: NTUplinkSunriseMindShieldImplants
   name: MindShield Implants
   productEntity: CrateMindShieldImplants
-  icon: { sprite: Objects/Specific/Medical/implanter.rsi, state: implanter0 }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: crate_med }
   cost:
     Crystallite: 4
   categories:
@@ -560,7 +569,7 @@
   id: NTUplinkSunriseBoxMRE
   name: MRE
   productEntity: BoxMRE
-  icon: { sprite: _SUNRISE_CM14/icons.rsi, state: box_mre }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_mre }
   cost:
     Crystallite: 1
   categories:
@@ -570,14 +579,196 @@
     stock: 8
 
 # Санитария
-# Инженерия (Zaebalsya potom)
+
+- type: listing
+  id: NTUplinkSunrisePestSpray
+  name: Спрей от вредителей
+  productEntity: PestSpray
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: pest_spray }
+  cost:
+    Crystallite: 1
+  categories:
+    - NTSanitary
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 8
+
+- type: listing
+  id: NTUplinkSunriseWeedSpray
+  name: Спрей от сорняков
+  productEntity: WeedSpray
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: weed_spray }
+  cost:
+    Crystallite: 1
+  categories:
+    - NTSanitary
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 8
+
+- type: listing
+  id: NTUplinkSunriseSprayBottleSpaceCleaner
+  name: Космический очиститель
+  productEntity: SprayBottleSpaceCleaner
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: cleaner }
+  cost:
+    Crystallite: 1
+  categories:
+    - NTSanitary
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 12
+
+- type: listing
+  id: NTUplinkSunriseTrashBagBlue
+  name: Мешок для мусора
+  productEntity: TrashBagBlue
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: trash_bag_blue }
+  cost:
+    Crystallite: 1
+  categories:
+    - NTSanitary
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 3
+
+- type: listing
+  id: NTUplinkSunriseBoxBodyBag
+  name: Коробка мешков для тел
+  productEntity: BoxBodyBag
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_bodybags }
+  cost:
+    Crystallite: 1
+  categories:
+    - NTSanitary
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 3
+
+- type: listing
+  id: NTUplinkSunriseAdvMopItem
+  name: Продвинутая швабра
+  productEntity: AdvMopItem
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: adv-mop }
+  cost:
+    Crystallite: 2
+  categories:
+  - NTSanitary
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 2
+
+# Инженерия
+- type: listing
+  id: NTUplinkSunriseBoxLightMixed
+  name: Коробка лампочек
+  productEntity: BoxLightMixed
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_light }
+  cost:
+    Crystallite: 1
+  categories:
+    - NTEngineering
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 4
+
+- type: listing
+  id: NTUplinkSunriseJawsOfLife
+  name: Челюсти жизни
+  productEntity: JawsOfLife
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: jaws }
+  cost:
+    Crystallite: 3
+  categories:
+    - NTEngineering
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 6
+
+- type: listing
+  id: NTUplinkSunriseOmnitool
+  name: Омнитул
+  productEntity: Omnitool
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: omnitool }
+  cost:
+    Crystallite: 7
+  categories:
+    - NTEngineering
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 4
+
+- type: listing
+  id: NTUplinkSunrisePowerCellHigh
+  name: Батарея высокой ёмкости
+  productEntity: PowerCellHigh
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: power_cell_high }
+  cost:
+    Crystallite: 2
+  categories:
+    - NTEngineering
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 8
+
+- type: listing
+  id: NTUplinkSunrisePowerCellNanoTrasen
+  name: Батарея НаноТрейзен
+  productEntity: PowerCellNanoTrasen
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: power_cell_nt }
+  cost:
+    Crystallite: 5
+  categories:
+    - NTEngineering
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 4
+
+- type: listing
+  id: NTUplinkSunriseNetworkConfigurator
+  name: Конфигуратор сетей
+  productEntity: NetworkConfigurator
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: network_configurator }
+  cost:
+    Crystallite: 1
+  categories:
+    - NTEngineering
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: NTUplinkSunriseMultitool
+  name: Мультитул
+  productEntity: Multitool
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: multitool }
+  cost:
+    Crystallite: 1
+  categories:
+    - NTEngineering
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
 # Нелетальное снаряжение
+- type: listing
+  id: NTUplinkSunriseBoxHandcuff
+  name: Коробка наручников
+  productEntity: BoxHandcuff
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_handcuffs }
+  cost:
+    Crystallite: 2
+  categories:
+    - NTNonLethalEquipment
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 4
 
 - type: listing
   id: NTUplinkSunriseBoxFlashbang
   name: Коробка светошумовых гранат
   productEntity: BoxFlashbang
-  icon: { sprite: Objects/Weapons/Grenades/flashbang.rsi, state: icon }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_flashbangs }
   cost:
     Crystallite: 2
   categories:
@@ -590,7 +781,7 @@
   id: NTUplinkSunriseFlash
   name: Flash
   productEntity: Flash
-  icon: { sprite: Objects/Weapons/Melee/flash.rsi, state: flash }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: flash }
   cost:
     Crystallite: 1
   categories:
@@ -603,7 +794,7 @@
   id: NTUplinkSunriseStunbaton
   name: Stunbaton
   productEntity: Stunbaton
-  icon: { sprite: Objects/Weapons/Melee/stunbaton.rsi, state: stunbaton_off }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: stunbaton }
   cost:
     Crystallite: 1
   categories:
@@ -617,7 +808,7 @@
   id: NTUplinkSunriseTelescopicShield
   name: Телескопический щит
   productEntity: TelescopicShield
-  icon: { sprite: Objects/Weapons/Melee/shields.rsi, state: teleriot-on }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: telescopic_shield }
   cost:
     Crystallite: 2
   categories:
@@ -630,7 +821,7 @@
   id: NTUplinkSunriseRiotBulletShield
   name: Противопульный щит
   productEntity: RiotBulletShield
-  icon: { sprite: Objects/Weapons/Melee/shields.rsi, state: riot_bullet-icon }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: riot_bullet_shield }
   cost:
     Crystallite: 1
   categories:
@@ -643,7 +834,7 @@
   id: NTUplinkSunriseRiotLaserShield
   name: Противолазерный щит
   productEntity: RiotLaserShield
-  icon: { sprite: Objects/Weapons/Melee/shields.rsi, state: riot_laser-icon }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: riot_laser_shield }
   cost:
     Crystallite: 1
   categories:
@@ -656,7 +847,7 @@
   id: NTUplinkSunriseRiotShield
   name: Противоударный щит
   productEntity: RiotShield
-  icon: { sprite: _SUNRISE_CM14/icons.rsi, state: riot-icon }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: riot_shield }
   cost:
     Crystallite: 1
   categories:
@@ -669,7 +860,7 @@
   id: NTUplinkSunriseJetpackBlueFilled
   name: Jetpack
   productEntity: JetpackBlueFilled
-  icon: { sprite: Objects/Tanks/Jetpacks/blue.rsi, state: icon }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: jet_blue }
   cost:
     Crystallite: 2
   categories:
@@ -682,7 +873,7 @@
   id: NTUplinkSunriseJetpackMiniFilled
   name: Jetpack Mini
   productEntity: JetpackMiniFilled
-  icon: { sprite: Objects/Tanks/Jetpacks/mini.rsi, state: icon }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mini_jet }
   cost:
     Crystallite: 2
   categories:
@@ -695,7 +886,7 @@
   id: NTUplinkSunriseJetpackVoidFilled
   name: Jetpack Void
   productEntity: JetpackVoidFilled
-  icon: { sprite: Objects/Tanks/Jetpacks/void.rsi, state: icon }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: void_jet }
   cost:
     Crystallite: 5
   categories:
@@ -709,7 +900,7 @@
   id: NTUplinkSunrisePowerCageERT
   name: Power Cage ERT
   productEntity: PowerCageERT
-  icon: { sprite: Objects/Power/power_cages.rsi, state: nanotrasen }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: powercage_nt }
   cost:
     Crystallite: 15
   categories:
@@ -720,9 +911,9 @@
 
 - type: listing
   id: NTUplinkSunriseNTGygax
-  name: uplink-mech-teleporter-heavy-name
-  icon: { sprite: /Textures/Objects/Specific/Mech/gygax.rsi, state: ntgygax }
-  productEntity: CrateCommandSecureNTGygaxBundle
+  name: uplink-mech-teleporter-heavy-name #доделать
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mech_ntgygax }
+  productEntity: CrateCommandNTGygaxBundle
   cost:
     Bluecrystal: 50
   categories:
@@ -733,9 +924,9 @@
 
 - type: listing
   id: NTUplinkSunriseMarauder
-  name: uplink-mech-teleporter-heavy-name
+  name: uplink-mech-teleporter-heavy-name #доделать
   description: uplink-mech-teleporter-heavy-desc
-  icon: { sprite: /Textures/Objects/Specific/Mech/mecha.rsi, state: marauder }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mech_marauder }
   productEntity: CrateCommandMarauderBundle
   cost:
     Bluecrystal: 100
@@ -747,9 +938,9 @@
 
 - type: listing
   id: NTUplinkSunriseSeraph
-  name: uplink-mech-teleporter-heavy-name
+  name: uplink-mech-teleporter-heavy-name #доделать
   description: uplink-mech-teleporter-heavy-desc
-  icon: { sprite: /Textures/Objects/Specific/Mech/mecha.rsi, state: seraph }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mech_seraph }
   productEntity: CrateCommandSeraphBundle
   cost:
     Bluecrystal: 150

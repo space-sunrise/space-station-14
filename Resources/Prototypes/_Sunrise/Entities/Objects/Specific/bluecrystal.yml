@@ -12,7 +12,7 @@
     sprite: _Sunrise/Objects/Specific/bluecrystal.rsi
     size: Tiny
   - type: Stack
-    count: 40
+    count: 100
     stackType: Bluecrystal
   - type: StaticPrice
     price: 0
@@ -34,8 +34,8 @@
 
 - type: entity
   parent: Bluecrystal
-  id: Bluecrystal5
-  suffix: 10 BC
+  id: Bluecrystal25
+  suffix: 25 BC
   name: Bluespace crystal
   description: It seems to shimmer with a attractive energy.
   components:
@@ -44,8 +44,8 @@
 
 - type: entity
   parent: Bluecrystal
-  id: Bluecrystal10
-  suffix: 25 BC
+  id: Bluecrystal50
+  suffix: 50 BC
   name: Bluespace crystal
   description: It seems to shimmer with a attractive energy.
   components:

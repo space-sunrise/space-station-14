@@ -131,17 +131,12 @@
 - type: storeCategory
   id: NTAutoGun
   name: Автоматы
-  priority: 1
-
-- type: storeCategory
-  id: NTShotguns
-  name: Дробовики
-  priority: 13
+  priority: 0
 
 - type: storeCategory
   id: NTLasers
   name: Лазерное оружие
-  priority: 2
+  priority: 1
 
 - type: storeCategory
   id: NTMedicine
@@ -151,16 +146,11 @@
 - type: storeCategory
   id: NTPistols
   name: Пистолеты
-  priority: 12
+  priority: 2
 
 - type: storeCategory
   id: NTAdditional
   name: Дополнительное
-  priority: 3
-
-- type: storeCategory
-  id: NTRifles
-  name: Винтовки
   priority: 5
 
 - type: storeCategory
@@ -169,36 +159,21 @@
   priority: 6
 
 - type: storeCategory
-  id: NTMachineGun
-  name: Пулеметы
-  priority: 7
-
-- type: storeCategory
   id: NTEngineering
   name: Инженерия
-  priority: 8
-
-- type: storeCategory
-  id: NTNonLethalEquipment
-  name: Нелетальное снаряжение
-  priority: 0
-
-- type: storeCategory
-  id: NTFlamethrowers
-  name: Огнеметы
-  priority: 9
+  priority: 7
 
 - type: storeCategory
   id: NTMechs
   name: Мехи
-  priority: 14
+  priority: 9
 
 - type: storeCategory
   id: NTAmmo
   name: Боеприпасы
-  priority: 10
+  priority: 3
 
 - type: storeCategory
   id: NTEquipment
   name: Экипировка
-  priority: 11
+  priority: 8

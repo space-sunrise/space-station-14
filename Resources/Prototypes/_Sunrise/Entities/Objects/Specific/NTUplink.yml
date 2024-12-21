@@ -1,8 +1,39 @@
+
 - type: entity
-  parent: BaseUplinkRadio
+  parent: [BaseItem, StorePresetNTUplink, BaseCentcommContraband]
   id: BaseUplinkNTERT
   name: Блюспейс Визионер ОБР
   description: Сверхинновационный портативный блюспейс-телепортатор.
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/nt_uplink.rsi
+    layers:
+      - state: icon
+      - state: active
+        shader: unshaded
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    balance:
+      Bluecrystal: 0
+      Crystallite: 0
+    buySuccessSound:
+      path: /Audio/Effects/Arcade/newgame.ogg
+  - type: Tag
+    tags:
+    - NTUplink
+
+- type: entity
+  parent: BaseUplinkNTERT
+  id: BaseUplinkNTERT80BC
+  name: Блюспейс Визионер ОБР
+  description: Сверхинновационный портативный блюспейс-телепортатор.
+  suffix: [80, Amber ]
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/nt_uplink.rsi
@@ -11,15 +42,60 @@
       - state: active
         shader: unshaded
   - type: Store
-    preset: StorePresetNTUplink
     balance:
-      Bluecrystal: 100
-      Crystallite: 100
+      Bluecrystal: 80
+      Crystallite: 80
     buySuccessSound:
       path: /Audio/Effects/Arcade/newgame.ogg
   - type: Tag
     tags:
-    - NTUplinkERT
+    - NTUplink
+
+- type: entity
+  parent: BaseUplinkNTERT
+  id: BaseUplinkNTERT120BC
+  name: Блюспейс Визионер ОБР
+  description: Сверхинновационный портативный блюспейс-телепортатор.
+  suffix: [120, Red ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/nt_uplink.rsi
+    layers:
+      - state: icon
+      - state: active
+        shader: unshaded
+  - type: Store
+    balance:
+      Bluecrystal: 120
+      Crystallite: 120
+    buySuccessSound:
+      path: /Audio/Effects/Arcade/newgame.ogg
+  - type: Tag
+    tags:
+    - NTUplink
+
+- type: entity
+  parent: BaseUplinkNTERT
+  id: BaseUplinkNTERT220BC
+  name: Блюспейс Визионер ОБР
+  description: Сверхинновационный портативный блюспейс-телепортатор.
+  suffix: [220, Gamma ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/nt_uplink.rsi
+    layers:
+      - state: icon
+      - state: active
+        shader: unshaded
+  - type: Store
+    balance:
+      Bluecrystal: 220
+      Crystallite: 220
+    buySuccessSound:
+      path: /Audio/Effects/Arcade/newgame.ogg
+  - type: Tag
+    tags:
+    - NTUplink
 
 #- type: entity
 #  parent: BaseUplinkRadio

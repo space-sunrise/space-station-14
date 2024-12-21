@@ -41,11 +41,11 @@
 
 # NTUplink Sunrise-start
 - type: entity
-  id: StorePresetNT
+  id: StorePresetNTUplink
   abstract: true
   components:
   - type: Store
-    name: NT Uplink #store-preset-name-ntuplink
+    name: store-preset-name-ntuplink
     categories:
     - NTAutoGun
     - NTShotguns
@@ -55,12 +55,15 @@
     - NTAmmo
     - NTMedicine
     - NTAdditional
-    #- NTSanitary
-    #- NTEngineering
-    #- NTNonLethalEquipment
+    - NTMechs
+    - NTSanitary
+    - NTEngineering
+    - NTNonLethalEquipment
     #- NTCBURN
     - NTEquipment
     currencyWhitelist:
     - Bluecrystal
     - Crystallite
+    balance:
+      Telecrystal: 0
 # Sunrise-end

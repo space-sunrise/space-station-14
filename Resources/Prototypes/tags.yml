@@ -919,7 +919,7 @@
   id: NukeOpsUplink
 
 - type: Tag # sunrise-edit
-  id: NTUplinkERT # sunrise-edit
+  id: NTUplink # sunrise-edit
 
 - type: Tag
   id: Ointment

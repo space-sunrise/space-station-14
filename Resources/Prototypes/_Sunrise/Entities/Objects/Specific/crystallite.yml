@@ -1,3 +1,4 @@
+
 - type: entity
   name: сrystallite
   parent: BaseItem
@@ -12,7 +13,7 @@
     sprite: _Sunrise/Objects/Specific/crystallite.rsi
     size: Tiny
   - type: Stack
-    count: 20
+    count: 100
     stackType: Crystallite
   - type: StaticPrice
     price: 0
@@ -34,20 +35,20 @@
 
 - type: entity
   parent: Crystallite
-  id: Crystallite5
-  suffix: 5 С
+  id: Crystallite25
+  suffix: 25 С
   name: сrystallite
   description: It seems to shimmer with a attractive energy.
   components:
   - type: Stack
-    count: 5
+    count: 25
 
 - type: entity
   parent: Crystallite
-  id: Crystallite10
-  suffix: 10 С
+  id: Crystallite50
+  suffix: 50 С
   name: сrystallite
   description: It seems to shimmer with a attractive energy.
   components:
   - type: Stack
-    count: 10
+    count: 50
