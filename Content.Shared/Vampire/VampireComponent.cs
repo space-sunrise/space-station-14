@@ -24,12 +24,12 @@ public sealed partial class VampireComponent : Component
     public static readonly string ScreamEmoteProto = "Scream";
     [ValidatePrototypeId<CurrencyPrototype>]
     public static readonly string CurrencyProto = "BloodEssence";
-    
+
     [ViewVariables(VVAccess.ReadOnly), DataField("defaultMutation")]
     public VampireMutationsType DefaultMutation = VampireMutationsType.None;
     [ViewVariables(VVAccess.ReadOnly), DataField("currentMutation")]
     public VampireMutationsType CurrentMutation = VampireMutationsType.None;
-    
+
     public readonly HashSet<VampireMutationsType> VampireMutations = new()
     {
         VampireMutationsType.None,
@@ -64,16 +64,16 @@ public sealed partial class VampireComponent : Component
 
     [ValidatePrototypeId<EntityPrototype>]
     public static readonly string MutationsActionPrototype = "ActionVampireOpenMutationsMenu";
-    
+
     [ViewVariables(VVAccess.ReadWrite)]
     public EntityUid? MutationsAction;
-    
+
     public readonly List<ProtoId<EntityPrototype>> BaseVampireActions = new()
     {
         "ActionVampireToggleFangs",
         "ActionVampireHypnotise"
     };
-    
+
     [ValidatePrototypeId<VampirePowerProtype>]
     public static readonly string DrinkBloodPrototype = "DrinkBlood";
 
@@ -94,8 +94,8 @@ public sealed partial class VampireComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
     [AutoNetworkedField]
-    public Dictionary<string, EntityUid?> UnlockedPowers = new();
-    
+    public Dictionary<string, NetEntity?> UnlockedPowers = new();
+
     /// <summary>
     /// All abilities
     /// </summary>
@@ -209,7 +209,7 @@ public sealed partial class VampireSpaceDamageComponent : Component
 public sealed partial class VampireHealingComponent : Component
 {
     public double NextHealTick = 0;
-    
+
     public DamageSpecifier? Healing = default!;
 }
 
@@ -240,10 +240,10 @@ public sealed partial class VampireStrengthComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite)]
     public float NextTick = 0;
-    
+
     [ViewVariables(VVAccess.ReadOnly)]
     public string Power = "";
-    
+
     [ViewVariables(VVAccess.ReadWrite)]
     public float Upkeep = 0;
 }
