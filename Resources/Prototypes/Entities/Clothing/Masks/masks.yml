@@ -285,6 +285,23 @@
   - type: HideLayerClothing
     slots:
     - Snout
+    
+- type: entity
+  parent: ClothingMaskBase
+  id: ClothingMaskFaceCast
+  name: face cast
+  description: It can steal your personality!
+  components:
+  - type: Sprite
+    sprite: Clothing/Mask/facecast.rsi
+  - type: Clothing
+    sprite: Clothing/Mask/facecast.rsi
+  - type: BreathMask
+  - type: Tag
+  - type: HideLayerClothing
+    slots:
+    - Snout
+  - type: FaceCast
 
 - type: entity
   parent: ClothingMaskPullableBase

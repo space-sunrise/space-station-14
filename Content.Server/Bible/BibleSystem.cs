@@ -1,6 +1,7 @@
 using Content.Server.Bible.Components;
 using Content.Server.Ghost.Roles.Events;
 using Content.Server.Popups;
+using Content.Server.Saw;
 using Content.Shared._Sunrise.Mood;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
@@ -8,27 +9,35 @@ using Content.Shared.Bible;
 using Content.Shared.Damage;
 using Content.Shared.Ghost.Roles.Components;
 using Content.Shared.IdentityManagement;
+using Content.Shared.IdentityManagement.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Nutrition.AnimalHusbandry;
 using Content.Shared.Popups;
+using Content.Shared.Prayer;
 using Content.Shared.Stunnable;
 using Content.Shared.Timing;
 using Content.Shared.Vampire.Components;
 using Content.Shared.Verbs;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using System.Linq;
 
 namespace Content.Server.Bible
 {
     public sealed class BibleSystem : EntitySystem
     {
         [Dependency] private readonly IRobustRandom _random = default!;
+        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+        [Dependency] private readonly IEntityManager _entityManager = default!;
         [Dependency] private readonly ActionBlockerSystem _blocker = default!;
         [Dependency] private readonly DamageableSystem _damageableSystem = default!;
         [Dependency] private readonly InventorySystem _invSystem = default!;
@@ -39,6 +48,8 @@ namespace Content.Server.Bible
         [Dependency] private readonly UseDelaySystem _delay = default!;
         [Dependency] private readonly SharedTransformSystem _transform = default!;
         [Dependency] private readonly SharedStunSystem _stun = default!;
+        [Dependency] private readonly EntityLookupSystem _lookUp = default!;
+        [Dependency] private readonly MetaDataSystem _metaData = default!;
 
         public override void Initialize()
         {
@@ -147,6 +158,22 @@ namespace Content.Server.Bible
                 var selfMessage = Loc.GetString(component.LocPrefix + "-damage-unholy-self", ("target", Identity.Entity(args.Target.Value, EntityManager)), ("bible", uid));
                 _popupSystem.PopupEntity(selfMessage, args.User, args.User, PopupType.LargeCaution);
 
+                return;
+            }
+
+            if (TryPrototype((EntityUid) args.Target, out var prototype)
+                && prototype.ID == "MobPig"
+                && !HasComp<SawComponent>(args.Target))
+            {
+                if (_lookUp.GetEntitiesInRange<IdentityComponent>(Transform(uid).Coordinates, 5).Count > 4
+                    && _lookUp.GetEntitiesInRange<PrayableComponent>(Transform(uid).Coordinates, 5).Count > 0)
+                {
+                    _entityManager.AddComponents((EntityUid) args.Target, _prototypeManager.Index("MobSaw").Components, false);
+                    _metaData.SetEntityName((EntityUid)args.Target, "свиноматерь");
+                    _popupSystem.PopupEntity(Loc.GetString("bible-saw-transformation"), (EntityUid) args.Target);
+                    _audio.PlayPvs(component.HealSoundPath, (EntityUid) args.Target);
+                    
+                }
                 return;
             }
 

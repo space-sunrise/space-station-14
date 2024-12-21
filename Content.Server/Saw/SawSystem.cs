@@ -50,19 +50,28 @@ public sealed class SawSystem : EntitySystem
         sawComp.EatenMind = foodMind;
 
         if (_prototypeManager.Index<EntityPrototype>("MobSaw").Components.TryGetComponent("Reproductive", out var defaultReproductive))
-            reproductive.Gestating = false;
+            reproductive.Capacity = 6;
+            //reproductive.Gestating = false;
     }
 
     private void SawInit(EntityUid ent, SawComponent saw, ComponentInit args)
     {
         if (TryComp(ent, out ReproductiveComponent? reproductive))
-            reproductive.Gestating = true;
+        {
+            reproductive.Capacity = 0;
+            reproductive.Gestating = false;
+            reproductive.GestationEndTime = null;
+            reproductive.IsPartnerNeed = false;
+        }
+            //reproductive.Gestating = true;
+
     }
 
     private void OnBirth(Entity<SawComponent> saw, ref BirthEvent args)
     {
         if (TryComp(saw, out ReproductiveComponent? reproductive))
-            reproductive.Gestating = true;
+            reproductive.Capacity = 0;
+            //reproductive.Gestating = true;
         EntityUid child = args.Spawns[0];
         EntityUid? eatenMind = Comp<SawComponent>(saw).EatenMind;
         saw.Comp.EatenMind = null;
@@ -83,9 +92,9 @@ public sealed class SawSystem : EntitySystem
 
         _mindSystem.TransferTo((EntityUid) eatenMind, child);
 
-        var profile = HumanoidCharacterProfile.RandomWithSpecies("Swine");
-        _humanoid.LoadProfile(args.Spawns[0], profile);
-        //_metaData.SetEntityName(args.Spawns[0], profile.Name);
+        //var profile = HumanoidCharacterProfile.RandomWithSpecies("Swine");
+        //_humanoid.LoadProfile(args.Spawns[0], profile);
+        _metaData.SetEntityName(args.Spawns[0], "троттин");
         //Logger.Log(LogLevel.Debug, profile.Name);
         //_metaData.SetEntityName(args.Spawns[0], "PRIVET");
         //if (_prototypeManager.TryIndex<RandomHumanoidSettingsPrototype>("EventHumanoid", out var prototype))

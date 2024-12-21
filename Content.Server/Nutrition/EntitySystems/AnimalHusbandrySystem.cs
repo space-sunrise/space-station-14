@@ -68,9 +68,6 @@ public sealed class AnimalHusbandrySystem : EntitySystem
         if (!Resolve(uid, ref component))
             return false;
 
-        if (!component.IsPartnerNeed)
-            return TryReproduce(uid, uid, component);
-
         var xform = Transform(uid);
 
         var partners = new HashSet<Entity<ReproductivePartnerComponent>>();
@@ -78,6 +75,9 @@ public sealed class AnimalHusbandrySystem : EntitySystem
 
         if (partners.Count >= component.Capacity)
             return false;
+
+        if (!component.IsPartnerNeed)
+            return TryReproduce(uid, uid, component);
 
         foreach (var comp in partners)
         {
