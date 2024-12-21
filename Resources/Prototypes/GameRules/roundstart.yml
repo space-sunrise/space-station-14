@@ -273,6 +273,8 @@
     - prefRoles: [ InitialInfected ]
       max: 6
       playerRatio: 10
+      pickCommandStaff: true # Sunrise-Edit
+      maxCommandStaff: 0 # Sunrise-Edit
       blacklist:
         components:
         - ZombieImmune
