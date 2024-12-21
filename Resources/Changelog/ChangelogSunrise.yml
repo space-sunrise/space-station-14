@@ -8353,3 +8353,12 @@
   id: 585
   time: '2024-12-21T15:14:30.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/890
+- author: J C Denton
+  changes:
+  - message: "\u0422\u0422\u0421 \u0426\u041A \u0442\u0435\u043F\u0435\u0440\u044C\
+      \ \u0438\u0441\u043F\u043E\u043B\u044C\u0437\u0443\u0435\u0442 \u0433\u043E\u043B\
+      \u043E\u0441 MTF1."
+    type: Tweak
+  id: 586
+  time: '2024-12-21T15:17:02.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/894
