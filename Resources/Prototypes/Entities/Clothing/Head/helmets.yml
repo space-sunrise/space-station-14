@@ -322,6 +322,21 @@
     sprite: Clothing/Head/Helmets/ert_leader.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/ert_leader.rsi
+  - type: TemperatureProtection #sunrise-start
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.2
+  - type: FireProtection
+    reduction: 0.2
+  - type: PressureProtection
+    highPressureMultiplier: 0.25
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85 #sunrise-end
 
 #ERT Security Helmet
 - type: entity
@@ -334,6 +349,21 @@
     sprite: Clothing/Head/Helmets/ert_security.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/ert_security.rsi
+  - type: TemperatureProtection #sunrise-start
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.2
+  - type: FireProtection
+    reduction: 0.2
+  - type: PressureProtection
+    highPressureMultiplier: 0.25
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85 #sunrise-end
 
 #ERT Medic Helmet
 - type: entity
@@ -346,6 +376,21 @@
     sprite: Clothing/Head/Helmets/ert_medic.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/ert_medic.rsi
+  - type: TemperatureProtection #sunrise-start
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.2
+  - type: FireProtection
+    reduction: 0.2
+  - type: PressureProtection
+    highPressureMultiplier: 0.25
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85 #sunrise-end
 
 #ERT Engineer Helmet
 - type: entity
@@ -358,6 +403,21 @@
     sprite: Clothing/Head/Helmets/ert_engineer.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/ert_engineer.rsi
+  - type: TemperatureProtection #sunrise-start
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.2
+  - type: FireProtection
+    reduction: 0.2
+  - type: PressureProtection
+    highPressureMultiplier: 0.25
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85 #sunrise-end
 
 #ERT Janitor Helmet
 - type: entity
@@ -370,6 +430,21 @@
     sprite: Clothing/Head/Helmets/ert_janitor.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/ert_janitor.rsi
+  - type: TemperatureProtection #sunrise-start
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.2
+  - type: FireProtection
+    reduction: 0.2
+  - type: PressureProtection
+    highPressureMultiplier: 0.25
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85 #sunrise-end
 
 - type: entity
   parent: [ BaseSyndicateContraband, ClothingHeadHelmetBase ]
@@ -381,6 +456,14 @@
     sprite: Clothing/Head/Helmets/syndie-raid.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/syndie-raid.rsi
+  - type: TemperatureProtection #sunrise-start
+    heatingCoefficient: 0.01
+    coolingCoefficient: 0.2
+  - type: FireProtection
+    reduction: 0.2
+  - type: PressureProtection
+    highPressureMultiplier: 0.25
+    lowPressureMultiplier: 1000 #sunrise-end
   - type: Armor
     modifiers: #There's gotta be SOME reason to use this over other helmets.
       coefficients:

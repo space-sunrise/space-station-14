@@ -125,9 +125,15 @@
         Caustic: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.35
+  - type: PressureProtection  #Sunrise-start
+    highPressureMultiplier: 0.6
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.2
+    coolingCoefficient: 0.5
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.95 #Sunrise-edit
+    walkModifier: 0.95
+    sprintModifier: 0.95 #Sunrise-edt
   #Shoulder mounted flashlight
   - type: ToggleableLightVisuals
     spriteLayer: light
