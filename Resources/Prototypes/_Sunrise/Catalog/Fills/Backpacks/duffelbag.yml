@@ -15,19 +15,19 @@
   id: ClothingBackpackDuffelWeaponSubMachineGunWt550Filled
   parent: ClothingBackpackDuffelMilitary
   name: bundle WT550
-  description: Содержит WT550 и 4 обоймы.
+  description: Содержит WT550 и 3 обоймы.
   components:
   - type: StorageFill
     contents:
     - id: WeaponSubMachineGunWt550
     - id: MagazinePistolSubMachineGunTopMounted
-      amount: 4
+      amount: 3
 
 - type: entity
   id: ClothingBackpackDuffelWeaponSubMachineGunMP5Filled
   parent: ClothingBackpackDuffelMilitary
   name: Набор MP5
-  description: Содержит MP5 и 4 обоймы.
+  description: Содержит MP5 и две обоймы.
   components:
   - type: StorageFill
     contents:
@@ -35,19 +35,19 @@
     - id: MagazineMP5
       amount: 1
     - id: MagazineMP5Extended
-      amount: 2
+      amount: 1
 
 - type: entity
   id: ClothingBackpackDuffelWeaponRifleLecterFilled
   parent: ClothingBackpackDuffelMilitary
   name: bundle Lecter
-  description: Содержит Lecter и 4 обоймы.
+  description: Содержит Lecter и 3 обоймы.
   components:
     - type: StorageFill
       contents:
         - id: WeaponRifleLecter
         - id: MagazineRifle
-          amount: 4
+          amount: 3
 
 - type: entity
   id: ClothingBackpackDuffelWeaponSubMachineGunP90Filled
@@ -65,13 +65,13 @@
   id: ClothingBackpackDuffelWeaponAMS42Filled
   parent: ClothingBackpackDuffelMilitary
   name: Набор AMS-42
-  description: Содержит AMS-42 и две обоймы.
+  description: Содержит AMS-42 и 3 обоймы.
   components:
     - type: StorageFill
       contents:
         - id: WeaponAMS-42
         - id: MagazineRifle
-          amount: 4
+          amount: 3
 
 - type: entity
   id: ClothingBackpackDuffelWeaponShotgunZauerFilled

@@ -8,37 +8,37 @@
     },
     "states": [
 	{
-		"name": "akms"
+		"name": "ams42"
 	},
 	{
-		"name": "famas"
+		"name": "Base_Icon"
 	},
 	{
-		"name": "ak74u"
+		"name": "box_magnum_ince"
 	},
 	{
-		"name": "m28"
+		"name": "box_magnum_uran"
 	},
 	{
-		"name": "g36"
+		"name": "box_rifle"
 	},
 	{
-		"name": "ar18"
+		"name": "box_shot"
 	},
 	{
-		"name": "m6"
+		"name": "box_shot_red"
 	},
 	{
-		"name": "v31"
+		"name": "box_shot_slug"
 	},
 	{
-		"name": "dragunov"
+		"name": "box_smg"
 	},
 	{
 		"name": "br64"
 	},
 	{
-		"name": "sr127"
+		"name": "box_smg_red"
 	},
 	{
 		"name": "zauer"
@@ -50,28 +50,28 @@
 		"name": "spas12"
 	},
 	{
-		"name": "paladin12"
+		"name": "box_smg_uran"
 	},
 	{
-		"name": "trench"
+		"name": "box_wt550"
 	},
 	{
-		"name": "rpd"
+		"name": "comp_defib"
 	},
 	{
 		"name": "mg42"
 	},
 	{
-		"name": "mg60"
+		"name": "crate_med"
 	},
 	{
-		"name": "vector"
+		"name": "energygun"
 	},
 	{
 		"name": "skorpion"
 	},
 	{
-		"name": "mp38"
+		"name": "energygun_tac"
 	},
 	{
 		"name": "mp5"
@@ -80,31 +80,31 @@
 		"name": "p90"
 	},
 	{
-		"name": "mp7"
+		"name": "energygun-psec"
 	},
 	{
-		"name": "eg-p"
+		"name": "ion-r"
 	},
 	{
-		"name": "govxray"
+		"name": "lecter"
 	},	
 	{
-		"name": "laser-gun"
+		"name": "mag_br64"
 	},
 	{
-		"name": "laser-cannon"
+		"name": "mag_magnum"
 	},
 	{
-		"name": "gov-laser-sniper"
+		"name": "mag_mg342"
 	},
 	{
-		"name": "eg-r"
+		"name": "mag_p90"
 	},
 	{
-		"name": "eg-c"
+		"name": "mech_marauder"
 	},
 	{
-		"name": "eg-mg"
+		"name": "mech_ntgygax"
 	},
 	{
 		"name": "pulse-c"
@@ -116,19 +116,22 @@
 		"name": "pulse-r"
 	},
 	{
-		"name": "adv-l-g"
+		"name": "pulse-sc"
 	},
 	{
-		"name": "xray"
+		"name": "mech_seraph"
 	},
 	{
-		"name": "hi_power_br"
+		"name": "n1984"
 	},
 	{
-		"name": "vp78"
+		"name": "power_cell_nt"
 	},
 	{
-		"name": "g23"
+		"name": "powercage_nt"
+	},
+	{
+		"name": "wt550"
 	},
 	{
 		"name": "mateba"
@@ -191,9 +194,6 @@
 		"name": "box_mre"
 	},
 	{
-		"name": "oxygen_tank"
-	},
-	{
 		"name": "flash"
 	},
 	{
@@ -219,9 +219,6 @@
 	},
 	{
 		"name": "power_cell_high"
-	},
-	{
-		"name": "power_cell_medium"
 	},
 	{
 		"name": "network_configurator"
@@ -254,9 +251,6 @@
 		"name": "adv-mop"
 	},
 	{
-		"name": "bandolier"
-	},
-	{
 		"name": "jet_blue"
 	},
 	{
@@ -267,9 +261,6 @@
 	},
 	{
 		"name": "sec_web"
-	},
-	{
-		"name": "box_shell_incendiary"
 	},
 	{
 		"name": "riot_shield"

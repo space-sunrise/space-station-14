@@ -687,13 +687,13 @@
       - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: EmpImmune  # Sunrise-EMP
+  - type: EmpImmune
   - type: HitscanBatteryAmmoProvider
-    proto: BulletPulse # Sunrise-Edit
-    fireCost: 200
+    proto: BulletPulse
+    fireCost: 125
   - type: Battery
-    maxCharge: 8000
-    startingCharge: 8000
+    maxCharge: 5000
+    startingCharge: 5000
   - type: ZoomableGun
 
 - type: entity
@@ -716,7 +716,6 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/syndielasergun.rsi
   - type: Gun
-    projectileSpeed: 5
     minAngle: 30
     maxAngle: 50
     angleIncrease: 2
@@ -739,6 +738,8 @@
   - type: Battery
     maxCharge: 3000
     startingCharge: 3000
+  - type: EmpImmune
+  - type: ZoomableGun
 
 - type: entity
   name: SAM-300
@@ -819,3 +820,4 @@
   - type: Battery
     maxCharge: 7500
     startingCharge: 7500
+  - type: EmpImmune

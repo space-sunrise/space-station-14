@@ -30,10 +30,10 @@
 
 - type: entity
   parent: BaseUplinkNTERT
-  id: BaseUplinkNTERT80BC
+  id: BaseUplinkNTERT60BC
   name: Блюспейс Визионер ОБР
   description: Сверхинновационный портативный блюспейс-телепортатор.
-  suffix: [80, Amber ]
+  suffix: 80BC, 60C, Amber
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/nt_uplink.rsi
@@ -44,7 +44,7 @@
   - type: Store
     balance:
       Bluecrystal: 80
-      Crystallite: 80
+      Crystallite: 60
     buySuccessSound:
       path: /Audio/Effects/Arcade/newgame.ogg
   - type: Tag
@@ -53,10 +53,10 @@
 
 - type: entity
   parent: BaseUplinkNTERT
-  id: BaseUplinkNTERT120BC
+  id: BaseUplinkNTERT100BC
   name: Блюспейс Визионер ОБР
   description: Сверхинновационный портативный блюспейс-телепортатор.
-  suffix: [120, Red ]
+  suffix: 100BC, 75C, Red
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/nt_uplink.rsi
@@ -66,8 +66,8 @@
         shader: unshaded
   - type: Store
     balance:
-      Bluecrystal: 120
-      Crystallite: 120
+      Bluecrystal: 100
+      Crystallite: 75
     buySuccessSound:
       path: /Audio/Effects/Arcade/newgame.ogg
   - type: Tag
@@ -76,10 +76,10 @@
 
 - type: entity
   parent: BaseUplinkNTERT
-  id: BaseUplinkNTERT220BC
+  id: BaseUplinkNTERT200BC
   name: Блюспейс Визионер ОБР
   description: Сверхинновационный портативный блюспейс-телепортатор.
-  suffix: [220, Gamma ]
+  suffix: 200BC, 150C, Gamma
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/nt_uplink.rsi
@@ -89,8 +89,31 @@
         shader: unshaded
   - type: Store
     balance:
-      Bluecrystal: 220
-      Crystallite: 220
+      Bluecrystal: 200
+      Crystallite: 150
+    buySuccessSound:
+      path: /Audio/Effects/Arcade/newgame.ogg
+  - type: Tag
+    tags:
+    - NTUplink
+
+- type: entity
+  parent: BaseUplinkNTERT
+  id: BaseUplinkNTERTDebug
+  name: Блюспейс Визионер ОБР
+  description: Сверхинновационный портативный блюспейс-телепортатор.
+  suffix:  999, Debug
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/nt_uplink.rsi
+    layers:
+      - state: icon
+      - state: active
+        shader: unshaded
+  - type: Store
+    balance:
+      Bluecrystal: 999
+      Crystallite: 999
     buySuccessSound:
       path: /Audio/Effects/Arcade/newgame.ogg
   - type: Tag
