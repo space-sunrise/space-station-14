@@ -249,6 +249,7 @@
   - type: Carriable
   - type: CanEscapeInventory
   - type: Mood
+  - type: EmoteAnimation
   # Sunrise-End
   - type: Barotrauma
     damage:

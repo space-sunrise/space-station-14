@@ -253,6 +253,7 @@
     - Hands
   blacklist:
     components:
+    - Ghost
     - BorgChassis
   chatMessages: ["chat-emote-msg-clap"]
   chatTriggers:
@@ -281,6 +282,7 @@
   blacklist:
     components:
     - BorgChassis
+    - Ghost
   chatMessages: ["chat-emote-msg-snap"] # snaps <{THEIR($ent)}> fingers?
   chatTriggers:
     - snap
@@ -319,6 +321,7 @@
   blacklist:
     components:
     - BorgChassis
+    - Ghost
   chatMessages: ["chat-emote-msg-thump"]
   chatTriggers:
     - thump
@@ -343,6 +346,7 @@
   blacklist:
     components:
     - BorgChassis
+    - Ghost
   chatMessages: ["chat-emote-msg-salute"]
   chatTriggers:
     - salute
