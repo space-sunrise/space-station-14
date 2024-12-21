@@ -174,7 +174,6 @@ namespace Content.Server.Bible
                     _metaData.SetEntityName((EntityUid)args.Target, "свиноматерь");
                     _popupSystem.PopupEntity(Loc.GetString("bible-saw-transformation"), (EntityUid) args.Target);
                     _audio.PlayPvs(component.HealSoundPath, (EntityUid) args.Target);
-                    
                 }
                 return;
             }
