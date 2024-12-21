@@ -1,0 +1,182 @@
+﻿- type: entity
+  id: FleshCultistShop
+  name: flesh-cultist-shop-name
+  description: flesh-cultist-shop-desc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistShop.png
+    event: !type:FleshCultistShopActionEvent
+    checkCanInteract: false
+
+- type: entity
+  id: FleshCultistBlade
+  name: flesh-cultist-blade-name
+  description: flesh-cultist-blade-desc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistBlade.png
+    event: !type:FleshCultistBladeActionEvent
+    itemIconStyle: NoItem
+    useDelay: 10
+    checkCanInteract: false
+
+- type: entity
+  id: FleshCultistAdrenalin
+  name: flesh-cultist-adrenalin-name
+  description: flesh-cultist-adrenalin-desc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistAdrenalin.png
+    event: !type:FleshCultistAdrenalinActionEvent
+    itemIconStyle: NoItem
+    useDelay: 180
+    checkCanInteract: false
+
+- type: entity
+  id: FleshCultistCreateFleshHeart
+  name: flesh-cultist-create-flesh-heart-name
+  description: flesh-cultist-create-flesh-heart-desc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistFleshHeart.png
+    event: !type:FleshCultistCreateFleshHeartActionEvent
+    itemIconStyle: NoItem
+    useDelay: 360
+
+- type: entity
+  id: FleshCultistClaw
+  name: flesh-cultist-claw-name
+  description: flesh-cultist-claw-desc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistClaw.png
+    event: !type:FleshCultistClawActionEvent
+    itemIconStyle: NoItem
+    useDelay: 10
+    checkCanInteract: false
+
+- type: entity
+  id: FleshCultistThrowHugger
+  name: flesh-cultist-throw-hugger-name
+  description: flesh-cultist-throw-hugger-desc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: WorldTargetAction
+    icon: _Sunrise/FleshCult/Interface/Actions/fleshThrowHugger.png
+    itemIconStyle: NoItem
+    event: !type:FleshCultistThrowHuggerActionEvent
+    range: 200
+    useDelay: 240
+    checkCanInteract: false
+
+- type: entity
+  id: FleshCultistAcidSpit
+  name: flesh-cultist-acid-spit-name
+  description: flesh-cultist-acid-spit-desc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: WorldTargetAction
+    icon: _Sunrise/FleshCult/Interface/Actions/fleshAcidSpit.png
+    itemIconStyle: NoItem
+    event: !type:FleshCultistAcidSpitActionEvent
+    range: 200
+    useDelay: 60
+    checkCanInteract: false
+
+- type: entity
+  id: FleshCultistFist
+  name: flesh-cultist-fist-name
+  description: flesh-cultist-fist-desc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistFist.png
+    event: !type:FleshCultistFistActionEvent
+    itemIconStyle: NoItem
+    useDelay: 10
+    checkCanInteract: false
+
+- type: entity
+  id: FleshCultistSpikeGun
+  name: flesh-cultist-spike-gun-name
+  description: flesh-cultist-spike-gun-desc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistSpikeGun.png
+    event: !type:FleshCultistSpikeHandGunActionEvent
+    itemIconStyle: NoItem
+    useDelay: 10
+    checkCanInteract: false
+
+- type: entity
+  id: FleshCultistArmor
+  name: flesh-cultist-armor-name
+  description: flesh-cultist-armor-desc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistArmor.png
+    event: !type:FleshCultistArmorActionEvent
+    itemIconStyle: NoItem
+    useDelay: 30
+    checkCanInteract: false
+
+- type: entity
+  id: FleshCultistHeavyArmor
+  name: flesh-cultist-heavy-armor-name
+  description: flesh-cultist-heavy-armor-desc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistHeavyArmor.png
+    event: !type:FleshCultistHeavyArmorActionEvent
+    itemIconStyle: NoItem
+    useDelay: 30
+    checkCanInteract: false
+
+- type: entity
+  id: FleshCultistSpiderlegs
+  name: flesh-cultist-spider-legs-name
+  description: flesh-cultist-spider-legs-desc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistSpiderLegs.png
+    event: !type:FleshCultistSpiderLegsActionEvent
+    itemIconStyle: NoItem
+    useDelay: 30
+    checkCanInteract: false
+
+- type: entity
+  id: FleshCultistAbsorbBloodPool
+  name: flesh-cultist-absorb-blood-pool-name
+  description: flesh-cultist-absorb-blood-pool-desc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistAbsorbBloodPool.png
+    event: !type:FleshCultistAbsorbBloodPoolActionEvent
+    useDelay: 30
+    checkCanInteract: false
+
+- type: entity
+  id: FleshCultistDevour
+  name: flesh-cultist-devour-name
+  description: flesh-cultist-devour-desc
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EntityTargetAction
+    icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistDevour.png
+    itemIconStyle: NoItem
+    event: !type:FleshCultistDevourActionEvent
+    checkCanInteract: false
+    useDelay: 5
+    whitelist:
+      components:
+        - MobState

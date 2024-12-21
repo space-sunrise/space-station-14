@@ -1,0 +1,17 @@
+- type: npcFaction
+  id: Flesh
+  hostile:
+    - NanoTrasen
+    - Syndicate
+    - Xeno
+    - SimpleHostile
+    - Carps
+    - Zombie
+    - Revolutionary
+    - PetsNT
+    - Vampire
+    - Changeling
+    - Thief
+
+- type: npcFaction
+  id: FleshHuman

@@ -1,0 +1,19 @@
+﻿- type: antag
+  id: FleshCultist
+  name: roles-antag-flesh-cultist-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-flesh-cultist-objective
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 86400 # 24h # Sunrise-Roletime
+
+- type: antag
+  id: FleshCultistLeader
+  name: roles-antag-flesh-cultist-leader-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-flesh-cultist-leader-objective
+  requirements:
+    - !type:OverallPlaytimeRequirement
+      time: 86400 # 24h # Sunrise-Roletime

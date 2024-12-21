@@ -1,0 +1,48 @@
+- type: entity
+  id: FleshCult
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: GameRule
+    minPlayers: 20
+  - type: FleshCultRule
+    faction: Flesh
+  - type: AntagObjectives
+    objectives:
+    - CreateFleshHeartObjective
+    - FleshCultSurviveObjective
+  - type: AntagSelection
+    agentName: flesh-cult-round-end-agent-name
+    definitions:
+    - prefRoles: [ FleshCultistLeader ]
+      fallbackRoles: [ FleshCultist ]
+      max: 1
+      startingGear: FleshCultistLeaderGear
+      components:
+      - type: FleshCultist
+      - type: NpcFactionMember
+        factions:
+        - FleshHuman
+      blacklist:
+        components:
+        - AntagImmune
+        - Synth
+        - BibleUser
+      mindRoles:
+      - MindRoleFleshCultistLeader
+    - prefRoles: [ FleshCultist ]
+      fallbackRoles: [ FleshCultistLeader ]
+      max: 3
+      playerRatio: 15
+      components:
+      - type: FleshCultist
+      - type: NpcFactionMember
+        factions:
+        - FleshHuman
+      blacklist:
+        components:
+        - AntagImmune
+        - Synth
+        - BibleUser
+      mindRoles:
+      - MindRoleFleshCultist

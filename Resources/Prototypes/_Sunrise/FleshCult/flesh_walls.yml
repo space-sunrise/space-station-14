@@ -1,0 +1,45 @@
+- type: entity
+  parent: BaseWall
+  id: WallFlesh
+  name: flesh wall
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: _Sunrise/FleshCult/flesh_wall.rsi
+  - type: Icon
+    sprite: _Sunrise/FleshCult/flesh_wall.rsi
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Damageable
+    damageModifierSet: Wood
+  - type: IconSmooth
+    key: walls
+    base: flesh
+  - type: Tag
+    tags:
+    - Flesh
+    - Wall
+    - Window
+  - type: Temperature
+    heatDamage:
+      types:
+        Heat: 5
+    coldDamage: {}
+  - type: Flammable
+    fireSpread: true
+    damage:
+      types:
+        Heat: 1
+  - type: Reactive
+    groups:
+      Flammable: [Touch]
+      Extinguish: [Touch]
+  - type: FireVisuals
+    sprite: Effects/fire.rsi
+    normalState: 1
