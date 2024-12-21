@@ -1256,6 +1256,10 @@
       - ClothingNeckScarfStripedRed
       - ClothingNeckScarfStripedBrown
       - ClothingNeckScarfStripedLightBlue
+#sunrise-start
+      - ClothingNeckScarfStripedCyan
+      - ClothingNeckScarfStripedYellow
+#sunrise-end
       - ClothingNeckScarfStripedOrange
       - ClothingNeckScarfStripedBlack
       - ClothingNeckScarfStripedPurple

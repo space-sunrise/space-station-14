@@ -1,0 +1,15 @@
+- type: entity
+  parent: ClothingHeadHeadHatBaseFlippable
+  id: ClothingHeadHatBrownsoft
+  name: brown cap
+  description: "It's a baseball hat in a tasteless brown colour."
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Soft/brownsoft.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Soft/brownsoft.rsi
+
+- type: entity
+  parent: [ClothingHeadHeadHatBaseFlipped, ClothingHeadHatBrownsoft]
+  id: ClothingHeadHatBrownsoftFlipped
+  name: brown cap

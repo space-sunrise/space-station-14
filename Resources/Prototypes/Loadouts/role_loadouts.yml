@@ -268,12 +268,21 @@
   - GroupTankHarness
   - QuartermasterHead
   - QuartermasterNeck
+  # Sunrise-start
+  - SunriseQuartermasterMask
+  # Sunrise-end
   - QuartermasterJumpsuit
   - CargoTechnicianBackpack
   - QuartermasterOuterClothing
+  # Sunrise-start
+  - SunriseQuartermasterGloves
+  # Sunrise-end
   - QuartermasterShoes
   - Glasses
   - Survival
+  # Sunrise-start
+  - TrinketsCargo
+  # Sunrise-end
   - Trinkets
   - GroupSpeciesBreathTool
   # Sunrise-start
@@ -287,10 +296,20 @@
   groups:
   - GroupTankHarness
   - CargoTechnicianHead
+  # Sunrise-start
+  - SunriseCargoTechNeck
+  - SunriseCargoTechMask
+  # Sunrise-end
   - CargoTechnicianJumpsuit
   - CargoTechnicianBackpack
   - CargoTechnicianOuterClothing
+  # Sunrise-start
+  - SunriseCargoTechGloves
+  # Sunrise-end
   - CargoTechnicianShoes
+  # Sunrise-start
+  - TrinketsCargo
+  # Sunrise-end
   - Glasses
   - Survival
   - Trinkets
@@ -305,9 +324,20 @@
   id: JobSalvageSpecialist
   groups:
   - GroupTankHarness
+  # Sunrise-start
+  - SunriseSalvageHead
+  - SunriseSalvageNeck
+  - SunriseSalvageMask
+  # Sunrise-end
   - SalvageSpecialistBackpack
   - SalvageSpecialistOuterClothing
+  # Sunrise-start
+  - SunriseSalvageGloves
+  # Sunrise-end
   - SalvageSpecialistShoes
+  # Sunrise-start
+  - TrinketsCargo
+  # Sunrise-end
   - Glasses
   - Survival
   - Trinkets
@@ -327,13 +357,19 @@
   - ChiefEngineerJumpsuit
   - ChiefEngineerBackpack # Sunrise-Edit
   - ChiefEngineerNeck
+  # Sunrise-start
+  - SunriseCEMask
+  # Sunrise-end
   - ChiefEngineerOuterClothing
+  # Sunrise-start
+  - SunriseCEGloves
+  # Sunrise-end
   - ChiefEngineerShoes
   - SurvivalExtended
   - Trinkets
   - GroupSpeciesBreathTool
   # Sunrise-start
-  - AtmosphericsConsole
+  - TrinketsEngineering
   - Bra
   - Pants
   - Socks
@@ -343,12 +379,22 @@
   id: JobTechnicalAssistant
   groups:
   - GroupTankHarness
+  # Sunrise-start
+  - StationEngineerHead
+  # Sunrise-end
   - TechnicalAssistantJumpsuit
   - StationEngineerBackpack
+   # Sunrise-start
+  - StationSunriseEngineerNeck
+  - StationSunriseEngineerMask
+  - StationEngineerOuterClothing
+   # Sunrise-end
   - SurvivalExtended
   - Trinkets
   - GroupSpeciesBreathTool
   # Sunrise-start
+  - StationSunriseEngineerGloves
+  - TrinketsEngineering
   - Bra
   - Pants
   - Socks
@@ -361,6 +407,10 @@
   - StationEngineerHead
   - StationEngineerJumpsuit
   - StationEngineerBackpack
+   # Sunrise-start
+  - StationSunriseEngineerNeck
+  - StationSunriseEngineerMask
+   # Sunrise-end
   - StationEngineerOuterClothing
   - StationEngineerShoes
   #- StationEngineerID
@@ -368,7 +418,8 @@
   - Trinkets
   - GroupSpeciesBreathTool
   # Sunrise-start
-  - AtmosphericsConsole
+  - StationSunriseEngineerGloves
+  - TrinketsEngineering
   - Bra
   - Pants
   - Socks
@@ -379,14 +430,25 @@
   groups:
   - GroupTankHarness
   - AtmosphericTechnicianJumpsuit
+  # Sunrise-start
+  - SunriseAtmosHead
+  # Sunrise-end
   - AtmosphericTechnicianBackpack
+  # Sunrise-start
+  - SunriseAtmosNeck
+  - SunriseAtmosMask
+  # Sunrise-end
   - AtmosphericTechnicianOuterClothing
+  # Sunrise-start
+  - SunriseAtmosGloves
+  # Sunrise-end
   - AtmosphericTechnicianShoes
   - SurvivalExtended
   - Trinkets
   - GroupSpeciesBreathTool
   # Sunrise-start
-  - AtmosphericsConsole
+  - StationSunriseEngineerGloves
+  - TrinketsEngineering
   - Bra
   - Pants
   - Socks
