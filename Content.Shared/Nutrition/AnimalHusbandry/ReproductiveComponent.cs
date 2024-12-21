@@ -13,7 +13,7 @@ namespace Content.Shared.Nutrition.AnimalHusbandry;
 public sealed partial class ReproductiveComponent : Component
 {
     [DataField]
-    public bool IsPartnerNeed = true;
+    public bool IsPartnerNeed = true; //Sunrise
 
     /// <summary>
     /// The next time when breeding will be attempted.

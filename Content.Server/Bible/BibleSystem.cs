@@ -35,9 +35,9 @@ namespace Content.Server.Bible
 {
     public sealed class BibleSystem : EntitySystem
     {
-        [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly IEntityManager _entityManager = default!;
+        [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly ActionBlockerSystem _blocker = default!;
         [Dependency] private readonly DamageableSystem _damageableSystem = default!;
         [Dependency] private readonly InventorySystem _invSystem = default!;
@@ -161,6 +161,8 @@ namespace Content.Server.Bible
                 return;
             }
 
+	        //Sunrise-start
+
             if (TryPrototype((EntityUid) args.Target, out var prototype)
                 && prototype.ID == "MobPig"
                 && !HasComp<SawComponent>(args.Target))
@@ -176,6 +178,8 @@ namespace Content.Server.Bible
                 }
                 return;
             }
+
+	        //Sunrise-end
 
             // This only has a chance to fail if the target is not wearing anything on their head and is not a familiar..
             if (!_invSystem.TryGetSlotEntity(args.Target.Value, "head", out var _) && !HasComp<FamiliarComponent>(args.Target.Value))

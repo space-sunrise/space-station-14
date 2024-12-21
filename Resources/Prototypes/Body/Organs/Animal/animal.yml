@@ -92,22 +92,6 @@
   - type: Item
     size: Small
     heldPrefix: stomach
-    
-# Sunrise-start
-
-- type: entity
-  id: OrganManeaterAnimalStomach
-  parent: OrganAnimalStomach
-  name: maneater stomach
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Stomach
-    specialDigestible:
-      components:
-        - Identity
-    isDigestibleAddition: true
-
-# Sunrise-end
 
 - type: entity
   id: OrganMouseStomach

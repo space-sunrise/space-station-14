@@ -19,32 +19,6 @@
       - feet
     feet:
       part: FeetAnimal
-      
-# Sunrise-start
-
-- type: body
-  id: ManeaterAnimal
-  name: "maneater animal"
-  root: torso
-  slots:
-    torso:
-      part: TorsoAnimal
-      connections:
-      - legs
-      organs:
-        lungs: OrganAnimalLungs
-        stomach: OrganManeaterAnimalStomach
-        liver: OrganAnimalLiver
-        heart: OrganAnimalHeart
-        kidneys: OrganAnimalKidneys
-    legs:
-      part: LegsAnimal
-      connections:
-      - feet
-    feet:
-      part: FeetAnimal
-
-# Sunrise-end
 
 - type: body
   id: Mouse

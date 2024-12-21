@@ -76,8 +76,8 @@ public sealed class AnimalHusbandrySystem : EntitySystem
         if (partners.Count >= component.Capacity)
             return false;
 
-        if (!component.IsPartnerNeed)
-            return TryReproduce(uid, uid, component);
+        if (!component.IsPartnerNeed) //Sunrise
+            return TryReproduce(uid, uid, component); //Sunrise
 
         foreach (var comp in partners)
         {
@@ -101,13 +101,13 @@ public sealed class AnimalHusbandrySystem : EntitySystem
         if (!Resolve(uid, ref component))
             return false;
 
-        if (uid == partner && component.IsPartnerNeed)
+        if (uid == partner && component.IsPartnerNeed) //Sunrise: component.IsPartnerNeed
             return false;
 
         if (!CanReproduce(uid, component))
             return false;
 
-        if (!IsValidPartner(uid, partner, component) && component.IsPartnerNeed)
+        if (!IsValidPartner(uid, partner, component) && component.IsPartnerNeed) //Sunrise: component.IsPartnerNeed
             return false;
 
         // if the partner is valid, yet it fails the random check
@@ -184,7 +184,7 @@ public sealed class AnimalHusbandrySystem : EntitySystem
         if (!Resolve(uid, ref component))
             return;
 
-        BirthEvent birthEvent = new BirthEvent();
+        BirthEvent birthEvent = new BirthEvent(); //Sunrise
 
         // this is kinda wack but it's the only sound associated with most animals
         if (TryComp<InteractionPopupComponent>(uid, out var interactionPopup))
@@ -195,7 +195,7 @@ public sealed class AnimalHusbandrySystem : EntitySystem
         foreach (var spawn in spawns)
         {
             var offspring = Spawn(spawn, xform.Coordinates.Offset(_random.NextVector2(0.3f)));
-            birthEvent.Spawns.Add(offspring);
+            birthEvent.Spawns.Add(offspring); //Sunrise
             _transform.AttachToGridOrMap(offspring);
             if (component.MakeOffspringInfant)
             {
@@ -212,7 +212,7 @@ public sealed class AnimalHusbandrySystem : EntitySystem
         component.Gestating = false;
         component.GestationEndTime = null;
 
-        RaiseLocalEvent(uid, birthEvent);
+        RaiseLocalEvent(uid, birthEvent); //Sunrise
     }
 
     public override void Update(float frameTime)
@@ -258,7 +258,10 @@ public sealed class AnimalHusbandrySystem : EntitySystem
     }
 }
 
+//Sunrise-start
+
 public sealed class BirthEvent : EntityEventArgs
 {
     public List<EntityUid> Spawns = new List<EntityUid>();
 }
+//Sunrise-end
