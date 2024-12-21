@@ -25,6 +25,9 @@ public sealed partial class UserActionsPanel : Control
     {
         _controller.RegisterTab(EmotesTabControl);
         TabContainer.SetTabTitle(EmotesTabControl, Loc.GetString("user-action-control-tab-emote"));
+
+        _controller.RegisterTab(VerbTabControl);
+        TabContainer.SetTabTitle(VerbTabControl, Loc.GetString("user-action-control-tab-verbs"));
     }
 
     public void UpdateTabs()

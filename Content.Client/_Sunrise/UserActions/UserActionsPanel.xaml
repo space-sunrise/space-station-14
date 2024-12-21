@@ -4,9 +4,12 @@
     xmlns:tabs="clr-namespace:Content.Client._Sunrise.UserActions.Tabs">
 
     <PanelContainer StyleClasses="BackgroundDark" Name="MainPanel" MinWidth="300" MinHeight="200" HorizontalExpand="True">
+
         <BoxContainer Orientation="Vertical" Name="BoxContainer" Margin="4" VerticalExpand="True">
+
             <TabContainer Name="TabContainer" HorizontalExpand="True" VerticalExpand="True">
                 <tabs:EmotesTabControl Name="EmotesTabControl"/>
+                <tabs:VerbsTabControl Name="VerbTabControl"/>
             </TabContainer>
 
             <Label Name="NoContentLabel"
@@ -16,7 +19,9 @@
                    StyleClasses="LabelBig"
                    Margin="0 8"
                    Visible="False"/>
+
         </BoxContainer>
+
     </PanelContainer>
 
 </controls:UserActionsPanel>
