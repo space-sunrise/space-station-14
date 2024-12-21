@@ -257,3 +257,65 @@
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-adj
+
+- type: entity
+  parent: SyndiPDA
+  id: USSPPDA
+  name: USSP PDA
+  description: Since you live in a Soviet country, your dreams should be Soviet as well.
+  components:
+  - type: Pda
+    id: USSPIDCard
+    state: pda-syndi
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - NotekeeperCartridge
+
+- type: entity
+  parent: SyndiPDA
+  id: USSPOfficerPDA
+  name: USSP PDA
+  description: Since you live in a Soviet country, your dreams should be Soviet as well.
+  suffix: Militia
+  components:
+  - type: Pda
+    id: USSPOfficerIDCard
+    state: pda-syndi
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - NotekeeperCartridge
+      - LogProbeCartridge
+
+- type: entity
+  parent: SyndiPDA
+  id: USSPSoldierPDA
+  name: Millitary USSP PDA
+  description: Since you live in a Soviet country, your dreams should be Soviet as well.
+  suffix: Combat
+  components:
+  - type: Pda
+    id: USSPSoldierIDCard
+    state: pda-syndi
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - NotekeeperCartridge
+      - AstroNavCartridge
+
+- type: entity
+  parent: SyndiPDA
+  id: USSPCaptainPDA
+  name: Officer USSP PDA
+  description: Since you live in a Soviet country, your dreams should be Soviet as well.
+  suffix: Officer
+  components:
+  - type: Pda
+    id: USSPCaptainIDCard
+    state: pda-syndi
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - NotekeeperCartridge
+      - LogProbeCartridge
