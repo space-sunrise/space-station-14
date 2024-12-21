@@ -24,12 +24,6 @@
       - state: equipped-EYES-unshaded
         shader: unshaded
     slots: [ Eyes ]
-  - type: PointLight
-    color: green
-    enabled: false
-    autoRot: true
-    radius: 0.5
-    energy: 0.5
   - type: Appearance
   - type: NightVisionDevice
     isPowered: true
@@ -40,7 +34,7 @@
     useRate: 20
 
 - type: entity
-  parent: [ClothingEyesNVD,ShowSecurityIcons]
+  parent: [ClothingEyesNVD, ShowSecurityIcons]
   id: ClothingEyesNVDSyndicate
   suffix: syndicate
   components:
