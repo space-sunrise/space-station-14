@@ -8362,3 +8362,13 @@
   id: 586
   time: '2024-12-21T15:17:02.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/894
+- author: J C Denton
+  changes:
+  - message: "\u0423\u043F\u0440\u043E\u0449\u0435\u043D\u0430 \u043D\u0430\u0441\u0442\
+      \u0440\u043E\u0439\u043A\u0430 \u0438 \u0440\u0430\u0431\u043E\u0442\u0430 \u0441\
+      \ \u0441\u0443\u043F\u0435\u0440\u043C\u0430\u0442\u0435\u0440\u0438\u0435\u0439\
+      \ \u043D\u0430 Meta Station."
+    type: Tweak
+  id: 587
+  time: '2024-12-21T15:18:04.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/895
