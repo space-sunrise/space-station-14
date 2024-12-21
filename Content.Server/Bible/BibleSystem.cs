@@ -14,14 +14,12 @@ using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Nutrition.AnimalHusbandry;
 using Content.Shared.Popups;
 using Content.Shared.Prayer;
 using Content.Shared.Stunnable;
 using Content.Shared.Timing;
 using Content.Shared.Vampire.Components;
 using Content.Shared.Verbs;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -29,7 +27,6 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using System.Linq;
 
 namespace Content.Server.Bible
 {
