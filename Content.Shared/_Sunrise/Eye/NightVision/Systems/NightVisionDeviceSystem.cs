@@ -8,12 +8,12 @@ using Content.Shared.PowerCell;
 using Content.Shared.PowerCell.Components;
 using Content.Shared.Popups;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Examine;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
-using JetBrains.Annotations;
 using Robust.Shared.GameObjects;
 using Robust.Shared.GameStates;
-using Content.Shared.Examine;
+using JetBrains.Annotations;
 
 namespace Content.Shared._Sunrise.Eye.NightVision.Systems;
 
