@@ -60,7 +60,6 @@
     selectedMode: FullAuto
     availableModes:
     - SemiAuto
-    - Burst
     - FullAuto
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_shot.ogg
@@ -109,7 +108,6 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
-    - Burst
     - FullAuto
     soundGunshot:
       collection: glock22
@@ -184,7 +182,6 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
-    - Burst
     - FullAuto
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_shot.ogg
@@ -231,7 +228,6 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
-    - Burst
     - FullAuto
     soundGunshot:
       collection: glock22
@@ -290,10 +286,13 @@
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Pistols/deagle/tiny.rsi
   - type: Gun
-    selectedMode: SemiAuto
+    minAngle: 1
+    maxAngle: 20
+    angleIncrease: 8
+    angleDecay: 9
+    fireRate: 4.5
     availableModes:
     - SemiAuto
-    - FullAuto
     soundGunshot:
       collection: deagle
       params:

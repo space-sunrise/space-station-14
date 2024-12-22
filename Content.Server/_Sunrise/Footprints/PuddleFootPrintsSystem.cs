@@ -1,9 +1,12 @@
 ﻿using System.Linq;
+using Content.Server.Standing;
 using Content.Shared._Sunrise.Footprints;
+using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Fluids.Components;
 using Robust.Shared.Physics.Events;
+using StandingStateSystem = Content.Shared.Standing.StandingStateSystem;
 
 namespace Content.Server._Sunrise.Footprints;
 
@@ -12,8 +15,8 @@ namespace Content.Server._Sunrise.Footprints;
 /// </summary>
 public sealed class PuddleFootprintSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
+    [Dependency] private readonly StandingStateSystem _standingStateSystem = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -32,9 +35,31 @@ public sealed class PuddleFootprintSystem : EntitySystem
         || !TryComp<FootprintEmitterComponent>(args.OtherEntity, out var emitter)
         || !TryComp<SolutionContainerManagerComponent>(uid, out var solutionManager)
         || !_solutionSystem.ResolveSolution((uid, solutionManager), puddle.SolutionName, ref puddle.Solution, out var puddleSolutions)
-        || !TryComp<SolutionContainerManagerComponent>(args.OtherEntity, out var emitterSolutionManager)
-        || !_solutionSystem.ResolveSolution((args.OtherEntity, emitterSolutionManager), emitter.SolutionName, ref emitter.Solution, out var emitterSolutions))
+        || !TryComp<SolutionContainerManagerComponent>(args.OtherEntity, out var emitterSolutionManager))
         return;
+
+    var stand = !_standingStateSystem.IsDown(args.OtherEntity);
+
+    var solCont = (args.OtherEntity, emitterSolutionManager);
+    Solution solution;
+    Entity<SolutionComponent> solComp;
+
+    if (stand)
+    {
+        if (!_solutionSystem.ResolveSolution(solCont, emitter.FootsSolutionName, ref emitter.FootsSolution, out var footsSolution))
+            return;
+
+        solution = footsSolution;
+        solComp = emitter.FootsSolution.Value;
+    }
+    else
+    {
+        if (!_solutionSystem.ResolveSolution(solCont, emitter.BodySurfaceSolutionName, ref emitter.BodySurfaceSolution, out var bodySurfaceSolution))
+            return;
+
+        solution = bodySurfaceSolution;
+        solComp = emitter.BodySurfaceSolution.Value;
+    }
 
     var totalSolutionQuantity = puddleSolutions.Contents.Sum(sol => (float)sol.Quantity);
     var waterQuantity = (from sol in puddleSolutions.Contents where sol.Reagent.Prototype == "Water" select (float)sol.Quantity).FirstOrDefault();
@@ -42,7 +67,7 @@ public sealed class PuddleFootprintSystem : EntitySystem
     if (waterQuantity / (totalSolutionQuantity / 100f) > component.WaterThresholdPercent || puddleSolutions.Contents.Count <= 0)
         return;
 
-    var availableSpace = emitterSolutions.MaxVolume.Float() - emitterSolutions.Volume.Float();
+    var availableSpace = solution.MaxVolume.Float() - solution.Volume.Float();
 
     if (availableSpace <= 0)
         return;
@@ -57,6 +82,6 @@ public sealed class PuddleFootprintSystem : EntitySystem
 
     var splitSolution = _solutionSystem.SplitSolution(puddle.Solution.Value, transferVolume);
 
-    _solutionSystem.AddSolution(emitter.Solution.Value, splitSolution);
+    _solutionSystem.AddSolution(solComp, splitSolution);
 }
 }

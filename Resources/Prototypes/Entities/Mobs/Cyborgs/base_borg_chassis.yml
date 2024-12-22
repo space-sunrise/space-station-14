@@ -81,7 +81,7 @@
   - type: EmagSiliconLaw
     stunTime: 5
   - type: SiliconLawProvider
-    laws: Crewsimov
+    laws: NTDefault
   - type: IonStormTarget
   - type: Inventory
     templateId: borg
@@ -381,7 +381,7 @@
     radius: 6
     energy: 3
   - type: ShowJobIcons
-#  - type: ShowMindShieldIcons Sunrise-Edit
+  - type: ShowMindShieldIcons
   - type: ShowCriminalRecordIcons
   - type: MobThresholds
     thresholds:
@@ -448,3 +448,4 @@
     ionStormAmount: 3
   - type: IonStormTarget
     chance: 1
+  - type: ShowJobIcons

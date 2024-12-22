@@ -20,6 +20,8 @@ uplink-magazine-siar52-desc = Магазин ПП на 30 патронов. Со
 
 uplink-music-boombox-name = Музыкальный набор синдиката
 uplink-music-boombox-desc = Содержит бумбокс синдиката и несколько кассет к нему.
+uplink-mechpaint-mauler-name = балончик краски "МЯУЛЕР"
+uplink-mechpaint-mauler-desc = Содержит краску для Маулера. Превратите огромного МЕХа в милого котика!.
 
 ## Clothing
 

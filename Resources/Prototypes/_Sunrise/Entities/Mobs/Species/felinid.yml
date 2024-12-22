@@ -67,10 +67,10 @@
   - type: Respirator
     damage:
       types:
-        Asphyxiation: 1.5
+        Asphyxiation: 0.5
     damageRecovery:
       types:
-        Asphyxiation: -1.5
+        Asphyxiation: -1.0
   - type: NpcFactionMember
     factions:
       - NanoTrasen
@@ -91,13 +91,14 @@
       - !type:Emote
         emote: Hisses
         showInChat: true
+        probability: 0.35
   - type: MovementSpeedModifier
     baseSprintSpeed: 4.0
     baseWalkSpeed: 2.0
-  - type: DamagedByFlashing
-    flashDamage:
-      types:
-        Shock: 5.0
+#  - type: DamagedByFlashing
+#    flashDamage:
+#      types:
+#        Shock: 5.0
 #  - type: NightVision
 #    isToggle: true
 #    color: "#808080"

@@ -38,6 +38,10 @@
     - id: ZombieOutbreak
     - id: LoneOpsSpawn
     - id: DerelictCyborgSpawn
+    - id: DiseaseSpawn
+    - id: FugitiveSpawn
+    - id: EvilTwinSpawn
+    - id: TerminatorSpawn
 
 - type: entity
   id: BaseStationEvent
@@ -428,6 +432,7 @@
     definitions:
     - prefRoles: [ InitialInfected ]
       max: 3
+      ignoreCanBeAntag: true # Sunrise-Edit
       playerRatio: 10
       blacklist:
         components:

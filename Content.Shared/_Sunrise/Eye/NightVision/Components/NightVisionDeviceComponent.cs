@@ -9,7 +9,7 @@ namespace Content.Shared._Sunrise.Eye.NightVision.Components;
 
 
 [RegisterComponent, NetworkedComponent]
-[AutoGenerateComponentState]
+[AutoGenerateComponentState(fieldDeltas: true)]
 public sealed partial class NightVisionDeviceComponent : Component
 {
     [DataField("toggleAction", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
@@ -20,9 +20,9 @@ public sealed partial class NightVisionDeviceComponent : Component
 
     [DataField("requiredSlot"), AutoNetworkedField]
     public SlotFlags RequiredFlags = SlotFlags.EYES;
-    
+
     [DataField("isPowered"), AutoNetworkedField]
-    public bool isPowered = false;
+    public bool IsPowered;
 
     [DataField]
     [AutoNetworkedField]

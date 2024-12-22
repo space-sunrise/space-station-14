@@ -11,3 +11,5 @@ ent-MagazineShotgunSlug = ammo drum (.50 slug)
     .desc = { ent-BaseMagazineShotgun.desc }
 ent-MagazineShotgunIncendiary = ammo drum (.50 incendiary)
     .desc = { ent-BaseMagazineShotgun.desc }
+ent-MagazineShotgunUranium = ammo drum (.50 Uranium)
+    .desc = { ent-BaseMagazineShotgun.desc }

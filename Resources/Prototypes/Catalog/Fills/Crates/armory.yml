@@ -34,6 +34,9 @@
     contents:
       - id: TrackingImplanter
         amount: 5
+  # Sunrise-Edit
+  - type: AccessReader
+    access: [ [ "Armory" ],[ "BlueShield" ] ]
 
 - type: entity
   parent: [ CrateWeaponSecure, BaseRestrictedContraband ]

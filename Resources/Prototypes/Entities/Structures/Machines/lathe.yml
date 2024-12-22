@@ -201,7 +201,6 @@
       - WetFloorSign
       - ClothingHeadHatCone
       - FreezerElectronics
-      - ClothingHeadHelmetPubgMore  # Sunrise-edit
   - type: EmagLatheRecipes
     emagStaticRecipes:
       - BoxLethalshot
@@ -229,8 +228,8 @@
       - SpeedLoaderMagnumEmpty
       - WeaponEnergyGun       # Sunrise - Energy Gun
       - WeaponEnergyGunMini   # Sunrise - Miniature Energy Gun
-      - WeaponEnergyGunPistol # Sunrise - PDW-9 Energy Pistol
-      - WeaponGunLaserCarbineAutomatic # Sunrise - IK-60 Laser Carbine
+      - WeaponLaserSvalinn # Sunrise - Svalin shit weapon
+      - ClothingHeadHelmetPubg # Sunrise - cheap if u have EMAG
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -293,6 +292,7 @@
     - ClothingEyesGlassesChemical
     - Nanopaste # Sunrise-edit
     - HandheldRoboAnalyzer # Sunrise-edit
+    - PowerCageSmall # Sunrise-edit
     dynamicRecipes:
       - PowerDrill
       - MiningDrill
@@ -364,12 +364,14 @@
       - DeviceQuantumSpinInverter
       - EnergyDomeDirectionalTurtle
       # Sunrise-start
+      - ClothingHeadHelmetPubgMore
       - MechPhasicScanningModule
       - HandCraftedNVD
       - BasicNVD
+      - PowerCageCombat
       - PowerCageHigh
       - PowerCageMedium
-      - PowerCageSmall
+      # PowerCageSmall
       - ClothingShoesBootsMagCombat
       - CargoSuit
       - BluespaceBox
@@ -565,6 +567,7 @@
       - MassMediaCircuitboard
       - ReagentGrinderIndustrialMachineCircuitboard
       - JukeboxCircuitBoard
+      - SMESAdvancedMachineCircuitboard
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       - ShuttleGunDusterCircuitboard
@@ -630,16 +633,6 @@
     - MechThruster
 #Sunrise-end
     dynamicRecipes:
-#Sunrise-edit start
-    - CartridgeLightRifleRubber
-    - CartridgeMagnumRubber
-    - CartridgePistolRubber
-    - CartridgeRifleRubber
-    - MagazineBoxLightRifleRubber
-    - MagazineBoxMagnumRubber
-    - MagazineBoxPistolRubber
-    - MagazineBoxRifleRubber
-#Sunrise-edit end
     - ProximitySensor
     - BorgModuleAdvancedCleaning
     - BorgModuleAdvancedTool
@@ -697,21 +690,24 @@
     - PhazonLLeg
     - PhazonRArm
     - PhazonRLeg
+    - PowerCageCombat
+    - PowerCageHigh
+    - PowerCageMedium
     - MechEquipmentDrill
     - MechEquipmentDrillDiamond
     - MechEquipmentKineticAccelerator
     - MechEquipmentHonkerBananaMortar
     - MechEquipmentHonkerMousetrapMortar
-  - type: EmagLatheRecipes
-    emagDynamicRecipes:
-    - WeaponMechCombatImmolationGun
+    - WeaponMechCombatDisabler
+    - WeaponMechCombatFlashbangLauncher
     - WeaponMechCombatSolarisLaser
     - WeaponMechCombatFiredartLaser
     - WeaponMechCombatUltraRifle
+  - type: EmagLatheRecipes
+    emagDynamicRecipes:
+    - WeaponMechCombatImmolationGun
     - WeaponMechCombatShotgun
     - WeaponMechCombatShotgunIncendiary
-    - WeaponMechCombatDisabler
-    - WeaponMechCombatFlashbangLauncher
     - WeaponMechCombatMissileRack8
   - type: MaterialStorage
     whitelist:
@@ -913,6 +909,14 @@
       - WeaponLaserCarbine
       - WeaponXrayCannon
     # Sunrise-Start
+      - CartridgePistolRubber
+      - CartridgeMagnumRubber
+      - CartridgeRifleRubber
+      - CartridgeLightRifleRubber
+      - MagazineBoxPistolRubber
+      - MagazineBoxMagnumRubber
+      - MagazineBoxRifleRubber
+      - MagazineBoxLightRifleRubber
       - WeaponMechCombatImmolationGun # Sunrise - Mechs
       - WeaponMechCombatSolarisLaser # Sunrise - Mechs
       - WeaponMechCombatFiredartLaser # Sunrise - Mechs
@@ -1390,7 +1394,7 @@
       staticRecipes:
         - SheetSteel
         - SheetGlass1
-        - SheetRGlass
+        - SheetRGlassRaw
         - SheetPlasma1
         - SheetPGlass1
         - SheetRPGlass1
@@ -1416,7 +1420,7 @@
     staticRecipes:
       - SheetSteel
       - SheetGlass1
-      - SheetRGlass
+      - SheetRGlassRaw
       - SheetPlasma1
       - SheetPGlass1
       - SheetRPGlass1

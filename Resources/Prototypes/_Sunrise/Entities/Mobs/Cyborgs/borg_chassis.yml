@@ -23,7 +23,7 @@
   - type: BorgCuffed
   - type: FlashImmunity
   - type: ShowJobIcons
-#  - type: ShowMindShieldIcons Sunrise-Edit
+  - type: ShowMindShieldIcons
   - type: ShowCriminalRecordIcons
   - type: BorgTransponder
     sprite:
@@ -53,7 +53,7 @@
   - type: AccessReader
     access: [["Security"], ["Command"]]
   - type: SiliconLawProvider
-    laws: NTDefault
+    laws: RobocopLawset
   - type: TTS
     voice: Sentrybot
   - type: PointLight
@@ -214,7 +214,7 @@
         volume: -15
   - type: FlashImmunity
   - type: ShowJobIcons
-#  - type: ShowMindShieldIcons Sunrise-Edit
+  - type: ShowMindShieldIcons
   - type: ShowCriminalRecordIcons
   - type: GhostRole
     makeSentient: true

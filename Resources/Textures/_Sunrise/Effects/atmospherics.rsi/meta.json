@@ -1,0 +1,19 @@
+{
+    "version": 1,
+    "license": "CLA",
+    "copyright": "Discord: odlieerr",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "healium",
+            "delays": [[0.1, 0.1, 0.1, 0.1, 0.1]]
+        },
+        {
+            "name": "bz",
+            "delays": [[0.1, 0.1, 0.1, 0.1, 0.1]]
+        }
+    ]
+}

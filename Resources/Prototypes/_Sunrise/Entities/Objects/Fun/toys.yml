@@ -688,12 +688,6 @@
   - type: Sprite
     state: plushie-peacemaker
     sprite: _Sunrise/Objects/Fun/toys.rsi
-  - type: EmitSoundOnUse
-    sound:
-      path: /Audio/_Sunrise/vizhu_pidorasa.ogg
-  - type: EmitSoundOnTrigger
-    sound:
-      path: /Audio/_Sunrise/vizhu_pidorasa.ogg
   - type: UseDelay
     delay: 20.0
 

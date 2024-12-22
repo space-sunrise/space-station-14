@@ -323,7 +323,7 @@
   id: JobChiefEngineer
   groups:
   - GroupTankHarness
-  #- ChiefEngineerHead
+  - ChiefEngineerHead
   - ChiefEngineerJumpsuit
   - ChiefEngineerBackpack # Sunrise-Edit
   - ChiefEngineerNeck
@@ -518,7 +518,6 @@
 - type: roleLoadout
   id: JobDetective
   groups:
-  - GroupTankHarness
   - DetectiveHead
   - DetectiveNeck
   - DetectiveJumpsuit

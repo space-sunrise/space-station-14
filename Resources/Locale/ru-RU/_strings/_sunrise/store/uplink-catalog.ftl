@@ -5,7 +5,7 @@ uplink-core-extraction-toolbox-desc = Ящик с инструментами, в
 
 ## Magazines
 
-uplink-magazine-shotgun-name = Барабан (.50 дробь).
+uplink-magazine-shotgun-name = Барабан (.50 ружейный).
 uplink-magazine-shotgun-desc = Барабан на 8 выстрелов для дробовика. Совместим с "Бульдогом".
 uplink-magazine-lmg-name = Коробка патронов (.30 винтовочные)
 uplink-magazine-lmg-desc = Коробка патронов на 100 выстрелов. Совместим с "L6-SAW".
@@ -18,9 +18,9 @@ uplink-grenade-emp-desc = ЭМИ граната. Совместима с "China-
 uplink-magazine-siar52-name = Магазин ПП (.25 безгильзовый)
 uplink-magazine-siar52-desc = Магазин ПП на 30 патронов. Совместим с SIAR-52.
 uplink-magazine-bauer127-extended-name = расширенный магазин Bauer127 (.60 антиматериальные)
-uplink-magazine-bauer127-extended-desc = Коробка с 10 патронами для снайперской винтовки Христов.
+uplink-magazine-bauer127-extended-desc = Магазин для Bauer127. Содержит 15 патронов калибра .60 антиматериальный.
 uplink-magazine-dl6902-name = Короб-магазин DL6902 (.30 винтовочные)
-uplink-magazine-dl6902-desc = Магазин для Dl6902. Содержит 200 патронов.
+uplink-magazine-dl6902-desc = Магазин для Dl6902. Содержит 200 патронов калибра .30.
 
 ## Misc
 

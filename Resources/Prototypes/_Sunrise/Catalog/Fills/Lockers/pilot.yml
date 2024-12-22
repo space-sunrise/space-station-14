@@ -5,14 +5,13 @@
   components:
   - type: StorageFill
     contents:
-    - id: WeaponGunLaserCarbineAutomatic
     - id: ClothingHeadsetSecurity
-    - id: WeaponDisabler
+    - id: WeaponEnergyGunPistolSecurity
     - id: CigarGoldCase
       prob: 0.25
     - id: ClothingOuterHardsuitPilot
     - id: OxygenTankFilled
     - id: ClothingMaskGasPilot
-    - id: ComputerShuttleSecurity
+    # - id: ComputerShuttleSecurity "No shuttle. cry about it"
     - id: ClothingShoesBootsMag
     - id: ClothingHandsGlovesCombat

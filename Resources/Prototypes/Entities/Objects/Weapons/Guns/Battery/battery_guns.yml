@@ -745,15 +745,15 @@
   - type: EnergyGunFireModes # Sunrise-Edit
     fireModes:
     - hitscanProto: BulletLaserSpread
-      fireCost: 100
+      fireCost: 150
       name: energy-gun-shotgun-spread # Sunrise-Edit
       shotType: Hitscan # Sunrise-Edit
     - hitscanProto: BulletLaserSpreadNarrow
-      fireCost: 100
+      fireCost: 200
       name: energy-gun-shotgun-spread-narrow # Sunrise-Edit
       shotType: Hitscan # Sunrise-Edit
     - hitscanProto: BulletDisablerSmgSpread
-      fireCost: 100
+      fireCost: 120
       name: energy-gun-disable # Sunrise-Edit
       shotType: Hitscan # Sunrise-Edit
   - type: Item
@@ -769,10 +769,10 @@
     stealGroup: WeaponEnergyShotgun
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Battery
-  # Sunrise-start
-    maxCharge: 800
-    startingCharge: 800
+    maxCharge: 1200
+    startingCharge: 1200
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 5
-  # Sunrise-end
+    autoRechargeRate: 24
+    autoRechargePause: true
+    autoRechargePauseTime: 10

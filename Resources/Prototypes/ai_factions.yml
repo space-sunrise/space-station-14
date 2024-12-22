@@ -1,16 +1,4 @@
 - type: npcFaction
-  id: Carps
-  hostile:
-    - NanoTrasen
-    - Syndicate
-    - Thief
-    - Xeno
-    - PetsNT
-    - Zombie
-    - Revolutionary
-    - SimpleHostile
-
-- type: npcFaction
   id: NanoTrasen
   hostile:
   - SimpleHostile
@@ -19,11 +7,14 @@
   - Xeno
   - Zombie
   - Revolutionary
+  - Carps
+  - AllHostile
 
 - type: npcFaction
   id: Mouse
   hostile:
     - PetsNT
+    - AllHostile
 
 - type: npcFaction
   id: Passive
@@ -35,6 +26,7 @@
   - SimpleHostile
   - Zombie
   - Xeno
+  - AllHostile
 
 - type: npcFaction
   id: SimpleHostile
@@ -46,6 +38,7 @@
   - PetsNT
   - Zombie
   - Revolutionary
+  - AllHostile
   - Carps
 
 - type: npcFaction
@@ -59,6 +52,8 @@
   - Xeno
   - PetsNT
   - Zombie
+  - Carps
+  - AllHostile
 
 - type: npcFaction
   id: Thief
@@ -79,6 +74,7 @@
   - PetsNT
   - Zombie
   - Revolutionary
+  - AllHostile
 
 - type: npcFaction
   id: Zombie
@@ -91,6 +87,7 @@
   - Passive
   - PetsNT
   - Revolutionary
+  - AllHostile
   - Changeling
   - Vampire
 
@@ -101,6 +98,25 @@
   - Zombie
   - SimpleHostile
   - Carps
+  - Carps
+  - AllHostile
+
+- type: npcFaction
+  id: AllHostile
+  hostile:
+  - NanoTrasen
+  - Carps
+  - Mouse
+  - Passive
+  - PetsNT
+  - SimpleHostile
+  - SimpleNeutral
+  - Syndicate
+  - Xeno
+  - Zombie
+  - Revolutionary
+  - Changeling
+  - Vampire
 
 - type: npcFaction
   id: Changeling
@@ -110,6 +126,7 @@
   - Thief
   - Zombie
   - Revolutionary
+  - Vampire
 
 - type: npcFaction
   id: Vampire
@@ -121,3 +138,15 @@
   - Revolutionary
   - Changeling
   - Xeno
+
+- type: npcFaction
+  id: Carps
+  hostile:
+  - NanoTrasen
+  - Syndicate
+  - Thief
+  - Xeno
+  - PetsNT
+  - Zombie
+  - Revolutionary
+  - AllHostile

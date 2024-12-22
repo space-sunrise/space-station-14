@@ -255,7 +255,7 @@
       coverage: EYES
 
 - type: entity
-  parent: [ClothingEyesBase, BaseMajorContraband]
+  parent: [ClothingEyesBase, BaseMajorContraband, PowerCellSlotSmallItem] # Sunrise-Edit
   id: ClothingEyesVisorNinja
   name: ninja visor
   description: An advanced visor protecting a ninja's eyes from flashing lights.
@@ -265,6 +265,12 @@
   - type: Clothing
     sprite: Clothing/Eyes/Glasses/ninjavisor.rsi
   - type: FlashImmunity
-  - type: NightVisionDevice #Sunrise - night visions
+  # Sunrise-Start
+  - type: NightVisionDevice
+    isPowered: true
     displayColor: "#44b855"
     displayShader: NVDDisplay
+  - type: PowerCellDraw
+    drawRate: 0
+    useRate: 20
+  # Sunrise-End

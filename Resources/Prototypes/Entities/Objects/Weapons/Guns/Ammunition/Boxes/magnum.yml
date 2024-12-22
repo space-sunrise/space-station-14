@@ -9,7 +9,7 @@
       tags:
         - CartridgeMagnum
     proto: CartridgeMagnum
-    capacity: 12
+    capacity: 18 #Sunrise-Edit
   - type: Item
     size: Small
   - type: ContainerContainer

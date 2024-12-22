@@ -2,6 +2,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
+using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
 using Content.Server.Database;
 using Content.Server.GameTicking;
@@ -59,6 +60,7 @@ namespace Content.Server.Connection
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly ILogManager _logManager = default!;
         [Dependency] private readonly IChatManager _chatManager = default!;
+        [Dependency] private readonly IAdminManager _adminManager = default!;
         private ISharedSponsorsManager? _sponsorsMgr; // Sunrise-Sponsors
 
         private ISawmill _sawmill = default!;
@@ -277,10 +279,16 @@ namespace Content.Server.Connection
             var wasInGame = EntitySystem.TryGet<GameTicker>(out var ticker) &&
                             ticker.PlayerGameStatuses.TryGetValue(userId, out var status) &&
                             status == PlayerGameStatus.JoinedGame;
-            // Sunrise-Queue-Start
-            var isQueueEnabled = IoCManager.Instance!.TryResolveType<IServerJoinQueueManager>(out var mgr) && mgr.IsEnabled;
-            if (_plyMgr.PlayerCount >= _cfg.GetCVar(CCVars.SoftMaxPlayers) && !isPrivileged && !isQueueEnabled && !wasInGame)
-                // Sunrise-Queue-End
+            var adminBypass = _cfg.GetCVar(CCVars.AdminBypassMaxPlayers) && adminData != null;
+            var isQueueEnabled = IoCManager.Instance!.TryResolveType<IServerJoinQueueManager>(out var mgr) && mgr.IsEnabled; // Sunrise-Queue-Edit
+            var softPlayerCount = _plyMgr.PlayerCount;
+
+            if (!_cfg.GetCVar(CCVars.AdminsCountForMaxPlayers))
+            {
+                softPlayerCount -= _adminManager.ActiveAdmins.Count();
+            }
+
+            if ((softPlayerCount >= _cfg.GetCVar(CCVars.SoftMaxPlayers) && !adminBypass && !isQueueEnabled) && !wasInGame) // Sunrise-Queue-Edit
             {
                 return (ConnectionDenyReason.Full, Loc.GetString("soft-player-cap-full"), null);
             }
@@ -297,7 +305,7 @@ namespace Content.Server.Connection
 
                 foreach (var whitelist in _whitelists)
                 {
-                    if (!IsValid(whitelist, _plyMgr.PlayerCount))
+                    if (!IsValid(whitelist, softPlayerCount))
                     {
                         // Not valid for current player count.
                         continue;

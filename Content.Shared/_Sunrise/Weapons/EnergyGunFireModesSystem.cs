@@ -23,13 +23,13 @@ public sealed class EnergyGunFireModesSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<EnergyGunFireModesComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<EnergyGunFireModesComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<EnergyGunFireModesComponent, ActivateInWorldEvent>(OnInteractHandEvent);
         SubscribeLocalEvent<EnergyGunFireModesComponent, GetVerbsEvent<Verb>>(OnGetVerb);
         SubscribeLocalEvent<EnergyGunFireModesComponent, ExaminedEvent>(OnExamined);
     }
 
-    private void OnStartup(Entity<EnergyGunFireModesComponent> ent, ref ComponentStartup args)
+    private void OnMapInit(Entity<EnergyGunFireModesComponent> ent, ref MapInitEvent args)
     {
         if (ent.Comp.FireModes.Count <= 0)
             return;
