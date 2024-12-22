@@ -6,9 +6,9 @@ namespace Content.Server.Saw;
 [RegisterComponent]
 public sealed partial class SawComponent : Component
 {
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
     public EntityUid? EatenMind = null;
 
     [DataField]
-    public FixedPoint2 HungerToThresholdModifier = 1;
+    public FixedPoint2 HungerToThresholdModifier = 1.5;
 }
