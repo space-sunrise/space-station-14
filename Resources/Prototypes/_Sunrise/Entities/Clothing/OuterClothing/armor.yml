@@ -68,7 +68,7 @@
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
   - type: TemperatureProtection
-    heatingCoefficient: 0.2
+    heatingCoefficient: 0.02
     coolingCoefficient: 0.5
   - type: ClothingSpeedModifier
     walkModifier: 0.85
@@ -106,7 +106,7 @@
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
   - type: TemperatureProtection
-    heatingCoefficient: 0.2
+    heatingCoefficient: 0.02
     coolingCoefficient: 0.5
   - type: ClothingSpeedModifier
     walkModifier: 0.95

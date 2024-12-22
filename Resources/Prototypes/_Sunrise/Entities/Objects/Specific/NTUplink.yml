@@ -2,8 +2,8 @@
 - type: entity
   parent: [BaseItem, StorePresetNTUplink, BaseCentcommContraband]
   id: BaseUplinkNTERT
-  name: Блюспейс Визионер ОБР
-  description: Сверхинновационный портативный блюспейс-телепортатор.
+  name: Bluespace ERT visionary
+  description: Ultra-innovative portable bluespace teleporter.
   suffix: Empty
   components:
   - type: Sprite
@@ -31,8 +31,8 @@
 - type: entity
   parent: BaseUplinkNTERT
   id: BaseUplinkNTERT60BC
-  name: Блюспейс Визионер ОБР
-  description: Сверхинновационный портативный блюспейс-телепортатор.
+  name: Bluespace ERT visionary
+  description: Ultra-innovative portable bluespace teleporter.
   suffix: 80BC, 60C, Amber
   components:
   - type: Sprite
@@ -54,8 +54,8 @@
 - type: entity
   parent: BaseUplinkNTERT
   id: BaseUplinkNTERT100BC
-  name: Блюспейс Визионер ОБР
-  description: Сверхинновационный портативный блюспейс-телепортатор.
+  name: Bluespace ERT visionary
+  description: Ultra-innovative portable bluespace teleporter.
   suffix: 100BC, 75C, Red
   components:
   - type: Sprite
@@ -77,8 +77,8 @@
 - type: entity
   parent: BaseUplinkNTERT
   id: BaseUplinkNTERT200BC
-  name: Блюспейс Визионер ОБР
-  description: Сверхинновационный портативный блюспейс-телепортатор.
+  name: Bluespace ERT visionary
+  description: Ultra-innovative portable bluespace teleporter.
   suffix: 200BC, 150C, Gamma
   components:
   - type: Sprite
@@ -100,8 +100,8 @@
 - type: entity
   parent: BaseUplinkNTERT
   id: BaseUplinkNTERTDebug
-  name: Блюспейс Визионер ОБР
-  description: Сверхинновационный портативный блюспейс-телепортатор.
+  name: Bluespace ERT visionary
+  description: Ultra-innovative portable bluespace teleporter.
   suffix:  999, Debug
   components:
   - type: Sprite
@@ -124,7 +124,7 @@
 #  parent: BaseUplinkRadio
 #  id: BaseUplinkNTCBURN
 #  name: Блюспейс Визионер РХБЗЗ
-#  description: Сверхинновационный портативный блюспейс-телепортатор.
+#  description: Ultra-innovative portable bluespace teleporter.
 #  components:
 #    - type: Sprite
 #      sprite: _Sunrise/Objects/Devices/nt_uplink.rsi

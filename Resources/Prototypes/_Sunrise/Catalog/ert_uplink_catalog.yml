@@ -171,7 +171,7 @@
 
 - type: listing
   id: NTUplinkSunriseWeaponPulseCarbine
-  name: Импульсный карабин
+  name: Pulse Carbine
   productEntity: WeaponPulseCarbine
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: pulse-c }
   cost:
@@ -580,7 +580,7 @@
 
 - type: listing
   id: NTUplinkSunriseBoxHandcuff
-  name: Коробка наручников
+  name: Box Handcuff
   productEntity: BoxHandcuff
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_handcuffs }
   cost:
@@ -593,7 +593,7 @@
 
 - type: listing
   id: NTUplinkSunriseBoxFlashbang
-  name: Коробка светошумовых гранат
+  name: Box Flash bang
   productEntity: BoxFlashbang
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_flashbangs }
   cost:
@@ -634,7 +634,7 @@
 
 - type: listing
   id: NTUplinkSunrisePestSpray
-  name: Спрей от вредителей
+  name: PestSpray
   productEntity: PestSpray
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: pest_spray }
   cost:
@@ -647,7 +647,7 @@
 
 - type: listing
   id: NTUplinkSunriseWeedSpray
-  name: Спрей от сорняков
+  name: WeedSpray
   productEntity: WeedSpray
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: weed_spray }
   cost:
@@ -660,7 +660,7 @@
 
 - type: listing
   id: NTUplinkSunriseSprayBottleSpaceCleaner
-  name: Космический очиститель
+  name: Spray SpaceCleaner
   productEntity: SprayBottleSpaceCleaner
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: cleaner }
   cost:
@@ -673,7 +673,7 @@
 
 - type: listing
   id: NTUplinkSunriseTrashBagBlue
-  name: Мешок для мусора
+  name: TrashBag
   productEntity: TrashBagBlue
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: trash_bag_blue }
   cost:
@@ -686,7 +686,7 @@
 
 - type: listing
   id: NTUplinkSunriseBoxBodyBag
-  name: Коробка мешков для тел
+  name: Box Body Bag
   productEntity: BoxBodyBag
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_bodybags }
   cost:
@@ -699,7 +699,7 @@
 
 - type: listing
   id: NTUplinkSunriseAdvMopItem
-  name: Продвинутая швабра
+  name: Adv Mop
   productEntity: AdvMopItem
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: adv-mop }
   cost:
@@ -713,7 +713,7 @@
 # Инженерия
 - type: listing
   id: NTUplinkSunriseBoxLightMixed
-  name: Коробка лампочек
+  name: Box Light Mixed
   productEntity: BoxLightMixed
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_light }
   cost:
@@ -726,7 +726,7 @@
 
 - type: listing
   id: NTUplinkSunriseJawsOfLife
-  name: Челюсти жизни
+  name: JawsOfLife
   productEntity: JawsOfLife
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: jaws }
   cost:
@@ -739,7 +739,7 @@
 
 - type: listing
   id: NTUplinkSunriseOmnitool
-  name: Омнитул
+  name: Omnitool
   productEntity: Omnitool
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: omnitool }
   cost:
@@ -752,7 +752,7 @@
 
 - type: listing
   id: NTUplinkSunrisePowerCellHigh
-  name: Батарея высокой ёмкости
+  name: Power Cell High
   productEntity: PowerCellHigh
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: power_cell_high }
   cost:
@@ -765,7 +765,7 @@
 
 - type: listing
   id: NTUplinkSunrisePowerCellNanoTrasen
-  name: Батарея НаноТрейзен
+  name: Power Cell NanoTrasen
   productEntity: PowerCellNanoTrasen
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: power_cell_nt }
   cost:
@@ -778,7 +778,7 @@
 
 - type: listing
   id: NTUplinkSunriseNetworkConfigurator
-  name: Конфигуратор сетей
+  name: Network Configurator
   productEntity: NetworkConfigurator
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: network_configurator }
   cost:
@@ -791,7 +791,7 @@
 
 - type: listing
   id: NTUplinkSunriseMultitool
-  name: Мультитул
+  name: Multitool
   productEntity: Multitool
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: multitool }
   cost:
@@ -805,7 +805,7 @@
 # Экипировка:
 - type: listing
   id: NTUplinkSunriseTelescopicShield
-  name: Телескопический щит
+  name: Telescopic Shield
   productEntity: TelescopicShield
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: telescopic_shield }
   cost:
@@ -818,7 +818,7 @@
 
 - type: listing
   id: NTUplinkSunriseRiotBulletShield
-  name: Противопульный щит
+  name: Riot Bullet Shield
   productEntity: RiotBulletShield
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: riot_bullet_shield }
   cost:
@@ -831,7 +831,7 @@
 
 - type: listing
   id: NTUplinkSunriseRiotLaserShield
-  name: Противолазерный щит
+  name: Riot Laser Shield
   productEntity: RiotLaserShield
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: riot_laser_shield }
   cost:
@@ -844,7 +844,7 @@
 
 - type: listing
   id: NTUplinkSunriseRiotShield
-  name: Противоударный щит
+  name: Riot Shield
   productEntity: RiotShield
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: riot_shield }
   cost:
@@ -910,7 +910,8 @@
 
 - type: listing
   id: NTUplinkSunriseNTGygax
-  name: uplink-mech-teleporter-heavy-name #доделать
+  name: uplink-mech-teleporter-medium-name
+  description: ntuplink-mech-teleporter-medium-desc
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mech_ntgygax }
   productEntity: CrateCommandNTGygaxBundle
   cost:
@@ -923,8 +924,8 @@
 
 - type: listing
   id: NTUplinkSunriseMarauder
-  name: uplink-mech-teleporter-heavy-name #доделать
-  description: uplink-mech-teleporter-heavy-desc
+  name: ntuplink-mech-teleporter-heavy-name
+  description: ntuplink-mech-teleporter-heavy-desc
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mech_marauder }
   productEntity: CrateCommandMarauderBundle
   cost:
@@ -937,8 +938,8 @@
 
 - type: listing
   id: NTUplinkSunriseSeraph
-  name: uplink-mech-teleporter-heavy-name #доделать
-  description: uplink-mech-teleporter-heavy-desc
+  name: ntuplink-mech-teleporter-eliteheavy-name
+  description: ntuplink-mech-teleporter-eliteheavy-desc
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mech_seraph }
   productEntity: CrateCommandSeraphBundle
   cost:

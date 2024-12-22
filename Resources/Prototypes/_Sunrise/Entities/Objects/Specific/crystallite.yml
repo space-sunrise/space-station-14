@@ -3,7 +3,7 @@
   name: сrystallite
   parent: BaseItem
   id: Crystallite
-  suffix: 20 С
+  suffix: 100 С
   description: It seems to shimmer with a attractive energy.
   components:
   - type: Sprite

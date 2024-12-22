@@ -322,18 +322,10 @@
     sprite: Clothing/Head/Helmets/ert_leader.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/ert_leader.rsi
-  - type: TemperatureProtection #sunrise-start
-    heatingCoefficient: 0.01
-    coolingCoefficient: 0.2
-  - type: FireProtection
-    reduction: 0.2
-  - type: PressureProtection
-    highPressureMultiplier: 0.25
-    lowPressureMultiplier: 1000
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.85
+        Blunt: 0.85 #sunrise-start
         Slash: 0.85
         Piercing: 0.85
         Heat: 0.85 #sunrise-end
@@ -349,15 +341,7 @@
     sprite: Clothing/Head/Helmets/ert_security.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/ert_security.rsi
-  - type: TemperatureProtection #sunrise-start
-    heatingCoefficient: 0.01
-    coolingCoefficient: 0.2
-  - type: FireProtection
-    reduction: 0.2
-  - type: PressureProtection
-    highPressureMultiplier: 0.25
-    lowPressureMultiplier: 1000
-  - type: Armor
+  - type: Armor #sunrise-start
     modifiers:
       coefficients:
         Blunt: 0.85
@@ -376,15 +360,7 @@
     sprite: Clothing/Head/Helmets/ert_medic.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/ert_medic.rsi
-  - type: TemperatureProtection #sunrise-start
-    heatingCoefficient: 0.01
-    coolingCoefficient: 0.2
-  - type: FireProtection
-    reduction: 0.2
-  - type: PressureProtection
-    highPressureMultiplier: 0.25
-    lowPressureMultiplier: 1000
-  - type: Armor
+  - type: Armor #sunrise-start
     modifiers:
       coefficients:
         Blunt: 0.85
@@ -403,18 +379,10 @@
     sprite: Clothing/Head/Helmets/ert_engineer.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/ert_engineer.rsi
-  - type: TemperatureProtection #sunrise-start
-    heatingCoefficient: 0.01
-    coolingCoefficient: 0.2
-  - type: FireProtection
-    reduction: 0.2
-  - type: PressureProtection
-    highPressureMultiplier: 0.25
-    lowPressureMultiplier: 1000
-  - type: Armor
+  - type: Armor #sunrise-start
     modifiers:
       coefficients:
-        Blunt: 0.85
+        Blunt: 0.85 #sunrise-start
         Slash: 0.85
         Piercing: 0.85
         Heat: 0.85 #sunrise-end
@@ -430,15 +398,7 @@
     sprite: Clothing/Head/Helmets/ert_janitor.rsi
   - type: Clothing
     sprite: Clothing/Head/Helmets/ert_janitor.rsi
-  - type: TemperatureProtection #sunrise-start
-    heatingCoefficient: 0.01
-    coolingCoefficient: 0.2
-  - type: FireProtection
-    reduction: 0.2
-  - type: PressureProtection
-    highPressureMultiplier: 0.25
-    lowPressureMultiplier: 1000
-  - type: Armor
+  - type: Armor #sunrise-start
     modifiers:
       coefficients:
         Blunt: 0.85

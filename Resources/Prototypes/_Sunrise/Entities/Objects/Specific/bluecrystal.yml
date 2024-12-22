@@ -2,7 +2,7 @@
   name: Bluespace crystal
   parent: BaseItem
   id: Bluecrystal
-  suffix: 40 BC
+  suffix: 100 BC
   description: It seems to shimmer with a attractive energy.
   components:
   - type: Sprite
