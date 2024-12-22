@@ -861,13 +861,25 @@
       stock: 2
 
 - type: listing
+  id: NTUplinkSunriseBorgERT
+  productEntity: PlayerBorgChassisERTBattery
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: cyborg_ert }
+  cost:
+    Crystallite: 30
+  categories:
+    - NTMechs
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2
+
+- type: listing
   id: NTUplinkSunriseNTGygax
   name: ntuplink-mech-teleporter-medium-name
   description: ntuplink-mech-teleporter-medium-desc
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mech_ntgygax }
   productEntity: CrateCommandNTGygaxBundle
   cost:
-    Bluecrystal: 60
+    Bluecrystal: 55
   categories:
   - NTMechs
   conditions:
