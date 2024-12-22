@@ -38,7 +38,7 @@ public sealed class StandingStateSystem : SharedStandingStateSystem
         if (standingStateComponent.CurrentState == StandingState.Laying)
             TryStandUp(uid, standingStateComponent);
         else
-            TryLieDown(uid, standingStateComponent);
+            Fall(uid);
     }
 
     private void FallOver(EntityUid uid, StandingStateComponent component, DropHandItemsEvent args)

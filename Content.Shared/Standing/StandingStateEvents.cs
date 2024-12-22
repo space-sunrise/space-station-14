@@ -21,6 +21,8 @@ public sealed class DownedEvent : EntityEventArgs;
 [Serializable, NetSerializable]
 public sealed class ChangeLayingDownEvent : CancellableEntityEventArgs;
 
-
 [Serializable, NetSerializable]
 public sealed partial class StandUpDoAfterEvent : SimpleDoAfterEvent;
+
+[Serializable, NetSerializable]
+public sealed partial class DownDoAfterEvent : SimpleDoAfterEvent;

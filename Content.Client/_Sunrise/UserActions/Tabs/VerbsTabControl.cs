@@ -22,7 +22,7 @@ public sealed partial class VerbsTabControl : BaseTabControl
     [Dependency] private readonly IGameTiming _gameTiming = default!;
 
     private TimeSpan _lastVerbTime;
-    private static readonly TimeSpan VerbCooldown = TimeSpan.FromSeconds(1);
+    private static readonly TimeSpan VerbCooldown = TimeSpan.FromSeconds(0.5f);
 
     public VerbsTabControl()
     {
@@ -152,7 +152,7 @@ public sealed partial class VerbsTabControl : BaseTabControl
     {
         var whitelistSystem = _entManager.System<EntityWhitelistSystem>();
 
-        if (emote.Category == EmoteCategory.Invalid || emote.Category != EmoteCategory.Verb || emote.ChatTriggers.Count == 0)
+        if (emote.Category == EmoteCategory.Invalid || emote.Category != EmoteCategory.Verb)
             return false;
 
         if (!whitelistSystem.IsWhitelistPassOrNull(emote.Whitelist, player) ||

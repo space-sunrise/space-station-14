@@ -53,6 +53,17 @@
   - танцует
   - кружится
   - оборачивается
-  - танцует
   - покружилась
   - покружился
+
+- type: emote
+  id: EmoteLay
+  category: Verb
+  name: Лечь/Встать
+  whitelist:
+    components:
+    - HumanoidAppearance
+  blacklist:
+    components:
+    - Ghost
+    - BorgChassis
