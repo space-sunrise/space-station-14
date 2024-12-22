@@ -164,8 +164,8 @@ namespace Content.Server.Bible
                 && prototype.ID == "MobPig"
                 && !HasComp<SawComponent>(args.Target))
             {
-                if (_lookUp.GetEntitiesInRange<IdentityComponent>(Transform(uid).Coordinates, 5).Count > 4
-                    && _lookUp.GetEntitiesInRange<PrayableComponent>(Transform(uid).Coordinates, 5).Count > 0)
+                if (_lookUp.GetEntitiesInRange<IdentityComponent>(Transform(uid).Coordinates, 5).Count >= 5
+                    && _lookUp.GetEntitiesInRange<PrayableComponent>(Transform(uid).Coordinates, 5).Count >= 2)
                 {
                     _entityManager.AddComponents((EntityUid) args.Target, _prototypeManager.Index("MobSaw").Components, false);
                     _metaData.SetEntityName((EntityUid)args.Target, "свиноматерь");

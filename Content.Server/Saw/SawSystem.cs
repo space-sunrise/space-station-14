@@ -53,7 +53,7 @@ public sealed class SawSystem : EntitySystem
             RemComp<ReproductiveComponent>(ent);
 
         _entityManager.AddComponents(ent, _prototypeManager.Index("MobSaw").Components, false);
-
+        Comp<ReproductiveComponent>(ent).Capacity = 0;
     }
 
     private void OnBirth(Entity<SawComponent> saw, ref BirthEvent args)
