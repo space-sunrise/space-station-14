@@ -1,8 +1,8 @@
 ﻿- type: entity
   parent: GasCanister
   id: BZCanister
-  name: канистра БЗ
-  description: Канистра, в которой может содержаться газ любого вида. В этой, предположительно, содержится БЗ. Можно прикрепить к порту коннектора с помощью гаечного ключа.
+  name: BZ Canister
+  description: A canister that can contain any type of gas. This one presumably contains BZ. Can be attached to a connector port using a wrench.
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Storage/canister.rsi
@@ -52,8 +52,8 @@
 - type: entity
   parent: GasCanister
   id: HealiumCanister
-  name: канистра хилиума
-  description: Канистра, в которой может содержаться газ любого вида. В этой, предположительно, содержится хилиум. Можно прикрепить к порту коннектора с помощью гаечного ключа.
+  name: Healium Canister
+  description: A canister that can contain any type of gas. This one presumably contains Healium. Can be attached to a connector port using a wrench.
   components:
   - type: Sprite
     sprite: _Sunrise/Structures/Storage/canister.rsi

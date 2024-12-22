@@ -6,3 +6,5 @@ ent-MechMolotBattery = { ent-MechMolot }
 ent-MechMolotFilled = { ent-MechMolotBattery }
     .desc = { ent-MechMolotBattery.desc }
     .suffix = Батарея, Заполнен
+ent-MechSecPod = Патрульный Под
+    .desc = Несмотря на свои габариты, Охранный Под обладает невероятной мобильностью в космосе благодаря своим двигателям.

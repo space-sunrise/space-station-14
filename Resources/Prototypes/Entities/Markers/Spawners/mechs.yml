@@ -241,3 +241,18 @@
   - type: ConditionalSpawner
     prototypes:
       - MechMaulerSyndieFilled
+
+- type: entity
+  name: Sec Pod Spawner
+  suffix: Filled
+  id: SpawnMechSecPodFilled
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: _Sunrise/Objects/Specific/Mech/sec_pod.rsi
+        state: sec_pod
+  - type: ConditionalSpawner
+    prototypes:
+      - MechSecPod

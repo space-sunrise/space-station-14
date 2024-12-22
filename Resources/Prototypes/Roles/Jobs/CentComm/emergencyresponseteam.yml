@@ -229,6 +229,7 @@
     shoes: ClothingShoesBootsMagAdv
     mask: ClothingMaskGasERT
     eyes: ClothingEyesHudDiagnosticERT # Sunrise-edit
+    eyes: ClothingEyesHudDiagnosticERT # Sunrise-edit
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTEngineer
     id: ERTEngineerPDA

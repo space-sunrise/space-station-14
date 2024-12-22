@@ -1,0 +1,123 @@
+- type: startingGear
+  id: USSPJobAltA
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitUSSPBlack
+    outerClothing: ClothingOuterCoatTrench
+    shoes: ClothingShoesUSSPBlack
+    neck: ClothingNeckUSSPPin
+    id: USSPPDA
+    back: ClothingBackpackSatchelLeather
+    ears: ClothingHeadsetUSSP
+    pocket1: DrinkShotGlass
+
+- type: startingGear
+  id: USSPJobAltB
+  parent: USSPJobAltA
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAdidasWhite
+    shoes: ClothingShoesBootsWinter
+    outerClothing: ClothingOuterCoatGentle
+
+- type: startingGear
+  id: USSPJobAltC
+  parent: USSPJobAltA
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAdidasBlack
+    shoes: ClothingShoesBootsWinter
+
+- type: startingGear
+  id: USSPJobAltD
+  parent: USSPJobAltA
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAdidasWhite
+    outerClothing: ClothingOuterWinterCoat
+    head: ClothingHeadHatUshanka
+    
+- type: startingGear
+  id: USSPJobAltE
+  parent: USSPJobAltA
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAdidasBlack
+    outerClothing: ClothingOuterWinterCoat
+    head: ClothingHeadHatUshanka
+
+- type: startingGear
+  id: USSPJobAltF
+  parent: USSPJobAltA
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitUSSPBlack
+    outerClothing: ClothingOuterWinterCoat
+    shoes: ClothingShoesBootsWinter
+    head: ClothingHeadHatUshanka
+
+- type: startingGear
+  id: USSPOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitUSSPBlack
+    back: ClothingBackpackMilitarySatchel
+    shoes: ClothingShoesBootsCombatFilled
+    head: ClothingHeadHatCapUSSPBlack
+    mask: ClothingMaskGasMerc
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesCombat
+    neck: ClothingNeckUSSPPin
+    outerClothing: ClothingOuterCoatHOSOvercoatBlack
+    id: USSPOfficerPDA
+    ears: ClothingHeadsetUSSPSec
+    belt: ClothingBeltSecurityFilled
+    pocket1: WeaponLaserSvalinn
+  storage:
+    back:
+    - Gauze
+    - Truncheon
+    - DrinkFlaskOld
+    - ClothingPantsManCommie
+    
+- type: startingGear
+  id: USSPSoldier
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMercenary
+    back: ClothingMilitaryBackpack
+    shoes: ClothingShoesBootsMagPirate
+    mask: ClothingMaskGasMerc
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsMercGlovesCombat
+    neck: ClothingNeckUSSPPin
+    outerClothing: ClothingOuterLightHardsuitUSSP
+    id: USSPSoldierPDA
+    ears: ClothingHeadsetUSSP
+    belt: ClothingBeltMercWebbing
+    pocket1: FlashlightSeclite
+    pocket2: Gauze
+  storage:
+    back:
+    - WeaponSubMachineGunPPSH41
+    - MagazinePPSH41
+    - MagazinePPSH41
+    - Crowbar
+    - ClothingPantsManCommie
+
+- type: startingGear
+  id: USSPCaptain
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitUSSPBlack
+    back: ClothingBackpackMilitarySatchel
+    shoes: ClothingShoesUSSPBlack
+    head: ClothingHeadHatCapHoS
+    eyes: ClothingEyesGlassesCommand
+    gloves: ClothingHandsGlovesLeatherHoS
+    neck: ClothingNeckCloakDarthHOSCloak
+    outerClothing: ClothingOuterHeavyHardsuitUSSP
+    id: USSPCaptainPDA
+    ears: ClothingHeadsetAltUSSP
+    belt: ClothingBeltHolster
+    pocket1: WeaponRevolverPython
+  storage:
+    back:
+    - DrinkVodkaBottleFull
+    - SpeedLoaderMagnum
+    - SpeedLoaderMagnum
+    - DrinkFlask
+    - CigPackSyndicate
+    - FlippoLighterSunriseContractor
+    - ClothingPantsManCommie

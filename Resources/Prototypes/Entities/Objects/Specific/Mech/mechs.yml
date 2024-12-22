@@ -178,6 +178,7 @@
     autoRot: true
     radius: 4
     netsync: false
+  - type: AccessReader
 
 # Ripley MK-I
 - type: entity
@@ -860,6 +861,8 @@
     - DoorBumpOpener
     - FootstepSound
     - Gygax
+  - type: AccessReader
+    access: [["CentralCommand"]]
 
 - type: entity
   id: MechNTGygaxBattery
@@ -938,6 +941,8 @@
       800: Critical
     showOverlays: false
     allowRevives: true
+  - type: AccessReader
+    access: [["CentralCommand"]]
 
 - type: entity
   id: MechMarauderBattery
@@ -1016,6 +1021,8 @@
       800: Critical
     showOverlays: false
     allowRevives: true
+  - type: AccessReader
+    access: [["CentralCommand"]]
 
 - type: entity
   id: MechSeraphBattery
@@ -1102,6 +1109,8 @@
     - DoorBumpOpener
     - FootstepSound
     - Gygax
+  - type: AccessReader
+    access: [["NuclearOperative"]]
 
 - type: entity
   id: MechGygaxSyndieBattery
@@ -1178,6 +1187,8 @@
       780: Critical
     showOverlays: false
     allowRevives: true
+  - type: AccessReader
+    access: [["NuclearOperative"]]
 
 - type: entity
   id: MechRoverSyndieBattery
@@ -1259,6 +1270,8 @@
       800: Critical
     showOverlays: false
     allowRevives: true
+  - type: AccessReader
+    access: [["NuclearOperative"]]
 
 - type: entity
   id: MechMaulerSyndieBattery

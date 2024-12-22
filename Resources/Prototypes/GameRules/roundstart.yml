@@ -137,7 +137,6 @@
     - prefRoles: [ NukeopsMedic ]
       fallbackRoles: [ Nukeops, NukeopsCommander ]
       spawnerPrototype: SpawnPointNukeopsMedic
-      max: 2
       startingGear: SyndicateOperativeMedicFull
       roleLoadout:
       - RoleSurvivalNukie
@@ -155,8 +154,8 @@
     - prefRoles: [ Nukeops ]
       fallbackRoles: [ NukeopsCommander, NukeopsMedic ]
       spawnerPrototype: SpawnPointNukeopsOperative
-      max: 4  # Sunrise-edit
-      playerRatio: 15
+      max: 5
+      playerRatio: 20
       startingGear: SyndicateOperativeGearFull
       roleLoadout:
       - RoleSurvivalNukie
@@ -274,6 +273,8 @@
     - prefRoles: [ InitialInfected ]
       max: 6
       playerRatio: 10
+      pickCommandStaff: true # Sunrise-Edit
+      maxCommandStaff: 0 # Sunrise-Edit
       blacklist:
         components:
         - ZombieImmune
