@@ -48,9 +48,7 @@
     name: store-preset-name-ntuplink
     categories:
     - NTAutoGun
-    - NTShotguns
     - NTLasers
-    - NTHeavyGun
     - NTPistols
     - NTAmmo
     - NTMedicine
@@ -58,7 +56,6 @@
     - NTMechs
     - NTSanitary
     - NTEngineering
-    - NTNonLethalEquipment
     #- NTCBURN
     - NTEquipment
     currencyWhitelist:

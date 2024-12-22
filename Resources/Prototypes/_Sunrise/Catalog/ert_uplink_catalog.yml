@@ -161,7 +161,7 @@
   cost:
     Bluecrystal: 12
   categories:
-    - NTMachineGun
+    - NTLasers
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 2
