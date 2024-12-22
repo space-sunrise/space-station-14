@@ -883,7 +883,7 @@
 
 - type: listing
   id: NTUplinkSunriseJetpackVoidFilled
-  name: Jetpack Void
+  name: ntuplink-equip-jetpackvoid-name
   productEntity: JetpackVoidFilled
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: void_jet }
   cost:
@@ -897,7 +897,8 @@
 # Mechs
 - type: listing
   id: NTUplinkSunrisePowerCageERT
-  name: Power Cage ERT
+  name: ntuplink-mech-powercage-nanotrasen-name
+  description: ntuplink-mech-powercage-nanotrasen-desc
   productEntity: PowerCageERT
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: powercage_nt }
   cost:
@@ -910,7 +911,7 @@
 
 - type: listing
   id: NTUplinkSunriseNTGygax
-  name: uplink-mech-teleporter-medium-name
+  name: ntuplink-mech-teleporter-medium-name
   description: ntuplink-mech-teleporter-medium-desc
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mech_ntgygax }
   productEntity: CrateCommandNTGygaxBundle
