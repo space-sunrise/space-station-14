@@ -249,6 +249,11 @@ public abstract partial class SharedGunSystem : EntitySystem
         Dirty(uid, gun);
     }
 
+    public void SetTarget(GunComponent gun, EntityUid target)
+    {
+        gun.Target = target;
+    }
+
     /// <summary>
     /// Attempts to shoot at the target coordinates. Resets the shot counter after every shot.
     /// </summary>

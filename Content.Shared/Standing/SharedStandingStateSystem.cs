@@ -1,21 +1,91 @@
+using Content.Shared.Buckle.Components;
+using Content.Shared.DoAfter;
 using Content.Shared.Hands.Components;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Systems;
+using Content.Shared.Movement.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Rotation;
+using Content.Shared.Stunnable;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Network;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
 
 namespace Content.Shared.Standing;
 
-public sealed class StandingStateSystem : EntitySystem
+public abstract class SharedStandingStateSystem : EntitySystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
+    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly SharedRotationVisualsSystem _rotation = default!;
 
     private const int StandingCollisionLayer = (int) CollisionGroup.MidImpassable;
 
-    public bool Stand(EntityUid uid,
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<StandingStateComponent, StandUpDoAfterEvent>(OnStandUpDoAfter);
+        SubscribeLocalEvent<StandingStateComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeed);
+    }
+
+    #region Implementation
+
+    private void OnStandUpDoAfter(EntityUid uid, StandingStateComponent component, StandUpDoAfterEvent args)
+    {
+        if (args.Handled || args.Cancelled)
+            return;
+        if (_mobState.IsIncapacitated(uid))
+            return;
+
+        Stand(uid, component);
+    }
+
+    private void OnRefreshMovementSpeed(EntityUid uid, StandingStateComponent component, RefreshMovementSpeedModifiersEvent args)
+    {
+        if (IsDown(uid))
+            args.ModifySpeed(component.SpeedModify, component.SpeedModify);
+        else
+            args.ModifySpeed(1f, 1f);
+    }
+
+    public bool TryStandUp(EntityUid uid, StandingStateComponent? standingState = null)
+    {
+        if (!Resolve(uid, ref standingState, false)
+            || standingState.CurrentState is not StandingState.Laying
+            || _mobState.IsIncapacitated(uid)
+            || HasComp<KnockedDownComponent>(uid)
+            || TerminatingOrDeleted(uid))
+            return false;
+
+        var args = new DoAfterArgs(EntityManager, uid, standingState.CycleTime, new StandUpDoAfterEvent(), uid)
+        {
+            BreakOnHandChange = false,
+            RequireCanInteract = false,
+            BreakOnDamage = true
+        };
+
+        return _doAfter.TryStartDoAfter(args);
+    }
+
+    public bool TryLieDown(EntityUid uid, StandingStateComponent? standingState = null)
+    {
+        if (!Resolve(uid, ref standingState, false)
+            || standingState.CurrentState is not StandingState.Standing
+            || !_mobState.IsAlive(uid)
+            || TerminatingOrDeleted(uid))
+            return false;
+
+        return Down(uid, dropHeldItems: false);
+    }
+
+        public bool Stand(EntityUid uid,
         StandingStateComponent? standingState = null,
         AppearanceComponent? appearance = null,
         bool force = false)
@@ -53,6 +123,7 @@ public sealed class StandingStateSystem : EntitySystem
         }
 
         standingState.ChangedFixtures.Clear();
+        _movement.RefreshMovementSpeedModifiers(uid);
 
         return true;
     }
@@ -103,14 +174,15 @@ public sealed class StandingStateSystem : EntitySystem
             }
         }
 
-        if (standingState.LifeStage <= ComponentLifeStage.Starting)
-            return true;
+        _movement.RefreshMovementSpeedModifiers(uid);
 
-        if (playSound)
-            _audio.PlayPredicted(standingState.DownSound, uid, uid);
+        if (_net.IsServer && playSound)
+            _audio.PlayPvs(standingState.DownSound, uid);
 
         return true;
     }
+
+    #endregion
 
     #region Helpers
 

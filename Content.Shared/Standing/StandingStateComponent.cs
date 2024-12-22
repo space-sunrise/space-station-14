@@ -15,6 +15,12 @@ public sealed partial class StandingStateComponent : Component
 
     [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
     public List<string> ChangedFixtures = new();
+
+    [DataField, AutoNetworkedField]
+    public float CycleTime { get; set; } = 1f;
+
+    [DataField, AutoNetworkedField]
+    public float SpeedModify { get; set; } = 0.4f;
 }
 
 [Serializable, NetSerializable]

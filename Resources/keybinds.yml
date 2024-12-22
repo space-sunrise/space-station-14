@@ -587,3 +587,6 @@ binds:
 - function: CockGun # Sunrise-Edit
   type: State
   key: C
+- function: ToggleStanding
+  type: State
+  key: R

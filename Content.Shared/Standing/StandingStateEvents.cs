@@ -1,21 +1,26 @@
-﻿namespace Content.Shared.Standing;
+﻿using Content.Shared.DoAfter;
+using Robust.Shared.Serialization;
 
-public sealed class DropHandItemsEvent : EventArgs
-{
-}
+namespace Content.Shared.Standing;
 
-public sealed class DownAttemptEvent : CancellableEntityEventArgs
-{
-}
+[Serializable, NetSerializable]
+public sealed class DropHandItemsEvent : EventArgs;
 
-public sealed class StandAttemptEvent : CancellableEntityEventArgs
-{
-}
+[Serializable, NetSerializable]
+public sealed class DownAttemptEvent : CancellableEntityEventArgs;
 
-public sealed class StoodEvent : EntityEventArgs
-{
-}
+[Serializable, NetSerializable]
+public sealed class StandAttemptEvent : CancellableEntityEventArgs;
 
-public sealed class DownedEvent : EntityEventArgs
-{
-}
+[Serializable, NetSerializable]
+public sealed class StoodEvent : EntityEventArgs;
+
+[Serializable, NetSerializable]
+public sealed class DownedEvent : EntityEventArgs;
+
+[Serializable, NetSerializable]
+public sealed class ChangeLayingDownEvent : CancellableEntityEventArgs;
+
+
+[Serializable, NetSerializable]
+public sealed partial class StandUpDoAfterEvent : SimpleDoAfterEvent;
