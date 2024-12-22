@@ -698,7 +698,7 @@
   name: syndicate agent
   components:
     - type: Sprite
-      sprite: s/Species/Human/parts.rsi
+      sprite: Mobs/Species/Human/parts.rsi
       state: full
     - type: RandomMetadata
       nameSegments: [ ru_names_death_commando ] # Sunrise-edit
@@ -723,7 +723,7 @@
   name: Nuclear Operative
   components:
     - type: Sprite
-      sprite: s/Species/Human/parts.rsi
+      sprite: Mobs/Species/Human/parts.rsi
       state: full
     - type: RandomHumanoidSpawner
       settings: NukeOp
