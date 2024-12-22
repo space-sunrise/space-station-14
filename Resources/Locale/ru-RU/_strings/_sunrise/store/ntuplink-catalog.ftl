@@ -4,3 +4,4 @@ ntuplink-mech-teleporter-heavy-name = Телепортер Тяжелого Ме
 ntuplink-mech-teleporter-heavy-desc = Содержит ящик с тяжелым мехом НаноТрейзен. Вы умрёте последним.
 ntuplink-mech-teleporter-eliteheavy-name = Телепортер Тяжелого Элитного Меха.
 ntuplink-mech-teleporter-eliteheavy-desc = Содержит ящик с лучшим мехом НаноТрейзен. Только для старших Офицеров!
+
