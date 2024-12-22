@@ -137,9 +137,9 @@
   description: It can steal your personality!
   components:
   - type: Sprite
-    sprite: Clothing/Mask/facecast.rsi
+    sprite: _Sunrise/Clothing/Mask/facecast.rsi
   - type: Clothing
-    sprite: Clothing/Mask/facecast.rsi
+    sprite: _Sunrise/Clothing/Mask/facecast.rsi
   - type: BreathMask
   - type: Tag
   - type: HideLayerClothing

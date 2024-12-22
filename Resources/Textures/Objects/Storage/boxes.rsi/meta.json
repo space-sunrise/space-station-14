@@ -235,6 +235,9 @@
         },
 		{
             "name": "agrichemkit"
-        }
+        },
+		{
+			"name": "facecast"
+		}
     ]
 }

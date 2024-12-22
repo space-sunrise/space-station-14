@@ -158,7 +158,7 @@ namespace Content.Server.Bible
                 return;
             }
 
-	        //Sunrise-start
+            //Sunrise-start
 
             if (TryPrototype((EntityUid) args.Target, out var prototype)
                 && prototype.ID == "MobPig"
@@ -175,7 +175,7 @@ namespace Content.Server.Bible
                 return;
             }
 
-	        //Sunrise-end
+            //Sunrise-end
 
             // This only has a chance to fail if the target is not wearing anything on their head and is not a familiar..
             if (!_invSystem.TryGetSlotEntity(args.Target.Value, "head", out var _) && !HasComp<FamiliarComponent>(args.Target.Value))

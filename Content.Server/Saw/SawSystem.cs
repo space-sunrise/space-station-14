@@ -14,15 +14,14 @@ using Content.Shared.Mobs.Systems;
 using Content.Server._Sunrise.Mood;
 using Content.Shared.Nutrition.Components;
 
-
 namespace Content.Server.Saw;
 
 public sealed class SawSystem : EntitySystem
 {
+    [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly HumanoidAppearanceSystem _humanoid = default!;
     [Dependency] private readonly MobThresholdSystem _thresholdSystem = default!;
     public override void Initialize()
     {
@@ -50,13 +49,11 @@ public sealed class SawSystem : EntitySystem
 
     private void SawInit(EntityUid ent, SawComponent saw, ComponentInit args)
     {
-        if (TryComp(ent, out ReproductiveComponent? reproductive))
-        {
-            reproductive.Capacity = 0;
-            reproductive.Gestating = false;
-            reproductive.GestationEndTime = null;
-            reproductive.IsPartnerNeed = false;
-        }
+        if (HasComp<ReproductiveComponent>(ent))
+            RemComp<ReproductiveComponent>(ent);
+
+        _entityManager.AddComponents(ent, _prototypeManager.Index("MobSaw").Components, false);
+
     }
 
     private void OnBirth(Entity<SawComponent> saw, ref BirthEvent args)
@@ -84,5 +81,4 @@ public sealed class SawSystem : EntitySystem
         _mindSystem.TransferTo((EntityUid) eatenMind, child);
         _metaData.SetEntityName(args.Spawns[0], "троттин");
     }
-
 }
