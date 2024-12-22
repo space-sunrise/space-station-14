@@ -7,6 +7,8 @@ using Content.Server.NPC.Systems;
 using Content.Server.Popups;
 using Content.Shared.Atmos;
 using Content.Shared.Dataset;
+using Content.Shared.Mobs; // Sunrise-Edit
+using Content.Shared.Mobs.Components; // Sunrise-Edit
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Pointing;
@@ -46,7 +48,16 @@ namespace Content.Server.RatKing
             if (!TryComp<HungerComponent>(uid, out var hunger))
                 return;
 
-            if (component.Servants.Count >= component.MaxArmyCount)
+            // Sunrise-Edit
+            var livingServants = 0;
+            foreach (var servantId in component.Servants)
+            {
+                if (TryComp<MobStateComponent>(servantId, out var mobState) && mobState.CurrentState != MobState.Dead)
+                    livingServants++;
+            }
+
+            if (livingServants >= component.MaxArmyCount)
+            // Sunrise-Edit
             {
                 _popup.PopupEntity(Loc.GetString("rat-king-max-army", ("amount", component.MaxArmyCount)), uid, uid);
                 return;
