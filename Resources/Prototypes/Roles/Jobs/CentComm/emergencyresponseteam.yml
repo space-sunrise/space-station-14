@@ -199,7 +199,7 @@
     back: ClothingBackpackERTEngineer
     shoes: ClothingShoesSwat # Sunrise-edit
     mask: ClothingMaskGasERT # Sunrise-edit
-    head: ClothingHeadEVAHelmetERTEngineer # Sunrise-edit
+    head: ClothingHeadHelmetERTEngineer
     eyes: ClothingEyesHudDiagnosticERT # Sunrise-edit
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorAmberEng
