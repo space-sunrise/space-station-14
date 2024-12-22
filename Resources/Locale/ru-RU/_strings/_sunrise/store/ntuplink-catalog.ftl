@@ -5,10 +5,23 @@ ntuplink-mech-teleporter-heavy-desc = Содержит ящик с тяжелы�
 ntuplink-mech-teleporter-eliteheavy-name = Телепортер Тяжелого Элитного Меха.
 ntuplink-mech-teleporter-eliteheavy-desc = Содержит ящик с лучшим мехом НаноТрейзен. Только для старших Офицеров!
 
-ntuplink-mech-powercage-nanotrasen-name = Боевая энерго ячейка НаноТрейзен
+ntuplink-mech-powercage-nanotrasen-name = Энерго ячейка НаноТрейзен
 ntuplink-mech-powercage-nanotrasen-desc = Перезаряжаемая энергетическая ячейка для больших устройств. Увеличенная ёмкость для увеличенного уровня мощности. Имеет защиту от ЭМИ.
 ntuplink-equip-jetpackvoid-name = пустотный джетпак
-ntuplink-equip-jetpackvoid-desc = { ent-JetpackVoid.desc }
 ntuplink-equip-jetpackmini-name = мини джетпак
-ntuplink-equip-jetpackmini-desc = Это реактивный ранец - джетпак. Вмещает 1,5 Л газа.
-
+ntuplink-equip-jetpack-name = джетпак
+ntuplink-equip-riotshield-name = противоударный щит
+ntuplink-equip-riotlasershield-name = противолазерный щит
+ntuplink-equip-riotbulletshield-name = противопульный щит
+ntuplink-equip-telescopicshield-name = телескопический щит
+ntuplink-engineering-powercellnt-name = Батарея НаноТрейзен
+ntuplink-gun-bundlewt550-name = Набор WT550
+ntuplink-gun-bundlemp5-name = Набор MP-5
+ntuplink-gun-bundlelecter-name = Набор Lecter
+ntuplink-gun-bundlep90-name = Набор P-90
+ntuplink-gun-bundleams42-name = Набор AMS-42
+ntuplink-gun-bundlemg342-name = Набор MG-342
+ntuplink-gun-bundlebr64-name = Набор BR-64
+ntuplink-gun-bundlezauer-name = Набор Zauer
+ntuplink-gun-bundlexm1014-name = Набор XM1014
+ntuplink-gun-bundlelaw12-name = Набор Law-12

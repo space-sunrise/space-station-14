@@ -14,8 +14,8 @@
 - type: entity
   id: ClothingBackpackDuffelWeaponSubMachineGunWt550Filled
   parent: ClothingBackpackDuffelMilitary
-  name: bundle WT550
-  description: Содержит WT550 и 3 обоймы.
+  name: Bundle WT550
+  description: WT550 with 3 raspy magazines.
   components:
   - type: StorageFill
     contents:
@@ -26,8 +26,8 @@
 - type: entity
   id: ClothingBackpackDuffelWeaponSubMachineGunMP5Filled
   parent: ClothingBackpackDuffelMilitary
-  name: Набор MP5
-  description: Содержит MP5 и две обоймы.
+  name: Bundle MP5
+  description: MP5 with 2 raspy magazines.
   components:
   - type: StorageFill
     contents:
@@ -40,8 +40,8 @@
 - type: entity
   id: ClothingBackpackDuffelWeaponRifleLecterFilled
   parent: ClothingBackpackDuffelMilitary
-  name: bundle Lecter
-  description: Содержит Lecter и 3 обоймы.
+  name: Bundlelecter
+  description: Lecter with 3 raspy magazines.
   components:
     - type: StorageFill
       contents:
@@ -52,8 +52,8 @@
 - type: entity
   id: ClothingBackpackDuffelWeaponSubMachineGunP90Filled
   parent: ClothingBackpackDuffelMilitary
-  name: bundle P-90
-  description: Содержит P-90 и 2 обоймы.
+  name: Bundle p90
+  description: P-90 with 2 raspy magazines.
   components:
     - type: StorageFill
       contents:
@@ -64,8 +64,8 @@
 - type: entity
   id: ClothingBackpackDuffelWeaponAMS42Filled
   parent: ClothingBackpackDuffelMilitary
-  name: Набор AMS-42
-  description: Содержит AMS-42 и 3 обоймы.
+  name: Bundle ams42
+  description: AMS-42 with 3 raspy magazines.
   components:
     - type: StorageFill
       contents:
@@ -76,8 +76,8 @@
 - type: entity
   id: ClothingBackpackDuffelWeaponShotgunZauerFilled
   parent: ClothingBackpackDuffelMilitary
-  name: Набор Zauer
-  description: Содержит Zauer и две обоймы.
+  name: Bundle zauer
+  description: Zauer with 2 raspy magazines.
   components:
     - type: StorageFill
       contents:
@@ -88,8 +88,8 @@
 - type: entity
   id: ClothingBackpackDuffelWeaponXM1014Filled
   parent: ClothingBackpackDuffelMilitary
-  name: Набор XM1014
-  description: XM1014 и одну обойму.
+  name: Bundle xm1014
+  description: XM1014 with 1 Box ammo.
   components:
     - type: StorageFill
       contents:
@@ -100,8 +100,8 @@
 - type: entity
   id: ClothingBackpackDuffelWeaponShotgun12Filled
   parent: ClothingBackpackDuffelMilitary
-  name: Набор LAW-12
-  description: Содержит LAW-12 и коробку ружейных патрон.
+  name: Bundle law12
+  description: Law-12 with 1 Box ammo.
   components:
     - type: StorageFill
       contents:
@@ -112,8 +112,8 @@
 - type: entity
   id: ClothingBackpackDuffelWeaponRifleBR64Filled
   parent: ClothingBackpackDuffelMilitary
-  name: Набор BR-64
-  description: Содержит BR-64 и две обоймы.
+  name: Bundle br64
+  description: BR64 with 2 raspy magazines.
   components:
     - type: StorageFill
       contents:
@@ -124,8 +124,8 @@
 - type: entity
   id: ClothingBackpackDuffelWeaponLightMachineGunMG42
   parent: ClothingBackpackDuffelMilitary
-  name: Набор MG-342
-  description: Содержит пулемет MG-342 и 2 барабанных магазина.
+  name: Bundle mg342
+  description: MG-342 with 2 raspy magazines.
   components:
     - type: StorageFill
       contents:
