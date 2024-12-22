@@ -1,4 +1,3 @@
-using Content.Server.Nutrition;
 using Content.Server.Nutrition.Components;
 using Content.Shared.IdentityManagement.Components;
 using Content.Shared.Nutrition.AnimalHusbandry;
@@ -6,13 +5,14 @@ using Content.Server.Mind;
 using Robust.Shared.Prototypes;
 using Content.Shared.Mind.Components;
 using Content.Server.Nutrition.EntitySystems;
-using Content.Server.Humanoid;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs;
 using Content.Shared.FixedPoint;
 using Content.Shared.Mobs.Systems;
 using Content.Server._Sunrise.Mood;
 using Content.Shared.Nutrition.Components;
+using Content.Shared.Nutrition;
+using Content.Shared.Nutrition.EntitySystems;
 
 namespace Content.Server.Saw;
 
@@ -23,6 +23,7 @@ public sealed class SawSystem : EntitySystem
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly MobThresholdSystem _thresholdSystem = default!;
+    [Dependency] private readonly HungerSystem _hungerSystem = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -70,7 +71,7 @@ public sealed class SawSystem : EntitySystem
 
         if (TryComp<MobThresholdsComponent>(child, out var thresholds))
         {
-            FixedPoint2 thresholdModifier = hungerComp.CurrentHunger * saw.Comp.HungerToThresholdModifier;
+            FixedPoint2 thresholdModifier = _hungerSystem.GetHunger(hungerComp) * saw.Comp.HungerToThresholdModifier;
 
             _thresholdSystem.SetMobStateThreshold(child, _thresholdSystem.GetThresholdForState(child, MobState.Critical) + thresholdModifier, MobState.Critical);
             _thresholdSystem.SetMobStateThreshold(child, _thresholdSystem.GetThresholdForState(child, MobState.Dead) + thresholdModifier, MobState.Dead);
