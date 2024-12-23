@@ -216,6 +216,17 @@
         Heat: 0.5
         Radiation: 0
         Caustic: 0.75
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: PressureProtection
+    highPressureMultiplier: 0.6
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.02
+    coolingCoefficient: 0.5
+  - type: ClothingSpeedModifier
+    walkModifier: 0.65
+    sprintModifier: 0.65
   - type: GroupExamine
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
