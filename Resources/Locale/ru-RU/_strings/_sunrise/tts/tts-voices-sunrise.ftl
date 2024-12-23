@@ -65,4 +65,5 @@ tts-voice-name-warcraft3-lord-garithos = [Warcraft] Лорд Гаритос
 tts-voice-name-crysis2-ai-usafrican-01 = [Crysis 2] Оперативник 1
 tts-voice-name-warcraft3-muradin = [Warcraft 3] Мурадин
 tts-voice-name-warcraft3-artas-2 = [Warcraft 3] Артас 2.0
-tts-voice-name-warcraft3-witcher = [Warcraft 3] Ведьмак
+tts-voice-name-warcraft3-kel = (NEW) [Warcraft 3] Кел
+tts-voice-name-warcraft3-dreney = (NEW) [Warcraft 3] Дреней
