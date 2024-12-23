@@ -126,3 +126,54 @@
   id: UplinkLootBoxes
   name: store-category-lootbox
   priority: 11
+
+#ERTuplink categoires #KaiserEdit
+- type: storeCategory
+  id: NTAutoGun
+  name: Автоматы
+  priority: 0
+
+- type: storeCategory
+  id: NTLasers
+  name: Лазерное оружие
+  priority: 1
+
+- type: storeCategory
+  id: NTMedicine
+  name: Медицина
+  priority: 4
+
+- type: storeCategory
+  id: NTPistols
+  name: Пистолеты
+  priority: 2
+
+- type: storeCategory
+  id: NTAdditional
+  name: Дополнительное
+  priority: 5
+
+- type: storeCategory
+  id: NTSanitary
+  name: Санитария
+  priority: 6
+
+- type: storeCategory
+  id: NTEngineering
+  name: Инженерия
+  priority: 7
+
+- type: storeCategory
+  id: NTMechs
+  name: Мехи
+  priority: 9
+
+- type: storeCategory
+  id: NTAmmo
+  name: Боеприпасы
+  priority: 3
+
+- type: storeCategory
+  id: NTEquipment
+  name: Экипировка
+  priority: 8

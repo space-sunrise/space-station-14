@@ -9,3 +9,126 @@
       - id: WeaponRifleBauer127
       - id: MagazineBauer127Extended
       - id: MagazineBauer127Extended
+
+#ERT_Uplink
+- type: entity
+  id: ClothingBackpackDuffelWeaponSubMachineGunWt550Filled
+  parent: ClothingBackpackDuffelMilitary
+  name: Bundle WT550
+  description: WT550 with 3 raspy magazines.
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSubMachineGunWt550
+    - id: MagazinePistolSubMachineGunTopMounted
+      amount: 3
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponSubMachineGunMP5Filled
+  parent: ClothingBackpackDuffelMilitary
+  name: Bundle MP5
+  description: MP5 with 2 raspy magazines.
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSubMachineGunMP5
+    - id: MagazineMP5
+      amount: 1
+    - id: MagazineMP5Extended
+      amount: 1
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponRifleLecterFilled
+  parent: ClothingBackpackDuffelMilitary
+  name: Bundlelecter
+  description: Lecter with 3 raspy magazines.
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponRifleLecter
+        - id: MagazineRifle
+          amount: 3
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponSubMachineGunP90Filled
+  parent: ClothingBackpackDuffelMilitary
+  name: Bundle p90
+  description: P-90 with 2 raspy magazines.
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponSubMachineGunP90
+        - id: MagazineP90
+          amount: 2
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponAMS42Filled
+  parent: ClothingBackpackDuffelMilitary
+  name: Bundle ams42
+  description: AMS-42 with 3 raspy magazines.
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponAMS-42
+        - id: MagazineRifle
+          amount: 3
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponShotgunZauerFilled
+  parent: ClothingBackpackDuffelMilitary
+  name: Bundle zauer
+  description: Zauer with 2 raspy magazines.
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponShotgunZauer
+        - id: MagazineShotgun
+          amount: 2
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponXM1014Filled
+  parent: ClothingBackpackDuffelMilitary
+  name: Bundle xm1014
+  description: XM1014 with 1 Box ammo.
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponXM1014
+        - id: BoxLethalshot
+        - id: BoxShotgunFlare
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponShotgun12Filled
+  parent: ClothingBackpackDuffelMilitary
+  name: Bundle law12
+  description: Law-12 with 1 Box ammo.
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponShotgunSPAS12
+        - id: BoxLethalshot
+        - id: BoxShotgunFlare
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponRifleBR64Filled
+  parent: ClothingBackpackDuffelMilitary
+  name: Bundle br64
+  description: BR64 with 2 raspy magazines.
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponRifleBR64
+        - id: MagazineBR64Extended
+          amount: 2
+
+- type: entity
+  id: ClothingBackpackDuffelWeaponLightMachineGunMG42
+  parent: ClothingBackpackDuffelMilitary
+  name: Bundle mg342
+  description: MG-342 with 2 raspy magazines.
+  components:
+    - type: StorageFill
+      contents:
+        - id: WeaponMachineGunMG42
+        - id: MagazineMachineGunMG42
+          amount: 2

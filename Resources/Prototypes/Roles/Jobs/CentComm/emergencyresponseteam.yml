@@ -21,7 +21,7 @@
     back: ClothingBackpackERTLeader
     shoes: ClothingShoesSwat # Sunrise-edit
     mask: ClothingMaskGasERT # Sunrise-edit
-    head: ClothingHeadHelmetERTLeader
+    head: ClothingHeadEVAHelmetERTLeader  # Sunrise-edit
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorAmberCom # Sunrise-edit
@@ -29,7 +29,7 @@
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
     pocket1: WeaponPistolN1984
-    pocket2: MagazineMagnum # Sunrise-edit
+    pocket2: BaseUplinkNTERT60BC # Sunrise-edit
   storage:
     back:
     - WeaponEnergyGunPistolSecurity # Sunrise-edit
@@ -54,7 +54,7 @@
     id: ERTLeaderPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPulsePistol # Sunrise-edit
+    pocket1: BaseUplinkNTERT100BC # Sunrise-edit
     pocket2: HandheldCriminalRecordsMonitorUnpowered # Sunrise-edit
   storage:
     back:
@@ -80,7 +80,7 @@
     id: ERTLeaderPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
-    pocket1: MagazineRifle
+    pocket1: BaseUplinkNTERT200BC
     pocket2: MagazineRifle
   inhand:
   - WeaponRifleLecter
@@ -120,7 +120,7 @@
     jumpsuit: ClothingUniformJumpsuitERTChaplain
     back: ClothingBackpackERTChaplain
     shoes: ClothingShoesSwat # Sunrise-edit
-    head: ClothingHeadHatFez
+    head: ClothingHeadEVAHelmetERTChaplain # Sunrise-edit
     eyes: ClothingEyesGlasses
     neck: ClothingNeckStoleChaplain
     gloves: ClothingHandsGlovesCombat
@@ -199,7 +199,7 @@
     back: ClothingBackpackERTEngineer
     shoes: ClothingShoesSwat # Sunrise-edit
     mask: ClothingMaskGasERT # Sunrise-edit
-    head: ClothingHeadHelmetERTEngineer
+    head: ClothingHeadEVAHelmetERTEngineer # Sunrise-edit
     eyes: ClothingEyesHudDiagnosticERT # Sunrise-edit
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorAmberEng
@@ -272,7 +272,7 @@
     back: ClothingBackpackERTSecurity
     shoes: ClothingShoesSwat # Sunrise-edit
     mask: ClothingMaskGasERT # Sunrise-edit
-    head: ClothingHeadHelmetERTSecurity
+    head: ClothingHeadEVAHelmetERTSecurity  # Sunrise-edit
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorAmberSec
@@ -363,7 +363,7 @@
     back: ClothingBackpackERTMedical
     shoes: ClothingShoesSwat # Sunrise-edit
     mask: ClothingMaskGasERT # Sunrise-edit
-    head: ClothingHeadHelmetERTMedic
+    head: ClothingHeadEVAHelmetERTMedic # Sunrise-edit
     eyes: ClothingEyesHudMedSec # Sunrise-edit
     gloves: ClothingHandsGlovesCombat # Sunrise-edit
     outerClothing: ClothingOuterArmorAmberMed # Sunrise-edit
@@ -434,7 +434,7 @@
     back: ClothingBackpackERTJanitor
     shoes: ClothingShoesGaloshes
     mask: ClothingMaskGasERT # Sunrise-edit
-    head: ClothingHeadHelmetERTJanitor
+    head: ClothingHeadEVAHelmetERTJanitor # Sunrise-edit
     gloves: ClothingHandsGlovesCombat # Sunrise-edit
     outerClothing: ClothingOuterArmorAmberJan
     id: ERTJanitorPDA

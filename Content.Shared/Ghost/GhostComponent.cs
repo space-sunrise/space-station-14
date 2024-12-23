@@ -39,6 +39,14 @@ public sealed partial class GhostComponent : Component
     [DataField, AutoNetworkedField]
     public EntityUid? BooActionEntity;
 
+    // Sunrise-Start
+    [DataField]
+    public EntProtoId GhostsThemeAction = "GhostChangeTheme";
+
+    [DataField, AutoNetworkedField]
+    public EntityUid? GhostsThemeActionEntity;
+    // Sunrise-End
+
     // End actions
 
     [ViewVariables(VVAccess.ReadWrite), DataField]

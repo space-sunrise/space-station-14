@@ -1,0 +1,293 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Made by Sunrise",
+    "size": {
+        "x": 128,
+        "y": 64
+    },
+    "states": [
+	{
+		"name": "ams42"
+	},
+	{
+		"name": "Base_Icon"
+	},
+	{
+		"name": "box_magnum_ince"
+	},
+	{
+		"name": "box_magnum_uran"
+	},
+	{
+		"name": "box_rifle"
+	},
+	{
+		"name": "box_shot"
+	},
+	{
+		"name": "box_shot_red"
+	},
+	{
+		"name": "box_shot_slug"
+	},
+	{
+		"name": "box_smg"
+	},
+	{
+		"name": "br64"
+	},
+	{
+		"name": "box_smg_red"
+	},
+	{
+		"name": "zauer"
+	},
+	{
+		"name": "xm1014"
+	},
+	{
+		"name": "spas12"
+	},
+	{
+		"name": "box_smg_uran"
+	},
+	{
+		"name": "box_wt550"
+	},
+	{
+		"name": "comp_defib"
+	},
+	{
+		"name": "mg42"
+	},
+	{
+		"name": "crate_med"
+	},
+	{
+		"name": "energygun"
+	},
+	{
+		"name": "skorpion"
+	},
+	{
+		"name": "energygun_tac"
+	},
+	{
+		"name": "mp5"
+	},
+	{
+		"name": "p90"
+	},
+	{
+		"name": "energygun-psec"
+	},
+	{
+		"name": "ion-r"
+	},
+	{
+		"name": "lecter"
+	},	
+	{
+		"name": "mag_br64"
+	},
+	{
+		"name": "mag_magnum"
+	},
+	{
+		"name": "mag_mg342"
+	},
+	{
+		"name": "mag_p90"
+	},
+	{
+		"name": "mech_marauder"
+	},
+	{
+		"name": "mech_ntgygax"
+	},
+	{
+		"name": "cyborg_ert"
+	},
+	{
+		"name": "pulse-c"
+	},
+	{
+		"name": "pulse-p"
+	},
+	{
+		"name": "pulse-r"
+	},
+	{
+		"name": "pulse-sc"
+	},
+	{
+		"name": "mech_seraph"
+	},
+	{
+		"name": "n1984"
+	},
+	{
+		"name": "power_cell_nt"
+	},
+	{
+		"name": "powercage_nt"
+	},
+	{
+		"name": "wt550"
+	},
+	{
+		"name": "mateba"
+	},
+	{
+		"name": "g22"
+	},
+	{
+		"name": "acp14"
+	},
+	{
+		"name": "deagle"
+	},
+	{
+		"name": "monkeycube"
+	},
+	{
+		"name": "cloning_equipment"
+	},
+	{
+		"name": "handheldcrewmonitor"
+	},
+	{
+		"name": "defib"
+	},
+	{
+		"name": "med-oxygen"
+	},
+	{
+		"name": "med-brute"
+	},
+	{
+		"name": "med-rad"
+	},
+	{
+		"name": "med-toxin"
+	},
+	{
+		"name": "med-burn"
+	},
+	{
+		"name": "med-black"
+	},
+	{
+		"name": "ambuzol-syringe"
+	},
+	{
+		"name": "pill"
+	},
+	{
+		"name": "magazine-magnum-p"
+	},
+	{
+		"name": "flare_box"
+	},
+	{
+		"name": "extinguisher"
+	},
+	{
+		"name": "box_mre"
+	},
+	{
+		"name": "flash"
+	},
+	{
+		"name": "stunbaton"
+	},
+	{
+		"name": "box_flashbangs"
+	},
+	{
+		"name": "box_handcuffs"
+	},
+	{
+		"name": "disabler"
+	},
+	{
+		"name": "jaws"
+	},
+	{
+		"name": "omnitool"
+	},
+	{
+		"name": "red_crowbar"
+	},
+	{
+		"name": "power_cell_high"
+	},
+	{
+		"name": "network_configurator"
+	},
+	{
+		"name": "multitool"
+	},
+	{
+		"name": "box_bodybags"
+	},
+	{
+		"name": "pest_spray"
+	},
+	{
+		"name": "weed_spray"
+	},
+	{
+		"name": "janitorial_trolley"
+	},
+	{
+		"name": "trash_bag_blue"
+	},
+	{
+		"name": "water_tank"
+	},
+	{
+		"name": "cleaner"
+	},
+	{
+		"name": "adv-mop"
+	},
+	{
+		"name": "jet_blue"
+	},
+	{
+		"name": "mini_jet"
+	},
+	{
+		"name": "void_jet"
+	},
+	{
+		"name": "sec_web"
+	},
+	{
+		"name": "riot_shield"
+	},
+	{
+		"name": "riot_laser_shield"
+	},
+	{
+		"name": "riot_bullet_shield"
+	},
+	{
+		"name": "telescopic_shield"
+	},
+	{
+		"name": "box_light"
+	},
+	{
+		"name": "magazine-glock-22"
+	},
+	{
+		"name": "magazine-vp70"
+	},
+	{
+		"name": "magazine-acp14"
+	}
+    ]
+}

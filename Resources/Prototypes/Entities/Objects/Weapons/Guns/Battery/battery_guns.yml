@@ -294,7 +294,7 @@
   - type: EmpImmune  # Sunrise-EMP
   - type: HitscanBatteryAmmoProvider
     proto: BulletPulse # Sunrise-Edit
-    fireCost: 200
+    fireCost: 100 # Sunrise-Edit
   - type: Battery
     maxCharge: 5000
     startingCharge: 5000
@@ -775,4 +775,4 @@
     autoRecharge: true
     autoRechargeRate: 24
     autoRechargePause: true
-    autoRechargePauseTime: 10
+    autoRechargePauseTime: 30
