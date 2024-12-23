@@ -9,6 +9,7 @@
       path: /Audio/Weapons/ebladeon.ogg
     soundDeactivate:
       path: /Audio/Weapons/ebladeoff.ogg
+    deactivateUnequippedHand: true
   - type: ItemToggleActiveSound
     activeSound:
       path: /Audio/Weapons/ebladehum.ogg
@@ -39,15 +40,15 @@
         variation: 0.125
     activatedDamage:
       types:
-        Slash: 15
-        Heat: 15
+        Slash: 10
+        Heat: 10
         Structural: 20
   - type: MeleeWeapon
     wideAnimationRotation: -135
     attackRate: 1
     damage:
       types:
-        Blunt: 4.5
+        Blunt: 1
   - type: Item
     size: Small
   - type: UseDelay
@@ -69,6 +70,9 @@
       - state: inhand-right-blade
         shader: unshaded
   - type: Reflect
+    reflectProb: .35
+    spread: 45
+    needActiveHand: true
   # Sunrise-start
   - type: Tag
     tags:
@@ -188,8 +192,8 @@
         variation: 0.250
     activatedDamage:
       types:
-        Slash: 10
-        Heat: 10
+        Slash: 6
+        Heat: 6
   - type: ComponentToggler
     components:
     - type: Sharp
@@ -225,6 +229,10 @@
     damage:
       types:
         Blunt: 1
+  - type: Reflect
+    reflectProb: .15
+    spread: 45
+    needActiveHand: true
   - type: Tag
     tags:
     - Write
@@ -244,7 +252,7 @@
     state: e_dagger
   - type: SpawnItemsOnUse
     items:
-    - id: EnergyDagger
+    - id: EnergyDaggerBiocode # Sunrise-Edit
     sound:
       path: /Audio/Effects/unwrap.ogg
 
@@ -280,6 +288,7 @@
   components:
   - type: ItemToggle
     onUse: false # wielding events control it instead
+    onActivate: false # prevents the weapon from being able to be turned on when it is on the ground
     soundActivate:
       path: /Audio/Weapons/ebladeon.ogg
       params:
@@ -296,9 +305,9 @@
         variation: 0.250
     activatedDamage:
         types:
-            Slash: 12
-            Heat: 12
-            Structural: 15
+            Slash: 6
+            Heat: 6
+            Structural: 10
   - type: ItemToggleActiveSound
     activeSound:
       path: /Audio/Weapons/ebladehum.ogg
@@ -315,11 +324,11 @@
     wieldSound: null # esword light sound instead
   - type: MeleeWeapon
     wideAnimationRotation: -135
-    attackRate: 1.5
+    attackRate: 2
     angle: 100
     damage:
       types:
-        Blunt: 4.5
+        Blunt: 1
   - type: Sprite
     sprite: Objects/Weapons/Melee/e_sword_double.rsi
     layers:
@@ -333,8 +342,9 @@
     size: Small
     sprite: Objects/Weapons/Melee/e_sword_double-inhands.rsi
   - type: Reflect
-    reflectProb: .75
-    spread: 75
+    reflectProb: .50
+    spread: 90
+    needActiveHand: true
 
 - type: entity
   suffix: One-Handed, For Borgs

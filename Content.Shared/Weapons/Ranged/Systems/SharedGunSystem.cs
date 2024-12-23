@@ -11,6 +11,8 @@ using Content.Shared.Examine;
 using Content.Shared.Gravity;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
+using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Input;
 using Content.Shared.Mech.Components;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
@@ -26,10 +28,12 @@ using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
@@ -66,6 +70,7 @@ public abstract partial class SharedGunSystem : EntitySystem
     [Dependency] protected readonly ThrowingSystem ThrowingSystem = default!;
     [Dependency] private   readonly UseDelaySystem _useDelay = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
 
     private const float InteractNextFire = 0.3f;
     private const double SafetyNextFire = 0.5;
@@ -98,6 +103,33 @@ public abstract partial class SharedGunSystem : EntitySystem
         SubscribeLocalEvent<GunComponent, CycleModeEvent>(OnCycleMode);
         SubscribeLocalEvent<GunComponent, HandSelectedEvent>(OnGunSelected);
         SubscribeLocalEvent<GunComponent, MapInitEvent>(OnMapInit);
+
+        // Sunrise-Start
+        CommandBinds.Builder
+            .Bind(ContentKeyFunctions.CockGun, InputCmdHandler.FromDelegate(HandleCockGun, handle: false, outsidePrediction: false))
+            .Register<SharedGunSystem>();
+        // Sunrise-End
+    }
+
+    private void HandleCockGun(ICommonSession? session)
+    {
+        if (session?.AttachedEntity == null)
+            return;
+
+        if (!TryComp<HandsComponent>(session.AttachedEntity.Value, out var handsComp))
+            return;
+
+        if (!_hands.TryGetActiveItem((session.AttachedEntity.Value, handsComp), out var itemInHand))
+            return;
+
+        if (TryComp<ChamberMagazineAmmoProviderComponent>(itemInHand.Value, out var chamberMagazineProvider))
+            ChamberMagazineUseInHand(session.AttachedEntity.Value, itemInHand.Value, chamberMagazineProvider);
+
+        if (TryComp<BallisticAmmoProviderComponent>(itemInHand.Value, out var ballisticAmmoProvider))
+            BallisticAmmoCockGun(session.AttachedEntity.Value, itemInHand.Value, ballisticAmmoProvider);
+
+        if (TryComp<MagazineAmmoProviderComponent>(itemInHand.Value, out var magazineAmmoProvider))
+            MagazineAmmoCockGun(session.AttachedEntity.Value, itemInHand.Value, magazineAmmoProvider);
     }
 
     private void OnMapInit(Entity<GunComponent> gun, ref MapInitEvent args)
@@ -120,7 +152,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         if (melee.NextAttack > component.NextFire)
         {
             component.NextFire = melee.NextAttack;
-            Dirty(uid, component);
+            EntityManager.DirtyField(uid, component, nameof(MeleeWeaponComponent.NextAttack));
         }
     }
 
@@ -214,20 +246,8 @@ public abstract partial class SharedGunSystem : EntitySystem
         gun.ShotCounter = 0;
         gun.ShootCoordinates = null;
         gun.Target = null;
-        Dirty(uid, gun);
+        EntityManager.DirtyField(uid, gun, nameof(GunComponent.ShotCounter));
     }
-
-    // Sunrise START
-
-    /// <summary>
-    /// Sets the targeted entity of the gun. Should be called before attempting to shoot to avoid shooting over the target.
-    /// </summary>
-    public void SetTarget(GunComponent gun, EntityUid target)
-    {
-        gun.Target = target;
-    }
-
-    // Sunrise END
 
     /// <summary>
     /// Attempts to shoot at the target coordinates. Resets the shot counter after every shot.
@@ -237,6 +257,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         gun.ShootCoordinates = toCoordinates;
         AttemptShoot(user, gunUid, gun);
         gun.ShotCounter = 0;
+        EntityManager.DirtyField(gunUid, gun, nameof(GunComponent.ShotCounter));
     }
 
     /// <summary>
@@ -254,7 +275,9 @@ public abstract partial class SharedGunSystem : EntitySystem
     {
         if (gun.FireRateModified <= 0f ||
             !_actionBlockerSystem.CanAttack(user))
+        {
             return;
+        }
 
         var toCoordinates = gun.ShootCoordinates;
 
@@ -285,7 +308,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         var fireRate = TimeSpan.FromSeconds(1f / gun.FireRateModified);
 
         if (gun.SelectedMode == SelectiveFire.Burst || gun.BurstActivated)
-            fireRate = fireRate / gun.BurstFireRateModifier;
+            fireRate = TimeSpan.FromSeconds(1f / gun.BurstFireRate);
 
         // First shot
         // Previously we checked shotcounter but in some cases all the bullets got dumped at once
@@ -306,7 +329,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         }
 
         // NextFire has been touched regardless so need to dirty the gun.
-        Dirty(gunUid, gun);
+        EntityManager.DirtyField(gunUid, gun, nameof(GunComponent.NextFire));
 
         // Get how many shots we're actually allowed to make, due to clip size or otherwise.
         // Don't do this in the loop so we still reset NextFire.
@@ -362,6 +385,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         // Even if we don't actually shoot update the ShotCounter. This is to avoid spamming empty sounds
         // where the gun may be SemiAuto or Burst.
         gun.ShotCounter += shots;
+        EntityManager.DirtyField(gunUid, gun, nameof(GunComponent.ShotCounter));
 
         if (ev.Ammo.Count <= 0)
         {
@@ -418,8 +442,6 @@ public abstract partial class SharedGunSystem : EntitySystem
             if (_gravity.IsWeightless(user, userPhysics))
                 CauseImpulse(fromCoordinates, toCoordinates.Value, user, userPhysics);
         }
-
-        Dirty(gunUid, gun);
     }
 
     public void Shoot(
@@ -465,7 +487,7 @@ public abstract partial class SharedGunSystem : EntitySystem
         RaiseLocalEvent(uid, ref ev);
         // Sunrise-End
 
-        TransformSystem.SetWorldRotation(uid, direction.ToWorldAngle());
+        TransformSystem.SetWorldRotation(uid, direction.ToWorldAngle() + projectile.Angle);
     }
 
     protected abstract void Popup(string message, EntityUid? uid, EntityUid? user);
@@ -478,9 +500,18 @@ public abstract partial class SharedGunSystem : EntitySystem
     protected void SetCartridgeSpent(EntityUid uid, CartridgeAmmoComponent cartridge, bool spent)
     {
         if (cartridge.Spent != spent)
-            Dirty(uid, cartridge);
+            DirtyField(uid, cartridge, nameof(CartridgeAmmoComponent.Spent));
 
         cartridge.Spent = spent;
+        Appearance.SetData(uid, AmmoVisuals.Spent, spent);
+    }
+
+    protected void SetHitscanCartridgeSpent(EntityUid uid, HitScanCartridgeAmmoComponent hitScanCartridgeAmmo, bool spent)
+    {
+        if (hitScanCartridgeAmmo.Spent != spent)
+            Dirty(uid, hitScanCartridgeAmmo);
+
+        hitScanCartridgeAmmo.Spent = spent;
         Appearance.SetData(uid, AmmoVisuals.Spent, spent);
     }
 
@@ -520,12 +551,16 @@ public abstract partial class SharedGunSystem : EntitySystem
         if (TryComp<CartridgeAmmoComponent>(uid, out var cartridge))
             return cartridge;
 
+        if (TryComp<HitScanCartridgeAmmoComponent>(uid, out var hitscan))
+            return hitscan;
+
         return EnsureComp<AmmoComponent>(uid);
     }
 
     protected void RemoveShootable(EntityUid uid)
     {
         RemCompDeferred<CartridgeAmmoComponent>(uid);
+        RemCompDeferred<HitScanCartridgeAmmoComponent>(uid);
         RemCompDeferred<AmmoComponent>(uid);
     }
 
@@ -577,17 +612,59 @@ public abstract partial class SharedGunSystem : EntitySystem
 
         RaiseLocalEvent(gun, ref ev);
 
-        comp.SoundGunshotModified = ev.SoundGunshot;
-        comp.CameraRecoilScalarModified = ev.CameraRecoilScalar;
-        comp.AngleIncreaseModified = ev.AngleIncrease;
-        comp.AngleDecayModified = ev.AngleDecay;
-        comp.MaxAngleModified = ev.MaxAngle;
-        comp.MinAngleModified = ev.MinAngle;
-        comp.ShotsPerBurstModified = ev.ShotsPerBurst;
-        comp.FireRateModified = ev.FireRate;
-        comp.ProjectileSpeedModified = ev.ProjectileSpeed;
+        if (comp.SoundGunshotModified != ev.SoundGunshot)
+        {
+            comp.SoundGunshotModified = ev.SoundGunshot;
+            DirtyField(gun, nameof(GunComponent.SoundGunshotModified));
+        }
 
-        Dirty(gun);
+        if (!MathHelper.CloseTo(comp.CameraRecoilScalarModified, ev.CameraRecoilScalar))
+        {
+            comp.CameraRecoilScalarModified = ev.CameraRecoilScalar;
+            DirtyField(gun, nameof(GunComponent.CameraRecoilScalarModified));
+        }
+
+        if (!comp.AngleIncreaseModified.EqualsApprox(ev.AngleIncrease))
+        {
+            comp.AngleIncreaseModified = ev.AngleIncrease;
+            DirtyField(gun, nameof(GunComponent.AngleIncreaseModified));
+        }
+
+        if (!comp.AngleDecayModified.EqualsApprox(ev.AngleDecay))
+        {
+            comp.AngleDecayModified = ev.AngleDecay;
+            DirtyField(gun, nameof(GunComponent.AngleDecayModified));
+        }
+
+        if (!comp.MaxAngleModified.EqualsApprox(ev.MinAngle))
+        {
+            comp.MaxAngleModified = ev.MaxAngle;
+            DirtyField(gun, nameof(GunComponent.MaxAngleModified));
+        }
+
+        if (!comp.MinAngleModified.EqualsApprox(ev.MinAngle))
+        {
+            comp.MinAngleModified = ev.MinAngle;
+            DirtyField(gun, nameof(GunComponent.MinAngleModified));
+        }
+
+        if (comp.ShotsPerBurstModified != ev.ShotsPerBurst)
+        {
+            comp.ShotsPerBurstModified = ev.ShotsPerBurst;
+            DirtyField(gun, nameof(GunComponent.ShotsPerBurstModified));
+        }
+
+        if (!MathHelper.CloseTo(comp.FireRateModified, ev.FireRate))
+        {
+            comp.FireRateModified = ev.FireRate;
+            DirtyField(gun, nameof(GunComponent.FireRateModified));
+        }
+
+        if (!MathHelper.CloseTo(comp.ProjectileSpeedModified, ev.ProjectileSpeed))
+        {
+            comp.ProjectileSpeedModified = ev.ProjectileSpeed;
+            DirtyField(gun, nameof(GunComponent.ProjectileSpeedModified));
+        }
     }
 
     protected abstract void CreateEffect(EntityUid gunUid, MuzzleFlashEvent message, EntityUid? user = null);
@@ -598,7 +675,7 @@ public abstract partial class SharedGunSystem : EntitySystem
     [Serializable, NetSerializable]
     public sealed class HitscanEvent : EntityEventArgs
     {
-        public List<(NetCoordinates coordinates, Angle angle, SpriteSpecifier Sprite, float Distance)> Sprites = new();
+        public List<(NetCoordinates coordinates, Angle angle, SpriteSpecifier sprite, float distance, EffectType effectType)> Sprites = new();
     }
 }
 
@@ -624,6 +701,12 @@ public record struct GunShotEvent(EntityUid User, List<(EntityUid? Uid, IShootab
 public enum EffectLayers : byte
 {
     Unshaded,
+}
+
+public enum EffectType : byte
+{
+    Tracer,
+    Static
 }
 
 [Serializable, NetSerializable]

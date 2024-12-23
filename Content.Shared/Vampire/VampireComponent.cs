@@ -10,10 +10,11 @@ using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using Robust.Shared.GameStates;
 
 namespace Content.Shared.Vampire.Components;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class VampireComponent : Component
 {
     //Static prototype references
@@ -23,12 +24,12 @@ public sealed partial class VampireComponent : Component
     public static readonly string ScreamEmoteProto = "Scream";
     [ValidatePrototypeId<CurrencyPrototype>]
     public static readonly string CurrencyProto = "BloodEssence";
-    
+
     [ViewVariables(VVAccess.ReadOnly), DataField("defaultMutation")]
     public VampireMutationsType DefaultMutation = VampireMutationsType.None;
     [ViewVariables(VVAccess.ReadOnly), DataField("currentMutation")]
     public VampireMutationsType CurrentMutation = VampireMutationsType.None;
-    
+
     public readonly HashSet<VampireMutationsType> VampireMutations = new()
     {
         VampireMutationsType.None,
@@ -63,21 +64,18 @@ public sealed partial class VampireComponent : Component
 
     [ValidatePrototypeId<EntityPrototype>]
     public static readonly string MutationsActionPrototype = "ActionVampireOpenMutationsMenu";
-    
+
     [ViewVariables(VVAccess.ReadWrite)]
     public EntityUid? MutationsAction;
-    
+
     public readonly List<ProtoId<EntityPrototype>> BaseVampireActions = new()
     {
         "ActionVampireToggleFangs",
         "ActionVampireHypnotise"
     };
-    
+
     [ValidatePrototypeId<VampirePowerProtype>]
     public static readonly string DrinkBloodPrototype = "DrinkBlood";
-    
-    [DataField, ViewVariables(VVAccess.ReadOnly)]
-    public ProtoId<StatusIconPrototype> StatusIcon { get; set; } = "VampireFaction";
 
     /// <summary>
     /// Total blood drank, counter for end of round screen
@@ -94,7 +92,16 @@ public sealed partial class VampireComponent : Component
     /// <summary>
     /// All unlocked abilities
     /// </summary>
-    public Dictionary<string, EntityUid?> UnlockedPowers = new();
+    [ViewVariables(VVAccess.ReadOnly)]
+    [AutoNetworkedField]
+    public Dictionary<string, NetEntity?> UnlockedPowers = new();
+
+    /// <summary>
+    /// All abilities
+    /// </summary>
+    [ViewVariables(VVAccess.ReadOnly)]
+    [AutoNetworkedField]
+    public Dictionary<string, AbilityInfo> actionEntities = new();
 
     /// <summary>
     /// Current available balance, used to sync currency across heirlooms and add essence as we feed
@@ -103,6 +110,22 @@ public sealed partial class VampireComponent : Component
 
     public readonly SoundSpecifier BloodDrainSound = new SoundPathSpecifier("/Audio/Items/drink.ogg", new AudioParams() { Volume = -3f, MaxDistance = 3f });
     public readonly SoundSpecifier AbilityPurchaseSound = new SoundPathSpecifier("/Audio/Items/drink.ogg");
+}
+
+/// <summary>
+/// Struct contains Action and Owner
+/// </summary>
+[Serializable, NetSerializable]
+public struct AbilityInfo
+{
+    public NetEntity Owner;
+    public NetEntity Action;
+
+    public AbilityInfo(NetEntity owner, NetEntity action)
+    {
+        Owner = owner;
+        Action = action;
+    }
 }
 
 
@@ -171,13 +194,22 @@ public sealed partial class CoffinComponent : Component { }
 public sealed partial class VampireFangsExtendedComponent : Component { }
 
 /// <summary>
+/// When added, damage the entity if its on the space
+/// </summary>
+[RegisterComponent]
+public sealed partial class VampireSpaceDamageComponent : Component
+{
+    public double NextSpaceDamageTick = 0;
+}
+
+/// <summary>
 /// When added, heals the entity by the specified amount
 /// </summary>
 [RegisterComponent]
 public sealed partial class VampireHealingComponent : Component
 {
     public double NextHealTick = 0;
-    
+
     public DamageSpecifier? Healing = default!;
 }
 
@@ -199,6 +231,18 @@ public sealed partial class VampireSealthComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite)]
     public float NextStealthTick = 0;
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float Upkeep = 0;
+}
+[RegisterComponent]
+public sealed partial class VampireStrengthComponent : Component
+{
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float NextTick = 0;
+
+    [ViewVariables(VVAccess.ReadOnly)]
+    public string Power = "";
 
     [ViewVariables(VVAccess.ReadWrite)]
     public float Upkeep = 0;
@@ -249,6 +293,14 @@ public sealed class VampireMutationPrototypeSelectedMessage : BoundUserInterface
 public enum VampireMutationUiKey : byte
 {
     Key
+}
+
+[NetSerializable, Serializable]
+public enum VampireVisualLayers : byte
+{
+    Digit1,
+    Digit2,
+    Digit3
 }
 
 /*[Serializable, NetSerializable]

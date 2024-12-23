@@ -88,6 +88,19 @@ namespace Content.Client.Stylesheets
         public const string StyleClassPopupMessageLarge = "PopupMessageLarge";
         public const string StyleClassPopupMessageLargeCaution = "PopupMessageLargeCaution";
 
+        // Sunrise-Edit
+        public const string StyleClassSocialBox = "SocialBox";
+        public const string StyleClassSocialButton = "SocialButton";
+        public const string StyleClassSocialButtonForum = "SocialButtonForum";
+        public const string StyleClassSocialButtonDiscord = "SocialButtonDiscord";
+        public const string StyleClassSocialButtonTelegram = "SocialButtonTelegram";
+
+        public static readonly Color SocialBoxBackground = Color.FromHex("#1E1E24");
+        public static readonly Color ForumButtonColor = Color.FromHex("#A88B5E");
+        public static readonly Color DiscordButtonColor = Color.FromHex("#5865F2");
+        public static readonly Color TelegramButtonColor = Color.FromHex("#0088cc");
+        // Sunrise-Edit
+
         public static readonly Color PanelDark = Color.FromHex("#1E1E22");
 
         public static readonly Color NanoGold = Color.FromHex("#A88B5E");
@@ -110,6 +123,7 @@ namespace Content.Client.Stylesheets
 
         public static readonly Color ButtonColorGoodDefault = Color.FromHex("#3E6C45");
         public static readonly Color ButtonColorGoodHovered = Color.FromHex("#31843E");
+        public static readonly Color ButtonColorGoodDisabled = Color.FromHex("#164420");
 
         //NavMap
         public static readonly Color PointRed = Color.FromHex("#B02E26");
@@ -1499,6 +1513,20 @@ namespace Content.Client.Stylesheets
 
                 Element<Button>().Class("ButtonColorGreen").Pseudo(ContainerButton.StylePseudoClassHover)
                     .Prop(Control.StylePropertyModulateSelf, ButtonColorGoodHovered),
+
+                // Accept button (merge with green button?) ---
+                Element<Button>().Class("ButtonAccept")
+                    .Prop(Control.StylePropertyModulateSelf, ButtonColorGoodDefault),
+
+                Element<Button>().Class("ButtonAccept").Pseudo(ContainerButton.StylePseudoClassNormal)
+                    .Prop(Control.StylePropertyModulateSelf, ButtonColorGoodDefault),
+
+                Element<Button>().Class("ButtonAccept").Pseudo(ContainerButton.StylePseudoClassHover)
+                    .Prop(Control.StylePropertyModulateSelf, ButtonColorGoodHovered),
+
+                Element<Button>().Class("ButtonAccept").Pseudo(ContainerButton.StylePseudoClassDisabled)
+                    .Prop(Control.StylePropertyModulateSelf, ButtonColorGoodDisabled),
+
                 // ---
 
                 // Small Button ---
@@ -1626,6 +1654,56 @@ namespace Content.Client.Stylesheets
                     {
                         BackgroundColor = FancyTreeSelectedRowColor,
                     }),
+
+                // Sunrise-Edit
+                Element<PanelContainer>().Class(StyleClassSocialBox)
+                    .Prop(PanelContainer.StylePropertyPanel,
+                        new StyleBoxFlat
+                    {
+                        BackgroundColor = new Color(30, 30, 36),
+                        BorderColor = new Color(62, 62, 74),
+                        BorderThickness = new Thickness(2),
+                        ContentMarginLeftOverride = 10,
+                        ContentMarginRightOverride = 10,
+                        ContentMarginTopOverride = 5,
+                        ContentMarginBottomOverride = 5
+                    }),
+
+                Element<Button>().Class(StyleClassSocialButton)
+                    .Prop(Button.StylePropertyStyleBox, new StyleBoxFlat
+                    {
+                        BackgroundColor = new Color(42, 42, 48),
+                        ContentMarginLeftOverride = 15,
+                        ContentMarginRightOverride = 15,
+                        ContentMarginTopOverride = 8,
+                        ContentMarginBottomOverride = 8
+                    })
+                    .Prop("font", notoSansBold16),
+
+                Element<Button>().Class(StyleClassSocialButtonForum)
+                    .Pseudo(ContainerButton.StylePseudoClassNormal)
+                    .Prop(Control.StylePropertyModulateSelf, new Color(168, 139, 94)),
+
+                Element<Button>().Class(StyleClassSocialButtonForum)
+                    .Pseudo(ContainerButton.StylePseudoClassHover)
+                    .Prop(Control.StylePropertyModulateSelf, new Color(188, 159, 114)),
+
+                Element<Button>().Class(StyleClassSocialButtonDiscord)
+                    .Pseudo(ContainerButton.StylePseudoClassNormal)
+                    .Prop(Control.StylePropertyModulateSelf, new Color(88, 101, 242)),
+
+                Element<Button>().Class(StyleClassSocialButtonDiscord)
+                    .Pseudo(ContainerButton.StylePseudoClassHover)
+                    .Prop(Control.StylePropertyModulateSelf, new Color(108, 121, 255)),
+
+                Element<Button>().Class(StyleClassSocialButtonTelegram)
+                    .Pseudo(ContainerButton.StylePseudoClassNormal)
+                    .Prop(Control.StylePropertyModulateSelf, new Color(0, 136, 204)),
+
+                Element<Button>().Class(StyleClassSocialButtonTelegram)
+                    .Pseudo(ContainerButton.StylePseudoClassHover)
+                    .Prop(Control.StylePropertyModulateSelf, new Color(20, 156, 224)),
+                // Sunrise-Edit
 
                 // Silicon law edit ui
                 Element<Label>().Class(SiliconLawContainer.StyleClassSiliconLawPositionLabel)

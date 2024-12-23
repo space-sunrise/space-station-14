@@ -1,5 +1,10 @@
+using System.Linq;
+using System.Numerics;
+using Content.Server._Sunrise.Ghost;
+using Content.Server._Sunrise.NewLife;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Managers;
+using Content.Server.EUI;
 using Content.Server.GameTicking;
 using Content.Server.Ghost.Components;
 using Content.Server.Mind;
@@ -32,14 +37,13 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
-using System.Linq;
-using System.Numerics;
 
 namespace Content.Server.Ghost
 {
     public sealed class GhostSystem : SharedGhostSystem
     {
         [Dependency] private readonly SharedActionsSystem _actions = default!;
+        [Dependency] private readonly IAdminLogManager _adminLog = default!;
         [Dependency] private readonly SharedEyeSystem _eye = default!;
         [Dependency] private readonly FollowerSystem _followerSystem = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
@@ -60,9 +64,13 @@ namespace Content.Server.Ghost
         [Dependency] private readonly SharedMindSystem _mind = default!;
         [Dependency] private readonly GameTicker _gameTicker = default!;
         [Dependency] private readonly DamageableSystem _damageable = default!;
+        [Dependency] private readonly NewLifeSystem _newLifeSystem = default!;
+        [Dependency] private readonly EuiManager _euiManager = default!;
 
         private EntityQuery<GhostComponent> _ghostQuery;
         private EntityQuery<PhysicsComponent> _physicsQuery;
+
+        private readonly Dictionary<ICommonSession, AcceptGhostEui> _openAcceptUis = new();
 
         public override void Initialize()
         {
@@ -95,6 +103,30 @@ namespace Content.Server.Ghost
             SubscribeLocalEvent<RoundEndTextAppendEvent>(_ => MakeVisible(true));
             SubscribeLocalEvent<ToggleGhostVisibilityToAllEvent>(OnToggleGhostVisibilityToAll);
         }
+
+        // Sunrise-Start
+        public void OpenAcceptEui(EntityUid mindId, ICommonSession session)
+        {
+            if (session.AttachedEntity is not { Valid: true } attached)
+                return;
+
+            if (_openAcceptUis.ContainsKey(session))
+                CloseAcceptEui(session);
+
+            var eui = _openAcceptUis[session] = new AcceptGhostEui(mindId, this);
+            _euiManager.OpenEui(eui, session);
+        }
+
+        public void CloseAcceptEui(ICommonSession session)
+        {
+            if (!_openAcceptUis.ContainsKey(session))
+                return;
+
+            _openAcceptUis.Remove(session, out var eui);
+
+            eui?.Close();
+        }
+        // Sunrise-End
 
         private void OnGhostHearingAction(EntityUid uid, GhostComponent component, ToggleGhostHearingActionEvent args)
         {
@@ -160,7 +192,10 @@ namespace Content.Server.Ghost
             if (component.MustBeDead && (_mobState.IsAlive(uid) || _mobState.IsCritical(uid)))
                 return;
 
-            OnGhostAttempt(mindId, component.CanReturn, mind: mind);
+            //OnGhostAttempt(mindId, component.CanReturn, mind: mind);
+            // Sunrise-Edit
+            if (mind.Session != null)
+                OpenAcceptEui(mindId, mind.Session);
         }
 
         private void OnGhostStartup(EntityUid uid, GhostComponent component, ComponentStartup args)
@@ -218,6 +253,9 @@ namespace Content.Server.Ghost
             _actions.AddAction(uid, ref component.ToggleLightingActionEntity, component.ToggleLightingAction);
             _actions.AddAction(uid, ref component.ToggleFoVActionEntity, component.ToggleFoVAction);
             _actions.AddAction(uid, ref component.ToggleGhostsActionEntity, component.ToggleGhostsAction);
+            // Sunrise-Start
+            _actions.AddAction(uid, ref component.GhostsThemeActionEntity, component.GhostsThemeAction);
+            // Sunrise-End
         }
 
         private void OnGhostExamine(EntityUid uid, GhostComponent component, ExaminedEvent args)
@@ -323,6 +361,8 @@ namespace Content.Server.Ghost
 
         private void WarpTo(EntityUid uid, EntityUid target)
         {
+            _adminLog.Add(LogType.GhostWarp, $"{ToPrettyString(uid)} ghost warped to {ToPrettyString(target)}");
+
             if ((TryComp(target, out WarpPointComponent? warp) && warp.Follow) || HasComp<MobStateComponent>(target))
             {
                 _followerSystem.StartFollowingEntity(uid, target);
@@ -558,7 +598,7 @@ namespace Content.Server.Ghost
 
                     DamageSpecifier damage = new(_prototypeManager.Index<DamageTypePrototype>("Asphyxiation"), dealtDamage);
 
-                    _damageable.TryChangeDamage(playerEntity, damage, true);
+                    _damageable.TryChangeDamage(playerEntity, damage, true, useVariance: false, useModifier: false); // Sunrise-Edit
                 }
             }
 
@@ -566,6 +606,10 @@ namespace Content.Server.Ghost
                 _adminLogger.Add(LogType.Mind, $"{EntityManager.ToPrettyString(playerEntity.Value):player} ghosted{(!canReturn ? " (non-returnable)" : "")}");
 
             var ghost = SpawnGhost((mindId, mind), position, canReturn);
+            // Sunrise-Start
+            if (mind.Session != null)
+                _newLifeSystem.SetNextAllowRespawn(mind.Session.UserId, _gameTiming.CurTime + TimeSpan.FromMinutes(_newLifeSystem.NewLifeTimeout));
+            // Sunrise-End
 
             if (ghost == null)
                 return false;

@@ -43,6 +43,7 @@ namespace Content.IntegrationTests.Tests
             "/Maps/Shuttles/cargo.yml",
             "/Maps/Shuttles/emergency.yml",
             "/Maps/Shuttles/infiltrator.yml",
+            "/Maps/_Sunrise/Shuttles/infiltrator.yml",
         };
 
         private static readonly string[] GameMaps =
@@ -64,11 +65,16 @@ namespace Content.IntegrationTests.Tests
             "Train",
             "Oasis",
             "Cog",
+            "Gate",
+            "Amber",
+            "Loop",
+            // Sunrise-Start
 			"SunriseBox",
 			"SunriseDelta",
 			"SunriseFland",
 			"SunriseMarathon",
             "SunriseCentComm",
+            "SunrisePlanetDelta",
             "SunriseBagel",
             "SunriseReach",
             "SunriseTrain",
@@ -77,6 +83,7 @@ namespace Content.IntegrationTests.Tests
             "SunriseCorvaxGelta",
             "SunriseMeta",
             "SunriseOasis",
+            // Sunrise-End
         };
 
         /// <summary>

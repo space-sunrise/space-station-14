@@ -10,6 +10,7 @@
     - id: ClericalError
     - id: CockroachMigration
     - id: GasLeak
+    - id: GreytideVirus
     - id: IonStorm # its calm like 90% of the time smh
     - id: KudzuGrowth
     - id: MassHallucinations
@@ -36,6 +37,11 @@
     - id: SleeperAgents
     - id: ZombieOutbreak
     - id: LoneOpsSpawn
+    - id: DerelictCyborgSpawn
+    - id: DiseaseSpawn
+    - id: FugitiveSpawn
+    - id: EvilTwinSpawn
+    - id: TerminatorSpawn
 
 - type: entity
   id: BaseStationEvent
@@ -74,7 +80,7 @@
   - type: StationEvent
     startAnnouncementColor: "#18abf5"
     startAudio:
-      path: /Audio/Announcements/announce.ogg # Sunrise-edit
+      path: /Audio/_Sunrise/Announcements/announce_dig.ogg # Sunrise-edit
     weight: 8
     duration: 35
   - type: AnomalySpawnRule
@@ -90,7 +96,7 @@
   - type: StationEvent
     startAnnouncementColor: "#18abf5"
     startAudio:
-      path: /Audio/Announcements/announce.ogg # Sunrise-edit
+      path: /Audio/_Sunrise/Announcements/announce_dig.ogg # Sunrise-edit
     weight: 8
     duration: 35
   - type: BluespaceArtifactRule
@@ -123,7 +129,7 @@
   - type: StationEvent
     startAnnouncement: station-event-bureaucratic-error-announcement
     startAudio:
-      path: /Audio/Announcements/announce.ogg # Sunrise-edit
+      path: /Audio/_Sunrise/Announcements/announce_dig.ogg # Sunrise-edit
     minimumPlayers: 25
     weight: 3
     duration: 1
@@ -138,7 +144,7 @@
   - type: StationEvent
     startAnnouncement: station-event-clerical-error-announcement
     startAudio:
-      path: /Audio/Announcements/announce.ogg # Sunrise-edit
+      path: /Audio/_Sunrise/Announcements/announce_dig.ogg # Sunrise-edit
     minimumPlayers: 15
     weight: 5
     duration: 1
@@ -225,7 +231,7 @@
         - Syndicate
       - type: AutoImplant
         implants:
-        - DeathAcidifierImplant
+        - MacroBombImplant # Sunrise-Edit
       - type: RandomMetadata
         nameSegments:
         - names_ninja_title
@@ -262,11 +268,11 @@
   - type: StationEvent
     startAnnouncement: station-event-gas-leak-start-announcement
     startAudio:
-      path: /Audio/Announcements/announce.ogg # Sunrise-edit
+      path: /Audio/_Sunrise/Announcements/announce_dig.ogg # Sunrise-edit
     endAnnouncement: station-event-gas-leak-end-announcement
     weight: 8
     endAudio:
-      path: /Audio/Announcements/announce.ogg # Sunrise-edit
+      path: /Audio/_Sunrise/Announcements/announce_dig.ogg # Sunrise-edit
   - type: GasLeakRule
 
 - type: entity
@@ -289,7 +295,7 @@
     startAnnouncement: station-event-power-grid-check-start-announcement
     endAnnouncement: station-event-power-grid-check-end-announcement
     startAudio:
-      path: /Audio/Announcements/announce.ogg # Sunrise-edit
+      path: /Audio/_Sunrise/Announcements/announce_dig.ogg # Sunrise-edit
     duration: 60
     maxDuration: 120
   - type: PowerGridCheckRule
@@ -303,7 +309,7 @@
     startAnnouncement: station-event-solar-flare-start-announcement
     endAnnouncement: station-event-solar-flare-end-announcement
     startAudio:
-      path: /Audio/Announcements/announce.ogg # Sunrise-edit
+      path: /Audio/_Sunrise/Announcements/announce_dig.ogg # Sunrise-edit
     duration: 120
     maxDuration: 240
   - type: SolarFlareRule
@@ -323,26 +329,13 @@
     doorToggleChancePerSecond: 0.001
 
 - type: entity
-  parent: BaseGameRule
-  id: TerminatorSpawn
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: StationEvent
-    weight: 8
-    duration: 1
-    earliestStart: 30
-    minimumPlayers: 20
-  - type: LateJoinSpawnRule
-    prototype: SpawnPointGhostTerminator
-
-- type: entity
   id: VentClog
   parent: BaseStationEventLongDelay
   components:
   - type: StationEvent
     startAnnouncement: station-event-vent-clog-start-announcement
     startAudio:
-      path: /Audio/Announcements/announce.ogg # Sunrise-edit
+      path: /Audio/_Sunrise/Announcements/announce_dig.ogg # Sunrise-edit
     earliestStart: 15
     minimumPlayers: 15
     weight: 5
@@ -356,7 +349,7 @@
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
-      path: /Audio/Announcements/announce.ogg # Sunrise-edit
+      path: /Audio/_Sunrise/Announcements/announce_dig.ogg # Sunrise-edit
     earliestStart: 20
     minimumPlayers: 15
     weight: 5
@@ -398,7 +391,7 @@
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
-      path: /Audio/Announcements/announce.ogg # Sunrise-edit
+      path: /Audio/_Sunrise/Announcements/announce_dig.ogg # Sunrise-edit
     earliestStart: 20
     minimumPlayers: 15
     weight: 5
@@ -415,7 +408,7 @@
   - type: StationEvent
     startAnnouncement: station-event-vent-creatures-start-announcement
     startAudio:
-      path: /Audio/Announcements/announce.ogg # Sunrise-edit
+      path: /Audio/_Sunrise/Announcements/announce_dig.ogg # Sunrise-edit
     earliestStart: 20
     minimumPlayers: 20
     weight: 1.5
@@ -439,6 +432,7 @@
     definitions:
     - prefRoles: [ InitialInfected ]
       max: 3
+      ignoreCanBeAntag: true # Sunrise-Edit
       playerRatio: 10
       blacklist:
         components:
@@ -504,7 +498,7 @@
     maxOccurrences: 1 # can only happen once per round
     startAnnouncement: station-event-communication-interception
     startAudio:
-      path: /Audio/Announcements/announce.ogg # Sunrise-edit
+      path: /Audio/_Sunrise/Announcements/announce_dig.ogg # Sunrise-edit
     duration: null # the rule has to last the whole round not 1 second
     occursDuringRoundEnd: false
   - type: AlertLevelInterceptionRule
@@ -542,6 +536,10 @@
   id: IonStorm
   components:
   - type: StationEvent
+    startAudio:
+      path: /Audio/_Sunrise/Announcements/ionstorm.ogg
+      params:
+        volume: -10
     weight: 8
     reoccurrenceDelay: 20
     duration: 1
@@ -557,3 +555,45 @@
     maxOccurrences: 1 # this event has diminishing returns on interesting-ness, so we cap it
     weight: 5
   - type: MobReplacementRule
+
+- type: entity
+  id: GreytideVirus
+  parent: BaseStationEventShortDelay
+  components:
+  - type: StationEvent
+    startAudio:
+      path: /Audio/Announcements/attention.ogg
+    weight: 5
+    minimumPlayers: 25
+    reoccurrenceDelay: 20
+  - type: GreytideVirusRule
+    accessGroups:
+    - Cargo
+    - Command
+    - Engineering
+    - Research
+    - Security
+    - Service
+    blacklist:
+    - External # don't space everything
+
+- type: entity
+  parent: BaseGameRule
+  id: DerelictCyborgSpawn
+  components:
+  - type: StationEvent
+    weight: 5
+    earliestStart: 15
+    reoccurrenceDelay: 20
+    minimumPlayers: 4
+    duration: null
+  - type: SpaceSpawnRule
+    spawnDistance: 0
+  - type: AntagSpawner
+    prototype: PlayerBorgDerelict
+  - type: AntagSelection
+    definitions:
+    - spawnerPrototype: SpawnPointGhostDerelictCyborg
+      min: 1
+      max: 1
+      pickPlayer: false

@@ -1,0 +1,54 @@
+
+- type: entity
+  name: сrystallite
+  parent: BaseItem
+  id: Crystallite
+  suffix: 100 С
+  description: It seems to shimmer with a attractive energy.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/crystallite.rsi
+    state: crystallite
+  - type: Item
+    sprite: _Sunrise/Objects/Specific/crystallite.rsi
+    size: Tiny
+  - type: Stack
+    count: 100
+    stackType: Crystallite
+  - type: StaticPrice
+    price: 0
+  - type: StackPrice
+    price: 200
+  - type: Currency
+    price:
+      Crystallite: 1
+
+- type: entity
+  parent: Crystallite
+  id: Crystallite1
+  suffix: 1 С
+  name: сrystallite
+  description: It seems to shimmer with a attractive energy.
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: Crystallite
+  id: Crystallite25
+  suffix: 25 С
+  name: сrystallite
+  description: It seems to shimmer with a attractive energy.
+  components:
+  - type: Stack
+    count: 25
+
+- type: entity
+  parent: Crystallite
+  id: Crystallite50
+  suffix: 50 С
+  name: сrystallite
+  description: It seems to shimmer with a attractive energy.
+  components:
+  - type: Stack
+    count: 50

@@ -1,0 +1,134 @@
+<Control xmlns="https://spacestation14.io"
+         xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
+         Name="BackgroundColorPanel"
+         MouseFilter="Pass">
+    <ScrollContainer HScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True">
+        <BoxContainer Orientation="Vertical" VerticalExpand="True" VerticalAlignment="Stretch">
+            <BoxContainer Orientation="Vertical" Name="EntryContent" VerticalExpand="True"
+                          HorizontalAlignment="Stretch" VerticalAlignment="Top" Access="Public" >
+                <!-- Информация -->
+                <BoxContainer Orientation="Horizontal" >
+                    <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
+                    <Label Text="{Loc 'sponsor-tiers-gui-entry-info'}" StyleClasses="LabelKeyText"/>
+                    <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
+                </BoxContainer>
+                <BoxContainer Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 5 0 0">
+                    <Label Name="TierTitle" Text="{Loc 'sponsor-tiers-gui-tier'}" StyleClasses="LabelKeyText" Margin="0 0 5 0" />
+                    <Label Name="TierLabel"/>
+                </BoxContainer>
+                <BoxContainer Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 5 0 0">
+                    <Label Name="OocColorTitle" Text="{Loc 'sponsor-tiers-gui-ooc-color'}" StyleClasses="LabelKeyText" Margin="0 0 5 0" />
+                    <Label Name="OocColorLabel"/>
+                </BoxContainer>
+                <BoxContainer Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 5 0 0">
+                    <Label Name="ExtraSlotsTitle" Text="{Loc 'sponsor-tiers-gui-extra-slots'}" StyleClasses="LabelKeyText" Margin="0 0 5 0" />
+                    <Label Name="ExtraSlotsLabel"/>
+                </BoxContainer>
+                <BoxContainer Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 5 0 0">
+                    <Label Name="PriorityJoinTitle" Text="{Loc 'sponsor-tiers-gui-priority-join'}" StyleClasses="LabelKeyText" Margin="0 0 5 0" />
+                    <Label Name="PriorityJoinLabel"/>
+                </BoxContainer>
+                <BoxContainer Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 5 0 0">
+                    <Label Name="AllowedRespawnTitle" Text="{Loc 'sponsor-tiers-gui-allowed-respawn'}" StyleClasses="LabelKeyText" Margin="0 0 5 0" />
+                    <Label Name="AllowedRespawnLabel"/>
+                </BoxContainer>
+                <!-- TTS голоса -->
+                <BoxContainer Orientation="Horizontal" >
+                    <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
+                    <Label Text="{Loc 'sponsor-tiers-gui-tts-voices'}" StyleClasses="LabelKeyText"/>
+                    <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
+                </BoxContainer>
+                <Label Text="{Loc 'sponsor-tiers-gui-tts-voices-description'}" StyleClasses="LabelKeyText"/>
+                <GridContainer Name="TTSVoicesGrid" Columns="4" Margin="0 5" />
+                <!-- Открытие рас -->
+                <BoxContainer Orientation="Horizontal" >
+                    <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
+                    <Label Text="{Loc 'sponsor-tiers-gui-allowed-species'}" StyleClasses="LabelKeyText"/>
+                    <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
+                </BoxContainer>
+                <Label Text="{Loc 'sponsor-tiers-gui-allowed-species-description'}" StyleClasses="LabelKeyText"/>
+                <GridContainer Name="AllowedSpeciesGrid" Columns="6" Margin="0 5" />
+                <!-- Открытие антагов -->
+                <BoxContainer Orientation="Horizontal" >
+                    <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
+                    <Label Text="{Loc 'sponsor-tiers-gui-open-antags'}" StyleClasses="LabelKeyText"/>
+                    <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
+                </BoxContainer>
+                <Label Text="{Loc 'sponsor-tiers-gui-open-antags-description'}" StyleClasses="LabelKeyText"/>
+                <GridContainer Name="OpenAntagGrid" Columns="6" Margin="0 5" />
+                <!-- Приоритет антагов -->
+                <BoxContainer Orientation="Horizontal" >
+                    <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
+                    <Label Text="{Loc 'sponsor-tiers-gui-priority-antags'}" StyleClasses="LabelKeyText"/>
+                    <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
+                </BoxContainer>
+                <Label Text="{Loc 'sponsor-tiers-gui-priority-antags-description'}" StyleClasses="LabelKeyText"/>
+                <GridContainer Name="PriorityAntagGrid" Columns="6" Margin="0 5" />
+                <!-- Открытие ролей призраков -->
+                <BoxContainer Orientation="Horizontal" >
+                    <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
+                    <Label Text="{Loc 'sponsor-tiers-gui-open-ghost-roles'}" StyleClasses="LabelKeyText"/>
+                    <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
+                </BoxContainer>
+                <Label Text="{Loc 'sponsor-tiers-gui-open-ghost-roles-description'}" StyleClasses="LabelKeyText"/>
+                <GridContainer Name="OpenGhostRolesGrid" Columns="6" Margin="0 5" />
+                <!-- Приоритет ролей призраков -->
+                <BoxContainer Orientation="Horizontal" >
+                    <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
+                    <Label Text="{Loc 'sponsor-tiers-gui-priority-ghost-roles'}" StyleClasses="LabelKeyText"/>
+                    <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
+                </BoxContainer>
+                <Label Text="{Loc 'sponsor-tiers-gui-priority-ghost-roles-description'}" StyleClasses="LabelKeyText"/>
+                <GridContainer Name="PriorityGhostRolesGrid" Columns="6" Margin="0 5" />
+                <!-- Открытие ролей -->
+                <BoxContainer Orientation="Horizontal" >
+                    <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
+                    <Label Text="{Loc 'sponsor-tiers-gui-open-roles'}" StyleClasses="LabelKeyText"/>
+                    <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
+                </BoxContainer>
+                <Label Text="{Loc 'sponsor-tiers-gui-open-roles-description'}" StyleClasses="LabelKeyText"/>
+                <GridContainer Name="OpenRolesGrid" Columns="6" Margin="0 5" />
+                <!-- Приоритет ролей -->
+                <BoxContainer Orientation="Horizontal" >
+                    <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
+                    <Label Text="{Loc 'sponsor-tiers-gui-priority-roles'}" StyleClasses="LabelKeyText"/>
+                    <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
+                </BoxContainer>
+                <Label Text="{Loc 'sponsor-tiers-gui-priority-roles-description'}" StyleClasses="LabelKeyText"/>
+                <GridContainer Name="PriorityRolesGrid" Columns="6" Margin="0 5" />
+                <!-- Пропуск ролей -->
+                <BoxContainer Orientation="Horizontal" >
+                    <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
+                    <Label Text="{Loc 'sponsor-tiers-gui-bypass-roles'}" StyleClasses="LabelKeyText"/>
+                    <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
+                </BoxContainer>
+                <Label Text="{Loc 'sponsor-tiers-gui-bypass-roles-description'}" StyleClasses="LabelKeyText"/>
+                <GridContainer Name="BypassRolesGrid" Columns="6" Margin="0 5" />
+                <!-- Кастомизация -->
+                <BoxContainer Orientation="Horizontal" >
+                    <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
+                    <Label Text="{Loc 'sponsor-tiers-gui-allowed-markings'}" StyleClasses="LabelKeyText"/>
+                    <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
+                </BoxContainer>
+                <Label Text="{Loc 'sponsor-tiers-gui-allowed-markings-description'}" StyleClasses="LabelKeyText"/>
+                <GridContainer Name="AllowedMarkingsGrid" Columns="6" Margin="0 5" />
+                <!-- Лоадауты -->
+                <BoxContainer Orientation="Horizontal" >
+                    <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
+                    <Label Text="{Loc 'sponsor-tiers-gui-allowed-loadouts'}" StyleClasses="LabelKeyText"/>
+                    <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
+                </BoxContainer>
+                <Label Text="{Loc 'sponsor-tiers-gui-allowed-loadouts-description'}" StyleClasses="LabelKeyText"/>
+                <GridContainer Name="AllowedLoadoutsGrid" Columns="6" Margin="0 5" />
+                <!-- Скины призрака -->
+                <BoxContainer Orientation="Horizontal" >
+                    <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
+                    <Label Text="{Loc 'sponsor-tiers-gui-ghost-themes'}" StyleClasses="LabelKeyText"/>
+                    <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
+                </BoxContainer>
+                <Label Text="{Loc 'sponsor-tiers-gui-ghost-themes-description'}" StyleClasses="LabelKeyText"/>
+                <GridContainer Name="GhostThemesGrid" Columns="6" Margin="0 5" />
+            </BoxContainer>
+        </BoxContainer>
+    </ScrollContainer>
+</Control>

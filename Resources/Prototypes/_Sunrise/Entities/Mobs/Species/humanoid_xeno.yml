@@ -9,7 +9,7 @@
   - type: Respirator
     damage:
       types:
-        Asphyxiation: 0.2
+        Asphyxiation: 0.5
     damageRecovery:
       types:
         Asphyxiation: -1.0
@@ -130,6 +130,7 @@
   - type: CollectiveMind
     minds:
     - Xeno
+  - type: FootprintEmitter
 
 - type: entity
   parent: BaseSpeciesDummy

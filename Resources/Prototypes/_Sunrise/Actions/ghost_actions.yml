@@ -7,3 +7,17 @@
     priority: 2
     checkCanInteract: false
     event: !type:StopFollowActionEvent
+
+- type: entity
+  id: GhostChangeTheme
+  name: Сменить скин призрака
+  description: Позволяет вам изменить скин призрака.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    checkCanInteract: false
+    icon:
+      sprite: _Sunrise/Mobs/Ghosts/gold_ghost_human.rsi
+      state: animated
+    itemIconStyle: NoItem
+    event: !type:GhostThemeActionEvent

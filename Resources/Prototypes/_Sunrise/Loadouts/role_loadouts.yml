@@ -126,6 +126,7 @@
   - StationEngineerBackpack
   - StationEngineerOuterClothing
   - StationEngineerShoes
+  - AtmosphericsConsole
   - SurvivalExtended
   - Trinkets
   - GroupSpeciesBreathTool
@@ -157,6 +158,7 @@
   - StationEngineerBackpack
   - StationEngineerOuterClothing
   - StationEngineerShoes
+  - AtmosphericsConsole
   - Trinkets
   - SurvivalExtended
   - GroupSpeciesBreathTool
@@ -300,6 +302,23 @@
   groups:
   - PrisonerJumpsuit
   - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobMedicalPathologist
+  groups:
+  - MedicalMask
+  - MedicalDoctorJumpsuit
+  - MedicalGloves
+  - MedicalBackpack
+  - MedicalShoes
+  - GroupTankHarness
+  - Glasses
+  - SurvivalMedical
+  - Trinkets
+  - GroupSpeciesBreathToolMedical
   - Bra
   - Pants
   - Socks

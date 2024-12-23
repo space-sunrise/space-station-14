@@ -38,8 +38,8 @@ public sealed partial class ChangelingComponent : Component
     ///     The status icon corresponding to the Changlings.
     /// </summary>
 
-    [DataField, ViewVariables(VVAccess.ReadOnly)]
-    public ProtoId<StatusIconPrototype> StatusIcon { get; set; } = "HivemindFaction";
+    [DataField("changelingStatusIcon")]
+    public ProtoId<FactionIconPrototype> StatusIcon { get; set; } = "HivemindFaction";
 
     #endregion
 
@@ -52,10 +52,10 @@ public sealed partial class ChangelingComponent : Component
     public bool StealthEnabled = false;
 
     [DataField]
-    public float StealthDrain = 1.5f;
+    public float StealthDrain = 1.2f;
 
     [DataField]
-    public float StasisDrain = 0.2f;
+    public float StasisDrain = 0.09f;
 
 
     public Dictionary<string, EntityUid?> Equipment = new();

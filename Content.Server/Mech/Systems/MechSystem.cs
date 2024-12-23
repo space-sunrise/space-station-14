@@ -33,6 +33,8 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Content.Shared.Whitelist;
+using Content.Shared.Access.Components;
+using Content.Shared.Access.Systems;
 
 namespace Content.Server.Mech.Systems;
 
@@ -54,6 +56,7 @@ public sealed partial class MechSystem : SharedMechSystem
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
+    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -249,7 +252,14 @@ public sealed partial class MechSystem : SharedMechSystem
             _popup.PopupEntity(Loc.GetString("mech-no-enter", ("item", uid)), args.User);
             return;
         }
-        
+
+        if (TryComp<AccessReaderComponent>(uid, out var accessReader))
+            if (!_accessReader.IsAllowed(args.Args.User, uid, accessReader))
+            {
+                _popup.PopupEntity(Loc.GetString("mech-no-access", ("item", uid)), args.User);
+                return;
+            }
+
         if (TryComp<HandsComponent>(args.Args.User, out var handsComponent))
             foreach (var hand in _hands.EnumerateHands(args.Args.User, handsComponent))
                 _hands.DoDrop(args.Args.User, hand, true, handsComponent);

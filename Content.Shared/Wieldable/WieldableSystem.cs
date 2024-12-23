@@ -1,8 +1,10 @@
 using System.Linq;
+using Content.Shared._Sunrise.Biocode;
 using Content.Shared.Examine;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Item;
@@ -34,6 +36,7 @@ public sealed class WieldableSystem : EntitySystem
     [Dependency] private readonly SharedGunSystem _gun = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly INetManager _netManager = default!;
+    [Dependency] private readonly BiocodeSystem _biocodeSystem = default!;
 
     public override void Initialize()
     {
@@ -72,6 +75,8 @@ public sealed class WieldableSystem : EntitySystem
         if (TryComp<WieldableComponent>(uid, out var wieldable) &&
             !wieldable.Wielded)
         {
+            // Sunrise-Edit
+            args.Message = Loc.GetString("wieldable-component-requires", ("item", uid));
             args.Cancel();
 
             var time = _timing.CurTime;
@@ -125,7 +130,7 @@ public sealed class WieldableSystem : EntitySystem
 
     private void OnExamine(EntityUid uid, GunWieldBonusComponent component, ref ExaminedEvent args)
     {
-        if (HasComp<GunRequiresWieldComponent>(uid)) 
+        if (HasComp<GunRequiresWieldComponent>(uid))
             return;
 
         if (component.WieldBonusExamineMessage != null)
@@ -136,6 +141,14 @@ public sealed class WieldableSystem : EntitySystem
     {
         if (args.Hands == null || !args.CanAccess || !args.CanInteract)
             return;
+
+        // Sunrise-Start
+        if (TryComp<BiocodeComponent>(uid, out var biocodedComponent))
+        {
+            if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
+                return;
+        }
+        // Sunrise-End
 
         if (!_handsSystem.IsHolding(args.User, uid, out _, args.Hands))
             return;
@@ -159,6 +172,14 @@ public sealed class WieldableSystem : EntitySystem
     {
         if (args.Handled)
             return;
+
+        // Sunrise-Start
+        if (TryComp<BiocodeComponent>(uid, out var biocodedComponent))
+        {
+            if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
+                return;
+        }
+        // Sunrise-End
 
         if (!component.Wielded)
             args.Handled = TryWield(uid, component, args.User);
@@ -253,7 +274,7 @@ public sealed class WieldableSystem : EntitySystem
             return false;
 
         var selfMessage = Loc.GetString("wieldable-component-successful-wield", ("item", used));
-        var othersMessage = Loc.GetString("wieldable-component-successful-wield-other", ("user", user), ("item", used));
+        var othersMessage = Loc.GetString("wieldable-component-successful-wield-other", ("user", Identity.Entity(user, EntityManager)), ("item", used));
         _popupSystem.PopupPredicted(selfMessage, othersMessage, user, user);
 
         var targEv = new ItemWieldedEvent();
@@ -298,7 +319,7 @@ public sealed class WieldableSystem : EntitySystem
                 _audioSystem.PlayPredicted(component.UnwieldSound, uid, args.User);
 
             var selfMessage = Loc.GetString("wieldable-component-failed-wield", ("item", uid));
-            var othersMessage = Loc.GetString("wieldable-component-failed-wield-other", ("user", args.User.Value), ("item", uid));
+            var othersMessage = Loc.GetString("wieldable-component-failed-wield-other", ("user", Identity.Entity(args.User.Value, EntityManager)), ("item", uid));
             _popupSystem.PopupPredicted(selfMessage, othersMessage, args.User.Value, args.User.Value);
         }
 

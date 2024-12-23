@@ -9,6 +9,8 @@ store-currency-display-debugdollar =
        *[other] { $amount } Дебаг долларов
     }
 store-currency-display-telecrystal = ТК
+store-currency-display-bluecrystal = CК
+store-currency-display-crystallite = К
 store-currency-display-stolen-essence = Украденная эссенция
 store-currency-display-wizcoin = Маг₭øин™
 store-currency-display-evolutionpoints = Очки эволюции

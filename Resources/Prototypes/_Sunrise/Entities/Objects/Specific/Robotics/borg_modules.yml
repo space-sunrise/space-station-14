@@ -122,7 +122,7 @@
     - FlashBorg
 
 - type: entity
-  id: BorgModuleCombat
+  id: BorgModuleAdvancedCombat
   parent: [ BaseBorgModuleSecurity, BaseProviderBorgModule ]
   name: combat cyborg module
   components:
@@ -134,6 +134,21 @@
     items:
     - Truncheon
     - WeaponLaserBorg
+    - WeaponLaserBorg
+    - HoloprojectorSecurityBorg
+
+- type: entity
+  id: BorgModuleCombat
+  parent: [ BaseBorgModuleSecurity, BaseProviderBorgModule ]
+  name: combat cyborg module
+  components:
+  - type: Sprite
+    layers:
+    - state: security
+    - state: icon-combat
+  - type: ItemBorgModule
+    items:
+    - CombatKnife
     - WeaponLaserBorg
     - HoloprojectorSecurityBorg
 
@@ -191,6 +206,7 @@
     items:
     - SyndicateJawsOfLife
     - PinpointerNuclear
+    - WeaponPistolEchis
 
 - type: entity
   id: BorgModuleSyndicateMedical
@@ -218,8 +234,8 @@
     - state: icon-syndicate
   - type: ItemBorgModule
     items:
-    - EnergySword
-    - LightMachineGunBorg
+    - EnergyDaggerLoud
+    - WeaponLightMachineGunL6C
 
 - type: entity
   id: BorgModuleStandart

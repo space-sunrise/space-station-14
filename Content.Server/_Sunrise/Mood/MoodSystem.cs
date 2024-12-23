@@ -1,5 +1,6 @@
 ﻿using Content.Server.Chat.Managers;
 using Content.Shared._Sunrise.Mood;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Alert;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
@@ -80,10 +81,10 @@ public sealed class MoodSystem : EntitySystem
         var modifier =
             Math.Clamp(
                 (component.CurrentMoodLevel >= component.MoodThresholds[MoodThreshold.Neutral])
-                    ? _config.GetCVar(CCVars.MoodIncreasesSpeed)
+                    ? _config.GetCVar(SunriseCCVars.MoodIncreasesSpeed)
                         ? MathF.Pow(1.003f, component.CurrentMoodLevel - component.MoodThresholds[MoodThreshold.Neutral])
                         : 1
-                    : _config.GetCVar(CCVars.MoodDecreasesSpeed)
+                    : _config.GetCVar(SunriseCCVars.MoodDecreasesSpeed)
                         ? 2 - component.MoodThresholds[MoodThreshold.Neutral] / component.CurrentMoodLevel
                         : 1,
                 component.MinimumSpeedModifier,
@@ -94,7 +95,7 @@ public sealed class MoodSystem : EntitySystem
 
     private void OnMoodEffect(EntityUid uid, MoodComponent component, MoodEffectEvent args)
     {
-        if (!_config.GetCVar(CCVars.MoodEnabled)
+        if (!_config.GetCVar(SunriseCCVars.MoodEnabled)
             || !_prototypeManager.TryIndex<MoodEffectPrototype>(args.EffectId, out var prototype))
             return;
 
@@ -222,7 +223,7 @@ public sealed class MoodSystem : EntitySystem
 
     private void SetMood(EntityUid uid, float amount, MoodComponent? component = null, bool force = false, bool refresh = false)
     {
-        if (!_config.GetCVar(CCVars.MoodEnabled)
+        if (!_config.GetCVar(SunriseCCVars.MoodEnabled)
             || !Resolve(uid, ref component)
             || component.CurrentMoodThreshold == MoodThreshold.Dead && !refresh)
             return;

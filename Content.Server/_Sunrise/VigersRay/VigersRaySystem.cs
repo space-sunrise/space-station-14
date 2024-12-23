@@ -11,6 +11,7 @@ using Content.Server.Speech.EntitySystems;
 using Content.Server.Stunnable;
 using Content.Server.Traits.Assorted;
 using Content.Shared.Administration.Components;
+using Content.Shared.Clumsy;
 using Content.Shared.Damage.Components;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Nutrition.Components;

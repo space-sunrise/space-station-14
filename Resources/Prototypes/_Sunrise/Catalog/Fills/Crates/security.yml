@@ -19,3 +19,37 @@
     contents:
       - id: ClothingHandsGlovesCombat
         amount: 3
+
+- type: entity
+  id: CrateSecuritySWAT
+  parent: CrateSecgear
+  name: SWAT armor crate 
+  description: Contains a SWAT kit. 2 heavy armor suit, 2 special forces helmet, 2special forces gas mask and 2 combat Swat boots. To open it, the Security Service access level is required.
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterArmorSWAT
+        amount: 2
+      - id: ClothingMaskGasSwat
+        amount: 2
+      - id: ClothingShoesSwat
+        amount: 2
+      - id: ClothingHeadHelmetSwat 
+        amount: 2
+      - id: ClothingHandsGlovesCombat
+        amount: 2 
+
+- type: entity
+  id: CrateSecurityArmorReflective
+  parent: CrateSecgear
+  name: reflective armor crate 
+  description: Contains a reflective armor. 2 reflective armor, 2 RiotLaserShield, 2 EnergyGun. To open it, the Security Service access level is required.
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClothingOuterArmorReflective
+        amount: 2
+      - id: RiotLaserShield 
+        amount: 2
+      - id: WeaponEnergyGun
+        amount: 2 

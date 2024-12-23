@@ -13,8 +13,6 @@
   - MiningDrill
   - MechEquipmentDrill
   - MineralScannerEmpty
-  - BorgModuleMining
-  - BorgModuleGrapplingGun
   - OreProcessorIndustrialMachineCircuitboard
   - ClothingMaskWeldingGas
 
@@ -44,6 +42,8 @@
   recipeUnlocks:
   - PowerCellHigh
   - TurboItemRechargerCircuitboard
+  - SMESAdvancedMachineCircuitboard
+  - PowerCageMedium
 
 - type: technology
   id: MechanicalCompression
@@ -169,7 +169,6 @@
     - PowerDrill
     - JawsOfLife
     - BorgModuleAdvancedTool
-    - BorgModuleRCD
 
 - type: technology
   id: MassExcavation
@@ -194,7 +193,7 @@
     state: ripleymkii
   discipline: Industrial
   tier: 2
-  cost: 8000
+  cost: 5000
   recipeUnlocks:
   - RipleyMKIIHarness
   - RipleyUpgradeKit
@@ -209,7 +208,7 @@
     state: clarke
   discipline: Industrial
   tier: 2
-  cost: 10000
+  cost: 9000
   recipeUnlocks:
   - ClarkeHarness
   - ClarkeHead

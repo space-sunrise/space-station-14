@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Linq;
 using Content.Shared.Access.Components;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
@@ -212,6 +213,24 @@ public abstract class SharedIdCardSystem : EntitySystem
         Dirty(uid, id);
 
         return true;
+    }
+
+    public string GetJobColor(IPrototypeManager prototypeManager, IPrototype job)
+    {
+        var jobCode = job.ID;
+
+        var departments = prototypeManager.EnumeratePrototypes<DepartmentPrototype>().ToList();
+        departments.Sort((a, b) => a.Sort.CompareTo(b.Sort));
+
+        foreach (var department in from department in departments
+                 from jobId in department.Roles
+                 where jobId == jobCode
+                 select department)
+        {
+            return department.Color.ToHex();
+        }
+
+        return string.Empty;
     }
     // Sunrise-End
 

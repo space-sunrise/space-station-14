@@ -7,15 +7,16 @@
     revertOnCrit: false
     revertOnDeath: false
 
-- type: polymorph
-  id: ClowanHulk
-  configuration:
-    entity: MobClownHulk
-    forced: true
-    transferDamage: true
-    transferName: true
-    revertOnCrit: false
-    revertOnDeath: true
-    inventory: Drop
-    allowRepeatedMorphs: true
-    delay: 1
+# TODO: Генетика
+#- type: polymorph
+#  id: ClowanHulk
+#  configuration:
+#    entity: MobClownHulk
+#    forced: true
+#    transferDamage: true
+#    transferName: true
+#    revertOnCrit: false
+#    revertOnDeath: true
+#    inventory: Drop
+#    allowRepeatedMorphs: true
+#    delay: 1

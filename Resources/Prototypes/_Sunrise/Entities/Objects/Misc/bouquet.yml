@@ -1,7 +1,8 @@
 ﻿- type: entity
   parent: BaseItem
   id: Bouquet
-  name: bouquet
+  name: blood flowers bouquet
+  description: A bouquet of blood-colored flowers. It looks fascinating and smells delicious.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Misc/bouquet.rsi

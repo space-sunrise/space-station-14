@@ -2,8 +2,10 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Content.Server.Chat.Systems;
+using Content.Server.GameTicking;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared._Sunrise.TTS;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -19,6 +21,9 @@ public sealed partial class TTSSystem : EntitySystem
     [Dependency] private readonly TTSManager _ttsManager = default!;
     [Dependency] private readonly SharedTransformSystem _xforms = default!;
     [Dependency] private readonly IRobustRandom _rng = default!;
+    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
+
 
     private readonly List<string> _sampleText =
         new()
@@ -116,6 +121,13 @@ public sealed partial class TTSSystem : EntitySystem
 
     private async void OnAnnouncementSpoke(AnnouncementSpokeEvent args)
     {
+        if (!_isEnabled && args.AnnouncementSound != null)
+        {
+            var allPlayersInGame = Filter.Empty().AddWhere(_gameTicker.UserHasJoinedGame);
+            _audioSystem.PlayGlobal(args.AnnouncementSound, allPlayersInGame, true);
+            return;
+        }
+
         if (!_isEnabled ||
             args.Message.Length > MaxMessageChars * 2 ||
             !GetVoicePrototype(args.AnnounceVoice ?? _defaultAnnounceVoice, out var protoVoice))

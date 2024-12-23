@@ -58,8 +58,7 @@
         - BulletImpassable
   - type: AccessReader
   - type: Repairable
-    fuelCost: 15
-    doAfterDelay: 5
+    doAfterDelay: 5 # Sunrise-Edit
   - type: Lock
   - type: LockVisuals
   - type: DamageVisuals

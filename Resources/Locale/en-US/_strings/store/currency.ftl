@@ -8,6 +8,8 @@ store-currency-display-debugdollar = {$amount ->
     *[other] Debug Dollars
 }
 store-currency-display-telecrystal = TC
+store-currency-display-bluecrystal = BC
+store-currency-display-crystallite = C
 store-currency-display-stolen-essence = Stolen Essence
 store-currency-display-wizcoin = Wiz€oin™
 store-currency-display-evolutionpoints = Evolution Points

@@ -24,7 +24,6 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
-
 namespace Content.Server.Voting.Managers
 {
     public sealed partial class VoteManager : IVoteManager
@@ -282,7 +281,7 @@ namespace Content.Server.Voting.Managers
             }
 
             // Admin always see the vote count, even if the vote is set to hide it.
-            if (_adminMgr.HasAdminFlag(player, AdminFlags.Moderator))
+            if (v.DisplayVotes || _adminMgr.HasAdminFlag(player, AdminFlags.Moderator))
             {
                 msg.DisplayVotes = true;
             }
@@ -394,12 +393,23 @@ namespace Content.Server.Voting.Managers
             }
 
             // Find winner or stalemate.
-            var winners = v.Entries
-                .GroupBy(e => e.Votes)
-                .OrderByDescending(g => g.Key)
-                .First()
-                .Select(e => e.Data)
-                .ToImmutableArray();
+            // Sunrise-Start: На случай пустых голосований
+            ImmutableArray<object> winners;
+            if (v.Entries.Any())
+            {
+                winners = v.Entries
+                    .GroupBy(e => e.Votes)
+                    .OrderByDescending(g => g.Key)
+                    .First()
+                    .Select(e => e.Data)
+                    .ToImmutableArray();
+            }
+            else
+            {
+                winners = ImmutableArray<object>.Empty;
+            }
+            // Sunrise-End
+
             // Store all votes in order for webhooks
             var voteTally = new List<int>();
             foreach(var entry in v.Entries)
@@ -409,8 +419,18 @@ namespace Content.Server.Voting.Managers
 
             v.Finished = true;
             v.Dirty = true;
-            var args = new VoteFinishedEventArgs(winners.Length == 1 ? winners[0] : null, winners, voteTally);
-            v.OnFinished?.Invoke(_voteHandles[v.Id], args);
+            // Sunrise-Start: На случай пустых голосований
+            if (_voteHandles.ContainsKey(v.Id))
+            {
+                var args = new VoteFinishedEventArgs(winners.Length == 1 ? winners[0] : null, winners, voteTally);
+                v.OnFinished?.Invoke(_voteHandles[v.Id], args);
+            }
+            else
+            {
+                Logger.Error($"Vote handle with Id {v.Id} does not exist in _voteHandles.");
+            }
+            // Sunrise-End
+
             DirtyCanCallVoteAll();
         }
 

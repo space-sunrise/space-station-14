@@ -8,7 +8,7 @@
   - type: Absorbable
   - type: Speech
     speechVerb: Vulpkanin
-    allowedEmotes: ['Growl', 'Bark', 'Howl']
+    allowedEmotes: ['Growl', 'Bark', 'Howl', 'Whines']
   - type: HumanoidAppearance
     species: Vulpkanin
   - type: Icon
@@ -20,6 +20,22 @@
   - type: Inventory
     speciesId: human
   - type: VulpaAccent
+  - type: Paws
+    emotesTakeDamage:
+    - Scream
+    - Whines
+  - type: FootprintEmitter
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      collection: Punch
+    angle: 30
+    animation: WeaponArcClaw
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 2
+        Slash: 3
 
 
 - type: entity

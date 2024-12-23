@@ -5,6 +5,8 @@ using Content.Server.Mind;
 using Content.Server.Objectives;
 using Content.Server.Roles;
 using Content.Server.Vampire;
+using Content.Server.Bible.Components; 
+using Content.Shared.Alert;
 using Content.Shared.Vampire.Components;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.NPC.Systems;
@@ -25,6 +27,7 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
 {
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
+    [Dependency] private readonly AlertsSystem _alerts = default!;
     [Dependency] private readonly SharedRoleSystem _role = default!;
     [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
     [Dependency] private readonly ObjectivesSystem _objective = default!;
@@ -46,7 +49,6 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
         base.Initialize();
 
         SubscribeLocalEvent<VampireRuleComponent, GetBriefingEvent>(OnGetBriefing);
-
         SubscribeLocalEvent<VampireRuleComponent, AfterAntagEntitySelectedEvent>(OnSelectAntag);
         SubscribeLocalEvent<VampireRuleComponent, ObjectivesTextPrependEvent>(OnTextPrepend);
     }
@@ -54,6 +56,10 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
     private void OnSelectAntag(EntityUid mindId, VampireRuleComponent comp, ref AfterAntagEntitySelectedEvent args)
     {
         var ent = args.EntityUid;
+        
+        if (HasComp<BibleUserComponent>(ent))
+            return;
+
         _antag.SendBriefing(ent, MakeBriefing(ent), Color.Yellow, BriefingSound);
         MakeVampire(ent, comp);
     }
@@ -82,6 +88,8 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
 
         // make sure it's initial chems are set to max
         var vampireComponent = EnsureComp<VampireComponent>(target);
+        EnsureComp<VampireIconComponent>(target);
+        var vampireAlertComponent = EnsureComp<VampireAlertComponent>(target);
         var interfaceComponent = EnsureComp<UserInterfaceComponent>(target);
         
         if (HasComp<UserInterfaceComponent>(target))
@@ -99,6 +107,8 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
         
         _vampire.AddStartingAbilities(vampire);
         _vampire.MakeVulnerableToHoly(vampire);
+        _alerts.ShowAlert(vampire, vampireAlertComponent.BloodAlert);
+        _alerts.ShowAlert(vampire, vampireAlertComponent.StellarWeaknessAlert);
         
         Random random = new Random();
 

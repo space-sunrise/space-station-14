@@ -9,6 +9,8 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Content.Shared.Roles;
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared._Sunrise.Biocode;
+using BiocodeComponent = Content.Shared._Sunrise.Biocode.BiocodeComponent;
 
 namespace Content.Server.Access.Systems
 {
@@ -18,6 +20,7 @@ namespace Content.Server.Access.Systems
         [Dependency] private readonly IdCardSystem _cardSystem = default!;
         [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+        [Dependency] private readonly BiocodeSystem _biocodeSystem = default!;
 
         public override void Initialize()
         {
@@ -34,6 +37,14 @@ namespace Content.Server.Access.Systems
         {
             if (args.Target == null || !args.CanReach || !TryComp<AccessComponent>(args.Target, out var targetAccess) || !HasComp<IdCardComponent>(args.Target))
                 return;
+
+            // Sunrise-Start
+            if (TryComp<BiocodeComponent>(uid, out var biocodedComponent))
+            {
+                if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
+                    return;
+            }
+            // Sunrise-End
 
             if (!TryComp<AccessComponent>(uid, out var access) || !HasComp<IdCardComponent>(uid))
                 return;
@@ -98,7 +109,10 @@ namespace Content.Server.Access.Systems
             _cardSystem.TryChangeJobIcon(uid, jobIcon, idCard);
 
             if (TryFindJobProtoFromIcon(jobIcon, out var job))
-                _cardSystem.TryChangeJobDepartment(uid, job, idCard);
+            {
+                _cardSystem.TryChangeJobColor(uid, _cardSystem.GetJobColor(_prototypeManager, job), job.RadioIsBold);
+                _cardSystem.TryChangeJobDepartment(uid, job, idCard); // Sunrise-Edit
+            }
         }
 
         private bool TryFindJobProtoFromIcon(JobIconPrototype jobIcon, [NotNullWhen(true)] out JobPrototype? job)

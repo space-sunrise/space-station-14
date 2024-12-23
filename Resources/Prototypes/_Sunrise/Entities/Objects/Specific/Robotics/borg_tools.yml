@@ -67,7 +67,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
+    proto: BulletRedLaser
     fireCost: 100
   - type: BatterySelfRecharger
     autoRecharge: true
@@ -125,7 +125,7 @@
   - type: ExaminableSolution
     solution: hypospray
   - type: Hypospray
-    onlyAffectsMobs: false
+    onlyAffectsMobs: true
     injectOnly: true
 
 - type: entity
@@ -233,6 +233,8 @@
       Quantity: 2
     - ReagentId: DexalinPlus
       Quantity: 2
+  - type: Hypospray
+    pierceArmor: true
 
 - type: entity
   parent: Holoprojector
@@ -258,51 +260,6 @@
         locked: true
 
 - type: entity
-  name: machine gun borg
-  id: LightMachineGunBorg
-  parent: BaseItem
-  categories: [ HideSpawnMenu ]
-  description:
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/LMGs/l6.rsi
-    layers:
-    - state: icon
-      map: ["enum.GunVisualLayers.Base"]
-  - type: Item
-    sprite: Objects/Weapons/Guns/LMGs/l6.rsi
-  - type: Gun
-    minAngle: 4
-    maxAngle: 20
-    angleIncrease: 4
-    angleDecay: 16
-    fireRate: 8
-    selectedMode: FullAuto
-    availableModes:
-    - FullAuto
-    soundGunshot:
-      collection: m249
-      params:
-        volume: 10
-    soundEmpty:
-      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-  - type: MagazineVisuals
-    magState: mag
-    steps: 4
-    zeroVisible: true
-  - type: Appearance
-  - type: BallisticAmmoProvider
-    proto: CartridgeLightRifle
-    capacity: 200
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-        ents: []
-  - type: UseDelay
-    delay: 1
-
-
-- type: entity
   name: robot china lake
   parent: WeaponLauncherChinaLake
   id: WeaponLauncherChinaLakeBorg
@@ -316,19 +273,17 @@
     - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/grenade_launcher.ogg
-  - type: BallisticAmmoProvider
-    whitelist:
-      tags:
-      - Grenade
-    capacity: 10
-    proto: GrenadeFrag
-    soundInsert:
-      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
   - type: Appearance
+  - type: ProjectileBatteryAmmoProvider
+    proto: GrenadeFrag
+    fireCost: 1000
+  - type: Battery
+    maxCharge: 10000
+    startingCharge: 10000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 25
+  - type: AmmoCounter
 
 - type: entity
   id: FireExtinguisherBorg
@@ -506,7 +461,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: PulseERTBorg
+    proto: BulletPulse
     fireCost: 200
   - type: Battery
     maxCharge: 5000
@@ -514,21 +469,6 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 30
-
-- type: hitscan
-  id: PulseERTBorg
-  damage:
-    types:
-      Heat: 17
-  muzzleFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: muzzle_blue
-  travelFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: beam_blue
-  impactFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: impact_blue
 
 - type: entity
   name: cyborg's DL6902
@@ -556,18 +496,16 @@
         volume: 10
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-  - type: MagazineVisuals
-    magState: mag
-    steps: 4
-    zeroVisible: true
-  - type: Appearance
-  - type: BallisticAmmoProvider
-    proto: CartridgeLightRifle
-    capacity: 500
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-        ents: [ ]
+  - type: HitscanBatteryAmmoProvider
+    proto: BulletLightRifle
+    fireCost: 50
+  - type: Battery
+    maxCharge: 10000
+    startingCharge: 10000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 25
+  - type: AmmoCounter
 
 - type: entity
   name: cyborg's IAR-52
@@ -597,18 +535,16 @@
     - FullAuto
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
-  - type: BallisticAmmoProvider
-    proto: CartridgeCaselessRifle
-    capacity: 100
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-        ents: [ ]
-  - type: MagazineVisuals
-    magState: mag
-    steps: 1
-    zeroVisible: true
-  - type: Appearance
+  - type: HitscanBatteryAmmoProvider
+    proto: BulletPistol
+    fireCost: 50
+  - type: Battery
+    maxCharge: 5000
+    startingCharge: 5000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 25
+  - type: AmmoCounter
 
 - type: entity
   name: the cyborg saboteur's hypospray
@@ -635,6 +571,7 @@
     solution: hypospray
   - type: Hypospray
     onlyAffectsMobs: false
+    pierceArmor: true
 
 - type: entity
   name: the saboteur's communications jammer
@@ -667,7 +604,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellMicroreactor
+        startingItem: PowerCellRobotTool
 
 - type: entity
   parent: HandheldCrewMonitor

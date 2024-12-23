@@ -508,7 +508,7 @@
     state: pda-janitor
 
 - type: entity
-  parent: BaseSecurityPDA
+  parent: BasePDA
   id: CaptainPDA
   name: captain PDA
   description: Surprisingly no different from your PDA.
@@ -785,6 +785,25 @@
       - WantedListCartridge
       - LogProbeCartridge
       - AstroNavCartridge
+
+- type: entity
+  parent: CentcomPDA
+  id: CentcomOperatorPDA
+  name: CentComm PDA
+  description: Light green sign of walking bureaucracy.
+  components:
+  - type: Pda
+    id: CentcomOperatorIDCard
+    state: pda-centcom
+    penSlot:
+      startingItem: PenCentcom
+      whitelist:
+        tags:
+        - Write
+  - type: PdaBorderColor
+    borderColor: "#00842e"
+  - type: Icon
+    state: pda-centcom
 
 - type: entity
   parent: CentcomPDA

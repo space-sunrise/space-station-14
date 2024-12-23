@@ -2,16 +2,25 @@
   parent: EnergyDomeGeneratorBackpackSyndie
   id: EnergyDomeGeneratorBackpackSyndieBiocode
   suffix: BIOCODE
-  components: 
+  components:
   - type: FactionClothingBlocker
     factions:
     - Syndicate
-    
+
 - type: entity
   parent: EnergyDomeGeneratorPersonalSyndie
   id: EnergyDomeGeneratorPersonalSyndieBiocode
   suffix: BIOCODE
-  components: 
+  components:
   - type: FactionClothingBlocker
+    factions:
+    - Syndicate
+
+- type: entity
+  parent: EnergyShield
+  id: EnergyShieldBiocode
+  suffix: BIOCODE
+  components:
+  - type: Biocode
     factions:
     - Syndicate

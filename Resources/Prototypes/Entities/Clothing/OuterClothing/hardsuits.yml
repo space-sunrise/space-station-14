@@ -188,7 +188,7 @@
     heatingCoefficient: 0.001
     coolingCoefficient: 0.001
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitMaxim  
+    clothingPrototype: ClothingHeadHelmetHardsuitMaxim
   - type: ContainerContainer
     containers:
       cell_slot: !type:ContainerSlot
@@ -208,7 +208,7 @@
     damageEnergyDraw: 6
     domePrototype: EnergyDomeSmallPink
   - type: PowerCellDraw
-    drawRate: 8
+    drawRate: 0
     useRate: 0
   - type: UseDelay
     delay: 10.0
@@ -235,6 +235,7 @@
         Blunt: 0.6
         Slash: 0.6
         Piercing: 0.6
+        Heat: 0.7 #sunrise-Edit
         Caustic: 0.7
   - type: ClothingSpeedModifier
     walkModifier: 0.75
@@ -290,8 +291,9 @@
     modifiers:
       coefficients:
         Blunt: 0.5
-        Slash: 0.6
+        Slash: 0.5 #sunrise-edit
         Piercing: 0.6
+        Heat: 0.65 #sunrise-edit
         Caustic: 0.7
   - type: ClothingSpeedModifier
     walkModifier: 0.7
@@ -457,6 +459,7 @@
         Blunt: 0.6
         Slash: 0.5
         Piercing: 0.5
+        Heat: 0.65 #sunrise-Edit
         Radiation: 0.5
         Caustic: 0.6
   - type: ClothingSpeedModifier
@@ -579,9 +582,9 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.6
+        Blunt: 0.55 #Sunrise-edit
+        Slash: 0.55 #Sunrise-edit
+        Piercing: 0.55 #Sunrise-edit
         Heat: 0.2
         Radiation: 0.01
         Caustic: 0.5
@@ -589,10 +592,34 @@
     size: Huge
   - type: ClothingSpeedModifier
     walkModifier: 1.0
-    sprintModifier: 0.9
+    sprintModifier: 0.90
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieElite
+  #Sunrise-start
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+      toggleable-clothing: !type:ContainerSlot
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellSyndicate
+        whitelist:
+          tags:
+            - PowerCell
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 4
+    domePrototype: EnergyDomeSmallRed
+  - type: PowerCellDraw
+    drawRate: 0
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0
+  #Sunrise-end
 
 #Syndicate Commander Hardsuit
 - type: entity
@@ -1030,7 +1057,7 @@
     clothingPrototype: ClothingHeadHelmetHardsuitSanta
 
 - type: entity
-  parent: ClothingOuterBaseLarge
+  parent: [ ClothingOuterBaseLarge, AllowSuitStorageClothing ]
   id: ChangelingClothingOuterHardsuit
   name: organic space suit
   description: A spaceworthy biomass of pressure and temperature resistant tissue.

@@ -20,6 +20,8 @@ uplink-magazine-siar52-desc = Магазин ПП на 30 патронов. Со
 
 uplink-music-boombox-name = Музыкальный набор синдиката
 uplink-music-boombox-desc = Содержит бумбокс синдиката и несколько кассет к нему.
+uplink-mechpaint-mauler-name = балончик краски "МЯУЛЕР"
+uplink-mechpaint-mauler-desc = Содержит краску для Маулера. Превратите огромного МЕХа в милого котика!.
 
 ## Clothing
 
@@ -62,3 +64,5 @@ uplink-hypo-name = Горлекс гипоспрей
 uplink-hypo-desc = Химический гипоспрей, произвёденный синдикатом, способный мгновенно впрыснуть до 20 ед. реагентов. Изначально пуст.
 uplink-polytrinic-acid-chemistry-bottle-name = Политриновая кислота
 uplink-polytrinic-acid-chemistry-bottle-desc = Чрезвычайно едкое химическое вещество. Сильно обжигает всех, кто вступит с ней в непосредственный контакт.
+uplink-clothing-glasses-nvg-name = NVG Sun Glasses
+uplink-clothing-glasses-nvg-desc = Quality made sunglasses, manufactured by Gorlax Security. Uses modular parts to improve visibility in low light conditions. Warning: The glasses will not protect your eyes from direct flashes.

@@ -141,6 +141,14 @@
       "name": "dalmatian_wag",
       "directions": 4,
       "delays": [[0.2, 0.2, 0.2, 0.2, 0.2, 0.2], [0.2, 0.2, 0.2, 0.2, 0.2, 0.2], [0.2, 0.2, 0.2, 0.2, 0.2, 0.2], [0.2, 0.2, 0.2, 0.2, 0.2, 0.2]]
+    },
+    {
+      "name": "fluffy_alt-outer",
+      "directions": 4
+    },
+    {
+      "name": "fluffy_alt-inner",
+      "directions": 4
     }
   ]
 }

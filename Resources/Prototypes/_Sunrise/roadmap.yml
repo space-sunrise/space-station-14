@@ -54,21 +54,16 @@
           name: Full Translation Of Everything
           desc: translation of all the items, menus. In order to simplify gameplay.
           state: Complete
-        night-vision:
-          id: night-vision
-          name: Night Vision
-          desc: NVD, night vision in some animals/race.
-          state: Complete
         mechs:
           id: mechs
           name: Mechs
           desc: Controlled mechanoids, created to work in difficult places, as well as in facilitating the transportation of goods and other tasks where man himself can not cope.
-          state: Partial
+          state: Complete
         ipc:
           id: ipc
           name: IPC
           desc: A race of intelligent machines, in reworking.
-          state: Partial
+          state: InProgress
         blob:
           id: blob
           name: Blob
@@ -109,44 +104,24 @@
           name: Economy
           desc: Adding money, wages, the post office will give money and vendomats will take money for food.
           state: InProgress
+    2025:
+      name: 2025
+      goals:
         extend-med:
           id: extend-med
           name: Medical Department Expansion
           desc: Adding new mechanics, roles.
-          state: Planned
-        pathologist:
-          id: pathologist
-          name: Pathologist
-          desc: A new role for the medical department. To keep an eye on the morgue.
-          state: Planned
-        arena:
-          id: arena
-          name: Ghosts Arena
-          desc: An arena where ghosts can occupy their time so they don't have to fly around the station waiting for the end of the round.
-          state: Planned
-        limbo:
-          id: limbo
-          name: Limbo
-          desc: A separate world for ghosts where there are no rules.
-          state: Planned
-        taipan:
-          id: taipan
-          name: Taipan
-          desc: A separate syndicate station with its own shift tasks.
-          state: Planned
-    2025:
-      name: 2025
-      goals:
-        mail:
-          id: mail
-          name: Mail
-          desc: Sending parcels to different parts of the station for which the station will receive money.
-          state: InProgress
+          state: Partial
         ai:
           id: ai
           name: AI
           desc: A new artificial intelligence profession aimed at helping the station destroy itself?
           state: Partial
+        mail:
+          id: mail
+          name: Mail
+          desc: Sending parcels to different parts of the station for which the station will receive money.
+          state: InProgress
         borer:
           id: borer
           name: Brainworm
@@ -202,10 +177,20 @@
           name: A race of plasmamens
           desc: A race of cool plasma dudes.
           state: Planned
-        centcomm-update:
-          id: centcomm-update
-          name: Centcomm Update
-          desc: Central Command map update and possible role update.
+        arena:
+          id: arena
+          name: Ghosts Arena
+          desc: An arena where ghosts can occupy their time so they don't have to fly around the station waiting for the end of the round.
+          state: Planned
+        limbo:
+          id: limbo
+          name: Limbo
+          desc: A separate world for ghosts where there are no rules.
+          state: Planned
+        taipan:
+          id: taipan
+          name: Taipan
+          desc: A separate syndicate station with its own shift tasks.
           state: Planned
     2026:
       name: 2026

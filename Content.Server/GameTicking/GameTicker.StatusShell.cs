@@ -63,7 +63,12 @@ namespace Content.Server.GameTicking
                 jObject["baby_jail"] = _cfg.GetCVar(CCVars.BabyJailEnabled);
                 jObject["run_level"] = (int) _runLevel;
                 if (preset != null)
-                    jObject["preset"] = Loc.GetString(preset.ModeTitle);
+                {
+                    if (preset.Hide)
+                        jObject["preset"] = Loc.GetString("gamemode-title-hide");
+                    else
+                        jObject["preset"] = Loc.GetString(preset.ModeTitle);
+                }
                 if (_runLevel >= GameRunLevel.InRound)
                 {
                     jObject["round_start_time"] = _roundStartDateTime.ToString("o");

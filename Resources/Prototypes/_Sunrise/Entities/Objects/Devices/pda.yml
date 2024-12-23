@@ -21,7 +21,7 @@
     id: MagistratIDCard
     state: pda-captain
     penSlot:
-      startingItem: Pen
+      startingItem: UEGPen
       priority: -1
       whitelist:
         tags:
@@ -54,6 +54,36 @@
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-blueshield
+
+- type: entity
+  parent: BaseMedicalPDA
+  id: PathologistPDA
+  name: Pathologist PDA
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    layers:
+    - map: [ "enum.PdaVisualLayers.Base" ]
+    - state: "light_overlay"
+      map: [ "enum.PdaVisualLayers.Flashlight" ]
+      shader: "unshaded"
+      visible: false
+    - state: "id_overlay"
+      map: [ "enum.PdaVisualLayers.IdLight" ]
+      shader: "unshaded"
+      visible: false
+  - type: Pda
+    id: PathologistIDCard
+    state: pda-patologoanatom
+  - type: PdaBorderColor
+    borderColor: "#717059"
+    accentVColor: "#447987"
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-patologoanatom
+  - type: GuideHelp
+    guides:
+    - Medical Doctor
 
 - type: entity
   parent: BasePDA
@@ -227,3 +257,65 @@
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-adj
+
+- type: entity
+  parent: SyndiPDA
+  id: USSPPDA
+  name: USSP PDA
+  description: Since you live in a Soviet country, your dreams should be Soviet as well.
+  components:
+  - type: Pda
+    id: USSPIDCard
+    state: pda-syndi
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - NotekeeperCartridge
+
+- type: entity
+  parent: SyndiPDA
+  id: USSPOfficerPDA
+  name: USSP PDA
+  description: Since you live in a Soviet country, your dreams should be Soviet as well.
+  suffix: Militia
+  components:
+  - type: Pda
+    id: USSPOfficerIDCard
+    state: pda-syndi
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - NotekeeperCartridge
+      - LogProbeCartridge
+
+- type: entity
+  parent: SyndiPDA
+  id: USSPSoldierPDA
+  name: Millitary USSP PDA
+  description: Since you live in a Soviet country, your dreams should be Soviet as well.
+  suffix: Combat
+  components:
+  - type: Pda
+    id: USSPSoldierIDCard
+    state: pda-syndi
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - NotekeeperCartridge
+      - AstroNavCartridge
+
+- type: entity
+  parent: SyndiPDA
+  id: USSPCaptainPDA
+  name: Officer USSP PDA
+  description: Since you live in a Soviet country, your dreams should be Soviet as well.
+  suffix: Officer
+  components:
+  - type: Pda
+    id: USSPCaptainIDCard
+    state: pda-syndi
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - NotekeeperCartridge
+      - LogProbeCartridge

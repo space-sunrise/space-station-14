@@ -4,7 +4,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: ShowJobIcons
-#  - type: ShowMindShieldIcons Sunrise-Edit
+  - type: ShowMindShieldIcons
   - type: ShowCriminalRecordIcons
 
 - type: entity
@@ -13,11 +13,7 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: ShowHealthBars
-    damageContainers:
-    - Biological
   - type: ShowHealthIcons
-    damageContainers:
-    - Biological
 
 - type: entity
   parent: ClothingEyesBase
@@ -214,8 +210,8 @@
 
 - type: entity
   parent: [ClothingEyesBase, ShowSecurityIcons, BaseSyndicateContraband]
-  id: ClothingEyesHudSyndicateAgent
-  name: syndicate agent visor
+  id: ClothingEyesHudSyndicateMedic
+  name: syndicate medic visor
   description: The Syndicate Agent's professional heads-up display, designed for quick diagnosis of their team's status.
   components:
   - type: Sprite
@@ -224,8 +220,6 @@
     sprite: Clothing/Eyes/Hud/syndagent.rsi
   - type: ShowSyndicateIcons
   - type: ShowHealthBars
-    damageContainers:
-    - Biological
 
 - type: entity
   parent: [ClothingEyesGlassesSunglasses, ShowSecurityIcons]

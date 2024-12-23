@@ -18,7 +18,6 @@
   weight: 10
   startingGear: HoSGear
   icon: "JobIconHeadOfSecurity"
-  requireAdminNotify: true
   supervisors: job-supervisors-captain
   canBeAntag: false
   radioBold: true # Sunrise-Edit
@@ -54,4 +53,4 @@
   storage:
     back:
     - Flash
-    #- MagazinePistol # Sunrise-Edit
+    - MagazineGlock22Rubber # Sunrise-Edit

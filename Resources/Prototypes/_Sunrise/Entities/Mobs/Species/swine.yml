@@ -51,6 +51,7 @@
     spawned:
     - id: FoodMeat
       amount: 5
+  - type: FootprintEmitter
 
 - type: entity
   save: false

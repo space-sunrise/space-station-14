@@ -35,7 +35,7 @@
     containers:
       ballistic-ammo: !type:Container
         ents: []
-  - type: Telescope
+  - type: ZoomableGun
   - type: StaticPrice
     price: 500
 

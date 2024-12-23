@@ -34,6 +34,9 @@
     contents:
       - id: TrackingImplanter
         amount: 5
+  # Sunrise-Edit
+  - type: AccessReader
+    access: [ [ "Armory" ],[ "BlueShield" ] ]
 
 - type: entity
   parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
@@ -69,3 +72,22 @@
       amount: 2
     - id: MagazinePistol
       amount: 4
+
+- type: entity
+  id: CrateSecurityRiot
+  parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
+  name: swat crate
+  description: Contains two sets of riot armor, helmets, shields, and enforcers loaded with beanbags. Extra ammo is included. Requires Armory access to open.
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingOuterArmorRiot
+      amount: 2
+    - id: ClothingHeadHelmetRiot
+      amount: 2
+    - id: WeaponShotgunEnforcerRubber
+      amount: 2
+    - id: BoxBeanbag
+      amount: 2
+    - id: RiotShield
+      amount: 2

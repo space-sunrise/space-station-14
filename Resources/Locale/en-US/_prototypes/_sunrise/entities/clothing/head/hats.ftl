@@ -48,3 +48,7 @@ ent-ClothingHeadHatGarrisonCapAdjutant = adjutant garrisoncap
     .desc = A little cotton cap that's just about to fall off his head.
 ent-ClothingHeadHatCapAdjutant = adjutant cap
     .desc = Blue and white, suspiciously reminiscent of the captain's.
+ent-ClothingHeadHatWithPaces = Hat with paces
+    .desc = A black hat with paces, usually worn by Jews.
+ent-ClothingHeadHatSingulo = Singulo Crown
+    .desc = The greatest achievement of engineers and scientists - a compact singularity installation that allows the owner to demonstrate their status and uniqueness on the station.

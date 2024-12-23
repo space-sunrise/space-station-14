@@ -23,12 +23,26 @@
     - name: head
       slotTexture: head
       slotFlags: HEAD
-      uiWindowPos: 0,2
+      uiWindowPos: 0,3
       strippingWindowPos: 0,0
       displayName: Head
     - name: mask
       slotTexture: mask
       slotFlags: MASK
-      uiWindowPos: 0,1
-      strippingWindowPos: 1,1
+      uiWindowPos: 0,2 # Sunrise-edit
+      strippingWindowPos: 0,1 # Sunrise-edt
       displayName: Mask
+# Sunsise-start
+    - name: jumpsuit
+      slotTexture: uniform
+      slotFlags: INNERCLOTHING
+      uiWindowPos: 0,1
+      strippingWindowPos: 0,2
+      displayName: Jumpsuit
+    - name: neck
+      slotTexture: neck
+      slotFlags: NECK
+      uiWindowPos: 1,2
+      strippingWindowPos: 1,1
+      displayName: Neck
+# Sunrise-end

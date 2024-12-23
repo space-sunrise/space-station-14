@@ -150,6 +150,7 @@
       - ExteriorLightTube
       - LightBulb
       - LedLightBulb
+      - DimLightBulb
       - Bucket
       - DrinkMug
       - DrinkMugMetal
@@ -163,6 +164,7 @@
       - FoodPlateSmallPlastic
       - FoodBowlBig
       - FoodPlateTin
+      - FoodPlateMuffinTin
       - FoodKebabSkewer
       - SprayBottle
       - MopItem
@@ -178,7 +180,7 @@
       - MicroManipulatorStockPart
       - MatterBinStockPart
       - CapacitorStockPart
-#      - ConveyorBeltAssembly Sunrise-Edit
+      - ConveyorBeltAssembly
       - IntercomElectronics
       - FirelockElectronics
       - DoorElectronics
@@ -199,7 +201,6 @@
       - WetFloorSign
       - ClothingHeadHatCone
       - FreezerElectronics
-      - ClothingHeadHelmetPubgMore  # Sunrise-edit
   - type: EmagLatheRecipes
     emagStaticRecipes:
       - BoxLethalshot
@@ -227,8 +228,8 @@
       - SpeedLoaderMagnumEmpty
       - WeaponEnergyGun       # Sunrise - Energy Gun
       - WeaponEnergyGunMini   # Sunrise - Miniature Energy Gun
-      - WeaponEnergyGunPistol # Sunrise - PDW-9 Energy Pistol
-      - WeaponGunLaserCarbineAutomatic # Sunrise - IK-60 Laser Carbine
+      - WeaponLaserSvalinn # Sunrise - Svalin shit weapon
+      - ClothingHeadHelmetPubg # Sunrise - cheap if u have EMAG
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -291,6 +292,7 @@
     - ClothingEyesGlassesChemical
     - Nanopaste # Sunrise-edit
     - HandheldRoboAnalyzer # Sunrise-edit
+    - PowerCageSmall # Sunrise-edit
     dynamicRecipes:
       - PowerDrill
       - MiningDrill
@@ -299,13 +301,17 @@
       - AnomalyLocator
       - AnomalyLocatorWide
       - Scalpel
+      - ScalpelAdvanced
       - Retractor
       - Cautery
       - Drill
       - WeaponParticleDecelerator
       - HoloprojectorField
       - Saw
+      - SawAdvanced
       - Hemostat
+      - BoneGel
+      - BoneSetter
       - CryostasisBeaker
       - SyringeCryostasis
       - Syringe
@@ -335,7 +341,7 @@
       - SynthesizerInstrument
       - ClothingShoesBootsMagSci
       - ClothingShoesBootsMoon
-      - ClothingShoesBootsSpeed
+      #- ClothingShoesBootsSpeed
       - NodeScanner
       - HolofanProjector
       - BluespaceBeaker
@@ -358,12 +364,14 @@
       - DeviceQuantumSpinInverter
       - EnergyDomeDirectionalTurtle
       # Sunrise-start
+      - ClothingHeadHelmetPubgMore
       - MechPhasicScanningModule
       - HandCraftedNVD
       - BasicNVD
+      - PowerCageCombat
       - PowerCageHigh
       - PowerCageMedium
-      - PowerCageSmall
+      # PowerCageSmall
       - ClothingShoesBootsMagCombat
       - CargoSuit
       - BluespaceBox
@@ -385,9 +393,9 @@
       - BoxShotgunUranium
       - BoxShellTranquilizer
       - ExplosivePayload
-      - GrenadeBlast
-      - GrenadeEMP
-      - GrenadeFlash
+      - ShellBlastArtillery #Sunrise-edit
+      - ShellEMPArtillery #Sunrise-edit
+      - ShellFlashArtillery #Sunrise-edit
       - HoloprojectorSecurity
       - MagazineBoxLightRifleIncendiary
       - MagazineBoxLightRifleUranium
@@ -559,6 +567,7 @@
       - MassMediaCircuitboard
       - ReagentGrinderIndustrialMachineCircuitboard
       - JukeboxCircuitBoard
+      - SMESAdvancedMachineCircuitboard
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       - ShuttleGunDusterCircuitboard
@@ -612,11 +621,6 @@
     - BorgModuleFireExtinguisher
     - BorgModuleRadiationDetection
     - BorgModuleTool
-    - BorgModuleAppraisal
-    - BorgModuleConstruction
-    - BorgModuleService
-    - BorgModuleTreatment
-    - BorgModuleCleaning
     - CyborgEndoskeleton
     - LeftArmBorg
     - RightArmBorg
@@ -624,62 +628,19 @@
     - RightLegBorg
     - LightHeadBorg
     - TorsoBorg
-    - LeftArmBorgEngineer
-    - RightArmBorgEngineer
-    - LeftLegBorgEngineer
-    - RightLegBorgEngineer
-    - HeadBorgEngineer
-    - TorsoBorgEngineer
-    - LeftLegBorgJanitor
-    - RightLegBorgJanitor
-    - HeadBorgJanitor
-    - TorsoBorgJanitor
-    - LeftArmBorgMedical
-    - RightArmBorgMedical
-    - LeftLegBorgMedical
-    - RightLegBorgMedical
-    - HeadBorgMedical
-    - TorsoBorgMedical
-    - LeftArmBorgMining
-    - RightArmBorgMining
-    - LeftLegBorgMining
-    - RightLegBorgMining
-    - HeadBorgMining
-    - TorsoBorgMining
-    - LeftArmBorgService
-    - RightArmBorgService
-    - LeftLegBorgService
-    - RightLegBorgService
-    - HeadBorgService
-    - TorsoBorgService
+#Sunrise-start
     - MechAirTank
     - MechThruster
+#Sunrise-end
     dynamicRecipes:
-#Sunrise-edit start
-    - CartridgeLightRifleRubber
-    - CartridgeMagnumRubber
-    - CartridgePistolRubber
-    - CartridgeRifleRubber
-    - MagazineBoxLightRifleRubber
-    - MagazineBoxMagnumRubber
-    - MagazineBoxPistolRubber
-    - MagazineBoxRifleRubber
-#Sunrise-edit end
     - ProximitySensor
-    - BorgModuleLightReplacer
     - BorgModuleAdvancedCleaning
-    - BorgModuleMining
-    - BorgModuleGrapplingGun
     - BorgModuleAdvancedTool
     - BorgModuleGPS
-    - BorgModuleRCD
     - BorgModuleArtifact
     - BorgModuleAnomaly
     - BorgModuleGardening
     - BorgModuleHarvesting
-    - BorgModuleMusique
-    - BorgModuleClowning
-    - BorgModuleDiagnosis
     - BorgModuleDefibrillator
     - BorgModuleAdvancedTreatment
     - RipleyHarness
@@ -729,21 +690,24 @@
     - PhazonLLeg
     - PhazonRArm
     - PhazonRLeg
+    - PowerCageCombat
+    - PowerCageHigh
+    - PowerCageMedium
     - MechEquipmentDrill
     - MechEquipmentDrillDiamond
     - MechEquipmentKineticAccelerator
     - MechEquipmentHonkerBananaMortar
     - MechEquipmentHonkerMousetrapMortar
-  - type: EmagLatheRecipes
-    emagDynamicRecipes:
-    - WeaponMechCombatImmolationGun
+    - WeaponMechCombatDisabler
+    - WeaponMechCombatFlashbangLauncher
     - WeaponMechCombatSolarisLaser
     - WeaponMechCombatFiredartLaser
     - WeaponMechCombatUltraRifle
+  - type: EmagLatheRecipes
+    emagDynamicRecipes:
+    - WeaponMechCombatImmolationGun
     - WeaponMechCombatShotgun
     - WeaponMechCombatShotgunIncendiary
-    - WeaponMechCombatDisabler
-    - WeaponMechCombatFlashbangLauncher
     - WeaponMechCombatMissileRack8
   - type: MaterialStorage
     whitelist:
@@ -864,6 +828,7 @@
       - TargetHuman
       - TargetSyndicate
       - WeaponDisablerPractice
+      - WeaponFlareGunSecurity
       - WeaponLaserCarbinePractice
       - Zipties
     # Sunrise-start
@@ -900,9 +865,9 @@
       - ClothingBackpackElectropack
       - ExplosivePayload
       - FlashPayload
-      - GrenadeBlast
-      - GrenadeEMP
-      - GrenadeFlash
+      - ShellBlastArtillery #Sunrise-edit
+      - ShellEMPArtillery #Sunrise-edit
+      - ShellFlashArtillery #Sunrise-edit
       - HoloprojectorSecurity
       - MagazineBoxLightRifleIncendiary
       - MagazineBoxLightRifleUranium
@@ -944,6 +909,14 @@
       - WeaponLaserCarbine
       - WeaponXrayCannon
     # Sunrise-Start
+      - CartridgePistolRubber
+      - CartridgeMagnumRubber
+      - CartridgeRifleRubber
+      - CartridgeLightRifleRubber
+      - MagazineBoxPistolRubber
+      - MagazineBoxMagnumRubber
+      - MagazineBoxRifleRubber
+      - MagazineBoxLightRifleRubber
       - WeaponMechCombatImmolationGun # Sunrise - Mechs
       - WeaponMechCombatSolarisLaser # Sunrise - Mechs
       - WeaponMechCombatFiredartLaser # Sunrise - Mechs
@@ -1084,12 +1057,6 @@
       - MedkitAdvanced
       - MedkitRadiation
       - MedkitCombat
-      - Scalpel
-      - Retractor
-      - Cautery
-      - Drill
-      - Saw
-      - Hemostat
       - ClothingEyesGlassesChemical
       - WhiteCane
     dynamicRecipes:
@@ -1098,6 +1065,27 @@
       - BluespaceBeaker
       - SyringeBluespace
       - SyringeCryostasis
+      - BoneSetter
+      - BoneSetterAdvanced
+      - BoneGel
+      - Scalpel
+      - ScalpelAdvanced
+      - Retractor
+      - RetractorAdvanced
+      - Cautery
+      - Drill
+      - Saw
+      - SawAdvanced
+      - Hemostat
+      - HemostatAdvanced
+      - LeftArmCyber
+      - RightArmCyber
+      - LeftHandCyber
+      - RightHandCyber
+      - LeftLegCyber
+      - RightLegCyber
+      - LeftFootCyber
+      - RightFootCyber
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
@@ -1221,6 +1209,13 @@
       - ClothingUniformJumpsuitWarden
       - ClothingUniformJumpskirtWarden
       - ClothingHeadHatParamedicsoft
+      #Sunrise-Lust start
+      - ClothingUniformJumpsuitAdjutant
+      - ClothingUniformJumpskirtAdjutant
+      - ClothingHeadHatCapAdjutant
+      - ClothingHeadHatBeretAdjutant
+      - ClothingHeadHatGarrisonCapAdjutant
+      #Sunrise-Lust end
       # Winter outfits
       - ClothingOuterWinterCap
       - ClothingOuterWinterCE
@@ -1250,6 +1245,7 @@
       - ClothingOuterWinterSci
       - ClothingOuterWinterRobo
       - ClothingOuterWinterSec
+      - ClothingOuterCoatAdjutant #Sunrise-Lust add
       # Ties
       - ClothingNeckTieRed
       - ClothingNeckTieDet
@@ -1398,7 +1394,7 @@
       staticRecipes:
         - SheetSteel
         - SheetGlass1
-        - SheetRGlass
+        - SheetRGlassRaw
         - SheetPlasma1
         - SheetPGlass1
         - SheetRPGlass1
@@ -1424,7 +1420,7 @@
     staticRecipes:
       - SheetSteel
       - SheetGlass1
-      - SheetRGlass
+      - SheetRGlassRaw
       - SheetPlasma1
       - SheetPGlass1
       - SheetRPGlass1

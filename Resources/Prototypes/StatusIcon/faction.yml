@@ -17,6 +17,7 @@
     components:
     - ShowAntagIcons
     - InitialInfected
+    - Zombie
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: InitialInfected
@@ -44,17 +45,10 @@
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: HeadRevolutionary
-
-- type: factionIcon
-  id: SyndicateFaction
-  priority: 0
-  locationPreference: Left
-  icon:
-    sprite: /Textures/Interface/Misc/job_icons.rsi
-    state: Syndicate
-
+    
 - type: factionIcon
   id: HivemindFaction
+  isShaded: true
   priority: 11
   showTo:
     components:
@@ -66,11 +60,20 @@
     
 - type: factionIcon
   id: VampireFaction
+  isShaded: true
   priority: 11
   showTo:
     components:
       - ShowAntagIcons
-      - Vampire
+      - VampireIcon
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: Vampire
+
+- type: factionIcon
+  id: SyndicateFaction
+  priority: 0
+  locationPreference: Left
+  icon:
+    sprite: /Textures/Interface/Misc/job_icons.rsi
+    state: Syndicate

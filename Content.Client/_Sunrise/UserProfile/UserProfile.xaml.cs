@@ -1,3 +1,4 @@
+using Content.Client._Sunrise.SponsorTiers;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Sunrise.Interfaces.Client;
 using Content.Sunrise.Interfaces.Shared;
@@ -16,6 +17,9 @@ public sealed partial class UserProfile : Control
     [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
     [Dependency] private readonly IUriOpener _uri = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+
+
+    private readonly SponsorTiersUIController _sponsorTiersUIController;
     private readonly IClientServiceAuthManager? _serviceAuthManager;
     private readonly ISharedSponsorsManager? _sponsorsManager;
 
@@ -29,7 +33,10 @@ public sealed partial class UserProfile : Control
         IoCManager.Instance!.TryResolveType(out _sponsorsManager);
         IoCManager.Instance!.TryResolveType(out _serviceAuthManager);
 
+        _sponsorTiersUIController = UserInterfaceManager.GetUIController<SponsorTiersUIController>();
+
         _cfg.OnValueChanged(SunriseCCVars.InfoLinksDonate, OnInfoLinksDonateChanged, true);
+
 
         if (_serviceAuthManager == null)
         {
@@ -51,7 +58,7 @@ public sealed partial class UserProfile : Control
         else
         {
             BuySponsorButton.OnPressed += BuySponsorPressed;
-            _sponsorsManager.LoadedSponsorData += RefreshSponsorData;
+            _sponsorsManager.LoadedSponsorInfo += RefreshSponsorInfo;
             InfoSponsorButton.OnPressed += InfoSponsorPressed;
         }
     }
@@ -62,7 +69,7 @@ public sealed partial class UserProfile : Control
         _donateUrl = url;
     }
 
-    private void RefreshSponsorData()
+    private void RefreshSponsorInfo()
     {
         if (_sponsorsManager == null)
             return;
@@ -125,6 +132,6 @@ public sealed partial class UserProfile : Control
 
     private void InfoSponsorPressed(BaseButton.ButtonEventArgs obj)
     {
-
+        _sponsorTiersUIController.ToggleWindow();
     }
 }

@@ -3,7 +3,7 @@
   mapName: 'Reach'
   mapPath: /Maps/_Sunrise/Station/reach.yml
   minPlayers: 0
-  maxPlayers: 9
+  maxPlayers: 20
   stations:
     Reach:
       stationProto: StandardNanotrasenStation
@@ -34,16 +34,26 @@
             Passenger: [ -1, -1 ]
             HeadOfPersonnel: [ 1, 1 ]
             Reporter: [ 1, 1 ]
-            Lawyer: [ 1, 1 ]
             SeniorEngineer: [ 1, 1 ]
             Paramedic: [ 1, 1 ]
-            ServiceWorker: [ -1, -1 ]
+            ServiceWorker: [ 5, -1 ]
             IAA: [ 1, 1 ]
             SeniorOfficer: [ 1, 1 ]
-            # Sunrise-Adjutant
             Adjutant: [ 1, 1 ]
+            Lawyer: [ 1, 1 ]
         - type: StationGoal
           goals:
           - Shuttle
           - SolarPanels
           - Artifacts
+          - Delegates
+          - Cyborgs
+          - Testing
+          - Anomaly
+          - Replenishment
+          - IntelWeapons
+          - Reports
+          - Reconnaissance
+          - Saboteurs
+          - Furs
+          - Crew

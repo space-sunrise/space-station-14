@@ -1,0 +1,229 @@
+
+# Peace borg
+- type: borgType
+  id: peace
+
+  job: PeaceBorg
+
+  # Description
+  dummyPrototype: BorgChassisPeace
+
+  # Functional
+  extraModuleCount: 2
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleSecurity
+
+  defaultModules:
+  - BorgModuleStandart
+  - BorgModulePeace
+
+  radioChannels:
+  - Science
+  - Security
+
+  addComponents:
+  - type: ShowCriminalRecordIcons
+  - type: SiliconLawProvider
+    laws: RobocopLawset
+  - type: Pacified
+  - type: FlashImmunity
+  - type: FabricateCookie
+    cookieList:
+    - FoodBakedCookieOatmeal
+    - FoodBakedCookieRaisin
+    - FoodBakedCookie
+    - FoodBakedCookieSugar
+    - FoodSnackCookieFortune
+  - type: BorgCuffed
+  - type: InnateItem
+    instantActions:
+    - PortableSurveillanceCameraMonitor
+  - type: Access
+    tags:
+    - EmergencyShuttleRepealAll
+    - Command
+    - Lawyer
+    - Engineering
+    - Medical
+    - Salvage
+    - Cargo
+    - Research
+    - Service
+    - Maintenance
+    - Brig
+    - Security
+    - External
+    - Janitor
+    - Theatre
+    - Bar
+    - Chemistry
+    - Kitchen
+    - Chapel
+    - Hydroponics
+    - Atmospherics
+  - type: AccessReader
+    access: [ [ "Command" ], [ "Security" ] ]
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - CanPilot
+    - FootstepSound
+    - EmagImmune
+
+  # Sounds
+  footstepCollection:
+    collection: FootstepCyborgSpider
+    params:
+      volume: -10
+
+  # Visual
+  inventoryTemplateId: borgTall
+  spriteBodyState: peace
+  spriteHasMindState: peace_e
+  spriteNoMindState: peace_e_r
+  spriteToggleLightState: peace_l
+
+  # Pet
+  petSuccessString: petting-success-peace-cyborg
+  petFailureString: petting-failure-peace-cyborg
+
+
+# Clown borg
+- type: borgType
+  id: clown
+
+  job: ClownBorg
+
+  # Description
+  dummyPrototype: BorgChassisClown
+
+  # Functional
+  extraModuleCount: 2
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleService
+
+  defaultModules:
+  - BorgModuleStandart
+  - BorgModuleClowning
+
+  radioChannels:
+  - Science
+  - Service
+
+  addComponents:
+  - type: FabricateSoap
+    soapList:
+    - Soap
+    - SoapNT
+    - SoapDeluxe
+    - SoapHomemade
+  - type: TTS
+    voice: NecoArcTwo
+
+  # Sounds
+  footstepCollection:
+    collection: FootstepClown
+
+  # Visual
+  inventoryTemplateId: borgTall
+  spriteBodyState: clown
+  spriteHasMindState: clown_e
+  spriteNoMindState: clown_e_r
+  spriteToggleLightState: clown_l
+
+  # Pet
+  petSuccessString: petting-success-clown-cyborg
+  petFailureString: petting-failure-clown-cyborg
+
+
+# Security borg
+- type: borgType
+  id: security
+
+  job: SecurityBorg
+
+  # Description
+  dummyPrototype: BorgChassisSecurity
+
+  # Functional
+  extraModuleCount: 3
+  moduleWhitelist:
+    tags:
+    - BorgModuleGeneric
+    - BorgModuleSecurity
+
+  defaultModules:
+  - BorgModuleStandart
+  - BorgModuleCombat
+  - BorgModuleStun
+
+  radioChannels:
+  - Science
+  - Security
+
+  # Visual
+  inventoryTemplateId: borgTall
+  spriteBodyState: sec
+  spriteHasMindState: sec_e
+  spriteNoMindState: sec_e_r
+  spriteToggleLightState: sec_l
+
+  # Pet
+  petSuccessString: petting-success-sec-cyborg
+  petFailureString: petting-failure-sec-cyborg
+
+  # Sounds
+  footstepCollection:
+    collection: FootstepCyborgSpider
+    params:
+      volume: -10
+
+  addComponents:
+  - type: TTS
+    voice: Sentrybot
+  - type: InnateItem
+    instantActions:
+    - PortableSurveillanceCameraMonitorUnpowered
+    - HandheldCriminalRecordsMonitorUnpowered
+    worldTargetActions:
+    - ForensicScanner
+  - type: ShowCriminalRecordIcons
+  - type: BorgCuffed
+  - type: FlashImmunity
+  - type: SiliconLawProvider
+    laws: RobocopLawset
+  - type: Access
+    tags:
+    - EmergencyShuttleRepealAll
+    - Command
+    - Lawyer
+    - Engineering
+    - Medical
+    - Salvage
+    - Cargo
+    - Research
+    - Service
+    - Maintenance
+    - Brig
+    - Security
+    - External
+    - Janitor
+    - Theatre
+    - Bar
+    - Chemistry
+    - Kitchen
+    - Chapel
+    - Hydroponics
+    - Atmospherics
+  - type: AccessReader
+    access: [ [ "Command" ], [ "Security" ] ]
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - CanPilot
+    - FootstepSound
+    - EmagImmune
