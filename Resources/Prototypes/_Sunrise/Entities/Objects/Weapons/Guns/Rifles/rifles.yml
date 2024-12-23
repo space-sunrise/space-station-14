@@ -279,8 +279,8 @@
     minAngle: -23
     maxAngle: -43
   - type: Gun
-    minAngle: 24
-    maxAngle: 45
+    minAngle: 27
+    maxAngle: 50
     fireRate: 5.5
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/g36/g36_shot.ogg
