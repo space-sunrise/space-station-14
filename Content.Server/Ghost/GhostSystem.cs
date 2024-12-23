@@ -582,8 +582,7 @@ namespace Content.Server.Ghost
             {
                 if (_mobState.IsCritical(playerEntity.Value, mobState))
                 {
-                    // Sunrise-Edit
-                    //canReturn = true;
+                    canReturn = true;
 
                     //todo: what if they dont breathe lol
                     //cry deeply
