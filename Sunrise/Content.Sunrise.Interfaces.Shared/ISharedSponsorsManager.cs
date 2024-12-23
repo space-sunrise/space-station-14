@@ -68,6 +68,9 @@ public sealed class SponsorInfo
     [JsonPropertyName("allowedMarkings")]
     public string[] AllowedMarkings { get; set; } = [];
 
+    [JsonPropertyName("allowedVoices")]
+    public string[] AllowedVoices { get; set; } = [];
+
     [JsonPropertyName("allowedLoadouts")]
     public string[] AllowedLoadouts { get; set; } = [];
 

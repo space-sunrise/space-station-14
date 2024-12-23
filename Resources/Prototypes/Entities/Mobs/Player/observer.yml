@@ -76,6 +76,7 @@
     interfaces:
       enum.GhostThemeUiKey.Key:
         type: GhostThemeBoundUserInterface
+        requireInputValidation: false
   # Sunrise-End
 
 # proto for player ghosts specifically

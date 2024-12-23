@@ -1,9 +1,10 @@
+// © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 using Content.Shared._Sunrise.GhostTheme;
 using Content.Shared.Ghost;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Server.GameObjects;
-using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
+using Content.Sunrise.Interfaces.Shared;
 
 namespace Content.Server._Sunrise.GhostTheme;
 
@@ -11,8 +12,7 @@ public sealed class GhostThemeSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
-    private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
+    private ISharedSponsorsManager? _sponsorsManager;
 
     public override void Initialize()
     {
@@ -44,25 +44,21 @@ public sealed class GhostThemeSystem : EntitySystem
 
     private void OnGhostThemeSelected(Entity<GhostComponent> ent, ref GhostThemePrototypeSelectedMessage msg)
     {
-        Logger.Info($"GhostThemePrototypeSelectedMessage {msg.SelectedGhostTheme}");
         if (_sponsorsManager == null ||
             !TryComp(msg.Actor, out ActorComponent? actorComp) ||
             !_sponsorsManager.TryGetGhostThemes(actorComp.PlayerSession.UserId, out var ghostThemes))
             return;
 
-        Logger.Info($"GetGhostThemes {ghostThemes.Count}");
-
         if (!_prototypeManager.TryIndex<GhostThemePrototype>(msg.SelectedGhostTheme, out var ghostThemePrototype))
             return;
-        Logger.Info($"Index GhostThemePrototype {ghostThemePrototype.ID}");
 
         if (!ghostThemes.Contains(ghostThemePrototype.ID))
             return;
 
-        Logger.Info($"ghostThemes Contains {ghostThemePrototype.ID}");
-
         _sponsorsManager.SetCachedGhostTheme(actorComp.PlayerSession.UserId, ghostThemePrototype.ID);
-        EnsureComp<GhostThemeComponent>(ent).GhostTheme = msg.SelectedGhostTheme;
+        var ghostTheme = EnsureComp<GhostThemeComponent>(ent);
+        ghostTheme.GhostTheme = msg.SelectedGhostTheme;
+        Dirty(ent, ghostTheme);
     }
 
     private void UpdateUi(EntityUid uid, ICommonSession session, GhostComponent? component = null)

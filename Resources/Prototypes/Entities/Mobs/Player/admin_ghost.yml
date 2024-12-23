@@ -52,6 +52,7 @@
       # Sunrise-Start
       enum.GhostThemeUiKey.Key:
         type: GhostThemeBoundUserInterface
+        requireInputValidation: false
       # Sunrise-End
   - type: IntrinsicUI
     uis:

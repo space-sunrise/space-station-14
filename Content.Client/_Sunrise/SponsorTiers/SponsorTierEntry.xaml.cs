@@ -1,10 +1,14 @@
-using System.Diagnostics.CodeAnalysis;
+// © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 using System.Numerics;
+using Content.Client._Sunrise.TTS;
 using Content.Client.Humanoid;
 using Content.Client.Lobby;
 using Content.Client.Resources;
 using Content.Client.Stylesheets;
+using Content.Shared._Sunrise.GhostTheme;
+using Content.Shared._Sunrise.TTS;
 using Content.Shared.Clothing;
+using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Preferences;
@@ -19,15 +23,16 @@ using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
-using Robust.Shared.Input;
+using Robust.Client.Utility;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
 namespace Content.Client._Sunrise.SponsorTiers;
 
 [GenerateTypedNameReferences]
-public sealed partial class SponsorTierEntry : PanelContainer
+public sealed partial class SponsorTierEntry : Control
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
@@ -35,76 +40,291 @@ public sealed partial class SponsorTierEntry : PanelContainer
     [Dependency] private readonly IClientPreferencesManager _preferencesManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
 
-    private readonly SpriteSystem _sprite;
     private readonly LobbyUIController _lobbyUIController;
     private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
+    private float AccumulatedTime;
+    private List<SpriteView> SpriteViews = new();
+    private SponsorInfo SponsorInfoTier;
+
     public int Index { get; }
 
-    public SponsorTierEntry(SponsorInfo sponsorTier, Action<int>? collapse, int index)
+    public SponsorTierEntry(SponsorInfo sponsorTier, int index)
     {
         IoCManager.InjectDependencies(this);
         RobustXamlLoader.Load(this);
         IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
-        _sprite = _entityManager.System<SpriteSystem>();
         _lobbyUIController = UserInterfaceManager.GetUIController<LobbyUIController>();
+        _preferencesManager.OnServerDataLoaded += PreferencesDataLoaded;
 
         Index = index;
+        SponsorInfoTier = sponsorTier;
 
-        Header.OnKeyBindUp += args =>
-        {
-            if (args.Function != EngineKeyFunctions.Use)
-                return;
-
-            collapse?.Invoke(Index);
-        };
-        HeaderName.Text = sponsorTier.Title;
-
+        LoadTierInfo(sponsorTier.Tier, sponsorTier.OOCColor, sponsorTier.ExtraSlots, sponsorTier.HavePriorityJoin, sponsorTier.AllowedRespawn);
         LoadOpenAntags(sponsorTier.OpenAntags);
         LoadPriorityAntags(sponsorTier.PriorityAntags);
-        LoadOpenRoles(sponsorTier.OpenRoles);
-        LoadPriorityRoles(sponsorTier.PriorityRoles);
-        LoadMarkings(sponsorTier.AllowedMarkings);
+        LoadAllowedMarkings(sponsorTier.AllowedMarkings);
+        LoadAllowedSpecies(sponsorTier.AllowedSpecies);
+        LoadGhostThemes(sponsorTier.GhostThemes);
+        LoadPriorityGhostRoles(sponsorTier.PriorityGhostRoles);
+        LoadOpenGhostRoles(sponsorTier.OpenGhostRoles);
+        LoadAllowedVoices(sponsorTier.AllowedVoices);
+        LoadAllowedLoadouts(sponsorTier.AllowedLoadouts);
     }
 
-    private void LoadMarkings(string[] markings)
+    private void PreferencesDataLoaded()
+    {
+        LoadOpenRoles(SponsorInfoTier.OpenRoles);
+        LoadPriorityRoles(SponsorInfoTier.PriorityRoles);
+        LoadBypassRoles(SponsorInfoTier.BypassRoles);
+    }
+
+    protected override void FrameUpdate(FrameEventArgs args)
+    {
+        base.FrameUpdate(args);
+
+        AccumulatedTime += args.DeltaSeconds;
+        foreach (var spriteView in SpriteViews)
+        {
+            spriteView.OverrideDirection = (Direction) ((int) AccumulatedTime % 4 * 2);
+        }
+    }
+
+    private void LoadTierInfo(int tier, string? oocColor, int extraSlots, bool priorityJoin, bool allowedRespawn)
+    {
+        TierLabel.Text = $"{tier}";
+        if (!string.IsNullOrEmpty(oocColor))
+        {
+            OocColorLabel.Text = "цвет";
+            OocColorLabel.FontColorOverride = Color.FromHex(oocColor);
+        }
+        ExtraSlotsLabel.Text = $"{extraSlots}";
+        PriorityJoinLabel.Text = priorityJoin ? "Да" : "Нет";
+        AllowedRespawnLabel.Text = allowedRespawn ? "Да" : "Нет";
+    }
+
+    private void LoadOpenGhostRoles(string[] openGhostRoles)
+    {
+        foreach (var openGhostRole in openGhostRoles)
+        {
+            if (!_prototypeManager.TryIndex(openGhostRole, out EntityPrototype? ghostRolePrototype))
+                continue;
+
+            var dummyEnt = _entityManager.SpawnEntity(openGhostRole, MapCoordinates.Nullspace);
+
+            var view = new SpriteView
+            {
+                SetSize = new Vector2(128, 128),
+                Scale = new Vector2(4, 4)
+            };
+
+            view.SetEntity(dummyEnt);
+            SpriteViews.Add(view);
+
+            var panel = CreateEntityIcon($"ent-{openGhostRole}", view);
+
+            OpenGhostRolesGrid.AddChild(panel);
+        }
+    }
+
+    private void LoadPriorityGhostRoles(string[] priorityGhostRoles)
+    {
+        foreach (var priorityGhostRole in priorityGhostRoles)
+        {
+            if (!_prototypeManager.TryIndex(priorityGhostRole, out EntityPrototype? ghostRolePrototype))
+                continue;
+
+            var dummyEnt = _entityManager.SpawnEntity(priorityGhostRole, MapCoordinates.Nullspace);
+
+            var view = new SpriteView
+            {
+                SetSize = new Vector2(128, 128),
+                Scale = new Vector2(4, 4)
+            };
+
+            view.SetEntity(dummyEnt);
+            SpriteViews.Add(view);
+
+            var panel = CreateEntityIcon($"ent-{priorityGhostRole}", view);
+
+            PriorityGhostRolesGrid.AddChild(panel);
+        }
+    }
+
+    private void LoadAllowedVoices(string[] allowedVoices)
+    {
+        foreach (var allowedVoice in allowedVoices)
+        {
+            if (!_prototypeManager.TryIndex(allowedVoice, out TTSVoicePrototype? voicePrototype))
+                continue;
+
+            var button = new Button()
+            {
+                HorizontalAlignment = HAlignment.Center,
+                Text = Loc.GetString(voicePrototype.Name),
+                StyleClasses = { "LabelKeyText" },
+                SetSize = new Vector2(315,30),
+            };
+
+            button.OnPressed += _ =>
+            {
+                _entityManager.System<TTSSystem>().RequestPreviewTts(allowedVoice);
+            };
+
+            TTSVoicesGrid.AddChild(button);
+        }
+    }
+
+    private void LoadAllowedLoadouts(string[] allowedLoadouts)
+    {
+        foreach (var allowedLoadout in allowedLoadouts)
+        {
+            if (!_prototypeManager.TryIndex(allowedLoadout, out LoadoutPrototype? loadoutPrototype))
+                continue;
+
+            var entProtoId = _entityManager.System<LoadoutSystem>().GetFirstOrNull(loadoutPrototype);
+            var name = _entityManager.System<LoadoutSystem>().GetName(loadoutPrototype);
+
+            var view = new SpriteView
+            {
+                SetSize = new Vector2(128, 128),
+                Scale = new Vector2(6, 6)
+            };
+            SpriteViews.Add(view);
+
+            if (entProtoId != null)
+            {
+                var dummyEnt = _entityManager.SpawnEntity(entProtoId, MapCoordinates.Nullspace);
+                view.SetEntity(dummyEnt);
+            }
+
+            var panel = CreateEntityIcon(name, view);
+
+            AllowedLoadoutsGrid.AddChild(panel);
+        }
+    }
+
+    private void LoadGhostThemes(string[] ghostThemes)
+    {
+        foreach (var ghostTheme in ghostThemes)
+        {
+            if (!_prototypeManager.TryIndex(ghostTheme, out GhostThemePrototype? ghostThemePrototype))
+                continue;
+
+            var panel = CreateIcon(ghostThemePrototype.Name, ghostThemePrototype.Sprite);
+
+            GhostThemesGrid.AddChild(panel);
+        }
+    }
+
+    private void LoadBypassRoles(string[] bypassRoles)
+    {
+        foreach (var bypassRole in bypassRoles)
+        {
+            if (!_prototypeManager.TryIndex(bypassRole, out JobPrototype? roleProto))
+                continue;
+
+            var sponsorPrototypes = _sponsorsManager?.GetClientPrototypes().ToArray() ?? [];
+
+            var humanoid = (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter;
+            if (humanoid == null)
+                continue;
+
+            var previewEntity = roleProto.JobPreviewEntity ?? (EntProtoId?)roleProto.JobEntity;
+
+            EntityUid dummyEnt;
+
+            if (previewEntity == null)
+            {
+                var dummy = _prototypeManager.Index(humanoid.Species).DollPrototype;
+                dummyEnt = _entityManager.SpawnEntity(dummy, MapCoordinates.Nullspace);
+
+                _entityManager.System<HumanoidAppearanceSystem>().LoadProfile(dummyEnt, humanoid);
+                _lobbyUIController.GiveDummyJobClothes(dummyEnt, humanoid, roleProto);
+
+                if (_prototypeManager.HasIndex<RoleLoadoutPrototype>(LoadoutSystem.GetJobPrototype(roleProto.ID)))
+                {
+                    var loadout = humanoid.GetLoadoutOrDefault(LoadoutSystem.GetJobPrototype(roleProto.ID), _playerManager.LocalSession, humanoid.Species, _entityManager, _prototypeManager, sponsorPrototypes);
+                    _lobbyUIController.GiveDummyLoadout(dummyEnt, loadout, true);
+                }
+            }
+            else
+            {
+                dummyEnt = _entityManager.SpawnEntity(previewEntity, MapCoordinates.Nullspace);
+            }
+
+            var view = new SpriteView
+            {
+                SetSize = new Vector2(128, 128),
+                Scale = new Vector2(4, 4)
+            };
+
+            view.SetEntity(dummyEnt);
+            SpriteViews.Add(view);
+
+            var panel = CreateEntityIcon(roleProto.Name, view);
+
+            BypassRolesGrid.AddChild(panel);
+        }
+    }
+
+    private void LoadAllowedSpecies(string[] speciesList)
+    {
+        foreach (var species in speciesList)
+        {
+            if (!_prototypeManager.TryIndex(species, out SpeciesPrototype? speciesPrototype))
+                continue;
+
+            var dummyEnt = _entityManager.SpawnEntity(speciesPrototype.DollPrototype, MapCoordinates.Nullspace);
+
+            var view = new SpriteView
+            {
+                SetSize = new Vector2(128, 128),
+                Scale = new Vector2(4, 4),
+            };
+            view.SetEntity(dummyEnt);
+            SpriteViews.Add(view);
+
+            var panel = CreateEntityIcon(speciesPrototype.Name, view);
+
+            AllowedSpeciesGrid.AddChild(panel);
+        }
+    }
+
+    private void LoadAllowedMarkings(string[] markings)
     {
         foreach (var marking in markings)
         {
             if (!_prototypeManager.TryIndex(marking, out MarkingPrototype? markingProto))
                 continue;
 
-            if (!TryGetDummySpecies(markingProto.SpeciesRestrictions, out var spriteSpecifier))
+            var species = markingProto.SpeciesRestrictions is { Count: > 0 }
+                ? markingProto.SpeciesRestrictions[0]
+                : SharedHumanoidAppearanceSystem.DefaultSpecies;
+
+            if (!_prototypeManager.TryIndex(species, out SpeciesPrototype? speciesProto))
                 continue;
 
-            var directionalLayeredTexture = new MarkingPreview();
+            var dummyEnt = _entityManager.SpawnEntity(speciesProto.DollPrototype, MapCoordinates.Nullspace);
 
-            directionalLayeredTexture.SetLayersFromSprites(_sprite.RsiStateLike(spriteSpecifier), markingProto.Sprites);
+            var humanoidAppearance = _entityManager.EnsureComponent<HumanoidAppearanceComponent>(dummyEnt);
+            var spriteComponent = _entityManager.EnsureComponent<SpriteComponent>(dummyEnt);
 
-            var panel = CreateMarkingIcon($"marking-{markingProto.ID}", directionalLayeredTexture);
+            var view = new SpriteView
+            {
+                SetSize = new Vector2(128, 128),
+                Scale = new Vector2(4, 4),
+            };
+
+            _entityManager.System<HumanoidAppearanceSystem>().ApplyMarking(markingProto, null, true, humanoidAppearance, spriteComponent);
+
+            view.SetEntity(dummyEnt);
+            SpriteViews.Add(view);
+
+            var panel = CreateEntityIcon($"marking-{markingProto.ID}", view);
 
             AllowedMarkingsGrid.AddChild(panel);
         }
-    }
-
-    private bool TryGetDummySpecies(List<string>? species, [NotNullWhen(true)] out SpriteSpecifier? spriteSpecifier)
-    {
-        if (species != null && species.Count > 0)
-        {
-            if (_prototypeManager.TryIndex(species[0], out SpeciesPrototype? speciesProto))
-            {
-                spriteSpecifier = speciesProto.Preview;
-                return true;
-            }
-        }
-        else if (_prototypeManager.TryIndex("MobHuman", out SpeciesPrototype? speciesProto))
-        {
-            spriteSpecifier = speciesProto.Preview;
-            return true;
-        }
-
-        spriteSpecifier = null;
-        return false;
     }
 
     private void LoadPriorityAntags(string[] priorityAntags)
@@ -176,8 +396,9 @@ public sealed partial class SponsorTierEntry : PanelContainer
             };
 
             view.SetEntity(dummyEnt);
+            SpriteViews.Add(view);
 
-            var panel = CreateRoleIcon(roleProto.Name, view);
+            var panel = CreateEntityIcon(roleProto.Name, view);
 
             PriorityRolesGrid.AddChild(panel);
         }
@@ -226,14 +447,15 @@ public sealed partial class SponsorTierEntry : PanelContainer
             };
 
             view.SetEntity(dummyEnt);
+            SpriteViews.Add(view);
 
-            var panel = CreateRoleIcon(roleProto.Name, view);
+            var panel = CreateEntityIcon(roleProto.Name, view);
 
             OpenRolesGrid.AddChild(panel);
         }
     }
 
-    private PanelContainer CreateRoleIcon(string name, SpriteView spriteView)
+    private PanelContainer CreateEntityIcon(string name, SpriteView spriteView)
     {
         var panelTex = _resourceCache.GetTexture("/Textures/Interface/Nano/light_panel_background_bordered.png");
         var back = new StyleBoxTexture
@@ -302,7 +524,7 @@ public sealed partial class SponsorTierEntry : PanelContainer
         var icon = new TextureRect()
         {
             SetSize = new Vector2(128, 128),
-            Texture = _sprite.Frame0(spriteSpecifier),
+            Texture = spriteSpecifier.Frame0(),
             Stretch = TextureRect.StretchMode.KeepAspectCentered,
         };
 
@@ -314,46 +536,6 @@ public sealed partial class SponsorTierEntry : PanelContainer
         };
 
         box.AddChild(icon);
-        box.AddChild(title);
-
-        return panel;
-    }
-
-    private PanelContainer CreateMarkingIcon(string name, Control textureBox)
-    {
-        var panelTex = _resourceCache.GetTexture("/Textures/Interface/Nano/light_panel_background_bordered.png");
-        var back = new StyleBoxTexture
-        {
-            Texture = panelTex,
-        };
-        back.SetPatchMargin(StyleBox.Margin.All, 10);
-
-        var panel = new PanelContainer()
-        {
-            SetSize = new Vector2(200, 200),
-            Margin = new Thickness(5, 5, 5, 5),
-            StyleClasses = { StyleBase.ButtonSquare },
-        };
-
-        var box = new BoxContainer()
-        {
-            Orientation = BoxContainer.LayoutOrientation.Vertical,
-            Margin = new Thickness(5, 5, 5, 5),
-            StyleClasses = { StyleBase.ButtonSquare },
-        };
-
-        panel.AddChild(box);
-        panel.PanelOverride = back;
-
-        var title = new Label()
-        {
-            HorizontalAlignment = HAlignment.Center,
-            Text = Loc.GetString(name),
-            StyleClasses = { "LabelKeyText" },
-            Align=Label.AlignMode.Center
-        };
-
-        box.AddChild(textureBox);
         box.AddChild(title);
 
         return panel;

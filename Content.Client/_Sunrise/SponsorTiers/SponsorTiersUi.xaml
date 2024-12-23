@@ -4,8 +4,6 @@
                Title="{Loc sponsors-tiers-gui-title}"
                MinSize="1300 800">
     <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True">
-        <ScrollContainer HScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True">
-            <sponsorTiers:SponsorTiers Name="SponsorsTiersBody" Access="Public" />
-        </ScrollContainer>
+        <sponsorTiers:SponsorTiers Name="SponsorsTiersBody" Access="Public" />
     </BoxContainer>
 </DefaultWindow>

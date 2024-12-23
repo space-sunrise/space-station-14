@@ -1,3 +1,4 @@
+// © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 using System.Numerics;
 using Content.Client.Stylesheets;
 using Content.Shared._Sunrise.GhostTheme;
@@ -45,7 +46,7 @@ public sealed partial class GhostThemeMenu : DefaultWindow
 
             var button = new Button
             {
-                SetSize = new Vector2(256, 256),
+                SetSize = new Vector2(128, 128),
                 HorizontalExpand = true,
                 ToggleMode = false,
                 StyleClasses = {StyleBase.ButtonSquare},
@@ -54,12 +55,13 @@ public sealed partial class GhostThemeMenu : DefaultWindow
             {
                 OnIdSelected?.Invoke(ghostTheme);
                 _cfg.SetCVar(SunriseCCVars.SponsorGhostTheme, ghostTheme);
+                _cfg.SaveToFile();
             };
             Grid.AddChild(button);
 
             var ghost = new TextureRect()
             {
-                Texture = ghostThemePrototype.Sprites[0].Frame0(),
+                Texture = ghostThemePrototype.Sprite.Frame0(),
                 Stretch = TextureRect.StretchMode.KeepAspectCentered,
             };
 
