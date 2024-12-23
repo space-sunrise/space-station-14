@@ -1,3 +1,7 @@
+using Content.Shared._Sunrise.Biocode;
+using Content.Shared.Hands;
+using Content.Shared.Hands.Components;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Item.ItemToggle.Components;
@@ -23,6 +27,8 @@ public sealed class ItemToggleSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+    [Dependency] private readonly BiocodeSystem _biocodeSystem = default!;
 
     private EntityQuery<ItemToggleComponent> _query;
 
@@ -43,7 +49,20 @@ public sealed class ItemToggleSystem : EntitySystem
         SubscribeLocalEvent<ItemToggleHotComponent, IsHotEvent>(OnIsHotEvent);
 
         SubscribeLocalEvent<ItemToggleActiveSoundComponent, ItemToggledEvent>(UpdateActiveSound);
+
+        // Sunrise-Edit
+        SubscribeLocalEvent<ItemToggleComponent, GotUnequippedHandEvent>(OnItemToggleHandUnequipped);
     }
+
+    // Sunrise-Start
+    private void OnItemToggleHandUnequipped(Entity<ItemToggleComponent> ent, ref GotUnequippedHandEvent args)
+    {
+        if (!ent.Comp.Activated || ent.Owner != args.Unequipped || !ent.Comp.DeactivateUnequippedHand)
+            return;
+
+        Toggle((ent.Owner, ent.Comp), args.User, predicted: ent.Comp.Predictable);
+    }
+    // Sunrise-End
 
     private void OnStartup(Entity<ItemToggleComponent> ent, ref ComponentStartup args)
     {
@@ -64,6 +83,22 @@ public sealed class ItemToggleSystem : EntitySystem
         if (args.Handled || !ent.Comp.OnUse)
             return;
 
+        // Sunrise-Start
+        if (TryComp<HandsComponent>(args.User, out var handsComp))
+        {
+            if (!_handsSystem.TryGetActiveItem((args.User, handsComp), out var itemInHand))
+                return;
+            if (itemInHand != ent.Owner)
+                return;
+        }
+
+        if (TryComp<BiocodeComponent>(ent.Owner, out var biocodedComponent))
+        {
+            if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
+                return;
+        }
+        // Sunrise-End
+
         args.Handled = true;
 
         Toggle((ent, ent.Comp), args.User, predicted: ent.Comp.Predictable);
@@ -75,6 +110,21 @@ public sealed class ItemToggleSystem : EntitySystem
             return;
 
         var user = args.User;
+        // Sunrise-Start
+        if (TryComp<HandsComponent>(args.User, out var handsComp))
+        {
+            if (!_handsSystem.TryGetActiveItem((args.User, handsComp), out var itemInHand))
+                return;
+            if (itemInHand != ent.Owner)
+                return;
+        }
+
+        if (TryComp<BiocodeComponent>(ent.Owner, out var biocodedComponent))
+        {
+            if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
+                return;
+        }
+        // Sunrise-End
 
         args.Verbs.Add(new ActivationVerb()
         {
@@ -90,6 +140,22 @@ public sealed class ItemToggleSystem : EntitySystem
     {
         if (args.Handled || !ent.Comp.OnActivate)
             return;
+
+        // Sunrise-Start
+        if (TryComp<HandsComponent>(args.User, out var handsComp))
+        {
+            if (!_handsSystem.TryGetActiveItem((args.User, handsComp), out var itemInHand))
+                return;
+            if (itemInHand != ent.Owner)
+                return;
+        }
+
+        if (TryComp<BiocodeComponent>(ent.Owner, out var biocodedComponent))
+        {
+            if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
+                return;
+        }
+        // Sunrise-End
 
         args.Handled = true;
         Toggle((ent.Owner, ent.Comp), args.User, predicted: ent.Comp.Predictable);
@@ -273,6 +339,9 @@ public sealed class ItemToggleSystem : EntitySystem
     /// </summary>
     private void UpdateActiveSound(Entity<ItemToggleActiveSoundComponent> ent, ref ItemToggledEvent args)
     {
+        if (_netManager.IsClient)
+            return;
+
         var (uid, comp) = ent;
         if (!args.Activated)
         {
@@ -283,9 +352,7 @@ public sealed class ItemToggleSystem : EntitySystem
         if (comp.ActiveSound != null && comp.PlayingStream == null)
         {
             var loop = comp.ActiveSound.Params.WithLoop(true);
-            var stream = args.Predicted
-                ? _audio.PlayPredicted(comp.ActiveSound, uid, args.User, loop)
-                : _audio.PlayPvs(comp.ActiveSound, uid, loop);
+            var stream = _audio.PlayPvs(comp.ActiveSound, uid, loop);
             if (stream?.Entity is {} entity)
                 comp.PlayingStream = entity;
         }

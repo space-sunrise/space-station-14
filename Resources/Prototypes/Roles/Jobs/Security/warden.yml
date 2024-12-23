@@ -37,4 +37,4 @@
   storage:
     back:
     - Flash
-    #- MagazinePistol # Sunrise-Edit
+    - MagazineGlock22Rubber # Sunrise-Edit

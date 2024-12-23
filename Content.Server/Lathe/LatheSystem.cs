@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server._Sunrise.DontSellingGrid;
 using Content.Server.Administration.Logs;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Fluids.EntitySystems;
@@ -229,6 +230,8 @@ namespace Content.Server.Lathe
                 if (comp.CurrentRecipe.Result is { } resultProto)
                 {
                     var result = Spawn(resultProto, Transform(uid).Coordinates);
+                    // Sunrise-Edit
+                    EnsureComp<DontSellComponent>(result);
                     _stack.TryMergeToContacts(result);
                 }
 

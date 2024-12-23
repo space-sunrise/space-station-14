@@ -61,7 +61,7 @@
     tags:
     - HamsterWearable
     - WhitelistChameleon
-    
+
 - type: entity
   parent: ClothingEyesBase
   id: ClothingEyesSunGlassesHudSkill
@@ -78,3 +78,14 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+
+- type: entity
+  parent: ClothingEyesGlassesCheapSunglasses
+  id: ClothingEyesGlassesNVG
+  name: sun glasses
+  description: A pair of black sunglasses.
+  components:
+  - type: ShowSyndicateIcons
+  - type: NightVisionDevice
+    displayColor: "#ff6e6e"
+    displayShader: NVDDisplay

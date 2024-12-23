@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._Sunrise.Biocode;
 using Content.Shared.Examine;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
@@ -35,6 +36,7 @@ public sealed class WieldableSystem : EntitySystem
     [Dependency] private readonly SharedGunSystem _gun = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly INetManager _netManager = default!;
+    [Dependency] private readonly BiocodeSystem _biocodeSystem = default!;
 
     public override void Initialize()
     {
@@ -73,6 +75,8 @@ public sealed class WieldableSystem : EntitySystem
         if (TryComp<WieldableComponent>(uid, out var wieldable) &&
             !wieldable.Wielded)
         {
+            // Sunrise-Edit
+            args.Message = Loc.GetString("wieldable-component-requires", ("item", uid));
             args.Cancel();
 
             var time = _timing.CurTime;
@@ -138,6 +142,14 @@ public sealed class WieldableSystem : EntitySystem
         if (args.Hands == null || !args.CanAccess || !args.CanInteract)
             return;
 
+        // Sunrise-Start
+        if (TryComp<BiocodeComponent>(uid, out var biocodedComponent))
+        {
+            if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
+                return;
+        }
+        // Sunrise-End
+
         if (!_handsSystem.IsHolding(args.User, uid, out _, args.Hands))
             return;
 
@@ -160,6 +172,14 @@ public sealed class WieldableSystem : EntitySystem
     {
         if (args.Handled)
             return;
+
+        // Sunrise-Start
+        if (TryComp<BiocodeComponent>(uid, out var biocodedComponent))
+        {
+            if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
+                return;
+        }
+        // Sunrise-End
 
         if (!component.Wielded)
             args.Handled = TryWield(uid, component, args.User);

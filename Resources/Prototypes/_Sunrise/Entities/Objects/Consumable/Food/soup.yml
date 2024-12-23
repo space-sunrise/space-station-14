@@ -30,3 +30,29 @@
     - type: Tag
       tags:
       - Meat
+
+- type: entity
+  name: sawdust soup
+  parent: FoodBowlBase
+  id: FoodSoupSawdust
+  description: It smells like sawdust
+  components:
+  - type: FlavorProfile
+    flavors:
+      - woodsawdust
+  - type: Sprite
+    sprite: _Sunrise/Objects/Consumable/Food/bowl.rsi
+    layers:
+    - state: bowl
+    - state: sawdust
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 7
+        - ReagentId: Water
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 3

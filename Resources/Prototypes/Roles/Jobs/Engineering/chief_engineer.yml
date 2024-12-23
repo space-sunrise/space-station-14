@@ -21,7 +21,7 @@
   supervisors: job-supervisors-captain
   radioBold: true # Sunrise-Edit
   displayWeight: 70 # Sunrise-Edit
-  canBeAntag: false
+  canBeAntag: true # RaMbUt878-edit
   access:
   - Maintenance
   - Engineering
@@ -32,8 +32,6 @@
   - Brig
   - Cryogenics
   special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff

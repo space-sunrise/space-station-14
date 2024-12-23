@@ -16,14 +16,25 @@
 
 - type: entity
   parent: BaseGameRule
-  id: SubGamemodesRule
+  id: LiteSubGamemodesRule
   components:
   - type: SubGamemodes
     rules:
     - id: Thief
-      prob: 0.90 # Воры отличный антаг
+      prob: 1.0 # Воры будут всегда
+
+
+- type: entity
+  parent: BaseGameRule
+  id: MiddleSubGamemodesRule
+  components:
+  - type: SubGamemodes
+    rules:
     - id: Changeling
-      prob: 0.30 # Слишком любители поубивать
+      prob: 0.50
+    - id: Vampire
+      prob: 0.50
+
 
 - type: entity
   id: DeathMatch31
@@ -85,6 +96,11 @@
   - type: AntagLoadProfileRule
     speciesOverride: Human
     speciesOverrideBlacklist:
+    - Vox
+    - Felinid
+    - Diona
+    - HumanoidXeno
+    - Predator
     #Species that do not work with nukies should be included in this list.
     #Once the issues are fixed the species should be removed from this list to be enabled.
     #Balance concerns are not a valid reason to disable a species, except for high-impact Nukie-specific exploits.
@@ -95,7 +111,7 @@
   id: Nukeops
   components:
   - type: GameRule
-    minPlayers: 50 # Sunrise-edit
+    minPlayers: 20 # Sunrise-Edit
   - type: LoadMapRule
     mapPath: /Maps/Nonstations/nukieplanet.yml
   - type: AntagSelection
@@ -128,7 +144,7 @@
       - type: NukeOperative
       - type: RandomMetadata
         nameSegments:
-        - nukeops-role-agent
+        - nukeops-role-medic
         - SyndicateNamesNormal
       - type: NpcFactionMember
         factions:
@@ -138,8 +154,8 @@
     - prefRoles: [ Nukeops ]
       fallbackRoles: [ NukeopsCommander, NukeopsMedic ]
       spawnerPrototype: SpawnPointNukeopsOperative
-      max: 5  # Sunrise-edit
-      playerRatio: 10
+      max: 5
+      playerRatio: 20
       startingGear: SyndicateOperativeGearFull
       roleLoadout:
       - RoleSurvivalNukie
@@ -184,6 +200,8 @@
     - prefRoles: [ Traitor ]
       max: 12 # Sunrise-Edit
       playerRatio: 10
+      pickCommandStaff: true # Sunrise-Edit
+      maxCommandStaff: 1 # Sunrise-Edit
       blacklist:
         components:
         - AntagImmune
@@ -255,6 +273,8 @@
     - prefRoles: [ InitialInfected ]
       max: 6
       playerRatio: 10
+      pickCommandStaff: true # Sunrise-Edit
+      maxCommandStaff: 0 # Sunrise-Edit
       blacklist:
         components:
         - ZombieImmune
@@ -314,6 +334,12 @@
   parent: BaseGameRule
   components:
   - type: BasicStationEventScheduler
+    # Sunrise-Start
+    minimumTimeUntilFirstEvent: 480 # 8 mins
+    minMaxEventTiming:
+      min: 360 # 6 mins
+      max: 720 # 12 mins
+    # Sunrise-End
     scheduledGameRules: !type:NestedSelector
       tableId: BasicGameRulesTable
 
@@ -321,6 +347,8 @@
   id: RampingStationEventScheduler
   parent: BaseGameRule
   components:
+  - type: GameRule
+    minPlayers: 50 # Слишком тяжело для меньшего количества игроков.
   - type: RampingStationEventScheduler
     scheduledGameRules: !type:NestedSelector
       tableId: BasicGameRulesTable

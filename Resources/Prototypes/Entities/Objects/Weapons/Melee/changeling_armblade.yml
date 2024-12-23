@@ -12,7 +12,7 @@
     attackRate: 0.75
     damage:
       types:
-        Slash: 7.5
+        Slash: 10
         Piercing: 10
         Structural: 10
     soundHit:
@@ -44,4 +44,4 @@
         Piercing: 1
         Structural: 1
   - type: TimedDespawn
-    lifetime: 30
+    lifetime: 60

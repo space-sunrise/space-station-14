@@ -3,7 +3,7 @@
   id: TraitorObjectiveGroups
   weights:
     TraitorObjectiveGroupSteal: 1
-    TraitorObjectiveGroupKill: 1
+    TraitorObjectiveGroupKill: 0.5 # Sunrise-Edit: Меньше убийств - меньше гостов.
     TraitorObjectiveGroupState: 1 #As in, something about your character. Alive, dead, arrested, gained an ability...
     TraitorObjectiveGroupSocial: 1 #Involves helping/harming others without killing them or stealing their stuff
 
@@ -12,17 +12,22 @@
   weights:
     CaptainIDStealObjective: 1
     CMOHyposprayStealObjective: 1
-    #CMOCrewMonitorStealObjective: 1 # Sunrise-Edit
+    #CMOCrewMonitorStealObjective: 1 # Sunrise-Edit: Больше не хайриск
     RDHardsuitStealObjective: 1
-    NukeDiskStealObjective: 1
+    #NukeDiskStealObjective: 1 # Sunrise-Edit: Цель требует убить слишком много людей.
     MagbootsStealObjective: 1
     CorgiMeatStealObjective: 1
     ClipboardStealObjective: 1
-    CaptainGunStealObjective: 0.5
+    CaptainGunStealObjective: 0.2 # Sunrise-Edit: Чтобы его украсть капитана прийдется убить.
     CaptainJetpackStealObjective: 0.5
     HandTeleporterStealObjective: 0.5
     EnergyShotgunStealObjective: 0.5
-    PlutoniumCoreStealObjective: 0.5 # Sunrise-Edit
+    # Sunrise-Start
+    PlutoniumCoreStealObjective: 0.5
+    MultiphaseEnergygunStealObjective: 1
+    CMOAdvancedDefibrillatorStealObjective: 1
+    StealSupermatterSliverObjective: 1
+    # Sunrise-End
 
 - type: weightedRandom
   id: TraitorObjectiveGroupKill
@@ -34,7 +39,7 @@
   id: TraitorObjectiveGroupState
   weights:
     EscapeShuttleObjective: 1
-    DieObjective: 0.02 # Скучная задача на самом деле.
+    #DieObjective: 0.02 # Почему-то трейторы думают что умереть = убить как можно больше.
     #HijackShuttleObjective: 0.02 # Нам незачем разрешать рдм в не рдм режиме.
 
 - type: weightedRandom
@@ -90,12 +95,12 @@
 - type: weightedRandom
   id: ThiefObjectiveGroupStructure
   weights:
-    NuclearBombStealObjective: 0.5
+    #NuclearBombStealObjective: 0.5 # Sunrise-Edit: Я хз че курили оффы делая такую цель. С учетом блядь того что воры появляются в режиме яо.
     FaxMachineCaptainStealObjective: 1
     ChemDispenserStealObjective: 1
     XenoArtifactStealObjective: 1
     FreezerHeaterStealObjective: 1
-    TegStealObjective: 1
+    #TegStealObjective: 1 Sunrise-Edit: Буквально цель на саботаж питания.
     BoozeDispenserStealObjective: 1
     AltarNanotrasenStealObjective: 1
     PlantRDStealObjective: 1
@@ -117,5 +122,5 @@
   id: ThiefObjectiveGroupEscape
   weights:
     EscapeThiefShuttleObjective: 1
-    
+
 #Crew, wizard, when you code it...

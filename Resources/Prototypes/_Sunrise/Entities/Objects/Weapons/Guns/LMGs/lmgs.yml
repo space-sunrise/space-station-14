@@ -16,10 +16,10 @@
     sprite: _Sunrise/Objects/Weapons/Guns/LMGs/mg60/tiny.rsi
   - type: GunWieldBonus
     minAngle: -20
-    maxAngle: -80
+    maxAngle: -70
   - type: Gun
     minAngle: 30
-    maxAngle: 100
+    maxAngle: 90
     fireRate: 9
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/shot.ogg
@@ -36,7 +36,8 @@
         whitelist:
           tags:
           - MagazineLightMachineGunMG60
-          - MagazineLightRifle
+          - MagazineRPD
+          - MagazineLightRifleBox
       gun_chamber:
         name: Chamber
         startingItem: CartridgeLightRifle  # 762x39
@@ -71,7 +72,7 @@
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
-    - state: mag-0
+    - state: mag-3
       map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/LMGs/rpd/tiny.rsi
@@ -90,14 +91,14 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineRPD
+        startingItem: MagazineLightRifleBox
         insertSound: /Audio/_Sunrise/Weapons/Guns/LMGs/reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/LMGs/unload.ogg
         priority: 2
         whitelist:
           tags:
           - MagazineRPD
-          - MagazineLightRifle
+          - MagazineLightRifleBox
       gun_chamber:
         name: Chamber
         startingItem: CartridgeLightRifle  # 762x39
@@ -111,7 +112,7 @@
       gun_chamber: !type:ContainerSlot
   - type: MagazineVisuals
     magState: mag
-    steps: 2
+    steps: 4
     zeroVisible: true
   - type: Appearance
   - type: Wieldable
@@ -139,11 +140,11 @@
     sprite: _Sunrise/Objects/Weapons/Guns/LMGs/mg42/tiny.rsi
   - type: GunWieldBonus
     minAngle: -20
-    maxAngle: -80
+    maxAngle: -70
   - type: Gun
     minAngle: 30
-    maxAngle: 100
-    fireRate: 8
+    maxAngle: 90
+    fireRate: 8.5
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/shot.ogg
       params:
@@ -159,14 +160,13 @@
         whitelist:
           tags:
           - MagazineMachineGunMG42
-          - MagazineLightRifle
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifle  # 762x39
+        startingItem: CartridgeRifle  # 556
         priority: 1
         whitelist:
           tags:
-          - CartridgeLightRifle  # 762x39
+          - CartridgeRifle  # 556
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -198,12 +198,12 @@
     - state: mag-3
       map: ["enum.GunVisualLayers.Mag"]
   - type: GunWieldBonus
-    minAngle: -15
-    maxAngle: -15
+    minAngle: -30
+    maxAngle: -45
   - type: Gun
-    minAngle: 30
-    maxAngle: 50
-    fireRate: 6
+    minAngle: 40
+    maxAngle: 60
+    fireRate: 8.5
     selectedMode: FullAuto
     availableModes:
       - FullAuto
@@ -229,6 +229,7 @@
         whitelist:
           tags:
             - MagazineDl6902
+            - MagazineLightRifleBox
       gun_chamber:
         name: Chamber
         startingItem: CartridgeLightRifle

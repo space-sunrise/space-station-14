@@ -177,6 +177,15 @@
   - HeadHatCentcomcap
 
 - type: loadoutGroup
+  id: ChiefEngineerHead
+  name: loadout-group-chief-engineer-head
+  minLimit: 0
+  loadouts:
+  - ChiefEngineerHead
+  - ChiefEngineerBeret
+  - ChiefEngineerCrown
+
+- type: loadoutGroup
   id: ChiefEngineerBackpack
   name: loadout-group-chief-engineer-backpack
   loadouts:
@@ -309,3 +318,8 @@
   loadouts:
   - AdjutantCoat
 
+- type: loadoutGroup
+  id: AtmosphericsConsole
+  name: loadout-group-atmos-console
+  loadouts:
+  - AtmosphericsConsole

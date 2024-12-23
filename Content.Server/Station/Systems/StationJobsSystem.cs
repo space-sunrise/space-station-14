@@ -375,10 +375,8 @@ public sealed partial class StationJobsSystem : EntitySystem
     {
         if (!Resolve(station, ref stationJobs))
             throw new ArgumentException("Tried to use a non-station entity as a station!", nameof(station));
-        
-        //return stationJobs.OverflowJobs;
-        // Sunrise-Edit: Так как у нас неограничены не только пассажиры а и другие роли это не работает корректно, отправляя игроков играть за охранников КТ.
-        return new HashSet<ProtoId<JobPrototype>>();
+
+        return stationJobs.OverflowJobs;
     }
 
     /// <summary>
@@ -423,6 +421,7 @@ public sealed partial class StationJobsSystem : EntitySystem
     /// <returns>The selected job, if any.</returns>
     public ProtoId<JobPrototype>? PickBestAvailableJobWithPriority(EntityUid station, IReadOnlyDictionary<ProtoId<JobPrototype>, JobPriority> jobPriorities, bool pickOverflows, IReadOnlySet<ProtoId<JobPrototype>>? disallowedJobs = null)
     {
+        Logger.Info("PickBestAvailableJobWithPriority");
         if (station == EntityUid.Invalid)
             return null;
 

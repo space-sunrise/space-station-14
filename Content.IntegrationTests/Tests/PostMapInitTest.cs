@@ -65,11 +65,16 @@ namespace Content.IntegrationTests.Tests
             "Train",
             "Oasis",
             "Cog",
+            "Gate",
+            "Amber",
+            "Loop",
+            // Sunrise-Start
 			"SunriseBox",
 			"SunriseDelta",
 			"SunriseFland",
 			"SunriseMarathon",
             "SunriseCentComm",
+            "SunrisePlanetDelta",
             "SunriseBagel",
             "SunriseReach",
             "SunriseTrain",
@@ -78,6 +83,7 @@ namespace Content.IntegrationTests.Tests
             "SunriseCorvaxGelta",
             "SunriseMeta",
             "SunriseOasis",
+            // Sunrise-End
         };
 
         /// <summary>

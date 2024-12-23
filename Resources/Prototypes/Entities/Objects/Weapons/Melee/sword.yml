@@ -35,8 +35,11 @@
     soundHit:
         path: /Audio/Weapons/bladeslice.ogg
   - type: Reflect
-    reflectProb: .1
+    reflects:
+    - NonEnergy
+    reflectProb: 0.20
     spread: 90
+    needActiveHand: true
   - type: Item
     sprite: Objects/Weapons/Melee/captain_sabre.rsi
   - type: Tag
@@ -98,6 +101,9 @@
     - Back
     - Belt
   - type: Reflect
+    reflectProb: 0.40
+    spread: 90
+    needActiveHand: true
 
 - type: entity
   name: machete
@@ -186,6 +192,7 @@
     - type: Reflect
       reflectProb: .25
       spread: 90
+      needActiveHand: true
     - type: Item
       size: Ginormous
       sprite: Objects/Weapons/Melee/Throngler-in-hand.rsi

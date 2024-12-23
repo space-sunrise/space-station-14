@@ -8,6 +8,10 @@
   - !type:OverallPlaytimeRequirement
     time: 54000 # 15h # Sunrise-RoleTime
   guides: [ Zombies ]
+  # Sunrise-Edit
+  previewIcon:
+    sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
+    state: initial_infected
 
 - type: antag
   id: Zombie

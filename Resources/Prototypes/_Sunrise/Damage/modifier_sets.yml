@@ -33,7 +33,7 @@
     Blunt: 0.7
     Slash: 0.7
     Piercing: 0.7
-    Heat: 0.7
+    Heat: 0.5
     Shock: 1.3
 
 - type: damageModifierSet
@@ -50,3 +50,14 @@
     Blunt: 0.6
     Slash: 0.6
     Piercing: 0.6
+
+- type: damageModifierSet
+  id: Demon
+  coefficients:
+    Blunt: 1
+    Piercing: 1
+    Slash: 1.0
+    Cold: 0.8
+    Heat: 0.8
+    Poison: 0.8
+    Cellular: 1.5

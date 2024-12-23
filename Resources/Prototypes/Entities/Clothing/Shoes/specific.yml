@@ -136,6 +136,9 @@
     # ninja are masters of sneaking around relatively quickly, won't break cloak
     walkModifier: 1.1
     sprintModifier: 1.3
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: null
 
 - type: entity
   parent: ClothingShoesBaseButcherable
@@ -147,6 +150,14 @@
     sprite: Clothing/Shoes/Specific/swat.rsi
   - type: Clothing
     sprite: Clothing/Shoes/Specific/swat.rsi
+  - type: NoSlip
+  - type: SlowedOverSlippery
+    slowdownModifier: 0.6 #sunrise-Start
+  - type: SpeedModifierContactCapClothing
+    maxContactSprintSlowdown: 0.6
+    maxContactWalkSlowdown: 0.6
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.5 #sunrise-end
 
 - type: entity
   parent: ClothingShoesBaseButcherable
@@ -198,6 +209,12 @@
       interfaces:
         enum.ChameleonUiKey.Key:
           type: ChameleonBoundUserInterface
+    # Sunrise-Start
+    - type: Biocode
+      factions:
+      - Syndicate
+      - Thief
+    # Sunrise-End
 
 - type: entity
   parent: ClothingShoesChameleon

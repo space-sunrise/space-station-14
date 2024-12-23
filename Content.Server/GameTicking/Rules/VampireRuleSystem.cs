@@ -108,6 +108,7 @@ public sealed partial class VampireRuleSystem : GameRuleSystem<VampireRuleCompon
         _vampire.AddStartingAbilities(vampire);
         _vampire.MakeVulnerableToHoly(vampire);
         _alerts.ShowAlert(vampire, vampireAlertComponent.BloodAlert);
+        _alerts.ShowAlert(vampire, vampireAlertComponent.StellarWeaknessAlert);
         
         Random random = new Random();
 

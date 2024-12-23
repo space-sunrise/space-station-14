@@ -1,4 +1,7 @@
-﻿namespace Content.Server._Sunrise.RoundStartFtl;
+﻿using Robust.Shared.Serialization.TypeSerializers.Implementations;
+using Robust.Shared.Utility;
+
+namespace Content.Server._Sunrise.RoundStartFtl;
 
 /// <summary>
 /// This is used for...
@@ -7,5 +10,5 @@
 public sealed partial class RoundstartFtlTargetComponent : Component
 {
     [DataField]
-    public string Path;
+    public ResPath? GridPath { get; set; }
 }

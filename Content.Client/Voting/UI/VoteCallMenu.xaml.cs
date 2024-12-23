@@ -17,6 +17,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Client.Voting.UI
 {
@@ -48,7 +49,7 @@ namespace Content.Client.Voting.UI
         {
             { VotekickReasonType.Raiding.ToString(), Loc.GetString("ui-vote-votekick-type-raiding") },
             { VotekickReasonType.Cheating.ToString(), Loc.GetString("ui-vote-votekick-type-cheating") },
-            { VotekickReasonType.Spam.ToString(), Loc.GetString("ui-vote-votekick-type-spamming") }
+            { VotekickReasonType.Spam.ToString(), Loc.GetString("ui-vote-votekick-type-spam") }
         };
 
         public Dictionary<NetUserId, (NetEntity, string)> PlayerList = new();
@@ -72,6 +73,9 @@ namespace Content.Client.Voting.UI
                 var option = AvailableVoteOptions[voteType];
                 VoteTypeButton.AddItem(Loc.GetString(option.Name), (int)voteType);
             }
+
+            var loc = IoCManager.Resolve<ILocalizationManager>();
+            DetailsEdit.Placeholder = new Rope.Leaf(loc.GetString("ui-vote-votekick-details-placeholder"));
 
             _state.OnStateChanged += OnStateChanged;
             VoteTypeButton.OnItemSelected += VoteTypeSelected;
@@ -162,6 +166,8 @@ namespace Content.Client.Voting.UI
                         i++;
                     }
                 }
+
+                commandArgs += $"\"{Rope.Collapse(DetailsEdit.TextRope)}\"";
                 _consoleHost.LocalShell.RemoteExecuteCommand($"createvote {((StandardVoteType)typeId).ToString()} {commandArgs}");
             }
 
@@ -220,6 +226,7 @@ namespace Content.Client.Voting.UI
             VoteTypeButton.SelectId(obj.Id);
 
             VoteNotTrustedLabel.Visible = false;
+            DetailsEdit.Visible = false;
             if ((StandardVoteType)obj.Id == StandardVoteType.Votekick)
             {
                 if (!IsAllowedVotekick)
@@ -233,6 +240,8 @@ namespace Content.Client.Voting.UI
                 {
                     _votingSystem.RequestVotePlayerList();
                 }
+
+                DetailsEdit.Visible = true;
             }
 
             VoteWarningLabel.Visible = AvailableVoteOptions[(StandardVoteType)obj.Id].EnableVoteWarning;

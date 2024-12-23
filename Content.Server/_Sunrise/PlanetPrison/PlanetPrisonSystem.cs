@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server._Sunrise.NewLife;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Mind;
@@ -19,16 +20,17 @@ namespace Content.Server._Sunrise.PlanetPrison
         [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
         [Dependency] private readonly GameTicker _gameTicker = default!;
         [Dependency] private readonly TransformSystem _transformSystem = default!;
-        [Dependency] private readonly IGameTiming _timing = default!;
+        [Dependency] private readonly NewLifeSystem _newLifeSystem = default!;
+        [Dependency] private readonly IGameTiming _gameTiming = default!;
 
-        [ValidatePrototypeId<AntagPrototype>]
-        private const string AntagRole = "PlanetPrisoner";
+        [ValidatePrototypeId<EntityPrototype>]
+        private const string MindRole = "MindRolePlanetPrisoner";
         [ValidatePrototypeId<EntityPrototype>]
         private const string EscapeObjective = "PlanetPrisonerEscapeObjective";
         [ValidatePrototypeId<EntityPrototype>]
         private const string GameRule = "PlanetPrison";
 
-        private const float EscapeDistance = 175f;
+        private const float EscapeDistance = 150f;
 
         public TimeSpan NextTick = TimeSpan.Zero;
         public TimeSpan RefreshCooldown = TimeSpan.FromSeconds(5);
@@ -67,7 +69,7 @@ namespace Content.Server._Sunrise.PlanetPrison
 
         public override void Update(float frameTime)
         {
-            if (NextTick > _timing.CurTime)
+            if (NextTick > _gameTiming.CurTime)
                 return;
 
             NextTick += RefreshCooldown;
@@ -112,7 +114,7 @@ namespace Content.Server._Sunrise.PlanetPrison
                 planetPrisonRule.EscapedPrisoners.Add(mindId);
                 if (mind.Session != null)
                 {
-                    _gameTicker.Respawn(mind.Session);
+                    _newLifeSystem.SetNextAllowRespawn(mind.Session.UserId, _gameTiming.CurTime);
                 }
             }
         }
@@ -159,7 +161,7 @@ namespace Content.Server._Sunrise.PlanetPrison
                 _roleSystem.MindTryRemoveRole<PlanetPrisonerRoleComponent>(mindId);
             }
 
-            _roleSystem.MindAddRole(mindId, "MindRolePlanetPrisoner");
+            _roleSystem.MindAddRole(mindId, MindRole);
 
             _mindSystem.TryAddObjective(mindId, mind, EscapeObjective);
 

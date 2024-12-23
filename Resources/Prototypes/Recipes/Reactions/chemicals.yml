@@ -112,10 +112,10 @@
   effects:
     - !type:ExplosionReactionEffect
       explosionType: Default
-      maxIntensity: 100
-      intensityPerUnit: 0.5 # 50+50 reagent for maximum explosion
+      maxIntensity: 50
+      intensityPerUnit: 0.25 # Sunrise-Edit
       intensitySlope: 4
-      maxTotalIntensity: 100
+      maxTotalIntensity: 50
 
 - type: reaction
   id: Smoke

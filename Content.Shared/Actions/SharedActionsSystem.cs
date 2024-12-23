@@ -154,7 +154,7 @@ public abstract class SharedActionsSystem : EntitySystem
     public bool TryGetActionData(
         [NotNullWhen(true)] EntityUid? uid,
         [NotNullWhen(true)] out BaseActionComponent? result,
-        bool logError = true)
+        bool logError = false) // Sunrise-Edit
     {
         result = null;
         if (uid == null || TerminatingOrDeleted(uid.Value))

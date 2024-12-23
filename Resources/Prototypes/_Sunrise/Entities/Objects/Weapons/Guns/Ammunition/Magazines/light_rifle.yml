@@ -173,13 +173,13 @@
     - MagazineMachineGunMG42
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgeLightRifle  # 762x39
+    proto: CartridgeRifle  # 556
     whitelist:
       tags:
-      - CartridgeLightRifle  # 762x39
-    capacity: 250
+      - CartridgeRifle  # 556
+    capacity: 75
   - type: Item
-    size: Small
+    size: Normal
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -210,9 +210,9 @@
     whitelist:
       tags:
       - CartridgeLightRifle  # 762x39
-    capacity: 250
+    capacity: 200
   - type: Item
-    size: Small
+    size: Normal
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -261,39 +261,6 @@
       steps: 6
       zeroVisible: false
     - type: Appearance
-
-- type: entity
-  id: MagazineGlock22
-  name: Glock22 magazine
-  parent: BaseItem
-  components:
-  - type: Tag
-    tags:
-    - MagazineGlock22
-  - type: BallisticAmmoProvider
-    mayTransfer: true
-    proto: CartridgePistol  # 57x28
-    whitelist:
-      tags:
-      - CartridgePistol  # 57x28
-    capacity: 15
-  - type: Item
-    size: Small
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
-  - type: Sprite
-    sprite: _Sunrise/Objects/Weapons/Guns/Ammunition/Magazines/glock22.rsi
-    layers:
-    - state: base
-      map: ["enum.GunVisualLayers.Base"]
-    - state: mag-1
-      map: ["enum.GunVisualLayers.Mag"]
-  - type: MagazineVisuals
-    magState: mag
-    steps: 6
-    zeroVisible: false
-  - type: Appearance
 
 - type: entity
   id: MagazineHIBrowning

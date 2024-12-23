@@ -186,7 +186,7 @@ binds:
   mod1: Alt
 - function: OpenCharacterMenu
   type: State
-  key: C
+  key: J # Sunrise-Edit
 - function: OpenEmotesMenu
   type: State
   key: Y
@@ -584,13 +584,6 @@ binds:
   type: State
   key: MouseRight
   canFocus: true
-
-
-# Sunrise
-- function: ToggleStanding
+- function: CockGun # Sunrise-Edit
   type: State
-  key: R
-
-- function: LookUp
-  type: State
-  key: MouseRight
+  key: C

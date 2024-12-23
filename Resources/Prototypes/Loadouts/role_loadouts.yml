@@ -38,7 +38,7 @@
 # Silicons
 - type: roleLoadout
   id: JobStationAi
-  nameDataset: names_ai
+  nameDataset: NamesAI
 
 # Civilian
 - type: roleLoadout
@@ -323,7 +323,7 @@
   id: JobChiefEngineer
   groups:
   - GroupTankHarness
-  #- ChiefEngineerHead
+  - ChiefEngineerHead
   - ChiefEngineerJumpsuit
   - ChiefEngineerBackpack # Sunrise-Edit
   - ChiefEngineerNeck
@@ -333,6 +333,7 @@
   - Trinkets
   - GroupSpeciesBreathTool
   # Sunrise-start
+  - AtmosphericsConsole
   - Bra
   - Pants
   - Socks
@@ -367,6 +368,7 @@
   - Trinkets
   - GroupSpeciesBreathTool
   # Sunrise-start
+  - AtmosphericsConsole
   - Bra
   - Pants
   - Socks
@@ -384,6 +386,7 @@
   - Trinkets
   - GroupSpeciesBreathTool
   # Sunrise-start
+  - AtmosphericsConsole
   - Bra
   - Pants
   - Socks
@@ -515,7 +518,6 @@
 - type: roleLoadout
   id: JobDetective
   groups:
-  - GroupTankHarness
   - DetectiveHead
   - DetectiveNeck
   - DetectiveJumpsuit

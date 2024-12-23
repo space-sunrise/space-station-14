@@ -111,6 +111,9 @@ public sealed class SunriseCCVars
     public static readonly CVarDef<string> SponsorApiToken =
         CVarDef.Create("sponsor.api_token", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
 
+    public static readonly CVarDef<string> SponsorGhostTheme =
+        CVarDef.Create("sponsor.ghost_theme", "", CVar.CLIENTONLY | CVar.ARCHIVE);
+
     /*
      *  Greetings
      */
@@ -176,12 +179,6 @@ public sealed class SunriseCCVars
     /// </summary>
     public static readonly CVarDef<string> InfoLinksDonate =
         CVarDef.Create("infolinks.donate", "", CVar.SERVER | CVar.REPLICATED);
-
-    /// <summary>
-    /// Link to Telegram channel to show in the launcher.
-    /// </summary>
-    public static readonly CVarDef<string> InfoLinksTelegram =
-        CVarDef.Create("infolinks.telegram", "", CVar.SERVER | CVar.REPLICATED);
 
     /**
      * Lobby
@@ -281,6 +278,8 @@ public sealed class SunriseCCVars
 
     public static readonly CVarDef<bool> RunPresetVoteAfterRestart = CVarDef.Create("vote.run_preset_vote_after_restart", false);
 
+    public static readonly CVarDef<float> ChancePresetVoteAfterRestart = CVarDef.Create("vote.chance_preset_vote_after_restart", 0.5f);
+
     public static readonly CVarDef<int> VotingsDelay = CVarDef.Create("vote.votings_delay", 60);
 
     public static readonly CVarDef<int> MapVotingCount = CVarDef.Create("vote.map_voting_count", 3);
@@ -309,17 +308,7 @@ public sealed class SunriseCCVars
         CVarDef.Create("cl.telegram_link", "", CVar.SERVER | CVar.REPLICATED | CVar.ARCHIVE);
 
     /*
-     * Lying Down.
-     */
-
-    public static readonly CVarDef<bool> AutoGetUp =
-        CVarDef.Create("rest.auto_get_up", true, CVar.CLIENT | CVar.ARCHIVE | CVar.REPLICATED);
-
-    public static readonly CVarDef<bool> HoldLookUp =
-        CVarDef.Create("rest.hold_look_up", true, CVar.CLIENT | CVar.ARCHIVE);
-
-    /*
-     * Mood.
+     * Mood
      */
 
     public static readonly CVarDef<bool> MoodEnabled =

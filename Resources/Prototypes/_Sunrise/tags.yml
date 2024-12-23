@@ -52,7 +52,7 @@
   id: PowerpackMinigunMG100
 
 - type: Tag
-  id: CartridgeRocket20
+  id: CartridgeRail
 
 # Magazines:
 - type: Tag
@@ -178,6 +178,9 @@
 
 - type: Tag
   id: Gygax
+
+- type: Tag
+  id: Mauler
 
 - type: Tag
   id: Durand
