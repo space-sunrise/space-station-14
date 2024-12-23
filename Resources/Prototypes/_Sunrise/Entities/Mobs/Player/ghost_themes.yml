@@ -1,218 +1,188 @@
 - type: ghostTheme
-  id: GoldSponsorObserver
-  components:
-  - type: Sprite
-    noRot: true
-    overrideContainerOcclusion: true
-    drawdepth: Ghosts
+  id: Gold
+  name: ghost-theme-gold
+  color: "#fff8"
+  sprite:
     sprite: _Sunrise/Mobs/Ghosts/gold_ghost_human.rsi
-    color: "#fff8"
-    layers:
-    - state: animated
+    state: animated
 
 - type: ghostTheme
-  id: SilverSponsorObserver
-  components:
-  - type: Sprite
-    noRot: true
-    overrideContainerOcclusion: true
-    drawdepth: Ghosts
+  id: Silver
+  name: ghost-theme-silver
+  color: "#fff8"
+  sprite:
     sprite: _Sunrise/Mobs/Ghosts/silver_ghost_human.rsi
-    color: "#fff8"
-    layers:
-    - state: animated
+    state: animated
 
 - type: ghostTheme
-  id: WhiteSponsorObserver
-  components:
-  - type: Sprite
-    noRot: true
-    overrideContainerOcclusion: true
-    drawdepth: Ghosts
+  id: White
+  name: ghost-theme-white
+  color: "#fff8"
+  sprite:
     sprite: _Sunrise/Mobs/Ghosts/white_ghost_human.rsi
-    color: "#fff8"
-    layers:
-    - state: animated
+    state: animated
 
 - type: ghostTheme
-  id: PlatinumSponsorObserver
-  components:
-  - type: Sprite
-    noRot: true
-    overrideContainerOcclusion: true
-    drawdepth: Ghosts
+  id: Platinum
+  name: ghost-theme-platinum
+  color: "#fff8"
+  sprite:
     sprite: _Sunrise/Mobs/Ghosts/platinum_ghost_human.rsi
-    color: "#fff8"
-    layers:
-    - state: animated
+    state: animated
 
 - type: ghostTheme
-  id: NarsieObserver
-  components:
-  - type: Sprite
-    noRot: true
-    overrideContainerOcclusion: true
-    drawdepth: Ghosts
+  id: Narsie
+  name: ghost-theme-narsie
+  scale: 0.15, 0.15
+  sprite:
     sprite: _Sunrise/Mobs/Aliens/narsie.rsi
-    scale: 0.15,0.15
-    layers:
-    - state: narsie
+    state: narsie
 
 - type: ghostTheme
-  id: KharinObserver
-  components:
-  - type: Sprite
-    noRot: true
-    overrideContainerOcclusion: true
-    drawdepth: Ghosts
+  id: Kharin
+  name: ghost-theme-kharin
+  scale: 0.15, 0.15
+  sprite:
     sprite: _Sunrise/Mobs/Aliens/narsie.rsi
-    scale: 0.15,0.15
-    layers:
-    - state: kha'rin
+    state: kha'rin
 
 - type: ghostTheme
-  id: LegionObserver
-  components:
-  - type: Sprite
-    noRot: true
-    overrideContainerOcclusion: true
-    drawdepth: Ghosts
+  id: Legion
+  name: ghost-theme-legion
+  scale: 0.15, 0.15
+  sprite:
     sprite: _Sunrise/Mobs/Aliens/narsie.rsi
-    scale: 0.15,0.15
-    layers:
-    - state: legion
+    state: legion
 
 - type: ghostTheme
-  id: NarbeeObserver
-  components:
-  - type: Sprite
-    noRot: true
-    overrideContainerOcclusion: true
-    drawdepth: Ghosts
+  id: Narbee
+  name: ghost-theme-narbee
+  scale: 0.15, 0.15
+  sprite:
     sprite: _Sunrise/Mobs/Aliens/narsie.rsi
-    scale: 0.15,0.15
-    layers:
-    - state: narbee
+    state: narbee
 
 - type: ghostTheme
-  id: ReaperObserver
-  components:
-  - type: Sprite
-    noRot: true
-    overrideContainerOcclusion: true
-    drawdepth: Ghosts
+  id: Reaper
+  name: ghost-theme-reaper
+  scale: 0.15, 0.15
+  sprite:
     sprite: _Sunrise/Mobs/Aliens/narsie.rsi
-    scale: 0.15,0.15
-    layers:
-    - state: reaper
+    state: reaper
 
 - type: ghostTheme
-  id: BubblegumObserver
-  components:
-  - type: Sprite
-    noRot: true
-    overrideContainerOcclusion: true
-    drawdepth: Ghosts
+  id: Bubblegum
+  name: ghost-theme-bubblegum
+  scale: 0.8, 0.8
+  sprite:
     sprite: _Sunrise/Mobs/Aliens/96x96megafauna.rsi
-    scale: 0.8,0.8
-    layers:
-    - state: bubblegum
+    state: bubblegum
 
 - type: ghostTheme
-  id: MegaLegionObserver
-  components:
-  - type: Sprite
-    noRot: true
-    overrideContainerOcclusion: true
-    drawdepth: Ghosts
+  id: MegaLegion
+  name: ghost-theme-mega-legion
+  scale: 0.8, 0.8
+  sprite:
     sprite: _Sunrise/Mobs/Aliens/96x96megafauna.rsi
-    scale: 0.8,0.8
-    layers:
-    - state: mega_legion
+    state: mega_legion
 
 - type: ghostTheme
-  id: HonkChampionObserver
-  components:
-  - type: Sprite
-    noRot: true
-    overrideContainerOcclusion: true
-    drawdepth: Ghosts
+  id: HonkChampion
+  name: ghost-theme-honk-champion
+  scale: 0.8, 0.8
+  sprite:
     sprite: _Sunrise/Mobs/Aliens/hulk.rsi
-    scale: 0.8,0.8
-    layers:
-    - state: Champion_of_Honk
+    state: Champion_of_Honk
 
 - type: ghostTheme
-  id: HulkObserver
-  components:
-  - type: Sprite
-    noRot: true
-    overrideContainerOcclusion: true
-    drawdepth: Ghosts
+  id: Hulk
+  name: ghost-theme-hulk
+  sprite:
     sprite: _Sunrise/Mobs/Aliens/hulk.rsi
-    scale: 0.8,0.8
-    layers:
-    - state: Hulk
-
-# L
+    state: Hulk
 
 - type: ghostTheme
-  id: YellowSponsorObserver
-  components:
-  - type: Sprite
-    noRot: true
-    overrideContainerOcclusion: true
-    drawdepth: Ghosts
+  id: Yellow
+  name: ghost-theme-yellow
+  color: "#fff8"
+  sprite:
     sprite: _Sunrise/Mobs/Ghosts/yellow_ghost_human.rsi
-    color: "#fff8"
-    layers:
-    - state: animated
+    state: animated
 
 - type: ghostTheme
-  id: PinkSponsorObserver
-  components:
-  - type: Sprite
-    noRot: true
-    overrideContainerOcclusion: true
-    drawdepth: Ghosts
+  id: Pink
+  name: ghost-theme-pink
+  color: "#fff8"
+  sprite:
     sprite: _Sunrise/Mobs/Ghosts/pink_ghost_human.rsi
-    color: "#fff8"
-    layers:
-    - state: animated
+    state: animated
 
 - type: ghostTheme
-  id: CatSponsorObserver
-  components:
-  - type: Sprite
-    noRot: true
-    overrideContainerOcclusion: true
-    drawdepth: Ghosts
+  id: Cat
+  name: ghost-theme-cat
+  color: "#fff8"
+  scale: 0.5, 0.5
+  sprite:
     sprite: _Sunrise/Mobs/Ghosts/cat_ghost_human.rsi
-    color: "#fff8"
-    scale: 0.5,0.5
-    layers:
-    - state: icon
+    state: icon
 
 - type: ghostTheme
-  id: PurpleSponsorObserver
-  components:
-  - type: Sprite
-    noRot: true
-    overrideContainerOcclusion: true
-    drawdepth: Ghosts
+  id: Purple
+  name: ghost-theme-purple
+  color: "#fff8"
+  sprite:
     sprite: _Sunrise/Mobs/Ghosts/purple_ghost_human.rsi
-    color: "#fff8"
-    layers:
-    - state: animated
+    state: icon
 
 - type: ghostTheme
-  id: RedSponsorObserver
-  components:
-  - type: Sprite
-    noRot: true
-    overrideContainerOcclusion: true
-    drawdepth: Ghosts
+  id: Red
+  name: ghost-theme-red
+  color: "#fff8"
+  sprite:
     sprite: _Sunrise/Mobs/Ghosts/red_ghost_human.rsi
-    color: "#fff8"
-    layers:
-    - state: animated
+    state: icon
+
+- type: ghostTheme
+  id: WizdenBlock
+  scale: 0.4, 0.4
+  name: ghost-theme-wizden-block
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/wizden_block.rsi
+    state: icon
+
+- type: ghostTheme
+  id: Asuka
+  scale: 0.6, 0.6
+  name: ghost-theme-asuka
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/asuka.rsi
+    state: icon
+
+- type: ghostTheme
+  id: VigersRay
+  name: ghost-theme-vigers-ray
+  scale: 0.15, 0.15
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/vigers_ray.rsi
+    state: icon
+
+- type: ghostTheme
+  id: Hibiki
+  name: ghost-theme-hibiki
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/blue_archive.rsi
+    state: hibiki
+
+- type: ghostTheme
+  id: Rio
+  name: ghost-theme-rio
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/blue_archive.rsi
+    state: rio
+
+- type: ghostTheme
+  id: Yuuka
+  name: ghost-theme-yuuka
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/blue_archive.rsi
+    state: yuuka

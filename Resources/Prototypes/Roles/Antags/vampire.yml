@@ -5,3 +5,7 @@
   setPreference: true
   objective: roles-antag-vampire-description
 #  guides: [ Changelings ]
+  # Sunrise-Edit
+  previewIcon:
+    sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
+    state: vampire

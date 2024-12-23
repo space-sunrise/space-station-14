@@ -6,6 +6,7 @@ using Content.Shared.StatusIcon;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Roles
 {
@@ -173,6 +174,9 @@ namespace Content.Shared.Roles
         /// </summary>
         [DataField("alwaysUseSpawner")]
         public bool AlwaysUseSpawner { get; }
+
+        [DataField]
+        public SpriteSpecifier PreviewIcon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Sunrise/Interface/Misc/job_preview.rsi"), "test");
         // Sunrise-End
     }
 
