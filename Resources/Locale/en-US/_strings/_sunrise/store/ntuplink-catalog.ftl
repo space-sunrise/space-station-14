@@ -1,0 +1,27 @@
+ntuplink-mech-teleporter-medium-name = Teleporter assault Mech.
+ntuplink-mech-teleporter-medium-desc = contains crate with ERT Gygax.
+ntuplink-mech-teleporter-heavy-name = Teleporter Heavy Mech.
+ntuplink-mech-teleporter-heavy-desc = contains crate with Marauder.
+ntuplink-mech-teleporter-eliteheavy-name = Teleporter Heavy Elite Mech.
+ntuplink-mech-teleporter-eliteheavy-desc = contains crate with Seraph. for high command only!
+
+ntuplink-mech-powercage-nanotrasen-name = NanoTrasen power cage
+ntuplink-mech-powercage-nanotrasen-desc = A rechargeable power cage for big devices. Increased capacity for increased power levels. Immune to EMP.
+ntuplink-equip-jetpackvoid-name = void jetpack
+ntuplink-equip-jetpackmini-name = mini jetpack
+ntuplink-equip-jetpack-name = jetpack
+ntuplink-equip-riotshield-name = riot shield
+ntuplink-equip-riotlasershield-name = riot laser shield
+ntuplink-equip-riotbulletshield-name = riot bullet shield
+ntuplink-equip-telescopicshield-name = telescopic shield
+ntuplink-engineering-powercellnt-name = PowerCell NanoTrasen
+ntuplink-gun-bundlewt550-name = Bundle WT550
+ntuplink-gun-bundlemp5-name = Bundle Mp5
+ntuplink-gun-bundlelecter-name = Bundle Lecter
+ntuplink-gun-bundlep90-name = Bundle P-90
+ntuplink-gun-bundleams42-name = Bundle AMS-42
+ntuplink-gun-bundlemg342-name = Bundle MG-342
+ntuplink-gun-bundlebr64-name = Bundle BR-64
+ntuplink-gun-bundlezauer-name = Bundle Zauer
+ntuplink-gun-bundlexm1014-name = Bundle XM1014
+ntuplink-gun-bundlelaw12-name = Bundle Law-12
