@@ -8,6 +8,10 @@
   - !type:OverallPlaytimeRequirement
     time: 36000 # 10h # Sunrise-RoleTime
   guides: [ Revolutionaries ]
+  # Sunrise-Edit
+  previewIcon:
+    sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
+    state: head_rev
 
 - type: antag
   id: Rev
