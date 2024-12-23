@@ -63,7 +63,7 @@ public sealed class SunriseCCVars
      */
 
     public static readonly CVarDef<bool> ServiceAuthEnabled =
-        CVarDef.Create("service_auth.enabled", false, CVar.SERVERONLY);
+        CVarDef.Create("service_auth.enabled", false, CVar.SERVER | CVar.REPLICATED);
 
     public static readonly CVarDef<string> ServiceAuthApiUrl =
         CVarDef.Create("service_auth.api_url", "", CVar.SERVERONLY);
