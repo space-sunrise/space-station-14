@@ -548,10 +548,10 @@
   sponsorOnly: false
 
 - type: ttsVoice
-  id: Warcraft3Witcher
-  name: tts-voice-name-warcraft3-witcher
+  id: Warcraft3Dreney
+  name: tts-voice-name-warcraft3-dreney
   sex: Male
-  speaker: warcraft3_witcher
+  speaker: warcraft3_dreney
   provider: sunrise
-  roundStart: false # перетренировать
+  roundStart: true
   sponsorOnly: false
