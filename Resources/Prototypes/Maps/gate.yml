@@ -1,10 +1,10 @@
 - type: gameMap
   id: Gate
   mapName: 'Gate Station'
-  mapPath: /Maps/gate.yml
+  mapPath: /Maps/Test/empty.yml # Sunrise-Edit
   minPlayers: 55
   stations:
-    Gate:
+    Empty: # Sunrise-Edit
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup
