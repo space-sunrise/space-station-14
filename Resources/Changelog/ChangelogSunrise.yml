@@ -8502,3 +8502,12 @@
     type: Tweak
   id: 596
   time: '2024-12-23T18:06:43.071735+00:00'
+- author: KaiserMaus
+  changes:
+  - message: "\u043C\u0443\u0437\u044B\u043A\u0430 \"\u042F\u041E\u0436\u0434\u0435\
+      \u0441\u0442\u0432\u043E\" \u0442\u0435\u043F\u0435\u0440\u044C \u0438\u043C\
+      \u0435\u0435\u0442 100% \u0448\u0430\u043D\u0441."
+    type: Tweak
+  id: 597
+  time: '2024-12-23T18:19:29.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/908
