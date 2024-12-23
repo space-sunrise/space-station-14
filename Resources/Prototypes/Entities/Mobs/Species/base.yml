@@ -235,10 +235,10 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 50
+        maxVol: 25
         reagents:
         - ReagentId: UncookedAnimalProteins
-          Quantity: 50
+          Quantity: 25
   - type: Food
     requiresSpecialDigestion: true
   # Sunrise-End
