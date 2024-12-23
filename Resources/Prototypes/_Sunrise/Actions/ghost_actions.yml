@@ -12,7 +12,7 @@
   id: GhostChangeTheme
   name: Сменить скин призрака
   description: Позволяет вам изменить скин призрака.
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
     checkCanInteract: false
