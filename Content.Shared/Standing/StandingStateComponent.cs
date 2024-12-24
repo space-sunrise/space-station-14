@@ -20,7 +20,7 @@ public sealed partial class StandingStateComponent : Component
     public float CycleTime { get; set; } = 1f;
 
     [DataField, AutoNetworkedField]
-    public float SpeedModify { get; set; } = 0.4f;
+    public float BaseSpeedModify { get; set; } = 0.4f;
 }
 
 [Serializable, NetSerializable]

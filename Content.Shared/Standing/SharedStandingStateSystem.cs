@@ -4,7 +4,6 @@ using Content.Shared.Buckle.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands.Components;
-using Content.Shared.Humanoid;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Events;
@@ -45,8 +44,7 @@ public abstract class SharedStandingStateSystem : EntitySystem
 
         SubscribeLocalEvent<StandingStateComponent, StandUpDoAfterEvent>(OnStandUpDoAfter);
         SubscribeLocalEvent<StandingStateComponent, DownDoAfterEvent>(OnDownDoAfter);
-        SubscribeLocalEvent<StandingStateComponent, MoveInputEvent>(OnMoveInput);
-        SubscribeLocalEvent<StandingStateComponent, UpdateCanMoveEvent >(UpdateCanMove);
+        SubscribeLocalEvent<StandingStateComponent, MoveEvent>(OnMove);
         SubscribeLocalEvent<StandingStateComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeed);
     }
 
@@ -74,32 +72,38 @@ public abstract class SharedStandingStateSystem : EntitySystem
         args.Handled = true;
     }
 
-    private void UpdateCanMove(Entity<StandingStateComponent> ent, ref UpdateCanMoveEvent args)
+    private void OnMove(Entity<StandingStateComponent> ent, ref MoveEvent args)
     {
-        if (!HasComp<HumanoidAppearanceComponent>(ent))
-            return;
-
         if (IsStanding(ent))
             return;
 
-        if (!TryComp<HandsComponent>(ent, out var handsComp))
-            return;
-
-        if (handsComp.CountFreeHands() < 1)
-            args.Cancel();
-    }
-
-    private void OnMoveInput(EntityUid uid, StandingStateComponent component, ref MoveInputEvent args)
-    {
-        _blocker.UpdateCanMove(uid);
+        _movement.RefreshMovementSpeedModifiers(ent);
     }
 
     private void OnRefreshMovementSpeed(EntityUid uid, StandingStateComponent component, RefreshMovementSpeedModifiersEvent args)
     {
         if (IsDown(uid))
-            args.ModifySpeed(component.SpeedModify, component.SpeedModify);
+        {
+            var baseSpeedModify = component.BaseSpeedModify;
+
+            if (!TryComp<HandsComponent>(uid, out var handsComponent) || handsComponent.Hands.Count == 0)
+            {
+                args.ModifySpeed(baseSpeedModify, baseSpeedModify);
+                return;
+            }
+
+            var totalHands = handsComponent.Hands.Count;
+            var freeHands = handsComponent.CountFreeHands();
+
+            var occupiedHandsRatio = (float)(totalHands - freeHands) / totalHands;
+            var speedModifier = baseSpeedModify * (1 - occupiedHandsRatio * 0.5f);
+
+            args.ModifySpeed(speedModifier, speedModifier);
+        }
         else
+        {
             args.ModifySpeed(1f, 1f);
+        }
     }
 
     public bool TryStandUp(EntityUid uid, StandingStateComponent? standingState = null)
@@ -152,8 +156,8 @@ public abstract class SharedStandingStateSystem : EntitySystem
 
         var direction = velocity.Normalized();
 
-        Down(uid, dropHeldItems: true);
-        _stun.TryStun(uid, TimeSpan.FromSeconds(1.2f), true);
+        Down(uid, dropHeldItems: false);
+        _stun.TryStun(uid, TimeSpan.FromSeconds(1.3f), true);
         _stamina.TakeStaminaDamage(uid, 20);
 
         _throwing.TryThrow(

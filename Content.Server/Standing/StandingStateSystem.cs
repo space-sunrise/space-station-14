@@ -3,6 +3,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.Gravity;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Humanoid;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Standing;
 using Content.Shared.Throwing;
@@ -38,7 +39,16 @@ public sealed class StandingStateSystem : SharedStandingStateSystem
         if (standingStateComponent.CurrentState == StandingState.Laying)
             TryStandUp(uid, standingStateComponent);
         else
-            Fall(uid);
+        {
+            if (HasComp<HumanoidAppearanceComponent>(uid))
+            {
+                Fall(uid);
+            }
+            else
+            {
+                TryLieDown(uid);
+            }
+        }
     }
 
     private void FallOver(EntityUid uid, StandingStateComponent component, DropHandItemsEvent args)
