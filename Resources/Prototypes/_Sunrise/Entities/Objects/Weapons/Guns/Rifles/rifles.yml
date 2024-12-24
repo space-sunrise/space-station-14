@@ -279,9 +279,9 @@
     minAngle: -23
     maxAngle: -43
   - type: Gun
-    minAngle: 24
-    maxAngle: 45
-    fireRate: 6
+    minAngle: 27
+    maxAngle: 50
+    fireRate: 5.5
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/g36/g36_shot.ogg
   - type: ItemSlots
@@ -315,6 +315,7 @@
   - type: Wieldable
   - type: UseDelay
     delay: 0.5
+  - type: ZoomableGun
 
 - type: entity
   name: M-28

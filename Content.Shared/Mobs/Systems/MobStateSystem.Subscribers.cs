@@ -104,13 +104,13 @@ public partial class MobStateSystem
                 _appearance.SetData(target, MobStateVisuals.State, MobState.Alive);
                 break;
             case MobState.Critical:
-                _standing.Down(target);
                 _appearance.SetData(target, MobStateVisuals.State, MobState.Critical);
+                _standing.Down(target);
                 break;
             case MobState.Dead:
                 EnsureComp<CollisionWakeComponent>(target);
-                _standing.Down(target);
                 _appearance.SetData(target, MobStateVisuals.State, MobState.Dead);
+                _standing.Down(target);
                 break;
             case MobState.Invalid:
                 //unused;

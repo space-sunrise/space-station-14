@@ -37,7 +37,7 @@
             #engineering
             ChiefEngineer: [ 1, 1 ]
             SeniorEngineer: [ 1, 1 ]
-            AtmosphericTechnician: [ 6, 6 ]
+            AtmosphericTechnician: [ 4, 4 ]
             StationEngineer: [ 5, 5 ]
             TechnicalAssistant: [ 5, -1 ]
             #medical
@@ -54,7 +54,7 @@
             SeniorResearcher: [ 1, 1 ]
             Scientist: [ 5, 5 ]
             ResearchAssistant: [ 5, -1 ]
-            Roboticist: [ 4, 4 ]
+            Roboticist: [ 3, 3 ]
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
@@ -66,7 +66,7 @@
             SecurityCadet: [ 5, -1 ]
             #supply
             Quartermaster: [ 1, 1 ]
-            SalvageSpecialist: [ 6, 6 ]
+            SalvageSpecialist: [ 4, 4 ]
             CargoTechnician: [ 3, 3 ]
             #civilian
             Passenger: [ -1, -1 ]
