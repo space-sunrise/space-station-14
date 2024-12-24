@@ -35,7 +35,7 @@ public sealed partial class EmotesMenu : RadialMenu
         foreach (var emote in emotes)
         {
             var player = _playerManager.LocalSession?.AttachedEntity;
-            if (emote.Category == EmoteCategory.Invalid ||
+            if (emote.Category == EmoteCategory.Invalid || emote.Category == EmoteCategory.Verb ||
                 emote.ChatTriggers.Count == 0 ||
                 !(player.HasValue && whitelistSystem.IsWhitelistPassOrNull(emote.Whitelist, player.Value)) ||
                 whitelistSystem.IsBlacklistPass(emote.Blacklist, player.Value))

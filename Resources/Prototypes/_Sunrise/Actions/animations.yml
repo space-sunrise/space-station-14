@@ -1,0 +1,69 @@
+﻿- type: emote
+  id: EmoteFlip
+  category: Verb
+  name: Сальто
+  whitelist:
+    components:
+    - Hands
+  blacklist:
+    components:
+    - Ghost
+    - BorgChassis
+  chatMessages: [делает сальто]
+  chatTriggers:
+  - сделал сальто
+  - сделала сальто
+  - делает сальто
+  - устроила сальто
+  - устроил сальто
+
+- type: emote
+  id: EmoteJump
+  category: Verb
+  name: Прыгнуть
+  whitelist:
+    components:
+    - Hands
+  blacklist:
+    components:
+    - Ghost
+    - BorgChassis
+  chatMessages: [прыгает]
+  chatTriggers:
+  - прыгает
+  - прыгнула
+  - прыгнул
+  - подпрыгнул
+  - подпрыгнула
+  - подскакивает
+
+- type: emote
+  id: EmoteTurn
+  category: Verb
+  name: Танцевать
+  whitelist:
+    components:
+    - Hands
+  blacklist:
+    components:
+    - Ghost
+    - BorgChassis
+  chatMessages: [танцует]
+  chatTriggers:
+  - танцует
+  - кружится
+  - оборачивается
+  - покружилась
+  - покружился
+
+- type: emote
+  id: EmoteLay
+  category: Verb
+  name: Лечь/Встать
+  whitelist:
+    components:
+    - Hands
+  blacklist:
+    components:
+    - Ghost
+    - BorgChassis
