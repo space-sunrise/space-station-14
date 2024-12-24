@@ -71,8 +71,8 @@
     heatingCoefficient: 0.02
     coolingCoefficient: 0.5
   - type: ClothingSpeedModifier
-    walkModifier: 0.85
-    sprintModifier: 0.85
+    walkModifier: 0.80
+    sprintModifier: 0.80
   - type: GroupExamine
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
