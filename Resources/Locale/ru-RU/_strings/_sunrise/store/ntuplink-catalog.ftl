@@ -1,9 +1,9 @@
 ntuplink-mech-teleporter-medium-name = Телепортер Штурмового Меха.
-ntuplink-mech-teleporter-medium-desc = Содержит ящик с быстрым мехов НаноТрейзен. Вы умрёте первым. зато КАК!
+ntuplink-mech-teleporter-medium-desc = Содержит ящик с быстрым мехов НаноТрейзен. Быстрый,средне бронированный Мех на службе НаноТрейзен. Вы умрёте первым. зато КАК!
 ntuplink-mech-teleporter-heavy-name = Телепортер Тяжелого Меха.
-ntuplink-mech-teleporter-heavy-desc = Содержит ящик с тяжелым мехом НаноТрейзен. Вы умрёте последним.
+ntuplink-mech-teleporter-heavy-desc = Содержит ящик с тяжелым мехом НаноТрейзен. Настолько медлителен насколько защищен. Вы умрёте последним.
 ntuplink-mech-teleporter-eliteheavy-name = Телепортер Тяжелого Элитного Меха.
-ntuplink-mech-teleporter-eliteheavy-desc = Содержит ящик с лучшим мехом НаноТрейзен. Только для старших Офицеров!
+ntuplink-mech-teleporter-eliteheavy-desc = Содержит ящик с лучшим мехом НаноТрейзен. Доступен только для самых опасных миссий. Только для старших Офицеров!
 
 ntuplink-mech-powercage-nanotrasen-name = Энерго ячейка НаноТрейзен
 ntuplink-mech-powercage-nanotrasen-desc = Перезаряжаемая энергетическая ячейка для больших устройств. Увеличенная ёмкость для увеличенного уровня мощности. Имеет защиту от ЭМИ.
@@ -15,6 +15,7 @@ ntuplink-equip-riotlasershield-name = противолазерный щит
 ntuplink-equip-riotbulletshield-name = противопульный щит
 ntuplink-equip-telescopicshield-name = телескопический щит
 ntuplink-engineering-powercellnt-name = Батарея НаноТрейзен
+ntuplink-engineering-powercellnt-desc = Высокотехнологичная батарея НаноТрейзен, имеет огромный запас в двое больший чем запас высокоёмкой батареи а так же имеет защитное покрытие от ЭМИ воздействия.
 ntuplink-gun-bundlewt550-name = Набор WT550
 ntuplink-gun-bundlemp5-name = Набор MP-5
 ntuplink-gun-bundlelecter-name = Набор Lecter

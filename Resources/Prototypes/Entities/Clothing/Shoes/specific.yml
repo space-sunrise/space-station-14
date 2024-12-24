@@ -150,6 +150,9 @@
   - type: Clothing
     sprite: Clothing/Shoes/Specific/swat.rsi
   - type: NoSlip
+  - type: ClothingSpeedModifier
+    walkModifier: 0.95
+    sprintModifier: 0.95
   - type: SlowedOverSlippery
     slowdownModifier: 0.6 #sunrise-Start
   - type: SpeedModifierContactCapClothing
