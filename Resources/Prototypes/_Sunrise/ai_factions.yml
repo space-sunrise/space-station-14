@@ -3,7 +3,10 @@
   hostile:
   - NanoTrasen
   - Syndicate
+  - SimpleHostile
+  - Xeno
   - Zombie
+  - PetsNT
   - Revolutionary
   - AllHostile
   - Thief
@@ -14,9 +17,9 @@
   id: Thief
   hostile:
   - NanoTrasen
+  - Syndicate
   - SimpleHostile
   - Xeno
-  - PetsNT
   - Zombie
   - AllHostile
   - Carps
@@ -28,9 +31,10 @@
   hostile:
   - NanoTrasen
   - Syndicate
+  - SimpleHostile
+  - Zombie
   - Xeno
   - PetsNT
-  - Zombie
   - Revolutionary
   - AllHostile
   - Thief
@@ -42,9 +46,11 @@
   hostile:
   - NanoTrasen
   - Syndicate
+  - SimpleHostile
   - Zombie
-  - Revolutionary
   - Xeno
+  - PetsNT
+  - Revolutionary
   - AllHostile
   - Thief
   - Carps
