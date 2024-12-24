@@ -55,7 +55,6 @@ public sealed partial class SponsorTierEntry : Control
         RobustXamlLoader.Load(this);
         IoCManager.Instance!.TryResolveType(out _sponsorsManager);
         _lobbyUIController = UserInterfaceManager.GetUIController<LobbyUIController>();
-        _preferencesManager.OnServerDataLoaded += PreferencesDataLoaded;
 
         Index = index;
         _sponsorInfoTier = sponsorTier;
@@ -70,6 +69,16 @@ public sealed partial class SponsorTierEntry : Control
         LoadOpenGhostRoles(sponsorTier.OpenGhostRoles);
         LoadAllowedVoices(sponsorTier.AllowedVoices);
         LoadAllowedLoadouts(sponsorTier.AllowedLoadouts);
+        if (_preferencesManager.ServerDataLoaded)
+        {
+            LoadOpenRoles(_sponsorInfoTier.OpenRoles);
+            LoadPriorityRoles(_sponsorInfoTier.PriorityRoles);
+            LoadBypassRoles(_sponsorInfoTier.BypassRoles);
+        }
+        else
+        {
+            _preferencesManager.OnServerDataLoaded += PreferencesDataLoaded;
+        }
     }
 
     private void PreferencesDataLoaded()

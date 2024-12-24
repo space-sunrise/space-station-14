@@ -33,7 +33,7 @@
                     <Label Name="AllowedRespawnLabel"/>
                 </BoxContainer>
                 <!-- TTS голоса -->
-                <BoxContainer Orientation="Vertical" Name="TTSVoicesBox" >
+                <BoxContainer Orientation="Vertical" Name="TTSVoicesBox" Visible="False" >
                     <BoxContainer Orientation="Horizontal" >
                         <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
                         <Label Text="{Loc 'sponsor-tiers-gui-tts-voices'}" StyleClasses="LabelKeyText"/>
@@ -43,7 +43,7 @@
                     <GridContainer Name="TTSVoicesGrid" Columns="4" Margin="0 5" />
                 </BoxContainer>
                 <!-- Открытие рас -->
-                <BoxContainer Orientation="Vertical" Name="AllowedSpeciesBox" >
+                <BoxContainer Orientation="Vertical" Name="AllowedSpeciesBox" Visible="False" >
                     <BoxContainer Orientation="Horizontal" >
                         <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
                         <Label Text="{Loc 'sponsor-tiers-gui-allowed-species'}" StyleClasses="LabelKeyText"/>
@@ -53,7 +53,7 @@
                     <GridContainer Name="AllowedSpeciesGrid" Columns="6" Margin="0 5" />
                 </BoxContainer>
                 <!-- Открытие антагов -->
-                <BoxContainer Orientation="Vertical" Name="OpenAntagBox" >
+                <BoxContainer Orientation="Vertical" Name="OpenAntagBox" Visible="False" >
                     <BoxContainer Orientation="Horizontal" >
                         <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
                         <Label Text="{Loc 'sponsor-tiers-gui-open-antags'}" StyleClasses="LabelKeyText"/>
@@ -63,7 +63,7 @@
                     <GridContainer Name="OpenAntagGrid" Columns="6" Margin="0 5" />
                 </BoxContainer>
                 <!-- Приоритет антагов -->
-                <BoxContainer Orientation="Vertical" Name="PriorityAntagBox" >
+                <BoxContainer Orientation="Vertical" Name="PriorityAntagBox" Visible="False" >
                     <BoxContainer Orientation="Horizontal" >
                         <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
                         <Label Text="{Loc 'sponsor-tiers-gui-priority-antags'}" StyleClasses="LabelKeyText"/>
@@ -73,7 +73,7 @@
                     <GridContainer Name="PriorityAntagGrid" Columns="6" Margin="0 5" />
                 </BoxContainer>
                 <!-- Открытие ролей призраков -->
-                <BoxContainer Orientation="Vertical" Name="OpenGhostRolesBox" >
+                <BoxContainer Orientation="Vertical" Name="OpenGhostRolesBox" Visible="False" >
                     <BoxContainer Orientation="Horizontal" >
                         <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
                         <Label Text="{Loc 'sponsor-tiers-gui-open-ghost-roles'}" StyleClasses="LabelKeyText"/>
@@ -83,7 +83,7 @@
                     <GridContainer Name="OpenGhostRolesGrid" Columns="6" Margin="0 5" />
                 </BoxContainer>
                 <!-- Приоритет ролей призраков -->
-                <BoxContainer Orientation="Vertical" Name="PriorityGhostRolesBox" >
+                <BoxContainer Orientation="Vertical" Name="PriorityGhostRolesBox" Visible="False" >
                     <BoxContainer Orientation="Horizontal" >
                         <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
                         <Label Text="{Loc 'sponsor-tiers-gui-priority-ghost-roles'}" StyleClasses="LabelKeyText"/>
@@ -93,7 +93,7 @@
                     <GridContainer Name="PriorityGhostRolesGrid" Columns="6" Margin="0 5" />
                 </BoxContainer>
                 <!-- Открытие ролей -->
-                <BoxContainer Orientation="Vertical" Name="OpenRolesBox" >
+                <BoxContainer Orientation="Vertical" Name="OpenRolesBox" Visible="False" >
                     <BoxContainer Orientation="Horizontal" >
                         <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
                         <Label Text="{Loc 'sponsor-tiers-gui-open-roles'}" StyleClasses="LabelKeyText"/>
@@ -103,7 +103,7 @@
                     <GridContainer Name="OpenRolesGrid" Columns="6" Margin="0 5" />
                 </BoxContainer>
                 <!-- Приоритет ролей -->
-                <BoxContainer Orientation="Vertical" Name="PriorityRolesBox" >
+                <BoxContainer Orientation="Vertical" Name="PriorityRolesBox" Visible="False" >
                     <BoxContainer Orientation="Horizontal" >
                         <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
                         <Label Text="{Loc 'sponsor-tiers-gui-priority-roles'}" StyleClasses="LabelKeyText"/>
@@ -113,7 +113,7 @@
                     <GridContainer Name="PriorityRolesGrid" Columns="6" Margin="0 5" />
                 </BoxContainer>
                 <!-- Пропуск ролей -->
-                <BoxContainer Orientation="Vertical" Name="BypassRolesBox" >
+                <BoxContainer Orientation="Vertical" Name="BypassRolesBox" Visible="False" >
                     <BoxContainer Orientation="Horizontal" >
                         <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
                         <Label Text="{Loc 'sponsor-tiers-gui-bypass-roles'}" StyleClasses="LabelKeyText"/>
@@ -123,7 +123,7 @@
                     <GridContainer Name="BypassRolesGrid" Columns="6" Margin="0 5" />
                 </BoxContainer>
                 <!-- Кастомизация -->
-                <BoxContainer Orientation="Vertical" Name="AllowedMarkingsBox" >
+                <BoxContainer Orientation="Vertical" Name="AllowedMarkingsBox" Visible="False" >
                     <BoxContainer Orientation="Horizontal" >
                         <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
                         <Label Text="{Loc 'sponsor-tiers-gui-allowed-markings'}" StyleClasses="LabelKeyText"/>
@@ -133,7 +133,7 @@
                     <GridContainer Name="AllowedMarkingsGrid" Columns="6" Margin="0 5" />
                 </BoxContainer>
                 <!-- Лоадауты -->
-                <BoxContainer Orientation="Vertical" Name="AllowedLoadoutsBox" >
+                <BoxContainer Orientation="Vertical" Name="AllowedLoadoutsBox" Visible="False" >
                     <BoxContainer Orientation="Horizontal" >
                         <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
                         <Label Text="{Loc 'sponsor-tiers-gui-allowed-loadouts'}" StyleClasses="LabelKeyText"/>
@@ -143,7 +143,7 @@
                     <GridContainer Name="AllowedLoadoutsGrid" Columns="6" Margin="0 5" />
                 </BoxContainer>
                 <!-- Скины призрака -->
-                <BoxContainer Orientation="Vertical" Name="GhostThemesBox" >
+                <BoxContainer Orientation="Vertical" Name="GhostThemesBox" Visible="False" >
                     <BoxContainer Orientation="Horizontal" >
                         <customControls:HSeparator Color="#4972A1" HorizontalExpand="True" MaxHeight="2" />
                         <Label Text="{Loc 'sponsor-tiers-gui-ghost-themes'}" StyleClasses="LabelKeyText"/>
