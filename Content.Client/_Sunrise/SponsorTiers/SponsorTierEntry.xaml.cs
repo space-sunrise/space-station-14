@@ -94,13 +94,6 @@ public sealed partial class SponsorTierEntry : Control
 
     private void LoadOpenGhostRoles(IReadOnlyCollection<string> openGhostRoles)
     {
-        if (openGhostRoles.Count == 0)
-        {
-            OpenGhostRolesBox.Visible = false;
-            return;
-        }
-        OpenGhostRolesBox.Visible = true;
-
         foreach (var openGhostRole in openGhostRoles)
         {
             if (!_prototypeManager.TryIndex(openGhostRole, out EntityPrototype? ghostRolePrototype))
@@ -121,17 +114,12 @@ public sealed partial class SponsorTierEntry : Control
 
             OpenGhostRolesGrid.AddChild(panel);
         }
+
+        OpenGhostRolesBox.Visible = OpenGhostRolesGrid.ChildCount > 0;
     }
 
     private void LoadPriorityGhostRoles(IReadOnlyCollection<string> priorityGhostRoles)
     {
-        if (priorityGhostRoles.Count == 0)
-        {
-            PriorityGhostRolesBox.Visible = false;
-            return;
-        }
-        PriorityGhostRolesBox.Visible = true;
-
         foreach (var priorityGhostRole in priorityGhostRoles)
         {
             if (!_prototypeManager.TryIndex(priorityGhostRole, out EntityPrototype? ghostRolePrototype))
@@ -152,17 +140,12 @@ public sealed partial class SponsorTierEntry : Control
 
             PriorityGhostRolesGrid.AddChild(panel);
         }
+
+        PriorityGhostRolesBox.Visible = PriorityGhostRolesGrid.ChildCount > 0;
     }
 
     private void LoadAllowedVoices(IReadOnlyCollection<string> allowedVoices)
     {
-        if (allowedVoices.Count == 0)
-        {
-            TTSVoicesBox.Visible = false;
-            return;
-        }
-        TTSVoicesBox.Visible = true;
-
         foreach (var allowedVoice in allowedVoices)
         {
             if (!_prototypeManager.TryIndex(allowedVoice, out TTSVoicePrototype? voicePrototype))
@@ -183,17 +166,12 @@ public sealed partial class SponsorTierEntry : Control
 
             TTSVoicesGrid.AddChild(button);
         }
+
+        TTSVoicesBox.Visible = TTSVoicesGrid.ChildCount > 0;
     }
 
     private void LoadAllowedLoadouts(IReadOnlyCollection<string> allowedLoadouts)
     {
-        if (allowedLoadouts.Count == 0)
-        {
-            AllowedLoadoutsBox.Visible = false;
-            return;
-        }
-        AllowedLoadoutsBox.Visible = true;
-
         foreach (var allowedLoadout in allowedLoadouts)
         {
             if (!_prototypeManager.TryIndex(allowedLoadout, out LoadoutPrototype? loadoutPrototype))
@@ -219,17 +197,12 @@ public sealed partial class SponsorTierEntry : Control
 
             AllowedLoadoutsGrid.AddChild(panel);
         }
+
+        AllowedLoadoutsBox.Visible = AllowedLoadoutsGrid.ChildCount > 0;
     }
 
     private void LoadGhostThemes(IReadOnlyCollection<string> ghostThemes)
     {
-        if (ghostThemes.Count == 0)
-        {
-            GhostThemesBox.Visible = false;
-            return;
-        }
-        GhostThemesBox.Visible = true;
-
         foreach (var ghostTheme in ghostThemes)
         {
             if (!_prototypeManager.TryIndex(ghostTheme, out GhostThemePrototype? ghostThemePrototype))
@@ -239,17 +212,12 @@ public sealed partial class SponsorTierEntry : Control
 
             GhostThemesGrid.AddChild(panel);
         }
+
+        GhostThemesBox.Visible = GhostThemesGrid.ChildCount > 0;
     }
 
     private void LoadBypassRoles(IReadOnlyCollection<string> bypassRoles)
     {
-        if (bypassRoles.Count == 0)
-        {
-            BypassRolesBox.Visible = false;
-            return;
-        }
-        BypassRolesBox.Visible = true;
-
         foreach (var bypassRole in bypassRoles)
         {
             if (!_prototypeManager.TryIndex(bypassRole, out JobPrototype? roleProto))
@@ -297,17 +265,12 @@ public sealed partial class SponsorTierEntry : Control
 
             BypassRolesGrid.AddChild(panel);
         }
+
+        BypassRolesBox.Visible = BypassRolesGrid.ChildCount > 0;
     }
 
     private void LoadAllowedSpecies(IReadOnlyCollection<string> speciesList)
     {
-        if (speciesList.Count == 0)
-        {
-            AllowedSpeciesBox.Visible = false;
-            return;
-        }
-        AllowedSpeciesBox.Visible = true;
-
         foreach (var species in speciesList)
         {
             if (!_prototypeManager.TryIndex(species, out SpeciesPrototype? speciesPrototype))
@@ -327,17 +290,12 @@ public sealed partial class SponsorTierEntry : Control
 
             AllowedSpeciesGrid.AddChild(panel);
         }
+
+        AllowedSpeciesBox.Visible = AllowedSpeciesGrid.ChildCount > 0;
     }
 
     private void LoadAllowedMarkings(IReadOnlyCollection<string> markingsList)
     {
-        if (markingsList.Count == 0)
-        {
-            AllowedMarkingsBox.Visible = false;
-            return;
-        }
-        AllowedMarkingsBox.Visible = true;
-
         foreach (var marking in markingsList)
         {
             if (!_prototypeManager.TryIndex(marking, out MarkingPrototype? markingProto))
@@ -370,17 +328,13 @@ public sealed partial class SponsorTierEntry : Control
 
             AllowedMarkingsGrid.AddChild(panel);
         }
+
+        AllowedMarkingsBox.Visible = AllowedMarkingsGrid.ChildCount > 0;
+
     }
 
     private void LoadPriorityAntags(IReadOnlyCollection<string> priorityAntags)
     {
-        if (priorityAntags.Count == 0)
-        {
-            PriorityAntagBox.Visible = false;
-            return;
-        }
-        PriorityAntagBox.Visible = true;
-
         foreach (var priorityAntag in priorityAntags)
         {
             if (!_prototypeManager.TryIndex(priorityAntag, out AntagPrototype? antagProto))
@@ -390,17 +344,12 @@ public sealed partial class SponsorTierEntry : Control
 
             PriorityAntagGrid.AddChild(panel);
         }
+
+        PriorityAntagBox.Visible = PriorityAntagGrid.ChildCount > 0;
     }
 
     private void LoadOpenAntags(IReadOnlyCollection<string> openAntags)
     {
-        if (openAntags.Count == 0)
-        {
-            OpenAntagBox.Visible = false;
-            return;
-        }
-        OpenAntagBox.Visible = true;
-
         foreach (var openAntag in openAntags)
         {
             if (!_prototypeManager.TryIndex(openAntag, out AntagPrototype? antagProto))
@@ -410,17 +359,12 @@ public sealed partial class SponsorTierEntry : Control
 
             OpenAntagGrid.AddChild(panel);
         }
+
+        OpenAntagBox.Visible = OpenAntagGrid.ChildCount > 0;
     }
 
     private void LoadPriorityRoles(IReadOnlyCollection<string> priorityRoles)
     {
-        if (priorityRoles.Count == 0)
-        {
-            PriorityRolesBox.Visible = false;
-            return;
-        }
-        PriorityRolesBox.Visible = true;
-
         foreach (var priorityRole in priorityRoles)
         {
             if (!_prototypeManager.TryIndex(priorityRole, out JobPrototype? roleProto))
@@ -468,17 +412,12 @@ public sealed partial class SponsorTierEntry : Control
 
             PriorityRolesGrid.AddChild(panel);
         }
+
+        PriorityRolesBox.Visible = PriorityRolesGrid.ChildCount > 0;
     }
 
     private void LoadOpenRoles(IReadOnlyCollection<string> openRoles)
     {
-        if (openRoles.Count == 0)
-        {
-            OpenRolesBox.Visible = false;
-            return;
-        }
-        OpenRolesBox.Visible = true;
-
         foreach (var openRole in openRoles)
         {
             if (!_prototypeManager.TryIndex(openRole, out JobPrototype? roleProto))
@@ -526,6 +465,8 @@ public sealed partial class SponsorTierEntry : Control
 
             OpenRolesGrid.AddChild(panel);
         }
+
+        OpenRolesBox.Visible = OpenRolesGrid.ChildCount > 0;
     }
 
     private PanelContainer CreateEntityIcon(string name, SpriteView spriteView)
