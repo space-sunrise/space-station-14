@@ -40,14 +40,7 @@ public sealed class StandingStateSystem : SharedStandingStateSystem
             TryStandUp(uid, standingStateComponent);
         else
         {
-            if (HasComp<HumanoidAppearanceComponent>(uid))
-            {
-                Fall(uid);
-            }
-            else
-            {
-                TryLieDown(uid);
-            }
+            Fall(uid);
         }
     }
 

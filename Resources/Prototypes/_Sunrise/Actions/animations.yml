@@ -62,7 +62,7 @@
   name: Лечь/Встать
   whitelist:
     components:
-    - HumanoidAppearance
+    - Hands
   blacklist:
     components:
     - Ghost
