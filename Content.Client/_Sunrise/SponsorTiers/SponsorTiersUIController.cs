@@ -1,5 +1,6 @@
 // © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
 using Content.Client.Lobby;
+using Content.Sunrise.Interfaces.Shared;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
 
@@ -14,7 +15,9 @@ public partial class SponsorTiersUIController : UIController, IOnStateEntered<Lo
 
     public void OnStateEntered(LobbyState state)
     {
-        if (_shown)
+        IoCManager.Instance!.TryResolveType<ISharedSponsorsManager>(out var sponsors);
+
+        if (_shown || sponsors == null || sponsors.ClientIsSponsor())
             return;
 
         ToggleWindow();

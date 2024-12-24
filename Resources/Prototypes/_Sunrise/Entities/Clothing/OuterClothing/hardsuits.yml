@@ -163,8 +163,8 @@
         Radiation: 0.4
         Caustic: 0.4
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
+    walkModifier: 0.65
+    sprintModifier: 0.65
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHeavyHardsuitUSSP
@@ -191,10 +191,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.4
-        Heat: 0.5
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.6
+        Heat: 0.65
         Caustic: 0.7
   - type: ClothingSpeedModifier
     walkModifier: 0.95
@@ -209,11 +209,9 @@
   name: senior's engineer hardsuit
   description: A special suit that protects against hazardous, low pressure environments. Has radiation shielding. Very compact.
   components:
-  - type: Item
-    size: Normal
   - type: ClothingSpeedModifier
-    walkModifier: 0.75
-    sprintModifier: 0.75
+    walkModifier: 0.85
+    sprintModifier: 0.85
   - type: Sprite
     sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/engineering-compact.rsi
   - type: Clothing
