@@ -177,7 +177,6 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(EngineKeyFunctions.UseSecondary);
             AddButton(ContentKeyFunctions.UseItemInHand);
             AddButton(ContentKeyFunctions.AltUseItemInHand);
-            AddButton(ContentKeyFunctions.CockGun);
             AddButton(ContentKeyFunctions.ActivateItemInWorld);
             AddButton(ContentKeyFunctions.AltActivateItemInWorld);
             AddButton(ContentKeyFunctions.Drop);
@@ -189,6 +188,9 @@ namespace Content.Client.Options.UI.Tabs
 
             // Sunrise
             AddButton(ContentKeyFunctions.ToggleStanding);
+            AddButton(ContentKeyFunctions.CockGun);
+            AddButton(ContentKeyFunctions.Jump);
+            AddButton(ContentKeyFunctions.Reloading);
             // Sunrise
 
             AddHeader("ui-options-header-interaction-adv");
