@@ -584,6 +584,18 @@ binds:
   type: State
   key: MouseRight
   canFocus: true
-- function: CockGun # Sunrise-Edit
+# Sunrise-Start
+- function: CockGun # Это не то о чем вы подумали, товарищ визард.
   type: State
   key: C
+- function: Reloading # Да, перезарядка в РП игре на кнопочку.
+  type: State
+  key: R
+- function: ToggleStanding # Упал-отжался.
+  type: State
+  key: Control
+  mod1: Alt
+- function: Jump # Да, мы прыгаем в 2д игре.
+  type: State
+  key: Space
+# Sunrise-End

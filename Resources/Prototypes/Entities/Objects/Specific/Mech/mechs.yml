@@ -266,7 +266,7 @@
     baseState: ripleymkii
     openState: ripleymkii-open
     brokenState: ripleymkii-broken
-    mechToPilotDamageMultiplier: 0.35
+    mechToPilotDamageMultiplier: 0.30
     airtight: true
     pilotWhitelist:
       components:
@@ -279,7 +279,7 @@
         Blunt: 20
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.5
-    baseSprintSpeed: 2.2
+    baseSprintSpeed: 2.5
   - type: Damageable
     damageModifierSet: MediumArmorNT
   - type: Reflect
@@ -297,7 +297,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      520: Critical
+      500: Critical
     showOverlays: false
     allowRevives: true
 
@@ -616,7 +616,7 @@
     baseState: gygax
     openState: gygax-open
     brokenState: gygax-broken
-    mechToPilotDamageMultiplier: 0.3
+    mechToPilotDamageMultiplier: 0.25
     airtight: true
     pilotWhitelist:
       components:
@@ -682,7 +682,7 @@
     baseState: durand
     openState: durand-open
     brokenState: durand-broken
-    mechToPilotDamageMultiplier: 0.25
+    mechToPilotDamageMultiplier: 0.20
     airtight: true
     pilotWhitelist:
       components:
@@ -696,7 +696,7 @@
         Structural: 250
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.5
-    baseSprintSpeed: 2.5
+    baseSprintSpeed: 2.2
   - type: Damageable
     damageModifierSet: MediumArmorNT
   - type: CanMoveInAir
@@ -1002,14 +1002,14 @@
         Blunt: 60
         Structural: 400
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.2
-    baseSprintSpeed: 3
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 1.9
   - type: Damageable
     damageModifierSet: HeavyArmorNT
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.30
+    reflectProb: 0.25
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -1169,7 +1169,7 @@
         Structural: 360
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 2.6
+    baseSprintSpeed: 2.3
   - type: Damageable
     damageModifierSet: MediumArmorSyndi
   - type: CanMoveInAir

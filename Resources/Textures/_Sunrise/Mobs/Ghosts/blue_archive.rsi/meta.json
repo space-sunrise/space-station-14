@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "license": "",
+  "copyright": "",
+  "size": {
+    "x": 52,
+    "y": 52
+  },
+  "states": [
+    {
+      "name": "hibiki"
+    },
+    {
+      "name": "rio"
+    },
+    {
+      "name": "yuuka"
+    }
+  ]
+}

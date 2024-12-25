@@ -3,12 +3,15 @@
   hostile:
   - SimpleHostile
   - Syndicate
-  - Thief
   - Xeno
   - Zombie
   - Revolutionary
-  - Carps
   - AllHostile
+  # Sunrise Edit
+  - Thief
+  - Carps
+  - Changeling
+  - Vampire
 
 - type: npcFaction
   id: Mouse
@@ -27,19 +30,24 @@
   - Zombie
   - Xeno
   - AllHostile
+  # Sunrise Edit
+  - Carps
 
 - type: npcFaction
   id: SimpleHostile
   hostile:
   - NanoTrasen
   - Syndicate
-  - Thief
   - Passive
   - PetsNT
   - Zombie
   - Revolutionary
   - AllHostile
+  # Sunrise Edit
+  - Thief
   - Carps
+  - Changeling
+  - Vampire
 
 - type: npcFaction
   id: SimpleNeutral
@@ -52,29 +60,28 @@
   - Xeno
   - PetsNT
   - Zombie
-  - Carps
   - AllHostile
-
-- type: npcFaction
-  id: Thief
-  hostile:
-  - NanoTrasen
-  - SimpleHostile
-  - Xeno
-  - PetsNT
-  - Zombie
+  # Sunrise Edit
+  - Thief
+  - Carps
+  - Changeling
+  - Vampire
 
 - type: npcFaction
   id: Xeno
   hostile:
   - NanoTrasen
   - Syndicate
-  - Thief
   - Passive
   - PetsNT
   - Zombie
   - Revolutionary
   - AllHostile
+  # Sunrise Edit
+  - Thief
+  - Carps
+  - Changeling
+  - Vampire
 
 - type: npcFaction
   id: Zombie
@@ -83,11 +90,13 @@
   - SimpleNeutral
   - SimpleHostile
   - Syndicate
-  - Thief
   - Passive
   - PetsNT
   - Revolutionary
   - AllHostile
+  # Sunrise Edit
+  - Thief
+  - Carps
   - Changeling
   - Vampire
 
@@ -97,15 +106,16 @@
   - NanoTrasen
   - Zombie
   - SimpleHostile
-  - Carps
-  - Carps
   - AllHostile
+  # Sunrise Edit
+  - Carps
+  - Changeling
+  - Vampire
 
 - type: npcFaction
   id: AllHostile
   hostile:
   - NanoTrasen
-  - Carps
   - Mouse
   - Passive
   - PetsNT
@@ -115,38 +125,8 @@
   - Xeno
   - Zombie
   - Revolutionary
+  # Sunrise Edit
+  - Thief
+  - Carps
   - Changeling
   - Vampire
-
-- type: npcFaction
-  id: Changeling
-  hostile:
-  - NanoTrasen
-  - Syndicate
-  - Thief
-  - Zombie
-  - Revolutionary
-  - Vampire
-
-- type: npcFaction
-  id: Vampire
-  hostile:
-  - NanoTrasen
-  - Syndicate
-  - Thief
-  - Zombie
-  - Revolutionary
-  - Changeling
-  - Xeno
-
-- type: npcFaction
-  id: Carps
-  hostile:
-  - NanoTrasen
-  - Syndicate
-  - Thief
-  - Xeno
-  - PetsNT
-  - Zombie
-  - Revolutionary
-  - AllHostile

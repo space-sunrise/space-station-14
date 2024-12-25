@@ -49,6 +49,11 @@
       enum.GeneralStationRecordConsoleKey.Key:
       # who the fuck named this bruh
         type: GeneralStationRecordConsoleBoundUserInterface
+      # Sunrise-Start
+      enum.GhostThemeUiKey.Key:
+        type: GhostThemeBoundUserInterface
+        requireInputValidation: false
+      # Sunrise-End
   - type: IntrinsicUI
     uis:
       enum.SolarControlConsoleUiKey.Key:

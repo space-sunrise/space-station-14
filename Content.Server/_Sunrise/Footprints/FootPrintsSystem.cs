@@ -10,6 +10,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Content.Shared.GameTicking;
 using Content.Shared.Standing;
+using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.Footprints;
@@ -29,7 +30,7 @@ public sealed class FootprintSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-    [Dependency] private readonly StandingStateSystem _standingStateSystem = default!;
+    [Dependency] private readonly SharedStandingStateSystem _standingStateSystem = default!;
     #endregion
 
     #region Entity Queries
@@ -43,8 +44,10 @@ public sealed class FootprintSystem : EntitySystem
 
     // Dictionary to track footprints per tile to prevent overcrowding
     private readonly Dictionary<(EntityUid GridId, Vector2i TilePosition), HashSet<EntityUid>> _tileFootprints = new();
-    private const int MaxFootprintsPerTile = 2; // Maximum footprints allowed per tile
-    private const int MaxMarksPerTile = 1;
+    private const int MaxFootprintsPerTile = 6;
+    private const int MaxMarksPerTile = 3;
+
+    private EntityQuery<PhysicsComponent> _physicsQuery;
 
     #region Initialization
     /// <summary>
@@ -57,6 +60,7 @@ public sealed class FootprintSystem : EntitySystem
         _transformQuery = GetEntityQuery<TransformComponent>();
         _mobStateQuery = GetEntityQuery<MobThresholdsComponent>();
         _appearanceQuery = GetEntityQuery<AppearanceComponent>();
+        _physicsQuery = GetEntityQuery<PhysicsComponent>();
 
         SubscribeLocalEvent<FootprintEmitterComponent, ComponentStartup>(OnEmitterStartup);
         SubscribeLocalEvent<FootprintEmitterComponent, MoveEvent>(OnEntityMove);
@@ -88,6 +92,8 @@ public sealed class FootprintSystem : EntitySystem
     {
         // Check if footprints should be created
         if (!_transformQuery.TryComp(uid, out var transform)
+            || !_physicsQuery.TryGetComponent(uid, out var body)
+            || body.BodyStatus == BodyStatus.InAir
             || !_mapManager.TryFindGridAt(_transformSystem.GetMapCoordinates((uid, transform)), out var gridUid, out var grid)
             || !TryComp<SolutionContainerManagerComponent>(uid, out var container))
             return;

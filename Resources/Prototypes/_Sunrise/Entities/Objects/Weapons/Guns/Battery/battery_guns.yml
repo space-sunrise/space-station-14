@@ -404,7 +404,7 @@
     startingCharge: 4000
   - type: ProjectileBatteryAmmoProvider
     proto: BulletEMP
-    fireCost: 1000
+    fireCost: 500
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -664,6 +664,39 @@
   - type: ZoomableGun
 
 - type: entity
+  name: heavy pulse carbine
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband]
+  id: WeaponSniperPulseCarbine
+  description: "A high tech heavy carbine. favoured by the NT-ERT operatives." 
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/sniper_pulse_carbine.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/sniper_pulse_carbine.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 2.2
+    availableModes:
+      - SemiAuto
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: EmpImmune
+  - type: HitscanBatteryAmmoProvider
+    proto: BulletPulse
+    fireCost: 125
+  - type: Battery
+    maxCharge: 5000
+    startingCharge: 5000
+  - type: ZoomableGun
+
+- type: entity
   name: S-13 «Black mamba»
   parent: BaseWeaponBattery
   id: WeaponSyndieLaserGun
@@ -683,7 +716,6 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/syndielasergun.rsi
   - type: Gun
-    projectileSpeed: 5
     minAngle: 30
     maxAngle: 50
     angleIncrease: 2
@@ -706,6 +738,8 @@
   - type: Battery
     maxCharge: 3000
     startingCharge: 3000
+  - type: EmpImmune
+  - type: ZoomableGun
 
 - type: entity
   name: SAM-300
@@ -786,3 +820,4 @@
   - type: Battery
     maxCharge: 7500
     startingCharge: 7500
+  - type: EmpImmune

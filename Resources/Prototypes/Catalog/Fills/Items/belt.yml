@@ -193,6 +193,8 @@
     contents:
         - id: WeaponRevolverInspector
         - id: SpeedLoaderMagnum
+        - id: SpeedLoaderMagnumRubber
+        - id: Telebaton
 
 - type: entity
   id: ClothingBeltChefFilled
