@@ -1,9 +1,9 @@
 
 - type: entity
-  name: сrystallite
+  name: crystallite
   parent: BaseItem
   id: Crystallite
-  suffix: 100 С
+  suffix: 100 C
   description: It seems to shimmer with a attractive energy.
   components:
   - type: Sprite
@@ -26,8 +26,8 @@
 - type: entity
   parent: Crystallite
   id: Crystallite1
-  suffix: 1 С
-  name: сrystallite
+  suffix: 1 C
+  name: crystallite
   description: It seems to shimmer with a attractive energy.
   components:
   - type: Stack
@@ -36,8 +36,8 @@
 - type: entity
   parent: Crystallite
   id: Crystallite25
-  suffix: 25 С
-  name: сrystallite
+  suffix: 25 C
+  name: crystallite
   description: It seems to shimmer with a attractive energy.
   components:
   - type: Stack
@@ -46,8 +46,8 @@
 - type: entity
   parent: Crystallite
   id: Crystallite50
-  suffix: 50 С
-  name: сrystallite
+  suffix: 50 C
+  name: crystallite
   description: It seems to shimmer with a attractive energy.
   components:
   - type: Stack
