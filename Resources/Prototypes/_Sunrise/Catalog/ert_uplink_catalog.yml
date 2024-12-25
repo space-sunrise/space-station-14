@@ -6,7 +6,6 @@
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: wt550 }
   cost:
     Bluecrystal: 3
-    Bluecrystal: 3
   categories:
   - NTAutoGun
   conditions:
@@ -35,7 +34,6 @@
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: lecter }
   cost:
     Bluecrystal: 6
-    Bluecrystal: 6
   categories:
   - NTAutoGun
   conditions:
@@ -49,7 +47,6 @@
   productEntity: ClothingBackpackDuffelWeaponSubMachineGunP90Filled
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: p90 }
   cost:
-    Bluecrystal: 8
     Bluecrystal: 8
   categories:
   - NTAutoGun
@@ -65,7 +62,6 @@
   productEntity: ClothingBackpackDuffelWeaponAMS42Filled
   cost:
     Bluecrystal: 8
-    Bluecrystal: 8
   categories:
   - NTAutoGun
   conditions:
@@ -79,7 +75,6 @@
   productEntity: ClothingBackpackDuffelWeaponLightMachineGunMG42
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mg42 }
   cost:
-    Bluecrystal: 25
     Bluecrystal: 25
   categories:
     - NTAutoGun
@@ -990,7 +985,6 @@
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: powercage_nt }
   cost:
     Crystallite: 10
-    Crystallite: 10
   categories:
     - NTMechs
   conditions:
@@ -1002,7 +996,6 @@
   productEntity: PlayerBorgChassisERTBattery
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: cyborg_ert }
   cost:
-    Bluecrystal: 30
     Bluecrystal: 30
   categories:
     - NTMechs
@@ -1017,7 +1010,6 @@
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mech_ntgygax }
   productEntity: CrateCommandNTGygaxBundle
   cost:
-    Bluecrystal: 60
     Bluecrystal: 60
   categories:
   - NTMechs
