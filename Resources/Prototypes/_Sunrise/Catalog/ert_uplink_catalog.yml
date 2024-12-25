@@ -780,7 +780,6 @@
   id: NTUplinkSunrisePowerCellNanoTrasen
   name: ntuplink-engineering-powercellnt-name
   description: ntuplink-engineering-powercellnt-desc
-  description: ntuplink-engineering-powercellnt-desc
   productEntity: PowerCellNanoTrasen
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: power_cell_nt }
   cost:
