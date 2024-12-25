@@ -29,7 +29,7 @@
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
     pocket1: WeaponPistolN1984
-    pocket2: BaseUplinkNTERT60BC # Sunrise-edit
+    pocket2: MagazineMagnum
   storage:
     back:
     - WeaponEnergyGunPistolSecurity # Sunrise-edit
@@ -54,7 +54,7 @@
     id: ERTLeaderPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
-    pocket1: BaseUplinkNTERT100BC # Sunrise-edit
+    pocket1: WeaponPistolN1984
     pocket2: HandheldCriminalRecordsMonitorUnpowered # Sunrise-edit
   storage:
     back:
@@ -64,7 +64,7 @@
     - BoxZiptie
     - CrowbarRed
     - PortableSurveillanceCameraMonitorUnpowered # Sunrise-edit
-    #- MagazineMagnum # Sunrise-edit
+    - MagazineMagnum
     - ERTDirectivesCircuitBoard # Sunrise-edit
 
 - type: startingGear
@@ -80,7 +80,7 @@
     id: ERTLeaderPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
-    pocket1: BaseUplinkNTERT200BC
+    pocket1: MagazineRifle
     pocket2: MagazineRifle
   inhand:
   - WeaponRifleLecter
