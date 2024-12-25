@@ -119,7 +119,8 @@ public abstract class SharedStandingStateSystem : EntitySystem
         {
             BreakOnHandChange = false,
             RequireCanInteract = false,
-            BreakOnDamage = true
+            BreakOnDamage = true,
+            BreakOnMove = true,
         };
 
         return _doAfter.TryStartDoAfter(args);
@@ -136,7 +137,9 @@ public abstract class SharedStandingStateSystem : EntitySystem
         var args = new DoAfterArgs(EntityManager, uid, standingState.CycleTime, new DownDoAfterEvent(), uid)
         {
             BreakOnHandChange = false,
-            RequireCanInteract = false
+            RequireCanInteract = false,
+            BreakOnMove = true,
+            BreakOnDamage = true,
         };
 
         return _doAfter.TryStartDoAfter(args);
@@ -157,7 +160,7 @@ public abstract class SharedStandingStateSystem : EntitySystem
         var direction = velocity.Normalized();
 
         Down(uid, dropHeldItems: false);
-        _stun.TryStun(uid, TimeSpan.FromSeconds(1.3f), true);
+        _stun.TryStun(uid, TimeSpan.FromSeconds(2.0f), true);
         _stamina.TakeStaminaDamage(uid, 20);
 
         _throwing.TryThrow(
