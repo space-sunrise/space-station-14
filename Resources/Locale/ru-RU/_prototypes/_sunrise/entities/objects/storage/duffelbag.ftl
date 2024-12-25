@@ -18,3 +18,5 @@ ent-ClothingBackpackDuffelWeaponRifleBR64Filled = Набор BR-64
 .desc = BR-64 c 2мя магазинами.
 ent-ClothingBackpackDuffelWeaponLightMachineGunMG42 = Набор MG-342
 .desc = MG-342 c 2мя магазинами.
+ent-ClothingBackpackDuffelNanotrasenMedicalBundleFilled = набор медикаментов НаноТрейзен
+    .desc = Все, что нужно для возвращения в строй ваших товарищей: главным образом, боевые аптечки, дефибриллятор и 4 боевых медипена каждого вида.

@@ -543,6 +543,18 @@
   - !type:ListingLimitedStockCondition
     stock: 8
 
+- type: listing
+  id: NTUplinkSunriseDuffelNanotrasenMedicalBundleFilled
+  productEntity: ClothingBackpackDuffelNanotrasenMedicalBundleFilled
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: med_bundle }
+  cost:
+    Crystallite: 40
+  categories:
+  - NTMedicine
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 4
+
 # Дополнительное:
 
 - type: listing
@@ -864,6 +876,30 @@
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: void_jet }
   cost:
     Crystallite: 10
+  categories:
+    - NTEquipment
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2
+
+- type: listing
+  id: NTUplinkSunriseEnergyDomeGeneratorBackpackNT
+  productEntity: EnergyDomeGeneratorBackpackNT
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: nanotrasen_back }
+  cost:
+    Crystallite: 15
+  categories:
+    - NTEquipment
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 2
+
+- type: listing
+  id: NTUplinkSunriseEnergyDomeGeneratorPersonalNT
+  productEntity: EnergyDomeGeneratorPersonalNT
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: nanotrasen_belt }
+  cost:
+    Crystallite: 40
   categories:
     - NTEquipment
   conditions:

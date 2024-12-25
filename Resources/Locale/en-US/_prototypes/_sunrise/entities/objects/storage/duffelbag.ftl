@@ -18,3 +18,5 @@ ent-ClothingBackpackDuffelWeaponRifleBR64Filled = Bundle BR-64
 .desc = BR-64 with 2 raspy magazines.
 ent-ClothingBackpackDuffelWeaponLightMachineGunMG42 = Bundle MG-342
 .desc = MG-342 with 2 raspy magazines.
+ent-ClothingBackpackDuffelNanotrasenMedicalBundleFilled = nanotrasen medical bundle
+    .desc = A large duffel bag for holding any medical army goods.
