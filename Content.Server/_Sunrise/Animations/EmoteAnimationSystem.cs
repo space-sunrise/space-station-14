@@ -1,6 +1,9 @@
 ﻿using Content.Server.Chat.Systems;
+using Content.Server.Popups;
 using Content.Shared._Sunrise.Animations;
 using Content.Shared.Chat.Prototypes;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Gravity;
 using Content.Shared.Standing;
@@ -9,6 +12,8 @@ using Robust.Server.Audio;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.Animations;
 
@@ -19,6 +24,10 @@ public sealed class EmoteAnimationSystem : EntitySystem
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly StaminaSystem _staminaSystem = default!;
     [Dependency] private readonly AudioSystem _audioSystem = default!;
+    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     public static string JumpStatusEffectKey = "Jump";
 
@@ -67,10 +76,27 @@ public sealed class EmoteAnimationSystem : EntitySystem
             // Временная ржомба
             _audioSystem.PlayEntity("/Audio/_Sunrise/jump_mario.ogg", Filter.Pvs(uid), uid, true, AudioParams.Default);
 
+            if (_random.Prob(0.001f))
+            {
+                _popupSystem.PopupEntity("Неудачно приземляется на шею.", uid);
+                var damage = new DamageSpecifier(_prototypeManager.Index<DamageTypePrototype>("Blunt"), 200);
+                _damageableSystem.TryChangeDamage(uid, damage, true, useVariance: false, useModifier: false);
+            }
+
             _statusEffects.TryAddStatusEffect<JumpComponent>(uid,
                 JumpStatusEffectKey,
                 TimeSpan.FromMilliseconds(500),
                 false);
+        }
+
+        if (emoteId == "EmoteFlip")
+        {
+            if (_random.Prob(0.001f))
+            {
+                _popupSystem.PopupEntity("Неудачно приземляется на шею.", uid);
+                var damage = new DamageSpecifier(_prototypeManager.Index<DamageTypePrototype>("Blunt"), 200);
+                _damageableSystem.TryChangeDamage(uid, damage, true, useVariance: false, useModifier: false);
+            }
         }
 
         component.AnimationId = emoteId;
