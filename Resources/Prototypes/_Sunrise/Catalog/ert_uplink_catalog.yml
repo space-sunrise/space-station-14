@@ -11,7 +11,6 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 4
-    stock: 4
 
 - type: listing
   id: NTUplinkSunriseClothingBackpackDuffelWeaponSubMachineGunMP5
@@ -23,9 +22,8 @@
   categories:
     - NTAutoGun
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 4
-      stock: 4
+  - !type:ListingLimitedStockCondition
+    stock: 4
 
 - type: listing
   id: NTUplinkSunriseClothingBackpackDuffelWeaponRifleLecter
@@ -38,7 +36,6 @@
   - NTAutoGun
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 3
     stock: 3
 
 - type: listing
@@ -53,7 +50,6 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 2
-    stock: 2
 
 - type: listing
   id: NTUplinkSunriseClothingBackpackDuffelWeaponAMS42Filled
@@ -67,7 +63,6 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 2
-    stock: 2
 
 - type: listing
   id: NTUplinkSunriseClothingBackpackDuffelWeaponLightMachineGunMG42
@@ -79,8 +74,8 @@
   categories:
     - NTAutoGun
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 1
+  - !type:ListingLimitedStockCondition
+    stock: 1
 
 - type: listing
   id: NTUplinkSunriseClothingBackpackDuffelWeaponRifleBR64Filled
@@ -168,8 +163,8 @@
   categories:
     - NTLasers
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 2
+  - !type:ListingLimitedStockCondition
+    stock: 2
 
 - type: listing
   id: NTUplinkSunriseWeaponPulseCarbine
@@ -180,8 +175,8 @@
   categories:
     - NTLasers
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 4
+  - !type:ListingLimitedStockCondition
+    stock: 4
 
 - type: listing
   id: NTUplinkSunriseWeaponEnergyGunTactical
@@ -193,7 +188,6 @@
   - NTLasers
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 4
     stock: 4
 
 - type: listing
@@ -207,7 +201,6 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 4
-    stock: 4
 
 # Пистолеты:
 
@@ -220,9 +213,8 @@
   categories:
   - NTPistols
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 4
-      stock: 4
+  - !type:ListingLimitedStockCondition
+    stock: 4
 
 - type: listing
   id: NTUplinkSunriseWeaponEnergyGunPistolSecurity
@@ -271,7 +263,6 @@
   - NTPistols
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 4
     stock: 4
 
 # Боеприпасы:
@@ -332,8 +323,8 @@
   categories:
     - NTAmmo
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 12
+  - !type:ListingLimitedStockCondition
+    stock: 12
 
 - type: listing
   id: NTUplinkSunriseMagazineBoxMagnumIncendiary
@@ -344,8 +335,8 @@
   categories:
     - NTAmmo
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 6
+  - !type:ListingLimitedStockCondition
+    stock: 6
 
 - type: listing
   id: NTUplinkSunriseMagazineBoxMagnumUranium
@@ -356,8 +347,8 @@
   categories:
     - NTAmmo
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 6
+  - !type:ListingLimitedStockCondition
+    stock: 6
 
 - type: listing
   id: NTUplinkSunriseMagazineP90
@@ -368,8 +359,8 @@
   categories:
     - NTAmmo
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 6
+  - !type:ListingLimitedStockCondition
+    stock: 6
 
 - type: listing
   id: NTUplinkSunriseSMGAmmoKit
@@ -389,7 +380,6 @@
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_smg_red }
   cost:
     Crystallite: 20
-    Crystallite: 20
   categories:
   - NTAmmo
   conditions:
@@ -401,7 +391,6 @@
   productEntity: SMGUraniumAmmoKit
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_smg_uran }
   cost:
-    Crystallite: 35
     Crystallite: 35
   categories:
   - NTAmmo
@@ -420,14 +409,12 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 6
-    stock: 6
 
 - type: listing
   id: NTUplinkSunriseBoxMagazineShotgunIncendiary
   productEntity: BoxMagazineShotgunIncendiary
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_shot_red }
   cost:
-    Crystallite: 25
     Crystallite: 25
   categories:
   - NTAmmo
@@ -441,12 +428,10 @@
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_shot_slug }
   cost:
     Crystallite: 10
-    Crystallite: 10
   categories:
   - NTAmmo
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 6
     stock: 6
 
 - type: listing
@@ -454,7 +439,6 @@
   productEntity: BoxMagazineShotgunBeanbag
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_shot }
   cost:
-    Crystallite: 6
     Crystallite: 6
   categories:
   - NTAmmo
@@ -480,12 +464,10 @@
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mag_mg342 }
   cost:
     Crystallite: 5
-    Crystallite: 5
   categories:
   - NTAmmo
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 6
     stock: 6
 
 # Медицина:
@@ -495,13 +477,11 @@
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: monkeycube }
   cost:
     Crystallite: 5
-    Crystallite: 5
   categories:
-    - NTMedicine
+  - NTMedicine
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 6
-      stock: 6
+  - !type:ListingLimitedStockCondition
+    stock: 6
 
 - type: listing
   id: NTUplinkSunriseDefibrillator
@@ -512,8 +492,8 @@
   categories:
     - NTMedicine
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 2
+  - !type:ListingLimitedStockCondition
+    stock: 2
 
 - type: listing
   id: NTUplinkSunriseMedkitOxygenFilled
@@ -532,7 +512,6 @@
   productEntity: MedkitBruteFilled
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: med-brute }
   cost:
-    Crystallite: 3
     Crystallite: 3
   categories:
   - NTMedicine
@@ -570,7 +549,6 @@
   productEntity: MedkitBurnFilled
   cost:
     Crystallite: 3
-    Crystallite: 3
   categories:
   - NTMedicine
   conditions:
@@ -582,7 +560,6 @@
   productEntity: MedkitCombatFilled
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: med-black }
   cost:
-    Crystallite: 5
     Crystallite: 5
   categories:
   - NTMedicine
@@ -610,7 +587,6 @@
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: crate_med }
   cost:
     Crystallite: 6
-    Crystallite: 6
   categories:
   - NTAdditional
   conditions:
@@ -622,7 +598,6 @@
   productEntity: BoxMRE
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_mre }
   cost:
-    Crystallite: 2
     Crystallite: 2
   categories:
   - NTAdditional
@@ -639,9 +614,8 @@
   categories:
     - NTAdditional
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 8
-      stock: 8
+  - !type:ListingLimitedStockCondition
+    stock: 8
 
 - type: listing
   id: NTUplinkSunriseBoxFlashbang
@@ -649,12 +623,11 @@
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_flashbangs }
   cost:
     Crystallite: 4
-    Crystallite: 4
   categories:
     - NTAdditional
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 6
+  - !type:ListingLimitedStockCondition
+    stock: 6
 
 - type: listing
   id: NTUplinkSunriseFlash
@@ -665,8 +638,8 @@
   categories:
     - NTAdditional
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 8
+  - !type:ListingLimitedStockCondition
+    stock: 8
 
 - type: listing
   id: NTUplinkSunriseStunbaton
@@ -677,9 +650,8 @@
   categories:
     - NTAdditional
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 12
-      stock: 12
+  - !type:ListingLimitedStockCondition
+    stock: 12
 
 # Санитария
 
@@ -692,9 +664,8 @@
   categories:
     - NTSanitary
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 12
-      stock: 12
+  - !type:ListingLimitedStockCondition
+    stock: 12
 
 - type: listing
   id: NTUplinkSunriseWeedSpray
@@ -705,9 +676,8 @@
   categories:
     - NTSanitary
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 12
-      stock: 12
+  - !type:ListingLimitedStockCondition
+    stock: 12
 
 - type: listing
   id: NTUplinkSunriseSprayBottleSpaceCleaner
@@ -718,8 +688,8 @@
   categories:
     - NTSanitary
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 12
+  - !type:ListingLimitedStockCondition
+    stock: 12
 
 - type: listing
   id: NTUplinkSunriseTrashBagBlue
@@ -730,8 +700,8 @@
   categories:
     - NTSanitary
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 3
+  - !type:ListingLimitedStockCondition
+    stock: 3
 
 - type: listing
   id: NTUplinkSunriseBoxBodyBag
@@ -742,8 +712,8 @@
   categories:
     - NTSanitary
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 3
+  - !type:ListingLimitedStockCondition
+    stock: 3
 
 - type: listing
   id: NTUplinkSunriseAdvMopItem
@@ -751,12 +721,10 @@
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: adv-mop }
   cost:
     Crystallite: 4
-    Crystallite: 4
   categories:
   - NTSanitary
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 4
     stock: 4
 
 # Инженерия
@@ -769,8 +737,8 @@
   categories:
     - NTEngineering
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 4
+  - !type:ListingLimitedStockCondition
+    stock: 4
 
 - type: listing
   id: NTUplinkSunriseJawsOfLife
@@ -778,12 +746,11 @@
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: jaws }
   cost:
     Crystallite: 5
-    Crystallite: 5
   categories:
     - NTEngineering
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 6
+  - !type:ListingLimitedStockCondition
+    stock: 6
 
 - type: listing
   id: NTUplinkSunriseOmnitool
@@ -794,8 +761,8 @@
   categories:
     - NTEngineering
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 4
+  - !type:ListingLimitedStockCondition
+    stock: 4
 
 - type: listing
   id: NTUplinkSunrisePowerCellHigh
@@ -806,8 +773,8 @@
   categories:
     - NTEngineering
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 8
+  - !type:ListingLimitedStockCondition
+    stock: 8
 
 - type: listing
   id: NTUplinkSunrisePowerCellNanoTrasen
@@ -821,8 +788,8 @@
   categories:
     - NTEngineering
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 4
+  - !type:ListingLimitedStockCondition
+    stock: 4
 
 - type: listing
   id: NTUplinkSunriseNetworkConfigurator
@@ -833,10 +800,8 @@
   categories:
     - NTEngineering
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 4
-      stock: 4
-
+  - !type:ListingLimitedStockCondition
+    stock: 4
 - type: listing
   id: NTUplinkSunriseMultitool
   productEntity: Multitool
@@ -846,9 +811,8 @@
   categories:
     - NTEngineering
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 4
-      stock: 4
+  - !type:ListingLimitedStockCondition
+    stock: 4
 
 # Экипировка:
 - type: listing
@@ -858,13 +822,11 @@
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: telescopic_shield }
   cost:
     Crystallite: 3
-    Crystallite: 3
   categories:
     - NTEquipment
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 8
-      stock: 8
+  - !type:ListingLimitedStockCondition
+    stock: 8
 
 - type: listing
   id: NTUplinkSunriseRiotBulletShield
@@ -873,13 +835,11 @@
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: riot_bullet_shield }
   cost:
     Crystallite: 2
-    Crystallite: 2
   categories:
     - NTEquipment
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 8
-      stock: 8
+  - !type:ListingLimitedStockCondition
+    stock: 8
 
 - type: listing
   id: NTUplinkSunriseRiotLaserShield
@@ -888,13 +848,11 @@
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: riot_laser_shield }
   cost:
     Crystallite: 2
-    Crystallite: 2
   categories:
     - NTEquipment
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 8
-      stock: 8
+  - !type:ListingLimitedStockCondition
+    stock: 8
 
 - type: listing
   id: NTUplinkSunriseRiotShield
@@ -903,13 +861,11 @@
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: riot_shield }
   cost:
     Crystallite: 2
-    Crystallite: 2
   categories:
     - NTEquipment
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 8
-      stock: 8
+  - !type:ListingLimitedStockCondition
+    stock: 8
 
 - type: listing
   id: NTUplinkSunriseJetpackBlueFilled
@@ -918,12 +874,11 @@
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: jet_blue }
   cost:
     Crystallite: 4
-    Crystallite: 4
   categories:
     - NTEquipment
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 4
+  - !type:ListingLimitedStockCondition
+    stock: 4
 
 - type: listing
   id: NTUplinkSunriseJetpackMiniFilled
@@ -932,12 +887,11 @@
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mini_jet }
   cost:
     Crystallite: 4
-    Crystallite: 4
   categories:
     - NTEquipment
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 4
+  - !type:ListingLimitedStockCondition
+    stock: 4
 
 - type: listing
   id: NTUplinkSunriseJetpackVoidFilled
@@ -949,8 +903,8 @@
   categories:
     - NTEquipment
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 2
+  - !type:ListingLimitedStockCondition
+    stock: 2
 
 - type: listing
   id: NTUplinkSunriseEnergyDomeGeneratorBackpackNT
@@ -961,8 +915,8 @@
   categories:
     - NTEquipment
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 2
+  - !type:ListingLimitedStockCondition
+    stock: 2
 
 - type: listing
   id: NTUplinkSunriseEnergyDomeGeneratorPersonalNT
@@ -973,8 +927,8 @@
   categories:
     - NTEquipment
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 2
+  - !type:ListingLimitedStockCondition
+    stock: 2
 
 # Mechs
 - type: listing
@@ -988,8 +942,8 @@
   categories:
     - NTMechs
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 2
+  - !type:ListingLimitedStockCondition
+    stock: 2
 
 - type: listing
   id: NTUplinkSunriseBorgERT
@@ -1000,8 +954,8 @@
   categories:
     - NTMechs
   conditions:
-    - !type:ListingLimitedStockCondition
-      stock: 2
+  - !type:ListingLimitedStockCondition
+    stock: 2
 
 - type: listing
   id: NTUplinkSunriseNTGygax
