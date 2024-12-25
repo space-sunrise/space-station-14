@@ -252,18 +252,6 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 4
-  
-- type: listing
-  id: NTUplinkSunriseWeaponFlareGun
-  productEntity: WeaponFlareGunSecurity
-  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: sec_flaregun }
-  cost:
-    Bluecrystal: 1
-  categories:
-  - NTPistols
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 4
 
 # Боеприпасы:
 - type: listing
@@ -277,18 +265,6 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 6
-
-- type: listing
-  id: NTUplinkSunriseBoxShotgunFlare
-  productEntity: BoxShotgunFlare 
-  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_shot_flare }
-  cost:
-    Crystallite: 2
-  categories:
-  - NTAmmo
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 4
 
 - type: listing
   id: NTUplinkSunriseBoxShotgunFlare
