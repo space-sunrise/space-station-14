@@ -45,6 +45,14 @@ using Robust.Shared.Utility;
 
 namespace Content.Client.UserInterface.Systems.Chat;
 
+public class SpeechBubbleStack
+{
+    public required SpeechBubble Bubble { get; set; }
+    public required string Message { get; set; }
+    public int RepeatCount { get; set; } = 1;
+    public SpeechBubble.SpeechType Type { get; set; }
+}
+
 public sealed class ChatUIController : UIController
 {
     [Dependency] private readonly IClientAdminManager _admin = default!;
@@ -173,6 +181,8 @@ public sealed class ChatUIController : UIController
     private ChatSelectChannel PreferredChannel { get; set; } = ChatSelectChannel.OOC;
 
     public ChatMessage? LastMessage = null;
+
+    private readonly Dictionary<EntityUid, SpeechBubbleStack> _lastBubbles = new();
 
     public event Action<ChatSelectChannel>? CanSendChannelsChanged;
     public event Action<ChatChannel>? FilterableChannelsChanged;
@@ -456,9 +466,19 @@ public sealed class ChatUIController : UIController
 
     private void CreateSpeechBubble(EntityUid entity, SpeechBubbleData speechData)
     {
-        var bubble =
-            SpeechBubble.CreateSpeechBubble(speechData.Type, speechData.Message, entity);
+        var message = speechData.Message;
+        var type = speechData.Type;
 
+        if (_lastBubbles.TryGetValue(entity, out var stack) &&
+            stack.Message == message.WrappedMessage &&
+            stack.Type == type)
+        {
+            stack.RepeatCount++;
+            stack.Bubble.UpdateText(message, stack.RepeatCount);
+            return;
+        }
+
+        var bubble = SpeechBubble.CreateSpeechBubble(type, message, entity);
         bubble.OnDied += SpeechBubbleDied;
 
         if (_activeSpeechBubbles.TryGetValue(entity, out var existing))
@@ -477,6 +497,13 @@ public sealed class ChatUIController : UIController
 
         existing.Add(bubble);
         _speechBubbleRoot.AddChild(bubble);
+
+        _lastBubbles[entity] = new SpeechBubbleStack
+        {
+            Bubble = bubble,
+            Message = message.WrappedMessage,
+            Type = type
+        };
 
         if (existing.Count > SpeechBubbleCap)
         {
@@ -512,6 +539,9 @@ public sealed class ChatUIController : UIController
 
         var list = _activeSpeechBubbles[entityUid];
         list.Remove(bubble);
+
+        if (_lastBubbles.TryGetValue(entityUid, out var stack) && stack.Bubble == bubble)
+            _lastBubbles.Remove(entityUid);
 
         if (list.Count == 0)
         {
@@ -889,9 +919,10 @@ public sealed class ChatUIController : UIController
 
             foreach (var chat in _chats)
             {
-                // chat._controller.History[index].Item2
                 chat.UpdateMessage(chat.GetHistoryLength() - 1, LastMessage);
             }
+
+            TryBuble(msg, speechBubble);
             return;
         }
 
@@ -915,7 +946,11 @@ public sealed class ChatUIController : UIController
             }
         }
 
-        // Local messages that have an entity attached get a speech bubble.
+        TryBuble(msg, speechBubble);
+    }
+
+    private void TryBuble(ChatMessage msg, bool speechBubble)
+    {
         if (!speechBubble || msg.SenderEntity == default)
             return;
 
