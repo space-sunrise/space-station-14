@@ -231,12 +231,12 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         foreach (var giveaway in _prototypeManager.EnumeratePrototypes<HolidayGiveawayItemPrototype>())
         {
             if (string.IsNullOrEmpty(giveaway.Holiday) || string.IsNullOrEmpty(giveaway.Prototype))
-                return;
+                continue;
 
             var sysMan = IoCManager.Resolve<IEntitySystemManager>();
 
             if (!sysMan.GetEntitySystem<HolidaySystem>().IsCurrentlyHoliday(giveaway.Holiday))
-                return;
+                continue;
 
             var entMan = IoCManager.Resolve<IEntityManager>();
 
