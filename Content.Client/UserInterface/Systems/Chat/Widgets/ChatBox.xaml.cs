@@ -104,6 +104,29 @@ public partial class ChatBox : UIWidget
         }
     }
 
+    public int GetHistoryLength()
+    {
+        return _controller.History.Count;
+    }
+
+    public void UpdateMessage(int index, ChatMessage message)
+    {
+        var updatedTuple = (_controller.History[index].Item1, message);
+        _controller.History.Pop();
+        _controller.History.Add(updatedTuple);
+
+        var color = message.MessageColorOverride != null
+            ? message.MessageColorOverride.Value
+            : message.Channel.TextColor();
+
+        var formatted = new FormattedMessage(3);
+
+        formatted.AddMarkup(message.WrappedMessage);
+        formatted.PushColor(color);
+
+        Contents.UpdateLastMessage(formatted);
+    }
+
     public void AddLine(string message, Color color)
     {
         var formatted = new FormattedMessage(3);
