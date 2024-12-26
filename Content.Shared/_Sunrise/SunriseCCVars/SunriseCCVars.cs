@@ -319,4 +319,24 @@ public sealed class SunriseCCVars
 
     public static readonly CVarDef<bool> MoodDecreasesSpeed =
         CVarDef.Create("mood.decreases_speed", true, CVar.SERVER);
+
+    /**
+     * Tape Player
+     */
+
+    public static readonly CVarDef<bool> JumpEnabled =
+        CVarDef.Create("jump.enabled", true, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<float> JumpDeadChanse =
+        CVarDef.Create("jump.dead_chanse", 0.001f, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<bool> JumpSoundEnabled =
+        CVarDef.Create("jump.sound_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /**
+     * Tape Player
+     */
+
+    public static readonly CVarDef<float> FlipDeadChanse =
+        CVarDef.Create("flip.dead_chanse", 0.001f, CVar.SERVER | CVar.REPLICATED);
 }

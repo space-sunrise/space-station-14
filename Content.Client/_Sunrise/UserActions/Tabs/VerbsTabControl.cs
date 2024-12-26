@@ -22,7 +22,7 @@ public sealed partial class VerbsTabControl : BaseTabControl
     [Dependency] private readonly IGameTiming _gameTiming = default!;
 
     private TimeSpan _lastVerbTime;
-    private static readonly TimeSpan VerbCooldown = TimeSpan.FromSeconds(0.5f);
+    private static readonly TimeSpan VerbCooldown = TimeSpan.FromSeconds(2f);
 
     public VerbsTabControl()
     {

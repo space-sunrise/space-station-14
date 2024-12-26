@@ -345,6 +345,7 @@
     reflectProb: .50
     spread: 90
     needActiveHand: true
+  - type: FlipOnAttack # Sunrise-Edit
 
 - type: entity
   suffix: One-Handed, For Borgs

@@ -1,8 +1,10 @@
+using Content.Shared._Sunrise.Jump;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
+using Content.Shared.Emoting;
 using Content.Shared.Hands.Components;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
@@ -35,6 +37,7 @@ public abstract class SharedStandingStateSystem : EntitySystem
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly ThrowingSystem _throwing = default!;
     [Dependency] private readonly ActionBlockerSystem _blocker = default!;
+    [Dependency] private readonly SharedJumpSystem _jumpSystem = default!;
 
     private const int StandingCollisionLayer = (int) CollisionGroup.MidImpassable;
 
@@ -46,7 +49,20 @@ public abstract class SharedStandingStateSystem : EntitySystem
         SubscribeLocalEvent<StandingStateComponent, DownDoAfterEvent>(OnDownDoAfter);
         SubscribeLocalEvent<StandingStateComponent, MoveEvent>(OnMove);
         SubscribeLocalEvent<StandingStateComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeed);
+        SubscribeLocalEvent<StandingStateComponent, AnimationEmoteAttemptEvent>(CheckEmote);
     }
+
+    // Sunrise-Start
+    private void CheckEmote(EntityUid target, StandingStateComponent component, AnimationEmoteAttemptEvent args)
+    {
+        if (args.Emote.ID == "Jump" && (component.CurrentState == StandingState.Laying || !_jumpSystem.Enabled))
+        {
+            args.Cancel();
+        }
+
+
+    }
+    // Sunrise-End
 
     #region Implementation
 

@@ -41,6 +41,7 @@
     - ForcedSleep
     - StaminaModifier
     - Jump # Sunrise-Edit
+    - Flip # Sunrise-Edit
   - type: MobState
     allowedStates:
     - Alive

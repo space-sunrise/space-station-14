@@ -144,6 +144,7 @@
     - Adrenaline
     - LoveEffect  # Sunrise-Edit
     - Jump # Sunrise-Edit
+    - Flip # Sunrise-Edit
   - type: Body
     prototype: Human
     requiredLegs: 2
