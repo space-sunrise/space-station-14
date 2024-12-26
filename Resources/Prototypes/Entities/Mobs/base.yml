@@ -46,6 +46,7 @@
   # Sunrise-Start
   - type: TTS
   - type: DamageOverlay
+  - type: EmoteAnimation
   # Sunrise-End
 
 - type: entity
