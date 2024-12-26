@@ -10,6 +10,26 @@
 
 - type: entity
   parent: PosterBase
+  id: PosterContrabandSam300
+  name: "SAM-300"
+  description: "A poster advertising the SAM-300 from Cybersun Industries."
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Wallmounts/posters.rsi
+    state: sunriseposter2_contraband
+
+- type: entity
+  parent: PosterBase
+  id: PosterContrabandSyndiMechs
+  name: "Syndi Mechs"
+  description: "A poster advertising the Mechs from Cybersun Industries."
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Wallmounts/posters.rsi
+    state: sunriseposter3_contraband
+
+- type: entity
+  parent: PosterBase
   id: PosterLegitAIOverseer
   name: "AI is watching"
   description: "Anything can be automated, Security included"

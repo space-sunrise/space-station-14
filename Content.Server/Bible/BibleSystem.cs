@@ -1,6 +1,7 @@
 using Content.Server.Bible.Components;
 using Content.Server.Ghost.Roles.Events;
 using Content.Server.Popups;
+using Content.Server.Saw;
 using Content.Shared._Sunrise.Mood;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
@@ -8,11 +9,13 @@ using Content.Shared.Bible;
 using Content.Shared.Damage;
 using Content.Shared.Ghost.Roles.Components;
 using Content.Shared.IdentityManagement;
+using Content.Shared.IdentityManagement.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
+using Content.Shared.Prayer;
 using Content.Shared.Stunnable;
 using Content.Shared.Timing;
 using Content.Shared.Vampire.Components;
@@ -21,6 +24,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -28,6 +32,8 @@ namespace Content.Server.Bible
 {
     public sealed class BibleSystem : EntitySystem
     {
+        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+        [Dependency] private readonly IEntityManager _entityManager = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly ActionBlockerSystem _blocker = default!;
         [Dependency] private readonly DamageableSystem _damageableSystem = default!;
@@ -39,6 +45,8 @@ namespace Content.Server.Bible
         [Dependency] private readonly UseDelaySystem _delay = default!;
         [Dependency] private readonly SharedTransformSystem _transform = default!;
         [Dependency] private readonly SharedStunSystem _stun = default!;
+        [Dependency] private readonly EntityLookupSystem _lookUp = default!;
+        [Dependency] private readonly MetaDataSystem _metaData = default!;
 
         public override void Initialize()
         {
@@ -149,6 +157,25 @@ namespace Content.Server.Bible
 
                 return;
             }
+
+            //Sunrise-start
+
+            if (TryPrototype((EntityUid) args.Target, out var prototype)
+                && prototype.ID == "MobPig"
+                && !HasComp<SawComponent>(args.Target))
+            {
+                if (_lookUp.GetEntitiesInRange<IdentityComponent>(Transform(uid).Coordinates, 5).Count >= 5
+                    && _lookUp.GetEntitiesInRange<PrayableComponent>(Transform(uid).Coordinates, 5).Count >= 2)
+                {
+                    _entityManager.AddComponents((EntityUid) args.Target, _prototypeManager.Index("MobSaw").Components, false);
+                    _metaData.SetEntityName((EntityUid)args.Target, "свиноматерь");
+                    _popupSystem.PopupEntity(Loc.GetString("bible-saw-transformation"), (EntityUid) args.Target);
+                    _audio.PlayPvs(component.HealSoundPath, (EntityUid) args.Target);
+                }
+                return;
+            }
+
+            //Sunrise-end
 
             // This only has a chance to fail if the target is not wearing anything on their head and is not a familiar..
             if (!_invSystem.TryGetSlotEntity(args.Target.Value, "head", out var _) && !HasComp<FamiliarComponent>(args.Target.Value))

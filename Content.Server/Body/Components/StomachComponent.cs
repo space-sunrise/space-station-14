@@ -47,6 +47,16 @@ namespace Content.Server.Body.Components
         [DataField]
         public EntityWhitelist? SpecialDigestible = null;
 
+        //Sunrise-start
+
+        /// <summary>
+        ///     If true, whitelist from the top will only be used as an addition to the already digestible by default food
+        /// </summary>
+        [DataField]
+        public bool IsDigestibleAddition = false;
+
+        //Sunrise-end
+
         /// <summary>
         ///     Used to track how long each reagent has been in the stomach
         /// </summary>
