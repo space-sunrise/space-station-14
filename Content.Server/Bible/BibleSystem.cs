@@ -160,7 +160,8 @@ namespace Content.Server.Bible
 
             //Sunrise-start
 
-            if (TryPrototype((EntityUid) args.Target, out var prototype)
+            if (TryPrototype((EntityUid)args.Target, out var prototype)
+                && (prototype.ID == "MobPig" || (prototype.Parents != null && prototype.Parents.Contains<string>("MobPig")))
                 && prototype.ID == "MobPig"
                 && !HasComp<SawComponent>(args.Target))
             {
