@@ -49,20 +49,7 @@ public abstract class SharedStandingStateSystem : EntitySystem
         SubscribeLocalEvent<StandingStateComponent, DownDoAfterEvent>(OnDownDoAfter);
         SubscribeLocalEvent<StandingStateComponent, MoveEvent>(OnMove);
         SubscribeLocalEvent<StandingStateComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeed);
-        SubscribeLocalEvent<StandingStateComponent, AnimationEmoteAttemptEvent>(CheckEmote);
     }
-
-    // Sunrise-Start
-    private void CheckEmote(EntityUid target, StandingStateComponent component, AnimationEmoteAttemptEvent args)
-    {
-        if (args.Emote.ID == "Jump" && (component.CurrentState == StandingState.Laying || !_jumpSystem.Enabled))
-        {
-            args.Cancel();
-        }
-
-
-    }
-    // Sunrise-End
 
     #region Implementation
 

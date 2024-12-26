@@ -1,8 +1,10 @@
 using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
+using Content.Shared.Climbing.Systems;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Gravity;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Movement.Components;
 using Content.Shared.Physics;
 using Content.Shared.Standing;
 using Content.Shared.StatusEffect;
@@ -34,6 +36,7 @@ public abstract class SharedJumpSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly ClimbSystem _climbSystem = default!;
 
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private EntityQuery<FixturesComponent> _fixturesQuery;
@@ -42,10 +45,16 @@ public abstract class SharedJumpSystem : EntitySystem
     private const string JumpStatusEffectKey = "Jump";
     [ValidatePrototypeId<EmotePrototype>]
     private const string EmoteFallOnNeckProto = "FallOnNeck";
-    private static float _deadChance = 1.0f;
-    private static readonly TimeSpan SpeedBoostWindow = TimeSpan.FromSeconds(0.650);
-    private const float MinSpeedThreshold = 4.0f;
-    public bool Enabled;
+    private const string JumpSound = "/Audio/_Sunrise/jump_mario.ogg";
+
+    public bool Enable;
+    private static float _deadChance;
+
+    public bool BunnyHopEnable;
+    private static TimeSpan _bunnyHopSpeedBoostWindow;
+    private static float _bunnyHopSpeedUpPerJump;
+    private static float _bunnyHopSpeedLimit;
+    private static float _bunnyHopMinSpeedThreshold;
 
     private readonly List<ICommonSession> _ignoredRecipients = [];
 
@@ -61,8 +70,13 @@ public abstract class SharedJumpSystem : EntitySystem
         _physicsQuery = GetEntityQuery<PhysicsComponent>();
         _fixturesQuery = GetEntityQuery<FixturesComponent>();
 
-        _cfg.OnValueChanged(SunriseCCVars.SunriseCCVars.JumpEnabled, OnJumpEnabledChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.SunriseCCVars.JumpEnable, OnJumpEnableChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.SunriseCCVars.JumpDeadChanse, OnJumpDeadChanseChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.SunriseCCVars.BunnyHopEnable, OnBunnyHopEnableChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.SunriseCCVars.BunnyHopMinSpeedThreshold, OnBunnyHopMinSpeedThresholdChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.SunriseCCVars.BunnyHopSpeedBoostWindow, OnBunnyHopSpeedBoostWindowChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.SunriseCCVars.BunnyHopSpeedUpPerJump, OnBunnyHopSpeedUpPerJumpChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.SunriseCCVars.BunnyHopSpeedLimit, OnBunnyHopSpeedLimitChanged, true);
     }
 
     private void OnRefreshMoveSpeed(EntityUid uid, BunnyHopComponent component, RefreshMovementSpeedModifiersEvent args)
@@ -79,21 +93,57 @@ public abstract class SharedJumpSystem : EntitySystem
             _ignoredRecipients.Add(args.SenderSession);
     }
 
-    private void OnJumpEnabledChanged(bool enanled)
+    private void OnJumpEnableChanged(bool enanle)
     {
-        Enabled = enanled;
+        Enable = enanle;
     }
 
-    private void OnJumpDeadChanseChanged(float deadChanse)
+    private void OnJumpDeadChanseChanged(float value)
     {
-        _deadChance = deadChanse;
+        _deadChance = value;
+    }
+
+    private void OnBunnyHopEnableChanged(bool enanle)
+    {
+        BunnyHopEnable = enanle;
+    }
+
+    private void OnBunnyHopMinSpeedThresholdChanged(float value)
+    {
+        _bunnyHopMinSpeedThreshold = value;
+    }
+
+    private void OnBunnyHopSpeedBoostWindowChanged(float value)
+    {
+        _bunnyHopSpeedBoostWindow = TimeSpan.FromSeconds(value);
+    }
+
+    private void OnBunnyHopSpeedUpPerJumpChanged(float value)
+    {
+        _bunnyHopSpeedUpPerJump = value;
+    }
+
+    private void OnBunnyHopSpeedLimitChanged(float value)
+    {
+        _bunnyHopSpeedLimit = value;
+    }
+
+    public bool CanJump(EntityUid uid)
+    {
+        return !_gravity.IsWeightless(uid) &&
+               !_standingStateSystem.IsDown(uid) &&
+               _mobState.IsAlive(uid) &&
+               !_climbSystem.IsClimbing(uid) &&
+               Enable;
     }
 
     public void TryJump(EntityUid uid)
     {
         if (_gravity.IsWeightless(uid) ||
             _standingStateSystem.IsDown(uid) ||
-            !_mobState.IsAlive(uid))
+            !_mobState.IsAlive(uid) ||
+            _climbSystem.IsClimbing(uid) ||
+            !Enable)
             return;
 
         Jump(uid);
@@ -117,8 +167,9 @@ public abstract class SharedJumpSystem : EntitySystem
         //_staminaSystem.TakeStaminaDamage(uid, 10);
 
         if (_net.IsServer)
-            _audioSystem.PlayEntity("/Audio/_Sunrise/jump_mario.ogg", Filter.Pvs(ent.Owner).RemovePlayers(_ignoredRecipients), ent.Owner, true, AudioParams.Default.WithVolume(-5f));
+            _audioSystem.PlayEntity(JumpSound, Filter.Pvs(ent.Owner).RemovePlayers(_ignoredRecipients), ent.Owner, true, AudioParams.Default.WithVolume(-5f));
 
+        EnsureComp<CanMoveInAirComponent>(ent.Owner);
         _physics.SetBodyStatus(ent.Owner, body, BodyStatus.InAir);
         foreach (var (id, fixture) in fixtures.Fixtures)
         {
@@ -127,21 +178,23 @@ public abstract class SharedJumpSystem : EntitySystem
 
             _physics.RemoveCollisionMask(ent.Owner, id, fixture, (int) CollisionGroup.LowImpassable, manager: fixtures);
             _physics.RemoveCollisionMask(ent.Owner, id, fixture, (int) CollisionGroup.MidImpassable, manager: fixtures);
-            _physics.RemoveCollisionLayer(ent.Owner, id, fixture, (int) CollisionGroup.BulletImpassable, manager: fixtures);
-            _physics.RemoveCollisionLayer(ent.Owner, id, fixture, (int) CollisionGroup.Opaque, manager: fixtures);
         }
+
+        if (!BunnyHopEnable)
+            return;
 
         var currentSpeed = body.LinearVelocity.Length();
 
-        if (currentSpeed < MinSpeedThreshold)
+        if (currentSpeed < _bunnyHopMinSpeedThreshold)
             return;
 
         var bunnyHopComp = EnsureComp<BunnyHopComponent>(ent.Owner);
         bunnyHopComp.LastLandingTime = _timing.CurTime;
         var timeSinceLastLand = _timing.CurTime - bunnyHopComp.LastLandingTime;
-        if (timeSinceLastLand <= SpeedBoostWindow)
+        if (timeSinceLastLand <= _bunnyHopSpeedBoostWindow)
         {
-            bunnyHopComp.SpeedMultiplier += 0.05f;
+            var speedMultiplier = bunnyHopComp.SpeedMultiplier += _bunnyHopSpeedUpPerJump;
+            bunnyHopComp.SpeedMultiplier = Math.Min(speedMultiplier, _bunnyHopSpeedLimit);
             _movementSpeedModifier.RefreshMovementSpeedModifiers(ent.Owner);
         }
     }
@@ -152,6 +205,7 @@ public abstract class SharedJumpSystem : EntitySystem
             !_fixturesQuery.TryGetComponent(ent.Owner, out var fixtures))
             return;
 
+        RemComp<CanMoveInAirComponent>(ent.Owner);
         _physics.SetBodyStatus(ent.Owner, body, BodyStatus.OnGround);
         foreach (var (id, fixture) in fixtures.Fixtures)
         {
@@ -180,13 +234,14 @@ public abstract class SharedJumpSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<BunnyHopComponent>();
+        var query = EntityQueryEnumerator<BunnyHopComponent, PhysicsComponent>();
 
-        while (query.MoveNext(out var uid, out var bunnyHop))
+        while (query.MoveNext(out var uid, out var bunnyHop, out var physics))
         {
             var timeSinceLastLand = _timing.CurTime - bunnyHop.LastLandingTime;
+            var currentSpeed = physics.LinearVelocity.Length();
 
-            if (timeSinceLastLand > SpeedBoostWindow)
+            if (timeSinceLastLand > _bunnyHopSpeedBoostWindow || currentSpeed < _bunnyHopMinSpeedThreshold)
             {
                 RemComp<BunnyHopComponent>(uid);
                 _movementSpeedModifier.RefreshMovementSpeedModifiers(uid);

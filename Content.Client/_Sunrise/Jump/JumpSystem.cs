@@ -16,7 +16,7 @@ public sealed partial class JumpSystem : SharedJumpSystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     private TimeSpan _lastJumpTime;
-    private static readonly TimeSpan JumpCooldown = TimeSpan.FromSeconds(0.600);
+    private static TimeSpan _jumpCooldown;
 
     [ValidatePrototypeId<EmotePrototype>]
     private const string EmoteJumpProto = "Jump";
@@ -29,13 +29,19 @@ public sealed partial class JumpSystem : SharedJumpSystem
             .Bind(ContentKeyFunctions.Jump, InputCmdHandler.FromDelegate(Jump, handle: false, outsidePrediction: false))
             .Register<JumpSystem>();
 
-        _cfg.OnValueChanged(SunriseCCVars.JumpSoundEnabled, OnJumpSoundEnabledOptionChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.JumpSoundEnable, OnJumpSoundEnabledOptionChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.JumpCooldown, OnJumpCooldownChanged, true);
     }
 
     public override void Shutdown()
     {
         base.Shutdown();
-        _cfg.UnsubValueChanged(SunriseCCVars.JumpSoundEnabled, OnJumpSoundEnabledOptionChanged);
+        _cfg.UnsubValueChanged(SunriseCCVars.JumpSoundEnable, OnJumpSoundEnabledOptionChanged);
+    }
+
+    private void OnJumpCooldownChanged(float value)
+    {
+        _jumpCooldown = TimeSpan.FromSeconds(value);
     }
 
     private void OnJumpSoundEnabledOptionChanged(bool option)
@@ -50,7 +56,7 @@ public sealed partial class JumpSystem : SharedJumpSystem
             return;
 
         var currentTime = _gameTiming.CurTime;
-        if (currentTime - _lastJumpTime < JumpCooldown)
+        if (currentTime - _lastJumpTime < _jumpCooldown)
             return;
 
         _lastJumpTime = currentTime;

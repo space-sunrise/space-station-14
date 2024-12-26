@@ -39,7 +39,7 @@ public sealed partial class SunriseTab : Control
 
         Control.AddOptionCheckBox(SunriseCCVars.TTSClientEnabled, TtsClientCheckBox);
         Control.AddOptionCheckBox(SunriseCCVars.TapePlayerClientEnabled, TapePlayerClientCheckBox);
-        Control.AddOptionCheckBox(SunriseCCVars.JumpSoundEnabled, JumpEnabledSoundCheckBox);
+        Control.AddOptionCheckBox(SunriseCCVars.JumpSoundEnable, JumpEnabledSoundCheckBox);
 
         _cfg.OnValueChanged(SunriseCCVars.LobbyBackgroundType, OnLobbyBackgroundTypeChanged, true);
 

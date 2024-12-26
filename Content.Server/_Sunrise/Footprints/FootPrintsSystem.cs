@@ -9,6 +9,7 @@ using Content.Shared.Mobs.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Content.Shared.GameTicking;
+using Content.Shared.Gravity;
 using Content.Shared.Standing;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
@@ -31,6 +32,7 @@ public sealed class FootprintSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly SharedStandingStateSystem _standingStateSystem = default!;
+    [Dependency] private readonly SharedGravitySystem _gravity = default!;
     #endregion
 
     #region Entity Queries
@@ -94,6 +96,7 @@ public sealed class FootprintSystem : EntitySystem
         if (!_transformQuery.TryComp(uid, out var transform)
             || !_physicsQuery.TryGetComponent(uid, out var body)
             || body.BodyStatus == BodyStatus.InAir
+            || _gravity.IsWeightless(uid)
             || !_mapManager.TryFindGridAt(_transformSystem.GetMapCoordinates((uid, transform)), out var gridUid, out var grid)
             || !TryComp<SolutionContainerManagerComponent>(uid, out var container))
             return;

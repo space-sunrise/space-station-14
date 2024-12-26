@@ -6,6 +6,7 @@ using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.Emoting;
 using Content.Shared.Gravity;
 using Content.Shared.Standing;
 using Robust.Shared.GameStates;
@@ -28,6 +29,13 @@ public sealed class EmoteAnimationSystem : EntitySystem
         SubscribeLocalEvent<EmoteAnimationComponent, ComponentGetState>(OnGetState);
         SubscribeLocalEvent<EmoteAnimationComponent, EmoteEvent>(OnEmote);
         SubscribeLocalEvent<EmoteAnimationComponent, PlayEmoteMessage>(OnPlayEmote);
+        SubscribeLocalEvent<EmoteAnimationComponent, AnimationEmoteAttemptEvent>(CheckEmote);
+    }
+
+    private void CheckEmote(EntityUid uid, EmoteAnimationComponent component, AnimationEmoteAttemptEvent args)
+    {
+        if (args.Emote.ID == "Jump" && !_jumpSystem.CanJump(uid))
+            args.Cancel();
     }
 
     private void OnPlayEmote(EntityUid uid, EmoteAnimationComponent component, PlayEmoteMessage args)

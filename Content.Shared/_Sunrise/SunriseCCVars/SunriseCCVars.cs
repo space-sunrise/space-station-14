@@ -321,22 +321,47 @@ public sealed class SunriseCCVars
         CVarDef.Create("mood.decreases_speed", true, CVar.SERVER);
 
     /**
-     * Tape Player
+     * Jump
      */
 
-    public static readonly CVarDef<bool> JumpEnabled =
-        CVarDef.Create("jump.enabled", true, CVar.SERVER | CVar.REPLICATED);
+    public static readonly CVarDef<bool> JumpEnable =
+        CVarDef.Create("jump.enable", true, CVar.SERVER | CVar.REPLICATED);
 
     public static readonly CVarDef<float> JumpDeadChanse =
         CVarDef.Create("jump.dead_chanse", 0.001f, CVar.SERVER | CVar.REPLICATED);
 
-    public static readonly CVarDef<bool> JumpSoundEnabled =
-        CVarDef.Create("jump.sound_enabled", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+    public static readonly CVarDef<float> JumpCooldown =
+        CVarDef.Create("jump.cooldown", 0.600f, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<bool> JumpSoundEnable =
+        CVarDef.Create("jump.sound_enable", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> BunnyHopEnable =
+        CVarDef.Create("bunny_hop.enable", true, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<float> BunnyHopSpeedUpPerJump =
+        CVarDef.Create("bunny_hop.speed_up_per_jump", 0.01f, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<float> BunnyHopSpeedLimit =
+        CVarDef.Create("bunny_hop.speed_limit", 3.0f, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<float> BunnyHopMinSpeedThreshold =
+        CVarDef.Create("bunny_hop.min_speed_threshold", 4.0f, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<float> BunnyHopSpeedBoostWindow =
+        CVarDef.Create("bunny_hop.speed_boost_window", 0.620f, CVar.SERVER | CVar.REPLICATED);
 
     /**
-     * Tape Player
+     * Flip
      */
 
     public static readonly CVarDef<float> FlipDeadChanse =
         CVarDef.Create("flip.dead_chanse", 0.001f, CVar.SERVER | CVar.REPLICATED);
+
+    /**
+     * Slip
+     */
+
+    public static readonly CVarDef<float> SlipDeadChanse =
+        CVarDef.Create("slip.dead_chanse", 0.001f, CVar.SERVER | CVar.REPLICATED);
 }
