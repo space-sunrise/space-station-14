@@ -3419,6 +3419,10 @@
   - type: HTN
     rootTask:
       task: RuminantCompound
+    # Sunrise-start
+  - type: Body
+    prototype: ManeaterAnimal
+    # Sunrise-end
 
 - type: entity
   name: diona nymph

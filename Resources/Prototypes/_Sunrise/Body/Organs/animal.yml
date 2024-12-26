@@ -1,0 +1,11 @@
+- type: entity
+  id: OrganManeaterAnimalStomach
+  parent: OrganAnimalStomach
+  name: maneater stomach
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Stomach
+    specialDigestible:
+      components:
+        - Identity
+    isDigestibleAddition: true
