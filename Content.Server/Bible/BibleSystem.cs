@@ -163,7 +163,6 @@ namespace Content.Server.Bible
 
             if (TryPrototype((EntityUid)args.Target, out var prototype)
                 && (prototype.ID == "MobPig" || (prototype.Parents != null && prototype.Parents.Contains<string>("MobPig")))
-                && prototype.ID == "MobPig"
                 && !HasComp<SawComponent>(args.Target))
             {
                 if (_lookUp.GetEntitiesInRange<IdentityComponent>(Transform(uid).Coordinates, 5).Count >= 5
