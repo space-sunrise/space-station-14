@@ -49,3 +49,18 @@
   components:
     - type: Sprite
       sprite: _Sunrise/Clothing/Back/Duffels/adjutant.rsi
+
+- type: entity
+  parent: [ ClothingBackpackDuffel, BaseCentcommContraband ]
+  id: ClothingBackpackDuffelNanotrasenMedical
+  name: nanotrasen duffel bag
+  description: A duffel bag containing a variety of biological containment equipment.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Duffels/nanotrasen.rsi
+  - type: Storage
+    maxItemSize: Huge
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 1
+  - type: HeldSpeedModifier

@@ -24,3 +24,14 @@ shop-disease-category-symptoms = Symptoms
 shop-disease-category-evolution = Evolution
 # Uplink
 store-category-objectives = Objectives
+# ntUplink
+store-category-ntautogun = AutoGun
+store-category-ntlasers = Lasers
+store-category-ntmedicine = Medicine
+store-category-ntpistols = Pistols
+store-category-ntadditional = Additional
+store-category-ntsanitary = Sanitary
+store-category-ntengineering = Engineering
+store-category-ntmechs = Mechs
+store-category-ntammo = Ammo
+store-category-ntequipment = Equipment Экипировка
