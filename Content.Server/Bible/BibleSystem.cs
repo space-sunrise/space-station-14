@@ -27,6 +27,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using System.Linq;
 
 namespace Content.Server.Bible
 {
@@ -160,8 +161,8 @@ namespace Content.Server.Bible
 
             //Sunrise-start
 
-            if (TryPrototype((EntityUid) args.Target, out var prototype)
-                && prototype.ID == "MobPig"
+            if (TryPrototype((EntityUid)args.Target, out var prototype)
+                && (prototype.ID == "MobPig" || (prototype.Parents != null && prototype.Parents.Contains<string>("MobPig")))
                 && !HasComp<SawComponent>(args.Target))
             {
                 if (_lookUp.GetEntitiesInRange<IdentityComponent>(Transform(uid).Coordinates, 5).Count >= 5
