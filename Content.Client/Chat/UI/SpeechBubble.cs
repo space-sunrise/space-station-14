@@ -27,6 +27,28 @@ namespace Content.Client.Chat.UI
             Looc
         }
 
+        protected RichTextLabel? ContentLabel;
+
+        public void UpdateText(ChatMessage message, int repeat)
+        {
+            if (ContentLabel == null)
+                return;
+
+            if (this is TextSpeechBubble)
+            {
+                var updatedMessage = $"{message.WrappedMessage} x{repeat}";
+                ContentLabel.SetMessage(FormatSpeech(updatedMessage));
+            }
+            else if (this is FancyTextSpeechBubble)
+            {
+                var bubbleContent = SharedChatSystem.GetStringInsideTag(message, "BubbleContent");
+                var updatedMessage = $"{bubbleContent} x{repeat}";
+                ContentLabel.SetMessage(FormatSpeech(updatedMessage));
+            }
+
+            _timeLeft = TotalTime;
+        }
+
         /// <summary>
         ///     The total time a speech bubble stays on screen.
         /// </summary>
@@ -206,17 +228,17 @@ namespace Content.Client.Chat.UI
 
         protected override Control BuildBubble(ChatMessage message, string speechStyleClass, Color? fontColor = null)
         {
-            var label = new RichTextLabel
+            ContentLabel = new RichTextLabel
             {
                 MaxWidth = SpeechMaxWidth,
             };
 
-            label.SetMessage(FormatSpeech(message.WrappedMessage, fontColor));
+            ContentLabel.SetMessage(FormatSpeech(message.WrappedMessage, fontColor));
 
             var panel = new PanelContainer
             {
                 StyleClasses = { "speechBox", speechStyleClass },
-                Children = { label },
+                Children = { ContentLabel },
                 ModulateSelfOverride = Color.White.WithAlpha(0.75f)
             };
 
@@ -236,17 +258,17 @@ namespace Content.Client.Chat.UI
         {
             if (!ConfigManager.GetCVar(CCVars.ChatEnableFancyBubbles))
             {
-                var label = new RichTextLabel
+                ContentLabel = new RichTextLabel
                 {
                     MaxWidth = SpeechMaxWidth
                 };
 
-                label.SetMessage(ExtractAndFormatSpeechSubstring(message, "BubbleContent", fontColor));
+                ContentLabel.SetMessage(ExtractAndFormatSpeechSubstring(message, "BubbleContent", fontColor));
 
                 var unfanciedPanel = new PanelContainer
                 {
                     StyleClasses = { "speechBox", speechStyleClass },
-                    Children = { label },
+                    Children = { ContentLabel },
                     ModulateSelfOverride = Color.White.WithAlpha(0.75f)
                 };
                 return unfanciedPanel;
@@ -257,7 +279,7 @@ namespace Content.Client.Chat.UI
                 Margin = new Thickness(1, 1, 1, 1)
             };
 
-            var bubbleContent = new RichTextLabel
+            ContentLabel = new RichTextLabel
             {
                 MaxWidth = SpeechMaxWidth,
                 Margin = new Thickness(2, 6, 2, 2),
@@ -266,13 +288,13 @@ namespace Content.Client.Chat.UI
 
             //We'll be honest. *Yes* this is hacky. Doing this in a cleaner way would require a bottom-up refactor of how saycode handles sending chat messages. -Myr
             bubbleHeader.SetMessage(ExtractAndFormatSpeechSubstring(message, "BubbleHeader", fontColor));
-            bubbleContent.SetMessage(ExtractAndFormatSpeechSubstring(message, "BubbleContent", fontColor));
+            ContentLabel.SetMessage(ExtractAndFormatSpeechSubstring(message, "BubbleContent", fontColor));
 
             //As for below: Some day this could probably be converted to xaml. But that is not today. -Myr
             var mainPanel = new PanelContainer
             {
                 StyleClasses = { "speechBox", speechStyleClass },
-                Children = { bubbleContent },
+                Children = { ContentLabel },
                 ModulateSelfOverride = Color.White.WithAlpha(0.75f),
                 HorizontalAlignment = HAlignment.Center,
                 VerticalAlignment = VAlignment.Bottom,
