@@ -50,8 +50,8 @@
   - type: InputMover
   - type: InteractionOutline
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 3
+    baseWalkSpeed: 3
+    baseSprintSpeed: 4
     friction: 5
     weightlessFriction: 5
     weightlessAcceleration: 4

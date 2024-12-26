@@ -50,8 +50,8 @@
       Dead:
         Base: goliath_dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 2.00
-    baseSprintSpeed : 2.00
+    baseWalkSpeed : 3
+    baseSprintSpeed : 3
   - type: MobThresholds
     thresholds:
       0: Alive
