@@ -65,16 +65,37 @@
 		"name": "crate_med"
 	},
 	{
+		"name": "deploy_barrier"
+	},
+	{
 		"name": "energygun"
 	},
 	{
 		"name": "skorpion"
 	},
 	{
+		"name": "nvd"
+	},
+	{
+		"name": "nuke_pinpointer"
+	},
+	{
+		"name": "universal_pinpointer"
+	},
+	{
+		"name": "hristov"
+	},
+	{
 		"name": "energygun_tac"
 	},
 	{
 		"name": "mp5"
+	},
+	{
+		"name": "g36"
+	},
+	{
+		"name": "port_recharge"
 	},
 	{
 		"name": "p90"
