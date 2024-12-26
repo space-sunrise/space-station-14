@@ -295,8 +295,8 @@
       absorbed:
         maxVol: 50
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 3
+    baseWalkSpeed: 3
+    baseSprintSpeed: 3.5
   - type: HTN
     rootTask:
       task: CleanbotCompound

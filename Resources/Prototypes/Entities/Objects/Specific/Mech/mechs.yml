@@ -100,8 +100,8 @@
   - type: InputMover
   - type: InteractionOutline
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1
-    baseSprintSpeed: 2
+    baseWalkSpeed: 2
+    baseSprintSpeed: 3
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -213,8 +213,8 @@
       types:
         Blunt: 14 #intentionally shit so people realize that going into combat with the ripley is usually a bad idea.
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.5
-    baseSprintSpeed: 3.8
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 4.8
   - type: Reflect
     reflectProb: 0.15
     spread: 180
@@ -278,8 +278,8 @@
       types:
         Blunt: 20
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1.5
-    baseSprintSpeed: 2.5
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 3.5
   - type: Damageable
     damageModifierSet: MediumArmorNT
   - type: Reflect
@@ -345,7 +345,7 @@
       types:
         Blunt: 26
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.5
+    baseWalkSpeed: 3.5
     baseSprintSpeed: 4.5
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
@@ -484,8 +484,8 @@
         Blunt: 10 #thwack
         Structural: 2
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.4
-    baseSprintSpeed: 3.7
+    baseWalkSpeed: 3.4
+    baseSprintSpeed: 4.7
   - type: Reflect
     reflectProb: 0.15
     spread: 180
@@ -561,7 +561,7 @@
         Blunt: 10 #thwack
         Structural: 2
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.25
+    baseWalkSpeed: 3.25
     baseSprintSpeed: 3.6
   - type: Access
     tags:
@@ -629,8 +629,8 @@
         Blunt: 30
         Structural: 190
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 3.5
+    baseWalkSpeed: 3
+    baseSprintSpeed: 4.5
   - type: Reflect
     reflectProb: 0.20
     spread: 180
@@ -695,8 +695,8 @@
         Blunt: 50
         Structural: 250
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1.5
-    baseSprintSpeed: 2.2
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 3.2
   - type: Damageable
     damageModifierSet: MediumArmorNT
   - type: CanMoveInAir
@@ -837,8 +837,8 @@
         Blunt: 35
         Structural: 250
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.4
-    baseSprintSpeed: 3.6
+    baseWalkSpeed: 3.4
+    baseSprintSpeed: 4.6
   - type: Reflect
     reflectProb: 0.20
     spread: 180
@@ -922,8 +922,8 @@
         Blunt: 55
         Structural: 370
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1
-    baseSprintSpeed: 1.5
+    baseWalkSpeed: 2
+    baseSprintSpeed: 2.5
   - type: Damageable
     damageModifierSet: HeavyArmorNT
   - type: CanMoveInAir
@@ -1002,8 +1002,8 @@
         Blunt: 60
         Structural: 400
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1.5
-    baseSprintSpeed: 1.9
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 3.9
   - type: Damageable
     damageModifierSet: HeavyArmorNT
   - type: CanMoveInAir
@@ -1085,8 +1085,8 @@
         Blunt: 35
         Structural: 280
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.2
-    baseSprintSpeed: 3.8
+    baseWalkSpeed: 3.2
+    baseSprintSpeed: 4.8
   - type: Damageable
     damageModifierSet: MediumArmorSyndi
   - type: CanMoveInAir
@@ -1168,8 +1168,8 @@
         Blunt: 50
         Structural: 360
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 2.3
+    baseWalkSpeed: 3
+    baseSprintSpeed: 4.3
   - type: Damageable
     damageModifierSet: MediumArmorSyndi
   - type: CanMoveInAir
@@ -1246,8 +1246,8 @@
         Blunt: 60
         Structural: 390
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1
-    baseSprintSpeed: 1.6
+    baseWalkSpeed: 2
+    baseSprintSpeed: 2.6
   - type: Damageable
     damageModifierSet: HeavyArmorSyndi
   - type: CanMoveInAir
