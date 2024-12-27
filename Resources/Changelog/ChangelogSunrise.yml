@@ -8934,3 +8934,12 @@
   id: 624
   time: '2024-12-27T22:41:18.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/944
+- author: ThereDrD0
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u043E \u043A\u0440\u0430\
+      \u0441\u0438\u0432\u043E\u0435 \u043D\u0430\u043F\u0440\u0430\u0432\u043B\u0435\
+      \u043D\u043D\u043E\u0435 \u043E\u0441\u0432\u0435\u0449\u0435\u043D\u0438\u0435"
+    type: Add
+  id: 625
+  time: '2024-12-27T22:55:19.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/950
