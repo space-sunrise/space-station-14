@@ -172,6 +172,8 @@ public sealed class ChatUIController : UIController
     public ChatSelectChannel SelectableChannels { get; private set; }
     private ChatSelectChannel PreferredChannel { get; set; } = ChatSelectChannel.OOC;
 
+    public ChatMessage? LastMessage = null;
+
     public event Action<ChatSelectChannel>? CanSendChannelsChanged;
     public event Action<ChatChannel>? FilterableChannelsChanged;
     public event Action<ChatSelectChannel>? SelectableChannelsChanged;
@@ -879,6 +881,21 @@ public sealed class ChatUIController : UIController
                 }
             }
         }
+
+        if (LastMessage != null && msg.Message == LastMessage.Message)
+        {
+            LastMessage.repeat++;
+            LastMessage.WrappedMessage = msg.WrappedMessage + $" x{LastMessage.repeat}";
+
+            foreach (var chat in _chats)
+            {
+                // chat._controller.History[index].Item2
+                chat.UpdateMessage(chat.GetHistoryLength() - 1, LastMessage);
+            }
+            return;
+        }
+
+        LastMessage = msg;
 
         // Log all incoming chat to repopulate when filter is un-toggled
         if (!msg.HideChat)

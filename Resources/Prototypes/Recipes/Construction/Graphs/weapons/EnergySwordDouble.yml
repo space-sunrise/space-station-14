@@ -16,10 +16,36 @@
         steps:
         - tool: Screwing
           doAfter: 2
-    
+
     - node: deconstruct
       actions:
         - !type:GivePrototype
           prototype: EnergySwordBiocode
           amount: 2
         - !type:DeleteEntity
+
+- type: constructionGraph
+  id: ToySwordDoubledGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: ToySwordDoubledNode
+      steps:
+      - tag: ToySword
+        doAfter: 2
+
+  - node: ToySwordDoubledNode
+    entity: ToySwordDoubled
+    edges:
+    - to: deconstruct
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: deconstruct
+    actions:
+    - !type:GivePrototype
+      prototype: ToySword
+      amount: 2
+    - !type:DeleteEntity

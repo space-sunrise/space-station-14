@@ -129,3 +129,20 @@
     sprite: _Sunrise/Clothing/Mask/cemask.rsi
   - type: BreathMask
   - type: IngestionBlocker
+    
+- type: entity
+  parent: ClothingMaskBase
+  id: ClothingMaskFaceCast
+  name: face cast
+  description: It can steal your personality!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/facecast.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/facecast.rsi
+  - type: BreathMask
+  - type: Tag
+  - type: HideLayerClothing
+    slots:
+    - Snout
+  - type: FaceCast

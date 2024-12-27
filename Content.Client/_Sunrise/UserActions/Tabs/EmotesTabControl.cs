@@ -22,7 +22,7 @@ public sealed partial class EmotesTabControl : BaseTabControl
     [Dependency] private readonly IGameTiming _gameTiming = default!;
 
     private TimeSpan _lastEmoteTime;
-    private static readonly TimeSpan EmoteCooldown = TimeSpan.FromSeconds(3);
+    private static readonly TimeSpan EmoteCooldown = TimeSpan.FromSeconds(2f);
 
     public EmotesTabControl()
     {

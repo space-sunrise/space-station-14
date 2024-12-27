@@ -3,3 +3,6 @@
 
 - type: statusEffect
   id: Jump
+
+- type: statusEffect
+  id: Flip

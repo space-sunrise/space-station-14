@@ -56,4 +56,8 @@ public sealed partial class StaminaComponent : Component
 
     [DataField]
     public ProtoId<AlertPrototype> StaminaAlert = "Stamina";
+
+    // Урон от бега. ЗАБАЛАНСИ МЕНЯ!!!!!!!
+    [ViewVariables(VVAccess.ReadWrite), DataField("sprintStaminaMultiplier"), AutoNetworkedField]
+    public float SprintStaminaMultiplier = 3f;
 }

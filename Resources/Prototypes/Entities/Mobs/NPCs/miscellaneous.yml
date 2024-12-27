@@ -38,7 +38,7 @@
         0: Alive
         100: Dead
     - type: MovementSpeedModifier
-      baseWalkSpeed: 2
+      baseWalkSpeed: 3
       baseSprintSpeed: 5
     - type: Tag
       tags:
