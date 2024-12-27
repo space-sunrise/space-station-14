@@ -59,5 +59,5 @@ public sealed partial class StaminaComponent : Component
 
     // Урон от бега. ЗАБАЛАНСИ МЕНЯ!!!!!!!
     [ViewVariables(VVAccess.ReadWrite), DataField("sprintStaminaMultiplier"), AutoNetworkedField]
-    public float SprintStaminaMultiplier = 3f;
+    public float SprintStaminaMultiplier = 1.5f;
 }
