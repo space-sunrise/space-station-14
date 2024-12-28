@@ -17,6 +17,7 @@ public interface ISharedSponsorsManager
     // Client
     public List<string> GetClientPrototypes();
     public bool ClientAllowedRespawn();
+    public bool ClientAllowedFlavor();
 
     public bool ClientIsSponsor();
     public List<SponsorInfo> GetSponsorTiers();
@@ -27,6 +28,8 @@ public interface ISharedSponsorsManager
     public bool TryGetOocColor(NetUserId userId, [NotNullWhen(true)] out Color? color);
     public bool TryGetGhostThemes(NetUserId userId, [NotNullWhen(true)] out List<string>? ghostTheme);
     public bool TryGetBypassRoles(NetUserId userId, [NotNullWhen(true)] out List<string>? bypassRoles);
+    public int GetSizeFlavor(NetUserId userId);
+    public bool IsAllowedFlavor(NetUserId userId);
     public int GetExtraCharSlots(NetUserId userId);
     public bool HavePriorityJoin(NetUserId userId);
     public bool IsSponsor(NetUserId userId);
@@ -61,6 +64,12 @@ public sealed class SponsorInfo
 
     [JsonPropertyName("allowedRespawn")]
     public bool AllowedRespawn { get; set; } = false;
+
+    [JsonPropertyName("allowedFlavor")]
+    public bool AllowedFlavor { get; set; } = false;
+
+    [JsonPropertyName("sizeFlavor")]
+    public int SizeFlavor { get; set; }
 
     [JsonPropertyName("ghostThemes")]
     public string[] GhostThemes { get; set; } = [];

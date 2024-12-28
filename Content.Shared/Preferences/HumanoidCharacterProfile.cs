@@ -572,10 +572,22 @@ namespace Content.Shared.Preferences
                 name = GetName(Species, gender);
             }
 
-            string flavortext;
-            if (FlavorText.Length > MaxDescLength)
+            // Sunrise-Start
+            var maxDescLength = MaxDescLength;
+            if (_sponsorsMgr != null)
             {
-                flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText)[..MaxDescLength];
+                maxDescLength = _sponsorsMgr.GetSizeFlavor(session.UserId);
+                if (_sponsorsMgr.IsAllowedFlavor(session.UserId))
+                {
+                    FlavorText = string.Empty;
+                }
+            }
+            // Sunrise-End
+
+            string flavortext;
+            if (FlavorText.Length > maxDescLength) // Sunrise-Edit
+            {
+                flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText)[..maxDescLength]; // Sunrise-Edit
             }
             else
             {

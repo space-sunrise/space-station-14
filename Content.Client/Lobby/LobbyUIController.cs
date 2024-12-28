@@ -5,6 +5,7 @@ using Content.Client.Inventory;
 using Content.Client.Lobby.UI;
 using Content.Client.Players.PlayTimeTracking;
 using Content.Client.Station;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
 using Content.Shared.GameTicking;
@@ -75,6 +76,12 @@ public sealed partial class LobbyUIController : UIController, IOnStateEntered<Lo
         {
             _profileEditor?.RefreshFlavorText();
         });
+        // Sunrise-Start
+        _configurationManager.OnValueChanged(SunriseCCVars.FlavorTextSponsorOnly, args =>
+        {
+            _profileEditor?.RefreshFlavorText();
+        });
+        // Sunrise-End
 
         _configurationManager.OnValueChanged(CCVars.GameRoleTimers, _ => RefreshProfileEditor());
 
