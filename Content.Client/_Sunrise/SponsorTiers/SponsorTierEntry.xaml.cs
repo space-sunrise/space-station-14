@@ -107,7 +107,7 @@ public sealed partial class SponsorTierEntry : Control
         PriorityJoinLabel.Text = priorityJoin ? Loc.GetString("sponsor-tiers-gui-yes") : Loc.GetString("sponsor-tiers-gui-no");
         AllowedRespawnLabel.Text = allowedRespawn ? Loc.GetString("sponsor-tiers-gui-yes") : Loc.GetString("sponsor-tiers-gui-no");
         AllowedFlavorLabel.Text = allowedFlavor ? Loc.GetString("sponsor-tiers-gui-yes") : Loc.GetString("sponsor-tiers-gui-no");
-        ExtraSlotsLabel.Text = $"{sizeFlavor}";
+        SizeFlavorLabel.Text = $"{sizeFlavor}";
     }
 
     private void LoadOpenGhostRoles(IReadOnlyCollection<string> openGhostRoles)
