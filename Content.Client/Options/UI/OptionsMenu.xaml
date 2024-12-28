@@ -3,11 +3,11 @@
             Title="{Loc 'ui-options-title'}"
             MinSize="800 450">
     <TabContainer Name="Tabs" Access="Public">
+        <tabs:ExtraTab Name="ExtraTab" />
         <tabs:MiscTab Name="MiscTab" />
         <tabs:GraphicsTab Name="GraphicsTab" />
         <tabs:KeyRebindTab Name="KeyRebindTab" />
         <tabs:AudioTab Name="AudioTab" />
         <tabs:AccessibilityTab Name="AccessibilityTab" />
-        <tabs:SunriseTab Name="SunriseTab" />
     </TabContainer>
 </DefaultWindow>

@@ -12,12 +12,12 @@ using Robust.Shared.Prototypes;
 namespace Content.Client.Options.UI.Tabs;
 
 [GenerateTypedNameReferences]
-public sealed partial class SunriseTab : Control
+public sealed partial class ExtraTab : Control
 {
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
-    public SunriseTab()
+    public ExtraTab()
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);

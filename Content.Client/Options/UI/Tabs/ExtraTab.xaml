@@ -1,4 +1,4 @@
-﻿<tabs:SunriseTab xmlns="https://spacestation14.io"
+﻿<tabs:ExtraTab xmlns="https://spacestation14.io"
                  xmlns:tabs="clr-namespace:Content.Client.Options.UI.Tabs"
                  xmlns:ui="clr-namespace:Content.Client.Options.UI">
     <BoxContainer Orientation="Vertical">
@@ -35,4 +35,4 @@
         </ScrollContainer>
         <ui:OptionsTabControlRow Name="Control" Access="Public" />
     </BoxContainer>
-</tabs:SunriseTab>
+</tabs:ExtraTab>
