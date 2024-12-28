@@ -26,11 +26,13 @@ namespace Content.Client.FlavorText
             // Sunrise-Start
             if (sponsorOnly && _sponsorsMgr != null && !_sponsorsMgr.ClientAllowedFlavor())
             {
-                CFlavorTextInput.Editable = false;
+                SponsorOnlyNotify.Visible = true;
+                CFlavorTextInput.Visible = false;
             }
             else
             {
-                CFlavorTextInput.Editable = true;
+                SponsorOnlyNotify.Visible = false;
+                CFlavorTextInput.Visible = true;
             }
             // Sunrise-End
         }

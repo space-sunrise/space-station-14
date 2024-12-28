@@ -1,5 +1,6 @@
 ﻿<Control Name="CFlavorText" xmlns="https://spacestation14.io">
     <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+        <Label Name="SponsorOnlyNotify" Text="{Loc 'humanoid-profile-editor-flavortext-sponsor-only'}" StyleClasses="LabelKeyText" Visible="False" />
         <TextEdit Name="CFlavorTextInput" Access="Public" MinSize="220 100" Margin="10" HorizontalExpand="True" VerticalExpand="True" />
     </BoxContainer>
 </Control>
