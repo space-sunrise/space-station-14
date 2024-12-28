@@ -59,7 +59,13 @@ public sealed partial class SponsorTierEntry : Control
         Index = index;
         _sponsorInfoTier = sponsorTier;
 
-        LoadTierInfo(sponsorTier.Tier, sponsorTier.OOCColor, sponsorTier.ExtraSlots, sponsorTier.HavePriorityJoin, sponsorTier.AllowedRespawn);
+        LoadTierInfo(sponsorTier.Tier,
+            sponsorTier.OOCColor,
+            sponsorTier.ExtraSlots,
+            sponsorTier.HavePriorityJoin,
+            sponsorTier.AllowedRespawn,
+            sponsorTier.AllowedFlavor,
+            sponsorTier.SizeFlavor);
         LoadOpenAntags(sponsorTier.OpenAntags);
         LoadPriorityAntags(sponsorTier.PriorityAntags);
         LoadAllowedMarkings(sponsorTier.AllowedMarkings);
@@ -69,6 +75,7 @@ public sealed partial class SponsorTierEntry : Control
         LoadOpenGhostRoles(sponsorTier.OpenGhostRoles);
         LoadAllowedVoices(sponsorTier.AllowedVoices);
         LoadAllowedLoadouts(sponsorTier.AllowedLoadouts);
+        LoadSponsorShopItems();
         if (_preferencesManager.ServerDataLoaded)
         {
             LoadOpenRoles(_sponsorInfoTier.OpenRoles);
@@ -88,7 +95,7 @@ public sealed partial class SponsorTierEntry : Control
         LoadBypassRoles(_sponsorInfoTier.BypassRoles);
     }
 
-    private void LoadTierInfo(int tier, string? oocColor, int extraSlots, bool priorityJoin, bool allowedRespawn)
+    private void LoadTierInfo(int tier, string? oocColor, int extraSlots, bool priorityJoin, bool allowedRespawn, bool allowedFlavor, int sizeFlavor)
     {
         TierLabel.Text = $"{tier}";
         if (!string.IsNullOrEmpty(oocColor))
@@ -97,8 +104,10 @@ public sealed partial class SponsorTierEntry : Control
             OocColorLabel.FontColorOverride = Color.FromHex(oocColor);
         }
         ExtraSlotsLabel.Text = $"{extraSlots}";
-        PriorityJoinLabel.Text = priorityJoin ? "Да" : "Нет";
-        AllowedRespawnLabel.Text = allowedRespawn ? "Да" : "Нет";
+        PriorityJoinLabel.Text = priorityJoin ? Loc.GetString("sponsor-tiers-gui-yes") : Loc.GetString("sponsor-tiers-gui-no");
+        AllowedRespawnLabel.Text = allowedRespawn ? Loc.GetString("sponsor-tiers-gui-yes") : Loc.GetString("sponsor-tiers-gui-no");
+        AllowedFlavorLabel.Text = allowedFlavor ? Loc.GetString("sponsor-tiers-gui-yes") : Loc.GetString("sponsor-tiers-gui-no");
+        ExtraSlotsLabel.Text = $"{sizeFlavor}";
     }
 
     private void LoadOpenGhostRoles(IReadOnlyCollection<string> openGhostRoles)
@@ -476,6 +485,11 @@ public sealed partial class SponsorTierEntry : Control
         }
 
         OpenRolesBox.Visible = OpenRolesGrid.ChildCount > 0;
+    }
+
+    private void LoadSponsorShopItems()
+    {
+        // SUNRISE-TODO: Отображение содержимого магазина спонсоров
     }
 
     private PanelContainer CreateEntityIcon(string name, SpriteView spriteView)
