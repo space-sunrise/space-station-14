@@ -112,3 +112,7 @@ recipe-cleanbot-name = чистобот
 recipe-cleanbot-description = Ужас автоматизации теперь угрожает и космическим уборщикам.
 recipe-medibot-name = медбрат помощник
 recipe-medibot-description = Мне кажеться он завернул не в ту галактику? Или у меня глюки. Во всяком случае он явно не плохой.
+recipe-IntercomAssembly-name = интерком
+recipe-IntercomAssembly-description = Устройство внутренней связи.
+recipe-GasPipeSensor-name = газовый сенсор
+recipe-GasPipeSensor-description = Устройство для измерения давления и состава газов в трубах.
