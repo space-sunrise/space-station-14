@@ -9004,3 +9004,11 @@
     type: Tweak
   id: 629
   time: '2024-12-28T03:58:42.608328+00:00'
+- author: Babaev
+  changes:
+  - message: "\u0410\u043F\u0441\u0442\u0440\u0438\u043C \u043B\u043E\u043A\u0430\u043B\
+      \u0438\u0437\u0430\u0446\u0438\u0438 (28.12)"
+    type: Tweak
+  id: 630
+  time: '2024-12-28T16:40:32.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/956
