@@ -28,3 +28,7 @@ recipe-PotatoAIChip-name = сверхкомпактный чип ИИ
 recipe-PotatoAIChip-description = Для корректной работы этого высокотехнологичного чипа искуственного интелекта  требуется напряжение ровно в 1,1 Вольт.
 recipe-CottonWovenCloth-name = ткань
 recipe-CottonWovenCloth-description = Сырьё
+recipe-CarpStatue-name = статуя карпа
+recipe-CarpStatue-description = Статуя одного из храбрых карпов, благодаря которому мы находимся там, где находимся. С настоящими зубами!
+recipe-MemoryCell-name = ячейка памяти
+recipe-MemoryCell-description = Устройство для хранения данных.
