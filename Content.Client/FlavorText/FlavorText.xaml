@@ -1,6 +1,10 @@
 ﻿<Control Name="CFlavorText" xmlns="https://spacestation14.io">
     <BoxContainer Orientation="Vertical" HorizontalExpand="True">
-        <Label Name="SponsorOnlyNotify" Text="{Loc 'humanoid-profile-editor-flavortext-sponsor-only'}" StyleClasses="LabelKeyText" Visible="False" />
+        <Label Name="SponsorOnlyNotify" Text="{Loc 'humanoid-profile-editor-flavor-text-sponsor-only'}" StyleClasses="LabelKeyText" Visible="False" />
+        <BoxContainer Name="LimitBox" Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 5 0 0">
+            <Label Name="LimitTitle" Text="{Loc 'humanoid-profile-editor-flavor-text-limit'}" StyleClasses="LabelKeyText" Margin="0 0 5 0" />
+            <Label Name="LimitLabel"/>
+        </BoxContainer>
         <TextEdit Name="CFlavorTextInput" Access="Public" MinSize="220 100" Margin="10" HorizontalExpand="True" VerticalExpand="True" />
     </BoxContainer>
 </Control>

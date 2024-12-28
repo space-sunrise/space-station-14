@@ -576,7 +576,7 @@ namespace Content.Shared.Preferences
             if (sponsors != null)
             {
                 maxDescLength = sponsors.GetSizeFlavor(session.UserId);
-                if (sponsors.IsAllowedFlavor(session.UserId))
+                if (!sponsors.IsAllowedFlavor(session.UserId))
                 {
                     FlavorText = string.Empty;
                 }

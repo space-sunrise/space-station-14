@@ -18,6 +18,7 @@ public interface ISharedSponsorsManager
     public List<string> GetClientPrototypes();
     public bool ClientAllowedRespawn();
     public bool ClientAllowedFlavor();
+    public int ClientGetSizeFlavor();
 
     public bool ClientIsSponsor();
     public List<SponsorInfo> GetSponsorTiers();

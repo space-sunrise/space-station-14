@@ -24,15 +24,25 @@ namespace Content.Client.FlavorText
             CFlavorTextInput.Placeholder = new Rope.Leaf(loc.GetString("flavor-text-placeholder"));
             CFlavorTextInput.OnTextChanged  += _ => FlavorTextChanged();
             // Sunrise-Start
-            if (sponsorOnly && _sponsorsMgr != null && !_sponsorsMgr.ClientAllowedFlavor())
+            if (sponsorOnly)
             {
                 SponsorOnlyNotify.Visible = true;
                 CFlavorTextInput.Visible = false;
+                LimitBox.Visible = false;
+            }
+            if (_sponsorsMgr != null && _sponsorsMgr.ClientAllowedFlavor())
+            {
+                var maxDescLength = _sponsorsMgr.ClientGetSizeFlavor();
+                LimitLabel.Text = $"{maxDescLength}";
+                SponsorOnlyNotify.Visible = false;
+                CFlavorTextInput.Visible = true;
+                LimitBox.Visible = true;
             }
             else
             {
-                SponsorOnlyNotify.Visible = false;
-                CFlavorTextInput.Visible = true;
+                SponsorOnlyNotify.Visible = true;
+                CFlavorTextInput.Visible = false;
+                LimitBox.Visible = false;
             }
             // Sunrise-End
         }

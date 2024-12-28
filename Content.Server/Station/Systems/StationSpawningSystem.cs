@@ -213,8 +213,8 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                 var session = _actors.GetSession(entity);
                 if (!_configurationManager.GetCVar(SunriseCCVars.FlavorTextSponsorOnly)
                     && _sponsorsManager != null
-                    && _sponsorsManager.ClientAllowedFlavor()
-                    && session != null)
+                    && session != null
+                    && _sponsorsManager.IsAllowedFlavor(session.UserId))
                 {
                     var maxDescLength = _sponsorsManager.GetSizeFlavor(session.UserId);
                     var flavortext = profile.FlavorText;
@@ -223,6 +223,10 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
                         flavortext = FormattedMessage.RemoveMarkupOrThrow(flavortext)[..maxDescLength];
                     }
                     AddComp<DetailExaminableComponent>(entity.Value).Content = flavortext;
+                }
+                else
+                {
+                    AddComp<DetailExaminableComponent>(entity.Value).Content = profile.FlavorText;
                 }
             }
             // Sunrise-End
