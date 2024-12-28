@@ -64,8 +64,6 @@ namespace Content.Shared.Preferences
         [DataField]
         private Dictionary<string, RoleLoadout> _loadouts = new();
 
-        private ISharedSponsorsManager? _sponsorsMgr;  // Sunrise-Sponsors
-
         [DataField]
         public string Name { get; set; } = "John Doe";
 
@@ -573,11 +571,12 @@ namespace Content.Shared.Preferences
             }
 
             // Sunrise-Start
+            IoCManager.Instance!.TryResolveType<ISharedSponsorsManager>(out var sponsors);
             var maxDescLength = MaxDescLength;
-            if (_sponsorsMgr != null)
+            if (sponsors != null)
             {
-                maxDescLength = _sponsorsMgr.GetSizeFlavor(session.UserId);
-                if (_sponsorsMgr.IsAllowedFlavor(session.UserId))
+                maxDescLength = sponsors.GetSizeFlavor(session.UserId);
+                if (sponsors.IsAllowedFlavor(session.UserId))
                 {
                     FlavorText = string.Empty;
                 }
