@@ -2,8 +2,6 @@ using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.CCVar;
-using Content.Shared.Damage.Components;
-using Content.Shared.Damage.Systems;
 using Content.Shared.Friction;
 using Content.Shared.Gravity;
 using Content.Shared.Inventory;
@@ -48,7 +46,6 @@ public abstract partial class SharedMoverController : VirtualController
     [Dependency] protected readonly SharedPhysicsSystem Physics = default!;
     [Dependency] private   readonly SharedTransformSystem _transform = default!;
     [Dependency] private   readonly TagSystem _tags = default!;
-    [Dependency] private readonly StaminaSystem _staminaSystem = default!;
 
     protected EntityQuery<InputMoverComponent> MoverQuery;
     protected EntityQuery<MobMoverComponent> MobMoverQuery;
@@ -163,22 +160,6 @@ public abstract partial class SharedMoverController : VirtualController
         // Specifically don't use mover.Owner because that may be different to the actual physics body being moved.
         var weightless = _gravity.IsWeightless(physicsUid, physicsComponent, xform);
         var (walkDir, sprintDir) = GetVelocityInput(mover);
-
-        if (TryComp<StaminaComponent>(uid, out var stamina))
-        {
-            if (stamina.StaminaDamage >= stamina.CritThreshold * 0.7f)
-            {
-                walkDir = sprintDir + walkDir;
-                sprintDir = Vector2.Zero;
-            }
-            else if (sprintDir != Vector2.Zero)
-            {
-                var sprintAmount = sprintDir.Length();
-                var staminaDamage = sprintAmount * frameTime * stamina.SprintStaminaMultiplier;
-                _staminaSystem.TakeStaminaDamage(uid, staminaDamage, stamina, visual: false);
-            }
-        }
-
         var touching = false;
 
         // Handle wall-pushes.
@@ -274,7 +255,7 @@ public abstract partial class SharedMoverController : VirtualController
             if (!weightless && MobMoverQuery.TryGetComponent(uid, out var mobMover) &&
                 TryGetSound(weightless, uid, mover, mobMover, xform, out var sound, tileDef: tileDef))
             {
-                var soundModifier = sprintDir != Vector2.Zero ? 3.5f : 1.5f;
+                var soundModifier = mover.Sprinting ? 3.5f : 1.5f;
 
                 var audioParams = sound.Params
                     .WithVolume(sound.Params.Volume + soundModifier)

@@ -197,8 +197,8 @@
       settings: default
   - type: GhostTakeoverAvailable
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1
-    baseSprintSpeed: 1.2
+    baseWalkSpeed: 0.25
+    baseSprintSpeed: 0.5
 
 - type: artifactEffect
   id: EffectMultitool
