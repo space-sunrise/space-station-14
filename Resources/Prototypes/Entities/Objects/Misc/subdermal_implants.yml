@@ -103,6 +103,49 @@
     - type: Rattle
       radioChannel: "Security"
 
+#ERT implants Sunrise-start
+#- type: entity
+#  parent: [ BaseSubdermalImplant, StorePresetUplink ]
+#  id: UplinkImplantErt
+#  name: uplink implant
+#  description: This implant lets the user access a hidden Syndicate uplink at will.
+#  categories: [ HideSpawnMenu ]
+#  components:
+#  - type: SubdermalImplant
+#    implantAction: ActionOpenUplinkImplantErt
+#    whitelist:
+#      components:
+#      - Hands
+#  - type: Store
+#    balance:
+#    Bluecrystal: 0
+#    Crystallite: 0
+#  - type: UserInterface
+#    interfaces:
+#      enum.StoreUiKey.Key:
+#        type: StoreBoundUserInterface
+#  - type: Tag
+#    tags:
+#    - NTUplink
+
+- type: entity
+  parent: BaseSubdermalImplant
+  id: TrackingImplantErt
+  name: tracking ERT implant
+  description: This implant has a tracking device attached to the suit sensor network, as well as a condition monitor for the Centcom radio channel.
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: SubdermalImplant
+      whitelist:
+        components:
+        - MobState # admeme implanting a chair with tracking implant needs to give the chair mobstate so it can die first
+    - type: TriggerOnMobstateChange
+      mobState:
+      - Critical
+    - type: Rattle
+      radioChannel: "CentCom"
+#Sunrise-end
+
 #Traitor implants
 
 - type: entity

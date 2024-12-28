@@ -33,5 +33,6 @@ store-category-ntadditional = Additional
 store-category-ntsanitary = Sanitary
 store-category-ntengineering = Engineering
 store-category-ntmechs = Mechs
+store-category-ntexplosive = Explosive
 store-category-ntammo = Ammo
 store-category-ntequipment = Equipment Экипировка

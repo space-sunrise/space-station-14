@@ -34,5 +34,6 @@ store-category-ntadditional = Дополнительное
 store-category-ntsanitary = Санитария
 store-category-ntengineering = Инженерия
 store-category-ntmechs = Мехи
+store-category-ntexplosive = Взрывчатка
 store-category-ntammo = Боеприпасы
 store-category-ntequipment = Экипировка

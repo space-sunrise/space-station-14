@@ -7,6 +7,7 @@ ntuplink-mech-teleporter-eliteheavy-desc = Содержит ящик с лучш
 
 ntuplink-mech-powercage-nanotrasen-name = Энерго ячейка НаноТрейзен
 ntuplink-mech-powercage-nanotrasen-desc = Перезаряжаемая энергетическая ячейка для больших устройств. Увеличенная ёмкость для увеличенного уровня мощности. Имеет защиту от ЭМИ.
+ntuplink-deathrattle-implant-desc = Коробка, содержащая 6 имплантов "Предсмертный хрип". Когда вы попадаете в критическое состояние Передаст сообщение с вашими координатами по радиоканалу Центком.
 ntuplink-equip-jetpackvoid-name = пустотный джетпак
 ntuplink-equip-jetpackmini-name = мини джетпак
 ntuplink-equip-jetpack-name = джетпак

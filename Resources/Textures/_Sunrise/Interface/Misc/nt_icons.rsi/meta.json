@@ -98,6 +98,9 @@
 		"name": "port_recharge"
 	},
 	{
+		"name": "box_ertrattle"
+	},
+	{
 		"name": "p90"
 	},
 	{
@@ -240,6 +243,15 @@
 	},
 	{
 		"name": "box_flashbangs"
+	},
+	{
+		"name": "box_stinger"
+	},
+	{
+		"name": "box_shrapnel"
+	},
+	{
+		"name": "box_incendiary"
 	},
 	{
 		"name": "box_handcuffs"
