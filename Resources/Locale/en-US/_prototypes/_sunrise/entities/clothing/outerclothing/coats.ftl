@@ -50,3 +50,5 @@ ent-ClothingOuterCoatUSSPOvercoatBlack = USSP armored overcoat
     .desc = Old stuff, straight out of USSP.
 ent-ClothingOuterAtmosianBomberJacket = atmosian bomber jacket
     .desc = Tight, worn atmosian bomber jacket.
+ent-ClothingOuterChristmasSweeter = Christmas Sweeter
+    .desc = Pretty old stuff for these times, bringing back old memories...
