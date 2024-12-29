@@ -99,6 +99,29 @@
 
 - type: entity
   parent: BaseUplinkNTERT
+  id: BaseUplinkNTERTBlueShield
+  name: Bluespace ERT visionary
+  description: Ultra-innovative portable bluespace teleporter.
+  suffix: 8BC, 10C, BlueShield
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/nt_uplink.rsi
+    layers:
+      - state: icon
+      - state: active
+        shader: unshaded
+  - type: Store
+    balance:
+      Bluecrystal: 8
+      Crystallite: 10
+    buySuccessSound:
+      path: /Audio/Effects/Arcade/newgame.ogg
+  - type: Tag
+    tags:
+    - NTUplink
+
+- type: entity
+  parent: BaseUplinkNTERT
   id: BaseUplinkNTERTDebug
   name: Bluespace ERT visionary
   description: Ultra-innovative portable bluespace teleporter.
