@@ -1057,7 +1057,7 @@
 - type: listing
   id: NTUplinkSunriseClothingEyesNVD
   productEntity: ClothingEyesNVD
-  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: void_jet }
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: nvd }
   cost:
     Crystallite: 10
   categories:
