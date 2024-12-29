@@ -1,0 +1,123 @@
+﻿- type: entity
+  name: ERT death tracking implant box
+  parent: [BoxCardboard, BaseCentcommContraband]
+  id: BoxErtImplants
+  description: Six death tracking implants for the whole centcomm squad.
+  components:
+  - type: Sprite
+    layers:
+      - state: internals
+      - state: syringe
+  - type: Storage
+    grid:
+    - 0,0,5,3
+  - type: StorageFill
+    contents:
+      - id: TrackingImplanterERT
+        amount: 6
+
+- type: entity
+  name: GrenadeIncendiary box
+  parent: BoxCardboard
+  id: BoxGrenadeIncendiary
+  description: 'WARNING: These devices are extremely dangerous.'
+  components:
+  - type: StorageFill
+    contents:
+      - id: GrenadeIncendiary
+        amount: 4
+  - type: Sprite
+    layers:
+      - state: box_security
+      - state: incendiary
+
+- type: entity
+  name: GrenadeShrapnel box
+  parent: BoxCardboard
+  id: BoxGrenadeShrapnel
+  description: 'WARNING: These devices are extremely dangerous.'
+  components:
+  - type: StorageFill
+    contents:
+      - id: GrenadeShrapnel
+        amount: 4
+  - type: Sprite
+    layers:
+      - state: box_security
+      - state: shrapnel
+
+
+- type: entity
+  name: GrenadeStinger box
+  parent: BoxCardboard
+  id: BoxGrenadeStinger
+  description: 'WARNING: These devices are extremely dangerous.'
+  components:
+  - type: StorageFill
+    contents:
+      - id: GrenadeStinger
+        amount: 4
+  - type: Sprite
+    layers:
+      - state: box_security
+      - state: stinger
+
+- type: entity
+  name: MetalFoamGrenade box
+  parent: BoxCardboard
+  id: BoxMetalFoamGrenade
+  description: 'WARNING: These devices are extremely dangerous.'
+  components:
+  - type: StorageFill
+    contents:
+      - id: MetalFoamGrenade
+        amount: 4
+  - type: Sprite
+    layers:
+      - state: box_security
+      - state: flashbang
+
+- type: entity
+  name: TearGasGrenade box
+  parent: BoxCardboard
+  id: BoxTearGasGrenade
+  description: 'WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.'
+  components:
+  - type: StorageFill
+    contents:
+      - id: TearGasGrenade
+        amount: 4
+  - type: Sprite
+    layers:
+      - state: box_security
+      - state: flashbang
+
+- type: entity
+  name: SmokeGrenade box
+  parent: BoxCardboard
+  id: BoxSmokeGrenade
+  description: 'WARNING: These devices are extremely dangerous.'
+  components:
+  - type: StorageFill
+    contents:
+      - id: SmokeGrenade
+        amount: 4
+  - type: Sprite
+    layers:
+      - state: box_security
+      - state: flashbang
+
+- type: entity
+  name: ClusterBangFull box
+  parent: BoxCardboard
+  id: BoxClusterBangFull
+  description: 'WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.'
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClusterBangFull
+        amount: 4
+  - type: Sprite
+    layers:
+      - state: box_security
+      - state: flashbang
