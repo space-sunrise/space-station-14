@@ -866,7 +866,7 @@
 - type: listing
   id: NTUplinkSunriseBoxCleanerGrenades
   productEntity: BoxCleanerGrenades
-  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_flashbangs } #НЕГОТОВО
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_flashbangs }
   cost:
     Crystallite: 2
   categories:
