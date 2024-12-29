@@ -36,12 +36,11 @@
                              Orientation="Vertical" 
                              Visible="False"
                              Margin="0 5 0 0">
-                    <controls:HighDivider />
                     <RichTextLabel Name="Contents" 
                                   Access="Public" 
                                   RectClipContent="True"
                                   StyleClasses="LabelSubText" 
-                                  Margin="0 10"/>
+                                  Margin="0 5"/>
                 </BoxContainer>
             </BoxContainer>
             <PanelContainer Name="StateColor" 
