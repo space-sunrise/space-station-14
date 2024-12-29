@@ -2,20 +2,57 @@
     xmlns="https://spacestation14.io"
     xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
     xmlns:roadmap="clr-namespace:Content.Client._Sunrise.Roadmap"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
     Margin="0 0 0 10"
-    MaxWidth="275">
-    <BoxContainer Orientation="Horizontal" SeparationOverride="0">
-        <BoxContainer Orientation="Vertical" HorizontalExpand="True">
-            <Button Name="HeaderButton" Access="Public" StyleClasses="OpenBoth" />
-            <BoxContainer Name="ContentsContainer" Access="Public" Orientation="Vertical" Visible="False">
-                <RichTextLabel Name="Contents" Access="Public" RectClipContent="True" />
-                <Label Name="StateText" Access="Public" HorizontalAlignment="Right" Align="Right" Margin="0 0 5 0" />
+    MaxWidth="800">
+    <PanelContainer>
+        <BoxContainer Orientation="Horizontal" SeparationOverride="0">
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+                <PanelContainer>
+                    <PanelContainer.PanelOverride>
+                        <gfx:StyleBoxFlat 
+                            BackgroundColor="#252525"
+                            BorderColor="#A88B5E"
+                            BorderThickness="1"/>
+                    </PanelContainer.PanelOverride>
+                    <Button Name="HeaderButton" 
+                            Access="Public"
+                            MinHeight="47"
+                            StyleClasses="NoStyle">
+                        <Label Name="HeaderLabel" 
+                               StyleClasses="LabelSubText" 
+                               HorizontalExpand="True"
+                               Margin="5 0"/>
+                    </Button>
+                </PanelContainer>
+                <BoxContainer Name="ContentsContainer" 
+                             Access="Public" 
+                             Orientation="Vertical" 
+                             Visible="False"
+                             Margin="10">
+                    <controls:HighDivider />
+                    <RichTextLabel Name="Contents" 
+                                  Access="Public" 
+                                  RectClipContent="True"
+                                  StyleClasses="LabelSubText" 
+                                  Margin="0 10"/>
+                    <Label Name="StateText" 
+                           Access="Public" 
+                           HorizontalAlignment="Right" 
+                           Align="Right" 
+                           StyleClasses="LabelSubText"
+                           Margin="0 0 5 0" />
+                </BoxContainer>
             </BoxContainer>
+            <PanelContainer Name="StateColor" 
+                           Access="Public" 
+                           VerticalExpand="True" 
+                           MinWidth="3" 
+                           MaxWidth="3">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat />
+                </PanelContainer.PanelOverride>
+            </PanelContainer>
         </BoxContainer>
-        <PanelContainer Name="StateColor" Access="Public" VerticalExpand="True" MinWidth="5" MaxWidth="5">
-            <PanelContainer.PanelOverride>
-                <gfx:StyleBoxFlat />
-            </PanelContainer.PanelOverride>
-        </PanelContainer>
-    </BoxContainer>
+    </PanelContainer>
 </roadmap:RoadmapItem>
