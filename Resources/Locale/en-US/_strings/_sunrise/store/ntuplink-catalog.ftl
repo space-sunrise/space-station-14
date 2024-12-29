@@ -7,6 +7,7 @@ ntuplink-mech-teleporter-eliteheavy-desc = contains crate with Seraph. for high 
 
 ntuplink-mech-powercage-nanotrasen-name = NanoTrasen power cage
 ntuplink-mech-powercage-nanotrasen-desc = A rechargeable power cage for big devices. Increased capacity for increased power levels. Immune to EMP.
+ntuplink-deathrattle-implant-desc = A box containing enough deathrattle implants for the whole squad. Relays a message containing your position to the Centcomm channel when you go into a critical state or die.
 ntuplink-equip-jetpackvoid-name = void jetpack
 ntuplink-equip-jetpackmini-name = mini jetpack
 ntuplink-equip-jetpack-name = jetpack

@@ -1,0 +1,9 @@
+﻿#NanoTrasen implanters
+
+- type: entity
+  id: TrackingImplanterERT
+  suffix: tracking
+  parent: BaseImplantOnlyImplanter
+  components:
+    - type: Implanter
+      implant: TrackingImplantErt

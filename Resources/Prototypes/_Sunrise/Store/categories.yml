@@ -169,6 +169,11 @@
   priority: 9
 
 - type: storeCategory
+  id: NTexplosive
+  name: store-category-ntexplosive
+  priority: 10
+
+- type: storeCategory
   id: NTAmmo
   name: store-category-ntammo
   priority: 3
