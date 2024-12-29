@@ -76073,7 +76073,7 @@ entities:
       pos: 8.5,-176.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -169082.55
+      secondsUntilStateChange: -169269.97
       state: Closing
   - uid: 11673
     components:
@@ -89060,11 +89060,6 @@ entities:
       parent: 2
 - proto: SpawnPointBrigmedic
   entities:
-  - uid: 13876
-    components:
-    - type: Transform
-      pos: -5.5,-335.5
-      parent: 2
   - uid: 13877
     components:
     - type: Transform
@@ -89430,6 +89425,13 @@ entities:
     components:
     - type: Transform
       pos: 5.5,-256.5
+      parent: 2
+- proto: SpawnPointSeniorOfficer
+  entities:
+  - uid: 13876
+    components:
+    - type: Transform
+      pos: -6.5,-341.5
       parent: 2
 - proto: SpawnPointSeniorPhysician
   entities:
