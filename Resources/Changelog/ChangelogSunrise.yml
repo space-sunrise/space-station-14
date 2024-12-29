@@ -9023,3 +9023,12 @@
     type: Tweak
   id: 631
   time: '2024-12-28T19:00:44.457841+00:00'
+- author: SplikZerys
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u043E 8 \u043D\u043E\
+      \u0432\u044B\u0445 \u0422\u0422\u0421-\u0433\u043E\u043B\u043E\u0441\u043E\u0432\
+      ."
+    type: Add
+  id: 632
+  time: '2024-12-29T03:05:06.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/961
