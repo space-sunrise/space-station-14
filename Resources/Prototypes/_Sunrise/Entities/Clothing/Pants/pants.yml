@@ -290,6 +290,19 @@
 
 - type: entity
   parent: ClothingPantsStorageBase
+  id: ClothingPantsWomanChristmas
+  name: women's Christmas underpants
+  description: Christmas underpants for women.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
+    state: female_christmas_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
+    equippedState: female_christmas
+
+- type: entity
+  parent: ClothingPantsStorageBase
   id: ClothingPantsWomanStrapless
   name: women's strapless underpants
   description: strapless underpants for women.
@@ -301,15 +314,3 @@
     sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
     equippedState: female_strapless
 
-- type: entity
-  parent: ClothingPantsStorageBase
-  id: ClothingPantsWomanChristmas
-  name: women's Christmas underpants
-  description: Christmas underpants for women.
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
-    state: female_christmas_Icon
-  - type: Clothing
-    sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
-    equippedState: female_christmas
