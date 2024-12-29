@@ -13,7 +13,11 @@
                           Access="Public" 
                           StyleClasses="LabelBigger"
                           Margin="0 15 0 10" />
-            <controls:HighDivider />
+            <PanelContainer MinHeight="1">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BackgroundColor="#ffffff"/>
+                </PanelContainer.PanelOverride>
+            </PanelContainer>
             <BoxContainer Orientation="Horizontal" 
                          HorizontalExpand="True"
                          VerticalExpand="True"
@@ -30,7 +34,7 @@
                            StyleClasses="LabelHeadingBigger"
                            HorizontalAlignment="Center"
                            HorizontalExpand="True"
-                           FontColorOverride="#A88B5E"
+                           FontColorOverride="#ffffff"
                            Margin="0 0 0 10"/>
                     <ScrollContainer VerticalExpand="True"
                                    HScrollEnabled="False"
@@ -60,7 +64,7 @@
                            StyleClasses="LabelHeadingBigger"
                            HorizontalAlignment="Center"
                            HorizontalExpand="True"
-                           FontColorOverride="#A88B5E"
+                           FontColorOverride="#ffffff"
                            Margin="0 0 0 10"/>
                     <ScrollContainer VerticalExpand="True"
                                    HScrollEnabled="False"
@@ -89,7 +93,7 @@
                            StyleClasses="LabelHeadingBigger"
                            HorizontalAlignment="Center"
                            HorizontalExpand="True"
-                           FontColorOverride="#A88B5E"
+                           FontColorOverride="#ffffff"
                            Margin="0 0 0 10"/>
                     <ScrollContainer VerticalExpand="True"
                                    HScrollEnabled="False"

@@ -32,7 +32,7 @@ namespace Content.Client._Sunrise.Roadmap
         {
             var msg = new FormattedMessage();
             var headerLocale = Loc.GetString("ui-roadmap-header");
-            msg.AddMarkupOrThrow($"[font size=24]{headerLocale} [bold]{roadmapVersions.Fork}[/bold][/font]");
+            msg.AddMarkupOrThrow($"[font size=24][bold]{headerLocale} {roadmapVersions.Fork}[/bold][/font]");
             Header.SetMessage(msg);
 
             Items2024.RemoveAllChildren();
