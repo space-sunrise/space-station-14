@@ -7,8 +7,8 @@
     <PanelContainer>
         <PanelContainer.PanelOverride>
             <gfx:StyleBoxFlat 
-                BackgroundColor="#252525"
-                BorderColor="#333333"
+                BackgroundColor="#232228"
+                BorderColor="#2a292f"
                 BorderThickness="1"
                 ContentMarginLeftOverride="10"
                 ContentMarginRightOverride="10"

@@ -4,7 +4,7 @@
     <PanelContainer>
         <PanelContainer.PanelOverride>
             <gfx:StyleBoxFlat 
-                BackgroundColor="#1a1a1a"
+                BackgroundColor="#1b1a1f"
                 ContentMarginLeftOverride="10"
                 ContentMarginRightOverride="10"/>
         </PanelContainer.PanelOverride>
@@ -42,10 +42,10 @@
                     </ScrollContainer>
                 </BoxContainer>
 
-                <PanelContainer MinWidth="2" Margin="0 0 10 0">
+                <PanelContainer MinWidth="1" Margin="0 0 10 0" VerticalExpand="True">
                     <PanelContainer.PanelOverride>
                         <gfx:StyleBoxFlat 
-                            BackgroundColor="#333333"/>
+                            BackgroundColor="#2a292f"/>
                     </PanelContainer.PanelOverride>
                 </PanelContainer>
                 
@@ -72,10 +72,10 @@
                     </ScrollContainer>
                 </BoxContainer>
 
-                <PanelContainer MinWidth="2" Margin="0 0 10 0">
+                <PanelContainer MinWidth="1" Margin="0 0 10 0" VerticalExpand="True">
                     <PanelContainer.PanelOverride>
                         <gfx:StyleBoxFlat 
-                            BackgroundColor="#333333"/>
+                            BackgroundColor="#2a292f"/>
                     </PanelContainer.PanelOverride>
                 </PanelContainer>
                 
