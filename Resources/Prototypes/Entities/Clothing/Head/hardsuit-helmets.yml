@@ -361,9 +361,9 @@
   description: A heavily armored helmet designed for work in special operations. Property of Gorlex Marauders.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hardsuits/syndicate.rsi
+    sprite: _Sunrise/Clothing/Head/Hardsuits/syndicate_santa.rsi #SunRise NewYear Edit
   - type: Clothing
-    sprite: Clothing/Head/Hardsuits/syndicate.rsi
+    sprite: _Sunrise/Clothing/Head/Hardsuits/syndicate_santa.rsi #SunRise NewYear Edit
   - type: PointLight
     color: green
   - type: PressureProtection
@@ -385,9 +385,9 @@
   description: An advanced red hardsuit helmet specifically designed for field medic operations.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hardsuits/syndiemedic.rsi
+    sprite: _Sunrise/Clothing/Head/Hardsuits/syndiemedic_santa.rsi #SunRise NewYear Edit
   - type: Clothing
-    sprite: Clothing/Head/Hardsuits/syndiemedic.rsi
+    sprite: _Sunrise/Clothing/Head/Hardsuits/syndiemedic_santa.rsi #SunRise NewYear Edit
   - type: PointLight
     color: green
   - type: PressureProtection
@@ -409,9 +409,9 @@
   description: An elite version of the blood-red hardsuit's helmet, with improved armor and fireproofing. Property of Gorlex Marauders.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hardsuits/syndieelite.rsi
+    sprite: _Sunrise/Clothing/Head/Hardsuits/syndieelite_santa.rsi #SunRise NewYear Edit
   - type: Clothing
-    sprite: Clothing/Head/Hardsuits/syndieelite.rsi
+    sprite: _Sunrise/Clothing/Head/Hardsuits/syndieelite_santa.rsi #SunRise NewYear Edit
   - type: PointLight
     color: red
   - type: PressureProtection
@@ -438,9 +438,9 @@
   description: A bulked up version of the blood-red hardsuit's helmet, purpose-built for the commander of a syndicate operative squad. Has significantly improved armor for those deadly front-lines firefights.
   components:
   - type: Sprite
-    sprite: Clothing/Head/Hardsuits/syndiecommander.rsi
+    sprite: _Sunrise/Clothing/Head/Hardsuits/syndiecommander_santa.rsi #SunRise NewYear Edit
   - type: Clothing
-    sprite: Clothing/Head/Hardsuits/syndiecommander.rsi
+    sprite: _Sunrise/Clothing/Head/Hardsuits/syndiecommander_santa.rsi #SunRise NewYear Edit
   - type: PointLight
     color: green
   - type: PressureProtection

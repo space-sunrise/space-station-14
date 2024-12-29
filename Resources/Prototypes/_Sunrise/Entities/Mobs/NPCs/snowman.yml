@@ -1,0 +1,112 @@
+- type: entity
+  id: MobSnowMan
+  parent:
+  - SimpleSpaceMobBase
+  - MobCombat
+  name: snowman
+  description: A snowman who came to life thanks to the New Year's magic of bluespace!
+  suffix: NewYear | Passive
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: state
+        sprite: _Sunrise/Mobs/Elemental/snowman.rsi
+  - type: Bloodstream
+    bloodMaxVolume: 100
+    bloodReagent: SnowWhite
+  - type: PressureImmunity
+  - type: NoSlip
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3
+    baseSprintSpeed: 3
+  - type: Physics
+  - type: Butcherable
+    spawned:
+    - id: FoodFrozenSnowcone
+  - type: RotationVisuals
+    defaultRotation: 90
+    horizontalRotation: 90
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+  - type: InteractionPopup
+    successChance: 0.8
+    interactSuccessString: Вы гладите снеговика по его холодной тыкве.
+    interactFailureString: Слишком холодно чтоб трогать.
+    interactSuccessSound:
+      path: /Audio/Effects/Footsteps/snowstep4.ogg
+  - type: GhostRole
+    prob: 0.1
+    name: снеговик
+    description: Холодный снежный мужик. Бегайте и кидайтесь во всех снежками!
+    rules: ghost-role-information-nonantagonist-rules
+  - type: GhostTakeoverAvailable
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSnow
+  - type: Puller
+    needsHands: false
+  - type: NPCRetaliation
+    attackMemoryLength: 10
+  - type: FactionException
+  - type: NpcFactionMember
+    factions:
+    - Passive
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      90: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 90
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          FoodFrozenSnowcone:
+            min: 1
+            max: 2
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Coal1:
+            min: 1
+            max: 1
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: ProjectileBatteryAmmoProvider
+    proto: BulletSnowBall
+    fireCost: 49
+  - type: Battery
+    maxCharge: 100
+    startingCharge: 100
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 100
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 1
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/_Sunrise/Weapons/Guns/snowball.ogg
+
+- type: entity
+  id: MobSnowManEvil
+  parent: MobSnowMan
+  name: snowman
+  description: A snowman who came to life thanks to the New Year's magic of bluespace!
+  suffix: NewYear | Hostile
+  components:
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile

@@ -1762,6 +1762,13 @@
   - type: NightVision #Sunrise - Night vision
     isToggle: true
     color: "#808080"
+  - type: HolidayVisuals
+    holidays:
+      festive:
+      - WinterPresents
+  - type: HolidayRsiSwap
+    sprite:
+      festive: _Sunrise/Mobs/Animals/mouse_santa.rsi
 
 - type: entity
   parent: MobMouse
