@@ -143,30 +143,6 @@
     state: icon
 
 - type: ghostTheme
-  id: WizdenBlock
-  scale: 0.4, 0.4
-  name: ghost-theme-wizden-block
-  sprite:
-    sprite: _Sunrise/Mobs/Ghosts/wizden_block.rsi
-    state: icon
-
-- type: ghostTheme
-  id: Asuka
-  scale: 0.6, 0.6
-  name: ghost-theme-asuka
-  sprite:
-    sprite: _Sunrise/Mobs/Ghosts/asuka.rsi
-    state: icon
-
-- type: ghostTheme
-  id: VigersRay
-  name: ghost-theme-vigers-ray
-  scale: 0.15, 0.15
-  sprite:
-    sprite: _Sunrise/Mobs/Ghosts/vigers_ray.rsi
-    state: icon
-
-- type: ghostTheme
   id: Hibiki
   name: ghost-theme-blue-archive-hibiki
   sprite:
@@ -298,4 +274,28 @@
   name: ghost-theme-asuka
   sprite:
     sprite: _Sunrise/Mobs/Ghosts/randy.rsi
+    state: icon
+
+- type: ghostTheme
+  id: WizdenBlock
+  scale: 0.4, 0.4
+  name: ghost-theme-wizden-block
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/wizden_block.rsi
+    state: icon
+
+- type: ghostTheme
+  id: Asuka
+  scale: 0.6, 0.6
+  name: ghost-theme-asuka
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/asuka.rsi
+    state: icon
+
+- type: ghostTheme
+  id: VigersRay
+  name: ghost-theme-vigers-ray
+  scale: 0.15, 0.15
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/vigers_ray.rsi
     state: icon
