@@ -806,6 +806,20 @@
   - UplinkWeaponry
 
 - type: listing
+  id: UplinkFireAxeFlaming
+  name: uplink-fire-axe-flaming-name
+  description: uplink-fire-axe-flaming-desc
+  icon: { sprite: Objects/Weapons/Melee/fireaxeflaming.rsi, state: icon }
+  productEntity: FireAxeFlamingBiocode
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 5
+  cost:
+    Telecrystal: 9
+  categories:
+  - UplinkWeaponry
+
+- type: listing
   id: UplinkPolytrinicAcidChemistryBottle
   name: uplink-polytrinic-acid-chemistry-bottle-name
   description: uplink-polytrinic-acid-chemistry-bottle-desc

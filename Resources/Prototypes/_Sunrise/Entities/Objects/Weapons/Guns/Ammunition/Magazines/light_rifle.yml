@@ -177,7 +177,7 @@
     whitelist:
       tags:
       - CartridgeRifle  # 556
-    capacity: 75
+    capacity: 150
   - type: Item
     size: Normal
   - type: ContainerContainer

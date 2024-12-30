@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server._Sunrise.TraitorTarget;
 using Content.Server.Objectives.Components;
 using Content.Server.Revolutionary.Components;
@@ -6,7 +5,6 @@ using Content.Server.Shuttles.Systems;
 using Content.Shared.CCVar;
 using Content.Shared.Humanoid;
 using Content.Shared.Mind;
-using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Objectives.Components;
@@ -59,8 +57,18 @@ public sealed class KillPersonConditionSystem : EntitySystem
         if (target.Target != null)
             return;
 
+        var allHumans = GetAliveTargetsExcept(args.MindId); // Sunrise-Edit
+
+        // Can't have multiple objectives to kill the same person
+        foreach (var objective in args.Mind.Objectives)
+        {
+            if (HasComp<KillPersonConditionComponent>(objective) && TryComp<TargetObjectiveComponent>(objective, out var kill))
+            {
+                allHumans.RemoveWhere(x => x.Owner == kill.Target);
+            }
+        }
+
         // no other humans to kill
-        var allHumans = GetAliveTargetsExcept(args.MindId);
         if (allHumans.Count == 0)
         {
             args.Cancelled = true;
@@ -134,6 +142,7 @@ public sealed class KillPersonConditionSystem : EntitySystem
         return _emergencyShuttle.EmergencyShuttleArrived ? 0.5f : 0f;
     }
 
+    // Sunrise-Start
     public HashSet<Entity<MindComponent>> GetAliveTargetsExcept(EntityUid exclude)
     {
         var allTargets = new HashSet<Entity<MindComponent>>();
@@ -149,4 +158,5 @@ public sealed class KillPersonConditionSystem : EntitySystem
 
         return allTargets;
     }
+    // Sunrise-End
 }

@@ -181,6 +181,15 @@
   equipment:
     socks: ClothingThighUk
 
+- type: loadout
+  id: ThighChristmasSocks
+  sponsorOnly: true
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    socks: ClothingThighChristmas
+
 # Для мужиков
 - type: loadout
   id: ShortWhiteSocks

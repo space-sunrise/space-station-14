@@ -44,3 +44,5 @@ ent-ClothingUniformJumpsuitBarber = костюм парикмахера
     .desc = Как же он хорош.
 ent-ClothingUniformJumpsuitAdjutant = комбинезон адъютанта
     .desc = Сшито на совесть из дышащей ткани, что позволит вам быть на ногах всю смену.
+ent-ClothingUniformJumpskirtChristmas = Рождественский женский комбинезон
+    .desc = Украшен в тонах рождества, ушит специально для красивой части станции.

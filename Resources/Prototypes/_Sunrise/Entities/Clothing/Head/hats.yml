@@ -311,3 +311,14 @@
     sprite: _Sunrise/Clothing/Head/Hats/crown_singulo_icon.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Head/Hats/crown_singulo.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatDeerHorns
+  name: Deer Horns
+  description: a Horns, usually worn deer.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/deer_horns.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/deer_horns.rsi

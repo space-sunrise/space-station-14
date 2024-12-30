@@ -163,6 +163,7 @@ namespace Content.Client.Stylesheets
         public const string StyleClassCrossButtonRed = "CrossButtonRed";
         public const string StyleClassButtonColorRed = "ButtonColorRed";
         public const string StyleClassButtonColorGreen = "ButtonColorGreen";
+        public const string StyleClassNoStyle = "NoStyle";  // Sunrise-Edit
 
         public static readonly Color ChatBackgroundColor = Color.FromHex("#25252ADD");
 
@@ -1722,7 +1723,19 @@ namespace Content.Client.Stylesheets
                     new[]
                     {
                         new StyleProperty(TextureButton.StylePropertyTexture, resCache.GetTexture("/Textures/Interface/Bwoink/un_pinned.png"))
-                    })
+                    }),
+                // Sunrise-Edit
+                
+                Element<Button>().Class(StyleClassNoStyle)
+                    .Prop(Button.StylePropertyStyleBox, new StyleBoxFlat
+                    {
+                        BackgroundColor = Color.Transparent,
+                        ContentMarginLeftOverride = 15,
+                        ContentMarginRightOverride = 15,
+                        ContentMarginTopOverride = 12,
+                        ContentMarginBottomOverride = 12
+                    }),
+                // Sunrise-Edit
             }).ToList());
         }
     }

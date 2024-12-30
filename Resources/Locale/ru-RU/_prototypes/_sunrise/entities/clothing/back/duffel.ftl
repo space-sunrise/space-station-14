@@ -8,3 +8,5 @@ ent-ClothingBackpackDuffelPrisonGuard = вещмешок сотрудника к
     .desc = На стиле.
 ent-ClothingBackpackDuffelAdjutant = вещмешок адъютанта
     .desc = Выглядит избыточно пустым, лишь на дне одиноко валяется скомканный лист бумаги.
+ent-ClothingBackpackDuffelNanotrasenMedical = набор медикаментов НТ
+    .desc = Большой вещмешок для хранения любых медикаментов отряда.

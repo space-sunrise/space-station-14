@@ -1,0 +1,16 @@
+ent-BoxErtImplants = ERT death tracking implant box
+    .desc = Six death tracking implants for the whole ERT squad.
+ent-BoxGrenadeIncendiary = GrenadeIncendiary box
+    .desc = 'WARNING: These devices are extremely dangerous.'
+ent-BoxGrenadeShrapnel = GrenadeShrapnel Box
+    .desc = 'WARNING: These devices are extremely dangerous.'
+ent-BoxGrenadeStinger = GrenadeStinger Box
+    .desc = 'WARNING: These devices are extremely dangerous.'
+ent-BoxMetalFoamGrenade = MetalFoamGrenade Box
+    .desc = 'WARNING: These devices are dangerous.'
+ent-BoxSmokeGrenade = SmokeGrenade Box
+    .desc = 'WARNING: These devices are dangerous.'
+ent-BoxTearGasGrenade = TearGasGrenade box
+    .desc = 'WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.'
+ent-BoxClusterBangFull = ClusterBang box
+    .desc = 'WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.'

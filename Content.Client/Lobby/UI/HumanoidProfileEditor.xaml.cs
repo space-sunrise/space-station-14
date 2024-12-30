@@ -470,7 +470,10 @@ namespace Content.Client.Lobby.UI
                 if (_flavorText != null)
                     return;
 
-                _flavorText = new FlavorText.FlavorText();
+                // Sunrise-Start
+                var sponsorOnly = _cfgManager.GetCVar(SunriseCCVars.FlavorTextSponsorOnly);
+                _flavorText = new FlavorText.FlavorText(_sponsorsMgr, sponsorOnly);
+                // Sunrise-End
                 TabContainer.AddChild(_flavorText);
                 TabContainer.SetTabTitle(TabContainer.ChildCount - 1, Loc.GetString("humanoid-profile-editor-flavortext-tab"));
                 _flavorTextEdit = _flavorText.CFlavorTextInput;

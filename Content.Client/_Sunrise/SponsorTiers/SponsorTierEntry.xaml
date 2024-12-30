@@ -32,6 +32,14 @@
                     <Label Name="AllowedRespawnTitle" Text="{Loc 'sponsor-tiers-gui-allowed-respawn'}" StyleClasses="LabelKeyText" Margin="0 0 5 0" />
                     <Label Name="AllowedRespawnLabel"/>
                 </BoxContainer>
+                <BoxContainer Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 5 0 0">
+                    <Label Name="AllowedFlavorTitle" Text="{Loc 'sponsor-tiers-gui-allowed-flavor'}" StyleClasses="LabelKeyText" Margin="0 0 5 0" />
+                    <Label Name="AllowedFlavorLabel"/>
+                </BoxContainer>
+                <BoxContainer Orientation="Horizontal" HorizontalAlignment="Left" Margin="0 5 0 0">
+                    <Label Name="SizeFlavorTitle" Text="{Loc 'sponsor-tiers-gui-size-flavor'}" StyleClasses="LabelKeyText" Margin="0 0 5 0" />
+                    <Label Name="SizeFlavorLabel"/>
+                </BoxContainer>
                 <!-- TTS голоса -->
                 <BoxContainer Orientation="Vertical" Name="TTSVoicesBox" Visible="False" >
                     <BoxContainer Orientation="Horizontal" >

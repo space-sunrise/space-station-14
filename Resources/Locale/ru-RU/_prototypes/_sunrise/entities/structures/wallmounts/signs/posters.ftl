@@ -20,3 +20,7 @@ ent-PosterLegitOpenGift = открытый подарок
 ent-PosterLegitRedLight = красная гирлянда
     .desc = Новогодний постер с гирляндой. Для тех у кого не хватило денег на реальную гирлянду.
     .suffix = Новый Год
+ent-PosterContrabandSam300 = SAM-300
+    .desc = Плакат, рекламирующий SAM-300 от Cybersun Industries.
+ent-PosterContrabandSyndiMechs = Синди Мехи
+    .desc = Плакат, рекламирующий Мехов от компании Cybersun Industries.

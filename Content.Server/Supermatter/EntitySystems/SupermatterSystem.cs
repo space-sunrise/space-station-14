@@ -439,10 +439,10 @@ public sealed class SupermatterSystem : EntitySystem
     {
         if (HasComp<SharpComponent>(args.Used))
         {
-            _adminLogger.Add(LogType.Action, LogImpact.High, $"{EntityManager.ToPrettyString(uid):player} is trying to extract a sliver from the supermatter crystal.");
-            _popup.PopupClient(Loc.GetString("supermatter-tamper-begin"), args.User);
+            _adminLogger.Add(LogType.Action, LogImpact.High, $"{EntityManager.ToPrettyString(args.User):player} is trying to extract a sliver from the supermatter crystal.");
+            _popup.PopupClient(Loc.GetString("supermatter-tamper-begin"), args.User, args.User);
 
-            var dargs = new DoAfterArgs(EntityManager, uid, 30, new SupermatterDoAfterEvent(), args.Used)
+            var doAfterArgs = new DoAfterArgs(EntityManager, args.User, 30, new SupermatterDoAfterEvent(), uid, target: uid, used: args.Used)
             {
                 BreakOnDamage = true,
                 BreakOnHandChange = true,
@@ -451,7 +451,7 @@ public sealed class SupermatterSystem : EntitySystem
                 NeedHand = true,
                 RequireCanInteract = true,
             };
-            _doAfter.TryStartDoAfter(dargs);
+            _doAfter.TryStartDoAfter(doAfterArgs);
         }
     }
 

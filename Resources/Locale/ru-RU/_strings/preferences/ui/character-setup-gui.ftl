@@ -1,4 +1,5 @@
 character-setup-gui-character-setup-label = Настройки персонажа
+character-setup-gui-character-setup-adminremarks-button = Админ замечания
 character-setup-gui-character-setup-stats-button = Статистика
 character-setup-gui-character-setup-rules-button = Правила
 character-setup-gui-character-setup-close-button = Закрыть
@@ -10,3 +11,4 @@ character-setup-gui-save-panel-title = Несохранённые изменен
 character-setup-gui-save-panel-save = Сохранить
 character-setup-gui-save-panel-nosave = Не сохранять
 character-setup-gui-save-panel-cancel = Отмена
+

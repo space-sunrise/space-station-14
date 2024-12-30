@@ -52,3 +52,5 @@ ent-ClothingOuterAtmosianBomberJacket = куртка-бомбер атмосиа
     .desc = Плотная, поношенная куртка-бомбер атмосианина.
 ent-ClothingOuterCoatPatologoanatom = Халат патологоанатома
     .desc = Стерильный чёрный халат патологоанатома для работы с трупами. Немного защищает от проливов кислот.
+ent-ClothingOuterChristmasSweeter = Рождественский Свитер
+    .desc = Старый вязаный свитер так и напоминает об Рождестве. 

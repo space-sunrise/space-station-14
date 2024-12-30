@@ -1,17 +1,9 @@
 ﻿using System.Numerics;
 using Content.Shared._Sunrise.Animations;
-using Content.Shared.Chat;
-using Content.Shared.Chat.Prototypes;
-using Content.Shared.Input;
-using Content.Shared.Standing;
 using Robust.Client.Animations;
 using Robust.Client.GameObjects;
 using Robust.Shared.Animations;
 using Robust.Shared.GameStates;
-using Robust.Shared.Input.Binding;
-using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Timing;
 
 namespace Content.Client._Sunrise.Animations;
 
@@ -28,7 +20,7 @@ public sealed class EmoteAnimationSystem : EntitySystem
     {
         SubscribeLocalEvent<EmoteAnimationComponent, ComponentHandleState>(OnHandleState);
 
-        _emoteList.Add("EmoteFlip", uid =>
+        _emoteList.Add("Flip", uid =>
         {
             if (_animationSystem.HasRunningAnimation(uid, AnimationKey))
                 return;
@@ -63,7 +55,7 @@ public sealed class EmoteAnimationSystem : EntitySystem
             _animationSystem.Play(uid, animation, AnimationKey);
         });
 
-        _emoteList.Add("EmoteJump", uid =>
+        _emoteList.Add("Jump", uid =>
         {
             if (_animationSystem.HasRunningAnimation(uid, AnimationKey))
                 return;
@@ -93,7 +85,7 @@ public sealed class EmoteAnimationSystem : EntitySystem
             _animationSystem.Play(uid, animation, AnimationKey);
         });
 
-        _emoteList.Add("EmoteTurn", uid =>
+        _emoteList.Add("Dance", uid =>
         {
             if (_animationSystem.HasRunningAnimation(uid, AnimationKeyTurn))
                 return;

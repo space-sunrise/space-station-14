@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Numerics;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
@@ -10,6 +11,7 @@ using Content.Server.Speech.Components;
 using Content.Server.Speech.EntitySystems;
 using Content.Server.Stunnable;
 using Content.Server.Traits.Assorted;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Administration.Components;
 using Content.Shared.Clumsy;
 using Content.Shared.Damage.Components;
@@ -19,6 +21,7 @@ using Content.Shared.StatusEffect;
 using Content.Shared.Traits.Assorted;
 using Robust.Server.Audio;
 using Robust.Shared.Audio;
+using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
@@ -38,54 +41,92 @@ public sealed class VigersRaySystem : EntitySystem
     [Dependency] private readonly StutteringSystem _stuttering = default!;
     [Dependency] private readonly AudioSystem _audioSystem = default!;
     [Dependency] private readonly PolymorphSystem _polymorphSystem = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+
+    private static bool _shockEveryone;
+    private static bool _soundEveryone;
+    private static bool _notifyEveryone;
+    private string[] _victims = [];
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<VigersRayJoinEvent>(OnVigersRayJoin);
         SubscribeLocalEvent<VigersRayLeaveEvent>(OnVigersRayLeave);
+
+        _cfg.OnValueChanged(SunriseCCVars.VigersRayJoinNotifyEveryone, OnVigersRayJoinNotifyEveryoneChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.VigersRayJoinSoundEveryone, OnVigersRayJoinSoundEveryoneChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.VigersRayJoinShockEveryone, OnVigersRayJoinShockEveryoneChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.VigersRayVictims, OnVigersRayVictimsChanged, true);
+    }
+
+    private void OnVigersRayJoinNotifyEveryoneChanged(bool value)
+    {
+        _notifyEveryone = value;
+    }
+
+    private void OnVigersRayJoinSoundEveryoneChanged(bool value)
+    {
+        _soundEveryone = value;
+    }
+
+    private void OnVigersRayJoinShockEveryoneChanged(bool value)
+    {
+        _shockEveryone = value;
+    }
+
+    private void OnVigersRayVictimsChanged(string value)
+    {
+        _victims = value.Split(",");
     }
 
     private void OnVigersRayLeave(VigersRayLeaveEvent args)
     {
-        _chatManager.DispatchServerAnnouncement("VigersRay ушел", Color.Green);
+        if (_notifyEveryone)
+        {
+            _chatManager.DispatchServerAnnouncement("VigersRay ушел", Color.Green);
+        }
 
-         // Увы
-         //var audio = AudioParams.Default;
-         //_audioSystem.PlayGlobal("/Audio/_Sunrise/leave.ogg", Filter.Broadcast(), false, audio.WithVolume(10));
+        if (_soundEveryone)
+        {
+            var audio = AudioParams.Default;
+            _audioSystem.PlayGlobal("/Audio/_Sunrise/leave.ogg", Filter.Broadcast(), false, audio.WithVolume(10));
+        }
     }
 
     private void OnVigersRayJoin(VigersRayJoinEvent args)
     {
-        _chatManager.DispatchServerAnnouncement("VigersRay пришел", Color.Red);
-
-        var blobFactoryQuery = EntityQueryEnumerator<PoweredLightComponent>();
-        while (blobFactoryQuery.MoveNext(out var ent, out var comp))
+        if (_notifyEveryone)
         {
-            var ghostBoo = new GhostBooEvent();
-            RaiseLocalEvent(ent, ghostBoo, true);
-        }
-        var statusEffectQuery = EntityQueryEnumerator<StatusEffectsComponent>();
-        while (statusEffectQuery.MoveNext(out var ent, out var comp))
-        {
-            _stunSystem.TryParalyze(ent, TimeSpan.FromSeconds(5), true);
-            _jittering.DoJitter(ent, TimeSpan.FromSeconds(15), true);
-            _stuttering.DoStutter(ent, TimeSpan.FromSeconds(30), true);
+            _chatManager.DispatchServerAnnouncement("VigersRay пришел", Color.Red);
         }
 
-        // Увы
-        //var audio = AudioParams.Default;
-        //_audioSystem.PlayGlobal("/Audio/_Sunrise/stab.ogg", Filter.Broadcast(), false, audio.WithVolume(10));
-        //_audioSystem.PlayGlobal("/Audio/_Sunrise/night.ogg", Filter.Broadcast(), false, audio.WithVolume(10));
+        if (_soundEveryone)
+        {
+            var audio = AudioParams.Default;
+            _audioSystem.PlayGlobal("/Audio/_Sunrise/stab.ogg", Filter.Broadcast(), false, audio.WithVolume(10));
+            _audioSystem.PlayGlobal("/Audio/_Sunrise/night.ogg", Filter.Broadcast(), false, audio.WithVolume(10));
+        }
+
+        if (_shockEveryone)
+        {
+            var blobFactoryQuery = EntityQueryEnumerator<PoweredLightComponent>();
+            while (blobFactoryQuery.MoveNext(out var ent, out var comp))
+            {
+                var ghostBoo = new GhostBooEvent();
+                RaiseLocalEvent(ent, ghostBoo, true);
+            }
+            var statusEffectQuery = EntityQueryEnumerator<StatusEffectsComponent>();
+            while (statusEffectQuery.MoveNext(out var ent, out var comp))
+            {
+                _stunSystem.TryParalyze(ent, TimeSpan.FromSeconds(5), true);
+                _jittering.DoJitter(ent, TimeSpan.FromSeconds(15), true);
+                _stuttering.DoStutter(ent, TimeSpan.FromSeconds(30), true);
+            }
+        }
     }
 
     private const float CheckDelay = 10;
-    private readonly List<string> _victims = new()
-    {
-        // Помилован
-        // "Notmedic", // Менял имя своего госта на VigersRay и ставил скин бубльгума, а после летал пугал всех. Очень опрометчивое решение.
-        // Помилован
-    };
     private TimeSpan _checkTime;
 
     public override void Update(float frameTime)
