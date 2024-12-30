@@ -34,6 +34,19 @@
     - Syndicate
 
 - type: entity
+  parent: FireAxeFlaming
+  id: FireAxeFlamingBiocode
+  suffix: BIOCODE
+  components:
+  - type: FactionWeaponBlocker
+    factions:
+    - Syndicate
+    alertText: Данное оружие биокодировано. Вы не можете его использовать.
+  - type: Biocode
+    factions:
+    - Syndicate
+
+- type: entity
   parent: EnergyDagger
   id: EnergyDaggerBiocode
   suffix: BIOCODE

@@ -153,3 +153,16 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Bra/bra.rsi
     equippedState: female_strapless
+
+- type: entity
+  parent: ClothingBraStorageBase
+  id: ClothingBraChristmas
+  name: women's christmas bra
+  description: A bra with a design symbolizing Christmas.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Bra/bra.rsi
+    state: female_christmas_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Bra/bra.rsi
+    equippedState: female_christmas

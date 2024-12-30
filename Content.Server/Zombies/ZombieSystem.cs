@@ -13,6 +13,7 @@ using Content.Shared.Cloning;
 using Content.Shared.Damage;
 using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
+using Content.Shared.Mech.Components; // Sunrise-Edit
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -351,6 +352,13 @@ namespace Content.Server.Zombies
             {
                 if (args.User == entity)
                     continue;
+
+                // Sunrise-Edit-Start
+
+                if (HasComp<MechComponent>(entity))
+                    continue;
+                    
+                // Sunrise-Edit-End
 
                 if (!TryComp<MobStateComponent>(entity, out var mobState))
                     continue;

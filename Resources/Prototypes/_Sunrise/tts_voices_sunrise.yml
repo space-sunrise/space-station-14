@@ -1,9 +1,4 @@
-﻿# всего 67 голосов
-# 52 уникальных доступных раундстартом
-# 8 недоступных раундстартом
-# 7 вторых версий
-
-- type: ttsVoice
+﻿- type: ttsVoice
   id: Minkir
   name: tts-voice-name-minkir
   sex: Male
@@ -53,7 +48,7 @@
   name: tts-voice-name-templar-assasin
   sex: Female
   speaker: templar_assasin
-  roundStart: false # maybe for borgs...
+  roundStart: true
   provider: sunrise
   sponsorOnly: true
 
@@ -435,7 +430,7 @@
   sex: Male
   speaker: hearthstone_bellok_bright_blade
   provider: sunrise
-  roundStart: false # Переобучить
+  roundStart: true
   sponsorOnly: false
 
 - type: ttsVoice
@@ -552,6 +547,60 @@
   name: tts-voice-name-warcraft3-dreney
   sex: Male
   speaker: warcraft3_dreney
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: false
+
+- type: ttsVoice
+  id: Warcraft3Witcher
+  name: tts-voice-name-warcraft3-witcher
+  sex: Male
+  speaker: warcraft3_witcher
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: false
+
+- type: ttsVoice
+  id: Warcraft3Kel
+  name: tts-voice-name-warcraft3-kel
+  sex: Male
+  speaker: warcraft3_kel
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: false
+
+- type: ttsVoice
+  id: Warcraft3StarikTumba
+  name: tts-voice-name-warcraft3-starik-tumba
+  sex: Male
+  speaker: warcraft3_starik_tumba
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: false
+
+- type: ttsVoice
+  id: StarcraftTerranAdviser
+  name: tts-voice-name-starcraft-terran-adviser
+  sex: Female
+  speaker: starcraft_terran_adviser
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: false
+
+- type: ttsVoice
+  id: CRYSIS2AiUscaucasian03
+  name: tts-voice-name-crysis2-ai-uscaucasian-03
+  sex: Male
+  speaker: crysis2_ai_uscaucasian_03
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: false
+
+- type: ttsVoice
+  id: Warcraft3Yastreb
+  name: tts-voice-name-warcraft3-yastreb
+  sex: Male
+  speaker: warcraft3_yastreb
   provider: sunrise
   roundStart: true
   sponsorOnly: false

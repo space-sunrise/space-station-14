@@ -20,3 +20,7 @@ ent-PosterLegitOpenGift = open gift
 ent-PosterLegitRedLight = red garland
     .desc = New Year's poster with a garland. For those who didn't have enough money for a real garland.
     .suffix = NewYear
+ent-PosterContrabandSam300 = SAM-300
+    .desc = A poster advertising the SAM-300 from Cybersun Industries.
+ent-PosterContrabandSyndiMechs = Syndi Mechs
+    .desc = A poster advertising the Syndi Mechs from Cybersun Industries.

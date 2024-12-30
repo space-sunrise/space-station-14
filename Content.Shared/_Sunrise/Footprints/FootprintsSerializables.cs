@@ -76,38 +76,50 @@ public sealed partial class FootprintEmitterComponent : Component
     /// State ID for left bare footprint
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly), DataField]
-    public string LeftBareFootState = "footprint-left-bare-human";
+    public string[] LeftBareFootState =
+    {
+        "footprint-left-bare-human",
+    };
 
     /// <summary>
     /// State ID for right bare footprint
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly), DataField]
-    public string RightBareFootState = "footprint-right-bare-human";
+    public string[] RightBareFootState =
+    {
+        "footprint-right-bare-human",
+    };
 
     /// <summary>
     /// State ID for shoe footprint
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly), DataField]
-    public string ShoeFootState = "footprint-shoes";
+    public string[] ShoeFootState =
+    {
+        "footprint-shoes",
+    };
 
     /// <summary>
     /// State ID for pressure suit footprint
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly), DataField]
-    public string PressureSuitFootState = "footprint-suit";
+    public string[] PressureSuitFootState =
+    {
+        "footprint-suit",
+    };
 
     /// <summary>
     /// Array of state IDs for dragging animations
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly), DataField]
     public string[] DraggingStates =
-    [
+    {
         "dragging-1",
         "dragging-2",
         "dragging-3",
         "dragging-4",
         "dragging-5",
-    ];
+    };
 
     /// <summary>
     /// Prototype ID for footprint entity
@@ -130,16 +142,16 @@ public sealed partial class FootprintEmitterComponent : Component
     [DataField]
     public float DragMarkInterval = 0.5f;
 
-    [ViewVariables(VVAccess.ReadOnly), DataField("footsSolution")]
+    [ViewVariables(VVAccess.ReadOnly), DataField]
     public string FootsSolutionName = "foots";
 
-    [ViewVariables(VVAccess.ReadOnly), DataField("footssolutionRef")]
+    [ViewVariables(VVAccess.ReadOnly), DataField]
     public Entity<SolutionComponent>? FootsSolution;
 
-    [ViewVariables(VVAccess.ReadOnly), DataField("bodySurfaceSolution")]
+    [ViewVariables(VVAccess.ReadOnly), DataField]
     public string BodySurfaceSolutionName = "body_surface";
 
-    [ViewVariables(VVAccess.ReadOnly), DataField("bodySurfacesolutionRef")]
+    [ViewVariables(VVAccess.ReadOnly), DataField]
     public Entity<SolutionComponent>? BodySurfaceSolution;
 
     [ViewVariables(VVAccess.ReadWrite)]

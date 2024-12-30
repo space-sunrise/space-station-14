@@ -4,7 +4,6 @@ using Content.Shared.Database;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Item;
-using Content.Shared.PneumaticCannon;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Content.Shared.Weapons.Ranged.Components;
@@ -35,8 +34,9 @@ public sealed class EnergyGunFireModesSystem : EntitySystem
 
     private void OnAttemptShoot(EntityUid uid, EnergyGunFireModesComponent component, ref AttemptShootEvent args)
     {
-        if (HasComp<BallisticAmmoProviderComponent>(uid) || HasComp<ProjectileBatteryAmmoProviderComponent>(uid))
+        if (HasComp<HitscanBatteryAmmoProviderComponent>(uid) || HasComp<ProjectileBatteryAmmoProviderComponent>(uid))
             return;
+        args.Cancelled = true;
 
         if (component.FireModes.Count == 0)
             return;

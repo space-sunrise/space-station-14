@@ -1,5 +1,7 @@
 using System.Collections.Frozen;
+using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
+using Content.Shared.Emoting;
 using Content.Shared.Speech;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -87,6 +89,16 @@ public partial class ChatSystem
     {
         if (!forceEmote && !AllowedToUseEmote(source, emote))
             return;
+
+        // Sunrise-Start
+        if (emote.Animation)
+        {
+            var ev = new AnimationEmoteAttemptEvent(source, emote);
+            RaiseLocalEvent(source, ev, true);
+            if (ev.Cancelled)
+                return;
+        }
+        // Sunrise-End
 
         // check if proto has valid message for chat
         if (emote.ChatMessages.Count != 0)
