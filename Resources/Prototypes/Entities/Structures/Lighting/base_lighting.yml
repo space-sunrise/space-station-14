@@ -278,6 +278,13 @@
     - type: Construction
       graph: LightFixture
       node: bulbLight
+    - type: HolidayVisuals
+      holidays:
+        festive:
+        - WinterPresents
+    - type: HolidayRsiSwap
+      sprite:
+        festive: _Sunrise/Structures/Wallmounts/Lighting/light_small_gift.rsi
 
 - type: entity
   name: small light
@@ -324,6 +331,13 @@
       types:
         Heat: 2
     popupText: powered-light-component-burn-hand
+  - type: HolidayVisuals
+    holidays:
+      festive:
+      - WinterPresents
+  - type: HolidayRsiSwap
+    sprite:
+      festive: _Sunrise/Structures/Wallmounts/Lighting/light_small_gift.rsi
 
 - type: entity
   id: PoweredLEDSmallLight
