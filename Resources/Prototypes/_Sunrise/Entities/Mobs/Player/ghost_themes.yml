@@ -271,7 +271,7 @@
 - type: ghostTheme
   id: Randy
   scale: 0.15, 0.15
-  name: ghost-theme-asuka
+  name: ghost-theme-randy
   sprite:
     sprite: _Sunrise/Mobs/Ghosts/randy.rsi
     state: icon
