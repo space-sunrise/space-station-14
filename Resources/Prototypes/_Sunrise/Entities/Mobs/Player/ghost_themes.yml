@@ -143,7 +143,7 @@
     state: icon
 
 - type: ghostTheme
-  id: Hibiki
+  id: BlueArchiveHibiki
   name: ghost-theme-blue-archive-hibiki
   sprite:
     sprite: _Sunrise/Mobs/Ghosts/blue_archive.rsi
