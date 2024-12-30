@@ -1,10 +1,10 @@
 {
   "version": 1,
   "license": "",
-  "copyright": "",
+  "copyright": "Я не знаю кто автор, эти спрайты у меня на компе лежат года 3, если знаете автора - укажите",
   "size": {
-    "x": 52,
-    "y": 52
+    "x": 56,
+    "y": 56
   },
   "states": [
     {
@@ -15,6 +15,51 @@
     },
     {
       "name": "yuuka"
+    },
+    {
+      "name": "girl1"
+    },
+    {
+      "name": "girl2"
+    },
+    {
+      "name": "girl3"
+    },
+    {
+      "name": "girl4"
+    },
+    {
+      "name": "girl5"
+    },
+    {
+      "name": "girl6"
+    },
+    {
+      "name": "girl7"
+    },
+    {
+      "name": "girl8"
+    },
+    {
+      "name": "girl9"
+    },
+    {
+      "name": "girl10"
+    },
+    {
+      "name": "girl11"
+    },
+    {
+      "name": "girl12"
+    },
+    {
+      "name": "girl13"
+    },
+    {
+      "name": "girl14"
+    },
+    {
+      "name": "girl15"
     }
   ]
 }

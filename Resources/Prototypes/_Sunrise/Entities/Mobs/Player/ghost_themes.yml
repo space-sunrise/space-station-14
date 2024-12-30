@@ -168,21 +168,134 @@
 
 - type: ghostTheme
   id: Hibiki
-  name: ghost-theme-hibiki
+  name: ghost-theme-blue-archive-hibiki
   sprite:
     sprite: _Sunrise/Mobs/Ghosts/blue_archive.rsi
     state: hibiki
 
 - type: ghostTheme
-  id: Rio
-  name: ghost-theme-rio
+  id: BlueArchiveRio
+  name: ghost-theme-blue-archive-rio
   sprite:
     sprite: _Sunrise/Mobs/Ghosts/blue_archive.rsi
     state: rio
 
 - type: ghostTheme
-  id: Yuuka
-  name: ghost-theme-yuuka
+  id: BlueArchiveYuuka
+  name: ghost-theme-blue-archive-yuuka
   sprite:
     sprite: _Sunrise/Mobs/Ghosts/blue_archive.rsi
     state: yuuka
+
+- type: ghostTheme
+  id: BlueArchiveGirl1
+  name: ghost-theme-blue-archive-girl1
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/blue_archive.rsi
+    state: girl1
+
+- type: ghostTheme
+  id: BlueArchiveGirl2
+  name: ghost-theme-blue-archive-girl2
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/blue_archive.rsi
+    state: girl2
+
+- type: ghostTheme
+  id: BlueArchiveGirl3
+  name: ghost-theme-blue-archive-girl3
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/blue_archive.rsi
+    state: girl3
+
+- type: ghostTheme
+  id: BlueArchiveGirl4
+  name: ghost-theme-blue-archive-girl4
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/blue_archive.rsi
+    state: girl4
+
+- type: ghostTheme
+  id: BlueArchiveGirl5
+  name: ghost-theme-blue-archive-girl5
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/blue_archive.rsi
+    state: girl5
+
+- type: ghostTheme
+  id: BlueArchiveGirl6
+  name: ghost-theme-blue-archive-girl6
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/blue_archive.rsi
+    state: girl6
+
+- type: ghostTheme
+  id: BlueArchiveGirl7
+  name: ghost-theme-blue-archive-girl7
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/blue_archive.rsi
+    state: girl7
+
+- type: ghostTheme
+  id: BlueArchiveGirl8
+  name: ghost-theme-blue-archive-girl8
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/blue_archive.rsi
+    state: girl8
+
+- type: ghostTheme
+  id: BlueArchiveGirl9
+  name: ghost-theme-blue-archive-girl9
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/blue_archive.rsi
+    state: girl9
+
+- type: ghostTheme
+  id: BlueArchiveGirl10
+  name: ghost-theme-blue-archive-girl10
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/blue_archive.rsi
+    state: girl10
+
+- type: ghostTheme
+  id: BlueArchiveGirl11
+  name: ghost-theme-blue-archive-girl11
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/blue_archive.rsi
+    state: girl11
+
+- type: ghostTheme
+  id: BlueArchiveGirl12
+  name: ghost-theme-blue-archive-girl12
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/blue_archive.rsi
+    state: girl12
+
+- type: ghostTheme
+  id: BlueArchiveGirl13
+  name: ghost-theme-blue-archive-girl13
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/blue_archive.rsi
+    state: girl13
+
+- type: ghostTheme
+  id: BlueArchiveGirl14
+  name: ghost-theme-blue-archive-girl14
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/blue_archive.rsi
+    state: girl14
+
+- type: ghostTheme
+  id: BlueArchiveGirl15
+  name: ghost-theme-blue-archive-girl15
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/blue_archive.rsi
+    state: girl15
+
+- type: ghostTheme
+  id: Randy
+  scale: 0.15, 0.15
+  name: ghost-theme-asuka
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/randy.rsi
+    state: icon
