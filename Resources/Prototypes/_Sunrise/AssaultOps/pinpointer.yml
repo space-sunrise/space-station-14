@@ -10,3 +10,7 @@
       layers:
         - state: pinpointer_icarus
           map: ["enum.PinpointerLayers.Base"]
+        - state: pinonnull
+          map: ["enum.PinpointerLayers.Screen"]
+          shader: unshaded
+          visible: false
