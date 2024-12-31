@@ -3,8 +3,14 @@
   parent: BaseWeaponPowerCell
   abstract: true
   components:
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/laser_retro.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
   - type: Gun
-    fireRate: 4.5
+    fireRate: 4
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -23,10 +29,10 @@
             - PowerCellMedium
 
 - type: entity
-  name: LNT620-ERT "Spark"
+  name: LNT620 "Spark"
   parent: [ BaseWeaponAutoPowerCell, BaseRestrictedContraband ]
-  id: WeaponLaserWT620
-  description: NanoTrasen WT620-ERT "Spark".
+  id: WeaponLaserLNT620
+  description: "Automatic Laser NanoTrasen LNT620."
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/smg_laser.rsi
@@ -37,11 +43,43 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Gun
+    fireRate: 4.5
     minAngle: 5
-    maxAngle: 20
+    maxAngle: 15
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/smg_laser.rsi
   - type: Item
     size: Large
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/smg_laser.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+
+- type: entity
+  name:  IK-30 laser carbine
+  parent: [ BaseWeaponAutoPowerCell, BaseRestrictedContraband ]
+  id: WeaponGunLaserCarbineSemi
+  description: "A semi-automatic battery laser carbine."
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/batterylaser_carbine.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 3
+    availableModes:
+      - SemiAuto
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/batterylaser_carbine.rsi
+  - type: Item
+    size: Large
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/batterylaser_carbine.rsi
   - type: MagazineVisuals
     magState: mag
     steps: 5
@@ -276,7 +314,7 @@
   name: IK-60 laser carbine
   parent: [ BaseWeaponAutoPowerCell, BaseRestrictedContraband ]
   id: WeaponGunLaserCarbineAutomatic
-  description: "A semi-automatic battery laser carbine."
+  description: "A burst automatic battery laser carbine."
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_carbine.rsi
@@ -287,14 +325,20 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Gun
-    minAngle: 5
-    maxAngle: 15
-    selectedMode: SemiAuto
-    fireRate: 3.5
+    minAngle: 2
+    maxAngle: 12
+    angleIncrease: 1.5
+    angleDecay: 8
+    selectedMode: Burst
+    shotsPerBurst: 4
+    burstCooldown: 0.3
+    burstFireRate: 5
     availableModes:
-      - SemiAuto
+    - Burst
   - type: Item
     size: Large
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_carbine.rsi
+  - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_carbine.rsi
   - type: MagazineVisuals
     magState: mag
