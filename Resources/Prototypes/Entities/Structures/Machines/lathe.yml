@@ -387,6 +387,7 @@
       - MagazineBoxMagnumRubber
       - MagazineBoxRifleRubber
       - MagazineBoxLightRifleRubber
+      - WeaponGunLaserCarbineAutomatic # Sunrise - IK-60 Laser Carbine
       # Sunrise-End
       - BoxBeanbag
       - BoxShotgunIncendiary

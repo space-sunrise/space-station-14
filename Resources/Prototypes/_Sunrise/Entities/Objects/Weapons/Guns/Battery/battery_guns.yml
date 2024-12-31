@@ -4,7 +4,7 @@
   abstract: true
   components:
   - type: Gun
-    fireRate: 4
+    fireRate: 4.5
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -14,19 +14,19 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: PowerCellHigh
+        startingItem: PowerCellMedium
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         whitelist:
           tags:
             - PowerCell
-            - PowerCellHigh
+            - PowerCellMedium
 
 - type: entity
   name: LNT620-ERT "Spark"
   parent: [ BaseWeaponAutoPowerCell, BaseRestrictedContraband ]
   id: WeaponLaserWT620
-  description: NanoTrasen WT620-ERT "Spark". #Искра Kaiser
+  description: NanoTrasen WT620-ERT "Spark".
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/smg_laser.rsi
@@ -37,8 +37,8 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Gun
-    minAngle: 15
-    maxAngle: 25
+    minAngle: 5
+    maxAngle: 20
   - type: Item
     size: Large
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/smg_laser.rsi
@@ -274,9 +274,9 @@
 
 - type: entity
   name: IK-60 laser carbine
-  parent: BaseWeaponBattery
+  parent: [ BaseWeaponAutoPowerCell, BaseRestrictedContraband ]
   id: WeaponGunLaserCarbineAutomatic
-  description: "A 20 round semi-automatic laser carbine."
+  description: "A semi-automatic battery laser carbine."
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_carbine.rsi
@@ -286,29 +286,20 @@
     - state: mag-unshaded-4
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
-  - type: Clothing
-    sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_carbine.rsi
   - type: Gun
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
-    soundEmpty:
-      path: /Audio/Weapons/Guns/Empty/empty.ogg
+    minAngle: 5
+    maxAngle: 15
     selectedMode: SemiAuto
-    fireRate: 3
+    fireRate: 3.5
     availableModes:
       - SemiAuto
-      - FullAuto
-  - type: Battery
-    maxCharge: 2000
-    startingCharge: 2000
-  - type: HitscanBatteryAmmoProvider
-    proto: BulletEnergyGunLaser
-    fireCost: 100
+  - type: Item
+    size: Large
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_carbine.rsi
   - type: MagazineVisuals
     magState: mag
     steps: 5
     zeroVisible: true
-  - type: Appearance
 
 - type: entity
   name: Energy Pistol «Judge»
