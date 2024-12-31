@@ -1,0 +1,16 @@
+- type: entity
+  parent: ClothingBackpackChameleon
+  id: ClothingBackpackAssaultOpsFill
+  suffix: Fill
+  components:
+  - type: StorageFill
+    contents:
+    - id: BoxSurvivalSyndicate
+    - id: NocturineChemistryBottle
+    - id: DeathAcidifierImplanter
+    - id: FreedomImplanter
+    - id: Implanter
+    - id: Implanter
+    - id: Implanter
+    - id: PinpointerIcarus
+    - id: EncryptionKeySyndie

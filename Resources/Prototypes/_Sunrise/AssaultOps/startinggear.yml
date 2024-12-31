@@ -1,0 +1,57 @@
+# Assault Operative Outfit
+- type: startingGear
+  id: AssaultOperativeGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitTactical
+    back: ClothingBackpackAssaultOpsFill
+#    mask: ClothingMaskGaiter
+    eyes: ClothingEyesGlassesSunglasses
+#    ears: ClothingHeadsetAltSyndicate
+#    gloves: ClothingHandsGlovesCombat
+    shoes: ClothingShoesColorBlack
+    id: AssaultOpPDA
+#    pocket1: PinpointerIcarus
+#    pocket2: BaseUplinkRadioAssautOP
+  innerclothingskirt: ClothingUniformJumpsuitTactical
+  satchel: ClothingBackpackAssaultOpsFill
+  duffelbag: ClothingBackpackAssaultOpsFill
+
+
+# Assault Operative Outfit
+- type: startingGear
+  id: LoneAssaultOperativeGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitTactical
+    back: ClothingBackpackAssaultOpsFill
+    #    mask: ClothingMaskGaiter
+    eyes: ClothingEyesGlassesSunglasses
+    #    ears: ClothingHeadsetAltSyndicate
+    #    gloves: ClothingHandsGlovesCombat
+    shoes: ClothingShoesColorBlack
+    id: AssaultOpPDA
+  #    pocket1: PinpointerIcarus
+    pocket2: UplinkRadioAssaultOperatives40TC
+  innerclothingskirt: ClothingUniformJumpsuitTactical
+  satchel: ClothingBackpackAssaultOpsFill
+  duffelbag: ClothingBackpackAssaultOpsFill
+
+
+- type: startingGear
+  id: AssaultCommanderGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitTactical
+    back: ClothingBackpackAssaultOpsFill
+#    mask: ClothingMaskGaiter
+    eyes: ClothingEyesGlassesSunglasses
+#    ears: ClothingHeadsetAltSyndicate
+#    gloves: ClothingHandsGlovesCombat
+    shoes: ClothingShoesColorBlack
+    id: AssaultOpPDA
+    pocket1: RemoteAssaultOpShuttleController
+    pocket2: UplinkRadioAssaultOperatives0TC
+  innerclothingskirt: ClothingUniformJumpsuitTactical
+  satchel: ClothingBackpackAssaultOpsFill
+  duffelbag: ClothingBackpackAssaultOpsFill
+  inhand:
+  - FlippoLighter
+  - DocumentAssaultOpsGoal

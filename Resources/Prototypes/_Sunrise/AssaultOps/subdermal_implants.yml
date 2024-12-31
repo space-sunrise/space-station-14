@@ -1,0 +1,23 @@
+- type: entity
+  parent: BaseSubdermalImplant
+  id: IcarusKeyImplant
+  name:
+  description:
+  noSpawn: true
+  components:
+  - type: SubdermalImplant
+    dropContainerItemsIfGibbed: false
+    blockDrawIfDead: true
+    deleteWhenDraw: true
+  - type: Storage
+    grid:
+    - 0,0,2,2
+    maxItemSize: Small
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: ContainerFill
+    containers:
+      storagebase:
+      - IcarusKey

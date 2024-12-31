@@ -49,6 +49,12 @@ public sealed partial class SubdermalImplantComponent : Component
     /// </summary>
     [DataField]
     public EntityWhitelist? Blacklist;
+
+    // Sunrise-Start
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField("dropContainerItemsIfGibbed"), AutoNetworkedField]
+    public bool DropContainerItemsIfGibbed = true;
+    // Sunrise-End
 }
 
 /// <summary>

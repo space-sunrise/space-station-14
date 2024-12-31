@@ -171,7 +171,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         if (!_tags.HasTag(user, "CanPilot") ||
             !TryComp<ShuttleConsoleComponent>(uid, out var component) ||
             !this.IsPowered(uid, EntityManager) ||
-            !Transform(uid).Anchored ||
+            (!Transform(uid).Anchored && !component.Portable) ||
             !_blocker.CanInteract(user, uid))
         {
             return false;
