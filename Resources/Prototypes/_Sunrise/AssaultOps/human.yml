@@ -1,6 +1,6 @@
 # Assault Operative
 - type: entity
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: Assault Operative
   parent: MobHuman
   id: MobHumanAssaultOp

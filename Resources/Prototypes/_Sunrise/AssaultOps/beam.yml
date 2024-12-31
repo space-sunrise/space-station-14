@@ -1,7 +1,7 @@
 ﻿- type: entity
   id: IcarusBeam
   name: icarus
-  noSpawn: True
+  categories: [ HideSpawnMenu ]
   description: A beam of light from the sun.
   components:
   - type: Clickable
@@ -38,7 +38,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 2
-        mass: 1
+        density: 1
         hard: false
         mask:
           - Impassable

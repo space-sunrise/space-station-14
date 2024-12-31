@@ -1,57 +1,41 @@
-# Assault Operative Outfit
 - type: startingGear
   id: AssaultOperativeGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitTactical
     back: ClothingBackpackAssaultOpsFill
-#    mask: ClothingMaskGaiter
+    mask: ClothingMaskGaiter
     eyes: ClothingEyesGlassesSunglasses
-#    ears: ClothingHeadsetAltSyndicate
-#    gloves: ClothingHandsGlovesCombat
     shoes: ClothingShoesColorBlack
     id: AssaultOpsPDA
-#    pocket1: PinpointerIcarus
-#    pocket2: BaseUplinkRadioAssautOP
-  innerclothingskirt: ClothingUniformJumpsuitTactical
-  satchel: ClothingBackpackAssaultOpsFill
-  duffelbag: ClothingBackpackAssaultOpsFill
+  # SUNRISE-TODO: Лоадаут для ДОшников
+  #innerclothingskirt: ClothingUniformJumpsuitTactical
 
-
-# Assault Operative Outfit
 - type: startingGear
   id: LoneAssaultOperativeGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitTactical
     back: ClothingBackpackAssaultOpsFill
-    #    mask: ClothingMaskGaiter
+    mask: ClothingMaskGaiter
     eyes: ClothingEyesGlassesSunglasses
-    #    ears: ClothingHeadsetAltSyndicate
-    #    gloves: ClothingHandsGlovesCombat
     shoes: ClothingShoesColorBlack
     id: AssaultOpsPDA
-  #    pocket1: PinpointerIcarus
     pocket2: UplinkRadioAssaultOperatives40TC
-  innerclothingskirt: ClothingUniformJumpsuitTactical
-  satchel: ClothingBackpackAssaultOpsFill
-  duffelbag: ClothingBackpackAssaultOpsFill
-
+  # SUNRISE-TODO: Лоадаут для ДОшников
+  #innerclothingskirt: ClothingUniformJumpsuitTactical
 
 - type: startingGear
   id: AssaultCommanderGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitTactical
     back: ClothingBackpackAssaultOpsFill
-#    mask: ClothingMaskGaiter
+    mask: ClothingMaskGaiter
     eyes: ClothingEyesGlassesSunglasses
-#    ears: ClothingHeadsetAltSyndicate
-#    gloves: ClothingHandsGlovesCombat
     shoes: ClothingShoesColorBlack
     id: AssaultOpsPDA
     pocket1: RemoteAssaultOpShuttleController
     pocket2: UplinkRadioAssaultOperatives0TC
-  innerclothingskirt: ClothingUniformJumpsuitTactical
-  satchel: ClothingBackpackAssaultOpsFill
-  duffelbag: ClothingBackpackAssaultOpsFill
+  # SUNRISE-TODO: Лоадаут для ДОшников
+  #innerclothingskirt: ClothingUniformJumpsuitTactical
   inhand:
   - FlippoLighter
   - DocumentAssaultOpsGoal

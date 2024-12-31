@@ -31,11 +31,6 @@ public sealed partial class AssaultOpsRuleComponent : Component
         "Quartermaster"
     };
 
-    public Dictionary<ICommonSession, HumanoidCharacterProfile> StartCandidates = new();
-
-    [DataField("operativeMindPendingData")]
-    public Dictionary<EntityUid, string> OperativeMindPendingData = new();
-
     [DataField("faction", customTypeSerializer: typeof(PrototypeIdSerializer<NpcFactionPrototype>), required: true)]
     public string Faction = default!;
 
@@ -43,25 +38,7 @@ public sealed partial class AssaultOpsRuleComponent : Component
     public int TCAmountPerOperative = 50;
 
     [DataField]
-    public int RoundstartOperatives = 0;
-
-    [DataField("operativeRoleProto", customTypeSerializer: typeof(PrototypeIdSerializer<AntagPrototype>))]
-    public string OperativeRoleProto = "AssaultOperative";
-
-    [DataField("commanderRoleProto", customTypeSerializer: typeof(PrototypeIdSerializer<AntagPrototype>))]
-    public string CommanderRoleProto = "AssaultCommander";
-
-    [DataField("operativeStartGearProto", customTypeSerializer: typeof(PrototypeIdSerializer<StartingGearPrototype>))]
-    public string OperativeStartGearPrototype = "AssaultOperativeGear";
-
-    [DataField("commanderStartGearPrototype", customTypeSerializer: typeof(PrototypeIdSerializer<StartingGearPrototype>))]
-    public string CommanderStartGearPrototype = "AssaultCommanderGear";
-
-    [DataField("normalNames", customTypeSerializer: typeof(PrototypeIdSerializer<DatasetPrototype>))]
-    public string OperativeNamesProto = "SyndicateNamesNormal";
-
-    [DataField("shuttleMap", customTypeSerializer: typeof(ResPathSerializer))]
-    public ResPath ShuttleMap = new("/Maps/Sunrise/Shuttles/assaultops.yml");
+    public int RoundstartOperatives;
 
     [DataField("greetingSound", customTypeSerializer: typeof(SoundSpecifierTypeSerializer))]
     public SoundSpecifier? GreetSoundNotification = new SoundPathSpecifier("/Audio/_Sunrise/AssaultOperatives/assault_operatives_greet.ogg",

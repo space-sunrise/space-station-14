@@ -4,7 +4,6 @@
   suffix: AssaultOps
   components:
   - type: Store
-    preset: StorePresetUplink
     balance:
       Telecrystal: 0
   - type: Tag
@@ -18,7 +17,6 @@
   suffix: AssaultOps
   components:
   - type: Store
-    preset: StorePresetUplink
     balance:
       Telecrystal: 40
   - type: Tag
