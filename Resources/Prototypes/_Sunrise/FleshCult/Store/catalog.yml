@@ -1,0 +1,217 @@
+﻿- type: listing
+  id: FleshCultistBlade
+  name: flesh-cultist-blade-evolution-name
+  description: flesh-cultist-blade-evolution-desc
+  productAction: FleshCultistBlade
+  cost:
+    StolenMutationPoint: 45
+  categories:
+    - FleshCultistWeapon
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: FleshCultistInsulatedImmunityMutationEvent
+  name: flesh-cultist-insulated-immunity-evolution-name
+  description: flesh-cultist-insulated-immunity-evolution-desc
+  icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistInsulatedImmunityMutation.png
+  productEvent: !type:FleshCultistInsulatedImmunityMutationEvent
+  raiseProductEventOnUser: true
+  cost:
+    StolenMutationPoint: 10
+  categories:
+    - FleshCultistPassiveSkills
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: FleshCultistPressureImmunityMutationEvent
+  name: flesh-cultist-pressure-immunity-evolution-name
+  description: flesh-cultist-pressure-immunity-evolution-desc
+  icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistPressureImmunityMutation.png
+  productEvent: !type:FleshCultistPressureImmunityMutationEvent
+  raiseProductEventOnUser: true
+  cost:
+    StolenMutationPoint: 5
+  categories:
+    - FleshCultistPassiveSkills
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: FleshCultistColdTempImmunityMutationEvent
+  name: flesh-cultist-cold-teml-immunity-evolution-name
+  description: flesh-cultist-cold-teml-immunity-evolution-desc
+  icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistColdTempImmunityMutation.png
+  productEvent: !type:FleshCultistColdTempImmunityMutationEvent
+  raiseProductEventOnUser: true
+  cost:
+    StolenMutationPoint: 5
+  categories:
+    - FleshCultistPassiveSkills
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: FleshCultistFlashImmunityMutationEvent
+  name: flesh-cultist-flash-immunity-evolution-name
+  description: flesh-cultist-flash-immunity-evolution-desc
+  icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistFlashImmunityMutation.png
+  productEvent: !type:FleshCultistFlashImmunityMutationEvent
+  raiseProductEventOnUser: true
+  cost:
+    StolenMutationPoint: 10
+  categories:
+    - FleshCultistPassiveSkills
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: FleshCultistRespiratorImmunityMutationEvent
+  name: flesh-cultist-respirator-immunity-evolution-name
+  description: flesh-cultist-respirator-immunity-evolution-desc
+  icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistRespiratorImmunityMutation.png
+  productEvent: !type:FleshCultistRespiratorImmunityMutationEvent
+  raiseProductEventOnUser: true
+  cost:
+    StolenMutationPoint: 5
+  categories:
+  - FleshCultistPassiveSkills
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: FleshCultistClaw
+  name: flesh-cultist-claw-evolution-name
+  description: flesh-cultist-claw-evolution-desc
+  productAction: FleshCultistClaw
+  cost:
+    StolenMutationPoint: 10
+  categories:
+    - FleshCultistWeapon
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: FleshCultistFist
+  name: flesh-cultist-fist-evolution-name
+  description: flesh-cultist-fist-evolution-desc
+  productAction: FleshCultistFist
+  cost:
+    StolenMutationPoint: 25
+  categories:
+    - FleshCultistWeapon
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: FleshCultistSpikeGun
+  name: flesh-cultist-spike-gun-evolution-name
+  description: flesh-cultist-spike-gun-evolution-desc
+  productAction: FleshCultistSpikeGun
+  cost:
+    StolenMutationPoint: 35
+  categories:
+    - FleshCultistWeapon
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: FleshCultistMediumArmor
+  name: flesh-cultist-medium-armor-evolution-name
+  description: flesh-cultist-medium-armor-evolution-desc
+  productAction: FleshCultistArmor
+  cost:
+    StolenMutationPoint: 25
+  categories:
+    - FleshCultistArmor
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: FleshCultistHeavyArmor
+  name: flesh-cultist-heavy-armor-evolution-name
+  description: flesh-cultist-heavy-armor-evolution-desc
+  productAction: FleshCultistHeavyArmor
+  cost:
+    StolenMutationPoint: 45
+  categories:
+    - FleshCultistArmor
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: FleshCultistSpiderlegs
+  name: flesh-cultist-spider-legs-evolution-name
+  description: flesh-cultist-spider-legs-evolution-desc
+  productAction: FleshCultistSpiderlegs
+  cost:
+    StolenMutationPoint: 20
+  categories:
+    - FleshCultistArmor
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: FleshCultistAdrenalin
+  name: flesh-cultist-adrenaline-evolution-name
+  description: flesh-cultist-adrenaline-evolution-desc
+  productAction: FleshCultistAdrenalin
+  cost:
+    StolenMutationPoint: 30
+  categories:
+    - FleshCultistActiveSkills
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: FleshCultistCreateFleshHeart
+  name: flesh-cultist-create-flesh-heart-evolution-name
+  description: flesh-cultist-create-flesh-heart-evolution-desc
+  productAction: FleshCultistCreateFleshHeart
+  cost:
+    StolenMutationPoint: 50
+  categories:
+    - FleshCultistActiveSkills
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: FleshCultistThrowHugger
+  name: flesh-cultist-throw-hugger-evolution-name
+  description: flesh-cultist-throw-hugger-evolution-desc
+  productAction: FleshCultistThrowHugger
+  cost:
+    StolenMutationPoint: 30
+  categories:
+    - FleshCultistActiveSkills
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1
+
+- type: listing
+  id: FleshCultistAcidSpit
+  name: flesh-cultist-acid-spit-evolution-name
+  description: flesh-cultist-acid-spit-evolution-desc
+  productAction: FleshCultistAcidSpit
+  cost:
+    StolenMutationPoint: 30
+  categories:
+    - FleshCultistActiveSkills
+  conditions:
+    - !type:ListingLimitedStockCondition
+      stock: 1

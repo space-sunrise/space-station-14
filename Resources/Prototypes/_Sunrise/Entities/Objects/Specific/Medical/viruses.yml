@@ -12,3 +12,18 @@
   - type: Injector
     injectOnly: false
     toggleState: Inject
+
+- type: entity
+  parent: BaseSyringe
+  id: SyringeCarolNT
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+        - ReagentId: Carol
+          Quantity: 5
+  - type: Injector
+    injectOnly: false
+    toggleState: Inject
