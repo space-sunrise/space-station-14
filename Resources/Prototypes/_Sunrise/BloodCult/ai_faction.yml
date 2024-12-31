@@ -1,0 +1,11 @@
+- type: npcFaction
+  id: BloodCult
+  hostile:
+  - NanoTrasen
+  - Syndicate
+  - Thief
+  - Zombie
+  - Revolutionary
+  - Changeling
+  - Vampire
+  - Xeno
