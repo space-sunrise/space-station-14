@@ -129,7 +129,7 @@
       - id: SMGAmmoKit # Sunrise-edit
         amount: 1
       - id: ShotGunKit # Sunrise-edit
-        amount: 4
+        amount: 1
       - id: LMGKit # Sunrise-edit
         amount: 1
 # Sunrise-Start

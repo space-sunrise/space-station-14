@@ -32,6 +32,8 @@
     offset: 0
     prototypes:
       - PosterContrabandAriralInSpace # Sunrise-edit
+      - PosterContrabandSam300 # Sunrise-edit
+      - PosterContrabandSyndiMechs # Sunrise-edit
       - PosterContrabandFreeTonto
       - PosterContrabandAtmosiaDeclarationIndependence
       - PosterContrabandFunPolice

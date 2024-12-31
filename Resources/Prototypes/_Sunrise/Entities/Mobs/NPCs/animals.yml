@@ -1,0 +1,12 @@
+- type: entity
+  name: saw
+  parent: MobPig
+  id: MobSaw
+  description: The Mother.
+  components:
+  - type: Saw
+  - type: Reproductive
+    offspring:
+    - id: MobSwine
+    capacity: 6
+    isPartnerNeed: false

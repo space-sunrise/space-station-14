@@ -1,45 +1,71 @@
 - type: entity
-  id: MechSecPod
-  parent: [ BaseMech, CombatMech, BaseRestrictedContraband ]
-  name: Security Pod
-  description: While lightly armored, the Gygax has incredible mobility thanks to its ability that lets it smash through walls at high speeds.
+  id: BaseMechPod
+  save: false
+  abstract: true
   components:
-  - type: Sprite
-    drawdepth: Mobs
-    noRot: true
-    sprite: _Sunrise/Objects/Specific/Mech/sec_pod.rsi
-    scale: 1.08, 1.08
-    layers:
-    - map: [ "enum.MechVisualLayers.Base" ]
-      state: sec_pod
-  - type: FootstepModifier
-    footstepSoundCollection:
-      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: MobMover
   - type: Mech
-    baseState: sec_pod
-    openState: sec_pod
-    brokenState: sec_pod
-    mechToPilotDamageMultiplier: 0.3
-    airtight: true
-    pilotWhitelist:
-      components:
-        - HumanoidAppearance
-  - type: MeleeWeapon
-    hidden: true
-    attackRate: 1
+  - type: MechAir
+  - type: AirFilter
+    # everything except oxygen and nitrogen
+    gases:
+    - CarbonDioxide
+    - Plasma
+    - Tritium
+    - WaterVapor
+    - Ammonia
+    - NitrousOxide
+    - Frezon
+    #- Helium3 TODO: fusion
+    # remove everything except oxygen to maintain oxygen ratio
+    overflowGases:
+    - Nitrogen
+    - CarbonDioxide
+    - Plasma
+    - Tritium
+    - WaterVapor
+    - Ammonia
+    - NitrousOxide
+    - Frezon
+    #- Helium3 TODO: fusion
+  - type: AirIntake
+  # for intake and filter to work
+  - type: AtmosDevice
+    requireAnchored: false
+    joinSystem: true
+  - type: DoAfter
+  - type: Repairable
+    doAfterDelay: 2
     damage:
       types:
-        Blunt: 0
-        Structural: 0
+        Blunt: -15
+        Slash: -15
+        Piercing: -15
+  - type: UserInterface
+    interfaces:
+      enum.MechUiKey.Key:
+        type: MechBoundUserInterface
+  - type: Puller
+    needsHands: false
+  - type: InputMover
+  - type: InteractionOutline
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.5
+    baseWalkSpeed: 2
     baseSprintSpeed: 3
-  - type: Reflect
-    reflectProb: 0.25
-    spread: 180
-    soundOnReflect: /Audio/Weapons/block_metal1.ogg
-    reflects:
-    - NonEnergy
+    friction: 5
+    weightlessFriction: 5
+    weightlessAcceleration: 4
+    weightlessModifier: 2.8
+  - type: MovementAlwaysTouching
+  - type: Pullable
+  - type: Clickable
+  - type: WiresPanel
+  - type: Physics
+    bodyType: Dynamic
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Critical
   - type: MobThresholds
     currentThresholdState : Alive
     thresholds:
@@ -47,4 +73,109 @@
       300: Critical
     showOverlays: false
     allowRevives: true
-  - type: Tag
+  - type: HealthExaminable
+    examinableTypes:
+      - Blunt
+      - Slash
+      - Piercing
+      - Heat
+      - Shock
+    locPrefix: mech
+  - type: Appearance
+  - type: ContainerContainer
+    containers:
+      mech-pilot-slot: !type:ContainerSlot
+      mech-equipment-container: !type:Container
+      mech-battery-slot: !type:ContainerSlot
+  - type: Damageable
+    damageContainer: Mech
+    damageModifierSet: LightArmor
+  - type: GuideHelp
+    guides:
+    - Robotics
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 900
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: start
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: StatusIcon
+    bounds: "-0.6,-0.6, 0.6, 0.6"
+  - type: PointLight
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    radius: 9
+    netsync: false
+
+- type: entity
+  id: MechSecPod
+  parent: [ BaseMechPod, BaseRestrictedContraband ]
+  name: Security Pod
+  description: Despite its size, the Security Pod has incredible mobility in space thanks to its engines.
+  suffix: Filled
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Sunrise/Objects/Specific/Mech/sec_pod.rsi
+    scale: 1.08, 1.08
+    layers:
+    - state: sec_pod
+      map: ["enum.MechVisualLayers.Base"]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.9
+        density: 1000
+        mask:
+          - FlyingMobMask
+        layer:
+          - FlyingMobLayer
+  - type: AmbientSound
+    range: 4
+    volume: -4
+    sound:
+      path: /Audio/Effects/shuttle_thruster.ogg
+  - type: Mech
+    baseState: sec_pod
+    openState: sec_pod_open
+    brokenState: sec_pod_broken
+    mechToPilotDamageMultiplier: 0.3
+    maxEquipmentAmount: 2
+    airtight: true
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+    equipmentWhitelist:
+      tags:
+      - CombatMech
+    startingEquipment:
+      - WeaponMechCombatSolarisLaser
+  - type: Reflect
+    reflectProb: 0.2
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    reflects:
+    - NonEnergy
+  - type: MobThresholds
+    currentThresholdState: Alive
+    thresholds:
+      0: Alive
+      450: Critical
+    showOverlays: false
+    allowRevives: true
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCageMedium
+  - type: AccessReader
+    access: [["Security"]]

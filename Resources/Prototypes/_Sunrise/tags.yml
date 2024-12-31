@@ -326,3 +326,6 @@
 
 - type: Tag
   id: PokerCard
+
+- type: Tag
+  id: ToySword

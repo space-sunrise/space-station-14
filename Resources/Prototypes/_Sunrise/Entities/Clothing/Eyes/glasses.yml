@@ -87,15 +87,5 @@
   components:
   - type: ShowSyndicateIcons
   - type: NightVisionDevice
-    isPowered: true
     displayColor: "#ff6e6e"
     displayShader: NVDDisplay
-  - type: PowerCellDraw
-    drawRate: 0
-    useRate: 20
-  - type: PointLight
-    color: red
-    enabled: false
-    autoRot: true
-    radius: 0.5
-    energy: 0.5

@@ -106,6 +106,15 @@
   equipment:
     pants: ClothingPantsWomanUk
 
+- type: loadout
+  id: ChristmasWomanPants
+  sponsorOnly: true
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    pants: ClothingPantsWomanChristmas
+
 # Для мужиков
 - type: loadout
   id: BoxersManPants

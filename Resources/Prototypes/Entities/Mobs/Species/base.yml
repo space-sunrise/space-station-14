@@ -142,7 +142,9 @@
     - RadiationProtection
     - Drowsiness
     - Adrenaline
-    - LoveEffect  # Sunrise-Aphrodesiac
+    - LoveEffect  # Sunrise-Edit
+    - Jump # Sunrise-Edit
+    - Flip # Sunrise-Edit
   - type: Body
     prototype: Human
     requiredLegs: 2
@@ -232,16 +234,26 @@
     emotesTakeDamage:
     - Scream
     - Crying
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 25
+  - type: Food
+    requiresSpecialDigestion: true
   # Sunrise-End
 
 - type: entity
   save: false
   parent:
+  - BaseMobSpecies # Sunrise
   - MobBloodstream
   - MobRespirator
   - MobAtmosStandard
   - MobFlammable
-  - BaseMobSpecies
+ #- BaseMobSpecies # Wizards
   id: BaseMobSpeciesOrganic
   abstract: true
   components:

@@ -360,3 +360,14 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/atmosian.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/atmosian.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterChristmasSweeter
+  name: Christmas Sweeter
+  description: Pretty old stuff for these times, bringing back old memories...
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/coatchristmas.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/coatchristmas.rsi

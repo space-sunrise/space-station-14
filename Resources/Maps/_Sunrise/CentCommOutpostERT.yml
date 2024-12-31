@@ -11527,7 +11527,7 @@ entities:
     - type: Transform
       pos: 4.5124245,-7.4951487
       parent: 4085
-- proto: ClothingEyesHudSyndicateMech
+- proto: ClothingEyesNVD
   entities:
   - uid: 1510
     components:

@@ -179,9 +179,9 @@ public sealed partial class VampireSystem
 
         if (!IsAbilityUsable(vampire, def))
             return;
-        
+
         UnnaturalStrength(vampire);
-        
+
         ev.Handled = true;
     }
     private void OnVampireSupernaturalStrength(EntityUid entity, VampireComponent component, VampireSupernaturalStrengthEvent ev)
@@ -193,9 +193,9 @@ public sealed partial class VampireSystem
 
         if (!IsAbilityUsable(vampire, def))
             return;
-        
+
         SupernaturalStrength(vampire);
-        
+
         ev.Handled = true;
     }
     private void OnVampireCloakOfDarkness(EntityUid entity, VampireComponent component, VampireCloakOfDarknessEvent ev)
@@ -319,9 +319,9 @@ public sealed partial class VampireSystem
             var pryComp = EnsureComp<PryingComponent>(vampire);
             pryComp.Force = true;
             pryComp.PryPowered = true;
-        
+
             _popup.PopupEntity(Loc.GetString("vampire-supernaturalstrength", ("user", vampire)), vampire, vampire, Shared.Popups.PopupType.SmallCaution);
-            
+
             meleeComp.Damage += damage;
         }
     }
@@ -374,7 +374,7 @@ public sealed partial class VampireSystem
     {
         if (string.IsNullOrEmpty(polymorphTarget))
             return;
-        
+
         var prototypeId = polymorphTarget switch
         {
             "MobMouse" => "VampireMouse",
@@ -654,7 +654,7 @@ public sealed partial class VampireSystem
         //Do a precheck
         if (!HasComp<VampireFangsExtendedComponent>(vampire))
             return false;
-        
+
         if (!HasComp<TransformComponent>(vampire))
             return false;
 
@@ -717,7 +717,7 @@ public sealed partial class VampireSystem
 
         var volumeToConsume = (FixedPoint2) Math.Min((float) victimBloodRemaining.Value, args.Volume);
         var volumeToDrain = (FixedPoint2) Math.Min((float) victimBloodRemaining.Value, args.Volume * 8);
-        
+
         if (_mind.TryGetMind(entity, out var mindId, out var mind))
             if (_mind.TryGetObjectiveComp<BloodDrainConditionComponent>(mindId, out var objective, mind))
                     objective.BloodDranked = entity.Comp.TotalBloodDrank;
@@ -785,6 +785,7 @@ public sealed partial class VampireSystem
     {
         return vampire.UnlockedPowers.ContainsKey(name);
     }
+
     /*private bool IsPowerActive(VampireComponent vampire, VampirePowerProtype def) => IsPowerActive(vampire, def.ID);
     private bool IsPowerActive(VampireComponent vampire, string name)
     {
@@ -809,7 +810,7 @@ public sealed partial class VampireSystem
         if (!vampire.UnlockedPowers.TryGetValue(name, out var ability))
             return null;
 
-        return ability;
+        return GetEntity(ability);
     }
 
     /// <summary>

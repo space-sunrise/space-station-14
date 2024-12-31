@@ -596,6 +596,7 @@
   components:
   - type: PresetIdCard
     job: Passenger
+    setAccess: false
   - type: Access
     tags:
     - Maintenance

@@ -106,10 +106,10 @@ public sealed class FootprintVisualizerSystem : VisualizerSystem<FootprintCompon
         return visualType switch
         {
             FootprintVisualType.BareFootprint => emitter.IsRightStep
-                ? emitter.RightBareFootState
-                : emitter.LeftBareFootState,
-            FootprintVisualType.ShoeFootprint => emitter.ShoeFootState,
-            FootprintVisualType.SuitFootprint => emitter.PressureSuitFootState,
+                ? _random.Pick(emitter.RightBareFootState)
+                : _random.Pick(emitter.LeftBareFootState),
+            FootprintVisualType.ShoeFootprint => _random.Pick(emitter.ShoeFootState),
+            FootprintVisualType.SuitFootprint => _random.Pick(emitter.PressureSuitFootState),
             FootprintVisualType.DragMark => _random.Pick(emitter.DraggingStates),
             _ => throw new ArgumentOutOfRangeException(
                 $"Unknown footprint visual type: {visualType}")

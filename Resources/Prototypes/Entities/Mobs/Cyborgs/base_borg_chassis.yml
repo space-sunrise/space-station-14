@@ -154,6 +154,7 @@
     - KnockedDown
     - SlowedDown
     - Flashed
+    - Jump # Sunrise-Edit
   - type: TypingIndicator
     proto: robot
   - type: Speech
