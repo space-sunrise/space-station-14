@@ -10,7 +10,6 @@
                 BackgroundColor="#232228"
                 BorderColor="#2a292f"
                 BorderThickness="1"
-                ContentMarginLeftOverride="10"
                 ContentMarginRightOverride="10"
                 ContentMarginTopOverride="5"
                 ContentMarginBottomOverride="5"/>
@@ -21,7 +20,7 @@
                         Access="Public"
                         MinHeight="35"
                         StyleClasses="NoStyle">
-                    <BoxContainer Orientation="Horizontal">
+                    <BoxContainer Orientation="Horizontal" Margin="10 0 0 0">
                         <Label Name="HeaderLabel" 
                                StyleClasses="LabelSubText" 
                                HorizontalExpand="True"/>
@@ -31,11 +30,15 @@
                                Margin="10 0 0 0"/>
                     </BoxContainer>
                 </Button>
+                <Label StyleClasses="LabelSubText"
+                       Text="{Loc ui-roadmap-click-for-details}"
+                       FontColorOverride="#666666"
+                       Margin="10 2 0 0"/>
                 <BoxContainer Name="ContentsContainer" 
                              Access="Public" 
                              Orientation="Vertical" 
                              Visible="False"
-                             Margin="0 5 0 0">
+                             Margin="10 5 0 0">
                     <RichTextLabel Name="Contents" 
                                   Access="Public" 
                                   RectClipContent="True"

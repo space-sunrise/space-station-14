@@ -69,8 +69,13 @@ public sealed partial class EmotePrototype : IPrototype
     [DataField]
     public HashSet<string> ChatTriggers = new();
 
+    // Sunrise-Start
+    [DataField]
+    public List<string> PopupMessages = new();
+
     [DataField]
     public bool Animation;
+    // Sunrise-Edit
 }
 
 /// <summary>
