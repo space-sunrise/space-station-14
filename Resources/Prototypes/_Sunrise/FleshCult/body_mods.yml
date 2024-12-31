@@ -21,12 +21,12 @@
       collection: FootstepSpiderLegs
       params:
         volume: 10
-  - type: HideLayerClothingComponent
+  - type: HideLayerClothing
     slots:
-      - LFoot
       - RFoot
-      - LLeg
+      - LFoot
       - RLeg
+      - LLeg
 
 - type: entity
   categories: [ HideSpawnMenu ]

@@ -135,7 +135,7 @@ public sealed partial class FleshCultistComponent : Component
     [ViewVariables] public float AccumulatorStarveNotify = 0;
 
     [DataField("fleshStatusIcon")]
-    public ProtoId<StatusIconPrototype> StatusIcon { get; set; } = "FleshFaction";
+    public ProtoId<FactionIconPrototype> StatusIcon { get; set; } = "FleshFaction";
 
     [DataField]
     public ProtoId<AlertPrototype> MutationPointAlert = "MutationPoint";

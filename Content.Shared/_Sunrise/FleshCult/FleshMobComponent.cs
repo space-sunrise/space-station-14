@@ -20,7 +20,7 @@ namespace Content.Shared._Sunrise.FleshCult
         public int DeathMobSpawnCount;
 
         [DataField("fleshStatusIcon")]
-        public ProtoId<StatusIconPrototype> StatusIcon { get; set; } = "FleshFaction";
+        public ProtoId<FactionIconPrototype> StatusIcon { get; set; } = "FleshFaction";
 
         public bool IsDeath = false;
     }

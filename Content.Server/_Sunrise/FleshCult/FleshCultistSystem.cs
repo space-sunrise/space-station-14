@@ -248,6 +248,15 @@ public sealed partial class FleshCultistSystem : SharedFleshCultistSystem
             RemComp<ThirstComponent>(uid);
 
         _tagSystem.AddTag(uid, "Flesh");
+
+        if (TryComp<HumanoidAppearanceComponent>(uid, out var appearance))
+        {
+            appearance.HideLayersOnEquip.Add(HumanoidVisualLayers.RLeg);
+            appearance.HideLayersOnEquip.Add(HumanoidVisualLayers.LLeg);
+            appearance.HideLayersOnEquip.Add(HumanoidVisualLayers.RFoot);
+            appearance.HideLayersOnEquip.Add(HumanoidVisualLayers.LFoot);
+            Dirty(uid, appearance);
+        }
     }
 
     private void OnInsulatedImmunityMutation(EntityUid uid, FleshCultistComponent component,
