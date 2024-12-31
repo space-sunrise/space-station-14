@@ -11,13 +11,7 @@
     - BorgChassis
     - Jump
     - Flip
-  chatMessages: [делает сальто]
-  chatTriggers:
-  - сделал сальто
-  - сделала сальто
-  - делает сальто
-  - устроила сальто
-  - устроил сальто
+  popupMessages: [делает сальто]
   animation: true
 
 - type: emote
@@ -33,14 +27,7 @@
     - BorgChassis
     - Jump
     - Flip
-  chatMessages: [прыгает]
-  chatTriggers:
-  - прыгает
-  - прыгнула
-  - прыгнул
-  - подпрыгнул
-  - подпрыгнула
-  - подскакивает
+  popupMessages: [прыгает]
   animation: true
 
 - type: emote
@@ -56,13 +43,7 @@
     - BorgChassis
     - Jump
     - Flip
-  chatMessages: [танцует]
-  chatTriggers:
-  - танцует
-  - кружится
-  - оборачивается
-  - покружилась
-  - покружился
+  popupMessages: [танцует]
   animation: true
 
 - type: emote

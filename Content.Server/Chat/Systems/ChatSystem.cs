@@ -23,6 +23,7 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Players;
 using Content.Shared.Players.RateLimiting;
+using Content.Shared.Popups;
 using Content.Shared.Radio;
 using Content.Shared.Speech;
 using Content.Shared.Sunrise.CollectiveMind;
@@ -64,6 +65,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly ReplacementAccentSystem _wordreplacement = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
+    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
 
     // Sunrise-TTS-Start: Moved from Server to Shared
     // public const int VoiceRange = 10; // how far voice goes in world units
