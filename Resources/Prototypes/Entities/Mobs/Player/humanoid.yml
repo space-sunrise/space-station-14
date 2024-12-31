@@ -222,6 +222,7 @@
   - Tajaran
   - Demon
   - SlimePerson
+  - Dwarf
   parent: ERTLeader
   components:
     - type: BibleUser
@@ -266,6 +267,7 @@
   - Tajaran
   - Demon
   - SlimePerson
+  - Dwarf
   parent: ERTChaplain
   components:
     - type: GhostRole
@@ -312,6 +314,7 @@
   - Tajaran
   - Demon
   - SlimePerson
+  - Dwarf
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -355,6 +358,7 @@
   - Tajaran
   - Demon
   - SlimePerson
+  - Dwarf
   parent: ERTJanitor
   components:
     - type: GhostRole
@@ -400,6 +404,7 @@
   - Tajaran
   - Demon
   - SlimePerson
+  - Dwarf
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -443,6 +448,7 @@
   - Tajaran
   - Demon
   - SlimePerson
+  - Dwarf
   parent: ERTEngineer
   components:
     - type: GhostRole
