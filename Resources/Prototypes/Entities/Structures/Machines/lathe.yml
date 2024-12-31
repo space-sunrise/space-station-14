@@ -387,6 +387,8 @@
       - MagazineBoxMagnumRubber
       - MagazineBoxRifleRubber
       - MagazineBoxLightRifleRubber
+      - WeaponGunLaserCarbineSemi
+      - WeaponGunLaserCarbineAutomatic # Sunrise - IK-60 Laser Carbine
       # Sunrise-End
       - BoxBeanbag
       - BoxShotgunIncendiary
@@ -901,6 +903,7 @@
       - TimerTrigger
       - Truncheon
       - VoiceTrigger
+      - WeaponGunLaserCarbineSemi
       - WeaponAdvancedLaser
       - WeaponDisabler
       - WeaponDisablerSMG

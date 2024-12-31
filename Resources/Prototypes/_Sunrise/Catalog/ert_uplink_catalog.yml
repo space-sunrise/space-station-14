@@ -173,7 +173,7 @@
   productEntity: WeaponSniperPulseCarbine
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: pulse-sc }
   cost:
-    Bluecrystal: 15
+    Bluecrystal: 18
   categories:
   - NTLasers
   conditions:
@@ -197,12 +197,24 @@
   productEntity: WeaponPulseCarbine
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: pulse-c }
   cost:
-    Bluecrystal: 10
+    Bluecrystal: 12
   categories:
     - NTLasers
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 4
+
+- type: listing
+  id: NTUplinkSunriseWeaponLaserLNT620
+  productEntity: WeaponLaserLNT620
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: lnt620 }
+  cost:
+    Bluecrystal: 8
+  categories:
+  - NTLasers
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 6
 
 - type: listing
   id: NTUplinkSunriseWeaponEnergyGunTactical
@@ -214,7 +226,7 @@
   - NTLasers
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 4
+    stock: 6
 
 - type: listing
   id: NTUplinkSunriseWeaponWeaponEnergyGun
@@ -937,11 +949,11 @@
     stock: 4
 
 - type: listing
-  id: NTUplinkSunrisePowerCellHigh
-  productEntity: PowerCellHigh
+  id: NTUplinkSunrisePowerCellHyper
+  productEntity: PowerCellHyper
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: power_cell_high }
   cost:
-    Crystallite: 1
+    Crystallite: 2
   categories:
     - NTEngineering
   conditions:
