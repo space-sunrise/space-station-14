@@ -8,10 +8,7 @@
   },
   "states": [
     {
-      "name": "goldeneye_key"
-    },
-    {
-      "name": "goldeneye_terminal"
+      "name": "key"
     }
   ]
 }

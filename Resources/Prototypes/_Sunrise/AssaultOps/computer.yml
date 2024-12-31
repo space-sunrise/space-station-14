@@ -1,8 +1,0 @@
-- type: entity
-  parent: BaseComputerCircuitboard
-  id: ComputerIcarusCircuitboard
-  name: консоль Икарус (консольная плата)
-  description: Плата которая используется для создания консоли Икаруса.
-  components:
-  - type: ComputerBoard
-    prototype: ComputerIcarus
