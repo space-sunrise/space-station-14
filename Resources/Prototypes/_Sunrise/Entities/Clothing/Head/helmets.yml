@@ -90,7 +90,8 @@
     tags:
     - WhitelistChameleon
     - HelmetEVA
-  - type: IdentityBlocker
+  - type: FlashImmunity
+  - type: EyeProtection
   - type: HideLayerClothing
     slots:
     - Hair

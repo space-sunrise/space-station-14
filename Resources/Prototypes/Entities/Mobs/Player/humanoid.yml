@@ -42,6 +42,10 @@
   - Reptilian
   - Vulpkanin
   - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: EventHumanoidMindShielded
   randomizeName: false
   components:
@@ -88,6 +92,10 @@
   - Reptilian
   - Vulpkanin
   - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: EventHumanoidMindShielded
   randomizeName: false
   components:
@@ -129,6 +137,10 @@
   - Reptilian
   - Vulpkanin
   - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -161,6 +173,10 @@
   - Reptilian
   - Vulpkanin
   - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTLeaderEVA
   components:
     - type: GhostRole
@@ -203,6 +219,9 @@
   - Reptilian
   - Vulpkanin
   - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
   parent: ERTLeader
   components:
     - type: BibleUser
@@ -244,6 +263,9 @@
   - Reptilian
   - Vulpkanin
   - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
   parent: ERTChaplain
   components:
     - type: GhostRole
@@ -287,6 +309,9 @@
   - Reptilian
   - Vulpkanin
   - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -327,6 +352,9 @@
   - Reptilian
   - Vulpkanin
   - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
   parent: ERTJanitor
   components:
     - type: GhostRole
@@ -369,6 +397,9 @@
   - Reptilian
   - Vulpkanin
   - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -409,6 +440,9 @@
   - Reptilian
   - Vulpkanin
   - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
   parent: ERTEngineer
   components:
     - type: GhostRole
@@ -451,6 +485,10 @@
   - Reptilian
   - Vulpkanin
   - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -491,6 +529,10 @@
   - Reptilian
   - Vulpkanin
   - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTSecurity
   components:
     - type: GhostRole
@@ -523,6 +565,10 @@
   - Reptilian
   - Vulpkanin
   - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTSecurityEVA
   components:
     - type: GhostRole
@@ -565,6 +611,10 @@
   - Reptilian
   - Vulpkanin
   - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -605,6 +655,10 @@
   - Reptilian
   - Vulpkanin
   - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTMedical
   components:
     - type: GhostRole
@@ -642,6 +696,10 @@
   - Reptilian
   - Vulpkanin
   - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: EventHumanoidMindShielded
   components:
     - type: Loadout
