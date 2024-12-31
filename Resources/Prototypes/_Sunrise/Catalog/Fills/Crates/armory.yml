@@ -38,6 +38,17 @@
         amount: 4
 
 - type: entity
+  id: CrateArmoryIK30
+  parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
+  name: IK-30 crate
+  description: Contains three IK-30 semi laser battery gun. Requires Armory access to open.
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponGunLaserCarbineSemi
+        amount: 3
+
+- type: entity
   id: CrateArmoryMagazineBoxLightRifleBig
   parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
   name: MagazineBoxLightRifleBig crate
