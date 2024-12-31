@@ -5,11 +5,10 @@
     - assops # yeeeeah
   name: assaultops-title
   description: assaultops-description
-  showInVote: false
+  showInVote: true
   rules:
     - AssaultOps
     - LiteSubGamemodesRule
-    - MiddleSubGamemodesRule
     - BasicStationEventScheduler
     - MeteorSwarmScheduler
     - SpaceTrafficControlEventScheduler

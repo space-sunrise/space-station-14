@@ -1,6 +1,6 @@
 - type: entity
   parent: PassengerPDA
-  id: AssaultOpPDA
+  id: AssaultOpsPDA
   name: passenger PDA
   description: Why isn't it gray?
   components:

@@ -9,7 +9,7 @@
 #    ears: ClothingHeadsetAltSyndicate
 #    gloves: ClothingHandsGlovesCombat
     shoes: ClothingShoesColorBlack
-    id: AssaultOpPDA
+    id: AssaultOpsPDA
 #    pocket1: PinpointerIcarus
 #    pocket2: BaseUplinkRadioAssautOP
   innerclothingskirt: ClothingUniformJumpsuitTactical
@@ -28,7 +28,7 @@
     #    ears: ClothingHeadsetAltSyndicate
     #    gloves: ClothingHandsGlovesCombat
     shoes: ClothingShoesColorBlack
-    id: AssaultOpPDA
+    id: AssaultOpsPDA
   #    pocket1: PinpointerIcarus
     pocket2: UplinkRadioAssaultOperatives40TC
   innerclothingskirt: ClothingUniformJumpsuitTactical
@@ -46,7 +46,7 @@
 #    ears: ClothingHeadsetAltSyndicate
 #    gloves: ClothingHandsGlovesCombat
     shoes: ClothingShoesColorBlack
-    id: AssaultOpPDA
+    id: AssaultOpsPDA
     pocket1: RemoteAssaultOpShuttleController
     pocket2: UplinkRadioAssaultOperatives0TC
   innerclothingskirt: ClothingUniformJumpsuitTactical
