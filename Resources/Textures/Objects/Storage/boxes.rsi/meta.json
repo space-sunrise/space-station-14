@@ -258,10 +258,22 @@
             "name": "envelope"
         },
         {
+            "name": "stinger"
+        },
+        {
+            "name": "shrapnel"
+        },
+        {
+            "name": "incendiary"
+        },
+        {
             "name": "france"
         },
 		{
             "name": "agrichemkit"
-        }
+        },
+		{
+			"name": "facecast"
+		}
     ]
 }

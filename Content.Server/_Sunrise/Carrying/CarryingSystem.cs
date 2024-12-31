@@ -41,7 +41,7 @@ namespace Content.Server._Sunrise.Carrying
         [Dependency] private readonly SharedVirtualItemSystem _virtualItemSystem = default!;
         [Dependency] private readonly CarryingSlowdownSystem _slowdown = default!;
         [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
-        [Dependency] private readonly StandingStateSystem _standingState = default!;
+        [Dependency] private readonly SharedStandingStateSystem _standingState = default!;
         [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
         [Dependency] private readonly PullingSystem _pullingSystem = default!;
         [Dependency] private readonly MobStateSystem _mobStateSystem = default!;

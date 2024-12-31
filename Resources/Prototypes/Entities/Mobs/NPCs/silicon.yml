@@ -53,6 +53,7 @@
     - SlowedDown
     - Stutter
     - Electrocution
+    - Jump # Sunrise-Edit
   - type: NameIdentifier
     group: GenericNumber
   - type: Repairable

@@ -13,8 +13,8 @@
       state: o2
       shader: unshaded
   - type: Battery
-    maxCharge: 2800
-    startingCharge: 2800
+    maxCharge: 2000
+    startingCharge: 2000
   - type: EmpImmune
 
 - type: entity
@@ -32,8 +32,8 @@
       state: o2
       shader: unshaded
   - type: Battery
-    maxCharge: 2800
-    startingCharge: 2800
+    maxCharge: 2000
+    startingCharge: 2000
   - type: EmpImmune
 
 - type: entity
@@ -51,6 +51,6 @@
       state: o2
       shader: unshaded
   - type: Battery
-    maxCharge: 2700
-    startingCharge: 2700
+    maxCharge: 2000
+    startingCharge: 2000
   - type: EmpImmune

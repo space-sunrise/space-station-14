@@ -33,6 +33,7 @@ guide-entry-sr-rule-excep-3 = Исключение/прецедент 3
 guide-entry-sr-rule-excep-3-1 = Исключение/прецедент 3.1
 guide-entry-sr-rule-excep-3-3 = Исключение/прецедент 3.3
 guide-entry-sr-rule-excep-3-6 = Исключение/прецедент 3.6
+guide-entry-sr-rule-excep-3-7 = Исключение/прецедент 3.7
 guide-entry-sr-rule-excep-4 = Исключение/прецедент 4
 guide-entry-sr-rule-excep-6 = Исключение/прецедент 6
 guide-entry-sr-rule-excep-7 = Исключение/прецедент 7

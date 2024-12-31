@@ -136,6 +136,8 @@
     # ninja are masters of sneaking around relatively quickly, won't break cloak
     walkModifier: 1.1
     sprintModifier: 1.3
+  - type: FootstepModifier
+    footstepSoundCollection: null
 
 - type: entity
   parent: ClothingShoesBaseButcherable
@@ -148,16 +150,16 @@
   - type: Clothing
     sprite: Clothing/Shoes/Specific/swat.rsi
   - type: NoSlip
-  - type: SlowedOverSlippery
-    slowdownModifier: 0.5
-  - type: SpeedModifierContactCapClothing
-    maxContactSprintSlowdown: 0.3
-    maxContactWalkSlowdown: 0.3
-  - type: ClothingSlowOnDamageModifier
-    modifier: 0.5
   - type: ClothingSpeedModifier
-    walkModifier: 0.90
-    sprintModifier: 0.90
+    walkModifier: 0.95
+    sprintModifier: 0.95
+  - type: SlowedOverSlippery
+    slowdownModifier: 0.6 #sunrise-Start
+  - type: SpeedModifierContactCapClothing
+    maxContactSprintSlowdown: 0.6
+    maxContactWalkSlowdown: 0.6
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.5 #sunrise-end
 
 - type: entity
   parent: ClothingShoesBaseButcherable

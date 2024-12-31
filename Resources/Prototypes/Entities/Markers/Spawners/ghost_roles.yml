@@ -89,8 +89,9 @@
     sprite: Markers/jobs.rsi
     layers:
       - state: green
-      - sprite: Structures/Wallmounts/signs.rsi
-        state: radiation
+      # Sunrise-Edit
+      - sprite: _Sunrise/Interface/Misc/antag_preview.rsi
+        state: nuke_operative
 
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
@@ -107,8 +108,9 @@
     sprite: Markers/jobs.rsi
     layers:
       - state: green
-      - sprite: Structures/Wallmounts/signs.rsi
-        state: radiation
+      # Sunrise-Edit
+      - sprite: _Sunrise/Interface/Misc/antag_preview.rsi
+        state: nuke_operative
 
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
@@ -121,6 +123,14 @@
     rules: ghost-role-information-rules-default-team-antagonist
     raffle:
       settings: default
+  # Sunrise-Start
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: _Sunrise/Interface/Misc/antag_preview.rsi
+      state: nuke_commander
+  # Sunrise-End
 
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
@@ -133,6 +143,14 @@
     rules: ghost-role-information-rules-default-team-antagonist
     raffle:
       settings: default
+  # Sunrise-Start
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: _Sunrise/Interface/Misc/antag_preview.rsi
+      state: nuke_medic
+  # Sunrise-End
 
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
@@ -145,6 +163,14 @@
     rules: ghost-role-information-rules-default-team-antagonist
     raffle:
       settings: default
+  # Sunrise-Start
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+    - sprite: _Sunrise/Interface/Misc/antag_preview.rsi
+      state: nuke_operative
+  # Sunrise-End
 
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]
@@ -178,8 +204,9 @@
     sprite: Markers/jobs.rsi
     layers:
     - state: green
-    - sprite: Objects/Weapons/Melee/energykatana.rsi
-      state: icon
+    # Sunrise-Edit
+    - sprite: _Sunrise/Interface/Misc/antag_preview.rsi
+      state: space_ninja
 
 - type: entity
   categories: [ HideSpawnMenu, Spawner ]

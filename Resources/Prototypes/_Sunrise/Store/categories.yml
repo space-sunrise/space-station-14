@@ -126,3 +126,59 @@
   id: UplinkLootBoxes
   name: store-category-lootbox
   priority: 11
+
+#ERTuplink categoires
+- type: storeCategory
+  id: NTAutoGun
+  name: store-category-ntautogun
+  priority: 0
+
+- type: storeCategory
+  id: NTLasers
+  name: store-category-ntlasers
+  priority: 1
+
+- type: storeCategory
+  id: NTMedicine
+  name: store-category-ntmedicine
+  priority: 4
+
+- type: storeCategory
+  id: NTPistols
+  name: store-category-ntpistols
+  priority: 2
+
+- type: storeCategory
+  id: NTAdditional
+  name: store-category-ntadditional
+  priority: 5
+
+- type: storeCategory
+  id: NTSanitary
+  name: store-category-ntsanitary
+  priority: 6
+
+- type: storeCategory
+  id: NTEngineering
+  name: store-category-ntengineering
+  priority: 7
+
+- type: storeCategory
+  id: NTMechs
+  name: store-category-ntmechs
+  priority: 9
+
+- type: storeCategory
+  id: NTexplosive
+  name: store-category-ntexplosive
+  priority: 10
+
+- type: storeCategory
+  id: NTAmmo
+  name: store-category-ntammo
+  priority: 3
+
+- type: storeCategory
+  id: NTEquipment
+  name: store-category-ntequipment
+  priority: 8

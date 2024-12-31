@@ -323,7 +323,7 @@
   id: JobChiefEngineer
   groups:
   - GroupTankHarness
-  #- ChiefEngineerHead
+  - ChiefEngineerHead
   - ChiefEngineerJumpsuit
   - ChiefEngineerBackpack # Sunrise-Edit
   - ChiefEngineerNeck

@@ -130,10 +130,11 @@
   - type: CollectiveMind
     minds:
     - Arachnids
-
   - type: FootprintEmitter
-    leftBareFootState: "footprint-left-bare-spider"
-    rightBareFootState: "footprint-right-bare-spider"
+    leftBareFootState:
+      - "footprint-left-bare-spider"
+    rightBareFootState:
+      - "footprint-right-bare-spider"
   # Sunrise-end
 
 - type: entity

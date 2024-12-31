@@ -158,3 +158,12 @@
     state: banner-green
 
 
+- type: entity #Sunrise-start
+  id: BannerUSSP
+  parent: BannerBase
+  name: USSP banner
+  description: A banner displaying USSP. Prepare to Combat COMRAD!.
+  components:
+  - type: Sprite
+    sprite: Structures/Decoration/banner.rsi
+    state: banner_ussp #Sunrise-end

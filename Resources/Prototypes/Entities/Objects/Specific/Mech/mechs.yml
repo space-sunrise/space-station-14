@@ -178,6 +178,7 @@
     autoRot: true
     radius: 4
     netsync: false
+  - type: AccessReader
 
 # Ripley MK-I
 - type: entity
@@ -265,7 +266,7 @@
     baseState: ripleymkii
     openState: ripleymkii-open
     brokenState: ripleymkii-broken
-    mechToPilotDamageMultiplier: 0.35
+    mechToPilotDamageMultiplier: 0.30
     airtight: true
     pilotWhitelist:
       components:
@@ -278,7 +279,7 @@
         Blunt: 20
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.5
-    baseSprintSpeed: 2.2
+    baseSprintSpeed: 2.5
   - type: Damageable
     damageModifierSet: MediumArmorNT
   - type: Reflect
@@ -296,7 +297,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      520: Critical
+      500: Critical
     showOverlays: false
     allowRevives: true
 
@@ -615,7 +616,7 @@
     baseState: gygax
     openState: gygax-open
     brokenState: gygax-broken
-    mechToPilotDamageMultiplier: 0.3
+    mechToPilotDamageMultiplier: 0.25
     airtight: true
     pilotWhitelist:
       components:
@@ -626,7 +627,7 @@
     damage:
       types:
         Blunt: 30
-        Structural: 180
+        Structural: 190
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 3.5
@@ -681,7 +682,7 @@
     baseState: durand
     openState: durand-open
     brokenState: durand-broken
-    mechToPilotDamageMultiplier: 0.25
+    mechToPilotDamageMultiplier: 0.20
     airtight: true
     pilotWhitelist:
       components:
@@ -695,7 +696,7 @@
         Structural: 250
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.5
-    baseSprintSpeed: 2.5
+    baseSprintSpeed: 2.2
   - type: Damageable
     damageModifierSet: MediumArmorNT
   - type: CanMoveInAir
@@ -834,7 +835,7 @@
     damage:
       types:
         Blunt: 35
-        Structural: 200
+        Structural: 250
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.4
     baseSprintSpeed: 3.6
@@ -860,6 +861,8 @@
     - DoorBumpOpener
     - FootstepSound
     - Gygax
+  - type: AccessReader
+    access: [["CentralCommand"]]
 
 - type: entity
   id: MechNTGygaxBattery
@@ -917,7 +920,7 @@
     damage:
       types:
         Blunt: 55
-        Structural: 350
+        Structural: 370
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
     baseSprintSpeed: 1.5
@@ -938,6 +941,8 @@
       800: Critical
     showOverlays: false
     allowRevives: true
+  - type: AccessReader
+    access: [["CentralCommand"]]
 
 - type: entity
   id: MechMarauderBattery
@@ -995,16 +1000,16 @@
     damage:
       types:
         Blunt: 60
-        Structural: 460
+        Structural: 400
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.2
-    baseSprintSpeed: 3
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 1.9
   - type: Damageable
     damageModifierSet: HeavyArmorNT
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.30
+    reflectProb: 0.25
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -1016,6 +1021,8 @@
       800: Critical
     showOverlays: false
     allowRevives: true
+  - type: AccessReader
+    access: [["CentralCommand"]]
 
 - type: entity
   id: MechSeraphBattery
@@ -1102,6 +1109,8 @@
     - DoorBumpOpener
     - FootstepSound
     - Gygax
+  - type: AccessReader
+    access: [["NuclearOperative"]]
 
 - type: entity
   id: MechGygaxSyndieBattery
@@ -1157,10 +1166,10 @@
     damage:
       types:
         Blunt: 50
-        Structural: 380
+        Structural: 360
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 2.8
+    baseSprintSpeed: 2.3
   - type: Damageable
     damageModifierSet: MediumArmorSyndi
   - type: CanMoveInAir
@@ -1178,6 +1187,8 @@
       780: Critical
     showOverlays: false
     allowRevives: true
+  - type: AccessReader
+    access: [["NuclearOperative"]]
 
 - type: entity
   id: MechRoverSyndieBattery
@@ -1233,10 +1244,10 @@
     damage:
       types:
         Blunt: 60
-        Structural: 450
+        Structural: 390
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
-    baseSprintSpeed: 1.5
+    baseSprintSpeed: 1.6
   - type: Damageable
     damageModifierSet: HeavyArmorSyndi
   - type: CanMoveInAir
@@ -1259,6 +1270,8 @@
       800: Critical
     showOverlays: false
     allowRevives: true
+  - type: AccessReader
+    access: [["NuclearOperative"]]
 
 - type: entity
   id: MechMaulerSyndieBattery

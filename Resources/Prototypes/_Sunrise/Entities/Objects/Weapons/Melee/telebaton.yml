@@ -23,9 +23,7 @@
     sprite: _Sunrise/Objects/Weapons/Melee/telebaton.rsi
     layers:
     - state: telebaton_off
-    - state: telebaton_on
-      visible: false
-      map: [ "blade" ]
+      map: [ "enum.ToggleVisuals.Layer" ]
   - type: ItemToggleMeleeWeapon
     activatedDamage:
       types:
@@ -48,12 +46,11 @@
     shape:
     - 0,0,0,0
   - type: Appearance
-  - type: ToggleableLightVisuals
-    spriteLayer: blade
-    inhandVisuals:
-      left:
-        - state: on-inhand-left
-      right:
-        - state: on-inhand-right
+  - type: GenericVisualizer
+    visuals:
+     enum.ToggleVisuals.Toggled:
+        enum.ToggleVisuals.Layer:
+          True: {state: telebaton_on}
+          False: {state: telebaton_off}
   - type: StaticPrice
     price: 100

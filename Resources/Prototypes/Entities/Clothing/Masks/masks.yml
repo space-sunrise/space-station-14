@@ -389,7 +389,7 @@
         Heat: 0.95
 
 - type: entity
-  parent: [ ClothingMaskGas, BaseRestrictedContraband ]
+  parent: [ ClothingMaskGas, BaseSecurityCargoContraband ]
   id: ClothingMaskGasMerc
   name: mercenary gas mask
   description: Slightly outdated, but reliable military-style gas mask.
@@ -451,9 +451,6 @@
         Slash: 0.80
         Piercing: 0.90
         Heat: 0.90
-  - type: NightVisionDevice #Sunrise - night vision
-    displayColor: "#44b855"
-    displayShader: NVDDisplay
 
 - type: entity
   parent: ClothingMaskBase

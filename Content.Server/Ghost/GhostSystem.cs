@@ -253,6 +253,9 @@ namespace Content.Server.Ghost
             _actions.AddAction(uid, ref component.ToggleLightingActionEntity, component.ToggleLightingAction);
             _actions.AddAction(uid, ref component.ToggleFoVActionEntity, component.ToggleFoVAction);
             _actions.AddAction(uid, ref component.ToggleGhostsActionEntity, component.ToggleGhostsAction);
+            // Sunrise-Start
+            _actions.AddAction(uid, ref component.GhostsThemeActionEntity, component.GhostsThemeAction);
+            // Sunrise-End
         }
 
         private void OnGhostExamine(EntityUid uid, GhostComponent component, ExaminedEvent args)
@@ -579,8 +582,7 @@ namespace Content.Server.Ghost
             {
                 if (_mobState.IsCritical(playerEntity.Value, mobState))
                 {
-                    // Sunrise-Edit
-                    //canReturn = true;
+                    canReturn = true;
 
                     //todo: what if they dont breathe lol
                     //cry deeply

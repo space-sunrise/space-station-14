@@ -7,6 +7,7 @@ using Content.Shared.Item;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Content.Shared.Weapons.Ranged.Components;
+using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 
@@ -14,6 +15,7 @@ namespace Content.Shared._Sunrise.Weapons;
 public sealed class EnergyGunFireModesSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedItemSystem _item = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
@@ -27,11 +29,24 @@ public sealed class EnergyGunFireModesSystem : EntitySystem
         SubscribeLocalEvent<EnergyGunFireModesComponent, ActivateInWorldEvent>(OnInteractHandEvent);
         SubscribeLocalEvent<EnergyGunFireModesComponent, GetVerbsEvent<Verb>>(OnGetVerb);
         SubscribeLocalEvent<EnergyGunFireModesComponent, ExaminedEvent>(OnExamined);
+        SubscribeLocalEvent<EnergyGunFireModesComponent, AttemptShootEvent>(OnAttemptShoot);
+    }
+
+    private void OnAttemptShoot(EntityUid uid, EnergyGunFireModesComponent component, ref AttemptShootEvent args)
+    {
+        if (HasComp<HitscanBatteryAmmoProviderComponent>(uid) || HasComp<ProjectileBatteryAmmoProviderComponent>(uid))
+            return;
+        args.Cancelled = true;
+
+        if (component.FireModes.Count == 0)
+            return;
+
+        SetFireMode(uid, component, component.FireModes[0]);
     }
 
     private void OnStartup(Entity<EnergyGunFireModesComponent> ent, ref ComponentStartup args)
     {
-        if (ent.Comp.FireModes.Count <= 0)
+        if (ent.Comp.FireModes.Count == 0 || _entityManager.IsPaused(ent.Owner))
             return;
 
         SetFireMode(ent.Owner, ent.Comp, ent.Comp.FireModes[0]);

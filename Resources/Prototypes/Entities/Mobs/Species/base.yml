@@ -142,7 +142,9 @@
     - RadiationProtection
     - Drowsiness
     - Adrenaline
-    - LoveEffect  # Sunrise-Aphrodesiac
+    - LoveEffect  # Sunrise-Edit
+    - Jump # Sunrise-Edit
+    - Flip # Sunrise-Edit
   - type: Body
     prototype: Human
     requiredLegs: 2
@@ -240,16 +242,26 @@
     emotesTakeDamage:
     - Scream
     - Crying
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 25
+  - type: Food
+    requiresSpecialDigestion: true
   # Sunrise-End
 
 - type: entity
   save: false
   parent:
+  - BaseMobSpecies # Sunrise
   - MobBloodstream
   - MobRespirator
   - MobAtmosStandard
   - MobFlammable
-  - BaseMobSpecies
+ #- BaseMobSpecies # Wizards
   id: BaseMobSpeciesOrganic
   abstract: true
   components:
@@ -261,8 +273,7 @@
   - type: Barotrauma
     damage:
       types:
-        Blunt: 0.50 #per second, scales with pressure and other constants.
-        Heat: 0.1
+        Blunt: 0.1 # Sunrise-Casual
   - type: PassiveDamage # Slight passive regen. Assuming one damage type, comes out to about 4 damage a minute.
     allowedStates:
     - Alive
@@ -308,7 +319,7 @@
   - type: Respirator
     damage:
       types:
-        Asphyxiation: 1.0
+        Asphyxiation: 0.5 # Sunrise-Casual
     damageRecovery:
       types:
         Asphyxiation: -1.0

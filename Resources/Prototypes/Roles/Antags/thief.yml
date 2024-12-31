@@ -5,6 +5,10 @@
   setPreference: true
   objective: roles-antag-thief-objective
   guides: [ Thieves ]
+  # Sunrise-Edit
+  previewIcon:
+    sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
+    state: thief
 
 - type: startingGear
   id: ThiefGear

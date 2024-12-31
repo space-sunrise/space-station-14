@@ -64,8 +64,6 @@ namespace Content.Shared.Preferences
         [DataField]
         private Dictionary<string, RoleLoadout> _loadouts = new();
 
-        private ISharedSponsorsManager? _sponsorsMgr;  // Sunrise-Sponsors
-
         [DataField]
         public string Name { get; set; } = "John Doe";
 
@@ -572,10 +570,23 @@ namespace Content.Shared.Preferences
                 name = GetName(Species, gender);
             }
 
-            string flavortext;
-            if (FlavorText.Length > MaxDescLength)
+            // Sunrise-Start
+            IoCManager.Instance!.TryResolveType<ISharedSponsorsManager>(out var sponsors);
+            var maxDescLength = MaxDescLength;
+            if (sponsors != null)
             {
-                flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText)[..MaxDescLength];
+                maxDescLength = sponsors.GetSizeFlavor(session.UserId);
+                if (!sponsors.IsAllowedFlavor(session.UserId))
+                {
+                    FlavorText = string.Empty;
+                }
+            }
+            // Sunrise-End
+
+            string flavortext;
+            if (FlavorText.Length > maxDescLength) // Sunrise-Edit
+            {
+                flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText)[..maxDescLength]; // Sunrise-Edit
             }
             else
             {

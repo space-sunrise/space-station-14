@@ -28,7 +28,7 @@ namespace Content.Server._Sunrise.Ghost
                 return;
             }
 
-            _ghostSystem.OnGhostAttempt(_mindId, canReturnGlobal: false);
+            _ghostSystem.OnGhostAttempt(_mindId, canReturnGlobal: true);
             Close();
         }
     }

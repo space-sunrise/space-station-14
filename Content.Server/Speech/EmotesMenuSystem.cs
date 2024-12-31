@@ -22,9 +22,9 @@ public sealed partial class EmotesMenuSystem : EntitySystem
         if (!player.HasValue)
             return;
 
-        if (!_prototypeManager.TryIndex(msg.ProtoId, out var proto) || proto.ChatTriggers.Count == 0)
+        if (!_prototypeManager.TryIndex(msg.ProtoId, out var proto))
             return;
 
-        _chat.TryEmoteWithChat(player.Value, msg.ProtoId);
+        _chat.TryEmoteWithChat(player.Value, proto.ID);
     }
 }

@@ -133,11 +133,11 @@
     sprite: _Sunrise/Objects/Specific/Mech/mecha_uvm31.rsi
     state: mecha_uvm31
   - type: Gun
-    minAngle: 8
-    maxAngle: 15
+    minAngle: 5
+    maxAngle: 10
     angleIncrease: 4
     angleDecay: 16
-    fireRate: 7.5
+    fireRate: 5
     selectedMode: FullAuto
     availableModes:
       - FullAuto
@@ -146,8 +146,8 @@
       params:
         volume: -1
   - type: HitscanBatteryAmmoProvider
-    proto: BulletSyndiPlasma
-    fireCost: 7
+    proto: BulletSyndiPlasmaDouble
+    fireCost: 25
   - type: Appearance
   - type: AmmoCounter
 
@@ -162,7 +162,7 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_autocannon
   - type: Gun
-    fireRate: 0.35
+    fireRate: 0.3
     selectedMode: FullAuto
     availableModes:
       - FullAuto

@@ -5,8 +5,8 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Fluids.Components;
+using Content.Shared.Standing;
 using Robust.Shared.Physics.Events;
-using StandingStateSystem = Content.Shared.Standing.StandingStateSystem;
 
 namespace Content.Server._Sunrise.Footprints;
 
@@ -16,7 +16,7 @@ namespace Content.Server._Sunrise.Footprints;
 public sealed class PuddleFootprintSystem : EntitySystem
 {
     [Dependency] private readonly SharedSolutionContainerSystem _solutionSystem = default!;
-    [Dependency] private readonly StandingStateSystem _standingStateSystem = default!;
+    [Dependency] private readonly SharedStandingStateSystem _standingStateSystem = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
