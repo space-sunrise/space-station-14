@@ -194,7 +194,8 @@ public sealed partial class AdminVerbSystem
             Impact = LogImpact.High,
             Message = Loc.GetString("admin-verb-make-assault-operative"),
         };
-        args.Verbs.Add(assaultOperative);
+        // На время пока не будут закончены все новые режимы.
+        //args.Verbs.Add(assaultOperative);
 
         Verb fleshCultist = new()
         {
@@ -208,6 +209,7 @@ public sealed partial class AdminVerbSystem
             Impact = LogImpact.High,
             Message = Loc.GetString("admin-verb-make-flesh-cultist"),
         };
-        args.Verbs.Add(fleshCultist);
+        // На время пока не будут закончены все новые режимы.
+        //args.Verbs.Add(fleshCultist);
     }
 }
