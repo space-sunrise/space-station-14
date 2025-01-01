@@ -5,11 +5,11 @@
   setPreference: true
   objective: roles-antag-assault-operative-objective
   requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 7200 # 2h
-    - !type:DepartmentTimeRequirement
-      department: Security
-      time: 3600 # 1h
+  - !type:OverallPlaytimeRequirement
+    time: 86400 # 24h # Sunrise-Roletime
+  - !type:DepartmentTimeRequirement
+    department: Security
+    time: 18000 # 5h # Sunrise-RoleTime
 
 - type: antag
   id: AssaultCommander
@@ -19,7 +19,7 @@
   objective: roles-antag-assault-commander-objective
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 7200 # 2h
+    time: 86400 # 24h # Sunrise-Roletime
   - !type:DepartmentTimeRequirement
     department: Security
-    time: 7200 # 2h
+    time: 36000 # 10h # Sunrise-RoleTime
