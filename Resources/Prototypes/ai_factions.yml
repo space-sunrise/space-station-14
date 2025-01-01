@@ -12,6 +12,7 @@
   - Carps
   - Changeling
   - Vampire
+  - Flesh
 
 - type: npcFaction
   id: Mouse
@@ -32,6 +33,7 @@
   - AllHostile
   # Sunrise Edit
   - Carps
+  - Flesh
 
 - type: npcFaction
   id: SimpleHostile
@@ -48,6 +50,8 @@
   - Carps
   - Changeling
   - Vampire
+  - FleshHuman
+  - Flesh
 
 - type: npcFaction
   id: SimpleNeutral
@@ -66,6 +70,8 @@
   - Carps
   - Changeling
   - Vampire
+  - FleshHuman
+  - Flesh
 
 - type: npcFaction
   id: Xeno
@@ -82,6 +88,8 @@
   - Carps
   - Changeling
   - Vampire
+  - FleshHuman
+  - Flesh
 
 - type: npcFaction
   id: Zombie
@@ -99,6 +107,8 @@
   - Carps
   - Changeling
   - Vampire
+  - FleshHuman
+  - Flesh
 
 - type: npcFaction
   id: Revolutionary
@@ -111,6 +121,8 @@
   - Carps
   - Changeling
   - Vampire
+  - FleshHuman
+  - Flesh
 
 - type: npcFaction
   id: AllHostile
@@ -130,3 +142,5 @@
   - Carps
   - Changeling
   - Vampire
+  - FleshHuman
+  - Flesh

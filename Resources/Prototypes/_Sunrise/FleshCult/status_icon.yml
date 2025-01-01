@@ -1,0 +1,11 @@
+﻿- type: factionIcon
+  id: FleshFaction
+  priority: 12
+  showTo:
+    components:
+    - ShowAntagIcons
+    - FleshCultist
+    - FleshMob
+  icon:
+    sprite: /Textures/_Sunrise/FleshCult/Interface/flesh_icon.rsi
+    state: Flesh

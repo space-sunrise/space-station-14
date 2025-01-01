@@ -1,4 +1,5 @@
 using Content.Server._Sunrise.AssaultOps;
+using Content.Server._Sunrise.FleshCult.GameRule;
 using Content.Server.Administration.Commands;
 using Content.Server.Antag;
 using Content.Server.GameTicking.Rules.Components;
@@ -194,5 +195,19 @@ public sealed partial class AdminVerbSystem
             Message = Loc.GetString("admin-verb-make-assault-operative"),
         };
         args.Verbs.Add(assaultOperative);
+
+        Verb fleshCultist = new()
+        {
+            Text = "Make Flesh Cultist",
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Texture(new ResPath("_Sunrise/FleshCult/Interface/Actions/fleshCultistFleshHeart.png")),
+            Act = () =>
+            {
+                _antag.ForceMakeAntag<FleshCultRuleComponent>(targetPlayer, "FleshCult");
+            },
+            Impact = LogImpact.High,
+            Message = Loc.GetString("admin-verb-make-flesh-cultist"),
+        };
+        args.Verbs.Add(fleshCultist);
     }
 }

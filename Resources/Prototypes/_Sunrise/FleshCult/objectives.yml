@@ -1,0 +1,38 @@
+﻿- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BaseFleshCultObjective
+  components:
+    - type: Objective
+      difficulty: 1.5
+      issuer: flesh-cult
+    - type: RoleRequirement
+      roles:
+        components:
+          - FleshCultistRole
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseFleshCultObjective
+  id: CreateFleshHeartObjective
+  name: Создать и пробудить сердце плоти.
+  description: Вам необходимо развить необходимый навык для создания сердца.
+    Для пробуждения оно должно поглотить нужное количество тел развитых существ.
+    После пробуждения будьте готовы его защищать, ведь оно начнет превращать всю станцию в плоть.
+  components:
+    - type: Objective
+      icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistFleshHeart.png
+    - type: NumberObjective
+      min: 1
+      max: 1
+    - type: CreateFleshHeartCondition
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: [BaseFleshCultObjective, BaseSurviveObjective]
+  id: FleshCultSurviveObjective
+  name: Выжить и сохранить человеческий облик.
+  description: Не допустите голодания паразита, чтобы избежать непредвиденных обстоятельств.
+  components:
+    - type: Objective
+      icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistSurvivalObjective.png

@@ -1,0 +1,94 @@
+- type: reagent
+  id: FleshAcid
+  name: reagent-name-flesh-acid
+  group: Toxins
+  desc: reagent-desc-flesh-acid
+  physicalDesc: reagent-physical-desc-strong-smelling
+  flavor: acid
+  color: "#c9000e"
+  boilingPoint: 0.0
+  meltingPoint: 0.0
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+        - !type:HealthChange
+          conditions:
+          - !type:HasTag
+            tag: "Flesh"
+            invert: true
+          scaleByQuantity: false
+          ignoreResistances: true
+          damage:
+            types:
+              Caustic: 10
+        - !type:Emote
+          conditions:
+          - !type:HasTag
+            tag: "Flesh"
+            invert: true
+          emote: Scream
+          probability: 0.9
+        - !type:PopupMessage
+          conditions:
+          - !type:HasTag
+            tag: "Flesh"
+            invert: true
+          type: Local
+          visualType: Large
+          messages: [ "generic-reagent-effect-burning-insides" ]
+          probability: 0.9
+
+
+- type: reagent
+  id: Carol
+  name: reagent-name-carol
+  group: Toxins
+  desc: reagent-desc-carol
+  physicalDesc: reagent-physical-desc-necrotic
+  flavor: bitter
+  color: "#c9000e"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:CauseFleshCultInfection
+        conditions:
+        - !type:HasTag
+          tag: "Flesh"
+          invert: true
+        - !type:ReagentThreshold
+          min: 5
+      - !type:ModifyBloodLevel
+        conditions:
+        - !type:HasTag
+          tag: "Flesh"
+        amount: 5
+      - !type:SatiateThirst
+        conditions:
+        - !type:HasTag
+          tag: "Flesh"
+        factor: 2.5
+      - !type:SatiateHunger
+        conditions:
+        - !type:HasTag
+          tag: "Flesh"
+        factor: 2.5
+      - !type:HealthChange
+        conditions:
+        - !type:HasTag
+          tag: "Flesh"
+        damage:
+          groups:
+            Airloss: -4
+          types:
+            Heat: -1
+            Shock: -2
+            Cold: -2
+            Poison: -2
+            Piercing: -2
+            Blunt: -2
+            Caustic: -2
+            Slash: -2
+
+
+
