@@ -9,7 +9,7 @@
     time: 36000 # 10h # Sunrise-RoleTime
   - !type:DepartmentTimeRequirement
     department: Security
-    time: 7200 # 2h # Sunrise-RoleTime
+    time: 18000 # 5h # Sunrise-RoleTime
   guides: [ NuclearOperatives ]
   # Sunrise-Edit
   previewIcon:
@@ -45,10 +45,10 @@
   objective: roles-antag-nuclear-operative-commander-objective
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 36000 # 10h # Sunrise-RoleTime
+    time: 72000 # 20h # Sunrise-RoleTime
   - !type:DepartmentTimeRequirement
     department: Security
-    time: 18000 # 5h # Sunrise-RoleTime
+    time: 36000 # 10h # Sunrise-RoleTime
   # should be changed to nukie playtime when thats tracked (wyci)
   guides: [ NuclearOperatives ]
   # Sunrise-Edit
@@ -99,6 +99,7 @@
     pocket1: BaseUplinkRadio0TC
   inhand:
   - NukeOpsDeclarationOfWar
+  - RemoteNukeOpShuttleController # Sunrise-Edit
 
 #Nuclear Operative Medic Gear
 - type: startingGear

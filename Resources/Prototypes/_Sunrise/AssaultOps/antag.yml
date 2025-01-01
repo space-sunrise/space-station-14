@@ -1,0 +1,25 @@
+- type: antag
+  id: AssaultOperative
+  name: roles-antag-assault-operative-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-assault-operative-objective
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 86400 # 24h # Sunrise-Roletime
+  - !type:DepartmentTimeRequirement
+    department: Security
+    time: 18000 # 5h # Sunrise-RoleTime
+
+- type: antag
+  id: AssaultCommander
+  name: roles-antag-assault-commander-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-assault-commander-objective
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 86400 # 24h # Sunrise-Roletime
+  - !type:DepartmentTimeRequirement
+    department: Security
+    time: 36000 # 10h # Sunrise-RoleTime

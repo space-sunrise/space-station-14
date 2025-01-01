@@ -1,3 +1,5 @@
+using Content.Server._Sunrise.AssaultOps;
+using Content.Server._Sunrise.FleshCult.GameRule;
 using Content.Server._Sunrise.BloodCult.GameRule;
 using Content.Server.Administration.Commands;
 using Content.Server.Antag;
@@ -182,6 +184,36 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(vampire);
 
+        Verb assaultOperative = new()
+        {
+            Text = Loc.GetString("admin-verb-text-make-assault-operative"),
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Structures/Wallmounts/posters.rsi"), "poster46_contraband"),
+            Act = () =>
+            {
+                _antag.ForceMakeAntag<AssaultOpsRuleComponent>(targetPlayer, "AssaultOps");
+            },
+            Impact = LogImpact.High,
+            Message = Loc.GetString("admin-verb-make-assault-operative"),
+        };
+        // На время пока не будут закончены все новые режимы.
+        //args.Verbs.Add(assaultOperative);
+
+        Verb fleshCultist = new()
+        {
+            Text = "Make Flesh Cultist",
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Texture(new ResPath("_Sunrise/FleshCult/Interface/Actions/fleshCultistFleshHeart.png")),
+            Act = () =>
+            {
+                _antag.ForceMakeAntag<FleshCultRuleComponent>(targetPlayer, "FleshCult");
+            },
+            Impact = LogImpact.High,
+            Message = Loc.GetString("admin-verb-make-flesh-cultist"),
+        };
+        // На время пока не будут закончены все новые режимы.
+        //args.Verbs.Add(fleshCultist);
+
         Verb bloodCultist = new()
         {
             Text = Loc.GetString("admin-verb-text-make-cultist"),
@@ -194,7 +226,8 @@ public sealed partial class AdminVerbSystem
             Impact = LogImpact.High,
             Message = Loc.GetString("admin-verb-make-cultist"),
         };
-        args.Verbs.Add(bloodCultist);
+        // На время пока не будут закончены все новые режимы.
+        //args.Verbs.Add(bloodCultist);
         // Sunrise-End
     }
 }

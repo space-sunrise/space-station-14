@@ -152,3 +152,9 @@
   text: station-goal-delegates
   lockBoxPrototypeId: LockboxCaptain
 
+- type: stationGoal
+  id: VirusFlesh
+  text: station-goal-virus
+  lockBoxPrototypeId: Lockbox
+  extraItems:
+  - SyringeCarolNT

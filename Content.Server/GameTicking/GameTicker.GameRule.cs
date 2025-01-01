@@ -327,7 +327,7 @@ public sealed partial class GameTicker
 
     #region Command Implementations
 
-    [AdminCommand(AdminFlags.Fun)]
+    [AdminCommand(AdminFlags.Host)] // На время пока не будут закончены все новые режимы.
     private void AddGameRuleCommand(IConsoleShell shell, string argstr, string[] args)
     {
         if (args.Length == 0)

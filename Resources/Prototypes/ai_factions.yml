@@ -12,6 +12,7 @@
   - Carps
   - Changeling
   - Vampire
+  - Flesh
   - BloodCult
 
 - type: npcFaction
@@ -33,6 +34,7 @@
   - AllHostile
   # Sunrise Edit
   - Carps
+  - Flesh
 
 - type: npcFaction
   id: SimpleHostile
@@ -49,6 +51,8 @@
   - Carps
   - Changeling
   - Vampire
+  - FleshHuman
+  - Flesh
   - BloodCult
 
 - type: npcFaction
@@ -68,6 +72,9 @@
   - Carps
   - Changeling
   - Vampire
+  - FleshHuman
+  - Flesh
+  - BloodCult
 
 - type: npcFaction
   id: Xeno
@@ -84,6 +91,8 @@
   - Carps
   - Changeling
   - Vampire
+  - FleshHuman
+  - Flesh
   - BloodCult
 
 - type: npcFaction
@@ -102,6 +111,8 @@
   - Carps
   - Changeling
   - Vampire
+  - FleshHuman
+  - Flesh
   - BloodCult
 
 - type: npcFaction
@@ -115,6 +126,9 @@
   - Carps
   - Changeling
   - Vampire
+  - FleshHuman
+  - Flesh
+  - BloodCult
 
 - type: npcFaction
   id: AllHostile
@@ -134,4 +148,6 @@
   - Carps
   - Changeling
   - Vampire
+  - FleshHuman
+  - Flesh
   - BloodCult
