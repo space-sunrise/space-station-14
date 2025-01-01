@@ -6,7 +6,7 @@ namespace Content.Server._Sunrise.DamageOverlay;
 public sealed partial class DamageOverlayComponent : Component
 {
     [DataField]
-    public PopupType DamagePopupType = PopupType.MediumCaution;
+    public PopupType DamagePopupType = PopupType.MediumCautionFloating;
 
     [DataField]
     public PopupType HealPopupType = PopupType.LargeGreen;
