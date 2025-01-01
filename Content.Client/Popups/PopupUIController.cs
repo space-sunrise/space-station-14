@@ -71,12 +71,6 @@ public sealed class PopupUIController : UIController, IOnStateEntered<GameplaySt
                 font = _mediumFont;
                 color = Color.Red;
                 break;
-            // Sunrise edit start
-            case PopupType.MediumGreen:
-                font = _mediumFont;
-                color = Color.LightGreen;
-                break;
-            // Sunrise edit end
             case PopupType.Large:
                 font = _largeFont;
                 color = Color.LightGray;
