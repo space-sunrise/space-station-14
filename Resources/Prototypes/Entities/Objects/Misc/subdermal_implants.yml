@@ -175,6 +175,8 @@
       containers:
         storagebase: !type:Container
           ents: [ ]
+    - type: Item
+      size: Normal
     - type: UserInterface
       interfaces:
         enum.StorageUiKey.Key:
