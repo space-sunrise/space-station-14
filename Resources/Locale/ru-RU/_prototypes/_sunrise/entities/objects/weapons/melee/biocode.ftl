@@ -1,6 +1,9 @@
 ent-EnergySwordDoubleBiocode = { ent-EnergySwordDouble }
     .suffix = БИОКОД
     .desc = { ent-EnergySwordDouble.desc }
+ent-EnergyDaggerBiocode = { ent-EnergyDagger }
+    .suffix = БИОКОД
+    .desc = { ent-EnergyDagger.desc }
 ent-EnergySwordBiocode = { ent-EnergySword }
     .suffix = БИОКОД
     .desc = { ent-EnergySword.desc }

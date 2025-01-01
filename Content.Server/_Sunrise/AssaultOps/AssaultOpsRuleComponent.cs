@@ -16,7 +16,7 @@ namespace Content.Server._Sunrise.AssaultOps;
 public sealed partial class AssaultOpsRuleComponent : Component
 {
     [DataField("icarusKeyImplant", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string IcarusKeyImplant = "IcarusKeyImplant";
+    public string IcarusKeyImplant = "IcarusKey";
 
     [DataField("requiredKeys")] public int RequiredKeys = 3;
 

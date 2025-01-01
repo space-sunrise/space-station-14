@@ -52,11 +52,11 @@ public sealed partial class IcarusTerminalComponent : Component
     [ViewVariables]
     public float TimerRoundEnd = 1200;
 
+    [DataField("activeGoldenEyeAlertSound")]
+    public SoundSpecifier ActiveGoldenEyeAlertSound = new SoundPathSpecifier("/Audio/_Sunrise/AssaultOperatives/golden_eye_alarm.ogg");
+
     [DataField("alertSound")]
     public SoundSpecifier AlertSound = new SoundPathSpecifier("/Audio/_Sunrise/AssaultOperatives/icarus_alarm.ogg");
-
-    [DataField("accessGrantedSound")]
-    public SoundSpecifier AccessGrantedSound = new SoundPathSpecifier("/Audio/Machines/Nuke/confirm_beep.ogg");
 
     [DataField("fireSound")]
     public SoundSpecifier FireSound = new SoundPathSpecifier("/Audio/_Sunrise/AssaultOperatives/sunbeam_fire.ogg");

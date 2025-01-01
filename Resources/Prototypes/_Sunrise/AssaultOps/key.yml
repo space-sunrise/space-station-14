@@ -10,7 +10,11 @@
       - state: key
   - type: IcarusKey
   - type: Item
-    size: Small
+    size: Tiny
   - type: WarpPoint
     follow: true
     location: Icarus key
+  - type: SubdermalImplant
+  - type: Tag
+    tags:
+    - SubdermalImplant

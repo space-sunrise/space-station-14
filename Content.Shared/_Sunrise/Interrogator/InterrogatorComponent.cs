@@ -1,3 +1,4 @@
+using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Serialization;
 
@@ -12,20 +13,26 @@ public sealed partial class InterrogatorComponent : Component
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public float ExtractionTime = 30f;
 
+    [ViewVariables]
+    public float ExtractionProgress = 0;
+
+    public EntityUid? PlayingStream;
+
     [ViewVariables(VVAccess.ReadWrite)]
-    public InterrogatorStatus Status;
-}
+    [DataField("entryDelay")]
+    public float EntryDelay = 2f;
 
-[Serializable, NetSerializable]
-public enum InterrogatorVisuals : byte
-{
-    Status
-}
+    // SUNRISE-TODO: Более подходящий звук работы, мейби взять из сс13
+    [DataField("extractingSound")]
+    public SoundSpecifier ExtractingSound = new SoundPathSpecifier("/Audio/Machines/microwave_loop.ogg");
 
-[Serializable, NetSerializable]
-public enum InterrogatorStatus : byte
-{
-    Open,
-    Off,
-    On,
+    [DataField("extractDoneSound")]
+    public SoundSpecifier ExtractDoneSound = new SoundPathSpecifier("/Audio/_Sunrise/Interrogator/ding.ogg");
+
+    [Serializable, NetSerializable]
+    public enum InterrogatorVisuals : byte
+    {
+        ContainsEntity,
+        IsOn
+    }
 }

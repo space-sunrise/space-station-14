@@ -15,7 +15,6 @@ using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using IcarusTerminalComponent = Content.Shared._Sunrise.AssaultOps.Icarus.IcarusTerminalComponent;
 
 namespace Content.Server._Sunrise.AssaultOps.Icarus;
 
@@ -170,14 +169,12 @@ public sealed class IcarusTerminalSystem : EntitySystem
     {
         component.Status = IcarusTerminalStatus.FIRE_READY;
 
-        _audio.PlayGlobal(component.AccessGrantedSound, Filter.Pvs(component.Owner), false);
-
         if (!component.AuthorizationNotified)
         {
             _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("icarus-authorized-announcement"),
-                Loc.GetString("icarus-announce-sender"), false); // TODO: Just pass custom sound path after PR accepting
-            _audio.PlayGlobal("/Audio/Misc/notice1.ogg",
-                Filter.Broadcast(), false);
+                Loc.GetString("icarus-announce-sender"),
+                false,
+                component.ActiveGoldenEyeAlertSound);
             component.AuthorizationNotified = true;
 
             RaiseLocalEvent(new IcarusActivatedEvent()

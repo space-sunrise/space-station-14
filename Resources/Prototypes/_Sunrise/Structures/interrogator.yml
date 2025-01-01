@@ -1,23 +1,24 @@
 - type: entity
   id: Interrogator
   parent: BaseMachinePowered
-  name: interrogator pod
+  name: interrogator
   description: apchy
   components:
-  - type: CloningPod
-  - type: DeviceList
-  - type: DeviceNetwork
-    deviceNetId: Wired
-    receiveFrequencyId: BasicDevice
-  - type: DeviceLinkSink
-    ports:
-    - CloningPodReceiver
+  - type: Interrogator
   - type: Sprite
     sprite: _Sunrise/AssaultOperatives/interrogator.rsi
     snapCardinals: true
     layers:
     - state: base
-      map: ["base"]
+      map: [ "enum.InterrogatorVisualLayers.Base" ]
+    - state: extraction-on
+      map: [ "enum.InterrogatorVisualLayers.Extract" ]
+      visible: false
+  - type: PointLight
+    color: "#3a807f"
+    radius: 2
+    energy: 10
+    enabled: false
   - type: Physics
     bodyType: Static
   - type: Construction
@@ -26,10 +27,10 @@
     containers:
     - machine_board
     - machine_parts
-    - clonepod-bodyContainer
+    - body_container
   - type: EmptyOnMachineDeconstruct
     containers:
-    - clonepod-bodyContainer
+    - body_container
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StrongMetallic
@@ -47,26 +48,33 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: Machine
-    board: CloningPodMachineCircuitboard
+    board: InterrogatorMachineCircuitboard
   - type: MaterialStorage
     materialWhiteList:
     - Biomass
   - type: WiresPanel
   - type: ApcPowerReceiver
-    powerLoad: 200 #Receives most of its power from the console
+    powerLoad: 200
   - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.InterrogatorVisuals.Status:
-        base:
-          Off: { state: off }
-          On: { state: on }
-  - type: Climbable
   - type: ContainerContainer
     containers:
+      body_container: !type:ContainerSlot
       machine_board: !type:Container
       machine_parts: !type:Container
-      clonepod-bodyContainer: !type:ContainerSlot
-  - type: GuideHelp
-    guides:
-    - Cloning
+
+
+- type: entity
+  id: InterrogatorMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: interrogator machine board
+  description: A machine printed circuit board for a interrogator.
+  components:
+  - type: Sprite
+    state: medical
+  - type: MachineBoard
+    prototype: Interrogator
+    stackRequirements:
+      MatterBin: 2
+      Manipulator: 2
+      Glass: 1
+      Cable: 1

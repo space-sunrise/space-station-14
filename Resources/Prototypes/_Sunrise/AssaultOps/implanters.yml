@@ -4,4 +4,4 @@
   parent: BaseImplantOnlyImplanter
   components:
   - type: Implanter
-    implant: IcarusKeyImplant
+    implant: IcarusKey

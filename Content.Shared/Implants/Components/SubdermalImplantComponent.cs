@@ -54,6 +54,10 @@ public sealed partial class SubdermalImplantComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField("dropContainerItemsIfGibbed"), AutoNetworkedField]
     public bool DropContainerItemsIfGibbed = true;
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField("deleteWhenDraw"), AutoNetworkedField]
+    public bool DeleteWhenDraw;
     // Sunrise-End
 }
 
