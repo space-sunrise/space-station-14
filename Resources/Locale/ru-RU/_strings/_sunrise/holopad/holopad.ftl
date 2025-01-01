@@ -6,6 +6,7 @@ holopad-window-options = [color=darkgray][font size=10][italic]Пожалуйс�
 # Call status
 holopad-window-no-calls-in-progress = Нет активных голозвонков
 holopad-window-incoming-call = Входящий голозвонок от:
+holopad-window-relay-label = Источник:
 holopad-window-outgoing-call = Попытка установить соединение...
 holopad-window-call-in-progress = Голозвонок в процессе
 holopad-window-call-ending = Отключение...
@@ -28,6 +29,7 @@ holopad-window-access-denied = Доступ запрещён
 holopad-window-select-contact-from-list = Выберите контакт для начала голозвонка
 holopad-window-fetching-contacts-list = Нет доступных голопадов для связи
 holopad-window-contact-label = { CAPITALIZE($label) }
+holopad-window-filter-line-placeholder = Поиск контакта
 
 # Flavor
 holopad-window-flavor-left = ⚠ Не входить при активном проекторе
