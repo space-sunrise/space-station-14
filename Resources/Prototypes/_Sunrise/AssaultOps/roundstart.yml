@@ -3,7 +3,8 @@
   parent: BaseGameRule
   components:
   - type: GameRule
-    minPlayers: 0 # 20
+    minPlayers: 20
+    minCommandStaff: 3
   - type: AssaultOpsRule
     faction: Syndicate
   - type: LoadMapRule
@@ -46,7 +47,7 @@
       fallbackRoles: [ AssaultCommander ]
       spawnerPrototype: SpawnPointAssaultOpsOperative
       max: 5
-      playerRatio: 1 # 20
+      playerRatio: 15
       startingGear: AssaultOperativeGear
       roleLoadout:
       - RoleSurvivalAssaultOps
