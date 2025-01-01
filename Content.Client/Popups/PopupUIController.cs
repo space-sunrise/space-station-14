@@ -47,7 +47,6 @@ public sealed class PopupUIController : UIController, IOnStateEntered<GameplaySt
         _popupControl = null;
     }
 
-    // float horizontalDirection = 0f -1 for left, 1 for right.
     public void DrawPopup(PopupSystem.PopupLabel popup, DrawingHandleScreen handle, Vector2 position, float scale, float horizontalDirection = 0f)
     {
         var lifetime = PopupSystem.GetPopupLifetime(popup);
@@ -100,6 +99,7 @@ public sealed class PopupUIController : UIController, IOnStateEntered<GameplaySt
             // Sunrise-End
         }
 
+        // Sunrise edit start
         if (!useHorizontalDirection)
             horizontalDirection = 0f;
 
@@ -107,6 +107,7 @@ public sealed class PopupUIController : UIController, IOnStateEntered<GameplaySt
         var horizontalOffset = horizontalDirection * MathF.Min(8f, 12f * popup.TotalTime);
         // Adjust position to move both vertically and horizontally.
         var updatedPosition = position + new Vector2(horizontalOffset, -MathF.Min(8f, 12f * (popup.TotalTime * popup.TotalTime + popup.TotalTime)));
+        // Sunrise edit end
 
         var dimensions = handle.GetDimensions(font, popup.Text, scale);
         handle.DrawString(font, updatedPosition - dimensions / 2f, popup.Text, scale, color.WithAlpha(alpha));
