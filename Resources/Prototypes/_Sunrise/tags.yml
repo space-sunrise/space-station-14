@@ -32,9 +32,6 @@
   id: BorgModuleERT
 
 - type: Tag
-  id: AssaultOpsUplink
-
-- type: Tag
   id: SyndieAgentUplink
 
 - type: Tag

@@ -79,6 +79,13 @@
     Telecrystal: 8
   categories:
   - UplinkWeaponry
+  #Sunrise-start
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - AssaultOpsUplink
+  #Sunrise-end
 
 - type: listing
   id: UplinkEnergyDagger
@@ -1267,6 +1274,7 @@
       blacklist:
         tags:
           - NukeOpsUplink
+          - AssaultOpsUplink
 
 - type: listing
   id: UplinkReinforcementRadioSyndicateNukeops # Version for Nukeops that spawns another nuclear operative without the uplink.

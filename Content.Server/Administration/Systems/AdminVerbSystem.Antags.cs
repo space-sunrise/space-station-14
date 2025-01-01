@@ -1,3 +1,4 @@
+using Content.Server._Sunrise.AssaultOps;
 using Content.Server._Sunrise.FleshCult.GameRule;
 using Content.Server.Administration.Commands;
 using Content.Server.Antag;
@@ -180,6 +181,20 @@ public sealed partial class AdminVerbSystem
             Message = Loc.GetString("admin-verb-make-vampire"),
         };
         args.Verbs.Add(vampire);
+
+        Verb assaultOperative = new()
+        {
+            Text = Loc.GetString("admin-verb-text-make-assault-operative"),
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Structures/Wallmounts/posters.rsi"), "poster46_contraband"),
+            Act = () =>
+            {
+                _antag.ForceMakeAntag<AssaultOpsRuleComponent>(targetPlayer, "AssaultOps");
+            },
+            Impact = LogImpact.High,
+            Message = Loc.GetString("admin-verb-make-assault-operative"),
+        };
+        args.Verbs.Add(assaultOperative);
 
         Verb fleshCultist = new()
         {

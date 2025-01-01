@@ -36,6 +36,11 @@ public abstract class SharedSubdermalImplantSystem : EntitySystem
         if (component.ImplantedEntity == null || _net.IsClient)
             return;
 
+        // Sunrise-Start
+        if (args.Container.ID != "implant")
+            return;
+        // Sunrise-End
+
         if (!string.IsNullOrWhiteSpace(component.ImplantAction))
         {
             _actionsSystem.AddAction(component.ImplantedEntity.Value, ref component.Action, component.ImplantAction, uid);
@@ -60,6 +65,11 @@ public abstract class SharedSubdermalImplantSystem : EntitySystem
 
     private void OnRemoveAttempt(EntityUid uid, SubdermalImplantComponent component, ContainerGettingRemovedAttemptEvent args)
     {
+        // Sunrise-Start
+        if (args.Container.ID != "implant")
+            return;
+        // Sunrise-End
+
         if (component.Permanent && component.ImplantedEntity != null)
             args.Cancel();
     }
@@ -68,6 +78,11 @@ public abstract class SharedSubdermalImplantSystem : EntitySystem
     {
         if (component.ImplantedEntity == null || Terminating(component.ImplantedEntity.Value))
             return;
+
+        // Sunrise-Start
+        if (args.Container.ID != "implant")
+            return;
+        // Sunrise-End
 
         if (component.ImplantAction != null)
             _actionsSystem.RemoveProvidedActions(component.ImplantedEntity.Value, uid);
@@ -86,6 +101,11 @@ public abstract class SharedSubdermalImplantSystem : EntitySystem
 
             _container.RemoveEntity(storageImplant.Owner, entity, force: true, destination: entCoords);
         }
+
+        // Sunrsie-Start
+        var ev = new ImplantEjectEvent(uid, component.ImplantedEntity.Value);
+        RaiseLocalEvent(uid, ref ev);
+        // Sunrsie-End
     }
 
     /// <summary>
@@ -221,3 +241,18 @@ public readonly struct ImplantImplantedEvent
         Implanted = implanted;
     }
 }
+
+// Sunrise-Start
+[ByRefEvent]
+public readonly struct ImplantEjectEvent
+{
+    public readonly EntityUid Implant;
+    public readonly EntityUid? Implanted;
+
+    public ImplantEjectEvent(EntityUid implant, EntityUid? implanted)
+    {
+        Implant = implant;
+        Implanted = implanted;
+    }
+}
+// Sunrise-End

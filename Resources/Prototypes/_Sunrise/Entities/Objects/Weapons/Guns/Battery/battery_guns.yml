@@ -20,13 +20,13 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: PowerCellMedium
+        startingItem: PowerCellSmall
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         whitelist:
           tags:
             - PowerCell
-            - PowerCellMedium
+            - PowerCellSmall
 
 - type: entity
   name: LNT620 "Spark"
