@@ -61,6 +61,11 @@ public sealed class PopupUIController : UIController, IOnStateEntered<GameplaySt
 
         switch (popup.Type)
         {
+            // Sunrise start
+            case PopupType.SmallFloating:
+                useHorizontalDirection = true;
+                break;
+            // Sunrise end
             case PopupType.SmallCaution:
                 color = Color.Red;
                 break;
@@ -71,8 +76,14 @@ public sealed class PopupUIController : UIController, IOnStateEntered<GameplaySt
             case PopupType.MediumCaution:
                 font = _mediumFont;
                 color = Color.Red;
+                break;
+            // Sunrise start
+            case PopupType.MediumCautionFloating:
+                font = _mediumFont;
+                color = Color.Red;
                 useHorizontalDirection = true;
                 break;
+            // Sunrise end
             case PopupType.Large:
                 font = _largeFont;
                 color = Color.LightGray;
