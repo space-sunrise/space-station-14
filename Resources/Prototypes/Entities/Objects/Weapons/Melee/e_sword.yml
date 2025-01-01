@@ -346,6 +346,7 @@
     spread: 75
     needActiveHand: true # Sunrise-Edit
   - type: FlipOnAttack # Sunrise-Edit
+    probability: 0.5 # Sunrise-Edit
 
 - type: entity
   suffix: One-Handed, For Borgs
