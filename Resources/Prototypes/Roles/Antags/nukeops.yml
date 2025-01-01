@@ -99,6 +99,7 @@
     pocket1: BaseUplinkRadio0TC
   inhand:
   - NukeOpsDeclarationOfWar
+  - RemoteNukeOpShuttleController # Sunrise-Edit
 
 #Nuclear Operative Medic Gear
 - type: startingGear

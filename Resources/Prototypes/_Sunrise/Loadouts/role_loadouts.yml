@@ -336,3 +336,10 @@
   - Bra
   - Pants
   - Socks
+
+- type: roleLoadout
+  id: RoleSurvivalAssaultOps
+  groups:
+  - SurvivalSyndicate
+  - GroupSpeciesBreathTool
+  - GroupPocketTankDouble
