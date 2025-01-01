@@ -191,6 +191,7 @@ namespace Content.Shared.Popups
         /// </summary>
         Medium,
         MediumCaution,
+        MediumGreen, // Sunrise edit
         /// <summary>
         ///     Large popups should be used for actions which may be important or very important to one or more users,
         ///     but is not life-threatening.
