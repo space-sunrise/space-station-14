@@ -29,6 +29,9 @@
     voice: FactCore # Sunrise-TTS
   - type: StaticPrice
     price: 0 # Sunrise-TTS
+  - type: DamageOverlay
+    damagePopupType: SmallFloating
+    radius: 0.7
 
 - type: entity
   # This means that it's not anchored on spawn.
