@@ -97,8 +97,14 @@ public sealed class PopupOverlay : Overlay
                     e => e == popup.InitialPos.EntityId || e == ourEntity, entMan: _entManager))
                 continue;
 
+            var horizontalDirection = 0f;
+            if (_entManager.TryGetComponent<TransformComponent>(ourEntity, out var transformComponent))
+            {
+                horizontalDirection = transformComponent.Coordinates.X <= popup.InitialPos.X ? 1f : -1f;
+            }
+
             var pos = Vector2.Transform(mapPos.Position, matrix);
-            _controller.DrawPopup(popup, worldHandle, pos, scale);
+            _controller.DrawPopup(popup, worldHandle, pos, scale, horizontalDirection);
         }
     }
 }
