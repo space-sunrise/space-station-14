@@ -49,9 +49,6 @@
         acts: ["Destruction"]
   - type: Machine
     board: InterrogatorMachineCircuitboard
-  - type: MaterialStorage
-    materialWhiteList:
-    - Biomass
   - type: WiresPanel
   - type: ApcPowerReceiver
     powerLoad: 200

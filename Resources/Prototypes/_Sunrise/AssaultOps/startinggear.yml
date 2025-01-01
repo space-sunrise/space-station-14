@@ -32,7 +32,7 @@
     eyes: ClothingEyesGlassesSunglasses
     shoes: ClothingShoesColorBlack
     id: AssaultOpsPDA
-    pocket1: RemoteAssaultOpShuttleController
+    pocket1: RemoteAssaultOpsShuttleController
     pocket2: UplinkRadioAssaultOperatives0TC
   # SUNRISE-TODO: Лоадаут для ДОшников
   #innerclothingskirt: ClothingUniformJumpsuitTactical

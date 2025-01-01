@@ -1,6 +1,8 @@
+using Robust.Shared.GameStates;
+
 namespace Content.Server._Sunrise.AssaultOps;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class AssaultOpsShuttleComponent : Component
 {
     [DataField]

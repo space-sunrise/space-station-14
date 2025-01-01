@@ -13,7 +13,7 @@
   - type: ShuttleConsole
     portable: true
   - type: RadarConsole
-    maxRange: 512
+    maxRange: 256
   - type: ActivatableUI
     key: enum.ShuttleConsoleUiKey.Key
   - type: UserInterface
@@ -22,7 +22,7 @@
         type: ShuttleConsoleBoundUserInterface
 
 - type: entity
-  id: RemoteAssaultOpShuttleController
+  id: RemoteAssaultOpsShuttleController
   parent: RemoteShuttleControllerBase
   name: Удаленный контроллер управления шаттлом (Диверсионный отряд)
   description: Теперь вам не нужен пилот, ведь пилот это вы!
