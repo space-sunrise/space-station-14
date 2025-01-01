@@ -598,6 +598,22 @@
   loadouts:
   - QuartermasterHead
   - QuartermasterBeret
+#Sunrise-start
+  - Sunrise-BandOrange
+  - Sunrise-BandYellow
+  - Sunrise-BandBrown
+  - Sunrise-BandPurple
+  - StationEngineerHardhatOrange
+  - StationEngineerHardhatYellow
+  - Sunrise-HardhatYellowDark
+  - Sunrise-HatOrangesoft
+  - Sunrise-HatYellowsoft
+  - Sunrise-HatBrownsoft
+  - Sunrise-BrownFlatcap
+  - Sunrise-FedoraBrown
+  - Sunrise-CatBrown
+  - Sunrise-HelmetCosmonaut
+#Sunrise-end
 
 - type: loadoutGroup
   id: QuartermasterJumpsuit
@@ -616,6 +632,13 @@
   loadouts:
   - QuartermasterCloak
   - QuartermasterMantle
+#Sunrise-start
+  - Sunrise-ScarfOrange
+  - Sunrise-ScarfYellow
+  - Sunrise-ScarfBrown
+  - Sunrise-ScarfPurple
+  - Sunrise-BedsheetCosmos
+#Sunrise-end
 
 - type: loadoutGroup
   id: QuartermasterOuterClothing
@@ -623,6 +646,17 @@
   minLimit: 0
   loadouts:
   - QuartermasterWintercoat
+#Sunrise-start
+  - SalvageSpecialistWintercoat
+  - Sunrise-WinterColorOrange
+  - Sunrise-WinterColorYellow
+  - Sunrise-WinterColorBrown
+  - Sunrise-WinterColorLightBrown
+  - Sunrise-WinterColorPurple
+  - Sunrise-PonchoClassic
+  - Sunrise-CoatBomber
+  - Sunrise-CoatTrench
+#Sunrise-end
 
 - type: loadoutGroup
   id: QuartermasterShoes
@@ -630,6 +664,13 @@
   loadouts:
   - BrownShoes
   - CargoWinterBoots
+#Sunrise-start
+  - BlackShoes
+  - Sunrise-OrangeShoes
+  - Sunrise-YellowShoes
+  - Sunrise-ShoesPurple
+  - Sunrise-ShoesLeather
+#Sunrise-end
 
 - type: loadoutGroup
   id: CargoTechnicianHead
@@ -637,6 +678,18 @@
   minLimit: 0
   loadouts:
   - CargoTechnicianHead
+#Sunrise-start  
+  - Sunrise-BandOrange
+  - Sunrise-BandYellow
+  - Sunrise-BandBrown
+  - Sunrise-BandPurple
+  - Sunrise-HatOrangesoft
+  - Sunrise-HatYellowsoft
+  - Sunrise-HatBrownsoft
+  - Sunrise-BrownFlatcap
+  - Sunrise-CatBrown
+  - Sunrise-HelmetCosmonaut
+#Sunrise-end
 
 - type: loadoutGroup
   id: CargoTechnicianJumpsuit
@@ -659,6 +712,14 @@
   minLimit: 0
   loadouts:
   - CargoTechnicianWintercoat
+#Sunrise-start
+  - Sunrise-WinterColorOrange
+  - Sunrise-WinterColorYellow
+  - Sunrise-WinterColorBrown
+  - Sunrise-WinterColorLightBrown
+  - Sunrise-PonchoClassic
+  - Sunrise-CoatBomber
+#Sunrise-end
 
 - type: loadoutGroup
   id: CargoTechnicianShoes
@@ -666,6 +727,11 @@
   loadouts:
   - BlackShoes
   - CargoWinterBoots
+#Sunrise-start
+  - Sunrise-OrangeShoes
+  - Sunrise-YellowShoes
+  - BrownShoes
+#Sunrise-end
 
 - type: loadoutGroup
   id: SalvageSpecialistBackpack
@@ -681,6 +747,15 @@
   minLimit: 0
   loadouts:
   - SalvageSpecialistWintercoat
+#Sunrise-start
+  - Sunrise-WinterColorOrange
+  - Sunrise-WinterColorYellow
+  - Sunrise-WinterColorBrown
+  - Sunrise-WinterColorLightBrown
+  - Sunrise-WinterColorPurple
+  - Sunrise-PonchoClassic
+  - Sunrise-CoatBomber
+#Sunrise-end
 
 - type: loadoutGroup
   id: SalvageSpecialistShoes
@@ -688,6 +763,13 @@
   loadouts:
   - SalvageBoots
   - CargoWinterBoots
+#Sunrise-start
+  - BlackShoes
+  - Sunrise-OrangeShoes
+  - Sunrise-YellowShoes
+  - BrownShoes
+  - Sunrise-ShoesPurple
+#Sunrise-end
 
 # Engineering
 - type: loadoutGroup
@@ -706,6 +788,14 @@
   loadouts:
   - ChiefEngineerCloak
   - ChiefEngineerMantle
+  #sunrise-start
+  - Sunrise-ScarfRed
+  - Sunrise-ScarfOrange
+  - Sunrise-ScarfYellow
+  - Sunrise-ScarfCyan
+  - Sunrise-ScarfLightBlue  
+  - Sunrise-TieRed
+  #Sunrise-end
 
 - type: loadoutGroup
   id: ChiefEngineerOuterClothing
@@ -713,6 +803,16 @@
   minLimit: 0
   loadouts:
   - ChiefEngineerWintercoat
+  #Sunrise-start
+  - Sunrise-WinterColorrColorWhite
+  - Sunrise-ClothingOuterFlannelWhite
+  - StationEngineerOuterVest
+  - StationEngineerWintercoat
+  - AtmosphericTechnicianWintercoat
+  - Sunrise-WinterColorrColorRed
+  - Sunrise-WinterColorOrange
+  - Sunrise-WinterColorYellow
+  #Sunrise-end
 
 - type: loadoutGroup
   id: ChiefEngineerShoes
@@ -720,7 +820,12 @@
   loadouts:
   - BrownShoes
   - EngineeringWinterBoots
-
+#sunrise-start
+  - WhiteShoes
+  - Sunrise-RedShoes
+  - Sunrise-OrangeShoes
+  - Sunrise-YellowShoes
+#Sunrise-end
 - type: loadoutGroup
   id: TechnicalAssistantJumpsuit
   name: loadout-group-technical-assistant-jumpsuit
@@ -732,9 +837,22 @@
   id: StationEngineerHead
   name: loadout-group-station-engineer-head
   loadouts:
+#sunrise-start
+  - Sunrise-EngineerHeadBeret
+  - Sunrise-BandRed
+  - Sunrise-BandOrange
+  - Sunrise-BandYellow
+  - Sunrise-HardhatYellowDark
+  - Sunrise-BandWhite
+#Sunrise-end
   - StationEngineerHardhatYellow
   - StationEngineerHardhatOrange
   - StationEngineerHardhatRed
+#sunrise-start
+  - Sunrise-HatRedsoft
+  - Sunrise-HatOrangesoft
+  - Sunrise-HatYellowsoft
+#Sunrise-end
 
 - type: loadoutGroup
   id: StationEngineerJumpsuit
@@ -759,13 +877,22 @@
   loadouts:
   - StationEngineerOuterVest
   - StationEngineerWintercoat
-
+#sunrise-start
+  - Sunrise-WinterColorrColorRed
+  - Sunrise-WinterColorOrange
+  - Sunrise-WinterColorYellow
+#sunrise-end
 - type: loadoutGroup
   id: StationEngineerShoes
   name: loadout-group-station-engineer-shoes
   loadouts:
   - WorkBoots
   - EngineeringWinterBoots
+#sunrise-start
+  - Sunrise-RedShoes
+  - Sunrise-OrangeShoes
+  - Sunrise-YellowShoes
+#sunrise-end
 
 - type: loadoutGroup
   id: AtmosphericTechnicianJumpsuit
@@ -781,6 +908,12 @@
   minLimit: 0
   loadouts:
   - AtmosphericTechnicianWintercoat
+#sunrise-start
+  - StationEngineerOuterVest
+  - Sunrise-WinterColorrColorRed
+  - Sunrise-WinterColorOrange
+  - Sunrise-WinterColorYellow
+#sunrise-end
 
 - type: loadoutGroup
   id: AtmosphericTechnicianBackpack
@@ -796,6 +929,11 @@
   loadouts:
   - WhiteShoes
   - EngineeringWinterBoots
+#sunrise-start
+  - Sunrise-RedShoes
+  - Sunrise-OrangeShoes
+  - Sunrise-YellowShoes
+#sunrise-end
 
 - type: loadoutGroup
   id: SurvivalExtended
