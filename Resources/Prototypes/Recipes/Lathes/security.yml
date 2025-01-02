@@ -98,6 +98,15 @@
 
 - type: latheRecipe
   parent: BaseWeaponRecipeLong
+  id: WeaponGunLaserCarbineSemi
+  result: WeaponGunLaserCarbineSemi
+  materials:
+    Steel: 1800
+    Plastic: 50
+    Gold: 300 #sunrise-Edit
+
+- type: latheRecipe
+  parent: BaseWeaponRecipeLong
   id: WeaponXrayCannon
   result: WeaponXrayCannon
   materials:

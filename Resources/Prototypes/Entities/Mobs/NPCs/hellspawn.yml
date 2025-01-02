@@ -31,8 +31,8 @@
     damageContainer: BiologicalMetaphysical
     damageModifierSet: HellSpawn
   - type: MovementSpeedModifier
-    baseWalkSpeed: 3
-    baseSprintSpeed: 3.5
+    baseWalkSpeed: 2
+    baseSprintSpeed: 3
   - type: Sprite
     sprite: Mobs/Demons/hellspawn.rsi
     layers:

@@ -92,5 +92,12 @@ namespace Content.Server.Destructible.Thresholds
                 behavior.Execute(owner, system, cause);
             }
         }
+
+        // Sunrise-Start
+        public void AddBehavior(IThresholdBehavior behavior)
+        {
+            _behaviors.Add(behavior);
+        }
+        // Sunrise-End
     }
 }

@@ -11,4 +11,9 @@ public sealed partial class PresetIdCardComponent : Component
 
     [DataField("name")]
     public string? IdName;
+
+    // Sunrise-Start
+    [DataField]
+    public bool SetAccess = true;
+    // Sunrise-End
 }

@@ -27,7 +27,7 @@
       0: Alive
       120: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed: 3
+    baseWalkSpeed: 2
     baseSprintSpeed: 4
   - type: FootstepModifier
     footstepSoundCollection:

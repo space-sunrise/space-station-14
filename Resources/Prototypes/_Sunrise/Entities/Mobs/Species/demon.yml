@@ -51,7 +51,7 @@
       types:
         Heat : 0.3 #per second, scales with temperature & other constants
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3.5
+    baseWalkSpeed : 2.5
     baseSprintSpeed : 4.5
   - type: Perishable
   - type: FootprintEmitter

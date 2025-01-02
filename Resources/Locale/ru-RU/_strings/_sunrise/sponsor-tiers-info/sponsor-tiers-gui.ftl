@@ -1,10 +1,14 @@
 sponsors-tiers-gui-title = Уровни спонсорства
+sponsor-tiers-gui-yes = Да
+sponsor-tiers-gui-no = Нет
 sponsor-tiers-gui-entry-info = Информация
 sponsor-tiers-gui-tier = Тир:
 sponsor-tiers-gui-extra-slots = Дополнительные слоты персонажей:
 sponsor-tiers-gui-ooc-color = Цвет OOC:
 sponsor-tiers-gui-priority-join = Приоритетный вход:
 sponsor-tiers-gui-allowed-respawn = Новая жизнь:
+sponsor-tiers-gui-allowed-flavor = Описание персонажа:
+sponsor-tiers-gui-size-flavor = Лимит описания персонажа:
 sponsor-tiers-gui-allowed-species = Эксклюзивные расы
 sponsor-tiers-gui-allowed-species-description = Открывает вам доступ к данным расам.
 sponsor-tiers-gui-priority-antags = Приоритеты антагонистов

@@ -387,6 +387,8 @@
       - MagazineBoxMagnumRubber
       - MagazineBoxRifleRubber
       - MagazineBoxLightRifleRubber
+      - WeaponGunLaserCarbineSemi
+      - WeaponGunLaserCarbineAutomatic # Sunrise - IK-60 Laser Carbine
       # Sunrise-End
       - BoxBeanbag
       - BoxShotgunIncendiary
@@ -510,7 +512,6 @@
       - SolarControlComputerCircuitboard
       - SolarTrackerElectronics
       - TurboItemRechargerCircuitboard
-      - PowerComputerCircuitboard
       - AutolatheHyperConvectionMachineCircuitboard
       - ProtolatheHyperConvectionMachineCircuitboard
       - CircuitImprinterHyperConvectionMachineCircuitboard
@@ -568,6 +569,7 @@
       - ReagentGrinderIndustrialMachineCircuitboard
       - JukeboxCircuitBoard
       - SMESAdvancedMachineCircuitboard
+      - HolopadMachineCircuitboard
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       - ShuttleGunDusterCircuitboard
@@ -902,6 +904,7 @@
       - TimerTrigger
       - Truncheon
       - VoiceTrigger
+      - WeaponGunLaserCarbineSemi
       - WeaponAdvancedLaser
       - WeaponDisabler
       - WeaponDisablerSMG

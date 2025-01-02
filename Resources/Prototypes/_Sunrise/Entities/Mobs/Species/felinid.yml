@@ -94,7 +94,7 @@
         probability: 0.35
   - type: MovementSpeedModifier
     baseSprintSpeed: 4.0
-    baseWalkSpeed: 3.0
+    baseWalkSpeed: 2.0
 #  - type: DamagedByFlashing
 #    flashDamage:
 #      types:

@@ -1,4 +1,91 @@
 - type: entity
+  id: BaseWeaponAutoPowerCell
+  parent: BaseWeaponPowerCell
+  abstract: true
+  components:
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/laser_retro.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Gun
+    fireRate: 4
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Laser/EG_R.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: PowerCellSmall
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+
+- type: entity
+  name: LNT620 "Spark"
+  parent: [ BaseWeaponAutoPowerCell, BaseRestrictedContraband ]
+  id: WeaponLaserLNT620
+  description: "Automatic Laser NanoTrasen LNT620."
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/smg_laser.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Gun
+    fireRate: 4.5
+    minAngle: 5
+    maxAngle: 15
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/smg_laser.rsi
+  - type: Item
+    size: Large
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/smg_laser.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+
+- type: entity
+  name:  IK-30 laser carbine
+  parent: [ BaseWeaponAutoPowerCell, BaseRestrictedContraband ]
+  id: WeaponGunLaserCarbineSemi
+  description: "A semi-automatic battery laser carbine."
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/batterylaser_carbine.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 3
+    availableModes:
+      - SemiAuto
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/batterylaser_carbine.rsi
+  - type: Item
+    size: Large
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/batterylaser_carbine.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+
+- type: entity
   name: energy gun
   parent: BaseWeaponBattery
   id: WeaponEnergyGun
@@ -225,9 +312,9 @@
 
 - type: entity
   name: IK-60 laser carbine
-  parent: BaseWeaponBattery
+  parent: [ BaseWeaponAutoPowerCell, BaseRestrictedContraband ]
   id: WeaponGunLaserCarbineAutomatic
-  description: "A 20 round semi-automatic laser carbine."
+  description: "A burst automatic battery laser carbine."
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_carbine.rsi
@@ -237,29 +324,26 @@
     - state: mag-unshaded-4
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
+  - type: Gun
+    minAngle: 2
+    maxAngle: 12
+    angleIncrease: 1.5
+    angleDecay: 8
+    selectedMode: Burst
+    shotsPerBurst: 4
+    burstCooldown: 0.3
+    burstFireRate: 5
+    availableModes:
+    - Burst
+  - type: Item
+    size: Large
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_carbine.rsi
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_carbine.rsi
-  - type: Gun
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
-    soundEmpty:
-      path: /Audio/Weapons/Guns/Empty/empty.ogg
-    selectedMode: SemiAuto
-    fireRate: 3
-    availableModes:
-      - SemiAuto
-      - FullAuto
-  - type: Battery
-    maxCharge: 2000
-    startingCharge: 2000
-  - type: HitscanBatteryAmmoProvider
-    proto: BulletEnergyGunLaser
-    fireCost: 100
   - type: MagazineVisuals
     magState: mag
     steps: 5
     zeroVisible: true
-  - type: Appearance
 
 - type: entity
   name: Energy Pistol «Judge»

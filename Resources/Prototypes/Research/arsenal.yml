@@ -169,6 +169,7 @@
   cost: 8000
   recipeUnlocks:
   - WeaponLaserSvalinn
+  - WeaponGunLaserCarbineSemi #Sunrise-Edit
 
 - type: technology
   id: WaveParticleHarnessing
