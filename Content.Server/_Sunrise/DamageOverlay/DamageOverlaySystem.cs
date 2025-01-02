@@ -5,7 +5,6 @@ using Content.Server.Popups;
 using Content.Shared._Sunrise.DamageOverlay;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
-using FastAccessors;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -121,6 +120,9 @@ public sealed class DamageOverlaySystem : EntitySystem
     /// </summary>
     private bool IsDisabledByClient(ICommonSession session, DamageOverlayComponent component, DamageSpecifier damageDelta)
     {
+        if (_disabledSessions.Contains(session))
+            return true;
+
         if (_playerSettings.TryGetValue(session, out var playerPreset))
         {
             if (damageDelta.DamageDict.Keys.Any(item => playerPreset.Types.Contains(item)))
