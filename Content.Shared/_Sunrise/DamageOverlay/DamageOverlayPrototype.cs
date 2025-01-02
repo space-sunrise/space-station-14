@@ -12,4 +12,7 @@ public sealed partial class DamageOverlayPrototype : IPrototype
 
     [DataField]
     public bool StructureDamageEnabled = true;
+
+    [DataField]
+    public bool ToPlayerDamageEnabled = true;
 }

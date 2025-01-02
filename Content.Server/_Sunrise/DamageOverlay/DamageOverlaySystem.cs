@@ -51,26 +51,26 @@ public sealed class DamageOverlaySystem : EntitySystem
         _playerSettings[args.SenderSession] = presetPrototype;
     }
 
-    private void OnDamageChange(EntityUid uid, DamageOverlayComponent component, DamageChangedEvent args)
+    private void OnDamageChange(Entity<DamageOverlayComponent> ent, ref DamageChangedEvent args)
     {
         if (args.DamageDelta == null)
             return;
 
         var damageDelta = args.DamageDelta.GetTotal();
-        var coords = GenerateRandomCoordinates(Transform(uid).Coordinates, component.Radius);
+        var coords = GenerateRandomCoordinates(Transform(ent).Coordinates, ent.Comp.Radius);
 
         // Проверка на игнорируемые типы урона
-        if (args.DamageDelta.DamageDict.Keys.Any(item => component.IgnoredDamageTypes.Contains(item)))
+        if (args.DamageDelta.DamageDict.Keys.Any(item => ent.Comp.IgnoredDamageTypes.Contains(item)))
             return;
 
-        if (_mindSystem.TryGetMind(uid, out _, out var mindTarget) && mindTarget.Session != null)
+        if (_mindSystem.TryGetMind(ent, out _, out var mindTarget) && mindTarget.Session != null)
         {
-            if (IsDisabledByClient(mindTarget.Session, component, args.DamageDelta))
+            if (IsDisabledByClient(mindTarget.Session, ent, args.DamageDelta))
                 return;
 
             if (damageDelta > 0)
             {
-                _popupSystem.PopupCoordinates($"-{damageDelta}", coords, mindTarget.Session, component.DamagePopupType);
+                _popupSystem.PopupCoordinates($"-{damageDelta}", coords, mindTarget.Session, ent.Comp.DamagePopupType);
             }
         }
 
@@ -80,20 +80,20 @@ public sealed class DamageOverlaySystem : EntitySystem
         if (!_mindSystem.TryGetMind(args.Origin.Value, out _, out var mindOrigin) || mindOrigin.Session == null)
             return;
 
-        if (IsDisabledByClient(mindOrigin.Session, component, args.DamageDelta))
+        if (IsDisabledByClient(mindOrigin.Session, ent, args.DamageDelta))
             return;
 
         if (damageDelta > 0)
         {
             // Ударили себя
-            if (args.Origin == uid)
+            if (args.Origin == ent)
                 return;
 
-            _popupSystem.PopupCoordinates($"-{damageDelta}", coords, mindOrigin.Session, component.DamagePopupType);
+            _popupSystem.PopupCoordinates($"-{damageDelta}", coords, mindOrigin.Session, ent.Comp.DamagePopupType);
         }
         else
         {
-            _popupSystem.PopupCoordinates($"+{FixedPoint2.Abs(damageDelta)}", coords, mindOrigin.Session, component.HealPopupType);
+            _popupSystem.PopupCoordinates($"+{FixedPoint2.Abs(damageDelta)}", coords, mindOrigin.Session, ent.Comp.HealPopupType);
         }
     }
 
@@ -118,7 +118,7 @@ public sealed class DamageOverlaySystem : EntitySystem
     /// <summary>
     /// Проверка на то, включен ли у игрока данный урон для отображения
     /// </summary>
-    private bool IsDisabledByClient(ICommonSession session, DamageOverlayComponent component, DamageSpecifier damageDelta)
+    private bool IsDisabledByClient(ICommonSession session, Entity<DamageOverlayComponent> target, DamageSpecifier damageDelta)
     {
         if (_disabledSessions.Contains(session))
             return true;
@@ -128,7 +128,10 @@ public sealed class DamageOverlaySystem : EntitySystem
             if (damageDelta.DamageDict.Keys.Any(item => playerPreset.Types.Contains(item)))
                 return true;
 
-            if (component.IsStructure && !playerPreset.StructureDamageEnabled)
+            if (target.Comp.IsStructure && !playerPreset.StructureDamageEnabled)
+                return true;
+
+            if (target == session.AttachedEntity && !playerPreset.ToPlayerDamageEnabled)
                 return true;
         }
 
