@@ -17,14 +17,13 @@ public sealed partial class DamageOverlayComponent : Component
     [DataField]
     public HashSet<string> IgnoredDamageTypes = new ()
     {
-        "Cellular",
-        "Radiation",
-        "Poison",
-        "Bloodloss",
-        "Asphyxiation",
-        // Эти тоже, потому что может прийти урон по группе
-        "Genetic",
-        "Toxin",
-        "Airloss",
+
     };
+
+    /// <summary>
+    /// Является ли ентити структурой
+    /// </summary>
+    /// TODO: Более адекватная реализация
+    [DataField]
+    public bool IsStructure;
 }

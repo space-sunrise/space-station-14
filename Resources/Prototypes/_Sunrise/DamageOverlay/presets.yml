@@ -1,0 +1,31 @@
+﻿- type: damageOverlay
+  id: All
+
+- type: damageOverlay
+  id: Primitive
+  types:
+  - Cellular
+  - Radiation
+  - Poison
+  - Bloodloss
+  - Asphyxiation
+  - Genetic
+  - Toxin
+  - Airloss
+
+- type: damageOverlay
+  id: AllWithoutStructures
+  structureDamageEnabled: false
+
+- type: damageOverlay
+  id: PrimitiveWithoutStructures
+  structureDamageEnabled: false
+  types:
+  - Cellular
+  - Radiation
+  - Poison
+  - Bloodloss
+  - Asphyxiation
+  - Genetic
+  - Toxin
+  - Airloss

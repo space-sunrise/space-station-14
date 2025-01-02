@@ -5,8 +5,10 @@ using Content.Server.Popups;
 using Content.Shared._Sunrise.DamageOverlay;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
+using FastAccessors;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.DamageOverlay;
@@ -16,15 +18,19 @@ public sealed class DamageOverlaySystem : EntitySystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
 
     private readonly List<ICommonSession> _disabledSessions = new();
+    private readonly Dictionary<ICommonSession, DamageOverlayPrototype> _playerSettings = new ();
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<DamageOverlayComponent, DamageChangedEvent>(OnDamageChange);
+
         SubscribeNetworkEvent<DamageOverlayOptionEvent>(OnDamageOverlayOption);
+        SubscribeNetworkEvent<DamageOverlayPresetChangedEvent>(OnDamageOverlayPresetChanged);
     }
 
     private async void OnDamageOverlayOption(DamageOverlayOptionEvent ev, EntitySessionEventArgs args)
@@ -33,6 +39,17 @@ public sealed class DamageOverlaySystem : EntitySystem
             _disabledSessions.Remove(args.SenderSession);
         else
             _disabledSessions.Add(args.SenderSession);
+    }
+
+    private async void OnDamageOverlayPresetChanged(DamageOverlayPresetChangedEvent ev, EntitySessionEventArgs args)
+    {
+        if (args.SenderSession.AttachedEntity == null)
+            return;
+
+        if (!_prototype.TryIndex(ev.Preset, out var presetPrototype))
+            return;
+
+        _playerSettings[args.SenderSession] = presetPrototype;
     }
 
     private void OnDamageChange(EntityUid uid, DamageOverlayComponent component, DamageChangedEvent args)
@@ -49,7 +66,7 @@ public sealed class DamageOverlaySystem : EntitySystem
 
         if (_mindSystem.TryGetMind(uid, out _, out var mindTarget) && mindTarget.Session != null)
         {
-            if (_disabledSessions.Contains(mindTarget.Session))
+            if (IsDisabledByClient(mindTarget.Session, component, args.DamageDelta))
                 return;
 
             if (damageDelta > 0)
@@ -64,7 +81,7 @@ public sealed class DamageOverlaySystem : EntitySystem
         if (!_mindSystem.TryGetMind(args.Origin.Value, out _, out var mindOrigin) || mindOrigin.Session == null)
             return;
 
-        if (_disabledSessions.Contains(mindOrigin.Session))
+        if (IsDisabledByClient(mindOrigin.Session, component, args.DamageDelta))
             return;
 
         if (damageDelta > 0)
@@ -97,5 +114,22 @@ public sealed class DamageOverlaySystem : EntitySystem
         var newPosition = new Vector2(center.Position.X + offsetX, center.Position.Y + offsetY);
 
         return new EntityCoordinates(center.EntityId, newPosition);
+    }
+
+    /// <summary>
+    /// Проверка на то, включен ли у игрока данный урон для отображения
+    /// </summary>
+    private bool IsDisabledByClient(ICommonSession session, DamageOverlayComponent component, DamageSpecifier damageDelta)
+    {
+        if (_playerSettings.TryGetValue(session, out var playerPreset))
+        {
+            if (damageDelta.DamageDict.Keys.Any(item => playerPreset.Types.Contains(item)))
+                return true;
+
+            if (component.IsStructure && !playerPreset.StructureDamageEnabled)
+                return true;
+        }
+
+        return false;
     }
 }

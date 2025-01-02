@@ -1,5 +1,6 @@
 using Content.Client.Audio;
 using Content.Server.GameTicking.Prototypes;
+using Content.Shared._Sunrise.DamageOverlay;
 using Content.Shared._Sunrise.Lobby;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.GameTicking;
@@ -82,12 +83,22 @@ public sealed partial class SunriseTab : Control
             var layoutLoc = Loc.GetString($"lobby-animation-{lobbyAnimation.ID}");
             lobbyAnimations.Add(new OptionDropDownCVar<string>.ValueOption(lobbyAnimation.ID, layoutLoc));
         }
+
+        var damageOverlayPresets = new List<OptionDropDownCVar<string>.ValueOption>();
+        var damageOverlayPresetPrototypes = _prototypeManager.EnumeratePrototypes<DamageOverlayPrototype>();
+        foreach (var preset in damageOverlayPresetPrototypes)
+        {
+            var loc = Loc.GetString($"damage-overlay-{preset.ID}");
+            damageOverlayPresets.Add(new OptionDropDownCVar<string>.ValueOption(preset.ID, loc));
+        }
+
         Control.AddOptionDropDown(SunriseCCVars.LobbyBackgroundType, DropDownLobbyBackgroundType, lobbyBackgroundTypes);
         Control.AddOptionDropDown(SunriseCCVars.LobbyArt, DropDownLobbyArt, lobbyArts);
         Control.AddOptionDropDown(SunriseCCVars.LobbyAnimation, DropDownLobbyAnimation, lobbyAnimations);
         Control.AddOptionDropDown(SunriseCCVars.LobbyParallax, DropDownLobbyParallax, lobbyParallaxes);
         Control.AddOptionPercentSlider(SunriseCCVars.LobbyOpacity, LobbyOpacitySlider);
         Control.AddOptionCheckBox(SunriseCCVars.DamageOverlay, DamageOverlayCheckBox);
+        Control.AddOptionDropDown(SunriseCCVars.DamageOverlayPreset, DamageOverlayPreset, damageOverlayPresets);
 
         Control.Initialize();
     }
