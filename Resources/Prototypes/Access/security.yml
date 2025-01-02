@@ -5,6 +5,7 @@
 - type: accessLevel
   id: Security
   name: id-card-access-level-security
+  redAlertAccesses: SecurityRedAlertAccesses
 
 - type: accessLevel
   id: Armory
