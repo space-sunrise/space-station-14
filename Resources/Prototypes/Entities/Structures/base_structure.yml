@@ -31,7 +31,6 @@
     price: 0 # Sunrise-TTS
   - type: DamageOverlay
     damagePopupType: SmallFloating
-    radius: 0.7
     isStructure: true
 
 - type: entity
