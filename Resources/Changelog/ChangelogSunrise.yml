@@ -9361,3 +9361,12 @@
   id: 651
   time: '2025-01-01T20:08:42.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/999
+- author: SplikZerys
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u043E \u0434\u0432\u0430\
+      \ (2) \u043D\u043E\u0432\u044B\u0445 \u0422\u0422\u0421-\u0433\u043E\u043B\u043E\
+      \u0441\u0430."
+    type: Add
+  id: 652
+  time: '2025-01-03T06:40:28.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/1010
