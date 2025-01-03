@@ -1,4 +1,4 @@
-﻿using Content.Shared.CharacterInfo;
+using Content.Shared.CharacterInfo;
 using Content.Shared.Objectives;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
@@ -32,7 +32,7 @@ public sealed class CharacterInfoSystem : EntitySystem
     private void OnCharacterInfoEvent(CharacterInfoEvent msg, EntitySessionEventArgs args)
     {
         var entity = GetEntity(msg.NetEntity);
-        var data = new CharacterData(entity, msg.JobTitle, msg.Objectives, msg.Briefing, Name(entity));
+        var data = new CharacterData(entity, msg.JobTitle, msg.Objectives, msg.CollectiveMinds, msg.Briefing, Name(entity)); // Sunrise-Edit: collective minds displayed at character menu
 
         OnCharacterUpdate?.Invoke(data);
     }
@@ -48,6 +48,7 @@ public sealed class CharacterInfoSystem : EntitySystem
         EntityUid Entity,
         string Job,
         Dictionary<string, List<ObjectiveInfo>> Objectives,
+        Dictionary<string, int>? CollectiveMinds, // Sunrise-Edit: collective minds displayed at character menu
         string? Briefing,
         string EntityName
     );
