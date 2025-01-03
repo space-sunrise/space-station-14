@@ -24,6 +24,8 @@ public sealed class ParallaxControl : Control
     [ViewVariables(VVAccess.ReadWrite)] public Vector2 Offset { get; set; }
     [ViewVariables(VVAccess.ReadWrite)] public string CurrentParallax { get; private set; } = "FastSpace"; // Sunrise-Edit
 
+    private readonly HashSet<string> _invalidParallaxes = new(); // Sunrise-Edit
+
     public ParallaxControl()
     {
         IoCManager.InjectDependencies(this);
@@ -31,11 +33,23 @@ public sealed class ParallaxControl : Control
         Offset = new Vector2(_random.Next(0, 1000), _random.Next(0, 1000));
         RectClipContent = true;
         // Sunrise-Edit-Start
-        var parallaxes = _prototypeManager.EnumeratePrototypes<LobbyParallaxPrototype>().ToList();
+        SelectRandomParallax();
+    }
+
+    private void SelectRandomParallax()
+    {
+        var parallaxes = _prototypeManager.EnumeratePrototypes<LobbyParallaxPrototype>()
+            .Where(p => !_invalidParallaxes.Contains(p.Parallax))
+            .ToList();
+        
         if (parallaxes.Any())
         {
             var selectedParallax = _random.Pick(parallaxes);
             CurrentParallax = selectedParallax.Parallax;
+        }
+        else
+        {
+            CurrentParallax = "FastSpace";
         }
         
         _parallaxManager.LoadParallaxByName(CurrentParallax);
@@ -44,15 +58,21 @@ public sealed class ParallaxControl : Control
 
     protected override void Draw(DrawingHandleScreen handle)
     {
-        // Sunrise-Edit-Start
         if (Size.X <= 0 || Size.Y <= 0)
             return;
+        // Sunrise-Edit-Start
+        var layers = _parallaxManager.GetParallaxLayers(CurrentParallax).ToList();
+        if (!layers.Any())
+        {
+            _invalidParallaxes.Add(CurrentParallax);
+            SelectRandomParallax();
+            return;
+        }
 
-        foreach (var layer in _parallaxManager.GetParallaxLayers(CurrentParallax))
-        // Sunrise-Edit-End
+        var hasValidLayers = false;
+        foreach (var layer in layers)
         {
             var tex = layer.Texture;
-            // Sunrise-Edit-Start
             if (tex.Size.X <= 0 || tex.Size.Y <= 0)
                 continue;
 
@@ -68,6 +88,7 @@ public sealed class ParallaxControl : Control
             if (texSize.X <= 0 || texSize.Y <= 0)
                 continue;
 
+            hasValidLayers = true;
             var ourSize = PixelSize;
             var currentTime = (float)_timing.RealTime.TotalSeconds;
             // Sunrise-Edit-End
@@ -75,15 +96,9 @@ public sealed class ParallaxControl : Control
 
             if (layer.Config.Tiled)
             {
-                // Multiply offset by slowness to match normal parallax
                 var scaledOffset = (offset * layer.Config.Slowness).Floored();
-
-                // Then modulo the scaled offset by the size to prevent drawing a bunch of offscreen tiles for really small images.
                 scaledOffset.X %= texSize.X;
                 scaledOffset.Y %= texSize.Y;
-
-                // Note: scaledOffset must never be below 0 or there will be visual issues.
-                // It could be allowed to be >= texSize on a given axis but that would be wasteful.
 
                 for (var x = -scaledOffset.X; x < ourSize.X; x += texSize.X)
                 {
@@ -99,6 +114,13 @@ public sealed class ParallaxControl : Control
                 handle.DrawTextureRect(tex, UIBox2.FromDimensions(origin, texSize));
             }
         }
+        // Sunrise-Edit-Start
+        if (!hasValidLayers)
+        {
+            _invalidParallaxes.Add(CurrentParallax);
+            SelectRandomParallax();
+        }
+        // Sunrise-Edit-End
     }
 }
 
