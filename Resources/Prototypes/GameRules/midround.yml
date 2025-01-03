@@ -55,6 +55,10 @@
   - type: GameRule
     minPlayers: 5
   - type: VampireRule
+  - type: AntagRandomObjectives
+    sets:
+    - groups: VampireObjectiveGroups
+    maxDifficulty: 10
   - type: AntagSelection
     agentName: vampire-roundend-name
     definitions:
