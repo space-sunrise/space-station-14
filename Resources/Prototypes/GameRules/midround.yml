@@ -55,6 +55,9 @@
   - type: GameRule
     minPlayers: 5
   - type: VampireRule
+  - type: AntagObjectives
+    objectives:
+    - VampireDrainObjective
   - type: AntagRandomObjectives
     sets:
     - groups: VampireObjectiveGroups

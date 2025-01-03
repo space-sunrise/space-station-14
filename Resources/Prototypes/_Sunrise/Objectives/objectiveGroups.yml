@@ -21,10 +21,10 @@
   id: VampireObjectiveGroupKill
   weights:
     VampireKillRandomAntagObjective: 1
-    VampireKillRandomPersonObjective: 0.5
+    VampireKillRandomPersonObjective: 0.3
 
 - type: weightedRandom
   id: VampireObjectiveGroupState
   weights:
-    VampireDrainObjective: 1
+    VampireSurviveObjective: 1
     VampireEscapeObjective: 1

@@ -116,6 +116,17 @@
 # States
 
 - type: entity
+  parent: [BaseVampireObjective, BaseSurviveObjective]
+  id: VampireSurviveObjective
+  name: Survive
+  description: I must survive no matter what.
+  components:
+  - type: Objective
+    icon:
+      sprite: Interface/Actions/actions_vampire.rsi
+      state: survive_icon
+
+- type: entity
   parent: [BaseVampireObjective, BaseLivingObjective]
   id: VampireEscapeObjective
   name: Escape to centcomm alive and unrestrained.
