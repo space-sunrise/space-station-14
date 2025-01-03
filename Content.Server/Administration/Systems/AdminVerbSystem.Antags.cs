@@ -1,5 +1,6 @@
 using Content.Server._Sunrise.AssaultOps;
 using Content.Server._Sunrise.FleshCult.GameRule;
+using Content.Server._Sunrise.BloodCult.GameRule;
 using Content.Server.Administration.Commands;
 using Content.Server.Antag;
 using Content.Server.GameTicking.Rules.Components;
@@ -154,6 +155,7 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(thief);
 
+        // Sunrise-Start
         Verb ling = new()
         {
             Text = Loc.GetString("admin-verb-text-make-changeling"),
@@ -211,5 +213,21 @@ public sealed partial class AdminVerbSystem
         };
         // На время пока не будут закончены все новые режимы.
         //args.Verbs.Add(fleshCultist);
+
+        Verb bloodCultist = new()
+        {
+            Text = Loc.GetString("admin-verb-text-make-cultist"),
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Objects/Weapons/Melee/cult_dagger.rsi"), "icon"),
+            Act = () =>
+            {
+                _antag.ForceMakeAntag<BloodCultRuleComponent>(targetPlayer, "BloodCult");
+            },
+            Impact = LogImpact.High,
+            Message = Loc.GetString("admin-verb-make-cultist"),
+        };
+        // На время пока не будут закончены все новые режимы.
+        //args.Verbs.Add(bloodCultist);
+        // Sunrise-End
     }
 }

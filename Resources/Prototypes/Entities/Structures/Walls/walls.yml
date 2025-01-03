@@ -215,6 +215,11 @@
   - type: IconSmooth
     key: walls
     base: cult
+  # Sunrise-Start
+  - type: Construction
+    graph: CultGirder
+    node: wall
+  # Sunrise-End
 
 - type: entity
   parent: BaseWall

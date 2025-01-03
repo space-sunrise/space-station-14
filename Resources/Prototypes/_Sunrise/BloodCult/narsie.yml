@@ -1,0 +1,47 @@
+﻿- type: entity
+  id: Narsie
+  name: Nar'si
+  components:
+  - type: Sprite
+    layers:
+      - map: [ "enum.NarsieLayer.Default" ]
+        state: narsie_spawn_anim
+        sprite: _Sunrise/BloodCult/narsie.rsi
+    drawdepth: 11
+    noRot: true
+    shader: unshaded
+    scale: 0.6, 0.6
+  - type: RandomWalk
+  - type: Appearance
+  - type: Narsie
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      Penis:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        restitution: 0.8
+        density: 1
+        mask:
+          - None
+        layer:
+          - None
+  - type: Clickable
+  - type: MovementIgnoreGravity
+  - type: Pylon
+    tileConvertCooldown: 0.1
+    convertEverything: true
+    tilesConvertRange: 15
+    healingAuraRange: 100
+    healingAuraDamage:
+      groups:
+        Brute: -5
+        Burn: -5
+        Toxin: -3
+        Genetic: -1
+    burnDamageOnInteract:
+      groups:
+        Burn: 5
+
