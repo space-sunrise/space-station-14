@@ -21,7 +21,6 @@ namespace Content.Server.Doors.Systems
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
         [Dependency] private readonly SharedMapSystem _mapping = default!;
         [Dependency] private readonly PointLightSystem _pointLight = default!;
-        [Dependency] private readonly SharedAirlockSystem _airlockSystem = default!; // Sunrise-Edit
 
         private const int UpdateInterval = 30;
         private int _accumulatedTicks;
@@ -56,7 +55,6 @@ namespace Content.Server.Doors.Systems
             var appearanceQuery = GetEntityQuery<AppearanceComponent>();
             var xformQuery = GetEntityQuery<TransformComponent>();
             var pointLightQuery = GetEntityQuery<PointLightComponent>();
-            var airlockQuery = GetEntityQuery<AirlockComponent>(); // Sunrise-Edit
 
             var query = EntityQueryEnumerator<FirelockComponent, DoorComponent>();
             while (query.MoveNext(out var uid, out var firelock, out var door))
@@ -83,13 +81,6 @@ namespace Content.Server.Doors.Systems
                     {
                         _pointLight.SetEnabled(uid, fire | pressure, pointLight);
                     }
-
-                    // Sunrise-Edit-Start
-                    if (!pressure && !fire && this.IsPowered(uid, EntityManager))
-                    {
-                        _doorSystem.TryOpen(uid);
-                    }
-                    // Sunrise-Edit-End
                 }
             }
         }
@@ -101,17 +92,6 @@ namespace Content.Server.Doors.Systems
 
             if (!TryComp<DoorComponent>(uid, out var doorComponent))
                 return;
-
-            // Sunrise-Edit-Start
-            if (TryComp<AirlockComponent>(uid, out var airlockComponent))
-            {
-                if (args.AlarmType == AtmosAlarmType.Danger)
-                {
-                    // Disable emergency access when fire alarm is triggered
-                    _airlockSystem.SetEmergencyAccess((uid, airlockComponent), false);
-                }
-            }
-            // Sunrise-Edit-End
 
             if (args.AlarmType == AtmosAlarmType.Normal)
             {
