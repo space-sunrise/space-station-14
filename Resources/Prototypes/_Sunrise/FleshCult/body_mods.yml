@@ -28,9 +28,6 @@
       - RLeg
       - LLeg
   - type: FleshBodyMod
-  - type: Tag
-    tags:
-    - HidesLegs
 
 - type: entity
   categories: [ HideSpawnMenu ]
