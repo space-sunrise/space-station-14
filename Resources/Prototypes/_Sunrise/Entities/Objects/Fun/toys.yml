@@ -830,7 +830,7 @@
   - type: EmitSoundOnUse
     sound:
       path: /Audio/Items/Toys/rawr.ogg
-    params:
-      volume: 5
+      params:
+        volume: 5
   - type: UseDelay
     delay: 5
