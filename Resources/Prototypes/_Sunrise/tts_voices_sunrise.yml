@@ -613,3 +613,12 @@
   provider: sunrise
   roundStart: true
   sponsorOnly: false
+
+- type: ttsVoice
+  id: HearthstoneKhadgar
+  name: tts-voice-name-hearthstone-khadgar
+  sex: Male
+  speaker: hearthstone_khadgar
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: false
