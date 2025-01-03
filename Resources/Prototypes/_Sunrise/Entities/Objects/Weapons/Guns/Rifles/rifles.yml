@@ -45,7 +45,7 @@
   - type: Gun
     minAngle: 24
     maxAngle: 45
-    fireRate: 6.5  # 10 в секунду - реалистично. 5, так как сс14
+    fireRate: 6  # 10 в секунду - реалистично. 5, так как сс14
     soundGunshot:
       collection: ak47
   - type: ItemSlots
@@ -102,7 +102,7 @@
   - type: Gun
     minAngle: 24
     maxAngle: 45
-    fireRate: 7
+    fireRate: 6.5
     soundGunshot:
       collection: ak47
   - type: ChamberMagazineAmmoProvider
@@ -159,7 +159,7 @@
   - type: Gun
     minAngle: 24
     maxAngle: 45
-    fireRate: 7.5  # 10 в секунду - реалистично. 5, так как сс14
+    fireRate: 7  # 10 в секунду - реалистично. 5, так как сс14
     soundGunshot:
       collection: ak47
   - type: ItemSlots
@@ -216,14 +216,22 @@
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/famas/tiny.rsi
   - type: GunWieldBonus
-    minAngle: -23
-    maxAngle: -43
+    minAngle: -16
+    maxAngle: -30
   - type: Gun
-    minAngle: 26
-    maxAngle: 48
-    fireRate: 6.9
+    minAngle: 21
+    maxAngle: 40
+    fireRate: 8
+    burstFireRate: 8
+    selectedMode: Burst
     soundGunshot:
-      collection: famas
+      collection: famas # Sunrise-Edit
+      params:
+        volume: 10
+    availableModes:
+      - Burst
+    shotsPerBurst: 5
+    burstCooldown: 0.25
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -453,7 +461,7 @@
   - type: Gun
     minAngle: 25
     maxAngle: 45
-    fireRate: 6
+    fireRate: 5.5
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/m16a4/m16a4_shot.ogg
   - type: ItemSlots
@@ -466,15 +474,15 @@
         priority: 2
         whitelist:
           tags:
-          - MagazineLightRifle
+          - MagazineRifle
           - MagazineM16A4
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifle  # 556
+        startingItem: CartridgeRifle  # 556
         priority: 1
         whitelist:
           tags:
-          - CartridgeLightRifle  # 556
+          - CartridgeRifle  # 556
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot

@@ -166,7 +166,9 @@
     startingCharge: 1000
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 20
+    autoRechargeRate: 25
+    autoRechargePause: true
+    autoRechargePauseTime: 30
   - type: EnergyGunFireModes
     fireModes:
     - hitscanProto: BulletDisabler
@@ -330,9 +332,9 @@
     angleIncrease: 1.5
     angleDecay: 8
     selectedMode: Burst
-    shotsPerBurst: 4
+    shotsPerBurst: 3
     burstCooldown: 0.3
-    burstFireRate: 5
+    burstFireRate: 4
     availableModes:
     - Burst
   - type: Item
@@ -431,15 +433,17 @@
         - SemiAuto
         - FullAuto
   - type: Battery
-    maxCharge: 1800
-    startingCharge: 1800
+    maxCharge: 1500
+    startingCharge: 1500
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 6 # 5 minute
+    autoRechargeRate: 20 # 2 minute
+    autoRechargePause: true
+    autoRechargePauseTime: 60
   - type: EnergyGunFireModes
     fireModes:
     - hitscanProto: BulletDisabler
-      fireCost: 50
+      fireCost: 75
       name: energy-gun-disable
       state: disabler
       shotType: Hitscan

@@ -59,7 +59,6 @@
   - type: Gun
     selectedMode: FullAuto
     availableModes:
-    - SemiAuto
     - FullAuto
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Pistols/vp70_shot.ogg
@@ -77,6 +76,7 @@
           tags:
           - MagazinePistol
           - MagazineVP70
+          - MagazinePistolHighCapacity
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistol
@@ -105,7 +105,7 @@
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Pistols/glock22/tiny.rsi
   - type: Gun
-    selectedMode: SemiAuto
+    selectedMode: FullAuto
     availableModes:
     - SemiAuto
     - FullAuto
@@ -122,6 +122,7 @@
         whitelist:
           tags:
           - MagazinePistol
+          - MagazinePistolHighCapacity
           - MagazineGlock22
       gun_chamber:
         name: Chamber
@@ -159,6 +160,7 @@
         whitelist:
           tags:
           - MagazinePistol
+          - MagazinePistolHighCapacity
           - MagazineGlock22
       gun_chamber:
         name: Chamber
@@ -198,6 +200,7 @@
         whitelist:
           tags:
           - MagazinePistol
+          - MagazinePistolHighCapacity
           - MagazineHIBrowning
       gun_chamber:
         name: Chamber
@@ -243,6 +246,7 @@
         whitelist:
           tags:
           - MagazinePistol
+          - MagazinePistolHighCapacity
           - MagazineACP14
       gun_chamber:
         name: Chamber
