@@ -604,3 +604,21 @@
   provider: sunrise
   roundStart: true
   sponsorOnly: false
+
+- type: ttsVoice
+  id: CRYSIS2AIuscaucasian02
+  name: tts-voice-name-crysis2-ai-uscaucasian-02
+  sex: Male
+  speaker: crysis2_ai_uscaucasian_02
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: false
+
+- type: ttsVoice
+  id: HearthstoneKhadgar
+  name: tts-voice-name-hearthstone-khadgar
+  sex: Male
+  speaker: hearthstone_khadgar
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: false

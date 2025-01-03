@@ -135,6 +135,10 @@
         collection: FootstepSpiderLegs
         params:
           volume: 10
+    - type: Hands
+      showInHands: false
+      disableExplosionRecursion: true
+      canBeStripped: false
 
 - type: entity
   parent: BaseMobFleshCult
@@ -156,28 +160,18 @@
     - type: Prying
       pryPowered: true
       force: true
-      speedModifier: 1.5
+      speedModifier: 7
       useSound:
         path: /Audio/Items/crowbar.ogg
     - type: Butcherable
       spawned:
         - id: FoodMeat
           amount: 5
-    - type: FleshPudge
-      bloodAbsorbSound:
-        path: /Audio/Effects/Fluids/splat.ogg
-        healBloodAbsorbReagents:
-          reagents:
-          - data: null
-            ReagentId: Carol
-            Quantity: 1
-        bulletAcidSpawnId: BulletSplashAcid
-        faceHuggerMobSpawnId: MobFleshHugger
-        soundThrowWorm: !type:SoundPathSpecifier
-          path: /Audio/_Sunrise/FleshCult/throw_worm.ogg
-        actionAbsorbBloodPool: AbsorbBloodPool
-        actionAcidSpit: FleshAcidSpit
-        actionThrowWorm: FleshThrowWorm
+    - type: FleshAbilities
+      startingActions:
+        - FleshCultistThrowHugger
+        - FleshCultistAcidSpit
+        - FleshCultistAbsorbBloodPool
     - type: Vocal
       sounds:
         Unsexed: FleshPudgeEmote
@@ -240,7 +234,7 @@
         fix1:
           shape:
             !type:PhysShapeCircle
-            radius: 0.40
+            radius: 0.35
           density: 800
           mask:
             - MobMask
@@ -248,6 +242,10 @@
             - MobLayer
     - type: Puller
       needsHands: false
+    - type: Hands
+      showInHands: false
+      disableExplosionRecursion: true
+      canBeStripped: false
 
 
 - type: entity

@@ -3,7 +3,7 @@ using Content.Shared.StatusIcon.Components;
 using Robust.Shared.Prototypes;
 namespace Content.Client._Sunrise.FleshCult;
 
-public sealed class FleshCultistSystem : SharedFleshMobSystem
+public sealed class FleshCultistSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 

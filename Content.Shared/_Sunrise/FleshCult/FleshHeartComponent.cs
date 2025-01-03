@@ -11,28 +11,11 @@ namespace Content.Shared.Flesh
     {
         [DataField("transformSound")] public SoundSpecifier TransformSound = new SoundCollectionSpecifier("gib");
 
-        [ViewVariables(VVAccess.ReadWrite), DataField("speciesWhitelist")]
-        public List<string> SpeciesWhitelist = new()
-        {
-            "Human",
-            "Reptilian",
-            "Dwarf",
-            "Vulpkanin",
-            "Felinid",
-            "Moth",
-            "Swine",
-            "Arachnid",
-        };
-
         [ViewVariables(VVAccess.ReadWrite)]
         [DataField("entryDelay")]
         public float EntryDelay = 10f;
 
         public Container BodyContainer = default!;
-
-        [DataField("alertLevelOnActivate")] public string AlertLevelOnActivate = "gamma";
-
-        [DataField("alertLevelOnDeactivate")] public string AlertLevelOnDeactivate = "green";
 
         public EntityUid? AmbientAudioStream = default;
 
@@ -40,7 +23,7 @@ namespace Content.Shared.Flesh
         public int BodyToFinalStage = 3; // default 3
 
         [DataField("timeLiveFinalHeartToWin"), ViewVariables(VVAccess.ReadWrite)]
-        public int TimeLiveFinalHeartToWin = 900; // default 600
+        public int TimeLiveFinalHeartToWin = 600; // default 600
 
         [DataField("spawnObjectsFrequency"), ViewVariables(VVAccess.ReadWrite)]
         public float SpawnObjectsFrequency = 60;
@@ -59,7 +42,7 @@ namespace Content.Shared.Flesh
         public Dictionary<string, float> Spawns = new();
 
         [DataField("spawnMobsFrequency"), ViewVariables(VVAccess.ReadWrite)]
-        public float SpawnMobsFrequency = 120;
+        public float SpawnMobsFrequency = 100;
 
         [DataField("spawnMobsAmount"), ViewVariables(VVAccess.ReadWrite)]
         public int SpawnMobsAmount = 10;
@@ -80,7 +63,7 @@ namespace Content.Shared.Flesh
         public float FinalStageAccumulator = 0;
 
         [ViewVariables]
-        public HeartStates State = HeartStates.Base;
+        public HeartStatus Status = HeartStatus.Base;
 
         public readonly HashSet<EntityUid> EdgeMobs = new();
 
@@ -93,7 +76,7 @@ namespace Content.Shared.Flesh
     }
 }
 
-public enum HeartStates
+public enum HeartStatus
 {
     Base,
     Active,

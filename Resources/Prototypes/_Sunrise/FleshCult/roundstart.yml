@@ -23,6 +23,19 @@
       - type: NpcFactionMember
         factions:
         - FleshHuman
+      whitelist:
+        species:
+          - Human
+          - Reptilian
+          - Dwarf
+          - Vulpkanin
+          - Felinid
+          - Moth
+          - Arachnid
+          - Swine
+          - Demon
+          - Vox
+          - Tajaran
       blacklist:
         components:
         - AntagImmune

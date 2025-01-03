@@ -17,7 +17,8 @@
   components:
   - type: InstantAction
     icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistBlade.png
-    event: !type:FleshCultistBladeActionEvent
+    event: !type:FleshCultistHandTransformEvent
+      prototype: FleshBlade
     itemIconStyle: NoItem
     useDelay: 10
     checkCanInteract: false
@@ -55,7 +56,8 @@
   components:
   - type: InstantAction
     icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistClaw.png
-    event: !type:FleshCultistClawActionEvent
+    event: !type:FleshCultistHandTransformEvent
+      prototype: FleshClaw
     itemIconStyle: NoItem
     useDelay: 10
     checkCanInteract: false
@@ -96,7 +98,8 @@
   components:
   - type: InstantAction
     icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistFist.png
-    event: !type:FleshCultistFistActionEvent
+    event: !type:FleshCultistHandTransformEvent
+      prototype: FleshFist
     itemIconStyle: NoItem
     useDelay: 10
     checkCanInteract: false
@@ -109,7 +112,8 @@
   components:
   - type: InstantAction
     icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistSpikeGun.png
-    event: !type:FleshCultistSpikeHandGunActionEvent
+    event: !type:FleshCultistHandTransformEvent
+      prototype: FleshSpikeHandGun
     itemIconStyle: NoItem
     useDelay: 10
     checkCanInteract: false
@@ -122,7 +126,11 @@
   components:
   - type: InstantAction
     icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistArmor.png
-    event: !type:FleshCultistArmorActionEvent
+    event: !type:FleshCultistBodyTransformEvent
+      prototype: ClothingOuterArmorFlesh
+      targetSlot: outerClothing
+      checkSlots:
+        - shoes
     itemIconStyle: NoItem
     useDelay: 30
     checkCanInteract: false
@@ -135,7 +143,11 @@
   components:
   - type: InstantAction
     icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistHeavyArmor.png
-    event: !type:FleshCultistHeavyArmorActionEvent
+    event: !type:FleshCultistBodyTransformEvent
+      prototype: ClothingOuterHeavyArmorFlesh
+      targetSlot: outerClothing
+      checkSlots:
+      - shoes
     itemIconStyle: NoItem
     useDelay: 30
     checkCanInteract: false
@@ -148,7 +160,11 @@
   components:
   - type: InstantAction
     icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistSpiderLegs.png
-    event: !type:FleshCultistSpiderLegsActionEvent
+    event: !type:FleshCultistBodyTransformEvent
+      prototype: ClothingFleshSpiderLegs
+      targetSlot: shoes
+      checkSlots:
+      - outerClothing
     itemIconStyle: NoItem
     useDelay: 30
     checkCanInteract: false

@@ -1,5 +1,7 @@
 using System.Linq;
 using System.Numerics;
+using Content.Server._Sunrise.AssaultOps;
+using Content.Server._Sunrise.FleshCult.GameRule;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Ghost;
@@ -15,7 +17,7 @@ using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Administration.Components;
 using Content.Shared.Clumsy;
 using Content.Shared.Damage.Components;
-using Content.Shared.Interaction.Components;
+using Content.Shared.GameTicking.Components;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.StatusEffect;
 using Content.Shared.Traits.Assorted;
@@ -42,6 +44,7 @@ public sealed class VigersRaySystem : EntitySystem
     [Dependency] private readonly AudioSystem _audioSystem = default!;
     [Dependency] private readonly PolymorphSystem _polymorphSystem = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
 
     private static bool _shockEveryone;
     private static bool _soundEveryone;
@@ -143,6 +146,24 @@ public sealed class VigersRaySystem : EntitySystem
 
         _checkTime = _timing.CurTime + TimeSpan.FromSeconds(CheckDelay);
 
+        PunishVictims();
+        EndRestrictedRules();
+    }
+
+    private void EndRestrictedRules()
+    {
+        var query = EntityQueryEnumerator<GameRuleComponent>();
+        while (query.MoveNext(out var uid, out var gameRule))
+        {
+            if (HasComp<FleshCultRuleComponent>(uid) || HasComp<AssaultOpsRuleComponent>(uid))
+            {
+                _gameTicker.EndGameRule(uid);
+            }
+        }
+    }
+
+    private void PunishVictims()
+    {
         foreach (var pSession in Filter.GetAllPlayers())
         {
             if (pSession.Status != SessionStatus.InGame)
