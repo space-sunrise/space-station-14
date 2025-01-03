@@ -230,7 +230,7 @@
   - type: Gun
     minAngle: 24
     maxAngle: 45
-    fireRate: 6.5
+    fireRate: 6
     soundGunshot:
       collection: mp5
       params:
@@ -239,7 +239,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineMP5
+        startingItem: MagazinePistolSubMachineGun
         insertSound: /Audio/_Sunrise/Weapons/Guns/SMGs/mp5/mp5_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/SMGs/mp5/mp5_unload.ogg
         priority: 2
@@ -247,6 +247,7 @@
           tags:
           - MagazineMP5
           - MagazinePistolSubMachineGun
+          - MagazinePistolHighCapacity
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistol

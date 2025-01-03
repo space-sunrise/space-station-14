@@ -172,7 +172,6 @@
       - Mousetrap
       - LightReplacer
       - TrashBag
-      - BoxShotgunFlare
       - PowerCellSmall
       - PowerCellMedium
       - RollerBedSpawnFolded
@@ -231,7 +230,6 @@
       - WeaponEnergyGunMini   # Sunrise - Miniature Energy Gun
       - WeaponLaserSvalinn # Sunrise - Svalin shit weapon
       - ClothingHeadHelmetPubg # Sunrise - cheap if u have EMAG
-      - MagazineLightRifleBox #Sunrise - For Nukies
   - type: BlueprintReceiver
     whitelist:
       tags:
@@ -366,7 +364,6 @@
       - DeviceQuantumSpinInverter
       - EnergyDomeDirectionalTurtle
       # Sunrise-start
-      - PowerCellHyper
       - ClothingHeadHelmetPubgMore
       - MechPhasicScanningModule
       - HandCraftedNVD
@@ -382,15 +379,10 @@
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       # Sunrise-Start
-      - BaseMagazinePistolCaselessRifleExtended
-      - PowerCellCombat
-      - MagazineLightRifleBoxIncendiary
-      - MagazineLightRifleBoxUranium
-      - MagazineMagnumUranium
-      - MagazineShotgunUranium
-      - MagazineLightRifleRubber
-      - MagazineRifleRubber
-      - MagazinePistolSubMachineGunRubber
+      - CartridgePistolRubber
+      - CartridgeMagnumRubber
+      - CartridgeRifleRubber
+      - CartridgeLightRifleRubber
       - MagazineBoxPistolRubber
       - MagazineBoxMagnumRubber
       - MagazineBoxRifleRubber
@@ -801,7 +793,6 @@
     idleState: icon
     runningState: icon
     staticRecipes:
-      - BoxShotgunFlare
       - BoxLethalshot
       - BoxShotgunPractice
       - BoxShotgunSlug
@@ -820,8 +811,8 @@
       - MagazineBoxRiflePractice
       - MagazineLightRifle
       - MagazineLightRifleEmpty
-      #- MagazinePistol Sunrise-Edit
-      #- MagazinePistolEmpty Sunrise-Edit
+      - MagazinePistol
+      - MagazinePistolEmpty
       - MagazinePistolSubMachineGun
       - MagazinePistolSubMachineGunEmpty
       - MagazinePistolSubMachineGunTopMounted
@@ -843,14 +834,29 @@
       - WeaponLaserCarbinePractice
       - Zipties
     # Sunrise-start
-      - SpeedLoaderMagnumRubber
-      - MagazineMagnumEmpty
-      - MagazineMagnum
+      - MagazineM16A4
+      - MagazineLightMachineGunMG60
+      - MagazinePPSH41
+      - MagazineRPD
+      - MagazineNewVector
+      - MagazineMP38
+      - MagazineMP5
+      - MagazineMP7
       - MagazineP90
+      - MagazineScorpion
+      - MagazineAK
+      - MagazineAR18
+      - MagazineG36
+      - MagazineM28
+      - MagazineFamas
       - MagazineBR64
-      - MagazinePistolHighCapacity
-      - MagazinePistolHighCapacityEmpty
-      - MagazineMagnum
+      - MagazineDragunov
+      - MagazineV31
+      - MagazineACP14
+      - MagazineGlock22
+      - MagazineVP70
+      - MagazineHIBrowning
+      - MagazineDeagle
       - ClothingHeadHelmetPubg
     # Sunrise-end
     dynamicRecipes:
@@ -906,20 +912,14 @@
       - WeaponLaserCarbine
       - WeaponXrayCannon
     # Sunrise-Start
-      - PowerCellCombat
-      - PowerCellHyper
-      - MagazinePistolSubMachineGunIncendiary
-      - MagazinePistolSubMachineGunUranium
-      - MagazineMagnumUranium
-      - MagazineShotgunUranium
-      - MagazineLightRifleRubber
-      - MagazineRifleRubber
-      - MagazinePistolSubMachineGunRubber
+      - CartridgePistolRubber
+      - CartridgeMagnumRubber
+      - CartridgeRifleRubber
+      - CartridgeLightRifleRubber
       - MagazineBoxPistolRubber
       - MagazineBoxMagnumRubber
       - MagazineBoxRifleRubber
       - MagazineBoxLightRifleRubber
-      - PowerCageCombat
       - WeaponMechCombatImmolationGun # Sunrise - Mechs
       - WeaponMechCombatSolarisLaser # Sunrise - Mechs
       - WeaponMechCombatFiredartLaser # Sunrise - Mechs
@@ -934,13 +934,20 @@
       - WeaponEnergyGunPistol # Sunrise - PDW-9 Energy Pistol
       - WeaponGunLaserCarbineAutomatic # Sunrise - IK-60 Laser Carbine
       - ClothingShoesBootsMagCombat # Sunrise - Combat Magboots
+      - BaseMagazinePistolCaselessRifleExtended
+      - MagazinePPSH41Extended
       - MagazineMP5Extended
       - MagazineMP7Extended
       - MagazineP90Extended
       - MagazineM16A4Extended
+      - MagazineAR18Extended
+      - MagazineM28Extended
       - MagazineG36Extended
       - MagazineFamasExtended
+      - MagazineV31Extended
+      - MagazineBauer127Extended
       - MagazineBR64Extended
+      - MagazineDragunovExtended
     # Sunrise-End
   - type: MaterialStorage
     whitelist:

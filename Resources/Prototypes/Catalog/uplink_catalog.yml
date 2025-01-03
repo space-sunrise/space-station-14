@@ -76,11 +76,13 @@
     Telecrystal: 4
   productEntity: EnergySwordBiocode # Sunrise-edit
   cost:
-    Telecrystal: 8
+    Telecrystal: 10
   categories:
   - UplinkWeaponry
   #Sunrise-start
   conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
   - !type:StoreWhitelistCondition
     blacklist:
       tags:

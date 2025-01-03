@@ -10,5 +10,3 @@ ent-WeaponPistolMk58 = mk 58
     .desc = A cheap, ubiquitous sidearm, produced by a NanoTrasen subsidiary. Uses .35 auto ammo.
 ent-WeaponPistolN1984 = N1984
     .desc = The sidearm of any self respecting officer.     Comes in .45 magnum, the lord's caliber.
-ent-WeaponFlareGunSecurity = security shell gun
-    .desc = A modified flare gun originally designed to be used by security to launch non-lethal shotgun shells, however it can also fire lethal shells without risk.

@@ -334,7 +334,7 @@
     selectedMode: Burst
     shotsPerBurst: 3
     burstCooldown: 0.3
-    burstFireRate: 4
+    burstFireRate: 4.4
     availableModes:
     - Burst
   - type: Item
@@ -428,7 +428,7 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
     selectedMode: SemiAuto
-    fireRate: 2.2
+    fireRate: 2.1
     availableModes:
         - SemiAuto
         - FullAuto

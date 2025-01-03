@@ -120,7 +120,7 @@
     back: ClothingBackpackERTChaplain
     shoes: ClothingShoesSwat # Sunrise-edit
     head: ClothingHeadEVAHelmetERTChaplain # Sunrise-edit
-    eyes: ClothingEyesHudMedSec # Sunrise-edit
+    eyes: ClothingEyesHudMedical
     neck: ClothingNeckStoleChaplain
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorAmberChap # Sunrise-edit
