@@ -2,7 +2,10 @@
   id: FleshCultistBlade
   name: flesh-cultist-blade-evolution-name
   description: flesh-cultist-blade-evolution-desc
-  productAction: FleshCultistBlade
+  icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistBlade.png
+  productEvent: !type:FleshCultistUnlockAbilityEvent
+    prototype: FleshCultistBlade
+  raiseProductEventOnUser: true
   cost:
     StolenMutationPoint: 45
   categories:
@@ -90,7 +93,10 @@
   id: FleshCultistClaw
   name: flesh-cultist-claw-evolution-name
   description: flesh-cultist-claw-evolution-desc
-  productAction: FleshCultistClaw
+  icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistClaw.png
+  productEvent: !type:FleshCultistUnlockAbilityEvent
+    prototype: FleshCultistClaw
+  raiseProductEventOnUser: true
   cost:
     StolenMutationPoint: 10
   categories:
@@ -103,7 +109,10 @@
   id: FleshCultistFist
   name: flesh-cultist-fist-evolution-name
   description: flesh-cultist-fist-evolution-desc
-  productAction: FleshCultistFist
+  icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistFist.png
+  productEvent: !type:FleshCultistUnlockAbilityEvent
+    prototype: FleshCultistFist
+  raiseProductEventOnUser: true
   cost:
     StolenMutationPoint: 25
   categories:
@@ -116,7 +125,10 @@
   id: FleshCultistSpikeGun
   name: flesh-cultist-spike-gun-evolution-name
   description: flesh-cultist-spike-gun-evolution-desc
-  productAction: FleshCultistSpikeGun
+  icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistSpikeGun.png
+  productEvent: !type:FleshCultistUnlockAbilityEvent
+    prototype: FleshCultistSpikeGun
+  raiseProductEventOnUser: true
   cost:
     StolenMutationPoint: 35
   categories:
@@ -129,7 +141,10 @@
   id: FleshCultistMediumArmor
   name: flesh-cultist-medium-armor-evolution-name
   description: flesh-cultist-medium-armor-evolution-desc
-  productAction: FleshCultistArmor
+  icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistArmor.png
+  productEvent: !type:FleshCultistUnlockAbilityEvent
+    prototype: FleshCultistArmor
+  raiseProductEventOnUser: true
   cost:
     StolenMutationPoint: 25
   categories:
@@ -142,7 +157,10 @@
   id: FleshCultistHeavyArmor
   name: flesh-cultist-heavy-armor-evolution-name
   description: flesh-cultist-heavy-armor-evolution-desc
-  productAction: FleshCultistHeavyArmor
+  icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistHeavyArmor.png
+  raiseProductEventOnUser: true
+  productEvent: !type:FleshCultistUnlockAbilityEvent
+    prototype: FleshCultistHeavyArmor
   cost:
     StolenMutationPoint: 45
   categories:
@@ -155,7 +173,10 @@
   id: FleshCultistSpiderlegs
   name: flesh-cultist-spider-legs-evolution-name
   description: flesh-cultist-spider-legs-evolution-desc
-  productAction: FleshCultistSpiderlegs
+  icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistSpiderLegs.png
+  productEvent: !type:FleshCultistUnlockAbilityEvent
+    prototype: FleshCultistSpiderlegs
+  raiseProductEventOnUser: true
   cost:
     StolenMutationPoint: 20
   categories:
@@ -168,7 +189,10 @@
   id: FleshCultistAdrenalin
   name: flesh-cultist-adrenaline-evolution-name
   description: flesh-cultist-adrenaline-evolution-desc
-  productAction: FleshCultistAdrenalin
+  icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistAdrenalin.png
+  productEvent: !type:FleshCultistUnlockAbilityEvent
+    prototype: FleshCultistAdrenalin
+  raiseProductEventOnUser: true
   cost:
     StolenMutationPoint: 30
   categories:
@@ -181,7 +205,10 @@
   id: FleshCultistCreateFleshHeart
   name: flesh-cultist-create-flesh-heart-evolution-name
   description: flesh-cultist-create-flesh-heart-evolution-desc
-  productAction: FleshCultistCreateFleshHeart
+  icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistFleshHeart.png
+  productEvent: !type:FleshCultistUnlockAbilityEvent
+    prototype: FleshCultistCreateFleshHeart
+  raiseProductEventOnUser: true
   cost:
     StolenMutationPoint: 50
   categories:
@@ -194,7 +221,10 @@
   id: FleshCultistThrowHugger
   name: flesh-cultist-throw-hugger-evolution-name
   description: flesh-cultist-throw-hugger-evolution-desc
-  productAction: FleshCultistThrowHugger
+  icon: _Sunrise/FleshCult/Interface/Actions/fleshThrowHugger.png
+  productEvent: !type:FleshCultistUnlockAbilityEvent
+    prototype: FleshCultistThrowHugger
+  raiseProductEventOnUser: true
   cost:
     StolenMutationPoint: 30
   categories:
@@ -207,7 +237,10 @@
   id: FleshCultistAcidSpit
   name: flesh-cultist-acid-spit-evolution-name
   description: flesh-cultist-acid-spit-evolution-desc
-  productAction: FleshCultistAcidSpit
+  icon: _Sunrise/FleshCult/Interface/Actions/fleshAcidSpit.png
+  productEvent: !type:FleshCultistUnlockAbilityEvent
+    prototype: FleshCultistAcidSpit
+  raiseProductEventOnUser: true
   cost:
     StolenMutationPoint: 30
   categories:
@@ -215,3 +248,19 @@
   conditions:
     - !type:ListingLimitedStockCondition
       stock: 1
+
+- type: listing
+  id: FleshCultistAbsorbBloodPool
+  name: flesh-cultist-absorb-blood-pool-evolution-name
+  description: flesh-cultist-absorb-blood-pool-evolution-desc
+  icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistAbsorbBloodPool.png
+  productEvent: !type:FleshCultistUnlockAbilityEvent
+    prototype: FleshCultistAbsorbBloodPool
+  raiseProductEventOnUser: true
+  cost:
+    StolenMutationPoint: 10
+  categories:
+  - FleshCultistActiveSkills
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1

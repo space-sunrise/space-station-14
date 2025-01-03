@@ -1,15 +1,9 @@
-flesh-cultist-transform-hand-in-blade = Рука { CAPITALIZE($Entity) } превращается в клинок из плоти.
-flesh-cultist-transform-hand-in-claw = Рука { CAPITALIZE($Entity) } превращается в клешню из плоти.
-flesh-cultist-transform-hand-in-spike-gun = Рука { CAPITALIZE($Entity) } превращается в шипострел из плоти.
-flesh-cultist-transform-blade-in-hand = Клинок из плоти { CAPITALIZE($Entity) } превращается обратно в руку.
-flesh-cultist-transform-claw-in-hand = Клешня из плоти { CAPITALIZE($Entity) } превращается обратно в руку.
-flesh-cultist-transform-spike-gun-in-hand = Шипострел из плоти { CAPITALIZE($Entity) } превращается обратно в руку.
-flesh-cultist-transform-armor-on = { CAPITALIZE($Entity) } покрывается броней из плоти.
-flesh-cultist-transform-armor-off = { CAPITALIZE($Entity) } убирает свою броню из плоти.
-flesh-cultist-transform-spider-legs-on = Ноги { CAPITALIZE($Entity) } превращаются в паучьи лапы из плоти.
-flesh-cultist-transform-spider-legs-off = Паучьи лапы { CAPITALIZE($Entity) } превращаются обратно в человеческие ноги.
+flesh-cultist-transform-hand-to-mod = Рука { CAPITALIZE( $User ) } превращается в { CAPITALIZE( $Mod ) }.
+flesh-cultist-transform-mod-to-hand = { CAPITALIZE( $Mod ) } { CAPITALIZE( $User ) } превращается в обратно в руку.
+flesh-cultist-transform-body-add = { CAPITALIZE( $User ) } отращивает { CAPITALIZE( $Mod ) }.
+flesh-cultist-transform-body-remove = { CAPITALIZE( $User ) } скрывает { CAPITALIZE( $Mod ) }.
 flesh-cultist-transform-user-hand-blocked = Данная рука занята другой модификацией.
-flesh-cultist-transform-armor-blocked = Вы не можете использовать паучьи ноги и броню одновременно.
+flesh-cultist-transform-conflict = Вы не можете использовать это сейчас.
 flesh-cultist-transform-spider-legs-blocked = Вы не можете использовать броню с паучьими лапами.
 flesh-cultist-infection-target-critical = Вы не можете заразить умирающее существо.
 flesh-cultist-infection-target-dead = Вы не можете заразить мертвое существо.
@@ -49,6 +43,8 @@ flesh-cultist-spike-gun-name = Рука шипострел
 flesh-cultist-spike-gun-desc = Превращает активную руку в смертоносный шипострел из плоти.
 flesh-cultist-armor-name = Броня из плоти
 flesh-cultist-armor-desc = Облачает вас в броню из плоти и костей.
+flesh-cultist-heavy-armor-name = Тяжелая броня из плоти
+flesh-cultist-heavy-armor-desc = Облачает вас в тяжелую броню из плоти и костей.
 flesh-cultist-spider-legs-name = Паучий облик
 flesh-cultist-spider-legs-desc = Превращает часть вашего тела в паучий вид, давая небольшую защиту и большой прирост скорости.
 flesh-cultist-absorb-blood-pool-name = Поглощение лужи крови
@@ -83,11 +79,13 @@ flesh-cultist-adrenaline-evolution-desc = Получите возможност�
 flesh-cultist-throw-hugger-evolution-name = Бросок лицехвата
 flesh-cultist-throw-hugger-evolution-desc = Получите возможность создать и кинуть лицехвата из плоти, который будет цеплятся за лица врагов.
 flesh-cultist-acid-spit-evolution-name = Кислотный плевок
-flesh-cultist-acid-spit-evolution-desc = Получите возможность преваться кислотой в ваших врагов.
+flesh-cultist-acid-spit-evolution-desc = Получите возможность плеваться кислотой в ваших врагов.
 flesh-cultist-create-flesh-heart-evolution-name = Создание сердца из плоти
 flesh-cultist-create-flesh-heart-evolution-desc = Получите возможность создать сердце из плоти.
     Его создание и пробуждение - ваша ключевая задача на станции.
     Для пробуждения потребуется три тела развитых существ из плоти. После активации будьте готовы защищать его от любой угрозы.
+flesh-cultist-absorb-blood-pool-evolution-name = Поглощение лужи крови
+flesh-cultist-absorb-blood-pool-evolution-desc = Позволяет поглотить лужи крови для лечения.
 
 flesh-cultist-insulated-immunity-evolution-name = Сопротивление
 flesh-cultist-insulated-immunity-evolution-desc = Вы сможете спокойно работать с электричеством не опасаясь поражения напряжением.

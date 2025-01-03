@@ -35,6 +35,18 @@ public sealed partial class AdminVerbSystem
     [ValidatePrototypeId<EntityPrototype>]
     private const string DefaultThiefRule = "Thief";
 
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string DefaultVampireRule = "Vampire";
+
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string DefaultChangelingRule = "Changeling";
+
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string DefaultFleshCultRule = "FleshCult";
+
+    [ValidatePrototypeId<EntityPrototype>]
+    private const string DefaultAssaultOpsRule = "AssaultOps";
+
     [ValidatePrototypeId<StartingGearPrototype>]
     private const string PirateGearId = "PirateGear";
 
@@ -161,7 +173,7 @@ public sealed partial class AdminVerbSystem
             Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Changeling/changeling_abilities.rsi"), "transform"),
             Act = () =>
             {
-                _antag.ForceMakeAntag<ChangelingRuleComponent>(targetPlayer, "Changeling");
+                _antag.ForceMakeAntag<ChangelingRuleComponent>(targetPlayer, DefaultChangelingRule);
             },
             Impact = LogImpact.High,
             Message = Loc.GetString("admin-verb-make-changeling"),
@@ -175,7 +187,7 @@ public sealed partial class AdminVerbSystem
             Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Interface/Actions/actions_vampire.rsi"), "unholystrength"),
             Act = () =>
             {
-                _antag.ForceMakeAntag<VampireRuleComponent>(targetPlayer, "Vampire");
+                _antag.ForceMakeAntag<VampireRuleComponent>(targetPlayer, DefaultVampireRule);
             },
             Impact = LogImpact.High,
             Message = Loc.GetString("admin-verb-make-vampire"),
@@ -189,13 +201,12 @@ public sealed partial class AdminVerbSystem
             Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Structures/Wallmounts/posters.rsi"), "poster46_contraband"),
             Act = () =>
             {
-                _antag.ForceMakeAntag<AssaultOpsRuleComponent>(targetPlayer, "AssaultOps");
+                _antag.ForceMakeAntag<AssaultOpsRuleComponent>(targetPlayer, DefaultAssaultOpsRule);
             },
             Impact = LogImpact.High,
             Message = Loc.GetString("admin-verb-make-assault-operative"),
         };
-        // На время пока не будут закончены все новые режимы.
-        //args.Verbs.Add(assaultOperative);
+        args.Verbs.Add(assaultOperative);
 
         Verb fleshCultist = new()
         {
@@ -204,12 +215,11 @@ public sealed partial class AdminVerbSystem
             Icon = new SpriteSpecifier.Texture(new ResPath("_Sunrise/FleshCult/Interface/Actions/fleshCultistFleshHeart.png")),
             Act = () =>
             {
-                _antag.ForceMakeAntag<FleshCultRuleComponent>(targetPlayer, "FleshCult");
+                _antag.ForceMakeAntag<FleshCultRuleComponent>(targetPlayer, DefaultFleshCultRule);
             },
             Impact = LogImpact.High,
             Message = Loc.GetString("admin-verb-make-flesh-cultist"),
         };
-        // На время пока не будут закончены все новые режимы.
-        //args.Verbs.Add(fleshCultist);
+        args.Verbs.Add(fleshCultist);
     }
 }

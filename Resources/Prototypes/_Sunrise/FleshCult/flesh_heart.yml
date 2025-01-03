@@ -47,8 +47,9 @@
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
     - type: PointLight
-      radius: 10
-      energy: 1
+      radius: 25
+      energy: 10
+      enabled: false
       castShadows: true
       color: "#87031f"
     - type: FleshHeart
@@ -58,9 +59,9 @@
         types:
           Slash: 700
       spawns:
-        MobFleshSpider: 0.20
+        MobFleshSpider: 0.30
         MobFleshPudge: 0.20
-        MobFleshBall: 0.30
+        MobFleshBall: 0.20
         MobFleshBat: 0.30
-      spawnMobsAmount: 3
+      spawnMobsAmount: 5
       spawnMobsFrequency: 180

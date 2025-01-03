@@ -1,52 +1,31 @@
 ﻿using Content.Shared.Actions;
 using Content.Shared.DoAfter;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared._Sunrise.FleshCult;
 
-[Serializable, NetSerializable]
-public sealed partial class FleshCultistDevourDoAfterEvent : SimpleDoAfterEvent
+public sealed partial class FleshCultistInsulatedImmunityMutationEvent : InstantActionEvent
 {
 
 }
 
-[Serializable, NetSerializable]
-public sealed partial class FleshCultistInfectionDoAfterEvent : SimpleDoAfterEvent
+public sealed partial class FleshCultistPressureImmunityMutationEvent : InstantActionEvent
 {
 
 }
 
-[Serializable, NetSerializable]
-public sealed partial class FleshCultistInsulatedImmunityMutationEvent : SimpleDoAfterEvent
+public sealed partial class FleshCultistFlashImmunityMutationEvent : InstantActionEvent
 {
 
 }
 
-[Serializable, NetSerializable]
-public sealed partial class FleshCultistPressureImmunityMutationEvent : SimpleDoAfterEvent
+public sealed partial class FleshCultistRespiratorImmunityMutationEvent : InstantActionEvent
 {
 
 }
 
-[Serializable, NetSerializable]
-public sealed partial class FleshCultistFlashImmunityMutationEvent : SimpleDoAfterEvent
-{
-
-}
-
-[Serializable, NetSerializable]
-public sealed partial class FleshCultistRespiratorImmunityMutationEvent : SimpleDoAfterEvent
-{
-
-}
-
-[Serializable, NetSerializable]
-public sealed partial class FleshCultistColdTempImmunityMutationEvent : SimpleDoAfterEvent
-{
-
-}
-
-public sealed partial class FleshCultistAcidSpitActionEvent : WorldTargetActionEvent
+public sealed partial class FleshCultistColdTempImmunityMutationEvent : InstantActionEvent
 {
 
 }
@@ -56,54 +35,12 @@ public sealed partial class FleshCultistShopActionEvent : InstantActionEvent
 
 }
 
-public sealed partial class FleshCultistBladeActionEvent : InstantActionEvent
-{
-
-}
-
-
-public sealed partial class FleshCultistClawActionEvent : InstantActionEvent
-{
-
-}
-
-public sealed partial class FleshCultistFistActionEvent : InstantActionEvent
-{
-
-}
-
-public sealed partial class FleshCultistSpikeHandGunActionEvent : InstantActionEvent
-{
-
-}
-
-public sealed partial class FleshCultistArmorActionEvent : InstantActionEvent
-{
-
-}
-
-public sealed partial class FleshCultistHeavyArmorActionEvent : InstantActionEvent
-{
-
-}
-
-public sealed partial class FleshCultistSpiderLegsActionEvent : InstantActionEvent
-{
-
-}
-
-
 public sealed partial class FleshCultistAdrenalinActionEvent : InstantActionEvent
 {
 
 }
 
 public sealed partial class FleshCultistCreateFleshHeartActionEvent : InstantActionEvent
-{
-
-}
-
-public sealed partial class FleshCultistThrowHuggerActionEvent : WorldTargetActionEvent
 {
 
 }
@@ -118,5 +55,40 @@ public sealed partial class FleshCultistDevourActionEvent : EntityTargetActionEv
 
 }
 
+public sealed partial class FleshCultistThrowHuggerActionEvent : WorldTargetActionEvent
+{
+}
+
+public sealed partial class FleshCultistAcidSpitActionEvent : WorldTargetActionEvent
+{
+
+}
+
+[Serializable, NetSerializable]
+public sealed partial class FleshCultistDevourDoAfterEvent : SimpleDoAfterEvent
+{
+
+}
 
 
+public sealed partial class FleshCultistHandTransformEvent : InstantActionEvent
+{
+    [DataField]
+    public EntProtoId Prototype;
+}
+
+public sealed partial class FleshCultistBodyTransformEvent : InstantActionEvent
+{
+    [DataField]
+    public EntProtoId Prototype;
+    [DataField]
+    public string TargetSlot = string.Empty;
+    [DataField]
+    public List<string> CheckSlots = [];
+}
+
+public sealed partial class FleshCultistUnlockAbilityEvent : InstantActionEvent
+{
+    [DataField]
+    public EntProtoId Prototype = string.Empty;
+}

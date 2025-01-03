@@ -8,8 +8,8 @@
       issuer: flesh-cult
     - type: RoleRequirement
       roles:
-        components:
-          - FleshCultistRole
+        mindRoles:
+        - FleshCultistRole
 
 - type: entity
   categories: [ HideSpawnMenu ]
