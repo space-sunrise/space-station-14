@@ -4,6 +4,7 @@ using Content.Shared.Objectives.Components;
 using Content.Shared.Roles.Jobs;
 using Robust.Shared.GameObjects;
 using System.Diagnostics.CodeAnalysis;
+using Content.Server._Sunrise.TraitorTarget;
 
 namespace Content.Server.Objectives.Systems;
 
@@ -33,10 +34,15 @@ public sealed class TargetObjectiveSystem : EntitySystem
     /// <summary>
     /// Sets the Target field for the title and other components to use.
     /// </summary>
-    public void SetTarget(EntityUid uid, EntityUid target, TargetObjectiveComponent? comp = null)
+    public void SetTarget(EntityUid uid, EntityUid mindId, EntityUid target, TargetObjectiveComponent? comp = null)
     {
         if (!Resolve(uid, ref comp))
             return;
+
+        if (TryComp<AntagTargetComponent>(target, out var antagTargetCom))
+        {
+            antagTargetCom.KillerMind = mindId;
+        }
 
         comp.Target = target;
     }

@@ -98,6 +98,20 @@
     # if ce flies a shittle to centcom you better find a way onto it
     requireDead: true
 
+- type: entity
+  parent: [BaseTraitorObjective, BaseKillObjective]
+  id: KillRandomAntagObjective
+  description:
+  components:
+  - type: Objective
+    difficulty: 1.0
+    unique: true
+  - type: TargetObjective
+    title: objective-condition-kill-antag-title
+  - type: PickRandomAntag
+  - type: KillPersonCondition
+    requireDead: true
+
 # social
 
 - type: entity
