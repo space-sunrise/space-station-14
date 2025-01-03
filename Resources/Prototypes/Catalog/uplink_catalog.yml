@@ -82,7 +82,7 @@
   #Sunrise-start
   conditions:
   - !type:StoreWhitelistCondition
-    whitelist:
+    blacklist:
       tags:
       - AssaultOpsUplink
   #Sunrise-end

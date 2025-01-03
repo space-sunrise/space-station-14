@@ -82,6 +82,25 @@ public sealed class AssaultOpsRuleSystem : GameRuleSystem<AssaultOpsRuleComponen
         }
     }
 
+    protected override void Ended(EntityUid uid, AssaultOpsRuleComponent component, GameRuleComponent gameRule, GameRuleEndedEvent args)
+    {
+        var fleshCultistQuery = EntityQueryEnumerator<AssaultOperativeComponent>();
+        while (fleshCultistQuery.MoveNext(out var operativeUid, out _))
+        {
+            QueueDel(operativeUid);
+        }
+
+        var query = EntityQueryEnumerator<AssaultOpsShuttleComponent>();
+        while (query.MoveNext(out var assaultOpsShuttleUid, out var shuttle))
+        {
+            if (shuttle.AssociatedRule == uid)
+            {
+                QueueDel(assaultOpsShuttleUid);
+            }
+        }
+        QueueDel(uid);
+    }
+
     private void OnRuleLoadedGrids(Entity<AssaultOpsRuleComponent> ent, ref RuleLoadedGridsEvent args)
     {
         var query = EntityQueryEnumerator<AssaultOpsShuttleComponent>();
