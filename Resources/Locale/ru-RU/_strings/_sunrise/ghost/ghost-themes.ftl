@@ -39,3 +39,6 @@ ghost-theme-wizden-block = Wizden Block
 ghost-theme-vigers-ray = VigersRay
 ghost-theme-asuka = Asuka
 ghost-theme-randy = Randy
+ghost-theme-pink-girl = Pink Girl
+ghost-theme-purple-girl = Purple Girl
+ghost-theme-red-girl = Red Girl
