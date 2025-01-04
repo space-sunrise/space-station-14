@@ -1,4 +1,4 @@
-namespace Content.Server._Sunrise.DontSellingGrid;
+namespace Content.Shared._Sunrise.Economy;
 
 /// <summary>
 ///
