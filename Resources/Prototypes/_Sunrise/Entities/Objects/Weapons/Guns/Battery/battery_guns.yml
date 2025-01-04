@@ -437,7 +437,7 @@
     startingCharge: 1500
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 20 # 2 minute
+    autoRechargeRate: 15 # ~3 minute
     autoRechargePause: true
     autoRechargePauseTime: 60
   - type: EnergyGunFireModes
