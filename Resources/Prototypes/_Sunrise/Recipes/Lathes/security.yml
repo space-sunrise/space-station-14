@@ -145,7 +145,7 @@
   category: Ammo
   completetime: 25
   materials:
-    Steel: 250
+    Steel: 150
     Plastic: 150
 
 - type: latheRecipe
