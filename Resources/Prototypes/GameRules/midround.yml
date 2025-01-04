@@ -2,6 +2,12 @@
   parent: BaseGameRule
   id: Thief
   components:
+  # Sunrise-Start
+  - type: GameRule
+    delay:
+      min: 600
+      max: 900
+  # Sunrise-End
   - type: ThiefRule
   - type: AntagObjectives
     objectives:
@@ -18,8 +24,8 @@
     agentName: thief-round-end-agent-name
     definitions:
     - prefRoles: [ Thief ]
-      max: 15 # Sunrise-Edit
-      playerRatio: 10 # Sunrise-Edit
+      max: 6 # Sunrise-Edit
+      playerRatio: 20 # Sunrise-Edit
       lateJoinAdditional: true
       allowNonHumans: true
       multiAntagSetting: None
@@ -36,14 +42,16 @@
   id: Changeling
   components:
   - type: GameRule
-    minPlayers: 5
+    delay:
+      min: 600
+      max: 900
   - type: ChangelingRule
   - type: AntagSelection
     agentName: changeling-roundend-name
     definitions:
     - prefRoles: [ Changeling ]
-      max: 5
-      playerRatio: 20
+      max: 3
+      playerRatio: 30
       lateJoinAdditional: true
       mindRoles:
       - MindRoleChangeling
@@ -53,14 +61,23 @@
   id: Vampire
   components:
   - type: GameRule
-    minPlayers: 5
+    delay:
+      min: 600
+      max: 900
   - type: VampireRule
+  - type: AntagObjectives
+    objectives:
+    - VampireDrainObjective
+  - type: AntagRandomObjectives
+    sets:
+    - groups: VampireObjectiveGroups
+    maxDifficulty: 10
   - type: AntagSelection
     agentName: vampire-roundend-name
     definitions:
     - prefRoles: [ Vampire ]
-      max: 5
-      playerRatio: 20
+      max: 3
+      playerRatio: 30
       lateJoinAdditional: true
       mindRoles:
       - MindRoleVampire

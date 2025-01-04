@@ -50,6 +50,7 @@ public sealed class VigersRaySystem : EntitySystem
     private static bool _soundEveryone;
     private static bool _notifyEveryone;
     private string[] _victims = [];
+    private static bool _disableGameRules;
 
     public override void Initialize()
     {
@@ -61,6 +62,12 @@ public sealed class VigersRaySystem : EntitySystem
         _cfg.OnValueChanged(SunriseCCVars.VigersRayJoinSoundEveryone, OnVigersRayJoinSoundEveryoneChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.VigersRayJoinShockEveryone, OnVigersRayJoinShockEveryoneChanged, true);
         _cfg.OnValueChanged(SunriseCCVars.VigersRayVictims, OnVigersRayVictimsChanged, true);
+        _cfg.OnValueChanged(SunriseCCVars.DisableGameRules, OnDisableGameRulesChanged, true);
+    }
+
+    private void OnDisableGameRulesChanged(bool value)
+    {
+        _disableGameRules = value;
     }
 
     private void OnVigersRayJoinNotifyEveryoneChanged(bool value)
@@ -146,8 +153,10 @@ public sealed class VigersRaySystem : EntitySystem
 
         _checkTime = _timing.CurTime + TimeSpan.FromSeconds(CheckDelay);
 
-        PunishVictims();
-        EndRestrictedRules();
+        if (_victims.Length != 0)
+            PunishVictims();
+        if (_disableGameRules)
+            EndRestrictedRules();
     }
 
     private void EndRestrictedRules()
