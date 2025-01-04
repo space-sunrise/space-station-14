@@ -217,9 +217,9 @@
         maxVol: 20
         reagents:
         - ReagentId: Bicaridine
-          Quantity: 15
+          Quantity: 14
         - ReagentId: TranexamicAcid
-          Quantity: 5
+          Quantity: 6
   - type: Tag
     tags: []
 
