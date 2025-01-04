@@ -1,5 +1,4 @@
 using Robust.Shared.Prototypes;
-using Content.Shared._Sunrise.AlertAccess;
 
 namespace Content.Shared.Access
 {
@@ -19,20 +18,9 @@ namespace Content.Shared.Access
         [DataField("name")]
         public string? Name { get; set; }
 
-        [DataField]
-        public string CurrentAlertLevel;
+        [DataField("alertAccesses")]
+        public Dictionary<string, ProtoId<AccessGroupPrototype>> AlertAccesses = new();
 
-        [DataField("redAlertAccesses")]
-        public ProtoId<AlertAccessesPrototype> RedAlertAccesses;
-
-        [DataField("yellowAlertAccesses")]
-        public ProtoId<AlertAccessesPrototype> YellowAlertAccesses;
-
-        [DataField("gammaAlertAccesses")]
-        public ProtoId<AlertAccessesPrototype> GammaAlertAccesses;
-
-        [DataField("blueAlertAccesses")]
-        public ProtoId<AlertAccessesPrototype> BlueAlertAccesses;
         public string GetAccessLevelName()
         {
             if (Name is { } name)

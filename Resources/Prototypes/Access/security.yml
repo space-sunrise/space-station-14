@@ -5,7 +5,13 @@
 - type: accessLevel
   id: Security
   name: id-card-access-level-security
-  redAlertAccesses: SecurityRedAlertAccesses
+  alertAccesses:
+    red:
+      access: SecurityRedAlertAccesses
+    blue:
+      access: SecurityBlueAlertAccesses
+    gamma:
+      access: SecurityGammaAlertAccesses
 
 - type: accessLevel
   id: Armory

@@ -1,0 +1,24 @@
+- type: accessGroup
+  id: SecurityRedAlertAccesses
+  tags:
+  - Engineer
+  - Command
+  - Maintance
+
+- type: accessGroup
+  id: SecurityBlueAlertAccesses
+  tags:
+  - Maintance
+
+- type: accessGroup
+  id: SecurityGammaAlertAccesses
+  tags:
+  - Command
+  - Captain
+  - HeadOfPersonnel
+  - Cryogenics
+  - BlueShield
+  - Ntrep
+
+# Потом дополню доступы
+
