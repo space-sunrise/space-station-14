@@ -157,7 +157,7 @@
   components:
   - type: InstantAction
     checkCanInteract: false
-    charges: 200
+    charges: 2
     # Sunrise-Start
     renewCharges: true
     renewChargeDelay: 120
