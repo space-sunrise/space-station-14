@@ -486,14 +486,9 @@
   - type: Battery
     maxCharge: 4000
     startingCharge: 4000
-  - type: BatterySelfRecharger
-    autoRecharge: true
-    autoRechargeRate: 40 #100sec+60Sec Pause
-    autoRechargePause: true
-    autoRechargePauseTime: 60
   - type: ProjectileBatteryAmmoProvider
     proto: BulletEMP
-    fireCost: 1000
+    fireCost: 500
   - type: MagazineVisuals
     magState: mag
     steps: 5
