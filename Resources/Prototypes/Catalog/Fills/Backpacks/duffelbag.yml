@@ -239,6 +239,7 @@
   components:
     - type: StorageFill
       contents:
+        - id: ChameleonPDA
         - id: ClothingUniformJumpsuitChameleon
         - id: ClothingOuterChameleon
         - id: ClothingNeckChameleon

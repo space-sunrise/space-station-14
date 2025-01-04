@@ -68,11 +68,16 @@ namespace Content.IntegrationTests.Tests
             "Gate",
             "Amber",
             "Loop",
-            // Sunrise-Start
-			"SunriseBox",
-			"SunriseDelta",
-			"SunriseFland",
-			"SunriseMarathon",
+            "Elkridge"
+        };
+
+        // Sunrise-Start
+        private static readonly string[] SunriseGameMaps =
+        {
+            "SunriseBox",
+            "SunriseDelta",
+            "SunriseFland",
+            "SunriseMarathon",
             "SunriseCentComm",
             "SunrisePlanetDelta",
             "SunriseBagel",
@@ -82,9 +87,9 @@ namespace Content.IntegrationTests.Tests
             "SunriseCog",
             "SunriseCorvaxGelta",
             "SunriseMeta",
-            "SunriseOasis",
-            // Sunrise-End
+            "SunriseOasis"
         };
+        // Sunrise-End
 
         /// <summary>
         /// Asserts that specific files have been saved as grids and not maps.
