@@ -217,9 +217,9 @@
         maxVol: 20
         reagents:
         - ReagentId: Bicaridine
-          Quantity: 14
+          Quantity: 14 #Sunrise-edit
         - ReagentId: TranexamicAcid
-          Quantity: 6
+          Quantity: 6 #Sunrise-edit
   - type: Tag
     tags: []
 
