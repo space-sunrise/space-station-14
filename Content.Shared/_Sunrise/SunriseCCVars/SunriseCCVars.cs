@@ -247,6 +247,9 @@ public sealed class SunriseCCVars
     public static readonly CVarDef<bool> DamageOverlay =
         CVarDef.Create("damage.overlay", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
+    public static readonly CVarDef<string> DamageOverlayPreset =
+        CVarDef.Create("damage.overlay_preset", "All", CVar.CLIENTONLY | CVar.ARCHIVE);
+
     public static readonly CVarDef<float> DamageVariance =
         CVarDef.Create("damage.variance", 0.15f, CVar.SERVER | CVar.REPLICATED);
 

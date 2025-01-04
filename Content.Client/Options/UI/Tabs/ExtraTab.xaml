@@ -18,6 +18,7 @@
                 <Label Text="{Loc 'ui-options-sunrise-general-combat'}"
                        StyleClasses="LabelKeyText"/>
                 <CheckBox Name="DamageOverlayCheckBox" Text="{Loc 'ui-options-damage-overlay'}" />
+                <ui:OptionDropDown Name="DamageOverlayPreset" Title="{Loc 'ui-options-damage-overlay-preset'}" />
 
                 <!-- Audio -->
                 <Label Text="{Loc 'ui-options-sunrise-general-audio'}" StyleClasses="LabelKeyText"/>

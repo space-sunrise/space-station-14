@@ -1,0 +1,15 @@
+﻿- type: damageOverlay
+  id: All
+
+- type: damageOverlay
+  id: WithoutPlayer
+  toPlayerDamageEnabled: false
+
+- type: damageOverlay
+  id: AllWithoutStructures
+  structureDamageEnabled: false
+
+- type: damageOverlay
+  id: WithoutPlayerWithoutStructures
+  structureDamageEnabled: false
+  toPlayerDamageEnabled: false
