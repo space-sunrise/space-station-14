@@ -780,7 +780,7 @@
   - UplinkWeaponry
 
 - type: listing
-  id: UplinkEsword
+  id: UplinkEswordNuke
   name: uplink-esword-name
   description: uplink-esword-desc
   icon: { sprite: /Textures/Objects/Weapons/Melee/e_sword.rsi, state: icon }
@@ -794,7 +794,7 @@
   - UplinkWeaponry
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 6
+    stock: 4
   - !type:StoreWhitelistCondition
     whitelist:
       tags:
