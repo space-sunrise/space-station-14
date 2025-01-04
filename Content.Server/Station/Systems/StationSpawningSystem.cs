@@ -207,26 +207,26 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 
             _humanoidSystem.LoadProfile(entity.Value, profile);
             _metaSystem.SetEntityName(entity.Value, profile.Name);
+
             // Sunrise-Start
-            if (profile.FlavorText != "" && _configurationManager.GetCVar(CCVars.FlavorText))
+            if (!string.IsNullOrEmpty(profile.FlavorText) && _configurationManager.GetCVar(CCVars.FlavorText))
             {
                 var session = _actors.GetSession(entity);
-                if (!_configurationManager.GetCVar(SunriseCCVars.FlavorTextSponsorOnly)
-                    && _sponsorsManager != null
-                    && session != null
-                    && _sponsorsManager.IsAllowedFlavor(session.UserId))
+                var flavortext = profile.FlavorText;
+
+                if (_sponsorsManager != null && session != null)
                 {
                     var maxDescLength = _sponsorsManager.GetSizeFlavor(session.UserId);
-                    var flavortext = profile.FlavorText;
-                    if (flavortext.Length > maxDescLength) // Sunrise-Edit
+                    if (flavortext.Length > maxDescLength)
                     {
                         flavortext = FormattedMessage.RemoveMarkupOrThrow(flavortext)[..maxDescLength];
                     }
-                    AddComp<DetailExaminableComponent>(entity.Value).Content = flavortext;
                 }
-                else
+
+                if (!_configurationManager.GetCVar(SunriseCCVars.FlavorTextSponsorOnly) ||
+                    _sponsorsManager != null && session != null && _sponsorsManager.IsAllowedFlavor(session.UserId))
                 {
-                    AddComp<DetailExaminableComponent>(entity.Value).Content = profile.FlavorText;
+                    AddComp<DetailExaminableComponent>(entity.Value).Content = flavortext;
                 }
             }
             // Sunrise-End

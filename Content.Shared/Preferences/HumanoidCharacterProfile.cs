@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Text.RegularExpressions;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
 using Content.Shared._Sunrise.TTS;
 using Content.Shared.GameTicking;
@@ -576,7 +577,7 @@ namespace Content.Shared.Preferences
             if (sponsors != null)
             {
                 maxDescLength = sponsors.GetSizeFlavor(session.UserId);
-                if (!sponsors.IsAllowedFlavor(session.UserId))
+                if (!sponsors.IsAllowedFlavor(session.UserId) && configManager.GetCVar(SunriseCCVars.FlavorTextSponsorOnly))
                 {
                     FlavorText = string.Empty;
                 }
