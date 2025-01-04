@@ -80,7 +80,13 @@ public sealed class KillPersonConditionSystem : EntitySystem
             return;
         }
 
-        _target.SetTarget(uid, args.MindId, _random.Pick(allHumans), target);
+        if (TryComp<MindComponent>(args.MindId, out var mindComponent) &&
+            TryComp<AntagTargetComponent>(mindComponent.OwnedEntity, out var antagTargetCom))
+        {
+            antagTargetCom.KillerMind = args.MindId;
+        }
+
+        _target.SetTarget(uid, _random.Pick(allHumans), target);
     }
 
     private void OnHeadAssigned(EntityUid uid, PickRandomHeadComponent comp, ref ObjectiveAssignedEvent args)
@@ -114,7 +120,13 @@ public sealed class KillPersonConditionSystem : EntitySystem
         if (allHeads.Count == 0)
             allHeads = allHumans; // fallback to non-head target
 
-        _target.SetTarget(uid, args.MindId, _random.Pick(allHeads), target);
+        if (TryComp<MindComponent>(args.MindId, out var mindComponent) &&
+            TryComp<AntagTargetComponent>(mindComponent.OwnedEntity, out var antagTargetCom))
+        {
+            antagTargetCom.KillerMind = args.MindId;
+        }
+
+        _target.SetTarget(uid, _random.Pick(allHeads), target);
     }
 
     private void OnAntagAssigned(EntityUid uid, PickRandomAntagComponent comp, ref ObjectiveAssignedEvent args)
@@ -148,7 +160,13 @@ public sealed class KillPersonConditionSystem : EntitySystem
             return;
         }
 
-        _target.SetTarget(uid, args.MindId, _random.Pick(allAntags), target);
+        if (TryComp<MindComponent>(args.MindId, out var mindComponent) &&
+            TryComp<AntagTargetComponent>(mindComponent.OwnedEntity, out var antagTargetCom))
+        {
+            antagTargetCom.KillerMind = args.MindId;
+        }
+
+        _target.SetTarget(uid, _random.Pick(allAntags), target);
     }
 
     private float GetProgress(EntityUid target, bool requireDead)

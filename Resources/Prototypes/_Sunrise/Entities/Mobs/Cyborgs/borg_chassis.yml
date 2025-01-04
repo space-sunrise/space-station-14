@@ -253,11 +253,6 @@
     - Science
     - Command
     - CentCom
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      200: Critical
-      300: Dead
   - type: AccessReader
     access: [["Security"], ["Command"], ["Research"]]
   - type: SiliconLawProvider
@@ -268,31 +263,6 @@
     energy: 4
   - type: TTS
     voice: Sentrybot
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 175
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          path: /Audio/Machines/warning_buzzer.ogg
-          params:
-            volume: 5
-    - trigger:
-        !type:DamageTrigger
-        damage: 400
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
-      - !type:EmptyContainersBehaviour
-        containers:
-        - borg_brain
-        - borg_module
-        - cell_slot
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
   - type: Access
     enabled: false
     tags:
