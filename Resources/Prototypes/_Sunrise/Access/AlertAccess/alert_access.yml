@@ -1,0 +1,6 @@
+- type: alertAccesses
+  id: SecurityRedAlertAccesses
+  access:
+  - Engineer
+  - Command
+  - Maintance
