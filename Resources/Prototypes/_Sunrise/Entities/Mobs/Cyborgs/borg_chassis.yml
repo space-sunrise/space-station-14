@@ -86,7 +86,7 @@
     - Atmospherics
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.5
-    baseSprintSpeed : 3.5
+    baseSprintSpeed : 4.5
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -292,7 +292,7 @@
     - BorgNamesERT
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.5
-    baseSprintSpeed : 4
+    baseSprintSpeed : 4.5
   - type: Tag
     tags:
     - DoorBumpOpener

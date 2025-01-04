@@ -166,7 +166,7 @@
       voice: Sentrybot
     - type: MovementSpeedModifier
       baseWalkSpeed : 2.5
-      baseSprintSpeed : 3.5
+      baseSprintSpeed : 4.5
     - type: InnateItem
       worldTargetActions:
       - Emag
@@ -214,8 +214,8 @@
     - type: TTS
       voice: Sentrybot
     - type: MovementSpeedModifier
-      baseWalkSpeed: 2.5
-      baseSprintSpeed: 4.5
+      baseWalkSpeed: 3
+      baseSprintSpeed: 5
     - type: InnateItem
       worldTargetActions:
       - Emag
