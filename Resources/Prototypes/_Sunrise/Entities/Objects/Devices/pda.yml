@@ -6,7 +6,11 @@
   components:
     - type: Pda
       id: IAAIDCard
-      state: pda-lawyer
+    - type: Appearance
+      appearanceDataInit:
+        enum.PdaVisuals.PdaType:
+          !type:String
+          pda-lawyer
     - type: PdaBorderColor
       borderColor: "#6f6192"
     - type: Icon
@@ -19,13 +23,17 @@
   components:
   - type: Pda
     id: MagistratIDCard
-    state: pda-captain
     penSlot:
       startingItem: UEGPen
       priority: -1
       whitelist:
         tags:
         - Write
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-captain
   - type: PdaBorderColor
     borderColor: "#7C5D00"
   - type: Icon
@@ -36,21 +44,13 @@
   id: BlueShieldPDA
   name: blue shield officer's PDA
   components:
-  - type: Sprite
-    sprite: _Sunrise/Objects/Devices/pda.rsi
-    layers:
-    - map: [ "enum.PdaVisualLayers.Base" ]
-    - state: "light_overlay"
-      map: [ "enum.PdaVisualLayers.Flashlight" ]
-      shader: "unshaded"
-      visible: false
-    - state: "id_overlay"
-      map: [ "enum.PdaVisualLayers.IdLight" ]
-      shader: "unshaded"
-      visible: false
   - type: Pda
     id: BlueShieldIDCard
-    state: pda-blueshield
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-blueshield
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-blueshield
@@ -60,21 +60,13 @@
   id: PathologistPDA
   name: Pathologist PDA
   components:
-  - type: Sprite
-    sprite: _Sunrise/Objects/Devices/pda.rsi
-    layers:
-    - map: [ "enum.PdaVisualLayers.Base" ]
-    - state: "light_overlay"
-      map: [ "enum.PdaVisualLayers.Flashlight" ]
-      shader: "unshaded"
-      visible: false
-    - state: "id_overlay"
-      map: [ "enum.PdaVisualLayers.IdLight" ]
-      shader: "unshaded"
-      visible: false
   - type: Pda
     id: PathologistIDCard
-    state: pda-patologoanatom
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-patologoanatom
   - type: PdaBorderColor
     borderColor: "#717059"
     accentVColor: "#447987"
@@ -95,7 +87,11 @@
     sprite: _Sunrise/Objects/Devices/pda.rsi
   - type: Pda
     id: PrisonerIDCard
-    state: pda-space-prison-prisoner
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-prisoner
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-space-prison-prisoner
@@ -110,7 +106,11 @@
     sprite: _Sunrise/Objects/Devices/pda.rsi
   - type: Pda
     id: GuardIDCard
-    state: pda-space-prison-guardian
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-guardian
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-space-prison-guardian
@@ -122,7 +122,6 @@
   components:
   - type: Pda
     id: PrisonEngineeringIDCard
-    state: pda-engineer
   - type: PdaBorderColor
     borderColor: "#949137"
     accentVColor: "#A32D26"
@@ -139,7 +138,11 @@
     sprite: _Sunrise/Objects/Devices/pda.rsi
   - type: Pda
     id: PrisonPilotIDCard
-    state: pda-space-prison-pilot
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-pilot
   - type: PdaBorderColor
     borderColor: "#A32D26"
     accentVColor: "#DFDFDF"
@@ -157,7 +160,11 @@
     sprite: _Sunrise/Objects/Devices/pda.rsi
   - type: Pda
     id: HeadOfPrisonIDCard
-    state: pda-space-prison-boss
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-boss
   - type: PdaBorderColor
     borderColor: "#A32D26"
     accentHColor: "#447987"
@@ -173,7 +180,11 @@
   components:
   - type: Pda
     id: RoboticistIDCard
-    state: pda-roboticist
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-roboticist
   - type: PdaBorderColor
     borderColor: "#d7d7d0"
     accentVColor: "#8900c9"
@@ -193,7 +204,11 @@
   components:
   - type: Pda
     id: SecurityPilotIDCard
-    state: pda-seniorofficer
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-seniorofficer
   - type: PdaBorderColor
     borderColor: "#A32D26"
     accentVColor: "#DFDFDF"
@@ -207,13 +222,17 @@
   components:
   - type: Pda
     id: NanoTrasenRepresentativeIDCard
-    state: pda-captain
     penSlot:
       startingItem: Pen
       priority: -1
       whitelist:
         tags:
         - Write
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-captain
   - type: PdaBorderColor
     borderColor: "#7C5D00"
   - type: Icon
@@ -226,7 +245,11 @@
   components:
   - type: Pda
     id: BarberIDCard
-    state: pda-bartender
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-bartender
   - type: Icon
     state: pda-bartender
 
@@ -250,7 +273,11 @@
       visible: false
   - type: Pda
     id: AdjutantIDCard
-    state: pda-adj
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-adj
   - type: PdaBorderColor
     borderColor: "#1b2426"
     accentVColor: "#62584a"
@@ -266,7 +293,6 @@
   components:
   - type: Pda
     id: USSPIDCard
-    state: pda-syndi
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
     preinstalled:
@@ -281,7 +307,6 @@
   components:
   - type: Pda
     id: USSPOfficerIDCard
-    state: pda-syndi
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
     preinstalled:
@@ -297,7 +322,6 @@
   components:
   - type: Pda
     id: USSPSoldierIDCard
-    state: pda-syndi
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
     preinstalled:
@@ -313,7 +337,6 @@
   components:
   - type: Pda
     id: USSPCaptainIDCard
-    state: pda-syndi
   - type: CartridgeLoader
     uiKey: enum.PdaUiKey.Key
     preinstalled:
