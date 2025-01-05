@@ -70,6 +70,9 @@
     whitelist:
       tags:
       - SyringeGunAmmo
+      - MiniSyringeFresium
+      - MiniSyringeMuteToxin
+      - MiniSyringeCarpoToxin
   - type: Gun
     fireRate: 0.8
   - type: Item

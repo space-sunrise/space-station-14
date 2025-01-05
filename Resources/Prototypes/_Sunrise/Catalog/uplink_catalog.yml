@@ -831,7 +831,7 @@
   name: uplink-syringe-box-filled-name
   description: uplink-syringe-box-filled-desc
   productEntity: BoxMiniSyringe
-  discountCategory: RareDiscounts
+  discountCategory: veryRareDiscounts
   discountDownTo:
     Telecrystal: 2
   cost:
