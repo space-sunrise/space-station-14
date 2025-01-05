@@ -1,9 +1,7 @@
 - type: accessGroup
-  id: SecurityRedAlertAccesses
+  id: RedAlertAccesses
   tags:
-  - Engineer
-  - Command
-  - Maintance
+  - Security
 
 - type: accessGroup
   id: SecurityBlueAlertAccesses

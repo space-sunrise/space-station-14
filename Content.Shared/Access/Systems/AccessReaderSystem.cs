@@ -166,6 +166,9 @@ public sealed class AccessReaderSystem : EntitySystem
             if (!TryComp(entity, out AccessReaderComponent? containedReader))
                 continue;
 
+            if (AreAccessTagsAllowedAlert(access, containedReader))
+                return true;
+
             if (IsAllowed(access, stationKeys, entity, containedReader))
                 return true;
         }
@@ -206,6 +209,25 @@ public sealed class AccessReaderSystem : EntitySystem
                 return true;
         }
 
+        return false;
+    }
+
+    public bool AreAccessTagsAllowedAlert(ICollection<ProtoId<AccessLevelPrototype>> access, AccessReaderComponent reader)
+    {
+        foreach (var (stationCode, alertAccesses) in reader.AlertAccesses)
+        {
+            if (!_prototype.TryIndex<AccessGroupPrototype>(alertAccesses, out var accessTags))
+                return false;
+
+            if (accessTags == null)
+                return false;
+
+            if (accessTags.Tags.Count == 0)
+                return false;
+
+            if (accessTags.Tags.IsSubsetOf(access))
+                return true;
+        }
         return false;
     }
 

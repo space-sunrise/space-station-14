@@ -22,6 +22,8 @@
   components:
   - type: AccessReader
     access: [["Command"]]
+    alertAccesses:
+      red: RedAlertAccess
 
 # Service
 - type: entity

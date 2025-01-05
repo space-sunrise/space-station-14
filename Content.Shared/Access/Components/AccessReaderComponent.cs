@@ -20,6 +20,17 @@ public sealed partial class AccessReaderComponent : Component
     [DataField]
     public bool Enabled = true;
 
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField("alertAccesses")]
+    public Dictionary<CurrentAlertLevel, ProtoId<AccessGroupPrototype>> AlertAccesses = new();
+
+    public enum CurrentAlertLevel : byte
+    {
+        blue,
+        red,
+        yellow,
+        gamma
+    }
     /// <summary>
     /// The set of tags that will automatically deny an allowed check, if any of them are present.
     /// </summary>

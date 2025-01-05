@@ -18,17 +18,6 @@ namespace Content.Shared.Access
         [DataField("name")]
         public string? Name { get; set; }
 
-        [DataField("alertAccesses")]
-        public Dictionary<CurrentAlertLevel, ProtoId<AccessGroupPrototype>> AlertAccesses = new();
-
-        public enum CurrentAlertLevel : byte
-        {
-            blue,
-            red,
-            yellow,
-            gamma
-        }
-
         public string GetAccessLevelName()
         {
             if (Name is { } name)
