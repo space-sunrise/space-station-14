@@ -75,3 +75,4 @@ tts-voice-name-warcraft3-yastreb = (NEW) [Warcraft 3] Ястреб
 tts-voice-name-crysis2-ai-uscaucasian-03 = (NEW) [Crysis 2] Оперативник 3
 tts-voice-name-crysis2-ai-uscaucasian-02 = (NEW) [Crysis 2] Оперативник 2
 tts-voice-name-hearthstone-khadgar = (NEW) [Heathstone] Кхадгар
+tts-voice-name-dota2-antimage = (NEW) [Dota 2] Антимаг
