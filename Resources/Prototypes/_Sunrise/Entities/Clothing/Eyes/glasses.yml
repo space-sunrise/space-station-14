@@ -21,7 +21,7 @@
       sprite: _Sunrise/Clothing/Eyes/Glasses/kim.rsi
 
 - type: entity
-  parent: ClothingEyesBase
+  parent: [ClothingEyesBase, ShowSecurityIcons, BaseRestrictedContraband]
   id: ClothingEyesGlassesBlueShield
   name: blueshield's glasses
   description: The innovative blue lenses hide your eyes from light flashes and have a built-in visor.
@@ -55,7 +55,7 @@
     sprite: _Sunrise/Clothing/Eyes/Glasses/weldglasses.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Eyes/Glasses/weldglasses.rsi
-  - type: FlashImmunity
+  #- type: FlashImmunity
   - type: EyeProtection
   - type: Tag
     tags:
