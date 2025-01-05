@@ -12,9 +12,6 @@
     maxItemSize: Small
     grid:
     - 0,0,2,0
-    whitelist:
-      tags:
-      - SyringeGunAmmo
   - type: Gun
     fireRate: 0.8
   - type: Item
@@ -37,9 +34,6 @@
     maxItemSize: Small
     grid:
     - 0,0,2,0
-    whitelist:
-      tags:
-      - SyringeGunAmmo
   - type: Gun
     fireRate: 0.8
   - type: Item
@@ -67,12 +61,6 @@
     - id: MiniSyringeCarpoToxin
     - id: MiniSyringeMuteToxin
     - id: MiniSyringeFresium
-    whitelist:
-      tags:
-      - SyringeGunAmmo
-      - MiniSyringeFresium
-      - MiniSyringeMuteToxin
-      - MiniSyringeCarpoToxin
   - type: Gun
     fireRate: 0.8
   - type: Item
@@ -95,9 +83,6 @@
     maxItemSize: Small
     grid:
     - 0,0,3,1
-    whitelist:
-      tags:
-      - SyringeGunAmmo
   - type: Gun
     fireRate: 1.8
     selectedMode: FullAuto
