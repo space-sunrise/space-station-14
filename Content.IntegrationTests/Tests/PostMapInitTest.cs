@@ -74,6 +74,7 @@ namespace Content.IntegrationTests.Tests
         // Sunrise-Start
         private static readonly string[] SunriseGameMaps =
         {
+            "SunriseDev",
             "SunriseBox",
             "SunriseDelta",
             "SunriseFland",

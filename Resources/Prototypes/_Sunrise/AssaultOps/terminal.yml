@@ -31,37 +31,38 @@
       offset: "0, 0.4" # shine from the top, not bottom of the computer
       castShadows: false
     - type: ItemSlots
-      slots:
-        firstKeySlot:
-          ejectSound: /Audio/Machines/id_swipe.ogg
-          insertSound: /Audio/Machines/Nuke/general_beep.ogg
-          ejectOnBreak: true
-          swap: false
-          whitelist:
-            components:
-              - IcarusKey
-        secondKeySlot:
-          ejectSound: /Audio/Machines/id_swipe.ogg
-          insertSound: /Audio/Machines/Nuke/general_beep.ogg
-          ejectOnBreak: true
-          swap: false
-          whitelist:
-            components:
-              - IcarusKey
-        thirdKeySlot:
-          ejectSound: /Audio/Machines/id_swipe.ogg
-          insertSound: /Audio/Machines/Nuke/general_beep.ogg
-          ejectOnBreak: true
-          swap: false
-          whitelist:
-            components:
-              - IcarusKey
     - type: ContainerContainer
       containers:
         firstKeySlot: !type:ContainerSlot
         secondKeySlot: !type:ContainerSlot
         thirdKeySlot: !type:ContainerSlot
+        board: !type:Container
+          ents: []
     - type: IcarusTerminal
+      firstKeySlot:
+        ejectSound: /Audio/Machines/id_swipe.ogg
+        insertSound: /Audio/Machines/Nuke/general_beep.ogg
+        ejectOnBreak: true
+        swap: false
+        whitelist:
+          components:
+          - IcarusKey
+      secondKeySlot:
+        ejectSound: /Audio/Machines/id_swipe.ogg
+        insertSound: /Audio/Machines/Nuke/general_beep.ogg
+        ejectOnBreak: true
+        swap: false
+        whitelist:
+          components:
+          - IcarusKey
+      thirdKeySlot:
+        ejectSound: /Audio/Machines/id_swipe.ogg
+        insertSound: /Audio/Machines/Nuke/general_beep.ogg
+        ejectOnBreak: true
+        swap: false
+        whitelist:
+          components:
+          - IcarusKey
     - type: UserInterface
       interfaces:
         enum.IcarusTerminalUiKey.Key:

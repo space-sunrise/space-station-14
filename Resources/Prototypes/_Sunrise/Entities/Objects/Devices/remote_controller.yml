@@ -12,6 +12,8 @@
     powerLoad: 0
   - type: ShuttleConsole
     portable: true
+  - type: DroneConsole
+    portable: true
   - type: RadarConsole
     maxRange: 256
   - type: ActivatableUI
@@ -30,7 +32,6 @@
   - type: Sprite
     state: syndicate
   - type: DroneConsole
-    portable: true
     components:
     - type: AssaultOpsShuttle
 
@@ -43,7 +44,6 @@
   - type: Sprite
     state: syndicate
   - type: DroneConsole
-    portable: true
     components:
     - type: NukeOpsShuttle
 
@@ -56,7 +56,6 @@
   - type: Sprite
     state: nanotrasen
   - type: DroneConsole
-    portable: true
     components:
     - type: SecurityShuttle
 
@@ -69,7 +68,6 @@
   - type: Sprite
     state: nanotrasen
   - type: DroneConsole
-    portable: true
     components:
     - type: CargoShuttle
 
@@ -82,6 +80,5 @@
   - type: Sprite
     state: nanotrasen
   - type: DroneConsole
-    portable: true
     components:
     - type: PrisonShuttle

@@ -33,6 +33,18 @@ public sealed class IcarusTerminalSystem : EntitySystem
     [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
     [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        SubscribeLocalEvent<IcarusTerminalComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<IcarusTerminalComponent, EntInsertedIntoContainerMessage>(OnItemSlotInserted);
+        SubscribeLocalEvent<IcarusTerminalComponent, EntRemovedFromContainerMessage>(OnItemSlotRemoved);
+
+        // UI events
+        SubscribeLocalEvent<IcarusTerminalComponent, IcarusTerminalFireMessage>(OnFireButtonPressed);
+    }
 
     public override void Update(float frameTime)
     {
@@ -67,19 +79,11 @@ public sealed class IcarusTerminalSystem : EntitySystem
         _roundEndSystem.EndRound();
     }
 
-    public override void Initialize()
+    private void OnMapInit(EntityUid uid, IcarusTerminalComponent component, MapInitEvent args)
     {
-        base.Initialize();
-        SubscribeLocalEvent<IcarusTerminalComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<IcarusTerminalComponent, EntInsertedIntoContainerMessage>(OnItemSlotInserted);
-        SubscribeLocalEvent<IcarusTerminalComponent, EntRemovedFromContainerMessage>(OnItemSlotRemoved);
-
-        // UI events
-        SubscribeLocalEvent<IcarusTerminalComponent, IcarusTerminalFireMessage>(OnFireButtonPressed);
-    }
-
-    private void OnInit(EntityUid uid, IcarusTerminalComponent component, ComponentInit args)
-    {
+        _itemSlotsSystem.AddItemSlot(uid, IcarusTerminalComponent.FirstKeySlotId, component.FirstKeySlot);
+        _itemSlotsSystem.AddItemSlot(uid, IcarusTerminalComponent.SecondKeySlotId, component.SecondKeySlot);
+        _itemSlotsSystem.AddItemSlot(uid, IcarusTerminalComponent.ThirdKeySlotId, component.ThirdKeySlot);
         component.RemainingTime = component.Timer;
         UpdateStatus(component);
         UpdateUserInterface(component);

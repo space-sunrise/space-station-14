@@ -13,11 +13,9 @@ namespace Content.Server._Sunrise.FleshCult
         [DataField("startingActions", customTypeSerializer: typeof(PrototypeIdListSerializer<EntityPrototype>))]
         public List<string> StartingActions = new();
 
-        [DataField]
         public List<EntityUid> Actions = new();
 
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-        public string ActionFleshCultistDevourId = "FleshCultistDevour";
+        public EntProtoId ActionFleshCultistDevourId = "FleshCultistDevour";
 
         [ViewVariables(VVAccess.ReadWrite), DataField("bloodWhitelist")]
         public List<string> BloodWhitelist = new()
@@ -29,17 +27,16 @@ namespace Content.Server._Sunrise.FleshCult
             "ZombieBlood"
         };
 
-        [DataField("devourTime")] public float DevourTime = 10f;
+        public float DevourTime = 10f;
 
-        [DataField("devourSound")]
         public SoundSpecifier DevourSound = new SoundPathSpecifier("/Audio/_Sunrise/FleshCult/devour_flesh_cultist.ogg");
 
-        [DataField("adrenalinReagents")] public Solution AdrenalinReagents = new()
+        public Solution AdrenalinReagents = new()
         {
             Contents = { new ReagentQuantity(new ReagentId("Ephedrine", null), 10) }
         };
 
-        [DataField("healDevourReagents")] public Solution HealDevourReagents = new()
+        public Solution HealDevourReagents = new()
         {
             Contents =
             {
@@ -47,7 +44,7 @@ namespace Content.Server._Sunrise.FleshCult
             }
         };
 
-        [DataField("healBloodAbsorbReagents")] public Solution HealBloodAbsorbReagents = new()
+        public Solution HealBloodAbsorbReagents = new()
         {
             Contents =
             {
@@ -55,27 +52,18 @@ namespace Content.Server._Sunrise.FleshCult
             }
         };
 
-        [DataField]
         public SoundSpecifier BloodAbsorbSound = new SoundPathSpecifier("/Audio/Effects/Fluids/splat.ogg");
 
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-        public string BulletAcidSpawnId = "BulletSplashAcid";
+        public EntProtoId BulletAcidSpawnId = "BulletSplashAcid";
 
-        [DataField]
+        public EntProtoId FleshHeartId = "FleshHeart";
+
+        public EntProtoId HuggerMobSpawnId = "MobFleshHugger";
+
         public SoundSpecifier SoundBulletAcid = new SoundPathSpecifier("/Audio/_Sunrise/FleshCult/flesh_cultist_mutation.ogg");
 
-        [DataField]
         public SoundSpecifier SoundMutation = new SoundPathSpecifier("/Audio/_Sunrise/FleshCult/flesh_cultist_mutation.ogg");
 
-        [DataField("fleshHeartId", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)),
-         ViewVariables(VVAccess.ReadWrite)]
-        public string FleshHeartId = "FleshHeart";
-
-        [ViewVariables(VVAccess.ReadWrite), DataField("soundThrowWorm")]
         public SoundSpecifier? SoundThrowHugger = new SoundPathSpecifier("/Audio/_Sunrise/FleshCult/throw_worm.ogg");
-
-        [ViewVariables(VVAccess.ReadWrite),
-         DataField("huggerMobSpawnId", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-        public string HuggerMobSpawnId = "MobFleshHugger";
     }
 }

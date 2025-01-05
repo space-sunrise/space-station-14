@@ -34,6 +34,7 @@ namespace Content.IntegrationTests.Tests.Buckle
   - type: Body
     prototype: Human
   - type: StandingState
+  - type: Appearance
 
 - type: entity
   name: {StrapDummyId}

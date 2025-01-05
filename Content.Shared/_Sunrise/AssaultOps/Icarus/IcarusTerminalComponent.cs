@@ -1,3 +1,4 @@
+using Content.Shared.Containers.ItemSlots;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 
@@ -45,9 +46,18 @@ public sealed partial class IcarusTerminalComponent : Component
     [DataField("keySlots")]
     public int KeySlots = 3;
 
-    [ViewVariables]
-    public Container KeyContainer = default!;
-    public const string KeyContainerName = "key_slots";
+    public static string FirstKeySlotId = "firstKeySlot";
+    public static string SecondKeySlotId = "secondKeySlot";
+    public static string ThirdKeySlotId = "thirdKeySlot";
+
+    [DataField]
+    public ItemSlot FirstKeySlot = new();
+
+    [DataField]
+    public ItemSlot SecondKeySlot = new();
+
+    [DataField]
+    public ItemSlot ThirdKeySlot = new();
 
     [ViewVariables]
     public float TimerRoundEnd = 1200;

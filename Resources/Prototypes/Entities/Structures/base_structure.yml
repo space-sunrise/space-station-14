@@ -28,7 +28,7 @@
   - type: TTS
     voice: FactCore # Sunrise-TTS
   - type: StaticPrice
-    price: 0 # Sunrise-TTS
+    price: 0
   - type: DamageOverlay
     damagePopupType: SmallFloating
     isStructure: true

@@ -1,7 +1,5 @@
 ﻿// © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt;
 
-using Content.Shared.DoAfter;
-
 namespace Content.Server._Sunrise.HairDye;
 
 /// <summary>
@@ -10,7 +8,7 @@ namespace Content.Server._Sunrise.HairDye;
 [RegisterComponent]
 public sealed partial class HairDyerComponent : Component
 {
-    [DataField(required: true, readOnly: true)]
+    [DataField(required: true)]
     public Color TargetColor;
 
     [DataField]

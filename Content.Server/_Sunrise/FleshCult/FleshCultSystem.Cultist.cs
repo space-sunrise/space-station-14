@@ -167,12 +167,6 @@ public sealed partial class FleshCultSystem
 
         EnsureComp<IgnoreFleshSpiderWebComponent>(uid);
 
-        if (HasComp<HungerComponent>(uid))
-            RemComp<HungerComponent>(uid);
-
-        if (HasComp<ThirstComponent>(uid))
-            RemComp<ThirstComponent>(uid);
-
         _tagSystem.AddTag(uid, FleshTagProto);
 
         if (TryComp<HumanoidAppearanceComponent>(uid, out var appearance))
@@ -209,9 +203,6 @@ public sealed partial class FleshCultSystem
             if (collectiveMind.Minds.Contains(FleshCollectiveMindProto))
                 collectiveMind.Minds.Remove(FleshCollectiveMindProto);
         }
-
-        EnsureComp<HungerComponent>(uid);
-        EnsureComp<ThirstComponent>(uid);
 
         _alerts.ClearAlert(uid, component.MutationPointAlert);
 

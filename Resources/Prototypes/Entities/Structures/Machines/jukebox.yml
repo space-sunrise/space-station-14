@@ -31,6 +31,8 @@
   - type: ContainerContainer
     containers:
       tape: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
   # Sunrise-End
   - type: Machine
     board: JukeboxCircuitBoard

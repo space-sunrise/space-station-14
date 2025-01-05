@@ -382,7 +382,6 @@
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       # Sunrise-Start
-      - BaseMagazinePistolCaselessRifleExtended
       - PowerCellCombat
       - MagazineLightRifleBoxIncendiary
       - MagazineLightRifleBoxUranium
@@ -396,7 +395,21 @@
       - MagazineBoxRifleRubber
       - MagazineBoxLightRifleRubber
       - WeaponGunLaserCarbineSemi
-      - WeaponGunLaserCarbineAutomatic # Sunrise - IK-60 Laser Carbine
+      - WeaponGunLaserCarbineAutomatic
+      - BaseMagazinePistolCaselessRifleExtended
+      - MagazinePPSH41Extended
+      - MagazineMP5Extended
+      - MagazineMP7Extended
+      - MagazineP90Extended
+      - MagazineM16A4Extended
+      - MagazineAR18Extended
+      - MagazineM28Extended
+      - MagazineG36Extended
+      - MagazineFamasExtended
+      - MagazineV31Extended
+      - MagazineBauer127Extended
+      - MagazineBR64Extended
+      - MagazineDragunovExtended
       # Sunrise-End
       - BoxBeanbag
       - BoxShotgunIncendiary
@@ -861,9 +874,6 @@
       - ClothingBackpackElectropack
       - ExplosivePayload
       - FlashPayload
-      - ShellBlastArtillery #Sunrise-edit
-      - ShellEMPArtillery #Sunrise-edit
-      - ShellFlashArtillery #Sunrise-edit
       - HoloprojectorSecurity
       - MagazineBoxLightRifleIncendiary
       - MagazineBoxLightRifleUranium
@@ -914,11 +924,14 @@
       - MagazineShotgunUranium
       - MagazineLightRifleRubber
       - MagazineRifleRubber
+      - MagazineMagnumRubber
       - MagazinePistolSubMachineGunRubber
       - MagazineBoxPistolRubber
       - MagazineBoxMagnumRubber
       - MagazineBoxRifleRubber
       - MagazineBoxLightRifleRubber
+      - MagazineLightRifleBoxIncendiary
+      - MagazineLightRifleBoxUranium
       - PowerCageCombat
       - WeaponMechCombatImmolationGun # Sunrise - Mechs
       - WeaponMechCombatSolarisLaser # Sunrise - Mechs
@@ -934,13 +947,23 @@
       - WeaponEnergyGunPistol # Sunrise - PDW-9 Energy Pistol
       - WeaponGunLaserCarbineAutomatic # Sunrise - IK-60 Laser Carbine
       - ClothingShoesBootsMagCombat # Sunrise - Combat Magboots
+      - BaseMagazinePistolCaselessRifleExtended
+      - MagazinePPSH41Extended
       - MagazineMP5Extended
       - MagazineMP7Extended
       - MagazineP90Extended
       - MagazineM16A4Extended
+      - MagazineAR18Extended
+      - MagazineM28Extended
       - MagazineG36Extended
       - MagazineFamasExtended
+      - MagazineV31Extended
+      - MagazineBauer127Extended
       - MagazineBR64Extended
+      - MagazineDragunovExtended
+      - ShellBlastArtillery
+      - ShellEMPArtillery
+      - ShellFlashArtillery
     # Sunrise-End
   - type: MaterialStorage
     whitelist:
