@@ -622,3 +622,12 @@
   provider: sunrise
   roundStart: true
   sponsorOnly: false
+
+- type: ttsVoice
+  id: Dota2Antimage
+  name: tts-voice-name-dota2-antimage
+  sex: Male
+  speaker: dota2_antimage
+  provider: sunrise
+  roundStart: true
+  sponsorOnly: false
