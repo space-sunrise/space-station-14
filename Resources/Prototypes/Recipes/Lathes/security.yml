@@ -501,13 +501,13 @@
   materials:
     Plastic: 750
 
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: BoxShotgunFlare
-  result: BoxShotgunFlare
-  materials:
-    Steel: 80
-    Plastic: 80
+#- type: latheRecipe Sunrise-edit
+#  parent: BaseAmmoRecipe
+#  id: BoxShotgunFlare
+#  result: BoxShotgunFlare
+#  materials:
+#    Steel: 80
+#    Plastic: 80
 
 - type: latheRecipe
   parent: BaseAmmoRecipe

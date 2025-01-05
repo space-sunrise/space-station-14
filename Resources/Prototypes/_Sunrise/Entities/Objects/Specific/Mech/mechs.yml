@@ -50,12 +50,12 @@
   - type: InputMover
   - type: InteractionOutline
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 3
+    baseWalkSpeed: 1
+    baseSprintSpeed: 1.5
     friction: 5
-    weightlessFriction: 5
-    weightlessAcceleration: 4
-    weightlessModifier: 2.8
+    weightlessFriction: 4.5
+    weightlessAcceleration: 3.5
+    weightlessModifier: 3
   - type: MovementAlwaysTouching
   - type: Pullable
   - type: Clickable
@@ -161,7 +161,7 @@
     startingEquipment:
       - WeaponMechCombatSolarisLaser
   - type: Reflect
-    reflectProb: 0.2
+    reflectProb: 0.15
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -170,7 +170,7 @@
     currentThresholdState: Alive
     thresholds:
       0: Alive
-      450: Critical
+      380: Critical
     showOverlays: false
     allowRevives: true
   - type: ContainerFill

@@ -52,3 +52,19 @@
   - WeaponEnergyGunPistol
   technologyPrerequisites:
   - ExperimentalBatteryAmmo
+
+- type: technology
+  id: CombatPowerCell
+  name: research-technology-combat-powercells #
+  icon:
+    sprite: Objects/Power/power_cells.rsi
+    state: combat
+  discipline: Arsenal
+  tier: 2
+  cost: 7500
+  recipeUnlocks:
+  - PowerCellCombat
+  - PowerCellHyper
+  technologyPrerequisites:
+  - ExperimentalBatteryAmmo
+  - AdvancedPowercells
