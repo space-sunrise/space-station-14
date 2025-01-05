@@ -36,7 +36,6 @@ namespace Content.Client.Lobby
     public sealed class LobbyState : Robust.Client.State.State
     {
         [Dependency] private readonly IBaseClient _baseClient = default!;
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly IClientConsoleHost _consoleHost = default!;
         [Dependency] private readonly IEntityManager _entityManager = default!;
         [Dependency] private readonly IResourceCache _resourceCache = default!;
@@ -84,7 +83,7 @@ namespace Content.Client.Lobby
             //     : lobbyNameCvar;
 
             var width = _cfg.GetCVar(CCVars.ServerLobbyRightPanelWidth);
-            Lobby.RightSide.SetWidth = width;
+            Lobby.RightPanel.SetWidth = width;
 
             UpdateLobbyUi();
 
