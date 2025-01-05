@@ -14,3 +14,5 @@ ent-BoxTearGasGrenade = TearGasGrenade box
     .desc = 'WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.'
 ent-BoxClusterBangFull = ClusterBang box
     .desc = 'WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.'
+ent-BoxMiniSyringe = Mini Syringe box
+    .desc = A Mini Syringe-Filled Box.

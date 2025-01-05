@@ -77,6 +77,12 @@ uplink-hypo-name = Горлекс гипоспрей
 uplink-hypo-desc = Химический гипоспрей, произвёденный синдикатом, способный мгновенно впрыснуть до 20 ед. реагентов. Изначально пуст.
 uplink-polytrinic-acid-chemistry-bottle-name = Политриновая кислота
 uplink-polytrinic-acid-chemistry-bottle-desc = Чрезвычайно едкое химическое вещество. Сильно обжигает всех, кто вступит с ней в непосредственный контакт.
+uplink-syringe-pistol-filled-name = Компактный шприцемёт
+uplink-syringe-pistol-filled-desc = Сразу заполнен тремя шприцами. В шприцах: токсин немоты,карпотоктин и фризиум.
+uplink-syringe-box-filled-name = коробка мини шприцов
+uplink-syringe-box-filled-desc = Полная коробка мини шприцов.
+uplink-syringe-rapid-name = Автоматический шприцемёт
+uplink-syringe-rapid-desc =  Изначально пуст. Принимает до 8-ми шприцов. Сделайте из Офицера СБ Ёжика!
 
 ## Mechs equipment
 

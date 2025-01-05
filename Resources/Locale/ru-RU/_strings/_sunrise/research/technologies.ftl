@@ -1,6 +1,8 @@
 research-discipline-biochemical = Биохимия
 research-technology-basic-surgery = Базовая хирургия
 research-technology-basic-cyberlimbs = Базовые кибер-конечности
+research-technology-basic-syringegun = Базовые шприцемёты
+research-technology-compact-syringegun = Компактные шприцемёты
 research-technology-advanced-surgery = Продвинутая хирургия
 research-technology-handcraft-nvd = Кустарные ПНВ
 research-technology-basic-nvd = Продвинутое ПНВ

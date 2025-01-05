@@ -13,12 +13,14 @@
       visible: false
   - type: Item
     size: Huge
+    shape:  #Sunrise-Edit
+    - 0,0,4,4 #5X5 #Sunrise-Edit
   - type: Clothing
     quickEquip: false
     slots:
     - Back
   - type: Gun
-    fireRate: 2
+    fireRate: 1.5 #Sunrise-Edit
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto

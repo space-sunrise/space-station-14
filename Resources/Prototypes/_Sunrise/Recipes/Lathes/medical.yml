@@ -69,6 +69,36 @@
   materials:
     Steel: 200
 
+#SyringeGuns
+- type: latheRecipe
+  id: LauncherSyringeMed
+  result: LauncherSyringeMed
+  category: Tools
+  completetime: 25
+  materials:
+    Plastic: 200
+    Steel: 800
+    Glass: 300
+
+- type: latheRecipe
+  id: LauncherSyringePistol
+  result: LauncherSyringePistol
+  category: Tools
+  completetime: 10
+  materials:
+    Plastic: 200
+    Steel: 1000
+    Glass: 350
+
+- type: latheRecipe
+  id: MiniSyringe
+  result: MiniSyringe
+  category: Tools
+  completetime: 3
+  materials:
+    Plastic: 100
+    Steel: 25
+
 #cyberlimbs
 
 - type: latheRecipe

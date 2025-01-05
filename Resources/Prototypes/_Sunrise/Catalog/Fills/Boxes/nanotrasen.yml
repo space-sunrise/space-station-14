@@ -121,3 +121,21 @@
     layers:
       - state: box_security
       - state: flashbang
+
+- type: entity
+  name: Mini-Syringe box
+  parent: BoxCardboard
+  id: BoxMiniSyringe
+  description: A box full of MiniSyringe.
+  components:
+  - type: Storage
+    grid:
+    - 0,0,2,1
+  - type: StorageFill
+    contents:
+      - id: MiniSyringe
+        amount: 6
+  - type: Sprite
+    layers:
+      - state: box
+      - state: syringe

@@ -1097,6 +1097,9 @@
       - SawAdvanced
       - Hemostat
       - HemostatAdvanced
+      - LauncherSyringeMed #Sunrise-Edit
+      - LauncherSyringePistol #Sunrise-Edit
+      - MiniSyringe #Sunrise-Edit
       - LeftArmCyber
       - RightArmCyber
       - LeftHandCyber
