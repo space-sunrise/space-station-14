@@ -4,21 +4,9 @@ using Robust.Shared.Serialization;
 namespace Content.Shared._Sunrise.DamageOverlay;
 
 [Serializable, NetSerializable]
-public sealed class DamageOverlayOptionEvent : EntityEventArgs
+public sealed class DamageOverlayOptionEvent(bool enabled, bool selfEnabled, bool structuresEnabled) : EntityEventArgs
 {
-    public bool Enabled { get; }
-    public DamageOverlayOptionEvent(bool enabled)
-    {
-        Enabled = enabled;
-    }
-}
-
-[Serializable, NetSerializable]
-public sealed class DamageOverlayPresetChangedEvent : EntityEventArgs
-{
-    public ProtoId<DamageOverlayPrototype> Preset { get; }
-    public DamageOverlayPresetChangedEvent(ProtoId<DamageOverlayPrototype> preset)
-    {
-        Preset = preset;
-    }
+    public bool Enabled { get; } = enabled;
+    public bool SelfEnabled { get; } = selfEnabled;
+    public bool StructuresEnabled { get; } = structuresEnabled;
 }

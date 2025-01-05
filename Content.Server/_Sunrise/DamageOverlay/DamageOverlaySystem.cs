@@ -1,4 +1,3 @@
-using System.Linq;
 using System.Numerics;
 using Content.Server.Mind;
 using Content.Server.Popups;
@@ -7,7 +6,6 @@ using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.DamageOverlay;
@@ -17,10 +15,9 @@ public sealed class DamageOverlaySystem : EntitySystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
 
-    private readonly List<ICommonSession> _disabledSessions = new();
-    private readonly Dictionary<ICommonSession, DamageOverlayPrototype> _playerSettings = new ();
+    private readonly List<ICommonSession> _disabledSessions = [];
+    private readonly Dictionary<ICommonSession, DamageOverlaySettings> _playerSettings = new ();
 
     public override void Initialize()
     {
@@ -29,7 +26,6 @@ public sealed class DamageOverlaySystem : EntitySystem
         SubscribeLocalEvent<DamageOverlayComponent, DamageChangedEvent>(OnDamageChange);
 
         SubscribeNetworkEvent<DamageOverlayOptionEvent>(OnDamageOverlayOption);
-        SubscribeNetworkEvent<DamageOverlayPresetChangedEvent>(OnDamageOverlayPresetChanged);
     }
 
     private async void OnDamageOverlayOption(DamageOverlayOptionEvent ev, EntitySessionEventArgs args)
@@ -38,17 +34,8 @@ public sealed class DamageOverlaySystem : EntitySystem
             _disabledSessions.Remove(args.SenderSession);
         else
             _disabledSessions.Add(args.SenderSession);
-    }
 
-    private async void OnDamageOverlayPresetChanged(DamageOverlayPresetChangedEvent ev, EntitySessionEventArgs args)
-    {
-        if (args.SenderSession.AttachedEntity == null)
-            return;
-
-        if (!_prototype.TryIndex(ev.Preset, out var presetPrototype))
-            return;
-
-        _playerSettings[args.SenderSession] = presetPrototype;
+        _playerSettings[args.SenderSession] = new DamageOverlaySettings(ev.SelfEnabled, ev.StructuresEnabled);
     }
 
     private void OnDamageChange(Entity<DamageOverlayComponent> ent, ref DamageChangedEvent args)
@@ -59,13 +46,9 @@ public sealed class DamageOverlaySystem : EntitySystem
         var damageDelta = args.DamageDelta.GetTotal();
         var coords = GenerateRandomCoordinates(Transform(ent).Coordinates, ent.Comp.Radius);
 
-        // Проверка на игнорируемые типы урона
-        if (args.DamageDelta.DamageDict.Keys.Any(item => ent.Comp.IgnoredDamageTypes.Contains(item)))
-            return;
-
         if (_mindSystem.TryGetMind(ent, out _, out var mindTarget) && mindTarget.Session != null)
         {
-            if (IsDisabledByClient(mindTarget.Session, ent, args.DamageDelta))
+            if (IsDisabledByClient(mindTarget.Session, ent))
                 return;
 
             if (damageDelta > 0)
@@ -80,15 +63,11 @@ public sealed class DamageOverlaySystem : EntitySystem
         if (!_mindSystem.TryGetMind(args.Origin.Value, out _, out var mindOrigin) || mindOrigin.Session == null)
             return;
 
-        if (IsDisabledByClient(mindOrigin.Session, ent, args.DamageDelta))
+        if (IsDisabledByClient(mindOrigin.Session, ent))
             return;
 
         if (damageDelta > 0)
         {
-            // Ударили себя
-            if (args.Origin == ent)
-                return;
-
             _popupSystem.PopupCoordinates($"-{damageDelta}", coords, mindOrigin.Session, ent.Comp.DamagePopupType);
         }
         else
@@ -99,42 +78,46 @@ public sealed class DamageOverlaySystem : EntitySystem
 
     private EntityCoordinates GenerateRandomCoordinates(EntityCoordinates center, float radius)
     {
-        // Случайное направление в радианах.
         var angle = _random.NextDouble() * 2 * Math.PI;
 
-        // Случайное расстояние от центра в пределах радиуса.
         var distance = _random.NextDouble() * radius;
 
-        // Вычисление смещения.
         var offsetX = (float)(Math.Cos(angle) * distance);
         var offsetY = (float)(Math.Sin(angle) * distance);
 
-        // Создание новых координат с учетом смещения.
         var newPosition = new Vector2(center.Position.X + offsetX, center.Position.Y + offsetY);
 
         return new EntityCoordinates(center.EntityId, newPosition);
     }
 
-    /// <summary>
-    /// Проверка на то, включен ли у игрока данный урон для отображения
-    /// </summary>
-    private bool IsDisabledByClient(ICommonSession session, Entity<DamageOverlayComponent> target, DamageSpecifier damageDelta)
+    private bool IsDisabledByClient(ICommonSession session, Entity<DamageOverlayComponent> target)
     {
         if (_disabledSessions.Contains(session))
             return true;
 
-        if (_playerSettings.TryGetValue(session, out var playerPreset))
+        if (_playerSettings.TryGetValue(session, out var playerSettings))
         {
-            if (damageDelta.DamageDict.Keys.Any(item => playerPreset.Types.Contains(item)))
+            if (target.Comp.IsStructure && !playerSettings.StructureDamage)
                 return true;
 
-            if (target.Comp.IsStructure && !playerPreset.StructureDamageEnabled)
-                return true;
-
-            if (target == session.AttachedEntity && !playerPreset.ToPlayerDamageEnabled)
+            if (target == session.AttachedEntity && !playerSettings.SelfDamage)
                 return true;
         }
 
         return false;
+    }
+
+    private sealed class DamageOverlaySettings
+    {
+        public readonly bool StructureDamage;
+
+        public readonly bool SelfDamage;
+
+        public DamageOverlaySettings(bool evSelfEnabled, bool evStructuresEnabled)
+        {
+            SelfDamage = evSelfEnabled;
+
+            StructureDamage = evStructuresEnabled;
+        }
     }
 }

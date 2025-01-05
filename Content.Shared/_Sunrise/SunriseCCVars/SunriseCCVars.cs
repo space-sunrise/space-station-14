@@ -244,12 +244,6 @@ public sealed class SunriseCCVars
      * Damage
      */
 
-    public static readonly CVarDef<bool> DamageOverlay =
-        CVarDef.Create("damage.overlay", true, CVar.CLIENTONLY | CVar.ARCHIVE);
-
-    public static readonly CVarDef<string> DamageOverlayPreset =
-        CVarDef.Create("damage.overlay_preset", "All", CVar.CLIENTONLY | CVar.ARCHIVE);
-
     public static readonly CVarDef<float> DamageVariance =
         CVarDef.Create("damage.variance", 0.15f, CVar.SERVER | CVar.REPLICATED);
 
@@ -395,4 +389,17 @@ public sealed class SunriseCCVars
 
     public static readonly CVarDef<int> FlavorTextBaseLength =
         CVarDef.Create("flavor_text.length", 512, CVar.SERVER | CVar.REPLICATED);
+
+    /*
+     * Damage Overlay
+     */
+
+    public static readonly CVarDef<bool> DamageOverlayEnable =
+        CVarDef.Create("damage_overlay.enable", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> DamageOverlaySelf =
+        CVarDef.Create("damage_overlay.self", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> DamageOverlayStructures =
+        CVarDef.Create("damage_overlay.structures", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 }
