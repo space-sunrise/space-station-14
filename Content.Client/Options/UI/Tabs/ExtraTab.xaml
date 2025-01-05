@@ -17,7 +17,9 @@
                 <!-- Combat -->
                 <Label Text="{Loc 'ui-options-sunrise-general-combat'}"
                        StyleClasses="LabelKeyText"/>
-                <CheckBox Name="DamageOverlayCheckBox" Text="{Loc 'ui-options-damage-overlay'}" />
+                <CheckBox Name="DamageOverlayEnableCheckBox" Text="{Loc 'ui-options-damage-overlay-enable'}" />
+                <CheckBox Name="DamageOverlaySelfCheckBox" Text="{Loc 'ui-options-damage-overlay-self'}" />
+                <CheckBox Name="DamageOverlayStructuresCheckBox" Text="{Loc 'ui-options-damage-overlay-structures'}" />
 
                 <!-- Audio -->
                 <Label Text="{Loc 'ui-options-sunrise-general-audio'}" StyleClasses="LabelKeyText"/>

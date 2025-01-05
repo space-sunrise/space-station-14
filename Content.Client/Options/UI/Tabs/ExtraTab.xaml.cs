@@ -82,12 +82,15 @@ public sealed partial class ExtraTab : Control
             var layoutLoc = Loc.GetString($"lobby-animation-{lobbyAnimation.ID}");
             lobbyAnimations.Add(new OptionDropDownCVar<string>.ValueOption(lobbyAnimation.ID, layoutLoc));
         }
+
         Control.AddOptionDropDown(SunriseCCVars.LobbyBackgroundType, DropDownLobbyBackgroundType, lobbyBackgroundTypes);
         Control.AddOptionDropDown(SunriseCCVars.LobbyArt, DropDownLobbyArt, lobbyArts);
         Control.AddOptionDropDown(SunriseCCVars.LobbyAnimation, DropDownLobbyAnimation, lobbyAnimations);
         Control.AddOptionDropDown(SunriseCCVars.LobbyParallax, DropDownLobbyParallax, lobbyParallaxes);
         Control.AddOptionPercentSlider(SunriseCCVars.LobbyOpacity, LobbyOpacitySlider);
-        Control.AddOptionCheckBox(SunriseCCVars.DamageOverlay, DamageOverlayCheckBox);
+        Control.AddOptionCheckBox(SunriseCCVars.DamageOverlayEnable, DamageOverlayEnableCheckBox);
+        Control.AddOptionCheckBox(SunriseCCVars.DamageOverlaySelf, DamageOverlaySelfCheckBox);
+        Control.AddOptionCheckBox(SunriseCCVars.DamageOverlayStructures, DamageOverlayStructuresCheckBox);
 
         Control.Initialize();
     }
