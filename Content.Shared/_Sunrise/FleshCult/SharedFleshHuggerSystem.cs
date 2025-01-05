@@ -3,29 +3,30 @@ using Content.Shared.Actions;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Popups;
 
-namespace Content.Server.Flesh
+namespace Content.Shared._Sunrise.FleshCult;
+
+public sealed class SharedFleshHuggerSystem : EntitySystem
 {
-    public class SharedFleshHuggerSystem : EntitySystem
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+
+    public override void Initialize()
     {
-        [Dependency] private readonly SharedPopupSystem _popup = default!;
+        SubscribeLocalEvent<FleshHuggerComponent, BeingUnequippedAttemptEvent>(OnUnequipAttempt);
+    }
 
-        public override void Initialize()
-        {
-            SubscribeLocalEvent<FleshHuggerComponent, BeingUnequippedAttemptEvent>(OnUnequipAttempt);
-        }
-
-        private void OnUnequipAttempt(EntityUid uid, FleshHuggerComponent component, BeingUnequippedAttemptEvent args)
-        {
-            if (args.Slot != "mask")
-                return;
-            if (component.EquipedOn != args.Unequipee)
-                return;
-            if (HasComp<FleshCultistComponent>(args.Unequipee))
-                return;
-            _popup.PopupEntity(Loc.GetString("flesh-pudge-throw-hugger-try-unequip"),
-                args.Unequipee, args.Unequipee, PopupType.Large);
-            args.Cancel();
-        }
+    private void OnUnequipAttempt(EntityUid uid, FleshHuggerComponent component, BeingUnequippedAttemptEvent args)
+    {
+        if (args.Slot != "mask")
+            return;
+        if (component.EquipedOn != args.Unequipee)
+            return;
+        if (HasComp<FleshCultistComponent>(args.Unequipee))
+            return;
+        _popup.PopupEntity(Loc.GetString("flesh-pudge-throw-hugger-try-unequip"),
+            args.Unequipee,
+            args.Unequipee,
+            PopupType.Large);
+        args.Cancel();
     }
 }
 

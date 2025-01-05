@@ -12,7 +12,7 @@
     roles:
       mindRoles:
       - VampireRole
-      
+
 - type: entity
   abstract: true
   parent: [BaseVampireObjective, BaseStealObjective]
@@ -24,7 +24,7 @@
     difficulty: 1.5
   - type: ObjectiveLimit
     limit: 2
-    
+
 # Steal
 
 - type: entity
@@ -125,7 +125,7 @@
     icon:
       sprite: Interface/Actions/actions_vampire.rsi
       state: survive_icon
-      
+
 - type: entity
   parent: [BaseVampireObjective, BaseLivingObjective]
   id: VampireEscapeObjective
@@ -138,9 +138,9 @@
       sprite: Structures/Furniture/chairs.rsi
       state: shuttle
   - type: EscapeShuttleCondition
-  
+
 # Kill
-  
+
 - type: entity
   parent: [BaseVampireObjective, BaseKillObjective]
   id: VampireKillRandomPersonObjective
@@ -152,7 +152,23 @@
   - type: TargetObjective
     title: objective-condition-kill-person-title
   - type: PickRandomPerson
-  
+  - type: KillPersonCondition
+    requireDead: true
+
+- type: entity
+  parent: [BaseVampireObjective, BaseKillObjective]
+  id: VampireKillRandomAntagObjective
+  description:
+  components:
+  - type: Objective
+    difficulty: 3.0
+    unique: true
+  - type: TargetObjective
+    title: objective-condition-kill-antag-title
+  - type: PickRandomAntag
+  - type: KillPersonCondition
+    requireDead: true
+
 # Drain
 
 - type: entity

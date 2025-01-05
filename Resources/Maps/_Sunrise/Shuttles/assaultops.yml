@@ -1062,7 +1062,7 @@ entities:
     - type: Transform
       pos: -5.5,10.5
       parent: 1
-- proto: BigThruster
+- proto: BigRedThruster
   entities:
   - uid: 4
     components:
@@ -5014,7 +5014,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -5.5,10.5
       parent: 1
-- proto: HugeThruster
+- proto: HugeRedThruster
   entities:
   - uid: 307
     components:
@@ -5039,13 +5039,6 @@ entities:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -7.5,-16.5
-      parent: 1
-- proto: Implanter
-  entities:
-  - uid: 1242
-    components:
-    - type: Transform
-      pos: -9.47651,-11.559904
       parent: 1
 - proto: Interrogator
   entities:

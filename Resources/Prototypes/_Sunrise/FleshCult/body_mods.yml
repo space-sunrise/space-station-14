@@ -27,6 +27,7 @@
       - LFoot
       - RLeg
       - LLeg
+  - type: FleshBodyMod
 
 - type: entity
   categories: [ HideSpawnMenu ]
@@ -45,13 +46,14 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.2
+        Blunt: 0.6
+        Slash: 0.6
+        Piercing: 0.6
         Heat: 0.8
   - type: ExplosionResistance
     damageCoefficient: 0.9
   - type: GroupExamine
+  - type: FleshBodyMod
 
 
 - type: entity
@@ -74,10 +76,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.3
-        Heat: 0.9
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.4
+        Heat: 0.6
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8
@@ -88,6 +90,7 @@
     deleteOnDrop: true
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHeavyArmorFlesh
+  - type: FleshBodyMod
 
 
 - type: entity

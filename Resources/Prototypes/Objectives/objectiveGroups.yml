@@ -3,7 +3,7 @@
   id: TraitorObjectiveGroups
   weights:
     TraitorObjectiveGroupSteal: 1
-    TraitorObjectiveGroupKill: 0.5 # Sunrise-Edit: Меньше убийств - меньше гостов.
+    TraitorObjectiveGroupKill: 1
     TraitorObjectiveGroupState: 1 #As in, something about your character. Alive, dead, arrested, gained an ability...
     TraitorObjectiveGroupSocial: 1 #Involves helping/harming others without killing them or stealing their stuff
 
@@ -14,11 +14,11 @@
     CMOHyposprayStealObjective: 1
     #CMOCrewMonitorStealObjective: 1 # Sunrise-Edit: Больше не хайриск
     RDHardsuitStealObjective: 1
-    #NukeDiskStealObjective: 1 # Sunrise-Edit: Цель требует убить слишком много людей.
+    NukeDiskStealObjective: 1
     MagbootsStealObjective: 1
     CorgiMeatStealObjective: 1
     ClipboardStealObjective: 1
-    CaptainGunStealObjective: 0.2 # Sunrise-Edit: Чтобы его украсть капитана прийдется убить.
+    CaptainGunStealObjective: 0.5
     CaptainJetpackStealObjective: 0.5
     HandTeleporterStealObjective: 0.5
     EnergyShotgunStealObjective: 0.5
@@ -32,15 +32,16 @@
 - type: weightedRandom
   id: TraitorObjectiveGroupKill
   weights:
-    KillRandomPersonObjective: 1
+    KillRandomAntagObjective: 1
+    KillRandomPersonObjective: 0.5
     KillRandomHeadObjective: 0.25
 
 - type: weightedRandom
   id: TraitorObjectiveGroupState
   weights:
     EscapeShuttleObjective: 1
-    #DieObjective: 0.02 # Почему-то трейторы думают что умереть = убить как можно больше.
-    #HijackShuttleObjective: 0.02 # Нам незачем разрешать рдм в не рдм режиме.
+    DieObjective: 0.05
+    HijackShuttleObjective: 0.03
 
 - type: weightedRandom
   id: TraitorObjectiveGroupSocial

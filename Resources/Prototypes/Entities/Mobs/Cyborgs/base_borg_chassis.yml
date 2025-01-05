@@ -45,8 +45,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
-      200: Dead
+      200: Critical # Sunrise-Edit
+      300: Dead # Sunrise-Edit
     stateAlertDict:
       Alive: BorgHealth
       Critical: BorgCrit
@@ -108,9 +108,9 @@
     doAfterDelay: 3
     damage:
       types:
-        Blunt: -15
-        Slash: -15
-        Piercing: -15
+        Blunt: -25
+        Slash: -25
+        Piercing: -25
     # Sunrise-End
     allowSelfRepair: false
   - type: BorgChassis
@@ -187,7 +187,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 75
+        damage: 175
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -196,7 +196,7 @@
             volume: 5
     - trigger:
         !type:DamageTrigger
-        damage: 300
+        damage: 400 # Sunrise-Edit
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -385,45 +385,9 @@
   - type: ShowJobIcons
   - type: ShowMindShieldIcons
   - type: ShowCriminalRecordIcons
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      200: Critical
-      300: Dead
-    stateAlertDict:
-      Alive: BorgHealth
-      Critical: BorgCrit
-      Dead: BorgDead
-    showOverlays: false
-    allowRevives: true
   - type: FlashImmunity
   - type: TypingIndicator
     proto: syndibot
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 175
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          path: /Audio/Machines/warning_buzzer.ogg
-          params:
-            volume: 5
-    - trigger:
-        !type:DamageTrigger
-        damage: 400
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
-      - !type:EmptyContainersBehaviour
-        containers:
-        - borg_brain
-        - borg_module
-        - cell_slot
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
   - type: Tag
     tags:
     - DoorBumpOpener

@@ -1,12 +1,12 @@
-﻿using Content.Shared.Actions;
-using Content.Shared.StatusIcon;
+﻿using Content.Shared.StatusIcon;
 using Robust.Shared.Audio;
+using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared._Sunrise.FleshCult
 {
-    [RegisterComponent]
+    [RegisterComponent, NetworkedComponent, AutoGenerateComponentPause]
     public sealed partial class FleshMobComponent : Component
     {
         [ViewVariables(VVAccess.ReadWrite), DataField("soundDeath")]
@@ -22,21 +22,16 @@ namespace Content.Shared._Sunrise.FleshCult
         [DataField("fleshStatusIcon")]
         public ProtoId<FactionIconPrototype> StatusIcon { get; set; } = "FleshFaction";
 
+        [DataField]
+        public TimeSpan PopupCooldown = TimeSpan.FromSeconds(3.0);
+
+        [DataField]
+        [AutoPausedField]
+        public TimeSpan? NextPopupTime;
+
+        [DataField]
+        public EntityUid? LastAttackedEntity;
+
         public bool IsDeath = false;
     }
-}
-
-public sealed partial class FleshPudgeThrowFaceHuggerActionEvent : WorldTargetActionEvent
-{
-
-}
-
-public sealed partial class FleshPudgeAcidSpitActionEvent : WorldTargetActionEvent
-{
-
-}
-
-public sealed partial class FleshPudgeAbsorbBloodPoolActionEvent : InstantActionEvent
-{
-
 }

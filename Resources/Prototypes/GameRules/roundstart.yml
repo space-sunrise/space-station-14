@@ -193,13 +193,13 @@
   - type: GameRule
     minPlayers: 5
     delay:
-      min: 240
-      max: 420
+      min: 600 # Sunrise-Edit
+      max: 900 # Sunrise-Edit
   - type: AntagSelection
     definitions:
     - prefRoles: [ Traitor ]
-      max: 12 # Sunrise-Edit
-      playerRatio: 10
+      max: 8 # Sunrise-Edit
+      playerRatio: 15
       pickCommandStaff: true # Sunrise-Edit
       maxCommandStaff: 1 # Sunrise-Edit
       blacklist:

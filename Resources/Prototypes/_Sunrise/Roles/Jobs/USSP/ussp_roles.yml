@@ -91,9 +91,9 @@
     pocket2: Gauze
   storage:
     back:
-    - WeaponSubMachineGunPPSH41
-    - MagazinePPSH41
-    - MagazinePPSH41
+    - MedkitFilled
+    - GrenadeShrapnel
+    - SmokeGrenade
     - Crowbar
     - ClothingPantsManCommie
 

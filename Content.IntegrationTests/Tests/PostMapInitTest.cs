@@ -68,11 +68,16 @@ namespace Content.IntegrationTests.Tests
             "Gate",
             "Amber",
             "Loop",
-            // Sunrise-Start
-			"SunriseBox",
-			"SunriseDelta",
-			"SunriseFland",
-			"SunriseMarathon",
+            "Elkridge"
+        };
+
+        // Sunrise-Start
+        private static readonly string[] SunriseGameMaps =
+        {
+            "SunriseBox",
+            "SunriseDelta",
+            "SunriseFland",
+            "SunriseMarathon",
             "SunriseCentComm",
             "SunrisePlanetDelta",
             "SunriseBagel",
@@ -82,9 +87,11 @@ namespace Content.IntegrationTests.Tests
             "SunriseCog",
             "SunriseCorvaxGelta",
             "SunriseMeta",
-            "SunriseOasis",
-            // Sunrise-End
+            "SunriseOasis"
         };
+        // Sunrise-End
+
+        private static readonly string[] TotalMaps = GameMaps.Concat(SunriseGameMaps).ToArray();
 
         /// <summary>
         /// Asserts that specific files have been saved as grids and not maps.
@@ -173,7 +180,7 @@ namespace Content.IntegrationTests.Tests
             await pair.CleanReturnAsync();
         }
 
-        [Test, TestCaseSource(nameof(GameMaps))]
+        [Test, TestCaseSource(nameof(TotalMaps))] // Sunrise-Edit
         public async Task GameMapsLoadableTest(string mapProto)
         {
             await using var pair = await PoolManager.GetServerClient(new PoolSettings
@@ -339,7 +346,8 @@ namespace Content.IntegrationTests.Tests
 
             Assert.That(gameMaps.Remove(PoolManager.TestMap));
 
-            Assert.That(gameMaps, Is.EquivalentTo(GameMaps.ToHashSet()), "Game map prototype missing from test cases.");
+
+            Assert.That(gameMaps, Is.EquivalentTo(TotalMaps.ToHashSet()), "Game map prototype missing from test cases."); // Sunrise-Edit
 
             await pair.CleanReturnAsync();
         }

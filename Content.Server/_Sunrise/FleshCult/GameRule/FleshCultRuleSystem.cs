@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server.Antag;
+using Content.Server.Antag.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
@@ -12,9 +13,11 @@ using Content.Shared._Sunrise.FleshCult;
 using Content.Shared.FixedPoint;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
+using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Roles;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.FleshCult.GameRule;
 
@@ -26,18 +29,54 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
     [Dependency] private readonly StoreSystem _store = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
+    [Dependency] private readonly SharedRoleSystem _roles = default!;
+
+    [ValidatePrototypeId<AntagPrototype>]
+    private const string LeaderAntagProto = "FleshCultistLeader";
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<FleshCultRuleComponent, AfterAntagEntitySelectedEvent>(AfterEntitySelected);
-
-        SubscribeLocalEvent<FleshHeartSystem.FleshHeartActivateEvent>(OnFleshHeartActivate);
-        SubscribeLocalEvent<FleshHeartSystem.FleshHeartDestructionEvent>(OnFleshHeartDestruction);
-        SubscribeLocalEvent<FleshHeartSystem.FleshHeartFinalEvent>(OnFleshHeartFinal);
-
         SubscribeLocalEvent<FleshCultRuleComponent, ObjectivesTextPrependEvent>(OnObjectivesTextPrepend);
+        SubscribeLocalEvent<FleshCultRuleComponent, AntagSelectionCompleteEvent>(OnAfterAntagSelectionComplete);
+        SubscribeLocalEvent<FleshCultSystem.FleshHeartStatusChangeEvent>(OnFleshHeartStatusChange);
+    }
+
+    protected override void Started(EntityUid uid,
+        FleshCultRuleComponent component,
+        GameRuleComponent gameRule,
+        GameRuleStartedEvent args)
+    {
+        var eligible = new List<Entity<StationEventEligibleComponent, NpcFactionMemberComponent>>();
+        var eligibleQuery = EntityQueryEnumerator<StationEventEligibleComponent, NpcFactionMemberComponent>();
+        while (eligibleQuery.MoveNext(out var eligibleUid, out var eligibleComp, out var member))
+        {
+            if (!_npcFaction.IsFactionHostile(component.Faction, (eligibleUid, member)))
+                continue;
+
+            eligible.Add((eligibleUid, eligibleComp, member));
+        }
+
+        if (eligible.Count == 0)
+            return;
+
+        component.TargetStation = RobustRandom.Pick(eligible);
+    }
+
+    protected override void Ended(EntityUid uid, FleshCultRuleComponent component, GameRuleComponent gameRule, GameRuleEndedEvent args)
+    {
+        foreach (var componentFleshHeart in component.FleshHearts)
+        {
+            QueueDel(componentFleshHeart.Key);
+        }
+
+        foreach (var cultist in component.Cultists)
+        {
+            RemComp<FleshCultistComponent>(cultist);
+        }
+        QueueDel(uid);
     }
 
     private void OnObjectivesTextPrepend(EntityUid uid, FleshCultRuleComponent comp, ref ObjectivesTextPrependEvent args)
@@ -48,121 +87,37 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
         args.Text += "\n" + Loc.GetString("flesh-cult-round-end-leader", ("name", mind.CharacterName)!, ("username", session!.Name));
     }
 
-    private void OnFleshHeartActivate(FleshHeartSystem.FleshHeartActivateEvent ev)
+    private void OnFleshHeartStatusChange(FleshCultSystem.FleshHeartStatusChangeEvent ev)
     {
         var query = EntityQueryEnumerator<FleshCultRuleComponent, GameRuleComponent>();
         while (query.MoveNext(out var uid, out var fleshCult, out var gameRule))
         {
-            if (!GameTicker.IsGameRuleAdded(uid, gameRule))
+            switch (ev.Status)
             {
-                continue;
-            }
-
-            if (ev.OwningStation == null)
-            {
-                return;
-            }
-
-            if (fleshCult.TargetStation == null)
-            {
-                return;
-            }
-
-            if (!TryComp(fleshCult.TargetStation, out StationDataComponent? data))
-            {
-                return;
-            }
-
-            foreach (var grid in data.Grids)
-            {
-                if (grid != ev.OwningStation)
+                case FleshHeartStatus.Base:
                 {
-                    continue;
+                    fleshCult.FleshHearts.Add(ev.FleshHeartUid, FleshHeartStatus.Base);
+                    break;
                 }
-
-                fleshCult.FleshHearts.Add(ev.FleshHeardUid, FleshHeartStatus.Active);
-                fleshCult.FleshHeartActive = true;
-                return;
-            }
-        }
-    }
-
-    private void OnFleshHeartDestruction(FleshHeartSystem.FleshHeartDestructionEvent ev)
-    {
-        var query = EntityQueryEnumerator<FleshCultRuleComponent, GameRuleComponent>();
-        while (query.MoveNext(out var uid, out var fleshCult, out var gameRule))
-        {
-            if (!GameTicker.IsGameRuleAdded(uid, gameRule))
-            {
-                continue;
-            }
-
-            if (ev.OwningStation == null)
-            {
-                return;
-            }
-
-            if (fleshCult.TargetStation == null)
-            {
-                return;
-            }
-
-            if (!TryComp(fleshCult.TargetStation, out StationDataComponent? data))
-            {
-                return;
-            }
-
-            foreach (var grid in data.Grids)
-            {
-                if (grid != ev.OwningStation)
+                case FleshHeartStatus.Active:
                 {
-                    continue;
+                    if (fleshCult.FleshHearts.ContainsKey(ev.FleshHeartUid))
+                        fleshCult.FleshHearts[ev.FleshHeartUid] = FleshHeartStatus.Active;
+                    break;
                 }
-
-                if (fleshCult.FleshHearts.ContainsKey(ev.FleshHeardUid))
+                case FleshHeartStatus.Destruction:
                 {
-                    fleshCult.FleshHearts[ev.FleshHeardUid] = FleshHeartStatus.Destruction;
+                    if (fleshCult.FleshHearts.ContainsKey(ev.FleshHeartUid))
+                        fleshCult.FleshHearts[ev.FleshHeartUid] = FleshHeartStatus.Destruction;
+                    break;
                 }
-                fleshCult.FleshHeartActive = false;
-                return;
-            }
-        }
-    }
-
-    private void OnFleshHeartFinal(FleshHeartSystem.FleshHeartFinalEvent ev)
-    {
-        var query = EntityQueryEnumerator<FleshCultRuleComponent, GameRuleComponent>();
-        while (query.MoveNext(out var uid, out var fleshCult, out var gameRule))
-        {
-            if (!GameTicker.IsGameRuleAdded(uid, gameRule))
-            {
-                continue;
-            }
-
-            if (ev.OwningStation == null)
-            {
-                return;
-            }
-
-            if (fleshCult.TargetStation == null)
-            {
-                return;
-            }
-
-            if (!TryComp(fleshCult.TargetStation, out StationDataComponent? data))
-            {
-                return;
-            }
-            foreach (var grid in data.Grids)
-            {
-                if (grid != ev.OwningStation)
+                case FleshHeartStatus.Final:
                 {
-                    continue;
+                    if (fleshCult.FleshHearts.ContainsKey(ev.FleshHeartUid))
+                        fleshCult.FleshHearts[ev.FleshHeartUid] = FleshHeartStatus.Final;
+                    _roundEndSystem.EndRound();
+                    break;
                 }
-
-                fleshCult.WinType = FleshCultRuleComponent.WinTypes.FleshHeartFinal;
-                _roundEndSystem.EndRound();
-                return;
             }
         }
     }
@@ -172,10 +127,32 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
         MakeCultist(args.EntityUid, 15, ent.Comp);
     }
 
-    public void MakeCultistAdmin(EntityUid target, FixedPoint2 startingPoints)
+    private void OnAfterAntagSelectionComplete(Entity<FleshCultRuleComponent> ent, ref AntagSelectionCompleteEvent args)
     {
-        var fleshCultRule = StartGameRule();
-        MakeCultist(target, startingPoints, fleshCultRule);
+        var leader = GetLeader(args.GameRule);
+        if (leader == null || !_mindSystem.TryGetMind(leader.Value, out var mindId, out var mind))
+            return;
+        ent.Comp.CultistsLeaderMind = mindId;
+    }
+
+    private EntityUid? GetLeader(Entity<AntagSelectionComponent> antagSelection)
+    {
+        EntityUid? leader = null;
+        foreach (var compSelectedMind in antagSelection.Comp.SelectedMinds)
+        {
+            if (!TryComp<MindComponent>(compSelectedMind.Item1, out var mindComp))
+                continue;
+
+            foreach (var roleInfo in _roles.MindGetAllRoleInfo((compSelectedMind.Item1, mindComp)))
+            {
+                if (roleInfo.Prototype != LeaderAntagProto || mindComp.CurrentEntity == null)
+                    continue;
+
+                leader = mindComp.CurrentEntity.Value;
+            }
+        }
+
+        return leader;
     }
 
     public FleshCultRuleComponent StartGameRule()
@@ -215,6 +192,8 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
 
         _store.TryAddCurrency(new Dictionary<string, FixedPoint2>
             { {fleshCultistComponent.StolenCurrencyPrototype, startingPoints} }, mind.OwnedEntity.Value);
+
+        fleshCultRule.Cultists.Add(fleshCultist);
 
         return true;
     }
@@ -282,7 +261,14 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
             }
         }
 
-        if (component.FleshHeartActive)
+        var fleshHeartActive = false;
+        foreach (var fleshCultFleshHeart in component.FleshHearts)
+        {
+            if (fleshCultFleshHeart.Value is FleshHeartStatus.Active or FleshHeartStatus.Final)
+                fleshHeartActive = true;
+        }
+
+        if (fleshHeartActive)
         {
             result += "\n" + Loc.GetString("flesh-cult-round-end-flesh-heart-succes");
         }

@@ -122,8 +122,8 @@ public abstract class SharedStandingStateSystem : EntitySystem
         {
             BreakOnHandChange = false,
             RequireCanInteract = false,
-            BreakOnDamage = true,
-            BreakOnMove = true,
+            BreakOnDamage = false,
+            BreakOnMove = false,
         };
 
         return _doAfter.TryStartDoAfter(args);

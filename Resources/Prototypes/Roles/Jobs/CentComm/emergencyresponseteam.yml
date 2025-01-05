@@ -383,7 +383,7 @@
     back: ClothingBackpackERTMedical
     shoes: ClothingShoesBootsMagCombat
     mask: ClothingMaskGasERT
-    eyes: ClothingEyesHudMedical
+    eyes: ClothingEyesHudMedSec # Sunrise-edit
     gloves: ClothingHandsGlovesCombat # Sunrise-edit
     outerClothing: ClothingOuterHardsuitERTMedical
     id: ERTMedicPDA

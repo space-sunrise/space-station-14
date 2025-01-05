@@ -16,8 +16,6 @@ public sealed partial class FleshCultRuleComponent : Component
     public SoundSpecifier AddedSound = new SoundPathSpecifier(
         "/Audio/_Sunrise/FleshCult/flesh_culstis_greeting.ogg");
 
-    public Dictionary<string, EntityUid> Cultists = new();
-
     [DataField("fleshCultistPrototypeId", customTypeSerializer: typeof(PrototypeIdSerializer<AntagPrototype>))]
     public string FleshCultistPrototypeId = "FleshCultist";
 
@@ -27,20 +25,14 @@ public sealed partial class FleshCultRuleComponent : Component
     [DataField("faction", customTypeSerializer: typeof(PrototypeIdSerializer<NpcFactionPrototype>), required: true)]
     public string Faction = default!;
 
+    public List<EntityUid> Cultists = new();
     public int TotalCultists => Cultists.Count;
 
     public readonly List<string> CultistsNames = new();
 
-    public WinTypes WinType = WinTypes.Fail;
-
-    public bool FleshHeartActive = false;
-
     public Dictionary<EntityUid, FleshHeartStatus> FleshHearts = new();
 
     public EntityUid? TargetStation;
-
-    [DataField]
-    public List<string> StarterItems = new() { "SyringeCarolNT", "SyringeCarolNT", "SyringeCarolNT" };
 
     public List<string> SpeciesWhitelist = new()
     {
@@ -51,16 +43,11 @@ public sealed partial class FleshCultRuleComponent : Component
         "Felinid",
         "Moth",
         "Swine",
-        "Arachnid"
+        "Arachnid",
+        "Demon",
+        "Vox",
+        "HumanoidXeno",
+        "Predator",
+        "Tajaran"
     };
-
-    public enum WinTypes
-    {
-        FleshHeartFinal,
-        AllCultistsDead,
-        Fail
-    }
-
-    public TimeSpan AnnounceAt = TimeSpan.Zero;
-    public Dictionary<ICommonSession, HumanoidCharacterProfile> StartCandidates = new();
 }
