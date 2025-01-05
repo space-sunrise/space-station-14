@@ -51,13 +51,11 @@
 - type: weightedRandom
   id: ChangelingObjectiveGroupKill
   weights:
-    ChangelingKillRandomPersonObjective: 1
-    ChangelingKillRandomAntagObjective: 0.3
+    ChangelingKillRandomAntagObjective: 1
+    ChangelingKillRandomPersonObjective: 0.3
 
 - type: weightedRandom
   id: ChangelingObjectiveGroupState
   weights:
-    ChangelingSurviveObjective: 1
     ChangelingAbsorbObjective: 1
-    ChangelingStealDNAObjective: 1
     EscapeIdentityObjective: 1

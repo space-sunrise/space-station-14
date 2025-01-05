@@ -48,7 +48,8 @@
   - type: ChangelingRule
   - type: AntagObjectives
     objectives:
-    - VampireDrainObjective
+    - ChangelingStealDNAObjective
+    - ChangelingSurviveObjective
   - type: AntagRandomObjectives
     sets:
     - groups: ChangelingObjectiveGroups
