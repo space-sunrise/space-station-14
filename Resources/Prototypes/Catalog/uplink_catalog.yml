@@ -72,6 +72,7 @@
       tags:
       - AssaultOpsUplink
       - SubdermalImplant
+      - NukeOpsUplink
   - !type:ListingLimitedStockCondition
     stock: 1
   #Sunrise-end
@@ -1623,9 +1624,9 @@
   productEntity: ClothingBackpackDuffelSyndicateEliteHardsuitBundle
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 8
+    Telecrystal: 9
   cost:
-    Telecrystal: 12
+    Telecrystal: 15
   categories:
   - UplinkWearables
 
