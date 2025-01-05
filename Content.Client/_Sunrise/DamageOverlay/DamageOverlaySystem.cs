@@ -1,7 +1,6 @@
 using Content.Shared._Sunrise.DamageOverlay;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Robust.Shared.Configuration;
-using Robust.Shared.Prototypes;
 
 namespace Content.Client._Sunrise.DamageOverlay;
 

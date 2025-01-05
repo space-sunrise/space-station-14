@@ -1,6 +1,5 @@
 using Content.Client.Audio;
 using Content.Server.GameTicking.Prototypes;
-using Content.Shared._Sunrise.DamageOverlay;
 using Content.Shared._Sunrise.Lobby;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.GameTicking;

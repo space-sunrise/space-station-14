@@ -14,7 +14,7 @@ public sealed partial class DamageOverlayComponent : Component
     [DataField]
     public float Radius = 0.5f;
 
-    /// TODO: Более адекватная реализация
+    /// SUNRISE-TODO: Более адекватная реализация
     [DataField]
     public bool IsStructure;
 }
