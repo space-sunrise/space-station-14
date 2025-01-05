@@ -46,6 +46,14 @@
       min: 600
       max: 900
   - type: ChangelingRule
+  - type: AntagObjectives
+    objectives:
+    - ChangelingStealDNAObjective
+    - ChangelingSurviveObjective
+  - type: AntagRandomObjectives
+    sets:
+    - groups: ChangelingObjectiveGroups
+    maxDifficulty: 10
   - type: AntagSelection
     agentName: changeling-roundend-name
     definitions:

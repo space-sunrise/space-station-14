@@ -28,3 +28,34 @@
   weights:
     VampireSurviveObjective: 1
     VampireEscapeObjective: 1
+
+- type: weightedRandom
+  id: ChangelingObjectiveGroups
+  weights:
+    ChangelingObjectiveGroupSteal: 1
+    ChangelingObjectiveGroupKill: 1
+    ChangelingObjectiveGroupState: 1
+
+- type: weightedRandom
+  id: ChangelingObjectiveGroupSteal
+  weights:
+    CMOHyposprayChangelingStealObjective: 1
+    RDHardsuitChangelingStealObjective: 1
+    EnergyShotgunChangelingStealObjective: 1
+    MagbootsChangelingStealObjective: 1
+    ClipboardChangelingStealObjective: 1
+    CaptainIDChangelingStealObjective: 1
+    CaptainJetpackChangelingStealObjective: 1
+    CaptainGunChangelingStealObjective: 1
+
+- type: weightedRandom
+  id: ChangelingObjectiveGroupKill
+  weights:
+    ChangelingKillRandomAntagObjective: 1
+    ChangelingKillRandomPersonObjective: 0.3
+
+- type: weightedRandom
+  id: ChangelingObjectiveGroupState
+  weights:
+    ChangelingAbsorbObjective: 1
+    EscapeIdentityObjective: 1
