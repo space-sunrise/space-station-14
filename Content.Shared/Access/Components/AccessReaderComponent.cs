@@ -29,12 +29,11 @@ public sealed partial class AccessReaderComponent : Component
     /// Именно от Group происходит проверка аварийных доступов
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    [DataField]
-    public ProtoId<AccessGroupPrototype> Group { get; set; } = string.Empty;
+    public ProtoId<AccessGroupPrototype> Group = string.Empty;
 
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
-    public Dictionary<CurrentAlertLevel, ProtoId<AccessGroupPrototype>> AlertAccesses { get; set; } = new();
+    public Dictionary<CurrentAlertLevel, ProtoId<AccessGroupPrototype>> AlertAccesses = new();
 
     [Flags]
     public enum CurrentAlertLevel : byte
