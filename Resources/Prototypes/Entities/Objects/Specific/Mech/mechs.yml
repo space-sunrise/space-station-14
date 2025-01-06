@@ -359,7 +359,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      380: Critical
+      320: Critical
     showOverlays: false
     allowRevives: true
   - type: PointLight
@@ -641,7 +641,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      560: Critical
+      540: Critical
     showOverlays: false
     allowRevives: true
   - type: Tag
@@ -711,7 +711,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      770: Critical
+      750: Critical
     showOverlays: false
     allowRevives: true
   - type: Tag
@@ -753,7 +753,7 @@
     baseState: phazon
     openState: phazon-open
     brokenState: phazon-broken
-    mechToPilotDamageMultiplier: 0.4
+    mechToPilotDamageMultiplier: 0.50
     maxEquipmentAmount: 6
     airtight: true
     pilotWhitelist:
@@ -765,7 +765,7 @@
     damage:
       types:
         Blunt: 20
-        Structural: 130
+        Structural: 80
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.2
     baseSprintSpeed: 4
@@ -780,7 +780,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      300: Critical
+      280: Critical
     showOverlays: false
     allowRevives: true
   - type: Tag
@@ -853,7 +853,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      570: Critical
+      550: Critical
     showOverlays: false
     allowRevives: true
   - type: Tag
@@ -1101,7 +1101,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      580: Critical
+      550: Critical
     showOverlays: false
     allowRevives: true
   - type: Tag
@@ -1184,7 +1184,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      780: Critical
+      750: Critical
     showOverlays: false
     allowRevives: true
   - type: AccessReader
