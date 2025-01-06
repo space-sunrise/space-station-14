@@ -137,6 +137,9 @@ public sealed class CryoTeleportationSystem : EntitySystem
 
     private void OnSessionStatus(object? sender, SessionStatusEventArgs args)
     {
+        if (!_enable)
+            return;
+
         if (!TryComp<CryoTeleportTargetComponent>(args.Session.AttachedEntity, out var comp))
             return;
 
