@@ -36,8 +36,6 @@ public abstract class SharedStandingStateSystem : EntitySystem
     [Dependency] private readonly StaminaSystem _stamina = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly ThrowingSystem _throwing = default!;
-    [Dependency] private readonly ActionBlockerSystem _blocker = default!;
-    [Dependency] private readonly SharedJumpSystem _jumpSystem = default!;
 
     private const int StandingCollisionLayer = (int) CollisionGroup.MidImpassable;
 
@@ -163,8 +161,8 @@ public abstract class SharedStandingStateSystem : EntitySystem
         var direction = velocity.Normalized();
 
         Down(uid, dropHeldItems: false);
-        _stun.TryStun(uid, TimeSpan.FromSeconds(2.0f), true);
-        _stamina.TakeStaminaDamage(uid, 20);
+        //_stun.TryStun(uid, TimeSpan.FromSeconds(2.0f), true);
+        //_stamina.TakeStaminaDamage(uid, 20);
 
         _throwing.TryThrow(
             uid,
