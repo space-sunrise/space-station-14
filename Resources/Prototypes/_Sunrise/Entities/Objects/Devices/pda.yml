@@ -336,3 +336,29 @@
     preinstalled:
       - NotekeeperCartridge
       - LogProbeCartridge
+
+- type: entity
+  parent: BasePDA
+  id: NTRGuardPDA
+  name: NTR Guard's PDA #QWERT
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+  - type: Pda
+    id: NTRGuardIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-isn-operator
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-isn-operator
+
+- type: entity
+  parent: NTRGuardPDA
+  id: NTRLeadGuardPDA
+  name: NTR Guard's PDA
+  components:
+  - type: Pda
+    id: NTRLeadGuardIDCard

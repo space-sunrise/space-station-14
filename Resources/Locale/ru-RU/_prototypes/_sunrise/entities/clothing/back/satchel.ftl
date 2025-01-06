@@ -6,5 +6,5 @@ ent-ClothingBackpackSatchelBlueShield = сумка офицера «синий �
     .desc = На стиле.
 ent-ClothingBackpackSatchelPrisonGuard = сумка сотрудника кт
     .desc = На стиле.
-ent-ClothingBackpackSatchelHoS = сумка главы службы безопасности
+ent-ClothingBackpackSatchelHoS = чёрная сумка
     .desc = Стильная чёрная кожаная сумка.

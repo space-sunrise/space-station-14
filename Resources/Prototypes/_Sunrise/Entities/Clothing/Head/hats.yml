@@ -11,6 +11,17 @@
 
 - type: entity
   parent: ClothingHeadBase
+  id: ClothingHeadCapNTGR
+  name: NTRG officer cap #Фуражка ИСН QWERTY
+  description: The NanoTrasen Silver-engraved special cap #Мятая фуражка с серебряной медалью, блестит и красит своего владельца. Стильная часть униформы, идеально подойдёт к деловому костюму.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/ntrg_hat.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/ntrg_hat.rsi
+
+- type: entity
+  parent: ClothingHeadBase
   id: ClothingHeadCapCentcomNaval
   name: naval cap
   description: A cap worn by those in the Nanotrasen Navy.
