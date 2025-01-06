@@ -42,7 +42,7 @@ public sealed class AccessReaderSystem : EntitySystem
 
     private void OnGetState(EntityUid uid, AccessReaderComponent component, ref ComponentGetState args)
     {
-        args.State = new AccessReaderComponentState(component.Enabled, component.DenyTags, component.AccessLists,
+        args.State = new AccessReaderComponentState(component.Enabled, component.DenyTags, component.AccessLists, component.Group,
             _recordsSystem.Convert(component.AccessKeys), component.AccessLog, component.AccessLogLimit);
     }
 
@@ -64,6 +64,7 @@ public sealed class AccessReaderSystem : EntitySystem
         component.AccessLists = new(state.AccessLists);
         component.DenyTags = new(state.DenyTags);
         component.AccessLog = new(state.AccessLog);
+        component.Group = new(state.Group);
         component.AccessLogLimit = state.AccessLogLimit;
     }
 
@@ -214,20 +215,23 @@ public sealed class AccessReaderSystem : EntitySystem
 
     public bool AreAccessTagsAllowedAlert(ICollection<ProtoId<AccessLevelPrototype>> access, AccessReaderComponent reader)
     {
-        foreach (var (stationCode, alertAccesses) in reader.AlertAccesses)
+        if (reader.Group == string.Empty)
+            return false;
+
+        if (!_prototype.TryIndex<AccessGroupPrototype>(reader.Group, out var accessTags))
+            return false;
+
+        if (accessTags == null)
+            return false;
+
+        if (accessTags.Tags.Count == 0)
+            return false;
+        foreach (var ent in accessTags.Tags)
         {
-            if (!_prototype.TryIndex<AccessGroupPrototype>(alertAccesses, out var accessTags))
-                return false;
-
-            if (accessTags == null)
-                return false;
-
-            if (accessTags.Tags.Count == 0)
-                return false;
-
-            if (accessTags.Tags.IsSubsetOf(access))
+            if (access.Contains(ent))
                 return true;
         }
+
         return false;
     }
 

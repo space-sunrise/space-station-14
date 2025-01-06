@@ -89,6 +89,10 @@
   components:
   - type: AccessReader
     access: [["Janitor"]]
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccesses
+      yellow: YellowAlertAccesses
 
 - type: entity
   parent: DoorElectronics
@@ -105,6 +109,9 @@
   components:
   - type: AccessReader
     access: [["Service"]]
+    alertAccess:
+      red: RedAlertAccesses
+      yellow: YellowAlertAccesses
 
 # Cargo
 - type: entity

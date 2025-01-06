@@ -2,21 +2,25 @@
   id: RedAlertAccesses
   tags:
   - Security
+  - HeadOfSecurity
 
 - type: accessGroup
-  id: SecurityBlueAlertAccesses
+  id: BlueAlertAccesses
   tags:
-  - Maintance
+  - Security
+  - HeadOfSecurity
 
 - type: accessGroup
-  id: SecurityGammaAlertAccesses
+  id: YellowAlertAccesses
   tags:
-  - Command
-  - Captain
-  - HeadOfPersonnel
-  - Cryogenics
-  - BlueShield
-  - Ntrep
+  - Engineering
+  - HeadOfSecurity
+
+- type: accessGroup
+  id: GammaAlertAccesses
+  tags:
+  - Security
+  - HeadOfSecurity
 
 # Потом дополню доступы
 
