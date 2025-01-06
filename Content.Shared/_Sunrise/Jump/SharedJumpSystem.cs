@@ -1,10 +1,11 @@
 using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Climbing.Systems;
-using Content.Shared.Damage.Systems;
 using Content.Shared.Gravity;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Components;
+using Content.Shared.Movement.Pulling.Components;
+using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Standing;
 using Content.Shared.StatusEffect;
@@ -28,7 +29,6 @@ public abstract class SharedJumpSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly StatusEffectsSystem _statusEffects = default!;
     [Dependency] private readonly SharedGravitySystem _gravity = default!;
-    [Dependency] private readonly StaminaSystem _staminaSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly SharedStandingStateSystem _standingStateSystem = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
@@ -37,6 +37,7 @@ public abstract class SharedJumpSystem : EntitySystem
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly ClimbSystem _climbSystem = default!;
+    [Dependency] private readonly PullingSystem _pullingSystem = default!;
 
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private EntityQuery<FixturesComponent> _fixturesQuery;
@@ -183,6 +184,9 @@ public abstract class SharedJumpSystem : EntitySystem
         if (!BunnyHopEnable)
             return;
 
+        if (TryComp<PullerComponent>(ent, out var pull) && _pullingSystem.IsPulling(ent, pull))
+            return;
+
         var currentSpeed = body.LinearVelocity.Length();
 
         if (currentSpeed < _bunnyHopMinSpeedThreshold)
@@ -205,7 +209,7 @@ public abstract class SharedJumpSystem : EntitySystem
             !_fixturesQuery.TryGetComponent(ent.Owner, out var fixtures))
             return;
 
-        RemComp<CanMoveInAirComponent>(ent.Owner);
+        RemCompDeferred<CanMoveInAirComponent>(ent.Owner);
         _physics.SetBodyStatus(ent.Owner, body, BodyStatus.OnGround);
         foreach (var (id, fixture) in fixtures.Fixtures)
         {

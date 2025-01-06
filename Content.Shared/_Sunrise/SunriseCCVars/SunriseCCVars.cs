@@ -337,16 +337,16 @@ public sealed class SunriseCCVars
         CVarDef.Create("bunny_hop.enable", true, CVar.SERVER | CVar.REPLICATED);
 
     public static readonly CVarDef<float> BunnyHopSpeedUpPerJump =
-        CVarDef.Create("bunny_hop.speed_up_per_jump", 0.01f, CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("bunny_hop.speed_up_per_jump", 0.005f, CVar.SERVER | CVar.REPLICATED);
 
     public static readonly CVarDef<float> BunnyHopSpeedLimit =
-        CVarDef.Create("bunny_hop.speed_limit", 3.0f, CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("bunny_hop.speed_limit", 2.0f, CVar.SERVER | CVar.REPLICATED);
 
     public static readonly CVarDef<float> BunnyHopMinSpeedThreshold =
         CVarDef.Create("bunny_hop.min_speed_threshold", 4.0f, CVar.SERVER | CVar.REPLICATED);
 
     public static readonly CVarDef<float> BunnyHopSpeedBoostWindow =
-        CVarDef.Create("bunny_hop.speed_boost_window", 0.620f, CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("bunny_hop.speed_boost_window", 0.610f, CVar.SERVER | CVar.REPLICATED);
 
     /**
      * Flip
