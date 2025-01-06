@@ -262,6 +262,9 @@ public sealed partial class ChatSystem
         {"вига","Господь"},
         // Я вам блядь дам гойду.
         {"гойда","Ура"},
+        {"нио","РНД"},
+        {"крс","ССД"},
+        {"кеерсе","ССД"},
     };
 
     public string ReplaceWords(string message)
