@@ -42,7 +42,8 @@ public sealed partial class AccessReaderComponent : Component
         blue,
         red,
         yellow,
-        gamma
+        gamma,
+        delta
     }
     // Sunrise-end
 

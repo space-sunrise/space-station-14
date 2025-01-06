@@ -66,7 +66,8 @@ public sealed class AccessSystem : SharedAccessSystem
             { "blue", AccessReaderComponent.CurrentAlertLevel.blue },
             { "red", AccessReaderComponent.CurrentAlertLevel.red },
             { "yellow", AccessReaderComponent.CurrentAlertLevel.yellow },
-            { "gamma", AccessReaderComponent.CurrentAlertLevel.gamma }
+            { "gamma", AccessReaderComponent.CurrentAlertLevel.gamma },
+            { "delta", AccessReaderComponent.CurrentAlertLevel.delta }
         };
 
         entity.Comp.Group = string.Empty; // Значение по умолчанию
