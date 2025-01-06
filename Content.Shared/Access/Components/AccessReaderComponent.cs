@@ -1,8 +1,11 @@
+using System.Text.RegularExpressions;
 using Content.Shared.StationRecords;
+using Content.Shared.Weapons.Melee;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Set;
+using Robust.Shared.Toolshed.Syntax;
 
 namespace Content.Shared.Access.Components;
 
@@ -19,6 +22,29 @@ public sealed partial class AccessReaderComponent : Component
     /// </summary>
     [DataField]
     public bool Enabled = true;
+
+    // Sunrise-start
+
+    /// <summary>
+    /// Именно от Group происходит проверка аварийных доступов
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public ProtoId<AccessGroupPrototype> Group = string.Empty;
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
+    public Dictionary<CurrentAlertLevel, ProtoId<AccessGroupPrototype>> AlertAccesses = new();
+
+    [Flags]
+    public enum CurrentAlertLevel : byte
+    {
+        blue,
+        red,
+        yellow,
+        gamma,
+        delta
+    }
+    // Sunrise-end
 
     /// <summary>
     /// The set of tags that will automatically deny an allowed check, if any of them are present.
@@ -100,13 +126,20 @@ public sealed class AccessReaderComponentState : ComponentState
 
     public List<HashSet<ProtoId<AccessLevelPrototype>>> AccessLists;
 
+    public ProtoId<AccessGroupPrototype> Group; // Sunrise-alertAccesses, нужно для связывания клиента с сервером
+
     public List<(NetEntity, uint)> AccessKeys;
 
     public Queue<AccessRecord> AccessLog;
 
     public int AccessLogLimit;
 
-    public AccessReaderComponentState(bool enabled, HashSet<ProtoId<AccessLevelPrototype>> denyTags, List<HashSet<ProtoId<AccessLevelPrototype>>> accessLists, List<(NetEntity, uint)> accessKeys, Queue<AccessRecord> accessLog, int accessLogLimit)
+    public AccessReaderComponentState(bool enabled, HashSet<ProtoId<AccessLevelPrototype>> denyTags,
+        List<HashSet<ProtoId<AccessLevelPrototype>>> accessLists,
+        ProtoId<AccessGroupPrototype> group,
+        List<(NetEntity, uint)> accessKeys,
+        Queue<AccessRecord> accessLog,
+        int accessLogLimit) //Sunrise-edit
     {
         Enabled = enabled;
         DenyTags = denyTags;
@@ -114,6 +147,7 @@ public sealed class AccessReaderComponentState : ComponentState
         AccessKeys = accessKeys;
         AccessLog = accessLog;
         AccessLogLimit = accessLogLimit;
+        Group = group; // Sunrise-alertAccesses
     }
 }
 
