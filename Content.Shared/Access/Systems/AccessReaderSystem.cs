@@ -43,7 +43,7 @@ public sealed class AccessReaderSystem : EntitySystem
     private void OnGetState(EntityUid uid, AccessReaderComponent component, ref ComponentGetState args)
     {
         args.State = new AccessReaderComponentState(component.Enabled, component.DenyTags, component.AccessLists, component.Group,
-            _recordsSystem.Convert(component.AccessKeys), component.AccessLog, component.AccessLogLimit);
+            _recordsSystem.Convert(component.AccessKeys), component.AccessLog, component.AccessLogLimit); // Sunrise-edit
     }
 
     private void OnHandleState(EntityUid uid, AccessReaderComponent component, ref ComponentHandleState args)
@@ -64,7 +64,7 @@ public sealed class AccessReaderSystem : EntitySystem
         component.AccessLists = new(state.AccessLists);
         component.DenyTags = new(state.DenyTags);
         component.AccessLog = new(state.AccessLog);
-        component.Group = new(state.Group);
+        component.Group = new(state.Group); // Sunrise-alertAccesses
         component.AccessLogLimit = state.AccessLogLimit;
     }
 
@@ -167,8 +167,10 @@ public sealed class AccessReaderSystem : EntitySystem
             if (!TryComp(entity, out AccessReaderComponent? containedReader))
                 continue;
 
+            // Sunrise-start
             if (AreAccessTagsAllowedAlert(access, containedReader))
                 return true;
+            // Sunrise-end
 
             if (IsAllowed(access, stationKeys, entity, containedReader))
                 return true;
@@ -213,6 +215,10 @@ public sealed class AccessReaderSystem : EntitySystem
         return false;
     }
 
+    // Sunrise-start
+    /// <summary>
+    /// Сравнивает список аварийных доступов с доступами на карте.
+    /// </summary>
     public bool AreAccessTagsAllowedAlert(ICollection<ProtoId<AccessLevelPrototype>> access, AccessReaderComponent reader)
     {
         if (reader.Group == string.Empty)
@@ -234,6 +240,7 @@ public sealed class AccessReaderSystem : EntitySystem
 
         return false;
     }
+    // Sunrise-end
 
     /// <summary>
     /// Compares the given stationrecordkeys with the accessreader to see if it is allowed.

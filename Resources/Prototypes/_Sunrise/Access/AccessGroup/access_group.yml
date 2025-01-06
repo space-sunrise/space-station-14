@@ -1,20 +1,27 @@
 - type: accessGroup
   id: RedAlertAccesses
   tags:
-  - Security
   - HeadOfSecurity
+  - Security
+  - Armory
+  - Detective
+  - Cryogenics
 
 - type: accessGroup
   id: BlueAlertAccesses
   tags:
-  - Security
   - HeadOfSecurity
+  - Security
+  - Armory
+  - Detective
+  - Cryogenics
 
 - type: accessGroup
   id: YellowAlertAccesses
   tags:
+  - ChiefEngineer
   - Engineering
-  - HeadOfSecurity
+  - Atmospherics
 
 - type: accessGroup
   id: GammaAlertAccesses

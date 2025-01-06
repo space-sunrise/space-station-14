@@ -126,7 +126,7 @@ public sealed class AccessReaderComponentState : ComponentState
 
     public List<HashSet<ProtoId<AccessLevelPrototype>>> AccessLists;
 
-    public ProtoId<AccessGroupPrototype> Group; // Sunrise-alertAccesses
+    public ProtoId<AccessGroupPrototype> Group; // Sunrise-alertAccesses, нужно для связывания клиента с сервером
 
     public List<(NetEntity, uint)> AccessKeys;
 
@@ -134,7 +134,12 @@ public sealed class AccessReaderComponentState : ComponentState
 
     public int AccessLogLimit;
 
-    public AccessReaderComponentState(bool enabled, HashSet<ProtoId<AccessLevelPrototype>> denyTags, List<HashSet<ProtoId<AccessLevelPrototype>>> accessLists, ProtoId<AccessGroupPrototype> group, List<(NetEntity, uint)> accessKeys, Queue<AccessRecord> accessLog, int accessLogLimit)
+    public AccessReaderComponentState(bool enabled, HashSet<ProtoId<AccessLevelPrototype>> denyTags,
+        List<HashSet<ProtoId<AccessLevelPrototype>>> accessLists,
+        ProtoId<AccessGroupPrototype> group,
+        List<(NetEntity, uint)> accessKeys,
+        Queue<AccessRecord> accessLog,
+        int accessLogLimit) //Sunrise-edit
     {
         Enabled = enabled;
         DenyTags = denyTags;
