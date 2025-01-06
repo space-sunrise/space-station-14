@@ -58,9 +58,6 @@ public sealed class AccessSystem : SharedAccessSystem
         if (!TryComp<AlertLevelComponent>(_station.GetOwningStation(entity.Owner), out var alerts))
             return;
 
-        if (entity.Comp.AlertAccesses.Count == 0)
-            return;
-
         if (alerts.AlertLevels == null)
             return;
 
