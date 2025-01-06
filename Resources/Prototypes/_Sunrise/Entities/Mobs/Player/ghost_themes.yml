@@ -299,3 +299,24 @@
   sprite:
     sprite: _Sunrise/Mobs/Ghosts/vigers_ray.rsi
     state: icon
+
+- type: ghostTheme
+  id: RedGirl
+  name: ghost-theme-red-girl
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/red_girl.rsi
+    state: red_animated
+
+- type: ghostTheme
+  id: PinkGirl
+  name: ghost-theme-pink-girl
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/pink_girl.rsi
+    state: pink_animated
+
+- type: ghostTheme
+  id: PurpleGirl
+  name: ghost-theme-purple-girl
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/purple_girl.rsi
+    state: purple_animated
