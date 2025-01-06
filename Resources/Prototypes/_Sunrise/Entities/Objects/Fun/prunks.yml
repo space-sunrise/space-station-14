@@ -147,6 +147,7 @@
     graph: ToySwordDoubledGraph
     node: ToySwordDoubledNode
   - type: FlipOnAttack # Sunrise-Edit
+    probability: 0.5 # Sunrise-Edit
   # - type: HiddenDescription
   #   entries:
   #   - label: "[color=#C18199]Удивите СБ новой игрушкой, путёвка в перму обеспечена![/color]"
