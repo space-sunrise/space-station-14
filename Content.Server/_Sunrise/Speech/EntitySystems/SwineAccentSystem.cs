@@ -1,7 +1,8 @@
-using Content.Server.Speech.Components;
+using Content.Server._Sunrise.Speech.Components;
+using Content.Server.Speech;
 using Robust.Shared.Random;
 
-namespace Content.Server.Speech.EntitySystems;
+namespace Content.Server._Sunrise.Speech.EntitySystems;
 
 public sealed class SwineAccentSystem : EntitySystem
 {

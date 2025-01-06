@@ -1,0 +1,12 @@
+accent-ss13-words-1 = нр
+accent-ss13-words-replace-1 = РД
+accent-ss13-words-2 = гв
+accent-ss13-words-replace-2 = СМО
+accent-ss13-words-3 = гп
+accent-ss13-words-replace-3 = ХоП
+accent-ss13-words-4 = гсб
+accent-ss13-words-replace-4 = ХоС
+accent-ss13-words-5 = си
+accent-ss13-words-replace-5 = СЕ
+accent-ss13-words-6 = топливный бак
+accent-ss13-words-replace-6 = фуел танк
