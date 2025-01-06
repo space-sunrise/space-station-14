@@ -1,0 +1,95 @@
+﻿- type: entity
+  name: syringe gun
+  parent: [LauncherSyringe]
+  id: LauncherSyringeMed
+  suffix: Standart
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Cannons/syringe_gun.rsi
+    layers:
+    - state: syringe_gun
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,2,0
+  - type: Gun
+    fireRate: 0.8
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,2,1
+    - 0,0,2,1
+
+- type: entity
+  name: syringe pistol
+  parent: [LauncherSyringe]
+  id: LauncherSyringePistol
+  suffix: Compact
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Launchers/syringe_pistol.rsi
+    layers:
+    - state: syringe_gun
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,2,0
+  - type: Gun
+    fireRate: 0.8
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+
+- type: entity
+  name: syringe pistol
+  parent: [LauncherSyringe]
+  id: LauncherSyringePistolFilled
+  suffix: Compact, Filled
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Launchers/syringe_pistol.rsi
+    layers:
+    - state: syringe_gun
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,2,0
+  - type: StorageFill
+    contents:
+    - id: MiniSyringeCarpoToxin
+    - id: MiniSyringeMuteToxin
+    - id: MiniSyringeFresium
+  - type: Gun
+    fireRate: 0.8
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
+
+- type: entity
+  name: Rapid syringe gun
+  parent: [LauncherSyringe]
+  id: LauncherSyringeRapid
+  suffix: Auto
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Launchers/syringe_rapidgun.rsi
+    layers:
+    - state: syringe_gun
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,3,1
+  - type: Gun
+    fireRate: 1.8
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,2,1
+    - 0,0,2,1

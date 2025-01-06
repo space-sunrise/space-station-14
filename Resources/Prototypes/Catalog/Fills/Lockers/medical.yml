@@ -110,6 +110,14 @@
   components:
   - type: StorageFill
     contents:
+      #Sunrise-start
+      - id: LauncherSyringeMed
+        prob: 0.25
+      - id: BoxMiniSyringe
+        prob: 0.15
+      - id: BoxMiniSyringe
+        prob: 0.4
+      #Sunrise-end
       - id: BoxSyringe
       - id: BoxBeaker
       - id: BoxBeaker
