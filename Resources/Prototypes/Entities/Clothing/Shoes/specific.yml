@@ -151,10 +151,7 @@
     sprite: Clothing/Shoes/Specific/swat.rsi
   # Sunrise-Start
   - type: ClothingSlowOnDamageModifier
-    modifier: 0.5
-  - type: ClothingSpeedModifier
-    walkModifier: 0.90
-    sprintModifier: 0.90
+    modifier: 0.45
   # Sunrise-End
 
 - type: entity

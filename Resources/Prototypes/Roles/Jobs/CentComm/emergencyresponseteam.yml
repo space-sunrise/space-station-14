@@ -19,7 +19,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTLeader
     back: ClothingBackpackERTLeader
-    shoes: ClothingShoesSwat # Sunrise-edit
+    shoes: ClothingShoesBootsMagSec # Sunrise-edit
     head: ClothingHeadEVAHelmetERTLeader  # Sunrise-edit
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesCombat
@@ -118,7 +118,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTChaplain
     back: ClothingBackpackERTChaplain
-    shoes: ClothingShoesSwat # Sunrise-edit
+    shoes: ClothingShoesBootsMagSec # Sunrise-edit
     head: ClothingHeadEVAHelmetERTChaplain # Sunrise-edit
     eyes: ClothingEyesHudMedSec # Sunrise-edit
     neck: ClothingNeckStoleChaplain
@@ -264,7 +264,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTSecurity
     back: ClothingBackpackERTSecurity
-    shoes: ClothingShoesSwat # Sunrise-edit
+    shoes: ClothingShoesBootsMagSec # Sunrise-edit
     head: ClothingHeadEVAHelmetERTSecurity  # Sunrise-edit
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesCombat
@@ -354,7 +354,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTMedic
     back: ClothingBackpackERTMedical
-    shoes: ClothingShoesSwat # Sunrise-edit
+    shoes: ClothingShoesBootsMagSec # Sunrise-edit
     head: ClothingHeadEVAHelmetERTMedic # Sunrise-edit
     eyes: ClothingEyesHudMedSec # Sunrise-edit
     gloves: ClothingHandsGlovesCombat # Sunrise-edit
@@ -369,6 +369,7 @@
     - Hypospray
     #- MedkitAdvancedFilled # Sunrise-edit
     - CrowbarRed
+    - LauncherSyringePistol
     - OmnizineChemistryBottle
     - EpinephrineChemistryBottle
     - EpinephrineChemistryBottle
