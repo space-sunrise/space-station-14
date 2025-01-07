@@ -210,8 +210,8 @@
 
 
 - type: entity
-  parent: HyposprayBorgStandard
-  id: HyposprayBorgSyndi
+  parent: HypoBorgStandard
+  id: HypoBorgMedicalSyndicate
   name: gorlax robot hypospray
   description: A hypospray that can switch through several reagents.
   categories: [ HideSpawnMenu ]
@@ -555,7 +555,7 @@
 - type: entity
   name: the cyborg saboteur's hypospray
   parent: BaseItem
-  id: HyposprayBorgSyndie
+  id: HypoBorgSaboteurSyndicate
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite

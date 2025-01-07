@@ -68,7 +68,7 @@
     items:
     - WeaponIAR52Borg
     - CombatKnife
-    - HyposprayBorgSyndie
+    - HypoBorgSaboteurSyndie
 
 - type: entity
   id: BorgScoutModuleSyndicateTool
@@ -220,7 +220,7 @@
   - type: ItemBorgModule
     items:
     - SawAdvanced
-    - HyposprayBorgSyndi
+    - HypoBorgMedicalSyndicate
     - DefibrillatorOneHandedUnpowered
 
 - type: entity
@@ -250,4 +250,4 @@
     items:
     - CrowbarBorg
     - FireExtinguisherBorg
-    - HyposprayBorgStandard
+    - HypoBorgStandard
