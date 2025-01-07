@@ -33,8 +33,8 @@ public sealed class CryoTeleportationSystem : EntitySystem
 
     private bool _enable;
     private TimeSpan _transferDelay;
-    public TimeSpan NextTick = TimeSpan.Zero;
-    public TimeSpan RefreshCooldown = TimeSpan.FromSeconds(5);
+    private TimeSpan _nextTick = TimeSpan.Zero;
+    private readonly TimeSpan _refreshCooldown = TimeSpan.FromSeconds(5);
 
     public override void Initialize()
     {
@@ -59,10 +59,10 @@ public sealed class CryoTeleportationSystem : EntitySystem
 
     public override void Update(float delay)
     {
-        if (NextTick > _timing.CurTime)
+        if (_nextTick > _timing.CurTime)
             return;
 
-        NextTick += RefreshCooldown;
+        _nextTick += _refreshCooldown;
 
         if (!_enable)
             return;
