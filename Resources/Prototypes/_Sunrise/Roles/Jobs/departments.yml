@@ -19,18 +19,18 @@
   primary: false
   weight: 50
 
-- type: department
-  id: PlanetPrison
-  sort: 0
-  name: department-PlanetPrison
-  description: department-PlanetPrison-description
-  color: "#9f4000"
-  roles:
-  - HeadOfPrison
-  - PrisonPilot
-  - PrisonWorker
-  - PrisonChef
-  - PrisonDoctor
-  - PrisonEngineer
-  - PrisonGuard
-  - PlanetPrisoner
+# - type: department
+#  id: PlanetPrison
+#  sort: 0
+#  name: department-PlanetPrison
+#  description: department-PlanetPrison-description
+#  color: "#9f4000"
+#  roles:
+#  - HeadOfPrison
+#  - PrisonPilot
+#  - PrisonWorker
+#  - PrisonChef
+#  - PrisonDoctor
+#  - PrisonEngineer
+#  - PrisonGuard
+#  - PlanetPrisoner
