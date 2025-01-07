@@ -2,6 +2,7 @@
 - type: entity
   parent: BaseItem
   id: BaseDonationPlink
+  categories: [ HideSpawnMenu ]
   components:
   - type: Item
     size: Small
@@ -56,6 +57,7 @@
 - type: entity
   parent: BaseDonationPlink
   id: SunriseUplink40
+  categories: [ HideSpawnMenu ]
   name: Sunrise portable shop
   description: Has a wide range of products for all tastes and preferences - from amazing handicrafts and unique souvenirs to modern appliances and fashion accessories.
   suffix: 40
@@ -68,6 +70,7 @@
 - type: entity
   parent: SunriseUplink40
   id: SunriseUplink80
+  categories: [ HideSpawnMenu ]
   suffix: 80
   components:
   - type: Store
@@ -78,6 +81,7 @@
 - type: entity
   parent: SunriseUplink40
   id: SunriseUplink100
+  categories: [ HideSpawnMenu ]
   suffix: 100
   components:
   - type: Store
@@ -91,6 +95,7 @@
 - type: entity
   parent: BaseDonationPlink
   id: FishStationUplink40
+  categories: [ HideSpawnMenu ]
   name: /"Fishplink/" portable shop
   description: Has a wide range of products for all tastes and preferences - from amazing handicrafts and unique souvenirs to modern appliances and fashion accessories.
   suffix: 40
@@ -109,6 +114,7 @@
 - type: entity
   parent: FishStationUplink40
   id: FishStationUplink80
+  categories: [ HideSpawnMenu ]
   suffix: 80
   components:
   - type: Store
@@ -118,11 +124,13 @@
 - type: entity
   parent: FishStationUplink40
   id: FishStationUplink100
+  categories: [ HideSpawnMenu ]
   suffix: 100
   components:
   - type: Store
     balance:
       Suntick: 100
+
 
 ##################
 #     NEWERA     #
@@ -131,6 +139,7 @@
 - type: entity
   parent: BaseDonationPlink
   id: NeweraStationUplink40
+  categories: [ HideSpawnMenu ]
   name: /"Catoplink/" portable Shop
   description: Has a wide range of products for all tastes and preferences - from amazing handicrafts and unique souvenirs to modern appliances and fashion accessories.
   suffix: 40
@@ -149,6 +158,7 @@
 - type: entity
   parent: NeweraStationUplink40
   id: NeweraStationUplink80
+  categories: [ HideSpawnMenu ]
   suffix: 80
   components:
   - type: Store
@@ -158,6 +168,7 @@
 - type: entity
   parent: NeweraStationUplink40
   id: NeweraStationUplink100
+  categories: [ HideSpawnMenu ]
   suffix: 100
   components:
   - type: Store
