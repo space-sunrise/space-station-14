@@ -100,15 +100,15 @@ namespace Content.IntegrationTests.Tests
             "SunriseOasis"
         };
 
-        private static readonly string[] TotalNoSpawnMaps = GameMaps.Concat(SunriseNoSpawnMaps).ToArray();
-        private static readonly string[] TotalGrids = GameMaps.Concat(SunriseGrids).ToArray();
+        private static readonly string[] TotalNoSpawnMaps = NoSpawnMaps.Concat(SunriseNoSpawnMaps).ToArray();
+        private static readonly string[] TotalGrids = Grids.Concat(SunriseGrids).ToArray();
         private static readonly string[] TotalMaps = GameMaps.Concat(SunriseGameMaps).ToArray();
         // Sunrise-End
 
         /// <summary>
         /// Asserts that specific files have been saved as grids and not maps.
         /// </summary>
-        [Test, TestCaseSource(nameof(Grids))]
+        [Test, TestCaseSource(nameof(TotalGrids))] // Sunrise-Edit
         public async Task GridsLoadableTest(string mapFile)
         {
             await using var pair = await PoolManager.GetServerClient();
@@ -273,7 +273,7 @@ namespace Content.IntegrationTests.Tests
                 if (entManager.HasComponent<StationJobsComponent>(station))
                 {
                     // Test that the map has valid latejoin spawn points or container spawn points
-                    if (!NoSpawnMaps.Contains(mapProto))
+                    if (!TotalNoSpawnMaps.Contains(mapProto)) // Sunrise-Edit
                     {
                         var lateSpawns = 0;
 
