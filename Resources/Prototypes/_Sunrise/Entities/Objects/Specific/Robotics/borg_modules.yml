@@ -68,7 +68,7 @@
     items:
     - WeaponIAR52Borg
     - CombatKnife
-    - HypoBorgSaboteurSyndie
+    - HypoBorgSaboteurSyndicate
 
 - type: entity
   id: BorgScoutModuleSyndicateTool
