@@ -164,7 +164,7 @@
   - type: ItemBorgModule
     items:
     - FlashBorg
-    - HyposprayBorgPeace
+    - HypoBorgPeace
 
 - type: entity
   id: BorgModuleMiningCombat

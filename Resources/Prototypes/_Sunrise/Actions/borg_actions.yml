@@ -67,6 +67,18 @@
     event: !type:FabricateSoapActionEvent
 
 - type: entity
+  id: PieThrow
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: WorldTargetAction
+    icon: _Sunrise/Interface/Actions/pie.png
+    itemIconStyle: NoItem
+    event: !type:PieThrowActionEvent
+    range: 200
+    useDelay: 30
+    checkCanInteract: false
+
+- type: entity
   id: ActionViewCrewManifest
   name: View Crew Manifest
   description: View the View crew manifest station.

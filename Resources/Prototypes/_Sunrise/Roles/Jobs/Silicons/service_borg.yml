@@ -6,6 +6,5 @@
   icon: JobIconServiceBorg
   supervisors: job-supervisors-human
   canBeAntag: false
-  setPreference: false
   displayWeight: -10  # Sunrise
-  jobEntity: PlayerBorgBattery
+  jobEntity: PlayerBorgServiceBattery
