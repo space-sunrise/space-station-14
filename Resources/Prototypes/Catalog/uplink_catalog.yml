@@ -51,6 +51,13 @@
     Telecrystal: 1
   categories:
   - UplinkWeaponry
+  #Sunrise-start
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
+  #Sunrise-end
 
 - type: listing
   id: UplinkEsword
@@ -168,6 +175,13 @@
     Telecrystal: 12
   categories:
   - UplinkWeaponry
+  #Sunrise-start
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
+  #Sunrise-end
 
 - type: listing
   id: UplinkC20RBundle
@@ -182,6 +196,13 @@
     Telecrystal: 17
   categories:
   - UplinkWeaponry
+  #Sunrise-start
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
+  #Sunrise-end
 
 - type: listing
   id: UplinkBulldogBundle
@@ -196,6 +217,13 @@
     Telecrystal: 20
   categories:
   - UplinkWeaponry
+  #Sunrise-start
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
+  #Sunrise-end
 
 - type: listing
   id: UplinkGrenadeLauncherBundle
@@ -253,6 +281,13 @@
     Telecrystal: 4
   categories:
   - UplinkExplosives
+  #Sunrise-start
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
+  #Sunrise-end
 
 - type: listing
   id: UplinkExplosiveGrenadeFlash
@@ -325,6 +360,13 @@
     Telecrystal: 5
   categories:
     - UplinkExplosives
+  #Sunrise-start
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
+  #Sunrise-end
 
 - type: listing
   id: UplinkC4
@@ -427,6 +469,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      - AssaultOpsUplink
 
 - type: listing
   id: UplinkClusterGrenade
@@ -440,6 +483,13 @@
     Telecrystal: 8
   categories:
   - UplinkExplosives
+  #Sunrise-start
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
+  #Sunrise-end
 
 - type: listing
   id: UplinkGrenadeShrapnel
@@ -453,6 +503,13 @@
     Telecrystal: 4
   categories:
   - UplinkExplosives
+  #Sunrise-start
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
+  #Sunrise-end
 
 - type: listing
   id: UplinkGrenadeIncendiary
@@ -466,6 +523,13 @@
     Telecrystal: 4
   categories:
   - UplinkExplosives
+  #Sunrise-start
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
+  #Sunrise-end
 
 - type: listing
   id: UplinkEmpKit
@@ -504,6 +568,13 @@
     Telecrystal: 2
   categories:
   - UplinkAmmo
+  #Sunrise-start
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
+  #Sunrise-end
 
 # For the Cobra
 - type: listing
@@ -516,6 +587,13 @@
     Telecrystal: 1
   categories:
   - UplinkAmmo
+  #Sunrise-start
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
+  #Sunrise-end
 
 # For the Python
 - type: listing
@@ -539,6 +617,13 @@
     Telecrystal: 1
   categories:
   - UplinkAmmo
+  #Sunrise-start
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
+  #Sunrise-end
 
 # for the hristov
 - type: listing
@@ -550,6 +635,13 @@
     Telecrystal: 1
   categories:
   - UplinkAmmo
+  #Sunrise-start
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
+  #Sunrise-end
 
 - type: listing
   id: UplinkAmmoBundle
@@ -672,6 +764,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      - AssaultOpsUplink # Sunrise-Edit
 
 - type: listing
   id: UplinkStimpack
@@ -690,6 +783,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      - AssaultOpsUplink # Sunrise-Edit
 
 - type: listing
   id: UplinkStimkit
@@ -708,6 +802,7 @@
     whitelist:
       tags:
       - NukeOpsUplink
+      - AssaultOpsUplink # Sunrise-Edit
 
 - type: listing
   id: UplinkCigarettes
@@ -950,7 +1045,7 @@
   description: uplink-soap-desc
   productEntity: SoapSyndie
   cost:
-    Telecrystal: 2 # Sunrise-Edit
+    Telecrystal: 1
   categories:
   - UplinkDisruption
 
@@ -974,9 +1069,9 @@
   productEntity: ToolboxSyndicateFilled
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 4 # Sunrise-edit: Toolbox rebalance
+    Telecrystal: 2 # Sunrise-edit
   cost:
-    Telecrystal: 6 # Sunrise-edit: Toolbox rebalance
+    Telecrystal: 4 # Sunrise-edit
   categories:
   - UplinkDisruption
 
@@ -1347,6 +1442,13 @@
     Telecrystal: 4 # Sunrise-Edit
   categories:
     - UplinkImplants
+  #Sunrise-start
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - FugitiveUplink
+  #Sunrise-end
 
 - type: listing
   id: UplinkEmpImplanter
@@ -1428,6 +1530,8 @@
       blacklist:
         tags:
           - NukeOpsUplink
+          - AssaultOpsUplink
+          - FugitiveUplink
 
 - type: listing
   id: UplinkDeathRattle
@@ -1513,9 +1617,9 @@
   productEntity: ClothingShoesChameleonNoSlips
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 4 # Sunrise-Edit
+    Telecrystal: 2 # Sunrise-Edit
   cost:
-    Telecrystal: 6 # Sunrise-Edit
+    Telecrystal: 4 # Sunrise-Edit
   categories:
   - UplinkWearables
 
@@ -1539,9 +1643,9 @@
   productEntity: ClothingOuterVestWeb
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 5 # Sunrise-Edit
+    Telecrystal: 4 # Sunrise-Edit
   cost:
-    Telecrystal: 10 # Sunrise-Edit
+    Telecrystal: 8 # Sunrise-Edit
   categories:
   - UplinkWearables
 
@@ -1599,6 +1703,13 @@
     Telecrystal: 10 # Sunrise-Edit
   categories:
   - UplinkWearables
+  #Sunrise-start
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
+  #Sunrise-end
 
 - type: listing
   id: UplinkClothingOuterArmorRaid
@@ -1629,6 +1740,13 @@
     Telecrystal: 15
   categories:
   - UplinkWearables
+  #Sunrise-start
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
+  #Sunrise-end
 
 - type: listing
   id: UplinkClothingOuterHardsuitJuggernaut
@@ -1643,6 +1761,13 @@
     Telecrystal: 16
   categories:
   - UplinkWearables
+  #Sunrise-start
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
+  #Sunrise-end
 
 - type: listing
   id: UplinkClothingEyesHudSyndicate

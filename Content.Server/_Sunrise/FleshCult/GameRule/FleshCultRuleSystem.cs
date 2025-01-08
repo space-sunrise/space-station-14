@@ -1,6 +1,5 @@
 using System.Linq;
 using Content.Server.Antag;
-using Content.Server.Antag.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Rules;
@@ -8,9 +7,7 @@ using Content.Server.Mind;
 using Content.Server.Objectives;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Components;
-using Content.Server.Store.Systems;
 using Content.Shared._Sunrise.FleshCult;
-using Content.Shared.FixedPoint;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Mind;
 using Content.Shared.NPC.Components;
@@ -26,10 +23,8 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
     [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
-    [Dependency] private readonly StoreSystem _store = default!;
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
-    [Dependency] private readonly SharedRoleSystem _roles = default!;
 
     [ValidatePrototypeId<AntagPrototype>]
     private const string LeaderAntagProto = "FleshCultistLeader";
@@ -40,7 +35,6 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
 
         SubscribeLocalEvent<FleshCultRuleComponent, AfterAntagEntitySelectedEvent>(AfterEntitySelected);
         SubscribeLocalEvent<FleshCultRuleComponent, ObjectivesTextPrependEvent>(OnObjectivesTextPrepend);
-        SubscribeLocalEvent<FleshCultRuleComponent, AntagSelectionCompleteEvent>(OnAfterAntagSelectionComplete);
         SubscribeLocalEvent<FleshCultSystem.FleshHeartStatusChangeEvent>(OnFleshHeartStatusChange);
     }
 
@@ -124,35 +118,13 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
 
     private void AfterEntitySelected(Entity<FleshCultRuleComponent> ent, ref AfterAntagEntitySelectedEvent args)
     {
-        MakeCultist(args.EntityUid, 15, ent.Comp);
-    }
-
-    private void OnAfterAntagSelectionComplete(Entity<FleshCultRuleComponent> ent, ref AntagSelectionCompleteEvent args)
-    {
-        var leader = GetLeader(args.GameRule);
-        if (leader == null || !_mindSystem.TryGetMind(leader.Value, out var mindId, out var mind))
-            return;
-        ent.Comp.CultistsLeaderMind = mindId;
-    }
-
-    private EntityUid? GetLeader(Entity<AntagSelectionComponent> antagSelection)
-    {
-        EntityUid? leader = null;
-        foreach (var compSelectedMind in antagSelection.Comp.SelectedMinds)
+        if (args.Def.PrefRoles.Contains(LeaderAntagProto))
         {
-            if (!TryComp<MindComponent>(compSelectedMind.Item1, out var mindComp))
-                continue;
-
-            foreach (var roleInfo in _roles.MindGetAllRoleInfo((compSelectedMind.Item1, mindComp)))
-            {
-                if (roleInfo.Prototype != LeaderAntagProto || mindComp.CurrentEntity == null)
-                    continue;
-
-                leader = mindComp.CurrentEntity.Value;
-            }
+            if (!_mindSystem.TryGetMind(args.EntityUid, out var mindId, out var mind))
+                return;
+            ent.Comp.CultistsLeaderMind = mindId;
         }
-
-        return leader;
+        MakeCultist(args.EntityUid, ent.Comp);
     }
 
     public FleshCultRuleComponent StartGameRule()
@@ -167,7 +139,7 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
         return comp;
     }
 
-    public bool MakeCultist(EntityUid fleshCultist, FixedPoint2 startingPoints, FleshCultRuleComponent fleshCultRule)
+    private bool MakeCultist(EntityUid fleshCultist, FleshCultRuleComponent fleshCultRule)
     {
         if (!_mindSystem.TryGetMind(fleshCultist, out var mindId, out var mind))
             return false;
@@ -184,14 +156,6 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
         {
             _audioSystem.PlayGlobal(fleshCultRule.AddedSound, session);
         }
-
-        _npcFaction.RemoveFaction(entity, "NanoTrasen", false);
-        _npcFaction.AddFaction(entity, "FleshHuman");
-
-        var fleshCultistComponent = EnsureComp<FleshCultistComponent>(mind.OwnedEntity.Value);
-
-        _store.TryAddCurrency(new Dictionary<string, FixedPoint2>
-            { {fleshCultistComponent.StolenCurrencyPrototype, startingPoints} }, mind.OwnedEntity.Value);
 
         fleshCultRule.Cultists.Add(fleshCultist);
 

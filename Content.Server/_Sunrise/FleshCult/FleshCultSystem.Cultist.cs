@@ -19,6 +19,7 @@ using Content.Shared.Inventory.Events;
 using Content.Shared.Mobs;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
+using Content.Shared.Store;
 using Content.Shared.Store.Components;
 using Content.Shared.Sunrise.CollectiveMind;
 using Content.Shared.Tag;
@@ -45,6 +46,9 @@ public sealed partial class FleshCultSystem
 
     [ValidatePrototypeId<EntityPrototype>]
     private const string FleshCultSurviveObjective = "FleshCultSurviveObjective";
+
+    [ValidatePrototypeId<CurrencyPrototype>]
+    private const string StolenMutationPointPrototype = "StolenMutationPoint";
 
     private void InitializeCultist()
     {
@@ -161,7 +165,7 @@ public sealed partial class FleshCultSystem
         storeComp.Categories.Add("FleshCultistActiveSkills");
         storeComp.Categories.Add("FleshCultistWeapon");
         storeComp.Categories.Add("FleshCultistArmor");
-        storeComp.CurrencyWhitelist.Add("StolenMutationPoint");
+        storeComp.CurrencyWhitelist.Add(StolenMutationPointPrototype);
         storeComp.BuySuccessSound = component.BuySuccesSound;
         storeComp.RefundAllowed = false;
 
@@ -177,6 +181,10 @@ public sealed partial class FleshCultSystem
             appearance.HideLayersOnEquip.Add(HumanoidVisualLayers.LFoot);
             Dirty(uid, appearance);
         }
+
+        _store.TryAddCurrency(new Dictionary<string, FixedPoint2>
+            { {StolenMutationPointPrototype, component.StartingMutationPoints} },
+            uid);
     }
 
     private void OnShutdown(EntityUid uid, FleshCultistComponent component, ComponentShutdown args)
@@ -300,13 +308,13 @@ public sealed partial class FleshCultSystem
     {
         if (hasAppearance)
         {
-            return 20;
+            return 30;
         }
         return bloodVolume switch
         {
-            >= 300 => 15,
-            >= 150 => 10,
-            >= 100 => 5,
+            >= 300 => 20,
+            >= 150 => 15,
+            >= 100 => 10,
             _ => 0
         };
     }

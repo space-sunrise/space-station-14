@@ -91,7 +91,7 @@ public sealed partial class FleshCultSystem
                     if (!TryComp<HumanoidAppearanceComponent>(uid, out var humanoidAppearance))
                         break;
 
-                    if (_speciesWhitelist.Contains(humanoidAppearance.Species))
+                    if (!_speciesWhitelist.Contains(humanoidAppearance.Species))
                     {
                         RemCompDeferred<PendingFleshCultistComponent>(uid);
                         break;

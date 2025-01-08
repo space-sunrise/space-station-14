@@ -37,8 +37,9 @@ public sealed partial class AssaultOpsRuleComponent : Component
     [DataField]
     public int TCAmountPerOperative = 50;
 
-    [DataField]
     public int RoundstartOperatives;
+
+    public EntityUid? UplinkEnt;
 
     [DataField("greetingSound", customTypeSerializer: typeof(SoundSpecifierTypeSerializer))]
     public SoundSpecifier? GreetSoundNotification = new SoundPathSpecifier("/Audio/_Sunrise/AssaultOperatives/assault_operatives_greet.ogg",

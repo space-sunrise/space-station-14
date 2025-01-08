@@ -738,6 +738,20 @@
       - NukeOpsUplink
 
 - type: listing
+  id: UplinkHandcuffs
+  name: uplink-handcuffs-name
+  description: uplink-handcuffs-desc
+  icon: { sprite: /Textures/Objects/Misc/handcuffs.rsi, state: handcuff }
+  productEntity: Handcuffs
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkDisruption
+
+- type: listing
   id: UplinkTeleporter
   name: uplink-syndicate-teleporter-name
   description: uplink-syndicate-teleporter-desc
@@ -750,6 +764,25 @@
     Telecrystal: 12
   categories:
   - UplinkDisruption
+
+- type: listing
+  id: UplinkHypo
+  name: uplink-hypo-name
+  description: uplink-hypo-desc
+  icon: { sprite: /Textures/Objects/Specific/Medical/syndihypo.rsi, state: hypo }
+  productEntity: SyndiHypo
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 6
+  cost:
+    Telecrystal: 12
+  categories:
+  - UplinkChemicals
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - AssaultOpsUplink
 
 - type: listing
   id: UplinkSyndicateRapier
