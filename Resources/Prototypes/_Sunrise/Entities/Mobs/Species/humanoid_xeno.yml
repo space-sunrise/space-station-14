@@ -126,7 +126,6 @@
       - CanPilot
       - FootstepSound
       - DoorBumpOpener
-      - NoInjectable
   - type: CollectiveMind
     minds:
     - Xeno

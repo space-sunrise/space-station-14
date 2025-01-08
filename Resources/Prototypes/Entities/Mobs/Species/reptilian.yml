@@ -76,7 +76,6 @@
     - FootstepSound
     - DoorBumpOpener
     - AnomalyHost
-    - NoInjectable
   - type: FootprintEmitter
     leftBareFootState:
       - "footprint-left-bare-lizard"
