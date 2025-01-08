@@ -127,3 +127,6 @@
           tags:
           - SyndicateRapier
   - type: Appearance
+  - type: Storage # Sunrise
+    storageInsertSound: /Audio/_Sunrise/Items/Equip/sabre_equip.ogg
+    storageRemoveSound: /Audio/_Sunrise/Items/Equip/sabre_hide.ogg
