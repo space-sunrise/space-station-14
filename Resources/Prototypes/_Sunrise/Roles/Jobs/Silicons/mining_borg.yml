@@ -1,11 +1,10 @@
 - type: job
-  id: MinerBorg
-  name: job-name-miner-borg
-  description: job-description-miner-borg
+  id: MiningBorg
+  name: job-name-mining-borg
+  description: job-description-mining-borg
   playTimeTracker: JobMiningBorg
-  icon: JobIconMinerBorg
+  icon: JobIconMiningBorg
   supervisors: job-supervisors-human
   canBeAntag: false
-  setPreference: false
   displayWeight: -10  # Sunrise
-  jobEntity: PlayerBorgBattery
+  jobEntity: PlayerBorgMiningBattery

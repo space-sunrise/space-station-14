@@ -29,27 +29,6 @@
           path: /Audio/Effects/Diseases/beepboop.ogg
       - type: TimedDespawn
         lifetime: 15
-  # - type: HiddenDescription
-  #   entries:
-  #   - label: "[color=#D381C9]Это не настоящая граната. Перед вами обычная подделка, так называемый пугач.[/color]"
-  #     jobRequired:
-  #       - ResearchAssistant
-  #       - ResearchDirector
-  #       - Scientist
-  #       - SeniorResearcher
-  #       - Roboticist
-  #       - Borg
-  #       - MedicalBorg
-  #       - EngineerBorg
-  #       - MinerBorg
-  #       - JanitorBorg
-  #       - ServiceBorg
-  #       - SecurityBorg
-  #       - ClownBorg
-  #       - PeaceBorg
-  #   - label: "[color=#C18199]Настоящий ПрИкОл! Выдерни чеку и кинь эту штучку под ноги СБ, пусть удивятся![/color]"
-  #     jobRequired:
-  #       - Clown
 
 - type: entity
   name: blood-red clown coffin
@@ -80,27 +59,6 @@
     sprintModifier: 0.3
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatCatEars
-  # - type: HiddenDescription
-  #   entries:
-  #   - label: "[color=#D381C9]Это сделаный из папьемаше подделка на скафандр. Не стоит вашего внимания.[/color]"
-  #     jobRequired:
-  #       - ResearchAssistant
-  #       - ResearchDirector
-  #       - Scientist
-  #       - SeniorResearcher
-  #       - Roboticist
-  #       - Borg
-  #       - MedicalBorg
-  #       - EngineerBorg
-  #       - MinerBorg
-  #       - JanitorBorg
-  #       - ServiceBorg
-  #       - SecurityBorg
-  #       - ClownBorg
-  #       - PeaceBorg
-  #   - label: "[color=#C18199]Скаф Синдиката? А нет! Это же папьемаше! Обмаж клеем перед тем как отдавать СБ![/color]"
-  #     jobRequired:
-  #       - Clown
 
 - type: entity
   name: toy dual-bladed sword
@@ -147,11 +105,7 @@
     graph: ToySwordDoubledGraph
     node: ToySwordDoubledNode
   - type: FlipOnAttack # Sunrise-Edit
-  # - type: HiddenDescription
-  #   entries:
-  #   - label: "[color=#C18199]Удивите СБ новой игрушкой, путёвка в перму обеспечена![/color]"
-  #     jobRequired:
-  #       - Clown
+    probability: 0.5 # Sunrise-Edit
 
 - type: entity
   name: packaged anomaly
@@ -201,24 +155,3 @@
     castShadows: false
   - type: Anchorable
   - type: Pullable
-  # - type: HiddenDescription
-  #   entries:
-  #   - label: "[color=#D381C9]Она как будто сделана из пластика.[/color]"
-  #     jobRequired:
-  #       - ResearchAssistant
-  #       - ResearchDirector
-  #       - Scientist
-  #       - SeniorResearcher
-  #       - Roboticist
-  #       - Borg
-  #       - MedicalBorg
-  #       - EngineerBorg
-  #       - MinerBorg
-  #       - JanitorBorg
-  #       - ServiceBorg
-  #       - SecurityBorg
-  #       - ClownBorg
-  #       - PeaceBorg
-  #   - label: "[color=#C18199]А ита и не аномалия, а прикол)[/color]"
-  #     jobRequired:
-  #       - Clown

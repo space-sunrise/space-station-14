@@ -5,6 +5,7 @@ using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Player;
+using DrawDepth = Content.Shared.DrawDepth.DrawDepth;
 
 namespace Content.Client.Standing;
 
@@ -22,6 +23,7 @@ public sealed class StandingStateSystem : SharedStandingStateSystem
             .Register<SharedStandingStateSystem>();
 
         SubscribeLocalEvent<RotationVisualsComponent, MoveEvent>(OnMove);
+        SubscribeLocalEvent<StandingStateComponent, AppearanceChangeEvent>(OnAppearanceChanged);
     }
 
     private void ToggleStanding(ICommonSession? session)
@@ -32,6 +34,16 @@ public sealed class StandingStateSystem : SharedStandingStateSystem
 
         RaiseNetworkEvent(new ChangeLayingDownEvent());
     }
+
+    // Sunrise-Start
+    private void OnAppearanceChanged(EntityUid uid, StandingStateComponent component, ref AppearanceChangeEvent args)
+    {
+        if (args.Sprite == null)
+            return;
+
+        args.Sprite.DrawDepth = component.CurrentState == StandingState.Laying ? (int) DrawDepth.SmallMobs : (int) DrawDepth.Mobs;
+    }
+    // Sunrise-End
 
     private void OnMove(EntityUid uid, RotationVisualsComponent component, ref MoveEvent args)
     {

@@ -35,9 +35,6 @@ namespace Content.Server._Sunrise.Carrying
 {
     public sealed class CarryingSystem : EntitySystem
     {
-        private readonly TimeSpan _minPickupTime = TimeSpan.FromSeconds(2);
-        private readonly float _maxThrowSpeed = 7f;
-
         [Dependency] private readonly SharedVirtualItemSystem _virtualItemSystem = default!;
         [Dependency] private readonly CarryingSlowdownSystem _slowdown = default!;
         [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
@@ -132,10 +129,7 @@ namespace Content.Server._Sunrise.Carrying
 
             var multiplier = MassContest(uid, virtItem.BlockingEntity);
 
-            _throwingSystem.TryThrow(virtItem.BlockingEntity,
-                args.Direction,
-                (3f * multiplier > _maxThrowSpeed) ? _maxThrowSpeed : 3f * multiplier,
-                uid);
+            _throwingSystem.TryThrow(virtItem.BlockingEntity, args.Direction, 3f * multiplier, uid);
         }
 
         private void OnParentChanged(EntityUid uid, CarryingComponent component, ref EntParentChangedMessage args)
@@ -243,8 +237,6 @@ namespace Content.Server._Sunrise.Carrying
                 return;
             }
 
-            length = (length < _minPickupTime) ? _minPickupTime : length;
-
             if (!HasComp<KnockedDownComponent>(carried))
                 length *= 2f;
 
@@ -342,7 +334,7 @@ namespace Content.Server._Sunrise.Carrying
 
             return true;
         }
-        
+
         private void ShowCarryPopup(string locString, Filter filter, PopupType type, EntityUid carrier, EntityUid carried)
         {
             _popupSystem.PopupEntity(Loc.GetString(locString, ("carrier", Identity.Name(carrier, EntityManager)), ("target", Identity.Name(carried, EntityManager))),carrier, filter, true, type);

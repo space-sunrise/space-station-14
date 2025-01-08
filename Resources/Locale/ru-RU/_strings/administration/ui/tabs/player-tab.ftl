@@ -12,3 +12,5 @@ player-tab-is-antag-yes = ДА
 player-tab-is-antag-no = НЕТ
 # Sunrise-Sponsors
 player-tab-sponsor = Спонсор
+player-tab-objectives = Цели
+player-tab-objectives-button = Цели

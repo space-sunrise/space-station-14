@@ -326,3 +326,6 @@
 
 - type: Tag
   id: ToySword
+
+- type: Tag
+  id: FugitiveUplink

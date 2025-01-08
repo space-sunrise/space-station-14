@@ -8,6 +8,6 @@ namespace Content.Shared._Sunrise.AssaultOps
     public sealed partial class AssaultOperativeComponent : Component
     {
         [DataField("statusIcon")]
-        public ProtoId<FactionIconPrototype> StatusIcon { get; set; } = "SyndicateFaction";
+        public ProtoId<FactionIconPrototype> StatusIcon { get; set; } = "AssaultOpsFaction";
     }
 }

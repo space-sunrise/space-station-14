@@ -24,9 +24,8 @@ using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using System.Linq;
-using Content.Server.Antag.Components;
 using Content.Server.Traitor.Uplink;
-using Content.Shared.Mind;
+using Content.Shared.FixedPoint;
 using Content.Shared.Roles;
 using Content.Shared.Store.Components;
 
@@ -42,7 +41,6 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
     [Dependency] private readonly StoreSystem _store = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly UplinkSystem _uplinkSystem = default!;
-    [Dependency] private readonly SharedRoleSystem _roles = default!;
 
     [ValidatePrototypeId<CurrencyPrototype>]
     private const string TelecrystalCurrencyPrototype = "Telecrystal";
@@ -75,7 +73,6 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
         SubscribeLocalEvent<CommunicationConsoleCallShuttleAttemptEvent>(OnShuttleCallAttempt);
 
         SubscribeLocalEvent<NukeopsRuleComponent, AfterAntagEntitySelectedEvent>(OnAfterAntagEntSelected);
-        SubscribeLocalEvent<NukeopsRuleComponent, AntagSelectionCompleteEvent>(OnAfterAntagSelectionComplete); // Sunrise-Edit
         SubscribeLocalEvent<NukeopsRuleComponent, RuleLoadedGridsEvent>(OnRuleLoadedGrids);
     }
 
@@ -497,51 +494,36 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
             ent.Comp.GreetSoundNotification);
 
         // Sunrise-Start
-        if (!args.GameRule.Comp.UseSpawners)
-            return;
+        ent.Comp.RoundstartOperatives += 1;
 
-        ent.Comp.RoundstartOperatives = args.GameRule.Comp.SpawnersCount;
-        var commander = GetCommander(args.GameRule);
-        if (commander != null)
-            SetupUplink(commander.Value, ent.Comp);
+        if (args.Def.PrefRoles.Contains(CommanderAntagProto))
+        {
+            var uplink = SetupUplink(args.EntityUid, ent.Comp);
+            ent.Comp.UplinkEnt = uplink;
+        }
+
+        if (ent.Comp.UplinkEnt != null)
+        {
+            var giveTcCount = ent.Comp.WarTcAmountPerNukie;
+            if (ent.Comp.RoundstartOperatives > 1)
+                giveTcCount *= ent.Comp.RoundstartOperatives;
+            var store = EnsureComp<StoreComponent>(ent.Comp.UplinkEnt.Value);
+            _store.TryAddCurrency(new Dictionary<string, FixedPoint2> { { TelecrystalCurrencyPrototype, giveTcCount } },
+                ent.Comp.UplinkEnt.Value,
+                store);
+        }
         // Sunrise-End
     }
 
     // Sunrise-Start
-    private void OnAfterAntagSelectionComplete(Entity<NukeopsRuleComponent> ent, ref AntagSelectionCompleteEvent args)
-    {
-        ent.Comp.RoundstartOperatives = args.GameRule.Comp.SelectedMinds.Count;
-
-        var commander = GetCommander(args.GameRule);
-        if (commander != null)
-            SetupUplink(commander.Value, ent.Comp);
-    }
-
-    private EntityUid? GetCommander(Entity<AntagSelectionComponent> antagSelection)
-    {
-        EntityUid? commander = null;
-        foreach (var compSelectedMind in antagSelection.Comp.SelectedMinds)
-        {
-            if (!TryComp<MindComponent>(compSelectedMind.Item1, out var mindComp))
-                continue;
-
-            foreach (var roleInfo in _roles.MindGetAllRoleInfo((compSelectedMind.Item1, mindComp)))
-            {
-                if (roleInfo.Prototype != CommanderAntagProto || mindComp.CurrentEntity == null)
-                    continue;
-
-                commander = mindComp.CurrentEntity.Value;
-            }
-        }
-
-        return commander;
-    }
-
-    private void SetupUplink(EntityUid user, NukeopsRuleComponent nukeopsRule)
+    private EntityUid? SetupUplink(EntityUid user, NukeopsRuleComponent rule)
     {
         var uplink = _uplinkSystem.FindUplinkByTag(user, NukeOpsUplinkTagPrototype);
-        if (uplink != null)
-            _uplinkSystem.SetUplink(user, uplink.Value, nukeopsRule.WarTcAmountPerNukie * nukeopsRule.RoundstartOperatives, true);
+        if (uplink == null)
+            return null;
+
+        _uplinkSystem.SetUplink(user, uplink.Value, 0, true);
+        return uplink;
     }
     // Sunrise-End
 

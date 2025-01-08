@@ -1,8 +1,5 @@
-namespace Content.Server.Speech.Components;
+namespace Content.Server._Sunrise.Speech.Components;
 
-/// <summary>
-///     Rrrr!
-/// </summary>
 [RegisterComponent]
 public sealed partial class VulpaAccentComponent : Component
 {

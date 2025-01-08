@@ -104,7 +104,7 @@
   name: epinephrine robot hypospray
   parent: BaseItem
   description: A borg version of hypospray that automatically regenerates epinephrine.
-  id: HyposprayBorgStandard
+  id: HypoBorgStandard
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -129,8 +129,8 @@
     injectOnly: true
 
 - type: entity
-  parent: HyposprayBorgStandard
-  id: HyposprayBorgPeace
+  parent: HypoBorgStandard
+  id: HypoBorgPeace
   name: pax cyborg hypospray
   description: A cyborg version of hypospray that automatically regenerates pax.
   categories: [ HideSpawnMenu ]
@@ -144,11 +144,17 @@
     generated:
       reagents:
       - ReagentId: Pax
-        Quantity: 0.05
+        Quantity: 0.1
+  - type: SolutionRegenerationSwitcher
+    options:
+    - ReagentId: Pax
+      Quantity: 0.1
+    - ReagentId: ChloralHydrate
+      Quantity: 2
 
 - type: entity
-  parent: HyposprayBorgStandard
-  id: HyposprayBorgMedical
+  parent: HypoBorgStandard
+  id: HypoBorgMedical
   name: medical robot hypospray
   description: A hypospray that can switch through several reagents.
   categories: [ HideSpawnMenu ]
@@ -204,8 +210,8 @@
 
 
 - type: entity
-  parent: HyposprayBorgStandard
-  id: HyposprayBorgSyndi
+  parent: HypoBorgStandard
+  id: HypoBorgMedicalSyndicate
   name: gorlax robot hypospray
   description: A hypospray that can switch through several reagents.
   categories: [ HideSpawnMenu ]
@@ -549,7 +555,7 @@
 - type: entity
   name: the cyborg saboteur's hypospray
   parent: BaseItem
-  id: HyposprayBorgSyndie
+  id: HypoBorgSaboteurSyndicate
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite

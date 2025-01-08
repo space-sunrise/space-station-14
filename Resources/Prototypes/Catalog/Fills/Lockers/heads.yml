@@ -360,6 +360,7 @@
     children:
     - id: ClothingMaskGasSwat
     - id: ClothingOuterHardsuitSecurityRed
+    - id: ClothingShoesBootsMagSec  # Sunrise-edit
     - id: JetpackSecurityFilled
     - id: OxygenTankFilled
 

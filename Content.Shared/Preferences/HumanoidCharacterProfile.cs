@@ -575,7 +575,8 @@ namespace Content.Shared.Preferences
             var maxDescLength = configManager.GetCVar(SunriseCCVars.FlavorTextBaseLength);
             if (sponsors != null)
             {
-                maxDescLength = sponsors.GetSizeFlavor(session.UserId);
+                if (sponsors.IsSponsor(session.UserId))
+                    maxDescLength = sponsors.GetSizeFlavor(session.UserId);
                 if (!sponsors.IsAllowedFlavor(session.UserId) && configManager.GetCVar(SunriseCCVars.FlavorTextSponsorOnly))
                 {
                     FlavorText = string.Empty;
