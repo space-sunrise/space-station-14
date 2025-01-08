@@ -75,9 +75,11 @@ public sealed class AccessSystem : SharedAccessSystem
         {
             if (alerts.CurrentLevel.Contains(level.Key))
             {
-                entity.Comp.AlertAccesses.TryGetValue(level.Value, out var value);
-                entity.Comp.Group = value;
-                break;
+                if (entity.Comp.AlertAccesses.TryGetValue(level.Value, out var value))
+                {
+                    entity.Comp.Group = value;
+                    break;
+                }
             }
         }
     }

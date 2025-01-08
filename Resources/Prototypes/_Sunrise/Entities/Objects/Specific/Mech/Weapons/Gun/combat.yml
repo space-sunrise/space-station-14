@@ -26,7 +26,7 @@
   id: WeaponMechCombatMaxim
   name: Mounted Kardashev-Maxim
   description: An ancient heavy machine gun given new life as a mech-mounted gun
-  suffix: Mech Weapon, Gun, Combat, USSP
+  suffix: Mech Weapon, Combat, USSP
   parent: [ BaseMechWeaponRange, CombatMechEquipment ]
   components:
   - type: Sprite
@@ -43,6 +43,35 @@
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: CartridgeLightRifle
+    fireCost: 8
+  - type: Appearance
+  - type: AmmoCounter
+
+- type: entity
+  id: WeaponMechCombatMG
+  name: Mounted MG
+  description: An ancient heavy machine gun given new life as a mech-mounted gun
+  suffix: Mech Weapon, Combat
+  parent: [ BaseMechWeaponRange, CombatMechEquipment ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_mg.rsi
+    state: mecha_mg
+  - type: Gun
+    minAngle: -10
+    maxAngle: 18
+    angleIncrease: 3.5
+    angleDecay: 9
+    fireRate: 10
+    shotsPerBurst: 8
+    burstCooldown: 0.5
+    selectedMode: Burst
+    availableModes:
+      - Burst
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: CartridgeRifle
     fireCost: 8
   - type: Appearance
   - type: AmmoCounter

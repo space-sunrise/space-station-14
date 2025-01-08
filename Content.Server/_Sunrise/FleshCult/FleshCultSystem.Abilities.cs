@@ -270,7 +270,7 @@ public sealed partial class FleshCultSystem
         {
             fleshCultistComponent.Hunger += saturation;
             _store.TryAddCurrency(new Dictionary<string, FixedPoint2>
-                { {fleshCultistComponent.StolenCurrencyPrototype, evolutionPoint} }, uid);
+                { {StolenMutationPointPrototype, evolutionPoint} }, uid);
         }
 
     }

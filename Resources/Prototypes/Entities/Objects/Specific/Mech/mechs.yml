@@ -882,8 +882,8 @@
   - type: Mech
     startingEquipment:
       - WeaponMechChainSword
+      - WeaponMechCombatShotgun
       - WeaponMechCombatPulseRifle
-      - WeaponMechCombatHeavyRifle
       - WeaponMechCombatMissileRack8
 
 # Marauder
@@ -961,7 +961,7 @@
   components:
   - type: Mech
     startingEquipment:
-      - WeaponMechChainSword
+      - WeaponMechCombatMG
       - WeaponMechCombatPulseRifle
       - WeaponMechCombatHeavyRifle
       - WeaponMechCombatMissileRack8
