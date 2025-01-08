@@ -1,4 +1,4 @@
-﻿using Content.Server.Atmos.EntitySystems;
+using Content.Server.Atmos.EntitySystems;
 using Content.Server.Supermatter.Components;
 using Content.Shared.Atmos;
 using Content.Server.Lightning;
@@ -103,6 +103,7 @@ public sealed class SupermatterSystem : EntitySystem
                 SupermatterAlert(uid, Loc.GetString($"supermatter-announcement-{loc}", ("integrity", (int)(sm.DelaminationPoint - sm.Damage))));
             }
         }
+        sm.DamageArchive = sm.Damage;
 
         if (sm.AreWeDelaming)
             DelamCountdown(uid, sm);
@@ -217,18 +218,17 @@ public sealed class SupermatterSystem : EntitySystem
             damageHealHeat = Math.Clamp((sm.AbsorbedGasMix.TotalMoles - sm.TempLimit) / 6000, -.1f, 0);
 
         var totalDamage = damageHeat + damagePower + damageMoles + damageHealHeat;
-
+        var oldDamage = sm.Damage;
         sm.Damage += Math.Max(totalDamage, 0);
 
-        if (sm.Damage > sm.DelaminationPoint)
-            sm.AreWeDelaming = true;
-
-        if (sm.Damage > sm.DamageDangerPoint)
+        if (sm.Damage >= sm.DelaminationPoint && !sm.AreWeDelaming)
         {
-            if (_random.Prob(.0001f))
-                GenerateAnomaly(uid);
-            return;
+            sm.AreWeDelaming = true;
+            SupermatterAlert(uid, Loc.GetString("supermatter-announcement-delam"));
         }
+
+        if (sm.Damage > sm.DamageDangerPoint && _random.Prob(.0001f))
+            GenerateAnomaly(uid);
     }
     /// <summary>
     ///     Process waste, release hot plasma and oxygen.
@@ -439,8 +439,14 @@ public sealed class SupermatterSystem : EntitySystem
     {
         if (HasComp<SharpComponent>(args.Used))
         {
+            if (sm.Damage >= 100)
+            {
+                _popup.PopupEntity(Loc.GetString("supermatter-tamper-fail"), args.User, args.User);
+                return;
+            }
+
             _adminLogger.Add(LogType.Action, LogImpact.High, $"{EntityManager.ToPrettyString(args.User):player} is trying to extract a sliver from the supermatter crystal.");
-            _popup.PopupClient(Loc.GetString("supermatter-tamper-begin"), args.User, args.User);
+            _popup.PopupEntity(Loc.GetString("supermatter-tamper-begin"), args.User, args.User);
 
             var doAfterArgs = new DoAfterArgs(EntityManager, args.User, 30, new SupermatterDoAfterEvent(), uid, target: uid, used: args.Used)
             {
@@ -457,11 +463,14 @@ public sealed class SupermatterSystem : EntitySystem
 
     private void OnGetSliver(EntityUid uid, SupermatterComponent sm, SupermatterDoAfterEvent args)
     {
+        if (args.Cancelled)
+            return;
+
         sm.Damage += 10; // your criminal actions will not go unnoticed
         SupermatterAlert(uid, Loc.GetString("supermatter-announcement-tamper", ("integrity", (int)(100 - sm.Damage))));
 
         Spawn(sm.SliverPrototype, _transform.GetMapCoordinates(args.User));
-        _popup.PopupClient(Loc.GetString("supermatter-tamper-end"), args.User);
+        _popup.PopupEntity(Loc.GetString("supermatter-tamper-end"), args.User, args.User);
     }
 
     private void OnGetHit(EntityUid uid, SupermatterComponent sm, DamageChangedEvent args)
