@@ -350,4 +350,4 @@ uplink-business-card-desc = Визитная карточка, которую м
 uplink-syndicate-teleporter-name = Ручной телепорт Синдиката
 uplink-syndicate-teleporter-desc = Экспериментальное устройство ручного телепорта. Телепортирует владельца на небольшое расстояние вперед. Будьте осторожны, чтобы не оказаться в стене.
 uplink-handcuffs-name = Наручники
-uplink-syndicate-teleporter-desc = Используется для удержания жертв.
+uplink-handcuffs-desc = Используется для удержания жертв.
