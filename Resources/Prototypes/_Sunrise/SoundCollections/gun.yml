@@ -12,7 +12,6 @@
     sound:
       collection: PulseDrop
 
-
 - type: soundCollection
   id: RiflesPickUp
   files:
