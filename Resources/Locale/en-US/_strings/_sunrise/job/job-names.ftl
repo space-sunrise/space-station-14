@@ -28,6 +28,8 @@ job-name-clown-borg = клоун киборг
 job-name-barber = парикмахер
 job-name-pathologist = патологоанатом
 job-name-adjutant = адъютант
+job-name-ntrguard = Оператор ИСН
+job-name-ntrleader = Командир ИСН
 # Перевод трекеров времени
 JobCentCommOfficial = представитель Центком
 JobCentCommOperator = оператор Центком
@@ -61,3 +63,5 @@ JobUSSPCrew = Сотрудник СССП
 JobUSSPGuard = Милиция СССП
 JobUSSPSoldier = Солдат СССП
 JobUSSPOfficer = Офицер СССП
+NtrGuard = Оператор ИСН
+NtrLeadGuard = Командир ИСН

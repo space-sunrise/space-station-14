@@ -69,7 +69,7 @@
   parent: ClothingHeadHelmetHeavyHardsuitUSSP
   id: ClothingHeadHelmetHardsuitNTRG
   categories: [ HideSpawnMenu ]
-  name: NTRG's hardsuit helmet #QWERTY
+  name: NTRG's hardsuit helmet
   description: Blue.
   components:
   - type: Sprite

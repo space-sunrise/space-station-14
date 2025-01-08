@@ -65,6 +65,12 @@
             "name": "Barber"
         },
         {
+            "name": "NTRGuard"
+        },
+        {
+            "name": "NTRLeader"
+        },
+        {
             "name": "Pathologist"
         }
     ]

@@ -1,0 +1,80 @@
+# Leader
+- type: job
+  id: NTRLeader
+  name: job-name-ntrleader
+  description: job-description-ntrg
+  #playTimeTracker: JobERTLeader
+  setPreference: false
+  startingGear: NTRLeaderGear
+  icon: "JobIconNTRLeader"
+  supervisors: job-supervisors-ntrg
+  canBeAntag: false
+  accessGroups:
+  - RedAlertAccesses
+  access:
+  - HeadOfSecurity
+
+- type: startingGear
+  id: NTRLeaderGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitNTRG
+    neck: ClothingNeckCloakNTRG
+    back: ClothingBackpackSatchelNTRG
+    mask: ClothingMaskGasNTRGLead
+    shoes: ClothingShoesBootsCombatFilled
+    head: ClothingHeadCapNTGR
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorNTRG
+    id: NTRLeadGuardPDA
+    ears: ClothingHeadsetMagistrate
+    belt: ClothingBeltSecurityFilled
+    pocket1: WeaponEnergyGunPulseRevolver
+    pocket2: HandheldCriminalRecordsMonitorUnpowered
+  storage:
+    back:
+    - WeaponDisablerSMG
+    - ClothingOuterHardsuitNTRG
+    - RegenerativeMesh
+    - CrowbarRed
+
+# Security
+- type: job
+  id: NTRGuad
+  name: job-name-ntrguard
+  description: job-description-ntrg
+  #playTimeTracker: JobERTSecurity
+  setPreference: false
+  startingGear: NTRGuadGear
+  icon: "JobIconNTRGuard"
+  supervisors: job-supervisors-ntrg
+  canBeAntag: false
+  accessGroups:
+  - RedAlertAccesses
+  access:
+  - HeadOfSecurity
+
+- type: startingGear
+  id: NTRGuadGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitNTRG
+    neck: ClothingNeckCloakNTRG
+    back: ClothingBackpackSatchelNTRG
+    shoes: ClothingShoesBootsCombatFilled
+    mask: ClothingMaskGasNTRG
+    head: ClothingHeadCapNTGR
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorNTRG
+    id: NTRGuardPDA
+    ears: ClothingHeadsetMagistrate
+    belt: ClothingBeltSecurityFilled
+    pocket1: WeaponPistolN1984
+    pocket2: MagazineMagnum
+  storage:
+    back:
+    - WeaponDisablerSMG
+    - ClothingOuterHardsuitNTRG
+    - RegenerativeMesh
+    - CrowbarRed
+    - MagazineMagnum

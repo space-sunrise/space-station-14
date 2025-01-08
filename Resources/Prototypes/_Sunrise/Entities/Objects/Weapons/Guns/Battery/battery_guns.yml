@@ -211,7 +211,7 @@
   name: pulse revolver
   parent: BaseWeaponBatterySmall
   id: WeaponEnergyGunPulseRevolver
-  description: This is an expensive modern Pulse gun. This gun has several unique firemodes.
+  description: This is an expensive modern Pulse gun. This gun has several unique firemodes. 
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/pulse_revolver.rsi
@@ -232,13 +232,13 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: Battery
-    maxCharge: 1000
-    startingCharge: 1000
+    maxCharge: 720
+    startingCharge: 720
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 50
+    autoRechargeRate: 120
     autoRechargePause: true
-    autoRechargePauseTime: 15
+    autoRechargePauseTime: 10
   - type: EnergyGunFireModes
     fireModes:
     - hitscanProto: BulletDisabler
