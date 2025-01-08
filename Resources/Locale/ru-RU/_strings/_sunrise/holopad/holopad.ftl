@@ -89,6 +89,7 @@ holopad-medical-paramedic = Медотсек - Парамедики
 holopad-medical-virology = Медотсек - Вирусология
 holopad-medical-front = Медотсек - Вход
 holopad-medical-breakroom = Медотсек - Комната отдыха
+holopad-medical-clinic = Медотсек - Клиника
 
 # Cargo
 holopad-cargo-front = Карго - Вход
