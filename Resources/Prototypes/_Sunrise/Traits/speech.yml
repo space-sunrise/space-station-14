@@ -28,3 +28,13 @@
   components:
   - type: RussianAccent
 
+# 2 Cost
+
+- type: trait
+  id: TransliterationAccent
+  name: trait-transliteration-accent-name
+  description: trait-transliteration-accent-desc
+  category: SpeechTraits
+  cost: 2
+  components:
+  - type: TransliterationAccent
