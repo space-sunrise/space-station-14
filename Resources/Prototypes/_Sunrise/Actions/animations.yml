@@ -1,7 +1,7 @@
 ﻿- type: emote
   id: Flip
   category: Verb
-  name: Сальто
+  name: Flip
   whitelist:
     components:
     - Body
@@ -16,7 +16,7 @@
 - type: emote
   id: Jump
   category: Verb
-  name: Прыгнуть
+  name: Jump
   whitelist:
     components:
     - Body
@@ -31,7 +31,7 @@
 - type: emote
   id: Dance
   category: Verb
-  name: Танцевать
+  name: Dance
   whitelist:
     components:
     - Body
@@ -46,7 +46,7 @@
 - type: emote
   id: Lay
   category: Verb
-  name: Лечь/Встать
+  name: Lay/Stand Up
   whitelist:
     components:
     - Hands
@@ -60,7 +60,7 @@
 - type: emote
   id: FallOnNeck
   category: Verb
-  name: Упасть на шею
+  name: Fall On Neck
   whitelist:
     components:
     - Hands
