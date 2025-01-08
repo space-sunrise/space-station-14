@@ -15,7 +15,7 @@
     availableModes:
     - FullAuto
     soundGunshot:
-      path: /Audio/_Sunrise/Weapons/Guns/Laser/EG_R.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Lasers/EG_R.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -465,7 +465,7 @@
           Lethal: { state: mode-lethal }
 
 - type: entity
-  parent: BaseWeaponBattery
+  parent: [BaseWeaponBattery, BaseGunPulseSound]
   id: WeaponIONRifle
   name: ion rifle
   components:
@@ -514,7 +514,7 @@
   components:
   - type: Gun
     soundGunshot:
-      path: /Audio/_Sunrise/Weapons/Guns/Laser/EG_Pistol.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Lasers/EG_Pistol.ogg
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/EG_P.rsi
     layers:
@@ -534,7 +534,7 @@
 
 - type: entity
   name: EarthGov laser rifle
-  parent: [BaseWeaponBattery, BaseGunWieldable]
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseGunPulseSound]
   id: WeaponEarthGovLaserRifle
   components:
   - type: Sprite
@@ -561,7 +561,7 @@
     - SemiAuto
     - FullAuto
     soundGunshot:
-      path: /Audio/_Sunrise/Weapons/Guns/Laser/EG_R.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Lasers/EG_R.ogg
   - type: MagazineVisuals
     magState: mag
     steps: 3
@@ -578,7 +578,7 @@
 
 - type: entity
   name: EarthGov laser carbine
-  parent: [BaseWeaponBattery, BaseGunWieldable]
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseGunPulseSound]
   id: WeaponEarthGovLaserCarbine
   components:
   - type: Sprite
@@ -601,7 +601,7 @@
     - SemiAuto
     - FullAuto
     soundGunshot:
-      path: /Audio/_Sunrise/Weapons/Guns/Laser/EG_C.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Lasers/EG_C.ogg
       params:
         volume: -1
   - type: MagazineVisuals
@@ -620,7 +620,7 @@
 
 - type: entity
   name: EarthGov laser machine gun
-  parent: [BaseWeaponBattery, BaseGunWieldable]
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseGunPulseSound]
   id: WeaponEarthGovLaserMG
   components:
   - type: Sprite
@@ -666,7 +666,7 @@
 
 - type: entity
   name: EarthGov Experemental X-Ray
-  parent: BaseWeaponBattery
+  parent: [BaseWeaponBattery, BaseGunPulseSound]
   id: WeaponEarthGovXRay
   suffix: SUNRISE14CM
   description: Earth Government Experemental x-ray weapon, it looks like it emits radiation.
@@ -695,7 +695,7 @@
     - SemiAuto
     - FullAuto
     soundGunshot:
-      path: /Audio/_Sunrise/Weapons/Guns/Laser/EG_XR.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Lasers/EG_XR.ogg
   - type: MagazineVisuals
     magState: mag
     steps: 6
@@ -712,7 +712,7 @@
 
 - type: entity
   name: EarthGov heavy laser rifle
-  parent: BaseWeaponBattery
+  parent: [BaseWeaponBattery, BaseGunPulseSound]
   id: WeaponEarthGovLaserSniper
   components:
   - type: Sprite
@@ -740,7 +740,7 @@
     - SemiAuto
     - FullAuto
     soundGunshot:
-      path: /Audio/_Sunrise/Weapons/Guns/Laser/EG_Sniper.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Lasers/EG_Sniper.ogg
   - type: MagazineVisuals
     magState: mag
     steps: 3
@@ -758,9 +758,9 @@
 
 - type: entity
   name: heavy pulse carbine
-  parent: [BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband]
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband, BaseGunPulseSound]
   id: WeaponSniperPulseCarbine
-  description: "A high tech heavy carbine. favoured by the NT-ERT operatives." 
+  description: "A high tech heavy carbine. favoured by the NT-ERT operatives."
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/sniper_pulse_carbine.rsi
@@ -874,7 +874,7 @@
 
 - type: entity
   name: UVL-21 «Vivern»
-  parent: BaseWeaponBattery
+  parent: [BaseWeaponBattery, BaseGunPulseSound]
   id: WeaponLaserMinigun
   description: A heavy weapon of mass destruction based on the minigun.
   components:
