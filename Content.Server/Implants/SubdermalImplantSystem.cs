@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Cuffs;
 using Content.Server.Forensics;
 using Content.Server.Humanoid;
@@ -19,9 +20,12 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Random;
 using System.Numerics;
+using Content.Server.Body.Components;
+using Content.Shared.Maps;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Store.Components;
+using Robust.Server.Containers;
 using Robust.Shared.Collections;
 using Robust.Shared.Map.Components;
 
@@ -41,6 +45,7 @@ public sealed class SubdermalImplantSystem : SharedSubdermalImplantSystem
     [Dependency] private readonly PullingSystem _pullingSystem = default!;
     [Dependency] private readonly EntityLookupSystem _lookupSystem = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
+    [Dependency] private readonly ContainerSystem _container = default!;
 
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private HashSet<Entity<MapGridComponent>> _targetGrids = [];
@@ -56,7 +61,37 @@ public sealed class SubdermalImplantSystem : SharedSubdermalImplantSystem
         SubscribeLocalEvent<SubdermalImplantComponent, ActivateImplantEvent>(OnActivateImplantEvent);
         SubscribeLocalEvent<SubdermalImplantComponent, UseScramImplantEvent>(OnScramImplant);
         SubscribeLocalEvent<SubdermalImplantComponent, UseDnaScramblerImplantEvent>(OnDnaScramblerImplant);
+        SubscribeLocalEvent<ImplantedComponent, BeingGibbedEvent>(OnGibbed);
+    }
 
+    private void OnGibbed(EntityUid uid, ImplantedComponent component, BeingGibbedEvent args)
+    {
+        if (!_container.TryGetContainer(uid, ImplanterComponent.ImplantSlotId, out var implantContainer))
+            return;
+
+        foreach (var implant in implantContainer.ContainedEntities)
+        {
+            if (!TryComp<SubdermalImplantComponent>(implant, out var subdermalImplant))
+                continue;
+
+            if (!subdermalImplant.DropContainerItemsIfGibbed)
+                continue;
+
+            if (!_container.TryGetContainer(implant, BaseStorageId, out var storageImplant))
+                continue;
+
+            var entCoords = Transform(uid).Coordinates;
+
+            var containedEntites = storageImplant.ContainedEntities.ToArray();
+
+            foreach (var entity in containedEntites)
+            {
+                if (Terminating(entity))
+                    continue;
+
+                _container.RemoveEntity(storageImplant.Owner, entity, force: true, destination: entCoords);
+            }
+        }
     }
 
     private void OnStoreRelay(EntityUid uid, StoreComponent store, ImplantRelayEvent<AfterInteractUsingEvent> implantRelay)
@@ -109,8 +144,12 @@ public sealed class SubdermalImplantSystem : SharedSubdermalImplantSystem
         if (TryComp<PullableComponent>(ent, out var pull) && _pullingSystem.IsPulled(ent, pull))
             _pullingSystem.TryStopPull(ent, pull);
 
+        // Check if the user is pulling anything, and drop it if so
+        if (TryComp<PullerComponent>(ent, out var puller) && TryComp<PullableComponent>(puller.Pulling, out var pullable))
+            _pullingSystem.TryStopPull(puller.Pulling.Value, pullable);
+
         var xform = Transform(ent);
-        var targetCoords = SelectRandomTileInRange(xform, implant.TeleportRadius);
+        var targetCoords = SelectRandomTileInRange(xform, implant.TeleportRange, implant.MinTeleportDistance); // Sunrise-Edit
 
         if (targetCoords != null)
         {
@@ -120,11 +159,11 @@ public sealed class SubdermalImplantSystem : SharedSubdermalImplantSystem
         }
     }
 
-    private EntityCoordinates? SelectRandomTileInRange(TransformComponent userXform, float radius)
+    private EntityCoordinates? SelectRandomTileInRange(TransformComponent userXform, float range, float minDistance) // Sunrise-Edit
     {
         var userCoords = userXform.Coordinates.ToMap(EntityManager, _xform);
         _targetGrids.Clear();
-        _lookupSystem.GetEntitiesInRange(userCoords, radius, _targetGrids);
+        _lookupSystem.GetEntitiesInRange(userCoords, range, _targetGrids);
         Entity<MapGridComponent>? targetGrid = null;
 
         if (_targetGrids.Count == 0)
@@ -151,23 +190,35 @@ public sealed class SubdermalImplantSystem : SharedSubdermalImplantSystem
         do
         {
             var valid = false;
-
-            var range = (float) Math.Sqrt(radius);
             var box = Box2.CenteredAround(userCoords.Position, new Vector2(range, range));
             var tilesInRange = _mapSystem.GetTilesEnumerator(targetGrid.Value.Owner, targetGrid.Value.Comp, box, false);
             var tileList = new ValueList<Vector2i>();
 
             while (tilesInRange.MoveNext(out var tile))
             {
-                tileList.Add(tile.GridIndices);
+                // Sunrise-Start
+                if (!tile.IsSpace())
+                    tileList.Add(tile.GridIndices);
+                // Sunrise-End
             }
 
             while (tileList.Count != 0)
             {
                 var tile = tileList.RemoveSwap(_random.Next(tileList.Count));
                 valid = true;
-                foreach (var entity in _mapSystem.GetAnchoredEntities(targetGrid.Value.Owner, targetGrid.Value.Comp,
-                             tile))
+
+                // Sunrise-Start
+                var tileWorldPos = _mapSystem.GridTileToWorldPos(targetGrid.Value, targetGrid.Value.Comp, tile);
+
+                var distanceSquared = (tileWorldPos - userCoords.Position).Length();
+                if (distanceSquared < minDistance)
+                {
+                    valid = false;
+                    continue;
+                }
+                // Sunrise-End
+
+                foreach (var entity in _mapSystem.GetAnchoredEntities(targetGrid.Value.Owner, targetGrid.Value.Comp, tile))
                 {
                     if (!_physicsQuery.TryGetComponent(entity, out var body))
                         continue;
@@ -223,6 +274,7 @@ public sealed class SubdermalImplantSystem : SharedSubdermalImplantSystem
         }
 
         args.Handled = true;
-        QueueDel(uid);
+        // Sunrise-Edit
+        //QueueDel(uid);
     }
 }

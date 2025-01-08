@@ -113,7 +113,7 @@ public sealed partial class ClimbSystem : VirtualController
     /// <summary>
     /// Returns true if entity currently has a valid vault.
     /// </summary>
-    private bool IsClimbing(EntityUid uid, FixturesComponent? fixturesComp = null)
+    public bool IsClimbing(EntityUid uid, FixturesComponent? fixturesComp = null) // Sunrise-Edit
     {
         if (!_fixturesQuery.Resolve(uid, ref fixturesComp) || !fixturesComp.Fixtures.TryGetValue(ClimbingFixtureName, out var climbFixture))
             return false;

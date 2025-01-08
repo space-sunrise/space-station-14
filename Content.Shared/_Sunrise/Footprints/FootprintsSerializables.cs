@@ -30,6 +30,15 @@ public sealed partial class FootprintComponent : Component
     /// </summary>
     [DataField]
     public Entity<SolutionComponent>? SolutionContainer;
+
+    [DataField]
+    public PrintType PrintType;
+}
+
+public enum PrintType
+{
+    DragMark,
+    Foot
 }
 
 /// <summary>
@@ -42,7 +51,7 @@ public sealed partial class PuddleFootprintComponent : Component
     /// Ratio determining how much of puddle's color transfers to footprints
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
-    public float ColorTransferRatio = 0.5f;
+    public float TransferVolume = 25f;
 
     /// <summary>
     /// Percentage of water content above which footprints won't be created
@@ -67,38 +76,50 @@ public sealed partial class FootprintEmitterComponent : Component
     /// State ID for left bare footprint
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly), DataField]
-    public string LeftBareFootState = "footprint-left-bare-human";
+    public string[] LeftBareFootState =
+    {
+        "footprint-left-bare-human",
+    };
 
     /// <summary>
     /// State ID for right bare footprint
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly), DataField]
-    public string RightBareFootState = "footprint-right-bare-human";
+    public string[] RightBareFootState =
+    {
+        "footprint-right-bare-human",
+    };
 
     /// <summary>
     /// State ID for shoe footprint
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly), DataField]
-    public string ShoeFootState = "footprint-shoes";
+    public string[] ShoeFootState =
+    {
+        "footprint-shoes",
+    };
 
     /// <summary>
     /// State ID for pressure suit footprint
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly), DataField]
-    public string PressureSuitFootState = "footprint-suit";
+    public string[] PressureSuitFootState =
+    {
+        "footprint-suit",
+    };
 
     /// <summary>
     /// Array of state IDs for dragging animations
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly), DataField]
     public string[] DraggingStates =
-    [
+    {
         "dragging-1",
         "dragging-2",
         "dragging-3",
         "dragging-4",
         "dragging-5",
-    ];
+    };
 
     /// <summary>
     /// Prototype ID for footprint entity
@@ -106,11 +127,8 @@ public sealed partial class FootprintEmitterComponent : Component
     [ViewVariables(VVAccess.ReadOnly), DataField]
     public EntProtoId<FootprintComponent> FootprintPrototype = "Footstep";
 
-    /// <summary>
-    /// Current color of footprints
-    /// </summary>
     [ViewVariables(VVAccess.ReadOnly), DataField]
-    public Color TrackColor = Color.FromHex("#00000000");
+    public EntProtoId<FootprintComponent> DragMarkPrototype = "DragMark";
 
     /// <summary>
     /// Distance between footprints when walking
@@ -124,23 +142,29 @@ public sealed partial class FootprintEmitterComponent : Component
     [DataField]
     public float DragMarkInterval = 0.5f;
 
-    /// <summary>
-    /// Amount of color accumulated from puddles
-    /// </summary>
-    [DataField]
-    public float AccumulatedColor;
+    [ViewVariables(VVAccess.ReadOnly), DataField]
+    public string FootsSolutionName = "foots";
+
+    [ViewVariables(VVAccess.ReadOnly), DataField]
+    public Entity<SolutionComponent>? FootsSolution;
+
+    [ViewVariables(VVAccess.ReadOnly), DataField]
+    public string BodySurfaceSolutionName = "body_surface";
+
+    [ViewVariables(VVAccess.ReadOnly), DataField]
+    public Entity<SolutionComponent>? BodySurfaceSolution;
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float TransferVolumeFoot = 0.2f;
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float TransferVolumeDragMark = 0.5f;
 
     /// <summary>
     /// Rate at which footprint color fades
     /// </summary>
     [DataField]
     public float ColorFadeRate = 0.05f;
-
-    /// <summary>
-    /// Current reagent being transferred to footprints
-    /// </summary>
-    [DataField]
-    public string? CurrentReagent;
 
     /// <summary>
     /// Offset from entity center for footprint placement
@@ -157,11 +181,6 @@ public sealed partial class FootprintEmitterComponent : Component
     /// Position of last footprint
     /// </summary>
     public Vector2 LastStepPosition = Vector2.Zero;
-
-    /// <summary>
-    /// Factor for interpolating between colors when mixing
-    /// </summary>
-    public float ColorBlendFactor = 0.2f;
 }
 
 /// <summary>

@@ -186,6 +186,13 @@ namespace Content.Client.Options.UI.Tabs
             AddButton(ContentKeyFunctions.RotateStoredItem);
             AddButton(ContentKeyFunctions.SaveItemLocation);
 
+            // Sunrise
+            AddButton(ContentKeyFunctions.ToggleStanding);
+            AddButton(ContentKeyFunctions.CockGun);
+            AddButton(ContentKeyFunctions.Jump);
+            AddButton(ContentKeyFunctions.Reloading);
+            // Sunrise
+
             AddHeader("ui-options-header-interaction-adv");
             AddButton(ContentKeyFunctions.SmartEquipBackpack);
             AddButton(ContentKeyFunctions.SmartEquipBelt);

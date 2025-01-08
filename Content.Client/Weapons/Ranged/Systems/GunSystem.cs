@@ -83,6 +83,7 @@ public sealed partial class GunSystem : SharedGunSystem
         base.Initialize();
         UpdatesOutsidePrediction = true;
         SubscribeLocalEvent<AmmoCounterComponent, ItemStatusCollectMessage>(OnAmmoCounterCollect);
+        SubscribeLocalEvent<AmmoCounterComponent, UpdateClientAmmoEvent>(OnUpdateClientAmmo);
         SubscribeAllEvent<MuzzleFlashEvent>(OnMuzzleFlash);
 
         // Plays animated effects on the client.
@@ -90,6 +91,11 @@ public sealed partial class GunSystem : SharedGunSystem
 
         InitializeMagazineVisuals();
         InitializeSpentAmmo();
+    }
+
+    private void OnUpdateClientAmmo(EntityUid uid, AmmoCounterComponent ammoComp, ref UpdateClientAmmoEvent args)
+    {
+        UpdateAmmoCount(uid, ammoComp);
     }
 
     private void OnMuzzleFlash(MuzzleFlashEvent args)
@@ -111,8 +117,7 @@ public sealed partial class GunSystem : SharedGunSystem
 
     private void OnHitscan(HitscanEvent ev)
     {
-        const float tracerInterval = 0.01f;
-        var activeTracers = new Dictionary<int, EntityUid>();
+        const double tracerInterval = 0.01f;
 
         foreach (var a in ev.Sprites)
         {
@@ -137,13 +142,7 @@ public sealed partial class GunSystem : SharedGunSystem
 
                     Timer.Spawn(TimeSpan.FromSeconds(delay), () =>
                     {
-                        if (activeTracers.TryGetValue(localIndex, out var existingTracer) && EntityManager.EntityExists(existingTracer))
-                        {
-                            EntityManager.DeleteEntity(existingTracer);
-                        }
-
-                        var tracerEntity = CreateTracerEffect(stepCoords, a.angle, rsi);
-                        activeTracers[localIndex] = tracerEntity;
+                        CreateTracerEffect(stepCoords, a.angle, rsi);
                     });
 
                     stepIndex++;
@@ -179,6 +178,7 @@ public sealed partial class GunSystem : SharedGunSystem
                     KeyFrames =
                     {
                         new AnimationTrackSpriteFlick.KeyFrame(rsi.RsiState, 0f),
+                        new AnimationTrackSpriteFlick.KeyFrame("empty", 0.02f),
                     }
                 }
             }
@@ -310,6 +310,27 @@ public sealed partial class GunSystem : SharedGunSystem
                     {
                         SetCartridgeSpent(ent!.Value, cartridge, true);
                         MuzzleFlash(gunUid, cartridge, worldAngle, user);
+                        Audio.PlayPredicted(gun.SoundGunshotModified, gunUid, user);
+                        Recoil(user, direction, gun.CameraRecoilScalarModified);
+                        // TODO: Can't predict entity deletions.
+                        //if (cartridge.DeleteOnSpawn)
+                        //    Del(cartridge.Owner);
+                    }
+                    else
+                    {
+                        userImpulse = false;
+                        Audio.PlayPredicted(gun.SoundEmpty, gunUid, user);
+                    }
+
+                    if (IsClientSide(ent!.Value))
+                        Del(ent.Value);
+
+                    break;
+                case HitScanCartridgeAmmoComponent hitScanCartridge:
+                    if (!hitScanCartridge.Spent)
+                    {
+                        SetHitscanCartridgeSpent(ent!.Value, hitScanCartridge, true);
+                        MuzzleFlash(gunUid, hitScanCartridge, worldAngle, user);
                         Audio.PlayPredicted(gun.SoundGunshotModified, gunUid, user);
                         Recoil(user, direction, gun.CameraRecoilScalarModified);
                         // TODO: Can't predict entity deletions.

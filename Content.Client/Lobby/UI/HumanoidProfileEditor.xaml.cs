@@ -396,10 +396,10 @@ namespace Content.Client.Lobby.UI
             PreferenceUnavailableButton.AddItem(
                 Loc.GetString("humanoid-profile-editor-preference-unavailable-stay-in-lobby-button"),
                 (int) PreferenceUnavailableMode.StayInLobby);
-            // PreferenceUnavailableButton.AddItem(
-            //     Loc.GetString("humanoid-profile-editor-preference-unavailable-spawn-as-overflow-button",
-            //                   ("overflowJob", Loc.GetString(SharedGameTicker.FallbackOverflowJobName))),
-            //     (int) PreferenceUnavailableMode.SpawnAsOverflow);
+             PreferenceUnavailableButton.AddItem(
+                 Loc.GetString("humanoid-profile-editor-preference-unavailable-spawn-as-overflow-button",
+                               ("overflowJob", Loc.GetString(SharedGameTicker.FallbackOverflowJobName))),
+                 (int) PreferenceUnavailableMode.SpawnAsOverflow);
 
             PreferenceUnavailableButton.OnItemSelected += args =>
             {
@@ -470,7 +470,11 @@ namespace Content.Client.Lobby.UI
                 if (_flavorText != null)
                     return;
 
-                _flavorText = new FlavorText.FlavorText();
+                // Sunrise-Start
+                var sponsorOnly = _cfgManager.GetCVar(SunriseCCVars.FlavorTextSponsorOnly);
+                var baseMaxDescLength = _cfgManager.GetCVar(SunriseCCVars.FlavorTextBaseLength);
+                _flavorText = new FlavorText.FlavorText(_sponsorsMgr, sponsorOnly, baseMaxDescLength);
+                // Sunrise-End
                 TabContainer.AddChild(_flavorText);
                 TabContainer.SetTabTitle(TabContainer.ChildCount - 1, Loc.GetString("humanoid-profile-editor-flavortext-tab"));
                 _flavorTextEdit = _flavorText.CFlavorTextInput;

@@ -18,4 +18,9 @@ public sealed partial class DroneConsoleComponent : Component
     /// </summary>
     [DataField("entity")]
     public EntityUid? Entity;
+
+    // Sunrise-Start
+    [DataField("portable")]
+    public bool Portable;
+    // Sunrise-End
 }

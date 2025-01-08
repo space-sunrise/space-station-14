@@ -10010,7 +10010,7 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: WeaponRifleAKSU
+- proto: WeaponRifleAKMU
   entities:
   - uid: 53
     components:

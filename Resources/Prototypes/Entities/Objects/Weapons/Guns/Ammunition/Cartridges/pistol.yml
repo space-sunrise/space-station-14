@@ -48,6 +48,8 @@
   components:
   - type: HitScanCartridgeAmmo
     proto: BulletPistolIncendiary
+  - type: IgniteOnAmmoHit
+    fireStacks: 0.7 # Sunrise-Edit
   - type: Sprite
     layers:
       - state: base
@@ -61,7 +63,7 @@
   name: cartridge (.35 auto uranium)
   parent: BaseCartridgePistol
   components:
-  - type: CartridgeAmmo
+  - type: HitScanCartridgeAmmo # Sunrise-Edit
     proto: BulletPistolUranium
   - type: Sprite
     layers:

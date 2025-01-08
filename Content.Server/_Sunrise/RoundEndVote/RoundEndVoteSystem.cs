@@ -5,6 +5,7 @@ using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Voting;
 using Robust.Shared.Timing;
 using Robust.Shared.Configuration;
+using Robust.Shared.Random;
 
 namespace Content.Server._Sunrise.RoundEndVote;
 
@@ -14,6 +15,7 @@ public sealed class RoundEndVoteSystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly IVoteManager _voteManager = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     private TimeSpan? _voteStartTime;
 
@@ -55,7 +57,9 @@ public sealed class RoundEndVoteSystem : EntitySystem
         if (_cfg.GetCVar(SunriseCCVars.RunMapVoteAfterRestart))
             _voteManager.CreateStandardVote(null, StandardVoteType.Map);
 
-        if (_cfg.GetCVar(SunriseCCVars.RunPresetVoteAfterRestart))
+        var presetVoteChance = _cfg.GetCVar(SunriseCCVars.ChancePresetVoteAfterRestart);
+
+        if (_cfg.GetCVar(SunriseCCVars.RunPresetVoteAfterRestart) && _random.Prob(presetVoteChance))
             _voteManager.CreateStandardVote(null, StandardVoteType.Preset);
     }
 }

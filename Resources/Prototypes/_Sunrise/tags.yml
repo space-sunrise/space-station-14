@@ -32,9 +32,6 @@
   id: BorgModuleERT
 
 - type: Tag
-  id: AssaultOpsUplink
-
-- type: Tag
   id: SyndieAgentUplink
 
 - type: Tag
@@ -52,7 +49,7 @@
   id: PowerpackMinigunMG100
 
 - type: Tag
-  id: CartridgeRocket20
+  id: CartridgeRail
 
 # Magazines:
 - type: Tag
@@ -178,6 +175,9 @@
 
 - type: Tag
   id: Gygax
+
+- type: Tag
+  id: Mauler
 
 - type: Tag
   id: Durand
@@ -323,3 +323,6 @@
 
 - type: Tag
   id: PokerCard
+
+- type: Tag
+  id: ToySword

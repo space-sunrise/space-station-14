@@ -46,6 +46,7 @@
   # Sunrise-Start
   - type: TTS
   - type: DamageOverlay
+  - type: EmoteAnimation
   # Sunrise-End
 
 - type: entity
@@ -192,7 +193,7 @@
   - type: Barotrauma
     damage:
       types:
-        Blunt: 0.15 #per second, scales with pressure and other constants.
+        Blunt: 0.1 # Sunrise-Casual
 
 # Used for mobs that can be set on fire
 - type: entity
@@ -220,7 +221,7 @@
   - type: Respirator
     damage:
       types:
-        Asphyxiation: 2
+        Asphyxiation: 0.5 # Sunrise-Casual
     damageRecovery:
       types:
         Asphyxiation: -1.0
@@ -232,6 +233,12 @@
   abstract: true
   components:
   - type: SolutionContainerManager
+    # Sunrise-Edit
+    solutions:
+      foots:
+        maxVol: 5
+      body_surface:
+        maxVol: 15
   - type: InjectableSolution
     solution: chemicals
   - type: Bloodstream

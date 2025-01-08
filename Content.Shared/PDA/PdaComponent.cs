@@ -13,12 +13,6 @@ namespace Content.Shared.PDA
         public const string PdaPenSlotId = "PDA-pen";
         public const string PdaPaiSlotId = "PDA-pai";
 
-        /// <summary>
-        /// The base PDA sprite state, eg. "pda", "pda-clown"
-        /// </summary>
-        [DataField("state")]
-        public string? State;
-
         [DataField("idSlot")]
         public ItemSlot IdSlot = new();
 
@@ -32,6 +26,9 @@ namespace Content.Shared.PDA
         // nicer to read.
         [DataField("id", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
         public string? IdCard;
+
+        [DataField("pen", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+        public string? Pen;
 
         [ViewVariables] public EntityUid? ContainedId;
         [ViewVariables] public bool FlashlightOn;

@@ -22,6 +22,35 @@
       sprite: Changeling/changeling_abilities.rsi
       state: stasis_exit
 
+#Kill
+- type: entity
+  parent: [BaseChangelingObjective, BaseKillObjective]
+  id: ChangelingKillRandomPersonObjective
+  description: Do it however you like, just make sure they don't make it to centcomm.
+  components:
+  - type: Objective
+    difficulty: 1.75
+    unique: false
+  - type: TargetObjective
+    title: objective-condition-kill-person-title
+  - type: PickRandomPerson
+  - type: KillPersonCondition
+    requireDead: true
+
+- type: entity
+  parent: [BaseChangelingObjective, BaseKillObjective]
+  id: ChangelingKillRandomAntagObjective
+  description:
+  components:
+  - type: Objective
+    difficulty: 3.0
+    unique: true
+  - type: TargetObjective
+    title: objective-condition-kill-antag-title
+  - type: PickRandomAntag
+  - type: KillPersonCondition
+    requireDead: true
+
 - type: entity
   parent: BaseChangelingObjective
   id: ChangelingAbsorbObjective

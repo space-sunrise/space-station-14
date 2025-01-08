@@ -48,6 +48,8 @@
   components:
   - type: HitScanCartridgeAmmo
     proto: BulletMagnumIncendiary
+  - type: IgniteOnAmmoHit
+    fireStacks: 0.8 # Sunrise-Edit
   - type: Sprite
     layers:
       - state: base

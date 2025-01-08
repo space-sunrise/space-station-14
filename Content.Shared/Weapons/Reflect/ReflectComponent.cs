@@ -30,6 +30,20 @@ public sealed partial class ReflectComponent : Component
 
     [DataField("soundOnReflect")]
     public SoundSpecifier? SoundOnReflect = new SoundPathSpecifier("/Audio/Weapons/Guns/Hits/laser_sear_wall.ogg");
+
+    // Sunrise-Start
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField, AutoNetworkedField]
+    public string? Slot;
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField, AutoNetworkedField]
+    public bool NeedHand;
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField, AutoNetworkedField]
+    public bool NeedActiveHand;
+    // Sunrise-End
 }
 
 [Flags]

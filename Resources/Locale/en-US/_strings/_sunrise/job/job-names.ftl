@@ -30,6 +30,7 @@ job-name-pathologist = патологоанатом
 job-name-adjutant = адъютант
 # Перевод трекеров времени
 JobCentCommOfficial = представитель Центком
+JobCentCommOperator = оператор Центком
 JobMagistrat = магистрат
 JobSeniorEngineer = ведущий инженер
 JobSeniorOfficer = инструктор СБ
@@ -56,3 +57,7 @@ JobSecurityCombatBorg = боевой киборг СБ
 JobPeaceBorg = миротворец
 JobClownBorg = клоун киборг
 JobMedicalPathologist = Патологоанатом
+JobUSSPCrew = Сотрудник СССП
+JobUSSPGuard = Милиция СССП
+JobUSSPSoldier = Солдат СССП
+JobUSSPOfficer = Офицер СССП

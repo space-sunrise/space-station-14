@@ -1,4 +1,92 @@
 - type: entity
+  id: PlayerBorgMiningBattery
+  parent: BorgChassisMining
+  suffix: Battery, Tools
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+
+- type: entity
+  id: PlayerBorgEngineerBattery
+  parent: BorgChassisEngineer
+  suffix: Battery, Tools
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+
+- type: entity
+  id: PlayerBorgJanitorBattery
+  parent: BorgChassisJanitor
+  suffix: Battery, Tools
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+
+- type: entity
+  id: PlayerBorgMedicalBattery
+  parent: BorgChassisMedical
+  suffix: Battery, Tools
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+
+- type: entity
+  id: PlayerBorgServiceBattery
+  parent: BorgChassisService
+  suffix: Battery, Tools
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+
+- type: entity
+  id: PlayerBorgSecurityBattery
+  parent: BorgChassisSecurity
+  suffix: Battery, Tools
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+
+- type: entity
+  id: PlayerBorgPeaceBattery
+  parent: BorgChassisPeace
+  suffix: Battery, Tools
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+
+- type: entity
+  id: PlayerBorgClownBattery
+  parent: BorgChassisClown
+  suffix: Battery, Tools
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+
+- type: entity
   id: PlayerBorgSecurityCombatBattery
   parent: BorgChassisSecurityCombat
   suffix: Battery, Tools
@@ -15,9 +103,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellMedium
-  - type: RandomMetadata
-    nameSegments: [names_borg]
+        startingItem: PowerCellHigh
 
 # Ert
 
@@ -51,7 +137,7 @@
   - type: ContainerFill
     containers:
       borg_brain:
-      - Boris
+      - Sofia
       borg_module:
       - BorgModuleSyndicateGeneric
       - BorgModuleSyndicateMedical
@@ -59,7 +145,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellHyper
+        startingItem: PowerCellSyndicate
 
 - type: entity
   id: PlayerBorgSyndicateReaperBattery
@@ -70,18 +156,19 @@
     - type: ContainerFill
       containers:
         borg_brain:
-          - Boris
+          - Sofia
     - type: ItemSlots
       slots:
         cell_slot:
           name: power-cell-slot-component-slot-name-default
-          startingItem: PowerCellHyper
+          startingItem: PowerCellSyndicate
 
 - type: entity
   id: PlayerBorgHeavySyndicateCombatBattery
   parent: BorgChassisSyndicateHeavy
   suffix: Battery, Tools
   components:
+  - type: NukeOperative
   - type: ContainerFill
     containers:
       borg_brain:
@@ -93,7 +180,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellHyper
+        startingItem: PowerCellSyndicate
 
 - type: entity
   id: PlayerBorgSyndicateAssaultBattery
@@ -112,13 +199,14 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellHyper
+        startingItem: PowerCellSyndicate
 
 - type: entity
-  id: PlayerBorgSpiderSyndicateBattery
-  parent: BorgChassisSyndicateSpider
-  suffix: Battery, Tools
+  id: PlayerBorgSyndicateSaboteurBattery
+  parent: BorgChassisSyndicateSaboteur
+  suffix: Battery, Module, Operative
   components:
+  - type: NukeOperative
   - type: ContainerFill
     containers:
       borg_brain:
@@ -131,7 +219,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellHyper
+        startingItem: PowerCellSyndicate
 
 - type: entity
   id: DeathSquadDirectivesCircuitBoard

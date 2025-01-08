@@ -36,6 +36,7 @@
   - type: Sprite
     sprite: Mobs/Silicon/chassis.rsi
   - type: RotationVisuals
+    defaultRotation: 90
     horizontalRotation: 90
   - type: MobState
     allowedStates:
@@ -65,6 +66,7 @@
     interfaces:
       enum.SiliconLawsUiKey.Key:
         type: SiliconLawBoundUserInterface
+        requireInputValidation: false
       enum.BorgUiKey.Key:
         type: BorgBoundUserInterface
       enum.StrippingUiKey.Key:
@@ -81,7 +83,7 @@
   - type: EmagSiliconLaw
     stunTime: 5
   - type: SiliconLawProvider
-    laws: Crewsimov
+    laws: NTDefault
   - type: IonStormTarget
   - type: Inventory
     templateId: borg
@@ -102,16 +104,16 @@
     - Common
     - Science
   - type: ZombieImmune
+  # Sunrise-Start
   - type: Repairable
-    # Sunrise-Start
     doAfterDelay: 3
     damage:
       types:
         Blunt: -15
         Slash: -15
         Piercing: -15
-    # Sunrise-End
     allowSelfRepair: false
+  # Sunrise-End
   - type: BorgChassis
   - type: LockingWhitelist
     blacklist:
@@ -154,6 +156,8 @@
     - KnockedDown
     - SlowedDown
     - Flashed
+    - Jump # Sunrise-Edit
+    - Flip # Sunrise-Edit
   - type: TypingIndicator
     proto: robot
   - type: Speech
@@ -263,6 +267,7 @@
   - type: Strap
     position: Stand
     buckleOffset: "0,0.15"
+  - type: Stripping
   # Sunrise-end
 
 - type: entity
@@ -381,47 +386,11 @@
     radius: 6
     energy: 3
   - type: ShowJobIcons
-#  - type: ShowMindShieldIcons Sunrise-Edit
+  - type: ShowMindShieldIcons
   - type: ShowCriminalRecordIcons
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      200: Critical
-      300: Dead
-    stateAlertDict:
-      Alive: BorgHealth
-      Critical: BorgCrit
-      Dead: BorgDead
-    showOverlays: false
-    allowRevives: true
   - type: FlashImmunity
   - type: TypingIndicator
     proto: syndibot
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 175
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          path: /Audio/Machines/warning_buzzer.ogg
-          params:
-            volume: 5
-    - trigger:
-        !type:DamageTrigger
-        damage: 400
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
-      - !type:EmptyContainersBehaviour
-        containers:
-        - borg_brain
-        - borg_module
-        - cell_slot
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -429,3 +398,23 @@
     - FootstepSound
     - EmagImmune
   # Sunrise-end
+
+- type: entity
+  id: BaseBorgChassisDerelict
+  parent: BaseBorgChassis
+  abstract: true
+  components:
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen #The seemingly best fit. It was a regular NT cyborg once, after all.
+  - type: Access
+    enabled: false
+    groups:
+    - AllAccess #Randomized access would be fun. AllAccess is the best i can think of right now that does make it too hard for it to enter the station or navigate it..
+  - type: AccessReader
+    access: [["Command"], ["Research"]]
+  - type: StartIonStormed
+    ionStormAmount: 3
+  - type: IonStormTarget
+    chance: 1
+  - type: ShowJobIcons

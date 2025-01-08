@@ -9,6 +9,7 @@ using Content.Server.Shuttles.Systems;
 using Content.Server.Spawners.Components;
 using Content.Server.Spawners.EntitySystems;
 using Content.Server.Station.Components;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.CCVar;
@@ -206,10 +207,29 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 
             _humanoidSystem.LoadProfile(entity.Value, profile);
             _metaSystem.SetEntityName(entity.Value, profile.Name);
-            if (profile.FlavorText != "" && _configurationManager.GetCVar(CCVars.FlavorText))
+
+            // Sunrise-Start
+            if (!string.IsNullOrEmpty(profile.FlavorText) && _configurationManager.GetCVar(CCVars.FlavorText))
             {
-                AddComp<DetailExaminableComponent>(entity.Value).Content = profile.FlavorText;
+                var session = _actors.GetSession(entity);
+                var flavortext = profile.FlavorText;
+
+                if (_sponsorsManager != null && session != null)
+                {
+                    var maxDescLength = _sponsorsManager.GetSizeFlavor(session.UserId);
+                    if (flavortext.Length > maxDescLength)
+                    {
+                        flavortext = FormattedMessage.RemoveMarkupOrThrow(flavortext)[..maxDescLength];
+                    }
+                }
+
+                if (!_configurationManager.GetCVar(SunriseCCVars.FlavorTextSponsorOnly) ||
+                    _sponsorsManager != null && session != null && _sponsorsManager.IsAllowedFlavor(session.UserId))
+                {
+                    AddComp<DetailExaminableComponent>(entity.Value).Content = flavortext;
+                }
             }
+            // Sunrise-End
         }
 
         DoJobSpecials(job, entity.Value);
@@ -231,12 +251,12 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         foreach (var giveaway in _prototypeManager.EnumeratePrototypes<HolidayGiveawayItemPrototype>())
         {
             if (string.IsNullOrEmpty(giveaway.Holiday) || string.IsNullOrEmpty(giveaway.Prototype))
-                return;
+                continue;
 
             var sysMan = IoCManager.Resolve<IEntitySystemManager>();
 
             if (!sysMan.GetEntitySystem<HolidaySystem>().IsCurrentlyHoliday(giveaway.Holiday))
-                return;
+                continue;
 
             var entMan = IoCManager.Resolve<IEntityManager>();
 

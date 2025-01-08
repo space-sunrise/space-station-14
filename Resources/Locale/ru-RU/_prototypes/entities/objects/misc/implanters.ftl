@@ -1,5 +1,5 @@
 ent-BaseImplanter = имплантер
-    .desc = Шприц, специально предназначенный для введения и извлечения подкожных имплантов.
+    .desc = Шприц, специально предназначенный для введения подкожных имплантов.
 ent-Implanter = { ent-BaseImplanter }
     .desc = Одноразовый шприц, специально предназначенный для введения и извлечения подкожных имплантов.
 ent-ImplanterAdmeme = { ent-Implanter }
@@ -21,6 +21,9 @@ ent-BikeHornImplanter = { ent-Implanter }
 ent-TrackingImplanter = { ent-Implanter }
     .desc = { ent-BaseImplantOnlyImplanter.desc }
     .suffix = Трекер
+ent-TrackingImplanterERT = { ent-Implanter }
+    .desc = { ent-BaseImplantOnlyImplanter.desc }
+    .suffix = Предсмертный хрип ОБР
 ent-StorageImplanter = { ent-Implanter }
     .desc = { ent-BaseImplantOnlyImplanter.desc }
     .suffix = Хранилище

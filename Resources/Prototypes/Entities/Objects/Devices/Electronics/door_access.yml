@@ -6,6 +6,12 @@
   components:
   - type: AccessReader
     access: [["Captain"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      gamma: GammaAlertAccesses
+      delta: AllAccess
+    # Sunrise-end
 
 - type: entity
   parent: DoorElectronics
@@ -14,6 +20,10 @@
   components:
   - type: AccessReader
     access: [["HeadOfPersonnel"]]
+    # Sunrise-start
+    alertAccesses:
+      delta: AllAccess
+    # Sunrise-end
 
 - type: entity
   parent: DoorElectronics
@@ -22,6 +32,14 @@
   components:
   - type: AccessReader
     access: [["Command"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      gamma: GammaAlertAccesses
+      delta: AllAccess
+    # Sunrise-end
+
+
 
 # Service
 - type: entity
@@ -31,6 +49,15 @@
   components:
   - type: AccessReader
     access: [["Bar"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      yellow: YellowAlertAccesses
+      gamma: GammaAlertAccesses
+      delta: AllAccess
+    # Sunrise-end
+
+
 
 - type: entity
   parent: DoorElectronics
@@ -39,6 +66,15 @@
   components:
   - type: AccessReader
     access: [["Bar"], ["Kitchen"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      yellow: YellowAlertAccesses
+      gamma: GammaAlertAccesses
+      delta: AllAccess
+    # Sunrise-end
+
+
 
 - type: entity
   parent: DoorElectronics
@@ -47,6 +83,14 @@
   components:
   - type: AccessReader
     access: [["Hydroponics"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      yellow: YellowAlertAccesses
+      gamma: GammaAlertAccesses
+      delta: AllAccess
+    # Sunrise-end
+
 
 - type: entity
   parent: DoorElectronics
@@ -55,6 +99,15 @@
   components:
   - type: AccessReader
     access: [["Chapel"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      yellow: YellowAlertAccesses
+      gamma: GammaAlertAccesses
+      delta: AllAccess
+    # Sunrise-end
+
+
 
 - type: entity
   parent: DoorElectronics
@@ -63,6 +116,15 @@
   components:
   - type: AccessReader
     access: [["Theatre"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      yellow: YellowAlertAccesses
+      gamma: GammaAlertAccesses
+      delta: AllAccess
+    # Sunrise-end
+
+
 
 - type: entity
   parent: DoorElectronics
@@ -71,6 +133,15 @@
   components:
   - type: AccessReader
     access: [["Kitchen"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      yellow: YellowAlertAccesses
+      gamma: GammaAlertAccesses
+      delta: AllAccess
+    # Sunrise-end
+
+
 
 - type: entity
   parent: DoorElectronics
@@ -79,6 +150,15 @@
   components:
   - type: AccessReader
     access: [["Kitchen"], ["Hydroponics"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      yellow: YellowAlertAccesses
+      gamma: GammaAlertAccesses
+      delta: AllAccess
+    # Sunrise-end
+
+
 
 - type: entity
   parent: DoorElectronics
@@ -87,6 +167,14 @@
   components:
   - type: AccessReader
     access: [["Janitor"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      yellow: YellowAlertAccesses
+      gamma: GammaAlertAccesses
+      delta: AllAccess
+    # Sunrise-end
+
 
 - type: entity
   parent: DoorElectronics
@@ -95,6 +183,15 @@
   components:
   - type: AccessReader
     access: [["Lawyer"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      yellow: YellowAlertAccesses
+      gamma: GammaAlertAccesses
+      delta: AllAccess
+    # Sunrise-end
+
+
 
 - type: entity
   parent: DoorElectronics
@@ -103,6 +200,14 @@
   components:
   - type: AccessReader
     access: [["Service"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      yellow: YellowAlertAccesses
+      gamma: GammaAlertAccesses
+      delta: AllAccess
+    # Sunrise-end
+
 
 # Cargo
 - type: entity
@@ -112,6 +217,10 @@
   components:
   - type: AccessReader
     access: [["Quartermaster"]]
+    # Sunrise-start
+    alertAccesses:
+      delta: AllAccess
+    # Sunrise-end
 
 - type: entity
   parent: DoorElectronics
@@ -120,6 +229,14 @@
   components:
   - type: AccessReader
     access: [["Salvage"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      yellow: YellowAlertAccesses
+      gamma: GammaAlertAccesses
+      delta: AllAccess
+    # Sunrise-end
+
 
 - type: entity
   parent: DoorElectronics
@@ -128,6 +245,14 @@
   components:
   - type: AccessReader
     access: [["Cargo"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      yellow: YellowAlertAccesses
+      gamma: GammaAlertAccesses
+      delta: AllAccess
+    # Sunrise-end
+
 
 # Engineering
 - type: entity
@@ -137,6 +262,10 @@
   components:
   - type: AccessReader
     access: [["ChiefEngineer"]]
+    # Sunrise-start
+    alertAccesses:
+      delta: AllAccess
+    # Sunrise-end
 
 - type: entity
   parent: DoorElectronics
@@ -145,6 +274,13 @@
   components:
   - type: AccessReader
     access: [["Atmospherics"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      gamma: GammaAlertAccesses
+      delta: AllAccess
+    # Sunrise-end
+
 
 - type: entity
   parent: DoorElectronics
@@ -153,6 +289,13 @@
   components:
   - type: AccessReader
     access: [["Engineering"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      gamma: GammaAlertAccesses
+      delta: AllAccess
+    # Sunrise-end
+
 
 # Science
 - type: entity
@@ -162,6 +305,14 @@
   components:
   - type: AccessReader
     access: [["Medical"], ["Detective"], ["Chapel"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      yellow: YellowAlertAccesses
+      gamma: GammaAlertAccesses
+      delta: AllAccess
+    # Sunrise-end
+
 
 - type: entity
   parent: DoorElectronics
@@ -170,6 +321,10 @@
   components:
   - type: AccessReader
     access: [["ResearchDirector"]]
+    # Sunrise-start
+    alertAccesses:
+      delta: AllAccess
+    # Sunrise-end
 
 - type: entity
   parent: DoorElectronics
@@ -178,6 +333,14 @@
   components:
   - type: AccessReader
     access: [["Research"], ["Medical"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      yellow: YellowAlertAccesses
+      gamma: GammaAlertAccesses
+      delta: AllAccess
+    # Sunrise-end
+
 
 - type: entity
   parent: DoorElectronics
@@ -186,6 +349,13 @@
   components:
   - type: AccessReader
     access: [["Research"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      yellow: YellowAlertAccesses
+      gamma: GammaAlertAccesses
+      delta: AllAccess
+    # Sunrise-end
 
 # Security
 - type: entity
@@ -195,6 +365,11 @@
   components:
   - type: AccessReader
     access: [["HeadOfSecurity"]]
+    # Sunrise-start
+    alertAccesses:
+      delta: AllAccess
+    # Sunrise-end
+
 
 - type: entity
   parent: DoorElectronics
@@ -203,6 +378,10 @@
   components:
   - type: AccessReader
     access: [["Armory"]]
+    # Sunrise-start
+    alertAccesses:
+      delta: AllAccess
+    # Sunrise-end
 
 - type: entity
   parent: DoorElectronics
@@ -211,6 +390,11 @@
   components:
   - type: AccessReader
     access: [["Detective"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 - type: entity
   parent: DoorElectronics
@@ -219,6 +403,11 @@
   components:
   - type: AccessReader
     access: [["Security"]]
+    # Sunrise-start
+    alertAccesses:
+      delta: AllAccess
+    # Sunrise-end
+
 
 - type: entity
   parent: DoorElectronics
@@ -227,6 +416,11 @@
   components:
   - type: AccessReader
     access: [["Security"], ["Lawyer"]]
+    # Sunrise-start
+    alertAccesses:
+      delta: AllAccess
+    # Sunrise-end
+
 
 - type: entity
   parent: DoorElectronics
@@ -235,6 +429,11 @@
   components:
   - type: AccessReader
     access: [["Brig"]]
+    # Sunrise-start
+    alertAccesses:
+      yellow: YellowAlertAccesses
+      delta: AllAccess
+    # Sunrise-end
 
 # Medical
 - type: entity
@@ -244,6 +443,11 @@
   components:
   - type: AccessReader
     access: [["ChiefMedicalOfficer"]]
+    # Sunrise-start
+    alertAccesses:
+      delta: AllAccess
+    # Sunrise-end
+
 
 - type: entity
   parent: DoorElectronics
@@ -252,6 +456,13 @@
   components:
   - type: AccessReader
     access: [["Chemistry"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      yellow: YellowAlertAccesses
+      gamma: GammaAlertAccesses
+      delta: AllAccess
+    # Sunrise-end
 
 - type: entity
   parent: DoorElectronics
@@ -260,6 +471,13 @@
   components:
   - type: AccessReader
     access: [["Medical"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      yellow: YellowAlertAccesses
+      gamma: GammaAlertAccesses
+      delta: AllAccess
+    # Sunrise-end
 
 # Syndicate
 - type: entity
@@ -294,6 +512,12 @@
   components:
   - type: AccessReader
     access: [["External"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      gamma: GammaAlertAccesses
+      delta: AllAccess
+    # Sunrise-end
 
 - type: entity
   parent: DoorElectronics
@@ -302,6 +526,11 @@
   components:
   - type: AccessReader
     access: [["Maintenance"]]
+    # Sunrise-start
+    alertAccesses:
+      delta: AllAccess
+    # Sunrise-end
+
 
 - type: entity
   parent: DoorElectronics
@@ -310,3 +539,8 @@
   components:
   - type: AccessReader
     access: [["Security"], ["Command"]]
+    # Sunrise-start
+    alertAccesses:
+      delta: AllAccess
+    # Sunrise-end
+

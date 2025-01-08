@@ -1,0 +1,63 @@
+- type: job
+  id: NanoTrasenRepresentative
+  name: job-name-ntrep
+  description: job-description-ntrep
+  playTimeTracker: JobNanoTrasenRepresentative
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Command
+      time: 54000 # 15 hrs
+    - !type:DepartmentTimeRequirement
+      department: Law
+      time: 18000 # 5 hrs
+  startingGear: NanoTrasenRepresentativeGear
+  icon: JobIconNanotrasen
+  joinNotifyCrew: true
+  supervisors: job-supervisors-centcom
+  canBeAntag: false
+  access:
+    - Cryogenics
+    - Lawyer
+    - Command
+    - Bar
+    - Service
+    - Maintenance
+    - Janitor
+    - Theatre
+    - Kitchen
+    - Chapel
+    - Hydroponics
+    - External
+    - Chemistry
+    - Engineering
+    - Research
+    - Detective
+    - Salvage
+    - Security
+    - Brig
+    - Cargo
+    - Atmospherics
+    - Cargo
+    - Medical
+    - Ntrep
+  special:
+    - !type:AddImplantSpecial
+      implants: [MindShieldImplant]
+    - !type:AddComponentSpecial
+      components:
+      - type: CommandStaff
+
+- type: startingGear
+  id: NanoTrasenRepresentativeGear
+  equipment:
+    shoes: ClothingShoesBootsLaceup
+    eyes: ClothingEyesSunGlassesHudSkill
+    head: ClothingHeadHatCapNtrep
+    id: NanoTrasenRepresentativePDA
+    ears: ClothingHeadsetAltCommand
+    pocket1: FlippoEngravedLighter
+    pocket2: PenCentcom
+  storage:
+    back:
+    - RubberStampNtrep
+    - CaneNT

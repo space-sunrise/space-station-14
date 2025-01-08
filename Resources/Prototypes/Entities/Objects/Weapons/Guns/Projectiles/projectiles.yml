@@ -973,6 +973,9 @@
   - type: EmbeddableProjectile
   - type: Projectile
     deleteOnCollide: false
+    damage:
+      types:
+        Shock: 30 # Sunrise-Edit
     soundHit:
       path: /Audio/Weapons/Guns/Hits/bullet_hit.ogg
   - type: LightningArcShooter
@@ -1254,6 +1257,10 @@
   parent: BaseItem
   categories: [ HideSpawnMenu ]
   components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: grenade
   - type: Projectile
     damage:
       types:

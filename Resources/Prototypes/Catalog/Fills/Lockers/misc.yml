@@ -141,6 +141,12 @@
     - id: ToolboxSyndicateFilled
     - id: BalloonSyn
     - id: WeaponSniperMosin
+    - id: MechPaintRipleyReaper
+    - id: MechPaintDurandUnathi
+    - id: MechPaintDurandDollhouse
+    - id: MechPaintGygaxMolot
+    - id: MechPaintGygaxPirate
+    - id: MechPaintGygaxBlack
       weight: 2
 
 - type: entityTable

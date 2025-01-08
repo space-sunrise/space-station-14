@@ -38,6 +38,31 @@
     - RightFootCyber
 
 - type: technology
+  id: BasicSyringeGun
+  name: research-technology-basic-syringegun
+  icon:
+    sprite: Objects/Weapons/Guns/Cannons/syringe_gun.rsi
+    state: syringe_gun
+  discipline: Biochemical
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+    - MiniSyringe
+    - LauncherSyringeMed
+
+- type: technology
+  id: CompactSyringeGun
+  name: research-technology-compact-syringegun
+  icon:
+    sprite: _Sunrise/Objects/Weapons/Guns/Launchers/syringe_pistol.rsi
+    state: syringe_gun
+  discipline: Biochemical
+  tier: 2
+  cost: 7500
+  recipeUnlocks:
+    - LauncherSyringePistol
+
+- type: technology
   id: SurgeryTechAdvanced
   name: research-technology-advanced-surgery
   icon:

@@ -23,7 +23,6 @@
   - Clown
   - HeadOfPersonnel
   - Janitor
-  - Lawyer
   - Librarian
   - Mime
   - Musician
@@ -147,7 +146,7 @@
   - Borg
   - MedicalBorg # Sunrise-Edit
   - EngineerBorg # Sunrise-Edit
-  - MinerBorg # Sunrise-Edit
+  - MiningBorg # Sunrise-Edit
   - JanitorBorg # Sunrise-Edit
   - ServiceBorg # Sunrise-Edit
   - ClownBorg # Sunrise-Edit

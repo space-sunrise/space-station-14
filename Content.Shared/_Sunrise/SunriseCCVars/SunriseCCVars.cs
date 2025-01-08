@@ -63,7 +63,7 @@ public sealed class SunriseCCVars
      */
 
     public static readonly CVarDef<bool> ServiceAuthEnabled =
-        CVarDef.Create("service_auth.enabled", false, CVar.SERVERONLY);
+        CVarDef.Create("service_auth.enabled", false, CVar.SERVER | CVar.REPLICATED);
 
     public static readonly CVarDef<string> ServiceAuthApiUrl =
         CVarDef.Create("service_auth.api_url", "", CVar.SERVERONLY);
@@ -110,6 +110,9 @@ public sealed class SunriseCCVars
 
     public static readonly CVarDef<string> SponsorApiToken =
         CVarDef.Create("sponsor.api_token", "", CVar.SERVERONLY | CVar.CONFIDENTIAL);
+
+    public static readonly CVarDef<string> SponsorGhostTheme =
+        CVarDef.Create("sponsor.ghost_theme", "", CVar.CLIENTONLY | CVar.ARCHIVE);
 
     /*
      *  Greetings
@@ -235,14 +238,14 @@ public sealed class SunriseCCVars
      */
 
     public static readonly CVarDef<bool> CryoTeleportEnable =
-        CVarDef.Create("cryo_teleport.enable", false, CVar.SERVERONLY);
+        CVarDef.Create("cryo_teleport.enable", true, CVar.SERVERONLY);
+
+    public static readonly CVarDef<int> CryoTeleportTransferDelay =
+        CVarDef.Create("cryo_teleport.transfer_delay", 5, CVar.SERVERONLY);
 
     /*
      * Damage
      */
-
-    public static readonly CVarDef<bool> DamageOverlay =
-        CVarDef.Create("damage.overlay", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     public static readonly CVarDef<float> DamageVariance =
         CVarDef.Create("damage.variance", 0.15f, CVar.SERVER | CVar.REPLICATED);
@@ -274,6 +277,8 @@ public sealed class SunriseCCVars
     public static readonly CVarDef<bool> RunMapVoteAfterRestart = CVarDef.Create("vote.run_map_vote_after_restart", false);
 
     public static readonly CVarDef<bool> RunPresetVoteAfterRestart = CVarDef.Create("vote.run_preset_vote_after_restart", false);
+
+    public static readonly CVarDef<float> ChancePresetVoteAfterRestart = CVarDef.Create("vote.chance_preset_vote_after_restart", 0.5f);
 
     public static readonly CVarDef<int> VotingsDelay = CVarDef.Create("vote.votings_delay", 60);
 
@@ -314,4 +319,90 @@ public sealed class SunriseCCVars
 
     public static readonly CVarDef<bool> MoodDecreasesSpeed =
         CVarDef.Create("mood.decreases_speed", true, CVar.SERVER);
+
+    /**
+     * Jump
+     */
+
+    public static readonly CVarDef<bool> JumpEnable =
+        CVarDef.Create("jump.enable", true, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<float> JumpDeadChanse =
+        CVarDef.Create("jump.dead_chanse", 0.001f, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<float> JumpCooldown =
+        CVarDef.Create("jump.cooldown", 0.600f, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<bool> JumpSoundEnable =
+        CVarDef.Create("jump.sound_enable", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> BunnyHopEnable =
+        CVarDef.Create("bunny_hop.enable", true, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<float> BunnyHopSpeedUpPerJump =
+        CVarDef.Create("bunny_hop.speed_up_per_jump", 0.005f, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<float> BunnyHopSpeedLimit =
+        CVarDef.Create("bunny_hop.speed_limit", 2.0f, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<float> BunnyHopMinSpeedThreshold =
+        CVarDef.Create("bunny_hop.min_speed_threshold", 4.0f, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<float> BunnyHopSpeedBoostWindow =
+        CVarDef.Create("bunny_hop.speed_boost_window", 0.610f, CVar.SERVER | CVar.REPLICATED);
+
+    /**
+     * Flip
+     */
+
+    public static readonly CVarDef<float> FlipDeadChanse =
+        CVarDef.Create("flip.dead_chanse", 0.001f, CVar.SERVER | CVar.REPLICATED);
+
+    /**
+     * Slip
+     */
+
+    public static readonly CVarDef<float> SlipDeadChanse =
+        CVarDef.Create("slip.dead_chanse", 0.001f, CVar.SERVER | CVar.REPLICATED);
+
+    /**
+     * VigersRay
+     */
+
+    public static readonly CVarDef<bool> VigersRayJoinNotifyEveryone =
+        CVarDef.Create("vigers_ray.join_notify_everyone", false, CVar.SERVERONLY);
+
+    public static readonly CVarDef<bool> VigersRayJoinSoundEveryone =
+        CVarDef.Create("vigers_ray.join_sound_everyone", false, CVar.SERVERONLY);
+
+    public static readonly CVarDef<bool> VigersRayJoinShockEveryone =
+        CVarDef.Create("vigers_ray.join_shock_everyone", false, CVar.SERVERONLY);
+
+    public static readonly CVarDef<string> VigersRayVictims =
+        CVarDef.Create("vigers_ray.victims", "", CVar.SERVERONLY);
+
+    public static readonly CVarDef<bool> DisableGameRules =
+        CVarDef.Create("vigers_ray.disable_game_rules", true, CVar.SERVERONLY);
+
+    /// <summary>
+    ///     Flavor Profile
+    /// </summary>
+    public static readonly CVarDef<bool> FlavorTextSponsorOnly =
+        CVarDef.Create("flavor_text.sponsor_only", true, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<int> FlavorTextBaseLength =
+        CVarDef.Create("flavor_text.length", 512, CVar.SERVER | CVar.REPLICATED);
+
+    /*
+     * Damage Overlay
+     */
+
+    public static readonly CVarDef<bool> DamageOverlayEnable =
+        CVarDef.Create("damage_overlay.enable", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> DamageOverlaySelf =
+        CVarDef.Create("damage_overlay.self", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<bool> DamageOverlayStructures =
+        CVarDef.Create("damage_overlay.structures", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 }

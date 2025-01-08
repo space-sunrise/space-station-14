@@ -1,0 +1,53 @@
+- type: entity
+  name: Bluespace crystal
+  parent: BaseItem
+  id: Bluecrystal
+  suffix: 100 BC
+  description: It seems to shimmer with a attractive energy.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/bluecrystal.rsi
+    state: bluecrystal
+  - type: Item
+    sprite: _Sunrise/Objects/Specific/bluecrystal.rsi
+    size: Tiny
+  - type: Stack
+    count: 100
+    stackType: Bluecrystal
+  - type: StaticPrice
+    price: 0
+  - type: StackPrice
+    price: 200
+  - type: Currency
+    price:
+      Bluecrystal: 1
+
+- type: entity
+  parent: Bluecrystal
+  id: Bluecrystal1
+  suffix: 1 BC
+  name: Bluespace crystal
+  description: It seems to shimmer with a attractive energy.
+  components:
+  - type: Stack
+    count: 1
+
+- type: entity
+  parent: Bluecrystal
+  id: Bluecrystal25
+  suffix: 25 BC
+  name: Bluespace crystal
+  description: It seems to shimmer with a attractive energy.
+  components:
+  - type: Stack
+    count: 10
+
+- type: entity
+  parent: Bluecrystal
+  id: Bluecrystal50
+  suffix: 50 BC
+  name: Bluespace crystal
+  description: It seems to shimmer with a attractive energy.
+  components:
+  - type: Stack
+    count: 25

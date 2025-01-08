@@ -121,3 +121,4 @@ lobby-parallax-Pebble = Pebble
 lobby-parallax-Outpost = Outpost
 lobby-parallax-Train = Train
 lobby-parallax-Core = Core
+lobby-parallax-Box = Box

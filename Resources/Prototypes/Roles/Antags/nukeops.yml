@@ -9,25 +9,33 @@
     time: 36000 # 10h # Sunrise-RoleTime
   - !type:DepartmentTimeRequirement
     department: Security
-    time: 7200 # 2h # Sunrise-RoleTime
+    time: 18000 # 5h # Sunrise-RoleTime
   guides: [ NuclearOperatives ]
+  # Sunrise-Edit
+  previewIcon:
+    sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
+    state: nuke_operative
 
 - type: antag
   id: NukeopsMedic
-  name: roles-antag-nuclear-operative-agent-name
+  name: roles-antag-nuclear-operative-medic-name
   antagonist: true
   setPreference: true
-  objective: roles-antag-nuclear-operative-agent-objective
+  objective: roles-antag-nuclear-operative-medic-objective
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 36000 # 10h # Sunrise-RoleTime
   - !type:RoleTimeRequirement
-    role: JobChemist
+    role: JobMedicalDoctor
     time: 18000 # 5h # Sunrise-RoleTime
   - !type:DepartmentTimeRequirement
     department: Security
     time: 18000 # 5h # Sunrise-RoleTime
   guides: [ NuclearOperatives ]
+  # Sunrise-Edit
+  previewIcon:
+    sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
+    state: nuke_medic
 
 - type: antag
   id: NukeopsCommander
@@ -37,12 +45,16 @@
   objective: roles-antag-nuclear-operative-commander-objective
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 36000 # 10h # Sunrise-RoleTime
+    time: 72000 # 20h # Sunrise-RoleTime
   - !type:DepartmentTimeRequirement
     department: Security
-    time: 18000 # 5h # Sunrise-RoleTime
+    time: 36000 # 10h # Sunrise-RoleTime
   # should be changed to nukie playtime when thats tracked (wyci)
   guides: [ NuclearOperatives ]
+  # Sunrise-Edit
+  previewIcon:
+    sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
+    state: nuke_commander
 
 - type: startingGear
   id: SyndicateOperativeGearFullNoUplink
@@ -67,9 +79,15 @@
 #Nuclear Operative Gear
 - type: startingGear
   id: SyndicateOperativeGearFull
-  parent: SyndicateOperativeGearFullNoUplink
   equipment:
-    pocket2: BaseUplinkRadio40TC
+    jumpsuit: ClothingUniformJumpsuitOperative
+    back: ClothingBackpackDuffelSyndicate
+    shoes: ClothingShoesBootsCombatFilled
+    id: SyndiPDA
+  storage:
+    back:
+    - PinpointerSyndicateNuclear
+    #- DeathAcidifierImplanter
 
 #Nuclear Operative Commander Gear
 - type: startingGear
@@ -77,20 +95,22 @@
   parent: SyndicateOperativeGearFull
   equipment:
     neck: SyndicateWhistle
-    outerClothing: ClothingOuterHardsuitSyndieCommanderBiocode # Sunrise-Edit
+    #outerClothing: ClothingOuterHardsuitSyndieCommanderBiocode # Sunrise-Edit
+    pocket1: BaseUplinkRadio0TC
   inhand:
   - NukeOpsDeclarationOfWar
+  - RemoteNukeOpShuttleController # Sunrise-Edit
 
 #Nuclear Operative Medic Gear
 - type: startingGear
   id: SyndicateOperativeMedicFull
   parent: SyndicateOperativeGearFull
   equipment:
-    eyes: ClothingEyesHudSyndicateAgent
-    outerClothing: ClothingOuterHardsuitSyndieMedicBiocode # Sunrise-Edit
-    shoes: ClothingShoesBootsMagSyndie
+    eyes: ClothingEyesHudSyndicateMedic # Sunrise-Edit
+    #outerClothing: ClothingOuterHardsuitSyndieMedicBiocode # Sunrise-Edit
+    #shoes: ClothingShoesBootsMagSyndie # Sunrise-Edit
     id: SyndiAgentPDA
-    belt: ClothingBeltMilitaryWebbingMedFilled
+    belt: ClothingBeltMilitaryWebbingMedFilled # Sunrise-Edit
   storage:
     back:
     - SyndiHypo
@@ -106,7 +126,7 @@
 #Lone Operative Gear
 - type: startingGear
   id: SyndicateLoneOperativeGearFull
-  parent: SyndicateOperativeGearFull
+  parent: SyndicateOperativeGearFullNoUplink
   equipment:
     pocket2: BaseUplinkRadio60TC
 

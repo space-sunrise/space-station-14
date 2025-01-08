@@ -31,6 +31,14 @@
                HorizontalExpand="True"
                ClipText="True"/>
         <customControls:VSeparator/>
+        <!-- Sunrise-Start -->
+        <Button Name="ObjectivesButton"
+                Text="{Loc player-tab-objectives-button}"
+                SizeFlagsStretchRatio="1"
+                HorizontalExpand="True"
+                ClipText="True"/>
+        <customControls:VSeparator/>
+        <!-- Sunrise-End -->
         <Label Name="OverallPlaytimeLabel"
                SizeFlagsStretchRatio="1"
                HorizontalExpand="True"

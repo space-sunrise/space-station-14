@@ -688,12 +688,6 @@
   - type: Sprite
     state: plushie-peacemaker
     sprite: _Sunrise/Objects/Fun/toys.rsi
-  - type: EmitSoundOnUse
-    sound:
-      path: /Audio/_Sunrise/vizhu_pidorasa.ogg
-  - type: EmitSoundOnTrigger
-    sound:
-      path: /Audio/_Sunrise/vizhu_pidorasa.ogg
   - type: UseDelay
     delay: 20.0
 
@@ -801,16 +795,6 @@
 
 - type: entity
   parent: BasePlushie
-  id: PlushieLuna
-  name: Plushie Luna
-  description: Nya!! Mya!! are the first words of this lovely lady.
-  components:
-  - type: Sprite
-    state: luna
-    sprite: _Sunrise/Objects/Fun/toys.rsi
-
-- type: entity
-  parent: BasePlushie
   id: PlushieRaisya
   name: Plushie Raisya
   description: Purr! “Meow! Nya! her favorite UwU words.
@@ -818,3 +802,35 @@
   - type: Sprite
     state: raisya
     sprite: _Sunrise/Objects/Fun/toys.rsi
+
+- type: entity
+  id: PlushieAnatolyLisitsyn
+  parent: BasePlushie
+  name: Anatoly Lisitsyn
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: anatoly_lisitsyn
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/rawr.ogg
+      params:
+        volume: 5
+  - type: UseDelay
+    delay: 5
+
+- type: entity
+  id: PlushieEvgeniyaKrein
+  parent: BasePlushie
+  name: Evgeniya Krein
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: evgeniya_krein
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Items/Toys/rawr.ogg
+      params:
+        volume: 5
+  - type: UseDelay
+    delay: 5

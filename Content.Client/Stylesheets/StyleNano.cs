@@ -123,6 +123,7 @@ namespace Content.Client.Stylesheets
 
         public static readonly Color ButtonColorGoodDefault = Color.FromHex("#3E6C45");
         public static readonly Color ButtonColorGoodHovered = Color.FromHex("#31843E");
+        public static readonly Color ButtonColorGoodDisabled = Color.FromHex("#164420");
 
         //NavMap
         public static readonly Color PointRed = Color.FromHex("#B02E26");
@@ -162,6 +163,7 @@ namespace Content.Client.Stylesheets
         public const string StyleClassCrossButtonRed = "CrossButtonRed";
         public const string StyleClassButtonColorRed = "ButtonColorRed";
         public const string StyleClassButtonColorGreen = "ButtonColorGreen";
+        public const string StyleClassNoStyle = "NoStyle";  // Sunrise-Edit
 
         public static readonly Color ChatBackgroundColor = Color.FromHex("#25252ADD");
 
@@ -1512,6 +1514,20 @@ namespace Content.Client.Stylesheets
 
                 Element<Button>().Class("ButtonColorGreen").Pseudo(ContainerButton.StylePseudoClassHover)
                     .Prop(Control.StylePropertyModulateSelf, ButtonColorGoodHovered),
+
+                // Accept button (merge with green button?) ---
+                Element<Button>().Class("ButtonAccept")
+                    .Prop(Control.StylePropertyModulateSelf, ButtonColorGoodDefault),
+
+                Element<Button>().Class("ButtonAccept").Pseudo(ContainerButton.StylePseudoClassNormal)
+                    .Prop(Control.StylePropertyModulateSelf, ButtonColorGoodDefault),
+
+                Element<Button>().Class("ButtonAccept").Pseudo(ContainerButton.StylePseudoClassHover)
+                    .Prop(Control.StylePropertyModulateSelf, ButtonColorGoodHovered),
+
+                Element<Button>().Class("ButtonAccept").Pseudo(ContainerButton.StylePseudoClassDisabled)
+                    .Prop(Control.StylePropertyModulateSelf, ButtonColorGoodDisabled),
+
                 // ---
 
                 // Small Button ---
@@ -1707,7 +1723,19 @@ namespace Content.Client.Stylesheets
                     new[]
                     {
                         new StyleProperty(TextureButton.StylePropertyTexture, resCache.GetTexture("/Textures/Interface/Bwoink/un_pinned.png"))
-                    })
+                    }),
+                // Sunrise-Edit
+                
+                Element<Button>().Class(StyleClassNoStyle)
+                    .Prop(Button.StylePropertyStyleBox, new StyleBoxFlat
+                    {
+                        BackgroundColor = Color.Transparent,
+                        ContentMarginLeftOverride = 15,
+                        ContentMarginRightOverride = 15,
+                        ContentMarginTopOverride = 12,
+                        ContentMarginBottomOverride = 12
+                    }),
+                // Sunrise-Edit
             }).ToList());
         }
     }

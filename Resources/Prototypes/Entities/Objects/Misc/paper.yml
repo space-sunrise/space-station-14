@@ -682,14 +682,16 @@
     - Trash
     - Document
   #- type: Appearance, hide stamp marks until we have some kind of displacement
-  - type: Flammable
-    fireSpread: true
-    canResistFire: false
-    alwaysCombustible: true
-    canExtinguish: true
-    damage:
-      types:
-        Heat: 1
+# Sunrise-Edit
+# Тесты падают из-за отсутсвия Apperance. Значит конверты не будут гореть
+#  - type: Flammable
+#    fireSpread: true
+#    canResistFire: false
+#    alwaysCombustible: true
+#    canExtinguish: true
+#    damage:
+#      types:
+#        Heat: 1
   - type: FireVisuals
     sprite: Effects/fire.rsi
     normalState: fire

@@ -173,13 +173,13 @@
     - MagazineMachineGunMG42
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgeLightRifle  # 762x39
+    proto: CartridgeRifle  # 556
     whitelist:
       tags:
-      - CartridgeLightRifle  # 762x39
-    capacity: 250
+      - CartridgeRifle  # 556
+    capacity: 150
   - type: Item
-    size: Small
+    size: Normal
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -210,9 +210,9 @@
     whitelist:
       tags:
       - CartridgeLightRifle  # 762x39
-    capacity: 250
+    capacity: 200
   - type: Item
-    size: Small
+    size: Normal
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container

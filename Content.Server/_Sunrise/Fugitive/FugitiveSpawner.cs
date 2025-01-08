@@ -2,6 +2,7 @@ using Content.Server.Mind;
 using Content.Server.Popups;
 using Content.Server.Store.Systems;
 using Content.Server.Stunnable;
+using Content.Server.Traitor.Uplink;
 using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
 using Content.Shared.Implants;
@@ -9,6 +10,7 @@ using Content.Shared.Implants.Components;
 using Content.Shared.Maps;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Store.Components;
+using Content.Shared.StoreDiscount.Components;
 using Content.Shared.Tag;
 using Robust.Server.Audio;
 using Robust.Shared.Audio;
@@ -35,6 +37,7 @@ namespace Content.Server._Sunrise.Fugitive
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly SharedSubdermalImplantSystem _subdermalImplant = default!;
         [Dependency] private readonly ExamineSystemShared _examine = default!;
+        [Dependency] private readonly UplinkSystem _uplinkSystem = default!;
 
         public override void Initialize()
         {
@@ -89,9 +92,8 @@ namespace Content.Server._Sunrise.Fugitive
                     {
                         if (!TryComp<StoreComponent>(containedEntity, out var storeComponent))
                             continue;
+                        _uplinkSystem.SetUplink(fugitive, containedEntity, _random.Next(5, 10), true);
                         _tagSystem.AddTag(containedEntity, "FugitiveUplink");
-                        _store.TryAddCurrency(new Dictionary<string, FixedPoint2>
-                            { {"Telecrystal", _random.Next(5, 10)} }, containedEntity, storeComponent);
                     }
                 }
             }

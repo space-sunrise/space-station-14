@@ -1,0 +1,51 @@
+- type: entity
+  parent: MiniSyringe
+  id: PrefilledMiniSyringe
+  components:
+  - type: Injector
+    toggleState: Inject
+
+- type: entity
+  suffix: MuteToxin, MiniSyringe
+  parent: PrefilledMiniSyringe
+  id: MiniSyringeMuteToxin
+  components:
+  - type: Label
+    currentLabel: reagent-name-mute-toxin
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+        - ReagentId: MuteToxin
+          Quantity: 15
+
+- type: entity
+  suffix: Fresium, MiniSyringe
+  parent: PrefilledMiniSyringe
+  id: MiniSyringeFresium
+  components:
+  - type: Label
+    currentLabel: reagent-name-fresium
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+        - ReagentId: Fresium
+          Quantity: 15
+
+- type: entity
+  suffix: CarpoToxin, MiniSyringe
+  parent: PrefilledMiniSyringe
+  id: MiniSyringeCarpoToxin
+  components:
+  - type: Label
+    currentLabel: reagent-name-carpotoxin
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 15
+        reagents:
+        - ReagentId: CarpoToxin
+          Quantity: 15

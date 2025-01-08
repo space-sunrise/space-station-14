@@ -67,7 +67,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
+    proto: BulletRedLaser
     fireCost: 100
   - type: BatterySelfRecharger
     autoRecharge: true
@@ -104,7 +104,7 @@
   name: epinephrine robot hypospray
   parent: BaseItem
   description: A borg version of hypospray that automatically regenerates epinephrine.
-  id: HyposprayBorgStandard
+  id: HypoBorgStandard
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -129,8 +129,8 @@
     injectOnly: true
 
 - type: entity
-  parent: HyposprayBorgStandard
-  id: HyposprayBorgPeace
+  parent: HypoBorgStandard
+  id: HypoBorgPeace
   name: pax cyborg hypospray
   description: A cyborg version of hypospray that automatically regenerates pax.
   categories: [ HideSpawnMenu ]
@@ -144,11 +144,17 @@
     generated:
       reagents:
       - ReagentId: Pax
-        Quantity: 0.05
+        Quantity: 0.1
+  - type: SolutionRegenerationSwitcher
+    options:
+    - ReagentId: Pax
+      Quantity: 0.1
+    - ReagentId: ChloralHydrate
+      Quantity: 2
 
 - type: entity
-  parent: HyposprayBorgStandard
-  id: HyposprayBorgMedical
+  parent: HypoBorgStandard
+  id: HypoBorgMedical
   name: medical robot hypospray
   description: A hypospray that can switch through several reagents.
   categories: [ HideSpawnMenu ]
@@ -204,8 +210,8 @@
 
 
 - type: entity
-  parent: HyposprayBorgStandard
-  id: HyposprayBorgSyndi
+  parent: HypoBorgStandard
+  id: HypoBorgMedicalSyndicate
   name: gorlax robot hypospray
   description: A hypospray that can switch through several reagents.
   categories: [ HideSpawnMenu ]
@@ -461,7 +467,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: PulseERTBorg
+    proto: BulletPulse
     fireCost: 200
   - type: Battery
     maxCharge: 5000
@@ -469,21 +475,6 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 30
-
-- type: hitscan
-  id: PulseERTBorg
-  damage:
-    types:
-      Heat: 17
-  muzzleFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: muzzle_blue
-  travelFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: beam_blue
-  impactFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: impact_blue
 
 - type: entity
   name: cyborg's DL6902
@@ -512,7 +503,7 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: CartridgeLightRifle
+    proto: BulletLightRifle
     fireCost: 50
   - type: Battery
     maxCharge: 10000
@@ -551,7 +542,7 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: CartridgeCaselessRifle
+    proto: BulletPistol
     fireCost: 50
   - type: Battery
     maxCharge: 5000
@@ -564,7 +555,7 @@
 - type: entity
   name: the cyborg saboteur's hypospray
   parent: BaseItem
-  id: HyposprayBorgSyndie
+  id: HypoBorgSaboteurSyndicate
   categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
@@ -619,7 +610,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellMicroreactor
+        startingItem: PowerCellRobotTool
 
 - type: entity
   parent: HandheldCrewMonitor

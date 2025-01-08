@@ -1,4 +1,28 @@
 - type: entity
+  id: BorgChassisSecurity
+  parent: BorgChassisSelectable
+  name: security cyborg
+  components:
+  - type: BorgSwitchableType
+    selectedBorgType: security
+
+- type: entity
+  id: BorgChassisPeace
+  parent: BorgChassisSelectable
+  name: peace cyborg
+  components:
+  - type: BorgSwitchableType
+    selectedBorgType: peace
+
+- type: entity
+  id: BorgChassisClown
+  parent: BorgChassisSelectable
+  name: clown cyborg
+  components:
+  - type: BorgSwitchableType
+    selectedBorgType: clown
+
+- type: entity
   id: BorgChassisSecurityCombat
   parent: BaseBorgChassisNT
   name: security combat cyborg
@@ -23,7 +47,7 @@
   - type: BorgCuffed
   - type: FlashImmunity
   - type: ShowJobIcons
-#  - type: ShowMindShieldIcons Sunrise-Edit
+  - type: ShowMindShieldIcons
   - type: ShowCriminalRecordIcons
   - type: BorgTransponder
     sprite:
@@ -53,7 +77,7 @@
   - type: AccessReader
     access: [["Security"], ["Command"]]
   - type: SiliconLawProvider
-    laws: NTDefault
+    laws: RobocopLawset
   - type: TTS
     voice: Sentrybot
   - type: PointLight
@@ -86,7 +110,7 @@
     - Atmospherics
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.5
-    baseSprintSpeed : 3.5
+    baseSprintSpeed : 4.5
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -214,7 +238,7 @@
         volume: -15
   - type: FlashImmunity
   - type: ShowJobIcons
-#  - type: ShowMindShieldIcons Sunrise-Edit
+  - type: ShowMindShieldIcons
   - type: ShowCriminalRecordIcons
   - type: GhostRole
     makeSentient: true
@@ -253,11 +277,6 @@
     - Science
     - Command
     - CentCom
-  - type: MobThresholds
-    thresholds:
-      0: Alive
-      200: Critical
-      300: Dead
   - type: AccessReader
     access: [["Security"], ["Command"], ["Research"]]
   - type: SiliconLawProvider
@@ -268,31 +287,6 @@
     energy: 4
   - type: TTS
     voice: Sentrybot
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 175
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          path: /Audio/Machines/warning_buzzer.ogg
-          params:
-            volume: 5
-    - trigger:
-        !type:DamageTrigger
-        damage: 400
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
-      - !type:EmptyContainersBehaviour
-        containers:
-        - borg_brain
-        - borg_module
-        - cell_slot
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
   - type: Access
     enabled: false
     tags:
@@ -322,7 +316,7 @@
     - BorgNamesERT
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.5
-    baseSprintSpeed : 4
+    baseSprintSpeed : 4.5
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -377,7 +371,7 @@
       state: heavy
     name: syndicate's heavy combat cyborg.
   - type: BorgChassis
-    maxModules: 4
+    maxModules: 2
     moduleWhitelist:
       tags:
       - BorgModuleSyndicate
@@ -412,8 +406,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      400: Critical
-      500: Dead
+      500: Critical
+      600: Dead
   - type: PointLight
     color: "#f51e0f"
     radius: 9
@@ -424,7 +418,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 350
+        damage: 400
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -456,8 +450,8 @@
       params:
         volume: -5
   - type: MovementSpeedModifier
-    baseWalkSpeed : 1.5
-    baseSprintSpeed : 2.5
+    baseWalkSpeed : 2
+    baseSprintSpeed : 3
   - type: InnateItem
     worldTargetActions:
     - Emag

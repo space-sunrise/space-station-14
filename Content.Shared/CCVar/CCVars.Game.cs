@@ -101,7 +101,7 @@ public sealed partial class CCVars
         ///     If roles should be restricted based on time.
         /// </summary>
         public static readonly CVarDef<bool>
-            GameRoleTimers = CVarDef.Create("game.role_timers", true, CVar.SERVER | CVar.REPLICATED);
+            GameRoleTimers = CVarDef.Create("game.role_timers", false, CVar.SERVER | CVar.REPLICATED); // Sunrise-Edit
 
         /// <summary>
         ///     Override default role requirements using a <see cref="JobRequirementOverridePrototype"/>
@@ -154,6 +154,7 @@ public sealed partial class CCVars
 
         /// <summary>
         ///     Whether or not the panic bunker will enable when no admins are online.
+        ///     This counts everyone with the 'Admin' AdminFlag.
         /// </summary>
         public static readonly CVarDef<bool> PanicBunkerEnableWithoutAdmins =
             CVarDef.Create("game.panic_bunker.enable_without_admins", false, CVar.SERVERONLY);

@@ -40,10 +40,10 @@ public sealed class BodySystem : SharedBodySystem
             return;
         }
 
-        if (_mobState.IsDead(ent) && _mindSystem.TryGetMind(ent, out var mindId, out var mind))
+        if (_mobState.IsDead(ent) && _mindSystem.TryGetMind(ent, out var mindId, out var mind) && mind.Session != null) // Sunrise-Edit
         {
             mind.TimeOfDeath ??= _gameTiming.RealTime;
-            _ghostSystem.OnGhostAttempt(mindId, canReturnGlobal: true, mind: mind);
+            _ghostSystem.OpenAcceptEui(mindId, mind.Session); // Sunrise-Edit
         }
     }
 

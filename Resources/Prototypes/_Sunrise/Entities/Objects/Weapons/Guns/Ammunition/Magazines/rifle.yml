@@ -22,10 +22,10 @@
   - type: BallisticAmmoProvider
     mayTransfer: true
     capacity: 40
-    proto: CartridgeRocket20
+    proto: CartridgeRail
     whitelist:
       tags:
-      - CartridgeRocket20
+      - CartridgeRail
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container

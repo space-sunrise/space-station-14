@@ -1,6 +1,6 @@
 using Content.Server.Audio;
-using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
+using Content.Shared._Sunrise.Economy;
 using Content.Shared.Construction;
 using Content.Shared.Construction.Components;
 using Content.Shared.Containers.ItemSlots;
@@ -102,6 +102,7 @@ public sealed class FlatpackSystem : SharedFlatpackSystem
             return;
 
         var flatpack = Spawn(comp.BaseFlatpackPrototype, Transform(ent).Coordinates);
+        EnsureComp<DontSellComponent>(flatpack); // Sunrise-Edit
         SetupFlatpack(flatpack, proto, board);
         Del(board);
     }

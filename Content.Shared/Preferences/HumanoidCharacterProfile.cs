@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Text.RegularExpressions;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
 using Content.Shared._Sunrise.TTS;
 using Content.Shared.GameTicking;
@@ -31,7 +32,6 @@ namespace Content.Shared.Preferences
         private static readonly Regex ICNameCaseRegex = new(@"^(?<word>\w)|\b(?<word>\w)(?=\w*$)");
 
         public const int MaxNameLength = 32;
-        public const int MaxDescLength = 512;
 
         /// <summary>
         /// Job preferences for initial spawn.
@@ -63,8 +63,6 @@ namespace Content.Shared.Preferences
 
         [DataField]
         private Dictionary<string, RoleLoadout> _loadouts = new();
-
-        private ISharedSponsorsManager? _sponsorsMgr;  // Sunrise-Sponsors
 
         [DataField]
         public string Name { get; set; } = "John Doe";
@@ -130,7 +128,7 @@ namespace Content.Shared.Preferences
         /// </summary>
         [DataField]
         public PreferenceUnavailableMode PreferenceUnavailable { get; private set; } =
-            PreferenceUnavailableMode.StayInLobby; // Sunrise-Edit
+            PreferenceUnavailableMode.SpawnAsOverflow;
 
         public HumanoidCharacterProfile(
             string name,
@@ -572,10 +570,24 @@ namespace Content.Shared.Preferences
                 name = GetName(Species, gender);
             }
 
-            string flavortext;
-            if (FlavorText.Length > MaxDescLength)
+            // Sunrise-Start
+            IoCManager.Instance!.TryResolveType<ISharedSponsorsManager>(out var sponsors);
+            var maxDescLength = configManager.GetCVar(SunriseCCVars.FlavorTextBaseLength);
+            if (sponsors != null)
             {
-                flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText)[..MaxDescLength];
+                if (sponsors.IsSponsor(session.UserId))
+                    maxDescLength = sponsors.GetSizeFlavor(session.UserId);
+                if (!sponsors.IsAllowedFlavor(session.UserId) && configManager.GetCVar(SunriseCCVars.FlavorTextSponsorOnly))
+                {
+                    FlavorText = string.Empty;
+                }
+            }
+            // Sunrise-End
+
+            string flavortext;
+            if (FlavorText.Length > maxDescLength) // Sunrise-Edit
+            {
+                flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText)[..maxDescLength]; // Sunrise-Edit
             }
             else
             {
@@ -587,7 +599,7 @@ namespace Content.Shared.Preferences
             var prefsUnavailableMode = PreferenceUnavailable switch
             {
                 PreferenceUnavailableMode.StayInLobby => PreferenceUnavailableMode.StayInLobby,
-                //PreferenceUnavailableMode.SpawnAsOverflow => PreferenceUnavailableMode.SpawnAsOverflow, // Sunrise-Edit
+                PreferenceUnavailableMode.SpawnAsOverflow => PreferenceUnavailableMode.SpawnAsOverflow,
                 _ => PreferenceUnavailableMode.StayInLobby // Invalid enum values.
             };
 

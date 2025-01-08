@@ -44,7 +44,7 @@ def insert_entry(changelog, author, changes):
 
     changelog['Entries'].append(entry)
 
-def prune_entries(changelog, max_entries=500):
+def prune_entries(changelog, max_entries=5000):
     print(f"Pruning changelog to a maxmimum of {max_entries} entries ...")
     changelog['Entries'] = changelog['Entries'][-max_entries:]
 

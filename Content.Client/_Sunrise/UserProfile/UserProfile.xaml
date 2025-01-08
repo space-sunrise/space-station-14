@@ -20,7 +20,7 @@
                                HorizontalAlignment="Center"
                                VerticalExpand="True"
                                VerticalAlignment="Top">
-                    <Button Name="InfoSponsorButton" Text="{Loc 'user-profile-sponsor-info-button'}" Disabled="True" />
+                    <Button Name="InfoSponsorButton" Text="{Loc 'user-profile-sponsor-info-button'}" />
                     <Button Name="BuySponsorButton" Text="{Loc 'user-profile-sponsor-buy-button'}" />
                 </GridContainer>
             </BoxContainer>

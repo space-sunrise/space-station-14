@@ -4,3 +4,27 @@
   keycode: "ю"
   frequency: 1780
   color: "#ff178b"
+
+- type: radioChannel
+  id: USSP
+  name: chat-radio-ussp
+  keycode: 'а'
+  frequency: 1945
+  color: "#CC0000"
+  longRange: false
+
+- type: radioChannel
+  id: USSPSec
+  name: chat-radio-ussp-sec
+  keycode: 'ч'
+  frequency: 1984
+  color: "#B00000"
+  longRange: false
+
+- type: radioChannel
+  id: USSPCom
+  name: chat-radio-ussp-com
+  keycode: 'е'
+  frequency: 1991
+  color: "#890000"
+  longRange: false

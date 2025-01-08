@@ -1,29 +1,24 @@
 - type: npcFaction
-  id: Carps
-  hostile:
-    - NanoTrasen
-    - Syndicate
-    - Thief
-    - Xeno
-    - PetsNT
-    - Zombie
-    - Revolutionary
-    - SimpleHostile
-
-- type: npcFaction
   id: NanoTrasen
   hostile:
   - SimpleHostile
   - Syndicate
-  - Thief
   - Xeno
   - Zombie
   - Revolutionary
+  - AllHostile
+  # Sunrise Edit
+  - Thief
+  - Carps
+  - Changeling
+  - Vampire
+  - Flesh
 
 - type: npcFaction
   id: Mouse
   hostile:
     - PetsNT
+    - AllHostile
 
 - type: npcFaction
   id: Passive
@@ -35,18 +30,28 @@
   - SimpleHostile
   - Zombie
   - Xeno
+  - AllHostile
+  # Sunrise Edit
+  - Carps
+  - Flesh
 
 - type: npcFaction
   id: SimpleHostile
   hostile:
   - NanoTrasen
   - Syndicate
-  - Thief
   - Passive
   - PetsNT
   - Zombie
   - Revolutionary
+  - AllHostile
+  # Sunrise Edit
+  - Thief
   - Carps
+  - Changeling
+  - Vampire
+  - FleshHuman
+  - Flesh
 
 - type: npcFaction
   id: SimpleNeutral
@@ -59,26 +64,32 @@
   - Xeno
   - PetsNT
   - Zombie
-
-- type: npcFaction
-  id: Thief
-  hostile:
-  - NanoTrasen
-  - SimpleHostile
-  - Xeno
-  - PetsNT
-  - Zombie
+  - AllHostile
+  # Sunrise Edit
+  - Thief
+  - Carps
+  - Changeling
+  - Vampire
+  - FleshHuman
+  - Flesh
 
 - type: npcFaction
   id: Xeno
   hostile:
   - NanoTrasen
   - Syndicate
-  - Thief
   - Passive
   - PetsNT
   - Zombie
   - Revolutionary
+  - AllHostile
+  # Sunrise Edit
+  - Thief
+  - Carps
+  - Changeling
+  - Vampire
+  - FleshHuman
+  - Flesh
 
 - type: npcFaction
   id: Zombie
@@ -87,12 +98,17 @@
   - SimpleNeutral
   - SimpleHostile
   - Syndicate
-  - Thief
   - Passive
   - PetsNT
   - Revolutionary
+  - AllHostile
+  # Sunrise Edit
+  - Thief
+  - Carps
   - Changeling
   - Vampire
+  - FleshHuman
+  - Flesh
 
 - type: npcFaction
   id: Revolutionary
@@ -100,24 +116,31 @@
   - NanoTrasen
   - Zombie
   - SimpleHostile
+  - AllHostile
+  # Sunrise Edit
   - Carps
-
-- type: npcFaction
-  id: Changeling
-  hostile:
-  - NanoTrasen
-  - Syndicate
-  - Thief
-  - Zombie
-  - Revolutionary
-
-- type: npcFaction
-  id: Vampire
-  hostile:
-  - NanoTrasen
-  - Syndicate
-  - Thief
-  - Zombie
-  - Revolutionary
   - Changeling
+  - Vampire
+  - FleshHuman
+  - Flesh
+
+- type: npcFaction
+  id: AllHostile
+  hostile:
+  - NanoTrasen
+  - Mouse
+  - Passive
+  - PetsNT
+  - SimpleHostile
+  - SimpleNeutral
+  - Syndicate
   - Xeno
+  - Zombie
+  - Revolutionary
+  # Sunrise Edit
+  - Thief
+  - Carps
+  - Changeling
+  - Vampire
+  - FleshHuman
+  - Flesh

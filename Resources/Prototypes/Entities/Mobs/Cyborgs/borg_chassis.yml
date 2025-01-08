@@ -65,7 +65,6 @@
   parent: BorgChassisSelectable
   name: janitor cyborg
   components:
-  - type: FootprintAreaCleaner
   - type: BorgSwitchableType
     selectedBorgType: janitor
 
@@ -84,32 +83,6 @@
   components:
   - type: BorgSwitchableType
     selectedBorgType: service
-
-# Sunrise-Start
-- type: entity
-  id: BorgChassisPeace
-  parent: BorgChassisSelectable
-  name: peace cyborg
-  components:
-  - type: BorgSwitchableType
-    selectedBorgType: peace
-
-- type: entity
-  id: BorgChassisClown
-  parent: BorgChassisSelectable
-  name: clown cyborg
-  components:
-  - type: BorgSwitchableType
-    selectedBorgType: clown
-
-- type: entity
-  id: BorgChassisSecurity
-  parent: BorgChassisSelectable
-  name: security cyborg
-  components:
-  - type: BorgSwitchableType
-    selectedBorgType: security
-# Sunrise-End
 
 - type: entity
   id: BorgChassisSyndicateAssault
@@ -167,7 +140,7 @@
       voice: Sentrybot
     - type: MovementSpeedModifier
       baseWalkSpeed : 2.5
-      baseSprintSpeed : 3.5
+      baseSprintSpeed : 4.5
     - type: InnateItem
       worldTargetActions:
       - Emag
@@ -215,8 +188,8 @@
     - type: TTS
       voice: Sentrybot
     - type: MovementSpeedModifier
-      baseWalkSpeed: 2.5
-      baseSprintSpeed: 4.5
+      baseWalkSpeed: 3
+      baseSprintSpeed: 5
     - type: InnateItem
       worldTargetActions:
       - Emag
@@ -258,3 +231,35 @@
       interactFailureString: petting-failure-syndicate-cyborg
       interactSuccessSound:
         path: /Audio/Ambience/Objects/periodic_beep.ogg
+
+- type: entity
+  id: BorgChassisDerelict
+  parent: BaseBorgChassisDerelict
+  name: derelict cyborg
+  description: A man-machine hybrid that assists in station activity. This one is in a state of great disrepair.
+  components:
+  - type: Sprite
+    layers:
+    - state: derelict
+    - state: derelict_e_r
+      map: ["enum.BorgVisualLayers.Light"]
+      shader: unshaded
+      visible: false
+    - state: derelict_l
+      shader: unshaded
+      map: ["light"]
+      visible: false
+  - type: BorgChassis
+    maxModules: 5 # the sixth one broke lol
+    moduleWhitelist:
+      tags:
+      - BorgModuleGeneric
+    hasMindState: derelict_e
+    noMindState: derelict_e_r
+  - type: Construction
+    node: derelictcyborg
+  - type: InteractionPopup
+    interactSuccessString: petting-success-derelict-cyborg
+    interactFailureString: petting-failure-derelict-cyborg
+    interactSuccessSound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg

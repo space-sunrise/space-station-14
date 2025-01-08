@@ -31,8 +31,6 @@
       enabled: false
     - type: Clickable
     - type: InteractionOutline
-    - type: Anchorable
-    - type: Pullable
     - type: Sprite
       drawdepth: 2
       sprite: Structures/Power/Generation/supermatter.rsi
