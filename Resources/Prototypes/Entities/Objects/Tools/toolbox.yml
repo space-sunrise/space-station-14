@@ -32,6 +32,14 @@
           True: { state: icon-open }
           False: { state: icon }
   - type: Appearance
+  # Sunrise edit start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/toolbox_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/Items/toolbox_drop.ogg
+  # Sunrise edit end
 
 - type: entity
   name: emergency toolbox

@@ -51,6 +51,17 @@
   - type: WirelessNetworkConnection
     range: 1200
   - type: StationLimitedNetwork
+  # Sunrise start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/cloth_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/cloth_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/cloth_drop.ogg
+  # Sunrise end
 
 - type: entity
   abstract: true
