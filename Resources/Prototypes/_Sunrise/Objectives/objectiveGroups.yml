@@ -20,8 +20,10 @@
 - type: weightedRandom
   id: VampireObjectiveGroupKill
   weights:
-    VampireKillRandomAntagObjective: 1
-    VampireKillRandomPersonObjective: 0.3
+    VampireKillRandomPersonObjective: 1
+    # SUNRISE-TODO: Цель не работает, так как в момент выдачи антагов еще нету
+    # Нужно как-то выдавать эту цель позже выбора агентов.
+    # VampireKillRandomAntagObjective
 
 - type: weightedRandom
   id: VampireObjectiveGroupState
@@ -51,8 +53,10 @@
 - type: weightedRandom
   id: ChangelingObjectiveGroupKill
   weights:
-    ChangelingKillRandomAntagObjective: 1
-    ChangelingKillRandomPersonObjective: 0.3
+    ChangelingKillRandomPersonObjective: 1
+    # SUNRISE-TODO: Цель не работает, так как в момент выдачи антагов еще нету
+    # Нужно как-то выдавать эту цель позже выбора агентов.
+    # ChangelingKillRandomAntagObjective
 
 - type: weightedRandom
   id: ChangelingObjectiveGroupState

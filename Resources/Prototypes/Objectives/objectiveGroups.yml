@@ -32,16 +32,18 @@
 - type: weightedRandom
   id: TraitorObjectiveGroupKill
   weights:
-    KillRandomAntagObjective: 1
-    KillRandomPersonObjective: 0.5
+    KillRandomPersonObjective: 1
     KillRandomHeadObjective: 0.25
+    # SUNRISE-TODO: Цель не работает, так как в момент выдачи антагов еще нету
+    # Нужно как-то выдавать эту цель позже выбора агентов.
+    #KillRandomAntagObjective: 1
 
 - type: weightedRandom
   id: TraitorObjectiveGroupState
   weights:
     EscapeShuttleObjective: 1
-    DieObjective: 0.05
-    HijackShuttleObjective: 0.03
+    DieObjective: 0.02
+    HijackShuttleObjective: 0.02
 
 - type: weightedRandom
   id: TraitorObjectiveGroupSocial
