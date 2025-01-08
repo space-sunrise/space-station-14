@@ -45,6 +45,7 @@ station-beacon-telecoms = Телекоммуникации
 station-beacon-atmos = Атмосферный отсек
 station-beacon-teg = ТЭГ
 station-beacon-tech-vault = Технологическое хранилище
+station-beacon-anchor = Станционный якорь
 station-beacon-service = Сервисные помещения
 station-beacon-kitchen = Кухня
 station-beacon-bar = Бар
