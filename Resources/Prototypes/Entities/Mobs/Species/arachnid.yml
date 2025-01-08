@@ -52,7 +52,7 @@
       path: /Audio/Effects/bite.ogg
     damage:
       types:
-        Piercing: 5
+        Piercing: 15 # Sunrise-Edit
   # Visual & Audio
   - type: DamageVisuals
     damageOverlayGroups:
@@ -73,6 +73,7 @@
   - type: TypingIndicator
     proto: spider
   - type: Sprite # I'd prefer if these maps were better. Insert map pun here.
+    scale: 1.1, 1.2 # Sunrise-Edit
     layers:
       - map: [ "enum.HumanoidVisualLayers.Chest" ]
       - map: [ "enum.HumanoidVisualLayers.Head" ]
@@ -135,6 +136,18 @@
       - "footprint-left-bare-spider"
     rightBareFootState:
       - "footprint-right-bare-spider"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 250
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
   # Sunrise-end
 
 - type: entity

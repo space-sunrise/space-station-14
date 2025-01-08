@@ -7,8 +7,11 @@ using Content.Server.Mind;
 using Content.Server.Revolutionary.Components;
 using Content.Server.RoundEnd;
 using Content.Server.Station.Components;
+using Content.Server.Store.Systems;
 using Content.Server.Traitor.Uplink;
 using Content.Shared._Sunrise.AssaultOps;
+using Content.Shared._Sunrise.AssaultOps.Icarus;
+using Content.Shared.FixedPoint;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Implants;
@@ -19,6 +22,8 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Systems;
 using Content.Shared.Roles;
+using Content.Shared.Store;
+using Content.Shared.Store.Components;
 using Content.Shared.Tag;
 using Robust.Shared.Containers;
 using Robust.Shared.Random;
@@ -35,12 +40,16 @@ public sealed class AssaultOpsRuleSystem : GameRuleSystem<AssaultOpsRuleComponen
     [Dependency] private readonly UplinkSystem _uplinkSystem = default!;
     [Dependency] private readonly AntagSelectionSystem _antag = default!;
     [Dependency] private readonly SharedRoleSystem _roles = default!;
+    [Dependency] private readonly StoreSystem _store = default!;
 
     [ValidatePrototypeId<TagPrototype>]
     private const string UplinkTagPrototype = "AssaultOpsUplink";
 
     [ValidatePrototypeId<AntagPrototype>]
     private const string CommanderAntagProto = "AssaultCommander";
+
+    [ValidatePrototypeId<CurrencyPrototype>]
+    private const string TelecrystalCurrencyPrototype = "Telecrystal";
 
     public override void Initialize()
     {
@@ -52,7 +61,6 @@ public sealed class AssaultOpsRuleSystem : GameRuleSystem<AssaultOpsRuleComponen
         SubscribeLocalEvent<AssaultOperativeComponent, MobStateChangedEvent>(OnMobStateChanged);
 
         SubscribeLocalEvent<AssaultOpsRuleComponent, AfterAntagEntitySelectedEvent>(OnAfterAntagEntSelected);
-        SubscribeLocalEvent<AssaultOpsRuleComponent, AntagSelectionCompleteEvent>(OnAfterAntagSelectionComplete); // Sunrise-Edit
         SubscribeLocalEvent<AssaultOpsRuleComponent, RuleLoadedGridsEvent>(OnRuleLoadedGrids);
     }
 
@@ -84,14 +92,20 @@ public sealed class AssaultOpsRuleSystem : GameRuleSystem<AssaultOpsRuleComponen
 
     protected override void Ended(EntityUid uid, AssaultOpsRuleComponent component, GameRuleComponent gameRule, GameRuleEndedEvent args)
     {
-        var fleshCultistQuery = EntityQueryEnumerator<AssaultOperativeComponent>();
-        while (fleshCultistQuery.MoveNext(out var operativeUid, out _))
+        var assaultOperativesQuery = EntityQueryEnumerator<AssaultOperativeComponent>();
+        while (assaultOperativesQuery.MoveNext(out var operativeUid, out _))
         {
             QueueDel(operativeUid);
         }
 
-        var query = EntityQueryEnumerator<AssaultOpsShuttleComponent>();
-        while (query.MoveNext(out var assaultOpsShuttleUid, out var shuttle))
+        var icarusKeysQuery = EntityQueryEnumerator<IcarusKeyComponent>();
+        while (icarusKeysQuery.MoveNext(out var icarusKeyUid, out _))
+        {
+            QueueDel(icarusKeyUid);
+        }
+
+        var assaultOpsShuttlequery = EntityQueryEnumerator<AssaultOpsShuttleComponent>();
+        while (assaultOpsShuttlequery.MoveNext(out var assaultOpsShuttleUid, out var shuttle))
         {
             if (shuttle.AssociatedRule == uid)
             {
@@ -125,51 +139,34 @@ public sealed class AssaultOpsRuleSystem : GameRuleSystem<AssaultOpsRuleComponen
             Color.Red,
             ent.Comp.GreetSoundNotification);
 
-        // Sunrise-Start
-        if (!args.GameRule.Comp.UseSpawners)
-            return;
+        ent.Comp.RoundstartOperatives += 1;
 
-        ent.Comp.RoundstartOperatives = args.GameRule.Comp.SpawnersCount;
-        var commander = GetCommander(args.GameRule);
-        if (commander != null)
-            SetupUplink(commander.Value, ent.Comp);
-        // Sunrise-End
-    }
-
-    private void OnAfterAntagSelectionComplete(Entity<AssaultOpsRuleComponent> ent, ref AntagSelectionCompleteEvent args)
-    {
-        ent.Comp.RoundstartOperatives = args.GameRule.Comp.SelectedMinds.Count;
-
-        var commander = GetCommander(args.GameRule);
-        if (commander != null)
-            SetupUplink(commander.Value, ent.Comp);
-    }
-
-    private EntityUid? GetCommander(Entity<AntagSelectionComponent> antagSelection)
-    {
-        EntityUid? commander = null;
-        foreach (var compSelectedMind in antagSelection.Comp.SelectedMinds)
+        if (args.Def.PrefRoles.Contains(CommanderAntagProto))
         {
-            if (!TryComp<MindComponent>(compSelectedMind.Item1, out var mindComp))
-                continue;
-
-            foreach (var roleInfo in _roles.MindGetAllRoleInfo((compSelectedMind.Item1, mindComp)))
-            {
-                if (roleInfo.Prototype != CommanderAntagProto || mindComp.CurrentEntity == null)
-                    continue;
-
-                commander = mindComp.CurrentEntity.Value;
-            }
+            var uplink = SetupUplink(args.EntityUid, ent.Comp);
+            ent.Comp.UplinkEnt = uplink;
         }
 
-        return commander;
+        if (ent.Comp.UplinkEnt != null)
+        {
+            var giveTcCount = ent.Comp.TCAmountPerOperative;
+            if (ent.Comp.RoundstartOperatives > 1)
+                giveTcCount *= ent.Comp.RoundstartOperatives;
+            var store = EnsureComp<StoreComponent>(ent.Comp.UplinkEnt.Value);
+            _store.TryAddCurrency(new Dictionary<string, FixedPoint2> { { TelecrystalCurrencyPrototype, giveTcCount } },
+                ent.Comp.UplinkEnt.Value,
+                store);
+        }
     }
 
-    private void SetupUplink(EntityUid user, AssaultOpsRuleComponent rule)
+    private EntityUid? SetupUplink(EntityUid user, AssaultOpsRuleComponent rule)
     {
         var uplink = _uplinkSystem.FindUplinkByTag(user, UplinkTagPrototype);
-        if (uplink != null)
-            _uplinkSystem.SetUplink(user, uplink.Value, rule.TCAmountPerOperative * rule.RoundstartOperatives, true);
+        if (uplink == null)
+            return null;
+
+        _uplinkSystem.SetUplink(user, uplink.Value, 0, true);
+        return uplink;
     }
 
     private void InsertIcarusKeys(EntityUid uid, AssaultOpsRuleComponent? component = null)

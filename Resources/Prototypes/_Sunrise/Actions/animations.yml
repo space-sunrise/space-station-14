@@ -8,7 +8,6 @@
   blacklist:
     components:
     - Ghost
-    - BorgChassis
     - Jump
     - Flip
   popupMessages: [делает сальто]
@@ -24,7 +23,6 @@
   blacklist:
     components:
     - Ghost
-    - BorgChassis
     - Jump
     - Flip
   popupMessages: [прыгает]
@@ -40,7 +38,6 @@
   blacklist:
     components:
     - Ghost
-    - BorgChassis
     - Jump
     - Flip
   popupMessages: [танцует]
@@ -56,7 +53,6 @@
   blacklist:
     components:
     - Ghost
-    - BorgChassis
     - Jump
     - Flip
   animation: true

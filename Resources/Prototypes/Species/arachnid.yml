@@ -12,8 +12,9 @@
   femaleFirstNames: names_arachnid_first
   maleLastNames: names_arachnid_last # Russian-LastnameGender
   femaleLastNames: names_arachnid_last # Russian-LastnameGender
-  sexes:
-  - Unsexed
+  # Sunrise-Edit
+  #sexes:
+  #- Unsexed
 
 - type: speciesBaseSprites
   id: MobArachnidSprites

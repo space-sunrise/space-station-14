@@ -28,7 +28,7 @@ flesh-cult-user-was-a-cultist-leader-with-objectives = [color=gray]{ $user }[/co
 flesh-cult-user-was-a-cultist-leader-with-objectives-named = [color=White]{ $name }[/color] ([color=gray]{ $user }[/color]) был(а) лидером культа плоти со следующими целями:
 flesh-cult-was-a-cultist-leader-with-objectives-named = [color=White]{ $name }[/color] был(а) лидером культа плоти со следующими целями:
 
-flesh-cult-round-end-leader = [bold]Лидером культа плоти был [color=White]{ $name }[/color] ([color=gray]{ $username }[/color])[/bold]
+flesh-cult-round-end-leader = [bold]Лидером культа плоти был: [color=White]{ $name }[/color] ([color=gray]{ $username }[/color])[/bold]
 
 preset-flesh-cult-objective-issuer-flesh-cult = [color=#e0106a]Культ плоти[/color]
 objective-issuer-flesh-cult = [color=#e0106a]Культ плоти[/color]

@@ -81,7 +81,15 @@
             Lawyer: [ 3, 3 ]
             # silicon
             StationAi: [ 1, 1 ]
-            Borg: [ 22, 22 ]
+            Borg: [ 2, 2 ]
+            EngineerBorg: [ 2, 2 ]
+            MiningBorg: [ 2, 2 ]
+            JanitorBorg: [ 2, 2 ]
+            ServiceBorg: [ 2, 2 ]
+            ClownBorg: [ 2, 2 ]
+            PeaceBorg: [ 2, 2 ]
+            MedicalBorg: [ 4, 4 ]
+            SecurityBorg: [ 4, 4 ]
             SecurityCombatBorg: [ 2, 2 ]
         - type: StationGoal
           goals:

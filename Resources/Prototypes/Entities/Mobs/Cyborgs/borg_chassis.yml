@@ -84,32 +84,6 @@
   - type: BorgSwitchableType
     selectedBorgType: service
 
-# Sunrise-Start
-- type: entity
-  id: BorgChassisPeace
-  parent: BorgChassisSelectable
-  name: peace cyborg
-  components:
-  - type: BorgSwitchableType
-    selectedBorgType: peace
-
-- type: entity
-  id: BorgChassisClown
-  parent: BorgChassisSelectable
-  name: clown cyborg
-  components:
-  - type: BorgSwitchableType
-    selectedBorgType: clown
-
-- type: entity
-  id: BorgChassisSecurity
-  parent: BorgChassisSelectable
-  name: security cyborg
-  components:
-  - type: BorgSwitchableType
-    selectedBorgType: security
-# Sunrise-End
-
 - type: entity
   id: BorgChassisSyndicateAssault
   parent: BaseBorgChassisSyndicate

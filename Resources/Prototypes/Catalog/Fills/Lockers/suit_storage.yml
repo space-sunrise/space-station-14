@@ -142,6 +142,8 @@
         - id: OxygenTankFilled
         - id: ClothingOuterHardsuitSecurity
         - id: ClothingMaskBreath
+        - id: ClothingShoesBootsMagSec  # Sunrise-edit
+          prob: 0.75
   - type: AccessReader
     access: [["Security"]]
 
@@ -208,6 +210,7 @@
         - id: OxygenTankFilled
         - id: ClothingOuterHardsuitWarden
         - id: ClothingMaskBreath
+        - id: ClothingShoesBootsMagSec  # Sunrise-edit
   - type: AccessReader
     access: [["Armory"]]
 

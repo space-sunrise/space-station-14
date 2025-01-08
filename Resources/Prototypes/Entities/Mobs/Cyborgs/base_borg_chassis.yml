@@ -36,6 +36,7 @@
   - type: Sprite
     sprite: Mobs/Silicon/chassis.rsi
   - type: RotationVisuals
+    defaultRotation: 90
     horizontalRotation: 90
   - type: MobState
     allowedStates:
@@ -45,8 +46,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      200: Critical # Sunrise-Edit
-      300: Dead # Sunrise-Edit
+      100: Critical
+      200: Dead
     stateAlertDict:
       Alive: BorgHealth
       Critical: BorgCrit
@@ -103,16 +104,16 @@
     - Common
     - Science
   - type: ZombieImmune
+  # Sunrise-Start
   - type: Repairable
-    # Sunrise-Start
     doAfterDelay: 3
     damage:
       types:
-        Blunt: -25
-        Slash: -25
-        Piercing: -25
-    # Sunrise-End
+        Blunt: -15
+        Slash: -15
+        Piercing: -15
     allowSelfRepair: false
+  # Sunrise-End
   - type: BorgChassis
   - type: LockingWhitelist
     blacklist:
@@ -156,6 +157,7 @@
     - SlowedDown
     - Flashed
     - Jump # Sunrise-Edit
+    - Flip # Sunrise-Edit
   - type: TypingIndicator
     proto: robot
   - type: Speech
@@ -187,7 +189,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 175
+        damage: 75
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -196,7 +198,7 @@
             volume: 5
     - trigger:
         !type:DamageTrigger
-        damage: 400 # Sunrise-Edit
+        damage: 300
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -265,6 +267,7 @@
   - type: Strap
     position: Stand
     buckleOffset: "0,0.15"
+  - type: Stripping
   # Sunrise-end
 
 - type: entity

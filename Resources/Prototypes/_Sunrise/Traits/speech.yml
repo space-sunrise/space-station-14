@@ -1,0 +1,30 @@
+# Free
+
+- type: trait
+  id: SS13Accent
+  name: trait-ss13-accent-name
+  description: trait-ss13-accent-desc
+  category: SpeechTraits
+  components:
+  - type: SS13Accent
+
+# 1 Cost
+
+- type: trait
+  id: UkrainianAccent
+  name: trait-ukrainian-accent-name
+  description: trait-ukrainian-accent-desc
+  category: SpeechTraits
+  cost: 1
+  components:
+  - type: UkrainianAccent
+
+- type: trait
+  id: RussianAccent
+  name: trait-russian-accent-name
+  description: trait-russian-accent-desc
+  category: SpeechTraits
+  cost: 1
+  components:
+  - type: RussianAccent
+
