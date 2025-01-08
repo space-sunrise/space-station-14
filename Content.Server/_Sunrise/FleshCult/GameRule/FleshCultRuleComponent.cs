@@ -31,21 +31,4 @@ public sealed partial class FleshCultRuleComponent : Component
     public Dictionary<EntityUid, FleshHeartStatus> FleshHearts = new();
 
     public EntityUid? TargetStation;
-
-    public List<string> SpeciesWhitelist = new()
-    {
-        "Human",
-        "Reptilian",
-        "Dwarf",
-        "Vulpkanin",
-        "Felinid",
-        "Moth",
-        "Swine",
-        "Arachnid",
-        "Demon",
-        "Vox",
-        "HumanoidXeno",
-        "Predator",
-        "Tajaran"
-    };
 }

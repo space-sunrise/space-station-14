@@ -118,13 +118,12 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
 
     private void AfterEntitySelected(Entity<FleshCultRuleComponent> ent, ref AfterAntagEntitySelectedEvent args)
     {
+        MakeCultist(args.EntityUid, ent.Comp);
         if (args.Def.PrefRoles.Contains(LeaderAntagProto))
         {
-            if (!_mindSystem.TryGetMind(args.EntityUid, out var mindId, out var mind))
-                return;
-            ent.Comp.CultistsLeaderMind = mindId;
+            if (_mindSystem.TryGetMind(args.EntityUid, out var mindId, out var mind))
+                ent.Comp.CultistsLeaderMind = mindId;
         }
-        MakeCultist(args.EntityUid, ent.Comp);
     }
 
     public FleshCultRuleComponent StartGameRule()
@@ -197,6 +196,9 @@ public sealed class FleshCultRuleSystem : GameRuleSystem<FleshCultRuleComponent>
                     destroyHearts++;
                     break;
                 case FleshHeartStatus.Active:
+                    activateHearts++;
+                    break;
+                case FleshHeartStatus.Final:
                     activateHearts++;
                     break;
             }
