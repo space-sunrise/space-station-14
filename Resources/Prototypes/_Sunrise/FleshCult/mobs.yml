@@ -112,8 +112,8 @@
       allowSpeech: true
       makeSentient: true
       name: mob-flesh-spider-ghost-role-name
-      description: mob-flesh-spider-ghost-role-name
-      rules: Не атакуйте культистов плоти, не ломайте ДАМы, сервера, консоли и прочее. Не делайте разгерметизацию.
+      description: mob-flesh-spider-ghost-role-desc
+      rules: mob-flesh-cult-rules
     - type: GhostTakeoverAvailable
     - type: MeleeWeapon
       hidden: true
@@ -226,8 +226,8 @@
       allowSpeech: true
       makeSentient: true
       name: mob-flesh-pudge-ghost-role-name
-      description: mob-flesh-pudge-ghost-role-name
-      rules: Не атакуйте культистов плоти, не ломайте ДАМы, сервера, консоли и прочее. Не делайте разгерметизацию.
+      description: mob-flesh-pudge-ghost-role-desc
+      rules: mob-flesh-cult-rules
     - type: GhostTakeoverAvailable
     - type: Fixtures
       fixtures:
@@ -291,8 +291,8 @@
       allowSpeech: true
       makeSentient: true
       name: mob-flesh-ball-ghost-role-name
-      description: mob-flesh-ball-ghost-role-name
-      rules: Не атакуйте культистов плоти, не ломайте ДАМы, сервера, консоли и прочее. Не делайте разгерметизацию.
+      description: mob-flesh-ball-ghost-role-desc
+      rules: mob-flesh-cult-rules
     - type: GhostTakeoverAvailable
     - type: MobThresholds
       thresholds:
@@ -364,8 +364,8 @@
       allowSpeech: true
       makeSentient: true
       name: mob-flesh-bat-ghost-role-name
-      description: mob-flesh-bat-ghost-role-name
-      rules: Не атакуйте культистов плоти, не ломайте ДАМы, сервера, консоли и прочее. Не делайте разгерметизацию.
+      description: mob-flesh-bat-ghost-role-desc
+      rules: mob-flesh-cult-rules
     - type: GhostTakeoverAvailable
     - type: MeleeWeapon
       hidden: true
@@ -446,8 +446,8 @@
       allowSpeech: true
       makeSentient: true
       name: mob-flesh-hugger-ghost-role-name
-      description: mob-flesh-hugger-ghost-role-name
-      rules: Не атакуйте культистов плоти, не ломайте ДАМы, сервера, стены и окна если за ними нету людей, консоли и прочее.
+      description: mob-flesh-hugger-ghost-role-desc
+      rules: mob-flesh-cult-rules
     - type: GhostTakeoverAvailable
     - type: MeleeWeapon
       hidden: true
