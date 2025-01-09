@@ -2487,20 +2487,20 @@
 
 # Medical
 
-- type: listing
-  id: UplinkSunriseCryostasisBeaker
-  name: uplink-sunrise-cryostasis-beaker-name
-  productEntity: CryostasisBeaker
-  cost:
-    Suntick: 15
-  categories:
-  - MedicalThings
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyerDepartmentCondition
-    whitelist:
-    - Medical
+#- type: listing
+#  id: UplinkSunriseCryostasisBeaker
+#  name: uplink-sunrise-cryostasis-beaker-name
+#  productEntity: CryostasisBeaker
+#  cost:
+#    Suntick: 15
+#  categories:
+#  - MedicalThings
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+#  - !type:BuyerDepartmentCondition
+#    whitelist:
+#    - Medical
 
 #- type: listing
 #  id: UplinkSunriseMedicatedSuture

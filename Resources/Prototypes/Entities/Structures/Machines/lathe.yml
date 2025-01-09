@@ -1099,6 +1099,9 @@
       - HemostatAdvanced
       - LauncherSyringeMed #Sunrise-Edit
       - LauncherSyringePistol #Sunrise-Edit
+      - LauncherSyringeRapid #Sunrise-Edit
+      - MiniSyringeCryostasis #Sunrise-Edit
+      - MiniSyringeBluespace #Sunrise-Edit
       - MiniSyringe #Sunrise-Edit
       - LeftArmCyber
       - RightArmCyber

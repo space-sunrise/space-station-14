@@ -241,7 +241,7 @@
   - type: SolutionContainerManager
     solutions:
       beaker:
-        maxVol: 60
+        maxVol: 40 #Sunrise-Edit
         canReact: false
 
 - type: entity
