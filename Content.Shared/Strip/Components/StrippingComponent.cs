@@ -8,6 +8,7 @@ namespace Content.Shared.Strip.Components
     [RegisterComponent, NetworkedComponent]
     public sealed partial class StrippingComponent : Component
     {
+        [DataField]
         public bool UseDragDrop = true;
     }
 }
