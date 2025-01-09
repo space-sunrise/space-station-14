@@ -631,3 +631,11 @@
   provider: sunrise
   roundStart: true
   sponsorOnly: false
+
+- type: ttsVoice
+  id: HeartstoneHamulRunicalTotem
+  name: tts-voice-name-heartstone-hamul-runical-totem
+  sex: Male
+  speaker: hearthstone_hamul_runical_totem
+  provider: sunrise
+  sponsorOnly: true
