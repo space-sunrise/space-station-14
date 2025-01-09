@@ -67,6 +67,17 @@
   - type: Appearance
   - type: StaticPrice
     price: 500
+  # Sunrise start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: PistolsPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: PistolsDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: PistolsDrop
+  # Sunrise end
 
 - type: entity
   name: viper

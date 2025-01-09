@@ -61,6 +61,38 @@
   cost: 7500
   recipeUnlocks:
     - LauncherSyringePistol
+  technologyPrerequisites:
+  - BasicSyringeGun
+
+- type: technology
+  id: RapidSyringeGun
+  name: research-technology-rapid-syringegun
+  icon:
+    sprite: _Sunrise/Objects/Weapons/Guns/Launchers/syringe_rapidgun.rsi
+    state: syringe_gun
+  discipline: Biochemical
+  tier: 2
+  cost: 12500
+  recipeUnlocks:
+    - LauncherSyringeRapid
+  technologyPrerequisites:
+  - BasicSyringeGun
+  - NonlethalAmmunition
+
+- type: technology
+  id: SyringeGunCryostasis
+  name: research-technology-cryostasis-ammo
+  icon:
+    sprite: _Sunrise/Entities/Objects/Specific/Medical/syringe.rsi
+    state: cryo_base
+  discipline: Biochemical
+  tier: 2
+  cost: 7000
+  recipeUnlocks:
+    - MiniSyringeCryostasis
+  technologyPrerequisites:
+  - BasicSyringeGun
+  - BiochemicalStasis
 
 - type: technology
   id: SurgeryTechAdvanced
@@ -78,3 +110,18 @@
     - BoneSetterAdvanced
     - RetractorAdvanced
     - HemostatAdvanced
+
+- type: technology
+  id: SyringeGunBluespace
+  name: research-technology-bluespace-ammo
+  icon:
+    sprite: _Sunrise/Entities/Objects/Specific/Medical/syringe.rsi
+    state: bluespace_base
+  discipline: Biochemical
+  tier: 3
+  cost: 10000
+  recipeUnlocks:
+    - MiniSyringeBluespace
+  technologyPrerequisites:
+  - BasicSyringeGun
+  - BluespaceChemistry

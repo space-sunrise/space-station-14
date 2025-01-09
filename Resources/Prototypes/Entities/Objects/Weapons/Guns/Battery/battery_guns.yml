@@ -30,6 +30,17 @@
   - type: Appearance
   - type: StaticPrice
     price: 500
+  # Sunrise start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: LasersPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: LasersDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: LasersDrop
+  # Sunrise end
 
 - type: entity
   id: BaseWeaponPowerCell
@@ -65,6 +76,17 @@
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
+  # Sunrise start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: LasersPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: LasersDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: LasersDrop
+  # Sunrise end
 
 - type: entity
   id: BaseWeaponBatterySmall
@@ -266,6 +288,17 @@
   - type: Battery
     maxCharge: 2000
     startingCharge: 2000
+  # Sunrise start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: PulsePickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: PulseDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: PulseDrop
+  # Sunrise end
 
 - type: entity
   name: pulse carbine
@@ -298,6 +331,17 @@
   - type: Battery
     maxCharge: 5000
     startingCharge: 5000
+  # Sunrise start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: PulsePickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: PulseDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: PulseDrop
+  # Sunrise end
 
 - type: entity
   name: pulse rifle
@@ -326,6 +370,17 @@
   - type: Battery
     maxCharge: 40000
     startingCharge: 40000
+  # Sunrise start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: PulsePickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: PulseDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: PulseDrop
+  # Sunrise end
 
 - type: entity
   name: laser cannon

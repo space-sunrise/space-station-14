@@ -8,3 +8,5 @@ trait-ukrainian-accent-name = Украинский акцент
 trait-ukrainian-accent-desc = Заробiтчани вже навiть у космосi.
 trait-russian-accent-name = Русский акцент
 trait-russian-accent-desc = Товарищ, это не ваше а наше.
+trait-transliteration-accent-name = Транслитерированный акцент
+trait-transliteration-accent-desc = Ds ujdjhbnt nhfyckbnjv.

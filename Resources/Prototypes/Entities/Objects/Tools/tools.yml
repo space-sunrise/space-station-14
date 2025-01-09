@@ -7,6 +7,14 @@
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Items/wirecutter_drop.ogg
+  # Sunrise start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/wirecutter_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/Items/wirecutter_drop.ogg
+  # Sunrise edit
   - type: Tag
     tags:
     - PlantSampleTaker
@@ -53,6 +61,14 @@
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Items/screwdriver_drop.ogg
+  # Sunrise start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/screwdriver_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/Items/screwdriver_drop.ogg
+  # Sunrise end
   - type: Tag
     tags:
     - Screwdriver
@@ -97,6 +113,14 @@
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Items/wrench_drop.ogg
+  # Sunrise start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/wrench_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/Items/wrench_drop.ogg
+  # Sunrise end
   - type: Tag
     tags:
     - Wrench
@@ -129,7 +153,7 @@
 
 - type: entity
   name: multitool
-  parent: BaseItem
+  parent: [BaseItem, MultitoolSounds] # Sunrise
   id: Multitool
   description: An advanced tool to copy, store, and send electrical pulses and signals through wires and machines.
   components:
@@ -177,7 +201,7 @@
 
 - type: entity
   name: network configurator
-  parent: BaseItem
+  parent: [BaseItem, MultitoolSounds] # Sunrise
   id: NetworkConfigurator
   description: A tool for linking devices together. Has two modes, a list mode for mass linking devices and a linking mode for advanced device linking.
   components:

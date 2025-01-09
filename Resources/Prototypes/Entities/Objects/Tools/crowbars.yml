@@ -41,6 +41,14 @@
     size: Normal
     shape:
     - 0,0,0,1
+  # Sunrise start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/crowbar_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/Items/crowbar_drop.ogg
+  # Sunrise end
 
 # Standard (grey) Crowbar
 - type: entity

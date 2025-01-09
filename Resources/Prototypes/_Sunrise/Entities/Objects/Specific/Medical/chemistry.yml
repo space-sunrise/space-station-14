@@ -1,5 +1,137 @@
 - type: entity
+  name: cryostasis mini syringe
+  suffix: Cryostasis, MiniSyringe
   parent: MiniSyringe
+  description: A cryostasis syringe, reshaped to fit inside of a gun.
+  id: MiniSyringeCryostasis
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Chemistry/syringe.rsi
+    layers:
+      - state: minisyringe1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+      - state: syringestasisproj
+  - type: SolutionContainerVisuals
+    maxFillLevels: 3
+    fillBaseName: minisyringe
+    inHandsMaxFillLevels: 3
+    inHandsFillBaseName: -fill-
+  - type: EmbeddableProjectile
+    offset: "-0.1,0"
+    minimumSpeed: 3
+    removalTime: 0.25
+    embedOnThrow: false
+  - type: SolutionInjectWhileEmbedded
+    transferAmount: 1
+    solution: injector
+    updateInterval: 2
+  - type: SolutionInjectOnEmbed
+    transferAmount: 1
+    solution: injector
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 8
+        canReact: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.2
+        density: 5
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.3,0.1,0.3"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+  - type: Projectile
+    deleteOnCollide: false
+    onlyCollideWhenShot: true
+    damage:
+      types:
+        Piercing: 3
+  - type: Tag
+    tags:
+    - Syringe
+    - Trash
+    - SyringeGunAmmo
+
+- type: entity
+  name: bluespace mini syringe
+  suffix: Bluespace, MiniSyringe
+  parent: MiniSyringe
+  description: A Bluespace syringe, reshaped to fit inside of a gun.
+  id: MiniSyringeBluespace
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Chemistry/syringe.rsi
+    layers:
+      - state: minisyringe1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+      - state: syringeblueproj
+  - type: SolutionContainerVisuals
+    maxFillLevels: 3
+    fillBaseName: syringeblueproj
+    inHandsMaxFillLevels: 3
+    inHandsFillBaseName: -fill-
+  - type: EmbeddableProjectile
+    offset: "-0.1,0"
+    minimumSpeed: 3
+    removalTime: 0.25
+    embedOnThrow: false
+  - type: SolutionInjectWhileEmbedded
+    transferAmount: 1
+    solution: injector
+    updateInterval: 2
+  - type: SolutionInjectOnEmbed
+    transferAmount: 2
+    solution: injector
+  - type: SolutionContainerManager
+    solutions:
+      injector:
+        maxVol: 45
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.2
+        density: 5
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+      projectile:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1,-0.3,0.1,0.3"
+        hard: false
+        mask:
+        - Impassable
+        - BulletImpassable
+  - type: Projectile
+    deleteOnCollide: false
+    onlyCollideWhenShot: true
+    damage:
+      types:
+        Piercing: 3
+  - type: Tag
+    tags:
+    - Syringe
+    - Trash
+    - SyringeGunAmmo
+
+- type: entity
+  parent: MiniSyringe
+  categories: [ HideSpawnMenu ]
   id: PrefilledMiniSyringe
   components:
   - type: Injector

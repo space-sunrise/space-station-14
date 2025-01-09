@@ -1,0 +1,11 @@
+﻿- type: soundCollection
+  id: SquishyHitSlash
+  files:
+  - /Audio/_Sunrise/Items/Hit/Sabre/hit2.ogg
+  - /Audio/_Sunrise/Items/Hit/Sabre/hit3.ogg
+
+- type: soundCollection
+  id: SquishyHitPiercing
+  files:
+  - /Audio/_Sunrise/Items/Hit/Sabre/hit1.ogg
+  - /Audio/_Sunrise/Items/Hit/Sabre/hit3.ogg

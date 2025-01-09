@@ -42,6 +42,17 @@
   - type: Tag
     tags:
     - DrinkCup
+  # Sunrise start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Sunrise/Items/Cup/pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Sunrise/Items/Cup/drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Sunrise/Items/Cup/drop.ogg
+  # Sunrise end
 
 - type: entity
   parent: DrinkBaseCup

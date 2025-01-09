@@ -49,5 +49,5 @@ ent-MechPaintDurandExecutor = { ent-MechPaintBase }
     .suffix = Дюранд, Executor
     .desc = Баночка аэрозольной краски. На этикетке написано Дюранд "Executor".
 ent-MechPaintMaulerMeowler = { ent-MechPaintBase }
-    .suffix = Mauler, Meowler
+    .suffix = Маулер, Meowler
     .desc = Баночка аэрозольной краски. На этикетке написано Маулер "МЯУлер".
