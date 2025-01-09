@@ -655,7 +655,8 @@ public abstract class SharedStrippableSystem : EntitySystem
     private void OnCanDrop(EntityUid uid, StrippableComponent component, ref CanDropDraggedEvent args)
     {
         args.CanDrop |= args.Target == args.User &&
-                        HasComp<StrippingComponent>(args.User) &&
+                        TryComp<StrippingComponent>(args.User, out var strippingComponent) &&
+                        strippingComponent.UseDragDrop &&
                         HasComp<HandsComponent>(args.User);
 
         if (args.CanDrop)
