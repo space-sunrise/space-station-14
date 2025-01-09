@@ -145,15 +145,24 @@ public sealed class AssaultOpsRuleSystem : GameRuleSystem<AssaultOpsRuleComponen
         {
             var uplink = SetupUplink(args.EntityUid, ent.Comp);
             ent.Comp.UplinkEnt = uplink;
+
+            if (uplink == null)
+                return;
+
+            var totalTc = ent.Comp.TCAmountPerOperative * ent.Comp.RoundstartOperatives;
+            var store = EnsureComp<StoreComponent>(uplink.Value);
+            _store.TryAddCurrency(
+                new Dictionary<string, FixedPoint2> { { TelecrystalCurrencyPrototype, totalTc } },
+                uplink.Value,
+                store);
         }
 
-        if (ent.Comp.UplinkEnt != null)
+        else if (ent.Comp.UplinkEnt != null)
         {
             var giveTcCount = ent.Comp.TCAmountPerOperative;
-            if (ent.Comp.RoundstartOperatives > 1)
-                giveTcCount *= ent.Comp.RoundstartOperatives;
             var store = EnsureComp<StoreComponent>(ent.Comp.UplinkEnt.Value);
-            _store.TryAddCurrency(new Dictionary<string, FixedPoint2> { { TelecrystalCurrencyPrototype, giveTcCount } },
+            _store.TryAddCurrency(
+                new Dictionary<string, FixedPoint2> { { TelecrystalCurrencyPrototype, giveTcCount } },
                 ent.Comp.UplinkEnt.Value,
                 store);
         }
