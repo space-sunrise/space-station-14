@@ -1,6 +1,6 @@
 - type: entity
   name: t-ray scanner
-  parent: BaseItem
+  parent: [BaseItem, MultitoolSounds] # Sunrise
   id: trayScanner
   description: A high-tech scanning device that uses Terahertz Radiation to detect subfloor infrastructure.
   components:

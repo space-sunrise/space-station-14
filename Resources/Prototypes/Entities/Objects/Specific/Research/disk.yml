@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseItem
+  parent: [BaseItem, DiskSounds] # Sunrise
   id: ResearchDisk
   name: research point disk (1000)
   description: A disk for the R&D server containing 1000 points.
@@ -41,7 +41,7 @@
     unlockAllTech: true
 
 - type: entity
-  parent: BaseItem
+  parent: [BaseItem, DiskSounds] # Sunrise
   id: TechnologyDisk
   name: technology disk
   description: A disk for the R&D server containing research technology.

@@ -248,3 +248,9 @@
     bloodlossHealDamage:
       types:
         Bloodloss: -1
+  - type: MeleeSound
+    soundTypes:
+      Slash:
+        collection: SquishyHitSlash
+      Piercing:
+        collection: SquishyHitPiercing
