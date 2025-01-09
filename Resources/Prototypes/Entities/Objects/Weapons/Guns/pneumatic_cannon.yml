@@ -125,7 +125,7 @@
       - SyringeGunAmmo
   - type: Gun
     fireRate: 1
-    selectedMode: SemiAuto
+    selectedMode: FullAuto #Sunrise-Edit
     availableModes:
     - SemiAuto
     - FullAuto

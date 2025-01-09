@@ -69,6 +69,6 @@ uplink-syringe-pistol-filled-desc = Сразу заполнен тремя шп�
 uplink-syringe-box-filled-name = коробка мини шприцов
 uplink-syringe-box-filled-desc = Полная коробка мини шприцов.
 uplink-syringe-rapid-name = Автоматический шприцемёт
-uplink-syringe-rapid-desc = Принимает до 8ми шприцов. изначально пуст. Сделайте из Офицера СБ Ёжика!.
+uplink-syringe-rapid-desc = Заполнен пустыми 10-ти шприцами. Сделайте из Офицера СБ Ёжика!.
 uplink-clothing-glasses-nvg-name = NVG Sun Glasses
 uplink-clothing-glasses-nvg-desc = Quality made sunglasses, manufactured by Gorlax Security. Uses modular parts to improve visibility in low light conditions. Warning: The glasses will not protect your eyes from direct flashes.
