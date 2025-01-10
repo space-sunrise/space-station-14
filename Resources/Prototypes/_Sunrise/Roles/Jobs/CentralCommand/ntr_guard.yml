@@ -15,7 +15,7 @@
       time: 18000 # 5 hrs
     - !type:AgeRequirement
       requiredAge: 25
-  startingGear: NTRLeaderGear
+  startingGear: NtrLeaderGear
   icon: JobIconNtrLeader
   supervisors: job-supervisors-ntrg
   canBeAntag: false
@@ -86,7 +86,7 @@
       time: 18000 # 5 hrs
     - !type:AgeRequirement
       requiredAge: 25
-  startingGear: NTRLeaderGear
+  startingGear: NtrLeaderGear
   icon: JobIconNtrGuard
   supervisors: job-supervisors-ntrg
   canBeAntag: false

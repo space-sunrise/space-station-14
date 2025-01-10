@@ -24,14 +24,14 @@
   id: JobIconNtrGuard
   icon:
     sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
-    state: NtrGuard
+    state: NanotrasenGuard
 
 - type: jobIcon
   parent: JobIcon
   id: JobIconNtrLeader
   icon:
     sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
-    state: NtrLeader
+    state: NanotrasenLeader
 
 - type: jobIcon
   parent: JobIcon
