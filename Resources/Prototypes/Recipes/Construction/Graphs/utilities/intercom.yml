@@ -39,7 +39,7 @@
       steps:
       - tag: IntercomElectronics
         store: board
-        name: "intercom electronics"
+        name: step-intercom-electronics-name
         icon:
           sprite: "Objects/Misc/module.rsi"
           state: "id_mod"

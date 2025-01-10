@@ -234,6 +234,7 @@ public static class SkinColor
             HumanoidSkinColor.TintedHues => VerifyTintedHues(color),
             HumanoidSkinColor.Hues => VerifyHues(color),
             HumanoidSkinColor.VoxFeathers => VerifyVoxFeathers(color),
+            HumanoidSkinColor.None => false, // Sunrise-edit
             _ => false,
         };
     }
@@ -246,6 +247,7 @@ public static class SkinColor
             HumanoidSkinColor.TintedHues => ValidTintedHuesSkinTone(color),
             HumanoidSkinColor.Hues => MakeHueValid(color),
             HumanoidSkinColor.VoxFeathers => ClosestVoxColor(color),
+            HumanoidSkinColor.None => HumanSkinTone(0), // Sunrise-edit
             _ => color
         };
     }
@@ -257,4 +259,5 @@ public enum HumanoidSkinColor : byte
     Hues,
     VoxFeathers, // Vox feathers are limited to a specific color range
     TintedHues, //This gives a color tint to a humanoid's skin (10% saturation with full hue range).
+    None, // No custom colors. Sunrise-edit
 }

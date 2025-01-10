@@ -21,6 +21,8 @@ public sealed partial class AgeRequirement : JobRequirement
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan> playTimes,
+        string? protoId, // Sunrise-Sponsors
+        string[] sponsorPrototypes, // Sunrise-Sponsors
         [NotNullWhen(false)] out FormattedMessage? reason)
     {
         reason = new FormattedMessage();

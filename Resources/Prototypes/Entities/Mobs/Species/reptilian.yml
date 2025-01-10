@@ -5,6 +5,7 @@
   id: BaseMobReptilian
   abstract: true
   components:
+  - type: Absorbable
   - type: HumanoidAppearance
     species: Reptilian
     hideLayersOnEquip:
@@ -68,6 +69,19 @@
       295: 0.6
       285: 0.4
   - type: Wagging
+# Sunrise-start
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+  - type: FootprintEmitter
+    leftBareFootState:
+      - "footprint-left-bare-lizard"
+    rightBareFootState:
+      - "footprint-right-bare-lizard"
+#Sunrise-end
   - type: Inventory
     speciesId: reptilian
     femaleDisplacements:

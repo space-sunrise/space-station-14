@@ -10,7 +10,7 @@
               icon:
                 sprite: Structures/conveyor.rsi
                 state: conveyor_loose
-              name: conveyor belt assembly
+              name: step-conveyor-assembly-name
               doAfter: 2
     - node: item
       entity: ConveyorBeltAssembly

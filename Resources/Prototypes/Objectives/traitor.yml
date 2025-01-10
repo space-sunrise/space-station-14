@@ -66,19 +66,6 @@
       - StealCondition
   - type: DieCondition
 
-#- type: entity
-#  parent: [BaseTraitorObjective, BaseLivingObjective]
-#  id: HijackShuttleObjective
-#  name: Hijack emergency shuttle
-#  description: Leave on the shuttle free and clear of the loyal Nanotrasen crew on board. Use ANY methods available to you. Syndicate agents, Nanotrasen enemies, and handcuffed hostages may remain alive on the shuttle. Ignore assistance from anyone other than a support agent.
-#  components:
-#    - type: Objective
-#      difficulty: 5 # insane, default config max difficulty
-#      icon:
-#        sprite: Objects/Tools/emag.rsi
-#        state: icon
-#    - type: HijackShuttleCondition
-
 # kill
 
 - type: entity
@@ -109,6 +96,20 @@
   - type: KillPersonCondition
     # don't count missing evac as killing as heads are higher profile, so you really need to do the dirty work
     # if ce flies a shittle to centcom you better find a way onto it
+    requireDead: true
+
+- type: entity
+  parent: [BaseTraitorObjective, BaseKillObjective]
+  id: KillRandomAntagObjective
+  description:
+  components:
+  - type: Objective
+    difficulty: 1.0
+    unique: true
+  - type: TargetObjective
+    title: objective-condition-kill-antag-title
+  - type: PickRandomAntag
+  - type: KillPersonCondition
     requireDead: true
 
 # social
@@ -156,12 +157,13 @@
   - type: StealCondition
     stealGroup: Hypospray
 
-- type: entity
-  parent: BaseCMOStealObjective
-  id: CMOCrewMonitorStealObjective
-  components:
-  - type: StealCondition
-    stealGroup: HandheldCrewMonitor
+# Sunrise-Edit
+#- type: entity
+#  parent: BaseCMOStealObjective
+#  id: CMOCrewMonitorStealObjective
+#  components:
+#  - type: StealCondition
+#    stealGroup: HandheldCrewMonitor
 
 ## rd
 

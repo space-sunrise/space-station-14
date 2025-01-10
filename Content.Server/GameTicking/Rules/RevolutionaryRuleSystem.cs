@@ -12,6 +12,7 @@ using Content.Server.Roles;
 using Content.Server.RoundEnd;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
+using Content.Server.AlertLevel; // Sunrise-Edit
 using Content.Shared.Database;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Humanoid;
@@ -53,6 +54,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly AlertLevelSystem _alertLevel = default!; // Sunrise-Edit
     [Dependency] private readonly AdminVerbSystem _adminVerbSystem = default!;
     [Dependency] private readonly BanManager _banManager = default!;
 
@@ -92,7 +94,14 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
             // Check for command loss
             if (CheckCommandLose())
             {
-                _roundEnd.DoRoundEndBehavior(RoundEndBehavior.ShuttleCall, component.ShuttleCallTime);
+                //  Sunrise-Edit-Start
+                var stations = _stationSystem.GetStations();
+                foreach (var station in stations)
+                {
+                    _alertLevel.SetLevel(station, "epsilon", true, true, true);
+                }
+                _roundEnd.EndRound();
+                //  Sunrise-Edit-End
                 GameTicker.EndGameRule(uid, gameRule);
             }
 
@@ -161,6 +170,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
 
         if (HasComp<RevolutionaryComponent>(ev.Target) ||
             HasComp<MindShieldComponent>(ev.Target) ||
+            HasComp<CommandStaffComponent>(ev.Target) ||
             !HasComp<HumanoidAppearanceComponent>(ev.Target) &&
             !alwaysConvertible ||
             !_mobState.IsAlive(ev.Target) ||

@@ -30,7 +30,7 @@
         true
   - type: NpcFactionMember
     factions:
-    - Dragon
+    - Carps
   - type: Speech
     speechVerb: LargeMob
   - type: CombatMode
@@ -139,7 +139,7 @@
     foodPreference: Humanoid
     shouldStoreDevoured: true
     chemical: Ichor
-    healRate: 15.0
+    healRate: 20.0 #Sunrise-edit
     whitelist:
       components:
       - MobState
@@ -152,7 +152,26 @@
     - DoorBumpOpener
   - type: Puller
     needsHands: false
-    
+  # Sunrise-Start
+  - type: CollectiveMind
+    minds:
+    - Carp
+  - type: NightVision
+    isToggle: true
+    color: "#808080"
+  - type: Reflect
+    reflectProb: 0.25
+    spread: 45
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Dragon
+  - type: TTS
+    voice: HearthstoneLordOfThunder
+  - type: InnateItem
+    instantActions:
+    - HandHeldMassScannerBorg
+  # Sunrise-End
+
 - type: entity
   parent: BaseMobDragon
   id: MobDragon

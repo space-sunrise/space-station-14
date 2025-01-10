@@ -1,0 +1,19 @@
+- type: gameMapPool
+  id: SunriseMapPool
+  maps:
+  - SunriseDelta
+  - SunriseBox
+  - SunriseFland
+  - SunriseMarathon
+  - SunriseBagel
+  - SunriseMeta
+  - SunriseCog
+  # Неиграбельно
+  #- SunriseTrain
+  # Играбельна но требует небольшой доработки
+  #- SunriseOasis
+  # Неиграбельно
+  #- SunriseReach
+  # Неиграбельно
+  #- SunriseCorvaxGelta
+# НЕ ДОБАВЛЯТЬ НОВЫЕ КАРТЫ БЕЗ МОЕГО РЕВЬЮ! ~ SplikZerys

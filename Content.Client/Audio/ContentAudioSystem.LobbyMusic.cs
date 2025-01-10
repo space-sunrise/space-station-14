@@ -227,7 +227,7 @@ public sealed partial class ContentAudioSystem
             file,
             Filter.Local(),
             false,
-            _roundEndSoundEffectParams.WithVolume(_roundEndSoundEffectParams.Volume + SharedAudioSystem.GainToVolume(_configManager.GetCVar(CCVars.LobbyMusicVolume)))
+            _roundEndSoundEffectParams.WithVolume(10f) // Sunrise-Edit
         )?.Entity;
     }
 

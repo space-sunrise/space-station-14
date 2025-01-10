@@ -37,7 +37,7 @@
 
 - type: entity
   parent: Holoprojector
-  id: HoloprojectorBorg
+  id: HoloprojectorJanitorBorg # Sunrise-Edit
   suffix: borg
   components:
   - type: HolosignProjector
@@ -46,7 +46,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellMicroreactor
+        startingItem: PowerCellRobotTool
         disableEject: true
         swap: false
 

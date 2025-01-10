@@ -1,0 +1,57 @@
+- type: npcFaction
+  id: Changeling
+  hostile:
+  - NanoTrasen
+  - Syndicate
+  - SimpleHostile
+  - Xeno
+  - Zombie
+  - PetsNT
+  - Revolutionary
+  - AllHostile
+  - Thief
+  - Carps
+  - Vampire
+
+- type: npcFaction
+  id: Thief
+  hostile:
+  - NanoTrasen
+  - Syndicate
+  - SimpleHostile
+  - Xeno
+  - Zombie
+  - AllHostile
+  - Carps
+  - Changeling
+  - Vampire
+
+- type: npcFaction
+  id: Carps
+  hostile:
+  - NanoTrasen
+  - Syndicate
+  - SimpleHostile
+  - Zombie
+  - Xeno
+  - PetsNT
+  - Revolutionary
+  - AllHostile
+  - Thief
+  - Vampire
+  - Changeling
+
+- type: npcFaction
+  id: Vampire
+  hostile:
+  - NanoTrasen
+  - Syndicate
+  - SimpleHostile
+  - Zombie
+  - Xeno
+  - PetsNT
+  - Revolutionary
+  - AllHostile
+  - Thief
+  - Carps
+  - Changeling

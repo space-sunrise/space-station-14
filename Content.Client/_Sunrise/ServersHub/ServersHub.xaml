@@ -1,0 +1,8 @@
+<Control xmlns="https://spacestation14.io"
+         MinSize="300 100">
+    <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True">
+        <ScrollContainer HScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True">
+            <BoxContainer Name="ServersList" Access="Public" Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True"/>
+        </ScrollContainer>
+    </BoxContainer>
+</Control>

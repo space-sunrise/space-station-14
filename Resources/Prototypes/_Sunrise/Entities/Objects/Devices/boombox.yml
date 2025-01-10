@@ -1,0 +1,53 @@
+﻿- type: entity
+  parent: TapePlayer
+  id: Boombox
+  name: boombox
+  description: Be on style.
+  components:
+  - type: Item
+    size: Huge
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/boombox.rsi
+    layers:
+    - state: "off"
+      map: ["enum.TapePlayerVisualLayers.Base"]
+  - type: TapePlayer
+    rolloffFactor: 1.5
+    maxDistance: 15
+    decreaseVolume: 2.5
+  - type: MeleeWeapon
+    attackRate: 0.75
+    damage:
+      types:
+        Blunt: 10
+    soundHit:
+      path: "/Audio/Weapons/smash.ogg"
+  - type: StaminaDamageOnHit
+    damage: 10
+
+- type: entity
+  parent: TapePlayer
+  id: BoomboxSyndie
+  name: syndie boombox
+  description: Kill with style.
+  components:
+  - type: Item
+    size: Huge
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/syndie_boombox.rsi
+    layers:
+    - state: "off"
+      map: ["enum.TapePlayerVisualLayers.Base"]
+  - type: TapePlayer
+    rolloffFactor: 1
+    maxDistance: 20
+    decreaseVolume: 0
+  - type: MeleeWeapon
+    attackRate: 0.75
+    damage:
+      types:
+        Blunt: 20
+    soundHit:
+      path: "/Audio/Weapons/smash.ogg"
+  - type: StaminaDamageOnHit
+    damage: 25

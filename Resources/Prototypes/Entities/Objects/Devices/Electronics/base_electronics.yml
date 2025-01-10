@@ -12,6 +12,11 @@
     state: generic
   - type: StaticPrice
     price: 100
+#Sunrise-start
+  - type: Tag
+    tags:
+      - Board
+#Sunrise-end
   - type: PhysicalComposition
     materialComposition:
       Glass: 200

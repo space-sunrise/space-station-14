@@ -122,9 +122,11 @@
   id: FireBomb
   damagePerIntensity:
     types:
-      Heat: 1
-      Blunt: 2
-      Piercing: 3
+#Sunrise-start
+      Heat: 20
+ #     Blunt: 2
+ #     Piercing: 3
+#Sunrise-end
   lightColor: Orange
   texturePath: /Textures/Effects/fire.rsi
   fireStates: 6

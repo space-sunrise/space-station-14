@@ -33,7 +33,7 @@ public sealed partial class MechMenu : FancyWindow
         if (!_ent.TryGetComponent<MechComponent>(_mech, out var mechComp))
             return;
 
-        var integrityPercent = mechComp.Integrity / mechComp.MaxIntegrity;
+        var integrityPercent = (mechComp.MaxIntegrity - mechComp.Integrity) / mechComp.MaxIntegrity;
         IntegrityDisplayBar.Value = integrityPercent.Float();
         IntegrityDisplay.Text = Loc.GetString("mech-integrity-display", ("amount", (integrityPercent*100).Int()));
 

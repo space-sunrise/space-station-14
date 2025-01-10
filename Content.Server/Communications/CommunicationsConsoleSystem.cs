@@ -224,6 +224,7 @@ namespace Content.Server.Communications
             if (stationUid != null)
             {
                 _alertLevelSystem.SetLevel(stationUid.Value, message.Level, true, true);
+                RaiseLocalEvent(new AlertAccessesEvent(stationUid.Value)); // Sunrise-added
             }
         }
 
@@ -264,13 +265,13 @@ namespace Content.Server.Communications
             msg += "\n" + Loc.GetString("comms-console-announcement-sent-by") + " " + author;
             if (comp.Global)
             {
-                _chatSystem.DispatchGlobalAnnouncement(msg, title, announcementSound: comp.Sound, colorOverride: comp.Color);
+                _chatSystem.DispatchGlobalAnnouncement(msg, title, announcementSound: comp.Sound, colorOverride: comp.Color, announceVoice: comp.AnnounceVoice);
 
                 _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following global announcement: {msg}");
                 return;
             }
 
-            _chatSystem.DispatchStationAnnouncement(uid, msg, title, colorOverride: comp.Color);
+            _chatSystem.DispatchStationAnnouncement(uid, msg, title, colorOverride: comp.Color, announceVoice: comp.AnnounceVoice);
 
             _adminLogger.Add(LogType.Chat, LogImpact.Low, $"{ToPrettyString(message.Actor):player} has sent the following station announcement: {msg}");
 

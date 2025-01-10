@@ -10,7 +10,14 @@
     - id: ClothingMaskBreath
     - id: EmergencyOxygenTankFilled
     - id: EmergencyMedipen
-    - id: Flare
+    - id: GlowstickRed
+      orGroup: Glowstick
+    - id: GlowstickPurple
+      orGroup: Glowstick
+    - id: GlowstickYellow
+      orGroup: Glowstick
+    - id: GlowstickBlue
+      orGroup: Glowstick
     - id: FoodSnackNutribrick
     - id: DrinkWaterBottleFull
   - type: Sprite
@@ -28,7 +35,14 @@
     - id: ClothingMaskBreath
     - id: EmergencyNitrogenTankFilled
     - id: EmergencyMedipen
-    - id: Flare
+    - id: GlowstickRed
+      orGroup: Glowstick
+    - id: GlowstickPurple
+      orGroup: Glowstick
+    - id: GlowstickYellow
+      orGroup: Glowstick
+    - id: GlowstickBlue
+      orGroup: Glowstick
     - id: FoodSnackNutribrick
     - id: DrinkWaterBottleFull
   - type: Sprite
@@ -50,7 +64,14 @@
     - id: ClothingMaskBreath
     - id: ExtendedEmergencyOxygenTankFilled
     - id: EmergencyMedipen
-    - id: Flare
+    - id: GlowstickRed
+      orGroup: Glowstick
+    - id: GlowstickPurple
+      orGroup: Glowstick
+    - id: GlowstickYellow
+      orGroup: Glowstick
+    - id: GlowstickBlue
+      orGroup: Glowstick
     - id: FoodSnackNutribrick
     - id: DrinkWaterBottleFull
   - type: Sprite
@@ -68,7 +89,14 @@
     - id: ClothingMaskBreath
     - id: ExtendedEmergencyNitrogenTankFilled
     - id: EmergencyMedipen
-    - id: Flare
+    - id: GlowstickRed
+      orGroup: Glowstick
+    - id: GlowstickPurple
+      orGroup: Glowstick
+    - id: GlowstickYellow
+      orGroup: Glowstick
+    - id: GlowstickBlue
+      orGroup: Glowstick
     - id: FoodSnackNutribrick
     - id: DrinkWaterBottleFull
   - type: Sprite
@@ -79,7 +107,6 @@
     currentLabel: reagent-name-nitrogen
 
 - type: entity
-
   parent: BoxCardboard
   id: BoxSurvivalSecurity
   name: survival box
@@ -89,9 +116,16 @@
   - type: StorageFill
     contents:
     - id: ClothingMaskGasSecurity
-    - id: EmergencyOxygenTankFilled
+    - id: ExtendedEmergencyOxygenTankFilled #Sunrise-Edit
     - id: EmergencyMedipen
-    - id: Flare
+    - id: GlowstickRed
+      orGroup: Glowstick
+    - id: GlowstickPurple
+      orGroup: Glowstick
+    - id: GlowstickYellow
+      orGroup: Glowstick
+    - id: GlowstickBlue
+      orGroup: Glowstick
     - id: FoodSnackNutribrick
     - id: DrinkWaterBottleFull
   - type: Sprite
@@ -107,9 +141,16 @@
   - type: StorageFill
     contents:
     - id: ClothingMaskGasSecurity
-    - id: EmergencyNitrogenTankFilled
+    - id: ExtendedEmergencyNitrogenTankFilled #Sunrise-Edit
     - id: EmergencyMedipen
-    - id: Flare
+    - id: GlowstickRed
+      orGroup: Glowstick
+    - id: GlowstickPurple
+      orGroup: Glowstick
+    - id: GlowstickYellow
+      orGroup: Glowstick
+    - id: GlowstickBlue
+      orGroup: Glowstick
     - id: FoodSnackNutribrick
     - id: DrinkWaterBottleFull
   - type: Sprite
@@ -120,7 +161,6 @@
     currentLabel: reagent-name-nitrogen
 
 - type: entity
-
   parent: BoxCardboard
   id: BoxSurvivalMedical
   name: survival box
@@ -132,7 +172,14 @@
     - id: ClothingMaskBreathMedical
     - id: EmergencyOxygenTankFilled
     - id: EmergencyMedipen
-    - id: Flare
+    - id: GlowstickRed
+      orGroup: Glowstick
+    - id: GlowstickPurple
+      orGroup: Glowstick
+    - id: GlowstickYellow
+      orGroup: Glowstick
+    - id: GlowstickBlue
+      orGroup: Glowstick
     - id: FoodSnackNutribrick
     - id: DrinkWaterBottleFull
   - type: Sprite
@@ -150,7 +197,14 @@
     - id: ClothingMaskBreathMedical
     - id: EmergencyNitrogenTankFilled
     - id: EmergencyMedipen
-    - id: Flare
+    - id: GlowstickRed
+      orGroup: Glowstick
+    - id: GlowstickPurple
+      orGroup: Glowstick
+    - id: GlowstickYellow
+      orGroup: Glowstick
+    - id: GlowstickBlue
+      orGroup: Glowstick
     - id: FoodSnackNutribrick
     - id: DrinkWaterBottleFull
   - type: Sprite
@@ -178,7 +232,14 @@
     - id: ClothingMaskBreath
     - id: EmergencyFunnyOxygenTankFilled
     - id: EmergencyMedipen
-    - id: Flare
+    - id: GlowstickRed
+      orGroup: Glowstick
+    - id: GlowstickPurple
+      orGroup: Glowstick
+    - id: GlowstickYellow
+      orGroup: Glowstick
+    - id: GlowstickBlue
+      orGroup: Glowstick
     - id: FoodSnackNutribrick
     - id: DrinkWaterBottleFull
   - type: Tag
@@ -195,7 +256,14 @@
     - id: ClothingMaskBreath
     - id: EmergencyNitrogenTankFilled
     - id: EmergencyMedipen
-    - id: Flare
+    - id: GlowstickRed
+      orGroup: Glowstick
+    - id: GlowstickPurple
+      orGroup: Glowstick
+    - id: GlowstickYellow
+      orGroup: Glowstick
+    - id: GlowstickBlue
+      orGroup: Glowstick
     - id: FoodSnackNutribrick
     - id: DrinkWaterBottleFull
   - type: Label
@@ -247,7 +315,14 @@
     - id: ClothingMaskGasSyndicate
     - id: ExtendedEmergencyOxygenTankFilled
     - id: EmergencyMedipen
-    - id: Flare
+    - id: GlowstickRed
+      orGroup: Glowstick
+    - id: GlowstickPurple
+      orGroup: Glowstick
+    - id: GlowstickYellow
+      orGroup: Glowstick
+    - id: GlowstickBlue
+      orGroup: Glowstick
     - id: FoodSnackNutribrick
   - type: Sprite
     layers:
@@ -264,7 +339,14 @@
     - id: ClothingMaskGasSyndicate
     - id: ExtendedEmergencyNitrogenTankFilled
     - id: EmergencyMedipen
-    - id: Flare
+    - id: GlowstickRed
+      orGroup: Glowstick
+    - id: GlowstickPurple
+      orGroup: Glowstick
+    - id: GlowstickYellow
+      orGroup: Glowstick
+    - id: GlowstickBlue
+      orGroup: Glowstick
     - id: FoodSnackNutribrick
   - type: Sprite
     layers:

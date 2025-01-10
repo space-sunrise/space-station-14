@@ -125,7 +125,7 @@
 
 - type: entity
   id: GrenadeEMP
-  name: EMP grenade
+  name: EMP rocket
   parent: BaseGrenade
   components:
   - type: CartridgeAmmo

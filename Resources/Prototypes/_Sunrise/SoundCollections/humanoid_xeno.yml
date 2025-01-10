@@ -1,0 +1,7 @@
+- type: soundCollection
+  id: HumanoidXenoScreams
+  files:
+  - /Audio/_Sunrise/Voice/HumanoidXeno/humanoid_xeno_scream1.ogg
+  - /Audio/_Sunrise/Voice/HumanoidXeno/humanoid_xeno_scream2.ogg
+  - /Audio/_Sunrise/Voice/HumanoidXeno/humanoid_xeno_scream3.ogg
+  - /Audio/_Sunrise/Voice/HumanoidXeno/humanoid_xeno_scream4.ogg

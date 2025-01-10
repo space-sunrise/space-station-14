@@ -38,7 +38,7 @@ namespace Content.Shared.Cargo.Prototypes
 
                 if (IoCManager.Resolve<IPrototypeManager>().TryIndex(Product, out EntityPrototype? prototype))
                 {
-                    _name = prototype.Name;
+                    _name = Loc.TryGetString($"{prototype.ID}-name", out var name) ? name : prototype.Name; //Sunrise-edit: Localization
                 }
 
                 return _name;
@@ -58,7 +58,7 @@ namespace Content.Shared.Cargo.Prototypes
 
                 if (IoCManager.Resolve<IPrototypeManager>().TryIndex(Product, out EntityPrototype? prototype))
                 {
-                    _description = prototype.Description;
+                    _description = Loc.TryGetString($"{prototype.ID}-desc", out var desc) ? desc : prototype.Description; //Sunrise-edit: Localization
                 }
 
                 return _description;

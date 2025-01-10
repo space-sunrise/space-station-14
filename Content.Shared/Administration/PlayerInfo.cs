@@ -14,7 +14,9 @@ public sealed record PlayerInfo(
     NetUserId SessionId,
     bool Connected,
     bool ActiveThisRound,
-    TimeSpan? OverallPlaytime)
+    TimeSpan? OverallPlaytime,
+    bool IsSponsor, // Sunrise-Sponsors
+    string? SponsorTitle)  // Sunrise-Sponsors)
 {
     private string? _playtimeString;
 

@@ -45,7 +45,7 @@
               anchored: true
           steps:
             - component: DoorElectronics
-              name: door electronics
+              name: step-door-electronics-circuit-board-name
               icon:
                 sprite: "Objects/Misc/module.rsi"
                 state: "door_electronics"

@@ -43,6 +43,15 @@
     event: !type:ToggleActionEvent
 
 - type: entity
+  id: ActionToggleDome
+  name: Toggle energy dome
+  description: Turn the energy barrier on or off.
+  components:
+  - type: InstantAction
+    icon: { sprite: Objects/Weapons/Melee/e_shield.rsi, state: eshield-on }
+    event: !type:ToggleActionEvent
+
+- type: entity
   id: ActionOpenStorageImplant
   name: Toggle Storage Implant
   description: Opens or closes the storage implant embedded under your skin
@@ -95,6 +104,11 @@
   components:
   - type: InstantAction
     charges: 3
+    # Sunrise-Start
+    renewCharges: true
+    renewChargeDelay: 120
+    useDelay: 5
+    # Sunrise-End
     checkCanInteract: false
     itemIconStyle: BigAction
     priority: -20
@@ -124,6 +138,10 @@
   - type: InstantAction
     checkCanInteract: false
     charges: 3
+    # Sunrise-Start
+    renewCharges: true
+    renewChargeDelay: 120
+    # Sunrise-End
     useDelay: 5
     itemIconStyle: BigAction
     priority: -20
@@ -140,6 +158,10 @@
   - type: InstantAction
     checkCanInteract: false
     charges: 2
+    # Sunrise-Start
+    renewCharges: true
+    renewChargeDelay: 120
+    # Sunrise-End
     useDelay: 5
     itemIconStyle: BigAction
     priority: -20
@@ -155,6 +177,11 @@
   components:
   - type: InstantAction
     charges: 1
+    # Sunrise-Start
+    renewCharges: true
+    renewChargeDelay: 300
+    useDelay: 5
+    # Sunrise-End
     itemIconStyle: BigAction
     priority: -20
     icon:

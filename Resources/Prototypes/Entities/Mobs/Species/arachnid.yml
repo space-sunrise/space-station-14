@@ -5,6 +5,7 @@
   id: BaseMobArachnid
   abstract: true
   components:
+  - type: Absorbable
   - type: Body
     prototype: Arachnid
     requiredLegs: 2 # It would be funny if arachnids could use their little back limbs to move around once they lose their legs, but just something to consider post-woundmed
@@ -51,7 +52,7 @@
       path: /Audio/Effects/bite.ogg
     damage:
       types:
-        Piercing: 5
+        Piercing: 15 # Sunrise-Edit
   # Visual & Audio
   - type: DamageVisuals
     damageOverlayGroups:
@@ -72,6 +73,7 @@
   - type: TypingIndicator
     proto: spider
   - type: Sprite # I'd prefer if these maps were better. Insert map pun here.
+    scale: 1.1, 1.2 # Sunrise-Edit
     layers:
       - map: [ "enum.HumanoidVisualLayers.Chest" ]
       - map: [ "enum.HumanoidVisualLayers.Head" ]
@@ -81,9 +83,14 @@
       - map: [ "enum.HumanoidVisualLayers.LArm" ]
       - map: [ "enum.HumanoidVisualLayers.RLeg" ]
       - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-      - map: ["jumpsuit"]
       - map: ["enum.HumanoidVisualLayers.LFoot"]
       - map: ["enum.HumanoidVisualLayers.RFoot"]
+      # Sunrise-start
+      - map: ["bra"]
+      - map: ["pants"]
+      - map: ["socks"]
+      - map: ["jumpsuit"]
+      # Sunrise-end
       - map: ["enum.HumanoidVisualLayers.LHand"]
       - map: ["enum.HumanoidVisualLayers.RHand"]
       - map: [ "gloves" ]
@@ -115,7 +122,33 @@
         visible: false
   - type: Inventory
     templateId: arachnid
-
+  # Sunrise-start
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSpiderLegs
+      params:
+        volume: -10
+  - type: CollectiveMind
+    minds:
+    - Arachnids
+  - type: FootprintEmitter
+    leftBareFootState:
+      - "footprint-left-bare-spider"
+    rightBareFootState:
+      - "footprint-right-bare-spider"
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.40
+        density: 250
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  # Sunrise-end
 
 - type: entity
   parent: BaseSpeciesDummy

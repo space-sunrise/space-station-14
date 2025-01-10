@@ -45,7 +45,7 @@ public sealed partial class CCVars
         ///     The preset for the game to fall back to if the selected preset could not be used, and fallback is enabled.
         /// </summary>
         public static readonly CVarDef<string>
-            GameLobbyFallbackPreset = CVarDef.Create("game.fallbackpreset", "Traitor,Extended", CVar.ARCHIVE);
+            GameLobbyFallbackPreset = CVarDef.Create("game.fallbackpreset", "Traitor,Extra", CVar.ARCHIVE); // Sunrise-Edit
 
         /// <summary>
         ///     Controls if people can win the game in Suspicion or Deathmatch.
@@ -82,7 +82,7 @@ public sealed partial class CCVars
         ///     Prototype to use for map pool.
         /// </summary>
         public static readonly CVarDef<string>
-            GameMapPool = CVarDef.Create("game.map_pool", "DefaultMapPool", CVar.SERVERONLY);
+            GameMapPool = CVarDef.Create("game.map_pool", "SunriseMapPool", CVar.SERVERONLY); // Sunrise-Edit
 
         /// <summary>
         ///     The depth of the queue used to calculate which map is next in rotation.
@@ -101,7 +101,7 @@ public sealed partial class CCVars
         ///     If roles should be restricted based on time.
         /// </summary>
         public static readonly CVarDef<bool>
-            GameRoleTimers = CVarDef.Create("game.role_timers", true, CVar.SERVER | CVar.REPLICATED);
+            GameRoleTimers = CVarDef.Create("game.role_timers", false, CVar.SERVER | CVar.REPLICATED); // Sunrise-Edit
 
         /// <summary>
         ///     Override default role requirements using a <see cref="JobRequirementOverridePrototype"/>
@@ -277,7 +277,7 @@ public sealed partial class CCVars
         ///     Delay between station alert level changes.
         /// </summary>
         public static readonly CVarDef<int> GameAlertLevelChangeDelay =
-            CVarDef.Create("game.alert_level_change_delay", 30, CVar.SERVERONLY);
+            CVarDef.Create("game.alert_level_change_delay", 60, CVar.SERVERONLY); // Sunrise-edit
 
         /// <summary>
         ///     The time in seconds that the server should wait before restarting the round.
@@ -290,13 +290,13 @@ public sealed partial class CCVars
         ///     The prototype to use for secret weights.
         /// </summary>
         public static readonly CVarDef<string> SecretWeightPrototype =
-            CVarDef.Create("game.secret_weight_prototype", "Secret", CVar.SERVERONLY);
+            CVarDef.Create("game.secret_weight_prototype", "SunriseSecret", CVar.SERVERONLY); // Sunrise-Edit
 
         /// <summary>
         ///     The id of the sound collection to randomly choose a sound from and play when the round ends.
         /// </summary>
         public static readonly CVarDef<string> RoundEndSoundCollection =
-            CVarDef.Create("game.round_end_sound_collection", "RoundEnd", CVar.SERVERONLY);
+            CVarDef.Create("game.round_end_sound_collection", "SunriseRoundEnd", CVar.SERVERONLY); // Sunrise-Edit
 
         /// <summary>
         ///     Whether or not to add every player as a global override to PVS at round end.
@@ -304,7 +304,7 @@ public sealed partial class CCVars
         ///     but may cause lag during round end with very high player counts.
         /// </summary>
         public static readonly CVarDef<bool> RoundEndPVSOverrides =
-            CVarDef.Create("game.round_end_pvs_overrides", true, CVar.SERVERONLY);
+            CVarDef.Create("game.round_end_pvs_overrides", false, CVar.SERVERONLY); // Sunrise-Edit
 
         /// <summary>
         ///     If true, players can place objects onto tabletop games like chess boards.
@@ -320,7 +320,7 @@ public sealed partial class CCVars
         ///     If true, contraband severity can be viewed in the examine menu
         /// </summary>
         public static readonly CVarDef<bool> ContrabandExamine =
-            CVarDef.Create("game.contraband_examine", true, CVar.SERVER | CVar.REPLICATED);
+            CVarDef.Create("game.contraband_examine", false, CVar.SERVER | CVar.REPLICATED); // Sunrise-Edit
 
         /// <summary>
         ///     Size of the lookup area for adding entities to the context menu

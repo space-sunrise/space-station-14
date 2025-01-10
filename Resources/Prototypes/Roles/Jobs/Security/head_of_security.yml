@@ -20,13 +20,15 @@
   icon: "JobIconHeadOfSecurity"
   supervisors: job-supervisors-captain
   canBeAntag: false
+  radioBold: true # Sunrise-Edit
+  displayWeight: 80 # Sunrise-Edit
   access:
   - HeadOfSecurity
   - Command
   - Brig
   - Security
   - Armory
-  - Maintenance
+#  - Maintenance #Sunrise-Edit
   - Service
   - External
   - Detective
@@ -37,6 +39,8 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
+  speciesBlacklist:
+  - Vox # Sunrise-Edit
 
 - type: startingGear
   id: HoSGear
@@ -45,8 +49,8 @@
     id: HoSPDA
     gloves: ClothingHandsGlovesCombat
     ears: ClothingHeadsetAltSecurity
-    pocket1: WeaponPistolMk58
+    pocket1: WeaponPistolG22NonLethal # Sunrise-Edit
   storage:
     back:
     - Flash
-    - MagazinePistol
+    - MagazineGlock22Rubber # Sunrise-Edit

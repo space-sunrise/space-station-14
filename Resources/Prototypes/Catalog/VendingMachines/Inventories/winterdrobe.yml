@@ -18,6 +18,9 @@
     ClothingOuterCoatBomber: 3
     ClothingHeadHatSantahat: 2
     ClothingHeadHatXmasCrown: 2
+    ClothingOuterChristmasSweeter: 3 #sunrise-edit
+    ClothingHandsGlovesChristmas: 3 #sunrise-edit
+    ClothingHandsGlovesChristmasLong: 3 #sunrise-edit
 
   emaggedInventory:
     ClothingNeckScarfStripedSyndieGreen: 3

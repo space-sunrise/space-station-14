@@ -15,7 +15,7 @@
           true
     - type: NpcFactionMember
       factions:
-      - Dragon
+      - Carps
     - type: Sprite
       drawdepth: Mobs
       sprite: Mobs/Aliens/Carps/space.rsi
@@ -76,6 +76,7 @@
       tags:
         - Carp
         - DoorBumpOpener
+        - NoPaint  # Sunrise-edit
     - type: ReplacementAccent
       accent: genericAggressive
     - type: Speech
@@ -85,6 +86,14 @@
       interactFailureString: petting-failure-carp
       interactFailureSound:
         path: /Audio/Effects/bite.ogg
+    # Sunrise-Start
+    - type: CollectiveMind
+      minds:
+      - Carp
+    - type: NightVision
+      isToggle: true
+      color: "#808080"
+    # Sunrise-End
 
 - type: entity
   parent: BaseMobCarp

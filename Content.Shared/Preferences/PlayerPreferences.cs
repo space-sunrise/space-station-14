@@ -30,10 +30,17 @@ namespace Content.Shared.Preferences
             return _characters[index];
         }
 
+        // Sunrise-NewLife-Start
+        public void SetProfile(int index)
+        {
+            SelectedCharacterIndex = index;
+        }
+        // Sunrise-NewLife-End
+
         /// <summary>
         ///     Index of the currently selected character.
         /// </summary>
-        public int SelectedCharacterIndex { get; }
+        public int SelectedCharacterIndex { get; set; } // Sunrise-NewLife
 
         /// <summary>
         ///     The currently selected character.

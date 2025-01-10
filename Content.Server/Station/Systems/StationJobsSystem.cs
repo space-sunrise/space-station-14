@@ -421,6 +421,7 @@ public sealed partial class StationJobsSystem : EntitySystem
     /// <returns>The selected job, if any.</returns>
     public ProtoId<JobPrototype>? PickBestAvailableJobWithPriority(EntityUid station, IReadOnlyDictionary<ProtoId<JobPrototype>, JobPriority> jobPriorities, bool pickOverflows, IReadOnlySet<ProtoId<JobPrototype>>? disallowedJobs = null)
     {
+        Logger.Info("PickBestAvailableJobWithPriority");
         if (station == EntityUid.Invalid)
             return null;
 

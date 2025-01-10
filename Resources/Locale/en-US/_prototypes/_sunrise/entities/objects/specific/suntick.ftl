@@ -1,0 +1,12 @@
+ent-Suntick = Suntick
+    .desc = Incredibly attractive and beautiful coins that open the door to the world of a cute little shop.
+    .suffix = 20 ST
+ent-Suntick1 = { ent-Suntick }
+    .suffix = 1 ST
+    .desc = { ent-Suntick.desc }
+ent-Suntick5 = { ent-Suntick }
+    .suffix = 5 ST
+    .desc = { ent-Suntick.desc }
+ent-Suntick10 = { ent-Suntick }
+    .suffix = 10 ST
+    .desc = { ent-Suntick.desc }

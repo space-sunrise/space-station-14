@@ -201,6 +201,10 @@ public sealed partial class RevenantComponent : Component
     public EntityWhitelist? MalfunctionBlacklist;
     #endregion
 
+    // Sunrise-Start
+    [DataField("LockDebuffs")]
+    public Vector2 LockDebuffs = new(2, 8);
+    // Sunrise-End
     [DataField]
     public ProtoId<AlertPrototype> EssenceAlert = "Essence";
 

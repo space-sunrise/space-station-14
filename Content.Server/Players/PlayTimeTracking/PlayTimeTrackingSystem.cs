@@ -22,6 +22,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Server.Players.PlayTimeTracking;
 
@@ -39,6 +40,7 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly SharedRoleSystem _roles = default!;
     [Dependency] private readonly PlayTimeTrackingManager _tracking = default!;
+    private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
     public override void Initialize()
     {
@@ -59,6 +61,8 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
         SubscribeLocalEvent<IsJobAllowedEvent>(OnIsJobAllowed);
         SubscribeLocalEvent<GetDisallowedJobsEvent>(OnGetDisallowedJobs);
         _adminManager.OnPermsChanged += AdminPermsChanged;
+
+        IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
     }
 
     public override void Shutdown()
@@ -207,7 +211,13 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
             playTimes = new Dictionary<string, TimeSpan>();
         }
 
-        return JobRequirements.TryRequirementsMet(job, playTimes, out _, EntityManager, _prototypes, (HumanoidCharacterProfile?) _preferencesManager.GetPreferences(player.UserId).SelectedCharacter);
+        // Sunrise-Sponsors-Start
+        var sponsorPrototypes = _sponsorsManager != null && _sponsorsManager.TryGetPrototypes(player.UserId, out var prototypes)
+            ? prototypes.ToArray()
+            : [];
+        // Sunrise-Sponsors-End
+
+        return JobRequirements.TryRequirementsMet(job, playTimes, out _, EntityManager, _prototypes, (HumanoidCharacterProfile?) _preferencesManager.GetPreferences(player.UserId).SelectedCharacter, sponsorPrototypes); // Sunrise-Sponsors
     }
 
     public HashSet<ProtoId<JobPrototype>> GetDisallowedJobs(ICommonSession player)
@@ -222,9 +232,15 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
             playTimes = new Dictionary<string, TimeSpan>();
         }
 
+        // Sunrise-Sponsors-Start
+        var sponsorPrototypes = _sponsorsManager != null && _sponsorsManager.TryGetPrototypes(player.UserId, out var prototypes)
+            ? prototypes.ToArray()
+            : [];
+        // Sunrise-Sponsors-End
+
         foreach (var job in _prototypes.EnumeratePrototypes<JobPrototype>())
         {
-            if (JobRequirements.TryRequirementsMet(job, playTimes, out _, EntityManager, _prototypes, (HumanoidCharacterProfile?) _preferencesManager.GetPreferences(player.UserId).SelectedCharacter))
+            if (JobRequirements.TryRequirementsMet(job, playTimes, out _, EntityManager, _prototypes, (HumanoidCharacterProfile?) _preferencesManager.GetPreferences(player.UserId).SelectedCharacter, sponsorPrototypes)) // Sunrise-Sponsors
                 roles.Add(job.ID);
         }
 
@@ -244,10 +260,17 @@ public sealed class PlayTimeTrackingSystem : EntitySystem
             playTimes ??= new Dictionary<string, TimeSpan>();
         }
 
+        // Sunrise-Sponsors-Start
+        var sponsorPrototypes = _sponsorsManager != null && _sponsorsManager.TryGetPrototypes(player.UserId, out var prototypes)
+            ? prototypes.ToArray()
+            : [];
+        // Sunrise-Sponsors-End
+
         for (var i = 0; i < jobs.Count; i++)
         {
+
             if (_prototypes.TryIndex(jobs[i], out var job)
-                && JobRequirements.TryRequirementsMet(job, playTimes, out _, EntityManager, _prototypes, (HumanoidCharacterProfile?) _preferencesManager.GetPreferences(userId).SelectedCharacter))
+                && JobRequirements.TryRequirementsMet(job, playTimes, out _, EntityManager, _prototypes, (HumanoidCharacterProfile?) _preferencesManager.GetPreferences(userId).SelectedCharacter, sponsorPrototypes)) // Sunrise-Sponsors
             {
                 continue;
             }

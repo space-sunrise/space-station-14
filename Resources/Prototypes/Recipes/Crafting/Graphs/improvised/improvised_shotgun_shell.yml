@@ -13,61 +13,61 @@
               amount: 1
               doAfter: 0.5 
             - tag: GlassShard
-              name: glass shard
+              name: step-glass-shard-name
               icon:
                 sprite: Objects/Materials/Shards/shard.rsi
                 state: shard1
               doAfter: 0.5 
             - tag: GlassShard
-              name: glass shard
+              name: step-glass-shard-name
               icon:
                 sprite: Objects/Materials/Shards/shard.rsi
                 state: shard2
               doAfter: 0.5 
             - tag: GlassShard
-              name: glass shard
+              name: step-glass-shard-name
               icon:
                 sprite: Objects/Materials/Shards/shard.rsi
                 state: shard1
               doAfter: 0.5 
             - tag: GlassShard
-              name: glass shard
+              name: step-glass-shard-name
               icon:
                 sprite: Objects/Materials/Shards/shard.rsi
                 state: shard3
               doAfter: 0.5 
             - tag: Matchstick
-              name: match stick
+              name: step-matchstick-name
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
               doAfter: 0.5 
             - tag: Matchstick
-              name: match stick
+              name: step-matchstick-name
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
               doAfter: 0.5 
             - tag: Matchstick
-              name: match stick
+              name: step-matchstick-name
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
               doAfter: 0.5 
             - tag: Matchstick
-              name: match stick
+              name: step-matchstick-name
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
               doAfter: 0.5 
             - tag: Matchstick
-              name: match stick
+              name: step-matchstick-name
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit
               doAfter: 0.5 
             - tag: Matchstick
-              name: match stick
+              name: step-matchstick-name
               icon:
                 sprite: Objects/Tools/matches.rsi
                 state: match_unlit

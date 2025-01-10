@@ -20,6 +20,9 @@
             "name": "slug"
         },
         {
+            "name": "uranium" 
+        },
+        {
             "name": "mag-1"
         }
     ]

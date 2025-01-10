@@ -77,17 +77,22 @@
 - type: storeCategory
   id: UplinkAllies
   name: store-category-allies
-  priority: 8
+  priority: 8 # Sunrise-Edit
 
 - type: storeCategory
   id: UplinkJob
   name: store-category-job
-  priority: 9
+  priority: 10 # Sunrise-Edit
 
 - type: storeCategory
   id: UplinkPointless
   name: store-category-pointless
-  priority: 10
+  priority: 12 # Sunrise-Edit
+
+- type: storeCategory
+  id: UplinkObjectives
+  name: store-category-objectives
+  priority: 13 # Sunrise-Edit
 
 #revenant
 - type: storeCategory
@@ -98,3 +103,20 @@
   id: DiscountedItems
   name: store-discounted-items
   priority: 200
+
+# changeling
+
+- type: storeCategory
+  id: ChangelingAbilityCombat
+  name: store-ling-category-combat
+  priority: 0
+
+- type: storeCategory
+  id: ChangelingAbilitySting
+  name: store-ling-category-sting
+  priority: 1
+
+- type: storeCategory
+  id: ChangelingAbilityUtility
+  name: store-ling-category-utility
+  priority: 2

@@ -1,0 +1,12 @@
+ent-CrateArmoryM16A4 = M16A4 crate
+    .desc = Contains two M16A4 assault rifle with four mags. Requires Armory access to open.
+ent-CrateArmoryAKMS = AKMS crate
+    .desc = Contains two AKMS assault rifle with four mags. Requires Armory access to open.
+ent-CrateArmoryMP5 = MP5 crate
+    .desc = Contains two MP5 submachine gun with four mags. Requires Armory access to open.
+ent-CrateArmoryIK30 = IK-30 crate
+    .desc = Contains three IK-30 semi laser battery gun. Requires Armory access to open.
+ent-CrateArmoryMagazineBoxLightRifleBig = MagazineBoxLightRifleBig crate
+    .desc = Contains two MagazineBoxLightRifleBig. Requires Armory access to open.
+ent-CrateArmoryMagazineBoxRifleBig = MagazineBoxRifleBig crate
+    .desc = Contains two MagazineBoxRifleBig. Requires Armory access to open.

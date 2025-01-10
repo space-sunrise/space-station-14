@@ -163,7 +163,8 @@ public sealed class LoadoutSystem : EntitySystem
         var id = _random.Pick(loadoutGroups);
         var proto = _protoMan.Index(id);
         var loadout = new RoleLoadout(id);
-        loadout.SetDefault(GetProfile(uid), _actors.GetSession(uid), _protoMan, true);
+        // Sunrise-Fix: Я пока-что в душе не ебу как здесь достать спонсорские прототипы, потому []
+        loadout.SetDefault(GetProfile(uid), _actors.GetSession(uid), _protoMan, [], true);
         _station.EquipRoleLoadout(uid, loadout, proto);
 
         GearEquipped(uid);

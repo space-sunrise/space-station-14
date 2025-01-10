@@ -1,0 +1,39 @@
+﻿- type: entity
+  id: PrinterDocMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: document printer machine board
+  description: A machine printed circuit board for an document printer
+  components:
+    - type: MachineBoard
+      prototype: PrinterDoc
+      stackRequirements:
+        MatterBin: 3
+        Manipulator: 1
+        Glass: 1
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: PacificatorCircuitboard
+  name: pacifism generator machine board
+  description: Makes all sentient beings within range pacifists.
+  components:
+  - type: MachineBoard
+    prototype: Pacificator
+    stackRequirements:
+      Capacitor: 4
+      MatterBin: 3
+      Steel: 5
+      CableHV: 5
+      Uranium: 2
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ReflectorMachineCircuitboard
+  name: reflector machine board
+  components:
+  - type: MachineBoard
+    prototype: Reflector
+    stackRequirements:
+      Manipulator: 2
+      MatterBin: 1
+      Steel: 1

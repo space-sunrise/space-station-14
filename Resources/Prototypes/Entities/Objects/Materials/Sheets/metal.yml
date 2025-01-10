@@ -15,6 +15,7 @@
     tags:
     - Sheet
     - Metal
+    - NoPaint  # Sunrise-edit
   - type: Damageable
     damageContainer: Inorganic
     damageModifierSet: Metallic
@@ -69,6 +70,10 @@
           Quantity: 9
         - ReagentId: Carbon
           Quantity: 1
+        # Sunrise-start
+        - ReagentId: Lead
+          Quantity: 1
+        # Sunrise-end
 
 - type: entity
   parent: SheetSteel

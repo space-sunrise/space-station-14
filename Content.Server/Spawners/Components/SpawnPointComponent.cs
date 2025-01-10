@@ -27,4 +27,5 @@ public enum SpawnPointType
     LateJoin,
     Job,
     Observer,
+    Arrivals
 }

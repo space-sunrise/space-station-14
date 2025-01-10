@@ -309,6 +309,12 @@
   components:
   - type: AccessReader
     access: [["Command"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 - type: entity
   id: LockableButtonCryogenics
@@ -317,6 +323,12 @@
   components:
   - type: AccessReader
     access: [["Cryogenics"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 - type: entity
   id: LockableButtonSecurity
@@ -357,6 +369,12 @@
   components:
   - type: AccessReader
     access: [["Lawyer"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 - type: entity
   id: LockableButtonEngineering
@@ -365,6 +383,12 @@
   components:
   - type: AccessReader
     access: [["Engineering"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 - type: entity
   id: LockableButtonMedical
@@ -373,6 +397,12 @@
   components:
   - type: AccessReader
     access: [["Medical"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 - type: entity
   id: LockableButtonQuartermaster
@@ -389,6 +419,12 @@
   components:
   - type: AccessReader
     access: [["Salvage"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 - type: entity
   id: LockableButtonCargo
@@ -397,6 +433,12 @@
   components:
   - type: AccessReader
     access: [["Cargo"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 - type: entity
   id: LockableButtonResearch
@@ -405,6 +447,12 @@
   components:
   - type: AccessReader
     access: [["Research"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 - type: entity
   id: LockableButtonService
@@ -413,6 +461,12 @@
   components:
   - type: AccessReader
     access: [["Service"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 - type: entity
   id: LockableButtonMaintenance
@@ -421,6 +475,12 @@
   components:
   - type: AccessReader
     access: [["Maintenance"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 - type: entity
   id: LockableButtonExternal
@@ -429,6 +489,12 @@
   components:
   - type: AccessReader
     access: [["External"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 - type: entity
   id: LockableButtonJanitor
@@ -437,6 +503,12 @@
   components:
   - type: AccessReader
     access: [["Janitor"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 - type: entity
   id: LockableButtonTheatre
@@ -445,6 +517,12 @@
   components:
   - type: AccessReader
     access: [["Theatre"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 - type: entity
   id: LockableButtonBar
@@ -453,6 +531,12 @@
   components:
   - type: AccessReader
     access: [["Bar"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 - type: entity
   id: LockableButtonChemistry
@@ -461,6 +545,12 @@
   components:
   - type: AccessReader
     access: [["Chemistry"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 - type: entity
   id: LockableButtonKitchen
@@ -469,6 +559,12 @@
   components:
   - type: AccessReader
     access: [["Kitchen"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 - type: entity
   id: LockableButtonChapel
@@ -477,6 +573,12 @@
   components:
   - type: AccessReader
     access: [["Chapel"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 - type: entity
   id: LockableButtonHydroponics
@@ -485,6 +587,12 @@
   components:
   - type: AccessReader
     access: [["Hydroponics"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 - type: entity
   id: LockableButtonAtmospherics
@@ -493,6 +601,12 @@
   components:
   - type: AccessReader
     access: [["Atmospherics"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 # button frames
 

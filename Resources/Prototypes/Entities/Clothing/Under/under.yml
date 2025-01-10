@@ -2,7 +2,7 @@
 # I would cry if we didn't have them. -swept
 
 - type: entity
-  parent: ClothingShoesBase
+  parent: ClothingSocksBaseButcherable # Sunrise-end
   id: ClothingUnderSocksBee
   name: bee socks
   description: Make them loins buzz!
@@ -13,7 +13,7 @@
     sprite: Clothing/Under/Socks/bee.rsi
 
 - type: entity
-  parent: ClothingShoesBase
+  parent: ClothingSocksBaseButcherable # Sunrise-end
   id: ClothingUnderSocksCoder
   name: coder socks
   description: It's time to code sisters!!11!
@@ -22,3 +22,4 @@
     sprite: Clothing/Under/Socks/coder.rsi
   - type: Clothing
     sprite: Clothing/Under/Socks/coder.rsi
+

@@ -31,6 +31,9 @@
     inherentRadioChannels:
     - Common
     - Binary
+    notifyChannels:
+    - Binary
+    - Science
 
 - type: entity
   id: BorgChassisGeneric
@@ -112,6 +115,36 @@
       interactFailureString: petting-failure-syndicate-cyborg
       interactSuccessSound:
         path: /Audio/Ambience/Objects/periodic_beep.ogg
+    # Sunrise-Start
+    - type: PointLight
+      color: "#dd200b"
+    - type: TriggerOnMobstateChange
+      preventSuicide: true
+      mobState:
+      - Critical
+    - type: OnUseTimerTrigger
+      delay: 3
+      initialBeepDelay: 0
+      beepInterval: 3
+      beepSound: /Audio/Effects/PowerSink/charge_fire.ogg
+    - type: ExplodeOnTrigger
+    - type: GibOnTrigger
+      deleteItems: true
+    - type: Explosive
+      explosionType: Default
+      totalIntensity: 3500
+      intensitySlope: 15
+      maxIntensity: 70
+      canCreateVacuum: true
+    - type: TTS
+      voice: Sentrybot
+    - type: MovementSpeedModifier
+      baseWalkSpeed : 2.5
+      baseSprintSpeed : 4.5
+    - type: InnateItem
+      worldTargetActions:
+      - Emag
+    # Sunrise-End
 
 - type: entity
   id: BorgChassisSyndicateMedical
@@ -151,6 +184,17 @@
         collection: FootstepHoverBorg
         params:
           volume: -6
+    # Sunrise-Start
+    - type: TTS
+      voice: Sentrybot
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 3
+      baseSprintSpeed: 5
+    - type: InnateItem
+      worldTargetActions:
+      - Emag
+      - HandheldHealthAnalyzerUnpowered
+    # Sunrise-End
 
 - type: entity
   id: BorgChassisSyndicateSaboteur

@@ -8,6 +8,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Timing;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client.Administration.UI.ManageSolutions
 {
@@ -189,12 +190,15 @@ namespace Content.Client.Administration.UI.ManageSolutions
         {
             var box = new BoxContainer();
             var spin = new FloatSpinBox(1, 2);
+            
+            var prototypeManager = IoCManager.Resolve<IPrototypeManager>();
+            var reagentPrototype = prototypeManager.Index<ReagentPrototype>(reagentQuantity.Reagent.Prototype);
 
             spin.Value = reagentQuantity.Quantity.Float();
             spin.OnValueChanged += (args) => SetReagent(args, reagentQuantity.Reagent.Prototype);
             spin.HorizontalExpand = true;
 
-            box.AddChild(new Label() { Text = reagentQuantity.Reagent.Prototype , HorizontalExpand = true});
+            box.AddChild(new Label() { Text = reagentPrototype.LocalizedName , HorizontalExpand = true});
             box.AddChild(spin);
 
             ReagentList.AddChild(box);

@@ -1,0 +1,10 @@
+- type: construction
+  id: StorageCanister
+  name: canister
+  graph: StorageCanister
+  startNode: start
+  targetNode: done
+  category: construction-category-storage
+  description: A canister that can contain any type of gas. It can be attached to connector ports using a wrench.
+  icon: { sprite: Structures/Storage/canister.rsi, state: yellow }
+  objectType: Structure

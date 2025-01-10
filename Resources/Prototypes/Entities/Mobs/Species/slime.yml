@@ -4,6 +4,7 @@
   id: BaseMobSlimePerson
   abstract: true
   components:
+  - type: Absorbable
   - type: Hunger
   - type: Thirst
   - type: Icon
@@ -33,6 +34,8 @@
         type: HumanoidMarkingModifierBoundUserInterface
       enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
   # to prevent bag open/honk spam
   - type: UseDelay
     delay: 0.5
@@ -73,8 +76,7 @@
   - type: Barotrauma
     damage:
       types:
-        Blunt: 0.50 #per second, scales with pressure and other constants.
-        Heat: 0.2 # 0.1 more than humans, i feel like low pressure would make slime boil more than blunt stretch them so i decided on this instead.
+        Blunt: 0.1 # Sunrise-Casual
   - type: Reactive
     groups:
       Flammable: [ Touch ]
@@ -105,7 +107,7 @@
   - type: Respirator
     damage:
       types:
-        Asphyxiation: 0.2
+        Asphyxiation: 0.5 # Sunrise-Casual
     damageRecovery:
       types:
         Asphyxiation: -1.0
@@ -117,6 +119,13 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+  # Sunrise edit OwO
+  - type: FootprintEmitter
+    leftBareFootState:
+      - "footprint-left-bare-slime"
+    rightBareFootState:
+      - "footprint-right-bare-slime"
+  # Sunrise edit end.
 
 - type: entity
   parent: MobHumanDummy

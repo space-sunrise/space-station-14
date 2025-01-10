@@ -10,6 +10,7 @@ using Content.Shared.Administration;
 using Content.Shared.Mobs;
 using Content.Shared.NPC;
 using JetBrains.Annotations;
+using Robust.Server.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -236,7 +237,7 @@ public sealed class HTNSystem : EntitySystem
                 comp.PlanningToken = null;
             }
 
-            Update(comp, frameTime);
+            Update(uid, comp, frameTime);
             count++;
         }
     }
@@ -285,7 +286,7 @@ public sealed class HTNSystem : EntitySystem
         throw new NotImplementedException();
     }
 
-    private void Update(HTNComponent component, float frameTime)
+    private void Update(EntityUid uid, HTNComponent component, float frameTime)
     {
         // If we're not planning then countdown to next one.
         if (component.PlanningJob == null)

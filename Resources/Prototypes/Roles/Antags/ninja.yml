@@ -3,6 +3,7 @@
   name: roles-antag-space-ninja-name
   antagonist: true
   setPreference: false
+  playTimeTracker: AntagNinja # Sunrise-Edit
   objective: roles-antag-space-ninja-objective
   guides: [ SpaceNinja ]
 
@@ -21,7 +22,7 @@
     id: AgentIDCard
     ears: ClothingHeadsetGrey
     pocket1: SpiderCharge
-    pocket2: PinpointerStation
+    pocket2: HandHeldMassScanner
     belt: EnergyKatana
   inhand:
     - JetpackBlackFilled

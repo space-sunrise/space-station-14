@@ -5,15 +5,12 @@
   playTimeTracker: JobTechnicalAssistant
   requirements:
     - !type:OverallPlaytimeRequirement
-      time: 3600 #1 hr
-    - !type:DepartmentTimeRequirement
-      department: Engineering
-      time: 54000 #15 hrs
-      inverted: true # stop playing intern if you're good at engineering!
+      time: 3600 #1 hr # Sunrise-RoleTime
   startingGear: TechnicalAssistantGear
   icon: "JobIconTechnicalAssistant"
   supervisors: job-supervisors-engineering
-  canBeAntag: false
+  canBeAntag: true # Sunrise-Edit
+  displayWeight: 0 # Sunrise-Edit
   access:
   - Maintenance
   - Engineering

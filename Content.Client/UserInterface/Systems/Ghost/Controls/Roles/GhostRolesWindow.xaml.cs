@@ -13,10 +13,11 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
     public sealed partial class GhostRolesWindow : DefaultWindow
     {
         public event Action<GhostRoleInfo>? OnRoleRequestButtonClicked;
+        public event Action<GhostRoleInfo>? OnRoleRulesButtonClicked;
         public event Action<GhostRoleInfo>? OnRoleFollow;
 
-        private Dictionary<(string name, string description), Collapsible> _collapsibleBoxes = new();
-        private HashSet<(string name, string description)> _uncollapsedStates = new();
+        private Dictionary<string, Collapsible> _collapsibleBoxes = new();
+        private HashSet<string> _uncollapsedStates = new();
 
         public GhostRolesWindow()
         {
@@ -50,7 +51,7 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
             }
         }
 
-        public void AddEntry(string name, string description, bool hasAccess, FormattedMessage? reason, IEnumerable<GhostRoleInfo> roles, SpriteSystem spriteSystem)
+        public void AddEntry(string name, string description, string prototypeId, bool hasAccess, FormattedMessage? reason, IEnumerable<GhostRoleInfo> roles, SpriteSystem spriteSystem)
         {
             NoRolesMessage.Visible = false;
 
@@ -60,6 +61,7 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
             var info = new GhostRoleInfoBox(name, description);
             var buttons = new GhostRoleButtonsBox(hasAccess, reason, ghostRoleInfos, spriteSystem);
             buttons.OnRoleSelected += OnRoleRequestButtonClicked;
+            buttons.OnRoleRules += OnRoleRulesButtonClicked;
             buttons.OnRoleFollow += OnRoleFollow;
 
             EntryContainer.AddChild(info);
@@ -78,9 +80,6 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
                     Margin = new Thickness(0, 5, 0, 0),
                 };
 
-                // TODO: Add Requirements to this key when it'll be fixed and work as an equality key in GhostRolesEui
-                var key = (name, description);
-
                 var collapsible = new Collapsible(buttonHeading, body)
                 {
                     Orientation = BoxContainer.LayoutOrientation.Vertical,
@@ -90,7 +89,7 @@ namespace Content.Client.UserInterface.Systems.Ghost.Controls.Roles
                 body.AddChild(buttons);
 
                 EntryContainer.AddChild(collapsible);
-                _collapsibleBoxes.Add(key, collapsible);
+                _collapsibleBoxes.Add(prototypeId, collapsible);
             }
             else
             {

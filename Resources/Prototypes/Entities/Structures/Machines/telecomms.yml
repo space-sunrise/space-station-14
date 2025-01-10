@@ -86,6 +86,7 @@
       - EncryptionKeySecurity
       - EncryptionKeyService
       - EncryptionKeyCommand
+      - EncryptionKeyLaw # Sunrise-Edit
 
 - type: entity
   parent: TelecomServer

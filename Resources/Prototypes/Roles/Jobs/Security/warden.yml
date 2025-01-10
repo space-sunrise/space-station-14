@@ -4,18 +4,19 @@
   description: job-description-warden
   playTimeTracker: JobWarden
   requirements:
-    - !type:RoleTimeRequirement
-      role: JobSecurityOfficer
-      time: 36000 #10 hrs
+    - !type:DepartmentTimeRequirement
+      department: Security
+      time: 54000 #15 hrs # Sunrise-RoleTime
   startingGear: WardenGear
   icon: "JobIconWarden"
   supervisors: job-supervisors-hos
   canBeAntag: false
+  displayWeight: 70  # Sunrise
   access:
   - Security
   - Brig
   - Armory
-  - Maintenance
+#  - Maintenance #Sunrise-Edit
   - Service
   - External
   - Detective
@@ -23,6 +24,8 @@
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
+  speciesBlacklist:
+  - Vox
 
 - type: startingGear
   id: WardenGear
@@ -30,8 +33,8 @@
     eyes: ClothingEyesGlassesSecurity
     id: WardenPDA
     ears: ClothingHeadsetSecurity
-    pocket1: WeaponPistolMk58
+    pocket1: WeaponPistolG22NonLethal # Sunrise-Edit
   storage:
     back:
     - Flash
-    - MagazinePistol
+    - MagazineGlock22Rubber # Sunrise-Edit

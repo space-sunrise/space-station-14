@@ -5,6 +5,11 @@ using Content.Client.UserInterface.Systems.Ghost.Widgets;
 using Content.Shared.Ghost;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
+using Content.Client._Sunrise.ServersHub;
+using Content.Shared._Sunrise.SunriseCCVars;
+using Content.Sunrise.Interfaces.Shared;
+using Robust.Shared.Configuration;
+using Content.Shared._Sunrise.NewLife;
 
 namespace Content.Client.UserInterface.Systems.Ghost;
 
@@ -12,6 +17,9 @@ namespace Content.Client.UserInterface.Systems.Ghost;
 public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSystem>
 {
     [Dependency] private readonly IEntityNetworkManager _net = default!;
+    [Dependency] private readonly ServersHubManager _serversHubManager = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
     [UISystemDependency] private readonly GhostSystem? _system = default;
 
@@ -24,6 +32,8 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         var gameplayStateLoad = UIManager.GetUIController<GameplayStateLoadController>();
         gameplayStateLoad.OnScreenLoad += OnScreenLoad;
         gameplayStateLoad.OnScreenUnload += OnScreenUnload;
+
+        IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
     }
 
     private void OnScreenLoad()
@@ -64,7 +74,32 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         }
 
         Gui.Visible = _system?.IsGhost ?? false;
-        Gui.Update(_system?.AvailableGhostRoleCount, _system?.Player?.CanReturnToBody);
+
+        // Sunrise-Start
+        var newLifeEnable = _cfg.GetCVar(SunriseCCVars.NewLifeEnable);
+        var canRespawn = false;
+        if (newLifeEnable)
+        {
+            var sponsorOnly = _cfg.GetCVar(SunriseCCVars.NewLifeSponsorOnly);
+            if (sponsorOnly && _sponsorsManager != null)
+            {
+                if (_sponsorsManager.ClientAllowedRespawn() || !sponsorOnly)
+                {
+                    canRespawn = true;
+                }
+                else
+                {
+                    canRespawn = false;
+                }
+            }
+            else
+            {
+                canRespawn = true;
+            }
+        }
+        // Sunrise-End
+
+        Gui.Update(_system?.AvailableGhostRoleCount, _system?.Player?.CanReturnToBody, canRespawn);
     }
 
     private void OnPlayerRemoved(GhostComponent component)
@@ -125,6 +160,8 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         Gui.RequestWarpsPressed += RequestWarps;
         Gui.ReturnToBodyPressed += ReturnToBody;
         Gui.GhostRolesPressed += GhostRolesPressed;
+        Gui.RespawnPressed += Respawn; // Sunrise-Sponsors
+        Gui.ChangeServerPressed += ChangeServerPressed;
         Gui.TargetWindow.WarpClicked += OnWarpClicked;
         Gui.TargetWindow.OnGhostnadoClicked += OnGhostnadoClicked;
 
@@ -139,6 +176,8 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         Gui.RequestWarpsPressed -= RequestWarps;
         Gui.ReturnToBodyPressed -= ReturnToBody;
         Gui.GhostRolesPressed -= GhostRolesPressed;
+        Gui.RespawnPressed -= Respawn; // Sunrise-Sponsors
+        Gui.ChangeServerPressed -= ChangeServerPressed;
         Gui.TargetWindow.WarpClicked -= OnWarpClicked;
 
         Gui.Hide();
@@ -148,6 +187,14 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
     {
         _system?.ReturnToBody();
     }
+
+    // Sunrise-Sponsors-Start
+    private void Respawn()
+    {
+        var msg = new NewLifeOpenRequest();
+        _net.SendSystemNetworkMessage(msg);
+    }
+    // Sunrise-Sponsors-End
 
     private void RequestWarps()
     {
@@ -159,5 +206,10 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
     private void GhostRolesPressed()
     {
         _system?.OpenGhostRoles();
+    }
+
+    private void ChangeServerPressed()
+    {
+        _serversHubManager.ToggleWindow();
     }
 }

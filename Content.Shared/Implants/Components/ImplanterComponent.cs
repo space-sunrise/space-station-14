@@ -55,7 +55,7 @@ public sealed partial class ImplanterComponent : Component
     /// Good for single-use injectors
     /// </summary>
     [DataField, AutoNetworkedField]
-    public bool ImplantOnly;
+    public bool ImplantOnly = true; // Sunrsie-Edit
 
     /// <summary>
     /// The current mode of the implanter

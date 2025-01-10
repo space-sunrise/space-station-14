@@ -21,6 +21,7 @@ using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Damage;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Cuffs.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Mobs;
@@ -38,6 +39,7 @@ using Content.Shared.Prying.Components;
 using Content.Shared.Traits.Assorted;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Ghost.Roles.Components;
+using Content.Shared.Sunrise.CollectiveMind;
 
 namespace Content.Server.Zombies;
 
@@ -135,6 +137,19 @@ public sealed partial class ZombieSystem
         melee.Angle = 0.0f;
         melee.HitSound = zombiecomp.BiteSound;
 
+        // Sunrise-Start
+        RemComp<CuffableComponent>(target);
+
+        var collectiveMindComponent = EnsureComp<CollectiveMindComponent>(target);
+        foreach (var collectiveMind in collectiveMindComponent.Minds.ToArray())
+        {
+            collectiveMindComponent.Minds.Remove(collectiveMind);
+        }
+
+        if (!collectiveMindComponent.Minds.Contains("Zombie"))
+            collectiveMindComponent.Minds.Add("Zombie");
+        // Sunrise-End
+
         if (mobState.CurrentState == MobState.Alive)
         {
             // Groaning when damaged
@@ -182,7 +197,7 @@ public sealed partial class ZombieSystem
 
             // humanoid zombies get to pry open doors and shit
             var pryComp = EnsureComp<PryingComponent>(target);
-            pryComp.SpeedModifier = 0.75f;
+            pryComp.SpeedModifier = 0.75f; // Sunrise-Edit
             pryComp.PryPowered = true;
             pryComp.Force = true;
 

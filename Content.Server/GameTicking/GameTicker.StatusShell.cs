@@ -1,6 +1,8 @@
 using System.Text.Json.Nodes;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
+using Content.Sunrise.Interfaces.Server;
 using Robust.Server.ServerStatus;
 using Robust.Shared.Configuration;
 
@@ -40,12 +42,19 @@ namespace Content.Server.GameTicking
             // This method is raised from another thread, so this better be thread safe!
             lock (_statusShellLock)
             {
+                // Sunrise-Start
+                var players = IoCManager.Instance?.TryResolveType<IServerJoinQueueManager>(out var joinQueueManager) ?? false
+                    ? joinQueueManager.ActualPlayersCount
+                    : _playerManager.PlayerCount;
+                // Sunrise-End
+
                 jObject["name"] = _baseServer.ServerName;
                 jObject["map"] = _gameMapManager.GetSelectedMap()?.MapName;
                 jObject["round_id"] = _gameTicker.RoundId;
-                jObject["players"] = _playerManager.PlayerCount;
+                jObject["players"] = players; // Sunrise-Queue
                 jObject["soft_max_players"] = _cfg.GetCVar(CCVars.SoftMaxPlayers);
                 jObject["panic_bunker"] = _cfg.GetCVar(CCVars.PanicBunkerEnabled);
+                jObject["short_name"] = _cfg.GetCVar(SunriseCCVars.ServersHubShortName); // Sunrise-Edit
 
                 /*
                  * TODO: Remove baby jail code once a more mature gateway process is established. This code is only being issued as a stopgap to help with potential tiding in the immediate future.
@@ -54,7 +63,12 @@ namespace Content.Server.GameTicking
                 jObject["baby_jail"] = _cfg.GetCVar(CCVars.BabyJailEnabled);
                 jObject["run_level"] = (int) _runLevel;
                 if (preset != null)
-                    jObject["preset"] = Loc.GetString(preset.ModeTitle);
+                {
+                    if (preset.Hide)
+                        jObject["preset"] = Loc.GetString("gamemode-title-hide");
+                    else
+                        jObject["preset"] = Loc.GetString(preset.ModeTitle);
+                }
                 if (_runLevel >= GameRunLevel.InRound)
                 {
                     jObject["round_start_time"] = _roundStartDateTime.ToString("o");

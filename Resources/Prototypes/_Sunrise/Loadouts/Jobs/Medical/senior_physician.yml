@@ -1,0 +1,19 @@
+- type: loadout
+  id: JumpsuitSeniorPhysician
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSeniorPhysician
+
+- type: loadout
+  id: JumpskirtSeniorPhysician
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtSeniorPhysician
+
+- type: loadout
+  id: ChemBagSeniorPhysician
+  equipment:
+    belt: ChemBag
+
+- type: loadout
+  id: BeltMedicalSeniorPhysician
+  equipment:
+    belt: ClothingBeltMedicalFilled

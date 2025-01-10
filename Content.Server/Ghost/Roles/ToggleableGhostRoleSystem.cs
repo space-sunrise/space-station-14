@@ -1,4 +1,5 @@
 using Content.Server.Ghost.Roles.Components;
+using Content.Shared._Sunrise.Biocode;
 using Content.Shared.Examine;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Mind;
@@ -16,6 +17,7 @@ public sealed class ToggleableGhostRoleSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private readonly BiocodeSystem _biocodeSystem = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -31,6 +33,14 @@ public sealed class ToggleableGhostRoleSystem : EntitySystem
     {
         if (args.Handled)
             return;
+
+        // Sunrise-Start
+        if (TryComp<BiocodeComponent>(uid, out var biocodedComponent))
+        {
+            if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
+                return;
+        }
+        // Sunrise-End
 
         args.Handled = true;
 
@@ -99,6 +109,14 @@ public sealed class ToggleableGhostRoleSystem : EntitySystem
     {
         if (args.Hands == null || !args.CanAccess || !args.CanInteract)
             return;
+
+        // Sunrise-Start
+        if (TryComp<BiocodeComponent>(uid, out var biocodedComponent))
+        {
+            if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
+                return;
+        }
+        // Sunrise-End
 
         if (TryComp<MindContainerComponent>(uid, out var mind) && mind.HasMind)
         {

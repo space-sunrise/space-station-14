@@ -1,0 +1,172 @@
+- type: entity
+  parent: ClothingHeadHelmetBasic
+  id: ClothingHeadHelmetSecurityMedic
+  name: security medic helmet
+  description: A standard issue combat helmet for security medics. Has decent tensile strength and armor. Keep your head down.
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Clothing/Head/Helmets/security_medic.rsi
+    - type: Clothing
+      sprite: _Sunrise/Clothing/Head/Helmets/security_medic.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetPilot
+  name: security pilot's helmet
+  description: A thick pilot's helmet that provides good head protection.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/pilothelmet.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/pilothelmet.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+
+- type: entity
+  parent: [ClothingHeadBase, BaseRestrictedContraband, BaseFoldable]
+  id: ClothingHeadHelmetPubg
+  name: Altyn
+  description: A fortified helmet used to suppress and incite riots.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Helmets/tfhelm.rsi
+    layers:
+    - state: icon
+      map: [ "unfoldedLayer" ]
+    - state: icon-up
+      map: ["foldedLayer"]
+      visible: false
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Helmets/tfhelm.rsi
+  - type: Appearance
+  - type: Foldable
+    canFoldInsideContainer: true
+  - type: FoldableClothing
+    foldedEquippedPrefix: up
+    foldedHeldPrefix: up
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.90
+        Slash: 0.90
+        Heat: 0.90
+  - type: ExplosionResistance
+    damageCoefficient: 0.90
+
+#ERT Amber EVA Helmet
+- type: entity
+  abstract: true
+  parent: ClothingHeadBase
+  id: ClothingHeadEVAHelmetERTBase
+  name: base ERT helmet
+  components:
+  - type: BreathMask
+  - type: Item
+    size: Normal
+  - type: PressureProtection
+    highPressureMultiplier: 0.6
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.05
+    coolingCoefficient: 0.2
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.85
+        Piercing: 0.85
+        Heat: 0.85
+  - type: IngestionBlocker
+  - type: Clothing
+    equipSound: /Audio/Mecha/mechmove03.ogg
+    unequipSound: /Audio/Mecha/mechmove03.ogg
+    equipDelay: 1
+    unequipDelay: 1
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HelmetEVA
+  - type: FlashImmunity
+  - type: EyeProtection
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+
+#ERT Leader Helmet
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingHeadEVAHelmetERTBase ]
+  id: ClothingHeadEVAHelmetERTLeader
+  name: ERT leader EVA helmet
+  description: An in-atmosphere helmet worn by the leader of a Nanotrasen Emergency Response Team.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Helmets/eva_ert_leader.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Helmets/eva_ert_leader.rsi
+
+#ERT Chaplain Helmet
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingHeadEVAHelmetERTBase ]
+  id: ClothingHeadEVAHelmetERTChaplain
+  name: ERT chaplain EVA helmet
+  description: An in-atmosphere helmet worn by the chaplain of a Nanotrasen Emergency Response Team.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Helmets/eva_ert_chaplain.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Helmets/eva_ert_chaplain.rsi
+
+#ERT Security Helmet
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingHeadEVAHelmetERTBase ]
+  id: ClothingHeadEVAHelmetERTSecurity
+  name: ERT security EVA helmet
+  description: An in-atmosphere helmet worn by security members of the Nanotrasen Emergency Response Team.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Helmets/eva_ert_security.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Helmets/eva_ert_security.rsi
+
+#ERT Medic Helmet
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingHeadEVAHelmetERTBase ]
+  id: ClothingHeadEVAHelmetERTMedic
+  name: ERT medic EVA helmet
+  description: An in-atmosphere helmet worn by medical members of the Nanotrasen Emergency Response Team.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Helmets/eva_ert_medic.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Helmets/eva_ert_medic.rsi
+
+#ERT Engineer Helmet
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingHeadEVAHelmetERTBase ]
+  id: ClothingHeadEVAHelmetERTEngineer
+  name: ERT engineer EVA helmet
+  description: An in-atmosphere helmet worn by engineering members of the Nanotrasen Emergency Response Team.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Helmets/eva_ert_engineer.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Helmets/eva_ert_engineer.rsi
+
+#ERT Janitor Helmet
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingHeadEVAHelmetERTBase ]
+  id: ClothingHeadEVAHelmetERTJanitor
+  name: ERT janitor EVA helmet
+  description: An in-atmosphere helmet worn by janitorial members of the Nanotrasen Emergency Response Team.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Helmets/eva_ert_janitor.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Helmets/eva_ert_janitor.rsi

@@ -1,3 +1,5 @@
+using System.Numerics;
+using Content.Shared._Sunrise.StatsBoard;
 using Content.Shared.Roles;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
@@ -6,6 +8,7 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.Markdown.Mapping;
 using Robust.Shared.Serialization.Markdown.Value;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.GameTicking
 {
@@ -86,17 +89,27 @@ namespace Content.Shared.GameTicking
     public sealed class TickerLobbyStatusEvent : EntityEventArgs
     {
         public bool IsRoundStarted { get; }
-        public string? LobbyBackground { get; }
+        // Sunrise-Start
+        public string? LobbyType { get; }
+        public string? LobbyParallax { get; }
+        public string? LobbyAnimation { get; }
+        public string? LobbyArt { get; }
+        // Sunrise-End
         public bool YouAreReady { get; }
         // UTC.
         public TimeSpan StartTime { get; }
         public TimeSpan RoundStartTimeSpan { get; }
         public bool Paused { get; }
 
-        public TickerLobbyStatusEvent(bool isRoundStarted, string? lobbyBackground, bool youAreReady, TimeSpan startTime, TimeSpan preloadTime, TimeSpan roundStartTimeSpan, bool paused)
+        public TickerLobbyStatusEvent(bool isRoundStarted, string? lobbyType, string? lobbyBackground, string? lobbyParallax, string? lobbyAnimation, bool youAreReady, TimeSpan startTime, TimeSpan preloadTime, TimeSpan roundStartTimeSpan, bool paused)
         {
             IsRoundStarted = isRoundStarted;
-            LobbyBackground = lobbyBackground;
+            // Sunrise-Start
+            LobbyType = lobbyType;
+            LobbyArt = lobbyBackground;
+            LobbyParallax = lobbyParallax;
+            LobbyAnimation = lobbyAnimation;
+            // Sunrise-End
             YouAreReady = youAreReady;
             StartTime = startTime;
             RoundStartTimeSpan = roundStartTimeSpan;
@@ -189,6 +202,8 @@ namespace Content.Shared.GameTicking
         public int RoundId { get; }
         public int PlayerCount { get; }
         public RoundEndPlayerInfo[] AllPlayersEndInfo { get; }
+        public string RoundEndStats { get; } // Sunrise-Edit
+        public SharedStatisticEntry[] StatisticEntries { get; } // Sunrise-Edit
 
         /// <summary>
         /// Sound gets networked due to how entity lifecycle works between client / server and to avoid clipping.
@@ -202,6 +217,8 @@ namespace Content.Shared.GameTicking
             int roundId,
             int playerCount,
             RoundEndPlayerInfo[] allPlayersEndInfo,
+            string roundEndStats, // Sunrise-Edit
+            SharedStatisticEntry[] statisticEntries, // Sunrise-Edit
             string? restartSound)
         {
             GamemodeTitle = gamemodeTitle;
@@ -210,6 +227,8 @@ namespace Content.Shared.GameTicking
             RoundId = roundId;
             PlayerCount = playerCount;
             AllPlayersEndInfo = allPlayersEndInfo;
+            RoundEndStats = roundEndStats; // Sunrise-Edit
+            StatisticEntries = statisticEntries; // Sunrise-Edit
             RestartSound = restartSound;
         }
     }
@@ -221,4 +240,22 @@ namespace Content.Shared.GameTicking
         ReadyToPlay,
         JoinedGame,
     }
+
+    // Sunrise-Start
+    [Serializable, NetSerializable]
+    [DataDefinition]
+    public partial record LobbyAnimationData
+    {
+        public ResPath Path;
+        public string State;
+        public Vector2 Scale;
+    }
+
+    public enum LobbyBackgroundType
+    {
+        Animation,
+        Parallax,
+        Art
+    }
+    // Sunrise-End
 }

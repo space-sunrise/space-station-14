@@ -7,7 +7,7 @@
     tags:
     - Cartridge
     - CartridgeAntiMateriel
-  - type: CartridgeAmmo
+  - type: HitScanCartridgeAmmo
     proto: BulletAntiMateriel
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/large_casing.rsi

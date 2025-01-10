@@ -1,0 +1,154 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "taken from ss220 https://github.com/ss220-space/Paradise/blob/master220/icons/obj/items.dmi",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "zippo"
+    },
+    {
+      "name": "zippoon",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "zippo_nt_off"
+    },
+    {
+      "name": "zippo_nt_on",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "bluezippo"
+    },
+    {
+      "name": "bluezippoon",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "blackzippo"
+    },
+    {
+      "name": "blackzippoon",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "contractorzippo"
+    },
+    {
+      "name": "contractorzippoon",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "engravedzippo"
+    },
+    {
+      "name": "engravedzippoon"
+    },
+    {
+      "name": "gonzozippo"
+    },
+    {
+      "name": "gonzozippoon",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "zippo_cap"
+    },
+    {
+      "name": "zippo_cap_on"
+    },
+    {
+      "name": "zippo_ce"
+    },
+    {
+      "name": "zippo_ce_on"
+    },
+    {
+      "name": "zippo_hos"
+    },
+    {
+      "name": "zippo_hos_on"
+    },
+    {
+      "name": "zippo_cmo"
+    },
+    {
+      "name": "zippo_cmo_on"
+    },
+    {
+      "name": "zippo_hop"
+    },
+    {
+      "name": "zippo_hop_on"
+    },
+    {
+      "name": "zippo_rd"
+    },
+    {
+      "name": "zippo_rd_on"
+    },
+    {
+      "name": "zippo_qm"
+    },
+    {
+      "name": "zippo_qm_on",
+      "delays": [
+        [
+          0.125,
+          0.125,
+          0.125,
+          0.125
+        ]
+      ]
+    }
+  ]
+}

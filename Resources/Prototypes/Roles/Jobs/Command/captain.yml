@@ -1,4 +1,4 @@
-- type: job
+﻿- type: job
   id: Captain
   name: job-name-captain
   description: job-description-captain
@@ -22,6 +22,8 @@
   joinNotifyCrew: true
   supervisors: job-supervisors-centcom
   canBeAntag: false
+  displayWeight: 100 # Sunrise-Edit
+  radioBold: true # Sunrise-Edit
   accessGroups:
   - AllAccess
   special:
@@ -30,6 +32,8 @@
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
+  speciesBlacklist:
+  - Vox # Sunrise-Edit
 
 - type: startingGear
   id: CaptainGear
@@ -42,4 +46,5 @@
   storage:
     back:
     - Flash
+    - Telebaton # Sunrise-Edit
     # - StationCharter

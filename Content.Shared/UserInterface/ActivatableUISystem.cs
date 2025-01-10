@@ -1,3 +1,4 @@
+using Content.Shared._Sunrise.Biocode;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Managers;
 using Content.Shared.Ghost;
@@ -21,6 +22,7 @@ public sealed partial class ActivatableUISystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly BiocodeSystem _biocodeSystem = default!;
 
     public override void Initialize()
     {
@@ -70,6 +72,14 @@ public sealed partial class ActivatableUISystem : EntitySystem
         if (component.VerbOnly || !ShouldAddVerb(uid, component, args))
             return;
 
+        // Sunrise-Start
+        if (TryComp<BiocodeComponent>(uid, out var biocodedComponent))
+        {
+            if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
+                return;
+        }
+        // Sunrise-End
+
         args.Verbs.Add(new ActivationVerb
         {
             Act = () => InteractUI(args.User, uid, component),
@@ -83,6 +93,14 @@ public sealed partial class ActivatableUISystem : EntitySystem
     {
         if (!component.VerbOnly || !ShouldAddVerb(uid, component, args))
             return;
+
+        // Sunrise-Start
+        if (TryComp<BiocodeComponent>(uid, out var biocodedComponent))
+        {
+            if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
+                return;
+        }
+        // Sunrise-End
 
         args.Verbs.Add(new Verb
         {
@@ -130,6 +148,14 @@ public sealed partial class ActivatableUISystem : EntitySystem
         if (component.RequiredItems != null)
             return;
 
+        // Sunrise-Start
+        if (TryComp<BiocodeComponent>(uid, out var biocodedComponent))
+        {
+            if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
+                return;
+        }
+        // Sunrise-End
+
         args.Handled = InteractUI(args.User, uid, component);
     }
 
@@ -144,6 +170,14 @@ public sealed partial class ActivatableUISystem : EntitySystem
         if (component.RequiredItems != null)
             return;
 
+        // Sunrise-Start
+        if (TryComp<BiocodeComponent>(uid, out var biocodedComponent))
+        {
+            if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
+                return;
+        }
+        // Sunrise-End
+
         args.Handled = InteractUI(args.User, uid, component);
     }
 
@@ -157,6 +191,14 @@ public sealed partial class ActivatableUISystem : EntitySystem
 
         if (component.RequiredItems == null)
             return;
+
+        // Sunrise-Start
+        if (TryComp<BiocodeComponent>(uid, out var biocodedComponent))
+        {
+            if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
+                return;
+        }
+        // Sunrise-End
 
         if (_whitelistSystem.IsWhitelistFail(component.RequiredItems, args.Used))
             return;

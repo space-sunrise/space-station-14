@@ -57,6 +57,17 @@
       gun_chamber: !type:ContainerSlot
   - type: StaticPrice
     price: 500
+  # Sunrise start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: RiflesPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: RiflesDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: RiflesDrop
+  # Sunrise end
 
 - type: entity
   name: Atreides
@@ -74,7 +85,7 @@
   - type: Gun
     fireRate: 10
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+      collection: ump45 # Sunrise-Edit
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -110,7 +121,7 @@
     - Burst
     - FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/c-20r.ogg
+      collection: aug # Sunrise-Edit
   - type: ChamberMagazineAmmoProvider
     autoEject: true
   - type: MagazineVisuals
@@ -146,7 +157,9 @@
       burstFireRate: 12
       selectedMode: Burst
       soundGunshot:
-        path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+        collection: famas # Sunrise-Edit
+        params:
+          volume: 10
       availableModes:
         - Burst
       shotsPerBurst: 3
@@ -196,7 +209,7 @@
     fireRate: 6
     selectedMode: FullAuto
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/atreides.ogg
+      collection: mp5 # Sunrise-Edit
     availableModes:
     - FullAuto
   - type: ItemSlots

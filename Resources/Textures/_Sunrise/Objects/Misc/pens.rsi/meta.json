@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprited by discord: Mascot_valera and fr1zya",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "pen_ce"
+    },
+    {
+      "name": "pen_cmo"
+    },
+    {
+      "name": "pen_hos"
+    },
+    {
+      "name": "pen_qm"
+    },
+    {
+      "name": "pen_rd"
+    },
+    {
+      "name": "pen_ueg"
+    },
+    {
+        "name": "pen_hop"
+    },
+    {
+      "name": "pen-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "pen-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "pen_ueg-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "pen_ueg-inhand-right",
+      "directions": 4
+    }
+  ]
+}

@@ -35,7 +35,7 @@
         - ReagentId: THC
           Quantity: 12
   - type: Sprite
-    sprite: Objects/Specific/Hydroponics/tobacco.rsi
+    sprite: Objects/Specific/Hydroponics/cannabis.rsi
     state: dried
 
 - type: entity
@@ -65,7 +65,7 @@
       - Smokable
   - type: Item
     size: Tiny
-    
+
 - type: entity
   name: rainbow cannabis leaves
   parent: LeavesCannabis

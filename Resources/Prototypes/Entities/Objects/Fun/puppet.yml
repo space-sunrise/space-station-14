@@ -18,6 +18,8 @@
   - type: Muted
   - type: TypingIndicator
     proto: robot
+  - type: TTS
+    voice: Kleiner
   - type: Actions
   - type: MobState
     allowedStates:
@@ -40,3 +42,5 @@
     sprite: Objects/Fun/mrdips.rsi
     layers:
     - state: icon
+  - type: TTS
+    voice: Sheogorath

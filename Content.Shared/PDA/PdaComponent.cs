@@ -27,6 +27,9 @@ namespace Content.Shared.PDA
         [DataField("id", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
         public string? IdCard;
 
+        [DataField("pen", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+        public string? Pen;
+
         [ViewVariables] public EntityUid? ContainedId;
         [ViewVariables] public bool FlashlightOn;
 
@@ -38,5 +41,7 @@ namespace Content.Shared.PDA
         [ViewVariables] public string? StationName;
         [ViewVariables] public string? StationAlertLevel;
         [ViewVariables] public Color StationAlertColor = Color.White;
+        [ViewVariables] public TimeSpan? ShuttleTime; // Sunrise-edit
+        [ViewVariables] public EvacShuttleStatus ShuttleStatus; // Sunrise-edit
     }
 }

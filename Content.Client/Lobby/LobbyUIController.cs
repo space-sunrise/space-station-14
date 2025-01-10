@@ -5,6 +5,7 @@ using Content.Client.Inventory;
 using Content.Client.Lobby.UI;
 using Content.Client.Players.PlayTimeTracking;
 using Content.Client.Station;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
 using Content.Shared.GameTicking;
@@ -24,10 +25,11 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Client.Lobby;
 
-public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState>, IOnStateExited<LobbyState>
+public sealed partial class LobbyUIController : UIController, IOnStateEntered<LobbyState>, IOnStateExited<LobbyState>
 {
     [Dependency] private readonly IClientPreferencesManager _preferencesManager = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
@@ -48,6 +50,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     private CharacterSetupGui? _characterSetup;
     private HumanoidProfileEditor? _profileEditor;
     private CharacterSetupGuiSavePanel? _savePanel;
+    private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
     /// <summary>
     /// This is the characher preview panel in the chat. This should only update if their character updates.
@@ -64,6 +67,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     public override void Initialize()
     {
         base.Initialize();
+        IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
         _prototypeManager.PrototypesReloaded += OnProtoReload;
         _preferencesManager.OnServerDataLoaded += PreferencesDataLoaded;
         _requirements.Updated += OnRequirementsUpdated;
@@ -72,6 +76,12 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         {
             _profileEditor?.RefreshFlavorText();
         });
+        // Sunrise-Start
+        _configurationManager.OnValueChanged(SunriseCCVars.FlavorTextSponsorOnly, args =>
+        {
+            _profileEditor?.RefreshFlavorText();
+        });
+        // Sunrise-End
 
         _configurationManager.OnValueChanged(CCVars.GameRoleTimers, _ => RefreshProfileEditor());
 
@@ -337,10 +347,14 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         var job = jobProto ?? GetPreferredJob(profile);
         GiveDummyJobClothes(dummy, profile, job);
 
+        // Sunrise-Start
+        var sponsorPrototypes = _sponsorsManager?.GetClientPrototypes().ToArray() ?? [];
+        // Sunrise-End
+
         if (_prototypeManager.HasIndex<RoleLoadoutPrototype>(LoadoutSystem.GetJobPrototype(job.ID)))
         {
-            var loadout = profile.GetLoadoutOrDefault(LoadoutSystem.GetJobPrototype(job.ID), _playerManager.LocalSession, profile.Species, EntityManager, _prototypeManager);
-            GiveDummyLoadout(dummy, loadout);
+            var loadout = profile.GetLoadoutOrDefault(LoadoutSystem.GetJobPrototype(job.ID), _playerManager.LocalSession, profile.Species, EntityManager, _prototypeManager, sponsorPrototypes);
+            GiveDummyLoadout(dummy, loadout, true);
         }
     }
 
@@ -354,19 +368,34 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         return _prototypeManager.Index<JobPrototype>(highPriorityJob.Id ?? SharedGameTicker.FallbackOverflowJob);
     }
 
-    public void GiveDummyLoadout(EntityUid uid, RoleLoadout? roleLoadout)
+    public void GiveDummyLoadout(EntityUid uid, RoleLoadout? roleLoadout, bool outerwear)
     {
         if (roleLoadout == null)
             return;
+
+        // Sunrtise-Start
+        var undervearSlots = new List<string> { "bra", "pants", "socks" };
+        // Sunrtise-End
 
         foreach (var group in roleLoadout.SelectedLoadouts.Values)
         {
             foreach (var loadout in group)
             {
+                var wear = true; // Sunrtise-Edit
                 if (!_prototypeManager.TryIndex(loadout.Prototype, out var loadoutProto))
                     continue;
 
-                _spawn.EquipStartingGear(uid, loadoutProto);
+                // Sunrtise-Start
+
+                foreach (var keyValuePair in loadoutProto.Equipment)
+                {
+                    if (!undervearSlots.Contains(keyValuePair.Key) && !outerwear)
+                        wear = false;
+                }
+
+                if (wear)
+                    _spawn.EquipStartingGear(uid, loadoutProto);
+                // Sunrtise-End
             }
         }
     }
@@ -455,6 +484,10 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
     {
         EntityUid dummyEnt;
 
+        // Sunrise-Start
+        var sponsorPrototypes = _sponsorsManager?.GetClientPrototypes().ToArray() ?? [];
+        // Sunrise-End
+
         EntProtoId? previewEntity = null;
         if (humanoid != null && jobClothes)
         {
@@ -481,16 +514,14 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
 
         _humanoid.LoadProfile(dummyEnt, humanoid);
 
-        if (humanoid != null && jobClothes)
+        if (humanoid != null && job != null && jobClothes) // Sunrise-Edit
         {
-            DebugTools.Assert(job != null);
-
             GiveDummyJobClothes(dummyEnt, humanoid, job);
 
             if (_prototypeManager.HasIndex<RoleLoadoutPrototype>(LoadoutSystem.GetJobPrototype(job.ID)))
             {
-                var loadout = humanoid.GetLoadoutOrDefault(LoadoutSystem.GetJobPrototype(job.ID), _playerManager.LocalSession, humanoid.Species, EntityManager, _prototypeManager);
-                GiveDummyLoadout(dummyEnt, loadout);
+                var loadout = humanoid.GetLoadoutOrDefault(LoadoutSystem.GetJobPrototype(job.ID), _playerManager.LocalSession, humanoid.Species, EntityManager, _prototypeManager, sponsorPrototypes);
+                GiveDummyLoadout(dummyEnt, loadout, jobClothes);
             }
         }
 

@@ -109,8 +109,8 @@
 
 - type: latheRecipe
   parent: BaseRoboticsRecipe
-  id: PositronicBrain
-  result: PositronicBrain
+  id: Boris
+  result: Boris
   completetime: 3
   materials:
     Steel: 500

@@ -3,8 +3,10 @@
   alias:
     - survival
   name: survival-title
-  showInVote: false # secret
+  showInVote: true # Sunrise-Edit
+  hide: true # Sunrise-Edit
   description: survival-description
+  minPlayers: 50 # Sunrise-Edit
   rules:
     - MeteorSwarmScheduler
     - RampingStationEventScheduler
@@ -19,7 +21,8 @@
     - junk
     - meteorhell
   name: kessler-syndrome-title
-  showInVote: false # secret
+  showInVote: false # Sunrise-Edit
+  hide: true # Sunrise-Edit
   description: kessler-syndrome-description
   rules:
     - KesslerSyndromeScheduler
@@ -34,6 +37,8 @@
   name: all-at-once-title
   description: all-at-once-description
   showInVote: false
+  hide: false # Sunrise-Edit
+  minPlayers: 20 # Sunrise-Edit: 20 players for NUKEOPS
   rules:
     - Nukeops
     - Traitor
@@ -54,6 +59,8 @@
   name: aller-at-once-title
   description: aller-at-once-description
   showInVote: false #Please god dont do this
+  hide: false # Sunrise-Edit
+  minPlayers: 20 # Sunrise-Edit: 20 players for NUKEOPS
   rules:
     - Nukeops
     - Traitor
@@ -68,19 +75,20 @@
     - SpaceTrafficControlFriendlyEventScheduler
     - BasicRoundstartVariation
 
-- type: gamePreset
-  id: Extended
-  alias:
-  - extended
-  - shittersafari
-  name: extended-title
-  showInVote: false #2boring2vote
-  description: extended-description
-  rules:
-  - BasicStationEventScheduler
-  - MeteorSwarmScheduler
-  - SpaceTrafficControlEventScheduler
-  - BasicRoundstartVariation
+# Sunrise-Edit: Replace by Extra
+#- type: gamePreset
+#  id: Extended
+#  alias:
+#  - extended
+#  - shittersafari
+#  name: extended-title
+#  showInVote: false #2boring2vote
+#  description: extended-description
+#  rules:
+#  - BasicStationEventScheduler
+#  - MeteorSwarmScheduler
+#  - SpaceTrafficControlEventScheduler
+#  - BasicRoundstartVariation
 
 - type: gamePreset
   id: Greenshift
@@ -88,11 +96,13 @@
   - greenshift
   - shittersafarideluxeedition
   name: greenshift-title
-  showInVote: false #4boring4vote
+  showInVote: true # Sunrise-Edit
+  hide: false # Sunrise-Edit
   description: greenshift-description
   rules:
   - SpaceTrafficControlFriendlyEventScheduler
   - BasicRoundstartVariation
+  - GreenshiftAnnouncement # Sunrise-Edit
 
 - type: gamePreset
   id: Secret
@@ -101,6 +111,7 @@
     - sekrit
   name: secret-title
   showInVote: true
+  hide: false # Sunrise-Edit
   description: secret-description
   rules:
     - Secret
@@ -147,10 +158,13 @@
     - tator
   name: traitor-title
   description: traitor-description
-  showInVote: false
+  showInVote: true # Sunrise-Edit
+  hide: true # Sunrise-Edit
+  minPlayers: 5 # Sunrise-Edit: 5 players for TRAITORS
   rules:
     - Traitor
-    - SubGamemodesRule
+    - LiteSubGamemodesRule
+    - MiddleSubGamemodesRule
     - BasicStationEventScheduler
     - MeteorSwarmScheduler
     - SpaceTrafficControlEventScheduler
@@ -163,8 +177,8 @@
     - dm
   name: death-match-title
   description: death-match-description
-  maxPlayers: 15
   showInVote: true
+  hide: true # Sunrise-Edit
   supportedMaps: DeathMatchMapPool
   rules:
     - DeathMatch31
@@ -175,10 +189,12 @@
     - nukeops
   name: nukeops-title
   description: nukeops-description
-  showInVote: false
+  showInVote: true # Sunrise-Edit
+  hide: true # Sunrise-Edit
+  minPlayers: 20 # Sunrise-Edit: 20 players for NUKEOPS
   rules:
     - Nukeops
-    - SubGamemodesRule
+    - LiteSubGamemodesRule # Только лайтовые под-антаги, чтобы не было кооперации станции с генокрадами против ЯО.
     - BasicStationEventScheduler
     - MeteorSwarmScheduler
     - SpaceTrafficControlEventScheduler
@@ -192,10 +208,12 @@
     - revolutionaries
   name: rev-title
   description: rev-description
-  showInVote: false
+  showInVote: true # Sunrise-Edit
+  hide: true # Sunrise-Edit
+  minPlayers: 15 # Sunrise-Edit: 15 players for REVOLUTIONARY
   rules:
     - Revolutionary
-    - SubGamemodesRule
+    - LiteSubGamemodesRule # Только лайтовые под-антаги.
     - BasicStationEventScheduler
     - MeteorSwarmScheduler
     - SpaceTrafficControlEventScheduler
@@ -211,7 +229,9 @@
   - zomber
   name: zombie-title
   description: zombie-description
-  showInVote: false
+  showInVote: true # Sunrise-Edit
+  hide: true # Sunrise-Edit
+  minPlayers: 20 # Sunrise-Edit: 20 players for ZOMBIES
   rules:
   - Zombie
   - BasicStationEventScheduler
@@ -227,7 +247,9 @@
   - meteombies
   name: zombieteors-title
   description: zombieteors-description
-  showInVote: false
+  showInVote: false # Sunrise-Edit
+  hide: true # Sunrise-Edit
+  minPlayers: 20 # Sunrise-Edit: 20 players for ZOMBIES
   rules:
   - Zombie
   - BasicStationEventScheduler

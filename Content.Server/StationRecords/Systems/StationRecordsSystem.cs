@@ -87,13 +87,20 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
             || !_prototypeManager.HasIndex<JobPrototype>(jobId))
             return;
 
+        // Sunrise-Start
+        // Чтобы борги отображались в манифесте экипажа.
+        var name = profile.Name;
         if (!_inventory.TryGetSlotEntity(player, "id", out var idUid))
-            return;
+        {
+            idUid = player;
+            name = MetaData(player).EntityName;
+        }
+        // Sunrise-End
 
         TryComp<FingerprintComponent>(player, out var fingerprintComponent);
         TryComp<DnaComponent>(player, out var dnaComponent);
 
-        CreateGeneralRecord(station, idUid.Value, profile.Name, profile.Age, profile.Species, profile.Gender, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records);
+        CreateGeneralRecord(station, idUid, name, profile.Age, profile.Species, profile.Gender, jobId, fingerprintComponent?.Fingerprint, dnaComponent?.DNA, profile, records);
     }
 
 

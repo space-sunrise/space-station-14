@@ -10,7 +10,7 @@ namespace Content.Client.Store.Ui;
 [UsedImplicitly]
 public sealed class StoreBoundUserInterface : BoundUserInterface
 {
-    private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     [ViewVariables]
     private StoreMenu? _menu;

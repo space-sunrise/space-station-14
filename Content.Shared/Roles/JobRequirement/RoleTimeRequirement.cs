@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Localizations;
+using System.Linq;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Preferences;
 using Content.Shared.Roles.Jobs;
@@ -28,9 +29,16 @@ public sealed partial class RoleTimeRequirement : JobRequirement
         IPrototypeManager protoManager,
         HumanoidCharacterProfile? profile,
         IReadOnlyDictionary<string, TimeSpan> playTimes,
+        string? protoId, // Sunrise-Edit
+        string[] sponsorPrototypes, // Sunrise-Edit
         [NotNullWhen(false)] out FormattedMessage? reason)
     {
         reason = new FormattedMessage();
+
+        // Sunrise-Sponsors-Start
+        if (sponsorPrototypes.Contains(protoId))
+            return true;
+        // Sunrise-Sponsors-End
 
         string proto = Role;
 

@@ -190,9 +190,13 @@ namespace Content.Client.Construction.UI
                 || _whitelistSystem.IsWhitelistFail(recipe.EntityWhitelist, _playerManager.LocalEntity.Value))
                     continue;
 
+                var recipeName = recipe.Name.ToLowerInvariant();
+                var localizedRecipeName = Loc.GetString($"recipe-{recipe.ID}-name").ToLowerInvariant();
+
                 if (!string.IsNullOrEmpty(search))
                 {
-                    if (!recipe.Name.ToLowerInvariant().Contains(search.Trim().ToLowerInvariant()))
+                    var searchLower = search.Trim().ToLowerInvariant();
+                    if (!recipeName.Contains(searchLower) && !localizedRecipeName.Contains(searchLower))
                         continue;
                 }
 
@@ -336,7 +340,8 @@ namespace Content.Client.Construction.UI
             _constructionView.ClearRecipeInfo();
 
             _constructionView.SetRecipeInfo(
-                prototype.Name, prototype.Description, _spriteSystem.Frame0(prototype.Icon),
+                prototype.ID,
+                _spriteSystem.Frame0(prototype.Icon),
                 prototype.Type != ConstructionType.Item,
                 !_favoritedRecipes.Contains(prototype));
 
@@ -374,7 +379,7 @@ namespace Content.Client.Construction.UI
             return new(itemList)
             {
                 Metadata = recipe,
-                Text = recipe.Name,
+                Text = Loc.GetString($"recipe-{recipe.ID}-name"),
                 Icon = _spriteSystem.Frame0(recipe.Icon),
                 TooltipEnabled = true,
                 TooltipText = recipe.Description,

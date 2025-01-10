@@ -1,0 +1,29 @@
+﻿- type: cargoProduct
+  id: HandheldSoil
+  icon:
+    sprite: _Sunrise/Objects/Misc/soil.rsi
+    state: item
+  product: HandheldSoil
+  cost: 400
+  category: cargoproduct-category-name-hydroponics
+  group: market
+
+- type: cargoProduct
+  id: HydroponicsSeedsMinimal
+  icon:
+    sprite: Objects/Specific/Hydroponics/cherry.rsi
+    state: seed
+  product: CrateHydroponicsSeedsMinimal
+  cost: 500
+  category: cargoproduct-category-name-hydroponics
+  group: market
+
+- type: cargoProduct
+  id: HydroponicsToolsMinimal
+  icon:
+    sprite: Objects/Tools/Hydroponics/hatchet.rsi
+    state: icon
+  product: CrateHydroponicsToolsMinimal
+  cost: 100
+  category: cargoproduct-category-name-hydroponics
+  group: market

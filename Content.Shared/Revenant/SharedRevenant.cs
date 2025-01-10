@@ -62,6 +62,11 @@ public sealed partial class RevenantMalfunctionActionEvent : InstantActionEvent
 {
 }
 
+// Sunrise-Start
+public sealed partial class RevenantLockActionEvent : InstantActionEvent
+{
+}
+// Sunrise-End
 
 [NetSerializable, Serializable]
 public enum RevenantVisuals : byte

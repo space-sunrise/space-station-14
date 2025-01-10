@@ -3,13 +3,22 @@
   name: roles-antag-initial-infected-name
   antagonist: true
   setPreference: true
+  playTimeTracker: AntagInitialInfected # Sunrise-Edit
   objective: roles-antag-initial-infected-objective
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 54000 # 15h # Sunrise-RoleTime
   guides: [ Zombies ]
+  # Sunrise-Edit
+  previewIcon:
+    sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
+    state: initial_infected
 
 - type: antag
   id: Zombie
   name: roles-antag-zombie-name
   antagonist: true
   setPreference: false
+  playTimeTracker: AntagZombie # Sunrise-Edit
   objective: roles-antag-zombie-objective
   guides: [ Zombies ]

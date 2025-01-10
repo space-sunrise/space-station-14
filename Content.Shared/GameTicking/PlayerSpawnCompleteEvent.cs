@@ -20,6 +20,8 @@ public sealed class PlayerSpawnCompleteEvent : EntityEventArgs
     public EntityUid Station { get; }
     public HumanoidCharacterProfile Profile { get; }
 
+    public bool CanBeAntag { get; } // Sunrise-Edit
+
     // Ex. If this is the 27th person to join, this will be 27.
     public int JoinOrder { get; }
 
@@ -30,7 +32,8 @@ public sealed class PlayerSpawnCompleteEvent : EntityEventArgs
         bool silent,
         int joinOrder,
         EntityUid station,
-        HumanoidCharacterProfile profile)
+        HumanoidCharacterProfile profile,
+        bool canBeAntag)
     {
         Mob = mob;
         Player = player;
@@ -40,5 +43,6 @@ public sealed class PlayerSpawnCompleteEvent : EntityEventArgs
         Station = station;
         Profile = profile;
         JoinOrder = joinOrder;
+        CanBeAntag = canBeAntag;
     }
 }

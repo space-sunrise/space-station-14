@@ -6,29 +6,35 @@
   requirements:
     - !type:DepartmentTimeRequirement
       department: Security
-      time: 36000 #10 hrs
+      time: 18000 #5 hrs # Sunrise-RoleTime
   startingGear: SecurityOfficerGear
   icon: "JobIconSecurityOfficer"
   supervisors: job-supervisors-hos
   canBeAntag: false
+  displayWeight: 10
   access:
   - Security
   - Brig
-  - Maintenance
+#  - Maintenance #Sunrise-Edit
   - Service
   - External
   - Cryogenics
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
+  speciesBlacklist:
+  - Vox
 
 - type: startingGear
   id: SecurityOfficerGear
   equipment:
     eyes: ClothingEyesGlassesSecurity
+    id: SecurityPDA
     ears: ClothingHeadsetSecurity
-    pocket1: WeaponPistolMk58
+    head: ClothingHeadHelmetBasic
+    gloves: ClothingHandsGlovesColorBlack
+    pocket1: WeaponPistolG22NonLethal # Sunrise-Edit
   storage:
     back:
     - Flash
-    - MagazinePistol
+    - MagazineGlock22Rubber

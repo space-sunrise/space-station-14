@@ -12,7 +12,7 @@
   weights:
     CaptainIDStealObjective: 1
     CMOHyposprayStealObjective: 1
-    CMOCrewMonitorStealObjective: 1
+    #CMOCrewMonitorStealObjective: 1 # Sunrise-Edit: Больше не хайриск
     RDHardsuitStealObjective: 1
     NukeDiskStealObjective: 1
     MagbootsStealObjective: 1
@@ -22,19 +22,28 @@
     CaptainJetpackStealObjective: 0.5
     HandTeleporterStealObjective: 0.5
     EnergyShotgunStealObjective: 0.5
+    # Sunrise-Start
+    PlutoniumCoreStealObjective: 0.5
+    MultiphaseEnergygunStealObjective: 1
+    CMOAdvancedDefibrillatorStealObjective: 1
+    StealSupermatterSliverObjective: 1
+    # Sunrise-End
 
 - type: weightedRandom
   id: TraitorObjectiveGroupKill
   weights:
     KillRandomPersonObjective: 1
     KillRandomHeadObjective: 0.25
+    # SUNRISE-TODO: Цель не работает, так как в момент выдачи антагов еще нету
+    # Нужно как-то выдавать эту цель позже выбора агентов.
+    #KillRandomAntagObjective: 1
 
 - type: weightedRandom
   id: TraitorObjectiveGroupState
   weights:
     EscapeShuttleObjective: 1
-    DieObjective: 0.05
-    #HijackShuttleObjective: 0.02
+    DieObjective: 0.02
+    HijackShuttleObjective: 0.02
 
 - type: weightedRandom
   id: TraitorObjectiveGroupSocial
@@ -89,12 +98,12 @@
 - type: weightedRandom
   id: ThiefObjectiveGroupStructure
   weights:
-    NuclearBombStealObjective: 0.5
+    #NuclearBombStealObjective: 0.5 # Sunrise-Edit: Я хз че курили оффы делая такую цель. С учетом блядь того что воры появляются в режиме яо.
     FaxMachineCaptainStealObjective: 1
     ChemDispenserStealObjective: 1
     XenoArtifactStealObjective: 1
     FreezerHeaterStealObjective: 1
-    TegStealObjective: 1
+    #TegStealObjective: 1 Sunrise-Edit: Буквально цель на саботаж питания.
     BoozeDispenserStealObjective: 1
     AltarNanotrasenStealObjective: 1
     PlantRDStealObjective: 1
@@ -116,4 +125,5 @@
   id: ThiefObjectiveGroupEscape
   weights:
     EscapeThiefShuttleObjective: 1
-#Changeling, crew, wizard, when you code it...
+
+#Crew, wizard, when you code it...

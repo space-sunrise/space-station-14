@@ -109,6 +109,7 @@
     - DoorBumpOpener
     - WhitelistChameleon
     - WhitelistChameleonPDA
+    - SyndieAgentUplink # Sunrise-Edit
   - type: Input
     context: "human"
   - type: SentienceTarget # sentient PDA = pAI lite
@@ -416,6 +417,12 @@
   components:
   - type: Pda
     id: QuartermasterIDCard
+    penSlot:
+      startingItem: QmPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
@@ -512,6 +519,11 @@
     borderColor: "#858585"
   - type: Icon
     state: pda-library
+  # Sunrise-start
+  - type: Summonable
+    requiresBibleUser: false
+    specialItem: SpawnPointGhostFoliant
+  # Sunrise-end
 
 - type: entity
   parent: LibrarianPDA
@@ -634,6 +646,12 @@
   components:
   - type: Pda
     id: CEIDCard
+    penSlot:
+      startingItem: CEPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
@@ -672,6 +690,12 @@
   components:
   - type: Pda
     id: CMOIDCard
+    penSlot:
+      startingItem: CmoPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
@@ -763,6 +787,12 @@
   components:
   - type: Pda
     id: RDIDCard
+    penSlot:
+      startingItem: RdPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
@@ -802,6 +832,12 @@
   components:
   - type: Pda
     id: HoSIDCard
+    penSlot:
+      startingItem: HosPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
   - type: Appearance
     appearanceDataInit:
      enum.PdaVisuals.PdaType:
@@ -889,6 +925,24 @@
       - WantedListCartridge
       - LogProbeCartridge
       - AstroNavCartridge
+
+- type: entity
+  parent: CentcomPDA
+  id: CentcomOperatorPDA
+  name: CentComm PDA
+  description: Light green sign of walking bureaucracy.
+  components:
+  - type: Pda
+    id: CentcomOperatorIDCard
+    penSlot:
+      startingItem: PenCentcom
+      whitelist:
+        tags:
+        - Write
+  - type: PdaBorderColor
+    borderColor: "#00842e"
+  - type: Icon
+    state: pda-centcom
 
 - type: entity
   parent: CentcomPDA
@@ -1431,3 +1485,9 @@
         type: HealthAnalyzerBoundUserInterface
       enum.ChameleonUiKey.Key:
         type: ChameleonBoundUserInterface
+  # Sunrise-Start
+  - type: Biocode
+    factions:
+    - Syndicate
+    - Thief
+  # Sunrise-End

@@ -19,7 +19,7 @@ namespace Content.Shared.Medical.Cryogenics;
 public abstract partial class SharedCryoPodSystem: EntitySystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
-    [Dependency] private readonly StandingStateSystem _standingStateSystem = default!;
+    [Dependency] private readonly SharedStandingStateSystem _standingStateSystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;

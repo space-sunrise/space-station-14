@@ -45,6 +45,9 @@ public sealed partial class BorgSwitchableTypeComponent : Component
     /// </summary>
     [DataField]
     public ProtoId<RadioChannelPrototype>[] InherentRadioChannels = [];
+
+    [DataField]
+    public ProtoId<RadioChannelPrototype>[] NotifyChannels = [];
 }
 
 /// <summary>

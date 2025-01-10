@@ -23,6 +23,17 @@
   - type: Cryostorage
   - type: Physics
     canCollide: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.3
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - None
   - type: DragInsertContainer
     containerId: storage
   - type: ExitContainerOnMove

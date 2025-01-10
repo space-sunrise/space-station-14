@@ -1,0 +1,11 @@
+- type: entity
+  id: StatueDelta
+  parent: BaseStructure
+  name: delta statue
+  description: A delta statue. Big and strong.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _Sunrise/Structures/Decoration/statues.rsi
+    state: delta_statue
+    drawdepth: Mobs

@@ -49,6 +49,11 @@
       enum.GeneralStationRecordConsoleKey.Key:
       # who the fuck named this bruh
         type: GeneralStationRecordConsoleBoundUserInterface
+      # Sunrise-Start
+      enum.GhostThemeUiKey.Key:
+        type: GhostThemeBoundUserInterface
+        requireInputValidation: false
+      # Sunrise-End
   - type: IntrinsicUI
     uis:
       enum.SolarControlConsoleUiKey.Key:
@@ -88,11 +93,20 @@
   - type: SolutionScanner
   - type: IgnoreUIRange
   - type: ShowAntagIcons
+  - type: ShowJobIcons
+  - type: ShowMindShieldIcons
   - type: Inventory
     templateId: aghost
   - type: Loadout
     prototypes: [ MobAghostGear ]
   - type: BypassInteractionChecks
+  - type: InteractionPopup
+    successChance: 1.0
+    interactSuccessString: petting-success-cat
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Animals/cat_meow.ogg
 
 - type: entity
   id: ActionAGhostShowSolar
@@ -100,8 +114,8 @@
   description: View a Solar Control Interface.
   components:
   - type: InstantAction
-    icon: { sprite: Structures/Machines/parts.rsi, state: box_0 }
-    iconOn: Structures/Machines/parts.rsi/box_2.png
+    icon: _Sunrise/Interface/AdminActions/solar.png
+    iconOn: _Sunrise/Interface/AdminActions/solar.png
     keywords: [ "AI", "console", "interface" ]
     priority: -10
     event: !type:ToggleIntrinsicUIEvent { key: enum.SolarControlConsoleUiKey.Key }
@@ -136,8 +150,8 @@
   description: View a Cargo Ordering Interface.
   components:
   - type: InstantAction
-    icon: { sprite: Structures/Machines/parts.rsi, state: box_0 }
-    iconOn: Structures/Machines/parts.rsi/box_2.png
+    icon: _Sunrise/Interface/AdminActions/cargo.png
+    iconOn: _Sunrise/Interface/AdminActions/cargo.png
     keywords: [ "AI", "console", "interface" ]
     priority: -10
     event: !type:ToggleIntrinsicUIEvent { key: enum.CargoConsoleUiKey.Orders }

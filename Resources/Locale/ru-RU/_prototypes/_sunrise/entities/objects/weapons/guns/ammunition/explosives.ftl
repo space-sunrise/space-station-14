@@ -1,0 +1,12 @@
+ent-BaseArtilleryShell = базовый артиллерийский снаряд
+    .desc = Базовый артиллерийский снаряд.
+ent-ShellFragArtillery = осколочный артиллерийский снаряд
+    .desc = Артиллерийский снаряд.
+ent-ShellBatonArtillery = шоковый артиллерийский снаряд
+    .desc = { ent-ShellFragArtillery.desc }
+ent-ShellBlastArtillery = фугасный артиллерийский снаряд
+    .desc = { ent-ShellFragArtillery.desc }
+ent-ShellFlashArtillery = ослепляющий артиллерийский снаряд
+    .desc = { ent-ShellFragArtillery.desc }
+ent-ShellEMPArtillery = ЭМИ артиллерийский снаряд
+    .desc = { ent-ShellFragArtillery.desc }

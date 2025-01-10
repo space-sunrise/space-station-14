@@ -304,6 +304,9 @@ public partial class SharedGunSystem
                     if (TryComp<CartridgeAmmoComponent>(uid, out var cartridge))
                         SetCartridgeSpent(uid, cartridge, !(bool) chamber);
 
+                    if (TryComp<HitScanCartridgeAmmoComponent>(uid, out var hitScanCartridge))
+                        SetHitscanCartridgeSpent(uid, hitScanCartridge, !(bool) chamber);
+
                     EjectCartridge(uid);
                 }
 
@@ -400,6 +403,22 @@ public partial class SharedGunSystem
                 args.Ammo.Add((spawned, EnsureComp<AmmoComponent>(spawned)));
 
                 if (cartridge.DeleteOnSpawn)
+                {
+                    component.AmmoSlots[index] = null;
+                    component.Chambers[index] = null;
+                }
+            }
+            else if (TryComp<HitScanCartridgeAmmoComponent>(ent, out var hitScanCartridge))
+            {
+                if (hitScanCartridge.Spent)
+                    continue;
+
+                // Mark cartridge as spent and if it's caseless delete from the chamber slot.
+                SetHitscanCartridgeSpent(ent.Value, hitScanCartridge, true);
+                var spawned = Spawn(MetaData(ent.Value).EntityPrototype!.ID, args.Coordinates);
+                args.Ammo.Add((spawned, EnsureComp<HitScanCartridgeAmmoComponent>(spawned)));
+
+                if (hitScanCartridge.DeleteOnSpawn)
                 {
                     component.AmmoSlots[index] = null;
                     component.Chambers[index] = null;

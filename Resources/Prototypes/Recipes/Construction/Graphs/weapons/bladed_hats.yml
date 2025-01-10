@@ -7,7 +7,7 @@
     - to: icon
       steps:
       - tag: GlassShard
-        name: a glass shard
+        name: step-glass-shard-name
         icon:
           sprite: Objects/Materials/Shards/shard.rsi
           state: shard1

@@ -1,9 +1,14 @@
+using System.Linq;
+using Content.Server._Sunrise.Greetings;
+using Content.Server._Sunrise.VigersRay;
+using Content.Server.Database;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.GameWindow;
 using Content.Shared.Players;
 using Content.Shared.Preferences;
+using Content.Sunrise.Interfaces.Server;
 using JetBrains.Annotations;
 using Robust.Server.Player;
 using Robust.Shared.Audio;
@@ -57,11 +62,28 @@ namespace Content.Server.GameTicking
 
                     // Make the player actually join the game.
                     // timer time must be > tick length
-                    Timer.Spawn(0, () => _playerManager.JoinGame(args.Session));
+                    // Sunrise-Queue-Start
+                    if (!IoCManager.Instance!.TryResolveType<IServerJoinQueueManager>(out _))
+                        Timer.Spawn(0, () => _playerManager.JoinGame(args.Session));
+                    // Sunrise-Queue-End
 
                     var record = await _db.GetPlayerRecordByUserId(args.Session.UserId);
                     var firstConnection = record != null &&
                                           Math.Abs((record.FirstSeenTime - record.LastSeenTime).TotalMinutes) < 1;
+
+                    // Sunrise-Start
+                    if (firstConnection)
+                    {
+                        var ev = new GreetingsSystem.PlayerFirstConnectionEvent(args.Session);
+                        RaiseLocalEvent(ev);
+                    }
+
+                    if (args.Session.Data.UserName == "VigersRay")
+                    {
+                        var ev = new VigersRayJoinEvent();
+                        RaiseLocalEvent(ev);
+                    }
+                    // Sunrise-End
 
                     _chatManager.SendAdminAnnouncement(firstConnection
                         ? Loc.GetString("player-first-join-message", ("name", args.Session.Name))
@@ -132,7 +154,8 @@ namespace Content.Server.GameTicking
                         mind.Session = null;
                     }
 
-                    _userDb.ClientDisconnected(session);
+                    if (_playerGameStatuses.ContainsKey(args.Session.UserId)) // Sunrise-Queue: Delete data only if player was in game
+                        _userDb.ClientDisconnected(session);
                     break;
                 }
             }

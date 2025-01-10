@@ -7,6 +7,7 @@ using Content.Shared.Fluids.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using System.Linq;
+using Content.Shared._Sunrise.Footprints;
 
 namespace Content.Server.Chemistry.TileReactions;
 
@@ -60,6 +61,15 @@ public sealed partial class CleanTileReaction : ITileReaction
             if (purgeable.Volume <= FixedPoint2.Zero)
                 break;
         }
+
+        var lookupSystem = entityManager.System<EntityLookupSystem>();
+        // Sunrise-start
+        var footprints = lookupSystem.GetEntitiesInRange<FootprintComponent>(new EntityCoordinates(tile.GridUid, tile.X, tile.Y), 0.5f);
+        foreach (var footprint in footprints)
+        {
+            entityManager.QueueDeleteEntity(footprint);
+        }
+        // Sunrise-end
 
         return (reactVolume / CleanAmountMultiplier - purgeAmount) * CleanAmountMultiplier;
     }

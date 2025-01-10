@@ -10,6 +10,7 @@ using Robust.Client.Utility;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using static Robust.Client.UserInterface.Controls.BoxContainer;
+using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Client.Humanoid;
 
@@ -18,6 +19,7 @@ public sealed partial class MarkingPicker : Control
 {
     [Dependency] private readonly MarkingManager _markingManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
     public Action<MarkingSet>? OnMarkingAdded;
     public Action<MarkingSet>? OnMarkingRemoved;
@@ -123,6 +125,7 @@ public sealed partial class MarkingPicker : Control
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
+        IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
 
         CMarkingCategoryButton.OnItemSelected +=  OnCategoryChange;
         CMarkingsUnused.OnItemSelected += item =>
@@ -224,6 +227,13 @@ public sealed partial class MarkingPicker : Control
 
             var item = CMarkingsUnused.AddItem($"{GetMarkingName(marking)}", marking.Sprites[0].Frame0());
             item.Metadata = marking;
+            // Sunrise-Sponsors-Start
+            if (marking.SponsorOnly && _sponsorsManager != null)
+            {
+                item.Disabled = !_sponsorsManager.GetClientPrototypes().Contains(marking.ID);
+                item.Text = Loc.GetString("sponsor-marking", ("name", GetMarkingName(marking)));
+            }
+            // Sunrise-Sponsors-End
         }
 
         CMarkingPoints.Visible = _currentMarkings.PointsLeft(_selectedMarkingCategory) != -1;

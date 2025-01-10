@@ -1,4 +1,5 @@
 using System.Threading;
+using Content.Server._Sunrise.TransitHub;
 using Content.Server.DeviceNetwork.Components;
 using Content.Server.Screens.Components;
 using Content.Server.Shuttles.Components;
@@ -6,6 +7,7 @@ using Content.Server.Shuttles.Events;
 using Content.Shared.Access;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
+using Content.Shared.Emag.Systems;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.Popups;
 using Content.Shared.Shuttles.BUIStates;
@@ -37,6 +39,10 @@ public sealed partial class EmergencyShuttleSystem
     /// How much time remaining until the shuttle consoles for emergency shuttles are unlocked?
     /// </summary>
     private float _consoleAccumulator = float.MinValue;
+
+    // Sunrise-start
+    public float СonsoleAccumulator => _consoleAccumulator;
+    // Sunrise-end
 
     /// <summary>
     /// How long after the transit is over to end the round.
@@ -94,6 +100,7 @@ public sealed partial class EmergencyShuttleSystem
         SubscribeLocalEvent<EmergencyShuttleConsoleComponent, EmergencyShuttleRepealMessage>(OnEmergencyRepeal);
         SubscribeLocalEvent<EmergencyShuttleConsoleComponent, EmergencyShuttleRepealAllMessage>(OnEmergencyRepealAll);
         SubscribeLocalEvent<EmergencyShuttleConsoleComponent, ActivatableUIOpenAttemptEvent>(OnEmergencyOpenAttempt);
+        SubscribeLocalEvent<EmergencyShuttleConsoleComponent, GotEmaggedEvent>(OnEmagged);
     }
 
     private void OnEmergencyOpenAttempt(EntityUid uid, EmergencyShuttleConsoleComponent component, ActivatableUIOpenAttemptEvent args)
@@ -104,6 +111,12 @@ public sealed partial class EmergencyShuttleSystem
             args.Cancel();
             _popup.PopupEntity(Loc.GetString("emergency-shuttle-console-no-early-launches"), uid, args.User);
         }
+    }
+
+    private void OnEmagged(EntityUid uid, EmergencyShuttleConsoleComponent component, ref GotEmaggedEvent args)
+    {
+        _logger.Add(LogType.EmergencyShuttle, LogImpact.Extreme, $"{ToPrettyString(args.UserUid):player} emagged shuttle console for early launch");
+        EarlyLaunch();
     }
 
     private void SetAuthorizeTime(float obj)
@@ -165,23 +178,23 @@ public sealed partial class EmergencyShuttleSystem
             while (dataQuery.MoveNext(out var stationUid, out var comp))
             {
                 if (!TryComp<ShuttleComponent>(comp.EmergencyShuttle, out var shuttle) ||
-                    !TryComp<StationCentcommComponent>(stationUid, out var centcomm))
+                    !TryComp<StationTransitHubComponent>(stationUid, out var transitHub)) // Sunrise-Edit
                 {
                     continue;
                 }
 
-                if (!Deleted(centcomm.Entity))
+                if (!Deleted(transitHub.Entity)) // Sunrise-Edit
                 {
                     _shuttle.FTLToDock(comp.EmergencyShuttle.Value, shuttle,
-                        centcomm.Entity.Value, _consoleAccumulator, TransitTime);
+                        transitHub.Entity.Value, _consoleAccumulator, TransitTime); // Sunrise-Edit
                     continue;
                 }
 
-                if (!Deleted(centcomm.MapEntity))
+                if (!Deleted(transitHub.MapEntity)) // Sunrise-Edit
                 {
                     // TODO: Need to get non-overlapping positions.
                     _shuttle.FTLToCoordinates(comp.EmergencyShuttle.Value, shuttle,
-                        new EntityCoordinates(centcomm.MapEntity.Value,
+                        new EntityCoordinates(transitHub.MapEntity.Value, // Sunrise-Edit
                             _random.NextVector2(1000f)), _consoleAccumulator, TransitTime);
                 }
             }
@@ -201,7 +214,7 @@ public sealed partial class EmergencyShuttleSystem
         {
             var stationUid = _station.GetOwningStation(uid);
 
-            if (!TryComp<StationCentcommComponent>(stationUid, out var centcomm) ||
+            if (!TryComp<StationTransitHubComponent>(stationUid, out var centcomm) || // Sunrise-Edit
                 Deleted(centcomm.Entity) ||
                 pod.LaunchTime == null ||
                 pod.LaunchTime > _timing.CurTime)
@@ -226,7 +239,7 @@ public sealed partial class EmergencyShuttleSystem
         // All the others.
         if (_consoleAccumulator < minTime)
         {
-            var query = AllEntityQuery<StationCentcommComponent, TransformComponent>();
+            var query = AllEntityQuery<StationTransitHubComponent, TransformComponent>(); // Sunrise-Edit
 
             // Guarantees that emergency shuttle arrives first before anyone else can FTL.
             while (query.MoveNext(out var comp, out var centcommXform))
@@ -302,7 +315,7 @@ public sealed partial class EmergencyShuttleSystem
         if (remaining > 0)
             _chatSystem.DispatchGlobalAnnouncement(
                 Loc.GetString("emergency-shuttle-console-auth-left", ("remaining", remaining)),
-                playSound: false, colorOverride: DangerColor);
+                playDefault: false, colorOverride: DangerColor);
 
         if (!CheckForLaunch(component))
             _audio.PlayGlobal("/Audio/Misc/notice1.ogg", Filter.Broadcast(), recordReplay: true);
@@ -387,7 +400,7 @@ public sealed partial class EmergencyShuttleSystem
             {
                 [ShuttleTimerMasks.ShuttleMap] = shuttle,
                 [ShuttleTimerMasks.SourceMap] = _roundEnd.GetStation(),
-                [ShuttleTimerMasks.DestMap] = _roundEnd.GetCentcomm(),
+                [ShuttleTimerMasks.DestMap] = _roundEnd.GetTransitHub(), // Sunrise-Edit
                 [ShuttleTimerMasks.ShuttleTime] = time,
                 [ShuttleTimerMasks.SourceTime] = time,
                 [ShuttleTimerMasks.DestTime] = time + TimeSpan.FromSeconds(TransitTime),
@@ -406,7 +419,7 @@ public sealed partial class EmergencyShuttleSystem
         _announced = true;
         _chatSystem.DispatchGlobalAnnouncement(
             Loc.GetString("emergency-shuttle-launch-time", ("consoleAccumulator", $"{_consoleAccumulator:0}")),
-            playSound: false,
+            playDefault: false,
             colorOverride: DangerColor);
 
         _audio.PlayGlobal("/Audio/Misc/notice1.ogg", Filter.Broadcast(), recordReplay: true);

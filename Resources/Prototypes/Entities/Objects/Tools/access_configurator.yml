@@ -48,6 +48,10 @@
       - Security
       - Service
       - Theatre
+      - BlueShield # Sunrise
+      - Ntrep # Sunrise
+      - Magistrat # Sunrise
+      - Barber  # Sunrise
       privilegedIdSlot:
         name: id-card-console-privileged-id
         ejectSound: /Audio/Machines/id_swipe.ogg
@@ -120,6 +124,10 @@
     - NuclearOperative
     - SyndicateAgent
     - Wizard
+    - BlueShield # Sunrise
+    - Ntrep # Sunrise
+    - Magistrat # Sunrise
+    - Barber  # Sunrise
     privilegedIdSlot:
       name: id-card-console-privileged-id
       ejectSound: /Audio/Machines/id_swipe.ogg

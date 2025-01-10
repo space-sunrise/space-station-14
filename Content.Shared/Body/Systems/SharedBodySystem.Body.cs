@@ -119,6 +119,12 @@ public partial class SharedBodySystem
 
         // Setup the rest of the body entities.
         SetupOrgans((rootPartUid, rootPart), protoRoot.Organs);
+
+        // Sunrise-Start
+        var ev = new SetupOrgansEvent();
+        RaiseLocalEvent(bodyEntity, ref ev);
+        // Sunrise-End
+
         MapInitParts(rootPartUid, prototype);
     }
 

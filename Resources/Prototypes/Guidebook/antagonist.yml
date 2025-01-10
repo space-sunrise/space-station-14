@@ -4,17 +4,24 @@
   text: "/ServerInfo/Guidebook/Antagonist/Antagonists.xml"
   children:
   - Traitors
+  - Changelings
   - NuclearOperatives
   - Zombies
   - Revolutionaries
   - MinorAntagonists
   - SpaceNinja
   - Thieves
+  - Disease # Sunrise-Edit
 
 - type: guideEntry
   id: Traitors
   name: guide-entry-traitors
   text: "/ServerInfo/Guidebook/Antagonist/Traitors.xml"
+
+- type: guideEntry
+  id: Changelings
+  name: guide-entry-changelings
+  text: "/ServerInfo/Guidebook/Antagonist/Changelings.xml"
 
 - type: guideEntry
   id: NuclearOperatives

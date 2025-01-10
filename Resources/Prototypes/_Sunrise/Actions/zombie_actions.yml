@@ -1,0 +1,25 @@
+- type: entity
+  id: ZombieJump
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: WorldTargetAction
+    useDelay: 15
+    icon:
+      sprite: _Sunrise/Actions/zombie.rsi
+      state: jump
+    itemIconStyle: NoItem
+    checkCanAccess: false
+    range: 200
+    event: !type:ZombieJumpActionEvent
+
+- type: entity
+  id: ZombieFlair
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    useDelay: 5
+    icon:
+      sprite: _Sunrise/Actions/zombie.rsi
+      state: the_look
+    itemIconStyle: NoItem
+    event: !type:ZombieFlairActionEvent

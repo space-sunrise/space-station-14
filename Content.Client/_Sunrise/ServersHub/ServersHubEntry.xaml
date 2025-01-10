@@ -1,0 +1,31 @@
+<PanelContainer xmlns="https://spacestation14.io"
+                xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
+                Name="BackgroundColorPanel"
+                MouseFilter="Pass">
+    <BoxContainer Orientation="Vertical">
+        <customControls:HSeparator/>
+        <BoxContainer Orientation="Horizontal"
+                      HorizontalExpand="True"
+                      SeparationOverride="3">
+            <customControls:VSeparator/>
+            <Label Name="TitleLabel"
+                   SizeFlagsStretchRatio="4"
+                   HorizontalExpand="True"
+                   ClipText="True"/>
+            <customControls:VSeparator/>
+            <Label Name="PlayersCountLabel"
+                   MinWidth="70"
+                   SizeFlagsStretchRatio="1"
+                   HorizontalExpand="True"
+                   Align="Right"
+                   ClipText="True"/>
+            <customControls:VSeparator/>
+            <Button Name="ConnectButton"
+                    Text="{Loc 'serverhub-connect'}"
+                    SizeFlagsStretchRatio="3"
+                    MinWidth="145"/>
+            <customControls:VSeparator/>
+        </BoxContainer>
+        <customControls:HSeparator/>
+    </BoxContainer>
+</PanelContainer>

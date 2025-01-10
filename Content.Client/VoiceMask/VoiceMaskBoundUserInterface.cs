@@ -1,6 +1,7 @@
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.VoiceMask;
-using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
+using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client.VoiceMask;
@@ -23,9 +24,16 @@ public sealed class VoiceMaskBoundUserInterface : BoundUserInterface
         _window = this.CreateWindow<VoiceMaskNameChangeWindow>();
         _window.ReloadVerbs(_protomanager);
         _window.AddVerbs();
+        // Sunrise-TTS-Start
+        if (IoCManager.Resolve<IConfigurationManager>().GetCVar(SunriseCCVars.TTSEnabled))
+        {
+            _window.ReloadVoices(IoCManager.Resolve<IPrototypeManager>());
+        }
+        // Sunrise-TTS-End
 
         _window.OnNameChange += OnNameSelected;
         _window.OnVerbChange += verb => SendMessage(new VoiceMaskChangeVerbMessage(verb));
+        _window.OnVoiceChange += voice => SendMessage(new VoiceMaskChangeVoiceMessage(voice)); // Sunrise-TTS
     }
 
     private void OnNameSelected(string name)
@@ -40,7 +48,7 @@ public sealed class VoiceMaskBoundUserInterface : BoundUserInterface
             return;
         }
 
-        _window.UpdateState(cast.Name, cast.Verb);
+        _window.UpdateState(cast.Name, cast.Voice, cast.Verb); // Sunrise-TTS
     }
 
     protected override void Dispose(bool disposing)

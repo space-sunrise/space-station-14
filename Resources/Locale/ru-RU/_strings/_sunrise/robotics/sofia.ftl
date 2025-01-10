@@ -1,0 +1,11 @@
+sofia-installed = Обнаружена нейронная активность.
+sofia-off = Нейронная активность не обнаружена.
+sofia-still-searching = Идёт процесс синтетического нейронного дескремблирования...
+sofia-searching = Начинается процесс синтетического нейронного дескремблирования...
+sofia-role-name = роботический мозг синдиката
+sofia-role-description = Служите членам синдиката.
+sofia-wipe-device-verb-text = Стереть мозг
+sofia-wiped-device = Нейронная активность была прекращена.
+sofia-stop-searching-verb-text = Прекратить поиск
+sofia-stopped-searching = Нейронное дескремблирование прекращено.
+sofia-slot-component-slot-name-brain = Мозг

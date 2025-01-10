@@ -1,4 +1,8 @@
+using Content.Shared._Sunrise.Mood;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Administration.Logs;
+using Content.Shared.Chat;
+using Content.Shared.Chat.Prototypes;
 using Content.Shared.Database;
 using Content.Shared.Inventory;
 using Robust.Shared.Network;
@@ -11,15 +15,17 @@ using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
 using JetBrains.Annotations;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Physics.Events;
+using Robust.Shared.Random;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Slippery;
 
-[UsedImplicitly] 
+[UsedImplicitly]
 public sealed class SlipperySystem : EntitySystem
 {
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
@@ -29,6 +35,15 @@ public sealed class SlipperySystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SpeedModifierContactsSystem _speedModifier = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+
+    // Sunrise-Start
+    private static float _deadChance;
+    [ValidatePrototypeId<EmotePrototype>]
+    private const string EmoteFallOnNeckProto = "FallOnNeck";
+    // Sunrise-End
 
     public override void Initialize()
     {
@@ -44,7 +59,16 @@ public sealed class SlipperySystem : EntitySystem
         SubscribeLocalEvent<SlowedOverSlipperyComponent, InventoryRelayedEvent<SlipAttemptEvent>>((e, c, ev) => OnSlowedOverSlipAttempt(e, c, ev.Args));
         SubscribeLocalEvent<SlowedOverSlipperyComponent, InventoryRelayedEvent<GetSlowedOverSlipperyModifierEvent>>(OnGetSlowedOverSlipperyModifier);
         SubscribeLocalEvent<SlipperyComponent, EndCollideEvent>(OnEntityExit);
+
+        _cfg.OnValueChanged(SunriseCCVars.SlipDeadChanse, OnSLipDeadChanseChanged, true);
     }
+
+    // Sunrise-Start
+    private void OnSLipDeadChanseChanged(float deadChanse)
+    {
+        _deadChance = deadChanse;
+    }
+    // Sunrise-End
 
     private void HandleStepTrigger(EntityUid uid, SlipperyComponent component, ref StepTriggeredOffEvent args)
     {
@@ -83,7 +107,7 @@ public sealed class SlipperySystem : EntitySystem
     {
         if (HasComp<SpeedModifiedByContactComponent>(args.OtherEntity))
             _speedModifier.AddModifiedEntity(args.OtherEntity);
-    } 
+    }
 
     private bool CanSlip(EntityUid uid, EntityUid toSlip)
     {
@@ -128,6 +152,18 @@ public sealed class SlipperySystem : EntitySystem
 
         _stun.TryParalyze(other, TimeSpan.FromSeconds(component.ParalyzeTime), true);
 
+        RaiseLocalEvent(other, new MoodEffectEvent("MobSlipped"));
+
+        // Sunrise-Start
+        var evSlipped = new SlippedEvent(other);
+        RaiseLocalEvent(other, ref evSlipped);
+
+        if (_random.Prob(_deadChance) && _net.IsServer)
+        {
+            RaiseLocalEvent(other, new PlayEmoteMessage(EmoteFallOnNeckProto));
+        }
+        // Sunrise-End
+
         // Preventing from playing the slip sound when you are already knocked down.
         if (playSound)
         {
@@ -162,3 +198,8 @@ public record struct SlipCausingAttemptEvent (bool Cancelled);
 /// <param name="Slipped">The entity being slipped</param>
 [ByRefEvent]
 public readonly record struct SlipEvent(EntityUid Slipped);
+
+// Sunrise-Start
+[ByRefEvent]
+public readonly record struct SlippedEvent(EntityUid Target);
+// Sunrise-End

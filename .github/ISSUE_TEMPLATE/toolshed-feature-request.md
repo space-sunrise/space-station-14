@@ -1,18 +1,17 @@
 ---
-name: Toolshed feature request
-about: Suggest a feature for Toolshed (for game admins/developers)
-title: "[TOOLSHED REQUEST]"
-labels: Toolshed
-assignees: moonheart08
+name: Предложить новое
+about: Запросить у разработчиков добавить что-то новое.
+title: "[Предложение]"
+labels: "На рассмотрении"
+assignees: VigersRay
 
 ---
 
-**Is your feature request related to a problem/bug? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+**Ваш запрос функции связан с проблемой/ошибкой? Опишите, пожалуйста.**
+<!-- Четкое и краткое описание проблемы. Например: Меня всегда раздражает, когда [...] -->
 
-**Describe the command you'd like**
-A clear and concise description of what you want and what it should do.
-If you're a technical user (i.e. programmer) including type signatures is helpful.
+**Опишите желаемое**
+<!-- Четкое и краткое описание того, что вы хотите, и что оно должно делать. -->
 
-**Additional context**
-Add any other context or screenshots about the feature request here.
+**Дополнительный контекст**
+<!-- Добавьте сюда любой другой контекст или скриншоты, связанные с запросом функции. -->

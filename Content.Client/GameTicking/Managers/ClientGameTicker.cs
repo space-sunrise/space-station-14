@@ -27,7 +27,12 @@ namespace Content.Client.GameTicking.Managers
         [ViewVariables] public bool AreWeReady { get; private set; }
         [ViewVariables] public bool IsGameStarted { get; private set; }
         [ViewVariables] public string? RestartSound { get; private set; }
-        [ViewVariables] public string? LobbyBackground { get; private set; }
+        // Sunrise-Start
+        [ViewVariables] public string? LobbyType { get; private set; }
+        [ViewVariables] public string? LobbyParallax { get; private set; }
+        [ViewVariables] public string? LobbyAnimation { get; private set; }
+        [ViewVariables] public string? LobbyArt { get; private set; }
+        // Sunrise-End
         [ViewVariables] public bool DisallowedLateJoin { get; private set; }
         [ViewVariables] public string? ServerInfoBlob { get; private set; }
         [ViewVariables] public TimeSpan StartTime { get; private set; }
@@ -119,7 +124,12 @@ namespace Content.Client.GameTicking.Managers
             RoundStartTimeSpan = message.RoundStartTimeSpan;
             IsGameStarted = message.IsRoundStarted;
             AreWeReady = message.YouAreReady;
-            LobbyBackground = message.LobbyBackground;
+            // Sunrise-Start
+            LobbyType = message.LobbyType;
+            LobbyArt = message.LobbyArt;
+            LobbyParallax = message.LobbyParallax;
+            LobbyAnimation = message.LobbyAnimation;
+            // Sunrise-End
             Paused = message.Paused;
 
             LobbyStatusUpdated?.Invoke();

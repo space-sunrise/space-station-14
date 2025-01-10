@@ -1,0 +1,19 @@
+- type: antag
+  id: Fugitive
+  name: roles-antag-fugitive-name
+  antagonist: true
+  setPreference: false
+  playTimeTracker: AntagFugitive
+  objective: roles-antag-fugitive-objective
+
+- type: startingGear
+  id: FugitiveStartingGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPrisoner
+    gloves: ClothingHandsGlovesColorYellow
+    back: ClothingBackpack
+    shoes: ClothingShoesColorBlack
+    belt: ClothingBeltUtilityEngineering
+    id: PrisonerPDA
+  inhand:
+    - ToolboxElectricalFilled

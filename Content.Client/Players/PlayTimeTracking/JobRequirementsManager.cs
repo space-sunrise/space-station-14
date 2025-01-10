@@ -14,6 +14,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Client.Players.PlayTimeTracking;
 
@@ -25,12 +26,15 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private readonly IClientPreferencesManager _clientPreferences = default!;
 
     private readonly Dictionary<string, TimeSpan> _roles = new();
     private readonly List<BanInfo> _roleBans = new();
     private readonly List<string> _jobWhitelists = new();
 
     private ISawmill _sawmill = default!;
+
+    private ISharedSponsorsManager? _sponsorsMgr;  // Sunrise-Sponsors
 
     public event Action? Updated;
 
@@ -44,6 +48,8 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         _net.RegisterNetMessage<MsgJobWhitelist>(RxJobWhitelist);
 
         _client.RunLevelChanged += ClientOnRunLevelChanged;
+
+        IoCManager.Instance!.TryResolveType(out _sponsorsMgr);  // Sunrise-Sponsors
     }
 
     private void ClientOnRunLevelChanged(object? sender, RunLevelChangedEventArgs e)
@@ -109,26 +115,39 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
         if (player == null)
             return true;
 
+        // Sunrise-Start
+        if (profile != null)
+        {
+            if (job.SpeciesBlacklist.Contains(profile.Species))
+            {
+                reason = FormattedMessage.FromUnformatted(Loc.GetString("species-job-fail", ("name", Loc.GetString($"species-name-{profile.Species.Id.ToLower()}"))));
+                return false;
+            }
+        }
+        // Sunrise-End
+
         return CheckRoleRequirements(job, profile, out reason);
     }
 
     public bool CheckRoleRequirements(JobPrototype job, HumanoidCharacterProfile? profile, [NotNullWhen(false)] out FormattedMessage? reason)
     {
         var reqs = _entManager.System<SharedRoleSystem>().GetJobRequirement(job);
-        return CheckRoleRequirements(reqs, profile, out reason);
+        return CheckRoleRequirements(reqs, job.ID, profile, out reason); // Sunrise-Edit
     }
 
-    public bool CheckRoleRequirements(HashSet<JobRequirement>? requirements, HumanoidCharacterProfile? profile, [NotNullWhen(false)] out FormattedMessage? reason)
+    public bool CheckRoleRequirements(HashSet<JobRequirement>? requirements, string protoId, HumanoidCharacterProfile? profile, [NotNullWhen(false)] out FormattedMessage? reason) // Sunrise-Edit
     {
         reason = null;
 
         if (requirements == null || !_cfg.GetCVar(CCVars.GameRoleTimers))
             return true;
 
+        var sponsorPrototypes = _sponsorsMgr?.GetClientPrototypes().ToArray() ?? []; // Sunrise-Sponsors
+
         var reasons = new List<string>();
         foreach (var requirement in requirements)
         {
-            if (requirement.Check(_entManager, _prototypes, profile, _roles, out var jobReason))
+            if (requirement.Check(_entManager, _prototypes, profile, _roles, protoId, sponsorPrototypes, out var jobReason)) // Sunrise-Sponsors
                 continue;
 
             reasons.Add(jobReason.ToMarkup());
@@ -161,12 +180,20 @@ public sealed class JobRequirementsManager : ISharedPlaytimeManager
     public IEnumerable<KeyValuePair<string, TimeSpan>> FetchPlaytimeByRoles()
     {
         var jobsToMap = _prototypes.EnumeratePrototypes<JobPrototype>();
+        var antagsToMap = _prototypes.EnumeratePrototypes<AntagPrototype>();
 
         foreach (var job in jobsToMap)
         {
             if (_roles.TryGetValue(job.PlayTimeTracker, out var locJobName))
             {
                 yield return new KeyValuePair<string, TimeSpan>(job.Name, locJobName);
+            }
+        }
+        foreach (var antag in antagsToMap)
+        {
+            if (_roles.TryGetValue(antag.PlayTimeTracker, out var locAntagName))
+            {
+                yield return new KeyValuePair<string, TimeSpan>(antag.Name, locAntagName);
             }
         }
     }

@@ -11,6 +11,7 @@
     - Common
     - Command
     - Engineering
+    - Law # Sunrise-edit
     - Medical
     - Science
     - Security
@@ -22,6 +23,7 @@
     - Common
     - Command
     - Engineering
+    - Law # Sunrise-edit
     - Medical
     - Science
     - Security
@@ -70,11 +72,15 @@
     canShuttle: false
     title: comms-console-announcement-title-station-ai
     color: "#5ed7aa"
+    announceVoice: PortalGlados # Sunrise-Edit
+    sound: /Audio/_Sunrise/Announcements/announce_dig.ogg # Sunrise-Edit
   - type: HolographicAvatar
     layerData:
     - sprite: Mobs/Silicon/station_ai.rsi
       state: default
   - type: ShowJobIcons
+  - type: Speech # Sunrise-Edit
+    speechVerb: Robotic # Sunrise-Edit
 
 - type: entity
   id: AiHeldIntellicard
@@ -332,11 +338,12 @@
   - type: ContainerComp
     proto: AiHeld
     container: station_ai_mind_slot
+  - type: Damageable # Sunrise_Edit
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 100
+        damage: 500
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -378,7 +385,7 @@
     unlistedNumber: true
     requiresPower: false
   - type: Holopad
-  - type: StationAiWhitelist  
+  - type: StationAiWhitelist
   - type: UserInterface
     interfaces:
         enum.HolopadUiKey.AiRequestWindow:
@@ -499,32 +506,33 @@
   - type: ContainerFill
     containers:
       borg_brain:
-        - MMIFilled
+        - Boris # Sunrise-Edit
   - type: ItemSlots
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellMedium
+        startingItem: PowerCellHigh
 
-- type: entity
-  id: PlayerBorgSyndicateAssaultBattery
-  parent: BorgChassisSyndicateAssault
-  suffix: Battery, Module, Operative
-  components:
-  - type: NukeOperative
-  - type: ContainerFill
-    containers:
-      borg_brain:
-        - PositronicBrain
-      borg_module:
-        - BorgModuleOperative
-        - BorgModuleL6C
-        - BorgModuleEsword
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellHyper
+# Move to _Sunrise
+#- type: entity
+#  id: PlayerBorgSyndicateAssaultBattery
+#  parent: BorgChassisSyndicateAssault
+#  suffix: Battery, Module, Operative
+#  components:
+#  - type: NukeOperative
+#  - type: ContainerFill
+#    containers:
+#      borg_brain:
+#        - Sofia # Sunrise-Edit
+#      borg_module:
+#        - BorgModuleOperative
+#        - BorgModuleL6C
+#        - BorgModuleEsword
+#  - type: ItemSlots
+#    slots:
+#      cell_slot:
+#        name: power-cell-slot-component-slot-name-default
+#        startingItem: PowerCellHyper
 
 - type: entity
   id: PlayerBorgSyndicateAssaultGhostRole
@@ -539,25 +547,25 @@
         settings: default
     - type: GhostTakeoverAvailable
 
-- type: entity
-  id: PlayerBorgSyndicateSaboteurBattery
-  parent: BorgChassisSyndicateSaboteur
-  suffix: Battery, Module, Operative
-  components:
-  - type: NukeOperative
-  - type: ContainerFill
-    containers:
-      borg_brain:
-        - PositronicBrain
-      borg_module:
-        - BorgModuleTool
-        - BorgModuleOperative
-        - BorgModuleSyndicateWeapon
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellHyper
+#- type: entity
+#  id: PlayerBorgSyndicateSaboteurBattery
+#  parent: BorgChassisSyndicateSaboteur
+#  suffix: Battery, Module, Operative
+#  components:
+#  - type: NukeOperative
+#  - type: ContainerFill
+#    containers:
+#      borg_brain:
+#        - PositronicBrain
+#      borg_module:
+#        - BorgModuleTool
+#        - BorgModuleOperative
+#        - BorgModuleSyndicateWeapon
+#  - type: ItemSlots
+#    slots:
+#      cell_slot:
+#        name: power-cell-slot-component-slot-name-default
+#        startingItem: PowerCellHyper
 
 - type: entity
   id: PlayerBorgSyndicateSaboteurGhostRole

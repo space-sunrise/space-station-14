@@ -5,6 +5,7 @@
   id: BaseMobMoth
   abstract: true
   components:
+  - type: Absorbable
   - type: HumanoidAppearance
     species: Moth
     hideLayersOnEquip:
@@ -83,11 +84,16 @@
       - map: [ "enum.HumanoidVisualLayers.LArm" ]
       - map: [ "enum.HumanoidVisualLayers.RLeg" ]
       - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-      - map: [ "jumpsuit" ]
       - map: [ "enum.HumanoidVisualLayers.LHand" ]
       - map: [ "enum.HumanoidVisualLayers.RHand" ]
       - map: [ "enum.HumanoidVisualLayers.LFoot" ]
       - map: [ "enum.HumanoidVisualLayers.RFoot" ]
+      # Sunrise-start
+      - map: ["bra"]
+      - map: ["pants"]
+      - map: ["socks"]
+      - map: ["jumpsuit"]
+      # Sunrise-end
       - map: [ "enum.HumanoidVisualLayers.Handcuffs" ]
         color: "#ffffff"
         sprite: Objects/Misc/handcuffs.rsi
@@ -122,6 +128,9 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+  # Sunrise edit ;3
+  - type: FootprintEmitter
+  # Sunrise edit end 0_0
 
 
 - type: entity

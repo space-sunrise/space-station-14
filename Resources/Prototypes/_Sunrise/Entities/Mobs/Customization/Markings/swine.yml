@@ -1,0 +1,14 @@
+# All the swine customization
+
+#
+# Ears
+#
+- type: marking
+  id: SwineEars
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  forcedColoring: true
+  speciesRestriction: [Swine]
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/swine_ears.rsi
+    state: bald_s

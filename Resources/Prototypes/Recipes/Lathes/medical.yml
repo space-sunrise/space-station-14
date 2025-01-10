@@ -3,6 +3,7 @@
 - type: latheRecipe
   abstract: true
   parent: BaseToolRecipe
+  category: Surgery # Sunrise-Edit
   id: BaseSurgicalRecipe
   materials:
     Steel: 200

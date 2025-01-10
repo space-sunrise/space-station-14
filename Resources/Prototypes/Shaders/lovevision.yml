@@ -1,0 +1,4 @@
+- type: shader
+  id: LoveVision
+  kind: source
+  path: "/Textures/Shaders/lovevision.swsl"

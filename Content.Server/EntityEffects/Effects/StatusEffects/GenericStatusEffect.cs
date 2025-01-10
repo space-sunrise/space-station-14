@@ -26,7 +26,7 @@ public sealed partial class GenericStatusEffect : EntityEffect
 
     [DataField]
     public float Time = 2.0f;
-
+ 
     /// <remarks>
     ///     true - refresh status effect time,  false - accumulate status effect time
     /// </remarks>

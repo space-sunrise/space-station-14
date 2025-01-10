@@ -9,6 +9,7 @@ using Content.Client.Players.PlayTimeTracking;
 using Content.Client.Sprite;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Systems.Guidebook;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
 using Content.Shared.GameTicking;
@@ -33,6 +34,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Direction = Robust.Shared.Maths.Direction;
+using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Client.Lobby.UI
 {
@@ -103,6 +105,8 @@ namespace Content.Client.Lobby.UI
 
         private ISawmill _sawmill;
 
+        private ISharedSponsorsManager? _sponsorsMgr;  // Sunrise-Sponsors
+
         public HumanoidProfileEditor(
             IClientPreferencesManager preferencesManager,
             IConfigurationManager configurationManager,
@@ -116,6 +120,7 @@ namespace Content.Client.Lobby.UI
             MarkingManager markings)
         {
             RobustXamlLoader.Load(this);
+            IoCManager.Instance!.TryResolveType(out _sponsorsMgr);  // Sunrise-Sponsors
             _sawmill = logManager.GetSawmill("profile.editor");
             _cfgManager = configurationManager;
             _entManager = entManager;
@@ -209,6 +214,18 @@ namespace Content.Client.Lobby.UI
             };
 
             #endregion Gender
+
+            // Sunrise-TTS-Start
+            #region Voice
+
+            if (configurationManager.GetCVar(SunriseCCVars.TTSEnabled))
+            {
+                TTSContainer.Visible = true;
+                InitializeVoice();
+            }
+
+            #endregion
+            // Sunrise-TTS-End
 
             RefreshSpecies();
 
@@ -379,10 +396,10 @@ namespace Content.Client.Lobby.UI
             PreferenceUnavailableButton.AddItem(
                 Loc.GetString("humanoid-profile-editor-preference-unavailable-stay-in-lobby-button"),
                 (int) PreferenceUnavailableMode.StayInLobby);
-            PreferenceUnavailableButton.AddItem(
-                Loc.GetString("humanoid-profile-editor-preference-unavailable-spawn-as-overflow-button",
-                              ("overflowJob", Loc.GetString(SharedGameTicker.FallbackOverflowJobName))),
-                (int) PreferenceUnavailableMode.SpawnAsOverflow);
+             PreferenceUnavailableButton.AddItem(
+                 Loc.GetString("humanoid-profile-editor-preference-unavailable-spawn-as-overflow-button",
+                               ("overflowJob", Loc.GetString(SharedGameTicker.FallbackOverflowJobName))),
+                 (int) PreferenceUnavailableMode.SpawnAsOverflow);
 
             PreferenceUnavailableButton.OnItemSelected += args =>
             {
@@ -441,7 +458,6 @@ namespace Content.Client.Lobby.UI
 
             UpdateSpeciesGuidebookIcon();
             IsDirty = false;
-
         }
 
         /// <summary>
@@ -454,7 +470,11 @@ namespace Content.Client.Lobby.UI
                 if (_flavorText != null)
                     return;
 
-                _flavorText = new FlavorText.FlavorText();
+                // Sunrise-Start
+                var sponsorOnly = _cfgManager.GetCVar(SunriseCCVars.FlavorTextSponsorOnly);
+                var baseMaxDescLength = _cfgManager.GetCVar(SunriseCCVars.FlavorTextBaseLength);
+                _flavorText = new FlavorText.FlavorText(_sponsorsMgr, sponsorOnly, baseMaxDescLength);
+                // Sunrise-End
                 TabContainer.AddChild(_flavorText);
                 TabContainer.SetTabTitle(TabContainer.ChildCount - 1, Loc.GetString("humanoid-profile-editor-flavortext-tab"));
                 _flavorTextEdit = _flavorText.CFlavorTextInput;
@@ -607,6 +627,17 @@ namespace Content.Client.Lobby.UI
                 {
                     SpeciesButton.SelectId(i);
                 }
+
+                // Sunrise-Sponsors-Start
+                if (_sponsorsMgr is null)
+                    continue;
+                if (_species[i].SponsorOnly && _sponsorsMgr != null &&
+                    !_sponsorsMgr.GetClientPrototypes().Contains(_species[i].ID))
+                {
+                    SpeciesButton.SetItemDisabled(SpeciesButton.GetIdx(i), true);
+                    SpeciesButton.SetItemText(SpeciesButton.GetIdx(i), Loc.GetString("sponsor-marking", ("name", name))); // Sunrise-edit
+                }
+                // Sunrise-Sponsors-End
             }
 
             // If our species isn't available then reset it to default.
@@ -646,7 +677,7 @@ namespace Content.Client.Lobby.UI
 
                 var title = Loc.GetString(antag.Name);
                 var description = Loc.GetString(antag.Objective);
-                selector.Setup(items, title, 250, description, guides: antag.Guides);
+                selector.Setup(items, title, 300, description, guides: antag.Guides); // Sunrise-edit
                 selector.Select(Profile?.AntagPreferences.Contains(antag.ID) == true ? 0 : 1);
 
                 var requirements = _entManager.System<SharedRoleSystem>().GetAntagRequirement(antag);
@@ -654,14 +685,11 @@ namespace Content.Client.Lobby.UI
 
                 if (_requirements.IsAntagBanned(new[] { $"Antag:{antag.ID}", $"Antag:{antagAllSelection}" }, out var banReason, out var expirationTime))
                 {
-                    if (banReason != null)
-                    {
-                        selector.LockDueToBan(banReason, expirationTime);
-                    }
+                    selector.LockDueToBan(banReason, expirationTime);
                     Profile = Profile?.WithAntagPreference(antag.ID, false);
                     SetDirty();
                 }
-                else if (!_requirements.CheckRoleRequirements(requirements, (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter, out var reason))
+                else if (!_requirements.CheckRoleRequirements(requirements, antag.ID, (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter, out var reason)) // Sunrise-Sponsors
                 {
                     selector.LockRequirements(reason);
                     Profile = Profile?.WithAntagPreference(antag.ID, false);
@@ -757,6 +785,7 @@ namespace Content.Client.Lobby.UI
             UpdateEyePickers();
             UpdateSaveButton();
             UpdateMarkings();
+            UpdateTtsVoicesControls(); // Sunrise-TTS
             UpdateHairPickers();
             UpdateCMarkingsHair();
             UpdateCMarkingsFacialHair();
@@ -830,6 +859,10 @@ namespace Content.Client.Lobby.UI
 
                 departments.Add(department);
             }
+
+            // Sunrise-Start
+            var sponsorPrototypes = _sponsorsMgr?.GetClientPrototypes().ToArray() ?? [];
+            // Sunrise-End
 
             departments.Sort(DepartmentUIComparer.Instance);
 
@@ -985,7 +1018,7 @@ namespace Content.Client.Lobby.UI
                             if (loadout == null)
                             {
                                 loadout = new RoleLoadout(roleLoadoutProto.ID);
-                                loadout.SetDefault(Profile, _playerManager.LocalSession, _prototypeManager);
+                                loadout.SetDefault(Profile, _playerManager.LocalSession, _prototypeManager, sponsorPrototypes);
                             }
 
                             OpenLoadout(job, loadout, roleLoadoutProto);
@@ -1014,9 +1047,9 @@ namespace Content.Client.Lobby.UI
             JobOverride = jobProto;
             var session = _playerManager.LocalSession;
 
-            _loadoutWindow = new LoadoutWindow(Profile, roleLoadout, roleLoadoutProto, _playerManager.LocalSession, collection)
+            _loadoutWindow = new LoadoutWindow(Profile, roleLoadout, roleLoadoutProto, _playerManager.LocalSession, collection, _sponsorsMgr)
             {
-                Title = jobProto?.ID + "-loadout",
+                Title = Loc.GetString($"{jobProto?.ID}-loadout"),
             };
 
             // Refresh the buttons etc.
@@ -1134,6 +1167,15 @@ namespace Content.Client.Lobby.UI
                     Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
                     break;
                 }
+                // Sunrise-start
+                case HumanoidSkinColor.None:
+                {
+                    Skin.Visible = false;
+                    RgbSkinColorContainer.Visible = false;
+                    _rgbSkinColorSelector.Color = Color.Transparent;
+                    break;
+                }
+                // Sunrise-end
             }
 
             ReloadProfilePreview();
@@ -1186,6 +1228,8 @@ namespace Content.Client.Lobby.UI
             }
 
             UpdateGenderControls();
+            UpdateTtsVoicesControls(); // Sunrise-TTS
+            RefreshLoadouts(); // Sunrise-Sex restrictions
             Markings.SetSex(newSex);
             ReloadPreview();
         }
@@ -1195,6 +1239,14 @@ namespace Content.Client.Lobby.UI
             Profile = Profile?.WithGender(newGender);
             ReloadPreview();
         }
+
+        // Sunrise-TTS-Start
+        private void SetVoice(string newVoice)
+        {
+            Profile = Profile?.WithVoice(newVoice);
+            IsDirty = true;
+        }
+        // Sunrise-TTS-End
 
         private void SetSpecies(string newSpecies)
         {
@@ -1361,6 +1413,15 @@ namespace Content.Client.Lobby.UI
 
                     break;
                 }
+                // Sunrise-start
+                case HumanoidSkinColor.None:
+                {
+                    Skin.Visible = false;
+                    RgbSkinColorContainer.Visible = false;
+                    _rgbSkinColorSelector.Color = Color.Transparent;
+                    break;
+                }
+                // Sunrise-end
             }
 
         }
@@ -1537,7 +1598,17 @@ namespace Content.Client.Lobby.UI
 
         private void RandomizeEverything()
         {
-            Profile = HumanoidCharacterProfile.Random();
+            // Sunrise-Sponsors-Start
+            var ignoredSpecies = new HashSet<string>();
+            foreach (var speciesPrototype in _prototypeManager.EnumeratePrototypes<SpeciesPrototype>())
+            {
+                if (speciesPrototype.SponsorOnly &&
+                    _sponsorsMgr != null &&
+                    !_sponsorsMgr.GetClientPrototypes().Contains(speciesPrototype.ID))
+                    ignoredSpecies.Add(speciesPrototype.ID);
+            }
+            Profile = HumanoidCharacterProfile.Random(ignoredSpecies);
+            // Sunrise-Sponsors-End
             SetProfile(Profile, CharacterSlot);
             SetDirty();
         }

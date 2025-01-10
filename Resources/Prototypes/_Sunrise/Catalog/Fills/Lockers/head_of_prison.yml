@@ -1,0 +1,31 @@
+﻿- type: entity
+  id: LockerHeadOfPrisonFilled
+  name: head of prison's locker
+  suffix: Filled
+  parent: LockerHeadOfSecurity
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingEyesHudSecurity
+    - id: WeaponDisabler
+    - id: PrisonCommsComputerCircuitboard
+    - id: ClothingUniformJumpsuitHoSGrey
+      prob: 0.5
+    - id: ClothingUniformJumpsuitHoSParadeMale
+      prob: 0.1
+    - id: ClothingUniformJumpskirtHoSParadeMale
+      prob: 0.1
+    - id: DrinkVacuumFlask
+      prob: 0.8
+    - id: ClothingBeltSecurityFilled
+    - id: ClothingHeadsetAltSecurity
+    - id: ClothingEyesGlassesSecurity
+    - id: ClothingShoesBootsJack
+    - id: CigarGoldCase
+      prob: 0.50
+    - id: DoorRemoteSecurity
+    - id: ClothingUniformJumpskirtHosFormal
+    - id: ClothingUniformJumpsuitHosFormal
+    - id: RubberStampHos
+    - id: BoxEncryptionKeySecurity
+    - id: HoloprojectorSecurity

@@ -1,4 +1,4 @@
-# Accents that work off of word replacements.
+﻿# Accents that work off of word replacements.
 
 # this is kind of dumb but localization demands it.
 # i guess you could just specify the prefix ('mobster') and count and let the system fill it
@@ -75,6 +75,51 @@
     accent-italian-words-47: accent-italian-words-replace-47
     accent-italian-words-48: accent-italian-words-replace-48
     accent-italian-words-49: accent-italian-words-replace-49
+# Russian accent start
+    accent-italian-words-301: accent-italian-words-replace-301
+    accent-italian-words-401: accent-italian-words-replace-401
+    accent-italian-words-402: accent-italian-words-replace-402
+    accent-italian-words-403: accent-italian-words-replace-403
+    accent-italian-words-501: accent-italian-words-replace-501
+    accent-italian-words-502: accent-italian-words-replace-502
+    accent-italian-words-601: accent-italian-words-replace-601
+    accent-italian-words-701: accent-italian-words-replace-701
+    accent-italian-words-702: accent-italian-words-replace-702
+    accent-italian-words-801: accent-italian-words-replace-801
+    accent-italian-words-802: accent-italian-words-replace-802
+    accent-italian-words-803: accent-italian-words-replace-803
+    accent-italian-words-804: accent-italian-words-replace-804
+    accent-italian-words-805: accent-italian-words-replace-805
+    accent-italian-words-901: accent-italian-words-replace-901
+    accent-italian-words-1001: accent-italian-words-replace-1001
+    accent-italian-words-1101: accent-italian-words-replace-1101
+    accent-italian-words-1102: accent-italian-words-replace-1102
+    accent-italian-words-1103: accent-italian-words-replace-1103
+    accent-italian-words-1501: accent-italian-words-replace-1501
+    accent-italian-words-1701: accent-italian-words-replace-1701
+    accent-italian-words-1702: accent-italian-words-replace-1702
+    accent-italian-words-1703: accent-italian-words-replace-1703
+    accent-italian-words-1801: accent-italian-words-replace-1801
+    accent-italian-words-1901: accent-italian-words-replace-1901
+    accent-italian-words-2001: accent-italian-words-replace-2001
+    accent-italian-words-2002: accent-italian-words-replace-2002
+    accent-italian-words-2003: accent-italian-words-replace-2003
+    accent-italian-words-2101: accent-italian-words-replace-2101
+    accent-italian-words-2301: accent-italian-words-replace-2301
+    accent-italian-words-2801: accent-italian-words-replace-2801
+    accent-italian-words-3001: accent-italian-words-replace-3001
+    accent-italian-words-3002: accent-italian-words-replace-3002
+    accent-italian-words-3101: accent-italian-words-replace-3101
+    accent-italian-words-3102: accent-italian-words-replace-3102
+    accent-italian-words-3201: accent-italian-words-replace-3201
+    accent-italian-words-3202: accent-italian-words-replace-3202
+    accent-italian-words-3203: accent-italian-words-replace-3203
+    accent-italian-words-3401: accent-italian-words-replace-3401
+    accent-italian-words-3402: accent-italian-words-replace-3402
+    accent-italian-words-3701: accent-italian-words-replace-3701
+    accent-italian-words-3801: accent-italian-words-replace-3801
+    accent-italian-words-4301: accent-italian-words-replace-4301
+# Russian accent end
 
 - type: accent
   id: dwarf
@@ -263,6 +308,78 @@
     accent-pirate-replaced-30: accent-pirate-replacement-30
     accent-pirate-replaced-31: accent-pirate-replacement-31
     accent-pirate-replaced-32: accent-pirate-replacement-32
+#Sunrise-start
+    accent-pirate-replaced-33: accent-pirate-replacement-33
+    accent-pirate-replaced-34: accent-pirate-replacement-34
+    accent-pirate-replaced-35: accent-pirate-replacement-35
+    accent-pirate-replaced-36: accent-pirate-replacement-36
+    accent-pirate-replaced-37: accent-pirate-replacement-37
+    accent-pirate-replaced-38: accent-pirate-replacement-38
+    accent-pirate-replaced-39: accent-pirate-replacement-39
+    accent-pirate-replaced-40: accent-pirate-replacement-40
+    accent-pirate-replaced-41: accent-pirate-replacement-41
+    accent-pirate-replaced-42: accent-pirate-replacement-42
+    accent-pirate-replaced-43: accent-pirate-replacement-43
+    accent-pirate-replaced-44: accent-pirate-replacement-44
+    accent-pirate-replaced-45: accent-pirate-replacement-45
+    accent-pirate-replaced-46: accent-pirate-replacement-46
+    accent-pirate-replaced-47: accent-pirate-replacement-47
+    accent-pirate-replaced-48: accent-pirate-replacement-48
+    accent-pirate-replaced-49: accent-pirate-replacement-49
+    accent-pirate-replaced-50: accent-pirate-replacement-50
+    accent-pirate-replaced-51: accent-pirate-replacement-51
+    accent-pirate-replaced-52: accent-pirate-replacement-52
+    accent-pirate-replaced-53: accent-pirate-replacement-53
+    accent-pirate-replaced-54: accent-pirate-replacement-54
+    accent-pirate-replaced-55: accent-pirate-replacement-55
+    accent-pirate-replaced-56: accent-pirate-replacement-56
+    accent-pirate-replaced-57: accent-pirate-replacement-57
+    accent-pirate-replaced-58: accent-pirate-replacement-58
+    accent-pirate-replaced-59: accent-pirate-replacement-59
+    accent-pirate-replaced-60: accent-pirate-replacement-60
+    accent-pirate-replaced-61: accent-pirate-replacement-61
+    accent-pirate-replaced-62: accent-pirate-replacement-62
+    accent-pirate-replaced-63: accent-pirate-replacement-63
+    accent-pirate-replaced-64: accent-pirate-replacement-64
+    accent-pirate-replaced-65: accent-pirate-replacement-65
+    accent-pirate-replaced-66: accent-pirate-replacement-66
+    accent-pirate-replaced-67: accent-pirate-replacement-67
+    accent-pirate-replaced-68: accent-pirate-replacement-68
+    accent-pirate-replaced-69: accent-pirate-replacement-69
+    accent-pirate-replaced-70: accent-pirate-replacement-70
+    accent-pirate-replaced-71: accent-pirate-replacement-71
+    accent-pirate-replaced-72: accent-pirate-replacement-72
+    accent-pirate-replaced-73: accent-pirate-replacement-73
+    accent-pirate-replaced-74: accent-pirate-replacement-74
+    accent-pirate-replaced-75: accent-pirate-replacement-75
+    accent-pirate-replaced-76: accent-pirate-replacement-76
+    accent-pirate-replaced-77: accent-pirate-replacement-77
+    accent-pirate-replaced-78: accent-pirate-replacement-78
+    accent-pirate-replaced-79: accent-pirate-replacement-79
+    accent-pirate-replaced-80: accent-pirate-replacement-80
+    accent-pirate-replaced-81: accent-pirate-replacement-81
+    accent-pirate-replaced-82: accent-pirate-replacement-82
+    accent-pirate-replaced-83: accent-pirate-replacement-83
+    accent-pirate-replaced-84: accent-pirate-replacement-84
+    accent-pirate-replaced-85: accent-pirate-replacement-85
+    accent-pirate-replaced-86: accent-pirate-replacement-86
+    accent-pirate-replaced-87: accent-pirate-replacement-87
+    accent-pirate-replaced-88: accent-pirate-replacement-88
+    accent-pirate-replaced-89: accent-pirate-replacement-89
+    accent-pirate-replaced-90: accent-pirate-replacement-90
+    accent-pirate-replaced-91: accent-pirate-replacement-91
+    accent-pirate-replaced-92: accent-pirate-replacement-92
+    accent-pirate-replaced-93: accent-pirate-replacement-93
+    accent-pirate-replaced-94: accent-pirate-replacement-94
+    accent-pirate-replaced-95: accent-pirate-replacement-95
+    accent-pirate-replaced-96: accent-pirate-replacement-96
+    accent-pirate-replaced-97: accent-pirate-replacement-97
+    accent-pirate-replaced-98: accent-pirate-replacement-98
+    accent-pirate-replaced-99: accent-pirate-replacement-99
+    accent-pirate-replaced-100: accent-pirate-replacement-100
+    accent-pirate-replaced-101: accent-pirate-replacement-101
+    accent-pirate-replaced-102: accent-pirate-replacement-102
+    #Sunrise-end
 
 - type: accent
   id: cowboy
@@ -366,6 +483,83 @@
     accent-cowboy-words-97: accent-cowboy-replacement-97
     accent-cowboy-words-98: accent-cowboy-replacement-98
     accent-cowboy-words-99: accent-cowboy-replacement-99
+    # Russian-accent-start
+    russian-accent-cowboy-words-1: russian-accent-cowboy-replacement-1
+    russian-accent-cowboy-words-2: russian-accent-cowboy-replacement-2
+    russian-accent-cowboy-words-301: russian-accent-cowboy-replacement-3
+    russian-accent-cowboy-words-302: russian-accent-cowboy-replacement-3
+    russian-accent-cowboy-words-4: russian-accent-cowboy-replacement-4
+    russian-accent-cowboy-words-501: russian-accent-cowboy-replacement-5
+    russian-accent-cowboy-words-502: russian-accent-cowboy-replacement-5
+    russian-accent-cowboy-words-601: russian-accent-cowboy-replacement-6
+    russian-accent-cowboy-words-602: russian-accent-cowboy-replacement-6
+    russian-accent-cowboy-words-7: russian-accent-cowboy-replacement-7
+    russian-accent-cowboy-words-8: russian-accent-cowboy-replacement-8
+    russian-accent-cowboy-words-9: russian-accent-cowboy-replacement-9
+    russian-accent-cowboy-words-1001: russian-accent-cowboy-replacement-10
+    russian-accent-cowboy-words-1002: russian-accent-cowboy-replacement-10
+    russian-accent-cowboy-words-1101: russian-accent-cowboy-replacement-11
+    russian-accent-cowboy-words-1102: russian-accent-cowboy-replacement-11
+    russian-accent-cowboy-words-1201: russian-accent-cowboy-replacement-12
+    russian-accent-cowboy-words-1202: russian-accent-cowboy-replacement-12
+    russian-accent-cowboy-words-13: russian-accent-cowboy-replacement-13
+    russian-accent-cowboy-words-1401: russian-accent-cowboy-replacement-14
+    russian-accent-cowboy-words-1402: russian-accent-cowboy-replacement-14
+    russian-accent-cowboy-words-15: russian-accent-cowboy-replacement-15
+    russian-accent-cowboy-words-16: russian-accent-cowboy-replacement-16
+    russian-accent-cowboy-words-1701: russian-accent-cowboy-replacement-17
+    russian-accent-cowboy-words-1702: russian-accent-cowboy-replacement-17
+    russian-accent-cowboy-words-1801: russian-accent-cowboy-replacement-18
+    russian-accent-cowboy-words-1802: russian-accent-cowboy-replacement-18
+    russian-accent-cowboy-words-1803: russian-accent-cowboy-replacement-18
+    russian-accent-cowboy-words-1901: russian-accent-cowboy-replacement-19
+    russian-accent-cowboy-words-1902: russian-accent-cowboy-replacement-19
+    russian-accent-cowboy-words-20: russian-accent-cowboy-replacement-20
+    russian-accent-cowboy-words-21: russian-accent-cowboy-replacement-21
+    russian-accent-cowboy-words-22: russian-accent-cowboy-replacement-22
+    russian-accent-cowboy-words-23: russian-accent-cowboy-replacement-23
+    russian-accent-cowboy-words-2401: russian-accent-cowboy-replacement-24
+    russian-accent-cowboy-words-2402: russian-accent-cowboy-replacement-24
+    russian-accent-cowboy-words-2403: russian-accent-cowboy-replacement-24
+    russian-accent-cowboy-words-2404: russian-accent-cowboy-replacement-24
+    russian-accent-cowboy-words-2501: russian-accent-cowboy-replacement-25
+    russian-accent-cowboy-words-2502: russian-accent-cowboy-replacement-25
+    russian-accent-cowboy-words-2503: russian-accent-cowboy-replacement-25
+    russian-accent-cowboy-words-26: russian-accent-cowboy-replacement-26
+    russian-accent-cowboy-words-27: russian-accent-cowboy-replacement-27
+    russian-accent-cowboy-words-28: russian-accent-cowboy-replacement-28
+    russian-accent-cowboy-words-29: russian-accent-cowboy-replacement-29
+    russian-accent-cowboy-words-30: russian-accent-cowboy-replacement-30
+    russian-accent-cowboy-words-31: russian-accent-cowboy-replacement-31
+    russian-accent-cowboy-words-32: russian-accent-cowboy-replacement-32
+    russian-accent-cowboy-words-33: russian-accent-cowboy-replacement-33
+    russian-accent-cowboy-words-34: russian-accent-cowboy-replacement-34
+    russian-accent-cowboy-words-35: russian-accent-cowboy-replacement-35
+    russian-accent-cowboy-words-36: russian-accent-cowboy-replacement-36
+    russian-accent-cowboy-words-3701: russian-accent-cowboy-replacement-37
+    russian-accent-cowboy-words-3702: russian-accent-cowboy-replacement-37
+    russian-accent-cowboy-words-38: russian-accent-cowboy-replacement-38
+    russian-accent-cowboy-words-39: russian-accent-cowboy-replacement-39
+    russian-accent-cowboy-words-40: russian-accent-cowboy-replacement-40
+    russian-accent-cowboy-words-41: russian-accent-cowboy-replacement-41
+    russian-accent-cowboy-words-42: russian-accent-cowboy-replacement-42
+    russian-accent-cowboy-words-43: russian-accent-cowboy-replacement-43
+    russian-accent-cowboy-words-44: russian-accent-cowboy-replacement-44
+    russian-accent-cowboy-words-45: russian-accent-cowboy-replacement-45
+    russian-accent-cowboy-words-46: russian-accent-cowboy-replacement-46
+    russian-accent-cowboy-words-47: russian-accent-cowboy-replacement-47
+    russian-accent-cowboy-words-48: russian-accent-cowboy-replacement-48
+    russian-accent-cowboy-words-49: russian-accent-cowboy-replacement-49
+    russian-accent-cowboy-words-50: russian-accent-cowboy-replacement-50
+    russian-accent-cowboy-words-51: russian-accent-cowboy-replacement-51
+    russian-accent-cowboy-words-52: russian-accent-cowboy-replacement-52
+    russian-accent-cowboy-words-53: russian-accent-cowboy-replacement-53
+    russian-accent-cowboy-words-54: russian-accent-cowboy-replacement-54
+    russian-accent-cowboy-words-5501: russian-accent-cowboy-replacement-55
+    russian-accent-cowboy-words-5502: russian-accent-cowboy-replacement-55
+    russian-accent-cowboy-words-56: russian-accent-cowboy-replacement-56
+    russian-accent-cowboy-words-57: russian-accent-cowboy-replacement-57
+    # Russian-accent-end
 
 - type: accent
   id: southern
@@ -587,6 +781,10 @@
     accent-russian-words-4: accent-russian-words-replace-4
     accent-russian-words-5: accent-russian-words-replace-5
     accent-russian-words-6: accent-russian-words-replace-6
+    accent-russian-words-7: accent-russian-words-replace-7
+    accent-russian-words-7-2: accent-russian-words-replace-7
+    accent-russian-words-8: accent-russian-words-replace-8
+    accent-russian-words-8-2: accent-russian-words-replace-8
 
 - type: accent
   id: skeleton

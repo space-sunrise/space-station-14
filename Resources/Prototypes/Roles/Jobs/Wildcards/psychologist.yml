@@ -6,6 +6,7 @@
   startingGear: PsychologistGear
   icon: "JobIconPsychologist"
   supervisors: job-supervisors-cmo
+  displayWeight: 10  # Sunrise
   access:
   - Medical
   - Maintenance

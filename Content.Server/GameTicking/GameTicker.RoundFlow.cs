@@ -5,6 +5,7 @@ using Content.Server.GameTicking.Events;
 using Content.Server.Ghost;
 using Content.Server.Maps;
 using Content.Server.Roles;
+using Content.Server.Shuttles.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
@@ -21,6 +22,8 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Server.StatsBoard;
+using Content.Shared._Sunrise.StatsBoard;
 
 namespace Content.Server.GameTicking
 {
@@ -29,6 +32,7 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly DiscordWebhook _discord = default!;
         [Dependency] private readonly RoleSystem _role = default!;
         [Dependency] private readonly ITaskManager _taskManager = default!;
+        [Dependency] private readonly StatsBoardSystem _statsBoardSystem = default!;
 
         private static readonly Counter RoundNumberMetric = Metrics.CreateCounter(
             "ss14_round_number",
@@ -288,6 +292,7 @@ namespace Content.Server.GameTicking
             AnnounceRound();
             UpdateInfoText();
             SendRoundStartedDiscordMessage();
+            RaiseLocalEvent(new RoundStartedEvent(RoundId));
 
 #if EXCEPTION_TOLERANCE
             }
@@ -421,9 +426,11 @@ namespace Content.Server.GameTicking
                     PlayerICName = playerIcName,
                     PlayerGuid = userId,
                     PlayerNetEntity = GetNetEntity(entity),
-                    Role = antag
-                        ? roles.First(role => role.Antagonist).Name
-                        : roles.FirstOrDefault().Name ?? Loc.GetString("game-ticker-unknown-role"),
+                    Role = roles.Any()
+                        ? (antag
+                            ? roles.FirstOrDefault(role => role.Antagonist).Name
+                            : roles.FirstOrDefault(role => !role.Antagonist).Name) ?? Loc.GetString("game-ticker-unknown-role")
+                        : Loc.GetString("game-ticker-unknown-role"),
                     Antag = antag,
                     JobPrototypes = roles.Where(role => !role.Antagonist).Select(role => role.Prototype).ToArray(),
                     AntagPrototypes = roles.Where(role => role.Antagonist).Select(role => role.Prototype).ToArray(),
@@ -437,6 +444,12 @@ namespace Content.Server.GameTicking
             var listOfPlayerInfoFinal = listOfPlayerInfo.OrderBy(pi => pi.PlayerOOCName).ToArray();
             var sound = RoundEndSoundCollection == null ? null : _audio.GetSound(new SoundCollectionSpecifier(RoundEndSoundCollection));
 
+            // Sunrise-Start
+            var roundStats = _statsBoardSystem.GetRoundStats();
+            var statisticEntries = _statsBoardSystem.GetStatisticEntries();
+            var sharedEntries = statisticEntries.Select(entry => _statsBoardSystem.ConvertToSharedStatisticEntry(entry)).ToArray();
+            // Sunrise-End
+
             var roundEndMessageEvent = new RoundEndMessageEvent(
                 gamemodeTitle,
                 roundEndText,
@@ -444,10 +457,13 @@ namespace Content.Server.GameTicking
                 RoundId,
                 listOfPlayerInfoFinal.Length,
                 listOfPlayerInfoFinal,
+                roundStats, // Sunrise-Edit
+                sharedEntries, // Sunrise-Edit
                 sound
             );
             RaiseNetworkEvent(roundEndMessageEvent);
             RaiseLocalEvent(roundEndMessageEvent);
+            RaiseLocalEvent(new RoundEndedEvent(RoundId, roundDuration));
 
             _replayRoundPlayerInfo = listOfPlayerInfoFinal;
             _replayRoundText = roundEndText;
@@ -506,7 +522,13 @@ namespace Content.Server.GameTicking
             PlayersJoinedRoundNormally = 0;
 
             RunLevel = GameRunLevel.PreRoundLobby;
-            RandomizeLobbyBackground();
+            // Sunrise-Start
+            RandomizeLobbyBackgroundType();
+            RandomizeLobbyBackgroundParallax();
+            RandomizeLobbyBackgroundAnimation();
+            RandomizeLobbyBackgroundArt();
+            _statsBoardSystem.CleanEntries();
+            // Sunrise-End
             ResettingCleanup();
             IncrementRoundNumber();
             SendRoundStartingDiscordMessage();
@@ -644,7 +666,7 @@ namespace Content.Server.GameTicking
             var proto = _robustRandom.Pick(options);
 
             if (proto.Message != null)
-                _chatSystem.DispatchGlobalAnnouncement(Loc.GetString(proto.Message), playSound: true);
+                _chatSystem.DispatchGlobalAnnouncement(Loc.GetString(proto.Message), playDefault: true, playTts: true);
 
             if (proto.Sound != null)
                 _audio.PlayGlobal(proto.Sound, Filter.Broadcast(), true);

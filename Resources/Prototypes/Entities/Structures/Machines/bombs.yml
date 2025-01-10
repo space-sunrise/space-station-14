@@ -29,7 +29,10 @@
       delay: 180
       delayOptions: [180, 240, 300, 600, 900]
       initialBeepDelay: 0
-      beepSound: /Audio/Machines/timer.ogg
+      beepSound:
+        path: /Audio/_Sunrise/c4_beep1.ogg # Sunrise-Edit
+        params:
+          volume: 20
     - type: Anchorable
       delay: 5
     - type: Fixtures

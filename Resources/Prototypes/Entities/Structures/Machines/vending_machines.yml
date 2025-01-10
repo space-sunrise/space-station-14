@@ -75,6 +75,8 @@
   - type: Anchorable
   - type: TypingIndicator
     proto: robot
+  - type: TTS
+    voice: FactCore
   - type: Speech
     speechVerb: Robotic
     speechSounds: Vending
@@ -135,6 +137,7 @@
   - type: Speech
   - type: Transform
     noRot: false
+  - type: PlayerCountDependentStock  # Sunrise-vend
 
 - type: entity
   parent: VendingMachine
@@ -153,7 +156,7 @@
     pack: GenericVendGoodbyes
   - type: Speech
   - type: Sprite
-    sprite: Structures/Machines/VendingMachines/ammo.rsi
+    sprite: _Sunrise/Structures/Machines/VendingMachines/ammo.rsi
     layers:
     - state: "off"
       map: ["enum.VendingMachineVisualLayers.Base"]
@@ -326,6 +329,7 @@
       shader: unshaded
     - state: panel
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: PlayerCountDependentStock  # Sunrise-vend
 
 - type: entity
   parent: VendingMachine
@@ -432,6 +436,7 @@
     radius: 1.5
     energy: 1.3
     color: "#ad7c4b"
+  - type: PlayerCountDependentStock  # Sunrise-vend
 
 - type: entity
   parent: VendingMachine
@@ -469,6 +474,7 @@
     radius: 1.5
     energy: 1.6
     color: "#3c5eb5"
+  - type: PlayerCountDependentStock  # Sunrise-vend
 
 - type: entity
   parent: VendingMachineCola
@@ -613,6 +619,7 @@
     radius: 1.5
     energy: 1.6
     color: "#66538F"
+  - type: PlayerCountDependentStock  # Sunrise-vend
 
 - type: entity
   parent: VendingMachine
@@ -650,6 +657,7 @@
     radius: 1.5
     energy: 1.6
     color: "#6927C5"
+  - type: PlayerCountDependentStock  # Sunrise-vend
 
 - type: entity
   parent: VendingMachine
@@ -687,6 +695,7 @@
     radius: 1.5
     energy: 1.6
     color: "#D82929"
+  - type: PlayerCountDependentStock  # Sunrise-vend
 
 - type: entity
   parent: VendingMachine
@@ -784,6 +793,7 @@
     radius: 1.5
     energy: 1.6
     color: "#6148c7"
+  - type: PlayerCountDependentStock  # Sunrise-vend
 
 - type: entity
   parent: VendingMachine
@@ -845,6 +855,12 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
   - type: AccessReader
     access: [["Medical"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
   - type: PointLight
     radius: 1.5
     energy: 1.6
@@ -1001,6 +1017,7 @@
     radius: 1.5
     energy: 1.6
     color: "#c73434"
+  - type: PlayerCountDependentStock  # Sunrise-vend
 
 - type: entity
   parent: VendingMachineSnack
@@ -1031,6 +1048,7 @@
     radius: 1.5
     energy: 1.6
     color: "#737785"
+  - type: PlayerCountDependentStock  # Sunrise-vend
 
 - type: entity
   parent: VendingMachineSnack
@@ -1147,6 +1165,7 @@
     radius: 1.5
     energy: 1.6
     color: "#389690"
+  - type: PlayerCountDependentStock  # Sunrise-vend
 
 - type: entity
   parent: VendingMachine
@@ -1349,6 +1368,7 @@
     radius: 1.5
     energy: 1.6
     color: "#ffe599"
+  - type: PlayerCountDependentStock  # Sunrise-vend
 
 - type: entity
   parent: VendingMachine
@@ -1415,6 +1435,7 @@
     radius: 1.5
     energy: 1.6
     color: "#d4ab33"
+  - type: PlayerCountDependentStock  # Sunrise-vend
 
 # wallmounted machines
 
@@ -1465,6 +1486,12 @@
     color: "#43ccb5"
   - type: AccessReader
     access: [["Medical"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
   - type: GuideHelp
     guides:
     - Medical

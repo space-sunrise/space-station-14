@@ -69,7 +69,9 @@
     range: 7
   - type: SoundOnTrigger
     sound:
-      path: "/Audio/Effects/flash_bang.ogg"
+      path: "/Audio/_Sunrise/flashbang.ogg" # Sunrise-Edit
+      params:
+        volume: 20
   - type: DeleteOnTrigger
   - type: SpawnOnTrigger
     proto: GrenadeFlashEffect
@@ -400,10 +402,13 @@
   - type: Sprite
     sprite: Objects/Weapons/Grenades/smoke.rsi
   - type: SmokeOnTrigger
-    duration: 30
+    duration: 45 # Sunrise-Edit
     spreadAmount: 50
   - type: SoundOnTrigger
-    sound: /Audio/Items/smoke_grenade_smoke.ogg
+    sound:
+      path: /Audio/_Sunrise/sg_explode.ogg # Sunrise-Edit
+      params:
+        volume: 15
   - type: DeleteOnTrigger
   - type: TimerTriggerVisuals
     primingSound:
@@ -474,9 +479,13 @@
     sound:
       path: /Audio/Effects/Emotes/parp1.ogg
   - type: Appearance
-  - type: TimerTriggerVisuals
-    primingSound:
-      path: /Audio/Effects/countdown.ogg
+  - type: OnUseTimerTrigger
+    beepSound:
+      path: "/Audio/Effects/beep1.ogg"
+      params:
+        volume: 5
+    initialBeepDelay: 0
+    beepInterval: 2 # 2 beeps total (at 0 and 2)
 
 - type: entity
   name: syndicate trickybomb

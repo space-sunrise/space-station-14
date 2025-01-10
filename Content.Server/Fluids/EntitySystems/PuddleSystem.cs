@@ -339,8 +339,12 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
         }
 
         _deletionQueue.Remove(entity);
-        UpdateSlip(entity, entity.Comp, args.Solution);
-        UpdateSlow(entity, args.Solution);
+        // Sunrise-Start
+        if (entity.Comp.CanSlip)
+            UpdateSlip(entity, entity.Comp, args.Solution);
+        if (entity.Comp.CanSlow)
+            UpdateSlow(entity, args.Solution);
+        // Sunrise-End
         UpdateEvaporation(entity, args.Solution);
         UpdateAppearance(entity, entity.Comp);
     }

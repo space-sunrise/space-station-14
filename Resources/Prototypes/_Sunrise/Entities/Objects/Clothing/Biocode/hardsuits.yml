@@ -1,0 +1,64 @@
+- type: entity
+  parent: ClothingOuterHardsuitSyndie
+  id: ClothingOuterHardsuitSyndieBiocode
+  suffix: BIOCODE
+  components:
+  - type: FactionClothingBlocker
+    factions:
+    - Syndicate
+    beepSound:
+      path: "/Audio/Effects/beep1.ogg"
+      params:
+        volume: 15
+
+- type: entity
+  parent: ClothingOuterHardsuitSyndieMedic
+  id: ClothingOuterHardsuitSyndieMedicBiocode
+  suffix: BIOCODE
+  components:
+  - type: FactionClothingBlocker
+    factions:
+    - Syndicate
+    beepSound:
+      path: "/Audio/Effects/beep1.ogg"
+      params:
+        volume: 15
+
+- type: entity
+  parent: ClothingOuterHardsuitSyndieElite
+  id: ClothingOuterHardsuitSyndieEliteBiocode
+  suffix: BIOCODE
+  components:
+  - type: FactionClothingBlocker
+    factions:
+    - Syndicate
+    beepSound:
+      path: "/Audio/Effects/beep1.ogg"
+      params:
+        volume: 15
+
+- type: entity
+  parent: ClothingOuterHardsuitSyndieCommander
+  id: ClothingOuterHardsuitSyndieCommanderBiocode
+  suffix: BIOCODE
+  components:
+  - type: FactionClothingBlocker
+    factions:
+    - Syndicate
+    beepSound:
+      path: "/Audio/Effects/beep1.ogg"
+      params:
+        volume: 15
+
+- type: entity
+  parent: ClothingOuterHardsuitJuggernaut
+  id: ClothingOuterHardsuitJuggernautBiocode
+  suffix: BIOCODE
+  components:
+  - type: FactionClothingBlocker
+    factions:
+    - Syndicate
+    beepSound:
+      path: "/Audio/Effects/beep1.ogg"
+      params:
+        volume: 15

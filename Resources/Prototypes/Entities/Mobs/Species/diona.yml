@@ -5,6 +5,7 @@
   id: BaseMobDiona
   abstract: true
   components:
+  - type: Absorbable
   - type: HumanoidAppearance
     species: Diona
   - type: Hunger
@@ -110,6 +111,16 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+  # Sunrise-Start
+  - type: CollectiveMind
+    minds:
+    - Dioneas
+  - type: FootprintEmitter
+    leftBareFootState:
+      - "footprint-left-bare-diona"
+    rightBareFootState:
+      - "footprint-right-bare-diona"
+  # Sunrise-End
 
 - type: entity
   parent: BaseSpeciesDummy

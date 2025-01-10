@@ -307,6 +307,7 @@
     spawned:
     - id: FoodMeat
       amount: 2
+  - type: DogVision  # Sunrise-DogVision
   - type: ReplacementAccent
     accent: dog
   - type: InteractionPopup
@@ -388,6 +389,7 @@
   - type: Inventory
     speciesId: dog
     templateId: pet
+  - type: DogVision  # Sunrise-DogVision
   - type: DamageStateVisuals
     states:
       Alive:
@@ -773,8 +775,8 @@
   - type: MeleeWeapon
     damage:
       types:
-        Blunt: 1
-        Caustic: 1
+        Blunt: 3  # Sunrise-edit
+        Caustic: 3  # Sunrise-edit
   - type: MultiHandedItem
   - type: Item
     sprite: Mobs/Pets/Smile/smile.rsi
@@ -792,6 +794,43 @@
     attributes:
       proper: true
       gender: female
+  - type: TTS
+    voice: Neco
+  # Sunrise-start
+  - type: InteractionPopup
+    interactDelay: 0.5
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound: /Audio/Animals/cat_meow.ogg
+    successChance: 1
+  - type: Puller
+    needsHands: false
+  - type: SmileSlime
+    action: SmileAffection
+    soundSpecifier: /Audio/Animals/cat_meow.ogg
+    actionTime: 5
+    affectionPopupText: "smile-affection-popup"
+    damageSpecifier:
+      groups:
+        Brute: -5
+        Burn: -5
+      types:
+        Bloodloss: -5
+    messages:
+    - goodfeeling-artifact-1
+    - goodfeeling-artifact-2
+    - goodfeeling-artifact-3
+    - goodfeeling-artifact-4
+    - goodfeeling-artifact-5
+    - goodfeeling-artifact-6
+    - goodfeeling-artifact-7
+    - goodfeeling-artifact-8
+    - goodfeeling-artifact-9
+    - goodfeeling-artifact-10
+    - goodfeeling-artifact-11
+    - goodfeeling-artifact-12
+    - goodfeeling-artifact-13
+    - goodfeeling-artifact-14
+  # Sunrise-end
 
 - type: entity
   name: Pun Pun

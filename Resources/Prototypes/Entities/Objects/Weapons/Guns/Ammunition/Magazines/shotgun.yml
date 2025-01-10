@@ -14,7 +14,7 @@
         - ShellShotgun
     capacity: 8
     soundRack:
-      path: /Audio/Weapons/Guns/Cock/smg_cock.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Cock/shotgun_cock.ogg
   - type: Item
     size: Small
   - type: ContainerContainer
@@ -93,7 +93,22 @@
     proto: ShellShotgunIncendiary
   - type: Sprite
     layers:
-    - state: slug
+    - state: base #Sunrise-Edit
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
+#Sunrise-Start
+- type: entity
+  id: MagazineShotgunUranium
+  name: ammo drum (.50 Uranium)
+  parent: BaseMagazineShotgun
+  components:
+  - type: BallisticAmmoProvider
+    proto: ShellShotgunUranium
+  - type: Sprite
+    layers:
+    - state: uranium
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+#Sunrise-End

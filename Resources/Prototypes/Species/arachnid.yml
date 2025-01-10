@@ -10,9 +10,11 @@
   skinColoration: Hues
   maleFirstNames: names_arachnid_first
   femaleFirstNames: names_arachnid_first
-  lastNames: names_arachnid_last
-  sexes:
-  - Unsexed
+  maleLastNames: names_arachnid_last # Russian-LastnameGender
+  femaleLastNames: names_arachnid_last # Russian-LastnameGender
+  # Sunrise-Edit
+  #sexes:
+  #- Unsexed
 
 - type: speciesBaseSprites
   id: MobArachnidSprites

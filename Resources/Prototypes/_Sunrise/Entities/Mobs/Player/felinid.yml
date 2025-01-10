@@ -1,0 +1,6 @@
+- type: entity
+  save: false
+  name: Player felinid
+  parent: MobFelinidBase
+  id: MobFelinid
+

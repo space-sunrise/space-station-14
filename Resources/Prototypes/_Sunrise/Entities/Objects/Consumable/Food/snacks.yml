@@ -1,0 +1,51 @@
+- type: entity
+  name: menergy bar
+  parent: FoodSnackBase
+  id: FoodSnackMaysonEnergy
+  description: Mayson's energy bar 
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Consumable/Food/snacks.rsi
+    state: menergybar
+  - type: Item
+  - type: SpawnItemsOnUse
+    items:
+      - id: FoodPacketMaysonEnergyTrash
+      - id: FoodSnackMaysonEnergyBar
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+
+- type: entity
+  name: menergy bar
+  parent: FoodSnackBase
+  id: FoodSnackMaysonEnergyBar
+  description: Mayson's energy bar 
+  components:
+  - type: FlavorProfile
+    flavors:
+      - chocolate
+      - nutty
+      - sweet
+  - type: Sprite
+    sprite: _Sunrise/Objects/Consumable/Food/snacks.rsi
+    state: menergybar-open
+  - type: Item
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Epinephrine
+          Quantity: 10
+          
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: FoodPacketTrash
+  id: FoodPacketMaysonEnergyTrash
+  name: energybar wrapper
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Consumable/Food/snacks.rsi
+    state: menergybar-trash

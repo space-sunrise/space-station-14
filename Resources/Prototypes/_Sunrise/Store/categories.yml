@@ -1,0 +1,184 @@
+# donate plinks
+
+- type: storeCategory
+  id: General
+  name: store-category-general
+  priority: 0
+
+- type: storeCategory
+  id: Music
+  name: store-category-music
+  priority: 1
+
+- type: storeCategory
+  id: Cloaks
+  name: store-category-cloaks
+  priority: 2
+
+- type: storeCategory
+  id: Friends
+  name: store-category-friends
+  priority: 3
+
+- type: storeCategory
+  id: SpecialThings
+  name: store-category-special
+  priority: 4
+
+- type: storeCategory
+  id: HOSHeadOfDepartment
+  name: store-category-hos
+  priority: 5
+
+- type: storeCategory
+  id: CEHeadOfDepartment
+  name: store-category-ce
+  priority: 5
+
+- type: storeCategory
+  id: CMOHeadOfDepartment
+  name: store-category-cmo
+  priority: 5
+
+- type: storeCategory
+  id: RDHeadOfDepartment
+  name: store-category-rd
+  priority: 5
+
+- type: storeCategory
+  id: QMHeadOfDepartment
+  name: store-category-qm
+  priority: 5
+
+- type: storeCategory
+  id: HOPHeadOfDepartment
+  name: store-category-hop
+  priority: 5
+
+- type: storeCategory
+  id: IAAHeadOfDepartment
+  name: store-category-iaa
+  priority: 5
+
+- type: storeCategory
+  id: CaptainHeadOfDepartment
+  name: store-category-captain
+  priority: 5
+
+- type: storeCategory
+  id: ServiceThings
+  name: store-category-service
+  priority: 5
+
+- type: storeCategory
+  id: MedicalThings
+  name: store-category-medical
+  priority: 5
+
+- type: storeCategory
+  id: ScienceThings
+  name: store-category-science
+  priority: 5
+
+- type: storeCategory
+  id: EngineeringThings
+  name: store-category-engineering
+  priority: 5
+
+- type: storeCategory
+  id: CargoThings
+  name: store-category-cargo
+  priority: 5
+
+- type: storeCategory
+  id: SecurityThings
+  name: store-category-security
+  priority: 5
+
+# disease
+
+- type: storeCategory
+  id: DiseaseInfectCategory
+  name: shop-disease-category-infect
+
+- type: storeCategory
+  id: DiseaseSymptomsCategory
+  name: shop-disease-category-symptoms
+
+- type: storeCategory
+  id: DiseaseEvolutionCategory
+  name: shop-disease-category-evolution
+
+
+- type: currency
+  id: DiseasePoints
+  displayName: shop-disease-currency
+  canWithdraw: false
+
+#uplink categoires
+
+- type: storeCategory
+  id: UplinkMechs
+  name: store-category-mechs
+  priority: 8
+
+- type: storeCategory
+  id: UplinkLootBoxes
+  name: store-category-lootbox
+  priority: 11
+
+#ERTuplink categoires
+- type: storeCategory
+  id: NTAutoGun
+  name: store-category-ntautogun
+  priority: 0
+
+- type: storeCategory
+  id: NTLasers
+  name: store-category-ntlasers
+  priority: 1
+
+- type: storeCategory
+  id: NTMedicine
+  name: store-category-ntmedicine
+  priority: 4
+
+- type: storeCategory
+  id: NTPistols
+  name: store-category-ntpistols
+  priority: 2
+
+- type: storeCategory
+  id: NTAdditional
+  name: store-category-ntadditional
+  priority: 5
+
+- type: storeCategory
+  id: NTSanitary
+  name: store-category-ntsanitary
+  priority: 6
+
+- type: storeCategory
+  id: NTEngineering
+  name: store-category-ntengineering
+  priority: 7
+
+- type: storeCategory
+  id: NTMechs
+  name: store-category-ntmechs
+  priority: 9
+
+- type: storeCategory
+  id: NTexplosive
+  name: store-category-ntexplosive
+  priority: 10
+
+- type: storeCategory
+  id: NTAmmo
+  name: store-category-ntammo
+  priority: 3
+
+- type: storeCategory
+  id: NTEquipment
+  name: store-category-ntequipment
+  priority: 8

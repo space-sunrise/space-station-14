@@ -18,7 +18,7 @@
       rootTask:
         task: SimpleRangedHostileCompound
     - type: HitscanBatteryAmmoProvider
-      proto: RedLaser
+      proto: BulletRedLaser # Sunrise-Edit
       fireCost: 62.5
     - type: Battery
       maxCharge: 1000

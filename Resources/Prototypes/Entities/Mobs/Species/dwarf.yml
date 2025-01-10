@@ -5,6 +5,7 @@
   id: BaseMobDwarf
   abstract: true
   components:
+  - type: Absorbable
   - type: Hunger
   - type: Thirst
   - type: Icon
@@ -13,7 +14,7 @@
   - type: Respirator
     damage:
       types:
-        Asphyxiation: 2
+        Asphyxiation: 0.5 # Sunrise-Casual
     damageRecovery:
       types:
         Asphyxiation: -1.0
@@ -63,6 +64,13 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+  # Sunrise edit ;3
+  - type: FootprintEmitter
+    leftBareFootState:
+      - "footprint-left-bare-dwarf"
+    rightBareFootState:
+      - "footprint-right-bare-dwarf"
+  # Sunrise edit end 0_0
 
 - type: entity
   parent: BaseSpeciesDummy

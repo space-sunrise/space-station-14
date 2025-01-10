@@ -75,7 +75,7 @@ public sealed class RandomSentienceRule : StationEventSystem<RandomSentienceRule
                 ("data", _random.Pick(_prototype.Index<LocalizedDatasetPrototype>("RandomSentienceEventData"))),
                 ("strength", _random.Pick(_prototype.Index<LocalizedDatasetPrototype>("RandomSentienceEventStrength")))
             ),
-            playDefaultSound: false,
+            playDefault: false,
             colorOverride: Color.Gold
         );
     }

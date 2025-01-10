@@ -74,6 +74,7 @@
         - id: OxygenTankFilled
         - id: ClothingOuterHardsuitPirateEVA
         - id: ClothingMaskGas
+        - id: ClothingShoesBootsMagPirate
 
 #NTSRA Voidsuit
 - type: entity
@@ -115,6 +116,12 @@
         - id: ClothingMaskBreath
   - type: AccessReader
     access: [["Engineering"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 #Atmospherics hardsuit
 - type: entity
@@ -129,6 +136,12 @@
         - id: ClothingMaskBreath
   - type: AccessReader
     access: [["Atmospherics"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 #Security hardsuit
 - type: entity
@@ -141,6 +154,8 @@
         - id: OxygenTankFilled
         - id: ClothingOuterHardsuitSecurity
         - id: ClothingMaskBreath
+        - id: ClothingShoesBootsMagSec  # Sunrise-edit
+          prob: 0.75
   - type: AccessReader
     access: [["Security"]]
 
@@ -207,6 +222,7 @@
         - id: OxygenTankFilled
         - id: ClothingOuterHardsuitWarden
         - id: ClothingMaskBreath
+        - id: ClothingShoesBootsMagSec  # Sunrise-edit
   - type: AccessReader
     access: [["Armory"]]
 
@@ -235,6 +251,12 @@
         tableId: FillSalvageSpecialistHardsuitSpatio
   - type: AccessReader
     access: [["Salvage"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 #Blood-red hardsuit
 - type: entity
@@ -245,7 +267,7 @@
   - type: StorageFill
     contents:
         - id: OxygenTankFilled
-        - id: ClothingOuterHardsuitSyndie
+        - id: ClothingOuterHardsuitSyndieBiocode # Sunrise-Edit
         - id: ClothingShoesBootsMagSyndie
         - id: ClothingMaskGasSyndicate
 
@@ -260,6 +282,7 @@
         - id: OxygenTankFilled
         - id: ClothingOuterHardsuitPirateCap
         - id: ClothingMaskGas
+        - id: ClothingShoesBootsMagPirate
 
 #Wizard
 - type: entity

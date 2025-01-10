@@ -161,8 +161,8 @@ public sealed partial class StoreSystem
             {
                 return;
             }
-        }
 
+        }
         if (!IsOnStartingMap(uid, component))
             component.RefundAllowed = false;
 
@@ -174,12 +174,24 @@ public sealed partial class StoreSystem
             component.BalanceSpent.TryAdd(currency, FixedPoint2.Zero);
 
             component.BalanceSpent[currency] += amount;
+
+            // Sunrise-Start
+            var ev = new SubtractCashEvent(buyer, currency, amount);
+            RaiseLocalEvent(buyer, ref ev);
+            // Sunrise-End
+
         }
 
         //spawn entity
         if (listing.ProductEntity != null)
         {
             var product = Spawn(listing.ProductEntity, Transform(buyer).Coordinates);
+
+            // Sunrise-Start
+            var ev = new ItemPurchasedEvent(buyer);
+            RaiseLocalEvent(product, ref ev);
+            // Sunrise-End
+
             _hands.PickupOrDrop(buyer, product);
 
             HandleRefundComp(uid, component, product);
@@ -246,6 +258,7 @@ public sealed partial class StoreSystem
 
             if (upgradeActionId != null)
                 HandleRefundComp(uid, component, upgradeActionId.Value);
+
         }
 
         if (listing.ProductEvent != null)

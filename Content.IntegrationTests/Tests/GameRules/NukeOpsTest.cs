@@ -1,6 +1,8 @@
 #nullable enable
 using System.Collections.Generic;
 using System.Linq;
+using Content.Server._Sunrise.StationCentComm;
+using Content.Server._Sunrise.TransitHub;
 using Content.Server.Body.Components;
 using Content.Server.GameTicking;
 using Content.Server.GameTicking.Presets;
@@ -78,7 +80,7 @@ public sealed class NukeOpsTest
         Assert.That(entMan.Count<MapGridComponent>(), Is.Zero);
         Assert.That(entMan.Count<StationMapComponent>(), Is.Zero);
         Assert.That(entMan.Count<StationMemberComponent>(), Is.Zero);
-        Assert.That(entMan.Count<StationCentcommComponent>(), Is.Zero);
+        Assert.That(entMan.Count<StationTransitHubComponent>(), Is.Zero); // Sunrise-Edit
 
         // And no nukie related components
         Assert.That(entMan.Count<NukeopsRuleComponent>(), Is.Zero);
@@ -106,7 +108,7 @@ public sealed class NukeOpsTest
         // Maps now exist
         Assert.That(entMan.Count<MapComponent>(), Is.GreaterThan(0));
         Assert.That(entMan.Count<MapGridComponent>(), Is.GreaterThan(0));
-        Assert.That(entMan.Count<StationCentcommComponent>(), Is.EqualTo(1));
+        Assert.That(entMan.Count<StationTransitHubComponent>(), Is.EqualTo(1)); // Sunrise-Edit
 
         // And we now have nukie related components
         Assert.That(entMan.Count<NukeopsRuleComponent>(), Is.EqualTo(1));
