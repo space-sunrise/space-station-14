@@ -2,7 +2,7 @@
   id: NtrLeader
   name: job-name-ntrleader
   description: job-description-ntrg
-  playTimeTracker: JobNTRLeader
+  playTimeTracker: JobNtrLeader
   requirements:
     - !type:DepartmentTimeRequirement
       department: Security
@@ -76,7 +76,7 @@
   id: NtrGuad
   name: job-name-ntrguard
   description: job-description-ntrg
-  playTimeTracker: JobNTRGuad
+  playTimeTracker: JobNtrGuad
   requirements:
     - !type:DepartmentTimeRequirement
       department: Security
