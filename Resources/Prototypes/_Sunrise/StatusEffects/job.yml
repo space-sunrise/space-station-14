@@ -21,17 +21,17 @@
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconNTRGuard
+  id: JobIconNtrGuard
   icon:
     sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
-    state: NTRGuard
+    state: NtrGuard
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconNTRLeader
+  id: JobIconNtrLeader
   icon:
     sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
-    state: NTRLeader
+    state: NtrLeader
 
 - type: jobIcon
   parent: JobIcon

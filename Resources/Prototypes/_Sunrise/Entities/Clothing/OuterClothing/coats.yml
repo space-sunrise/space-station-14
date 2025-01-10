@@ -403,8 +403,8 @@
 - type: entity
   parent: [ClothingOuterArmorBasic, ClothingOuterStorageBase]
   id: ClothingOuterArmorNTRG
-  name: heavvy vest #Тяжёлый бронежилет QWERTY
-  description: heavvy vest for NTRG Sqaud #Укреплённый бронежилет закрывающий грудь, живот и частично плечи владельца. Имеет отличительные метки и крепления для РПС, поджимает в плечах.
+  name: heavvy vest
+  description: heavvy vest for NTRG Sqaud
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/OuterClothing/Coats/ntrg_armor.rsi

@@ -36,3 +36,7 @@ ent-USSPSoldierIDCard = ID карта Солдата СССП
     .desc = { ent-IDCardStandard.desc }
 ent-USSPCaptainIDCard = ID карта Офицера СССП
     .desc = { ent-IDCardStandard.desc }
+ent-NtrGuardIDCard = ID карта Оператора ИСН
+    .desc = Серебряная карточка сотрудника охранно-оперативной группы Юридического отдела, на вид новая и не тронутая.
+ent-NtrLeadGuardIDCard = ID карта Командира ИСН
+    .desc = Серебристая карта NanoTrasen, что показывает статус сотрудника, а так же его власть над подчинёнными.

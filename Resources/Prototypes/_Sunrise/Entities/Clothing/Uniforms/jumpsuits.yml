@@ -89,8 +89,8 @@
 - type: entity
   parent: ClothingUniformBase
   id: ClothingUniformJumpsuitNTRG
-  name: NTRG's uniform #Униформа ИСН QWERTY
-  description: On style. #Чёрный свитер, карго штаны. Тёмный комплект униформы тактического стиля, ничего лишнего. 
+  name: NTRG's uniform
+  description: On style.
   components:
   - type: Sprite
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/ntrg_suit.rsi

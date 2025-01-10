@@ -32,3 +32,7 @@ ent-USSPSoldierPDA = Millitary USSP PDA
     .desc = { ent-USSPPDA.desc }
 ent-USSPCaptainPDA = Officer USSP PDA
     .desc = { ent-USSPPDA.desc }
+ent-NtrGuardPDA = NTR Guard's PDA
+    .desc = { ent-BasePDA.desc }
+ent-NtrLeadGuardPDA = NTR Guard's PDA
+    .desc = { ent-NtrGuardPDA.desc }

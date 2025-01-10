@@ -238,7 +238,7 @@
     autoRecharge: true
     autoRechargeRate: 120
     autoRechargePause: true
-    autoRechargePauseTime: 10
+    autoRechargePauseTime: 6
   - type: EnergyGunFireModes
     fireModes:
     - hitscanProto: BulletDisabler
@@ -247,7 +247,7 @@
       state: disabler
       shotType: Hitscan
     - hitscanProto: BulletEnergyGunLaser #BulletPulse
-      fireCost: 120
+      fireCost: 110
       name: energy-gun-lethal
       state: lethal
       shotType: Hitscan

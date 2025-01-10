@@ -38,3 +38,5 @@ ent-ClothingUniformJumpsuitAdidasWhite = white USSP sweatshirt
     .desc = White version of the popular USSP Olympians sports uniform, has two black stripes on each part of the set. Fashionable, stylish and bright!
 ent-ClothingUniformJumpskirtChristmas = christmas female jumpsuit
     .desc = Pretty old stuff for these times, bringing back old memories.....
+ent-ClothingUniformJumpsuitNTRG = NTRG's uniform
+    .desc =  NTRG's uniform.

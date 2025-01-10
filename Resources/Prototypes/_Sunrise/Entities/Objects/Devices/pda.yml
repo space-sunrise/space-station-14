@@ -339,14 +339,14 @@
 
 - type: entity
   parent: BasePDA
-  id: NTRGuardPDA
-  name: NTR Guard's PDA #КПК ИСН QWERT 
-  description: #Необычный стиль серого и красного, владелец данного ПДА может гордиться своими достижениями. На боковой панели виднеется встроенная клавиатура и красные кнопки.
+  id: NtrGuardPDA
+  name: NTR Guard's PDA
+  description: NTR Guard's PDA
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/pda.rsi
   - type: Pda
-    id: NTRGuardIDCard
+    id: NtrGuardIDCard
   - type: Appearance
     appearanceDataInit:
       enum.PdaVisuals.PdaType:
@@ -357,10 +357,10 @@
     state: pda-isn-operator
 
 - type: entity
-  parent: NTRGuardPDA
-  id: NTRLeadGuardPDA
-  description: #Необычный стиль серого и красного, владелец данного ПДА может гордиться своими достижениями. На боковой панели виднеется встроенная клавиатура и красные кнопки.
-  name: NTR Guard's PDA #КПК ИСН
+  parent: NtrGuardPDA
+  id: NtrLeadGuardPDA
+  name: NTR Guard's PDA
+  description: NTR Guard's PDA
   components:
   - type: Pda
-    id: NTRLeadGuardIDCard
+    id: NtrLeadGuardIDCard

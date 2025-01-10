@@ -261,9 +261,9 @@
 
 - type: entity
   parent: IDCardStandard
-  id: NTRGuardIDCard
+  id: NtrGuardIDCard
   name: NTR Guard ID card
-  description: #Серебряная карточка сотрудника охранно-оперативной группы Юридического отдела, на вид новая и не тронутая.
+  description: OwO Squad
   suffix: Officer
   components:
   - type: Sprite
@@ -274,13 +274,13 @@
   - type: Item
     heldPrefix: silver
   - type: PresetIdCard
-    job: NtrGuard
+    job: Lawyer #NtrGuard
 
 - type: entity
   parent: IDCardStandard
-  id: NTRLeadGuardIDCard
+  id: NtrLeadGuardIDCard
   name: NTR Lead ID card
-  description: #Серебристая карта NanoTrasen, что показывает статус сотрудника, а так же его власть над подчинёнными.
+  description: Leader OwO Squad
   suffix: Leader
   components:
   - type: Sprite
@@ -291,4 +291,4 @@
   - type: Item
     heldPrefix: silver
   - type: PresetIdCard
-    job: NtrLeadGuard
+    job: NtrLeader

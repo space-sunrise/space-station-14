@@ -54,3 +54,5 @@ ent-ClothingHeadHatSingulo = Singulo Crown
     .desc = The greatest achievement of engineers and scientists - a compact singularity installation that allows the owner to demonstrate their status and uniqueness on the station.
 ent-ClothingHeadHatDeerHorns = Hat with deer horns
     .desc = a Horns, usually worn deer.
+ent-ClothingHeadCapNTGR = NTRG officer cap
+    .desc = The NanoTrasen Silver-engraved special cap

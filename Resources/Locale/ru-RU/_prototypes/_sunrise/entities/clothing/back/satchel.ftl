@@ -8,3 +8,5 @@ ent-ClothingBackpackSatchelPrisonGuard = сумка сотрудника кт
     .desc = На стиле.
 ent-ClothingBackpackSatchelHoS = чёрная сумка
     .desc = Стильная чёрная кожаная сумка.
+ent-ClothingBackpackSatchelNTRG = сумка сотрудника ИСН
+    .desc = Стильная чёрная кожаная сумка c множеством карманов.

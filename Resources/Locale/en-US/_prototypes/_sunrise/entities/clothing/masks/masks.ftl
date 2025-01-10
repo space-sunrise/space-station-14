@@ -18,3 +18,7 @@ ent-ClothingBreathMaskCMO = medical respirator
     .desc = Quality respirator.
 ent-ClothingMaskGasCE = chef engineer's gas mask
     .desc = Very durable and stylish white gas mask with a green stripe on the frontal area. Will allow you to correct the consequences of atmospheric technicians with bought diplomas.
+ent-ClothingMaskGasNTRGLead = NTR Guard's gas mask
+    .desc = An improved gas mask used by NTR Guard Squad.
+ent-ClothingMaskGasNTRG = NTR Leader Guard's gas mask
+    .desc = An improved gas mask used by NTR Guard Squad.

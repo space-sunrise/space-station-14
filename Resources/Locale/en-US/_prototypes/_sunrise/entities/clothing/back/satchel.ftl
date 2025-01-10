@@ -8,3 +8,5 @@ ent-ClothingBackpackSatchelPrisonGuard = prison guard's satchel
     .desc = On style.
 ent-ClothingBackpackSatchelHoS = head of security's satchel
     .desc = Stylish black leather satchel.
+ent-ClothingBackpackSatchelNTRG = NTR's satchel
+    .desc = Stylish black leather satche.
