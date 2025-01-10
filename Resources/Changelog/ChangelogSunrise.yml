@@ -10376,3 +10376,20 @@
   id: 716
   time: '2025-01-10T19:15:20.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/1085
+- author: KaiserMaus
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0430 \u0432 \u0420\
+      \u041D\u0414 \u04223 \u0411\u0438\u043E\u0445\u0438\u043C \u0442\u0435\u0445\
+      \u043D\u043E\u043B\u043E\u0433\u0438\u044F \u041C\u0438\u043A\u0440\u043E\u0432\
+      \u043E\u043B\u043D\u043E\u0432\u043E\u0433\u043E \u0441\u043A\u0430\u043D\u0438\
+      \u0440\u043E\u0432\u0430\u043D\u0438\u044F \u0442\u0435\u043B\u0430."
+    type: Add
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D \u0432 \u0420\u041D\
+      \u0414 \u041C\u0438\u043A\u0440\u043E\u0432\u043E\u043B\u043D\u043E\u0432\u044B\
+      \u0439 \u0441\u043A\u0430\u043D\u0435\u0440 \u0442\u0435\u043B\u0430 (\u042D\
+      \u043A\u0441\u0442\u0440\u0430\u043A\u0442\u043E\u0440 \u0418\u043C\u043F\u043B\
+      \u0430\u043D\u0442\u043E\u0432)."
+    type: Add
+  id: 717
+  time: '2025-01-10T19:16:49.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/1078
