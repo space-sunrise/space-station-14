@@ -36,6 +36,7 @@ public sealed class AccessSystem : SharedAccessSystem
 
         var levels = new Dictionary<string, string>
         {
+            { "green", "access-system-accesses-delay-green" },
             { "blue", "access-system-accesses-delay-blue" },
             { "red", "access-system-accesses-delay-red" },
             { "yellow", "access-system-accesses-delay-yellow" },
