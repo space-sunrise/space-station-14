@@ -664,3 +664,14 @@
   parent: BaseCircuitboardRecipe
   id: HolopadMachineCircuitboard
   result: HolopadMachineCircuitboard
+
+- type: latheRecipe #sunrise-start
+  parent: BaseGoldCircuitboardRecipe
+  id: ImplantExtractorMachineCircuitboard
+  result: ImplantExtractorMachineCircuitboard
+  materials:
+    Steel: 100
+    Glass: 500
+    Gold: 100
+    Silver: 100
+    Diamond: 100  #sunrise-end
