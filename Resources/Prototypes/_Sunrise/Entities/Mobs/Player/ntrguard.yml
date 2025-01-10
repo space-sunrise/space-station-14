@@ -89,11 +89,11 @@
       rules: ghost-role-information-nonantagonist-rules
       raffle:
         settings: short
-      job: NtrGuad
+      job: NtrGuard
     - type: RandomMetadata
       nameSegments:
       - NamesFirstMilitary
       - NamesLastMilitary
     - type: Loadout
-      prototypes: [ NtrGuadGear ]
+      prototypes: [ NtrGuardGear ]
       roleLoadout: [ RoleSurvivalExtended ]

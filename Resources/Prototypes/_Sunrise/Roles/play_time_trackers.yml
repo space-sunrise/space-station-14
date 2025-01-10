@@ -17,7 +17,7 @@
   id: JobBlueShield
 
 - type: playTimeTracker
-  id: JobNtrGuad
+  id: JobNtrGuard
 
 - type: playTimeTracker
   id: JobNtrLeader

@@ -76,7 +76,7 @@
   id: NtrGuard
   name: job-name-ntrguard
   description: job-description-ntrg
-  playTimeTracker: JobNtrGuad
+  playTimeTracker: JobNtrGuard
   requirements:
     - !type:DepartmentTimeRequirement
       department: Security
@@ -118,7 +118,7 @@
       implants: [MindShieldImplant]
 
 - type: startingGear
-  id: NtrGuadGear
+  id: NtrGuardGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitNTRG
     neck: ClothingNeckCloakNTRG
