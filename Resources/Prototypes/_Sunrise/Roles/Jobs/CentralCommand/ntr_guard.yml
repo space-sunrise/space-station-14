@@ -73,7 +73,7 @@
 
 # Security
 - type: job
-  id: NtrGuad
+  id: NtrGuard
   name: job-name-ntrguard
   description: job-description-ntrg
   playTimeTracker: JobNtrGuad

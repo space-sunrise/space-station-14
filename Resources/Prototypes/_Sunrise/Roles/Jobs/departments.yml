@@ -8,8 +8,8 @@
     - Magistrat
     - IAA
     - Lawyer
-    - NTRLeader #Surnise-NTR
-    - NTRGuad #Surnise-NTR
+    - NtrLeader #Surnise-NTR
+    - NtrGuard #Surnise-NTR
 
 - type: department # Surnise-Blueshield
   id: Blueshield
