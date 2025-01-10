@@ -14,8 +14,6 @@ using Content.Server.Mind.Commands;
 using Content.Server.NPC;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
-using Content.Server.Popups;
-using Content.Server.Roles;
 using Content.Server.Speech.Components;
 using Content.Server.Temperature.Components;
 using Content.Shared.CombatMode;
@@ -51,18 +49,18 @@ namespace Content.Server.Zombies;
 /// </remarks>
 public sealed partial class ZombieSystem
 {
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly ServerInventorySystem _inventory = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly IChatManager _chatMan = default!;
+    [Dependency] private readonly SharedCombatModeSystem _combat = default!;
     [Dependency] private readonly NpcFactionSystem _faction = default!;
-    [Dependency] private readonly NPCSystem _npc = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly HumanoidAppearanceSystem _humanoidAppearance = default!;
     [Dependency] private readonly IdentitySystem _identity = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
-    [Dependency] private readonly SharedCombatModeSystem _combat = default!;
-    [Dependency] private readonly IChatManager _chatMan = default!;
+    [Dependency] private readonly ServerInventorySystem _inventory = default!;
     [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
+    [Dependency] private readonly NPCSystem _npc = default!;
     [Dependency] private readonly SharedRoleSystem _roles = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly GhostSystem _ghostSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly IBanManager _banManager = default!;
@@ -237,7 +235,7 @@ public sealed partial class ZombieSystem
         _npc.SleepNPC(target, htn);
 
         //He's gotta have a mind
-        var hasMind = _mind.TryGetMind(target, out var mindId, out var mind);
+        var hasMind = _mind.TryGetMind(target, out var mindId, out _);
         if (hasMind && _mind.TryGetSession(mindId, out var session))
         {
             // Check if the user has a ban on "Zombie"
@@ -246,14 +244,13 @@ public sealed partial class ZombieSystem
                 // Ghost the player if they have a "Zombie" ban
                 _ghostSystem.OnGhostAttempt(mindId, false, true, mind);
             }
+            //Zombie role for player manifest
+            _roles.MindAddRole(mindId, "MindRoleZombie", mind: null, silent: true);
 
-            // Zombie role for player manifest
-            _roles.MindAddRole(mindId, new ZombieRoleComponent { PrototypeId = zombiecomp.ZombieRoleId });
-
-            // Greeting message for new bebe zombers
+            //Greeting message for new bebe zombers
             _chatMan.DispatchServerMessage(session, Loc.GetString("zombie-infection-greeting"));
 
-            // Notify player about new role assignment
+            // Notificate player about new role assignment
             _audio.PlayGlobal(zombiecomp.GreetSoundNotification, session);
         }
         else
