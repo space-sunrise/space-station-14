@@ -129,16 +129,10 @@ public sealed partial class BanManager : IBanManager, IPostInjectInit
         // Check for expired bans
         foreach (var roleBans in _cachedRoleBans.Values)
         {
-            roleBans.RemoveAll(ban => DateTimeOffset.Now > ban.ExpirationTime);
+            roleBans.RemoveAll(ban => DateTimeOffset.UtcNow > ban.ExpirationTime);
         }
     }
 
-    private void RemoveExpiredBans(NetUserId userId)
-    {
-        if (!_cachedRoleBans.TryGetValue(userId, out var roleBans))
-            return;
-        roleBans.RemoveWhere(ban => DateTimeOffset.UtcNow > ban.ExpirationTime);
-    }
 
     #region Server Bans
     public async void CreateServerBan(NetUserId? target, string? targetUsername, NetUserId? banningAdmin, (IPAddress, int)? addressRange, ImmutableTypedHwid? hwid, uint? minutes, NoteSeverity severity, string reason)

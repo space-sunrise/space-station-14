@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Antag;
 using Content.Server.EUI;
@@ -30,6 +31,7 @@ using Robust.Shared.Timing;
 using Content.Shared.Cuffs.Components;
 using Content.Server.Administration.Managers;
 using Content.Server.Administration.Systems;
+using Content.Shared.Popups;
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -52,6 +54,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly AdminVerbSystem _adminVerbSystem = default!;
+    [Dependency] private readonly BanManager _banManager = default!;
 
     //Used in OnPostFlash, no reference to the rule component is available
     public readonly ProtoId<NpcFactionPrototype> RevolutionaryNpcFaction = "Revolutionary";
@@ -319,8 +322,8 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     {
         _popup.PopupEntity(Loc.GetString("rev-banned"), target, target, PopupType.LargeCaution);
 
-        var randomDelay = new Random().Next(10000, 60000); // 10-60 seconds
-        var targetTime = _timing.CurTime + TimeSpan.FromMilliseconds(randomDelay);
+        var randomDelay = new Random().Next(10, 60); // 10-60 seconds
+        var targetTime = _timing.CurTime + TimeSpan.FromSeconds(randomDelay);
         _scheduledSmites[target] = targetTime;
     }
 

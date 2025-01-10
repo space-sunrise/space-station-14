@@ -62,7 +62,6 @@ public sealed partial class ZombieSystem
     [Dependency] private readonly NPCSystem _npc = default!;
     [Dependency] private readonly SharedRoleSystem _roles = default!;
     [Dependency] private readonly GhostSystem _ghostSystem = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly IBanManager _banManager = default!;
 
     /// <summary>
@@ -235,7 +234,7 @@ public sealed partial class ZombieSystem
         _npc.SleepNPC(target, htn);
 
         //He's gotta have a mind
-        var hasMind = _mind.TryGetMind(target, out var mindId, out _);
+        var hasMind = _mind.TryGetMind(target, out var mindId, out var mind);
         if (hasMind && _mind.TryGetSession(mindId, out var session))
         {
             // Check if the user has a ban on "Zombie"
