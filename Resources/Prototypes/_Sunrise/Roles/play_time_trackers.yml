@@ -17,10 +17,10 @@
   id: JobBlueShield
 
 - type: playTimeTracker
-  id: JobNTRGuad
+  id: JobNtrGuad
 
 - type: playTimeTracker
-  id: JobNTRLeader
+  id: JobNtrLeader
 
 - type: playTimeTracker
   id: JobNanoTrasenRepresentative
