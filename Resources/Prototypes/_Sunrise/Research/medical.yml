@@ -111,8 +111,8 @@
     - HemostatAdvanced
 
 - type: technology
-  id: ImplantExtract
-  name: research-technology-inspector
+  id: ImplantExtractor
+  name: research-technology-implant-extractor
   icon:
     sprite: _Sunrise/AssaultOperatives/interrogator.rsi
     state: open
