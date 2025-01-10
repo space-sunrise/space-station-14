@@ -112,11 +112,11 @@
     contents:
       #Sunrise-start
       - id: LauncherSyringeMed
-        prob: 0.25
+        prob: 0.3
       - id: BoxMiniSyringe
-        prob: 0.15
+        prob: 0.2
       - id: BoxMiniSyringe
-        prob: 0.4
+        prob: 0.7
       #Sunrise-end
       - id: BoxSyringe
       - id: BoxBeaker

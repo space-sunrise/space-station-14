@@ -151,6 +151,7 @@
       - LightBulb
       - LedLightBulb
       - DimLightBulb
+      - WarmLightBulb
       - Bucket
       - DrinkMug
       - DrinkMugMetal
@@ -515,8 +516,8 @@
       - ThermomachineFreezerMachineCircuitBoard
       - HellfireFreezerMachineCircuitBoard
       - PortableScrubberMachineCircuitBoard
-      - CloningPodMachineCircuitboard
-      - MedicalScannerMachineCircuitboard
+      #- CloningPodMachineCircuitboard
+      #- MedicalScannerMachineCircuitboard
       - CryoPodMachineCircuitboard
       - VaccinatorMachineCircuitboard
       - DiagnoserMachineCircuitboard
@@ -543,7 +544,7 @@
       - RadarConsoleCircuitboard
       - TechDiskComputerCircuitboard
       - DawInstrumentMachineCircuitboard
-      - CloningConsoleComputerCircuitboard
+      #- CloningConsoleComputerCircuitboard
       - StasisBedMachineCircuitboard
       - OreProcessorIndustrialMachineCircuitboard
       - CargoTelepadMachineCircuitboard
@@ -1099,6 +1100,9 @@
       - HemostatAdvanced
       - LauncherSyringeMed #Sunrise-Edit
       - LauncherSyringePistol #Sunrise-Edit
+      - LauncherSyringeRapid #Sunrise-Edit
+      - MiniSyringeCryostasis #Sunrise-Edit
+      - MiniSyringeBluespace #Sunrise-Edit
       - MiniSyringe #Sunrise-Edit
       - LeftArmCyber
       - RightArmCyber

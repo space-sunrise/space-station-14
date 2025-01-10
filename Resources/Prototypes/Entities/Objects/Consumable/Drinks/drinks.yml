@@ -82,6 +82,14 @@
   - type: Tag
     tags:
       - DrinkGlass
+  # Sunrise edit sounds start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/drinkglass_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/drinkglass_drop.ogg
+  # Sunrise edit sounds end
 
 # Transformable container - normal glass
 - type: entity
@@ -1999,7 +2007,7 @@
 - type: entity
   parent: DrinkGlass
   id: DrinkTheMartinez
-  suffix: The Martinez
+  suffix: the martinez
   components:
     - type: SolutionContainerManager
       solutions:

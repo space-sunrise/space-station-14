@@ -36,9 +36,9 @@ public sealed partial class NightVisionDeviceComponent : Component
     [AutoNetworkedField]
     public string DisplayShader;
 
-    public SoundSpecifier TurnOnSound = new SoundPathSpecifier("/Audio/_Sunrise/Items/night_vision_on.ogg");
+    public SoundSpecifier TurnOnSound = new SoundPathSpecifier("/Audio/_Sunrise/Items/Goggles/activate.ogg");
 
-    public SoundSpecifier TurnOffSound = new SoundPathSpecifier("/Audio/_Sunrise/Items/night_vision_off.ogg");
+    public SoundSpecifier TurnOffSound = new SoundPathSpecifier("/Audio/_Sunrise/Items/Goggles/deactivate.ogg");
 }
 
 [Serializable, NetSerializable]

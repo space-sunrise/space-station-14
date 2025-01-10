@@ -10,8 +10,8 @@
 
 - type: entity
   id: GhostChangeTheme
-  name: Сменить скин призрака
-  description: Позволяет вам изменить скин призрака.
+  name: Change Ghost Theme
+  description: Allows you to change the skin of the ghost.
   categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction

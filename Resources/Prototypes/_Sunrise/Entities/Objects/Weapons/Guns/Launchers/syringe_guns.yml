@@ -82,9 +82,53 @@
   - type: Storage
     maxItemSize: Small
     grid:
-    - 0,0,3,1
+    - 0,0,4,1
   - type: Gun
     fireRate: 1.8
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,2,1
+    - 0,0,2,1
+
+- type: entity
+  name: Rapid syringe gun
+  parent: [LauncherSyringeRapid]
+  id: LauncherSyringeRapidFilled
+  suffix: Auto, Filled
+  components:
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,4,1 #10
+  - type: StorageFill
+    contents:
+    - id: MiniSyringe
+      amount: 10
+
+- type: entity
+  name: Syringe SMG
+  parent: [LauncherSyringe]
+  id: LauncherSyringeSMG
+  suffix: Admeme
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Launchers/syringe_rapidgun.rsi
+    layers:
+    - state: syringe_gun
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,5,2 #18
+  - type: StorageFill
+    contents:
+    - id: MiniSyringe
+      amount: 18
+  - type: Gun
+    fireRate: 2.5
     selectedMode: FullAuto
     availableModes:
     - FullAuto

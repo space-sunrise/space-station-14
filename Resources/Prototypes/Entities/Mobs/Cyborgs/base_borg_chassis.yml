@@ -16,7 +16,6 @@
     soundHit:
       collection: MetalThud
   - type: CombatMode
-  - type: NoSlip
   - type: StaticPrice
     price: 1250
   - type: Fixtures
@@ -268,6 +267,7 @@
     position: Stand
     buckleOffset: "0,0.15"
   - type: Stripping
+    useDragDrop: false
   # Sunrise-end
 
 - type: entity

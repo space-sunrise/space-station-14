@@ -30,10 +30,10 @@
 - type: damageModifierSet
   id: Silicon
   coefficients:
-    Blunt: 0.7
-    Slash: 0.3
-    Piercing: 0.3
-    Heat: 0.1
+    Blunt: 1
+    Slash: 0.7
+    Piercing: 0.7
+    Heat: 0.5
     Shock: 1.5
 
 - type: damageModifierSet

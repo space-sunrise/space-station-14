@@ -10,6 +10,9 @@
   - !type:DepartmentTimeRequirement
     department: Security
     time: 18000 # 5h # Sunrise-RoleTime
+  previewIcon:
+    sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
+    state: test
 
 - type: antag
   id: AssaultCommander
@@ -23,3 +26,6 @@
   - !type:DepartmentTimeRequirement
     department: Security
     time: 36000 # 10h # Sunrise-RoleTime
+  previewIcon:
+    sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
+    state: test

@@ -128,10 +128,10 @@
   id: SignalTimerElectronics
   result: SignalTimerElectronics
 
-- type: latheRecipe
-  parent: BaseGoldCircuitboardRecipe
-  id: CloningPodMachineCircuitboard
-  result: CloningPodMachineCircuitboard
+#- type: latheRecipe
+#  parent: BaseGoldCircuitboardRecipe
+#  id: CloningPodMachineCircuitboard
+#  result: CloningPodMachineCircuitboard
 
 - type: latheRecipe
   parent: BaseGoldCircuitboardRecipe
@@ -377,7 +377,7 @@
   parent: BaseGoldCircuitboardRecipe
   id: GygaxTargetingElectronics
   result: GygaxTargetingElectronics
-  
+
 - type: latheRecipe
   parent: BaseGoldCircuitboardRecipe
   id: PhazonCentralElectronics

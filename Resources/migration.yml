@@ -566,3 +566,9 @@ ComputerShuttleCargo: null
 ClothingOuterHardsuitSecurity: ClothingOuterHardsuitSecuritySunrise
 ClothingHeadHelmetHardsuitSecurity: ClothingHeadHelmetHardsuitSecuritySunrise
 EffectHearts: null
+CloningPod: null
+ComputerCloningConsole: null
+MedicalScanner: null
+CloningPodMachineCircuitboard: null
+CloningConsoleComputerCircuitboard: null
+MedicalScannerMachineCircuitboard: null

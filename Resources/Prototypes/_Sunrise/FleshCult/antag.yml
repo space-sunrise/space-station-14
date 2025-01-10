@@ -7,6 +7,9 @@
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 86400 # 24h # Sunrise-Roletime
+  previewIcon:
+    sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
+    state: flesh_cultist
 
 - type: antag
   id: FleshCultistLeader
@@ -17,3 +20,8 @@
   requirements:
     - !type:OverallPlaytimeRequirement
       time: 86400 # 24h # Sunrise-Roletime
+  previewIcon:
+    sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
+    state: flesh_cultist
+
+

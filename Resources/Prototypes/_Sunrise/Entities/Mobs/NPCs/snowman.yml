@@ -40,8 +40,8 @@
       path: /Audio/Effects/Footsteps/snowstep4.ogg
   - type: GhostRole
     prob: 0.1
-    name: снеговик
-    description: Холодный снежный мужик. Бегайте и кидайтесь во всех снежками!
+    name: snowman
+    description: Cold snowman. Run around and throw snowballs at everyone!
     rules: ghost-role-information-nonantagonist-rules
   - type: GhostTakeoverAvailable
   - type: FootstepModifier

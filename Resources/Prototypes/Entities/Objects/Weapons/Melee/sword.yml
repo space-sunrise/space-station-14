@@ -51,6 +51,11 @@
     weight: 0.0002 # 5,000 times less likely than 1 regular animal
   - type: PirateAccent
     # not putting a BlockMovement component here cause that's funny.
+  # Sunrise start
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/sabre_drop.ogg
+  # Sunrise edit
 
 - type: entity
   name: katana

@@ -108,7 +108,7 @@ public sealed class CryoTeleportationSystem : EntitySystem
 
     private void OnCompleteSpawn(PlayerSpawnCompleteEvent ev)
     {
-        if (!HasComp<CryoTeleportTargetComponent>(ev.Station)
+        if (!HasComp<StationCryoTeleportComponent>(ev.Station)
             || ev.JobId == null
             || ev.Player.AttachedEntity == null
             || !_enable)

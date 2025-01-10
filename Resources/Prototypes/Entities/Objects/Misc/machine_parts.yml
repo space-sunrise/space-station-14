@@ -1,7 +1,7 @@
 ﻿- type: entity
   id: BaseStockPart
   name: stock part
-  parent: BaseItem
+  parent: [BaseItem, MachineComponentSounds] # Sunrise
   description: What?
   abstract: true
   components:
