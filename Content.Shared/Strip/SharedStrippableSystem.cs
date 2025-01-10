@@ -626,6 +626,13 @@ public abstract class SharedStrippableSystem : EntitySystem
         if (args.Handled || args.Target != args.User)
             return;
 
+        // Sunrise-Start
+        if (!TryComp<StrippingComponent>(args.Target, out var strippingComp) || !strippingComp.UseDragDrop)
+        {
+            return;
+        }
+        // Sunrise-End
+
         if (TryOpenStrippingUi(args.User, (uid, component)))
             args.Handled = true;
     }
@@ -655,8 +662,7 @@ public abstract class SharedStrippableSystem : EntitySystem
     private void OnCanDrop(EntityUid uid, StrippableComponent component, ref CanDropDraggedEvent args)
     {
         args.CanDrop |= args.Target == args.User &&
-                        TryComp<StrippingComponent>(args.User, out var strippingComponent) &&
-                        strippingComponent.UseDragDrop &&
+                        HasComp<StrippingComponent>(args.User) &&
                         HasComp<HandsComponent>(args.User);
 
         if (args.CanDrop)
