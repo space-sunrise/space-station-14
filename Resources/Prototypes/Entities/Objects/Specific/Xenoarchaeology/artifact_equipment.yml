@@ -8,6 +8,12 @@
       noRot: true
     - type: AccessReader
       access: [["Research"], ["Cargo"]]
+      # Sunrise-start
+      alertAccesses:
+        red: RedAlertAccesses
+        blue: BlueAlertAccessesHOS
+        gamma: GammaAlertAccesses
+      # Sunrise-end
     - type: Lock
     - type: ResistLocker
     - type: Sprite

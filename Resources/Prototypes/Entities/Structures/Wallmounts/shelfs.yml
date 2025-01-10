@@ -470,4 +470,10 @@
   components:
   - type: AccessReader
     access: [["Chemistry"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 

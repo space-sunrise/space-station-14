@@ -57,6 +57,12 @@
     stateDoorClosed: mining_door
   - type: AccessReader
     access: [["Salvage"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 # Command
 - type: entity
@@ -112,6 +118,12 @@
     stateDoorClosed: eng_elec_door
   - type: AccessReader
     access: [ [ "Engineering" ] ]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 # Welding supplies
 - type: entity
@@ -126,6 +138,12 @@
     stateDoorClosed: eng_weld_door
   - type: AccessReader
     access: [ [ "Engineering" ] ]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 # Atmos tech
 - type: entity
@@ -140,6 +158,12 @@
     stateDoorClosed: atmos_door
   - type: AccessReader
     access: [ [ "Atmospherics" ] ]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 # Engineer
 - type: entity
@@ -154,6 +178,12 @@
     stateDoorClosed: eng_secure_door
   - type: AccessReader
     access: [ [ "Engineering" ] ]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 # Freezer
 - type: entity
@@ -184,6 +214,12 @@
   components:
   - type: AccessReader
     access: [ [ "Kitchen" ] ]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 # Botanist
 - type: entity
@@ -198,6 +234,12 @@
     stateDoorClosed: hydro_door
   - type: AccessReader
     access: [ [ "Hydroponics" ] ]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 # Medicine
 - type: entity
@@ -213,6 +255,12 @@
     stateDoorClosed: med_door
   - type: AccessReader
     access: [ [ "Medical" ] ]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 # Medical doctor
 - type: entity
@@ -227,6 +275,12 @@
     stateDoorClosed: med_secure_door
   - type: AccessReader
     access: [ [ "Medical" ] ]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 # Paramedic
 - type: entity
@@ -241,6 +295,12 @@
     stateDoorClosed: paramed_door
   - type: AccessReader
     access: [ [ "Medical" ] ]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 
 # Chemical
@@ -256,6 +316,12 @@
     stateDoorClosed: chemical_door
   - type: AccessReader
     access: [ [ "Chemistry" ] ]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 # CMO
 - type: entity
@@ -297,6 +363,12 @@
     stateDoorClosed: science_door
   - type: AccessReader
     access: [ [ "Research" ] ]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 # HoS
 - type: entity
@@ -339,6 +411,12 @@
     stateDoorClosed: brigmedic_door
   - type: AccessReader
     access: [["Medical"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 # Security Officer
 - type: entity
@@ -449,6 +527,12 @@
   - type: Appearance
   - type: AccessReader
     access: [["Theatre"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
   - type: EntityStorageVisuals
     stateBaseClosed: clown
     stateDoorOpen: clown_open
@@ -463,6 +547,12 @@
   - type: Appearance
   - type: AccessReader
     access: [["Theatre"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
   - type: EntityStorageVisuals
     stateBaseClosed: mime
     stateDoorOpen: mime_open

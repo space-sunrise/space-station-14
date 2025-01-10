@@ -12,6 +12,12 @@
   - HeadOfSecurity
   - Security
   - Detective
+  - Armory
+
+- type: accessGroup
+  id: BlueAlertAccessesHOS
+  tags:
+  - HeadOfSecurity
 
 - type: accessGroup
   id: YellowAlertAccesses
