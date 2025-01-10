@@ -111,7 +111,7 @@
     - HemostatAdvanced
 
 - type: technology
-  id: ImplantScan
+  id: ImplantExtract
   name: research-technology-inspector
   icon:
     sprite: _Sunrise/AssaultOperatives/interrogator.rsi
@@ -120,7 +120,7 @@
   tier: 3
   cost: 12500
   recipeUnlocks:
-    - ImplantScanMachineCircuitboard
+    - ImplantExtractorMachineCircuitboard
 
 - type: technology
   id: SyringeGunBluespace
