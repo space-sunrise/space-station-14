@@ -8,7 +8,7 @@
   supervisors: job-supervisors-hop
   access:
   - Chapel
-  - Maintenance
+#  - Maintenance #Sunrise-Edit
   special:
   - !type:AddComponentSpecial
     components:

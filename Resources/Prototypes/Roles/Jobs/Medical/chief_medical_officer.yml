@@ -28,7 +28,7 @@
   access:
   - Medical
   - Command
-  - Maintenance
+#  - Maintenance #Sunrise-Edit
   - Chemistry
   - ChiefMedicalOfficer
   - Brig

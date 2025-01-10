@@ -19,5 +19,6 @@ public sealed class AlertLevelInterceptionRule : StationEventSystem<AlertLevelIn
             return;
 
         _alertLevelSystem.SetLevel(chosenStation.Value, component.AlertLevel, true, true, true);
+        RaiseLocalEvent(new AlertAccessesEvent(chosenStation.Value)); // Sunrise-added
     }
 }

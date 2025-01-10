@@ -7,7 +7,7 @@
   icon: JobIconVisitor
   setPreference: false
   overrideConsoleVisibility: true
-  access:
-  - Maintenance
+#  access:
+#  - Maintenance #Sunrise-Edit
   extendedAccess:
   - External

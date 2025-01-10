@@ -14,7 +14,7 @@
   - Service
   - Lawyer
   - Brig
-  - Maintenance
+#  - Maintenance #Sunrise-Edit
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
