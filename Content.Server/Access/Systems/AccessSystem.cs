@@ -64,6 +64,12 @@ public sealed class AccessSystem : SharedAccessSystem
     /// </summary>
     private void AlertAccessesDelay(AlertAccessesEvent ev)
     {
+        _chatSystem.DispatchStationAnnouncement(ev.Station,
+            Loc.GetString("access-system-accesses-established"),
+            playDefault: true,
+            colorOverride: Color.Yellow,
+            sender: Loc.GetString("access-system-sender"));
+
         var query = EntityQueryEnumerator<AccessReaderComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var reader, out var xform))
         {

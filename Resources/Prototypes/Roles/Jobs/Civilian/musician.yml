@@ -7,7 +7,7 @@
   icon: "JobIconMusician"
   supervisors: job-supervisors-hop
   access:
-#  - Maintenance #Sunrise-Edit
+  - Maintenance
   - Theatre
   special:
   - !type:GiveItemOnHolidaySpecial

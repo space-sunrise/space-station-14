@@ -7,7 +7,7 @@
   icon: "JobIconPassenger"
   supervisors: job-supervisors-everyone
   access:
-#  - Maintenance #Sunrise-Edit
+  - Maintenance
 
 - type: startingGear
   id: PassengerGear

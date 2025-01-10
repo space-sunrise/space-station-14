@@ -8,7 +8,7 @@
   supervisors: job-supervisors-hop
   access:
   - Service
-#  - Maintenance #Sunrise-Edit
+  - Maintenance
 
 - type: startingGear
   id: LibrarianGear

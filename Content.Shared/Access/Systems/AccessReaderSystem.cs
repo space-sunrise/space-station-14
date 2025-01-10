@@ -151,6 +151,9 @@ public sealed class AccessReaderSystem : EntitySystem
         if (!reader.Enabled)
             return true;
 
+        if (AreAccessTagsAllowedAlert(access, reader))
+            return true;
+
         if (reader.ContainerAccessProvider == null)
             return IsAllowedInternal(access, stationKeys, reader);
 

@@ -58,6 +58,12 @@
   components:
     - type: AccessReader
       access: [["Command"]]
+      # Sunrise-start
+      alertAccesses:
+        red: RedAlertAccesses
+        blue: BlueAlertAccessesHOS
+        gamma: GammaAlertAccesses
+      # Sunrise-end
     - type: AutoLinkReceiver
       channel: Bridge
 
@@ -68,6 +74,12 @@
   components:
     - type: AccessReader
       access: [["Command"]]
+      # Sunrise-start
+      alertAccesses:
+        red: RedAlertAccesses
+        blue: BlueAlertAccessesHOS
+        gamma: GammaAlertAccesses
+      # Sunrise-end
     - type: AutoLinkReceiver
       channel: Bridge
 
@@ -78,6 +90,12 @@
   components:
   - type: AccessReader
     access: [["Command"], ["Engineering"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
   - type: AutoLinkReceiver
     channel: Engineering
 
@@ -88,6 +106,12 @@
   components:
   - type: AccessReader
     access: [["Command"], ["Engineering"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
   - type: AutoLinkReceiver
     channel: Engineering
 
@@ -98,6 +122,12 @@
   components:
   - type: AccessReader
     access: [["Command"], ["Research"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
   - type: AutoLinkReceiver
     channel: Research
 
@@ -108,6 +138,12 @@
   components:
   - type: AccessReader
     access: [["Command"], ["Research"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
   - type: AutoLinkReceiver
     channel: Research
 

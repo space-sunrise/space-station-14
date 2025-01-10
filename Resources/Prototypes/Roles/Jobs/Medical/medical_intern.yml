@@ -13,7 +13,7 @@
   displayWeight: 0  # Sunrise-Edit
   access:
   - Medical
-#  - Maintenance #Sunrise-Edit
+  - Maintenance
 
 - type: startingGear
   id: MedicalInternGear

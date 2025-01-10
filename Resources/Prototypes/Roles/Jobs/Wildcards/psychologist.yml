@@ -9,7 +9,7 @@
   displayWeight: 10  # Sunrise
   access:
   - Medical
-#  - Maintenance #Sunrise-Edit
+  - Maintenance
   extendedAccess:
   - Chemistry
 

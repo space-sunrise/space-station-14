@@ -319,7 +319,7 @@
     access: [["Medical"], ["Detective"], ["Chapel"]]
     # Sunrise-start
     alertAccesses:
-      blue: BlueAlertAccessesHOS
+      blue: BlueAlertAccesses
       red: RedAlertAccesses
       yellow: YellowAlertAccesses
       gamma: GammaAlertAccesses

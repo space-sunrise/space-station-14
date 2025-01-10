@@ -14,7 +14,7 @@
   access:
   - Medical
   - Chemistry
-#  - Maintenance #Sunrise-Edit
+  - Maintenance
 
 - type: startingGear
   id: ChemistGear

@@ -54,6 +54,12 @@
   - type: Lock
   - type: AccessReader
     access: [["Atmospherics"], ["Command"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 - type: entity
   parent: FireAxeCabinet
