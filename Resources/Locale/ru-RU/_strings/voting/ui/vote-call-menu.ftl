@@ -17,9 +17,14 @@ ui-vote-type-timeout = Это голосование было недавно з�
 # Unavailable text if a vote type has been disabled manually.
 ui-vote-type-not-available = Этот тип голосования был отключён
 # Vote option only available for specific users.
-ui-vote-trusted-users-notice =
+ui-vote-trusted-users-notice-whitelist =
     Этот вариант голосования доступен только для вайтлист игроков.
     Кроме того, вы должны быть призраком в течение { $timeReq } минут.
+ui-vote-trusted-users-notice-time-req =
+    Этот вариант голосования доступен только игрокам которые наиграли более { $timeReq } часов.
+        Кроме того, вы должны быть призраком в течение { $ghostTimeReq } минут.
+ui-vote-trusted-users-notice =
+    Вы должны быть призраком в течение { $ghostTimeReq } минут.
 # Warning to not abuse a specific vote option.
 ui-vote-abuse-warning =
     Внимание!

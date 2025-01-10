@@ -122,7 +122,7 @@ public sealed partial class CCVars
     ///     Config for how many hours playtime a player must have to be able to vote on a votekick.
     /// </summary>
     public static readonly CVarDef<int> VotekickEligibleVoterPlaytime =
-        CVarDef.Create("votekick.voter_playtime", 500, CVar.SERVERONLY); // Sunrise-Edit
+        CVarDef.Create("votekick.voter_playtime", 300, CVar.SERVERONLY); // Sunrise-Edit
 
     /// <summary>
     ///     Config for how many seconds a player must have been dead to initiate a votekick / be able to vote on a votekick.
