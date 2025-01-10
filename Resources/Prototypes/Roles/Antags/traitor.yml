@@ -7,7 +7,7 @@
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 36000 # 10h # Sunrise-RoleTime
-  playTimeTracker: AntagSyndicateAgent
+  playTimeTracker: AntagSyndicateAgent # Sunrise-Edit
   guides: [ Traitors ]
   # Sunrise-Edit
   previewIcon:
@@ -20,7 +20,7 @@
   antagonist: true
   setPreference: true
   objective: roles-antag-syndicate-agent-sleeper-objective
-  playTimeTracker: AntagSyndicateSleeperAgent
+  playTimeTracker: AntagSyndicateSleeperAgent # Sunrise-Edit
   guides: [ Traitors ]
 
 # Syndicate Operative Outfit - Monkey

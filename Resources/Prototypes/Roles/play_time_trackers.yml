@@ -154,7 +154,7 @@
 # Antags
 
 - type: playTimeTracker
-  id: AntagNuclearAgent
+  id: AntagNuclearMedic
 
 - type: playTimeTracker
   id: AntagNuclearOperative
@@ -191,3 +191,33 @@
 
 - type: playTimeTracker
   id: AntagSubvertedSilicon
+
+- type: playTimeTracker
+  id: AntagChangeling
+
+- type: playTimeTracker
+  id: AntagTerminator
+
+- type: playTimeTracker
+  id: AntagVampire
+
+- type: playTimeTracker
+  id: AntagAssaultOperative
+
+- type: playTimeTracker
+  id: AntagAssaultCommander
+
+- type: playTimeTracker
+  id: AntagFleshCultist
+
+- type: playTimeTracker
+  id: AntagFleshCultistLeader
+
+- type: playTimeTracker
+  id: AntagEvilTwin
+
+- type: playTimeTracker
+  id: AntagFugitive
+
+- type: playTimeTracker
+  id: AntagPlanetPrisoner

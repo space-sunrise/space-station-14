@@ -3,6 +3,7 @@
   name: roles-antag-fugitive-name
   antagonist: true
   setPreference: false
+  playTimeTracker: AntagFugitive
   objective: roles-antag-fugitive-objective
 
 - type: startingGear

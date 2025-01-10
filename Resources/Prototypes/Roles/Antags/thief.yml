@@ -3,7 +3,7 @@
   name: roles-antag-thief-name
   antagonist: true
   setPreference: true
-  playTimeTracker: AntagThief
+  playTimeTracker: AntagThief # Sunrise-Edit
   objective: roles-antag-thief-objective
   guides: [ Thieves ]
   # Sunrise-Edit

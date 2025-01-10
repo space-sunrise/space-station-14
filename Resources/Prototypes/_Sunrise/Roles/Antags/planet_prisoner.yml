@@ -3,6 +3,7 @@
   name: roles-antag-planet-prisoner-name
   antagonist: true
   setPreference: false
+  playTimeTracker: AntagPlanetPrisoner
   objective: roles-antag-planet-prisoner-objective
   requirements:
     - !type:OverallPlaytimeRequirement

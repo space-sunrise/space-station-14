@@ -19,8 +19,8 @@ roles-antag-suspicion-suspect-objective = Kill the innocents.
 roles-antag-nuclear-operative-commander-name = Nuclear Operative Commander
 roles-antag-nuclear-operative-commander-objective = Lead your team to the destruction of the station.
 
-roles-antag-nuclear-operative-agent-name = Nuclear Operative Agent
-roles-antag-nuclear-operative-agent-objective = Like default operative, the team's treatment will have priority.
+roles-antag-nuclear-operative-medic-name = Nuclear Operative Medic
+roles-antag-nuclear-operative-medic-objective = Like default operative, the team's treatment will have priority.
 
 roles-antag-nuclear-operative-name = Nuclear Operative
 roles-antag-nuclear-operative-objective = Find the nuke disk and blow up the station.
@@ -45,7 +45,7 @@ roles-antag-terminator-objective = Kill the target at all costs, the future depe
 
 # Role timers
 
-AntagNuclearAgent = Nuclear Operative Agent
+AntagNuclearMedic = Nuclear Operative Medic
 AntagNuclearOperative = Nuclear Operative
 AntagNuclearCommander = Nuclear Operative Commander
 AntagSyndicateAgent = Syndicate Agent
