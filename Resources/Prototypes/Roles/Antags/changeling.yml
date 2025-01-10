@@ -4,6 +4,7 @@
   antagonist: true
   setPreference: true
   objective: roles-antag-changeling-description
+  playTimeTracker: AntagChangeling # Sunrise-Edit
   guides: [ Changelings ]
   # Sunrise-Edit
   previewIcon:
