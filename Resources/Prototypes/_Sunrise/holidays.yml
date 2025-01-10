@@ -1,0 +1,72 @@
+# VigersRayBirthday
+
+- type: holiday
+  id: VigersRayBirthday
+  name: holiday-name-vigers-ray-birthday
+  beginDay: 2
+  beginMonth: October
+  greet:
+    !type:Custom
+    text: holiday-custom-vigers-ray-birthday
+  greetColor: gold
+
+- type: holidayGiveawayItem
+  id: VigersRayBirthdayGiveawayPresent
+  holiday: VigersRayBirthday
+  prototype: PresentRandom
+
+
+- type: holidayGiveawayItem
+  id: VigersRayBirthdayGiveawayInvitation
+  holiday: VigersRayBirthday
+  prototype: PaperVigersRayBirthdayInvitation
+
+
+- type: entity
+  id: PaperVigersRayBirthdayInvitation
+  name: Birthday invitation
+  description: Someone has invited you to a party...
+  parent: Paper
+  components:
+  - type: Paper
+    content: paper-text-vigers-ray-birthday
+
+# Helloween
+
+- type: holiday
+  id: Helloween
+  name: holiday-name-helloween
+  beginDay: 31
+  beginMonth: October
+  endDay: 3
+  endMonth: November
+  greet:
+    !type:Custom
+    text: holiday-custom-helloween
+  greetColor: orange
+
+- type: holidayGiveawayItem
+  id: HelloweenGiveawayCandle
+  holiday: Helloween
+  prototype: CandleBlackInfinite
+
+
+- type: holidayGiveawayItem
+  id: HelloweenGiveawayCandyBucket
+  holiday: Helloween
+  prototype: CandyBucket
+
+# Winter presents
+
+- type: holiday
+  id: WinterPresents
+  name: holiday-name-winter-presents
+  beginDay: 10
+  beginMonth: December
+  endDay: 2
+  endMonth: January
+
+- type: holidayGiveawayItem
+  id: WinterPresentsGiveawayPresent
+  holiday: WinterPresents
+  prototype: PresentRandom

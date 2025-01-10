@@ -1,0 +1,15 @@
+- type: reaction
+  id: Aphrodesiac
+  minTemp: 120
+  maxTemp: 300
+  effects:
+  - !type:CreateEntityReactionEffect
+    entity: EffectHearts
+  priority: 100
+  reactants:
+    Omnizine:
+      amount: 2
+    Leporazine:
+      amount: 3
+  products:
+    Aphrodesiac: 5

@@ -14,6 +14,7 @@ internal sealed class ChatManager : IChatManager
     [Dependency] private readonly IEntitySystemManager _systems = default!;
 
     private ISawmill _sawmill = default!;
+    public event Action? PermissionsUpdated; // Sunrise-Edit
 
     public void Initialize()
     {
@@ -77,8 +78,21 @@ internal sealed class ChatManager : IChatManager
                 _consoleHost.ExecuteCommand($"whisper \"{CommandParsing.Escape(str)}\"");
                 break;
 
+            // Sunrise-Start
+            case ChatSelectChannel.CollectiveMind:
+                _consoleHost.ExecuteCommand($"cmsay \"{CommandParsing.Escape(str)}\"");
+                break;
+            // Sunrise-End
+
             default:
                 throw new ArgumentOutOfRangeException(nameof(channel), channel, null);
         }
     }
+
+    // Sunrise-Start
+    public void UpdatePermissions()
+    {
+        PermissionsUpdated?.Invoke();
+    }
+    // Sunrise-End
 }

@@ -1,28 +1,40 @@
 using Content.Server.Bible.Components;
 using Content.Server.Ghost.Roles.Events;
 using Content.Server.Popups;
+using Content.Server.Saw;
+using Content.Shared._Sunrise.Mood;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
 using Content.Shared.Bible;
 using Content.Shared.Damage;
 using Content.Shared.Ghost.Roles.Components;
 using Content.Shared.IdentityManagement;
+using Content.Shared.IdentityManagement.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
+using Content.Shared.Prayer;
+using Content.Shared.Stunnable;
 using Content.Shared.Timing;
+using Content.Shared.Vampire.Components;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Containers;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
+using System.Linq;
 
 namespace Content.Server.Bible
 {
     public sealed class BibleSystem : EntitySystem
     {
+        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+        [Dependency] private readonly IEntityManager _entityManager = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly ActionBlockerSystem _blocker = default!;
         [Dependency] private readonly DamageableSystem _damageableSystem = default!;
@@ -33,17 +45,35 @@ namespace Content.Server.Bible
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly UseDelaySystem _delay = default!;
         [Dependency] private readonly SharedTransformSystem _transform = default!;
+        [Dependency] private readonly SharedStunSystem _stun = default!;
+        [Dependency] private readonly EntityLookupSystem _lookUp = default!;
+        [Dependency] private readonly MetaDataSystem _metaData = default!;
 
         public override void Initialize()
         {
             base.Initialize();
 
             SubscribeLocalEvent<BibleComponent, AfterInteractEvent>(OnAfterInteract);
+            SubscribeLocalEvent<BibleComponent, EntGotInsertedIntoContainerMessage>(OnInsertedContainer);
             SubscribeLocalEvent<SummonableComponent, GetVerbsEvent<AlternativeVerb>>(AddSummonVerb);
             SubscribeLocalEvent<SummonableComponent, GetItemActionsEvent>(GetSummonAction);
             SubscribeLocalEvent<SummonableComponent, SummonActionEvent>(OnSummon);
             SubscribeLocalEvent<FamiliarComponent, MobStateChangedEvent>(OnFamiliarDeath);
             SubscribeLocalEvent<FamiliarComponent, GhostRoleSpawnerUsedEvent>(OnSpawned);
+        }
+
+        private void OnInsertedContainer(EntityUid uid, BibleComponent component, EntGotInsertedIntoContainerMessage args)
+        {
+            //If an unholy creature picks up the bible, knock them down
+            if (HasComp<UnholyComponent>(args.Container.Owner))
+            {
+                Timer.Spawn(500, () =>
+                {
+                    _stun.TryParalyze(args.Container.Owner, TimeSpan.FromSeconds(10), true);
+                    _damageableSystem.TryChangeDamage(args.Container.Owner, component.DamageOnUnholyUse);
+                    _audio.PlayPvs(component.SizzleSoundPath, args.Container.Owner);
+                });
+            }
         }
 
         private readonly Queue<EntityUid> _addQueue = new();
@@ -115,7 +145,40 @@ namespace Content.Server.Bible
                 return;
             }
 
-            // This only has a chance to fail if the target is not wearing anything on their head and is not a familiar.
+            //Damage unholy creatures
+            if (HasComp<UnholyComponent>(args.Target))
+            {
+                _damageableSystem.TryChangeDamage(args.Target.Value, component.DamageUnholy, true, origin: uid);
+
+                var othersMessage = Loc.GetString(component.LocPrefix + "-damage-unholy-others", ("user", Identity.Entity(args.User, EntityManager)), ("target", Identity.Entity(args.Target.Value, EntityManager)), ("bible", uid));
+                _popupSystem.PopupEntity(othersMessage, args.User, Filter.PvsExcept(args.User), true, PopupType.MediumCaution);
+
+                var selfMessage = Loc.GetString(component.LocPrefix + "-damage-unholy-self", ("target", Identity.Entity(args.Target.Value, EntityManager)), ("bible", uid));
+                _popupSystem.PopupEntity(selfMessage, args.User, args.User, PopupType.LargeCaution);
+
+                return;
+            }
+
+            //Sunrise-start
+
+            if (TryPrototype((EntityUid)args.Target, out var prototype)
+                && (prototype.ID == "MobPig" || (prototype.Parents != null && prototype.Parents.Contains<string>("MobPig")))
+                && !HasComp<SawComponent>(args.Target))
+            {
+                if (_lookUp.GetEntitiesInRange<IdentityComponent>(Transform(uid).Coordinates, 5).Count >= 5
+                    && _lookUp.GetEntitiesInRange<PrayableComponent>(Transform(uid).Coordinates, 5).Count >= 2)
+                {
+                    _entityManager.AddComponents((EntityUid) args.Target, _prototypeManager.Index("MobSaw").Components, false);
+                    _metaData.SetEntityName((EntityUid)args.Target, "свиноматерь");
+                    _popupSystem.PopupEntity(Loc.GetString("bible-saw-transformation"), (EntityUid) args.Target);
+                    _audio.PlayPvs(component.HealSoundPath, (EntityUid) args.Target);
+                }
+                return;
+            }
+
+            //Sunrise-end
+
+            // This only has a chance to fail if the target is not wearing anything on their head and is not a familiar..
             if (!_invSystem.TryGetSlotEntity(args.Target.Value, "head", out var _) && !HasComp<FamiliarComponent>(args.Target.Value))
             {
                 if (_random.Prob(component.FailChance))
@@ -153,6 +216,8 @@ namespace Content.Server.Bible
                 _audio.PlayPvs(component.HealSoundPath, args.User);
                 _delay.TryResetDelay((uid, useDelay));
             }
+
+            RaiseLocalEvent(args.Target.Value, new MoodEffectEvent("GotBlessed")); // Sunrise Edit
         }
 
         private void AddSummonVerb(EntityUid uid, SummonableComponent component, GetVerbsEvent<AlternativeVerb> args)

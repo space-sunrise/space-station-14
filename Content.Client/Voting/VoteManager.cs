@@ -155,7 +155,7 @@ namespace Content.Client.Voting
                 {
                     Entries = message.Options
                         .Select(c => new VoteEntry(c.name))
-                        .ToArray()
+                        .ToArray(),
                 };
 
                 existingVote = vote;

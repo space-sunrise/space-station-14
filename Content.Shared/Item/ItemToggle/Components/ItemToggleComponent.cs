@@ -70,6 +70,9 @@ public sealed partial class ItemToggleComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
     public SoundSpecifier? SoundFailToActivate;
+
+    [ViewVariables(VVAccess.ReadWrite), DataField]
+    public bool DeactivateUnequippedHand;
 }
 
 /// <summary>

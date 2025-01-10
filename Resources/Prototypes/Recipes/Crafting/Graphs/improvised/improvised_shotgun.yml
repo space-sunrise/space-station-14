@@ -10,7 +10,7 @@
         icon:
           sprite: Structures/Piping/Atmospherics/pipe.rsi
           state: pipeStraight
-        name: pipe
+        name: step-pipe-name
       - tag: ModularReceiver
         icon:
           sprite: Objects/Misc/modular_receiver.rsi

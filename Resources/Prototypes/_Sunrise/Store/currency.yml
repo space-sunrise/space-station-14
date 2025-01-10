@@ -1,0 +1,6 @@
+- type: currency
+  id: Suntick
+  displayName: Сантики
+  cash:
+    1: Suntick1
+  canWithdraw: true

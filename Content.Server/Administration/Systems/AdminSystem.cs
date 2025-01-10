@@ -32,6 +32,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Server.Administration.Systems;
 
@@ -64,6 +65,8 @@ public sealed class AdminSystem : EntitySystem
     private readonly HashSet<NetUserId> _roundActivePlayers = new();
     public readonly PanicBunkerStatus PanicBunker = new();
     public readonly BabyJailStatus BabyJail = new();
+
+    private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
     public override void Initialize()
     {
@@ -99,6 +102,8 @@ public sealed class AdminSystem : EntitySystem
         SubscribeLocalEvent<RoleRemovedEvent>(OnRoleEvent);
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestartCleanup);
         SubscribeLocalEvent<ActorComponent, EntityRenamedEvent>(OnPlayerRenamed);
+
+        IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
     }
 
     private void OnRoundRestartCleanup(RoundRestartCleanupEvent ev)
@@ -255,8 +260,18 @@ public sealed class AdminSystem : EntitySystem
             overallPlaytime = playTime;
         }
 
+        // Sunrise-Sponsors-Start
+        var isSponsor = false;
+        var sponsorTitle = "";
+        if (_sponsorsManager != null)
+        {
+            isSponsor = _sponsorsManager.IsSponsor(data.UserId);
+            _sponsorsManager.TryGetOocTitle(data.UserId, out sponsorTitle);
+        }
+        // Sunrise-Sponsors-End
+
         return new PlayerInfo(name, entityName, identityName, startingRole, antag, GetNetEntity(session?.AttachedEntity), data.UserId,
-            connected, _roundActivePlayers.Contains(data.UserId), overallPlaytime);
+            connected, _roundActivePlayers.Contains(data.UserId), overallPlaytime, isSponsor, sponsorTitle); // Sunrise-Sponsors
     }
 
     private void OnPanicBunkerChanged(bool enabled)

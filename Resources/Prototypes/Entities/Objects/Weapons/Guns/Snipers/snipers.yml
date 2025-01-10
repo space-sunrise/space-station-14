@@ -35,8 +35,20 @@
     containers:
       ballistic-ammo: !type:Container
         ents: []
+  - type: ZoomableGun
   - type: StaticPrice
     price: 500
+  # Sunrise start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: SnipersPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: SnipersDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: SnipersDrop
+  # Sunrise end
 
 - type: entity
   name: Kardashev-Mosin
@@ -63,6 +75,15 @@
       - CartridgeAntiMateriel
     capacity: 5
     proto: CartridgeAntiMateriel
+  # Sunrise-Start
+  - type: Gun
+    fireRate: 0.75
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      collection: awp
+    # Sunrise-End
 
 - type: entity
   name: musket

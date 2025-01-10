@@ -88,6 +88,9 @@
       solutions:
         hypospray:
           maxVol: 3000
+    - type: Hypospray
+      onlyAffectsMobs: false
+      pierceArmor: true
     - type: UseDelay
       delay: 0.0
 
@@ -116,6 +119,7 @@
     transferAmount: 15
     onlyAffectsMobs: false
     injectOnly: true
+    pierceArmor: true
   - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 1
@@ -518,9 +522,6 @@
         maxVol: 10
   - type: RefillableSolution
     solution: hypospray
-  - type: ExaminableSolution
-    solution: hypospray
-    heldOnly: true # Allow examination only when held in hand.
   - type: Hypospray
     onlyAffectsMobs: false
   - type: UseDelay

@@ -21,6 +21,8 @@
   icon: "JobIconHeadOfPersonnel"
   supervisors: job-supervisors-captain
   canBeAntag: false
+  radioBold: true # Sunrise-Edit
+  displayWeight: 90 # Sunrise-Edit
   access:
   - Command
   - HeadOfPersonnel
@@ -48,12 +50,15 @@
   - Cargo
   - Atmospherics
   - Medical
+  - Barber  # Sunrise-edit
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
+  speciesBlacklist:
+  - Vox # Sunrise-Edit
 
 - type: startingGear
   id: HoPGear
@@ -66,3 +71,4 @@
   storage:
     back:
     - Flash
+    - Telebaton # Sunrise-Edit

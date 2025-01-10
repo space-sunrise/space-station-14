@@ -1,0 +1,10 @@
+ent-ClothingShoesBootsJackSec = { ent-ClothingShoesBootsJack }
+    .desc = { ent-ClothingShoesBootsJack.desc }
+ent-ClothingShoesBootsBlueShield = blueshield's boots
+    .desc = Blue or blue, that is the question.
+ent-ClothingShoesBootsPrisonerGrey = prisoner's boots
+    .desc = Why they not orange?
+ent-ClothingShoesUSSPBlack = USSP leather boots
+    .desc = Old stuff, straight out of SSSP.
+ent-ClothingShoesEliteCaptain = captain's boots
+    .desc = The boots design has a cushioning effect that gives captain's level comfort.

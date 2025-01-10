@@ -995,7 +995,8 @@ namespace Content.Shared.Interaction
             EntityUid target,
             EntityCoordinates clickLocation,
             bool checkCanInteract = true,
-            bool checkCanUse = true)
+            bool checkCanUse = true,
+            bool needHand = true) // Sunrise-Edit
         {
             if (IsDeleted(user) || IsDeleted(used) || IsDeleted(target))
                 return false;
@@ -1024,7 +1025,7 @@ namespace Content.Shared.Interaction
             if (interactUsingEvent.Handled)
                 return true;
 
-            if (InteractDoAfter(user, used, target, clickLocation, canReach: true, checkDeletion: false))
+            if (InteractDoAfter(user, used, target, clickLocation, canReach: true, checkDeletion: false, needHand: needHand)) // Sunrise-Edit
                 return true;
 
             DebugTools.Assert(!IsDeleted(user) && !IsDeleted(used) && !IsDeleted(target));
@@ -1041,7 +1042,7 @@ namespace Content.Shared.Interaction
         /// <param name="canReach">Whether the <paramref name="user"/> is in range of the <paramref name="target"/>.
         ///     </param>
         /// <returns>True if the interaction was handled. Otherwise, false.</returns>
-        public bool InteractDoAfter(EntityUid user, EntityUid used, EntityUid? target, EntityCoordinates clickLocation, bool canReach, bool checkDeletion = true)
+        public bool InteractDoAfter(EntityUid user, EntityUid used, EntityUid? target, EntityCoordinates clickLocation, bool canReach, bool checkDeletion = true, bool needHand = true) // Sunrise-Edit
         {
             if (target is { Valid: false })
                 target = null;
@@ -1049,7 +1050,7 @@ namespace Content.Shared.Interaction
             if (checkDeletion && (IsDeleted(user) || IsDeleted(used) || IsDeleted(target)))
                 return false;
 
-            var afterInteractEvent = new AfterInteractEvent(user, used, target, clickLocation, canReach);
+            var afterInteractEvent = new AfterInteractEvent(user, used, target, clickLocation, canReach, needHand); // Sunrise-Edit
             RaiseLocalEvent(used, afterInteractEvent);
             DoContactInteraction(user, used, afterInteractEvent);
             if (canReach)

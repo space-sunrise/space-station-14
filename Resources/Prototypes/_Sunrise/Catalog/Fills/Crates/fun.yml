@@ -1,0 +1,34 @@
+﻿- type: entity
+  id: CrateFunSprayPaints
+  name: spray paint crate
+  description: a crate filled with spray paint.
+  parent: CratePlastic
+  suffix: Spray Paint
+  components:
+  - type: StorageFill
+    contents:
+    - id: SprayPaintBlue
+      amount: 2
+      prob: 0.33
+    - id: SprayPaintRed
+      amount: 2
+      prob: 0.33
+    - id: SprayPaintOrange
+      amount: 2
+      prob: 0.33
+    - id: SprayPaintBlack
+      amount: 2
+      prob: 0.33
+    - id: SprayPaintGreen
+      amount: 2
+      prob: 0.33
+    - id: SprayPaintPurple
+      amount: 2
+      prob: 0.33
+    - id: SprayPaintWhite
+      amount: 2
+      prob: 0.33
+    - id: DeathPaint
+      amount: 2
+    - id: DeathPaintTwo
+      amount: 2

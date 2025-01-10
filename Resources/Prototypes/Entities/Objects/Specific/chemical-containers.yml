@@ -79,6 +79,7 @@
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
     - type: Label
+      currentLabel: кувшин # Russian-Localization
     - type: Tag
       tags:
       - ChemDispensable

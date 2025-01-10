@@ -1,0 +1,24 @@
+﻿- type: moodEffect
+  id: BeingHugged
+  moodChange: 3
+  timeout: 120
+
+- type: moodEffect
+  id: ArcadePlay
+  moodChange: 3
+  timeout: 480
+
+- type: moodEffect
+  id: GotBlessed
+  moodChange: 3
+  timeout: 480
+
+- type: moodEffect
+  id: PetAnimal
+  moodChange: 3
+  timeout: 300
+
+- type: moodEffect
+  id: SavedLife
+  moodChange: 7
+  timeout: 480

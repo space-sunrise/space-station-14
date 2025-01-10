@@ -15,7 +15,7 @@ namespace Content.Shared.UserInterface
         /// This is ignored unless <see cref="RequiresComplex"/> is true.
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite)]
-        [DataField]
+        [DataField, AutoNetworkedField] // Sunrise-Edit
         public bool InHandsOnly;
 
         [DataField]
@@ -36,7 +36,7 @@ namespace Content.Shared.UserInterface
         ///     more generic interaction / configuration that might not require complex.
         /// </remarks>
         [ViewVariables(VVAccess.ReadWrite)]
-        [DataField]
+        [DataField, AutoNetworkedField] // Sunrise-Edit]
         public bool RequiresComplex = true;
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Content.Shared.UserInterface
         ///     This is ignored unless <see cref="InHandsOnly"/> is true.
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite)]
-        [DataField]
+        [DataField, AutoNetworkedField] // Sunrise-Edit
         public bool RequireActiveHand = true;
 
         /// <summary>

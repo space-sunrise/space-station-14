@@ -1,10 +1,12 @@
 ﻿using Content.Server.Administration;
 using Content.Server.Chat.Systems;
+using Content.Server.Ghost;
 using Content.Server.Popups;
 using Content.Server.Speech.Muting;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Players;
 using Robust.Server.Console;
 using Robust.Shared.Player;
 using Content.Shared.Speech.Muting;
@@ -22,6 +24,7 @@ public sealed class CritMobActionsSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
+    [Dependency] private readonly GhostSystem _ghostSystem = default!;
 
     private const int MaxLastWordsLength = 30;
 
@@ -39,7 +42,11 @@ public sealed class CritMobActionsSystem : EntitySystem
         if (!TryComp<ActorComponent>(uid, out var actor) || !_mobState.IsCritical(uid))
             return;
 
-        _host.ExecuteCommand(actor.PlayerSession, "ghost");
+        //_host.ExecuteCommand(actor.PlayerSession, "ghost");
+        // Sunrise-Edit
+        if (actor.PlayerSession.GetMind() is { } mindId)
+            _ghostSystem.OpenAcceptEui(mindId, actor.PlayerSession);
+
         args.Handled = true;
     }
 
@@ -77,7 +84,10 @@ public sealed class CritMobActionsSystem : EntitySystem
                 lastWords += "...";
 
                 _chat.TrySendInGameICMessage(uid, lastWords, InGameICChatType.Whisper, ChatTransmitRange.Normal, checkRadioPrefix: false, ignoreActionBlocker: true);
-                _host.ExecuteCommand(actor.PlayerSession, "ghost");
+                //_host.ExecuteCommand(actor.PlayerSession, "ghost");
+                // Sunrise-Edit
+                if (actor.PlayerSession.GetMind() is { } mindId)
+                    _ghostSystem.OpenAcceptEui(mindId, actor.PlayerSession);
             });
 
         args.Handled = true;

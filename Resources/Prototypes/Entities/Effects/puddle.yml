@@ -162,6 +162,9 @@
     solution: puddle
   - type: BadDrink
   - type: IgnoresFingerprints
+  # Sunrise Edit.
+  - type: PuddleFootprint
+  # Sunrise Edit End!
   - type: Tag
     tags:
     - DNASolutionScannable

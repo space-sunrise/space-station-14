@@ -1,0 +1,8 @@
+- type: statusEffect
+  id: LoveEffect
+
+- type: statusEffect
+  id: Jump
+
+- type: statusEffect
+  id: Flip

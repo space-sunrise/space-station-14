@@ -1,3 +1,6 @@
+using Content.Server._Sunrise.GuideGenerator;
+using Content.Server._Sunrise.ServersHub;
+using Content.Server._Sunrise.TTS;
 using Content.Server.Acz;
 using Content.Server.Administration;
 using Content.Server.Administration.Logs;
@@ -44,6 +47,7 @@ namespace Content.Server.Entry
         private EuiManager _euiManager = default!;
         private IVoteManager _voteManager = default!;
         private ServerUpdateManager _updateManager = default!;
+        private ServersHubManager _serversHubManager = default!; // Sunrise-Edit
         private PlayTimeTrackingManager? _playTimeTracking;
         private IEntitySystemManager? _sysMan;
         private IServerDbManager? _dbManager;
@@ -90,6 +94,7 @@ namespace Content.Server.Entry
                 _euiManager = IoCManager.Resolve<EuiManager>();
                 _voteManager = IoCManager.Resolve<IVoteManager>();
                 _updateManager = IoCManager.Resolve<ServerUpdateManager>();
+                _serversHubManager = IoCManager.Resolve<ServersHubManager>(); // Sunrise-Edit
                 _playTimeTracking = IoCManager.Resolve<PlayTimeTrackingManager>();
                 _sysMan = IoCManager.Resolve<IEntitySystemManager>();
                 _dbManager = IoCManager.Resolve<IServerDbManager>();
@@ -104,8 +109,11 @@ namespace Content.Server.Entry
                 IoCManager.Resolve<INodeGroupFactory>().Initialize();
                 IoCManager.Resolve<ContentNetworkResourceManager>().Initialize();
                 IoCManager.Resolve<GhostKickManager>().Initialize();
+                IoCManager.Resolve<TTSManager>().Initialize(); // Sunrise-TTS
                 IoCManager.Resolve<ServerInfoManager>().Initialize();
                 IoCManager.Resolve<ServerApi>().Initialize();
+
+                IoCManager.Resolve<ServersHubManager>().Initialize(); // Sunrise-Hub
 
                 _voteManager.Initialize();
                 _updateManager.Initialize();
@@ -133,6 +141,17 @@ namespace Content.Server.Entry
                 file = resourceManager.UserData.OpenWriteText(resPath.WithName("react_" + dest));
                 ReactionJsonGenerator.PublishJson(file);
                 file.Flush();
+                // Wiki-Start
+                file = resourceManager.UserData.OpenWriteText(resPath.WithName("entity_" + dest));
+                EntityJsonGenerator.PublishJson(file);
+                file.Flush();
+                file = resourceManager.UserData.OpenWriteText(resPath.WithName("mealrecipes_" + dest));
+                MealsRecipesJsonGenerator.PublishJson(file);
+                file.Flush();
+                file = resourceManager.UserData.OpenWriteText(resPath.WithName("healthchangereagents_" + dest));
+                HealthChangeReagentsJsonGenerator.PublishJson(file);
+                file.Flush();
+                // Wiki-End
                 IoCManager.Resolve<IBaseServer>().Shutdown("Data generation done");
             }
             else
@@ -166,6 +185,7 @@ namespace Content.Server.Entry
                 case ModUpdateLevel.FramePostEngine:
                     _updateManager.Update();
                     _playTimeTracking?.Update();
+                    _serversHubManager.Update(); // Sunrise-Edit
                     break;
             }
         }

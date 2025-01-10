@@ -203,11 +203,12 @@ public abstract class SharedMaterialReclaimerSystem : EntitySystem
     /// </summary>
     public bool CanGib(EntityUid uid, EntityUid victim, MaterialReclaimerComponent component)
     {
-        return component.Powered &&
-               component.Enabled &&
-               !component.Broken &&
-               HasComp<BodyComponent>(victim) &&
-               HasComp<EmaggedComponent>(uid);
+        return false; // Ради казуалов
+        // return component.Powered &&
+        //        component.Enabled &&
+        //        !component.Broken &&
+        //        HasComp<BodyComponent>(victim) &&
+        //        HasComp<EmaggedComponent>(uid);
     }
 
     /// <summary>

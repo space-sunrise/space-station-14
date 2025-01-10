@@ -1,0 +1,43 @@
+﻿- type: entity
+  id: SpawnPointGhostFoliant
+  name: ghost role spawn point
+  suffix: Foliant
+  parent: MarkerBase
+  components:
+  - type: GhostRole
+    makeSentient: true
+    allowMovement: true
+    allowSpeech: true
+    name: ghost-role-information-foliant-name
+    description: ghost-role-information-foliant-description
+    rules: ghost-role-information-foliant-rules
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: MobBook
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+      - sprite: _Sunrise/Mobs/Pets/dogbook.rsi
+        state: dogbook
+
+
+- type: entity
+  parent: MarkerBase
+  id: SpawnPointGhostTerminator
+  name: terminator spawn point
+  components:
+  - type: GhostRole
+    name: ghost-role-information-exterminator-name
+    description: ghost-role-information-exterminator-description
+    rules: ghost-role-information-exterminator-rules
+    raffle:
+      settings: default
+  - type: GhostRoleMobSpawner
+    prototype: MobHumanTerminator
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Mobs/Species/Terminator/parts.rsi
+      state: full

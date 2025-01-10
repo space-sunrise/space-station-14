@@ -216,6 +216,24 @@ public sealed partial class SsdIconPrototype : StatusIconPrototype, IInheritingP
     public bool Abstract { get; }
 }
 
+// Sunrise-Start
+/// <summary>
+/// StatusIcons for the Sick indicator
+/// </summary>
+[Prototype]
+public sealed partial class SickIconPrototype : StatusIconPrototype, IInheritingPrototype
+{
+    /// <inheritdoc />
+    [ParentDataField(typeof(AbstractPrototypeIdArraySerializer<SsdIconPrototype>))]
+    public string[]? Parents { get; }
+
+    /// <inheritdoc />
+    [NeverPushInheritance]
+    [AbstractDataField]
+    public bool Abstract { get; }
+}
+// Sunrise-End
+
 [Serializable, NetSerializable]
 public enum StatusIconLocationPreference : byte
 {

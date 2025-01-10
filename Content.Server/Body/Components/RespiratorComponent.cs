@@ -77,6 +77,11 @@ namespace Content.Server.Body.Components
 
         [ViewVariables]
         public RespiratorStatus Status = RespiratorStatus.Inhaling;
+
+        // Sunrise-Start
+        [ViewVariables]
+        public bool HasImmunity = false;
+        // Sunrise-End
     }
 }
 

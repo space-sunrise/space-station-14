@@ -1,0 +1,16 @@
+ent-LockerBlueshield = шкаф офицера "Синий Щит"
+    .desc = { ent-LockerBaseSecure.desc }
+ent-LockerPilot = шкаф Пилота
+    .desc = { ent-LockerBaseSecure.desc }
+ent-GunSafeIonRifle = оружейный сейф с ионной пушкой
+    .suffix = Ионная пушка
+    .desc = { ent-GunSafe.desc }
+ent-GunSafeRPGNanotrasen = оружейный сейф с РПГ-7
+    .suffix = РПГ
+    .desc = { ent-GunSafe.desc }
+ent-ClosetPatologoanatom = Шкаф патологоанатома
+    .desc = У каждого свои скелеты в шкафу... у него буквально.
+    .suffix = Пусто
+ent-ClosetPatologoanatomFilled = { ent-ClosetPatologoanatom }
+    .desc = { ent-ClosetPatologoanatom }
+    .suffix = Заполнен

@@ -46,7 +46,7 @@ public sealed class CriminalRecordsHackerSystem : SharedCriminalRecordsHackerSys
             // main damage with this is existing arrest warrants are lost and to anger beepsky
         }
 
-        _chat.DispatchGlobalAnnouncement(Loc.GetString(ent.Comp.Announcement), playSound: true, colorOverride: Color.Red);
+        _chat.DispatchGlobalAnnouncement(Loc.GetString(ent.Comp.Announcement), playDefault: true, colorOverride: Color.Red);
 
         // once is enough
         RemComp<CriminalRecordsHackerComponent>(ent);

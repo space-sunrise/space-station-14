@@ -1,0 +1,204 @@
+- type: entity
+  id: WeaponMechCombatVindictor
+  name: Mounted MG-100 Vindicator Minigun
+  suffix: Mech Weapon, Gun, Combat, Minigun
+  parent: [ BaseMechWeaponRange, CombatMechEquipment ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_vindictor.rsi
+    state: mecha_vindictor
+  - type: Gun
+    minAngle: -25
+    maxAngle: 25
+    fireRate: 9.5
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/HMGs/minigun_shot.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: CartridgeRifle
+    fireCost: 7
+  - type: Appearance
+  - type: AmmoCounter
+
+- type: entity
+  id: WeaponMechCombatMaxim
+  name: Mounted Kardashev-Maxim
+  description: An ancient heavy machine gun given new life as a mech-mounted gun
+  suffix: Mech Weapon, Combat, USSP
+  parent: [ BaseMechWeaponRange, CombatMechEquipment ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_maxim.rsi
+    state: mecha_maxim
+  - type: Gun
+    minAngle: -15
+    maxAngle: 25
+    fireRate: 6.8
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: CartridgeLightRifle
+    fireCost: 8
+  - type: Appearance
+  - type: AmmoCounter
+
+- type: entity
+  id: WeaponMechCombatMG
+  name: Mounted MG
+  description: An ancient heavy machine gun given new life as a mech-mounted gun
+  suffix: Mech Weapon, Combat
+  parent: [ BaseMechWeaponRange, CombatMechEquipment ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_mg.rsi
+    state: mecha_mg
+  - type: Gun
+    minAngle: -10
+    maxAngle: 18
+    angleIncrease: 3.5
+    angleDecay: 9
+    fireRate: 10
+    shotsPerBurst: 8
+    burstCooldown: 0.5
+    selectedMode: Burst
+    availableModes:
+      - Burst
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: CartridgeRifle
+    fireCost: 8
+  - type: Appearance
+  - type: AmmoCounter
+
+- type: entity
+  id: WeaponMechCombatPirateCannon
+  name: Mounted PirateCannon
+  description: An ancient heavy gun given new life as a mech-mounted gun
+  suffix: Mech Weapon, Gun, Combat, Pirate
+  parent: [ BaseMechWeaponRange, CombatMechEquipment ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_piratecannon.rsi
+    state: mecha_piratecannon
+  - type: Gun
+    minAngle: -10
+    maxAngle: 15
+    fireRate: 0.4
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: CannonBall
+    fireCost: 160
+  - type: Appearance
+  - type: AmmoCounter
+
+- type: entity
+  id: WeaponMechCombatPirateGrapeshot
+  name: Mounted PirateGrapeshot
+  description: An ancient heavy gun given new life as a mech-mounted gun
+  suffix: Mech Weapon, Gun, Combat, Pirate
+  parent: [ BaseMechWeaponRange, CombatMechEquipment ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_piratecannon.rsi
+    state: mecha_piratecannon
+  - type: Gun
+    minAngle: -10
+    maxAngle: 15
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: CannonBallGrapeshot
+    fireCost: 50
+  - type: Appearance
+  - type: AmmoCounter
+
+- type: entity
+  id: WeaponMechCombatPirateGlassshot
+  name: Mounted PirateGlassshot
+  description: An ancient heavy gun given new life as a mech-mounted gun
+  suffix: Mech Weapon, Gun, Combat, Pirate
+  parent: [ BaseMechWeaponRange, CombatMechEquipment ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_piratecannon.rsi
+    state: mecha_piratecannon
+  - type: Gun
+    minAngle: -10
+    maxAngle: 15
+    fireRate: 0.7
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: CannonBallGlassshot
+    fireCost: 80
+  - type: Appearance
+  - type: AmmoCounter
+
+- type: entity
+  id: WeaponMechCombatUVM31
+  name: UVM-31 "Drake"
+  description: A heavy weapon of mass destruction developed by Cybersun based on the minigun. now on a sturdy tripod that allows you to fire directly from the MECH!
+  suffix: Mech Weapon, Gun, Combat, Laser , Minigun
+  parent: [ BaseMechWeaponRange, CombatMechEquipment ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Mech/mecha_uvm31.rsi
+    state: mecha_uvm31
+  - type: Gun
+    minAngle: 5
+    maxAngle: 10
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 5
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      collection: syndi_plasma
+      params:
+        volume: -1
+  - type: HitscanBatteryAmmoProvider
+    proto: BulletSyndiPlasmaDouble
+    fireCost: 25
+  - type: Appearance
+  - type: AmmoCounter
+
+- type: entity
+  id: WeaponMechCombatDuster
+  name: Mounted EXP-220 Duster
+  description: An  heavy Auto Cannon as a mech-mounted gun with Frag ammo
+  suffix: Mech Weapon, Gun, Combat
+  parent: [ BaseMechWeaponRange, CombatMechEquipment ]
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_autocannon
+  - type: Gun
+    fireRate: 0.3
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/ship_duster.ogg
+  - type: ProjectileBatteryAmmoProvider
+    proto: GrenadeFrag
+    fireCost: 250
+  - type: Appearance
+  - type: AmmoCounter

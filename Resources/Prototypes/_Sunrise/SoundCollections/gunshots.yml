@@ -1,0 +1,104 @@
+- type: soundCollection
+  id: syndi_plasma
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/plasma_gun_1.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/plasma_gun_2.ogg
+
+- type: soundCollection
+  id: usp
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/usp1.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/usp2.ogg
+
+- type: soundCollection
+  id: awp
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/awp1.ogg
+
+- type: soundCollection
+  id: ak47
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/ak47-1.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/ak47-2.ogg
+
+- type: soundCollection
+  id: galil
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/galil-1.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/galil-2.ogg
+
+- type: soundCollection
+  id: xm1014
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/xm1014-1.ogg
+
+- type: soundCollection
+  id: m3
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/m3-1.ogg
+
+- type: soundCollection
+  id: glock18
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/glock18-2.ogg
+
+- type: soundCollection
+  id: m249
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/m249-1.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/m249-2.ogg
+
+- type: soundCollection
+  id: aug
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/aug-1.ogg
+
+- type: soundCollection
+  id: famas
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/famas-1.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/famas-2.ogg
+
+- type: soundCollection
+  id: ump45
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/ump45-1.ogg
+
+- type: soundCollection
+  id: mp5
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/mp5-1.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/mp5-2.ogg
+
+- type: soundCollection
+  id: p90
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/p90-1.ogg
+
+- type: soundCollection
+  id: deagle
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/deagle-1.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/deagle-2.ogg
+
+- type: soundCollection
+  id: plasma_pistol
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/plasma_pistol_1.ogg
+
+- type: soundCollection
+  id: red_mamba
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/red_mamba.ogg
+
+- type: soundCollection
+  id: EearthGovernmentMachineGunShot
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/EG_MG_1.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/EG_MG_2.ogg
+
+- type: soundCollection
+  id: glock22
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/glock22_shot_1.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Gunshots/glock22_shot_2.ogg

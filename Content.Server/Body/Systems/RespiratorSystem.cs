@@ -4,6 +4,7 @@ using Content.Server.Body.Components;
 using Content.Server.Chat.Systems;
 using Content.Server.EntityEffects.EffectConditions;
 using Content.Server.EntityEffects.Effects;
+using Content.Shared._Sunrise.Mood;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Alert;
 using Content.Shared.Atmos;
@@ -47,7 +48,30 @@ public sealed class RespiratorSystem : EntitySystem
         SubscribeLocalEvent<RespiratorComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<RespiratorComponent, EntityUnpausedEvent>(OnUnpaused);
         SubscribeLocalEvent<RespiratorComponent, ApplyMetabolicMultiplierEvent>(OnApplyMetabolicMultiplier);
+
+        // Sunrise-Start
+        SubscribeLocalEvent<RespiratorImmunityComponent, ComponentInit>(OnPressureImmuneInit);
+        SubscribeLocalEvent<RespiratorImmunityComponent, ComponentRemove>(OnPressureImmuneRemove);
+        // Sunrise-End
     }
+
+    // Sunrise-Start
+    private void OnPressureImmuneInit(EntityUid uid, RespiratorImmunityComponent pressureImmunity, ComponentInit args)
+    {
+        if (TryComp<RespiratorComponent>(uid, out var respirator))
+        {
+            respirator.HasImmunity = true;
+        }
+    }
+
+    private void OnPressureImmuneRemove(EntityUid uid, RespiratorImmunityComponent pressureImmunity, ComponentRemove args)
+    {
+        if (TryComp<RespiratorComponent>(uid, out var respirator))
+        {
+            respirator.HasImmunity = false;
+        }
+    }
+    // Sunrise-End
 
     private void OnMapInit(Entity<RespiratorComponent> ent, ref MapInitEvent args)
     {
@@ -66,7 +90,7 @@ public sealed class RespiratorSystem : EntitySystem
         var query = EntityQueryEnumerator<RespiratorComponent, BodyComponent>();
         while (query.MoveNext(out var uid, out var respirator, out var body))
         {
-            if (_gameTiming.CurTime < respirator.NextUpdate)
+            if (_gameTiming.CurTime < respirator.NextUpdate || respirator.HasImmunity) // Sunrise-Edit
                 continue;
 
             respirator.NextUpdate += respirator.UpdateInterval;
@@ -292,6 +316,7 @@ public sealed class RespiratorSystem : EntitySystem
             {
                 _alertsSystem.ShowAlert(ent, entity.Comp1.Alert);
             }
+            RaiseLocalEvent(ent, new MoodEffectEvent("Suffocating"));
         }
 
         _damageableSys.TryChangeDamage(ent, ent.Comp.Damage, interruptsDoAfters: false);

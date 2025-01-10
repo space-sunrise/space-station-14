@@ -2,7 +2,7 @@
   id: CatEars
   bodyPart: Special
   markingCategory: Special
-  speciesRestriction: [Human]
+  sponsorOnly: true # Sunrise-Sponsors
   coloring:
     default:
       type:
@@ -25,7 +25,7 @@
   id: CatTail
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Human]
+  sponsorOnly: true # Sunrise-Sponsors
   coloring:
     default:
       type:
@@ -37,4 +37,4 @@
         - !type:SkinColoring
   sprites:
   - sprite: Mobs/Customization/cat_parts.rsi
-    state: tail_cat
+    state: tail_cat_wag # Sunrise-Sponsors

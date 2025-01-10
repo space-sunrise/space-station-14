@@ -3,6 +3,7 @@
   id: BaseMobVox
   abstract: true
   components:
+  - type: Absorbable
   - type: Hunger
   - type: Thirst
   - type: Icon
@@ -71,11 +72,16 @@
     - map: [ "enum.HumanoidVisualLayers.LArm" ]
     - map: [ "enum.HumanoidVisualLayers.RLeg" ]
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
-    - map: [ "jumpsuit" ]
     - map: [ "enum.HumanoidVisualLayers.LFoot" ]
     - map: [ "enum.HumanoidVisualLayers.RFoot" ]
     - map: [ "enum.HumanoidVisualLayers.LHand" ]
     - map: [ "enum.HumanoidVisualLayers.RHand" ]
+    # Sunrise-start
+    - map: ["bra"]
+    - map: ["pants"]
+    - map: ["socks"]
+    - map: ["jumpsuit"]
+    # Sunrise-end
     - map: [ "gloves" ]
     - map: [ "shoes" ]
     - map: [ "ears" ]
@@ -104,6 +110,13 @@
       sprite: "Effects/creampie.rsi"
       state: "creampie_vox" # Not default
       visible: false
+  # Sunrise ed!
+  - type: FootprintEmitter
+    leftBareFootState:
+      - "footprint-left-bare-lizard"
+    rightBareFootState:
+      - "footprint-right-bare-lizard"
+  # Sunrise edit end.
   - type: Inventory
     speciesId: vox
     displacements:

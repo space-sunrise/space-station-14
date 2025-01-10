@@ -9,7 +9,7 @@
             - material: MetalRod
               amount: 1
             - tag: PowerCellSmall
-              name: power cell small
+              name: step-powercell-small-name
               icon:
                 sprite: Objects/Power/power_cells.rsi
                 state: small
@@ -18,9 +18,9 @@
                 sprite: Objects/Misc/cablecuffs.rsi
                 state: cuff
                 color: red
-              name: cuffs
+              name: step-cuffs-name
             - tag: Igniter
-              name: igniter
+              name: step-igniter-name
               icon:
                 sprite: Objects/Devices/igniter.rsi
                 state: icon

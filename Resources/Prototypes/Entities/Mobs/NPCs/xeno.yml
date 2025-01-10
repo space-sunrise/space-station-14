@@ -119,6 +119,11 @@
     molsPerSecondPerUnitMass: 0.0005
   - type: Speech
     speechVerb: LargeMob
+  # Sunrise-Start
+  - type: CollectiveMind
+    minds:
+    - Xeno
+  # Sunrise-End
 
 - type: entity
   name: praetorian

@@ -1,0 +1,33 @@
+- type: entity
+  id: Lockbox
+  parent: BaseStorageItem
+  name: Protected suitcase
+  description: Highly protective suitcase designed for storing important documents and items.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/lockbox.rsi
+    layers:
+    - state: icon
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+  - type: Item
+    size: Ginormous
+  - type: Storage
+    grid:
+    - 0,0,3,3
+    maxItemSize: Large
+  - type: Lock
+  - type: AccessReader
+  - type: Appearance
+  # TODO: Shouldn't this have a different open and closed state...?
+  - type: EntityStorageVisuals
+    stateDoorOpen: icon
+    stateDoorClosed: icon
+
+
+- type: entity
+  parent: Lockbox
+  id: LockboxCaptain
+  components:
+  - type: AccessReader
+    access: [["Captain"]]

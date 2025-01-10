@@ -23,7 +23,7 @@ namespace Content.Shared.Damage
         [JsonPropertyName("types")]
         [DataField("types", customTypeSerializer: typeof(PrototypeIdDictionarySerializer<FixedPoint2, DamageTypePrototype>))]
         [UsedImplicitly]
-        private Dictionary<string,FixedPoint2>? _damageTypeDictionary;
+        private Dictionary<string, FixedPoint2>? _damageTypeDictionary;
 
         [JsonPropertyName("groups")]
         [DataField("groups", customTypeSerializer: typeof(PrototypeIdDictionarySerializer<FixedPoint2, DamageGroupPrototype>))]
@@ -69,6 +69,14 @@ namespace Content.Shared.Damage
             }
 
             return false;
+        }
+
+        public DamageSpecifier Invert()
+        {
+            var copy = new DamageSpecifier(this);
+            foreach (var key in copy.DamageDict.Keys)
+                copy.DamageDict[key] *= -1;
+            return copy;
         }
 
         /// <summary>
@@ -152,12 +160,42 @@ namespace Content.Shared.Damage
                 if (modifierSet.Coefficients.TryGetValue(key, out var coefficient))
                     newValue *= coefficient; // coefficients can heal you, e.g. cauterizing bleeding
 
+                if (newValue != 0)
+                    newDamage.DamageDict[key] = FixedPoint2.New(newValue);
+            }
+
+            return newDamage;
+        }
+
+        // Sunrise-Start
+        public static DamageSpecifier ApplyModifier(DamageSpecifier damageSpec, float damageModifier, float healModifier)
+        {
+            DamageSpecifier newDamage = new();
+            newDamage.DamageDict.EnsureCapacity(damageSpec.DamageDict.Count);
+
+            foreach (var (key, value) in damageSpec.DamageDict)
+            {
+                if (value == 0)
+                    continue;
+
+                var newValue = value.Float();
+
+                if (value > 0)
+                {
+                    newValue *= damageModifier;
+                }
+                else
+                {
+                    newValue *= healModifier;
+                }
+
                 if(newValue != 0)
                     newDamage.DamageDict[key] = FixedPoint2.New(newValue);
             }
 
             return newDamage;
         }
+        // Sunrise-End
 
         /// <summary>
         ///     Reduce (or increase) damages by applying multiple modifier sets.

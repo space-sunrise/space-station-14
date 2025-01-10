@@ -22,6 +22,7 @@
     <ProjectReference Include="..\RobustToolbox\Robust.Shared\Robust.Shared.csproj">
       <Private>false</Private>
     </ProjectReference>
+    <ProjectReference Include="..\Sunrise\Content.Sunrise.Interfaces.Shared\Content.Sunrise.Interfaces.Shared.csproj" />
   </ItemGroup>
   <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets" />
   <Import Project="..\RobustToolbox\MSBuild\Robust.CompNetworkGenerator.targets" />

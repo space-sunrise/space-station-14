@@ -2,6 +2,10 @@
 - type: borgType
   id: generic
 
+  # Sunrise-Start
+  job: Borg
+  # Sunrise-End
+
   # Description
   dummyPrototype: BorgChassisGeneric
 
@@ -16,6 +20,13 @@
 
   radioChannels:
   - Science
+
+  # Sunrise-Start
+  footstepCollection:
+    collection: FootstepCyborgSpider
+    params:
+      volume: -15
+  # Sunrise-End
 
   # Visual
   inventoryTemplateId: borgShort
@@ -33,25 +44,41 @@
 - type: borgType
   id: engineering
 
+  # Sunrise-Start
+  job: EngineerBorg
+  # Sunrise-End
+
   # Description
   dummyPrototype: BorgChassisEngineer
 
   # Functional
-  extraModuleCount: 3
+  extraModuleCount: 5
   moduleWhitelist:
     tags:
     - BorgModuleGeneric
     - BorgModuleEngineering
 
   defaultModules:
-  - BorgModuleTool
+  - BorgModuleStandart
+  - BorgModuleAdvancedTool
+  - BorgModuleCable
   - BorgModuleConstruction
   - BorgModuleRCD
-  - BorgModuleCable
 
   radioChannels:
   - Engineering
   - Science
+
+  # Sunrise-Start
+  footstepCollection:
+    collection: FootstepCyborgSpider
+    params:
+      volume: -15
+  addComponents:
+  - type: InnateItem
+    instantActions:
+    - AtmosAlertsMonitor
+  # Sunrise-End
 
   # Visual
   inventoryTemplateId: borgShort
@@ -69,24 +96,36 @@
 - type: borgType
   id: mining
 
+  # Sunrise-Start
+  job: MiningBorg
+  # Sunrise-End
+
   # Description
   dummyPrototype: BorgChassisMining
 
   # Functional
-  extraModuleCount: 3
+  extraModuleCount: 4
   moduleWhitelist:
     tags:
     - BorgModuleGeneric
     - BorgModuleCargo
 
   defaultModules:
-  - BorgModuleGrapplingGun
+  - BorgModuleStandart
   - BorgModuleMining
-  - BorgModuleAppraisal
+  - BorgModuleGPS
+  - BorgModuleJetpack # Sunrise-Edit
 
   radioChannels:
   - Supply
   - Science
+
+  # Sunrise-Start
+  footstepCollection:
+    collection: FootstepCyborgSpider
+    params:
+      volume: -15
+  # Sunrise-End
 
   # Visual
   inventoryTemplateId: borgTall
@@ -105,6 +144,10 @@
 - type: borgType
   id: janitor
 
+  # Sunrise-Start
+  job: JanitorBorg
+  # Sunrise-End
+
   # Description
   dummyPrototype: BorgChassisJanitor
 
@@ -116,12 +159,20 @@
     - BorgModuleJanitor
 
   defaultModules:
+  - BorgModuleStandart
   - BorgModuleLightReplacer
-  - BorgModuleCleaning
+  - BorgModuleAdvancedCleaning # Sunrise-Edit
 
   radioChannels:
   - Science
   - Service
+
+  # Sunrise-Start
+  footstepCollection:
+    collection: FootstepJanitorBorg
+    params:
+      volume: -5
+  # Sunrise-Start
 
   # Visual
   inventoryTemplateId: borgShort
@@ -134,24 +185,33 @@
   # Pet
   petSuccessString: petting-success-janitor-cyborg
   petFailureString: petting-failure-janitor-cyborg
+  addComponents:
+  - type: FootprintAreaCleaner
 
 
 # Medical borg
 - type: borgType
   id: medical
 
+  # Sunrise-Start
+  job: MedicalBorg
+  # Sunrise-End
+
   # Description
   dummyPrototype: BorgChassisMedical
 
   # Functional
-  extraModuleCount: 3
+  extraModuleCount: 4
   moduleWhitelist:
     tags:
     - BorgModuleGeneric
     - BorgModuleMedical
 
   defaultModules:
+  - BorgModuleStandart
+  - BorgModuleAdvancedTreatment # Sunrise-Edit
   - BorgModuleTreatment
+  - BorgModuleDefibrillator # Sunrise-Edit
 
   radioChannels:
   - Science
@@ -165,6 +225,19 @@
   - type: ShowHealthIcons
     damageContainers:
     - Biological
+  # Sunrise-Start
+  - type: TTS
+    voice: TurretFloor
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 3
+    baseSprintSpeed : 5
+  - type: FabricateCandy
+  - type: InnateItem
+    instantActions:
+    - HandheldCrewMonitorBorg
+    worldTargetActions:
+    - HandheldHealthAnalyzerUnpowered
+  # Sunrise-End
 
   # Visual
   inventoryTemplateId: borgDutch
@@ -187,6 +260,10 @@
 - type: borgType
   id: service
 
+  # Sunrise-Start
+  job: ServiceBorg
+  # Sunrise-End
+
   # Description
   dummyPrototype: BorgChassisService
 
@@ -198,9 +275,9 @@
     - BorgModuleService
 
   defaultModules:
+  - BorgModuleStandart
   - BorgModuleMusique
   - BorgModuleService
-  - BorgModuleClowning
 
   radioChannels:
   - Science

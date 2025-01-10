@@ -1,0 +1,12 @@
+- type: listing
+  id: RevenantLock
+  name: revenant-lock-name
+  description: revenant-lock-desc
+  productAction: ActionRevenantLock
+  cost:
+    StolenEssence: 125
+  categories:
+  - RevenantAbilities
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1

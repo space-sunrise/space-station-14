@@ -13,6 +13,7 @@ using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
 using Content.Shared.Station;
+using Content.Sunrise.Interfaces.Shared;
 using Robust.Shared.Console;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -154,9 +155,20 @@ namespace Content.Server.Administration.Commands
 
                 if (roleLoadout == null)
                 {
+                    // Sunrise-Start
+                    string [] sponsorsPrototypes = [];
+                    if (session != null && IoCManager.Instance != null && IoCManager.Instance.TryResolveType<ISharedSponsorsManager>(out var sponsorsManager))
+                    {
+                        if (sponsorsManager.TryGetPrototypes(session.UserId, out var prototypes))
+                        {
+                            sponsorsPrototypes = prototypes.ToArray();
+                        }
+                    }
+                    // Sunrise-End
+
                     // If they don't have a loadout for the role, make a default one
                     roleLoadout = new RoleLoadout(jobProtoId);
-                    roleLoadout.SetDefault(profile, session, prototypeManager);
+                    roleLoadout.SetDefault(profile, session, prototypeManager, sponsorsPrototypes);
                 }
 
                 // Equip the target with the job loadout

@@ -60,6 +60,14 @@ namespace Content.Shared.Input
         public static readonly BoundKeyFunction ZoomIn = "ZoomIn";
         public static readonly BoundKeyFunction ResetZoom = "ResetZoom";
 
+        // Sunrise-Start
+        public static readonly BoundKeyFunction FocusCollectiveMindChat = "FocusCollectiveMindChatWindow";
+        public static readonly BoundKeyFunction CockGun = "CockGun";
+        public static readonly BoundKeyFunction ToggleStanding = "ToggleStanding";
+        public static readonly BoundKeyFunction Jump = "Jump";
+        public static readonly BoundKeyFunction Reloading = "Reloading";
+        // Sunrise-End
+
         public static readonly BoundKeyFunction ArcadeUp = "ArcadeUp";
         public static readonly BoundKeyFunction ArcadeDown = "ArcadeDown";
         public static readonly BoundKeyFunction ArcadeLeft = "ArcadeLeft";

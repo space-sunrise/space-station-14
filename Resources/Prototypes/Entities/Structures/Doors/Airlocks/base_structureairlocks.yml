@@ -13,7 +13,6 @@
   - type: InteractionOutline
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/basic.rsi
-    snapCardinals: true
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
@@ -74,6 +73,7 @@
     fuel: 5
     time: 3
   - type: Airlock
+    openUnlitVisible: true
   - type: NavMapDoor
   - type: DoorBolt
   - type: Appearance

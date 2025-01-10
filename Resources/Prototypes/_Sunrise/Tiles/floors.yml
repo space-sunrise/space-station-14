@@ -1,0 +1,13 @@
+- type: tile
+  id: FloorLightFancyWood
+  name: tiles-light-fancy-wood
+  sprite: /Textures/_Sunrise/Tiles/light-fancy-wood.png
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepWood
+  barestepSounds:
+    collection: BarestepWood
+  itemDrop: FloorTileItemWood
+  heatCapacity: 10000

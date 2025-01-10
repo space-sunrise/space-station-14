@@ -1,0 +1,14 @@
+- type: flavor
+  id: fourteen_loko_soda_plus
+  flavorType: Complex
+  description: flavor-complex-fourteen-loko-soda-plus
+
+- type: flavor
+  id: chamomile_tincture
+  flavorType: Complex
+  description: flavor-complex-chamomile-tincture
+
+- type: flavor
+  id: woodsawdust
+  flavorType: Complex
+  description: flavor-complex-sawdust

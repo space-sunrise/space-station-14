@@ -15,7 +15,7 @@ public sealed partial class SuitSensorComponent : Component
     ///     Choose a random sensor mode when item is spawned.
     /// </summary>
     [DataField]
-    public bool RandomMode = true;
+    public bool RandomMode = false; // Sunrise-edit
 
     /// <summary>
     ///     If true user can't change suit sensor mode
@@ -33,7 +33,7 @@ public sealed partial class SuitSensorComponent : Component
     ///     Current sensor mode. Can be switched by user verbs.
     /// </summary>
     [DataField]
-    public SuitSensorMode Mode = SuitSensorMode.SensorOff;
+    public SuitSensorMode Mode = SuitSensorMode.SensorCords; // Sunrise-edit
 
     /// <summary>
     ///     Activate sensor if user wear it in this slot.

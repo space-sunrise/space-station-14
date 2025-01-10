@@ -64,6 +64,9 @@
   - type: Tag
     tags:
     - VimPilot
+  - type: NightVision #Sunrise - Night vision
+    isToggle: true
+    color: "#808080"
 
 - type: entity
   name: bee
@@ -1765,6 +1768,16 @@
       Taco: RatTaco
       Burger: RatBurger
       Skewer: RatSkewer
+  - type: NightVision #Sunrise - Night vision
+    isToggle: true
+    color: "#808080"
+  - type: HolidayVisuals
+    holidays:
+      festive:
+      - WinterPresents
+  - type: HolidayRsiSwap
+    sprite:
+      festive: _Sunrise/Mobs/Animals/mouse_santa.rsi
 
 - type: entity
   parent: MobMouse
@@ -2288,6 +2301,9 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Scale
+  - type: NightVision #Sunrise - Night vision
+    isToggle: true
+    color: "#808080"
 
 # Code unique spider prototypes or combine them all into one spider and get a
 # random sprite state when you spawn it.
@@ -2378,6 +2394,16 @@
       groups:
         Brute: -0.07
         Burn: -0.07
+  # Sunrise-start
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSpiderLegs
+      params:
+        volume: -10
+  - type: CollectiveMind
+    minds:
+    - Arachnids
+  # Sunrise-end
 
 - type: entity
   parent: MobSpiderBase
@@ -2737,6 +2763,7 @@
   - type: Inventory
     speciesId: dog
     templateId: pet
+  - type: DogVision  # Sunrise-DogVision
   - type: DamageStateVisuals
     states:
       Alive:
@@ -2924,6 +2951,9 @@
   - type: Tag
     tags:
     - VimPilot
+  - type: NightVision #Sunrise - Night vision
+    isToggle: true
+    color: "#808080"
 
 - type: entity
   name: calico cat
@@ -3405,6 +3435,10 @@
   - type: HTN
     rootTask:
       task: RuminantCompound
+    # Sunrise-start
+  - type: Body
+    prototype: ManeaterAnimal
+    # Sunrise-end
 
 - type: entity
   name: diona nymph
@@ -3486,6 +3520,9 @@
     reformTime: 10
     popupText: diona-reform-attempt
     reformPrototype: MobDionaReformed
+  - type: CollectiveMind
+    minds:
+    - Dioneas
 
 - type: entity
   parent: MobDionaNymph

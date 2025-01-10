@@ -20,5 +20,11 @@ namespace Content.Server.Shuttles.Components
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite), DataField("whitelistSpecific")]
         public List<EntityUid> FTLWhitelist = new List<EntityUid>();
+
+        // Sunrise-Start
+        [ViewVariables]
+        [DataField("portable")]
+        public bool Portable;
+        // Sunrise-End
     }
 }

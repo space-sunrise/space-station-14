@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server._Sunrise.TransitHub;
 using Content.Server.GameTicking;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
@@ -26,7 +27,7 @@ public sealed class EvacShuttleTest
         var ticker = server.System<GameTicker>();
 
         // Dummy ticker tests should not have centcomm
-        Assert.That(entMan.Count<StationCentcommComponent>(), Is.Zero);
+        Assert.That(entMan.Count<StationTransitHubComponent>(), Is.Zero); // Sunrise-Edit
 
         Assert.That(pair.Server.CfgMan.GetCVar(CCVars.GridFill), Is.False);
         pair.Server.CfgMan.SetCVar(CCVars.EmergencyShuttleEnabled, true);
@@ -40,13 +41,13 @@ public sealed class EvacShuttleTest
 
         // Find the station, centcomm, and shuttle, and ftl map.
 
-        Assert.That(entMan.Count<StationCentcommComponent>(), Is.EqualTo(1));
+        Assert.That(entMan.Count<StationTransitHubComponent>(), Is.EqualTo(1)); // Sunrise-Edit
         Assert.That(entMan.Count<StationEmergencyShuttleComponent>(), Is.EqualTo(1));
         Assert.That(entMan.Count<StationDataComponent>(), Is.EqualTo(1));
         Assert.That(entMan.Count<EmergencyShuttleComponent>(), Is.EqualTo(1));
         Assert.That(entMan.Count<FTLMapComponent>(), Is.EqualTo(0));
 
-        var station = (Entity<StationCentcommComponent>) entMan.AllComponentsList<StationCentcommComponent>().Single();
+        var station = (Entity<StationTransitHubComponent>) entMan.AllComponentsList<StationTransitHubComponent>().Single(); // Sunrise-Edit
         var data = entMan.GetComponent<StationDataComponent>(station);
         var shuttleData = entMan.GetComponent<StationEmergencyShuttleComponent>(station);
 

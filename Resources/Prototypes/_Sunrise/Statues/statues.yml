@@ -1,0 +1,64 @@
+- type: entity
+  id: StatueFurukai
+  parent: BaseStructure
+  name: statue furukai
+  description:
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _Sunrise/Structures/Furniture/statuelarge.rsi
+    state: furukai
+    drawdepth: Mobs
+    offset: "0.0,0.5"
+
+- type: entity
+  id: StatueDude
+  parent: BaseStructure
+  name: statue dude
+  description:
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _Sunrise/Structures/Furniture/statuelarge.rsi
+    state: dude
+    drawdepth: Mobs
+    offset: "0.0,0.5"
+
+- type: entity
+  id: StatueFrank
+  parent: BaseStructure
+  name: statue frank
+  description:
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _Sunrise/Structures/Furniture/statuelarge.rsi
+    state: frank
+    drawdepth: Mobs
+    offset: "0.0,0.5"
+
+- type: entity
+  id: StatueMooniverse
+  parent: BaseStructure
+  name: statue mooniverse
+  description:
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _Sunrise/Structures/Furniture/statuelarge.rsi
+    state: mooniverse
+    drawdepth: Mobs
+    offset: "0.0,0.5"
+
+- type: entity
+  id: StatueRib
+  parent: BaseStructure
+  name: statue rib
+  description:
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _Sunrise/Structures/Furniture/statuelarge.rsi
+    state: rib
+    drawdepth: Mobs
+    offset: "0.0,0.5"

@@ -1,0 +1,338 @@
+- type: entity
+  parent: BasePDA
+  id: IAAPDA
+  name: internal affairs agent PDA
+  description: Corporation and profit are best friends.
+  components:
+    - type: Pda
+      id: IAAIDCard
+    - type: Appearance
+      appearanceDataInit:
+        enum.PdaVisuals.PdaType:
+          !type:String
+          pda-lawyer
+    - type: PdaBorderColor
+      borderColor: "#6f6192"
+    - type: Icon
+      state: pda-lawyer
+
+- type: entity
+  parent: CaptainPDA
+  id: MagistratPDA
+  name: magistrat PDA
+  components:
+  - type: Pda
+    id: MagistratIDCard
+    penSlot:
+      startingItem: UEGPen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-captain
+  - type: PdaBorderColor
+    borderColor: "#7C5D00"
+  - type: Icon
+    state: pda-captain
+
+- type: entity
+  parent: BasePDA
+  id: BlueShieldPDA
+  name: blue shield officer's PDA
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+  - type: Pda
+    id: BlueShieldIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-blueshield
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-blueshield
+
+- type: entity
+  parent: BaseMedicalPDA
+  id: PathologistPDA
+  name: Pathologist PDA
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+  - type: Pda
+    id: PathologistIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-patologoanatom
+  - type: PdaBorderColor
+    borderColor: "#717059"
+    accentVColor: "#447987"
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-patologoanatom
+  - type: GuideHelp
+    guides:
+    - Medical Doctor
+
+- type: entity
+  parent: BasePDA
+  id: PrisonerPDA
+  name: prisoner's PDA
+  description: In the colour of the robe for a complete set.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+  - type: Pda
+    id: PrisonerIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-prisoner
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-space-prison-prisoner
+
+- type: entity
+  parent: BasePDA
+  id: GuardPDA
+  name: prison guard's PDA
+  description: Bent and scuffed, but every scratch is evidence of a continuous struggle for safety.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+  - type: Pda
+    id: GuardIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-guardian
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-space-prison-guardian
+
+- type: entity
+  parent: BasePDA
+  id: PrisonEngineerPDA
+  name: prison engineer's PDA
+  components:
+  - type: Pda
+    id: PrisonEngineeringIDCard
+  - type: PdaBorderColor
+    borderColor: "#949137"
+    accentVColor: "#A32D26"
+  - type: Icon
+    state: pda-engineer
+
+- type: entity
+  parent: BasePDA
+  id: PrisonPilotPDA
+  name: prison pilot's PDA
+  description: Shiny and technologically advanced, as if it had just been pulled out of the cockpit.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+  - type: Pda
+    id: PrisonPilotIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-pilot
+  - type: PdaBorderColor
+    borderColor: "#A32D26"
+    accentVColor: "#DFDFDF"
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-space-prison-pilot
+
+- type: entity
+  parent: BasePDA
+  id: HeadOfPrisonPDA
+  name: Prison governor's PDA
+  description: Has the look of a prestigious instrument of power, but a little scratched from constant emergency calls.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+  - type: Pda
+    id: HeadOfPrisonIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-boss
+  - type: PdaBorderColor
+    borderColor: "#A32D26"
+    accentHColor: "#447987"
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-space-prison-boss
+
+- type: entity
+  parent: BasePDA
+  id: RoboticistPDA
+  name: roboticist's PDA
+  description: It's covered in something sticky.
+  components:
+  - type: Pda
+    id: RoboticistIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-roboticist
+  - type: PdaBorderColor
+    borderColor: "#d7d7d0"
+    accentVColor: "#8900c9"
+  - type: Icon
+    state: pda-roboticist
+  - type: HealthAnalyzer
+    scanningEndSound:
+      path: "/Audio/Items/Medical/healthscanner.ogg"
+    damageContainers:
+    - Synth
+    - Silicon
+
+- type: entity
+  parent: BasePDA
+  id: SecurityPilotPDA
+  name: Security pilot's PDA
+  components:
+  - type: Pda
+    id: SecurityPilotIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-seniorofficer
+  - type: PdaBorderColor
+    borderColor: "#A32D26"
+    accentVColor: "#DFDFDF"
+  - type: Icon
+    state: pda-seniorofficer
+
+- type: entity
+  parent: CaptainPDA
+  id: NanoTrasenRepresentativePDA
+  name: NanoTrasenRepresentative PDA
+  components:
+  - type: Pda
+    id: NanoTrasenRepresentativeIDCard
+    penSlot:
+      startingItem: Pen
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-captain
+  - type: PdaBorderColor
+    borderColor: "#7C5D00"
+  - type: Icon
+    state: pda-captain
+
+- type: entity
+  parent: BasePDA
+  id: BarberPDA
+  name: barber's PDA
+  components:
+  - type: Pda
+    id: BarberIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-bartender
+  - type: Icon
+    state: pda-bartender
+
+- type: entity
+  parent: BasePDA
+  id: AdjutantPDA
+  name: adjuntant PDA
+  description: It sorely lacks the camera monitor function.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+  - type: Pda
+    id: AdjutantIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-adj
+  - type: PdaBorderColor
+    borderColor: "#1b2426"
+    accentVColor: "#62584a"
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-adj
+
+- type: entity
+  parent: SyndiPDA
+  id: USSPPDA
+  name: USSP PDA
+  description: Since you live in a Soviet country, your dreams should be Soviet as well.
+  components:
+  - type: Pda
+    id: USSPIDCard
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - NotekeeperCartridge
+
+- type: entity
+  parent: SyndiPDA
+  id: USSPOfficerPDA
+  name: USSP PDA
+  description: Since you live in a Soviet country, your dreams should be Soviet as well.
+  suffix: Militia
+  components:
+  - type: Pda
+    id: USSPOfficerIDCard
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - NotekeeperCartridge
+      - LogProbeCartridge
+
+- type: entity
+  parent: SyndiPDA
+  id: USSPSoldierPDA
+  name: Millitary USSP PDA
+  description: Since you live in a Soviet country, your dreams should be Soviet as well.
+  suffix: Combat
+  components:
+  - type: Pda
+    id: USSPSoldierIDCard
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - NotekeeperCartridge
+      - AstroNavCartridge
+
+- type: entity
+  parent: SyndiPDA
+  id: USSPCaptainPDA
+  name: Officer USSP PDA
+  description: Since you live in a Soviet country, your dreams should be Soviet as well.
+  suffix: Officer
+  components:
+  - type: Pda
+    id: USSPCaptainIDCard
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - NotekeeperCartridge
+      - LogProbeCartridge

@@ -1,0 +1,14 @@
+ent-ActionToggleBorgMagboots = { "" }
+    .desc = { "" }
+ent-BorgCuffed = { "" }
+    .desc = { "" }
+ent-FabricateLollipop = { "" }
+    .desc = { "" }
+ent-FabricateGumball = { "" }
+    .desc = { "" }
+ent-FabricateCookie = { "" }
+    .desc = { "" }
+ent-FabricateSoap = { "" }
+    .desc = { "" }
+ent-ActionViewCrewManifest = View Crew Manifest
+    .desc = View the View crew manifest station.

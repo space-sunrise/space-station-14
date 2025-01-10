@@ -19,7 +19,9 @@
   startingGear: ChiefEngineerGear
   icon: "JobIconChiefEngineer"
   supervisors: job-supervisors-captain
-  canBeAntag: false
+  radioBold: true # Sunrise-Edit
+  displayWeight: 70 # Sunrise-Edit
+  canBeAntag: true # RaMbUt878-edit
   access:
   - Maintenance
   - Engineering
@@ -30,19 +32,21 @@
   - Brig
   - Cryogenics
   special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
+  speciesBlacklist:
+  - Vox # Sunrise-Edit
 
 - type: startingGear
   id: ChiefEngineerGear
   equipment:
     id: CEPDA
+    head: ClothingHeadHatHardhatWhite # Sunrise-Edit
     eyes: ClothingEyesGlassesMeson
     ears: ClothingHeadsetCE
     belt: ClothingBeltUtilityEngineering
   storage:
     back:
     - Flash
+    - Telebaton # Sunrise-Edit

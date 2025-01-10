@@ -71,6 +71,11 @@
   - type: Store
     balance:
       Telecrystal: 0
+#Sunrise-start
+  - type: Tag
+    tags:
+    - SyndieAgentUplink
+#Sunrise-end
 
 - type: entity
   parent: BaseUplinkRadio
@@ -111,6 +116,18 @@
   - type: Store
     balance:
       Telecrystal: 60
+  - type: Tag
+    tags:
+    - NukeOpsUplink
+
+- type: entity
+  parent: BaseUplinkRadio
+  id: BaseUplinkRadio0TC
+  suffix: NukeOps
+  components:
+  - type: Store
+    balance:
+      Telecrystal: 0
   - type: Tag
     tags:
     - NukeOpsUplink

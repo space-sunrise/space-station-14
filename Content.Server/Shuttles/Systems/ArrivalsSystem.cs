@@ -81,12 +81,13 @@ public sealed class ArrivalsSystem : EntitySystem
     /// </summary>
     private const float RoundStartFTLDuration = 10f;
 
-    private readonly List<ProtoId<BiomeTemplatePrototype>> _arrivalsBiomeOptions = new()
-    {
-        "Grasslands",
-        "LowDesert",
-        "Snow",
-    };
+    // Sunrise-Edit
+    // private readonly List<ProtoId<BiomeTemplatePrototype>> _arrivalsBiomeOptions = new()
+    // {
+    //     "Grasslands",
+    //     "LowDesert",
+    //     "Snow",
+    // };
 
     public override void Initialize()
     {
@@ -99,7 +100,8 @@ public sealed class ArrivalsSystem : EntitySystem
         SubscribeLocalEvent<ArrivalsShuttleComponent, ComponentStartup>(OnShuttleStartup);
         SubscribeLocalEvent<ArrivalsShuttleComponent, FTLTagEvent>(OnShuttleTag);
 
-        SubscribeLocalEvent<RoundStartingEvent>(OnRoundStarting);
+        // Sunrise-Edit
+        //SubscribeLocalEvent<RoundStartingEvent>(OnRoundStarting);
         SubscribeLocalEvent<ArrivalsShuttleComponent, FTLStartedEvent>(OnArrivalsFTL);
         SubscribeLocalEvent<ArrivalsShuttleComponent, FTLCompletedEvent>(OnArrivalsDocked);
 
@@ -336,6 +338,13 @@ public sealed class ArrivalsSystem : EntitySystem
             return;
 
         // We use arrivals as the default spawn so don't check for job prio.
+        
+        // Sunrise-Start
+        if (ev.DesiredSpawnPointType == SpawnPointType.Job)
+            return;
+        // Sunrise-End
+
+        // We use arrivals as the default spawn so don't check for job prio.
 
         // Only works on latejoin even if enabled.
         if (!Enabled || _ticker.RunLevel != GameRunLevel.InRound)
@@ -501,54 +510,55 @@ public sealed class ArrivalsSystem : EntitySystem
         }
     }
 
-    private void OnRoundStarting(RoundStartingEvent ev)
-    {
-        // Setup arrivals station
-        if (!Enabled)
-            return;
-
-        SetupArrivalsStation();
-    }
-
-    private void SetupArrivalsStation()
-    {
-        var mapUid = _mapSystem.CreateMap(out var mapId, false);
-        _metaData.SetEntityName(mapUid, Loc.GetString("map-name-terminal"));
-
-        if (!_loader.TryLoad(mapId, _cfgManager.GetCVar(CCVars.ArrivalsMap), out var uids))
-        {
-            return;
-        }
-
-        foreach (var id in uids)
-        {
-            EnsureComp<ArrivalsSourceComponent>(id);
-            EnsureComp<ProtectedGridComponent>(id);
-            EnsureComp<PreventPilotComponent>(id);
-        }
-
-        // Setup planet arrivals if relevant
-        if (_cfgManager.GetCVar(CCVars.ArrivalsPlanet))
-        {
-            var template = _random.Pick(_arrivalsBiomeOptions);
-            _biomes.EnsurePlanet(mapUid, _protoManager.Index(template));
-            var restricted = new RestrictedRangeComponent
-            {
-                Range = 32f
-            };
-            AddComp(mapUid, restricted);
-        }
-
-        _mapSystem.InitializeMap(mapId);
-
-        // Handle roundstart stations.
-        var query = AllEntityQuery<StationArrivalsComponent>();
-
-        while (query.MoveNext(out var uid, out var comp))
-        {
-            SetupShuttle(uid, comp);
-        }
-    }
+    // Sunrise-Edit
+    // private void OnRoundStarting(RoundStartingEvent ev)
+    // {
+    //     // Setup arrivals station
+    //     if (!Enabled)
+    //         return;
+    //
+    //     SetupArrivalsStation();
+    // }
+    //
+    // private void SetupArrivalsStation()
+    // {
+    //     var mapUid = _mapSystem.CreateMap(out var mapId, false);
+    //     _metaData.SetEntityName(mapUid, Loc.GetString("map-name-terminal"));
+    //
+    //     if (!_loader.TryLoad(mapId, _cfgManager.GetCVar(CCVars.ArrivalsMap), out var uids))
+    //     {
+    //         return;
+    //     }
+    //
+    //     foreach (var id in uids)
+    //     {
+    //         EnsureComp<ArrivalsSourceComponent>(id);
+    //         EnsureComp<ProtectedGridComponent>(id);
+    //         EnsureComp<PreventPilotComponent>(id);
+    //     }
+    //
+    //     // Setup planet arrivals if relevant
+    //     if (_cfgManager.GetCVar(CCVars.ArrivalsPlanet))
+    //     {
+    //         var template = _random.Pick(_arrivalsBiomeOptions);
+    //         _biomes.EnsurePlanet(mapUid, _protoManager.Index(template));
+    //         var restricted = new RestrictedRangeComponent
+    //         {
+    //             Range = 32f
+    //         };
+    //         AddComp(mapUid, restricted);
+    //     }
+    //
+    //     _mapSystem.InitializeMap(mapId);
+    //
+    //     // Handle roundstart stations.
+    //     var query = AllEntityQuery<StationArrivalsComponent>();
+    //
+    //     while (query.MoveNext(out var uid, out var comp))
+    //     {
+    //         SetupShuttle(uid, comp);
+    //     }
+    // }
 
     private void SetArrivals(bool obj)
     {
@@ -556,7 +566,8 @@ public sealed class ArrivalsSystem : EntitySystem
 
         if (Enabled)
         {
-            SetupArrivalsStation();
+            // Sunrise-Edit
+            //SetupArrivalsStation();
             var query = AllEntityQuery<StationArrivalsComponent>();
 
             while (query.MoveNext(out var sUid, out var comp))

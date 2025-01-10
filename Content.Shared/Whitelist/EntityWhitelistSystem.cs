@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared.Humanoid;
 using Content.Shared.Item;
 using Content.Shared.Roles;
 using Content.Shared.Tag;
@@ -99,6 +100,11 @@ public sealed class EntityWhitelistSystem : EntitySystem
                 ? _tag.HasAllTags(uid, list.Tags)
                 : _tag.HasAnyTag(uid, list.Tags);
         }
+
+        // Sunrise-Start
+        if (list.Species != null && TryComp<HumanoidAppearanceComponent>(uid, out var appearance))
+            return list.Species.Contains(appearance.Species);
+        // Sunrise-End
 
         return list.RequireAll;
     }

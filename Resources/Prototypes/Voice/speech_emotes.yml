@@ -28,6 +28,11 @@
     - yells
     - yelled
     - yelling
+    # Russian-Localization-Start
+    - кричит
+    - орёт
+    - визжит
+    # Russian-Localization-End
 
 - type: emote
   id: Laugh
@@ -57,6 +62,14 @@
     - chortle
     - chortles
     - chortling
+  # Russian-Localization-Start
+    - смеется
+    - смеётся
+    - хохочет
+    - хихикает
+    - хихикнул
+    - хихикнула
+  # Russian-Localization-End
 
 - type: emote
   id: Honk
@@ -74,6 +87,9 @@
     - honks
     - honked
     - honking
+  # Russian-Localization-Start
+    - хонк
+  # Russian-Localization-End
 
 - type: emote
   id: Sigh
@@ -91,6 +107,11 @@
     - sigh
     - sighs
     - sighed
+  # Russian-Localization-Start
+    - вздыхает
+    - вздохнул
+    - вздохнула
+  # Russian-Localization-End
 
 - type: emote
   id: Whistle
@@ -108,6 +129,10 @@
     - whistle
     - whistles
     - whistleblowing
+  # Russian-Localization-Start
+    - свистит
+    - свистнул
+  # Russian-Localization-End
 
 - type: emote
   id: Crying
@@ -128,6 +153,10 @@
     - sob
     - sobs
     - sobbing
+  # Russian-Localization-Start
+    - плачет
+    - рыдает
+  # Russian-Localization-End
 
 - type: emote
   id: Squish
@@ -146,6 +175,9 @@
     - squish
     - squishing
     - squishes
+  # Russian-Localization-Start
+    - хлюпает
+  # Russian-Localization-End
 
 - type: emote
   id: Chitter
@@ -164,6 +196,9 @@
    - chitter
    - chitters
    - chittered
+  # Russian-Localization-Start
+   - стрекочет
+  # Russian-Localization-End
 
 - type: emote
   id: Squeak
@@ -182,6 +217,9 @@
    - squeak
    - squeaks
    - squeaked
+  # Russian-Localization-Start
+   - пищит
+  # Russian-Localization-End
 
 - type: emote
   id: Click
@@ -199,6 +237,10 @@
   chatTriggers:
    - click
    - clicks
+  # Russian-Localization-Start
+   - клац
+   - клацает
+  # Russian-Localization-End
 
 # hand emotes
 - type: emote
@@ -211,6 +253,7 @@
     - Hands
   blacklist:
     components:
+    - Ghost
     - BorgChassis
   chatMessages: ["chat-emote-msg-clap"]
   chatTriggers:
@@ -218,6 +261,15 @@
     - claps
     - clapping
     - clapped
+    # Russian-Localization-Start
+    - хлопает
+    - хлопнул
+    - хлопнула
+    - хлопает в ладоши
+    - хлопнул в ладоши
+    - хлопнула в ладоши
+    - апплодирует
+    # Russian-Localization-End
 
 - type: emote
   id: Snap
@@ -230,6 +282,7 @@
   blacklist:
     components:
     - BorgChassis
+    - Ghost
   chatMessages: ["chat-emote-msg-snap"] # snaps <{THEIR($ent)}> fingers?
   chatTriggers:
     - snap
@@ -241,6 +294,20 @@
     - snaps their fingers
     - snapping fingers
     - snapped fingers
+    # Russian-Localization-Start
+    - щелкает
+    - щелкнул
+    - щелкнула
+    - щёлкает
+    - щёлкнул
+    - щёлкнула
+    - щелкает пальцами
+    - щелкнул пальцами
+    - щелкнула пальцами
+    - щёлкает пальцами
+    - щёлкнул пальцами
+    - щёлкнула пальцами
+    # Russian-Localization-End
 
 - type: emote
   id: Thump
@@ -254,6 +321,7 @@
   blacklist:
     components:
     - BorgChassis
+    - Ghost
   chatMessages: ["chat-emote-msg-thump"]
   chatTriggers:
     - thump
@@ -278,10 +346,17 @@
   blacklist:
     components:
     - BorgChassis
+    - Ghost
   chatMessages: ["chat-emote-msg-salute"]
   chatTriggers:
     - salute
     - salutes
+  # Russian-Localization-Start
+    - салютует
+    - отдаёт честь
+    - отдал честь
+    - отдала честь
+  # Russian-Localization-End
 
 - type: emote
   id: Gasp
@@ -294,6 +369,9 @@
    - gasp
    - gasps
    - gasped
+#Sunrise-start
+   - задыхается
+#Sunrise-end
 
 - type: emote
   id: DefaultDeathgasp
@@ -328,6 +406,11 @@
     - buzz
     - buzzed
     - buzzes
+  # Russian-Localization-Start
+    - жужжит
+    - зажужжал
+    - зажужжала
+  # Russian-Localization-End
 
 - type: emote
   id: Weh
@@ -362,6 +445,9 @@
     - chirps
     - chirped
     - chirping
+  # Russian-Localization-Start
+    - чирикает
+  # Russian-Localization-End
 
 # Machine Emotes
 - type: emote
@@ -380,6 +466,9 @@
     - beeps
     - beeped
     - beeping
+  # Russian-Localization-Start
+    - бип
+  # Russian-Localization-End
 
 - type: emote
   id: Chime
@@ -397,6 +486,9 @@
     - chimes
     - chimed
     - chiming
+  # Russian-Localization-Start
+    - дзынь
+  # Russian-Localization-End
 
 - type: emote
   id: Buzz-Two
@@ -420,6 +512,14 @@
     - buzzes twice
     - buzzing twice
     - buzzed twice
+  # Russian-Localization-Start
+    - бипбуп
+    - бип буп
+    - бип-буп
+    - бипбип
+    - бип бип
+    - бип-бип
+  # Russian-Localization-End
 
 - type: emote
   id: Ping
@@ -437,3 +537,6 @@
     - pings
     - pinged
     - pinging
+  # Russian-Localization-Start
+    - пинг
+  # Russian-Localization-End

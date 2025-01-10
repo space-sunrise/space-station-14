@@ -53,11 +53,18 @@
     - SlowedDown
     - Stutter
     - Electrocution
+    - Jump # Sunrise-Edit
   - type: NameIdentifier
     group: GenericNumber
   - type: Repairable
-    doAfterDelay: 8
-    fuelCost: 15
+    # Sunrise-Start
+    doAfterDelay: 3
+    damage:
+      types:
+        Blunt: -15
+        Slash: -15
+        Piercing: -15
+    # Sunrise-End
   - type: Pullable
   - type: Tag
     tags:
@@ -107,6 +114,8 @@
   - type: ProtectedFromStepTriggers
   - type: NoSlip
   - type: Insulated
+  - type: TTS
+    voice: FactCore # Sunrise-TTS
 
 - type: entity
   parent: MobSiliconBase
@@ -298,12 +307,15 @@
     interactFailureString: petting-failure-cleanbot
     interactSuccessSound:
       path: /Audio/Ambience/Objects/periodic_beep.ogg
+  - type: StationAiVision # Sunrise-edit AI Vision on NT Bots
+    range: 0
 
 - type: entity
   parent:
   - MobSiliconBase
   - ShowMedicalIcons
   - StripableInventoryBase
+  - FlyingMobBase
   id: MobMedibot
   name: medibot
   description: No substitute for a doctor, but better than nothing.
@@ -329,7 +341,7 @@
         reagent: SpaceDrugs
         quantity: 25
   - type: Sprite
-    sprite: Mobs/Silicon/Bots/medibot.rsi
+    sprite: _Sunrise/Mobs/Silicon/Bots/medibot.rsi  # Sunrise-medibot
     state: medibot
   - type: HTN
     rootTask:
@@ -347,6 +359,27 @@
     pack: MedibotAds
   - type: Inventory
     templateId: medibot
+  # Sunrise-Start
+  - type: StationAiVision
+    range: 1
+  - type: AmbientSound
+    enabled: true
+    volume: 0
+    range: 8
+    sound:
+      path: /Audio/_Sunrise/Effects/Flying/medibot.ogg
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 50
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  # Sunrise-End
 
 - type: entity
   parent:
@@ -445,3 +478,5 @@
     channels:
     - Common
     - Supply
+  - type: StationAiVision # Sunrise-edit
+    range: 1

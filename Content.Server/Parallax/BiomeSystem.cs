@@ -8,6 +8,7 @@ using Content.Server.Decals;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Shuttles.Systems;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Atmos;
 using Content.Shared.Decals;
 using Content.Shared.Ghost;
@@ -441,12 +442,11 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
 
         foreach (var chunk in active)
         {
-            LoadChunkMarkers(component, gridUid, grid, chunk, seed);
 
             if (!component.LoadedChunks.Add(chunk))
                 continue;
 
-            // Load NOW!
+            LoadChunkMarkers(component, gridUid, grid, chunk, seed);
             LoadChunk(component, gridUid, grid, chunk, seed);
         }
     }

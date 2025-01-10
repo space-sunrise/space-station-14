@@ -46,7 +46,7 @@
   suffix: Hydroponics
   components:
   - type: Sprite
-    sprite: Structures/Doors/Airlocks/Standard/hydroponics.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Standard/hydroponics.rsi #Sunrise-Resprite
   - type: Wires
     layoutId: AirlockService
 
@@ -76,7 +76,7 @@
   suffix: Chemistry
   components:
   - type: Sprite
-    sprite: Structures/Doors/Airlocks/Standard/chemistry.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Standard/chemistry.rsi #Sunrise-Resprite
 
 - type: entity
   parent: Airlock
@@ -150,21 +150,25 @@
   - type: Sprite
     sprite: Structures/Doors/Airlocks/Standard/centcomm.rsi
 
-- type: entity
-  parent: Airlock
-  id: AirlockHatch
-  name: airtight hatch
-  components:
-  - type: Sprite
-    sprite: Structures/Doors/Airlocks/Standard/hatch.rsi
+# edited by Sunrise, view in _Sunrise\Entities\Structures\Doors    
+#    
+#- type: entity
+#  parent: Airlock
+#  id: AirlockHatch
+#  name: airtight hatch
+#  components:
+#  - type: Sprite
+#    sprite: Structures/Doors/Airlocks/Standard/hatch.rsi
 
-- type: entity
-  parent: Airlock
-  id: AirlockHatchMaintenance
-  name: maintenance hatch
-  components:
-  - type: Sprite
-    sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
+#- type: entity
+#  parent: Airlock
+#  id: AirlockHatchMaintenance
+#  name: maintenance hatch
+#  components:
+#  - type: Sprite
+#    sprite: Structures/Doors/Airlocks/Standard/hatch_maint.rsi
+#
+#end
 
 # Glass
 - type: entity
@@ -213,7 +217,7 @@
   suffix: Hydroponics
   components:
   - type: Sprite
-    sprite: Structures/Doors/Airlocks/Glass/hydroponics.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/hydroponics.rsi #Sunrise-Resprite
   - type: Wires
     layoutId: AirlockService
 
@@ -235,7 +239,7 @@
   suffix: Chemistry
   components:
   - type: Sprite
-    sprite: Structures/Doors/Airlocks/Glass/chemistry.rsi
+    sprite: _Sunrise/Structures/Doors/Airlocks/Glass/chemistry.rsi #Sunrise-Resprite
 
 - type: entity
   parent: AirlockMedicalGlass

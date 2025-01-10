@@ -40,6 +40,8 @@
         node: monitorBroken
       - !type:DoActsBehavior
         acts: ["Destruction"]
+  - type: TTS
+    voice: FactCore # Sunrise-TTS
 
 - type: entity
   id: ComputerFrame

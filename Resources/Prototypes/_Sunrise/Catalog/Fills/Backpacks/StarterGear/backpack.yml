@@ -1,0 +1,34 @@
+- type: entity
+  parent: ClothingBackpackSyndie
+  id: ClothingBackpackSyndieAJ100Filled
+  name: AJ-100 kit
+  description: Includes an AJ-100 submachine gun and two magazines of ammunition.
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponAJ100Biocode
+    - id: MagazinePistolSubMachineGun
+      amount: 2
+
+- type: entity
+  parent: ClothingBackpackSyndie
+  id: ClothingBackpackSyndieDL6902Filled
+  name: DL-6902 kit
+  description: Includes a DL6902 machine gun and one magazine of ammunition.
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponDL6902Biocode
+    - id: MagazineDl6902
+
+- type: entity
+  parent: ClothingBackpackSyndie
+  id: ClothingBackpackSyndieSIAR52Filled
+  name: SIAR-52 kit
+  description: Includes a SIAR-52 machine gun and two magazines of ammunition.
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSIAR52Biocode
+    - id: MagazinePistolSubMachineGunSIAR52
+      amount: 2

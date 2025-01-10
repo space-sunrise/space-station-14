@@ -1,16 +1,20 @@
-using Content.Server.Access.Systems;
+﻿using Content.Server.Access.Systems;
 using Content.Server.DetailExaminable;
+using Content.Server.Holiday;
 using Content.Server.Humanoid;
 using Content.Server.IdentityManagement;
 using Content.Server.Mind.Commands;
 using Content.Server.PDA;
 using Content.Server.Shuttles.Systems;
+using Content.Server.Spawners.Components;
 using Content.Server.Spawners.EntitySystems;
 using Content.Server.Station.Components;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.PDA;
@@ -27,6 +31,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Server.Station.Systems;
 
@@ -49,6 +54,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     [Dependency] private readonly PdaSystem _pdaSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
     private bool _randomizeCharacters;
 
@@ -56,6 +62,7 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     public override void Initialize()
     {
         base.Initialize();
+        IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
         Subs.CVar(_configurationManager, CCVars.ICRandomCharacters, e => _randomizeCharacters = e, true);
     }
 
@@ -71,12 +78,12 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
     /// <remarks>
     /// This only spawns the character, and does none of the mind-related setup you'd need for it to be playable.
     /// </remarks>
-    public EntityUid? SpawnPlayerCharacterOnStation(EntityUid? station, ProtoId<JobPrototype>? job, HumanoidCharacterProfile? profile, StationSpawningComponent? stationSpawning = null)
+    public EntityUid? SpawnPlayerCharacterOnStation(EntityUid? station, ProtoId<JobPrototype>? job, HumanoidCharacterProfile? profile, StationSpawningComponent? stationSpawning = null, SpawnPointType spawnPointType = SpawnPointType.Unset)
     {
         if (station != null && !Resolve(station.Value, ref stationSpawning))
             throw new ArgumentException("Tried to use a non-station entity as a station!", nameof(station));
 
-        var ev = new PlayerSpawningEvent(job, profile, station);
+        var ev = new PlayerSpawningEvent(job, profile, station, spawnPointType);
 
         RaiseLocalEvent(ev);
         DebugTools.Assert(ev.SpawnResult is { Valid: true } or null);
@@ -117,8 +124,21 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             // Set to default if not present
             if (loadout == null)
             {
+                // Sunrise-Start
+                var session = _actors.GetSession(entity);
+
+                string [] sponsorsPrototypes = [];
+                if (_sponsorsManager != null && session != null)
+                {
+                    if (_sponsorsManager.TryGetPrototypes(session.UserId, out var prototypes))
+                    {
+                        sponsorsPrototypes = prototypes.ToArray();
+                    }
+                }
+                // Sunrise-End
+
                 loadout = new RoleLoadout(jobLoadout);
-                loadout.SetDefault(profile, _actors.GetSession(entity), _prototypeManager);
+                loadout.SetDefault(profile, _actors.GetSession(entity), _prototypeManager, sponsorsPrototypes);
             }
         }
 
@@ -187,10 +207,29 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
 
             _humanoidSystem.LoadProfile(entity.Value, profile);
             _metaSystem.SetEntityName(entity.Value, profile.Name);
-            if (profile.FlavorText != "" && _configurationManager.GetCVar(CCVars.FlavorText))
+
+            // Sunrise-Start
+            if (!string.IsNullOrEmpty(profile.FlavorText) && _configurationManager.GetCVar(CCVars.FlavorText))
             {
-                AddComp<DetailExaminableComponent>(entity.Value).Content = profile.FlavorText;
+                var session = _actors.GetSession(entity);
+                var flavortext = profile.FlavorText;
+
+                if (_sponsorsManager != null && session != null)
+                {
+                    var maxDescLength = _sponsorsManager.GetSizeFlavor(session.UserId);
+                    if (flavortext.Length > maxDescLength)
+                    {
+                        flavortext = FormattedMessage.RemoveMarkupOrThrow(flavortext)[..maxDescLength];
+                    }
+                }
+
+                if (!_configurationManager.GetCVar(SunriseCCVars.FlavorTextSponsorOnly) ||
+                    _sponsorsManager != null && session != null && _sponsorsManager.IsAllowedFlavor(session.UserId))
+                {
+                    AddComp<DetailExaminableComponent>(entity.Value).Content = flavortext;
+                }
             }
+            // Sunrise-End
         }
 
         DoJobSpecials(job, entity.Value);
@@ -207,6 +246,25 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
         {
             jobSpecial.AfterEquip(entity);
         }
+
+        // Sunrise-Start
+        foreach (var giveaway in _prototypeManager.EnumeratePrototypes<HolidayGiveawayItemPrototype>())
+        {
+            if (string.IsNullOrEmpty(giveaway.Holiday) || string.IsNullOrEmpty(giveaway.Prototype))
+                continue;
+
+            var sysMan = IoCManager.Resolve<IEntitySystemManager>();
+
+            if (!sysMan.GetEntitySystem<HolidaySystem>().IsCurrentlyHoliday(giveaway.Holiday))
+                continue;
+
+            var entMan = IoCManager.Resolve<IEntityManager>();
+
+            var ent = entMan.SpawnEntity(giveaway.Prototype, entMan.GetComponent<TransformComponent>(entity).Coordinates);
+
+            sysMan.GetEntitySystem<SharedHandsSystem>().PickupOrDrop(entity, ent);
+        }
+        // Sunrise-End
     }
 
     /// <summary>
@@ -276,11 +334,16 @@ public sealed class PlayerSpawningEvent : EntityEventArgs
     /// The target station, if any.
     /// </summary>
     public readonly EntityUid? Station;
+    /// <summary>
+    /// Delta-V: Desired SpawnPointType, if any.
+    /// </summary>
+    public readonly SpawnPointType DesiredSpawnPointType;
 
-    public PlayerSpawningEvent(ProtoId<JobPrototype>? job, HumanoidCharacterProfile? humanoidCharacterProfile, EntityUid? station)
+    public PlayerSpawningEvent(ProtoId<JobPrototype>? job, HumanoidCharacterProfile? humanoidCharacterProfile, EntityUid? station, SpawnPointType spawnPointType = SpawnPointType.Unset)
     {
         Job = job;
         HumanoidCharacterProfile = humanoidCharacterProfile;
         Station = station;
+        DesiredSpawnPointType = spawnPointType;
     }
 }

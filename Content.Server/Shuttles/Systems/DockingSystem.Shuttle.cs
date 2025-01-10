@@ -46,6 +46,7 @@ public sealed partial class DockingSystem
         FixturesComponent shuttleFixtures,
         Entity<MapGridComponent> gridEntity,
         bool isMap,
+        bool ignored,
         out Matrix3x2 matty,
         out Box2 shuttleDockedAABB,
         out Angle gridRotation)
@@ -59,7 +60,8 @@ public sealed partial class DockingSystem
             !shuttleDockXform.Anchored ||
             !gridDockXform.Anchored)
         {
-            return false;
+            if (!ignored)
+                return false;
         }
 
         // First, get the station dock's position relative to the shuttle, this is where we rotate it around
@@ -75,7 +77,7 @@ public sealed partial class DockingSystem
         var gridXformMatrix = Matrix3Helpers.CreateTransform(gridDockXform.LocalPosition, gridDockAngle);
         matty = Matrix3x2.Multiply(stationDockMatrix, gridXformMatrix);
 
-        if (!ValidSpawn(gridEntity, matty, offsetAngle, shuttleFixtures, isMap))
+        if (!ignored && !ValidSpawn(gridEntity, matty, offsetAngle, shuttleFixtures, isMap))
             return false;
 
         shuttleDockedAABB = matty.TransformBox(shuttleAABB);
@@ -92,7 +94,8 @@ public sealed partial class DockingSystem
         EntityUid shuttleDockUid,
         DockingComponent shuttleDock,
         EntityUid gridDockUid,
-        DockingComponent gridDock)
+        DockingComponent gridDock,
+        bool ignored = false)
     {
         var shuttleDocks = new List<Entity<DockingComponent>>(1)
        {
@@ -104,19 +107,19 @@ public sealed partial class DockingSystem
            (gridDockUid, gridDock)
        };
 
-        return GetDockingConfigPrivate(shuttleUid, targetGrid, shuttleDocks, gridDocks);
+        return GetDockingConfigPrivate(shuttleUid, targetGrid, shuttleDocks, gridDocks, ignored: ignored);
     }
 
     /// <summary>
     /// Tries to get a valid docking configuration for the shuttle to the target grid.
     /// </summary>
     /// <param name="priorityTag">Priority docking tag to prefer, e.g. for emergency shuttle</param>
-    public DockingConfig? GetDockingConfig(EntityUid shuttleUid, EntityUid targetGrid, string? priorityTag = null)
+    public DockingConfig? GetDockingConfig(EntityUid shuttleUid, EntityUid targetGrid, string? priorityTag = null, bool ignored = false)
     {
         var gridDocks = GetDocks(targetGrid);
         var shuttleDocks = GetDocks(shuttleUid);
 
-        return GetDockingConfigPrivate(shuttleUid, targetGrid, shuttleDocks, gridDocks, priorityTag);
+        return GetDockingConfigPrivate(shuttleUid, targetGrid, shuttleDocks, gridDocks, priorityTag, ignored: ignored);
     }
 
     /// <summary>
@@ -150,7 +153,8 @@ public sealed partial class DockingSystem
         EntityUid shuttleUid,
         EntityUid targetGrid,
         List<Entity<DockingComponent>> shuttleDocks,
-        List<Entity<DockingComponent>> gridDocks)
+        List<Entity<DockingComponent>> gridDocks,
+        bool ignored = false)
     {
         var validDockConfigs = new List<DockingConfig>();
 
@@ -185,6 +189,7 @@ public sealed partial class DockingSystem
                             shuttleFixturesComp,
                             (targetGrid, targetGridGrid),
                             isMap,
+                            ignored,
                             out var matty,
                             out var dockedAABB,
                             out var targetAngle))
@@ -202,7 +207,7 @@ public sealed partial class DockingSystem
                     // Check if there's no intersecting grids (AKA oh god it's docking at cargo).
                     grids.Clear();
                     _mapManager.FindGridsIntersecting(targetGridXform.MapID, dockedBounds, ref grids, includeMap: false);
-                    if (grids.Any(o => o.Owner != targetGrid && o.Owner != targetGridXform.MapUid))
+                    if (grids.Any(o => o.Owner != targetGrid && o.Owner != targetGridXform.MapUid) && !ignored)
                     {
                         continue;
                     }
@@ -238,6 +243,7 @@ public sealed partial class DockingSystem
                                     shuttleFixturesComp,
                                     (targetGrid, targetGridGrid),
                                     isMap,
+                                    ignored,
                                     out _,
                                     out var otherdockedAABB,
                                     out var otherTargetAngle))
@@ -277,9 +283,10 @@ public sealed partial class DockingSystem
         EntityUid targetGrid,
         List<Entity<DockingComponent>> shuttleDocks,
         List<Entity<DockingComponent>> gridDocks,
-        string? priorityTag = null)
+        string? priorityTag = null,
+        bool ignored = false)
     {
-        var validDockConfigs = GetDockingConfigs(shuttleUid, targetGrid, shuttleDocks, gridDocks);
+        var validDockConfigs = GetDockingConfigs(shuttleUid, targetGrid, shuttleDocks, gridDocks, ignored);
 
         if (validDockConfigs.Count <= 0)
             return null;

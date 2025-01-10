@@ -303,6 +303,16 @@ public sealed partial class CargoSystem
 
     private void OnPalletSale(EntityUid uid, CargoPalletConsoleComponent component, CargoPalletSellMessage args)
     {
+        // Sunrise-Start
+        var player = args.Actor;
+        if (!_accessReaderSystem.IsAllowed(player, uid))
+        {
+            ConsolePopup(args.Actor, Loc.GetString("cargo-console-order-not-allowed"));
+            PlayDenySound(uid, component.ErrorSound);
+            return;
+        }
+        // Sunrise-End
+
         var xform = Transform(uid);
 
         if (xform.GridUid is not EntityUid gridUid)
@@ -315,8 +325,16 @@ public sealed partial class CargoSystem
         if (!SellPallets(gridUid, out var price))
             return;
 
-        var stackPrototype = _protoMan.Index<StackPrototype>(component.CashType);
-        _stack.Spawn((int) price, stackPrototype, xform.Coordinates);
+        // Sunrise-Start
+        //var stackPrototype = _protoMan.Index<StackPrototype>(component.CashType);
+        //_stack.Spawn((int) price, stackPrototype, xform.Coordinates);
+        var stationUid = _station.GetOwningStation(uid);
+
+        if (!TryComp(stationUid, out StationBankAccountComponent? bank))
+            return;
+
+        UpdateBankAccount(stationUid.Value, bank, (int) price);
+        // Sunrise-End
         _audio.PlayPvs(ApproveSound, uid);
         UpdatePalletConsoleInterface(uid);
     }

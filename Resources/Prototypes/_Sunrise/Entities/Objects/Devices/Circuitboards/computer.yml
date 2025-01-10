@@ -1,0 +1,35 @@
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: CentCommShuttleConsoleCircuitboard
+  name: CCR shuttle computer board
+  description: A computer printed circuit board for a CCR shuttle computer.
+  components:
+  - type: ComputerBoard
+    prototype: ComputerShuttleCentComm
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: PrisonShuttleConsoleCircuitboard
+  name: prison shuttle computer board
+  description: A computer printed circuit board for a prison shuttle computer.
+  components:
+  - type: ComputerBoard
+    prototype: ComputerShuttlePrison
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: PrisonCommsComputerCircuitboard
+  name: prison communications computer board
+  description: A computer printed circuit board for a prison communications console.
+  components:
+  - type: ComputerBoard
+    prototype: PrisonComputerComms
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: SecurityShuttleConsoleCircuitboard
+  name: security shuttle computer board
+  description: A computer printed circuit board for a security shuttle computer.
+  components:
+  - type: ComputerBoard
+    prototype: ComputerShuttleSecurity

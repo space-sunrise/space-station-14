@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._Sunrise.Mood;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Components;
 using Content.Shared.Administration.Logs;
@@ -180,9 +181,15 @@ namespace Content.Shared.Cuffs
             _actionBlocker.UpdateCanMove(uid);
 
             if (component.CanStillInteract)
+            {
                 _alerts.ClearAlert(uid, component.CuffedAlert);
+                RaiseLocalEvent(uid, new MoodRemoveEffectEvent("Handcuffed"));
+            }
             else
+            {
                 _alerts.ShowAlert(uid, component.CuffedAlert);
+                RaiseLocalEvent(uid, new MoodEffectEvent("Handcuffed"));
+            }
 
             var ev = new CuffedStateChangeEvent();
             RaiseLocalEvent(uid, ref ev);
@@ -472,8 +479,30 @@ namespace Content.Shared.Cuffs
 
             _container.Insert(handcuff, component.Container);
             UpdateHeldItems(target, handcuff, component);
+
+            // Sunrise-Start
+            var ev = new CuffedEvent(user, target);
+            RaiseLocalEvent(target, ref ev);
+            // Sunrise-End
+
             return true;
         }
+
+        // Sunrise-Start
+        public bool TryCuffingNow(EntityUid user, EntityUid target, EntityUid handcuff,
+            HandcuffComponent? handcuffComponent = null, CuffableComponent? cuffable = null)
+        {
+            if (!Resolve(handcuff, ref handcuffComponent) || !Resolve(target, ref cuffable, false))
+                return false;
+
+            if (!TryAddNewCuffs(target, user, handcuff, cuffable))
+                return false;
+
+            handcuffComponent.Used = true;
+            _audio.PlayPvs(handcuffComponent.EndCuffSound, handcuff);
+            return true;
+        }
+        // Sunrise-End
 
         /// <returns>False if the target entity isn't cuffable.</returns>
         public bool TryCuffing(EntityUid user, EntityUid target, EntityUid handcuff, HandcuffComponent? handcuffComponent = null, CuffableComponent? cuffable = null)

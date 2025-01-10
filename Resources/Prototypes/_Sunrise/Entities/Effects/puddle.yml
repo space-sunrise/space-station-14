@@ -1,0 +1,53 @@
+﻿- type: entity
+  name: Footstep
+  id: Footstep
+  save: false
+  description: Trace of liquid
+  components:
+  - type: Clickable
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepWater
+      params:
+        volume: 3
+  - type: Transform
+    noRot: false
+  - type: Sprite
+    drawdepth: FloorObjects
+    color: "#FFFFFF80"
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      slipFixture:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        mask:
+        - ItemMask
+        layer:
+        - SlipLayer
+        hard: false
+  - type: SolutionContainerManager
+    solutions:
+      step: { maxVol: 1 }
+  - type: Footprint
+    printType: Foot
+  - type: Puddle
+    solution: step
+    canSlow: false
+    canSlip: false
+  - type: Appearance
+  - type: TimedDespawn
+    lifetime: 360
+
+- type: entity
+  name: drag mark
+  parent: Footstep
+  id: DragMark
+  components:
+  - type: Footprint
+    printType: DragMark
+  - type: SolutionContainerManager
+    solutions:
+      step: { maxVol: 5 }

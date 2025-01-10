@@ -43,6 +43,12 @@ public sealed partial class AntagSelectionComponent : Component
     /// </summary>
     public HashSet<ICommonSession> SelectedSessions = new();
 
+    // Sunrise-Start
+    public bool UseSpawners;
+
+    public int SpawnersCount;
+    // Sunrise-End
+
     /// <summary>
     /// Locale id for the name of the antag.
     /// If this is set then the antag is listed in the round-end summary.
@@ -83,6 +89,17 @@ public partial struct AntagSelectionDefinition()
     /// </summary>
     [DataField]
     public int Max = 1;
+
+    // Sunrise-Start
+    [DataField]
+    public int MaxCommandStaff;
+
+    [DataField]
+    public bool PickCommandStaff;
+
+    [DataField]
+    public bool IgnoreCanBeAntag;
+    // Sunrise-End
 
     /// <summary>
     /// A range used to randomly select <see cref="Min"/>

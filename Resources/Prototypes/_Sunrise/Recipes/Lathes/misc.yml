@@ -1,0 +1,17 @@
+- type: latheRecipe
+  id: PrinterDocMachineCircuitboard
+  result: PrinterDocMachineCircuitboard
+  completetime: 4
+  materials:
+     Steel: 100
+     Glass: 900
+
+- type: latheRecipe
+  id: ClothingHeadHelmetPubgMore
+  result: ClothingHeadHelmetPubg
+  category: Weapons
+  completetime: 8
+  materials:
+    Steel: 6000
+    Glass: 3000
+    Plastic: 600

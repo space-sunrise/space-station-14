@@ -69,6 +69,13 @@
   - type: ToolRefinable
     refineResult:
     - id: SheetGlass1
+  - type: HolidayVisuals
+    holidays:
+      festive:
+      - WinterPresents
+  - type: HolidayRsiSwap
+    sprite:
+      festive: _Sunrise/Objects/Power/light_bulb_gift.rsi
 
 - type: entity
   parent: BaseLightbulb

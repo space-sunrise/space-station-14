@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Shared.FixedPoint;
+using Content.Shared.Store.Events;
 using Content.Shared.Store.Components;
 using Content.Shared.StoreDiscount.Components;
 using Robust.Shared.Prototypes;
@@ -174,6 +175,7 @@ public partial class ListingData : IEquatable<ListingData>
     /// The event that is broadcast when the listing is purchased.
     /// </summary>
     [DataField]
+    [NonSerialized] // Sunrise-Edit
     public object? ProductEvent;
 
     [DataField]

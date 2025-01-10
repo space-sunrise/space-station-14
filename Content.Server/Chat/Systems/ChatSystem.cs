@@ -1,6 +1,7 @@
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using Content.Server._Sunrise.Chat; //sunrise-edit
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
@@ -10,6 +11,7 @@ using Content.Server.Speech.Components;
 using Content.Server.Speech.EntitySystems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
@@ -21,7 +23,10 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Players;
 using Content.Shared.Players.RateLimiting;
+using Content.Shared.Popups;
 using Content.Shared.Radio;
+using Content.Shared.Speech;
+using Content.Shared.Sunrise.CollectiveMind;
 using Content.Shared.Whitelist;
 using Robust.Server.Player;
 using Robust.Shared.Audio;
@@ -60,11 +65,14 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly ReplacementAccentSystem _wordreplacement = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
+    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
 
-    public const int VoiceRange = 10; // how far voice goes in world units
-    public const int WhisperClearRange = 2; // how far whisper goes while still being understandable, in world units
-    public const int WhisperMuffledRange = 5; // how far whisper goes at all, in world units
-    public const string DefaultAnnouncementSound = "/Audio/Announcements/announce.ogg";
+    // Sunrise-TTS-Start: Moved from Server to Shared
+    // public const int VoiceRange = 10; // how far voice goes in world units
+    // public const int WhisperClearRange = 2; // how far whisper goes while still being understandable, in world units
+    // public const int WhisperMuffledRange = 5; // how far whisper goes at all, in world units
+    // Sunrise-TTS-End
+    public const string DefaultAnnouncementSound = "/Audio/_Sunrise/Announcements/announce_dig.ogg"; // Sunrise-edit
 
     private bool _loocEnabled = true;
     private bool _deadLoocEnabled;
@@ -145,9 +153,10 @@ public sealed partial class ChatSystem : SharedChatSystem
         IConsoleShell? shell = null,
         ICommonSession? player = null, string? nameOverride = null,
         bool checkRadioPrefix = true,
-        bool ignoreActionBlocker = false)
+        bool ignoreActionBlocker = false,
+        bool isFormatted = false) // sunrise-edit
     {
-        TrySendInGameICMessage(source, message, desiredType, hideChat ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal, hideLog, shell, player, nameOverride, checkRadioPrefix, ignoreActionBlocker);
+        TrySendInGameICMessage(source, message, desiredType, hideChat ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal, hideLog, shell, player, nameOverride, checkRadioPrefix, ignoreActionBlocker, isFormatted); //sunrise-edit
     }
 
     /// <summary>
@@ -171,7 +180,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         ICommonSession? player = null,
         string? nameOverride = null,
         bool checkRadioPrefix = true,
-        bool ignoreActionBlocker = false
+        bool ignoreActionBlocker = false,
+        bool isFormatted = false //sunrise-edit
         )
     {
         if (HasComp<GhostComponent>(source))
@@ -226,7 +236,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         // Was there an emote in the message? If so, send it.
         if (player != null && emoteStr != message && emoteStr != null)
         {
-            SendEntityEmote(source, emoteStr, range, nameOverride, ignoreActionBlocker);
+            SendEntityEmote(source, emoteStr, range, nameOverride, ignoreActionBlocker, isFormatted); //sunrise-edit
         }
 
         // This can happen if the entire string is sanitized out.
@@ -238,22 +248,33 @@ public sealed partial class ChatSystem : SharedChatSystem
         {
             if (TryProccessRadioMessage(source, message, out var modMessage, out var channel))
             {
-                SendEntityWhisper(source, modMessage, range, channel, nameOverride, hideLog, ignoreActionBlocker);
+                SendEntityWhisper(source, modMessage, range, channel, nameOverride, hideLog, ignoreActionBlocker, isFormatted); //sunrise-edit
                 return;
             }
         }
+
+        // Sunrise-Start
+        if (desiredType == InGameICChatType.CollectiveMind)
+        {
+            if (TryProccessCollectiveMindMessage(source, message, out var modMessage, out var channel))
+            {
+                SendCollectiveMindChat(source, modMessage, channel);
+                return;
+            }
+        }
+        // Sunrise-End
 
         // Otherwise, send whatever type.
         switch (desiredType)
         {
             case InGameICChatType.Speak:
-                SendEntitySpeak(source, message, range, nameOverride, hideLog, ignoreActionBlocker);
+                SendEntitySpeak(source, message, range, nameOverride, hideLog, ignoreActionBlocker, isFormatted); //sunrise-edit-hg
                 break;
             case InGameICChatType.Whisper:
-                SendEntityWhisper(source, message, range, null, nameOverride, hideLog, ignoreActionBlocker);
+                SendEntityWhisper(source, message, range, null, nameOverride, hideLog, ignoreActionBlocker, isFormatted); // sunrise-edit
                 break;
             case InGameICChatType.Emote:
-                SendEntityEmote(source, message, range, nameOverride, hideLog: hideLog, ignoreActionBlocker: ignoreActionBlocker);
+                SendEntityEmote(source, message, range, nameOverride, hideLog: hideLog, ignoreActionBlocker: ignoreActionBlocker, isFormatted: isFormatted); //sunrise-edit
                 break;
         }
     }
@@ -313,12 +334,15 @@ public sealed partial class ChatSystem : SharedChatSystem
     /// <param name="message">The contents of the message</param>
     /// <param name="sender">The sender (Communications Console in Communications Console Announcement)</param>
     /// <param name="playSound">Play the announcement sound</param>
+    /// <param name="playTts"></param>
     /// <param name="colorOverride">Optional color for the announcement message</param>
     public void DispatchGlobalAnnouncement(
         string message,
         string? sender = null,
-        bool playSound = true,
+        bool playDefault = true,
         SoundSpecifier? announcementSound = null,
+        bool playTts = true, // Sunrise-edit,
+        string? announceVoice = null,
         Color? colorOverride = null
         )
     {
@@ -326,10 +350,20 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message)));
         _chatManager.ChatMessageToAll(ChatChannel.Radio, message, wrappedMessage, default, false, true, colorOverride);
-        if (playSound)
+
+        // Sunrise-start
+        if (playDefault && announcementSound == null)
         {
-            _audio.PlayGlobal(announcementSound == null ? DefaultAnnouncementSound : _audio.GetSound(announcementSound), Filter.Broadcast(), true, AudioParams.Default.WithVolume(-2f));
+            announcementSound ??= new SoundPathSpecifier(DefaultAnnouncementSound);
         }
+
+        if (playTts)
+        {
+            var announcementEv = new AnnouncementSpokeEvent(Filter.Broadcast(), message, announcementSound, announceVoice);
+            RaiseLocalEvent(announcementEv);
+        }
+        // Sunrise-end
+
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Global station announcement from {sender}: {message}");
     }
 
@@ -348,7 +382,9 @@ public sealed partial class ChatSystem : SharedChatSystem
         string message,
         EntityUid? source = null,
         string? sender = null,
-        bool playSound = true,
+        bool playDefault = true, // Sunrise-edit
+        bool playTts = true, // Sunrise-edit
+        string? announceVoice = null,  // Sunrise-edit
         SoundSpecifier? announcementSound = null,
         Color? colorOverride = null)
     {
@@ -356,10 +392,15 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message)));
         _chatManager.ChatMessageToManyFiltered(filter, ChatChannel.Radio, message, wrappedMessage, source ?? default, false, true, colorOverride);
-        if (playSound)
+        // Sunrise-start
+        if (playDefault && announcementSound == null)
+            announcementSound = new SoundPathSpecifier(DefaultAnnouncementSound);
+
+        if (playTts)
         {
-            _audio.PlayGlobal(announcementSound?.ToString() ?? DefaultAnnouncementSound, filter, true, AudioParams.Default.WithVolume(-2f));
+            RaiseLocalEvent(new AnnouncementSpokeEvent(filter, message, announcementSound, announceVoice));
         }
+        // Sunrise-edit
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Station Announcement from {sender}: {message}");
     }
 
@@ -370,14 +411,18 @@ public sealed partial class ChatSystem : SharedChatSystem
     /// <param name="message">The contents of the message</param>
     /// <param name="sender">The sender (Communications Console in Communications Console Announcement)</param>
     /// <param name="playDefaultSound">Play the announcement sound</param>
+    /// <param name="playSound"></param>
+    /// <param name="playTts"></param>
     /// <param name="colorOverride">Optional color for the announcement message</param>
     public void DispatchStationAnnouncement(
         EntityUid source,
         string message,
         string? sender = null,
-        bool playDefaultSound = true,
-        SoundSpecifier? announcementSound = null,
-        Color? colorOverride = null)
+        bool playDefault = true, // Sunrise-edit
+        bool playTts = true, // Sunrise-edit
+        Color? colorOverride = null,
+        string? announceVoice = null,  // Sunrise-edit
+        SoundSpecifier? announcementSound = null)
     {
         sender ??= Loc.GetString("chat-manager-sender-announcement");
 
@@ -396,10 +441,15 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         _chatManager.ChatMessageToManyFiltered(filter, ChatChannel.Radio, message, wrappedMessage, source, false, true, colorOverride);
 
-        if (playDefaultSound)
+        // Sunrise-start
+        if (playDefault && announcementSound == null)
+            announcementSound = new SoundPathSpecifier(DefaultAnnouncementSound);
+
+        if (playTts)
         {
-            _audio.PlayGlobal(announcementSound?.ToString() ?? DefaultAnnouncementSound, filter, true, AudioParams.Default.WithVolume(-2f));
+            RaiseLocalEvent(new AnnouncementSpokeEvent(filter, message, announcementSound, announceVoice));
         }
+        // Sunrise-edit
 
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Station Announcement on {station} from {sender}: {message}");
     }
@@ -408,13 +458,78 @@ public sealed partial class ChatSystem : SharedChatSystem
 
     #region Private API
 
+    // Sunrise-Start
+    private void SendCollectiveMindChat(EntityUid source, string message, CollectiveMindPrototype? collectiveMind)
+    {
+        if (_mobStateSystem.IsDead(source))
+            return;
+
+        if (collectiveMind == null || message == "")
+            return;
+
+        if (!TryComp<CollectiveMindComponent>(source, out var sourseCollectiveMindComp))
+            return;
+
+        if (!sourseCollectiveMindComp.Minds.Contains(collectiveMind.ID))
+            return;
+
+        var clients = Filter.Empty();
+        var mindQuery = EntityQueryEnumerator<CollectiveMindComponent, ActorComponent>();
+        while (mindQuery.MoveNext(out var uid, out var collectMindComp, out var actorComp))
+        {
+            if (_mobStateSystem.IsDead(uid))
+                continue;
+
+            if (collectMindComp.Minds.Contains(collectiveMind.ID))
+            {
+                clients.AddPlayer(actorComp.PlayerSession);
+            }
+        }
+
+        var admins = _adminManager.ActiveAdmins
+            .Select(p => p.Channel);
+        string messageWrap;
+        string adminMessageWrap;
+
+        messageWrap = Loc.GetString("collective-mind-chat-wrap-message",
+            ("message", message),
+            ("channel", collectiveMind.LocalizedName));
+
+        adminMessageWrap = Loc.GetString("collective-mind-chat-wrap-message-admin",
+            ("source", source),
+            ("message", message),
+            ("channel", collectiveMind.LocalizedName));
+
+        _adminLogger.Add(LogType.Chat, LogImpact.Low, $"CollectiveMind chat from {ToPrettyString(source):Player}: {message}");
+
+        _chatManager.ChatMessageToManyFiltered(clients,
+            ChatChannel.CollectiveMind,
+            message,
+            messageWrap,
+            source,
+            false,
+            true,
+            collectiveMind.Color);
+
+        _chatManager.ChatMessageToMany(ChatChannel.CollectiveMind,
+            message,
+            adminMessageWrap,
+            source,
+            false,
+            true,
+            admins,
+            collectiveMind.Color);
+    }
+    // Sunrise-End
+
     private void SendEntitySpeak(
         EntityUid source,
         string originalMessage,
         ChatTransmitRange range,
         string? nameOverride,
         bool hideLog = false,
-        bool ignoreActionBlocker = false
+        bool ignoreActionBlocker = false,
+        bool isFormatted = false //sunrise-edit
         )
     {
         if (!_actionBlocker.CanSpeak(source) && !ignoreActionBlocker)
@@ -444,17 +559,17 @@ public sealed partial class ChatSystem : SharedChatSystem
         }
 
         name = FormattedMessage.EscapeText(name);
-
+        if (HasComp<CanFormatMessagesComponent>(source)) isFormatted = true; //sunrise-edit
         var wrappedMessage = Loc.GetString(speech.Bold ? "chat-manager-entity-say-bold-wrap-message" : "chat-manager-entity-say-wrap-message",
             ("entityName", name),
             ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
             ("fontType", speech.FontId),
             ("fontSize", speech.FontSize),
-            ("message", FormattedMessage.EscapeText(message)));
+            ("message", isFormatted ? message : FormattedMessage.EscapeText(message))); //sunrise-edit
 
         SendInVoiceRange(ChatChannel.Local, message, wrappedMessage, source, range);
 
-        var ev = new EntitySpokeEvent(source, message, null, null);
+        var ev = new EntitySpokeEvent(source, message, originalMessage, null, null);
         RaiseLocalEvent(source, ev, true);
 
         // To avoid logging any messages sent by entities that are not players, like vendors, cloning, etc.
@@ -487,7 +602,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         RadioChannelPrototype? channel,
         string? nameOverride,
         bool hideLog = false,
-        bool ignoreActionBlocker = false
+        bool ignoreActionBlocker = false,
+        bool isFormatted = false //sunrise-edit
         )
     {
         if (!_actionBlocker.CanSpeak(source) && !ignoreActionBlocker)
@@ -514,15 +630,15 @@ public sealed partial class ChatSystem : SharedChatSystem
             name = nameEv.VoiceName;
         }
         name = FormattedMessage.EscapeText(name);
-
+        if (HasComp<CanFormatMessagesComponent>(source)) isFormatted = true; //sunrise-edit
         var wrappedMessage = Loc.GetString("chat-manager-entity-whisper-wrap-message",
-            ("entityName", name), ("message", FormattedMessage.EscapeText(message)));
+            ("entityName", name), ("message", isFormatted ? message : FormattedMessage.EscapeText(message))); //sunrise-edit
 
         var wrappedobfuscatedMessage = Loc.GetString("chat-manager-entity-whisper-wrap-message",
-            ("entityName", nameIdentity), ("message", FormattedMessage.EscapeText(obfuscatedMessage)));
+            ("entityName", nameIdentity), ("message", isFormatted ? obfuscatedMessage : FormattedMessage.EscapeText(obfuscatedMessage))); //sunrise-edit
 
         var wrappedUnknownMessage = Loc.GetString("chat-manager-entity-whisper-unknown-wrap-message",
-            ("message", FormattedMessage.EscapeText(obfuscatedMessage)));
+            ("message", isFormatted ? obfuscatedMessage : FormattedMessage.EscapeText(obfuscatedMessage))); //sunrise-edit
 
 
         foreach (var (session, data) in GetRecipients(source, WhisperMuffledRange))
@@ -548,7 +664,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         _replay.RecordServerMessage(new ChatMessage(ChatChannel.Whisper, message, wrappedMessage, GetNetEntity(source), null, MessageRangeHideChatForReplay(range)));
 
-        var ev = new EntitySpokeEvent(source, message, channel, obfuscatedMessage);
+        var ev = new EntitySpokeEvent(source, message, originalMessage, channel, obfuscatedMessage);
         RaiseLocalEvent(source, ev, true);
         if (!hideLog)
             if (originalMessage == message)
@@ -577,7 +693,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         bool hideLog = false,
         bool checkEmote = true,
         bool ignoreActionBlocker = false,
-        NetUserId? author = null
+        NetUserId? author = null,
+        bool isFormatted = false //sunrise-edit
         )
     {
         if (!_actionBlocker.CanEmote(source) && !ignoreActionBlocker)
@@ -586,16 +703,16 @@ public sealed partial class ChatSystem : SharedChatSystem
         // get the entity's apparent name (if no override provided).
         var ent = Identity.Entity(source, EntityManager);
         string name = FormattedMessage.EscapeText(nameOverride ?? Name(ent));
-
+        if (HasComp<CanFormatMessagesComponent>(source)) isFormatted = true; //sunrise-edit
         // Emotes use Identity.Name, since it doesn't actually involve your voice at all.
         var wrappedMessage = Loc.GetString("chat-manager-entity-me-wrap-message",
-            ("entityName", name),
+            ("entityName", isFormatted ? "" : name), //sunrise-edit
             ("entity", ent),
-            ("message", FormattedMessage.RemoveMarkupOrThrow(action)));
+            ("message", isFormatted ? action : FormattedMessage.RemoveMarkupOrThrow(action)));
 
         if (checkEmote)
             TryEmoteChatInput(source, action);
-        SendInVoiceRange(ChatChannel.Emotes, action, wrappedMessage, source, range, author);
+        SendInVoiceRange(ChatChannel.Emotes, action, wrappedMessage, source, isFormatted ? ChatTransmitRange.HideChat : range, author); //sunrise-edit
         if (!hideLog)
             if (name != Name(source))
                 _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Emote from {ToPrettyString(source):user} as {name}: {action}");
@@ -810,7 +927,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     }
 
     [ValidatePrototypeId<ReplacementAccentPrototype>]
-    public const string ChatSanitize_Accent = "chatsanitize";
+    public const string ChatSanitize_Accent = "chatsanitize_sunrise"; // Sunrise-Edit
 
     public string SanitizeMessageReplaceWords(string message)
     {
@@ -944,7 +1061,9 @@ public sealed class EntitySpokeEvent : EntityEventArgs
 {
     public readonly EntityUid Source;
     public readonly string Message;
+    public readonly string OriginalMessage;
     public readonly string? ObfuscatedMessage; // not null if this was a whisper
+    public readonly bool IsRadio; // Sunrise-TTS
 
     /// <summary>
     ///     If the entity was trying to speak into a radio, this was the channel they were trying to access. If a radio
@@ -952,12 +1071,14 @@ public sealed class EntitySpokeEvent : EntityEventArgs
     /// </summary>
     public RadioChannelPrototype? Channel;
 
-    public EntitySpokeEvent(EntityUid source, string message, RadioChannelPrototype? channel, string? obfuscatedMessage)
+    public EntitySpokeEvent(EntityUid source, string message, string originalMessage, RadioChannelPrototype? channel, string? obfuscatedMessage)
     {
         Source = source;
         Message = message;
+        OriginalMessage = originalMessage; // Sunrise-TTS
         Channel = channel;
         ObfuscatedMessage = obfuscatedMessage;
+        IsRadio = channel != null; // Sunrise-TTS
     }
 }
 
@@ -969,7 +1090,8 @@ public enum InGameICChatType : byte
 {
     Speak,
     Emote,
-    Whisper
+    Whisper, // Sunrise-TTS
+    CollectiveMind, // Sunrise-Edit
 }
 
 /// <summary>
@@ -995,3 +1117,25 @@ public enum ChatTransmitRange : byte
     /// Ghosts can't hear or see it at all. Regular players can if in-range.
     NoGhosts
 }
+
+// Sunrise-TTS-Start
+public sealed class AnnouncementSpokeEvent(
+    Filter source,
+    string message,
+    SoundSpecifier? announcementSound,
+    string? announceVoice)
+    : EntityEventArgs
+{
+    public readonly Filter Source = source;
+    public readonly string Message = message;
+    public readonly string? AnnounceVoice = announceVoice;
+    public readonly SoundSpecifier? AnnouncementSound = announcementSound;
+}
+
+public sealed class RadioSpokeEvent(EntityUid source, string message, EntityUid[] receivers) : EntityEventArgs
+{
+    public readonly EntityUid Source = source;
+    public readonly string Message = message;
+    public readonly EntityUid[] Receivers = receivers;
+}
+// Sunrise-TTS-End

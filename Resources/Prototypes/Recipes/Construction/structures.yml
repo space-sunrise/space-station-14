@@ -1510,7 +1510,6 @@
   conditions:
     - !type:TileNotBlocked
 
-#conveyor
 - type: construction
   name: conveyor belt
   id: ConveyorBelt

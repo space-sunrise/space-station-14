@@ -1,0 +1,26 @@
+- type: speechSounds
+  id: Vulpkanin
+  saySound:
+    path: /Audio/_Sunrise/Voice/Talk/vulp.ogg
+  askSound:
+    path: /Audio/_Sunrise/Voice/Talk/vulp_ask.ogg
+  exclaimSound:
+    path: /Audio/_Sunrise/Voice/Talk/vulp_exclaim.ogg
+
+- type: speechSounds
+  id: Swine
+  saySound:
+    path: /Audio/_Sunrise/Voice/Talk/pig_say.ogg
+  askSound:
+    path: /Audio/_Sunrise/Voice/Talk/pig_ask.ogg
+  exclaimSound:
+    path: /Audio/_Sunrise/Voice/Talk/pig_exclaim.ogg
+    
+- type: speechSounds
+  id: BikeHorn
+  saySound:
+    path: /Audio/Items/bikehorn.ogg
+  askSound:
+    path: /Audio/Items/brokenbikehorn.ogg
+  exclaimSound:
+    path: /Audio/Items/desk_bell_ring.ogg

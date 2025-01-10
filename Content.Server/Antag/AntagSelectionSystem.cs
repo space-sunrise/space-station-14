@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Antag.Components;
 using Content.Server.Chat.Managers;
@@ -30,6 +31,10 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Shared.Roles;
+using Robust.Shared.Prototypes;
+using Content.Sunrise.Interfaces.Shared;
+using AddComponentSpecial = Content.Server.Jobs.AddComponentSpecial; // Sunrise-Sponsors
 
 namespace Content.Server.Antag;
 
@@ -46,6 +51,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
     [Dependency] private readonly RoleSystem _role = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
     // arbitrary random number to give late joining some mild interest.
     public const float LateJoinRandomChance = 0.5f;
@@ -64,6 +71,8 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         SubscribeLocalEvent<RulePlayerSpawningEvent>(OnPlayerSpawning);
         SubscribeLocalEvent<RulePlayerJobsAssignedEvent>(OnJobsAssigned);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnSpawnComplete);
+
+        IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
     }
 
     private void OnTakeGhostRole(Entity<GhostRoleAntagSpawnerComponent> ent, ref TakeGhostRoleEvent args)
@@ -122,6 +131,11 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         if (!args.LateJoin)
             return;
 
+        // Sunrise-Start
+        if (!args.CanBeAntag)
+            return;
+        // Sunrise-End
+
         // TODO: this really doesn't handle multiple latejoin definitions well
         // eventually this should probably store the players per definition with some kind of unique identifier.
         // something to figure out later.
@@ -146,6 +160,29 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
             if (!TryGetNextAvailableDefinition((uid, antag), out var def))
                 continue;
+
+            // Sunrise-Start
+            if (_jobs.IsCommandStaff(args.Player))
+            {
+                if (!def.Value.PickCommandStaff)
+                    continue;
+
+                var selectedCommandStaff = 0;
+
+                foreach (var compSelectedSession in antag.SelectedSessions)
+                {
+                    if (_jobs.IsCommandStaff(compSelectedSession))
+                    {
+                        selectedCommandStaff += 1;
+                    }
+                }
+
+                if (def.Value.MaxCommandStaff != 0 && selectedCommandStaff >= def.Value.MaxCommandStaff)
+                {
+                    continue;
+                }
+            }
+            // Sunrise-End
 
             if (TryMakeAntag((uid, antag), args.Player, def.Value))
                 break;
@@ -207,6 +244,10 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         }
 
         ent.Comp.SelectionsComplete = true;
+        // Sunrise-Start
+        var selectionCompleteEv = new AntagSelectionCompleteEvent(ent);
+        RaiseLocalEvent(ent, ref selectionCompleteEv, true);
+        // Sunrise-End
     }
 
     /// <summary>
@@ -241,11 +282,33 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
             var session = (ICommonSession?)null;
             if (picking)
             {
-                if (!playerPool.TryPickAndTake(RobustRandom, out session) && noSpawner)
-                {
-                    Log.Warning($"Couldn't pick a player for {ToPrettyString(ent):rule}, no longer choosing antags for this definition");
+                // Sunrise-Sponsors-Start
+                if (!TryPickAntagSession(playerPool.List, def.PrefRoles, out session))
                     break;
+                // Sunrise-Sponsors-End
+
+                // Sunrise-Start
+                if (_jobs.IsCommandStaff(session))
+                {
+                    if (!def.PickCommandStaff)
+                        continue;
+
+                    var selectedCommandStaff = 0;
+
+                    foreach (var compSelectedSession in ent.Comp.SelectedSessions)
+                    {
+                        if (_jobs.IsCommandStaff(compSelectedSession))
+                        {
+                            selectedCommandStaff += 1;
+                        }
+                    }
+
+                    if (def.MaxCommandStaff != 0 && selectedCommandStaff >= def.MaxCommandStaff)
+                    {
+                        continue;
+                    }
                 }
+                // Sunrise-End
 
                 if (session != null && ent.Comp.SelectedSessions.Contains(session))
                 {
@@ -256,6 +319,38 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
             MakeAntag(ent, session, def);
         }
+    }
+
+    public bool TryPickAntagSession(List<List<ICommonSession>> orderedPools, List<ProtoId<AntagPrototype>> prefRoles, [NotNullWhen(true)] out ICommonSession? session)
+    {
+        session = null;
+
+        foreach (var prefRole in prefRoles)
+        {
+            foreach (var commonSessions in orderedPools[..2])
+            {
+                if (_sponsorsManager == null)
+                    continue;
+
+                var prioritySessions = _sponsorsManager.PickPrioritySessions(commonSessions, prefRole);
+                if (prioritySessions.Count == 0)
+                    continue;
+
+                session = _random.PickAndTake(prioritySessions);
+                return true;
+            }
+        }
+
+        foreach (var pool in orderedPools)
+        {
+            if (pool.Count == 0)
+                continue;
+
+            session = _random.PickAndTake(pool);
+            break;
+        }
+
+        return session != null;
     }
 
     /// <summary>
@@ -333,6 +428,10 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
             spawnerComp.Rule = ent;
             spawnerComp.Definition = def;
+            // Sunrise-Start
+            ent.Comp.UseSpawners = true;
+            ent.Comp.SpawnersCount += 1;
+            // Sunrise-End
             return;
         }
 
@@ -437,7 +536,7 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
         }
 
         // todo: expand this to allow for more fine antag-selection logic for game rules.
-        if (!_jobs.CanBeAntag(session))
+        if (!_jobs.CanBeAntag(session) && !def.IgnoreCanBeAntag)
             return false;
 
         return true;
@@ -516,3 +615,7 @@ public record struct AntagSelectLocationEvent(ICommonSession? Session, Entity<An
 /// </summary>
 [ByRefEvent]
 public readonly record struct AfterAntagEntitySelectedEvent(ICommonSession? Session, EntityUid EntityUid, Entity<AntagSelectionComponent> GameRule, AntagSelectionDefinition Def);
+// Sunrise-Start
+[ByRefEvent]
+public readonly record struct AntagSelectionCompleteEvent(Entity<AntagSelectionComponent> GameRule);
+// Sunrise-End

@@ -453,15 +453,16 @@
   - type: PresetIdCard
     job: Visitor
 
-- type: entity
-  parent: IDCardStandard
-  id: BrigmedicIDCard
-  name: brigmedic ID card
-  components:
-  - type: Sprite
-    layers:
-    - state: default
-    - state: idbrigmedic
+# Move to _Sunrise
+#- type: entity
+#  parent: IDCardStandard
+#  id: BrigmedicIDCard
+#  name: brigmedic ID card
+#  components:
+#  - type: Sprite
+#    layers:
+#    - state: default
+#    - state: idbrigmedic
 
 - type: entity
   parent: IDCardStandard
@@ -475,7 +476,21 @@
   - type: Item
     heldPrefix: blue
   - type: PresetIdCard
-    job: CentralCommandOfficial
+    job: CentCommOfficial # Sunrise-Edit
+
+- type: entity  # Sunrise-Start
+  parent: IDCardStandard
+  id: CentcomOperatorIDCard
+  name: command operator ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: centcom
+    - state: idcentcom
+  - type: Item
+    heldPrefix: blue
+  - type: PresetIdCard
+    job: CentCommOperator # Sunrise-end
 
 - type: entity
   parent: IDCardStandard
@@ -586,6 +601,7 @@
   components:
   - type: PresetIdCard
     job: Passenger
+    setAccess: false
   - type: Access
     tags:
     - Maintenance
@@ -611,6 +627,12 @@
         type: AgentIDCardBoundUserInterface
       enum.ChameleonUiKey.Key:
         type: ChameleonBoundUserInterface
+  # Sunrise-Start
+  - type: Biocode
+    factions:
+    - Syndicate
+    - Thief
+  # Sunrise-End
 
 - type: entity
   name: passenger ID card
@@ -759,6 +781,8 @@
     layers:
     - state: default
     - state: idseniorengineer
+  - type: PresetIdCard  # Sunrise-Senior
+    job: SeniorEngineer  # Sunrise-Senior
 
 - type: entity
   parent: ResearchIDCard
@@ -769,6 +793,8 @@
     layers:
     - state: default
     - state: idseniorresearcher
+  - type: PresetIdCard  # Sunrise-Senior
+    job: SeniorResearcher  # Sunrise-Senior
 
 - type: entity
   parent: MedicalIDCard
@@ -779,6 +805,8 @@
     layers:
     - state: default
     - state: idseniorphysician
+  - type: PresetIdCard  # Sunrise-Senior
+    job: SeniorPhysician  # Sunrise-Senior
 
 - type: entity
   parent: SecurityIDCard
@@ -789,6 +817,8 @@
     layers:
     - state: default
     - state: idseniorofficer
+  - type: PresetIdCard  # Sunrise-Senior
+    job: SeniorOfficer  # Sunrise-Senior
 
 - type: entity
   parent: IDCardStandard

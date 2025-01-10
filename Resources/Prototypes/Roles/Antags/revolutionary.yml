@@ -5,7 +5,14 @@
   setPreference: true
   playTimeTracker: AntagHeadRevolutionary
   objective: roles-antag-rev-head-objective
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 36000 # 10h # Sunrise-RoleTime
   guides: [ Revolutionaries ]
+  # Sunrise-Edit
+  previewIcon:
+    sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
+    state: head_rev
 
 - type: antag
   id: Rev
@@ -22,3 +29,4 @@
     back:
     - Flash
     - ClothingEyesGlassesSunglasses
+    - FlippoLighterSunriseGonzo  # Sunrise-edit

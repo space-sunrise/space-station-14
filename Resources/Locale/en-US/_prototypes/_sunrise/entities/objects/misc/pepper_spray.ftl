@@ -1,0 +1,10 @@
+ent-BasePepperSpray = pepper spray
+    .desc = It's a canister with a very corrosive liquid inside.
+ent-PepperSprayBottleRed = { ent-BasePepperSpray }
+    .desc = { ent-BasePepperSpray.desc }
+ent-PepperSprayBottleGreen = { ent-BasePepperSpray }
+    .desc = { ent-BasePepperSpray.desc }
+ent-PepperSprayBottleBlue = { ent-BasePepperSpray }
+    .desc = { ent-BasePepperSpray.desc }
+ent-PepperSpray = pepper spray
+    .desc = { ent-Vapor.desc }

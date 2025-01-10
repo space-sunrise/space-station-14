@@ -1,0 +1,216 @@
+# © SUNRISE, An EULA/CLA with a hosting restriction, full text: https://github.com/space-sunrise/space-station-14/blob/master/CLA.txt
+- type: entity
+  id: BasePredatorOrganUnGibbable
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Species/Predator/organs.rsi
+  - type: Organ
+  - type: Food
+  - type: Extractable
+    grindableSolutionName: organ
+  - type: SolutionContainerManager
+    solutions:
+      organ:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: FluorosulfuricAcidPredator
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+      - people
+  - type: Tag
+    tags:
+      - Meat
+
+- type: entity
+  id: BasePredatorOrgan
+  parent: BasePredatorOrganUnGibbable
+  abstract: true
+  components:
+  - type: Gibbable
+
+- type: entity
+  id: OrganPredatorBrain
+  parent: [BasePredatorOrgan, BaseOrganBrain]
+  name: brain
+  description: The nexus of the alien mind. Thoughts you don't want to know.
+  components:
+  - type: Sprite
+    state: brain
+  - type: Organ
+  - type: Input
+    context: "ghost"
+  - type: Brain
+  - type: InputMover
+  - type: Examiner
+  - type: BlockMovement
+  - type: BadFood
+  - type: Tag
+    tags:
+      - Meat
+  - type: SolutionContainerManager
+    solutions:
+      organ:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: GreyMatter
+          Quantity: 5
+  - type: FlavorProfile
+    flavors:
+    - people
+
+- type: entity
+  id: OrganPredatorTongue
+  parent: [BasePredatorOrgan, BaseOrganTongue]
+  name: tongue
+  description: Long and flexible.
+  components:
+  - type: Sprite
+    state: tongue
+
+- type: entity
+  id: OrganPredatorAppendix
+  parent: [BasePredatorOrgan, BaseOrganAppendix]
+  name: appendix
+  description: An evolutionary greeting from the past.
+  components:
+  - type: Sprite
+    layers:
+    - state: appendix
+    - state: appendix-inflamed
+      visible: false
+
+- type: entity
+  id: OrganPredatorEars
+  parent: [BasePredatorOrgan, BaseOrganEars]
+  name: ears
+  description: Ultra-sensitive locators. Hear your fears.
+  components:
+  - type: Sprite
+    state: ears
+
+- type: entity
+  id: OrganPredatorLungs
+  parent: [BasePredatorOrgan, BaseOrganLungs]
+  name: lungs
+  description: They filter oxygen from the atmosphere and channel it into the bloodstream, where it is used as an electron carrier.
+  components:
+  - type: Sprite
+    layers:
+      - state: lung-l
+      - state: lung-r
+  - type: Lung
+  - type: Metabolizer
+    removeEmpty: true
+    solutionOnBody: false
+    solution: "Lung"
+    metabolizerTypes: [ Human ]
+    groups:
+    - id: Gas
+      rateModifier: 100.0
+  - type: SolutionContainerManager
+    solutions:
+      organ:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+      Lung:
+        maxVol: 100.0
+        canReact: false
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: FluorosulfuricAcidPredator
+          Quantity: 5
+
+- type: entity
+  id: OrganPredatorHeart
+  parent: [BasePredatorOrgan, BaseOrganHeart]
+  name: predator heart
+  description: A powerful organ that pumps acidic blood through tough tissues and provides incredible stamina and strength to every predator.
+  components:
+  - type: Sprite
+    state: heart-on
+  - type: Metabolizer
+    maxReagents: 2
+    metabolizerTypes: [Human]
+    groups:
+    - id: Medicine
+    - id: Poison
+    - id: Narcotic
+
+- type: entity
+  id: OrganPredatorStomach
+  parent: [BasePredatorOrgan, BaseOrganStomach]
+  name: stomach
+  description: A voracious pit.
+  components:
+  - type: Sprite
+    state: stomach
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 50
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: FluorosulfuricAcidPredator
+          Quantity: 5
+  - type: Stomach
+  - type: Metabolizer
+    maxReagents: 3
+    metabolizerTypes: [Human]
+    groups:
+    - id: Food
+    - id: Drink
+
+- type: entity
+  id: OrganPredatorLiver
+  parent: [BasePredatorOrgan, BaseOrganLiver]
+  name: liver
+  description: A powerful detoxifier that neutralizes dangerous substances with ease.
+  components:
+  - type: Sprite
+    state: liver
+  - type: Metabolizer
+    maxReagents: 1
+    metabolizerTypes: [Human]
+    groups:
+    - id: Alcohol
+      rateModifier: 0.1
+
+- type: entity
+  id: OrganPredatorKidneys
+  parent: [BasePredatorOrgan, BaseOrganKidneys]
+  name: kidneys
+  description: Paired filters, ruthlessly taking out anything superfluous.
+  components:
+  - type: Sprite
+    layers:
+      - state: kidney-l
+      - state: kidney-r
+  - type: Metabolizer
+    maxReagents: 5
+    metabolizerTypes: [Human]
+    removeEmpty: true
+
+- type: entity
+  id: OrganPredatorEyes
+  parent: [BasePredatorOrgan, BaseOrganEyes]
+  name: eyes
+  description: I see YOU!
+  components:
+  - type: Sprite
+    layers:
+      - state: eyeball-l
+      - state: eyeball-r

@@ -19,31 +19,33 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTLeader
     back: ClothingBackpackERTLeader
-    shoes: ClothingShoesBootsCombatFilled
-    head: ClothingHeadHelmetERTLeader
+    shoes: ClothingShoesBootsMagSec # Sunrise-edit
+    head: ClothingHeadEVAHelmetERTLeader  # Sunrise-edit
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesCombat
-    outerClothing: ClothingOuterArmorBasicSlim
+    outerClothing: ClothingOuterArmorAmberCom # Sunrise-edit
     id: ERTLeaderPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
     pocket1: WeaponPistolN1984
-    pocket2: FlashlightSeclite
+    pocket2: HandheldCriminalRecordsMonitorUnpowered # Sunrise-edit
   storage:
     back:
-    - WeaponDisabler
+    - WeaponEnergyGunPistolSecurity # Sunrise-edit
+    - PortableSurveillanceCameraMonitorUnpowered # Sunrise-edit
     - MedicatedSuture
     - RegenerativeMesh
-    - BoxZiptie
+    #- BoxZiptie # Sunrise-edit
     - CrowbarRed
     - MagazineMagnum
+    - ERTDirectivesCircuitBoard # Sunrise-edit
 
 - type: startingGear
   id: ERTLeaderGearEVA
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTLeader
     back: ClothingBackpackERTLeader
-    shoes: ClothingShoesBootsMagAdv
+    shoes: ClothingShoesBootsMagCombat # Sunrise-edit
     mask: ClothingMaskGasERT
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesCombat
@@ -52,15 +54,17 @@
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
     pocket1: WeaponPistolN1984
-    pocket2: FlashlightSeclite
+    pocket2: HandheldCriminalRecordsMonitorUnpowered # Sunrise-edit
   storage:
     back:
-    - WeaponDisabler
+    - WeaponEnergyGunPistolSecurity # Sunrise-edit
     - MedicatedSuture
     - RegenerativeMesh
-    - BoxZiptie
+    #- BoxZiptie # Sunrise-edit
     - CrowbarRed
+    - PortableSurveillanceCameraMonitorUnpowered # Sunrise-edit
     - MagazineMagnum
+    - ERTDirectivesCircuitBoard # Sunrise-edit
 
 - type: startingGear
   id: ERTLeaderGearEVALecter
@@ -84,9 +88,10 @@
     - WeaponDisabler
     - MedicatedSuture
     - RegenerativeMesh
-    - BoxZiptie
+    #- BoxZiptie # Sunrise-edit
     - CrowbarRed
     - MagazineMagnum
+    - ERTDirectivesCircuitBoard # Sunrise-edit
 
 # Chaplain
 - type: job
@@ -113,27 +118,25 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTChaplain
     back: ClothingBackpackERTChaplain
-    shoes: ClothingShoesLeather
-    head: ClothingHeadHatFez
-    eyes: ClothingEyesGlasses
+    shoes: ClothingShoesBootsMagSec # Sunrise-edit
+    head: ClothingHeadEVAHelmetERTChaplain # Sunrise-edit
+    eyes: ClothingEyesHudMedSec # Sunrise-edit
     neck: ClothingNeckStoleChaplain
     gloves: ClothingHandsGlovesCombat
-    outerClothing: ClothingOuterArmorBasicSlim
+    outerClothing: ClothingOuterArmorAmberChap # Sunrise-edit
     id: ERTChaplainPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltStorageWaistbag
-    pocket1: Flare
+    pocket1: CrowbarRed # Sunrise-edit
     pocket2: DrinkWaterBottleFull
   storage:
     back:
     - BoxCandle
-    - BoxBodyBag
-    - DrinkWaterMelonJuiceJug
+    #-BoxBodyBag # Sunrise-edit
     - Lantern
     - Lantern
     - Bible
-    - CrowbarRed
-    - FoodBakedBunHotX
+    - MegaSprayBottle # Sunrise-edit
     - FoodBakedBunHotX
     - FoodBakedBunHotX
     - FoodBakedBunHotX
@@ -146,25 +149,23 @@
     back: ClothingBackpackERTChaplain
     shoes: ClothingShoesBootsMagAdv
     mask: ClothingMaskGasERT
-    eyes: ClothingEyesGlasses
+    eyes: ClothingEyesHudMedSec # Sunrise-edit
     neck: ClothingNeckStoleChaplain
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTChaplain
     id: ERTChaplainPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltStorageWaistbag
-    pocket1: Flare
+    pocket1: CrowbarRed # Sunrise-edit
     pocket2: DrinkWaterBottleFull
   storage:
     back:
     - BoxCandle
-    - BoxBodyBag
-    - DrinkWaterMelonJuiceJug
+    #-BoxBodyBag # Sunrise-edit
     - Lantern
     - Lantern
     - Bible
-    - CrowbarRed
-    - FoodBakedBunHotX
+    - MegaSprayBottle # Sunrise-edit
     - FoodBakedBunHotX
     - FoodBakedBunHotX
     - FoodBakedBunHotX
@@ -191,25 +192,25 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTEngineer
     back: ClothingBackpackERTEngineer
-    shoes: ClothingShoesBootsWork
-    head: ClothingHeadHelmetERTEngineer
-    eyes: ClothingEyesGlassesMeson
+    shoes: ClothingShoesBootsMagCombat # Sunrise-edit
+    head: ClothingHeadEVAHelmetERTEngineer # Sunrise-edit
+    eyes: ClothingEyesHudDiagnosticERT # Sunrise-edit
     gloves: ClothingHandsGlovesCombat
-    outerClothing: ClothingOuterArmorBasicSlim
+    outerClothing: ClothingOuterArmorAmberEng
     id: ERTEngineerPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltChiefEngineerFilled
-    pocket1: Flare
-    pocket2: GasAnalyzer
+    pocket1: WeaponEnergyGunPistolSecurity # Sunrise-edit
+    pocket2: AtmosAlertsMonitorUnpowered # Sunrise-edit
   storage:
     back:
-    - trayScanner
-    - RCD
-    - RCDAmmo
-    - RCDAmmo
-    - CableMVStack
-    - CableHVStack
-    - CableApcStack
+    # - trayScanner # Sunrise-edit
+    - RCDRecharging
+    #- RCDAmmo  # Sunrise-edit
+    #- RCDAmmo  # Sunrise-edit
+    #- CableMVStack # Sunrise-edit
+    #- CableHVStack # Sunrise-edit
+    #- CableApcStack  # Sunrise-edit
     - SheetPlasteel
     - SheetSteel
     - SheetGlass
@@ -221,23 +222,23 @@
     back: ClothingBackpackERTEngineer
     shoes: ClothingShoesBootsMagAdv
     mask: ClothingMaskGasERT
-    eyes: ClothingEyesGlassesMeson
+    eyes: ClothingEyesHudDiagnosticERT # Sunrise-edit
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTEngineer
     id: ERTEngineerPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltChiefEngineerFilled
-    pocket1: Flare
-    pocket2: GasAnalyzer
+    pocket1: WeaponEnergyGunPistolSecurity # Sunrise-edit
+    pocket2: AtmosAlertsMonitorUnpowered # Sunrise-edit
   storage:
     back:
-    - trayScanner
-    - RCD
-    - RCDAmmo
-    - RCDAmmo
-    - CableMVStack
-    - CableHVStack
-    - CableApcStack
+    # - trayScanner # Sunrise-edit
+    - RCDRecharging
+    #- RCDAmmo  # Sunrise-edit
+    #- RCDAmmo  # Sunrise-edit
+    #- CableMVStack # Sunrise-edit
+    #- CableHVStack # Sunrise-edit
+    #- CableApcStack  # Sunrise-edit
     - SheetPlasteel
     - SheetSteel
     - SheetGlass
@@ -263,31 +264,31 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTSecurity
     back: ClothingBackpackERTSecurity
-    shoes: ClothingShoesBootsCombatFilled
-    head: ClothingHeadHelmetERTSecurity
+    shoes: ClothingShoesBootsMagSec # Sunrise-edit
+    head: ClothingHeadEVAHelmetERTSecurity  # Sunrise-edit
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesCombat
-    outerClothing: ClothingOuterArmorBasicSlim
+    outerClothing: ClothingOuterArmorAmberSec
     id: ERTSecurityPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPistolMk58
-    pocket2: FlashlightSeclite
+    pocket1: WeaponPistolN1984 # Sunrise-edit
+    pocket2: MagazineMagnum # Sunrise-edit
   storage:
     back:
-    - WeaponDisabler
+    - WeaponEnergyGunPistolSecurity # Sunrise-edit
     - MedicatedSuture
     - RegenerativeMesh
-    - BoxZiptie
+    #- BoxZiptie # Sunrise-edit
     - CrowbarRed
-    - MagazinePistol
+    - MagazineMagnum # Sunrise-edit
 
 - type: startingGear
   id: ERTSecurityGearEVA
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTSecurity
     back: ClothingBackpackERTSecurity
-    shoes: ClothingShoesBootsMag
+    shoes: ClothingShoesBootsMagCombat
     mask: ClothingMaskGasERT
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesCombat
@@ -295,23 +296,23 @@
     id: ERTSecurityPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponPistolMk58
-    pocket2: FlashlightSeclite
+    pocket1: WeaponPistolN1984 # Sunrise-edit
+    pocket2: MagazineMagnum # Sunrise-edit
   storage:
     back:
-    - WeaponDisabler
+    - WeaponEnergyGunPistolSecurity # Sunrise-edit
     - MedicatedSuture
     - RegenerativeMesh
-    - BoxZiptie
+    #- BoxZiptie # Sunrise-edit
     - CrowbarRed
-    - MagazinePistol
+    - MagazineMagnum # Sunrise-edit
 
 - type: startingGear
   id: ERTSecurityGearEVALecter
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTSecurity
     back: ClothingBackpackERTSecurity
-    shoes: ClothingShoesBootsMag
+    shoes: ClothingShoesBootsMagCombat
     mask: ClothingMaskGasERT
     eyes: ClothingEyesGlassesSecurity
     gloves: ClothingHandsGlovesCombat
@@ -328,7 +329,7 @@
     - WeaponDisabler
     - MedicatedSuture
     - RegenerativeMesh
-    - BoxZiptie
+    #- BoxZiptie # Sunrise-edit
     - CrowbarRed
     - MagazinePistol
 
@@ -353,46 +354,55 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTMedic
     back: ClothingBackpackERTMedical
-    shoes: ClothingShoesBootsCombatFilled
-    head: ClothingHeadHelmetERTMedic
-    eyes: ClothingEyesHudMedical
-    gloves: ClothingHandsGlovesNitrile
-    outerClothing: ClothingOuterArmorBasicSlim
+    shoes: ClothingShoesBootsMagSec # Sunrise-edit
+    head: ClothingHeadEVAHelmetERTMedic # Sunrise-edit
+    eyes: ClothingEyesHudMedSec # Sunrise-edit
+    gloves: ClothingHandsGlovesCombat # Sunrise-edit
+    outerClothing: ClothingOuterArmorAmberMed # Sunrise-edit
     id: ERTMedicPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltMedicalFilled
-    pocket1: Flare
+    pocket1: WeaponEnergyGunPistolSecurity # Sunrise-edit
+    pocket2: HandheldCrewMonitor # Sunrise-edit
   storage:
     back:
     - Hypospray
-    - MedkitAdvancedFilled
+    #- MedkitAdvancedFilled # Sunrise-edit
     - CrowbarRed
+    - LauncherSyringePistol
     - OmnizineChemistryBottle
     - EpinephrineChemistryBottle
     - EpinephrineChemistryBottle
+    - DefibrillatorCompact # Sunrise-edit
+    - MedkitCombatFilled # Sunrise-edit
+    - MedkitCombatFilled # Sunrise-edit
 
 - type: startingGear
   id: ERTMedicalGearEVA
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTMedic
     back: ClothingBackpackERTMedical
-    shoes: ClothingShoesBootsMag
+    shoes: ClothingShoesBootsMagCombat
     mask: ClothingMaskGasERT
-    eyes: ClothingEyesHudMedical
-    gloves: ClothingHandsGlovesNitrile
+    eyes: ClothingEyesHudMedSec # Sunrise-edit
+    gloves: ClothingHandsGlovesCombat # Sunrise-edit
     outerClothing: ClothingOuterHardsuitERTMedical
     id: ERTMedicPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltMedicalFilled
-    pocket1: Flare
+    pocket1: WeaponEnergyGunPistolSecurity # Sunrise-edit
+    pocket2: HandheldCrewMonitor # Sunrise-edit
   storage:
     back:
     - Hypospray
-    - MedkitAdvancedFilled
+    #- MedkitAdvancedFilled # Sunrise-edit
     - CrowbarRed
     - OmnizineChemistryBottle
     - EpinephrineChemistryBottle
     - EpinephrineChemistryBottle
+    - DefibrillatorCompact # Sunrise-edit
+    - MedkitCombatFilled # Sunrise-edit
+    - MedkitCombatFilled # Sunrise-edit
 
 # Janitor
 - type: job
@@ -416,20 +426,22 @@
     jumpsuit: ClothingUniformJumpsuitERTJanitor
     back: ClothingBackpackERTJanitor
     shoes: ClothingShoesGaloshes
-    head: ClothingHeadHelmetERTJanitor
-    gloves: ClothingHandsGlovesColorPurple
-    outerClothing: ClothingOuterArmorBasicSlim
+    head: ClothingHeadEVAHelmetERTJanitor # Sunrise-edit
+    eyes: ClothingEyesGlassesSecurity # Sunrise-edit
+    gloves: ClothingHandsGlovesCombat # Sunrise-edit
+    outerClothing: ClothingOuterArmorAmberJan
     id: ERTJanitorPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltJanitorFilled
-    pocket1: Flare
+    pocket1: WeaponEnergyGunPistolSecurity # Sunrise-edit
+    pocket2: CrowbarRed # Sunrise-edit
   storage:
     back:
     - LightReplacer
     - BoxLightMixed
-    - BoxLightMixed
-    - Soap
-    - CrowbarRed
+    #- BoxLightMixed # Sunrise-edit
+    #- Soap # Sunrise-edit
+    #- CrowbarRed # Sunrise-edit
     - AdvMopItem
 
 - type: startingGear
@@ -437,19 +449,22 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTJanitor
     back: ClothingBackpackERTJanitor
-    shoes: ClothingShoesBootsMag
+    shoes: ClothingShoesBootsMagCombat
     mask: ClothingMaskGasERT
-    gloves: ClothingHandsGlovesColorPurple
+    eyes: ClothingEyesGlassesSecurity # Sunrise-edit
+    gloves: ClothingHandsGlovesCombat # Sunrise-edit
     outerClothing: ClothingOuterHardsuitERTJanitor
     id: ERTJanitorPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltJanitorFilled
-    pocket1: Flare
+    pocket1: WeaponEnergyGunPistolSecurity # Sunrise-edit
+    pocket2: CrowbarRed # Sunrise-edit
   storage:
     back:
     - LightReplacer
     - BoxLightMixed
-    - BoxLightMixed
-    - Soap
+    #- BoxLightMixed # Sunrise-edit
+    #- Soap # Sunrise-edit
+    #- CrowbarRed # Sunrise-edit
     - CrowbarRed
     - AdvMopItem

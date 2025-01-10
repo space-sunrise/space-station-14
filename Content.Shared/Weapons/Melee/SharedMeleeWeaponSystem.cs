@@ -14,6 +14,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Item.ItemToggle.Components;
+using Content.Shared.Mech.Components;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.Weapons.Melee.Components;
@@ -21,6 +22,7 @@ using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
+using Content.Shared.Tag; //Sunrise-edit
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
@@ -47,6 +49,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     [Dependency] private   readonly SharedPhysicsSystem     _physics         = default!;
     [Dependency] private   readonly IPrototypeManager       _protoManager    = default!;
     [Dependency] private   readonly StaminaSystem           _stamina         = default!;
+    [Dependency] private readonly TagSystem _tagSystem = default!; // Sunrise-edit
 
     private const int AttackMask = (int) (CollisionGroup.MobMask | CollisionGroup.Opaque);
 
@@ -59,6 +62,8 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     /// If an attack is released within this buffer it's assumed to be full damage.
     /// </summary>
     public const float GracePeriod = 0.05f;
+
+    public const string IgnoreMeleeTag = "IgnoreMelee";
 
     public override void Initialize()
     {
@@ -187,16 +192,13 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
     private void OnHeavyAttack(HeavyAttackEvent msg, EntitySessionEventArgs args)
     {
-        if (args.SenderSession.AttachedEntity is not {} user)
+        if (args.SenderSession.AttachedEntity == null
+            || HasComp<MechPilotComponent>(args.SenderSession.AttachedEntity)
+            || !TryGetWeapon(args.SenderSession.AttachedEntity.Value, out var weaponUid, out var weapon)
+            || weaponUid != GetEntity(msg.Weapon))
             return;
 
-        if (!TryGetWeapon(user, out var weaponUid, out var weapon) ||
-            weaponUid != GetEntity(msg.Weapon))
-        {
-            return;
-        }
-
-        AttemptAttack(user, weaponUid, weapon, msg, args.SenderSession);
+        AttemptAttack(args.SenderSession.AttachedEntity.Value, weaponUid, weapon, msg, args.SenderSession);
     }
 
     private void OnDisarmAttack(DisarmAttackEvent msg, EntitySessionEventArgs args)
@@ -564,6 +566,8 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         var damage = GetDamage(meleeUid, user, component);
         var entities = GetEntityList(ev.Entities);
 
+        entities = entities.Where(e => !_tagSystem.HasTag(e, "IgnoreMelee")).ToList(); //Sunrise-edit
+
         if (entities.Count == 0)
         {
             if (meleeUid == user)
@@ -620,6 +624,11 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             if (entity == user ||
                 !damageQuery.HasComponent(entity))
                 continue;
+
+            //Sunrise-start
+            if (_tagSystem.HasTag(entity, "IgnoreMelee"))
+                continue;
+            //Sunrise-end
 
             targets.Add(entity);
         }
@@ -720,13 +729,9 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         for (var i = 0; i < increments; i++)
         {
             var castAngle = new Angle(baseAngle + increment * i);
-            var res = _physics.IntersectRay(mapId,
-                new CollisionRay(position,
-                    castAngle.ToWorldVec(),
-                    AttackMask),
-                range,
-                ignore,
-                false)
+            var ray = new CollisionRay(position, castAngle.ToWorldVec(), AttackMask);
+            var res = _physics.IntersectRay(mapId, ray, range, ignore, false)
+                .Where(x => !_tagSystem.HasTag(x.HitEntity, IgnoreMeleeTag))
                 .ToList();
 
             if (res.Count != 0)
@@ -754,7 +759,10 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
     public static string? GetHighestDamageSound(DamageSpecifier modifiedDamage, IPrototypeManager protoManager)
     {
-        var groups = modifiedDamage.GetDamagePerGroup(protoManager);
+        // Sunrise edit start
+        // Сука, какие группы
+        var groups = modifiedDamage.DamageDict;
+        // Sunrise edit end
 
         // Use group if it's exclusive, otherwise fall back to type.
         if (groups.Count == 1)

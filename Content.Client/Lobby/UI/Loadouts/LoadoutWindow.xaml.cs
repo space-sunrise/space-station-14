@@ -7,6 +7,7 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Client.Lobby.UI.Loadouts;
 
@@ -20,7 +21,7 @@ public sealed partial class LoadoutWindow : FancyWindow
 
     public HumanoidCharacterProfile Profile;
 
-    public LoadoutWindow(HumanoidCharacterProfile profile, RoleLoadout loadout, RoleLoadoutPrototype proto, ICommonSession session, IDependencyCollection collection)
+    public LoadoutWindow(HumanoidCharacterProfile profile, RoleLoadout loadout, RoleLoadoutPrototype proto, ICommonSession session, IDependencyCollection collection, ISharedSponsorsManager? sponsorsManager)  // Sunrise-Sponsors
     {
         RobustXamlLoader.Load(this);
         Profile = profile;
@@ -42,7 +43,7 @@ public sealed partial class LoadoutWindow : FancyWindow
                 if (groupProto.Hidden)
                     continue;
 
-                var container = new LoadoutGroupContainer(profile, loadout, protoManager.Index(group), session, collection);
+                var container = new LoadoutGroupContainer(profile, loadout, protoManager.Index(group), session, collection, sponsorsManager);  // Sunrise-Sponsors
                 LoadoutGroupsContainer.AddTab(container, Loc.GetString(groupProto.Name));
                 _groups.Add(container);
 

@@ -1,3 +1,4 @@
+using Content.Shared._Sunrise.Mood;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction.Components;
@@ -93,8 +94,22 @@ public sealed class InteractionPopupSystem : EntitySystem
 
         if (_random.Prob(component.SuccessChance))
         {
+            // Sunrise Edit
             if (component.InteractSuccessString != null)
+            {
                 msg = Loc.GetString(component.InteractSuccessString, ("target", Identity.Entity(uid, EntityManager))); // Success message (localized).
+                if (component.InteractSuccessString == "hugging-success-generic")
+                {
+                    var moodEffectEvent = new MoodEffectEvent("BeingHugged");
+                    RaiseLocalEvent(target, moodEffectEvent);
+                }
+                else if (component.InteractSuccessString.Contains("petting-success-"))
+                {
+                    var moodEffectEvent = new MoodEffectEvent("PetAnimal");
+                    RaiseLocalEvent(user, moodEffectEvent);
+                }
+            }
+            // Sunrise Edit
 
             if (component.InteractSuccessSound != null)
                 sfx = component.InteractSuccessSound;

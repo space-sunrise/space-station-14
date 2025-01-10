@@ -126,6 +126,24 @@
     },
     {
       "name": "syndicate"
+    },
+    {
+      "name": "icon-combat"
+    },
+    {
+      "name": "icon-stuh"
+    },
+    {
+      "name": "icon-peace"
+    },
+    {
+      "name": "icon-syndicate-treatment"
+    },
+    {
+      "name": "icon-NT"
+    },
+    {
+      "name": "NT"
     }
   ]
 }

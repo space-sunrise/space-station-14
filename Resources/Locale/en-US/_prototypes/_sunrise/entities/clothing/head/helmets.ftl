@@ -1,0 +1,19 @@
+ent-ClothingHeadHelmetSecurityMedic = security medic helmet
+    .desc = A standard issue combat helmet for security medics. Has decent tensile strength and armor. Keep your head down.
+ent-ClothingHeadHelmetPilot = security pilot's helmet
+    .desc = A thick pilot's helmet that provides good head protection.
+ent-ClothingHeadHelmetPubg = Altyn
+    .desc = A fortified helmet used to suppress and incite riots.
+ent-ClothingHeadEVAHelmetERTLeader = ERT leader EVA helmet
+    .desc = An in-atmosphere helmet worn by the leader of a Nanotrasen Emergency Response Team Amber.
+ent-ClothingHeadEVAHelmetERTChaplain = ERT chaplain EVA helmet
+    .desc = An in-atmosphere helmet worn by the chaplain of a Nanotrasen Emergency Response Team Amber.
+ent-ClothingHeadEVAHelmetERTSecurity = ERT security EVA helmet
+    .desc = An in-atmosphere helmet worn by the security of a Nanotrasen Emergency Response Team Amber.
+ent-ClothingHeadEVAHelmetERTMedic = ERT medic EVA helmet
+    .desc = An in-atmosphere helmet worn by the medic of a Nanotrasen Emergency Response Team Amber.
+ent-ClothingHeadEVAHelmetERTEngineer = ERT engineer EVA helmet
+    .desc = An in-atmosphere helmet worn by the engineer of a Nanotrasen Emergency Response Team Amber.
+ent-ClothingHeadEVAHelmetERTJanitor = ERT janitor EVA helmet
+    .desc = An in-atmosphere helmet worn by the janitor of a Nanotrasen Emergency Response Team Amber.
+

@@ -202,3 +202,18 @@
     polymorphSound: /Audio/Magic/ethereal_enter.ogg
     exitPolymorphSound: /Audio/Magic/ethereal_exit.ogg
     duration: 3
+
+#Vampire
+- type: polymorph
+  id: VampireMouse
+  configuration:
+    entity: MobMouse
+    revertOnDeath: true
+    revertOnCrit: true
+
+- type: polymorph
+  id: VampireBat
+  configuration:
+    entity: MobBat
+    revertOnDeath: true
+    revertOnCrit: true

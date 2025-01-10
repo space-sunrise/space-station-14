@@ -1,4 +1,5 @@
 using System.Threading;
+using Content.Server._Sunrise.TransitHub;
 using Content.Server.Administration.Logs;
 using Content.Server.AlertLevel;
 using Content.Shared.CCVar;
@@ -16,6 +17,7 @@ using Content.Server.Station.Systems;
 using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.GameTicking;
+using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
@@ -105,15 +107,14 @@ namespace Content.Server.RoundEnd
             return targetGrid == null ? null : Transform(targetGrid.Value).MapUid;
         }
 
-        /// <summary>
-        ///     Attempts to get centcomm's MapUid
-        /// </summary>
-        public EntityUid? GetCentcomm()
+        // Sunrise-Start
+        public EntityUid? GetTransitHub()
         {
-            AllEntityQuery<StationCentcommComponent>().MoveNext(out var centcomm);
+            AllEntityQuery<StationTransitHubComponent>().MoveNext(out var transitHub);
 
-            return centcomm == null ? null : centcomm.MapEntity;
+            return transitHub == null ? null : transitHub.MapEntity;
         }
+        // Sunrise-End
 
         public bool CanCallOrRecall()
         {
@@ -186,9 +187,7 @@ namespace Content.Server.RoundEnd
                 Loc.GetString(name),
                 false,
                 null,
-                Color.Gold);
-
-            _audio.PlayGlobal("/Audio/Announcements/shuttlecalled.ogg", Filter.Broadcast(), true);
+                colorOverride: Color.Gold); // Sunrise-TTS
 
             LastCountdownStart = _gameTiming.CurTime;
             ExpectedCountdownEnd = _gameTiming.CurTime + countdownTime;
@@ -205,7 +204,7 @@ namespace Content.Server.RoundEnd
                 var payload = new NetworkPayload
                 {
                     [ShuttleTimerMasks.ShuttleMap] = shuttle,
-                    [ShuttleTimerMasks.SourceMap] = GetCentcomm(),
+                    [ShuttleTimerMasks.SourceMap] = GetTransitHub(), // Sunrise-Edit
                     [ShuttleTimerMasks.DestMap] = GetStation(),
                     [ShuttleTimerMasks.ShuttleTime] = countdownTime,
                     [ShuttleTimerMasks.SourceTime] = countdownTime + TimeSpan.FromSeconds(_shuttle.TransitTime + _cfg.GetCVar(CCVars.EmergencyShuttleDockTime)),
@@ -236,8 +235,6 @@ namespace Content.Server.RoundEnd
             _chatSystem.DispatchGlobalAnnouncement(Loc.GetString("round-end-system-shuttle-recalled-announcement"),
                 Loc.GetString("Station"), false, colorOverride: Color.Gold);
 
-            _audio.PlayGlobal("/Audio/Announcements/shuttlerecalled.ogg", Filter.Broadcast(), true);
-
             LastCountdownStart = null;
             ExpectedCountdownEnd = null;
             ActivateCooldown();
@@ -251,7 +248,7 @@ namespace Content.Server.RoundEnd
                 var payload = new NetworkPayload
                 {
                     [ShuttleTimerMasks.ShuttleMap] = shuttle,
-                    [ShuttleTimerMasks.SourceMap] = GetCentcomm(),
+                    [ShuttleTimerMasks.SourceMap] = GetTransitHub(), // Sunrsie-Edit
                     [ShuttleTimerMasks.DestMap] = GetStation(),
                     [ShuttleTimerMasks.ShuttleTime] = zero,
                     [ShuttleTimerMasks.SourceTime] = zero,
@@ -358,14 +355,24 @@ namespace Content.Server.RoundEnd
             {
                 if (!_shuttle.EmergencyShuttleArrived && ExpectedCountdownEnd is null)
                 {
+                    _autoCalledBefore = true; // Move before call RequestRoundEnd to play correct announcement sound type
                     RequestRoundEnd(null, false, "round-end-system-shuttle-auto-called-announcement");
-                    _autoCalledBefore = true;
                 }
 
                 // Always reset auto-call in case of a recall.
                 SetAutoCallTime();
             }
         }
+
+        // Sunrise-start
+        public TimeSpan TimeToCallShuttle()
+        {
+            var autoCalledBefore = _autoCalledBefore
+                ? _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallExtensionTime)
+                : _cfg.GetCVar(CCVars.EmergencyShuttleAutoCallTime);
+            return AutoCallStartTime + TimeSpan.FromMinutes(autoCalledBefore);
+        }
+        // Sunrise-end
     }
 
     public sealed class RoundEndSystemChangedEvent : EntityEventArgs

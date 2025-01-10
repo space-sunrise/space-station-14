@@ -1,0 +1,56 @@
+﻿- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesAerostatic
+  name: aerostatic gloves
+  description: Breathable red gloves for expert handling of a pen and notebook.
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Clothing/Hands/Gloves/kim.rsi
+    - type: Clothing
+      sprite: _Sunrise/Clothing/Hands/Gloves/kim.rsi
+    - type: Insulated
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesCentcomNaval
+  name: nanotrasen naval gloves
+  description: A high quality pair of thick gloves covered in gold stitching, given to Nanotrasen's Naval Commanders.
+  components:
+    - type: Sprite
+      sprite: _Sunrise/Clothing/Hands/Gloves/centcom_naval.rsi
+    - type: Clothing
+      sprite: _Sunrise/Clothing/Hands/Gloves/centcom_naval.rsi
+    - type: Insulated
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesLeatherHoS
+  name: leather gloves
+  description: Stylish black leather gloves.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Hands/Gloves/hos.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Hands/Gloves/hos.rsi
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesChristmas
+  name: christmas gloves
+  description: Stylish Christmas leather gloves.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Hands/Gloves/christmas_gloves.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Hands/Gloves/christmas_gloves.rsi
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesChristmasLong
+  name: christmas gloves long
+  description: Stylish Christmas long leather gloves.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Hands/Gloves/christmas_gloves_long.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Hands/Gloves/christmas_gloves_long.rsi

@@ -1226,6 +1226,31 @@
       board: [ DoorElectronicsExternal ]
 
 - type: entity
+  parent: AirlockExternalGlassShuttleArrivals
+  id: AirlockExternalGlassShuttleArrivalsLocked
+  suffix: External, Arrivals, Glass, Docking, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsExternal ]
+
+- type: entity
+  parent: AirlockExternalGlassShuttleArrivals
+  id: AirlockExternalGlassShuttleArrivalsLockedCentComm
+  suffix: External, Arrivals, Glass, Docking, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsCentralCommand ]
+  - type: Airlock
+    safety: false
+  - type: Door
+    forcedCrushClose: true
+    crushDamage:
+      types:
+        Blunt: 10 # А вот нехуй.
+
+- type: entity
   parent: AirlockGlassShuttle
   id: AirlockExternalGlassShuttleEscape
   suffix: External, Escape 3x4, Glass, Docking
@@ -1278,11 +1303,11 @@
 
 #Airtight hatch
 
-- type: entity
-  parent: AirlockHatch
-  id: AirlockHatchSyndicate
-  suffix: Syndicate, Locked
-  components:
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsSyndicateAgent ]
+#- type: entity edited by Sunrise, look _Sunrise/Entityes/Structures/Doors/
+#  parent: AirlockHatch
+#  id: AirlockHatchSyndicate
+#  suffix: Syndicate, Locked
+#  components:
+#  - type: ContainerFill
+#    containers:
+#      board: [ DoorElectronicsSyndicateAgent ]

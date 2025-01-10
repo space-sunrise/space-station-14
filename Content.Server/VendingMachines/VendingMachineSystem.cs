@@ -285,7 +285,7 @@ namespace Content.Server.VendingMachines
             vendComponent.ThrowNextItem = throwItem;
 
             if (TryComp(uid, out SpeakOnUIClosedComponent? speakComponent))
-                _speakOnUIClosed.TrySetFlag((uid, speakComponent));
+                _speakOnUIClosed.TrySetFlag(uid, speakComponent);
 
             entry.Amount--;
             Dirty(uid, vendComponent);

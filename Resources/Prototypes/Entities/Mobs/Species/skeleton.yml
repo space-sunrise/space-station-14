@@ -109,6 +109,9 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+  # Sunrise edit ;3
+  - type: FootprintEmitter
+  # Sunrise edit end 0_0
 
 - type: entity
   parent: BaseSpeciesDummy

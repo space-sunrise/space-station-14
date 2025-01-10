@@ -44,7 +44,7 @@
       tags:
         - FootstepSound
     - type: HitscanBatteryAmmoProvider
-      proto: RedLightLaser
+      proto: BulletRedLightLaser # Sunrise-Edit
       fireCost: 50
     - type: BatterySelfRecharger
       autoRecharge: true

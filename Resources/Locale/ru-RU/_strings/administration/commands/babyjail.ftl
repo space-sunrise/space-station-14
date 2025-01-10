@@ -1,0 +1,16 @@
+cmd-babyjail-desc = Переключает режим "детского сада", который устанавливает более строгие ограничения на тех, кто может подключаться к серверу.
+cmd-babyjail-help = Использование: babyjail
+babyjail-command-enabled = Режим "детского сада" включен.
+babyjail-command-disabled = Режим "детского сада" отключен.
+cmd-babyjail_show_reason-desc = Переключает отображение причины, по которой режим "детского сада" блокирует подключение клиентов.
+cmd-babyjail_show_reason-help = Использование: babyjail_show_reason
+babyjail-command-show-reason-enabled = Режим "детского сада" теперь будет показывать причину блокировки подключения пользователям.
+babyjail-command-show-reason-disabled = Режим "детского сада" больше не будет показывать причину блокировки подключения пользователям.
+cmd-babyjail_max_account_age-desc = Получает или устанавливает максимальный возраст аккаунта в минутах, чтобы аккаунт мог подключиться при включенном режиме "детского сада".
+cmd-babyjail_max_account_age-help = Использование: babyjail_max_account_age <минуты>
+babyjail-command-max-account-age-is = Максимальный возраст аккаунта для режима "детского сада" составляет { $minutes } минут.
+babyjail-command-max-account-age-set = Установлен максимальный возраст аккаунта для режима "детского сада" в { $minutes } минут.
+cmd-babyjail_max_overall_minutes-desc = Получает или устанавливает максимальное общее время игры в минутах, чтобы аккаунт мог подключиться при включенном режиме "детского сада".
+cmd-babyjail_max_overall_minutes-help = Использование: babyjail_max_overall_minutes <минуты>
+babyjail-command-max-overall-minutes-is = Максимальное общее время игры для режима "детского сада" составляет { $minutes } минут.
+babyjail-command-max-overall-minutes-set = Установлено максимальное общее время игры для режима "детского сада" в { $minutes } минут.

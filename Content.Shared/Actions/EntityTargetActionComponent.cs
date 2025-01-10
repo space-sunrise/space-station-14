@@ -36,10 +36,12 @@ public sealed class EntityTargetActionComponentState : BaseActionComponentState
 {
     public EntityWhitelist? Whitelist;
     public bool CanTargetSelf;
+    public bool IgnoreContainer; // Sunrise-Edit
 
     public EntityTargetActionComponentState(EntityTargetActionComponent component, IEntityManager entManager) : base(component, entManager)
     {
         Whitelist = component.Whitelist;
         CanTargetSelf = component.CanTargetSelf;
+        IgnoreContainer = component.IgnoreContainer; // Sunrise-Edit
     }
 }

@@ -1,0 +1,17 @@
+{
+    "version": 1,
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "license": "CLA",
+    "copyright": "SUNRISE",
+    "states": [
+        {
+            "name": "icon"
+        },
+        {
+            "name": "monitor"
+        }
+    ]
+}

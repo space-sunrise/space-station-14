@@ -4,6 +4,8 @@ using Content.Shared.StatusIcon;
 using Content.Shared.StatusIcon.Components;
 using Content.Shared.Stealth.Components;
 using Content.Shared.Whitelist;
+using Content.Shared.Administration.Managers; // Sunrise-Edit
+using Content.Shared.Administration; // Sunrise-Edit
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Configuration;
@@ -19,6 +21,7 @@ public sealed class StatusIconSystem : SharedStatusIconSystem
     [Dependency] private readonly IOverlayManager _overlay = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
+    [Dependency] private readonly ISharedAdminManager _adminManager = default!; // Sunrise-Edit
 
     private bool _globalEnabled;
     private bool _localEnabled;
@@ -71,13 +74,19 @@ public sealed class StatusIconSystem : SharedStatusIconSystem
     public bool IsVisible(Entity<MetaDataComponent> ent, StatusIconData data)
     {
         var viewer = _playerManager.LocalSession?.AttachedEntity;
+        // Sunrise-Edit-Start
+        if (viewer == null)
+            return false;
+        // Sunrise-Edit-End
 
         // Always show our icons to our entity
         if (viewer == ent.Owner)
             return true;
 
-        if (data.VisibleToGhosts && HasComp<GhostComponent>(viewer))
+        // Sunrise-Edit-Start
+        if (data is FactionIconPrototype && HasComp<GhostComponent>(viewer) && _adminManager.HasAdminFlag(viewer.Value, AdminFlags.Admin))
             return true;
+        // Sunrise-Edit-End
 
         if (data.HideInContainer && (ent.Comp.Flags & MetaDataFlags.InContainer) != 0)
             return false;
@@ -88,6 +97,10 @@ public sealed class StatusIconSystem : SharedStatusIconSystem
         if (data.ShowTo != null && !_entityWhitelist.IsValid(data.ShowTo, viewer))
             return false;
 
+        // Sunrise-Edit-Start
+        if (HasComp<GhostComponent>(viewer))
+            return data.VisibleToGhosts;
+        // Sunrise-Edit-End
         return true;
     }
 }

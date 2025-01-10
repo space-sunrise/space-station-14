@@ -11,7 +11,7 @@
     mayTransfer: true
     whitelist:
       tags:
-        - Grenade
+        - ArtilleryShell #Sunrise-edit
     capacity: 5
     soundRack:
       path: /Audio/Weapons/Guns/Bolt/lmg_bolt_closed.ogg
@@ -52,7 +52,7 @@
   parent: BaseMagazineGrenade
   components:
   - type: BallisticAmmoProvider
-    proto: GrenadeFrag
+    proto: ShellFragArtillery #Sunrise-edit
 
 - type: entity
   id: MagazineGrenadeEMP
@@ -60,7 +60,7 @@
   parent: BaseMagazineGrenade
   components:
   - type: BallisticAmmoProvider
-    proto: GrenadeEMP
+    proto: ShellEMPArtillery #Sunrise-edit
 
 - type: entity
   id: MagazineGrenadeFlash
@@ -68,7 +68,7 @@
   parent: BaseMagazineGrenade
   components:
   - type: BallisticAmmoProvider
-    proto: GrenadeFlash
+    proto: ShellFlashArtillery #Sunrise-edit
 
 - type: entity
   id: MagazineGrenadeBlast
@@ -76,7 +76,7 @@
   parent: BaseMagazineGrenade
   components:
   - type: BallisticAmmoProvider
-    proto: GrenadeBlast
+    proto: ShellBlastArtillery #Sunrise-edit
 
 - type: entity
   id: MagazineGrenadeBaton
@@ -84,4 +84,4 @@
   parent: BaseMagazineGrenade
   components:
   - type: BallisticAmmoProvider
-    proto: GrenadeBaton
+    proto: ShellBatonArtillery #Sunrise-edit

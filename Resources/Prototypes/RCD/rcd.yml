@@ -168,7 +168,7 @@
   cost: 4
   delay: 4
   collisionMask: FullTileMask
-  rotation: Camera
+  rotation: User
   fx: EffectRCDConstruct4
   
 - type: rcd
@@ -180,7 +180,7 @@
   cost: 4
   delay: 4
   collisionMask: FullTileMask
-  rotation: Camera
+  rotation: User
   fx: EffectRCDConstruct4
   
 - type: rcd

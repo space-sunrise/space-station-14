@@ -67,11 +67,11 @@
 #i omitted the steps involving inserting machine parts because
 #currently mechs don't support upgrading. add them back in once that's squared away.
 
-      - component: PowerCell
-        name: power cell
+      - tag: PowerCage
+        name: step-powercage-name
         store: battery-container
         icon:
-          sprite: Objects/Power/power_cells.rsi
+          sprite: Objects/Power/power_cages.rsi
           state: small
         completed:
         - !type:VisualizerDataInt

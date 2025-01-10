@@ -19,7 +19,7 @@
     - state: overlay_null
       map: [ "overlay" ]
   - type: Paper
-    contentSize: 12000
+    contentSize: 15000 #Sunrise-edit
   - type: ActivatableUI
     key: enum.PaperUiKey.Key
     requiresComplex: false

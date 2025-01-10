@@ -63,6 +63,21 @@
   - type: Tag
     tags:
     - BypassInteractionRangeChecks
+  - type: InteractionPopup
+    successChance: 1.0
+    interactSuccessString: petting-success-cat
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Animals/cat_meow.ogg
+  - type: Pullable
+  # Sunrise-Start
+  - type: UserInterface
+    interfaces:
+      enum.GhostThemeUiKey.Key:
+        type: GhostThemeBoundUserInterface
+        requireInputValidation: false
+  # Sunrise-End
 
 # proto for player ghosts specifically
 - type: entity

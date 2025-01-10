@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.EUI;
+using Content.Server.GameTicking;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Ghost.Roles.Events;
 using Content.Shared.Ghost.Roles.Raffles;
@@ -33,7 +34,9 @@ using Content.Server.Popups;
 using Content.Shared.Verbs;
 using Robust.Shared.Collections;
 using Content.Shared.Ghost.Roles.Components;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Roles.Jobs;
+using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Server.Ghost.Roles;
 
@@ -52,6 +55,10 @@ public sealed class GhostRoleSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
+
+    private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
     private uint _nextRoleIdentifier;
     private bool _needsUpdateGhostRoleCount = true;
@@ -90,6 +97,8 @@ public sealed class GhostRoleSystem : EntitySystem
         SubscribeLocalEvent<GhostRoleMobSpawnerComponent, GetVerbsEvent<Verb>>(OnVerb);
         SubscribeLocalEvent<GhostRoleMobSpawnerComponent, GhostRoleRadioMessage>(OnGhostRoleRadioMessage);
         _playerManager.PlayerStatusChanged += PlayerStatusChanged;
+
+        IoCManager.Instance!.TryResolveType(out _sponsorsManager); // Sunrise-Sponsors
     }
 
     private void OnMobStateChanged(Entity<GhostTakeoverAvailableComponent> component, ref MobStateChangedEvent args)
@@ -126,8 +135,13 @@ public sealed class GhostRoleSystem : EntitySystem
 
     public void OpenEui(ICommonSession session)
     {
-        if (session.AttachedEntity is not { Valid: true } attached ||
-            !EntityManager.HasComponent<GhostComponent>(attached))
+        // Sunrise-Start
+        if (!_gameTicker.PlayerGameStatuses.TryGetValue(session.UserId, out var status))
+            return;
+        // Sunrise-End
+
+        if ((session.AttachedEntity is not { Valid: true } attached ||
+             !EntityManager.HasComponent<GhostComponent>(attached)) && status != PlayerGameStatus.NotReadyToPlay) // Sunrise-Edit
             return;
 
         if (_openUis.ContainsKey(session))
@@ -245,9 +259,28 @@ public sealed class GhostRoleSystem : EntitySystem
             var foundWinner = false;
             var deciderPrototype = _prototype.Index(ghostRole.RaffleConfig.Decider);
 
+            // Sunrise-Sponsors-Start
+            var priorityMembers = new HashSet<ICommonSession>();
+            if (_sponsorsManager != null)
+            {
+                foreach (var member in raffle.CurrentMembers)
+                {
+                    if (!_sponsorsManager.TryGetPriorityGhostRoles(member.UserId, out var priorityGhostRoles))
+                        continue;
+
+                    if (priorityGhostRoles.Contains(meta.EntityPrototype!.ID))
+                    {
+                        priorityMembers.Add(member);
+                    }
+                }
+            }
+
+            var participants = priorityMembers.Count > 0 ? priorityMembers : raffle.CurrentMembers;
+            // Sunrise-Sponsors-End
+
             // use the ghost role's chosen winner picker to find a winner
             deciderPrototype.Decider.PickWinner(
-                raffle.CurrentMembers.AsEnumerable(),
+                participants.AsEnumerable(), // Sunrise-Sponsors
                 session =>
                 {
                     var success = TryTakeover(session, raffle.Identifier);
@@ -275,8 +308,13 @@ public sealed class GhostRoleSystem : EntitySystem
         if (player.Status != SessionStatus.InGame)
             return false;
 
+        // Sunrise-Start
+        if (!_gameTicker.PlayerGameStatuses.TryGetValue(player.UserId, out var status))
+            return false;
+        // Sunrise-End
+
         // can't win if you are no longer a ghost (e.g. if you returned to your body)
-        if (player.AttachedEntity == null || !HasComp<GhostComponent>(player.AttachedEntity))
+        if ((player.AttachedEntity == null || !HasComp<GhostComponent>(player.AttachedEntity)) && status != PlayerGameStatus.NotReadyToPlay) // Sunrise-Edit
             return false;
 
         if (Takeover(player, identifier))
@@ -480,6 +518,11 @@ public sealed class GhostRoleSystem : EntitySystem
         if (!_ghostRoles.TryGetValue(identifier, out var role))
             return false;
 
+        // Sunrise-Start
+        if (_gameTicker.PlayerGameStatuses.TryGetValue(player.UserId, out var status) && status == PlayerGameStatus.NotReadyToPlay)
+            _gameTicker.PlayerJoinGame(player);
+        // Sunrise-End
+
         var ev = new TakeGhostRoleEvent(player);
         RaiseLocalEvent(role, ref ev);
 
@@ -548,6 +591,7 @@ public sealed class GhostRoleSystem : EntitySystem
             if (metaQuery.GetComponent(uid).EntityPaused)
                 continue;
 
+            var prototypeId = metaQuery.GetComponent(uid).EntityPrototype!.ID; // Sunrise-Sponsors
 
             var kind = GhostRoleKind.FirstComeFirstServe;
             GhostRoleRaffleComponent? raffle = null;
@@ -574,6 +618,7 @@ public sealed class GhostRoleSystem : EntitySystem
             roles.Add(new GhostRoleInfo
             {
                 Identifier = id,
+                PrototypeId = prototypeId, // Sunrise-Sponsors
                 Name = role.RoleName,
                 Description = role.RoleDescription,
                 Rules = role.RoleRules,
@@ -625,6 +670,11 @@ public sealed class GhostRoleSystem : EntitySystem
         // Avoid re-registering it for duplicate entries and potential exceptions.
         if (!ghostRole.ReregisterOnGhost || component.LifeStage > ComponentLifeStage.Running)
             return;
+
+        // Sunrise-Start
+        if (!_mobState.IsAlive(uid))
+            return;
+        // Sunrise-End
 
         ghostRole.Taken = false;
         RegisterGhostRole((uid, ghostRole));

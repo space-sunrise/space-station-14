@@ -1,0 +1,25 @@
+- type: entity
+  abstract: true
+  parent: BaseObjective
+  id: BasePlanetPrisonerObjective
+  components:
+  - type: Objective
+    issuer: syndicate
+  - type: RoleRequirement
+    roles:
+      mindRoles:
+      - PlanetPrisonerRole
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: [BasePlanetPrisonerObjective, BaseLivingObjective]
+  id: PlanetPrisonerEscapeObjective
+  name: Escape from planet prison
+  description: You need to get out of the containment complex and run as far away as possible, you may be able to escape.
+  components:
+  - type: Objective
+    difficulty: 1.0
+    icon:
+      sprite: Structures/Furniture/chairs.rsi
+      state: shuttle
+  - type: EscapePrisonCondition

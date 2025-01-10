@@ -30,6 +30,17 @@
   - type: Appearance
   - type: StaticPrice
     price: 500
+  # Sunrise start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: LasersPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: LasersDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: LasersDrop
+  # Sunrise end
 
 - type: entity
   id: BaseWeaponPowerCell
@@ -65,6 +76,17 @@
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
+  # Sunrise start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: LasersPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: LasersDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: LasersDrop
+  # Sunrise end
 
 - type: entity
   id: BaseWeaponBatterySmall
@@ -138,7 +160,7 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: HitscanBatteryAmmoProvider
-    proto: RedMediumLaser
+    proto: BulletRedMediumLaser # Sunrise-Edit
     fireCost: 62.5
   - type: MagazineVisuals
     magState: mag
@@ -163,7 +185,7 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/makeshift.rsi
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
+    proto: BulletRedLaser # Sunrise-Edit
     fireCost: 62.5
   - type: Battery
     maxCharge: 500
@@ -218,8 +240,9 @@
     selectedMode: SemiAuto
     availableModes:
     - SemiAuto
+  - type: EmpImmune  # Sunrise-EMP
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaserPractice
+    proto: BulletRedLaserPractice # Sunrise-Edit
     fireCost: 62.5
   - type: StaticPrice
     price: 300
@@ -233,7 +256,7 @@
   - type: StaticPrice
     price: 420
   - type: HitscanBatteryAmmoProvider
-    proto: RedLaser
+    proto: BulletRedLaser # Sunrise-Edit
     fireCost: 62.5
 
 - type: entity
@@ -258,12 +281,24 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: EmpImmune  # Sunrise-EMP
   - type: HitscanBatteryAmmoProvider
-    proto: Pulse
+    proto: BulletPulse # Sunrise-Edit
     fireCost: 200
   - type: Battery
     maxCharge: 2000
     startingCharge: 2000
+  # Sunrise start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: PulsePickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: PulseDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: PulseDrop
+  # Sunrise end
 
 - type: entity
   name: pulse carbine
@@ -289,12 +324,24 @@
       - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: EmpImmune  # Sunrise-EMP
   - type: HitscanBatteryAmmoProvider
-    proto: Pulse
-    fireCost: 200
+    proto: BulletPulse # Sunrise-Edit
+    fireCost: 100 # Sunrise-Edit
   - type: Battery
     maxCharge: 5000
     startingCharge: 5000
+  # Sunrise start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: PulsePickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: PulseDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: PulseDrop
+  # Sunrise end
 
 - type: entity
   name: pulse rifle
@@ -316,12 +363,24 @@
     fireRate: 1.5
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: EmpImmune
   - type: HitscanBatteryAmmoProvider
-    proto: Pulse
+    proto: BulletPulse # Sunrise-Edit
     fireCost: 100
   - type: Battery
     maxCharge: 40000
     startingCharge: 40000
+  # Sunrise start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: PulsePickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: PulseDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: PulseDrop
+  # Sunrise end
 
 - type: entity
   name: laser cannon
@@ -344,7 +403,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: RedHeavyLaser
+    proto: BulletRedHeavyLaser # Sunrise-Edit
     fireCost: 100
 
 - type: entity
@@ -436,7 +495,7 @@
     fireRate: 2
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: HitscanBatteryAmmoProvider # Sunrise-Edit
     proto: BulletDisablerPractice
     fireCost: 100
   - type: Tag
@@ -464,7 +523,7 @@
     slots:
       - suitStorage
       - Belt
-  - type: ProjectileBatteryAmmoProvider
+  - type: HitscanBatteryAmmoProvider # Sunrise-Edit
     proto: BulletDisabler
     fireCost: 100
   - type: GuideHelp
@@ -499,7 +558,7 @@
       - FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
-  - type: ProjectileBatteryAmmoProvider
+  - type: HitscanBatteryAmmoProvider # Sunrise-Edit
     proto: BulletDisablerSmg
     fireCost: 33
   - type: MagazineVisuals
@@ -565,7 +624,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: RedMediumLaser
+    proto: BulletRedMediumLaser # Sunrise-Edit
     fireCost: 100
   - type: BatterySelfRecharger
     autoRecharge: true
@@ -611,7 +670,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: RedMediumLaser
+    proto: BulletRedMediumLaser # Sunrise-Edit
     fireCost: 100
   - type: BatterySelfRecharger
     autoRecharge: true
@@ -705,7 +764,7 @@
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_clown.ogg
   - type: HitscanBatteryAmmoProvider
-    proto: RedMediumLaser
+    proto: BulletRedMediumLaser # Sunrise-Edit
     fireCost: 100
   - type: BatterySelfRecharger
     autoRecharge: true
@@ -735,20 +794,23 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Battery/energy_shotgun.rsi
   - type: Gun
-    fireRate: 2
+    fireRate: 2 # Sunrise-edit
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
-  - type: ProjectileBatteryAmmoProvider
-    proto: BulletLaserSpread
-    fireCost: 150
-  - type: BatteryWeaponFireModes
+  - type: EnergyGunFireModes # Sunrise-Edit
     fireModes:
-    - proto: BulletLaserSpread
+    - hitscanProto: BulletLaserSpread
       fireCost: 150
-    - proto: BulletLaserSpreadNarrow
+      name: energy-gun-shotgun-spread # Sunrise-Edit
+      shotType: Hitscan # Sunrise-Edit
+    - hitscanProto: BulletLaserSpreadNarrow
       fireCost: 200
-    - proto: BulletDisablerSmgSpread
+      name: energy-gun-shotgun-spread-narrow # Sunrise-Edit
+      shotType: Hitscan # Sunrise-Edit
+    - hitscanProto: BulletDisablerSmgSpread
       fireCost: 120
+      name: energy-gun-disable # Sunrise-Edit
+      shotType: Hitscan # Sunrise-Edit
   - type: Item
     size: Large
     shape:
@@ -762,8 +824,8 @@
     stealGroup: WeaponEnergyShotgun
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Battery
-    maxCharge: 1200
-    startingCharge: 1200
+    maxCharge: 1201 #sunrise-fix
+    startingCharge: 1201 #sunrise-fix
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 24

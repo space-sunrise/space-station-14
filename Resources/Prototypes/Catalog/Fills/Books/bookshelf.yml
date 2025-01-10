@@ -23,6 +23,7 @@
       - id: BookSpaceEncyclopedia
       - id: BookSpaceLaw
       - id: BookTheBookOfControl
+      - id: HyperLinkBookCorporateLaw # Sunrise-edit
     # Handwritten books
     - !type:GroupSelector
       rolls: !type:RangeNumberSelector

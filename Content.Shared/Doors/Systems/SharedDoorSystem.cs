@@ -144,6 +144,10 @@ public abstract partial class SharedDoorSystem : EntitySystem
             return;
         Audio.PlayPredicted(door.SparkSound, uid, args.UserUid, AudioParams.Default.WithVolume(8));
         args.Handled = true;
+        // Sunrise-Start
+        var emagged = new DoorEmaggedEvent(args.UserUid);
+        RaiseLocalEvent(args.UserUid, ref emagged);
+        // Sunrise-End
     }
 
     #region StateManagement
@@ -550,6 +554,11 @@ public abstract partial class SharedDoorSystem : EntitySystem
         if (door.CurrentlyCrushing.Count == 0)
             return;
 
+        // Sunrise-Start
+        if (door.ForcedCrushClose)
+            return;
+        // Sunrise-Start
+
         // queue the door to open so that the player is no longer stunned once it has FINISHED opening.
         door.NextStateChange = GameTiming.CurTime + door.DoorStunTime;
         door.Partial = false;
@@ -777,7 +786,8 @@ public abstract partial class SharedDoorSystem : EntitySystem
         var door = ent.Comp;
         door.NextStateChange = null;
 
-        if (door.CurrentlyCrushing.Count > 0)
+        // Sunrise-Edit: А вот нехуй.
+        if (door.CurrentlyCrushing.Count > 0 && !door.ForcedCrushClose)
             // This is a closed door that is crushing people and needs to auto-open. Note that we don't check "can open"
             // here. The door never actually finished closing and we don't want people to get stuck inside of doors.
             StartOpening(ent, door);
@@ -828,3 +838,8 @@ public abstract partial class SharedDoorSystem : EntitySystem
     }
     #endregion
 }
+
+// Sunrise-Start
+[ByRefEvent]
+public readonly record struct DoorEmaggedEvent(EntityUid UserUid);
+// Sunrise-End

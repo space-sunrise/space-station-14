@@ -1,0 +1,15 @@
+ent-ClothingOuterHardsuitSyndieBiocode = { ent-ClothingOuterHardsuitSyndie }
+    .suffix = BIOCODE
+    .desc = { ent-ClothingOuterHardsuitSyndie.desc }
+ent-ClothingOuterHardsuitSyndieMedicBiocode = { ent-ClothingOuterHardsuitSyndieMedic }
+    .suffix = BIOCODE
+    .desc = { ent-ClothingOuterHardsuitSyndieMedic.desc }
+ent-ClothingOuterHardsuitSyndieEliteBiocode = { ent-ClothingOuterHardsuitSyndieElite }
+    .suffix = BIOCODE
+    .desc = { ent-ClothingOuterHardsuitSyndieElite.desc }
+ent-ClothingOuterHardsuitSyndieCommanderBiocode = { ent-ClothingOuterHardsuitSyndieCommander }
+    .suffix = BIOCODE
+    .desc = { ent-ClothingOuterHardsuitSyndieCommander.desc }
+ent-ClothingOuterHardsuitJuggernautBiocode = { ent-ClothingOuterHardsuitJuggernaut }
+    .suffix = BIOCODE
+    .desc = { ent-ClothingOuterHardsuitJuggernaut.desc }

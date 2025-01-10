@@ -1,0 +1,7 @@
+- type: trait
+  id: NoEmotions
+  name: trait-noemotions-name
+  description: trait-noemotions-desc
+  category: Quirks
+  components:
+  - type: NoEmotions

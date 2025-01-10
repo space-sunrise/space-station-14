@@ -197,7 +197,7 @@
       - id: BookMedicalReferenceBook
       - id: BookHowToSurvive
       - id: BookChemicalCompendium
-      - id: BookSpaceLaw
+      - id: HyperLinkBookCorporateLaw
 
 - type: entity
   id: CrateServiceSodaDispenser

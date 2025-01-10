@@ -7,6 +7,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
 namespace Content.Client.Lobby.UI.Loadouts;
 
@@ -14,14 +15,16 @@ namespace Content.Client.Lobby.UI.Loadouts;
 public sealed partial class LoadoutGroupContainer : BoxContainer
 {
     private readonly LoadoutGroupPrototype _groupProto;
+    private readonly ISharedSponsorsManager? _sponsors;  // Sunrise-Sponsors
 
     public event Action<ProtoId<LoadoutPrototype>>? OnLoadoutPressed;
     public event Action<ProtoId<LoadoutPrototype>>? OnLoadoutUnpressed;
 
-    public LoadoutGroupContainer(HumanoidCharacterProfile profile, RoleLoadout loadout, LoadoutGroupPrototype groupProto, ICommonSession session, IDependencyCollection collection)
+    public LoadoutGroupContainer(HumanoidCharacterProfile profile, RoleLoadout loadout, LoadoutGroupPrototype groupProto, ICommonSession session, IDependencyCollection collection, ISharedSponsorsManager? sponsorsManager)  // Sunrise-Sponsors
     {
         RobustXamlLoader.Load(this);
         _groupProto = groupProto;
+        _sponsors = sponsorsManager;  // Sunrise-Sponsors
 
         RefreshLoadouts(profile, loadout, session, collection);
     }
@@ -75,7 +78,8 @@ public sealed partial class LoadoutGroupContainer : BoxContainer
             var matchingLoadout = selected.FirstOrDefault(e => e.Prototype == loadoutProto);
             var pressed = matchingLoadout != null;
 
-            var enabled = loadout.IsValid(profile, session, loadoutProto, collection, out var reason);
+            var sponsorPrototypes = _sponsors?.GetClientPrototypes().ToArray() ?? [];
+            var enabled = loadout.IsValid(profile, session, loadoutProto, collection, sponsorPrototypes, out var reason); // Sunrise-Sponsors
             var loadoutContainer = new LoadoutContainer(loadoutProto, !enabled, reason);
             loadoutContainer.Select.Pressed = pressed;
             loadoutContainer.Text = loadoutSystem.GetName(loadProto);

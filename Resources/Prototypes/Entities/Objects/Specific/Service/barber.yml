@@ -7,15 +7,15 @@
   - type: Sprite
     sprite: Objects/Tools/scissors.rsi
     state: icon
-  - type: MagicMirror
+  - type: Razor  # Sunrise-edit
   - type: ActivatableUI
-    key: enum.MagicMirrorUiKey.Key
+    key: enum.RazorUiKey.Key  # Sunrise-edit
     inHandsOnly: true
     requireActiveHand: true
   - type: UserInterface
     interfaces:
-      enum.MagicMirrorUiKey.Key:
-        type: MagicMirrorBoundUserInterface
+      enum.RazorUiKey.Key:  # Sunrise-edit
+        type: RazorBoundUserInterface  # Sunrise-edit
   - type: MeleeWeapon
     wideAnimationRotation: -135
     attackRate: 1

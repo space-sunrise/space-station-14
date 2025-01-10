@@ -1,18 +1,26 @@
 # Traitor single items
 
 - type: stealTargetGroup
+  id: SupermatterSliver
+  name: steal-target-groups-supermatter-sliver
+  sprite:
+    sprite: Objects/Misc/supermatter_sliver.rsi
+    state: icon
+
+- type: stealTargetGroup
   id: Hypospray
   name: steal-target-groups-hypospray
   sprite:
     sprite: Objects/Specific/Medical/hypospray.rsi
     state: hypo
 
-- type: stealTargetGroup
-  id: HandheldCrewMonitor
-  name: steal-target-groups-handheld-crew-monitor
-  sprite:
-    sprite: Objects/Specific/Medical/handheldcrewmonitor.rsi
-    state: scanner
+# Sunrise-Edit
+#- type: stealTargetGroup
+#  id: HandheldCrewMonitor
+#  name: steal-target-groups-handheld-crew-monitor
+#  sprite:
+#    sprite: Objects/Specific/Medical/handheldcrewmonitor.rsi
+#    state: scanner
 
 - type: stealTargetGroup
   id: ClothingOuterHardsuitRd

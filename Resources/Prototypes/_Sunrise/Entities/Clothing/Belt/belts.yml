@@ -1,0 +1,132 @@
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltSyndieWebbing
+  name: syndie webbing
+  description: Pretty roomy ammunition storage.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Belt/syndieRPS.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Belt/syndieRPS.rsi
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltBlueShieldWebbing
+  name: blueshield's webbing
+  description: Blue?!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Belt/blueshield_webbing.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Belt/blueshield_webbing.rsi
+
+- type: entity
+  id: ClothingBeltPrisonGuardianFilled
+  parent: ClothingBeltSecurity
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: GrenadeFlashBang
+    - id: TearGasGrenade
+    - id: Stunbaton
+    - id: Handcuffs
+    - id: Handcuffs
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Belt/prison_guardian.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Belt/prison_guardian.rsi
+
+- type: entity
+  parent: ClothingBeltStorageBase
+  id: ClothingBeltHoS
+  name: head of security's belt
+  description: A security belt, but made of quality material.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Belt/hos.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Belt/hos.rsi
+  - type: Storage
+    whitelist:
+      tags:
+      - CigPack
+      - Taser
+      - SecBeltEquip
+      - Radio
+      components:
+      - Stunbaton
+      - FlashOnTrigger
+      - Flash
+      - Handcuff
+  - type: ItemMapper
+    mapLayers:
+      flashbang:
+        whitelist:
+          components:
+          - FlashOnTrigger
+      stunbaton:
+        whitelist:
+          components:
+          - Stunbaton
+    sprite: Clothing/Belt/belt_overlay.rsi
+  - type: Appearance
+
+- type: entity
+  parent: ClothingBeltMedical
+  id: ClothingBeltMedicalCMO
+  name: CMO's medical belt
+  description: A sterile belt with many pockets for pills and other medications, emphasizing that you should treat with style.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Belt/cmo.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Belt/cmo.rsi
+
+- type: entity
+  parent: [ClothingBeltStorageBase, ContentsExplosionResistanceBase]
+  id: ClothingBeltReaperWebbing
+  name: chest rig
+  description: A set of tactical webbing worn by Syndicate boarding parties.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Belt/webbing.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Belt/webbing.rsi
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+
+- type: entity
+  parent: [ClothingBeltBase, ClothingSlotBase, BaseSyndicateContraband]
+  id: ClothingBeltSheathSyndicate
+  name: rapier sheath
+  description: A sinister, thin sheath, suitable for a rapier.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Belt/syndie_sheath.rsi
+    state: sheath
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Belt/syndie_sheath.rsi
+  - type: Item
+    size: Ginormous
+  - type: ItemSlots
+    slots:
+      item:
+        name: rapier
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        whitelist:
+          tags:
+          - SyndicateRapier
+  - type: ItemMapper
+    mapLayers:
+      sheath-rapier:
+        whitelist:
+          tags:
+          - SyndicateRapier
+  - type: Appearance
+  - type: Storage # Sunrise
+    storageInsertSound: /Audio/_Sunrise/Items/Equip/sabre_equip.ogg
+    storageRemoveSound: /Audio/_Sunrise/Items/Equip/sabre_hide.ogg

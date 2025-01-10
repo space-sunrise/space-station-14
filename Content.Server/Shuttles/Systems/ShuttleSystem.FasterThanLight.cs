@@ -124,7 +124,7 @@ public sealed partial class ShuttleSystem
     /// <summary>
     /// Ensures the FTL map exists and returns it.
     /// </summary>
-    private EntityUid EnsureFTLMap()
+    public EntityUid EnsureFTLMap()
     {
         var query = AllEntityQuery<FTLMapComponent>();
 
@@ -307,7 +307,8 @@ public sealed partial class ShuttleSystem
         EntityUid target,
         float? startupTime = null,
         float? hyperspaceTime = null,
-        string? priorityTag = null)
+        string? priorityTag = null,
+        bool ignored = false)
     {
         if (!TrySetupFTL(shuttleUid, component, out var hyperspace))
             return;
@@ -315,7 +316,7 @@ public sealed partial class ShuttleSystem
         startupTime ??= DefaultStartupTime;
         hyperspaceTime ??= DefaultTravelTime;
 
-        var config = _dockSystem.GetDockingConfig(shuttleUid, target, priorityTag);
+        var config = _dockSystem.GetDockingConfig(shuttleUid, target, priorityTag, ignored);
         hyperspace.StartupTime = startupTime.Value;
         hyperspace.TravelTime = hyperspaceTime.Value;
         hyperspace.StateTime = StartEndTime.FromStartDuration(
@@ -710,9 +711,11 @@ public sealed partial class ShuttleSystem
         EntityUid shuttleUid,
         ShuttleComponent component,
         EntityUid targetUid,
-        string? priorityTag = null)
+        string? priorityTag = null,
+        bool ignored = false, // Sunrise-Edit
+        bool deletedTrash = false) // Sunrise-Edit
     {
-        return TryFTLDock(shuttleUid, component, targetUid, out _, priorityTag);
+        return TryFTLDock(shuttleUid, component, targetUid, out _, priorityTag, ignored, deletedTrash);
     }
 
     /// <summary>
@@ -724,7 +727,9 @@ public sealed partial class ShuttleSystem
         ShuttleComponent component,
         EntityUid targetUid,
         [NotNullWhen(true)] out DockingConfig? config,
-        string? priorityTag = null)
+        string? priorityTag = null,
+        bool ignored = false, // Sunrise-Edit
+        bool deletedTrash = false) // Sunrise-Edit
     {
         config = null;
 
@@ -736,11 +741,11 @@ public sealed partial class ShuttleSystem
             return false;
         }
 
-        config = _dockSystem.GetDockingConfig(shuttleUid, targetUid, priorityTag);
+        config = _dockSystem.GetDockingConfig(shuttleUid, targetUid, priorityTag, ignored); // Sunrise-Edit
 
         if (config != null)
         {
-            FTLDock((shuttleUid, shuttleXform), config);
+            FTLDock((shuttleUid, shuttleXform), config, deletedTrash);
             return true;
         }
 
@@ -751,7 +756,7 @@ public sealed partial class ShuttleSystem
     /// <summary>
     /// Forces an FTL dock.
     /// </summary>
-    public void FTLDock(Entity<TransformComponent> shuttle, DockingConfig config)
+    public void FTLDock(Entity<TransformComponent> shuttle, DockingConfig config, bool deletedTrash = false)
     {
         // Set position
         var mapCoordinates = _transform.ToMapCoordinates(config.Coordinates);
@@ -762,6 +767,29 @@ public sealed partial class ShuttleSystem
         foreach (var (dockAUid, dockBUid, dockA, dockB) in config.Docks)
         {
             _dockSystem.Dock((dockAUid, dockA), (dockBUid, dockB));
+        }
+
+        if (deletedTrash &&
+            TryComp<FixturesComponent>(shuttle.Owner, out var fixtures) &&
+            TryComp<MapGridComponent>(shuttle.Owner, out var shuttleGrid))
+        {
+            var xform = Transform(shuttle.Owner);
+            var transform = _physics.GetPhysicsTransform(shuttle.Owner, xform);
+            foreach (var fixture in fixtures.Fixtures.Values)
+            {
+                if (!fixture.Hard)
+                    continue;
+
+                var aabb = fixture.Shape.ComputeAABB(transform, 0);
+                aabb = aabb.Translated(-shuttleGrid.TileSizeHalfVector);
+                var grids = new List<Entity<MapGridComponent>>();
+                _mapManager.FindGridsIntersecting(shuttle.Comp.MapID, aabb, ref grids, includeMap: false);
+                foreach (var grid in grids)
+                {
+                    if (grid.Owner != config.TargetGrid && grid.Owner != shuttle.Owner)
+                        QueueDel(grid);
+                }
+            }
         }
     }
 

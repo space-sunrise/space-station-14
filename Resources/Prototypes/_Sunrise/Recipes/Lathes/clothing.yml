@@ -1,0 +1,30 @@
+## Adjutant
+- type: latheRecipe
+  parent: BaseCommandHatRecipe
+  id: ClothingHeadHatCapAdjutant
+  result: ClothingHeadHatCapAdjutant
+
+- type: latheRecipe
+  parent: BaseCommandHatRecipe
+  id: ClothingHeadHatBeretAdjutant
+  result: ClothingHeadHatBeretAdjutant
+
+- type: latheRecipe
+  parent: BaseCommandHatRecipe
+  id: ClothingHeadHatGarrisonCapAdjutant
+  result: ClothingHeadHatGarrisonCapAdjutant
+
+- type: latheRecipe
+  parent: BaseCommandCoatRecipe
+  id: ClothingOuterCoatAdjutant
+  result: ClothingOuterCoatAdjutant
+
+- type: latheRecipe
+  parent: BaseCommandJumpsuitRecipe
+  id: ClothingUniformJumpsuitAdjutant
+  result: ClothingUniformJumpsuitAdjutant
+
+- type: latheRecipe
+  parent: BaseCommandJumpsuitRecipe
+  id: ClothingUniformJumpskirtAdjutant
+  result: ClothingUniformJumpskirtAdjutant

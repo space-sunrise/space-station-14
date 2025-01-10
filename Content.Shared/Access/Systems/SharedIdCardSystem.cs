@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Linq;
 using Content.Shared.Access.Components;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
@@ -190,6 +191,49 @@ public abstract class SharedIdCardSystem : EntitySystem
 
         return true;
     }
+
+    // Sunrise-Start
+    public bool TryChangeJobColor(EntityUid uid, string? jobColor, bool boldRadio = false, IdCardComponent? id = null, EntityUid? player = null)
+    {
+        if (!Resolve(uid, ref id))
+            return false;
+
+        if (id.JobColor == jobColor && id.RadioBold == boldRadio)
+            return true;
+
+        id.JobColor = jobColor;
+        id.RadioBold = boldRadio;
+        UpdateEntityName(uid, id);
+
+        if (player != null)
+        {
+            _adminLogger.Add(LogType.Identity, LogImpact.Low,
+                $"{ToPrettyString(player.Value):player} has changed the job color of {ToPrettyString(uid):entity} to {jobColor} ");
+        }
+
+        Dirty(uid, id);
+
+        return true;
+    }
+
+    public string GetJobColor(IPrototypeManager prototypeManager, IPrototype job)
+    {
+        var jobCode = job.ID;
+
+        var departments = prototypeManager.EnumeratePrototypes<DepartmentPrototype>().ToList();
+        departments.Sort((a, b) => a.Sort.CompareTo(b.Sort));
+
+        foreach (var department in from department in departments
+                 from jobId in department.Roles
+                 where jobId == jobCode
+                 select department)
+        {
+            return department.Color.ToHex();
+        }
+
+        return string.Empty;
+    }
+    // Sunrise-End
 
     /// <summary>
     /// Attempts to change the full name of a card.

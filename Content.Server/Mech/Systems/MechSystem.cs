@@ -11,6 +11,9 @@ using Content.Shared.Interaction;
 using Content.Shared.Mech;
 using Content.Shared.Mech.Components;
 using Content.Shared.Mech.EntitySystems;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Systems;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Popups;
 using Content.Shared.Tools.Components;
@@ -18,17 +21,28 @@ using Content.Shared.Verbs;
 using Content.Shared.Wires;
 using Content.Server.Body.Systems;
 using Content.Shared.Tools.Systems;
+using Content.Shared.Hands.Components;
+using Content.Shared.Hands.EntitySystems;
+using Content.Shared.NPC.Components;
+using Content.Shared.NPC.Systems;
+using Content.Shared.Tag;
+using Robust.Server.Audio;
+using Robust.Shared.Audio;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Content.Shared.Whitelist;
+using Content.Shared.Access.Components;
+using Content.Shared.Access.Systems;
 
 namespace Content.Server.Mech.Systems;
 
 /// <inheritdoc/>
 public sealed partial class MechSystem : SharedMechSystem
 {
+    [Dependency] private readonly AudioSystem _audioSystem = default!;
+    [Dependency] private readonly NpcFactionSystem _factionSystem = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
     [Dependency] private readonly BatterySystem _battery = default!;
@@ -39,6 +53,10 @@ public sealed partial class MechSystem : SharedMechSystem
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly SharedToolSystem _toolSystem = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
+    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -84,7 +102,7 @@ public sealed partial class MechSystem : SharedMechSystem
         if (TryComp<WiresPanelComponent>(uid, out var panel) && !panel.Open)
             return;
 
-        if (component.BatterySlot.ContainedEntity == null && TryComp<BatteryComponent>(args.Used, out var battery))
+        if (component.BatterySlot.ContainedEntity == null && TryComp<BatteryComponent>(args.Used, out var battery) && _tag.HasTag(args.Used, "PowerCage"))
         {
             InsertBattery(uid, args.Used, component, battery);
             _actionBlocker.UpdateCanMove(uid);
@@ -235,6 +253,18 @@ public sealed partial class MechSystem : SharedMechSystem
             return;
         }
 
+        if (TryComp<AccessReaderComponent>(uid, out var accessReader))
+            if (!_accessReader.IsAllowed(args.Args.User, uid, accessReader))
+            {
+                _popup.PopupEntity(Loc.GetString("mech-no-access", ("item", uid)), args.User);
+                return;
+            }
+
+        if (TryComp<HandsComponent>(args.Args.User, out var handsComponent))
+            foreach (var hand in _hands.EnumerateHands(args.Args.User, handsComponent))
+                _hands.DoDrop(args.Args.User, hand, true, handsComponent);
+
+        _factionSystem.Up(args.Args.User, uid);
         TryInsert(uid, args.Args.User, component);
         _actionBlocker.UpdateCanMove(uid);
 
@@ -246,6 +276,7 @@ public sealed partial class MechSystem : SharedMechSystem
         if (args.Cancelled || args.Handled)
             return;
 
+        RemComp<NpcFactionMemberComponent>(component.Owner);
         TryEject(uid, component);
 
         args.Handled = true;
@@ -253,17 +284,41 @@ public sealed partial class MechSystem : SharedMechSystem
 
     private void OnDamageChanged(EntityUid uid, MechComponent component, DamageChangedEvent args)
     {
-        var integrity = component.MaxIntegrity - args.Damageable.TotalDamage;
-        SetIntegrity(uid, integrity, component);
-
+        if (TryComp<DamageableComponent>(uid, out var damage))
+        {
+            component.Integrity = damage.TotalDamage;
+            if (_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var critThreshold) && critThreshold != null)
+                component.MaxIntegrity = critThreshold.Value;
+        }
+        
         if (args.DamageIncreased &&
             args.DamageDelta != null &&
             component.PilotSlot.ContainedEntity != null)
         {
-            var damage = args.DamageDelta * component.MechToPilotDamageMultiplier;
-            _damageable.TryChangeDamage(component.PilotSlot.ContainedEntity, damage);
+            var damagetoplayer = args.DamageDelta * component.MechToPilotDamageMultiplier;
+            _damageable.TryChangeDamage(component.PilotSlot.ContainedEntity, damagetoplayer);
         }
     }
+    
+    private void PlayCritSound(EntityUid uid, MechComponent component, DamageableComponent damage )
+    {
+        var total = damage.TotalDamage;
+        if (_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var critThreshold))
+        {
+            var damagePercentage = (total / critThreshold) * 100;
+            if (component.PilotSlot.ContainedEntity != null)
+            {
+                if (damagePercentage >= 95)
+                    _audioSystem.PlayPvs(_audioSystem.GetSound(component.Alert5), component.PilotSlot.ContainedEntity.Value);
+                else if (damagePercentage >= 75)
+                    _audioSystem.PlayPvs(_audioSystem.GetSound(component.Alert25), component.PilotSlot.ContainedEntity.Value);
+                else if (damagePercentage >= 50)
+                    _audioSystem.PlayPvs(_audioSystem.GetSound(component.Alert50), component.PilotSlot.ContainedEntity.Value);
+                Dirty(uid ,component);
+            }
+        }
+    }
+
 
     private void ToggleMechUi(EntityUid uid, MechComponent? component = null, EntityUid? user = null)
     {

@@ -4,8 +4,15 @@
   antagonist: true
   setPreference: true
   objective: roles-antag-syndicate-agent-objective
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 36000 # 10h # Sunrise-RoleTime
   playTimeTracker: AntagSyndicateAgent
   guides: [ Traitors ]
+  # Sunrise-Edit
+  previewIcon:
+    sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
+    state: traitor
 
 - type: antag
   id: TraitorSleeper
@@ -36,7 +43,7 @@
     back:
     - WeaponPistolViper
     - PinpointerSyndicateNuclear
-    - DeathAcidifierImplanter
+    #- DeathAcidifierImplanter
 
 - type: startingGear
   id: SyndicateOperativeClothing

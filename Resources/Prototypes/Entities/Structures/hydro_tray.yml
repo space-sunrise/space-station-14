@@ -87,6 +87,8 @@
         acts: ["Destruction"]
   - type: Machine
     board: HydroponicsTrayMachineCircuitboard
+  - type: TTS
+    voice: FactCore
   - type: WiresPanel
   - type: AmbientSound
     volume: -9
@@ -97,6 +99,11 @@
     guides:
     - Botany
     - Chemicals
+  # Sunrise-start
+  - type: Tag
+    tags:
+    - NoPaint
+  # Sunrise-end
 
 - type: entity
   parent: hydroponicsTray

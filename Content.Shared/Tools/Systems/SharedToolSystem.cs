@@ -13,6 +13,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
+using BlockedToolComponent = Content.Shared._Sunrise.BlockedTool.BlockedToolComponent;
 
 namespace Content.Shared.Tools.Systems;
 
@@ -54,7 +55,13 @@ public abstract partial class SharedToolSystem : EntitySystem
         ev.DoAfter = args.DoAfter;
 
         if (args.OriginalTarget != null)
+        {
+            // Sunrise-Start
+            if (HasComp<BlockedToolComponent>(GetEntity(args.OriginalTarget.Value)))
+                return;
+            // Sunrise-End
             RaiseLocalEvent(GetEntity(args.OriginalTarget.Value), (object) ev);
+        }
         else
             RaiseLocalEvent((object) ev);
     }

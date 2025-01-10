@@ -42,7 +42,10 @@ public partial class SharedInteractionSystem
 
     private void CancelEvent(EntityUid uid, BlockMovementComponent component, CancellableEntityEventArgs args)
     {
-        args.Cancel();
+        // Sunrise-Start
+        if (component.BlockInteraction)
+            args.Cancel();
+        // Sunrise-End
     }
 
     private void OnBlockingStartup(EntityUid uid, BlockMovementComponent component, ComponentStartup args)

@@ -1,11 +1,16 @@
 using System.Globalization;
 using System.Linq;
 using System.Numerics;
+using Content.Server._Sunrise.Station;
 using Content.Server.Administration.Managers;
 using Content.Server.GameTicking.Events;
+using Content.Server.Ghost;
+using Content.Server.Shuttles.Components;
+using Content.Server.Players.PlayTimeTracking;
 using Content.Server.Spawners.Components;
 using Content.Server.Speech.Components;
 using Content.Server.Station.Components;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
@@ -20,6 +25,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Server._Sunrise.NewLife; // Sunrise-NewLife
+using Content.Server._Sunrise.TraitorTarget; // Sunrise-Edit
 
 namespace Content.Server.GameTicking
 {
@@ -27,6 +34,8 @@ namespace Content.Server.GameTicking
     {
         [Dependency] private readonly IAdminManager _adminManager = default!;
         [Dependency] private readonly SharedJobSystem _jobs = default!;
+        [Dependency] private readonly PlayTimeTrackingManager _playTimeTracking = default!;
+        [Dependency] private readonly NewLifeSystem _newLifeSystem = default!; // Sunrise-NewLife
 
         [ValidatePrototypeId<EntityPrototype>]
         public const string ObserverPrototypeName = "MobObserver";
@@ -128,7 +137,8 @@ namespace Content.Server.GameTicking
             EntityUid station,
             string? jobId = null,
             bool lateJoin = true,
-            bool silent = false)
+            bool silent = false,
+            bool canBeAntag = true) // Sunrise-Edit
         {
             var character = GetPlayerProfile(player);
 
@@ -144,7 +154,7 @@ namespace Content.Server.GameTicking
                     return;
             }
 
-            SpawnPlayer(player, character, station, jobId, lateJoin, silent);
+            SpawnPlayer(player, character, station, jobId, lateJoin, silent, canBeAntag); // Sunrise-Edit
         }
 
         private void SpawnPlayer(ICommonSession player,
@@ -152,7 +162,8 @@ namespace Content.Server.GameTicking
             EntityUid station,
             string? jobId = null,
             bool lateJoin = true,
-            bool silent = false)
+            bool silent = false,
+            bool canBeAntag = true) // Sunrise-Edit
         {
             // Can't spawn players with a dummy ticker!
             if (DummyTicker)
@@ -173,6 +184,11 @@ namespace Content.Server.GameTicking
                 JoinAsObserver(player);
                 return;
             }
+
+            // Sunrise-NewLife-Start
+            _newLifeSystem.AddUsedCharactersForRespawn(player.UserId, _prefsManager.GetPreferences(player.UserId).SelectedCharacterIndex);
+            _newLifeSystem.SetNextAllowRespawn(player.UserId, _gameTiming.CurTime + TimeSpan.FromMinutes(_newLifeSystem.NewLifeTimeout));
+            // Sunrise-NewLife-End
 
             // We raise this event to allow other systems to handle spawning this player themselves. (e.g. late-join wizard, etc)
             var bev = new PlayerBeforeSpawnEvent(player, character, jobId, lateJoin, station);
@@ -227,9 +243,21 @@ namespace Content.Server.GameTicking
 
             _playTimeTrackings.PlayerRolesChanged(player);
 
-            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, jobId, character);
+            var spawnPointType = SpawnPointType.Unset;
+            if (jobPrototype.AlwaysUseSpawner)
+            {
+                lateJoin = false;
+                spawnPointType = SpawnPointType.Job;
+            }
+
+            var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station, jobId, character, spawnPointType: spawnPointType);
             DebugTools.AssertNotNull(mobMaybe);
             var mob = mobMaybe!.Value;
+
+            // Sunrise-Start
+            if (HasComp<StationAntagsTargetsComponent>(station))
+                EntityManager.AddComponent<AntagTargetComponent>(mob);
+            // Sunrise-End
 
             _mind.TransferTo(newMind, mob);
 
@@ -240,10 +268,11 @@ namespace Content.Server.GameTicking
                     _chatSystem.DispatchStationAnnouncement(station,
                         Loc.GetString("latejoin-arrival-announcement-special",
                             ("character", MetaData(mob).EntityName),
+                            ("gender", character.Gender), // Russian-LastnameGender
                             ("entity", mob),
                             ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
                         Loc.GetString("latejoin-arrival-sender"),
-                        playDefaultSound: false,
+                        playDefault: false,
                         colorOverride: Color.Gold);
                 }
                 else
@@ -251,10 +280,11 @@ namespace Content.Server.GameTicking
                     _chatSystem.DispatchStationAnnouncement(station,
                         Loc.GetString("latejoin-arrival-announcement",
                             ("character", MetaData(mob).EntityName),
+                            ("gender", character.Gender), // Russian-LastnameGender
                             ("entity", mob),
                             ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
                         Loc.GetString("latejoin-arrival-sender"),
-                        playDefaultSound: false);
+                        playDefault: false);
                 }
             }
 
@@ -300,7 +330,8 @@ namespace Content.Server.GameTicking
                 silent,
                 PlayersJoinedRoundNormally,
                 station,
-                character);
+                character,
+                canBeAntag); // Sunrise-Edit
             RaiseLocalEvent(mob, aev, true);
         }
 
@@ -322,7 +353,7 @@ namespace Content.Server.GameTicking
         /// <param name="station">The station they're spawning on</param>
         /// <param name="jobId">An optional job for them to spawn as</param>
         /// <param name="silent">Whether or not the player should be greeted upon joining</param>
-        public void MakeJoinGame(ICommonSession player, EntityUid station, string? jobId = null, bool silent = false)
+        public void MakeJoinGame(ICommonSession player, EntityUid station, string? jobId = null, bool silent = false, bool canBeAntag = true) // Sunrise-Edit
         {
             if (!_playerGameStatuses.ContainsKey(player.UserId))
                 return;
@@ -330,7 +361,7 @@ namespace Content.Server.GameTicking
             if (!_userDb.IsLoadComplete(player))
                 return;
 
-            SpawnPlayer(player, station, jobId, silent: silent);
+            SpawnPlayer(player, station, jobId, silent: silent, canBeAntag: canBeAntag); // Sunrise-Edit
         }
 
         /// <summary>

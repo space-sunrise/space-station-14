@@ -33,6 +33,19 @@
 
 - type: randomHumanoidSettings
   id: DeathSquad
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: EventHumanoidMindShielded
   randomizeName: false
   components:
@@ -70,6 +83,19 @@
 
 - type: randomHumanoidSettings
   id: ERTLeader
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: EventHumanoidMindShielded
   randomizeName: false
   components:
@@ -102,6 +128,19 @@
 
 - type: randomHumanoidSettings
   id: ERTLeaderEVA
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -125,6 +164,19 @@
 
 - type: randomHumanoidSettings
   id: ERTLeaderEVALecter
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTLeaderEVA
   components:
     - type: GhostRole
@@ -158,6 +210,19 @@
 
 - type: randomHumanoidSettings
   id: ERTChaplain
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTLeader
   components:
     - type: BibleUser
@@ -190,6 +255,19 @@
 
 - type: randomHumanoidSettings
   id: ERTChaplainEVA
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTChaplain
   components:
     - type: GhostRole
@@ -224,6 +302,19 @@
 
 - type: randomHumanoidSettings
   id: ERTJanitor
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -255,6 +346,19 @@
 
 - type: randomHumanoidSettings
   id: ERTJanitorEVA
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTJanitor
   components:
     - type: GhostRole
@@ -288,6 +392,19 @@
 
 - type: randomHumanoidSettings
   id: ERTEngineer
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -319,6 +436,19 @@
 
 - type: randomHumanoidSettings
   id: ERTEngineerEVA
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTEngineer
   components:
     - type: GhostRole
@@ -352,6 +482,19 @@
 
 - type: randomHumanoidSettings
   id: ERTSecurity
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -383,6 +526,19 @@
 
 - type: randomHumanoidSettings
   id: ERTSecurityEVA
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTSecurity
   components:
     - type: GhostRole
@@ -406,6 +562,19 @@
 
 - type: randomHumanoidSettings
   id: ERTSecurityEVALecter
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTSecurityEVA
   components:
     - type: GhostRole
@@ -439,6 +608,19 @@
 
 - type: randomHumanoidSettings
   id: ERTMedical
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -470,6 +652,19 @@
 
 - type: randomHumanoidSettings
   id: ERTMedicalEVA
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTMedical
   components:
     - type: GhostRole
@@ -498,6 +693,19 @@
 
 - type: randomHumanoidSettings
   id: CBURNAgent
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: EventHumanoidMindShielded
   components:
     - type: Loadout
@@ -528,6 +736,13 @@
 
 - type: randomHumanoidSettings
   id: CentcomOfficial
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
   parent: EventHumanoidMindShielded
   components:
     - type: GhostRole
@@ -537,7 +752,7 @@
       raffle:
         settings: default
     - type: Loadout
-      prototypes: [ CentcomGear ]
+      prototypes: [ CentCommOfficialGear ] # Sunrise-Edit
       roleLoadout: [ RoleSurvivalStandard ]
 
 ## Syndicate
@@ -550,12 +765,16 @@
       sprite: Mobs/Species/Human/parts.rsi
       state: full
     - type: RandomMetadata
-      nameSegments: [ names_death_commando ]
+      nameSegments: [ ru_names_death_commando ] # Sunrise-edit
     - type: RandomHumanoidSpawner
       settings: SyndicateAgent
 
 - type: randomHumanoidSettings
   id: SyndicateAgent
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
   components:
     - type: RandomHumanoidAppearance
       randomizeName: false
@@ -575,6 +794,10 @@
 
 - type: randomHumanoidSettings
   id: NukeOp
+  speciesBlacklist: # Sunrise-edit
+  - Diona
+  - Vox
+  - Felinid
   components:
     - type: RandomHumanoidAppearance
       randomizeName: false

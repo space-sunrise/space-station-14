@@ -1,36 +1,30 @@
-<!-- Guidelines: https://docs.spacestation14.io/en/getting-started/pr-guideline -->
+<!-- Пожалуйста прочитайте эту статью перед тем как выложить PR, чтобы избежать лишних правок в процессе осмотра: https://docs.spacestation14.io/en/getting-started/pr-guideline -->
+<!-- Текст в стрелочках является комментариями - они не будут видны в вашем PR. -->
 
-## About the PR
-<!-- What did you change? -->
+## Кратное описание
+<!-- Что вы предлагаете изменить с помощью своего PR? -->
 
-## Why / Balance
-<!-- Discuss how this would affect game balance or explain why it was changed. Link any relevant discussions or issues. -->
+## По какой причине
+<!-- В чём причина добавления этих изменений? Ссылки на Дискуссии, а так-же Баг-Репорты указывать здесь. Пожалуйста опишите как это изменит игровой баланс. -->
 
-## Technical details
-<!-- Summary of code changes for easier review. -->
+## Медиа(Видео/Скриншоты)
+<!--
+Если ваш PR содержит внутриигровые изменения вы обязаны предоставить скриншоты/видео изменений.
+-->
 
-## Media
-<!-- Attach media if the PR makes ingame changes (clothing, items, features, etc). 
-Small fixes/refactors are exempt. Media may be used in SS14 progress reports with credit. -->
+## Проверки
 
-## Requirements
-<!-- Confirm the following by placing an X in the brackets [X]: -->
-- [ ] I have read and am following the [Pull Request and Changelog Guidelines](https://docs.spacestation14.com/en/general-development/codebase-info/pull-request-guidelines.html).
-- [ ] I have added media to this PR or it does not require an ingame showcase.
-<!-- You should understand that not following the above may get your PR closed at maintainer’s discretion -->
-
-## Breaking changes
-<!-- List any breaking changes, including namespaces, public class/method/field changes, prototype renames; and provide instructions for fixing them.
-This will be posted in #codebase-changes. -->
+- [ ] Я не требую помощи для завершения PR
+- [ ] Перед выкладыванием/запросом о рассмотрении PR, Я проверил работоспособность изменений.
+- [ ] Я добавил скриншоты/видео изменений, или данный PR не меняет внутриигровые механики
 
 **Changelog**
-<!-- Add a Changelog entry to make players aware of new features or changes that could affect gameplay.
-Make sure to read the guidelines and take this Changelog template out of the comment block in order for it to show up.
-Changelog must have a :cl: symbol, so the bot recognizes the changes and adds them to the game's changelog. -->
 <!--
-:cl:
-- add: Added fun!
-- remove: Removed fun!
-- tweak: Changed fun!
-- fix: Fixed fun!
+Если нужно чтобы игроки узнали об изменениях сделаных в данном PR укажите их используя шаблон вне коментария. Кратко и информативно.
+
+:cl: VigersRay
+- add: Добавлено веселье.
+- remove: Удалено веселье.
+- tweak: Изменено веселье.
+- fix: Исправлено веселье.
 -->

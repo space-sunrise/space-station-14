@@ -1,31 +1,70 @@
-using Content.Server.GameTicking.Prototypes;
 using Robust.Shared.Random;
-using Robust.Shared.Utility;
 using System.Linq;
+using Content.Server.GameTicking.Prototypes;
+using Content.Shared._Sunrise.Lobby;
+using Content.Shared.GameTicking;
 
 namespace Content.Server.GameTicking;
 
 public sealed partial class GameTicker
 {
+    // Sunrise-Start
+    [ViewVariables]
+    public string? LobbyType { get; private set; }
+    [ViewVariables]
+    public string? LobbyAnimation { get; private set; }
+    [ViewVariables]
+    public string? LobbyParallax { get; private set; }
     [ViewVariables]
     public string? LobbyBackground { get; private set; }
 
     [ViewVariables]
-    private List<ResPath>? _lobbyBackgrounds;
+    private List<string>? _lobbyParallaxes;
 
-    private static readonly string[] WhitelistedBackgroundExtensions = new string[] {"png", "jpg", "jpeg", "webp"};
+    [ViewVariables]
+    private List<string>? _lobbyArts;
+
+    [ViewVariables]
+    private List<string>? _lobbyAnimations;
 
     private void InitializeLobbyBackground()
     {
-        _lobbyBackgrounds = _prototypeManager.EnumeratePrototypes<LobbyBackgroundPrototype>()
-            .Select(x => x.Background)
-            .Where(x => WhitelistedBackgroundExtensions.Contains(x.Extension))
+        _lobbyArts = _prototypeManager.EnumeratePrototypes<LobbyBackgroundPrototype>()
+            .Select(x => x.ID)
             .ToList();
 
-        RandomizeLobbyBackground();
+        _lobbyParallaxes = _prototypeManager.EnumeratePrototypes<LobbyParallaxPrototype>()
+            .Select(x => x.ID)
+            .ToList();
+
+        _lobbyAnimations = _prototypeManager.EnumeratePrototypes<LobbyAnimationPrototype>()
+            .Select(x => x.ID)
+            .ToList();
+        RandomizeLobbyBackgroundArt();
+        RandomizeLobbyBackgroundParallax();
+        RandomizeLobbyBackgroundAnimation();
+        RandomizeLobbyBackgroundType();
     }
 
-    private void RandomizeLobbyBackground() {
-        LobbyBackground = _lobbyBackgrounds!.Any() ? _robustRandom.Pick(_lobbyBackgrounds!).ToString() : null;
+    private void RandomizeLobbyBackgroundParallax()
+    {
+        LobbyParallax = _lobbyParallaxes!.Any() ? _robustRandom.Pick(_lobbyParallaxes!) : null;
     }
+
+    private void RandomizeLobbyBackgroundAnimation()
+    {
+        LobbyAnimation = _lobbyAnimations!.Any() ? _robustRandom.Pick(_lobbyAnimations!) : null;
+    }
+
+    private void RandomizeLobbyBackgroundType()
+    {
+        var values = (LobbyBackgroundType[])Enum.GetValues(typeof(LobbyBackgroundType));
+        LobbyType = values[_robustRandom.Next(values.Length)].ToString();
+    }
+
+    private void RandomizeLobbyBackgroundArt()
+    {
+        LobbyBackground = _lobbyArts!.Any() ? _robustRandom.Pick(_lobbyArts!) : null;
+    }
+    // Sunrise-End
 }

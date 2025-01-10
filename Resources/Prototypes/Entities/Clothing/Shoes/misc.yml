@@ -85,42 +85,42 @@
     sprite: Clothing/Shoes/Misc/snakeskin.rsi
   - type: NoSlip
 
-- type: entity
-  parent: [ClothingShoesBase, PowerCellSlotSmallItem, BaseToggleClothing]
-  id: ClothingShoesBootsSpeed
-  name: speed boots
-  description: High-tech boots woven with quantum fibers, able to convert electricity into pure speed!
-  components:
-  - type: Sprite
-    sprite: Clothing/Shoes/Boots/speedboots.rsi
-    layers:
-    - state: icon
-      map: [ "enum.ToggleVisuals.Layer" ]
-  - type: Clothing
-    sprite: Clothing/Shoes/Boots/speedboots.rsi
-  - type: ToggleClothing
-    action: ActionToggleSpeedBoots
-  - type: ClothingSpeedModifier
-    walkModifier: 1.5
-    sprintModifier: 1.5
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.ToggleVisuals.Toggled:
-        enum.ToggleVisuals.Layer:
-          True: {state: icon-on}
-          False: {state: icon}
-  - type: StaticPrice
-    price: 500
-  - type: PowerCellDraw
-    drawRate: 4
-  - type: ToggleCellDraw
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-  - type: Tag
-    tags: []
+#- type: entity
+#  parent: [ClothingShoesBase, PowerCellSlotSmallItem, BaseToggleClothing]
+#  id: ClothingShoesBootsSpeed
+#  name: speed boots
+#  description: High-tech boots woven with quantum fibers, able to convert electricity into pure speed!
+#  components:
+#  - type: Sprite
+#    sprite: Clothing/Shoes/Boots/speedboots.rsi
+#    layers:
+#    - state: icon
+#      map: [ "enum.ToggleVisuals.Layer" ]
+#  - type: Clothing
+#    sprite: Clothing/Shoes/Boots/speedboots.rsi
+#  - type: ToggleClothing
+#    action: ActionToggleSpeedBoots
+#  - type: ClothingSpeedModifier
+#    walkModifier: 1.5
+#    sprintModifier: 1.5
+#  - type: Appearance
+#  - type: GenericVisualizer
+#    visuals:
+#      enum.ToggleVisuals.Toggled:
+#        enum.ToggleVisuals.Layer:
+#          True: {state: icon-on}
+#          False: {state: icon}
+#  - type: StaticPrice
+#    price: 500
+#  - type: PowerCellDraw
+#    drawRate: 4
+#  - type: ToggleCellDraw
+#  - type: ItemSlots
+#    slots:
+#      cell_slot:
+#        name: power-cell-slot-component-slot-name-default
+#  - type: Tag
+#    tags: []
 
 - type: entity
   id: ActionToggleSpeedBoots

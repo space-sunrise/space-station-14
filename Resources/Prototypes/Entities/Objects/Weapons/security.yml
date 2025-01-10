@@ -128,10 +128,11 @@
 
 - type: entity
   name: flash
-  parent: [BaseItem, BaseSecurityScienceCommandContraband]
+  parent: [BaseItem, BaseSecurityScienceCommandContraband, MachineComponentSounds] # Sunrise
   id: Flash
   description: An ultrabright flashbulb with a trigger, which causes the victim to be dazed and lose their eyesight for a moment. Useless when burnt out.
   components:
+    - type: Organ # Sunrise-edit
     - type: Sprite
       sprite: Objects/Weapons/Melee/flash.rsi
       layers:

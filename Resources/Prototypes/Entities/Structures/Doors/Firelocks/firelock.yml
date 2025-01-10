@@ -63,6 +63,7 @@
           - AirlockLayer
     - type: Door
       openDrawDepth: WallTops
+      closedDrawDepth: BlastDoors # Sunrise-edit
       closeTimeOne: 0.1
       closeTimeTwo: 0.6
       openTimeOne: 0.1
@@ -105,8 +106,6 @@
       arc: 360
     - type: StaticPrice
       price: 150
-    - type: AccessReader
-      access: [ [ "Engineering" ] ]
     - type: PryUnpowered
       pryModifier: 0.5
     - type: PointLight

@@ -4,14 +4,16 @@
         "x": 32,
         "y": 32
     },
-    "license": "CC-BY-SA-3.0",
-    "copyright": "Made by brainfood1183 (github), transparency tweaked by Ubaser.",
+    "license": "CLA",
+    "copyright": "Sprited by discord: odlieerr",
     "states": [
         {
-            "name": "state0"
+            "name": "state0",
+            "directions": 4
         },
         {
-            "name": "state1"
+            "name": "state1",
+            "directions": 4
         }
     ]
 }
