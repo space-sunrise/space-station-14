@@ -10368,3 +10368,11 @@
   id: 715
   time: '2025-01-10T18:37:51.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/1080
+- author: Perl404
+  changes:
+  - message: "\u0410\u043F\u0441\u0442\u0440\u0438\u043C \u043B\u043E\u043A\u0430\u043B\
+      \u0438\u0437\u0430\u0446\u0438\u0438 10.01"
+    type: Tweak
+  id: 716
+  time: '2025-01-10T19:15:20.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/1085
