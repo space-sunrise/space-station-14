@@ -4,5 +4,5 @@ ent-PacificatorCircuitboard = генератор пацифизма (машин�
     .desc = { ent-BaseMachineCircuitboard.desc }
 ent-ImplantExtractorMachineCircuitboard = Микроволновой экстрактора имплантов (машинная плата)
     .desc = Машинная плата Микроволнового экстрактора имплантов.
-ent-InterrogatorMachineCircuitboard = Микроволновой экстрактор имплантов "Interrogator" (машинная плата)
+ent-InterrogatorMachineCircuitboard = Экстрактор имплантов "Interrogator" (машинная плата)
     .desc = { ent-ImplantExtractorMachineCircuitboard.desc }
