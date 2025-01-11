@@ -49,6 +49,20 @@
       path: /Audio/Weapons/Guns/MagIn/revolver_magin.ogg
   - type: StaticPrice
     price: 500
+  # Sunrise start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: RevolversPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: RevolversDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: RevolversDrop
+  - type: EmitSoundOnCollide
+    sound:
+      collection: RevolversCollide
+  # Sunrise end
 
 - type: entity
   name: Deckard
@@ -65,7 +79,7 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Gun
-    fireRate: 2
+    fireRate: 2.2 #Sunrise-Edit
   - type: RevolverAmmoProvider
     capacity: 5
     chambers: [ True, True, True, True, True ]
@@ -88,6 +102,9 @@
     sprite: Objects/Weapons/Guns/Revolvers/inspector.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Revolvers/inspector.rsi
+  - type: Gun #Sunrise-Start
+    selectedMode: SemiAuto
+    fireRate: 2 #Sunrise-End
   - type: RevolverAmmoProvider
     capacity: 6
     chambers: [ True, True, True, True, True, True ]
@@ -120,7 +137,7 @@
     sprite: Objects/Weapons/Guns/Revolvers/python.rsi
   - type: Gun
     selectedMode: SemiAuto
-    fireRate: 2
+    fireRate: 2.6 #Sunrise-Edit
     availableModes:
     - SemiAuto
     soundGunshot:
@@ -152,7 +169,7 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Revolvers/pirate_revolver.rsi
   - type: Gun
-    fireRate: 1
+    fireRate: 1.7 #Sunrise-Edit
   - type: ContainerContainer
     containers:
       revolver-ammo: !type:Container

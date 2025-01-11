@@ -38,7 +38,7 @@
     - ToolDebug # spanish army knife
     - WelderExperimental
     - Hypospray
-    - DeathAcidifierImplanter # crew will try to steal their amazing hardsuits
+    #- DeathAcidifierImplanter # crew will try to steal their amazing hardsuits
     - FreedomImplanter
   inhand:
   - WeaponPulseRifle

@@ -67,7 +67,7 @@
   - type: Barotrauma
     damage:
       types:
-        Blunt: 0.45
+        Blunt: 0.1 # Sunrise-Casual
   - type: Reactive
     groups:
       Flammable: [ Touch ]
@@ -230,8 +230,7 @@
         types:
           Blunt: 6
           Structural: 4
-          Caustic: 1
-          Cellular: 3
+          Caustic: 4
 
 - type: entity
   name: yellow slime

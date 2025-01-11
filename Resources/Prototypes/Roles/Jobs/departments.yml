@@ -7,7 +7,6 @@
   - CargoTechnician
   - Quartermaster
   - SalvageSpecialist
-  - MinerBorg # Sunrise-Edit
 
 - type: department
   id: Civilian
@@ -24,7 +23,6 @@
   - Clown
   - HeadOfPersonnel
   - Janitor
-  - Lawyer
   - Librarian
   - Mime
   - Musician
@@ -33,9 +31,6 @@
   - Visitor
   - Zookeeper
   - ServiceWorker
-  - JanitorBorg # Sunrise-Edit
-  - ServiceBorg # Sunrise-Edit
-  - ClownBorg # Sunrise-Edit
   - Barber # Sunrise-Roles
 
 - type: department
@@ -96,7 +91,6 @@
   - SeniorEngineer  # Sunrise-Senior
   - StationEngineer
   - TechnicalAssistant
-  - EngineerBorg # Sunrise-Edit
 
 - type: department
   id: Medical
@@ -111,7 +105,7 @@
   - MedicalIntern
   - Psychologist
   - Paramedic
-  - MedicalBorg # Sunrise-Edit
+  - MedicalPathologist  # Sunrise-pathologist
 
 - type: department
   id: Security
@@ -128,8 +122,6 @@
   - Warden
   - Brigmedic  # Sunrise-Brigmedic
   - SecurityPilot # Sunrise-SecurityPilot
-  - SecurityBorg # Sunrise-Edit
-  - SecurityCombatBorg # Sunrise-Edit
 
 - type: department
   id: Science
@@ -154,12 +146,13 @@
   - Borg
   - MedicalBorg # Sunrise-Edit
   - EngineerBorg # Sunrise-Edit
-  - MinerBorg # Sunrise-Edit
+  - MiningBorg # Sunrise-Edit
   - JanitorBorg # Sunrise-Edit
   - ServiceBorg # Sunrise-Edit
-  - SecurityBorg # Sunrise-Edit
   - ClownBorg # Sunrise-Edit
   - PeaceBorg # Sunrise-Edit
+  - SecurityBorg # Sunrise-Edit
+  - SecurityCombatBorg # Sunrise-Edit
   primary: false
 
 - type: department

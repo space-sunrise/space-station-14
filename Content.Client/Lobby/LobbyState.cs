@@ -7,10 +7,13 @@ using Content.Client.Lobby.UI;
 using Content.Client.Message;
 using Content.Client.UserInterface.Systems.Chat;
 using Content.Client.Voting;
+using Content.Shared.CCVar;
+using Robust.Client;
 using Robust.Client.Console;
 using Robust.Client.ResourceManagement;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
+using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Client.Changelog;
@@ -26,12 +29,13 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Serialization.Markdown;
 using Robust.Shared.Serialization.Markdown.Mapping;
-
+using Serilog;
 
 namespace Content.Client.Lobby
 {
     public sealed class LobbyState : Robust.Client.State.State
     {
+        [Dependency] private readonly IBaseClient _baseClient = default!;
         [Dependency] private readonly IClientConsoleHost _consoleHost = default!;
         [Dependency] private readonly IEntityManager _entityManager = default!;
         [Dependency] private readonly IResourceCache _resourceCache = default!;
@@ -70,8 +74,17 @@ namespace Content.Client.Lobby
 
             _voteManager.SetPopupContainer(Lobby.VoteContainer);
             LayoutContainer.SetAnchorPreset(Lobby, LayoutContainer.LayoutPreset.Wide);
-            // Sunrise-start
-            //Lobby.ServerName.Text = _baseClient.GameInfo?.ServerName; //The eye of refactor gazes upon you...
+
+            var lobbyNameCvar = _cfg.GetCVar(CCVars.ServerLobbyName);
+            var serverName = _baseClient.GameInfo?.ServerName ?? string.Empty;
+
+            // Lobby.ServerName.Text = string.IsNullOrEmpty(lobbyNameCvar)
+            //     ? Loc.GetString("ui-lobby-title", ("serverName", serverName))
+            //     : lobbyNameCvar;
+
+            var width = _cfg.GetCVar(CCVars.ServerLobbyRightPanelWidth);
+            Lobby.RightPanel.SetWidth = width;
+
             UpdateLobbyUi();
 
             Lobby!.LocalChangelogBody.CleanChangelog();
@@ -89,10 +102,10 @@ namespace Content.Client.Lobby
             }
             var combinedChangelog = _changelogManager.MergeChangelogs(changelogs);
 
-            Lobby!.LocalChangelogBody.PopulateChangelog(combinedChangelog);
-            Lobby!.LobbyAnimation.DisplayRect.Stretch = TextureRect.StretchMode.KeepAspectCovered;
-            Lobby!.LobbyAnimation.DisplayRect.HorizontalExpand = true;
-            Lobby!.LobbyAnimation.DisplayRect.VerticalExpand = true;
+            Lobby.LocalChangelogBody.PopulateChangelog(combinedChangelog);
+            Lobby.LobbyAnimation.DisplayRect.Stretch = TextureRect.StretchMode.KeepAspectCovered;
+            Lobby.LobbyAnimation.DisplayRect.HorizontalExpand = true;
+            Lobby.LobbyAnimation.DisplayRect.VerticalExpand = true;
 
 
             _cfg.OnValueChanged(SunriseCCVars.LobbyBackgroundType, OnLobbyBackgroundTypeChanged, true);
@@ -175,7 +188,7 @@ namespace Content.Client.Lobby
                 return;
             }
 
-            Lobby!.StationTime.Text =  Loc.GetString("lobby-state-player-status-round-not-started");
+            Lobby!.StationTime.Text = Loc.GetString("lobby-state-player-status-round-not-started");
             string text;
 
             if (_gameTicker.Paused)
@@ -194,6 +207,10 @@ namespace Content.Client.Lobby
                 if (seconds < 0)
                 {
                     text = Loc.GetString(seconds < -5 ? "lobby-state-right-now-question" : "lobby-state-right-now-confirmation");
+                }
+                else if (difference.TotalHours >= 1)
+                {
+                    text = $"{Math.Floor(difference.TotalHours)}:{difference.Minutes:D2}:{difference.Seconds:D2}";
                 }
                 else
                 {
@@ -294,6 +311,12 @@ namespace Content.Client.Lobby
                 lobbyBackgroundTypeString = default;
             }
 
+            if (Lobby == null)
+            {
+                Logger.Error("Error in SetLobbyBackgroundType. Lobby is null");
+                return;
+            }
+
             switch (lobbyBackgroundTypeString)
             {
                 case LobbyBackgroundType.Parallax:
@@ -349,7 +372,13 @@ namespace Content.Client.Lobby
             if (!_prototypeManager.TryIndex<LobbyAnimationPrototype>(lobbyAnimation, out var lobbyAnimationPrototype))
                 return;
 
-            Lobby!.LobbyAnimation.SetFromSpriteSpecifier(new SpriteSpecifier.Rsi(lobbyAnimationPrototype.Animation, lobbyAnimationPrototype.State));
+            if (Lobby == null)
+            {
+                Logger.Error("Error in SetLobbyAnimation. Lobby is null");
+                return;
+            }
+
+            Lobby!.LobbyAnimation.SetFromSpriteSpecifier(new SpriteSpecifier.Rsi(new ResPath(lobbyAnimationPrototype.RawPath), lobbyAnimationPrototype.State));
             Lobby!.LobbyAnimation.DisplayRect.TextureScale = lobbyAnimationPrototype.Scale;
         }
 
@@ -358,6 +387,12 @@ namespace Content.Client.Lobby
             if (!_prototypeManager.TryIndex<LobbyBackgroundPrototype>(lobbyArt, out var lobbyArtPrototype))
                 return;
 
+            if (Lobby == null)
+            {
+                Logger.Error("Error in SetLobbyArt. Lobby is null");
+                return;
+            }
+
             Lobby!.LobbyArt.Texture = _resourceCache.GetResource<TextureResource>(lobbyArtPrototype.Background);
         }
 
@@ -365,6 +400,12 @@ namespace Content.Client.Lobby
         {
             if (!_prototypeManager.TryIndex<LobbyParallaxPrototype>(lobbyParallax, out var lobbyParallaxPrototype))
                 return;
+
+            if (Lobby == null)
+            {
+                Logger.Error("Error in SetLobbyParallax. Lobby is null");
+                return;
+            }
 
             _parallaxManager.LoadParallaxByName(lobbyParallaxPrototype.Parallax);
             Lobby!.LobbyParallax = lobbyParallaxPrototype.Parallax;

@@ -23,6 +23,7 @@
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalFilled
     pocket2: BookMedicalReferenceBook
+    eyes: ClothingEyesHudMedical # Sunrise-Edit
   #storage:
     #back:
     #- Stuff

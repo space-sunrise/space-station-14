@@ -135,6 +135,7 @@
   - StationEngineerBackpack
   - StationEngineerOuterClothing
   - StationEngineerShoes
+  - AtmosphericsConsole
   - SurvivalExtended
   - Trinkets
   - GroupSpeciesBreathTool
@@ -168,6 +169,7 @@
   - StationEngineerBackpack
   - StationEngineerOuterClothing
   - StationEngineerShoes
+  - AtmosphericsConsole
   - Trinkets
   - SurvivalExtended
   - GroupSpeciesBreathTool
@@ -327,6 +329,23 @@
   - CommonPets
 
 - type: roleLoadout
+  id: JobMedicalPathologist
+  groups:
+  - MedicalMask
+  - MedicalDoctorJumpsuit
+  - MedicalGloves
+  - MedicalBackpack
+  - MedicalShoes
+  - GroupTankHarness
+  - Glasses
+  - SurvivalMedical
+  - Trinkets
+  - GroupSpeciesBreathToolMedical
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
   id: JobAdjutant
   groups:
   - AdjutantJumpsuit
@@ -340,3 +359,10 @@
   - Pants
   - Socks
   - CommonPets
+
+- type: roleLoadout
+  id: RoleSurvivalAssaultOps
+  groups:
+  - SurvivalSyndicate
+  - GroupSpeciesBreathTool
+  - GroupPocketTankDouble

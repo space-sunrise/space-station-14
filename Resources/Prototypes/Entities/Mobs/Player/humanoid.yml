@@ -36,8 +36,16 @@
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Vox
-  - Vulpkanin
   - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: EventHumanoidMindShielded
   randomizeName: false
   components:
@@ -78,8 +86,16 @@
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Vox
-  - Vulpkanin
   - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: EventHumanoidMindShielded
   randomizeName: false
   components:
@@ -115,8 +131,16 @@
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Vox
-  - Vulpkanin
   - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -143,8 +167,16 @@
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Vox
-  - Vulpkanin
   - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTLeaderEVA
   components:
     - type: GhostRole
@@ -181,8 +213,16 @@
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Vox
-  - Vulpkanin
   - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTLeader
   components:
     - type: BibleUser
@@ -218,8 +258,16 @@
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Vox
-  - Vulpkanin
   - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTChaplain
   components:
     - type: GhostRole
@@ -257,8 +305,16 @@
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Vox
-  - Vulpkanin
   - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -294,6 +350,15 @@
   - Diona
   - Vox
   - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTJanitor
   components:
     - type: GhostRole
@@ -331,6 +396,15 @@
   - Diona
   - Vox
   - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -366,6 +440,15 @@
   - Diona
   - Vox
   - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTEngineer
   components:
     - type: GhostRole
@@ -400,9 +483,18 @@
 - type: randomHumanoidSettings
   id: ERTSecurity
   speciesBlacklist: # Sunrise-edit
-    - Diona
-    - Vox
-    - Felinid
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -438,6 +530,15 @@
   - Diona
   - Vox
   - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTSecurity
   components:
     - type: GhostRole
@@ -465,6 +566,15 @@
   - Diona
   - Vox
   - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTSecurityEVA
   components:
     - type: GhostRole
@@ -499,8 +609,18 @@
 - type: randomHumanoidSettings
   id: ERTMedical
   speciesBlacklist: # Sunrise-edit
+  - Diona
   - Vox
   - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTLeader
   components:
     - type: GhostRole
@@ -533,8 +653,18 @@
 - type: randomHumanoidSettings
   id: ERTMedicalEVA
   speciesBlacklist: # Sunrise-edit
+  - Diona
   - Vox
   - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: ERTMedical
   components:
     - type: GhostRole
@@ -566,8 +696,16 @@
   speciesBlacklist: # Sunrise-edit
   - Diona
   - Vox
-  - Vulpkanin
   - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
   parent: EventHumanoidMindShielded
   components:
     - type: Loadout
@@ -602,6 +740,9 @@
   - Diona
   - Vox
   - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
   parent: EventHumanoidMindShielded
   components:
     - type: GhostRole

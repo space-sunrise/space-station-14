@@ -1,0 +1,14 @@
+- type: gameMap
+  id: SunriseDev
+  mapName: Dev
+  mapPath: /Maps/_Sunrise/Station/dev_map.yml
+  minPlayers: 0
+  stations:
+    Dev:
+      stationProto: StandardNanotrasenStation
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "Dev"
+        - type: StationJobs
+          availableJobs:
+            Captain: [ -1, -1 ]

@@ -1,3 +1,4 @@
+using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.Item;
 using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
@@ -52,6 +53,11 @@ public sealed partial class EntityWhitelist
     /// </summary>
     [DataField]
     public List<ProtoId<TagPrototype>>? Tags;
+
+    // Sunrise-Start
+    [DataField]
+    public List<ProtoId<SpeciesPrototype>>? Species;
+    // Sunrise-End
 
     /// <summary>
     ///     If false, an entity only requires one of these components or tags to pass the whitelist. If true, an

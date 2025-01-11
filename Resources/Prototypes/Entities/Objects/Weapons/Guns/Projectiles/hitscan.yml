@@ -129,7 +129,7 @@
   damage:
     types:
       Heat: 45
-      Structural: 10
+      Structural: 100 #Sunrise-edit
   muzzleFlash:
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: muzzle_beam_heavy2

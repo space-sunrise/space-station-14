@@ -23,7 +23,7 @@ namespace Content.Client.Launcher
     {
         [Dependency] private readonly IUriOpener _uri = default!; // Sunrise-Edit
 
-        private const float RedialWaitTimeSeconds = 30f; // Sunrise-edit
+        private const float RedialWaitTimeSeconds = 10f; // Sunrise-edit
         private readonly LauncherConnecting _state;
         private float _waitTime;
 

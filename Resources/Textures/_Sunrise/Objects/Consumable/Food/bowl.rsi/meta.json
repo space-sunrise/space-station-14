@@ -1,4 +1,4 @@
-﻿{
+{
     "version": 1,
     "license": "CC-BY-SA-3.0",
     "copyright": "Pelmeni created by SonicDC#9046",
@@ -12,6 +12,9 @@
         },
         {
             "name": "pelmeni"
+        },
+        {
+            "name": "sawdust"
         }
     ]
 }

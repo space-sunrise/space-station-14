@@ -1,8 +1,6 @@
 using System.Linq;
 using System.Numerics;
 using System.Threading;
-using Content.Server._Sunrise.DontSellingGrid;
-using Content.Server._Sunrise.ImmortalGrid;
 using Content.Server._Sunrise.NightDayMapLight;
 using Content.Server._Sunrise.TransitHub;
 using Content.Server.Access.Systems;
@@ -49,6 +47,10 @@ using Robust.Shared.Utility;
 using Content.Server.GameTicking;
 using Content.Shared._Sunrise.AlwaysPoweredMap;
 using Content.Shared.Atmos;
+using Content.Shared.Damage;
+using Content.Shared.Damage.Prototypes;
+using Content.Shared.Doors.Components;
+using Content.Shared.Doors.Systems;
 using Content.Shared.Gravity;
 using Content.Shared.Parallax;
 using Content.Shared.Parallax.Biomes;
@@ -77,8 +79,6 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
     [Dependency] private readonly DockingSystem _dock = default!;
     [Dependency] private readonly IdCardSystem _idSystem = default!;
     [Dependency] private readonly NavMapSystem _navMap = default!;
-    [Dependency] private readonly MapLoaderSystem _map = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -86,10 +86,11 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly TransformSystem _transformSystem = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly BiomeSystem _biomes = default!;
-    [Dependency] private readonly IPrototypeManager _protoManager = default!;
     [Dependency] private readonly MapLoaderSystem _loader = default!;
     [Dependency] private readonly AtmosphereSystem _atmos = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly SharedAirlockSystem _airlockSystem = default!;
 
     private const float ShuttleSpawnBuffer = 1f;
 
@@ -332,7 +333,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         }
 
         ShuttleDockResultType resultType;
-        if (_shuttle.TryFTLDock(stationShuttle.EmergencyShuttle.Value, shuttle, targetGrid.Value, out var config, DockTag))
+        if (_shuttle.TryFTLDock(stationShuttle.EmergencyShuttle.Value, shuttle, targetGrid.Value, out var config, DockTag, true, true)) // Sunrise-Edit
         {
             _logger.Add(
                 LogType.EmergencyShuttle,
@@ -689,6 +690,17 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         EnsureComp<ProtectedGridComponent>(shuttle);
         EnsureComp<PreventPilotComponent>(shuttle);
         EnsureComp<EmergencyShuttleComponent>(shuttle);
+
+        var docks = new HashSet<Entity<DockingComponent>>();
+        _lookup.GetChildEntities(shuttle, docks);
+        foreach (var dock in docks)
+        {
+            var airlock = EnsureComp<AirlockComponent>(dock);
+            _airlockSystem.SetSafety(airlock, false);
+            var door = EnsureComp<DoorComponent>(dock);
+            door.ForcedCrushClose = true;
+            door.CrushDamage = new DamageSpecifier(_prototypeManager.Index<DamageTypePrototype>("Blunt"), 1000);
+        }
 
         // Sunrise-end
         Log.Info($"Added emergency shuttle {ToPrettyString(shuttle)} for station {ToPrettyString(ent)} and centcomm {ToPrettyString(ent.Comp2.Entity)}");

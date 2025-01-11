@@ -64,6 +64,17 @@
     price: 500
   - type: UseDelay
     delay: 1
+  # Sunrise start
+  - type: EmitSoundOnPickup
+    sound:
+      collection: RiflesPickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: RiflesDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: RiflesDrop
+  # Sunrise end
 
 - type: entity
   name: L6 SAW
@@ -115,8 +126,8 @@
     - type: ContainerContainer
       containers:
         ballistic-ammo: !type:Container
-    - type: ProjectileBatteryAmmoProvider
-      proto: CartridgeLightRifle
+    - type: HitscanBatteryAmmoProvider
+      proto: BulletLightRifle
       fireCost: 100
     - type: Battery
       maxCharge: 10000

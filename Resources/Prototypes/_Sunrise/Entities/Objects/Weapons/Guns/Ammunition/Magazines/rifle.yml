@@ -22,10 +22,10 @@
   - type: BallisticAmmoProvider
     mayTransfer: true
     capacity: 40
-    proto: CartridgeRocket20
+    proto: CartridgeRail
     whitelist:
       tags:
-      - CartridgeRocket20
+      - CartridgeRail
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -190,11 +190,11 @@
     size: Small
   - type: BallisticAmmoProvider
     mayTransfer: true
-    proto: CartridgeLightRifle  # 556
+    proto: CartridgeRifle  # 556
     whitelist:
       tags:
-      - CartridgeLightRifle  # 556
-    capacity: 25
+      - CartridgeRifle  # 556
+    capacity: 30
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container

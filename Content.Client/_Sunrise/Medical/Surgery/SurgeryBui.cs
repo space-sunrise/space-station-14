@@ -1,10 +1,10 @@
-﻿using Content.Client.Administration.UI.CustomControls;
+﻿using Content.Client._Sunrise.Choice;
+using Content.Client.Administration.UI.CustomControls;
 using Content.Client.Hands.Systems;
 using Content.Shared._Sunrise.Medical.Surgery;
 using Content.Shared.Body.Part;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
-using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -47,7 +47,7 @@ public sealed class SurgeryBui : BoundUserInterface
         _lastRefresh = DateTime.UtcNow;
         RefreshUI();
     }
-    protected override void Open() => UpdateState(State);   
+    protected override void Open() => UpdateState(State);
     protected override void UpdateState(BoundUserInterfaceState? state)
     {
         if (state is SurgeryBuiState s)
@@ -253,7 +253,7 @@ public sealed class SurgeryBui : BoundUserInterface
 
         _window.Surgeries.DisposeAllChildren();
 
-        var surgeries = new List<(Entity<SurgeryComponent> Ent, EntProtoId Id, string Name, bool IsCompleted, Texture?)>();
+        var surgeries = new List<(Entity<SurgeryComponent> Ent, EntProtoId Id, string Name, bool IsCompleted, Robust.Client.Graphics.Texture?)>();
         foreach (var (surgeryId, suffix, isCompleted) in surgeryIds)
         {
             if (_system.GetSingleton(surgeryId) is not { } surgery ||

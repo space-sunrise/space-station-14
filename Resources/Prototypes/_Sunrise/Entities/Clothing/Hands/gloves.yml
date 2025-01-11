@@ -32,3 +32,25 @@
     sprite: _Sunrise/Clothing/Hands/Gloves/hos.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Hands/Gloves/hos.rsi
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesChristmas
+  name: christmas gloves
+  description: Stylish Christmas leather gloves.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Hands/Gloves/christmas_gloves.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Hands/Gloves/christmas_gloves.rsi
+
+- type: entity
+  parent: ClothingHandsBase
+  id: ClothingHandsGlovesChristmasLong
+  name: christmas gloves long
+  description: Stylish Christmas long leather gloves.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Hands/Gloves/christmas_gloves_long.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Hands/Gloves/christmas_gloves_long.rsi

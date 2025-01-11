@@ -13,8 +13,6 @@
   setPreference: false
   canBeAntag: false
   displayWeight: 50
-  speciesBlacklist:
-  - Vox
   access:
   - Security
   - Brig
@@ -36,3 +34,7 @@
     id: SecurityPilotPDA
     ears: ClothingHeadsetSecurity
     pocket1: WeaponPistolG22NonLethal
+  storage:
+    back:
+    - Flash
+    - MagazineGlock22Rubber

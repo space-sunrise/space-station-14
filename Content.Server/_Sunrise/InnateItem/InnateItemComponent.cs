@@ -15,5 +15,7 @@ namespace Content.Server._Sunrise.InnateItem
         [ViewVariables(VVAccess.ReadOnly),
          DataField("worldTargetActions", customTypeSerializer: typeof(PrototypeIdListSerializer<EntityPrototype>))]
         public List<string?> WorldTargetActions = new();
+
+        public List<EntityUid> Actions = new();
     }
 }

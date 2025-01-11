@@ -4,7 +4,7 @@
     sprite: Clothing/Belt/securitywebbing.rsi
     state: icon
   product: CrateSecurityWebbing
-  cost: 2500
+  cost: 1500
   category: cargoproduct-category-name-security
   group: market
 
@@ -24,6 +24,16 @@
     sprite: _Sunrise/Clothing/OuterClothing/Armor/swat_armor.rsi
     state: icon
   product: CrateSecuritySWAT
-  cost: 8000
+  cost: 7500
+  category: cargoproduct-category-name-security
+  group: market
+
+- type: cargoProduct
+  id: SecurityReflective
+  icon:
+    sprite: Clothing/OuterClothing/Armor/armor_reflec.rsi
+    state: icon
+  product: CrateSecurityArmorReflective
+  cost: 4000
   category: cargoproduct-category-name-security
   group: market

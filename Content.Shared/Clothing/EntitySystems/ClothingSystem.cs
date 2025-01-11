@@ -246,6 +246,19 @@ public abstract class ClothingSystem : EntitySystem
         Dirty(uid, clothing);
     }
 
+    // Sunrsie-Start
+    public void SetVisuals(EntityUid uid, string rsiPath, ClothingComponent? clothing = null)
+    {
+        if (!Resolve(uid, ref clothing))
+            return;
+
+        clothing.RsiPath = rsiPath;
+
+        _itemSys.VisualsChanged(uid);
+        Dirty(uid, clothing);
+    }
+    // Sunrsie-End
+
     public void SetLayerColor(ClothingComponent clothing, string slot, string mapKey, Color? color)
     {
         foreach (var layer in clothing.ClothingVisuals[slot])

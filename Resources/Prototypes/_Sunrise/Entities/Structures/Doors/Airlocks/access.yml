@@ -80,6 +80,14 @@
   - type: AccessReader
     access: [["SyndicateAgent"]]
 
+- type: entity
+  parent: AirlockMaint
+  id: AirlockMaintSyndicateLocked
+  suffix: Syndicate, Locked
+  components:
+  - type: AccessReader
+    access: [["SyndicateAgent"]]
+
 #DoubleAirlocks
 
 - type: entity

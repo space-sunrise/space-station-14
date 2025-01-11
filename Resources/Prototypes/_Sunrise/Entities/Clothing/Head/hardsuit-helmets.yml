@@ -161,9 +161,6 @@
     lowPressureMultiplier: 1000
   - type: EyeProtection
   - type: FlashImmunity
-#  - type: NightVisionDevice
-#    displayColor: "#ebeb00"
-#    displayShader: NVDDisplay
 
 #Для ивентов
 

@@ -7,6 +7,15 @@
     "copyright": "Taken from tgstation. Resprite BlueShield Closet by CatBG (Discord:catbg)",
     "license": "CC-BY-SA-3.0",
     "states": [
+    {
+      "name": "patologoanatom"
+    },
+    {
+      "name": "patologoanatom_open"
+    },
+    {
+      "name": "patologoanatom_door"
+    },
         {
             "name": "bssecure_door"
         },

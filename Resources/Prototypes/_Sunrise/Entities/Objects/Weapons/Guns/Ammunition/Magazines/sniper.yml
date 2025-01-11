@@ -9,11 +9,11 @@
       - MagazineDragunov
   - type: BallisticAmmoProvider
     mayTransfer: true
-    capacity: 20
-    proto: CartridgeMagnum  # 762x54
+    capacity: 10
+    proto: CartridgeAntiMateriel  # 762x54
     whitelist:
       tags:
-        - CartridgeMagnum  # 762x54
+        - CartridgeAntiMateriel  # 762x54
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -46,11 +46,11 @@
       - MagazineBR64
   - type: BallisticAmmoProvider
     mayTransfer: true
-    capacity: 20
-    proto: CartridgeAntiMateriel  # 062
+    capacity: 32
+    proto: CartridgeMagnum  # 062
     whitelist:
       tags:
-        - CartridgeAntiMateriel  # 062
+        - CartridgeMagnum  # 062
   - type: ContainerContainer
     containers:
       ballistic-ammo: !type:Container
@@ -112,14 +112,14 @@
   id: MagazineDragunovExtended
   components:
   - type: BallisticAmmoProvider
-    capacity: 25
+    capacity: 20
 
 - type: entity
   parent: MagazineBR64
   id: MagazineBR64Extended
   components:
   - type: BallisticAmmoProvider
-    capacity: 25
+    capacity: 36
 
 - type: entity
   parent: MagazineBauer127

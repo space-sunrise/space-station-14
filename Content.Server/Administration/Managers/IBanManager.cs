@@ -24,9 +24,55 @@ public interface IBanManager
     /// <param name="minutes">Number of minutes to ban for. 0 and null mean permanent</param>
     /// <param name="severity">Severity of the resulting ban note</param>
     /// <param name="reason">Reason for the ban</param>
-    public void CreateServerBan(NetUserId? target, string? targetUsername, NetUserId? banningAdmin, (IPAddress, int)? addressRange, ImmutableArray<byte>? hwid, uint? minutes, NoteSeverity severity, string reason);
+    public void CreateServerBan(NetUserId? target, string? targetUsername, NetUserId? banningAdmin, (IPAddress, int)? addressRange, ImmutableTypedHwid? hwid, uint? minutes, NoteSeverity severity, string reason);
     public HashSet<string>? GetRoleBans(NetUserId playerUserId);
-    public HashSet<ProtoId<JobPrototype>>? GetJobBans(NetUserId playerUserId);
+    public HashSet<ProtoId<JobPrototype>> GetJobBans(NetUserId playerUserId);
+
+    /// <summary>
+    /// Retrieves a set of antagonist bans for the specified player. By Default only active bans.
+    /// </summary>
+    /// <param name="playerUserId">The user ID of the player.</param>
+    /// <returns>
+    /// A set of antagonist prototype IDs representing the banned antagonist roles for the player,
+    /// or null if the player has no antagonist bans.
+    /// </returns>
+    public HashSet<ProtoId<AntagPrototype>> GetAntagBans(NetUserId playerUserId);
+
+    /// <summary>
+    /// Checks if the player is banned from a specific antagonist role.
+    /// Will also return true if they are banned on the All antagonists condition.
+    /// </summary>
+    /// <param name="userId">Player's user ID.</param>
+    /// <param name="antag">Antagonist role ID to check for ban.</param>
+    /// <returns>True if the player is banned from the specified antagonist role, false otherwise.</returns>
+    public bool IsAntagBanned(NetUserId userId, string antag);
+
+    /// <summary>
+    /// Checks if the player is banned from any of the specified antagonist roles.
+    /// Will also return true if they are banned on the All antagonists condition.
+    /// </summary>
+    /// <param name="userId">Player's user ID.</param>
+    /// <param name="antags">Antagonist role IDs to check for ban.</param>
+    /// <returns>True if the player is banned from any of the specified antagonist roles, false otherwise.</returns>
+    public bool IsAntagBanned(NetUserId userId, IEnumerable<string> antags);
+
+    /// <summary>
+    /// Checks if the player is banned from any of the specified antagonist roles.
+    /// Will also return true if they are banned on the All antagonists condition.
+    /// </summary>
+    /// <param name="userId">Player's user ID.</param>
+    /// <param name="antags">Antagonist role IDs to check for ban as ProtoId<AntagPrototype>.</param>
+    /// <returns>True if the player is banned from any of the specified antagonist roles, false otherwise.</returns>
+    public bool IsAntagBanned(NetUserId userId, IEnumerable<ProtoId<AntagPrototype>> antags);
+
+
+    /// <summary>
+    /// Checks if the player is banned from a specific role.
+    /// </summary>
+    /// <param name="userId">Player's user ID.</param>
+    /// <param name="roles">Role IDs to check for ban.</param>
+    /// <returns>True if the player is banned from any of the specified roles, false otherwise.</returns>
+    public bool IsRoleBanned(NetUserId userId, IEnumerable<string> roles);
 
     /// <summary>
     /// Creates a job ban for the specified target, username or GUID
@@ -37,9 +83,9 @@ public interface IBanManager
     /// <param name="reason">Reason for the ban</param>
     /// <param name="minutes">Number of minutes to ban for. 0 and null mean permanent</param>
     /// <param name="timeOfBan">Time when the ban was applied, used for grouping role bans</param>
-    public void CreateRoleBan(NetUserId? target, string? targetUsername, NetUserId? banningAdmin, (IPAddress, int)? addressRange, ImmutableArray<byte>? hwid, string role, uint? minutes, NoteSeverity severity, string reason, DateTimeOffset timeOfBan);
+    public void CreateRoleBan(NetUserId? target, string? targetUsername, NetUserId? banningAdmin, (IPAddress, int)? addressRange, ImmutableTypedHwid? hwid, string role, uint? minutes, NoteSeverity severity, string reason, DateTimeOffset timeOfBan);
 
-    public void WebhookUpdateRoleBans(NetUserId? target, string? targetUsername, NetUserId? banningAdmin, (IPAddress, int)? addressRange, ImmutableArray<byte>? hwid, IReadOnlyCollection<string> roles, uint? minutes, NoteSeverity severity, string reason, DateTimeOffset timeOfBan);
+    public void WebhookUpdateRoleBans(NetUserId? target, string? targetUsername, NetUserId? banningAdmin, (IPAddress, int)? addressRange, ImmutableTypedHwid? hwid, IReadOnlyCollection<string> roles, uint? minutes, NoteSeverity severity, string reason, DateTimeOffset timeOfBan);
 
     /// <summary>
     /// Pardons a role ban for the specified target, username or GUID

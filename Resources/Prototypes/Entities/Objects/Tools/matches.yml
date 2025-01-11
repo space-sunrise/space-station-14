@@ -102,3 +102,14 @@
     tags:
     - Trash
   - type: SpaceGarbage
+  # Sunrise edit start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/matchbox_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/matchbox_drop.ogg
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/matchbox_drop.ogg
+  # Sunrise edit end

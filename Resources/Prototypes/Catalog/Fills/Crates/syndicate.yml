@@ -1,11 +1,54 @@
 - type: entity
-  id: CrateSyndicateSurplusBundle
+  id: CrateSyndicateSurplusBundleAgent
   parent: [ CrateSyndicate, StorePresetUplink, BaseSyndicateContraband ]
   name: Syndicate surplus crate
   description: Contains 50 telecrystals worth of completely random Syndicate items. It can be useless junk or really good.
+  suffix: Agent
   components:
-    - type: SurplusBundle
-      totalPrice: 50
+  - type: SurplusBundle
+    totalPrice: 50
+  - type: Tag
+    tags:
+    - SyndieAgentUplink
+
+- type: entity
+  id: CrateSyndicateSuperSurplusBundleAgent
+  parent: [ CrateSyndicate, StorePresetUplink, BaseSyndicateContraband ]
+  name: Syndicate super surplus crate
+  description: Contains 125 telecrystals worth of completely random Syndicate items.
+  suffix: Agent
+  components:
+  - type: SurplusBundle
+    totalPrice: 125
+  - type: Tag
+    tags:
+    - SyndieAgentUplink
+
+- type: entity
+  id: CrateSyndicateSurplusBundleNuke
+  parent: [ CrateSyndicate, StorePresetUplink, BaseSyndicateContraband ]
+  name: Syndicate surplus crate
+  description: Contains 50 telecrystals worth of completely random Syndicate items. It can be useless junk or really good.
+  suffix: NUKE
+  components:
+  - type: SurplusBundle
+    totalPrice: 50
+  - type: Tag
+    tags:
+    - NukeOpsUplink
+
+- type: entity
+  id: CrateSyndicateSuperSurplusBundleNuke
+  parent: [ CrateSyndicate, StorePresetUplink, BaseSyndicateContraband ]
+  name: Syndicate super surplus crate
+  description: Contains 125 telecrystals worth of completely random Syndicate items.
+  suffix: NUKE
+  components:
+  - type: SurplusBundle
+    totalPrice: 125
+  - type: Tag
+    tags:
+    - NukeOpsUplink
 
 - type: entity
   id: CrateCybersunJuggernautBundle
@@ -22,14 +65,22 @@
       - id: DoubleEmergencyOxygenTankFilled
       - id: DoubleEmergencyNitrogenTankFilled
 
+#Sunrise-start
+
 - type: entity
-  id: CrateSyndicateSuperSurplusBundle
-  parent: [ CrateSyndicate, StorePresetUplink, BaseSyndicateContraband ]
-  name: Syndicate super surplus crate
-  description: Contains 125 telecrystals worth of completely random Syndicate items.
+  id: CrateAmmokitBundle
+  suffix: Filled
+  parent: CrateSyndicate
+  name: Syndicate super ammo bundle
+  description: Contains everything except a big gun to go postal.
   components:
-    - type: SurplusBundle
-      totalPrice: 125
+  - type: StorageFill
+    contents:
+      - id: CaselessAmmoKit
+      - id: ClothingBackpackDuffelSyndicateAmmoFilled
+      - id: ClothingBackpackDuffelSyndicateAmmoIncendiaryFilled
+      - id: ClothingBackpackDuffelSyndicateAmmoUraniumFilled
+
 
 - type: entity
   id: CrateCybersunDarkGygaxBundle
@@ -81,3 +132,5 @@
       - id: ToolboxSyndicateFilled
       - id: PlushieNuke
       - id: WelderIndustrial # Удалить когда ремонт мехов будет дешевле по сварочному топливу
+
+#sunrise-end

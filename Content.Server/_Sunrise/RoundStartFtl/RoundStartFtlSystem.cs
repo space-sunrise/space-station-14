@@ -16,7 +16,6 @@ public sealed class RoundStartFtlSystem : EntitySystem
     [Dependency] private readonly MapLoaderSystem _loader = default!;
     [Dependency] private readonly ShuttleSystem _shuttles = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly ShuttleSystem _shuttleSystem = default!;
 
     public override void Initialize()
     {
@@ -25,10 +24,13 @@ public sealed class RoundStartFtlSystem : EntitySystem
 
     private void OnMapInit(EntityUid targetUid, RoundstartFtlTargetComponent ftlTargetComponent, MapInitEvent args)
     {
-        var ftlMap = _shuttleSystem.EnsureFTLMap();
+        if (ftlTargetComponent.GridPath is null)
+            return;
+
+        var ftlMap = _shuttles.EnsureFTLMap();
         var xformMap = Transform(ftlMap);
         if (!_loader.TryLoad(xformMap.MapID,
-                ftlTargetComponent.Path,
+                ftlTargetComponent.GridPath.Value.ToString(),
                 out var rootUids,
                 new MapLoadOptions()
                 {

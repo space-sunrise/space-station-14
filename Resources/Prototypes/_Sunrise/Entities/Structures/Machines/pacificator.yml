@@ -67,7 +67,6 @@
     castShadows: false
     color: "#a8ffd9"
   - type: Repairable
-    fuelCost: 10
     doAfterDelay: 5
   - type: ExtensionCableReceiver
   - type: Physics

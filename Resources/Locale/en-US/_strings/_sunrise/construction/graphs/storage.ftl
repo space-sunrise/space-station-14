@@ -26,3 +26,5 @@ recipe-ClosetSteel-name = шкаф
 recipe-ClosetSteel-description = Стандартное хранилище Nanotrasen.
 recipe-CrateLivestock-name = ящик для скота
 recipe-CrateLivestock-description = Большой контейнер для предметов.
+recipe-StorageCanister-name = контейнер для газов
+recipe-StorageCanister-description = Стальной контейнер для хранения газов.

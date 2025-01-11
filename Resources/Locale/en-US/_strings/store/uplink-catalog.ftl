@@ -28,7 +28,7 @@ uplink-gloves-north-star-desc = A pair of gloves that reduce your punching coold
 
 # Explosives
 uplink-explosive-grenade-name = Explosive Grenade
-uplink-explosive-grenade-desc = A simplistic grenade with a three-and-a-half-second long fuse that is geared towards injuring personnel. Causes minimal hull damage.
+uplink-explosive-grenade-desc = A simplistic grenade with a 3.5 second long fuse that is geared towards injuring personnel. Causes minimal hull damage.
 
 uplink-flash-grenade-name = Flashbang
 uplink-flash-grenade-desc = A standard-issue flashbang, capable of blinding and slowing down anyone without proper protection. This, of course, includes you; make sure you're properly equipped before using it.
@@ -37,7 +37,7 @@ uplink-smoke-grenade-name = Smoke Grenade
 uplink-smoke-grenade-desc = A grenade that releases a huge cloud of smoke, perfect for killing someone in the shadows or making a sneaky getaway.
 
 uplink-mini-bomb-name = Minibomb
-uplink-mini-bomb-desc = A low-yield, high-impact precision sabotage explosive with a five-second long fuse. Perfect for quickly destroying a machine, dead body, or whatever else needs to go.
+uplink-mini-bomb-desc = A low-yield, high-impact precision sabotage explosive with a 5 second long fuse. Perfect for quickly destroying a machine, dead body, or whatever else needs to go.
 
 uplink-supermatter-grenade-name = Supermatter Grenade
 uplink-supermatter-grenade-desc = Grenade that simulates delamination of a suppermatter engine, generates powerful gravity well. Explosion comparable to a Mini Bomb.
@@ -228,6 +228,39 @@ uplink-meds-bundle-desc = An assortment of autoinjectors and premium medical equ
 uplink-ammo-bundle-name = Ammo Bundle
 uplink-ammo-bundle-desc = Reloading! Contains 4 magazines for the C-20r, 4 drums for the Bulldog, and 2 ammo boxes for the L6 SAW.
 
+uplink-ammo-crate-ammokit-bundle-name = Syndicate super ammo bundle
+uplink-ammo-crate-ammokit-bundle-desc = Reloading! Reloading! Reloading! Contains various ammo kit except for big gun.
+
+uplink-ammo-caselesskit-name = Caseless Ammo Kit
+uplink-ammo-caselesskit-desc = Reloading! Contains 3 extended magazines and 3 base caseless magazine for the Siar-52.
+
+uplink-ammo-smgkit-name = SMG Ammo Kit
+uplink-ammo-smgkit-desc = Reloading! Contains 8 magazines for the C-20r.
+
+uplink-ammo-smgincendiarykit-name = SMG incendiary Ammo Kit
+uplink-ammo-smgincendiarykit-desc = Reloading! Contains 8 incendiary magazines for the C-20r.
+
+uplink-ammo-smguraniumkit-name = SMG uranium Ammo Kit
+uplink-ammo-smguraniumkit-desc = Reloading! Contains 8 uranium magazines for the C-20r.
+
+uplink-ammo-shotgunkit-name = Shotgun Ammo Kit
+uplink-ammo-shotgunkit-desc = Reloading! Contains 5 pellet magazines and 3 slug magazine for the Bulldog.
+
+uplink-ammo-shotgunincendiarykit-name = Shotgun incendiary Ammo Kit
+uplink-ammo-shotgunincendiarykit-desc = Reloading! Contains 8 incendiary magazines for the Bulldog.
+
+uplink-ammo-shotgunuraniumkit-name = Shotgun uranium Ammo Kit
+uplink-ammo-shotgunuraniumkit-desc = Reloading! Contains 8 uranium magazines for the Bulldog.
+
+uplink-ammo-lmgkit-name = LMG Ammo Kit
+uplink-ammo-lmgkit-desc = Reloading! Contains 8 magazines for the L6 Saw or DL6902.
+
+uplink-ammo-lmgincendiarykit-name = LMG incendiary Ammo Kit
+uplink-ammo-lmgincendiarykit-desc = Reloading! Contains 8 incendiary magazines for the L6 Saw or DL6902.
+
+uplink-ammo-lmguraniumkit-name = LMG uranium Ammo Kit
+uplink-ammo-lmguraniumkit-desc = Reloading! Contains 8 uranium magazines for the L6 Saw or DL6902.
+
 uplink-sniper-bundle-name = Sniper Bundle
 uplink-sniper-bundle-desc = An inconspicuous briefcase that contains a Hristov, 10 spare bullets and a convenient disguise.
 
@@ -414,7 +447,7 @@ uplink-outlaw-glasses-name = Outlaw Glasses
 uplink-outlaw-glasses-desc = A must for every self-respecting undercover agent.
 
 uplink-costume-pyjama-name = Syndicate Pyjama Duffel Bag
-uplink-costume-pyjama-desc = Contains 3 pairs of syndicate pyjamas and 3 plushies for the ultimate sleepover.
+uplink-costume-pyjama-desc = Contains 3 pairs of syndicate pyjamas and 4 plushies for the ultimate sleepover.
 
 uplink-costume-clown-name = Clown Costume Duffel Bag
 uplink-costume-clown-desc = Contains a complete Clown outfit. Includes PDA and service radio.

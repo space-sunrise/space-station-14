@@ -13,14 +13,14 @@ public sealed class GasRegenerationSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<GasRegenerationComponent, EntityUnpausedEvent>(OnUnpaused);
+        SubscribeLocalEvent<_Sunrise.GasRegeneration.GasRegenerationComponent, EntityUnpausedEvent>(OnUnpaused);
     }
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<GasRegenerationComponent, GasTankComponent>();
+        var query = EntityQueryEnumerator<_Sunrise.GasRegeneration.GasRegenerationComponent, GasTankComponent>();
         while (query.MoveNext(out var uid, out var gasRegen, out var gasTank))
         {
             if (_timing.CurTime < gasRegen.NextRegenTime)
@@ -31,7 +31,7 @@ public sealed class GasRegenerationSystem : EntitySystem
         }
     }
 
-    private void OnUnpaused(EntityUid uid, GasRegenerationComponent comp, ref EntityUnpausedEvent args)
+    private void OnUnpaused(EntityUid uid, _Sunrise.GasRegeneration.GasRegenerationComponent comp, ref EntityUnpausedEvent args)
     {
         comp.NextRegenTime += args.PausedTime;
     }

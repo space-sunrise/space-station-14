@@ -726,35 +726,35 @@
     whitelist:
     - Engineering
 
-- type: listing
-  id: UplinkSunriseWelderExperimental
-  name: uplink-sunrise-welder-experimental-name
-  productEntity: WelderExperimental
-  cost:
-    Suntick: 15
-  categories:
-  - EngineeringThings
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyerDepartmentCondition
-    whitelist:
-    - Engineering
+#- type: listing
+#  id: UplinkSunriseWelderExperimental
+#  name: uplink-sunrise-welder-experimental-name
+#  productEntity: WelderExperimental
+#  cost:
+#    Suntick: 15
+#  categories:
+#  - EngineeringThings
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+#  - !type:BuyerDepartmentCondition
+#    whitelist:
+#    - Engineering
 
-- type: listing
-  id: UplinkSunriseJawsOfLife
-  name: uplink-sunrise-jaws-of-life-name
-  productEntity: JawsOfLife
-  cost:
-    Suntick: 25
-  categories:
-  - EngineeringThings
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyerDepartmentCondition
-    whitelist:
-    - Engineering
+#- type: listing
+#  id: UplinkSunriseJawsOfLife
+#  name: uplink-sunrise-jaws-of-life-name
+#  productEntity: JawsOfLife
+#  cost:
+#    Suntick: 25
+#  categories:
+#  - EngineeringThings
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+#  - !type:BuyerDepartmentCondition
+#    whitelist:
+#    - Engineering
 
 - type: listing
   id: UplinkSunrisePowerDrill
@@ -801,20 +801,20 @@
     whitelist:
     - Engineering
 
-- type: listing
-  id: UplinkSunriseOmnitool
-  name: uplink-sunrise-omnitool-name
-  productEntity: Omnitool
-  cost:
-    Suntick: 30
-  categories:
-  - EngineeringThings
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyerDepartmentCondition
-    whitelist:
-    - Engineering
+#- type: listing
+#  id: UplinkSunriseOmnitool
+#  name: uplink-sunrise-omnitool-name
+#  productEntity: Omnitool
+#  cost:
+#    Suntick: 30
+#  categories:
+#  - EngineeringThings
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+#  - !type:BuyerDepartmentCondition
+#    whitelist:
+#    - Engineering
 
 - type: listing
   id: UplinkSunriseClothingOuterAtmosianBomberJacket
@@ -1689,6 +1689,127 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
+- type: listing
+  id: UplinkSunrisePlushieEblan
+  productEntity: PlushieEblan
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieKlim
+  productEntity: PlushieKlim
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieMelania
+  productEntity: PlushieMelania
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieOkobius
+  productEntity: PlushieOkobius
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieVyacheslav
+  productEntity: PlushieVyacheslav
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieLu
+  productEntity: PlushieLu
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieAgata
+  productEntity: PlushieAgata
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieMilosTanka
+  productEntity: PlushieMilosTanka
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieAlice
+  productEntity: PlushieAlice
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieKaioshi
+  productEntity: PlushieKaioshi
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieRaisya
+  productEntity: PlushieRaisya
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
 # HOS
 
 - type: listing
@@ -2272,20 +2393,20 @@
     whitelist:
     - Security
 
-- type: listing
-  id: UplinkSunriseMagazineBoxPistol
-  name: uplink-sunrise-magazine-box-pistol-name
-  productEntity: MagazineBoxPistol
-  cost:
-    Suntick: 30
-  categories:
-  - SecurityThings
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyerDepartmentCondition
-    whitelist:
-    - Security
+#- type: listing
+#  id: UplinkSunriseMagazineBoxPistol
+#  name: uplink-sunrise-magazine-box-pistol-name
+#  productEntity: MagazineBoxPistol
+#  cost:
+#    Suntick: 30
+#  categories:
+#  - SecurityThings
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+#  - !type:BuyerDepartmentCondition
+#    whitelist:
+#    - Security
 
 - type: listing
   id: UplinkSunriseBoxBodyBag
@@ -2366,35 +2487,35 @@
 
 # Medical
 
-- type: listing
-  id: UplinkSunriseCryostasisBeaker
-  name: uplink-sunrise-cryostasis-beaker-name
-  productEntity: CryostasisBeaker
-  cost:
-    Suntick: 15
-  categories:
-  - MedicalThings
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyerDepartmentCondition
-    whitelist:
-    - Medical
+#- type: listing
+#  id: UplinkSunriseCryostasisBeaker
+#  name: uplink-sunrise-cryostasis-beaker-name
+#  productEntity: CryostasisBeaker
+#  cost:
+#    Suntick: 15
+#  categories:
+#  - MedicalThings
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+#  - !type:BuyerDepartmentCondition
+#    whitelist:
+#    - Medical
 
-- type: listing
-  id: UplinkSunriseMedicatedSuture
-  name: uplink-sunrise-medicated-suture-name
-  productEntity: MedicatedSuture
-  cost:
-    Suntick: 10
-  categories:
-  - MedicalThings
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyerDepartmentCondition
-    whitelist:
-    - Medical
+#- type: listing
+#  id: UplinkSunriseMedicatedSuture
+#  name: uplink-sunrise-medicated-suture-name
+#  productEntity: MedicatedSuture
+#  cost:
+#    Suntick: 10
+#  categories:
+#  - MedicalThings
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+#  - !type:BuyerDepartmentCondition
+#    whitelist:
+#    - Medical
 
 - type: listing
   id: UplinkSunrisePillCanisterDermaline
@@ -2441,35 +2562,35 @@
     whitelist:
     - Medical
 
-- type: listing
-  id: UplinkSunriseSyringeBluespace
-  name: uplink-sunrise-syringe-bluespace-name
-  productEntity: SyringeBluespace
-  cost:
-    Suntick: 10
-  categories:
-  - MedicalThings
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 2
-  - !type:BuyerDepartmentCondition
-    whitelist:
-    - Medical
+#- type: listing
+#  id: UplinkSunriseSyringeBluespace
+#  name: uplink-sunrise-syringe-bluespace-name
+#  productEntity: SyringeBluespace
+#  cost:
+#    Suntick: 10
+#  categories:
+#  - MedicalThings
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 2
+#  - !type:BuyerDepartmentCondition
+#    whitelist:
+#    - Medical
 
-- type: listing
-  id: UplinkSunriseRegenerativeMesh
-  name: uplink-sunrise-regenerative-mesh-name
-  productEntity: RegenerativeMesh
-  cost:
-    Suntick: 10
-  categories:
-  - MedicalThings
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyerDepartmentCondition
-    whitelist:
-    - Medical
+#- type: listing
+#  id: UplinkSunriseRegenerativeMesh
+#  name: uplink-sunrise-regenerative-mesh-name
+#  productEntity: RegenerativeMesh
+#  cost:
+#    Suntick: 10
+#  categories:
+#  - MedicalThings
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+#  - !type:BuyerDepartmentCondition
+#    whitelist:
+#    - Medical
 
 - type: listing
   id: UplinkSunriseClothingHandsGlovesNitrile
@@ -2653,20 +2774,20 @@
     whitelist:
     - Science
 
-- type: listing
-  id: UplinkSunriseResearchDisk5000
-  name: uplink-sunrise-research-disk-name
-  productEntity: ResearchDisk5000
-  cost:
-    Suntick: 15
-  categories:
-  - ScienceThings
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyerDepartmentCondition
-    whitelist:
-    - Science
+#- type: listing
+#  id: UplinkSunriseResearchDisk5000
+#  name: uplink-sunrise-research-disk-name
+#  productEntity: ResearchDisk5000
+#  cost:
+#    Suntick: 15
+#  categories:
+#  - ScienceThings
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 1
+#  - !type:BuyerDepartmentCondition
+#    whitelist:
+#    - Science
 
 - type: listing
   id: UplinkSunriseClothingShoesBootsMag
@@ -3006,7 +3127,7 @@
 - type: listing
   id: UplinkSunrisePlayerBorgGeneric
   name: uplink-sunrise-player-borg-generic-name
-  productEntity: PlayerBorgGeneric
+  productEntity: PlayerBorgBattery
   cost:
     Suntick: 100
   categories:

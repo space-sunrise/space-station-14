@@ -7,11 +7,13 @@ using Content.Server.Chat.Systems;
 using Content.Server.Emoting.Systems;
 using Content.Server.Pinpointer;
 using Content.Server.Speech.EntitySystems;
+using Content.Shared.Anomaly.Components;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Cloning;
 using Content.Shared.Damage;
 using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
+using Content.Shared.Mech.Components; // Sunrise-Edit
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -74,6 +76,7 @@ namespace Content.Server.Zombies
             SubscribeLocalEvent<ZombieComponent, GetCharactedDeadIcEvent>(OnGetCharacterDeadIC);
 
             SubscribeLocalEvent<PendingZombieComponent, MapInitEvent>(OnPendingMapInit);
+            SubscribeLocalEvent<PendingZombieComponent, BeforeRemoveAnomalyOnDeathEvent>(OnBeforeRemoveAnomalyOnDeath);
 
             SubscribeLocalEvent<IncurableZombieComponent, MapInitEvent>(OnPendingMapInit);
 
@@ -98,6 +101,14 @@ namespace Content.Server.Zombies
 
             _stun.TryParalyze(args.Target, TimeSpan.FromSeconds(component.ParalyzeTime), false);
             _damageable.TryChangeDamage(args.Target, component.Damage, origin: args.Thrown);
+
+        }
+
+        private void OnBeforeRemoveAnomalyOnDeath(Entity<PendingZombieComponent> ent, ref BeforeRemoveAnomalyOnDeathEvent args)
+        {
+            // Pending zombies (e.g. infected non-zombies) do not remove their hosted anomaly on death.
+            // Current zombies DO remove the anomaly on death.
+            args.Cancelled = true;
         }
 
         private void OnFlair(EntityUid uid, ZombieComponent component, ZombieFlairActionEvent args)
@@ -341,6 +352,13 @@ namespace Content.Server.Zombies
             {
                 if (args.User == entity)
                     continue;
+
+                // Sunrise-Edit-Start
+
+                if (HasComp<MechComponent>(entity))
+                    continue;
+                    
+                // Sunrise-Edit-End
 
                 if (!TryComp<MobStateComponent>(entity, out var mobState))
                     continue;

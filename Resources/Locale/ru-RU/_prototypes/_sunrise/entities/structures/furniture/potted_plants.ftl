@@ -18,3 +18,6 @@ ent-PottedPlantAlt8 = { ent-PottedPlantBase }
     .desc = { ent-PottedPlantBase.desc }
 ent-PottedPlantAlt9 = { ent-PottedPlantBase }
     .desc = { ent-PottedPlantBase.desc }
+ent-PottedPlantAlt10 = пластиковая новогодняя ёлка
+    .desc = Отличное дополнение к новому году на рабочем месте!
+    .suffix = Новый Год

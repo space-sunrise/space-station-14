@@ -61,15 +61,6 @@
     - Tesla
 
 - type: entity
-  id: BaseStationGammaArmory
-  abstract: true
-  components:
-    - type: CodeEquipment
-      shuttlePath: /Maps/_Sunrise/Shuttles/gamma_armory.yml
-      targetCode: gamma
-      priorityTag: DockGamma
-
-- type: entity
   id: BaseStationPlanetPrison
   abstract: true
   components:

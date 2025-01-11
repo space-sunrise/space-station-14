@@ -10,9 +10,7 @@
       allowedTiles:
         - FloorAsteroidSand
       entities:
-        - FloraRockSolid01
-        - FloraRockSolid02
-        - FloraRockSolid03
+        - FloraRockSolid
     - !type:BiomeDummyLayer
       id: Loot
     # Fill layer
@@ -83,18 +81,8 @@
       allowedTiles:
         - FloorPlanetGrass
       entities:
-        - FloraTree01
-        - FloraTree02
-        - FloraTree03
-        - FloraTree04
-        - FloraTree05
-        - FloraTree06
-        - FloraTreeLarge01
-        - FloraTreeLarge02
-        - FloraTreeLarge03
-        - FloraTreeLarge04
-        - FloraTreeLarge05
-        - FloraTreeLarge06
+        - FloraTree
+        - FloraTreeLarge
     # Water
     - !type:BiomeEntityLayer
       allowedTiles:
@@ -230,12 +218,7 @@
       allowedTiles:
         - FloorSnow
       entities:
-        - FloraTreeSnow01
-        - FloraTreeSnow02
-        - FloraTreeSnow03
-        - FloraTreeSnow04
-        - FloraTreeSnow05
-        - FloraTreeSnow06
+        - FloraTreeSnow
     # Ice tiles
     - !type:BiomeTileLayer
       tile: FloorIce

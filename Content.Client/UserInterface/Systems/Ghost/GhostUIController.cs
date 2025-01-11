@@ -9,7 +9,7 @@ using Content.Client._Sunrise.ServersHub;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Sunrise.Interfaces.Shared;
 using Robust.Shared.Configuration;
-using Content.Shared._Sunrise.NewLife; // Sunrise-Edit
+using Content.Shared._Sunrise.NewLife;
 
 namespace Content.Client.UserInterface.Systems.Ghost;
 

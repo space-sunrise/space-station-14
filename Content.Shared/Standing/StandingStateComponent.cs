@@ -1,31 +1,31 @@
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared.Standing;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class StandingStateComponent : Component
 {
-    [DataField]
-    public SoundSpecifier DownSound { get; private set; } = new SoundCollectionSpecifier("BodyFall");
+    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
+    public SoundSpecifier DownSound { get; set; } = new SoundCollectionSpecifier("BodyFall");
 
-    [DataField, AutoNetworkedField]
-    public StandingState CurrentState { get; set; } = StandingState.Standing;
+    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
+    public StandingState CurrentState = StandingState.Standing;
 
-    [DataField, AutoNetworkedField]
-    public bool Standing { get; set; } = true;
-
-    /// <summary>
-    ///     List of fixtures that had their collision mask changed when the entity was downed.
-    ///     Required for re-adding the collision mask.
-    /// </summary>
-    [DataField, AutoNetworkedField]
+    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
     public List<string> ChangedFixtures = new();
+
+    [DataField, AutoNetworkedField]
+    public float CycleTime { get; set; } = 2f;
+
+    [DataField, AutoNetworkedField]
+    public float BaseSpeedModify { get; set; } = 0.4f;
 }
 
-public enum StandingState
+[Serializable, NetSerializable]
+public enum StandingState : byte
 {
-    Lying,
-    GettingUp,
-    Standing,
+    Standing = 0,
+    Laying = 1
 }

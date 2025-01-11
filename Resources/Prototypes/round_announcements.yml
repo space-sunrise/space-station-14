@@ -1,3 +1,5 @@
 - type: roundAnnouncement
   id: Welcome
-  sound: /Audio/Announcements/welcome.ogg
+  message: announcements-welcome
+# Sunrise-Edit
+# sound: /Audio/Announcements/welcome.ogg

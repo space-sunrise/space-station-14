@@ -56,35 +56,38 @@
   id: MeteorSwarmScheduler
   components:
   - type: GameRule
-  - type: BasicStationEventScheduler
-    minimumTimeUntilFirstEvent: 600 # 10 min
-    minMaxEventTiming:
-      min: 750 # 12.5 min
-      max: 930 # 17.5 min
-    scheduledGameRules: !type:NestedSelector
-      tableId: BasicMeteorSwarmEventsTable
+# Sunrise-Edit: No meteorites
+#  - type: BasicStationEventScheduler
+#    minimumTimeUntilFirstEvent: 600 # 10 min
+#    minMaxEventTiming:
+#      min: 750 # 12.5 min
+#      max: 930 # 17.5 min
+#    scheduledGameRules: !type:NestedSelector
+#      tableId: BasicMeteorSwarmEventsTable
 
 - type: entity
   parent: BaseGameRule
   id: MeteorSwarmMildScheduler
   components:
   - type: GameRule
-  - type: BasicStationEventScheduler
-    minimumTimeUntilFirstEvent: 600 # 10 min 
-    minMaxEventTiming:
-      min: 750 # 12.5 min
-      max: 930 # 17.5 min
-    scheduledGameRules: !type:NestedSelector
-      tableId: MeteorSwarmMildTable
+# Sunrise-Edit: No meteorites
+#  - type: BasicStationEventScheduler
+#    minimumTimeUntilFirstEvent: 600 # 10 min
+#    minMaxEventTiming:
+#      min: 750 # 12.5 min
+#      max: 930 # 17.5 min
+#    scheduledGameRules: !type:NestedSelector
+#      tableId: MeteorSwarmMildTable
 
 - type: entity
   parent: BaseGameRule
   id: KesslerSyndromeScheduler
   components:
   - type: GameRule
-  - type: RampingStationEventScheduler
-    scheduledGameRules: !type:NestedSelector
-      tableId: BasicMeteorSwarmEventsTable
+# Sunrise-Edit: No meteorites
+#  - type: RampingStationEventScheduler
+#    scheduledGameRules: !type:NestedSelector
+#      tableId: BasicMeteorSwarmEventsTable
 
 # Game Rules
 
@@ -130,7 +133,7 @@
     minimumPlayers: 0
   - type: MeteorSwarm
     announcement: station-event-space-dust-start-announcement
-    announcementSound: /Audio/Announcements/announce.ogg # Sunrise-edit
+    announcementSound: /Audio/_Sunrise/Announcements/announce_dig.ogg # Sunrise-edit
     nonDirectional: true
     meteors:
       MeteorSpaceDust: 1
@@ -185,7 +188,7 @@
     weight: 0.05
   - type: MeteorSwarm
     announcement: station-event-meteor-urist-start-announcement
-    announcementSound: /Audio/Announcements/announce.ogg # Sunrise-edit
+    announcementSound: /Audio/_Sunrise/Announcements/announce_dig.ogg # Sunrise-edit
     meteors:
       MeteorUrist: 1
     waves:

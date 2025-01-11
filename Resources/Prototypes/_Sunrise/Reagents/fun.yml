@@ -26,26 +26,6 @@
         frequency: 5
 
 - type: reagent
-  id: HonkPower
-  name: reagent-name-honkpower
-  group: Toxins
-  desc: reagent-desc-honkpower
-  flavor: funny
-  color: "#F0E68C"
-  physicalDesc: reagent-physical-desc-honkpower
-  recognizable: false
-  slippery: true
-  metabolisms:
-    Food: 
-      metabolismRate: 1.0
-      effects:
-      - !type:Polymorph
-        prototype: ClowanHulk
-        conditions:
-          - !type:ReagentThreshold
-            min: 5
-
-- type: reagent
   id: H-32
   name: reagent-name-h-32
   group: Medicine
@@ -68,7 +48,7 @@
 - type: reagent
   id: Celliminol
   name: reagent-name-celliminol
-  group: Special
+  group: Medicine
   desc: reagent-desc-celliminol
   physicalDesc: reagent-physical-desc-celliminol
   flavor: medicine

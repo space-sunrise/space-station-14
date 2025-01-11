@@ -42,7 +42,7 @@
     shape:
     - 0,0,3,3
   - type: RadiationBlockingContainer
-    resistance: 4
+    resistance: 6
   - type: SealingCabinet
     sealedPopup: nuke-core-container-sealed-popup
   - type: ItemSlots

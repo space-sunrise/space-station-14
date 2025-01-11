@@ -11,6 +11,7 @@ using Content.Server.Shuttles.Systems;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Atmos;
 using Content.Shared.Decals;
+using Content.Shared.Ghost;
 using Content.Shared.Gravity;
 using Content.Shared.Parallax.Biomes;
 using Content.Shared.Parallax.Biomes.Layers;
@@ -52,15 +53,12 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
 
     private EntityQuery<BiomeComponent> _biomeQuery;
     private EntityQuery<FixturesComponent> _fixturesQuery;
+    private EntityQuery<GhostComponent> _ghostQuery;
     private EntityQuery<TransformComponent> _xformQuery;
 
     private readonly HashSet<EntityUid> _handledEntities = new();
     private const float DefaultLoadRange = 16f;
     private float _loadRange = DefaultLoadRange;
-
-    // Sunrise
-    private int _maxChunks = 100;
-    // Sunrise
 
     private List<(Vector2i, Tile)> _tiles = new();
 
@@ -86,22 +84,15 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         Log.Level = LogLevel.Debug;
         _biomeQuery = GetEntityQuery<BiomeComponent>();
         _fixturesQuery = GetEntityQuery<FixturesComponent>();
+        _ghostQuery = GetEntityQuery<GhostComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
         SubscribeLocalEvent<BiomeComponent, MapInitEvent>(OnBiomeMapInit);
         SubscribeLocalEvent<FTLStartedEvent>(OnFTLStarted);
         SubscribeLocalEvent<ShuttleFlattenEvent>(OnShuttleFlatten);
         Subs.CVar(_configManager, CVars.NetMaxUpdateRange, SetLoadRange, true);
-        Subs.CVar(_configManager, SunriseCCVars.MaxLoadedChunks, SetMaxChunk, true); // Sunrise
         InitializeCommands();
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(ProtoReload);
     }
-
-    // Sunrise
-    private void SetMaxChunk(int obj)
-    {
-        _maxChunks = obj;
-    }
-    // Sunrise
 
     private void ProtoReload(PrototypesReloadedEventArgs obj)
     {
@@ -328,6 +319,11 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         }
     }
 
+    private bool CanLoad(EntityUid uid)
+    {
+        return !_ghostQuery.HasComp(uid);
+    }
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -345,7 +341,8 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
             if (_xformQuery.TryGetComponent(pSession.AttachedEntity, out var xform) &&
                 _handledEntities.Add(pSession.AttachedEntity.Value) &&
                  _biomeQuery.TryGetComponent(xform.MapUid, out var biome) &&
-                biome.Enabled)
+                biome.Enabled &&
+                CanLoad(pSession.AttachedEntity.Value))
             {
                 var worldPos = _transform.GetWorldPosition(xform);
                 AddChunksInRange(biome, worldPos);
@@ -362,7 +359,8 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
                 if (!_handledEntities.Add(viewer) ||
                     !_xformQuery.TryGetComponent(viewer, out xform) ||
                     !_biomeQuery.TryGetComponent(xform.MapUid, out biome) ||
-                    !biome.Enabled)
+                    !biome.Enabled ||
+                    !CanLoad(viewer))
                 {
                     continue;
                 }
@@ -441,21 +439,15 @@ public sealed partial class BiomeSystem : SharedBiomeSystem
         BuildMarkerChunks(component, gridUid, grid, seed);
 
         var active = _activeChunks[component];
-        var loadedCount = component.LoadedChunks.Count; // Sunrise
 
         foreach (var chunk in active)
         {
-            // Sunrise
-            if (loadedCount >= _maxChunks)
-                continue;
-            // Sunrise
 
             if (!component.LoadedChunks.Add(chunk))
                 continue;
 
             LoadChunkMarkers(component, gridUid, grid, chunk, seed);
             LoadChunk(component, gridUid, grid, chunk, seed);
-            loadedCount++; // Sunrise
         }
     }
 

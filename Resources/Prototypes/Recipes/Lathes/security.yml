@@ -94,7 +94,16 @@
   result: WeaponLaserSvalinn
   materials:
     Steel: 2000
-    Gold: 500
+    Gold: 200 #sunrise-Edit
+
+- type: latheRecipe
+  parent: BaseWeaponRecipeLong
+  id: WeaponGunLaserCarbineSemi
+  result: WeaponGunLaserCarbineSemi
+  materials:
+    Steel: 1800
+    Plastic: 50
+    Gold: 300 #sunrise-Edit
 
 - type: latheRecipe
   parent: BaseWeaponRecipeLong
@@ -492,13 +501,13 @@
   materials:
     Plastic: 750
 
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: BoxShotgunFlare
-  result: BoxShotgunFlare
-  materials:
-    Steel: 80
-    Plastic: 80
+#- type: latheRecipe Sunrise-edit
+#  parent: BaseAmmoRecipe
+#  id: BoxShotgunFlare
+#  result: BoxShotgunFlare
+#  materials:
+#    Steel: 80
+#    Plastic: 80
 
 - type: latheRecipe
   parent: BaseAmmoRecipe
@@ -605,6 +614,15 @@
 
 - type: latheRecipe
   parent: BaseWeaponRecipe
+  id: WeaponFlareGunSecurity
+  result: WeaponFlareGunSecurity
+  completetime: 6
+  materials:
+    Plastic: 100
+    Steel: 400
+
+- type: latheRecipe
+  parent: BaseWeaponRecipe
   id: WeaponDisabler
   result: WeaponDisabler
   completetime: 6
@@ -631,7 +649,7 @@
     Plastic: 500
     Gold: 250
     Uranium: 50
-     
+
 - type: latheRecipe
   id: MagazineGrenadeEmpty
   result: MagazineGrenadeEmpty
@@ -641,8 +659,8 @@
     Plastic: 50
 
 - type: latheRecipe
-  id: GrenadeEMP
-  result: GrenadeEMP
+  id: ShellEMPArtillery
+  result: ShellEMPArtillery
   completetime: 3
   materials:
     Steel: 150
@@ -650,8 +668,8 @@
     Glass: 20
 
 - type: latheRecipe
-  id: GrenadeBlast
-  result: GrenadeBlast
+  id: ShellBlastArtillery
+  result: ShellBlastArtillery
   completetime: 3
   materials:
     Steel: 450
@@ -659,8 +677,8 @@
     Gold: 150
 
 - type: latheRecipe
-  id: GrenadeFlash
-  result: GrenadeFlash
+  id: ShellFlashArtillery
+  result: ShellFlashArtillery
   completetime: 3
   materials:
     Steel: 150

@@ -46,3 +46,7 @@ recipe-makeshiftstunprod-name = шок-палка
 recipe-makeshiftstunprod-description = Электрошокер для незаконного обезвреживания.
 recipe-bat-name = бейсбольная бита
 recipe-bat-description = Прочная бейсбольная бита.
+recipe-ImprovisedArrowPlasma-name = самодельная плазменная стрела
+recipe-ImprovisedArrowPlasma-description = Примитивный метательный снаряд.
+recipe-ImprovisedArrowUranium-name = самодельная урановая стрела
+recipe-ImprovisedArrowUranium-description = Примитивный метательный снаряд.

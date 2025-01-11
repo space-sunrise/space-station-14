@@ -13,7 +13,7 @@
   - type: Gun
     minAngle: -25
     maxAngle: 25
-    fireRate: 10
+    fireRate: 9.5
     selectedMode: FullAuto
     availableModes:
     - FullAuto
@@ -36,7 +36,7 @@
   components:
   - type: BallisticAmmoProvider
     mayTransfer: True
-    proto: CartridgeLightRifle  # 762x39
+    proto: CartridgeRifle  # 556
 
 - type: entity
   id: BasePowerpackMG100

@@ -29,6 +29,10 @@
         - RawMaterial
         - Tile
         - PowerCell
+        - PowerCellSmall
+        - Ingot
+        - DoorElectronics
+        - AirAlarmElectronics
         - CapacitorStockPart
         - MicroManipulatorStockPart
         - MatterBinStockPart

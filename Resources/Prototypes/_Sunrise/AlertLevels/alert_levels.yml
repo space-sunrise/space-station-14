@@ -4,31 +4,31 @@
   levels:
     rollcall:
       announcement: alert-level-rollcall-announcement
-      sound: /Audio/Announcements/announce.ogg
+      sound: /Audio/_Sunrise/Announcements/announce_dig.ogg
       color: Green
     breakfast:
       announcement: alert-level-breakfast-announcement
-      sound: /Audio/Announcements/announce.ogg
+      sound: /Audio/_Sunrise/Announcements/announce_dig.ogg
       color: Green
     work:
       announcement: alert-level-work-announcement
-      sound: /Audio/Announcements/announce.ogg
+      sound: /Audio/_Sunrise/Announcements/announce_dig.ogg
       color: Green
     exercise:
       announcement: alert-level-exercise-announcement
-      sound: /Audio/Announcements/announce.ogg
+      sound: /Audio/_Sunrise/Announcements/announce_dig.ogg
       color: Green
     rest:
       announcement: alert-level-rest-announcement
-      sound: /Audio/Announcements/announce.ogg
+      sound: /Audio/_Sunrise/Announcements/announce_dig.ogg
       color: Green
     shower:
       announcement: alert-level-shower-announcement
-      sound: /Audio/Announcements/announce.ogg
+      sound: /Audio/_Sunrise/Announcements/announce_dig.ogg
       color: Green
     lightsout:
       announcement: alert-level-lightsout-announcement
-      sound: /Audio/Announcements/announce.ogg
+      sound: /Audio/_Sunrise/Announcements/announce_dig.ogg
       color: Green
     lockdown:
       announcement: alert-level-lockdown-announcement

@@ -15,65 +15,65 @@ server-role-ban =
     }.
 server-perma-role-ban = Перманентный джоб-бан.
 server-time-ban-string =
-    > **Нарушитель**
-    > **Логин:** ``{ $targetName }``
-    > **Дискорд:** { $targetLink }
-    
     > **Администратор**
     > **Логин:** ``{ $adminName }``
     > **Дискорд:** { $adminLink }
-    
+
+    > **Нарушитель**
+    > **Логин:** ``{ $targetName }``
+    > **Дискорд:** { $targetLink }
+
     > **Выдан:** { $TimeNow }
     > **Истечёт:** { $expiresString }
-    
+
     > **Причина:** { $reason }
-    
+
     > **Уровень тяжести:** { $severity }
 server-ban-footer = { $server } | Раунд: #{ $round }
 server-perma-ban-string =
-    > **Нарушитель**
-    > **Логин:** ``{ $targetName }``
-    > **Дискорд:** { $targetLink }
-    
     > **Администратор**
     > **Логин:** ``{ $adminName }``
     > **Дискорд:** { $adminLink }
-    
+
+    > **Нарушитель**
+    > **Логин:** ``{ $targetName }``
+    > **Дискорд:** { $targetLink }
+
     > **Выдан:** { $TimeNow }
-    
+
     > **Причина:** { $reason }
-    
+
     > **Уровень тяжести:** { $severity }
 server-role-ban-string =
-    > **Нарушитель**
-    > **Логин:** ``{ $targetName }``
-    > **Дискорд:** { $targetLink }
-    
     > **Администратор**
     > **Логин:** ``{ $adminName }``
     > **Дискорд:** { $adminLink }
-    
+
+    > **Нарушитель**
+    > **Логин:** ``{ $targetName }``
+    > **Дискорд:** { $targetLink }
+
     > **Выдан:** { $TimeNow }
     > **Истечёт:** { $expiresString }
-    
+
     > **Роли:** { $roles }
-    
+
     > **Причина:** { $reason }
-    
+
     > **Уровень тяжести:** { $severity }
 server-perma-role-ban-string =
+    > **Администратор**
+    > **Логин:** ``{ $adminName }``
+    > **Дискорд:** { $adminLink }
+
     > **Нарушитель**
     > **Логин:** ``{ $targetName }``
     > **Дискорд:** ``{ $targetLink }``
-    
-    > **Администратор**
-    > **Логин:** ``{ $adminName }``
-    > **Дискорд:** { $adminLink }
-    
+
     > **Выдан:** { $TimeNow }
-    
+
     > **Роли:** { $roles }
-    
+
     > **Причина:** { $reason }
-    
+
     > **Уровень тяжести:** { $severity }

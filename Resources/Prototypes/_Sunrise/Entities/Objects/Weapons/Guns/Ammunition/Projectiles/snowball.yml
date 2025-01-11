@@ -1,0 +1,16 @@
+- type: entity
+  id: BulletSnowBall
+  name: snowball
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Projectile
+      damage:
+        types:
+          Cold: 1
+    - type: Sprite
+      sprite: Objects/Weapons/Guns/Projectiles/water_shot.rsi
+      layers:
+        - state: icon
+    - type: Ammo
+      muzzleFlash: null

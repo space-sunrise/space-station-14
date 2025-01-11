@@ -18,7 +18,7 @@
     visuals:
       enum.HolidayVisuals.Holiday:
         base:
-          festive: { state: festive }
+          festive: { state: icon }
   - type: Fixtures
     fixtures:
       fix1:

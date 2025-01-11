@@ -37,7 +37,7 @@
 
 - type: entity
   id: OrganHumanoidXenoBrain
-  parent: BaseHumanoidXenoOrgan
+  parent: [BaseHumanoidXenoOrgan, BaseOrganBrain]
   name: brain
   description: The nexus of the alien mind. Thoughts you don't want to know.
   components:
@@ -71,7 +71,7 @@
 
 - type: entity
   id: OrganHumanoidXenoTongue
-  parent: BaseHumanoidXenoOrgan
+  parent: [BaseHumanoidXenoOrgan, BaseOrganTongue]
   name: tongue
   description: Long and flexible.
   components:
@@ -80,7 +80,7 @@
 
 - type: entity
   id: OrganHumanoidXenoAppendix
-  parent: BaseHumanoidXenoOrgan
+  parent: [BaseHumanoidXenoOrgan, BaseOrganAppendix]
   name: appendix
   description: An evolutionary greeting from the past.
   components:
@@ -92,7 +92,7 @@
 
 - type: entity
   id: OrganHumanoidXenoEars
-  parent: BaseHumanoidXenoOrgan
+  parent: [BaseHumanoidXenoOrgan, BaseOrganEars]
   name: ears
   description: Ultra-sensitive locators. Hear your fears.
   components:
@@ -101,7 +101,7 @@
 
 - type: entity
   id: OrganHumanoidXenoLungs
-  parent: BaseHumanoidXenoOrgan
+  parent: [BaseHumanoidXenoOrgan, BaseOrganLungs]
   name: lungs
   description: They filter oxygen from the atmosphere and channel it into the bloodstream, where it is used as an electron carrier.
   components:
@@ -135,7 +135,7 @@
 
 - type: entity
   id: OrganHumanoidXenoHeart
-  parent: BaseHumanoidXenoOrgan
+  parent: [BaseHumanoidXenoOrgan, BaseOrganHeart]
   name: xenomorph heart
   description: A powerful organ that pumps acidic blood through tough tissues and provides incredible stamina and strength to every xenomorph.
   components:
@@ -151,7 +151,7 @@
 
 - type: entity
   id: OrganHumanoidXenoStomach
-  parent: BaseHumanoidXenoOrgan
+  parent: [BaseHumanoidXenoOrgan, BaseOrganStomach]
   name: stomach
   description: A voracious pit.
   components:
@@ -176,7 +176,7 @@
 
 - type: entity
   id: OrganHumanoidXenoLiver
-  parent: BaseHumanoidXenoOrgan
+  parent: [BaseHumanoidXenoOrgan, BaseOrganLiver]
   name: liver
   description: A powerful detoxifier that neutralizes dangerous substances with ease.
   components:
@@ -191,7 +191,7 @@
 
 - type: entity
   id: OrganHumanoidXenoKidneys
-  parent: BaseHumanoidXenoOrgan
+  parent: [BaseHumanoidXenoOrgan, BaseOrganKidneys]
   name: kidneys
   description: Paired filters, ruthlessly taking out anything superfluous.
   components:
@@ -203,3 +203,12 @@
     maxReagents: 5
     metabolizerTypes: [Human]
     removeEmpty: true
+
+- type: entity
+  id: OrganHumanoidXenoEyes
+  parent: [BaseHumanoidXenoOrgan, BaseOrganEyes]
+  name: eyes
+  description: Eyes. They see
+  components:
+  - type: Sprite
+    state: eyes

@@ -1,0 +1,40 @@
+- type: entity
+  id: BulletSplashAcid
+  name: flesh acid spit
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: _Sunrise/FleshCult/flesh_toxic.rsi
+    layers:
+    - state: flesh_toxic
+  - type: Projectile
+    damage:
+      types:
+        Caustic: 1
+  - type: SplashOnTrigger
+    splashReagents:
+      reagents:
+      - ReagentId: FleshAcid
+        Quantity: 30
+
+- type: entity
+  id: BulletSpike
+  name: spike
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  description:
+  components:
+  - type: Sprite
+    netsync: false
+    noRot: false
+    sprite: _Sunrise/FleshCult/flesh_projectiles.rsi
+    layers:
+    - state: spike
+      shader: unshaded
+  - type: Projectile
+    impactEffect: BulletImpactEffectKinetic
+    damage:
+      types:
+        Piercing: 13
+

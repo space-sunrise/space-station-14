@@ -10,6 +10,6 @@ ent-ReinforcementRadioSyndicateCyborgAssault = syndicate assault cyborg reinforc
 ent-ReinforcementRadioSyndicateCyborgHeavy = syndicate heavy cyborg reinforcement radio
     .desc = Call in a well armed assault cyborg, instantly!
     .suffix = NukeOps
-ent-ReinforcementRadioSyndicateCyborgSpider = syndicate spider cyborg reinforcement radio
+ent-ReinforcementRadioSyndicateCyborgSaboteur = syndicate spider cyborg reinforcement radio
     .desc = Call in a well armed assault cyborg, instantly!
     .suffix = NukeOps

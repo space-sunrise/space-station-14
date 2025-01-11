@@ -21,5 +21,13 @@ namespace Content.Shared.Fluids.Components
 
         [DataField("solutionRef")]
         public Entity<SolutionComponent>? Solution;
+
+        // Sunrise-Start
+        [DataField]
+        public bool CanSlow = true;
+
+        [DataField]
+        public bool CanSlip = true;
+        // Sunrise-End
     }
 }

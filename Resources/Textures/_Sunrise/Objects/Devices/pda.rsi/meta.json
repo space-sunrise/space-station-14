@@ -33,10 +33,16 @@
             "directions": 4
         },
         {
+            "name": "pda"
+        },
+        {
             "name": "pda-adj"
         },
         {
             "name": "pda-blueshield"
+        },
+        {
+            "name": "pda-patologoanatom"
         },
         {
             "name": "pda-space-prison-boss"

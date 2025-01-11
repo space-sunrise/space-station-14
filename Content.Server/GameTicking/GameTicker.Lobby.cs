@@ -77,8 +77,8 @@ namespace Content.Server.GameTicking
             // Sunrise-Start
             if (preset.Hide)
             {
-                gmTitle = "Скрыт";
-                desc = "Игровой режим скрыт.";
+                gmTitle = Loc.GetString("gamemode-title-hide");
+                desc = Loc.GetString("gamemode-desc-hide");
             }
             // Sunrise-End
 
@@ -192,12 +192,6 @@ namespace Content.Server.GameTicking
             => UserHasJoinedGame(session.UserId);
 
         public bool UserHasJoinedGame(NetUserId userId)
-        {
-            // Sunrise-Edit: Я не понимаю почему, но PlayerGameStatuses[userId] может вернуть ошибку.
-            if (!PlayerGameStatuses.TryGetValue(userId, out var status))
-                return false;
-
-            return status == PlayerGameStatus.JoinedGame;
-        }
+            => PlayerGameStatuses.TryGetValue(userId, out var status) && status == PlayerGameStatus.JoinedGame;
     }
 }

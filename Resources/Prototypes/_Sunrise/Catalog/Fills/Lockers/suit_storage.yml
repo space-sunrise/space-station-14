@@ -8,5 +8,6 @@
     - id: OxygenTankFilled
     - id: ClothingOuterHardsuitBlueshield
     - id: ClothingMaskGas
+    - id: ClothingShoesBootsMagSec
   - type: AccessReader
     access: [["BlueShield"]]

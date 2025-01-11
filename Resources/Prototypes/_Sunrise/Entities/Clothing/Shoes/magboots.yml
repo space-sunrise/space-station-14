@@ -28,3 +28,18 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Shoes/magboots-pirate.rsi
   - type: Magboots
+
+- type: entity
+  parent: [ClothingShoesBootsMag, BaseSecurityContraband]
+  id: ClothingShoesBootsMagSec
+  name: Security magboots
+  description: Security magnetic boots, often used during extravehicular activity to ensure the user remains safely attached to the vehicle.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Shoes/magboots-sec.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Shoes/magboots-sec.rsi
+  - type: Magboots
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.75

@@ -6,7 +6,8 @@ ui-vote-type-votekick = Votekick
 # Votekick reasons
 ui-vote-votekick-type-raiding = Raiding
 ui-vote-votekick-type-cheating = Cheating
-ui-vote-votekick-type-spamming = Spamming
+ui-vote-votekick-type-spam = Spamming
+ui-vote-votekick-details-placeholder = Details...
 
 # Window title of the vote create menu
 ui-vote-create-title = Call Vote
@@ -25,8 +26,8 @@ ui-vote-type-not-available = This vote type has been disabled
 
 # Vote option only available for specific users.
 ui-vote-trusted-users-notice =
-  This vote option is only available to whitelisted players.
-  In addition, you must have been a ghost for { $timeReq } minutes.
+  This vote option is only available to players who have enough playtime or are whitelisted.
+  In addition, you must have been a ghost for { $timeReq } seconds.
 
 # Warning to not abuse a specific vote option.
 ui-vote-abuse-warning =

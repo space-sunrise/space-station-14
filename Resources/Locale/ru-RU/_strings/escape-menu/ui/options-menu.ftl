@@ -21,8 +21,6 @@ ui-options-general-cursor = Курсор
 ui-options-general-speech = Речь
 ui-options-general-storage = Инвентарь
 ui-options-general-accessibility = Доступность
-ui-options-general-lobby = Лобби
-ui-options-general-figth = Бой
 
 ## Audio menu
 
@@ -37,8 +35,6 @@ ui-options-lobby-music = Музыка в лобби
 ui-options-restart-sounds = Звуки перезапуска раунда
 ui-options-event-music = Музыка событий
 ui-options-admin-sounds = Музыка админов
-ui-options-tts-enabled = TTS интеграция
-ui-options-tape-player-enabled = Школьники с колонками (Нужен рестарт раунда)
 ui-options-volume-label = Громкость
 ui-options-display-label = Дисплей
 ui-options-quality-label = Качество
@@ -71,8 +67,8 @@ ui-options-scale-175 = 175%
 ui-options-scale-200 = 200%
 ui-options-hud-theme = Тема HUD:
 ui-options-hud-theme-default = По умолчанию
-ui-options-hud-layout-default = Обычный
-ui-options-hud-layout-separated = Раздельный
+ui-options-hud-layout-default = Обычный (for Virgin)
+ui-options-hud-layout-separated = Раздельный (for Chad)
 ui-options-hud-theme-plasmafire = Плазма
 ui-options-hud-theme-slimecore = Слаймкор
 ui-options-hud-theme-clockwork = Механизм

@@ -16,6 +16,7 @@
   canBeAntag: false
   displayWeight: 40
   access:
+  - Command
   - Service
   - Brig
   - Maintenance
@@ -24,8 +25,6 @@
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
-  speciesBlacklist:
-  - Vox
 
 - type: startingGear
   id: IAAGear

@@ -83,13 +83,8 @@
   - type: PressureProtection
     highPressureMultiplier: 0.1
     lowPressureMultiplier: 1000
-  # Sunrise-Start
   - type: EyeProtection
   - type: FlashImmunity
-#  - type: NightVisionDevice
-#    displayColor: "#ebeb00"
-#    displayShader: NVDDisplay
-  # Sunrise-End
 
 #Spationaut Hardsuit
 - type: entity
@@ -381,6 +376,16 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: HolidayVisuals
+    holidays:
+      festive:
+      - WinterPresents
+  - type: HolidayRsiSwap
+    sprite:
+      festive: _Sunrise/Clothing/Head/Hardsuits/syndicate_santa.rsi
+  - type: HolidayClothingSwap
+    sprite:
+      festive: _Sunrise/Clothing/Head/Hardsuits/syndicate_santa.rsi
 
 #Blood-red Medic Hardsuit
 - type: entity
@@ -405,9 +410,16 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-#  - type: NightVisionDevice Sunrise - night vision
-#    displayColor: "#44b855"
-#    displayShader: NVDDisplay
+  - type: HolidayVisuals
+    holidays:
+      festive:
+      - WinterPresents
+  - type: HolidayRsiSwap
+    sprite:
+      festive: _Sunrise/Clothing/Head/Hardsuits/syndiemedic_santa.rsi
+  - type: HolidayClothingSwap
+    sprite:
+      festive: _Sunrise/Clothing/Head/Hardsuits/syndiemedic_santa.rsi
 
 #Syndicate Elite Hardsuit
 - type: entity
@@ -437,9 +449,16 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-#  - type: NightVisionDevice Sunrise - night vision
-#    displayColor: "#44b855"
-#    displayShader: NVDDisplay
+  - type: HolidayVisuals
+    holidays:
+      festive:
+      - WinterPresents
+  - type: HolidayRsiSwap
+    sprite:
+      festive: _Sunrise/Clothing/Head/Hardsuits/syndieelite_santa.rsi
+  - type: HolidayClothingSwap
+    sprite:
+      festive: _Sunrise/Clothing/Head/Hardsuits/syndieelite_santa.rsi
 
 #Syndicate Commander Hardsuit
 - type: entity
@@ -464,9 +483,16 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-#  - type: NightVisionDevice Sunrise - night vision
-#    displayColor: "#44b855"
-#    displayShader: NVDDisplay
+  - type: HolidayVisuals
+    holidays:
+      festive:
+      - WinterPresents
+  - type: HolidayRsiSwap
+    sprite:
+      festive: _Sunrise/Clothing/Head/Hardsuits/syndiecommander_santa.rsi
+  - type: HolidayClothingSwap
+    sprite:
+      festive: _Sunrise/Clothing/Head/Hardsuits/syndiecommander_santa.rsi
 
 #Cybersun Juggernaut Hardsuit
 - type: entity
@@ -491,9 +517,6 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
-#  - type: NightVisionDevice Sunrise - night vision
-#    displayColor: "#44b855"
-#    displayShader: NVDDisplay
 
 #Wizard Hardsuit
 - type: entity

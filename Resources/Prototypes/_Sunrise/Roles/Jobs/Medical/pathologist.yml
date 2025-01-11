@@ -1,0 +1,31 @@
+﻿- type: job
+  id: MedicalPathologist
+  name: job-name-pathologist
+  description: job-description-pathologist
+  playTimeTracker: JobMedicalPathologist
+  requirements:
+    - !type:DepartmentTimeRequirement
+      department: Medical
+      time: 36000 #10 hrs # Corvax-RoleTime
+  startingGear: PathologistGear
+  icon: "JobIconPathologist"
+  supervisors: job-supervisors-cmo
+  access:
+  - Medical
+  - Maintenance
+
+- type: startingGear
+  id: PathologistGear
+  equipment:
+    outerClothing: ClothingOuterCoatPatologoanatom
+    id: PathologistPDA
+    ears: ClothingHeadsetMedical
+    belt: ClothingBeltMedicalFilled
+    head: ClothingHeadHatPatologonatHat
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconPathologist
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: Pathologist

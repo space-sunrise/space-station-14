@@ -1,0 +1,10 @@
+- type: job
+  id: MiningBorg
+  name: job-name-mining-borg
+  description: job-description-mining-borg
+  playTimeTracker: JobMiningBorg
+  icon: JobIconMiningBorg
+  supervisors: job-supervisors-human
+  canBeAntag: false
+  displayWeight: -10  # Sunrise
+  jobEntity: PlayerBorgMiningBattery

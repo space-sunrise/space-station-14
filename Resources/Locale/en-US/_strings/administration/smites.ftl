@@ -57,6 +57,7 @@ admin-smite-vomit-organs-name = Vomit Organs
 admin-smite-ghostkick-name = Ghost Kick
 admin-smite-nyanify-name = Cat Ears
 admin-smite-kill-sign-name = Kill Sign
+admin-smite-random-death-name = Random Death
 
 ## Smite descriptions
 
@@ -100,6 +101,7 @@ admin-smite-super-bonk-description = Slams them on every single table on the Sta
 admin-smite-super-bonk-lite-description= Slams them on every single table on the Station and beyond. Stops when the target is dead.
 admin-smite-terminate-description = Creates a Terminator ghost role with the sole objective of killing them.
 admin-smite-super-slip-description = Slips them really, really hard.
+admin-smite-random-death-description = Randomly picks a extremely hard to recover death.
 
 ## Tricks descriptions
 

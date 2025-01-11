@@ -53,6 +53,7 @@
   - SurveillanceCameraMonitorCircuitboard
   - SurveillanceWirelessCameraMonitorCircuitboard
   - TelecomServerCircuitboard
+  - HolopadMachineCircuitboard
 
 - type: technology
   id: AdvancedEntertainment
@@ -66,8 +67,6 @@
   recipeUnlocks:
     - ComputerTelevisionCircuitboard
     - SynthesizerInstrument
-    - BorgModuleMusique
-    - BorgModuleClowning
     - DawInstrumentMachineCircuitboard
     - MassMediaCircuitboard
     - JukeboxCircuitBoard
@@ -82,7 +81,6 @@
   tier: 1
   cost: 5000
   recipeUnlocks:
-  - BorgModuleLightReplacer
   - BorgModuleAdvancedCleaning
 
 - type: technology
@@ -218,17 +216,17 @@
 
 # Tier 3
 
-- type: technology
-  id: QuantumFiberWeaving
-  name: research-technology-quantum-fiber-weaving
-  icon:
-    sprite: Clothing/Shoes/Boots/speedboots.rsi
-    state: icon
-  discipline: CivilianServices
-  tier: 3
-  cost: 10000
-  recipeUnlocks:
-  - ClothingShoesBootsSpeed
+#- type: technology
+#  id: QuantumFiberWeaving
+#  name: research-technology-quantum-fiber-weaving
+#  icon:
+#    sprite: Clothing/Shoes/Boots/speedboots.rsi
+#    state: icon
+#  discipline: CivilianServices
+#  tier: 3
+#  cost: 10000
+#  recipeUnlocks:
+#  - ClothingShoesBootsSpeed
 
 - type: technology
   id: BluespaceChemistry

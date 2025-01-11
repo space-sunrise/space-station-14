@@ -42,7 +42,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
     private void OnStepBleedComplete(Entity<SurgeryStepBleedEffectComponent> ent, ref SurgeryStepEvent args)
     {
         if(ent.Comp.Damage is not null && TryComp<DamageableComponent>(args.Body, out var comp))
-        _damageableSystem.SetDamage(args.Body, comp, ent.Comp.Damage);
+            _damageableSystem.TryChangeDamage(args.Body, ent.Comp.Damage);
         //todo add wound
     }
 

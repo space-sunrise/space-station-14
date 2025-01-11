@@ -17,7 +17,6 @@ using Content.Shared.Ghost;
 using Content.Shared.Players;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Shared.Voting;
-using Content.Shared.Voting.Prototypes;
 using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Player;
@@ -35,6 +34,7 @@ namespace Content.Server.Voting.Managers
 
         private VotingSystem? _votingSystem;
         private RoleSystem? _roleSystem;
+        private GameTicker? _gameTicker;
 
         private static readonly Dictionary<StandardVoteType, CVarDef<bool>> _voteTypesToEnableCVars = new()
         {
@@ -55,6 +55,8 @@ namespace Content.Server.Voting.Managers
 
             bool timeoutVote = true;
 
+            _gameTicker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
+            _gameTicker.UpdateInfoText();
             switch (voteType)
             {
                 case StandardVoteType.Restart:
@@ -73,8 +75,6 @@ namespace Content.Server.Voting.Managers
                 default:
                     throw new ArgumentOutOfRangeException(nameof(voteType), voteType, null);
             }
-            var ticker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
-            ticker.UpdateInfoText();
             if (timeoutVote)
                 TimeoutStandardVote(voteType);
         }
@@ -226,6 +226,11 @@ namespace Content.Server.Voting.Managers
         {
             var presets = GetGamePresets();
 
+            // Sunrise-Start
+            if (presets.Count < 1)
+                return;
+            // Sunrise-End
+
             var alone = _playerManager.PlayerCount == 1 && initiator != null;
             var options = new VoteOptions
             {
@@ -362,11 +367,18 @@ namespace Content.Server.Voting.Managers
                 return;
             }
 
+
+
+            var voterEligibility = _cfg.GetCVar(CCVars.VotekickVoterGhostRequirement) ? VoterEligibility.GhostMinimumPlaytime : VoterEligibility.MinimumPlaytime;
+            if (_cfg.GetCVar(CCVars.VotekickIgnoreGhostReqInLobby) && _gameTicker!.RunLevel == GameRunLevel.PreRoundLobby)
+                voterEligibility = VoterEligibility.MinimumPlaytime;
+
             var eligibleVoterNumberRequirement = _cfg.GetCVar(CCVars.VotekickEligibleNumberRequirement);
-            var eligibleVoterNumber = _cfg.GetCVar(CCVars.VotekickVoterGhostRequirement) ? CalculateEligibleVoterNumber(VoterEligibility.GhostMinimumPlaytime) : CalculateEligibleVoterNumber(VoterEligibility.MinimumPlaytime);
+            var eligibleVoterNumber = CalculateEligibleVoterNumber(voterEligibility);
 
             string target = args[0];
             string reason = args[1];
+            string note = args[2];
 
             // Start by getting all relevant target data
             var located = await _locator.LookupIdByNameOrIdAsync(target);
@@ -443,8 +455,9 @@ namespace Content.Server.Voting.Managers
             string voteTitle = "";
             NetEntity? targetNetEntity = _entityManager.GetNetEntity(targetSession.AttachedEntity);
             var initiatorName = initiator != null ? initiator.Name : Loc.GetString("ui-vote-votekick-unknown-initiator");
+            var reasonLocalised = Loc.GetString($"ui-vote-votekick-type-{reason.ToLower()}");
 
-            voteTitle = Loc.GetString("ui-vote-votekick-title", ("initiator", initiatorName), ("targetEntity", targetEntityName), ("reason", reason));
+            voteTitle = Loc.GetString("ui-vote-votekick-title", ("initiator", initiatorName), ("targetEntity", targetEntityName), ("reason", reasonLocalised + ". " + note));
 
             var options = new VoteOptions
             {
@@ -457,7 +470,7 @@ namespace Content.Server.Voting.Managers
                 },
                 Duration = TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.VotekickTimer)),
                 InitiatorTimeout = TimeSpan.FromMinutes(_cfg.GetCVar(CCVars.VotekickTimeout)),
-                VoterEligibility = _cfg.GetCVar(CCVars.VotekickVoterGhostRequirement) ? VoterEligibility.GhostMinimumPlaytime : VoterEligibility.MinimumPlaytime,
+                VoterEligibility = voterEligibility,
                 DisplayVotes = false,
                 TargetEntity = targetNetEntity
             };
@@ -530,7 +543,7 @@ namespace Content.Server.Voting.Managers
                     else
                     {
                         _adminLogger.Add(LogType.Vote, LogImpact.Extreme, $"Votekick for {located.Username} succeeded:  Yes: {votesYes} / No: {votesNo}. Yes: {yesVotersString} / No: {noVotersString}");
-                        _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-votekick-success", ("target", targetEntityName), ("reason", reason)));
+                        _chatManager.DispatchServerAnnouncement(Loc.GetString("ui-vote-votekick-success", ("target", targetEntityName), ("reason", reasonLocalised + ". " + note)));
 
                         if (!Enum.TryParse(_cfg.GetCVar(CCVars.VotekickBanDefaultSeverity), out NoteSeverity severity))
                         {
@@ -544,7 +557,7 @@ namespace Content.Server.Voting.Managers
 
                         uint minutes = (uint)_cfg.GetCVar(CCVars.VotekickBanDuration);
 
-                        _bans.CreateServerBan(targetUid, target, null, null, targetHWid, minutes, severity, reason);
+                        _bans.CreateServerBan(targetUid, target, null, null, targetHWid, minutes, severity, reasonLocalised + ". " + note);
                     }
                 }
                 else
@@ -588,10 +601,10 @@ namespace Content.Server.Voting.Managers
         private Dictionary<string, string> GetGamePresets()
         {
             var presets = new Dictionary<string, string>();
-            
+
             var prototypeId = _cfg.GetCVar(SunriseCCVars.RoundVotingChancesPrototype);
 
-            if (!_prototypeManager.TryIndex<RoundVotingChancesPrototype>(prototypeId, out var chancesPrototype))
+            if (!_prototypeManager.TryIndex<VoteRandomPrototype>(prototypeId, out var chancesPrototype))
             {
                 Logger.Warning($"Не удалось найти прототип шансов с ID: {prototypeId}");
                 return presets;
@@ -623,6 +636,7 @@ namespace Content.Server.Voting.Managers
             }
 
             var selectedPresets = SelectPresetsByChance(validPresets, _cfg.GetCVar(SunriseCCVars.RoundVotingCount));
+            presets.Add("Secret", "secret-title");
             foreach (var preset in selectedPresets)
             {
                 presets[preset.preset.ID] = preset.preset.ModeTitle;

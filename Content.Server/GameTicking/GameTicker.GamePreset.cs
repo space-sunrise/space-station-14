@@ -33,19 +33,10 @@ namespace Content.Server.GameTicking
 
             var presetTitle = CurrentPreset != null ? Loc.GetString(CurrentPreset.ModeTitle) : string.Empty;
 
-            void FailedPresetRestart()
-            {
-                SendServerMessage(Loc.GetString("game-ticker-start-round-cannot-start-game-mode-restart",
-                    ("failedGameMode", presetTitle)));
-                RestartRound();
-                DelayStart(TimeSpan.FromSeconds(PresetFailedCooldownIncrease));
-            }
-
             if (_cfg.GetCVar(CCVars.GameLobbyFallbackEnabled))
             {
                 var fallbackPresets = _cfg.GetCVar(CCVars.GameLobbyFallbackPreset).Split(",");
-                var startFailed = true;
-
+                
                 foreach (var preset in fallbackPresets)
                 {
                     ClearGameRules();
@@ -63,25 +54,35 @@ namespace Content.Server.GameTicking
                                 ("failedGameMode", presetTitle),
                                 ("fallbackMode", Loc.GetString(preset))));
                         RefreshLateJoinAllowed();
-                        startFailed = false;
-                        break;
+                        return true; // Sunrise-Edit
                     }
                 }
 
-                if (startFailed)
-                {
-                    FailedPresetRestart();
-                    return false;
-                }
+                // Sunrise-Edit
+                var lastPreset = fallbackPresets[^1];
+                ClearGameRules();
+                SetGamePreset(lastPreset);
+                AddGamePresetRules();
+                StartGamePresetRules();
+                
+                _chatManager.SendAdminAnnouncement(
+                    Loc.GetString("game-ticker-start-round-cannot-start-game-mode-fallback",
+                        ("failedGameMode", presetTitle),
+                        ("fallbackMode", Loc.GetString(lastPreset))));
+                RefreshLateJoinAllowed();
+                return true;
+                // Sunrise-Edit
             }
-
             else
             {
-                FailedPresetRestart();
+                // Sunrise-Edit
+                SendServerMessage(Loc.GetString("game-ticker-start-round-cannot-start-game-mode-restart",
+                    ("failedGameMode", presetTitle)));
+                RestartRound();
+                DelayStart(TimeSpan.FromSeconds(PresetFailedCooldownIncrease));
+                // Sunrise-Edit
                 return false;
             }
-
-            return true;
         }
 
         private void InitializeGamePreset()

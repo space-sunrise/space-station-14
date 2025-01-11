@@ -83,29 +83,23 @@
       amount: 1
 
 - type: entity
-  id: GunSafeSubMachineGunMP38
+  id: GunSafeEnergyGunPistolSecurity
   parent: GunSafe
   name: safe
-  suffix: MP-38
+  suffix: Energy Pistol «Judge»
   components:
   - type: StorageFill
     contents:
-    - id: WeaponSubMachineGunMP38
-      amount: 2
-    - id: BoxLethalshot
-      amount: 2
-    - id: BoxShotgunIncendiary
-      amount: 1
-    - id: BoxShotgunSlug
-      amount: 1
+    - id: WeaponEnergyGunPistolSecurity
+      amount: 4
 
 - type: entity
   parent: GunSafe
   id: GunSafeEnergyGun
   name: safe
-  suffix: Energy guns
+  suffix: Tactical Energy guns
   components:
   - type: StorageFill
     contents:
-    - id: WeaponEnergyGun
+    - id: WeaponEnergyGunTactical
       amount: 3

@@ -11,6 +11,8 @@ public sealed partial class PlayerTabEntry : PanelContainer
 {
     public NetEntity? PlayerEntity;
 
+    public Action<NetEntity?>? OnObjectives; // Sunrise-Edit
+
     public PlayerTabEntry(PlayerInfo player, StyleBoxFlat styleBoxFlat)
     {
         RobustXamlLoader.Load(this);
@@ -27,5 +29,7 @@ public sealed partial class PlayerTabEntry : PanelContainer
         BackgroundColorPanel.PanelOverride = styleBoxFlat;
         OverallPlaytimeLabel.Text = player.PlaytimeString;
         PlayerEntity = player.NetEntity;
+
+        ObjectivesButton.OnPressed += _ => OnObjectives?.Invoke(player.NetEntity); // Sunrise-Edit
     }
 }

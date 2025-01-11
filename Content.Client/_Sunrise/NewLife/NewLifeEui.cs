@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Client.Eui;
+using Content.Client.Lobby;
 using Content.Shared._Sunrise.NewLife;
 using Content.Shared.Eui;
 using JetBrains.Annotations;
@@ -16,9 +17,14 @@ namespace Content.Client._Sunrise.NewLife
         public NewLifeEui()
         {
             _window = new NewLifeWindow(IoCManager.Resolve<IGameTiming>());
+            var preferencesManager = IoCManager.Resolve<IClientPreferencesManager>();
 
             _window.SpawnRequested += () =>
             {
+                var selectedCharacter = _window.GetSelectedCharacter();
+
+                if (selectedCharacter != null)
+                    preferencesManager.SelectCharacter(selectedCharacter.Value);
                 SendMessage(new NewLifeRequestSpawnMessage(_window.GetSelectedCharacter(), _window.GetSelectedStation(), _window.GetSelectedRole()));
             };
 

@@ -264,7 +264,8 @@ public sealed class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
             spriteComp.RemoveLayer(index);
         }
     }
-    private void ApplyMarking(MarkingPrototype markingPrototype,
+    // Sunrsie-Edit
+    public void ApplyMarking(MarkingPrototype markingPrototype,
         IReadOnlyList<Color>? colors,
         bool visible,
         HumanoidAppearanceComponent humanoid,

@@ -30,8 +30,8 @@ namespace Content.Server._Sunrise.Fugitive
         [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
         [Dependency] private readonly GameTicker _gameTicker = default!;
 
-        [ValidatePrototypeId<AntagPrototype>]
-        private const string AntagRole = "Fugitive";
+        [ValidatePrototypeId<EntityPrototype>]
+        private const string MindRole = "MindRoleFugitive";
         [ValidatePrototypeId<EntityPrototype>]
         private const string EscapeObjective = "FugitiveEscapeShuttleObjective";
         [ValidatePrototypeId<EntityPrototype>]
@@ -138,7 +138,7 @@ namespace Content.Server._Sunrise.Fugitive
                 _roleSystem.MindTryRemoveRole<FugitiveRoleComponent>(mindId);
             }
 
-            _roleSystem.MindAddRole(mindId, "MindRoleFugitive");
+            _roleSystem.MindAddRole(mindId, MindRole);
 
             _mindSystem.TryAddObjective(mindId, mind, EscapeObjective);
 

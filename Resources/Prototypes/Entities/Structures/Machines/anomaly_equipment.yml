@@ -282,8 +282,7 @@
         layer:
         - WallLayer
   - type: Repairable
-    fuelCost: 10
-    doAfterDelay: 5
+    doAfterDelay: 5 # Sunrise-Edit
   - type: WiresPanel
   - type: Wires
     boardName: wires-board-name-anomalygenerator

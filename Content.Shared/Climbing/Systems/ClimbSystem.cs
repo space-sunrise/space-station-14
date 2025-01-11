@@ -113,7 +113,7 @@ public sealed partial class ClimbSystem : VirtualController
     /// <summary>
     /// Returns true if entity currently has a valid vault.
     /// </summary>
-    private bool IsClimbing(EntityUid uid, FixturesComponent? fixturesComp = null)
+    public bool IsClimbing(EntityUid uid, FixturesComponent? fixturesComp = null) // Sunrise-Edit
     {
         if (!_fixturesQuery.Resolve(uid, ref fixturesComp) || !fixturesComp.Fixtures.TryGetValue(ClimbingFixtureName, out var climbFixture))
             return false;
@@ -149,6 +149,10 @@ public sealed partial class ClimbSystem : VirtualController
     private void OnCanDragDropOn(EntityUid uid, ClimbableComponent component, ref CanDropTargetEvent args)
     {
         if (args.Handled)
+            return;
+
+        // If already climbing then don't show outlines.
+        if (TryComp(args.Dragged, out ClimbingComponent? climbing) && climbing.IsClimbing)
             return;
 
         var canVault = args.User == args.Dragged
@@ -249,6 +253,18 @@ public sealed partial class ClimbSystem : VirtualController
             return;
 
         if (!Resolve(climbable, ref comp, false))
+            return;
+
+        var selfEvent = new SelfBeforeClimbEvent(uid, user, (climbable, comp));
+        RaiseLocalEvent(uid, selfEvent);
+
+        if (selfEvent.Cancelled)
+            return;
+
+        var targetEvent = new TargetBeforeClimbEvent(uid, user, (climbable, comp));
+        RaiseLocalEvent(climbable, targetEvent);
+
+        if (targetEvent.Cancelled)
             return;
 
         if (!ReplaceFixtures(uid, climbing, fixtures))

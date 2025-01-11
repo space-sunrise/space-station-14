@@ -1,0 +1,7 @@
+- type: startingGear
+  id: FleshCultistLeaderGear
+  storage:
+    back:
+    - SyringeCarolNT
+    - SyringeCarolNT
+    - SyringeCarolNT

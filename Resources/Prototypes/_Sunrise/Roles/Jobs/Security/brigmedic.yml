@@ -36,3 +36,8 @@
     id: BrigmedicPDA
     ears: ClothingHeadsetBrigmedic
     belt: ClothingBeltMedicalFilled
+    pocket1: WeaponPistolG22NonLethal
+  storage:
+    back:
+    - Flash
+    - MagazineGlock22Rubber

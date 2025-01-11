@@ -80,7 +80,7 @@
   - type: Tag
     tags:
       - Debug
-  - type: CartridgeAmmo
+  - type: HitScanCartridgeAmmo # Sunrise-Edit
     proto: BulletDebug
 
 - type: entity

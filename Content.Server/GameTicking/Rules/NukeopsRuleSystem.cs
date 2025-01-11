@@ -24,6 +24,9 @@ using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using System.Linq;
+using Content.Server.Traitor.Uplink;
+using Content.Shared.FixedPoint;
+using Content.Shared.Roles;
 using Content.Shared.Store.Components;
 
 namespace Content.Server.GameTicking.Rules;
@@ -37,12 +40,19 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
     [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
     [Dependency] private readonly StoreSystem _store = default!;
     [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly UplinkSystem _uplinkSystem = default!;
 
     [ValidatePrototypeId<CurrencyPrototype>]
     private const string TelecrystalCurrencyPrototype = "Telecrystal";
 
     [ValidatePrototypeId<TagPrototype>]
     private const string NukeOpsUplinkTagPrototype = "NukeOpsUplink";
+
+    // Sunrise-Start
+    [ValidatePrototypeId<AntagPrototype>]
+    private const string CommanderAntagProto = "NukeopsCommander";
+    // Sunrise-End
+
 
     public override void Initialize()
     {
@@ -312,7 +322,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
             {
                 // Nukies must wait some time after declaration of war to get on the station
                 var warTime = Timing.CurTime.Subtract(nukeops.WarDeclaredTime.Value);
-                if (warTime < nukeops.WarNukieArriveDelay)
+                if (warTime < nukeops.WarEvacShuttleDisabled)
                 {
                     ev.Cancelled = true;
                     ev.Reason = Loc.GetString("war-ops-shuttle-call-unavailable");
@@ -383,7 +393,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
             if (Transform(uid).MapID != Transform(outpost).MapID) // Will receive bonus TC only on their start outpost
                 continue;
 
-            _store.TryAddCurrency(new() { { TelecrystalCurrencyPrototype, nukieRule.Comp.WarTcAmountPerNukie } }, uid, component);
+            _store.TryAddCurrency(new() { { TelecrystalCurrencyPrototype, nukieRule.Comp.WarTcAmountPerNukie * nukieRule.Comp.RoundstartOperatives } }, uid, component); // Sunrise-Edit
 
             var msg = Loc.GetString("store-currency-war-boost-given", ("target", uid));
             _popupSystem.PopupEntity(msg, uid);
@@ -482,7 +492,49 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
                 ("name", Name(ent))),
             Color.Red,
             ent.Comp.GreetSoundNotification);
+
+        // Sunrise-Start
+        ent.Comp.RoundstartOperatives += 1;
+
+        if (args.Def.PrefRoles.Contains(CommanderAntagProto))
+        {
+            var uplink = SetupUplink(args.EntityUid, ent.Comp);
+            ent.Comp.UplinkEnt = uplink;
+
+            if (uplink == null)
+                return;
+
+            var totalTc = ent.Comp.WarTcAmountPerNukie * ent.Comp.RoundstartOperatives;
+            var store = EnsureComp<StoreComponent>(uplink.Value);
+            _store.TryAddCurrency(
+                new Dictionary<string, FixedPoint2> { { TelecrystalCurrencyPrototype, totalTc } },
+                uplink.Value,
+                store);
+        }
+
+        else if (ent.Comp.UplinkEnt != null)
+        {
+            var giveTcCount = ent.Comp.WarTcAmountPerNukie;
+            var store = EnsureComp<StoreComponent>(ent.Comp.UplinkEnt.Value);
+            _store.TryAddCurrency(
+                new Dictionary<string, FixedPoint2> { { TelecrystalCurrencyPrototype, giveTcCount } },
+                ent.Comp.UplinkEnt.Value,
+                store);
+        }
+        // Sunrise-End
     }
+
+    // Sunrise-Start
+    private EntityUid? SetupUplink(EntityUid user, NukeopsRuleComponent rule)
+    {
+        var uplink = _uplinkSystem.FindUplinkByTag(user, NukeOpsUplinkTagPrototype);
+        if (uplink == null)
+            return null;
+
+        _uplinkSystem.SetUplink(user, uplink.Value, 0, true);
+        return uplink;
+    }
+    // Sunrise-End
 
     private void OnGetBriefing(Entity<NukeopsRoleComponent> role, ref GetBriefingEvent args)
     {

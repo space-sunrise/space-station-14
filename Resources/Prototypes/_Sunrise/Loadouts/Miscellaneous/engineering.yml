@@ -1,0 +1,5 @@
+﻿- type: loadout
+  id: AtmosphericsConsole
+  storage:
+    back:
+    - AtmosAlertsMonitor

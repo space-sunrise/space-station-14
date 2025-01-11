@@ -42,8 +42,8 @@ public sealed class AccessReaderSystem : EntitySystem
 
     private void OnGetState(EntityUid uid, AccessReaderComponent component, ref ComponentGetState args)
     {
-        args.State = new AccessReaderComponentState(component.Enabled, component.DenyTags, component.AccessLists,
-            _recordsSystem.Convert(component.AccessKeys), component.AccessLog, component.AccessLogLimit);
+        args.State = new AccessReaderComponentState(component.Enabled, component.DenyTags, component.AccessLists, component.Group,
+            _recordsSystem.Convert(component.AccessKeys), component.AccessLog, component.AccessLogLimit); // Sunrise-edit
     }
 
     private void OnHandleState(EntityUid uid, AccessReaderComponent component, ref ComponentHandleState args)
@@ -64,6 +64,7 @@ public sealed class AccessReaderSystem : EntitySystem
         component.AccessLists = new(state.AccessLists);
         component.DenyTags = new(state.DenyTags);
         component.AccessLog = new(state.AccessLog);
+        component.Group = new(state.Group); // Sunrise-alertAccesses
         component.AccessLogLimit = state.AccessLogLimit;
     }
 
@@ -113,25 +114,25 @@ public sealed class AccessReaderSystem : EntitySystem
         return false;
     }
 
-    public bool GetMainAccessReader(EntityUid uid, [NotNullWhen(true)] out AccessReaderComponent? component)
+    public bool GetMainAccessReader(EntityUid uid, [NotNullWhen(true)] out Entity<AccessReaderComponent>? ent)
     {
-        component = null;
-        if (!TryComp(uid, out AccessReaderComponent? accessReader))
+        ent = null;
+        if (!TryComp<AccessReaderComponent>(uid, out var accessReader))
             return false;
 
-        component = accessReader;
+        ent = (uid, accessReader);
 
-        if (component.ContainerAccessProvider == null)
+        if (ent.Value.Comp.ContainerAccessProvider == null)
             return true;
 
-        if (!_containerSystem.TryGetContainer(uid, component.ContainerAccessProvider, out var container))
+        if (!_containerSystem.TryGetContainer(uid, ent.Value.Comp.ContainerAccessProvider, out var container))
             return true;
 
         foreach (var entity in container.ContainedEntities)
         {
-            if (TryComp(entity, out AccessReaderComponent? containedReader))
+            if (TryComp<AccessReaderComponent>(entity, out var containedReader))
             {
-                component = containedReader;
+                ent = (entity, containedReader);
                 return true;
             }
         }
@@ -150,6 +151,9 @@ public sealed class AccessReaderSystem : EntitySystem
         if (!reader.Enabled)
             return true;
 
+        if (AreAccessTagsAllowedAlert(access, reader))
+            return true;
+
         if (reader.ContainerAccessProvider == null)
             return IsAllowedInternal(access, stationKeys, reader);
 
@@ -165,6 +169,11 @@ public sealed class AccessReaderSystem : EntitySystem
         {
             if (!TryComp(entity, out AccessReaderComponent? containedReader))
                 continue;
+
+            // Sunrise-start
+            if (AreAccessTagsAllowedAlert(access, containedReader))
+                return true;
+            // Sunrise-end
 
             if (IsAllowed(access, stationKeys, entity, containedReader))
                 return true;
@@ -208,6 +217,33 @@ public sealed class AccessReaderSystem : EntitySystem
 
         return false;
     }
+
+    // Sunrise-start
+    /// <summary>
+    /// Сравнивает список аварийных доступов с доступами на карте.
+    /// </summary>
+    public bool AreAccessTagsAllowedAlert(ICollection<ProtoId<AccessLevelPrototype>> access, AccessReaderComponent reader)
+    {
+        if (reader.Group == string.Empty)
+            return false;
+
+        if (!_prototype.TryIndex<AccessGroupPrototype>(reader.Group, out var accessTags))
+            return false;
+
+        if (accessTags == null)
+            return false;
+
+        if (accessTags.Tags.Count == 0)
+            return false;
+        foreach (var ent in accessTags.Tags)
+        {
+            if (access.Contains(ent))
+                return true;
+        }
+
+        return false;
+    }
+    // Sunrise-end
 
     /// <summary>
     /// Compares the given stationrecordkeys with the accessreader to see if it is allowed.

@@ -1,3 +1,19 @@
+# Sunrise edit start
+- type: entity
+  abstract: true
+  id: BaseClothingOuterSounds
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/cloth_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/cloth_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/cloth_drop.ogg
+# Sunrise edit end
+
 - type: entity
   abstract: true
   parent: Clothing
@@ -11,7 +27,7 @@
 
 - type: entity
   abstract: true
-  parent: ClothingOuterBase
+  parent: [ClothingOuterBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterBaseLarge
   components:
   - type: Item
@@ -26,7 +42,7 @@
 
 - type: entity
   abstract: true
-  parent: ClothingOuterBase
+  parent: [ClothingOuterBase, BaseClothingOuterSounds] # Sunrise
   id: ClothingOuterStorageBase
   components:
   - type: Storage

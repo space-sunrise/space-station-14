@@ -55,7 +55,10 @@ public sealed class SickSystem : SharedSickSystem
 
     public void OnShut(EntityUid uid, SickComponent component, ComponentShutdown args)
     {
-        foreach (var emote in EnsureComp<AutoEmoteComponent>(uid).Emotes)
+        if (!TryComp<AutoEmoteComponent>(uid, out var autoEmoteComponent))
+            return;
+
+        foreach (var emote in autoEmoteComponent.Emotes)
         {
             if (emote.Contains("Infected"))
             {
@@ -115,6 +118,9 @@ public sealed class SickSystem : SharedSickSystem
         var query = EntityQueryEnumerator<SickComponent>();
         while (query.MoveNext(out var uid, out var component))
         {
+            if (Terminating(uid))
+                continue;
+
             if (TryComp<DiseaseRoleComponent>(component.owner, out var diseaseComp))
             {
                 UpdateInfection(uid, component, component.owner, diseaseComp);

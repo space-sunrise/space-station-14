@@ -15,6 +15,7 @@
     ClothingHeadBandSkull: 2
     ClothingHeadHatGreyFlatcap: 3
     ClothingHeadHatBrownFlatcap: 3
+    ClothingUniformJumpskirtChristmas: 3 #sunrise-edit
     ClothingUniformJumpsuitColorGrey: 8
     ClothingUniformJumpskirtColorGrey: 8
     ClothingUniformJumpsuitColorWhite: 3
@@ -53,6 +54,8 @@
     ClothingUniformJumpskirtCasualPurple: 2
     ClothingUniformJumpsuitCasualRed: 2
     ClothingUniformJumpskirtCasualRed: 2
+    ClothingUniformJumpsuitCasualGreen: 2
+    ClothingUniformJumpskirtCasualGreen: 2
     # DO NOT ADD MORE, USE UNIFORM DYING
     ClothingShoesColorBlack: 8
     ClothingShoesColorBrown: 4

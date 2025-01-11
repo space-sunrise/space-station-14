@@ -12,6 +12,8 @@
     damage:
       types:
         Piercing: 28
+        Blunt: 10
+        Structural: 10
 
 - type: entity
   id: PelletShotgunBeanbag
@@ -29,17 +31,6 @@
         Blunt: 2.5  # Sunrise-Edit
   - type: StaminaDamageOnCollide
     damage: 15 # 3 hits to stun # Sunrise-Edit
-
-- type: entity # Sunrise-Edit
-  id: PelletShotgunBeanbagSpread
-  categories: [ HideSpawnMenu ]
-  parent: PelletShotgunBeanbag
-  components:
-  - type: ProjectileSpread
-    proto: PelletShotgunBeanbag
-    count: 3
-    spread: 4.5
-
 
 - type: entity
   id: PelletShotgun
@@ -79,8 +70,8 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 3
-        Heat: 7
+        Blunt: 4 #Sunrise-Start
+        Heat: 3 #Sunrise-End
   - type: IgnitionSource
     ignited: true
 

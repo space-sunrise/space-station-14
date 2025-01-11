@@ -52,27 +52,10 @@ public sealed partial class AudioTab : Control
             SliderVolumeInterface,
             scale: ContentAudioSystem.InterfaceMultiplier);
 
-        Control.AddOptionPercentSlider(
-            SunriseCCVars.TTSVolume,
-            SliderTts,
-            scale: ContentAudioSystem.TtsMultiplier);
-
-        Control.AddOptionPercentSlider(
-            SunriseCCVars.TTSRadioVolume,
-            SliderTtsRadio,
-            scale: ContentAudioSystem.TtsMultiplier);
-
-        Control.AddOptionPercentSlider(
-            SunriseCCVars.TTSAnnounceVolume,
-            SliderTtsAnnounce,
-            scale: ContentAudioSystem.TtsMultiplier);
-
         Control.AddOptionCheckBox(CCVars.LobbyMusicEnabled, LobbyMusicCheckBox);
         Control.AddOptionCheckBox(CCVars.RestartSoundsEnabled, RestartSoundsCheckBox);
         Control.AddOptionCheckBox(CCVars.EventMusicEnabled, EventMusicCheckBox);
         Control.AddOptionCheckBox(CCVars.AdminSoundsEnabled, AdminSoundsCheckBox);
-        Control.AddOptionCheckBox(SunriseCCVars.TTSClientEnabled, TtsClientCheckBox);
-        Control.AddOptionCheckBox(SunriseCCVars.TapePlayerClientEnabled, TapePlayerClientCheckBox);
 
         Control.Initialize();
     }

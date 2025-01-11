@@ -17,7 +17,6 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using Content.Shared.Station.Components;
-using FastAccessors;
 using Robust.Shared.Utility;
 using YamlDotNet.RepresentationModel;
 
@@ -32,9 +31,7 @@ namespace Content.IntegrationTests.Tests
         private static readonly string[] NoSpawnMaps =
         {
             "CentComm",
-            "Dart",
-            "SunriseCentComm",
-            "PlanetPrison",
+            "Dart"
         };
 
         private static readonly string[] Grids =
@@ -43,7 +40,6 @@ namespace Content.IntegrationTests.Tests
             "/Maps/Shuttles/cargo.yml",
             "/Maps/Shuttles/emergency.yml",
             "/Maps/Shuttles/infiltrator.yml",
-            "/Maps/_Sunrise/Shuttles/infiltrator.yml",
         };
 
         private static readonly string[] GameMaps =
@@ -65,11 +61,35 @@ namespace Content.IntegrationTests.Tests
             "Train",
             "Oasis",
             "Cog",
-			"SunriseBox",
-			"SunriseDelta",
-			"SunriseFland",
-			"SunriseMarathon",
+            "Gate",
+            "Amber",
+            "Loop",
+            "Elkridge"
+
+
+        };
+
+        // Sunrise-Start
+        private static readonly string[] SunriseNoSpawnMaps =
+        {
             "SunriseCentComm",
+            "PlanetPrison",
+        };
+
+        private static readonly string[] SunriseGrids =
+        {
+            "/Maps/_Sunrise/Shuttles/infiltrator.yml",
+        };
+
+        private static readonly string[] SunriseGameMaps =
+        {
+            "SunriseDev",
+            "SunriseBox",
+            "SunriseDelta",
+            "SunriseFland",
+            "SunriseMarathon",
+            "SunriseCentComm",
+            "SunrisePlanetDelta",
             "SunriseBagel",
             "SunriseReach",
             "SunriseTrain",
@@ -77,13 +97,18 @@ namespace Content.IntegrationTests.Tests
             "SunriseCog",
             "SunriseCorvaxGelta",
             "SunriseMeta",
-            "SunriseOasis",
+            "SunriseOasis"
         };
+
+        private static readonly string[] TotalNoSpawnMaps = NoSpawnMaps.Concat(SunriseNoSpawnMaps).ToArray();
+        private static readonly string[] TotalGrids = Grids.Concat(SunriseGrids).ToArray();
+        private static readonly string[] TotalMaps = GameMaps.Concat(SunriseGameMaps).ToArray();
+        // Sunrise-End
 
         /// <summary>
         /// Asserts that specific files have been saved as grids and not maps.
         /// </summary>
-        [Test, TestCaseSource(nameof(Grids))]
+        [Test, TestCaseSource(nameof(TotalGrids))] // Sunrise-Edit
         public async Task GridsLoadableTest(string mapFile)
         {
             await using var pair = await PoolManager.GetServerClient();
@@ -167,7 +192,7 @@ namespace Content.IntegrationTests.Tests
             await pair.CleanReturnAsync();
         }
 
-        [Test, TestCaseSource(nameof(GameMaps))]
+        [Test, TestCaseSource(nameof(TotalMaps))] // Sunrise-Edit
         public async Task GameMapsLoadableTest(string mapProto)
         {
             await using var pair = await PoolManager.GetServerClient(new PoolSettings
@@ -248,7 +273,7 @@ namespace Content.IntegrationTests.Tests
                 if (entManager.HasComponent<StationJobsComponent>(station))
                 {
                     // Test that the map has valid latejoin spawn points or container spawn points
-                    if (!NoSpawnMaps.Contains(mapProto))
+                    if (!TotalNoSpawnMaps.Contains(mapProto)) // Sunrise-Edit
                     {
                         var lateSpawns = 0;
 
@@ -333,7 +358,7 @@ namespace Content.IntegrationTests.Tests
 
             Assert.That(gameMaps.Remove(PoolManager.TestMap));
 
-            Assert.That(gameMaps, Is.EquivalentTo(GameMaps.ToHashSet()), "Game map prototype missing from test cases.");
+            Assert.That(gameMaps, Is.EquivalentTo(TotalMaps.ToHashSet()), "Game map prototype missing from test cases."); // Sunrise-Edit
 
             await pair.CleanReturnAsync();
         }

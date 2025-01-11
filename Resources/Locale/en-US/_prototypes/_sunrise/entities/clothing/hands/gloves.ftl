@@ -4,3 +4,8 @@ ent-ClothingHandsGlovesCentcomNaval = nanotrasen naval gloves
     .desc = A high quality pair of thick gloves covered in gold stitching, given to Nanotrasen's Naval Commanders.
 ent-ClothingHandsGlovesLeatherHoS = leather gloves
     .desc = Stylish black leather gloves.
+ent-ClothingHandsGlovesChristmas = christmas gloves
+    .desc = Stylish Christmas gloves.
+ent-ClothingHandsGlovesChristmasLong = christmas gloves long
+    .desc = Stylish Christmas gloves.
+

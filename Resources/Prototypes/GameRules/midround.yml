@@ -2,6 +2,12 @@
   parent: BaseGameRule
   id: Thief
   components:
+  # Sunrise-Start
+  - type: GameRule
+    delay:
+      min: 600
+      max: 900
+  # Sunrise-End
   - type: ThiefRule
   - type: AntagObjectives
     objectives:
@@ -18,11 +24,10 @@
     agentName: thief-round-end-agent-name
     definitions:
     - prefRoles: [ Thief ]
-      max: 15 # Sunrise-Edit
-      playerRatio: 13 # Sunrise-Edit
+      max: 6 # Sunrise-Edit
+      playerRatio: 20 # Sunrise-Edit
       lateJoinAdditional: true
-      allowNonHumans: true
-      multiAntagSetting: NotExclusive
+      multiAntagSetting: None
       startingGear: ThiefGear
       #components:
       #- type: Pacified    # Sunrise-Edit: Воры не терпилы
@@ -35,27 +40,50 @@
   parent: BaseGameRule
   id: Changeling
   components:
+  - type: GameRule
+    delay:
+      min: 600
+      max: 900
   - type: ChangelingRule
+  - type: AntagObjectives
+    objectives:
+    - ChangelingStealDNAObjective
+    - ChangelingSurviveObjective
+  - type: AntagRandomObjectives
+    sets:
+    - groups: ChangelingObjectiveGroups
+    maxDifficulty: 10
   - type: AntagSelection
     agentName: changeling-roundend-name
     definitions:
     - prefRoles: [ Changeling ]
-      max: 4
+      max: 3
       playerRatio: 30
       lateJoinAdditional: true
       mindRoles:
       - MindRoleChangeling
-      
+
 - type: entity
   parent: BaseGameRule
   id: Vampire
   components:
+  - type: GameRule
+    delay:
+      min: 600
+      max: 900
   - type: VampireRule
+  - type: AntagObjectives
+    objectives:
+    - VampireDrainObjective
+  - type: AntagRandomObjectives
+    sets:
+    - groups: VampireObjectiveGroups
+    maxDifficulty: 10
   - type: AntagSelection
     agentName: vampire-roundend-name
     definitions:
     - prefRoles: [ Vampire ]
-      max: 4
+      max: 3
       playerRatio: 30
       lateJoinAdditional: true
       mindRoles:

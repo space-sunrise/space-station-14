@@ -6,6 +6,7 @@ using Content.Server.Station.Systems;
 using Content.Server.Store.Systems;
 using Content.Shared._Sunrise.StatsBoard;
 using Content.Shared.Bed.Sleep;
+using Content.Shared.Clumsy;
 using Content.Shared.Construction;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Damage;
@@ -732,7 +733,7 @@ public sealed class StatsBoardSystem : EntitySystem
         {
             result += Loc.GetString("statsentry-total-electrocuted-count", ("count", totalElectrocutedCount)) + "\n";
         }
-        
+
         //убрал пробельчик, так как всё равно он есть при добавлении ласт строчки
 
         return result;

@@ -36,10 +36,22 @@ namespace Content.Server.Repairable
 
             if (component.Damage != null)
             {
+                // Sunrise-start
                 var damageChanged = _damageableSystem.TryChangeDamage(uid, component.Damage, true, false, origin: args.User);
                 _adminLogger.Add(LogType.Healed, $"{ToPrettyString(args.User):user} repaired {ToPrettyString(uid):target} by {damageChanged?.GetTotal()}");
-            }
 
+                if (CanRepair(damageable.Damage.DamageDict, component) && args.Used != null)
+                {
+                    var isNotSelf = args.User != args.Target;
+
+                    var delay = isNotSelf
+                        ? component.DoAfterDelay
+                        : component.DoAfterDelay * GetScaledRepairPenalty(args.User, component);
+
+                    _toolSystem.UseTool(args.Used.Value, args.User, uid, delay, component.QualityNeeded, new RepairFinishedEvent(), component.FuelCost);
+                }
+                // Sunrise-end
+            }
             else
             {
                 // Repair all damage
@@ -57,9 +69,14 @@ namespace Content.Server.Repairable
         }
 
         // Sunrise-start
-        private bool CanRepair(Dictionary<string, FixedPoint2> damage, Dictionary<string, FixedPoint2> repairable)
+        private bool CanRepair(Dictionary<string, FixedPoint2> damage, RepairableComponent component)
         {
-            foreach (var type in repairable)
+            if (component.Damage == null)
+            {
+                return true;
+            }
+
+            foreach (var type in component.Damage.DamageDict)
             {
                 if (damage[type.Key].Value > 0)
                 {
@@ -80,8 +97,11 @@ namespace Content.Server.Repairable
             if (!TryComp<DamageableComponent>(uid, out var damageable) || damageable.TotalDamage == 0)
                 return;
 
+            if (!component.AllowSelfRepair && args.User == uid)
+                return;
+
             // Sunrise-start
-            if (component.Damage != null && !CanRepair(damageable.Damage.DamageDict, component.Damage.DamageDict))
+            if (!CanRepair(damageable.Damage.DamageDict, component))
                 return;
             // Sunrise-end
 

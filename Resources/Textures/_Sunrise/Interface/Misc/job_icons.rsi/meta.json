@@ -17,7 +17,7 @@
             "name": "MedicalBorg"
         },
         {
-            "name": "MinerBorg"
+            "name": "MiningBorg"
         },
         {
             "name": "ServiceBorg"
@@ -63,6 +63,9 @@
         },
         {
             "name": "Barber"
+        },
+        {
+            "name": "Pathologist"
         }
     ]
 }

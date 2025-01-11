@@ -32,4 +32,5 @@
     outerClothing: ClothingOuterCoatLabSeniorPhysician
   storage:
     back:
-    - OmnizineChemistryBottle
+    - MedicatedSuture
+    - RegenerativeMesh

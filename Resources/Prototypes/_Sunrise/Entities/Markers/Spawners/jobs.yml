@@ -235,6 +235,18 @@
     - state: barber
 
 - type: entity
+  id: SpawnPointMedicalPathologist
+  parent: SpawnPointJobBase
+  name: pathologist
+  components:
+  - type: SpawnPoint
+    job_id: MedicalPathologist
+  - type: Sprite
+    layers:
+      - state: green
+      - state: doctor
+
+- type: entity
   id: SpawnPointAdjutant
   parent: SpawnPointJobBase
   name: adjutant

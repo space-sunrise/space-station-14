@@ -44,7 +44,7 @@
     !type:Custom
     text: holiday-custom-helloween
   greetColor: orange
-  
+
 - type: holidayGiveawayItem
   id: HelloweenGiveawayCandle
   holiday: Helloween
@@ -55,3 +55,18 @@
   id: HelloweenGiveawayCandyBucket
   holiday: Helloween
   prototype: CandyBucket
+
+# Winter presents
+
+- type: holiday
+  id: WinterPresents
+  name: holiday-name-winter-presents
+  beginDay: 10
+  beginMonth: December
+  endDay: 2
+  endMonth: January
+
+- type: holidayGiveawayItem
+  id: WinterPresentsGiveawayPresent
+  holiday: WinterPresents
+  prototype: PresentRandom

@@ -396,10 +396,10 @@ namespace Content.Client.Lobby.UI
             PreferenceUnavailableButton.AddItem(
                 Loc.GetString("humanoid-profile-editor-preference-unavailable-stay-in-lobby-button"),
                 (int) PreferenceUnavailableMode.StayInLobby);
-            // PreferenceUnavailableButton.AddItem(
-            //     Loc.GetString("humanoid-profile-editor-preference-unavailable-spawn-as-overflow-button",
-            //                   ("overflowJob", Loc.GetString(SharedGameTicker.FallbackOverflowJobName))),
-            //     (int) PreferenceUnavailableMode.SpawnAsOverflow);
+             PreferenceUnavailableButton.AddItem(
+                 Loc.GetString("humanoid-profile-editor-preference-unavailable-spawn-as-overflow-button",
+                               ("overflowJob", Loc.GetString(SharedGameTicker.FallbackOverflowJobName))),
+                 (int) PreferenceUnavailableMode.SpawnAsOverflow);
 
             PreferenceUnavailableButton.OnItemSelected += args =>
             {
@@ -470,7 +470,11 @@ namespace Content.Client.Lobby.UI
                 if (_flavorText != null)
                     return;
 
-                _flavorText = new FlavorText.FlavorText();
+                // Sunrise-Start
+                var sponsorOnly = _cfgManager.GetCVar(SunriseCCVars.FlavorTextSponsorOnly);
+                var baseMaxDescLength = _cfgManager.GetCVar(SunriseCCVars.FlavorTextBaseLength);
+                _flavorText = new FlavorText.FlavorText(_sponsorsMgr, sponsorOnly, baseMaxDescLength);
+                // Sunrise-End
                 TabContainer.AddChild(_flavorText);
                 TabContainer.SetTabTitle(TabContainer.ChildCount - 1, Loc.GetString("humanoid-profile-editor-flavortext-tab"));
                 _flavorTextEdit = _flavorText.CFlavorTextInput;
@@ -677,7 +681,15 @@ namespace Content.Client.Lobby.UI
                 selector.Select(Profile?.AntagPreferences.Contains(antag.ID) == true ? 0 : 1);
 
                 var requirements = _entManager.System<SharedRoleSystem>().GetAntagRequirement(antag);
-                if (!_requirements.CheckRoleRequirements(requirements, antag.ID, (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter, out var reason)) // Sunrise-Sponsors
+                var antagAllSelection = Loc.GetString("ban-panel-role-selection-antag-all-option");
+
+                if (_requirements.IsAntagBanned(new[] { $"Antag:{antag.ID}", $"Antag:{antagAllSelection}" }, out var banReason, out var expirationTime))
+                {
+                    selector.LockDueToBan(banReason, expirationTime);
+                    Profile = Profile?.WithAntagPreference(antag.ID, false);
+                    SetDirty();
+                }
+                else if (!_requirements.CheckRoleRequirements(requirements, antag.ID, (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter, out var reason)) // Sunrise-Sponsors
                 {
                     selector.LockRequirements(reason);
                     Profile = Profile?.WithAntagPreference(antag.ID, false);
@@ -695,14 +707,6 @@ namespace Content.Client.Lobby.UI
                 };
 
                 antagContainer.AddChild(selector);
-
-                antagContainer.AddChild(new Button()
-                {
-                    Disabled = true,
-                    Text = Loc.GetString("loadout-window"),
-                    HorizontalAlignment = HAlignment.Right,
-                    Margin = new Thickness(3f, 0f, 0f, 0f),
-                });
 
                 AntagList.AddChild(antagContainer);
             }
@@ -942,7 +946,11 @@ namespace Content.Client.Lobby.UI
                     icon.Texture = jobIcon.Icon.Frame0();
                     selector.Setup(items, job.LocalizedName, 200, job.LocalizedDescription, icon, job.Guides);
 
-                    if (!_requirements.IsAllowed(job, (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter, out var reason))
+                    if (_requirements.IsRoleBanned(new[] { $"Job:{job.ID}" }, out var banReason, out var expirationTime))
+                    {
+                        selector.LockDueToBan(banReason, expirationTime);
+                    }
+                    else if (!_requirements.IsAllowed(job, (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter, out var reason, true))
                     {
                         selector.LockRequirements(reason);
                     }

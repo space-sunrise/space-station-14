@@ -49,12 +49,6 @@
     makeSentient: true
     name: ghostrole-disease-name
     description: ghostrole-disease-description
-    requirements:
-    - !type:DepartmentTimeRequirement
-      department: Medical
-      time: 7200 #2 hrs
-    - !type:OverallPlaytimeRequirement
-      time: 18000 #5 hrs
     raffle:
       settings: default
 
