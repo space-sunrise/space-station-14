@@ -48,7 +48,8 @@ public sealed partial class AreaReactionEffect : EntityEffect
 
     protected override string ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
             => Loc.GetString("reagent-effect-guidebook-area-reaction",
-                    ("duration", _duration)
+                ("chance", Probability),
+                ("duration", _duration)
                 );
 
     public override LogImpact LogImpact => LogImpact.High;
