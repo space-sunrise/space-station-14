@@ -17,20 +17,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-
-      - name: Get Pull Request Number
-        id: get_pr
-        uses: actions/github-script@v6
-        with:
-          script: |
-            if (context.event_name === 'pull_request') {
-              return { PR_NUMBER: context.payload.pull_request.number };
-            }
-            return { PR_NUMBER: '' };
-          result-encoding: string
-
+        
       - name: Set up Python
-        if: steps.get_pr.outputs.PR_NUMBER != ''
+        if: github.head_ref != ''
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
@@ -53,12 +42,12 @@ jobs:
           echo "Script exited with code $?"
 
       - name: Git status before commit
-        if: steps.get_pr.outputs.PR_NUMBER != ''
+        if: github.head_ref != ''
         run: |
           git status
 
       - name: Commit and push changes
-        if: steps.get_pr.outputs.PR_NUMBER != ''
+        if: github.head_ref != ''
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
