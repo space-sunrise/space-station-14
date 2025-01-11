@@ -10526,3 +10526,17 @@
   id: 727
   time: '2025-01-11T04:53:23.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/391
+- author: ThereDrD
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u044B \u043D\u043E\u0432\
+      \u044B\u0435 \u0437\u0432\u0443\u043A\u0438 \u043F\u0430\u0434\u0435\u043D\u0438\
+      \u044F \u0433\u0438\u043B\u044C\u0437"
+    type: Add
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u044B \u0443\u043D\u0438\
+      \u043A\u0430\u043B\u044C\u043D\u044B\u0435 \u0437\u0432\u0443\u043A\u0438 \u043F\
+      \u0430\u0434\u0435\u043D\u0438\u044F \u043F\u0430\u0442\u0440\u043E\u043D\u043E\
+      \u0432 \u0434\u0440\u043E\u0431\u043E\u0432\u0438\u043A\u0430"
+    type: Add
+  id: 728
+  time: '2025-01-11T10:44:07.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/1094
