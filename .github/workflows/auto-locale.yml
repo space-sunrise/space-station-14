@@ -12,6 +12,8 @@ permissions:
 jobs:
   update-changelog:
     runs-on: ubuntu-latest
+    if: github.repository == 'space-sunrise/space-station-14'
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
