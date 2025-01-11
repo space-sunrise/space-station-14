@@ -547,6 +547,8 @@
     # Sunrise-start
     alertAccesses:
       blue: BlueAlertAccesses
+      red: RedAlertAccesses
+      gamma: GammaAlertAccesses
       delta: AllAccess
     # Sunrise-end
 
