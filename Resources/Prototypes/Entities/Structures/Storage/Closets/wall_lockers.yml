@@ -164,3 +164,9 @@
     stateDoorClosed: med_door
   - type: AccessReader
     access: [["Medical"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end

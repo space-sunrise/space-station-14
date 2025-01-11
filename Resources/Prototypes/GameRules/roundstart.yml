@@ -154,8 +154,8 @@
     - prefRoles: [ Nukeops ]
       fallbackRoles: [ NukeopsCommander, NukeopsMedic ]
       spawnerPrototype: SpawnPointNukeopsOperative
-      max: 5
-      playerRatio: 20
+      max: 4
+      playerRatio: 30
       startingGear: SyndicateOperativeGearFull
       roleLoadout:
       - RoleSurvivalNukie

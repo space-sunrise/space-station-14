@@ -1261,7 +1261,7 @@
       blacklist:
         tags:
           - NukeOpsUplink
-          - AssaultOpsUplink
+          - AssaultOpsUplink # Sunrise-Edit
 
 - type: listing
   id: UplinkReinforcementRadioSyndicateNukeops # Version for Nukeops that spawns another nuclear operative without the uplink.
@@ -1314,6 +1314,7 @@
       blacklist:
         tags:
           - NukeOpsUplink
+          - AssaultOpsUplink # Sunrise-Edit
 
 - type: listing
   id: UplinkReinforcementRadioSyndicateAncestorNukeops # Version for Nukeops that spawns a syndicate monkey with the NukeOperative component.
@@ -1351,6 +1352,7 @@
     blacklist:
       tags:
       - NukeOpsUplink
+      - AssaultOpsUplink # Sunrise-Edit
 
 - type: listing
   id: UplinkMobCatMicrobomb
@@ -1365,6 +1367,13 @@
     Telecrystal: 6
   categories:
     - UplinkAllies
+  # Sunrise-Start
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
+  # Sunrise-End
 
 - type: listing
   id: UplinkSyndicatePersonalAI

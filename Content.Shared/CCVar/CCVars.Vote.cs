@@ -62,19 +62,19 @@ public sealed partial class CCVars
     ///     Sets the duration of the map vote timer.
     /// </summary>
     public static readonly CVarDef<int>
-        VoteTimerMap = CVarDef.Create("vote.timermap", 30, CVar.SERVERONLY); // Sunrise-Edit
+        VoteTimerMap = CVarDef.Create("vote.timermap", 50, CVar.SERVERONLY); // Sunrise-Edit
 
     /// <summary>
     ///     Sets the duration of the restart vote timer.
     /// </summary>
     public static readonly CVarDef<int>
-        VoteTimerRestart = CVarDef.Create("vote.timerrestart", 60, CVar.SERVERONLY);
+        VoteTimerRestart = CVarDef.Create("vote.timerrestart", 50, CVar.SERVERONLY); // Sunrise-Edit
 
     /// <summary>
     ///     Sets the duration of the gamemode/preset vote timer.
     /// </summary>
     public static readonly CVarDef<int>
-        VoteTimerPreset = CVarDef.Create("vote.timerpreset", 30, CVar.SERVERONLY);
+        VoteTimerPreset = CVarDef.Create("vote.timerpreset", 50, CVar.SERVERONLY); // Sunrise-Edit
 
     /// <summary>
     ///     Sets the duration of the map vote timer when ALONE.
@@ -104,13 +104,13 @@ public sealed partial class CCVars
     ///     Should the initiator be whitelisted to initiate a votekick?
     /// </summary>
     public static readonly CVarDef<bool> VotekickInitiatorWhitelistedRequirement =
-        CVarDef.Create("votekick.initiator_whitelist_requirement", false, CVar.SERVERONLY); // Sunrise-Edit
+        CVarDef.Create("votekick.initiator_whitelist_requirement", false, CVar.REPLICATED | CVar.SERVER); // Sunrise-Edit
 
     /// <summary>
     ///     Should the initiator be able to start a votekick if they are bellow the votekick.voter_playtime requirement?
     /// </summary>
     public static readonly CVarDef<bool> VotekickInitiatorTimeRequirement =
-        CVarDef.Create("votekick.initiator_time_requirement", true, CVar.SERVERONLY); // Sunrise-Edit
+        CVarDef.Create("votekick.initiator_time_requirement", true, CVar.REPLICATED | CVar.SERVER); // Sunrise-Edit
 
     /// <summary>
     ///     Whether a votekick voter must be a ghost or not.
@@ -122,7 +122,7 @@ public sealed partial class CCVars
     ///     Config for how many hours playtime a player must have to be able to vote on a votekick.
     /// </summary>
     public static readonly CVarDef<int> VotekickEligibleVoterPlaytime =
-        CVarDef.Create("votekick.voter_playtime", 500, CVar.SERVERONLY); // Sunrise-Edit
+        CVarDef.Create("votekick.voter_playtime", 300, CVar.REPLICATED | CVar.SERVER); // Sunrise-Edit
 
     /// <summary>
     ///     Config for how many seconds a player must have been dead to initiate a votekick / be able to vote on a votekick.

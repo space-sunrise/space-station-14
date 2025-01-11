@@ -76,8 +76,7 @@
   recipeUnlocks:
     - LauncherSyringeRapid
   technologyPrerequisites:
-  - BasicSyringeGun
-  - NonlethalAmmunition
+  - CompactSyringeGun
 
 - type: technology
   id: SyringeGunCryostasis
@@ -110,6 +109,18 @@
     - BoneSetterAdvanced
     - RetractorAdvanced
     - HemostatAdvanced
+
+- type: technology
+  id: ImplantExtractor
+  name: research-technology-implant-extractor
+  icon:
+    sprite: _Sunrise/Structures/Machines/interrogator.rsi
+    state: open
+  discipline: Biochemical
+  tier: 3
+  cost: 12500
+  recipeUnlocks:
+    - ImplantExtractorMachineCircuitboard
 
 - type: technology
   id: SyringeGunBluespace

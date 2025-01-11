@@ -116,6 +116,12 @@
         - id: ClothingMaskBreath
   - type: AccessReader
     access: [["Engineering"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 #Atmospherics hardsuit
 - type: entity
@@ -130,6 +136,12 @@
         - id: ClothingMaskBreath
   - type: AccessReader
     access: [["Atmospherics"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 #Security hardsuit
 - type: entity
@@ -239,6 +251,12 @@
         tableId: FillSalvageSpecialistHardsuitSpatio
   - type: AccessReader
     access: [["Salvage"]]
+    # Sunrise-start
+    alertAccesses:
+      red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
+      gamma: GammaAlertAccesses
+    # Sunrise-end
 
 #Blood-red hardsuit
 - type: entity

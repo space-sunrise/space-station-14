@@ -27,7 +27,6 @@
       max: 6 # Sunrise-Edit
       playerRatio: 20 # Sunrise-Edit
       lateJoinAdditional: true
-      allowNonHumans: true
       multiAntagSetting: None
       startingGear: ThiefGear
       #components:

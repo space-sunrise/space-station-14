@@ -22,4 +22,7 @@ public sealed class GhostThemePrototype : IPrototype
 
     [DataField("sprite", required: true)]
     public SpriteSpecifier Sprite { get; private set; } = default!;
+
+    [DataField]
+    public bool SponsorOnly;
 }

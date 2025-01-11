@@ -12,7 +12,6 @@ flesh-pudge-transform-user = Вы превращаетесь в { CAPITALIZE($En
 flesh-pudge-transform-others = { CAPITALIZE($Entity) } превращается в { CAPITALIZE($EntityTransform) }
 flesh-pudge-transform-begin-user = Вы начинаете превращаться.
 flesh-pudge-transform-begin-others = { CAPITALIZE($Entity) } начинает превращается.
-
 flesh-mob-cant-atack-flesh-heart = Вы не можете атаковать сердце плоти.
 flesh-mob-cant-atack-flesh-mob = Вы не можете атаковать монстров из плоти.
 flesh-mob-cant-atack-flesh-cultist = Вы не можете атаковать культистов плоти.
@@ -20,7 +19,6 @@ flesh-hugger-jump-name = Прыжок
 flesh-hugger-jump-desc = Позволяет вам прыгнуть в выбраном направлении. Если вы попадете в гуманоида без маски вы зацепитесь за его лицо.
 flesh-hugger-get-off-name = Слезть с лица
 flesh-hugger-get-off-desc = Позволяет вам спуститься с лица.
-
 mob-flesh-ghost-role-rules = Не атакуйте культистов плоти, не ломайте ДАМы, сервера, консоли и прочее. Не делайте разгерметизацию.
 mob-flesh-abom-ghost-role-name = Ужасное порождение из плоти
 mob-flesh-abom-ghost-role-decs = Вы разумная плоть, кооперируйтесь с другими существами из плоти для захвата станции.
@@ -38,8 +36,6 @@ mob-flesh-small-worm-ghost-role-name = Маленьнький червь из п
 mob-flesh-small-worm-ghost-role-decs = Вы разумная плоть, кооперируйтесь с другими существами из плоти для захвата станции.
 mob-flesh-hugger-ghost-role-name = лицехват из плоти
 mob-flesh-hugger-ghost-role-desc = Вы разумная плоть, кооперируйтесь с другими существами из плоти для захвата станции.
-
 flesh-worm-cant-get-off = Вы не на лице.
 flesh-worm-cant-jump = Вы не можете прыгать будучи на лице.
-
 mob-flesh-cult-rules = Не атакуйте культистов плоти, не ломайте ДАМы, сервера, консоли и прочее. Не делайте разгерметизацию.

@@ -1,7 +1,7 @@
-flesh-cultist-transform-hand-to-mod = Рука { CAPITALIZE( $User ) } превращается в { CAPITALIZE( $Mod ) }.
-flesh-cultist-transform-mod-to-hand = { CAPITALIZE( $Mod ) } { CAPITALIZE( $User ) } превращается в обратно в руку.
-flesh-cultist-transform-body-add = { CAPITALIZE( $User ) } отращивает { CAPITALIZE( $Mod ) }.
-flesh-cultist-transform-body-remove = { CAPITALIZE( $User ) } скрывает { CAPITALIZE( $Mod ) }.
+flesh-cultist-transform-hand-to-mod = Рука { CAPITALIZE($User) } превращается в { CAPITALIZE($Mod) }.
+flesh-cultist-transform-mod-to-hand = { CAPITALIZE($Mod) } { CAPITALIZE($User) } превращается в обратно в руку.
+flesh-cultist-transform-body-add = { CAPITALIZE($User) } отращивает { CAPITALIZE($Mod) }.
+flesh-cultist-transform-body-remove = { CAPITALIZE($User) } скрывает { CAPITALIZE($Mod) }.
 flesh-cultist-transform-user-hand-blocked = Данная рука занята другой модификацией.
 flesh-cultist-transform-conflict = Вы не можете использовать это сейчас.
 flesh-cultist-transform-spider-legs-blocked = Вы не можете использовать броню с паучьими лапами.
@@ -24,7 +24,6 @@ flesh-cultist-devour-target = { CAPITALIZE($Entity) } поглощает { CAPIT
 flesh-cultist-not-find-puddles = Рядом нету никаких луж.
 flesh-cultist-throw-hugger = Вы бросата лицехвата.
 flesh-cultist-throw-hugger-others = { CAPITALIZE($Entity) } бросает лицехвата.
-
 flesh-cultist-hunger-name = Голод паразита
 flesh-cultist-hunger-desc = Когда голод паразита достигнет нуля, он вырвется наружу, и вы потеряете контроль над своим телом.
 flesh-cultist-shop-name = Магазин эволюции
@@ -57,7 +56,6 @@ flesh-cultist-throw-hugger-name = Бросок лицехвата
 flesh-cultist-throw-hugger-desc = Создайте и метните в лица врагов лицехвата из плоти.
 flesh-cultist-acid-spit-name = Кислотный плевок
 flesh-cultist-acid-spit-desc = Плюйтесь кислотой в ваших врагов
-
 flesh-cultist-blade-evolution-name = Клинок из плоти
 flesh-cultist-blade-evolution-desc = Получите возможность превратить свою руку в смертоносный клинок из плоти и костей.
 flesh-cultist-claw-evolution-name = Клешня из плоти
@@ -81,12 +79,12 @@ flesh-cultist-throw-hugger-evolution-desc = Получите возможнос�
 flesh-cultist-acid-spit-evolution-name = Кислотный плевок
 flesh-cultist-acid-spit-evolution-desc = Получите возможность плеваться кислотой в ваших врагов.
 flesh-cultist-create-flesh-heart-evolution-name = Создание сердца из плоти
-flesh-cultist-create-flesh-heart-evolution-desc = Получите возможность создать сердце из плоти.
+flesh-cultist-create-flesh-heart-evolution-desc =
+    Получите возможность создать сердце из плоти.
     Его создание и пробуждение - ваша ключевая задача на станции.
     Для пробуждения потребуется три тела развитых существ из плоти. После активации будьте готовы защищать его от любой угрозы.
 flesh-cultist-absorb-blood-pool-evolution-name = Поглощение лужи крови
 flesh-cultist-absorb-blood-pool-evolution-desc = Позволяет поглотить лужи крови для лечения.
-
 flesh-cultist-insulated-immunity-evolution-name = Сопротивление
 flesh-cultist-insulated-immunity-evolution-desc = Вы сможете спокойно работать с электричеством не опасаясь поражения напряжением.
 flesh-cultist-pressure-immunity-evolution-name = Уплотнение

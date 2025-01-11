@@ -10,8 +10,7 @@ ent-PowerCellNanoTrasen = батарея гипер ёмкости NanoTrasen
 ent-PowerCellSyndicate = батарея гипер ёмкости Syndicate
     .desc = { ent-PowerCellCombat.desc }
     .suffix = Полный
-
-ent-PowerCageCombat = военная энергоячейка гипер ёмкости 
+ent-PowerCageCombat = военная энергоячейка гипер ёмкости
     .desc = Перезаряжаемая энергетическая ячейка для больших устройств. Увеличенная ёмкость для увеличенного уровня мощности. Встроенная ЭМИ защита.
     .suffix = Полный
 ent-PowerCageERT = энергоячейка гипер ёмкости NanoTrasen

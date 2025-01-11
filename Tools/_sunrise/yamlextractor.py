@@ -59,9 +59,9 @@ class YAMLExtractor:
 
         en_fluent_file = FluentFile(en_fluent_file_path)
         en_fluent_file.save_data(file_data)
-        
+
         logging.info(f'Актуализирован файл английской локализации {en_fluent_file.full_path}')
-        
+
         return en_fluent_file.full_path
 
     def create_ru_fluent_file(self, en_analog_file_path):
@@ -88,10 +88,14 @@ serializer = FluentSerializer()
 parser = FluentParser()
 formatter = FluentFormatter()
 
+logging.info(f'Поиск YAML-файлов ...')
 yaml_files_paths = project.get_files_paths_by_dir(project.prototypes_dir_path, 'yml')
+if not yaml_files_paths:
+    logging.info("Не найдено YAML файлов!")
+else:
+    logging.info(f"Найдено {len(yaml_files_paths)} YAML файлов. Обработка...")
 yaml_files = list(map(lambda yaml_file_path: YAMLFile(yaml_file_path), yaml_files_paths))
 
 ########################################################################################################################
 
-logging.info(f'Поиск yaml-файлов ...')
 YAMLExtractor(yaml_files).execute()

@@ -1,9 +1,9 @@
 ent-CrateCommandNTGygaxBundle = Nanotrasen gygax bundle
     .desc = Contains a set of Nanotrasen light armored mechs.
     .suffix = Filled
-ent-CrateCommandMarauderBundle = Nanotrasen marauder bundle
+ent-CrateCommandMarauderBundle = Nanotrasen Marauder Bundle
     .desc = Contains a set of Nanotrasen heavy armored mechs.
     .suffix = Filled
-ent-CrateCommandSeraphBundle = Nanotrasen seraph bundle
+ent-CrateCommandSeraphBundle = Nanotrasen Seraph Bundle
     .desc = Contains a set of Nanotrasen elite heavy armored mechs.
     .suffix = Filled

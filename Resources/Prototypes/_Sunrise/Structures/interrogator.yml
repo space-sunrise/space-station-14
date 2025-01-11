@@ -1,12 +1,12 @@
 - type: entity
-  id: Interrogator
+  id: ImplantExtractor
   parent: BaseMachinePowered
-  name: interrogator
-  description: apchy
+  name: microwave implant extractor
+  description: A high-tech device specifically designed for implant extraction in conditions with low-skilled medical personnel.
   components:
   - type: Interrogator
   - type: Sprite
-    sprite: _Sunrise/AssaultOperatives/interrogator.rsi
+    sprite: _Sunrise/Structures/Machines/interrogator.rsi
     snapCardinals: true
     layers:
     - state: base
@@ -48,7 +48,7 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: Machine
-    board: InterrogatorMachineCircuitboard
+    board: ImplantExtractorMachineCircuitboard
   - type: WiresPanel
   - type: ApcPowerReceiver
     powerLoad: 200
@@ -59,12 +59,21 @@
       machine_board: !type:Container
       machine_parts: !type:Container
 
+- type: entity
+  id: Interrogator
+  parent: ImplantExtractor
+  name: interrogator
+  description: apchy
+  components:
+  - type: Interrogator
+  - type: Machine
+    board: InterrogatorMachineCircuitboard
 
 - type: entity
-  id: InterrogatorMachineCircuitboard
+  id: ImplantExtractorMachineCircuitboard
   parent: BaseMachineCircuitboard
-  name: interrogator machine board
-  description: A machine printed circuit board for a interrogator.
+  name: implant scan machine board
+  description: A machine printed circuit board for a implant extractor.
   components:
   - type: Sprite
     state: medical
@@ -75,3 +84,12 @@
       Manipulator: 2
       Glass: 1
       Cable: 1
+
+- type: entity
+  id: InterrogatorMachineCircuitboard
+  parent: ImplantExtractorMachineCircuitboard
+  name: interrogator machine board
+  description: A machine printed circuit board for a interrogator.
+  components:
+  - type: Sprite
+    state: medical

@@ -8,8 +8,6 @@
     access: [["Captain"]]
     # Sunrise-start
     alertAccesses:
-      red: RedAlertAccesses
-      gamma: GammaAlertAccesses
       delta: AllAccess
     # Sunrise-end
 
@@ -52,6 +50,7 @@
     # Sunrise-start
     alertAccesses:
       red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
       yellow: YellowAlertAccesses
       gamma: GammaAlertAccesses
       delta: AllAccess
@@ -69,6 +68,7 @@
     # Sunrise-start
     alertAccesses:
       red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
       yellow: YellowAlertAccesses
       gamma: GammaAlertAccesses
       delta: AllAccess
@@ -86,6 +86,7 @@
     # Sunrise-start
     alertAccesses:
       red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
       yellow: YellowAlertAccesses
       gamma: GammaAlertAccesses
       delta: AllAccess
@@ -102,6 +103,7 @@
     # Sunrise-start
     alertAccesses:
       red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
       yellow: YellowAlertAccesses
       gamma: GammaAlertAccesses
       delta: AllAccess
@@ -119,6 +121,7 @@
     # Sunrise-start
     alertAccesses:
       red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
       yellow: YellowAlertAccesses
       gamma: GammaAlertAccesses
       delta: AllAccess
@@ -136,6 +139,7 @@
     # Sunrise-start
     alertAccesses:
       red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
       yellow: YellowAlertAccesses
       gamma: GammaAlertAccesses
       delta: AllAccess
@@ -153,6 +157,7 @@
     # Sunrise-start
     alertAccesses:
       red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
       yellow: YellowAlertAccesses
       gamma: GammaAlertAccesses
       delta: AllAccess
@@ -170,6 +175,7 @@
     # Sunrise-start
     alertAccesses:
       red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
       yellow: YellowAlertAccesses
       gamma: GammaAlertAccesses
       delta: AllAccess
@@ -186,6 +192,7 @@
     # Sunrise-start
     alertAccesses:
       red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
       yellow: YellowAlertAccesses
       gamma: GammaAlertAccesses
       delta: AllAccess
@@ -203,6 +210,7 @@
     # Sunrise-start
     alertAccesses:
       red: RedAlertAccesses
+      blue: BlueAlertAccessesHOS
       yellow: YellowAlertAccesses
       gamma: GammaAlertAccesses
       delta: AllAccess
@@ -231,6 +239,7 @@
     access: [["Salvage"]]
     # Sunrise-start
     alertAccesses:
+      blue: BlueAlertAccessesHOS
       red: RedAlertAccesses
       yellow: YellowAlertAccesses
       gamma: GammaAlertAccesses
@@ -247,6 +256,7 @@
     access: [["Cargo"]]
     # Sunrise-start
     alertAccesses:
+      blue: BlueAlertAccessesHOS
       red: RedAlertAccesses
       yellow: YellowAlertAccesses
       gamma: GammaAlertAccesses
@@ -276,6 +286,7 @@
     access: [["Atmospherics"]]
     # Sunrise-start
     alertAccesses:
+      blue: BlueAlertAccessesHOS
       red: RedAlertAccesses
       gamma: GammaAlertAccesses
       delta: AllAccess
@@ -291,6 +302,7 @@
     access: [["Engineering"]]
     # Sunrise-start
     alertAccesses:
+      blue: BlueAlertAccessesHOS
       red: RedAlertAccesses
       gamma: GammaAlertAccesses
       delta: AllAccess
@@ -307,6 +319,7 @@
     access: [["Medical"], ["Detective"], ["Chapel"]]
     # Sunrise-start
     alertAccesses:
+      blue: BlueAlertAccesses
       red: RedAlertAccesses
       yellow: YellowAlertAccesses
       gamma: GammaAlertAccesses
@@ -335,6 +348,7 @@
     access: [["Research"], ["Medical"]]
     # Sunrise-start
     alertAccesses:
+      blue: BlueAlertAccessesHOS
       red: RedAlertAccesses
       yellow: YellowAlertAccesses
       gamma: GammaAlertAccesses
@@ -351,6 +365,7 @@
     access: [["Research"]]
     # Sunrise-start
     alertAccesses:
+      blue: BlueAlertAccessesHOS
       red: RedAlertAccesses
       yellow: YellowAlertAccesses
       gamma: GammaAlertAccesses
@@ -458,6 +473,7 @@
     access: [["Chemistry"]]
     # Sunrise-start
     alertAccesses:
+      blue: BlueAlertAccessesHOS
       red: RedAlertAccesses
       yellow: YellowAlertAccesses
       gamma: GammaAlertAccesses
@@ -473,6 +489,7 @@
     access: [["Medical"]]
     # Sunrise-start
     alertAccesses:
+      blue: BlueAlertAccessesHOS
       red: RedAlertAccesses
       yellow: YellowAlertAccesses
       gamma: GammaAlertAccesses
@@ -514,6 +531,7 @@
     access: [["External"]]
     # Sunrise-start
     alertAccesses:
+      blue: BlueAlertAccessesHOS
       red: RedAlertAccesses
       gamma: GammaAlertAccesses
       delta: AllAccess
@@ -528,6 +546,7 @@
     access: [["Maintenance"]]
     # Sunrise-start
     alertAccesses:
+      blue: BlueAlertAccesses
       delta: AllAccess
     # Sunrise-end
 

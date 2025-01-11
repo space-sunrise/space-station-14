@@ -323,3 +323,30 @@
   name: loadout-group-atmos-console
   loadouts:
   - AtmosphericsConsole
+
+- type: loadoutGroup
+  id: CommonPets
+  name: loadout-group-pets
+  minLimit: 0
+  loadouts:
+  - PetRabbit
+  - PetAnteater
+  - PetOctopus
+  - PetNavySeal
+  - PetOtter
+  - PetAlexander
+  - PetMobCrabAtmos
+  - PetMobCorgiIan
+  - PetMobSlimesPet
+  - PetMobCatRuntime
+  - PetMobCorgiLisa
+  - PetMobCatFloppa
+  - PetMobWalter
+  - PetMcGriff
+  - PetMobPossumMorty
+  - PetMobPossumPoppy
+  - PetMobCorgiIanOld
+  - PetMobGoose
+  - PetMobClownGoblin
+  - PetMobCorgiIanPup
+  - PetMobParrot

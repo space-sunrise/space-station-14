@@ -11,4 +11,4 @@ atmos-monitoring-window-show-pipe-network = Сеть труб
 atmos-monitoring-window-show-gas-pipe-sensors = Сенсоры газовых труб
 atmos-monitoring-window-label-gases = Присутствующие газы
 atmos-monitoring-window-flavor-left = Обратитесь к атмосферному технику за помощью
-atmos-monitoring-window-flavor-right = v1.1 
+atmos-monitoring-window-flavor-right = v1.1

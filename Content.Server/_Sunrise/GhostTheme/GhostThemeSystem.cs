@@ -44,18 +44,22 @@ public sealed class GhostThemeSystem : EntitySystem
 
     private void OnGhostThemeSelected(Entity<GhostComponent> ent, ref GhostThemePrototypeSelectedMessage msg)
     {
-        if (_sponsorsManager == null ||
-            !TryComp(msg.Actor, out ActorComponent? actorComp) ||
-            !_sponsorsManager.TryGetGhostThemes(actorComp.PlayerSession.UserId, out var ghostThemes))
+        if (!TryComp(msg.Actor, out ActorComponent? actorComp))
             return;
+
+        List<string> ghostThemes = [];
+        if (_sponsorsManager != null && _sponsorsManager.TryGetGhostThemes(actorComp.PlayerSession.UserId, out var sponsorGhostThemes))
+        {
+            ghostThemes.AddRange(sponsorGhostThemes);
+        }
 
         if (!_prototypeManager.TryIndex<GhostThemePrototype>(msg.SelectedGhostTheme, out var ghostThemePrototype))
             return;
 
-        if (!ghostThemes.Contains(ghostThemePrototype.ID))
+        if (!ghostThemes.Contains(ghostThemePrototype.ID) && ghostThemePrototype.SponsorOnly)
             return;
 
-        _sponsorsManager.SetCachedGhostTheme(actorComp.PlayerSession.UserId, ghostThemePrototype.ID);
+        _sponsorsManager?.SetCachedGhostTheme(actorComp.PlayerSession.UserId, ghostThemePrototype.ID);
         var ghostTheme = EnsureComp<GhostThemeComponent>(ent);
         ghostTheme.GhostTheme = msg.SelectedGhostTheme;
         Dirty(ent, ghostTheme);
@@ -66,8 +70,11 @@ public sealed class GhostThemeSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return;
 
-        if (_sponsorsManager == null || !_sponsorsManager.TryGetGhostThemes(session.UserId, out var ghostThemes))
-            return;
+        List<string> ghostThemes = [];
+        if (_sponsorsManager != null && _sponsorsManager.TryGetGhostThemes(session.UserId, out var sponsorGhostThemes))
+        {
+            ghostThemes.AddRange(sponsorGhostThemes);
+        }
 
         var ghostThemesPrototypes = _prototypeManager.EnumeratePrototypes<GhostThemePrototype>();
 
@@ -75,7 +82,7 @@ public sealed class GhostThemeSystem : EntitySystem
 
         foreach (var ghostThemePrototype in ghostThemesPrototypes)
         {
-            if (!ghostThemes.Contains(ghostThemePrototype.ID))
+            if (!ghostThemes.Contains(ghostThemePrototype.ID) && ghostThemePrototype.SponsorOnly)
                 continue;
 
             availableGhostThemes.Add(ghostThemePrototype.ID);

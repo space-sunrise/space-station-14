@@ -1250,4 +1250,4 @@ doc-text-printer-report-accomplishment-goals =
     Отчёт:
     
     =============================================
-                                ⠀[italic]Место для печатей[/italic]   
+                                ⠀[italic]Место для печатей[/italic]

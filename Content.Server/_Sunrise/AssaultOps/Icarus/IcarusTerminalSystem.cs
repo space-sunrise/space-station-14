@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Numerics;
+using Content.Server.AlertLevel;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.RoundEnd;
@@ -14,6 +15,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
 namespace Content.Server._Sunrise.AssaultOps.Icarus;
@@ -34,6 +36,7 @@ public sealed class IcarusTerminalSystem : EntitySystem
     [Dependency] private readonly RoundEndSystem _roundEndSystem = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
+    [Dependency] private readonly AlertLevelSystem _alertLevel = default!;
 
     public override void Initialize()
     {
@@ -220,6 +223,18 @@ public sealed class IcarusTerminalSystem : EntitySystem
 
         _audio.PlayGlobal(component.FireSound, Filter.Broadcast(), false);
         FireBeam(GetStationArea());
+
+        // Ждём 10 секунд, прежде чем активировать дельту и эвакуироваться
+        Timer.Spawn(TimeSpan.FromSeconds(10), () =>
+        {
+            var targetStation = _stationSystem.GetStations().FirstOrNull();
+            if (targetStation != null)
+            {
+                _alertLevel.SetLevel(targetStation.Value, "delta", true, true, true);
+            }
+
+            _roundEndSystem.DoRoundEndBehavior(RoundEndBehavior.ShuttleCall, TimeSpan.FromMinutes(1));
+        });
     }
 
     public MapCoordinates FireBeam(Box2 area)

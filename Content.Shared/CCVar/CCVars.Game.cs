@@ -277,7 +277,7 @@ public sealed partial class CCVars
         ///     Delay between station alert level changes.
         /// </summary>
         public static readonly CVarDef<int> GameAlertLevelChangeDelay =
-            CVarDef.Create("game.alert_level_change_delay", 30, CVar.SERVERONLY);
+            CVarDef.Create("game.alert_level_change_delay", 60, CVar.SERVERONLY); // Sunrise-edit
 
         /// <summary>
         ///     The time in seconds that the server should wait before restarting the round.
