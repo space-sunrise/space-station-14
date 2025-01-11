@@ -1,7 +1,7 @@
 name: Update Locale
 
 on:
-  workflow_call:
+  workflow_call: 
 
 #  push:
 #    branches:
