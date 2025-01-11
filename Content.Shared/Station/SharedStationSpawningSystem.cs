@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._Sunrise.Pets;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
@@ -135,6 +136,10 @@ public abstract class SharedStationSpawningSystem : EntitySystem
             foreach (var prototype in inhand)
             {
                 var inhandEntity = EntityManager.SpawnEntity(prototype, coords);
+
+                // Sunrise added start - Ивент нужный для автопривязки питомцев при выборе в лоадаутах
+                RaiseLocalEvent(inhandEntity, new LoadoutPetSpawned(entity));
+                // Sunrise added end
 
                 if (_handsSystem.TryGetEmptyHand(entity, out var emptyHand, handsComponent))
                 {

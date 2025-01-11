@@ -1,0 +1,635 @@
+﻿# Необходимая база
+
+- type: entity
+  id: BasePetAttributes
+  abstract: true
+  components:
+  - type: PettableOnInteract
+    pettingSuccessfulSound:
+      collection: FootstepSpurs
+    availableControls:
+    - Follow
+    - Stay
+    - GhostAvailable
+    - GhostUnavailable
+    - Rename
+    allowedOrders:
+    - Stay
+    - Follow
+    - Attack
+  - type: ActivatableUI
+    key: enum.PetControlUiKey.Key
+
+- type: entity
+  id: BasePet
+  parent: BasePetAttributes
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: _Sunrise/Mobs/Pets/rabbit.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: icon
+  - type: Physics
+  - type: Speech
+    speechVerb: Canine
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: icon
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+
+# Дебаг ентити/Пример базового питомца
+
+- type: entity
+  id: PetDebugEntity
+  parent: [MobCorgiIan, BasePet]
+  components:
+  # Говнище нище не наследуется адекватно и не работает, поэтому его нужно копировать для каждого ентити
+  - type: UserInterface
+    interfaces:
+      enum.PetControlUiKey.Key:
+        type: PetControlBoundUserInterface
+        interactionRange: -1
+  - type: HTN
+    rootTask:
+      task: PetCompound
+    blackboard:
+      IdleRange: !type:Single
+        2.0
+      FollowCloseRange: !type:Single
+        1.0
+      FollowRange: !type:Single
+        1.5
+  - type: NpcFactionMember
+    factions:
+    - AllHostile
+
+# Заготовленные ентити питомцев
+
+- type: entity
+  id: PetRabbit
+  parent: [SimpleMobBase, BasePet]
+  name: rabbit
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Pets/rabbit.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base", "movement"]
+      state: moving
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: moving
+    noMovementLayers:
+      movement:
+        state: icon
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 1
+  - type: UserInterface
+    interfaces:
+      enum.PetControlUiKey.Key:
+        type: PetControlBoundUserInterface
+        interactionRange: -1
+  - type: HTN
+    rootTask:
+      task: PetCompound
+    blackboard:
+      IdleRange: !type:Single
+        2.0
+      FollowCloseRange: !type:Single
+        1.0
+      FollowRange: !type:Single
+        1.5
+  - type: NpcFactionMember
+    factions:
+    - AllHostile
+
+- type: entity
+  id: PetAnteater
+  parent: [SimpleMobBase, BasePet]
+  name: anteater
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Pets/anteater.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: icon
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 1
+  - type: UserInterface
+    interfaces:
+      enum.PetControlUiKey.Key:
+        type: PetControlBoundUserInterface
+        interactionRange: -1
+  - type: HTN
+    rootTask:
+      task: PetCompound
+    blackboard:
+      IdleRange: !type:Single
+        2.0
+      FollowCloseRange: !type:Single
+        1.0
+      FollowRange: !type:Single
+        1.5
+  - type: NpcFactionMember
+    factions:
+    - AllHostile
+
+- type: entity
+  id: PetOctopus
+  parent: [SimpleMobBase, BasePet]
+  name: octopus
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Pets/octopus.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 1
+  - type: UserInterface
+    interfaces:
+      enum.PetControlUiKey.Key:
+        type: PetControlBoundUserInterface
+        interactionRange: -1
+  - type: HTN
+    rootTask:
+      task: PetCompound
+    blackboard:
+      IdleRange: !type:Single
+        2.0
+      FollowCloseRange: !type:Single
+        1.0
+      FollowRange: !type:Single
+        1.5
+  - type: NpcFactionMember
+    factions:
+    - AllHostile
+
+- type: entity
+  id: PetOtter
+  parent: [SimpleMobBase, BasePet]
+  name: otter
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Pets/otter.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: vidra
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 1
+  - type: UserInterface
+    interfaces:
+      enum.PetControlUiKey.Key:
+        type: PetControlBoundUserInterface
+        interactionRange: -1
+  - type: HTN
+    rootTask:
+      task: PetCompound
+    blackboard:
+      IdleRange: !type:Single
+        2.0
+      FollowCloseRange: !type:Single
+        1.0
+      FollowRange: !type:Single
+        1.5
+  - type: NpcFactionMember
+    factions:
+    - AllHostile
+
+- type: entity
+  id: PetNavySeal
+  parent: [SimpleMobBase, BasePet]
+  name: navy seal
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Mobs/Pets/navy_seal.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: alive
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 1
+  - type: UserInterface
+    interfaces:
+      enum.PetControlUiKey.Key:
+        type: PetControlBoundUserInterface
+        interactionRange: -1
+  - type: HTN
+    rootTask:
+      task: PetCompound
+    blackboard:
+      IdleRange: !type:Single
+        2.0
+      FollowCloseRange: !type:Single
+        1.0
+      FollowRange: !type:Single
+        1.5
+  - type: NpcFactionMember
+    factions:
+    - AllHostile
+
+- type: entity
+  id: PetAlexander
+  parent: [MobAlexander, BasePet]
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.PetControlUiKey.Key:
+        type: PetControlBoundUserInterface
+        interactionRange: -1
+  - type: HTN
+    rootTask:
+      task: PetCompound
+    blackboard:
+      IdleRange: !type:Single
+        2.0
+      FollowCloseRange: !type:Single
+        1.0
+      FollowRange: !type:Single
+        1.5
+  - type: NpcFactionMember
+    factions:
+    - AllHostile
+
+- type: entity
+  id: PetMobCorgiIan
+  parent: [MobCorgiIan, BasePet]
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.PetControlUiKey.Key:
+        type: PetControlBoundUserInterface
+        interactionRange: -1
+  - type: HTN
+    rootTask:
+      task: PetCompound
+    blackboard:
+      IdleRange: !type:Single
+        2.0
+      FollowCloseRange: !type:Single
+        1.0
+      FollowRange: !type:Single
+        1.5
+  - type: NpcFactionMember
+    factions:
+    - AllHostile
+
+- type: entity
+  id: PetMcGriff
+  parent: [MobMcGriff, BasePet]
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.PetControlUiKey.Key:
+        type: PetControlBoundUserInterface
+        interactionRange: -1
+  - type: HTN
+    rootTask:
+      task: PetCompound
+    blackboard:
+      IdleRange: !type:Single
+        2.0
+      FollowCloseRange: !type:Single
+        1.0
+      FollowRange: !type:Single
+        1.5
+  - type: NpcFactionMember
+    factions:
+    - AllHostile
+
+- type: entity
+  id: PetMobSlimesPet
+  parent: [MobSlimesPet, BasePet]
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.PetControlUiKey.Key:
+        type: PetControlBoundUserInterface
+        interactionRange: -1
+  - type: HTN
+    rootTask:
+      task: PetCompound
+    blackboard:
+      IdleRange: !type:Single
+        2.0
+      FollowCloseRange: !type:Single
+        1.0
+      FollowRange: !type:Single
+        1.5
+  - type: NpcFactionMember
+    factions:
+    - AllHostile
+
+- type: entity
+  id: PetMobCatRuntime
+  parent: [MobCatRuntime, BasePet]
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.PetControlUiKey.Key:
+        type: PetControlBoundUserInterface
+        interactionRange: -1
+  - type: HTN
+    rootTask:
+      task: PetCompound
+    blackboard:
+      IdleRange: !type:Single
+        2.0
+      FollowCloseRange: !type:Single
+        1.0
+      FollowRange: !type:Single
+        1.5
+  - type: NpcFactionMember
+    factions:
+    - AllHostile
+
+- type: entity
+  id: PetMobCorgiLisa
+  parent: [MobCorgiLisa, BasePet]
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.PetControlUiKey.Key:
+        type: PetControlBoundUserInterface
+        interactionRange: -1
+  - type: HTN
+    rootTask:
+      task: PetCompound
+    blackboard:
+      IdleRange: !type:Single
+        2.0
+      FollowCloseRange: !type:Single
+        1.0
+      FollowRange: !type:Single
+        1.5
+  - type: NpcFactionMember
+    factions:
+    - AllHostile
+
+- type: entity
+  id: PetMobCatFloppa
+  parent: [MobCatFloppa, BasePet]
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.PetControlUiKey.Key:
+        type: PetControlBoundUserInterface
+        interactionRange: -1
+  - type: HTN
+    rootTask:
+      task: PetCompound
+    blackboard:
+      IdleRange: !type:Single
+        2.0
+      FollowCloseRange: !type:Single
+        1.0
+      FollowRange: !type:Single
+        1.5
+  - type: NpcFactionMember
+    factions:
+    - AllHostile
+
+- type: entity
+  id: PetMobWalter
+  parent: MobWalter
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.PetControlUiKey.Key:
+        type: PetControlBoundUserInterface
+        interactionRange: -1
+  - type: HTN
+    rootTask:
+      task: PetCompound
+    blackboard:
+      IdleRange: !type:Single
+        2.0
+      FollowCloseRange: !type:Single
+        1.0
+      FollowRange: !type:Single
+        1.5
+  - type: NpcFactionMember
+    factions:
+    - AllHostile
+
+- type: entity
+  id: PetMobCrabAtmos
+  parent: [MobCrabAtmos, BasePet]
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.PetControlUiKey.Key:
+        type: PetControlBoundUserInterface
+        interactionRange: -1
+  - type: HTN
+    rootTask:
+      task: PetCompound
+    blackboard:
+      IdleRange: !type:Single
+        2.0
+      FollowCloseRange: !type:Single
+        1.0
+      FollowRange: !type:Single
+        1.5
+  - type: NpcFactionMember
+    factions:
+    - AllHostile
+
+- type: entity
+  id: PetMobPossumMorty
+  parent: [MobPossumMorty, BasePet]
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.PetControlUiKey.Key:
+        type: PetControlBoundUserInterface
+        interactionRange: -1
+  - type: HTN
+    rootTask:
+      task: PetCompound
+    blackboard:
+      IdleRange: !type:Single
+        2.0
+      FollowCloseRange: !type:Single
+        1.0
+      FollowRange: !type:Single
+        1.5
+  - type: NpcFactionMember
+    factions:
+    - AllHostile
+
+- type: entity
+  id: PetMobPossumPoppy
+  parent: [MobPossumPoppy, BasePet]
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.PetControlUiKey.Key:
+        type: PetControlBoundUserInterface
+        interactionRange: -1
+  - type: HTN
+    rootTask:
+      task: PetCompound
+    blackboard:
+      IdleRange: !type:Single
+        2.0
+      FollowCloseRange: !type:Single
+        1.0
+      FollowRange: !type:Single
+        1.5
+  - type: NpcFactionMember
+    factions:
+    - AllHostile
+
+- type: entity
+  id: PetMobPaperwork
+  parent: [MobPaperwork, BasePet]
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.PetControlUiKey.Key:
+        type: PetControlBoundUserInterface
+        interactionRange: -1
+  - type: HTN
+    rootTask:
+      task: PetCompound
+    blackboard:
+      IdleRange: !type:Single
+        2.0
+      FollowCloseRange: !type:Single
+        1.0
+      FollowRange: !type:Single
+        1.5
+  - type: NpcFactionMember
+    factions:
+    - AllHostile
+
+- type: entity
+  id: PetMobCorgiIanOld
+  parent: [MobCorgiIanOld, BasePet]
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.PetControlUiKey.Key:
+        type: PetControlBoundUserInterface
+        interactionRange: -1
+  - type: HTN
+    rootTask:
+      task: PetCompound
+    blackboard:
+      IdleRange: !type:Single
+        2.0
+      FollowCloseRange: !type:Single
+        1.0
+      FollowRange: !type:Single
+        1.5
+  - type: NpcFactionMember
+    factions:
+    - AllHostile
+
+- type: entity
+  id: PetMobGoose
+  parent: [MobGoose, BasePet]
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.PetControlUiKey.Key:
+        type: PetControlBoundUserInterface
+        interactionRange: -1
+  - type: HTN
+    rootTask:
+      task: PetCompound
+    blackboard:
+      IdleRange: !type:Single
+        2.0
+      FollowCloseRange: !type:Single
+        1.0
+      FollowRange: !type:Single
+        1.5
+  - type: NpcFactionMember
+    factions:
+    - AllHostile
+
+- type: entity
+  id: PetMobClownGoblin
+  parent: [MobClownGoblin, BasePet]
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.PetControlUiKey.Key:
+        type: PetControlBoundUserInterface
+        interactionRange: -1
+  - type: HTN
+    rootTask:
+      task: PetCompound
+    blackboard:
+      IdleRange: !type:Single
+        2.0
+      FollowCloseRange: !type:Single
+        1.0
+      FollowRange: !type:Single
+        1.5
+  - type: NpcFactionMember
+    factions:
+    - AllHostile
+
+- type: entity
+  id: PetMobCorgiIanPup
+  parent: [MobCorgiIanPup, BasePet]
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.PetControlUiKey.Key:
+        type: PetControlBoundUserInterface
+        interactionRange: -1
+  - type: HTN
+    rootTask:
+      task: PetCompound
+    blackboard:
+      IdleRange: !type:Single
+        2.0
+      FollowCloseRange: !type:Single
+        1.0
+      FollowRange: !type:Single
+        1.5
+  - type: NpcFactionMember
+    factions:
+    - AllHostile
+
+- type: entity
+  id: PetMobParrot
+  parent: [MobParrot, BasePet]
+  components:
+  - type: UserInterface
+    interfaces:
+      enum.PetControlUiKey.Key:
+        type: PetControlBoundUserInterface
+        interactionRange: -1
+  - type: HTN
+    rootTask:
+      task: PetCompound
+    blackboard:
+      IdleRange: !type:Single
+        2.0
+      FollowCloseRange: !type:Single
+        1.0
+      FollowRange: !type:Single
+        1.5
+  - type: NpcFactionMember
+    factions:
+    - AllHostile

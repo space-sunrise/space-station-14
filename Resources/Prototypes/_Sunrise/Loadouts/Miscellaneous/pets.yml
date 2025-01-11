@@ -1,0 +1,133 @@
+﻿# Все питомцы, не являющиеся предметов будут появляться под персонажем при спавне
+
+- type: loadout
+  id: PetRabbit
+  sponsorOnly: true
+  inhand:
+  - PetRabbit
+
+- type: loadout
+  id: PetAnteater
+  sponsorOnly: true
+  inhand:
+  - PetAnteater
+
+- type: loadout
+  id: PetOctopus
+  sponsorOnly: true
+  inhand:
+  - PetOctopus
+
+- type: loadout
+  id: PetOtter
+  sponsorOnly: true
+  inhand:
+  - PetOtter
+
+- type: loadout
+  id: PetAlexander
+  sponsorOnly: true
+  inhand:
+  - PetAlexander
+
+- type: loadout
+  id: PetNavySeal
+  sponsorOnly: true
+  inhand:
+  - PetAlexander
+
+- type: loadout
+  id: PetMobCorgiIan
+  sponsorOnly: true
+  inhand:
+  - PetMobCorgiIan
+
+- type: loadout
+  id: PetMobSlimesPet
+  sponsorOnly: true
+  inhand:
+  - PetMobSlimesPet
+
+- type: loadout
+  id: PetMobCatRuntime
+  sponsorOnly: true
+  inhand:
+  - PetMobCatRuntime
+
+- type: loadout
+  id: PetMobCorgiLisa
+  sponsorOnly: true
+  inhand:
+  - PetMobCorgiLisa
+
+- type: loadout
+  id: PetMobCatFloppa
+  sponsorOnly: true
+  inhand:
+  - PetMobCatFloppa
+
+- type: loadout
+  id: PetMobWalter
+  sponsorOnly: true
+  inhand:
+  - PetMobWalter
+
+- type: loadout
+  id: PetMobCrabAtmos
+  sponsorOnly: true
+  inhand:
+  - PetMobCrabAtmos
+
+- type: loadout
+  id: PetMcGriff
+  sponsorOnly: true
+  inhand:
+  - PetMcGriff
+
+- type: loadout
+  id: PetMobPossumMorty
+  sponsorOnly: true
+  inhand:
+  - PetMobPossumMorty
+
+- type: loadout
+  id: PetMobPossumPoppy
+  sponsorOnly: true
+  inhand:
+  - PetMobPossumPoppy
+
+- type: loadout
+  id: PetMobPaperwork
+  sponsorOnly: true
+  inhand:
+  - PetMobPaperwork
+
+- type: loadout
+  id: PetMobCorgiIanOld
+  sponsorOnly: true
+  inhand:
+  - PetMobCorgiIanOld
+
+- type: loadout
+  id: PetMobGoose
+  sponsorOnly: true
+  inhand:
+  - PetMobGoose
+
+- type: loadout
+  id: PetMobClownGoblin
+  sponsorOnly: true
+  inhand:
+  - PetMobClownGoblin
+
+- type: loadout
+  id: PetMobCorgiIanPup
+  sponsorOnly: true
+  inhand:
+  - PetMobCorgiIanPup
+
+- type: loadout
+  id: PetMobParrot
+  sponsorOnly: true
+  inhand:
+  - PetMobParrot

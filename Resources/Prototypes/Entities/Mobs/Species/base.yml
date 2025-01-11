@@ -317,6 +317,7 @@
         Asphyxiation: -1.0
   - type: FireVisuals
     alternateState: Standing
+  - type: PetOnInteract
 
 - type: entity
   save: false
