@@ -638,12 +638,12 @@
   sex: Male
   speaker: hearthstone_hamul_runical_totem
   provider: sunrise
-  sponsorOnly: true
+  sponsorOnly: false
 
 - type: ttsVoice
   id: HeartstoneDjaina
   name: tts-voice-name-heartstone-djaina
-  sex: Male
+  sex: Female
   speaker: hearthstone_djaina
   provider: sunrise
-  sponsorOnly: true
+  sponsorOnly: false
