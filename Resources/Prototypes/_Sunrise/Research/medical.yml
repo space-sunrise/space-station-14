@@ -114,7 +114,7 @@
   id: ImplantExtractor
   name: research-technology-implant-extractor
   icon:
-    sprite: _Sunrise/AssaultOperatives/interrogator.rsi
+    sprite: _Sunrise/Structures/Machines/interrogator.rsi
     state: open
   discipline: Biochemical
   tier: 3

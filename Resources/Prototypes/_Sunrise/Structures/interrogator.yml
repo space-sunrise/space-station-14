@@ -6,7 +6,7 @@
   components:
   - type: Interrogator
   - type: Sprite
-    sprite: _Sunrise/AssaultOperatives/interrogator.rsi
+    sprite: _Sunrise/Structures/Machines/interrogator.rsi
     snapCardinals: true
     layers:
     - state: base

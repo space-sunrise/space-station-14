@@ -10493,3 +10493,12 @@
   id: 724
   time: '2025-01-11T02:07:35.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/1088
+- author: Miaon Milwitary bal1901 x VigersRay
+  changes:
+  - message: "\u041E\u0431\u043D\u043E\u0432\u043B\u0435\u043D \u0441\u043F\u0440\u0430\
+      \u0439\u0442 \u043A\u043E\u043D\u0441\u043E\u043B\u0438 \u0443\u043F\u0440\u0430\
+      \u0432\u043B\u0435\u043D\u0438\u044F \u0418\u043A\u0430\u0440\u0443\u0441\u043E\
+      \u043C."
+    type: Tweak
+  id: 725
+  time: '2025-01-11T02:35:21.611893+00:00'

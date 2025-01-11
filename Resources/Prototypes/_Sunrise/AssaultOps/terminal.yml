@@ -1,5 +1,5 @@
 ﻿- type: entity
-  parent: BaseStructureComputer
+  parent: BaseComputer
   id: ComputerIcarus
   name: icarus terminal
   description: An ominous terminal with some ports and keypads, the screen is scrolling with illegible nonsense. It has a strange marking on the side, a red ring with a gold circle within.
@@ -7,29 +7,31 @@
     mode: SnapgridCenter
   components:
     - type: Sprite
-      sprite: _Sunrise/AssaultOperatives/goldeneye_terminal.rsi
-      state: terminal
-    - type: Computer
-    - type: ApcPowerReceiver
-      powerLoad: 200
-    - type: LitOnPowered
-    - type: ExtensionCableReceiver
-    - type: ActivatableUIRequiresPower
-    - type: LightningTarget
-      priority: 1
-    - type: RequireProjectileTarget
-    - type: Electrified
-      enabled: false
-      usesApcPower: true
-    - type: PointLight
-      radius: 1.5
-      energy: 1.6
-      enabled: false
-      mask: /Textures/Effects/LightMasks/cone.png
-      autoRot: true
-      color: "#b5a13c"
-      offset: "0, 0.4" # shine from the top, not bottom of the computer
-      castShadows: false
+      sprite: _Sunrise/Structures/Machines/computers.rsi
+      layers:
+      - map: [ "computerLayerBody" ]
+        state: computer
+      - map: [ "computerLayerKeyboard" ]
+        state: generic_keyboard
+      - map: [ "computerLayerScreen" ]
+        state: icarus
+      - map: [ "computerLayerKeys" ]
+        state: icarus_keys
+      - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+        state: generic_panel_open
+    - type: GenericVisualizer
+      visuals:
+        enum.ComputerVisuals.Powered:
+          computerLayerScreen:
+            True: { visible: true, shader: unshaded }
+            False: { visible: false }
+          computerLayerKeys:
+            True: { visible: true, shader: unshaded }
+            False: { visible: true, shader: shaded }
+        enum.WiresVisuals.MaintenancePanelState:
+          enum.WiresVisualLayers.MaintenancePanel:
+            True: { visible: false }
+            False: { visible: true }
     - type: ItemSlots
     - type: ContainerContainer
       containers:
