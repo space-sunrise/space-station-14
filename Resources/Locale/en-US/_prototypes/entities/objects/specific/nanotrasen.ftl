@@ -11,19 +11,6 @@ ent-Bluecrystal50 = { ent-Bluecrystal }
     .suffix = 50 BC
     .desc = { ent-Bluecrystal.desc }
 
-ent-Crystallite = Crystallite
-    .desc = It seems to be pulsing with enticing energies.
-    .suffix = 100 BC
-ent-Crystallite1 = { ent-Crystallite }
-    .suffix = 1 BC
-    .desc = { ent-Crystallite.desc }
-ent-Crystallite25 = { ent-Crystallite }
-    .suffix = 25 BC
-    .desc = { ent-Crystallite.desc }
-ent-Crystallite50 = { ent-Crystallite }
-    .suffix = 50 BC
-    .desc = { ent-Crystallite.desc }
-
 ent-BaseUplinkNTERT = Bluespace ERT visionary
     .desc = looking radio...
     .suffix = Empty
