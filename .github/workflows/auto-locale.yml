@@ -4,22 +4,24 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    types:
+    - closed
 
 permissions:
   contents: write
   pull-requests: read
 
 jobs:
-  update-changelog:
+  update-locale:
     runs-on: ubuntu-latest
-    if: github.repository == 'space-sunrise/space-station-14'
+    if: github.repository == 'space-sunrise/space-station-14' && github.event.pull_request.merged == true
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-        
+
       - name: Set up Python
-        if: github.head_ref != ''
         uses: actions/setup-python@v2
         with:
           python-version: '3.x'
@@ -42,12 +44,10 @@ jobs:
           echo "Script exited with code $?"
 
       - name: Git status before commit
-        if: github.head_ref != ''
         run: |
           git status
 
       - name: Commit and push changes
-        if: github.head_ref != ''
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -56,5 +56,5 @@ jobs:
             echo "No changes to commit."
           else
             git commit -m "Update locale [skip ci]"
-            git push origin HEAD:Starlight
+            git push origin HEAD:master
           fi
