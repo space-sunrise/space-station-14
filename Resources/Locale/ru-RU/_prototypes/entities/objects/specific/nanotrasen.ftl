@@ -1,15 +1,3 @@
-ent-Bluecrystal = блюспейс кристалл
-    .desc = Похоже, он переливается манящей энергией.
-    .suffix = 20 БК
-ent-Bluecrystal1 = { ent-Telecrystal }
-    .suffix = 1 БК
-    .desc = { ent-Telecrystal.desc }
-ent-Bluecrystal25 = { ent-Bluecrystal }
-    .suffix = 25 BC
-    .desc = { ent-Bluecrystal.desc }
-ent-Bluecrystal50 = { ent-Bluecrystal }
-    .suffix = 50 BC
-    .desc = { ent-Bluecrystal.desc }
 ent-Bluecrystal5 = { ent-Telecrystal }
     .suffix = 5 БК
     .desc = { ent-Telecrystal.desc }
