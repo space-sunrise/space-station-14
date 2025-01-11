@@ -1,6 +1,5 @@
 execution-verb-name = Казнить
 execution-verb-message = Использовать ваше оружие чтоб казнить кого-либо.
-
 suicide-verb-name = Самоубийство
 suicide-verb-message = Использовать ваше оружие чтобы свести концы с концами.
 

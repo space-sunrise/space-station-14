@@ -35,6 +35,7 @@ ui-options-lobby-music = Музыка в лобби
 ui-options-restart-sounds = Звуки перезапуска раунда
 ui-options-event-music = Музыка событий
 ui-options-admin-sounds = Музыка админов
+ui-options-tts-enabled = Enable TTS
 ui-options-volume-label = Громкость
 ui-options-display-label = Дисплей
 ui-options-quality-label = Качество

@@ -1,19 +1,12 @@
-ent-PowerCellCombat = hyper-capacity combat power cell
-    .desc = A rechargeable standardized power cell. This one hyper-capacity power cell with EMP immune.
+ent-PowerCellSyndicate = syndicate power cell
+    .desc = A rechargeable standardized power cell. This one looks like a rare and powerful Syndicate combat variant.
+    .suffix = Full
+ent-PowerCellNanoTrasen = ERT power cell
+    .desc = A rechargeable standardized power cell. This one looks like a rare and powerful NanoTrasen combat variant.
+    .suffix = Full
+ent-PowerCellCombat = combat power cell
+    .desc = A rechargeable standardized power cell. This one looks like a rare combat variant.
     .suffix = Full
 ent-PowerCellCombatPrinted = { ent-PowerCellCombat }
     .suffix = Empty
     .desc = { ent-PowerCellCombat.desc }
-ent-PowerCellNanoTrasen = hyper-capacity NanoTrasen power cell
-    .desc = { ent-PowerCellCombat.desc }
-    .suffix = Full
-ent-PowerCellSyndicate = hyper-capacity Syndicate power cell
-    .desc = { ent-PowerCellCombat.desc }
-    .suffix = Full
-
-ent-PowerCageCombat = hyper-capacity combat power cage
-    .desc = A rechargeable power cage for big devices. Increased capacity for increased power levels. Has EMP immune.
-ent-PowerCageERT = hyper-capacity NanoTrasen power cage
-    .desc = { ent-PowerCageCombat.desc }
-ent-PowerCageSyndicate = hyper-capacity Syndicate power cage
-    .desc = { ent-PowerCageCombat.desc }

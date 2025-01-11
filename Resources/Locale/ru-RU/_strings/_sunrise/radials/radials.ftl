@@ -1,1 +1,1 @@
-﻿radial-ui-close = Закрыть меню
+radial-ui-close = Закрыть меню

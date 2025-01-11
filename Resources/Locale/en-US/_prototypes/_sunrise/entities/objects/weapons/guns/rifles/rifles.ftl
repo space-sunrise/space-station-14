@@ -1,9 +1,9 @@
 ent-WeaponRifleLecterRubber = Lecter
     .suffix = Non-lethal
     .desc = { ent-WeaponRifleLecter.desc }
-ent-WeaponRifleAKM = AKM
+ent-WeaponRifleAKM = AKMS
     .desc = { ent-BaseWeaponRifle.desc }
-ent-WeaponRifleAKMU = AKМU
+ent-WeaponRifleAKMU = AKM-U
     .desc = { ent-BaseWeaponRifle.desc }
 ent-WeaponRifleAK514 = AK-514
     .desc = { ent-BaseWeaponRifle.desc }

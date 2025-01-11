@@ -25,4 +25,4 @@ ent-BannerYellow = yellow banner
 ent-BannerGreen = green banner
     .desc = A banner displaying the color green. Grass, leaves, guacamole.
 ent-BannerUSSP = USSP banner
-    .desc = A banner displaying USSP. Prepare to Combat RED Guard!.
+    .desc = A banner displaying USSP. Prepare to Combat COMRAD!.

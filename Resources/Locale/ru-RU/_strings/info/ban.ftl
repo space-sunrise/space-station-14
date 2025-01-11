@@ -75,5 +75,8 @@ server-ban-string-never = никогда
 server-ban-string-no-pii = { $admin } установил серверный бан { $severity } тяжести, который истечёт { $expires } у { $name } с причиной: { $reason }, раунд: { $round }
 server-ban-unknown-round = Неизвестный
 cmd-ban_exemption_get-arg-player = <player>
+# Antag Bans
+ban-panel-role-selection-antag = Antagonist
+ban-panel-role-selection-antag-all-option = All
 # Kick on ban
 ban-kick-reason = You have been banned

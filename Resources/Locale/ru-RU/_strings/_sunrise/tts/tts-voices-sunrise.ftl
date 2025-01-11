@@ -35,6 +35,7 @@ tts-voice-name-hearthstone-reno = [Hearthstone] Рено
 tts-voice-name-hearthstone-zverolov-tavish = [Hearthstone] Зверолов Тавиш
 tts-voice-name-hearthstone-elisa = [Hearthstone] Элиза
 tts-voice-name-hearthstone-sotis = [Hearthstone] Сотис
+tts-voice-name-hearthstone-mediv = (NEW) [Hearthstone] Медив
 tts-voice-name-hearthstone-mediv1 = [Hearthstone] Медив
 tts-voice-name-hearthstone-mediv2 = [Hearthstone] Медив II
 tts-voice-name-mtf1 = [Containment Breach] MTF 1

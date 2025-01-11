@@ -31,5 +31,6 @@ plant-holder-component-toxins-high-warning = Горит [color=red]предуп�
 plant-holder-component-light-improper-warning = Мигает [color=yellow]предупреждение о неподходящем уровне освещения[/color].
 plant-holder-component-heat-improper-warning = Мигает [color=orange]предупреждение о неподходящем уровне температуры[/color].
 plant-holder-component-pressure-improper-warning = Мигает [color=lightblue]предупреждение о неподходящем атмосферном давлении[/color].
+plant-holder-component-ligneous-cant-harvest-message = The plant is too tough to harvest with your bare hands.
 plant-holder-component-gas-missing-warning = Мигает [color=cyan]предупреждение о неподходящем атмосферном составе[/color].
 plant-holder-component-early-sample-message = Растение ещё не выросло настолько, чтобы извлечь семена.
