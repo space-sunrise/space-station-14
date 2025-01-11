@@ -1,12 +1,13 @@
 name: Update Locale
 
 on:
-  push:
-    branches:
-    - master
-  pull_request:
-    types:
-    - closed
+  workflow_dispatch:
+#  push:
+#    branches:
+#    - master
+#  pull_request:
+#    types:
+#    - closed
 
 permissions:
   contents: write
@@ -15,13 +16,14 @@ permissions:
 jobs:
   update-locale:
     runs-on: ubuntu-latest
-    if: github.repository == 'space-sunrise/space-station-14' && github.event.pull_request.merged == true
+    if: github.repository == 'space-sunrise/space-station-14' # && github.event.pull_request.merged == true
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
           persist-credentials: false
+          token: ${{ secrets.PAT }}
 
       - name: Set up Python
         uses: actions/setup-python@v2
@@ -50,7 +52,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git remote set-url origin https://x-access-token:${{ secrets.PAT }}@github.com/${{ github.repository }}
           git add "Resources/Locale/*"
           if git diff --cached --quiet; then
             echo "No changes to commit."
