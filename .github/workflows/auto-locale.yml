@@ -1,12 +1,14 @@
 name: Update Locale
 
 on:
-  push:
-    branches:
-      - master
-  pull_request:
-    types:
-    - closed
+  workflow_call:
+
+#  push:
+#    branches:
+#      - master
+#  pull_request:
+#    types:
+#    - closed
 
 permissions:
   contents: write
@@ -31,9 +33,6 @@ jobs:
           pip install pyyaml PyGithub pydash fluent
 
       - name: Find Locale Keys
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
           python ./Tools/_sunrise/keyfinder.py
           echo "Script exited with code $?"
