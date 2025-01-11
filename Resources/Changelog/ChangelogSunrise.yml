@@ -10480,3 +10480,16 @@
     type: Tweak
   id: 723
   time: '2025-01-11T01:54:43.901337+00:00'
+- author: VigersRay x Repo
+  changes:
+  - message: "\u0418\u0441\u043F\u0440\u0430\u0432\u043B\u0435\u043D\u044B \u0431\u0430\
+      \u043D\u044B \u0430\u043D\u0442\u0430\u0433 \u0440\u043E\u043B\u0435\u0439."
+    type: Fix
+  - message: "\u0412 \u0430\u0434\u043C\u0438\u043D \u0430\u0431\u0443\u0437 \u0434\
+      \u043E\u0431\u0430\u0432\u043B\u0435\u043D\u043E \u0434\u0435\u0439\u0441\u0442\
+      \u0432\u0438\u0435 \u0441\u043B\u0443\u0447\u0430\u0439\u043D\u043E\u0439 \u0441\
+      \u043C\u0435\u0440\u0442\u0438."
+    type: Add
+  id: 724
+  time: '2025-01-11T02:07:35.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/1088
