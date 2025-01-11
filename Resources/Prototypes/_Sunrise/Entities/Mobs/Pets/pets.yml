@@ -67,7 +67,7 @@
         1.5
   - type: NpcFactionMember
     factions:
-    - HostileToAll
+    - AllHostile
 
 # Заготовленные ентити питомцев
 
@@ -109,7 +109,7 @@
         1.5
   - type: NpcFactionMember
     factions:
-    - HostileToAll
+    - AllHostile
 
 - type: entity
   id: PetAnteater
@@ -142,7 +142,7 @@
         1.5
   - type: NpcFactionMember
     factions:
-    - HostileToAll
+    - AllHostile
 
 - type: entity
   id: PetOctopus
@@ -175,7 +175,7 @@
         1.5
   - type: NpcFactionMember
     factions:
-    - HostileToAll
+    - AllHostile
 
 - type: entity
   id: PetOtter
@@ -208,7 +208,7 @@
         1.5
   - type: NpcFactionMember
     factions:
-    - HostileToAll
+    - AllHostile
 
 - type: entity
   id: PetNavySeal
@@ -241,7 +241,7 @@
         1.5
   - type: NpcFactionMember
     factions:
-    - HostileToAll
+    - AllHostile
 
 - type: entity
   id: PetAlexander
@@ -264,7 +264,7 @@
         1.5
   - type: NpcFactionMember
     factions:
-    - HostileToAll
+    - AllHostile
 
 - type: entity
   id: PetMobCorgiIan
@@ -287,7 +287,7 @@
         1.5
   - type: NpcFactionMember
     factions:
-    - HostileToAll
+    - AllHostile
 
 - type: entity
   id: PetMcGriff
@@ -310,7 +310,7 @@
         1.5
   - type: NpcFactionMember
     factions:
-    - HostileToAll
+    - AllHostile
 
 - type: entity
   id: PetMobSlimesPet
@@ -333,7 +333,7 @@
         1.5
   - type: NpcFactionMember
     factions:
-    - HostileToAll
+    - AllHostile
 
 - type: entity
   id: PetMobCatRuntime
@@ -356,7 +356,7 @@
         1.5
   - type: NpcFactionMember
     factions:
-    - HostileToAll
+    - AllHostile
 
 - type: entity
   id: PetMobCorgiLisa
@@ -379,7 +379,7 @@
         1.5
   - type: NpcFactionMember
     factions:
-    - HostileToAll
+    - AllHostile
 
 - type: entity
   id: PetMobCatFloppa
@@ -402,7 +402,7 @@
         1.5
   - type: NpcFactionMember
     factions:
-    - HostileToAll
+    - AllHostile
 
 - type: entity
   id: PetMobWalter
@@ -425,7 +425,7 @@
         1.5
   - type: NpcFactionMember
     factions:
-    - HostileToAll
+    - AllHostile
 
 - type: entity
   id: PetMobCrabAtmos
@@ -448,7 +448,7 @@
         1.5
   - type: NpcFactionMember
     factions:
-    - HostileToAll
+    - AllHostile
 
 - type: entity
   id: PetMobPossumMorty
@@ -471,7 +471,7 @@
         1.5
   - type: NpcFactionMember
     factions:
-    - HostileToAll
+    - AllHostile
 
 - type: entity
   id: PetMobPossumPoppy
@@ -494,7 +494,7 @@
         1.5
   - type: NpcFactionMember
     factions:
-    - HostileToAll
+    - AllHostile
 
 - type: entity
   id: PetMobPaperwork
@@ -517,7 +517,7 @@
         1.5
   - type: NpcFactionMember
     factions:
-    - HostileToAll
+    - AllHostile
 
 - type: entity
   id: PetMobCorgiIanOld
@@ -540,7 +540,7 @@
         1.5
   - type: NpcFactionMember
     factions:
-    - HostileToAll
+    - AllHostile
 
 - type: entity
   id: PetMobGoose
@@ -563,7 +563,7 @@
         1.5
   - type: NpcFactionMember
     factions:
-    - HostileToAll
+    - AllHostile
 
 - type: entity
   id: PetMobClownGoblin
@@ -586,7 +586,7 @@
         1.5
   - type: NpcFactionMember
     factions:
-    - HostileToAll
+    - AllHostile
 
 - type: entity
   id: PetMobCorgiIanPup
@@ -609,7 +609,7 @@
         1.5
   - type: NpcFactionMember
     factions:
-    - HostileToAll
+    - AllHostile
 
 - type: entity
   id: PetMobParrot
@@ -632,4 +632,4 @@
         1.5
   - type: NpcFactionMember
     factions:
-    - HostileToAll
+    - AllHostile
