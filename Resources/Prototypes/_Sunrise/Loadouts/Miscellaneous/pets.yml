@@ -2,154 +2,132 @@
 
 - type: loadout
   id: PetRabbit
-  minLimit: 0
-  sponsorOnly: false
+  sponsorOnly: true
   inhand:
   - PetRabbit
 
 - type: loadout
   id: PetAnteater
-  minLimit: 0
-  sponsorOnly: false
+  sponsorOnly: true
   inhand:
   - PetAnteater
 
 - type: loadout
   id: PetOctopus
-  minLimit: 0
-  sponsorOnly: false
+  sponsorOnly: true
   inhand:
   - PetOctopus
 
 - type: loadout
   id: PetOtter
-  minLimit: 0
-  sponsorOnly: false
+  sponsorOnly: true
   inhand:
   - PetOtter
 
 - type: loadout
   id: PetAlexander
-  minLimit: 0
-  sponsorOnly: false
+  sponsorOnly: true
   inhand:
   - PetAlexander
 
 - type: loadout
   id: PetNavySeal
-  minLimit: 0
-  sponsorOnly: false
+  sponsorOnly: true
   inhand:
   - PetAlexander
 
 - type: loadout
   id: PetMobCorgiIan
-  minLimit: 0
-  sponsorOnly: false
+  sponsorOnly: true
   inhand:
   - PetMobCorgiIan
 
 - type: loadout
   id: PetMobSlimesPet
-  minLimit: 0
-  sponsorOnly: false
+  sponsorOnly: true
   inhand:
   - PetMobSlimesPet
 
 - type: loadout
   id: PetMobCatRuntime
-  minLimit: 0
-  sponsorOnly: false
+  sponsorOnly: true
   inhand:
   - PetMobCatRuntime
 
 - type: loadout
   id: PetMobCorgiLisa
-  minLimit: 0
-  sponsorOnly: false
+  sponsorOnly: true
   inhand:
   - PetMobCorgiLisa
 
 - type: loadout
   id: PetMobCatFloppa
-  minLimit: 0
-  sponsorOnly: false
+  sponsorOnly: true
   inhand:
   - PetMobCatFloppa
 
 - type: loadout
   id: PetMobWalter
-  minLimit: 0
-  sponsorOnly: false
+  sponsorOnly: true
   inhand:
   - PetMobWalter
 
 - type: loadout
   id: PetMobCrabAtmos
-  minLimit: 0
-  sponsorOnly: false
+  sponsorOnly: true
   inhand:
   - PetMobCrabAtmos
 
 - type: loadout
   id: PetMcGriff
-  minLimit: 0
-  sponsorOnly: false
+  sponsorOnly: true
   inhand:
   - PetMcGriff
 
 - type: loadout
   id: PetMobPossumMorty
-  minLimit: 0
-  sponsorOnly: false
+  sponsorOnly: true
   inhand:
   - PetMobPossumMorty
 
 - type: loadout
   id: PetMobPossumPoppy
-  minLimit: 0
-  sponsorOnly: false
+  sponsorOnly: true
   inhand:
   - PetMobPossumPoppy
 
 - type: loadout
   id: PetMobPaperwork
-  minLimit: 0
-  sponsorOnly: false
+  sponsorOnly: true
   inhand:
   - PetMobPaperwork
 
 - type: loadout
   id: PetMobCorgiIanOld
-  minLimit: 0
-  sponsorOnly: false
+  sponsorOnly: true
   inhand:
   - PetMobCorgiIanOld
 
 - type: loadout
   id: PetMobGoose
-  minLimit: 0
-  sponsorOnly: false
+  sponsorOnly: true
   inhand:
   - PetMobGoose
 
 - type: loadout
   id: PetMobClownGoblin
-  minLimit: 0
-  sponsorOnly: false
+  sponsorOnly: true
   inhand:
   - PetMobClownGoblin
 
 - type: loadout
   id: PetMobCorgiIanPup
-  minLimit: 0
-  sponsorOnly: false
+  sponsorOnly: true
   inhand:
   - PetMobCorgiIanPup
 
 - type: loadout
   id: PetMobParrot
-  minLimit: 0
-  sponsorOnly: false
+  sponsorOnly: true
   inhand:
   - PetMobParrot

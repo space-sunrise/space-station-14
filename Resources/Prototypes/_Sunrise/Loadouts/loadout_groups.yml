@@ -327,6 +327,7 @@
 - type: loadoutGroup
   id: CommonPets
   name: loadout-group-pets
+  minLimit: 0
   loadouts:
   - PetRabbit
   - PetAnteater
@@ -343,7 +344,7 @@
   - PetMobWalter
   - PetMcGriff
   - PetMobPossumMorty
-  - MobPossumPoppy
+  - PetMobPossumPoppy
   - PetMobCorgiIanOld
   - PetMobGoose
   - PetMobClownGoblin
