@@ -8,5 +8,6 @@ public sealed class ClientPetSystem : EntitySystem
     {
         args.Entity = GetNetEntity(pet);
         RaiseNetworkEvent(args);
+
     }
 }
