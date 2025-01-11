@@ -56,7 +56,7 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly AlertLevelSystem _alertLevel = default!; // Sunrise-Edit
     [Dependency] private readonly AdminVerbSystem _adminVerbSystem = default!;
-    [Dependency] private readonly BanManager _banManager = default!;
+    [Dependency] private readonly IBanManager _banManager = default!;
 
     //Used in OnPostFlash, no reference to the rule component is available
     public readonly ProtoId<NpcFactionPrototype> RevolutionaryNpcFaction = "Revolutionary";
