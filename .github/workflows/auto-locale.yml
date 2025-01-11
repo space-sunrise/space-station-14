@@ -1,14 +1,12 @@
 name: Update Locale
 
 on:
-  workflow_dispatch:
-
-#  push:
-#    branches:
-#      - master
-#  pull_request:
-#    types:
-#    - closed
+  push:
+    branches:
+    - master
+  pull_request:
+    types:
+    - closed
 
 permissions:
   contents: write
@@ -17,7 +15,7 @@ permissions:
 jobs:
   update-locale:
     runs-on: ubuntu-latest
-    if: github.repository == 'space-sunrise/space-station-14' # && github.event.pull_request.merged == true
+    if: github.repository == 'space-sunrise/space-station-14' && github.event.pull_request.merged == true
 
     steps:
       - name: Checkout repository
