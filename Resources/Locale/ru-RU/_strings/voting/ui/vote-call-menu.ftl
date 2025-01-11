@@ -23,8 +23,7 @@ ui-vote-trusted-users-notice-whitelist =
 ui-vote-trusted-users-notice-time-req =
     Этот вариант голосования доступен только игрокам которые наиграли более { $timeReq } часов.
         Кроме того, вы должны быть призраком в течение { $ghostTimeReq } минут.
-ui-vote-trusted-users-notice =
-    Вы должны быть призраком в течение { $ghostTimeReq } минут.
+ui-vote-trusted-users-notice = Вы должны быть призраком в течение { $ghostTimeReq } минут.
 # Warning to not abuse a specific vote option.
 ui-vote-abuse-warning =
     Внимание!

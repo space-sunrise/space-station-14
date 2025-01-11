@@ -1,0 +1,12 @@
+ent-FleshClaw = Flesh Claw
+    .desc = Flesh Claw
+    .suffix = Flesh Cult
+ent-FleshFist = flesh fist
+    .desc = Fisting is three hundred bucks
+    .suffix = Flesh Cult
+ent-FleshBlade = Flesh blade
+    .desc = Flesh blade
+    .suffix = Flesh Cult
+ent-FleshSpikeHandGun = spike gun
+    .suffix = Flesh Cult
+    .desc = { ent-BaseItem.desc }

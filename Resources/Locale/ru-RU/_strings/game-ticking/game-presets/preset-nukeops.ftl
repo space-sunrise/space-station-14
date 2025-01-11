@@ -26,5 +26,6 @@ nukeops-list-name-user = - [color=White]{ $name }[/color] ([color=gray]{ $user }
 nukeops-not-enough-ready-players = Недостаточно игроков готовы к игре! { $readyPlayersCount } игроков из необходимых { $minimumPlayers } готовы. Нельзя запустить пресет Ядерные оперативники.
 nukeops-no-one-ready = Нет готовых игроков! Нельзя запустить пресет Ядерные оперативники.
 nukeops-role-commander = Командир
+nukeops-role-agent = Agent
 nukeops-role-medic = Медик
 nukeops-role-operator = Оператор

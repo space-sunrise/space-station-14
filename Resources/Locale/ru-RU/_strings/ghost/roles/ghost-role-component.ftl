@@ -179,6 +179,8 @@ ghost-role-information-syndicate-kobold-reinforcement-name = Агент Синд
 ghost-role-information-syndicate-kobold-reinforcement-description = Кому-то нужно подкрепление. Вы, специально обученный кобольд, поможете им.
 ghost-role-information-syndicate-kobold-reinforcement-rules = Вы [color=red][bold]Командный антагонист[/bold][/color], в команде с агентом, который вас призвал.
 ghost-role-information-syndicate-cyborg-assault-name = Киборг-штурмовик Синдиката
+ghost-role-information-derelict-cyborg-name = Derelict Cyborg
+ghost-role-information-derelict-cyborg-description = You are a regular cyborg that got lost in space. After years of exposure to ion storms you find yourself near a space station.
 ghost-role-information-syndicate-cyborg-saboteur-name = Киборг-диверсант Синдиката
 ghost-role-information-syndicate-cyborg-description = Синдикату нужны подкрепления. Вы, холодная металическая машина для убийств, поможете им.
 ghost-role-information-security-name = Охрана
@@ -232,6 +234,10 @@ ghost-role-information-pirate-captain-name = Капитан космически
 ghost-role-information-pirate-captain-description = Аргх, дружище! Вы здесь главный и должны разработать план, чтобы добыть это сочное золото любыми способами. Только постарайтесь избегать охраны и спасательных команд!
 ghost-role-information-traveling-chef-name = Путешествующий шеф-повар
 ghost-role-information-traveling-chef-description = Вы - шеф-повар на странствующем шаттле экзотической кухни. Порадуйте станцию вкусными блюдами!
+ghost-role-information-gingerbread-name = Gingerbread Man
+ghost-role-information-gingerbread-description =
+    A being of pure holiday spirit.
+    Spread molassesy goodness and to all good cheer.
 ghost-role-information-tomatokiller-name = Помидор-Убийца
 ghost-role-information-tomatokiller-description = Этот маленький помидор будет служить ботанику до конца его жизни... то есть, пару минут.
 ghost-role-information-disaster-victim-name = Жертва катастрофы

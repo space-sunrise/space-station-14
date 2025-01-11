@@ -1,5 +1,7 @@
 trait-colorblindness-name = Дальтонизм
 trait-colorblindness-desc = Вы видите мир не так, как все.
+trait-OwOAccent-name = OwO accent
+trait-OwOAccent-desc = You just want to UwU
 trait-noemotions-name = Крепкий орешек
 trait-noemotions-desc = Вы настолько очерствели, что физическая боль не вызывает у вас произвольных звуков.
 trait-ss13-accent-name = SS13 акцент

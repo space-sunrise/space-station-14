@@ -18,3 +18,5 @@ ent-ClothingBreathMaskCMO = medical respirator
     .desc = Quality respirator.
 ent-ClothingMaskGasCE = chef engineer's gas mask
     .desc = Very durable and stylish white gas mask with a green stripe on the frontal area. Will allow you to correct the consequences of atmospheric technicians with bought diplomas.
+ent-ClothingMaskFaceCast = face cast
+    .desc = It can steal your personality!

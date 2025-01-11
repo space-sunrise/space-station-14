@@ -1,0 +1,12 @@
+ent-Bluecrystal = Bluespace crystal
+    .desc = It seems to shimmer with a attractive energy.
+    .suffix = 100 BC
+ent-Bluecrystal1 = Bluespace crystal
+    .desc = It seems to shimmer with a attractive energy.
+    .suffix = 1 BC
+ent-Bluecrystal25 = Bluespace crystal
+    .desc = It seems to shimmer with a attractive energy.
+    .suffix = 25 BC
+ent-Bluecrystal50 = Bluespace crystal
+    .desc = It seems to shimmer with a attractive energy.
+    .suffix = 50 BC

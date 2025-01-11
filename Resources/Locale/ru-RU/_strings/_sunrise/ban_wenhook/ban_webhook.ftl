@@ -18,62 +18,62 @@ server-time-ban-string =
     > **Администратор**
     > **Логин:** ``{ $adminName }``
     > **Дискорд:** { $adminLink }
-
+    
     > **Нарушитель**
     > **Логин:** ``{ $targetName }``
     > **Дискорд:** { $targetLink }
-
+    
     > **Выдан:** { $TimeNow }
     > **Истечёт:** { $expiresString }
-
+    
     > **Причина:** { $reason }
-
+    
     > **Уровень тяжести:** { $severity }
 server-ban-footer = { $server } | Раунд: #{ $round }
 server-perma-ban-string =
     > **Администратор**
     > **Логин:** ``{ $adminName }``
     > **Дискорд:** { $adminLink }
-
+    
     > **Нарушитель**
     > **Логин:** ``{ $targetName }``
     > **Дискорд:** { $targetLink }
-
+    
     > **Выдан:** { $TimeNow }
-
+    
     > **Причина:** { $reason }
-
+    
     > **Уровень тяжести:** { $severity }
 server-role-ban-string =
     > **Администратор**
     > **Логин:** ``{ $adminName }``
     > **Дискорд:** { $adminLink }
-
+    
     > **Нарушитель**
     > **Логин:** ``{ $targetName }``
     > **Дискорд:** { $targetLink }
-
+    
     > **Выдан:** { $TimeNow }
     > **Истечёт:** { $expiresString }
-
+    
     > **Роли:** { $roles }
-
+    
     > **Причина:** { $reason }
-
+    
     > **Уровень тяжести:** { $severity }
 server-perma-role-ban-string =
     > **Администратор**
     > **Логин:** ``{ $adminName }``
     > **Дискорд:** { $adminLink }
-
+    
     > **Нарушитель**
     > **Логин:** ``{ $targetName }``
     > **Дискорд:** ``{ $targetLink }``
-
+    
     > **Выдан:** { $TimeNow }
-
+    
     > **Роли:** { $roles }
-
+    
     > **Причина:** { $reason }
-
+    
     > **Уровень тяжести:** { $severity }

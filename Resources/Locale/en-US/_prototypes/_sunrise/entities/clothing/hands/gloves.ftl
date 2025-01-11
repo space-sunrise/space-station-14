@@ -5,7 +5,6 @@ ent-ClothingHandsGlovesCentcomNaval = nanotrasen naval gloves
 ent-ClothingHandsGlovesLeatherHoS = leather gloves
     .desc = Stylish black leather gloves.
 ent-ClothingHandsGlovesChristmas = christmas gloves
-    .desc = Stylish Christmas gloves.
+    .desc = Stylish Christmas leather gloves.
 ent-ClothingHandsGlovesChristmasLong = christmas gloves long
-    .desc = Stylish Christmas gloves.
-
+    .desc = Stylish Christmas long leather gloves.

@@ -20,5 +20,5 @@ ent-GunSafeEnergyGunPistolSecurity = safe
     .suffix = Energy Pistol «Judge»
     .desc = { ent-GunSafe.desc }
 ent-GunSafeEnergyGun = safe
-    .suffix = Energy guns
+    .suffix = Tactical Energy guns
     .desc = { ent-GunSafe.desc }

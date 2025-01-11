@@ -1,4 +1,4 @@
-﻿ent-Flesh = живая плоть
+ent-Flesh = живая плоть
     .desc = Оно живое!
     .suffix = { "" }
 ent-FleshBlade = рука-линок из плоти
@@ -19,5 +19,3 @@ ent-FleshSpikeHandGun = рука-шипострел
 ent-FleshFist = кулак из плоти
     .desc = Fisting is three hundred bucks
     .suffix = { "" }
-
-
