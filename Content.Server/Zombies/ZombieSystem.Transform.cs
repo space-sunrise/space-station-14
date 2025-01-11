@@ -1,7 +1,10 @@
+using Content.Server.Administration.Managers;
 using Content.Server.Atmos.Components;
 using Content.Server.Body.Components;
 using Content.Server.Chat;
 using Content.Server.Chat.Managers;
+using Content.Server.GameTicking;
+using Content.Server.Ghost;
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Humanoid;
 using Content.Server.IdentityManagement;
@@ -60,6 +63,8 @@ public sealed partial class ZombieSystem
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
     [Dependency] private readonly NPCSystem _npc = default!;
     [Dependency] private readonly SharedRoleSystem _roles = default!;
+    [Dependency] private readonly GhostSystem _ghostSystem = default!;
+    [Dependency] private readonly IBanManager _banManager = default!;
 
     /// <summary>
     /// Handles an entity turning into a zombie when they die or go into crit
@@ -244,9 +249,15 @@ public sealed partial class ZombieSystem
         _npc.SleepNPC(target, htn);
 
         //He's gotta have a mind
-        var hasMind = _mind.TryGetMind(target, out var mindId, out _);
+        var hasMind = _mind.TryGetMind(target, out var mindId, out var mind);
         if (hasMind && _mind.TryGetSession(mindId, out var session))
         {
+            // Check if the user has a ban on "Zombie"
+            if (_banManager.IsAntagBanned(session.UserId, zombiecomp.ZombieRoleId))
+            {
+                // Ghost the player if they have a "Zombie" ban
+                _ghostSystem.OnGhostAttempt(mindId, false, true, mind);
+            }
             //Zombie role for player manifest
             _roles.MindAddRole(mindId, "MindRoleZombie", mind: null, silent: true);
 
