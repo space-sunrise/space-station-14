@@ -40,6 +40,9 @@
     - Muted
     - ForcedSleep
     - StaminaModifier
+    - Jump # Sunrise-Edit
+    - Flip # Sunrise-Edit
+  - type: EmoteAnimation # Sunrise-Edit
   - type: MobState
     allowedStates:
     - Alive

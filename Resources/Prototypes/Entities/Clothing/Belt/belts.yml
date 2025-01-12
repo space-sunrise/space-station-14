@@ -1,7 +1,22 @@
 # Belts that need/have visualizers
 
+# Sunrise edit start
 - type: entity
-  parent: ClothingBeltStorageBase
+  id: BaseClothingBeltSounds
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/toolbelt_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/toolbelt_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/toolbelt_drop.ogg
+# Sunrise edit end
+
+- type: entity
+  parent: [ClothingBeltStorageBase, BaseClothingBeltSounds] # Sunrise
   id: ClothingBeltUtility
   name: utility belt
   description: Can hold various things.
@@ -12,6 +27,8 @@
     sprite: Clothing/Belt/utility.rsi
   - type: Storage
     maxItemSize: Normal
+    storageInsertSound: # Sunrise
+      path: /Audio/Items/belt_equip.ogg
     # TODO: Fill this out more.
     whitelist:
       tags:
@@ -81,7 +98,7 @@
   - type: Appearance
 
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: [ClothingBeltStorageBase, BaseClothingBeltSounds] # Sunrise
   id: ClothingBeltChiefEngineer
   name: chief engineer's toolbelt
   description: Holds tools, looks snazzy.
@@ -91,6 +108,8 @@
   - type: Clothing
     sprite: Clothing/Belt/ce.rsi
   - type: Storage
+    storageInsertSound: # Sunrise
+      path: /Audio/Items/belt_equip.ogg
     grid:
     - 0,0,9,1
     # TODO: Fill this out more.
@@ -161,7 +180,7 @@
   - type: Appearance
 
 - type: entity
-  parent: ClothingBeltStorageBase
+  parent: [ClothingBeltStorageBase, BaseClothingBeltSounds] # Sunrise
   id: ClothingBeltAssault
   name: assault belt
   description: A tactical assault belt.
@@ -171,6 +190,8 @@
   - type: Clothing
     sprite: Clothing/Belt/assault.rsi
   - type: Storage
+    storageInsertSound: # Sunrise
+      path: /Audio/Items/belt_equip.ogg
     whitelist:
       tags:
         - CigPack
@@ -199,6 +220,17 @@
           - SmokeOnTrigger
     sprite: Clothing/Belt/belt_overlay.rsi
   - type: Appearance
+  # Sunrise edit start
+  - type: EmitSoundOnPickup
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/toolbelt_pickup.ogg
+  - type: EmitSoundOnDrop
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/toolbelt_drop.ogg
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Sunrise/Items/Handling/toolbelt_drop.ogg
+  # Sunrise edit end
 
 - type: entity
   parent: ClothingBeltStorageBase
@@ -538,6 +570,9 @@
           tags:
           - CaptainSabre
   - type: Appearance
+  - type: Storage # Sunrise
+    storageInsertSound: /Audio/_Sunrise/Items/Equip/sabre_equip.ogg
+    storageRemoveSound: /Audio/_Sunrise/Items/Equip/sabre_hide.ogg
 
 # Belts without visualizers
 
@@ -585,6 +620,8 @@
   - type: Clothing
     sprite: Clothing/Belt/holster.rsi
   - type: Storage
+    storageInsertSound: # Sunrise
+      collection: RevolversPutIn
     grid:
     - 0,0,3,1
 
@@ -602,6 +639,8 @@
     size: Ginormous
   - type: Storage
     maxItemSize: Huge
+    storageInsertSound: # Sunrise
+      collection: RevolversPutIn
     grid:
     - 0,0,3,3
     whitelist:

@@ -1,5 +1,6 @@
 using Content.Server.RoundEnd;
 using Content.Shared.Dataset;
+using Content.Shared.FixedPoint;
 using Content.Shared.NPC.Prototypes;
 using Content.Shared.Roles;
 using Robust.Shared.Audio;
@@ -63,11 +64,13 @@ public sealed partial class NukeopsRuleComponent : Component
     ///     This amount of TC will be given to each nukie
     /// </summary>
     [DataField]
-    public int WarTcAmountPerNukie = 40;
+    public FixedPoint2 WarTcAmountPerNukie = 40;
 
     // Sunrise-Start
     [DataField]
     public int RoundstartOperatives;
+
+    public EntityUid? UplinkEnt;
     // Sunrise-End
 
     /// <summary>

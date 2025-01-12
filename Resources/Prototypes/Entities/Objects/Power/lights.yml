@@ -69,6 +69,13 @@
   - type: ToolRefinable
     refineResult:
     - id: SheetGlass1
+  - type: HolidayVisuals
+    holidays:
+      festive:
+      - WinterPresents
+  - type: HolidayRsiSwap
+    sprite:
+      festive: _Sunrise/Objects/Power/light_bulb_gift.rsi
 
 - type: entity
   parent: BaseLightbulb
@@ -161,6 +168,23 @@
     color: "#ba473f"
     lightEnergy: 0.5
     lightRadius: 5
+    lightSoftness: 3
+  - type: Tag
+    tags:
+    - LightBulb
+    - Trash
+
+- type: entity
+  parent: BaseLightbulb
+  name: warm light bulb
+  id: WarmLightBulb
+  description: A warm light bulb for a more cozy atmosphere.
+  components:
+  - type: LightBulb
+    bulb: Bulb
+    color: "#ff9833" # 2200k color temp
+    lightEnergy: 1
+    lightRadius: 6
     lightSoftness: 3
   - type: Tag
     tags:

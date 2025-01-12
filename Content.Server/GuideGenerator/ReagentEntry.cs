@@ -35,7 +35,7 @@ public sealed class ReagentEntry
     public List<string> Recipes { get; } = new();
 
     [JsonPropertyName("metabolisms")]
-    public Dictionary<string, ReagentEffectsEntry>? Metabolisms { get; } // Wiki
+    public Dictionary<string, WikiReagentEffectsEntry>? Metabolisms { get; } // Wiki
 
     public ReagentEntry(ReagentPrototype proto)
     {
@@ -54,7 +54,7 @@ public sealed class ReagentEntry
             ? Color.Black
             : Color.White).ToHex();
 
-        Metabolisms = proto.Metabolisms?.ToDictionary(x => x.Key.Id, x => new ReagentEffectsEntry());
+        Metabolisms = proto.Metabolisms?.ToDictionary(x => x.Key.Id, x => new WikiReagentEffectsEntry(x.Value));
         // Wiki-End
     }
 }
@@ -91,7 +91,6 @@ public sealed class ReactionEntry
 
     [JsonIgnore]
     // Wiki-End
-
     [JsonPropertyName("effects")]
     public List<EntityEffect> Effects { get; }
 

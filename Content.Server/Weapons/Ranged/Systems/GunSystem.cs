@@ -3,6 +3,7 @@ using System.Numerics;
 using Content.Server.Cargo.Systems;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Weapons.Ranged.Components;
+using Content.Shared.Buckle.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Database;
@@ -295,6 +296,18 @@ public sealed partial class GunSystem : SharedGunSystem
         var lastUser = user ?? gunUid;
         EntityUid? hitEntity = null;
 
+        List<EntityUid> ignoredEntity = new();
+
+        if (TryComp<StrapComponent>(lastUser, out var strapComponent))
+        {
+            ignoredEntity.AddRange(strapComponent.BuckledEntities);
+        }
+
+        if (TryComp<BuckleComponent>(lastUser, out var buckleComponent) && buckleComponent.BuckledTo != null)
+        {
+            ignoredEntity.Add(buckleComponent.BuckledTo.Value);
+        }
+
         if (hitscan.Reflective != ReflectType.None)
         {
             for (var reflectAttempt = 0; reflectAttempt < 3; reflectAttempt++)
@@ -304,6 +317,12 @@ public sealed partial class GunSystem : SharedGunSystem
                     Physics.IntersectRay(from.MapId, ray, hitscan.MaxLength, lastUser, false).ToList();
                 if (!rayCastResults.Any())
                     break;
+
+                foreach (var rayCastResult in rayCastResults.ToList())
+                {
+                    if (ignoredEntity.Contains(rayCastResult.HitEntity))
+                        rayCastResults.Remove(rayCastResult);
+                }
 
                 var result = rayCastResults[0];
 

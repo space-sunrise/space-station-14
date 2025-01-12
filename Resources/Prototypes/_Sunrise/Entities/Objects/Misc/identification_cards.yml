@@ -189,3 +189,72 @@
     - state: idpatologoanatom
   - type: PresetIdCard
     job: MedicalPathologist
+
+- type: entity
+  parent: IDCardStandard
+  id: USSPIDCard
+  name: USSP ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: syndie
+    - state: idpassenger
+  - type: Access
+    tags:
+    - Maintenance
+  - type: IdCard
+    jobTitle: JobUSSPCrew
+
+- type: entity
+  parent: IDCardStandard
+  id: USSPOfficerIDCard
+  name: USSP ID card
+  suffix: Guard
+  components:
+  - type: Sprite
+    layers:
+    - state: syndie
+    - state: idheadofsecurity
+  - type: Access
+    tags:
+    - Maintenance
+    - NuclearOperative
+    - SyndicateAgent
+  - type: IdCard
+    jobTitle: JobUSSPGuard
+
+- type: entity
+  parent: IDCardStandard
+  id: USSPSoldierIDCard
+  name: USSP ID card
+  suffix: Combat
+  components:
+  - type: Sprite
+    layers:
+    - state: syndie
+    - state: idpilot
+  - type: Access
+    tags:
+    - NuclearOperative
+    - SyndicateAgent
+  - type: IdCard
+    jobTitle: JobUSSPSoldier
+
+- type: entity
+  parent: IDCardStandard
+  id: USSPCaptainIDCard
+  name: USSP ID card
+  suffix: Officer
+  components:
+  - type: Sprite
+    layers:
+    - state: syndie
+    - state: idcaptain
+  - type: Access
+    groups:
+    - AllAccess
+    tags:
+    - NuclearOperative
+    - SyndicateAgent
+  - type: IdCard
+    jobTitle: JobUSSPOfficer

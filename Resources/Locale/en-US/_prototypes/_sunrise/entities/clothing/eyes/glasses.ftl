@@ -8,5 +8,5 @@ ent-ClothingEyesGlassesWelding = Welding glasses
     .desc = That's a welding goggles. It is a small item. Protects the eyes from welders.
 ent-ClothingEyesSunGlassesHudSkill = skills sunglasses
     .desc = Sunglusses with a build-in skills HUD, showing the employment history of nearby NT crew members.
-ent-ClothingEyesGlassesNVG = { ent-ClothingEyesGlassesSunglasses }
-    .desc = { ent-ClothingEyesGlassesSunglasses.desc }
+ent-ClothingEyesGlassesNVG = sun glasses
+    .desc = A pair of black sunglasses.

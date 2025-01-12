@@ -14,3 +14,7 @@ ent-ClothingHandsGlovesNitrileGreen = green nitrile gloves
     .desc = High-quality green nitrile gloves. Expensive medical PPE.
 ent-ClothingHandsGlovesNitrileBlue = blue nitrile gloves
     .desc = High-quality blue nitrile gloves. Expensive medical PPE.
+ent-ClothingHandsGlovesChristmas = christmas gloves
+    .desc = Stylish Christmas leather gloves.
+ent-ClothingHandsGlovesChristmasLong = christmas gloves long
+    .desc = Stylish Christmas long leather gloves.

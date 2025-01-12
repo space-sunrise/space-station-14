@@ -1,4 +1,5 @@
 using Content.Shared.Weapons.Ranged;
+using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
@@ -9,7 +10,7 @@ namespace Content.Shared._Sunrise.Weapons;
 /// Allows for energy gun to switch between three modes. This also changes the sprite accordingly.
 /// </summary>
 /// <remarks>This is BatteryWeaponFireModesSystem with additional changes to allow for different sprites.</remarks>
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent]
 [Access(typeof(EnergyGunFireModesSystem))]
 [AutoGenerateComponentState]
 public sealed partial class EnergyGunFireModesComponent : Component

@@ -32,9 +32,6 @@
   id: BorgModuleERT
 
 - type: Tag
-  id: AssaultOpsUplink
-
-- type: Tag
   id: SyndieAgentUplink
 
 - type: Tag
@@ -53,6 +50,9 @@
 
 - type: Tag
   id: CartridgeRail
+
+- type: Tag
+  id: MiniSyringe
 
 # Magazines:
 - type: Tag
@@ -326,3 +326,9 @@
 
 - type: Tag
   id: PokerCard
+
+- type: Tag
+  id: ToySword
+
+- type: Tag
+  id: FugitiveUplink

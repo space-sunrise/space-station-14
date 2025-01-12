@@ -54,6 +54,7 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
+      ballistic-ammo: !type:Container
   - type: MagazineVisuals
     magState: mag
     steps: 1
@@ -183,6 +184,7 @@
     containers:
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
+      ballistic-ammo: !type:Container
   - type: MagazineVisuals
     magState: mag
     steps: 1

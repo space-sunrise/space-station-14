@@ -38,3 +38,5 @@ ent-ClothingMaskSterileOrange = orange sterile mask
     .desc = A sterile orange mask designed to help prevent the spread of diseases.
 ent-ClothingMaskSterileRed = red sterile mask
     .desc = A sterile red mask designed to help prevent the spread of diseases.
+ent-ClothingMaskFaceCast = face cast
+    .desc = It can steal your personality!

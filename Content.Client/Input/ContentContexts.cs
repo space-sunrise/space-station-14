@@ -58,7 +58,6 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.SwapHands);
             human.AddFunction(ContentKeyFunctions.Drop);
             human.AddFunction(ContentKeyFunctions.UseItemInHand);
-            human.AddFunction(ContentKeyFunctions.CockGun);
             human.AddFunction(ContentKeyFunctions.AltUseItemInHand);
             human.AddFunction(ContentKeyFunctions.OpenCharacterMenu);
             human.AddFunction(ContentKeyFunctions.OpenEmotesMenu);
@@ -85,6 +84,13 @@ namespace Content.Client.Input
             human.AddFunction(ContentKeyFunctions.Arcade1);
             human.AddFunction(ContentKeyFunctions.Arcade2);
             human.AddFunction(ContentKeyFunctions.Arcade3);
+
+            // Sunrise-Start
+            human.AddFunction(ContentKeyFunctions.ToggleStanding);
+            human.AddFunction(ContentKeyFunctions.CockGun);
+            human.AddFunction(ContentKeyFunctions.Jump);
+            human.AddFunction(ContentKeyFunctions.Reloading);
+            // Sunrise-End
 
             // actions should be common (for ghosts, mobs, etc)
             common.AddFunction(ContentKeyFunctions.OpenActionsMenu);

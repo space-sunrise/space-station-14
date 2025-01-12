@@ -76,30 +76,58 @@ public abstract class SharedActionsSystem : EntitySystem
         var worldActionQuery = EntityQueryEnumerator<WorldTargetActionComponent>();
         while (worldActionQuery.MoveNext(out var uid, out var action))
         {
-            if (IsCooldownActive(action) || !ShouldResetCharges(action))
+            if (IsCooldownActive(action) || !ShouldResetChargesWithTimer(action)) // Sunrise-Edit
                 continue;
 
-            ResetCharges(uid, dirty: true);
+            // Sunrise-Start
+            AddCharges(uid, 1);
+            Dirty(uid, action);
+            // Sunrise-End
         }
 
         var instantActionQuery = EntityQueryEnumerator<InstantActionComponent>();
         while (instantActionQuery.MoveNext(out var uid, out var action))
         {
-            if (IsCooldownActive(action) || !ShouldResetCharges(action))
+            if (IsCooldownActive(action) || !ShouldResetChargesWithTimer(action)) // Sunrise-Edit
                 continue;
 
-            ResetCharges(uid, dirty: true);
+            // Sunrise-Start
+            AddCharges(uid, 1);
+            Dirty(uid, action);
+            // Sunrise-End
         }
 
         var entityActionQuery = EntityQueryEnumerator<EntityTargetActionComponent>();
         while (entityActionQuery.MoveNext(out var uid, out var action))
         {
-            if (IsCooldownActive(action) || !ShouldResetCharges(action))
+            if (IsCooldownActive(action) || !ShouldResetChargesWithTimer(action)) // Sunrise-Edit
                 continue;
 
-            ResetCharges(uid, dirty: true);
+            // Sunrise-Start
+            AddCharges(uid, 1);
+            Dirty(uid, action);
+            // Sunrise-End
         }
     }
+
+    // Sunrise-Start
+    protected bool ShouldResetChargesWithTimer(BaseActionComponent action, TimeSpan? curTime = null)
+    {
+        curTime ??= GameTiming.CurTime;
+
+        if (action.RenewCharges && action.Charges < action.MaxCharges)
+        {
+            if (!action.LastChargeRenewTime.HasValue ||
+                curTime.Value - action.LastChargeRenewTime.Value >= action.RenewChargeDelay)
+            {
+                action.LastChargeRenewTime = curTime;
+                return true;
+            }
+        }
+
+        return false;
+    }
+    // Sunrise-End
 
     private void OnActionMapInit(EntityUid uid, BaseActionComponent component, MapInitEvent args)
     {
@@ -338,7 +366,17 @@ public abstract class SharedActionsSystem : EntitySystem
         if (!TryGetActionData(actionId, out var action) || action.Charges == null || addCharges < 1)
             return;
 
-        action.Charges += addCharges;
+        // Sunrise-Start
+        if (action.MaxCharges.HasValue)
+        {
+            action.Charges = Math.Min(action.Charges.Value + addCharges, action.MaxCharges.Value);
+        }
+        else
+        {
+            action.Charges += addCharges;
+        }
+        // Sunrise-End
+
         UpdateAction(actionId, action);
         Dirty(actionId.Value, action);
     }
@@ -427,9 +465,14 @@ public abstract class SharedActionsSystem : EntitySystem
         if (IsCooldownActive(action, curTime))
             return;
 
+        // Sunrise-Start
         // TODO: Replace with individual charge recovery when we have the visuals to aid it
-        if (action is { Charges: < 1, RenewCharges: true })
-            ResetCharges(actionEnt, true, true);
+        // if (action is { Charges: < 1, RenewCharges: true })
+        //     ResetCharges(actionEnt, true, true);
+
+        if (action.Charges != null && action.Charges < 1)
+            return;
+        // Sunrise-End
 
         BaseActionEvent? performEvent = null;
 
@@ -713,7 +756,7 @@ public abstract class SharedActionsSystem : EntitySystem
         }
 
         action.Cooldown = null;
-        if (action is { UseDelay: not null, Charges: null or < 1 })
+        if (action is { UseDelay: not null}) //, Charges: null or < 1 }) // Sunrise-Edit
         {
             dirty = true;
             action.Cooldown = (curTime, curTime + action.UseDelay.Value);

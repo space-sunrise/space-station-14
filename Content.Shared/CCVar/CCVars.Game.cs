@@ -101,7 +101,7 @@ public sealed partial class CCVars
         ///     If roles should be restricted based on time.
         /// </summary>
         public static readonly CVarDef<bool>
-            GameRoleTimers = CVarDef.Create("game.role_timers", true, CVar.SERVER | CVar.REPLICATED);
+            GameRoleTimers = CVarDef.Create("game.role_timers", false, CVar.SERVER | CVar.REPLICATED); // Sunrise-Edit
 
         /// <summary>
         ///     Override default role requirements using a <see cref="JobRequirementOverridePrototype"/>
@@ -154,6 +154,7 @@ public sealed partial class CCVars
 
         /// <summary>
         ///     Whether or not the panic bunker will enable when no admins are online.
+        ///     This counts everyone with the 'Admin' AdminFlag.
         /// </summary>
         public static readonly CVarDef<bool> PanicBunkerEnableWithoutAdmins =
             CVarDef.Create("game.panic_bunker.enable_without_admins", false, CVar.SERVERONLY);
@@ -276,7 +277,7 @@ public sealed partial class CCVars
         ///     Delay between station alert level changes.
         /// </summary>
         public static readonly CVarDef<int> GameAlertLevelChangeDelay =
-            CVarDef.Create("game.alert_level_change_delay", 30, CVar.SERVERONLY);
+            CVarDef.Create("game.alert_level_change_delay", 60, CVar.SERVERONLY); // Sunrise-edit
 
         /// <summary>
         ///     The time in seconds that the server should wait before restarting the round.

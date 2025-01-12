@@ -36,3 +36,5 @@ ent-ClothingUniformJumpsuitAdidasBlack = black USSP sweatshirt
     .desc = Greatly tailored set of pants, t-shirt and windbreaker. Features a distinctive two stripe, name print "Red Sickle".
 ent-ClothingUniformJumpsuitAdidasWhite = white USSP sweatshirt
     .desc = White version of the popular USSP Olympians sports uniform, has two black stripes on each part of the set. Fashionable, stylish and bright!
+ent-ClothingUniformJumpskirtChristmas = christmas female jumpsuit
+    .desc = Pretty old stuff for these times, bringing back old memories.....

@@ -104,6 +104,13 @@ public abstract partial class BaseActionComponent : Component
     /// </summary>
     [DataField("renewCharges")]public bool RenewCharges;
 
+    // Sunrise-Start
+    public TimeSpan? LastChargeRenewTime { get; set; }
+
+    [DataField("renewChargeDelay")]
+    public TimeSpan RenewChargeDelay { get; set; }
+    // Sunrise-End
+
     /// <summary>
     /// The entity that contains this action. If the action is innate, this may be the user themselves.
     /// This should almost always be non-null.
@@ -204,6 +211,8 @@ public abstract class BaseActionComponentState : ComponentState
     public int? Charges;
     public int? MaxCharges;
     public bool RenewCharges;
+    public TimeSpan RenewChargeDelay; // Sunrise-Edit
+    public TimeSpan? LastChargeRenewTime; // Sunrise-Edit
     public NetEntity? Container;
     public NetEntity? EntityIcon;
     public bool CheckCanInteract;
@@ -236,6 +245,8 @@ public abstract class BaseActionComponentState : ComponentState
         Charges = component.Charges;
         MaxCharges = component.MaxCharges;
         RenewCharges = component.RenewCharges;
+        RenewChargeDelay = component.RenewChargeDelay; // Sunrise-Edit
+        LastChargeRenewTime = component.LastChargeRenewTime; // Sunrise-Edit
         CheckCanInteract = component.CheckCanInteract;
         CheckConsciousness = component.CheckConsciousness;
         ClientExclusive = component.ClientExclusive;

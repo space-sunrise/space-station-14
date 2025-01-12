@@ -48,7 +48,7 @@
   id: DurandHarness
   result: DurandHarness
   category: Durand
-  completetime: 10
+  completetime: 60
   materials:
     Steel: 2500
     Glass: 2000
@@ -58,7 +58,7 @@
   id: DurandArmor
   result: DurandArmorPlate
   category: Durand
-  completetime: 10
+  completetime: 20
   materials:
     Steel: 3000
     Silver: 900
@@ -67,7 +67,7 @@
   id: DurandHead
   result: DurandHead
   category: Durand
-  completetime: 10
+  completetime: 20
   materials:
     Steel: 1500
     Glass: 800
@@ -193,16 +193,17 @@
   id: PhazonHarness
   result: PhazonHarness
   category: Phazon
-  completetime: 10
+  completetime: 60
   materials:
-    Steel: 2500
-    Glass: 2000
+    Steel: 3500
+    Glass: 2500
+    Plasma: 1500
 
 - type: latheRecipe
   id: PhazonArmor
   result: PhazonArmorPlate
   category: Phazon
-  completetime: 10
+  completetime: 20
   materials:
     Steel: 3000
     Plasma: 1000
@@ -211,17 +212,19 @@
   id: PhazonHead
   result: PhazonHead
   category: Phazon
-  completetime: 10
+  completetime: 45
   materials:
     Steel: 1500
     Glass: 250
+    Plastic: 250
     Plasma: 500
+    Diamond: 100
 
 - type: latheRecipe
   id: PhazonLArm
   result: PhazonLArm
   category: Phazon
-  completetime: 10
+  completetime: 18
   materials:
     Steel: 1100
     Plasma: 250
@@ -230,7 +233,7 @@
   id: PhazonLLeg
   result: PhazonLLeg
   category: Phazon
-  completetime: 10
+  completetime: 18
   materials:
     Steel: 1100
     Plasma: 250
@@ -239,7 +242,7 @@
   id: PhazonRLeg
   result: PhazonRLeg
   category: Phazon
-  completetime: 10
+  completetime: 18
   materials:
     Steel: 1100
     Plasma: 250
@@ -248,7 +251,7 @@
   id: PhazonRArm
   result: PhazonRArm
   category: Phazon
-  completetime: 10
+  completetime: 18
   materials:
     Steel: 1100
     Plasma: 250

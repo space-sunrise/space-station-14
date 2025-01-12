@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Antag;
 using Content.Server.EUI;
@@ -11,6 +12,7 @@ using Content.Server.Roles;
 using Content.Server.RoundEnd;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Station.Systems;
+using Content.Server.AlertLevel; // Sunrise-Edit
 using Content.Shared.Database;
 using Content.Shared.GameTicking.Components;
 using Content.Shared.Humanoid;
@@ -28,6 +30,9 @@ using Content.Shared.Zombies;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.Cuffs.Components;
+using Content.Server.Administration.Managers;
+using Content.Server.Administration.Systems;
+using Content.Shared.Popups;
 
 namespace Content.Server.GameTicking.Rules;
 
@@ -49,10 +54,16 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly AlertLevelSystem _alertLevel = default!; // Sunrise-Edit
+    [Dependency] private readonly AdminVerbSystem _adminVerbSystem = default!;
+    [Dependency] private readonly IBanManager _banManager = default!;
 
     //Used in OnPostFlash, no reference to the rule component is available
     public readonly ProtoId<NpcFactionPrototype> RevolutionaryNpcFaction = "Revolutionary";
     public readonly ProtoId<NpcFactionPrototype> RevPrototypeId = "Rev";
+    private Dictionary<EntityUid, TimeSpan> _scheduledSmites = new();
+
+
 
     public override void Initialize()
     {
@@ -75,14 +86,37 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
     protected override void ActiveTick(EntityUid uid, RevolutionaryRuleComponent component, GameRuleComponent gameRule, float frameTime)
     {
         base.ActiveTick(uid, component, gameRule, frameTime);
+        // Check for command loss or if a banned player needs to be smited.
         if (component.CommandCheck <= _timing.CurTime)
         {
             component.CommandCheck = _timing.CurTime + component.TimerWait;
 
+            // Check for command loss
             if (CheckCommandLose())
             {
-                _roundEnd.DoRoundEndBehavior(RoundEndBehavior.ShuttleCall, component.ShuttleCallTime);
+                //  Sunrise-Edit-Start
+                var stations = _stationSystem.GetStations();
+                foreach (var station in stations)
+                {
+                    _alertLevel.SetLevel(station, "epsilon", true, true, true);
+                }
+                _roundEnd.EndRound();
+                //  Sunrise-Edit-End
                 GameTicker.EndGameRule(uid, gameRule);
+            }
+
+            // Execute scheduled smites for banned players
+            if (_scheduledSmites.Count > 0)
+            {
+                var currentTime = _timing.CurTime;
+                foreach (var entity in _scheduledSmites.Keys.ToList().Where(entity => _scheduledSmites[entity] <= currentTime))
+                {
+                    if (EntityManager.EntityExists(entity))
+                    {
+                        _adminVerbSystem.RandomDeath(entity);
+                    }
+                    _scheduledSmites.Remove(entity);
+                }
             }
         }
     }
@@ -142,6 +176,14 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
             !_mobState.IsAlive(ev.Target) ||
             HasComp<ZombieComponent>(ev.Target))
         {
+            return;
+        }
+
+        // Check if the user has a ban on "Revolutionary"
+        // Check if the user has a ban on "Revolutionary"
+        if (mind != null && mind.Session != null && _banManager.IsAntagBanned(mind.Session.UserId, "Rev"))
+        {
+            KillDueToBan(ev.Target);
             return;
         }
 
@@ -284,6 +326,15 @@ public sealed class RevolutionaryRuleSystem : GameRuleSystem<RevolutionaryRuleCo
         }
 
         return gone == list.Count || list.Count == 0;
+    }
+
+    private void KillDueToBan(EntityUid target)
+    {
+        _popup.PopupEntity(Loc.GetString("rev-banned"), target, target, PopupType.LargeCaution);
+
+        var randomDelay = new Random().Next(10, 60); // 10-60 seconds
+        var targetTime = _timing.CurTime + TimeSpan.FromSeconds(randomDelay);
+        _scheduledSmites[target] = targetTime;
     }
 
     private static readonly string[] Outcomes =

@@ -123,7 +123,14 @@ public sealed class EvilTwinSystem : EntitySystem
         _mindSystem.TryAddObjective(mindId, mind, EscapeObjective);
         _mindSystem.TryAddObjective(mindId, mind, KillObjective);
         if (_mindSystem.TryGetObjectiveComp<TargetObjectiveComponent>(uid, out var obj))
+        {
+            if (TryComp<MindComponent>(evilTwin.TargetMindId, out var mindComponent) &&
+                TryComp<AntagTargetComponent>(mindComponent.OwnedEntity, out var antagTargetCom))
+            {
+                antagTargetCom.KillerMind = mindId;
+            }
             _target.SetTarget(uid, evilTwin.TargetMindId, obj);
+        }
 
         evilTwinRule.TwinsMinds.Add((mindId, Name(uid)));
     }
@@ -132,9 +139,11 @@ public sealed class EvilTwinSystem : EntitySystem
     {
         var targets = EntityQuery<ActorComponent, AntagTargetComponent, HumanoidAppearanceComponent>().ToList();
         _random.Shuffle(targets);
-        foreach (var (actor, _, _) in targets)
+        foreach (var (actor, antagTarget, _) in targets)
         {
-            if (!_mindSystem.TryGetMind(actor.PlayerSession, out var mindId, out var mind) || mind.OwnedEntity == null)
+            if (!_mindSystem.TryGetMind(actor.PlayerSession, out var mindId, out var mind)
+                || mind.OwnedEntity == null
+                || antagTarget.KillerMind != null)
                 continue;
 
             if (!_jobSystem.MindTryGetJob(mindId, out _))
@@ -184,7 +193,7 @@ public sealed class EvilTwinSystem : EntitySystem
                 _stationSpawning.EquipRoleLoadout(twinUid, loadout, roleProto);
             }
 
-            if (_prototype.TryIndex<StartingGearPrototype>(jobProto.StartingGear, out var gear))
+            if (_prototype.TryIndex(jobProto.StartingGear, out var gear))
             {
                 _stationSpawning.EquipStartingGear(twinUid, gear);
                 _stationSpawning.SetPdaAndIdCardData(twinUid, pref.Name, jobProto, _stationSystem.GetOwningStation(target));

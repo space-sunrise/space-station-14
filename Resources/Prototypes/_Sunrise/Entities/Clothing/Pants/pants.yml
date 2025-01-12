@@ -130,6 +130,19 @@
     sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
     equippedState: male_uk
 
+- type: entity
+  parent: ClothingPantsStorageBase
+  id: ClothingPantsManChristmas
+  name: men's underpants Christmas 
+  description: Christmas underpants for men.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
+    state: male_christmas_boxers_Icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Man/pants.rsi
+    equippedState: male_christmas_boxers
+
 # Женщина
 
 - type: entity
@@ -277,6 +290,19 @@
 
 - type: entity
   parent: ClothingPantsStorageBase
+  id: ClothingPantsWomanChristmas
+  name: women's Christmas underpants
+  description: Christmas underpants for women.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
+    state: female_christmas_icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
+    equippedState: female_christmas
+
+- type: entity
+  parent: ClothingPantsStorageBase
   id: ClothingPantsWomanStrapless
   name: women's strapless underpants
   description: strapless underpants for women.
@@ -287,3 +313,4 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Pants/Woman/pants.rsi
     equippedState: female_strapless
+

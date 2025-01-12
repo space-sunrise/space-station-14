@@ -1,4 +1,91 @@
 - type: entity
+  id: BaseWeaponAutoPowerCell
+  parent: BaseWeaponPowerCell
+  abstract: true
+  components:
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/laser_retro.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Gun
+    fireRate: 4
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/_Sunrise/Weapons/Guns/Lasers/EG_R.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: PowerCellSmall
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        whitelist:
+          tags:
+            - PowerCell
+            - PowerCellSmall
+
+- type: entity
+  name: LNT620 "Spark"
+  parent: [ BaseWeaponAutoPowerCell, BaseRestrictedContraband ]
+  id: WeaponLaserLNT620
+  description: "Automatic Laser NanoTrasen LNT620."
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/smg_laser.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Gun
+    fireRate: 4.5
+    minAngle: 5
+    maxAngle: 15
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/smg_laser.rsi
+  - type: Item
+    size: Large
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/smg_laser.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+
+- type: entity
+  name:  IK-30 laser carbine
+  parent: [ BaseWeaponAutoPowerCell, BaseRestrictedContraband ]
+  id: WeaponGunLaserCarbineSemi
+  description: "A semi-automatic battery laser carbine."
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/batterylaser_carbine.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 3
+    availableModes:
+      - SemiAuto
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/batterylaser_carbine.rsi
+  - type: Item
+    size: Large
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/batterylaser_carbine.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+
+- type: entity
   name: energy gun
   parent: BaseWeaponBattery
   id: WeaponEnergyGun
@@ -79,7 +166,9 @@
     startingCharge: 1000
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 20
+    autoRechargeRate: 25
+    autoRechargePause: true
+    autoRechargePauseTime: 30
   - type: EnergyGunFireModes
     fireModes:
     - hitscanProto: BulletDisabler
@@ -225,9 +314,9 @@
 
 - type: entity
   name: IK-60 laser carbine
-  parent: BaseWeaponBattery
+  parent: [ BaseWeaponAutoPowerCell, BaseRestrictedContraband ]
   id: WeaponGunLaserCarbineAutomatic
-  description: "A 20 round semi-automatic laser carbine."
+  description: "A burst automatic battery laser carbine."
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_carbine.rsi
@@ -237,29 +326,26 @@
     - state: mag-unshaded-4
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
+  - type: Gun
+    minAngle: 2
+    maxAngle: 12
+    angleIncrease: 1.5
+    angleDecay: 8
+    selectedMode: Burst
+    shotsPerBurst: 3
+    burstCooldown: 0.3
+    burstFireRate: 4.4
+    availableModes:
+    - Burst
+  - type: Item
+    size: Large
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_carbine.rsi
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_carbine.rsi
-  - type: Gun
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
-    soundEmpty:
-      path: /Audio/Weapons/Guns/Empty/empty.ogg
-    selectedMode: SemiAuto
-    fireRate: 3
-    availableModes:
-      - SemiAuto
-      - FullAuto
-  - type: Battery
-    maxCharge: 2000
-    startingCharge: 2000
-  - type: HitscanBatteryAmmoProvider
-    proto: BulletEnergyGunLaser
-    fireCost: 100
   - type: MagazineVisuals
     magState: mag
     steps: 5
     zeroVisible: true
-  - type: Appearance
 
 - type: entity
   name: Energy Pistol «Judge»
@@ -342,20 +428,22 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
     selectedMode: SemiAuto
-    fireRate: 2.2
+    fireRate: 2.1
     availableModes:
         - SemiAuto
         - FullAuto
   - type: Battery
-    maxCharge: 1800
-    startingCharge: 1800
+    maxCharge: 1500
+    startingCharge: 1500
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 6 # 5 minute
+    autoRechargeRate: 15 # ~3 minute
+    autoRechargePause: true
+    autoRechargePauseTime: 60
   - type: EnergyGunFireModes
     fireModes:
     - hitscanProto: BulletDisabler
-      fireCost: 50
+      fireCost: 75
       name: energy-gun-disable
       state: disabler
       shotType: Hitscan
@@ -377,7 +465,7 @@
           Lethal: { state: mode-lethal }
 
 - type: entity
-  parent: BaseWeaponBattery
+  parent: [BaseWeaponBattery, BaseGunPulseSound]
   id: WeaponIONRifle
   name: ion rifle
   components:
@@ -402,6 +490,11 @@
   - type: Battery
     maxCharge: 4000
     startingCharge: 4000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 40 #100sec+60Sec Pause
+    autoRechargePause: true
+    autoRechargePauseTime: 60
   - type: ProjectileBatteryAmmoProvider
     proto: BulletEMP
     fireCost: 1000
@@ -421,7 +514,7 @@
   components:
   - type: Gun
     soundGunshot:
-      path: /Audio/_Sunrise/Weapons/Guns/Laser/EG_Pistol.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Lasers/EG_Pistol.ogg
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/EG_P.rsi
     layers:
@@ -441,7 +534,7 @@
 
 - type: entity
   name: EarthGov laser rifle
-  parent: [BaseWeaponBattery, BaseGunWieldable]
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseGunPulseSound]
   id: WeaponEarthGovLaserRifle
   components:
   - type: Sprite
@@ -468,7 +561,7 @@
     - SemiAuto
     - FullAuto
     soundGunshot:
-      path: /Audio/_Sunrise/Weapons/Guns/Laser/EG_R.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Lasers/EG_R.ogg
   - type: MagazineVisuals
     magState: mag
     steps: 3
@@ -485,7 +578,7 @@
 
 - type: entity
   name: EarthGov laser carbine
-  parent: [BaseWeaponBattery, BaseGunWieldable]
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseGunPulseSound]
   id: WeaponEarthGovLaserCarbine
   components:
   - type: Sprite
@@ -508,7 +601,7 @@
     - SemiAuto
     - FullAuto
     soundGunshot:
-      path: /Audio/_Sunrise/Weapons/Guns/Laser/EG_C.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Lasers/EG_C.ogg
       params:
         volume: -1
   - type: MagazineVisuals
@@ -527,7 +620,7 @@
 
 - type: entity
   name: EarthGov laser machine gun
-  parent: [BaseWeaponBattery, BaseGunWieldable]
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseGunPulseSound]
   id: WeaponEarthGovLaserMG
   components:
   - type: Sprite
@@ -573,7 +666,7 @@
 
 - type: entity
   name: EarthGov Experemental X-Ray
-  parent: BaseWeaponBattery
+  parent: [BaseWeaponBattery, BaseGunPulseSound]
   id: WeaponEarthGovXRay
   suffix: SUNRISE14CM
   description: Earth Government Experemental x-ray weapon, it looks like it emits radiation.
@@ -602,7 +695,7 @@
     - SemiAuto
     - FullAuto
     soundGunshot:
-      path: /Audio/_Sunrise/Weapons/Guns/Laser/EG_XR.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Lasers/EG_XR.ogg
   - type: MagazineVisuals
     magState: mag
     steps: 6
@@ -619,7 +712,7 @@
 
 - type: entity
   name: EarthGov heavy laser rifle
-  parent: BaseWeaponBattery
+  parent: [BaseWeaponBattery, BaseGunPulseSound]
   id: WeaponEarthGovLaserSniper
   components:
   - type: Sprite
@@ -647,7 +740,7 @@
     - SemiAuto
     - FullAuto
     soundGunshot:
-      path: /Audio/_Sunrise/Weapons/Guns/Laser/EG_Sniper.ogg
+      path: /Audio/_Sunrise/Weapons/Guns/Lasers/EG_Sniper.ogg
   - type: MagazineVisuals
     magState: mag
     steps: 3
@@ -661,6 +754,39 @@
   - type: Wieldable
   - type: UseDelay
     delay: 0.5
+  - type: ZoomableGun
+
+- type: entity
+  name: heavy pulse carbine
+  parent: [BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband, BaseGunPulseSound]
+  id: WeaponSniperPulseCarbine
+  description: "A high tech heavy carbine. favoured by the NT-ERT operatives."
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/sniper_pulse_carbine.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/sniper_pulse_carbine.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 2.2
+    availableModes:
+      - SemiAuto
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: EmpImmune
+  - type: HitscanBatteryAmmoProvider
+    proto: BulletPulse
+    fireCost: 125
+  - type: Battery
+    maxCharge: 5000
+    startingCharge: 5000
   - type: ZoomableGun
 
 - type: entity
@@ -683,7 +809,6 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/syndielasergun.rsi
   - type: Gun
-    projectileSpeed: 5
     minAngle: 30
     maxAngle: 50
     angleIncrease: 2
@@ -706,6 +831,8 @@
   - type: Battery
     maxCharge: 3000
     startingCharge: 3000
+  - type: EmpImmune
+  - type: ZoomableGun
 
 - type: entity
   name: SAM-300
@@ -747,7 +874,7 @@
 
 - type: entity
   name: UVL-21 «Vivern»
-  parent: BaseWeaponBattery
+  parent: [BaseWeaponBattery, BaseGunPulseSound]
   id: WeaponLaserMinigun
   description: A heavy weapon of mass destruction based on the minigun.
   components:
@@ -786,3 +913,4 @@
   - type: Battery
     maxCharge: 7500
     startingCharge: 7500
+  - type: EmpImmune

@@ -149,8 +149,7 @@
   - PhazonPeripheralsElectronics
   - PhazonTargetingElectronics
   technologyPrerequisites:
-  - Ripley2
-  - Gygax
+  - Durand
 
 - type: technology
   id: GravityManipulation

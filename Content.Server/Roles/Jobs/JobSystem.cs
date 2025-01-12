@@ -60,7 +60,7 @@ public sealed class JobSystem : SharedJobSystem
     public bool IsCommandStaff(ICommonSession session)
     {
         if (_playerSystem.ContentData(session) is not { Mind: { } mindId })
-            return true;
+            return false;
 
         if (!MindTryGetJob(mindId, out var jobPrototype))
             return false;

@@ -105,10 +105,10 @@
 
 - type: jobIcon
   parent: JobIcon
-  id: JobIconMinerBorg
+  id: JobIconMiningBorg
   icon:
     sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
-    state: MinerBorg
+    state: MiningBorg
 
 - type: jobIcon
   parent: JobIcon

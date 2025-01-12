@@ -36,5 +36,7 @@ ent-SpawnPointSeniorOfficer = senior officer
     .desc = { ent-SpawnPointJobBase.desc }
 ent-SpawnPointBarber = barber
     .desc = { ent-SpawnPointJobBase.desc }
+ent-SpawnPointMedicalPathologist = pathologist
+    .desc = { ent-SpawnPointJobBase.desc }
 ent-SpawnPointAdjutant = adjutant
     .desc = { ent-SpawnPointJobBase.desc }

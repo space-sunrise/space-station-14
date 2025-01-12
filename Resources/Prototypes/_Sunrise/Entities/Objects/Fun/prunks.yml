@@ -29,27 +29,6 @@
           path: /Audio/Effects/Diseases/beepboop.ogg
       - type: TimedDespawn
         lifetime: 15
-  # - type: HiddenDescription
-  #   entries:
-  #   - label: "[color=#D381C9]Это не настоящая граната. Перед вами обычная подделка, так называемый пугач.[/color]"
-  #     jobRequired:
-  #       - ResearchAssistant
-  #       - ResearchDirector
-  #       - Scientist
-  #       - SeniorResearcher
-  #       - Roboticist
-  #       - Borg
-  #       - MedicalBorg
-  #       - EngineerBorg
-  #       - MinerBorg
-  #       - JanitorBorg
-  #       - ServiceBorg
-  #       - SecurityBorg
-  #       - ClownBorg
-  #       - PeaceBorg
-  #   - label: "[color=#C18199]Настоящий ПрИкОл! Выдерни чеку и кинь эту штучку под ноги СБ, пусть удивятся![/color]"
-  #     jobRequired:
-  #       - Clown
 
 - type: entity
   name: blood-red clown coffin
@@ -80,51 +59,6 @@
     sprintModifier: 0.3
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatCatEars
-  # - type: HiddenDescription
-  #   entries:
-  #   - label: "[color=#D381C9]Это сделаный из папьемаше подделка на скафандр. Не стоит вашего внимания.[/color]"
-  #     jobRequired:
-  #       - ResearchAssistant
-  #       - ResearchDirector
-  #       - Scientist
-  #       - SeniorResearcher
-  #       - Roboticist
-  #       - Borg
-  #       - MedicalBorg
-  #       - EngineerBorg
-  #       - MinerBorg
-  #       - JanitorBorg
-  #       - ServiceBorg
-  #       - SecurityBorg
-  #       - ClownBorg
-  #       - PeaceBorg
-  #   - label: "[color=#C18199]Скаф Синдиката? А нет! Это же папьемаше! Обмаж клеем перед тем как отдавать СБ![/color]"
-  #     jobRequired:
-  #       - Clown
-
-- type: entity
-  name: holo-parasite injector
-  description: The most intricate piece of art, based on... Oh, wait. It's a fake. The HonkHonkers store logo can be seen on the side.
-  id: HoloparasiteFakeInjector
-  parent: BaseItem
-  components:
-  - type: Sprite
-    sprite: Objects/Specific/Medical/hypospray.rsi
-    state: combat_hypo
-  - type: SolutionContainerManager
-    solutions:
-      hypospray:
-        maxVol: 10
-        reagents:
-        - ReagentId: Ipecac
-          Quantity: 10
-  - type: Hypospray
-    solutionName: hypospray
-    transferAmount: 10
-    onlyAffectsMobs: false
-    injectOnly: true
-  - type: UseDelay
-    delay: 0.5
 
 - type: entity
   name: toy dual-bladed sword
@@ -133,9 +67,6 @@
   parent: ToySword
   components:
   - type: Wieldable
-  - type: EnergySword
-    colorOptions:
-      - DodgerBlue
   - type: Sprite
     sprite: Objects/Weapons/Melee/e_sword_double.rsi
     layers:
@@ -170,11 +101,11 @@
     damage:
       types:
         Blunt: 0
-  # - type: HiddenDescription
-  #   entries:
-  #   - label: "[color=#C18199]Удивите СБ новой игрушкой, путёвка в перму обеспечена![/color]"
-  #     jobRequired:
-  #       - Clown
+  - type: Construction
+    graph: ToySwordDoubledGraph
+    node: ToySwordDoubledNode
+  - type: FlipOnAttack # Sunrise-Edit
+    probability: 0.5 # Sunrise-Edit
 
 - type: entity
   name: packaged anomaly
@@ -224,24 +155,3 @@
     castShadows: false
   - type: Anchorable
   - type: Pullable
-  # - type: HiddenDescription
-  #   entries:
-  #   - label: "[color=#D381C9]Она как будто сделана из пластика.[/color]"
-  #     jobRequired:
-  #       - ResearchAssistant
-  #       - ResearchDirector
-  #       - Scientist
-  #       - SeniorResearcher
-  #       - Roboticist
-  #       - Borg
-  #       - MedicalBorg
-  #       - EngineerBorg
-  #       - MinerBorg
-  #       - JanitorBorg
-  #       - ServiceBorg
-  #       - SecurityBorg
-  #       - ClownBorg
-  #       - PeaceBorg
-  #   - label: "[color=#C18199]А ита и не аномалия, а прикол)[/color]"
-  #     jobRequired:
-  #       - Clown

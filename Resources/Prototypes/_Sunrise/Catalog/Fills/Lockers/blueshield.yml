@@ -14,6 +14,21 @@
         amount: 8
 
 - type: entity
+  id: LockerBlueshieldFilledUplink
+  suffix: Filled
+  parent: LockerBlueshield
+  components:
+  - type: StorageFill
+    contents:
+      - id: BaseUplinkNTERTBlueShield
+      - id: ClothingHeadsetAltCommand
+      - id: CigarGoldCase
+        prob: 0.25
+      - id: ClothingMaskGasSecurity
+      - id: TrackingImplanter
+        amount: 8
+
+- type: entity
   id: LockerBlueshieldFilledHardsuit
   suffix: Filled, Hardsuit
   parent: LockerBlueshield

@@ -1,0 +1,12 @@
+ent-PowerCellSyndicate = syndicate power cell
+    .desc = A rechargeable standardized power cell. This one looks like a rare and powerful Syndicate combat variant.
+    .suffix = Full
+ent-PowerCellNanoTrasen = ERT power cell
+    .desc = A rechargeable standardized power cell. This one looks like a rare and powerful NanoTrasen combat variant.
+    .suffix = Full
+ent-PowerCellCombat = combat power cell
+    .desc = A rechargeable standardized power cell. This one looks like a rare combat variant.
+    .suffix = Full
+ent-PowerCellCombatPrinted = { ent-PowerCellCombat }
+    .suffix = Empty
+    .desc = { ent-PowerCellCombat.desc }

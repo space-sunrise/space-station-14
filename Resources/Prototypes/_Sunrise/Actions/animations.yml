@@ -1,0 +1,72 @@
+﻿- type: emote
+  id: Flip
+  category: Verb
+  name: Flip
+  whitelist:
+    components:
+    - Body
+  blacklist:
+    components:
+    - Ghost
+    - Jump
+    - Flip
+  popupMessages: [делает сальто]
+  animation: true
+
+- type: emote
+  id: Jump
+  category: Verb
+  name: Jump
+  whitelist:
+    components:
+    - Body
+  blacklist:
+    components:
+    - Ghost
+    - Jump
+    - Flip
+  popupMessages: [прыгает]
+  animation: true
+
+- type: emote
+  id: Dance
+  category: Verb
+  name: Dance
+  whitelist:
+    components:
+    - Body
+  blacklist:
+    components:
+    - Ghost
+    - Jump
+    - Flip
+  popupMessages: [танцует]
+  animation: true
+
+- type: emote
+  id: Lay
+  category: Verb
+  name: Lay/Stand Up
+  whitelist:
+    components:
+    - Hands
+  blacklist:
+    components:
+    - Ghost
+    - Jump
+    - Flip
+  animation: true
+
+- type: emote
+  id: FallOnNeck
+  category: Verb
+  name: Fall On Neck
+  whitelist:
+    components:
+    - Hands
+  blacklist:
+    components:
+    - Ghost
+    - BorgChassis
+  chatMessages: [падает на шею]
+  animation: true

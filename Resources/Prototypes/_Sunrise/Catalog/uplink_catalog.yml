@@ -42,11 +42,6 @@
     Telecrystal: 2
   categories:
   - UplinkAmmo
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
 
 - type: listing
   id: UplinkMagazineShotgun
@@ -61,11 +56,6 @@
     Telecrystal: 3
   categories:
   - UplinkAmmo
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
 
 - type: listing
   id: UplinkMagazineShotgunIncendiary
@@ -339,11 +329,6 @@
     Telecrystal: 3
   categories:
   - UplinkAmmo
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
 
 - type: listing
   id: UplinkMagazineDl6902
@@ -377,11 +362,6 @@
     Telecrystal: 5
   categories:
   - UplinkAmmo
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
 
 # For the China-Lake
 - type: listing
@@ -501,9 +481,9 @@
   - UplinkWeaponry
   conditions:
   - !type:StoreWhitelistCondition
-    whitelist:
+    blacklist:
       tags:
-      - NukeOpsUplink
+      - AssaultOpsUplink
 
 - type: listing
   id: UplinkWeaponSyndieLaserPistol
@@ -519,9 +499,9 @@
   - UplinkWeaponry
   conditions:
   - !type:StoreWhitelistCondition
-    whitelist:
+    blacklist:
       tags:
-      - NukeOpsUplink
+      - AssaultOpsUplink
 
 - type: listing
   id: UplinkClothingBackpackSyndieDL6902Filled
@@ -555,11 +535,6 @@
     Telecrystal: 20
   categories:
   - UplinkWeaponry
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
 
 - type: listing
   id: UplinkWeaponLaserMinigun
@@ -612,9 +587,9 @@
   - UplinkWeaponry
   conditions:
   - !type:StoreWhitelistCondition
-    whitelist:
+    blacklist:
       tags:
-      - NukeOpsUplink
+      - AssaultOpsUplink
 
 - type: listing
   id: UplinkHardsuitSyndieCommander
@@ -778,6 +753,20 @@
       - NukeOpsUplink
 
 - type: listing
+  id: UplinkHandcuffs
+  name: uplink-handcuffs-name
+  description: uplink-handcuffs-desc
+  icon: { sprite: /Textures/Objects/Misc/handcuffs.rsi, state: handcuff }
+  productEntity: Handcuffs
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 1
+  cost:
+    Telecrystal: 2
+  categories:
+  - UplinkDisruption
+
+- type: listing
   id: UplinkTeleporter
   name: uplink-syndicate-teleporter-name
   description: uplink-syndicate-teleporter-desc
@@ -790,6 +779,25 @@
     Telecrystal: 12
   categories:
   - UplinkDisruption
+
+- type: listing
+  id: UplinkHypo
+  name: uplink-hypo-name
+  description: uplink-hypo-desc
+  icon: { sprite: /Textures/Objects/Specific/Medical/syndihypo.rsi, state: hypo }
+  productEntity: SyndiHypo
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 6
+  cost:
+    Telecrystal: 12
+  categories:
+  - UplinkChemicals
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - AssaultOpsUplink
 
 - type: listing
   id: UplinkSyndicateRapier
@@ -806,6 +814,41 @@
   - UplinkWeaponry
 
 - type: listing
+  id: UplinkFireAxeFlaming
+  name: uplink-fire-axe-flaming-name
+  description: uplink-fire-axe-flaming-desc
+  icon: { sprite: Objects/Weapons/Melee/fireaxeflaming.rsi, state: icon }
+  productEntity: FireAxeFlamingBiocode
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 5
+  cost:
+    Telecrystal: 9
+  categories:
+  - UplinkWeaponry
+
+- type: listing
+  id: UplinkEswordNuke
+  name: uplink-esword-name
+  description: uplink-esword-desc
+  icon: { sprite: /Textures/Objects/Weapons/Melee/e_sword.rsi, state: icon }
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 4
+  productEntity: EnergySwordBiocode
+  cost:
+    Telecrystal: 8
+  categories:
+  - UplinkWeaponry
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 4
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
+
+- type: listing
   id: UplinkPolytrinicAcidChemistryBottle
   name: uplink-polytrinic-acid-chemistry-bottle-name
   description: uplink-polytrinic-acid-chemistry-bottle-desc
@@ -815,6 +858,45 @@
     Telecrystal: 4
   cost:
     Telecrystal: 8
+  categories:
+  - UplinkChemicals
+
+- type: listing
+  id: UplinkLauncherSyringePistolFilled
+  name: uplink-syringe-pistol-filled-name
+  description: uplink-syringe-pistol-filled-desc
+  productEntity: LauncherSyringePistolFilled
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 6
+  cost:
+    Telecrystal: 10
+  categories:
+  - UplinkChemicals
+
+- type: listing
+  id: UplinkBoxMiniSyringe
+  name: uplink-syringe-box-filled-name
+  description: uplink-syringe-box-filled-desc
+  productEntity: BoxMiniSyringe
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 2
+  cost:
+    Telecrystal: 4
+  categories:
+  - UplinkChemicals
+
+- type: listing
+  id: UplinkLauncherSyringeRapid
+  name: uplink-syringe-rapid-name
+  description: uplink-syringe-rapid-desc
+  productEntity: LauncherSyringeRapidFilled
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 8
+  cost:
+    Telecrystal: 14
   categories:
   - UplinkChemicals
 
@@ -862,9 +944,9 @@
   productEntity: CrateCybersunDarkGygaxBundle
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 30
+    Telecrystal: 40
   cost:
-    Telecrystal: 60
+    Telecrystal: 80
   categories:
   - UplinkMechs
   conditions:
@@ -883,9 +965,9 @@
   productEntity: CrateCybersunRoverBundle
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 40
+    Telecrystal: 50
   cost:
-    Telecrystal: 80
+    Telecrystal: 100
   categories:
   - UplinkMechs
   conditions:
@@ -904,9 +986,9 @@
   productEntity: CrateCybersunMaulerBundle
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 50
+    Telecrystal: 60
   cost:
-    Telecrystal: 100
+    Telecrystal: 120
   categories:
   - UplinkMechs
   conditions:
@@ -946,9 +1028,9 @@
   productEntity: WeaponMechCombatTeslaCannon
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 6
+    Telecrystal: 4
   cost:
-    Telecrystal: 10
+    Telecrystal: 8
   categories:
   - UplinkMechs
   conditions:
@@ -967,7 +1049,7 @@
   discountDownTo:
     Telecrystal: 3
   cost:
-    Telecrystal: 7
+    Telecrystal: 11
   categories:
   - UplinkMechs
   conditions:
@@ -1099,14 +1181,9 @@
   discountDownTo:
     Telecrystal: 2
   cost:
-    Telecrystal: 4
+    Telecrystal: 5
   categories:
   - UplinkWearables
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
 
 - type: listing
   id: UplinkEnergyDomePersonalSyndie

@@ -1,7 +1,7 @@
 - type: entity
   id: BasePowerCell
   abstract: true
-  parent: BaseItem
+  parent: [BaseItem, MachineComponentSounds] # Sunrise
   components:
   - type: Item
     storedRotation: -90

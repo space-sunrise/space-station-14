@@ -39,6 +39,13 @@
       map: [ "enum.AmmoVisualLayers.Base" ]
   - type: Appearance
   - type: SpentAmmoVisuals
+  # Sunrise start
+  - type: EmitSoundOnLand
+    sound:
+      collection: ShellEmptyFall
+      params:
+        volume: -1
+  # Sunrise end
 
 - type: entity
   id: ShellShotgunBeanbag

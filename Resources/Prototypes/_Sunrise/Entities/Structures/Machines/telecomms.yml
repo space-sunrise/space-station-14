@@ -7,3 +7,15 @@
     containers:
       key_slots:
       - EncryptionKeyLaw
+
+- type: entity
+  parent: TelecomServer
+  id: TelecomServerFilledUSSP
+  suffix: USSP
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyUSSP
+      - EncryptionKeyUSSPSec
+      - EncryptionKeyUSSPCom

@@ -255,7 +255,7 @@
       - id: ClothingHeadHatCone
         weight: 2
       - id: BookRandomStory
-        weight: 0.25
+        weight: 0.20
       - id: ToolboxElectricalFilled
       - id: ToolboxMechanicalFilled
       - id: ClothingBeltUtility
@@ -291,13 +291,21 @@
       - id: DrinkMopwataBottleRandom
       - id: SpectralLocator
       - id: LidSalami
-        weight: 0.05
+        weight: 0.10
       # Sunrise-start
       - id: SprayPaintBlue
       - id: SprayPaintRed
       - id: SprayPaintGreen
       - id: SprayPaintOrange
       - id: DeathPaint
+      - id: MechPaintRipleyZairjah
+      - id: MechPaintGygaxOld
+      - id: MechPaintDurandExecutor
+      - id: MechPaintRipleyHauler
+      - id: MechPaintGygaxWhite
+      - id: MechPaintClarkeOrangey
+      - id: MechPaintRipleyFirestarter
+      - id: MechPaintRipleyAluminizer
       # Sunrise-end
 
 - type: entity

@@ -55,7 +55,7 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_antimatrifle
   - type: Gun
-    fireRate: 1.4
+    fireRate: 1.25
     selectedMode: FullAuto
     availableModes:
       - FullAuto
@@ -63,7 +63,7 @@
       path: /Audio/_Sunrise/Weapons/Guns/Snipers/Bauer127/bauer127_shot.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: CartridgeAntiMateriel
-    fireCost: 80
+    fireCost: 120
   - type: Appearance
   - type: AmmoCounter
 

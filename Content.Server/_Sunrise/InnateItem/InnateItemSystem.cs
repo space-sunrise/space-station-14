@@ -15,7 +15,7 @@ namespace Content.Server._Sunrise.InnateItem
         public override void Initialize()
         {
             base.Initialize();
-            SubscribeLocalEvent<InnateItemComponent, ComponentStartup>(OnStartup);
+            SubscribeLocalEvent<InnateItemComponent, MapInitEvent>(OnMapInit);
             SubscribeLocalEvent<InnateItemComponent, InnateWorldTargetActionEvent>(WorldTargetActionActivate);
             SubscribeLocalEvent<InnateItemComponent, InnateInstantActionEvent>(InstantActionActivate);
             SubscribeLocalEvent<InnateItemComponent, ComponentShutdown>(OnShutdown);
@@ -29,7 +29,7 @@ namespace Content.Server._Sunrise.InnateItem
             }
         }
 
-        private void OnStartup(EntityUid uid, InnateItemComponent component, ComponentStartup args)
+        private void OnMapInit(EntityUid uid, InnateItemComponent component, MapInitEvent args)
         {
             AddItems(uid, component);
         }

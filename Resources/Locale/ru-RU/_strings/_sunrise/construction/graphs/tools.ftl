@@ -16,3 +16,5 @@ recipe-blingfold-name = повязка на глаза
 recipe-blingfold-description = Полоса непроницаемого материала.
 recipe-makeshifthandcuffs-name = самодельные наручники
 recipe-makeshifthandcuffs-description = Самодельные наручники, изготовленные из запасных кабелей.
+recipe-rollingpin-name = скалка
+recipe-rollingpin-description = Кухонный инструмент для раскатывания теста.

@@ -414,7 +414,7 @@
     - state: icon-chemist
   - type: ItemBorgModule
     items:
-    - HyposprayBorgMedical # Sunrise-Edit
+    - HypoBorgMedical # Sunrise-Edit
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-diagnosis-module }
 

@@ -18,6 +18,8 @@ uplink-grenade-emp-desc = ЭМИ граната. Совместима с "China-
 uplink-magazine-siar52-name = Магазин ПП (.25 безгильзовый)
 uplink-magazine-siar52-desc = Магазин ПП на 30 патронов. Совместим с SIAR-52.
 uplink-magazine-bauer127-extended-name = расширенный магазин Bauer127 (.60 антиматериальные)
+uplink-mechpaint-mauler-name = балончик краски "МЯУЛЕР"
+uplink-mechpaint-mauler-desc = Содержит краску для Маулера. Превратите огромного МЕХа в милого котика!.
 uplink-magazine-bauer127-extended-desc = Магазин для Bauer127. Содержит 15 патронов калибра .60 антиматериальный.
 uplink-magazine-dl6902-name = Короб-магазин DL6902 (.30 винтовочные)
 uplink-magazine-dl6902-desc = Магазин для Dl6902. Содержит 200 патронов калибра .30.
@@ -77,6 +79,12 @@ uplink-hypo-name = Горлекс гипоспрей
 uplink-hypo-desc = Химический гипоспрей, произвёденный синдикатом, способный мгновенно впрыснуть до 20 ед. реагентов. Изначально пуст.
 uplink-polytrinic-acid-chemistry-bottle-name = Политриновая кислота
 uplink-polytrinic-acid-chemistry-bottle-desc = Чрезвычайно едкое химическое вещество. Сильно обжигает всех, кто вступит с ней в непосредственный контакт.
+uplink-syringe-pistol-filled-name = Компактный шприцемёт
+uplink-syringe-pistol-filled-desc = Сразу заполнен тремя шприцами. В шприцах: токсин немоты,карпотоктин и фризиум.
+uplink-syringe-box-filled-name = коробка мини шприцов
+uplink-syringe-box-filled-desc = Полная коробка мини шприцов.
+uplink-syringe-rapid-name = Автоматический шприцемёт
+uplink-syringe-rapid-desc = Изначально пуст. Принимает до 10-ми шприцов. Сделайте из Офицера СБ Ёжика!
 
 ## Mechs equipment
 

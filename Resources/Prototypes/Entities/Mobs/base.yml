@@ -46,6 +46,7 @@
   # Sunrise-Start
   - type: TTS
   - type: DamageOverlay
+  - type: EmoteAnimation
   # Sunrise-End
 
 - type: entity
@@ -247,3 +248,9 @@
     bloodlossHealDamage:
       types:
         Bloodloss: -1
+  - type: MeleeSound
+    soundTypes:
+      Slash:
+        collection: SquishyHitSlash
+      Piercing:
+        collection: SquishyHitPiercing

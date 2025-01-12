@@ -626,6 +626,13 @@ public abstract class SharedStrippableSystem : EntitySystem
         if (args.Handled || args.Target != args.User)
             return;
 
+        // Sunrise-Start
+        if (!TryComp<StrippingComponent>(args.Target, out var strippingComp) || !strippingComp.UseDragDrop)
+        {
+            return;
+        }
+        // Sunrise-End
+
         if (TryOpenStrippingUi(args.User, (uid, component)))
             args.Handled = true;
     }

@@ -7,7 +7,7 @@
   roles:
     - Magistrat
     - IAA
-  #  - Lawyer Sunrise-Roles
+    - Lawyer
 
 - type: department # Surnise-Blueshield
   id: Blueshield

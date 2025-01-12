@@ -3,20 +3,26 @@
   name: roles-antag-nuclear-operative-name
   antagonist: true
   setPreference: true
+  playTimeTracker: AntagNuclearOperative # Sunrise-Edit
   objective: roles-antag-nuclear-operative-objective
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 36000 # 10h # Sunrise-RoleTime
   - !type:DepartmentTimeRequirement
     department: Security
-    time: 7200 # 2h # Sunrise-RoleTime
+    time: 18000 # 5h # Sunrise-RoleTime
   guides: [ NuclearOperatives ]
+  # Sunrise-Edit
+  previewIcon:
+    sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
+    state: nuke_operative
 
 - type: antag
   id: NukeopsMedic
   name: roles-antag-nuclear-operative-medic-name
   antagonist: true
   setPreference: true
+  playTimeTracker: AntagNuclearMedic # Sunrise-Edit
   objective: roles-antag-nuclear-operative-medic-objective
   requirements:
   - !type:OverallPlaytimeRequirement
@@ -28,21 +34,30 @@
     department: Security
     time: 18000 # 5h # Sunrise-RoleTime
   guides: [ NuclearOperatives ]
+  # Sunrise-Edit
+  previewIcon:
+    sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
+    state: nuke_medic
 
 - type: antag
   id: NukeopsCommander
   name: roles-antag-nuclear-operative-commander-name
   antagonist: true
   setPreference: true
+  playTimeTracker: AntagNuclearCommander # Sunrise-Edit
   objective: roles-antag-nuclear-operative-commander-objective
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 36000 # 10h # Sunrise-RoleTime
+    time: 72000 # 20h # Sunrise-RoleTime
   - !type:DepartmentTimeRequirement
     department: Security
-    time: 18000 # 5h # Sunrise-RoleTime
+    time: 36000 # 10h # Sunrise-RoleTime
   # should be changed to nukie playtime when thats tracked (wyci)
   guides: [ NuclearOperatives ]
+  # Sunrise-Edit
+  previewIcon:
+    sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
+    state: nuke_commander
 
 - type: startingGear
   id: SyndicateOperativeGearFullNoUplink
@@ -87,6 +102,7 @@
     pocket1: BaseUplinkRadio0TC
   inhand:
   - NukeOpsDeclarationOfWar
+  - RemoteNukeOpShuttleController # Sunrise-Edit
 
 #Nuclear Operative Medic Gear
 - type: startingGear

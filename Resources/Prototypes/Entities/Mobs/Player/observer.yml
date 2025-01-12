@@ -71,6 +71,13 @@
     interactSuccessSound:
       path: /Audio/Animals/cat_meow.ogg
   - type: Pullable
+  # Sunrise-Start
+  - type: UserInterface
+    interfaces:
+      enum.GhostThemeUiKey.Key:
+        type: GhostThemeBoundUserInterface
+        requireInputValidation: false
+  # Sunrise-End
 
 # proto for player ghosts specifically
 - type: entity

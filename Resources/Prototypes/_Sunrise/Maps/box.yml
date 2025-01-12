@@ -37,7 +37,7 @@
             #engineering
             ChiefEngineer: [ 1, 1 ]
             SeniorEngineer: [ 1, 1 ]
-            AtmosphericTechnician: [ 6, 6 ]
+            AtmosphericTechnician: [ 4, 4 ]
             StationEngineer: [ 5, 5 ]
             TechnicalAssistant: [ 5, -1 ]
             #medical
@@ -54,7 +54,7 @@
             SeniorResearcher: [ 1, 1 ]
             Scientist: [ 5, 5 ]
             ResearchAssistant: [ 5, -1 ]
-            Roboticist: [ 4, 4 ]
+            Roboticist: [ 3, 3 ]
             #security
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
@@ -66,7 +66,7 @@
             SecurityCadet: [ 5, -1 ]
             #supply
             Quartermaster: [ 1, 1 ]
-            SalvageSpecialist: [ 6, 6 ]
+            SalvageSpecialist: [ 4, 4 ]
             CargoTechnician: [ 3, 3 ]
             #civilian
             Passenger: [ -1, -1 ]
@@ -81,7 +81,15 @@
             Lawyer: [ 3, 3 ]
             # silicon
             StationAi: [ 1, 1 ]
-            Borg: [ 22, 22 ]
+            Borg: [ 2, 2 ]
+            EngineerBorg: [ 2, 2 ]
+            MiningBorg: [ 2, 2 ]
+            JanitorBorg: [ 2, 2 ]
+            ServiceBorg: [ 2, 2 ]
+            ClownBorg: [ 2, 2 ]
+            PeaceBorg: [ 2, 2 ]
+            MedicalBorg: [ 4, 4 ]
+            SecurityBorg: [ 4, 4 ]
             SecurityCombatBorg: [ 2, 2 ]
         - type: StationGoal
           goals:
@@ -115,3 +123,4 @@
           - Saboteurs
           - Furs
           - Crew
+          - VirusFlesh

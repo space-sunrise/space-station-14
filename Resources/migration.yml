@@ -539,6 +539,9 @@ LightTree04: LightTree
 LightTree05: LightTree
 LightTree06: LightTree
 
+#2024-12-28
+DrinkIrishCarBomb: DrinkIrishSlammer
+
 # Sunrise migrations
 AirlockExternalGlassShuttleArrivals: AirlockExternalGlassShuttleArrivalsLocked
 AirlockHatchSyndicate: AirlockHatchSyndicateLocked
@@ -563,3 +566,9 @@ ComputerShuttleCargo: null
 ClothingOuterHardsuitSecurity: ClothingOuterHardsuitSecuritySunrise
 ClothingHeadHelmetHardsuitSecurity: ClothingHeadHelmetHardsuitSecuritySunrise
 EffectHearts: null
+CloningPod: null
+ComputerCloningConsole: null
+MedicalScanner: null
+CloningPodMachineCircuitboard: null
+CloningConsoleComputerCircuitboard: null
+MedicalScannerMachineCircuitboard: null

@@ -16,6 +16,7 @@
     attackRate: 3.5
     damage:
       types:
-        Structural: 50
-        Piercing: 30
-        Blant: 10
+        Structural: 60
+        Piercing: 7
+        Slash: 7
+        Blunt: 10

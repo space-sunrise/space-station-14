@@ -116,7 +116,7 @@
   - type: StorageFill
     contents:
     - id: ClothingMaskGasSecurity
-    - id: EmergencyOxygenTankFilled
+    - id: ExtendedEmergencyOxygenTankFilled #Sunrise-Edit
     - id: EmergencyMedipen
     - id: GlowstickRed
       orGroup: Glowstick
@@ -141,7 +141,7 @@
   - type: StorageFill
     contents:
     - id: ClothingMaskGasSecurity
-    - id: EmergencyNitrogenTankFilled
+    - id: ExtendedEmergencyNitrogenTankFilled #Sunrise-Edit
     - id: EmergencyMedipen
     - id: GlowstickRed
       orGroup: Glowstick

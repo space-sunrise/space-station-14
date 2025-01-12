@@ -121,6 +121,8 @@
     - SoapNT
     - SoapDeluxe
     - SoapHomemade
+  - type: PieThrower
+    pieProtoId: FoodPieBananaCream
   - type: TTS
     voice: NecoArcTwo
 
@@ -207,7 +209,7 @@
     - Cargo
     - Research
     - Service
-    - Maintenance
+#    - Maintenance #увы
     - Brig
     - Security
     - External

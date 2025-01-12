@@ -1,0 +1,110 @@
+﻿- type: entity
+  id: BaseGunPulseSound
+  abstract: true
+  components:
+  - type: EmitSoundOnPickup
+    sound:
+      collection: PulsePickUp
+  - type: EmitSoundOnDrop
+    sound:
+      collection: PulseDrop
+  - type: EmitSoundOnLand
+    sound:
+      collection: PulseDrop
+
+- type: soundCollection
+  id: RiflesPickUp
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Rifles/pickup1.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Rifles/pickup2.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Rifles/pickup3.ogg
+
+- type: soundCollection
+  id: RiflesDrop
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Rifles/drop1.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Rifles/drop1.ogg
+
+- type: soundCollection
+  id: PistolsPickUp
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Pistols/pickup1.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Pistols/pickup2.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Pistols/pickup3.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Pistols/pickup4.ogg
+
+- type: soundCollection
+  id: PistolsDrop
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Pistols/drop1.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Pistols/drop2.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Pistols/drop3.ogg
+
+- type: soundCollection
+  id: LasersPickUp
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Lasers/pickup1.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Lasers/pickup2.ogg
+
+- type: soundCollection
+  id: LasersDrop
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Lasers/drop1.ogg
+
+- type: soundCollection
+  id: PulsePickUp
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Lasers/Pulse/pickup1.ogg
+
+- type: soundCollection
+  id: PulseDrop
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Lasers/Pulse/drop1.ogg
+
+- type: soundCollection
+  id: SnipersPickUp
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Snipers/pickup1.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Snipers/pickup2.ogg
+
+- type: soundCollection
+  id: SnipersDrop
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Snipers/drop1.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Snipers/drop2.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Snipers/drop3.ogg
+
+- type: soundCollection
+  id: ShotgunsPickUp
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Shotguns/pickup1.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Shotguns/pickup2.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Shotguns/pickup3.ogg
+
+- type: soundCollection
+  id: ShotgunsDrop
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Shotguns/drop1.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Shotguns/drop2.ogg
+
+- type: soundCollection
+  id: RevolversPickUp
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Pistols/Revolvers/pickup1.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Pistols/Revolvers/pickup2.ogg
+
+- type: soundCollection
+  id: RevolversDrop
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Pistols/Revolvers/drop1.ogg
+  - /Audio/_Sunrise/Weapons/Guns/Pistols/Revolvers/drop2.ogg
+
+- type: soundCollection
+  id: RevolversCollide
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Pistols/Revolvers/collide1.ogg
+
+- type: soundCollection
+  id: RevolversPutIn
+  files:
+  - /Audio/_Sunrise/Weapons/Guns/Pistols/Revolvers/putin1.ogg

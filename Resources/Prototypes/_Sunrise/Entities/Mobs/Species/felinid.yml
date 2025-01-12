@@ -20,7 +20,7 @@
         shape:
           !type:PhysShapeCircle
           radius: 0.20
-        density: 165
+        density: 50
         restitution: 0.0
         mask:
         - MobMask
@@ -93,8 +93,8 @@
         showInChat: true
         probability: 0.35
   - type: MovementSpeedModifier
-    baseSprintSpeed: 4.0
     baseWalkSpeed: 2.0
+    baseSprintSpeed: 4.0
 #  - type: DamagedByFlashing
 #    flashDamage:
 #      types:

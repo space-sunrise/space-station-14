@@ -10,3 +10,5 @@ recipe-RedLight-name = красная кристальная лампа-труб
 recipe-RedLight-description = Мощная лампа, внутри которой находится маленький цветной кристалл.
 recipe-GreenLight-name = зелёная кристальная лампа-трубка
 recipe-GreenLight-description = Мощная лампа, внутри которой находится маленький цветной кристалл.
+recipe-EmergencyLightFixture-name = аварийный светильник
+recipe-EmergencyLightFixture-description = Аварийный светильник для тёмных времён.

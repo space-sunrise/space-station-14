@@ -78,7 +78,9 @@ public sealed class PresetIdCardSystem : EntitySystem
             return;
         }
 
-        _accessSystem.SetAccessToJob(uid, job, extended);
+
+        if (id.SetAccess) // Sunrise-Edit
+            _accessSystem.SetAccessToJob(uid, job, extended);
 
         _cardSystem.TryChangeJobTitle(uid, job.LocalizedName);
         _cardSystem.TryChangeJobDepartment(uid, job);

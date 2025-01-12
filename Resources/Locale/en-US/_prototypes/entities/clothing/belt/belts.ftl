@@ -1,3 +1,5 @@
+ent-BaseClothingBeltSounds = { "" }
+    .desc = { "" }
 ent-ClothingBeltUtility = utility belt
     .desc = Can hold various things.
 ent-ClothingBeltChiefEngineer = chief engineer's toolbelt

@@ -1257,6 +1257,10 @@
   parent: BaseItem
   categories: [ HideSpawnMenu ]
   components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+    - state: grenade
   - type: Projectile
     damage:
       types:

@@ -1,5 +1,7 @@
 ent-ComputerAlert = atmospheric alerts computer
     .desc = Used to access the station's atmospheric automated alert system.
+ent-ComputerAtmosMonitoring = atmospheric network monitor
+    .desc = Used to monitor the station's atmospheric networks.
 ent-ComputerEmergencyShuttle = emergency shuttle console
     .desc = Handles authorization to early launch the shuttle.
 ent-BaseComputerShuttle = shuttle console
@@ -30,6 +32,8 @@ ent-ComputerResearchAndDevelopment = R&D computer
 ent-ComputerAnalysisConsole = analysis console
     .desc = A computer used to interface with the artifact analyzer.
 ent-ComputerId = ID card computer
+    .desc = Terminal for programming Nanotrasen employee ID cards to access parts of the station.
+ent-ComputerIdUSSP = USSP ID card computer
     .desc = Terminal for programming Nanotrasen employee ID cards to access parts of the station.
 ent-computerBodyScanner = body scanner computer
     .desc = A body scanner.

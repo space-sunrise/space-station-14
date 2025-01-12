@@ -59,16 +59,19 @@ public sealed class PlanetPrisonStationSystem : EntitySystem
 
     private void OnPlanetPrisonStationInit(EntityUid uid, PlanetPrisonStationComponent component, ComponentInit args)
     {
-        if (TryComp<TransformComponent>(component.Entity, out var xform))
-        {
-            component.MapId = xform.MapID;
+        var enable = _cfg.GetCVar(SunriseCCVars.MinPlayersEnable);
+        if (!enable)
             return;
-        }
 
         var minPlayers = _cfg.GetCVar(SunriseCCVars.MinPlayersPlanetPrison);
         if (_player.PlayerCount <= minPlayers)
         {
             _chat.DispatchServerAnnouncement(Loc.GetString("planet-prison-not-enough-players", ("minimumPlayers", minPlayers)), Color.OrangeRed);
+            return;
+        }
+        if (TryComp<TransformComponent>(component.Entity, out var xform))
+        {
+            component.MapId = xform.MapID;
             return;
         }
         AddPlanetPrison(component);

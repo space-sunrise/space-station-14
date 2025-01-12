@@ -759,7 +759,10 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
     public static string? GetHighestDamageSound(DamageSpecifier modifiedDamage, IPrototypeManager protoManager)
     {
-        var groups = modifiedDamage.GetDamagePerGroup(protoManager);
+        // Sunrise edit start
+        // Сука, какие группы
+        var groups = modifiedDamage.DamageDict;
+        // Sunrise edit end
 
         // Use group if it's exclusive, otherwise fall back to type.
         if (groups.Count == 1)

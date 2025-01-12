@@ -6,9 +6,14 @@
   - SunriseFland
   - SunriseMarathon
   - SunriseBagel
-  - SunriseReach
-  - SunriseTrain
   - SunriseMeta
-  #- SunriseOasis Играбельна но требует небольшой доработки
   - SunriseCog
+  # Неиграбельно
+  #- SunriseTrain
+  # Играбельна но требует небольшой доработки
+  #- SunriseOasis
+  # Неиграбельно
+  #- SunriseReach
+  # Неиграбельно
+  #- SunriseCorvaxGelta
 # НЕ ДОБАВЛЯТЬ НОВЫЕ КАРТЫ БЕЗ МОЕГО РЕВЬЮ! ~ SplikZerys

@@ -39,5 +39,3 @@ trait-french-name = Французский акцент
 trait-french-desc = Ваш акцент имеет некое «je ne sais quoi».
 trait-spanish-name = Испанский акцент
 trait-spanish-desc = Hola señor, где находится библиотека?
-trait-noemotions-name = Крепкий орешек
-trait-noemotions-desc = Вы настолько очерствели, что физическая боль не вызывает у вас произвольных звуков.

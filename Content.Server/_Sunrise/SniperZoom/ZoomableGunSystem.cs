@@ -34,9 +34,7 @@ public sealed class ZoomableGunSystem : EntitySystem
     private void OnItemUnwieldedEvent(EntityUid uid, ZoomableGunComponent comp, ItemUnwieldedEvent ev)
     {
         comp.Wielded = false;
-        if (ev.User == null)
-            return;
-        DisableZoom(ev.User.Value, comp);
+        DisableZoom(ev.User, comp);
     }
 
     private void EnableZoom(EntityUid uid, ZoomableGunComponent comp)

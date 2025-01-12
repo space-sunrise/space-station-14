@@ -29,3 +29,19 @@
     - Inorganic
     - Silicon
     - Mech # Sunrise-edit
+
+- type: entity
+  parent: [ ClothingEyesBase, ShowSecurityIcons ]
+  id: ClothingEyesHudDiagnosticERT
+  name: ERT Mech pilot visor
+  description: Mech pilote`s professional head-up display, designed for quick diagnosis of their Mech's status.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Eyes/Hud/diag_nt.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Eyes/Hud/diag_nt.rsi
+  - type: ShowHealthBars
+    damageContainers:
+    - Inorganic
+    - Silicon
+    - Mech # Sunrise-edit

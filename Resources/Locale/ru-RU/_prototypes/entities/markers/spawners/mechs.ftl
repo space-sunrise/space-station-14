@@ -38,3 +38,6 @@ ent-SpawnMechMaulerSyndie = спавнер Маулер
 ent-SpawnMechMaulerSyndieFilled = спавнер Маулер
     .desc = { ent-MarkerBase.desc }
     .suffix = Заполнен
+ent-SpawnMechSecPodFilled = спавнер Патрульного Пода
+    .suffix = Заполнен
+    .desc = { ent-MarkerBase.desc }

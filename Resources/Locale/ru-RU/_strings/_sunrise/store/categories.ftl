@@ -25,3 +25,15 @@ shop-disease-category-evolution = Улучшение
 # Uplink
 store-category-objectives = Цели
 store-category-mechs = Мехи
+# ntUplink
+store-category-ntautogun = Автоматы
+store-category-ntlasers = Лазерное оружие
+store-category-ntmedicine = Медицина
+store-category-ntpistols = Пистолеты
+store-category-ntadditional = Дополнительное
+store-category-ntsanitary = Санитария
+store-category-ntengineering = Инженерия
+store-category-ntmechs = Мехи
+store-category-ntexplosive = Взрывчатка
+store-category-ntammo = Боеприпасы
+store-category-ntequipment = Экипировка

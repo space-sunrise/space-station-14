@@ -207,3 +207,14 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/adidas-white.rsi
 
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpskirtChristmas
+  name: christmas female jumpsuit
+  description: Pretty old stuff for these times, bringing back old memories.....
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/christmas_jumpsuit.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/christmas_jumpsuit.rsi
+

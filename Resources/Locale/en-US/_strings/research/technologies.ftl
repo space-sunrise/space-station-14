@@ -45,6 +45,7 @@ research-technology-advanced-shuttle-weapon = Advanced shuttle weapons
 research-technology-advance-laser = Military-grade energy weaponry
 research-technology-explosive-mech-ammunition = Explosive Mech Ammunition
 research-technology-combat-equipment = Combat equipment
+research-technology-combat-powercells = Combat Super Powercells
 
 research-technology-basic-robotics = Basic Robotics
 research-technology-basic-anomalous-research = Basic Anomalous Research
