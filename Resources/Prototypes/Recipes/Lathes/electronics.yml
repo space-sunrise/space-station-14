@@ -665,6 +665,11 @@
   id: HolopadMachineCircuitboard
   result: HolopadMachineCircuitboard
 
+- type: latheRecipe
+  parent: BaseGoldCircuitboardRecipe
+  id: ExosuitFabricatorHyperConvectionMachineCircuitboard
+  result: ExosuitFabricatorHyperConvectionMachineCircuitboard
+
 - type: latheRecipe #sunrise-start
   parent: BaseGoldCircuitboardRecipe
   id: ImplantExtractorMachineCircuitboard

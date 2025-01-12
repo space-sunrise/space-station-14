@@ -6,3 +6,6 @@ ent-ImplantExtractorMachineCircuitboard = Экстрактор импланто�
     .desc = Машинная плата Микроволнового экстрактора имплантов.
 ent-InterrogatorMachineCircuitboard = Экстрактор имплантов "Interrogator" (машинная плата)
     .desc = { ent-ImplantExtractorMachineCircuitboard.desc }
+ent-ExosuitFabricatorHyperConvectionMachineCircuitboard = гиперконвекционный фабрикатор экзокостюмов (машинная плата)
+    .desc = { ent-BaseMachineCircuitboard.desc }
+
