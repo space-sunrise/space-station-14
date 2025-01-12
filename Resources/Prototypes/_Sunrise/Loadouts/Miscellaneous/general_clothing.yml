@@ -136,6 +136,17 @@
 
 #Neck
 
+
+- type: loadout
+  id: Sunrise-ScarfBlack
+  equipment:
+    neck: ClothingNeckScarfStripedBlack
+
+- type: loadout
+  id: Sunrise-ScarfGreen
+  equipment:
+    neck: ClothingNeckScarfStripedGreen
+
 - type: loadout
   id: Sunrise-ScarfRed
   equipment:
@@ -265,6 +276,11 @@
   equipment:
     outerClothing: ClothingOuterWinterColorCyan
 
+- type: loadout
+  id: Sunrise-WinterColorBlack
+  equipment:
+    outerClothing: ClothingOuterWinterColorBlack
+
 #Shoes
 
 - type: loadout
@@ -312,7 +328,12 @@
   equipment:
     shoes: ClothingShoesLeather
 
-#gloves
+# Gloves
+
+- type: loadout
+  id: Sunrise-BlackGloves
+  equipment:
+    gloves: ClothingHandsGlovesColorBlack
 
 - type: loadout
   id: Sunrise-RedGloves

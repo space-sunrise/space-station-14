@@ -647,9 +647,15 @@
   groups:
   - GroupTankHarness
   - ChiefMedicalOfficerHead
-  - MedicalMask
+#  - MedicalMask   #Sunrise-edit
+# Sunrise-start
+  - SunriseChiefMedicalOfficerMask
+# Sunrise-end
   - ChiefMedicalOfficerJumpsuit
-  - MedicalGloves
+# Sunrise-start
+  - SunriseChiefMedicalOfficerGloves
+# Sunrise-end
+#  - MedicalGloves  #Sunrise-edit
   - MedicalBackpack
   - ChiefMedicalOfficerOuterClothing
   - ChiefMedicalOfficerNeck
@@ -728,10 +734,11 @@
   - GroupTankHarness
   # Sunrise-start
   - SunriseChemistHead
+  - SunriseChemistMask
   # Sunrise-end
-  - MedicalMask
+#  - MedicalMask   #Sunrise-edit
   - ChemistJumpsuit
-#    - MedicalGloves
+#    - MedicalGloves #Sunrise-edit
   # Sunrise-start
   - SunriseChemistGloves
   # Sunrise-end
@@ -740,7 +747,9 @@
   # Sunrise-start
   - SunriseChemistNeck
   # Sunrise-end
-  - MedicalShoes
+  - SunriseChemistShoes
+  # Sunrise-end
+#  - MedicalShoes #Sunrise-edit
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical
@@ -757,9 +766,12 @@
   groups:
   - GroupTankHarness
   - ParamedicHead
-  - MedicalMask
+#  - MedicalMask   #Sunrise-edit
+  # Sunrise-start
+  - SunriseParamedicMask
+  # Sunrise-end
   - ParamedicJumpsuit
-#  - MedicalGloves
+#  - MedicalGloves #Sunrise-edit
   # Sunrise-start
   - SunriseParamedicGloves
   # Sunrise-end
@@ -820,6 +832,7 @@
   groups:
   # Sunrise-start
   - SunrisePsychologistHead
+  - MedicalMask
   - SunrisePsychologistGloves
   # Sunrise-end
   - CommonBackpack # Sunrise-edit

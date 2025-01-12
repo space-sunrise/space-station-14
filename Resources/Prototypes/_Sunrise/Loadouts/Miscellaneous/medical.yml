@@ -170,7 +170,6 @@
   equipment:
     mask: ClothingMaskBreathMedicalBlack
 
-
 - type: loadout
   id: Sunrise-MedicalMaskBlue
   equipment:
@@ -197,7 +196,7 @@
     mask: ClothingMaskSterileOrange
 
 - type: loadout
-  id: Sunrise-MedicalMaskBlue
+  id: Sunrise-MedicalSterileRed
   equipment:
     mask: ClothingMaskSterileRed
 
@@ -227,23 +226,6 @@
   id: Sunrise-GlovesNitrileBlue
   equipment:
     gloves: ClothingHandsGlovesNitrileBlue
-
-#Head
-
-- type: loadout
-  id: Sunrise-SurgcapBlue
-  equipment:
-    Head: ClothingHeadHatSurgcapBlue
-
-- type: loadout
-  id: Sunrise-SurgcapGreen
-  equipment:
-    Head: ClothingHeadHatSurgcapGreen
-
-- type: loadout
-  id: Sunrise-SurgcapPurple
-  equipment:
-    Head: ClothingHeadHatSurgcapPurple
 
 
 

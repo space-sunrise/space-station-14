@@ -1230,6 +1230,16 @@
   loadouts:
   - ChiefMedicalOfficerCloak
   - ChiefMedicalOfficerMantle
+# Sunrise-start
+  - Sunrise-ScarfBlue
+  - Sunrise-ScarfRed
+  - Sunrise-ScarfOrange
+  - Sunrise-ScarfGreen
+  - Sunrise-ScarfLightBlue 
+  - Sunrise-ScarfCyan
+  - Sunrise-ScarfBlue
+  - Sunrise-Stethoscope
+# Sunrise-end
 
 - type: loadoutGroup
   id: ChiefMedicalOfficerShoes
@@ -1289,6 +1299,14 @@
   minLimit: 0
   loadouts:
   - LatexGloves
+# Sunrise-start
+  - Sunrise-WhiteGloves
+  - Sunrise-RedGloves
+  - Sunrise-GreenGloves
+  - Sunrise-TealGloves
+  - Sunrise-GlovesNitrileRed
+  - Sunrise-GlovesNitrileGreen
+# Sunrise-end
   - NitrileGloves
 
 - type: loadoutGroup
@@ -1296,7 +1314,16 @@
   name: loadout-group-medical-mask
   minLimit: 0
   loadouts:
+# Sunrise-start
+  - Sunrise-MedicalSterileRed
+  - Sunrise-MedicalSterileGreen
+# Sunrise-end
   - SterileMask
+# Sunrise-start
+  - Sunrise-MedicalMaskRed
+  - Sunrise-MedicalMaskGreen
+  - Sunrise-MedicalMask
+# Sunrise-end
 
 - type: loadoutGroup
   id: MedicalInternJumpsuit
