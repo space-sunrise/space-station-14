@@ -630,6 +630,7 @@
   - Trinkets
   - GroupSpeciesBreathToolMedical
   # Sunrise-start
+  - MedicalTrinkets
   - Bra
   - Pants
   - Socks
@@ -645,6 +646,9 @@
   - MedicalGloves
   - MedicalBackpack
   - MedicalDoctorOuterClothing
+  # Sunrise-start
+  - SunriseMedicalDoctorNeck
+  # Sunrise-end
   - MedicalShoes
   #- MedicalDoctorPDA
   - Glasses
@@ -652,6 +656,7 @@
   - Trinkets
   - GroupSpeciesBreathToolMedical
   # Sunrise-start
+  - MedicalTrinkets
   - Bra
   - Pants
   - Socks
@@ -661,13 +666,25 @@
   id: JobMedicalIntern
   groups:
   - GroupTankHarness
+  # Sunrise-start
+  - MedicalDoctorHead
+  - MedicalMask
+  # Sunrise-end
   - MedicalInternJumpsuit
+  # Sunrise-start
+  - MedicalGloves
+  # Sunrise-end
   - MedicalBackpack
+  # Sunrise-start
+  - MedicalDoctorOuterClothing
+  - SunriseMedicalDoctorNeck
+  # Sunrise-end
   - Glasses
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical
   # Sunrise-start
+  - MedicalTrinkets
   - Bra
   - Pants
   - Socks
@@ -677,16 +694,26 @@
   id: JobChemist
   groups:
   - GroupTankHarness
+  # Sunrise-start
+  - SunriseChemistHead
+  # Sunrise-end
   - MedicalMask
   - ChemistJumpsuit
-  - MedicalGloves
+#    - MedicalGloves
+  # Sunrise-start
+  - SunriseChemistGloves
+  # Sunrise-end
   - ChemistBackpack
   - ChemistOuterClothing
+  # Sunrise-start
+  - SunriseChemistNeck
+  # Sunrise-end
   - MedicalShoes
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical
   # Sunrise-start
+  - MedicalTrinkets
   - Bra
   - Pants
   - Socks
@@ -699,15 +726,22 @@
   - ParamedicHead
   - MedicalMask
   - ParamedicJumpsuit
-  - MedicalGloves
+#  - MedicalGloves
+  # Sunrise-start
+  - SunriseParamedicGloves
+  # Sunrise-end
   - MedicalBackpack
   - ParamedicOuterClothing
+  # Sunrise-start
+  - SunriseParamedicNeck
+  # Sunrise-end
   - ParamedicShoes
   - Glasses
   - SurvivalMedical
   - Trinkets
   - GroupSpeciesBreathToolMedical
-  # Sunrise-start
+# Sunrise-start
+  - MedicalTrinkets
   - Bra
   - Pants
   - Socks
@@ -748,15 +782,25 @@
 - type: roleLoadout
   id: JobPsychologist
   groups:
+  # Sunrise-start
+  - SunrisePsychologistHead
+  - SunrisePsychologistGloves
+  # Sunrise-end
   - CommonBackpack # Sunrise-edit
   - GroupTankHarness
   - PsychologistJumpsuit
   - MedicalBackpack
+  # Sunrise-start
+  - SunrisePsychologistOuterClothing
+  - SunrisePsychologistNeck
+  - SunrisePsychologistShoes
+  # Sunrise-end
   - Glasses
   - Survival
   - Trinkets
   - GroupSpeciesBreathTool
   # Sunrise-start
+  - MedicalTrinkets
   - Bra
   - Pants
   - Socks

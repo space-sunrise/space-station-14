@@ -1,0 +1,253 @@
+ #Back
+
+- type: loadout
+  id: TrinketsMedicalS
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Medical
+      time: 7200 # 2hr
+  storage:
+    back:
+    - Syringe
+
+- type: loadout
+  id: TrinketsMedicalECB
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Medical
+      time: 7200 # 2hr
+  storage:
+    back:
+    - EpinephrineChemistryBottle
+
+- type: loadout
+  id: TrinketsMedicalHHA
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Medical
+      time: 7200 # 2hr
+  storage:
+    back:
+    - HandheldHealthAnalyzer
+
+- type: loadout
+  id: TrinketsMedicalCEHM
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Medical
+      time: 7200 # 2hr
+  storage:
+    back:
+    - ClothingEyesHudMedical
+
+- type: loadout
+  id: TrinketsMedicalCEEHM
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Medical
+      time: 7200 # 2hr
+  storage:
+    back:
+    - ClothingEyesEyepatchHudMedical
+
+- type: loadout
+  id: TrinketsMedicalBMS
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Medical
+      time: 7200 # 2hr
+  storage:
+    back:
+    - BoxMouthSwab
+
+- type: loadout
+  id: TrinketsMedicalTFC
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChemist
+      time: 72000 # 20 hour
+  storage:
+    back:
+    - ToyFigurineChemist
+
+- type: loadout
+  id: TrinketsMedicalTFCMO
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChiefMedicalOfficer
+      time: 72000 # 20 hour
+  storage:
+    back:
+    - ToyFigurineChiefMedicalOfficer
+
+- type: loadout
+  id: TrinketsMedicalTFP
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobParamedic
+      time: 72000 # 20 hour
+  storage:
+    back:
+    - ToyFigurineParamedic
+
+- type: loadout
+  id: TrinketsMedicalTFMD
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobMedicalDoctor
+      time: 72000 # 20 hour
+  storage:
+    back:
+    - ToyFigurineMedicalDoctor
+
+- type: loadout
+  id: TrinketsMedicalCNSG
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Medical
+      time: 1080000 # 300hr
+  storage:
+    back:
+    - ClothingNeckStethoscopeGold
+
+#Neck
+
+- type: loadout
+  id: Sunrise-Stethoscope
+  equipment:
+    neck: ClothingNeckStethoscope
+
+#Mask
+
+- type: loadout
+  id: Sunrise-MedicalMask
+  equipment:
+    mask: ClothingMaskBreathMedical
+
+
+- type: loadout
+  id: Sunrise-MedicalMaskRed
+  equipment:
+    mask: ClothingMaskBreathMedicalRed
+
+
+- type: loadout
+  id: Sunrise-MedicalMaskGreen
+  equipment:
+    mask: ClothingMaskBreathMedicalGreen
+
+
+- type: loadout
+  id: Sunrise-MedicalMaskOrange
+  equipment:
+    mask: ClothingMaskBreathMedicalOrange
+
+
+- type: loadout
+  id: Sunrise-MedicalMaskBlack
+  equipment:
+    mask: ClothingMaskBreathMedicalBlack
+
+
+- type: loadout
+  id: Sunrise-MedicalMaskBlue
+  equipment:
+    mask: ClothingMaskBreathMedicalBlue
+
+- type: loadout
+  id: Sunrise-MedicalSterileBlack
+  equipment:
+    mask: ClothingMaskSterileBlack
+
+- type: loadout
+  id: Sunrise-MedicalSterileBlue
+  equipment:
+    mask: ClothingMaskSterileBlue
+
+- type: loadout
+  id: Sunrise-MedicalSterileGreen
+  equipment:
+    mask: ClothingMaskSterileGreen
+
+- type: loadout
+  id: Sunrise-MedicalSterileOrange
+  equipment:
+    mask: ClothingMaskSterileOrange
+
+- type: loadout
+  id: Sunrise-MedicalMaskBlue
+  equipment:
+    mask: ClothingMaskSterileRed
+
+#Gloves
+
+- type: loadout
+  id: Sunrise-GlovesNitrileBlack
+  equipment:
+    gloves: ClothingHandsGlovesNitrileBlack
+
+- type: loadout
+  id: Sunrise-GlovesNitrileGreen
+  equipment:
+    gloves: ClothingHandsGlovesNitrileGreen
+
+- type: loadout
+  id: Sunrise-GlovesNitrileOrange
+  equipment:
+    gloves: ClothingHandsGlovesNitrileOrange
+
+- type: loadout
+  id: Sunrise-GlovesNitrileRed
+  equipment:
+    gloves: ClothingHandsGlovesNitrileRed
+
+- type: loadout
+  id: Sunrise-GlovesNitrileBlue
+  equipment:
+    gloves: ClothingHandsGlovesNitrileBlue
+
+#Head
+
+- type: loadout
+  id: Sunrise-SurgcapBlue
+  equipment:
+    Head: ClothingHeadHatSurgcapBlue
+
+- type: loadout
+  id: Sunrise-SurgcapGreen
+  equipment:
+    Head: ClothingHeadHatSurgcapGreen
+
+- type: loadout
+  id: Sunrise-SurgcapPurple
+  equipment:
+    Head: ClothingHeadHatSurgcapPurple
+
+
+
+
+
+
+

@@ -106,15 +106,40 @@
   id: JobSeniorPhysician
   groups:
   - SeniorPhysicianJumpsuit
+  - SeniorPhysicianHead
   - MedicalBackpack
-  - MedicalGloves
-  - MedicalMask
+  - SeniorPhysicianNeck
+  - SeniorPhysicianMask
+  - SeniorPhysicianOuterClothing
+  - SeniorPhysicianGloves
   - SeniorPhysicianBelt
-  - MedicalShoes
+  - SeniorPhysicianShoes
   - SurvivalMedical
   - Trinkets
   - Glasses
   - GroupSpeciesBreathTool
+  - MedicalTrinkets
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobMedicalPathologist
+  groups:
+  - MedicalDoctorJumpsuit
+  - PathologistHead
+  - MedicalBackpack
+  - PathologistMask
+  - PathologistNeck
+  - PathologistOuterClothing
+  - PathologistGloves
+  - PathologistShoes
+  - GroupTankHarness
+  - Glasses
+  - SurvivalMedical
+  - Trinkets
+  - GroupSpeciesBreathToolMedical
+  - MedicalTrinkets
   - Bra
   - Pants
   - Socks
@@ -308,23 +333,6 @@
   groups:
   - PrisonerJumpsuit
   - GroupSpeciesBreathTool
-  - Bra
-  - Pants
-  - Socks
-
-- type: roleLoadout
-  id: JobMedicalPathologist
-  groups:
-  - MedicalMask
-  - MedicalDoctorJumpsuit
-  - MedicalGloves
-  - MedicalBackpack
-  - MedicalShoes
-  - GroupTankHarness
-  - Glasses
-  - SurvivalMedical
-  - Trinkets
-  - GroupSpeciesBreathToolMedical
   - Bra
   - Pants
   - Socks

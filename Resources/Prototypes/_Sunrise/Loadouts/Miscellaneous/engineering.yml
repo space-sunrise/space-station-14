@@ -181,6 +181,12 @@
   equipment:
     head: ClothingHeadHatHardhatArmored
 
+- type: loadout
+  id: Sunrise-BeretCE
+  equipment:
+    head: ClothingHeadHatBeretCE
+
+
 
 
 

@@ -212,6 +212,183 @@
   - BeltMedicalSeniorPhysician
   - ChemBagSeniorPhysician
 
+
+
+
+
+- type: loadoutGroup
+  id: SunriseChiefMedicalOfficerMask
+  name: loadout-group-chief-medical-officer-mask
+  loadouts:
+
+- type: loadoutGroup
+  id: SunriseChiefMedicalOfficerGloves
+  name: loadout-group-chief-medical-officer-gloves
+  loadouts:
+
+- type: loadoutGroup
+  id: SeniorPhysicianHead
+  name: loadout-group-senior-physician-head
+  loadouts:
+
+- type: loadoutGroup
+  id: SeniorPhysicianOuterClothing
+  name: loadout-group-senior-physician-outerclothing
+  loadouts:
+
+
+- type: loadoutGroup
+  id: SeniorPhysicianNeck
+  name: loadout-group-senior-physician-neck
+  loadouts:
+
+
+- type: loadoutGroup
+  id: SeniorPhysicianMask
+  name: loadout-group-senior-physician-mask
+  loadouts:
+
+- type: loadoutGroup
+  id: SeniorPhysicianShoes
+  name: loadout-group-senior-physician-shoes
+  loadouts:
+
+- type: loadoutGroup
+  id: SeniorPhysicianGloves
+  name: loadout-group-senior-physician-gloves
+  loadouts:
+
+- type: loadoutGroup
+  id: SunriseChemistHead
+  name: loadout-group-chemist-head
+  loadouts:
+
+- type: loadoutGroup
+  id: SunriseChemistNeck
+  name: loadout-group-chemist-neck
+  loadouts:
+
+- type: loadoutGroup
+  id: SunriseChemistMask
+  name: loadout-group-chemist-mask
+  loadouts:
+
+- type: loadoutGroup
+  id: SunriseChemistGloves
+  name: loadout-group-chemist-gloves
+  loadouts:
+
+- type: loadoutGroup
+  id: SunriseChemistShoes
+  name: loadout-group-chemist-shoes
+  loadouts:
+
+- type: loadoutGroup
+  id: SunrisePsychologistHead
+  name: loadout-group-psychologist-head
+  loadouts:
+
+- type: loadoutGroup
+  id: SunrisePsychologistOuterClothing
+  name: loadout-group-psychologist-outerclothing
+  loadouts:
+
+- type: loadoutGroup
+  id: SunrisePsychologistNeck
+  name: loadout-group-psychologist-neck
+  loadouts:
+
+- type: loadoutGroup
+  id: SunrisePsychologistMask
+  name: loadout-group-psychologist-mask
+  loadouts:
+
+- type: loadoutGroup
+  id: SunrisePsychologistGloves
+  name: loadout-group-psychologist-gloves
+  loadouts:
+
+- type: loadoutGroup
+  id: SunrisePsychologistShoes
+  name: loadout-group-psychologist-shoes
+  loadouts:
+
+- type: loadoutGroup
+  id: SunriseMedicalDoctorNeck
+  name: loadout-group-medical-doctor-neck
+  loadouts:
+
+- type: loadoutGroup
+  id: SunriseParamedicNeck
+  name: loadout-group-paramedic-neck
+  loadouts:
+
+
+- type: loadoutGroup
+  id: SunriseParamedicMask
+  name: loadout-group-paramedic-mask
+  loadouts:
+
+- type: loadoutGroup
+  id: SunriseParamedicGloves
+  name: loadout-group-paramedic-gloves
+  loadouts:
+
+- type: loadoutGroup
+  id: PathologistHead
+  name: loadout-group-pathologist-head
+  loadouts:
+
+- type: loadoutGroup
+  id: PathologistOuterClothing
+  name: loadout-group-pathologist-outerclothing
+  loadouts:
+
+- type: loadoutGroup
+  id: PathologistNeck
+  name: loadout-group-pathologist-neck
+  loadouts:
+
+- type: loadoutGroup
+  id: PathologistNeck
+  name: loadout-group-pathologist-neck
+  loadouts:
+
+- type: loadoutGroup
+  id: PathologistMask
+  name: loadout-group-pathologist-mask
+  loadouts:
+
+- type: loadoutGroup
+  id: PathologistShoes
+  name: loadout-group-pathologist-shoes
+  loadouts:
+
+- type: loadoutGroup
+  id: MedicalTrinkets
+  name: loadout-group-medical-trinkets
+  minLimit: 0
+  maxLimit: 2
+  loadouts:
+  - TrinketsMedicalS
+  - TrinketsMedicalECB
+  - TrinketsMedicalHHA
+  - TrinketsMedicalCEHM
+  - TrinketsMedicalCEEHM
+  - TrinketsMedicalBMS
+  - TrinketsMedicalTFMD
+  - TrinketsMedicalTFP
+  - TrinketsMedicalTFC
+  - TrinketsMedicalTFCMO
+  - TrinketsMedicalCNSG
+
+
+
+
+
+
+
+
 - type: loadoutGroup
   id: SeniorEngineerJumpsuit
   name: loadout-group-senior-engineer-jumpsuit
@@ -555,6 +732,7 @@
   loadouts:
   - Sunrise-HardhatWhite
   - Sunrise-BandWhite
+  - Sunrise-BeretCE
   - Sunrise-EngineerHeadBeret
   - Sunrise-BandRed
   - Sunrise-BandOrange

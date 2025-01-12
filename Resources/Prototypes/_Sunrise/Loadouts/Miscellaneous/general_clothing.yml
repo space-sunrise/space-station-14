@@ -47,6 +47,11 @@
     head: ClothingHeadHatBluesoft
 
 - type: loadout
+  id: Sunrise-HatCyansoft
+  equipment:
+    head: ClothingHeadHatCyansoft
+
+- type: loadout
   id: Sunrise-BandPurple
   equipment:
     head: ClothingHeadBandPurple
@@ -183,7 +188,7 @@
   equipment:
     neck: ClothingNeckScarfStripedPurple
 
-#ClothingOuter
+#OuterClothing
 
 - type: loadout
   id: Sunrise-WinterColorYellow
@@ -216,9 +221,24 @@
     outerClothing: ClothingOuterWinterColorBrown
 
 - type: loadout
+  id: Sunrise-WinterColorBlue
+  equipment:
+    outerClothing: ClothingOuterWinterColorBlue
+
+- type: loadout
   id: Sunrise-WinterColorPurple
   equipment:
     outerClothing: ClothingOuterWinterColorPurple
+
+- type: loadout
+  id: Sunrise-WinterColorGreen
+  equipment:
+    outerClothing: ClothingOuterWinterColorGreen
+
+- type: loadout
+  id: Sunrise-FlannelBlue
+  equipment:
+    outerClothing: ClothingOuterFlannelBlue
 
 - type: loadout
   id: Sunrise-PonchoClassic
@@ -239,6 +259,11 @@
   id: Sunrise-CoatTrench
   equipment:
     outerClothing: ClothingOuterCoatTrench
+
+- type: loadout
+  id: Sunrise-WinterColorCyan
+  equipment:
+    outerClothing: ClothingOuterWinterColorCyan
 
 #Shoes
 
@@ -263,6 +288,21 @@
     shoes: ClothingShoesColorPurple
 
 - type: loadout
+  id: Sunrise-ShoesCyan
+  equipment:
+    shoes: ClothingShoesColorCyan
+
+- type: loadout
+  id: Sunrise-ShoesCyan
+  equipment:
+    shoes: ClothingShoesColorBlue
+
+- type: loadout
+  id: Sunrise-ShoesGreen
+  equipment:
+    shoes: ClothingShoesColorGreen
+
+- type: loadout
   id: Sunrise-ShoesCowboyBrown
   equipment:
     shoes: ClothingShoesBootsCowboyBrown
@@ -283,6 +323,16 @@
   id: Sunrise-TealGloves
   equipment:
     gloves: ClothingHandsGlovesColorTeal
+
+- type: loadout
+  id: Sunrise-BlueGloves
+  equipment:
+    gloves: ClothingHandsGlovesColorBlue
+
+- type: loadout
+  id: Sunrise-GreenGloves
+  equipment:
+    gloves: ClothingHandsGlovesColorGreen
 
 - type: loadout
   id: Sunrise-YellowBudgetGloves
