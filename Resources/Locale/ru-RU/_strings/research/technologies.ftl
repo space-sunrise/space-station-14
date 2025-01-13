@@ -61,6 +61,7 @@ research-technology-advanced-anomaly-research = Продвинутое изуч�
 research-technology-rped = Быстрая замена компонентов
 research-technology-super-parts = Суперкомпоненты
 research-technology-deterrence = Технология сдерживания
+research-technology-industrial-robotics = Промышленная робототехника
 research-technology-janitorial-equipment = Уборочное оборудование
 research-technology-laundry-tech = Прачечная технология
 research-technology-critter-mechs = Мехи для животных
