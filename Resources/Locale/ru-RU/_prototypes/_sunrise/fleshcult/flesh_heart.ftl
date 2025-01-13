@@ -1,2 +1,2 @@
-ent-FleshHeart = Flesh Heart
-    .desc = Flesh Heart
+ent-FleshHeart = сердце плоти
+    .desc = Такой хуйни вы еще не видели.
