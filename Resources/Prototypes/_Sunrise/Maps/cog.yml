@@ -13,7 +13,7 @@
             !type:NanotrasenNameGenerator
             prefixCreator: 'R4'
         - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/Shuttles/emergency_wode.yml
+          emergencyShuttlePath: /Maps/_Sunrise/Shuttles/emergency_cog.yml
         - type: StationJobs
           availableJobs:
             #command
@@ -92,12 +92,12 @@
         - type: StationGoal
           goals:
           - Shuttle
-          - SolarPanels
+          #- SolarPanels
           - Artifacts
           - Bank
           - MiningOutpost
-          - Tesla
-          - XenobiologyRepair
+          #- Tesla
+          #- XenobiologyRepair
           - VirusologyAmbusol
           - Containment
           - WeaponsSecurity
@@ -107,7 +107,7 @@
           - Transit
           - NukeRoom
           - Permabrig
-          - Farm
+          #- Farm
           - Delegates
           - Cyborgs
           - Testing

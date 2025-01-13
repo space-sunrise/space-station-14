@@ -1,7 +1,7 @@
-ent-BZCanister = BZ Canister
-    .desc = A canister that can contain any type of gas. This one presumably contains BZ. Can be attached to a connector port using a wrench.
-ent-HealiumCanister = Healium Canister
-    .desc = A canister that can contain any type of gas. This one presumably contains Healium. Can be attached to a connector port using a wrench.
+ent-BZCanister = Канистра БЗ
+    .desc = Канистра, в которой может содержаться газ любого вида. В этой, предположительно, содержится БЗ. Можно прикрепить к порту коннектора с помощью гаечного ключа.
+ent-HealiumCanister = Канистра хилиума
+    .desc = Канистра, в которой может содержаться газ любого вида. В этой, предположительно, содержится хилиум. Можно прикрепить к порту коннектора с помощью гаечного ключа.
 ent-BZCanisterBroken = { ent-GasCanisterBrokenBase }
     .desc = { ent-GasCanisterBrokenBase.desc }
 ent-HealiumCanisterBroken = { ent-GasCanisterBrokenBase }
