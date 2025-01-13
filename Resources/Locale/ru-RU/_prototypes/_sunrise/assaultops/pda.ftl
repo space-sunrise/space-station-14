@@ -1,2 +1,2 @@
-ent-AssaultOpsPDA = КПК пассажира
-.desc = Почему он не серый?
+ent-AssaultOpsPDA = passenger PDA
+    .desc = Why isn't it gray?
