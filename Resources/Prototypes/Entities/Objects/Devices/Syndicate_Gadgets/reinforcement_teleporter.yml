@@ -116,5 +116,7 @@
 #      rules: ghost-role-information-silicon-rules
 #      raffle:
 #        settings: default
+#       mindRoles:
+#        - MindRoleGhostRoleSilicon
 #    - type: GhostRoleMobSpawner
 #      prototype: PlayerBorgSyndicateAssaultBattery
