@@ -593,6 +593,7 @@
       - SMESAdvancedMachineCircuitboard
       - HolopadMachineCircuitboard
       - ImplantExtractorMachineCircuitboard #Sunrise-Edit
+      - ExosuitFabricatorHyperConvectionMachineCircuitboard  #Sunrise-Edit
   - type: EmagLatheRecipes
     emagDynamicRecipes:
       - ShuttleGunDusterCircuitboard
