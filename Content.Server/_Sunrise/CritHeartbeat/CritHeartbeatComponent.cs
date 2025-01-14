@@ -1,9 +1,8 @@
 ﻿using Robust.Shared.Audio;
-using Robust.Shared.GameStates;
 
-namespace Content.Shared._Sunrise.CritHeartbeat;
+namespace Content.Server._Sunrise.CritHeartbeat;
 
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent]
 public sealed partial class CritHeartbeatComponent : Component
 {
     [DataField]

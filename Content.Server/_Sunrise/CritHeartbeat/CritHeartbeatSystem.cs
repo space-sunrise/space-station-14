@@ -1,12 +1,11 @@
 ﻿using Content.Shared.Mobs;
+using Robust.Server.Audio;
 using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
-
-namespace Content.Shared._Sunrise.CritHeartbeat;
+namespace Content.Server._Sunrise.CritHeartbeat;
 
 public sealed class CritHeartbeatSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly AudioSystem _audio = default!;
 
     public override void Initialize()
     {
