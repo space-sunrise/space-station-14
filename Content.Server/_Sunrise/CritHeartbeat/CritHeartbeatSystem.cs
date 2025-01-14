@@ -22,11 +22,6 @@ public sealed class CritHeartbeatSystem : EntitySystem
         if (!ent.Comp.Enabled)
             return;
 
-        if (!TryComp<DamageableComponent>(ent, out var damageableComponent))
-            return;
-
-        var pitch = Math.Min(1, 100 / damageableComponent.TotalDamage.Float());
-
         ent.Comp.AudioStream = args.NewMobState == MobState.Critical
             ? _audio.PlayEntity(ent.Comp.HeartbeatSound, ent, ent)?.Entity
             : _audio.Stop(ent.Comp.AudioStream);
