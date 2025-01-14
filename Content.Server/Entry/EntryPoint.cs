@@ -51,6 +51,7 @@ namespace Content.Server.Entry
         private PlayTimeTrackingManager? _playTimeTracking;
         private IEntitySystemManager? _sysMan;
         private IServerDbManager? _dbManager;
+        private IConnectionManager? _connectionManager;
 
         /// <inheritdoc />
         public override void Init()
@@ -96,6 +97,7 @@ namespace Content.Server.Entry
                 _updateManager = IoCManager.Resolve<ServerUpdateManager>();
                 _serversHubManager = IoCManager.Resolve<ServersHubManager>(); // Sunrise-Edit
                 _playTimeTracking = IoCManager.Resolve<PlayTimeTrackingManager>();
+                _connectionManager = IoCManager.Resolve<IConnectionManager>();
                 _sysMan = IoCManager.Resolve<IEntitySystemManager>();
                 _dbManager = IoCManager.Resolve<IServerDbManager>();
 
@@ -185,6 +187,7 @@ namespace Content.Server.Entry
                 case ModUpdateLevel.FramePostEngine:
                     _updateManager.Update();
                     _playTimeTracking?.Update();
+                    _connectionManager?.Update();
                     _serversHubManager.Update(); // Sunrise-Edit
                     break;
             }
