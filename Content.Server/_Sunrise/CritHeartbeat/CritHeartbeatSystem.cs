@@ -1,6 +1,8 @@
-﻿using Content.Shared.Mobs;
+﻿using Content.Shared.Damage;
+using Content.Shared.Mobs;
 using Robust.Server.Audio;
 using Robust.Shared.Audio;
+
 namespace Content.Server._Sunrise.CritHeartbeat;
 
 public sealed class CritHeartbeatSystem : EntitySystem
@@ -12,6 +14,7 @@ public sealed class CritHeartbeatSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<CritHeartbeatComponent, MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<CritHeartbeatComponent, DamageChangedEvent>(OnDamage);
     }
 
     private void OnMobStateChanged(Entity<CritHeartbeatComponent> ent, ref MobStateChangedEvent args)
@@ -19,8 +22,29 @@ public sealed class CritHeartbeatSystem : EntitySystem
         if (!ent.Comp.Enabled)
             return;
 
+        if (!TryComp<DamageableComponent>(ent, out var damageableComponent))
+            return;
+
+        var pitch = Math.Min(1, 100 / damageableComponent.TotalDamage.Float());
+
         ent.Comp.AudioStream = args.NewMobState == MobState.Critical
-            ? _audio.PlayEntity(ent.Comp.HeartbeatSound, ent, ent, AudioParams.Default.WithLoop(true))?.Entity
+            ? _audio.PlayEntity(ent.Comp.HeartbeatSound, ent, ent)?.Entity
             : _audio.Stop(ent.Comp.AudioStream);
+    }
+
+    private void OnDamage(Entity<CritHeartbeatComponent> ent, ref DamageChangedEvent args)
+    {
+        if (!ent.Comp.Enabled)
+            return;
+
+        if (ent.Comp.AudioStream == null)
+            return;
+
+        var pitch = Math.Min(1, 100 / args.Damageable.TotalDamage.Float());
+
+        // Потому что игра говно, тут нельзя изменять аудиопарамс уже существующего звука. Поэтому я пересоздаю его заново
+        // Это приводит к проигрыванию звука через неравномерные промежутки времени, но зато работает и не очень заметно
+        _audio.Stop(ent.Comp.AudioStream);
+        ent.Comp.AudioStream = _audio.PlayEntity(ent.Comp.HeartbeatSound, ent, ent, AudioParams.Default.WithPitchScale(pitch))?.Entity;
     }
 }
