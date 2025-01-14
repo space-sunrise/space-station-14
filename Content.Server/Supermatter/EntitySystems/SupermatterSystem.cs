@@ -28,6 +28,7 @@ using Content.Server.Explosion.EntitySystems;
 using Content.Server.Kitchen.Components;
 using Content.Shared.Singularity.Components;
 using System;
+using Robust.Shared.Audio;
 
 namespace Content.Server.Supermatter.EntitySystems;
 
@@ -48,6 +49,9 @@ public sealed class SupermatterSystem : EntitySystem
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly ExplosionSystem _explosion = default!;
+
+    public static SoundSpecifier VaporizeSound =
+        new SoundPathSpecifier("/Audio/Effects/Grenades/Supermatter/supermatter_start.ogg");
 
     public override void Initialize()
     {
@@ -310,7 +314,7 @@ public sealed class SupermatterSystem : EntitySystem
         if (TryComp<SupermatterComponent>(smUid, out var sm))
             sm.AVExternalDamage += 1f;
 
-        _sound.PlayPvs(SupermatterComponent.VaporizeSound, smUid);
+        _sound.PlayPvs(VaporizeSound, smUid);
         EntityManager.QueueDeleteEntity(uid);
 
         // getting discombobulated by the SM is the same as permanent round removal so why not log that
