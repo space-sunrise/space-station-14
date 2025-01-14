@@ -16,6 +16,9 @@ public sealed class CritHeartbeatSystem : EntitySystem
 
     private void OnMobStateChanged(Entity<CritHeartbeatComponent> ent, ref MobStateChangedEvent args)
     {
+        if (!ent.Comp.Enabled)
+            return;
+
         ent.Comp.AudioStream = args.NewMobState == MobState.Critical
             ? _audio.PlayEntity(ent.Comp.HeartbeatSound, ent, ent, AudioParams.Default.WithLoop(true))?.Entity
             : _audio.Stop(ent.Comp.AudioStream);
