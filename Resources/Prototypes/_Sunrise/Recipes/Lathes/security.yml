@@ -400,11 +400,10 @@
   id: ClothingShoesBootsMagCombat
   result: ClothingShoesBootsMagCombat
   category: Weapons
-  completetime: 12
+  completetime: 25
   materials:
-    Steel: 1500
+    Steel: 1200
     Plastic: 500
-    Plasma: 300
     Silver: 200
 
 - type: latheRecipe
