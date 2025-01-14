@@ -28,7 +28,7 @@ public sealed partial class FootprintComponent : Component
     /// <summary>
     /// Reference to the solution component containing reagents
     /// </summary>
-    [DataField]
+    [ViewVariables]
     public Entity<SolutionComponent>? SolutionContainer;
 
     [DataField]
@@ -145,13 +145,13 @@ public sealed partial class FootprintEmitterComponent : Component
     [ViewVariables(VVAccess.ReadOnly), DataField]
     public string FootsSolutionName = "foots";
 
-    [ViewVariables(VVAccess.ReadOnly), DataField]
+    [ViewVariables]
     public Entity<SolutionComponent>? FootsSolution;
 
     [ViewVariables(VVAccess.ReadOnly), DataField]
     public string BodySurfaceSolutionName = "body_surface";
 
-    [ViewVariables(VVAccess.ReadOnly), DataField]
+    [ViewVariables]
     public Entity<SolutionComponent>? BodySurfaceSolution;
 
     [ViewVariables(VVAccess.ReadWrite)]
