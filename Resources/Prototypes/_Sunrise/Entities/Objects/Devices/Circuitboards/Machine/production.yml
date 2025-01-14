@@ -37,3 +37,22 @@
       Manipulator: 2
       MatterBin: 1
       Steel: 1
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: ExosuitFabricatorHyperConvectionMachineCircuitboard
+  name: hyper convection exosuit fabricator machine board
+  description: A machine printed circuit board for a hyper convection fabricator.
+  components:
+  - type: Sprite
+    state: science
+  - type: MachineBoard
+    prototype: ExosuitFabricatorHyperConvection
+    stackRequirements:
+      MatterBin: 1
+      Manipulator: 3
+      Glass: 5
+    tagRequirements:
+      Igniter:
+        amount: 1
+        defaultPrototype: Igniter
