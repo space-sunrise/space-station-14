@@ -933,8 +933,6 @@
       - MagazineBoxMagnumRubber
       - MagazineBoxRifleRubber
       - MagazineBoxLightRifleRubber
-      - MagazineLightRifleBoxIncendiary
-      - MagazineLightRifleBoxUranium
       - PowerCageCombat
       - WeaponMechCombatImmolationGun # Sunrise - Mechs
       - WeaponMechCombatSolarisLaser # Sunrise - Mechs
