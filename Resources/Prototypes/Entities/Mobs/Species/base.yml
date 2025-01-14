@@ -261,6 +261,7 @@
   - type: Carriable
   - type: CanEscapeInventory
   - type: Mood
+  - type: CritHeartbeat
   # Sunrise-End
   - type: Barotrauma
     damage:
