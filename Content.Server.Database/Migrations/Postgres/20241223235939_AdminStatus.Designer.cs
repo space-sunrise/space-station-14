@@ -5,6 +5,7 @@ using System.Text.Json;
 using Content.Server.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using NpgsqlTypes;
@@ -14,9 +15,11 @@ using NpgsqlTypes;
 namespace Content.Server.Database.Migrations.Postgres
 {
     [DbContext(typeof(PostgresServerDbContext))]
-    partial class PostgresServerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241223235939_AdminStatus")]
+    partial class AdminStatus
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -635,34 +638,6 @@ namespace Content.Server.Database.Migrations.Postgres
                         });
                 });
 
-            modelBuilder.Entity("Content.Server.Database.IPIntelCache", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("ipintel_cache_id");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<IPAddress>("Address")
-                        .IsRequired()
-                        .HasColumnType("inet")
-                        .HasColumnName("address");
-
-                    b.Property<float>("Score")
-                        .HasColumnType("real")
-                        .HasColumnName("score");
-
-                    b.Property<DateTime>("Time")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("time");
-
-                    b.HasKey("Id")
-                        .HasName("PK_ipintel_cache");
-
-                    b.ToTable("ipintel_cache", (string)null);
-                });
-
             modelBuilder.Entity("Content.Server.Database.Job", b =>
                 {
                     b.Property<int>("Id")
@@ -901,13 +876,6 @@ namespace Content.Server.Database.Migrations.Postgres
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("species");
-
-                    // Sunrise-TTS-Start
-                    b.Property<string>("Voice")
-                        .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("voice");
-                    // Sunrise-TTS-End
 
                     b.HasKey("Id")
                         .HasName("PK_profile");
