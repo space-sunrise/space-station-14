@@ -261,6 +261,12 @@
   - type: Carriable
   - type: CanEscapeInventory
   - type: Mood
+  - type: CritHeartbeat
+    heartbeatSound:
+      path: /Audio/_Sunrise/Effects/heartbeat.ogg
+      params:
+        volume: -3
+        loop: True
   # Sunrise-End
   - type: Barotrauma
     damage:
