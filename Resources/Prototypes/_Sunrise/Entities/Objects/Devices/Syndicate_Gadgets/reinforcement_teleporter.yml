@@ -11,6 +11,8 @@
     rules: ghost-role-information-silicon-rules
     raffle:
       settings: default
+    mindRoles:
+    - MindRoleGhostRoleSilicon
   - type: GhostRoleMobSpawner
     prototype: PlayerBorgSyndicateMedicalBattery
 
@@ -27,6 +29,8 @@
     rules: ghost-role-information-silicon-rules
     raffle:
       settings: default
+    mindRoles:
+    - MindRoleGhostRoleSilicon
   - type: GhostRoleMobSpawner
     prototype: PlayerBorgSyndicateReaperBattery
 
@@ -43,6 +47,8 @@
     rules: ghost-role-information-silicon-rules
     raffle:
       settings: default
+    mindRoles:
+    - MindRoleGhostRoleSilicon
   - type: GhostRoleMobSpawner
     prototype: PlayerBorgSyndicateAssaultBattery
 
@@ -59,6 +65,8 @@
     rules: ghost-role-information-silicon-rules
     raffle:
       settings: default
+    mindRoles:
+    - MindRoleGhostRoleSilicon
   - type: GhostRoleMobSpawner
     prototype: PlayerBorgHeavySyndicateCombatBattery
 
@@ -75,5 +83,7 @@
     rules: ghost-role-information-silicon-rules
     raffle:
       settings: default
+    mindRoles:
+    - MindRoleGhostRoleSilicon
   - type: GhostRoleMobSpawner
     prototype: PlayerBorgSyndicateSaboteurBattery

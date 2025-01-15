@@ -19,6 +19,8 @@
     name: ghost-role-information-rat-king-name
     description: ghost-role-information-rat-king-description
     rules: ghost-role-information-freeagent-rules
+    mindRoles:
+    - MindRoleGhostRoleFreeAgent
     raffle:
       settings: default
   - type: GhostRoleMobSpawner
@@ -40,6 +42,8 @@
     name: ghost-role-information-remilia-name
     description: ghost-role-information-remilia-description
     rules: ghost-role-information-familiar-rules
+    mindRoles:
+    - MindRoleGhostRoleFamiliar
     raffle:
       settings: short
   - type: GhostRoleMobSpawner
@@ -61,6 +65,8 @@
     name: ghost-role-information-cerberus-name
     description: ghost-role-information-cerberus-description
     rules: ghost-role-information-familiar-rules
+    mindRoles:
+    - MindRoleGhostRoleFamiliar
     raffle:
       settings: default
   - type: GhostRoleMobSpawner
@@ -81,6 +87,8 @@
   components:
   - type: GhostRole
     rules: ghost-role-information-rules-default-team-antagonist
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
     raffle:
       settings: default
   - type: GhostRoleMobSpawner
@@ -104,6 +112,8 @@
     rules: ghost-role-information-loneop-rules
     raffle:
       settings: default
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:
@@ -121,6 +131,8 @@
     name: roles-antag-nuclear-operative-commander-name
     description: roles-antag-nuclear-operative-commander-objective
     rules: ghost-role-information-rules-default-team-antagonist
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
     raffle:
       settings: default
   # Sunrise-Start
@@ -141,6 +153,8 @@
     name: roles-antag-nuclear-operative-medic-name
     description: roles-antag-nuclear-operative-medic-objective
     rules: ghost-role-information-rules-default-team-antagonist
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
     raffle:
       settings: default
   # Sunrise-Start
@@ -161,6 +175,8 @@
     name: roles-antag-nuclear-operative-name
     description: roles-antag-nuclear-operative-objective
     rules: ghost-role-information-rules-default-team-antagonist
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
     raffle:
       settings: default
   # Sunrise-Start
@@ -181,6 +197,8 @@
     name: ghost-role-information-space-dragon-name
     description: ghost-role-information-space-dragon-description
     rules: ghost-role-information-space-dragon-rules
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
     raffle:
       settings: default
   - type: Sprite
@@ -198,6 +216,8 @@
     name: ghost-role-information-space-ninja-name
     description: ghost-role-information-space-ninja-description
     rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
     raffle:
       settings: default
   - type: Sprite

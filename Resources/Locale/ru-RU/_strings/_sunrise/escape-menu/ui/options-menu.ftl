@@ -11,7 +11,6 @@ ui-options-sunrise-general-graphics = Графика
 ui-options-sunrise-general-lobby = Лобби
 ui-options-sunrise-general-combat = Бой
 ui-options-tab-extra = Экстра
-ui-options-tts-enabled = TTS интеграция
 ui-options-tape-player-enabled = Школьники с колонками (Нужен рестарт раунда)
 ui-options-jump-sound-enabled = Звук прыжка
 ui-options-function-toggle-standing = Лечь/Встать

@@ -234,6 +234,7 @@ public sealed partial class PlayerTab : Control
             Header.Job => Compare(x.StartingJob, y.StartingJob),
             Header.Sponsor => string.Compare(x.SponsorTitle!, y.SponsorTitle, StringComparison.Ordinal), // Sunrise-Sponsors
             Header.Antagonist => x.Antag.CompareTo(y.Antag),
+            Header.RoleType => Compare(x.RoleProto.Name , y.RoleProto.Name),
             Header.Playtime => TimeSpan.Compare(x.OverallPlaytime ?? default, y.OverallPlaytime ?? default),
             _ => 1
         };
