@@ -1,8 +1,8 @@
-ent-MiniSyringeCryostasis = cryostasis mini syringe
-    .desc = A cryostasis syringe, reshaped to fit inside of a gun.
-    .suffix = Cryostasis, MiniSyringe
-ent-MiniSyringeBluespace = bluespace mini syringe
-    .desc = A Bluespace syringe, reshaped to fit inside of a gun.
+ent-MiniSyringeBluespace = мини блюспейс шприц
+    .desc = блюспейс шприц, переделанный под пистолет.
+    .suffix = Bluespace, MiniSyringe
+ent-MiniSyringeCryostasis = мини криостазис шприц
+    .desc = криостазис шприц, переделанный под пистолет.
     .suffix = Bluespace, MiniSyringe
 ent-PrefilledMiniSyringe = { ent-MiniSyringe }
     .desc = { ent-MiniSyringe.desc }
