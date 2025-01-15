@@ -817,18 +817,18 @@
       collection: GWA
   - type: EmitSoundOnCollide
     sound:
-      path: /Audio/_Sunrise/Tovarish.ogg
+      path: /Audio/_Sunrise/not_for_long_weh.ogg
   - type: EmitSoundOnUse
     sound:
       collection: GWA
   - type: EmitSoundOnLand
     sound:
-      path: /Audio/_Sunrise/Tovarish.ogg
+      path: /Audio/_Sunrise/not_for_long_weh.ogg
   - type: UseDelay
     delay: 2.0
   - type: EmitSoundOnActivate
     sound:
-      path: /Audio/_Sunrise/not_for_long_weh.ogg
+      collection: GWA
       params:
         maxDistance: 10
 
@@ -844,6 +844,7 @@
     state: legendary-golden-weh
     sprite: _Sunrise/Objects/Fun/toys.rsi
 
+- type: entity
   id: PlushieAnatolyLisitsyn
   parent: BasePlushie
   name: Anatoly Lisitsyn

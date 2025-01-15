@@ -259,6 +259,20 @@
   minLimit: 0
   maxLimit: 1
   loadouts:
+  - BeretSeniorPhysician
+  - MedicalBeret
+  - NurseHat
+  - BlueSurgeryCap
+  - GreenSurgeryCap
+  - PurpleSurgeryCap
+  - HatPatologonatHat
+  - ParamedicHead
+  - Sunrise-HatBlacksoft
+  - Sunrise-HatRedsoft
+  - Sunrise-HatOrangesoft
+  - Sunrise-HatCyansoft
+  - Sunrise-HatBluesoft
+  - MedicalHeadMirror
 
 - type: loadoutGroup
   id: SeniorPhysicianOuterClothing
@@ -266,6 +280,25 @@
   minLimit: 0
   maxLimit: 1
   loadouts:
+  - RegularLabCoat
+  - Sunrise-CoatLabViro
+  - ChemistLabCoat
+  - Sunrise-CoatLabGene
+  - CoatLabSeniorPhysician
+  - CoatPatologoanatom
+  - Sunrise-WinterViro
+  - ChemistWintercoat
+  - Sunrise-WinterGen
+  - MedicalDoctorWintercoat
+  - ParamedicWintercoat
+  - Sunrise-WinterColorrColorWhite
+  - Sunrise-WinterColorBlack
+  - Sunrise-WinterColorrColorRed
+  - Sunrise-WinterColorOrange
+  - Sunrise-WinterColorGreen
+  - Sunrise-WinterColorCyan
+  - Sunrise-WinterColorBlue
+  - ParamedicWindbreaker
 
 - type: loadoutGroup
   id: SeniorPhysicianNeck
@@ -307,6 +340,15 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
+  - BrownShoes
+  - WhiteShoes
+  - BlackShoes
+  - Sunrise-RedShoes
+  - Sunrise-OrangeShoes
+  - Sunrise-ShoesGreen
+  - Sunrise-ShoesCyan
+  - BlueShoes
+  - MedicalWinterBoots
 
 - type: loadoutGroup
   id: SeniorPhysicianGloves
@@ -334,6 +376,15 @@
   minLimit: 0
   maxLimit: 1
   loadouts:
+  - MedicalBeret
+  - NurseHat
+  - BlueSurgeryCap
+  - GreenSurgeryCap
+  - PurpleSurgeryCap
+  - Sunrise-HatRedsoft
+  - Sunrise-HatOrangesoft
+  - Sunrise-HatCyansoft
+  - MedicalHeadMirror
 
 - type: loadoutGroup
   id: SunriseChemistNeck
@@ -386,6 +437,12 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
+  - WhiteShoes
+  - Sunrise-RedShoes
+  - Sunrise-OrangeShoes
+  - Sunrise-ShoesGreen
+  - Sunrise-ShoesCyan
+  - MedicalWinterBoots
 
 - type: loadoutGroup
   id: SunrisePsychologistHead
@@ -393,6 +450,7 @@
   minLimit: 0
   maxLimit: 1
   loadouts:
+  - MedicalHeadMirror
 
 - type: loadoutGroup
   id: SunrisePsychologistOuterClothing
@@ -400,6 +458,11 @@
   minLimit: 0
   maxLimit: 1
   loadouts:
+  - RegularLabCoat
+  - MedicalDoctorWintercoat
+  - Sunrise-WinterColorrColorWhite
+  - Sunrise-WinterColorCyan
+
 
 - type: loadoutGroup
   id: SunrisePsychologistNeck
@@ -435,6 +498,8 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
+  - WhiteShoes
+  - MedicalWinterBoots
 
 - type: loadoutGroup
   id: SunriseMedicalDoctorNeck
@@ -499,6 +564,16 @@
   minLimit: 0
   maxLimit: 1
   loadouts:
+  - MedicalBeret
+  - NurseHat
+  - BlueSurgeryCap
+  - GreenSurgeryCap
+  - PurpleSurgeryCap
+  - HatPatologonatHat
+  - Sunrise-HatBlacksoft
+  - Sunrise-HatRedsoft
+  - Sunrise-HatCyansoft
+  - MedicalHeadMirror
 
 - type: loadoutGroup
   id: PathologistOuterClothing
@@ -506,6 +581,15 @@
   minLimit: 0
   maxLimit: 1
   loadouts:
+  - RegularLabCoat
+  - CoatPatologoanatom
+  - MedicalDoctorWintercoat
+  - Sunrise-WinterColorrColorWhite
+  - Sunrise-WinterColorBlack
+  - Sunrise-WinterColorrColorRed
+  - Sunrise-WinterColorGreen
+  - Sunrise-WinterColorCyan
+
 
 - type: loadoutGroup
   id: PathologistNeck
@@ -539,6 +623,12 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
+  - WhiteShoes
+  - BlackShoes
+  - Sunrise-RedShoes
+  - Sunrise-ShoesGreen
+  - Sunrise-ShoesCyan
+  - MedicalWinterBoots
 
 - type: loadoutGroup
   id: PathologistGloves

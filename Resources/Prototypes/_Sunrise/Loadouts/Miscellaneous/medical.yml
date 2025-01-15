@@ -227,9 +227,26 @@
   equipment:
     gloves: ClothingHandsGlovesNitrileBlue
 
+# Когда появятся вирусолог и генетик, перенести к ним (если появятся конечно)
+
+- type: loadout
+  id: Sunrise-WinterGen
+  equipment:
+    outerClothing: ClothingOuterWinterGen
+
+- type: loadout
+  id: Sunrise-CoatLabGene
+  equipment:
+    outerClothing: ClothingOuterCoatLabGene
 
 
+- type: loadout
+  id: Sunrise-WinterViro
+  equipment:
+    outerClothing: ClothingOuterWinterViro
 
 
-
-
+- type: loadout
+  id: Sunrise-CoatLabViro
+  equipment:
+    outerClothing: ClothingOuterCoatLabViro

@@ -27,6 +27,11 @@
     head: ClothingHeadBandCyan
 
 - type: loadout
+  id: Sunrise-HatBlacksoft
+  equipment:
+    head: ClothingHeadHatBlacksoft
+
+- type: loadout
   id: Sunrise-HatRedsoft
   equipment:
     head: ClothingHeadHatRedsoft
@@ -307,11 +312,6 @@
   id: Sunrise-ShoesCyan
   equipment:
     shoes: ClothingShoesColorCyan
-
-- type: loadout
-  id: Sunrise-ShoesCyan
-  equipment:
-    shoes: ClothingShoesColorBlue
 
 - type: loadout
   id: Sunrise-ShoesGreen

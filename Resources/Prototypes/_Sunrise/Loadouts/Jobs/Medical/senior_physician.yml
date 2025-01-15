@@ -17,3 +17,13 @@
   id: BeltMedicalSeniorPhysician
   equipment:
     belt: ClothingBeltMedicalFilled
+
+- type: loadout
+  id: BeretSeniorPhysician
+  equipment:
+    head: ClothingHeadHatBeretSeniorPhysician
+
+- type: loadout
+  id: CoatLabSeniorPhysician
+  equipment:
+    outerClothing: ClothingOuterCoatLabSeniorPhysician
