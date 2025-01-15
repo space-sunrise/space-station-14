@@ -368,7 +368,7 @@
       - EnergyDomeDirectionalTurtle
       # Sunrise-start
       - PowerCellHyper
-      - ClothingHeadHelmetPubgMore
+      - ClothingHeadHelmetPubg
       - MechPhasicScanningModule
       - HandCraftedNVD
       - BasicNVD
@@ -933,8 +933,6 @@
       - MagazineBoxMagnumRubber
       - MagazineBoxRifleRubber
       - MagazineBoxLightRifleRubber
-      - MagazineLightRifleBoxIncendiary
-      - MagazineLightRifleBoxUranium
       - PowerCageCombat
       - WeaponMechCombatImmolationGun # Sunrise - Mechs
       - WeaponMechCombatSolarisLaser # Sunrise - Mechs
