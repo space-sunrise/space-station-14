@@ -32,7 +32,7 @@ public sealed class CritHeartbeatSystem : EntitySystem
         if (!ent.Comp.Enabled)
             return;
 
-        if (ent.Comp.AudioStream == null)
+        if (ent.Comp.AudioStream == null || !Exists(ent.Comp.AudioStream))
             return;
 
         var pitch = Math.Min(1, 100 / args.Damageable.TotalDamage.Float());
