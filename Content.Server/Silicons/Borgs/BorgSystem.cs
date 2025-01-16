@@ -154,38 +154,20 @@ public sealed partial class BorgSystem : SharedBorgSystem
     {
         base.OnInserted(uid, component, args);
 
-//Sunrise-start: Fix borgs minds
-        if (HasComp<BorgBrainComponent>(args.Entity) && _mind.TryGetMind(args.Entity, out var mindId, out var mind))
+        if (HasComp<BorgBrainComponent>(args.Entity) && _mind.TryGetMind(args.Entity, out var mindId, out var mind) && args.Container == component.BrainContainer)
         {
-            if (TryComp<ContainerManagerComponent>(uid, out var containerManager) &&
-                containerManager.TryGetContainer("borg_brain", out var borgBrainContainer))
-            {
-                if (borgBrainContainer.Contains(args.Entity))
-                {
-                    _mind.TransferTo(mindId, uid, mind: mind);
-                }
-            }
+            _mind.TransferTo(mindId, uid, mind: mind);
         }
-//Sunrise-end
     }
 
     protected override void OnRemoved(EntityUid uid, BorgChassisComponent component, EntRemovedFromContainerMessage args)
     {
         base.OnRemoved(uid, component, args);
 
-//Sunrise-start: Fix borgs minds
-        if (HasComp<BorgBrainComponent>(args.Entity) && _mind.TryGetMind(uid, out var mindId, out var mind))
+        if (HasComp<BorgBrainComponent>(args.Entity) && _mind.TryGetMind(uid, out var mindId, out var mind) && args.Container == component.BrainContainer)
         {
-            if (TryComp<ContainerManagerComponent>(uid, out var containerManager) &&
-                containerManager.TryGetContainer("borg_brain", out var borgBrainContainer))
-            {
-                if (borgBrainContainer.ContainedEntities.Count == 0)
-                {
-                    _mind.TransferTo(mindId, args.Entity, mind: mind);
-                }
-            }
+            _mind.TransferTo(mindId, args.Entity, mind: mind);
         }
-//Sunrise-end
     }
 
     private void OnMindAdded(EntityUid uid, BorgChassisComponent component, MindAddedMessage args)
@@ -310,8 +292,11 @@ public sealed partial class BorgSystem : SharedBorgSystem
     public void BorgActivate(EntityUid uid, BorgChassisComponent component)
     {
         Popup.PopupEntity(Loc.GetString("borg-mind-added", ("name", Identity.Name(uid, EntityManager))), uid);
-        Toggle.TryActivate(uid);
-        _powerCell.SetDrawEnabled(uid, _mobState.IsAlive(uid));
+        if (_powerCell.HasDrawCharge(uid))
+        {
+            Toggle.TryActivate(uid);
+            _powerCell.SetDrawEnabled(uid, _mobState.IsAlive(uid));
+        }
         _appearance.SetData(uid, BorgVisuals.HasPlayer, true);
     }
 

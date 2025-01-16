@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Text.Json.Nodes;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
@@ -47,6 +48,11 @@ namespace Content.Server.GameTicking
                     ? joinQueueManager.ActualPlayersCount
                     : _playerManager.PlayerCount;
                 // Sunrise-End
+
+                if (_cfg.GetCVar(CCVars.AdminsCountInReportedPlayerCount))
+                {
+                    players -= _adminManager.ActiveAdmins.Count();
+                }
 
                 jObject["name"] = _baseServer.ServerName;
                 jObject["map"] = _gameMapManager.GetSelectedMap()?.MapName;
