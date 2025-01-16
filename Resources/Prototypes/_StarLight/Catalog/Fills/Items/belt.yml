@@ -10,3 +10,31 @@
       - id: ScrewdriverAbductor
       - id: WirecutterAbductor
       - id: WelderAbductor
+      - id: MultitoolAbductor
+
+- type: entity
+  id: ClothingBeltBrigmedicFilled
+  parent: ClothingBeltBrigmedic
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+      - id: Stunbaton
+      - id: Handcuffs
+      - id: Brutepack
+      - id: Ointment
+      - id: Gauze
+
+- type: entity
+  id: ClothingBeltBlueShieldWebbingFilled
+  parent: ClothingBeltMilitaryWebbing
+  suffix: Filled
+  components:
+  - type: StorageFill
+    contents:
+    - id: Handcuffs
+    - id: Handcuffs
+    - id: Stunbaton
+    - id: GrenadeFlashBang
+    - id: TearGasGrenade
+    - id: MedkitCombatFilled

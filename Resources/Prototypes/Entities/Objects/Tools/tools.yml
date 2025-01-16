@@ -105,48 +105,6 @@
     price: 30
 
 - type: entity
-  name: abductor's screwdriver
-  parent: Screwdriver
-  id: ScrewdriverAbductor
-  components:
-  - type: Sprite
-    sprite: Objects/Tools/screwdriver.rsi
-    layers:
-      - state: abductor
-  - type: Tool
-    speedModifier: 2
-    qualities:
-      - Screwing
-    useSound:
-      collection: Screwdriver
-  - type: RandomSprite
-  - type: Item
-    sprite: Objects/Tools/screwdriver.rsi
-    storedOffset: 2, 0
-    storedRotation: 90
-
-- type: entity
-  name: abductor's screwdriver
-  parent: Screwdriver
-  id: ScrewdriverAbductor
-  components:
-  - type: Sprite
-    sprite: Objects/Tools/screwdriver.rsi
-    layers:
-      - state: abductor
-  - type: Tool
-    speedModifier: 2
-    qualities:
-      - Screwing
-    useSound:
-      collection: Screwdriver
-  - type: RandomSprite
-  - type: Item
-    sprite: Objects/Tools/screwdriver.rsi
-    storedOffset: 2, 0
-    storedRotation: 90
-
-- type: entity
   name: wrench
   parent: BaseItem
   id: Wrench
@@ -195,27 +153,6 @@
   - type: GuideHelp
     guides:
     - Construction
-
-- type: entity
-  name: abductor's wrench
-  parent: Wrench
-  id: WrenchAbductor
-  components:
-  - type: Sprite
-    sprite: Objects/Tools/wrench.rsi
-    state: abductor
-  - type: Item
-    sprite: Objects/Tools/wrench.rsi
-    storedRotation: 45
-    storedSprite:
-      sprite: Objects/Tools/wrench.rsi
-      state: abductor
-  - type: Tool
-    speedModifier: 2
-    qualities:
-      - Anchoring
-    useSound:
-      path: /Audio/Items/ratchet.ogg
 
 - type: entity
   name: multitool

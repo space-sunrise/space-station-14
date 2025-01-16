@@ -1,11 +1,29 @@
+# Teleport tab
+
 abductors-ui-beacons = Beacons
 abductors-ui-teleport = Teleport
 abductors-ui-attract = Attract
 
+abductors-ui-gizmo-transferred = Target information transferred
+
+# Experiment tab
+
 abductors-ui-experiment = Experiment
 abductors-ui-complete-experiment = Complete the experiment
 
-abductors-ui-gizmo-transferred = Target information transferred
+# Armor tab
+
+abductors-ui-armor-control = Armor Control
+
+abductors-ui-combat-mode = Combat Mode
+abductors-ui-stealth-mode = Stealth Mode
+
+abductors-ui-lock-armor = Lock Armor
+abductors-ui-unlock-armor = Unlock Armor
+
+abductors-ui-vest-linked = Vest linked
+
+# Ghost role, objectives, etc.
 
 abductors-ghost-role-name = Lone Abductor
 abductors-ghost-role-desc = Kidnap people, stuff them with organs of dubious origin
@@ -27,4 +45,4 @@ objective-condition-abduct-description = (use the Gizmo on a subdued victim, the
 
 abductor-role-greeting = I am a professional combat scientist of a high-tech race. My task is to abduct humans, conduct experiments on them, and return them intact for the purity of the experiment. It is not in my interest to destroy the station, kill, or assist the crew.
 
-roles-antag-abductor-objective = Find the nuke disk and blow up the station.
+roles-antag-abductor-objective = Kidnap station crew and perform your experiments on them!

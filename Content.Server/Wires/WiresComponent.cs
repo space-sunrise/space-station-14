@@ -32,6 +32,11 @@ public sealed partial class WiresComponent : Component
     [ViewVariables]
     public int WireSeed { get; set; }
 
+    // Starlight-abductor start
+    [ViewVariables]
+    public bool viewWires = false;
+    // Starlight-abductor end
+
     /// <summary>
     ///     The list of wires currently active on this entity.
     /// </summary>
