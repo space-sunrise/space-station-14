@@ -35,6 +35,8 @@
     Piercing: 0.7
     Heat: 0.5
     Shock: 1.5
+    Caustic: 1
+    Structural: 0.5
 
 - type: damageModifierSet
   id: Dragon
