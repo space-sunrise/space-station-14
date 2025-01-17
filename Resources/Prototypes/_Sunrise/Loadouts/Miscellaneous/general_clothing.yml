@@ -96,6 +96,11 @@
   equipment:
     head: ClothingHeadHatAnimalCatBrown
 
+- type: loadout
+  id: Sunrise-HideBear
+  equipment:
+    head: MaterialHideBear
+
 #Mask
 
 

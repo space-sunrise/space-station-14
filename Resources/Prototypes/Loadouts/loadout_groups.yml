@@ -614,6 +614,7 @@
   - Sunrise-FedoraBrown
   - Sunrise-CatBrown
   - Sunrise-HelmetCosmonaut
+  - Sunrise-HideBear
 #Sunrise-end
 
 - type: loadoutGroup
@@ -843,7 +844,6 @@
   - Sunrise-BandOrange
   - Sunrise-BandYellow
   - Sunrise-HardhatYellowDark
-  - Sunrise-BandWhite
 #Sunrise-end
   - StationEngineerHardhatYellow
   - StationEngineerHardhatOrange
@@ -1328,7 +1328,6 @@
   loadouts:
   - RegularLabCoat
   # Sunrise-start
-  - ParamedicWintercoat
   - Sunrise-WinterColorrColorWhite
   - Sunrise-WinterColorrColorRed
   - Sunrise-WinterColorGreen
