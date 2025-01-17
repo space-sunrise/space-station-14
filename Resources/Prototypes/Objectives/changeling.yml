@@ -36,6 +36,8 @@
   - type: PickRandomPerson
   - type: KillPersonCondition
     requireDead: true
+  - type: ObjectiveLimit
+    limit: 1
 
 - type: entity
   parent: [BaseChangelingObjective, BaseKillObjective]
@@ -103,7 +105,7 @@
   - type: StealCondition
     verifyMapExistence: true
   - type: Objective
-    difficulty: 1.5
+    difficulty: 2.75
   - type: ObjectiveLimit
     limit: 2
 

@@ -65,6 +65,9 @@
       - EscapeShuttleCondition
       - StealCondition
   - type: DieCondition
+  # Sunrise-Edit
+  - type: ObjectiveLimit
+    limit: 1
 
 # kill
 
@@ -79,6 +82,9 @@
   - type: TargetObjective
     title: objective-condition-kill-person-title
   - type: PickRandomPerson
+  # Sunrise-Edit
+  - type: ObjectiveLimit
+    limit: 1
 
 - type: entity
   parent: [BaseTraitorObjective, BaseKillObjective]
