@@ -49,6 +49,32 @@
     - names_last_male
 
 - type: entity
+  name: USSP Officer Soldier
+  parent: MobHuman
+  suffix: USSP | ANTAG
+  id: MobHumanUSSPOfficerSoldier
+  components:
+  - type: GhostRole
+    name: ghost-role-information-ussp-waralt-name
+    description: ghost-role-information-ussp-waralt-description 
+    rules: ghost-role-information-ussp-war-rules 
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
+  - type: Loadout
+    prototypes: [ USSPOfficerAlt ]
+    roleLoadout: [ RoleSurvivalEVA ]
+  - type: RandomHumanoidAppearance
+    randomizeName: false
+  - type: RandomMetadata
+    nameSegments:
+    - NamesFirstMilitaryLeader
+    - names_last_male
+
+- type: entity
   name: USSP Soldier
   parent: MobHuman
   suffix: USSP | ANTAG

@@ -96,3 +96,18 @@
 
 - type: playTimeTracker
   id: JobAdjutant
+
+- type: playTimeTracker
+  id: JobUSSPCrew
+
+- type: playTimeTracker
+  id: JobUSSPOfficer
+
+- type: playTimeTracker
+  id: JobUSSPOfficeraAlt
+
+- type: playTimeTracker
+  id: JobUSSPSoldier
+
+- type: playTimeTracker
+  id: JobUSSPCaptain

@@ -1,3 +1,17 @@
+#USSP Crew
+- type: job
+  id: USSPCrew
+  name: job-name-usspcrew
+  description: job-description-usspcrew
+  playTimeTracker: JobUSSPCrew
+  setPreference: false
+  startingGear: USSPJobAltA
+  icon: "JobIconUSSPCrew"
+  supervisors: job-supervisors-usspcommand
+  canBeAntag: false
+  access:
+  - Maintenance
+
 - type: startingGear
   id: USSPJobAltA
   equipment:
@@ -50,6 +64,22 @@
     shoes: ClothingShoesBootsWinter
     head: ClothingHeadHatUshanka
 
+#USSP Sec
+- type: job
+  id: USSPOfficer
+  name: job-name-usspguard
+  description: job-description-usspguard
+  playTimeTracker: JobUSSPOfficer
+  setPreference: false
+  startingGear: USSPOfficer
+  icon: "JobIconUSSPOfficer"
+  supervisors: job-supervisors-usspcommand
+  canBeAntag: false
+  access:
+  - NuclearOperative
+  - SyndicateAgent
+  - Maintenance
+
 - type: startingGear
   id: USSPOfficer
   equipment:
@@ -72,7 +102,62 @@
     - Truncheon
     - DrinkFlaskOld
     - ClothingPantsManCommie
-    
+
+#USSP Officer Soldier
+- type: job
+  id: USSPOfficerAlt
+  name: job-name-usspofficer
+  description: job-description-usspsoldier
+  playTimeTracker: JobUSSPOfficeraAlt
+  setPreference: false
+  startingGear: USSPOfficerAlt
+  icon: "JobIconUSSPOfficerAlt"
+  supervisors: job-supervisors-usspcommand
+  canBeAntag: false
+  access:
+  - NuclearOperative
+  - SyndicateAgent
+  - Maintenance
+
+- type: startingGear
+  id: USSPOfficerAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMercenary
+    back: ClothingMilitaryBackpack
+    shoes: ClothingShoesBootsMagPirate
+    mask: ClothingMaskGasMerc
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsMercGlovesCombat
+    neck: ClothingNeckUSSPPin
+    outerClothing: ClothingOuterHeavyHardsuitUSSP
+    id: USSPOfficerSoldierPDA
+    ears: ClothingHeadsetAltUSSP
+    belt: ClothingBeltHolsterFilled
+    pocket1: SyndicateWhistle
+    pocket2: FlashlightSeclite
+  storage:
+    back:
+    - MedkitFilled
+    - GrenadeShrapnel
+    - SmokeGrenade
+    - Crowbar
+    - ClothingPantsManCommie
+
+#USSP Soldier
+- type: job
+  id: USSPSoldier
+  name: job-name-usspsoldier
+  description: job-description-usspsoldier
+  playTimeTracker: JobUSSPSoldier
+  setPreference: false
+  startingGear: USSPSoldier
+  icon: "JobIconUSSPSoldier"
+  supervisors: job-supervisors-usspcommand
+  canBeAntag: false
+  access:
+  - NuclearOperative
+  - SyndicateAgent
+
 - type: startingGear
   id: USSPSoldier
   equipment:
@@ -96,6 +181,23 @@
     - SmokeGrenade
     - Crowbar
     - ClothingPantsManCommie
+
+#USSP Captain
+- type: job
+  id: USSPCaptain
+  name: job-name-usspcaptain
+  description: job-description-usspcaptain
+  playTimeTracker: JobUSSPCaptain
+  setPreference: false
+  startingGear: USSPCaptain
+  icon: "JobIconUSSPCaptain"
+  supervisors: job-supervisors-usspcommand
+  canBeAntag: false
+  accessGroups:
+  - AllAccess
+  access:
+  - NuclearOperative
+  - SyndicateAgent
 
 - type: startingGear
   id: USSPCaptain

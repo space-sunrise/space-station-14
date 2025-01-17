@@ -332,6 +332,22 @@
 
 - type: entity
   parent: USSPPDA
+  id: USSPOfficerSoldierPDA
+  name: Millitary USSP PDA
+  description: Since you live in a Soviet country, your dreams should be Soviet as well.
+  suffix: Combat
+  components:
+  - type: Pda
+    id: USSPSoldierOfficerIDCard
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - NotekeeperCartridge
+      - AstroNavCartridge
+      - MedTekCartridge
+
+- type: entity
+  parent: USSPPDA
   id: USSPCaptainPDA
   name: Officer USSP PDA
   description: Since you live in a Soviet country, your dreams should be Soviet as well.
