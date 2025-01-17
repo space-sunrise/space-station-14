@@ -373,7 +373,7 @@
     state: purple_animated
 
 - type: ghostTheme
-  id: RevenantGhost
+  id: Revenant
   name: ghost-theme-revenant
   sponsorOnly: true
   sprite:
