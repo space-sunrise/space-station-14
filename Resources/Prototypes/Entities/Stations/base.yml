@@ -48,6 +48,10 @@
 #      path: /Maps/Shuttles/cargo.yml
     - type: GridSpawn
       groups:
+        mining: !type:GridSpawnGroup
+          paths:
+          - /Maps/_Sunrise/Shuttles/mining.yml # Sunrise-edit
+          nameGrid: false
 # Sunrise-Edit
 #        trade: !type:GridSpawnGroup
 #          addComponents:
