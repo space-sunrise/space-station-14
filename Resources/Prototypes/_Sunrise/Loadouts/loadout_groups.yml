@@ -198,6 +198,17 @@
   - JumpsuitSeniorResearcher
   - JumpskirtSeniorResearcher
 
+# Security
+
+- type: loadoutGroup
+  id: SunriseSecurityGun
+  name: loadout-group-security-gun
+  minLimit: 1
+  maxLimit: 1
+  loadouts:
+  - SunriseWeaponPistolG22
+  - SunriseWeaponEnergyGun
+
 # Medical
 
 - type: loadoutGroup

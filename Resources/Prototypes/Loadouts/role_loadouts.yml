@@ -555,6 +555,7 @@
   - GroupSpeciesBreathToolSecurity
   - SecurityTrinkets  # Sunrise
   # Sunrise-start
+  - SunriseSecurityGun
   - Bra
   - Pants
   - Socks
@@ -576,6 +577,7 @@
   - GroupSpeciesBreathToolSecurity
   - SecurityTrinkets  # Sunrise
   # Sunrise-start
+  - SunriseSecurityGun
   - Bra
   - Pants
   - Socks
@@ -598,6 +600,7 @@
   - GroupSpeciesBreathToolSecurity
   - SecurityTrinkets  # Sunrise
   # Sunrise-start
+  - SunriseSecurityGun
   - Bra
   - Pants
   - Socks
@@ -832,7 +835,8 @@
   groups:
   # Sunrise-start
   - SunrisePsychologistHead
-  - MedicalMask
+# - MedicalMask Sunrise-edit
+  - SunrisePsychologistMask
   - SunrisePsychologistGloves
   # Sunrise-end
   - CommonBackpack # Sunrise-edit

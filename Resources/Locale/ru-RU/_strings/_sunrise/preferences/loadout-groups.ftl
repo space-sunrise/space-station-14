@@ -89,4 +89,5 @@ loadout-group-salvage-specialist-mask = Утилизатор, маска
 loadout-group-salvage-specialist-neck = Утилизатор, шея
 loadout-group-salvage-specialist-head = Утилизатор, голова
 loadout-group-cargo-trinkets = Безделушки СНБ
+loadout-group-security-gun = СБ, оружие
 loadout-group-pets = Питомцы
