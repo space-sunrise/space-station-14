@@ -4,7 +4,9 @@
   name: Terminator Role
   components:
   - type: MindRole
-    antagPrototype: Changeling
+    antagPrototype: Terminator
+    exclusiveAntag: true
+    roleType: SoloAntagonist
   - type: TerminatorRole
 
 - type: entity
@@ -13,7 +15,9 @@
   name: Evil Twin Role
   components:
   - type: MindRole
-    antagPrototype: Changeling
+    antagPrototype: EvilTwin
+    exclusiveAntag: true
+    roleType: SoloAntagonist
   - type: EvilTwinRole
 
 - type: entity
@@ -22,7 +26,9 @@
   name: Fugitive Role
   components:
   - type: MindRole
-    antagPrototype: Changeling
+    antagPrototype: Fugitive
+    exclusiveAntag: true
+    roleType: SoloAntagonist
   - type: FugitiveRole
 
 - type: entity
@@ -31,5 +37,29 @@
   name: Planet Prisoner Role
   components:
   - type: MindRole
-    antagPrototype: Changeling
+    antagPrototype: PlanetPrisoner
+    exclusiveAntag: true
+    roleType: TeamAntagonist
   - type: PlanetPrisonerRole
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleChangeling
+  name: Changeling Role
+  components:
+  - type: MindRole
+    antagPrototype: Changeling
+    exclusiveAntag: true
+    roleType: SoloAntagonist
+  - type: ChangelingRole
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleVampire
+  name: Vampire Role
+  components:
+  - type: MindRole
+    antagPrototype: Vampire
+    exclusiveAntag: true
+    roleType: TeamAntagonist
+  - type: VampireRole

@@ -12,6 +12,8 @@
     rules: ghost-role-information-ussp-crew-rules
     raffle:
       settings: default
+    mindRoles:
+    - MindRoleGhostRoleFreeAgent
   - type: GhostTakeoverAvailable
   - type: NpcFactionMember
     factions:
@@ -34,6 +36,8 @@
     rules: ghost-role-information-ussp-sec-rules
     raffle:
       settings: default
+    mindRoles:
+    - MindRoleGhostRoleFreeAgent
   - type: GhostTakeoverAvailable
   - type: NpcFactionMember
     factions:
@@ -56,10 +60,12 @@
   components:
   - type: GhostRole
     name: ghost-role-information-ussp-war-name
-    description: ghost-role-information-ussp-war-description 
-    rules: ghost-role-information-ussp-war-rules 
+    description: ghost-role-information-ussp-war-description
+    rules: ghost-role-information-ussp-war-rules
     raffle:
       settings: default
+    mindRoles:
+    - MindRoleGhostRoleFreeAgent
   - type: GhostTakeoverAvailable
   - type: NpcFactionMember
     factions:
@@ -86,6 +92,8 @@
     rules: ghost-role-information-ussp-com-rules
     raffle:
       settings: default
+    mindRoles:
+    - MindRoleGhostRoleFreeAgent
   - type: GhostTakeoverAvailable
   - type: NpcFactionMember
     factions:
