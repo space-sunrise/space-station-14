@@ -95,6 +95,8 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.0
     baseSprintSpeed: 4.0
+  - type: Carriable
+    freeHandsRequired: 1
 #  - type: DamagedByFlashing
 #    flashDamage:
 #      types:

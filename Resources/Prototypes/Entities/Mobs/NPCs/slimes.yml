@@ -112,6 +112,10 @@
     speechSounds: Slime
   - type: TypingIndicator
     proto: slime
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   name: basic slime
