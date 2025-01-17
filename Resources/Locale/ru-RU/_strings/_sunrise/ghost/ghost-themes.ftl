@@ -43,4 +43,3 @@ ghost-theme-pink-girl = Pink Girl
 ghost-theme-purple-girl = Purple Girl
 ghost-theme-red-girl = Red Girl
 ghost-theme-revenant = Ревенант
-ghost-theme-agent = Агент
