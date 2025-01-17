@@ -37,6 +37,8 @@
   cost: 7500
   recipeUnlocks:
   - ClothingShoesBootsMagCombat
+  technologyPrerequisites:
+  - AdvancedRiotControl
 
 - type: technology
   id: Advanced Laser Manipulation

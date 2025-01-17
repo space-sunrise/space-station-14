@@ -10,6 +10,8 @@
     rules: ghost-role-information-evil-twin-rules
     raffle:
       settings: default
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
   - type: GhostTakeoverAvailable
   - type: Sprite
     sprite: Markers/jobs.rsi

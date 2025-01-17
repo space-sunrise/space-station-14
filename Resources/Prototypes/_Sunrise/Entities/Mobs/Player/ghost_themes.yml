@@ -371,3 +371,11 @@
   sprite:
     sprite: _Sunrise/Mobs/Ghosts/purple_girl.rsi
     state: purple_animated
+
+- type: ghostTheme
+  id: Revenant
+  name: ghost-theme-revenant
+  sponsorOnly: true
+  sprite:
+    sprite: _Sunrise/Mobs/Ghosts/revenant_ghost.rsi
+    state: animated

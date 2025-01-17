@@ -50,6 +50,8 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/smg_laser.rsi
   - type: Item
     size: Large
+    shape:
+    - 0,0,2,1
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/smg_laser.rsi
   - type: MagazineVisuals
     magState: mag
@@ -72,7 +74,7 @@
       shader: unshaded
   - type: Gun
     selectedMode: SemiAuto
-    fireRate: 3
+    fireRate: 2.75
     availableModes:
       - SemiAuto
   - type: Clothing
@@ -104,6 +106,8 @@
       shader: unshaded
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun.rsi
+  - type: Item
+    size: Large
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
@@ -422,13 +426,15 @@
       shader: unshaded
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_tactical.rsi
+  - type: Item
+    size: Large
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
     selectedMode: SemiAuto
-    fireRate: 2.1
+    fireRate: 2
     availableModes:
         - SemiAuto
         - FullAuto
@@ -437,7 +443,7 @@
     startingCharge: 1500
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 15 # ~3 minute
+    autoRechargeRate: 20 # ~2 minute
     autoRechargePause: true
     autoRechargePauseTime: 60
   - type: EnergyGunFireModes

@@ -39,50 +39,52 @@
   components:
     - type: GatewayGenerator
 
-# Sunrise-Start
-#- type: entity
-#  id: BaseStationShuttles
-#  abstract: true
-#  components:
-#  - type: StationCargoShuttle
-#    path: /Maps/Shuttles/cargo.yml
-#  - type: GridSpawn
-#    groups:
-#      trade: !type:GridSpawnGroup
-#        addComponents:
-#        - type: ProtectedGrid
-#        - type: TradeStation
-#        paths:
-#        - /Maps/Shuttles/trading_outpost.yml
-#      ruins: !type:GridSpawnGroup
-#        hide: true
-#        nameGrid: true
-#        minCount: 2
-#        maxCount: 2
-#        stationGrid: false
-#        paths:
-#        - /Maps/Ruins/abandoned_outpost.yml
-#        - /Maps/Ruins/chunked_tcomms.yml
-#        - /Maps/Ruins/biodome_satellite.yml
-#        - /Maps/Ruins/derelict.yml
-#        - /Maps/Ruins/djstation.yml
-#        - /Maps/Ruins/empty_flagship.yml
-#        - /Maps/Ruins/old_ai_sat.yml
-#        - /Maps/Ruins/syndicate_dropship.yml
-#        - /Maps/Ruins/whiteship_ancient.yml
-#        - /Maps/Ruins/whiteship_bluespacejumper.yml
-#      vgroid: !type:DungeonSpawnGroup
-#        minimumDistance: 300
-#        maximumDistance: 350
-#        nameDataset: NamesBorer
-#        stationGrid: false
-#        addComponents:
-#        - type: Gravity
-#          enabled: true
-#          inherent: true
-#        protos:
-#        - VGRoid
-#Sunrise-End
+- type: entity
+  id: BaseStationShuttles
+  abstract: true
+  components:
+# Sunrise-Edit
+#    - type: StationCargoShuttle
+#      path: /Maps/Shuttles/cargo.yml
+    - type: GridSpawn
+      groups:
+# Sunrise-Edit
+#        trade: !type:GridSpawnGroup
+#          addComponents:
+#            - type: ProtectedGrid
+#            - type: TradeStation
+#          paths:
+#            - /Maps/Shuttles/trading_outpost.yml
+        # Spawn last
+        ruins: !type:GridSpawnGroup
+          hide: true
+          nameGrid: true
+          minCount: 6
+          maxCount: 10
+          stationGrid: false
+          paths:
+          - /Maps/Ruins/abandoned_outpost.yml
+          - /Maps/Ruins/chunked_tcomms.yml
+          - /Maps/Ruins/biodome_satellite.yml
+          - /Maps/Ruins/derelict.yml
+          - /Maps/Ruins/djstation.yml
+          - /Maps/Ruins/empty_flagship.yml
+          - /Maps/Ruins/old_ai_sat.yml
+          - /Maps/Ruins/syndicate_dropship.yml
+          - /Maps/Ruins/whiteship_ancient.yml
+          - /Maps/Ruins/whiteship_bluespacejumper.yml
+          - /Maps/Ruins/wrecklaimer.yml
+        vgroid: !type:DungeonSpawnGroup
+          minimumDistance: 300
+          maximumDistance: 350
+          nameDataset: NamesBorer
+          stationGrid: false
+          addComponents:
+          - type: Gravity
+            enabled: true
+            inherent: true
+          protos:
+          - VGRoid
 
 # Sunrise-Edit: Вынесено в _Sunrise
 #- type: entity
