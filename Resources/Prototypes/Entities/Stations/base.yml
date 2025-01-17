@@ -57,7 +57,7 @@
 #            - /Maps/Shuttles/trading_outpost.yml
         # Spawn last
         ruins: !type:GridSpawnGroup
-          hide: true
+          hide: false # Sunrise-Edit
           nameGrid: true
           minCount: 6
           maxCount: 10
