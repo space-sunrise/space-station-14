@@ -196,9 +196,10 @@
   name: USSP ID card
   components:
   - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
     layers:
-    - state: syndie
-    - state: idpassenger
+    - state: ussp
+    - state: idcard_crew
   - type: Access
     tags:
     - Maintenance
@@ -212,9 +213,10 @@
   suffix: Guard
   components:
   - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
     layers:
-    - state: syndie
-    - state: idheadofsecurity
+    - state: ussp
+    - state: idcard_officer
   - type: Access
     tags:
     - Maintenance
@@ -230,9 +232,28 @@
   suffix: Combat
   components:
   - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
     layers:
-    - state: syndie
-    - state: idpilot
+    - state: ussp
+    - state: idcard_soldier
+  - type: Access
+    tags:
+    - NuclearOperative
+    - SyndicateAgent
+  - type: IdCard
+    jobTitle: JobUSSPSoldier
+
+- type: entity
+  parent: IDCardStandard
+  id: USSPSoldierOfficerIDCard
+  name: USSP ID card
+  suffix: Combat Officer
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: ussp
+    - state: idcard_officer_alt
   - type: Access
     tags:
     - NuclearOperative
@@ -247,9 +268,10 @@
   suffix: Officer
   components:
   - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
     layers:
-    - state: syndie
-    - state: idcaptain
+    - state: ussp
+    - state: idcard_captain
   - type: Access
     groups:
     - AllAccess
