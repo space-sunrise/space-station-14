@@ -50,6 +50,7 @@
     - id: CommsComputerCircuitboard
     - id: DoorRemoteCommand
     - id: MedalCase
+    - id: ClothingOuterCoatCaptain
     - id: NukeDisk
     - id: PinpointerNuclear
     - id: PlushieNuke
