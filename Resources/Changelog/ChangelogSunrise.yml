@@ -10884,3 +10884,13 @@
     type: Fix
   id: 754
   time: '2025-01-18T03:58:48.920402+00:00'
+- author: VigersRay
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0430 \u0442\u043E\u0440\
+      \u0436\u0435\u0441\u0442\u0432\u0435\u043D\u043D\u0430\u044F \u043A\u0443\u0440\
+      \u0442\u043A\u0430 \u043A\u0430\u043F\u0438\u0442\u0430\u043D\u0430 \u0432 \u0435\
+      \u0433\u043E \u0436\u0435 \u0448\u043A\u0430\u0444\u0447\u0438\u043A."
+    type: Add
+  id: 755
+  time: '2025-01-18T18:44:41.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/1140
