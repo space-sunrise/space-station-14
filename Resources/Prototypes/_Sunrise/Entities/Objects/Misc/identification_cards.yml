@@ -194,16 +194,18 @@
   parent: IDCardStandard
   id: USSPIDCard
   name: USSP ID card
+  suffix: Crew
   components:
   - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
     layers:
-    - state: syndie
-    - state: idpassenger
+    - state: ussp
+    - state: idcard_crew
   - type: Access
     tags:
     - Maintenance
-  - type: IdCard
-    jobTitle: JobUSSPCrew
+  - type: PresetIdCard
+    job: USSPCrew
 
 - type: entity
   parent: IDCardStandard
@@ -212,16 +214,17 @@
   suffix: Guard
   components:
   - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
     layers:
-    - state: syndie
-    - state: idheadofsecurity
+    - state: ussp
+    - state: idcard_officer
   - type: Access
     tags:
     - Maintenance
     - NuclearOperative
     - SyndicateAgent
-  - type: IdCard
-    jobTitle: JobUSSPGuard
+  - type: PresetIdCard
+    job: USSPOfficer
 
 - type: entity
   parent: IDCardStandard
@@ -230,31 +233,51 @@
   suffix: Combat
   components:
   - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
     layers:
-    - state: syndie
-    - state: idpilot
+    - state: ussp
+    - state: idcard_soldier
   - type: Access
     tags:
     - NuclearOperative
     - SyndicateAgent
-  - type: IdCard
-    jobTitle: JobUSSPSoldier
+  - type: PresetIdCard
+    job: USSPSoldier
+
+- type: entity
+  parent: IDCardStandard
+  id: USSPSoldierOfficerIDCard
+  name: USSP ID card
+  suffix: Combat Officer
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
+    layers:
+    - state: ussp
+    - state: idcard_officer_alt
+  - type: Access
+    tags:
+    - NuclearOperative
+    - SyndicateAgent
+  - type: PresetIdCard
+    job: USSPOfficerAlt
 
 - type: entity
   parent: IDCardStandard
   id: USSPCaptainIDCard
   name: USSP ID card
-  suffix: Officer
+  suffix: Captain
   components:
   - type: Sprite
+    sprite: _Sunrise/Objects/Misc/id_cards.rsi
     layers:
-    - state: syndie
-    - state: idcaptain
+    - state: ussp
+    - state: idcard_captain
   - type: Access
     groups:
     - AllAccess
     tags:
     - NuclearOperative
     - SyndicateAgent
-  - type: IdCard
-    jobTitle: JobUSSPOfficer
+  - type: PresetIdCard
+    job: USSPCaptain

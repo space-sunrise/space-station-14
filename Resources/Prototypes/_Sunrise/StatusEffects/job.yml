@@ -151,3 +151,43 @@
   icon:
     sprite: /Textures/Interface/Misc/job_icons.rsi
     state: Adjutant
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconUSSPCrew
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: CrewUSSP
+  jobName: JobUSSPCrew
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconUSSPOfficer
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: OfficerUSSP
+  jobName: JobUSSPOfficer
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconUSSPOfficerAlt
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: OfficerAltUSSP
+  jobName: JobUSSPCrewOfficerAlt
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconUSSPSoldier
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: SoldierUSSP
+  jobName: JobUSSPSoldier
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconUSSPCaptain
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: CaptainUSSP
+  jobName: JobUSSPCaptain
