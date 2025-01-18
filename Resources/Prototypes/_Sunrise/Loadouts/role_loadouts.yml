@@ -113,20 +113,20 @@
 - type: roleLoadout
   id: JobSeniorPhysician
   groups:
-  - SeniorPhysicianJumpsuit
   - SeniorPhysicianHead
-  - MedicalBackpack
-  - SeniorPhysicianNeck
   - SeniorPhysicianMask
-  - SeniorPhysicianOuterClothing
+  - SeniorPhysicianJumpsuit
   - SeniorPhysicianGloves
+  - MedicalBackpack
+  - SeniorPhysicianOuterClothing
+  - SeniorPhysicianNeck
   - SeniorPhysicianBelt
   - SeniorPhysicianShoes
   - SurvivalMedical
   - Trinkets
+  - MedicalTrinkets
   - Glasses
   - GroupSpeciesBreathTool
-  - MedicalTrinkets
   - Bra
   - Pants
   - Socks
@@ -134,20 +134,20 @@
 - type: roleLoadout
   id: JobMedicalPathologist
   groups:
-  - MedicalDoctorJumpsuit
   - PathologistHead
-  - MedicalBackpack
   - PathologistMask
-  - PathologistNeck
-  - PathologistOuterClothing
+  - MedicalDoctorJumpsuit
   - PathologistGloves
+  - MedicalBackpack
+  - PathologistOuterClothing
+  - PathologistNeck
   - PathologistShoes
   - GroupTankHarness
   - Glasses
   - SurvivalMedical
   - Trinkets
-  - GroupSpeciesBreathToolMedical
   - MedicalTrinkets
+  - GroupSpeciesBreathToolMedical
   - Bra
   - Pants
   - Socks
@@ -156,17 +156,17 @@
 - type: roleLoadout
   id: JobSeniorEngineer
   groups:
-  - SeniorEngineerJumpsuit
   - SeniorEngineerHead
-  - StationSeniorEngineerBackpack
-  - SeniorEngineerNeck
   - SeniorEngineerMask
-  - SeniorEngineerOuterClothing
+  - SeniorEngineerJumpsuit
   - SeniorEngineerGloves
+  - StationSeniorEngineerBackpack
+  - SeniorEngineerOuterClothing
+  - SeniorEngineerNeck
   - SeniorEngineerShoes
-  - TrinketsEngineering
   - SurvivalExtended
   - Trinkets
+  - TrinketsEngineering
   - GroupSpeciesBreathTool
   - Bra
   - Pants
@@ -196,10 +196,7 @@
   - StationEngineerHead
   - StationEngineerJumpsuit
   - StationEngineerBackpack
-  - SeniorEngineerNeck
-  - SeniorEngineerMask
   - StationEngineerOuterClothing
-  - StationEngineerShoes
   - TrinketsEngineering
   - Trinkets
   - SurvivalExtended
