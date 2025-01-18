@@ -63,6 +63,7 @@
         satelite: !type:GridSpawnGroup
           minimumDistance: 300
           maximumDistance: 350
+          nameGrid: false
           minCount: 2
           maxCount: 2
           stationGrid: true
@@ -71,8 +72,8 @@
           - /Maps/_Sunrise/Nonstations/telecom_satelite.yml
         ruins: !type:GridSpawnGroup
           hide: false # Sunrise-Edit
-          nameGrid: true
-          minCount: 8
+          nameGrid: false
+          minCount: 10
           maxCount: 15
           stationGrid: false
           paths:
