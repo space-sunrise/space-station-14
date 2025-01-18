@@ -9,7 +9,6 @@
     state: combat_hypo
   - type: Item
     sprite: Objects/Specific/Medical/hypospray.rsi
-    state: combat_hypo
     size: Small
   - type: SolutionContainerManager
     solutions:
