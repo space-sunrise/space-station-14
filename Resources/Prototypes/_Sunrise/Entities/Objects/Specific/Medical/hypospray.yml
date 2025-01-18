@@ -43,7 +43,7 @@
       Plastic: 300
   - type: SpaceGarbage
   - type: StaticPrice
-    price: 750 # These are limited supply items.
+    price: 750
   - type: TrashOnSolutionEmpty
     solution: pen
 
@@ -68,6 +68,7 @@
     solution: hypospray
   - type: Hypospray
     onlyAffectsMobs: false
+    pierceArmor: true
   - type: UseDelay
     delay: 0.5
   - type: StaticPrice
