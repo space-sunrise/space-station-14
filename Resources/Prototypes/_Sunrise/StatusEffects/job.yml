@@ -21,6 +21,20 @@
 
 - type: jobIcon
   parent: JobIcon
+  id: JobIconNtrGuard
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: NanotrasenGuard
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconNtrLeader
+  icon:
+    sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi
+    state: NanotrasenLeader
+
+- type: jobIcon
+  parent: JobIcon
   id: JobIconHeadOfPrison
   icon:
     sprite: /Textures/_Sunrise/Interface/Misc/job_icons.rsi

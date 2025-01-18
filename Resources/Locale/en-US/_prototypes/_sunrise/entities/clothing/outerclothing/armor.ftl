@@ -16,3 +16,7 @@ ent-ClothingOuterArmorAmberMed = ERT Amber Medic armor
     .desc = NT's universal flexible and well-armored suit with a powerful shoulder mounted flashlight ,it does not protect its wearer from space.
 ent-ClothingOuterArmorAmberJan = ERT Amber Janitor armor
     .desc = NT's universal flexible and well-armored suit with a powerful shoulder mounted flashlight ,it does not protect its wearer from space.
+ent-ClothingOuterArmorNTRG = heavvy vest NTR
+    .desc = heavvy vest for NTRG Sqaud
+ent-ClothingOuterArmorNTRGLead = trenchcoat NTRG Sqaud
+    .desc = Blue and rugged suit that protects against minor chemical spills..

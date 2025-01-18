@@ -66,6 +66,18 @@
         Piercing: 0.8
 
 - type: entity
+  parent: ClothingHeadHelmetHeavyHardsuitUSSP
+  id: ClothingHeadHelmetHardsuitNTRG
+  categories: [ HideSpawnMenu ]
+  name: NTRG's hardsuit helmet
+  description: Blue.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hardsuits/ntrguard_head.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hardsuits/ntrguard_head.rsi
+
+- type: entity
   parent: ClothingHeadHelmetHardsuitSecurity
   id: ClothingHeadHelmetHardsuitSecuritySunrise
   components:

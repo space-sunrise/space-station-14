@@ -34,3 +34,7 @@ ent-USSPSoldierPDA = КПК Военного СССП
     .desc = { ent-USSPPDA.desc }
 ent-USSPCaptainPDA = КПК Офицера СССП
     .desc = { ent-USSPPDA.desc }
+ent-NtrGuardPDA = КПК ИСН
+    .desc = Необычный стиль серого и красного, владелец данного ПДА может гордиться своими достижениями. На боковой панели виднеется встроенная клавиатура и красные кнопки.
+ent-NtrLeadGuardPDA = КПК ИСН
+    .desc = { ent-NtrGuardPDA.desc }
