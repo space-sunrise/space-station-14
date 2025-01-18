@@ -41,6 +41,20 @@
     state: stamp-ntrep
 
 - type: entity
+  name: Pathologist rubber stamp
+  parent: RubberStampBase
+  id: RubberStampPath
+  suffix: DO NOT MAP
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-path
+    stampedColor: "#003153"
+    stampState: "paper_stamp-path"
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/stamps.rsi
+    state: stamp-path
+
+- type: entity
   name: Adjutant's rubber stamp
   parent: RubberStampBase
   id: RubberStampAdj
@@ -53,17 +67,3 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Misc/stamps.rsi
     state: stamp-adj
-
-  - type: entity
-    name: печать патологоанатома
-    parent: RubberStampBase
-    id: RubberStampPath
-    components:
-    - type: Stamp
-      stampedName: stamp-component-stamped-name-path
-      stampedColor: "0000FF"
-      stampState: "paper_stamp-path"
-    - type: Sprite
-      sprite: _Sunrise/Objects/Misc/stamps.rsi
-      state: stamp-path
-
