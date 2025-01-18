@@ -8,5 +8,5 @@ ent-Bluecrystal25 = { ent-Bluecrystal }
     .suffix = 25 BC
     .desc = { ent-Bluecrystal.desc }
 ent-Bluecrystal50 = { ent-Bluecrystal }
-   .suffix = 50 BC
-   .desc = { ent-Bluecrystal.desc }
+    .suffix = 50 BC
+    .desc = { ent-Bluecrystal.desc }

@@ -5,4 +5,4 @@ ent-PacificatorCircuitboard = pacifism generator machine board
 ent-ReflectorMachineCircuitboard = reflector machine board
     .desc = { ent-BaseMachineCircuitboard.desc }
 ent-ExosuitFabricatorHyperConvectionMachineCircuitboard = hyper convection exosuit fabricator machine board
-    .desc = { ent-BaseMachineCircuitboard.desc }
+    .desc = A machine printed circuit board for a hyper convection fabricator.

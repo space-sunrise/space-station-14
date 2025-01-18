@@ -114,6 +114,10 @@
       name: mob-flesh-spider-ghost-role-name
       description: mob-flesh-spider-ghost-role-desc
       rules: mob-flesh-cult-rules
+      raffle:
+        settings: short
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
     - type: GhostTakeoverAvailable
     - type: MeleeWeapon
       hidden: true
@@ -228,6 +232,10 @@
       name: mob-flesh-pudge-ghost-role-name
       description: mob-flesh-pudge-ghost-role-desc
       rules: mob-flesh-cult-rules
+      raffle:
+        settings: short
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
     - type: GhostTakeoverAvailable
     - type: Fixtures
       fixtures:
@@ -293,6 +301,10 @@
       name: mob-flesh-ball-ghost-role-name
       description: mob-flesh-ball-ghost-role-desc
       rules: mob-flesh-cult-rules
+      raffle:
+        settings: short
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
     - type: GhostTakeoverAvailable
     - type: MobThresholds
       thresholds:
@@ -366,6 +378,10 @@
       name: mob-flesh-bat-ghost-role-name
       description: mob-flesh-bat-ghost-role-desc
       rules: mob-flesh-cult-rules
+      raffle:
+        settings: short
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
     - type: GhostTakeoverAvailable
     - type: MeleeWeapon
       hidden: true
@@ -448,6 +464,10 @@
       name: mob-flesh-hugger-ghost-role-name
       description: mob-flesh-hugger-ghost-role-desc
       rules: mob-flesh-cult-rules
+      raffle:
+        settings: short
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
     - type: GhostTakeoverAvailable
     - type: MeleeWeapon
       hidden: true
