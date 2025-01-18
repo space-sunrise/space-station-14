@@ -4,7 +4,7 @@
   mapPath: /Maps/_Sunrise/Station/arena.yml
   minPlayers: 0
   stations:
-    arena:
+    Arena:
       stationProto: StandardNanotrasenStation
       components:
         - type: StationNameSetup

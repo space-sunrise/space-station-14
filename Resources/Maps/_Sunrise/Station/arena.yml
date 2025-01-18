@@ -9985,7 +9985,7 @@ entities:
     - type: Shuttle
     - type: GridPathfinding
     - type: RadiationGridResistance
-    - id: arena
+    - id: Arena
       type: BecomesStation
     - type: GasTileOverlay
     - type: SpreaderGrid
