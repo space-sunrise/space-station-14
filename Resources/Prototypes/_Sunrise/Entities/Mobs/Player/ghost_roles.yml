@@ -284,7 +284,7 @@
     head: ClothingHeadEVAHelmetERTMedic
     neck: HandheldCamera
     eyes: ClothingEyesHudMedical
-    gloves: ClothingHandsGlovesNitrile
+    gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorAmberMed
     id: ERTMedicPDA
     ears: ClothingHeadsetAltCentCom
@@ -292,7 +292,7 @@
     pocket1: HyposprayERT
     pocket2: MedipenCombatInjector
   inhand:
-  - WeaponEnergyGun
+  - LauncherSyringeRapidFilled
   - DefibrillatorCompact
   storage:
     back:
@@ -311,7 +311,7 @@
     neck: HandheldCamera
     mask: ClothingMaskGasERT
     eyes: ClothingEyesNVDSec
-    gloves: ClothingHandsGlovesNitrile
+    gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTMedical
     id: ERTMedicPDA
     ears: ClothingHeadsetAltCentCom
@@ -319,7 +319,7 @@
     pocket1: HyposprayERT
     pocket2: MedipenCombatInjector
   inhand:
-  - WeaponEnergyGunPistolSecurity
+  - LauncherSyringeSMG
   - AdvancedDefibrillator
   storage:
     back:

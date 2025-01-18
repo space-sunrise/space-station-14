@@ -15,10 +15,12 @@
       pen:
         maxVol: 100
         reagents:
+        - ReagentId: Epinephrine
+          Quantity: 10
         - ReagentId: Omnizine
-          Quantity: 25
+          Quantity: 20
         - ReagentId: Saline
-          Quantity: 25
+          Quantity: 20
         - ReagentId: Puncturase
           Quantity: 25
         - ReagentId: Dermaline
