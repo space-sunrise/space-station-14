@@ -20,6 +20,8 @@
     description: ghost-role-information-clown-goblin-description
     raffle:
       settings: short
+    mindRoles:
+    - MindRoleGhostRoleFreeAgent
   - type: Speech
     speechSounds: BikeHorn
   - type: Sprite

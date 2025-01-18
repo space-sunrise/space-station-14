@@ -48,6 +48,10 @@
 #      path: /Maps/Shuttles/cargo.yml
     - type: GridSpawn
       groups:
+        mining: !type:GridSpawnGroup
+          paths:
+          - /Maps/_Sunrise/Shuttles/mining.yml # Sunrise-edit
+          nameGrid: false
 # Sunrise-Edit
 #        trade: !type:GridSpawnGroup
 #          addComponents:
@@ -57,7 +61,7 @@
 #            - /Maps/Shuttles/trading_outpost.yml
         # Spawn last
         ruins: !type:GridSpawnGroup
-          hide: true
+          hide: false # Sunrise-Edit
           nameGrid: true
           minCount: 6
           maxCount: 10

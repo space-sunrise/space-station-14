@@ -1,2 +1,2 @@
 ent-IcarusKeyImplanter = имплантатор ключей "Икарус"
-.desc = { ent-BaseImplantOnlyImplanter.desc }
+    .desc = { ent-BaseImplantOnlyImplanter.desc }

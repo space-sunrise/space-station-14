@@ -7,7 +7,7 @@
   - type: Respirator
     damage:
       types:
-        Asphyxiation: 0.5 # Sunrise-Casual
+        Asphyxiation: 1.5 # This makes space and crit more lethal to arachnids.
     damageRecovery:
       types:
-        Asphyxiation: -1.0
+        Asphyxiation: -0.5

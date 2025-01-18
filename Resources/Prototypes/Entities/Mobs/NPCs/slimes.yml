@@ -67,7 +67,7 @@
   - type: Barotrauma
     damage:
       types:
-        Blunt: 0.1 # Sunrise-Casual
+        Blunt: 0.45
   - type: Reactive
     groups:
       Flammable: [ Touch ]
@@ -112,6 +112,10 @@
     speechSounds: Slime
   - type: TypingIndicator
     proto: slime
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   name: basic slime

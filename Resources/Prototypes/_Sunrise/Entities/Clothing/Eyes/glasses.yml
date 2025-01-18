@@ -33,6 +33,7 @@
   - type: FlashImmunity
   - type: ShowJobIcons
   - type: ShowCriminalRecordIcons
+  - type: ShowMindShieldIcons
   - type: ShowHealthBars
     damageContainers:
     - Biological

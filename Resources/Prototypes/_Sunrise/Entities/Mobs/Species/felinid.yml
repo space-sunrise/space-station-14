@@ -67,10 +67,10 @@
   - type: Respirator
     damage:
       types:
-        Asphyxiation: 0.5
+        Asphyxiation: 1.5
     damageRecovery:
       types:
-        Asphyxiation: -1.0
+        Asphyxiation: -1.5
   - type: NpcFactionMember
     factions:
       - NanoTrasen
@@ -95,6 +95,8 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.0
     baseSprintSpeed: 4.0
+  - type: Carriable
+    freeHandsRequired: 1
 #  - type: DamagedByFlashing
 #    flashDamage:
 #      types:

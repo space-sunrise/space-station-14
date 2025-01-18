@@ -43,6 +43,8 @@
     name: snowman
     description: Cold snowman. Run around and throw snowballs at everyone!
     rules: ghost-role-information-nonantagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleFreeAgent
   - type: GhostTakeoverAvailable
   - type: FootstepModifier
     footstepSoundCollection:

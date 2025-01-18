@@ -6,6 +6,7 @@
   - Heat
   - Shock
   - Caustic
+  - Structural
 
 - type: damageContainer
   id: Mech
@@ -15,6 +16,7 @@
   - Heat
   - Shock
   - Caustic
+  - Structural
 
 - type: damageContainer
   id: Rift

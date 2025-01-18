@@ -267,6 +267,10 @@
     - VimPilot
   - type: StealTarget
     stealGroup: AnimalNamedCat
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   name: McGriff
@@ -327,6 +331,10 @@
     - VimPilot
   - type: StealTarget
     stealGroup: AnimalMcGriff
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   name: Paperwork
@@ -421,6 +429,10 @@
     - VimPilot
   - type: StealTarget
     stealGroup: AnimalWalter
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   name: Morty

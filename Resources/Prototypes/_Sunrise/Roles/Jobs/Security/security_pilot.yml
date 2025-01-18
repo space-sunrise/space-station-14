@@ -10,7 +10,6 @@
   startingGear: SecurityPilotGear
   icon: JobIconSecurityPilot
   supervisors: job-supervisors-hos
-  setPreference: false
   canBeAntag: false
   displayWeight: 50
   access:
