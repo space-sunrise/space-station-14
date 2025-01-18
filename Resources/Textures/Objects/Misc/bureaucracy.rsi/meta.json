@@ -242,6 +242,8 @@
     },
     {
       "name": "paper_stamp-greytide"
-    }
+    },
+      {"name": "paper_stamp-path"
+      }
   ]
 }

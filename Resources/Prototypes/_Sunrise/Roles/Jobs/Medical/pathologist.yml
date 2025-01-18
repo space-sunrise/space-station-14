@@ -22,6 +22,9 @@
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalFilled
     head: ClothingHeadHatPatologonatHat
+  storage:
+    back:
+    - RubberStampPath
 
 - type: jobIcon
   parent: JobIcon

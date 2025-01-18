@@ -53,3 +53,17 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Misc/stamps.rsi
     state: stamp-adj
+
+  - type: entity
+    name: печать патологоанатома
+    parent: RubberStampBase
+    id: RubberStampPath
+    components:
+    - type: Stamp
+      stampedName: stamp-component-stamped-name-path
+      stampedColor: "0000FF"
+      stampState: "paper_stamp-path"
+    - type: Sprite
+      sprite: _Sunrise/Objects/Misc/stamps.rsi
+      state: stamp-path
+
