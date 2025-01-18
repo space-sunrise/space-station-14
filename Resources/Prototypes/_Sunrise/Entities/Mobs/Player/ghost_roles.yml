@@ -1,105 +1,3 @@
-### USSP
-
-- type: entity
-  name: USSP Crew
-  parent: MobHuman
-  suffix: USSP
-  id: MobHumanUSSP
-  components:
-  - type: GhostRole
-    name: ghost-role-information-ussp-crew-name
-    description: ghost-role-information-ussp-crew-description
-    rules: ghost-role-information-ussp-crew-rules
-    raffle:
-      settings: default
-  - type: GhostTakeoverAvailable
-  - type: NpcFactionMember
-    factions:
-    - Syndicate
-  - type: Loadout
-    prototypes: [ USSPJobAltA, USSPJobAltB, USSPJobAltC, USSPJobAltD, USSPJobAltE, USSPJobAltF ]
-    roleLoadout: [ RoleSurvivalEVA ]
-  - type: RandomHumanoidAppearance
-    randomizeName: true
-
-- type: entity
-  name: USSP Officer
-  parent: MobHuman
-  suffix: USSP
-  id: MobHumanUSSPOfficer
-  components:
-  - type: GhostRole
-    name: ghost-role-information-ussp-sec-name
-    description: ghost-role-information-ussp-sec-description
-    rules: ghost-role-information-ussp-sec-rules
-    raffle:
-      settings: default
-  - type: GhostTakeoverAvailable
-  - type: NpcFactionMember
-    factions:
-    - Syndicate
-  - type: Loadout
-    prototypes: [ USSPOfficer ]
-    roleLoadout: [ RoleSurvivalEVA ]
-  - type: RandomHumanoidAppearance
-    randomizeName: false
-  - type: RandomMetadata
-    nameSegments:
-    - NamesFirstMilitary
-    - names_last_male
-
-- type: entity
-  name: USSP Soldier
-  parent: MobHuman
-  suffix: USSP | ANTAG
-  id: MobHumanUSSPSoldier
-  components:
-  - type: GhostRole
-    name: ghost-role-information-ussp-war-name
-    description: ghost-role-information-ussp-war-description 
-    rules: ghost-role-information-ussp-war-rules 
-    raffle:
-      settings: default
-  - type: GhostTakeoverAvailable
-  - type: NpcFactionMember
-    factions:
-    - Syndicate
-  - type: Loadout
-    prototypes: [ USSPSoldier ]
-    roleLoadout: [ RoleSurvivalEVA ]
-  - type: RandomHumanoidAppearance
-    randomizeName: false
-  - type: RandomMetadata
-    nameSegments:
-    - NamesFirstMilitary
-    - names_last_male
-
-- type: entity
-  name: USSP Captain
-  parent: MobHuman
-  suffix: USSP
-  id: MobHumanUSSPCaptain
-  components:
-  - type: GhostRole
-    name: ghost-role-information-ussp-com-name
-    description: ghost-role-information-ussp-com-description
-    rules: ghost-role-information-ussp-com-rules
-    raffle:
-      settings: default
-  - type: GhostTakeoverAvailable
-  - type: NpcFactionMember
-    factions:
-    - Syndicate
-  - type: Loadout
-    prototypes: [ USSPCaptain ]
-    roleLoadout: [ RoleSurvivalEVA ]
-  - type: RandomHumanoidAppearance
-    randomizeName: false
-  - type: RandomMetadata
-    nameSegments:
-    - NamesFirstMilitaryLeader
-    - names_last_male
-
 #ERT
 # Leader
 
@@ -111,23 +9,23 @@
     shoes: ClothingShoesBootsMagCombat
     head: ClothingHeadEVAHelmetERTLeader
     eyes: ClothingEyesGlassesSecurity
+    neck: SecurityWhistle
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorAmberCom
     id: ERTLeaderPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
     pocket1: WeaponPistolN1984Nonlethal
-    pocket2: BaseUplinkNTERT60BC
+    pocket2: BaseUplinkNTERT75BC
   inhand:
   - WeaponEnergyGun
   storage:
     back:
     - BoxErtLeaderKit
-    - BoxZiptie
-    - CrowbarRed
     - MagazineMagnum
     - MagazineMagnum
     - Omnitool
+    - Flash
 
 - type: startingGear
   id: ERTLeaderGearRed
@@ -135,8 +33,10 @@
     jumpsuit: ClothingUniformJumpsuitERTLeader
     back: ClothingBackpackERTLeader
     shoes: ClothingShoesBootsMagAdv
+    head: ClothingHeadHatERTLeaderBeret
     mask: ClothingMaskGasERT
     eyes: ClothingEyesGlassesSecurity
+    neck: ClothingNeckCloakWhite
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTLeader
     id: ERTLeaderPDA
@@ -150,9 +50,9 @@
   storage:
     back:
     - BoxErtLeaderKit
-    - BoxZiptie
     - MagazineMagnum
-    #- Omnitool
+    - BoxTearGasGrenade
+    - Flash
 
 - type: startingGear
   id: ERTLeaderGearGamma
@@ -160,8 +60,10 @@
     jumpsuit: ClothingUniformJumpsuitERTLeader
     back: ClothingBackpackERTLeader
     shoes: ClothingShoesBootsMagAdv
+    head: ClothingHeadHatERTLeaderBeret
     mask: ClothingMaskGasERT
     eyes: ClothingEyesNVDSec
+    neck: ClothingNeckMantleERTLeader
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTLeader
     id: ERTLeaderPDA
@@ -174,7 +76,6 @@
   storage:
     back:
     - BoxErtLeaderKit
-    - BoxZiptie
     - MagazineMagnum
     - DoorRemoteOmni
     - Omnitool
@@ -187,8 +88,9 @@
     jumpsuit: ClothingUniformJumpsuitERTSecurity
     back: ClothingBackpackERTSecurity
     shoes: ClothingShoesBootsMagSec
-    head: ClothingHeadHelmetERTSecurity
+    head: ClothingHeadEVAHelmetERTSecurity
     eyes: ClothingEyesGlassesSecurity
+    neck: HandheldCamera
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorAmberSec
     id: ERTSecurityPDA
@@ -198,11 +100,11 @@
     pocket2: MagazinePistolSubMachineGun
   inhand:
   - WeaponSubMachineGunSkorpion
+  - MedkitCombatFilled
   storage:
     back:
-    - BoxErtSecurityKit
+    - BoxErtBaseKit
     - BoxZiptie
-    - MedkitCombatFilled
     - CrowbarRed
     - MagazinePistolSubMachineGun
 
@@ -212,24 +114,25 @@
     jumpsuit: ClothingUniformJumpsuitERTSecurity
     back: ClothingBackpackERTSecurity
     shoes: ClothingShoesBootsMagCombat
+    head: ClothingHeadHatBeretSecurity
     mask: ClothingMaskGasERT
     eyes: ClothingEyesNVDSec
+    neck: HandheldCamera
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTSecurity
     id: ERTSecurityPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilledERT
-    pocket1: WeaponPistolN1984Nonlethal
-    pocket2: MagazineMagnum
+    pocket1: WeaponSubMachineGunSkorpion
+    pocket2: MagazinePistolSubMachineGun
   inhand:
-  - WeaponGunLaserCarbineAutomatic
+  - WeaponEnergyGunTactical
+  - MedkitCombatFilled
   storage:
     back:
-    - BoxErtSecurityKit
+    - BoxErtBaseKit
     - BoxZiptie
-    - MedkitCombatFilled
     - CrowbarRed
-    - MagazineMagnum
     - Flash
 
 - type: startingGear
@@ -238,25 +141,25 @@
     jumpsuit: ClothingUniformJumpsuitERTSecurity
     back: ClothingBackpackERTSecurity
     shoes: ClothingShoesBootsMagCombat
+    head: ClothingHeadHatBeretSecurity
     mask: ClothingMaskGasERT
     eyes: ClothingEyesNVDSec
+    neck: HandheldCamera
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTSecurity
     id: ERTSecurityPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilledERT
-    pocket1: WeaponPistolN1984Nonlethal
-    pocket2: MagazineMagnum
+    pocket1: WeaponSubMachineGunSkorpion
+    pocket2: MagazinePistolSubMachineGun
   inhand:
   - WeaponLaserLNT620
+  - MedkitCombatFilled
   storage:
     back:
-    - BoxErtSecurityKit
+    - BoxErtBaseKit
     - BoxZiptie
-    - MedkitCombatFilled
     - CrowbarRed
-    - MagazineMagnum
-    - C4
     - C4
 # Chaplain
 
@@ -266,30 +169,26 @@
     jumpsuit: ClothingUniformJumpsuitERTChaplain
     back: ClothingBackpackERTChaplain
     shoes: ClothingShoesBootsMagCombat
-    head: ClothingHeadHatFez
-    eyes: ClothingEyesGlasses
+    head: ClothingHeadEVAHelmetERTChaplain
+    eyes: ClothingEyesHudMedSec
     neck: ClothingNeckStoleChaplain
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorAmberChap
     id: ERTChaplainPDA
     ears: ClothingHeadsetAltCentCom
-    belt: ClothingBeltStorageWaistbag
-    pocket1: Flare
+    belt: ClothingBeltSecurityFilledERT
+    pocket1: LanternFlash
     pocket2: DrinkWaterBottleFull
+  inhand:
+  - WeaponEnergyGun
   storage:
     back:
-    - BoxCandle
-    - BoxBodyBag
-    - DrinkWaterMelonJuiceJug
-    - LanternFlash
-    - LanternFlash
-    - Bible
+    - BoxErtBaseKit
     - CrowbarRed
     - Bible
-    - FoodBakedBunHotX
-    - FoodBakedBunHotX
-    - FoodBakedBunHotX
-    - Lighter
+    - Bible
+    - FlippoLighterSunriseBlack
+    - Candle
 
 - type: startingGear
   id: ERTChaplainGearGamma
@@ -297,30 +196,27 @@
     jumpsuit: ClothingUniformJumpsuitERTChaplain
     back: ClothingBackpackERTChaplain
     shoes: ClothingShoesBootsMagAdv
+    head: ClothingHeadHatBeretMerc
     mask: ClothingMaskGasERT
-    eyes: ClothingEyesGlasses
+    eyes: ClothingEyesNVDSec
     neck: ClothingNeckStoleChaplain
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTChaplain
     id: ERTChaplainPDA
     ears: ClothingHeadsetAltCentCom
-    belt: ClothingBeltStorageWaistbag
-    pocket1: Flare
-    pocket2: DrinkWaterBottleFull
+    belt: ClothingBeltSecurityFilledERT
+    pocket1: LanternFlash
+    pocket2: ClothingEyesHudMedSec
+  inhand:
+  - WeaponEnergyGunTactical
   storage:
     back:
-    - BoxCandle
-    - BoxBodyBag
-    - DrinkWaterMelonJuiceJug
-    - Lantern
-    - Lantern
-    - Bible
+    - BoxErtBaseKit
     - CrowbarRed
-    - FoodBakedBunHotX
-    - FoodBakedBunHotX
-    - FoodBakedBunHotX
-    - FoodBakedBunHotX
-    - Lighter
+    - Bible
+    - Bible
+    - FlippoLighterSunriseBlack
+    - Candle
 
 # Engineer
 
@@ -330,27 +226,25 @@
     jumpsuit: ClothingUniformJumpsuitERTEngineer
     back: ClothingBackpackERTEngineer
     shoes: ClothingShoesBootsMagCombat
-    head: ClothingHeadHelmetERTEngineer
-    eyes: ClothingEyesGlassesMeson
+    head: ClothingHeadEVAHelmetERTEngineer
+    eyes: ClothingEyesNVDSec
+    neck: HandheldCamera
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorAmberEng
     id: ERTEngineerPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltChiefEngineerFilled
-    pocket1: Flare
-    pocket2: GasAnalyzer
+    pocket1: CableMVStack
+    pocket2: CableHVStack
+  inhand:
+  - WeaponEnergyGun
+  - RCDRecharging
   storage:
     back:
-    - trayScanner
-    - RCD
-    - RCDAmmo
-    - RCDAmmo
-    - CableMVStack
-    - CableHVStack
+    - BoxErtBaseKit
     - CableApcStack
-    - SheetPlasteel
-    - SheetSteel
-    - SheetGlass
+    - ClothingEyesHudDiagnosticERT
+    - Flash
 
 - type: startingGear
   id: ERTEngineerGearGamma
@@ -358,27 +252,26 @@
     jumpsuit: ClothingUniformJumpsuitERTEngineer
     back: ClothingBackpackERTEngineer
     shoes: ClothingShoesBootsMagAdv
+    head: ClothingHeadHatBeretEngineering
     mask: ClothingMaskGasERT
-    eyes: ClothingEyesGlassesMeson
+    eyes: ClothingEyesNVDSec
+    neck: HandheldCamera
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTEngineer
     id: ERTEngineerPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltChiefEngineerFilled
-    pocket1: Flare
-    pocket2: GasAnalyzer
+    pocket1: CableMVStack
+    pocket2: CableHVStack
+  inhand:
+  - WeaponEnergyGunPistolSecurity
+  - RCDRecharging
   storage:
     back:
-    - trayScanner
-    - RCD
-    - RCDAmmo
-    - RCDAmmo
-    - CableMVStack
-    - CableHVStack
+    - BoxErtBaseKit
     - CableApcStack
-    - SheetPlasteel
-    - SheetSteel
-    - SheetGlass
+    - ClothingEyesHudDiagnosticERT
+    - Flash
 
 # Medical
 
@@ -388,23 +281,25 @@
     jumpsuit: ClothingUniformJumpsuitERTMedic
     back: ClothingBackpackERTMedical
     shoes: ClothingShoesBootsMagCombat
-    head: ClothingHeadHelmetERTMedic
+    head: ClothingHeadEVAHelmetERTMedic
+    neck: HandheldCamera
     eyes: ClothingEyesHudMedical
     gloves: ClothingHandsGlovesNitrile
     outerClothing: ClothingOuterArmorAmberMed
     id: ERTMedicPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltMedicalFilled
-    pocket1: Flare
+    pocket1: HyposprayERT
+    pocket2: MedipenCombatInjector
+  inhand:
+  - WeaponEnergyGun
+  - DefibrillatorCompact
   storage:
     back:
-    - Hypospray
+    - BoxErtBaseKit
     - MedkitCombatFilled
     - MedkitCombatFilled
     - CrowbarRed
-    - OmnizineChemistryBottle
-    - EpinephrineChemistryBottle
-    - EpinephrineChemistryBottle
 
 - type: startingGear
   id: ERTMedicalGearGamma
@@ -412,23 +307,27 @@
     jumpsuit: ClothingUniformJumpsuitERTMedic
     back: ClothingBackpackERTMedical
     shoes: ClothingShoesBootsMagCombat
+    head: ClothingHeadHatCapCMO
+    neck: HandheldCamera
     mask: ClothingMaskGasERT
-    eyes: ClothingEyesHudMedical
+    eyes: ClothingEyesNVDSec
     gloves: ClothingHandsGlovesNitrile
     outerClothing: ClothingOuterHardsuitERTMedical
     id: ERTMedicPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltMedicalFilled
-    pocket1: Flare
+    pocket1: HyposprayERT
+    pocket2: MedipenCombatInjector
+  inhand:
+  - WeaponEnergyGunPistolSecurity
+  - AdvancedDefibrillator
   storage:
     back:
-    - Hypospray
+    - BoxErtBaseKit
     - MedkitCombatFilled
     - MedkitCombatFilled
     - CrowbarRed
-    - OmnizineChemistryBottle
-    - EpinephrineChemistryBottle
-    - EpinephrineChemistryBottle
+    - ClothingEyesHudMedSec
 
 # Janitor
 
@@ -438,21 +337,25 @@
     jumpsuit: ClothingUniformJumpsuitERTJanitor
     back: ClothingBackpackERTJanitor
     shoes: ClothingShoesBootsMagCombat
-    head: ClothingHeadHelmetERTJanitor
-    gloves: ClothingHandsGlovesColorPurple
+    head: ClothingHeadEVAHelmetERTJanitor
+    neck: HandheldCamera
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsTacticalMaidGloves
     outerClothing: ClothingOuterArmorAmberJan
     id: ERTJanitorPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltJanitorFilled
-    pocket1: Flare
+    pocket1: Holoprojector
+    pocket2: HoloprojectorField
+  inhand:
+  - WeaponEnergyGunPistolSecurity
+  - AdvMopItem
   storage:
     back:
+    - BoxErtBaseKit
     - LightReplacer
-    - BoxLightMixed
-    - BoxLightMixed
-    - Soap
+    - BoxCleanerGrenades
     - CrowbarRed
-    - AdvMopItem
 
 - type: startingGear
   id: ERTJanitorGearGamma
@@ -460,18 +363,23 @@
     jumpsuit: ClothingUniformJumpsuitERTJanitor
     back: ClothingBackpackERTJanitor
     shoes: ClothingShoesBootsMagCombat
+    head: ClothingHeadHatBeretRND
     mask: ClothingMaskGasERT
-    gloves: ClothingHandsGlovesColorPurple
+    neck: HandheldCamera
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsTacticalMaidGloves
     outerClothing: ClothingOuterHardsuitERTJanitor
     id: ERTJanitorPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltJanitorFilled
-    pocket1: Flare
+    pocket1: Holoprojector
+    pocket2: HoloprojectorField
+  inhand:
+  - WeaponEnergyGunPistolSecurity
+  - AdvMopItem
   storage:
     back:
+    - BoxErtBaseKit
     - LightReplacer
-    - BoxLightMixed
-    - BoxLightMixed
-    - Soap
+    - BoxCleanerGrenades
     - CrowbarRed
-    - AdvMopItem

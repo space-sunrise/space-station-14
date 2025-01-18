@@ -17,7 +17,7 @@
 
 - type: randomHumanoidSettings
   id: ERTLeaderAmber
-  speciesBlacklist: # Sunrise-edit
+  speciesBlacklist: 
   - Diona
   - Vox
   - Felinid
@@ -62,7 +62,7 @@
 
 - type: randomHumanoidSettings
   id: ERTLeaderRed
-  speciesBlacklist: # Sunrise-edit
+  speciesBlacklist: 
   - Diona
   - Vox
   - Felinid
@@ -98,7 +98,7 @@
 
 - type: randomHumanoidSettings
   id: ERTLeaderGamma
-  speciesBlacklist: # Sunrise-edit
+  speciesBlacklist: 
   - Diona
   - Vox
   - Felinid
@@ -144,7 +144,7 @@
 
 - type: randomHumanoidSettings
   id: ERTSecurityAmber
-  speciesBlacklist: # Sunrise-edit
+  speciesBlacklist: 
   - Diona
   - Vox
   - Felinid
@@ -188,7 +188,7 @@
 
 - type: randomHumanoidSettings
   id: ERTSecurityRed
-  speciesBlacklist: # Sunrise-edit
+  speciesBlacklist: 
   - Diona
   - Vox
   - Felinid
@@ -224,7 +224,7 @@
 
 - type: randomHumanoidSettings
   id: ERTSecurityGamma
-  speciesBlacklist: # Sunrise-edit
+  speciesBlacklist: 
   - Diona
   - Vox
   - Felinid
@@ -253,10 +253,10 @@
 ## ERT Chaplain
 
 - type: entity
-  id: RandomHumanoidSpawnerERTChaplain
+  id: RandomHumanoidSpawnerERTChaplainAmber
   parent: RandomHumanoidSpawnerERTLeaderAmber
   name: ERT chaplain
-  suffix: ERTRole, Basic
+  suffix: ERTRole, Amber
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -266,11 +266,11 @@
       - NamesFirstMilitary
       - NamesLastMilitary
     - type: RandomHumanoidSpawner
-      settings: ERTChaplain
+      settings: ERTChaplainAmber
 
 - type: randomHumanoidSettings
-  id: ERTChaplain
-  speciesBlacklist: # Sunrise-edit
+  id: ERTChaplainAmber
+  speciesBlacklist: 
   - Diona
   - Vox
   - Felinid
@@ -298,24 +298,24 @@
       - NamesFirstMilitary
       - NamesLastMilitary
     - type: Loadout
-      prototypes: [ ERTChaplainGear ]
+      prototypes: [ ERTChaplainGearAmber ]
       roleLoadout: [ RoleSurvivalEVA ]
 
 - type: entity
-  id: RandomHumanoidSpawnerERTChaplain
-  parent: RandomHumanoidSpawnerERTChaplain
+  id: RandomHumanoidSpawnerERTChaplainGamma
+  parent: RandomHumanoidSpawnerERTChaplainAmber
   name: ERT chaplain
-  suffix: ERTRole, Enviro 
+  suffix: ERTRole, Red|Gamma 
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: chaplain #needs an ERT variant once a good suit it made.
     - type: RandomHumanoidSpawner
-      settings: ERTChaplain
+      settings: ERTChaplainGamma
 
 - type: randomHumanoidSettings
-  id: ERTChaplain
-  speciesBlacklist: # Sunrise-edit
+  id: ERTChaplainGamma
+  speciesBlacklist: 
   - Diona
   - Vox
   - Felinid
@@ -338,17 +338,17 @@
         settings: short
       job: ERTChaplain
     - type: Loadout
-      prototypes: [ ERTChaplainGear ]
+      prototypes: [ ERTChaplainGearGamma ]
       roleLoadout: [ RoleSurvivalEVA ]
     - type: BibleUser
 
 ## ERT Janitor
 
 - type: entity
-  id: RandomHumanoidSpawnerERTJanitor
+  id: RandomHumanoidSpawnerERTJanitorAmber
   parent: RandomHumanoidSpawnerERTLeaderAmber
   name: ERT janitor
-  suffix: ERTRole, Basic
+  suffix: ERTRole, Amber
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -358,11 +358,11 @@
       - NamesFirstMilitary
       - NamesLastMilitary
     - type: RandomHumanoidSpawner
-      settings: ERTJanitor
+      settings: ERTJanitorAmber
 
 - type: randomHumanoidSettings
-  id: ERTJanitor
-  speciesBlacklist: # Sunrise-edit
+  id: ERTJanitorAmber
+  speciesBlacklist: 
   - Diona
   - Vox
   - Felinid
@@ -389,24 +389,24 @@
       - NamesFirstMilitary
       - NamesLastMilitary
     - type: Loadout
-      prototypes: [ ERTJanitorGear ]
+      prototypes: [ ERTJanitorGearAmber ]
       roleLoadout: [ RoleSurvivalEVA ]
 
 - type: entity
-  id: RandomHumanoidSpawnerERTJanitor
-  parent: RandomHumanoidSpawnerERTJanitor
+  id: RandomHumanoidSpawnerERTJanitorGamma
+  parent: RandomHumanoidSpawnerERTJanitorAmber
   name: ERT janitor
-  suffix: ERTRole, Enviro 
+  suffix: ERTRole, Red|Gamma 
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: ertjanitoreva
     - type: RandomHumanoidSpawner
-      settings: ERTJanitor
+      settings: ERTJanitorGamma
 
 - type: randomHumanoidSettings
-  id: ERTJanitor
-  speciesBlacklist: # Sunrise-edit
+  id: ERTJanitorGamma
+  speciesBlacklist: 
   - Diona
   - Vox
   - Felinid
@@ -429,16 +429,16 @@
         settings: short
       job: ERTJanitor
     - type: Loadout
-      prototypes: [ ERTJanitorGear ]
+      prototypes: [ ERTJanitorGearGamma ]
       roleLoadout: [ RoleSurvivalEVA ]
 
 ## ERT Engineer
 
 - type: entity
-  id: RandomHumanoidSpawnerERTEngineer
+  id: RandomHumanoidSpawnerERTEngineerAmber
   parent: RandomHumanoidSpawnerERTLeaderAmber
   name: ERT engineer
-  suffix: ERTRole, Basic
+  suffix: ERTRole, Amber
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -448,11 +448,11 @@
       - NamesFirstMilitary
       - NamesLastMilitary
     - type: RandomHumanoidSpawner
-      settings: ERTEngineer
+      settings: ERTEngineerAmber
 
 - type: randomHumanoidSettings
-  id: ERTEngineer
-  speciesBlacklist: # Sunrise-edit
+  id: ERTEngineerAmber
+  speciesBlacklist: 
   - Diona
   - Vox
   - Felinid
@@ -479,24 +479,24 @@
       - NamesFirstMilitary
       - NamesLastMilitary
     - type: Loadout
-      prototypes: [ ERTEngineerGear ]
+      prototypes: [ ERTEngineerGearAmber ]
       roleLoadout: [ RoleSurvivalEVA ]
 
 - type: entity
-  id: RandomHumanoidSpawnerERTEngineer
-  parent: RandomHumanoidSpawnerERTEngineer
+  id: RandomHumanoidSpawnerERTEngineerGamma
+  parent: RandomHumanoidSpawnerERTEngineerAmber
   name: ERT engineer
-  suffix: ERTRole, Enviro 
+  suffix: ERTRole, Red|Gamma 
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: ertengineereva
     - type: RandomHumanoidSpawner
-      settings: ERTEngineer
+      settings: ERTEngineerGamma
 
 - type: randomHumanoidSettings
-  id: ERTEngineer
-  speciesBlacklist: # Sunrise-edit
+  id: ERTEngineerGamma
+  speciesBlacklist: 
   - Diona
   - Vox
   - Felinid
@@ -519,16 +519,16 @@
         settings: short
       job: ERTEngineer
     - type: Loadout
-      prototypes: [ ERTEngineerGear ]
+      prototypes: [ ERTEngineerGearGamma ]
       roleLoadout: [ RoleSurvivalEVA ]
 
 ## ERT Medic
 
 - type: entity
-  id: RandomHumanoidSpawnerERTMedical
+  id: RandomHumanoidSpawnerERTMedicalAmber
   parent: RandomHumanoidSpawnerERTLeaderAmber
   name: ERT medic
-  suffix: ERTRole, Basic
+  suffix: ERTRole, Amber
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -538,11 +538,11 @@
       - NamesFirstMilitary
       - NamesLastMilitary
     - type: RandomHumanoidSpawner
-      settings: ERTMedical
+      settings: ERTMedicalAmber
 
 - type: randomHumanoidSettings
-  id: ERTMedical
-  speciesBlacklist: # Sunrise-edit
+  id: ERTMedicalAmber
+  speciesBlacklist: 
   - Diona
   - Vox
   - Felinid
@@ -569,24 +569,24 @@
       - NamesFirstMilitary
       - NamesLastMilitary
     - type: Loadout
-      prototypes: [ ERTMedicalGear ]
+      prototypes: [ ERTMedicalGearAmber ]
       roleLoadout: [ RoleSurvivalEVA ]
 
 - type: entity
-  id: RandomHumanoidSpawnerERTMedical
-  parent: RandomHumanoidSpawnerERTMedical
+  id: RandomHumanoidSpawnerERTMedicalGamma
+  parent: RandomHumanoidSpawnerERTMedicalAmber
   name: ERT medic
-  suffix: ERTRole, Armored 
+  suffix: ERTRole, Red|Gamma 
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
       state: ertmedicaleva
     - type: RandomHumanoidSpawner
-      settings: ERTMedical
+      settings: ERTMedicalGamma
 
 - type: randomHumanoidSettings
-  id: ERTMedical
-  speciesBlacklist: # Sunrise-edit
+  id: ERTMedicalGamma
+  speciesBlacklist: 
   - Diona
   - Vox
   - Felinid
@@ -609,5 +609,5 @@
         settings: short
       job: ERTMedical
     - type: Loadout
-      prototypes: [ ERTMedicalGear ]
+      prototypes: [ ERTMedicalGearGamma ]
       roleLoadout: [ RoleSurvivalEVA ]

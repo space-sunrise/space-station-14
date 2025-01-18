@@ -159,8 +159,7 @@
       - id: HandheldCriminalRecordsMonitorUnpowered
       - id: PinpointerUniversal
       - id: PinpointerNuclear
-      - id: CombatMedipen
-      - id: AntiPoisonMedipen
+      - id: MedipenCombatInjector
       - id: FreedomImplant
       - id: Implanter
       - id: TrackingImplantErt
@@ -168,9 +167,9 @@
       - id: Telebaton
 
 - type: entity
-  name: ERT Security kit box
+  name: ERT base kit box
   parent: [BoxCardboard, BaseCentcommContraband]
-  id: BoxErtSecurityKit
+  id: BoxErtBaseKit
   description: Base Security Kit created for centcomm squad members.
   components:
   - type: Sprite
@@ -182,11 +181,12 @@
     - 0,0,5,2
   - type: StorageFill
     contents:
-      - id: PowerCellNanoTrasen
+      - id: WeaponFlareGun
+      - id: ShellShotgunFlare
+      - id: Telebaton
       - id: PowerCellNanoTrasen
       - id: Bloodpack
-      - id: CombatMedipen
-      - id: AntiPoisonMedipen
+      - id: MedipenCombatInjector
       - id: FreedomImplant
       - id: Implanter
       - id: TrackingImplantErt
