@@ -50,7 +50,6 @@
     - id: CommsComputerCircuitboard
     - id: DoorRemoteCommand
     - id: MedalCase
-    - id: ClothingOuterCoatCaptain
     - id: NukeDisk
     - id: PinpointerNuclear
     - id: PlushieNuke
@@ -59,6 +58,7 @@
     - id: SpaceCash1000
     - id: WeaponDisabler
     - id: ClothingEyesGlassesCommand
+    - id: ClothingOuterCoatCaptain # Sunrise-Edit
     - id: FlippoLighterSunriseCap  # Sunrise-Flippo
 
 # No laser table + Laser table
