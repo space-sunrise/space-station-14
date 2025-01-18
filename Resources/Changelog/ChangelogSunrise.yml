@@ -10818,3 +10818,14 @@
     type: Tweak
   id: 749
   time: '2025-01-17T23:19:40.273383+00:00'
+- author: banumbas
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D \u0441\u0430\u043C\u043E\
+      \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u0430\u0432\u043B\u0438\u0432\u0430\
+      \u044E\u0449\u0438\u0439\u0441\u044F \u043F\u0438\u0440\u043E\u0433\u043E\u043C\
+      \u0451\u0442 \u0432 \u0430\u043F\u043B\u0438\u043D\u043A \u043A\u043B\u043E\u0443\
+      \u043D\u0430!"
+    type: Add
+  id: 750
+  time: '2025-01-18T00:10:01.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/1132
