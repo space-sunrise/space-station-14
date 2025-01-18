@@ -10,8 +10,6 @@
     name: ghost-role-information-ussp-crew-name
     description: ghost-role-information-ussp-crew-description
     rules: ghost-role-information-ussp-crew-rules
-    mindRoles:
-    - MindRoleGhostRoleFreeAgent
     raffle:
       settings: default
     mindRoles:
@@ -36,8 +34,6 @@
     name: ghost-role-information-ussp-sec-name
     description: ghost-role-information-ussp-sec-description
     rules: ghost-role-information-ussp-sec-rules
-    mindRoles:
-    - MindRoleGhostRoleFreeAgent
     raffle:
       settings: default
     mindRoles:
@@ -66,10 +62,10 @@
     name: ghost-role-information-ussp-waralt-name
     description: ghost-role-information-ussp-waralt-description 
     rules: ghost-role-information-ussp-war-rules
-    mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
     raffle:
       settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
   - type: GhostTakeoverAvailable
   - type: NpcFactionMember
     factions:
@@ -94,12 +90,10 @@
     name: ghost-role-information-ussp-war-name
     description: ghost-role-information-ussp-war-description 
     rules: ghost-role-information-ussp-war-rules
-    mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
     raffle:
       settings: default
     mindRoles:
-    - MindRoleGhostRoleFreeAgent
+    - MindRoleGhostRoleTeamAntagonist
   - type: GhostTakeoverAvailable
   - type: NpcFactionMember
     factions:
@@ -124,12 +118,10 @@
     name: ghost-role-information-ussp-com-name
     description: ghost-role-information-ussp-com-description
     rules: ghost-role-information-ussp-com-rules
-    mindRoles:
-    - MindRoleGhostRoleFreeAgent
     raffle:
       settings: default
     mindRoles:
-    - MindRoleGhostRoleFreeAgent
+    - MindRoleGhostRoleTeamAntagonist
   - type: GhostTakeoverAvailable
   - type: NpcFactionMember
     factions:
