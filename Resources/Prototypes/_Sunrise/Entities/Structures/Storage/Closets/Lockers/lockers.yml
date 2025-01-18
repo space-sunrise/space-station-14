@@ -110,4 +110,5 @@
     - id: ClothingHandsGlovesNitrile
     - id: ClothingShoesColorBlack
     - id: ClothingOuterHospitalGown
+    - id: RubberStampPath
       amount: 2
