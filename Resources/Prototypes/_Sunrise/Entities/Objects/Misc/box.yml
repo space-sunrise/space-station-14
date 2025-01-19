@@ -10,8 +10,9 @@
     - state: icon
   - type: Item
     sprite: _Sunrise/Objects/Storage/boxes.rsi
-    size: Normal
-    shape: null
+    size: Small
+    shape:
+    - 0,0,3,2
   - type: Storage
     maxItemSize: Normal
     grid:
