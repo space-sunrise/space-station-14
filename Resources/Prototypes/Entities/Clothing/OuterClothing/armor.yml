@@ -204,9 +204,9 @@
   description: A heavily armored suit that protects against excessive damage.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Armor/heavy.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/swat_armor.rsi #Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/OuterClothing/Armor/heavy.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/swat_armor.rsi #Sunrise-Edit
   - type: Armor
     modifiers:
       coefficients:

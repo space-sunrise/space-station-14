@@ -50,9 +50,9 @@
   description: NT's unsuccessful attempt to create universal and inexpensive protection. It provides excellent protection against many types of damage, but it also slows down extremely much.
   components:
   - type: Sprite
-    sprite: _Sunrise/Clothing/OuterClothing/Armor/swat_armor.rsi
+    sprite: Clothing/OuterClothing/Armor/heavy.rsi
   - type: Clothing
-    sprite: _Sunrise/Clothing/OuterClothing/Armor/swat_armor.rsi
+    sprite: Clothing/OuterClothing/Armor/heavy.rsi
   - type: Armor
     modifiers:
       coefficients:

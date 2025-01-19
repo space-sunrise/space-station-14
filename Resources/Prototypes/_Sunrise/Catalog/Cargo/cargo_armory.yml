@@ -4,29 +4,29 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/m16a4/big.rsi
     state: icon
   product: CrateArmoryM16A4
-  cost: 17500
+  cost: 24500
   category: cargoproduct-category-name-armory
   group: market
 
-- type: cargoProduct
-  id: ArmoryAKMS
-  icon:
-    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/akms/big.rsi
-    state: icon
-  product: CrateArmoryAKMS
-  cost: 19800
-  category: cargoproduct-category-name-armory
-  group: market
+#- type: cargoProduct
+#  id: ArmoryAKMS
+#  icon:
+#    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/akms/big.rsi
+#    state: icon
+#  product: CrateArmoryAKMS
+#  cost: 26800
+#  category: cargoproduct-category-name-armory
+#  group: market
 
-- type: cargoProduct
-  id: ArmoryMP5
-  icon:
-    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp5/big.rsi
-    state: icon
-  product: CrateArmoryMP5
-  cost: 12500
-  category: cargoproduct-category-name-armory
-  group: market
+#- type: cargoProduct
+#  id: ArmoryMP5
+#  icon:
+#    sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp5/big.rsi
+#    state: icon
+#  product: CrateArmoryMP5
+#  cost: 17500
+#  category: cargoproduct-category-name-armory
+#  group: market
 
 - type: cargoProduct
   id: ArmoryLaserik30
@@ -34,19 +34,19 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/batterylaser_carbine.rsi
     state: icon
   product: CrateArmoryIK30
-  cost: 6500
+  cost: 5750
   category: cargoproduct-category-name-armory
   group: market
 
-- type: cargoProduct
-  id: ArmoryMagazineBoxLightRifleBig
-  icon:
-    sprite: Objects/Weapons/Guns/Ammunition/Boxes/light_rifle.rsi
-    state: base-b
-  product: CrateArmoryMagazineBoxLightRifleBig
-  cost: 2000
-  category: cargoproduct-category-name-armory
-  group: market
+#- type: cargoProduct
+#  id: ArmoryMagazineBoxLightRifleBig
+#  icon:
+#    sprite: Objects/Weapons/Guns/Ammunition/Boxes/light_rifle.rsi
+#    state: base-b
+#  product: CrateArmoryMagazineBoxLightRifleBig
+#  cost: 2000
+#  category: cargoproduct-category-name-armory
+#  group: market
 
 - type: cargoProduct
   id: ArmoryMagazineBoxRifleBig
