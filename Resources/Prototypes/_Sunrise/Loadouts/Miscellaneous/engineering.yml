@@ -1,5 +1,189 @@
-﻿- type: loadout
-  id: AtmosphericsConsole
+ #Back
+
+- type: loadout
+  id: TrinketsEngineeringAAM
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 7200 # 2hr
   storage:
     back:
     - AtmosAlertsMonitor
+
+- type: loadout
+  id: TrinketsEngineeringTS
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 7200 # 2hr
+  storage:
+    back:
+    - trayScanner
+
+- type: loadout
+  id: TrinketsEngineeringFL
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 7200 # 2hr
+  storage:
+    back:
+    - FlashlightLantern
+
+- type: loadout
+  id: TrinketsEngineeringGA
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 7200 # 2hr
+  storage:
+    back:
+    - GasAnalyzer
+
+- type: loadout
+  id: TrinketsEngineeringGC
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 7200 # 2hr
+  storage:
+    back:
+    - GeigerCounter
+
+- type: loadout
+  id: TrinketsEngineeringTT
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 1080000 # 300hr
+  storage:
+    back:
+    - TeslaToy
+
+- type: loadout
+  id: TrinketsEngineeringTFCF
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChiefEngineer
+      time: 72000 # 20 hour
+  storage:
+    back:
+    - ToyFigurineChiefEngineer
+
+
+- type: loadout
+  id: TrinketsEngineeringTFAT
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobAtmosphericTechnician
+      time: 72000 # 20 hour
+  storage:
+    back:
+    - ToyFigurineAtmosTech
+
+- type: loadout
+  id: TrinketsEngineeringTFE
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobStationEngineer
+      time: 72000 # 20 hour
+  storage:
+    back:
+    - ToyFigurineEngineer
+
+- type: loadout
+  id: TrinketsEngineeringST
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 1080000 # 300hr
+  storage:
+    back:
+    - SingularityToy
+
+- type: loadout
+  id: TrinketsEngineeringHSM
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Engineering
+      time: 36000 # 10hr
+  storage:
+    back:
+    - HandheldStationMap
+
+ #Neck
+
+
+
+
+ #Mask
+
+- type: loadout
+  id: EngineerMaskCMG
+  equipment:
+    mask: ClothingMaskGas
+
+- type: loadout
+  id: EngineerMaskCMGA
+  equipment:
+    mask: ClothingMaskGasAtmos
+
+
+
+ #Head
+
+- type: loadout
+  id: Sunrise-EngineerHeadBeret
+  equipment:
+    head: ClothingHeadHatBeretEngineering
+
+
+
+- type: loadout
+  id: Sunrise-HardhatYellowDark
+  equipment:
+    head: ClothingHeadHatHardhatYellowDark
+
+- type: loadout
+  id: Sunrise-HardhatBlue
+  equipment:
+    head: ClothingHeadHatHardhatBlue
+
+- type: loadout
+  id: Sunrise-HardhatWhite
+  equipment:
+    head: ClothingHeadHatHardhatWhite
+
+- type: loadout
+  id: Sunrise-HardhatArmored
+  equipment:
+    head: ClothingHeadHatHardhatArmored
+
+
+
+
+
+
+

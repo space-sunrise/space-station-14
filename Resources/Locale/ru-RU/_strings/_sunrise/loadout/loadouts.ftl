@@ -41,6 +41,7 @@ MedicalDoctor-loadout = Снаряжение врача
 MedicalIntern-loadout = Снаряжение интерна
 Paramedic-loadout = Снаряжение парамедика
 SeniorPhysician-loadout = Снаряжение ведущего врача
+MedicalPathologist-loadout = Снаряжение патологоанатома
 # Researching
 ResearchAssistant-loadout = Снаряжение научного ассистента
 Roboticist-loadout = Снаряжение робототехника

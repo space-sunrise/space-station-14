@@ -1,0 +1,21 @@
+- type: entity
+  parent: ClothingScarfBase
+  id: ClothingNeckScarfStripedYellow
+  name: striped yellow scarf
+  description: A stylish striped yellow scarf. The perfect winter accessory for those with a keen fashion sense, and those who just can't handle a cold breeze on their necks.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Scarfs/yellow.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Scarfs/yellow.rsi
+
+- type: entity
+  parent: ClothingScarfBase
+  id: ClothingNeckScarfStripedCyan
+  name: striped cyan scarf
+  description: A stylish striped cyan scarf. The perfect winter accessory for those with a keen fashion sense, and those who just can't handle a cold breeze on their necks.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Scarfs/cyan.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Scarfs/cyan.rsi

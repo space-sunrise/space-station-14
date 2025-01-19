@@ -1,0 +1,35 @@
+- type: entity
+  parent: ClothingOuterBase
+  id: ClothingOuterFlannelWhite
+  name: red flannel jacket
+  description: An old fashioned white flannel jacket for space autumn.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Misc/flannel_jacket.rsi
+    layers:
+    - state: icon
+      color: "#eaf1ff"
+    - state: icon-lines
+      color: "#000000"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#eaf1ff"
+      - state: inhand-left-lines
+        color: "#000000"
+      right:
+      - state: inhand-right
+        color: "#eaf1ff"
+      - state: inhand-right-lines
+        color: "#000000"
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Misc/flannel_jacket.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: equipped-OUTERCLOTHING
+        color: "#eaf1ff"
+      - state: equipped-OUTERCLOTHING-lines
+        color: "#000000"
+  - type: TemperatureProtection
+    coolingCoefficient: 0.3

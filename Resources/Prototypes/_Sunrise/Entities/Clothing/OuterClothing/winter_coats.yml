@@ -1,0 +1,30 @@
+- type: entity
+  parent: ClothingOuterWinterCoatToggleable
+  id: ClothingOuterWinterColorCyan
+  name: cyan winter coat
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
+    layers:
+    - state: coatybits-icon
+      color: "#109992"
+    - state: winterbits-icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: coatybits-inhand-left
+        color: "#109992"
+      - state: winterbits-inhand-left
+      right:
+      - state: coatybits-inhand-right
+        color: "#109992"
+      - state: winterbits-inhand-right
+  - type: Clothing
+    sprite: Clothing/OuterClothing/WinterCoats/coat.rsi
+    clothingVisuals:
+      outerClothing:
+      - state: coatybits-equipped-OUTERCLOTHING
+        color: "#109992"
+      - state: winterbits-equipped-OUTERCLOTHING
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHatHoodWinterColorCyan
