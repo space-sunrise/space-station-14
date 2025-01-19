@@ -35,12 +35,14 @@
     joinSystem: true
   - type: DoAfter
   - type: Repairable
-    doAfterDelay: 2
+    doAfterDelay: 3
     damage:
       types:
         Blunt: -15
         Slash: -15
         Piercing: -15
+        Caustic: -15
+        Structural: -15
   - type: UserInterface
     interfaces:
       enum.MechUiKey.Key:

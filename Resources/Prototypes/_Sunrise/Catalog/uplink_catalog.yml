@@ -1264,3 +1264,22 @@
     blacklist:
       components:
       - SurplusBundle
+
+# Jobs
+
+- type: listing
+  id: UplinkLauncherCreamPieFake
+  name: uplink-launcher-cream-pie-fake-name
+  description: uplink-launcher-cream-pie-fake-desc
+  productEntity: LauncherCreamPieFake
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 10
+  cost:
+    Telecrystal: 15
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Clown

@@ -223,7 +223,7 @@ namespace Content.Server._Sunrise.Carrying
             if (!CanCarry(args.Args.User, uid, component))
                 return;
 
-            Carry(args.Args.User, uid);
+            Carry(args.Args.User, uid, component);
             args.Handled = true;
         }
         private void StartCarryDoAfter(EntityUid carrier, EntityUid carried, CarriableComponent component)
@@ -261,7 +261,7 @@ namespace Content.Server._Sunrise.Carrying
             ShowCarryPopup("carry-observed", Filter.PvsExcept(carrier).RemoveWhereAttachedEntity(e => e == carried), PopupType.MediumCaution, carrier, carried);
         }
 
-        private void Carry(EntityUid carrier, EntityUid carried)
+        private void Carry(EntityUid carrier, EntityUid carried, CarriableComponent component)
         {
             if (TryComp<PullableComponent>(carried, out var pullable))
                 _pullingSystem.TryStopPull(carried, pullable, carrier);
@@ -269,8 +269,10 @@ namespace Content.Server._Sunrise.Carrying
             Transform(carrier).AttachToGridOrMap();
             Transform(carried).Coordinates = Transform(carrier).Coordinates;
             Transform(carried).AttachParent(carrier);
-            _virtualItemSystem.TrySpawnVirtualItemInHand(carried, carrier);
-            _virtualItemSystem.TrySpawnVirtualItemInHand(carried, carrier);
+            for (var i = 0; i < component.FreeHandsRequired; i++)
+            {
+                _virtualItemSystem.TrySpawnVirtualItemInHand(carried, carrier);
+            }
             var carryingComp = EnsureComp<CarryingComponent>(carrier);
             ApplyCarrySlowdown(carrier, carried);
             var carriedComp = EnsureComp<BeingCarriedComponent>(carried);
