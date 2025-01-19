@@ -160,9 +160,9 @@
     charges: 2
     # Sunrise-Start
     renewCharges: true
-    renewChargeDelay: 120
+    renewChargeDelay: 300 
     # Sunrise-End
-    useDelay: 5
+    useDelay: 30 # Sunrise-Edit
     itemIconStyle: BigAction
     priority: -20
     icon:
