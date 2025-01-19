@@ -158,8 +158,6 @@
   - type: InstantAction
     checkCanInteract: false
     charges: 2
-    renewCharges: true
-    renewChargeDelay: 120
     useDelay: 5
     itemIconStyle: BigAction
     priority: -20
