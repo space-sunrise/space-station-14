@@ -6,7 +6,7 @@
   components:
   - type: Sprite
     sprite: Objects/Specific/Medical/hypospray.rsi
-    state: combat_hypo
+    state: combat_minihypo
   - type: Item
     sprite: Objects/Specific/Medical/hypospray.rsi
     size: Small
@@ -56,13 +56,13 @@
   components:
   - type: Sprite
     sprite: Objects/Specific/Medical/hypospray.rsi
-    state: hypo
+    state: combat_hypo
   - type: Item
     sprite: Objects/Specific/Medical/hypospray.rsi
   - type: SolutionContainerManager
     solutions:
       hypospray:
-        maxVol: 30
+        maxVol: 20
   - type: RefillableSolution
     solution: hypospray
   - type: ExaminableSolution
