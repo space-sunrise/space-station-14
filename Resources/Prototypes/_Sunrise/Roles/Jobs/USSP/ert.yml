@@ -1,0 +1,613 @@
+## ERT Leader
+
+- type: entity
+  id: RandomHumanoidSpawnerERTLeaderAmber
+  name: ERT leader
+  suffix: ERTRole, Amber, Uplink
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: ertleader
+    - type: RandomMetadata
+      nameSegments:
+      - NamesFirstMilitaryLeader
+      - NamesLastMilitary
+    - type: RandomHumanoidSpawner
+      settings: ERTLeaderAmber
+
+- type: randomHumanoidSettings
+  id: ERTLeaderAmber
+  speciesBlacklist: 
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
+  parent: EventHumanoidMindShielded
+  randomizeName: false
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ert-leader-name
+      description: ghost-role-information-ert-leader-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+      job: ERTLeader
+    - type: Loadout
+      prototypes: [ ERTLeaderGearAmber ]
+      roleLoadout: [ RoleSurvivalEVA ]
+    - type: RandomMetadata
+      nameSegments:
+      - NamesFirstMilitaryLeader
+      - NamesLastMilitary
+
+- type: entity
+  id: RandomHumanoidSpawnerERTLeaderRed
+  parent: RandomHumanoidSpawnerERTLeaderAmber
+  name: ERT leader
+  suffix: ERTRole, Red, Uplink
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: ertleadereva
+    - type: RandomHumanoidSpawner
+      settings: ERTLeaderRed
+
+- type: randomHumanoidSettings
+  id: ERTLeaderRed
+  speciesBlacklist: 
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
+  parent: ERTLeader
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ert-leader-name
+      description: ghost-role-information-ert-leader-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+      job: ERTLeader
+    - type: Loadout
+      prototypes: [ ERTLeaderGearRed ]
+      roleLoadout: [ RoleSurvivalEVA ]
+
+- type: entity
+  id: RandomHumanoidSpawnerERTLeaderGamma
+  parent: RandomHumanoidSpawnerERTLeaderRed
+  suffix: ERTRole, Gamma, Uplink
+  components:
+    - type: RandomHumanoidSpawner
+      settings: ERTLeaderGamma
+
+- type: randomHumanoidSettings
+  id: ERTLeaderGamma
+  speciesBlacklist: 
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
+  parent: ERTLeader
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ert-leader-name
+      description: ghost-role-information-ert-leader-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+      job: ERTLeader
+    - type: Loadout
+      prototypes: [ ERTLeaderGearGamma ]
+      roleLoadout: [ RoleSurvivalEVA ]
+
+## ERT Security
+
+- type: entity
+  id: RandomHumanoidSpawnerERTSecurityAmber
+  parent: RandomHumanoidSpawnerERTLeaderAmber
+  name: ERT security
+  suffix: ERTRole, Amber
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: ertsecurity
+    - type: RandomMetadata
+      nameSegments:
+      - NamesFirstMilitary
+      - NamesLastMilitary
+    - type: RandomHumanoidSpawner
+      settings: ERTSecurityAmber
+
+- type: randomHumanoidSettings
+  id: ERTSecurityAmber
+  speciesBlacklist: 
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
+  parent: ERTLeader
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ert-security-name
+      description: ghost-role-information-ert-security-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+      job: ERTSecurity
+    - type: RandomMetadata
+      nameSegments:
+      - NamesFirstMilitary
+      - NamesLastMilitary
+    - type: Loadout
+      prototypes: [ ERTSecurityGearAmber ]
+      roleLoadout: [ RoleSurvivalEVA ]
+
+- type: entity
+  id: RandomHumanoidSpawnerERTSecurityRed
+  parent: RandomHumanoidSpawnerERTSecurityAmber
+  name: ERT security
+  suffix: ERTRole, Red 
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: ertsecurityeva
+    - type: RandomHumanoidSpawner
+      settings: ERTSecurityRed
+
+- type: randomHumanoidSettings
+  id: ERTSecurityRed
+  speciesBlacklist: 
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
+  parent: ERTSecurity
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ert-security-name
+      description: ghost-role-information-ert-security-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+      job: ERTSecurity
+    - type: Loadout
+      prototypes: [ ERTSecurityGearRed ]
+      roleLoadout: [ RoleSurvivalEVA ]
+
+- type: entity
+  id: RandomHumanoidSpawnerERTSecurityGamma
+  parent: RandomHumanoidSpawnerERTSecurityRed
+  suffix: ERTRole, Gamma 
+  components:
+    - type: RandomHumanoidSpawner
+      settings: ERTSecurityGamma
+
+- type: randomHumanoidSettings
+  id: ERTSecurityGamma
+  speciesBlacklist: 
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
+  parent: ERTSecurity
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ert-security-name
+      description: ghost-role-information-ert-security-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+      job: ERTSecurity
+    - type: Loadout
+      prototypes: [ ERTSecurityGearGamma ]
+      roleLoadout: [ RoleSurvivalEVA ]
+
+## ERT Chaplain
+
+- type: entity
+  id: RandomHumanoidSpawnerERTChaplainAmber
+  parent: RandomHumanoidSpawnerERTLeaderAmber
+  name: ERT chaplain
+  suffix: ERTRole, Amber
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: chaplain #needs an ERT variant once a good suit it made.
+    - type: RandomMetadata
+      nameSegments:
+      - NamesFirstMilitary
+      - NamesLastMilitary
+    - type: RandomHumanoidSpawner
+      settings: ERTChaplainAmber
+
+- type: randomHumanoidSettings
+  id: ERTChaplainAmber
+  speciesBlacklist: 
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
+  parent: ERTLeader
+  components:
+    - type: BibleUser
+    - type: GhostRole
+      name: ghost-role-information-ert-chaplain-name
+      description: ghost-role-information-ert-chaplain-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+      job: ERTChaplain
+    - type: RandomMetadata
+      nameSegments:
+      - NamesFirstMilitary
+      - NamesLastMilitary
+    - type: Loadout
+      prototypes: [ ERTChaplainGearAmber ]
+      roleLoadout: [ RoleSurvivalEVA ]
+
+- type: entity
+  id: RandomHumanoidSpawnerERTChaplainGamma
+  parent: RandomHumanoidSpawnerERTChaplainAmber
+  name: ERT chaplain
+  suffix: ERTRole, Red|Gamma 
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: chaplain #needs an ERT variant once a good suit it made.
+    - type: RandomHumanoidSpawner
+      settings: ERTChaplainGamma
+
+- type: randomHumanoidSettings
+  id: ERTChaplainGamma
+  speciesBlacklist: 
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
+  parent: ERTChaplain
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ert-chaplain-name
+      description: ghost-role-information-ert-chaplain-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+      job: ERTChaplain
+    - type: Loadout
+      prototypes: [ ERTChaplainGearGamma ]
+      roleLoadout: [ RoleSurvivalEVA ]
+    - type: BibleUser
+
+## ERT Janitor
+
+- type: entity
+  id: RandomHumanoidSpawnerERTJanitorAmber
+  parent: RandomHumanoidSpawnerERTLeaderAmber
+  name: ERT janitor
+  suffix: ERTRole, Amber
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: ertjanitor
+    - type: RandomMetadata
+      nameSegments:
+      - NamesFirstMilitary
+      - NamesLastMilitary
+    - type: RandomHumanoidSpawner
+      settings: ERTJanitorAmber
+
+- type: randomHumanoidSettings
+  id: ERTJanitorAmber
+  speciesBlacklist: 
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
+  parent: ERTLeader
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ert-janitor-name
+      description: ghost-role-information-ert-janitor-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+      job: ERTJanitor
+    - type: RandomMetadata
+      nameSegments:
+      - NamesFirstMilitary
+      - NamesLastMilitary
+    - type: Loadout
+      prototypes: [ ERTJanitorGearAmber ]
+      roleLoadout: [ RoleSurvivalEVA ]
+
+- type: entity
+  id: RandomHumanoidSpawnerERTJanitorGamma
+  parent: RandomHumanoidSpawnerERTJanitorAmber
+  name: ERT janitor
+  suffix: ERTRole, Red|Gamma 
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: ertjanitoreva
+    - type: RandomHumanoidSpawner
+      settings: ERTJanitorGamma
+
+- type: randomHumanoidSettings
+  id: ERTJanitorGamma
+  speciesBlacklist: 
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
+  parent: ERTJanitor
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ert-janitor-name
+      description: ghost-role-information-ert-janitor-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+      job: ERTJanitor
+    - type: Loadout
+      prototypes: [ ERTJanitorGearGamma ]
+      roleLoadout: [ RoleSurvivalEVA ]
+
+## ERT Engineer
+
+- type: entity
+  id: RandomHumanoidSpawnerERTEngineerAmber
+  parent: RandomHumanoidSpawnerERTLeaderAmber
+  name: ERT engineer
+  suffix: ERTRole, Amber
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: ertengineer
+    - type: RandomMetadata
+      nameSegments:
+      - NamesFirstMilitary
+      - NamesLastMilitary
+    - type: RandomHumanoidSpawner
+      settings: ERTEngineerAmber
+
+- type: randomHumanoidSettings
+  id: ERTEngineerAmber
+  speciesBlacklist: 
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
+  parent: ERTLeader
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ert-engineer-name
+      description: ghost-role-information-ert-engineer-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+      job: ERTEngineer
+    - type: RandomMetadata
+      nameSegments:
+      - NamesFirstMilitary
+      - NamesLastMilitary
+    - type: Loadout
+      prototypes: [ ERTEngineerGearAmber ]
+      roleLoadout: [ RoleSurvivalEVA ]
+
+- type: entity
+  id: RandomHumanoidSpawnerERTEngineerGamma
+  parent: RandomHumanoidSpawnerERTEngineerAmber
+  name: ERT engineer
+  suffix: ERTRole, Red|Gamma 
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: ertengineereva
+    - type: RandomHumanoidSpawner
+      settings: ERTEngineerGamma
+
+- type: randomHumanoidSettings
+  id: ERTEngineerGamma
+  speciesBlacklist: 
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
+  parent: ERTEngineer
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ert-engineer-name
+      description: ghost-role-information-ert-engineer-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+      job: ERTEngineer
+    - type: Loadout
+      prototypes: [ ERTEngineerGearGamma ]
+      roleLoadout: [ RoleSurvivalEVA ]
+
+## ERT Medic
+
+- type: entity
+  id: RandomHumanoidSpawnerERTMedicalAmber
+  parent: RandomHumanoidSpawnerERTLeaderAmber
+  name: ERT medic
+  suffix: ERTRole, Amber
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: ertmedical
+    - type: RandomMetadata
+      nameSegments:
+      - NamesFirstMilitary
+      - NamesLastMilitary
+    - type: RandomHumanoidSpawner
+      settings: ERTMedicalAmber
+
+- type: randomHumanoidSettings
+  id: ERTMedicalAmber
+  speciesBlacklist: 
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
+  parent: ERTLeader
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ert-medical-name
+      description: ghost-role-information-ert-medical-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+      job: ERTMedical
+    - type: RandomMetadata
+      nameSegments:
+      - NamesFirstMilitary
+      - NamesLastMilitary
+    - type: Loadout
+      prototypes: [ ERTMedicalGearAmber ]
+      roleLoadout: [ RoleSurvivalEVA ]
+
+- type: entity
+  id: RandomHumanoidSpawnerERTMedicalGamma
+  parent: RandomHumanoidSpawnerERTMedicalAmber
+  name: ERT medic
+  suffix: ERTRole, Red|Gamma 
+  components:
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      state: ertmedicaleva
+    - type: RandomHumanoidSpawner
+      settings: ERTMedicalGamma
+
+- type: randomHumanoidSettings
+  id: ERTMedicalGamma
+  speciesBlacklist: 
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  - Dwarf
+  parent: ERTMedical
+  components:
+    - type: GhostRole
+      name: ghost-role-information-ert-medical-name
+      description: ghost-role-information-ert-medical-description
+      rules: ghost-role-information-nonantagonist-rules
+      raffle:
+        settings: short
+      job: ERTMedical
+    - type: Loadout
+      prototypes: [ ERTMedicalGearGamma ]
+      roleLoadout: [ RoleSurvivalEVA ]
