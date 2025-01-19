@@ -109,5 +109,6 @@
     - id: Scalpel
     - id: ClothingHandsGlovesNitrile
     - id: ClothingShoesColorBlack
+    - id: RubberStampPath
     - id: ClothingOuterHospitalGown
       amount: 2

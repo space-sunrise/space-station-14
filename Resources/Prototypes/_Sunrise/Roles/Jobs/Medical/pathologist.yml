@@ -22,7 +22,6 @@
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalFilled
     head: ClothingHeadHatPatologonatHat
-
 - type: jobIcon
   parent: JobIcon
   id: JobIconPathologist
