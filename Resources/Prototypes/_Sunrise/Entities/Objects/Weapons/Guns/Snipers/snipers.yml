@@ -237,3 +237,35 @@
   - type: UseDelay
     delay: 0.5
   - type: GunRequiresWield
+
+- type: entity
+  name: N2524 Repeater
+  parent: [ BaseWeaponSniper, BaseGunWieldable, BaseMinorContraband ]
+  id: WeaponSniperRepeater
+  description: A civilian grade lever action firearm, favored by space cowboys for its reliability and stopping power. Uses .45 magnum ammo.
+  components:
+  - type: Item
+    size: Large
+    sprite: _Sunrise/Objects/Weapons/Guns/Snipers/n2524/repeater_inhands_64x.rsi
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Snipers/n2524/repeater.rsi
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Snipers/n2524/repeater.rsi 
+  - type: StaticPrice
+    price: 850
+  - type: Gun
+    fireRate: 1.35
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      collection: m3
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - CartridgeMagnum
+    capacity: 7
+    proto: CartridgeMagnum
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.5
