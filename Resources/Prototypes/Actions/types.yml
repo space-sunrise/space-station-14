@@ -158,7 +158,11 @@
   - type: InstantAction
     checkCanInteract: false
     charges: 2
-    useDelay: 5
+    # Sunrise-Start
+    renewCharges: true
+    renewChargeDelay: 300 
+    # Sunrise-End
+    useDelay: 30 # Sunrise-Edit
     itemIconStyle: BigAction
     priority: -20
     icon:
