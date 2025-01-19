@@ -17,7 +17,7 @@
   access:
     - Research
     - Maintenance
-    - Engineering
+  #  - Engineering
 
 - type: startingGear
   id: RoboticistGear
@@ -25,7 +25,8 @@
     outerClothing: ClothingOuterCoatRobo
     id: RoboticistPDA
     gloves: ClothingHandsGlovesRobohands
-    eyes: ClothingEyesGlassesWelding
+    head: ClothingHeadHatWelding
+    eyes: ClothingEyesHudDiagnostic
     belt: ClothingBeltUtilityEngineering
     ears: ClothingHeadsetRobotics
     pocket1: Nanopaste
