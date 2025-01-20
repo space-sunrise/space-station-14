@@ -10904,3 +10904,12 @@
   id: 756
   time: '2025-01-20T02:03:54.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/1154
+- author: Perl404
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0430 \u043F\u0435\u0447\
+      \u0430\u0442\u044C \u043F\u0430\u0442\u043E\u043B\u043E\u0433\u043E\u0430\u043D\
+      \u0430\u0442\u043E\u043C\u0430"
+    type: Add
+  id: 757
+  time: '2025-01-20T02:05:52.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/1153
