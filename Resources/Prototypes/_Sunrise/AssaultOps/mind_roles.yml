@@ -4,8 +4,9 @@
   name: Assault Operative Role
   components:
   - type: MindRole
-    exclusiveAntag: true
     antagPrototype: AssaultOperative
+    exclusiveAntag: true
+    roleType: TeamAntagonist
   - type: AssaultOpsRole
 
 - type: entity
@@ -15,3 +16,5 @@
   components:
   - type: MindRole
     antagPrototype: AssaultCommander
+    exclusiveAntag: true
+    roleType: TeamAntagonist
