@@ -3,6 +3,7 @@
   mapName: 'Plasma'
   mapPath: /Maps/_Sunrise/Station/plasma.yml
   minPlayers: 20
+  maxPlayers: 100
   maxRandomOffset: 0
   randomRotation: false
   stations:

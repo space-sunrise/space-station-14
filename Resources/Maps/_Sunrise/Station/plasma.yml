@@ -16051,7 +16051,7 @@ entities:
     - type: Transform
       pos: -132.72614,-46.565205
       parent: 2
-- proto: APCBasic
+- proto: APCHighCapacity
   entities:
   - uid: 690
     components:
@@ -25976,7 +25976,7 @@ entities:
     - type: Transform
       pos: -62.66385,-34.13571
       parent: 2
-- proto: BoxShotgunFlare
+- proto: MagazineBoxMagnumRubber
   entities:
   - uid: 2558
     components:
@@ -128292,7 +128292,7 @@ entities:
     - type: Transform
       pos: -79.5,-19.5
       parent: 2
-- proto: GunSafeShotgunKammerer
+- proto: GunSafeShotgunTrenchgun4034
   entities:
   - uid: 19153
     components:
@@ -148982,7 +148982,7 @@ entities:
     - type: Transform
       pos: -133.5,24.5
       parent: 2
-- proto: Stunbaton
+- proto: ClothingHeadHatCowboyBlack
   entities:
   - uid: 22412
     components:
@@ -148994,7 +148994,7 @@ entities:
     - type: Transform
       pos: -81.30603,-25.42911
       parent: 2
-- proto: SubstationBasic
+- proto: SubstationExtended
   entities:
   - uid: 22414
     components:
@@ -172014,7 +172014,7 @@ entities:
     - type: Transform
       pos: -50.986073,-7.4452324
       parent: 2
-- proto: WeaponFlareGunSecurity
+- proto: WeaponSniperRepeater
   entities:
   - uid: 26512
     components:
