@@ -1,5 +1,5 @@
 - type: gameMap
-  id: Plasma
+  id: SunrisePlasma
   mapName: 'Plasma'
   mapPath: /Maps/_Sunrise/Station/plasma.yml
   minPlayers: 20
