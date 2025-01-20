@@ -27,7 +27,7 @@
     layers:
     - state: emp_pulse
   - type: EmpOnTrigger
-    range: 2
+    range: 4
     energyConsumption: 30000
     disableDuration: 10
   - type: Ammo
@@ -180,9 +180,9 @@
     layers:
       - state: frag
   - type: EmpOnTrigger
-    range: 5
+    range: 15 #Sunrise-edit
     energyConsumption: 50000
-    disableDuration: 10
+    disableDuration: 20
   - type: Ammo
     muzzleFlash: null
   - type: PointLight
