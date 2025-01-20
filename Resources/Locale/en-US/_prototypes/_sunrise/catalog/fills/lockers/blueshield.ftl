@@ -1,8 +1,11 @@
 ent-LockerBlueshieldFilled = { ent-LockerBlueshield }
     .suffix = Filled
     .desc = { ent-LockerBlueshield.desc }
+ent-LockerBlueshieldFilledUplinkMultiphase = { ent-LockerBlueshield }
+    .suffix = Filled, Uplink, Multiphase
+    .desc = { ent-LockerBlueshield.desc }
 ent-LockerBlueshieldFilledUplink = { ent-LockerBlueshield }
-    .suffix = Filled
+    .suffix = Filled, Uplink
     .desc = { ent-LockerBlueshield.desc }
 ent-LockerBlueshieldFilledHardsuit = { ent-LockerBlueshield }
     .suffix = Filled, Hardsuit
