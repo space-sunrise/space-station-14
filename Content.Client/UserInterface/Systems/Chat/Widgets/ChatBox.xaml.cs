@@ -81,8 +81,7 @@ public partial class ChatBox : UIWidget
 
     public void Repopulate()
     {
-        Contents.RemoveAllChildren(); // Sunrise added
-        Contents.Clear();
+        ClearChatContents(); // Sunrise
 
         foreach (var message in _controller.History)
         {
@@ -92,8 +91,7 @@ public partial class ChatBox : UIWidget
 
     private void OnChannelFilter(ChatChannel channel, bool active)
     {
-        Contents.RemoveAllChildren(); // Sunrise added
-        Contents.Clear();
+        ClearChatContents(); // Sunrise
 
         foreach (var message in _controller.History)
         {
@@ -105,6 +103,21 @@ public partial class ChatBox : UIWidget
             _controller.ClearUnfilteredUnreads(channel);
         }
     }
+
+    // Sunrise start
+    private void ClearChatContents()
+    {
+        Contents.Clear();
+
+        foreach (var child in Contents.Children.ToArray())
+        {
+            if (child.Name != "_v_scroll")
+            {
+                Contents.RemoveChild(child);
+            }
+        }
+    }
+    // Sunrise end
 
     public void AddLine(string message, Color color)
     {
