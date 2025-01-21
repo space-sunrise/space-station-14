@@ -6,7 +6,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTLeader
     back: ClothingBackpackERTLeader
-    shoes: ClothingShoesBootsMagCombat
+    shoes: ClothingShoesBootsMagSec
     head: ClothingHeadEVAHelmetERTLeader
     eyes: ClothingEyesGlassesSecurity
     neck: SecurityWhistle
@@ -22,6 +22,7 @@
   storage:
     back:
     - BoxErtLeaderKit
+    - BoxZiptie
     - MagazineMagnum
     - MagazineMagnum
     - Omnitool
@@ -45,14 +46,15 @@
     pocket1: WeaponPistolN1984
     pocket2: BaseUplinkNTERT100BC
   inhand:
-  - WeaponEnergyGunPistolSecurity
-  - Omnitool
+  - WeaponEnergyGun
   storage:
     back:
     - BoxErtLeaderKit
-    - MagazineMagnum
+    - BoxZiptie
     - BoxTearGasGrenade
+    - Omnitool
     - Flash
+    - MagazineMagnum
 
 - type: startingGear
   id: ERTLeaderGearGamma
@@ -76,9 +78,10 @@
   storage:
     back:
     - BoxErtLeaderKit
-    - MagazineMagnum
+    - BoxZiptie
     - DoorRemoteOmni
     - Omnitool
+    - MagazineMagnum
 
 # Security
 
@@ -100,12 +103,12 @@
     pocket2: MagazinePistolSubMachineGun
   inhand:
   - WeaponSubMachineGunSkorpion
-  - MedkitCombatFilled
   storage:
     back:
     - BoxErtBaseKit
     - BoxZiptie
     - CrowbarRed
+    - MedkitCombatFilled
     - MagazinePistolSubMachineGun
 
 - type: startingGear
@@ -123,16 +126,16 @@
     id: ERTSecurityPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilledERT
-    pocket1: WeaponSubMachineGunSkorpion
+    pocket1: MagazinePistolSubMachineGun
     pocket2: MagazinePistolSubMachineGun
   inhand:
-  - WeaponEnergyGunTactical
-  - MedkitCombatFilled
+  - WeaponSubMachineGunSkorpion
   storage:
     back:
     - BoxErtBaseKit
     - BoxZiptie
     - CrowbarRed
+    - MedkitCombatFilled
     - Flash
 
 - type: startingGear
@@ -153,14 +156,16 @@
     pocket1: WeaponSubMachineGunSkorpion
     pocket2: MagazinePistolSubMachineGun
   inhand:
-  - WeaponLaserLNT620
-  - MedkitCombatFilled
+  - WeaponEnergyGunTactical
   storage:
     back:
     - BoxErtBaseKit
     - BoxZiptie
     - CrowbarRed
+    - MedkitCombatFilled
     - C4
+    - C4
+    - SmokeGrenade
 # Chaplain
 
 - type: startingGear
@@ -168,7 +173,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTChaplain
     back: ClothingBackpackERTChaplain
-    shoes: ClothingShoesBootsMagCombat
+    shoes: ClothingShoesBootsMagSec
     head: ClothingHeadEVAHelmetERTChaplain
     eyes: ClothingEyesHudMedSec
     neck: ClothingNeckStoleChaplain
@@ -225,9 +230,9 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTEngineer
     back: ClothingBackpackERTEngineer
-    shoes: ClothingShoesBootsMagCombat
+    shoes: ClothingShoesBootsMag
     head: ClothingHeadEVAHelmetERTEngineer
-    eyes: ClothingEyesNVDSec
+    eyes: ClothingEyesHudDiagnosticERT
     neck: HandheldCamera
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorAmberEng
@@ -238,13 +243,18 @@
     pocket2: CableHVStack
   inhand:
   - WeaponEnergyGun
-  - RCDRecharging
+  - RCD
   storage:
     back:
     - BoxErtBaseKit
+    - RCDAmmo
+    - RCDAmmo
     - CableApcStack
-    - ClothingEyesHudDiagnosticERT
     - Flash
+    - SheetPlasteel
+    - SheetGlass
+    - SheetSteel
+    - PowerCellHigh
 
 - type: startingGear
   id: ERTEngineerGearGamma
@@ -264,14 +274,19 @@
     pocket1: CableMVStack
     pocket2: CableHVStack
   inhand:
-  - WeaponEnergyGunPistolSecurity
+  - WeaponEnergyGun
   - RCDRecharging
   storage:
     back:
     - BoxErtBaseKit
+    - RCDAmmo
     - CableApcStack
     - ClothingEyesHudDiagnosticERT
     - Flash
+    - SheetPlasteel
+    - SheetGlass
+    - SheetSteel
+    - PowerCellHigh
 
 # Medical
 
@@ -280,7 +295,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTMedic
     back: ClothingBackpackERTMedical
-    shoes: ClothingShoesBootsMagCombat
+    shoes: ClothingShoesBootsMagSec
     head: ClothingHeadEVAHelmetERTMedic
     neck: HandheldCamera
     eyes: ClothingEyesHudMedical
@@ -290,16 +305,30 @@
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltMedicalFilled
     pocket1: HyposprayERT
-    pocket2: MedipenCombatInjector
+    pocket2: LauncherSyringePistol
   inhand:
-  - LauncherSyringeRapidFilled
+  - MedkitAdvancedFilled
   - DefibrillatorCompact
   storage:
     back:
     - BoxErtBaseKit
     - MedkitCombatFilled
-    - MedkitCombatFilled
+    - MedipenCombatInjector
     - CrowbarRed
+    - Hemostat
+    - SawElectric
+    - Drill
+    - Cautery
+    - Retractor
+    - Scalpel
+    - BoneGel
+    - BoneSetterAdvanced
+    - OmnizineChemistryBottle
+    - EpinephrineChemistryBottle
+    - EphedrineChemistryBottle
+    - MiniSyringe
+    - MiniSyringe
+    - MiniSyringe
 
 - type: startingGear
   id: ERTMedicalGearGamma
@@ -310,24 +339,35 @@
     head: ClothingHeadHatCapCMO
     neck: HandheldCamera
     mask: ClothingMaskGasERT
-    eyes: ClothingEyesNVDSec
+    eyes: ClothingEyesNVDMedSec
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterHardsuitERTMedical
     id: ERTMedicPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltMedicalFilled
     pocket1: HyposprayERT
-    pocket2: MedipenCombatInjector
+    pocket2: LauncherSyringeRapidFilled
   inhand:
-  - LauncherSyringeSMG
+  - MedkitCombatFilled
   - AdvancedDefibrillator
   storage:
     back:
     - BoxErtBaseKit
     - MedkitCombatFilled
-    - MedkitCombatFilled
+    - MedipenCombatInjector
     - CrowbarRed
-    - ClothingEyesHudMedSec
+    - HemostatAdvanced
+    - SawAdvanced
+    - Drill
+    - Cautery
+    - RetractorAdvanced
+    - ScalpelAdvanced
+    - EmergencyRollerBedSpawnFolded
+    - BoneGel
+    - BoneSetterAdvanced
+    - OmnizineChemistryBottle
+    - EpinephrineChemistryBottle
+    - EphedrineChemistryBottle
 
 # Janitor
 
@@ -336,7 +376,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTJanitor
     back: ClothingBackpackERTJanitor
-    shoes: ClothingShoesBootsMagCombat
+    shoes: ClothingShoesBootsMagSci
     head: ClothingHeadEVAHelmetERTJanitor
     neck: HandheldCamera
     eyes: ClothingEyesGlassesSecurity
@@ -348,12 +388,13 @@
     pocket1: Holoprojector
     pocket2: HoloprojectorField
   inhand:
-  - WeaponEnergyGunPistolSecurity
+  - WeaponEnergyGun
   - AdvMopItem
   storage:
     back:
     - BoxErtBaseKit
     - LightReplacer
+    - BoxCleanerGrenades
     - BoxCleanerGrenades
     - CrowbarRed
 
@@ -375,11 +416,12 @@
     pocket1: Holoprojector
     pocket2: HoloprojectorField
   inhand:
-  - WeaponEnergyGunPistolSecurity
+  - WeaponEnergyGun
   - AdvMopItem
   storage:
     back:
     - BoxErtBaseKit
     - LightReplacer
+    - BoxCleanerGrenades
     - BoxCleanerGrenades
     - CrowbarRed

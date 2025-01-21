@@ -152,7 +152,7 @@
       - state: id
   - type: Storage
     grid:
-    - 0,0,5,2
+    - 0,0,4,3
   - type: StorageFill
     contents:
       - id: PortableSurveillanceCameraMonitorUnpowered
@@ -160,11 +160,13 @@
       - id: PinpointerUniversal
       - id: PinpointerNuclear
       - id: MedipenCombatInjector
+      - id: DoubleEmergencyOxygenTankFilled
       - id: FreedomImplant
-      - id: Implanter
       - id: TrackingImplantErt
-      - id: MagazineMagnum
-      - id: Telebaton
+      - id: FoodSnackMaysonEnergy
+      - id: FoodTinMRE
+      - id: DrinkMREFlask
+      - id: Implanter
 
 - type: entity
   name: ERT base kit box
@@ -178,17 +180,19 @@
       - state: id
   - type: Storage
     grid:
-    - 0,0,5,2
+    - 0,0,4,3
   - type: StorageFill
     contents:
-      - id: WeaponFlareGun
-      - id: ShellShotgunFlare
-      - id: Telebaton
-      - id: PowerCellNanoTrasen
       - id: DoubleEmergencyOxygenTankFilled
+      - id: DrinkMREFlask
+      - id: FireExtinguisherMini
       - id: MedipenCombatInjector
-      - id: FreedomImplant
+      - id: HandHeldMassScanner
+      - id: WeaponFlareGun
       - id: Implanter
       - id: TrackingImplantErt
-      - id: FireExtinguisherMini
-      - id: DrinkMREFlask
+      - id: FreedomImplant
+      - id: Telebaton
+      - id: ShellShotgunFlare
+      - id: FoodSnackMaysonEnergy
+      - id: FoodTinMRE
