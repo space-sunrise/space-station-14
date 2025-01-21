@@ -48,6 +48,10 @@
 #      path: /Maps/Shuttles/cargo.yml
     - type: GridSpawn
       groups:
+        mining: !type:GridSpawnGroup
+          paths:
+          - /Maps/_Sunrise/Shuttles/mining.yml # Sunrise-edit
+          nameGrid: false
 # Sunrise-Edit
 #        trade: !type:GridSpawnGroup
 #          addComponents:
@@ -56,14 +60,23 @@
 #          paths:
 #            - /Maps/Shuttles/trading_outpost.yml
         # Spawn last
+        satelite: !type:GridSpawnGroup
+          minimumDistance: 300
+          maximumDistance: 350
+          nameGrid: false
+          minCount: 2
+          maxCount: 2
+          stationGrid: true
+          paths:
+          - /Maps/_Sunrise/Nonstations/telecom_satelite2.yml
+          - /Maps/_Sunrise/Nonstations/telecom_satelite.yml
         ruins: !type:GridSpawnGroup
-          hide: true
+          hide: false # Sunrise-Edit
           nameGrid: true
-          minCount: 6
-          maxCount: 10
+          minCount: 3
+          maxCount: 6
           stationGrid: false
           paths:
-          - /Maps/Ruins/abandoned_outpost.yml
           - /Maps/Ruins/chunked_tcomms.yml
           - /Maps/Ruins/biodome_satellite.yml
           - /Maps/Ruins/derelict.yml
@@ -74,9 +87,31 @@
           - /Maps/Ruins/whiteship_ancient.yml
           - /Maps/Ruins/whiteship_bluespacejumper.yml
           - /Maps/Ruins/wrecklaimer.yml
+        abandoned: !type:GridSpawnGroup
+          minimumDistance: 500
+          maximumDistance: 550
+          hide: false
+          nameGrid: false
+          stationGrid: false
+          minCount: 5
+          maxCount: 5
+          paths:
+          - /Maps/Ruins/abandoned_outpost.yml
+          - /Maps/_Sunrise/Ruins/abandoned_mining_outpost.yml
+          - /Maps/_Sunrise/Ruins/abandoned_satelite.yml
+          - /Maps/_Sunrise/Ruins/abandoned_lab.yml
+          - /Maps/_Sunrise/Ruins/abandoned_syndi_lab.yml
+        victory_mine: !type:GridSpawnGroup
+          minimumDistance: 1000
+          maximumDistance: 1050
+          hide: false
+          nameGrid: false
+          stationGrid: false
+          paths:
+          - /Maps/_Sunrise/Ruins/victory_mine.yml
         vgroid: !type:DungeonSpawnGroup
-          minimumDistance: 300
-          maximumDistance: 350
+          minimumDistance: 1000
+          maximumDistance: 1050
           nameDataset: NamesBorer
           stationGrid: false
           addComponents:

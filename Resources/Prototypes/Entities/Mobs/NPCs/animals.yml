@@ -239,6 +239,10 @@
   - type: NpcFactionMember
     factions:
     - Passive
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   parent: MobChicken
@@ -673,6 +677,10 @@
   - type: NpcFactionMember
     factions:
     - Passive
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   name: white duck #Quack
@@ -928,6 +936,10 @@
       task: RuminantCompound
   - type: Body
     prototype: AnimalHemocyanin
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   name: goat
@@ -1030,6 +1042,10 @@
   - type: HTN
     rootTask:
       task: RuminantHostileCompound
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 # Note that we gotta make this bitch vomit someday when you feed it anthrax or sumthin. Needs to be a small item thief too and aggressive if attacked.
 - type: entity
@@ -1079,6 +1095,10 @@
   - type: NpcFactionMember
     factions:
     - Passive
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   name: gorilla
@@ -1382,6 +1402,10 @@
         Burn: 3
     clumsySound:
       path: /Audio/Animals/monkey_scream.ogg
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 
 - type: entity
@@ -1965,6 +1989,10 @@
   - type: Tag
     tags:
     - VimPilot
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 
 - type: entity
@@ -2189,6 +2217,10 @@
     heatDamage:
       types:
         Heat : 0.2 #per second, scales with temperature & other constants
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   name: grenade penguin
@@ -2410,6 +2442,8 @@
   - type: CollectiveMind
     minds:
     - Arachnids
+  - type: Carriable
+  - type: CanEscapeInventory
   # Sunrise-end
 
 - type: entity
@@ -2590,6 +2624,10 @@
   - type: Tag
     tags:
     - VimPilot
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   name: possum
@@ -2664,6 +2702,10 @@
   - type: Tag
     tags:
     - VimPilot
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   name: fox
@@ -2742,6 +2784,10 @@
   - type: Tag
     tags:
     - VimPilot
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   name: corgi
@@ -2803,6 +2849,10 @@
   - type: Tag
     tags:
     - VimPilot
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   name: corrupted corgi
@@ -2960,9 +3010,13 @@
   - type: Tag
     tags:
     - VimPilot
+  # Sunrise-start
   - type: NightVision #Sunrise - Night vision
     isToggle: true
     color: "#808080"
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   name: calico cat
@@ -3178,6 +3232,10 @@
   - type: Tag
     tags:
     - VimPilot
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   name: ferret
@@ -3232,6 +3290,10 @@
   - type: Tag
     tags:
     - VimPilot
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   name: hamster
@@ -3449,6 +3511,8 @@
     # Sunrise-start
   - type: Body
     prototype: ManeaterAnimal
+  - type: Carriable
+  - type: CanEscapeInventory
     # Sunrise-end
 
 - type: entity

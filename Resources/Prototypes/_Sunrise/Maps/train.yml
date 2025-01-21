@@ -60,9 +60,9 @@
             HeadOfSecurity: [ 1, 1 ]
             Warden: [ 1, 1 ]
             SeniorOfficer: [ 1, 1 ]
-            Detective: [ 2, 2 ]
+            Detective: [ 1, 1 ]
             Brigmedic: [ 2, 2 ]
-            #SecurityPilot: [ 1, 1 ]
+            SecurityPilot: [ 1, 1 ]
             SecurityOfficer: [ 5, 5 ]
             SecurityCadet: [ 5, -1 ]
             #supply
@@ -91,7 +91,6 @@
             PeaceBorg: [ 2, 2 ]
             MedicalBorg: [ 4, 4 ]
             SecurityBorg: [ 4, 4 ]
-            SecurityCombatBorg: [ 2, 2 ]
         - type: StationGoal
           goals:
           - Shuttle
@@ -124,4 +123,4 @@
           - Saboteurs
           - Furs
           - Crew
-          - VirusFlesh
+          #- VirusFlesh

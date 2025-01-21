@@ -12,8 +12,7 @@
     - state: boris_blank
       map: ["base"]
   - type: Input
-    context: "ghost"
-  - type: BlockMovement
+    context: human
   - type: ToggleableGhostRole
     examineTextMindPresent: boris-installed
     examineTextMindSearching: boris-still-searching
@@ -22,11 +21,14 @@
     roleName: boris-role-name
     roleDescription: boris-role-description
     roleRules: ghost-role-information-silicon-rules
+    mindRoles:
+    - MindRoleGhostRoleSilicon
     wipeVerbText: boris-wipe-device-verb-text
     wipeVerbPopup: boris-wiped-device
     stopSearchVerbText: boris-stop-searching-verb-text
     stopSearchVerbPopup: boris-stopped-searching
     job: Borg
+  - type: BlockMovement
   - type: Examiner
   - type: BorgBrain
   - type: IntrinsicRadioReceiver
@@ -87,6 +89,8 @@
     roleName: sofia-role-name
     roleDescription: sofia-role-description
     roleRules: ghost-role-information-silicon-rules
+    mindRoles:
+    - MindRoleGhostRoleSiliconAntagonist
     wipeVerbText: sofia-wipe-device-verb-text
     wipeVerbPopup: sofia-wiped-device
     stopSearchVerbText: sofia-stop-searching-verb-text

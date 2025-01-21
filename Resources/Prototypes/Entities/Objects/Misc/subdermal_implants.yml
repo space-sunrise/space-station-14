@@ -168,6 +168,7 @@
       whitelist:
         components:
         - Hands # no use giving a mouse a storage implant, but a monkey is another story...
+      dropContainerItemsIfGib: true
     - type: Storage
       grid:
       - 0,0,2,2
