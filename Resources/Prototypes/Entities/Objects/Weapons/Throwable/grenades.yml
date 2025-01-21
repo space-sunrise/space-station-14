@@ -360,7 +360,7 @@
   - type: Sprite
     sprite: Objects/Weapons/Grenades/empgrenade.rsi
   - type: EmpOnTrigger
-    range: 5.5
+    range: 11 #5.5 Sunrise-Edit
     energyConsumption: 50000
   - type: DeleteOnTrigger
   - type: Appearance
