@@ -21,6 +21,11 @@ public sealed class TextureTag : IMarkupTag
             return false;
         }
 
+        if (!node.Attributes.TryGetValue("scale", out var scale) || !scale.TryGetLong(out var scaleValue))
+        {
+            scaleValue = 1;
+        }
+
         var texture = new TextureRect();
 
         var path = rawPath.ToString();
@@ -29,7 +34,7 @@ public sealed class TextureTag : IMarkupTag
         path = path.Replace("\"", "");
 
         texture.TexturePath = path;
-        texture.TextureScale = new Vector2(3, 3);
+        texture.TextureScale = new Vector2(scaleValue.Value, scaleValue.Value);
 
         control = texture;
         return true;

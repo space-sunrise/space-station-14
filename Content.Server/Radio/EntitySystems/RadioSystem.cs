@@ -90,7 +90,8 @@ public sealed class RadioSystem : EntitySystem
         name = FormattedMessage.EscapeText(name);
 
         // Sunrise-Start
-        var formattedName = $"{Loc.GetString("texture-tag", ("path", GetIdSprite(messageSource)))} {name}";
+        var texture = Loc.GetString("texture-tag", ("path", GetIdSprite(messageSource)), ("scale", "3"));
+        var formattedName = $"{texture} {name}";
         // Sunrise-End
 
         SpeechVerbPrototype speech;
