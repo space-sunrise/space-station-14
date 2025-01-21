@@ -10972,3 +10972,12 @@
   id: 762
   time: '2025-01-21T21:57:20.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/1168
+- author: KaiserMaus & RedGuard161
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D \u0421\u043A\u0430\u0444\
+      \u0430\u043D\u0434\u0440 \u0434\u043B\u044F \u041A\u043E\u043C\u0430\u043D\u0434\
+      \u0438\u0440\u0430 \u0421\u0421\u0421\u041F."
+    type: Add
+  id: 763
+  time: '2025-01-21T21:58:54.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/1167
