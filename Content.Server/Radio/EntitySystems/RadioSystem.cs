@@ -90,7 +90,7 @@ public sealed class RadioSystem : EntitySystem
         name = FormattedMessage.EscapeText(name);
 
         // Sunrise-Start
-        var formattedName = $"[color={GetIdCardColor(messageSource)}]{GetIdCardName(messageSource)}{name}[/color]";
+        var formattedName = $"{Loc.GetString("texture-tag", ("path", GetIdSprite(messageSource)))} {name}";
         // Sunrise-End
 
         SpeechVerbPrototype speech;
@@ -207,10 +207,25 @@ public sealed class RadioSystem : EntitySystem
         return $"\\[{idCardTitle}\\] ";
     }
 
-    private string GetIdCardColor(EntityUid senderUid)
+    private string GetIdSprite(EntityUid senderUid)
     {
-        var color = GetIdCard(senderUid)?.JobColor;
-        return (!string.IsNullOrEmpty(color)) ? color : "#9FED58";
+        var protoId = GetIdCard(senderUid)?.JobIcon;
+        var sprite = "/Textures/Interface/Misc/job_icons.rsi/NoId.png";
+
+        if (_prototype.TryIndex(protoId, out var prototype))
+        {
+            switch (prototype.Icon)
+            {
+                case SpriteSpecifier.Texture tex:
+                    sprite = tex.TexturePath.CanonPath;
+                    break;
+                case SpriteSpecifier.Rsi rsi:
+                    sprite = rsi.RsiPath.CanonPath + "/" + rsi.RsiState + ".png";
+                    break;
+            }
+        }
+
+        return sprite;
     }
 
     private bool GetIdCardIsBold(EntityUid senderUid)
