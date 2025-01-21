@@ -34,8 +34,9 @@
     useRate: 20
 
 - type: entity
-  name: NVD
+  name: NVD Security
   id: ClothingEyesNVDSec
+  suffix: security
   parent: [ClothingEyesNVD, ShowSecurityIcons, BaseSecurityCommandContraband]
   description: Night vision device. Provides an image of the terrain in low-light conditions.
   components:
@@ -56,8 +57,9 @@
     displayShader: NVDDisplay
 
 - type: entity
-  name: NVD
+  name: Med-Security NVD
   id: ClothingEyesNVDMedSec
+  suffix: med-security
   parent: [ClothingEyesNVD, ShowSecurityIcons, ShowMedicalIcons, BaseSecurityCommandContraband]
   description: Night vision device. Provides an image of the terrain in low-light conditions.
   components:

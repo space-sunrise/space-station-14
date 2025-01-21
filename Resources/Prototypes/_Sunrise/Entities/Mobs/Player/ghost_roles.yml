@@ -99,7 +99,7 @@
     id: ERTSecurityPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltSecurityFilled
-    pocket1: WeaponEnergyGunPistolSecurity
+    pocket1: MagazinePistolSubMachineGun
     pocket2: MagazinePistolSubMachineGun
   inhand:
   - WeaponSubMachineGunSkorpion
@@ -168,36 +168,7 @@
     - FlippoLighterSunriseBlack
     - Candle
 
-- type: startingGear
-  id: ERTChaplainGearGamma
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitERTChaplain
-    back: ClothingBackpackERTChaplain
-    shoes: ClothingShoesBootsMagAdv
-    head: ClothingHeadHatBeretMerc
-    mask: ClothingMaskGasERT
-    eyes: ClothingEyesNVDSec
-    neck: ClothingNeckStoleChaplain
-    gloves: ClothingHandsGlovesCombat
-    outerClothing: ClothingOuterHardsuitERTChaplain
-    id: ERTChaplainPDA
-    ears: ClothingHeadsetAltCentCom
-    belt: ClothingBeltSecurityFilledERT
-    pocket1: LanternFlash
-    pocket2: ClothingEyesHudMedSec
-  inhand:
-  - WeaponEnergyGunTactical
-  storage:
-    back:
-    - BoxErtBaseKit
-    - CrowbarRed
-    - Bible
-    - Bible
-    - FlippoLighterSunriseBlack
-    - Candle
-
 # Engineer
-
 - type: startingGear
   id: ERTEngineerGearAmber
   equipment:

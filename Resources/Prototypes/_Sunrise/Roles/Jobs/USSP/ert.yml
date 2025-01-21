@@ -171,47 +171,8 @@
       prototypes: [ ERTSecurityGearAmber ]
 
 - type: entity
-  id: RandomHumanoidSpawnerERTSecurityRed
-  parent: RandomHumanoidSpawnerERTSecurityAmber
-  name: ERT security
-  suffix: ERTRole, Red 
-  components:
-    - type: Sprite
-      sprite: Markers/jobs.rsi
-      state: ertsecurityeva
-    - type: RandomHumanoidSpawner
-      settings: ERTSecurityRed
-
-- type: randomHumanoidSettings
-  id: ERTSecurityRed
-  speciesBlacklist: 
-  - Diona
-  - Vox
-  - Felinid
-  - Moth
-  - Arachnid
-  - Reptilian
-  - Vulpkanin
-  - Swine
-  - Tajaran
-  - Demon
-  - SlimePerson
-  - Dwarf
-  parent: ERTSecurityAmber
-  components:
-    - type: GhostRole
-      name: ghost-role-information-ert-security-name
-      description: ghost-role-information-ert-security-description
-      rules: ghost-role-information-nonantagonist-rules
-      raffle:
-        settings: short
-      job: ERTSecurity
-    - type: Loadout
-      prototypes: [ ERTSecurityGearRed ]
-
-- type: entity
   id: RandomHumanoidSpawnerERTSecurityGamma
-  parent: RandomHumanoidSpawnerERTSecurityRed
+  parent: RandomHumanoidSpawnerERTSecurityAmber
   suffix: ERTRole, Gamma 
   components:
     - type: RandomHumanoidSpawner
@@ -293,46 +254,6 @@
       - NamesLastMilitary
     - type: Loadout
       prototypes: [ ERTChaplainGearAmber ]
-
-- type: entity
-  id: RandomHumanoidSpawnerERTChaplainGamma
-  parent: RandomHumanoidSpawnerERTChaplainAmber
-  name: ERT chaplain
-  suffix: ERTRole, Gamma 
-  components:
-    - type: Sprite
-      sprite: Markers/jobs.rsi
-      state: chaplain
-    - type: RandomHumanoidSpawner
-      settings: ERTChaplainGamma
-
-- type: randomHumanoidSettings
-  id: ERTChaplainGamma
-  speciesBlacklist: 
-  - Diona
-  - Vox
-  - Felinid
-  - Moth
-  - Arachnid
-  - Reptilian
-  - Vulpkanin
-  - Swine
-  - Tajaran
-  - Demon
-  - SlimePerson
-  - Dwarf
-  parent: ERTChaplain
-  components:
-    - type: GhostRole
-      name: ghost-role-information-ert-chaplain-name
-      description: ghost-role-information-ert-chaplain-description
-      rules: ghost-role-information-nonantagonist-rules
-      raffle:
-        settings: short
-      job: ERTChaplain
-    - type: Loadout
-      prototypes: [ ERTChaplainGearGamma ]
-    - type: BibleUser
 
 ## ERT Janitor
 
