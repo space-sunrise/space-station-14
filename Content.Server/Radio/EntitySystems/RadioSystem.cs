@@ -98,8 +98,14 @@ public sealed class RadioSystem : EntitySystem
         name = FormattedMessage.EscapeText(name);
 
         // Sunrise-Start
-        var texture = Loc.GetString("texture-tag", ("path", GetIdSprite(messageSource)), ("scale", "3"));
-        var formattedName = $"{texture} {name}";
+        var tag = Loc.GetString("radio-icon-tag",
+            ("path", GetIdSprite(messageSource)),
+            ("scale", "3"),
+            ("text", GetIdCardName(messageSource)),
+            ("color", GetIdCardColor(messageSource))
+        );
+
+        var formattedName = $"{tag} {name}";
         // Sunrise-End
 
         SpeechVerbPrototype speech;
@@ -213,7 +219,13 @@ public sealed class RadioSystem : EntitySystem
         var textInfo = CultureInfo.CurrentCulture.TextInfo;
         idCardTitle = textInfo.ToTitleCase(idCardTitle);
 
-        return $"\\[{idCardTitle}\\] ";
+        return $"[{idCardTitle}] ";
+    }
+
+    private string GetIdCardColor(EntityUid senderUid)
+    {
+        var color = GetIdCard(senderUid)?.JobColor;
+        return (!string.IsNullOrEmpty(color)) ? color : "#9FED58";
     }
 
     private string GetIdSprite(EntityUid senderUid)
