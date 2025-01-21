@@ -298,11 +298,11 @@
   id: RandomHumanoidSpawnerERTChaplainGamma
   parent: RandomHumanoidSpawnerERTChaplainAmber
   name: ERT chaplain
-  suffix: ERTRole, Red|Gamma 
+  suffix: ERTRole, Gamma 
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
-      state: chaplain #needs an ERT variant once a good suit it made.
+      state: chaplain
     - type: RandomHumanoidSpawner
       settings: ERTChaplainGamma
 
@@ -387,7 +387,7 @@
   id: RandomHumanoidSpawnerERTJanitorGamma
   parent: RandomHumanoidSpawnerERTJanitorAmber
   name: ERT janitor
-  suffix: ERTRole, Red|Gamma 
+  suffix: ERTRole, Gamma 
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -475,7 +475,7 @@
   id: RandomHumanoidSpawnerERTEngineerGamma
   parent: RandomHumanoidSpawnerERTEngineerAmber
   name: ERT engineer
-  suffix: ERTRole, Red|Gamma 
+  suffix: ERTRole, Gamma 
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -563,7 +563,7 @@
   id: RandomHumanoidSpawnerERTMedicalGamma
   parent: RandomHumanoidSpawnerERTMedicalAmber
   name: ERT medic
-  suffix: ERTRole, Red|Gamma 
+  suffix: ERTRole, Gamma 
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi

@@ -112,33 +112,6 @@
     - MagazinePistolSubMachineGun
 
 - type: startingGear
-  id: ERTSecurityGearRed
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitERTSecurity
-    back: ClothingBackpackERTSecurity
-    shoes: ClothingShoesBootsMagCombat
-    head: ClothingHeadHatBeretSecurity
-    mask: ClothingMaskGasERT
-    eyes: ClothingEyesNVDSec
-    neck: HandheldCamera
-    gloves: ClothingHandsGlovesCombat
-    outerClothing: ClothingOuterHardsuitERTSecurity
-    id: ERTSecurityPDA
-    ears: ClothingHeadsetAltCentCom
-    belt: ClothingBeltSecurityFilledERT
-    pocket1: MagazinePistolSubMachineGun
-    pocket2: MagazinePistolSubMachineGun
-  inhand:
-  - WeaponSubMachineGunSkorpion
-  storage:
-    back:
-    - BoxErtBaseKit
-    - BoxZiptie
-    - CrowbarRed
-    - MedkitCombatFilled
-    - Flash
-
-- type: startingGear
   id: ERTSecurityGearGamma
   equipment:
     jumpsuit: ClothingUniformJumpsuitERTSecurity
@@ -166,8 +139,8 @@
     - C4
     - C4
     - SmokeGrenade
-# Chaplain
 
+# Chaplain
 - type: startingGear
   id: ERTChaplainGearAmber
   equipment:
