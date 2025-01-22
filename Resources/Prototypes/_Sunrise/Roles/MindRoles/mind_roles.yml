@@ -61,5 +61,5 @@
   - type: MindRole
     antagPrototype: Vampire
     exclusiveAntag: true
-    roleType: TeamAntagonist
+    roleType: SoloAntagonist
   - type: VampireRole

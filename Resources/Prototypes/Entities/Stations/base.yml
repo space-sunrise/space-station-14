@@ -72,12 +72,11 @@
           - /Maps/_Sunrise/Nonstations/telecom_satelite.yml
         ruins: !type:GridSpawnGroup
           hide: false # Sunrise-Edit
-          nameGrid: false
-          minCount: 10
-          maxCount: 15
+          nameGrid: true
+          minCount: 3
+          maxCount: 6
           stationGrid: false
           paths:
-          - /Maps/Ruins/abandoned_outpost.yml
           - /Maps/Ruins/chunked_tcomms.yml
           - /Maps/Ruins/biodome_satellite.yml
           - /Maps/Ruins/derelict.yml
@@ -88,14 +87,31 @@
           - /Maps/Ruins/whiteship_ancient.yml
           - /Maps/Ruins/whiteship_bluespacejumper.yml
           - /Maps/Ruins/wrecklaimer.yml
+        abandoned: !type:GridSpawnGroup
+          minimumDistance: 500
+          maximumDistance: 550
+          hide: false
+          nameGrid: false
+          stationGrid: false
+          minCount: 5
+          maxCount: 5
+          paths:
+          - /Maps/Ruins/abandoned_outpost.yml
           - /Maps/_Sunrise/Ruins/abandoned_mining_outpost.yml
           - /Maps/_Sunrise/Ruins/abandoned_satelite.yml
-          - /Maps/_Sunrise/Ruins/victory_mine.yml
           - /Maps/_Sunrise/Ruins/abandoned_lab.yml
           - /Maps/_Sunrise/Ruins/abandoned_syndi_lab.yml
+        victory_mine: !type:GridSpawnGroup
+          minimumDistance: 1000
+          maximumDistance: 1050
+          hide: false
+          nameGrid: false
+          stationGrid: false
+          paths:
+          - /Maps/_Sunrise/Ruins/victory_mine.yml
         vgroid: !type:DungeonSpawnGroup
-          minimumDistance: 300
-          maximumDistance: 350
+          minimumDistance: 1000
+          maximumDistance: 1050
           nameDataset: NamesBorer
           stationGrid: false
           addComponents:

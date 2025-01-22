@@ -82,9 +82,14 @@
 
 # Outer clothing
 - type: loadout
-  id: CaptainOuterClothing
+  id: CaptainOuterArmor
   equipment:
     outerClothing: ClothingOuterArmorCaptainCarapace
+
+- type: loadout
+  id: CaptainOuterCoat
+  equipment:
+    outerClothing: ClothingOuterCoatCaptain
 
 - type: loadout
   id: CaptainWintercoat
