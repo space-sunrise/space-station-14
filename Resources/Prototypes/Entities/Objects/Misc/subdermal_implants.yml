@@ -168,6 +168,7 @@
       whitelist:
         components:
         - Hands # no use giving a mouse a storage implant, but a monkey is another story...
+      dropContainerItemsIfGib: true
     - type: Storage
       grid:
       - 0,0,2,2
@@ -232,7 +233,7 @@
       implantAction: ActionActivateEmpImplant
     - type: TriggerImplantAction
     - type: EmpOnTrigger
-      range: 2.75
+      range: 5.5 #2.75 Sunrise-Edit
       energyConsumption: 50000
       disableDuration: 10
 

@@ -7,14 +7,16 @@ public sealed partial class CCVars
     /// <summary>
     /// The sound played when clicking a UI button
     /// </summary>
+    // Sunrise-Edit
     public static readonly CVarDef<string> UIClickSound =
-        CVarDef.Create("interface.click_sound", "/Audio/UserInterface/click.ogg", CVar.REPLICATED);
+        CVarDef.Create("interface.click_sound", "/Audio/_Sunrise/UserInterface/button_click.ogg", CVar.REPLICATED);
 
     /// <summary>
     /// The sound played when the mouse hovers over a clickable UI element
     /// </summary>
+    // Sunrise-Edit
     public static readonly CVarDef<string> UIHoverSound =
-        CVarDef.Create("interface.hover_sound", "/Audio/UserInterface/hover.ogg", CVar.REPLICATED);
+        CVarDef.Create("interface.hover_sound", "/Audio/_Sunrise/UserInterface/button_hover.ogg", CVar.REPLICATED);
 
     /// <summary>
     /// The layout style of the UI

@@ -7,6 +7,7 @@
   - type: MindRole
     antagPrototype: FleshCultist
     exclusiveAntag: true
+    roleType: TeamAntagonist
   - type: FleshCultistRole
 
 - type: entity
@@ -18,4 +19,5 @@
   - type: MindRole
     antagPrototype: FleshCultistLeader
     exclusiveAntag: true
+    roleType: TeamAntagonist
   - type: FleshCultistRole

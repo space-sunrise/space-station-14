@@ -405,4 +405,11 @@ public sealed class SunriseCCVars
 
     public static readonly CVarDef<bool> DamageOverlayStructures =
         CVarDef.Create("damage_overlay.structures", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /*
+     * Radio chat icons
+     */
+
+    public static readonly CVarDef<bool> ChatIconsEnable =
+        CVarDef.Create("chat_icon.enable", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 }

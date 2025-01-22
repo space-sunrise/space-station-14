@@ -47,7 +47,6 @@ public sealed class SubdermalImplantSystem : SharedSubdermalImplantSystem
     [Dependency] private readonly EntityLookupSystem _lookupSystem = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly IdentitySystem _identity = default!;
-    [Dependency] private readonly ContainerSystem _container = default!;
 
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private HashSet<Entity<MapGridComponent>> _targetGrids = [];
@@ -63,37 +62,6 @@ public sealed class SubdermalImplantSystem : SharedSubdermalImplantSystem
         SubscribeLocalEvent<SubdermalImplantComponent, ActivateImplantEvent>(OnActivateImplantEvent);
         SubscribeLocalEvent<SubdermalImplantComponent, UseScramImplantEvent>(OnScramImplant);
         SubscribeLocalEvent<SubdermalImplantComponent, UseDnaScramblerImplantEvent>(OnDnaScramblerImplant);
-        SubscribeLocalEvent<ImplantedComponent, BeingGibbedEvent>(OnGibbed);
-    }
-
-    private void OnGibbed(EntityUid uid, ImplantedComponent component, BeingGibbedEvent args)
-    {
-        if (!_container.TryGetContainer(uid, ImplanterComponent.ImplantSlotId, out var implantContainer))
-            return;
-
-        foreach (var implant in implantContainer.ContainedEntities)
-        {
-            if (!TryComp<SubdermalImplantComponent>(implant, out var subdermalImplant))
-                continue;
-
-            if (!subdermalImplant.DropContainerItemsIfGibbed)
-                continue;
-
-            if (!_container.TryGetContainer(implant, BaseStorageId, out var storageImplant))
-                continue;
-
-            var entCoords = Transform(uid).Coordinates;
-
-            var containedEntites = storageImplant.ContainedEntities.ToArray();
-
-            foreach (var entity in containedEntites)
-            {
-                if (Terminating(entity))
-                    continue;
-
-                _container.RemoveEntity(storageImplant.Owner, entity, force: true, destination: entCoords);
-            }
-        }
     }
 
     private void OnStoreRelay(EntityUid uid, StoreComponent store, ImplantRelayEvent<AfterInteractUsingEvent> implantRelay)

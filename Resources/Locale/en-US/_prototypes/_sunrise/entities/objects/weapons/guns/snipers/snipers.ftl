@@ -8,3 +8,5 @@ ent-WeaponSniperGarand = M1 Garand
     .desc = { ent-BaseWeaponSniper.desc }
 ent-WeaponSniperMosinNew = Kardashev-Mosin
     .desc = { ent-BaseWeaponSniper.desc }
+ent-WeaponSniperRepeater = N2524 Repeater
+    .desc = { ent-BaseWeaponSniper.desc }

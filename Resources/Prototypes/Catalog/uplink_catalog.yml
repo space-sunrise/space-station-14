@@ -587,13 +587,6 @@
     Telecrystal: 1
   categories:
   - UplinkAmmo
-  #Sunrise-start
-  conditions:
-  - !type:StoreWhitelistCondition
-    blacklist:
-      tags:
-      - AssaultOpsUplink
-  #Sunrise-end
 
 # For the Python
 - type: listing
