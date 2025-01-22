@@ -115,6 +115,65 @@
     clothingPrototype: ClothingHeadHelmetHardsuitBrigmedic
 
 # USSP
+- type: entity
+  parent: [ ClothingOuterHardsuitBase ]
+  id: ClothingOuterEliteHardsuitUSSP
+  name: Spartak-K
+  description: A heavily armored USSP spacesuit designed for combat operations in extreme conditions. Reinforced armor protects against firearms and energy weapons, radiation and explosions. It is used by elite units to protect strategic facilities.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp-elite.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ussp-elite.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: FireProtection
+    reduction: 0.8
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.3
+        Heat: 0.5
+        Radiation: 0.25
+        Caustic: 0.4
+  - type: Item
+    size: Huge
+  - type: ClothingSpeedModifier
+    walkModifier: 1.0
+    sprintModifier: 0.90
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetEliteHardsuitUSSP
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot
+      toggleable-clothing: !type:ContainerSlot
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellCombat
+        whitelist:
+          tags:
+            - PowerCell
+  - type: EnergyDomeGenerator
+    damageEnergyDraw: 4
+    domePrototype: EnergyDomeSmallRed
+  - type: PowerCellDraw
+    drawRate: 0
+    useRate: 0
+  - type: UseDelay
+    delay: 10.0
 
 - type: entity
   parent: [ ClothingOuterHardsuitBase ]

@@ -32,6 +32,7 @@
 
                 <!-- Graphics -->
                 <Label Text="{Loc 'ui-options-sunrise-general-graphics'}" StyleClasses="LabelKeyText"/>
+                <CheckBox Name="ChatIconsEnableCheckBox" Text="{Loc 'ui-options-chat-icons-enable'}" />
 
             </BoxContainer>
         </ScrollContainer>
