@@ -417,7 +417,7 @@
   maxLimit: 1
   loadouts:
   - Sunrise-MedicalSterileRed
-  - Sunrise-MedicalMaskOrange
+  - Sunrise-MedicalSterileOrange
   - Sunrise-MedicalSterileGreen
   - SterileMask
   - Sunrise-MedicalMaskRed
@@ -620,11 +620,11 @@
   maxLimit: 1
   loadouts:
   - Sunrise-MedicalSterileBlack
-  - Sunrise-MedicalMaskRed
+  - Sunrise-MedicalSterileRed
   - Sunrise-MedicalSterileGreen
   - SterileMask
   - Sunrise-MedicalMaskBlack
-  - Sunrise-MedicalSterileRed
+  - Sunrise-MedicalMaskRed
   - Sunrise-MedicalMaskGreen
   - Sunrise-MedicalMask
 
