@@ -1,0 +1,124 @@
+- type: gameMap
+  id: SunrisePlasma
+  mapName: 'Plasma'
+  mapPath: /Maps/_Sunrise/Station/plasma.yml
+  minPlayers: 20
+  maxPlayers: 100
+  maxRandomOffset: 0
+  randomRotation: false
+  stations:
+    Plasma:
+      stationProto: StandardNanotrasenStation
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: '{0} Плазма {1}'
+          nameGenerator:
+            !type:NanotrasenNameGenerator
+            prefixCreator: '14'
+        - type: StationEmergencyShuttle
+          emergencyShuttlePath: /Maps/_Sunrise/Shuttles/emergency_plasma.yml
+        - type: StationJobs
+          availableJobs:
+            #command
+            Captain: [ 1, 1 ]
+            HeadOfPersonnel: [ 1, 1 ]
+            Adjutant: [ 1, 1 ]
+            NanoTrasenRepresentative: [ 1, 1 ]
+            Magistrat: [ 1, 1 ]
+            #service
+            Bartender: [ 2, 2 ]
+            Botanist: [ 2, 3 ]
+            Chef: [ 2, 2 ]
+            Janitor: [ 3, 3 ]
+            Chaplain: [ 1, 1 ]
+            Librarian: [ 1, 1 ]
+            ServiceWorker: [ 2, -1 ]
+            Reporter: [ 2, 3 ]
+            Zookeeper: [ 1, 1 ]
+            Barber: [ 1, 1 ]
+            #blueshield
+            BlueShield: [ 1, 1 ]
+            #engineering
+            ChiefEngineer: [ 1, 1 ]
+            SeniorEngineer: [ 1, 1 ]
+            AtmosphericTechnician: [ 4, 4 ]
+            StationEngineer: [ 4, 4 ]
+            TechnicalAssistant: [ 3, -1 ]
+            #medical
+            ChiefMedicalOfficer: [ 1, 1 ]
+            SeniorPhysician: [ 1, 1 ]
+            Chemist: [ 2, 2 ]
+            MedicalDoctor: [ 4, 4 ]
+            Paramedic: [ 2, 2 ]
+            MedicalIntern: [ 3, -1 ]
+            Psychologist: [ 1, 2 ]
+            MedicalPathologist: [ 1, 1 ]
+            #science
+            ResearchDirector: [ 1, 1 ]
+            SeniorResearcher: [ 1, 1 ]
+            Roboticist: [ 1, 2 ]
+            Scientist: [ 4, 4 ]
+            ResearchAssistant: [ 3, -1 ]
+            # silicon
+            StationAi: [ 1, 1 ]
+            Borg: [ 2, 2 ]
+            EngineerBorg: [ 2, 2 ]
+            MiningBorg: [ 2, 2 ]
+            JanitorBorg: [ 2, 2 ]
+            ServiceBorg: [ 2, 2 ]
+            ClownBorg: [ 2, 2 ]
+            PeaceBorg: [ 2, 2 ]
+            MedicalBorg: [ 4, 4 ]
+            SecurityBorg: [ 4, 4 ]
+            #security
+            HeadOfSecurity: [ 1, 1 ]
+            Warden: [ 1, 1 ]
+            SeniorOfficer: [ 1, 1 ]
+            SecurityOfficer: [ 6, 8 ]
+            Detective: [ 2, 2 ]
+            Brigmedic: [ 2, 2 ]
+            SecurityPilot: [ 1, 1 ]
+            SecurityCadet: [ 2, -1 ]
+            Lawyer: [ 1, 2 ]
+            #supply
+            Quartermaster: [ 1, 1 ]
+            SalvageSpecialist: [ 4, 4 ]
+            CargoTechnician: [ 4, 6 ]
+            #civilian
+            Passenger: [ -1, -1 ]
+            Clown: [ 1, 1 ]
+            Mime: [ 1, 1 ]
+            Musician: [ 1, 1 ]
+        - type: StationGoal
+          goals:
+          - Shuttle
+          - Singularity
+          #- SolarPanels Boring, we have more intresting goals
+          - Artifacts
+          - Bank
+          - Zoo
+          - MiningOutpost
+          - Tesla
+          #- XenobiologyRepair No Xenobiology
+          - VirusologyAmbusol
+          - Containment
+          - WeaponsSecurity
+          - MaintsRepair
+          - DormsBuild
+          - BattleShuttle
+          - Transit
+          - NukeRoom
+          - Permabrig
+          - Farm
+          - Delegates
+          - Cyborgs
+          - Testing
+          - Anomaly
+          - Replenishment
+          - IntelWeapons
+          - Reports
+          - Reconnaissance
+          - Saboteurs
+          - Furs
+          - Crew
+          #- VirusFlesh
