@@ -11086,3 +11086,14 @@
   id: 770
   time: '2025-01-23T00:38:49.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/1176
+- author: banumbas
+  changes:
+  - message: "\u0411\u044B\u043B \u0434\u043E\u0431\u0430\u0432\u043B\u0435\u043D\
+      \ \u043D\u043E\u0432\u044B\u0439 \u0430\u0441\u0441\u043E\u0440\u0442\u0438\u043C\
+      \u0435\u043D\u0442 \u0432\u0437\u043B\u043E\u043C\u0430\u043D\u043D\u044B\u043C\
+      \ (\u0441 \u043F\u043E\u043C\u043E\u0449\u044C\u044E \u0415\u041C\u0410\u0413\
+      \u0430) \u0430\u0432\u0442\u043E\u043C\u0430\u0442\u0430\u043C."
+    type: Add
+  id: 771
+  time: '2025-01-23T00:41:47.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/1166
