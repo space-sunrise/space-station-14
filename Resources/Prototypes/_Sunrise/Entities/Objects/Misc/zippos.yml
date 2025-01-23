@@ -78,6 +78,9 @@
   - type: UseDelay
   - type: IgnitionSource
     ignited: false
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 260
 
 - type: entity
   parent: FlippoLighterSunriseBase
@@ -117,6 +120,10 @@
       map: ["open"]
       visible: false
       shader: unshaded
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 260
+      Gold: 120
 
 - type: entity
   parent: FlippoLighterSunriseBase
@@ -182,6 +189,10 @@
       map: ["open"]
       visible: false
       shader: unshaded
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 260
+      Gold: 120
 
 - type: entity
   parent: FlippoLighterSunriseBase
