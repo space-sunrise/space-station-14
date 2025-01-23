@@ -6,10 +6,10 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Storage/glockbox.rsi
-    state: icon
+    layers:
+    - state: icon
   - type: Item
     sprite: _Sunrise/Objects/Storage/glockbox.rsi
-    state: inhand
     size: Normal
     shape:
     - 0,0,2,1
