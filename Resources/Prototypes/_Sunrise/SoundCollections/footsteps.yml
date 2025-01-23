@@ -4,3 +4,12 @@
   - /Audio/_Sunrise/Effects/Footsteps/Boots/step1.ogg
   - /Audio/_Sunrise/Effects/Footsteps/Boots/step2.ogg
   - /Audio/_Sunrise/Effects/Footsteps/Boots/step3.ogg
+
+- type: soundCollection
+  id: FootstepCarpet
+  files:
+  - /Audio/_Sunrise/Effects/Footsteps/Carpet/step1.ogg
+  - /Audio/_Sunrise/Effects/Footsteps/Carpet/step2.ogg
+  - /Audio/_Sunrise/Effects/Footsteps/Carpet/step3.ogg
+  - /Audio/_Sunrise/Effects/Footsteps/Carpet/step4.ogg
+  - /Audio/_Sunrise/Effects/Footsteps/Carpet/step5.ogg
