@@ -38,11 +38,7 @@
     - id: SleeperAgents
     - id: ZombieOutbreak
     - id: LoneOpsSpawn
-    - id: DerelictCyborgSpawn
-    - id: DiseaseSpawn
-    - id: FugitiveSpawn
-    - id: EvilTwinSpawn
-    - id: TerminatorSpawn
+    - id: LoneAbductorSpawn # Starlight
 
 - type: entity
   id: BaseStationEvent
