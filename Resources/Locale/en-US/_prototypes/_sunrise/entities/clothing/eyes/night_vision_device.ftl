@@ -1,5 +1,10 @@
 ent-ClothingEyesNVD = NVD
     .desc = Night vision device. Provides an image of the terrain in low-light conditions.
+ent-ClothingEyesNVDSec = Sec NVD 
+    .desc = { ent-ClothingEyesNVD }
+    .suffix = Security
+ent-ClothingEyesNVDMedSec = Med-Sec NVD 
+    .desc = { ent-ClothingEyesNVD }
 ent-ClothingEyesNVDSyndicate = { ent-ClothingEyesNVD }
     .suffix = syndicate
     .desc = { ent-ClothingEyesNVD.desc }
