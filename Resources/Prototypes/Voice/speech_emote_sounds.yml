@@ -40,6 +40,10 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MaleDeathGasp
+    # Sunrise start
+    SevereCough:
+      collection: MaleSevereCough
+    # Sunrise end
 
 - type: emoteSounds
   id: FemaleHuman
@@ -84,6 +88,10 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: FemaleDeathGasp
+    # Sunrise start
+    SevereCough:
+      collection: FemaleSevereCough
+    # Sunrise end
 
 - type: emoteSounds
   id: MaleReptilian
@@ -108,6 +116,10 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: DeathGasp
+    # Sunrise start
+    SevereCough:
+      collection: MaleSevereCough
+    # Sunrise end
 
 - type: emoteSounds
   id: FemaleReptilian
@@ -132,6 +144,10 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: FemaleDeathGasp
+    # Sunrise start
+    SevereCough:
+      collection: FemaleSevereCough
+    # Sunrise end
 
 - type: emoteSounds
   id: MaleSlime
@@ -174,6 +190,10 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MaleDeathGasp
+    # Sunrise start
+    SevereCough:
+      collection: MaleSevereCough
+    # Sunrise end
   params:
     variation: 0.125
 
@@ -218,6 +238,10 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: FemaleDeathGasp
+    # Sunrise start
+    SevereCough:
+      collection: FemaleSevereCough
+    # Sunrise end
   params:
     variation: 0.125
 
@@ -323,6 +347,10 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MaleDeathGasp
+    # Sunrise start
+    SevereCough:
+      collection: MaleSevereCough
+    # Sunrise end
   params:
     variation: 0.125
     pitch: 0.75
@@ -366,6 +394,10 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: FemaleDeathGasp
+    # Sunrise start
+    SevereCough:
+      collection: FemaleSevereCough
+    # Sunrise end
   params:
     variation: 0.125
     pitch: 0.75
