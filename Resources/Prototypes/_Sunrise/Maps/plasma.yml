@@ -25,6 +25,7 @@
             Adjutant: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
             Magistrat: [ 1, 1 ]
+            IAA: [ 1, 1 ]
             #service
             Bartender: [ 2, 2 ]
             Botanist: [ 2, 3 ]
@@ -56,7 +57,7 @@
             #science
             ResearchDirector: [ 1, 1 ]
             SeniorResearcher: [ 1, 1 ]
-            Roboticist: [ 1, 2 ]
+            Roboticist: [ 2, 2 ]
             Scientist: [ 4, 4 ]
             ResearchAssistant: [ 3, -1 ]
             # silicon
