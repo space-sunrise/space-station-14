@@ -129,7 +129,127 @@
     sprite: _Sunrise/Clothing/Mask/cemask.rsi
   - type: BreathMask
   - type: IngestionBlocker
-    
+
+- type: entity
+  parent: ClothingMaskBreathMedical
+  id: ClothingMaskBreathMedicalRed
+  name: red medical mask
+  description: A close-fitting red sterile mask that can be connected to an air supply.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/medicalred.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/medicalred.rsi
+
+- type: entity
+  parent: ClothingMaskBreathMedical
+  id: ClothingMaskBreathMedicalGreen
+  name: green medical mask
+  description: A close-fitting green sterile mask that can be connected to an air supply.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/medicalgreen.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/medicalgreen.rsi
+
+- type: entity
+  parent: ClothingMaskBreathMedical
+  id: ClothingMaskBreathMedicalOrange
+  name: orange medical mask
+  description: A close-fitting orange sterile mask that can be connected to an air supply.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/medicalorange.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/medicalorange.rsi
+
+- type: entity
+  parent: ClothingMaskBreathMedical
+  id: ClothingMaskBreathMedicalBlack
+  name: black medical mask
+  description: A close-fitting black sterile mask that can be connected to an air supply.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/medicalblack.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/medicalblack.rsi
+
+- type: entity
+  parent: ClothingMaskBreathMedical
+  id: ClothingMaskBreathMedicalBlue
+  name: blue medical mask
+  description: A close-fitting blue sterile mask that can be connected to an air supply.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/medicalblue.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/medicalblue.rsi
+
+- type: entity
+  parent: ClothingMaskSterile
+  id: ClothingMaskSterileBlack
+  name: black sterile mask
+  description: A sterile black mask designed to help prevent the spread of diseases.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/sterile_black.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/sterile_black.rsi
+
+- type: entity
+  parent: ClothingMaskSterile
+  id: ClothingMaskSterileOrange
+  name: orange sterile mask
+  description: A sterile orange mask designed to help prevent the spread of diseases.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/sterile_orange.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/sterile_orange.rsi
+
+- type: entity
+  parent: ClothingMaskSterile
+  id: ClothingMaskSterileRed
+  name: red sterile mask
+  description: A sterile red mask designed to help prevent the spread of diseases.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/sterile_red.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/sterile_red.rsi
+
+- type: entity
+  parent: ClothingMaskSterile
+  id: ClothingMaskSterileBlue
+  name: blue sterile mask
+  description: A sterile blue mask designed to help prevent the spread of diseases.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/sterile_blue.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/sterile_blue.rsi
+
+- type: entity
+  parent: ClothingMaskSterile
+  id: ClothingMaskSterileGreen
+  name: green sterile mask
+  description: A sterile green mask designed to help prevent the spread of diseases.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/sterile_green.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/sterile_green.rsi
+
 - type: entity
   parent: ClothingMaskBase
   id: ClothingMaskFaceCast

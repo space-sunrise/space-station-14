@@ -1,0 +1,29 @@
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: ClothingShoesColorCyan
+  name: cyan shoes
+  description: Stylish cyan shoes.
+  components:
+  - type: Sprite
+    sprite: Clothing/Shoes/color.rsi
+    layers:
+    - state: icon
+      color: "#1ba6ad" #Different from the worn state for contrast reasons.
+    - state: soles-icon
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left
+        color: "#1ba6ad"
+      - state: soles-inhand-left
+      right:
+      - state: inhand-right
+        color: "#1ba6ad"
+      - state: soles-inhand-right
+  - type: Clothing
+    sprite: Clothing/Shoes/color.rsi
+    clothingVisuals:
+      shoes:
+      - state: equipped-FEET
+        color: "#10585c"
+      - state: soles-equipped-FEET

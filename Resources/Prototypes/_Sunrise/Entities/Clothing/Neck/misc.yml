@@ -10,3 +10,15 @@
     sprite: _Sunrise/Clothing/Neck/Misc/sunrisebadge.rsi
   - type: TypingIndicatorClothing
     proto: sun
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckStethoscopeGold
+  name: gold stethoscope
+  description: If you haven't learned all the chemistry in SS14 by now, then you're not worthy of this stethoscope. Put it down!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Neck/Misc/stethoscopegold.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Neck/Misc/stethoscopegold.rsi
+  - type: Stethoscope

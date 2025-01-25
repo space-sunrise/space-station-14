@@ -39,3 +39,8 @@
   effects:
   - !type:GroupLoadoutEffect
     proto: BigMasterCE
+
+- type: loadout
+  id: Sunrise-BeretCE
+  equipment:
+    head: ClothingHeadHatBeretCE

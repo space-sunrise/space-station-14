@@ -17,11 +17,10 @@
 - type: startingGear
   id: PathologistGear
   equipment:
-    outerClothing: ClothingOuterCoatPatologoanatom
     id: PathologistPDA
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalFilled
-    head: ClothingHeadHatPatologonatHat
+    
 - type: jobIcon
   parent: JobIcon
   id: JobIconPathologist

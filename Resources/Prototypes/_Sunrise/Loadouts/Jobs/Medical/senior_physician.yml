@@ -17,3 +17,40 @@
   id: BeltMedicalSeniorPhysician
   equipment:
     belt: ClothingBeltMedicalFilled
+
+# Other Timers
+
+- type: loadoutEffectGroup
+  id: SeniorPhysicianClothingTimer
+  effects:
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobChemist
+      time: 21600 #6 hrs
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:RoleTimeRequirement
+      role: JobMedicalDoctor
+      time: 21600 #6 hrs
+  - !type:JobRequirementLoadoutEffect
+    requirement:
+      !type:DepartmentTimeRequirement
+      department: Medical
+      time: 216000 # 60 hrs
+
+- type: loadout
+  id: BeretSeniorPhysician
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorPhysicianClothingTimer
+  equipment:
+    head: ClothingHeadHatBeretSeniorPhysician
+
+- type: loadout
+  id: CoatLabSeniorPhysician
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: SeniorPhysicianClothingTimer
+  equipment:
+    outerClothing: ClothingOuterCoatLabSeniorPhysician

@@ -216,3 +216,82 @@
   materials:
     Steel: 100
     Plastic: 100
+
+#Sunrise-start
+
+- type: latheRecipe
+  id: ClothingHandsGlovesNitrileBlack
+  result: ClothingHandsGlovesNitrileBlack
+  completetime: 2
+  materials:
+    Plastic: 100
+    Durathread: 200
+
+- type: latheRecipe
+  id: ClothingHandsGlovesNitrileOrange
+  result: ClothingHandsGlovesNitrileOrange
+  completetime: 2
+  materials:
+    Plastic: 100
+    Durathread: 200
+
+- type: latheRecipe
+  id: ClothingHandsGlovesNitrileRed
+  result: ClothingHandsGlovesNitrileRed
+  completetime: 2
+  materials:
+    Plastic: 100
+    Durathread: 200
+
+- type: latheRecipe
+  id: ClothingHandsGlovesNitrileGreen
+  result: ClothingHandsGlovesNitrileGreen
+  completetime: 2
+  materials:
+    Plastic: 100
+    Durathread: 200
+
+- type: latheRecipe
+  id: ClothingHandsGlovesNitrileBlue
+  result: ClothingHandsGlovesNitrileBlue
+  completetime: 2
+  materials:
+    Plastic: 100
+    Durathread: 200
+
+- type: latheRecipe
+  id: ClothingMaskSterileBlue
+  result: ClothingMaskSterileBlue
+  completetime: 2
+  materials:
+    Plastic: 50
+
+- type: latheRecipe
+  id: ClothingMaskSterileGreen
+  result: ClothingMaskSterileGreen
+  completetime: 2
+  materials:
+    Plastic: 50
+
+- type: latheRecipe
+  id: ClothingMaskSterileRed
+  result: ClothingMaskSterileRed
+  completetime: 2
+  materials:
+    Plastic: 50
+
+- type: latheRecipe
+  id: ClothingMaskSterileOrange
+  result: ClothingMaskSterileOrange
+  completetime: 2
+  materials:
+    Plastic: 50
+
+- type: latheRecipe
+  id: ClothingMaskSterileBlack
+  result: ClothingMaskSterileBlack
+  completetime: 2
+  materials:
+    Plastic: 50
+
+#Sunrise-end

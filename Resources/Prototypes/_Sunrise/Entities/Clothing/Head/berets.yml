@@ -1,0 +1,15 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretCE
+  name: beret chief engineer
+  description: He takes the person who builds you a goal every shift.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Hats/beret_chief_engineer.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Hats/beret_chief_engineer.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+    - WhitelistChameleon
