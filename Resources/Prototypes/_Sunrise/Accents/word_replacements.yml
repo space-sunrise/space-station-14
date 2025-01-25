@@ -229,3 +229,39 @@
     accent-ukraininan-words-84: accent-ukraininan-words-replace-84
     accent-ukraininan-words-85: accent-ukraininan-words-replace-85
     accent-ukraininan-words-86: accent-ukraininan-words-replace-86
+
+- type: accent
+  id: pacan
+  wordReplacements:
+    accent-pacan-words-1: accent-pacan-words-replace-1
+    accent-pacan-words-2: accent-pacan-words-replace-2
+    accent-pacan-words-3: accent-pacan-words-replace-3
+    accent-pacan-words-3-2: accent-pacan-words-replace-3-2
+    accent-pacan-words-4: accent-pacan-words-replace-4
+    accent-pacan-words-4-2: accent-pacan-words-replace-4-2
+    accent-pacan-words-5: accent-pacan-words-replace-5
+    accent-pacan-words-6: accent-pacan-words-replace-6
+    accent-pacan-words-6-2: accent-pacan-words-replace-6-2
+    accent-pacan-words-7: accent-pacan-words-replace-7
+    accent-pacan-words-8: accent-pacan-words-replace-8
+    accent-pacan-words-8-2: accent-pacan-words-replace-8-2
+    accent-pacan-words-9: accent-pacan-words-replace-9
+    accent-pacan-words-10: accent-pacan-words-replace-10
+    accent-pacan-words-11: accent-pacan-words-replace-11
+    accent-pacan-words-12: accent-pacan-words-replace-12
+    accent-pacan-words-13: accent-pacan-words-replace-13
+    accent-pacan-words-14: accent-pacan-words-replace-14
+    accent-pacan-words-15: accent-pacan-words-replace-15
+    accent-pacan-words-16: accent-pacan-words-replace-16
+    accent-pacan-words-17: accent-pacan-words-replace-17
+    accent-pacan-words-18: accent-pacan-words-replace-18
+    accent-pacan-words-19: accent-pacan-words-replace-19
+    accent-pacan-words-20: accent-pacan-words-replace-20
+    accent-pacan-words-21: accent-pacan-words-replace-21
+    accent-pacan-words-22: accent-pacan-words-replace-22
+    accent-pacan-words-23: accent-pacan-words-replace-23
+    accent-pacan-words-24: accent-pacan-words-replace-24
+    accent-pacan-words-24-2: accent-pacan-words-replace-24
+    accent-pacan-words-25: accent-pacan-words-replace-25
+    accent-pacan-words-25-2: accent-pacan-words-replace-25
+    accent-pacan-words-26: accent-pacan-words-replace-26
