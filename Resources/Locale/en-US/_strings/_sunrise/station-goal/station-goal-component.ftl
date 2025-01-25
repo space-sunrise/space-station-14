@@ -813,7 +813,7 @@ station-goal-cleaning-up =
     ⠀=============================================
     ⠀                            [italic]Место для печатей[/italic]
 
-station-goal-medical-humanitarian-aid =
+station-goal-humanitarian-aid =
     ⠀[color=#1b487e]███░███░░░░██░░░░[/color]
     ⠀[color=#1b487e]░██░████░░░██░░░░[/color]      [head=3]Документ[/head]
     ⠀[color=#1b487e]░░█░██░██░░██░█░░[/color]              [head=3]Nanotrasen[/head]
@@ -864,7 +864,7 @@ station-goal-medical-humanitarian-aid =
      =============================================
     ⠀                            [italic]Место для печатей[/italic]
 
-station-goal-medical-personnel-recovery =
+station-goal-personnel-recovery =
     ⠀[color=#1b487e]███░███░░░░██░░░░[/color]
     ⠀[color=#1b487e]░██░████░░░██░░░░[/color]      [head=3]Документ[/head]
     ⠀[color=#1b487e]░░█░██░██░░██░█░░[/color]              [head=3]Nanotrasen[/head]
