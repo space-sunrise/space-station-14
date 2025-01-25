@@ -81,12 +81,15 @@
           - /Maps/Ruins/biodome_satellite.yml
           - /Maps/Ruins/derelict.yml
           - /Maps/Ruins/djstation.yml
-          - /Maps/Ruins/empty_flagship.yml
+          #- /Maps/Ruins/empty_flagship.yml
           - /Maps/Ruins/old_ai_sat.yml
           - /Maps/Ruins/syndicate_dropship.yml
           - /Maps/Ruins/whiteship_ancient.yml
           - /Maps/Ruins/whiteship_bluespacejumper.yml
           - /Maps/Ruins/wrecklaimer.yml
+          - /Maps/_Sunrise/Ruins/abandoned_Station.yml
+          - /Maps/_Sunrise/Ruins/collector_lair.yml
+          - /Maps/_Sunrise/Ruins/destroyed_trade_shuttle.yml
         abandoned: !type:GridSpawnGroup
           minimumDistance: 500
           maximumDistance: 550
