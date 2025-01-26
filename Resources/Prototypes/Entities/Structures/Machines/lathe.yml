@@ -1054,6 +1054,13 @@
       - HandheldCrewMonitor # Sunrise-Edit
       - ClothingHandsGlovesLatex
       - ClothingHandsGlovesNitrile
+#Sunrise-start
+      - ClothingHandsGlovesNitrileBlack
+      - ClothingHandsGlovesNitrileGreen
+      - ClothingHandsGlovesNitrileOrange
+      - ClothingHandsGlovesNitrileRed
+      - ClothingHandsGlovesNitrileBlue
+#Sunrise-end
       - ClothingMaskSterile
       - DiseaseSwab
       - Beaker
@@ -1281,6 +1288,10 @@
       - ClothingNeckScarfStripedRed
       - ClothingNeckScarfStripedBrown
       - ClothingNeckScarfStripedLightBlue
+#sunrise-start
+      - ClothingNeckScarfStripedCyan
+      - ClothingNeckScarfStripedYellow
+#sunrise-end
       - ClothingNeckScarfStripedOrange
       - ClothingNeckScarfStripedBlack
       - ClothingNeckScarfStripedPurple
