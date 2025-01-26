@@ -702,6 +702,42 @@
   - !type:ListingLimitedStockCondition
     stock: 4
 
+- type: listing
+  id: NTUplinkSunriseMedipenCombatInjector
+  productEntity: MedipenCombatInjector
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: hypospray_combat }
+  cost:
+    Crystallite: 12
+  categories:
+  - NTMedicine
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 6
+
+- type: listing
+  id: NTUplinkSunriseHypospray
+  productEntity: Hypospray
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: hypospray_cmo }
+  cost:
+    Crystallite: 15
+  categories:
+  - NTMedicine
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+
+- type: listing
+  id: NTUplinkSunriseHyposprayERT
+  productEntity: HyposprayERT
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: hypospray_ert }
+  cost:
+    Crystallite: 25
+  categories:
+  - NTMedicine
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 3
+
 # Дополнительное:
 
 - type: listing

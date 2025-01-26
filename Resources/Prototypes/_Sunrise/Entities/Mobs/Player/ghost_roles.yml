@@ -248,7 +248,7 @@
     id: ERTMedicPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltMedicalFilled
-    pocket1: HyposprayERT
+    pocket1: MedipenCombatInjector
     pocket2: LauncherSyringePistol
   inhand:
   - MedkitAdvancedFilled
@@ -257,7 +257,6 @@
     back:
     - BoxErtBaseKit
     - MedkitCombatFilled
-    - MedipenCombatInjector
     - CrowbarRed
     - Hemostat
     - SawElectric
@@ -289,7 +288,7 @@
     id: ERTMedicPDA
     ears: ClothingHeadsetAltCentCom
     belt: ClothingBeltMedicalFilled
-    pocket1: HyposprayERT
+    pocket1: MedipenCombatInjector
     pocket2: LauncherSyringeRapidFilled
   inhand:
   - MedkitCombatFilled
@@ -298,7 +297,6 @@
     back:
     - BoxErtBaseKit
     - MedkitCombatFilled
-    - MedipenCombatInjector
     - CrowbarRed
     - HemostatAdvanced
     - SawAdvanced
