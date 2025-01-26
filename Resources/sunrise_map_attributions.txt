@@ -1,0 +1,8 @@
+- files: ["box.yml"]
+  authors: Odleer
+
+- files: ["plasma.yml"]
+  authors: KaiserMaus, Hatiko, CallMeOwO, ktenanta, Odleer
+
+- files: ["delta.yml"]
+  authors: meowstushka, JunterFox, Odleer
