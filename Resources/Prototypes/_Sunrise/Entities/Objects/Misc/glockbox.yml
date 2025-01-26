@@ -1,0 +1,24 @@
+- type: entity
+  parent: BaseStorageItem
+  id: GlockBox
+  name: glock box
+  description: It contains a Glock22 and a magazine for it. Did you want something else?
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Storage/glockbox.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: _Sunrise/Objects/Storage/glockbox.rsi
+    size: Normal
+    shape:
+    - 0,0,2,1
+  - type: Storage
+    grid:
+    - 0,0,2,1
+  - type: StorageFill
+    contents:
+      - id: MagazineGlock22Rubber
+        amount: 1
+      - id: WeaponPistolG22NonLethal
+        amount: 1
