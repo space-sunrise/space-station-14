@@ -1,0 +1,114 @@
+### Pirate
+- type: randomHumanoidSettings
+  id: PirateScoonerSun
+  parent: EventHumanoid
+  speciesBlacklist: # Sunrise-start
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  # Sunrise-end
+  components:
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+    - type: GhostRole
+      name: ghost-role-information-pirate-name
+      description: ghost-role-information-pirate-description
+      rules: ghost-role-information-rules-team-antagonist
+      raffle:
+        settings: default
+    - type: Loadout
+      prototypes: [ PirateScoonerAltASun, PirateScoonerAltBSun, PirateScoonerAltCSun, PirateScoonerAltDSun, PirateScoonerAltESun, PirateScoonerAltFSun, PirateScoonerAltGSun, PirateScoonerAltHSun, ]
+      roleLoadout: [ RoleSurvivalEVA ]
+
+- type: randomHumanoidSettings
+  id: PirateCaptainScoonerSun
+  parent: EventHumanoid
+  speciesBlacklist: # Sunrise-start
+  - Diona
+  - Vox
+  - Felinid
+  - Moth
+  - Arachnid
+  - Reptilian
+  - Vulpkanin
+  - Swine
+  - Tajaran
+  - Demon
+  - SlimePerson
+  # Sunrise-end
+  components:
+    - type: NpcFactionMember
+      factions:
+      - Syndicate
+    - type: GhostRole
+      name: ghost-role-information-pirate-captain-name
+      description: ghost-role-information-pirate-captain-description
+      rules: ghost-role-information-rules-team-antagonist
+      raffle:
+        settings: default
+    - type: Loadout
+      prototypes: [ PirateCaptainScoonerSun ]
+      roleLoadout: [ RoleSurvivalEVA ]
+
+#Spawn RandomHumanoid
+- type: entity
+  id: RandomHumanoidPirateScoonerSun
+  name: pirate crewman ghost role
+  suffix: scooner, Sunrise
+  components:
+    - type: Sprite
+      sprite: Structures/Decoration/banner.rsi
+      state: banner-red
+    - type: RandomHumanoidSpawner
+      settings: PirateScoonerSun
+
+- type: entity
+  id: RandomHumanoidPirateCaptainScoonerSun
+  name: pirate captain ghost role
+  suffix: scooner, Sunrise
+  components:
+    - type: Sprite
+      sprite: Structures/Decoration/banner.rsi
+      state: banner-red
+    - type: RandomHumanoidSpawner
+      settings: PirateCaptainScoonerSun
+
+#Spawner
+- type: entity
+  name: pirate crewman spawner
+  suffix: scooner, Sunrise
+  id: PirateScoonerSpawnerSun
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Structures/Decoration/banner.rsi
+        state: banner-red
+  - type: RandomSpawner
+    prototypes:
+    - RandomHumanoidPirateScoonerSun
+
+- type: entity
+  name: pirate captain spawner
+  suffix: scooner, Sunrise
+  id: PirateCaptainScoonerSpawnerSun
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: Structures/Decoration/banner.rsi
+        state: banner-red
+  - type: RandomSpawner
+    prototypes:
+    - RandomHumanoidPirateCaptainScoonerSun
