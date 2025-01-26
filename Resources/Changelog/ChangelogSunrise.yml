@@ -11187,3 +11187,11 @@
   id: 776
   time: '2025-01-26T22:03:53.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/1183
+- author: Perl404
+  changes:
+  - message: "\u0410\u043F\u0441\u0442\u0440\u0438\u043C \u043B\u043E\u043A\u0430\u043B\
+      \u0438\u0437\u0430\u0446\u0438\u0438(25.01)"
+    type: Tweak
+  id: 777
+  time: '2025-01-26T22:16:59.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/1191
