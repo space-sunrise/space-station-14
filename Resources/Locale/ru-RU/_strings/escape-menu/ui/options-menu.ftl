@@ -35,6 +35,7 @@ ui-options-lobby-music = Музыка в лобби
 ui-options-restart-sounds = Звуки перезапуска раунда
 ui-options-event-music = Музыка событий
 ui-options-admin-sounds = Музыка админов
+ui-options-bwoink-sound = Воспроизводить звук уведомления АХелп
 ui-options-tts-enabled = ТТС интеграция
 ui-options-volume-label = Громкость
 ui-options-display-label = Дисплей
