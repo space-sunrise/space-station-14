@@ -6,3 +6,24 @@
 
 - files: ["delta.yml"]
   authors: meowstushka, JunterFox, Odleer
+
+- files: ["planet_prison.yml"]
+  authors: Odleer, ZavanickTEP
+
+- files: ["cluster.yml"]
+  authors: Odleer
+
+- files: ["fland.yml"]
+  authors: Odleer
+
+- files: ["marathon.yml"]
+  authors: Odleer
+
+- files: ["cluster.yml"]
+  authors: Odleer
+
+- files: ["meta.yml"]
+  authors: J C Denton, freychik
+
+- files: ["bagel.yml"]
+  authors: pacable, Francus41 
