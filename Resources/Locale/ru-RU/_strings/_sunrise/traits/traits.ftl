@@ -12,5 +12,5 @@ trait-russian-accent-name = Русский акцент
 trait-russian-accent-desc = Товарищ, это не ваше а наше.
 trait-transliteration-accent-name = Транслитерированный акцент
 trait-transliteration-accent-desc = Ds ujdjhbnt nhfyckbnjv.
-trait-pacan-accent-name = Пацанский акцент
-trait-pacan-accent-desc = Пацаны шухер! Менты!
+trait-pacan-accent-name = Бандитский акцент
+trait-pacan-accent-desc = Шухер!
