@@ -91,8 +91,8 @@ public sealed class RadioIconTag : IMarkupTag
     private static string ClearString(string str)
     {
         str = str.Replace("=", "");
-        str = str.Replace(" ", "");
         str = str.Replace("\"", "");
+        str = str.Trim();
 
         return str;
     }
