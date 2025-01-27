@@ -3,6 +3,6 @@ ent-CrateSecurityWebbing = Security Webbing crate
 ent-CrateSecurityGlovesCombat = Gloves Combat crate
     .desc = Contains three Gloves Combat. Requires Security access to open.
 ent-CrateSecuritySWAT = SWAT armor crate
-    .desc = Contains a SWAT kit. 2 heavy armor suit, 2 special forces helmet, 2 special forces gas mask and 2 combat Swat boots. To open it, the Security Service access level is required.
+    .desc = Contains a SWAT kit. 2 heavy armor suit, 2 special forces helmet, 2special forces gas mask and 2 combat Swat boots. To open it, the Security Service access level is required.
 ent-CrateSecurityArmorReflective = reflective armor crate
     .desc = Contains a reflective armor. 2 reflective armor, 2 RiotLaserShield, 2 EnergyGun. To open it, the Security Service access level is required.

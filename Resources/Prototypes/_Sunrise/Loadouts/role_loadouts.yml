@@ -33,6 +33,7 @@
   - Trinkets
   - SecurityTrinkets
   - GroupSpeciesBreathTool
+  - SunriseSecurityGun
   - Bra
   - Pants
   - Socks
@@ -89,6 +90,7 @@
   - Trinkets
   - SecurityTrinkets
   - GroupSpeciesBreathTool
+  - SunriseSecurityGun
   - Bra
   - Pants
   - Socks
@@ -113,16 +115,41 @@
 - type: roleLoadout
   id: JobSeniorPhysician
   groups:
+  - SeniorPhysicianHead
+  - SeniorPhysicianMask
   - SeniorPhysicianJumpsuit
+  - SeniorPhysicianGloves
   - MedicalBackpack
-  - MedicalGloves
-  - MedicalMask
+  - SeniorPhysicianOuterClothing
+  - SeniorPhysicianNeck
   - SeniorPhysicianBelt
-  - MedicalShoes
+  - SeniorPhysicianShoes
   - SurvivalMedical
   - Trinkets
+  - MedicalTrinkets
   - Glasses
   - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+
+- type: roleLoadout
+  id: JobMedicalPathologist
+  groups:
+  - PathologistHead
+  - PathologistMask
+  - MedicalDoctorJumpsuit
+  - PathologistGloves
+  - MedicalBackpack
+  - PathologistOuterClothing
+  - PathologistNeck
+  - PathologistShoes
+  - GroupTankHarness
+  - Glasses
+  - SurvivalMedical
+  - Trinkets
+  - MedicalTrinkets
+  - GroupSpeciesBreathToolMedical
   - Bra
   - Pants
   - Socks
@@ -131,13 +158,17 @@
 - type: roleLoadout
   id: JobSeniorEngineer
   groups:
+  - SeniorEngineerHead
+  - SeniorEngineerMask
   - SeniorEngineerJumpsuit
-  - StationEngineerBackpack
-  - StationEngineerOuterClothing
-  - StationEngineerShoes
-  - AtmosphericsConsole
+  - SeniorEngineerGloves
+  - StationSeniorEngineerBackpack
+  - SeniorEngineerOuterClothing
+  - SeniorEngineerNeck
+  - SeniorEngineerShoes
   - SurvivalExtended
   - Trinkets
+  - TrinketsEngineering
   - GroupSpeciesBreathTool
   - Bra
   - Pants
@@ -168,8 +199,7 @@
   - StationEngineerJumpsuit
   - StationEngineerBackpack
   - StationEngineerOuterClothing
-  - StationEngineerShoes
-  - AtmosphericsConsole
+  - TrinketsEngineering
   - Trinkets
   - SurvivalExtended
   - GroupSpeciesBreathTool
@@ -232,6 +262,7 @@
   - Trinkets
   - SecurityTrinkets
   - GroupSpeciesBreathTool
+  - SunriseSecurityGun
   - Bra
   - Pants
   - Socks
@@ -327,23 +358,6 @@
   - Pants
   - Socks
   - CommonPets
-
-- type: roleLoadout
-  id: JobMedicalPathologist
-  groups:
-  - MedicalMask
-  - MedicalDoctorJumpsuit
-  - MedicalGloves
-  - MedicalBackpack
-  - MedicalShoes
-  - GroupTankHarness
-  - Glasses
-  - SurvivalMedical
-  - Trinkets
-  - GroupSpeciesBreathToolMedical
-  - Bra
-  - Pants
-  - Socks
 
 - type: roleLoadout
   id: JobAdjutant
