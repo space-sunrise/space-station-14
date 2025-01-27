@@ -127,8 +127,6 @@ public partial class ChatBox : UIWidget
         formatted.AddMarkupOrThrow(message);
         formatted.Pop();
         Contents.AddMessage(formatted);
-
-        Contents._invalidateEntries(); // Sunrise edit
     }
 
     public void Focus(ChatSelectChannel? channel = null)
