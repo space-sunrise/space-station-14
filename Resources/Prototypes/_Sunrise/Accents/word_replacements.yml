@@ -231,7 +231,7 @@
     accent-ukraininan-words-86: accent-ukraininan-words-replace-86
 
 - type: accent
-  id: pacan
+  id: bandit
   wordReplacements:
     accent-pacan-words-1: accent-pacan-words-replace-1
     accent-pacan-words-2: accent-pacan-words-replace-2

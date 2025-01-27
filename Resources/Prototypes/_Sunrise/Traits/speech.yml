@@ -29,14 +29,14 @@
   - type: RussianAccent
 
 - type: trait
-  id: PacanAccent
+  id: BanditAccent
   name: trait-pacan-accent-name
   description: trait-pacan-accent-desc
   category: SpeechTraits
   cost: 1
   components:
   - type: ReplacementAccent
-    accent: pacan
+    accent: bandit
 
 # 2 Cost
 
