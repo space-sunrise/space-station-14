@@ -12,8 +12,6 @@
     ears: ClothingHeadsetAltFreelancer
     pocket1: WeaponRevolverPirate
     pocket2: SpeedLoaderMagnum
-  inhand:
-    - Cutlass
 
 - type: startingGear
   id: PirateScoonerAltASun
@@ -24,7 +22,7 @@
     mask: ClothingMaskGasExplorer
     gloves: ClothingHandsGlovesColorYellow
     head: ClothingHeadBandRed
-    belt: ClothingBeltMilitaryWebbingGrenadeFilled
+    belt: ClothingBeltUtilityEngineering
     ears: ClothingHeadsetAltFreelancer
     pocket1: WeaponRevolverPirate
     pocket2: SpeedLoaderMagnum
@@ -82,6 +80,8 @@
     head: ClothingHeadHelmetSwatSyndicate
     mask: ClothingMaskNeckGaiterRed
     gloves: ClothingHandsGlovesFingerless
+    outerClothing: ClothingOuterArmorBasicSlim
+    neck: ClothingNeckKailoRen
     shoes: ClothingShoesBootsSyndieFilled
     pocket1: WeaponRevolverPirate
     pocket2: MagazineBoxMagnumIncendiary
@@ -92,10 +92,16 @@
   id: PirateScoonerAltFSun
   parent: PirateScoonerSun
   equipment:
-    head: ClothingHeadHatPirateTricord
+    head: ClothingHeadHelmetBasic
     gloves: ThievingGloves
+    belt: ClothingBeltSecurityFilled
+    eyes: ClothingEyesGlassesSecurity
+    shoes: ClothingShoesBootsJackFilled
+    outerClothing: ClothingOuterArmorBasic
+    mask: ClothingMaskGasSecurity
+    neck: SecurityWhistle
     pocket1: MagazinePistolSubMachineGun
-    pocket2: EnergyCutlass
+    pocket2: FlashlightSeclite
   inhand:
     - WeaponSubMachineGunSkorpion
 
