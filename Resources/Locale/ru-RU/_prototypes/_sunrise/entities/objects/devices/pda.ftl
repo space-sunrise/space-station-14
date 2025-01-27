@@ -36,3 +36,6 @@ ent-USSPOfficerSoldierPDA = КПК Офицера СССП
     .desc = { ent-USSPPDA.desc }
 ent-USSPCaptainPDA = КПК Капитана СССП
     .desc = { ent-USSPPDA.desc }
+PiratePDASun = { ent-USSPPDA.name }
+    .desc = { ent-USSPPDA.desc }
+    .suffix = Санрайз
