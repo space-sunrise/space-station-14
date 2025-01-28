@@ -1,4 +1,4 @@
-ent-OrganManeaterAnimalStomach = { ent-OrganAnimalHeart }
+ent-OrganManeaterAnimalStomach = maneater stomach
     .desc = { ent-OrganAnimalStomach.desc }
 
 ent-OrganPrimateHeart = { ent-OrganAnimalHeart }

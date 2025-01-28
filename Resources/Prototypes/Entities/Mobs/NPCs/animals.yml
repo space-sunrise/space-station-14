@@ -1574,6 +1574,7 @@
     # Sunrise Start
   - type: Body
     prototype: Kobold
+    # Sunrise End
 
 - type: entity
   name: kobold
