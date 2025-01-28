@@ -1,0 +1,91 @@
+- type: entity
+  parent: MonkeyCubeBox
+  name: variant cube box
+  id: VariantCubeBoxSunrise
+  description: Both kobold, mothroach, pig, slime, chiken cubes and monkey cubes. Just add water!
+  components:
+  - type: StorageFill
+    contents:
+      - id: KoboldCubeWrapped
+        amount: 2
+      - id: MonkeyCubeWrapped
+        amount: 2
+      - id: MothroachCubeWrapped
+        amount: 2
+      - id: PigCubeWrapped
+        amount: 2
+      - id: SlimeCubeWrapped
+        amount: 2
+      - id: ChikenCubeWrapped
+        amount: 2
+  - type: Sprite
+    sprite: Objects/Misc/monkeycube.rsi
+    state: box_variant
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,3,2
+
+- type: entity
+  parent: MonkeyCubeWrapped
+  name: mothroach cube
+  suffix: Wrapped
+  id: MothroachCubeWrapped
+  description: Unwrap this to get a mothroach cube.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: MothroachCube
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/cube.rsi
+    state: wrapper_mothroach
+
+- type: entity
+  parent: MonkeyCubeWrapped
+  name: pig cube
+  suffix: Wrapped
+  id: PigCubeWrapped
+  description: Unwrap this to get a pig cube.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: PigCube
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/cube.rsi
+    state: wrapper_pig
+
+- type: entity
+  parent: MonkeyCubeWrapped
+  name: slime cube
+  suffix: Wrapped
+  id: SlimeCubeWrapped
+  description: Unwrap this to get a slime cube.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: WildSlimeCube
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/cube.rsi
+    state: wrapper_slime
+
+- type: entity
+  parent: MonkeyCubeWrapped
+  name: chiken cube
+  suffix: Wrapped
+  id: ChikenCubeWrapped
+  description: Unwrap this to get a chiken cube.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: ChikenCube
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/cube.rsi
+    state: wrapper_chiken
