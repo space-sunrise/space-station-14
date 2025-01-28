@@ -30,8 +30,8 @@
 
 - type: trait
   id: BanditAccent
-  name: trait-pacan-accent-name
-  description: trait-pacan-accent-desc
+  name: trait-bandit-accent-name
+  description: trait-bandit-accent-desc
   category: SpeechTraits
   cost: 1
   components:
