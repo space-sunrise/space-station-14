@@ -1,0 +1,174 @@
+
+- type: entity
+  id: SpawnSupplyPlayerBorgChassisERTBattery
+  components:
+  - type: SpawnOnDespawn
+    prototype: PlayerBorgChassisERTBattery
+  - type: TimedDespawn
+    lifetime: 9.75
+  - type: SpawnOnTrigger 
+    proto: SpawnSupplypodAnimation
+  - type: TriggerOnSpawn
+  - type: Sprite
+    sprite: Markers/cross.rsi
+    state: red
+  - type: Marker
+ 
+- type: entity
+  id: SpawnSupplyClothingBackpackDuffelNanotrasenMedicalBundleFilled
+  components:
+  - type: SpawnOnDespawn
+    prototype: ClothingBackpackDuffelNanotrasenMedicalBundleFilled
+    lifetime: 9.75
+  - type: SpawnOnTrigger 
+    proto: SpawnSupplypodAnimation
+  - type: TriggerOnSpawn
+  - type: Sprite
+    sprite: Markers/cross.rsi
+    state: red
+  - type: Marker
+ 
+- type: entity
+  id: SpawnSupplyClothingBackpackDuffelWeaponAMS42Filled
+  components:
+  - type: SpawnOnDespawn
+    prototype: ClothingBackpackDuffelWeaponAMS42Filled
+    lifetime: 9.75
+  - type: SpawnOnTrigger 
+    proto: SpawnSupplypodAnimation
+  - type: TriggerOnSpawn
+  - type: Sprite
+    sprite: Markers/cross.rsi
+    state: red
+  - type: Marker
+ 
+- type: entity
+  id: SpawnSupplyClothingBackpackDuffelWeaponSubMachineGunP90Filled
+  components:
+  - type: SpawnOnDespawn
+    prototype: ClothingBackpackDuffelWeaponSubMachineGunP90Filled
+  - type: TimedDespawn
+    lifetime: 9.75
+  - type: SpawnOnTrigger 
+    proto: SpawnSupplypodAnimation
+  - type: TriggerOnSpawn
+  - type: Sprite
+    sprite: Markers/cross.rsi
+    state: red
+  - type: Marker
+
+
+# ТЕХНИЧЕСКАЯ ЧАСТЬ
+- type: entity 
+  id: SpawnSupplypodAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: /_Sunrise/Objects/Misc/supplypod/marker.rsi
+    state: marker_ping
+  - type: TimedDespawn
+    lifetime: 1.640
+  - type: SpawnOnTrigger 
+    proto: SpawnSupplypodStartAnimationSound
+  - type: TriggerOnSpawn
+  - type: SpawnOnDespawn
+    prototype: SpawnSupplypodPermaMarkerAnimation
+  - type: Tag
+    tags:
+    - HideContextMenu
+    
+- type: entity
+  id: SpawnSupplypodPermaMarkerAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: /_Sunrise/Objects/Misc/supplypod/marker.rsi
+    state: marker
+  - type: TimedDespawn
+    lifetime: 2
+  - type: SpawnOnTrigger 
+    proto: SpawnSupplypodLandingAnimation
+  - type: TriggerOnSpawn
+  - type: Tag
+    tags:
+    - HideContextMenu     
+    
+- type: entity
+  id: SpawnSupplypodStartAnimationSound
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /_Sunrise/Misc/supplypod/supplypodlandig.ogg
+      maxDistance: 5
+  - type: TriggerOnSpawn
+    
+- type: entity
+  id: SpawnSupplypodLandingAnimation
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: /_Sunrise/Objects/Misc/supplypod/landingpod.rsi
+    state: landing
+    offset: 0, 5
+  - type: TimedDespawn
+    lifetime: 1.95
+  - type: SpawnOnDespawn
+    prototype: SpawnSupplypodLanded
+  - type: Tag
+    tags:
+    - HideContextMenu     
+
+- type: entity
+  id: SpawnSupplypodLanded
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TriggerOnSpawn
+  - type: SmokeOnTrigger
+    duration: 3
+    spreadAmount: 1
+  - type: Sprite
+    offset: 0, 0.25
+    sprite: /_Sunrise/Objects/Misc/supplypod/supplypod.rsi
+    state: landed
+  - type: TimedDespawn
+    lifetime: 6
+  - type: SpawnOnDespawn 
+    prototype: SpawnSupplypodLandedOpening
+  - type: Tag
+    tags:
+    - HideContextMenu     
+    
+- type: entity
+  id: SpawnSupplypodLandedOpening
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    offset: 0, 0.25
+    sprite: /_Sunrise/Objects/Misc/supplypod/supplypod.rsi
+    state: landed-opened
+  - type: TimedDespawn
+    lifetime: 4
+  - type: SpawnOnDespawn 
+    prototype: SpawnSupplypodWooshSound
+  - type: EmitSoundOnTrigger 
+    sound:
+      path: /_Sunrise/Misc/supplypod/closet_open.ogg
+      maxDistance: 5
+  - type: TriggerOnSpawn
+  - type: Tag
+    tags:
+    - HideContextMenu     
+
+- type: entity
+  id: SpawnSupplypodWooshSound
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: EmitSoundOnTrigger
+    sound:
+      path: /_Sunrise/Misc/supplypod/podwoosh.ogg
+      maxDistance: 5
+  - type: TriggerOnSpawn
+  - type: TimedDespawn
+    lifetime: 3
+# КОНЕЦ ТЕХНИЧЕСКОЙ ЧАСТИ
