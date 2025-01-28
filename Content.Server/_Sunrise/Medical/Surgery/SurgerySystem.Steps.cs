@@ -16,6 +16,7 @@ using Robust.Shared.Prototypes;
 using Content.Shared.Humanoid;
 using Content.Shared._Sunrise;
 using Content.Shared.Humanoid.Prototypes;
+using Content.Shared.Starlight.Antags.Abductor;
 
 namespace Content.Server._Sunrise.Medical.Surgery;
 // Based on the RMC14.
@@ -63,7 +64,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
         _delayAccumulator = 0;
         _delayQueue.Enqueue(() =>
         {
-            if (_body.InsertOrgan(part, organId, ent.Comp.Slot, bodyPart, organComp)
+            if (_body.InsertOrgan(part, organId, ent.Comp.Slot, bodyPart, organComp) // todo move to system
             && TryComp<DamageableComponent>(organId, out var organDamageable)
             && TryComp<DamageableComponent>(body, out var bodyDamageable))
             {
@@ -72,7 +73,35 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
                 {
                     _blindable.SetMinDamage((body, blindable), organEyes.MinDamage ?? 0);
                     _blindable.AdjustEyeDamage((body, blindable), (organEyes.EyeDamage ?? 0) - blindable.MaxDamage);
+                    // This needs to be redesigned into prototypes.
+                    if (_tag.HasTag(organId, "MedCyberEyes"))
+                    {
+                        AddComp<EyeProtectionComponent>(body);
+                        AddComp<ShowHealthIconsComponent>(body);
+                        AddComp<ShowJobIconsComponent>(body);
+                    }
+                    if (_tag.HasTag(organId, "SecCyberEyes"))
+                    {
+                        AddComp<EyeProtectionComponent>(body);
+                        AddComp<ShowCriminalRecordIconsComponent>(body);
+                        AddComp<ShowJobIconsComponent>(body);
+                    }
+                    if (_tag.HasTag(organId, "OmniCyberEyes"))
+                    {
+                        AddComp<EyeProtectionComponent>(body);
+                        AddComp<ShowCriminalRecordIconsComponent>(body);
+                        AddComp<ShowHealthIconsComponent>(body);
+                        AddComp<ShowHealthBarsComponent>(body);
+                        AddComp<ShowJobIconsComponent>(body);
+                    }
                 }
+                if (TryComp<ImplantComponent>(organId, out var organImplant))
+                {
+                    if (organImplant.ImplantID == "Welding")
+                        AddComp<EyeProtectionComponent>(body);
+                }
+                if (TryComp<AbductorOrganComponent>(organId, out var abductorOrgan) && TryComp<AbductorVictimComponent>(body, out var victim))
+                        victim.Organ = abductorOrgan.Organ;
                 if (TryComp<OrganTongueComponent>(organId, out var organTongue)
                     && !organTongue.IsMuted)
                     RemComp<MutedComponent>(body);
@@ -88,7 +117,7 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
         if (ent.Comp.Organ?.Count != 1) return;
         var organs = _body.GetPartOrgans(args.Part, Comp<BodyPartComponent>(args.Part));
         var type = ent.Comp.Organ.Values.First().Component.GetType();
-        foreach (var organ in organs)
+        foreach (var organ in organs) // todo move to system
         {
             if (HasComp(organ.Id, type))
             {
@@ -104,11 +133,42 @@ public sealed partial class SurgerySystem : SharedSurgerySystem
                         organEyes.EyeDamage = blindable.EyeDamage;
                         organEyes.MinDamage = blindable.MinDamage;
                         _blindable.UpdateIsBlind((args.Body, blindable));
+                        // This needs to be redesigned into prototypes.
+                        if (_tag.HasTag(organ.Id, "MedCyberEyes"))
+                        {
+                            RemComp<EyeProtectionComponent>(args.Body);
+                            RemComp<ShowHealthIconsComponent>(args.Body);
+                            RemComp<ShowJobIconsComponent>(args.Body);
+                        }
+                        if (_tag.HasTag(organ.Id, "SecCyberEyes"))
+                        {
+                            RemComp<EyeProtectionComponent>(args.Body);
+                            RemComp<ShowCriminalRecordIconsComponent>(args.Body);
+                            RemComp<ShowJobIconsComponent>(args.Body);
+                        }
+                        if (_tag.HasTag(organ.Id, "OmniCyberEyes"))
+                        {
+                            RemComp<EyeProtectionComponent>(args.Body);
+                            RemComp<ShowCriminalRecordIconsComponent>(args.Body);
+                            RemComp<ShowHealthIconsComponent>(args.Body);
+                            RemComp<ShowHealthBarsComponent>(args.Body);
+                            RemComp<ShowJobIconsComponent>(args.Body);
+                        }
+                    }
+                    if (TryComp<ImplantComponent>(organ.Id, out var organImplant))
+                    {
+                        if (organImplant.ImplantID == "Welding")
+                            RemComp<EyeProtectionComponent>(args.Body);
                     }
                     if (TryComp<OrganTongueComponent>(organ.Id, out var organTongue))
                     {
                         organTongue.IsMuted = HasComp<MutedComponent>(args.Body);
                         AddComp<MutedComponent>(args.Body);
+                    }
+                    if (TryComp<AbductorOrganComponent>(organ.Id, out var abductorOrgan) && TryComp<AbductorVictimComponent>(args.Body, out var victim))
+                    {
+                        if(victim.Organ == abductorOrgan.Organ)
+                            victim.Organ = AbductorOrganType.None;
                     }
                     var change = _damageableSystem.TryChangeDamage(args.Body, damageRule.Damage.Invert(), true, false, bodyDamageable);
                     if (change is not null)

@@ -16,11 +16,7 @@
   - type: Pullable
   - type: Rotatable
   - type: Machine
-    board: ReflectorMachineCircuitboard
-  - type: ContainerContainer
-    containers:
-      machine_board: !type:Container
-      machine_parts: !type:Container
+  - type: Clickable
   - type: Physics
     bodyType: Static
   - type: Fixtures
