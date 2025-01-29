@@ -9,4 +9,4 @@ ent-WeaponSniperGarand = M1 Garand
 ent-WeaponSniperMosinNew = Kardashev-Mosin
     .desc = { ent-BaseWeaponSniper.desc }
 ent-WeaponSniperRepeater = N2524 Repeater
-    .desc = { ent-BaseWeaponSniper.desc }
+    .desc = A civilian grade lever action firearm, favored by space cowboys for its reliability and stopping power. Uses .45 magnum ammo.

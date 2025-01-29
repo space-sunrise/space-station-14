@@ -113,7 +113,7 @@ internal struct SunriseRichTextEntry
             if (_tagControls == null || !_tagControls.TryGetValue(nodeIndex, out var control))
                 continue;
 
-            control.Measure(new Vector2(Width, Height));
+            control.Measure(new Vector2(maxSizeX, float.PositiveInfinity)); // Sunrise edit - фикс иконок в чате
 
             var desiredSize = control.DesiredPixelSize;
             var controlMetrics = new CharMetrics(

@@ -158,3 +158,18 @@
   lockBoxPrototypeId: Lockbox
   extraItems:
   - SyringeCarolNT
+
+- type: stationGoal
+  id: CleaningUp
+  text: station-goal-cleaning-up
+  lockBoxPrototypeId: Lockbox
+
+- type: stationGoal
+  id: HumanitarianAid
+  text: station-goal-humanitarian-aid
+  lockBoxPrototypeId: Lockbox
+
+- type: stationGoal
+  id: PersonnelRecovery
+  text: station-goal-personnel-recovery
+  lockBoxPrototypeId: Lockbox
