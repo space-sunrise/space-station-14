@@ -45,7 +45,6 @@
     entity: MobSlimePerson
     forced: true
     transferName: true
-    inventory: Transfer
     revertOnCrit: false
     revertOnDeath: false
 
@@ -75,7 +74,6 @@
     entity: MobVox
     forced: true
     transferName: true
-    inventory: Transfer
     revertOnCrit: false
     revertOnDeath: false
 
