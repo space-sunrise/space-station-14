@@ -1,0 +1,26 @@
+- type: entity
+  parent: [ScatteringGrenadeBase, BaseSyndicateContraband]
+  id: ClusterSyndyFlashGrenade
+  name: Godkiss
+  description: The probability that you will be banned for using this grenade is 99.9%.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/clusterbomb.rsi
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: ScatteringGrenade
+    capacity: 20
+    fillPrototype: SyndyFlashGrenade
+    distance: 4
+  - type: OnUseTimerTrigger
+    beepSound:
+      path: "/Audio/Effects/beep1.ogg"
+      params:
+        volume: 5
+    initialBeepDelay: 0
+    beepInterval: 0.5
+    delay: 3.5
+  - type: EmitSoundOnTrigger
+    sound:
+      path: "/Audio/Machines/door_lock_off.ogg"
