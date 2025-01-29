@@ -20,8 +20,16 @@
 
 - type: metabolizerType
   id: Pig
-  name: metabolizer-type-swine
+  name: metabolizer-type-pig
 
 - type: metabolizerType
   id: Chiken
   name: metabolizer-type-chiken
+
+- type: metabolizerType
+  id: Cat
+  name: metabolizer-type-cat
+
+- type: metabolizerType
+  id: Dog
+  name: metabolizer-type-cat

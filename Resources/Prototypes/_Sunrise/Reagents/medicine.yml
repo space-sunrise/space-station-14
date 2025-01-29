@@ -58,3 +58,17 @@
             type: Chiken
           - !type:ReagentThreshold
             min: 5
+      - !type:Polymorph
+        prototype: PermanentlyFelinid
+        conditions:
+          - !type:OrganType
+            type: Cat
+          - !type:ReagentThreshold
+            min: 5
+      - !type:Polymorph
+        prototype: PermanentlyVulpkanin
+        conditions:
+          - !type:OrganType
+            type: Dog
+          - !type:ReagentThreshold
+            min: 5

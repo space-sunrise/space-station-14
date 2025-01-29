@@ -66,3 +66,47 @@
       - feet
     feet:
       part: FeetAnimal
+
+- type: body
+  id: Cat
+  name: "cat"
+  root: torso
+  slots:
+    torso:
+      part: TorsoAnimal
+      connections:
+      - legs
+      organs:
+        lungs: OrganAnimalLungs
+        stomach: OrganManeaterAnimalStomach
+        liver: OrganAnimalLiver
+        heart: OrganCatHeart
+        kidneys: OrganAnimalKidneys
+    legs:
+      part: LegsAnimal
+      connections:
+      - feet
+    feet:
+      part: FeetAnimal
+
+- type: body
+  id: Dog
+  name: "dog"
+  root: torso
+  slots:
+    torso:
+      part: TorsoAnimal
+      connections:
+      - legs
+      organs:
+        lungs: OrganAnimalLungs
+        stomach: OrganManeaterAnimalStomach
+        liver: OrganAnimalLiver
+        heart: OrganDogHeart
+        kidneys: OrganAnimalKidneys
+    legs:
+      part: LegsAnimal
+      connections:
+      - feet
+    feet:
+      part: FeetAnimal
