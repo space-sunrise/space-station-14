@@ -379,6 +379,7 @@
     - Hair
     - Snout
     hideOnToggle: true
+  - type: FlashImmunity #BALANCE PR
   - type: Armor
     modifiers:
       coefficients:

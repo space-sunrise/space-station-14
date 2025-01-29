@@ -417,6 +417,10 @@
   - type: SolutionInjectOnEmbed
     transferAmount: 2
     solution: injector
+  - type: SolutionContainerManager #BALANCE PR-START
+    solutions:
+      injector:
+        maxVol: 10 #BALANCE PR-END
   - type: Fixtures
     fixtures:
       fix1:
