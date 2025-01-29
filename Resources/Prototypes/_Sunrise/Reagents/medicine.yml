@@ -4,7 +4,6 @@
   group: Medicine
   desc: reagent-desc-darvinium
   physicalDesc: reagent-physical-desc-glowing
-  flavor: human
   color: "#59b23a"
   metabolisms:
     Medicine:

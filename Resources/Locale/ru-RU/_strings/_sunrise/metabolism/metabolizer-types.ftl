@@ -5,3 +5,5 @@ metabolizer-type-mothroach = Таракамоль
 metabolizer-type-wild-slime = Дикий слайм
 metabolizer-type-felinid = Фелинид
 metabolizer-type-kobold = Кобольд
+metabolizer-type-cat = Кот
+metabolizer-type-dog = Собака
