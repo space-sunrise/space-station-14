@@ -133202,7 +133202,7 @@ entities:
 
         =============================================
 
-        Время от начала смены и дата: 
+        Время от начала смены и дата:
 
         Составитель документа: (ФИО)
 
@@ -174378,8 +174378,6 @@ entities:
           occludes: True
           ents:
           - 18
-    - type: ZoomableGun
-      takeAimActionEntity: 18
     - type: Physics
       canCollide: False
     - type: ActionsContainer
@@ -174400,8 +174398,6 @@ entities:
           occludes: True
           ents:
           - 7
-    - type: ZoomableGun
-      takeAimActionEntity: 7
     - type: Physics
       canCollide: False
     - type: ActionsContainer

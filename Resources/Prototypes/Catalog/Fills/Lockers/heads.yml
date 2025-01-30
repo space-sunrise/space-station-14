@@ -351,6 +351,7 @@
     - id: SecurityTechFabCircuitboard
     - id: WeaponDisabler
     - id: WantedListCartridge
+    - id: DrinkHosFlask
     - id: FlippoLighterSunriseHos  # Sunrise-Flippo
 
 # Hardsuit table, used for suit storage as well

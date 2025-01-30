@@ -32,3 +32,17 @@
     containers:
       item:
       - CombatKnife
+
+- type: entity
+  id: ClothingBeltSecurityFilledERT
+  parent: ClothingBeltSecurity
+  suffix: Filled, ERT
+  components:
+  - type: StorageFill
+    contents:
+    - id: Stunbaton
+    - id: Handcuffs
+    - id: HoloprojectorSecurity
+    - id: GrenadeFlashBang
+    - id: TearGasGrenade
+    - id: Truncheon

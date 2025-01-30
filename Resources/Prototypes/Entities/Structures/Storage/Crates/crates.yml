@@ -696,7 +696,8 @@
   suffix: Stealth
   components:
   - type: Stealth
+    mirage: false # Sunrise-Edit
     hadOutline: true
   - type: StealthOnMove
-    passiveVisibilityRate: -0.10
-    movementVisibilityRate: 0.10
+    minVisibility: -1.5 # Sunrise-Edit
+    examineThreshold: 0.9 # Sunrise-Edit

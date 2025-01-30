@@ -67,10 +67,11 @@
     - type: CardboardBox
       quiet: true
     - type: Stealth
+      mirage: false # Sunrise-Edit
       hadOutline: true
     - type: StealthOnMove
-      passiveVisibilityRate: -0.37
-      movementVisibilityRate: 0.20
+      minVisibility: -1.5 # Sunrise-Edit
+      examineThreshold: 0.9 # Sunrise-Edit
 
 - type: entity
   id: BigBox
