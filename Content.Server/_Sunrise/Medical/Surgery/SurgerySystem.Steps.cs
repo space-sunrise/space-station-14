@@ -17,7 +17,7 @@ using Content.Shared.Humanoid;
 using Content.Shared._Sunrise;
 using Content.Shared.Humanoid.Prototypes;
 using Content.Shared._Sunrise.Antags.Abductor;
-using Content.Shared.VentCraw;
+using Content.Shared._Sunrise.VentCraw;
 using Content.Shared.Interaction.Components;
 using Microsoft.CodeAnalysis;
 
