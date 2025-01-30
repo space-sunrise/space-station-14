@@ -17,6 +17,7 @@
   - ClothingShoesChameleon
   - BarberScissors
   - ChameleonProjector
+  - FakeMindShieldImplanter
   - AgentIDCard
 
 - type: thiefBackpackSet
@@ -64,6 +65,7 @@
   - EmpImplant # Sunrise-Edit
   - TraitorCodePaper
   - Emag
+  - AccessBreaker
   - Lighter
   - CigPackSyndicate
   - SyndicatePersonalAI # Sunrise-Edit

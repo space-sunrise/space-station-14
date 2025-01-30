@@ -120,6 +120,9 @@
     drawdepth: WallTops
     sprite: Structures/Windows/plastitanium_window_diagonal.rsi
     state: state0
+  - type: Tag
+    tags:
+    - Diagonal
   - type: Icon
     sprite: Structures/Windows/plastitanium_window_diagonal.rsi
     state: state0
