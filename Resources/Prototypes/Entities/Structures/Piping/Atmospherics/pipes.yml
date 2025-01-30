@@ -63,6 +63,23 @@
     bodyType: static
   - type: StaticPrice
     price: 30
+  # Sunrise-start
+  - type: ContainerContainer
+    containers:
+      VentCrawTube: !type:Container
+
+- type: entity
+  id: VentCrawHolder
+  noSpawn: true
+  name: vent claw holder
+  components:
+    - type: VentCrawHolder
+    - type: InputMover
+    - type: ContainerContainer
+      containers:
+        VentCrawHolderComponent: !type:Container
+  # Sunrise-end
+
 
 #Note: The PipeDirection of the PipeNode should be the south-facing version, because the entity starts at an angle of 0 (south)
 
@@ -117,6 +134,14 @@
         Blunt: 8
     soundHit:
       collection: MetalThud # this NEEDS to changed to the metal pipe falling sound effect on april first every year
+    # Sunrise-start
+  - type: VentCrawTube
+    containerId: VentCrawTube
+  - type: VentCrawTransit
+  - type: ContainerContainer
+    containers:
+      VentCrawTube: !type:Container
+    # Sunrise-end
 
 - type: entity
   parent: GasPipeBase
@@ -157,6 +182,14 @@
     damage:
       types:
         Blunt: 8 # Woe, pipe be upon ye!
+    # Sunrise-start
+  - type: VentCrawTube
+    containerId: VentCrawTube
+  - type: VentCrawBend
+  - type: ContainerContainer
+    containers:
+      VentCrawTube: !type:Container
+    # Sunrise-end
 
 - type: entity
   parent: GasPipeBase
@@ -193,6 +226,18 @@
         Blunt: 10
     soundHit:
       collection: MetalThud
+    # Sunrise-start
+  - type: VentCrawTube
+    containerId: VentCrawTube
+  - type: VentCrawJunction
+    degrees:
+      - 0
+      - 90
+      - -90
+  - type: ContainerContainer
+    containers:
+      VentCrawTube: !type:Container
+    # Sunrise-end
 
 - type: entity
   parent: GasPipeBase
@@ -228,6 +273,19 @@
         Blunt: 10
     soundHit:
       collection: MetalThud
+    # Sunrise-start
+  - type: VentCrawTube
+    containerId: VentCrawTube
+  - type: VentCrawJunction
+    degrees:
+      - 0
+      - 90
+      - -90
+      - 180
+  - type: ContainerContainer
+    containers:
+      VentCrawTube: !type:Container
+    # Sunrise-end
 
 - type: entity
   id: GasPipeBroken

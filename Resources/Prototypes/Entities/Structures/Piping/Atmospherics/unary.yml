@@ -69,9 +69,18 @@
       sound:
         path: /Audio/Ambience/Objects/gas_vent.ogg
     - type: Weldable
+      time: 3 # Sunrise-edit
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasVentOpening
-      
+      # Sunrise-start
+    - type: VentCrawTube
+      containerId: VentCrawTube
+    - type: VentCrawEntry
+    - type: ContainerContainer
+      containers:
+        VentCrawTube: !type:Container
+      # Sunrise-end
+
 - type: entity
   parent: GasUnaryBase
   id: GasPassiveVent
@@ -97,7 +106,7 @@
       node: passivevent
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasVentOpening
-      
+
 - type: entity
   parent: [GasUnaryBase, AirSensorBase]
   id: GasVentScrubber
@@ -146,9 +155,18 @@
       sound:
         path: /Audio/Ambience/Objects/gas_vent.ogg
     - type: Weldable
+      time: 3 # Sunrise-edit
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasVentScrubber
-      
+      # Sunrise-start
+    - type: VentCrawTube
+      containerId: VentCrawTube
+    - type: VentCrawEntry
+    - type: ContainerContainer
+      containers:
+        VentCrawTube: !type:Container
+      # Sunrise-end
+
 - type: entity
   parent: GasUnaryBase
   id: GasOutletInjector
@@ -189,7 +207,17 @@
       - enum.LightLayers.Unshaded
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasVentOpening
-      
+      # Sunrise-start
+    - type: VentCrawTube
+      containerId: VentCrawTube
+    - type: VentCrawJunction
+      degrees:
+        - 0
+    - type: ContainerContainer
+      containers:
+        VentCrawTube: !type:Container
+      # Sunrise-end
+
 - type: entity
   parent: [ BaseMachinePowered, ConstructibleMachine ]
   id: BaseGasThermoMachine
@@ -235,7 +263,7 @@
     - type: PowerSwitch
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: Thermoregulator
-      
+
 - type: entity
   parent: BaseGasThermoMachine
   id: GasThermoMachineFreezer
