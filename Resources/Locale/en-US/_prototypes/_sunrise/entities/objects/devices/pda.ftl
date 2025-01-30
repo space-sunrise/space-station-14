@@ -40,6 +40,3 @@ ent-USSPOfficerSoldierPDA = Millitary USSP PDA
 ent-USSPCaptainPDA = Officer USSP PDA
     .desc = Since you live in a Soviet country, your dreams should be Soviet as well.
     .suffix = Officer
-PiratePDASun = { ent-USSPPDA.name }
-    .desc = { ent-USSPPDA.desc }
-    .suffix = Sunrise
