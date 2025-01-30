@@ -363,6 +363,7 @@
     pack: MedibotAds
   - type: Inventory
     templateId: medibot
+  - type: DoAfter
   # Sunrise-Start
   - type: StationAiVision
     range: 1

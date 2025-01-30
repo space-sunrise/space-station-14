@@ -5,3 +5,8 @@
   params:
     luminance_threshold: 0.5
     noise_amount: 0.5
+
+- type: shader
+  id: NoMirageStealth
+  kind: source
+  path: "/Textures/_Sunrise/Shaders/no_mirage_stealth.swsl"

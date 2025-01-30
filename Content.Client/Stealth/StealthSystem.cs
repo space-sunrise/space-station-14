@@ -14,12 +14,14 @@ public sealed class StealthSystem : SharedStealthSystem
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
 
     private ShaderInstance _shader = default!;
+    private ShaderInstance _noMirageShader = default!; // Sunrise-Edit
 
     public override void Initialize()
     {
         base.Initialize();
 
         _shader = _protoMan.Index<ShaderPrototype>("Stealth").InstanceUnique();
+        _noMirageShader = _protoMan.Index<ShaderPrototype>("NoMirageStealth").InstanceUnique(); // Sunrise-Edit
 
         SubscribeLocalEvent<StealthComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<StealthComponent, ComponentStartup>(OnStartup);
@@ -41,7 +43,12 @@ public sealed class StealthSystem : SharedStealthSystem
             return;
 
         sprite.Color = Color.White;
-        sprite.PostShader = enabled ? _shader : null;
+        // Sunrise-Start
+        if (component.Mirage)
+            sprite.PostShader = enabled ? _shader : null;
+        else
+            sprite.PostShader = enabled ? _noMirageShader : null;
+        // Sunrise-End
         sprite.GetScreenTexture = enabled;
         sprite.RaiseShaderEvent = enabled;
 
@@ -89,8 +96,11 @@ public sealed class StealthSystem : SharedStealthSystem
         // actual visual visibility effect is limited to +/- 1.
         visibility = Math.Clamp(visibility, -1f, 1f);
 
-        _shader.SetParameter("reference", reference);
-        _shader.SetParameter("visibility", visibility);
+        // Sunrise-Start
+        ShaderInstance shaderToUse = component.Mirage ? _shader : _noMirageShader;
+        shaderToUse.SetParameter("reference", reference);
+        shaderToUse.SetParameter("visibility", visibility);
+        // Sunrise-End
 
         visibility = MathF.Max(0, visibility);
         args.Sprite.Color = new Color(visibility, visibility, 1, 1);

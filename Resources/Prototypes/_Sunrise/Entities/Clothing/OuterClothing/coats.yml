@@ -342,6 +342,13 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/ussp.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/ussp.rsi
+  - type: Armor #BALANCE PR-START
+    modifiers:
+        coefficients:
+          Blunt: 0.7
+          Slash: 0.7
+          Piercing: 0.4
+          Heat: 0.7 #BALANCE PR-END
 
 - type: entity
   parent: ClothingOuterBase
