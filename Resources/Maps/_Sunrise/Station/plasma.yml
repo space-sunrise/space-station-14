@@ -174339,7 +174339,7 @@ entities:
       parent: 24
     - type: Physics
       canCollide: False
-- proto: WeaponRifleM16A4
+- proto: WeaponSubMachineGunSkorpion
   entities:
   - uid: 10465
     components:
