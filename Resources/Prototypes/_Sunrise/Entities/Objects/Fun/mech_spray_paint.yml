@@ -223,6 +223,37 @@
           True: {state: "zairjah"}
           False: {state: "zairjah-cap"}
 
+# Clarke/Ripley-BigBrother
+- type: entity
+  parent: MechPaintBase
+  suffix: Clarke/Ripley, BigBrother
+  id: MechPaintClarkeRipleyBigBrother
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/clarke.rsi
+    state: bigbrother-cap
+    layers:
+      - state: bigbrother-cap
+        map: ["enum.OpenableVisuals.Layer"]
+  - type: Item
+    sprite: _Sunrise/Objects/Fun/mech_spraycans/clarke.rsi
+    heldPrefix: bigbrother
+  - type: MechPaint
+    used: false
+    whitelist:
+      tags:
+        - Clarke
+        - Ripley
+    baseState: bigbrother
+    openState: bigbrother-open
+    brokenState: bigbrother-broken
+  - type: GenericVisualizer
+    visuals:
+      enum.OpenableVisuals.Opened:
+        enum.OpenableVisuals.Layer:
+          True: {state: "bigbrother"}
+          False: {state: "bigbrother-cap"}
+
 # Clarke-Orangey
 - type: entity
   parent: MechPaintBase
