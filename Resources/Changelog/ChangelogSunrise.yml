@@ -11253,3 +11253,16 @@
   id: 780
   time: '2025-01-30T08:11:40.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/1212
+- author: VigersRay
+  changes:
+  - message: "\u041D\u0438\u043D\u0434\u0437\u044F \u0442\u0435\u043F\u0435\u0440\u044C\
+      \ \u043F\u043E\u043B\u043D\u043E\u0441\u0442\u044C\u044E \u043D\u0435\u0432\u0438\
+      \u0434\u0438\u043C\u044B\u0439."
+    type: Tweak
+  - message: "\u041D\u0435\u0432\u0438\u0434\u0438\u043C\u044B\u0435 \u043A\u043E\u0440\
+      \u043E\u0431\u043A\u0438 \u0438 \u044F\u0449\u0438\u043A\u0438 \u0442\u0435\u043F\
+      \u0435\u0440\u044C \u043F\u043E\u043B\u043D\u043E\u0441\u0442\u044C\u044E \u043D\
+      \u0435\u0432\u0438\u0434\u0438\u043C\u044B\u0435."
+    type: Tweak
+  id: 781
+  time: '2025-01-30T10:35:24.610080+00:00'
