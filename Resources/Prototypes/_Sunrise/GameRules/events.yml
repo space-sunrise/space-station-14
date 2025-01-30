@@ -53,11 +53,3 @@
     duration: null
   - type: LateJoinSpawnRule
     prototype: SpawnPointGhostTerminator
-
-- type: entity
-  parent: BaseGameRule
-  id: PirateLargeSpawn
-  components:
-  - type: RuleGrids
-  - type: LoadMapRule
-    mapPath: /Maps/_Sunrise/Shuttles/pirate_medium_shuttle.yml
