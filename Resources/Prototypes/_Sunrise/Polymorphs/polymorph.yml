@@ -78,17 +78,6 @@
     revertOnDeath: false
 
 - type: polymorph
-  id: PermanentlyFelinid
-  configuration:
-    entity: MobFelinid
-    forced: true
-    transferName: true
-    inventory: Transfer
-    revertOnCrit: false
-    revertOnDeath: false
-    allowRepeatedMorphs: true
-
-- type: polymorph
   id: PermanentlyVulpkanin
   configuration:
     entity: MobVulpkanin
