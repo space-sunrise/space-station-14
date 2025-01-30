@@ -24,8 +24,8 @@
     agentName: thief-round-end-agent-name
     definitions:
     - prefRoles: [ Thief ]
-      max: 6 # Sunrise-Edit
-      playerRatio: 20 # Sunrise-Edit
+      max: 10 # Sunrise-Edit
+      playerRatio: 10 # Sunrise-Edit
       lateJoinAdditional: true
       multiAntagSetting: None
       startingGear: ThiefGear
@@ -58,7 +58,7 @@
     definitions:
     - prefRoles: [ Changeling ]
       max: 3
-      playerRatio: 30
+      playerRatio: 15
       lateJoinAdditional: true
       mindRoles:
       - MindRoleChangeling
@@ -84,7 +84,7 @@
     definitions:
     - prefRoles: [ Vampire ]
       max: 3
-      playerRatio: 30
+      playerRatio: 15
       lateJoinAdditional: true
       mindRoles:
       - MindRoleVampire
