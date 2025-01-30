@@ -323,7 +323,10 @@
   - type: Wieldable
   - type: UseDelay
     delay: 0.5
-  - type: ZoomableGun
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3
 
 - type: entity
   name: M-28

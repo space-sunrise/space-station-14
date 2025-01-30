@@ -23,107 +23,6 @@
     selectedBorgType: clown
 
 - type: entity
-  id: BorgChassisSecurityCombat
-  parent: BaseBorgChassisNT
-  name: security combat cyborg
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Mobs/Silicon/chassis.rsi
-    layers:
-    - state: sec_mk2
-    - state: sec_mk2_e_r
-      map: [ "enum.BorgVisualLayers.Light" ]
-      shader: unshaded
-      visible: false
-    - state: sec_mk2_l
-      shader: unshaded
-      map: [ "light" ]
-      visible: false
-  - type: FootstepModifier
-    footstepSoundCollection:
-      collection: FootstepCyborgSpider
-      params:
-        volume: -15
-  - type: BorgCuffed
-  - type: FlashImmunity
-  - type: ShowJobIcons
-  - type: ShowMindShieldIcons
-  - type: ShowCriminalRecordIcons
-  - type: BorgTransponder
-    sprite:
-      sprite: _Sunrise/Mobs/Silicon/chassis.rsi
-      state: sec_mk2
-    name: security combat cyborg
-  - type: BorgChassis
-    maxModules: 4
-    moduleWhitelist:
-      tags:
-      - BorgModuleGeneric
-      - BorgModuleSecurity
-    hasMindState: sec_mk2_e
-    noMindState: sec_mk2_e_r
-  - type: IntrinsicRadioTransmitter
-    channels:
-    - Security
-    - Binary
-    - Common
-    - Science
-  - type: ActiveRadio
-    channels:
-    - Security
-    - Binary
-    - Common
-    - Science
-  - type: AccessReader
-    access: [["Security"], ["Command"]]
-  - type: SiliconLawProvider
-    laws: RobocopLawset
-  - type: TTS
-    voice: Sentrybot
-  - type: PointLight
-    color: "#a4daff"
-    radius: 6
-    energy: 3
-  - type: Access
-    enabled: false
-    tags:
-    - EmergencyShuttleRepealAll
-    - Command
-    - Lawyer
-    - Engineering
-    - Medical
-    - Salvage
-    - Cargo
-    - Research
-    - Service
-#    - Maintenance
-    - Brig
-    - Security
-    - External
-    - Janitor
-    - Theatre
-    - Bar
-    - Chemistry
-    - Kitchen
-    - Chapel
-    - Hydroponics
-    - Atmospherics
-  - type: MovementSpeedModifier
-    baseWalkSpeed : 2.5
-    baseSprintSpeed : 4.5
-  - type: Tag
-    tags:
-    - DoorBumpOpener
-    - CanPilot
-    - FootstepSound
-    - EmagImmune
-  - type: InnateItem
-    instantActions:
-    - PortableSurveillanceCameraMonitor
-    worldTargetActions:
-    - ForensicScanner
-
-- type: entity
   id: BorgChassisSyndicateReaper
   parent: BaseBorgChassisSyndicate
   name: syndicate reaper cyborg
@@ -248,6 +147,8 @@
     rules: ghost-role-information-ert-cyborg-rules
     raffle:
       settings: default
+    mindRoles:
+    - MindRoleGhostRoleSilicon
   - type: GhostTakeoverAvailable
   - type: BorgTransponder
     sprite:

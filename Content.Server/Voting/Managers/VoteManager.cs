@@ -221,7 +221,7 @@ namespace Content.Server.Voting.Managers
 
             _voteAudioStream = _entityManager.System<SharedAudioSystem>()
                 .PlayGlobal(_voteAudio, Filter.Broadcast(), true,
-                AudioParams.Default.WithLoop(true))!.Value.Entity;
+                AudioParams.Default.WithLoop(true).WithVolume(-10f))!.Value.Entity;
 
             if (_entityManager.System<GameTicker>().RunLevel == GameRunLevel.PreRoundLobby)
             {

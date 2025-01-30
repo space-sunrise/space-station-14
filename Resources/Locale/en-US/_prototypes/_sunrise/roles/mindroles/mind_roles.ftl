@@ -6,3 +6,7 @@ ent-MindRoleFugitive = Fugitive Role
     .desc = { ent-BaseMindRoleAntag.desc }
 ent-MindRolePlanetPrisoner = Planet Prisoner Role
     .desc = { ent-BaseMindRoleAntag.desc }
+ent-MindRoleChangeling = Changeling Role
+    .desc = { ent-BaseMindRoleAntag.desc }
+ent-MindRoleVampire = Vampire Role
+    .desc = { ent-BaseMindRoleAntag.desc }

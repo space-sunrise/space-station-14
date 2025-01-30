@@ -72,6 +72,10 @@
       time: 3 # Sunrise-edit
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasVentOpening
+    - type: GuideHelp
+      guides:
+      - AirVent
+      - DeviceMonitoringAndControl
       # Sunrise-start
     - type: VentCrawTube
       containerId: VentCrawTube
@@ -106,6 +110,9 @@
       node: passivevent
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasVentOpening
+    - type: GuideHelp
+      guides:
+      - PassiveVent
 
 - type: entity
   parent: [GasUnaryBase, AirSensorBase]
@@ -158,6 +165,10 @@
       time: 3 # Sunrise-edit
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasVentScrubber
+    - type: GuideHelp
+      guides:
+      - AirScrubber
+      - DeviceMonitoringAndControl
       # Sunrise-start
     - type: VentCrawTube
       containerId: VentCrawTube
@@ -207,6 +218,9 @@
       - enum.LightLayers.Unshaded
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasVentOpening
+    - type: GuideHelp
+      guides:
+      - AirInjector
       # Sunrise-start
     - type: VentCrawTube
       containerId: VentCrawTube
@@ -263,6 +277,9 @@
     - type: PowerSwitch
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: Thermoregulator
+    - type: GuideHelp
+      guides:
+      - Thermomachines
 
 - type: entity
   parent: BaseGasThermoMachine
@@ -470,3 +487,6 @@
   - type: PowerSwitch
   - type: AtmosMonitoringConsoleDevice
     navMapBlip: Thermoregulator
+  - type: GuideHelp
+    guides:
+    - GasCondensing

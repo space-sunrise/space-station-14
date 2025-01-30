@@ -67,7 +67,7 @@ namespace Content.Server.Sunrise.Paws
                     return;
 
                 comp.NextCoughTime = curTime + TimeSpan.FromSeconds(comp.CoughInterval);
-                _chatSystem.TryEmoteWithChat(uid, "Cough", ignoreActionBlocker: true);
+                _chatSystem.TryEmoteWithChat(uid, "SevereCough", ignoreActionBlocker: true);
             }
         }
     }

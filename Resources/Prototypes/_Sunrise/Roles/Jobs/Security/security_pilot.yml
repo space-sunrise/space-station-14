@@ -10,7 +10,6 @@
   startingGear: SecurityPilotGear
   icon: JobIconSecurityPilot
   supervisors: job-supervisors-hos
-  setPreference: false
   canBeAntag: false
   displayWeight: 50
   access:
@@ -33,8 +32,6 @@
     outerClothing: ClothingOuterCoatPilot
     id: SecurityPilotPDA
     ears: ClothingHeadsetSecurity
-    pocket1: WeaponPistolG22NonLethal
   storage:
     back:
     - Flash
-    - MagazineGlock22Rubber

@@ -42,6 +42,11 @@
     Telecrystal: 2
   categories:
   - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
 
 - type: listing
   id: UplinkMagazineShotgun
@@ -56,6 +61,11 @@
     Telecrystal: 3
   categories:
   - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - AssaultOpsUplink
 
 - type: listing
   id: UplinkMagazineShotgunIncendiary
@@ -167,7 +177,7 @@
   description: uplink-ammo-caselesskit-desc
   productEntity: CaselessAmmoKit
   cost:
-    Telecrystal: 13
+    Telecrystal: 15
   categories:
   - UplinkAmmo
   conditions:
@@ -362,6 +372,11 @@
     Telecrystal: 5
   categories:
   - UplinkAmmo
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
 
 # For the China-Lake
 - type: listing
@@ -1264,3 +1279,22 @@
     blacklist:
       components:
       - SurplusBundle
+
+# Jobs
+
+- type: listing
+  id: UplinkLauncherCreamPieFake
+  name: uplink-launcher-cream-pie-fake-name
+  description: uplink-launcher-cream-pie-fake-desc
+  productEntity: LauncherCreamPieFake
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 10
+  cost:
+    Telecrystal: 15
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - Clown

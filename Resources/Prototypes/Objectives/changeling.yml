@@ -29,7 +29,7 @@
   description: Do it however you like, just make sure they don't make it to centcomm.
   components:
   - type: Objective
-    difficulty: 1.75
+    difficulty: 2.5
     unique: false
   - type: TargetObjective
     title: objective-condition-kill-person-title
@@ -103,7 +103,7 @@
   - type: StealCondition
     verifyMapExistence: true
   - type: Objective
-    difficulty: 1.5
+    difficulty: 2.75
   - type: ObjectiveLimit
     limit: 2
 

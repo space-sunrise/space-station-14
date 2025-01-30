@@ -9,6 +9,8 @@
     rules: ghost-role-information-rules-default-team-antagonist
     raffle:
       settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:
@@ -27,6 +29,8 @@
     rules: ghost-role-information-rules-default-team-antagonist
     raffle:
       settings: default
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:

@@ -1,8 +1,8 @@
-ent-ImplantExtractor = microwave implant extractor
-    .desc = A high-tech device specifically designed for implant extraction in conditions with low-skilled medical personnel.
-ent-Interrogator = interrogator
-    .desc = apchy
-ent-ImplantExtractorMachineCircuitboard = implant scan machine board
-    .desc = A machine printed circuit board for a implant extractor.
-ent-InterrogatorMachineCircuitboard = interrogator machine board
-    .desc = A machine printed circuit board for a interrogator.
+ent-ImplantExtractor = Микроволновой экстрактор имплантов
+    .desc = Устройство предназначеное для извлечения имплантов из гуманоидов, разработанное для извлечени имплантов в условиях низкоквалифицированных врачей.
+ent-Interrogator = Экстрактор имплантов
+    .desc = Устройство предназначеное для извлечения имплантов из гуманоидов.
+ent-ImplantExtractorMachineCircuitboard = плата машины для сканирования имплантатов
+    .desc = Машинная печатная плата для экстрактора имплантатов.
+ent-InterrogatorMachineCircuitboard = машинная плата интеррогатора
+    .desc = Машинная печатная плата для интеррогатора.

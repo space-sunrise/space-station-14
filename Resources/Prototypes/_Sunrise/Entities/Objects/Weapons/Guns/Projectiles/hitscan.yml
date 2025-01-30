@@ -385,7 +385,7 @@
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: slug
+    state: bullet #slug Нихуя не видно эти слаги
 
 - type: hitscan
   id: PelletShotgun

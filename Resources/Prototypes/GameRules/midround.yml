@@ -24,8 +24,8 @@
     agentName: thief-round-end-agent-name
     definitions:
     - prefRoles: [ Thief ]
-      max: 6 # Sunrise-Edit
-      playerRatio: 20 # Sunrise-Edit
+      max: 10 # Sunrise-Edit
+      playerRatio: 10 # Sunrise-Edit
       lateJoinAdditional: true
       multiAntagSetting: None
       startingGear: ThiefGear
@@ -52,13 +52,13 @@
   - type: AntagRandomObjectives
     sets:
     - groups: ChangelingObjectiveGroups
-    maxDifficulty: 10
+    maxDifficulty: 5
   - type: AntagSelection
     agentName: changeling-roundend-name
     definitions:
     - prefRoles: [ Changeling ]
       max: 3
-      playerRatio: 30
+      playerRatio: 15
       lateJoinAdditional: true
       mindRoles:
       - MindRoleChangeling
@@ -78,13 +78,13 @@
   - type: AntagRandomObjectives
     sets:
     - groups: VampireObjectiveGroups
-    maxDifficulty: 10
+    maxDifficulty: 5
   - type: AntagSelection
     agentName: vampire-roundend-name
     definitions:
     - prefRoles: [ Vampire ]
       max: 3
-      playerRatio: 30
+      playerRatio: 15
       lateJoinAdditional: true
       mindRoles:
       - MindRoleVampire

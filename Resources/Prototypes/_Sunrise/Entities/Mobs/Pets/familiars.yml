@@ -52,6 +52,8 @@
     rules: ghost-role-information-foliant-rules
     raffle:
       settings: short
+    mindRoles:
+    - MindRoleGhostRoleFamiliar
   - type: GhostTakeoverAvailable
   - type: Grammar
     attributes:

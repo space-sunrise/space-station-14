@@ -117,9 +117,9 @@
     maxAngle: 32
     shotsPerBurst: 5
     availableModes:
-    - SemiAuto
     - Burst
     - FullAuto
+    - SemiAuto
     soundGunshot:
       collection: aug # Sunrise-Edit
   - type: ChamberMagazineAmmoProvider
@@ -153,15 +153,16 @@
     - type: Gun
       minAngle: 21
       maxAngle: 32
-      fireRate: 12
+      fireRate: 6
       burstFireRate: 12
-      selectedMode: Burst
       soundGunshot:
         collection: famas # Sunrise-Edit
         params:
           volume: 10
       availableModes:
-        - Burst
+      - Burst
+      - FullAuto
+      - SemiAuto
       shotsPerBurst: 3
       burstCooldown: 0.25
     - type: ItemSlots
@@ -271,9 +272,9 @@
     burstCooldown: 0.2
     burstFireRate: 7
     availableModes:
-    - SemiAuto
     - Burst
     - FullAuto
+    - SemiAuto
   - type: ItemSlots
     slots:
       gun_magazine:

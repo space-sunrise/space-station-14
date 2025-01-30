@@ -101,6 +101,10 @@
   - type: Construction
     graph: GasPipe
     node: half
+  - type: GuideHelp
+    guides:
+    - Pipes
+    - PipeNetworks
 
 - type: entity
   parent: GasPipeBase
@@ -134,6 +138,10 @@
         Blunt: 8
     soundHit:
       collection: MetalThud # this NEEDS to changed to the metal pipe falling sound effect on april first every year
+  - type: GuideHelp
+    guides:
+    - Pipes
+    - PipeNetworks
     # Sunrise-start
   - type: VentCrawTube
     containerId: VentCrawTube
@@ -182,6 +190,10 @@
     damage:
       types:
         Blunt: 8 # Woe, pipe be upon ye!
+  - type: GuideHelp
+    guides:
+    - Pipes
+    - PipeNetworks
     # Sunrise-start
   - type: VentCrawTube
     containerId: VentCrawTube
@@ -226,6 +238,10 @@
         Blunt: 10
     soundHit:
       collection: MetalThud
+  - type: GuideHelp
+    guides:
+    - Pipes
+    - PipeNetworks
     # Sunrise-start
   - type: VentCrawTube
     containerId: VentCrawTube
@@ -273,6 +289,10 @@
         Blunt: 10
     soundHit:
       collection: MetalThud
+  - type: GuideHelp
+    guides:
+    - Pipes
+    - PipeNetworks
     # Sunrise-start
   - type: VentCrawTube
     containerId: VentCrawTube
@@ -311,3 +331,7 @@
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
+  - type: GuideHelp
+    guides:
+    - Pipes
+    - PipeNetworks

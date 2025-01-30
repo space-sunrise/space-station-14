@@ -30,10 +30,10 @@
 
 - type: entity
   parent: BaseUplinkNTERT
-  id: BaseUplinkNTERT60BC
+  id: BaseUplinkNTERT75BC
   name: Bluespace ERT visionary
   description: Ultra-innovative portable bluespace teleporter.
-  suffix: 80BC, 60C, Amber
+  suffix: 75BC, 75C, Amber
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/nt_uplink.rsi
@@ -43,8 +43,8 @@
         shader: unshaded
   - type: Store
     balance:
-      Bluecrystal: 80
-      Crystallite: 60
+      Bluecrystal: 75
+      Crystallite: 75
     buySuccessSound:
       path: /Audio/Effects/Arcade/newgame.ogg
   - type: Tag
@@ -56,7 +56,7 @@
   id: BaseUplinkNTERT100BC
   name: Bluespace ERT visionary
   description: Ultra-innovative portable bluespace teleporter.
-  suffix: 100BC, 75C, Red
+  suffix: 100BC, 100C, Red
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/nt_uplink.rsi
@@ -67,7 +67,7 @@
   - type: Store
     balance:
       Bluecrystal: 100
-      Crystallite: 75
+      Crystallite: 100
     buySuccessSound:
       path: /Audio/Effects/Arcade/newgame.ogg
   - type: Tag
@@ -79,7 +79,7 @@
   id: BaseUplinkNTERT200BC
   name: Bluespace ERT visionary
   description: Ultra-innovative portable bluespace teleporter.
-  suffix: 200BC, 150C, Gamma
+  suffix: 200BC, 200C, Gamma
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/nt_uplink.rsi
@@ -90,7 +90,7 @@
   - type: Store
     balance:
       Bluecrystal: 200
-      Crystallite: 150
+      Crystallite: 200
     buySuccessSound:
       path: /Audio/Effects/Arcade/newgame.ogg
   - type: Tag
@@ -112,7 +112,7 @@
         shader: unshaded
   - type: Store
     balance:
-      Bluecrystal: 8
+      Bluecrystal: 10
       Crystallite: 10
     buySuccessSound:
       path: /Audio/Effects/Arcade/newgame.ogg

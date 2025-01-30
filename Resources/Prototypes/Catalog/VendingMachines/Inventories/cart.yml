@@ -16,3 +16,6 @@
     EncryptionKeyScience: 2
     EncryptionKeySecurity: 1
     EncryptionKeyService: 3
+  emaggedInventory:
+    AgentIDCard: 1 # Sunrise Edit
+    EncryptionKeySyndie: 1 # Sunrise Edit

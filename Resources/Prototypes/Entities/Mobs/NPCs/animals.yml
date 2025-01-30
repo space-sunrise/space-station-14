@@ -239,6 +239,10 @@
   - type: NpcFactionMember
     factions:
     - Passive
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   parent: MobChicken
@@ -446,6 +450,8 @@
     name: ghost-role-information-mothroach-name
     description: ghost-role-information-mothroach-description
     rules: ghost-role-information-freeagent-rules
+    mindRoles:
+    - MindRoleGhostRoleFreeAgent
   - type: Fixtures
     fixtures:
       fix1:
@@ -671,6 +677,10 @@
   - type: NpcFactionMember
     factions:
     - Passive
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   name: white duck #Quack
@@ -927,6 +937,10 @@
       task: RuminantCompound
   - type: Body
     prototype: AnimalHemocyanin
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   name: goat
@@ -1029,6 +1043,10 @@
   - type: HTN
     rootTask:
       task: RuminantHostileCompound
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 # Note that we gotta make this bitch vomit someday when you feed it anthrax or sumthin. Needs to be a small item thief too and aggressive if attacked.
 - type: entity
@@ -1078,6 +1096,10 @@
   - type: NpcFactionMember
     factions:
     - Passive
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   name: gorilla
@@ -1382,6 +1404,10 @@
         Burn: 3
     clumsySound:
       path: /Audio/Animals/monkey_scream.ogg
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 
 - type: entity
@@ -1408,6 +1434,9 @@
     name: ghost-role-information-monkey-name
     description: ghost-role-information-monkey-description
     rules: ghost-role-information-syndicate-reinforcement-rules
+    mindRoles:
+    # This is for syndicate monkeys that randomly gain sentience, thus have no summoner to team with
+    - MindRoleGhostRoleSoloAntagonist
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
@@ -1567,7 +1596,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      75: Critical
+      100: Critical
       200: Dead
   - type: NpcFactionMember
     factions:
@@ -1616,6 +1645,8 @@
     name: ghost-role-information-mouse-name
     description: ghost-role-information-mouse-description
     rules: ghost-role-information-freeagent-rules
+    mindRoles:
+    - MindRoleGhostRoleFreeAgent
   - type: GhostTakeoverAvailable
   - type: Speech
     speechSounds: Squeak
@@ -1961,6 +1992,10 @@
   - type: Tag
     tags:
     - VimPilot
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 
 - type: entity
@@ -2187,6 +2222,10 @@
     heatDamage:
       types:
         Heat : 0.2 #per second, scales with temperature & other constants
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   name: grenade penguin
@@ -2410,6 +2449,8 @@
   - type: CollectiveMind
     minds:
     - Arachnids
+  - type: Carriable
+  - type: CanEscapeInventory
   # Sunrise-end
 
 - type: entity
@@ -2430,6 +2471,8 @@
     name: ghost-role-information-giant-spider-name
     description: ghost-role-information-giant-spider-description
     rules: ghost-role-information-giant-spider-rules
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
     raffle:
       settings: short
   - type: GhostTakeoverAvailable
@@ -2588,6 +2631,10 @@
   - type: Tag
     tags:
     - VimPilot
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   name: possum
@@ -2662,6 +2709,10 @@
   - type: Tag
     tags:
     - VimPilot
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   name: fox
@@ -2740,6 +2791,10 @@
   - type: Tag
     tags:
     - VimPilot
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   name: corgi
@@ -2801,6 +2856,10 @@
   - type: Tag
     tags:
     - VimPilot
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   name: corrupted corgi
@@ -2959,9 +3018,13 @@
   - type: Tag
     tags:
     - VimPilot
+  # Sunrise-start
   - type: NightVision #Sunrise - Night vision
     isToggle: true
     color: "#808080"
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   name: calico cat
@@ -3006,6 +3069,8 @@
     allowMovement: true
     description: ghost-role-information-SyndiCat-description
     rules: ghost-role-information-SyndiCat-rules
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
@@ -3175,6 +3240,10 @@
   - type: Tag
     tags:
     - VimPilot
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   name: ferret
@@ -3229,6 +3298,10 @@
   - type: Tag
     tags:
     - VimPilot
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   name: hamster
@@ -3447,6 +3520,8 @@
     # Sunrise-start
   - type: Body
     prototype: ManeaterAnimal
+  - type: Carriable
+  - type: CanEscapeInventory
     # Sunrise-end
 
 - type: entity

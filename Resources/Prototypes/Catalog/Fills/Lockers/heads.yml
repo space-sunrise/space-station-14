@@ -46,7 +46,7 @@
       prob: 0.25
     - id: ClothingBeltSheathFilled
     - id: ClothingHeadsetAltCommand
-    - id: ClothingOuterArmorCaptainCarapace
+    #- id: ClothingOuterArmorCaptainCarapace # Sunrise-Edit
     - id: CommsComputerCircuitboard
     - id: DoorRemoteCommand
     - id: MedalCase
@@ -351,6 +351,7 @@
     - id: SecurityTechFabCircuitboard
     - id: WeaponDisabler
     - id: WantedListCartridge
+    - id: DrinkHosFlask
     - id: FlippoLighterSunriseHos  # Sunrise-Flippo
 
 # Hardsuit table, used for suit storage as well

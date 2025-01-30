@@ -75,6 +75,9 @@
       path: /Audio/Ambience/Objects/gas_pump.ogg
   - type: AtmosMonitoringConsoleDevice
     navMapBlip: GasFlowRegulator
+  - type: GuideHelp
+    guides:
+    - Pumps
   # Sunrise-start
   - type: VentCrawTube
     containerId: VentCrawTube
@@ -142,6 +145,9 @@
     - type: WiredNetworkConnection
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasFlowRegulator
+    - type: GuideHelp
+      guides:
+      - Pumps
     # Sunrise-start
     - type: VentCrawTube
       containerId: VentCrawTube
@@ -181,6 +187,9 @@
         path: /Audio/Ambience/Objects/gas_hiss.ogg
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasValve
+    - type: GuideHelp
+      guides:
+      - PassiveGate
     # Sunrise-start
     - type: VentCrawTube
       containerId: VentCrawTube
@@ -239,6 +248,9 @@
         path: /Audio/Ambience/Objects/gas_hiss.ogg
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasValve
+    - type: GuideHelp
+      guides:
+      - ManualValve
     # Sunrise-start
     - type: VentCrawTube
       containerId: VentCrawTube
@@ -308,6 +320,9 @@
       path: /Audio/Ambience/Objects/gas_hiss.ogg
   - type: AtmosMonitoringConsoleDevice
     navMapBlip: GasValve
+  - type: GuideHelp
+    guides:
+    - SignalValve
   # Sunrise-start
   - type: VentCrawTube
     containerId: VentCrawTube
@@ -347,6 +362,9 @@
       node: port
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasVentOpening
+    - type: GuideHelp
+      guides:
+      - GasCanisters
     # Sunrise-start
     - type: VentCrawTube
       containerId: VentCrawTube
@@ -415,6 +433,9 @@
       enabled: true
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasVentOpening
+    - type: GuideHelp
+      guides:
+      - AirVent
 
 - type: entity
   parent: [ BaseMachine, ConstructibleMachine ]
@@ -480,6 +501,7 @@
   - type: AtmosMonitoringConsoleDevice
     navMapBlip: GasValve
 
+
 - type: entity
   parent: GasBinaryBase
   id: HeatExchanger
@@ -521,3 +543,32 @@
     node: radiator
   - type: AtmosMonitoringConsoleDevice
     navMapBlip: Thermoregulator
+  - type: GuideHelp
+    guides:
+    - Radiators
+
+- type: entity
+  parent: HeatExchanger
+  id: HeatExchangerBend
+  suffix: Bend
+  components:
+    - type: Sprite
+      layers:
+      - sprite: Structures/Piping/Atmospherics/pipe.rsi
+        state: pipeBend
+        map: [ "enum.PipeVisualLayers.Pipe" ]
+      - state: heBend
+        map: [ "enum.SubfloorLayers.FirstLayer" ]
+    - type: NodeContainer
+      nodes:
+        inlet:
+          !type:PipeNode
+          nodeGroupID: Pipe
+          pipeDirection: South
+        outlet:
+          !type:PipeNode
+          nodeGroupID: Pipe
+          pipeDirection: West
+    - type: Construction
+      graph: GasBinary
+      node: bendradiator

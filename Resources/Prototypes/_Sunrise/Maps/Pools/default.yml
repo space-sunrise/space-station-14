@@ -8,6 +8,7 @@
   - SunriseBagel
   - SunriseMeta
   - SunriseCog
+  - SunrisePlasma
   # Неиграбельно
   #- SunriseTrain
   # Играбельна но требует небольшой доработки
@@ -16,4 +17,16 @@
   #- SunriseReach
   # Неиграбельно
   #- SunriseCorvaxGelta
+  # SUNRISE-TODO: Старые-новые карты
+  #- Glacier
+  #- Shoukou
+  #- Hammurabi
+  #- Lighthouse
+  #- Angle
+  #- Pebble
+  #- Ovni
+  #- Kettle
+  #- Tortuga
+  #- Arena
+
 # НЕ ДОБАВЛЯТЬ НОВЫЕ КАРТЫ БЕЗ МОЕГО РЕВЬЮ! ~ SplikZerys

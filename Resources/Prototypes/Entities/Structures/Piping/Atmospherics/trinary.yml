@@ -72,6 +72,9 @@
         path: /Audio/Ambience/Objects/gas_hiss.ogg
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasFlowRegulator
+    - type: GuideHelp
+      guides:
+      - MixingAndFiltering
       # Sunrise-start
     - type: VentCrawTube
       containerId: VentCrawTube
@@ -186,6 +189,9 @@
         path: /Audio/Ambience/Objects/gas_hiss.ogg
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasFlowRegulator
+    - type: GuideHelp
+      guides:
+      - MixingAndFiltering
       # Sunrise-start
     - type: VentCrawTube
       containerId: VentCrawTube
@@ -258,7 +264,7 @@
   parent: GasPipeBase
   id: PressureControlledValve
   name: pneumatic valve
-  description: Valve controlled by pressure.
+  description: A bidirectional valve controlled by pressure. Opens if the output pipe is lower than the pressure of the control pipe by 101.325 kPa.
   placement:
     mode: SnapgridCenter
   components:
@@ -311,6 +317,11 @@
       node: pneumaticvalve
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasFlowRegulator
+    - type: GuideHelp
+      guides:
+      - PneumaticValve
+      - Pumps
+      - Valves
       # Sunrise-start
     - type: VentCrawTube
       containerId: VentCrawTube
