@@ -410,11 +410,15 @@
     baseState: bigbrother
     openState: bigbrother-open
     brokenState: bigbrother-broken
-    mechToPilotDamageMultiplier: 0.25
+    mechToPilotDamageMultiplier: 0.20
     airtight: true
     pilotWhitelist:
       components:
         - HumanoidAppearance
+    equipmentWhitelist:
+      tags:
+      - IndustrialMech
+      - CombatMech
   - type: Damageable
     damageModifierSet: MediumArmorSyndi
   - type: MeleeWeapon
