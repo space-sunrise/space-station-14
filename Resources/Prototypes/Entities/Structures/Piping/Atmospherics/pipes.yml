@@ -70,7 +70,6 @@
 
 - type: entity
   id: VentCrawHolder
-  noSpawn: true
   name: vent claw holder
   components:
     - type: VentCrawHolder
