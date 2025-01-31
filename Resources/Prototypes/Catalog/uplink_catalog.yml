@@ -323,6 +323,19 @@
     - UplinkExplosives
 
 - type: listing
+  id: UplinkClusterSyndieMiniBomb
+  name: uplink-cluster-mini-bomb-name
+  description: uplink-cluster-mini-bomb-desc
+  productEntity: SyndyClusterGrenade
+  discountCategory: veryRareDiscounts
+  discountDownTo:
+    Telecrystal: 6
+  cost:
+    Telecrystal: 12
+  categories:
+    - UplinkExplosives
+
+- type: listing
   id: UplinkSupermatterGrenade
   name: uplink-supermatter-grenade-name
   description: uplink-supermatter-grenade-desc

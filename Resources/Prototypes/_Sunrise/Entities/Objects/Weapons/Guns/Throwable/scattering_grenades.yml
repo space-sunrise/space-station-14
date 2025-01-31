@@ -5,7 +5,7 @@
   description: The probability that you will be banned for using this grenade is 99.9%.
   components:
   - type: Sprite
-    sprite: _Sunrise\Objects\Weapons\Grenades\clustersyndyflash.rsi
+    sprite: _Sunrise\Objects\Weapons\Grenades\clustersyndygrenade.rsi
     layers:
     - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
@@ -15,9 +15,9 @@
     distance: 4
   - type: OnUseTimerTrigger
     beepSound:
-      path: "/Audio/Effects/beep1.ogg"
+      path: "/Audio/Effects/minibombcountdown.ogg"
       params:
-        volume: 5
+        volume: 12
     initialBeepDelay: 0
     beepInterval: 0.5
     delay: 3.5
@@ -33,4 +33,31 @@
         enum.ConstructionVisuals.Layer:
           Primed: { state: primed }
           Unprimed: { state: icon }
+
+- type: entity
+  parent: [ClusterGrenade, ClusterSyndyFlashGrenade]
+  id: SyndyClusterGrenade
+  name: syndyclustergrenade
+  description: If you don't care about accuracy, then this choice is for you.
+  components:
+  - type: Sprite
+    sprite: _Sunrise\Objects\Weapons\Grenades\clustersyndygrenade.rsi
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: ScatteringGrenade
+    fillPrototype: SyndieMiniBomb
+    distance: 4
+    capacity: 3
+    initialBeepDelay: 0
+    beepInterval: 0.5
+    delay: 3.5
+  - type: OnUseTimerTrigger
+    beepSound:
+      path: "/Audio/Effects/minibombcountdown.ogg"
+      params:
+        volume: 12
+  - type: EmitSoundOnTrigger
+    sound:
+      path: "/Audio/Machines/door_lock_off.ogg"
 
