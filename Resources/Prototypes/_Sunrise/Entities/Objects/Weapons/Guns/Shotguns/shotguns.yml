@@ -92,6 +92,9 @@
     sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/trenchgun_l_4034/tiny.rsi
   - type: BallisticAmmoProvider
     capacity: 6
+  - type: Tag
+    tags:
+    - WeaponShotgunKammerer
     soundRack:
       path: /Audio/_Sunrise/Weapons/Guns/Shotguns/trenchgun_l4034/trenchgun_l4034_pump.ogg
     soundInsert:
