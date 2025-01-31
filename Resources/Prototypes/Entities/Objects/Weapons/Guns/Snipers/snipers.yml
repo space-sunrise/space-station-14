@@ -35,7 +35,6 @@
     containers:
       ballistic-ammo: !type:Container
         ents: []
-  - type: ZoomableGun
   - type: StaticPrice
     price: 500
   # Sunrise start
@@ -48,6 +47,10 @@
   - type: EmitSoundOnLand
     sound:
       collection: SnipersDrop
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3
   # Sunrise end
 
 - type: entity
@@ -75,6 +78,10 @@
       - CartridgeAntiMateriel
     capacity: 5
     proto: CartridgeAntiMateriel
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3
   # Sunrise-Start
   - type: Gun
     fireRate: 0.75
