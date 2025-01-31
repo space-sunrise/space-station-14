@@ -415,6 +415,8 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+  - type: Damageable
+    damageModifierSet: MediumArmorSyndi
   - type: MeleeWeapon
     hidden: true
     autoAttack: true
@@ -458,6 +460,8 @@
     - FootstepSound
     - Clarke
     - Pickaxe
+  - type: AccessReader
+    access: [["NuclearOperative"]]
 
 - type: entity
   id: MechBigYarrkeBattery
