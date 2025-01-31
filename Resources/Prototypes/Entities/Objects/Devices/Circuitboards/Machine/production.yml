@@ -1268,6 +1268,17 @@
       CableHV: 8
       Uranium: 2
 
+#sunrise-Start
+- type: entity
+  parent: StationAnchorCircuitboard
+  id: ShuttleAnchorCircuitboard
+  name: shuttle anchor machine board
+  description: A machine printed circuit board for a shuttle anchor.
+  components:
+  - type: MachineBoard
+    prototype: ShuttleAnchor
+#sunrise-End
+
 - type: entity
   parent: BaseMachineCircuitboard
   id: ReagentGrinderIndustrialMachineCircuitboard

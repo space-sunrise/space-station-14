@@ -116,3 +116,76 @@
   components:
   - type: StationAnchor
     switchedOn: false
+
+#sunrise-start
+- type: entity
+  id: ShuttleAnchor
+  name: shuttle anchor
+  description: Prevents shuttle from moving and FTL.
+  suffix: On
+  parent: [StationAnchor]
+  components:
+    - type: Sprite
+      scale: 0.70, 0.70
+    - type: PowerCharge
+      windowTitle: station-anchor-window-title
+      idlePower: 50
+      activePower: 2500
+      chargeRate: 1
+    - type: ActivatableUI
+      key: enum.PowerChargeUiKey.Key
+    - type: ActivatableUIRequiresPower
+    - type: Anchorable
+    - type: ApcPowerReceiver
+      powerLoad: 2500
+    - type: ExtensionCableReceiver
+    - type: Damageable
+      damageContainer: Inorganic
+      damageModifierSet: Metallic
+    - type: Repairable
+      doAfterDelay: 5 # Sunrise-Edit
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 150
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Breakage" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 600
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+    - type: StaticPrice
+      price: 5000
+    - type: Machine
+      board: ShuttleAnchorCircuitboard
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+        machine_parts: !type:Container
+    - type: Construction
+      containers:
+      - machine_parts
+      - machine_board
+    - type: UserInterface
+      interfaces:
+        enum.PowerChargeUiKey.Key:
+          type: PowerChargeBoundUserInterface
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.4,-0.4,0.4,0.4"
+          density: 190
+          mask:
+          - LargeMobMask
+          layer:
+          - WallLayer
+#sunrise-end
