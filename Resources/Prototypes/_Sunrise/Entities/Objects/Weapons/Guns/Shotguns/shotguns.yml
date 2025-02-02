@@ -13,7 +13,7 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/XM1014/tiny.rsi
   - type: BallisticAmmoProvider
-    capacity: 9
+    capacity: 7
   - type: Wieldable
   - type: UseDelay
     delay: 0.5
@@ -72,7 +72,7 @@
     delay: 0.5
   - type: GunRequiresWield
   - type: Gun
-    fireRate: 1.85
+    fireRate: 2
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Shotguns/spas_12/spas12_shot.ogg
 
@@ -104,7 +104,7 @@
     delay: 0.5
   - type: GunRequiresWield
   - type: Gun
-    fireRate: 1.75
+    fireRate: 1.5
   - type: Construction
     graph: ShotgunTrenchgun4034Sawn
     node: start
