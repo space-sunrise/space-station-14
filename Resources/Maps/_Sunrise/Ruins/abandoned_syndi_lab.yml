@@ -4179,7 +4179,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.6171203,-2.1497185
       parent: 1
-- proto: PillRomerol
+- proto: StrangePill
   entities:
   - uid: 625
     components:
