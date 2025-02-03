@@ -1,0 +1,24 @@
+  129: Plating
+  18: PlatingBurnt
+entities:
+- proto: ""
+  entities:
+  - uid: 1
+    components:
+    - type: MetaData
+      name: Map Entity
+    - type: Transform
+    - type: Map
+      mapPaused: True
+    - type: PhysicsMap
+    - type: GridTree
+    - type: MovedGrids
+    - type: Broadphase
+    - type: LoadedMap
+  - uid: 2
+    - type: MetaData
+      name: grid
+    - type: Transform
+      pos: -0.5,-0.5
+      parent: 1
+    - type: MapGrid
