@@ -54,3 +54,5 @@ ent-ActionToggleEyes = Open/Close eyes
     .desc = Close your eyes to protect your peepers, or open your eyes to enjoy the pretty lights.
 ent-ActionToggleWagging = Wagging Tail
     .desc = Start or stop wagging your tail.
+ent-FakeMindShieldToggleAction = action-name-toggle-fake-mindshield
+    .desc = action-description-toggle-fake-mindshield
