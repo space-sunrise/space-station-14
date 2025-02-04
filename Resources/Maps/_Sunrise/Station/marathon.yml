@@ -137773,32 +137773,6 @@ entities:
     - type: Transform
       pos: -41.445473,54.621906
       parent: 30
-- proto: WeaponTurretHostile
-  entities:
-  - uid: 11942
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -5.5,88.5
-      parent: 30
-  - uid: 11978
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 4.5,88.5
-      parent: 30
-  - uid: 11979
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 4.5,78.5
-      parent: 30
-  - uid: 11993
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -5.5,78.5
-      parent: 30
 - proto: WeaponTurretSyndicateBroken
   entities:
   - uid: 22095

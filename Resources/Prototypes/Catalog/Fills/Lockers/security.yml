@@ -194,17 +194,17 @@
     - id: MagazinePistol
       amount: 8
 
-- type: entity
-  parent: [GunSafeBaseSecure, BaseRestrictedContraband]
-  id: GunSafeRifleLecter
-  name: lecter safe
-  components:
-  - type: StorageFill
-    contents:
-    - id: WeaponRifleLecter
-      amount: 2
-    - id: MagazineRifle
-      amount: 4
+#- type: entity
+#  parent: [GunSafeBaseSecure, BaseRestrictedContraband]
+#  id: GunSafeRifleLecter
+#  name: lecter safe
+#  components:
+#  - type: StorageFill
+#    contents:
+#    - id: WeaponRifleLecter
+#      amount: 2
+#    - id: MagazineRifle
+#      amount: 4
 
 - type: entity
   parent: [GunSafeBaseSecure, BaseRestrictedContraband]

@@ -25,18 +25,18 @@
   - !type:ListingLimitedStockCondition
     stock: 4
 
-- type: listing
-  id: NTUplinkSunriseClothingBackpackDuffelWeaponRifleLecter
-  name: ntuplink-gun-bundlelecter-name
-  productEntity: ClothingBackpackDuffelWeaponRifleLecterFilled
-  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: lecter }
-  cost:
-    Bluecrystal: 5
-  categories:
-  - NTAutoGun
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 3
+#- type: listing
+#  id: NTUplinkSunriseClothingBackpackDuffelWeaponRifleLecter
+#  name: ntuplink-gun-bundlelecter-name
+#  productEntity: ClothingBackpackDuffelWeaponRifleLecterFilled
+#  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: lecter }
+#  cost:
+#    Bluecrystal: 5
+#  categories:
+#  - NTAutoGun
+#  conditions:
+#  - !type:ListingLimitedStockCondition
+#    stock: 3
 
 - type: listing
   id: NTUplinkSunriseClothingBackpackDuffelWeaponSubMachineGunP90
@@ -290,7 +290,7 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 4
-  
+
 - type: listing
   id: NTUplinkSunriseWeaponFlareGun
   productEntity: WeaponFlareGunSecurity
@@ -306,7 +306,7 @@
 # Боеприпасы:
 - type: listing
   id: NTUplinkSunriseBoxMagazineSubMachineGunTopMounted
-  productEntity: BoxMagazinePistolSubMachineGunTopMounted 
+  productEntity: BoxMagazinePistolSubMachineGunTopMounted
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_wt550 }
   cost:
     Crystallite: 2
@@ -318,7 +318,7 @@
 
 - type: listing
   id: NTUplinkSunriseBoxShotgunFlare
-  productEntity: BoxShotgunFlare 
+  productEntity: BoxShotgunFlare
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: box_shot_flare }
   cost:
     Crystallite: 1

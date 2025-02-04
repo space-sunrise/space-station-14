@@ -565,6 +565,7 @@ WeaponRifleM90GrenadeLauncher: WeaponRifleM28
 WeaponShotgunEnforcer: WeaponShotgunSPAS12
 WeaponShotgunKammerer: WeaponShotgunTrenchgun4034
 WeaponSubMachineGunDrozd: WeaponSubMachineGunMP7
+GunSafeRifleLecter: null
 ComputerCargoShuttle: null
 ComputerShuttleCargo: null
 ClothingOuterHardsuitSecurity: ClothingOuterHardsuitSecuritySunrise
@@ -576,10 +577,3 @@ MedicalScanner: null
 CloningPodMachineCircuitboard: null
 CloningConsoleComputerCircuitboard: null
 MedicalScannerMachineCircuitboard: null
-WeaponTurretHostile: null
-WeaponShotgunPaladin12: null
-ClothingOuterArmorSWAT: null
-ClothingHeadHelmetSwat: null
-ClothingShoesSwat: null
-Truncheon: null
-ImplantExtractor: null

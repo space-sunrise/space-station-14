@@ -49,8 +49,8 @@
         orGroup: Guns
       - id: WeaponRifleM90GrenadeLauncher
         orGroup: Guns
-      - id: WeaponRifleLecter
-        orGroup: Guns
+#      - id: WeaponRifleLecter
+#        orGroup: Guns
       - id: WeaponShotgunBulldog
         orGroup: Guns
       - id: WeaponShotgunDoubleBarreled
@@ -158,7 +158,7 @@
       - id: RevolverCapGunFake
         orGroup: Guns
       speech: action-speech-spell-summon-guns
-      
+
 - type: entity
   id: ActionSummonMagic
   name: Summon Magic

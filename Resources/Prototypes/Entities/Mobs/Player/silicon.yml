@@ -338,12 +338,11 @@
   - type: ContainerComp
     proto: AiHeld
     container: station_ai_mind_slot
-  - type: Damageable # Sunrise_Edit
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 500
+        damage: 100
       behaviors:
       - !type:PlaySoundBehavior
         sound:

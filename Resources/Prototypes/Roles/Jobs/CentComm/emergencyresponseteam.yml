@@ -77,8 +77,8 @@
     belt: ClothingBeltSecurityFilled
     pocket1: MagazineRifle
     pocket2: MagazineRifle
-  inhand:
-  - WeaponRifleLecter
+  #inhand:
+  #- WeaponRifleLecter
   storage:
     back:
     - WeaponDisabler
@@ -321,8 +321,8 @@
     belt: ClothingBeltSecurityFilled
     pocket1: MagazineRifle
     pocket2: MagazineRifle
-  inhand:
-    - WeaponRifleLecter
+  #inhand:
+  #  - WeaponRifleLecter
   storage:
     back:
     - WeaponDisabler
