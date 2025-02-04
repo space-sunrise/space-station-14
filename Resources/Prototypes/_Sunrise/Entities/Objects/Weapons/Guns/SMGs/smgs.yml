@@ -66,13 +66,15 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
-  - type: GunWieldBonus
-    minAngle: -33
-    maxAngle: -45
-  - type: Gun
-    minAngle: 43
-    maxAngle: 60
-    fireRate: 7
+    - type: Wieldable
+      unwieldOnUse: false
+    - type: GunWieldBonus
+      minAngle: -19
+      maxAngle: -16
+    - type: Gun
+      minAngle: 21
+      maxAngle: 32
+      fireRate: 6
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/p90_shot.ogg
       params:
@@ -128,11 +130,11 @@
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp38/tiny.rsi
   - type: GunWieldBonus
     minAngle: -22
-    maxAngle: -35
+    maxAngle: -40
   - type: Gun
     minAngle: 24
     maxAngle: 45
-    fireRate: 6
+    fireRate: 5
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
   - type: ItemSlots
@@ -185,9 +187,9 @@
     minAngle: -22
     maxAngle: -38
   - type: Gun
-    minAngle: 24
+    minAngle: 25
     maxAngle: 45
-    fireRate: 7
+    fireRate: 6
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/mp7/mp7_shot.ogg
   - type: ItemSlots
@@ -236,13 +238,13 @@
   - type: Item
     size: Large
     shape:
-    - 0,0,2,1
+    - 0,0,3,1
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp5/tiny.rsi
   - type: GunWieldBonus
     minAngle: -22
     maxAngle: -35
   - type: Gun
-    minAngle: 24
+    minAngle: 25
     maxAngle: 45
     fireRate: 6
     soundGunshot:
@@ -299,8 +301,8 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: Gun
     minAngle: 2
-    maxAngle: 56
-    fireRate: 7
+    maxAngle: 50
+    fireRate: 6
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/scorpion/scorpion_shot.ogg
   - type: Clothing
@@ -320,7 +322,7 @@
           - MagazinePistolHighCapacity
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistolRubber  # 57x28
+        startingItem: CartridgePistol  # 57x28
         priority: 1
         whitelist:
           tags:
@@ -351,12 +353,12 @@
     - 0,0,2,1
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/vector/tiny.rsi
   - type: GunWieldBonus
-    minAngle: -23
-    maxAngle: -33
+    minAngle: -30
+    maxAngle: -40
   - type: Gun
-    minAngle: 24
-    maxAngle: 45
-    fireRate: 7
+    minAngle: 35
+    maxAngle: 50
+    fireRate: 6.5
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/new_vector/vector_shot.ogg
   - type: ItemSlots
@@ -409,7 +411,7 @@
   - type: Gun
     minAngle: 24
     maxAngle: 50
-    fireRate: 8
+    fireRate: 7
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/ppsh41/ppsh_shot.ogg
       params:
@@ -526,7 +528,7 @@
     maxAngle: 8
     angleIncrease: 4
     angleDecay: 16
-    fireRate: 7.4
+    fireRate: 7.5
     selectedMode: FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/pistol.ogg

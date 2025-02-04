@@ -40,7 +40,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,4,2
+    - 0,0,5,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/akms/tiny.rsi
   - type: GunWieldBonus
     minAngle: -15
@@ -107,7 +107,7 @@
   - type: Gun
     minAngle: 24
     maxAngle: 45
-    fireRate: 6
+    fireRate: 5.5
     soundGunshot:
       collection: ak47
   - type: ChamberMagazineAmmoProvider
@@ -167,7 +167,7 @@
   - type: Gun
     minAngle: 24
     maxAngle: 45
-    fireRate: 6.5  # 10 в секунду - реалистично. 5, так как сс14
+    fireRate: 6  # 10 в секунду - реалистично. 5, так как сс14
     soundGunshot:
       collection: ak47
   - type: ItemSlots
@@ -232,8 +232,8 @@
   - type: Gun
     minAngle: 21
     maxAngle: 40
-    fireRate: 6
-    burstFireRate: 7
+    fireRate: 5.5
+    burstFireRate: 6
     selectedMode: Burst
     availableModes:
     - Burst
@@ -368,7 +368,7 @@
   - type: Gun
     minAngle: 24
     maxAngle: 45
-    fireRate: 6
+    fireRate: 5.5
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/m28/m28.ogg
   - type: ItemSlots
@@ -428,7 +428,7 @@
   - type: Gun
     minAngle: 24
     maxAngle: 45
-    fireRate: 6
+    fireRate: 5.5
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/ar18/ar18_shot.ogg
   - type: ItemSlots
@@ -480,7 +480,7 @@
   - type: Item
     size: Huge  
     shape:
-    - 0,0,4,2
+    - 0,0,5,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/m16a4/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
@@ -495,7 +495,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineM16A4
+        startingItem: MagazineRifle
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
         priority: 2
@@ -540,7 +540,7 @@
   - type: Item
     size: Huge  
     shape:
-    - 0,0,4,2
+    - 0,0,5,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/stg44/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23

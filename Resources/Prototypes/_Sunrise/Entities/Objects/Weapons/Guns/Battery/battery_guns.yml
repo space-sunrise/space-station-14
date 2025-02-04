@@ -43,9 +43,9 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Gun
-    fireRate: 4.5
+    fireRate: 4
     minAngle: 5
-    maxAngle: 15
+    maxAngle: 12
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/smg_laser.rsi
   - type: Item
@@ -457,9 +457,9 @@
     startingCharge: 1500
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 20 # ~2 minute
+    autoRechargeRate: 15 # ~2 minute
     autoRechargePause: true
-    autoRechargePauseTime: 60
+    autoRechargePauseTime: 30
   - type: EnergyGunFireModes
     fireModes:
     - hitscanProto: BulletDisabler
@@ -676,7 +676,7 @@
     maxAngle: 34
     angleIncrease: 4
     angleDecay: 16
-    fireRate: 3.6
+    fireRate: 4
     selectedMode: FullAuto
     availableModes:
     - SemiAuto
@@ -690,8 +690,8 @@
     steps: 3
     zeroVisible: true
   - type: Battery
-    maxCharge: 7500
-    startingCharge: 7500
+    maxCharge: 8000
+    startingCharge: 8000
   - type: HitscanBatteryAmmoProvider
     proto: BulletRedLaser
     fireCost: 50
@@ -930,6 +930,8 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 10
+    autoRechargePause: true
+    autoRechargePauseTime: 10
 
 - type: entity
   name: UVL-21 «Vivern»
