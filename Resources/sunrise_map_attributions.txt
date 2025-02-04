@@ -1,29 +1,29 @@
 - files: ["box.yml"]
-  authors: Odleer
+  editors: Odleer
 
 - files: ["plasma.yml"]
-  authors: KaiserMaus, Hatiko, CallMeOwO, ktenanta, Odleer
+  editors: KaiserMaus, Hatiko, CallMeOwO, ktenanta, Odleer
 
 - files: ["delta.yml"]
-  authors: meowstushka, JunterFox, Odleer
+  editors: meowstushka, JunterFox, Odleer
 
 - files: ["planet_prison.yml"]
-  authors: Odleer, ZavanickTEP
+  editors: Odleer, ZavanickTEP
 
 - files: ["cluster.yml"]
-  authors: Odleer
+  editors: Odleer
 
 - files: ["fland.yml"]
-  authors: Odleer
+  editors: Odleer
 
 - files: ["marathon.yml"]
-  authors: Odleer
+  editors: Odleer
 
 - files: ["cluster.yml"]
-  authors: Odleer
+  editors: Odleer
 
 - files: ["meta.yml"]
-  authors: J C Denton, freychik
+  editors: J C Denton, freychik
 
 - files: ["bagel.yml"]
-  authors: pacable, Francus41 
+  editors: pacable, Francus41 
