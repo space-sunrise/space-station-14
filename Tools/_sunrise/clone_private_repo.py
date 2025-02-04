@@ -13,8 +13,8 @@ if not REPO_URL:
     sys.exit(1)
 
 
-def run_command(command):
-    result = subprocess.run(command, capture_output=True, text=True)
+def run_command(command, shell=False):
+    result = subprocess.run(command, shell=shell, check=True, capture_output=True, text=True)
     if result.returncode != 0:
         print(f"❌ Error command: {' '.join(command)}", file=sys.stderr)
         print(f"📜 Result stdout: {result.stdout}", file=sys.stderr)
@@ -37,7 +37,7 @@ def setup_ssh():
     run_command(["ls", "-l", SSH_KEY_PATH])
     run_command(["cat", SSH_KEY_PATH])
 
-    run_command(["eval $(ssh-agent -s)"])
+    run_command(["ssh-agent", "-s"], shell=True)
     run_command(["ssh-add", SSH_KEY_PATH])
 
 
