@@ -14,11 +14,14 @@ if not REPO_URL:
 
 
 def run_command(command, check=True, shell=False):
-    result = subprocess.run(command, shell=shell, check=check, capture_output=True, text=True)
-    if result.stdout:
-        print(result.stdout)
-    if result.stderr:
-        print(result.stderr, file=sys.stderr)
+    try:
+        result = subprocess.run(command, shell=shell, check=check, capture_output=True, text=True)
+        if result.stdout:
+            print(result.stdout)
+        if result.stderr:
+            print(result.stderr, file=sys.stderr)
+    except subprocess.CalledProcessError as e:
+        print("Exception on process, rc=", e.returncode, "output=", e.output)
 
 def clone_repo():
     if os.path.exists(CLONE_DIR):
