@@ -20,6 +20,7 @@
         whitelist:
           tags:
           - WeaponShotgunKammerer
+          - WeaponShotgunTrenchgun4034 #Sunrise-Edit
   - type: AccessReader
     access: [["Security"], ["Command"]]
 
@@ -41,7 +42,7 @@
   - type: ContainerFill
     containers:
       ItemCabinet:
-      - WeaponShotgunKammerer
+      - WeaponShotgunTrenchgun4034 #Sunrise-Edit
 
 - type: entity
   parent: [ShotGunCabinetFilled, ShotGunCabinetOpen]
