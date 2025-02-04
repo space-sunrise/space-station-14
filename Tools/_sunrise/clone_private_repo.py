@@ -37,6 +37,7 @@ def setup_ssh():
     run_command(["ls", "-l", SSH_KEY_PATH])
     run_command(["cat", SSH_KEY_PATH])
 
+    run_command(["eval $(ssh-agent -s)"])
     run_command(["ssh-add", SSH_KEY_PATH])
 
 
