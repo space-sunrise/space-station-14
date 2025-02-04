@@ -23,11 +23,13 @@ jobs:
       with:
         submodules: 'recursive'
 
-    - name: Setup Private Repo Key
+    - name: Setup SSH Key
       run: |
         mkdir -p ~/.ssh
         echo "${{ secrets.SUNRISE_SSH_KEY }}" > ~/.ssh/id_rsa_sunrise
         chmod 600 ~/.ssh/id_rsa_sunrise
+        eval $(ssh-agent -s)
+        ssh-add ~/.ssh/id_rsa_sunrise
         ssh-keyscan github.com >> ~/.ssh/known_hosts
 
     - name: Clone SunrisePrivate repository
