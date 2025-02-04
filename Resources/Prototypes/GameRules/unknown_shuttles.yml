@@ -34,6 +34,7 @@
     - id: LoneOpsSpawn
     - id: UnknownShuttleManOWar
     - id: UnknownShuttleInstigator
+    - id: UnknownShuttlePirateSmall # Sunrise-Edit
 
 # Shuttle Game Rules
 
@@ -174,6 +175,20 @@
     earliestStart: 45 # late to hopefully have enough ghosts to fill all roles quickly. (5-6)
   - type: LoadMapRule
     preloadedGrid: NTIncorporation
+
+#Sunrise-Start
+- type: entity
+  id: UnknownShuttlePirateSmall
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: null
+    weight: 2
+    earliestStart: 35
+    minimumPlayers: 40
+  - type: LoadMapRule
+    preloadedGrid: PirateSmall
+#Sunrise-end
 
 - type: entity
   id: UnknownShuttleInstigator
