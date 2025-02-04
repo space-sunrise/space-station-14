@@ -11521,3 +11521,13 @@
   id: 800
   time: '2025-02-04T01:02:55.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/1210
+- author: KaiserMaus
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D \u043C\u0430\u043B\u044B\
+      \u0439 \u0448\u0430\u0442\u0442\u043B \u041F\u0438\u0440\u0430\u0442\u043E\u0432\
+      \ \u043A\u0430\u043A \u0441\u043B\u0443\u0447\u0430\u0439\u043D\u043E\u0435\
+      \ \u0441\u043E\u0431\u044B\u0442\u0438\u0435 \u042F\u0440\u0440!."
+    type: Add
+  id: 801
+  time: '2025-02-04T01:07:01.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/1238
