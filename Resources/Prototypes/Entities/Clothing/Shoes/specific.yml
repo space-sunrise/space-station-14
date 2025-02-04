@@ -113,12 +113,15 @@
     sprite: Clothing/Shoes/Specific/galoshes.rsi
   - type: Clothing
     sprite: Clothing/Shoes/Specific/galoshes.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
   - type: NoSlip
   - type: SlowedOverSlippery
-    slowdownModifier: 0.7
+    slowdownModifier: 0.75
   - type: SpeedModifierContactCapClothing
-    maxContactSprintSlowdown: 0.7
-    maxContactWalkSlowdown: 0.7
+    maxContactSprintSlowdown: 0.75
+    maxContactWalkSlowdown: 0.75
 
 - type: entity
   parent: [ClothingShoesBaseButcherable, BaseMajorContraband]
