@@ -324,3 +324,95 @@
   materials:
     Steel: 1000
     Glass: 150
+
+# MechPaint
+- type: latheRecipe
+  id: PaintClarkeOrangey
+  result: MechPaintClarkeOrangey
+  category: MechEquipment
+  completetime: 30
+  materials:
+    Steel: 500
+    Plasma: 100
+    Glass: 100
+
+- type: latheRecipe
+  id: PaintRipleyAluminizer
+  result: MechPaintRipleyAluminizer
+  category: MechEquipment
+  completetime: 30
+  materials:
+    Steel: 800
+    Plasma: 200
+    Glass: 200
+
+- type: latheRecipe
+  id: PaintRipleyFirestarter
+  result: MechPaintRipleyFirestarter
+  category: MechEquipment
+  completetime: 30
+  materials:
+    Steel: 800
+    Plasma: 200
+    Glass: 200
+
+- type: latheRecipe
+  id: PaintRipleyHauler
+  result: MechPaintRipleyHauler
+  category: MechEquipment
+  completetime: 30
+  materials:
+    Steel: 800
+    Plasma: 200
+    Glass: 200
+
+- type: latheRecipe
+  id: PaintRipleyZairjah
+  result: MechPaintRipleyZairjah
+  category: MechEquipment
+  completetime: 30
+  materials:
+    Steel: 800
+    Plasma: 200
+    Glass: 200
+
+- type: latheRecipe
+  id: PaintDurandExecutor
+  result: MechPaintDurandExecutor
+  category: MechEquipment
+  completetime: 30
+  materials:
+    Steel: 1600
+    Plasma: 500
+    Glass: 500
+
+- type: latheRecipe
+  id: PaintDurandShire
+  result: MechPaintDurandShire
+  category: MechEquipment
+  completetime: 30
+  materials:
+    Steel: 1600
+    Plasma: 500
+    Glass: 500
+
+- type: latheRecipe
+  id: PaintGygaxOld
+  result: MechPaintGygaxOld
+  category: MechEquipment
+  completetime: 30
+  materials:
+    Steel: 1800
+    Plasma: 600
+    Glass: 600
+
+- type: latheRecipe
+  id: PaintGygaxWhite
+  result: MechPaintGygaxWhite
+  category: MechEquipment
+  completetime: 30
+  materials:
+    Steel: 1800
+    Plasma: 600
+    Glass: 600
+
