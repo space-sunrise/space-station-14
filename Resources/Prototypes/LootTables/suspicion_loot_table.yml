@@ -52,7 +52,7 @@
   - id: WeaponShotgunEnforcer
     amount: 0
     maxAmount: 5
-  - id: WeaponShotgunKammerer
+  - id: WeaponShotgunTrenchgun4034 # Sunrise-Edit
     amount: 0
     maxAmount: 5
   - id: WeaponShotgunSawn
@@ -71,7 +71,7 @@
   - id: WeaponSubMachineGunVector
     amount: 0
     maxAmount: 5
-  - id: WeaponSubMachineGunWt550
+  - id: WeaponRifleM16A4 # Sunrise-Edit
     amount: 0
     maxAmount: 5
 

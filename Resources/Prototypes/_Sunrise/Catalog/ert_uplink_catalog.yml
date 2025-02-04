@@ -1,18 +1,5 @@
 # Автоматы:
 - type: listing
-  id: NTUplinkSunriseClothingBackpackDuffelWeaponSubMachineGunWt550Filled
-  name: ntuplink-gun-bundlewt550-name
-  productEntity: ClothingBackpackDuffelWeaponSubMachineGunWt550Filled
-  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: wt550 }
-  cost:
-    Bluecrystal: 2
-  categories:
-  - NTAutoGun
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 4
-
-- type: listing
   id: NTUplinkSunriseClothingBackpackDuffelWeaponSubMachineGunMP5
   name: ntuplink-gun-bundlemp5-name
   productEntity: ClothingBackpackDuffelWeaponSubMachineGunMP5Filled
@@ -24,19 +11,6 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 4
-
-#- type: listing
-#  id: NTUplinkSunriseClothingBackpackDuffelWeaponRifleLecter
-#  name: ntuplink-gun-bundlelecter-name
-#  productEntity: ClothingBackpackDuffelWeaponRifleLecterFilled
-#  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: lecter }
-#  cost:
-#    Bluecrystal: 5
-#  categories:
-#  - NTAutoGun
-#  conditions:
-#  - !type:ListingLimitedStockCondition
-#    stock: 3
 
 - type: listing
   id: NTUplinkSunriseClothingBackpackDuffelWeaponSubMachineGunP90

@@ -83,13 +83,13 @@
         - ClothingOuterArmorBasic
         - ClothingOuterArmorRiot
         - ClothingOuterArmorBulletproof
-#        - WeaponSubMachineGunWt550
+        - WeaponRifleM16A4 # Sunrise-Edit
         - WeaponDisabler
 #        - WeaponPistolMk58
 #        - WeaponRifleLecter
 #        - WeaponSubMachineGunDrozd
 #        - WeaponLaserCarbine
-#        - WeaponShotgunKammerer
+        - WeaponShotgunTrenchgun4034 # Sunrise-Edit
       chance: 0.95
       offset: 0.0
 
@@ -110,13 +110,13 @@
 #        - WeaponRifleAk
       rareChance: 0.05
       prototypes:
-#        - WeaponSubMachineGunWt550
+        - WeaponRifleM16A4 # Sunrise-Edit
         - WeaponDisabler
 #        - WeaponPistolMk58
 #        - WeaponRifleLecter
 #        - WeaponSubMachineGunDrozd
 #        - WeaponLaserCarbine
-#        - WeaponShotgunKammerer
+        - WeaponShotgunTrenchgun4034 # Sunrise-Edit
       chance: 0.95
       offset: 0.0
 

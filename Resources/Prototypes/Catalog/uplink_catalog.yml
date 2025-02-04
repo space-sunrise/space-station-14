@@ -2115,7 +2115,7 @@
   discountDownTo:
     Telecrystal: 10 # Sunrise-Edit
   cost:
-    Telecrystal: 20 Sunrise-Edit
+    Telecrystal: 20 # Sunrise-Edit
   categories:
   - UplinkJob
   conditions:

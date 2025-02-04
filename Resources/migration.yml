@@ -568,6 +568,9 @@ WeaponRifleM90GrenadeLauncher: WeaponRifleM28
 WeaponShotgunEnforcer: WeaponShotgunSPAS12
 WeaponShotgunKammerer: WeaponShotgunTrenchgun4034
 WeaponSubMachineGunDrozd: WeaponSubMachineGunMP7
+GunSafeSubMachineGunWt550: CrateArmoryM16A4
+CrateArmorySMG: CrateArmoryM16A4
+GunSafeShotgunKammerer: GunSafeShotgunTrenchgun4034
 GunSafeRifleLecter: null
 ComputerCargoShuttle: null
 ComputerShuttleCargo: null

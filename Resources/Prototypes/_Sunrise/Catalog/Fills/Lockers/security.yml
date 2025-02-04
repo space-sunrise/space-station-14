@@ -60,8 +60,6 @@
       amount: 2
     - id: BoxLethalshot
       amount: 1
-    - id: BoxShotgunFlare
-      amount: 1
     - id: BoxShotgunSlug
       amount: 1
 
@@ -79,8 +77,6 @@
       amount: 1
     - id: BoxBeanbag
       amount: 1
-    - id: BoxShotgunFlare
-      amount: 1
     - id: BoxShotgunSlug
       amount: 1
 
@@ -97,8 +93,6 @@
     - id: BoxLethalshot
       amount: 1
     - id: BoxBeanbag
-      amount: 1
-    - id: BoxShotgunFlare
       amount: 1
     - id: BoxShotgunSlug
       amount: 1

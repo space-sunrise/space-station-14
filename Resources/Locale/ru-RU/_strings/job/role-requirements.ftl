@@ -8,8 +8,6 @@ role-timer-age-too-old = Максимальный возраст персона�
 role-timer-age-too-young = Минимальный возраст персонажа: [color=yellow]{$age}[/color] лет.
 role-timer-whitelisted-species = Доступно только для рас:
 role-timer-blacklisted-species = Заблокировано для рас:
-role-timer-whitelisted-traits = Требуемые характеристики:
-role-timer-blacklisted-traits = Запрещённые характеристики:
 role-timer-whitelisted-traits = Ваш персонаж должен обладать одной из следующих черт:
 role-timer-blacklisted-traits = Ваш персонаж не должен обладать ни одной из следующих черт:
 role-banned-locked = Banned (hover for details)

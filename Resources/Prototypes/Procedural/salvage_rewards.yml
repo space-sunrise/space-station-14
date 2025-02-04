@@ -60,9 +60,9 @@
     CratePartsT4: 1.0
     PowerCellAntiqueProto: 0.25
     # basic weapons
-    CrateArmorySMG: 1.0
+    CrateArmoryM16A4: 1.0 # Sunrise-Edit
     CrateArmoryLaser: 1.0
-    CrateArmoryShotgun: 1.0
+    CrateArmoryShotgunTrenchgun4034Sawn: 1.0 # Sunrise-Edit
     CrateArmoryPistols: 1.0
     # rare armor
     ClothingOuterArmorRiot: 1.0

@@ -57,7 +57,7 @@
         orGroup: Guns
       - id: WeaponShotgunEnforcer
         orGroup: Guns
-      - id: WeaponShotgunKammerer
+      - id: WeaponShotgunTrenchgun4034 # Sunrise-Edit
         orGroup: Guns
       - id: WeaponShotgunSawn
         orGroup: Guns
@@ -73,7 +73,7 @@
         orGroup: Guns
       - id: WeaponSubMachineGunDrozd
         orGroup: Guns
-      - id: WeaponSubMachineGunWt550
+      - id: WeaponRifleM16A4 # Sunrise-Edit
         orGroup: Guns
       - id: WeaponSniperMosin
         orGroup: Guns

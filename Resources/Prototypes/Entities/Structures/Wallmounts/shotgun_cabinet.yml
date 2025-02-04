@@ -20,7 +20,6 @@
         whitelist:
           tags:
           - WeaponShotgunKammerer
-          - WeaponShotgunTrenchgun4034 #Sunrise-Edit
   - type: AccessReader
     access: [["Security"], ["Command"]]
 

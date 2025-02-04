@@ -102,5 +102,5 @@
 
 - type: preloadedGrid
   id: PirateSmall
-  path: Maps/_Sunrise/Shuttles/pirate_small.yml
+  path: /Maps/_Sunrise/Shuttles/pirate_small.yml
   copies: 1
