@@ -9,33 +9,35 @@ CLONE_DIR = "SunrisePrivateTemp"
 TARGET_DIRS = ["Resources", "Content.Client", "Content.Server", "Content.Shared"]
 
 if not REPO_URL:
-    print("Error: enc SUNRISE_PRIVATE_REPO_URL not set.", file=sys.stderr)
+    print("Error: env SUNRISE_PRIVATE_REPO_URL not set.", file=sys.stderr)
     sys.exit(1)
 
 
-def run_command(command, check=True, shell=False):
-    result = subprocess.run(command, shell=shell, check=check, capture_output=True, text=True)
-    print(result.stdout)
-    if result.stderr:
-        print(result.stderr)
-    return result
+def run_command(command):
+    result = subprocess.run(command, capture_output=True, text=True)
+    if result.returncode != 0:
+        print(f"❌ Error command: {' '.join(command)}", file=sys.stderr)
+        print(f"📜 Result stdout: {result.stdout}", file=sys.stderr)
+        print(f"⚠️ Result stderr: {result.stderr}", file=sys.stderr)
+        sys.exit(result.returncode)
 
 def setup_ssh():
+    ssh_key = os.getenv("SUNRISE_SSH_KEY")
+    if not ssh_key:
+        print("❌ Error: env SUNRISE_SSH_KEY not set", file=sys.stderr)
+        sys.exit(1)
+
     os.makedirs(os.path.expanduser("~/.ssh"), exist_ok=True)
 
     with open(SSH_KEY_PATH, "w") as f:
-        f.write(os.environ["SUNRISE_SSH_KEY"] + "\n")
+        f.write(ssh_key + "\n")
 
     os.chmod(SSH_KEY_PATH, 0o600)
 
-    run_command(["ssh-agent", "-s"], shell=True)
-
-    os.environ["SSH_AUTH_SOCK"] = "/tmp/ssh-agent.sock"
-    os.environ["SSH_AGENT_PID"] = subprocess.check_output("echo $SSH_AGENT_PID", shell=True).strip().decode()
+    run_command(["ls", "-l", SSH_KEY_PATH])
+    run_command(["cat", SSH_KEY_PATH])
 
     run_command(["ssh-add", SSH_KEY_PATH])
-
-    run_command(["ssh-keyscan", "github.com"], shell=True)
 
 
 def clone_repo():
