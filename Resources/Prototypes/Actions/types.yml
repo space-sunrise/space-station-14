@@ -160,7 +160,7 @@
     charges: 2
     # Sunrise-Start
     renewCharges: true
-    renewChargeDelay: 120
+    renewChargeDelay: 360 #Sunrise
     # Sunrise-End
     useDelay: 5
     itemIconStyle: BigAction

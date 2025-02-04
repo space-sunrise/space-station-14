@@ -71,8 +71,4 @@
     access: [["BlueShield"]]
   - type: StorageFill
     contents:
-    - id: WeaponRifleLecter
-      amount: 1
-    - id: MagazineRifle
-      amount: 2
     - id: WeaponEnergyGunMultiphase

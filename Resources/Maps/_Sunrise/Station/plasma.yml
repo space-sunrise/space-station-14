@@ -67082,42 +67082,6 @@ entities:
     - type: Transform
       pos: -46.536045,-60.39634
       parent: 2
-- proto: ClothingBackpackDuffelWeaponSubMachineGunWt550Filled
-  entities:
-  - uid: 10455
-    components:
-    - type: Transform
-      pos: -79.64672,-20.170208
-      parent: 2
-  - uid: 10456
-    components:
-    - type: Transform
-      pos: -79.49047,-20.388958
-      parent: 2
-    - type: GroupExamine
-      group:
-      - hoverMessage: ""
-        contextText: verb-examine-group-other
-        icon: /Textures/Interface/examine-star.png
-        components:
-        - Armor
-        - ClothingSpeedModifier
-        entries:
-        - message: >-
-            Обеспечивает следующую защиту:
-
-            - [color=orange]Взрывной[/color] урон [color=white]к содержимому[/color] снижается на [color=lightblue]10%[/color].
-          priority: 0
-          component: Armor
-        - message: Понижает вашу скорость бега на [color=yellow]10%[/color].
-          priority: 0
-          component: ClothingSpeedModifier
-        title: null
-  - uid: 10457
-    components:
-    - type: Transform
-      pos: -79.313385,-20.62854
-      parent: 2
 - proto: ClothingBackpackSatchelHoS
   entities:
   - uid: 10459
@@ -129184,13 +129148,6 @@ entities:
           showEnts: False
           occludes: True
           ent: null
-- proto: GunSafeShotgunPaladin
-  entities:
-  - uid: 19251
-    components:
-    - type: Transform
-      pos: -84.5,-19.5
-      parent: 2
 - proto: GunSafeShotgunTrenchgun4034
   entities:
   - uid: 19252
@@ -174425,33 +174382,6 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: WeaponTurretHostile
-  entities:
-  - uid: 26697
-    components:
-    - type: Transform
-      pos: -123.5,-86.5
-      parent: 2
-  - uid: 26698
-    components:
-    - type: Transform
-      pos: -123.5,-79.5
-      parent: 2
-  - uid: 26699
-    components:
-    - type: Transform
-      pos: -118.5,-72.5
-      parent: 2
-  - uid: 26700
-    components:
-    - type: Transform
-      pos: -117.5,-79.5
-      parent: 2
-  - uid: 26701
-    components:
-    - type: Transform
-      pos: -117.5,-86.5
-      parent: 2
 - proto: WelderIndustrial
   entities:
   - uid: 26702

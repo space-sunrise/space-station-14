@@ -1,9 +1,8 @@
-ent-ClothingHeadHatBrown = brown cap
+ent-ClothingHeadHatBrownsoft = brown cap
     .desc = It's a baseball hat in a tasteless brown colour.
 ent-ClothingHeadHatBrownsoftFlipped = brown cap
     .desc = { ent-ClothingHeadHeadHatBaseFlipped.desc }
-ent-ClothingHeadHatCyan = cyan cap
-    .desc = It's a baseball hat in a tasteless cyan colour.
+ent-ClothingHeadHatCyansoft = cyan cap
+    .desc = It's a baseball hat in a tastelesscyan colour.
 ent-ClothingHeadHatCyansoftFlipped = cyan cap
     .desc = { ent-ClothingHeadHeadHatBaseFlipped.desc }
-

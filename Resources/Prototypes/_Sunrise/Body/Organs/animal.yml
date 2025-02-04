@@ -9,3 +9,84 @@
       components:
         - Identity
     isDigestibleAddition: true
+
+- type: entity
+  id: OrganPrimateHeart
+  parent: OrganAnimalHeart
+  name: heart
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [ Animal, Primate ]
+
+- type: entity
+  id: OrganKoboldHeart
+  parent: OrganAnimalHeart
+  name: heart
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [ Animal, Kobold ]
+
+- type: entity
+  id: OrganFelinidHeart
+  parent: OrganAnimalHeart
+  name: heart
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [ Animal, Felinid ]
+
+- type: entity
+  id: SentientWildSlimeCore
+  parent: SentientSlimeCore
+  name: slime core
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [ Slime, WildSlime ]
+
+- type: entity
+  id: OrganMothroachHeart
+  parent: OrganAnimalHeart
+  name: heart
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [ Animal, Mothroach ]
+
+- type: entity
+  id: OrganPigHeart
+  parent: OrganAnimalHeart
+  name: heart
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [ Animal, Pig ]
+
+- type: entity
+  id: OrganChikenHeart
+  parent: OrganAnimalHeart
+  name: heart
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [ Animal, Chiken ]
+
+- type: entity
+  id: OrganCatHeart
+  parent: OrganAnimalHeart
+  name: heart
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [ Animal, Cat ]
+
+- type: entity
+  id: OrganDogHeart
+  parent: OrganAnimalHeart
+  name: heart
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [ Animal, Dog ]

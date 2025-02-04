@@ -243,6 +243,7 @@
           Quantity: 25
   - type: Food
     requiresSpecialDigestion: true
+  - type: CognizinFix
   # Sunrise-End
 
 - type: entity
