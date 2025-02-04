@@ -571,6 +571,7 @@ WeaponSubMachineGunDrozd: WeaponSubMachineGunMP7
 GunSafeSubMachineGunWt550: CrateArmoryM16A4
 CrateArmorySMG: CrateArmoryM16A4
 GunSafeShotgunKammerer: GunSafeShotgunTrenchgun4034
+CrateArmoryShotgun: CrateArmoryShotgunTrenchgun4034Sawn
 GunSafeRifleLecter: null
 ComputerCargoShuttle: null
 ComputerShuttleCargo: null
