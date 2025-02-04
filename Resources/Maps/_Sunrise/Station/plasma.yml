@@ -66923,13 +66923,6 @@ entities:
     - type: Transform
       pos: -46.536045,-60.39634
       parent: 2
-- proto: ClothingBackpackSatchelHoS
-  entities:
-  - uid: 10459
-    components:
-    - type: Transform
-      pos: -79.45706,-20.22846
-      parent: 2
 - proto: ClothingBackpackWaterTank
   entities:
   - uid: 10467
@@ -133424,7 +133417,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -79.5,-19.5
       parent: 2
-  - uid: 2514
+  - uid: 251410
     components:
     - type: Transform
       pos: -80.5,-18.5
@@ -173473,30 +173466,6 @@ entities:
       parent: 2
     - type: ChamberMagazineAmmoProvider
       boltClosed: True
-- proto: WeaponRevolverPython
-  entities:
-  - uid: 26695
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -97.90673,-39.4278
-      parent: 2
-- proto: WeaponRevolverPythonAP
-  entities:
-  - uid: 41
-    components:
-    - type: Transform
-      parent: 24
-    - type: Physics
-      canCollide: False
-- proto: WeaponSubMachineGunSkorpion
-  entities:
-  - uid: 10465
-    components:
-    - type: Transform
-      parent: 10458
-    - type: Physics
-      canCollide: False
 - proto: WeaponShotgunDoubleBarreled
   entities:
   - uid: 2514
@@ -173511,26 +173480,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -82.59012,-22.49059
       parent: 2
-- proto: WeaponSniperMosin
-  entities:
-  - uid: 17
-    components:
-    - type: Transform
-      parent: 16
-    - type: ContainerContainer
-      containers:
-        ballistic-ammo: !type:Container
-          showEnts: False
-          occludes: True
-          ents: []
-        actions: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 18
-    - type: Physics
-      canCollide: False
-    - type: ActionsContainer
 - proto: WeaponSniperRepeater
   entities:
   - uid: 5473
