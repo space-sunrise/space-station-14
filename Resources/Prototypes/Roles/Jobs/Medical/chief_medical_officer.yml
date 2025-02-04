@@ -22,7 +22,6 @@
   icon: "JobIconChiefMedicalOfficer"
   supervisors: job-supervisors-captain
   canBeAntag: true # Sunrise-Edit
-  antagAdvantage: 20 # Sunrise-Edit
   radioBold: true # Sunrise-Edit
   displayWeight: 60 # Sunrise-Edit
   access:

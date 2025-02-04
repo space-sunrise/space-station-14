@@ -12,6 +12,23 @@
         amount: 4
 
 - type: entity
+  id: CrateArmoryShotgunTrenchgun4034Sawn
+  parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
+  name: Trenchgun4034 crate
+  description: Contains two Trenchgun4034 assault rifle with four mags. Requires Armory access to open.
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponShotgunTrenchgun4034
+      amount: 2
+    - id: BoxLethalshot
+      amount: 1
+    - id: BoxBeanbag
+      amount: 1
+    - id: BoxShotgunSlug
+      amount: 1
+
+- type: entity
   id: CrateArmoryAKMS
   parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
   name: AKMS crate

@@ -16,6 +16,8 @@
     EncryptionKeyScience: 2
     EncryptionKeySecurity: 1
     EncryptionKeyService: 3
-  emaggedInventory:
+  contrabandInventory:
+    BalloonNT: 2
+    LuxuryPen: 1
     AgentIDCard: 1 # Sunrise Edit
     EncryptionKeySyndie: 1 # Sunrise Edit

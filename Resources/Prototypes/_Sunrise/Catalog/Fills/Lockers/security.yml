@@ -59,8 +59,6 @@
     - id: WeaponShotgunPaladin12
       amount: 2
     - id: BoxLethalshot
-      amount: 2
-    - id: BoxShotgunIncendiary
       amount: 1
     - id: BoxShotgunSlug
       amount: 1
@@ -76,8 +74,25 @@
     - id: WeaponShotgunTrenchgun4034
       amount: 2
     - id: BoxLethalshot
+      amount: 1
+    - id: BoxBeanbag
+      amount: 1
+    - id: BoxShotgunSlug
+      amount: 1
+
+- type: entity
+  parent: GunSafe
+  id: GunSafeShotgunSPAS12
+  name: safe
+  suffix: LAW-12
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponShotgunSPAS12
       amount: 2
-    - id: BoxShotgunIncendiary
+    - id: BoxLethalshot
+      amount: 1
+    - id: BoxBeanbag
       amount: 1
     - id: BoxShotgunSlug
       amount: 1
@@ -92,6 +107,19 @@
     contents:
     - id: WeaponEnergyGunPistolSecurity
       amount: 4
+
+- type: entity
+  id: GunSafeCombineSmallArms
+  parent: GunSafe
+  name: safe
+  suffix: Energy Pistol/Glock22
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponEnergyGunPistolSecurity
+      amount: 3
+    - id: GlockBox
+      amount: 3
 
 - type: entity
   parent: GunSafe

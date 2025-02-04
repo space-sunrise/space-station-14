@@ -80078,116 +80078,6 @@ entities:
     - type: Transform
       pos: -1.3202012,47.433792
       parent: 2
-- proto: ClothingOuterArmorSWAT
-  entities:
-  - uid: 23420
-    components:
-    - type: Transform
-      pos: 1.5323834,45.522964
-      parent: 2
-    - type: GroupExamine
-      group:
-      - hoverMessage: ""
-        contextText: verb-examine-group-other
-        icon: /Textures/Interface/examine-star.png
-        components:
-        - Armor
-        - ClothingSpeedModifier
-        entries:
-        - message: Понижает вашу скорость на [color=yellow]20%[/color].
-          priority: 0
-          component: ClothingSpeedModifier
-        - message: >-
-            Обеспечивает следующую защиту:
-
-            - [color=yellow]Ударный[/color] урон снижается на [color=lightblue]55%[/color].
-
-            - [color=yellow]Режущий[/color] урон снижается на [color=lightblue]55%[/color].
-
-            - [color=yellow]Колющий[/color] урон снижается на [color=lightblue]50%[/color].
-
-            - [color=yellow]Высокотемпературный[/color] урон снижается на [color=lightblue]40%[/color].
-
-            - [color=yellow]Радиационный[/color] урон снижается на [color=lightblue]25%[/color].
-
-            - [color=yellow]Кислотный[/color] урон снижается на [color=lightblue]25%[/color].
-
-            - [color=orange]Взрывной[/color] урон снижается на [color=lightblue]20%[/color].
-          priority: 0
-          component: Armor
-        title: null
-  - uid: 23421
-    components:
-    - type: Transform
-      pos: 1.5011334,46.585464
-      parent: 2
-    - type: GroupExamine
-      group:
-      - hoverMessage: ""
-        contextText: verb-examine-group-other
-        icon: /Textures/Interface/examine-star.png
-        components:
-        - Armor
-        - ClothingSpeedModifier
-        entries:
-        - message: Понижает вашу скорость на [color=yellow]20%[/color].
-          priority: 0
-          component: ClothingSpeedModifier
-        - message: >-
-            Обеспечивает следующую защиту:
-
-            - [color=yellow]Ударный[/color] урон снижается на [color=lightblue]55%[/color].
-
-            - [color=yellow]Режущий[/color] урон снижается на [color=lightblue]55%[/color].
-
-            - [color=yellow]Колющий[/color] урон снижается на [color=lightblue]50%[/color].
-
-            - [color=yellow]Высокотемпературный[/color] урон снижается на [color=lightblue]40%[/color].
-
-            - [color=yellow]Радиационный[/color] урон снижается на [color=lightblue]25%[/color].
-
-            - [color=yellow]Кислотный[/color] урон снижается на [color=lightblue]25%[/color].
-
-            - [color=orange]Взрывной[/color] урон снижается на [color=lightblue]20%[/color].
-          priority: 0
-          component: Armor
-        title: null
-  - uid: 23423
-    components:
-    - type: Transform
-      pos: 1.4855083,47.56984
-      parent: 2
-    - type: GroupExamine
-      group:
-      - hoverMessage: ""
-        contextText: verb-examine-group-other
-        icon: /Textures/Interface/examine-star.png
-        components:
-        - Armor
-        - ClothingSpeedModifier
-        entries:
-        - message: Понижает вашу скорость бега на [color=yellow]15%[/color].
-          priority: 0
-          component: ClothingSpeedModifier
-        - message: >-
-            Обеспечивает следующую защиту:
-
-            - [color=yellow]Ударный[/color] урон снижается на [color=lightblue]40%[/color].
-
-            - [color=yellow]Режущий[/color] урон снижается на [color=lightblue]40%[/color].
-
-            - [color=yellow]Колющий[/color] урон снижается на [color=lightblue]55%[/color].
-
-            - [color=yellow]Высокотемпературный[/color] урон снижается на [color=lightblue]35%[/color].
-
-            - [color=yellow]Радиационный[/color] урон снижается на [color=lightblue]25%[/color].
-
-            - [color=yellow]Кислотный[/color] урон снижается на [color=lightblue]25%[/color].
-
-            - [color=orange]Взрывной[/color] урон снижается на [color=lightblue]10%[/color].
-          priority: 0
-          component: Armor
-        title: null
 - proto: ClothingOuterCardborg
   entities:
   - uid: 11296
@@ -80490,23 +80380,6 @@ entities:
     components:
     - type: Transform
       pos: 54.483116,-49.66147
-      parent: 2
-- proto: ClothingShoesSwat
-  entities:
-  - uid: 23424
-    components:
-    - type: Transform
-      pos: 1.4698833,47.28859
-      parent: 2
-  - uid: 23425
-    components:
-    - type: Transform
-      pos: 1.4698833,46.304214
-      parent: 2
-  - uid: 23447
-    components:
-    - type: Transform
-      pos: 1.4698833,45.272964
       parent: 2
 - proto: ClothingUnderSocksCoder
   entities:
@@ -140497,7 +140370,7 @@ entities:
     - type: Transform
       pos: 1.593339,47.569435
       parent: 2
-- proto: MagazineM16A4
+- proto: MagazinePistolSubMachineGun
   entities:
   - uid: 19779
     components:
@@ -173798,38 +173671,6 @@ entities:
     - type: Transform
       pos: 7.5693617,-44.500946
       parent: 2
-- proto: Truncheon
-  entities:
-  - uid: 24704
-    components:
-    - type: Transform
-      pos: 1.4910879,45.40998
-      parent: 2
-  - uid: 24705
-    components:
-    - type: Transform
-      pos: 1.4442129,46.50373
-      parent: 2
-  - uid: 24708
-    components:
-    - type: Transform
-      pos: 1.4598379,47.44123
-      parent: 2
-  - uid: 25374
-    components:
-    - type: Transform
-      pos: -0.46484053,47.613106
-      parent: 2
-  - uid: 25375
-    components:
-    - type: Transform
-      pos: -0.53891456,47.44644
-      parent: 2
-  - uid: 25376
-    components:
-    - type: Transform
-      pos: -0.38304162,47.446167
-      parent: 2
 - proto: TwoWayLever
   entities:
   - uid: 24576
@@ -196889,7 +196730,7 @@ entities:
     - type: Transform
       pos: 1.577714,45.52256
       parent: 2
-- proto: WeaponRifleM16A4
+- proto: WeaponSubMachineGunSkorpion
   entities:
   - uid: 28876
     components:
@@ -196938,32 +196779,6 @@ entities:
     - type: Transform
       rot: 1.5707963267948966 rad
       pos: 12.204249,42.05423
-      parent: 2
-- proto: WeaponTurretHostile
-  entities:
-  - uid: 20713
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 3.5,-20.5
-      parent: 2
-  - uid: 20775
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 1.5,-25.5
-      parent: 2
-  - uid: 20986
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -4.5,-20.5
-      parent: 2
-  - uid: 20998
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -2.5,-25.5
       parent: 2
 - proto: WeedSpray
   entities:

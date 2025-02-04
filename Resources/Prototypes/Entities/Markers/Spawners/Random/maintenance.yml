@@ -300,11 +300,7 @@
       - id: SprayPaintOrange
       - id: DeathPaint
       - id: MechPaintRipleyZairjah
-      - id: MechPaintGygaxOld
-      - id: MechPaintDurandExecutor
       - id: MechPaintRipleyHauler
-      - id: MechPaintGygaxWhite
-      - id: MechPaintClarkeOrangey
       - id: MechPaintRipleyFirestarter
       - id: MechPaintRipleyAluminizer
       # Sunrise-end

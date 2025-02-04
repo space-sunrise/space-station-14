@@ -26,6 +26,10 @@
     Bible: 1
     RedFlowers: 3 # Sunrise
     BlueFlowers: 3 # Sunrise
+  contrabandInventory:
+    FoodBakedBunHotX: 2
+    DrinkWineBottleFull: 1
+    ToyFigurineChaplain: 1
   emaggedInventory:
     ClothingOuterArmorCult: 1
     ClothingHeadHelmetCult: 1

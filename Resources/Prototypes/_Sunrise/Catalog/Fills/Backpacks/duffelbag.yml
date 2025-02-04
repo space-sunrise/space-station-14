@@ -12,18 +12,6 @@
 
 #ERT_Uplink
 - type: entity
-  id: ClothingBackpackDuffelWeaponSubMachineGunWt550Filled
-  parent: ClothingBackpackDuffelMilitary
-  name: Bundle WT550
-  description: WT550 with 3 raspy magazines.
-  components:
-  - type: StorageFill
-    contents:
-    - id: WeaponSubMachineGunWt550
-    - id: MagazinePistolSubMachineGunTopMounted
-      amount: 3
-
-- type: entity
   id: ClothingBackpackDuffelWeaponSubMachineGunMP5Filled
   parent: ClothingBackpackDuffelMilitary
   name: Bundle MP5
@@ -37,17 +25,17 @@
     - id: MagazineMP5Extended
       amount: 1
 
-- type: entity
-  id: ClothingBackpackDuffelWeaponRifleLecterFilled
-  parent: ClothingBackpackDuffelMilitary
-  name: Bundlelecter
-  description: Lecter with 3 raspy magazines.
-  components:
-    - type: StorageFill
-      contents:
-        - id: WeaponRifleLecter
-        - id: MagazineRifle
-          amount: 3
+#- type: entity
+#  id: ClothingBackpackDuffelWeaponRifleLecterFilled
+#  parent: ClothingBackpackDuffelMilitary
+#  name: Bundlelecter
+#  description: Lecter with 3 raspy magazines.
+#  components:
+#    - type: StorageFill
+#      contents:
+#        - id: WeaponRifleLecter
+#        - id: MagazineRifle
+#          amount: 3
 
 - type: entity
   id: ClothingBackpackDuffelWeaponSubMachineGunP90Filled

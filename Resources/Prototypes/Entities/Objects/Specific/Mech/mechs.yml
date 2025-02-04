@@ -386,6 +386,97 @@
       mech-battery-slot:
       - PowerCageMedium
 
+# Pirate Mech Yarrk
+- type: entity
+  id: MechBigYarrke
+  parent: [ BaseMech, IndustrialMech, CombatMech, BaseMajorContraband ]
+  name: Big Yarrke
+  description: A heavy ancient mech for cold harsh realities of deep space. It has built-in trusts and Mining Industrial Drill.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/clarke.rsi
+    scale: 1.08, 1.08
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: bigbrother
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepCyborgLegs
+      params:
+        volume: 5
+  - type: Mech
+    baseState: bigbrother
+    openState: bigbrother-open
+    brokenState: bigbrother-broken
+    mechToPilotDamageMultiplier: 0.20
+    airtight: true
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+    equipmentWhitelist:
+      tags:
+      - IndustrialMech
+      - CombatMech
+  - type: Damageable
+    damageModifierSet: MediumArmorSyndi
+  - type: MeleeWeapon
+    hidden: true
+    autoAttack: true
+    attackRate: 3.5
+    damage:
+      types:
+        Structural: 60
+        Piercing: 4
+        Slash: 5
+        Blunt: 10
+    soundHit:
+      path: "/Audio/Items/drill_use.ogg"
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 3
+  - type: CanMoveInAir
+  - type: MovementAlwaysTouching
+  - type: Reflect
+    reflectProb: 0.20
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    reflects:
+    - NonEnergy
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      500: Critical
+    showOverlays: false
+    allowRevives: true
+  - type: PointLight
+    enabled: false
+    mask: /Textures/Effects/LightMasks/soft_cone.png
+    autoRot: true
+    color: "#FFFF00"
+    radius: 6
+    netsync: false
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - Clarke
+    - Pickaxe
+  - type: AccessReader
+    access: [["NuclearOperative"]]
+
+- type: entity
+  id: MechBigYarrkeBattery
+  parent: MechBigYarrke
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCageCombat
+
 # H.O.N.K.
 - type: entity
   parent: [ BaseMech, SpecialMech, BaseCivilianContraband ]
