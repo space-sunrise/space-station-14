@@ -896,7 +896,7 @@
   productEntity: BoxMiniSyringe
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 2
+    Telecrystal: 1
   cost:
     Telecrystal: 4
   categories:
@@ -1214,9 +1214,9 @@
   - UplinkWearables
   conditions:
   - !type:StoreWhitelistCondition
-    whitelist:
+    blacklist:
       tags:
-      - NukeOpsUplink
+      - AssaultOpsUplink
 
 - type: listing
   id: UplinkEnergyDomeBackpackSyndie
