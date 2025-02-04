@@ -3,6 +3,7 @@ using Content.Server.Speech.Components;
 using Content.Shared.EntityEffects;
 using Content.Shared.Mind.Components;
 using Robust.Shared.Prototypes;
+using Content.Shared._Sunrise.Reagents; // Sunrise Edit
 
 namespace Content.Server.EntityEffects.Effects;
 
@@ -27,6 +28,13 @@ public sealed partial class MakeSentient : EntityEffect
         {
             return;
         }
+
+        // Sunrise Start
+        if (entityManager.TryGetComponent<CognizinFixComponent>(uid, out var CognizinFix))
+        {
+            return;
+        }
+        // Sunrise End
 
         // Don't add a ghost role to things that already have ghost roles
         if (entityManager.TryGetComponent(uid, out GhostRoleComponent? ghostRole))

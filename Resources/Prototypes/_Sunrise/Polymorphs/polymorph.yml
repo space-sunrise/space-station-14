@@ -2,7 +2,87 @@
   id: PermanentlyMonkey
   configuration:
     entity: MobMonkey
+    transferName: true
     forced: true
+    inventory: Transfer
+    revertOnCrit: false
+    revertOnDeath: false
+
+- type: polymorph
+  id: PermanentlyHuman
+  configuration:
+    entity: MobHuman
+    forced: true
+    transferName: true
+    inventory: Transfer
+    revertOnCrit: false
+    revertOnDeath: false
+
+- type: polymorph
+  id: PermanentlyReptilian
+  configuration:
+    entity: MobReptilian
+    forced: true
+    transferName: true
+    inventory: Transfer
+    revertOnCrit: false
+    revertOnDeath: false
+
+- type: polymorph
+  id: PermanentlyTajaran
+  configuration:
+    entity: MobTajaran
+    forced: true
+    transferName: true
+    inventory: Transfer
+    revertOnCrit: false
+    revertOnDeath: false
+    allowRepeatedMorphs: true
+
+- type: polymorph
+  id: PermanentlySlime
+  configuration:
+    entity: MobSlimePerson
+    forced: true
+    transferName: true
+    revertOnCrit: false
+    revertOnDeath: false
+
+- type: polymorph
+  id: PermanentlyMoth
+  configuration:
+    entity: MobMoth
+    forced: true
+    transferName: true
+    inventory: Transfer
+    revertOnCrit: false
+    revertOnDeath: false
+
+- type: polymorph
+  id: PermanentlySwine
+  configuration:
+    entity: MobSwine
+    forced: true
+    transferName: true
+    inventory: Transfer
+    revertOnCrit: false
+    revertOnDeath: false
+
+- type: polymorph
+  id: PermanentlyVox
+  configuration:
+    entity: MobVox
+    forced: true
+    transferName: true
+    revertOnCrit: false
+    revertOnDeath: false
+
+- type: polymorph
+  id: PermanentlyVulpkanin
+  configuration:
+    entity: MobVulpkanin
+    forced: true
+    transferName: true
     inventory: Transfer
     revertOnCrit: false
     revertOnDeath: false
