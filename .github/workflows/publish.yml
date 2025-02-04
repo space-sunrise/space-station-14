@@ -23,15 +23,15 @@ jobs:
       with:
         submodules: 'recursive'
 
-    - name: 'Checkout private code'
+    - name: Checkout SunrisePrivate
       uses: actions/checkout@v2
       with:
         repository: secrets.SUNRISE_PRIVATE_REPO_URL
         path: SunrisePrivate
         ssh-key: ${{ secrets.SUNRISE_SSH_KEY }}
 
-    - name: Clone SunrisePrivate repository
-      run: python3 Tools/_sunrise/clone_private_repo.py
+    - name: Move SunrisePrivate files
+      run: python3 Tools/_sunrise/move_sunrise_private.py
       env:
         SUNRISE_SSH_KEY: ${{ secrets.SUNRISE_SSH_KEY }}
         SUNRISE_PRIVATE_REPO_URL: ${{ secrets.SUNRISE_PRIVATE_REPO_URL }}
