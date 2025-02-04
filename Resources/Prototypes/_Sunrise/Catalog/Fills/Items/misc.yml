@@ -32,6 +32,8 @@
     containers:
       item:
       - CombatKnife
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.35
 
 - type: entity
   id: ClothingBeltSecurityFilledERT
