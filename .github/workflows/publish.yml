@@ -23,16 +23,12 @@ jobs:
       with:
         submodules: 'recursive'
 
-    - name: Setup SSH Key
-      run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.SUNRISE_SSH_KEY }}" > ~/.ssh/id_rsa_sunrise
-        chmod 600 ~/.ssh/id_rsa_sunrise
-        eval $(ssh-agent -s)
-        ssh-add ~/.ssh/id_rsa_sunrise
-        ssh-keyscan github.com >> ~/.ssh/known_hosts
-      env:
-        SUNRISE_SSH_KEY: ${{ secrets.SUNRISE_SSH_KEY }}
+    - name: 'Checkout private code'
+      uses: actions/checkout@v2
+      with:
+        repository: secrets.SUNRISE_PRIVATE_REPO_URL
+        path: SunrisePrivate
+        ssh-key: ${{ secrets.SUNRISE_SSH_KEY }}
 
     - name: Clone SunrisePrivate repository
       run: python3 Tools/_sunrise/clone_private_repo.py
