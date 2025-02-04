@@ -9,37 +9,16 @@ CLONE_DIR = "SunrisePrivateTemp"
 TARGET_DIRS = ["Resources", "Content.Client", "Content.Server", "Content.Shared"]
 
 if not REPO_URL:
-    print("Error: env SUNRISE_PRIVATE_REPO_URL not set.", file=sys.stderr)
+    print("Error: enc SUNRISE_PRIVATE_REPO_URL not set.", file=sys.stderr)
     sys.exit(1)
 
 
-def run_command(command, shell=False):
-    result = subprocess.run(command, shell=shell, check=True, capture_output=True, text=True)
-    if result.returncode != 0:
-        print(f"❌ Error command: {' '.join(command)}", file=sys.stderr)
-        print(f"📜 Result stdout: {result.stdout}", file=sys.stderr)
-        print(f"⚠️ Result stderr: {result.stderr}", file=sys.stderr)
-        sys.exit(result.returncode)
-
-def setup_ssh():
-    ssh_key = os.getenv("SUNRISE_SSH_KEY")
-    if not ssh_key:
-        print("❌ Error: env SUNRISE_SSH_KEY not set", file=sys.stderr)
-        sys.exit(1)
-
-    os.makedirs(os.path.expanduser("~/.ssh"), exist_ok=True)
-
-    with open(SSH_KEY_PATH, "w") as f:
-        f.write(ssh_key + "\n")
-
-    os.chmod(SSH_KEY_PATH, 0o600)
-
-    run_command(["ls", "-l", SSH_KEY_PATH])
-    run_command(["cat", SSH_KEY_PATH])
-
-    run_command(["ssh-agent", "-s"], shell=True)
-    run_command(["ssh-add", SSH_KEY_PATH])
-
+def run_command(command, check=True, shell=False):
+    result = subprocess.run(command, shell=shell, check=check, capture_output=True, text=True)
+    if result.stdout:
+        print(result.stdout)
+    if result.stderr:
+        print(result.stderr, file=sys.stderr)
 
 def clone_repo():
     if os.path.exists(CLONE_DIR):
@@ -65,7 +44,6 @@ def cleanup():
 
 
 def main():
-    setup_ssh()
     clone_repo()
     move_directories()
     cleanup()
