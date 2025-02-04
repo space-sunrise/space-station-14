@@ -4,6 +4,6 @@
     sprite: Objects/Misc/monkeycube.rsi
     state: box_variant
   product: CrateNPCVariantCubeBoxSunrise
-  cost: 3000
+  cost: 12000
   category: cargoproduct-category-name-medical
   group: market
