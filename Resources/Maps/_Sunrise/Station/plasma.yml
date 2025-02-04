@@ -173473,6 +173473,64 @@ entities:
       parent: 2
     - type: ChamberMagazineAmmoProvider
       boltClosed: True
+- proto: WeaponRevolverPython
+  entities:
+  - uid: 26695
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -97.90673,-39.4278
+      parent: 2
+- proto: WeaponRevolverPythonAP
+  entities:
+  - uid: 41
+    components:
+    - type: Transform
+      parent: 24
+    - type: Physics
+      canCollide: False
+- proto: WeaponSubMachineGunSkorpion
+  entities:
+  - uid: 10465
+    components:
+    - type: Transform
+      parent: 10458
+    - type: Physics
+      canCollide: False
+- proto: WeaponShotgunDoubleBarreled
+  entities:
+  - uid: 2514
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -82.791504,-22.504478
+      parent: 2
+  - uid: 19530
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -82.59012,-22.49059
+      parent: 2
+- proto: WeaponSniperMosin
+  entities:
+  - uid: 17
+    components:
+    - type: Transform
+      parent: 16
+    - type: ContainerContainer
+      containers:
+        ballistic-ammo: !type:Container
+          showEnts: False
+          occludes: True
+          ents: []
+        actions: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 18
+    - type: Physics
+      canCollide: False
+    - type: ActionsContainer
 - proto: WeaponSniperRepeater
   entities:
   - uid: 5473

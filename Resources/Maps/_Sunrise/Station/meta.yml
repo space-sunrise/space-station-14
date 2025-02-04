@@ -122093,7 +122093,7 @@ entities:
     - type: Transform
       pos: -44.5,-21.5
       parent: 2
-- proto: MagazineM16A4
+- proto: MagazinePistolSubMachineGun
   entities:
   - uid: 9853
     components:
@@ -169202,7 +169202,7 @@ entities:
     - type: Transform
       pos: 18.527746,39.344753
       parent: 2
-- proto: WeaponRifleM16A4
+- proto: WeaponSubMachineGunSkorpion
   entities:
   - uid: 9859
     components:
