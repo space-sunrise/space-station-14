@@ -1,4 +1,4 @@
-﻿advertisement-smite-1 = SMITE! Изгони свою жажду!
+advertisement-smite-1 = SMITE! Изгони свою жажду!
 advertisement-smite-2 = Мистический взрыв лимона и лайма!
 advertisement-smite-3 = Уже более миллиона SMITE покорили жажду!
 advertisement-smite-4 = SMITE! Брось 2d8 за ВКУС.

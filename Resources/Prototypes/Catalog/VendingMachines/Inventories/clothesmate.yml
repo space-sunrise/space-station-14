@@ -69,6 +69,7 @@
     ClothingUniformJumpskirtCasualRed: 2
     ClothingUniformJumpsuitCasualGreen: 2
     ClothingUniformJumpskirtCasualGreen: 2
+    ClothingUniformJumpsuitBlackturtleneck: 4 #sunrise
     # DO NOT ADD MORE, USE UNIFORM DYING
     ClothingShoesColorBlack: 8
     ClothingShoesColorBrown: 4
@@ -116,6 +117,8 @@
     ClothingMaskNeckGaiter: 2
     ClothingUniformJumpsuitTacticool: 1
     ClothingUniformJumpskirtTacticool: 1
+    ToyFigurinePassenger: 1
+    ToyFigurineGreytider: 1
   # DO NOT ADD MORE, USE UNIFORM DYING
   emaggedInventory:
     ClothingHeadHelmetSwatSyndicate: 1 # Sunrise Edit

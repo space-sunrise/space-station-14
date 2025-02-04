@@ -484,10 +484,10 @@
   id: SolarTrackerElectronics
   result: SolarTrackerElectronics
 
-- type: latheRecipe
-  parent: BaseCircuitboardRecipe
-  id: CloningConsoleComputerCircuitboard
-  result: CloningConsoleComputerCircuitboard
+#- type: latheRecipe
+#  parent: BaseCircuitboardRecipe
+#  id: CloningConsoleComputerCircuitboard
+#  result: CloningConsoleComputerCircuitboard
 
 - type: latheRecipe
   parent: BaseCircuitboardRecipe

@@ -66923,38 +66923,9 @@ entities:
     - type: Transform
       pos: -46.536045,-60.39634
       parent: 2
-- proto: ClothingBackpackDuffelWeaponRifleG36Filled
+- proto: ClothingBackpackSatchelHoS
   entities:
-  - uid: 37
-    components:
-    - type: Transform
-      pos: -79.48947,-19.35809
-      parent: 2
-    - type: GroupExamine
-      group:
-      - hoverMessage: ""
-        contextText: verb-examine-group-other
-        icon: /Textures/Interface/examine-star.png
-        components:
-        - Armor
-        - ClothingSpeedModifier
-        entries:
-        - message: >-
-            Обеспечивает следующую защиту:
-
-            - [color=orange]Взрывной[/color] урон [color=white]к содержимому[/color] снижается на [color=lightblue]10%[/color].
-          priority: 0
-          component: Armor
-        - message: Понижает вашу скорость бега на [color=yellow]10%[/color].
-          priority: 0
-          component: ClothingSpeedModifier
-        title: null
-  - uid: 38
-    components:
-    - type: Transform
-      pos: -79.47558,-19.797905
-      parent: 2
-  - uid: 39
+  - uid: 10459
     components:
     - type: Transform
       pos: -79.45706,-20.22846

@@ -359,6 +359,8 @@ entities:
         chunkSize: 4
     - type: GasTileOverlay
     - type: RadiationGridResistance
+    - type: IFF
+      flags: Hide
 - proto: AirlockExternal
   entities:
   - uid: 2
@@ -1430,7 +1432,7 @@ entities:
     - type: Transform
       pos: -0.5,2.5
       parent: 1
-- proto: PowerCellAntiqueProto
+- proto: PowerCellHyperPrinted
   entities:
   - uid: 191
     components:
@@ -2022,13 +2024,6 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,4.5
       parent: 1
-- proto: TeslaToy
-  entities:
-  - uid: 269
-    components:
-    - type: Transform
-      pos: 16.5,1.5
-      parent: 1
 - proto: ToyFigurineQueen
   entities:
   - uid: 270
@@ -2451,16 +2446,13 @@ entities:
     - type: Transform
       pos: 5.5,-5.5
       parent: 1
-- proto: WeaponTurretHostile
+- proto: WeaponMechCombatTeslaCannon
   entities:
-  - uid: 352
+  - uid: 269
     components:
     - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 2.5,8.5
+      pos: 16.5,1.5
       parent: 1
-    - type: BallisticAmmoProvider
-      unspawnedCount: 21
 - proto: WeaponTurretSyndicateBroken
   entities:
   - uid: 353

@@ -107773,20 +107773,6 @@ entities:
     - type: Transform
       pos: -4.3806252,-346.3184
       parent: 2
-- proto: WeaponTurretHostile
-  entities:
-  - uid: 17209
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 30.5,-306.5
-      parent: 2
-  - uid: 17210
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 30.5,-308.5
-      parent: 2
 - proto: WeaponTurretSyndicateBroken
   entities:
   - uid: 17211

@@ -69,9 +69,9 @@
     - type: Stealth
       mirage: false # Sunrise-Edit
       hadOutline: true
-    - type: StealthOnMove
-      minVisibility: -1.5 # Sunrise-Edit
       examineThreshold: 0.9 # Sunrise-Edit
+    - type: StealthOnMove
+      passiveVisibilityRate: -0.15 # Sunrise-Edit
 
 - type: entity
   id: BigBox

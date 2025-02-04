@@ -36,6 +36,10 @@
     - VimPilot
   - type: StealTarget
     stealGroup: AnimalIan
+  # Sunrise Start
+  - type: Body
+    prototype: Animal
+  # Sunrise End
 
 - type: entity
   name: Old Ian

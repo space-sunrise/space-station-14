@@ -1,0 +1,35 @@
+- type: metabolizerType
+  id: Primate
+  name: metabolizer-type-primate
+
+- type: metabolizerType
+  id: Kobold
+  name: metabolizer-type-kobold
+
+- type: metabolizerType
+  id: Felinid
+  name: metabolizer-type-felinid
+
+- type: metabolizerType
+  id: WildSlime
+  name: metabolizer-type-wild-slime
+
+- type: metabolizerType
+  id: Mothroach
+  name: metabolizer-type-mothroach
+
+- type: metabolizerType
+  id: Pig
+  name: metabolizer-type-pig
+
+- type: metabolizerType
+  id: Chiken
+  name: metabolizer-type-chiken
+
+- type: metabolizerType
+  id: Cat
+  name: metabolizer-type-cat
+
+- type: metabolizerType
+  id: Dog
+  name: metabolizer-type-dog
