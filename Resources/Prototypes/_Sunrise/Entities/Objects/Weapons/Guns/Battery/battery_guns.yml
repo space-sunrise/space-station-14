@@ -334,6 +334,10 @@
   id: WeaponGunLaserCarbineAutomatic
   description: "A burst automatic battery laser carbine."
   components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,1
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_carbine.rsi
     layers:
@@ -349,13 +353,10 @@
     angleDecay: 8
     selectedMode: Burst
     shotsPerBurst: 3
-    burstCooldown: 0.3
-    burstFireRate: 4.4
+    burstCooldown: 0.25
+    burstFireRate: 4.5
     availableModes:
     - Burst
-    size: Large
-    shape:
-    - 0,0,4,1
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_carbine.rsi
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_carbine.rsi
