@@ -13,6 +13,9 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/dragunov/tiny.rsi
   - type: Item
+    size: Huge
+    shape:
+    - 0,0,5,2
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/dragunov/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
@@ -83,6 +86,9 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/br-64/tiny.rsi
   - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,2
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/br-64/tiny.rsi
   - type: GunWieldBonus
     minAngle: -20
@@ -124,6 +130,7 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
+  - type: GunRequiresWield
   - type: Wieldable
   - type: UseDelay
     delay: 1
@@ -150,6 +157,9 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/bauer127/tiny.rsi
   - type: Item
+    size: Huge
+    shape:
+    - 0,0,5,2
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/bauer127/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
@@ -215,6 +225,9 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/garand/tiny.rsi
   - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,1
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/garand/tiny.rsi
   - type: Gun
     fireRate: 0.8
@@ -239,6 +252,9 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/mosin/tiny.rsi
   - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,1
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/mosin/tiny.rsi
   - type: Gun
     fireRate: 0.8
@@ -254,7 +270,9 @@
   description: A civilian grade lever action firearm, favored by space cowboys for its reliability and stopping power. Uses .45 magnum ammo.
   components:
   - type: Item
-    size: Large
+    size: Huge
+    shape:
+    - 0,0,5,1
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/n2524/repeater_inhands_64x.rsi
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Snipers/n2524/repeater.rsi
