@@ -56,6 +56,7 @@ namespace Content.Server.Entry
         private IServerDbManager? _dbManager;
         private IWatchlistWebhookManager _watchlistWebhookManager = default!;
         private IConnectionManager? _connectionManager;
+        private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
         /// <inheritdoc />
         public override void Init()
@@ -124,6 +125,7 @@ namespace Content.Server.Entry
 
                 // Sunrise-Sponsors-Start
                 SunriseServerEntry.Init();
+                IoCManager.Instance!.TryResolveType(out _sponsorsManager);
                 // Sunrise-Sponsors-End
 
                 _voteManager.Initialize();
@@ -204,6 +206,7 @@ namespace Content.Server.Entry
                     _watchlistWebhookManager.Update();
                     _connectionManager?.Update();
                     _serversHubManager.Update(); // Sunrise-Edit
+                    _sponsorsManager?.Update(); // Sunrise-Edit
                     break;
             }
         }
