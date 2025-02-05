@@ -20,7 +20,7 @@
   id: BulletPistol
   damage:
     types:
-      Piercing: 16
+      Piercing: 11
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -67,8 +67,8 @@
   id: BulletPistolUranium
   damage:
     types:
-      Radiation: 6
-      Piercing: 10
+      Radiation: 5
+      Piercing: 6
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -79,7 +79,7 @@
   id: BulletRifle
   damage:
     types:
-      Piercing: 17
+      Piercing: 12
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -138,8 +138,9 @@
   id: BulletMagnum
   damage:
     types:
-      Piercing: 27
-      Blunt: 8
+      Piercing: 25
+      Blunt: 5
+  staminaDamage: 12
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -186,7 +187,7 @@
   id: BulletMagnumAP
   damage:
     types:
-      Piercing: 26
+      Piercing: 22
   ignoreResistances: true
   collisionMask: BulletImpassable
   reflective: NonEnergy
@@ -198,8 +199,8 @@
   id: BulletMagnumUranium
   damage:
     types:
-      Radiation: 15
-      Piercing: 20
+      Radiation: 5
+      Piercing: 25
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -210,7 +211,7 @@
   id: BulletLightRifle
   damage:
     types:
-      Piercing: 19
+      Piercing: 14
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -257,8 +258,8 @@
   id: BulletLightRifleUranium
   damage:
     types:
-      Radiation: 9
-      Piercing: 10
+      Radiation: 6
+      Piercing: 8
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -269,7 +270,7 @@
   id: BulletHeavyRifle
   damage:
     types:
-      Piercing: 19
+      Piercing: 14
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -291,7 +292,7 @@
   id: BulletCaselessRifle
   damage:
     types:
-      Piercing: 19
+      Piercing: 14
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -391,7 +392,7 @@
   id: PelletShotgun
   damage:
     types:
-      Piercing: 10
+      Piercing: 7
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
