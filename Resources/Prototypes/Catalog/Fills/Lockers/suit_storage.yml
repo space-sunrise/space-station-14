@@ -155,7 +155,6 @@
         - id: ClothingOuterHardsuitSecurity
         - id: ClothingMaskBreath
         - id: ClothingShoesBootsMagSec  # Sunrise-edit
-          prob: 0.75
   - type: AccessReader
     access: [["Security"]]
 
