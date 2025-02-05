@@ -42,7 +42,7 @@
 #  id: ArmoryMagazineBoxLightRifleBig
 #  icon:
 #    sprite: Objects/Weapons/Guns/Ammunition/Boxes/light_rifle.rsi
-#    state: base-b
+#    state: base-big
 #  product: CrateArmoryMagazineBoxLightRifleBig
 #  cost: 2000
 #  category: cargoproduct-category-name-armory
@@ -52,7 +52,7 @@
   id: ArmoryMagazineBoxRifleBig
   icon:
     sprite: Objects/Weapons/Guns/Ammunition/Boxes/rifle.rsi
-    state: base-b
+    state: base-big
   product: CrateArmoryMagazineBoxRifleBig
   cost: 2000
   category: cargoproduct-category-name-armory
