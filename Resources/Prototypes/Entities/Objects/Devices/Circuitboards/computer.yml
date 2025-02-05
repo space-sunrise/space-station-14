@@ -364,16 +364,16 @@
   - type: ComputerBoard
     prototype: ComputerShuttleSyndie
 
-- type: entity
-  parent: BaseComputerCircuitboard
-  id: CloningConsoleComputerCircuitboard
-  name: cloning console computer board
-  description: A computer printed circuit board for a cloning console.
-  components:
-    - type: Sprite
-      state: cpu_medical
-    - type: ComputerBoard
-      prototype: ComputerCloningConsole
+#- type: entity
+#  parent: BaseComputerCircuitboard
+#  id: CloningConsoleComputerCircuitboard
+#  name: cloning console computer board
+#  description: A computer printed circuit board for a cloning console.
+#  components:
+#    - type: Sprite
+#      state: cpu_medical
+#    - type: ComputerBoard
+#      prototype: ComputerCloningConsole
 
 - type: entity
   parent: BaseComputerCircuitboard

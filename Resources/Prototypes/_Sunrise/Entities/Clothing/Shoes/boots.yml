@@ -17,6 +17,8 @@
     sprite: _Sunrise/Clothing/Shoes/Boots/blueshield.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Shoes/Boots/blueshield.rsi
+  - type: ClothingSlowOnDamageModifier
+    modifier: 0.35
 
 - type: entity
   parent: [ClothingShoesBase, ClothingSlotBase]

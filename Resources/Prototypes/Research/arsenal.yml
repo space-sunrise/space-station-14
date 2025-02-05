@@ -244,6 +244,8 @@
   - GygaxPeripheralsElectronics
   - GygaxTargetingElectronics
   - WeaponMechCombatUltraRifle
+  - PaintGygaxWhite
+  - PaintGygaxOld
   technologyPrerequisites:
   - Ripley2
 
@@ -318,5 +320,7 @@
   - WeaponMechCombatShotgun
   - WeaponMechCombatShotgunIncendiary
   - PowerCageCombat
+  - PaintDurandExecutor
+  - PaintDurandShire
   technologyPrerequisites:
   - Gygax

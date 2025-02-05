@@ -542,6 +542,13 @@ LightTree06: LightTree
 #2024-12-28
 DrinkIrishCarBomb: DrinkIrishSlammer
 
+#2025-01-06
+ClothingMaskSexyClown: ClothingMaskBlushingClown
+ClothingMaskSexyMime: ClothingMaskBlushingMime
+
+# 2025-01-27
+FoodCondimentPacketFrostoil: FoodCondimentPacketColdsauce
+
 # Sunrise migrations
 AirlockExternalGlassShuttleArrivals: AirlockExternalGlassShuttleArrivalsLocked
 AirlockHatchSyndicate: AirlockHatchSyndicateLocked
@@ -550,8 +557,8 @@ CryogenicSleepUnitSpawner: CryogenicSleepUnitSpawnerLateJoin
 WeaponLaserCannon: WeaponEarthGovLaserSniper
 WeaponRifleLecter: WeaponRifleM16A4
 WeaponDisabler: WeaponEnergyGunMini
-MagazinePistolSubMachineGunTopMounted: MagazineM16A4
-WeaponSubMachineGunWt550: WeaponRifleM16A4
+MagazinePistolSubMachineGunTopMounted: MagazinePistolSubMachineGun
+WeaponSubMachineGunWt550: WeaponSubMachineGunSkorpion
 WeaponRevolverMateba: WeaponRevolverMatebaNew
 WeaponSniperHristov: WeaponIONRifle
 WeaponLaserCarbine: WeaponEarthGovLaserCarbine
@@ -561,6 +568,11 @@ WeaponRifleM90GrenadeLauncher: WeaponRifleM28
 WeaponShotgunEnforcer: WeaponShotgunSPAS12
 WeaponShotgunKammerer: WeaponShotgunTrenchgun4034
 WeaponSubMachineGunDrozd: WeaponSubMachineGunMP7
+GunSafeSubMachineGunWt550: CrateArmoryM16A4
+CrateArmorySMG: CrateArmoryM16A4
+GunSafeShotgunKammerer: GunSafeShotgunTrenchgun4034
+CrateArmoryShotgun: CrateArmoryShotgunTrenchgun4034Sawn
+GunSafeRifleLecter: null
 ComputerCargoShuttle: null
 ComputerShuttleCargo: null
 ClothingOuterHardsuitSecurity: ClothingOuterHardsuitSecuritySunrise

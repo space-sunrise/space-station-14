@@ -1,3 +1,4 @@
+using Content.Server._Sunrise.Entry;
 using Content.Server._Sunrise.GuideGenerator;
 using Content.Server._Sunrise.ServersHub;
 using Content.Server._Sunrise.TTS;
@@ -29,6 +30,8 @@ using Content.Server.Voting.Managers;
 using Content.Shared.CCVar;
 using Content.Shared.Kitchen;
 using Content.Shared.Localizations;
+using Content.Sunrise.Interfaces.Server;
+using Content.Sunrise.Interfaces.Shared;
 using Robust.Server;
 using Robust.Server.ServerStatus;
 using Robust.Shared.Configuration;
@@ -119,6 +122,10 @@ namespace Content.Server.Entry
 
                 IoCManager.Resolve<ServersHubManager>().Initialize(); // Sunrise-Hub
 
+                // Sunrise-Sponsors-Start
+                SunriseServerEntry.Init();
+                // Sunrise-Sponsors-End
+
                 _voteManager.Initialize();
                 _updateManager.Initialize();
                 _playTimeTracking.Initialize();
@@ -172,6 +179,9 @@ namespace Content.Server.Entry
                 IoCManager.Resolve<IBanManager>().Initialize();
                 IoCManager.Resolve<IConnectionManager>().PostInit();
                 IoCManager.Resolve<MultiServerKickManager>().Initialize();
+                // Sunrise-Sponsors-Start
+                SunriseServerEntry.PostInit();
+                // Sunrise-Sponsors-End
             }
         }
 

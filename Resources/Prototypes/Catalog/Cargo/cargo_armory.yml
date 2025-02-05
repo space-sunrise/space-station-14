@@ -3,7 +3,7 @@
   icon:
     sprite: Objects/Weapons/Guns/SMGs/wt550.rsi
     state: icon
-  product: CrateArmorySMG
+  product: CrateArmoryM16A4 # Sunrise-Edit
   cost: 9000
   category: cargoproduct-category-name-armory
   group: market
@@ -13,7 +13,7 @@
   icon:
     sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
     state: icon
-  product: CrateArmoryShotgun
+  product: CrateArmoryShotgunTrenchgun4034Sawn
   cost: 7000
   category: cargoproduct-category-name-armory
   group: market

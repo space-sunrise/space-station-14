@@ -160,8 +160,8 @@
     parent: true
     components:
     - type: Stealth
-      minVisibility: 0.1
-      lastVisibility: 0.1
+      minVisibility: 0 # Sunrise-Edit
+      lastVisibility: 0 # Sunrise-Edit
   - type: PowerCellDraw
     drawRate: 1.8 # 200 seconds on the default cell
   - type: ToggleCellDraw

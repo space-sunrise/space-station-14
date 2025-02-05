@@ -117,9 +117,9 @@
     maxAngle: 32
     shotsPerBurst: 5
     availableModes:
-    - SemiAuto
     - Burst
     - FullAuto
+    - SemiAuto
     soundGunshot:
       collection: aug # Sunrise-Edit
   - type: ChamberMagazineAmmoProvider
@@ -153,15 +153,16 @@
     - type: Gun
       minAngle: 21
       maxAngle: 32
-      fireRate: 12
+      fireRate: 6
       burstFireRate: 12
-      selectedMode: Burst
       soundGunshot:
         collection: famas # Sunrise-Edit
         params:
           volume: 10
       availableModes:
-        - Burst
+      - Burst
+      - FullAuto
+      - SemiAuto
       shotsPerBurst: 3
       burstCooldown: 0.25
     - type: ItemSlots
@@ -237,64 +238,64 @@
     zeroVisible: true
   - type: Appearance
 
-- type: entity
-  name: WT550
-  parent: [ BaseWeaponSubMachineGun, BaseRestrictedContraband ]
-  id: WeaponSubMachineGunWt550
-  description: An excellent SMG, produced by NanoTrasen's Small Arms Division. Uses .35 auto ammo.
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/SMGs/wt550.rsi
-    layers:
-      - state: base
-        map: ["enum.GunVisualLayers.Base"]
-      - state: base-unshaded
-        map: ["enum.GunVisualLayers.BaseUnshaded"]
-        shader: unshaded
-      - state: mag-0
-        map: ["enum.GunVisualLayers.Mag"]
-      - state: mag-unshaded-0
-        map: ["enum.GunVisualLayers.MagUnshaded"]
-        shader: unshaded
-  - type: Clothing
-    sprite: Objects/Weapons/Guns/SMGs/wt550.rsi
-  - type: ChamberMagazineAmmoProvider
-    boltClosed: null
-  - type: Gun
-    fireRate: 5.5
-    minAngle: 1
-    maxAngle: 6
-    angleIncrease: 1.5
-    angleDecay: 6
-    selectedMode: FullAuto
-    shotsPerBurst: 5
-    burstCooldown: 0.2
-    burstFireRate: 7
-    availableModes:
-    - SemiAuto
-    - Burst
-    - FullAuto
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: MagazinePistolSubMachineGunTopMounted
-        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazinePistolSubMachineGunTopMounted
-        whitelistFailPopup: gun-magazine-whitelist-fail
-      gun_chamber:
-        name: Chamber
-        startingItem: CartridgePistol
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgePistol
-  - type: MagazineVisuals
-    magState: mag
-    steps: 6
-    zeroVisible: true
-  - type: Appearance
+#- type: entity
+#  name: WT550
+#  parent: [ BaseWeaponSubMachineGun, BaseRestrictedContraband ]
+#  id: WeaponSubMachineGunWt550
+#  description: An excellent SMG, produced by NanoTrasen's Small Arms Division. Uses .35 auto ammo.
+#  components:
+#  - type: Sprite
+#    sprite: Objects/Weapons/Guns/SMGs/wt550.rsi
+#    layers:
+#      - state: base
+#        map: ["enum.GunVisualLayers.Base"]
+#      - state: base-unshaded
+#        map: ["enum.GunVisualLayers.BaseUnshaded"]
+#        shader: unshaded
+#      - state: mag-0
+#        map: ["enum.GunVisualLayers.Mag"]
+#      - state: mag-unshaded-0
+#        map: ["enum.GunVisualLayers.MagUnshaded"]
+#        shader: unshaded
+#  - type: Clothing
+#    sprite: Objects/Weapons/Guns/SMGs/wt550.rsi
+#  - type: ChamberMagazineAmmoProvider
+#    boltClosed: null
+#  - type: Gun
+#    fireRate: 5.5
+#    minAngle: 1
+#    maxAngle: 6
+#    angleIncrease: 1.5
+#    angleDecay: 6
+#    selectedMode: FullAuto
+#    shotsPerBurst: 5
+#    burstCooldown: 0.2
+#    burstFireRate: 7
+#    availableModes:
+#    - Burst
+#    - FullAuto
+#    - SemiAuto
+#  - type: ItemSlots
+#    slots:
+#      gun_magazine:
+#        name: Magazine
+#        startingItem: MagazinePistolSubMachineGunTopMounted
+#        insertSound: /Audio/Weapons/Guns/MagIn/smg_magin.ogg
+#        ejectSound: /Audio/Weapons/Guns/MagOut/smg_magout.ogg
+#        priority: 2
+#        whitelist:
+#          tags:
+#            - MagazinePistolSubMachineGunTopMounted
+#        whitelistFailPopup: gun-magazine-whitelist-fail
+#      gun_chamber:
+#        name: Chamber
+#        startingItem: CartridgePistol
+#        priority: 1
+#        whitelist:
+#          tags:
+#            - CartridgePistol
+#  - type: MagazineVisuals
+#    magState: mag
+#    steps: 6
+#    zeroVisible: true
+#  - type: Appearance

@@ -49,15 +49,15 @@
         orGroup: Guns
       - id: WeaponRifleM90GrenadeLauncher
         orGroup: Guns
-      - id: WeaponRifleLecter
-        orGroup: Guns
+#      - id: WeaponRifleLecter
+#        orGroup: Guns
       - id: WeaponShotgunBulldog
         orGroup: Guns
       - id: WeaponShotgunDoubleBarreled
         orGroup: Guns
       - id: WeaponShotgunEnforcer
         orGroup: Guns
-      - id: WeaponShotgunKammerer
+      - id: WeaponShotgunTrenchgun4034 # Sunrise-Edit
         orGroup: Guns
       - id: WeaponShotgunSawn
         orGroup: Guns
@@ -73,7 +73,7 @@
         orGroup: Guns
       - id: WeaponSubMachineGunDrozd
         orGroup: Guns
-      - id: WeaponSubMachineGunWt550
+      - id: WeaponRifleM16A4 # Sunrise-Edit
         orGroup: Guns
       - id: WeaponSniperMosin
         orGroup: Guns
@@ -158,7 +158,7 @@
       - id: RevolverCapGunFake
         orGroup: Guns
       speech: action-speech-spell-summon-guns
-      
+
 - type: entity
   id: ActionSummonMagic
   name: Summon Magic

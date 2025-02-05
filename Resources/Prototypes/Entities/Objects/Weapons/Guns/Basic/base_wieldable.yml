@@ -10,4 +10,8 @@
     maxAngle: -30
   - type: Gun
     minAngle: 21
-    maxAngle: 32   
+    maxAngle: 32
+  # Sunrise-Start
+  - type: Item
+    size: Huge
+  # Sunrise-End

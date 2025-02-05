@@ -137,7 +137,7 @@
     pocket1: WeaponDisabler
     pocket2: MagazinePistolSubMachineGunTopMounted
   inhand:
-  - WeaponSubMachineGunWt550
+  - WeaponRifleM16A4 # Sunrise-Edit
 
 - type: startingGear
   id: VisitorHOSAlt
@@ -155,7 +155,7 @@
     pocket1: WeaponDisabler
     pocket2: MagazinePistolSubMachineGunTopMounted
   inhand:
-  - WeaponSubMachineGunWt550
+  - WeaponRifleM16A4 # Sunrise-Edit
 
 - type: startingGear
   id: VisitorRD
@@ -282,7 +282,7 @@
     outerClothing: ClothingOuterArmorBasicSlim
     pocket1: WeaponPistolMk58
     pocket2: MagazinePistol
-  inhand: 
+  inhand:
   - FlashlightSeclite
 
 - type: startingGear
@@ -339,7 +339,7 @@
     pocket2: Zipties
   inhand:
   - FlashlightSeclite
-  - WeaponShotgunKammerer
+  - WeaponShotgunTrenchgun4034 # Sunrise-Edit
 
 - type: startingGear
   id: VisitorWardenAlt
@@ -358,7 +358,7 @@
     pocket2: Zipties
   inhand:
   - FlashlightSeclite
-  - WeaponShotgunKammerer
+  - WeaponShotgunTrenchgun4034 # Sunrise-Edit
 
 # Cargo
 
@@ -859,7 +859,7 @@
     eyes: ClothingEyesHudMedical
     pocket1: RegenerativeMesh
     pocket2: PillCanisterBicaridine
-  inhand: 
+  inhand:
   - ScalpelAdvanced
   - MedicatedSuture
 

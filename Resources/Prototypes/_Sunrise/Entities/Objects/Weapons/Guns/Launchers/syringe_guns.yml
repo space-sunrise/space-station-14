@@ -82,7 +82,7 @@
   - type: Storage
     maxItemSize: Small
     grid:
-    - 0,0,4,1
+    - 0,0,5,0 #BALANCE PR
   - type: Gun
     fireRate: 1.8
     selectedMode: FullAuto

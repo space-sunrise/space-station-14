@@ -32,7 +32,7 @@
   - type: SolutionContainerManager
     solutions:
       injector:
-        maxVol: 8
+        maxVol: 6 #BALANCE PR
         canReact: false
   - type: Fixtures
     fixtures:

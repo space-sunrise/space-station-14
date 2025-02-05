@@ -48,6 +48,10 @@
             type: AtmosAlertsComputerBoundUserInterface
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
+  - type: GuideHelp
+    guides:
+    - AtmosphericAlertsComputer
+    - DeviceMonitoringAndControl
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -81,6 +85,10 @@
         type: AtmosMonitoringConsoleBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
+  - type: GuideHelp
+    guides:
+    - AtmosphericNetworkMonitor
+    - DeviceMonitoringAndControl
 
 - type: entity
   parent: BaseComputer
@@ -148,6 +156,9 @@
       board: !type:Container
         ents: []
       disk_slot: !type:ContainerSlot {}
+  - type: GuideHelp
+    guides:
+    - ShuttleCraft
 
 - type: entity
   parent: BaseComputerShuttle
@@ -610,7 +621,7 @@
     color: "#3c5eb5"
   - type: Tag
     tags:
-    - EmagImmune
+    - AccessBreakerImmune
   - type: ItemSlots
   - type: ContainerContainer
     containers:
@@ -828,6 +839,10 @@
     radius: 1.5
     energy: 1.6
     color: "#e6e227"
+  - type: GuideHelp
+    guides:
+    - SolarPanels
+    - Power
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -994,58 +1009,58 @@
     - CargoBounties
     - Cargo
 
-- type: entity
-  parent: BaseComputerAiAccess
-  id: ComputerCloningConsole
-  name: cloning console computer
-  description: The centerpiece of the cloning system, medicine's greatest accomplishment. It has lots of ports and wires.
-  components:
-  - type: CloningConsole
-  - type: DeviceList
-  - type: DeviceNetwork
-    deviceNetId: Wired
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: dna
-    - map: ["computerLayerKeys"]
-      state: generic_keys
-    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-      state: generic_panel_open
-  - type: ApcPowerReceiver
-    powerLoad: 3100 #We want this to fail first so I transferred most of the scanner and pod's power here. (3500 in total)
-  - type: Computer
-    board: CloningConsoleComputerCircuitboard
-  - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#1f8c28"
-  - type: DeviceLinkSource
-    range: 4
-    ports:
-      - MedicalScannerSender
-      - CloningPodSender
-  - type: ActivatableUI
-    key: enum.CloningConsoleUiKey.Key
-  - type: UserInterface
-    interfaces:
-        enum.CloningConsoleUiKey.Key:
-          type: CloningConsoleBoundUserInterface
-        enum.WiresUiKey.Key:
-          type: WiresBoundUserInterface
-  - type: Speech
-    speechVerb: Robotic
-    speechSounds: Pai
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
-  - type: GuideHelp
-    guides:
-    - Cloning
+#- type: entity
+#  parent: BaseComputerAiAccess
+#  id: ComputerCloningConsole
+#  name: cloning console computer
+#  description: The centerpiece of the cloning system, medicine's greatest accomplishment. It has lots of ports and wires.
+#  components:
+#  - type: CloningConsole
+#  - type: DeviceList
+#  - type: DeviceNetwork
+#    deviceNetId: Wired
+#  - type: Sprite
+#    layers:
+#    - map: ["computerLayerBody"]
+#      state: computer
+#    - map: ["computerLayerKeyboard"]
+#      state: generic_keyboard
+#    - map: ["computerLayerScreen"]
+#      state: dna
+#    - map: ["computerLayerKeys"]
+#      state: generic_keys
+#    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+#      state: generic_panel_open
+#  - type: ApcPowerReceiver
+#    powerLoad: 3100 #We want this to fail first so I transferred most of the scanner and pod's power here. (3500 in total)
+#  - type: Computer
+#    board: CloningConsoleComputerCircuitboard
+#  - type: PointLight
+#    radius: 1.5
+#    energy: 1.6
+#    color: "#1f8c28"
+#  - type: DeviceLinkSource
+#    range: 4
+#    ports:
+#      - MedicalScannerSender
+#      - CloningPodSender
+#  - type: ActivatableUI
+#    key: enum.CloningConsoleUiKey.Key
+#  - type: UserInterface
+#    interfaces:
+#        enum.CloningConsoleUiKey.Key:
+#          type: CloningConsoleBoundUserInterface
+#        enum.WiresUiKey.Key:
+#          type: WiresBoundUserInterface
+#  - type: Speech
+#    speechVerb: Robotic
+#    speechSounds: Pai
+#  - type: Damageable
+#    damageContainer: StructuralInorganic
+#    damageModifierSet: StructuralMetallicStrong
+#  - type: GuideHelp
+#    guides:
+#    - Cloning
 
 - type: entity
   id: ComputerSalvageExpedition

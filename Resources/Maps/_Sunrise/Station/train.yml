@@ -77257,7 +77257,7 @@ entities:
     - type: Transform
       pos: 31.5,-260.5
       parent: 2
-- proto: MagazineM16A4
+- proto: MagazinePistolSubMachineGun
   entities:
   - uid: 11853
     components:
@@ -107766,26 +107766,12 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: WeaponRifleM16A4
+- proto: WeaponSubMachineGunSkorpion
   entities:
   - uid: 17208
     components:
     - type: Transform
       pos: -4.3806252,-346.3184
-      parent: 2
-- proto: WeaponTurretHostile
-  entities:
-  - uid: 17209
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 30.5,-306.5
-      parent: 2
-  - uid: 17210
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: 30.5,-308.5
       parent: 2
 - proto: WeaponTurretSyndicateBroken
   entities:
