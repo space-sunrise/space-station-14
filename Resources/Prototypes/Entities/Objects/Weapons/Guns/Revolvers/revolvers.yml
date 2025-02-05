@@ -79,7 +79,7 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Gun
-    fireRate: 2.2 #Sunrise-Edit
+    fireRate: 2.25 #Sunrise-Edit
   - type: RevolverAmmoProvider
     capacity: 5
     chambers: [ True, True, True, True, True ]
@@ -137,7 +137,7 @@
     sprite: Objects/Weapons/Guns/Revolvers/python.rsi
   - type: Gun
     selectedMode: SemiAuto
-    fireRate: 2.6 #Sunrise-Edit
+    fireRate: 2.5 #Sunrise-Edit
     availableModes:
     - SemiAuto
     soundGunshot:
@@ -169,7 +169,7 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Revolvers/pirate_revolver.rsi
   - type: Gun
-    fireRate: 1.7 #Sunrise-Edit
+    fireRate: 1.75 #Sunrise-Edit
   - type: ContainerContainer
     containers:
       revolver-ammo: !type:Container
