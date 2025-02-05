@@ -8,16 +8,34 @@ on:
 
 jobs:
   build:
-    if: false
     runs-on: ubuntu-latest
 
     steps:
-    - name: Install dependencies
-      run: sudo apt-get install -y python3-paramiko python3-lxml
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Install Dependencies
+      run: pip install pyyaml requests
 
     - uses: actions/checkout@v3.6.0
       with:
         submodules: 'recursive'
+
+    - name: Checkout SunrisePrivate
+      uses: actions/checkout@v2
+      with:
+        repository: ${{ secrets.SUNRISE_PRIVATE_REPO_URL }}
+        path: SunrisePrivate
+        ssh-key: ${{ secrets.SUNRISE_SSH_KEY }}
+
+    - name: Move SunrisePrivate files
+      run: python3 Tools/_sunrise/move_sunrise_private.py
+      env:
+        SUNRISE_SSH_KEY: ${{ secrets.SUNRISE_SSH_KEY }}
+        SUNRISE_PRIVATE_REPO_URL: ${{ secrets.SUNRISE_PRIVATE_REPO_URL }}
+
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v3.2.0
       with:
@@ -46,13 +64,25 @@ jobs:
         PUBLISH_TOKEN: ${{ secrets.PUBLISH_TOKEN }}
         GITHUB_REPOSITORY: ${{ vars.GITHUB_REPOSITORY }}
 
-    - name: Publish changelog (Discord)
+    - name: Publish discord changelog (SUNRISE)
       run: Tools/actions_changelogs_since_last_run.py
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        DISCORD_WEBHOOK_URL: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK }}
+        DISCORD_WEBHOOK_URL: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK_SUNRISE }}
 
-    - name: Publish changelog (RSS)
-      run: Tools/actions_changelog_rss.py
+    - name: Publish discord changelog (LUST)
+      run: Tools/actions_changelogs_since_last_run.py
       env:
-        CHANGELOG_RSS_KEY: ${{ secrets.CHANGELOG_RSS_KEY }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        DISCORD_WEBHOOK_URL: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK_LUST }}
+
+    - name: Publish discord changelog (FISH)
+      run: Tools/actions_changelogs_since_last_run.py
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        DISCORD_WEBHOOK_URL: ${{ secrets.CHANGELOG_DISCORD_WEBHOOK_FISH }}
+
+#    - name: Publish changelog (RSS)
+#      run: Tools/actions_changelog_rss.py
+#      env:
+#        CHANGELOG_RSS_KEY: ${{ secrets.CHANGELOG_RSS_KEY }}

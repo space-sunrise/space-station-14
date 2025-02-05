@@ -68547,7 +68547,7 @@ entities:
     - type: Transform
       pos: -53.522644,24.524475
       parent: 1
-- proto: XenoAISpawner
+- proto: MobCarpHolo
   entities:
   - uid: 10128
     components:
