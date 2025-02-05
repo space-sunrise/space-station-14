@@ -8,6 +8,56 @@
   },
   "states": [
     {
+      "name": "basesyn"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "empty",
+      "delays": [
+        [
+          0.4,
+          0.4
+        ]
+      ]
+    },
+    {
+      "name": "fullsyn",
+      "delays": [
+        [
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4,
+          0.4
+        ]
+      ]
+    }
+  ]
+}
+  "states": [
+    {
       "name": "base"
     },
     {

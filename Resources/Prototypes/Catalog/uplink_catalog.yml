@@ -1032,6 +1032,24 @@
     Telecrystal: 3
   categories:
   - UplinkDisruption
+  
+- type: listing
+  id: UplinkSyndieIntellicard
+  name: uplink-syndie-intellicard-name
+  description: uplink-syndie-intellicard-desc
+  productEntity: SyndieIntellicard
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 4
+  cost:
+    Telecrystal: 6
+  categories:
+  - UplinkDisruption
+  conditions:
+  - !type:StoreWhitelistCondition
+    whitelist:
+      tags:
+      - NukeOpsUplink
 
 - type: listing
   id: UplinkSyndicateWeaponModule
