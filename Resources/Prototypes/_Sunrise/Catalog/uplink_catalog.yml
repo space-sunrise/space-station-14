@@ -162,7 +162,7 @@
   description: uplink-ammo-smgkit-desc
   productEntity: SMGAmmoKit
   cost:
-    Telecrystal: 9
+    Telecrystal: 8
   categories:
   - UplinkAmmo
   conditions:
@@ -177,7 +177,7 @@
   description: uplink-ammo-caselesskit-desc
   productEntity: CaselessAmmoKit
   cost:
-    Telecrystal: 15
+    Telecrystal: 18
   categories:
   - UplinkAmmo
   conditions:
@@ -192,7 +192,7 @@
   description: uplink-ammo-smgincendiarykit-desc
   productEntity: SMGIncendiaryAmmoKit
   cost:
-    Telecrystal: 14
+    Telecrystal: 12
   categories:
   - UplinkAmmo
   conditions:
@@ -207,7 +207,7 @@
   description: uplink-ammo-smguraniumkit-desc
   productEntity: SMGUraniumAmmoKit
   cost:
-    Telecrystal: 18
+    Telecrystal: 15
   categories:
   - UplinkAmmo
   conditions:
@@ -222,7 +222,7 @@
   description: uplink-ammo-shotgunkit-desc
   productEntity: ShotGunKit
   cost:
-    Telecrystal: 15
+    Telecrystal: 10
   categories:
   - UplinkAmmo
   conditions:
@@ -237,7 +237,7 @@
   description: uplink-ammo-shotgunincendiarykit-desc
   productEntity: ShotGunIncendiaryKit
   cost:
-    Telecrystal: 16
+    Telecrystal: 13
   categories:
   - UplinkAmmo
   conditions:
@@ -252,7 +252,7 @@
   description: uplink-ammo-shotgunuraniumkit-desc
   productEntity: ShotGunUraniumKit
   cost:
-    Telecrystal: 18
+    Telecrystal: 16
   categories:
   - UplinkAmmo
   conditions:
@@ -267,7 +267,7 @@
   description: uplink-ammo-lmgkit-desc
   productEntity: LMGKit
   cost:
-    Telecrystal: 10
+    Telecrystal: 8
   categories:
   - UplinkAmmo
   conditions:
@@ -282,7 +282,7 @@
   description: uplink-ammo-lmgincendiarykit-desc
   productEntity: LMGIncendiaryKit
   cost:
-    Telecrystal: 14
+    Telecrystal: 12
   categories:
   - UplinkAmmo
   conditions:
@@ -297,7 +297,7 @@
   description: uplink-ammo-lmguraniumkit-desc
   productEntity: LMGUraniumKit
   cost:
-    Telecrystal: 18
+    Telecrystal: 16
   categories:
   - UplinkAmmo
   conditions:
@@ -314,9 +314,9 @@
   productEntity: CrateAmmokitBundle
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 50
+    Telecrystal: 40
   cost:
-    Telecrystal: 100
+    Telecrystal: 80
   categories:
   - UplinkAmmo
   conditions:

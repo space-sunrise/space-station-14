@@ -55,6 +55,10 @@
   parent: BaseWeaponSubMachineGun
   id: WeaponSubMachineGunP90
   components:
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,3,1
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/p90.rsi
     layers:
@@ -62,13 +66,15 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
-  - type: GunWieldBonus
-    minAngle: -23
-    maxAngle: -43
-  - type: Gun
-    minAngle: 43
-    maxAngle: 60
-    fireRate: 7.5
+    - type: Wieldable
+      unwieldOnUse: false
+    - type: GunWieldBonus
+      minAngle: -19
+      maxAngle: -16
+    - type: Gun
+      minAngle: 21
+      maxAngle: 32
+      fireRate: 6
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/p90_shot.ogg
       params:
@@ -118,14 +124,17 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp38/tiny.rsi
   - type: Item
+    size: Large
+    shape:
+    - 0,0,2,1
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp38/tiny.rsi
   - type: GunWieldBonus
     minAngle: -22
-    maxAngle: -30
+    maxAngle: -40
   - type: Gun
     minAngle: 24
     maxAngle: 45
-    fireRate: 6
+    fireRate: 5
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/mp38/mp38_shot.ogg
   - type: ItemSlots
@@ -170,21 +179,24 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp7/tiny.rsi
   - type: Item
+    size: Large
+    shape:
+    - 0,0,2,1
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp7/tiny.rsi
   - type: GunWieldBonus
     minAngle: -22
-    maxAngle: -28
+    maxAngle: -38
   - type: Gun
-    minAngle: 24
+    minAngle: 25
     maxAngle: 45
-    fireRate: 7.5
+    fireRate: 6
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/mp7/mp7_shot.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineMP7
+        startingItem: MagazinePistolHighCapacity
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/mp7/mp7_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/mp7/mp7_unload.ogg
         priority: 2
@@ -192,6 +204,7 @@
           tags:
           - MagazineMP7
           - MagazinePistolSubMachineGun
+          - MagazinePistolHighCapacity
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistol
@@ -223,12 +236,15 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp5/tiny.rsi
   - type: Item
+    size: Large
+    shape:
+    - 0,0,3,1
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp5/tiny.rsi
   - type: GunWieldBonus
     minAngle: -22
-    maxAngle: -30
+    maxAngle: -35
   - type: Gun
-    minAngle: 24
+    minAngle: 25
     maxAngle: 45
     fireRate: 6
     soundGunshot:
@@ -272,6 +288,10 @@
   parent: BaseWeaponSubMachineGun
   id: WeaponSubMachineGunSkorpion
   components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,1
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/skorpion.rsi
     layers:
@@ -281,8 +301,8 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: Gun
     minAngle: 2
-    maxAngle: 56
-    fireRate: 7
+    maxAngle: 50
+    fireRate: 6
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/scorpion/scorpion_shot.ogg
   - type: Clothing
@@ -292,7 +312,7 @@
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazinePistolSubMachineGunRubber
+        startingItem: MagazinePistolSubMachineGun
         insertSound: /Audio/_Sunrise/Weapons/Guns/SMGs/scorpion/scorpion_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/SMGs/scorpion/scorpion_unload.ogg
         priority: 2
@@ -302,7 +322,7 @@
           - MagazinePistolHighCapacity
       gun_chamber:
         name: Chamber
-        startingItem: CartridgePistolRubber  # 57x28
+        startingItem: CartridgePistol  # 57x28
         priority: 1
         whitelist:
           tags:
@@ -328,14 +348,17 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/vector/tiny.rsi
   - type: Item
+    size: Large
+    shape:
+    - 0,0,2,1
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/vector/tiny.rsi
   - type: GunWieldBonus
-    minAngle: -23
-    maxAngle: -29
+    minAngle: -30
+    maxAngle: -40
   - type: Gun
-    minAngle: 24
-    maxAngle: 45
-    fireRate: 7
+    minAngle: 35
+    maxAngle: 50
+    fireRate: 6.5
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/new_vector/vector_shot.ogg
   - type: ItemSlots
@@ -349,6 +372,7 @@
         whitelist:
           tags:
           - MagazinePistolSubMachineGun
+          - MagazinePistolHighCapacity
       gun_chamber:
         name: Chamber
         startingItem: CartridgePistol  # 57x28
@@ -380,14 +404,17 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/ppsh41/tiny.rsi
   - type: Item
+    size: Large
+    shape:
+    - 0,0,4,1
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/ppsh41/tiny.rsi
   - type: GunWieldBonus
-    minAngle: -20
-    maxAngle: -25
+    minAngle: -22
+    maxAngle: -30
   - type: Gun
     minAngle: 24
     maxAngle: 50
-    fireRate: 9
+    fireRate: 7
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/ppsh41/ppsh_shot.ogg
       params:
@@ -428,6 +455,10 @@
   id: WeaponAMS-42
   description: A more advanced version of Lecter.
   components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,3,2
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/MS-42.rsi
     layers:
@@ -482,6 +513,10 @@
   id: WeaponAJ100
   description: High-speed SMG, equipped with a universal connector for other types of pistol magazines.
   components:
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,1
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/AJ-100.rsi
     layers:
@@ -496,7 +531,7 @@
     maxAngle: 8
     angleIncrease: 4
     angleDecay: 16
-    fireRate: 7.4
+    fireRate: 7.5
     selectedMode: FullAuto
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
@@ -538,6 +573,10 @@
   id: WeaponSIAR52
   description: A high rate of fire weapon, equipped with integrated silencer.
   components:
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,3,1
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/IAR-52.rsi
     layers:
