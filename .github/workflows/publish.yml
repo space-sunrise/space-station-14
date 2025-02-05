@@ -26,15 +26,12 @@ jobs:
     - name: Checkout SunrisePrivate
       uses: actions/checkout@v2
       with:
-        repository: ${{ secrets.SUNRISE_PRIVATE_REPO_URL }}
+        repository: ${{ secrets.SUNRISE_PRIVATE_REPO }}
         path: SunrisePrivate
-        ssh-key: ${{ secrets.SUNRISE_SSH_KEY }}
+        ssh-key: ${{ secrets.SUNRISE_PRIVATE_REPO_SSH_KEY }}
 
     - name: Move SunrisePrivate files
       run: python3 Tools/_sunrise/move_sunrise_private.py
-      env:
-        SUNRISE_SSH_KEY: ${{ secrets.SUNRISE_SSH_KEY }}
-        SUNRISE_PRIVATE_REPO_URL: ${{ secrets.SUNRISE_PRIVATE_REPO_URL }}
 
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v3.2.0
