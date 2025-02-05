@@ -62,9 +62,6 @@
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/cocked.ogg
-  #- type: SpeedModifiedOnWield
-  #  walkModifier: 0.45
-  #  sprintModifier: 0.45
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 3
@@ -152,7 +149,7 @@
     sprite: _Sunrise/Objects/Weapons/Guns/LMGs/mg42/tiny.rsi
   - type: GunWieldBonus
     minAngle: -20
-    maxAngle: -75
+    maxAngle: -70
   - type: Gun
     minAngle: 30
     maxAngle: 90
@@ -195,9 +192,6 @@
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/cocked.ogg
-  #- type: SpeedModifiedOnWield
-  #  walkModifier: 0.5
-  #  sprintModifier: 0.5
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 3
@@ -222,7 +216,7 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: GunWieldBonus
     minAngle: -30
-    maxAngle: -45
+    maxAngle: -40
   - type: Gun
     minAngle: 40
     maxAngle: 60
