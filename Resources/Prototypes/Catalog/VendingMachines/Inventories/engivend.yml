@@ -11,3 +11,6 @@
     BoxInflatable: 2
     ClothingHeadHatCone: 4
     ClothingEyesGlassesWelding: 3 # Sunrise-Edit
+  contrabandInventory:
+    CowToolboxFilled: 1
+    DrinkBeerCan: 3

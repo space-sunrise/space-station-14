@@ -32,7 +32,7 @@
   damage:
     types:
       Blunt: 1
-  staminaDamage: 20
+  staminaDamage: 15
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -54,9 +54,9 @@
   id: BulletPistolIncendiary
   damage:
     types:
-      Blunt: 6
+      Blunt: 1
       Piercing: 4
-      Heat: 2
+      Heat: 4
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -91,7 +91,7 @@
   damage:
     types:
       Blunt: 1
-  staminaDamage: 20
+  staminaDamage: 15
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -113,9 +113,9 @@
   id: BulletRifleIncendiary
   damage:
     types:
-      Blunt: 8
-      Piercing: 4
-      Heat: 3
+      Blunt: 1
+      Piercing: 5
+      Heat: 4
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -150,8 +150,8 @@
   id: BulletMagnumRubber
   damage:
     types:
-      Blunt: 1
-  staminaDamage: 20
+      Blunt: 5
+  staminaDamage: 25
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -173,9 +173,9 @@
   id: BulletMagnumIncendiary
   damage:
     types:
-      Blunt: 12
-      Piercing: 10
-      Heat: 5
+      Blunt: 1
+      Piercing: 15
+      Heat: 6
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -222,7 +222,7 @@
   damage:
     types:
       Blunt: 1
-  staminaDamage: 20
+  staminaDamage: 15
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -244,8 +244,8 @@
   id: BulletLightRifleIncendiary
   damage:
     types:
-      Blunt: 8
-      Piercing: 4
+      Blunt: 1
+      Piercing: 6
       Heat: 4
   collisionMask: BulletImpassable
   reflective: NonEnergy
@@ -303,7 +303,7 @@
   damage:
     types:
       Blunt: 1
-  staminaDamage: 20
+  staminaDamage: 15
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
@@ -379,13 +379,13 @@
   damage:
     types:
       Piercing: 38
-      Structural: 15
-  staminaDamage: 5
+      Structural: 20
+  staminaDamage: 10
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: slug
+    state: bullet #slug Нихуя не видно эти слаги
 
 - type: hitscan
   id: PelletShotgun
@@ -405,8 +405,9 @@
   id: PelletShotgunIncendiarySpread
   damage:
     types:
-      Blunt: 3
-      Heat: 3
+      Blunt: 1
+      Piercing: 1
+      Heat: 2
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:

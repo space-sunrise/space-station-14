@@ -804,6 +804,47 @@
     sprite: _Sunrise/Objects/Fun/toys.rsi
 
 - type: entity
+  id: GoldenWeh
+  abstract: true
+  components:
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/_Sunrise/bye.ogg
+      params:
+        volume: 100
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: GWA
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/_Sunrise/not_for_long_weh.ogg
+  - type: EmitSoundOnUse
+    sound:
+      collection: GWA
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Sunrise/not_for_long_weh.ogg
+  - type: UseDelay
+    delay: 2.0
+  - type: EmitSoundOnActivate
+    sound:
+      collection: GWA
+      params:
+        maxDistance: 10
+
+- type: entity
+  parent:
+  - GoldenWeh
+  - BasePlushie
+  id: LegendaryGoldenWeh
+  name: Legendary golden Weh
+  description: Do you remember how you made your way through the dangers, how you left a fake instead, accidentally activated a trap and started running away from a huge ball! But wait, it was a dream, then where did you get it?
+  components:
+  - type: Sprite
+    state: legendary-golden-weh
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+
+- type: entity
   id: PlushieAnatolyLisitsyn
   parent: BasePlushie
   name: Anatoly Lisitsyn

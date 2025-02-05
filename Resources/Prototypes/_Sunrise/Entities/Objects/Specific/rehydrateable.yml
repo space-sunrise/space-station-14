@@ -1,0 +1,26 @@
+- type: entity
+  parent: MonkeyCube
+  id: WildSlimeCube
+  name: wild slime cube
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - MobAdultSlimesBlue
+
+- type: entity
+  parent: MonkeyCube
+  id: PigCube
+  name: pig cube
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - MobPig
+
+- type: entity
+  parent: MonkeyCube
+  id: ChikenCube
+  name: chiken cube
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - MobChicken

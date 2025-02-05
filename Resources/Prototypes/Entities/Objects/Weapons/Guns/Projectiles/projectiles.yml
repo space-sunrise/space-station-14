@@ -769,7 +769,7 @@
     layers:
       - state: grenade #Sunrise-edit
   - type: EmpOnTrigger
-    range: 5
+    range: 10  # 5 Sunrise-edit
     energyConsumption: 50000
     disableDuration: 10
   - type: Ammo

@@ -36,7 +36,9 @@
         amount: 2
       - id: ClothingHeadHelmetSwat 
         amount: 2
-      - id: ClothingHandsGlovesCombat
+      - id: ClothingBeltSecurity
+        amount: 2
+      - id: CombatKnife
         amount: 2 
 
 - type: entity

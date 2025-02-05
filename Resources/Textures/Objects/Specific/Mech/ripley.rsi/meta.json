@@ -124,6 +124,38 @@
     },
     {
       "name": "ripley-g-full-open"
+    },
+    {
+      "name": "bigbrother",
+      "directions": 4,
+      "delays": [
+        [
+          0.1,
+          0.05,
+          0.05
+        ],
+        [
+          0.1,
+          0.05,
+          0.05
+        ],
+        [
+          0.1,
+          0.05,
+          0.05
+        ],
+        [
+          0.1,
+          0.05,
+          0.05
+        ]
+      ]
+    },
+    {
+      "name": "bigbrother-open"
+    },
+    {
+      "name": "bigbrother-broken"
     }
   ]
 }

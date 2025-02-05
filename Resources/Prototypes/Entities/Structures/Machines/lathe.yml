@@ -196,7 +196,6 @@
       - SubstationMachineCircuitboard
       - WallmountSubstationElectronics
       - CellRechargerCircuitboard
-      - BorgChargerCircuitboard
       - WeaponCapacitorRechargerCircuitboard
       - HandheldStationMap
       - ClothingHeadHatWelding
@@ -363,6 +362,7 @@
       - FauxTileJungleAstroGrass
       - FauxTileAstroIce
       - FauxTileAstroSnow
+      - FauxTileAstroAsteroidSand
       - OreBagOfHolding
       - DeviceQuantumSpinInverter
       - EnergyDomeDirectionalTurtle
@@ -372,7 +372,6 @@
       - MechPhasicScanningModule
       - HandCraftedNVD
       - BasicNVD
-      - PowerCageCombat
       - PowerCageHigh
       - PowerCageMedium
       # PowerCageSmall
@@ -411,6 +410,7 @@
       - MagazineBauer127Extended
       - MagazineBR64Extended
       - MagazineDragunovExtended
+      - PowerCageCombat
       # Sunrise-End
       - BoxBeanbag
       - BoxShotgunIncendiary
@@ -511,6 +511,7 @@
     - SpaceHeaterMachineCircuitBoard
     - CutterMachineCircuitboard
     - SalvageMagnetMachineCircuitboard
+    - BorgChargerCircuitboard
     dynamicRecipes:
       - ThermomachineFreezerMachineCircuitBoard
       - HellfireFreezerMachineCircuitBoard
@@ -715,7 +716,6 @@
     - PhazonLLeg
     - PhazonRArm
     - PhazonRLeg
-    - PowerCageCombat
     - PowerCageHigh
     - PowerCageMedium
     - MechEquipmentDrill
@@ -727,13 +727,25 @@
     - WeaponMechCombatFlashbangLauncher
     - WeaponMechCombatSolarisLaser
     - WeaponMechCombatFiredartLaser
-    - WeaponMechCombatUltraRifle
+    #Sunrise-start
+    - PaintRipleyAluminizer
+    - PaintRipleyFirestarter
+    - PaintRipleyHauler
+    - PaintRipleyZairjah
+    - PaintDurandExecutor
+    - PaintDurandShire
+    - PaintGygaxOld
+    - PaintGygaxWhite
+    - PaintClarkeOrangey
+    #Sunrise-end
   - type: EmagLatheRecipes
     emagDynamicRecipes:
     - WeaponMechCombatImmolationGun
     - WeaponMechCombatShotgun
+    - WeaponMechCombatUltraRifle
     - WeaponMechCombatShotgunIncendiary
     - WeaponMechCombatMissileRack8
+    - PowerCageCombat
   - type: MaterialStorage
     whitelist:
       tags:
@@ -1054,6 +1066,13 @@
       - HandheldCrewMonitor # Sunrise-Edit
       - ClothingHandsGlovesLatex
       - ClothingHandsGlovesNitrile
+#Sunrise-start
+      - ClothingHandsGlovesNitrileBlack
+      - ClothingHandsGlovesNitrileGreen
+      - ClothingHandsGlovesNitrileOrange
+      - ClothingHandsGlovesNitrileRed
+      - ClothingHandsGlovesNitrileBlue
+#Sunrise-end
       - ClothingMaskSterile
       - DiseaseSwab
       - Beaker
@@ -1281,6 +1300,10 @@
       - ClothingNeckScarfStripedRed
       - ClothingNeckScarfStripedBrown
       - ClothingNeckScarfStripedLightBlue
+#sunrise-start
+      - ClothingNeckScarfStripedCyan
+      - ClothingNeckScarfStripedYellow
+#sunrise-end
       - ClothingNeckScarfStripedOrange
       - ClothingNeckScarfStripedBlack
       - ClothingNeckScarfStripedPurple

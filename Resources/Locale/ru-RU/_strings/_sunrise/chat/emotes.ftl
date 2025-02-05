@@ -8,3 +8,5 @@ chat-emote-name-oink = Хрюкать
 chat-emote-name-meows = Мяукать
 chat-emote-name-headache = Головная боль
 chat-emote-name-insult = Инсульт
+chat-emote-name-severe-cough = Тяжело кашлять
+chat-emote-msg-severe-cough = тяжело кашляет

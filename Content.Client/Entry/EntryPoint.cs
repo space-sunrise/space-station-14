@@ -1,3 +1,4 @@
+using Content.Client._Sunrise.Entry;
 using Content.Client._Sunrise.ServersHub;
 using Content.Client.Administration.Managers;
 using Content.Client.Changelog;
@@ -25,6 +26,8 @@ using Content.Client.Voting;
 using Content.Shared.Ame.Components;
 using Content.Shared.Gravity;
 using Content.Shared.Localizations;
+using Content.Sunrise.Interfaces.Client;
+using Content.Sunrise.Interfaces.Shared;
 using Robust.Client;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
@@ -141,6 +144,10 @@ namespace Content.Client.Entry
 
             _serversHubManager.Initialize(); // Sunrise-Hub
 
+            // Sunrise-Sponsors-Start
+            SunriseClientEntry.Init();
+            // Sunrise-Sponsors-End
+
             //AUTOSCALING default Setup!
             _configManager.SetCVar("interface.resolutionAutoScaleUpperCutoffX", 1080);
             _configManager.SetCVar("interface.resolutionAutoScaleUpperCutoffY", 720);
@@ -176,6 +183,10 @@ namespace Content.Client.Entry
             _userInterfaceManager.SetActiveTheme(_configManager.GetCVar(CVars.InterfaceTheme));
             _documentParsingManager.Initialize();
             _titleWindowManager.Initialize();
+
+            // Sunrise-Sponsors-Start
+            SunriseClientEntry.PostInit();
+            // Sunrise-Sponsors-End
 
             _baseClient.RunLevelChanged += (_, args) =>
             {

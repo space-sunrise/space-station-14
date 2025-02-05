@@ -240,6 +240,8 @@
     factions:
     - Passive
   # Sunrise-start
+  - type: Body
+    prototype: Chiken
   - type: Carriable
   - type: CanEscapeInventory
   # Sunrise-end
@@ -1569,6 +1571,10 @@
     name: ghost-role-information-kobold-name
     description: ghost-role-information-kobold-description
     rules: ghost-role-information-nonantagonist-rules
+    # Sunrise Start
+  - type: Body
+    prototype: Kobold
+    # Sunrise End
 
 - type: entity
   name: kobold
@@ -2852,6 +2858,8 @@
   # Sunrise-start
   - type: Carriable
   - type: CanEscapeInventory
+  - type: Body
+    prototype: Dog
   # Sunrise-end
 
 - type: entity
@@ -3016,6 +3024,8 @@
     color: "#808080"
   - type: Carriable
   - type: CanEscapeInventory
+  - type: Body
+    prototype: Cat
   # Sunrise-end
 
 - type: entity
