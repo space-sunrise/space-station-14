@@ -140,7 +140,7 @@
     types:
       Piercing: 25
       Blunt: 5
-  staminaDamage: 13
+  staminaDamage: 12
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:
