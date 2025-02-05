@@ -196,6 +196,51 @@
         },
 		{
             "name": "agrichemkit"
+        },
+        {
+            "name": "box_medical"
+        },
+        {
+            "name": "shotgun_red"
+        },
+        {
+            "name": "smg_uranium"
+        },
+        {
+            "name": "shotgun_uranium"
+        },
+        {
+            "name": "facecast"
+        },
+        {
+            "name": "smg_red"
+        },
+        {
+            "name": "smg_base"
+        },
+        {
+            "name": "id"
+        },
+        {
+            "name": "l6_base"
+        },
+        {
+            "name": "shrapnel"
+        },
+        {
+            "name": "l6_uranium"
+        },
+        {
+            "name": "l6_red"
+        },
+        {
+            "name": "stinger"
+        },
+        {
+            "name": "incendiary"
+        },
+        {
+            "name": "shotgun_base"
         }
     ]
 }
