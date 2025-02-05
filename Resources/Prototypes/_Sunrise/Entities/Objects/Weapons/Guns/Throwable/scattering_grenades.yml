@@ -5,7 +5,7 @@
   description: The probability that you will be banned for using this grenade is 99.9%.
   components:
   - type: Sprite
-    sprite: _Sunrise\Objects\Weapons\Grenades\clustersyndygrenade.rsi
+    sprite: _Sunrise/Objects/Weapons/Grenades/clustersyndygrenade.rsi
     layers:
     - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
@@ -41,7 +41,7 @@
   description: If you don't care about accuracy, then this choice is for you.
   components:
   - type: Sprite
-    sprite: _Sunrise\Objects\Weapons\Grenades\clustersyndygrenade.rsi
+    sprite: _Sunrise/Objects/Weapons/Grenades/clustersyndygrenade.rsi
     layers:
     - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
