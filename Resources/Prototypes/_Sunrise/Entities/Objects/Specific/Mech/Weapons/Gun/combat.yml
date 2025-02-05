@@ -89,7 +89,7 @@
   - type: Gun
     minAngle: -10
     maxAngle: 15
-    fireRate: 0.4
+    fireRate: 0.25
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
@@ -97,7 +97,7 @@
       path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: CannonBall
-    fireCost: 160
+    fireCost: 200
   - type: Appearance
   - type: AmmoCounter
 
@@ -114,7 +114,7 @@
   - type: Gun
     minAngle: -10
     maxAngle: 15
-    fireRate: 1
+    fireRate: 0.95
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
@@ -122,7 +122,7 @@
       path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: CannonBallGrapeshot
-    fireCost: 50
+    fireCost: 40
   - type: Appearance
   - type: AmmoCounter
 
@@ -139,7 +139,7 @@
   - type: Gun
     minAngle: -10
     maxAngle: 15
-    fireRate: 0.7
+    fireRate: 0.5
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
@@ -147,7 +147,7 @@
       path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
   - type: ProjectileBatteryAmmoProvider
     proto: CannonBallGlassshot
-    fireCost: 80
+    fireCost: 120
   - type: Appearance
   - type: AmmoCounter
 
