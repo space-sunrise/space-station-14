@@ -404,6 +404,9 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/ppsh41/tiny.rsi
   - type: Item
+    size: Large
+    shape:
+    - 0,0,4,1
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/ppsh41/tiny.rsi
   - type: GunWieldBonus
     minAngle: -22

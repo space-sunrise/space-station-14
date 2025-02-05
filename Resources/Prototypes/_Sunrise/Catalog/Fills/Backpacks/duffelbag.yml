@@ -121,17 +121,17 @@
         - id: MagazineBR64Extended
           amount: 2
 
-- type: entity
-  id: ClothingBackpackDuffelWeaponLightMachineGunMG42
-  parent: ClothingBackpackDuffelMilitary
-  name: Bundle mg342
-  description: MG-342 with 2 raspy magazines.
-  components:
-    - type: StorageFill
-      contents:
-        - id: WeaponMachineGunMG42
-        - id: MagazineMachineGunMG42
-          amount: 2
+#- type: entity
+#  id: ClothingBackpackDuffelWeaponLightMachineGunMG42
+#  parent: ClothingBackpackDuffelMilitary
+#  name: Bundle mg342
+#  description: MG-342 with 2 raspy magazines.
+#  components:
+#    - type: StorageFill
+#      contents:
+#        - id: WeaponMachineGunMG42
+#        - id: MagazineMachineGunMG42
+#          amount: 2
 
 - type: entity
   id: ClothingBackpackDuffelWeaponSniperHristovFilled

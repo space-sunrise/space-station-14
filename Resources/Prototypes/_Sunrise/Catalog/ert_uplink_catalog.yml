@@ -53,11 +53,11 @@
 
 - type: listing
   id: NTUplinkSunriseClothingBackpackDuffelWeaponLightMachineGunMG42
-  name: ntuplink-gun-bundlemg342-name
-  productEntity: ClothingBackpackDuffelWeaponLightMachineGunMG42
+  #name: ntuplink-gun-bundlemg342-name
+  productEntity: WeaponMachineGunMG42
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: mg42 }
   cost:
-    Bluecrystal: 28
+    Bluecrystal: 25
   categories:
     - NTAutoGun
   conditions:

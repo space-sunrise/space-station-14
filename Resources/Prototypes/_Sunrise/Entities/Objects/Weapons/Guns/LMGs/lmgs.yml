@@ -21,7 +21,7 @@
   - type: Gun
     minAngle: 40
     maxAngle: 80
-    fireRate: 8.5
+    fireRate: 7.5
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/shot.ogg
       params:
@@ -87,7 +87,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,5,2
+    - 0,0,5,3
     sprite: _Sunrise/Objects/Weapons/Guns/LMGs/rpd/tiny.rsi
   - type: GunWieldBonus
     minAngle: -30
@@ -152,11 +152,11 @@
     sprite: _Sunrise/Objects/Weapons/Guns/LMGs/mg42/tiny.rsi
   - type: GunWieldBonus
     minAngle: -20
-    maxAngle: -80
+    maxAngle: -75
   - type: Gun
     minAngle: 30
     maxAngle: 90
-    fireRate: 8
+    fireRate: 7.5
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/shot.ogg
       params:
@@ -212,7 +212,7 @@
   - type: Item
     size: Huge
     shape:
-    - 0,0,6,2
+    - 0,0,6,3
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/LMGs/DL6902.rsi
     layers:

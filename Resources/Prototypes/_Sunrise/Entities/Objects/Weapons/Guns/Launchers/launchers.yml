@@ -13,7 +13,7 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/HMGs/rpg/tiny.rsi
   - type: Item
-    size: Ginormous  
+    size: Ginormous
     sprite: _Sunrise/Objects/Weapons/Guns/HMGs/rpg/tiny.rsi
   - type: Gun
     fireRate: 0.5
@@ -54,9 +54,9 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/HMGs/gl-64/tiny.rsi
   - type: Item
-    size: Huge  
+    size: Huge
     shape:
-    - 0,0,5,2
+    - 0,0,6,2
     sprite: _Sunrise/Objects/Weapons/Guns/HMGs/gl-64/tiny.rsi
   - type: AmmoCounter
   - type: Gun
@@ -89,11 +89,12 @@
   - type: EyeCursorOffset
     maxOffset: 3
     pvsIncrease: 0.3
-  
+
 - type: entity
   name: GL-79
   parent: WeaponGrenadeLauncherGL70
   id: WeaponGrenadeLauncherGL70Flash
+  suffix: GrenadeFlash
   components:
   - type: RevolverAmmoProvider
     whitelist:
