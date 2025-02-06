@@ -56,6 +56,25 @@
         variation: 0.05
 
 - type: entity
+  id: ATMWallmountBase
+  parent: ATMBase
+  name: ATM Wallmount
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wallmount
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    snapCardinals: false
+  - type: Rotatable
+  - type: WallMount
+    arc: 175
+  - type: Transform
+    noRot: false
+
+- type: entity
   id: ATM
   description: An FPI ATM cabinet without self-extermination button. strange.
   name: FPI ATM
@@ -75,7 +94,7 @@
     board: FPIATMComputerCircuitboard
   - type: Advertise
     pack: BlockGameAds
-    minimumWait: 60 # Arcades are noisy
+    minimumWait: 120
     maximumWait: 240
   - type: SpeakOnUIClosed
     pack: BlockGameGoodbyes
@@ -84,83 +103,18 @@
     damageModifierSet: StructuralMetallic
 
 - type: entity
+  parent: [ATMWallmountBase]
   id: WallMountATM
   name: WallMount FPI ATM
-  parent: [ATMBase]
-  description: An intercom. For when the station just needs to know something.
+  description: An compact Wallmount FPI ATM without self-extermination button.
   components:
-  - type: WallMount
-  #- type: ApcPowerReceiver
-  #- type: Electrified
-  #  enabled: false
-  #  usesApcPower: true
-  - type: ExtensionCableReceiver
-  - type: Clickable
-  - type: InteractionOutline
-  - type: Appearance
-  - type: WiresVisuals
   - type: Sprite
-    noRot: false
-    drawdepth: SmallObjects
-    sprite: Structures/Wallmounts/intercom.rsi
+    sprite: _Sunrise/Structures/Machines/banks_atm.rsi
     layers:
-    - state: base
-    - state: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
-      shader: unshaded
-    - state: broadcasting
-      map: ["enum.RadioDeviceVisualLayers.Broadcasting"]
-      shader: unshaded
+    - map: ["computerLayerBody"]
+      state: base
+    - map: ["computerLayerScreen"]
+      state: unshaded
+    - map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      state: panel
       visible: false
-    - state: speaker
-      map: ["enum.RadioDeviceVisualLayers.Speaker"]
-      shader: unshaded
-      visible: false
-    - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
-      visible: false
-  - type: Transform
-    noRot: false
-    anchored: true
-  - type: WiresPanel
-  - type: Wires
-    boardName: wires-board-name-intercom
-    layoutId: Intercom
-  - type: ActivatableUIRequiresPower
-  - type: ActivatableUI
-    key: enum.IntercomUiKey.Key
-    singleUser: true
-  - type: UserInterface
-    interfaces:
-      enum.IntercomUiKey.Key:
-        type: IntercomBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
-  - type: Construction
-    graph: Intercom
-    node: intercom
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallic
-  - type: GenericVisualizer
-    visuals:
-      enum.WiresVisualLayers.MaintenancePanel:
-        enum.WiresVisualLayers.MaintenancePanel:
-          True: { visible: true }
-          False: { visible: false }
-      enum.PowerDeviceVisuals.Powered:
-        enum.PowerDeviceVisualLayers.Powered:
-          True: { visible: true }
-          False: { visible: false }
-      enum.RadioDeviceVisuals.Broadcasting:
-        enum.RadioDeviceVisualLayers.Broadcasting:
-          True: { visible: true }
-          False: { visible: false }
-      enum.RadioDeviceVisuals.Speaker:
-        enum.RadioDeviceVisualLayers.Speaker:
-          True: { visible: true }
-          False: { visible: false }
-  placement:
-    mode: SnapgridCenter
-    snap:
-    - Wallmount
