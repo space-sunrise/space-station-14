@@ -241,11 +241,11 @@
     - 0,0,3,1
     sprite: _Sunrise/Objects/Weapons/Guns/SMGs/mp5/tiny.rsi
   - type: GunWieldBonus
-    minAngle: -22
-    maxAngle: -35
+    minAngle: -19
+    maxAngle: -16
   - type: Gun
-    minAngle: 25
-    maxAngle: 45
+    minAngle: 21
+    maxAngle: 32
     fireRate: 6
     soundGunshot:
       collection: mp5
@@ -302,7 +302,7 @@
   - type: Gun
     minAngle: 2
     maxAngle: 50
-    fireRate: 6
+    fireRate: 6.5
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/SMGs/scorpion/scorpion_shot.ogg
   - type: Clothing
