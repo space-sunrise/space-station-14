@@ -4,3 +4,7 @@ ent-WildSlimeCube = слаймовый кубик
     .desc = Просто добавь воды!
 ent-ChikenCube = куриный кубик
     .desc = Просто добавь воды!
+ent-InferiorVulpkaninCube = кубик низшего вульпканина
+    .desc = Просто добавь воды!
+ent-FelinidCube = фелинидовый кубик
+    .desc = Просто добавь воды!

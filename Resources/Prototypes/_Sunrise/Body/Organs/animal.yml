@@ -74,19 +74,10 @@
     metabolizerTypes: [ Animal, Chiken ]
 
 - type: entity
-  id: OrganCatHeart
+  id: OrganInferiorVulpkaninHeart
   parent: OrganAnimalHeart
   name: heart
   categories: [ HideSpawnMenu ]
   components:
   - type: Metabolizer
-    metabolizerTypes: [ Animal, Cat ]
-
-- type: entity
-  id: OrganDogHeart
-  parent: OrganAnimalHeart
-  name: heart
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Metabolizer
-    metabolizerTypes: [ Animal, Dog ]
+    metabolizerTypes: [ Animal, InferiorVulpkanin ]

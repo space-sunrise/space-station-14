@@ -24,3 +24,21 @@
   - type: Rehydratable
     possibleSpawns:
     - MobChicken
+
+- type: entity
+  parent: MonkeyCube
+  id: InferiorVulpkaninCube
+  name: inferior vulpkanin cube
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - MobInferiorVulpkanin
+
+- type: entity
+  parent: MonkeyCube
+  id: FelinidCube
+  name: felinid cube
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - MobFelinid

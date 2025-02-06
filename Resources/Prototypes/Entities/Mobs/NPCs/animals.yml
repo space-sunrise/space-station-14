@@ -2858,8 +2858,6 @@
   # Sunrise-start
   - type: Carriable
   - type: CanEscapeInventory
-  - type: Body
-    prototype: Dog
   # Sunrise-end
 
 - type: entity
@@ -3024,8 +3022,6 @@
     color: "#808080"
   - type: Carriable
   - type: CanEscapeInventory
-  - type: Body
-    prototype: Cat
   # Sunrise-end
 
 - type: entity
