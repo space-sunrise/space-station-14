@@ -898,7 +898,7 @@
   discountDownTo:
     Telecrystal: 1
   cost:
-    Telecrystal: 4
+    Telecrystal: 2
   categories:
   - UplinkChemicals
 
@@ -1289,9 +1289,9 @@
   productEntity: LauncherCreamPieFake
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 10
+    Telecrystal: 6
   cost:
-    Telecrystal: 15
+    Telecrystal: 8
   categories:
   - UplinkJob
   conditions:
