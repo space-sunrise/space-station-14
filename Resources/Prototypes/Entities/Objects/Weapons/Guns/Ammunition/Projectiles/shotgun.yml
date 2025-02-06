@@ -263,7 +263,7 @@
   components:
   - type: ProjectileSpread
     proto: PelletGrapeshot
-    count: 5
+    count: 10 #Sunrise-Edit
     spread: 40
 
 - type: entity
