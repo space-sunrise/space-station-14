@@ -33,3 +33,12 @@
   components:
   - type: ComputerBoard
     prototype: ComputerShuttleSecurity
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: FPIATMComputerCircuitboard
+  name: FPI ATM board
+  description: A computer printed circuit board for a FPI ATM cabinet.
+  components:
+    - type: ComputerBoard
+      prototype: ATM
