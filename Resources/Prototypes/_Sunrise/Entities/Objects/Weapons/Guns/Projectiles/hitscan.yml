@@ -326,9 +326,9 @@
   id: BulletAntiMateriel
   damage:
     types:
-      Piercing: 40
-      Structural: 30
-  staminaDamage: 35
+      Piercing: 80
+      Structural: 220
+  staminaDamage: 65
   collisionMask: BulletImpassable
   reflective: NonEnergy
   bulletTracer:

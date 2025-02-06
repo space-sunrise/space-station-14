@@ -43,9 +43,9 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Gun
-    fireRate: 4.5
+    fireRate: 4
     minAngle: 5
-    maxAngle: 15
+    maxAngle: 12
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/smg_laser.rsi
   - type: Item
@@ -80,7 +80,9 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/batterylaser_carbine.rsi
   - type: Item
-    size: Large
+    size: Huge
+    shape:
+    - 0,0,4,1
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/batterylaser_carbine.rsi
   - type: MagazineVisuals
     magState: mag
@@ -107,7 +109,9 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun.rsi
   - type: Item
-    size: Large
+    size: Huge
+    shape:
+    - 0,0,4,1
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
@@ -119,7 +123,7 @@
   - type: EnergyGunFireModes
     fireModes:
     - hitscanProto: BulletDisabler
-      fireCost: 50
+      fireCost: 60
       name: energy-gun-disable
       state: disabler
       shotType: Hitscan
@@ -147,6 +151,10 @@
   id: WeaponEnergyGunMultiphase
   description: This is an expensive, modern recreation of an antique laser gun. This gun has several unique firemodes, but lacks the ability to recharge over time.
   components:
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,1
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/multiphase_energygun.rsi
     layers:
@@ -266,6 +274,10 @@
   id: WeaponEnergyGunPistol
   description: A military grade sidearm, used by many militia forces throughout the local sector.
   components:
+  - type: Item
+    size: Small
+    shape:
+    - 0,0,1,1
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_pistol.rsi
     layers:
@@ -337,13 +349,14 @@
     angleDecay: 8
     selectedMode: Burst
     shotsPerBurst: 3
-    burstCooldown: 0.3
-    burstFireRate: 4.4
+    burstCooldown: 0.25
+    burstFireRate: 4.5
     availableModes:
     - Burst
   - type: Item
-    size: Large
-    sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_carbine.rsi
+    size: Huge
+    shape:
+    - 0,0,4,1
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/energygun_carbine.rsi
   - type: MagazineVisuals
@@ -443,9 +456,9 @@
     startingCharge: 1500
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 20 # ~2 minute
+    autoRechargeRate: 15 # ~2 minute
     autoRechargePause: true
-    autoRechargePauseTime: 60
+    autoRechargePauseTime: 30
   - type: EnergyGunFireModes
     fireModes:
     - hitscanProto: BulletDisabler
@@ -475,6 +488,10 @@
   id: WeaponIONRifle
   name: ion rifle
   components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,5,2
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/ion_rifle.rsi
     layers:
@@ -494,8 +511,8 @@
     availableModes:
     - SemiAuto
   - type: Battery
-    maxCharge: 4000
-    startingCharge: 4000
+    maxCharge: 7000
+    startingCharge: 7000
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 40 #100sec+60Sec Pause
@@ -510,6 +527,10 @@
     zeroVisible: true
   - type: Appearance
   - type: EmpImmune
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3
 
 # Sunrise Colonial Marines
 
@@ -554,6 +575,9 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/EG_R/tiny.rsi
   - type: Item
+    size: Huge
+    shape:
+    - 0,0,5,1
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/EG_R/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
@@ -598,8 +622,10 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/EG_C/tiny.rsi
   - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,1
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/EG_C/tiny.rsi
-    size: Large
   - type: Gun
     fireRate: 3
     selectedMode: SemiAuto
@@ -640,14 +666,16 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/EG_MG/tiny.rsi
   - type: Item
-    sprite: _Sunrise/Objects/Weapons/Guns/Battery/EG_MG/tiny.rsi
     size: Huge
+    shape:
+    - 0,0,5,2
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/EG_MG/tiny.rsi
   - type: Gun
     minAngle: 24
     maxAngle: 34
     angleIncrease: 4
     angleDecay: 16
-    fireRate: 3.6
+    fireRate: 4
     selectedMode: FullAuto
     availableModes:
     - SemiAuto
@@ -661,8 +689,8 @@
     steps: 3
     zeroVisible: true
   - type: Battery
-    maxCharge: 7500
-    startingCharge: 7500
+    maxCharge: 8000
+    startingCharge: 8000
   - type: HitscanBatteryAmmoProvider
     proto: BulletRedLaser
     fireCost: 50
@@ -688,6 +716,9 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/EGE_XR/tiny.rsi
   - type: Item
+    size: Huge
+    shape:
+    - 0,0,5,1
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/EGE_XR/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
@@ -732,6 +763,9 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/EG_Sniper/tiny.rsi
   - type: Item
+    size: Huge
+    shape:
+    - 0,0,5,1
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/EG_Sniper/tiny.rsi
   - type: GunRequiresWield
   - type: GunWieldBonus
@@ -771,6 +805,10 @@
   id: WeaponSniperPulseCarbine
   description: "A high tech heavy carbine. favoured by the NT-ERT operatives."
   components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,2
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/sniper_pulse_carbine.rsi
     layers:
@@ -796,6 +834,7 @@
   - type: Battery
     maxCharge: 5000
     startingCharge: 5000
+  - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 3
     pvsIncrease: 0.3
@@ -815,8 +854,10 @@
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
   - type: Item
-    sprite: _Sunrise/Objects/Weapons/Guns/Battery/syndielasergun.rsi
     size: Huge
+    shape:
+    - 0,0,4,1
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/syndielasergun.rsi
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/syndielasergun.rsi
   - type: Gun
@@ -865,6 +906,9 @@
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/syndielaserpistol.rsi
     size: Small
+    shape:
+    - 0,0,1,0
+    - 0,1,0,1
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/syndielaserpistol.rsi
   - type: Gun
@@ -885,6 +929,8 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 10
+    autoRechargePause: true
+    autoRechargePauseTime: 10
 
 - type: entity
   name: UVL-21 «Vivern»
@@ -907,6 +953,8 @@
   - type: Item
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/laserminigun.rsi
     size: Huge
+    shape:
+    - 0,0,5,2
   - type: Gun
     minAngle: 5
     maxAngle: 10

@@ -56,23 +56,23 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.5
+        Blunt: 0.55
+        Slash: 0.55
+        Piercing: 0.55
         Heat: 0.60
-        Radiation: 0.65
+        Radiation: 0.70
         Caustic: 0.75
   - type: ExplosionResistance
     damageCoefficient: 0.75
   - type: PressureProtection
     highPressureMultiplier: 0.6
-    lowPressureMultiplier: 1000
+    lowPressureMultiplier: 0.6
   - type: TemperatureProtection
-    heatingCoefficient: 0.02
+    heatingCoefficient: 0.5
     coolingCoefficient: 0.5
   - type: ClothingSpeedModifier
-    walkModifier: 0.80
-    sprintModifier: 0.80
+    walkModifier: 0.85
+    sprintModifier: 0.85
   - type: GroupExamine
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
