@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Created by TheShuEd (github) for Space Station 14)",
+    "copyright": "Created by TheShuEd (github) for Space Station 14) resprite (sec_pallet_sell) by KaiserMaus for Sunrise",
     "size": {
         "x": 32,
         "y": 32
@@ -75,6 +75,41 @@
         },
         {
             "name": "cargo_pallet_sell_7",
+            "directions": 4
+        },
+        {
+            "name": "sec_pallet_sell"
+        },
+        {
+            "name": "sec_pallet_sell_0",
+            "directions": 4
+        },
+        {
+            "name": "sec_pallet_sell_1",
+            "directions": 4
+        },
+        {
+            "name": "sec_pallet_sell_2",
+            "directions": 4
+        },
+        {
+            "name": "sec_pallet_sell_3",
+            "directions": 4
+        },
+        {
+            "name": "sec_pallet_sell_4",
+            "directions": 4
+        },
+        {
+            "name": "sec_pallet_sell_5",
+            "directions": 4
+        },
+        {
+            "name": "sec_pallet_sell_6",
+            "directions": 4
+        },
+        {
+            "name": "sec_pallet_sell_7",
             "directions": 4
         }
     ]

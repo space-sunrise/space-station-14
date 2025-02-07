@@ -161,3 +161,17 @@
   - type: Tag
     tags:
     - HighRiskItem
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ComputerFineRecordsCircuitboard
+  name: security fine records computer board #консоль выписки штрафов (консольная плата)
+  description: A computer circuit board for a ERT Approve computer. #Плата которая используется для создания консоли выписки штрафов.
+  suffix: Security, Sunrise
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputerFineRecords
+  - type: StaticPrice
+    price: 3000
