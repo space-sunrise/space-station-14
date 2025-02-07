@@ -6637,7 +6637,7 @@ entities:
     - pos: 13.426399,-37.591137
       parent: 34
       type: Transform
-- proto: BoxColoredLighttube
+- proto: BoxLighttubeHoliday
   entities:
   - uid: 11623
     components:
@@ -57421,7 +57421,7 @@ entities:
       type: Transform
     - powerLoad: 0
       type: ApcPowerReceiver
-- proto: PoweredLightColoredBlack
+- proto: PoweredlightRed
   entities:
   - uid: 2328
     components:
@@ -61884,7 +61884,7 @@ entities:
       type: Transform
     - count: 15
       type: Stack
-- proto: Shinai
+- proto: ToySword
   entities:
   - uid: 147
     components:
@@ -66685,12 +66685,12 @@ entities:
     - pos: -1.5,-18.5
       parent: 34
       type: Transform
-- proto: ToySword
+- proto: ToySwordDoubled
   entities:
   - uid: 152
     components:
     - desc: 'Оченьь опасный и громкий меч и лучом из чистой, концентрированной плазмы. Разрезает небронированные обьяекты как масло. '
-      name: энергитический меч
+      name: двухклинковый энергитический меч
       type: MetaData
     - pos: 26.581175,-33.370186
       parent: 34

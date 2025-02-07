@@ -42,3 +42,122 @@
   components:
     - type: ComputerBoard
       prototype: ATM
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ShipyardComputerCircuitboard
+  name: shipyard computer board
+  description: A computer printed circuit board for a shipyard computer.
+  components:
+    - type: Sprite
+      state: cpu_supply
+    - type: ComputerBoard
+      prototype: ComputerShipyard
+    - type: StaticPrice
+      price: 750
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: CargoFinanceComputerCircuitboard
+  name: консоль учета финансов (консольная плата)
+  description: Плата которая используется для создания консоли учета финансов.
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputerCargoFinanceConsole
+  - type: StaticPrice
+    price: 750
+  - type: Tag
+    tags:
+    - HighRiskItem
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ComputerSaleConsoleCircuitboard
+  name: консоль продажи товаров (консольная плата)
+  description: Плата которая используется для создания консоли продажи товаров.
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputerSaleConsole
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ComputerBountySaleConsoleCircuitboard
+  name: консоль отправки запросов (консольная плата)
+  description: Плата которая используется для создания консоли отправки запросов.
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputerBountySaleConsole
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: StationBankComputerCircuitboard
+  name: консоль счета станции (консольная плата)
+  description: Плата которая используется для создания консоли счета станции.
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputeStationBankConsole
+  - type: StaticPrice
+    price: 750
+  - type: Tag
+    tags:
+    #- DroneUsable
+    - HighRiskItem
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: CargoSalaryComputerCircuitboard
+  name: консоль учета зарплат (консольная плата)
+  description: Плата которая используется для создания консоли учета зарплат.
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputeCargoSalaryConsole
+  - type: StaticPrice
+    price: 750
+  - type: Tag
+    tags:
+    #- DroneUsable
+    - HighRiskItem
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: CallErtComputerCircuitboard
+  name: консоль вызова ОБР (консольная плата)
+  description: A computer circuit board for a ERT Call computer. #Плата которая используется для создания консоли вызова ОБР.
+  suffix: ERTCALL
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputerCallErtConsole
+  - type: StaticPrice
+    price: 3000
+  - type: Tag
+    tags:
+    - HighRiskItem
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ApproveErtComputerCircuitboard
+  name: консоль принятия ОБР (консольная плата)
+  description: A computer circuit board for a ERT Approve computer. #Плата которая используется для создания консоли принятия ОБР.
+  suffix: ERTCALL
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputerApproveErtConsole
+  - type: StaticPrice
+    price: 3000
+  - type: Tag
+    tags:
+    - HighRiskItem
