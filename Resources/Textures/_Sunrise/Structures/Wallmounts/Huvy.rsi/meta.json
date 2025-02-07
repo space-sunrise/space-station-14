@@ -8,28 +8,28 @@
     },
     "states": [
         {
-            "name": "BAR"
+            "name": "bar"
         },
         {
-            "name": "BotanyFood"
+            "name": "botanyfood"
         },
         {
-            "name": "BreadLies"
+            "name": "breadlies"
         },
         {
-            "name": "DONK"
+            "name": "donk"
         },
         {
-            "name": "EATMEAT"
+            "name": "eatmeat"
         },
         {
-            "name": "MoreBread"
+            "name": "morebread"
         },
         {
-            "name": "PIE"
+            "name": "pie"
         },
         {
-            "name": "PIZZA"
+            "name": "pizza"
         }
     ]
 }
