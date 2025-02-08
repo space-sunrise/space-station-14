@@ -155,3 +155,7 @@ ignore_files:
   - 'tts-voices-sunrise.ftl'
   - 'lobby.ftl'
   - 'ghost-themes.ftl'
+  - 'ai.ftl'
+  - 'borer.ftl'
+  - 'poker_cards.ftl'
+  - 'poker_cards_classic.ftl'

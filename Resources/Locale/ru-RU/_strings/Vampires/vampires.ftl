@@ -21,8 +21,8 @@ vampire-unnaturalstrength = Верхние мышцы { CAPITALIZE(THE($user)) }
 vampire-supernaturalstrength = Верхние мышцы { CAPITALIZE(THE($user)) } набухают от мощи делая его сверхсильным!
 store-currency-display-blood-essence = Кровавая эссенция
 store-category-vampirepowers = Силы
-vampire-power-summonheirloom = Summon Heirloom
-vampire-power-summonheirloom-description = Summon a family heirloom, gifted by lilith herself.
+vampire-power-summonheirloom = Призыв реликвии
+vampire-power-summonheirloom-description = Вызовите семейную реликвию, подаренную самой Лилит.
 vampire-power-blessing = Blessing of Lilith
 vampire-power-blessing-description = Swear your soul to Lilith, receive her blessing, and feast upon the bounty around you.
 vampire-power-togglefangs = Toggle Fangs
@@ -57,38 +57,38 @@ vampire-mutation-menu-ui-window-name = Меню мутаций
 vampire-mutation-none-info = Ничего не выбрано
 vampire-mutation-hemomancer-info =
     Гемомансер
-    
+
     Фокусируеться на кровавой магии и манипуляции крови вокруг себя.
-    
+
     Способности:
-    
+
     - Визг
     - Кража крови
 vampire-mutation-umbrae-info =
     Тень
-    
+
     Фокусируется на темноте, стелсе, мобильности.
-    
+
     Способности:
-    
+
     - Блик
     - Плащ тьмы
 vampire-mutation-gargantua-info =
     Гаргантюа
-    
+
     Фокусируется на ближнем уроне и стойкости.
-    
+
     Способности:
-    
+
     - Нечестивая сила
     - Сверхъестественная сила
 vampire-mutation-bestia-info =
     Бестия
-    
+
     Фокусируется на превращении и собирании трофеев
-    
+
     Способности:
-    
+
     - Форма летучей мыши
     - Мышиная форма
 
