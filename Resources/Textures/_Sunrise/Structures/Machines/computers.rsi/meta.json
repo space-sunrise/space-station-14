@@ -20,6 +20,46 @@
             "directions": 4
         },
         {
+            "name": "contraband_sell",
+            "directions": 4
+        },
+        {
+            "name": "contraband_sell_key",
+            "directions": 4
+        },
+        {
+            "name": "financial_accounting",
+            "directions": 4
+        },
+        {
+            "name": "financial_accounting_key",
+            "directions": 4
+        },
+        {
+            "name": "forfeiture",
+            "directions": 4
+        },
+        {
+            "name": "forfeiture_key",
+            "directions": 4
+        },
+        {
+            "name": "salary",
+            "directions": 4
+        },
+        {
+            "name": "salary_key",
+            "directions": 4
+        },
+        {
+            "name": "station_account",
+            "directions": 4
+        },
+        {
+            "name": "station_account_key",
+            "directions": 4
+        },
+        {
             "name": "ai-fixer",
             "directions": 4
         },

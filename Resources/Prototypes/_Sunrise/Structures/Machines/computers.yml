@@ -1,7 +1,7 @@
 - type: entity
   parent: BaseComputer
   id: BaseComputerSunrise
-  #abstract: true
+  abstract: true
   name: computer
   components:
     - type: Sprite
@@ -99,9 +99,9 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: comm
+      state: station_account
     - map: ["computerLayerKeys"]
-      state: generic_keys
+      state: station_account_key
   #- type: StationBankConsole
   #- type: ActivatableUI
   #  key: enum.StationBankConsoleUiKey.Bank
@@ -132,9 +132,9 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: comm
+      state: salary
     - map: ["computerLayerKeys"]
-      state: generic_keys
+      state: salary_key
   #- type: CargoSalaryConsole
   #- type: ActivatableUI
   #  key: enum.CargoSalaryConsoleUiKey.Salary
@@ -165,9 +165,9 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: comm
+      state: financial_accounting
     - map: ["computerLayerKeys"]
-      state: generic_keys
+      state: financial_accounting_key
   #- type: CargoFinanceConsole
   #- type: ActivatableUI
   #  key: enum.CargoFinanceConsoleUiKey.Finance
@@ -267,7 +267,7 @@
     access: [["Captain"], ["HeadOfPersonnel"]]
 
 - type: entity
-  parent: BaseComputerAiAccess
+  parent: [BaseComputerAiAccess, BaseComputerSunrise]
   id: ComputerFineRecords
   name: fine records computer
   suffix: Finance, Security
@@ -289,16 +289,53 @@
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: explosive
+      state: forfeiture
     - map: ["computerLayerKeys"]
-      state: security_key
+      state: forfeiture_key
     - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
       state: generic_panel_open
   - type: PointLight
     radius: 1.5
     energy: 1.6
-    color: "#1f8c28"
+    color: "#8c381f"
   - type: Computer
     board: ComputerFineRecordsCircuitboard
+  - type: AccessReader
+    access: [["Security"]] #Warder\HoS only Magistrate?
+
+- type: entity
+  parent: BaseComputerSunrise
+  id: ComputerContrabandSale
+  name: contraband exchanger computer
+  suffix: Finance, Security
+  description: This can be used to valid contraband and exchange it to station account. Only security can modify them.
+  components:
+  - type: CriminalRecordsConsole #Заменить на Компонент консоли Штрафа
+  - type: UserInterface
+    interfaces:
+      enum.CriminalRecordsConsoleKey.Key:
+        type: CriminalRecordsConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: ActivatableUI
+    key: enum.CriminalRecordsConsoleKey.Key
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: contraband_sell
+    - map: ["computerLayerKeys"]
+      state: contraband_sell_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#9e1414"
+  - type: Computer
+    board: ComputerContrabandSaleCircuitboard
   - type: AccessReader
     access: [["Security"]] #Warder\HoS only
