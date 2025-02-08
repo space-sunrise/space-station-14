@@ -105,10 +105,10 @@
     sprite: Structures/cargo_pallets.rsi
   - type: Icon
     sprite: Structures/cargo_pallets.rsi
-    state: contraband_pallet_sell
+    state: sec_pallet_sell
   - type: IconSmooth
-    key: contraband_pallet_sell
-    base: contraband_pallet_sell_
+    key: sec_pallet_sell
+    base: sec_pallet_sell_
 
 - type: entity
   id: SecurityPalletBuy
