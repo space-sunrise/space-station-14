@@ -124,11 +124,11 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.4 #sunrise-Edit
-        Slash: 0.4 #sunrise-Edit
-        Piercing: 0.4 #sunrise-Edit
-        Heat: 0.4 #sunrise-Edit
-        Caustic: 0.5
+        Blunt: 0.1 #sunrise-Edit
+        Slash: 0.3 #sunrise-Edit
+        Piercing: 0.2 #sunrise-Edit
+        Heat: 0.3 #sunrise-Edit
+        Caustic: 0.2
   - type: ExplosionResistance
     damageCoefficient: 0.35
   - type: PressureProtection  #Sunrise-start
@@ -138,8 +138,8 @@
     heatingCoefficient: 0.2
     coolingCoefficient: 0.5 #Sunrise-end
   - type: ClothingSpeedModifier
-    walkModifier: 0.95
-    sprintModifier: 0.90
+    walkModifier: 0.75
+    sprintModifier: 0.65
   #Shoulder mounted flashlight
   - type: ToggleableLightVisuals
     spriteLayer: light
