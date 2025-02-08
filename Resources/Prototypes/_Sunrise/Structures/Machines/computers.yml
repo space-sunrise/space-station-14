@@ -267,7 +267,7 @@
     access: [["Captain"], ["HeadOfPersonnel"]]
 
 - type: entity
-  parent: [BaseComputerAiAccess, BaseComputerSunrise]
+  parent: BaseComputerSunrise
   id: ComputerFineRecords
   name: fine records computer
   suffix: Finance, Security

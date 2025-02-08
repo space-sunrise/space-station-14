@@ -18,7 +18,7 @@
         Piercing: 3
         Structural: 10
     soundHit:
-      path: /Audio/Weapons/club.ogg
+      collection: MetalThud
     bluntStaminaDamageFactor: 1.50 # 15 stamina damage
   - type: Wieldable
   - type: IncreaseDamageOnWield
