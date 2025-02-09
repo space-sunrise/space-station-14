@@ -435,7 +435,7 @@
       path: "/Audio/Items/drill_use.ogg"
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 3
+    baseSprintSpeed: 2.75
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
@@ -723,7 +723,7 @@
         Structural: 190
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 3.5
+    baseSprintSpeed: 3
   - type: Reflect
     reflectProb: 0.20
     spread: 180
@@ -789,7 +789,7 @@
         Structural: 250
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.5
-    baseSprintSpeed: 2.2
+    baseSprintSpeed: 2
   - type: Damageable
     damageModifierSet: MediumArmorNT
   - type: CanMoveInAir
@@ -930,8 +930,8 @@
         Blunt: 35
         Structural: 250
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.4
-    baseSprintSpeed: 3.6
+    baseWalkSpeed: 2
+    baseSprintSpeed: 3
   - type: Reflect
     reflectProb: 0.20
     spread: 180
@@ -1095,8 +1095,8 @@
         Blunt: 60
         Structural: 400
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1.5
-    baseSprintSpeed: 1.9
+    baseWalkSpeed: 1
+    baseSprintSpeed: 1.5
   - type: Damageable
     damageModifierSet: HeavyArmorNT
   - type: CanMoveInAir
@@ -1178,8 +1178,8 @@
         Blunt: 35
         Structural: 280
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.2
-    baseSprintSpeed: 3.8
+    baseWalkSpeed: 2
+    baseSprintSpeed: 3
   - type: Damageable
     damageModifierSet: MediumArmorSyndi
   - type: CanMoveInAir
@@ -1222,7 +1222,6 @@
   components:
   - type: Mech
     startingEquipment:
-      - WeaponMechChainSword
       - WeaponMechCombatMissileRack8
 
 # Rover
@@ -1261,8 +1260,8 @@
         Blunt: 50
         Structural: 360
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 2.3
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 2
   - type: Damageable
     damageModifierSet: MediumArmorSyndi
   - type: CanMoveInAir
@@ -1300,7 +1299,6 @@
   components:
   - type: Mech
     startingEquipment:
-      - WeaponMechChainSword
       - WeaponMechCombatMissileRack8
 
 # Mauler
@@ -1340,7 +1338,7 @@
         Structural: 390
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
-    baseSprintSpeed: 1.6
+    baseSprintSpeed: 1.5
   - type: Damageable
     damageModifierSet: HeavyArmorSyndi
   - type: CanMoveInAir
@@ -1383,5 +1381,4 @@
   components:
   - type: Mech
     startingEquipment:
-      - WeaponMechChainSword
       - WeaponMechCombatMissileRack6
