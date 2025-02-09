@@ -40,3 +40,5 @@ ent-ClothingUniformJumpskirtChristmas = christmas female jumpsuit
     .desc = Pretty old stuff for these times, bringing back old memories.....
 ent-ClothingUniformJumpsuitBlackturtleneck = Black Turtleneck
     .desc = Stylish turtleneck sweater with black trousers. The tag says "Sokol&Kendrick production".
+ent-ClothingUniformJumpsuitNTRG = NTRG's uniform
+    .desc =  NTRG's uniform.

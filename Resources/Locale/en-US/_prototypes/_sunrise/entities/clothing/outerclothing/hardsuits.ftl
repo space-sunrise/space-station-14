@@ -22,3 +22,5 @@ ent-ClothingHardsuitUegParatrooper = space marine spacesuit
     .desc = This piece is worn exclusively by those who bring democracy and freedom to civilization, freeing it from the oppression of dictatorship and totalitarianism. Thanks to the new technologies of the United Government of Earth, the spacesuit is provided with mobility and high protection. As well as a built-in communication system, which periodically propagandizes propaganda replicas of democracy.
 ent-ClothingHardsuitUegCap = spacesuit of the commander of space marines
     .desc = As you look at it, you can imagine the pain, suffering and labor that a paratrooper endured to achieve the honor of wearing this suit. It represents the fear and horror before your eyes. If you have seen the wearer of this suit in person, you should thank him for the freedom and democracy he has given you, glory to the United Government of Earth!
+ent-ClothingOuterHardsuitNTRG = NTR Guard's hardsuit
+    .desc = Tough and reliable, just like its owner.
