@@ -1,7 +1,7 @@
 ---
 name: Сообщить о баге
 about: Сообщить о баге разработчикам для решения проблемы.
-title: "[Баг]"
+title: ''
 labels: ''
 assignees: VigersRay
 
