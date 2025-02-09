@@ -27,9 +27,5 @@
   name: metabolizer-type-chiken
 
 - type: metabolizerType
-  id: Cat
-  name: metabolizer-type-cat
-
-- type: metabolizerType
-  id: Dog
-  name: metabolizer-type-dog
+  id: InferiorVulpkanin
+  name: metabolizer-type-inferior-vulpkanin

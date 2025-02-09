@@ -220,6 +220,67 @@
     stealGroup: WeaponEnergyGunMultiphase
 
 - type: entity
+  name: pulse revolver
+  parent: BaseWeaponBatterySmall
+  id: WeaponEnergyGunPulseRevolver
+  description: This is an expensive modern Pulse gun. This gun has several unique firemodes. 
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/pulse_revolver.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mode-disabler
+      shader: unshaded
+      map: [ "Firemode" ]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/pulse_revolver.rsi
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: Battery
+    maxCharge: 720
+    startingCharge: 720
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 120
+    autoRechargePause: true
+    autoRechargePauseTime: 6
+  - type: EnergyGunFireModes
+    fireModes:
+    - hitscanProto: BulletDisabler
+      fireCost: 60
+      name: energy-gun-disable
+      state: disabler
+      shotType: Hitscan
+    - hitscanProto: BulletEnergyGunLaser #BulletPulse
+      fireCost: 110
+      name: energy-gun-lethal
+      state: lethal
+      shotType: Hitscan
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.EnergyGunFireModeVisuals.State:
+        Firemode:
+          Disabler: { state: mode-disabler }
+          Lethal: { state: mode-lethal }
+  - type: Tag
+    tags:
+    - Sidearm
+  - type: StaticPrice
+    price: 17500
+
+- type: entity
   name: miniature energy gun
   parent: BaseWeaponBatterySmall
   id: WeaponEnergyGunMini
@@ -443,11 +504,11 @@
     size: Large
   - type: Gun
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+      path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
     selectedMode: SemiAuto
-    fireRate: 2
+    fireRate: 3.25
     availableModes:
         - SemiAuto
         - FullAuto
@@ -456,18 +517,18 @@
     startingCharge: 1500
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 15 # ~2 minute
+    autoRechargeRate: 14 # ~2 minute
     autoRechargePause: true
     autoRechargePauseTime: 30
   - type: EnergyGunFireModes
     fireModes:
-    - hitscanProto: BulletDisabler
-      fireCost: 75
+    - hitscanProto: BulletDisablerSmg
+      fireCost: 49
       name: energy-gun-disable
       state: disabler
       shotType: Hitscan
-    - hitscanProto: BulletEnergyGunLaser
-      fireCost: 100
+    - hitscanProto: BulletLaser
+      fireCost: 70
       name: energy-gun-lethal
       state: lethal
       shotType: Hitscan
@@ -518,6 +579,8 @@
     autoRechargeRate: 40 #100sec+60Sec Pause
     autoRechargePause: true
     autoRechargePauseTime: 60
+  - type: Wieldable
+  - type: GunRequiresWield
   - type: ProjectileBatteryAmmoProvider
     proto: BulletEMP
     fireCost: 1000

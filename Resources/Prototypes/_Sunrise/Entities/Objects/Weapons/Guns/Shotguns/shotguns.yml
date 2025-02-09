@@ -123,7 +123,7 @@
   - type: Item
     size: Normal
     shape:
-    - 0,0,2,1
+    - 0,0,3,1
     sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/trenchgun_l_4034_sawn/tiny.rsi
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Shotguns/trenchgun_l_4034_sawn/tiny.rsi

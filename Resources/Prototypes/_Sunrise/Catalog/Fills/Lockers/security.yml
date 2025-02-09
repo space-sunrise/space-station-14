@@ -50,6 +50,32 @@
 
 - type: entity
   parent: GunSafe
+  id: GunSafeSubMachineGunMP7
+  name: safe
+  suffix: MP7, SUNRISE
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSubMachineGunMP7
+      amount: 2
+    - id: MagazinePistolSubMachineGun
+      amount: 4
+
+- type: entity
+  parent: GunSafe
+  id: GunSafeSubMachineGunSkorpion
+  name: safe
+  suffix: Skorpion, SUNRISE
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSubMachineGunSkorpion
+      amount: 4
+    - id: MagazinePistolSubMachineGun
+      amount: 6
+
+- type: entity
+  parent: GunSafe
   id: GunSafeShotgunPaladin
   name: safe
   suffix: Paladin 12
@@ -130,4 +156,4 @@
   - type: StorageFill
     contents:
     - id: WeaponEnergyGunTactical
-      amount: 3
+      amount: 2

@@ -2,29 +2,51 @@
   id: CrateArmoryM16A4
   parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
   name: M16A4 crate
-  description: Contains two M16A4 assault rifle with four mags. Requires Armory access to open.
+  description: Contains three M16A4 assault rifle. Requires Armory access to open.
   components:
   - type: StorageFill
     contents:
       - id: WeaponRifleM16A4
-        amount: 2
-      - id: MagazineM16A4
-        amount: 4
+        amount: 3
 
 - type: entity
   id: CrateArmoryShotgunTrenchgun4034Sawn
   parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
   name: Trenchgun4034 crate
-  description: Contains two Trenchgun4034 assault rifle with four mags. Requires Armory access to open.
+  description: Contains three Trenchgun4034 with three Bandolier. Requires Armory access to open.
   components:
   - type: StorageFill
     contents:
     - id: WeaponShotgunTrenchgun4034
-      amount: 2
+      amount: 3
+    - id: ClothingBeltBandolier
+      amount: 3
+
+- type: entity
+  id: CrateArmoryWeaponXM1014
+  parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
+  name: Combat Shotgun crate
+  description: Contains three XM1014 with three Bandolier. Requires Armory access to open.
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponXM1014
+      amount: 3
+    - id: ClothingBeltBandolier
+      amount: 3
+
+- type: entity
+  id: CrateArmoryShotgunAmmo
+  parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
+  name: Shotgun Ammo crate
+  description: Contains four Box Shotgun ammo. Requires Armory access to open.
+  components:
+  - type: StorageFill
+    contents:
     - id: BoxLethalshot
       amount: 1
     - id: BoxBeanbag
-      amount: 1
+      amount: 2
     - id: BoxShotgunSlug
       amount: 1
 
@@ -45,14 +67,27 @@
   id: CrateArmoryMP5
   parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
   name: MP5 crate
-  description: Contains two MP5 submachine gun with four mags. Requires Armory access to open.
+  description: Contains two MP5 submachine gun with two mags. Requires Armory access to open.
   components:
   - type: StorageFill
     contents:
       - id: WeaponSubMachineGunMP5
         amount: 2
       - id: MagazineMP5
-        amount: 4
+        amount: 2
+
+- type: entity
+  id: CrateArmoryMP7
+  parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
+  name: MP7 crate
+  description: Contains two MP7 submachine gun with two mags. Requires Armory access to open.
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponSubMachineGunMP7
+        amount: 2
+      - id: MagazinePistolSubMachineGun
+        amount: 2
 
 - type: entity
   id: CrateArmoryIK30
@@ -80,9 +115,9 @@
   id: CrateArmoryMagazineBoxRifleBig
   parent: [ CrateWeaponSecure, BaseRestrictedContraband ]
   name: MagazineBoxRifleBig crate
-  description: Contains two MagazineBoxRifleBig. Requires Armory access to open.
+  description: Contains Box Rifle ammo. Requires Armory access to open.
   components:
   - type: StorageFill
     contents:
-      - id: MagazineBoxRifleBig
-        amount: 3
+      - id: MagazineBoxRifle
+        amount: 4

@@ -27,6 +27,28 @@
         Heat: 0.80
 
 - type: entity
+  parent: ClothingMaskGasERT
+  id: ClothingMaskGasNTRG
+  name: NTR Guard's gas mask
+  description: An improved gas mask used by NTR Guard Squad.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/ntrguard.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/ntrguard.rsi
+
+- type: entity
+  parent: ClothingMaskGasSwat
+  id: ClothingMaskGasNTRGLead
+  name: NTR Leader Guard's gas mask
+  description: An improved gas mask used by NTR Guard Squad.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Mask/ntrguard_officer.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Mask/ntrguard_officer.rsi
+
+- type: entity
   parent: ClothingMaskBase
   id: ClothingMaskSkull
   name: skull mask

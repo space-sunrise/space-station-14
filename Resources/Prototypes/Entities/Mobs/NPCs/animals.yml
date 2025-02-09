@@ -877,6 +877,7 @@
   id: MobCrab
   description: A folk legend goes around that his claw snaps spacemen out of existence over distasteful remarks. Be polite and tolerant for your own safety.
   components:
+  - type: VentCrawler # Sunrise-edit
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1262,6 +1263,7 @@
   description: The genetic bipedal ancestor of... Uh... Something. Yeah, there's definitely something on the station that descended from whatever this is.
   abstract: true
   components:
+  - type: VentCrawler # Sunrise-edit
   - type: CombatMode
   - type: Inventory
     templateId: monkey
@@ -1639,6 +1641,7 @@
   id: MobMouse
   description: Squeak!
   components:
+  - type: VentCrawler #Sunrise-edit
   - type: Body
     prototype: Mouse
   - type: GhostRole
@@ -2007,6 +2010,7 @@
   id: MobSlug
   description: And they called this a lizard?
   components:
+  - type: VentCrawler # Sunrise-edit
   - type: MovementSpeedModifier
     baseWalkSpeed : 2
     baseSprintSpeed : 3
@@ -2054,6 +2058,7 @@
   id: MobFrog
   description: Hop hop hop. Lookin' moist.
   components:
+  - type: VentCrawler # Sunrise-edit
   - type: MovementSpeedModifier
     baseWalkSpeed: 3
     baseSprintSpeed: 6
@@ -2306,6 +2311,7 @@
   id: MobSnake
   description: Hissss! Bites aren't poisonous.
   components:
+  - type: VentCrawler # Sunrise-edit
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -2357,6 +2363,7 @@
   id: MobSpiderBase
   abstract: true
   components:
+  - type: VentCrawler # Suneise-edit
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -2858,8 +2865,6 @@
   # Sunrise-start
   - type: Carriable
   - type: CanEscapeInventory
-  - type: Body
-    prototype: Dog
   # Sunrise-end
 
 - type: entity
@@ -2929,6 +2934,7 @@
   id: MobCorgiPuppy
   description: A little corgi! Aww...
   components:
+  - type: VentCrawler # Sunrise-edit
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Pets/corgi.rsi
@@ -3024,8 +3030,6 @@
     color: "#808080"
   - type: Carriable
   - type: CanEscapeInventory
-  - type: Body
-    prototype: Cat
   # Sunrise-end
 
 - type: entity
@@ -3311,6 +3315,7 @@
   id: MobHamster
   description: A cute, fluffy, robust hamster.
   components:
+  - type: VentCrawler # Sunrise-edit
   - type: GhostRole
     makeSentient: true
     allowSpeech: true

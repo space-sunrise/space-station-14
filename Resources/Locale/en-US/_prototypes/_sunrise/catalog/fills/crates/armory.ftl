@@ -9,4 +9,4 @@ ent-CrateArmoryIK30 = IK-30 crate
 ent-CrateArmoryMagazineBoxLightRifleBig = MagazineBoxLightRifleBig crate
     .desc = Contains two MagazineBoxLightRifleBig. Requires Armory access to open.
 ent-CrateArmoryMagazineBoxRifleBig = MagazineBoxRifleBig crate
-    .desc = Contains two MagazineBoxRifleBig. Requires Armory access to open.
+    .desc = Contains four MagazineBoxRifle. Requires Armory access to open.

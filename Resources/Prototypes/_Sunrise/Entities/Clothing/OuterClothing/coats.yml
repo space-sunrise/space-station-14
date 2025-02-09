@@ -371,3 +371,61 @@
     sprite: _Sunrise/Clothing/OuterClothing/Coats/coatchristmas.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/OuterClothing/Coats/coatchristmas.rsi
+
+- type: entity
+  parent: ClothingOuterStorageFoldableBase
+  id: ClothingOuterArmorNTRGLead
+  name: trenchcoat NTRG Sqaud
+  description: A suit that protects against minor chemical spills.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/ntrg_coat.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/ntrg_coat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.45
+        Heat: 0.5
+        Caustic: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.60
+  - type: Item
+    size: Huge
+
+- type: entity
+  parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterArmorNTRGLead]
+  id: ClothingOuterArmorNTRGLeadOpened
+  name: trenchcoat NTRG Sqaud
+
+- type: entity
+  parent: [ClothingOuterArmorBasic, ClothingOuterStorageBase]
+  id: ClothingOuterArmorNTRG
+  name: heavvy vest
+  description: heavvy vest for NTRG Sqaud
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/ntrg_armor.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Coats/ntrg_armor.rsi
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.9
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.45
+        Heat: 0.5
+        Caustic: 0.6
+  - type: ExplosionResistance
+    damageCoefficient: 0.60
+  - type: Item
+    size: Huge
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,5,1

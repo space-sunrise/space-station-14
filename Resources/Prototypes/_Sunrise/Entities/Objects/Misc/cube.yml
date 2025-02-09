@@ -10,13 +10,11 @@
         amount: 2
       - id: MonkeyCubeWrapped
         amount: 2
-      - id: MothroachCubeWrapped
-        amount: 2
-      - id: PigCubeWrapped
-        amount: 2
       - id: SlimeCubeWrapped
         amount: 2
-      - id: ChikenCubeWrapped
+      - id: InferiorVulpkaninCubeWrapped
+        amount: 2
+      - id: FelinidCubeWrapped
         amount: 2
   - type: Sprite
     sprite: Objects/Misc/monkeycube.rsi
@@ -89,3 +87,35 @@
   - type: Sprite
     sprite: _Sunrise/Objects/Misc/cube.rsi
     state: wrapper_chiken
+
+- type: entity
+  parent: MonkeyCubeWrapped
+  name: inferior vulpkanin cube
+  suffix: Wrapped
+  id: InferiorVulpkaninCubeWrapped
+  description: Unwrap this to get a inferior vulpkanin cube.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: InferiorVulpkaninCube
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/cube.rsi
+    state: wrapper_pig
+
+- type: entity
+  parent: MonkeyCubeWrapped
+  name: felinid cube
+  suffix: Wrapped
+  id: FelinidCubeWrapped
+  description: Unwrap this to get a felinid cube.
+  components:
+  - type: SpawnItemsOnUse
+    items:
+      - id: FelinidCube
+    sound:
+      path: /Audio/Effects/unwrap.ogg
+  - type: Sprite
+    sprite: _Sunrise/Objects/Misc/cube.rsi
+    state: wrapper_mothroach
