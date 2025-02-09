@@ -69,7 +69,7 @@ public sealed partial class MechComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public bool Broken = false;
-    
+
     /// <summary>
     /// Whether the mech has toggled lights.
     /// </summary>
@@ -106,6 +106,9 @@ public sealed partial class MechComponent : Component
 
     [DataField]
     public EntityWhitelist? PilotWhitelist;
+
+    [DataField]
+    public EntityWhitelist? PilotBlacklist;
 
     /// <summary>
     /// A container for storing the equipment entities.
@@ -151,7 +154,7 @@ public sealed partial class MechComponent : Component
     /// </summary>
     [DataField]
     public List<EntProtoId> StartingEquipment = new();
-    
+
     #region Sounds
     [DataField]
     public SoundSpecifier EnableLightSound = new SoundPathSpecifier("/Audio/_Sunrise/Mechs/mech_lights_enabled.ogg");

@@ -208,6 +208,9 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+    pilotBlacklist:
+      species:
+      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -273,6 +276,9 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+    pilotBlacklist:
+      species:
+      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -340,6 +346,9 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+    pilotBlacklist:
+      species:
+      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -415,6 +424,9 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+    pilotBlacklist:
+      species:
+      - Felinid
     equipmentWhitelist:
       tags:
       - IndustrialMech
@@ -506,6 +518,9 @@
     pilotWhitelist:
       components:
       - HumanoidAppearance
+    pilotBlacklist:
+      species:
+      - Felinid
   - type: Reflect
     reflectProb: 0.15
     spread: 180
@@ -569,6 +584,8 @@
     pilotWhitelist:
       tags:
       - Hamster
+      species:
+      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 0.8
@@ -646,6 +663,8 @@
     pilotWhitelist:
       tags:
       - VimPilot
+      species:
+      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 0.8
@@ -714,6 +733,9 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+    pilotBlacklist:
+      species:
+      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -780,6 +802,9 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+    pilotBlacklist:
+      species:
+      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -852,6 +877,9 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+    pilotBlacklist:
+      species:
+      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -922,6 +950,9 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+    pilotBlacklist:
+      species:
+      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -1007,6 +1038,9 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+    pilotBlacklist:
+      species:
+      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -1087,6 +1121,9 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+    pilotBlacklist:
+      species:
+      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -1170,6 +1207,9 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+    pilotBlacklist:
+      species:
+      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -1252,6 +1292,9 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+    pilotBlacklist:
+      species:
+      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -1329,6 +1372,9 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+    pilotBlacklist:
+      species:
+      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 1

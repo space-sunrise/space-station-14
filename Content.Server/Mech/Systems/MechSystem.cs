@@ -253,6 +253,12 @@ public sealed partial class MechSystem : SharedMechSystem
             return;
         }
 
+        if (_whitelistSystem.IsWhitelistPass(component.PilotBlacklist, args.User))
+        {
+            _popup.PopupEntity(Loc.GetString("mech-no-enter", ("item", uid)), args.User);
+            return;
+        }
+
         if (TryComp<AccessReaderComponent>(uid, out var accessReader))
             if (!_accessReader.IsAllowed(args.Args.User, uid, accessReader))
             {
@@ -290,7 +296,7 @@ public sealed partial class MechSystem : SharedMechSystem
             if (_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var critThreshold) && critThreshold != null)
                 component.MaxIntegrity = critThreshold.Value;
         }
-        
+
         if (args.DamageIncreased &&
             args.DamageDelta != null &&
             component.PilotSlot.ContainedEntity != null)
@@ -299,7 +305,7 @@ public sealed partial class MechSystem : SharedMechSystem
             _damageable.TryChangeDamage(component.PilotSlot.ContainedEntity, damagetoplayer);
         }
     }
-    
+
     private void PlayCritSound(EntityUid uid, MechComponent component, DamageableComponent damage )
     {
         var total = damage.TotalDamage;
