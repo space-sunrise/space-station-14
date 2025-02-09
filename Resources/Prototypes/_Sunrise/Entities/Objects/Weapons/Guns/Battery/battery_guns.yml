@@ -504,11 +504,11 @@
     size: Large
   - type: Gun
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+      path: /Audio/Weapons/Guns/Gunshots/taser2.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
     selectedMode: SemiAuto
-    fireRate: 2
+    fireRate: 3.25
     availableModes:
         - SemiAuto
         - FullAuto
@@ -517,18 +517,18 @@
     startingCharge: 1500
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 15 # ~2 minute
+    autoRechargeRate: 14 # ~2 minute
     autoRechargePause: true
     autoRechargePauseTime: 30
   - type: EnergyGunFireModes
     fireModes:
-    - hitscanProto: BulletDisabler
-      fireCost: 75
+    - hitscanProto: BulletDisablerSmg
+      fireCost: 49
       name: energy-gun-disable
       state: disabler
       shotType: Hitscan
-    - hitscanProto: BulletEnergyGunLaser
-      fireCost: 100
+    - hitscanProto: BulletLaser
+      fireCost: 70
       name: energy-gun-lethal
       state: lethal
       shotType: Hitscan
@@ -579,6 +579,8 @@
     autoRechargeRate: 40 #100sec+60Sec Pause
     autoRechargePause: true
     autoRechargePauseTime: 60
+  - type: Wieldable
+  - type: GunRequiresWield
   - type: ProjectileBatteryAmmoProvider
     proto: BulletEMP
     fireCost: 1000
