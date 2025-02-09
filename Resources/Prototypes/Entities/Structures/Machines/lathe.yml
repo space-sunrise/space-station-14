@@ -364,7 +364,7 @@
       - FauxTileAstroSnow
       - FauxTileAstroAsteroidSand
       - OreBagOfHolding
-      - DeviceQuantumSpinInverter
+      # - DeviceQuantumSpinInverter
       - EnergyDomeDirectionalTurtle
       # Sunrise-start
       - PowerCellHyper
