@@ -1,4 +1,4 @@
-ent-BulletSplashAcid = flesh acid spit
+ent-BulletSplashAcid = плоть кислотный плевок
     .desc = { ent-BaseBulletTrigger.desc }
-ent-BulletSpike = spike
+ent-BulletSpike = шип
     .desc = { ent-BaseBullet.desc }
