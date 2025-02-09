@@ -15,10 +15,10 @@
   categories: [ HideSpawnMenu ]
   parent: BaseFleshCultObjective
   id: CreateFleshHeartObjective
-  name: Создать и пробудить сердце плоти.
-  description: Вам необходимо развить необходимый навык для создания сердца.
-    Для пробуждения оно должно поглотить нужное количество тел развитых существ.
-    После пробуждения будьте готовы его защищать, ведь оно начнет превращать всю станцию в плоть.
+  name: Create and awaken the heart of flesh.
+  description: You need to develop the necessary skill to create a heart.
+    It must absorb the right number of bodies of evolved beings to awaken.
+    Once awakened, be prepared to defend it, for it will begin to turn the entire station into flesh.
   components:
     - type: Objective
       icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistFleshHeart.png
@@ -31,8 +31,8 @@
   categories: [ HideSpawnMenu ]
   parent: [BaseFleshCultObjective, BaseSurviveObjective]
   id: FleshCultSurviveObjective
-  name: Выжить и сохранить человеческий облик.
-  description: Не допустите голодания паразита, чтобы избежать непредвиденных обстоятельств.
+  name: Survive and remain human.
+  description: Do not allow the parasite to starve to avoid unforeseen circumstances.
   components:
     - type: Objective
       icon: _Sunrise/FleshCult/Interface/Actions/fleshCultistSurvivalObjective.png

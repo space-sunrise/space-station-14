@@ -152,6 +152,8 @@ ignore_list:
   - 'H₂O'
   - 'v2.1'
   - 'v 1.6'
+  - 'Sol Dry'
+  - 'Ds ujdjhbnt nhfyckbnjv.'
 
 ignore_files:
   - 'italian.ftl'
@@ -174,4 +176,3 @@ ignore_files:
   - 'flesh_hugger.ftl'
   - 'flesh_spider.ftl'
   - 'spells-actions.ftl'
-  - 'remote_controller.yml'
