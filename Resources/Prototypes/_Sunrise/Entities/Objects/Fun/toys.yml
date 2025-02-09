@@ -843,6 +843,16 @@
   - type: Sprite
     state: legendary-golden-weh
     sprite: _Sunrise/Objects/Fun/toys.rsi
+  - type: Item
+    heldPrefix: goldenw
+  - type: Clothing
+    quickEquip: false
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    equippedPrefix: goldenweh
+    slots:
+    - HEAD
+  - type: Speech
+    speechVerb: Reptilian
 
 - type: entity
   id: PlushieAnatolyLisitsyn
