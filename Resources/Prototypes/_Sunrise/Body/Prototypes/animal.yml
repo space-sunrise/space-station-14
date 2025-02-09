@@ -68,42 +68,23 @@
       part: FeetAnimal
 
 - type: body
-  id: Cat
-  name: "cat"
+  id: InferiorVulpkanin
+  name: "inferior vulpkanin"
   root: torso
   slots:
     torso:
       part: TorsoAnimal
       connections:
+      - hands
       - legs
       organs:
         lungs: OrganAnimalLungs
-        stomach: OrganManeaterAnimalStomach
+        stomach: OrganAnimalStomach
         liver: OrganAnimalLiver
-        heart: OrganCatHeart
+        heart: OrganInferiorVulpkaninHeart
         kidneys: OrganAnimalKidneys
-    legs:
-      part: LegsAnimal
-      connections:
-      - feet
-    feet:
-      part: FeetAnimal
-
-- type: body
-  id: Dog
-  name: "dog"
-  root: torso
-  slots:
-    torso:
-      part: TorsoAnimal
-      connections:
-      - legs
-      organs:
-        lungs: OrganAnimalLungs
-        stomach: OrganManeaterAnimalStomach
-        liver: OrganAnimalLiver
-        heart: OrganDogHeart
-        kidneys: OrganAnimalKidneys
+    hands:
+      part: HandsAnimal
     legs:
       part: LegsAnimal
       connections:

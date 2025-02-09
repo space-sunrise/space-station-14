@@ -870,9 +870,9 @@
   productEntity: PolytrinicAcidChemistryBottle
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 4
+    Telecrystal: 2
   cost:
-    Telecrystal: 8
+    Telecrystal: 4
   categories:
   - UplinkChemicals
 
@@ -883,9 +883,9 @@
   productEntity: LauncherSyringePistolFilled
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 6
+    Telecrystal: 4
   cost:
-    Telecrystal: 10
+    Telecrystal: 6
   categories:
   - UplinkChemicals
 
@@ -898,7 +898,7 @@
   discountDownTo:
     Telecrystal: 1
   cost:
-    Telecrystal: 4
+    Telecrystal: 2
   categories:
   - UplinkChemicals
 
@@ -909,9 +909,9 @@
   productEntity: LauncherSyringeRapidFilled
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 8
+    Telecrystal: 6
   cost:
-    Telecrystal: 14
+    Telecrystal: 8
   categories:
   - UplinkChemicals
 
@@ -1289,12 +1289,12 @@
   productEntity: LauncherCreamPieFake
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 10
+    Telecrystal: 6
   cost:
-    Telecrystal: 15
+    Telecrystal: 8
   categories:
   - UplinkJob
   conditions:
   - !type:BuyerJobCondition
     whitelist:
-    - Clown
+    - Clown 

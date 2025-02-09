@@ -7,6 +7,7 @@
   color: "#59b23a"
   metabolisms:
     Medicine:
+      metabolismRate: 250
       effects:
       - !type:Polymorph
         prototype: PermanentlyHuman
@@ -61,6 +62,6 @@
         prototype: PermanentlyVulpkanin
         conditions:
           - !type:OrganType
-            type: Dog
+            type: InferiorVulpkanin
           - !type:ReagentThreshold
             min: 5

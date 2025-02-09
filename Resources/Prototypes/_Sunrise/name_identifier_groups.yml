@@ -29,3 +29,11 @@
   prefix: Жнец
   minValue: 10000
   maxValue: 99999
+
+- type: nameIdentifierGroup
+  id: InferiorVulpkanin
+  prefix: НВ
+
+- type: nameIdentifierGroup
+  id: Felinid
+  prefix: ФЕ
