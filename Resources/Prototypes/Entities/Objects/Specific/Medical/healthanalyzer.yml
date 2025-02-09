@@ -25,7 +25,7 @@
     onUse: false
   - type: HealthAnalyzer
     scanningEndSound:
-      path: /Audio/_Sunrise/Items/Medical/scanner_use.ogg # Sunrise edit
+      path: "/Audio/Items/Medical/healthscanner.ogg"
     damageContainers:
       - Biological
   - type: Tag
