@@ -25,6 +25,7 @@ using Content.Shared.Maps;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
 using Content.Server.IdentityManagement;
+using Content.Server.DetailExaminable;
 using Content.Shared.Store.Components;
 using Robust.Server.Containers;
 using Robust.Shared.Collections;
@@ -240,6 +241,7 @@ public sealed class SubdermalImplantSystem : SharedSubdermalImplantSystem
             {
                 fingerprint.Fingerprint = _forensicsSystem.GenerateFingerprint();
             }
+            RemComp<DetailExaminableComponent>(ent); // remove MRP+ custom description if one exists 
             _identity.QueueIdentityUpdate(ent); // manually queue identity update since we don't raise the event
             _popup.PopupEntity(Loc.GetString("scramble-implant-activated-popup"), ent, ent);
         }

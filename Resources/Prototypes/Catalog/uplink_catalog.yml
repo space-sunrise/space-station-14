@@ -8,9 +8,9 @@
   productEntity: WeaponPistolViperBiocode # Sunrise-edit
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 1 # Sunrise-Edit
+    Telecrystal: 2
   cost:
-    Telecrystal: 2 # Sunrise-Edit
+    Telecrystal: 3
   categories:
   - UplinkWeaponry
 
@@ -138,10 +138,10 @@
   categories:
   - UplinkWeaponry
   conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
+    - !type:StoreWhitelistCondition
+      blacklist:
+        tags:
+          - NukeOpsUplink
 
 - type: listing
   id: UplinkEshield
@@ -235,9 +235,9 @@
   productEntity: ClothingBackpackDuffelSyndicateFilledGrenadeLauncher
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 16
-  cost:
     Telecrystal: 20
+  cost:
+    Telecrystal: 25
   categories:
   - UplinkWeaponry
 #Sunrise-start
@@ -321,19 +321,6 @@
     Telecrystal: 3
   cost:
     Telecrystal: 6
-  categories:
-    - UplinkExplosives
-
-- type: listing
-  id: UplinkClusterSyndieMiniBomb
-  name: uplink-cluster-mini-bomb-name
-  description: uplink-cluster-mini-bomb-desc
-  productEntity: SyndyClusterGrenade
-  discountCategory: veryRareDiscounts
-  discountDownTo:
-    Telecrystal: 6
-  cost:
-    Telecrystal: 12
   categories:
     - UplinkExplosives
 
@@ -553,9 +540,9 @@
   productEntity: ElectricalDisruptionKit
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 6
+    Telecrystal: 4
   cost:
-    Telecrystal: 8
+    Telecrystal: 6
   categories:
     - UplinkExplosives
 
@@ -638,9 +625,9 @@
   id: UplinkHristovAmmo
   name: uplink-sniper-ammo-name
   description: uplink-sniper-ammo-desc
-  productEntity: MagazineBoxAntiMateriel # Sunrise-Edit
+  productEntity: MagazineBoxAntiMateriel
   cost:
-    Telecrystal: 1
+    Telecrystal: 2
   categories:
   - UplinkAmmo
   #Sunrise-start
@@ -679,7 +666,7 @@
   productEntity: HypopenBox
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 3
+    Telecrystal: 4
   cost:
     Telecrystal: 6
   categories:
@@ -1090,9 +1077,9 @@
   productEntity: ToolboxSyndicateFilled
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 1 # Sunrise-edit
+    Telecrystal: 1
   cost:
-    Telecrystal: 2 # Sunrise-edit
+    Telecrystal: 2
   categories:
   - UplinkDisruption
 
@@ -1103,9 +1090,9 @@
   productEntity: SyndicateJawsOfLife
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 1 # Sunrise-Edit
+    Telecrystal: 1
   cost:
-    Telecrystal: 2 # Sunrise-Edit
+    Telecrystal: 2
   categories:
   - UplinkDisruption
 
@@ -1273,9 +1260,9 @@
   icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-urist }
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 5 # Sunrise-Edit
+    Telecrystal: 7
   cost:
-    Telecrystal: 10 # Sunrise-Edit
+    Telecrystal: 14
   categories:
   - UplinkAllies
   conditions:
@@ -1292,7 +1279,7 @@
   productEntity: ReinforcementRadioSyndicateNukeops
   icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-nukeop }
   cost:
-    Telecrystal: 30 # Sunrise-Edit
+    Telecrystal: 30
   categories:
   - UplinkAllies
   conditions:
@@ -1468,9 +1455,9 @@
   productEntity: DnaScramblerImplanter
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 3
+    Telecrystal: 2
   cost:
-    Telecrystal: 5 # Sunrise-Edit
+    Telecrystal: 5
   categories:
     - UplinkImplants
   #Sunrise-start
@@ -1491,7 +1478,7 @@
   discountDownTo:
     Telecrystal: 4
   cost:
-    Telecrystal: 8
+    Telecrystal: 6
   categories:
     - UplinkImplants
 
@@ -1547,15 +1534,15 @@
   description: uplink-death-acidifier-implant-desc
   icon: { sprite: /Textures/Objects/Magic/magicactions.rsi, state: gib }
   productEntity: DeathAcidifierImplanter
+  cost:
+    Telecrystal: 4
   categories:
     - UplinkImplants
   conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - SyndieAgentUplink
-  - !type:ListingLimitedStockCondition
-    stock: 1
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - NukeOpsUplink
 
 - type: listing
   id: UplinkUplinkImplanter # uplink uplink real
@@ -1676,9 +1663,9 @@
   productEntity: ClothingShoesChameleonNoSlips
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 1 # Sunrise-Edit
+    Telecrystal: 1
   cost:
-    Telecrystal: 2 # Sunrise-Edit
+    Telecrystal: 2
   categories:
   - UplinkWearables
 
@@ -1702,9 +1689,9 @@
   productEntity: ClothingOuterVestWeb
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 1 # Sunrise-Edit
+    Telecrystal: 1
   cost:
-    Telecrystal: 3 # Sunrise-Edit
+    Telecrystal: 3
   categories:
   - UplinkWearables
 
@@ -1757,9 +1744,9 @@
   productEntity: ClothingBackpackDuffelSyndicateHardsuitBundle
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 4 # Sunrise-Edit
+    Telecrystal: 4
   cost:
-    Telecrystal: 8 # Sunrise-Edit
+    Telecrystal: 8
   categories:
   - UplinkWearables
   #Sunrise-start
@@ -2092,9 +2079,9 @@
   productEntity: BibleNecronomicon
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 3 # Sunrise-Edit
+    Telecrystal: 2
   cost:
-    Telecrystal: 6 # Sunrise-Edit
+    Telecrystal: 4
   categories:
   - UplinkJob
   conditions:
@@ -2113,9 +2100,9 @@
   productEntity: HolyHandGrenade
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 10 # Sunrise-Edit
+    Telecrystal: 14
   cost:
-    Telecrystal: 20 # Sunrise-Edit
+    Telecrystal: 20
   categories:
   - UplinkJob
   conditions:
@@ -2302,8 +2289,11 @@
   description: uplink-combat-bakery-desc
   icon: { sprite:  Objects/Consumable/Food/Baked/bread.rsi, state: baguette}
   productEntity: CombatBakeryKit
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 2
   cost:
-    Telecrystal: 6
+    Telecrystal: 4
   categories:
   - UplinkJob
   conditions:
