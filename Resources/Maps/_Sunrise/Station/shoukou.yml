@@ -6548,7 +6548,7 @@ entities:
     - pos: 15.5,-4.5
       parent: 34
       type: Transform
-- proto: BlueLightTube
+- proto: LightTubeCrystalCyan
   entities:
   - uid: 5065
     components:
@@ -6637,7 +6637,7 @@ entities:
     - pos: 13.426399,-37.591137
       parent: 34
       type: Transform
-- proto: BoxColoredLighttube
+- proto: BoxLighttubeHoliday
   entities:
   - uid: 11623
     components:
@@ -25680,18 +25680,6 @@ entities:
     - pos: 35.26586,-2.2870111
       parent: 34
       type: Transform
-- proto: ClothingHeadHelmetKendoMen
-  entities:
-  - uid: 201
-    components:
-    - pos: -1.458238,8.644569
-      parent: 34
-      type: Transform
-  - uid: 266
-    components:
-    - pos: -1.6040713,8.884319
-      parent: 34
-      type: Transform
 - proto: ClothingHeadHelmetSpaceNinja
   entities:
   - uid: 10417
@@ -25856,20 +25844,6 @@ entities:
   - uid: 11020
     components:
     - pos: 30.0086,-10.640028
-      parent: 34
-      type: Transform
-- proto: ClothingOuterArmorKendoBogu
-  entities:
-  - uid: 161
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: -2.1353214,8.488211
-      parent: 34
-      type: Transform
-  - uid: 204
-    components:
-    - rot: -1.5707963267948966 rad
-      pos: -2.4165714,8.717537
       parent: 34
       type: Transform
 - proto: ClothingOuterArmorRiot
@@ -26129,32 +26103,6 @@ entities:
   - uid: 3549
     components:
     - pos: 17.520914,-10.574743
-      parent: 34
-      type: Transform
-- proto: ClothingUniformJumpsuitTshirtJeans
-  entities:
-  - uid: 10938
-    components:
-    - pos: -48.369514,1.6107705
-      parent: 34
-      type: Transform
-  - uid: 11174
-    components:
-    - pos: -52.663948,13.675674
-      parent: 34
-      type: Transform
-- proto: ClothingUniformJumpsuitTshirtJeansGray
-  entities:
-  - uid: 11175
-    components:
-    - pos: -52.492073,13.456772
-      parent: 34
-      type: Transform
-- proto: ClothingUniformJumpsuitTshirtJeansPeach
-  entities:
-  - uid: 11176
-    components:
-    - pos: -52.257698,13.691311
       parent: 34
       type: Transform
 - proto: ClothingUniformKendoHakama
@@ -52545,13 +52493,6 @@ entities:
       pos: -42.5,-59.5
       parent: 34
       type: Transform
-- proto: GunSafeBlueshield
-  entities:
-  - uid: 613
-    components:
-    - pos: 41.5,-25.5
-      parent: 34
-      type: Transform
 - proto: GunSafePistolMk58
   entities:
   - uid: 3710
@@ -57421,7 +57362,7 @@ entities:
       type: Transform
     - powerLoad: 0
       type: ApcPowerReceiver
-- proto: PoweredLightColoredBlack
+- proto: PoweredlightRed
   entities:
   - uid: 2328
     components:
@@ -61884,7 +61825,7 @@ entities:
       type: Transform
     - count: 15
       type: Stack
-- proto: Shinai
+- proto: ToySword
   entities:
   - uid: 147
     components:
@@ -64152,13 +64093,6 @@ entities:
   - uid: 11852
     components:
     - pos: -28.5,-32.5
-      parent: 34
-      type: Transform
-- proto: SuitStorageBlueshield
-  entities:
-  - uid: 607
-    components:
-    - pos: 39.5,-25.5
       parent: 34
       type: Transform
 - proto: SuitStorageSec
@@ -66685,12 +66619,12 @@ entities:
     - pos: -1.5,-18.5
       parent: 34
       type: Transform
-- proto: ToySword
+- proto: ToySwordDoubled
   entities:
   - uid: 152
     components:
     - desc: 'Оченьь опасный и громкий меч и лучом из чистой, концентрированной плазмы. Разрезает небронированные обьяекты как масло. '
-      name: энергитический меч
+      name: двухклинковый энергитический меч
       type: MetaData
     - pos: 26.581175,-33.370186
       parent: 34
