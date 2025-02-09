@@ -2593,3 +2593,109 @@
     entries:
       Taco: AnomalyBerry
       Burger: AnomalyBerryBurger
+
+# Sunrise start
+- type: entity
+  name: explosivebanana
+  description: explosivebanana
+  parent: FoodProduceBase
+  id: Explosivebanana
+  components:
+  - type: Damageable
+    damageContainer: Biological
+  - type: DamageOnHighSpeedImpact
+    minimumSpeed: 0.1
+    damage:
+      types:
+        Blunt: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: desecration
+      - !type:SpillBehavior
+        solution: food
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: FlavorProfile
+    flavors:
+    - strange
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/Explosivebanana.rsi
+    state: produce
+  - type: Produce
+    seedId: ExplosiveBanana
+  - type: SolutionContainerManager
+    solutions:
+      beaker:
+        maxVol: 40
+        canReact: false
+      food:
+        maxVol: 5
+        canReact: false
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Potassium
+          Quantity: 1
+        - ReagentId: Water
+          Quantity: 1
+  - type: Tag
+    tags:
+    - Fruit
+
+- type: entity
+  name: coffe arabica
+  description: A coffe arabica grains, main food of scientist.
+  parent: FoodProduceBase
+  id: FoodCoffeeArabica
+  components:
+  - type: FlavorProfile
+    flavors:
+    - strange
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/coffeearabica.rsi
+    state: produce
+  - type: Produce
+    seedId: CoffeeArabica
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: Grcoffee
+          Quantity: 1
+  - type: Tag
+    tags:
+    - Fruit
+
+- type: entity
+  name: coffe robast
+  description: A coffe robast grains, main food of shutcurity.
+  parent: FoodProduceBase
+  id: FoodCoffeeRobast
+  components:
+  - type: FlavorProfile
+    flavors:
+    - strange
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/coffeerobast.rsi
+    state: produce
+  - type: Produce
+    seedId: CoffeeRobast
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Grcoffee
+          Quantity: 2
+        - ReagentId: Ephedrine
+          Quantity: 1
+  - type: Tag
+    tags:
+    - Fruit

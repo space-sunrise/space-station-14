@@ -87,7 +87,7 @@
 - type: reaction
   id: BadTouch
   reactants:
-    Vodka: 
+    Vodka:
       amount: 1
     LemonLime:
       amount: 1
@@ -103,7 +103,7 @@
 - type: reaction
   id: DarkAndStormy
   reactants:
-    Rum: 
+    Rum:
       amount: 1
     Ale: # Must be ginger beer
       amount: 2
@@ -169,3 +169,13 @@
       amount: 1
   products:
     Boyarsky: 6
+
+- type: reaction
+  id: Coffee
+  reactants:
+    Grcoffee:
+      amount: 1
+    Water:
+      amount: 1
+  products:
+    Coffee: 2
