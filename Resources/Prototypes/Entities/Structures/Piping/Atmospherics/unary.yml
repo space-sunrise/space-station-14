@@ -69,12 +69,21 @@
       sound:
         path: /Audio/Ambience/Objects/gas_vent.ogg
     - type: Weldable
+      time: 3 # Sunrise-edit
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasVentOpening
     - type: GuideHelp
       guides:
       - AirVent
       - DeviceMonitoringAndControl
+      # Sunrise-start
+    - type: VentCrawTube
+      containerId: VentCrawTube
+    - type: VentCrawEntry
+    - type: ContainerContainer
+      containers:
+        VentCrawTube: !type:Container
+      # Sunrise-end
 
 - type: entity
   parent: GasUnaryBase
@@ -153,12 +162,21 @@
       sound:
         path: /Audio/Ambience/Objects/gas_vent.ogg
     - type: Weldable
+      time: 3 # Sunrise-edit
     - type: AtmosMonitoringConsoleDevice
       navMapBlip: GasVentScrubber
     - type: GuideHelp
       guides:
       - AirScrubber
       - DeviceMonitoringAndControl
+      # Sunrise-start
+    - type: VentCrawTube
+      containerId: VentCrawTube
+    - type: VentCrawEntry
+    - type: ContainerContainer
+      containers:
+        VentCrawTube: !type:Container
+      # Sunrise-end
 
 - type: entity
   parent: GasUnaryBase
@@ -203,6 +221,16 @@
     - type: GuideHelp
       guides:
       - AirInjector
+      # Sunrise-start
+    - type: VentCrawTube
+      containerId: VentCrawTube
+    - type: VentCrawJunction
+      degrees:
+        - 0
+    - type: ContainerContainer
+      containers:
+        VentCrawTube: !type:Container
+      # Sunrise-end
 
 - type: entity
   parent: [ BaseMachinePowered, ConstructibleMachine ]
