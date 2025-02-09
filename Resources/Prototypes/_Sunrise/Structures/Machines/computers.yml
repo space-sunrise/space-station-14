@@ -192,10 +192,10 @@
   description: Здесь можно отправить запрошеные товары
   components:
   - type: CargoPalletConsole
-    withdrawCash: false
-    cargoSource: Bounty
-    tag: #Предназначается только для отправки заказов
-    bounty: true
+    #withdrawCash: false
+    #cargoSource: Bounty
+    #tag: Предназначается только для отправки заказов
+    #bounty: true
   - type: Computer
     board: ComputerBountySaleConsoleCircuitboard
 

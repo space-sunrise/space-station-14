@@ -11,20 +11,19 @@
       "name": "icon"
     },
     {
-      "name": "fpi_atm",
+      "name": "base",
       "directions": 4
     },
     {
-      "name": "atm_broken",
+      "name": "broken",
       "directions": 4
     },
     {
-        "name": "screen_fpi",
+        "name": "screen",
         "directions": 4
       },
     {
-        "name": "panel",
-        "directions": 4
+        "name": "panel"
     }
   ]
 }

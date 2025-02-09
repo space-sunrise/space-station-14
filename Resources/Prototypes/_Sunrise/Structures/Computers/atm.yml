@@ -15,18 +15,18 @@
     color: "#3db83b"
   - type: LitOnPowered
   - type: Sprite
-    sprite: _Sunrise/Structures/Machines/banks_machine.rsi
+    sprite: _Sunrise/Structures/Machines/atm.rsi
     layers:
     - map: ["computerLayerBody"]
-      state: fpi_atm
+      state: base
     - map: ["computerLayerScreen"]
-      state: screen_fpi
+      state: screen
     - map: ["enum.WiresVisualLayers.MaintenancePanel"]
       state: panel
       visible: false
   - type: Icon
-    sprite: Structures/Machines/arcade.rsi
-    state: fpi_atm
+    sprite: _Sunrise/Structures/Machines/atm.rsi
+    state: icon
   - type: WiresPanel
   - type: Wires
     layoutId: Jukebox #Power and AIinteract
@@ -81,12 +81,12 @@
   parent: ATMBase
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Machines/banks_machine.rsi
+    sprite: _Sunrise/Structures/Machines/atm.rsi
     layers:
     - map: ["computerLayerBody"]
-      state: fpi_atm
+      state: base
     - map: ["computerLayerScreen"]
-      state: screen_fpi
+      state: screen
     - map: ["enum.WiresVisualLayers.MaintenancePanel"]
       state: panel
       visible: false
@@ -109,7 +109,7 @@
   description: An compact Wallmount FPI ATM without self-extermination button.
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Machines/banks_atm.rsi
+    sprite: _Sunrise/Structures/Machines/wall_atm.rsi
     layers:
     - map: ["computerLayerBody"]
       state: base

@@ -63,8 +63,6 @@
     sprite: _Sunrise/Clothing/Uniforms/Costume/bunny.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Costume/bunny.rsi
-    # TODO: Remove the line below when the sprite accounts for FemaleMask.
-    femaleMask: NoMask
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -98,8 +96,6 @@
     sprite: _Sunrise/Clothing/Uniforms/Costume/rat.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Costume/rat.rsi
-    # TODO: Remove the line below when the sprite accounts for FemaleMask.
-    femaleMask: NoMask
 
 - type: entity
   parent: ClothingUniformBase
@@ -111,7 +107,6 @@
     sprite: _Sunrise/Clothing/Uniforms/Costume/red_dress.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Costume/red_dress.rsi
-    femaleMask: NoMask
 
 ## old schoolgirl uniforms
 
@@ -318,4 +313,3 @@
     sprite: _Sunrise/Clothing/Uniforms/Costume/gakuran.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Costume/gakuran.rsi
-    femaleMask: NoMask
