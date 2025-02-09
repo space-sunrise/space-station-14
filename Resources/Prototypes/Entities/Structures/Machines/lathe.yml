@@ -1431,6 +1431,7 @@
     - BioGenLeft4Zed
     - BioGenEZNutrient
     - BioGenRobustHarvest
+    - BioGenHandheldSoil # Sunrise-Edit
 
 - type: entity
   parent: BaseLathe
