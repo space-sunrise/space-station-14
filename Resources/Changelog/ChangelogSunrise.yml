@@ -11712,3 +11712,11 @@
   id: 807
   time: '2025-02-05T19:01:04.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/1280
+- author: KaiserMaus & Non_Stop_Smetana
+  changes:
+  - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u044B \u043F\u0440\u0438\
+      \u0441\u0442\u0430\u0432\u044B \u0418\u0421\u041D."
+    type: Add
+  id: 808
+  time: '2025-02-09T16:49:21.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/1084
