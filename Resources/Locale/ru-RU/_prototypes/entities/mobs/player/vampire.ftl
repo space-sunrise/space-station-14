@@ -1,2 +1,2 @@
-ent-MobBatVampire = bat
-    .desc = Some cultures find them terrifying, others crunchy on the teeth.
+ent-MobBatVampire = летучая мышь
+    .desc = В одних культурах они наводят ужас, в других - хрустят на зубах.

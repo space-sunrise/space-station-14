@@ -1,2 +1,2 @@
-ent-BulletSnowBall = snowball
+ent-BulletSnowBall = снежок
     .desc = { ent-BaseBullet.desc }

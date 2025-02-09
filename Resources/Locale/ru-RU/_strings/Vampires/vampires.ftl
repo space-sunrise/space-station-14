@@ -21,26 +21,26 @@ vampire-unnaturalstrength = Верхние мышцы { CAPITALIZE(THE($user)) }
 vampire-supernaturalstrength = Верхние мышцы { CAPITALIZE(THE($user)) } набухают от мощи делая его сверхсильным!
 store-currency-display-blood-essence = Кровавая эссенция
 store-category-vampirepowers = Силы
-vampire-power-summonheirloom = Summon Heirloom
-vampire-power-summonheirloom-description = Summon a family heirloom, gifted by lilith herself.
-vampire-power-blessing = Blessing of Lilith
-vampire-power-blessing-description = Swear your soul to Lilith, receive her blessing, and feast upon the bounty around you.
-vampire-power-togglefangs = Toggle Fangs
-vampire-power-togglefangs-description = Extend or retract your fangs. Walking around with your fangs out might reveal your true nature.
-vampire-power-glare = Glare
-vampire-power-glare-description = Release a blinding flash from your eyes, stunning a unprotected mortal for 10 seconds. Activation Cost: 20 Essence. Cooldown: 60 Seconds
-vampire-power-hypnotise = Hypnotise
-vampire-power-hypnotise-description = Stare deeply into a mortals eyes, forcing them to sleep for 60 seconds. Activation Cost: 20 Essence. Activation Delay: 5 Seconds. Cooldown: 5 Minutes
-vampire-power-screech = Screech
-vampire-power-screech-description = Release a piercing scream, stunning unprotected mortals and shattering fragile objects nearby. Activation Cost: 20 Essence. Activation Delay: 5 Seconds. Cooldown: 5 Minutes
-vampire-power-bloodsteal = Blood Steal
-vampire-power-bloodsteal-description = Wrench the blood from all bodies nearby - living or dead. Activation Cost: 20 Essence. Cooldown: 60 Seconds
-vampire-power-batform = Bat Form
-vampire-power-batform-description = Assume for form of a bat. Fast, Hard to Hit, Likes fruit. Activation Cost: 20 Essence. Cooldown: 30 Seconds
-vampire-power-mouseform = Mouse Form
-vampire-power-mouseform-description = Assume for form of a mouse. Fast, Small, Immune to doors. Activation Cost: 20 Essence. Cooldown: 30 Seconds
-vampire-power-cloakofdarkness = Cloak of Darkness
-vampire-power-cloakofdarkness-description = Cloak yourself from mortal eyes, rendering you invisible while stationary. Activation Cost: 30 Essence. Upkeep: 1 Essence/Second Cooldown: 10 Seconds
+vampire-power-summonheirloom = Призыв реликвии
+vampire-power-summonheirloom-description = Вызовите семейную реликвию, подаренную самой Лилит.
+vampire-power-blessing = Благословение Лилит
+vampire-power-blessing-description = Поклянитесь своей душой Лилит, получите ее благословение и пируйте от щедрот вокруг.
+vampire-power-togglefangs = Переключение клыков
+vampire-power-togglefangs-description = Выдвигайте или втягивайте клыки. Если вы будете ходить с выпущенными клыками, это может раскрыть вашу истинную сущность.
+vampire-power-glare = Блики
+vampire-power-glare-description = Выпустите из глаз ослепительную вспышку, оглушающую незащищенного смертного на 10 секунд. Стоимость активации: 20 эссенции. Время действия: 60 секунд
+vampire-power-hypnotise = Гипноз
+vampire-power-hypnotise-description = Глубоко загляните в глаза смертного, заставляя его уснуть на 60 секунд. Стоимость активации: 20 эссенции. Задержка активации: 5 секунд. Время действия: 5 минут
+vampire-power-screech = Скрип
+vampire-power-screech-description = Издайте пронзительный крик, оглушая незащищенных смертных и разбивая вдребезги хрупкие предметы поблизости. Стоимость активации: 20 эссенции. Задержка активации: 5 секунд. Время действия: 5 минут
+vampire-power-bloodsteal = Кража крови
+vampire-power-bloodsteal-description = Выжимает кровь из всех тел поблизости - живых или мертвых. Стоимость активации: 20 эссенции. Время действия: 60 секунд
+vampire-power-batform = Форма летучей мыши
+vampire-power-batform-description = Принимает форму летучей мыши. Быстрая, трудноуязвимая, любит фрукты. Стоимость активации: 20 эссенции. Время действия: 30 секунд
+vampire-power-mouseform = Мышиная форма
+vampire-power-mouseform-description = Примите облик мыши. Быстрая, маленькая, невосприимчива к дверям. Стоимость активации: 20 эссенции. Время действия: 30 секунд
+vampire-power-cloakofdarkness = Плащ тьмы
+vampire-power-cloakofdarkness-description = Замаскируйте себя от глаз смертных, делая вас невидимым в неподвижном состоянии. Стоимость активации: 30 эссенции. Уход: 1 эссенция/секунда Время действия: 10 секунд
 store-category-vampirepassives = Пассивные
 #Powers
 
@@ -57,38 +57,38 @@ vampire-mutation-menu-ui-window-name = Меню мутаций
 vampire-mutation-none-info = Ничего не выбрано
 vampire-mutation-hemomancer-info =
     Гемомансер
-    
+
     Фокусируеться на кровавой магии и манипуляции крови вокруг себя.
-    
+
     Способности:
-    
+
     - Визг
     - Кража крови
 vampire-mutation-umbrae-info =
     Тень
-    
+
     Фокусируется на темноте, стелсе, мобильности.
-    
+
     Способности:
-    
+
     - Блик
     - Плащ тьмы
 vampire-mutation-gargantua-info =
     Гаргантюа
-    
+
     Фокусируется на ближнем уроне и стойкости.
-    
+
     Способности:
-    
+
     - Нечестивая сила
     - Сверхъестественная сила
 vampire-mutation-bestia-info =
     Бестия
-    
+
     Фокусируется на превращении и собирании трофеев
-    
+
     Способности:
-    
+
     - Форма летучей мыши
     - Мышиная форма
 

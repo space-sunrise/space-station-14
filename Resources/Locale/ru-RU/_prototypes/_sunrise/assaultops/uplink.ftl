@@ -1,6 +1,6 @@
 ent-UplinkRadioAssaultOperatives0TC = { ent-BaseUplinkRadio }
-    .suffix = AssaultOps
+    .suffix = Штурмовики
     .desc = { ent-BaseUplinkRadio.desc }
 ent-UplinkRadioAssaultOperatives40TC = { ent-BaseUplinkRadio }
-    .suffix = AssaultOps
+    .suffix = Штурмовики
     .desc = { ent-BaseUplinkRadio.desc }

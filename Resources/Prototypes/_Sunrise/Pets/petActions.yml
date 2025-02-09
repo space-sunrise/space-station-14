@@ -1,6 +1,6 @@
 ﻿- type: petControl
   id: Follow
-  name: Следовать
+  name: Follow
   sprite:
     sprite: _Sunrise/Actions/Pets/radials.rsi
     state: follow
@@ -9,7 +9,7 @@
 
 - type: petControl
   id: Stay
-  name: Стоять
+  name: Stand
   sprite:
     sprite: _Sunrise/Actions/Pets/radials.rsi
     state: stay
@@ -18,7 +18,7 @@
 
 - type: petControl
   id: GhostAvailable
-  name: Включить повышенную разумность
+  name: Enable increased brain
   sprite:
     sprite: _Sunrise/Actions/Pets/radials.rsi
     state: brainup
@@ -27,7 +27,7 @@
 
 - type: petControl
   id: GhostUnavailable
-  name: Выключить повышенную разумность
+  name: Enable increased brain
   sprite:
     sprite: _Sunrise/Actions/Pets/radials.rsi
     state: braindown
@@ -36,7 +36,7 @@
 
 - type: petControl
   id: Rename
-  name: Переименовать
+  name: Rename
   sprite:
     sprite: _Sunrise/Actions/Pets/radials.rsi
     state: rename

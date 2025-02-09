@@ -1,2 +1,2 @@
-ent-ClothingMaskGaiter = neck gaiter
-    .desc = For the agent wanting to keep a low profile whilst concealing their identity. Has a small respirator to be used with internals.
+ent-ClothingMaskGaiter = шейный гетр
+    .desc = Для агентов, желающих оставаться незаметными и скрывать свою личность. Имеет небольшой респиратор для использования с внутренностями.
