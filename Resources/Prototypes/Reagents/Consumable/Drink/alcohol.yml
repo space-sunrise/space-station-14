@@ -195,7 +195,7 @@
       - !type:HealthChange
         damage:
           types:
-            Radiation: -0.5
+            Radiation: -0.2
       # Sunrise-End
       - !type:ChemVomit
         probability: 0.04
