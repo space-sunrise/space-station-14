@@ -328,7 +328,6 @@ BodyBag_Folded: BodyBagFolded
 #BoxMagazineMagnumSubMachineGunRubber: BoxMagazineMagnumSubMachineGun
 #WeaponPistolMk58Nonlethal: WeaponPistolMk58
 #WeaponPistolN1984Nonlethal: WeaponPistolN1984
-#WeaponSubMachineGunVectorRubber: WeaponSubMachineGunVector
 #WeaponSubMachineGunDrozdRubber: WeaponSubMachineGunDrozd
 #WeaponRifleLecterRubber: WeaponRifleLecter
 
@@ -621,7 +620,6 @@ SpawnPointMailCarrier: null
 SpawnMobPibble: null
 ClothingOuterRobeBrown: null
 ClothingUniformMNKTracksuitBlack: null
-ClothingShoesBootsSpeed: null
 QSI: null
 EffectHearts: null
 Oracle: null

@@ -475,7 +475,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageCombat
+      - PowerCageHigh
 
 # H.O.N.K.
 - type: entity
@@ -751,7 +751,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageCombat
+      - PowerCageHigh
 
 # Durand
 - type: entity
@@ -821,7 +821,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageCombat
+      - PowerCageHigh
 
 # Phazon
 

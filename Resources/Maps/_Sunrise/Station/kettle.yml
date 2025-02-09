@@ -62063,30 +62063,6 @@ entities:
     - pos: 1.5,40.5
       parent: 82
       type: Transform
-- proto: CloningConsoleComputerCircuitboard
-  entities:
-  - uid: 19831
-    components:
-    - pos: 13.328903,39.689034
-      parent: 82
-      type: Transform
-  - uid: 20233
-    components:
-    - pos: -51.4738,-34.38727
-      parent: 82
-      type: Transform
-- proto: CloningPodMachineCircuitboard
-  entities:
-  - uid: 20169
-    components:
-    - pos: -43.342804,-37.443317
-      parent: 82
-      type: Transform
-  - uid: 21747
-    components:
-    - pos: 13.719528,39.657784
-      parent: 82
-      type: Transform
 - proto: ClosetBase
   entities:
   - uid: 3020

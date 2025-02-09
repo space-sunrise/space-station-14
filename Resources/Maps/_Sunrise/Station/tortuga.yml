@@ -56818,19 +56818,6 @@ entities:
     - pos: -76.40576,-14.192599
       parent: 33
       type: Transform
-- proto: CloningConsoleComputerCircuitboard
-  entities:
-  - uid: 5436
-    components:
-    - pos: -95.51823,26.770828
-      parent: 33
-      type: Transform
-  - uid: 8604
-    components:
-    - rot: 3.141592653589793 rad
-      pos: 39.390984,18.32292
-      parent: 33
-      type: Transform
 - proto: ClosetBase
   entities:
   - uid: 6875

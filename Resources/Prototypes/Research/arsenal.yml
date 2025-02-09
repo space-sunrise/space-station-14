@@ -101,12 +101,6 @@
   - MagazineBoxLightRifleUranium
   - MagazineBoxRifleUranium
   - BoxShotgunUranium
-  # Sunrise-Start
-  - MagazineShotgunUranium
-  - MagazineLightRifleBoxUranium
-  - MagazineMagnumUranium
-  - MagazinePistolSubMachineGunUranium
-  # Sunrise-End
 
 - type: technology
   id: AdvancedRiotControl

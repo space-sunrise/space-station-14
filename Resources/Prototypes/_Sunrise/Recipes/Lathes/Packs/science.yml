@@ -1,0 +1,40 @@
+- type: latheRecipePack
+  id: CircuitStaticSunrise
+  recipes:
+  - PrinterDocMachineCircuitboard
+
+- type: latheRecipePack
+  id: CircuitDynamicSunrise
+  recipes:
+  - GygaxCentralElectronics
+  - GygaxPeripheralsElectronics
+  - GygaxTargetingElectronics
+  - PhazonCentralElectronics
+  - PhazonPeripheralsElectronics
+  - PhazonTargetingElectronics
+  - DurandCentralElectronics
+  - DurandPeripheralsElectronics
+  - DurandTargetingElectronics
+  - ClarkeCentralElectronics
+  - ClarkePeripheralsElectronics
+  - ImplantExtractorMachineCircuitboard
+  - ExosuitFabricatorHyperConvectionMachineCircuitboard
+
+- type: latheRecipePack
+  id: PowerCages
+  recipes:
+  - PowerCageSmall
+  - PowerCageHigh
+  - PowerCageMedium
+
+- type: latheRecipePack
+  id: CargoSuit
+  recipes:
+  - CargoSuit
+  - BluespaceBox
+
+- type: latheRecipePack
+  id: NightVisionDevice
+  recipes:
+  - HandCraftedNVD
+  - BasicNVD

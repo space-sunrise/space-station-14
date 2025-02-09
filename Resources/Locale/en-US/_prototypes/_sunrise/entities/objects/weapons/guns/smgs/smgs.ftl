@@ -1,9 +1,6 @@
 ent-WeaponSubMachineGunDrozdRubber = Drozd
     .suffix = Non-Lethal
     .desc = { ent-WeaponSubMachineGunDrozd.desc }
-ent-WeaponSubMachineGunVectorRubber = Vector
-    .desc = An excellent fully automatic Heavy SMG. Uses .45 magnum ammo.
-    .suffix = Non-Lethal
 ent-WeaponSubMachineGunP90 = P-90
     .desc = { ent-BaseWeaponSubMachineGun.desc }
 ent-WeaponSubMachineGunMP38 = MP-38

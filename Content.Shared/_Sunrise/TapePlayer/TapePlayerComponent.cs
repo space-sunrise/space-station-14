@@ -25,10 +25,6 @@ public sealed partial class TapePlayerComponent : Component
     public float Volume = 0.5f;
 
     [DataField]
-    [ViewVariables]
-    public float DecreaseVolume = 0f;
-
-    [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
     public float RolloffFactor = 1f;
 

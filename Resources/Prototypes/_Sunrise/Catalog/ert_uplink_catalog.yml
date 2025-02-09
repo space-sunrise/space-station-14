@@ -972,18 +972,6 @@
     stock: 5
 
 - type: listing
-  id: NTUplinkSunrisePowerCellHyper
-  productEntity: PowerCellHyper
-  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: power_cell_high }
-  cost:
-    Crystallite: 2
-  categories:
-    - NTEngineering
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 14
-
-- type: listing
   id: NTUplinkSunrisePowerCellNanoTrasen
   name: ntuplink-engineering-powercellnt-name
   description: ntuplink-engineering-powercellnt-desc

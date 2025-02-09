@@ -1,0 +1,43 @@
+- type: latheRecipePack
+  id: MedicalStaticSunrise
+  recipes:
+  - HandheldCrewMonitor
+  - ClothingHandsGlovesNitrileBlack
+  - ClothingHandsGlovesNitrileGreen
+  - ClothingHandsGlovesNitrileOrange
+  - ClothingHandsGlovesNitrileRed
+  - ClothingHandsGlovesNitrileBlue
+  - ClothingEyesGlassesChemical
+  - WhiteCane
+
+- type: latheRecipePack
+  id: MedicalDynamicSunrise
+  recipes:
+  - ChemicalPayload
+  - CryostasisBeaker
+  - BluespaceBeaker
+  - SyringeBluespace
+  - SyringeCryostasis
+  - LauncherSyringeMed
+  - LauncherSyringePistol
+  - LauncherSyringeRapid
+  - MiniSyringeCryostasis
+  - MiniSyringeBluespace
+  - MiniSyringe
+  - LeftArmCyber
+  - RightArmCyber
+  - LeftHandCyber
+  - RightHandCyber
+  - LeftLegCyber
+  - RightLegCyber
+  - LeftFootCyber
+  - RightFootCyber
+
+- type: latheRecipePack
+  id: SurgeryDynamicSunrise
+  recipes:
+  - RetractorAdvanced
+  - ScalpelAdvanced
+  - BoneSetterAdvanced
+  - SawAdvanced
+  - HemostatAdvanced

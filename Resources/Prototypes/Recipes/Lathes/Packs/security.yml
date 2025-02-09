@@ -36,8 +36,9 @@
   - MagazineBoxRifle
   - MagazineLightRifle
   - MagazineLightRifleEmpty
-  - MagazinePistol
-  - MagazinePistolEmpty
+  # Sunrise-Remove
+  #- MagazinePistol
+  #- MagazinePistolEmpty
   - MagazinePistolSubMachineGun
   - MagazinePistolSubMachineGunEmpty
   - MagazinePistolSubMachineGunTopMounted
@@ -85,9 +86,9 @@
   id: SecurityExplosives
   recipes:
   - ExplosivePayload
-  - GrenadeBlast
-  - GrenadeEMP
-  - GrenadeFlash
+  - ShellBlastArtillery # Sunrise-Edit
+  - ShellEMPArtillery # Sunrise-Edit
+  - ShellFlashArtillery # Sunrise-Edit
   - MagazineGrenadeEmpty
 
 # Shared between secfab and emagged protolathe

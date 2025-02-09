@@ -45,6 +45,7 @@
   recipes:
   - PowerCellMicroreactor
   - PowerCellHigh
+  - PowerCageSmall # Sunrise-edit
 
 - type: latheRecipePack
   id: ScienceWeapons

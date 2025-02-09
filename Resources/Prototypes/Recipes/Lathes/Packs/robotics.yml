@@ -4,7 +4,8 @@
   id: RoboticsStatic
   recipes:
   - MMI
-  - PositronicBrain
+  # Sunrise-Remove
+  #- PositronicBrain
   - SciFlash
   - CyborgEndoskeleton
 

@@ -207,12 +207,19 @@
     - Instruments
     - Equipment
     - FauxTiles
+    # Sunrise-Start
+    - PowerCages
+    - CargoSuit
+    - SurgeryDynamicSunrise
+    - NightVisionDevice
+    # Sunrise-End
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - SecurityAmmo
     - SecurityExplosives
     - SecurityEquipment
     - SecurityWeapons
+    - SecurityDynamicSunrise # Sunrise-Add
 
 - type: entity
   id: ProtolatheHyperConvection
@@ -255,6 +262,7 @@
     - MedicalBoardsStatic
     - EngineeringBoardsStatic
     - CircuitFloorsStatic
+    - CircuitStaticSunrise # Sunrise-Add
     dynamicPacks:
     - EngineeringBoards
     - CargoBoards
@@ -264,6 +272,7 @@
     - CameraBoards
     - MechBoards
     - ShuttleBoards
+    - CircuitDynamicSunrise # Sunrise-Add
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - SecurityBoards
@@ -310,11 +319,13 @@
     - RoboticsStatic
     - BorgModulesStatic
     - BorgLimbsStatic
+    - RoboticsStaticSunrise # Sunrise-Add
     dynamicPacks:
     - Robotics
     - BorgModules
     - MechParts
     - MechEquipment
+    - RoboticsDynamicSunrise # Sunrise-Add
   - type: MaterialStorage
     whitelist:
       tags:
@@ -393,12 +404,14 @@
     - SecurityPracticeStatic
     - SecurityAmmoStatic
     - SecurityWeaponsStatic
+    - SecurityStaticSunrise # Sunrise-Add
     dynamicPacks:
     - SecurityEquipment
     - SecurityBoards
     - SecurityExplosives
     - SecurityAmmo
     - SecurityWeapons
+    - SecurityDynamicSunrise # Sunrise-Add
   - type: MaterialStorage
     whitelist:
       tags:
@@ -469,8 +482,11 @@
     - MedicalClothingStatic
     - EmptyMedkitsStatic
     - SurgeryStatic
+    - MedicalStaticSunrise # Sunrise-Add
     dynamicPacks:
     - Chemistry
+    - SurgeryDynamicSunrise # Sunrise-Add
+    - MedicalDynamicSunrise # Sunrise-Add
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
@@ -510,6 +526,7 @@
     - Scarves
     - Carpets
     - Bedsheets
+    - UniformStaticSunrise # Sunrise-Add
   - type: EmagLatheRecipes
     emagStaticPacks:
     - ClothingCentComm
@@ -563,6 +580,7 @@
     staticPacks:
     - BioGenIngredientsStatic
     - BioGenMaterialsStatic
+    - BioGenStaticSunrise # Sunrise-Add
 
 - type: entity
   parent: BaseLathe

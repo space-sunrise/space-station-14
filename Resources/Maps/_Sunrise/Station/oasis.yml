@@ -54230,20 +54230,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 25.5,-4.5
       parent: 2
-- proto: CloningConsoleComputerCircuitboard
-  entities:
-  - uid: 3781
-    components:
-    - type: Transform
-      pos: -47.44629,-20.715351
-      parent: 2
-- proto: CloningPodMachineCircuitboard
-  entities:
-  - uid: 3897
-    components:
-    - type: Transform
-      pos: -47.461914,-20.262226
-      parent: 2
 - proto: ClosetBombFilled
   entities:
   - uid: 4310
