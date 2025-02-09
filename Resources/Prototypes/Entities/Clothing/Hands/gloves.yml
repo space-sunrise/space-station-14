@@ -247,6 +247,12 @@
         whitelist:
           components:
           - Stamina
+        stunCharge: 120 #sunrise-start
+      - type: StunProvider
+        noPowerPopup: ninja-no-power
+        whitelist:
+          components:
+          - Stamina #sunrise-end
       - type: EmagProvider
         whitelist:
           components:
