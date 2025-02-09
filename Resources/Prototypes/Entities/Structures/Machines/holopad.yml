@@ -157,6 +157,10 @@
     anchored: true
   - type: Sprite # Sprite data is dynamically set in Client.HolopadSystem
   - type: Appearance
+  # Sunrise-Edit-Start
+  - type: TTS
+    voice: FactCore
+  # Sunrise-Edit-End
   - type: TypingIndicator
     proto: robot
   - type: Speech
