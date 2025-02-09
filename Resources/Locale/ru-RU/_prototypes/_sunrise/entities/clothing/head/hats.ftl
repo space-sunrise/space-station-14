@@ -58,3 +58,5 @@ ent-ClothingHeadHatDeerHorns = Оленьи рога
     .desc = Рожки что обычно носят Олени.
 ent-ClothingHeadHatHoodWinterColorCyan = капюшон голубой зимней куртки
     .desc = { ent-ClothingHeadHatHoodWinterBase.desc }
+ent-ClothingHeadCapNTGR = Фуражка ИСН
+    .desc = Мятая фуражка с серебряной медалью, блестит и красит своего владельца. Стильная часть униформы, идеально подойдёт к деловому костюму.

@@ -42,6 +42,21 @@
     clothingPrototype: ClothingHeadHelmetHardsuitBlueshield
 
 - type: entity
+  parent: ClothingOuterHardsuitBlueshield
+  id: ClothingOuterHardsuitNTRG
+  name: NTR Guard's hardsuit #Скафандр сотрудника ИСН QWERTY
+  description: Tough and reliable, just like its owner. #Модифицированный скафандр для исполнения различных задач. Сменяемые модули, прост в сборке и разборке для помещения в рюкзаки, сумки и крупные вещмешки. 
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ntrguard_spacesuit.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ntrguard_spacesuit.rsi
+  - type: Item
+    size: Huge
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitNTRG
+
+- type: entity
   parent: ClothingOuterHardsuitSecurity
   id: ClothingOuterHardsuitSecuritySunrise
   suffix: SUNRISE

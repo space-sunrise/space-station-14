@@ -163,12 +163,12 @@
       minVisibility: 0 # Sunrise-Edit
       lastVisibility: 0 # Sunrise-Edit
   - type: PowerCellDraw
-    drawRate: 1.8 # 200 seconds on the default cell
+    drawRate: 20 # Sunrise-edit
   - type: ToggleCellDraw
   # throwing star ability
   - type: ItemCreator
     action: ActionCreateThrowingStar
-    charge: 14.4
+    charge: 90 #Sunrise-edit
     spawnedPrototype: ThrowingStarNinja
     noPowerPopup: ninja-no-power
   # core ninja suit stuff

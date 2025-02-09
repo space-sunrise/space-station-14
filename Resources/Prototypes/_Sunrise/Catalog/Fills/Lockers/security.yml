@@ -50,6 +50,32 @@
 
 - type: entity
   parent: GunSafe
+  id: GunSafeSubMachineGunMP7
+  name: safe
+  suffix: MP7, SUNRISE
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSubMachineGunMP7
+      amount: 2
+    - id: MagazinePistolSubMachineGun
+      amount: 4
+
+- type: entity
+  parent: GunSafe
+  id: GunSafeSubMachineGunSkorpion
+  name: safe
+  suffix: Skorpion, SUNRISE
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponSubMachineGunSkorpion
+      amount: 4
+    - id: MagazinePistolSubMachineGun
+      amount: 6
+
+- type: entity
+  parent: GunSafe
   id: GunSafeShotgunPaladin
   name: safe
   suffix: Paladin 12
@@ -59,8 +85,6 @@
     - id: WeaponShotgunPaladin12
       amount: 2
     - id: BoxLethalshot
-      amount: 2
-    - id: BoxShotgunIncendiary
       amount: 1
     - id: BoxShotgunSlug
       amount: 1
@@ -76,8 +100,25 @@
     - id: WeaponShotgunTrenchgun4034
       amount: 2
     - id: BoxLethalshot
+      amount: 1
+    - id: BoxBeanbag
+      amount: 1
+    - id: BoxShotgunSlug
+      amount: 1
+
+- type: entity
+  parent: GunSafe
+  id: GunSafeShotgunSPAS12
+  name: safe
+  suffix: LAW-12
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponShotgunSPAS12
       amount: 2
-    - id: BoxShotgunIncendiary
+    - id: BoxLethalshot
+      amount: 1
+    - id: BoxBeanbag
       amount: 1
     - id: BoxShotgunSlug
       amount: 1
@@ -94,6 +135,19 @@
       amount: 4
 
 - type: entity
+  id: GunSafeCombineSmallArms
+  parent: GunSafe
+  name: safe
+  suffix: Energy Pistol/Glock22
+  components:
+  - type: StorageFill
+    contents:
+    - id: WeaponEnergyGunPistolSecurity
+      amount: 3
+    - id: GlockBox
+      amount: 3
+
+- type: entity
   parent: GunSafe
   id: GunSafeEnergyGun
   name: safe
@@ -102,4 +156,4 @@
   - type: StorageFill
     contents:
     - id: WeaponEnergyGunTactical
-      amount: 3
+      amount: 2

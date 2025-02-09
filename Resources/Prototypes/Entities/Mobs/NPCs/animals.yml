@@ -240,6 +240,8 @@
     factions:
     - Passive
   # Sunrise-start
+  - type: Body
+    prototype: Chiken
   - type: Carriable
   - type: CanEscapeInventory
   # Sunrise-end
@@ -875,6 +877,7 @@
   id: MobCrab
   description: A folk legend goes around that his claw snaps spacemen out of existence over distasteful remarks. Be polite and tolerant for your own safety.
   components:
+  - type: VentCrawler # Sunrise-edit
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -1260,6 +1263,7 @@
   description: The genetic bipedal ancestor of... Uh... Something. Yeah, there's definitely something on the station that descended from whatever this is.
   abstract: true
   components:
+  - type: VentCrawler # Sunrise-edit
   - type: CombatMode
   - type: Inventory
     templateId: monkey
@@ -1569,6 +1573,10 @@
     name: ghost-role-information-kobold-name
     description: ghost-role-information-kobold-description
     rules: ghost-role-information-nonantagonist-rules
+    # Sunrise Start
+  - type: Body
+    prototype: Kobold
+    # Sunrise End
 
 - type: entity
   name: kobold
@@ -1633,6 +1641,7 @@
   id: MobMouse
   description: Squeak!
   components:
+  - type: VentCrawler #Sunrise-edit
   - type: Body
     prototype: Mouse
   - type: GhostRole
@@ -2001,6 +2010,7 @@
   id: MobSlug
   description: And they called this a lizard?
   components:
+  - type: VentCrawler # Sunrise-edit
   - type: MovementSpeedModifier
     baseWalkSpeed : 2
     baseSprintSpeed : 3
@@ -2048,6 +2058,7 @@
   id: MobFrog
   description: Hop hop hop. Lookin' moist.
   components:
+  - type: VentCrawler # Sunrise-edit
   - type: MovementSpeedModifier
     baseWalkSpeed: 3
     baseSprintSpeed: 6
@@ -2300,6 +2311,7 @@
   id: MobSnake
   description: Hissss! Bites aren't poisonous.
   components:
+  - type: VentCrawler # Sunrise-edit
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -2351,6 +2363,7 @@
   id: MobSpiderBase
   abstract: true
   components:
+  - type: VentCrawler # Suneise-edit
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -2921,6 +2934,7 @@
   id: MobCorgiPuppy
   description: A little corgi! Aww...
   components:
+  - type: VentCrawler # Sunrise-edit
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Pets/corgi.rsi
@@ -3301,6 +3315,7 @@
   id: MobHamster
   description: A cute, fluffy, robust hamster.
   components:
+  - type: VentCrawler # Sunrise-edit
   - type: GhostRole
     makeSentient: true
     allowSpeech: true

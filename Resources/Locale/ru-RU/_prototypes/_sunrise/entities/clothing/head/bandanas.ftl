@@ -8,4 +8,3 @@ ent-ClothingHeadBandPurple = фиолетовая бандана
     .desc = Фиолетовая бандана, чтобы выглядеть круто.
 ent-ClothingHeadBandWhite = белая бандана
     .desc = Белая бандана, чтобы выглядеть круто.
-

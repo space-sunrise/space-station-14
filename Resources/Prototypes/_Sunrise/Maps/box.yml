@@ -3,8 +3,8 @@
   mapName: 'Box Station'
   mapPath: /Maps/_Sunrise/Station/box.yml
   maxRandomOffset: 0
-  randomRotation: false
   minPlayers: 30
+  randomRotation: false
   stations:
     Boxstation:
       stationProto: StandardNanotrasenStation
@@ -38,7 +38,7 @@
             ChiefEngineer: [ 1, 1 ]
             SeniorEngineer: [ 1, 1 ]
             AtmosphericTechnician: [ 4, 4 ]
-            StationEngineer: [ 5, 5 ]
+            StationEngineer: [ 6, 6 ]
             TechnicalAssistant: [ 5, -1 ]
             #medical
             ChiefMedicalOfficer: [ 1, 1 ]
@@ -52,7 +52,7 @@
             #science
             ResearchDirector: [ 1, 1 ]
             SeniorResearcher: [ 1, 1 ]
-            Scientist: [ 5, 5 ]
+            Scientist: [ 6, 6 ]
             ResearchAssistant: [ 5, -1 ]
             Roboticist: [ 3, 3 ]
             #security
@@ -66,7 +66,7 @@
             SecurityCadet: [ 5, -1 ]
             #supply
             Quartermaster: [ 1, 1 ]
-            SalvageSpecialist: [ 3, 3 ]
+            SalvageSpecialist: [ 4, 4 ]
             CargoTechnician: [ 3, 3 ]
             #civilian
             Passenger: [ -1, -1 ]

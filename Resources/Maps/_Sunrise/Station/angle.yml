@@ -40394,31 +40394,6 @@ entities:
         - 0
         - 0
       type: EntityStorage
-- proto: CrateNPCPibble
-  entities:
-  - uid: 12455
-    components:
-    - pos: 19.5,-54.5
-      parent: 9
-      type: Transform
-    - air:
-        volume: 800
-        immutable: False
-        temperature: 293.1499
-        moles:
-        - 11.733055
-        - 44.138634
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      type: EntityStorage
 - proto: CrateScience
   entities:
   - uid: 4039
@@ -83287,7 +83262,7 @@ entities:
       type: Transform
     - powerLoad: 0
       type: ApcPowerReceiver
-- proto: PoweredLightColoredBlack
+- proto: PoweredWarmSmallLight
   entities:
   - uid: 18040
     components:
@@ -93810,30 +93785,6 @@ entities:
     - pos: 29.5,-17.5
       parent: 9
       type: Transform
-- proto: SpawnVehicleATV
-  entities:
-  - uid: 7454
-    components:
-    - pos: 81.5,-0.5
-      parent: 9
-      type: Transform
-  - uid: 11013
-    components:
-    - pos: 45.5,-82.5
-      parent: 9
-      type: Transform
-  - uid: 13371
-    components:
-    - pos: 67.5,-48.5
-      parent: 9
-      type: Transform
-- proto: SpawnVehicleJanicart
-  entities:
-  - uid: 18284
-    components:
-    - pos: 14.5,-28.5
-      parent: 9
-      type: Transform
 - proto: SpeedLoaderLightRifle
   entities:
   - uid: 1281
@@ -98302,15 +98253,6 @@ entities:
     - pos: 45.5,5.5
       parent: 9
       type: Transform
-- proto: VendingMachineRepDrobe
-  entities:
-  - uid: 7341
-    components:
-    - flags: SessionSpecific
-      type: MetaData
-    - pos: 40.5,-14.5
-      parent: 9
-      type: Transform
 - proto: VendingMachineRoboDrobe
   entities:
   - uid: 6803
@@ -98493,14 +98435,6 @@ entities:
     - flags: SessionSpecific
       type: MetaData
     - pos: 14.5,-75.5
-      parent: 9
-      type: Transform
-- proto: Wakizashi
-  entities:
-  - uid: 15031
-    components:
-    - rot: 3.141592653589793 rad
-      pos: 46.641926,-47.356716
       parent: 9
       type: Transform
 - proto: WallmountTelevision
@@ -109301,13 +109235,6 @@ entities:
   - uid: 2341
     components:
     - pos: 32.505577,-22.364487
-      parent: 9
-      type: Transform
-- proto: WeaponSniperCeremonial
-  entities:
-  - uid: 15025
-    components:
-    - pos: 48.5,-47.5
       parent: 9
       type: Transform
 - proto: WelderIndustrial

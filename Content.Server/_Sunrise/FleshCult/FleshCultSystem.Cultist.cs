@@ -12,12 +12,10 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Electrocution;
 using Content.Shared.FixedPoint;
-using Content.Shared.Hands.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Mobs;
-using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
 using Content.Shared.Store;
 using Content.Shared.Store.Components;
@@ -30,6 +28,9 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server._Sunrise.FleshCult;
 
+/// <summary>
+/// System for managing Flesh Cultist components and their related events and behaviors.
+/// </summary>
 public sealed partial class FleshCultSystem
 {
     [ValidatePrototypeId<CollectiveMindPrototype>]
@@ -66,9 +67,8 @@ public sealed partial class FleshCultSystem
 
     private void OnShop(EntityUid uid, FleshCultistComponent component, FleshCultistShopActionEvent args)
     {
-        if (!TryComp<StoreComponent>(uid, out var store))
-            return;
-        _store.ToggleUi(uid, uid, store);
+        if (TryComp<StoreComponent>(uid, out var store))
+            _store.ToggleUi(uid, uid, store);
     }
 
     private void OnMobStateChanged(EntityUid uid, FleshCultistComponent component, MobStateChangedEvent args)
@@ -76,52 +76,41 @@ public sealed partial class FleshCultSystem
         switch (args.NewMobState)
         {
             case MobState.Critical:
-            {
-                EnsureComp<CuffableComponent>(uid);
-                var hands = _handsSystem.EnumerateHands(uid);
-                var enumerateHands = hands as Hand[] ?? hands.ToArray();
-                foreach (var enumerateHand in enumerateHands)
-                {
-                    if (enumerateHand.Container == null)
-                        continue;
-                    foreach (var containerContainedEntity in enumerateHand.Container.ContainedEntities)
-                    {
-                        if (HasComp<FleshHandModComponent>(containerContainedEntity))
-                            continue;
-                        QueueDel(containerContainedEntity);
-                        _audioSystem.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
-                    }
-                }
-
+                HandleCriticalState(uid, component);
                 break;
-            }
             case MobState.Dead:
-            {
-                _inventory.TryGetSlotEntity(uid, "shoes", out var shoes);
-                if (shoes != null)
-                {
-                    if (HasComp<FleshBodyModComponent>(shoes))
-                    {
-                        EntityManager.DeleteEntity(shoes.Value);
-                        _movement.RefreshMovementSpeedModifiers(uid);
-                        _audioSystem.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
-                    }
-                }
-
-                _inventory.TryGetSlotEntity(uid, "outerClothing", out var outerClothing);
-                if (outerClothing != null)
-                {
-                    if (HasComp<FleshBodyModComponent>(outerClothing))
-                    {
-                        EntityManager.DeleteEntity(outerClothing.Value);
-                        _movement.RefreshMovementSpeedModifiers(uid);
-                        _audioSystem.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
-                    }
-                }
-
-                ParasiteComesOut(uid, component);
+                HandleDeadState(uid, component);
                 break;
+        }
+    }
+
+    private void HandleCriticalState(EntityUid uid, FleshCultistComponent component)
+    {
+        EnsureComp<CuffableComponent>(uid);
+        foreach (var hand in _handsSystem.EnumerateHands(uid).Where(hand => hand.Container != null))
+        {
+            foreach (var entity in hand.Container!.ContainedEntities.Where(entity => !HasComp<FleshHandModComponent>(entity)))
+            {
+                QueueDel(entity);
+                _audioSystem.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
             }
+        }
+    }
+
+    private void HandleDeadState(EntityUid uid, FleshCultistComponent component)
+    {
+        DeleteFleshBodyModComponent(uid, "shoes", component);
+        DeleteFleshBodyModComponent(uid, "outerClothing", component);
+        ParasiteComesOut(uid, component);
+    }
+
+    private void DeleteFleshBodyModComponent(EntityUid uid, string slot, FleshCultistComponent component)
+    {
+        if (_inventory.TryGetSlotEntity(uid, slot, out var entity) && HasComp<FleshBodyModComponent>(entity))
+        {
+            EntityManager.DeleteEntity(entity.Value);
+            _movement.RefreshMovementSpeedModifiers(uid);
+            _audioSystem.PlayPvs(component.SoundMutation, uid, component.SoundMutation.Params);
         }
     }
 
@@ -129,23 +118,26 @@ public sealed partial class FleshCultSystem
     {
         if (args.Slot is not ("socks" or "outerClothing"))
             return;
-        _inventory.TryGetSlotEntity(uid, "shoes", out var shoes);
-        if (shoes == null)
-            return;
-        if (HasComp<FleshBodyModComponent>(shoes))
-            return;
-        if (args.Slot is "outerClothing" && !_tagSystem.HasTag(args.Equipment, "FullBodyOuter"))
-            return;
-        _popup.PopupEntity(Loc.GetString("flesh-cultist-equiped-outer-clothing-blocked",
-            ("Entity", uid)), uid, PopupType.Large);
-        args.Cancel();
 
+        if (_inventory.TryGetSlotEntity(uid, "shoes", out var shoes) && !HasComp<FleshBodyModComponent>(shoes) &&
+            (args.Slot != "outerClothing" || _tagSystem.HasTag(args.Equipment, "FullBodyOuter")))
+        {
+            _popup.PopupEntity(Loc.GetString("flesh-cultist-equiped-outer-clothing-blocked", ("Entity", uid)), uid, PopupType.Large);
+            args.Cancel();
+        }
     }
 
     private void OnStartup(EntityUid uid, FleshCultistComponent component, ComponentStartup args)
     {
         ChangeParasiteHunger(uid, 0, component);
+        InitializeActions(uid, component);
+        InitializeStore(uid, component);
+        InitializeAppearance(uid);
+        _store.TryAddCurrency(new Dictionary<string, FixedPoint2> { { StolenMutationPointPrototype, component.StartingMutationPoints } }, uid);
+    }
 
+    private void InitializeActions(EntityUid uid, FleshCultistComponent component)
+    {
         if (TryComp(uid, out ActionsComponent? actionsComponent))
         {
             _action.AddAction(uid, ref component.ActionFleshCultistShopEntity, component.ActionFleshCultistShop, component: actionsComponent);
@@ -154,9 +146,11 @@ public sealed partial class FleshCultSystem
             if (devourAction != null)
                 fleshAbilities.Actions.Add(devourAction.Value);
         }
+    }
 
+    private void InitializeStore(EntityUid uid, FleshCultistComponent component)
+    {
         var storeComp = EnsureComp<StoreComponent>(uid);
-
         var collectiveMindComponent = EnsureComp<CollectiveMindComponent>(uid);
         if (!collectiveMindComponent.Minds.Contains(FleshCollectiveMindProto))
             collectiveMindComponent.Minds.Add(FleshCollectiveMindProto);
@@ -170,9 +164,11 @@ public sealed partial class FleshCultSystem
         storeComp.RefundAllowed = false;
 
         EnsureComp<IgnoreFleshSpiderWebComponent>(uid);
-
         _tagSystem.AddTag(uid, FleshTagProto);
+    }
 
+    private void InitializeAppearance(EntityUid uid)
+    {
         if (TryComp<HumanoidAppearanceComponent>(uid, out var appearance))
         {
             appearance.HideLayersOnEquip.Add(HumanoidVisualLayers.RLeg);
@@ -181,97 +177,84 @@ public sealed partial class FleshCultSystem
             appearance.HideLayersOnEquip.Add(HumanoidVisualLayers.LFoot);
             Dirty(uid, appearance);
         }
-
-        _store.TryAddCurrency(new Dictionary<string, FixedPoint2>
-            { {StolenMutationPointPrototype, component.StartingMutationPoints} },
-            uid);
     }
 
     private void OnShutdown(EntityUid uid, FleshCultistComponent component, ComponentShutdown args)
     {
+        RemoveActions(uid, component);
+        RemoveComponents(uid);
+        RemoveCollectiveMind(uid);
+        _alerts.ClearAlert(uid, component.MutationPointAlert);
+        _tagSystem.RemoveTag(uid, FleshTagProto);
+        RemoveObjectives(uid);
+    }
+
+    private void RemoveActions(EntityUid uid, FleshCultistComponent component)
+    {
         if (TryComp(uid, out ActionsComponent? actionsComponent) && TryComp(uid, out FleshAbilitiesComponent? abilitiesComponent))
         {
             _action.RemoveAction(uid, component.ActionFleshCultistShopEntity, comp: actionsComponent);
-
-            foreach (var abilitiesComponentAction in abilitiesComponent.Actions)
-            {
-                _action.RemoveAction(uid, abilitiesComponentAction, comp: actionsComponent);
-            }
+            foreach (var action in abilitiesComponent.Actions)
+                _action.RemoveAction(uid, action, comp: actionsComponent);
         }
+    }
 
+    private void RemoveComponents(EntityUid uid)
+    {
         RemCompDeferred<IgnoreFleshSpiderWebComponent>(uid);
         RemCompDeferred<InsulatedComponent>(uid);
         RemCompDeferred<FlashImmunityComponent>(uid);
         RemCompDeferred<RespiratorImmunityComponent>(uid);
         RemCompDeferred<PressureImmunityComponent>(uid);
         RemCompDeferred<FlashImmunityComponent>(uid);
+    }
 
-        if (TryComp(uid, out CollectiveMindComponent? collectiveMind))
-        {
-            if (collectiveMind.Minds.Contains(FleshCollectiveMindProto))
-                collectiveMind.Minds.Remove(FleshCollectiveMindProto);
-        }
+    private void RemoveCollectiveMind(EntityUid uid)
+    {
+        if (TryComp(uid, out CollectiveMindComponent? collectiveMind) && collectiveMind.Minds.Contains(FleshCollectiveMindProto))
+            collectiveMind.Minds.Remove(FleshCollectiveMindProto);
+    }
 
-        _alerts.ClearAlert(uid, component.MutationPointAlert);
-
-        _tagSystem.RemoveTag(uid, FleshTagProto);
-
+    private void RemoveObjectives(EntityUid uid)
+    {
         if (_mindSystem.TryGetMind(uid, out var mindId, out var mind))
         {
             _roles.MindRemoveRole<FleshCultistRoleComponent>((mindId, mind));
+            var indexesToRemove = mind.Objectives
+                .Select((objective, index) => new { objective, index })
+                .Where(x => MetaData(x.objective).EntityPrototype!.ID is CreateFleshHeartObjective or FleshCultSurviveObjective)
+                .Select(x => x.index)
+                .ToList();
 
-            var indexesToRemove = new List<int>();
-
-            for (var i = 0; i < mind.Objectives.Count; i++)
-            {
-                var mindObjective = mind.Objectives[i];
-                var prototypeId = MetaData(mindObjective).EntityPrototype!.ID;
-
-                if (prototypeId is CreateFleshHeartObjective || prototypeId is FleshCultSurviveObjective)
-                {
-                    indexesToRemove.Add(i);
-                }
-            }
-
-            for (var i = indexesToRemove.Count - 1; i >= 0; i--)
-            {
-                _mindSystem.TryRemoveObjective(mindId, mind, indexesToRemove[i]);
-            }
+            foreach (var index in indexesToRemove.OrderByDescending(i => i))
+                _mindSystem.TryRemoveObjective(mindId, mind, index);
         }
     }
 
-    private void OnInsulatedImmunityMutation(EntityUid uid, FleshCultistComponent component,
-        FleshCultistInsulatedImmunityMutationEvent args)
+    private void OnInsulatedImmunityMutation(EntityUid uid, FleshCultistComponent component, FleshCultistInsulatedImmunityMutationEvent args)
     {
         EnsureComp<InsulatedComponent>(uid);
     }
 
-
-    private void OnPressureImmunityMutation(EntityUid uid, FleshCultistComponent component,
-        FleshCultistPressureImmunityMutationEvent args)
+    private void OnPressureImmunityMutation(EntityUid uid, FleshCultistComponent component, FleshCultistPressureImmunityMutationEvent args)
     {
         EnsureComp<PressureImmunityComponent>(uid);
     }
 
-    private void OnFlashImmunityMutation(EntityUid uid, FleshCultistComponent component,
-        FleshCultistFlashImmunityMutationEvent args)
+    private void OnFlashImmunityMutation(EntityUid uid, FleshCultistComponent component, FleshCultistFlashImmunityMutationEvent args)
     {
         EnsureComp<FlashImmunityComponent>(uid);
     }
 
-    private void OnRespiratorImmunityMutation(EntityUid uid, FleshCultistComponent component,
-        FleshCultistRespiratorImmunityMutationEvent args)
+    private void OnRespiratorImmunityMutation(EntityUid uid, FleshCultistComponent component, FleshCultistRespiratorImmunityMutationEvent args)
     {
         EnsureComp<RespiratorImmunityComponent>(uid);
     }
 
-    private void OnColdTempImmunityMutation(EntityUid uid, FleshCultistComponent component,
-        FleshCultistColdTempImmunityMutationEvent args)
+    private void OnColdTempImmunityMutation(EntityUid uid, FleshCultistComponent component, FleshCultistColdTempImmunityMutationEvent args)
     {
         if (TryComp<TemperatureComponent>(uid, out var tempComponent))
-        {
             tempComponent.ColdDamageThreshold = 0;
-        }
     }
 
     private bool ChangeParasiteHunger(EntityUid uid, FixedPoint2 amount, FleshCultistComponent? component = null)
@@ -280,58 +263,11 @@ public sealed partial class FleshCultSystem
             return false;
 
         component.Hunger += amount;
-
         if (TryComp<StoreComponent>(uid, out var store))
             _store.UpdateUserInterface(uid, uid, store);
 
-        _alerts.ShowAlert(uid, component.MutationPointAlert, (short) Math.Clamp(Math.Round(component.Hunger.Float() / 10f), 0, 16));
-
+        _alerts.ShowAlert(uid, component.MutationPointAlert, (short)Math.Clamp(Math.Round(component.Hunger.Float() / 10f), 0, 16));
         return true;
-    }
-
-    private int MatchSaturation(int bloodVolume, bool hasAppearance)
-    {
-        if (hasAppearance)
-        {
-            return 80;
-        }
-        return bloodVolume switch
-        {
-            >= 300 => 60,
-            >= 150 => 40,
-            >= 100 => 20,
-            _ => 10
-        };
-    }
-
-    private int MatchEvolutionPoint(int bloodVolume, bool hasAppearance)
-    {
-        if (hasAppearance)
-        {
-            return 30;
-        }
-        return bloodVolume switch
-        {
-            >= 300 => 20,
-            >= 150 => 15,
-            >= 100 => 10,
-            _ => 0
-        };
-    }
-
-    private float MatchHealPoint(int bloodVolume, bool hasAppearance)
-    {
-        if (hasAppearance)
-        {
-            return 1;
-        }
-        return bloodVolume switch
-        {
-            >= 300 => 0.8f,
-            >= 150 => 0.6f,
-            >= 100 => 0.4f,
-            _ => 0.2f
-        };
     }
 
     private bool ParasiteComesOut(EntityUid uid, FleshCultistComponent? component = null)
@@ -339,56 +275,37 @@ public sealed partial class FleshCultSystem
         if (!Resolve(uid, ref component))
             return false;
 
-        var xform = Transform(uid);
-        var coordinates = xform.Coordinates;
-
+        var coordinates = Transform(uid).Coordinates;
         var abommob = Spawn(component.FleshMutationMobId, _transformSystem.GetMapCoordinates(uid));
 
         if (_mindSystem.TryGetMind(uid, out var mindId, out var mind))
-        {
             _mindSystem.TransferTo(mindId, abommob, ghostCheckOverride: true);
-        }
 
-        _popup.PopupEntity(Loc.GetString("flesh-pudge-transform-user", ("EntityTransform", uid)),
-            uid, uid, PopupType.LargeCaution);
-        _popup.PopupEntity(Loc.GetString("flesh-pudge-transform-others",
-            ("Entity", uid), ("EntityTransform", abommob)), abommob, Filter.PvsExcept(abommob),
-            true, PopupType.LargeCaution);
-
+        _popup.PopupEntity(Loc.GetString("flesh-pudge-transform-user", ("EntityTransform", uid)), uid, uid, PopupType.LargeCaution);
+        _popup.PopupEntity(Loc.GetString("flesh-pudge-transform-others", ("Entity", uid), ("EntityTransform", abommob)), abommob, Filter.PvsExcept(abommob), true, PopupType.LargeCaution);
         _audioSystem.PlayPvs(component.SoundMutation, coordinates, AudioParams.Default.WithVariation(0.025f));
 
         if (TryComp(uid, out ContainerManagerComponent? container))
         {
             foreach (var cont in container.GetAllContainers().ToArray())
             {
-                foreach (var ent in cont.ContainedEntities.ToArray())
+                foreach (var entity in cont.ContainedEntities.Where(entity => !HasComp<BodyPartComponent>(entity) && !HasComp<UnremoveableComponent>(entity)))
                 {
-                    if (HasComp<BodyPartComponent>(ent))
-                        continue;
-                    if (HasComp<UnremoveableComponent>(ent))
-                        continue;
-                    _containerSystem.Remove(ent, cont, force: true);
-                    Transform(ent).Coordinates = coordinates;
+                    _containerSystem.Remove(entity, cont, force: true);
+                    Transform(entity).Coordinates = coordinates;
                 }
             }
         }
 
-        if (TryComp<BloodstreamComponent>(uid, out var bloodstream))
+        if (TryComp<BloodstreamComponent>(uid, out var bloodstream) && bloodstream.BloodSolution != null)
         {
-            var tempSol = new Solution() { MaxVolume = 5 };
-
-            if (bloodstream.BloodSolution == null)
-                return false;
-
+            var tempSol = new Solution { MaxVolume = 5 };
             tempSol.AddSolution(bloodstream.BloodSolution.Value.Comp.Solution, _prototypeManager);
 
-            if (_puddleSystem.TrySpillAt(uid, tempSol.SplitSolution(50), out var puddleUid))
+            if (_puddleSystem.TrySpillAt(uid, tempSol.SplitSolution(50), out var puddleUid) && TryComp<DnaComponent>(uid, out var dna))
             {
-                if (TryComp<DnaComponent>(uid, out var dna))
-                {
-                    var comp = EnsureComp<ForensicsComponent>(puddleUid);
-                    comp.DNAs.Add(dna.DNA);
-                }
+                var comp = EnsureComp<ForensicsComponent>(puddleUid);
+                comp.DNAs.Add(dna.DNA);
             }
         }
 
@@ -399,33 +316,27 @@ public sealed partial class FleshCultSystem
     public void UpdateCultist(float frameTime)
     {
         base.Update(frameTime);
-        var curTime = _timing.CurTime;
-
-        foreach (var rev in EntityQuery<FleshCultistComponent>())
+        foreach (var cultist in EntityQuery<FleshCultistComponent>())
         {
-            rev.Accumulator += frameTime;
-
-            if (rev.Accumulator <= 1)
+            cultist.Accumulator += frameTime;
+            if (cultist.Accumulator <= 1)
                 continue;
-            rev.Accumulator -= 1;
 
-            if (rev.Hunger <= 40)
+            cultist.Accumulator -= 1;
+            if (cultist.Hunger <= 40)
             {
-                rev.AccumulatorStarveNotify += 1;
-                if (rev.AccumulatorStarveNotify > 30)
+                cultist.AccumulatorStarveNotify += 1;
+                if (cultist.AccumulatorStarveNotify > 30)
                 {
-                    rev.AccumulatorStarveNotify = 0;
-                    _popup.PopupEntity(Loc.GetString("flesh-cultist-hungry"),
-                        rev.Owner, rev.Owner, PopupType.Large);
+                    cultist.AccumulatorStarveNotify = 0;
+                    _popup.PopupEntity(Loc.GetString("flesh-cultist-hungry"), cultist.Owner, cultist.Owner, PopupType.Large);
                 }
             }
 
-            if (rev.Hunger < 0)
-            {
-                ParasiteComesOut(rev.Owner, rev);
-            }
+            if (cultist.Hunger < 0)
+                ParasiteComesOut(cultist.Owner, cultist);
 
-            ChangeParasiteHunger(rev.Owner, rev.HungerСonsumption, rev);
+            ChangeParasiteHunger(cultist.Owner, cultist.HungerСonsumption, cultist);
         }
     }
 }

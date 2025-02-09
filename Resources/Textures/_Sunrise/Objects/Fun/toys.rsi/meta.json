@@ -243,6 +243,18 @@
       },
       { 
         "name": "legendary-golden-weh"
+      },
+      {
+        "name": "goldenweh-equipped-HELMET",
+        "directions": 4
+      },
+      {
+        "name": "goldenw-inhand-left",
+        "directions": 4
+      },
+      {
+        "name": "goldenw-inhand-right",
+        "directions": 4
       }
     ]
   }

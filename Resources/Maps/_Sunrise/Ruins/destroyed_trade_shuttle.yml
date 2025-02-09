@@ -17,7 +17,6 @@ entities:
       name:  Ш@ттл "Д0ст@vщик"
     - type: Transform
       pos: -7.015625,-4.671875
-      parent: invalid
     - type: MapGrid
       chunks:
         0,0:

@@ -128,6 +128,7 @@
   - type: Bloodstream
     bleedReductionAmount: 1
     bloodRefreshAmount: 1.5
+  - type: VentCrawler
   # Sunrise-end
 
 - type: entity
@@ -174,6 +175,7 @@
   description: He's da mini rat. He don't make da roolz.
   categories: [ HideSpawnMenu ] #Must be configured to a King or the AI breaks.
   components:
+  - type: VentCrawler # Sunrise-edit
   - type: CombatMode
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.5

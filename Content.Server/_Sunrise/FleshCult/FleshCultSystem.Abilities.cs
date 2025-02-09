@@ -51,6 +51,53 @@ public sealed partial class FleshCultSystem
         SubscribeLocalEvent<FleshAbilitiesComponent, ComponentStartup>(OnStartup);
     }
 
+
+
+    private int MatchSaturation(int bloodVolume, bool hasAppearance)
+    {
+        if (hasAppearance)
+        {
+            return 80;
+        }
+        return bloodVolume switch
+        {
+            >= 300 => 60,
+            >= 150 => 40,
+            >= 100 => 20,
+            _ => 10
+        };
+    }
+
+    private int MatchEvolutionPoint(int bloodVolume, bool hasAppearance)
+    {
+        if (hasAppearance)
+        {
+            return 30;
+        }
+        return bloodVolume switch
+        {
+            >= 300 => 20,
+            >= 150 => 15,
+            >= 100 => 10,
+            _ => 0
+        };
+    }
+
+    private float MatchHealPoint(int bloodVolume, bool hasAppearance)
+    {
+        if (hasAppearance)
+        {
+            return 1;
+        }
+        return bloodVolume switch
+        {
+            >= 300 => 0.8f,
+            >= 150 => 0.6f,
+            >= 100 => 0.4f,
+            _ => 0.2f
+        };
+    }
+
     private void OnUnlockAbility(EntityUid uid, FleshAbilitiesComponent component,
         FleshCultistUnlockAbilityEvent args)
     {

@@ -11,7 +11,12 @@
             "name": "icon"
         },
 		{
-			"name": "inhand"
+			"name": "glockb-inhand-left",
+            "directions": 4
+		},
+		{
+			"name": "glockb-inhand-right",
+            "directions": 4
 		}
     ]
 }
