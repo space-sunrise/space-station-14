@@ -1,4 +1,4 @@
-ent-BaseMobDemon = Урист Мак Демон
+ent-BaseMobDemon = Урист Мак Аркана
     .desc = { ent-BaseMobSpeciesOrganic.desc }
-ent-MobDemonDummy = Урист МакРуки
+ent-MobDemonDummy = Урист МакХэндс
     .desc = Манекен рептилии, предназначенный для создания персонажа.
