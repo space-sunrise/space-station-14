@@ -708,6 +708,12 @@
       150: Critical
     showOverlays: false
     allowRevives: true
+  # Sunrise-Start
+  - type: Speech
+    speechSounds: Pai
+  - type: TTS
+    voice: NecoArcTwo
+  # Sunrise-End
   # TOOD: buzz / chime actions
   # TODO: builtin flashlight
 
