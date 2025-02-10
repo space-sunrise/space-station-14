@@ -124,13 +124,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.1 #sunrise-Edit
-        Slash: 0.3 #sunrise-Edit
-        Piercing: 0.2 #sunrise-Edit
-        Heat: 0.3 #sunrise-Edit
-        Caustic: 0.2
+        Blunt: 0.75 #sunrise-Edit
+        Slash: 0.8 #sunrise-Edit
+        Piercing: 0.75 #sunrise-Edit
+        Heat: 0.8 #sunrise-Edit
+        Caustic: 0.55
   - type: ExplosionResistance
-    damageCoefficient: 0.35
+    damageCoefficient: 0.65
   - type: PressureProtection  #Sunrise-start
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
