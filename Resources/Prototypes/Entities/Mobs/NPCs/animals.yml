@@ -64,9 +64,15 @@
   - type: Tag
     tags:
     - VimPilot
-  - type: NightVision #Sunrise - Night vision
+  # Sunrise-Start
+  - type: NightVision
     isToggle: true
     color: "#808080"
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 - type: entity
   name: bee
@@ -244,7 +250,11 @@
     prototype: Chiken
   - type: Carriable
   - type: CanEscapeInventory
-  # Sunrise-end
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 - type: entity
   parent: MobChicken
@@ -682,7 +692,11 @@
   # Sunrise-start
   - type: Carriable
   - type: CanEscapeInventory
-  # Sunrise-end
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 - type: entity
   name: white duck #Quack
@@ -870,6 +884,12 @@
     guides:
     - Chef
     - FoodRecipes
+  # Sunrise-Start
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 - type: entity
   name: crab
@@ -942,7 +962,11 @@
   # Sunrise-start
   - type: Carriable
   - type: CanEscapeInventory
-  # Sunrise-end
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 - type: entity
   name: goat
@@ -1048,7 +1072,11 @@
   # Sunrise-start
   - type: Carriable
   - type: CanEscapeInventory
-  # Sunrise-end
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 # Note that we gotta make this bitch vomit someday when you feed it anthrax or sumthin. Needs to be a small item thief too and aggressive if attacked.
 - type: entity
@@ -1101,7 +1129,11 @@
   # Sunrise-start
   - type: Carriable
   - type: CanEscapeInventory
-  # Sunrise-end
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 - type: entity
   name: gorilla
@@ -1573,10 +1605,14 @@
     name: ghost-role-information-kobold-name
     description: ghost-role-information-kobold-description
     rules: ghost-role-information-nonantagonist-rules
-    # Sunrise Start
+  # Sunrise Start
   - type: Body
     prototype: Kobold
-    # Sunrise End
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 - type: entity
   name: kobold
@@ -2001,7 +2037,11 @@
   # Sunrise-start
   - type: Carriable
   - type: CanEscapeInventory
-  # Sunrise-end
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 
 - type: entity
@@ -2051,6 +2091,12 @@
     interactSuccessSpawn: EffectHearts
   - type: Bloodstream
     bloodMaxVolume: 50
+  # Sunrise-Start
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 - type: entity
   name: frog
@@ -2111,6 +2157,12 @@
   - type: Tag
     tags:
     - VimPilot
+  # Sunrise-Start
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 # Would be cool to have some functionality for the parrot to be able to sit on stuff
 - type: entity
@@ -2167,6 +2219,12 @@
       path: /Audio/Animals/parrot_raught.ogg
   - type: Bloodstream
     bloodMaxVolume: 50
+  # Sunrise-Start
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 - type: entity
   name: penguin
@@ -2231,7 +2289,11 @@
   # Sunrise-start
   - type: Carriable
   - type: CanEscapeInventory
-  # Sunrise-end
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 - type: entity
   name: grenade penguin
@@ -2352,9 +2414,15 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Scale
+  # Sunrise-Start
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
   - type: NightVision #Sunrise - Night vision
     isToggle: true
     color: "#808080"
+  # Sunrise-End
 
 # Code unique spider prototypes or combine them all into one spider and get a
 # random sprite state when you spawn it.
@@ -2457,6 +2525,10 @@
     - Arachnids
   - type: Carriable
   - type: CanEscapeInventory
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
   # Sunrise-end
 
 - type: entity
@@ -2640,6 +2712,10 @@
   # Sunrise-start
   - type: Carriable
   - type: CanEscapeInventory
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
   # Sunrise-end
 
 - type: entity
@@ -2718,6 +2794,10 @@
   # Sunrise-start
   - type: Carriable
   - type: CanEscapeInventory
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
   # Sunrise-end
 
 - type: entity
@@ -2927,6 +3007,12 @@
     heatDamage:
       types:
         Heat : 1 #per second, scales with temperature & other constants
+  # Sunrise-start
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-end
 
 - type: entity
   name: corgi puppy
@@ -3025,11 +3111,15 @@
     tags:
     - VimPilot
   # Sunrise-start
-  - type: NightVision #Sunrise - Night vision
+  - type: NightVision
     isToggle: true
     color: "#808080"
   - type: Carriable
   - type: CanEscapeInventory
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
   # Sunrise-end
 
 - type: entity
@@ -3307,7 +3397,11 @@
   # Sunrise-start
   - type: Carriable
   - type: CanEscapeInventory
-  # Sunrise-end
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 - type: entity
   name: hamster
@@ -3452,6 +3546,12 @@
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning
+  # Sunrise-Start
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 - type: entity
   name: pig
@@ -3528,7 +3628,11 @@
     prototype: ManeaterAnimal
   - type: Carriable
   - type: CanEscapeInventory
-    # Sunrise-end
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 - type: entity
   name: diona nymph
