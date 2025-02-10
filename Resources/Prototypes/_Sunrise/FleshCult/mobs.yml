@@ -65,7 +65,7 @@
   parent: BaseMobFleshCult
   id: MobFleshSpider
   components:
-#    - type: VentCrawler
+    - type: VentCrawler
     - type: HTN
       rootTask:
         task: XenoCompound
@@ -406,7 +406,7 @@
   parent: BaseMobFleshCult
   id: MobFleshHugger
   components:
-#    - type: VentCrawler
+    - type: VentCrawler
     - type: FleshMob
       soundDeath: "/Audio/_Sunrise/FleshCult/flesh_worm_dead.ogg"
       deathMobSpawnId: "MobFleshWorm"

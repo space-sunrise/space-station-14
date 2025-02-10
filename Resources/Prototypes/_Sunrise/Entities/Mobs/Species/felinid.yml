@@ -97,6 +97,7 @@
     baseSprintSpeed: 4.0
   - type: Carriable
     freeHandsRequired: 1
+  - type: VentCrawler
 #  - type: DamagedByFlashing
 #    flashDamage:
 #      types:
