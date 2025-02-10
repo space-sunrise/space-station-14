@@ -22,6 +22,7 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
+using Content.Shared.Traits.Assorted;
 using Robust.Shared.Audio;
 using Robust.Shared.Collections;
 using Robust.Shared.Containers;

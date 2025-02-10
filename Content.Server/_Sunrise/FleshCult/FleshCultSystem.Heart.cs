@@ -22,6 +22,7 @@ using Content.Shared.Physics;
 using Content.Shared.Popups;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Tag;
+using Content.Shared.Traits.Assorted;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Map.Components;
