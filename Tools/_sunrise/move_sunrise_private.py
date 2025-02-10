@@ -29,17 +29,9 @@ def move_directories():
             else:
                 shutil.move(src, dst)
 
-
-def cleanup():
-    print(f"Delete dir {CLONE_DIR}...")
-    shutil.rmtree(CLONE_DIR, ignore_errors=True)
-
-
 def main():
     move_directories()
-    cleanup()
     print("Private files move")
-
 
 if __name__ == "__main__":
     main()
