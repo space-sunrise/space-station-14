@@ -155,19 +155,30 @@ public sealed partial class MechComponent : Component
     [DataField]
     public List<EntProtoId> StartingEquipment = new();
 
-    #region Sounds
+    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+    public MechHealthState HealthState = MechHealthState.Normal;
+
+    #region Messages
     [DataField]
-    public SoundSpecifier EnableLightSound = new SoundPathSpecifier("/Audio/_Sunrise/Mechs/mech_lights_enabled.ogg");
+    public string MessageHello = "mech-message-hello";
     [DataField]
-    public SoundSpecifier DisableLightSound = new SoundPathSpecifier("/Audio/_Sunrise/Mechs/mech_lights_disabled.ogg");
+    public string MessageGoodbye = "mech-message-goodbye";
     [DataField]
-    public SoundSpecifier HelloSound = new SoundPathSpecifier("/Audio/_Sunrise/Mechs/mech_hello.ogg");
+    public string MessageEnableLight = "mech-message-enable-light";
     [DataField]
-    public SoundSpecifier Alert50 = new SoundPathSpecifier("/Audio/_Sunrise/Mechs/mech_alert_50.ogg");
+    public string MessageDisableLight = "mech-message-disable-light";
     [DataField]
-    public SoundSpecifier Alert25 = new SoundPathSpecifier("/Audio/_Sunrise/Mechs/mech_alert_25.ogg");
+    public string MessageAlert50 = "mech-message-alert_50";
     [DataField]
-    public SoundSpecifier Alert5 = new SoundPathSpecifier("/Audio/_Sunrise/Mechs/mech_alert_5.ogg");
+    public string MessageAlert25 = "mech-message-alert-25";
+    [DataField]
+    public string MessageAlert5 = "mech-message-alert-5";
+    [DataField]
+    public string MessageInsertEquipment = "mech-message-insert-equipment";
+    [DataField]
+    public string MessageRemoveEquipment = "mech-message-remove-equipment";
+    [DataField]
+    public string MessageCycleEquipment = "mech-message-cycle-equipment";
     #endregion
 
     #region Action Prototypes
@@ -194,4 +205,12 @@ public sealed partial class MechComponent : Component
     [DataField] public EntityUid? MechUiActionEntity;
     [DataField] public EntityUid? MechEjectActionEntity;
     [DataField] public EntityUid? MechLightsActionEntity;
+}
+
+public enum MechHealthState
+{
+    Normal,
+    Healthy,
+    Damaged,
+    Critical
 }

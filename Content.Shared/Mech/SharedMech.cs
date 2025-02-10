@@ -49,6 +49,9 @@ public record struct AttemptRemoveMechEquipmentEvent()
     public bool Cancelled = false;
 }
 
+[ByRefEvent]
+public readonly record struct MechSayEvent(EntityUid EntityUid, string Message);
+
 public sealed partial class MechToggleEquipmentEvent : InstantActionEvent
 {
 }

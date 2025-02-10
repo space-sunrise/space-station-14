@@ -8,6 +8,10 @@
     equipmentWhitelist:
       tags:
       - CombatMech
+  - type: Speech
+    speechSounds: Borg
+  - type: TTS
+    voice: Crysis2AICostume
 
 - type: entity
   id: IndustrialMech
@@ -18,6 +22,10 @@
     equipmentWhitelist:
       tags:
       - IndustrialMech
+  - type: Speech
+    speechSounds: Borg
+  - type: TTS
+    voice: Glados
 
 - type: entity
   id: SpecialMech
@@ -28,6 +36,10 @@
     equipmentWhitelist:
       tags:
       - SpecialMech
+  - type: Speech
+    speechSounds: Borg
+  - type: TTS
+    voice: Sentrybot
 
 - type: entity
   id: SmallMech
@@ -38,6 +50,10 @@
     equipmentWhitelist:
       tags:
       - SmallMech
+  - type: Speech
+    speechSounds: Pai
+  - type: TTS
+    voice: NecoArcTwo
 
 - type: entity
   id: BaseMech
@@ -181,6 +197,7 @@
     radius: 4
     netsync: false
   - type: AccessReader
+  - type: DamageOverlay
 
 # Ripley MK-I
 - type: entity
