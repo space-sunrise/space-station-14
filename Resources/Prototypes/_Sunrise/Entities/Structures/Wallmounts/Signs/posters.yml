@@ -238,7 +238,7 @@
   description: "An advertisement for crispy fried chicken."
   components:
   - type: Sprite
-    sprite: _Sunrise/Structures/Wallmounts/cerebralError.rsi
+    sprite: _Sunrise/Structures/Wallmounts/cerebralerror.rsi
     state: poster_chkndnnr
 
 # Station Maps
