@@ -1,9 +1,11 @@
 using System.Linq;
+using System.Numerics;
+using Content.Shared._Sunrise.VentCraw.Components;
 using Content.Shared.Body.Components;
-using Content.Shared.Tools.Components;
 using Content.Shared.Item;
 using Content.Shared.Movement.Events;
-using Content.Shared._Sunrise.VentCraw.Components;
+using Content.Shared.Movement.Systems;
+using Content.Shared.Tools.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Physics.Components;
@@ -37,18 +39,42 @@ public sealed class SharedVentCrawableSystem : EntitySystem
     /// </summary>
     /// <param name="uid">The EntityUid of the VentCrawHolderComponent.</param>
     /// <param name="component">The VentCrawHolderComponent instance.</param>
+    /// <param name="holder"></param>
     /// <param name="args">The MoveInputEvent arguments.</param>
     private void OnMoveInput(EntityUid uid, VentCrawHolderComponent holder, ref MoveInputEvent args)
     {
-
         if (!EntityManager.EntityExists(holder.CurrentTube))
         {
             var ev = new VentCrawExitEvent();
             RaiseLocalEvent(uid, ref ev);
         }
 
-        holder.IsMoving = args.State;
-        holder.CurrentDirection = args.Dir;
+        holder.IsMoving = args.Entity.Comp.HeldMoveButtons != MoveButtons.None;
+        holder.CurrentDirection = DirVecForButtons(args.Entity.Comp.HeldMoveButtons).GetDir();
+    }
+
+    private Vector2 DirVecForButtons(MoveButtons buttons)
+    {
+        var x = 0;
+        var y = 0;
+        x -= HasFlag(buttons, MoveButtons.Left) ? 1 : 0;
+        x += HasFlag(buttons, MoveButtons.Right) ? 1 : 0;
+        y -= HasFlag(buttons, MoveButtons.Down) ? 1 : 0;
+        y += HasFlag(buttons, MoveButtons.Up) ? 1 : 0;
+
+        var vec = new Vector2(x, y);
+
+        if (vec.LengthSquared() > 1.0e-6)
+        {
+            vec = vec.Normalized();
+        }
+
+        return vec;
+    }
+
+    private static bool HasFlag(MoveButtons buttons, MoveButtons flag)
+    {
+        return (buttons & flag) == flag;
     }
 
     /// <summary>

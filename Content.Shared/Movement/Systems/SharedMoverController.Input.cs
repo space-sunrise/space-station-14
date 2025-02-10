@@ -92,16 +92,7 @@ namespace Content.Shared.Movement.Systems
 
             // Relay the fact we had any movement event.
             // TODO: Ideally we'd do these in a tick instead of out of sim.
-
-            // Sunrise-start
-            // var moveEvent = new MoveInputEvent(entity, entity.Comp.HeldMoveButtons);
-            Vector2 vector2 = DirVecForButtons(entity.Comp.HeldMoveButtons);
-            Vector2i vector2i = new Vector2i((int)vector2.X, (int)vector2.Y);
-            Direction dir = (vector2i == Vector2i.Zero) ? Direction.Invalid : vector2i.AsDirection();
-
-            var moveEvent = new MoveInputEvent(entity, entity.Comp.HeldMoveButtons, dir, entity.Comp.HeldMoveButtons != 0);
-            // Sunrise-end
-
+            var moveEvent = new MoveInputEvent(entity, entity.Comp.HeldMoveButtons);
             entity.Comp.HeldMoveButtons = buttons;
             RaiseLocalEvent(entity, ref moveEvent);
             Dirty(entity, entity.Comp);
@@ -126,15 +117,9 @@ namespace Content.Shared.Movement.Systems
             entity.Comp.LastInputTick = GameTick.Zero;
             entity.Comp.LastInputSubTick = 0;
 
-            // Sunrise-start
-            Vector2 vector2 = DirVecForButtons(entity.Comp.HeldMoveButtons);
-            Vector2i vector2i = new Vector2i((int)vector2.X, (int)vector2.Y);
-            Direction dir = (vector2i == Vector2i.Zero) ? Direction.Invalid : vector2i.AsDirection();
-            // Sunrise-end
-
             if (entity.Comp.HeldMoveButtons != state.HeldMoveButtons)
             {
-                var moveEvent = new MoveInputEvent(entity, entity.Comp.HeldMoveButtons, dir, state.HeldMoveButtons != 0); // Sunrise-edit
+                var moveEvent = new MoveInputEvent(entity, entity.Comp.HeldMoveButtons);
                 entity.Comp.HeldMoveButtons = state.HeldMoveButtons;
                 RaiseLocalEvent(entity.Owner, ref moveEvent);
 
@@ -327,16 +312,6 @@ namespace Content.Shared.Movement.Systems
 
             if (!MoverQuery.TryGetComponent(entity, out var moverComp))
                 return;
-
-            // Relay the fact we had any movement event.
-
-            // Sunrise-start
-            var moverEntity = new Entity<InputMoverComponent>(entity, moverComp);
-            // Relay the fact we had any movement event.
-            // TODO: Ideally we'd do these in a tick instead of out of sim.
-            var moveEvent = new MoveInputEvent(moverEntity, moverComp.HeldMoveButtons, dir, state);
-            RaiseLocalEvent(entity, ref moveEvent);
-            // Sunrise-end
 
             // For stuff like "Moving out of locker" or the likes
             // We'll relay a movement input to the parent.

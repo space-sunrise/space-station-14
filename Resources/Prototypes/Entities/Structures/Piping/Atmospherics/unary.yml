@@ -113,6 +113,14 @@
     - type: GuideHelp
       guides:
       - PassiveVent
+      # Sunrise-start
+    - type: VentCrawTube
+      containerId: VentCrawTube
+    - type: VentCrawEntry
+    - type: ContainerContainer
+      containers:
+        VentCrawTube: !type:Container
+          # Sunrise-end
 
 - type: entity
   parent: [GasUnaryBase, AirSensorBase]
