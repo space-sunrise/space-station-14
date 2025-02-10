@@ -75,6 +75,11 @@ namespace Content.Server.Atmos.Piping.Unary.Components
         /// </summary>
         public float ManualLockoutDisableDoAfter = 2.0f;
 
+        // Sunrtise-Start
+        [DataField]
+        public float PressureLimit { get; set; } = 300;
+        // Sunrtise-End
+
         [DataField]
         public float ExternalPressureBound
         {

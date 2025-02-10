@@ -89,6 +89,24 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
             {
                 return;
             }
+
+            // Sunrise-Start
+            if (pipe.Air.Pressure > vent.PressureLimit)
+            {
+                // Release all gas like a passive vent
+                var inletAir = pipe.Air.RemoveRatio(1f);
+                var envAir = environment.RemoveRatio(1f);
+
+                var mergeAir = new GasMixture(inletAir.Volume + envAir.Volume);
+                _atmosphereSystem.Merge(mergeAir, inletAir);
+                _atmosphereSystem.Merge(mergeAir, envAir);
+
+                _atmosphereSystem.Merge(pipe.Air, mergeAir.RemoveVolume(inletAir.Volume));
+                _atmosphereSystem.Merge(environment, mergeAir);
+                return;
+            }
+            // Sunrise-End
+
             // If the lockout has expired, disable it.
             if (vent.IsPressureLockoutManuallyDisabled && _timing.CurTime >= vent.ManualLockoutReenabledAt)
             {
