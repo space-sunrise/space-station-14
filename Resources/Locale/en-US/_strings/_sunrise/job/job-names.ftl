@@ -70,5 +70,5 @@ JobUSSPCrew = Сотрудник СССП
 JobUSSPGuard = Милиция СССП
 JobUSSPSoldier = Солдат СССП
 JobUSSPOfficer = Офицер СССП
-NtrGuard = Оператор ИСН
-NtrLeadGuard = Командир ИСН
+JobNtrGuard = Оператор ИСН
+JobNtrLeadGuard = Командир ИСН
