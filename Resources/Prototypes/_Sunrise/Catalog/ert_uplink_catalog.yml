@@ -1090,6 +1090,18 @@
     stock: 5
 
 - type: listing
+  id: NTUplinkSunriseClothingEyesGlassesThermalSec
+  productEntity: ClothingEyesGlassesThermalSec
+  icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: thermals }
+  cost:
+    Crystallite: 10
+  categories:
+    - NTEquipment
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 5
+
+- type: listing
   id: NTUplinkSunriseEnergyDomeGeneratorBackpackNT
   productEntity: EnergyDomeGeneratorBackpackNT
   icon: { sprite: _Sunrise/Interface/Misc/nt_icons.rsi, state: nanotrasen_back }

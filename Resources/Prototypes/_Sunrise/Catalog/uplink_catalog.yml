@@ -13,6 +13,20 @@
   - UplinkWearables
 
 - type: listing
+  id: UplinkClothingEyesGlassesThermalSyndie
+  name: uplink-syndie-thermal-name
+  description: uplink-syndie-thermal-desc
+  icon: { sprite: /Textures/_Sunrise/Clothing/Eyes/Glasses/synd_thermal.rsi, state: icon }
+  productEntity: ClothingEyesGlassesThermalSyndie
+  discountCategory: usualDiscounts
+  discountDownTo:
+    Telecrystal: 4
+  cost:
+    Telecrystal: 8
+  categories:
+  - UplinkWearables
+
+- type: listing
   id: UplinkClothingEyesHudSyndicateMech
   name: uplink-syndie-diagnostic-hud-name
   description: uplink-syndie-diagnostic-hud-desc

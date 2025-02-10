@@ -90,3 +90,56 @@
   - type: NightVisionDevice
     displayColor: "#ff6e6e"
     displayShader: NVDDisplay
+
+- type: entity
+  parent: [ClothingEyesBase, BaseToggleClothing, ShowSecurityIcons, BaseSyndicateContraband]
+  id: ClothingEyesGlassesThermalSyndie
+  name: optical thermal scanner
+  suffix: syndicate
+  description: Thermals in the shape of glasses. for better exterminating NanoTrasen Scum.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Eyes/Glasses/synd_thermal.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Eyes/Glasses/synd_thermal.rsi
+  - type: ShowSyndicateIcons
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.95
+  - type: GroupExamine
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: ToggleClothing
+    action: ActionToggleThermalVision
+    disableOnUnequip: true
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: ThermalVision
+
+- type: entity
+  parent: [ClothingEyesBase, BaseToggleClothing, ShowSecurityIcons, BaseSecurityCommandContraband]
+  id: ClothingEyesGlassesThermalSec
+  name: optical thermal scanner
+  suffix: security
+  description: Thermals in the shape of glasses. for better exterminating enemies of NanoTrasen.
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/thermal.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/thermal.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.95
+  - type: GroupExamine
+  - type: IdentityBlocker
+    coverage: EYES
+  - type: ToggleClothing
+    action: ActionToggleThermalVision
+    disableOnUnequip: true
+  - type: ComponentToggler
+    parent: true
+    components:
+    - type: ThermalVision
