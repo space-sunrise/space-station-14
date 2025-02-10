@@ -9,10 +9,8 @@
       amount: 5
     Razorium:
       amount: 3
-    Iodine:
-      amount: 4
   products:
-    Desoantizyne: 0.7
+    Desoantizyne: 1.5
 
 - type: reaction
   id: H-32
