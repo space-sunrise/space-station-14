@@ -67,8 +67,8 @@
   - type: Destructible
     thresholds:
     - trigger:
-        !type:DamageTypeTrigger
-        damageType: Blunt
+        !type:DamageGroupTrigger # Sunrise-Edit
+        damageGroup: Brute # Sunrise-Edit
         damage: 400
       behaviors:
       - !type:GibBehavior { }

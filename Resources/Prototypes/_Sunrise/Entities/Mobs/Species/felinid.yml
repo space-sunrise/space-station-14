@@ -11,7 +11,7 @@
     speechVerb: Felinid
     allowedEmotes: ['Mew', 'Meow', 'Hisses', 'Purr']
   - type: Sprite
-    scale: 0.75, 0.75
+    scale: 0.72, 0.72
   - type: HumanoidAppearance
     species: Felinid
   - type: Fixtures
@@ -31,6 +31,29 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Felinid
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageGroupTrigger
+        damageGroup: Brute
+        damage: 300
+      behaviors:
+      - !type:GibBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 500
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -44,17 +67,17 @@
     hidden: true
     soundHit:
       collection: Punch
-    angle: 30
+    angle: 60
     animation: WeaponArcClaw
     attackRate: 1
     damage:
       types:
-        Blunt: 1
-        Slash: 2
+        Slash: 3
   - type: DamageOnHighSpeedImpact
+    minimumSpeed: 10
     damage:
       types:
-        Blunt: 5
+        Blunt: 300
     soundHit:
       path: /Audio/Effects/hit_kick.ogg
   - type: Stamina
@@ -95,9 +118,18 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.0
     baseSprintSpeed: 4.0
-  - type: Carriable
-    freeHandsRequired: 1
   - type: VentCrawler
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,1,3
+  - type: Felinid
+    damageBonus:
+      types:
+        Blunt: 15
+    felinidDamage:
+      types:
+        Blunt: 5
 #  - type: DamagedByFlashing
 #    flashDamage:
 #      types:

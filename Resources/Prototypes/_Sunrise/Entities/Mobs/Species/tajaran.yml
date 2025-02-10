@@ -59,6 +59,7 @@
   - type: Inventory
     speciesId: human
   - type: FootprintEmitter
+  - type: Carriable
 
 - type: entity
   save: false

@@ -259,7 +259,6 @@
   abstract: true
   components:
   # Sunrise-Start
-  - type: Carriable
   - type: CanEscapeInventory
   - type: Mood
   - type: CritHeartbeat

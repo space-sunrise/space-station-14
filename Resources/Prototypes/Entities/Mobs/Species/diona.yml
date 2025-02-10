@@ -120,6 +120,7 @@
       - "footprint-left-bare-diona"
     rightBareFootState:
       - "footprint-right-bare-diona"
+  - type: Carriable
   # Sunrise-End
 
 - type: entity

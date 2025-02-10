@@ -148,6 +148,7 @@
         - MobMask
         layer:
         - MobLayer
+  - type: Carriable
   # Sunrise-end
 
 - type: entity

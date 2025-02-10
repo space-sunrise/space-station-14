@@ -110,13 +110,6 @@
       sprite: "Effects/creampie.rsi"
       state: "creampie_vox" # Not default
       visible: false
-  # Sunrise ed!
-  - type: FootprintEmitter
-    leftBareFootState:
-      - "footprint-left-bare-lizard"
-    rightBareFootState:
-      - "footprint-right-bare-lizard"
-  # Sunrise edit end.
   - type: Inventory
     speciesId: vox
     displacements:
@@ -155,6 +148,14 @@
           32:
             sprite: Mobs/Species/Vox/displacement.rsi
             state: shoes
+  # Sunrise ed!
+  - type: FootprintEmitter
+    leftBareFootState:
+    - "footprint-left-bare-lizard"
+    rightBareFootState:
+    - "footprint-right-bare-lizard"
+  - type: Carriable
+  # Sunrise edit end.
 
 - type: entity
   parent: BaseSpeciesDummy
