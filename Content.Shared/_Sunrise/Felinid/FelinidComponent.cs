@@ -19,12 +19,6 @@ public sealed partial class FelinidComponent : Component
     [DataField("felinidDamage")]
     public DamageSpecifier FelinidDamage = new();
 
-    [DataField]
-    public TimeSpan PopupCooldown = TimeSpan.FromSeconds(3.0);
-
-    [DataField]
-    public TimeSpan? NextPopupTime;
-
     [DataField("damageSound")]
     public SoundSpecifier DamageSound = new SoundPathSpecifier("/Audio/Effects/hit_kick.ogg");
 }
