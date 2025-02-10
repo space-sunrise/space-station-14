@@ -1,4 +1,5 @@
 using Content.Shared.Damage;
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared._Sunrise.Felinid;
@@ -23,4 +24,7 @@ public sealed partial class FelinidComponent : Component
 
     [DataField]
     public TimeSpan? NextPopupTime;
+
+    [DataField("damageSound")]
+    public SoundSpecifier DamageSound = new SoundPathSpecifier("/Audio/Effects/hit_kick.ogg");
 }

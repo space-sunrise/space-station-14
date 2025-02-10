@@ -53,11 +53,13 @@ public sealed class FelinidSystem : EntitySystem
     private void OnMeleeHit(EntityUid uid, FelinidComponent component, MeleeHitEvent args)
     {
         if (!args.IsHit ||
-            !args.HitEntities.Any())
+            !args.HitEntities.Any() ||
+            args.User == uid)
         {
             return;
         }
 
+        args.HitSoundOverride = component.DamageSound;
         args.BonusDamage = component.DamageBonus;
         _damageableSystem.TryChangeDamage(uid, component.FelinidDamage);
     }
