@@ -75,7 +75,7 @@
 - type: entity
   parent: BaseComputerCircuitboard
   id: ComputerSaleConsoleCircuitboard
-  name: консоль продажи товаров (консольная плата)
+  name: Computer Sale Console #консоль продажи товаров (консольная плата)
   description: Плата которая используется для создания консоли продажи товаров.
   components:
   - type: Sprite
@@ -189,3 +189,58 @@
     prototype: ComputerFineRecords
   - type: StaticPrice
     price: 3000
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ComputerServiceSaleConsoleCircuitboard
+  name: Servisce Sale Console #консоль продажи товаров (консольная плата)
+  description: Плата которая используется для создания консоли продажи товаров.
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputerServiceSaleConsole
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ComputerSecuritySaleConsoleCircuitboard
+  name: Security Sale Console #консоль продажи товаров (консольная плата)
+  description: Плата которая используется для создания консоли продажи товаров.
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputerSecuritySaleConsole
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ComputerMedicalSaleConsoleCircuitboard
+  name: Medical Sale Console #консоль продажи товаров (консольная плата)
+  description: Плата которая используется для создания консоли продажи товаров.
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputerMedicalSaleConsole
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ComputerMiningSaleConsoleCircuitboard
+  name: Mining Sale Console #консоль продажи товаров (консольная плата)
+  description: Плата которая используется для создания консоли продажи товаров.
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputerMiningSaleConsole
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ComputerScienceSaleConsoleboard
+  name: Science Sale Console #консоль продажи товаров (консольная плата)
+  description: Плата которая используется для создания консоли продажи товаров.
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputerScienceSaleConsole
