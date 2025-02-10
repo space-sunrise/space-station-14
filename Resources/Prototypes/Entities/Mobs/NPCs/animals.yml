@@ -1074,8 +1074,6 @@
   - type: CanEscapeInventory
   - type: AttackOnInteractionFail
     attackMemoryLength: 10
-  - type: NPCRetaliation
-  - type: FactionException
   # Sunrise-End
 
 # Note that we gotta make this bitch vomit someday when you feed it anthrax or sumthin. Needs to be a small item thief too and aggressive if attacked.
@@ -1189,6 +1187,15 @@
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
+  # Sunrise-start
+  - type: InteractionPopup
+    successChance: 0.2
+    interactSuccessString: petting-success-generic
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  # Sunrise-End
 
 - type: entity
   name: kangaroo
@@ -1276,6 +1283,15 @@
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
+  # Sunrise-start
+  - type: InteractionPopup
+    successChance: 0.2
+    interactSuccessString: petting-success-generic
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  # Sunrise-End
 
 - type: entity
   name: boxing kangaroo
@@ -1404,7 +1420,10 @@
       methods: [ Touch ]
       effects:
       - !type:WashCreamPieReaction
-
+  # Sunrise-start
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  # Sunrise-end
 
 
 - type: entity
@@ -1438,10 +1457,6 @@
         Burn: 3
     clumsySound:
       path: /Audio/Animals/monkey_scream.ogg
-  # Sunrise-start
-  - type: Carriable
-  - type: CanEscapeInventory
-  # Sunrise-end
 
 
 - type: entity
@@ -1608,10 +1623,6 @@
   # Sunrise Start
   - type: Body
     prototype: Kobold
-  - type: AttackOnInteractionFail
-    attackMemoryLength: 10
-  - type: NPCRetaliation
-  - type: FactionException
   # Sunrise-End
 
 - type: entity
@@ -1844,7 +1855,8 @@
       Taco: RatTaco
       Burger: RatBurger
       Skewer: RatSkewer
-  - type: NightVision #Sunrise - Night vision
+  # Sunrise-Start
+  - type: NightVision
     isToggle: true
     color: "#808080"
   - type: HolidayVisuals
@@ -1854,6 +1866,7 @@
   - type: HolidayRsiSwap
     sprite:
       festive: _Sunrise/Mobs/Animals/mouse_santa.rsi
+  # Sunrise-End
 
 - type: entity
   parent: MobMouse
