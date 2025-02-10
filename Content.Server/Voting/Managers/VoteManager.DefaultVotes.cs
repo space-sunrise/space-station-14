@@ -324,13 +324,13 @@ namespace Content.Server.Voting.Managers
 
                 _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Map vote finished: {picked.MapName}");
                 var ticker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
-                if (ticker.CanUpdateMap())
+                // Sunrise-Start
+                if (ticker.RunLevel == GameRunLevel.PreRoundLobby)
                 {
-                    if (_gameMapManager.TrySelectMapIfEligible(picked.ID))
-                    {
-                        ticker.UpdateInfoText();
-                    }
+                    _cfg.SetCVar(CCVars.GameMap, picked.ID);
+                    ticker.UpdateInfoText();
                 }
+                // Sunrise-End
                 else
                 {
                     if (ticker.RoundPreloadTime <= TimeSpan.Zero)
