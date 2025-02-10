@@ -317,3 +317,10 @@
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/tshirt_khaki.rsi
   - type: Clothing
     sprite: _Sunrise/Clothing/Uniforms/Jumpsuit/tshirt_khaki.rsi
+
+- type: entity
+  parent: ClothingUniformJumpsuitAtmos
+  id: ClothingUniformJumpsuitAtmosSyndie
+  name: Contortionist's Jumpsuit
+  components:
+  - type: VentCrawClothing

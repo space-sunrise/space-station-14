@@ -1345,3 +1345,20 @@
     Telecrystal: 12
   categories:
   - UplinkExplosives
+
+- type: listing
+  id: uplinkContortionistJumpsuit
+  name: uplink-contortionist-jumpsuit-name
+  description: uplink-contortionist-jumpsuit-desc
+  productEntity: ClothingUniformJumpsuitAtmosSyndie
+  discountCategory: rareDiscounts
+  discountDownTo:
+    Telecrystal: 8
+  cost:
+    Telecrystal: 12
+  categories:
+  - UplinkJob
+  conditions:
+  - !type:BuyerJobCondition
+    whitelist:
+    - AtmosphericTechnician
