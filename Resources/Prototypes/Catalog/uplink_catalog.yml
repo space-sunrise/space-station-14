@@ -1260,7 +1260,7 @@
   icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-urist }
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 7
+    Telecrystal: 8
   cost:
     Telecrystal: 14
   categories:
@@ -1313,9 +1313,9 @@
   icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-ancestor }
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 4
-  cost:
     Telecrystal: 6
+  cost:
+    Telecrystal: 8
   categories:
   - UplinkAllies
   conditions:
@@ -1333,9 +1333,9 @@
   icon: { sprite: Objects/Devices/communication.rsi, state: old-radio-ancestor }
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 4
-  cost:
     Telecrystal: 6
+  cost:
+    Telecrystal: 8
   categories:
   - UplinkAllies
   conditions:
