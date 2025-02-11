@@ -243,6 +243,7 @@
   - type: ToggleClothing
     action: ActionToggleThermalVision
     disableOnUnequip: true
+    targetSlot: eyes
   - type: ComponentToggler
     parent: true
     components:

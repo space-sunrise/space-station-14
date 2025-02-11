@@ -92,7 +92,7 @@
     displayShader: NVDDisplay
 
 - type: entity
-  parent: [ClothingEyesBase, BaseToggleClothing, ShowSecurityIcons, BaseSyndicateContraband]
+  parent: [ClothingEyesGlassesThermal, ShowSecurityIcons, BaseSyndicateContraband]
   id: ClothingEyesGlassesThermalSyndie
   name: optical thermal scanner
   suffix: syndicate
@@ -103,23 +103,9 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Eyes/Glasses/synd_thermal.rsi
   - type: ShowSyndicateIcons
-  - type: Armor
-    modifiers:
-      coefficients:
-        Heat: 0.95
-  - type: GroupExamine
-  - type: IdentityBlocker
-    coverage: EYES
-  - type: ToggleClothing
-    action: ActionToggleThermalVision
-    disableOnUnequip: true
-  - type: ComponentToggler
-    parent: true
-    components:
-    - type: ThermalVision
 
 - type: entity
-  parent: [ClothingEyesBase, BaseToggleClothing, ShowSecurityIcons, BaseSecurityCommandContraband]
+  parent: [ClothingEyesGlassesThermal, ShowSecurityIcons, BaseSecurityCommandContraband]
   id: ClothingEyesGlassesThermalSec
   name: optical thermal scanner
   suffix: security
@@ -129,17 +115,4 @@
     sprite: Clothing/Eyes/Glasses/thermal.rsi
   - type: Clothing
     sprite: Clothing/Eyes/Glasses/thermal.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Heat: 0.95
-  - type: GroupExamine
-  - type: IdentityBlocker
-    coverage: EYES
-  - type: ToggleClothing
-    action: ActionToggleThermalVision
-    disableOnUnequip: true
-  - type: ComponentToggler
-    parent: true
-    components:
-    - type: ThermalVision
+  - type: ShowMindShieldIcons

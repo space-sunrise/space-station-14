@@ -1,5 +1,6 @@
 using Content.Shared.Actions;
 using Content.Shared.Clothing.EntitySystems;
+using Content.Shared.Inventory;
 using Content.Shared.Item.ItemToggle.Components;
 using Content.Shared.Toggleable;
 using Robust.Shared.GameStates;
@@ -39,6 +40,9 @@ public sealed partial class ToggleClothingComponent : Component
     /// </summary>
     [DataField]
     public bool MustEquip = true;
+
+    [DataField]
+    public string TargetSlot = string.Empty;
 }
 
 /// <summary>
