@@ -86,4 +86,6 @@
   - type: Storage
     maxItemSize: Huge
     grid:
-    - 0,0,7,4
+    - 0,0,7,3
+  - type: ExplosionResistance
+    damageCoefficient: 0.1

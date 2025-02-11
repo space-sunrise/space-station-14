@@ -64,7 +64,7 @@
     pocket1: WeaponEnergyGunPulseRevolver
     pocket2: HandheldCriminalRecordsMonitorUnpowered
   inhand:
-  - WeaponDisablerSMG
+  - WeaponEnergyGunTactical
   storage:
     back:
     - ClothingOuterHardsuitNTRG
