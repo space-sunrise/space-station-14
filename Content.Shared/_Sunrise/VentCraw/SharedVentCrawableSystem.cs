@@ -2,9 +2,13 @@ using System.Linq;
 using System.Numerics;
 using Content.Shared._Sunrise.VentCraw.Components;
 using Content.Shared.Body.Components;
+using Content.Shared.Emoting;
+using Content.Shared.Interaction.Events;
 using Content.Shared.Item;
 using Content.Shared.Movement.Events;
+using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Throwing;
 using Content.Shared.Tools.Components;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -17,7 +21,7 @@ namespace Content.Shared._Sunrise.VentCraw;
 /// <summary>
 /// A system that handles the crawling behavior for vent creatures.
 /// </summary>
-public sealed class SharedVentCrawableSystem : EntitySystem
+public abstract class SharedVentCrawableSystem : EntitySystem
 {
     [Dependency] private readonly SharedVentTubeSystem _ventCrawTubeSystem = default!;
     [Dependency] private readonly SharedPhysicsSystem _physicsSystem = default!;
@@ -32,6 +36,42 @@ public sealed class SharedVentCrawableSystem : EntitySystem
 
         SubscribeLocalEvent<VentCrawHolderComponent, ComponentStartup>(OnComponentStartup);
         SubscribeLocalEvent<VentCrawHolderComponent, MoveInputEvent>(OnMoveInput);
+
+        SubscribeLocalEvent<BeingVentCrawComponent, UseAttemptEvent>(OnAttempt);
+        SubscribeLocalEvent<BeingVentCrawComponent, PickupAttemptEvent>(OnAttempt);
+        SubscribeLocalEvent<BeingVentCrawComponent, ThrowAttemptEvent>(OnAttempt);
+        SubscribeLocalEvent<BeingVentCrawComponent, InteractionAttemptEvent>(OnInteractAttempt);
+        SubscribeLocalEvent<BeingVentCrawComponent, PullAttemptEvent>(OnPullAttempt);
+        SubscribeLocalEvent<BeingVentCrawComponent, AttackAttemptEvent>(OnAttempt);
+        SubscribeLocalEvent<BeingVentCrawComponent, ChangeDirectionAttemptEvent>(OnAttempt);
+        // SubscribeLocalEvent<BeingVentCrawComponent, EmoteAttemptEvent>(OnEmoteAttempt);
+        // SubscribeLocalEvent<BeingVentCrawComponent, SpeakAttemptEvent>(OnSpeakAttempt);
+    }
+
+    // SUNRISE-TODO: Не уверен что стоит блокировать эмоции и речь в трубах, но атмос-фелинид может знатно подзаебать.
+    // private void OnSpeakAttempt(EntityUid uid, BeingVentCrawComponent component, SpeakAttemptEvent args)
+    // {
+    //     args.Cancel();
+    // }
+    //
+    // private void OnEmoteAttempt(EntityUid uid, BeingVentCrawComponent component, EmoteAttemptEvent args)
+    // {
+    //     args.Cancel();
+    // }
+
+    private void OnInteractAttempt(Entity<BeingVentCrawComponent> ent, ref InteractionAttemptEvent args)
+    {
+        args.Cancelled = true;
+    }
+
+    private void OnAttempt(EntityUid uid, BeingVentCrawComponent component, CancellableEntityEventArgs args)
+    {
+        args.Cancel();
+    }
+
+    private void OnPullAttempt(EntityUid uid, BeingVentCrawComponent component, PullAttemptEvent args)
+    {
+        args.Cancelled = true;
     }
 
     /// <summary>
