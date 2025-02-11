@@ -117,15 +117,18 @@ public sealed partial class FleshCultSystem
 
     private void OnBeingEquippedAttempt(EntityUid uid, FleshCultistComponent component, IsEquippingAttemptEvent args)
     {
-        if (args.Slot is not ("socks" or "outerClothing"))
+        if (args.Slot is not "outerClothing")
             return;
-
-        if (_inventory.TryGetSlotEntity(uid, "shoes", out var shoes) && !HasComp<FleshBodyModComponent>(shoes) &&
-            (args.Slot != "outerClothing" || _tagSystem.HasTag(args.Equipment, "FullBodyOuter")))
-        {
-            _popup.PopupEntity(Loc.GetString("flesh-cultist-equiped-outer-clothing-blocked", ("Entity", uid)), uid, PopupType.Large);
-            args.Cancel();
-        }
+        _inventory.TryGetSlotEntity(uid, "shoes", out var shoes);
+        if (shoes == null)
+            return;
+        if (!HasComp<FleshBodyModComponent>(shoes))
+            return;
+        if (!_tagSystem.HasTag(args.Equipment, "FullBodyOuter"))
+            return;
+        _popup.PopupEntity(Loc.GetString("flesh-cultist-equiped-outer-clothing-blocked",
+            ("Entity", uid)), uid, PopupType.Large);
+        args.Cancel();
     }
 
     private void OnStartup(EntityUid uid, FleshCultistComponent component, ComponentStartup args)

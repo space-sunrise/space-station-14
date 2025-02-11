@@ -471,6 +471,7 @@
     tags:
     - WhitelistChameleon
     - HighRiskItem
+    - FullBodyOuter # Sunrise-Add
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitRd
   - type: StaticPrice

@@ -165,6 +165,8 @@
       targetSlot: shoes
       checkSlots:
       - outerClothing
+      checkTags:
+      - FullBodyOuter
     itemIconStyle: NoItem
     useDelay: 30
     checkCanInteract: false

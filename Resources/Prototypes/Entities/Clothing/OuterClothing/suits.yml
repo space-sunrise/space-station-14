@@ -23,6 +23,7 @@
   - type: GroupExamine
   - type: Tag
     tags:
+    - FullBodyOuter # Sunrise-Add
     - Hardsuit
     - WhitelistChameleon
   - type: ProtectedFromStepTriggers
@@ -70,6 +71,12 @@
   - type: GroupExamine
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - FullBodyOuter
+    - WhitelistChameleon
+  # Sunrise-End
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
@@ -102,6 +109,12 @@
   - type: GroupExamine
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - FullBodyOuter
+    - WhitelistChameleon
+  # Sunrise-End
 
 - type: entity
   parent: [ClothingOuterBaseLarge, GeigerCounterClothing, AllowSuitStorageClothing]
@@ -127,6 +140,12 @@
       toggleable-clothing: !type:ContainerSlot {}
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - FullBodyOuter
+    - WhitelistChameleon
+  # Sunrise-End
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseToggleClothing, BaseMajorContraband]
@@ -191,11 +210,12 @@
         whitelist:
           tags:
             - PowerCell
-# Sunrise-Edit
+  # Sunrise-Start
   - type: Tag
     tags:
-      - Hardsuit
-# Sunrise-Edit
+    - FullBodyOuter
+    - WhitelistChameleon
+  # Sunrise-End
 
 - type: entity
   parent: ClothingOuterBase
@@ -209,6 +229,12 @@
     sprite: Clothing/OuterClothing/Suits/chicken.rsi
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - FullBodyOuter
+    - WhitelistChameleon
+  # Sunrise-End
 
 - type: entity
   parent: ClothingOuterBase
@@ -247,6 +273,12 @@
       toggleable-clothing: !type:ContainerSlot {}
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - FullBodyOuter
+    - WhitelistChameleon
+  # Sunrise-End
 
 - type: entity
   parent: ClothingOuterBase
@@ -270,6 +302,12 @@
     node: suit
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - FullBodyOuter
+    - WhitelistChameleon
+  # Sunrise-End
 
 - type: entity
   parent: ClothingOuterBase
@@ -289,6 +327,12 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - FullBodyOuter
+    - WhitelistChameleon
+  # Sunrise-End
 
 - type: entity
   parent: ClothingOuterSuitCarp

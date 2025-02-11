@@ -495,25 +495,25 @@ public sealed partial class FleshCultSystem
 
         foreach (var slot in args.CheckSlots)
         {
-            if (_inventory.TryGetSlotEntity(uid, slot, out var entity) &&
-                HasComp<FleshBodyModComponent>(entity))
+            if (_inventory.TryGetSlotEntity(uid, slot, out var entity))
             {
-                _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-conflict"),
-                    uid, uid, PopupType.Large);
-                return;
+                if (HasComp<FleshBodyModComponent>(entity))
+                {
+                    _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-conflict"),
+                        uid, uid, PopupType.Large);
+                    return;
+                }
+
+               if (_tagSystem.HasAnyTag(entity.Value, args.CheckTags))
+               {
+                   _inventory.TryUnequip(uid, slot, true, true);
+               }
             }
         }
 
         _inventory.TryGetSlotEntity(uid, args.TargetSlot, out var equippedItem);
         if (equippedItem != null)
         {
-            if (HasComp<FleshBodyModComponent>(equippedItem.Value))
-            {
-                _popup.PopupEntity(Loc.GetString("flesh-cultist-transform-conflict"),
-                    uid, uid, PopupType.Large);
-                return;
-            }
-
             if (TryComp(equippedItem.Value, out MetaDataComponent? metaData) && metaData.EntityPrototype != null &&
                 metaData.EntityPrototype.ID == args.Prototype)
             {
