@@ -347,10 +347,10 @@
   description:
   components:
   - type: CargoPalletConsole
-    tag: #Service sale
-    whitelist:
-      components:
-      - Food
+    #tag: #Service sale
+    #whitelist:
+    #  components:
+    #  - Food
 
 - type: entity
   id: ComputerSecuritySaleConsole
@@ -360,10 +360,10 @@
   description:
   components:
   - type: CargoPalletConsole
-    tag: #Security sale
-    whitelist:
-      components:
-      - Gun
+#    tag: #Security sale
+#    whitelist:
+#      components:
+#      - Gun
 
 - type: entity
   id: ComputerMedicalSaleConsole
@@ -373,10 +373,10 @@
   description:
   components:
   - type: CargoPalletConsole
-    tag: #Medical sale
-    whitelist:
-      components:
-      - Healing
+#    tag: #Medical sale
+#    whitelist:
+#      components:
+#      - Healing
 
 - type: entity
   id: ComputerMiningSaleConsole
@@ -386,10 +386,10 @@
   description:
   components:
   - type: CargoPalletConsole
-    tag: #Mining sale
-    whitelist:
-      components:
-      - Material
+#    tag: #Mining sale
+#    whitelist:
+#      components:
+#      - Material
 
 - type: entity
   id: ComputerScienceSaleConsole
@@ -399,13 +399,13 @@
   description:
   components:
   - type: CargoPalletConsole
-    tag: #Science sale
-    whitelist:
-      components:
-      - TechnologyDisk
-      - MachineBoard
-      - MachinePart
-      - PowerCell
+#    tag: #Science sale
+#    whitelist:
+#      components:
+#      - TechnologyDisk
+#      - MachineBoard
+#      - MachinePart
+#      - PowerCell
 
 - type: entity
   parent: ComputerComms

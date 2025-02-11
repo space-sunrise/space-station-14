@@ -186,3 +186,61 @@
     state: cpu_supply
   - type: ComputerBoard
     prototype: ComputerScienceSaleConsole
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: CentCommShuttleConsoleCircuitboard
+  name: CCR shuttle computer board
+  description: A computer printed circuit board for a CCR shuttle computer.
+  components:
+  - type: ComputerBoard
+    prototype: ComputerShuttleCentComm
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: PrisonShuttleConsoleCircuitboard
+  name: prison shuttle computer board
+  description: A computer printed circuit board for a prison shuttle computer.
+  components:
+  - type: ComputerBoard
+    prototype: ComputerShuttlePrison
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: PrisonCommsComputerCircuitboard
+  name: prison communications computer board
+  description: A computer printed circuit board for a prison communications console.
+  components:
+  - type: ComputerBoard
+    prototype: PrisonComputerComms
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: SecurityShuttleConsoleCircuitboard
+  name: security shuttle computer board
+  description: A computer printed circuit board for a security shuttle computer.
+  components:
+  - type: ComputerBoard
+    prototype: ComputerShuttleSecurity
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: FPIATMComputerCircuitboard
+  name: FPI ATM board
+  description: A computer printed circuit board for a FPI ATM cabinet.
+  components:
+  - type: ComputerBoard
+    prototype: ATM
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ShipyardComputerCircuitboard
+  name: shipyard computer board
+  description: A computer printed circuit board for a shipyard computer.
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputerShipyard
+  - type: StaticPrice
+    price: 750
