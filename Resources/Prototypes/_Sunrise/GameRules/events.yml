@@ -57,7 +57,7 @@
 - type: entity
   id: VentbullMigration
   parent: BaseGameRule
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: StationEvent
     weight: 5
