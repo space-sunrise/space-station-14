@@ -339,3 +339,71 @@
     board: ComputerContrabandSaleCircuitboard
   - type: AccessReader
     access: [["Security"]] #Warder\HoS only
+
+- type: entity
+  id: ComputerServiceSaleConsole
+  parent: ComputerSaleConsole
+  suffix: Finance, Servisce
+  name: Консоль продажи провианта
+  description:
+  components:
+    - type: CargoPalletConsole
+      tag: #Продажа провианта
+      whitelist:
+        components:
+          - Food
+
+- type: entity
+  id: ComputerSecuritySaleConsole
+  parent: ComputerSaleConsole
+  suffix: Finance, Security
+  name: Консоль продажи оружия
+  description:
+  components:
+    - type: CargoPalletConsole
+      tag: #Продажа оружия
+      whitelist:
+        components:
+          - Gun
+
+- type: entity
+  id: ComputerMedicalSaleConsole
+  parent: ComputerSaleConsole
+  suffix: Finance, Medical
+  name: Консоль продажи медикаментов
+  description:
+  components:
+    - type: CargoPalletConsole
+      tag: #Продажа медикаментов
+      whitelist:
+        components:
+          - Healing
+
+- type: entity
+  id: ComputerMiningSaleConsole
+  parent: ComputerSaleConsole
+  suffix: Finance, Salvage
+  name: Консоль продажи материалов
+  description:
+  components:
+    - type: CargoPalletConsole
+      tag: #Продажа материалов
+      whitelist:
+        components:
+          - Material
+
+- type: entity
+  id: ComputerScienceSaleConsole
+  parent: ComputerSaleConsole
+  suffix: Finance, RND
+  name: Консоль продажи технологических товаров
+  description:
+  components:
+    - type: CargoPalletConsole
+      tag: #Продажа технологических товаров
+      whitelist:
+        components:
+          - TechnologyDisk
+          - MachineBoard
+          - MachinePart
+          - PowerCell
