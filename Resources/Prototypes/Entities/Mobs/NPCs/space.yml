@@ -280,6 +280,7 @@
   parent: MobSpaceBasic
   description: Long fangs and a glowing hood, and the alluring look begs to come closer.
   components:
+    - type: VentCrawler #Sunrise-Edit
     - type: Sprite
       drawdepth: Mobs
       sprite: Mobs/Animals/spacecobra.rsi
