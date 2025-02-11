@@ -1,12 +1,12 @@
 - type: entity
   parent: SeedBase
   name: packet of explosive banana
-  id: ExplosivebananaSeeds
+  id: ExplosiveBananaSeeds
   components:
   - type: Seed
     seedId: ExplosiveBanana
   - type: Sprite
-    sprite: _Sunrise/Objects/Specific/Hydroponics/explosivebanana.rsi
+    sprite: _Sunrise/Objects/Specific/Hydroponics/explosive_banana.rsi
 
 - type: entity
   parent: SeedBase
@@ -16,14 +16,14 @@
   - type: Seed
     seedId: CoffeeArabica
   - type: Sprite
-    sprite: _Sunrise/Objects/Specific/Hydroponics/coffeearabica.rsi
+    sprite: _Sunrise/Objects/Specific/Hydroponics/coffee_arabica.rsi
 
 - type: entity
   parent: SeedBase
-  name: packet of coffee robast
-  id: CoffeeRobastSeeds
+  name: packet of coffee robust
+  id: CoffeeRobustSeeds
   components:
   - type: Seed
-    seedId: CoffeeRobast
+    seedId: CoffeeRobust
   - type: Sprite
-    sprite: _Sunrise/Objects/Specific/Hydroponics/coffeerobast.rsi
+    sprite: _Sunrise/Objects/Specific/Hydroponics/coffee_robust.rsi
