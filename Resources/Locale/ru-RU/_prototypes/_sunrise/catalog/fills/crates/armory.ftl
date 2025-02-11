@@ -1,9 +1,17 @@
 ent-CrateArmoryM16A4 = ящик M16A4
     .desc = Содержит две штурмовые винтовки M16A4 и четыре магазина. Чтобы открыть необходим доступ уровня Оружейной.
+ent-CrateArmoryShotgunTrenchgun4034Sawn = Trenchgun4034 crate
+    .desc = Contains three Trenchgun4034 with three Bandolier. Requires Armory access to open.
+ent-CrateArmoryWeaponXM1014 = Combat Shotgun crate
+    .desc = Contains three XM1014 with three Bandolier. Requires Armory access to open.
+ent-CrateArmoryShotgunAmmo = Shotgun Ammo crate
+    .desc = Contains four Box Shotgun ammo. Requires Armory access to open.
 ent-CrateArmoryAKMS = ящик AKMS
     .desc = Содержит две штурмовые винтовки AKMS и четыре магазина. Чтобы открыть необходим доступ уровня Оружейной.
 ent-CrateArmoryMP5 = ящик MP5
     .desc = Содержит два пистолета-пулемёта MP5 и четыре магазина. Чтобы открыть необходим доступ уровня Оружейной.
+ent-CrateArmoryMP7 = MP7 crate
+    .desc = Contains two MP7 submachine gun with two mags. Requires Armory access to open.
 ent-CrateArmoryIK30 = ящик ИК-30
     .desc = Содержит три батарейных лазера ИК-30. Чтобы открыть необходим доступ уровня Оружейной.
 ent-CrateArmoryMagazineBoxLightRifleBig = ящик патронов .30 винтовочные

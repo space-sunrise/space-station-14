@@ -1,6 +1,3 @@
-ent-WeaponRifleLecterRubber = Lecter
-    .suffix = Non-lethal
-    .desc = { ent-WeaponRifleLecter.desc }
 ent-WeaponRifleAKM = AKMS
     .desc = { ent-BaseWeaponRifle.desc }
 ent-WeaponRifleAKMU = AKM-U
@@ -21,3 +18,6 @@ ent-WeaponSTG44 = STG 44
     .desc = { ent-BaseWeaponRifle.desc }
 ent-WeaponRifleV31 = V-31 assault rifle
     .desc = { ent-BaseWeaponRifle.desc }
+ent-WeaponRifleLecterRubber = Lecter
+    .suffix = Non-lethal
+    .desc = { ent-WeaponRifleLecter.desc }

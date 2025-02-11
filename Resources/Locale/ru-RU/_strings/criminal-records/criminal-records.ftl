@@ -32,14 +32,14 @@ criminal-records-permission-denied = Отказано в доступе
 
 ## Security channel notifications
 
-criminal-records-console-wanted = {$name} ({$job}) объявлен(а) в розыск сотрудником {$officer} по причине: {$reason}.
-criminal-records-console-suspected = Сотрудник {$officer} пометил(а) {$name} ({$job}) как подозреваемого(-ую) по причине: {$reason}.
-criminal-records-console-not-suspected = {$name} ({$job}) сняты подозрения сотрудником {$officer}.
-criminal-records-console-detained = {$name} ({$job}) был(а) задержан(а) сотрудником {$officer}.
-criminal-records-console-released = {$name} ({$job}) был(а) освобождён(а) сотрудником {$officer}.
-criminal-records-console-not-wanted = Сотрудник {$officer} снял(а) статус розыска с {$name} ({$job}).
-criminal-records-console-paroled = {$name} ({$job}) был(а) освобождён(а) УДО сотрудником {$officer}.
-criminal-records-console-not-parole = Сотрудник {$officer} снял(а) статус УДО с {$name} ({$job}).
+criminal-records-console-wanted = { $name } ({ $job }) объявлен(а) в розыск сотрудником { $officer } по причине: { $reason }.
+criminal-records-console-suspected = Сотрудник { $officer } пометил(а) { $name } ({ $job }) как подозреваемого(-ую) по причине: { $reason }.
+criminal-records-console-not-suspected = { $name } ({ $job }) сняты подозрения сотрудником { $officer }.
+criminal-records-console-detained = { $name } ({ $job }) был(а) задержан(а) сотрудником { $officer }.
+criminal-records-console-released = { $name } ({ $job }) был(а) освобождён(а) сотрудником { $officer }.
+criminal-records-console-not-wanted = Сотрудник { $officer } снял(а) статус розыска с { $name } ({ $job }).
+criminal-records-console-paroled = { $name } ({ $job }) был(а) освобождён(а) УДО сотрудником { $officer }.
+criminal-records-console-not-parole = Сотрудник { $officer } снял(а) статус УДО с { $name } ({ $job }).
 criminal-records-console-unknown-officer = <неизвестный офицер>
 
 ## Filters

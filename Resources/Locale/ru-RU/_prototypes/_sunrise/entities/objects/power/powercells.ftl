@@ -1,12 +1,6 @@
-ent-PowerCellNanoTrasen = батарея гипер ёмкости NanoTrasen
-    .desc = Стандартизированный перезаряжаемый элемент питания. накопитель гипер ёмкости военного типа, имеет встроенную ЭМИ защиту.
-    .suffix = Полный
 ent-PowerCellSyndicate = батарея гипер ёмкости Syndicate
     .desc = { ent-PowerCellNanoTrasen.desc }
     .suffix = Полный
-ent-PowerCageERT = энергоячейка гипер ёмкости NanoTrasen
-    .desc = { ent-PowerCellNanoTrasen.desc }
-    .suffix = Полный
-ent-PowerCageSyndicate = энергоячейка гипер ёмкости Syndicate
-    .desc = { ent-PowerCellNanoTrasen.desc }
+ent-PowerCellNanoTrasen = батарея гипер ёмкости NanoTrasen
+    .desc = Стандартизированный перезаряжаемый элемент питания. накопитель гипер ёмкости военного типа, имеет встроенную ЭМИ защиту.
     .suffix = Полный

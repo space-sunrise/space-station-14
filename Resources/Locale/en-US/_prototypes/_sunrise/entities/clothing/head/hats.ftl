@@ -1,5 +1,7 @@
 ent-ClothingHeadCapCentcomBlack = special operations officer cap
     .desc = The NanoTrasen gold-engraved special cap of the higher ranks, which has long gone through more than one blitzkrieg...
+ent-ClothingHeadCapNTGR = NTRG officer cap
+    .desc = The NanoTrasen Silver-engraved special cap
 ent-ClothingHeadCapCentcomNaval = naval cap
     .desc = A cap worn by those in the Nanotrasen Navy.
 ent-ClothingHeadHatBeretCentcomNaval = naval beret
@@ -56,5 +58,5 @@ ent-ClothingHeadHatSingulo = Singulo Crown
     .desc = The greatest achievement of engineers and scientists - a compact singularity installation that allows the owner to demonstrate their status and uniqueness on the station.
 ent-ClothingHeadHatDeerHorns = Deer Horns
     .desc = a Horns, usually worn deer.
-ent-ClothingHeadCapNTGR = NTRG officer cap
-    .desc = The NanoTrasen Silver-engraved special cap
+ent-ClothingHeadMailCarrier = mail carrier's hat
+    .desc = Smells like a good pension.

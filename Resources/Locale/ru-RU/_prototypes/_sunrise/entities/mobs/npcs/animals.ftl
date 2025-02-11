@@ -1,7 +1,12 @@
 ent-MobSaw = свиноматерь
     .desc = Хрю.
+ent-MobBaseInferiorVulpkanin = inferior vulpkanin
+    .desc = { ent-MobBaseAncestor.desc }
 ent-MobInferiorVulpkanin = низший вульпканин
     .desc = { ent-BaseMobHuman.desc }
+ent-MobBaseSyndicateInferiorVulpkanin = { ent-MobBaseInferiorVulpkanin }
+    .suffix = syndicate base
+    .desc = { ent-MobBaseInferiorVulpkanin.desc }
 ent-MobInferiorVulpkaninSyndicateAgent = { ent-MobInferiorVulpkanin }
     .desc = { ent-BaseMobHuman.desc }
 ent-MobInferiorVulpkaninSyndicateAgentNukeops = { ent-MobInferiorVulpkanin }

@@ -54,3 +54,5 @@ ent-ActionToggleEyes = Открыть/закрыть глаза
     .desc = Закройте глаза, чтобы защитить их, или откройте, чтобы насладиться яркими цветами.
 ent-ActionToggleWagging = Махать хвостом
     .desc = Начать или прекратить махать хвостом.
+ent-FakeMindShieldToggleAction = [color=green]Toggle Fake Mindshield[/color]
+    .desc = Turn the Fake Mindshield implant's transmission on/off

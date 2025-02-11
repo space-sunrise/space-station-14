@@ -42,3 +42,5 @@ ent-ClothingNeckScarfStripedRainbow = rainbow scarf
     .desc = A stylish rainbow scarf. The perfect winter accessory for those with a keen fashion sense, and those who just can't handle a cold breeze on their necks.
 ent-ClothingNeckScarfStripedTrans = striped trans scarf
     .desc = A stylish striped trans scarf. The perfect winter accessory for those with a keen fashion sense, and those who just can't handle a cold breeze on their necks.
+ent-ClothingNeckScarfStripedLesbianLong = long bacon
+    .desc = Long bacon! Perfect for sharing with your girlfriend!

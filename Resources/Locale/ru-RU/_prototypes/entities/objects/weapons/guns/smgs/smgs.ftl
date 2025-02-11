@@ -11,6 +11,5 @@ ent-WeaponSubMachineGunDrozd = Дрозд
 ent-WeaponSubMachineGunWt550 = WT550
     .desc = Отличный пистолет-пулемёт, производства NanoTrasen's Small Arms Division. Использует патроны калибра .35 авто.
     .suffix = Пистолет-пулемёт
-
 ent-UplinkSubMachineGunUzi = Узи
     .desc = Старая и любимая тарахтелка с далёких улиц Терра Групп. Использует 35 калибр, при стрельбе высокая скорострельность и низкая отдача может сломать палец.
