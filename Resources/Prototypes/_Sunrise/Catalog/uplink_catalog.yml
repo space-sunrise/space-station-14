@@ -1322,7 +1322,7 @@
   icon: { sprite: Objects/Weapons/Grenades/smoke.rsi, state: icon }
   productEntity: SmokeScreenImplanter
   cost:
-    Telecrystal: 2
+    Telecrystal: 4
   categories:
   - UplinkImplants
 
