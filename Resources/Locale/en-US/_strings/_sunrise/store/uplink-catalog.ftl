@@ -27,6 +27,8 @@ uplink-mechpaint-mauler-desc = Содержит краску для Маулер
 
 uplink-syndie-nvd-name = ПНВ Синдиката
 uplink-syndie-nvd-desc = Качественно исполненый прибор ночного видения, производства компании "Горлакс секьюрити", использует красные линзы для улучшения видимости в условиях низкой освещенности.
+uplink-syndie-thermal-name = оптический термальный сканер
+uplink-syndie-thermal-desc = Компактный термальный сканер. Оборудован системой свой-чужой. Идеально подходит для выявления и уничтожения сотрудников НаноТрейзен.
 uplink-clothing-backpack-syndie-name = Рюкзак Синдиката
 uplink-hardsuit-syndie-commander-name = скафандр Командира Синдиката
 uplink-hardsuit-syndie-commander-desc = Скафандр предназначеный для командиров отрядов Горлекса.
