@@ -1,13 +1,13 @@
 - type: entity
   parent: SimpleMobBase
   id: MobPibble
-  name: питбуль
-  description: Собака-няня. Или лабораторный микс, в зависимости от того, кто спрашивает.
+  name: Pibble
+  description: Nanny dog. Or a lab mix, depending on who asks.
   components:
   - type: MeleeWeapon
     hidden: true
     soundHit:
-        path: /Audio/Effects/bite.ogg
+      path: /Audio/Effects/bite.ogg
     angle: 0
     animation: WeaponArcBite
     damage:
@@ -81,8 +81,8 @@
     makeSentient: true
     allowSpeech: true
     allowMovement: true
-    name: Питбуль
-    description: Верный друг человека... Или нет?
+    name: ghost-role-information-pibble-name
+    description: ghost-role-information-pibble-description
     rules: ghost-role-information-nonantagonist-rules
   - type: GhostTakeoverAvailable
   - type: DogVision
@@ -97,14 +97,14 @@
 - type: entity
   parent: MobPibble
   id: MobPibbleVent
-  name: вентибуль
-  description: Какая-то смесь питбулей... или, может быть, это следующий этап эволюции питбулей?
+  name: Ventibull
+  description: Some kind of pitbull mix... or maybe it's the next stage of pitbull evolution?
   components:
   - type: VentCrawler
   - type: MeleeWeapon
     hidden: true
     soundHit:
-        path: /Audio/Effects/bite.ogg
+      path: /Audio/Effects/bite.ogg
     angle: 0
     animation: WeaponArcBite
     damage:
@@ -135,7 +135,7 @@
     makeSentient: true
     allowSpeech: true
     allowMovement: true
-    name: Вентиляционный Питбуль
-    description: Никто не знает откуда вы появились на станции.
+    name: ghost-role-information-pibble-vent-name
+    description: ghost-role-information-pibble-vent-description
     rules: ghost-role-information-nonantagonist-rules
   - type: GhostTakeoverAvailable

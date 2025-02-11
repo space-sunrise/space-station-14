@@ -1,66 +1,8 @@
 - type: entity
   parent: BaseComputerCircuitboard
-  id: CentCommShuttleConsoleCircuitboard
-  name: CCR shuttle computer board
-  description: A computer printed circuit board for a CCR shuttle computer.
-  components:
-  - type: ComputerBoard
-    prototype: ComputerShuttleCentComm
-
-- type: entity
-  parent: BaseComputerCircuitboard
-  id: PrisonShuttleConsoleCircuitboard
-  name: prison shuttle computer board
-  description: A computer printed circuit board for a prison shuttle computer.
-  components:
-  - type: ComputerBoard
-    prototype: ComputerShuttlePrison
-
-- type: entity
-  parent: BaseComputerCircuitboard
-  id: PrisonCommsComputerCircuitboard
-  name: prison communications computer board
-  description: A computer printed circuit board for a prison communications console.
-  components:
-  - type: ComputerBoard
-    prototype: PrisonComputerComms
-
-- type: entity
-  parent: BaseComputerCircuitboard
-  id: SecurityShuttleConsoleCircuitboard
-  name: security shuttle computer board
-  description: A computer printed circuit board for a security shuttle computer.
-  components:
-  - type: ComputerBoard
-    prototype: ComputerShuttleSecurity
-
-- type: entity
-  parent: BaseComputerCircuitboard
-  id: FPIATMComputerCircuitboard
-  name: FPI ATM board
-  description: A computer printed circuit board for a FPI ATM cabinet.
-  components:
-    - type: ComputerBoard
-      prototype: ATM
-
-- type: entity
-  parent: BaseComputerCircuitboard
-  id: ShipyardComputerCircuitboard
-  name: shipyard computer board
-  description: A computer printed circuit board for a shipyard computer.
-  components:
-    - type: Sprite
-      state: cpu_supply
-    - type: ComputerBoard
-      prototype: ComputerShipyard
-    - type: StaticPrice
-      price: 750
-
-- type: entity
-  parent: BaseComputerCircuitboard
   id: CargoFinanceComputerCircuitboard
-  name: консоль учета финансов (консольная плата)
-  description: Плата которая используется для создания консоли учета финансов.
+  name: Cargo Finance Console (console board)
+  description: A board used to create a cargo finance console.
   components:
   - type: Sprite
     state: cpu_supply
@@ -75,8 +17,8 @@
 - type: entity
   parent: BaseComputerCircuitboard
   id: ComputerSaleConsoleCircuitboard
-  name: Computer Sale Console #консоль продажи товаров (консольная плата)
-  description: Плата которая используется для создания консоли продажи товаров.
+  name: Computer Sale Console (console board)
+  description: A board used to create a sale console.
   components:
   - type: Sprite
     state: cpu_supply
@@ -86,8 +28,8 @@
 - type: entity
   parent: BaseComputerCircuitboard
   id: ComputerBountySaleConsoleCircuitboard
-  name: консоль отправки запросов (консольная плата)
-  description: Плата которая используется для создания консоли отправки запросов.
+  name: Bounty Sale Console (console board)
+  description: A board used to create a bounty sale console.
   components:
   - type: Sprite
     state: cpu_supply
@@ -97,8 +39,8 @@
 - type: entity
   parent: BaseComputerCircuitboard
   id: StationBankComputerCircuitboard
-  name: консоль счета станции (консольная плата)
-  description: Плата которая используется для создания консоли счета станции.
+  name: Station Bank Console (console board)
+  description: A board used to create a station bank console.
   components:
   - type: Sprite
     state: cpu_supply
@@ -114,8 +56,8 @@
 - type: entity
   parent: BaseComputerCircuitboard
   id: CargoSalaryComputerCircuitboard
-  name: консоль учета зарплат (консольная плата)
-  description: Плата которая используется для создания консоли учета зарплат.
+  name: Cargo Salary Console (console board)
+  description: A board used to create a cargo salary console.
   components:
   - type: Sprite
     state: cpu_supply
@@ -131,8 +73,8 @@
 - type: entity
   parent: BaseComputerCircuitboard
   id: CallErtComputerCircuitboard
-  name: консоль вызова ОБР (консольная плата)
-  description: A computer circuit board for a ERT Call computer. #Плата которая используется для создания консоли вызова ОБР.
+  name: ERT Call Console (console board)
+  description: A computer circuit board for an ERT Call computer.
   suffix: ERTCALL
   components:
   - type: Sprite
@@ -148,8 +90,8 @@
 - type: entity
   parent: BaseComputerCircuitboard
   id: ApproveErtComputerCircuitboard
-  name: консоль принятия ОБР (консольная плата)
-  description: A computer circuit board for a ERT Approve computer. #Плата которая используется для создания консоли принятия ОБР.
+  name: ERT Approve Console (console board)
+  description: A computer circuit board for an ERT Approve computer.
   suffix: ERTCALL
   components:
   - type: Sprite
@@ -165,8 +107,8 @@
 - type: entity
   parent: BaseComputerCircuitboard
   id: ComputerFineRecordsCircuitboard
-  name: security fine records computer board #консоль выписки штрафов (консольная плата)
-  description: A computer circuit board for a fine records computer. #Плата которая используется для создания консоли выписки штрафов.
+  name: Security Fine Records Console (console board)
+  description: A computer circuit board for a fine records computer.
   suffix: Security, Sunrise
   components:
   - type: Sprite
@@ -179,8 +121,8 @@
 - type: entity
   parent: BaseComputerCircuitboard
   id: ComputerContrabandSaleCircuitboard
-  name: security contraband exchanger computer board #консоль обмена контрабанды (консольная плата)
-  description: A computer circuit board for a contraband exchanger computer. #Плата которая используется для создания консоли обмена контрабанды.
+  name: Security Contraband Exchanger Console (console board)
+  description: A computer circuit board for a contraband exchanger computer.
   suffix: Security, Sunrise
   components:
   - type: Sprite
@@ -193,8 +135,8 @@
 - type: entity
   parent: BaseComputerCircuitboard
   id: ComputerServiceSaleConsoleCircuitboard
-  name: Servisce Sale Console #консоль продажи товаров (консольная плата)
-  description: Плата которая используется для создания консоли продажи товаров.
+  name: Service Sale Console (console board)
+  description: A board used to create a service sale console.
   components:
   - type: Sprite
     state: cpu_supply
@@ -204,8 +146,8 @@
 - type: entity
   parent: BaseComputerCircuitboard
   id: ComputerSecuritySaleConsoleCircuitboard
-  name: Security Sale Console #консоль продажи товаров (консольная плата)
-  description: Плата которая используется для создания консоли продажи товаров.
+  name: Security Sale Console (console board)
+  description: A board used to create a security sale console.
   components:
   - type: Sprite
     state: cpu_supply
@@ -215,8 +157,8 @@
 - type: entity
   parent: BaseComputerCircuitboard
   id: ComputerMedicalSaleConsoleCircuitboard
-  name: Medical Sale Console #консоль продажи товаров (консольная плата)
-  description: Плата которая используется для создания консоли продажи товаров.
+  name: Medical Sale Console (console board)
+  description: A board used to create a medical sale console.
   components:
   - type: Sprite
     state: cpu_supply
@@ -226,8 +168,8 @@
 - type: entity
   parent: BaseComputerCircuitboard
   id: ComputerMiningSaleConsoleCircuitboard
-  name: Mining Sale Console #консоль продажи товаров (консольная плата)
-  description: Плата которая используется для создания консоли продажи товаров.
+  name: Mining Sale Console (console board)
+  description: A board used to create a mining sale console.
   components:
   - type: Sprite
     state: cpu_supply
@@ -237,8 +179,8 @@
 - type: entity
   parent: BaseComputerCircuitboard
   id: ComputerScienceSaleConsoleboard
-  name: Science Sale Console #консоль продажи товаров (консольная плата)
-  description: Плата которая используется для создания консоли продажи товаров.
+  name: Science Sale Console (console board)
+  description: A board used to create a science sale console.
   components:
   - type: Sprite
     state: cpu_supply
