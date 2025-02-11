@@ -11961,7 +11961,7 @@
     type: Remove
   id: 823
   time: '2025-02-09T20:33:59.816641+00:00'
-- author: VigersRay
+- author: fluffy6996
   changes:
   - message: "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u044B 100+ \u043D\u043E\
       \u0432\u044B\u0445 \u043A\u0430\u0441\u0441\u0435\u0442 \u043E\u0442\u043E\u0431\
@@ -12190,3 +12190,12 @@
   id: 838
   time: '2025-02-11T01:37:52.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/1327
+- author: VigersRay
+  changes:
+  - message: "\u0424\u0435\u043B\u0438\u043D\u0438\u0434\u044B \u0431\u043E\u043B\u044C\
+      \u0448\u0435 \u043D\u0435 \u043C\u043E\u0433\u0443\u0442 \u0437\u0430\u043B\u0430\
+      \u0437\u0438\u0442\u044C \u0432 \u0432\u0435\u043D\u0442\u0438\u043B\u044F\u0446\
+      \u0438\u0438."
+    type: Tweak
+  id: 839
+  time: '2025-02-11T01:41:06.466613+00:00'
