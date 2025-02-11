@@ -32,8 +32,8 @@
         time: 16
         refresh: false
       - !type:MovespeedModifier
-        walkSpeedModifier: 1.45
-        sprintSpeedModifier: 1.6
+        walkSpeedModifier: 1.30
+        sprintSpeedModifier: 1.45
       - !type:Jitter
       - !type:PopupMessage
         visualType: Medium
