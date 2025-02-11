@@ -1,12 +1,12 @@
 - type: seed
   id: ExplosiveBanana
-  name: seeds-explosivebanana-name
+  name: seeds-explosive-banana-name
   noun: seeds-noun-seeds
-  displayName: seeds-explosivebanana-display-name
-  plantRsi: _Sunrise/Objects/Specific/Hydroponics/explosivebanana.rsi
-  packetPrototype: ExplosivebananaSeeds
+  displayName: seeds-explosive-banana-display-name
+  plantRsi: _Sunrise/Objects/Specific/Hydroponics/explosive_banana.rsi
+  packetPrototype: ExplosiveBananaSeeds
   productPrototypes:
-  - Explosivebanana
+  - ExplosiveBanana
   lifespan: 25
   maturation: 12
   production: 2
@@ -31,16 +31,16 @@
 
 - type: seed
   id: CoffeeArabica
-  name: seeds-coffeearabica-name
+  name: seeds-coffee-arabica-name
   noun: seeds-noun-seeds
-  displayName: seeds-coffeearabica-display-name
-  plantRsi: _Sunrise/Objects/Specific/Hydroponics/coffeearabica.rsi
+  displayName: seeds-coffee-arabica-display-name
+  plantRsi: _Sunrise/Objects/Specific/Hydroponics/coffee_arabica.rsi
   packetPrototype: CoffeeArabicaSeeds
   productPrototypes:
   - FoodCoffeeArabica
   harvestRepeat: Repeat
   mutationPrototypes:
-  - CoffeeRobast
+  - CoffeeRobust
   lifespan: 25
   maturation: 6
   production: 4
@@ -62,14 +62,14 @@
       PotencyDivisor: 4
 
 - type: seed
-  id: CoffeeRobast
-  name: seeds-coffeerobast-name
+  id: CoffeeRobust
+  name: seeds-coffee-robust-name
   noun: seeds-noun-seeds
-  displayName: seeds-coffeerobast-display-name
-  plantRsi: _Sunrise/Objects/Specific/Hydroponics/coffeerobast.rsi
-  packetPrototype: CoffeeRobastSeeds
+  displayName: seeds-coffee-robust-display-name
+  plantRsi: _Sunrise/Objects/Specific/Hydroponics/coffee_robust.rsi
+  packetPrototype: CoffeeRobustSeeds
   productPrototypes:
-  - FoodCoffeeRobast
+  - FoodCoffeeRobust
   harvestRepeat: Repeat
   lifespan: 25
   maturation: 6
