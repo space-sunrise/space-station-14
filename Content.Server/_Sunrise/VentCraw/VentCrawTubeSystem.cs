@@ -12,9 +12,8 @@ using Robust.Shared.Containers;
 
 namespace Content.Server._Sunrise.VentCraw
 {
-    public sealed class VentCrawTubeSystem : EntitySystem
+    public sealed class VentCrawTubeSystem : SharedVentCrawableSystem
     {
-        [Dependency] private readonly SharedVentCrawableSystem _ventCrawableSystem = default!;
         [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
         [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
         [Dependency] private readonly PopupSystem _popup = default!;
@@ -208,13 +207,13 @@ namespace Content.Server._Sunrise.VentCraw
             var holder = Spawn(VentCrawEntryComponent.HolderPrototypeId, _transform.GetMapCoordinates(uid));
             var holderComponent = Comp<VentCrawHolderComponent>(holder);
 
-            _ventCrawableSystem.TryInsert(holder, entity, holderComponent);
+            TryInsert(holder, entity, holderComponent);
 
             _mover.SetRelay(entity, holder);
             ventCrawlerComponent.InTube = true;
             Dirty(entity, ventCrawlerComponent);
 
-            return _ventCrawableSystem.EnterTube(holder, uid, holderComponent);
+            return EnterTube(holder, uid, holderComponent);
         }
     }
 }
