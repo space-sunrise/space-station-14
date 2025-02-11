@@ -397,7 +397,7 @@
   reflective: NonEnergy
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: buckshot
+    state: buckshot-flare
   shootModifier: Spread
   spreadCount: 6
   spreadAngle: 15
