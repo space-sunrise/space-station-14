@@ -1,7 +1,7 @@
 - type: entity
   save: false
   name: Urist McFelinid
-  parent: BaseMobHuman
+  parent: BaseMobSpeciesOrganic
   id: MobFelinidBase
   abstract: true
   components:
@@ -12,8 +12,28 @@
     allowedEmotes: ['Mew', 'Meow', 'Hisses', 'Purr']
   - type: Sprite
     scale: 0.72, 0.72
+  - type: Icon
+    sprite: Mobs/Species/Human/parts.rsi
+    state: full
+  - type: Thirst
+  - type: Hunger
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatHuman
+      amount: 2
   - type: HumanoidAppearance
     species: Felinid
+    hideLayersOnEquip:
+    - Hair
+    - Snout
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
   - type: Fixtures
     fixtures:
       fix1:
@@ -74,14 +94,15 @@
       types:
         Slash: 3
   - type: DamageOnHighSpeedImpact
-    minimumSpeed: 10
+    minimumSpeed: 5
     damage:
       types:
-        Blunt: 300
+        Blunt: 10
     soundHit:
       path: /Audio/Effects/hit_kick.ogg
   - type: Stamina
     critThreshold: 50
+  - type: FootprintEmitter
   - type: Vocal
     sounds:
       Male: MaleFelinid
@@ -118,7 +139,6 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.0
     baseSprintSpeed: 4.0
-  - type: VentCrawler
   - type: Item
     size: Large
     shape:
@@ -130,6 +150,7 @@
     felinidDamage:
       types:
         Blunt: 5
+    damageSound: /Audio/Effects/hit_kick.ogg
 #  - type: DamagedByFlashing
 #    flashDamage:
 #      types:
