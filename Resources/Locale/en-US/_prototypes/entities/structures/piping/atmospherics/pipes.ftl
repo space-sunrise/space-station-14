@@ -1,5 +1,7 @@
 ent-GasPipeBase = pipe
     .desc = Holds gas.
+ent-VentCrawHolder = vent claw holder
+    .desc = { "" }
 ent-GasPipeHalf = { ent-GasPipeBase }
     .suffix = Half
     .desc = { ent-GasPipeBase.desc }

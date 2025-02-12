@@ -155,7 +155,7 @@
       fallbackRoles: [ NukeopsCommander, NukeopsMedic ]
       spawnerPrototype: SpawnPointNukeopsOperative
       max: 4
-      playerRatio: 30
+      playerRatio: 15
       startingGear: SyndicateOperativeGearFull
       roleLoadout:
       - RoleSurvivalNukie
@@ -199,7 +199,7 @@
     definitions:
     - prefRoles: [ Traitor ]
       max: 8 # Sunrise-Edit
-      playerRatio: 15
+      playerRatio: 10
       pickCommandStaff: true # Sunrise-Edit
       maxCommandStaff: 1 # Sunrise-Edit
       blacklist:

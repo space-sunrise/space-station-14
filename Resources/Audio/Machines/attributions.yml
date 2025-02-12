@@ -177,7 +177,7 @@
   license: "CC0-1.0"
   copyright: "by Ko4erga"
   source: "https://github.com/space-wizards/space-station-14/pull/30431"
-  
+
 - files: ["double_ring.ogg"]
   license: "CC0-1.0"
   copyright: "Created by fspera, converted to OGG and modified by chromiumboy."
@@ -202,6 +202,10 @@
   copyright: "by AftrLite (Github). Uses audio from hypospray.ogg and hiss.ogg (Found in Resources/Audio/Items)"
   source: "https://github.com/space-wizards/space-station-14/pull/33097"
 
+- files: ["shutter.ogg"]
+  license: "CC-BY-3.0"
+  copyright: "Created by Tomlija, converted to OGG and modified by themias."
+  source: "https://freesound.org/people/Tomlija/sounds/99565/"
 - files: ["energyshield_down.ogg"]
   license: "CC-BY-4.0"
   copyright: "SilverIllusionist on freesound.org"

@@ -1,7 +1,7 @@
 ﻿- type: entity
   id: PetOpenAllUiAction
-  name: Открыть меню управления питомцами
-  description: Открывает меню управления всеми питомцами
+  name: Open the pet management menu
+  description: Opens the management menu for all pets
   components:
   - type: InstantAction
     icon:
@@ -12,8 +12,8 @@
 
 - type: entity
   id: PetAttackTargetAction
-  name: Атаковать цель
-  description: Приказывает всем питомцам, имеющим приказ атаки, атаковать цель
+  name: Attack target
+  description: Orders all pets with an attack order to attack the target
   components:
   - type: EntityTargetAction
     whitelist:

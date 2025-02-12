@@ -17,7 +17,6 @@
   icon: JobIconAdjutant
   supervisors: job-supervisors-command
   canBeAntag: true # Sunrise-Edit
-  antagAdvantage: 20 # Sunrise-Edit
   access:
     - Command
     - Bar

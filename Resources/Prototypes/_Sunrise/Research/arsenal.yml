@@ -1,3 +1,85 @@
+
+
+- type: technology
+  id: EnergyBarriers
+  name: research-technology-energy_barriers
+  icon:
+    sprite: Objects/Tools/EnergyDome/reinhardt.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 2
+  cost: 6000
+  recipeUnlocks:
+  - EnergyDomeDirectionalTurtle
+
+- type: technology #Sunrise
+  id: Gygax
+  name: research-technology-gygax
+  icon:
+    sprite: Objects/Specific/Mech/gygax.rsi
+    state: gygax
+  discipline: Arsenal
+  tier: 2
+  cost: 12000
+  recipeUnlocks:
+  - GygaxHarness
+  - GygaxArmor
+  - GygaxHead
+  - GygaxLArm
+  - GygaxLLeg
+  - GygaxRArm
+  - GygaxRLeg
+  - GygaxCentralElectronics
+  - GygaxPeripheralsElectronics
+  - GygaxTargetingElectronics
+  - WeaponMechCombatUltraRifle
+  - PaintGygaxWhite
+  - PaintGygaxOld
+  technologyPrerequisites:
+  - Ripley2
+
+- type: technology
+  id: ExplosiveMechAmmunition
+  name: research-technology-explosive-mech-ammunition
+  icon:
+    sprite: Objects/Specific/Mech/mecha_equipment.rsi
+    state: mecha_missilerack
+  discipline: Arsenal
+  tier: 3
+  cost: 15000
+  recipeUnlocks:
+  - WeaponMechCombatMissileRack8
+  technologyPrerequisites:
+  - ExplosiveTechnology
+
+
+- type: technology
+  id: Durand
+  name: research-technology-durand
+  icon:
+    sprite: Objects/Specific/Mech/durand.rsi
+    state: durand
+  discipline: Arsenal
+  tier: 3
+  cost: 16000
+  recipeUnlocks:
+  - DurandHarness
+  - DurandArmor
+  - DurandHead
+  - DurandLArm
+  - DurandLLeg
+  - DurandRArm
+  - DurandRLeg
+  - DurandCentralElectronics
+  - DurandPeripheralsElectronics
+  - DurandTargetingElectronics
+  - WeaponMechCombatShotgun
+  - WeaponMechCombatShotgunIncendiary
+  - PaintDurandExecutor
+  - PaintDurandShire
+  technologyPrerequisites:
+  - Gygax
+
 # Tier 2
 
 - type: technology
@@ -54,19 +136,3 @@
   - WeaponEnergyGunPistol
   technologyPrerequisites:
   - ExperimentalBatteryAmmo
-
-- type: technology
-  id: CombatPowerCell
-  name: research-technology-combat-powercells #
-  icon:
-    sprite: Objects/Power/power_cells.rsi
-    state: combat
-  discipline: Arsenal
-  tier: 2
-  cost: 7500
-  recipeUnlocks:
-  - PowerCellCombat
-  - PowerCellHyper
-  technologyPrerequisites:
-  - ExperimentalBatteryAmmo
-  - AdvancedPowercells

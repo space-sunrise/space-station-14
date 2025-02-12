@@ -10,6 +10,7 @@
     - state: icon
   - type: Item
     sprite: _Sunrise/Objects/Storage/glockbox.rsi
+    heldPrefix: glockb
     size: Normal
     shape:
     - 0,0,2,1

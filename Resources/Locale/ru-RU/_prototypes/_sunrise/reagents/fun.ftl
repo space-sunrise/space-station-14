@@ -12,3 +12,6 @@ reagent-name-h-32 = Н-32
 reagent-desc-h-32 = Реагент, разработанный в полевых условиях с повышенной радиацией
 reagent-name-celliminol = Целлиминол
 reagent-desc-celliminol = Химикат криогенного действия. Мощный химикат разработанный компанией.
+reagent-name-grcoffee = Измельченный кофе
+reagent-desc-grcoffee = Измельченные зерна кофе.
+reagent-physical-desc-grcoffee = Коричневая жидкость, слегка густоватая.

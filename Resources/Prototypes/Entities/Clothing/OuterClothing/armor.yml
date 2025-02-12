@@ -27,6 +27,13 @@
 - type: entity
   parent: [ BaseSecurityBartenderContraband, ClothingOuterArmorBase]
   id: ClothingOuterArmorBasic
+  # Sunrise-Start
+  components:
+  - type: Tag
+    tags:
+    - Vest
+    - WhitelistChameleon
+  # Sunrise-End
 
 #Alternate / slim basic armor vest
 - type: entity
@@ -124,13 +131,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.4 #sunrise-Edit
-        Slash: 0.4 #sunrise-Edit
-        Piercing: 0.4 #sunrise-Edit
-        Heat: 0.4 #sunrise-Edit
-        Caustic: 0.5
+        Blunt: 0.75 # Sunrise-Edit
+        Slash: 0.8 # Sunrise-Edit
+        Piercing: 0.45 # Sunrise-Edit
+        Heat: 0.9 # Sunrise-Edit
+        Caustic: 0.55
   - type: ExplosionResistance
-    damageCoefficient: 0.35
+    damageCoefficient: 0.65
   - type: PressureProtection  #Sunrise-start
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
@@ -138,8 +145,8 @@
     heatingCoefficient: 0.2
     coolingCoefficient: 0.5 #Sunrise-end
   - type: ClothingSpeedModifier
-    walkModifier: 0.95
-    sprintModifier: 0.90
+    walkModifier: 0.85
+    sprintModifier: 0.85
   #Shoulder mounted flashlight
   - type: ToggleableLightVisuals
     spriteLayer: light
@@ -183,6 +190,12 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 2
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - FullBodyOuter
+    - WhitelistChameleon
+  # Sunrise-End
 
 - type: entity
   parent: [ ClothingOuterBaseLarge, BaseMajorContraband, AllowSuitStorageClothing ]
@@ -202,6 +215,12 @@
         Piercing: 0.6
         Heat: 0.5
   - type: GroupExamine
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - FullBodyOuter
+    - WhitelistChameleon
+  # Sunrise-End
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
@@ -236,6 +255,12 @@
   - type: GroupExamine
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - FullBodyOuter
+    - WhitelistChameleon
+  # Sunrise-End
 
 - type: entity
   parent: ClothingOuterArmorHeavy
@@ -306,6 +331,12 @@
   - type: ExplosionResistance
     damageCoefficient: 0.65
   - type: GroupExamine
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - Vest
+    - WhitelistChameleon
+  # Sunrise-End
 
 - type: entity
   parent: [ ClothingOuterBaseLarge, BaseMajorContraband, AllowSuitStorageClothing ]
@@ -334,6 +365,12 @@
   - type: GroupExamine
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - FullBodyOuter
+    - WhitelistChameleon
+  # Sunrise-End
 
 - type: entity
   parent: [ ClothingOuterBaseLarge, BaseMajorContraband, AllowSuitStorageClothing ]
@@ -362,6 +399,12 @@
     node: armor
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - FullBodyOuter
+    - WhitelistChameleon
+  # Sunrise-End
 
 - type: entity
   parent: [ ClothingOuterBaseLarge, BaseMajorContraband, AllowSuitStorageClothing ]
@@ -383,6 +426,12 @@
   - type: GroupExamine
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - FullBodyOuter
+    - WhitelistChameleon
+  # Sunrise-End
 
 - type: entity
   parent: ClothingOuterBaseLarge
@@ -412,3 +461,9 @@
     damageCoefficient: 0.5
   - type: GroupExamine
   - type: Unremoveable
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - FullBodyOuter
+    - WhitelistChameleon
+  # Sunrise-End

@@ -5,7 +5,7 @@
   components:
   - type: Anchorable
     flags:
-    - Unanchorable
+    - Anchorable
   - type: Sprite
     sprite: _Sunrise/Structures/Shuttles/big_thruster.rsi
     layers:
@@ -27,7 +27,7 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.9,-0.9,0.9,0.9"
+          bounds: "-0.35,-0.35,1.30,1.30"
         density: 60
         mask:
         - MachineMask
@@ -39,6 +39,27 @@
     damage:
       types:
         Heat: 80
+  - type: Machine
+    board: ThrusterMachineCircuitboard
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1500
+      behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 1450
+      behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
 
 - type: entity
   id: BigRedThruster
@@ -69,7 +90,7 @@
   components:
   - type: Anchorable
     flags:
-    - Unanchorable
+    - Anchorable
   - type: Sprite
     sprite: _Sunrise/Structures/Shuttles/huge_thruster.rsi
     layers:
@@ -91,7 +112,7 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-1.35,-1.35,1.35,1.35"
+          bounds: "-0.20,-0.25,2.20,2.20"
         density: 60
         mask:
         - MachineMask
@@ -103,6 +124,27 @@
     damage:
       types:
         Heat: 160
+  - type: Machine
+    board: ThrusterMachineCircuitboard
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 4500
+      behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+    - trigger:
+        !type:DamageTrigger
+        damage: 4450
+      behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:ChangeConstructionNodeBehavior
+          node: machineFrame
 
 - type: entity
   id: HugeRedThruster
@@ -119,7 +161,7 @@
       map: ["enum.ThrusterVisualLayers.ThrustOn"]
       shader: unshaded
       visible: false
-      offset: 1,0.95
+      offset: 1, 0.95
     - state: red_thrust_burn_unshaded
       map: ["enum.ThrusterVisualLayers.ThrustingUnshaded"]
       shader: unshaded

@@ -22,3 +22,7 @@ ent-ClothingUniformJumpskirtBarber = barber's jumpskirt
     .desc = He's so good.
 ent-ClothingUniformJumpskirtAdjutant = adjutant jumpskirt
     .desc = Sewn to perfection with breathable fabric that will keep you on your feet for your entire shift.
+ent-ClothingUniformSkirtMailCarrier = mail carrier's jumpskirt
+    .desc = Enemy of dogs everywhere.
+ent-ClothingUniformSkirtMantis = forensic mantis' jumpskirt
+    .desc = Adapted from an ancient infantry uniform, this jumpskirt has superior mobility for tense situations.

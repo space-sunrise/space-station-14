@@ -6,21 +6,11 @@
   - MobBloodstream
   id: MobHellspawn
   description: An unstoppable force of carnage.
+  suffix: NPC
   components:
-  - type: GhostRole
-    allowMovement: true
-    makeSentient: true
-    name: ghost-role-information-hellspawn-name
-    description: ghost-role-information-hellspawn-description
-    rules: ghost-role-information-antagonist-rules
-    mindRoles:
-    - MindRoleGhostRoleSoloAntagonist
-    raffle:
-      settings: default
   - type: RotationVisuals
     defaultRotation: 90
     horizontalRotation: 90
-  - type: GhostTakeoverAvailable
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
@@ -102,3 +92,22 @@
     energy: 4.5
     color: "#ff4242"
     castShadows: false
+
+- type: entity
+  name: hellspawn
+  parent: MobHellspawn
+  id: MobHellspawnGhostRole
+  description: An unstoppable force of carnage.
+  suffix: Ghost Role
+  components:
+  - type: GhostRole
+    allowMovement: true
+    makeSentient: true
+    name: ghost-role-information-hellspawn-name
+    description: ghost-role-information-hellspawn-description
+    rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleGhostRoleSoloAntagonist
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable

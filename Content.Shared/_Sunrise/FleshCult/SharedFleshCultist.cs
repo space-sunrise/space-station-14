@@ -1,5 +1,6 @@
 ﻿using Content.Shared.Actions;
 using Content.Shared.DoAfter;
+using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
@@ -85,6 +86,8 @@ public sealed partial class FleshCultistBodyTransformEvent : InstantActionEvent
     public string TargetSlot = string.Empty;
     [DataField]
     public List<string> CheckSlots = [];
+    [DataField]
+    public List<ProtoId<TagPrototype>> CheckTags = [];
 }
 
 public sealed partial class FleshCultistUnlockAbilityEvent : InstantActionEvent

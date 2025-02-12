@@ -1,4 +1,4 @@
 ent-ThrusterSyndicate = { ent-BaseThruster }
     .desc = { ent-BaseThruster.desc }
-ent-ThrusterSyndicateMachineCircuitboard = thruster syndie machine board
+ent-ThrusterSyndicateMachineCircuitboard = Плата синдикатского двигателя
     .desc = { ent-BaseMachineCircuitboard.desc }

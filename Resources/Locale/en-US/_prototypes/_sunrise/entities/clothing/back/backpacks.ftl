@@ -12,3 +12,5 @@ ent-ClothingBackpackPrisonGuard = prison guard's backpack
     .desc = On style.
 ent-ClothingBackpackAdjutant = adjutant backpack
     .desc = Predominantly composed of multiforaments tied together with threads.
+ent-ClothingBackpackNTRG = NTR backpack
+    .desc = An NTR operative's backpack with increased capacity.

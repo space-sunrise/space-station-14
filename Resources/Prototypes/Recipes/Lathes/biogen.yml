@@ -228,5 +228,12 @@
   materials:
     Biomass: 18
 
-
-
+# Sunrise-Start
+- type: latheRecipe
+  id: BioGenHandheldSoil
+  result: HandheldSoil
+  category: Materials
+  completetime: 3
+  materials:
+    Biomass: 149
+# Sunrise-End

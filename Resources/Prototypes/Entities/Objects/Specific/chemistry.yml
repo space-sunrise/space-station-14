@@ -417,6 +417,10 @@
   - type: SolutionInjectOnEmbed
     transferAmount: 2
     solution: injector
+  - type: SolutionContainerManager #BALANCE PR-START
+    solutions:
+      injector:
+        maxVol: 10 #BALANCE PR-END
   - type: Fixtures
     fixtures:
       fix1:
@@ -531,7 +535,8 @@
     sprite: Objects/Specific/Chemistry/pills.rsi
   - type: Pill
   - type: Food
-    forceFeedDelay: 1
+    delay: 0.6
+    forceFeedDelay: 2
     transferAmount: null
     eatMessage: food-swallow
     useSound: /Audio/Items/pill.ogg

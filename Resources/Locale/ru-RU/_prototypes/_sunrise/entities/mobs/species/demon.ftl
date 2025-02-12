@@ -1,4 +1,4 @@
-ent-BaseMobDemon = Urisst' Mzhand Demon
+ent-BaseMobDemon = Урист Мак Аркана
     .desc = { ent-BaseMobSpeciesOrganic.desc }
-ent-MobDemonDummy = Urist McHands
-    .desc = A dummy reptilian meant to be used in character setup.
+ent-MobDemonDummy = Урист МакХэндс
+    .desc = Манекен рептилии, предназначенный для создания персонажа.

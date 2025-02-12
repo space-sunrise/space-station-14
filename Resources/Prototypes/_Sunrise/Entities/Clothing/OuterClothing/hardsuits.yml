@@ -42,6 +42,21 @@
     clothingPrototype: ClothingHeadHelmetHardsuitBlueshield
 
 - type: entity
+  parent: ClothingOuterHardsuitBlueshield
+  id: ClothingOuterHardsuitNTRG
+  name: NTR Guard's hardsuit
+  description: Tough and reliable, just like its owner.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ntrguard_spacesuit.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ntrguard_spacesuit.rsi
+  - type: Item
+    size: Huge
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitNTRG
+
+- type: entity
   parent: ClothingOuterHardsuitSecurity
   id: ClothingOuterHardsuitSecuritySunrise
   suffix: SUNRISE
@@ -162,7 +177,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellCombat
+        startingItem: PowerCellHigh
         whitelist:
           tags:
             - PowerCell

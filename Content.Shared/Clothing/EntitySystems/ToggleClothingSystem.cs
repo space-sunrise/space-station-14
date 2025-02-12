@@ -14,6 +14,7 @@ public sealed class ToggleClothingSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly ItemToggleSystem _toggle = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
 
     public override void Initialize()
     {
@@ -23,6 +24,18 @@ public sealed class ToggleClothingSystem : EntitySystem
         SubscribeLocalEvent<ToggleClothingComponent, GetItemActionsEvent>(OnGetActions);
         SubscribeLocalEvent<ToggleClothingComponent, ToggleActionEvent>(OnToggleAction);
         SubscribeLocalEvent<ToggleClothingComponent, ClothingGotUnequippedEvent>(OnUnequipped);
+        SubscribeLocalEvent<ToggleClothingComponent, ToggleClothingCheckEvent>(OnToggleCheck);
+    }
+
+    private void OnToggleCheck(Entity<ToggleClothingComponent> ent, ref ToggleClothingCheckEvent args)
+    {
+        if (ent.Comp.TargetSlot == string.Empty)
+            return;
+
+        _inventory.TryGetSlotEntity(args.User, ent.Comp.TargetSlot, out var equippedItem);
+
+        if (equippedItem != ent.Owner)
+            args.Cancelled = true;
     }
 
     private void OnMapInit(Entity<ToggleClothingComponent> ent, ref MapInitEvent args)

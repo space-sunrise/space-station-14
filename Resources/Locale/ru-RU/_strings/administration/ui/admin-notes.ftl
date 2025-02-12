@@ -64,13 +64,13 @@ admin-note-editor-expiry-label-expired = Истёк
 admin-note-editor-expiry-placeholder = Укажите срок действия (yyyy-MM-dd HH:mm:ss)
 admin-note-editor-submit = Подтвердить
 # Time
-admin-note-button-minutes = Minutes
-admin-note-button-hours = Hours
-admin-note-button-days = Days
-admin-note-button-weeks = Weeks
-admin-note-button-months = Months
-admin-note-button-years = Years
-admin-note-button-centuries = Centuries
+admin-note-button-minutes = Минуты
+admin-note-button-hours = Часы
+admin-note-button-days = Дни
+admin-note-button-weeks = Недели
+admin-note-button-months = Месяцы
+admin-note-button-years = Годы
+admin-note-button-centuries = Века
 admin-note-editor-submit-confirm = Вы уверены?
 # Watchlist and message login
 admin-notes-watchlist = Наблюдение над { $player }: { $message }

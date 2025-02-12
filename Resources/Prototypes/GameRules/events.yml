@@ -24,7 +24,8 @@
     - id: SpiderClownSpawn
     - id: SpiderSpawn
     - id: VentClog
-    - id: VentFleshWorms
+    - id: VentFleshWorms # Sunrise-Edit
+    - id: VentbullMigration # Sunrise-Edit
 
 - type: entityTable
   id: BasicAntagEventsTable

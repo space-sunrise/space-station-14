@@ -13,14 +13,15 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/LMGs/mg60/tiny.rsi
   - type: Item
+    size: Ginormous
     sprite: _Sunrise/Objects/Weapons/Guns/LMGs/mg60/tiny.rsi
   - type: GunWieldBonus
-    minAngle: -20
+    minAngle: -35
     maxAngle: -70
   - type: Gun
-    minAngle: 30
-    maxAngle: 90
-    fireRate: 9
+    minAngle: 40
+    maxAngle: 80
+    fireRate: 7.5
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/shot.ogg
       params:
@@ -61,6 +62,10 @@
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/cocked.ogg
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3
 
 - type: entity
   name: RPD
@@ -77,6 +82,9 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/LMGs/rpd/tiny.rsi
   - type: Item
+    size: Huge
+    shape:
+    - 0,0,5,3
     sprite: _Sunrise/Objects/Weapons/Guns/LMGs/rpd/tiny.rsi
   - type: GunWieldBonus
     minAngle: -30
@@ -137,6 +145,7 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/LMGs/mg42/tiny.rsi
   - type: Item
+    size: Ginormous
     sprite: _Sunrise/Objects/Weapons/Guns/LMGs/mg42/tiny.rsi
   - type: GunWieldBonus
     minAngle: -20
@@ -144,7 +153,7 @@
   - type: Gun
     minAngle: 30
     maxAngle: 90
-    fireRate: 8.5
+    fireRate: 7.5
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/shot.ogg
       params:
@@ -183,13 +192,21 @@
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/_Sunrise/Weapons/Guns/LMGs/cocked.ogg
-      
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3
+
 - type: entity
   name: DL6902 machine gun
   id: WeaponDL6902
   parent: BaseWeaponLightMachineGun
   description: Cybersun heavy machine gun.
   components:
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,6,3
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/LMGs/DL6902.rsi
     layers:
@@ -199,11 +216,11 @@
       map: ["enum.GunVisualLayers.Mag"]
   - type: GunWieldBonus
     minAngle: -30
-    maxAngle: -45
+    maxAngle: -40
   - type: Gun
     minAngle: 40
     maxAngle: 60
-    fireRate: 8.5
+    fireRate: 8.25
     selectedMode: FullAuto
     availableModes:
       - FullAuto
@@ -237,3 +254,7 @@
         whitelist:
           tags:
             - CartridgeLightRifle
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3

@@ -472,21 +472,21 @@
       Capacitor: 2
       Cable: 5
 
-- type: entity
-  id: CloningPodMachineCircuitboard
-  parent: BaseMachineCircuitboard
-  name: cloning pod machine board
-  description: A machine printed circuit board for a cloning pod.
-  components:
-    - type: Sprite
-      state: medical
-    - type: MachineBoard
-      prototype: CloningPod
-      stackRequirements:
-        MatterBin: 2
-        Manipulator: 2
-        Glass: 1
-        Cable: 1
+#- type: entity
+#  id: CloningPodMachineCircuitboard
+#  parent: BaseMachineCircuitboard
+#  name: cloning pod machine board
+#  description: A machine printed circuit board for a cloning pod.
+#  components:
+#    - type: Sprite
+#      state: medical
+#    - type: MachineBoard
+#      prototype: CloningPod
+#      stackRequirements:
+#        MatterBin: 2
+#        Manipulator: 2
+#        Glass: 1
+#        Cable: 1
 
 - type: entity
   id: MedicalScannerMachineCircuitboard

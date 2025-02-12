@@ -13,6 +13,7 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/HMGs/rpg/tiny.rsi
   - type: Item
+    size: Ginormous
     sprite: _Sunrise/Objects/Weapons/Guns/HMGs/rpg/tiny.rsi
   - type: Gun
     fireRate: 0.5
@@ -35,6 +36,10 @@
   - type: UseDelay
     delay: 0.5
   - type: GunRequiresWield
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3
 
 - type: entity
   name: GL-79
@@ -49,6 +54,9 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/HMGs/gl-64/tiny.rsi
   - type: Item
+    size: Huge
+    shape:
+    - 0,0,6,2
     sprite: _Sunrise/Objects/Weapons/Guns/HMGs/gl-64/tiny.rsi
   - type: AmmoCounter
   - type: Gun
@@ -77,3 +85,22 @@
   - type: UseDelay
     delay: 0.5
   - type: GunRequiresWield
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3
+
+- type: entity
+  name: GL-79
+  parent: WeaponGrenadeLauncherGL70
+  id: WeaponGrenadeLauncherGL70Flash
+  suffix: GrenadeFlash
+  components:
+  - type: RevolverAmmoProvider
+    whitelist:
+      tags:
+      - Grenade
+    proto: GrenadeFlash
+    capacity: 6
+    chambers: [ True, True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null, null ]

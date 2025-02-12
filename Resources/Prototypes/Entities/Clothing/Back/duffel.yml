@@ -14,6 +14,7 @@
     walkModifier: 1
     sprintModifier: 0.9
   - type: HeldSpeedModifier
+  - type: FelinidContainer
 
 - type: entity
   parent: ClothingBackpackDuffel

@@ -1,4 +1,4 @@
-ent-MindRoleAssaultOperative = Assault Operative Role
+ent-MindRoleAssaultOperative = Роль штурмового оперативника
     .desc = { ent-BaseMindRoleAntag.desc }
-ent-MindRoleAssaultCommander = Assault Commander Role
+ent-MindRoleAssaultCommander = Роль командира штурмовиков
     .desc = { ent-MindRoleNukeops.desc }

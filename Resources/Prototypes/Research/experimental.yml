@@ -11,7 +11,8 @@
   cost: 5000
   recipeUnlocks:
   - ProximitySensor
-  - ExosuitFabricatorMachineCircuitboard
+  - Nanopaste # Sunrise-Add
+  - HandheldRoboAnalyzer # Sunrise-Add
 
 - type: technology
   id: BasicAnomalousResearch

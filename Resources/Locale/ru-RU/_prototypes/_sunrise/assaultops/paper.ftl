@@ -1,2 +1,2 @@
-ent-DocumentAssaultOpsGoal = target
+ent-DocumentAssaultOpsGoal = цель
     .desc = { ent-Paper.desc }

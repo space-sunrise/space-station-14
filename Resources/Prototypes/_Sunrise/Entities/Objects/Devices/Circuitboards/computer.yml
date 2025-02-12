@@ -1,5 +1,194 @@
 - type: entity
   parent: BaseComputerCircuitboard
+  id: CargoFinanceComputerCircuitboard
+  name: Cargo Finance Console (console board)
+  description: A board used to create a cargo finance console.
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputerCargoFinanceConsole
+  - type: StaticPrice
+    price: 750
+  - type: Tag
+    tags:
+    - HighRiskItem
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ComputerSaleConsoleCircuitboard
+  name: Computer Sale Console (console board)
+  description: A board used to create a sale console.
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputerSaleConsole
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ComputerBountySaleConsoleCircuitboard
+  name: Bounty Sale Console (console board)
+  description: A board used to create a bounty sale console.
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputerBountySaleConsole
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: StationBankComputerCircuitboard
+  name: Station Bank Console (console board)
+  description: A board used to create a station bank console.
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputeStationBankConsole
+  - type: StaticPrice
+    price: 750
+  - type: Tag
+    tags:
+    #- DroneUsable
+    - HighRiskItem
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: CargoSalaryComputerCircuitboard
+  name: Cargo Salary Console (console board)
+  description: A board used to create a cargo salary console.
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputeCargoSalaryConsole
+  - type: StaticPrice
+    price: 750
+  - type: Tag
+    tags:
+    #- DroneUsable
+    - HighRiskItem
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: CallErtComputerCircuitboard
+  name: ERT Call Console (console board)
+  description: A computer circuit board for an ERT Call computer.
+  suffix: ERTCALL
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputerCallErtConsole
+  - type: StaticPrice
+    price: 3000
+  - type: Tag
+    tags:
+    - HighRiskItem
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ApproveErtComputerCircuitboard
+  name: ERT Approve Console (console board)
+  description: A computer circuit board for an ERT Approve computer.
+  suffix: ERTCALL
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputerApproveErtConsole
+  - type: StaticPrice
+    price: 3000
+  - type: Tag
+    tags:
+    - HighRiskItem
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ComputerFineRecordsCircuitboard
+  name: Security Fine Records Console (console board)
+  description: A computer circuit board for a fine records computer.
+  suffix: Security, Sunrise
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputerFineRecords
+  - type: StaticPrice
+    price: 3000
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ComputerContrabandSaleCircuitboard
+  name: Security Contraband Exchanger Console (console board)
+  description: A computer circuit board for a contraband exchanger computer.
+  suffix: Security, Sunrise
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputerFineRecords
+  - type: StaticPrice
+    price: 3000
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ComputerServiceSaleConsoleCircuitboard
+  name: Service Sale Console (console board)
+  description: A board used to create a service sale console.
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputerServiceSaleConsole
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ComputerSecuritySaleConsoleCircuitboard
+  name: Security Sale Console (console board)
+  description: A board used to create a security sale console.
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputerSecuritySaleConsole
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ComputerMedicalSaleConsoleCircuitboard
+  name: Medical Sale Console (console board)
+  description: A board used to create a medical sale console.
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputerMedicalSaleConsole
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ComputerMiningSaleConsoleCircuitboard
+  name: Mining Sale Console (console board)
+  description: A board used to create a mining sale console.
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputerMiningSaleConsole
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ComputerScienceSaleConsoleboard
+  name: Science Sale Console (console board)
+  description: A board used to create a science sale console.
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputerScienceSaleConsole
+
+- type: entity
+  parent: BaseComputerCircuitboard
   id: CentCommShuttleConsoleCircuitboard
   name: CCR shuttle computer board
   description: A computer printed circuit board for a CCR shuttle computer.
@@ -33,3 +222,25 @@
   components:
   - type: ComputerBoard
     prototype: ComputerShuttleSecurity
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: FPIATMComputerCircuitboard
+  name: FPI ATM board
+  description: A computer printed circuit board for a FPI ATM cabinet.
+  components:
+  - type: ComputerBoard
+    prototype: ATM
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ShipyardComputerCircuitboard
+  name: shipyard computer board
+  description: A computer printed circuit board for a shipyard computer.
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: ComputerShipyard
+  - type: StaticPrice
+    price: 750

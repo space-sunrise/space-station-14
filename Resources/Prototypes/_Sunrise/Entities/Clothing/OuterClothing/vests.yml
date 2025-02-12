@@ -30,3 +30,7 @@
       sprite: _Sunrise/Clothing/OuterClothing/Vests/vest_security_medic.rsi
     - type: Clothing
       sprite: _Sunrise/Clothing/OuterClothing/Vests/vest_security_medic.rsi
+    - type: Tag
+      tags:
+      - Vest
+      - WhitelistChameleon

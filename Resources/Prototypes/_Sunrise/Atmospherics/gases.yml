@@ -18,6 +18,6 @@
   molarMass: 10
   color: 8b0000
   reagent: Healium
-  pricePerMole: 20
+  pricePerMole: 3
   gasOverlaySprite: /Textures/_Sunrise/Effects/atmospherics.rsi
   gasOverlayState: healium

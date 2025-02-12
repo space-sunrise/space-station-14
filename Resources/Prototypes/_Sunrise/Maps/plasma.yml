@@ -24,8 +24,12 @@
             HeadOfPersonnel: [ 1, 1 ]
             Adjutant: [ 1, 1 ]
             NanoTrasenRepresentative: [ 1, 1 ]
+            #law
             Magistrat: [ 1, 1 ]
             IAA: [ 1, 1 ]
+            Lawyer: [ 1, 2 ]
+            NtrLeader: [ 1, 1 ]
+            NtrGuard: [ 2, 2 ]
             #service
             Bartender: [ 2, 2 ]
             Botanist: [ 2, 3 ]
@@ -80,7 +84,6 @@
             Brigmedic: [ 2, 2 ]
             SecurityPilot: [ 1, 1 ]
             SecurityCadet: [ 2, -1 ]
-            Lawyer: [ 1, 2 ]
             #supply
             Quartermaster: [ 1, 1 ]
             SalvageSpecialist: [ 4, 4 ]

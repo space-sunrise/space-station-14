@@ -6650,20 +6650,6 @@ entities:
     - type: Transform
       pos: -10.5,1.5
       parent: 1
-- proto: CloningConsoleComputerCircuitboard
-  entities:
-  - uid: 1119
-    components:
-    - type: Transform
-      pos: -5.119751,6.456787
-      parent: 1
-- proto: CloningPodMachineCircuitboard
-  entities:
-  - uid: 1120
-    components:
-    - type: Transform
-      pos: -10.891235,-0.43518066
-      parent: 1
 - proto: ClosetL3ScienceFilled
   entities:
   - uid: 1121
@@ -10355,7 +10341,7 @@ entities:
         Ох, чёрт... Метеоритный дождь... Надеюсь, он не повредит атмос и лабораторию... А то зомби сбегут...
 
         АЙ, ЧЁРТ!!! В НИХ КАРПЫ!! ОНИ БЕГУТ! ОНИ БЕГУТ ЗА МНО...
-- proto: PillRomerol
+- proto: StrangePill
   entities:
   - uid: 1668
     components:

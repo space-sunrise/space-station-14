@@ -58,6 +58,12 @@
         type: StorageBoundUserInterface
   - type: StaticPrice
     price: 70
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - Vest
+    - WhitelistChameleon
+  # Sunrise-End
 
 - type: entity
   abstract: true
@@ -151,6 +157,7 @@
     tags:
     - Hardsuit
     - WhitelistChameleon
+    - FullBodyOuter # Sunrise-Edit
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
   - type: DamageOnInteractProtection
@@ -184,6 +191,12 @@
       flatReductions:
         Heat: 10 # the average lightbulb only does around four damage!
     slots: OUTERCLOTHING
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - FullBodyOuter
+    - WhitelistChameleon
+  # Sunrise-End
 
 - type: entity
   parent: ClothingOuterBase

@@ -1,2 +1,11 @@
 ent-MobFelinid = Player felinid
     .desc = { ent-MobFelinidBase.desc }
+ent-MobBaseSyndicateFelinid = { ent-MobFelinidBase }
+    .suffix = syndicate base
+    .desc = { ent-MobFelinidBase.desc }
+ent-MobFelinidSyndicateAgent = Player felinid
+    .suffix = syndicate agent
+    .desc = { ent-MobBaseSyndicateFelinid.desc }
+ent-MobFelinidSyndicateAgentNukeops = Player felinid
+    .suffix = NukeOps
+    .desc = { ent-MobBaseSyndicateFelinid.desc }

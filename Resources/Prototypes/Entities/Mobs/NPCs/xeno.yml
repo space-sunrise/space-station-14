@@ -93,16 +93,6 @@
     spawned:
     - id: FoodMeatXeno
       amount: 5
-  - type: GhostRole
-    allowMovement: true
-    allowSpeech: true
-    makeSentient: true
-    name: ghost-role-information-xeno-name
-    description: ghost-role-information-xeno-description
-    rules: ghost-role-information-xeno-rules
-    raffle:
-      settings: default
-  - type: GhostTakeoverAvailable
   - type: TypingIndicator
     proto: alien
   - type: Temperature
@@ -129,6 +119,7 @@
   name: praetorian
   parent: MobXeno
   id: MobXenoPraetorian
+  suffix: NPC
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -162,6 +153,7 @@
   name: drone
   parent: MobXeno
   id: MobXenoDrone
+  suffix: NPC
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -199,6 +191,7 @@
   name: queen
   parent: MobXeno
   id: MobXenoQueen
+  suffix: NPC
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -238,6 +231,7 @@
   name: ravager
   parent: MobXeno
   id: MobXenoRavager
+  suffix: NPC
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -275,6 +269,7 @@
   name: runner
   parent: MobXeno
   id: MobXenoRunner
+  suffix: NPC
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -305,6 +300,7 @@
   name: rouny
   parent: MobXenoRunner
   id: MobXenoRouny
+  suffix: NPC
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -320,6 +316,7 @@
   name: spitter
   parent: MobXeno
   id: MobXenoSpitter
+  suffix: NPC
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -459,3 +456,60 @@
       amount: 2
   - type: SolutionTransfer
     maxTransferAmount: 1
+
+- type: entity
+  abstract: true
+  id: XenoGhostRole
+  components:
+  - type: GhostRole
+    allowMovement: true
+    allowSpeech: true
+    makeSentient: true
+    name: ghost-role-information-xeno-name
+    description: ghost-role-information-xeno-description
+    rules: ghost-role-information-xeno-rules
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+
+- type: entity
+  name: xeno
+  parent: [MobXenoSpitter, XenoGhostRole]
+  id: MobXenoSpitterGhostRole
+  suffix: GhostRole
+
+- type: entity
+  name: xeno
+  parent: [MobXenoRouny, XenoGhostRole]
+  id: MobXenoRounyGhostRole
+  suffix: GhostRole
+
+- type: entity
+  name: xeno
+  parent: [MobXenoRunner, XenoGhostRole]
+  id: MobXenoRunnerGhostRole
+  suffix: GhostRole
+
+- type: entity
+  name: xeno
+  parent: [MobXenoRavager, XenoGhostRole]
+  id: MobXenoRavagerGhostRole
+  suffix: GhostRole
+
+- type: entity
+  name: xeno
+  parent: [MobXenoQueen, XenoGhostRole]
+  id: MobXenoQueenGhostRole
+  suffix: GhostRole
+
+- type: entity
+  name: xeno
+  parent: [MobXenoDrone, XenoGhostRole]
+  id: MobXenoDroneGhostRole
+  suffix: GhostRole
+
+- type: entity
+  name: xeno
+  parent: [MobXenoPraetorian, XenoGhostRole]
+  id: MobXenoPraetorianGhostRole
+  suffix: GhostRole

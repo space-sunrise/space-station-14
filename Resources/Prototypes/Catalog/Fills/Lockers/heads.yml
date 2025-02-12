@@ -172,6 +172,7 @@
     - id: RCDAmmo
     - id: RubberStampCE
     - id: FlippoLighterSunriseCe  # Sunrise-Flippo
+    - id: VariantCubeBoxSunrise  # Sunrise Edit
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -351,6 +352,7 @@
     - id: SecurityTechFabCircuitboard
     - id: WeaponDisabler
     - id: WantedListCartridge
+    - id: DrinkHosFlask
     - id: FlippoLighterSunriseHos  # Sunrise-Flippo
 
 # Hardsuit table, used for suit storage as well

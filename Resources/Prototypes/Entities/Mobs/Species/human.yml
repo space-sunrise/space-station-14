@@ -28,10 +28,10 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
-
-  # Sunrise edit ;3
+  # Sunrise-Start
   - type: FootprintEmitter
-  # Sunrise edit end 0_0
+  - type: Carriable
+  # Sunrise-End
 
 
 - type: entity

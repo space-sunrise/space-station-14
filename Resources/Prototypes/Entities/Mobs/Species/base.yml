@@ -243,6 +243,7 @@
           Quantity: 25
   - type: Food
     requiresSpecialDigestion: true
+  - type: CognizinFix
   # Sunrise-End
 
 - type: entity
@@ -258,7 +259,6 @@
   abstract: true
   components:
   # Sunrise-Start
-  - type: Carriable
   - type: CanEscapeInventory
   - type: Mood
   - type: CritHeartbeat
