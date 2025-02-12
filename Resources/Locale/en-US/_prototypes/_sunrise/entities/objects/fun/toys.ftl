@@ -144,3 +144,5 @@ ent-PlushieAnatolyLisitsyn = Anatoly Lisitsyn
     .desc = { ent-BasePlushie.desc }
 ent-PlushieEvgeniyaKrein = Evgeniya Krein
     .desc = { ent-BasePlushie.desc }
+ent-PlushieMiraKovalskaya = Plushie Mira Kovalskaya
+    .desc = She's like to say "Meow" and "mrrr"?.. Just like francus
