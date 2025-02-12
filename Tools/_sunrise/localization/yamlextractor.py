@@ -8,11 +8,9 @@ from fluentast import FluentSerializedMessage, FluentAstAttributeFactory
 from fluentformatter import FluentFormatter
 from project import Project
 
-######################################### Class defifitions ############################################################
 class YAMLExtractor:
     def __init__(self, yaml_files):
         self.yaml_files = yaml_files
-        self.all_entries_by_locale = {}
 
     def execute(self):
         for yaml_file in self.yaml_files:
@@ -31,15 +29,8 @@ class YAMLExtractor:
             relative_parent_dir = yaml_file.get_relative_parent_dir(project.prototypes_dir_path).lower()
             file_name = yaml_file.get_name()
 
-            en_fluent_file_path = self.create_or_update_fluent_file(relative_parent_dir, file_name, pretty_fluent_file_serialized, 'en-US')
-            ru_fluent_file_path = self.create_or_update_fluent_file(relative_parent_dir, file_name, pretty_fluent_file_serialized, 'ru-RU')
-
-            if en_fluent_file_path:
-                self.collect_entries(en_fluent_file_path, 'en-US')
-            if ru_fluent_file_path:
-                self.collect_entries(ru_fluent_file_path, 'ru-RU')
-
-        self.remove_duplicates()
+            self.create_or_update_fluent_file(relative_parent_dir, file_name, pretty_fluent_file_serialized, 'en-US')
+            self.create_or_update_fluent_file(relative_parent_dir, file_name, pretty_fluent_file_serialized, 'ru-RU')
 
     def get_serialized_fluent_from_yaml_elements(self, yaml_elements):
         fluent_serialized_messages = []
@@ -91,39 +82,6 @@ class YAMLExtractor:
         merged_parsed = ast.Resource(body=list(merged_entries.values()))
         fluent_file.save_data(serializer.serialize(merged_parsed))
 
-    def collect_entries(self, fluent_file_path, locale):
-        if locale not in self.all_entries_by_locale:
-            self.all_entries_by_locale[locale] = {}
-
-        fluent_file = FluentFile(fluent_file_path)
-        data = fluent_file.read_data()
-
-        parsed = parser.parse(data)
-        for entry in parsed.body:
-            if isinstance(entry, ast.Message):
-                if entry.id.name not in self.all_entries_by_locale[locale]:
-                    self.all_entries_by_locale[locale][entry.id.name] = []
-                self.all_entries_by_locale[locale][entry.id.name].append((fluent_file_path, entry))
-
-    def remove_duplicates(self):
-        for locale, entries in self.all_entries_by_locale.items():
-            for entry_list in entries.values():
-                if len(entry_list) > 1:
-                    # Sort entries by file path to keep the latest one
-                    entry_list.sort(key=lambda x: x[0])
-                    for file_path, entry in entry_list[:-1]:
-                        self.remove_entry(file_path, entry)
-
-    def remove_entry(self, file_path, entry):
-        fluent_file = FluentFile(file_path)
-        data = fluent_file.read_data()
-
-        parsed = parser.parse(data)
-        parsed.body = [e for e in parsed.body if not (isinstance(e, ast.Message) and e.id.name == entry.id.name)]
-
-        fluent_file.save_data(serializer.serialize(parsed))
-        logging.info(f'Removed duplicate entry {entry.id.name} from {file_path}')
-
 logging.basicConfig(level=logging.INFO)
 project = Project()
 serializer = FluentSerializer()
@@ -137,7 +95,5 @@ if not yaml_files_paths:
 else:
     logging.info(f"Found {len(yaml_files_paths)} YAML files. Processing...")
 yaml_files = list(map(lambda yaml_file_path: YAMLFile(yaml_file_path), yaml_files_paths))
-
-########################################################################################################################
 
 YAMLExtractor(yaml_files).execute()

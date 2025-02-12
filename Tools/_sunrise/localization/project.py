@@ -5,7 +5,7 @@ from file import FluentFile
 
 class Project:
     def __init__(self):
-        self.base_dir_path = pathlib.Path(__file__).parents[2].resolve()
+        self.base_dir_path = pathlib.Path(__file__).parents[3].resolve()
         self.resources_dir_path = os.path.join(self.base_dir_path, 'Resources')
         self.prototypes_dir_path = os.path.join(self.resources_dir_path, "Prototypes")
         self.locales_dir_path = os.path.join(self.resources_dir_path, 'Locale')
