@@ -36,8 +36,8 @@ public sealed class AtmosAlertsComputerSystem : SharedAtmosAlertsComputerSystem
     [Dependency] private readonly NavMapSystem _navMapSystem = default!;
     [Dependency] private readonly DeviceListSystem _deviceListSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly GameTiming _gameTiming = default!;
     [Dependency] private readonly SharedPowerCellSystem _cell = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
 
     private const float UpdateTime = 1.0f;
 
