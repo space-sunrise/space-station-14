@@ -58,7 +58,7 @@ public sealed class AnnounceCommand : LocalizedEntityCommands
         if (args.Length >= 4)
             sound = new SoundPathSpecifier(args[3]);
 
-        _chat.DispatchGlobalAnnouncement(message, sender, true, sound, color);
+        _chat.DispatchGlobalAnnouncement(message, sender, true, sound, colorOverride: color); // Sunrise-Edit
         shell.WriteLine(Loc.GetString("shell-command-success"));
     }
 
