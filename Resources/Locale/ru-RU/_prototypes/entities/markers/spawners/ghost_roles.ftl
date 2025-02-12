@@ -26,5 +26,3 @@ ent-SpawnPointGhostSpaceNinja = спавнер "космический нинд�
     .desc = { ent-BaseAntagSpawner.desc }
 ent-SpawnPointGhostDerelictCyborg = { ent-BaseAntagSpawner }
     .desc = { ent-BaseAntagSpawner.desc }
-ent-SpawnPointGhostTerminator = спавнер терминатор
-    .desc = { ent-MarkerBase.desc }

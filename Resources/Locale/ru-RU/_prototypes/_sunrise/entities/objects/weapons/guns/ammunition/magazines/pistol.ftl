@@ -22,3 +22,5 @@ ent-MagazineGlock22 = Glock22 magazine
     .desc = { ent-BaseItem.desc }
 ent-MagazineGlock22Rubber = Glock22 magazine
     .desc = { ent-MagazineGlock22.desc }
+ent-MagazinePistolHighCapacityRubber = machine pistol magazine (.35 auto rubber)
+    .desc = { ent-BaseMagazinePistolHighCapacity.desc }
