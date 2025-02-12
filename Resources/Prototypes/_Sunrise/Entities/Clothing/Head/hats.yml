@@ -11,17 +11,6 @@
 
 - type: entity
   parent: ClothingHeadBase
-  id: ClothingHeadCapNTGR
-  name: NTRG officer cap
-  description: The NanoTrasen Silver-engraved special cap
-  components:
-  - type: Sprite
-    sprite: _Sunrise/Clothing/Head/Hats/ntrg_hat.rsi
-  - type: Clothing
-    sprite: _Sunrise/Clothing/Head/Hats/ntrg_hat.rsi
-
-- type: entity
-  parent: ClothingHeadBase
   id: ClothingHeadCapCentcomNaval
   name: naval cap
   description: A cap worn by those in the Nanotrasen Navy.

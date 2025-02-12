@@ -43,7 +43,3 @@ ent-USSPSoldierOfficerIDCard = USSP ID card
 ent-USSPCaptainIDCard = USSP ID card
     .suffix = Captain
     .desc = { ent-IDCardStandard.desc }
-ent-NtrGuardIDCard = NTR Guard ID card
-    .desc = { ent-IDCardStandard.desc }
-ent-NtrLeadGuardIDCard = NTR Leader ID card
-    .desc = { ent-IDCardStandard.desc }

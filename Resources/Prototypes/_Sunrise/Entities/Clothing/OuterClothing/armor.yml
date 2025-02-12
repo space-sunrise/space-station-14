@@ -41,7 +41,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.65
   - type: Item
-    size: Huge
+    size: Normal
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
