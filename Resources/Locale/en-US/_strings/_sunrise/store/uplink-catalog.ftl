@@ -27,8 +27,8 @@ uplink-mechpaint-mauler-desc = Содержит краску для Маулер
 
 uplink-syndie-nvd-name = ПНВ Синдиката
 uplink-syndie-nvd-desc = Качественно исполненый прибор ночного видения, производства компании "Горлакс секьюрити", использует красные линзы для улучшения видимости в условиях низкой освещенности.
-uplink-syndie-thermal-name = оптический термальный сканер
-uplink-syndie-thermal-desc = Компактный термальный сканер. Оборудован системой свой-чужой. Идеально подходит для выявления и уничтожения сотрудников НаноТрейзен.
+uplink-syndie-thermal-name = оптический термальный Визор
+uplink-syndie-thermal-desc = Компактный термальный сканер. Его визор оборудован системой свой-чужой. Идеально подходит для выявления и уничтожения сотрудников НаноТрейзен.
 uplink-clothing-backpack-syndie-name = Рюкзак Синдиката
 uplink-hardsuit-syndie-commander-name = скафандр Командира Синдиката
 uplink-hardsuit-syndie-commander-desc = Скафандр предназначеный для командиров отрядов Горлекса.
@@ -74,3 +74,7 @@ uplink-syringe-rapid-name = Автоматический шприцемёт
 uplink-syringe-rapid-desc = Заполнен пустыми 10-ти шприцами. Сделайте из Офицера СБ Ёжика!.
 uplink-clothing-glasses-nvg-name = NVG Sun Glasses
 uplink-clothing-glasses-nvg-desc = Quality made sunglasses, manufactured by Gorlax Security. Uses modular parts to improve visibility in low light conditions. Warning: The glasses will not protect your eyes from direct flashes.
+
+## Implats
+uplink-smoke-screen-implanter-name = Smoke Screen Implanter
+uplink-smoke-screen-implanter-desc = Creates a small cloud of smoke for you to slip away in. Can be used up to three times before you run out of gas.

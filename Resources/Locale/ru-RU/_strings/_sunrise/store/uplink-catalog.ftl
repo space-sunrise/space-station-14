@@ -117,3 +117,7 @@ uplink-clothing-glasses-nvg-desc = Качественно исполненные
 
 uplink-launcher-cream-pie-fake-name = Фальшивый пирогомёт
 uplink-launcher-cream-pie-fake-desc = Пирогомёт использующий микрореакторную батарею для генерации новых пирогов! Страхование от ЭМИ в цену не входит.
+
+## Implats
+uplink-smoke-screen-implanter-name = Имплантер Дымовой Завесы
+uplink-smoke-screen-implanter-desc = Создает небольшое облако дыма, в котором вы можете скрыться. Можно использовать до трех раз, прежде чем у вас закончится газ.
