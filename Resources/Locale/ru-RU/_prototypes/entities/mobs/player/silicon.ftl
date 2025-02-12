@@ -72,6 +72,3 @@ ent-PlayerBorgGeneric = { ent-BorgChassisGeneric }
     .suffix = Батарея, Инструменты
 ent-DungeonMasterCircuitBoard = плата законов (Мастер подземелий)
     .desc = Электронная плата, содержащая набор законов Мастера подземелий.
-ent-PlayerBorgSyndicateSaboteurBattery = { ent-BorgChassisSyndicateSaboteur }
-    .suffix = Батарея, Модули, ЯО
-    .desc = { ent-BorgChassisSyndicateSaboteur.desc }
