@@ -163,3 +163,5 @@ ent-FoodCoffeeArabica = зерна кофе арабики
     .desc = Основная пища учёных.
 ent-FoodCoffeeRobust = зерна кофе робаста
     .desc = Основная пища щиткурити.
+ent-FoodGeranium = герань
+    .desc = Красивый и нежный цветок.

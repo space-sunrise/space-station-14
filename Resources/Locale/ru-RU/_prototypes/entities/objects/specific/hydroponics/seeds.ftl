@@ -147,3 +147,5 @@ ent-CoffeeArabicaSeeds = пакет семян (кофе арабика)
     .desc = { ent-SeedBase.desc }
 ent-CoffeeRobustSeeds = пакет семян (кофе робаст)
     .desc = { ent-SeedBase.desc }
+ent-Geranium = пакет семян (герань)
+    .desc = { ent-SeedBase.desc }

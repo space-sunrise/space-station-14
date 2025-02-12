@@ -148,3 +148,5 @@ seeds-coffee-arabica-name = coffee arabica
 seeds-coffee-arabica-display-name = coffee arabica plant
 seeds-coffee-robust-name = coffee robust
 seeds-coffee-robust-display-name = coffee robust plant
+seeds-geranium-name = geranium
+seeds-geranium-display-name = geranium plant
