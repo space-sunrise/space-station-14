@@ -40,5 +40,3 @@ recipe-blindfold-name = повязка на глаза
 recipe-blindfold-description = Полоса непроницаемого материала.
 recipe-ClothingHeadHelmetJustice-name = шлем правосудия
 recipe-ClothingHeadHelmetJustice-description = Продвинутое снаряжение службы безопасности. Защищает станцию от злоумышленников.
-recipe-GeraniumCrown-name = корона из герани
-recipe-GeraniumCrown-description = Величественная корона из свежих цветов герани. Идеально подходит для ботаников и любителей природы.

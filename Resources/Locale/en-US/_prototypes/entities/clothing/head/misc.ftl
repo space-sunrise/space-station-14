@@ -41,5 +41,3 @@ ent-WaterDropletHat = water droplet
     .desc = Makes 8-eyed friends 8 times more adorable!
 ent-ClothingHeadHatHairflower = hairflower
     .desc = A beautiful hairflower that can be inserted between locks of hair.
-ent-GeraniumCrown = geranium crown
-    .desc = A wreath of colourful flowers. Can be worn on the head.

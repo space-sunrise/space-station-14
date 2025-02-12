@@ -146,5 +146,3 @@ seeds-coffee-arabica-name = кофе арабика
 seeds-coffee-arabica-display-name = куст кофе арабики
 seeds-coffee-robust-name = кофе робаст
 seeds-coffee-robust-display-name = куст кофе робаста
-seeds-geranium-name = герань
-seeds-geranium-display-name = куст герани
