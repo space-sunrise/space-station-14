@@ -8,3 +8,16 @@
 #  description: Прочная каска для самых крутых.
 #  icon: { sprite: _Sunrise/Clothing/Head/Helmets/tfhelm.rsi, state: icon }
 #  objectType: Item
+
+- type: construction
+  name: geranium crown
+  id: GeraniumCrown
+  graph: GeraniumCrown
+  startNode: start
+  targetNode: GeraniumCrown
+  category: construction-category-misc
+  objectType: Item
+  description: A majestic crown made of fresh geranium flowers. Perfect for botanists and nature lovers.
+  icon:
+    sprite: _Sunrise/Clothing/Head/Misc/geranium_crown.rsi
+    state: icon

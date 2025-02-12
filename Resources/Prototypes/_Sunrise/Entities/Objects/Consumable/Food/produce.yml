@@ -102,3 +102,35 @@
   - type: Tag
     tags:
     - Fruit
+
+- type: entity
+  name: geranium
+  parent: FoodProduceBase
+  id: FoodGeranium
+  description: A flower with extracts often used in the production of medicine.
+  components:
+  - type: Clothing
+    slots:
+    - HEAD
+    quickEquip: false
+  - type: FlavorProfile
+    flavors:
+    - medicine
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 22
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Lacerinol
+          Quantity: 20
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Hydroponics/geranium.rsi
+  - type: Produce
+    seedId: Geranium
+  - type: Extractable
+    grindableSolutionName: food
+  - type: Tag
+    tags:
+    - Geranium # TODO добавить теги цветка, когда оффы реализуют ЦветоМат и флористику

@@ -1161,6 +1161,7 @@
     - FoodPoppy
   mutationPrototypes:
     - lily
+    - Geranium
   lifespan: 25
   maturation: 10
   production: 3

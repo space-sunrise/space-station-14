@@ -27,3 +27,13 @@
     seedId: CoffeeRobust
   - type: Sprite
     sprite: _Sunrise/Objects/Specific/Hydroponics/coffee_robust.rsi
+
+- type: entity
+  parent: SeedBase
+  name: packet of geranium
+  id: GeraniumSeeds
+  components:
+  - type: Seed
+    seedId: Geranium
+  - type: Sprite
+    sprite: _Sunrise/Objects/Specific/Hydroponics/geranium.rsi
