@@ -12332,3 +12332,11 @@
   id: 851
   time: '2025-02-12T09:23:34.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/1350
+- author: VigersRay
+  changes:
+  - message: "\u0422\u0435\u043F\u0435\u0440\u044C \u0432\u0441\u0435 \u0433\u0438\
+      \u043F\u043E\u0441\u043F\u0440\u0435\u0438 \u043F\u0440\u043E\u0431\u0438\u0432\
+      \u0430\u044E\u0442 \u0431\u0440\u043E\u043D\u044E."
+    type: Tweak
+  id: 852
+  time: '2025-02-12T15:49:35.310326+00:00'
