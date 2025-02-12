@@ -31,7 +31,7 @@
 - type: entity
   parent: SeedBase
   name: packet of geranium
-  id: Geranium
+  id: GeraniumSeeds
   components:
   - type: Seed
     seedId: Geranium

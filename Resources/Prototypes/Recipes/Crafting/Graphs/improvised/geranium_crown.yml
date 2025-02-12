@@ -1,10 +1,10 @@
 - type: constructionGraph
-  id: geranium_crown
+  id: GeraniumCrown
   start: start
   graph:
   - node: start
     edges:
-    - to: geranium_crown
+    - to: GeraniumCrown
       steps:
       - tag: Geranium
         name: Geranium
@@ -22,5 +22,5 @@
           sprite: _Sunrise/Objects/Specific/Hydroponics/geranium.rsi
           state: produce
         doAfter: 6
-  - node: geranium_crown
-    entity: geranium_crown
+  - node: GeraniumCrown
+    entity: GeraniumCrown

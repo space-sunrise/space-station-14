@@ -1,6 +1,6 @@
 - type: entity
   parent: ClothingHeadBase
-  id: geranium_crown
+  id: GeraniumCrown
   name: geranium crown
   description: A majestic crown made of fresh geranium flowers. Perfect for botanists and nature lovers.
   components:
@@ -12,5 +12,5 @@
     slots:
     - HEAD
   - type: Construction
-    graph: geranium_crown
-    node: geranium_crown
+    graph: GeraniumCrown
+    node: GeraniumCrown
