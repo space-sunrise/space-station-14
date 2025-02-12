@@ -38,3 +38,7 @@ ent-PrisonCommsComputerCircuitboard = консоль связи тюрьмы (к
     .desc = Плата которая используется для создания консоли связи тюрьмы.
 ent-SecurityShuttleConsoleCircuitboard = консоль шаттла службы безопастности (консольная плата)
     .desc = Плата которая используется для создания консоли шаттла службы безопастности.
+ent-FPIATMComputerCircuitboard = FPI ATM board
+    .desc = A computer printed circuit board for a FPI ATM cabinet.
+ent-ShipyardComputerCircuitboard = shipyard computer board
+    .desc = A computer printed circuit board for a shipyard computer.

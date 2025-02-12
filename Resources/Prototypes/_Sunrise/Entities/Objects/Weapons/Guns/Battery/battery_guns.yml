@@ -223,7 +223,7 @@
   name: pulse revolver
   parent: BaseWeaponBatterySmall
   id: WeaponEnergyGunPulseRevolver
-  description: This is an expensive modern Pulse gun. This gun has several unique firemodes. 
+  description: This is an expensive modern Pulse gun. This gun has several unique firemodes.
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/pulse_revolver.rsi
@@ -239,6 +239,7 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Battery/pulse_revolver.rsi
   - type: Gun
+    fireRate: 2.75
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
     soundEmpty:
@@ -248,13 +249,13 @@
     startingCharge: 720
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 120
+    autoRechargeRate: 145
     autoRechargePause: true
-    autoRechargePauseTime: 6
+    autoRechargePauseTime: 4
   - type: EnergyGunFireModes
     fireModes:
     - hitscanProto: BulletDisabler
-      fireCost: 60
+      fireCost: 90
       name: energy-gun-disable
       state: disabler
       shotType: Hitscan
@@ -278,7 +279,7 @@
     tags:
     - Sidearm
   - type: StaticPrice
-    price: 17500
+    price: 12500
 
 - type: entity
   name: miniature energy gun

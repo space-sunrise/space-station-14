@@ -13,6 +13,3 @@ ent-EnergyDaggerBiocode = { ent-EnergyDagger }
 ent-SyndicateRapierBiocode = { ent-SyndicateRapier }
     .suffix = БИОКОД
     .desc = { ent-SyndicateRapier.desc }
-ent-EnergyShieldBiocode = { ent-EnergyShield }
-    .suffix = БИОКОД
-    .desc = { ent-EnergyShield.desc }

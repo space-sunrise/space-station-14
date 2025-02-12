@@ -53,6 +53,8 @@
     sprite: _Sunrise/Clothing/OuterClothing/Hardsuits/ntrguard_spacesuit.rsi
   - type: Item
     size: Huge
+    shape:
+    - 0,0,4,4 #5X5, can fit in a duffel bag but nothing smaller.
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitNTRG
 

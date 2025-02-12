@@ -32,7 +32,6 @@
     transferAmount: 25
     onlyAffectsMobs: false
     injectOnly: true
-    pierceArmor: true
   - type: UseDelay
     delay: 45
   - type: Appearance
@@ -69,7 +68,6 @@
     solution: hypospray
   - type: Hypospray
     onlyAffectsMobs: false
-    pierceArmor: true
   - type: UseDelay
     delay: 0.5
   - type: StaticPrice

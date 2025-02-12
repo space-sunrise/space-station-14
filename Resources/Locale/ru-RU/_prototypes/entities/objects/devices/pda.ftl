@@ -158,5 +158,3 @@ ent-ChameleonPDA = passenger PDA
 ent-CentcomPDAFake = { ent-CentcomPDA }
     .suffix = Фальшивый
     .desc = { ent-CentcomPDA.desc }
-ent-PathologistPDA = КПК патологоанатома
-    .desc = Этот КПК не просто устройство, а окно в мир, где наука сталкивается с тайнами жизни и смерти.

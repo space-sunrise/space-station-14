@@ -39,6 +39,8 @@
           True: { visible: false }
           False: { visible: true }
   - type: AtmosAlertsComputer
+    beepSound:
+      path: /Audio/_Sunrise/Effects/beeps.ogg
   - type: ActivatableUI
     singleUser: true
     key: enum.AtmosAlertsComputerUiKey.Key
