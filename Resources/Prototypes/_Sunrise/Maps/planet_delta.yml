@@ -79,8 +79,8 @@
             IAA: [ 1, 1 ]
             Magistrat: [ 1, 1 ]
             Lawyer: [ 3, 3 ]
-            NtrLeader: [ 1, 1 ]
-            NtrGuard: [ 2, 2 ]
+            # NtrLeader: [ 1, 1 ]
+            # NtrGuard: [ 2, 2 ]
             # silicon
             StationAi: [ 1, 1 ]
             Borg: [ 2, 2 ]
