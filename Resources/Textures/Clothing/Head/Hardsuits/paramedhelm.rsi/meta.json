@@ -11,6 +11,12 @@
             "name": "icon"
         },
         {
+            "name": "icon-flash"
+        },
+        {
+            "name": "light-overlay"
+        },
+        {
             "name": "equipped-HELMET",
             "directions": 4
         },

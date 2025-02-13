@@ -103,6 +103,7 @@ namespace Content.Client.Actions
                 return;
 
             component.Whitelist = state.Whitelist;
+            component.Blacklist = state.Blacklist;
             component.CanTargetSelf = state.CanTargetSelf;
             component.IgnoreContainer = state.IgnoreContainer; // Sunrise-Edit
             BaseHandleState<EntityTargetActionComponent>(uid, component, state);
