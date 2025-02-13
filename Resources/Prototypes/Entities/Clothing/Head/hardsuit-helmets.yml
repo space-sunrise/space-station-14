@@ -531,7 +531,7 @@
 
 #Cybersun Juggernaut Hardsuit
 - type: entity
-  parent: ClothingHeadHardsuitWithLightBase
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitCybersun
   name: cybersun juggernaut helmet
   description: Made of compressed red matter, this helmet was designed in the Tau chromosphere facility.
@@ -778,7 +778,7 @@
 
 #Deathsquad Hardsuit
 - type: entity
-  parent: [ BaseCentcommContraband, ClothingHeadHardsuitWithLightBase ]
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase, BaseCentcommContraband]
   id: ClothingHeadHelmetHardsuitDeathsquad
   name: deathsquad hardsuit helmet
   description: A robust helmet for special operations.

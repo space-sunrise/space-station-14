@@ -1,5 +1,5 @@
 - type: entity
-  parent: ClothingHeadHardsuitWithLightBase
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetCBURNLeader
   categories: [ HideSpawnMenu ]
   name: cburn commander helmet
@@ -43,7 +43,7 @@
 # Blueshield Hardsuit
 
 - type: entity
-  parent: ClothingHeadHardsuitWithLightBase
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitBlueshield
   categories: [ HideSpawnMenu ]
   name: blueshield's hardsuit helmet
@@ -75,7 +75,7 @@
     sprite: _Sunrise/Clothing/Head/Hardsuits/secoff.rsi
 
 - type: entity
-  parent: ClothingHeadHardsuitWithLightBase
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitPilot
   categories: [ HideSpawnMenu ]
   name: security pilot's hardsuit helmet
@@ -165,7 +165,7 @@
   - type: FlashImmunity
 
 - type: entity
-  parent: ClothingHeadHardsuitWithLightBase
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitEngineeringCompact
   name: engineering hardsuit helmet
   description: An engineering hardsuit helmet designed for working in low-pressure, high radioactive environments.
@@ -185,7 +185,7 @@
 #Для ивентов
 
 - type: entity
-  parent: ClothingHeadHardsuitWithLightBase
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitUegParatrooper
   name: space marine spacesuit helmet
   description: The helmet from a paratrooper spacesuit.
@@ -211,7 +211,7 @@
   - type: ShowJobIcons
 
 - type: entity
-  parent: ClothingHeadHardsuitWithLightBase
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
   id: ClothingHeadHelmetHardsuitUegCap
   name: space suit helmet of a space marines captain.
   description: The helmet from a paratrooper captain spacesuit.
