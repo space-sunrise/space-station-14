@@ -1694,6 +1694,13 @@
     Telecrystal: 3
   categories:
   - UplinkWearables
+- #Sunrise-start
+  conditions:
+  - !type:StoreWhitelistCondition
+    blacklist:
+      tags:
+      - NukeOpsUplink
+  #Sunrise-end
 
 - type: listing
   id: UplinkClothingShoesBootsMagSyndie
