@@ -225,6 +225,21 @@
 
 - type: entity
   parent: BaseComputerCircuitboard
+  id: CentComConsoleCircuitboard
+  components:
+  - type: ComputerBoard
+    prototype: CentcomComputer
+
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: CentComCargoConsoleCircuitboard
+  components:
+  - type: ComputerBoard
+    prototype: CentcomCargoComputer
+
+
+- type: entity
+  parent: BaseComputerCircuitboard
   id: FPIATMComputerCircuitboard
   name: FPI ATM board
   description: A computer printed circuit board for a FPI ATM cabinet.
