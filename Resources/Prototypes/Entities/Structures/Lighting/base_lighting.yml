@@ -44,6 +44,19 @@
     cost: 4
     delay: 2
     fx: EffectRCDDeconstruct2
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,0.5,0.4,0.35"
+        density: 190
+        mask:
+        - TabletopMachineMask
+        layer:
+        - TabletopMachineLayer
   - type: Destructible
     thresholds:
     - trigger:
@@ -253,6 +266,19 @@
       radius: 6
       softness: 1.1
       enabled: true
+    - type: Physics
+      bodyType: Static
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.2,0.5,0.2,0.35"
+          density: 190
+          mask:
+          - TabletopMachineMask
+          layer:
+          - TabletopMachineLayer
     - type: Damageable
       damageContainer: Inorganic
     - type: Destructible
@@ -278,6 +304,13 @@
     - type: Construction
       graph: LightFixture
       node: bulbLight
+    - type: HolidayVisuals
+      holidays:
+        festive:
+        - WinterPresents
+    - type: HolidayRsiSwap
+      sprite:
+        festive: _Sunrise/Structures/Wallmounts/Lighting/light_small_gift.rsi
 
 - type: entity
   name: small light
@@ -324,6 +357,13 @@
       types:
         Heat: 2
     popupText: powered-light-component-burn-hand
+  - type: HolidayVisuals
+    holidays:
+      festive:
+      - WinterPresents
+  - type: HolidayRsiSwap
+    sprite:
+      festive: _Sunrise/Structures/Wallmounts/Lighting/light_small_gift.rsi
 
 - type: entity
   id: PoweredLEDSmallLight
@@ -368,6 +408,27 @@
     popupText: powered-light-component-burn-hand
 
 - type: entity
+  id: PoweredWarmSmallLight
+  suffix: Warm
+  parent: PoweredSmallLightEmpty
+  components:
+  - type: Sprite
+    state: base
+  - type: PointLight
+    enabled: true
+    radius: 6
+    energy: 1
+    softness: 3
+    color: "#FF8A0C"
+  - type: PoweredLight
+    hasLampOnSpawn: WarmLightBulb
+  - type: DamageOnInteract
+    damage:
+      types:
+        Heat: 2
+    popupText: powered-light-component-burn-hand
+
+- type: entity
   id: PoweredSmallLight
   suffix: ""
   parent: PoweredSmallLightEmpty
@@ -394,8 +455,8 @@
   components:
   - type: PointLight
     enabled: false
-    radius: 5
-    energy: 0.6
+    radius: 7 # Sunrise-Edit
+    energy: 10 # Sunrise-Edit
     offset: "0, 0.4"
     color: "#7CFC00"
     mask: /Textures/Effects/LightMasks/double_cone.png

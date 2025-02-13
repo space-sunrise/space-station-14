@@ -25,13 +25,17 @@
     outerClothing: ClothingOuterHardsuitCBURN
     shoes: ClothingShoesBootsMagCombat
     id: CBURNPDA
-    pocket1: RadioHandheld
-    pocket2: WeaponLaserGun
+    pocket1: PowerCellNanoTrasen  #sunrise-edit
+    pocket2: WeaponLaserSvalinn #sunrise-edit
     belt: ClothingBeltBandolier
   storage:
     back:
-    - WeaponShotgunDoubleBarreled
+    - WeaponShotgunPaladin12 #sunrise-edit
     - BoxShotgunIncendiary
-    - GrenadeFlashBang
+    - BoxShotgunIncendiary  #sunrise-edit
+    - BoxShotgunFlare  #sunrise-edit
+    - ClusterBangFull #sunrise-edit
+    - GrenadeIncendiary #sunrise-edit
     - PillAmbuzolPlus
-    - PillAmbuzol
+    - SyringeAmbuzol  #sunrise-edit
+    - MedkitCombatFilled  #sunrise-edit

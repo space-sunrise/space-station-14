@@ -29,6 +29,7 @@ public sealed class MindShieldSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<SubdermalImplantComponent, ImplantImplantedEvent>(ImplantCheck);
+        SubscribeLocalEvent<SubdermalImplantComponent, ImplantEjectEvent>(ImplantCheck);
     }
 
     /// <summary>
@@ -42,6 +43,16 @@ public sealed class MindShieldSystem : EntitySystem
             MindShieldRemovalCheck(ev.Implanted.Value, ev.Implant);
         }
     }
+
+    // Sunrise-Start
+    public void ImplantCheck(EntityUid uid, SubdermalImplantComponent comp, ref ImplantEjectEvent ev)
+    {
+        if (_tag.HasTag(ev.Implant, MindShieldTag) && ev.Implanted != null)
+        {
+            RemCompDeferred<MindShieldComponent>(ev.Implanted.Value);
+        }
+    }
+    // Sunrise-End
 
     /// <summary>
     /// Checks if the implanted person was a Rev or Head Rev and remove role or destroy mindshield respectively.

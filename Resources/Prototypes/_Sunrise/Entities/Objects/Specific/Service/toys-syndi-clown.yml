@@ -1,0 +1,45 @@
+- type: entity
+  name: pie cannon
+  suffix: Fake
+  parent: BaseItem
+  id: LauncherCreamPieFake
+  description: A self-defense weapon that exhausts organic targets, weakening them until they collapse. This one has been undertuned for cadets making it mostly harmless.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Cannons/pie_cannon.rsi
+    layers:
+    - state: piecannon
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Cannons/pie_cannon.rsi
+    quickEquip: false
+    slots:
+    - Back
+  - type: Item
+    size: Normal
+  - type: Appearance
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Effects/thunk.ogg
+    soundEmpty:
+      path: /Audio/Items/hiss.ogg
+    clumsyProof: true
+  - type: ProjectileBatteryAmmoProvider
+    proto: FoodPieBananaCream
+    fireCost: 100
+  - type: Tag
+    tags:
+    - Sidearm
+  - type: Battery
+    maxCharge: 300
+    startingCharge: 300 # Да, ЭМИ разряжает пироги, как по мне баланс
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 50
+    autoRechargePause: true
+    autoRechargePauseTime: 15

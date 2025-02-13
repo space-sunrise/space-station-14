@@ -2,12 +2,14 @@ using Content.Shared._Sunrise.Eye.NightVision.Components;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Player;
+using Content.Shared.Mobs;
 
 namespace Content.Client._Sunrise.Eye.NightVision;
 public sealed class NightVisionSystem : EntitySystem
 {
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IOverlayManager _overlayMan = default!;
+    [Dependency] private readonly ILightManager _lightManager = default!;
 
     private NightVisionOverlay _overlay = default!;
 
@@ -20,8 +22,24 @@ public sealed class NightVisionSystem : EntitySystem
 
         SubscribeLocalEvent<NightVisionComponent, PlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<NightVisionComponent, PlayerDetachedEvent>(OnPlayerDetached);
+        SubscribeLocalEvent<NightVisionComponent, MobStateChangedEvent>(OnMobStateChanged);
 
         _overlay = new();
+    }
+
+    private void OnMobStateChanged(EntityUid uid, NightVisionComponent component, MobStateChangedEvent args)
+    {
+        if (args.NewMobState == MobState.Dead)
+        {
+            ResetLighting();
+        }
+    }
+
+    private void ResetLighting()
+    {
+        if (_overlayMan.HasOverlay<NightVisionOverlay>())
+            _overlayMan.RemoveOverlay(_overlay);
+        _lightManager.DrawLighting = true;
     }
 
     private void OnPlayerAttached(EntityUid uid, NightVisionComponent component, PlayerAttachedEvent args)
@@ -35,7 +53,7 @@ public sealed class NightVisionSystem : EntitySystem
     {
         if (_overlay == default!)
             return;
-        _overlayMan.RemoveOverlay(_overlay);
+        ResetLighting();
     }
 
     private void OnNightVisionInit(EntityUid uid, NightVisionComponent component, ComponentInit args)
@@ -51,6 +69,6 @@ public sealed class NightVisionSystem : EntitySystem
             return;
         if (_overlay == default!)
             return;
-        _overlayMan.RemoveOverlay(_overlay);
+        ResetLighting();
     }
 }

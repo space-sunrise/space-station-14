@@ -22,8 +22,8 @@
             PrisonChef: [ 1, 1 ]
             PrisonWorker: [ 1, 2 ]
             PrisonEngineer: [ 2, 2 ]
-            PrisonGuard: [ -1, -1 ]
-            PlanetPrisoner: [ 2, 4 ]
+            PrisonGuard: [ 20, -1 ]
+            PlanetPrisoner: [ 0, 0 ]
         - type: OtherJobsTakenRequirement
           targetJob: PrisonGuard
           adjustJob: PlanetPrisoner

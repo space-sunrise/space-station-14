@@ -20,6 +20,7 @@ using Content.Shared.Tools.Components;
 using Content.Shared.Verbs;
 using Content.Shared.Wires;
 using Content.Server.Body.Systems;
+using Content.Server.Chat.Systems;
 using Content.Shared.Tools.Systems;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -33,13 +34,14 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Content.Shared.Whitelist;
+using Content.Shared.Access.Components;
+using Content.Shared.Access.Systems;
 
 namespace Content.Server.Mech.Systems;
 
 /// <inheritdoc/>
 public sealed partial class MechSystem : SharedMechSystem
 {
-    [Dependency] private readonly AudioSystem _audioSystem = default!;
     [Dependency] private readonly NpcFactionSystem _factionSystem = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
@@ -54,6 +56,9 @@ public sealed partial class MechSystem : SharedMechSystem
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
+    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
+    [Dependency] private readonly ChatSystem _chatSystem = default!;
+
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -68,6 +73,7 @@ public sealed partial class MechSystem : SharedMechSystem
         SubscribeLocalEvent<MechComponent, RemoveBatteryEvent>(OnRemoveBattery);
         SubscribeLocalEvent<MechComponent, MechEntryEvent>(OnMechEntry);
         SubscribeLocalEvent<MechComponent, MechExitEvent>(OnMechExit);
+        SubscribeLocalEvent<MechComponent, MechSayEvent>(OnMechSay);
 
         SubscribeLocalEvent<MechComponent, DamageChangedEvent>(OnDamageChanged);
         SubscribeLocalEvent<MechComponent, MechEquipmentRemoveMessage>(OnRemoveEquipmentMessage);
@@ -86,6 +92,11 @@ public sealed partial class MechSystem : SharedMechSystem
         SubscribeLocalEvent<MechComponent, MechGrabberEjectMessage>(ReceiveEquipmentUiMesssages);
         SubscribeLocalEvent<MechComponent, MechSoundboardPlayMessage>(ReceiveEquipmentUiMesssages);
         #endregion
+    }
+
+    private void OnMechSay(EntityUid uid, MechComponent component, MechSayEvent args)
+    {
+        _chatSystem.TrySendInGameICMessage(uid, Loc.GetString(args.Message), InGameICChatType.Speak, ChatTransmitRange.Normal);
     }
 
     private void OnMechCanMoveEvent(EntityUid uid, MechComponent component, UpdateCanMoveEvent args)
@@ -249,7 +260,20 @@ public sealed partial class MechSystem : SharedMechSystem
             _popup.PopupEntity(Loc.GetString("mech-no-enter", ("item", uid)), args.User);
             return;
         }
-        
+
+        if (_whitelistSystem.IsWhitelistPass(component.PilotBlacklist, args.User))
+        {
+            _popup.PopupEntity(Loc.GetString("mech-no-enter", ("item", uid)), args.User);
+            return;
+        }
+
+        if (TryComp<AccessReaderComponent>(uid, out var accessReader))
+            if (!_accessReader.IsAllowed(args.Args.User, uid, accessReader))
+            {
+                _popup.PopupEntity(Loc.GetString("mech-no-access", ("item", uid)), args.User);
+                return;
+            }
+
         if (TryComp<HandsComponent>(args.Args.User, out var handsComponent))
             foreach (var hand in _hands.EnumerateHands(args.Args.User, handsComponent))
                 _hands.DoDrop(args.Args.User, hand, true, handsComponent);
@@ -274,41 +298,55 @@ public sealed partial class MechSystem : SharedMechSystem
 
     private void OnDamageChanged(EntityUid uid, MechComponent component, DamageChangedEvent args)
     {
-        if (TryComp<DamageableComponent>(uid, out var damage))
+        if (!TryComp<DamageableComponent>(uid, out var damage))
+            return;
+
+        component.Integrity = damage.TotalDamage;
+        if (_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var critThreshold) && critThreshold != null)
+            component.MaxIntegrity = critThreshold.Value;
+
+        SayCritMessage(uid, component, damage, args.DamageIncreased);
+
+        if (args.DamageDelta != null && component.PilotSlot.ContainedEntity != null && args.DamageIncreased)
         {
-            component.Integrity = damage.TotalDamage;
-            if (_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var critThreshold) && critThreshold != null)
-                component.MaxIntegrity = critThreshold.Value;
-        }
-        
-        if (args.DamageIncreased &&
-            args.DamageDelta != null &&
-            component.PilotSlot.ContainedEntity != null)
-        {
-            var damagetoplayer = args.DamageDelta * component.MechToPilotDamageMultiplier;
-            _damageable.TryChangeDamage(component.PilotSlot.ContainedEntity, damagetoplayer);
+            var damageToPlayer = args.DamageDelta * component.MechToPilotDamageMultiplier;
+            _damageable.TryChangeDamage(component.PilotSlot.ContainedEntity, damageToPlayer);
         }
     }
-    
-    private void PlayCritSound(EntityUid uid, MechComponent component, DamageableComponent damage )
+
+    private void SayCritMessage(EntityUid uid, MechComponent component, DamageableComponent damage, bool damageIncreased)
     {
+        if (!damageIncreased)
+            return;
+
         var total = damage.TotalDamage;
         if (_mobThresholdSystem.TryGetThresholdForState(uid, MobState.Critical, out var critThreshold))
         {
             var damagePercentage = (total / critThreshold) * 100;
-            if (component.PilotSlot.ContainedEntity != null)
+            MechHealthState newState;
+
+            if (damagePercentage >= 95)
+                newState = MechHealthState.Critical;
+            else if (damagePercentage >= 50)
+                newState = MechHealthState.Damaged;
+            else
+                newState = MechHealthState.Healthy;
+
+            if (newState != component.HealthState)
             {
-                if (damagePercentage >= 95)
-                    _audioSystem.PlayPvs(_audioSystem.GetSound(component.Alert5), component.PilotSlot.ContainedEntity.Value);
-                else if (damagePercentage >= 75)
-                    _audioSystem.PlayPvs(_audioSystem.GetSound(component.Alert25), component.PilotSlot.ContainedEntity.Value);
-                else if (damagePercentage >= 50)
-                    _audioSystem.PlayPvs(_audioSystem.GetSound(component.Alert50), component.PilotSlot.ContainedEntity.Value);
-                Dirty(uid ,component);
+                component.HealthState = newState;
+                var message = newState switch
+                {
+                    MechHealthState.Critical => component.MessageAlert5,
+                    MechHealthState.Damaged => component.MessageAlert50,
+                    _ => string.Empty
+                };
+
+                if (!string.IsNullOrEmpty(message))
+                    _chatSystem.TrySendInGameICMessage(uid, Loc.GetString(message), InGameICChatType.Speak, ChatTransmitRange.Normal);
             }
         }
     }
-
 
     private void ToggleMechUi(EntityUid uid, MechComponent? component = null, EntityUid? user = null)
     {

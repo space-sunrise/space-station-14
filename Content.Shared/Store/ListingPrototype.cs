@@ -175,6 +175,7 @@ public partial class ListingData : IEquatable<ListingData>
     /// The event that is broadcast when the listing is purchased.
     /// </summary>
     [DataField]
+    [NonSerialized] // Sunrise-Edit
     public object? ProductEvent;
 
     [DataField]

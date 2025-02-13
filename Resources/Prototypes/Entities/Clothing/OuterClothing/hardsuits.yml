@@ -126,6 +126,11 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSpatio
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+    - HardsuitSpatio
 
 #Salvage Hardsuit
 - type: entity
@@ -158,6 +163,42 @@
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSalvage
 
+#Goliath Hardsuit
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseCargoContraband]
+  id: ClothingOuterHardsuitGoliath
+  name: goliath hardsuit
+  description: A lightweight hardsuit, adorned with a patchwork of thick, chitinous goliath hide.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Hardsuits/goliath.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Hardsuits/goliath.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.5
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.7
+        Piercing: 0.5
+        Heat: 0.7 #Goliath hide gets grilled instead of you
+        Radiation: 0.3
+        Caustic: 0.8
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitGoliath
+  - type: Construction
+    graph: HardsuitGoliath
+    node: hardsuitGoliath
+
+#Maxim Hardsuit
 - type: entity
   parent: [ClothingOuterHardsuitBase, BaseCargoContraband]
   id: ClothingOuterHardsuitMaxim
@@ -208,7 +249,7 @@
     damageEnergyDraw: 6
     domePrototype: EnergyDomeSmallPink
   - type: PowerCellDraw
-    drawRate: 8
+    drawRate: 0
     useRate: 0
   - type: UseDelay
     delay: 10.0
@@ -235,6 +276,7 @@
         Blunt: 0.6
         Slash: 0.6
         Piercing: 0.6
+        Heat: 0.7 #sunrise-Edit
         Caustic: 0.7
   - type: ClothingSpeedModifier
     walkModifier: 0.75
@@ -289,9 +331,10 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.6
+        Blunt: 0.45 #sunrise-edit
+        Slash: 0.45 #sunrise-edit
         Piercing: 0.6
+        Heat: 0.65 #sunrise-edit
         Caustic: 0.7
   - type: ClothingSpeedModifier
     walkModifier: 0.7
@@ -428,6 +471,7 @@
     tags:
     - WhitelistChameleon
     - HighRiskItem
+    - FullBodyOuter # Sunrise-Add
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitRd
   - type: StaticPrice
@@ -457,6 +501,7 @@
         Blunt: 0.6
         Slash: 0.5
         Piercing: 0.5
+        Heat: 0.65 #sunrise-Edit
         Radiation: 0.5
         Caustic: 0.6
   - type: ClothingSpeedModifier
@@ -579,9 +624,9 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.6
+        Blunt: 0.55 #Sunrise-edit
+        Slash: 0.55 #Sunrise-edit
+        Piercing: 0.55 #Sunrise-edit
         Heat: 0.2
         Radiation: 0.01
         Caustic: 0.5
@@ -589,7 +634,7 @@
     size: Huge
   - type: ClothingSpeedModifier
     walkModifier: 1.0
-    sprintModifier: 0.95 #Sunrise-edit
+    sprintModifier: 0.90
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSyndieElite
@@ -604,16 +649,15 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellSmall
+        startingItem: PowerCellSyndicate
         whitelist:
           tags:
             - PowerCell
-            - PowerCellSmall
   - type: EnergyDomeGenerator
-    damageEnergyDraw: 6
+    damageEnergyDraw: 4
     domePrototype: EnergyDomeSmallRed
   - type: PowerCellDraw
-    drawRate: 8
+    drawRate: 0
     useRate: 0
   - type: UseDelay
     delay: 10.0
@@ -954,12 +998,12 @@
     heatingCoefficient: 0.001
     coolingCoefficient: 0.001
   - type: ExplosionResistance
-    damageCoefficient: 0.7
+    damageCoefficient: 0.5
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.7
+        Blunt: 0.5
+        Slash: 0.5
         Piercing: 0.6
         Heat: 0.1
         Cold: 0.1

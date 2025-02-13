@@ -20,7 +20,6 @@ using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Content.Sunrise.Interfaces.Shared;
-using Robust.Shared.Utility; // Sunrise-Sponsors
 
 namespace Content.Server._Sunrise.NewLife
 {

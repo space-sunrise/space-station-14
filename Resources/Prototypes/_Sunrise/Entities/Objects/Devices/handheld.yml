@@ -46,21 +46,21 @@
         enum.PowerDeviceVisualLayers.Powered:
           True: { visible: true }
           False: { visible: false }
-        
+
 - type: entity
   id: PortableSurveillanceCameraMonitor
-  parent: 
+  parent:
   - BasePortableSurveillanceCameraMonitor
   - BaseHandheldComputer
   suffix: Handheld, Powered
-  
+
 - type: entity
   id: PortableSurveillanceCameraMonitorEmpty
   parent: PortableSurveillanceCameraMonitor
   suffix: Handheld, Empty
   components:
   - type: Sprite
-    sprite: _Sunrise/Objects/Devices/portable_camera_viewer.rsi
+    sprite: _Sunrise/Objects/Devices/portable_camera_viewer.rsi  # TODO: sprite
     state: icon
     layers:
     - state: icon
@@ -72,7 +72,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        
+
 - type: entity
   id: PortableSurveillanceCameraMonitorUnpowered
   parent: BasePortableSurveillanceCameraMonitor
@@ -118,10 +118,10 @@
         enum.PowerDeviceVisualLayers.Powered:
           True: { visible: true }
           False: { visible: false }
-      
+
 - type: entity
   id: HandheldCriminalRecordsMonitor
-  parent: 
+  parent:
   - BaseHandheldCriminalRecordsMonitor
   - BaseHandheldComputer
   suffix: HandHeld, Powered
@@ -144,12 +144,12 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        
+
 - type: entity
   id: HandheldCriminalRecordsMonitorUnpowered
   parent: BaseHandheldCriminalRecordsMonitor
   suffix: Handheld, Unpowered
-        
+
 # Handheld RoboAnalyzer
 
 - type: entity
@@ -195,14 +195,14 @@
   - type: GuideHelp
     guides:
     - Robotics
-    
+
 - type: entity
   id: HandheldRoboAnalyzer
-  parent: 
+  parent:
   - BaseHandheldRoboAnalyzer
   - BaseHandheldComputer
   suffix: HandHeld, Powered
-    
+
 - type: entity
   id: HandheldRoboAnalyzerEmpty
   parent: HandheldRoboAnalyzer
@@ -221,12 +221,12 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        
+
 - type: entity
   id: HandheldRoboAnalyzerUnpowered
   parent: BaseHandheldRoboAnalyzer
   suffix: Handheld, Unpowered
-  
+
 # Handheld Mech Analyzer
 
 - type: entity
@@ -271,14 +271,14 @@
   - type: GuideHelp
     guides:
     - Robotics
-    
+
 - type: entity
   id: HandheldMechAnalyzer
-  parent: 
+  parent:
   - BaseHandheldMechAnalyzer
   - BaseHandheldComputer
   suffix: HandHeld, Powered
-    
+
 - type: entity
   id: HandheldMechAnalyzerEmpty
   parent: HandheldMechAnalyzer
@@ -297,12 +297,12 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        
+
 - type: entity
   id: HandheldMechAnalyzerUnpowered
   parent: BaseHandheldMechAnalyzer
   suffix: Handheld, Unpowered
-        
+
 # Handheld Camera
 
 - type: entity
@@ -346,8 +346,80 @@
         volume: -8
         maxDistance: 10
         variation: 0.05
-        
+
 - type: entity
   id: HandheldCamera
   parent: BaseHandheldCamera
   suffix: HandHeld
+
+# Atmos alerts console
+
+- type: entity
+  name: handheld atmos console
+  parent: BaseItem
+  id: BaseAtmosAlertsMonitor
+  description: A hand-held crew monitor displaying the status of wanted persons on station.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/handheld_atmos_console.rsi
+    state: icon
+    layers:
+    - state: icon
+    - state: scanner
+      shader: unshaded
+      visible: true
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  - type: AtmosAlertsComputer
+    beepSound:
+      path: /Audio/_Sunrise/Effects/beeps.ogg
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.AtmosAlertsComputerUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.AtmosAlertsComputerUiKey.Key:
+        type: AtmosAlertsComputerBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: WirelessNetworkConnection
+    range: 500
+  - type: StationLimitedNetwork
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerCellSlotVisuals.Enabled:
+        enum.PowerDeviceVisualLayers.Powered:
+          True: { visible: true }
+          False: { visible: false }
+
+- type: entity
+  id: AtmosAlertsMonitor
+  parent:
+  - BaseAtmosAlertsMonitor
+  - BaseHandheldComputer
+  suffix: HandHeld, Powered
+
+- type: entity
+  id: AtmosAlertsMonitorEmpty
+  parent: AtmosAlertsMonitor
+  suffix: HandHeld, Empty
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/handheld_atmos_console.rsi
+    state: icon
+    layers:
+    - state: icon
+    - state: scanner
+      shader: unshaded
+      visible: false
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+
+- type: entity
+  id: AtmosAlertsMonitorUnpowered
+  parent: BaseAtmosAlertsMonitor
+  suffix: Handheld, Unpowered

@@ -1,6 +1,7 @@
 using Content.Shared.Examine;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Verbs;
+using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Containers;
 
@@ -15,10 +16,12 @@ public abstract partial class SharedGunSystem
         SubscribeLocalEvent<MagazineAmmoProviderComponent, MapInitEvent>(OnMagazineMapInit);
         SubscribeLocalEvent<MagazineAmmoProviderComponent, TakeAmmoEvent>(OnMagazineTakeAmmo);
         SubscribeLocalEvent<MagazineAmmoProviderComponent, GetAmmoCountEvent>(OnMagazineAmmoCount);
-        SubscribeLocalEvent<MagazineAmmoProviderComponent, GetVerbsEvent<AlternativeVerb>>(OnMagazineVerb);
+        // Sunrise-Edit
+        //SubscribeLocalEvent<MagazineAmmoProviderComponent, GetVerbsEvent<AlternativeVerb>>(OnMagazineVerb);
         SubscribeLocalEvent<MagazineAmmoProviderComponent, EntInsertedIntoContainerMessage>(OnMagazineSlotChange);
         SubscribeLocalEvent<MagazineAmmoProviderComponent, EntRemovedFromContainerMessage>(OnMagazineSlotChange);
-        SubscribeLocalEvent<MagazineAmmoProviderComponent, UseInHandEvent>(OnMagazineUse);
+        // Sunrise-Edit
+        //SubscribeLocalEvent<MagazineAmmoProviderComponent, UseInHandEvent>(OnMagazineUse);
         SubscribeLocalEvent<MagazineAmmoProviderComponent, ExaminedEvent>(OnMagazineExamine);
     }
 
@@ -61,6 +64,19 @@ public abstract partial class SharedGunSystem
             UpdateMagazineAppearance(magEnt.Value, component, magEnt.Value);
         }
     }
+
+    // Sunrise-Start
+    public void MagazineAmmoCockGun(EntityUid user, EntityUid uid, MagazineAmmoProviderComponent component)
+    {
+        var magEnt = GetMagazineEntity(uid);
+
+        if (magEnt != null && TryComp<BallisticAmmoProviderComponent>(magEnt.Value, out var ballisticAmmoProvider))
+        {
+            ManualCycle(magEnt.Value, ballisticAmmoProvider, TransformSystem.GetMapCoordinates(uid), user);
+            UpdateMagazineAppearance(magEnt.Value, component, magEnt.Value);
+        }
+    }
+    // Sunrise-End
 
     protected virtual void OnMagazineSlotChange(EntityUid uid, MagazineAmmoProviderComponent component, ContainerModifiedMessage args)
     {

@@ -11,6 +11,8 @@
       name: ghost-role-information-behonker-name
       description: ghost-role-information-behonker-description
       rules: ghost-role-information-antagonist-rules
+      mindRoles:
+      - MindRoleGhostRoleSoloAntagonist
       raffle:
         settings: default
     - type: GhostTakeoverAvailable
@@ -18,7 +20,7 @@
       rootTask:
         task: SimpleRangedHostileCompound
     - type: HitscanBatteryAmmoProvider
-      proto: RedLaser
+      proto: BulletRedLaser # Sunrise-Edit
       fireCost: 62.5
     - type: Battery
       maxCharge: 1000

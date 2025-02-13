@@ -3,7 +3,7 @@
   name: cartridge (.35 auto rubber)
   parent: BaseCartridgePistol
   components:
-  - type: CartridgeAmmo
+  - type: HitScanCartridgeAmmo
     proto: BulletPistolRubber
   - type: Sprite
     layers:

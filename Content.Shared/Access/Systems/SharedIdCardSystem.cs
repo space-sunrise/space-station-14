@@ -1,4 +1,5 @@
 using System.Globalization;
+using System.Linq;
 using Content.Shared.Access.Components;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Database;
@@ -33,7 +34,8 @@ public abstract class SharedIdCardSystem : EntitySystem
         // When a player gets renamed their id card is renamed as well to match.
         // Unfortunately since TryFindIdCard will succeed if the entity is also a card this means that the card will
         // keep renaming itself unless we return early.
-        if (HasComp<IdCardComponent>(ev.Uid))
+        // We also do not include the PDA itself being renamed, as that triggers the same event (e.g. for chameleon PDAs).
+        if (HasComp<IdCardComponent>(ev.Uid) || HasComp<PdaComponent>(ev.Uid))
             return;
 
         if (TryFindIdCard(ev.Uid, out var idCard))
@@ -212,6 +214,24 @@ public abstract class SharedIdCardSystem : EntitySystem
         Dirty(uid, id);
 
         return true;
+    }
+
+    public string GetJobColor(IPrototypeManager prototypeManager, IPrototype job)
+    {
+        var jobCode = job.ID;
+
+        var departments = prototypeManager.EnumeratePrototypes<DepartmentPrototype>().ToList();
+        departments.Sort((a, b) => a.Sort.CompareTo(b.Sort));
+
+        foreach (var department in from department in departments
+                 from jobId in department.Roles
+                 where jobId == jobCode
+                 select department)
+        {
+            return department.Color.ToHex();
+        }
+
+        return string.Empty;
     }
     // Sunrise-End
 

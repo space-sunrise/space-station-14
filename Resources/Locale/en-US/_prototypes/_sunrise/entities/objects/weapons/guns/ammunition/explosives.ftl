@@ -1,3 +1,12 @@
-ent-CartridgeRocketNT = NT-69 grenade
-    .desc = A 1.5 warhead designed for the RPG-7 launcher. Has tubular shape and NT mark on its side.
-    .suffix = NT
+ent-BaseArtilleryShell = base shell
+    .desc = { ent-BaseItem.desc }
+ent-ShellFragArtillery = artillery frag shell
+    .desc = { ent-BaseArtilleryShell.desc }
+ent-ShellBatonArtillery = baton shell
+    .desc = { ent-BaseArtilleryShell.desc }
+ent-ShellBlastArtillery = blast shell
+    .desc = { ent-BaseArtilleryShell.desc }
+ent-ShellFlashArtillery = flash shell
+    .desc = { ent-BaseArtilleryShell.desc }
+ent-ShellEMPArtillery = EMP shell
+    .desc = { ent-BaseArtilleryShell.desc }

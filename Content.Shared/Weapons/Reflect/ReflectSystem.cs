@@ -5,6 +5,7 @@ using Content.Shared.Alert;
 using Content.Shared.Audio;
 using Content.Shared.Database;
 using Content.Shared.Hands;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Item.ItemToggle;
@@ -38,6 +39,7 @@ public sealed class ReflectSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
+    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
 
     public override void Initialize()
     {
@@ -62,7 +64,7 @@ public sealed class ReflectSystem : EntitySystem
 
         foreach (var ent in _inventorySystem.GetHandOrInventoryEntities(uid, SlotFlags.All & ~SlotFlags.POCKET))
         {
-            if (!TryReflectHitscan(uid, ent, args.Shooter, args.SourceItem, args.Direction, out var dir))
+            if (!TryReflectHitscan(uid, ent, args.Shooter, args.SourceItem, args.Direction, args.Reflective, out var dir)) // Sunrise-Edit
                 continue;
 
             args.Direction = dir.Value;
@@ -158,13 +160,12 @@ public sealed class ReflectSystem : EntitySystem
 
     private void OnReflectHitscan(EntityUid uid, ReflectComponent component, ref HitScanReflectAttemptEvent args)
     {
-        if (args.Reflected ||
-            (component.Reflects & args.Reflective) == 0x0)
+        if (args.Reflected) // Sunrise-Edit
         {
             return;
         }
 
-        if (TryReflectHitscan(uid, uid, args.Shooter, args.SourceItem, args.Direction, out var dir))
+        if (TryReflectHitscan(uid, uid, args.Shooter, args.SourceItem, args.Direction, args.Reflective, out var dir)) // Sunrise-Edit
         {
             args.Direction = dir.Value;
             args.Reflected = true;
@@ -177,6 +178,7 @@ public sealed class ReflectSystem : EntitySystem
         EntityUid? shooter,
         EntityUid shotSource,
         Vector2 direction,
+        ReflectType reflective, // Sunrise-Edit
         [NotNullWhen(true)] out Vector2? newDirection)
     {
         if (!TryComp<ReflectComponent>(reflector, out var reflect) ||
@@ -186,6 +188,52 @@ public sealed class ReflectSystem : EntitySystem
             newDirection = null;
             return false;
         }
+
+        // Sunrise-Start
+        if ((reflect.Reflects & reflective) == 0x0)
+        {
+            newDirection = null;
+            return false;
+        }
+
+        if (reflect.Slot != null &&
+            !_inventorySystem.TryGetSlotEntity(user, reflect.Slot, out var slotEntity) &&
+            slotEntity != reflector)
+        {
+            newDirection = null;
+            return false;
+        }
+
+        if (reflect.NeedHand)
+        {
+            var inHand = false;
+            var hands = _handsSystem.EnumerateHands(user);
+            {
+                foreach (var hand in hands)
+                {
+                    if (hand.HeldEntity == reflector)
+                    {
+                        inHand = true;
+                    }
+                }
+            }
+
+            if (!inHand)
+            {
+                newDirection = null;
+                return false;
+            }
+        }
+
+        if (reflect.NeedActiveHand && !_handsSystem.TryGetActiveItem(user, out var activeItem))
+        {
+            if (activeItem != reflector)
+            {
+                newDirection = null;
+                return false;
+            }
+        }
+        // Sunrise-End
 
         if (_netManager.IsServer)
         {

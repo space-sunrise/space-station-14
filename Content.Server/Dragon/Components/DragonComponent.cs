@@ -64,6 +64,6 @@ namespace Content.Server.Dragon
         /// Prevents zombie dragon from being attacked by its own carp.
         /// </summary>
         [DataField]
-        public ProtoId<NpcFactionPrototype> Faction = "Dragon";
+        public ProtoId<NpcFactionPrototype> Faction = "Carps";
     }
 }

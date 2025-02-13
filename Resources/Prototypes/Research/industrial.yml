@@ -42,6 +42,8 @@
   recipeUnlocks:
   - PowerCellHigh
   - TurboItemRechargerCircuitboard
+  - SMESAdvancedMachineCircuitboard
+  - PowerCageMedium
 
 - type: technology
   id: MechanicalCompression
@@ -83,7 +85,6 @@
   - PortableGeneratorPacmanMachineCircuitboard
   - PortableGeneratorSuperPacmanMachineCircuitboard
   - PortableGeneratorJrPacmanMachineCircuitboard
-  - PowerComputerCircuitboard #the actual solar panel itself should be in here
   - SolarControlComputerCircuitboard
   - SolarTrackerElectronics
   - EmitterCircuitboard
@@ -191,10 +192,14 @@
     state: ripleymkii
   discipline: Industrial
   tier: 2
-  cost: 8000
+  cost: 5000
   recipeUnlocks:
   - RipleyMKIIHarness
   - RipleyUpgradeKit
+  - PaintRipleyAluminizer
+  - PaintRipleyFirestarter
+  - PaintRipleyHauler
+  - PaintRipleyZairjah
   technologyPrerequisites:
   - RipleyAPLU
 
@@ -206,7 +211,7 @@
     state: clarke
   discipline: Industrial
   tier: 2
-  cost: 10000
+  cost: 9000
   recipeUnlocks:
   - ClarkeHarness
   - ClarkeHead
@@ -215,6 +220,7 @@
   - ClarkeTreads
   - ClarkeCentralElectronics
   - ClarkePeripheralsElectronics
+  - PaintClarkeOrangey
   technologyPrerequisites:
   - Ripley2
 

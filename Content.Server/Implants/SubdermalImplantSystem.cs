@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Cuffs;
 using Content.Server.Forensics;
 using Content.Server.Humanoid;
@@ -6,6 +7,7 @@ using Content.Server.Store.Components;
 using Content.Server.Store.Systems;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Forensics;
+using Content.Shared.Forensics.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Implants;
 using Content.Shared.Implants.Components;
@@ -19,9 +21,14 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Random;
 using System.Numerics;
+using Content.Server.Body.Components;
+using Content.Shared.Maps;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
+using Content.Server.IdentityManagement;
+using Content.Server.DetailExaminable;
 using Content.Shared.Store.Components;
+using Robust.Server.Containers;
 using Robust.Shared.Collections;
 using Robust.Shared.Map.Components;
 
@@ -41,6 +48,7 @@ public sealed class SubdermalImplantSystem : SharedSubdermalImplantSystem
     [Dependency] private readonly PullingSystem _pullingSystem = default!;
     [Dependency] private readonly EntityLookupSystem _lookupSystem = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
+    [Dependency] private readonly IdentitySystem _identity = default!;
 
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private HashSet<Entity<MapGridComponent>> _targetGrids = [];
@@ -56,7 +64,6 @@ public sealed class SubdermalImplantSystem : SharedSubdermalImplantSystem
         SubscribeLocalEvent<SubdermalImplantComponent, ActivateImplantEvent>(OnActivateImplantEvent);
         SubscribeLocalEvent<SubdermalImplantComponent, UseScramImplantEvent>(OnScramImplant);
         SubscribeLocalEvent<SubdermalImplantComponent, UseDnaScramblerImplantEvent>(OnDnaScramblerImplant);
-
     }
 
     private void OnStoreRelay(EntityUid uid, StoreComponent store, ImplantRelayEvent<AfterInteractUsingEvent> implantRelay)
@@ -109,8 +116,12 @@ public sealed class SubdermalImplantSystem : SharedSubdermalImplantSystem
         if (TryComp<PullableComponent>(ent, out var pull) && _pullingSystem.IsPulled(ent, pull))
             _pullingSystem.TryStopPull(ent, pull);
 
+        // Check if the user is pulling anything, and drop it if so
+        if (TryComp<PullerComponent>(ent, out var puller) && TryComp<PullableComponent>(puller.Pulling, out var pullable))
+            _pullingSystem.TryStopPull(puller.Pulling.Value, pullable);
+
         var xform = Transform(ent);
-        var targetCoords = SelectRandomTileInRange(xform, implant.TeleportRadius);
+        var targetCoords = SelectRandomTileInRange(xform, implant.TeleportRange, implant.MinTeleportDistance); // Sunrise-Edit
 
         if (targetCoords != null)
         {
@@ -120,11 +131,11 @@ public sealed class SubdermalImplantSystem : SharedSubdermalImplantSystem
         }
     }
 
-    private EntityCoordinates? SelectRandomTileInRange(TransformComponent userXform, float radius)
+    private EntityCoordinates? SelectRandomTileInRange(TransformComponent userXform, float range, float minDistance) // Sunrise-Edit
     {
         var userCoords = userXform.Coordinates.ToMap(EntityManager, _xform);
         _targetGrids.Clear();
-        _lookupSystem.GetEntitiesInRange(userCoords, radius, _targetGrids);
+        _lookupSystem.GetEntitiesInRange(userCoords, range, _targetGrids);
         Entity<MapGridComponent>? targetGrid = null;
 
         if (_targetGrids.Count == 0)
@@ -151,23 +162,35 @@ public sealed class SubdermalImplantSystem : SharedSubdermalImplantSystem
         do
         {
             var valid = false;
-
-            var range = (float) Math.Sqrt(radius);
             var box = Box2.CenteredAround(userCoords.Position, new Vector2(range, range));
             var tilesInRange = _mapSystem.GetTilesEnumerator(targetGrid.Value.Owner, targetGrid.Value.Comp, box, false);
             var tileList = new ValueList<Vector2i>();
 
             while (tilesInRange.MoveNext(out var tile))
             {
-                tileList.Add(tile.GridIndices);
+                // Sunrise-Start
+                if (!tile.IsSpace())
+                    tileList.Add(tile.GridIndices);
+                // Sunrise-End
             }
 
             while (tileList.Count != 0)
             {
                 var tile = tileList.RemoveSwap(_random.Next(tileList.Count));
                 valid = true;
-                foreach (var entity in _mapSystem.GetAnchoredEntities(targetGrid.Value.Owner, targetGrid.Value.Comp,
-                             tile))
+
+                // Sunrise-Start
+                var tileWorldPos = _mapSystem.GridTileToWorldPos(targetGrid.Value, targetGrid.Value.Comp, tile);
+
+                var distanceSquared = (tileWorldPos - userCoords.Position).Length();
+                if (distanceSquared < minDistance)
+                {
+                    valid = false;
+                    continue;
+                }
+                // Sunrise-End
+
+                foreach (var entity in _mapSystem.GetAnchoredEntities(targetGrid.Value.Owner, targetGrid.Value.Comp, tile))
                 {
                     if (!_physicsQuery.TryGetComponent(entity, out var body))
                         continue;
@@ -207,7 +230,7 @@ public sealed class SubdermalImplantSystem : SharedSubdermalImplantSystem
         {
             var newProfile = HumanoidCharacterProfile.RandomWithSpecies(humanoid.Species);
             _humanoidAppearance.LoadProfile(ent, newProfile, humanoid);
-            _metaData.SetEntityName(ent, newProfile.Name);
+            _metaData.SetEntityName(ent, newProfile.Name, raiseEvents: false); // raising events would update ID card, station record, etc.
             if (TryComp<DnaComponent>(ent, out var dna))
             {
                 dna.DNA = _forensicsSystem.GenerateDNA();
@@ -219,10 +242,13 @@ public sealed class SubdermalImplantSystem : SharedSubdermalImplantSystem
             {
                 fingerprint.Fingerprint = _forensicsSystem.GenerateFingerprint();
             }
+            RemComp<DetailExaminableComponent>(ent); // remove MRP+ custom description if one exists 
+            _identity.QueueIdentityUpdate(ent); // manually queue identity update since we don't raise the event
             _popup.PopupEntity(Loc.GetString("scramble-implant-activated-popup"), ent, ent);
         }
 
         args.Handled = true;
-        QueueDel(uid);
+        // Sunrise-Edit
+        //QueueDel(uid);
     }
 }

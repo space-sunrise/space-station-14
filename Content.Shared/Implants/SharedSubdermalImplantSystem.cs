@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Shared.Actions;
 using Content.Shared.Implants.Components;
 using Content.Shared.Interaction;
@@ -8,6 +7,7 @@ using Content.Shared.Tag;
 using JetBrains.Annotations;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
+using System.Linq;
 
 namespace Content.Shared.Implants;
 
@@ -17,6 +17,7 @@ public abstract class SharedSubdermalImplantSystem : EntitySystem
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
 
     public const string BaseStorageId = "storagebase";
 
@@ -35,6 +36,11 @@ public abstract class SharedSubdermalImplantSystem : EntitySystem
     {
         if (component.ImplantedEntity == null || _net.IsClient)
             return;
+
+        // Sunrise-Start
+        if (args.Container.ID != "implant")
+            return;
+        // Sunrise-End
 
         if (!string.IsNullOrWhiteSpace(component.ImplantAction))
         {
@@ -60,6 +66,11 @@ public abstract class SharedSubdermalImplantSystem : EntitySystem
 
     private void OnRemoveAttempt(EntityUid uid, SubdermalImplantComponent component, ContainerGettingRemovedAttemptEvent args)
     {
+        // Sunrise-Start
+        if (args.Container.ID != "implant")
+            return;
+        // Sunrise-End
+
         if (component.Permanent && component.ImplantedEntity != null)
             args.Cancel();
     }
@@ -69,23 +80,28 @@ public abstract class SharedSubdermalImplantSystem : EntitySystem
         if (component.ImplantedEntity == null || Terminating(component.ImplantedEntity.Value))
             return;
 
+        // Sunrise-Start
+        if (args.Container.ID != "implant")
+            return;
+        // Sunrise-End
+
         if (component.ImplantAction != null)
             _actionsSystem.RemoveProvidedActions(component.ImplantedEntity.Value, uid);
 
         if (!_container.TryGetContainer(uid, BaseStorageId, out var storageImplant))
             return;
 
-        var entCoords = Transform(component.ImplantedEntity.Value).Coordinates;
-
         var containedEntites = storageImplant.ContainedEntities.ToArray();
 
         foreach (var entity in containedEntites)
         {
-            if (Terminating(entity))
-                continue;
-
-            _container.RemoveEntity(storageImplant.Owner, entity, force: true, destination: entCoords);
+            _transformSystem.DropNextTo(entity, uid);
         }
+
+        // Sunrsie-Start
+        var ev = new ImplantEjectEvent(uid, component.ImplantedEntity.Value);
+        RaiseLocalEvent(uid, ref ev);
+        // Sunrsie-End
     }
 
     /// <summary>
@@ -221,3 +237,18 @@ public readonly struct ImplantImplantedEvent
         Implanted = implanted;
     }
 }
+
+// Sunrise-Start
+[ByRefEvent]
+public readonly struct ImplantEjectEvent
+{
+    public readonly EntityUid Implant;
+    public readonly EntityUid? Implanted;
+
+    public ImplantEjectEvent(EntityUid implant, EntityUid? implanted)
+    {
+        Implant = implant;
+        Implanted = implanted;
+    }
+}
+// Sunrise-End

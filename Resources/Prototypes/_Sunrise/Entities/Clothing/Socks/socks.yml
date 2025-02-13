@@ -478,3 +478,16 @@
   - type: Clothing
     sprite: _Sunrise/Clothing/Socks/thigh.rsi
     equippedState: uk_thigh
+
+- type: entity
+  parent: ClothingSocksBaseButcherable
+  id: ClothingThighChristmas
+  name: thigh-high Christmas stockings
+  description: thigh-high stockings made for Christmas time
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Socks/stockings_chrismas.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Socks/stockings_chrismas.rsi
+    equippedState: christmas_stockings

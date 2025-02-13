@@ -73,37 +73,32 @@
           id: assault-ops
           name: Assault Ops
           desc: A mercenary squad whose purpose is to stealthily sabotage the station, disrupting its operations.
-          state: InProgress
-        ert-call:
-          id: ert-call
-          name: ERT Call Console
-          desc: A console that can be used to call an ERT.
-          state: InProgress
-        ussp:
-          id: ussp
-          name: USSP Station
-          desc: A separate station of the USSP with its own shift tasks.
-          state: InProgress
-        vent-crawling:
-          id: vent-crawling
-          name: Vent Crawling
-          desc: Allowing small creatures and various antagonists to move through the ventilation system.
-          state: InProgress
+          state: Complete
         flesh-cult:
           id: flesh-cult
           name: The cult of flesh
           desc: A flesh cult intent on destroying the station.
-          state: InProgress
+          state: Complete
         blood-cult:
           id: blood-cult
           name: Blood Cult (Nar'Si)
           desc: A cult that follows the god Nar'Si, the cult's goal is to summon its patron, who will later destroy the station.
-          state: InProgress
+          state: Partial
+        ert-call:
+          id: ert-call
+          name: ERT Call Console
+          desc: A console that can be used to call an ERT.
+          state: Partial
+        vent-crawling:
+          id: vent-crawling
+          name: Vent Crawling
+          desc: Allowing small creatures and various antagonists to move through the ventilation system.
+          state: Partial
         economy:
           id: economy
           name: Economy
           desc: Adding money, wages, the post office will give money and vendomats will take money for food.
-          state: InProgress
+          state: Partial
     2025:
       name: 2025
       goals:
@@ -192,6 +187,11 @@
           name: Taipan
           desc: A separate syndicate station with its own shift tasks.
           state: Planned
+        ussp:
+          id: ussp
+          name: USSP Station
+          desc: A separate station of the USSP with its own shift tasks.
+          state: InProgress
     2026:
       name: 2026
       goals:

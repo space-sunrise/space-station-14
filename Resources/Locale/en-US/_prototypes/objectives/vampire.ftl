@@ -26,5 +26,7 @@ ent-VampireEscapeObjective = Escape to centcomm alive and unrestrained.
     .desc = I need to escape on the evacuation shuttle. Undercover.
 ent-VampireKillRandomPersonObjective = { ent-BaseVampireObjective }
     .desc = Do it however you like, just make sure they don't make it to centcomm.
+ent-VampireKillRandomAntagObjective = { ent-BaseVampireObjective }
+    .desc = { ent-BaseVampireObjective.desc }
 ent-VampireDrainObjective = { ent-BaseVampireObjective }
     .desc = { ent-BaseVampireObjective.desc }

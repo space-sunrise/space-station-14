@@ -7,6 +7,10 @@
     ClothingNeckScarfStripedBlack: 3
     ClothingNeckScarfStripedBrown: 3
     ClothingNeckScarfStripedLightBlue: 3
+#sunrise-start
+    ClothingNeckScarfStripedCyan: 3
+    ClothingNeckScarfStripedYellow: 3
+#sunrise-end
     ClothingNeckScarfStripedOrange: 3
     ClothingNeckScarfStripedPurple: 3
     ClothingOuterCoatTrench: 6
@@ -18,6 +22,9 @@
     ClothingOuterCoatBomber: 3
     ClothingHeadHatSantahat: 2
     ClothingHeadHatXmasCrown: 2
+    ClothingOuterChristmasSweeter: 3 #sunrise-edit
+    ClothingHandsGlovesChristmas: 3 #sunrise-edit
+    ClothingHandsGlovesChristmasLong: 3 #sunrise-edit
 
   emaggedInventory:
     ClothingNeckScarfStripedSyndieGreen: 3

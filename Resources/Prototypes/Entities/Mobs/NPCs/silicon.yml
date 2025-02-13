@@ -53,11 +53,18 @@
     - SlowedDown
     - Stutter
     - Electrocution
+    - Jump # Sunrise-Edit
   - type: NameIdentifier
     group: GenericNumber
   - type: Repairable
-    doAfterDelay: 8
-    fuelCost: 15
+    # Sunrise-Start
+    doAfterDelay: 3
+    damage:
+      types:
+        Blunt: -15
+        Slash: -15
+        Piercing: -15
+    # Sunrise-End
   - type: Pullable
   - type: Tag
     tags:
@@ -206,6 +213,8 @@
     name: ghost-role-information-honkbot-name
     description: ghost-role-information-honkbot-description
     rules: ghost-role-information-freeagent-rules
+    mindRoles:
+    - MindRoleGhostRoleFreeAgent
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
@@ -238,6 +247,8 @@
     name: ghost-role-information-jonkbot-name
     description: ghost-role-information-jonkbot-description
     rules: ghost-role-information-freeagent-rules
+    mindRoles:
+    - MindRoleGhostRoleFreeAgent
     raffle:
       settings: default
   - type: InteractionPopup
@@ -352,6 +363,7 @@
     pack: MedibotAds
   - type: Inventory
     templateId: medibot
+  - type: DoAfter
   # Sunrise-Start
   - type: StationAiVision
     range: 1
@@ -396,6 +408,8 @@
     name: ghost-role-information-mimebot-name
     description: ghost-role-information-mimebot-description
     rules: ghost-role-information-freeagent-rules
+    mindRoles:
+    - MindRoleGhostRoleFreeAgent
     raffle:
       settings: default
   - type: GhostTakeoverAvailable

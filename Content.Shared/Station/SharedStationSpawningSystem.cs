@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared._Sunrise.Pets;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
@@ -70,7 +71,7 @@ public abstract class SharedStationSpawningSystem : EntitySystem
 
         if (string.IsNullOrEmpty(name) && PrototypeManager.TryIndex(roleProto.NameDataset, out var nameData))
         {
-            name = _random.Pick(nameData.Values);
+            name = Loc.GetString(_random.Pick(nameData.Values));
         }
 
         if (!string.IsNullOrEmpty(name))
@@ -136,6 +137,10 @@ public abstract class SharedStationSpawningSystem : EntitySystem
             {
                 var inhandEntity = EntityManager.SpawnEntity(prototype, coords);
 
+                // Sunrise added start - Ивент нужный для автопривязки питомцев при выборе в лоадаутах
+                RaiseLocalEvent(inhandEntity, new LoadoutPetSpawned(entity));
+                // Sunrise added end
+
                 if (_handsSystem.TryGetEmptyHand(entity, out var emptyHand, handsComponent))
                 {
                     _handsSystem.TryPickup(entity, inhandEntity, emptyHand, checkActionBlocker: false, handsComp: handsComponent);
@@ -150,7 +155,7 @@ public abstract class SharedStationSpawningSystem : EntitySystem
 
             foreach (var (slotName, entProtos) in startingGear.Storage)
             {
-                if (entProtos == null || entProtos.Count == 0) 
+                if (entProtos == null || entProtos.Count == 0)
                     continue;
 
                 if (inventoryComp != null &&

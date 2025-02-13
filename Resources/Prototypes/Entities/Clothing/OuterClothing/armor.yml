@@ -1,11 +1,12 @@
 # Numbers for armor here largely taken from /tg/.
 # NOTE: Half of the kind of armor you're probably thinking of is in vests.yml. These should probably be merged some day.
 
-#Basic armor vest
+#Basic armor vest for inheritance
 - type: entity
   parent: [ClothingOuterBaseMedium, AllowSuitStorageClothing, BaseRestrictedContraband]
-  id: ClothingOuterArmorBasic
+  id: ClothingOuterArmorBase
   name: armor vest
+  abstract: true
   description: A standard Type I armored vest that provides decent protection against most types of damage.
   components:
   - type: Sprite
@@ -21,6 +22,18 @@
         Heat: 0.80
   - type: ExplosionResistance
     damageCoefficient: 0.90
+
+#Standard armor vest, allowed for security and bartenders
+- type: entity
+  parent: [ BaseSecurityBartenderContraband, ClothingOuterArmorBase]
+  id: ClothingOuterArmorBasic
+  # Sunrise-Start
+  components:
+  - type: Tag
+    tags:
+    - Vest
+    - WhitelistChameleon
+  # Sunrise-End
 
 #Alternate / slim basic armor vest
 - type: entity
@@ -58,7 +71,7 @@
   - type: GroupExamine
 
 - type: entity
-  parent: ClothingOuterArmorBasic
+  parent: ClothingOuterArmorBase
   id: ClothingOuterArmorBulletproof
   name: bulletproof vest
   description: A Type III heavy bulletproof vest that excels in protecting the wearer against traditional projectile weaponry and explosives to a minor extent.
@@ -78,7 +91,7 @@
     damageCoefficient: 0.80
 
 - type: entity
-  parent: ClothingOuterArmorBasic
+  parent: ClothingOuterArmorBase
   id: ClothingOuterArmorReflective
   name: reflective vest
   description: An armored vest with advanced shielding to protect against energy weapons.
@@ -95,9 +108,10 @@
         Piercing: 0.9
         Heat: 0.4 # this technically means it protects against fires pretty well? -heat is just for lasers and stuff, not atmos temperature
   - type: Reflect
-    reflectProb: 1
+    reflectProb: 0.8
     reflects:
       - Energy
+    slot: outerClothing # Sunrise-Edit
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing, BaseSyndicateContraband ]
@@ -117,16 +131,22 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.35
-        Slash: 0.35
-        Piercing: 0.35
-        Heat: 0.35
+        Blunt: 0.6 # Sunrise-Edit
+        Slash: 0.6 # Sunrise-Edit
+        Piercing: 0.4 # Sunrise-Edit
+        Heat: 0.6 # Sunrise-Edit
         Caustic: 0.5
   - type: ExplosionResistance
-    damageCoefficient: 0.35
+    damageCoefficient: 0.65
+  - type: PressureProtection  #Sunrise-start
+    highPressureMultiplier: 0.6
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.2
+    coolingCoefficient: 0.5 #Sunrise-end
   - type: ClothingSpeedModifier
     walkModifier: 0.9
-    sprintModifier: 0.95 #Sunrise-edit
+    sprintModifier: 0.9
   #Shoulder mounted flashlight
   - type: ToggleableLightVisuals
     spriteLayer: light
@@ -170,6 +190,12 @@
   - type: BatterySelfRecharger
     autoRecharge: true
     autoRechargeRate: 2
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - FullBodyOuter
+    - WhitelistChameleon
+  # Sunrise-End
 
 - type: entity
   parent: [ ClothingOuterBaseLarge, BaseMajorContraband, AllowSuitStorageClothing ]
@@ -189,6 +215,12 @@
         Piercing: 0.6
         Heat: 0.5
   - type: GroupExamine
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - FullBodyOuter
+    - WhitelistChameleon
+  # Sunrise-End
 
 - type: entity
   parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
@@ -197,9 +229,9 @@
   description: A heavily armored suit that protects against excessive damage.
   components:
   - type: Sprite
-    sprite: Clothing/OuterClothing/Armor/heavy.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/swat_armor.rsi #Sunrise-Edit
   - type: Clothing
-    sprite: Clothing/OuterClothing/Armor/heavy.rsi
+    sprite: _Sunrise/Clothing/OuterClothing/Armor/swat_armor.rsi #Sunrise-Edit
   - type: Armor
     modifiers:
       coefficients:
@@ -209,9 +241,26 @@
         Heat: 0.5
         Radiation: 0
         Caustic: 0.75
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: PressureProtection
+    highPressureMultiplier: 0.6
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.02
+    coolingCoefficient: 0.5
+  - type: ClothingSpeedModifier
+    walkModifier: 0.65
+    sprintModifier: 0.65
   - type: GroupExamine
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - FullBodyOuter
+    - WhitelistChameleon
+  # Sunrise-End
 
 - type: entity
   parent: ClothingOuterArmorHeavy
@@ -282,6 +331,12 @@
   - type: ExplosionResistance
     damageCoefficient: 0.65
   - type: GroupExamine
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - Vest
+    - WhitelistChameleon
+  # Sunrise-End
 
 - type: entity
   parent: [ ClothingOuterBaseLarge, BaseMajorContraband, AllowSuitStorageClothing ]
@@ -296,9 +351,9 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.5
+        Blunt: 0.4
+        Slash: 0.4
+        Piercing: 0.4
         Heat: 0.9
         Radiation: 0.8
   - type: ClothingSpeedModifier
@@ -310,6 +365,12 @@
   - type: GroupExamine
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - FullBodyOuter
+    - WhitelistChameleon
+  # Sunrise-End
 
 - type: entity
   parent: [ ClothingOuterBaseLarge, BaseMajorContraband, AllowSuitStorageClothing ]
@@ -338,6 +399,12 @@
     node: armor
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - FullBodyOuter
+    - WhitelistChameleon
+  # Sunrise-End
 
 - type: entity
   parent: [ ClothingOuterBaseLarge, BaseMajorContraband, AllowSuitStorageClothing ]
@@ -359,6 +426,12 @@
   - type: GroupExamine
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - FullBodyOuter
+    - WhitelistChameleon
+  # Sunrise-End
 
 - type: entity
   parent: ClothingOuterBaseLarge
@@ -388,3 +461,9 @@
     damageCoefficient: 0.5
   - type: GroupExamine
   - type: Unremoveable
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - FullBodyOuter
+    - WhitelistChameleon
+  # Sunrise-End

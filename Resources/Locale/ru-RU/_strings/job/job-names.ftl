@@ -20,6 +20,7 @@ job-name-atmostech = атмосферный техник
 job-name-hop = глава персонала
 job-name-captain = капитан
 job-name-serviceworker = сервисный работник
+job-name-centcomoperator = Оператор Центком
 job-name-centcomoff = представитель Центком
 job-name-cburn = Карантинный Офицер Центком
 job-name-deathsquad = Агент Центком

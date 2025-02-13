@@ -46,7 +46,7 @@
       prob: 0.25
     - id: ClothingBeltSheathFilled
     - id: ClothingHeadsetAltCommand
-    - id: ClothingOuterArmorCaptainCarapace
+    #- id: ClothingOuterArmorCaptainCarapace # Sunrise-Edit
     - id: CommsComputerCircuitboard
     - id: DoorRemoteCommand
     - id: MedalCase
@@ -172,6 +172,7 @@
     - id: RCDAmmo
     - id: RubberStampCE
     - id: FlippoLighterSunriseCe  # Sunrise-Flippo
+    - id: VariantCubeBoxSunrise  # Sunrise Edit
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -229,6 +230,12 @@
     #Sunrise-start
     - id: ClothingEyesUniversalMedicalHud
     - id: AdvancedDefibrillator
+    - id: LauncherSyringeMed
+      prob: 0.6
+    - id: BoxMiniSyringe
+      prob: 0.8
+    - id: BoxMiniSyringe
+      prob: 0.20
     #Sunrise-end
     - id: MedicalTechFabCircuitboard
     - id: MedkitFilled
@@ -345,6 +352,7 @@
     - id: SecurityTechFabCircuitboard
     - id: WeaponDisabler
     - id: WantedListCartridge
+    - id: DrinkHosFlask
     - id: FlippoLighterSunriseHos  # Sunrise-Flippo
 
 # Hardsuit table, used for suit storage as well
@@ -354,6 +362,7 @@
     children:
     - id: ClothingMaskGasSwat
     - id: ClothingOuterHardsuitSecurityRed
+    - id: ClothingShoesBootsMagSec  # Sunrise-edit
     - id: JetpackSecurityFilled
     - id: OxygenTankFilled
 

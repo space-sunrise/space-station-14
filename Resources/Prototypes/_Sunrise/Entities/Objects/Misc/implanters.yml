@@ -1,0 +1,18 @@
+﻿#NanoTrasen implanters
+
+- type: entity
+  id: TrackingImplanterERT
+  suffix: tracking
+  parent: BaseImplantOnlyImplanter
+  components:
+    - type: Implanter
+      implant: TrackingImplantErt
+
+#Syndie implanters   #PR Wiz #31782
+- type: entity
+  id: SmokeScreenImplanter
+  suffix: smoke screen
+  parent: BaseImplantOnlyImplanterSyndi
+  components:
+  - type: Implanter
+    implant: SmokeScreenImplant

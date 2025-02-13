@@ -104,3 +104,12 @@
     proto: WomanMoment
   equipment:
     bra: ClothingBraUk
+
+- type: loadout
+  id: ChristmasBra
+  sponsorOnly: true
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: WomanMoment
+  equipment:
+    bra: ClothingBraChristmas

@@ -72,3 +72,5 @@ ent-ClothingThighTrans = thigh-high stockings with a transflag
     .desc = thigh-high stockings with a transflag - elegant  thigh-high stockings with an added the transgender pride flag  at the top, for women, and maybe even men?
 ent-ClothingThighUk = thigh-high stockings with the british flag
     .desc = thigh-high stockings with a transflag - elegant  thigh-high stockings with the British flag at the top, for women, and maybe even men?
+ent-ClothingThighChristmas = thigh-high Christmas stockings
+    .desc = thigh-high stockings made for Christmas time

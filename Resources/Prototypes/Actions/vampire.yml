@@ -53,7 +53,7 @@
     event: 
       !type:VampireGlareEvent
       definitionName: Glare
-    useDelay: 60
+    useDelay: 20
 
 - type: entity
   id: ActionVampireHypnotise
@@ -75,12 +75,12 @@
     event: 
       !type:VampireHypnotiseEvent
       definitionName: Hypnotise
-    useDelay: 300
+    useDelay: 30
 
 - type: entity
   id: ActionVampireScreech
   name: Screech
-  description: "Release a piercing scream, stunning unprotected mortals and shattering fragile objects nearby. Activation Cost: 20 Essence. Activation Delay: 5 Seconds. Cooldown: 5 Minutes"
+  description: "Release a piercing scream, stunning unprotected mortals and shattering fragile objects nearby. Activation Cost: 20 Essence. Activation Delay: 5 Seconds. Cooldown: 30"
   categories: [ HideSpawnMenu ]
   components:
   - type: InstantAction
@@ -95,7 +95,7 @@
     event: 
       !type:VampireScreechEvent
       definitionName: Screech
-    useDelay: 60
+    useDelay: 25
 
 - type: entity
   id: ActionVampireBloodSteal
@@ -115,7 +115,43 @@
     event: 
       !type:VampireBloodStealEvent
       definitionName: BloodSteal
-    useDelay: 60
+    useDelay: 25
+    
+- type: entity
+  id: ActionVampireUnholyStrength
+  name: Unholy Strength
+  description: "Stare deeply into a mortals eyes, forcing them to sleep for 60 seconds. Activation Cost: 20 Essence. Activation Delay: 5 Seconds. Cooldown: 5 Minutes"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    checkCanInteract: false
+    priority: 2
+    itemIconStyle: NoItem
+    icon:
+      sprite: Interface/Actions/actions_vampire.rsi
+      state: unholystrength
+    event: 
+      !type:VampireUnholyStrengthEvent
+      definitionName: UnholyStrength
+    useDelay: 25
+    
+- type: entity
+  id: ActionVampireSupernaturalStrength
+  name: SuperNatural Strength
+  description: "Stare deeply into a mortals eyes, forcing them to sleep for 60 seconds. Activation Cost: 20 Essence. Activation Delay: 5 Seconds. Cooldown: 5 Minutes"
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    checkCanInteract: false
+    priority: 2
+    itemIconStyle: NoItem
+    icon:
+      sprite: Interface/Actions/actions_vampire.rsi
+      state: supernaturalstrength
+    event: 
+      !type:VampireUnholyStrengthEvent
+      definitionName: SupernaturalStrength
+    useDelay: 25
 
 - type: entity
   id: ActionVampireBatform

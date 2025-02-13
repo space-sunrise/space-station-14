@@ -9,12 +9,15 @@ using Content.Server.DeviceNetwork.Components;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.NodeContainer.EntitySystems;
 using Content.Server.NodeContainer.Nodes;
+using Content.Shared.Administration.Logs;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Monitor;
+using Content.Shared.Atmos.Piping.Components;
 using Content.Shared.Atmos.Piping.Unary;
 using Content.Shared.Atmos.Piping.Unary.Components;
 using Content.Shared.Atmos.Visuals;
 using Content.Shared.Audio;
+using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
@@ -29,6 +32,7 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
     [UsedImplicitly]
     public sealed class GasVentPumpSystem : EntitySystem
     {
+        [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
         [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
         [Dependency] private readonly DeviceNetworkSystem _deviceNetSystem = default!;
         [Dependency] private readonly DeviceLinkSystem _signalSystem = default!;
@@ -85,6 +89,24 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
             {
                 return;
             }
+
+            // Sunrise-Start
+            if (pipe.Air.Pressure > vent.PressureLimit)
+            {
+                // Release all gas like a passive vent
+                var inletAir = pipe.Air.RemoveRatio(1f);
+                var envAir = environment.RemoveRatio(1f);
+
+                var mergeAir = new GasMixture(inletAir.Volume + envAir.Volume);
+                _atmosphereSystem.Merge(mergeAir, inletAir);
+                _atmosphereSystem.Merge(mergeAir, envAir);
+
+                _atmosphereSystem.Merge(pipe.Air, mergeAir.RemoveVolume(inletAir.Volume));
+                _atmosphereSystem.Merge(environment, mergeAir);
+                return;
+            }
+            // Sunrise-End
+
             // If the lockout has expired, disable it.
             if (vent.IsPressureLockoutManuallyDisabled && _timing.CurTime >= vent.ManualLockoutReenabledAt)
             {
@@ -230,6 +252,44 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
                 case DeviceNetworkConstants.CmdSetState:
                     if (!args.Data.TryGetValue(DeviceNetworkConstants.CmdSetState, out GasVentPumpData? setData))
                         break;
+
+                    var previous = component.ToAirAlarmData();
+
+                    if (previous.Enabled != setData.Enabled)
+                    {
+                        string enabled = setData.Enabled ? "enabled" : "disabled" ;
+                        _adminLogger.Add(LogType.AtmosDeviceSetting, LogImpact.Medium, $"{ToPrettyString(uid)} {enabled}");
+                    }
+
+                    if (previous.PumpDirection != setData.PumpDirection)
+                        _adminLogger.Add(LogType.AtmosDeviceSetting, LogImpact.Medium, $"{ToPrettyString(uid)} direction changed to {setData.PumpDirection}");
+
+                    if (previous.PressureChecks != setData.PressureChecks)
+                        _adminLogger.Add(LogType.AtmosDeviceSetting, LogImpact.Medium, $"{ToPrettyString(uid)} pressure check changed to {setData.PressureChecks}");
+
+                    if (previous.ExternalPressureBound != setData.ExternalPressureBound)
+                    {
+                        _adminLogger.Add(
+                            LogType.AtmosDeviceSetting,
+                            LogImpact.Medium,
+                            $"{ToPrettyString(uid)} external pressure bound changed from {previous.ExternalPressureBound} kPa to {setData.ExternalPressureBound} kPa"
+                        );
+                    }
+
+                    if (previous.InternalPressureBound != setData.InternalPressureBound)
+                    {
+                        _adminLogger.Add(
+                            LogType.AtmosDeviceSetting,
+                            LogImpact.Medium,
+                            $"{ToPrettyString(uid)} internal pressure bound changed from {previous.InternalPressureBound} kPa to {setData.InternalPressureBound} kPa"
+                        );
+                    }
+
+                    if (previous.PressureLockoutOverride != setData.PressureLockoutOverride)
+                    {
+                        string enabled = setData.PressureLockoutOverride ? "enabled" : "disabled" ;
+                        _adminLogger.Add(LogType.AtmosDeviceSetting, LogImpact.Medium, $"{ToPrettyString(uid)} pressure lockout override {enabled}");
+                    }
 
                     component.FromAirAlarmData(setData);
                     UpdateState(uid, component);

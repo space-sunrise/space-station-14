@@ -24,6 +24,8 @@
     - id: SpiderClownSpawn
     - id: SpiderSpawn
     - id: VentClog
+    - id: VentFleshWorms # Sunrise-Edit
+    - id: VentbullMigration # Sunrise-Edit
 
 - type: entityTable
   id: BasicAntagEventsTable
@@ -37,6 +39,11 @@
     - id: SleeperAgents
     - id: ZombieOutbreak
     - id: LoneOpsSpawn
+    - id: DerelictCyborgSpawn
+    - id: DiseaseSpawn
+    - id: FugitiveSpawn
+    - id: EvilTwinSpawn
+    - id: TerminatorSpawn
 
 - type: entity
   id: BaseStationEvent
@@ -427,6 +434,7 @@
     definitions:
     - prefRoles: [ InitialInfected ]
       max: 3
+      ignoreCanBeAntag: true # Sunrise-Edit
       playerRatio: 10
       blacklist:
         components:
@@ -532,6 +540,8 @@
   - type: StationEvent
     startAudio:
       path: /Audio/_Sunrise/Announcements/ionstorm.ogg
+      params:
+        volume: -10
     weight: 8
     reoccurrenceDelay: 20
     duration: 1
@@ -568,3 +578,24 @@
     - Service
     blacklist:
     - External # don't space everything
+
+- type: entity
+  parent: BaseGameRule
+  id: DerelictCyborgSpawn
+  components:
+  - type: StationEvent
+    weight: 5
+    earliestStart: 15
+    reoccurrenceDelay: 20
+    minimumPlayers: 4
+    duration: null
+  - type: SpaceSpawnRule
+    spawnDistance: 0
+  - type: AntagSpawner
+    prototype: PlayerBorgDerelict
+  - type: AntagSelection
+    definitions:
+    - spawnerPrototype: SpawnPointGhostDerelictCyborg
+      min: 1
+      max: 1
+      pickPlayer: false

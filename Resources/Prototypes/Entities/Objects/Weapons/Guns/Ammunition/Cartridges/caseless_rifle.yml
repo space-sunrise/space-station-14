@@ -8,7 +8,7 @@
     tags:
       - Cartridge
       - CartridgeCaselessRifle
-  - type: CartridgeAmmo
+  - type: HitScanCartridgeAmmo
     deleteOnSpawn: true
   - type: Sprite
     noRot: false
@@ -26,7 +26,7 @@
   name: cartridge (.25 caseless)
   parent: BaseCartridgeCaselessRifle
   components:
-  - type: CartridgeAmmo
+  - type: HitScanCartridgeAmmo
     proto: BulletCaselessRifle
 
 - type: entity
@@ -34,7 +34,7 @@
   name: cartridge (.25 caseless practice)
   parent: BaseCartridgeCaselessRifle
   components:
-  - type: CartridgeAmmo
+  - type: HitScanCartridgeAmmo
     proto: BulletCaselessRiflePractice
   - type: Sprite
     layers:

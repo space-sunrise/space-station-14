@@ -16,6 +16,7 @@
   # they like eat it idk lol
   - type: Storage
     clickInsert: false
+    openOnActivate: false
     grid:
     - 0,0,1,2
     maxItemSize: Large
@@ -121,8 +122,11 @@
             state: jumpsuit-female
   # Sunrise edit OwO
   - type: FootprintEmitter
-    leftBareFootState: "footprint-left-bare-slime"
-    rightBareFootState: "footprint-right-bare-slime"
+    leftBareFootState:
+      - "footprint-left-bare-slime"
+    rightBareFootState:
+      - "footprint-right-bare-slime"
+  - type: Carriable
   # Sunrise edit end.
 
 - type: entity

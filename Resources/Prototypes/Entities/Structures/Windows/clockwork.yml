@@ -10,8 +10,7 @@
   - type: Icon
     sprite: Structures/Windows/clockwork_window.rsi
   - type: Repairable
-    fuelCost: 10
-    doAfterDelay: 2
+    doAfterDelay: 5 # Sunrise-Edit
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: RGlass
@@ -122,6 +121,9 @@
     drawdepth: WallTops
     sprite: Structures/Windows/clockwork_diagonal.rsi
     state: state0
+  - type: Tag
+    tags:
+    - Diagonal
   - type: IconSmooth
     mode: Diagonal
     key: windows

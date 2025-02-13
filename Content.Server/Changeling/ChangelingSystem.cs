@@ -55,6 +55,7 @@ using Content.Shared.Mobs.Components;
 using Content.Server.Stunnable;
 using Content.Shared.Jittering;
 using System.Linq;
+using Content.Shared.Forensics.Components;
 using Content.Shared.Radio;
 
 namespace Content.Server.Changeling;

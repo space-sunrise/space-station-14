@@ -34,6 +34,7 @@ using Content.Server.Popups;
 using Content.Shared.Verbs;
 using Robust.Shared.Collections;
 using Content.Shared.Ghost.Roles.Components;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Roles.Jobs;
 using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
 
@@ -55,6 +56,7 @@ public sealed class GhostRoleSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
 
     private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
 
@@ -555,13 +557,13 @@ public sealed class GhostRoleSystem : EntitySystem
         var newMind = _mindSystem.CreateMind(player.UserId,
             EntityManager.GetComponent<MetaDataComponent>(mob).EntityName);
 
-        _roleSystem.MindAddRole(newMind, "MindRoleGhostMarker");
-
-        if(_roleSystem.MindHasRole<GhostRoleMarkerRoleComponent>(newMind!, out var markerRole))
-            markerRole.Value.Comp2.Name = role.RoleName;
-
         _mindSystem.SetUserId(newMind, player.UserId);
         _mindSystem.TransferTo(newMind, mob);
+
+        _roleSystem.MindAddRoles(newMind.Owner, role.MindRoles, newMind.Comp);
+
+        if (_roleSystem.MindHasRole<GhostRoleMarkerRoleComponent>(newMind!, out var markerRole))
+            markerRole.Value.Comp2.Name = role.RoleName;
     }
 
     /// <summary>
@@ -668,6 +670,11 @@ public sealed class GhostRoleSystem : EntitySystem
         // Avoid re-registering it for duplicate entries and potential exceptions.
         if (!ghostRole.ReregisterOnGhost || component.LifeStage > ComponentLifeStage.Running)
             return;
+
+        // Sunrise-Start
+        if (!_mobState.IsAlive(uid))
+            return;
+        // Sunrise-End
 
         ghostRole.Taken = false;
         RegisterGhostRole((uid, ghostRole));

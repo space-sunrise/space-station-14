@@ -62,10 +62,34 @@
             "name": "idprisonpilot-space-prison"
         },
         {
+            "name": "idcard_captain"
+        },
+        {
+            "name": "idcard_crew"
+        },
+        {
+            "name": "idcard_officer"
+        },
+        {
+            "name": "idcard_officer_alt"
+        },
+        {
+            "name": "idcard_soldier"
+        },
+        {
             "name": "orange-space-prison"
         },
         {
+            "name": "ntr-operator"
+        },
+        {
+            "name": "ntr-captain"
+        },
+        {
             "name": "prisoner-space-prison"
+        },
+        {
+            "name": "ussp"
         }
     ]
 }

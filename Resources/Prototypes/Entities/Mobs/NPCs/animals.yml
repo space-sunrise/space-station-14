@@ -64,9 +64,15 @@
   - type: Tag
     tags:
     - VimPilot
-  - type: NightVision #Sunrise - Night vision
+  # Sunrise-Start
+  - type: NightVision
     isToggle: true
     color: "#808080"
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 - type: entity
   name: bee
@@ -239,6 +245,16 @@
   - type: NpcFactionMember
     factions:
     - Passive
+  # Sunrise-start
+  - type: Body
+    prototype: Chiken
+  - type: Carriable
+  - type: CanEscapeInventory
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 - type: entity
   parent: MobChicken
@@ -446,6 +462,8 @@
     name: ghost-role-information-mothroach-name
     description: ghost-role-information-mothroach-description
     rules: ghost-role-information-freeagent-rules
+    mindRoles:
+    - MindRoleGhostRoleFreeAgent
   - type: Fixtures
     fixtures:
       fix1:
@@ -671,6 +689,14 @@
   - type: NpcFactionMember
     factions:
     - Passive
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 - type: entity
   name: white duck #Quack
@@ -858,6 +884,12 @@
     guides:
     - Chef
     - FoodRecipes
+  # Sunrise-Start
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 - type: entity
   name: crab
@@ -865,6 +897,7 @@
   id: MobCrab
   description: A folk legend goes around that his claw snaps spacemen out of existence over distasteful remarks. Be polite and tolerant for your own safety.
   components:
+  - type: VentCrawler # Sunrise-edit
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -926,6 +959,14 @@
       task: RuminantCompound
   - type: Body
     prototype: AnimalHemocyanin
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 - type: entity
   name: goat
@@ -1001,6 +1042,15 @@
   - type: Grammar
     attributes:
       gender: female # Here because of UdderComponent
+  - type: Speech
+    speechSounds: Goat
+    speechVerb: Goat
+  - type: Vocal
+    sounds:
+      Female: Goat
+      Male: Goat
+      Unsexed: Goat
+  - type: BleatingAccent
   - type: InteractionPopup
     successChance: 0.2
     interactSuccessString: petting-success-goat
@@ -1019,6 +1069,12 @@
   - type: HTN
     rootTask:
       task: RuminantHostileCompound
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  # Sunrise-End
 
 # Note that we gotta make this bitch vomit someday when you feed it anthrax or sumthin. Needs to be a small item thief too and aggressive if attacked.
 - type: entity
@@ -1068,6 +1124,14 @@
   - type: NpcFactionMember
     factions:
     - Passive
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 - type: entity
   name: gorilla
@@ -1123,6 +1187,15 @@
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
+  # Sunrise-start
+  - type: InteractionPopup
+    successChance: 0.2
+    interactSuccessString: petting-success-generic
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  # Sunrise-End
 
 - type: entity
   name: kangaroo
@@ -1210,6 +1283,15 @@
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
+  # Sunrise-start
+  - type: InteractionPopup
+    successChance: 0.2
+    interactSuccessString: petting-success-generic
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  # Sunrise-End
 
 - type: entity
   name: boxing kangaroo
@@ -1229,6 +1311,7 @@
   description: The genetic bipedal ancestor of... Uh... Something. Yeah, there's definitely something on the station that descended from whatever this is.
   abstract: true
   components:
+  - type: VentCrawler # Sunrise-edit
   - type: CombatMode
   - type: Inventory
     templateId: monkey
@@ -1337,7 +1420,10 @@
       methods: [ Touch ]
       effects:
       - !type:WashCreamPieReaction
-
+  # Sunrise-start
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  # Sunrise-end
 
 
 - type: entity
@@ -1396,7 +1482,10 @@
     makeSentient: true
     name: ghost-role-information-monkey-name
     description: ghost-role-information-monkey-description
-    rules: ghost-role-information-syndicate-monkey-reinforcement-rules
+    rules: ghost-role-information-syndicate-reinforcement-rules
+    mindRoles:
+    # This is for syndicate monkeys that randomly gain sentience, thus have no summoner to team with
+    - MindRoleGhostRoleSoloAntagonist
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
@@ -1531,6 +1620,10 @@
     name: ghost-role-information-kobold-name
     description: ghost-role-information-kobold-description
     rules: ghost-role-information-nonantagonist-rules
+  # Sunrise Start
+  - type: Body
+    prototype: Kobold
+  # Sunrise-End
 
 - type: entity
   name: kobold
@@ -1556,7 +1649,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      75: Critical
+      100: Critical
       200: Dead
   - type: NpcFactionMember
     factions:
@@ -1595,6 +1688,7 @@
   id: MobMouse
   description: Squeak!
   components:
+  - type: VentCrawler #Sunrise-edit
   - type: Body
     prototype: Mouse
   - type: GhostRole
@@ -1604,6 +1698,8 @@
     name: ghost-role-information-mouse-name
     description: ghost-role-information-mouse-description
     rules: ghost-role-information-freeagent-rules
+    mindRoles:
+    - MindRoleGhostRoleFreeAgent
   - type: GhostTakeoverAvailable
   - type: Speech
     speechSounds: Squeak
@@ -1689,7 +1785,6 @@
       Dead: 0
     baseDecayRate: 0.04
   - type: Hunger
-    currentHunger: 25   # spawn with Okay hunger state
     thresholds:
       Overfed: 35
       Okay: 25
@@ -1760,9 +1855,18 @@
       Taco: RatTaco
       Burger: RatBurger
       Skewer: RatSkewer
-  - type: NightVision #Sunrise - Night vision
+  # Sunrise-Start
+  - type: NightVision
     isToggle: true
     color: "#808080"
+  - type: HolidayVisuals
+    holidays:
+      festive:
+      - WinterPresents
+  - type: HolidayRsiSwap
+    sprite:
+      festive: _Sunrise/Mobs/Animals/mouse_santa.rsi
+  # Sunrise-End
 
 - type: entity
   parent: MobMouse
@@ -1943,6 +2047,14 @@
   - type: Tag
     tags:
     - VimPilot
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 
 - type: entity
@@ -1951,6 +2063,7 @@
   id: MobSlug
   description: And they called this a lizard?
   components:
+  - type: VentCrawler # Sunrise-edit
   - type: MovementSpeedModifier
     baseWalkSpeed : 2
     baseSprintSpeed : 3
@@ -1991,6 +2104,12 @@
     interactSuccessSpawn: EffectHearts
   - type: Bloodstream
     bloodMaxVolume: 50
+  # Sunrise-Start
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 - type: entity
   name: frog
@@ -1998,6 +2117,7 @@
   id: MobFrog
   description: Hop hop hop. Lookin' moist.
   components:
+  - type: VentCrawler # Sunrise-edit
   - type: MovementSpeedModifier
     baseWalkSpeed: 3
     baseSprintSpeed: 6
@@ -2050,6 +2170,12 @@
   - type: Tag
     tags:
     - VimPilot
+  # Sunrise-Start
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 # Would be cool to have some functionality for the parrot to be able to sit on stuff
 - type: entity
@@ -2106,6 +2232,12 @@
       path: /Audio/Animals/parrot_raught.ogg
   - type: Bloodstream
     bloodMaxVolume: 50
+  # Sunrise-Start
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 - type: entity
   name: penguin
@@ -2167,6 +2299,14 @@
     heatDamage:
       types:
         Heat : 0.2 #per second, scales with temperature & other constants
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 - type: entity
   name: grenade penguin
@@ -2246,6 +2386,7 @@
   id: MobSnake
   description: Hissss! Bites aren't poisonous.
   components:
+  - type: VentCrawler # Sunrise-edit
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -2286,31 +2427,24 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Scale
+  # Sunrise-Start
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
   - type: NightVision #Sunrise - Night vision
     isToggle: true
     color: "#808080"
+  # Sunrise-End
 
 # Code unique spider prototypes or combine them all into one spider and get a
 # random sprite state when you spawn it.
 - type: entity
-  name: tarantula
   parent: [ SimpleMobBase, MobCombat ]
-  id: MobGiantSpider
-  description: Widely recognized to be the literal worst thing in existence.
+  id: MobSpiderBase
+  abstract: true
   components:
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: tarantula
-      sprite: Mobs/Animals/spider.rsi
-  - type: SpriteMovement
-    movementLayers:
-      movement:
-        state: tarantula-moving
-    noMovementLayers:
-      movement:
-        state: tarantula
+  - type: VentCrawler # Suneise-edit
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -2323,14 +2457,6 @@
         - MobMask
         layer:
         - MobLayer
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: tarantula
-      Critical:
-        Base: tarantula_dead
-      Dead:
-        Base: tarantula_dead
   - type: Butcherable
     spawned:
     - id: FoodMeatSpider
@@ -2342,15 +2468,6 @@
     thresholds:
       0: Alive
       90: Dead
-  - type: MeleeWeapon
-    altDisarm: false
-    angle: 0
-    animation: WeaponArcBite
-    soundHit:
-      path: /Audio/Effects/bite.ogg
-    damage:
-      types:
-        Piercing: 6
   - type: SolutionContainerManager
     solutions:
       melee:
@@ -2419,34 +2536,84 @@
   - type: CollectiveMind
     minds:
     - Arachnids
+  - type: Carriable
+  - type: CanEscapeInventory
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
   # Sunrise-end
 
 - type: entity
-  name: tarantula
-  parent: MobGiantSpider
-  id: MobGiantSpiderAngry
-  suffix: Angry
+  parent: MobSpiderBase
+  id: MobSpiderAngryBase
+  abstract: true
   components:
-    - type: NpcFactionMember
-      factions:
-        - Xeno
-    - type: InputMover
-    - type: MobMover
-    - type: HTN
-      rootTask:
-        task: SimpleHostileCompound
-    - type: GhostRole
-      makeSentient: true
-      name: ghost-role-information-giant-spider-name
-      description: ghost-role-information-giant-spider-description
-      rules: ghost-role-information-giant-spider-rules
-      raffle:
-        settings: short
-    - type: GhostTakeoverAvailable
+  - type: NpcFactionMember
+    factions:
+      - Xeno
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: GhostRole
+    makeSentient: true
+    name: ghost-role-information-giant-spider-name
+    description: ghost-role-information-giant-spider-description
+    rules: ghost-role-information-giant-spider-rules
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+
+- type: entity
+  name: tarantula
+  parent: MobSpiderBase
+  id: MobGiantSpider
+  description: Widely recognized to be the literal worst thing in existence.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: tarantula
+      sprite: Mobs/Animals/spider.rsi
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: tarantula-moving
+    noMovementLayers:
+      movement:
+        state: tarantula
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: tarantula
+      Critical:
+        Base: tarantula_dead
+      Dead:
+        Base: tarantula_dead
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Piercing: 6
+
+- type: entity
+  parent:
+  - MobSpiderAngryBase
+  - MobGiantSpider
+  id: MobGiantSpiderAngry
 
 - type: entity
   name: clown spider
-  parent: MobGiantSpiderAngry
+  parent: MobSpiderAngryBase
   id: MobClownSpider
   description: Combines the two most terrifying things in existence, spiders and clowns.
   components:
@@ -2555,6 +2722,14 @@
   - type: Tag
     tags:
     - VimPilot
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-end
 
 - type: entity
   name: possum
@@ -2629,6 +2804,14 @@
   - type: Tag
     tags:
     - VimPilot
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-end
 
 - type: entity
   name: fox
@@ -2707,6 +2890,10 @@
   - type: Tag
     tags:
     - VimPilot
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   name: corgi
@@ -2768,6 +2955,10 @@
   - type: Tag
     tags:
     - VimPilot
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   name: corrupted corgi
@@ -2816,7 +3007,7 @@
   - type: Bloodstream
     bloodReagent: DemonsBlood
   - type: Damageable
-    damageContainer: Biological
+    damageContainer: BiologicalMetaphysical
     damageModifierSet: Infernal
   - type: Temperature
     heatDamageThreshold: 4000 #They come from hell, so..
@@ -2829,6 +3020,12 @@
     heatDamage:
       types:
         Heat : 1 #per second, scales with temperature & other constants
+  # Sunrise-start
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-end
 
 - type: entity
   name: corgi puppy
@@ -2836,6 +3033,7 @@
   id: MobCorgiPuppy
   description: A little corgi! Aww...
   components:
+  - type: VentCrawler # Sunrise-edit
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Pets/corgi.rsi
@@ -2925,9 +3123,17 @@
   - type: Tag
     tags:
     - VimPilot
-  - type: NightVision #Sunrise - Night vision
+  # Sunrise-start
+  - type: NightVision
     isToggle: true
     color: "#808080"
+  - type: Carriable
+  - type: CanEscapeInventory
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-end
 
 - type: entity
   name: calico cat
@@ -2972,6 +3178,8 @@
     allowMovement: true
     description: ghost-role-information-SyndiCat-description
     rules: ghost-role-information-SyndiCat-rules
+    mindRoles:
+    - MindRoleGhostRoleTeamAntagonist
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
@@ -3141,6 +3349,10 @@
   - type: Tag
     tags:
     - VimPilot
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  # Sunrise-end
 
 - type: entity
   name: ferret
@@ -3195,6 +3407,14 @@
   - type: Tag
     tags:
     - VimPilot
+  # Sunrise-start
+  - type: Carriable
+  - type: CanEscapeInventory
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 - type: entity
   name: hamster
@@ -3202,6 +3422,7 @@
   id: MobHamster
   description: A cute, fluffy, robust hamster.
   components:
+  - type: VentCrawler # Sunrise-edit
   - type: GhostRole
     makeSentient: true
     allowSpeech: true
@@ -3338,6 +3559,12 @@
   - type: FireVisuals
     sprite: Mobs/Effects/onfire.rsi
     normalState: Mouse_burning
+  # Sunrise-Start
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 - type: entity
   name: pig
@@ -3409,6 +3636,16 @@
   - type: HTN
     rootTask:
       task: RuminantCompound
+    # Sunrise-start
+  - type: Body
+    prototype: ManeaterAnimal
+  - type: Carriable
+  - type: CanEscapeInventory
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 - type: entity
   name: diona nymph
@@ -3471,6 +3708,13 @@
       gender: epicene
   - type: Speech
     speechVerb: Plant
+    speechSounds: Alto
+    allowedEmotes: ['Chirp']
+  - type: Vocal
+    sounds:
+      Male: UnisexDiona
+      Female: UnisexDiona
+      Unsexed: UnisexDiona
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -3494,3 +3738,97 @@
   components:
   - type: ReplacementAccent
     accent: nymph
+
+- type: entity
+  name: reindeer buck
+  parent: [ SimpleMobBase, MobCombat ]
+  id: MobReindeerBuck
+  description: You think it can pull a sleigh?
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: reindeer_buck
+      sprite: Mobs/Animals/reindeer_buck.rsi
+#  - type: SpriteMovement  # One day when this shit isnt broken as hell. For now they hoppity hop.
+#    movementLayers:
+#      movement:
+#        state: reindeer_buck
+#    noMovementLayers:
+#      movement:
+#        state: reindeer_buck_still
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.48
+        density: 200
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: reindeer_buck
+      Critical:
+        Base: reindeer_buck_dead
+      Dead:
+        Base: reindeer_buck_dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 4
+  - type: Bloodstream
+    bloodMaxVolume: 300
+    # Horns though
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 22
+    animation: WeaponArcFist
+  - type: NPCRetaliation
+  - type: FactionException
+  - type: NpcFactionMember
+    factions:
+    - Passive
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: Puller
+    needsHands: false
+
+- type: entity
+  name: reindeer doe
+  parent: MobReindeerBuck
+  id: MobReindeerDoe
+  components:
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 15
+    animation: WeaponArcFist
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: reindeer_doe
+      sprite: Mobs/Animals/reindeer_doe.rsi
+#  - type: SpriteMovement  # One day when this shit isnt broken as hell. For now they hoppity hop.
+#    movementLayers:
+#      movement:
+#        state: reindeer_doe
+#    noMovementLayers:
+#      movement:
+#        state: reindeer_doe_still
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: reindeer_doe
+      Critical:
+        Base: reindeer_doe_dead
+      Dead:
+        Base: reindeer_doe_dead

@@ -1,32 +1,32 @@
-- type: entity
-  name: Lecter
-  parent: WeaponRifleLecter
-  id: WeaponRifleLecterRubber
-  suffix: Non-lethal
-  components:
-  - type: ItemSlots
-    slots:
-      gun_magazine:
-        name: Magazine
-        startingItem: MagazineRifleRubber
-        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
-        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
-        priority: 2
-        whitelist:
-          tags:
-            - MagazineRifle
-      gun_chamber:
-        name: Chamber
-        startingItem: CartridgeRifleRubber
-        priority: 1
-        whitelist:
-          tags:
-            - CartridgeRifle
+#- type: entity
+#  name: Lecter
+#  parent: WeaponRifleLecter
+#  id: WeaponRifleLecterRubber
+#  suffix: Non-lethal
+#  components:
+#  - type: ItemSlots
+#    slots:
+#      gun_magazine:
+#        name: Magazine
+#        startingItem: MagazineRifleRubber
+#        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+#        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+#        priority: 2
+#        whitelist:
+#          tags:
+#            - MagazineRifle
+#      gun_chamber:
+#        name: Chamber
+#        startingItem: CartridgeRifleRubber
+#        priority: 1
+#        whitelist:
+#          tags:
+#            - CartridgeRifle
 
 - type: entity
   name: AKMS
   parent: BaseWeaponRifle
-  id: WeaponAKMSRifle
+  id: WeaponRifleAKM
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/akms/big.rsi
@@ -38,6 +38,9 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/akms/tiny.rsi
   - type: Item
+    size: Huge
+    shape:
+    - 0,0,5,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/akms/tiny.rsi
   - type: GunWieldBonus
     minAngle: -15
@@ -45,7 +48,7 @@
   - type: Gun
     minAngle: 24
     maxAngle: 45
-    fireRate: 6.5  # 10 в секунду - реалистично. 5, так как сс14
+    fireRate: 5  # 10 в секунду - реалистично. 5, так как сс14
     soundGunshot:
       collection: ak47
   - type: ItemSlots
@@ -83,9 +86,9 @@
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_cocked.ogg
 
 - type: entity
-  name: AK74-U
+  name: AKM-U
   parent: BaseWeaponRifle
-  id: WeaponRifleAKSU
+  id: WeaponRifleAKMU
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ak74u.rsi
@@ -94,13 +97,17 @@
       map: ["enum.GunVisualLayers.Base"]
     - state: mag-0
       map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,3,2
   - type: GunWieldBonus
-    minAngle: -10
+    minAngle: -12
     maxAngle: -25
   - type: Gun
     minAngle: 24
     maxAngle: 45
-    fireRate: 7
+    fireRate: 5.5
     soundGunshot:
       collection: ak47
   - type: ChamberMagazineAmmoProvider
@@ -136,6 +143,71 @@
     delay: 0.5
 
 - type: entity
+  name: AK-514
+  parent: BaseWeaponRifle
+  id: WeaponRifleAK514
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ak514/big.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ak514/tiny.rsi
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,2
+    sprite: _Sunrise/Objects/Weapons/Guns/Rifles/ak514/tiny.rsi
+  - type: GunWieldBonus
+    minAngle: -15
+    maxAngle: -35
+  - type: Gun
+    minAngle: 24
+    maxAngle: 45
+    fireRate: 6  # 10 в секунду - реалистично. 5, так как сс14
+    soundGunshot:
+      collection: ak47
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineCaselessRifleShort
+        insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_reload.ogg
+        ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineLightRifle
+            - MagazineCaselessRifle
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeCaselessRifle
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeLightRifle
+            - CartridgeCaselessRifle
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: Wieldable
+  - type: UseDelay
+    delay: 0.5
+  - type: ChamberMagazineAmmoProvider
+    autoEject: true
+    soundRack:
+      path: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_cocked.ogg
+
+- type: entity
   name: Famas
   parent: BaseWeaponRifle
   id: WeaponRifleFamas
@@ -150,16 +222,28 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/famas/tiny.rsi
   - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/famas/tiny.rsi
   - type: GunWieldBonus
-    minAngle: -23
-    maxAngle: -43
+    minAngle: -18
+    maxAngle: -35
   - type: Gun
-    minAngle: 24
-    maxAngle: 45
-    fireRate: 7
+    minAngle: 21
+    maxAngle: 40
+    fireRate: 5.5
+    burstFireRate: 6
+    selectedMode: Burst
+    availableModes:
+    - Burst
+    - FullAuto
     soundGunshot:
-      collection: famas
+      collection: famas # Sunrise-Edit
+      params:
+        volume: 10
+    shotsPerBurst: 5
+    burstCooldown: 0.25
   - type: ItemSlots
     slots:
       gun_magazine:
@@ -210,14 +294,17 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/g36/tiny.rsi
   - type: Item
+    size: Huge  
+    shape:
+    - 0,0,5,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/g36/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
-    maxAngle: -43
+    maxAngle: -46
   - type: Gun
-    minAngle: 24
-    maxAngle: 45
-    fireRate: 6
+    minAngle: 25
+    maxAngle: 50
+    fireRate: 5.5
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/g36/g36_shot.ogg
   - type: ItemSlots
@@ -251,6 +338,10 @@
   - type: Wieldable
   - type: UseDelay
     delay: 0.5
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3
 
 - type: entity
   name: M-28
@@ -267,6 +358,9 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/m28/tiny.rsi
   - type: Item
+    size: Huge  
+    shape:
+    - 0,0,4,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/m28/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
@@ -274,7 +368,7 @@
   - type: Gun
     minAngle: 24
     maxAngle: 45
-    fireRate: 6
+    fireRate: 5.5
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/m28/m28.ogg
   - type: ItemSlots
@@ -324,14 +418,17 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Gunsx64/Rifles/ar18/tiny.rsi
   - type: Item
+    size: Huge  
+    shape:
+    - 0,0,3,2
     sprite: _Sunrise/Objects/Weapons/Gunsx64/Rifles/ar18/tiny.rsi
   - type: GunWieldBonus
-    minAngle: -23
-    maxAngle: -43
+    minAngle: -22
+    maxAngle: -40
   - type: Gun
     minAngle: 24
     maxAngle: 45
-    fireRate: 6
+    fireRate: 5.5
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/ar18/ar18_shot.ogg
   - type: ItemSlots
@@ -381,35 +478,38 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/m16a4/tiny.rsi
   - type: Item
+    size: Huge  
+    shape:
+    - 0,0,5,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/m16a4/tiny.rsi
   - type: GunWieldBonus
-    minAngle: -20
-    maxAngle: -40
+    minAngle: -23
+    maxAngle: -42
   - type: Gun
     minAngle: 25
     maxAngle: 45
-    fireRate: 6
+    fireRate: 5
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Rifles/m16a4/m16a4_shot.ogg
   - type: ItemSlots
     slots:
       gun_magazine:
         name: Magazine
-        startingItem: MagazineM16A4
+        startingItem: MagazineRifle
         insertSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_reload.ogg
         ejectSound: /Audio/_Sunrise/Weapons/Guns/Rifles/AK/ak_unload.ogg
         priority: 2
         whitelist:
           tags:
-          - MagazineLightRifle
+          - MagazineRifle
           - MagazineM16A4
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeLightRifle  # 556
+        startingItem: CartridgeRifle  # 556
         priority: 1
         whitelist:
           tags:
-          - CartridgeLightRifle  # 556
+          - CartridgeRifle  # 556
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot
@@ -438,6 +538,9 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/stg44/tiny.rsi
   - type: Item
+    size: Huge  
+    shape:
+    - 0,0,5,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/stg44/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23
@@ -496,6 +599,9 @@
   - type: Clothing
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/v31/tiny.rsi
   - type: Item
+    size: Huge  
+    shape:
+    - 0,0,5,2
     sprite: _Sunrise/Objects/Weapons/Guns/Rifles/v31/tiny.rsi
   - type: GunWieldBonus
     minAngle: -23

@@ -1,0 +1,14 @@
+- type: marking
+  id: HumanTopHorns
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  speciesRestriction: [Human, Dwarf]
+  forcedColoring: true
+  coloring:
+    default:
+      type:
+        !type:SimpleColoring
+          color: "#FFFFFF"
+  sprites:
+  - sprite: _Sunrise/Mobs/Customization/human_top.rsi
+    state: snake_horn

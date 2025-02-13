@@ -1,0 +1,225 @@
+#USSP Crew
+- type: job
+  id: USSPCrew
+  name: job-name-usspcrew
+  description: job-description-usspcrew
+  playTimeTracker: JobUSSPCrew
+  setPreference: false
+  startingGear: USSPJobAltA
+  icon: "JobIconUSSPCrew"
+  supervisors: job-supervisors-usspcommand
+  canBeAntag: false
+  access:
+  - Maintenance
+
+- type: startingGear
+  id: USSPJobAltA
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitUSSPBlack
+    outerClothing: ClothingOuterCoatTrench
+    shoes: ClothingShoesUSSPBlack
+    neck: ClothingNeckUSSPPin
+    id: USSPPDA
+    back: ClothingBackpackSatchelLeather
+    ears: ClothingHeadsetUSSP
+    pocket1: DrinkShotGlass
+
+- type: startingGear
+  id: USSPJobAltB
+  parent: USSPJobAltA
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAdidasWhite
+    shoes: ClothingShoesBootsWinter
+    outerClothing: ClothingOuterCoatGentle
+
+- type: startingGear
+  id: USSPJobAltC
+  parent: USSPJobAltA
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAdidasBlack
+    shoes: ClothingShoesBootsWinter
+
+- type: startingGear
+  id: USSPJobAltD
+  parent: USSPJobAltA
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAdidasWhite
+    outerClothing: ClothingOuterWinterCoat
+    head: ClothingHeadHatUshanka
+    
+- type: startingGear
+  id: USSPJobAltE
+  parent: USSPJobAltA
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAdidasBlack
+    outerClothing: ClothingOuterWinterCoat
+    head: ClothingHeadHatUshanka
+
+- type: startingGear
+  id: USSPJobAltF
+  parent: USSPJobAltA
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitUSSPBlack
+    outerClothing: ClothingOuterWinterCoat
+    shoes: ClothingShoesBootsWinter
+    head: ClothingHeadHatUshanka
+
+#USSP Sec
+- type: job
+  id: USSPOfficer
+  name: job-name-usspguard
+  description: job-description-usspguard
+  playTimeTracker: JobUSSPOfficer
+  setPreference: false
+  startingGear: USSPOfficer
+  icon: "JobIconUSSPOfficer"
+  supervisors: job-supervisors-usspcommand
+  canBeAntag: false
+  access:
+  - NuclearOperative
+  - SyndicateAgent
+  - Maintenance
+
+- type: startingGear
+  id: USSPOfficer
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitUSSPBlack
+    back: ClothingBackpackMilitarySatchel
+    shoes: ClothingShoesBootsCombatFilled
+    head: ClothingHeadHatCapUSSPBlack
+    mask: ClothingMaskGasMerc
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesCombat
+    neck: ClothingNeckUSSPPin
+    outerClothing: ClothingOuterCoatHOSOvercoatBlack
+    id: USSPOfficerPDA
+    ears: ClothingHeadsetUSSPSec
+    belt: ClothingBeltSecurityFilled
+    pocket1: WeaponLaserSvalinn
+  storage:
+    back:
+    - Gauze
+    - Truncheon
+    - DrinkFlaskOld
+    - ClothingPantsManCommie
+
+#USSP Officer Soldier
+- type: job
+  id: USSPOfficerAlt
+  name: job-name-usspofficer
+  description: job-description-usspsoldier
+  playTimeTracker: JobUSSPOfficeraAlt
+  setPreference: false
+  startingGear: USSPOfficerAlt
+  icon: "JobIconUSSPOfficerAlt"
+  supervisors: job-supervisors-usspcommand
+  canBeAntag: false
+  access:
+  - NuclearOperative
+  - SyndicateAgent
+  - Maintenance
+
+- type: startingGear
+  id: USSPOfficerAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMercenary
+    back: ClothingMilitaryBackpack
+    shoes: ClothingShoesBootsMagPirate
+    mask: ClothingMaskGasMerc
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsMercGlovesCombat
+    neck: ClothingNeckUSSPPin
+    outerClothing: ClothingOuterHeavyHardsuitUSSP
+    id: USSPOfficerSoldierPDA
+    ears: ClothingHeadsetAltUSSP
+    belt: ClothingBeltHolsterFilled
+    pocket1: SyndicateWhistle
+    pocket2: FlashlightSeclite
+  storage:
+    back:
+    - MedkitFilled
+    - GrenadeShrapnel
+    - SmokeGrenade
+    - Crowbar
+    - ClothingPantsManCommie
+
+#USSP Soldier
+- type: job
+  id: USSPSoldier
+  name: job-name-usspsoldier
+  description: job-description-usspsoldier
+  playTimeTracker: JobUSSPSoldier
+  setPreference: false
+  startingGear: USSPSoldier
+  icon: "JobIconUSSPSoldier"
+  supervisors: job-supervisors-usspcommand
+  canBeAntag: false
+  access:
+  - NuclearOperative
+  - SyndicateAgent
+
+- type: startingGear
+  id: USSPSoldier
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitMercenary
+    back: ClothingMilitaryBackpack
+    shoes: ClothingShoesBootsMagPirate
+    mask: ClothingMaskGasMerc
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsMercGlovesCombat
+    neck: ClothingNeckUSSPPin
+    outerClothing: ClothingOuterLightHardsuitUSSP
+    id: USSPSoldierPDA
+    ears: ClothingHeadsetUSSP
+    belt: ClothingBeltMercWebbing
+    pocket1: FlashlightSeclite
+    pocket2: Gauze
+  storage:
+    back:
+    - MedkitFilled
+    - GrenadeShrapnel
+    - SmokeGrenade
+    - Crowbar
+    - ClothingPantsManCommie
+
+#USSP Captain
+- type: job
+  id: USSPCaptain
+  name: job-name-usspcaptain
+  description: job-description-usspcaptain
+  playTimeTracker: JobUSSPCaptain
+  setPreference: false
+  startingGear: USSPCaptain
+  icon: "JobIconUSSPCaptain"
+  supervisors: job-supervisors-usspcommand
+  canBeAntag: false
+  accessGroups:
+  - AllAccess
+  access:
+  - NuclearOperative
+  - SyndicateAgent
+
+- type: startingGear
+  id: USSPCaptain
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitUSSPBlack
+    back: ClothingBackpackMilitarySatchel
+    shoes: ClothingShoesUSSPBlack
+    head: ClothingHeadHatCapHoS
+    eyes: ClothingEyesGlassesCommand
+    gloves: ClothingHandsGlovesLeatherHoS
+    neck: ClothingNeckCloakDarthHOSCloak
+    outerClothing: ClothingOuterHeavyHardsuitUSSP
+    id: USSPCaptainPDA
+    ears: ClothingHeadsetAltUSSP
+    belt: ClothingBeltHolster
+    pocket1: WeaponRevolverPython
+  storage:
+    back:
+    - DrinkVodkaBottleFull
+    - SpeedLoaderMagnum
+    - SpeedLoaderMagnum
+    - DrinkFlask
+    - CigPackSyndicate
+    - FlippoLighterSunriseContractor
+    - ClothingPantsManCommie

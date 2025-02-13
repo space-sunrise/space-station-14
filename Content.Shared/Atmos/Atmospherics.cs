@@ -145,6 +145,24 @@ namespace Content.Shared.Atmos
         /// </summary>
         public const float SpaceHeatCapacity = 7000f;
 
+        /// <summary>
+        ///     Dictionary of chemical abbreviations for <see cref="Gas"/>
+        /// </summary>
+        public static Dictionary<Gas, string> GasAbbreviations = new Dictionary<Gas, string>()
+        {
+            [Gas.Ammonia] = Loc.GetString("gas-ammonia-abbreviation"),
+            [Gas.CarbonDioxide] = Loc.GetString("gas-carbon-dioxide-abbreviation"),
+            [Gas.Frezon] = Loc.GetString("gas-frezon-abbreviation"),
+            [Gas.Nitrogen] = Loc.GetString("gas-nitrogen-abbreviation"),
+            [Gas.NitrousOxide] = Loc.GetString("gas-nitrous-oxide-abbreviation"),
+            [Gas.Oxygen] = Loc.GetString("gas-oxygen-abbreviation"),
+            [Gas.Plasma] = Loc.GetString("gas-plasma-abbreviation"),
+            [Gas.Tritium] = Loc.GetString("gas-tritium-abbreviation"),
+            [Gas.WaterVapor] = Loc.GetString("gas-water-vapor-abbreviation"),
+            [Gas.BZ] = Loc.GetString("gas-bz-abbreviation"), //SunRise edit
+            [Gas.Healium] = Loc.GetString("gas-healium-abbreviation"), //SunRise edit
+        };
+
         #region Excited Groups
 
         /// <summary>
@@ -172,7 +190,7 @@ namespace Content.Shared.Atmos
         /// <summary>
         ///     Total number of gases. Increase this if you want to add more!
         /// </summary>
-        public const int TotalNumberOfGases = 9;
+        public const int TotalNumberOfGases = 11; //SunRise edit
 
         /// <summary>
         ///     This is the actual length of the gases arrays in mixtures.
@@ -249,6 +267,25 @@ namespace Content.Shared.Atmos
         ///     Divisor for Ammonia Oxygen reaction so that it doesn't happen instantaneously.
         /// </summary>
         public const float AmmoniaOxygenReactionRate = 10f;
+
+        ///SunRise start
+
+        /// <summary>
+        ///     The amount of energy 1 mole of BZ forming from N2O and plasma releases.
+        /// </summary>
+        public const float BZFormationEnergy = 80e3f;
+
+        /// <summary>
+        ///     Some number taken from the air to keep BZ from instantly converting everything.
+        /// </summary>
+        public const float BZFormationRate = 5f;
+
+        /// <summary>
+        ///     The amount of energy 1 mol of Healium forming from BZ and frezon releases.
+        /// </summary>
+        public const float HealiumProductionEnergy = 10e3f;
+
+        ///SunRise end
 
         /// <summary>
         ///     Determines at what pressure the ultra-high pressure red icon is displayed.
@@ -336,6 +373,8 @@ namespace Content.Shared.Atmos
         WaterVapor = 5,
         Ammonia = 6,
         NitrousOxide = 7,
-        Frezon = 8
+        Frezon = 8,
+        BZ = 9, //SunRise edit
+        Healium = 10, //SunRise edit
     }
 }

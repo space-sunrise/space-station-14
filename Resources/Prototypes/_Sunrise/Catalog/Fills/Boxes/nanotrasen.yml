@@ -1,0 +1,198 @@
+﻿- type: entity
+  name: ERT death tracking implant box
+  parent: [BoxCardboard, BaseCentcommContraband]
+  id: BoxErtImplants
+  description: Six death tracking implants for the whole centcomm squad.
+  components:
+  - type: Sprite
+    layers:
+      - state: internals
+      - state: syringe
+  - type: Storage
+    grid:
+    - 0,0,5,3
+  - type: StorageFill
+    contents:
+      - id: TrackingImplanterERT
+        amount: 6
+
+- type: entity
+  name: GrenadeIncendiary box
+  parent: BoxCardboard
+  id: BoxGrenadeIncendiary
+  description: 'WARNING: These devices are extremely dangerous.'
+  components:
+  - type: StorageFill
+    contents:
+      - id: GrenadeIncendiary
+        amount: 4
+  - type: Sprite
+    layers:
+      - state: box_security
+      - state: incendiary
+
+- type: entity
+  name: GrenadeShrapnel box
+  parent: BoxCardboard
+  id: BoxGrenadeShrapnel
+  description: 'WARNING: These devices are extremely dangerous.'
+  components:
+  - type: StorageFill
+    contents:
+      - id: GrenadeShrapnel
+        amount: 4
+  - type: Sprite
+    layers:
+      - state: box_security
+      - state: shrapnel
+
+
+- type: entity
+  name: GrenadeStinger box
+  parent: BoxCardboard
+  id: BoxGrenadeStinger
+  description: 'WARNING: These devices are extremely dangerous.'
+  components:
+  - type: StorageFill
+    contents:
+      - id: GrenadeStinger
+        amount: 4
+  - type: Sprite
+    layers:
+      - state: box_security
+      - state: stinger
+
+- type: entity
+  name: MetalFoamGrenade box
+  parent: BoxCardboard
+  id: BoxMetalFoamGrenade
+  description: 'WARNING: These devices are extremely dangerous.'
+  components:
+  - type: StorageFill
+    contents:
+      - id: MetalFoamGrenade
+        amount: 4
+  - type: Sprite
+    layers:
+      - state: box_security
+      - state: flashbang
+
+- type: entity
+  name: TearGasGrenade box
+  parent: BoxCardboard
+  id: BoxTearGasGrenade
+  description: 'WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.'
+  components:
+  - type: StorageFill
+    contents:
+      - id: TearGasGrenade
+        amount: 4
+  - type: Sprite
+    layers:
+      - state: box_security
+      - state: flashbang
+
+- type: entity
+  name: SmokeGrenade box
+  parent: BoxCardboard
+  id: BoxSmokeGrenade
+  description: 'WARNING: These devices are extremely dangerous.'
+  components:
+  - type: StorageFill
+    contents:
+      - id: SmokeGrenade
+        amount: 4
+  - type: Sprite
+    layers:
+      - state: box_security
+      - state: flashbang
+
+- type: entity
+  name: ClusterBangFull box
+  parent: BoxCardboard
+  id: BoxClusterBangFull
+  description: 'WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.'
+  components:
+  - type: StorageFill
+    contents:
+      - id: ClusterBangFull
+        amount: 4
+  - type: Sprite
+    layers:
+      - state: box_security
+      - state: flashbang
+
+- type: entity
+  name: Mini-Syringe box
+  parent: BoxCardboard
+  id: BoxMiniSyringe
+  description: A box full of MiniSyringe.
+  components:
+  - type: Storage
+    grid:
+    - 0,0,2,2
+  - type: StorageFill
+    contents:
+      - id: MiniSyringe
+        amount: 9
+  - type: Sprite
+    layers:
+      - state: box
+      - state: syringe
+
+- type: entity
+  name: ERT Leader kit box
+  parent: [BoxCardboard, BaseCentcommContraband]
+  id: BoxErtLeaderKit
+  description: Base Leader Kit created for centcomm squad members.
+  components:
+  - type: Sprite
+    layers:
+      - state: internals
+      - state: id
+  - type: Storage
+    grid:
+    - 0,0,4,3
+  - type: StorageFill
+    contents:
+      - id: PortableSurveillanceCameraMonitorUnpowered
+      - id: HandheldCriminalRecordsMonitorUnpowered
+      - id: PinpointerUniversal
+      - id: PinpointerNuclear
+      - id: MedipenCombatInjector
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: FreedomImplant
+      - id: TrackingImplantErt
+      - id: FoodSnackMaysonEnergy
+      - id: FoodTinMRE
+      - id: DrinkMREFlask
+      - id: Implanter
+
+- type: entity
+  name: ERT base kit box
+  parent: [BoxCardboard, BaseCentcommContraband]
+  id: BoxErtBaseKit
+  description: Base Security Kit created for centcomm squad members.
+  components:
+  - type: Sprite
+    layers:
+      - state: internals
+      - state: id
+  - type: Storage
+    grid:
+    - 0,0,4,3
+  - type: StorageFill
+    contents:
+      - id: DoubleEmergencyOxygenTankFilled
+      - id: DrinkMREFlask
+      - id: FireExtinguisherMini
+      - id: MedipenCombatInjector
+      - id: HandHeldMassScanner
+      - id: WeaponFlareGun
+      - id: Implanter
+      - id: TrackingImplantErt
+      - id: FreedomImplant
+      - id: Telebaton
+      - id: ShellShotgunFlare
+      - id: FoodSnackMaysonEnergy
+      - id: FoodTinMRE

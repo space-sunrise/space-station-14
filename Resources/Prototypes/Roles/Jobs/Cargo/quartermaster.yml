@@ -19,7 +19,7 @@
   startingGear: QuartermasterGear
   icon: "JobIconQuarterMaster"
   supervisors: job-supervisors-captain
-  canBeAntag: false
+  canBeAntag: true # Sunrise-Edit
   radioBold: true # Sunrise-Edit
   displayWeight: 40  # Sunrise-Edit
   access:
@@ -32,8 +32,6 @@
   - Brig
   - Cryogenics
   special:
-  - !type:AddImplantSpecial
-    implants: [ MindShieldImplant ]
   - !type:AddComponentSpecial
     components:
       - type: CommandStaff
@@ -45,7 +43,7 @@
   equipment:
     id: QuartermasterPDA
     ears: ClothingHeadsetQM
-    belt: BoxFolderClipboard
+#    belt: BoxFolderClipboard # Sunrise-Edit
     pocket1: AppraisalTool
   storage:
     back:

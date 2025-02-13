@@ -10,6 +10,7 @@
   - Bra
   - Pants
   - Socks
+  - CommonPets
 
 - type: roleLoadout
   id: JobMagistrat
@@ -21,6 +22,7 @@
   - Bra
   - Pants
   - Socks
+  - CommonPets
 
 - type: roleLoadout
   id: JobBrigmedic
@@ -31,9 +33,11 @@
   - Trinkets
   - SecurityTrinkets
   - GroupSpeciesBreathTool
+  - SunriseSecurityGun
   - Bra
   - Pants
   - Socks
+  - CommonPets
 
 - type: roleLoadout
   id: JobCentCommOfficial
@@ -46,6 +50,7 @@
   - Bra
   - Pants
   - Socks
+  - CommonPets
 
 - type: roleLoadout
   id: JobCentCommOperator
@@ -58,6 +63,7 @@
   - Bra
   - Pants
   - Socks
+  - CommonPets
 
 - type: roleLoadout
   id: JobBlueShield
@@ -70,6 +76,7 @@
   - Bra
   - Pants
   - Socks
+  - CommonPets
 
 - type: roleLoadout
   id: JobSeniorOfficer
@@ -83,9 +90,11 @@
   - Trinkets
   - SecurityTrinkets
   - GroupSpeciesBreathTool
+  - SunriseSecurityGun
   - Bra
   - Pants
   - Socks
+  - CommonPets
 
 - type: roleLoadout
   id: JobSeniorResearcher
@@ -101,18 +110,23 @@
   - Bra
   - Pants
   - Socks
+  - CommonPets
 
 - type: roleLoadout
   id: JobSeniorPhysician
   groups:
+  - SeniorPhysicianHead
+  - SeniorPhysicianMask
   - SeniorPhysicianJumpsuit
+  - SeniorPhysicianGloves
   - MedicalBackpack
-  - MedicalGloves
-  - MedicalMask
+  - SeniorPhysicianOuterClothing
+  - SeniorPhysicianNeck
   - SeniorPhysicianBelt
-  - MedicalShoes
+  - SeniorPhysicianShoes
   - SurvivalMedical
   - Trinkets
+  - MedicalTrinkets
   - Glasses
   - GroupSpeciesBreathTool
   - Bra
@@ -120,18 +134,46 @@
   - Socks
 
 - type: roleLoadout
+  id: JobMedicalPathologist
+  groups:
+  - PathologistHead
+  - PathologistMask
+  - MedicalDoctorJumpsuit
+  - PathologistGloves
+  - MedicalBackpack
+  - PathologistOuterClothing
+  - PathologistNeck
+  - PathologistShoes
+  - GroupTankHarness
+  - Glasses
+  - SurvivalMedical
+  - Trinkets
+  - MedicalTrinkets
+  - GroupSpeciesBreathToolMedical
+  - Bra
+  - Pants
+  - Socks
+  - CommonPets
+
+- type: roleLoadout
   id: JobSeniorEngineer
   groups:
+  - SeniorEngineerHead
+  - SeniorEngineerMask
   - SeniorEngineerJumpsuit
-  - StationEngineerBackpack
-  - StationEngineerOuterClothing
-  - StationEngineerShoes
+  - SeniorEngineerGloves
+  - StationSeniorEngineerBackpack
+  - SeniorEngineerOuterClothing
+  - SeniorEngineerNeck
+  - SeniorEngineerShoes
   - SurvivalExtended
   - Trinkets
+  - TrinketsEngineering
   - GroupSpeciesBreathTool
   - Bra
   - Pants
   - Socks
+  - CommonPets
 
 - type: roleLoadout
   id: JobRoboticist
@@ -148,6 +190,7 @@
   - Bra
   - Pants
   - Socks
+  - CommonPets
 
 - type: roleLoadout
   id: JobPrisonEngineer
@@ -156,13 +199,14 @@
   - StationEngineerJumpsuit
   - StationEngineerBackpack
   - StationEngineerOuterClothing
-  - StationEngineerShoes
+  - TrinketsEngineering
   - Trinkets
   - SurvivalExtended
   - GroupSpeciesBreathTool
   - Bra
   - Pants
   - Socks
+  - CommonPets
 
 - type: roleLoadout
   id: JobPrisonPilot
@@ -177,6 +221,7 @@
   - Bra
   - Pants
   - Socks
+  - CommonPets
 
 - type: roleLoadout
   id: JobPrisonWorker
@@ -189,6 +234,7 @@
   - Bra
   - Pants
   - Socks
+  - CommonPets
 
 - type: roleLoadout
   id: JobPrisonGuard
@@ -204,6 +250,7 @@
   - Bra
   - Pants
   - Socks
+  - CommonPets
 
 - type: roleLoadout
   id: JobSecurityPilot
@@ -215,9 +262,11 @@
   - Trinkets
   - SecurityTrinkets
   - GroupSpeciesBreathTool
+  - SunriseSecurityGun
   - Bra
   - Pants
   - Socks
+  - CommonPets
 
 - type: roleLoadout
   id: JobPrisonChef
@@ -235,6 +284,7 @@
   - Bra
   - Pants
   - Socks
+  - CommonPets
 
 - type: roleLoadout
   id: JobPrisonDoctor
@@ -254,6 +304,7 @@
   - Bra
   - Pants
   - Socks
+  - CommonPets
 
 - type: roleLoadout
   id: JobHeadOfPrison
@@ -269,6 +320,7 @@
   - Bra
   - Pants
   - Socks
+  - CommonPets
 
 - type: roleLoadout
   id: JobNanoTrasenRepresentative
@@ -282,6 +334,7 @@
   - Bra
   - Pants
   - Socks
+  - CommonPets
 
 - type: roleLoadout
   id: JobBarber
@@ -294,6 +347,7 @@
   - Bra
   - Pants
   - Socks
+  - CommonPets
 
 - type: roleLoadout
   id: JobPlanetPrisoner
@@ -303,23 +357,7 @@
   - Bra
   - Pants
   - Socks
-
-- type: roleLoadout
-  id: JobMedicalPathologist
-  groups:
-  - MedicalMask
-  - MedicalDoctorJumpsuit
-  - MedicalGloves
-  - MedicalBackpack
-  - MedicalShoes
-  - GroupTankHarness
-  - Glasses
-  - SurvivalMedical
-  - Trinkets
-  - GroupSpeciesBreathToolMedical
-  - Bra
-  - Pants
-  - Socks
+  - CommonPets
 
 - type: roleLoadout
   id: JobAdjutant
@@ -334,3 +372,11 @@
   - Bra
   - Pants
   - Socks
+  - CommonPets
+
+- type: roleLoadout
+  id: RoleSurvivalAssaultOps
+  groups:
+  - SurvivalSyndicate
+  - GroupSpeciesBreathTool
+  - GroupPocketTankDouble

@@ -1,8 +1,8 @@
-using Content.Server.Atmos;
+using Content.Server.Sunrise.GasRegeneration;
 using Content.Shared.Atmos;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Server.Sunrise.GasRegeneration;
+namespace Content.Server._Sunrise.GasRegeneration;
 
 [RegisterComponent]
 [Access(typeof(GasRegenerationSystem))]

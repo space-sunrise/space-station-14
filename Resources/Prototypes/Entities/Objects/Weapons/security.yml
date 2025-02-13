@@ -36,7 +36,7 @@
         Blunt: 7
     bluntStaminaDamageFactor: 2.0
     angle: 60
-    animation: WeaponArcSlash
+    animation: WeaponArcThrust
   - type: StaminaDamageOnHit
     damage: 35
     sound: /Audio/Weapons/egloves.ogg
@@ -128,7 +128,7 @@
 
 - type: entity
   name: flash
-  parent: [BaseItem, BaseSecurityScienceCommandContraband]
+  parent: [BaseItem, BaseSecurityScienceCommandContraband, MachineComponentSounds] # Sunrise
   id: Flash
   description: An ultrabright flashbulb with a trigger, which causes the victim to be dazed and lose their eyesight for a moment. Useless when burnt out.
   components:

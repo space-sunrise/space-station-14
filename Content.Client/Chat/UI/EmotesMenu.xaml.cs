@@ -35,7 +35,7 @@ public sealed partial class EmotesMenu : RadialMenu
         foreach (var emote in emotes)
         {
             var player = _playerManager.LocalSession?.AttachedEntity;
-            if (emote.Category == EmoteCategory.Invalid ||
+            if (emote.Category == EmoteCategory.Invalid || emote.Category == EmoteCategory.Verb ||
                 emote.ChatTriggers.Count == 0 ||
                 !(player.HasValue && whitelistSystem.IsWhitelistPassOrNull(emote.Whitelist, player.Value)) ||
                 whitelistSystem.IsBlacklistPass(emote.Blacklist, player.Value))
@@ -50,7 +50,6 @@ public sealed partial class EmotesMenu : RadialMenu
 
             var button = new EmoteMenuButton
             {
-                StyleClasses = { "RadialMenuButton" },
                 SetSize = new Vector2(64f, 64f),
                 ToolTip = Loc.GetString(emote.Name),
                 ProtoId = emote.ID,
@@ -106,7 +105,7 @@ public sealed partial class EmotesMenu : RadialMenu
 }
 
 
-public sealed class EmoteMenuButton : RadialMenuTextureButton
+public sealed class EmoteMenuButton : RadialMenuTextureButtonWithSector
 {
     public ProtoId<EmotePrototype> ProtoId { get; set; }
 }

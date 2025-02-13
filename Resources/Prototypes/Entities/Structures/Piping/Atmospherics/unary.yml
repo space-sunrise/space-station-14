@@ -57,7 +57,7 @@
             Welded: { state: vent_welded }
             Lockout: { state: vent_lockout }
     - type: GasVentPump
-      underPressureLockoutThreshold: 20 # Sunrise-Edit
+      underPressureLockoutThreshold: 80
     - type: Construction
       graph: GasUnary
       node: ventpump
@@ -69,6 +69,21 @@
       sound:
         path: /Audio/Ambience/Objects/gas_vent.ogg
     - type: Weldable
+      time: 3 # Sunrise-edit
+    - type: AtmosMonitoringConsoleDevice
+      navMapBlip: GasVentOpening
+    - type: GuideHelp
+      guides:
+      - AirVent
+      - DeviceMonitoringAndControl
+      # Sunrise-start
+    - type: VentCrawTube
+      containerId: VentCrawTube
+    - type: VentCrawEntry
+    - type: ContainerContainer
+      containers:
+        VentCrawTube: !type:Container
+      # Sunrise-end
 
 - type: entity
   parent: GasUnaryBase
@@ -93,6 +108,19 @@
     - type: Construction
       graph: GasUnary
       node: passivevent
+    - type: AtmosMonitoringConsoleDevice
+      navMapBlip: GasVentOpening
+    - type: GuideHelp
+      guides:
+      - PassiveVent
+      # Sunrise-start
+    - type: VentCrawTube
+      containerId: VentCrawTube
+    - type: VentCrawEntry
+    - type: ContainerContainer
+      containers:
+        VentCrawTube: !type:Container
+          # Sunrise-end
 
 - type: entity
   parent: [GasUnaryBase, AirSensorBase]
@@ -142,6 +170,21 @@
       sound:
         path: /Audio/Ambience/Objects/gas_vent.ogg
     - type: Weldable
+      time: 3 # Sunrise-edit
+    - type: AtmosMonitoringConsoleDevice
+      navMapBlip: GasVentScrubber
+    - type: GuideHelp
+      guides:
+      - AirScrubber
+      - DeviceMonitoringAndControl
+      # Sunrise-start
+    - type: VentCrawTube
+      containerId: VentCrawTube
+    - type: VentCrawEntry
+    - type: ContainerContainer
+      containers:
+        VentCrawTube: !type:Container
+      # Sunrise-end
 
 - type: entity
   parent: GasUnaryBase
@@ -181,6 +224,21 @@
       visibleLayers:
       - enum.SubfloorLayers.FirstLayer
       - enum.LightLayers.Unshaded
+    - type: AtmosMonitoringConsoleDevice
+      navMapBlip: GasVentOpening
+    - type: GuideHelp
+      guides:
+      - AirInjector
+      # Sunrise-start
+    - type: VentCrawTube
+      containerId: VentCrawTube
+    - type: VentCrawJunction
+      degrees:
+        - 0
+    - type: ContainerContainer
+      containers:
+        VentCrawTube: !type:Container
+      # Sunrise-end
 
 - type: entity
   parent: [ BaseMachinePowered, ConstructibleMachine ]
@@ -225,6 +283,11 @@
       examinableAddress: true
     - type: WiredNetworkConnection
     - type: PowerSwitch
+    - type: AtmosMonitoringConsoleDevice
+      navMapBlip: Thermoregulator
+    - type: GuideHelp
+      guides:
+      - Thermomachines
 
 - type: entity
   parent: BaseGasThermoMachine
@@ -430,3 +493,8 @@
   - type: ExaminableSolution
     solution: tank
   - type: PowerSwitch
+  - type: AtmosMonitoringConsoleDevice
+    navMapBlip: Thermoregulator
+  - type: GuideHelp
+    guides:
+    - GasCondensing

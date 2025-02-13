@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "license": "",
+  "copyright": "",
+  "size": {
+    "x": 152,
+    "y": 252
+  },
+  "metaAtlas": false,
+  "states": [
+    {
+      "name": "icon"
+    }
+  ]
+}

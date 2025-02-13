@@ -16,3 +16,5 @@ recipe-SignalButtonDirectionalRecipe-name = направленная кнопк�
 recipe-SignalButtonDirectionalRecipe-description = Эта кнопка что-то активирует.
 recipe-MachineFrame-name = каркас машины
 recipe-MachineFrame-description = Строящаяся машина. Требуется больше деталей.
+recipe-firebot-name = пожарный бот
+recipe-firebot-description = Автоматизированный помощник для тушения пожаров.

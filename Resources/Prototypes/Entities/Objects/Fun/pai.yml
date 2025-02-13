@@ -40,12 +40,17 @@
     roleName: pai-system-role-name
     roleDescription: pai-system-role-description
     roleRules: ghost-role-information-familiar-rules
+    mindRoles:
+    - MindRoleGhostRoleFamiliar
     wipeVerbText: pai-system-wipe-device-verb-text
     wipeVerbPopup: pai-system-wiped-device
     stopSearchVerbText: pai-system-stop-searching-verb-text
     stopSearchVerbPopup: pai-system-stopped-searching
   - type: Examiner
   - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Common
   - type: ActiveRadio
     channels:
     - Common
@@ -106,6 +111,8 @@
     roleName: pai-system-role-name-syndicate
     roleDescription: pai-system-role-description-syndicate
     roleRules: ghost-role-information-familiar-rules
+    mindRoles:
+    - MindRoleGhostRoleFamiliar
   - type: IntrinsicRadioTransmitter
     channels:
     - Syndicate
@@ -127,6 +134,10 @@
     worldTargetActions:
     - Emag
     - HandheldHealthAnalyzerUnpowered
+  - type: Biocode
+    factions:
+    - Syndicate
+    - Thief
   # Sunrise-End
 
 - type: entity
@@ -146,6 +157,8 @@
     roleName: pai-system-role-name-potato
     roleDescription: pai-system-role-description-potato
     roleRules: ghost-role-information-familiar-rules
+    mindRoles:
+    - MindRoleGhostRoleFamiliar
   - type: Appearance
   - type: GenericVisualizer
     visuals:

@@ -30,6 +30,7 @@ rev-role-greeting =
     Избавьтесь от всего командного состава станции.
     Viva la revolución!
 rev-briefing = Помогите главам революции избавиться от командования станции, чтобы захватить её.
+rev-banned = You have been converted but are unable to play due to a ban for this role.
 
 ## General
 

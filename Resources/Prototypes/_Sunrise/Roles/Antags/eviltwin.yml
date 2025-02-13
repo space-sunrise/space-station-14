@@ -3,4 +3,5 @@
   name: roles-antag-evil-twin-name
   antagonist: true
   setPreference: false
+  playTimeTracker: AntagEvilTwin
   objective: roles-antag-evil-twin-objective

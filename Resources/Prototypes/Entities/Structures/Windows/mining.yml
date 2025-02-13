@@ -9,8 +9,7 @@
   - type: Icon
     sprite: Structures/Windows/mining.rsi
   - type: Repairable
-    fuelCost: 15
-    doAfterDelay: 3
+    doAfterDelay: 5 # Sunrise-Edit
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: RGlass
@@ -64,6 +63,9 @@
     drawdepth: WallTops
     sprite: Structures/Windows/mining_diagonal.rsi
     state: state0
+  - type: Tag
+    tags:
+    - Diagonal
   - type: IconSmooth
     mode: Diagonal
     key: walls

@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Text.Json.Nodes;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
@@ -48,26 +49,30 @@ namespace Content.Server.GameTicking
                     : _playerManager.PlayerCount;
                 // Sunrise-End
 
+                if (_cfg.GetCVar(CCVars.AdminsCountInReportedPlayerCount))
+                {
+                    players -= _adminManager.ActiveAdmins.Count();
+                }
+
                 jObject["name"] = _baseServer.ServerName;
                 jObject["map"] = _gameMapManager.GetSelectedMap()?.MapName;
                 jObject["round_id"] = _gameTicker.RoundId;
                 jObject["players"] = players; // Sunrise-Queue
                 jObject["soft_max_players"] = _cfg.GetCVar(CCVars.SoftMaxPlayers);
                 jObject["panic_bunker"] = _cfg.GetCVar(CCVars.PanicBunkerEnabled);
-                jObject["short_name"] = _cfg.GetCVar(SunriseCCVars.ServersHubShortName); // Sunrise-Edit
-
-                /*
-                 * TODO: Remove baby jail code once a more mature gateway process is established. This code is only being issued as a stopgap to help with potential tiding in the immediate future.
-                 */
-
-                jObject["baby_jail"] = _cfg.GetCVar(CCVars.BabyJailEnabled);
                 jObject["run_level"] = (int) _runLevel;
                 if (preset != null)
-                    jObject["preset"] = Loc.GetString(preset.ModeTitle);
+                {
+                    if (preset.Hide)
+                        jObject["preset"] = Loc.GetString("gamemode-title-hide");
+                    else
+                        jObject["preset"] = Loc.GetString(preset.ModeTitle);
+                }
                 if (_runLevel >= GameRunLevel.InRound)
                 {
                     jObject["round_start_time"] = _roundStartDateTime.ToString("o");
                 }
+                jObject["short_name"] = _cfg.GetCVar(SunriseCCVars.ServersHubShortName); // Sunrise-Edit
             }
         }
     }

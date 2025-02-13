@@ -49,6 +49,11 @@ public sealed partial class SubdermalImplantComponent : Component
     /// </summary>
     [DataField]
     public EntityWhitelist? Blacklist;
+
+    // Sunrise-Start
+    [DataField, AutoNetworkedField]
+    public bool DropContainerItemsIfGib;
+    // Sunrise-End
 }
 
 /// <summary>

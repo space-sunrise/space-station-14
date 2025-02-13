@@ -1,0 +1,164 @@
+
+- type: entity
+  parent: [BaseItem, StorePresetNTUplink, BaseCentcommContraband]
+  id: BaseUplinkNTERT
+  name: Bluespace ERT visionary
+  description: Ultra-innovative portable bluespace teleporter.
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/nt_uplink.rsi
+    layers:
+      - state: icon
+      - state: active
+        shader: unshaded
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    balance:
+      Bluecrystal: 0
+      Crystallite: 0
+    buySuccessSound:
+      path: /Audio/Effects/Arcade/newgame.ogg
+  - type: Tag
+    tags:
+    - NTUplink
+
+- type: entity
+  parent: BaseUplinkNTERT
+  id: BaseUplinkNTERT75BC
+  name: Bluespace ERT visionary
+  description: Ultra-innovative portable bluespace teleporter.
+  suffix: 75BC, 75C, Amber
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/nt_uplink.rsi
+    layers:
+      - state: icon
+      - state: active
+        shader: unshaded
+  - type: Store
+    balance:
+      Bluecrystal: 75
+      Crystallite: 75
+    buySuccessSound:
+      path: /Audio/Effects/Arcade/newgame.ogg
+  - type: Tag
+    tags:
+    - NTUplink
+
+- type: entity
+  parent: BaseUplinkNTERT
+  id: BaseUplinkNTERT100BC
+  name: Bluespace ERT visionary
+  description: Ultra-innovative portable bluespace teleporter.
+  suffix: 100BC, 100C, Red
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/nt_uplink.rsi
+    layers:
+      - state: icon
+      - state: active
+        shader: unshaded
+  - type: Store
+    balance:
+      Bluecrystal: 100
+      Crystallite: 100
+    buySuccessSound:
+      path: /Audio/Effects/Arcade/newgame.ogg
+  - type: Tag
+    tags:
+    - NTUplink
+
+- type: entity
+  parent: BaseUplinkNTERT
+  id: BaseUplinkNTERT200BC
+  name: Bluespace ERT visionary
+  description: Ultra-innovative portable bluespace teleporter.
+  suffix: 200BC, 200C, Gamma
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/nt_uplink.rsi
+    layers:
+      - state: icon
+      - state: active
+        shader: unshaded
+  - type: Store
+    balance:
+      Bluecrystal: 200
+      Crystallite: 200
+    buySuccessSound:
+      path: /Audio/Effects/Arcade/newgame.ogg
+  - type: Tag
+    tags:
+    - NTUplink
+
+- type: entity
+  parent: BaseUplinkNTERT
+  id: BaseUplinkNTERTBlueShield
+  name: Bluespace ERT visionary
+  description: Ultra-innovative portable bluespace teleporter.
+  suffix: 8BC, 10C, BlueShield
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/nt_uplink.rsi
+    layers:
+      - state: icon
+      - state: active
+        shader: unshaded
+  - type: Store
+    balance:
+      Bluecrystal: 10
+      Crystallite: 10
+    buySuccessSound:
+      path: /Audio/Effects/Arcade/newgame.ogg
+  - type: Tag
+    tags:
+    - NTUplink
+
+- type: entity
+  parent: BaseUplinkNTERT
+  id: BaseUplinkNTERTDebug
+  name: Bluespace ERT visionary
+  description: Ultra-innovative portable bluespace teleporter.
+  suffix:  999, Debug
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/nt_uplink.rsi
+    layers:
+      - state: icon
+      - state: active
+        shader: unshaded
+  - type: Store
+    balance:
+      Bluecrystal: 999
+      Crystallite: 999
+    buySuccessSound:
+      path: /Audio/Effects/Arcade/newgame.ogg
+  - type: Tag
+    tags:
+    - NTUplink
+
+#- type: entity
+#  parent: BaseUplinkRadio
+#  id: BaseUplinkNTCBURN
+#  name: Блюспейс Визионер РХБЗЗ
+#  description: Ultra-innovative portable bluespace teleporter.
+#  components:
+#    - type: Sprite
+#      sprite: _Sunrise/Objects/Devices/nt_uplink.rsi
+#      layers:
+#        - state: icon
+#        - state: active
+#          shader: unshaded
+#    - type: Store
+#      preset: StorePresetNT
+#      balance:
+#        Bluecrystal: 80
+#        Crystallite: 80
+#      buySuccessSound:
+#        path: /Audio/Effects/Arcade/newgame.ogg

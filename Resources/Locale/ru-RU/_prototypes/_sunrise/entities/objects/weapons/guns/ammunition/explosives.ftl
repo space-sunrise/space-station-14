@@ -1,6 +1,3 @@
-ent-CartridgeRocketNT = выстрел НТ-69
-    .desc = { ent-CartridgeRocket.desc }
-    .suffix = НТ
 ent-BaseArtilleryShell = базовый артиллерийский снаряд
     .desc = Базовый артиллерийский снаряд.
 ent-ShellFragArtillery = осколочный артиллерийский снаряд

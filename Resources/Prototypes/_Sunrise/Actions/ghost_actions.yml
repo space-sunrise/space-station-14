@@ -7,3 +7,17 @@
     priority: 2
     checkCanInteract: false
     event: !type:StopFollowActionEvent
+
+- type: entity
+  id: GhostChangeTheme
+  name: Change Ghost Theme
+  description: Allows you to change the skin of the ghost.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: InstantAction
+    checkCanInteract: false
+    icon:
+      sprite: _Sunrise/Mobs/Ghosts/gold_ghost_human.rsi
+      state: animated
+    itemIconStyle: NoItem
+    event: !type:GhostThemeActionEvent

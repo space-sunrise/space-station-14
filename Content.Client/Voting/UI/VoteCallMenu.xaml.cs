@@ -66,8 +66,22 @@ namespace Content.Client.Voting.UI
 
             Stylesheet = IoCManager.Resolve<IStylesheetManager>().SheetSpace;
             CloseButton.OnPressed += _ => Close();
-            VoteNotTrustedLabel.Text = Loc.GetString("ui-vote-trusted-users-notice", ("timeReq", _cfg.GetCVar(CCVars.VotekickEligibleVoterDeathtime)));
-
+            // Sunrise-Start
+            var deathTimeReq = _cfg.GetCVar(CCVars.VotekickEligibleVoterDeathtime);
+            if (_cfg.GetCVar(CCVars.VotekickInitiatorWhitelistedRequirement))
+            {
+                VoteNotTrustedLabel.Text = Loc.GetString("ui-vote-trusted-users-notice-whitelist", ("ghostTimeReq", deathTimeReq));
+            }
+            else if (_cfg.GetCVar(CCVars.VotekickInitiatorTimeRequirement))
+            {
+                var timeReq = _cfg.GetCVar(CCVars.VotekickEligibleVoterPlaytime);
+                VoteNotTrustedLabel.Text = Loc.GetString("ui-vote-trusted-users-notice-time-req", ("timeReq", timeReq), ("ghostTimeReq", deathTimeReq));
+            }
+            else
+            {
+                VoteNotTrustedLabel.Text = Loc.GetString("ui-vote-trusted-users-notice", ("ghostTimeReq", deathTimeReq));
+            }
+            // Sunrise-End
             foreach (StandardVoteType voteType in Enum.GetValues<StandardVoteType>())
             {
                 var option = AvailableVoteOptions[voteType];

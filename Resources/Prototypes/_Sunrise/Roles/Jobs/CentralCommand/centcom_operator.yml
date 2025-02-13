@@ -28,7 +28,7 @@
     eyes: ClothingEyesGlassesSunglasses
     gloves: ClothingHandsGlovesColorBlack
     outerClothing: ClothingOuterArmorBasic
-    id: CentcomPDA
+    id: CentcomOperatorPDA
     ears: ClothingHeadsetCentCom
     belt: WeaponPistolN1984
   storage:

@@ -25,6 +25,7 @@
     id: ParamedicPDA
     ears: ClothingHeadsetMedical
     belt: ClothingBeltMedicalEMTFilled
+    eyes: ClothingEyesHudMedical # Sunrise-Edit
   storage:
     back:
     - EmergencyRollerBedSpawnFolded

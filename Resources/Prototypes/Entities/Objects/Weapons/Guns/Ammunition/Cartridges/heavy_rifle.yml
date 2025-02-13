@@ -8,7 +8,7 @@
     tags:
       - Cartridge
       - CartridgeHeavyRifle
-  - type: CartridgeAmmo
+  - type: HitScanCartridgeAmmo
     proto: BulletHeavyRifle
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
@@ -25,6 +25,6 @@
   name: cartridge (.10 rifle)
   parent: BaseCartridgeHeavyRifle
   components:
-  - type: CartridgeAmmo
+  - type: HitScanCartridgeAmmo
     proto: BulletMinigun
     deleteOnSpawn: true

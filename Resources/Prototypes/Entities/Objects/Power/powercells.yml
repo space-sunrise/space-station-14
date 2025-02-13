@@ -1,7 +1,7 @@
 - type: entity
   id: BasePowerCell
   abstract: true
-  parent: BaseItem
+  parent: [BaseItem, MachineComponentSounds] # Sunrise
   components:
   - type: Item
     storedRotation: -90
@@ -34,7 +34,7 @@
   - type: PowerCellVisuals
   - type: Riggable
   - type: HitscanBatteryAmmoProvider
-    proto: RedLightLaser
+    proto: BulletRedLaser # Sunrise-Edit
     fireCost: 50
 
 - type: entity
@@ -279,7 +279,7 @@
     tags:
       - PowerCage
   - type: HitscanBatteryAmmoProvider
-    proto: RedShuttleLaser
+    proto: BulletRedShuttleLaser # Sunrise-Edit
     fireCost: 150
   - type: ClothingSpeedModifier
     walkModifier: 0.8
@@ -367,7 +367,7 @@
     sprite: Objects/Power/power_cages.rsi
     layers:
     - map: [ "enum.PowerCellVisualLayers.Base" ]
-      state: small
+      state: medium
     - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
       state: o2
       shader: unshaded
@@ -384,10 +384,48 @@
     sprite: Objects/Power/power_cages.rsi
     layers:
     - map: [ "enum.PowerCellVisualLayers.Base" ]
-      state: small
+      state: high
     - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
       state: o2
       shader: unshaded
       visible: false
   - type: Battery
     startingCharge: 0
+
+- type: entity
+  id: PowerCageSyndicate
+  parent: BasePowerCage
+  name: syndicate power cage
+  description: A rechargeable power cage for big devices. Increased capacity for increased power levels.
+  components:
+  - type: Sprite
+    sprite: Objects/Power/power_cages.rsi
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: syndicate
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 12400
+    startingCharge: 12400
+  - type: EmpImmune
+
+- type: entity
+  id: PowerCageERT
+  parent: BasePowerCage
+  name: NanoTrasen combat power cage
+  description: A rechargeable power cage for big devices. Increased capacity for increased power levels. Immune to EMP.
+  components:
+  - type: Sprite
+    sprite: Objects/Power/power_cages.rsi
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: nanotrasen
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 12400
+    startingCharge: 12400
+  - type: EmpImmune

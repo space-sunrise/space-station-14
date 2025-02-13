@@ -30,6 +30,7 @@
     delay: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.9
+  - type: FelinidContainer
 
 - type: entity
   parent: ClothingBackpack
@@ -184,7 +185,7 @@
 - type: entity
   parent: ClothingBackpack
   id: ClothingBackpackMerc
-  name: merc bag
+  name: mercenary bag
   description: A backpack that has been in many dangerous places, a reliable combat backpack.
   components:
     - type: Sprite

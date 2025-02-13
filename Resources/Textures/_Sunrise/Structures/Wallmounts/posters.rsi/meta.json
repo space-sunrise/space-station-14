@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CLA",
-  "copyright": "Made for SUNRISE    sunriseposter1_contraband made by discord: pressf6151.      sunriseposter1_legit made by discord: rinary.",
+  "copyright": "Made for SUNRISE  sunriseposter1_contraband made by discord: pressf6151. sunriseposter1_legit made by discord: rinary. sunriseposter2/3_legit made by discord: KaiserMaus ",
   "size": {
     "x": 32,
     "y": 32
@@ -12,6 +12,12 @@
     },
     {
       "name": "sunriseposter1_legit"
+    },
+    {
+      "name": "sunriseposter2_contraband"
+    },
+    {
+      "name": "sunriseposter3_contraband"
     }
   ]
 }

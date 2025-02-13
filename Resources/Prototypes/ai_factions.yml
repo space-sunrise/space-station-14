@@ -1,14 +1,4 @@
 - type: npcFaction
-  id: Dragon
-  hostile:
-    - NanoTrasen
-    - Syndicate
-    - Xeno
-    - PetsNT
-    - Zombie
-    - Revolutionary
-
-- type: npcFaction
   id: NanoTrasen
   hostile:
   - SimpleHostile
@@ -16,11 +6,19 @@
   - Xeno
   - Zombie
   - Revolutionary
+  - AllHostile
+  # Sunrise Edit
+  - Thief
+  - Carps
+  - Changeling
+  - Vampire
+  - Flesh
 
 - type: npcFaction
   id: Mouse
   hostile:
     - PetsNT
+    - AllHostile
 
 - type: npcFaction
   id: Passive
@@ -32,6 +30,10 @@
   - SimpleHostile
   - Zombie
   - Xeno
+  - AllHostile
+  # Sunrise Edit
+  - Carps
+  - Flesh
 
 - type: npcFaction
   id: SimpleHostile
@@ -42,6 +44,14 @@
   - PetsNT
   - Zombie
   - Revolutionary
+  - AllHostile
+  # Sunrise Edit
+  - Thief
+  - Carps
+  - Changeling
+  - Vampire
+  - FleshHuman
+  - Flesh
 
 - type: npcFaction
   id: SimpleNeutral
@@ -54,6 +64,14 @@
   - Xeno
   - PetsNT
   - Zombie
+  - AllHostile
+  # Sunrise Edit
+  - Thief
+  - Carps
+  - Changeling
+  - Vampire
+  - FleshHuman
+  - Flesh
 
 - type: npcFaction
   id: Xeno
@@ -64,6 +82,14 @@
   - PetsNT
   - Zombie
   - Revolutionary
+  - AllHostile
+  # Sunrise Edit
+  - Thief
+  - Carps
+  - Changeling
+  - Vampire
+  - FleshHuman
+  - Flesh
 
 - type: npcFaction
   id: Zombie
@@ -75,8 +101,14 @@
   - Passive
   - PetsNT
   - Revolutionary
+  - AllHostile
+  # Sunrise Edit
+  - Thief
+  - Carps
   - Changeling
   - Vampire
+  - FleshHuman
+  - Flesh
 
 - type: npcFaction
   id: Revolutionary
@@ -84,22 +116,31 @@
   - NanoTrasen
   - Zombie
   - SimpleHostile
-  - Dragon
+  - AllHostile
+  # Sunrise Edit
+  - Carps
+  - Changeling
+  - Vampire
+  - FleshHuman
+  - Flesh
 
 - type: npcFaction
-  id: Changeling
+  id: AllHostile
   hostile:
   - NanoTrasen
+  - Mouse
+  - Passive
+  - PetsNT
+  - SimpleHostile
+  - SimpleNeutral
   - Syndicate
-  - Zombie
-  - Revolutionary
-  
-- type: npcFaction
-  id: Vampire
-  hostile:
-  - NanoTrasen
-  - Syndicate
-  - Zombie
-  - Revolutionary
-  - Changeling
   - Xeno
+  - Zombie
+  - Revolutionary
+  # Sunrise Edit
+  - Thief
+  - Carps
+  - Changeling
+  - Vampire
+  - FleshHuman
+  - Flesh

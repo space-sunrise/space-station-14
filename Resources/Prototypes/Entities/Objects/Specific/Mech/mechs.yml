@@ -8,6 +8,10 @@
     equipmentWhitelist:
       tags:
       - CombatMech
+  - type: Speech
+    speechSounds: Borg
+  - type: TTS
+    voice: Crysis2AICostume
 
 - type: entity
   id: IndustrialMech
@@ -18,6 +22,10 @@
     equipmentWhitelist:
       tags:
       - IndustrialMech
+  - type: Speech
+    speechSounds: Borg
+  - type: TTS
+    voice: Glados
 
 - type: entity
   id: SpecialMech
@@ -28,6 +36,10 @@
     equipmentWhitelist:
       tags:
       - SpecialMech
+  - type: Speech
+    speechSounds: Borg
+  - type: TTS
+    voice: Sentrybot
 
 - type: entity
   id: SmallMech
@@ -38,6 +50,10 @@
     equipmentWhitelist:
       tags:
       - SmallMech
+  - type: Speech
+    speechSounds: Pai
+  - type: TTS
+    voice: NecoArcTwo
 
 - type: entity
   id: BaseMech
@@ -76,13 +92,14 @@
     joinSystem: true
   - type: DoAfter
   - type: Repairable
-    fuelCost: 20
-    doAfterDelay: 2
+    doAfterDelay: 3
     damage:
       types:
         Blunt: -15
         Slash: -15
         Piercing: -15
+        Caustic: -15
+        Structural: -15
   - type: UserInterface
     interfaces:
       enum.MechUiKey.Key:
@@ -179,6 +196,8 @@
     autoRot: true
     radius: 4
     netsync: false
+  - type: AccessReader
+  - type: DamageOverlay
 
 # Ripley MK-I
 - type: entity
@@ -202,10 +221,13 @@
     baseState: ripley
     openState: ripley-open
     brokenState: ripley-broken
-    mechToPilotDamageMultiplier: 0.70
+    mechToPilotDamageMultiplier: 0.50
     pilotWhitelist:
       components:
         - HumanoidAppearance
+    pilotBlacklist:
+      species:
+      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -213,8 +235,8 @@
       types:
         Blunt: 14 #intentionally shit so people realize that going into combat with the ripley is usually a bad idea.
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.25
-    baseSprintSpeed: 3.6
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 3.8
   - type: Reflect
     reflectProb: 0.15
     spread: 180
@@ -230,7 +252,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      250: Critical
+      400: Critical
     showOverlays: false
     allowRevives: true
 
@@ -242,7 +264,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageSmall
+      - PowerCageMedium
 
 # Ripley MK-II
 - type: entity
@@ -266,11 +288,14 @@
     baseState: ripleymkii
     openState: ripleymkii-open
     brokenState: ripleymkii-broken
-    mechToPilotDamageMultiplier: 0.4
+    mechToPilotDamageMultiplier: 0.30
     airtight: true
     pilotWhitelist:
       components:
         - HumanoidAppearance
+    pilotBlacklist:
+      species:
+      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -278,21 +303,26 @@
       types:
         Blunt: 20
   - type: MovementSpeedModifier
-    baseWalkSpeed: 1
-    baseSprintSpeed: 2
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 2.5
   - type: Damageable
     damageModifierSet: MediumArmorNT
   - type: Reflect
-    reflectProb: 0.25
+    reflectProb: 0.20
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - Ripley
   - type: MobThresholds
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      360: Critical
+      500: Critical
     showOverlays: false
     allowRevives: true
 
@@ -304,7 +334,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageSmall
+      - PowerCageMedium
 
 # Clarke
 - type: entity
@@ -333,6 +363,9 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+    pilotBlacklist:
+      species:
+      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -345,7 +378,7 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.25
+    reflectProb: 0.15
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -377,7 +410,101 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageSmall
+      - PowerCageMedium
+
+# Pirate Mech Yarrk
+- type: entity
+  id: MechBigYarrke
+  parent: [ BaseMech, IndustrialMech, CombatMech, BaseMajorContraband ]
+  name: Big Yarrke
+  description: A heavy ancient mech for cold harsh realities of deep space. It has built-in trusts and Mining Industrial Drill.
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    noRot: true
+    sprite: Objects/Specific/Mech/clarke.rsi
+    scale: 1.08, 1.08
+    layers:
+    - map: [ "enum.MechVisualLayers.Base" ]
+      state: bigbrother
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepCyborgLegs
+      params:
+        volume: 5
+  - type: Mech
+    baseState: bigbrother
+    openState: bigbrother-open
+    brokenState: bigbrother-broken
+    mechToPilotDamageMultiplier: 0.20
+    airtight: true
+    pilotWhitelist:
+      components:
+        - HumanoidAppearance
+    pilotBlacklist:
+      species:
+      - Felinid
+    equipmentWhitelist:
+      tags:
+      - IndustrialMech
+      - CombatMech
+  - type: Damageable
+    damageModifierSet: MediumArmorSyndi
+  - type: MeleeWeapon
+    hidden: true
+    autoAttack: true
+    attackRate: 3.5
+    damage:
+      types:
+        Structural: 60
+        Piercing: 4
+        Slash: 5
+        Blunt: 10
+    soundHit:
+      path: "/Audio/Items/drill_use.ogg"
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 2.75
+  - type: CanMoveInAir
+  - type: MovementAlwaysTouching
+  - type: Reflect
+    reflectProb: 0.20
+    spread: 180
+    soundOnReflect: /Audio/Weapons/block_metal1.ogg
+    reflects:
+    - NonEnergy
+  - type: MobThresholds
+    currentThresholdState : Alive
+    thresholds:
+      0: Alive
+      500: Critical
+    showOverlays: false
+    allowRevives: true
+  - type: PointLight
+    enabled: false
+    mask: /Textures/Effects/LightMasks/soft_cone.png
+    autoRot: true
+    color: "#FFFF00"
+    radius: 6
+    netsync: false
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - Clarke
+    - Pickaxe
+  - type: AccessReader
+    access: [["NuclearOperative"]]
+
+- type: entity
+  id: MechBigYarrkeBattery
+  parent: MechBigYarrke
+  suffix: Battery
+  components:
+  - type: ContainerFill
+    containers:
+      mech-battery-slot:
+      - PowerCageHigh
 
 # H.O.N.K.
 - type: entity
@@ -408,6 +535,9 @@
     pilotWhitelist:
       components:
       - HumanoidAppearance
+    pilotBlacklist:
+      species:
+      - Felinid
   - type: Reflect
     reflectProb: 0.15
     spread: 180
@@ -418,7 +548,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      250: Critical
+      350: Critical
     showOverlays: false
     allowRevives: true
 
@@ -430,7 +560,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageSmall
+      - PowerCageMedium
 
 - type: entity
   parent: MechHonkerBattery
@@ -471,6 +601,8 @@
     pilotWhitelist:
       tags:
       - Hamster
+      species:
+      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 0.8
@@ -494,7 +626,7 @@
       150: Critical
     showOverlays: false
     allowRevives: true
-    
+
 - type: entity
   parent: MechHamtr
   id: MechHamtrBattery
@@ -548,6 +680,8 @@
     pilotWhitelist:
       tags:
       - VimPilot
+      species:
+      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 0.8
@@ -574,6 +708,12 @@
       150: Critical
     showOverlays: false
     allowRevives: true
+  # Sunrise-Start
+  - type: Speech
+    speechSounds: Pai
+  - type: TTS
+    voice: NecoArcTwo
+  # Sunrise-End
   # TOOD: buzz / chime actions
   # TODO: builtin flashlight
 
@@ -611,23 +751,26 @@
     baseState: gygax
     openState: gygax-open
     brokenState: gygax-broken
-    mechToPilotDamageMultiplier: 0.3
+    mechToPilotDamageMultiplier: 0.25
     airtight: true
     pilotWhitelist:
       components:
         - HumanoidAppearance
+    pilotBlacklist:
+      species:
+      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
     damage:
       types:
-        Blunt: 25
-        Structural: 180
+        Blunt: 30
+        Structural: 190
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
-    baseSprintSpeed: 2.6
+    baseSprintSpeed: 3
   - type: Reflect
-    reflectProb: 0.25
+    reflectProb: 0.20
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -636,7 +779,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      400: Critical
+      540: Critical
     showOverlays: false
     allowRevives: true
   - type: Tag
@@ -677,17 +820,20 @@
     baseState: durand
     openState: durand-open
     brokenState: durand-broken
-    mechToPilotDamageMultiplier: 0.25
+    mechToPilotDamageMultiplier: 0.20
     airtight: true
     pilotWhitelist:
       components:
         - HumanoidAppearance
+    pilotBlacklist:
+      species:
+      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
     damage:
       types:
-        Blunt: 40
+        Blunt: 50
         Structural: 250
   - type: MovementSpeedModifier
     baseWalkSpeed: 1.5
@@ -697,7 +843,7 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.30
+    reflectProb: 0.25
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -706,7 +852,7 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      600: Critical
+      750: Critical
     showOverlays: false
     allowRevives: true
   - type: Tag
@@ -724,7 +870,7 @@
     containers:
       mech-battery-slot:
       - PowerCageHigh
-      
+
 # Phazon
 
 - type: entity
@@ -748,19 +894,22 @@
     baseState: phazon
     openState: phazon-open
     brokenState: phazon-broken
-    mechToPilotDamageMultiplier: 0.4
+    mechToPilotDamageMultiplier: 0.50
     maxEquipmentAmount: 6
     airtight: true
     pilotWhitelist:
       components:
         - HumanoidAppearance
+    pilotBlacklist:
+      species:
+      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
     damage:
       types:
         Blunt: 20
-        Structural: 130
+        Structural: 80
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.2
     baseSprintSpeed: 4
@@ -824,31 +973,43 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+    pilotBlacklist:
+      species:
+      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
     damage:
       types:
-        Blunt: 30
-        Structural: 200
+        Blunt: 35
+        Structural: 250
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.4
+    baseWalkSpeed: 2
     baseSprintSpeed: 3
   - type: Reflect
-    reflectProb: 0.30
+    reflectProb: 0.20
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
   - type: Damageable
     damageModifierSet: MediumArmorNT
+  - type: CanMoveInAir
+  - type: MovementAlwaysTouching
   - type: MobThresholds
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      450: Critical
+      550: Critical
     showOverlays: false
     allowRevives: true
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - Gygax
+  - type: AccessReader
+    access: [["CentralCommand"]]
 
 - type: entity
   id: MechNTGygaxBattery
@@ -858,8 +1019,8 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageHigh
-      
+      - PowerCageERT
+
 - type: entity
   id: MechNTGygaxFilled
   parent: MechNTGygaxBattery
@@ -868,9 +1029,9 @@
   - type: Mech
     startingEquipment:
       - WeaponMechChainSword
+      - WeaponMechCombatShotgun
       - WeaponMechCombatPulseRifle
-      - WeaponMechCombatXray
-      - WeaponMechCombatMissileRack6
+      - WeaponMechCombatMissileRack8
 
 # Marauder
 - type: entity
@@ -900,13 +1061,16 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+    pilotBlacklist:
+      species:
+      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
     damage:
       types:
-        Blunt: 40
-        Structural: 250
+        Blunt: 55
+        Structural: 370
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
     baseSprintSpeed: 1.5
@@ -915,7 +1079,7 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.35
+    reflectProb: 0.25
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -924,9 +1088,11 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      700: Critical
+      800: Critical
     showOverlays: false
     allowRevives: true
+  - type: AccessReader
+    access: [["CentralCommand"]]
 
 - type: entity
   id: MechMarauderBattery
@@ -936,7 +1102,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageHigh
+      - PowerCageERT
 
 - type: entity
   id: MechMarauderFilled
@@ -945,9 +1111,9 @@
   components:
   - type: Mech
     startingEquipment:
-      - WeaponMechChainSword
+      - WeaponMechCombatMG
       - WeaponMechCombatPulseRifle
-      - WeaponMechCombatUltraRifle
+      - WeaponMechCombatHeavyRifle
       - WeaponMechCombatMissileRack8
 
 # Seraph
@@ -978,22 +1144,25 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+    pilotBlacklist:
+      species:
+      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
     damage:
       types:
         Blunt: 60
-        Structural: 460
+        Structural: 400
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.2
-    baseSprintSpeed: 3.7
+    baseWalkSpeed: 1
+    baseSprintSpeed: 1.5
   - type: Damageable
     damageModifierSet: HeavyArmorNT
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.4
+    reflectProb: 0.25
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -1005,6 +1174,8 @@
       800: Critical
     showOverlays: false
     allowRevives: true
+  - type: AccessReader
+    access: [["CentralCommand"]]
 
 - type: entity
   id: MechSeraphBattery
@@ -1014,7 +1185,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageHigh
+      - PowerCageERT
 
 - type: entity
   id: MechSeraphFilled
@@ -1025,9 +1196,9 @@
     startingEquipment:
       - WeaponMechChainSword
       - WeaponMechCombatPulseRifle
-      - WeaponMechCombatShotgun
+      - WeaponMechCombatVindictor
       - WeaponMechCombatMissileRack6
-      - WeaponMechCombatUltraRifle
+      - WeaponMechCombatDuster
 
 # Syndicate Combat Mech
 
@@ -1059,22 +1230,25 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+    pilotBlacklist:
+      species:
+      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
     damage:
       types:
         Blunt: 35
-        Structural: 250
+        Structural: 280
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.2
-    baseSprintSpeed: 3.7
+    baseWalkSpeed: 2
+    baseSprintSpeed: 3
   - type: Damageable
     damageModifierSet: MediumArmorSyndi
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.30
+    reflectProb: 0.25
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -1083,9 +1257,16 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      500: Critical
+      550: Critical
     showOverlays: false
     allowRevives: true
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - Gygax
+  - type: AccessReader
+    access: [["NuclearOperative"]]
 
 - type: entity
   id: MechGygaxSyndieBattery
@@ -1095,7 +1276,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageHigh
+      - PowerCageSyndicate
 
 - type: entity
   id: MechGygaxSyndieFilled
@@ -1104,9 +1285,8 @@
   components:
   - type: Mech
     startingEquipment:
-      - WeaponMechChainSword
       - WeaponMechCombatMissileRack8
-      
+
 # Rover
 - type: entity
   id: MechRoverSyndie
@@ -1135,22 +1315,25 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+    pilotBlacklist:
+      species:
+      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
     damage:
       types:
-        Blunt: 40
-        Structural: 380
+        Blunt: 50
+        Structural: 360
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 3
+    baseWalkSpeed: 1.5
+    baseSprintSpeed: 2
   - type: Damageable
     damageModifierSet: MediumArmorSyndi
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.30
+    reflectProb: 0.25
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
@@ -1159,9 +1342,11 @@
     currentThresholdState : Alive
     thresholds:
       0: Alive
-      650: Critical
+      750: Critical
     showOverlays: false
     allowRevives: true
+  - type: AccessReader
+    access: [["NuclearOperative"]]
 
 - type: entity
   id: MechRoverSyndieBattery
@@ -1171,7 +1356,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageHigh
+      - PowerCageSyndicate
 
 - type: entity
   id: MechRoverSyndieFilled
@@ -1180,7 +1365,6 @@
   components:
   - type: Mech
     startingEquipment:
-      - WeaponMechChainSword
       - WeaponMechCombatMissileRack8
 
 # Mauler
@@ -1211,13 +1395,16 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+    pilotBlacklist:
+      species:
+      - Felinid
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
     damage:
       types:
-        Blunt: 50
-        Structural: 450
+        Blunt: 60
+        Structural: 390
   - type: MovementSpeedModifier
     baseWalkSpeed: 1
     baseSprintSpeed: 1.5
@@ -1226,11 +1413,16 @@
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.40
+    reflectProb: 0.25
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:
     - NonEnergy
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - Mauler
   - type: MobThresholds
     currentThresholdState : Alive
     thresholds:
@@ -1238,6 +1430,8 @@
       800: Critical
     showOverlays: false
     allowRevives: true
+  - type: AccessReader
+    access: [["NuclearOperative"]]
 
 - type: entity
   id: MechMaulerSyndieBattery
@@ -1247,7 +1441,7 @@
   - type: ContainerFill
     containers:
       mech-battery-slot:
-      - PowerCageHigh
+      - PowerCageSyndicate
 
 - type: entity
   id: MechMaulerSyndieFilled
@@ -1256,5 +1450,4 @@
   components:
   - type: Mech
     startingEquipment:
-      - WeaponMechChainSword
       - WeaponMechCombatMissileRack6

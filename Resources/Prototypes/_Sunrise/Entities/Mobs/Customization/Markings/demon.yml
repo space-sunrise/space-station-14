@@ -1,5 +1,5 @@
 - type: marking
-  id: DemomTail1
+  id: DemonTail1
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Demon]
@@ -8,7 +8,7 @@
     state: demon_tail
 
 - type: marking
-  id: DemomTailLong
+  id: DemonTailLong
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Demon]
@@ -17,7 +17,7 @@
     state: long
 
 - type: marking
-  id: DemomTailUp
+  id: DemonTailUp
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Demon]

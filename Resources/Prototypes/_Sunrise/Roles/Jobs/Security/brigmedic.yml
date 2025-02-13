@@ -36,3 +36,6 @@
     id: BrigmedicPDA
     ears: ClothingHeadsetBrigmedic
     belt: ClothingBeltMedicalFilled
+  storage:
+    back:
+    - Flash

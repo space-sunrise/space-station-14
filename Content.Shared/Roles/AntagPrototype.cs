@@ -1,6 +1,7 @@
 using Content.Shared.Guidebook;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Roles;
 
@@ -20,6 +21,12 @@ public sealed partial class AntagPrototype : IPrototype
     /// </summary>
     [DataField("name")]
     public string Name { get; private set; } = "";
+
+    /// <summary>
+    ///     The playtime that will be tracked while this antag.
+    /// </summary>
+    [DataField("playTimeTracker", required: true)]
+    public string PlayTimeTracker { get; private set; } = string.Empty;
 
     /// <summary>
     ///     The antag's objective, shown in a tooltip in the antag preference menu or as a ghost role description.
@@ -53,4 +60,7 @@ public sealed partial class AntagPrototype : IPrototype
     /// </summary>
     [DataField]
     public List<ProtoId<GuideEntryPrototype>>? Guides;
+
+    [DataField]
+    public SpriteSpecifier PreviewIcon = new SpriteSpecifier.Rsi(new ResPath("/Textures/_Sunrise/Interface/Misc/antag_preview.rsi"), "test");
 }

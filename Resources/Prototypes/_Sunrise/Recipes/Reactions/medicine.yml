@@ -9,10 +9,8 @@
       amount: 5
     Razorium:
       amount: 3
-    Iodine:
-      amount: 4
   products:
-    Desoantizyne: 0.7
+    Desoantizyne: 1.5
 
 - type: reaction
   id: H-32
@@ -42,3 +40,23 @@
       amount: 10
   products:
     Celliminol: 5
+
+- type: reaction
+  id: Dylomet
+  reactants:
+    Dylovene:
+      amount: 1
+    Desoxyephedrine:
+      amount: 1
+  products:
+    Dylomet: 1
+
+- type: reaction
+  id: Darvinium
+  reactants:
+    Blood:
+      amount: 1
+    UnstableMutagen:
+      amount: 1
+  products:
+    Darvinium: 2

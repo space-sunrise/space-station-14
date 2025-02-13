@@ -58,19 +58,34 @@ namespace Content.Client.Actions
             var worldActionQuery = EntityQueryEnumerator<WorldTargetActionComponent>();
             while (worldActionQuery.MoveNext(out var uid, out var action))
             {
-                UpdateAction(uid, action);
+                if (IsCooldownActive(action) || !ShouldResetChargesWithTimer(action)) // Sunrise-Edit
+                    continue;
+
+                // Sunrise-Start
+                Dirty(uid, action);
+                // Sunrise-End
             }
 
             var instantActionQuery = EntityQueryEnumerator<InstantActionComponent>();
             while (instantActionQuery.MoveNext(out var uid, out var action))
             {
-                UpdateAction(uid, action);
+                if (IsCooldownActive(action) || !ShouldResetChargesWithTimer(action)) // Sunrise-Edit
+                    continue;
+
+                // Sunrise-Start
+                Dirty(uid, action);
+                // Sunrise-End
             }
 
             var entityActionQuery = EntityQueryEnumerator<EntityTargetActionComponent>();
             while (entityActionQuery.MoveNext(out var uid, out var action))
             {
-                UpdateAction(uid, action);
+                if (IsCooldownActive(action) || !ShouldResetChargesWithTimer(action)) // Sunrise-Edit
+                    continue;
+
+                // Sunrise-Start
+                Dirty(uid, action);
+                // Sunrise-End
             }
         }
 
@@ -130,6 +145,8 @@ namespace Content.Client.Actions
             component.Charges = state.Charges;
             component.MaxCharges = state.MaxCharges;
             component.RenewCharges = state.RenewCharges;
+            component.RenewChargeDelay = state.RenewChargeDelay; // Sunrise-Edit
+            component.LastChargeRenewTime = state.LastChargeRenewTime; // Sunrise-Edit
             component.Container = EnsureEntity<T>(state.Container, uid);
             component.EntityIcon = EnsureEntity<T>(state.EntityIcon, uid);
             component.CheckCanInteract = state.CheckCanInteract;
@@ -138,6 +155,7 @@ namespace Content.Client.Actions
             component.Priority = state.Priority;
             component.AttachedEntity = EnsureEntity<T>(state.AttachedEntity, uid);
             component.RaiseOnUser = state.RaiseOnUser;
+            component.RaiseOnAction = state.RaiseOnAction;
             component.AutoPopulate = state.AutoPopulate;
             component.Temporary = state.Temporary;
             component.ItemIconStyle = state.ItemIconStyle;
@@ -259,13 +277,13 @@ namespace Content.Client.Actions
 
         public void LinkAllActions(ActionsComponent? actions = null)
         {
-             if (_playerManager.LocalEntity is not { } user ||
-                 !Resolve(user, ref actions, false))
-             {
-                 return;
-             }
+            if (_playerManager.LocalEntity is not { } user ||
+                !Resolve(user, ref actions, false))
+            {
+                return;
+            }
 
-             LinkActions?.Invoke(actions);
+            LinkActions?.Invoke(actions);
         }
 
         public override void Shutdown()

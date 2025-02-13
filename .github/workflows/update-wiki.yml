@@ -9,7 +9,7 @@ on:
       - 'Content.Shared/Chemistry/**.cs'
       - 'Content.Server/Chemistry/**.cs'
       - 'Content.Server/GuideGenerator/**.cs'
-      - 'Content.Server/Corvax/GuideGenerator/**.cs'
+      - 'Content.Server/_Sunrise/GuideGenerator/**.cs'
       - 'Resources/Prototypes/Reagents/**.yml'
       - 'Resources/Prototypes/Chemistry/**.yml'
       - 'Resources/Prototypes/Recipes/Reactions/**.yml'
@@ -18,10 +18,8 @@ on:
 jobs:
   update-wiki:
     name: Build and Publish JSON blobs to wiki
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
-    env:
-      DOTNET_INSTALL_DIR: "./.dotnet"
     steps:
     - name: Checkout Master
       uses: actions/checkout@v3.6.0
@@ -41,7 +39,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v3.2.0
       with:
-        dotnet-version: 8.0.x
+        dotnet-version: 9.0.x
 
     - name: Install Dependencies
       run: dotnet restore

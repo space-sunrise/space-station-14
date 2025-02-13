@@ -736,7 +736,13 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
             if (res.Count != 0)
             {
-                resSet.Add(res[0].HitEntity);
+                // If there's exact distance overlap, we simply have to deal with all overlapping objects to avoid selecting randomly.
+                var resChecked = res.Where(x => x.Distance.Equals(res[0].Distance));
+                foreach (var r in resChecked)
+                {
+                    if (Interaction.InRangeUnobstructed(ignore, r.HitEntity, range + 0.1f, overlapCheck: false))
+                        resSet.Add(r.HitEntity);
+                }
             }
         }
 
@@ -759,7 +765,10 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
     public static string? GetHighestDamageSound(DamageSpecifier modifiedDamage, IPrototypeManager protoManager)
     {
-        var groups = modifiedDamage.GetDamagePerGroup(protoManager);
+        // Sunrise edit start
+        // Сука, какие группы
+        var groups = modifiedDamage.DamageDict;
+        // Sunrise edit end
 
         // Use group if it's exclusive, otherwise fall back to type.
         if (groups.Count == 1)

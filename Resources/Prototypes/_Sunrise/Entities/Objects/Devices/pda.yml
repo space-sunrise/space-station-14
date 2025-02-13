@@ -6,7 +6,11 @@
   components:
     - type: Pda
       id: IAAIDCard
-      state: pda-lawyer
+    - type: Appearance
+      appearanceDataInit:
+        enum.PdaVisuals.PdaType:
+          !type:String
+          pda-lawyer
     - type: PdaBorderColor
       borderColor: "#6f6192"
     - type: Icon
@@ -19,13 +23,17 @@
   components:
   - type: Pda
     id: MagistratIDCard
-    state: pda-captain
     penSlot:
-      startingItem: Pen
+      startingItem: UEGPen
       priority: -1
       whitelist:
         tags:
         - Write
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-captain
   - type: PdaBorderColor
     borderColor: "#7C5D00"
   - type: Icon
@@ -38,46 +46,40 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/pda.rsi
-    layers:
-    - map: [ "enum.PdaVisualLayers.Base" ]
-    - state: "light_overlay"
-      map: [ "enum.PdaVisualLayers.Flashlight" ]
-      shader: "unshaded"
-      visible: false
-    - state: "id_overlay"
-      map: [ "enum.PdaVisualLayers.IdLight" ]
-      shader: "unshaded"
-      visible: false
   - type: Pda
     id: BlueShieldIDCard
-    state: pda-blueshield
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-blueshield
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-blueshield
 
 - type: entity
-  parent: BasePDA
+  parent: BaseMedicalPDA
   id: PathologistPDA
   name: Pathologist PDA
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/pda.rsi
-    layers:
-    - map: [ "enum.PdaVisualLayers.Base" ]
-    - state: "light_overlay"
-      map: [ "enum.PdaVisualLayers.Flashlight" ]
-      shader: "unshaded"
-      visible: false
-    - state: "id_overlay"
-      map: [ "enum.PdaVisualLayers.IdLight" ]
-      shader: "unshaded"
-      visible: false
   - type: Pda
     id: PathologistIDCard
-    state: pda-patologoanatom
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-patologoanatom
+  - type: PdaBorderColor
+    borderColor: "#717059"
+    accentVColor: "#447987"
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-patologoanatom
+  - type: GuideHelp
+    guides:
+    - Medical Doctor
 
 - type: entity
   parent: BasePDA
@@ -89,7 +91,11 @@
     sprite: _Sunrise/Objects/Devices/pda.rsi
   - type: Pda
     id: PrisonerIDCard
-    state: pda-space-prison-prisoner
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-prisoner
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-space-prison-prisoner
@@ -104,7 +110,11 @@
     sprite: _Sunrise/Objects/Devices/pda.rsi
   - type: Pda
     id: GuardIDCard
-    state: pda-space-prison-guardian
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-guardian
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-space-prison-guardian
@@ -116,7 +126,6 @@
   components:
   - type: Pda
     id: PrisonEngineeringIDCard
-    state: pda-engineer
   - type: PdaBorderColor
     borderColor: "#949137"
     accentVColor: "#A32D26"
@@ -133,7 +142,11 @@
     sprite: _Sunrise/Objects/Devices/pda.rsi
   - type: Pda
     id: PrisonPilotIDCard
-    state: pda-space-prison-pilot
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-pilot
   - type: PdaBorderColor
     borderColor: "#A32D26"
     accentVColor: "#DFDFDF"
@@ -151,7 +164,11 @@
     sprite: _Sunrise/Objects/Devices/pda.rsi
   - type: Pda
     id: HeadOfPrisonIDCard
-    state: pda-space-prison-boss
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-space-prison-boss
   - type: PdaBorderColor
     borderColor: "#A32D26"
     accentHColor: "#447987"
@@ -167,7 +184,11 @@
   components:
   - type: Pda
     id: RoboticistIDCard
-    state: pda-roboticist
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-roboticist
   - type: PdaBorderColor
     borderColor: "#d7d7d0"
     accentVColor: "#8900c9"
@@ -187,7 +208,11 @@
   components:
   - type: Pda
     id: SecurityPilotIDCard
-    state: pda-seniorofficer
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-seniorofficer
   - type: PdaBorderColor
     borderColor: "#A32D26"
     accentVColor: "#DFDFDF"
@@ -201,13 +226,17 @@
   components:
   - type: Pda
     id: NanoTrasenRepresentativeIDCard
-    state: pda-captain
     penSlot:
       startingItem: Pen
       priority: -1
       whitelist:
         tags:
         - Write
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-captain
   - type: PdaBorderColor
     borderColor: "#7C5D00"
   - type: Icon
@@ -220,7 +249,11 @@
   components:
   - type: Pda
     id: BarberIDCard
-    state: pda-bartender
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-bartender
   - type: Icon
     state: pda-bartender
 
@@ -232,22 +265,128 @@
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Devices/pda.rsi
-    layers:
-    - map: [ "enum.PdaVisualLayers.Base" ]
-    - state: "light_overlay"
-      map: [ "enum.PdaVisualLayers.Flashlight" ]
-      shader: "unshaded"
-      visible: false
-    - state: "id_overlay"
-      map: [ "enum.PdaVisualLayers.IdLight" ]
-      shader: "unshaded"
-      visible: false
   - type: Pda
     id: AdjutantIDCard
-    state: pda-adj
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-adj
   - type: PdaBorderColor
     borderColor: "#1b2426"
     accentVColor: "#62584a"
   - type: Icon
     sprite: _Sunrise/Objects/Devices/pda.rsi
     state: pda-adj
+
+- type: entity
+  parent: SyndiPDA
+  id: USSPPDA
+  name: USSP PDA
+  description: Since you live in a Soviet country, your dreams should be Soviet as well.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+  - type: Pda
+    id: USSPIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-ussp
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - NotekeeperCartridge
+
+- type: entity
+  parent: USSPPDA
+  id: USSPOfficerPDA
+  name: USSP PDA
+  description: Since you live in a Soviet country, your dreams should be Soviet as well.
+  suffix: Militia
+  components:
+  - type: Pda
+    id: USSPOfficerIDCard
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - NotekeeperCartridge
+      - LogProbeCartridge
+
+- type: entity
+  parent: USSPPDA
+  id: USSPSoldierPDA
+  name: Millitary USSP PDA
+  description: Since you live in a Soviet country, your dreams should be Soviet as well.
+  suffix: Combat
+  components:
+  - type: Pda
+    id: USSPSoldierIDCard
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - NotekeeperCartridge
+      - AstroNavCartridge
+      - MedTekCartridge
+
+- type: entity
+  parent: USSPPDA
+  id: USSPOfficerSoldierPDA
+  name: Millitary USSP PDA
+  description: Since you live in a Soviet country, your dreams should be Soviet as well.
+  suffix: Combat
+  components:
+  - type: Pda
+    id: USSPSoldierOfficerIDCard
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - NotekeeperCartridge
+      - AstroNavCartridge
+      - MedTekCartridge
+
+- type: entity
+  parent: USSPPDA
+  id: USSPCaptainPDA
+  name: Officer USSP PDA
+  description: Since you live in a Soviet country, your dreams should be Soviet as well.
+  suffix: Officer
+  components:
+  - type: Pda
+    id: USSPCaptainIDCard
+  - type: CartridgeLoader
+    uiKey: enum.PdaUiKey.Key
+    preinstalled:
+      - NotekeeperCartridge
+      - LogProbeCartridge
+      - AstroNavCartridge
+      - MedTekCartridge
+
+- type: entity
+  parent: BasePDA
+  id: NtrGuardPDA
+  name: NTR Guard's PDA
+  description: NTR Guard's PDA
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+  - type: Pda
+    id: NtrGuardIDCard
+  - type: Appearance
+    appearanceDataInit:
+      enum.PdaVisuals.PdaType:
+        !type:String
+        pda-isn-operator
+  - type: Icon
+    sprite: _Sunrise/Objects/Devices/pda.rsi
+    state: pda-isn-operator
+
+- type: entity
+  parent: NtrGuardPDA
+  id: NtrLeadGuardPDA
+  name: NTR Guard's PDA
+  description: NTR Guard's PDA
+  components:
+  - type: Pda
+    id: NtrLeadGuardIDCard

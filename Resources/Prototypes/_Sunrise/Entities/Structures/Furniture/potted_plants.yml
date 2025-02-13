@@ -77,3 +77,13 @@
   - type: Sprite
     sprite: _Sunrise/Structures/Furniture/potted_plants.rsi
     state: plant-9
+
+- type: entity
+  id: PottedPlantAlt10
+  parent: PottedPlantBase
+  name: plastic christmas tree
+  description: A great addition to the new year at the workplace!
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Structures/Furniture/potted_plants.rsi
+    state: plant-10

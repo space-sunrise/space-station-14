@@ -48,6 +48,47 @@
             type: AtmosAlertsComputerBoundUserInterface
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
+  - type: GuideHelp
+    guides:
+    - AtmosphericAlertsComputer
+    - DeviceMonitoringAndControl
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerAtmosMonitoring
+  name: atmospheric network monitor
+  description: Used to monitor the station's atmospheric networks.
+  components:
+  - type: Computer
+    board: AtmosMonitoringComputerCircuitboard
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: tank
+    - map: ["computerLayerKeys"]
+      state: atmos_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: AtmosMonitoringConsole
+    navMapTileColor: "#1a1a1a"
+    navMapWallColor: "#404040"
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.AtmosMonitoringConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.AtmosMonitoringConsoleUiKey.Key:
+        type: AtmosMonitoringConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: GuideHelp
+    guides:
+    - AtmosphericNetworkMonitor
+    - DeviceMonitoringAndControl
 
 - type: entity
   parent: BaseComputer
@@ -71,8 +112,6 @@
     radius: 1.5
     energy: 1.6
     color: "#43ccb5"
-  - type: Rotatable
-    rotateWhileAnchored: true
 
 - type: entity
   parent: BaseComputer
@@ -97,8 +136,6 @@
     radius: 1.5
     energy: 1.6
     color: "#43ccb5"
-  - type: Rotatable
-    rotateWhileAnchored: true
   - type: ItemSlots
     slots:
       disk_slot:
@@ -115,6 +152,9 @@
       board: !type:Container
         ents: []
       disk_slot: !type:ContainerSlot {}
+  - type: GuideHelp
+    guides:
+    - ShuttleCraft
 
 - type: entity
   parent: BaseComputerShuttle
@@ -577,13 +617,99 @@
     color: "#3c5eb5"
   - type: Tag
     tags:
-    - EmagImmune
+    - AccessBreakerImmune
   - type: ItemSlots
   - type: ContainerContainer
     containers:
       board: !type:Container
       IdCardConsole-privilegedId: !type:ContainerSlot
       IdCardConsole-targetId: !type:ContainerSlot
+
+- type: entity #sunrise-Start
+  parent: ComputerId
+  id: ComputerIdUSSP
+  name: USSP ID card computer
+  description: Terminal for programming Nanotrasen employee ID cards to access parts of the station.
+  components:
+  - type: IdCardConsole
+    privilegedIdSlot:
+      name: id-card-console-privileged-id
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+      ejectOnBreak: true
+      swap: false
+      whitelist:
+        components:
+        - IdCard
+    targetIdSlot:
+      name: id-card-console-target-id
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+      ejectOnBreak: true
+      swap: false
+      whitelist:
+        components:
+        - IdCard
+    accessLevels:
+      - Armory
+      - Atmospherics
+      - Bar
+      - Brig
+      - Captain
+      - Cargo
+      - Chapel
+      - Chemistry
+      - Command
+      - Engineering
+      - External
+      - HeadOfSecurity
+      - Hydroponics
+      - Janitor
+      - Kitchen
+      - Lawyer
+      - Maintenance
+      - Medical
+      - Research
+      - Salvage
+      - Security
+      - Service
+      - Theatre
+      - NuclearOperative
+      - SyndicateAgent
+  - type: ActivatableUI
+    key: enum.IdCardConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.IdCardConsoleUiKey.Key:
+        type: IdCardConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: id
+      color: red
+    - map: ["computerLayerKeys"]
+      state: id_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#3c5eb5"
+  - type: Tag
+    tags:
+    - EmagImmune
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+      IdCardConsole-privilegedId: !type:ContainerSlot
+      IdCardConsole-targetId: !type:ContainerSlot #sunrise-End
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -677,6 +803,39 @@
     color: "#f71713"
 
 - type: entity
+  parent: ComputerComms
+  id: WizardComputerComms
+  name: wizard communications computer
+  description: A computer capable of magically projecting your speech to the station. Using this to make an announcement will alert the station to your presence.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: comm_wizard
+    - map: ["computerLayerKeys"]
+      state: wizard_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: AccessReader
+    access: [[ "Wizard" ]]
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-wizard
+    color: "#ff00ff"
+    canShuttle: false
+    global: true #announce to everyone they're about to fuck shit up
+    sound: /Audio/Announcements/war.ogg
+  - type: Computer
+    board: WizardCommsComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#F317F3"
+
+- type: entity
   parent: BaseComputerAiAccess
   id: ComputerSolarControl
   name: solar control computer
@@ -709,6 +868,10 @@
     radius: 1.5
     energy: 1.6
     color: "#e6e227"
+  - type: GuideHelp
+    guides:
+    - SolarPanels
+    - Power
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -875,58 +1038,58 @@
     - CargoBounties
     - Cargo
 
-- type: entity
-  parent: BaseComputerAiAccess
-  id: ComputerCloningConsole
-  name: cloning console computer
-  description: The centerpiece of the cloning system, medicine's greatest accomplishment. It has lots of ports and wires.
-  components:
-  - type: CloningConsole
-  - type: DeviceList
-  - type: DeviceNetwork
-    deviceNetId: Wired
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: dna
-    - map: ["computerLayerKeys"]
-      state: generic_keys
-    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-      state: generic_panel_open
-  - type: ApcPowerReceiver
-    powerLoad: 3100 #We want this to fail first so I transferred most of the scanner and pod's power here. (3500 in total)
-  - type: Computer
-    board: CloningConsoleComputerCircuitboard
-  - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#1f8c28"
-  - type: DeviceLinkSource
-    range: 4
-    ports:
-      - MedicalScannerSender
-      - CloningPodSender
-  - type: ActivatableUI
-    key: enum.CloningConsoleUiKey.Key
-  - type: UserInterface
-    interfaces:
-        enum.CloningConsoleUiKey.Key:
-          type: CloningConsoleBoundUserInterface
-        enum.WiresUiKey.Key:
-          type: WiresBoundUserInterface
-  - type: Speech
-    speechVerb: Robotic
-    speechSounds: Pai
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
-  - type: GuideHelp
-    guides:
-    - Cloning
+#- type: entity
+#  parent: BaseComputerAiAccess
+#  id: ComputerCloningConsole
+#  name: cloning console computer
+#  description: The centerpiece of the cloning system, medicine's greatest accomplishment. It has lots of ports and wires.
+#  components:
+#  - type: CloningConsole
+#  - type: DeviceList
+#  - type: DeviceNetwork
+#    deviceNetId: Wired
+#  - type: Sprite
+#    layers:
+#    - map: ["computerLayerBody"]
+#      state: computer
+#    - map: ["computerLayerKeyboard"]
+#      state: generic_keyboard
+#    - map: ["computerLayerScreen"]
+#      state: dna
+#    - map: ["computerLayerKeys"]
+#      state: generic_keys
+#    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+#      state: generic_panel_open
+#  - type: ApcPowerReceiver
+#    powerLoad: 3100 #We want this to fail first so I transferred most of the scanner and pod's power here. (3500 in total)
+#  - type: Computer
+#    board: CloningConsoleComputerCircuitboard
+#  - type: PointLight
+#    radius: 1.5
+#    energy: 1.6
+#    color: "#1f8c28"
+#  - type: DeviceLinkSource
+#    range: 4
+#    ports:
+#      - MedicalScannerSender
+#      - CloningPodSender
+#  - type: ActivatableUI
+#    key: enum.CloningConsoleUiKey.Key
+#  - type: UserInterface
+#    interfaces:
+#        enum.CloningConsoleUiKey.Key:
+#          type: CloningConsoleBoundUserInterface
+#        enum.WiresUiKey.Key:
+#          type: WiresBoundUserInterface
+#  - type: Speech
+#    speechVerb: Robotic
+#    speechSounds: Pai
+#  - type: Damageable
+#    damageContainer: StructuralInorganic
+#    damageModifierSet: StructuralMetallicStrong
+#  - type: GuideHelp
+#    guides:
+#    - Cloning
 
 - type: entity
   id: ComputerSalvageExpedition

@@ -121,6 +121,7 @@
       Nuke: !type:ContainerSlot
   - type: Construction
     node: nuke
+  - type: FTLSmashImmune
 
 - type: entity
   parent: NuclearBomb

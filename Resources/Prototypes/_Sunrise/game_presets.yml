@@ -24,6 +24,7 @@
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
+  - LiteSubGamemodesRule
   - BasicRoundstartVariation
 
 - type: gamePreset

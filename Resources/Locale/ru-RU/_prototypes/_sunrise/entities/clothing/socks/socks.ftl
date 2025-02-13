@@ -72,3 +72,5 @@ ent-ClothingThighTrans = чулки до бедра с трансфлагом
     .desc = { ent-ClothingSocksBaseButcherable.desc }
 ent-ClothingThighUk = чулки до бедра с изображением британского флага
     .desc = { ent-ClothingSocksBaseButcherable.desc }
+ent-ClothingThighChristmas = рождественские чулки до бедра
+    .desc = { ent-ClothingSocksBaseButcherable.desc }

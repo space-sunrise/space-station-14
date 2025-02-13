@@ -1,0 +1,103 @@
+﻿- type: entity
+  id: RemoteShuttleControllerBase
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Entities/Objects/Devices/remote_controller.rsi
+  - type: Item
+    size: Normal
+  - type: ApcPowerReceiver
+    needsPower: false
+    powerLoad: 0
+  - type: ShuttleConsole
+    portable: true
+  - type: DroneConsole
+    portable: true
+  - type: RadarConsole
+    maxRange: 256
+  - type: ActivatableUI
+    key: enum.ShuttleConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.ShuttleConsoleUiKey.Key:
+        type: ShuttleConsoleBoundUserInterface
+
+- type: entity
+  id: RemoteAssaultOpsShuttleController
+  parent: RemoteShuttleControllerBase
+  name: Remote Shuttle Controller (Diversionary Unit)
+  description: Now you don't need a pilot, because the pilot is you!
+  components:
+  - type: Sprite
+    state: syndicate
+  - type: DroneConsole
+    components:
+    - type: AssaultOpsShuttle
+
+- type: entity
+  id: RemoteNukeOpShuttleController
+  parent: RemoteShuttleControllerBase
+  name: Remote Shuttle Control Controller (Nuclear Operatives)
+  description: Now you don't need a pilot, because the pilot is you!
+  components:
+  - type: Sprite
+    state: syndicate
+  - type: DroneConsole
+    components:
+    - type: NukeOpsShuttle
+
+- type: entity
+  id: RemoteSecurityShuttleController
+  parent: RemoteShuttleControllerBase
+  name: Remote Shuttle Management Controller (Security Shuttle)
+  description: Now you don't need a pilot, because the pilot is you!
+  components:
+  - type: Sprite
+    state: nanotrasen
+  - type: DroneConsole
+    components:
+    - type: SecurityShuttle
+
+- type: entity
+  id: RemoteCargoShuttleController
+  parent: RemoteShuttleControllerBase
+  name: Remote Shuttle Management Controller (Shuttle Cargo)
+  description: Now you don't need a pilot, because the pilot is you!
+  components:
+  - type: Sprite
+    state: nanotrasen
+  - type: DroneConsole
+    components:
+    - type: CargoShuttle
+
+- type: entity
+  id: RemotePrisonShuttleController
+  parent: RemoteShuttleControllerBase
+  name: Remote Shuttle Controller (Prison Shuttle)
+  description: Now you don't need a pilot, because the pilot is you!
+  components:
+  - type: Sprite
+    state: nanotrasen
+  - type: DroneConsole
+    components:
+    - type: PrisonShuttle
+
+- type: entity
+  parent: [DoorRemoteDefault, BaseCommandContraband]
+  id: DoorRemoteOmni
+  name: Omni door remote
+  suffix: Centcomm
+  components:
+  - type: Sprite
+    layers:
+    - state: door_remotebase
+    - state: door_remotelightscolour
+      color: "#2eba22"
+    - state: door_remotescreencolour
+      color: "#22871a"
+  - type: Access
+    groups:
+    - AllAccess
+    tags:
+    - CentralCommand

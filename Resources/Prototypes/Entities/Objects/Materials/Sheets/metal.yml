@@ -31,6 +31,9 @@
     solutions:
       steel:
         canReact: false
+  - type: GuideHelp
+    guides:
+    - ExpandingRepairingStation
 
 - type: entity
   parent: SheetMetalBase
@@ -70,6 +73,10 @@
           Quantity: 9
         - ReagentId: Carbon
           Quantity: 1
+        # Sunrise-start
+        - ReagentId: Lead
+          Quantity: 1
+        # Sunrise-end
 
 - type: entity
   parent: SheetSteel

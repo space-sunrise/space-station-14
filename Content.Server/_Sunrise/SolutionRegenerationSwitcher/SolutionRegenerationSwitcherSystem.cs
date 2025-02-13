@@ -22,6 +22,7 @@ namespace Content.Server._Sunrise.SolutionRegenerationSwitcher
             _sawmill = Logger.GetSawmill("chemistry");
 
             SubscribeLocalEvent<SolutionRegenerationSwitcherComponent, GetVerbsEvent<Verb>>(AddSwitchVerb);
+            SubscribeLocalEvent<SolutionRegenerationSwitcherComponent, GetVerbsEvent<AlternativeVerb>>(AddAlternateSwitchVerb);
         }
 
         private void AddSwitchVerb(EntityUid uid, SolutionRegenerationSwitcherComponent component, GetVerbsEvent<Verb> args)
@@ -29,20 +30,23 @@ namespace Content.Server._Sunrise.SolutionRegenerationSwitcher
             if (!args.CanInteract || !args.CanAccess)
                 return;
 
-            foreach (var componentOption in component.Options)
+            for (var i = 0; i < component.Options.Count; i++)
             {
+                var componentOption = component.Options[i];
                 if (!_prototypeManager.TryIndex(componentOption.Reagent.Prototype, out ReagentPrototype? proto))
                 {
-                    _sawmill.Error($"Can't get get reagent prototype {componentOption.Reagent.Prototype} for {ToPrettyString(uid)}");
+                    _sawmill.Error($"Can't get reagent prototype {componentOption.Reagent.Prototype} for {ToPrettyString(uid)}");
                     return;
                 }
 
+                var index = i;
                 Verb reagent = new()
                 {
                     Text = proto.LocalizedName,
                     Category = VerbCategory.ReagentSwitch,
                     Act = () =>
                     {
+                        component.CurrentIndex = index;
                         SwitchReagent(uid, componentOption, component, args.User);
                     },
                     Priority = 2,
@@ -50,6 +54,33 @@ namespace Content.Server._Sunrise.SolutionRegenerationSwitcher
                 };
                 args.Verbs.Add(reagent);
             }
+        }
+
+        private void AddAlternateSwitchVerb(EntityUid uid, SolutionRegenerationSwitcherComponent component, GetVerbsEvent<AlternativeVerb> args)
+        {
+            if (!args.CanInteract || !args.CanAccess)
+                return;
+
+            if (component.Options.Count <= 1)
+                return;
+
+            AlternativeVerb verb = new()
+            {
+                Act = () =>
+                {
+                    SwitchToNextReagent(uid, component, args.User);
+                },
+                Text = Loc.GetString("solution-regeneration-switcher-switch-reagent-alt"),
+                Priority = 2
+            };
+            args.Verbs.Add(verb);
+        }
+
+        private void SwitchToNextReagent(EntityUid uid, SolutionRegenerationSwitcherComponent component, EntityUid user)
+        {
+            component.CurrentIndex = (component.CurrentIndex + 1) % component.Options.Count;
+            var nextReagent = component.Options[component.CurrentIndex];
+            SwitchReagent(uid, nextReagent, component, user);
         }
 
         private void SwitchReagent(EntityUid uid, ReagentQuantity reagent, SolutionRegenerationSwitcherComponent component, EntityUid user)

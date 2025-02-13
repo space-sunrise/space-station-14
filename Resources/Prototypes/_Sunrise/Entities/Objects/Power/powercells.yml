@@ -1,0 +1,37 @@
+- type: entity
+  name: syndicate power cell
+  description: A rechargeable standardized power cell. This one looks like a rare and powerful Syndicate combat variant.
+  id: PowerCellSyndicate
+  suffix: Full
+  parent: BasePowerCell
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: syndicate
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 1800
+    startingCharge: 1800
+  - type: EmpImmune
+
+- type: entity
+  name: ERT power cell
+  description: A rechargeable standardized power cell. This one looks like a rare and powerful NanoTrasen combat variant.
+  id: PowerCellNanoTrasen
+  suffix: Full
+  parent: BasePowerCell
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.PowerCellVisualLayers.Base" ]
+      state: nanotrasen
+    - map: [ "enum.PowerCellVisualLayers.Unshaded" ]
+      state: o2
+      shader: unshaded
+  - type: Battery
+    maxCharge: 1800
+    startingCharge: 1800
+  - type: EmpImmune

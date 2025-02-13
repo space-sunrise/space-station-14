@@ -33,6 +33,9 @@
             "directions": 4
         },
         {
+            "name": "pda"
+        },
+        {
             "name": "pda-adj"
         },
         {
@@ -51,7 +54,13 @@
             "name": "pda-space-prison-pilot"
         },
         {
+            "name": "pda-isn-operator"
+        },
+        {
             "name": "pda-space-prison-prisoner"
+        },
+        {
+            "name": "pda-ussp"
         }
     ]
 }

@@ -18,7 +18,7 @@ public sealed class NightVisionDeviceVisualsSystem : EntitySystem
         if (TryComp<SpriteComponent>(uid, out var sprite))
         {
             if (sprite.LayerMapTryGet(NVDVisuals.Light, out var layer))
-                sprite.LayerSetVisible(layer, !component.Activated);
+                sprite.LayerSetVisible(layer, component.Activated);
         }
     }
 }

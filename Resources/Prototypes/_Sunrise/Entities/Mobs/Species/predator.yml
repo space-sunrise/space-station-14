@@ -54,8 +54,12 @@
   - type: Body
     prototype: Predator
   - type: FootprintEmitter
+  - type: Carriable
 
 - type: entity
   parent: BaseSpeciesDummy
   id: MobPredatorDummy
   categories: [ HideSpawnMenu ]
+  components:
+  - type: HumanoidAppearance
+    species: Predator

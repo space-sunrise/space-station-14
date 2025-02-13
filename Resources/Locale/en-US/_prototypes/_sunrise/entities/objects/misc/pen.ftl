@@ -8,3 +8,5 @@ ent-QmPen = pen-Qm-name
     .desc = pen-Qm-description
 ent-RdPen = pen-Rd-name
     .desc = pen-Rd-description
+ent-UEGPen = pen-UEG-name
+    .desc = pen-UEG-description

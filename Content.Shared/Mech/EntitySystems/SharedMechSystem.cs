@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Shared.Access.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Actions;
+using Content.Shared.Chat;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
 using Content.Shared.Mobs;
@@ -82,17 +83,17 @@ public abstract class SharedMechSystem : EntitySystem
         args.Handled = true;
         TryEject(uid, component);
     }
-    
+
     private void OnToggleLightsEvent(EntityUid uid, MechComponent component, MechToggleLightsEvent args)
     {
         if (args.Handled)
             return;
 
         ToggleLights(uid, component);
-        
+
         args.Handled = true;
     }
-    
+
     private void RelayInteractionEvent(EntityUid uid, MechComponent component, UserActivateInWorldEvent args)
     {
         var pilot = component.PilotSlot.ContainedEntity;
@@ -172,7 +173,7 @@ public abstract class SharedMechSystem : EntitySystem
 
         _actions.RemoveProvidedActions(pilot, mech);
     }
-    
+
     public void ToggleLights(EntityUid uid, MechComponent component)
     {
         if (_pointLight.TryGetLight(uid, out var pointLightComponent))
@@ -180,10 +181,8 @@ public abstract class SharedMechSystem : EntitySystem
             component.Lights = !component.Lights;
             _pointLight.SetEnabled(uid, component.Lights, pointLightComponent);
             _actions.SetToggled(component.MechLightsActionEntity, component.Lights);
-            if(component.Lights)
-                _audioSystem.PlayPredicted(component.EnableLightSound, component.Owner, component.PilotSlot.ContainedEntity);
-            else
-                _audioSystem.PlayPredicted(component.DisableLightSound, component.Owner, component.PilotSlot.ContainedEntity);
+            var ev = new MechSayEvent(uid, component.Lights ? component.MessageEnableLight : component.MessageDisableLight);
+            RaiseLocalEvent(uid, ref ev, true);
             Dirty(uid ,component);
         }
     }
@@ -240,6 +239,9 @@ public abstract class SharedMechSystem : EntitySystem
         if (_net.IsServer)
             _popup.PopupEntity(popupString, uid);
 
+        var sayEv = new MechSayEvent(uid, component.MessageCycleEquipment);
+        RaiseLocalEvent(uid, ref sayEv, true);
+
         Dirty(uid, component);
     }
 
@@ -270,6 +272,8 @@ public abstract class SharedMechSystem : EntitySystem
         var ev = new MechEquipmentInsertedEvent(uid);
         RaiseLocalEvent(toInsert, ref ev);
         UpdateUserInterface(uid, component);
+        var sayEv = new MechSayEvent(uid, component.MessageInsertEquipment);
+        RaiseLocalEvent(uid, ref sayEv, true);
     }
 
     /// <summary>
@@ -306,6 +310,8 @@ public abstract class SharedMechSystem : EntitySystem
         equipmentComponent.EquipmentOwner = null;
         _container.Remove(toRemove, component.EquipmentContainer);
         UpdateUserInterface(uid, component);
+        var sayEv = new MechSayEvent(uid, component.MessageRemoveEquipment);
+        RaiseLocalEvent(uid, ref sayEv, true);
     }
 
     /// <summary>
@@ -410,7 +416,8 @@ public abstract class SharedMechSystem : EntitySystem
             return false;
 
         SetupUser(uid, toInsert.Value);
-        _audioSystem.PlayPredicted(component.HelloSound, component.Owner, toInsert.Value);
+        var ev = new MechSayEvent(uid, component.MessageHello);
+        RaiseLocalEvent(uid, ref ev, true);
         _container.Insert(toInsert.Value, component.PilotSlot);
         UpdateAppearance(uid, component);
         return true;
@@ -434,12 +441,14 @@ public abstract class SharedMechSystem : EntitySystem
         {
             RemComp<NoRotateOnMoveComponent>(uid);
         }
-            
+
         var pilot = component.PilotSlot.ContainedEntity.Value;
 
         RemoveUser(uid, pilot);
         _container.RemoveEntity(uid, pilot);
         UpdateAppearance(uid, component);
+        var sayEv = new MechSayEvent(uid, component.MessageGoodbye);
+        RaiseLocalEvent(uid, ref sayEv, true);
         return true;
     }
 
@@ -475,7 +484,7 @@ public abstract class SharedMechSystem : EntitySystem
 
         _appearance.SetData(uid, MechVisuals.Open, IsEmpty(component), appearance);
         _appearance.SetData(uid, MechVisuals.Broken, component.Broken, appearance);
-        
+
         var ev = new UpdateAppearanceEvent();
         RaiseLocalEvent(uid, ev);
     }

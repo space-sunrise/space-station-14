@@ -13,10 +13,9 @@ namespace Content.Shared.Preferences
         /// </summary>
         StayInLobby = 0,
 
-        // Sunrise_edit
         /// <summary>
         ///     Spawn as overflow role if preference unavailable.
         /// </summary>
-        // SpawnAsOverflow,
+        SpawnAsOverflow,
     }
 }

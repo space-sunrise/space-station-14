@@ -25,11 +25,10 @@
 - type: startingGear
   id: SeniorPhysicianGear
   equipment:
-    head: ClothingHeadHatBeretSeniorPhysician
     id: SeniorPhysicianPDA
     ears: ClothingHeadsetMedical
     eyes: ClothingEyesUniversalMedicalHud
-    outerClothing: ClothingOuterCoatLabSeniorPhysician
   storage:
     back:
-    - OmnizineChemistryBottle
+    - MedicatedSuture
+    - RegenerativeMesh

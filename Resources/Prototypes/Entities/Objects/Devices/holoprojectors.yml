@@ -46,7 +46,7 @@
     slots:
       cell_slot:
         name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellMicroreactor
+        startingItem: PowerCellRobotTool
         disableEject: true
         swap: false
 
@@ -67,6 +67,11 @@
       - HolofanProjector
   - type: StaticPrice
     price: 80
+  - type: GuideHelp
+    guides:
+    - AtmosTools
+    - Fires
+    - Spacing
 
 - type: entity
   parent: HolofanProjector

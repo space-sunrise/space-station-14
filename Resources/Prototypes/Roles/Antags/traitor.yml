@@ -7,7 +7,12 @@
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 36000 # 10h # Sunrise-RoleTime
+  playTimeTracker: AntagSyndicateAgent # Sunrise-Edit
   guides: [ Traitors ]
+  # Sunrise-Edit
+  previewIcon:
+    sprite: /Textures/_Sunrise/Interface/Misc/antag_preview.rsi
+    state: traitor
 
 - type: antag
   id: TraitorSleeper
@@ -15,6 +20,7 @@
   antagonist: true
   setPreference: true
   objective: roles-antag-syndicate-agent-sleeper-objective
+  playTimeTracker: AntagSyndicateSleeperAgent # Sunrise-Edit
   guides: [ Traitors ]
 
 # Syndicate Operative Outfit - Monkey
@@ -24,6 +30,7 @@
     head: ClothingHeadHatOutlawHat
     jumpsuit: ClothingUniformJumpsuitOperative
     mask: CigaretteSyndicate
+    outerClothing: ClothingOuterVestWeb # Sunrise-Edit
 
 # Syndicate Operative Outfit - Barratry
 - type: startingGear

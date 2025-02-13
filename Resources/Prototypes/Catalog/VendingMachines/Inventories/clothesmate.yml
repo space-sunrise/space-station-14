@@ -8,13 +8,27 @@
     ClothingBackpackSatchelLeather: 2
     ClothingRandomSpawner: 8
     ClothingHeadHatBeret: 4
+#sunrise-start
+    ClothingHeadBandWhite: 2
+#sunrise-end
     ClothingHeadBandBlack: 2
     ClothingHeadBandBlue: 2
+#sunrise-start
+    ClothingHeadBandCyan: 2
+    ClothingHeadBandYellow: 2
+#sunrise-end
     ClothingHeadBandGreen: 2
+#sunrise-start
+    ClothingHeadBandOrange: 2
+#sunrise-end
     ClothingHeadBandRed: 2
+#sunrise-start
+    ClothingHeadBandPurple: 2
+#sunrise-end
     ClothingHeadBandSkull: 2
     ClothingHeadHatGreyFlatcap: 3
     ClothingHeadHatBrownFlatcap: 3
+    ClothingUniformJumpskirtChristmas: 3 #sunrise-edit
     ClothingUniformJumpsuitColorGrey: 8
     ClothingUniformJumpskirtColorGrey: 8
     ClothingUniformJumpsuitColorWhite: 3
@@ -55,17 +69,24 @@
     ClothingUniformJumpskirtCasualRed: 2
     ClothingUniformJumpsuitCasualGreen: 2
     ClothingUniformJumpskirtCasualGreen: 2
+    ClothingUniformJumpsuitBlackturtleneck: 4 #sunrise
     # DO NOT ADD MORE, USE UNIFORM DYING
     ClothingShoesColorBlack: 8
     ClothingShoesColorBrown: 4
     ClothingShoesColorWhite: 3
     ClothingShoesColorBlue: 2
+#Sunrise-start
+    ClothingShoesColorCyan: 2
+#Sunrise-end
     ClothingShoesColorYellow: 2
     ClothingShoesColorGreen: 2
     ClothingShoesColorOrange: 2
     ClothingShoesColorRed: 2
     ClothingShoesColorPurple: 2
     ClothingHeadHatGreysoft: 8
+#Sunrise-start
+    ClothingHeadHatBrownsoft: 2
+#Sunrise-end
     ClothingHeadHatMimesoft: 3
     ClothingHeadHatBluesoft: 2
     ClothingHeadHatYellowsoft: 2
@@ -96,4 +117,6 @@
     ClothingMaskNeckGaiter: 2
     ClothingUniformJumpsuitTacticool: 1
     ClothingUniformJumpskirtTacticool: 1
+    ToyFigurinePassenger: 1
+    ToyFigurineGreytider: 1
   # DO NOT ADD MORE, USE UNIFORM DYING

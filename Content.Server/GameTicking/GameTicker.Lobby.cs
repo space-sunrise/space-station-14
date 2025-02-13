@@ -77,8 +77,8 @@ namespace Content.Server.GameTicking
             // Sunrise-Start
             if (preset.Hide)
             {
-                gmTitle = "Скрыт";
-                desc = "Игровой режим скрыт.";
+                gmTitle = Loc.GetString("gamemode-title-hide");
+                desc = Loc.GetString("gamemode-desc-hide");
             }
             // Sunrise-End
 

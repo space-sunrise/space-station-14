@@ -1,0 +1,20 @@
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRoleAssaultOperative
+  name: Assault Operative Role
+  components:
+  - type: MindRole
+    antagPrototype: AssaultOperative
+    exclusiveAntag: true
+    roleType: TeamAntagonist
+  - type: AssaultOpsRole
+
+- type: entity
+  parent: MindRoleNukeops
+  id: MindRoleAssaultCommander
+  name: Assault Commander Role
+  components:
+  - type: MindRole
+    antagPrototype: AssaultCommander
+    exclusiveAntag: true
+    roleType: TeamAntagonist

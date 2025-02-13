@@ -4,8 +4,6 @@ using Content.Server.Flash;
 using Content.Server.Flash.Components;
 using Content.Server.Speech.Components;
 using Content.Server.Storage.Components;
-using Content.Server.Store.Components;
-using Content.Shared.Actions;
 using Content.Server.Objectives.Components;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Body.Components;
@@ -16,7 +14,6 @@ using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
-using Content.Shared.Flash;
 using Content.Shared.Humanoid;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs;
@@ -25,13 +22,10 @@ using Content.Shared.Popups;
 using Content.Shared.Polymorph;
 using Content.Shared.Prying.Components;
 using Content.Shared.Stealth.Components;
-using Content.Shared.Store.Events;
-using Content.Shared.Store.Components;
 using Content.Shared.Stunnable;
 using Content.Shared.Vampire;
 using Content.Shared.Vampire.Components;
 using Content.Shared.Weapons.Melee;
-using FastAccessors;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.Utility;
@@ -58,6 +52,8 @@ public sealed partial class VampireSystem
         SubscribeLocalEvent<VampireComponent, VampirePolymorphEvent>(OnVampirePolymorph);
         SubscribeLocalEvent<VampireComponent, VampireHypnotiseEvent>(OnVampireHypnotise);
         SubscribeLocalEvent<VampireComponent, VampireBloodStealEvent>(OnVampireBloodSteal);
+        SubscribeLocalEvent<VampireComponent, VampireUnholyStrengthEvent>(OnVampireUnholyStrength);
+        SubscribeLocalEvent<VampireComponent, VampireSupernaturalStrengthEvent>(OnVampireSupernaturalStrength);
         SubscribeLocalEvent<VampireComponent, VampireCloakOfDarknessEvent>(OnVampireCloakOfDarkness);
 
         //Hypnotise
@@ -168,6 +164,34 @@ public sealed partial class VampireSystem
 
         ev.Handled = true;
     }
+    private void OnVampireUnholyStrength(EntityUid entity, VampireComponent component, VampireUnholyStrengthEvent ev)
+    {
+        if (!TryGetPowerDefinition(ev.DefinitionName, out var def))
+            return;
+
+        var vampire = new Entity<VampireComponent>(entity, component);
+
+        if (!IsAbilityUsable(vampire, def))
+            return;
+
+        UnnaturalStrength(vampire);
+
+        ev.Handled = true;
+    }
+    private void OnVampireSupernaturalStrength(EntityUid entity, VampireComponent component, VampireSupernaturalStrengthEvent ev)
+    {
+        if (!TryGetPowerDefinition(ev.DefinitionName, out var def))
+            return;
+
+        var vampire = new Entity<VampireComponent>(entity, component);
+
+        if (!IsAbilityUsable(vampire, def))
+            return;
+
+        SupernaturalStrength(vampire);
+
+        ev.Handled = true;
+    }
     private void OnVampireCloakOfDarkness(EntityUid entity, VampireComponent component, VampireCloakOfDarknessEvent ev)
     {
         if (!TryGetPowerDefinition(ev.DefinitionName, out var def))
@@ -253,30 +277,47 @@ public sealed partial class VampireSystem
     }
 
 
-    #region Passive Powers
+    #region Activeable Gargantua Powers
     private void UnnaturalStrength(Entity<VampireComponent> vampire)
     {
         var damage = new DamageSpecifier();
-        damage.DamageDict.Add("Slash", 15);
-        
-        _popup.PopupEntity(Loc.GetString("vampire-unnaturalstrength", ("user", vampire)), vampire, vampire, Shared.Popups.PopupType.SmallCaution);
-
+        damage.DamageDict.Add("Slash", 10);
         var meleeComp = EnsureComp<MeleeWeaponComponent>(vampire);
-        meleeComp.Damage += damage;
+        if (HasComp<VampireStrengthComponent>(vampire))
+        {
+            meleeComp.Damage = meleeComp.Damage - damage;
+            RemComp<VampireStrengthComponent>(vampire);
+        }
+        else
+        {
+            var strength = EnsureComp<VampireStrengthComponent>(vampire);
+            strength.Upkeep = 1f;
+            strength.Power = "UnholyStrength";
+            _popup.PopupEntity(Loc.GetString("vampire-unnaturalstrength", ("user", vampire)), vampire, vampire, Shared.Popups.PopupType.SmallCaution);
+            meleeComp.Damage += damage;
+        }
     }
     private void SupernaturalStrength(Entity<VampireComponent> vampire)
     {
-        var pryComp = EnsureComp<PryingComponent>(vampire);
-        pryComp.Force = true;
-        pryComp.PryPowered = true;
-        
-        _popup.PopupEntity(Loc.GetString("vampire-supernaturalstrength", ("user", vampire)), vampire, vampire, Shared.Popups.PopupType.SmallCaution);
-        
         var damage = new DamageSpecifier();
         damage.DamageDict.Add("Slash", 15);
-
         var meleeComp = EnsureComp<MeleeWeaponComponent>(vampire);
-        meleeComp.Damage += damage;
+        if (HasComp<VampireStrengthComponent>(vampire))
+        {
+            meleeComp.Damage = meleeComp.Damage - damage;
+            RemComp<PryingComponent>(vampire);
+            RemComp<VampireStrengthComponent>(vampire);
+        }
+        else
+        {
+            var pryComp = EnsureComp<PryingComponent>(vampire);
+            pryComp.Force = true;
+            pryComp.PryPowered = true;
+
+            _popup.PopupEntity(Loc.GetString("vampire-supernaturalstrength", ("user", vampire)), vampire, vampire, Shared.Popups.PopupType.SmallCaution);
+
+            meleeComp.Damage += damage;
+        }
     }
     #endregion
 
@@ -327,7 +368,7 @@ public sealed partial class VampireSystem
     {
         if (string.IsNullOrEmpty(polymorphTarget))
             return;
-        
+
         var prototypeId = polymorphTarget switch
         {
             "MobMouse" => "VampireMouse",
@@ -390,15 +431,16 @@ public sealed partial class VampireSystem
 
             AddBloodEssence(vampire, volumeToConsume * 0.80);
 
-            _beam.TryCreateBeam(vampire, entity, "Lightning");
+            _beam.TryCreateBeam(vampire, entity, "VampireLightning");
 
             _popup.PopupEntity(Loc.GetString("vampire-bloodsteal-other"), entity, entity, Shared.Popups.PopupType.LargeCaution);
         }
 
 
+        var bloodEssence = _vampire.GetBloodEssence(vampire);
 
         //Update abilities, add new unlocks
-        //UpdateAbilities(vampire);
+        UpdateAbilities(vampire, vampire.Comp, "ActionVampireBloodSteal", "BloodSteal" , bloodEssence >= FixedPoint2.New(200) && vampire.Comp.CurrentMutation == VampireMutationsType.Hemomancer);
     }
     private bool CloakOfDarkness(Entity<VampireComponent> vampire, float upkeep, float passiveVisibilityRate, float movementVisibilityRate)
     {
@@ -606,7 +648,7 @@ public sealed partial class VampireSystem
         //Do a precheck
         if (!HasComp<VampireFangsExtendedComponent>(vampire))
             return false;
-        
+
         if (!HasComp<TransformComponent>(vampire))
             return false;
 
@@ -669,7 +711,7 @@ public sealed partial class VampireSystem
 
         var volumeToConsume = (FixedPoint2) Math.Min((float) victimBloodRemaining.Value, args.Volume);
         var volumeToDrain = (FixedPoint2) Math.Min((float) victimBloodRemaining.Value, args.Volume * 8);
-        
+
         if (_mind.TryGetMind(entity, out var mindId, out var mind))
             if (_mind.TryGetObjectiveComp<BloodDrainConditionComponent>(mindId, out var objective, mind))
                     objective.BloodDranked = entity.Comp.TotalBloodDrank;
@@ -737,6 +779,7 @@ public sealed partial class VampireSystem
     {
         return vampire.UnlockedPowers.ContainsKey(name);
     }
+
     /*private bool IsPowerActive(VampireComponent vampire, VampirePowerProtype def) => IsPowerActive(vampire, def.ID);
     private bool IsPowerActive(VampireComponent vampire, string name)
     {
@@ -761,7 +804,7 @@ public sealed partial class VampireSystem
         if (!vampire.UnlockedPowers.TryGetValue(name, out var ability))
             return null;
 
-        return ability;
+        return GetEntity(ability);
     }
 
     /// <summary>

@@ -15,13 +15,13 @@ server-role-ban =
     }.
 server-perma-role-ban = Перманентный джоб-бан.
 server-time-ban-string =
-    > **Нарушитель**
-    > **Логин:** ``{ $targetName }``
-    > **Дискорд:** { $targetLink }
-    
     > **Администратор**
     > **Логин:** ``{ $adminName }``
     > **Дискорд:** { $adminLink }
+    
+    > **Нарушитель**
+    > **Логин:** ``{ $targetName }``
+    > **Дискорд:** { $targetLink }
     
     > **Выдан:** { $TimeNow }
     > **Истечёт:** { $expiresString }
@@ -31,13 +31,13 @@ server-time-ban-string =
     > **Уровень тяжести:** { $severity }
 server-ban-footer = { $server } | Раунд: #{ $round }
 server-perma-ban-string =
-    > **Нарушитель**
-    > **Логин:** ``{ $targetName }``
-    > **Дискорд:** { $targetLink }
-    
     > **Администратор**
     > **Логин:** ``{ $adminName }``
     > **Дискорд:** { $adminLink }
+    
+    > **Нарушитель**
+    > **Логин:** ``{ $targetName }``
+    > **Дискорд:** { $targetLink }
     
     > **Выдан:** { $TimeNow }
     
@@ -45,13 +45,13 @@ server-perma-ban-string =
     
     > **Уровень тяжести:** { $severity }
 server-role-ban-string =
-    > **Нарушитель**
-    > **Логин:** ``{ $targetName }``
-    > **Дискорд:** { $targetLink }
-    
     > **Администратор**
     > **Логин:** ``{ $adminName }``
     > **Дискорд:** { $adminLink }
+    
+    > **Нарушитель**
+    > **Логин:** ``{ $targetName }``
+    > **Дискорд:** { $targetLink }
     
     > **Выдан:** { $TimeNow }
     > **Истечёт:** { $expiresString }
@@ -62,13 +62,13 @@ server-role-ban-string =
     
     > **Уровень тяжести:** { $severity }
 server-perma-role-ban-string =
-    > **Нарушитель**
-    > **Логин:** ``{ $targetName }``
-    > **Дискорд:** ``{ $targetLink }``
-    
     > **Администратор**
     > **Логин:** ``{ $adminName }``
     > **Дискорд:** { $adminLink }
+    
+    > **Нарушитель**
+    > **Логин:** ``{ $targetName }``
+    > **Дискорд:** ``{ $targetLink }``
     
     > **Выдан:** { $TimeNow }
     

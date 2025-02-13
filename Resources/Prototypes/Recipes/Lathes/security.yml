@@ -94,7 +94,16 @@
   result: WeaponLaserSvalinn
   materials:
     Steel: 2000
-    Gold: 500
+    Gold: 200 #sunrise-Edit
+
+- type: latheRecipe
+  parent: BaseWeaponRecipeLong
+  id: WeaponGunLaserCarbineSemi
+  result: WeaponGunLaserCarbineSemi
+  materials:
+    Steel: 1800
+    Plastic: 50
+    Gold: 300 #sunrise-Edit
 
 - type: latheRecipe
   parent: BaseWeaponRecipeLong
@@ -244,6 +253,23 @@
   result: MagazinePistolSubMachineGun
   materials:
     Steel: 300
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePistolSubMachineGunUranium
+  result: MagazinePistolSubMachineGunUranium
+  materials:
+    Steel: 25
+    Plastic: 250
+    Uranium: 250
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazinePistolSubMachineGunIncendiary
+  result: MagazinePistolSubMachineGunIncendiary
+  materials:
+    Steel: 25
+    Plastic: 275
 
 - type: latheRecipe
   parent: BaseEmptyAmmoRecipe
@@ -492,13 +518,13 @@
   materials:
     Plastic: 750
 
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: BoxShotgunFlare
-  result: BoxShotgunFlare
-  materials:
-    Steel: 80
-    Plastic: 80
+#- type: latheRecipe Sunrise-edit
+#  parent: BaseAmmoRecipe
+#  id: BoxShotgunFlare
+#  result: BoxShotgunFlare
+#  materials:
+#    Steel: 80
+#    Plastic: 80
 
 - type: latheRecipe
   parent: BaseAmmoRecipe

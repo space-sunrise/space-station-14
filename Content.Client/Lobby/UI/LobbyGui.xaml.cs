@@ -132,10 +132,12 @@ namespace Content.Client.Lobby.UI
 
             _configurationManager.OnValueChanged(SunriseCCVars.LobbyOpacity, OnLobbyOpacityChanged);
             _configurationManager.OnValueChanged(SunriseCCVars.ServersHubEnable, OnServersHubEnableChanged);
+            _configurationManager.OnValueChanged(SunriseCCVars.ServiceAuthEnabled, OnServiceAuthEnableChanged);
             _configurationManager.OnValueChanged(SunriseCCVars.ServerName, OnServerNameChanged, true);
 
             SetLobbyOpacity(_configurationManager.GetCVar(SunriseCCVars.LobbyOpacity));
             SetServersHubEnable(_configurationManager.GetCVar(SunriseCCVars.ServersHubEnable));
+            SetUserProfileEnable(_configurationManager.GetCVar(SunriseCCVars.ServiceAuthEnabled));
 
             Chat.SetChatOpacity();
 
@@ -180,9 +182,19 @@ namespace Content.Client.Lobby.UI
             SetServersHubEnable(enable);
         }
 
+        private void OnServiceAuthEnableChanged(bool enable)
+        {
+            SetUserProfileEnable(enable);
+        }
+
         private void SetServersHubEnable(bool enable)
         {
             ServersHubBox.Visible = enable;
+        }
+
+        private void SetUserProfileEnable(bool enable)
+        {
+            UserProfileBox.Visible = enable;
         }
         // Sunrise-End
 
