@@ -1262,10 +1262,8 @@
     radius: 1.5
     energy: 1.6
     color: "#b89f25"
-  # Sunrise-Start
   - type: AccessReader
-    access: [ [ "Quartermaster" ], [ "HeadOfPersonnel" ] ]
-  # Sunrise-End
+    access: [["Cargo"]]
   - type: GuideHelp
     guides:
     - Cargo
