@@ -4,3 +4,9 @@
   id: BioGenStaticSunrise
   recipes:
   - BioGenHandheldSoil
+  - BioClothingBeltPlant
+  - BioClothingBeltUtility
+  - BioClothingBeltMedical
+  - BioClothingBeltJanitor
+  - BioClothingBeltStorageWaistbag
+  - BioClothingBeltChef

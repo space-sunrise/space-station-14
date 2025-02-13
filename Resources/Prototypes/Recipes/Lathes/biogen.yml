@@ -235,5 +235,54 @@
   category: Materials
   completetime: 3
   materials:
-    Biomass: 149
+    Biomass: 100
+
+- type: latheRecipe
+  id: BioClothingBeltPlant
+  result: ClothingBeltPlant
+  category: Materials
+  completetime: 5
+  materials:
+    Biomass: 50
+
+- type: latheRecipe
+  id: BioClothingBeltUtility
+  result: ClothingBeltUtility
+  category: Materials
+  completetime: 5
+  materials:
+    Biomass: 50
+
+- type: latheRecipe
+  id: BioClothingBeltMedical
+  result: ClothingBeltMedical
+  category: Materials
+  completetime: 5
+  materials:
+    Biomass: 50
+
+- type: latheRecipe
+  id: BioClothingBeltJanitor
+  result: ClothingBeltJanitor
+  category: Materials
+  completetime: 5
+  materials:
+    Biomass: 50
+
+- type: latheRecipe
+  id: BioClothingBeltStorageWaistbag
+  result: ClothingBeltStorageWaistbag
+  category: Materials
+  completetime: 5
+  materials:
+    Biomass: 50
+
+- type: latheRecipe
+  id: BioClothingBeltChef
+  result: ClothingBeltChef
+  category: Materials
+  completetime: 5
+  materials:
+    Biomass: 50
+
 # Sunrise-End
