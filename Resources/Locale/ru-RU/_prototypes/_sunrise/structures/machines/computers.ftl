@@ -54,3 +54,7 @@ ent-PrisonComputerComms = prison communications computer
     .desc = A console for controlling announcements in a space prison.
 ent-ComputerShuttleSecurity = security shuttle console
     .desc = Console for remote control of the security shuttle.
+ent-CentcomComputer = консоль ЦентКом
+    .desc = Кто прочитал - тот лох. Что не ясно? Не пытайся меня открутить ебанат.
+ent-CentcomCargoComputer = консоль подарков ЦентКом
+    .desc = Кто прочитал - тот лох.

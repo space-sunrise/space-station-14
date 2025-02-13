@@ -517,3 +517,102 @@
   - type: Computer
     board: SecurityShuttleConsoleCircuitboard
   - type: Anchorable
+
+- type: entity
+  parent: BaseComputer
+  id: CentcomComputer
+  components:
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#009900"
+  - type: CentComConsole
+    IdSlot:
+      name: centcom-card-console-id
+      ejectSound: /Audio/Machines/id_swipe.ogg
+      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+      ejectOnBreak: true
+      swap: false
+      whitelist:
+        components:
+        - IdCard
+  - type: ActivatableUI
+    key: enum.CentComConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.CentComConsoleUiKey.Key:
+        type: CentComConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Computer
+    board: CentComConsoleCircuitboard
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: command
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: Tag
+    tags:
+    - EmagImmune
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+      CentComConsole-IdSlot: !type:ContainerSlot
+
+- type: entity
+  parent: BaseComputer
+  id: CentcomCargoComputer
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: supply
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: Tag
+    tags:
+    - EmagImmune
+  - type: Computer
+    board: CentComCargoConsoleCircuitboard
+  - type: ActivatableUI
+    key: enum.CentComCargoConsoleUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.CentComCargoConsoleUiKey.Key:
+        type: CentComCargoConsoleBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: CentComCargoConsole
+    targetTable: CargoGiftsTable
+    # TODO: gifts
+
+- type: entity
+  abstract: true
+  id: CentComGiftsTable
+  components:
+  - type: CentComGiftsTable
+    gifts:
+    - id: GiftsEngineering
+    - id: GiftsFireProtection
+    - id: GiftsJanitor
+    - id: GiftsMedical
+    - id: GiftsPizzaPartyLarge
+    - id: GiftsPizzaPartySmall
+    - id: GiftsSecurityGuns
+    - id: GiftsSecurityRiot
+    - id: GiftsSpacingSupplies
+    - id: GiftsVendingRestock
