@@ -212,7 +212,7 @@
         acts: [ "Destruction" ]
   - type: HandheldLight
     toggleOnInteract: false
-    wattage: 0.2
+    wattage: 0.4  # Sunrise-edit
     blinkingBehaviourId: blinking
     radiatingBehaviourId: radiating
   - type: LightBehaviour
@@ -236,7 +236,7 @@
     enabled: false
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
-    radius: 4
+    radius: 7  # Sunrise-edit
     netsync: false
   - type: Pullable
   - type: Puller
