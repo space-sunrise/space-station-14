@@ -12,5 +12,3 @@ ent-ClothingBackpackPrisonGuard = рюкзак сотрудника кт
     .desc = На стиле.
 ent-ClothingBackpackAdjutant = рюкзак адъютанта
     .desc = Преимущественно состоит из мультифор, перетянутых нитками.
-ent-ClothingBackpackNTRG = рюкзак ИСН
-    .desc = Рюкзак  ИСН с повышенной вместительностью.
