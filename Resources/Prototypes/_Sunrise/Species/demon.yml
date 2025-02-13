@@ -3,7 +3,8 @@
   name: species-name-demon
   roundStart: true
   prototype: MobDemon
-  sprites: MobDemonSprites
+  bodyTypes:
+  - DemonNormal
   defaultSkinTone: "#34a223"
   markingLimits: MobDemonMarkingLimits
   dollPrototype: MobDemonDummy
@@ -14,8 +15,9 @@
   femaleLastNames: names_last_female
   naming: firstlast
 
-- type: speciesBaseSprites
-  id: MobDemonSprites
+- type: bodyType
+  id: DemonNormal
+  name: body-normal
   sprites:
     Head: MobDemonHead
     Hair: MobHumanoidAnyMarking

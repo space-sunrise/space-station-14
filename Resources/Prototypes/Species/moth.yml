@@ -3,7 +3,8 @@
   name: species-name-moth
   roundStart: true
   prototype: MobMoth
-  sprites: MobMothSprites
+  bodyTypes:
+  - MothNormal
   defaultSkinTone: "#ffda93"
   markingLimits: MobMothMarkingLimits
   dollPrototype: MobMothDummy
@@ -13,8 +14,9 @@
   maleLastNames: names_moth_last # Russian-LastnameGender
   femaleLastNames: names_moth_last # Russian-LastnameGender
 
-- type: speciesBaseSprites
-  id: MobMothSprites
+- type: bodyType
+  id: MothNormal
+  name: body-normal
   sprites:
     Head: MobMothHead
     Snout: MobHumanoidAnyMarking

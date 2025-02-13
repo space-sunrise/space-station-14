@@ -91,6 +91,9 @@ namespace Content.Shared.Preferences
         [DataField]
         public Gender Gender { get; private set; } = Gender.Male;
 
+        [DataField]
+        public string BodyType { get; set; } = SharedHumanoidAppearanceSystem.DefaultBodyType;
+
         /// <summary>
         /// <see cref="Appearance"/>
         /// </summary>
@@ -135,6 +138,7 @@ namespace Content.Shared.Preferences
             string flavortext,
             string species,
             string voice, // Sunrise-TTS
+            string bodyType,
             int age,
             Sex sex,
             Gender gender,
@@ -150,6 +154,7 @@ namespace Content.Shared.Preferences
             FlavorText = flavortext;
             Species = species;
             Voice = voice; // Sunrise-TTS
+            BodyType = bodyType;
             Age = age;
             Sex = sex;
             Gender = gender;
@@ -182,6 +187,7 @@ namespace Content.Shared.Preferences
                 other.FlavorText,
                 other.Species,
                 other.Voice,
+                other.BodyType,
                 other.Age,
                 other.Sex,
                 other.Gender,
@@ -240,10 +246,12 @@ namespace Content.Shared.Preferences
 
             var sex = Sex.Unsexed;
             var age = 18;
+            var bodyType = SharedHumanoidAppearanceSystem.DefaultBodyType;
             if (prototypeManager.TryIndex<SpeciesPrototype>(species, out var speciesPrototype))
             {
                 sex = random.Pick(speciesPrototype.Sexes);
                 age = random.Next(speciesPrototype.MinAge, speciesPrototype.OldAge); // people don't look and keep making 119 year old characters with zero rp, cap it at middle aged
+                bodyType = speciesPrototype.BodyTypes.First();
             }
 
             // Sunrise-TTS-Start
@@ -276,6 +284,7 @@ namespace Content.Shared.Preferences
                 Gender = gender,
                 Species = species,
                 Voice = voiceId, // Sunrise-TTS
+                BodyType = bodyType,
                 Appearance = HumanoidCharacterAppearance.Random(species, sex),
             };
         }
@@ -316,6 +325,11 @@ namespace Content.Shared.Preferences
             return new(this) { Voice = voice };
         }
         // Sunrise-TTS-End
+
+        public HumanoidCharacterProfile WithBodyType(string bodyType)
+        {
+            return new HumanoidCharacterProfile(this) { BodyType = bodyType };
+        }
 
         public HumanoidCharacterProfile WithCharacterAppearance(HumanoidCharacterAppearance appearance)
         {
@@ -486,6 +500,7 @@ namespace Content.Shared.Preferences
             if (Sex != other.Sex) return false;
             if (Gender != other.Gender) return false;
             if (Species != other.Species) return false;
+            if (BodyType != other.BodyType) return false;
             if (PreferenceUnavailable != other.PreferenceUnavailable) return false;
             if (SpawnPriority != other.SpawnPriority) return false;
             if (!_jobPriorities.SequenceEqual(other._jobPriorities)) return false;
@@ -537,6 +552,8 @@ namespace Content.Shared.Preferences
                 Gender.Neuter => Gender.Neuter,
                 _ => Gender.Epicene // Invalid enum values.
             };
+
+            var bodyType = speciesPrototype.BodyTypes.Contains(BodyType) ? BodyType : speciesPrototype.BodyTypes.First();
 
             string name;
             if (string.IsNullOrEmpty(Name))
@@ -645,6 +662,7 @@ namespace Content.Shared.Preferences
             Age = age;
             Sex = sex;
             Gender = gender;
+            BodyType = bodyType;
             Appearance = appearance;
             SpawnPriority = spawnPriority;
 
@@ -766,6 +784,7 @@ namespace Content.Shared.Preferences
             hashCode.Add(FlavorText);
             hashCode.Add(Species);
             hashCode.Add(Age);
+            hashCode.Add(BodyType);
             hashCode.Add((int)Sex);
             hashCode.Add((int)Gender);
             hashCode.Add(Appearance);

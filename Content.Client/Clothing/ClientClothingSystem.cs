@@ -3,6 +3,7 @@ using System.Linq;
 using System.Numerics;
 using Content.Client.DisplacementMap;
 using Content.Client.Inventory;
+using Content.Shared._Sunrise;
 using Content.Shared.Clothing;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Clothing.EntitySystems;
@@ -14,6 +15,7 @@ using Content.Shared.Item;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Serialization.TypeSerializers.Implementations;
 using Robust.Shared.Utility;
@@ -55,6 +57,7 @@ public sealed class ClientClothingSystem : ClothingSystem
     [Dependency] private readonly IResourceCache _cache = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] private readonly DisplacementMapSystem _displacement = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
 
     public override void Initialize()
     {
@@ -108,6 +111,12 @@ public sealed class ClientClothingSystem : ClothingSystem
 
         List<PrototypeLayerData>? layers = null;
 
+        if (TryComp(args.Equipee, out HumanoidAppearanceComponent? humanoid))
+        {
+            var bodyTypeName = _prototype.Index<BodyTypePrototype>(humanoid.BodyType).Name;
+            item.ClothingVisuals.TryGetValue($"{args.Slot}-{bodyTypeName}", out layers);
+        }
+
         // first attempt to get species specific data.
         if (inventory.SpeciesId != null)
             item.ClothingVisuals.TryGetValue($"{args.Slot}-{inventory.SpeciesId}", out layers);
@@ -116,7 +125,7 @@ public sealed class ClientClothingSystem : ClothingSystem
         if (layers == null && !item.ClothingVisuals.TryGetValue(args.Slot, out layers))
         {
             // No generic data either. Attempt to generate defaults from the item's RSI & item-prefixes
-            if (!TryGetDefaultVisuals(uid, item, args.Slot, inventory.SpeciesId, out layers))
+            if (!TryGetDefaultVisuals(uid, item, args.Slot, inventory.SpeciesId, args.Equipee, out layers))
                 return;
         }
 
@@ -144,6 +153,7 @@ public sealed class ClientClothingSystem : ClothingSystem
     ///     Useful for lazily adding clothing sprites without modifying yaml. And for backwards compatibility.
     /// </remarks>
     private bool TryGetDefaultVisuals(EntityUid uid, ClothingComponent clothing, string slot, string? speciesId,
+        EntityUid target,
         [NotNullWhen(true)] out List<PrototypeLayerData>? layers)
     {
         layers = null;
@@ -170,6 +180,13 @@ public sealed class ClientClothingSystem : ClothingSystem
 
         if (clothing.EquippedState != null)
             state = $"{clothing.EquippedState}";
+
+        if (TryComp(target, out HumanoidAppearanceComponent? humanoid))
+        {
+            var bodyTypeName = _prototype.Index(humanoid.BodyType).Name;
+            if (rsi.TryGetState($"{state}-{bodyTypeName}", out _))
+                state = $"{state}-{bodyTypeName}";
+        }
 
         // species specific
         if (speciesId != null && rsi.TryGetState($"{state}-{speciesId}", out _))
@@ -276,18 +293,27 @@ public sealed class ClientClothingSystem : ClothingSystem
         // Select displacement maps
         var displacementData = inventory.Displacements.GetValueOrDefault(slot); //Default unsexed map
 
-        var equipeeSex = CompOrNull<HumanoidAppearanceComponent>(equipee)?.Sex;
-        if (equipeeSex != null)
+        string? bodyTypeName = null;
+        if (TryComp(equipee, out HumanoidAppearanceComponent? humanoid))
         {
-            switch (equipeeSex)
+            bodyTypeName = _prototype.Index(humanoid.BodyType).Name;
+            switch (humanoid.Sex)
             {
                 case Sex.Male:
                     if (inventory.MaleDisplacements.Count > 0)
-                        displacementData = inventory.MaleDisplacements.GetValueOrDefault(slot);
+                    {
+                        displacementData = inventory.MaleDisplacements.GetValueOrDefault($"{slot}-{bodyTypeName}")
+                            ?? inventory.MaleDisplacements.GetValueOrDefault(slot);
+                    }
+
                     break;
                 case Sex.Female:
                     if (inventory.FemaleDisplacements.Count > 0)
-                        displacementData = inventory.FemaleDisplacements.GetValueOrDefault(slot);
+                    {
+                        displacementData = inventory.FemaleDisplacements.GetValueOrDefault($"{slot}-{bodyTypeName}")
+                            ?? inventory.FemaleDisplacements.GetValueOrDefault(slot);
+                    }
+
                     break;
             }
         }
@@ -334,7 +360,8 @@ public sealed class ClientClothingSystem : ClothingSystem
             if (displacementData is not null)
             {
                 //Checking that the state is not tied to the current race. In this case we don't need to use the displacement maps.
-                if (layerData.State is not null && inventory.SpeciesId is not null && layerData.State.EndsWith(inventory.SpeciesId))
+                if (layerData.State is not null && (inventory.SpeciesId is not null && layerData.State.EndsWith(inventory.SpeciesId)
+                    || bodyTypeName is not null && layerData.State.EndsWith(bodyTypeName)))
                     continue;
 
                 if (_displacement.TryAddDisplacement(displacementData, sprite, index, key, revealedLayers))

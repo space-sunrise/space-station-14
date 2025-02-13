@@ -827,6 +827,11 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("integer")
                         .HasColumnName("age");
 
+                    b.Property<string>("BodyType")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("body_type");
+
                     b.Property<string>("CharacterName")
                         .IsRequired()
                         .HasColumnType("text")
@@ -902,12 +907,10 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("text")
                         .HasColumnName("species");
 
-                    // Sunrise-TTS-Start
                     b.Property<string>("Voice")
                         .IsRequired()
                         .HasColumnType("text")
                         .HasColumnName("voice");
-                    // Sunrise-TTS-End
 
                     b.HasKey("Id")
                         .HasName("PK_profile");

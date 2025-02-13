@@ -3,7 +3,8 @@
   name: species-name-tajaran
   roundStart: true
   prototype: MobTajaran
-  sprites: MobTajaranSprites
+  bodyTypes:
+  - TajaranNormal
   markingLimits: MobTajaranMarkingLimits
   dollPrototype: MobTajaranDummy
   skinColoration: Hues
@@ -16,8 +17,9 @@
   oldAge: 46
   maxAge: 49
 
-- type: speciesBaseSprites
-  id: MobTajaranSprites
+- type: bodyType
+  id: TajaranNormal
+  name: body-normal
   sprites:
     Head: MobTajaranHead
     Hair: MobHumanoidAnyMarking

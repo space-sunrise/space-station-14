@@ -34,6 +34,21 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+      jumpsuit-body-slim:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Human/displacement.rsi
+            state: jumpsuit
+      shoes-body-slim:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Human/displacement.rsi
+            state: shoes
+      gloves-body-slim:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Human/displacement.rsi
+            state: gloves
   - type: Fixtures
     fixtures:
       fix1:

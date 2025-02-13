@@ -3,14 +3,16 @@
   name: species-name-foxes
   roundStart: true
   prototype: MobVulpkanin
-  sprites: MobVulpkaninSprites
+  bodyTypes:
+  - VulpkaninNormal
   defaultSkinTone: "#FFBBC3"
   markingLimits: MobVulpkaninMarkingLimits
   dollPrototype: MobVulpkaninDummy
   skinColoration: Hues
 
-- type: speciesBaseSprites
-  id: MobVulpkaninSprites
+- type: bodyType
+  id: VulpkaninNormal
+  name: body-normal
   sprites:
     Head: MobVulpkaninHead
     Hair: MobHumanoidAnyMarking

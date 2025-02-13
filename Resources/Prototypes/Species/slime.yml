@@ -3,14 +3,16 @@
   name: species-name-slime
   roundStart: true
   prototype: MobSlimePerson
-  sprites: MobSlimeSprites
+  bodyTypes:
+  - SlimeNormal
   defaultSkinTone: "#b8b8b8"
   markingLimits: MobSlimeMarkingLimits
   dollPrototype: MobSlimePersonDummy
   skinColoration: Hues
 
-- type: speciesBaseSprites
-  id: MobSlimeSprites
+- type: bodyType
+  id: SlimeNormal
+  name: body-normal
   sprites:
     Head: MobSlimeHead
     Hair: MobSlimeMarkingFollowSkin
