@@ -12488,3 +12488,12 @@
   id: 862
   time: '2025-02-14T02:51:08.0000000+00:00'
   url: https://github.com/space-sunrise/space-station-14/pull/1364
+- author: pacable
+  changes:
+  - message: "\u0424\u043E\u043D\u0430\u0440\u0438\u043A \u0443 \u043C\u0435\u0445\
+      \u043E\u0432 \u0438 \u0431\u043E\u0440\u0433\u043E\u0432 \u0443\u0441\u0438\u043B\
+      \u0435\u043D."
+    type: Tweak
+  id: 863
+  time: '2025-02-14T07:41:33.0000000+00:00'
+  url: https://github.com/space-sunrise/space-station-14/pull/1362
