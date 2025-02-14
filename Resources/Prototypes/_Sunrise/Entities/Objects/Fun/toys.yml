@@ -897,12 +897,12 @@
     state: plushie-mira
   - type: EmitSoundOnUse
     sound:
-      path: /Audio/Items/Toys/meow2.ogg
+      path: /Audio/_Sunrise/meow2.ogg
       params:
         volume: 5
   - type: EmitSoundOnActivate
     sound:
-      path: /Audio/Items/Toys/meow2.ogg
+      path: /Audio/_Sunrise/meow2.ogg
       params:
         volume: 5
   - type: UseDelay
