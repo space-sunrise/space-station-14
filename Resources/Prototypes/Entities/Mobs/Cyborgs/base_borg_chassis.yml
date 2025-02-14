@@ -212,7 +212,7 @@
         acts: [ "Destruction" ]
   - type: HandheldLight
     toggleOnInteract: false
-    wattage: 0.4  # Sunrise-edit
+    wattage: 0.2
     blinkingBehaviourId: blinking
     radiatingBehaviourId: radiating
   - type: LightBehaviour
