@@ -236,7 +236,7 @@
     enabled: false
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
-    radius: 4
+    radius: 7  # Sunrise-edit
     netsync: false
   - type: Pullable
   - type: Puller
