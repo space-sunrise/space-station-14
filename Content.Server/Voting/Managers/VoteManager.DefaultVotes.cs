@@ -1,5 +1,7 @@
 using System.Collections.Specialized;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using Content.Server.Administration;
 using Content.Server.Administration.Managers;
 using Content.Server.Discord.WebhookMessages;
@@ -50,6 +52,8 @@ namespace Content.Server.Voting.Managers
             else
                 _adminLogger.Add(LogType.Vote, LogImpact.Medium, $"Initiated a {voteType.ToString()} vote");
 
+            _gameTicker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
+
             bool timeoutVote = true;
 
             _gameTicker = _entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
@@ -72,6 +76,7 @@ namespace Content.Server.Voting.Managers
                 default:
                     throw new ArgumentOutOfRangeException(nameof(voteType), voteType, null);
             }
+            _gameTicker.UpdateInfoText();
             if (timeoutVote)
                 TimeoutStandardVote(voteType);
         }
@@ -389,6 +394,15 @@ namespace Content.Server.Voting.Managers
             }
             var targetUid = located.UserId;
             var targetHWid = located.LastHWId;
+            (IPAddress, int)? targetIP = null;
+
+            if (located.LastAddress is not null)
+            {
+                targetIP = located.LastAddress.AddressFamily is AddressFamily.InterNetwork
+                    ? (located.LastAddress, 32) // People with ipv4 addresses get a /32 address so we ban that
+                    : (located.LastAddress, 64); // This can only be an ipv6 address. People with ipv6 address should get /64 addresses so we ban that.
+            }
+
             if (!_playerManager.TryGetSessionById(located.UserId, out ICommonSession? targetSession))
             {
                 _logManager.GetSawmill("admin.votekick")
@@ -554,7 +568,7 @@ namespace Content.Server.Voting.Managers
 
                         uint minutes = (uint)_cfg.GetCVar(CCVars.VotekickBanDuration);
 
-                        _bans.CreateServerBan(targetUid, target, null, null, targetHWid, minutes, severity, reasonLocalised + ". " + note);
+                        _bans.CreateServerBan(targetUid, target, null, targetIP, targetHWid, minutes, severity, reasonLocalised + ". " + note);
                     }
                 }
                 else
