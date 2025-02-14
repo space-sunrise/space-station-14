@@ -156,7 +156,6 @@
   id: Wizard
   hostile:
   - NanoTrasen
-  - Dragon
   - SimpleHostile
   - Syndicate
   - Xeno
