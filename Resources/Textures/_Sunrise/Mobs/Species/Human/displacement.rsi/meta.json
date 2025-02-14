@@ -19,6 +19,16 @@
     {
       "name": "shoes",
       "directions" : 4
-    }
+    },
+      {
+          "name": "bra",
+          "directions" : 4
+      },    {
+          "name": "socks",
+          "directions" : 4
+      },    {
+          "name": "panties",
+          "directions" : 4
+      }
   ]
 }
