@@ -8,7 +8,7 @@
   - type: HumanoidAppearance
     species: Swine
   - type: Hunger
-    baseDecayRate: 0.07
+    baseDecayRate: 0.020
   - type: Thirst
     dehydrationDamage:
       types:

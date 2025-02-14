@@ -156,12 +156,12 @@ public sealed class ThirstSystem : EntitySystem
         return prototype != null;
     }
 
-    private void DoContinuousHungerEffects(EntityUid uid, ThirstComponent? component = null)
+    private void DoContinuousThirstEffects(EntityUid uid, ThirstComponent? component = null)
     {
         if (!Resolve(uid, ref component))
             return;
 
-        if (component.CurrentThirstThreshold <= ThirstThreshold.Parched &&
+        if (component.CurrentThirstThreshold == ThirstThreshold.Dead &&
             component.DehydrationDamage is { } damage &&
             !_mobState.IsDead(uid))
         {
@@ -236,7 +236,7 @@ public sealed class ThirstSystem : EntitySystem
             thirst.NextUpdateTime += thirst.UpdateRate;
 
             ModifyThirst(uid, thirst, -thirst.ActualDecayRate);
-            DoContinuousHungerEffects(uid, thirst);
+            DoContinuousThirstEffects(uid, thirst);
             var calculatedThirstThreshold = GetThirstThreshold(thirst, thirst.CurrentThirst);
 
             if (calculatedThirstThreshold == thirst.CurrentThirstThreshold)
