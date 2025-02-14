@@ -13,6 +13,10 @@
     species: Arachnid
   - type: Hunger
   - type: Thirst
+    dehydrationDamage:
+      types:
+        Bloodloss: 2
+        Asphyxiation: 2
   - type: Sericulture
     action: ActionSericulture
     productionLength: 2

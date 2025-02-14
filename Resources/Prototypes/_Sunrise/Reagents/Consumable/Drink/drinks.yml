@@ -25,6 +25,10 @@
       effects:
       - !type:SatiateThirst
         factor: 4
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
     Medicine:
       effects:
       - !type:HealthChange
@@ -48,6 +52,10 @@
       effects:
       - !type:SatiateThirst
         factor: 2
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
       - !type:GenericStatusEffect
         key: Drowsiness
         time: 2.0

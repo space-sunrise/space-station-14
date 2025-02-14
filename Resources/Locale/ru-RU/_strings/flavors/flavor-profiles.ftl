@@ -193,7 +193,7 @@ flavor-complex-juice = как сок
 
 flavor-complex-rocksandstones = как скалы и камни
 flavor-complex-water = как вода
-flavor-complex-beer = как моча
+flavor-complex-beer = как пиво
 flavor-complex-ale = как хлеб
 flavor-complex-cola = как кола
 flavor-complex-cognac = как сухой пряный алкоголь
@@ -247,7 +247,7 @@ flavor-complex-white-russian = как подслащённый алкоголь�
 flavor-complex-moonshine = как чистый алкоголь
 flavor-complex-tequila-sunrise = как мексиканское утро
 flavor-complex-irish-coffee = как пробуждение алкоголика
-flavor-complex-iced-beer = как ледяная моча
+flavor-complex-iced-beer = как ледяная пиво
 flavor-complex-gargle-blaster = как будто кто-то ударил вас по голове золотым слитком, покрытым лимоном.
 flavor-complex-bloody-mary = как тяжёлое похмелье
 flavor-complex-beepsky = как нефть и виски

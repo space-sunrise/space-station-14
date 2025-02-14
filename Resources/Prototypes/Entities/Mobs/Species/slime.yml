@@ -7,6 +7,10 @@
   - type: Absorbable
   - type: Hunger
   - type: Thirst
+    dehydrationDamage:
+      types:
+        Bloodloss: 2
+        Asphyxiation: 2
   - type: Icon
     sprite: Mobs/Species/Slime/parts.rsi
     state: full

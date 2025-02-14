@@ -12,6 +12,10 @@
     - HeadTop
   - type: Hunger
   - type: Thirst
+    dehydrationDamage:
+      types:
+        Bloodloss: 2
+        Asphyxiation: 2
   - type: Icon
     sprite: Mobs/Species/Moth/parts.rsi
     state: full

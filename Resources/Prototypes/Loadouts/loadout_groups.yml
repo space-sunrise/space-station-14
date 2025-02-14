@@ -85,8 +85,9 @@
   loadouts:
   - EmergencyNitrogen
   - EmergencyOxygen
-  - EmergencyWithoutGas  # Sunrise-Edit
   - LoadoutSpeciesVoxNitrogen
+  - EmergencyWithoutGas  # Sunrise-Edit
+  - EmergencyDwarf  # Sunrise-Edit
 
 - type: loadoutGroup
   id: GroupEVATank
@@ -488,6 +489,7 @@
   - EmergencyOxygenClown
   - LoadoutSpeciesVoxNitrogen
   - EmergencyWithoutGasClown # Sunrise-Edit
+  - EmergencyDwarfClown # Sunrise-Edit
 
 - type: loadoutGroup
   id: MimeHead
@@ -544,6 +546,8 @@
   - EmergencyNitrogenMime
   - EmergencyOxygenMime
   - LoadoutSpeciesVoxNitrogen
+  - EmergencyWithoutGasMime # Sunrise-Edit
+  - EmergencyDwarfMime # Sunrise-Edit
 
 - type: loadoutGroup
   id: MusicianJumpsuit
@@ -683,7 +687,7 @@
   minLimit: 0
   loadouts:
   - CargoTechnicianHead
-#Sunrise-start  
+#Sunrise-start
   - Sunrise-BandOrange
   - Sunrise-BandYellow
   - Sunrise-BandBrown
@@ -797,7 +801,7 @@
   - Sunrise-ScarfOrange
   - Sunrise-ScarfYellow
   - Sunrise-ScarfCyan
-  - Sunrise-ScarfLightBlue  
+  - Sunrise-ScarfLightBlue
   - Sunrise-TieRed
   #Sunrise-end
 
@@ -948,6 +952,7 @@
   - EmergencyOxygenExtended
   - LoadoutSpeciesVoxNitrogen
   - EmergencyWithoutGasExtended # Sunrise-Edit
+  - EmergencyDwarfExtended # Sunrise-Edit
 
 # Science
 - type: loadoutGroup
@@ -1193,6 +1198,7 @@
   - EmergencyOxygenSecurity
   - LoadoutSpeciesVoxNitrogen
   - EmergencyWithoutGasSecurity # Sunrise-Edit
+  - EmergencyDwarfSecurity # Sunrise-Edit
 
 - type: loadoutGroup
   id: SecurityStar
@@ -1275,7 +1281,7 @@
   - Sunrise-ScarfRed
   - Sunrise-ScarfOrange
   - Sunrise-ScarfGreen
-  - Sunrise-ScarfLightBlue 
+  - Sunrise-ScarfLightBlue
   - Sunrise-ScarfCyan
   - Sunrise-ScarfBlue
   - Sunrise-Stethoscope
@@ -1504,6 +1510,7 @@
   - EmergencyOxygenMedical
   - LoadoutSpeciesVoxNitrogen
   - EmergencyWithoutGasMedical # Sunrise-Edit
+  - EmergencyDwarfMedical # Sunrise-Edit
 
 # Wildcards
 - type: loadoutGroup
@@ -1547,6 +1554,7 @@
   - EmergencyOxygenSyndicate
   - LoadoutSpeciesVoxNitrogen
   - EmergencyWithoutGasSyndicate # Sunrise-Edit
+  - EmergencyDwarfSyndicate # Sunrise-Edit
 
 - type: loadoutGroup
   id: GroupSpeciesBreathTool

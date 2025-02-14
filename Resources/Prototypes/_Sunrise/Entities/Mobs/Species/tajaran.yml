@@ -20,6 +20,10 @@
     speechVerb: Felinid
     allowedEmotes: ['Mew', 'Meow', 'Hisses', 'Purr']
   - type: Thirst
+    dehydrationDamage:
+      types:
+        Bloodloss: 2
+        Asphyxiation: 2
   - type: Icon
     sprite: _Sunrise/Mobs/Species/Tajaran/parts.rsi
     state: tajaran_m
