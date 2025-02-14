@@ -890,7 +890,7 @@
   id: PlushieMiraKovalskaya
   parent: BasePlushie
   name: Mira Kovalskaya
-  description: She's like to say "Meow" and "mrrr"?.. Just like francus
+  description: She's like to say "Meow" and "mrrr"?..
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
