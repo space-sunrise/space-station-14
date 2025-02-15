@@ -13,6 +13,9 @@ public sealed partial class SurgeryToolComponent : Component
     public float Speed = 1;
 
     [DataField, AutoNetworkedField]
+    public float SuccessRate = 1f;
+
+    [DataField, AutoNetworkedField]
     public SoundSpecifier? StartSound;
 
     [DataField, AutoNetworkedField]
