@@ -16,7 +16,6 @@ using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Players.RateLimiting;
-using Content.Shared.Database;
 using JetBrains.Annotations;
 using Robust.Server.Player;
 using Robust.Shared;
@@ -27,6 +26,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
+using Content.Shared.Database; // Sunrise-Ahelp-Antispam
+
 
 namespace Content.Server.Administration.Systems
 {
@@ -37,7 +38,6 @@ namespace Content.Server.Administration.Systems
 
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly IAdminManager _adminManager = default!;
-        [Dependency] private readonly IBanManager _banManager = default!;
         [Dependency] private readonly IConfigurationManager _config = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly IPlayerLocator _playerLocator = default!;
@@ -47,6 +47,7 @@ namespace Content.Server.Administration.Systems
         [Dependency] private readonly IServerDbManager _dbManager = default!;
         [Dependency] private readonly PlayerRateLimitManager _rateLimit = default!;
         private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
+        [Dependency] private readonly IBanManager _banManager = default!; // Sunrise-Ahelp-Antispam
 
         [GeneratedRegex(@"^https://discord\.com/api/webhooks/(\d+)/((?!.*/).*)$")]
         private static partial Regex DiscordRegex();
@@ -79,12 +80,14 @@ namespace Content.Server.Administration.Systems
         // Maximum length a message can be before it is cut off
         // Should be shorter than DescriptionMax
         private const ushort MessageLengthCap = 3000;
-        
+
+        // Sunrise-Ahelp-Antispam-Start
         private readonly TimeSpan _messageCooldown = TimeSpan.FromSeconds(2);
 
         private readonly Queue<(NetUserId Channel, string Text, TimeSpan Timestamp)> _recentMessages = new();
         private const int MaxRecentMessages = 10;
         private const int SpamCheckMessageCount = 3;
+        // Sunrise-Ahelp-Antispam-End
 
         // Text to be used to cut off messages that are too long. Should be shorter than MessageLengthCap
         private const string TooLongText = "... **(too long)**";
@@ -658,16 +661,18 @@ namespace Content.Server.Administration.Systems
                 // Unauthorized bwoink (log?)
                 return;
             }
-            
+
+            // Sunrise-Ahelp-Antispam-Start
             var currentTime = _timing.RealTime;
 
             if (IsOnCooldown(message.UserId, currentTime))
                 return;
-            
+
             if (IsSpam(message.UserId, message.Text))
                 _banManager.CreateServerBan(senderSession.UserId, senderSession.Name, null, null, null, 0, NoteSeverity.High, "Automatic AHELP Antispam system Ban, If this ban is wrong, file an appeal.");
 
             AddToRecentMessages(message.UserId, message.Text, currentTime);
+            // Sunrise-Ahelp-Antispam-End
 
             if (_rateLimit.CountAction(eventArgs.SenderSession, RateLimitKey) != RateLimitStatus.Allowed)
                 return;
@@ -898,7 +903,8 @@ namespace Content.Server.Administration.Systems
             /// </summary>
             public bool OnCall;
         }
-        
+
+        // Sunrise-Ahelp-Antispam-Start
         private void AddToRecentMessages(NetUserId channelId, string text, TimeSpan timestamp)
         {
             _recentMessages.Enqueue((channelId, text, timestamp));
@@ -908,7 +914,7 @@ namespace Content.Server.Administration.Systems
                 _recentMessages.Dequeue();
             }
         }
-        
+
         private bool IsOnCooldown(NetUserId channelId, TimeSpan currentTime)
         {
             var lastMessage = _recentMessages
@@ -918,7 +924,7 @@ namespace Content.Server.Administration.Systems
 
             return lastMessage != default && (currentTime - lastMessage.Timestamp) < _messageCooldown;
         }
-        
+
         private bool IsSpam(NetUserId channelId, string text)
         {
             var recentMessages = _recentMessages
@@ -933,6 +939,7 @@ namespace Content.Server.Administration.Systems
         {
             return _recentMessages;
         }
+        // Sunrise-Ahelp-Antispam-End
     }
 
     public sealed class AHelpMessageParams
