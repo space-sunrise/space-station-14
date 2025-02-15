@@ -124,11 +124,22 @@ namespace Content.Shared.Popups
 
         public PopupType Type { get; }
 
+        public NetEntity? Origin; // Sunrise added
+
         protected PopupEvent(string message, PopupType type)
         {
             Message = message;
             Type = type;
         }
+
+        // Sunrise added start
+        protected PopupEvent(string message, PopupType type, NetEntity origin)
+        {
+            Message = message;
+            Type = type;
+            Origin = origin;
+        }
+        // Sunrise added end
     }
 
     /// <summary>
@@ -168,6 +179,13 @@ namespace Content.Shared.Popups
         {
             Uid = uid;
         }
+
+        // Sunrise added start
+        public PopupEntityEvent(string message, PopupType type, NetEntity uid, NetEntity origin) : base(message, type, origin)
+        {
+            Uid = uid;
+        }
+        // Sunrise added end
     }
 
     /// <summary>

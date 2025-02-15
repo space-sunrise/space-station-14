@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
+using Content.Client._Sunrise.UserInterface.Controls;
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
@@ -46,6 +47,27 @@ public abstract class BaseTextureTag : IMarkupTag
         texture.TextureScale = new Vector2(scaleValue, scaleValue);
 
         control = texture;
+        return true;
+    }
+
+    protected static bool TryDrawIconEntity(string stringUid, long scaleValue, [NotNullWhen(true)] out Control? control)
+    {
+        control = null;
+        var spriteView = new SunriseStaticSpriteView()
+        {
+            OverrideDirection = Direction.South,
+            SetSize = new Vector2(48f, 32f),
+        };
+
+        stringUid = ClearString(stringUid);
+
+        if (!EntityUid.TryParse(stringUid, out var entityUid))
+            return false;
+
+        spriteView.SetEntity(entityUid);
+        //spriteView.Scale = new Vector2(scaleValue, scaleValue);
+
+        control = spriteView;
         return true;
     }
 
