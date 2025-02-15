@@ -106,6 +106,7 @@
     price: 100
   - type: Appearance
   - type: WiresVisuals
+  - type: DontSell # Sunrise-Edit
 
 - type: entity
   parent: VendingMachine
