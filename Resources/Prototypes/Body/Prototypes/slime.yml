@@ -15,13 +15,11 @@
     # Sunrise-end
     torso:
       part: TorsoSlime
-    # Sunrise-start
       connections:
       - right arm
       - left arm
       - right leg
       - left leg
-    # Sunrise-end
       organs:
         core: SentientSlimeCore
         lungs: OrganSlimeLungs
