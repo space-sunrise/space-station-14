@@ -77,6 +77,7 @@ namespace Content.Client.Popups
                 ("count", existingLabel.Repeats));
         }
 
+        // Sunrise edit - добавил EntityUid? origin = null, сделал bool recordReplay = true по умолчанию true
         private void PopupMessage(string? message, PopupType type, EntityCoordinates coordinates, EntityUid? entity, EntityUid? origin = null, bool recordReplay = true)
         {
             if (message == null)
@@ -254,15 +255,19 @@ namespace Content.Client.Popups
 
         private void OnPopupCoordinatesEvent(PopupCoordinatesEvent ev)
         {
+            // Sunrise edit start - добавил GetEntity(ev.Origin)
             PopupMessage(ev.Message, ev.Type, GetCoordinates(ev.Coordinates), null, GetEntity(ev.Origin), false);
+            // Sunrise edit end
         }
 
         private void OnPopupEntityEvent(PopupEntityEvent ev)
         {
             var entity = GetEntity(ev.Uid);
 
+            // Sunrise edit start - добавил GetEntity(ev.Origin)
             if (TryComp(entity, out TransformComponent? transform))
                 PopupMessage(ev.Message, ev.Type, transform.Coordinates, entity, GetEntity(ev.Origin), false);
+            // Sunrise edit end
         }
 
         private void OnRoundRestart(RoundRestartCleanupEvent ev)
