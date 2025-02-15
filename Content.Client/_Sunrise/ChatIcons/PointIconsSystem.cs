@@ -1,17 +1,25 @@
 ﻿using Content.Client.UserInterface.Systems.Chat;
+using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.Chat;
 using Content.Shared.Examine;
 using Content.Shared.Popups;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
+using Robust.Shared.Configuration;
 
 namespace Content.Client._Sunrise.ChatIcons;
 
+// TODO: Придумать способ как убирать из чата уже написанные теги при выключении настройки
+// Очень желательно не делать это внутри класса тега
+
 public sealed class PointIconsSystem : EntitySystem
 {
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
+    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly IUserInterfaceManager _ui = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly ExamineSystemShared _examine = default!;
+
+    private bool _enabled;
 
     private const string FontSize = "10";
 
@@ -32,14 +40,26 @@ public sealed class PointIconsSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<MetaDataComponent, EntityPopupedEvent>(OnPopup);
+
+        _cfg.OnValueChanged(SunriseCCVars.ChatPointingVisuals, b => _enabled = b, true);
+    }
+
+    public override void Shutdown()
+    {
+        base.Shutdown();
+
+        _cfg.UnsubValueChanged(SunriseCCVars.ChatPointingVisuals, b => _enabled = b);
     }
 
     private void OnPopup(Entity<MetaDataComponent> ent, ref EntityPopupedEvent args)
     {
-        if (_playerManager.LocalEntity == null)
+        if (!_enabled)
             return;
 
-        if (!_examine.InRangeUnOccluded(_playerManager.LocalEntity.Value, Transform(ent).Coordinates, 10))
+        if (_player.LocalEntity == null)
+            return;
+
+        if (!_examine.InRangeUnOccluded(_player.LocalEntity.Value, Transform(ent).Coordinates, 10))
             return;
 
         var fontsize = _fontSizeDict.GetValueOrDefault(args.Type, FontSize);
@@ -56,7 +76,7 @@ public sealed class PointIconsSystem : EntitySystem
             NetEntity.Invalid,
             null);
 
-        _uiManager.GetUIController<ChatUIController>().ProcessChatMessage(chatMsg);
+        _ui.GetUIController<ChatUIController>().ProcessChatMessage(chatMsg);
     }
 }
 
