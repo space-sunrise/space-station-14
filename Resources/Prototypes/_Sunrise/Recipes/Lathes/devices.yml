@@ -26,3 +26,8 @@
     Plastic: 400
     Silver: 100
     Diamond: 100
+
+- type: latheRecipe
+  parent: ClothingBackpackHolding
+  id: PlantBagOfHolding
+  result: PlantBagOfHolding
