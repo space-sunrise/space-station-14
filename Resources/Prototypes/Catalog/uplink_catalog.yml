@@ -1694,7 +1694,7 @@
     Telecrystal: 3
   categories:
   - UplinkWearables
-- #Sunrise-start
+  #Sunrise-start
   conditions:
   - !type:StoreWhitelistCondition
     blacklist:
