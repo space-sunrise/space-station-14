@@ -169,6 +169,7 @@ public sealed class SolutionContainerVisualsSystem : VisualizerSystem<SolutionCo
 
             var heldPrefix = item.HeldPrefix == null ? "inhand-" : $"{item.HeldPrefix}-inhand-";
 
+            // Sunrise-start
             var locationString = args.Location switch
             {
                 HandLocation.Left => "left",
@@ -177,6 +178,7 @@ public sealed class SolutionContainerVisualsSystem : VisualizerSystem<SolutionCo
             };
 
             var key = $"{heldPrefix}{locationString}{component.InHandsFillBaseName}{closestFillSprite}";
+            // Sunrise-end
 
             layer.State = key;
 
