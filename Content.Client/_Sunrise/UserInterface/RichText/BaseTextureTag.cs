@@ -65,7 +65,7 @@ public abstract class BaseTextureTag : IMarkupTag
             return false;
 
         spriteView.SetEntity(entityUid);
-        //spriteView.Scale = new Vector2(scaleValue, scaleValue);
+        spriteView.Scale = new Vector2(scaleValue, scaleValue);
 
         control = spriteView;
         return true;
