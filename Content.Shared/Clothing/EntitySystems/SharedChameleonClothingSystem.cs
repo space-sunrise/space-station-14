@@ -1,3 +1,4 @@
+using Content.Shared._Sunrise.Biocode;
 using Content.Shared.Access.Components;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Contraband;
@@ -22,6 +23,7 @@ public abstract class SharedChameleonClothingSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] protected readonly SharedUserInterfaceSystem UI = default!;
+    [Dependency] private readonly BiocodeSystem _biocodeSystem = default!;
 
     public override void Initialize()
     {
@@ -103,6 +105,14 @@ public abstract class SharedChameleonClothingSystem : EntitySystem
 
         // Can't pass args from a ref event inside of lambdas
         var user = args.User;
+
+        // Sunrise-Start
+        if (TryComp<BiocodeComponent>(ent.Owner, out var biocodedComponent))
+        {
+            if (!_biocodeSystem.CanUse(args.User, biocodedComponent.Factions))
+                return;
+        }
+        // Sunrise-End
 
         args.Verbs.Add(new InteractionVerb()
         {

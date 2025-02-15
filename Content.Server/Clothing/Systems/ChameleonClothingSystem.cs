@@ -13,7 +13,6 @@ public sealed class ChameleonClothingSystem : SharedChameleonClothingSystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IComponentFactory _factory = default!;
     [Dependency] private readonly IdentitySystem _identity = default!;
-    [Dependency] private readonly BiocodeSystem _biocodeSystem = default!;
 
     public override void Initialize()
     {
