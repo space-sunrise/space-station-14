@@ -8,12 +8,13 @@
   - type: HumanoidAppearance
     species: Swine
   - type: Hunger
-    baseDecayRate: 0.020
+    baseDecayRate: 0.04
   - type: Thirst
+    baseDecayRate: 0.15
     dehydrationDamage:
       types:
-        Bloodloss: 2
-        Asphyxiation: 2
+        Bloodloss: 0.5
+        Asphyxiation: 0.5
   - type: Icon
     sprite: _Sunrise/Mobs/Species/Swine/parts.rsi
     state: full

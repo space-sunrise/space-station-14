@@ -15,12 +15,14 @@
   - type: Icon
     sprite: Mobs/Species/Human/parts.rsi
     state: full
+  - type: Hunger
+    baseDecayRate: 0.015
   - type: Thirst
+    baseDecayRate: 0.05
     dehydrationDamage:
       types:
-        Bloodloss: 2
-        Asphyxiation: 2
-  - type: Hunger
+        Bloodloss: 0.5
+        Asphyxiation: 0.5
   - type: Butcherable
     butcheringType: Spike
     spawned:

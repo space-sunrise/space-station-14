@@ -13,8 +13,8 @@
   - type: Thirst
     dehydrationDamage:
       types:
-        Bloodloss: 2
-        Asphyxiation: 2
+        Bloodloss: 0.5
+        Asphyxiation: 0.5
   - type: Perishable
   - type: HumanoidAppearance
     species: Predator

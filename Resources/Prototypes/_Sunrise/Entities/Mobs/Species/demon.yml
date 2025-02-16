@@ -12,8 +12,8 @@
   - type: Thirst
     dehydrationDamage:
       types:
-        Bloodloss: 2
-        Asphyxiation: 2
+        Bloodloss: 0.5
+        Asphyxiation: 0.5
   - type: Icon
     sprite: _Sunrise/Mobs/Species/Demon/parts.rsi
     state: full_m

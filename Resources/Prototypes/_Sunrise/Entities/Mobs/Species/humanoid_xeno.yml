@@ -101,13 +101,13 @@
       state: body-overlay-2
       visible: false
   - type: Hunger
-    baseDecayRate: 0.07
+    baseDecayRate: 0.04
   - type: Thirst
-    baseDecayRate: 0.07
+    baseDecayRate: 0.15
     dehydrationDamage:
       types:
-        Bloodloss: 2
-        Asphyxiation: 2
+        Bloodloss: 0.5
+        Asphyxiation: 0.5
   - type: Icon # It will not have an icon in the adminspawn menu without this. Body parts seem fine for whatever reason.
     sprite: _Sunrise/Mobs/Species/HumanoidXeno/parts.rsi
     state: full
