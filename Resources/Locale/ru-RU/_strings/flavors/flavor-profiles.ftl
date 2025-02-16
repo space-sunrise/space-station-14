@@ -170,6 +170,7 @@ flavor-complex-glue = как клей
 flavor-complex-spaceshroom-cooked = как космический умами
 flavor-complex-lost-friendship = как прошедшая дружба
 flavor-complex-light = как угасший свет
+flavor-complex-wall-of-bricks = как стена кирпичей
 
 ## Generic alcohol/soda taste. This should be replaced with an actual flavor profile.
 

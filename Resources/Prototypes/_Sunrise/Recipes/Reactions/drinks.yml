@@ -179,3 +179,21 @@
       amount: 1
   products:
     Coffee: 2
+
+- type: reaction
+  id: BacchusBlessing
+  reactants:
+    Moonshine:
+      amount: 1
+    Absinthe:
+      amount: 1
+    ManlyDorf:
+      amount: 1
+    SyndicateBomb:
+      amount: 1
+    Enzyme:
+      amount: 1
+    WeldingFuel:
+      amount: 1
+  products:
+    BacchusBlessing: 5

@@ -78,3 +78,54 @@ uplink-clothing-glasses-nvg-desc = Quality made sunglasses, manufactured by Gorl
 ## Implats
 uplink-smoke-screen-implanter-name = Smoke Screen Implanter
 uplink-smoke-screen-implanter-desc = Creates a small cloud of smoke for you to slip away in. Can be used up to three times before you run out of gas.
+
+
+
+uplink-cluster-mini-bomb-name = Cluster Minibomb
+uplink-cluster-mini-bomb-desc = If you don't care about accuracy, then this choice is for you.
+
+uplink-mech-teleporter-heavy-name = Heavy Mech teleporter
+uplink-mech-teleporter-heavy-desc = Contains Cybersan heavy armored mech with integrated chainsword, Ultra AC-2, LBX AC 10 "Scattershot", BRM-6 Missile Rack and P-X Tesla Cannon.
+
+uplink-mech-teleporter-assault-name = Assault Mech teleporter
+uplink-mech-teleporter-assault-desc = Contains Cybersan lightly armored mech with integrated chainsword, LBX AC 10 "Scattershot", SRM-8 Light Missile Rack and P-X Tesla Cannon.
+
+
+uplink-ammo-crate-ammokit-bundle-name = Syndicate super ammo bundle
+uplink-ammo-crate-ammokit-bundle-desc = Reloading! Reloading! Reloading! Contains various ammo kit except for big gun.
+
+uplink-ammo-caselesskit-name = Caseless Ammo Kit
+uplink-ammo-caselesskit-desc = Reloading! Contains 3 extended magazines and 3 base caseless magazine for the Siar-52.
+
+uplink-ammo-smgkit-name = SMG Ammo Kit
+uplink-ammo-smgkit-desc = Reloading! Contains 8 magazines for the C-20r.
+
+uplink-ammo-smgincendiarykit-name = SMG incendiary Ammo Kit
+uplink-ammo-smgincendiarykit-desc = Reloading! Contains 8 incendiary magazines for the C-20r.
+
+uplink-ammo-smguraniumkit-name = SMG uranium Ammo Kit
+uplink-ammo-smguraniumkit-desc = Reloading! Contains 8 uranium magazines for the C-20r.
+
+uplink-ammo-shotgunkit-name = Shotgun Ammo Kit
+uplink-ammo-shotgunkit-desc = Reloading! Contains 5 pellet magazines and 3 slug magazine for the Bulldog.
+
+uplink-ammo-shotgunincendiarykit-name = Shotgun incendiary Ammo Kit
+uplink-ammo-shotgunincendiarykit-desc = Reloading! Contains 8 incendiary magazines for the Bulldog.
+
+uplink-ammo-shotgunuraniumkit-name = Shotgun uranium Ammo Kit
+uplink-ammo-shotgunuraniumkit-desc = Reloading! Contains 8 uranium magazines for the Bulldog.
+
+uplink-ammo-lmgkit-name = LMG Ammo Kit
+uplink-ammo-lmgkit-desc = Reloading! Contains 8 magazines for the L6 Saw or DL6902.
+
+uplink-ammo-lmgincendiarykit-name = LMG incendiary Ammo Kit
+uplink-ammo-lmgincendiarykit-desc = Reloading! Contains 8 incendiary magazines for the L6 Saw or DL6902.
+
+uplink-ammo-lmguraniumkit-name = LMG uranium Ammo Kit
+uplink-ammo-lmguraniumkit-desc = Reloading! Contains 8 uranium magazines for the L6 Saw or DL6902.
+
+uplink-energy-dome-name = Personal energy dome
+uplink-energy-dome-desc = A personal shield generator that protects the wearer from lasers and bullets but prevents from using ranged weapons himself. Comes with a small power cell.
+
+uplink-syndicate-teleporter-name = Hand syndicate teleporter
+uplink-syndicate-teleporter-desc = An experimental hand teleporting device. Teleports its owner forward in a small area. Be careful not to end up in the wall.

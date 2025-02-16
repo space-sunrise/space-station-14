@@ -144,3 +144,7 @@ ent-PlushieAnatolyLisitsyn = Anatoly Lisitsyn
     .desc = { ent-BasePlushie.desc }
 ent-PlushieEvgeniyaKrein = Evgeniya Krein
     .desc = { ent-BasePlushie.desc }
+ent-PlushieMiraKovalskaya = Plushie Mira Kovalskaya
+    .desc = She's like to say "Meow" and "mrrr"?..
+ent-PlushieMihailOsipov = Plushie Mihail Osipov
+    .desc = He is able to dissolve into the world of illusions and shower passersby with some metaphorical "pies". He probably knows the secret to making really witty and funny jokes.

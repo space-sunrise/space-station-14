@@ -98,3 +98,4 @@ reagent-physical-desc-neural = нейронное
 reagent-physical-desc-vile = мерзкое
 reagent-physical-desc-celliminol = сильно отдающее кровью
 reagent-physical-desc-h-32 = сильно пахнущее радиоактивными ожогами
+reagent-physical-desc-blessing = reagent-desc-bacchus-blessing
