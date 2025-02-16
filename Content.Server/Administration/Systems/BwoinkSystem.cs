@@ -669,7 +669,7 @@ namespace Content.Server.Administration.Systems
                 return;
 
             if (IsSpam(message.UserId, message.Text))
-                _banManager.CreateServerBan(senderSession.UserId, senderSession.Name, null, null, null, 0, NoteSeverity.High, "Automatic AHELP Antispam system Ban, If this ban is wrong, file an appeal.");
+                _banManager.CreateServerBan(senderSession.UserId, senderSession.Name, null, null, null, 180, NoteSeverity.High, Loc.GetString("ahelp-antispam-ban-reason"));
 
             AddToRecentMessages(message.UserId, message.Text, currentTime);
             // Sunrise-Ahelp-Antispam-End
