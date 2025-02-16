@@ -306,6 +306,7 @@
   components:
   - type: TriggerArtifact
   - type: ExplodeOnTrigger
+  - type: CMExplosionEffect # Sunrise added
   - type: Explosive
     deleteAfterExplosion: false
     explosionType: Radioactive
@@ -645,6 +646,7 @@
   components:
   - type: TriggerArtifact
   - type: ExplodeOnTrigger
+  - type: CMExplosionEffect # Sunrise added
   - type: Explosive
     deleteAfterExplosion: false
     explosionType: Default

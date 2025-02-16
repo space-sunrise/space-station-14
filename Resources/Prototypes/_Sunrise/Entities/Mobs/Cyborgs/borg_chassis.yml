@@ -296,6 +296,7 @@
     beepInterval: 3
     beepSound: /Audio/Effects/PowerSink/charge_fire.ogg
   - type: ExplodeOnTrigger
+  - type: CMExplosionEffect # Sunrise added
   - type: GibOnTrigger
     deleteItems: true
   - type: Explosive
@@ -406,6 +407,7 @@
     beepInterval: 3
     beepSound: /Audio/Effects/PowerSink/charge_fire.ogg
   - type: ExplodeOnTrigger
+  - type: CMExplosionEffect # Sunrise added
   - type: GibOnTrigger
     deleteItems: true
   - type: Explosive

@@ -662,6 +662,7 @@
     radius: 3.5
     color: orange
     energy: 0.5
+  - type: CMExplosionEffect # Sunrise added
 
 - type: entity
   id: BulletWeakRocket
@@ -684,6 +685,7 @@
     radius: 3.5
     color: orange
     energy: 0.5
+  - type: CMExplosionEffect # Sunrise added
 
 - type: entity
   id: BulletGrenadeBaton
@@ -876,6 +878,7 @@
     radius: 1
     color: orange
     energy: 0.5
+  - type: CMExplosionEffect # Sunrise added
 
 - type: entity
   id: GrapplingHook

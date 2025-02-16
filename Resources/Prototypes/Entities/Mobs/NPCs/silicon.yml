@@ -260,6 +260,7 @@
     sounds:
       Unsexed: Cluwne
   - type: ExplodeOnTrigger
+  - type: CMExplosionEffect # Sunrise added
   - type: Explosive
     explosionType: Default
     maxIntensity: 20

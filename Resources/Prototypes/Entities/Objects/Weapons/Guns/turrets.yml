@@ -170,6 +170,7 @@
       doAfterDelay: 3
     - type: TriggerWhenEmpty
     - type: ExplodeOnTrigger
+    - type: CMExplosionEffect # Sunrise added
     - type: Explosive
       explosionType: Default
       maxIntensity: 10

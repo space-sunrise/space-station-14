@@ -34,6 +34,7 @@
     intensitySlope: 3
     totalIntensity: 120 # about a ~4 tile radius
   - type: ExplodeOnTrigger
+  - type: CMExplosionEffect # Sunrise added
   - type: Destructible
     thresholds:
     - trigger:

@@ -4,14 +4,14 @@ namespace Content.Shared._RMC14.Explosion.Components
 {
     [RegisterComponent, NetworkedComponent]
     [AutoGenerateComponentState]
-    [Access(typeof(SharedCMExplosionSystem))]
+    [Access(typeof(SharedRMCExplosionSystem))]
     public sealed partial class RMCExplosionShockWaveComponent : Component
     {
         /// <summary>
         ///     The rate at which the wave fades, lower values means it's active for longer.
         /// </summary>
         [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
-        public float FalloffPower = 40.0f;
+        public float FalloffPower = 20.0f;
 
         /// <summary>
         ///     How sharp the wave distortion is. Higher values make the wave more pronounced.

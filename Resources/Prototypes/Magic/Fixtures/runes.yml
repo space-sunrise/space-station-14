@@ -56,6 +56,7 @@
     - type: TriggerOnCollide
       fixtureID: rune
     - type: ExplodeOnTrigger
+    - type: CMExplosionEffect # Sunrise added
     - type: Explosive
       explosionType: Cryo
       totalIntensity: 20.0
@@ -117,6 +118,7 @@
   name: "explosion timed rune"
   components:
     - type: ExplodeOnTrigger
+    - type: CMExplosionEffect # Sunrise added
     - type: Explosive
       explosionType: Cryo
       totalIntensity: 20.0
@@ -129,6 +131,7 @@
   name: "explosion activated rune"
   components:
     - type: ExplodeOnTrigger
+    - type: CMExplosionEffect # Sunrise added
     - type: Explosive
       explosionType: Cryo
       totalIntensity: 20.0

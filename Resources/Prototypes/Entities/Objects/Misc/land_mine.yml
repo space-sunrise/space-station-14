@@ -68,6 +68,7 @@
   id: LandMineExplosive
   components:
   - type: ExplodeOnTrigger
+  - type: CMExplosionEffect # Sunrise added
   - type: Explosive
     explosionType: Default
     maxIntensity: 10

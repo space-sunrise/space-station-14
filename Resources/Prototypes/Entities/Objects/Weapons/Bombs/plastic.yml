@@ -73,6 +73,7 @@
     maxIntensity: 30
     canCreateVacuum: false
   - type: ExplodeOnTrigger
+  - type: CMExplosionEffect # Sunrise added
   - type: HolidayVisuals
     holidays:
       festive:
@@ -114,3 +115,4 @@
     maxIntensity: 30
     canCreateVacuum: false
   - type: ExplodeOnTrigger
+  - type: CMExplosionEffect # Sunrise added

@@ -29,6 +29,7 @@
         params:
           volume: -2
     - type: ExplodeOnTrigger
+    - type: CMExplosionEffect # Sunrise added
     - type: Explosive
       explosionType: Default
       maxIntensity: 50
@@ -82,6 +83,7 @@
       shader: unshaded
   - type: TriggerOnSlip
   - type: ExplodeOnTrigger
+  - type: CMExplosionEffect # Sunrise added
   - type: Explosive
     explosionType: Default
     maxIntensity: 3.4
