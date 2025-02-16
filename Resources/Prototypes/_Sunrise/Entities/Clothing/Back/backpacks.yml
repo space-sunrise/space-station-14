@@ -74,3 +74,18 @@
   components:
     - type: Sprite
       sprite: _Sunrise/Clothing/Back/Backpacks/adjutant.rsi
+
+- type: entity
+  parent: ClothingBackpack
+  id: ClothingBackpackNTRG
+  name: NTRG Squad backpack
+  description: An operative's backpack with increased capacity.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Back/Backpacks/ntrgbackpack.rsi
+  - type: Storage
+    maxItemSize: Huge
+    grid:
+    - 0,0,6,4
+  - type: ExplosionResistance
+    damageCoefficient: 0.80
