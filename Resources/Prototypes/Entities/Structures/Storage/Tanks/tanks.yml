@@ -34,6 +34,7 @@
   - type: Explosive
     explosionType: Default
     totalIntensity: 60 # Mediocre explosion. Not enough to do any meaningful structural damage to anything other then windows, provided you're only using one tank.
+  - type: CMExplosionEffect # Sunrise added
 
 - type: entity
   id: WeldingFuelTankFull

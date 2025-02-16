@@ -21,7 +21,7 @@ public sealed class RMCExplosionShockWaveOverlay : Overlay, IEntityEventSubscrib
     /// <summary>
     ///     Maximum number of distortions that can be shown on screen at a time.
     /// </summary>
-    public const int MaxCount = 10;
+    public const int MaxCount = 300;
 
     public RMCExplosionShockWaveOverlay()
     {
@@ -58,9 +58,9 @@ public sealed class RMCExplosionShockWaveOverlay : Overlay, IEntityEventSubscrib
             tempCoords.X /= args.Viewport.Size.X;
 
             _positions[_count] = tempCoords;
-            _falloffPower[_count] = distortion.FalloffPower;
+            _falloffPower[_count] = distortion.FalloffPower ?? 20f; // Sunrise edit - фолбек
             _sharpness[_count] = distortion.Sharpness;
-            _width[_count] = distortion.Width;
+            _width[_count] = distortion.Width ?? 0.8f;
             _count++;
 
             if (_count == MaxCount)

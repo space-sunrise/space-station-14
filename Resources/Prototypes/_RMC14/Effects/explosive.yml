@@ -16,3 +16,4 @@
   - type: TimedDespawn
     lifetime: 0.5
   - type: RMCExplosionShockWave
+    sharpness: 5
