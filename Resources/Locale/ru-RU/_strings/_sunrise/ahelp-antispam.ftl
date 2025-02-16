@@ -1,1 +1,1 @@
-ahelp-antispam-ban-reason = Automatic AHELP Antispam system Ban, If this ban is wrong, file an appeal.
+ahelp-antispam-ban-reason = Вы были забанены автоматической системой антиспама в Ahelp. Если вы считаете что произошла ошибка - вы можете обжаловать бан на Discord сервере проекта.
