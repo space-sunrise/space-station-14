@@ -1,7 +1,6 @@
 - type: latheRecipePack
   id: SecurityStaticSunrise
   recipes:
-    - SpeedLoaderMagnumRubber
     - MagazineMagnumEmpty
     - MagazineMagnum
     - MagazineP90
@@ -15,14 +14,6 @@
   id: SecurityDynamicSunrise
   recipes:
     - WeaponGunLaserCarbineSemi
-    - MagazineLightRifleRubber
-    - MagazineRifleRubber
-    - MagazineMagnumRubber
-    - MagazinePistolSubMachineGunRubber
-    - MagazineBoxPistolRubber
-    - MagazineBoxMagnumRubber
-    - MagazineBoxRifleRubber
-    - MagazineBoxLightRifleRubber
     - WeaponMechCombatImmolationGun
     - WeaponMechCombatSolarisLaser
     - WeaponMechCombatFiredartLaser

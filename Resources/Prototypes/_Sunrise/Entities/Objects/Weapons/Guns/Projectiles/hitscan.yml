@@ -28,18 +28,6 @@
     state: bullet
 
 - type: hitscan
-  id: BulletPistolRubber
-  damage:
-    types:
-      Blunt: 1
-  staminaDamage: 15
-  collisionMask: BulletImpassable
-  reflective: NonEnergy
-  bulletTracer:
-    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: rubber
-
-- type: hitscan
   id: BulletPistolPractice
   damage:
     types:
@@ -85,18 +73,6 @@
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
     state: bullet
-
-- type: hitscan
-  id: BulletRifleRubber
-  damage:
-    types:
-      Blunt: 1
-  staminaDamage: 15
-  collisionMask: BulletImpassable
-  reflective: NonEnergy
-  bulletTracer:
-    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: rubber
 
 - type: hitscan
   id: BulletRiflePractice
@@ -146,18 +122,6 @@
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
     state: bullet
-
-- type: hitscan
-  id: BulletMagnumRubber
-  damage:
-    types:
-      Blunt: 5
-  staminaDamage: 25
-  collisionMask: BulletImpassable
-  reflective: NonEnergy
-  bulletTracer:
-    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: rubber
 
 - type: hitscan
   id: BulletMagnumPractice
@@ -217,18 +181,6 @@
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
     state: bullet
-
-- type: hitscan
-  id: BulletLightRifleRubber
-  damage:
-    types:
-      Blunt: 1
-  staminaDamage: 15
-  collisionMask: BulletImpassable
-  reflective: NonEnergy
-  bulletTracer:
-    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: rubber
 
 - type: hitscan
   id: BulletLightRiflePractice
@@ -298,18 +250,6 @@
   bulletTracer:
     sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
     state: bullet
-
-- type: hitscan
-  id: BulletCaselessRifleRubber
-  damage:
-    types:
-      Blunt: 1
-  staminaDamage: 15
-  collisionMask: BulletImpassable
-  reflective: NonEnergy
-  bulletTracer:
-    sprite: _Sunrise/Objects/Weapons/Guns/Projectiles/hitscan_tracer.rsi
-    state: rubber
 
 - type: hitscan
   id: BulletCaselessRiflePractice

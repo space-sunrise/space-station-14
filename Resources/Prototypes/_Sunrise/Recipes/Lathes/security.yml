@@ -65,46 +65,6 @@
     Steel: 145
 
 - type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineMagnumRubber
-  result: MagazineMagnumRubber
-  materials:
-    Steel: 25
-    Plastic: 80
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: SpeedLoaderMagnumRubber
-  result: SpeedLoaderMagnumRubber
-  materials:
-    Steel: 50
-    Plastic: 60
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazinePistolSubMachineGunRubber
-  result: MagazinePistolSubMachineGunRubber
-  materials:
-    Steel: 60
-    Plastic: 160
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineRifleRubber
-  result: MagazineRifleRubber
-  materials:
-    Steel: 125
-    Plastic: 125
-
-- type: latheRecipe
-  parent: BaseAmmoRecipe
-  id: MagazineLightRifleRubber
-  result: MagazineLightRifleRubber
-  materials:
-    Steel: 175
-    Plastic: 150
-
-- type: latheRecipe
   id: BoxShotgunFlare
   result: BoxShotgunFlare
   category: Ammo
@@ -112,42 +72,6 @@
   materials:
     Steel: 150
     Plastic: 150
-
-- type: latheRecipe
-  id: MagazineBoxPistolRubber
-  result: MagazineBoxPistolRubber
-  category: Ammo
-  completetime: 5
-  materials:
-    Steel: 350
-    Plastic: 300
-
-- type: latheRecipe
-  id: MagazineBoxMagnumRubber
-  result: MagazineBoxMagnumRubber
-  category: Ammo
-  completetime: 5
-  materials:
-    Steel: 350
-    Plastic: 300
-
-- type: latheRecipe
-  id: MagazineBoxRifleRubber
-  result: MagazineBoxRifleRubber
-  category: Ammo
-  completetime: 5
-  materials:
-    Steel: 350
-    Plastic: 600
-
-- type: latheRecipe
-  id: MagazineBoxLightRifleRubber
-  result: MagazineBoxLightRifleRubber
-  category: Ammo
-  completetime: 5
-  materials:
-    Steel: 350
-    Plastic: 600
 
 - type: latheRecipe
   id: MagazineM16A4

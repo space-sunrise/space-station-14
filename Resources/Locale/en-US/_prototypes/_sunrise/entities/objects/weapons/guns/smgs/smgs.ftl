@@ -1,6 +1,3 @@
-ent-WeaponSubMachineGunDrozdRubber = Drozd
-    .suffix = Non-Lethal
-    .desc = { ent-WeaponSubMachineGunDrozd.desc }
 ent-WeaponSubMachineGunP90 = P-90
     .desc = { ent-BaseWeaponSubMachineGun.desc }
 ent-WeaponSubMachineGunMP38 = MP-38

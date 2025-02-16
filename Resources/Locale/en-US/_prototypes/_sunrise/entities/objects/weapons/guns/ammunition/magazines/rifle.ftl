@@ -1,5 +1,3 @@
-ent-MagazineRifleRubber = magazine (.20 rifle rubber)
-    .desc = { ent-BaseMagazineRifle.desc }
 ent-MagazineV31 = { ent-BaseItem }
     .desc = { ent-BaseItem.desc }
 ent-MagazineFamas = Famas magazine

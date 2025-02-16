@@ -13,6 +13,3 @@ ent-CartridgeClRifleHV = патрон (.25 безгильзовый высоко
 ent-CartridgeClRiflePractice = патрон (.25 безгильзовый учебный)
     .desc = { ent-CartridgeClRifleBase.desc }
     .suffix = { "" }
-ent-CartridgeClRifleRubber = патрон (.25 безгильзовый резиновый)
-    .desc = { ent-CartridgeClRifleBase.desc }
-    .suffix = { "" }
