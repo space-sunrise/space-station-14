@@ -52,6 +52,8 @@
         amount: 4
       - id: WeaponPistolFlintlock
         amount: 2
+      - id: MagazineBoxAntiMateriel
+        amount: 2
       - id: WeaponGrapplingGun
         amount: 2
       - id: WeaponShotgunBlunderbuss
