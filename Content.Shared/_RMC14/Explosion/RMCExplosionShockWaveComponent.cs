@@ -4,7 +4,6 @@ namespace Content.Shared._RMC14.Explosion.Components
 {
     [RegisterComponent, NetworkedComponent]
     [AutoGenerateComponentState]
-    [Access(typeof(SharedRMCExplosionSystem))]
     public sealed partial class RMCExplosionShockWaveComponent : Component
     {
         /// <summary>
@@ -24,5 +23,8 @@ namespace Content.Shared._RMC14.Explosion.Components
         /// </summary>
         [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
         public float? Width = 0.8f;
+
+        [DataField]
+        public TimeSpan CreationTime;
     }
 }

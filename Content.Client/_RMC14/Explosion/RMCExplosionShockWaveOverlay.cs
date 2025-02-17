@@ -3,6 +3,7 @@ using Content.Shared._RMC14.Explosion.Components;
 using Robust.Client.Graphics;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Client._RMC14.Explosion;
 
@@ -10,6 +11,7 @@ public sealed class RMCExplosionShockWaveOverlay : Overlay, IEntityEventSubscrib
 {
     [Dependency] private readonly IEntityManager _entMan = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     private SharedTransformSystem? _xformSystem;
 
@@ -21,7 +23,7 @@ public sealed class RMCExplosionShockWaveOverlay : Overlay, IEntityEventSubscrib
     /// <summary>
     ///     Maximum number of distortions that can be shown on screen at a time.
     /// </summary>
-    public const int MaxCount = 300;
+    public const int MaxCount = 10;
 
     public RMCExplosionShockWaveOverlay()
     {
@@ -33,7 +35,10 @@ public sealed class RMCExplosionShockWaveOverlay : Overlay, IEntityEventSubscrib
     private readonly float[] _falloffPower = new float[MaxCount];
     private readonly float[] _sharpness = new float[MaxCount];
     private readonly float[] _width = new float[MaxCount];
+    private readonly float[] _times = new float[MaxCount];
     private int _count;
+
+    private readonly TimeSpan _timeCompensation = TimeSpan.FromSeconds(0.2f);
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
@@ -57,10 +62,14 @@ public sealed class RMCExplosionShockWaveOverlay : Overlay, IEntityEventSubscrib
             tempCoords.Y = 1 - (tempCoords.Y / args.Viewport.Size.Y);
             tempCoords.X /= args.Viewport.Size.X;
 
+            var currentTime = (float)(_timing.CurTime - distortion.CreationTime - _timeCompensation).TotalSeconds;
+            currentTime = Math.Clamp(currentTime, 0.1f, float.MaxValue);
+
             _positions[_count] = tempCoords;
             _falloffPower[_count] = distortion.FalloffPower ?? 20f; // Sunrise edit - фолбек
             _sharpness[_count] = distortion.Sharpness;
             _width[_count] = distortion.Width ?? 0.8f;
+            _times[_count] = currentTime;
             _count++;
 
             if (_count == MaxCount)
@@ -81,6 +90,7 @@ public sealed class RMCExplosionShockWaveOverlay : Overlay, IEntityEventSubscrib
         _shader?.SetParameter("falloffPower", _falloffPower);
         _shader?.SetParameter("sharpness", _sharpness);
         _shader?.SetParameter("width", _width);
+        _shader?.SetParameter("time", _times);
         _shader?.SetParameter("SCREEN_TEXTURE", ScreenTexture);
 
         var worldHandle = args.WorldHandle;
