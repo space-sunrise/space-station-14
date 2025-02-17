@@ -28,8 +28,7 @@
             Magistrat: [ 1, 1 ]
             IAA: [ 1, 1 ]
             Lawyer: [ 1, 2 ]
-            NtrLeader: [ 1, 1 ]
-            NtrGuard: [ 2, 2 ]
+            NtrOfficer: [ 2, 2 ]
             #service
             Bartender: [ 2, 2 ]
             Botanist: [ 2, 3 ]

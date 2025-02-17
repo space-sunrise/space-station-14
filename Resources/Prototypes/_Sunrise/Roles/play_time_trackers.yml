@@ -23,6 +23,9 @@
   id: JobNtrLeader
 
 - type: playTimeTracker
+  id: JobNtrOfficer
+
+- type: playTimeTracker
   id: JobNanoTrasenRepresentative
 
 - type: playTimeTracker

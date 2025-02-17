@@ -25,6 +25,19 @@
   - CommonPets
 
 - type: roleLoadout
+  id: JobNtrOfficer
+  groups:
+  - BackNTR
+  - UniformNTR
+  - Trinkets
+  - SecurityTrinkets
+  - GroupSpeciesBreathTool
+  - Bra
+  - Pants
+  - Socks
+  - CommonPets
+
+- type: roleLoadout
   id: JobBrigmedic
   groups:
   - BrigmedicJumpsuit

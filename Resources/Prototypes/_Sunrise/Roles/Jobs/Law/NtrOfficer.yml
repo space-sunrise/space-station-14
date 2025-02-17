@@ -1,0 +1,63 @@
+- type: job
+  id: NtrOfficer
+  name: job-name-ntrofficer
+  description: job-description-ntrofficer
+  playTimeTracker: JobNtrOfficer
+  requirements:
+  - !type:DepartmentTimeRequirement
+    department: Command
+    time: 54000 # 15h Sunrise-RoleTime
+  - !type:DepartmentTimeRequirement
+    department: Security
+    time: 36000 # 10h Sunrise-RoleTime
+  startingGear: NtrOfficerGear
+  icon: "JobIconNtrGuard"
+  supervisors: job-supervisors-ntrg
+  canBeAntag: false
+  displayWeight: 40
+  access:
+  - Command
+  - Bar
+  - Service
+  - Maintenance
+  - Janitor
+  - Theatre
+  - Kitchen
+  - Chapel
+  - Hydroponics
+  - External
+  - Chemistry
+  - Engineering
+  - Research
+  - Detective
+  - Salvage
+  - Security
+  - Brig
+  - Cargo
+  - Atmospherics
+  - Medical
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+
+- type: startingGear
+  id: NtrOfficerGear
+  equipment:
+    #jumpsuit: ClothingUniformJumpsuitNTRG
+    #neck: ClothingNeckCloakNTRG - Testing neck
+    #back: ClothingBackpackSatchelNTRG
+    mask: ClothingMaskGasNTRGLead
+    shoes: ClothingShoesBootsCombatFilled
+    head: ClothingHeadCapNTGR
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorNTRGLead
+    id: NtrGuardPDA
+    ears: ClothingHeadsetMagistrate
+    belt: ClothingBeltSecurityFilled
+  inhand:
+  - WeaponEnergyGunPulseRevolver
+  storage:
+    back:
+    - CrowbarRed
+    - MedkitCombatFilled

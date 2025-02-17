@@ -35,8 +35,9 @@ job-name-usspsoldier = Солдат СССП
 job-name-usspofficer = Офицер СССП
 job-name-usspcaptain = Капитан СССП
 # NTR
-job-name-ntrguard = офицер ИСН
+job-name-ntrguard = Оператор ИСН
 job-name-ntrleader = Командир ИСН
+job-name-ntrofficer = Офицер ИСН
 # Перевод трекеров времени
 JobCentCommOfficial = представитель Центком
 JobCentCommOperator = оператор Центком
@@ -72,3 +73,4 @@ JobUSSPSoldier = Солдат СССП
 JobUSSPOfficer = Офицер СССП
 JobNtrGuard = Оператор ИСН
 JobNtrLeadGuard = Командир ИСН
+JobNtrOfficer = Офицер ИСН
