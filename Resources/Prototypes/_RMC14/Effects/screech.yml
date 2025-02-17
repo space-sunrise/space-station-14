@@ -15,3 +15,21 @@
   - type: Tag
     tags:
     - HideContextMenu
+
+- type: entity
+  # Just fades out with no movement animation
+  id: CMEffectScreechShort
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 1.4
+  - type: RMCXenoScreechShockWave
+  - type: Sprite
+    sprite: _RMC14/Effects/xeno_screech.rsi
+    noRot: true
+    state: screech
+    drawdepth: Effects
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+    - HideContextMenu
