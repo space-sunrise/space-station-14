@@ -88,7 +88,6 @@
   - type: SpentAmmoVisuals
     state: blast
     suffix: false
-  - type: CMExplosionEffect # Sunrise added
 
 - type: entity
   id: GrenadeFlash
@@ -123,7 +122,6 @@
   - type: SpentAmmoVisuals
     state: frag
     suffix: false
-  - type: CMExplosionEffect # Sunrise added
 
 - type: entity
   id: GrenadeEMP

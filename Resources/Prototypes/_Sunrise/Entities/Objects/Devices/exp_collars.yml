@@ -13,7 +13,6 @@
     intensitySlope: 5
     maxIntensity: 4
   - type: ExplodeOnTrigger
-  - type: CMExplosionEffect # Sunrise added
   - type: ExpCollar
     initialStripDelay: 0
     armedStripDelay: 30

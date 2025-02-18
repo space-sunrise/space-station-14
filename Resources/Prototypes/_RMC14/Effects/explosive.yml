@@ -1,17 +1,15 @@
 - type: entity
   id: CMExplosionEffectGrenade
-  categories:
-  - HideSpawnMenu
   components:
   - type: Sprite
     sprite: _RMC14/Effects/grenade_explosion.rsi
+    scale: 2, 2
     state: grenade
   - type: TimedDespawn
     lifetime: 0.6
 
 - type: entity
   id: RMCExplosionEffectGrenadeShockWave
-  categories: [ HideSpawnMenu ]
   components:
   - type: TimedDespawn
     lifetime: 0.5

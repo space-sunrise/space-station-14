@@ -40,7 +40,6 @@
     maxIntensity: 120
     canCreateVacuum: true
   - type: ExplodeOnTrigger
-  - type: CMExplosionEffect # Sunrise added
   - type: StickyVisualizer
   - type: Appearance
   - type: GenericVisualizer

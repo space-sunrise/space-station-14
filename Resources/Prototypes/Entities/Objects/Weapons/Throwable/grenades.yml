@@ -43,7 +43,6 @@
   id: ExGrenade
   components:
   - type: ExplodeOnTrigger
-  - type: CMExplosionEffect # Sunrise added
   - type: Explosive
     explosionType: Default
     maxIntensity: 10
@@ -131,7 +130,6 @@
   - type: OnUseTimerTrigger
     delay: 5
   - type: ExplodeOnTrigger
-  - type: CMExplosionEffect # Sunrise added
   - type: Explosive
     explosionType: Minibomb
     totalIntensity: 200
@@ -152,7 +150,6 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: ExplodeOnTrigger
-  - type: CMExplosionEffect # Sunrise added
   - type: Explosive
     explosionType: Minibomb
     totalIntensity: 400
@@ -285,7 +282,6 @@
   - type: OnUseTimerTrigger
     delay: 5
   - type: ExplodeOnTrigger
-  - type: CMExplosionEffect # Sunrise added
   - type: Explosive
     explosionType: Default
     totalIntensity: 20000 # ~15 tile radius.
@@ -376,7 +372,6 @@
   - type: Sprite
     sprite: Objects/Weapons/Grenades/holyhandgrenade.rsi
   - type: ExplodeOnTrigger
-  - type: CMExplosionEffect # Sunrise added
   - type: Explosive
     explosionType: Default # same as macrobomb
     totalIntensity: 3500

@@ -2375,7 +2375,6 @@
     intensitySlope: 20
     totalIntensity: 225
   - type: ExplodeOnTrigger
-  - type: CMExplosionEffect # Sunrise added
   - type: Destructible
     thresholds:
     - trigger:

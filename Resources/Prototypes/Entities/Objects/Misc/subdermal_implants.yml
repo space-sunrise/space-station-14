@@ -309,7 +309,6 @@
       - Dead
     - type: TriggerImplantAction
     - type: ExplodeOnTrigger
-    - type: CMExplosionEffect # Sunrise added
     - type: GibOnTrigger
       deleteItems: true
     - type: Explosive
@@ -345,7 +344,6 @@
         params:
           volume: -2
     - type: ExplodeOnTrigger
-    - type: CMExplosionEffect # Sunrise added
     - type: GibOnTrigger
       deleteItems: true
     - type: Explosive

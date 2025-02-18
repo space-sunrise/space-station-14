@@ -167,9 +167,6 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
             explosive.CanCreateVacuum,
             user);
 
-        var ev = new CMExplosiveTriggeredEvent();
-        RaiseLocalEvent(uid, ref ev);
-
         if (explosive.DeleteAfterExplosion ?? delete)
             EntityManager.QueueDeleteEntity(uid);
     }
@@ -323,6 +320,12 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
         };
         _explosionQueue.Enqueue(boom);
         _queuedExplosions.Add(boom);
+
+        if (!cause.HasValue)
+            return;
+
+        var ev = new CMExplosiveTriggeredEvent();
+        RaiseLocalEvent(cause.Value, ref ev);
     }
 
     /// <summary>
@@ -343,7 +346,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
 
         var (area, iterationIntensity, spaceData, gridData, spaceMatrix) = results.Value;
 
-        var visualEnt = CreateExplosionVisualEntity(pos, queued.Proto.ID, spaceMatrix, spaceData, gridData.Values, iterationIntensity);
+        var visualEnt = CreateExplosionVisualEntity(pos, queued.Proto, spaceMatrix, spaceData, gridData.Values, iterationIntensity);
 
         // camera shake
         CameraShake(iterationIntensity.Count * 4f, pos, queued.TotalIntensity);

@@ -108,7 +108,6 @@
     layers:
       - state: grenade
   - type: ExplodeOnTrigger
-  - type: CMExplosionEffect # Sunrise added
   - type: Explosive
     explosionType: Default
     totalIntensity: 175 # about a ~6 tile radius
@@ -146,7 +145,6 @@
     layers:
       - state: grenade
   - type: ExplodeOnTrigger
-  - type: CMExplosionEffect # Sunrise added
   - type: Explosive
     explosionType: Default
     totalIntensity: 150 # a ~2 tile radius
