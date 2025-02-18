@@ -13,10 +13,10 @@ public abstract class SharedRMCExplosionSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
 
     // TODO: Зависимость этих значений от силы взрыва
-    private const float MinSmokeCount = 15f;
-    private const float MaxSmokeCount = 20f;
+    private const float MinSmokeCountPer100 = 15f;
+    private const float MaxSmokeCountPer100 = 20f;
 
-    private const float SmokeSpawnRadius = 3f;
+    private const float SmokeSpawnRadiusPer100 = 2f;
 
     public override void Initialize()
     {
@@ -30,24 +30,24 @@ public abstract class SharedRMCExplosionSystem : EntitySystem
 
     public void DoEffect(Entity<CMExplosionEffectComponent> ent)
     {
+        if (!TryComp<ExplosiveComponent>(ent, out var explosionComponent))
+            return;
+
         if (ent.Comp.ShockWave is { } shockwave)
         {
             var wave = SpawnNextToOrDrop(shockwave, ent);
-            ModifyShockwave(ent, wave);
+            ModifyShockwave(wave, explosionComponent);
         }
 
         if (ent.Comp.Explosion is { } explosion)
             SpawnNextToOrDrop(explosion, ent);
 
         if (ent.Comp.Smoke is { } smoke)
-            CreateFancySmoke(ent, smoke);
+            CreateFancySmoke(ent, explosionComponent, smoke);
     }
 
-    private void ModifyShockwave(Entity<CMExplosionEffectComponent> ent, EntityUid wave)
+    private void ModifyShockwave(EntityUid wave, ExplosiveComponent  explosionComponent)
     {
-        if (!TryComp<ExplosiveComponent>(ent, out var explosionComponent))
-            return;
-
         // Дальше идут просто числа, которые я придумал особо не думая, мб нужно подумать
         // Но идея в том, чтобы чем сильнее взрыв, тем сильнее эффект и наоборот
         // TODO: Разобраться, почему каждый взрыв все равно создает разную волну, даже с отключенной этой системой
@@ -64,14 +64,17 @@ public abstract class SharedRMCExplosionSystem : EntitySystem
             timedDespawnComponent.Lifetime = Math.Clamp(explosionComponent.TotalIntensity / 50f, 0.1f, 0.8f);
     }
 
-    private void CreateFancySmoke(Entity<CMExplosionEffectComponent> ent, EntProtoId smokeId)
+    private void CreateFancySmoke(Entity<CMExplosionEffectComponent> ent, ExplosiveComponent explosionComponent, EntProtoId smokeId)
     {
-        var smokeCount = _random.NextFloat(MinSmokeCount, MaxSmokeCount);
+        var modifier = explosionComponent.TotalIntensity / 100f;
+
+        var smokeCount = _random.NextFloat(MinSmokeCountPer100 * modifier, MaxSmokeCountPer100 * modifier);
         var coords = Transform(ent).Coordinates;
+        var modifiedRadius = Math.Clamp(SmokeSpawnRadiusPer100 * modifier, 2f, 10f);
 
         for (var i = 0; i < smokeCount; i++)
         {
-            Spawn(smokeId, coords.GetRandomInRadius(SmokeSpawnRadius));
+            Spawn(smokeId, coords.GetRandomInRadius(modifiedRadius));
         }
     }
 
