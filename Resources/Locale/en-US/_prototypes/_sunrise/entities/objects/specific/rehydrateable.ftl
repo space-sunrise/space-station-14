@@ -1,0 +1,10 @@
+ent-WildSlimeCube = wild slime cube
+    .desc = { ent-MonkeyCube.desc }
+ent-PigCube = pig cube
+    .desc = { ent-MonkeyCube.desc }
+ent-ChikenCube = chiken cube
+    .desc = { ent-MonkeyCube.desc }
+ent-InferiorVulpkaninCube = inferior vulpkanin cube
+    .desc = { ent-MonkeyCube.desc }
+ent-FelinidCube = felinid cube
+    .desc = { ent-MonkeyCube.desc }

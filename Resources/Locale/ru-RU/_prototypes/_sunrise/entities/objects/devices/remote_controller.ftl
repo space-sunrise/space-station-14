@@ -10,3 +10,6 @@ ent-RemoteCargoShuttleController = Удаленный контроллер уп�
     .desc = Теперь вам не нужен пилот, ведь пилот это вы!
 ent-RemotePrisonShuttleController = Удаленный контроллер управления шаттлом (Тюремный шаттл)
     .desc = Теперь вам не нужен пилот, ведь пилот это вы!
+ent-DoorRemoteOmni = Omni door remote
+    .suffix = Centcomm
+    .desc = { ent-DoorRemoteDefault.desc }

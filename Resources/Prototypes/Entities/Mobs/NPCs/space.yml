@@ -181,6 +181,7 @@
   parent: MobSpaceBasic
   description: It's so glowing, it looks dangerous.
   components:
+  - type: VentCrawler # Sunrise-edit
   - type: Sprite
     drawdepth: Mobs
     sprite: Mobs/Animals/spacespider.rsi
@@ -279,6 +280,7 @@
   parent: MobSpaceBasic
   description: Long fangs and a glowing hood, and the alluring look begs to come closer.
   components:
+    - type: VentCrawler #Sunrise-Edit
     - type: Sprite
       drawdepth: Mobs
       sprite: Mobs/Animals/spacecobra.rsi
@@ -515,7 +517,7 @@
   - type: MobStateActions
     actions:
       Alive:
-      - ActionSmite
+      - ActionSmiteNoReq
       Critical:
       - ActionCritSuccumb
       - ActionCritFakeDeath

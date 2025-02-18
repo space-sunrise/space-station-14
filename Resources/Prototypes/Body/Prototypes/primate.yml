@@ -12,7 +12,7 @@
         lungs: OrganAnimalLungs
         stomach: OrganAnimalStomach
         liver: OrganAnimalLiver
-        heart: OrganAnimalHeart
+        heart: OrganPrimateHeart # Sunrise Edit
         kidneys: OrganAnimalKidneys
     hands:
       part: HandsAnimal

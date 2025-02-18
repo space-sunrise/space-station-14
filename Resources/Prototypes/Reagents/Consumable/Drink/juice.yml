@@ -57,6 +57,10 @@
       effects:
       - !type:SatiateThirst
         factor: 2
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
       - !type:AdjustReagent
         reagent: Oculine
         amount: 0.5

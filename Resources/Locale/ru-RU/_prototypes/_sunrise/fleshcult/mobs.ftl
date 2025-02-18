@@ -1,3 +1,5 @@
+ent-BaseMobFleshCult = flesh mob
+    .desc = A shambling mass of flesh, animated through anomalous energy.
 ent-MobFleshSpider = тарантул из плоти
     .desc = Очень похоже на паука, только вывернутого наизнанку
 ent-MobFleshPudge = толстяк из плоти
@@ -6,9 +8,9 @@ ent-MobFleshBall = мячик из плоти
     .desc = Лучше не играть ним в футбол
 ent-MobFleshBat = летающая мышь из плоти
     .desc = Она не дружит с священником
+ent-MobFleshHugger = лицехват из плоти
+    .desc = Он хочет сесть тебе на лицо
 ent-MobFleshWorm = червь из плоти
     .desc = Вот что будет внутри вас если есть много конфет
 ent-MobSmallFleshWorm = маленький червь из плоти
     .desc = { ent-MobFleshWorm.desc }
-ent-MobFleshHugger = лицехват из плоти
-    .desc = Он хочет сесть тебе на лицо

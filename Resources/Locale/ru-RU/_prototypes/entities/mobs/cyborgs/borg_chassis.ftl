@@ -1,3 +1,5 @@
+ent-BorgChassisSelectable = { ent-BaseBorgChassisNT }
+    .desc = { ent-BaseBorgChassisNT.desc }
 ent-BorgChassisGeneric = { ent-BaseBorgChassisNT }
     .desc = { ent-BaseBorgChassisNT.desc }
 ent-BorgChassisMining = киборг-шахтёр

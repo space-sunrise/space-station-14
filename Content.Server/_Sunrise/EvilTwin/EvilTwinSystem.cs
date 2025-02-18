@@ -15,6 +15,7 @@ using Content.Server.Roles;
 using Content.Server.Roles.Jobs;
 using Content.Server.Station.Systems;
 using Content.Shared.Clothing;
+using Content.Shared.Forensics.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Implants;
 using Content.Shared.Implants.Components;

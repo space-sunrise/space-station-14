@@ -1,7 +1,7 @@
-ent-FoodSkewerBase = { ent-FoodInjectableBase }
-    .desc = { ent-FoodInjectableBase.desc }
 ent-FoodKebabSkewer = шампур
     .desc = Тонкий металлический стержень, используемый для нанизывания на него любых продуктов и их приготовления.
+ent-FoodSkewerBase = { ent-FoodInjectableBase }
+    .desc = { ent-FoodInjectableBase.desc }
 ent-FoodMeatHawaiianKebab = шашлык по-гавайски
     .desc = Вкусный шашлык из ананаса, ветчины и зелёного перца.
 ent-FoodMeatKebab = мясной шашлык

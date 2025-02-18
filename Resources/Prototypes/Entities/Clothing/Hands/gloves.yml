@@ -247,6 +247,7 @@
         whitelist:
           components:
           - Stamina
+        stunCharge: 120 #Sunrise-edit
       - type: EmagProvider
         whitelist:
           components:

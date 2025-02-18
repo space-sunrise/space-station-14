@@ -100,7 +100,9 @@ namespace Content.Server.Pointing.EntitySystems
                 // Someone pointing at YOU is slightly more important
                 var popupType = viewerEntity == pointed ? PopupType.Medium : PopupType.Small;
 
-                RaiseNetworkEvent(new PopupEntityEvent(message, popupType, netSource), viewerEntity);
+                // Sunrise edit start - добавил оригин в виде предмета, на который тыкнули для иконок
+                RaiseNetworkEvent(new PopupEntityEvent(message, popupType, netSource, GetNetEntity(pointed)), viewerEntity);
+                // Sunrise edit end
             }
 
             _replay.RecordServerMessage(new PopupEntityEvent(viewerMessage, PopupType.Small, netSource));

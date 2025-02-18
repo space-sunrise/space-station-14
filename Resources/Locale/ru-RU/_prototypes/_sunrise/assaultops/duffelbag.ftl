@@ -1,3 +1,3 @@
 ent-ClothingBackpackAssaultOpsFill = { ent-ClothingBackpackChameleon }
-    .suffix = Fill
+    .suffix = Заполненный
     .desc = { ent-ClothingBackpackChameleon.desc }

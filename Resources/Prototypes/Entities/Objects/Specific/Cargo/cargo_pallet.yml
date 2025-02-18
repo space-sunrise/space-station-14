@@ -89,3 +89,43 @@
   - type: IconSmooth
     key: cargo_pallet_buy
     base: cargo_pallet_buy_
+
+# Sunrise-start
+- type: entity
+  id: ContrabandPalletSell
+  name: cargo selling pallet
+  suffix: Finance, Security
+  description: Designates valid contraband items to sell.
+  parent: [CargoPallet, CargoPalletSell]
+  components:
+  - type: CargoPallet
+    palletType: sell
+  - type: Sprite
+    drawdepth: FloorTiles
+    sprite: Structures/cargo_pallets.rsi
+  - type: Icon
+    sprite: Structures/cargo_pallets.rsi
+    state: sec_pallet_sell
+  - type: IconSmooth
+    key: sec_pallet_sell
+    base: sec_pallet_sell_
+
+- type: entity
+  id: SecurityPalletBuy
+  name: cargo buying pallet
+  suffix: Finance, Security
+  description: Designates to buy minor of Security alignment contraband items.
+  parent: [CargoPallet, CargoPalletBuy]
+  components:
+  - type: CargoPallet
+    palletType: buy
+  - type: Sprite
+    drawdepth: FloorTiles
+    sprite: Structures/cargo_pallets.rsi
+  - type: Icon
+    sprite: Structures/cargo_pallets.rsi
+    state: sec_pallet_buy
+  - type: IconSmooth
+    key: sec_pallet_buy
+    base: sec_pallet_buy_
+# Sunrise-end

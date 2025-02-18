@@ -854,6 +854,22 @@ namespace Content.Client.Lobby.UI
             var departments = new List<DepartmentPrototype>();
             foreach (var department in _prototypeManager.EnumeratePrototypes<DepartmentPrototype>())
             {
+                // Sunrise-Start
+                var visible = false;
+
+                foreach (var departmentRole in department.Roles)
+                {
+                    if (!_prototypeManager.TryIndex(departmentRole, out var role))
+                        continue;
+
+                    if (role.SetPreference)
+                        visible = true;
+                }
+
+                if (!visible)
+                    continue;
+                // Sunrise-End
+
                 if (department.EditorHidden)
                     continue;
 
@@ -1055,6 +1071,13 @@ namespace Content.Client.Lobby.UI
             // Refresh the buttons etc.
             _loadoutWindow.RefreshLoadouts(roleLoadout, session, collection);
             _loadoutWindow.OpenCenteredLeft();
+
+            _loadoutWindow.OnNameChanged += name =>
+            {
+                roleLoadout.EntityName = name;
+                Profile = Profile.WithLoadout(roleLoadout);
+                SetDirty();
+            };
 
             _loadoutWindow.OnLoadoutPressed += (loadoutGroup, loadoutProto) =>
             {

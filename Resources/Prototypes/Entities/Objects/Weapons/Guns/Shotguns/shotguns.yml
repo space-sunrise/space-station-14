@@ -59,7 +59,7 @@
   # Don't parent to BaseWeaponShotgun because it differs significantly
   parent: [BaseItem, BaseGunWieldable, BaseSyndicateContraband]
   id: WeaponShotgunBulldog
-  description: It's a magazine-fed shotgun designed for close quarters combat. Uses .50 shotgun shells.
+  description: An automatic magazine-fed shotgun for close-quarters combat. Kicks like a mule on steroids. Uses .50 shotgun shells.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/bulldog.rsi
@@ -127,7 +127,7 @@
     sprite: Objects/Weapons/Guns/Shotguns/db_shotgun_inhands_64x.rsi
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
-    fireRate: 2
+    fireRate: 3
     soundGunshot:
       collection: m3 # Sunrise-Edit
   - type: BallisticAmmoProvider
@@ -151,8 +151,8 @@
   name: Enforcer
   parent: [BaseWeaponShotgun, BaseGunWieldable, BaseRestrictedContraband]
   id: WeaponShotgunEnforcer
-  description: A premium combat shotgun based on the Kammerer design, featuring an upgraded clip capacity. .50 shotgun shells.
-  components:
+  description: A premium semi-automatic shotgun, and the pride of all security forces. Uses .50 shotgun shells.
+  components: # intend for Enforcer to have wider choke for semi-auto function
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
   - type: Clothing
@@ -176,37 +176,36 @@
     soundGunshot:
       collection: xm1014 # Sunrise-Edit
 
-- type: entity
-  name: Kammerer
-  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseRestrictedContraband]
-  id: WeaponShotgunKammerer
-  description: When an old Remington design meets modern materials, this is the result. A favourite weapon of militia forces throughout many worlds. Uses .50 shotgun shells.
-  components:
-  - type: Item
-    size: Normal
-    shape:
-    - 0,0,4,0
-    sprite: Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
-  - type: Sprite
-    sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
-  - type: Clothing
-    sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
-  - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
-  - type: BallisticAmmoProvider
-    capacity: 4
-  - type: Tag
-    tags:
-    - WeaponShotgunKammerer
-  - type: Gun
-    soundGunshot:
-      collection: m3 # Sunrise-Edit
+#- type: entity
+#  name: Kammerer
+#  parent: [BaseWeaponShotgun, BaseGunWieldable, BaseRestrictedContraband]
+#  id: WeaponShotgunKammerer
+#  description: An old yet faithful design, and a favorite among irregular forces of many worlds. Uses .50 shotgun shells.
+#  components: # intend for Kammerer to have tighter choke for slower fire rate and/or manual cycling
+#  - type: Item
+#    size: Normal
+#    shape:
+#    - 0,0,4,0
+#    sprite: Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
+#  - type: Sprite
+#    sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
+#  - type: Clothing
+#    sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
+#  - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
+#  - type: Tag
+#    tags:
+#    - WeaponShotgunKammerer
+#  - type: Gun
+#    fireRate: 1
+#    soundGunshot:
+#      collection: m3 # Sunrise-Edit
 
 - type: entity
   name: sawn-off shotgun
   parent: [ BaseWeaponShotgun, BaseSecurityBartenderContraband ]
   id: WeaponShotgunSawn
   description: Groovy! Uses .50 shotgun shells.
-  components:
+  components: # needs to be super inaccurate because you don't need to wield it
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shotguns/sawn.rsi
   - type: Clothing
@@ -215,7 +214,7 @@
     size: Small
     sprite: Objects/Weapons/Guns/Shotguns/sawn_inhands_64x.rsi
   - type: Gun
-    fireRate: 4
+    fireRate: 3
     soundGunshot:
       collection: m3 # Sunrise-Edit
   - type: BallisticAmmoProvider

@@ -12,7 +12,13 @@
   - type: HumanoidAppearance
     species: Arachnid
   - type: Hunger
+    baseDecayRate: 0.04
   - type: Thirst
+    baseDecayRate: 0.15
+    dehydrationDamage:
+      types:
+        Bloodloss: 0.5
+        Asphyxiation: 0.5
   - type: Sericulture
     action: ActionSericulture
     productionLength: 2
@@ -148,6 +154,7 @@
         - MobMask
         layer:
         - MobLayer
+  - type: Carriable
   # Sunrise-end
 
 - type: entity

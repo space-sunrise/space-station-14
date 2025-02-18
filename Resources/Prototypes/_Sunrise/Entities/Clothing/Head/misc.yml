@@ -1,0 +1,16 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: GeraniumCrown
+  name: geranium crown
+  description: A majestic crown made of fresh geranium flowers. Perfect for botanists and nature lovers.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Head/Misc/geranium_crown.rsi
+    state: icon
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Head/Misc/geranium_crown.rsi
+    slots:
+    - HEAD
+  - type: Construction
+    graph: GeraniumCrown
+    node: GeraniumCrown

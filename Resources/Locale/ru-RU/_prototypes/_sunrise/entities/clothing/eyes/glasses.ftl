@@ -10,3 +10,7 @@ ent-ClothingEyesSunGlassesHudSkill = солнечные очки умений
     .desc = Очки с встроенным HUD умений, показывающим историю трудовой деятельности ближайших членов экипажа NT.
 ent-ClothingEyesGlassesNVG = { ent-ClothingEyesGlassesSunglasses }
     .desc = { ent-ClothingEyesGlassesSunglasses.desc }
+ent-ClothingEyesGlassesThermalSyndie = оптический термальный сканер
+    .desc = Компактный термальный сканер. Оборудован системой свой-чужой. Идеально подходит для выявления и уничтожения сотрудников НаноТрейзен.
+ent-ClothingEyesGlassesThermalSec = оптический термальный сканер
+    .desc = Компактный термальный сканер. Идеально подходит для выявления и уничтожения врагов НаноТрейзен.

@@ -111,6 +111,7 @@
             state: jumpsuit-female
   # Sunrise edit ;3
   - type: FootprintEmitter
+  - type: Carriable
   # Sunrise edit end 0_0
 
 - type: entity

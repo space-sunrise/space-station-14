@@ -79,6 +79,7 @@
   name: tomato killer
   description: Looks like it's not you eating tomatoes today, it's the tomatoes eating you.
   components:
+  - type: VentCrawler # Sunrise-Edit
   - type: GhostRole
     prob: 0.05
     makeSentient: true
