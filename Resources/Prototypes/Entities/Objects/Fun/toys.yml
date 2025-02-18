@@ -1312,7 +1312,7 @@
     state: singularitytoy
   - type: SingularityDistortion
     intensity: 700 #Sunrise-edit
-    falloffPower: 6 #Sunrise-edit
+    falloffPower: 6.5 #Sunrise-edit
   - type: Item
     size: Normal
     sprite: Objects/Fun/toys.rsi
