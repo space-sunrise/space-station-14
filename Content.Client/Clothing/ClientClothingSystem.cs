@@ -12,6 +12,7 @@ using Content.Shared.Humanoid;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Item;
+using Content.Shared.Tag;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
@@ -58,6 +59,7 @@ public sealed class ClientClothingSystem : ClothingSystem
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] private readonly DisplacementMapSystem _displacement = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly TagSystem _tagSystem = default!;
 
     public override void Initialize()
     {
@@ -297,6 +299,9 @@ public sealed class ClientClothingSystem : ClothingSystem
         if (TryComp(equipee, out HumanoidAppearanceComponent? humanoid))
         {
             bodyTypeName = _prototype.Index(humanoid.BodyType).Name;
+
+            var hardsuitKey = $"hardsuit-{bodyTypeName}";
+
             switch (humanoid.Sex)
             {
                 case Sex.Male:
@@ -304,6 +309,12 @@ public sealed class ClientClothingSystem : ClothingSystem
                     {
                         displacementData = inventory.MaleDisplacements.GetValueOrDefault($"{slot}-{bodyTypeName}")
                             ?? inventory.MaleDisplacements.GetValueOrDefault(slot);
+
+                        if (_tagSystem.HasTag(equipment, "Hardsuit"))
+                        {
+                            displacementData = inventory.MaleDisplacements.GetValueOrDefault(hardsuitKey)
+                                               ?? inventory.Displacements.GetValueOrDefault(slot);
+                        }
                     }
 
                     break;
@@ -312,6 +323,12 @@ public sealed class ClientClothingSystem : ClothingSystem
                     {
                         displacementData = inventory.FemaleDisplacements.GetValueOrDefault($"{slot}-{bodyTypeName}")
                             ?? inventory.FemaleDisplacements.GetValueOrDefault(slot);
+
+                        if (_tagSystem.HasTag(equipment, "Hardsuit"))
+                        {
+                            displacementData = inventory.FemaleDisplacements.GetValueOrDefault(hardsuitKey)
+                                               ?? inventory.FemaleDisplacements.GetValueOrDefault(slot);
+                        }
                     }
 
                     break;

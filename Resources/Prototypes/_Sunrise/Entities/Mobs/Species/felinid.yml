@@ -64,6 +64,16 @@
           32:
             sprite: _Sunrise/Mobs/Species/Human/displacement.rsi
             state: bra
+      outerClothing-body-slim:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Human/displacement.rsi
+            state: outer
+      hardsuit-body-slim:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Human/displacement.rsi
+            state: hardsuit
   - type: Fixtures
     fixtures:
       fix1:

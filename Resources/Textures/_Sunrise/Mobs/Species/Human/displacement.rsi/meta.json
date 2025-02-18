@@ -23,11 +23,21 @@
       {
           "name": "bra",
           "directions" : 4
-      },    {
+      },
+      {
           "name": "socks",
           "directions" : 4
-      },    {
+      },
+      {
           "name": "panties",
+          "directions" : 4
+      },
+      {
+          "name": "outer",
+          "directions" : 4
+      },
+      {
+          "name": "hardsuit",
           "directions" : 4
       }
   ]

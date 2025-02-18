@@ -94,6 +94,16 @@
           32:
             sprite: _Sunrise/Mobs/Species/Human/displacement.rsi
             state: bra
+      outerClothing-body-slim:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Human/displacement.rsi
+            state: outer
+      hardsuit-body-slim:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Human/displacement.rsi
+            state: hardsuit
   # Sunrise edit ;3
   - type: FootprintEmitter
     leftBareFootState:
@@ -147,3 +157,13 @@
           32:
             sprite: _Sunrise/Mobs/Species/Human/displacement.rsi
             state: bra
+      outerClothing-body-slim:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Human/displacement.rsi
+            state: outer
+      hardsuit-body-slim:
+        sizeMaps:
+          32:
+            sprite: _Sunrise/Mobs/Species/Human/displacement.rsi
+            state: hardsuit
