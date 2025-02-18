@@ -1,11 +1,23 @@
 using Content.Shared._RMC14.Explosion.Components;
+using Content.Shared._Sunrise.Helpers;
 using Content.Shared.Explosion.Components;
+using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using Robust.Shared.Spawners;
 
 namespace Content.Shared._RMC14.Explosion;
 
-public sealed class SharedRMCExplosionSystem : EntitySystem
+public abstract class SharedRMCExplosionSystem : EntitySystem
 {
+    [Dependency] private readonly IRobustRandom _random = default!;
+
+    // TODO: Зависимость этих значений от силы взрыва
+    private const float MinSmokeCount = 15f;
+    private const float MaxSmokeCount = 20f;
+
+    private const float SmokeSpawnRadius = 3f;
+
     public override void Initialize()
     {
         SubscribeLocalEvent<CMExplosionEffectComponent, CMExplosiveTriggeredEvent>(OnExplosionEffectTriggered);
@@ -26,6 +38,9 @@ public sealed class SharedRMCExplosionSystem : EntitySystem
 
         if (ent.Comp.Explosion is { } explosion)
             SpawnNextToOrDrop(explosion, ent);
+
+        if (ent.Comp.Smoke is { } smoke)
+            CreateFancySmoke(ent, smoke);
     }
 
     private void ModifyShockwave(Entity<CMExplosionEffectComponent> ent, EntityUid wave)
@@ -49,6 +64,17 @@ public sealed class SharedRMCExplosionSystem : EntitySystem
             timedDespawnComponent.Lifetime = Math.Clamp(explosionComponent.TotalIntensity / 50f, 0.1f, 0.8f);
     }
 
+    private void CreateFancySmoke(Entity<CMExplosionEffectComponent> ent, EntProtoId smokeId)
+    {
+        var smokeCount = _random.NextFloat(MinSmokeCount, MaxSmokeCount);
+        var coords = Transform(ent).Coordinates;
+
+        for (var i = 0; i < smokeCount; i++)
+        {
+            Spawn(smokeId, coords.GetRandomInRadius(SmokeSpawnRadius));
+        }
+    }
+
     public void TryDoEffect(Entity<CMExplosionEffectComponent?> ent)
     {
         if (!Resolve(ent, ref ent.Comp, false))
@@ -57,6 +83,9 @@ public sealed class SharedRMCExplosionSystem : EntitySystem
         DoEffect((ent, ent.Comp));
     }
 }
+
+[RegisterComponent, NetworkedComponent]
+public sealed partial class ExplosionSmokeEffectComponent : Component;
 
 [ByRefEvent]
 public readonly record struct CMExplosiveTriggeredEvent;

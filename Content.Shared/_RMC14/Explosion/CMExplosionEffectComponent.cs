@@ -3,13 +3,16 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared._RMC14.Explosion;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent]
 [Access(typeof(SharedRMCExplosionSystem))]
 public sealed partial class CMExplosionEffectComponent : Component
 {
-    [DataField, AutoNetworkedField]
+    [DataField]
     public EntProtoId? Explosion = "CMExplosionEffectGrenade";
 
-    [DataField, AutoNetworkedField]
+    [DataField]
     public EntProtoId? ShockWave = "RMCExplosionEffectGrenadeShockWave";
+
+    [DataField]
+    public EntProtoId? Smoke = "ExplosionEffectSmoke";
 }
