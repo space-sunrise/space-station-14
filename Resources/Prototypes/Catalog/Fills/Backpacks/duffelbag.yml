@@ -274,7 +274,7 @@
   components:
   - type: StorageFill
     contents:
-      - id: ClothingOuterArmorRaid
+      - id: ClothingOuterArmorRaidBiocode # Sunrise-edit
       - id: ClothingHeadHelmetRaid
       - id: ClothingMaskGasSyndicate
       - id: ClothingHandsGlovesCombat
