@@ -19,7 +19,7 @@ using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Stealth.Components;
 using Content.Shared.Damage.Components;
 using Content.Server.Radio.Components;
-using Content.Shared.Sunrise.CollectiveMind;
+using Content.Shared._Sunrise.CollectiveMind;
 
 namespace Content.Server.Changeling;
 

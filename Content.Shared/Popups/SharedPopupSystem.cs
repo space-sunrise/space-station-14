@@ -204,19 +204,19 @@ namespace Content.Shared.Popups
         /// </summary>
         Small,
         SmallCaution,
-        SmallFloating, // Sunrise
         /// <summary>
         ///     Medium popups should be used for actions which are not spammable but may not be particularly important.
         /// </summary>
         Medium,
         MediumCaution,
-        MediumCautionFloating, // Sunrise
         /// <summary>
         ///     Large popups should be used for actions which may be important or very important to one or more users,
         ///     but is not life-threatening.
         /// </summary>
         Large,
         LargeCaution,
-        LargeGreen
+        SmallFloating, // Sunrise
+        MediumCautionFloating, // Sunrise
+        LargeGreen // Sunrise-Edit
     }
 }
