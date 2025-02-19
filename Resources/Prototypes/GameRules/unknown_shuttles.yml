@@ -35,6 +35,7 @@
     - id: UnknownShuttleManOWar
     - id: UnknownShuttleInstigator
     - id: UnknownShuttlePirateSmall # Sunrise-Edit
+    - id: UnknownShuttlePirateMedium # Sunrise-Edit
 
 # Shuttle Game Rules
 
@@ -188,6 +189,18 @@
     minimumPlayers: 40
   - type: LoadMapRule
     preloadedGrid: PirateSmall
+
+- type: entity
+  id: UnknownShuttlePirateMedium
+  parent: BaseUnknownShuttleRule
+  components:
+  - type: StationEvent
+    startAnnouncement: null
+    weight: 2
+    earliestStart: 20
+    minimumPlayers: 70
+  - type: LoadMapRule
+    preloadedGrid: PirateMedium
 #Sunrise-end
 
 - type: entity

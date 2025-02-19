@@ -11,3 +11,72 @@
     - id: ClothingShoesBootsMagSec
   - type: AccessReader
     access: [["BlueShield"]]
+
+#Security hardsuit
+- type: entity
+  id: SuitStorageSecSunrise
+  parent: SuitStorageBase
+  suffix: Security, Sunrise
+  components:
+  - type: StorageFill
+    contents:
+        - id: OxygenTankFilled
+        - id: ClothingOuterHardsuitSecuritySunrise
+        - id: ClothingMaskBreath
+        - id: ClothingShoesBootsMagSec
+  - type: AccessReader
+    access: [["Security"]]
+
+#Pirate EVA
+- type: entity
+  id: SuitStorageEVAPirateSun
+  parent: SuitStorageBase
+  suffix: Pirate EVA, Sunrise
+  components:
+  - type: StorageFill
+    contents:
+        - id: OxygenTankFilled
+        - id: ClothingOuterHardsuitPirateEVASun
+        - id: ClothingMaskBreath
+        - id: ClothingShoesBootsMagPirate
+
+#Pirate hardsuit
+- type: entity
+  id: SuitStoragePirateSun
+  parent: SuitStorageBase
+  suffix: Pirate, Sunrise
+  components:
+  - type: StorageFill
+    contents:
+        - id: OxygenTankFilled
+        - id: ClothingOuterHardsuitPirateSun
+        - id: ClothingMaskBreath
+        - id: WeaponGrapplingGun
+          prob: 0.8
+        - id: HandHeldMassScanner
+          prob: 0.75
+        - id: MedipenCombatInjector
+          prob: 0.6
+        - id: JetpackMiniFilled
+          prob: 0.4
+        - id: ClothingShoesBootsMagPirate
+
+#Pirate Captain's hardsuit
+- type: entity
+  id: SuitStoragePirateCapSun
+  parent: SuitStorageBase
+  suffix: Pirate Captain, Sunrise
+  components:
+  - type: StorageFill
+    contents:
+        - id: OxygenTankFilled
+        - id: ClothingOuterHardsuitPirateCapSun
+        - id: ClothingMaskBreath
+        - id: WeaponGrapplingGun
+        - id: HandHeldMassScanner
+          prob: 0.9
+        - id: MedipenCombatInjector
+          prob: 0.8
+        - id: JetpackMiniFilled
+          prob: 0.6
+        - id: ClothingShoesBootsMagPirate

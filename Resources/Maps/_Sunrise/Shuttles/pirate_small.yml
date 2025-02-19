@@ -394,6 +394,12 @@ entities:
       rot: 3.141592653589793 rad
       pos: -3.5,-3.5
       parent: 1
+    - type: ContainerContainer
+      containers:
+        machine_board: !type:Container
+          ents: []
+        machine_parts: !type:Container
+          ents: []
 - proto: BlastDoor
   entities:
   - uid: 24
@@ -422,6 +428,11 @@ entities:
     components:
     - type: Transform
       pos: 1.5,9.5
+      parent: 1
+  - uid: 43
+    components:
+    - type: Transform
+      pos: 0.5,9.5
       parent: 1
 - proto: BoxWarmLightbulb
   entities:
@@ -615,6 +626,14 @@ entities:
     - type: Transform
       pos: -2.5,3.5
       parent: 1
+- proto: CableApcStack
+  entities:
+  - uid: 36
+    components:
+    - type: Transform
+      parent: 12
+    - type: Physics
+      canCollide: False
 - proto: CableHV
   entities:
   - uid: 79
@@ -652,6 +671,14 @@ entities:
     - type: Transform
       pos: -1.5,1.5
       parent: 1
+- proto: CableHVStack
+  entities:
+  - uid: 38
+    components:
+    - type: Transform
+      parent: 12
+    - type: Physics
+      canCollide: False
 - proto: CableMV
   entities:
   - uid: 86
@@ -684,107 +711,64 @@ entities:
     - type: Transform
       pos: -0.5,4.5
       parent: 1
+- proto: CableMVStack
+  entities:
+  - uid: 35
+    components:
+    - type: Transform
+      parent: 12
+    - type: Physics
+      canCollide: False
 - proto: CannonBall
   entities:
   - uid: 93
     components:
     - type: Transform
-      parent: 92
+      parent: 359
     - type: Physics
       canCollide: False
   - uid: 94
     components:
     - type: Transform
-      parent: 92
+      parent: 359
     - type: Physics
       canCollide: False
   - uid: 95
     components:
     - type: Transform
-      parent: 92
+      parent: 359
     - type: Physics
       canCollide: False
   - uid: 96
     components:
     - type: Transform
-      parent: 92
+      parent: 359
     - type: Physics
       canCollide: False
-- proto: CannonBallGlassshot
-  entities:
-  - uid: 32
-    components:
-    - type: Transform
-      parent: 30
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 35
-    components:
-    - type: Transform
-      parent: 30
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 36
-    components:
-    - type: Transform
-      parent: 30
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
 - proto: CannonBallGrapeshot
   entities:
-  - uid: 39
-    components:
-    - type: Transform
-      parent: 30
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 40
-    components:
-    - type: Transform
-      parent: 30
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 42
-    components:
-    - type: Transform
-      parent: 30
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-  - uid: 43
-    components:
-    - type: Transform
-      parent: 30
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
   - uid: 97
     components:
     - type: Transform
-      parent: 92
+      parent: 359
     - type: Physics
       canCollide: False
   - uid: 98
     components:
     - type: Transform
-      parent: 92
+      parent: 359
     - type: Physics
       canCollide: False
   - uid: 99
     components:
     - type: Transform
-      parent: 92
+      parent: 359
     - type: Physics
       canCollide: False
   - uid: 100
     components:
     - type: Transform
-      parent: 92
+      parent: 359
     - type: Physics
       canCollide: False
 - proto: CapacitorStockPart
@@ -1077,8 +1061,8 @@ entities:
         immutable: False
         temperature: 293.14673
         moles:
-        - 1.8977377
-        - 7.139109
+        - 1.8978093
+        - 7.139378
         - 0
         - 0
         - 0
@@ -1095,17 +1079,12 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 42
-          - 40
-          - 36
-          - 39
-          - 32
-          - 34
           - 44
           - 31
-          - 43
+          - 40
+          - 42
           - 33
-          - 35
+          - 34
 - proto: ClothingBeltSalvageWebbing
   entities:
   - uid: 142
@@ -1115,9 +1094,9 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-- proto: ClothingEyesNVDHandcrafted
+- proto: ClothingEyesGlassesThermalSec
   entities:
-  - uid: 150
+  - uid: 92
     components:
     - type: Transform
       parent: 149
@@ -1129,29 +1108,12 @@ entities:
       parent: 149
     - type: Physics
       canCollide: False
-  - uid: 158
-    components:
-    - type: Transform
-      pos: -0.44140303,8.0197735
-      parent: 1
-- proto: ClothingMaskWeldingGas
+- proto: ClothingEyesNVDHandcrafted
   entities:
-  - uid: 152
+  - uid: 350
     components:
     - type: Transform
-      parent: 149
-    - type: Physics
-      canCollide: False
-  - uid: 153
-    components:
-    - type: Transform
-      parent: 149
-    - type: Physics
-      canCollide: False
-  - uid: 159
-    components:
-    - type: Transform
-      pos: -0.34418082,8.111858
+      pos: -0.48852074,7.908619
       parent: 1
 - proto: ClothingOuterHardsuitPirateEVA
   entities:
@@ -1200,7 +1162,7 @@ entities:
     - type: Transform
       pos: 1.5,8.5
       parent: 1
-- proto: CratePirateChest
+- proto: CratePirateChestSun
   entities:
   - uid: 164
     components:
@@ -1271,11 +1233,6 @@ entities:
     - type: InsideEntityStorage
 - proto: EnergyCutlass
   entities:
-  - uid: 38
-    components:
-    - type: Transform
-      pos: 0.6107042,-2.381185
-      parent: 1
   - uid: 233
     components:
     - type: Transform
@@ -1326,6 +1283,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 3.5,-5.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#FF0000FF'
 - proto: GasPipeBend
@@ -1336,6 +1295,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,7.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#0000FFFF'
   - uid: 181
@@ -1344,6 +1305,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -2.5,2.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#0000FFFF'
   - uid: 182
@@ -1352,6 +1315,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: -2.5,-0.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#0000FFFF'
   - uid: 183
@@ -1359,6 +1324,8 @@ entities:
     - type: Transform
       pos: 1.5,-1.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#FF0000FF'
   - uid: 184
@@ -1367,6 +1334,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 1.5,-5.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#FF0000FF'
 - proto: GasPipeStraight
@@ -1376,6 +1345,8 @@ entities:
     - type: Transform
       pos: -0.5,-1.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#0000FFFF'
   - uid: 186
@@ -1384,6 +1355,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,2.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#0000FFFF'
   - uid: 187
@@ -1391,6 +1364,8 @@ entities:
     - type: Transform
       pos: -0.5,4.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#0000FFFF'
   - uid: 188
@@ -1398,6 +1373,8 @@ entities:
     - type: Transform
       pos: -0.5,5.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#0000FFFF'
   - uid: 189
@@ -1405,6 +1382,8 @@ entities:
     - type: Transform
       pos: -0.5,6.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#0000FFFF'
   - uid: 190
@@ -1412,6 +1391,8 @@ entities:
     - type: Transform
       pos: -2.5,0.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#0000FFFF'
   - uid: 191
@@ -1420,6 +1401,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -1.5,-0.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#0000FFFF'
   - uid: 192
@@ -1428,6 +1411,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,-3.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#0000FFFF'
   - uid: 193
@@ -1435,6 +1420,8 @@ entities:
     - type: Transform
       pos: 0.5,5.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#FF0000FF'
   - uid: 194
@@ -1442,6 +1429,8 @@ entities:
     - type: Transform
       pos: 0.5,4.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#FF0000FF'
   - uid: 195
@@ -1449,6 +1438,8 @@ entities:
     - type: Transform
       pos: 0.5,3.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#FF0000FF'
   - uid: 196
@@ -1457,6 +1448,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,1.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#FF0000FF'
   - uid: 197
@@ -1465,6 +1458,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,0.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#FF0000FF'
   - uid: 198
@@ -1473,6 +1468,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-0.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#FF0000FF'
   - uid: 199
@@ -1480,6 +1477,8 @@ entities:
     - type: Transform
       pos: 1.5,-2.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#FF0000FF'
   - uid: 200
@@ -1487,6 +1486,8 @@ entities:
     - type: Transform
       pos: 1.5,-3.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#FF0000FF'
   - uid: 201
@@ -1495,6 +1496,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 2.5,-5.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#FF0000FF'
 - proto: GasPipeTJunction
@@ -1505,6 +1508,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,3.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#0000FFFF'
   - uid: 203
@@ -1512,6 +1517,8 @@ entities:
     - type: Transform
       pos: -0.5,-0.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#0000FFFF'
   - uid: 204
@@ -1520,6 +1527,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,2.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#FF0000FF'
   - uid: 205
@@ -1528,6 +1537,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: 0.5,-1.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#FF0000FF'
   - uid: 206
@@ -1536,6 +1547,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,-4.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#FF0000FF'
   - uid: 207
@@ -1544,6 +1557,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -0.5,-2.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#0000FFFF'
   - uid: 208
@@ -1552,6 +1567,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -2.5,1.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#0000FFFF'
 - proto: GasPort
@@ -1562,6 +1579,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,-2.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#0000FFFF'
 - proto: GasVentPump
@@ -1572,6 +1591,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -3.5,1.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#0000FFFF'
   - uid: 211
@@ -1580,6 +1601,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,7.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#0000FFFF'
   - uid: 212
@@ -1588,6 +1611,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,3.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#0000FFFF'
   - uid: 213
@@ -1596,6 +1621,8 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 0.5,-0.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#0000FFFF'
   - uid: 214
@@ -1604,6 +1631,8 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,-4.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#0000FFFF'
 - proto: GasVentScrubber
@@ -1614,6 +1643,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,-1.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#FF0000FF'
   - uid: 216
@@ -1622,6 +1653,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 0.5,-4.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#FF0000FF'
   - uid: 217
@@ -1630,6 +1663,8 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,2.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#FF0000FF'
   - uid: 218
@@ -1637,6 +1672,8 @@ entities:
     - type: Transform
       pos: 0.5,6.5
       parent: 1
+    - type: VentCrawTube
+      connected: True
     - type: AtmosPipeColor
       color: '#FF0000FF'
 - proto: GeneratorWallmountAPU
@@ -1668,12 +1705,6 @@ entities:
 - proto: HandHeldMassScanner
   entities:
   - uid: 154
-    components:
-    - type: Transform
-      parent: 149
-    - type: Physics
-      canCollide: False
-  - uid: 155
     components:
     - type: Transform
       parent: 149
@@ -1721,19 +1752,19 @@ entities:
   - uid: 227
     components:
     - type: Transform
-      pos: -2.32295,3.5397334
+      pos: -2.4590201,3.3674693
       parent: 1
   - uid: 228
     components:
     - type: Transform
-      pos: -2.4618387,3.6971407
+      pos: -2.5215201,3.6487193
       parent: 1
 - proto: MagazineBoxMagnum
   entities:
   - uid: 367
     components:
     - type: Transform
-      pos: 0.29127812,-2.3146968
+      pos: 0.2701466,-2.3957868
       parent: 1
 - proto: MaterialGunpowder
   entities:
@@ -1834,6 +1865,15 @@ entities:
       rot: 3.141592653589793 rad
       pos: -1.5,-3.5
       parent: 1
+- proto: Multitool
+  entities:
+  - uid: 42
+    components:
+    - type: Transform
+      parent: 30
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
 - proto: OxygenCanister
   entities:
   - uid: 240
@@ -1902,6 +1942,14 @@ entities:
       parent: 1
     - type: Physics
       bodyType: Static
+- proto: PowerCellMedium
+  entities:
+  - uid: 39
+    components:
+    - type: Transform
+      parent: 12
+    - type: Physics
+      canCollide: False
 - proto: PowerCellRecharger
   entities:
   - uid: 248
@@ -1984,6 +2032,13 @@ entities:
     - type: Transform
       pos: 0.5,-2.5
       parent: 1
+- proto: RadioImplanter
+  entities:
+  - uid: 158
+    components:
+    - type: Transform
+      pos: -0.47810405,7.756303
+      parent: 1
 - proto: Railing
   entities:
   - uid: 258
@@ -2049,6 +2104,14 @@ entities:
     - type: Transform
       pos: -1.4055707,-0.5880325
       parent: 1
+- proto: SheetGlass
+  entities:
+  - uid: 32
+    components:
+    - type: Transform
+      parent: 12
+    - type: Physics
+      canCollide: False
 - proto: SheetPlasma
   entities:
   - uid: 268
@@ -2066,35 +2129,36 @@ entities:
       canCollide: False
 - proto: ShelfMetal
   entities:
-  - uid: 92
+  - uid: 359
     components:
     - type: Transform
-      pos: 2.5,5.5
+      rot: 1.5707963267948966 rad
+      pos: 1.5,0.5
       parent: 1
     - type: Storage
       storedItems:
-        93:
+        95:
           position: 0,0
           _rotation: South
-        94:
+        96:
           position: 1,0
           _rotation: South
-        95:
+        93:
           position: 2,0
           _rotation: South
-        96:
+        94:
           position: 3,0
           _rotation: South
-        97:
+        99:
           position: 0,3
           _rotation: South
-        98:
+        100:
           position: 1,3
           _rotation: South
-        99:
+        97:
           position: 2,3
           _rotation: South
-        100:
+        98:
           position: 3,3
           _rotation: South
     - type: ContainerContainer
@@ -2103,84 +2167,48 @@ entities:
           showEnts: False
           occludes: True
           ents:
-          - 93
-          - 94
           - 95
           - 96
-          - 97
-          - 98
+          - 93
+          - 94
           - 99
           - 100
+          - 97
+          - 98
 - proto: ShelfRMetal
   entities:
-  - uid: 12
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: -1.5,3.5
-      parent: 1
-    - type: Storage
-      storedItems:
-        16:
-          position: 0,0
-          _rotation: South
-        13:
-          position: 0,3
-          _rotation: East
-        18:
-          position: 2,3
-          _rotation: East
-        17:
-          position: 0,4
-          _rotation: East
-        14:
-          position: 2,4
-          _rotation: South
-        15:
-          position: 2,0
-          _rotation: South
-    - type: ContainerContainer
-      containers:
-        storagebase: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 16
-          - 13
-          - 18
-          - 17
-          - 14
-          - 15
   - uid: 149
     components:
     - type: Transform
       pos: -2.5,4.5
       parent: 1
+    - type: Lock
+      locked: False
     - type: Storage
       storedItems:
         154:
           position: 0,0
           _rotation: South
-        155:
-          position: 1,0
-          _rotation: South
-        156:
-          position: 2,0
-          _rotation: South
+        151:
+          position: 0,4
+          _rotation: East
+        92:
+          position: 2,4
+          _rotation: East
         157:
           position: 3,0
           _rotation: South
         150:
-          position: 0,3
+          position: 1,0
           _rotation: South
         153:
-          position: 3,3
-          _rotation: South
-        152:
+          position: 0,3
+          _rotation: West
+        155:
           position: 2,3
-          _rotation: South
-        151:
-          position: 1,3
+          _rotation: West
+        152:
+          position: 2,0
           _rotation: South
     - type: ContainerContainer
       containers:
@@ -2189,13 +2217,13 @@ entities:
           occludes: True
           ents:
           - 154
-          - 155
-          - 156
           - 157
+          - 151
+          - 92
+          - 150
           - 152
           - 153
-          - 150
-          - 151
+          - 155
 - proto: ShellShotgunImprovised
   entities:
   - uid: 269
@@ -2336,6 +2364,8 @@ entities:
         - Pressed: Toggle
         25:
         - Pressed: Toggle
+        43:
+        - Pressed: Toggle
     - type: Label
       currentLabel: Герма Двери
     - type: NameModifier
@@ -2347,6 +2377,34 @@ entities:
     - type: Transform
       pos: -3.5,0.5
       parent: 1
+- proto: SmokeGrenade
+  entities:
+  - uid: 150
+    components:
+    - type: Transform
+      parent: 149
+    - type: Physics
+      canCollide: False
+  - uid: 152
+    components:
+    - type: Transform
+      parent: 149
+    - type: Physics
+      canCollide: False
+- proto: SmokeScreenImplanter
+  entities:
+  - uid: 153
+    components:
+    - type: Transform
+      parent: 149
+    - type: Physics
+      canCollide: False
+  - uid: 155
+    components:
+    - type: Transform
+      parent: 149
+    - type: Physics
+      canCollide: False
 - proto: SubstationExtended
   entities:
   - uid: 285
@@ -2354,24 +2412,24 @@ entities:
     - type: Transform
       pos: -0.5,4.5
       parent: 1
-- proto: SuitStorageEVAPirate
+- proto: SuitStoragePirateCapSun
   entities:
-  - uid: 286
+  - uid: 287
+    components:
+    - type: Transform
+      pos: -0.5,6.5
+      parent: 1
+- proto: SuitStoragePirateSun
+  entities:
+  - uid: 159
     components:
     - type: Transform
       pos: -3.5,3.5
       parent: 1
-  - uid: 287
+  - uid: 286
     components:
     - type: Transform
       pos: -3.5,2.5
-      parent: 1
-- proto: SuitStoragePirateCap
-  entities:
-  - uid: 288
-    components:
-    - type: Transform
-      pos: -0.5,6.5
       parent: 1
 - proto: SyndicateShuttleConsoleCircuitboard
   entities:
@@ -2415,6 +2473,13 @@ entities:
       canCollide: False
     - type: InsideEntityStorage
   - uid: 34
+    components:
+    - type: Transform
+      parent: 30
+    - type: Physics
+      canCollide: False
+    - type: InsideEntityStorage
+  - uid: 40
     components:
     - type: Transform
       parent: 30
@@ -2471,6 +2536,65 @@ entities:
       currentLabel: Turret
     - type: NameModifier
       baseName: электротехнический ящик для инструментов
+- proto: ToolboxEmergency
+  entities:
+  - uid: 12
+    components:
+    - type: Transform
+      pos: -0.3861034,3.1070528
+      parent: 1
+    - type: Storage
+      storedItems:
+        14:
+          position: 2,3
+          _rotation: South
+        18:
+          position: 5,2
+          _rotation: East
+        17:
+          position: 5,1
+          _rotation: East
+        13:
+          position: 5,3
+          _rotation: East
+        15:
+          position: 0,2
+          _rotation: South
+        16:
+          position: 3,2
+          _rotation: South
+        32:
+          position: 3,0
+          _rotation: South
+        35:
+          position: 0,0
+          _rotation: East
+        36:
+          position: 2,0
+          _rotation: North
+        38:
+          position: 0,1
+          _rotation: East
+        39:
+          position: 5,0
+          _rotation: East
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+          showEnts: False
+          occludes: True
+          ents:
+          - 18
+          - 17
+          - 13
+          - 15
+          - 16
+          - 14
+          - 35
+          - 36
+          - 38
+          - 32
+          - 39
 - proto: ToolboxEmergencyFilled
   entities:
   - uid: 147
@@ -2496,20 +2620,19 @@ entities:
     - type: Transform
       pos: -1.5141164,-0.2152121
       parent: 1
+- proto: UplinkImplant
+  entities:
+  - uid: 156
+    components:
+    - type: Transform
+      pos: -0.46175265,7.976799
+      parent: 1
 - proto: VendingMachineTankDispenserEVA
   entities:
   - uid: 303
     components:
     - type: Transform
       pos: -1.5,-4.5
-      parent: 1
-- proto: WallMining
-  entities:
-  - uid: 350
-    components:
-    - type: Transform
-      rot: -1.5707963267948966 rad
-      pos: -3.5,0.5
       parent: 1
 - proto: WallmountSubstationElectronics
   entities:
@@ -2521,6 +2644,11 @@ entities:
       canCollide: False
 - proto: WallPlastitanium
   entities:
+  - uid: 288
+    components:
+    - type: Transform
+      pos: -3.5,0.5
+      parent: 1
   - uid: 294
     components:
     - type: Transform
@@ -2837,25 +2965,12 @@ entities:
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
-  - uid: 156
-    components:
-    - type: Transform
-      parent: 149
-    - type: Physics
-      canCollide: False
   - uid: 157
     components:
     - type: Transform
       parent: 149
     - type: Physics
       canCollide: False
-- proto: WeaponSniperRepeater
-  entities:
-  - uid: 366
-    components:
-    - type: Transform
-      pos: -2.5420554,3.6025872
-      parent: 1
 - proto: WeaponTurretSyndicateDisposable
   entities:
   - uid: 363
