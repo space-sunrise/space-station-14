@@ -272,7 +272,6 @@
   loadouts:
   - BeretSeniorPhysician
   - MedicalBeret
-  - ParamedicBeret
   - NurseHat
   - BlueSurgeryCap
   - GreenSurgeryCap
@@ -322,7 +321,7 @@
   - Sunrise-ScarfRed
   - Sunrise-ScarfOrange
   - Sunrise-ScarfGreen
-  - Sunrise-ScarfLightBlue
+  - Sunrise-ScarfLightBlue 
   - Sunrise-ScarfCyan
   - Sunrise-ScarfBlue
   - Sunrise-Stethoscope
@@ -407,7 +406,7 @@
   - Sunrise-ScarfRed
   - Sunrise-ScarfOrange
   - Sunrise-ScarfGreen
-  - Sunrise-ScarfLightBlue
+  - Sunrise-ScarfLightBlue 
   - Sunrise-ScarfCyan
   - Sunrise-Stethoscope
 
@@ -482,7 +481,7 @@
   minLimit: 0
   maxLimit: 1
   loadouts:
-  - Sunrise-ScarfLightBlue
+  - Sunrise-ScarfLightBlue 
   - Sunrise-ScarfCyan
 
 - type: loadoutGroup
@@ -521,7 +520,7 @@
   loadouts:
   - Sunrise-ScarfRed
   - Sunrise-ScarfGreen
-  - Sunrise-ScarfLightBlue
+  - Sunrise-ScarfLightBlue 
   - Sunrise-ScarfCyan
   - Sunrise-Stethoscope
 
@@ -533,7 +532,7 @@
   loadouts:
   - Sunrise-ScarfRed
   - Sunrise-ScarfGreen
-  - Sunrise-ScarfLightBlue
+  - Sunrise-ScarfLightBlue 
   - Sunrise-ScarfCyan
   - Sunrise-ScarfBlue
   - Sunrise-Stethoscope
@@ -609,7 +608,7 @@
   minLimit: 0
   maxLimit: 1
   loadouts:
-  - Sunrise-ScarfLightBlue
+  - Sunrise-ScarfLightBlue 
   - Sunrise-ScarfCyan
   - Sunrise-ScarfBlack
   - Sunrise-Stethoscope
@@ -804,7 +803,7 @@
   - Sunrise-ScarfOrange
   - Sunrise-ScarfYellow
   - Sunrise-ScarfCyan
-  - Sunrise-ScarfLightBlue
+  - Sunrise-ScarfLightBlue 
   - Sunrise-TieRed
 
 - type: loadoutGroup
@@ -814,7 +813,7 @@
   maxLimit: 1
   loadouts:
   - EngineerMaskCMG
-  - EngineerMaskCMGA
+  - EngineerMaskCMGA 
   - Sunrise-MBandRed
   - Sunrise-MBandOrange
   - Sunrise-MBandYellow
@@ -966,7 +965,7 @@
   maxLimit: 1
   loadouts:
   - EngineerMaskCMG
-  - EngineerMaskCMGA
+  - EngineerMaskCMGA 
   - Sunrise-MBandRed
   - Sunrise-MBandOrange
   - Sunrise-MBandYellow
@@ -982,7 +981,7 @@
   - Sunrise-ScarfOrange
   - Sunrise-ScarfYellow
   - Sunrise-ScarfCyan
-  - Sunrise-ScarfLightBlue
+  - Sunrise-ScarfLightBlue  
   - Sunrise-TieRed
 
 - type: loadoutGroup
