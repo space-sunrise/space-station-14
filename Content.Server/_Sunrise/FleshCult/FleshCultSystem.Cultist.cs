@@ -20,7 +20,6 @@ using Content.Shared.Mobs;
 using Content.Shared.Popups;
 using Content.Shared.Store;
 using Content.Shared.Store.Components;
-using Content.Shared.Sunrise.CollectiveMind;
 using Content.Shared.Tag;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
