@@ -321,11 +321,13 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
         _explosionQueue.Enqueue(boom);
         _queuedExplosions.Add(boom);
 
+        // Sunrise added start
         if (!cause.HasValue)
             return;
 
         var ev = new CMExplosiveTriggeredEvent();
         RaiseLocalEvent(cause.Value, ref ev);
+        // Sunrise added end
     }
 
     /// <summary>
@@ -346,6 +348,7 @@ public sealed partial class ExplosionSystem : SharedExplosionSystem
 
         var (area, iterationIntensity, spaceData, gridData, spaceMatrix) = results.Value;
 
+        // Sunrise edit - queued.Proto.ID -> queued.Proto
         var visualEnt = CreateExplosionVisualEntity(pos, queued.Proto, spaceMatrix, spaceData, gridData.Values, iterationIntensity);
 
         // camera shake

@@ -22,7 +22,6 @@ using Content.Server.Radio.Components;
 using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared._RMC14.Xenonids.Screech;
 using Content.Shared.Coordinates;
-using Content.Shared.Sunrise.CollectiveMind;
 
 namespace Content.Server.Changeling;
 
