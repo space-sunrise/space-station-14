@@ -3,8 +3,8 @@
   components:
   - type: Sprite
     sprite: _RMC14/Effects/grenade_explosion.rsi
-    scale: 2, 2
     state: grenade
+  - type: ExplosionEffect # Sunrise
   - type: TimedDespawn
     lifetime: 0.6
 
@@ -14,4 +14,3 @@
   - type: TimedDespawn
     lifetime: 0.5
   - type: RMCExplosionShockWave
-    sharpness: 5

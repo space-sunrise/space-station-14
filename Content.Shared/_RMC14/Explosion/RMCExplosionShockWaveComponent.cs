@@ -16,7 +16,7 @@ namespace Content.Shared._RMC14.Explosion.Components
         ///     How sharp the wave distortion is. Higher values make the wave more pronounced.
         /// </summary>
         [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
-        public float Sharpness = 10.0f;
+        public float Sharpness = 5.0f;
 
         /// <summary>
         ///     Width of the wave.

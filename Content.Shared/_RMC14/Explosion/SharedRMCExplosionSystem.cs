@@ -1,7 +1,6 @@
 using Content.Shared._RMC14.Explosion.Components;
 using Content.Shared._Sunrise.Helpers;
 using Content.Shared.Explosion.Components;
-using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Spawners;
@@ -27,6 +26,7 @@ public abstract class SharedRMCExplosionSystem : EntitySystem
         DoEffect(ent);
     }
 
+    // Sunrise edit start
     public void DoEffect(Entity<CMExplosionEffectComponent> ent)
     {
         if (!TryComp<ExplosiveComponent>(ent, out var explosionComponent))
@@ -39,7 +39,10 @@ public abstract class SharedRMCExplosionSystem : EntitySystem
         }
 
         if (ent.Comp.Explosion is { } explosion)
-            SpawnNextToOrDrop(explosion, ent);
+        {
+            var explosionEntity = SpawnNextToOrDrop(explosion, ent);
+            CreateFancyExplosionEffect(explosionEntity, explosionComponent);
+        }
 
         if (ent.Comp.Smoke is { } smoke)
             CreateFancySmoke(ent, explosionComponent, smoke);
@@ -49,18 +52,33 @@ public abstract class SharedRMCExplosionSystem : EntitySystem
     {
         // Дальше идут просто числа, которые я придумал особо не думая, мб нужно подумать
         // Но идея в том, чтобы чем сильнее взрыв, тем сильнее эффект и наоборот
-        // TODO: Разобраться, почему каждый взрыв все равно создает разную волну, даже с отключенной этой системой
+        // TODO: Реализовать радиус действия волны и убрать стандартные значения в компоненте
 
         if (TryComp<RMCExplosionShockWaveComponent>(wave, out var waveComponent))
         {
             waveComponent.FalloffPower ??= explosionComponent.TotalIntensity / 4f;
-            waveComponent.Width ??= explosionComponent.TotalIntensity / 200f;
+            waveComponent.Width ??= Math.Clamp(explosionComponent.TotalIntensity / 200f, 0.1f, 0.5f);
 
             Dirty(wave, waveComponent);
         }
 
         if (TryComp<TimedDespawnComponent>(wave, out var timedDespawnComponent))
             timedDespawnComponent.Lifetime = Math.Clamp(explosionComponent.TotalIntensity / 50f, 0.1f, 0.8f);
+    }
+
+    private void CreateFancyExplosionEffect(EntityUid explosionEntity, ExplosiveComponent explosionComponent)
+    {
+        if (!TryComp<TimedDespawnComponent>(explosionEntity, out var timedDespawnComponent))
+            return;
+
+        if (!TryComp<ExplosionEffectComponent>(explosionEntity, out var explosionEffectComponent))
+            return;
+
+        var sizeModifier = Math.Clamp(explosionComponent.TotalIntensity / 50f, 1f, 12f);
+        explosionEffectComponent.SizeModifier = sizeModifier;
+        explosionEffectComponent.LifeTime = timedDespawnComponent.Lifetime;
+
+        Dirty(explosionEntity, explosionEffectComponent);
     }
 
     private void CreateFancySmoke(Entity<CMExplosionEffectComponent> ent, ExplosiveComponent explosionComponent, EntProtoId smokeId)
@@ -88,6 +106,7 @@ public abstract class SharedRMCExplosionSystem : EntitySystem
             Dirty(smoke, explosionSmokeEffectComponent);
         }
     }
+    // Sunrise edit end
 
     public void TryDoEffect(Entity<CMExplosionEffectComponent?> ent)
     {
@@ -96,16 +115,6 @@ public abstract class SharedRMCExplosionSystem : EntitySystem
 
         DoEffect((ent, ent.Comp));
     }
-}
-
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-public sealed partial class ExplosionSmokeEffectComponent : Component
-{
-    public const float AnimationDuration = 2.5f;
-    public const float Variation = 1f;
-
-    [DataField, AutoNetworkedField]
-    public float LifeTime = AnimationDuration;
 }
 
 [ByRefEvent]

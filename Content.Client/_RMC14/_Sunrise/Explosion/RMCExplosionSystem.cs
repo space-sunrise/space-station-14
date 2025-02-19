@@ -10,19 +10,22 @@ namespace Content.Client._RMC14._Sunrise.Explosion;
 // Омг это же партикл систем за 1$
 public sealed class RMCExplosionSystem : SharedRMCExplosionSystem
 {
+    [Dependency] private readonly SpriteSystem _sprite = default!;
     [Dependency] private readonly AnimationPlayerSystem _player = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
-    private const string SmokeTrack = "smoke-anim";
+    private const string SmokeTrack = "smoke-animation";
+    private const string ExplosionTrack = "explosion-animation";
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<ExplosionSmokeEffectComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<ExplosionSmokeEffectComponent, ComponentStartup>(OnSmokeStartup);
+        SubscribeLocalEvent<ExplosionEffectComponent, ComponentStartup>(OnExplosionStartup);
     }
 
-    private void OnStartup(Entity<ExplosionSmokeEffectComponent> ent, ref ComponentStartup args)
+    private void OnSmokeStartup(Entity<ExplosionSmokeEffectComponent> ent, ref ComponentStartup args)
     {
         if (!TryComp<SpriteComponent>(ent, out var sprite))
             return;
@@ -61,6 +64,15 @@ public sealed class RMCExplosionSystem : SharedRMCExplosionSystem
         };
 
         _player.Play(ent, animation, SmokeTrack);
+    }
+
+    private void OnExplosionStartup(Entity<ExplosionEffectComponent> ent, ref ComponentStartup args)
+    {
+        if (!TryComp<SpriteComponent>(ent, out var sprite))
+            return;
+
+        sprite.Scale = new Vector2(ent.Comp.SizeModifier);
+        _sprite.SetAutoAnimateSync(sprite, ent.Comp.LifeTime);
     }
 
     private static Color GetTransparentColor(Color color)
