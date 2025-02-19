@@ -71,14 +71,6 @@
   - WeaponDisabler
   # Sunrise-Start
   - WeaponMechCombatDisabler
-  - MagazinePistolSubMachineGunRubber
-  - MagazineMagnumRubber
-  - MagazineLightRifleRubber
-  - MagazineRifleRubber
-  - MagazineBoxPistolRubber
-  - MagazineBoxMagnumRubber
-  - MagazineBoxLightRifleRubber
-  - MagazineBoxRifleRubber
   # Sunrise-End
 
 - type: technology
