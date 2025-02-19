@@ -34,10 +34,9 @@ using Content.Shared.Shuttles.Events;
 using Content.Shared.Tag;
 using Content.Shared.Tiles;
 using Robust.Server.GameObjects;
-using Robust.Server.Maps;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
-using Robust.Shared.Map;
+using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -79,6 +78,8 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
     [Dependency] private readonly DockingSystem _dock = default!;
     [Dependency] private readonly IdCardSystem _idSystem = default!;
     [Dependency] private readonly NavMapSystem _navMap = default!;
+    [Dependency] private readonly MapLoaderSystem _loader = default!;
+    [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly RoundEndSystem _roundEnd = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -575,7 +576,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         // Sunrise-start
         var mapUid = _mapSystem.CreateMap(out var mapId, runMapInit: false);
 
-        if (!_loader.TryLoad(mapId, component.Map.ToString(), out var uids) || uids.Count != 1)
+        if (!_loader.TryLoadGrid(mapId, component.Map.ToString(), out var uids) || uids.Count != 1)
         {
             Log.Error($"Failed to set up transit hub map!");
             QueueDel(mapUid);
@@ -678,7 +679,7 @@ public sealed partial class EmergencyShuttleSystem : EntitySystem
         var mapId = _mapManager.CreateMap();
 
         var mapOptions = new MapLoadOptions { LoadMap = false,};
-        if (!_loader.TryLoad(mapId, shuttlePath.ToString(), out var uids, mapOptions) || uids.Count != 1)
+        if (!_loader.TryLoadGrid(mapId, shuttlePath.ToString(), out var uids, mapOptions) || uids.Count != 1)
         {
             Log.Error($"Unable to spawn emergency shuttle {shuttlePath} for {ToPrettyString(ent)}");
             return;
