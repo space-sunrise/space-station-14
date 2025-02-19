@@ -98,6 +98,15 @@
       map: [ "blade" ]
   - type: Item
     sprite: Objects/Weapons/Melee/e_sword-inhands.rsi
+  # Sunrise-start
+  - type: Scalpel
+  - type: SurgeryTool
+    successRate: 0.6
+    startSound:
+      path: /Audio/_Sunrise/Medical/Surgery/scalpel1.ogg
+    endSound:
+      path: /Audio/_Sunrise/Medical/Surgery/scalpel2.ogg
+  # Sunrise-end
 
 - type: entity
   name: energy dagger
@@ -162,6 +171,15 @@
     energy: 1.5
     color: white
     netsync: false
+  # Sunrise-start
+  - type: Scalpel
+  - type: SurgeryTool
+    successRate: 0.6
+    startSound:
+      path: /Audio/_Sunrise/Medical/Surgery/scalpel1.ogg
+    endSound:
+      path: /Audio/_Sunrise/Medical/Surgery/scalpel2.ogg
+  # Sunrise-end
 
 - type: entity
   name: pen
@@ -236,6 +254,15 @@
     tags:
     - Write
     - NoPaint  # Sunrise-edit
+  # Sunrise-start
+  - type: Scalpel
+  - type: SurgeryTool
+    successRate: 0.6
+    startSound:
+      path: /Audio/_Sunrise/Medical/Surgery/scalpel1.ogg
+    endSound:
+      path: /Audio/_Sunrise/Medical/Surgery/scalpel2.ogg
+  # Sunrise-end
 
 - type: entity
   parent: [BaseItem, BaseSyndicateContraband]
@@ -346,6 +373,15 @@
     needActiveHand: true # Sunrise-Edit
   - type: FlipOnAttack # Sunrise-Edit
     probability: 0.5 # Sunrise-Edit
+  # Sunrise-start
+  - type: Scalpel
+  - type: SurgeryTool
+    successRate: 0.6
+    startSound:
+      path: /Audio/_Sunrise/Medical/Surgery/scalpel1.ogg
+    endSound:
+      path: /Audio/_Sunrise/Medical/Surgery/scalpel2.ogg
+  # Sunrise-end
 
 # Item will look weird in handslot. Will need to adjust handstorage visuals in a future PR
 - type: entity
@@ -409,3 +445,12 @@
   components: # could add energy-draining like the L6C
   - type: Wieldable
     freeHandsRequired: 0 # because borg has no off-hand to wield with.  Without this, it will be unable to activate the esword
+  # Sunrise-start
+  - type: Scalpel
+  - type: SurgeryTool
+    successRate: 0.6
+    startSound:
+      path: /Audio/_Sunrise/Medical/Surgery/scalpel1.ogg
+    endSound:
+      path: /Audio/_Sunrise/Medical/Surgery/scalpel2.ogg
+  # Sunrise-end
