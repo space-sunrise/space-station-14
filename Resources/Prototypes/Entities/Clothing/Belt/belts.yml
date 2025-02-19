@@ -368,7 +368,7 @@
   - type: Storage
     whitelist:
       tags:
-        # - PlantAnalyzer
+        - PlantAnalyzer #Sunrise-edit
         - PlantSampleTaker
         - BotanyShovel
         - BotanyHoe
@@ -389,10 +389,10 @@
         whitelist:
           tags:
           - BotanyHatchet
-      # hydro:
-      #   whitelist:
-      #     tags:
-      #     - PlantAnalyzer # Dunno what to put here, should be aight.
+      hydro:
+        whitelist:
+          tags:
+          - PlantAnalyzer #Sunrise-add
       hoe:
         whitelist:
           tags:
