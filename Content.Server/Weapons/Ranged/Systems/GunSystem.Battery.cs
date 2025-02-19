@@ -101,7 +101,7 @@ public sealed partial class GunSystem
                 throw new ArgumentOutOfRangeException();
         }
 
-        _damageExamine.AddDamageExamine(args.Message, Damageable.ApplyUniversalAllModifiers(damageSpec), shotCount, shootModifier, damageType);
+        _damageExamine.AddDamageExamineWithModifier(args.Message, Damageable.ApplyUniversalAllModifiers(damageSpec), shotCount, shootModifier, damageType);
     }
 
     private DamageSpecifier? GetDamage(BatteryAmmoProviderComponent component)

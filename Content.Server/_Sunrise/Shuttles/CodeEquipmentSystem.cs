@@ -10,7 +10,8 @@ using Content.Server.Station.Events;
 using Content.Server.Station.Systems;
 using Content.Shared.Shuttles.Components;
 using Robust.Server.GameObjects;
-using Robust.Server.Maps;
+using Robust.Shared.EntitySerialization;
+using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Utility;
 
@@ -38,14 +39,14 @@ public sealed class CodeEquipmentSystem : EntitySystem
     private void OnStationPostInit(EntityUid uid, CodeEquipmentComponent comp, StationPostInitEvent ev)
     {
         var map = _mapManager.CreateMap();
-        var loadOptions = new MapLoadOptions();
-        loadOptions.LoadMap = true;
-        loadOptions.StoreMapUids = true;
-        _loader.TryLoad(map, comp.ShuttlePath.ToString(), out var shuttleUids, loadOptions);
-        if (shuttleUids is null)
+        var loadOptions = new DeserializationOptions();
+        loadOptions.InitializeMaps = true;
+        loadOptions.StoreYamlUids = true;
+        _loader.TryLoadGrid(map, comp.ShuttlePath, out var shuttleUid, loadOptions);
+        if (shuttleUid is null)
             return;
-        comp.Shuttles.Add(shuttleUids[0]);
-        var gammaArmoryComp = EnsureComp<CodeEquipmentShuttleComponent>(shuttleUids[0]);
+        comp.Shuttles.Add(shuttleUid.Value.Owner);
+        var gammaArmoryComp = EnsureComp<CodeEquipmentShuttleComponent>(shuttleUid.Value.Owner);
         gammaArmoryComp.Station = uid;
     }
 

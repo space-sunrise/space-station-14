@@ -80,7 +80,7 @@ public sealed partial class GunSystem
             shootModifier = ShootModifier.Spread;
         }
 
-        _damageExamine.AddDamageExamine(args.Message, Damageable.ApplyUniversalAllModifiers(damageSpec), shotCount, shootModifier, Loc.GetString("damage-projectile"));
+        _damageExamine.AddDamageExamineWithModifier(args.Message, Damageable.ApplyUniversalAllModifiers(damageSpec), shotCount, shootModifier, Loc.GetString("damage-projectile"));
     }
 
     private DamageSpecifier? GetProjectileDamage(string proto)

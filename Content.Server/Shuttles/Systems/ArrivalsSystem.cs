@@ -513,52 +513,52 @@ public sealed class ArrivalsSystem : EntitySystem
     }
 
     /// Sunrise-Edit
-    private void OnRoundStarting(RoundStartingEvent ev)
-    {
-        // Setup arrivals station
-        if (!Enabled)
-            return;
+    // private void OnRoundStarting(RoundStartingEvent ev)
+    // {
+    //     // Setup arrivals station
+    //     if (!Enabled)
+    //         return;
+    //
+    //     SetupArrivalsStation();
+    // }
 
-        SetupArrivalsStation();
-    }
-
-    private void SetupArrivalsStation()
-    {
-        var path = new ResPath(_cfgManager.GetCVar(CCVars.ArrivalsMap));
-        if (!_loader.TryLoadMap(path, out var map, out var grids))
-            return;
-
-        _metaData.SetEntityName(map.Value, Loc.GetString("map-name-terminal"));
-
-        foreach (var id in grids)
-        {
-            EnsureComp<ArrivalsSourceComponent>(id);
-            EnsureComp<ProtectedGridComponent>(id);
-            EnsureComp<PreventPilotComponent>(id);
-        }
-
-        // Setup planet arrivals if relevant
-        if (_cfgManager.GetCVar(CCVars.ArrivalsPlanet))
-        {
-            var template = _random.Pick(_arrivalsBiomeOptions);
-            _biomes.EnsurePlanet(map.Value, _protoManager.Index(template));
-            var restricted = new RestrictedRangeComponent
-            {
-                Range = 32f
-            };
-            AddComp(map.Value, restricted);
-        }
-
-        _mapSystem.InitializeMap(map.Value.Comp.MapId);
-
-        // Handle roundstart stations.
-        var query = AllEntityQuery<StationArrivalsComponent>();
-
-        while (query.MoveNext(out var uid, out var comp))
-        {
-            SetupShuttle(uid, comp);
-        }
-    }
+    // private void SetupArrivalsStation()
+    // {
+    //     var path = new ResPath(_cfgManager.GetCVar(CCVars.ArrivalsMap));
+    //     if (!_loader.TryLoadMap(path, out var map, out var grids))
+    //         return;
+    //
+    //     _metaData.SetEntityName(map.Value, Loc.GetString("map-name-terminal"));
+    //
+    //     foreach (var id in grids)
+    //     {
+    //         EnsureComp<ArrivalsSourceComponent>(id);
+    //         EnsureComp<ProtectedGridComponent>(id);
+    //         EnsureComp<PreventPilotComponent>(id);
+    //     }
+    //
+    //     // Setup planet arrivals if relevant
+    //     if (_cfgManager.GetCVar(CCVars.ArrivalsPlanet))
+    //     {
+    //         var template = _random.Pick(_arrivalsBiomeOptions);
+    //         _biomes.EnsurePlanet(map.Value, _protoManager.Index(template));
+    //         var restricted = new RestrictedRangeComponent
+    //         {
+    //             Range = 32f
+    //         };
+    //         AddComp(map.Value, restricted);
+    //     }
+    //
+    //     _mapSystem.InitializeMap(map.Value.Comp.MapId);
+    //
+    //     // Handle roundstart stations.
+    //     var query = AllEntityQuery<StationArrivalsComponent>();
+    //
+    //     while (query.MoveNext(out var uid, out var comp))
+    //     {
+    //         SetupShuttle(uid, comp);
+    //     }
+    // }
 
     private void SetArrivals(bool obj)
     {

@@ -95,8 +95,10 @@ namespace Content.Server.Storage.EntitySystems
             }
 
             if (entityToPlaceInHands != null)
+            {
                 _hands.PickupOrDrop(args.User, entityToPlaceInHands.Value);
                 _audio.PlayPvs(component.Sound, entityToPlaceInHands.Value);  // Sunrise-edit
+            }
 
             args.Handled = true;
 
