@@ -1,29 +1,70 @@
 ﻿using System.Numerics;
 using Content.Shared._RMC14.Explosion;
+using Robust.Client.Animations;
 using Robust.Client.GameObjects;
+using Robust.Shared.Animations;
+using Robust.Shared.Random;
 
 namespace Content.Client._RMC14._Sunrise.Explosion;
 
 // Омг это же партикл систем за 1$
 public sealed class RMCExplosionSystem : SharedRMCExplosionSystem
 {
-    public override void Update(float frameTime)
+    [Dependency] private readonly AnimationPlayerSystem _player = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+
+    private const string SmokeTrack = "smoke-anim";
+
+    public override void Initialize()
     {
-        base.Update(frameTime);
+        base.Initialize();
 
-        var query = EntityQueryEnumerator<SpriteComponent, ExplosionSmokeEffectComponent>();
-
-        while (query.MoveNext(out _, out var sprite, out _))
-        {
-            sprite.Offset += new Vector2(0.0012f, 0.0014f);
-            sprite.Color = MakeColorMoreTransparent(sprite.Color);
-        }
+        SubscribeLocalEvent<ExplosionSmokeEffectComponent, ComponentStartup>(OnStartup);
     }
 
-    private static Color MakeColorMoreTransparent(Color color)
+    private void OnStartup(Entity<ExplosionSmokeEffectComponent> ent, ref ComponentStartup args)
     {
-        var newColorA = Math.Clamp(color.A - 0.001f, 0f, 255f);
+        if (!TryComp<SpriteComponent>(ent, out var sprite))
+            return;
 
-        return new Color(color.R, color.G, color.B, newColorA);
+        var targetX = 2f + _random.NextFloat(-ExplosionSmokeEffectComponent.Variation, ExplosionSmokeEffectComponent.Variation);
+        var targetY = 2f + _random.NextFloat(-ExplosionSmokeEffectComponent.Variation, ExplosionSmokeEffectComponent.Variation);
+
+        var animation = new Animation()
+        {
+            Length = TimeSpan.FromSeconds(ent.Comp.LifeTime),
+            AnimationTracks =
+            {
+                new AnimationTrackComponentProperty()
+                {
+                    Property = nameof(SpriteComponent.Offset),
+                    ComponentType = typeof(SpriteComponent),
+                    InterpolationMode = AnimationInterpolationMode.Linear,
+                    KeyFrames =
+                    {
+                        new AnimationTrackProperty.KeyFrame(sprite.Offset, 0f),
+                        new AnimationTrackProperty.KeyFrame(new Vector2(targetX, targetY), ent.Comp.LifeTime),
+                    },
+                },
+                new AnimationTrackComponentProperty()
+                {
+                    Property = nameof(SpriteComponent.Color),
+                    ComponentType = typeof(SpriteComponent),
+                    InterpolationMode = AnimationInterpolationMode.Linear,
+                    KeyFrames =
+                    {
+                        new AnimationTrackProperty.KeyFrame(sprite.Color, 0f),
+                        new AnimationTrackProperty.KeyFrame(GetTransparentColor(sprite.Color), ent.Comp.LifeTime),
+                    },
+                },
+            },
+        };
+
+        _player.Play(ent, animation, SmokeTrack);
+    }
+
+    private static Color GetTransparentColor(Color color)
+    {
+        return new Color(color.R, color.G, color.B, 0f);
     }
 }

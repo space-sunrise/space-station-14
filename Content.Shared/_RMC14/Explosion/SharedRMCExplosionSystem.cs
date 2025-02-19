@@ -12,9 +12,8 @@ public abstract class SharedRMCExplosionSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
 
-    // TODO: Зависимость этих значений от силы взрыва
-    private const float MinSmokeCountPer100 = 15f;
-    private const float MaxSmokeCountPer100 = 20f;
+    private const float MinSmokeCountPer100 = 12f;
+    private const float MaxSmokeCountPer100 = 17f;
 
     private const float SmokeSpawnRadiusPer100 = 2f;
 
@@ -46,7 +45,7 @@ public abstract class SharedRMCExplosionSystem : EntitySystem
             CreateFancySmoke(ent, explosionComponent, smoke);
     }
 
-    private void ModifyShockwave(EntityUid wave, ExplosiveComponent  explosionComponent)
+    private void ModifyShockwave(EntityUid wave, ExplosiveComponent explosionComponent)
     {
         // Дальше идут просто числа, которые я придумал особо не думая, мб нужно подумать
         // Но идея в том, чтобы чем сильнее взрыв, тем сильнее эффект и наоборот
@@ -74,7 +73,19 @@ public abstract class SharedRMCExplosionSystem : EntitySystem
 
         for (var i = 0; i < smokeCount; i++)
         {
-            Spawn(smokeId, coords.GetRandomInRadius(modifiedRadius));
+            var smoke = Spawn(smokeId, coords.GetRandomInRadius(modifiedRadius));
+
+            if (!TryComp<TimedDespawnComponent>(smoke, out var timedDespawnComponent))
+                continue;
+
+            if (!TryComp<ExplosionSmokeEffectComponent>(smoke, out var explosionSmokeEffectComponent))
+                continue;
+
+            timedDespawnComponent.Lifetime = ExplosionSmokeEffectComponent.AnimationDuration + _random.NextFloat(-ExplosionSmokeEffectComponent.Variation, ExplosionSmokeEffectComponent.Variation);
+
+            // Это нужно, чтобы анимация на клиенте знала, когда мы решили заканчиваться
+            explosionSmokeEffectComponent.LifeTime = timedDespawnComponent.Lifetime;
+            Dirty(smoke, explosionSmokeEffectComponent);
         }
     }
 
@@ -87,8 +98,15 @@ public abstract class SharedRMCExplosionSystem : EntitySystem
     }
 }
 
-[RegisterComponent, NetworkedComponent]
-public sealed partial class ExplosionSmokeEffectComponent : Component;
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+public sealed partial class ExplosionSmokeEffectComponent : Component
+{
+    public const float AnimationDuration = 2.5f;
+    public const float Variation = 1f;
+
+    [DataField, AutoNetworkedField]
+    public float LifeTime = AnimationDuration;
+}
 
 [ByRefEvent]
 public readonly record struct CMExplosiveTriggeredEvent;
