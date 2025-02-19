@@ -34,12 +34,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.5
-        Heat: 0.6
+        Blunt: 0.65
+        Slash: 0.65
+        Piercing: 0.6
+        Heat: 0.65
+        Caustic: 0.75
   - type: ExplosionResistance
-    damageCoefficient: 0.65
+    damageCoefficient: 0.9
   - type: Item
     size: Huge
 
@@ -59,14 +60,14 @@
         Blunt: 0.55
         Slash: 0.55
         Piercing: 0.55
-        Heat: 0.60
-        Radiation: 0.70
-        Caustic: 0.75
+        Heat: 0.6
+        Radiation: 0.6
+        Caustic: 0.6
   - type: ExplosionResistance
-    damageCoefficient: 0.75
+    damageCoefficient: 0.65
   - type: PressureProtection
-    highPressureMultiplier: 0.6
-    lowPressureMultiplier: 0.6
+    highPressureMultiplier: 0.5
+    lowPressureMultiplier: 0.25
   - type: TemperatureProtection
     heatingCoefficient: 0.5
     coolingCoefficient: 0.5
