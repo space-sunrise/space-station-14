@@ -38,3 +38,8 @@
   parent: BaseNeckClothingRecipe
   id: ClothingNeckScarfStripedCyan
   result: ClothingNeckScarfStripedCyan
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatBeretParamedic
+  result: ClothingHeadHatBeretParamedic
