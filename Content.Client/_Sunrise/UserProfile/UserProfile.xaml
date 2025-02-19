@@ -8,7 +8,7 @@
             <customControls:VSeparator/>
             <BoxContainer Orientation="Vertical" SizeFlagsStretchRatio="2" HorizontalExpand="True" HorizontalAlignment="Center">
                 <Label Text="{Loc 'user-profile-sponsor-title'}" StyleClasses="LabelHeadingBigger" HorizontalAlignment="Center"/>
-                <BoxContainer Orientation="Vertical" HorizontalExpand="True" HorizontalAlignment="Center">
+                <BoxContainer Orientation="Horizontal" HorizontalExpand="True" HorizontalAlignment="Center">
                     <Label Text="{Loc 'user-profile-level'}" StyleClasses="LabelKeyText"/>
                     <Label Name="SponsorTierName" Margin="5 0 0 0"/>
                 </BoxContainer>
