@@ -1,7 +1,3 @@
-ent-MagazinePistolRubber = pistol magazine (.35 auto rubber)
-    .desc = { ent-BaseMagazinePistol.desc }
-ent-MagazinePistolSubMachineGunRubber = SMG magazine (.35 auto rubber)
-    .desc = { ent-BaseMagazinePistolSubMachineGun.desc }
 ent-MagazineP90 = P90 magazine
     .desc = { ent-BaseItem.desc }
 ent-MagazineMP7 = MP7 magazine
@@ -20,7 +16,4 @@ ent-MagazineP90Extended = { ent-MagazineP90 }
     .desc = { ent-MagazineP90.desc }
 ent-MagazineGlock22 = Glock22 magazine
     .desc = { ent-BaseItem.desc }
-ent-MagazineGlock22Rubber = Glock22 magazine
-    .desc = { ent-MagazineGlock22.desc }
-ent-MagazinePistolHighCapacityRubber = machine pistol magazine (.35 auto rubber)
     .desc = { ent-BaseMagazinePistolHighCapacity.desc }

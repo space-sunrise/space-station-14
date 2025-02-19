@@ -19,6 +19,7 @@ using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Stealth.Components;
 using Content.Shared.Damage.Components;
 using Content.Server.Radio.Components;
+using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared._RMC14.Xenonids.Screech;
 using Content.Shared.Coordinates;
 using Content.Shared.Sunrise.CollectiveMind;

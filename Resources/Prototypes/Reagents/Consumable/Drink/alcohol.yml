@@ -686,12 +686,12 @@
         amount: 0.15
       # Sunrise-start
       - !type:Electrocute
-        probability: 0.6
+        probability: 0.05
       - !type:PopupMessage
         messages: [ "reagent-beepskysmash-effect1" ]
         type: Pvs
         visualType: LargeCaution
-        probability: 0.8
+        probability: 0.3
       # Sunrise-end
   fizziness: 0.3
 

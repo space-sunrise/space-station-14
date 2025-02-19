@@ -59,6 +59,13 @@ namespace Content.Shared.Popups
         public abstract void PopupCoordinates(string? message, EntityCoordinates coordinates, ICommonSession recipient, PopupType type = PopupType.Small);
 
         /// <summary>
+        ///    Variant of <see cref="PopupCoordinates(string, EntityCoordinates, PopupType)"/> for use with prediction. The local client will
+        ///    the popup to the recipient, and the server will show it to every other player in PVS range. If recipient is null, the local 
+        //     client will do nothing and the server will show the message to every player in PVS range.
+        /// </summary>
+        public abstract void PopupPredictedCoordinates(string? message, EntityCoordinates coordinates, EntityUid? recipient, PopupType type = PopupType.Small);
+
+        /// <summary>
         ///     Shows a popup above an entity for every player in pvs range.
         /// </summary>
         /// <param name="message">The message to display.</param>
@@ -204,19 +211,19 @@ namespace Content.Shared.Popups
         /// </summary>
         Small,
         SmallCaution,
-        SmallFloating, // Sunrise
         /// <summary>
         ///     Medium popups should be used for actions which are not spammable but may not be particularly important.
         /// </summary>
         Medium,
         MediumCaution,
-        MediumCautionFloating, // Sunrise
         /// <summary>
         ///     Large popups should be used for actions which may be important or very important to one or more users,
         ///     but is not life-threatening.
         /// </summary>
         Large,
         LargeCaution,
-        LargeGreen
+        SmallFloating, // Sunrise
+        MediumCautionFloating, // Sunrise
+        LargeGreen // Sunrise-Edit
     }
 }

@@ -1,6 +1,6 @@
 - type: entity
   name: handheld crew monitor
-  suffix: DO NOT MAP
+  categories: [ DoNotMap ]
   parent: [ BaseHandheldComputer ]
   id: HandheldCrewMonitor
   description: A hand-held crew monitor displaying the status of suit sensors.
