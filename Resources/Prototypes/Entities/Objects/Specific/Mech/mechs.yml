@@ -375,11 +375,11 @@
         Blunt: 26
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.5
-    baseSprintSpeed: 4.5
+    baseSprintSpeed: 4
   - type: CanMoveInAir
   - type: MovementAlwaysTouching
   - type: Reflect
-    reflectProb: 0.15
+    reflectProb: 0.1
     spread: 180
     soundOnReflect: /Audio/Weapons/block_metal1.ogg
     reflects:

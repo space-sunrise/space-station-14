@@ -715,6 +715,18 @@
 
 # Mech Weapons
 - type: latheRecipe
+  id: WeaponMechCombatIon
+  result: WeaponMechCombatIon
+  category: MechWeapons
+  completetime: 30
+  materials:
+    Steel: 2500
+    Plastic: 1000
+    Plasma: 500
+    Glass: 500
+    Gold: 100
+
+- type: latheRecipe
   id: WeaponMechCombatImmolationGun
   result: WeaponMechCombatImmolationGun
   category: MechWeapons
@@ -735,6 +747,18 @@
     Plastic: 300
     Plasma: 250
     Glass: 200
+
+- type: latheRecipe
+  id: WeaponMechCombatXray
+  result: WeaponMechCombatXray
+  category: MechWeapons
+  completetime: 10
+  materials:
+    Steel: 2500
+    Glass: 500
+    Plastic: 300
+    Plasma: 250
+    Gold: 100
 
 - type: latheRecipe
   id: WeaponMechCombatFiredartLaser
@@ -774,6 +798,16 @@
     Steel: 1500
     Plastic: 800
     Plasma: 300
+
+- type: latheRecipe
+  id: WeaponMechCombatMG
+  result: WeaponMechCombatMG
+  category: MechWeapons
+  completetime: 10
+  materials:
+    Steel: 3000
+    Plastic: 500
+    Plasma: 100
 
 - type: latheRecipe
   id: WeaponMechCombatDisabler

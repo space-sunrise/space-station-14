@@ -55,10 +55,10 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_antimatrifle
   - type: Gun
-    fireRate: 0.75
-    selectedMode: FullAuto
+    fireRate: 0.55
+    selectedMode: SemiAuto
     availableModes:
-      - FullAuto
+      - SemiAuto
     soundGunshot:
       path: /Audio/_Sunrise/Weapons/Guns/Snipers/Bauer127/bauer127_shot.ogg
   - type: ProjectileBatteryAmmoProvider
@@ -78,7 +78,7 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_solaris
   - type: Gun
-    fireRate: 2
+    fireRate: 1.75
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
@@ -269,7 +269,7 @@
     state: mecha_ion
   - type: Gun
     projectileSpeed: 18
-    fireRate: 0.6
+    fireRate: 0.5
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
@@ -324,7 +324,7 @@
     sprite: Objects/Specific/Mech/mecha_equipment.rsi
     state: mecha_xray
   - type: Gun
-    fireRate: 1.5
+    fireRate: 1.25
     selectedMode: SemiAuto
     availableModes:
       - SemiAuto
