@@ -187,10 +187,6 @@
       amount: 1
     Whiskey:
       amount: 1
-    # Sunrise-start
-    Zinc:
-      amount: 1
-    # Sunrise-end
   products:
     BeepskySmash: 2
 
