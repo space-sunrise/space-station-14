@@ -26,7 +26,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Content.Sunrise.Interfaces.Shared; // Sunrise-Sponsors
-using Content.Shared.Database; // Sunrise-Ahelp-Antispam
+using Content.Shared.Database; // Sunrise-Ahelp-Antispam, based on Starlight Build: https://github.com/ss14Starlight/space-station-14/pull/85
 
 
 namespace Content.Server.Administration.Systems
@@ -47,7 +47,7 @@ namespace Content.Server.Administration.Systems
         [Dependency] private readonly IServerDbManager _dbManager = default!;
         [Dependency] private readonly PlayerRateLimitManager _rateLimit = default!;
         private ISharedSponsorsManager? _sponsorsManager; // Sunrise-Sponsors
-        [Dependency] private readonly IBanManager _banManager = default!; // Sunrise-Ahelp-Antispam
+        [Dependency] private readonly IBanManager _banManager = default!; // Sunrise-Ahelp-Antispam, based on Starlight Build: https://github.com/ss14Starlight/space-station-14/pull/85
 
         [GeneratedRegex(@"^https://discord\.com/api/webhooks/(\d+)/((?!.*/).*)$")]
         private static partial Regex DiscordRegex();
@@ -82,6 +82,7 @@ namespace Content.Server.Administration.Systems
         private const ushort MessageLengthCap = 3000;
 
         // Sunrise-Ahelp-Antispam-Start
+        // Based on Starlight Build: https://github.com/ss14Starlight/space-station-14/pull/85
         private readonly TimeSpan _messageCooldown = TimeSpan.FromSeconds(2);
 
         private readonly Queue<(NetUserId Channel, string Text, TimeSpan Timestamp)> _recentMessages = new();
@@ -663,6 +664,7 @@ namespace Content.Server.Administration.Systems
             }
 
             // Sunrise-Ahelp-Antispam-Start
+            // Based on Starlight Build: https://github.com/ss14Starlight/space-station-14/pull/85
             var currentTime = _timing.RealTime;
 
             if (IsOnCooldown(message.UserId, currentTime))
@@ -905,6 +907,7 @@ namespace Content.Server.Administration.Systems
         }
 
         // Sunrise-Ahelp-Antispam-Start
+        // Based on Starlight Build: https://github.com/ss14Starlight/space-station-14/pull/85
         private void AddToRecentMessages(NetUserId channelId, string text, TimeSpan timestamp)
         {
             _recentMessages.Enqueue((channelId, text, timestamp));
