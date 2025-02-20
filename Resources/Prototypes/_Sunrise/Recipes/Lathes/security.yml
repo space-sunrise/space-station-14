@@ -43,6 +43,17 @@
     Plasma: 500
 
 - type: latheRecipe
+  id: WeaponTemperatureGun
+  result: WeaponTemperatureGun
+  category: Weapons
+  completetime: 5
+  materials:
+    Steel: 5000
+    Glass: 1000
+    Plastic: 1000
+    Silver: 2500
+
+- type: latheRecipe
   parent: BaseAmmoRecipe
   id: MagazineLightRifleBoxIncendiary
   result: MagazineLightRifleBoxIncendiary
