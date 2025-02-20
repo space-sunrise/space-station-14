@@ -1,7 +1,7 @@
 - type: gameMapPool
   id: SunriseMapPool
   maps:
-  - SunriseDelta
+  #- SunriseDelta - дельта убрана из пула до фикса
   - SunriseBox
   - SunriseFland
   - SunriseMarathon
