@@ -63,9 +63,9 @@
     steps: 1
     zeroVisible: true
   - type: Appearance
-  #- type: SpeedModifiedOnWield
-  #  walkModifier: 0.25
-  #  sprintModifier: 0.25
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.25
+    sprintModifier: 0.25
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 3
@@ -137,9 +137,9 @@
   - type: Wieldable
   - type: UseDelay
     delay: 1
-  #- type: SpeedModifiedOnWield
-  #  walkModifier: 0.4
-  #  sprintModifier: 0.4
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.5
+    sprintModifier: 0.5
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 3
@@ -219,9 +219,9 @@
   - type: Wieldable
   - type: UseDelay
     delay: 0.5
-  #- type: SpeedModifiedOnWield
-  #  walkModifier: 0.25
-  #  sprintModifier: 0.25
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.25
+    sprintModifier: 0.25
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 3

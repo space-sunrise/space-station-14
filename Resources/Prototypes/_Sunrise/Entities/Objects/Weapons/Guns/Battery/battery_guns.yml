@@ -451,8 +451,8 @@
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
   - type: Battery
-    maxCharge: 1500
-    startingCharge: 1500
+    maxCharge: 1000
+    startingCharge: 1000
   - type: EnergyGunFireModes
     fireModes:
     - hitscanProto: BulletDisabler
@@ -562,7 +562,8 @@
     - state: mag-unshaded-4
       map: ["enum.GunVisualLayers.MagUnshaded"]
       shader: unshaded
-#  - type: Clothing
+  - type: Clothing
+    sprite: _Sunrise/Objects/Weapons/Guns/Battery/ion_rifle.rsi
   - type: Gun
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
@@ -591,6 +592,9 @@
     zeroVisible: true
   - type: Appearance
   - type: EmpImmune
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 3
@@ -858,6 +862,9 @@
   - type: Wieldable
   - type: UseDelay
     delay: 0.5
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.9
+    sprintModifier: 0.9
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 3
@@ -898,6 +905,9 @@
   - type: Battery
     maxCharge: 5000
     startingCharge: 5000
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.9
+    sprintModifier: 0.9
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 3
