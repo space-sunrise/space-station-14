@@ -55,6 +55,7 @@ using Content.Shared.Mobs.Components;
 using Content.Server.Stunnable;
 using Content.Shared.Jittering;
 using System.Linq;
+using Content.Shared._RMC14.Xenonids.Screech;
 using Content.Shared.Forensics.Components;
 using Content.Shared.Radio;
 
@@ -265,6 +266,10 @@ public sealed partial class ChangelingSystem : EntitySystem
     public void DoScreech(EntityUid uid, ChangelingComponent comp)
     {
         _audio.PlayPvs(comp.ShriekSound, uid);
+
+        // Sunrise edit start
+        StartScreech(uid, playSound: false);
+        // Sunrise edit end
 
         var center = Transform(uid).MapPosition;
         var gamers = Filter.Empty();
@@ -606,6 +611,10 @@ public sealed partial class ChangelingSystem : EntitySystem
         RemComp<HungerComponent>(uid);
         RemComp<ThirstComponent>(uid);
         EnsureComp<ZombieImmuneComponent>(uid);
+
+        // Sunrise edit start
+        EnsureComp<XenoScreechComponent>(uid);
+        // Sunrise edit end
 
         // add actions
         foreach (var actionId in comp.BaseChangelingActions)

@@ -1,6 +1,7 @@
 using Content.Shared.Damage;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Explosion;
@@ -110,6 +111,11 @@ public sealed partial class ExplosionPrototype : IPrototype
     [DataField("fireStates")]
     public int FireStates = 3;
 
+    // Sunrise added start
+    [DataField]
+    public ExplosionEffectType EffectType = ExplosionEffectType.Fancy;
+    // Sunrise added end
+
     /// <summary>
     ///     Basic function for linear interpolation of the _tileBreakChance and _tileBreakIntensity arrays
     /// </summary>
@@ -133,3 +139,11 @@ public sealed partial class ExplosionPrototype : IPrototype
         return _tileBreakChance[i - 1] + slope * (intensity - _tileBreakIntensity[i - 1]);
     }
 }
+
+[Serializable, NetSerializable]
+public enum ExplosionEffectType : byte
+{
+    Standard,
+    Fancy,
+}
+
