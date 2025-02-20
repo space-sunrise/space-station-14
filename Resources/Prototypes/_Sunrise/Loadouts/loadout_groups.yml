@@ -206,7 +206,7 @@
   minLimit: 1
   maxLimit: 1
   loadouts:
-  - SunriseWeaponPistolG22
+  #- SunriseWeaponPistolG22
   - SunriseWeaponEnergyGun
 
 # Medical
