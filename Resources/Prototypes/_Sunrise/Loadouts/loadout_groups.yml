@@ -1192,3 +1192,17 @@
   - PetMobClownGoblin
   - PetMobCorgiIanPup
   - PetMobParrot
+
+#Law
+
+- type: loadoutGroup
+  id: BackNTR
+  name: loadout-group-backntr
+  loadouts:
+  - BackpackNTRG
+
+- type: loadoutGroup
+  id: UniformNTR
+  name: loadout-group-uniformntr
+  loadouts:
+  - JumpsuitNTR

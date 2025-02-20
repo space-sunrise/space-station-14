@@ -1,7 +1,7 @@
 ent-ClothingOuterHardsuitCBURNLeader = экзокостюм командира отряда РХБЗЗ
     .desc = Легковесный но прочный экзокостюм, который используют специальные подразделения зачистки.
 ent-ClothingOuterHardsuitBlueshield = скафандр офицера «синий щит»
-    .desc = Крепкий и надёжныый, как и его владелец.
+    .desc = Крепкий и надёжный, как и его владелец.
 ent-ClothingOuterHardsuitSecuritySunrise = { ent-ClothingOuterHardsuitSecurity }
     .suffix = САНРАЙЗ
     .desc = { ent-ClothingOuterHardsuitSecurity.desc }
