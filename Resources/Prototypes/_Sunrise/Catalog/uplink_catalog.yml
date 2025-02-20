@@ -1078,7 +1078,7 @@
   description: uplink-mech-teleporter-heavy-desc
   icon: { sprite: /Textures/Objects/Specific/Mech/mecha.rsi, state: mauler }
   productEntity: CrateCybersunMaulerBundle
-  discountCategory: RareDiscounts
+  discountCategory: rareDiscounts
   discountDownTo:
     Telecrystal: 60
   cost:
