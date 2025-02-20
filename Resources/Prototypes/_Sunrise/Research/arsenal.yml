@@ -75,6 +75,7 @@
   - DurandTargetingElectronics
   - WeaponMechCombatShotgun
   - WeaponMechCombatShotgunIncendiary
+  - WeaponMechCombatMG
   - PaintDurandExecutor
   - PaintDurandShire
   technologyPrerequisites:

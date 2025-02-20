@@ -166,6 +166,7 @@
   cost: 10000
   recipeUnlocks:
   - WeaponXrayCannon
+  - WeaponMechCombatXray  #Sunrise-Add
 
 - type: technology
   id: BasicShuttleArmament
@@ -204,6 +205,7 @@
   - WeaponAdvancedLaser
   - PortableRecharger
   - WeaponMechCombatImmolationGun # Sunrise-Add
+  - WeaponMechCombatIon # Sunrise-Add
 
 - type: technology
   id: ExperimentalBatteryAmmo

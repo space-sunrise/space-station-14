@@ -3,25 +3,29 @@
   id: ClarkeHarness
   result: ClarkeHarness
   category: Clarke
-  completetime: 10
+  completetime: 60
   materials:
-    Steel: 2000
+    Steel: 2500
     Glass: 1500
+    Plasma: 900
+    Plastic: 100
 
 - type: latheRecipe
   id: ClarkeHead
   result: ClarkeHead
   category: Clarke
-  completetime: 10
+  completetime: 30
   materials:
     Steel: 1550
     Glass: 950
+    Silver: 200
+    Uranium: 100
 
 - type: latheRecipe
   id: ClarkeLArm
   result: ClarkeLArm
   category: Clarke
-  completetime: 10
+  completetime: 30
   materials:
     Steel: 900
     Glass: 800
@@ -30,7 +34,7 @@
   id: ClarkeRArm
   result: ClarkeRArm
   category: Clarke
-  completetime: 10
+  completetime: 30
   materials:
     Steel: 900
     Glass: 800
@@ -39,7 +43,7 @@
   id: ClarkeTreads
   result: ClarkeTreads
   category: Clarke
-  completetime: 10
+  completetime: 30
   materials:
     Steel: 950
 
@@ -71,13 +75,14 @@
   materials:
     Steel: 1500
     Glass: 800
-    Silver: 250
+    Silver: 500
+    Uranium: 200
 
 - type: latheRecipe
   id: DurandLArm
   result: DurandLArm
   category: Durand
-  completetime: 10
+  completetime: 30
   materials:
     Steel: 1100
     Silver: 250
@@ -86,7 +91,7 @@
   id: DurandLLeg
   result: DurandLLeg
   category: Durand
-  completetime: 10
+  completetime: 30
   materials:
     Steel: 1100
     Silver: 250
@@ -95,7 +100,7 @@
   id: DurandRLeg
   result: DurandRLeg
   category: Durand
-  completetime: 10
+  completetime: 30
   materials:
     Steel: 1100
     Silver: 250
@@ -104,7 +109,7 @@
   id: DurandRArm
   result: DurandRArm
   category: Durand
-  completetime: 10
+  completetime: 30
   materials:
     Steel: 1100
     Silver: 250
@@ -114,7 +119,7 @@
   id: GygaxHarness
   result: GygaxHarness
   category: Gygax
-  completetime: 10
+  completetime: 30
   materials:
     Steel: 2500
     Glass: 2000
@@ -123,7 +128,7 @@
   id: GygaxArmor
   result: GygaxArmorPlate
   category: Gygax
-  completetime: 10
+  completetime: 30
   materials:
     Steel: 3000
 
@@ -131,17 +136,18 @@
   id: GygaxHead
   result: GygaxHead
   category: Gygax
-  completetime: 10
+  completetime: 30
   materials:
     Steel: 1500
     Glass: 250
+    Uranium: 100
     Diamond: 100
 
 - type: latheRecipe
   id: GygaxLArm
   result: GygaxLArm
   category: Gygax
-  completetime: 10
+  completetime: 30
   materials:
     Steel: 1100
 
@@ -149,7 +155,7 @@
   id: GygaxLLeg
   result: GygaxLLeg
   category: Gygax
-  completetime: 10
+  completetime: 30
   materials:
     Steel: 1100
 
@@ -157,7 +163,7 @@
   id: GygaxRLeg
   result: GygaxRLeg
   category: Gygax
-  completetime: 10
+  completetime: 30
   materials:
     Steel: 1100
 
@@ -165,7 +171,7 @@
   id: GygaxRArm
   result: GygaxRArm
   category: Gygax
-  completetime: 10
+  completetime: 30
   materials:
     Steel: 1100
 
@@ -174,7 +180,7 @@
   id: RipleyMKIIHarness
   result: RipleyMKIIHarness
   category: RipleyMKII
-  completetime: 10
+  completetime: 30
   materials:
     Steel: 1500
     Glass: 1200
@@ -183,7 +189,7 @@
   id: RipleyUpgradeKit
   result: RipleyUpgradeKit
   category: RipleyMKII
-  completetime: 10
+  completetime: 30
   materials:
     Steel: 500
 
@@ -262,7 +268,7 @@
   id: MechEquipmentDrill
   result: WeaponMechMelleDrill
   category: MechEquipment
-  completetime: 10
+  completetime: 30
   materials:
     Steel: 1000
     Glass: 250
@@ -271,7 +277,7 @@
   id: MechEquipmentDrillDiamond
   result: WeaponMechMelleDrillDiamond
   category: MechEquipment
-  completetime: 10
+  completetime: 30
   materials:
     Steel: 1000
     Plastic: 150
@@ -301,7 +307,7 @@
   id: MechPhasicScanningModule
   result: MechPhasicScanningModule
   category: MechEquipment
-  completetime: 10
+  completetime: 30
   materials:
     Steel: 2000
     Glass: 500
@@ -311,7 +317,7 @@
   id: MechAirTank
   result: MechAirTank
   category: MechEquipment
-  completetime: 10
+  completetime: 15
   materials:
     Steel: 1000
     Glass: 150
@@ -320,7 +326,7 @@
   id: MechThruster
   result: MechThruster
   category: MechEquipment
-  completetime: 10
+  completetime: 15
   materials:
     Steel: 1000
     Glass: 150
