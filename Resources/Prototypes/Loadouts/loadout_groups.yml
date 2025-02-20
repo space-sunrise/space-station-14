@@ -113,6 +113,7 @@
   loadouts:
   - CaptainHead
   - CaptainCap
+  - EliteCaptainCap #Sunrise-Edit
 
 - type: loadoutGroup
   id: CaptainJumpsuit
@@ -131,6 +132,7 @@
   - CaptainCloak
   - CaptainCloakFormal
   - CaptainMantle
+  - CaptainEliteCloak # Sunrise-Edit
 
 - type: loadoutGroup
   id: CaptainBackpack
@@ -146,6 +148,7 @@
   loadouts:
   - CaptainOuterArmor # Sunrise-Edit
   - CaptainOuterCoat # Sunrise-Edit
+  - CaptainOuterOverCoat  # Sunrise-Edit
   - CaptainWintercoat
 
 - type: loadoutGroup
@@ -1047,6 +1050,11 @@
   loadouts:
   - HeadofSecurityHead
   - HeadofSecurityBeret
+  #Sunrise-Start
+  - HeadofSecurityHatCap
+  - HeadofSecurityCapUSSPBlack
+  - HeadofSecurityCapLeather
+  #Sunrise-End
 
 - type: loadoutGroup
   id: HeadofSecurityJumpsuit
@@ -1058,6 +1066,8 @@
   - HeadofSecurityTurtleneckSkirt
   - HeadofSecurityFormalSuit
   - HeadofSecurityFormalSkirt
+  - HeadofSecurityJumpsuitHoSOld  #Sunrise-Edit
+  - HeadofSecurityJumpsuitUSSPBlack #Sunrise-Edit
 
 - type: loadoutGroup
   id: HeadofSecurityNeck
@@ -1066,6 +1076,8 @@
   loadouts:
   - HeadofSecurityCloak
   - HeadofSecurityMantle
+  - HeadofSecurityDarthHOSCloak #Sunrise-Edit
+  - HeadofSecurityCloakHOSCloak #Sunrise-Edit
 
 - type: loadoutGroup
   id: HeadofSecurityOuterClothing
@@ -1073,6 +1085,12 @@
   loadouts:
   - HeadofSecurityCoat
   - HeadofSecurityWinterCoat
+  #Sunrise-Start
+  - HeadofSecurityGreatcoat
+  - HeadofSecurityGreatcoatBlack
+  - HeadofSecurityOvercoat
+  - HeadofSecurityUSSPBlack
+  #Sunrise-End
 
 - type: loadoutGroup
   id: WardenHead
@@ -1218,7 +1236,6 @@
 # Sunrise-start
   - BeretSeniorPhysician
   - MedicalBeret
-  - ParamedicBeret
   - NurseHat
   - BlueSurgeryCap
   - GreenSurgeryCap
@@ -1447,7 +1464,6 @@
   loadouts:
 # Sunrise-start
   - MedicalBeret
-  - ParamedicBeret
   - NurseHat
   - BlueSurgeryCap
   - GreenSurgeryCap

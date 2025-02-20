@@ -39,6 +39,23 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtHosFormal
 
+#Sunrise-Start
+- type: loadout
+  id: HeadofSecurityJumpsuitHoSOld
+  sponsorOnly: true
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHoSOld
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterHoS
+
+- type: loadout
+  id: HeadofSecurityJumpsuitUSSPBlack
+  sponsorOnly: true
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitUSSPBlack
+#Sunrise-End
+
 # Head
 - type: loadout
   id: HeadofSecurityHead
@@ -49,6 +66,28 @@
   id: HeadofSecurityBeret
   equipment:
     head: ClothingHeadHatBeretHoS
+
+#Sunrise-Start
+- type: loadout
+  id: HeadofSecurityHatCap
+  equipment:
+    head: ClothingHeadHatCapHoS
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterHoS
+
+- type: loadout
+  id: HeadofSecurityCapUSSPBlack
+  sponsorOnly: true
+  equipment:
+    head: ClothingHeadHatCapUSSPBlack
+
+- type: loadout
+  id: HeadofSecurityCapLeather
+  sponsorOnly: true
+  equipment:
+    head: ClothingHeadHatCapLeatherHoS
+#Sunrise-End
 
 # Neck
 - type: loadout
@@ -69,6 +108,21 @@
   equipment:
     neck: ClothingNeckMantleHOS
 
+- type: loadout
+  id: HeadofSecurityCloakHOSCloak
+  sponsorOnly: true
+  equipment:
+    neck: ClothingNeckCloakHOSCloak
+
+- type: loadout
+  id: HeadofSecurityDarthHOSCloak
+  sponsorOnly: true
+  equipment:
+    neck: ClothingNeckCloakDarthHOSCloak
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterHoS
+
 # OuterClothing
 - type: loadout
   id: HeadofSecurityCoat
@@ -79,3 +133,34 @@
   id: HeadofSecurityWinterCoat
   equipment:
     outerClothing: ClothingOuterWinterHoS
+
+#Sunrise-Start
+- type: loadout
+  id: HeadofSecurityGreatcoat
+  equipment:
+    outerClothing: ClothingOuterCoatHoSGreatcoat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterHoS
+
+- type: loadout
+  id: HeadofSecurityGreatcoatBlack
+  sponsorOnly: true
+  equipment:
+    outerClothing: ClothingOuterCoatHOSOvercoatBlack
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MasterHoS
+
+- type: loadout
+  id: HeadofSecurityUSSPBlack
+  sponsorOnly: true
+  equipment:
+    outerClothing: ClothingOuterCoatUSSPOvercoatBlack
+
+- type: loadout
+  id: HeadofSecurityOvercoat
+  sponsorOnly: true
+  equipment:
+    outerClothing: ClothingOuterCoatHoSOvercoat
+#Sunrise-End
