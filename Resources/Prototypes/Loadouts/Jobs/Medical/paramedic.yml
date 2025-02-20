@@ -4,11 +4,6 @@
   equipment:
     head: ClothingHeadHatParamedicsoft
 
-- type: loadout
-  id: ParamedicBeret
-  equipment:
-    head: ClothingHeadHatBeretParamedic
-
 # Jumpsuit
 - type: loadout
   id: ParamedicJumpsuit
