@@ -277,7 +277,8 @@
         Slash: 0.6
         Piercing: 0.6
         Heat: 0.7 #sunrise-Edit
-        Caustic: 0.7
+        Caustic: 0.65 #sunrise-Edit
+        Radiation: 0.55  #sunrise-add
   - type: ClothingSpeedModifier
     walkModifier: 0.75
     sprintModifier: 0.75
@@ -335,7 +336,8 @@
         Slash: 0.45 #sunrise-edit
         Piercing: 0.6
         Heat: 0.65 #sunrise-edit
-        Caustic: 0.7
+        Caustic: 0.6
+        Radiation: 0.5  #sunrise-Edit
   - type: ClothingSpeedModifier
     walkModifier: 0.7
     sprintModifier: 0.7
