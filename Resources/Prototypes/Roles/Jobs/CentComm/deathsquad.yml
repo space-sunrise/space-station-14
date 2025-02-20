@@ -6,6 +6,7 @@
   setPreference: false
   startingGear: DeathSquadGear
   icon: "JobIconNanotrasen"
+  overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:

@@ -7,6 +7,7 @@
   setPreference: false
   startingGear: USSPJobAltA
   icon: "JobIconUSSPCrew"
+  overrideConsoleVisibility: false
   supervisors: job-supervisors-usspcommand
   canBeAntag: false
   access:
@@ -46,7 +47,7 @@
     jumpsuit: ClothingUniformJumpsuitAdidasWhite
     outerClothing: ClothingOuterWinterCoat
     head: ClothingHeadHatUshanka
-    
+
 - type: startingGear
   id: USSPJobAltE
   parent: USSPJobAltA
@@ -73,6 +74,7 @@
   setPreference: false
   startingGear: USSPOfficer
   icon: "JobIconUSSPOfficer"
+  overrideConsoleVisibility: false
   supervisors: job-supervisors-usspcommand
   canBeAntag: false
   access:
@@ -112,6 +114,7 @@
   setPreference: false
   startingGear: USSPOfficerAlt
   icon: "JobIconUSSPOfficerAlt"
+  overrideConsoleVisibility: false
   supervisors: job-supervisors-usspcommand
   canBeAntag: false
   access:
@@ -152,6 +155,7 @@
   setPreference: false
   startingGear: USSPSoldier
   icon: "JobIconUSSPSoldier"
+  overrideConsoleVisibility: false
   supervisors: job-supervisors-usspcommand
   canBeAntag: false
   access:
@@ -191,6 +195,7 @@
   setPreference: false
   startingGear: USSPCaptain
   icon: "JobIconUSSPCaptain"
+  overrideConsoleVisibility: false
   supervisors: job-supervisors-usspcommand
   canBeAntag: false
   accessGroups:
