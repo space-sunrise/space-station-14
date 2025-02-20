@@ -7,6 +7,7 @@
   setPreference: false
   startingGear: ERTLeaderGearEVA
   icon: "JobIconNanotrasen"
+  overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:
@@ -97,6 +98,7 @@
   setPreference: false
   startingGear: ERTChaplainGear
   icon: "JobIconNanotrasen"
+  overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:
@@ -179,6 +181,7 @@
   setPreference: false
   startingGear: ERTEngineerGearEVA
   icon: "JobIconNanotrasen"
+  overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:
@@ -251,6 +254,7 @@
   setPreference: false
   startingGear: ERTEngineerGearEVA
   icon: "JobIconNanotrasen"
+  overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:
@@ -341,6 +345,7 @@
   setPreference: false
   startingGear: ERTMedicalGearEVA
   icon: "JobIconNanotrasen"
+  overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:
@@ -405,6 +410,7 @@
   setPreference: false
   startingGear: ERTJanitorGearEVA
   icon: "JobIconNanotrasen"
+  overrideConsoleVisibility: false # Sunrise added
   supervisors: job-supervisors-centcom
   canBeAntag: false
   accessGroups:
