@@ -529,6 +529,9 @@
     zeroVisible: true
   - type: Appearance
   - type: EmpImmune
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 3
@@ -796,6 +799,9 @@
   - type: Wieldable
   - type: UseDelay
     delay: 0.5
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.9
+    sprintModifier: 0.9
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 3
@@ -836,6 +842,9 @@
   - type: Battery
     maxCharge: 5000
     startingCharge: 5000
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.9
+    sprintModifier: 0.9
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 3
