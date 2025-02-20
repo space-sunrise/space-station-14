@@ -130,6 +130,7 @@
     - ServiceStatic
     - PowerCellsStatic
     - ElectronicsStatic
+    - HydroponicsStatic #Sunrise-add
   - type: EmagLatheRecipes
     emagStaticPacks:
     - SecurityAmmoStatic
