@@ -5,8 +5,8 @@
 
 - type: startingGear
   id: SunriseSponsorTier2
+  neck: ClothingNeckSunriseBadge
   storage:
-    neck: ClothingNeckSunriseBadge
     back:
     - SunriseUplink40
 
@@ -17,8 +17,8 @@
 
 - type: startingGear
   id: SunriseSponsorTier3
+  neck: ClothingNeckSunriseBadge
   storage:
-    neck: ClothingNeckSunriseBadge
     back:
     - SunriseUplink80
 
@@ -29,8 +29,8 @@
 
 - type: startingGear
   id: SunriseSponsorTier4
+  neck: ClothingNeckSunriseBadge
   storage:
-    neck: ClothingNeckSunriseBadge
     back:
     - SunriseUplink100
 
