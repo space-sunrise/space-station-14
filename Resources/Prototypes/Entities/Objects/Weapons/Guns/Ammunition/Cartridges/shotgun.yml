@@ -1,7 +1,7 @@
 - type: entity
   id: BaseShellShotgun
   name: shell (.50)
-  parent: [ BaseCartridge, BaseSecurityContraband ]
+  parent: BaseCartridge
   abstract: true
   components:
   - type: Tag
@@ -69,7 +69,7 @@
 - type: entity
   id: ShellShotgunSlug
   name: shell (.50 slug)
-  parent: BaseShellHitscanShotgun
+  parent: [ BaseShellHitscanShotgun, BaseSecurityContraband]
   components:
   - type: Sprite
     layers:
@@ -83,7 +83,7 @@
 - type: entity
   id: ShellShotgunFlare
   name: shell (.50 flare)
-  parent: [ BaseShellShotgun, BaseSecurityBartenderContraband ]
+  parent: BaseShellShotgun
   components:
   - type: Tag
     tags:
@@ -102,7 +102,7 @@
 - type: entity
   id: ShellShotgun
   name: shell (.50)
-  parent: BaseShellHitscanShotgun
+  parent: [ BaseShellHitscanShotgun, BaseSecurityContraband ]
   components:
   - type: Sprite
     layers:
@@ -114,7 +114,7 @@
 - type: entity
   id: ShellShotgunIncendiary
   name: shell (.50 incendiary)
-  parent: BaseShellHitscanShotgun
+  parent: [ BaseShellHitscanShotgun, BaseSecurityContraband ]
   components:
   - type: Sprite
     layers:
@@ -130,7 +130,7 @@
 - type: entity
   id: ShellShotgunPractice
   name: shell (.50 practice)
-  parent: BaseShellHitscanShotgun
+  parent: [ BaseShellHitscanShotgun, BaseSecurityContraband ]
   components:
   - type: Sprite
     layers:
@@ -144,7 +144,7 @@
 - type: entity
   id: ShellTranquilizer
   name: shell (.50 tranquilizer)
-  parent: BaseShellHitscanShotgun
+  parent: [ BaseShellHitscanShotgun, BaseSecurityContraband ]
   components:
   - type: Tag
     tags:
@@ -173,7 +173,7 @@
   id: ShellShotgunImprovised
   name: improvised shotgun shell
   description: A homemade shotgun shell that shoots painful glass shrapnel. The spread is so wide that it couldn't hit the broad side of a barn.
-  parent: BaseShellHitscanShotgun
+  parent: [ BaseShellHitscanShotgun, BaseSecurityContraband ]
   components:
   - type: Tag
     tags:
@@ -195,7 +195,7 @@
 - type: entity
   id: ShellShotgunUranium
   name: uranium shotgun shell
-  parent: BaseShellHitscanShotgun
+  parent: [ BaseShellHitscanShotgun, BaseSecurityContraband ]
   components:
     - type: Sprite
       layers:
