@@ -5,6 +5,7 @@
   id: BaseMobResomi
   abstract: true
   components:
+  - type: Absorbable
   - type: ResomiSkill
   - type: Fixtures
     fixtures:
