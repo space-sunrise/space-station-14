@@ -35,7 +35,7 @@
   parent: [PartHuman, BaseHead]
   components:
   - type: Sprite
-    sprite: Mobs\Species\Resomi\parts.rsi
+    sprite: Mobs/Species/Resomi/parts.rsi
     state: "head_m"
   - type: Extractable
     juiceSolution:
