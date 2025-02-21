@@ -890,7 +890,7 @@
   id: PlushieMiraKovalskaya
   parent: BasePlushie
   name: Mira Kovalskaya
-  description: She's like to say "Meow" and "mrrr"?..
+  description: The most harmless greytide. She won't touch you, because she will lose even to a space tick:3
   components:
   - type: Sprite
     sprite: _Sunrise/Objects/Fun/toys.rsi
@@ -929,3 +929,25 @@
         volume: 5
   - type: UseDelay
     delay: 2
+
+- type: entity
+  id: PlushieMadokaMori
+  parent: BasePlushie
+  name: Madoka Mori
+  description: A plush toy of the blue detective... It seems quite familiar, as if I've seen him in many sectors... The toy itself is made of a nice, silky material, and he has a gold-plated ring glued to his right hand. And yes, he's back again to the envy of everyone.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Objects/Fun/toys.rsi
+    state: plushie-mori
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/_Sunrise/meow2.ogg
+      params:
+        volume: 5
+  - type: EmitSoundOnActivate
+    sound:
+      path: /Audio/_Sunrise/meow2.ogg
+      params:
+        volume: 5
+  - type: UseDelay
+    delay: 5
