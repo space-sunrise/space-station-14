@@ -163,6 +163,22 @@
         {
             "name": "RFoot_Brute_70",
             "directions": 4
+        },
+        {
+            "name": "Tail_Brute_10",
+            "directions": 4
+        },
+        {
+            "name": "Tail_Brute_30",
+            "directions": 4
+        },
+        {
+            "name": "Tail_Brute_50",
+            "directions": 4
+        },
+        {
+            "name": "Tail_Brute_70",
+            "directions": 4
         }
     ]
 }
