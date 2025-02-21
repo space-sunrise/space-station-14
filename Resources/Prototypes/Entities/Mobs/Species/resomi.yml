@@ -74,6 +74,12 @@
     heatDamage:
       types:
         Heat : 1.5 #per second, scales with temperature & other constants
+  - type: Hands
+    handDisplacement:
+      sizeMaps:
+        32:
+          sprite: Mobs/Species/Resomi/displacement.rsi
+          state: inHand
   - type: Inventory
     speciesId: resomi
     displacements:
@@ -122,7 +128,7 @@
           32:
             sprite: Mobs/Species/Resomi/displacement.rsi
             state: mask
-      suitstorage:
+      outerClothing:
         sizeMaps:
           32:
             sprite: Mobs/Species/Resomi/displacement.rsi
@@ -178,7 +184,7 @@
           32:
             sprite: Mobs/Species/Resomi/displacement.rsi
             state: mask
-      suitstorage:
+      outerClothing:
         sizeMaps:
           32:
             sprite: Mobs/Species/Resomi/displacement.rsi
