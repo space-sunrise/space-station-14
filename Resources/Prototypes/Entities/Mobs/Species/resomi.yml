@@ -43,13 +43,9 @@
   - type: Icon
     sprite: Mobs/Species/Resomi/parts.rsi
     state: full
-  - type: Item
-    size: Huge
   - type: Body
     prototype: Resomi
     requiredLegs: 2
-  - type: Bloodstream
-    bloodReagent: ResomiBlood
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -57,7 +53,7 @@
       140: Dead
   - type: SlowOnDamage
     speedModifierThresholds:
-      40: 0.7 
+      40: 0.7
       55: 0.5
   - type: MeleeWeapon
     soundHit:
@@ -197,9 +193,14 @@
       Male: MaleResomi
       Female: FemaleResomi
       Unsexed: MaleResomi
-  - type: FlashModifier
-    modifier: 2
-    
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+    - Resomi
+
 - type: entity
   parent: BaseSpeciesDummy
   id: MobResomiDummy
