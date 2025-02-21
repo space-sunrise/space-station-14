@@ -469,6 +469,14 @@
       path: /Audio/Items/bikehorn.ogg
     Ping:
       path: /Audio/Effects/Cargo/ping.ogg
+      
+- type: emoteSounds
+  id: UnisexResomi
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      path: /Audio/Voice/Resomi/resomi_scream.ogg
 
 - type: emoteSounds
   id: UnisexSiliconXenoborg

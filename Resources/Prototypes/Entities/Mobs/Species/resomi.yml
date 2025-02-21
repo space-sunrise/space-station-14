@@ -196,9 +196,9 @@
             state: belt
   - type: Vocal
     sounds:
-      Male: MaleResomi
-      Female: FemaleResomi
-      Unsexed: MaleResomi
+      Male: UnisexResomi
+      Female: UnisexResomi
+      Unsexed: UnisexResomi
   - type: Tag
     tags:
     - CanPilot
