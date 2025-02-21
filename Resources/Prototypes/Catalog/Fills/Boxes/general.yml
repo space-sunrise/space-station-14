@@ -7,11 +7,11 @@
   - type: Item
     size: Large
     shape:
-    - 0,0,2,2
+    - 0,0,2,1
   - type: Storage
     maxItemSize: Small
     grid:
-    - 0,0,2,2
+    - 0,0,2,3
   - type: Sprite
     state: box
   - type: Tag
@@ -31,6 +31,21 @@
     sound:
       path: /Audio/_Sunrise/Items/Handling/cardboardbox_drop.ogg
   # Sunrise edit end
+
+- type: entity
+  name: cardboard box
+  parent: BoxBase
+  id: BoxSurvivalBase
+  description: A cardboard box for storing things.
+  components:
+  - type: Item
+    size: Large
+    shape:
+    - 0,0,2,1
+  - type: Storage
+    maxItemSize: Small
+    grid:
+    - 0,0,2,3
 
 - type: entity
   name: mousetrap box
