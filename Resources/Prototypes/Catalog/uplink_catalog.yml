@@ -1798,9 +1798,9 @@
   productEntity: ClothingBackpackDuffelSyndicateEliteHardsuitBundle
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 9
+    Telecrystal: 7
   cost:
-    Telecrystal: 15
+    Telecrystal: 14   #Sunrise-edit
   categories:
   - UplinkWearables
   #Sunrise-start
