@@ -35,6 +35,9 @@
   - type: StorageFill
     contents:
       - id: CrowbarRed
+      - id: Screwdriver #Sunrise-add
+      - id: Wrench #Sunrise-add
+      - id: PaperBin20 #Sunrise-add
       - id: VariantCubeBox
       - id: BoxMousetrap
         amount: 2

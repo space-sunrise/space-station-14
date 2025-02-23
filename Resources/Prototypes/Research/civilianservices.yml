@@ -91,10 +91,10 @@
     state: display
   discipline: CivilianServices
   tier: 1
-  cost: 7500
+  cost: 4500 #Sunrise-edit
   recipeUnlocks:
   - FatExtractorMachineCircuitboard
-  - BiofabricatorMachineCircuitboard
+  # - BiofabricatorMachineCircuitboard #Sunrise-edit
   - BiomassReclaimerMachineCircuitboard
 
 # Tier 2
