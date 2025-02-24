@@ -142,7 +142,7 @@ namespace Content.Server.NPC.Systems
             // Add your system here.
             _htn.UpdateNPC(ref _count, _maxUpdates, frameTime);
 
-            // Sunrise-Start-Edit
+            // Sunrise-Edit-Start
 
             var query = EntityQueryEnumerator<HTNComponent, StandingStateComponent, DoAfterComponent>();
             while (query.MoveNext(out var uid, out var htn, out var standing, out var doAfter))
@@ -157,7 +157,7 @@ namespace Content.Server.NPC.Systems
                 _standing.TryStandUp(uid, standing);
             }
 
-            // Sunrise-Start-End
+            // Sunrise-Edit-End
         }
 
         public void OnMobStateChange(EntityUid uid, HTNComponent component, MobStateChangedEvent args)
