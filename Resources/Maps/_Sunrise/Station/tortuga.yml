@@ -57688,7 +57688,7 @@ entities:
     - pos: -91.5742,-16.479868
       parent: 33
       type: Transform
-- proto: ClothingEyesGlassesThermal
+- proto: ClothingEyesGlassesWelding #ClothingEyesGlassesThermal
   entities:
   - uid: 16411
     components:
