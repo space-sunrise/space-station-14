@@ -42,6 +42,10 @@ vampire-power-mouseform-description = Примите облик мыши. Быс
 vampire-power-cloakofdarkness = Плащ тьмы
 vampire-power-cloakofdarkness-description = Замаскируйте себя от глаз смертных, делая вас невидимым в неподвижном состоянии. Стоимость активации: 30 эссенции. Уход: 1 эссенция/секунда Время действия: 10 секунд
 store-category-vampirepassives = Пассивные
+vampire-power-thermalvision = Тепловое зрение
+vampire-power-thermalvision-description = Включите тепловое зрение, позволяющее видеть живых существ сквозь стены. Эта способность открывается, как только вы достигнете 500 эссенции крови.
+vampire-thermal-vision-on = Вы активируете тепловое зрение.
+vampire-thermal-vision-off = Вы деактивируете тепловое зрение.
 #Powers
 
 #Passives
