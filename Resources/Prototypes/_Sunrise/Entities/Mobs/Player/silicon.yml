@@ -167,7 +167,6 @@
   - type: StartingMindRole
     mindRole: "MindRoleSiliconBrain"
     silent: true
-  - type: NoSlip
 
 # Syndicate
 
