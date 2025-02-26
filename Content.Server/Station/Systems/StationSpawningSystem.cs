@@ -1,5 +1,4 @@
 using Content.Server.Access.Systems;
-using Content.Server.DetailExaminable;
 using Content.Server.Holiday;
 using Content.Server.Humanoid;
 using Content.Server.IdentityManagement;

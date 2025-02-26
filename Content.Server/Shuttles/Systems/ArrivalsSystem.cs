@@ -514,52 +514,52 @@ public sealed class ArrivalsSystem : EntitySystem
         }
     }
 
-    private void OnRoundStarting(RoundStartingEvent ev)
-    {
-        // Setup arrivals station
-        if (!Enabled)
-            return;
-
-        SetupArrivalsStation();
-    }
-
-    private void SetupArrivalsStation()
-    {
-        var path = new ResPath(_cfgManager.GetCVar(CCVars.ArrivalsMap));
-        _mapSystem.CreateMap(out var mapId, runMapInit: false);
-        var mapUid = _mapSystem.GetMap(mapId);
-
-        if (!_loader.TryLoadGrid(mapId, path, out var grid))
-            return;
-
-        _metaData.SetEntityName(mapUid, Loc.GetString("map-name-terminal"));
-
-        EnsureComp<ArrivalsSourceComponent>(grid.Value);
-        EnsureComp<ProtectedGridComponent>(grid.Value);
-        EnsureComp<PreventPilotComponent>(grid.Value);
-
-        // Setup planet arrivals if relevant
-        if (_cfgManager.GetCVar(CCVars.ArrivalsPlanet))
-        {
-            var template = _random.Pick(_arrivalsBiomeOptions);
-            _biomes.EnsurePlanet(mapUid, _protoManager.Index(template));
-            var restricted = new RestrictedRangeComponent
-            {
-                Range = 32f
-            };
-            AddComp(mapUid, restricted);
-        }
-
-        _mapSystem.InitializeMap(mapId);
-
-        // Handle roundstart stations.
-        var query = AllEntityQuery<StationArrivalsComponent>();
-
-        while (query.MoveNext(out var uid, out var comp))
-        {
-            SetupShuttle(uid, comp);
-        }
-    }
+    // private void OnRoundStarting(RoundStartingEvent ev)
+    // {
+    //     // Setup arrivals station
+    //     if (!Enabled)
+    //         return;
+    //
+    //     SetupArrivalsStation();
+    // }
+    //
+    // private void SetupArrivalsStation()
+    // {
+    //     var path = new ResPath(_cfgManager.GetCVar(CCVars.ArrivalsMap));
+    //     _mapSystem.CreateMap(out var mapId, runMapInit: false);
+    //     var mapUid = _mapSystem.GetMap(mapId);
+    //
+    //     if (!_loader.TryLoadGrid(mapId, path, out var grid))
+    //         return;
+    //
+    //     _metaData.SetEntityName(mapUid, Loc.GetString("map-name-terminal"));
+    //
+    //     EnsureComp<ArrivalsSourceComponent>(grid.Value);
+    //     EnsureComp<ProtectedGridComponent>(grid.Value);
+    //     EnsureComp<PreventPilotComponent>(grid.Value);
+    //
+    //     // Setup planet arrivals if relevant
+    //     if (_cfgManager.GetCVar(CCVars.ArrivalsPlanet))
+    //     {
+    //         var template = _random.Pick(_arrivalsBiomeOptions);
+    //         _biomes.EnsurePlanet(mapUid, _protoManager.Index(template));
+    //         var restricted = new RestrictedRangeComponent
+    //         {
+    //             Range = 32f
+    //         };
+    //         AddComp(mapUid, restricted);
+    //     }
+    //
+    //     _mapSystem.InitializeMap(mapId);
+    //
+    //     // Handle roundstart stations.
+    //     var query = AllEntityQuery<StationArrivalsComponent>();
+    //
+    //     while (query.MoveNext(out var uid, out var comp))
+    //     {
+    //         SetupShuttle(uid, comp);
+    //     }
+    // }
 
     private void SetArrivals(bool obj)
     {
