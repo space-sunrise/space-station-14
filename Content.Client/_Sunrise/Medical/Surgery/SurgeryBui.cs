@@ -138,7 +138,7 @@ public sealed class SurgeryBui : BoundUserInterface
         if (_window != null) return;
         _window = new SurgeryWindow();
         _window.OnClose += Close;
-        _window.Title = "Surgery";
+        _window.Title = Loc.GetString("surgery-window-name");
 
         _window.PartsButton.OnPressed += _ =>
         {
@@ -233,7 +233,7 @@ public sealed class SurgeryBui : BoundUserInterface
 
                     var msg = new FormattedMessage();
                     var surgeryName = _entities.GetComponent<MetaDataComponent>(requirement).EntityName;
-                    msg.AddMarkupOrThrow($"[bold]Requires: {surgeryName}[/bold]");
+                    msg.AddMarkupOrThrow(Loc.GetString("surgery-window-reguires", ("surgeryname", surgeryName)));
                     label.Set(msg, null);
 
                     _window.Steps.AddChild(label);
@@ -353,19 +353,19 @@ public sealed class SurgeryBui : BoundUserInterface
                     switch (reason)
                     {
                         case StepInvalidReason.NeedsOperatingTable:
-                            stepName.AddMarkupOrThrow(" [color=red](Needs operating table)[/color]");
+                            stepName.AddMarkupOrThrow(Loc.GetString("surgery-window-reguires-table"));
                             break;
                         case StepInvalidReason.Armor:
-                            stepName.AddMarkupOrThrow(" [color=red](Remove their armor!)[/color]");
+                            stepName.AddMarkupOrThrow(Loc.GetString("surgery-window-reguires-undress"));
                             break;
                         case StepInvalidReason.MissingTool:
-                            stepName.AddMarkupOrThrow(" [color=red](Missing tool)[/color]");
+                            stepName.AddMarkupOrThrow(Loc.GetString("surgery-window-reguires-tool"));
                             break;
                         case StepInvalidReason.DisabledTool:
-                            stepName.AddMarkupOrThrow(" [color=red](Disabled Tool)[/color]");
+                            stepName.AddMarkupOrThrow(Loc.GetString("surgery-window-reguires-enable"));
                             break;
                         case StepInvalidReason.TooHigh:
-                            stepName.AddMarkupOrThrow(" [color=red](Item Too High)[/color]");
+                            stepName.AddMarkupOrThrow(Loc.GetString("surgery-window-too-high"));
                             break;
                     }
                 }
@@ -392,7 +392,7 @@ public sealed class SurgeryBui : BoundUserInterface
             if (_window.DisabledLabel.GetMessage() is null)
             {
                 var text = new FormattedMessage();
-                text.AddMarkupOrThrow("[color=red][font size=16]They need to be lying down![/font][/color]");
+                text.AddMarkupOrThrow(Loc.GetString("surgery-window-reguires-laydown"));
                 _window.DisabledLabel.SetMessage(text);
             }
             _window.DisabledPanel.MouseFilter = MouseFilterMode.Stop;
@@ -418,15 +418,15 @@ public sealed class SurgeryBui : BoundUserInterface
         if (_entities.TryGetComponent(_part, out MetaDataComponent? partMeta) &&
             _entities.TryGetComponent(_surgery?.Ent, out MetaDataComponent? surgeryMeta))
         {
-            _window.Title = $"Surgery - {partMeta.EntityName}, {surgeryMeta.EntityName}";
+            _window.Title = $"{Loc.GetString("surgery-window-name")} - {partMeta.EntityName}, {surgeryMeta.EntityName}";
         }
         else if (partMeta != null)
         {
-            _window.Title = $"Surgery - {partMeta.EntityName}";
+            _window.Title = $"{Loc.GetString("surgery-window-name")} - {partMeta.EntityName}";
         }
         else
         {
-            _window.Title = "Surgery";
+            _window.Title = Loc.GetString("surgery-window-name");
         }
     }
 

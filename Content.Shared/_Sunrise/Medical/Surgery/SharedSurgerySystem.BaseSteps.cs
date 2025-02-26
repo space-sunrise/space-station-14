@@ -51,7 +51,7 @@ public abstract partial class SharedSurgerySystem
         if (!_random.Prob(args.SuccessRate))
         {
             if (_net.IsClient) return;
-            _popup.PopupEntity("Because of a careless tool, your hand shook. You need to start this step all over again!", args.User, PopupType.SmallCaution);
+            _popup.PopupClient(Loc.GetString("surgery-careless-tool"), args.User, PopupType.SmallCaution);
             return;
         }
 
@@ -168,7 +168,7 @@ public abstract partial class SharedSurgerySystem
             if (items > 0)
             {
                 args.Invalid = StepInvalidReason.Armor;
-                args.Popup = $"You need to take off armor from patient to perform this step!";
+                args.Popup = Loc.GetString("surgery-need-remove-armor");
                 return;
             }
         }
@@ -184,7 +184,7 @@ public abstract partial class SharedSurgerySystem
                 args.Invalid = StepInvalidReason.MissingTool;
 
                 if (reg.Component is ISurgeryToolComponent toolComp)
-                    args.Popup = $"You need {toolComp.ToolName} to perform this step!";
+                    args.Popup = Loc.GetString("surgery-need-tool");
 
                 return;
             }
@@ -193,7 +193,7 @@ public abstract partial class SharedSurgerySystem
                 args.Invalid = StepInvalidReason.DisabledTool;
 
                 if (reg.Component is ISurgeryToolComponent toolComp)
-                    args.Popup = $"You need enable {toolComp.ToolName} to perform this step!";
+                    args.Popup = Loc.GetString("surgery-need-enable");
 
                 return;
             }
