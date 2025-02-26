@@ -411,6 +411,7 @@
     - SecurityExplosives
     - SecurityAmmo
     - SecurityWeapons
+    - SecurityDisablers
     - SecurityDynamicSunrise # Sunrise-Add
   - type: MaterialStorage
     whitelist:

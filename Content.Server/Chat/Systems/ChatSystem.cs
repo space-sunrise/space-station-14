@@ -358,7 +358,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         if (playTts)
         {
-            var announcementEv = new AnnouncementSpokeEvent(Filter.Broadcast(), message, announcementSound, announceVoice);
+            var announcementEv = new AnnouncementSpokeEvent(Filter.Broadcast(), message, _audio.ResolveSound(announcementSound), announceVoice);
             RaiseLocalEvent(announcementEv);
         }
         // Sunrise-end
