@@ -29,6 +29,7 @@
   - ClothingNeckReedIndustriesPin  # Sunrise
   - CorporateLaw # Sunrise-edit
   - ClothingNeckLGBTPin
+  - ClothingNeckAllyPin
   - ClothingNeckAromanticPin
   - ClothingNeckAsexualPin
   - ClothingNeckBisexualPin
@@ -38,6 +39,7 @@
   - ClothingNeckNonBinaryPin
   - ClothingNeckPansexualPin
   - ClothingNeckOmnisexualPin
+  - ClothingNeckGenderqueerPin
   - ClothingNeckTransPin
   - ClothingNeckAutismPin
   - ClothingNeckGoldAutismPin
@@ -83,8 +85,9 @@
   loadouts:
   - EmergencyNitrogen
   - EmergencyOxygen
-  - EmergencyWithoutGas  # Sunrise-Edit
   - LoadoutSpeciesVoxNitrogen
+  - EmergencyWithoutGas  # Sunrise-Edit
+  - EmergencyDwarf  # Sunrise-Edit
 
 - type: loadoutGroup
   id: GroupEVATank
@@ -110,6 +113,7 @@
   loadouts:
   - CaptainHead
   - CaptainCap
+  - EliteCaptainCap #Sunrise-Edit
 
 - type: loadoutGroup
   id: CaptainJumpsuit
@@ -128,6 +132,7 @@
   - CaptainCloak
   - CaptainCloakFormal
   - CaptainMantle
+  - CaptainEliteCloak # Sunrise-Edit
 
 - type: loadoutGroup
   id: CaptainBackpack
@@ -143,6 +148,7 @@
   loadouts:
   - CaptainOuterArmor # Sunrise-Edit
   - CaptainOuterCoat # Sunrise-Edit
+  - CaptainOuterOverCoat  # Sunrise-Edit
   - CaptainWintercoat
 
 - type: loadoutGroup
@@ -486,6 +492,7 @@
   - EmergencyOxygenClown
   - LoadoutSpeciesVoxNitrogen
   - EmergencyWithoutGasClown # Sunrise-Edit
+  - EmergencyDwarfClown # Sunrise-Edit
 
 - type: loadoutGroup
   id: MimeHead
@@ -542,6 +549,8 @@
   - EmergencyNitrogenMime
   - EmergencyOxygenMime
   - LoadoutSpeciesVoxNitrogen
+  - EmergencyWithoutGasMime # Sunrise-Edit
+  - EmergencyDwarfMime # Sunrise-Edit
 
 - type: loadoutGroup
   id: MusicianJumpsuit
@@ -681,7 +690,7 @@
   minLimit: 0
   loadouts:
   - CargoTechnicianHead
-#Sunrise-start  
+#Sunrise-start
   - Sunrise-BandOrange
   - Sunrise-BandYellow
   - Sunrise-BandBrown
@@ -795,7 +804,7 @@
   - Sunrise-ScarfOrange
   - Sunrise-ScarfYellow
   - Sunrise-ScarfCyan
-  - Sunrise-ScarfLightBlue  
+  - Sunrise-ScarfLightBlue
   - Sunrise-TieRed
   #Sunrise-end
 
@@ -946,6 +955,7 @@
   - EmergencyOxygenExtended
   - LoadoutSpeciesVoxNitrogen
   - EmergencyWithoutGasExtended # Sunrise-Edit
+  - EmergencyDwarfExtended # Sunrise-Edit
 
 # Science
 - type: loadoutGroup
@@ -1040,6 +1050,11 @@
   loadouts:
   - HeadofSecurityHead
   - HeadofSecurityBeret
+  #Sunrise-Start
+  - HeadofSecurityHatCap
+  - HeadofSecurityCapUSSPBlack
+  - HeadofSecurityCapLeather
+  #Sunrise-End
 
 - type: loadoutGroup
   id: HeadofSecurityJumpsuit
@@ -1051,6 +1066,8 @@
   - HeadofSecurityTurtleneckSkirt
   - HeadofSecurityFormalSuit
   - HeadofSecurityFormalSkirt
+  - HeadofSecurityJumpsuitHoSOld  #Sunrise-Edit
+  - HeadofSecurityJumpsuitUSSPBlack #Sunrise-Edit
 
 - type: loadoutGroup
   id: HeadofSecurityNeck
@@ -1059,6 +1076,8 @@
   loadouts:
   - HeadofSecurityCloak
   - HeadofSecurityMantle
+  - HeadofSecurityDarthHOSCloak #Sunrise-Edit
+  - HeadofSecurityCloakHOSCloak #Sunrise-Edit
 
 - type: loadoutGroup
   id: HeadofSecurityOuterClothing
@@ -1066,6 +1085,12 @@
   loadouts:
   - HeadofSecurityCoat
   - HeadofSecurityWinterCoat
+  #Sunrise-Start
+  - HeadofSecurityGreatcoat
+  - HeadofSecurityGreatcoatBlack
+  - HeadofSecurityOvercoat
+  - HeadofSecurityUSSPBlack
+  #Sunrise-End
 
 - type: loadoutGroup
   id: WardenHead
@@ -1191,6 +1216,7 @@
   - EmergencyOxygenSecurity
   - LoadoutSpeciesVoxNitrogen
   - EmergencyWithoutGasSecurity # Sunrise-Edit
+  - EmergencyDwarfSecurity # Sunrise-Edit
 
 - type: loadoutGroup
   id: SecurityStar
@@ -1273,7 +1299,7 @@
   - Sunrise-ScarfRed
   - Sunrise-ScarfOrange
   - Sunrise-ScarfGreen
-  - Sunrise-ScarfLightBlue 
+  - Sunrise-ScarfLightBlue
   - Sunrise-ScarfCyan
   - Sunrise-ScarfBlue
   - Sunrise-Stethoscope
@@ -1502,6 +1528,7 @@
   - EmergencyOxygenMedical
   - LoadoutSpeciesVoxNitrogen
   - EmergencyWithoutGasMedical # Sunrise-Edit
+  - EmergencyDwarfMedical # Sunrise-Edit
 
 # Wildcards
 - type: loadoutGroup
@@ -1545,6 +1572,7 @@
   - EmergencyOxygenSyndicate
   - LoadoutSpeciesVoxNitrogen
   - EmergencyWithoutGasSyndicate # Sunrise-Edit
+  - EmergencyDwarfSyndicate # Sunrise-Edit
 
 - type: loadoutGroup
   id: GroupSpeciesBreathTool

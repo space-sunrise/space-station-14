@@ -12,7 +12,13 @@
   - type: HumanoidAppearance
     species: Arachnid
   - type: Hunger
+    baseDecayRate: 0.04
   - type: Thirst
+    baseDecayRate: 0.15
+    dehydrationDamage:
+      types:
+        Bloodloss: 0.5
+        Asphyxiation: 0.5
   - type: Sericulture
     action: ActionSericulture
     productionLength: 2
@@ -96,10 +102,10 @@
       - map: [ "gloves" ]
       - map: [ "shoes" ]
       - map: [ "ears" ]
-      - map: [ "outerClothing" ]
       - map: [ "eyes" ]
       - map: [ "belt" ]
       - map: [ "id" ]
+      - map: [ "outerClothing" ]
       - map: [ "enum.HumanoidVisualLayers.Tail" ] # Mentioned in moth code: This needs renaming lol.
       - map: [ "neck" ]
       - map: [ "back" ]
@@ -148,6 +154,7 @@
         - MobMask
         layer:
         - MobLayer
+  - type: Carriable
   # Sunrise-end
 
 - type: entity

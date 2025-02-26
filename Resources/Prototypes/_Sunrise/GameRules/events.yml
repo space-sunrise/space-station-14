@@ -53,3 +53,16 @@
     duration: null
   - type: LateJoinSpawnRule
     prototype: SpawnPointGhostTerminator
+
+- type: entity
+  id: VentbullMigration
+  parent: BaseGameRule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: StationEvent
+    weight: 5
+    duration: null
+  - type: VentCrittersRule
+    entries:
+    - id: MobPibbleVent
+      prob: 0.03

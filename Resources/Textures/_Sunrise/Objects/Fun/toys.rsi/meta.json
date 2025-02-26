@@ -17,6 +17,12 @@
         "name": "plushie-hop"
       },
       {
+        "name": "plushie-MihailOsipov"
+      },
+      {
+        "name": "plushie-mira"
+      },
+      {
         "name": "plushie-secvulp"
       },
       {
@@ -241,8 +247,20 @@
       {
         "name": "evgeniya_krein"
       },
-      { 
+      {
         "name": "legendary-golden-weh"
+      },
+      {
+        "name": "goldenweh-equipped-HELMET",
+        "directions": 4
+      },
+      {
+        "name": "goldenw-inhand-left",
+        "directions": 4
+      },
+      {
+        "name": "goldenw-inhand-right",
+        "directions": 4
       }
     ]
   }

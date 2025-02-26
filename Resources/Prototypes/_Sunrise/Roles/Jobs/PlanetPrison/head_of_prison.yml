@@ -13,6 +13,7 @@
   weight: 10
   startingGear: HeadOfPrisonGear
   icon: "JobIconHeadOfPrison"
+  overrideConsoleVisibility: false
   requireAdminNotify: true
   supervisors: job-supervisors-centcom
   canBeAntag: false

@@ -4,6 +4,7 @@
   name: clown goblin
   description: A small walking mask with clown shoes. You want to honk its nose!
   components:
+  - type: VentCrawler #Sunrise-Edit
   - type: ComplexInteraction
   - type: TTS
     voice: Soldier

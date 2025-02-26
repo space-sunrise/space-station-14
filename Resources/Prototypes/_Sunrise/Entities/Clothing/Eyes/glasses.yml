@@ -90,3 +90,29 @@
   - type: NightVisionDevice
     displayColor: "#ff6e6e"
     displayShader: NVDDisplay
+
+- type: entity
+  parent: [ClothingEyesGlassesThermal, ShowSecurityIcons, BaseSyndicateContraband]
+  id: ClothingEyesGlassesThermalSyndie
+  name: optical thermal scanner
+  suffix: syndicate
+  description: Thermals in the shape of glasses. for better exterminating NanoTrasen Scum.
+  components:
+  - type: Sprite
+    sprite: _Sunrise/Clothing/Eyes/Glasses/synd_thermal.rsi
+  - type: Clothing
+    sprite: _Sunrise/Clothing/Eyes/Glasses/synd_thermal.rsi
+  - type: ShowSyndicateIcons
+
+- type: entity
+  parent: [ClothingEyesGlassesThermal, ShowSecurityIcons, BaseSecurityCommandContraband]
+  id: ClothingEyesGlassesThermalSec
+  name: optical thermal scanner
+  suffix: security
+  description: Thermals in the shape of glasses. for better exterminating enemies of NanoTrasen.
+  components:
+  - type: Sprite
+    sprite: Clothing/Eyes/Glasses/thermal.rsi
+  - type: Clothing
+    sprite: Clothing/Eyes/Glasses/thermal.rsi
+  - type: ShowMindShieldIcons

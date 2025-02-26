@@ -7,7 +7,7 @@ using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Players.RateLimiting;
-using Content.Server.Speech.Components;
+using Content.Server.Speech.Prototypes;
 using Content.Server.Speech.EntitySystems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
@@ -26,7 +26,6 @@ using Content.Shared.Players.RateLimiting;
 using Content.Shared.Popups;
 using Content.Shared.Radio;
 using Content.Shared.Speech;
-using Content.Shared.Sunrise.CollectiveMind;
 using Content.Shared.Whitelist;
 using Robust.Server.Player;
 using Robust.Shared.Audio;
@@ -1061,8 +1060,8 @@ public sealed class EntitySpokeEvent : EntityEventArgs
 {
     public readonly EntityUid Source;
     public readonly string Message;
-    public readonly string OriginalMessage;
     public readonly string? ObfuscatedMessage; // not null if this was a whisper
+    public readonly string OriginalMessage; // Sunrise-TTS
     public readonly bool IsRadio; // Sunrise-TTS
 
     /// <summary>
@@ -1075,9 +1074,9 @@ public sealed class EntitySpokeEvent : EntityEventArgs
     {
         Source = source;
         Message = message;
-        OriginalMessage = originalMessage; // Sunrise-TTS
         Channel = channel;
         ObfuscatedMessage = obfuscatedMessage;
+        OriginalMessage = originalMessage; // Sunrise-TTS
         IsRadio = channel != null; // Sunrise-TTS
     }
 }

@@ -2,6 +2,7 @@ using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
 using Content.Shared._Sunrise.SunriseCCVars;
 using Content.Shared.CCVar;
+using Content.Shared.Ghost;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC;
 using Robust.Server.Player;
@@ -86,6 +87,9 @@ public sealed partial class NPCSleepSystem : EntitySystem
         foreach (var playerSession in _playerManager.SessionsDict)
         {
             if (playerSession.Value.AttachedEntity == null)
+                continue;
+
+            if (HasComp<GhostComponent>(playerSession.Value.AttachedEntity))
                 continue;
 
             var xformPlayer = Transform(playerSession.Value.AttachedEntity.Value);

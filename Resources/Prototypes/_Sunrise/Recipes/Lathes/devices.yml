@@ -6,11 +6,21 @@
     Steel: 500
     Plastic: 200
     Plasma: 300
-    
+
 - type: latheRecipe
   id: BasicNVD
   result: ClothingEyesNVD
   completetime: 10
+  materials:
+    Steel: 1000
+    Plastic: 400
+    Silver: 100
+    Diamond: 100
+
+- type: latheRecipe
+  id: BasicThermals
+  result: ClothingEyesGlassesThermal
+  completetime: 16
   materials:
     Steel: 1000
     Plastic: 400

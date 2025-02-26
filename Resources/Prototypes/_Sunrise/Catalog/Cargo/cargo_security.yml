@@ -24,7 +24,7 @@
     sprite: _Sunrise/Clothing/OuterClothing/Armor/swat_armor.rsi
     state: icon
   product: CrateSecuritySWAT
-  cost: 9500
+  cost: 11984
   category: cargoproduct-category-name-security
   group: market
 
@@ -34,6 +34,6 @@
     sprite: Clothing/OuterClothing/Armor/armor_reflec.rsi
     state: icon
   product: CrateSecurityArmorReflective
-  cost: 6000
+  cost: 880
   category: cargoproduct-category-name-security
   group: market

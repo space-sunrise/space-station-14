@@ -1,3 +1,4 @@
+using Content.Server._Sunrise.IoC;
 using Content.Server._Sunrise.ServersHub;
 using Content.Server._Sunrise.TTS;
 using Content.Server.Administration;
@@ -79,8 +80,12 @@ namespace Content.Server.IoC
             IoCManager.Register<IWatchlistWebhookManager, WatchlistWebhookManager>();
             IoCManager.Register<ConnectionManager>();
             IoCManager.Register<MultiServerKickManager>();
+            IoCManager.Register<CVarControlManager>();
 
-            IoCManager.Register<ServersHubManager>(); // Sunrise-Hub
+            // Sunrise-Start
+            IoCManager.Register<ServersHubManager>();
+            SunriseServerContentIoC.Register();
+            // Sunrise-End
         }
     }
 }

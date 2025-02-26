@@ -270,6 +270,10 @@
   # Sunrise-start
   - type: Carriable
   - type: CanEscapeInventory
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
   # Sunrise-end
 
 - type: entity
@@ -317,7 +321,7 @@
   - type: InteractionPopup
     successChance: 0.5
     interactSuccessString: petting-success-dog
-    interactFailureString: petting-failure-generic
+    interactFailureString: petting-failure-dog # Sunrise-Edit
     interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/small_dog_bark_happy.ogg
@@ -334,6 +338,10 @@
   # Sunrise-start
   - type: Carriable
   - type: CanEscapeInventory
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
   # Sunrise-end
 
 - type: entity
@@ -397,7 +405,6 @@
   - type: Inventory
     speciesId: dog
     templateId: pet
-  - type: DogVision  # Sunrise-DogVision
   - type: DamageStateVisuals
     states:
       Alive:
@@ -415,7 +422,7 @@
   - type: InteractionPopup
     successChance: 0.7
     interactSuccessString: petting-success-dog
-    interactFailureString: petting-failure-generic
+    interactFailureString: petting-failure-dog # Sunrise-Edit
     interactSuccessSpawn: EffectHearts
     interactSuccessSound:
       path: /Audio/Animals/small_dog_bark_happy.ogg
@@ -430,8 +437,13 @@
   - type: StealTarget
     stealGroup: AnimalWalter
   # Sunrise-start
+  - type: DogVision
   - type: Carriable
   - type: CanEscapeInventory
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
   # Sunrise-end
 
 - type: entity
@@ -521,6 +533,12 @@
     tags:
     - CannotSuicide
     - VimPilot
+  # Sunrise-Start
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 - type: entity
   name: Alexander
@@ -551,7 +569,7 @@
   description: The captain's trustworthy fox.
   components:
   - type: InteractionPopup
-    successChance: 1
+    successChance: 0.7 # Sunrise-Edit
     interactSuccessString: petting-success-soft-floofy
     interactFailureString: petting-failure-generic
     interactSuccessSpawn: EffectHearts
@@ -573,6 +591,12 @@
     - VimPilot
   - type: StealTarget
     stealGroup: AnimalRenault
+  # Sunrise-Start
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 - type: entity
   name: Hamlet
@@ -691,6 +715,12 @@
     - FootstepSound
   - type: StealTarget
     stealGroup: AnimalShiva
+  # Sunrise-Start
+  - type: AttackOnInteractionFail
+    attackMemoryLength: 10
+  - type: NPCRetaliation
+  - type: FactionException
+  # Sunrise-End
 
 - type: entity
   name: Willow

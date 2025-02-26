@@ -77,6 +77,9 @@ public sealed class SunriseCCVars
     public static readonly CVarDef<bool> ServiceAuthCheckDiscordMember =
         CVarDef.Create("service_auth.check_discord_member", false, CVar.SERVERONLY);
 
+    public static readonly CVarDef<string> ServiceAuthProjectName =
+        CVarDef.Create("service_auth.project_name", string.Empty, CVar.SERVERONLY);
+
     /*
      * GodMode RoundEnd
      */
@@ -113,6 +116,9 @@ public sealed class SunriseCCVars
 
     public static readonly CVarDef<string> SponsorGhostTheme =
         CVarDef.Create("sponsor.ghost_theme", "", CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    public static readonly CVarDef<string> SponsorProjectName =
+        CVarDef.Create("sponsor.project_name", string.Empty, CVar.SERVERONLY);
 
     /*
      *  Greetings
@@ -412,4 +418,11 @@ public sealed class SunriseCCVars
 
     public static readonly CVarDef<bool> ChatIconsEnable =
         CVarDef.Create("chat_icon.enable", true, CVar.CLIENTONLY | CVar.ARCHIVE);
+
+    /*
+     * Pointing chat visuals
+     */
+
+    public static readonly CVarDef<bool> ChatPointingVisuals =
+        CVarDef.Create("chat_icon_pointing.enable", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 }

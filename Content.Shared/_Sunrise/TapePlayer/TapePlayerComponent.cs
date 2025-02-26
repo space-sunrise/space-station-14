@@ -26,7 +26,7 @@ public sealed partial class TapePlayerComponent : Component
 
     [DataField]
     [ViewVariables]
-    public float DecreaseVolume = 0f;
+    public float IncreaceVolume = 10f;
 
     [DataField]
     [ViewVariables(VVAccess.ReadWrite)]

@@ -10,6 +10,7 @@
   alwaysUseSpawner: true
   canBeAntag: false
   icon: "JobIconPrisoner"
+  overrideConsoleVisibility: false
   supervisors: job-supervisors-security
   displayWeight: 0
   special:

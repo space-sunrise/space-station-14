@@ -18013,18 +18013,6 @@ entities:
       pos: 60.5,9.5
       parent: 6747
       type: Transform
-- proto: BoardGameSpawner
-  entities:
-  - uid: 3464
-    components:
-    - pos: 3.5,-33.5
-      parent: 6747
-      type: Transform
-  - uid: 6565
-    components:
-    - pos: 29.5,-54.5
-      parent: 6747
-      type: Transform
 - proto: BookBase
   entities:
   - uid: 7305
@@ -18264,7 +18252,7 @@ entities:
     - pos: 25.76889,-63.665905
       parent: 6747
       type: Transform
-- proto: BoxColoredLighttube
+- proto: BoxLighttubeHoliday
   entities:
   - uid: 17055
     components:
@@ -47419,7 +47407,6 @@ entities:
           occludes: True
           ents:
           - 17318
-          - 17317
           - 17308
           - 17307
           - 17319
@@ -48384,7 +48371,7 @@ entities:
     - canCollide: False
       type: Physics
     - type: InsideEntityStorage
-- proto: ClothingHeadHelmetKendoMen
+- proto: ClothingHeadHatGladiator
   entities:
   - uid: 17544
     components:
@@ -48641,7 +48628,7 @@ entities:
       pos: 47.289085,-41.478985
       parent: 6747
       type: Transform
-- proto: ClothingOuterArmorKendoBogu
+- proto: ClothingOuterDogi
   entities:
   - uid: 17539
     components:
@@ -48696,14 +48683,6 @@ entities:
           component: Armor
         title: null
       type: GroupExamine
-- proto: ClothingOuterCoatHyenhSweater
-  entities:
-  - uid: 11038
-    components:
-    - rot: 1.5707963267948966 rad
-      pos: 29.413597,-82.45194
-      parent: 6747
-      type: Transform
 - proto: ClothingOuterCoatLab
   entities:
   - uid: 9082
@@ -48947,17 +48926,6 @@ entities:
 - proto: ClothingUniformJumpsuitSecBlue
   entities:
   - uid: 17307
-    components:
-    - flags: InContainer
-      type: MetaData
-    - parent: 17305
-      type: Transform
-    - canCollide: False
-      type: Physics
-    - type: InsideEntityStorage
-- proto: ClothingUniformJumpsuitTshirtJeans
-  entities:
-  - uid: 17317
     components:
     - flags: InContainer
       type: MetaData
@@ -103684,20 +103652,6 @@ entities:
       pos: 23.5,-69.5
       parent: 6747
       type: Transform
-- proto: MachineArtifactAnalyzer
-  entities:
-  - uid: 4884
-    components:
-    - rot: 3.141592653589793 rad
-      pos: -5.5,-87.5
-      parent: 6747
-      type: Transform
-  - uid: 4914
-    components:
-    - rot: 3.141592653589793 rad
-      pos: -9.5,-87.5
-      parent: 6747
-      type: Transform
 - proto: MachineFrame
   entities:
   - uid: 4631
@@ -104604,196 +104558,6 @@ entities:
     - pos: -31.579605,-40.44704
       parent: 6747
       type: Transform
-- proto: Morgue
-  entities:
-  - uid: 2462
-    components:
-    - pos: 11.5,-36.5
-      parent: 6747
-      type: Transform
-    - air:
-        volume: 200
-        immutable: False
-        temperature: 293.1496
-        moles:
-        - 4.6948643
-        - 17.661633
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      type: EntityStorage
-  - uid: 2463
-    components:
-    - pos: 12.5,-36.5
-      parent: 6747
-      type: Transform
-    - air:
-        volume: 200
-        immutable: False
-        temperature: 293.1496
-        moles:
-        - 4.6948643
-        - 17.661633
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      type: EntityStorage
-  - uid: 2464
-    components:
-    - pos: 14.5,-36.5
-      parent: 6747
-      type: Transform
-    - air:
-        volume: 200
-        immutable: False
-        temperature: 293.1496
-        moles:
-        - 4.6948643
-        - 17.661633
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      type: EntityStorage
-  - uid: 2465
-    components:
-    - pos: 15.5,-36.5
-      parent: 6747
-      type: Transform
-    - air:
-        volume: 200
-        immutable: False
-        temperature: 293.1496
-        moles:
-        - 4.6948643
-        - 17.661633
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      type: EntityStorage
-  - uid: 2466
-    components:
-    - rot: 3.141592653589793 rad
-      pos: 11.5,-39.5
-      parent: 6747
-      type: Transform
-    - air:
-        volume: 200
-        immutable: False
-        temperature: 293.1496
-        moles:
-        - 4.6948643
-        - 17.661633
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      type: EntityStorage
-  - uid: 2467
-    components:
-    - rot: 3.141592653589793 rad
-      pos: 12.5,-39.5
-      parent: 6747
-      type: Transform
-    - air:
-        volume: 200
-        immutable: False
-        temperature: 293.1496
-        moles:
-        - 4.6948643
-        - 17.661633
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      type: EntityStorage
-  - uid: 2468
-    components:
-    - rot: 3.141592653589793 rad
-      pos: 14.5,-39.5
-      parent: 6747
-      type: Transform
-    - air:
-        volume: 200
-        immutable: False
-        temperature: 293.1496
-        moles:
-        - 4.6948643
-        - 17.661633
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      type: EntityStorage
-  - uid: 2469
-    components:
-    - rot: 3.141592653589793 rad
-      pos: 15.5,-39.5
-      parent: 6747
-      type: Transform
-    - air:
-        volume: 200
-        immutable: False
-        temperature: 293.1496
-        moles:
-        - 4.6948643
-        - 17.661633
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-      type: EntityStorage
 - proto: MouseTimedSpawner
   entities:
   - uid: 3436
@@ -113646,7 +113410,7 @@ entities:
       type: Transform
     - powerLoad: 0
       type: ApcPowerReceiver
-- proto: PoweredLightColoredBlack
+- proto: PoweredlightRed
   entities:
   - uid: 6279
     components:
@@ -124222,7 +123986,7 @@ entities:
     - pos: -1.5,50.5
       parent: 6747
       type: Transform
-- proto: SalvageSeedSpawnerLow
+- proto: AnomalyBerrySeeds
   entities:
   - uid: 3656
     components:
@@ -124632,7 +124396,7 @@ entities:
       pos: 59.169697,-11.868398
       parent: 6747
       type: Transform
-- proto: Shinai
+- proto: ToySword
   entities:
   - uid: 17533
     components:
@@ -127760,67 +127524,6 @@ entities:
   - uid: 22439
     components:
     - pos: -35.5,-14.5
-      parent: 6747
-      type: Transform
-- proto: SpawnVehicleATV
-  entities:
-  - uid: 4223
-    components:
-    - pos: -17.5,-50.5
-      parent: 6747
-      type: Transform
-  - uid: 6603
-    components:
-    - pos: 43.5,7.5
-      parent: 6747
-      type: Transform
-  - uid: 6604
-    components:
-    - pos: 43.5,6.5
-      parent: 6747
-      type: Transform
-  - uid: 6634
-    components:
-    - pos: 39.5,18.5
-      parent: 6747
-      type: Transform
-  - uid: 23575
-    components:
-    - pos: 22.5,15.5
-      parent: 6747
-      type: Transform
-  - uid: 23576
-    components:
-    - pos: 22.5,14.5
-      parent: 6747
-      type: Transform
-- proto: SpawnVehicleJanicart
-  entities:
-  - uid: 3421
-    components:
-    - pos: 27.5,-1.5
-      parent: 6747
-      type: Transform
-  - uid: 3422
-    components:
-    - pos: 28.5,-1.5
-      parent: 6747
-      type: Transform
-- proto: SpawnVehicleSecway
-  entities:
-  - uid: 367
-    components:
-    - pos: -17.5,-17.5
-      parent: 6747
-      type: Transform
-  - uid: 525
-    components:
-    - pos: -17.5,-15.5
-      parent: 6747
-      type: Transform
-  - uid: 1929
-    components:
-    - pos: -17.5,-16.5
       parent: 6747
       type: Transform
 - proto: SpawnVendingMachineRestockFoodDrink
@@ -133353,15 +133056,6 @@ entities:
     - pos: 22.5,-40.5
       parent: 6747
       type: Transform
-- proto: VendingMachineRepDrobe
-  entities:
-  - uid: 1114
-    components:
-    - flags: SessionSpecific
-      type: MetaData
-    - pos: 41.5,-51.5
-      parent: 6747
-      type: Transform
 - proto: VendingMachineRobotics
   entities:
   - uid: 5091
@@ -133654,7 +133348,7 @@ entities:
       pos: 28.5,-0.5
       parent: 6747
       type: Transform
-- proto: WallPaper
+- proto: WallWeb
   entities:
   - uid: 10273
     components:

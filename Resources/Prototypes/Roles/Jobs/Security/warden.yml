@@ -33,8 +33,7 @@
     eyes: ClothingEyesGlassesSecurity
     id: WardenPDA
     ears: ClothingHeadsetSecurity
-#    pocket1: WeaponPistolG22NonLethal # Sunrise-Edit
   storage:
     back:
     - Flash
-#    - MagazineGlock22Rubber # Sunrise-Edit
+#    - MagazineGlock22 # Sunrise-Edit

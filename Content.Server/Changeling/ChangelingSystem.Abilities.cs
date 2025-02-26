@@ -19,7 +19,9 @@ using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Stealth.Components;
 using Content.Shared.Damage.Components;
 using Content.Server.Radio.Components;
-using Content.Shared.Sunrise.CollectiveMind;
+using Content.Shared._Sunrise.CollectiveMind;
+using Content.Shared._RMC14.Xenonids.Screech;
+using Content.Shared.Coordinates;
 
 namespace Content.Server.Changeling;
 
@@ -262,6 +264,10 @@ public sealed partial class ChangelingSystem : EntitySystem
         _blood.TryModifyBleedAmount(uid, -1000);
 
         _popup.PopupEntity(Loc.GetString("changeling-stasis-exit"), uid, uid);
+
+        // Sunrise edit start
+        StartScreech(uid);
+        // Sunrise edit end
 
         comp.IsInStasis = false;
 
@@ -637,4 +643,17 @@ public sealed partial class ChangelingSystem : EntitySystem
     }
 
     #endregion
+
+    // Sunrise edit start
+    private void StartScreech(EntityUid uid, XenoScreechComponent? component = null, bool playSound = true)
+    {
+        if (!Resolve(uid, ref component))
+            return;
+
+        if (playSound)
+            _audio.PlayPvs(component.Sound, uid);
+
+        SpawnAttachedTo(component.Effect, uid.ToCoordinates());
+    }
+    // Sunrise edit end
 }

@@ -72,25 +72,27 @@
     sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
   - type: Clothing
     sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
+  - type: GunRequiresWield
+  - type: Gun
+    fireRate: 0.4
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      collection: awp # Sunrise-Edit
   - type: BallisticAmmoProvider
     whitelist:
       tags:
       - CartridgeAntiMateriel
     capacity: 5
     proto: CartridgeAntiMateriel
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.25
+    sprintModifier: 0.25
   - type: CursorOffsetRequiresWield
   - type: EyeCursorOffset
     maxOffset: 3
     pvsIncrease: 0.3
-  # Sunrise-Start
-  - type: Gun
-    fireRate: 0.75
-    selectedMode: SemiAuto
-    availableModes:
-    - SemiAuto
-    soundGunshot:
-      collection: awp
-    # Sunrise-End
 
 - type: entity
   name: musket

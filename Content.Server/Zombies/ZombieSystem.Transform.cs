@@ -16,6 +16,7 @@ using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
 using Content.Server.Speech.Components;
 using Content.Server.Temperature.Components;
+using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared.CombatMode;
 using Content.Shared.CombatMode.Pacification;
 using Content.Shared.Damage;
@@ -39,7 +40,6 @@ using Content.Shared.Prying.Components;
 using Content.Shared.Traits.Assorted;
 using Robust.Shared.Audio.Systems;
 using Content.Shared.Ghost.Roles.Components;
-using Content.Shared.Sunrise.CollectiveMind;
 
 namespace Content.Server.Zombies;
 

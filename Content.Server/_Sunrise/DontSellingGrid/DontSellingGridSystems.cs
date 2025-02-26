@@ -29,8 +29,7 @@ public sealed class StationDontSellingSystems : EntitySystem
     private void OnStartup(EntityUid uid, DontSellingGridComponent component, ref ComponentStartup args)
     {
         var entities = new HashSet<Entity<StaticPriceComponent>>();
-        _lookup.GetChildEntities(uid, entities);
-
+        _lookup.GetGridEntities(uid, entities);
         foreach (var entityUid in entities)
         {
             DepreciatePrice(entityUid);

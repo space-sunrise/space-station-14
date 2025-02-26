@@ -1,3 +1,5 @@
+ent-BaseClothingBeltSounds = { "" }
+    .desc = { "" }
 ent-ClothingBeltUtility = пояс для инструментов
     .desc = Может хранить различные предметы.
 ent-ClothingBeltChiefEngineer = пояс старшего инженера

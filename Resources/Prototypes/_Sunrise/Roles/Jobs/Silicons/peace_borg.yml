@@ -8,3 +8,4 @@
   canBeAntag: false
   displayWeight: -10  # Sunrise
   jobEntity: PlayerBorgPeaceBattery
+  overrideConsoleVisibility: false

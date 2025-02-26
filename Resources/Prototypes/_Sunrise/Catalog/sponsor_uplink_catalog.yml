@@ -1503,6 +1503,28 @@
     stock: 1
 
 - type: listing
+  id: UplinkSunrisePlushieMiraKovalskaya
+  productEntity: PlushieMiraKovalskaya
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
+  id: UplinkSunrisePlushieMihailOsipov
+  productEntity: PlushieMihailOsipov
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
+
+- type: listing
   id: UplinkSunrisePlushieRichardDetective
   productEntity: PlushieRichardDetective
   cost:
@@ -1810,158 +1832,6 @@
   - !type:ListingLimitedStockCondition
     stock: 1
 
-# HOS
-
-- type: listing
-  id: UplinkSunriseClothingMaskGasSwat
-  name: uplink-sunrise-clothing-mask-gas-swat-name
-  productEntity: ClothingMaskGasSwat
-  cost:
-    Suntick: 10
-  categories:
-  - HOSHeadOfDepartment
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyerJobCondition
-    whitelist:
-    - HeadOfSecurity
-
-- type: listing
-  id: UplinkSunriseClothingHandsGlovesLeatherHoS
-  name: uplink-sunrise-clothing-hands-gloves-leather-hos-name
-  productEntity: ClothingHandsGlovesLeatherHoS
-  cost:
-    Suntick: 8
-  categories:
-  - HOSHeadOfDepartment
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyerJobCondition
-    whitelist:
-    - HeadOfSecurity
-
-- type: listing
-  id: UplinkSunriseClothingOuterCoatHOSOvercoatBlack
-  name: uplink-sunrise-clothing-outer-coat-hos-overcoat-black-name
-  productEntity: ClothingOuterCoatHOSOvercoatBlack
-  cost:
-    Suntick: 15
-  categories:
-  - HOSHeadOfDepartment
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyerJobCondition
-    whitelist:
-    - HeadOfSecurity
-
-- type: listing
-  id: UplinkSunriseClothingBackpackSatchelHoS
-  name: uplink-sunrise-clothing-backpack-satchel-hos-name
-  productEntity: ClothingBackpackSatchelHoS
-  cost:
-    Suntick: 12
-  categories:
-  - HOSHeadOfDepartment
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyerJobCondition
-    whitelist:
-    - HeadOfSecurity
-
-- type: listing
-  id: UplinkSunriseClothingShoesUSSPBlack
-  name: uplink-sunrise-clothing-shoes-black-name
-  productEntity: ClothingShoesUSSPBlack
-  cost:
-    Suntick: 7
-  categories:
-  - HOSHeadOfDepartment
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyerJobCondition
-    whitelist:
-    - HeadOfSecurity
-
-- type: listing
-  id: UplinkSunriseClothingOuterCoatHoSOvercoat
-  name: uplink-sunrise-clothing-outer-coat-hos-overcoat-name
-  productEntity: ClothingOuterCoatHoSOvercoat
-  cost:
-    Suntick: 15
-  categories:
-  - HOSHeadOfDepartment
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyerJobCondition
-    whitelist:
-    - HeadOfSecurity
-
-- type: listing
-  id: UplinkSunriseClothingOuterCoatUSSPOvercoatBlack
-  name: uplink-sunrise-clothing-outer-coat-ussp-overcoat-black-name
-  productEntity: ClothingOuterCoatUSSPOvercoatBlack
-  cost:
-    Suntick: 15
-  categories:
-  - HOSHeadOfDepartment
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyerJobCondition
-    whitelist:
-    - HeadOfSecurity
-
-- type: listing
-  id: UplinkSunriseClothingUniformJumpsuitHoSOld
-  name: uplink-sunrise-clothing-uniform-jumpsuit-hos-old-name
-  productEntity: ClothingUniformJumpsuitHoSOld
-  cost:
-    Suntick: 10
-  categories:
-  - HOSHeadOfDepartment
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyerJobCondition
-    whitelist:
-    - HeadOfSecurity
-
-- type: listing
-  id: UplinkSunriseClothingUniformJumpsuitUSSPBlack
-  name: uplink-sunrise-clothing-uniform-jumpsuit-black-name
-  productEntity: ClothingUniformJumpsuitUSSPBlack
-  cost:
-    Suntick: 10
-  categories:
-  - HOSHeadOfDepartment
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyerJobCondition
-    whitelist:
-    - HeadOfSecurity
-
-- type: listing
-  id: UplinkSunriseClothingBeltHoS
-  name: uplink-sunrise-clothing-belt-hos-name
-  productEntity: ClothingBeltHoS
-  cost:
-    Suntick: 12
-  categories:
-  - HOSHeadOfDepartment
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyerJobCondition
-    whitelist:
-    - HeadOfSecurity
-
 - type: listing
   id: UplinkSunriseClothingHeadHatCapUSSPBlack
   name: uplink-sunrise-clothing-head-hat-cap-black-name
@@ -2078,51 +1948,6 @@
   productEntity: ClothingEliteMaskGasCaptain
   cost:
     Suntick: 10
-  categories:
-  - CaptainHeadOfDepartment
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyerJobCondition
-    whitelist:
-    - Captain
-
-- type: listing
-  id: UplinkSunriseClothingHeadEliteCaptainCap
-  name: uplink-sunrise-clothing-head-elite-captain-cap-name
-  productEntity: ClothingHeadEliteCaptainCap
-  cost:
-    Suntick: 10
-  categories:
-  - CaptainHeadOfDepartment
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyerJobCondition
-    whitelist:
-    - Captain
-
-- type: listing
-  id: UplinkSunriseClothingOuterCoatCaptainOvercoat
-  name: uplink-sunrise-clothing-outer-coat-captain-overcoat-name
-  productEntity: ClothingOuterCoatCaptainOvercoat
-  cost:
-    Suntick: 15
-  categories:
-  - CaptainHeadOfDepartment
-  conditions:
-  - !type:ListingLimitedStockCondition
-    stock: 1
-  - !type:BuyerJobCondition
-    whitelist:
-    - Captain
-
-- type: listing
-  id: UplinkSunriseClothingEliteNeckCloakCaptain
-  name: uplink-sunrise-clothing-elite-neck-cloak-captain-name
-  productEntity: ClothingEliteNeckCloakCaptain
-  cost:
-    Suntick: 15
   categories:
   - CaptainHeadOfDepartment
   conditions:

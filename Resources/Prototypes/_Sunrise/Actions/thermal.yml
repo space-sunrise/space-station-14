@@ -1,0 +1,9 @@
+- type: entity
+  id: ActionToggleThermalVision
+  name: toggle thermal vision
+  description: Toggle thermal vision on or off.
+  components:
+  - type: InstantAction
+    useDelay: 5
+    priority: -9
+    event: !type:ToggleActionEvent

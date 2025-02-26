@@ -1,2 +1,2 @@
-ent-FleshSpiderWeb = spider web
-    .desc = It's stringy and sticky.
+ent-FleshSpiderWeb = паутина
+    .desc = Он вязкий и липкий.

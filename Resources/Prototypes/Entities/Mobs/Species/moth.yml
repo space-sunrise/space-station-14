@@ -12,6 +12,10 @@
     - HeadTop
   - type: Hunger
   - type: Thirst
+    dehydrationDamage:
+      types:
+        Bloodloss: 0.5
+        Asphyxiation: 0.5
   - type: Icon
     sprite: Mobs/Species/Moth/parts.rsi
     state: full
@@ -102,10 +106,10 @@
       - map: [ "gloves" ]
       - map: [ "shoes" ]
       - map: [ "ears" ]
-      - map: [ "outerClothing" ]
       - map: [ "eyes" ]
       - map: [ "belt" ]
       - map: [ "id" ]
+      - map: [ "outerClothing" ]
       - map: [ "enum.HumanoidVisualLayers.Tail" ] #in the utopian future we should probably have a wings enum inserted here so everyhting doesn't break
       - map: [ "neck" ]
       - map: [ "back" ]
@@ -130,6 +134,7 @@
             state: jumpsuit-female
   # Sunrise edit ;3
   - type: FootprintEmitter
+  - type: Carriable
   # Sunrise edit end 0_0
 
 

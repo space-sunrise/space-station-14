@@ -234,10 +234,10 @@ ghost-role-information-pirate-captain-name = Капитан космически
 ghost-role-information-pirate-captain-description = Аргх, дружище! Вы здесь главный и должны разработать план, чтобы добыть это сочное золото любыми способами. Только постарайтесь избегать охраны и спасательных команд!
 ghost-role-information-traveling-chef-name = Путешествующий шеф-повар
 ghost-role-information-traveling-chef-description = Вы - шеф-повар на странствующем шаттле экзотической кухни. Порадуйте станцию вкусными блюдами!
-ghost-role-information-gingerbread-name = Gingerbread Man
+ghost-role-information-gingerbread-name = Пряничный человечек
 ghost-role-information-gingerbread-description =
-    A being of pure holiday spirit.
-    Spread molassesy goodness and to all good cheer.
+    Существо с чистым духом праздника.
+    Распространяйте патоку и всем хорошего настроения.
 ghost-role-information-tomatokiller-name = Помидор-Убийца
 ghost-role-information-tomatokiller-description = Этот маленький помидор будет служить ботанику до конца его жизни... то есть, пару минут.
 ghost-role-information-disaster-victim-name = Жертва катастрофы

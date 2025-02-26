@@ -10,3 +10,18 @@
   id: NoMirageStealth
   kind: source
   path: "/Textures/_Sunrise/Shaders/no_mirage_stealth.swsl"
+
+- type: shader
+  id: ThermalVisionScreenShader
+  kind: source
+  path: "/Textures/_Sunrise/Shaders/thermal_screen.swsl"
+  params:
+    ThermalBoost: 1.5
+    ThermalIntensity: 1
+
+- type: shader
+  id: BrightnessShader
+  kind: source
+  path: "/Textures/_Sunrise/Shaders/brightness.swsl"
+  params:
+    brightness: 1.5

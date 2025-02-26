@@ -30,7 +30,7 @@
         Blunt: 3
     deactivatedSecret: true
   - type: MeleeWeapon
-    attackRate: 1.5
+    attackRate: 1
     wideAnimationRotation: -135
     damage:
       types:

@@ -11,6 +11,7 @@
     - 0,0,1,3
     - 3,0,6,3
     - 8,0,9,3
+  - type: FelinidContainer
 
 - type: entity
   parent: ClothingBackpackSatchel
@@ -106,7 +107,7 @@
     sprite: Clothing/Back/Satchels/science.rsi
 
 - type: entity
-  parent: [ClothingBackpackSatchel, BaseRestrictedContraband]
+  parent: [ClothingBackpackSatchel, BaseSecurityContraband]
   id: ClothingBackpackSatchelSecurity
   name: security satchel
   description: A robust satchel for security related needs.
@@ -115,7 +116,7 @@
     sprite: Clothing/Back/Satchels/security.rsi
 
 - type: entity
-  parent: [ClothingBackpackSatchel, BaseRestrictedContraband]
+  parent: [ClothingBackpackSatchel, BaseSecurityContraband]
   id: ClothingBackpackSatchelBrigmedic
   name: brigmedic satchel
   description: A sterile satchel for medical related needs.

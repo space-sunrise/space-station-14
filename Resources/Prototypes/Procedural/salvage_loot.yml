@@ -22,10 +22,10 @@
           cost: 2
         - proto: CircuitImprinter
           cost: 2
-        - proto: CloningConsoleComputerCircuitboard
-          cost: 2
-        - proto: CloningPodMachineCircuitboard
-          cost: 2
+        #- proto: CloningConsoleComputerCircuitboard
+        #  cost: 2
+        #- proto: CloningPodMachineCircuitboard
+        #  cost: 2
         - proto: CognizineChemistryBottle
         - proto: FoodBoxDonkpocketCarp
           prob: 0.5

@@ -12,3 +12,4 @@ research-technology-advanced-surgery = Advanced surgery
 
 research-technology-handcraft-nvd = Кустарные ПНВ
 research-technology-basic-nvd = Продвинутое ПНВ
+research-technology-basic-thermals = Thermal Scanners

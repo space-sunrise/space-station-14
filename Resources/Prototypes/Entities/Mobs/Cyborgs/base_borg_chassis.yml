@@ -236,7 +236,8 @@
     enabled: false
     mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
-    radius: 4
+    energy: 2 # Sunrise-edit
+    radius: 12 # Sunrise-edit
     netsync: false
   - type: Pullable
   - type: Puller
@@ -380,6 +381,8 @@
   - type: MovementAlwaysTouching
   - type: Speech
     speechSounds: SyndieBorg
+    allowedEmotes:
+    - Laugh
   - type: Vocal
     sounds:
       Unsexed: UnisexSiliconSyndicate

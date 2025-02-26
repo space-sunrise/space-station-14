@@ -1,5 +1,5 @@
 ent-ClothingBeltSheathSyndicateFilled = { ent-ClothingBeltSheathSyndicate }
-    .suffix = Filled
+    .suffix = Заполненый
     .desc = { ent-ClothingBeltSheathSyndicate.desc }
-ent-BeltSheathSyndieFilledBox = the Wrapped Rapier of the Syndicate
-    .desc = Unwrap.
+ent-BeltSheathSyndieFilledBox = Завернутая рапира Синдиката
+    .desc = Обёртка.

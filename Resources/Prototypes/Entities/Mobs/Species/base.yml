@@ -33,10 +33,10 @@
     - map: [ "gloves" ]
     - map: [ "shoes" ]
     - map: [ "ears" ]
-    - map: [ "outerClothing" ]
     - map: [ "eyes" ]
     - map: [ "belt" ]
     - map: [ "id" ]
+    - map: [ "outerClothing" ]
     - map: [ "neck" ]
     - map: [ "back" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
@@ -243,6 +243,7 @@
           Quantity: 25
   - type: Food
     requiresSpecialDigestion: true
+  - type: CognizinFix
   # Sunrise-End
 
 - type: entity
@@ -258,7 +259,6 @@
   abstract: true
   components:
   # Sunrise-Start
-  - type: Carriable
   - type: CanEscapeInventory
   - type: Mood
   - type: CritHeartbeat
@@ -369,10 +369,10 @@
     - map: [ "gloves" ]
     - map: [ "shoes" ]
     - map: [ "ears" ]
-    - map: [ "outerClothing" ]
     - map: [ "eyes" ]
     - map: [ "belt" ]
     - map: [ "id" ]
+    - map: [ "outerClothing" ]
     - map: [ "neck" ]
     - map: [ "back" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]

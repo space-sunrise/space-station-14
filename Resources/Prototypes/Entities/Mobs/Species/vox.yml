@@ -6,6 +6,10 @@
   - type: Absorbable
   - type: Hunger
   - type: Thirst
+    dehydrationDamage:
+      types:
+        Bloodloss: 0.5
+        Asphyxiation: 0.5
   - type: Icon
     sprite: Mobs/Species/Vox/parts.rsi
     state: vox_m
@@ -85,10 +89,10 @@
     - map: [ "gloves" ]
     - map: [ "shoes" ]
     - map: [ "ears" ]
-    - map: [ "outerClothing" ]
     - map: [ "eyes" ]
     - map: [ "belt" ]
     - map: [ "id" ]
+    - map: [ "outerClothing" ]
     - map: [ "neck" ]
     - map: [ "back" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
@@ -110,13 +114,6 @@
       sprite: "Effects/creampie.rsi"
       state: "creampie_vox" # Not default
       visible: false
-  # Sunrise ed!
-  - type: FootprintEmitter
-    leftBareFootState:
-      - "footprint-left-bare-lizard"
-    rightBareFootState:
-      - "footprint-right-bare-lizard"
-  # Sunrise edit end.
   - type: Inventory
     speciesId: vox
     displacements:
@@ -155,6 +152,14 @@
           32:
             sprite: Mobs/Species/Vox/displacement.rsi
             state: shoes
+  # Sunrise ed!
+  - type: FootprintEmitter
+    leftBareFootState:
+    - "footprint-left-bare-lizard"
+    rightBareFootState:
+    - "footprint-right-bare-lizard"
+  - type: Carriable
+  # Sunrise edit end.
 
 - type: entity
   parent: BaseSpeciesDummy

@@ -157,6 +157,9 @@
     pilotWhitelist:
       components:
         - HumanoidAppearance
+    pilotBlacklist:
+      species:
+      - Felinid
     equipmentWhitelist:
       tags:
       - CombatMech

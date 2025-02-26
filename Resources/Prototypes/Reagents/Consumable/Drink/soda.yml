@@ -18,6 +18,10 @@
       effects:
       - !type:SatiateThirst
         factor: 2
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
       - !type:GenericStatusEffect
         key: Drowsiness
         time: 1.0
@@ -39,6 +43,10 @@
       effects:
       - !type:SatiateThirst
         factor: 4
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
 
 - type: reagent
   id: ChangelingSting
@@ -77,6 +85,10 @@
       effects:
       - !type:SatiateThirst
         factor: 2
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
       - !type:GenericStatusEffect
         key: Drowsiness
         time: 2.0
@@ -199,6 +211,10 @@
       effects:
       - !type:SatiateThirst
         factor: 4
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
 
 - type: reagent
   id: SpaceMountainWind
@@ -252,6 +268,10 @@
       effects:
       - !type:SatiateThirst
         factor: 2
+        conditions:
+        - !type:OrganType
+          type: Dwarf
+          shouldHave: false
       - !type:AdjustReagent
         reagent: Theobromine
         amount: 0.1

@@ -1,0 +1,9 @@
+- type: loadout
+  id: BackpackNTRG
+  equipment:
+    back: ClothingBackpackSatchelNTRG
+
+- type: loadout
+  id: JumpsuitNTR
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitNTRG

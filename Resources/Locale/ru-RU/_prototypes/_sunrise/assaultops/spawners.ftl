@@ -1,2 +1,2 @@
-ent-SpawnPointAssaultOps = assaultops
+ent-SpawnPointAssaultOps = штурмовики
     .desc = { ent-MarkerBase.desc }

@@ -1,7 +1,7 @@
 - type: entity
   save: false
   name: Urist McFelinid
-  parent: BaseMobHuman
+  parent: BaseMobSpeciesOrganic
   id: MobFelinidBase
   abstract: true
   components:
@@ -11,16 +11,42 @@
     speechVerb: Felinid
     allowedEmotes: ['Mew', 'Meow', 'Hisses', 'Purr']
   - type: Sprite
-    scale: 0.75, 0.75
+    scale: 0.72, 0.72
+  - type: Icon
+    sprite: Mobs/Species/Human/parts.rsi
+    state: full
+  - type: Hunger
+    baseDecayRate: 0.015
+  - type: Thirst
+    baseDecayRate: 0.05
+    dehydrationDamage:
+      types:
+        Bloodloss: 0.5
+        Asphyxiation: 0.5
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatHuman
+      amount: 2
   - type: HumanoidAppearance
     species: Felinid
+    hideLayersOnEquip:
+    - Hair
+    - Snout
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeCircle
           radius: 0.20
-        density: 50
+        density: 100
         restitution: 0.0
         mask:
         - MobMask
@@ -31,6 +57,29 @@
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Felinid
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageGroupTrigger
+        damageGroup: Brute
+        damage: 300
+      behaviors:
+      - !type:GibBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 500
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -44,21 +93,22 @@
     hidden: true
     soundHit:
       collection: Punch
-    angle: 30
+    angle: 60
     animation: WeaponArcClaw
     attackRate: 1
     damage:
       types:
-        Blunt: 1
-        Slash: 2
+        Slash: 3
   - type: DamageOnHighSpeedImpact
+    minimumSpeed: 5
     damage:
       types:
-        Blunt: 5
+        Blunt: 10
     soundHit:
       path: /Audio/Effects/hit_kick.ogg
   - type: Stamina
     critThreshold: 50
+  - type: FootprintEmitter
   - type: Vocal
     sounds:
       Male: MaleFelinid
@@ -95,8 +145,18 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.0
     baseSprintSpeed: 4.0
-  - type: Carriable
-    freeHandsRequired: 1
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,3,3
+  - type: Felinid
+    damageBonus:
+      types:
+        Blunt: 15
+    felinidDamage:
+      types:
+        Blunt: 5
+    damageSound: /Audio/Effects/hit_kick.ogg
 #  - type: DamagedByFlashing
 #    flashDamage:
 #      types:

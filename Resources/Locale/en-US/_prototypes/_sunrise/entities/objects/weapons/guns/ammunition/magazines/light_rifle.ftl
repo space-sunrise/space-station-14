@@ -1,5 +1,3 @@
-ent-MagazineLightRifleRubber = magazine (.30 rifle rubber)
-    .desc = { ent-BaseMagazineLightRifle.desc }
 ent-MagazineAK = Universal AK magazne
     .desc = { ent-BaseItem.desc }
 ent-MagazineMP38 = MP38 magazine

@@ -135,8 +135,8 @@
     wideAnimationRotation: -135
     damage:
       types:
-        Blunt: 10
-        Slash: 5
+        Blunt: 20 #sunrise-start
+        Slash: 10 #sunrise-end
     soundHit:
       collection: MetalThud
   - type: Wieldable
@@ -154,7 +154,7 @@
   - type: Prying
 
 - type: entity
-  parent: [ BaseWeaponCrusher, BaseSecurityCargoContraband]
+  parent: [ BaseKnife, BaseWeaponCrusher, BaseSecurityCargoContraband]
   id: WeaponCrusherDagger
   name: crusher dagger
   description: A scaled down version of a proto-kinetic crusher. Uses kinetic energy to vibrate the blade at high speeds.
@@ -169,11 +169,20 @@
     damage:
       types:
         Slash: 15
-  - type: Tag
-    tags:
-    - Knife
+  - type: EmbeddableProjectile
+    sound: /Audio/Weapons/star_hit.ogg
+    offset: -0.15,0.0
+  - type: LandAtCursor
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 10
+  - type: DisarmMalus
+    malus: 0.225
+  - type: ThrowingAngle
+    angle: 225
 
-# Like a crusher... but better
+# Like a crusher... but better healing
 - type: entity
   parent: [ WeaponCrusher, BaseSecurityCargoContraband]
   id: WeaponCrusherGlaive
@@ -189,6 +198,10 @@
       groups:
         Brute: -21
   - type: MeleeWeapon
+    damage: #sunrise-start
+      types:
+        Blunt: 6.5
+        Slash: 2.5 #sunrise-end
   - type: Tag
     tags:
       - Pickaxe

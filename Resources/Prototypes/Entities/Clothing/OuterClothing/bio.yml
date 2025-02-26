@@ -15,6 +15,12 @@
     modifiers:
       coefficients:
         Caustic: 0.5
+  # Sunrise-Start
+  - type: Tag
+    tags:
+    - FullBodyOuter
+    - WhitelistChameleon
+  # Sunrise-End
 
 - type: entity
   parent: ClothingOuterBioGeneral
