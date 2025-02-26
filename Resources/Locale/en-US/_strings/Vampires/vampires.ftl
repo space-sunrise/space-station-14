@@ -74,7 +74,6 @@ vampire-passive-deathsembrace-description = Embrace death and it shall pass you 
 # Mutation menu
 vampire-mutation-menu-ui-window-name = Mutations Menu
 vampire-mutation-none-info = Nothing selected
-vampire-mutation-hemomancer-name = Hemomancer
 vampire-mutation-hemomancer-info =
     Focused on blood magic and blood manipulation around itself.
     
@@ -89,7 +88,6 @@ vampire-mutation-umbrae-info =
     
     - Glare
     - Cloak of Darkness
-vampire-mutation-gargantua-name = Gargantua
 vampire-mutation-gargantua-info =
     Focused on melee damage and durability.
     
