@@ -60,6 +60,9 @@
     },
     {
       "name": "blood_drain_icon"
+    },
+    {
+      "name": "thermal"
     }
   ]
 }
