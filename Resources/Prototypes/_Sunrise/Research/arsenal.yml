@@ -146,6 +146,6 @@
     state: icon
   discipline: Arsenal
   tier: 3
-  cost: 25000
+  cost: 17500
   recipeUnlocks:
   - WeaponTemperatureGun
