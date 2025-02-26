@@ -70,3 +70,43 @@ vampire-passive-supernaturalstrength-description = Increase your upper body musc
 
 vampire-passive-deathsembrace = Deaths Embrace
 vampire-passive-deathsembrace-description = Embrace death and it shall pass you over. Effect: Heal when in a coffin, automatically return to your coffin upon death for 100 blood essence.
+
+# Mutation menu
+vampire-mutation-menu-ui-window-name = Mutations Menu
+vampire-mutation-none-info = Nothing selected
+vampire-mutation-hemomancer-name = Hemomancer
+vampire-mutation-hemomancer-info =
+    Focused on blood magic and blood manipulation around itself.
+    
+    Abilities:
+    
+    - Screech
+    - Blood Steal
+vampire-mutation-umbrae-info =
+    Focused on darkness, stealth, and mobility.
+    
+    Abilities:
+    
+    - Glare
+    - Cloak of Darkness
+vampire-mutation-gargantua-name = Gargantua
+vampire-mutation-gargantua-info =
+    Focused on melee damage and durability.
+    
+    Abilities:
+    
+    - Unholy Strength
+    - Supernatural Strength
+vampire-mutation-bestia-info =
+    Focused on transformation and trophy collection.
+    
+    Abilities:
+    
+    - Bat Form
+    - Mouse Form
+
+# Alerts
+alerts-vampire-blood-name = Blood
+alerts-vampire-blood-desc = Vampire blood level.
+alerts-vampire-stellar-weakness-name = Stellar Weakness
+alerts-vampire-stellar-weakness-desc = Vampires are weak to sunlight. Be careful!
