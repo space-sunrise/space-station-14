@@ -223,10 +223,10 @@
     itemIconStyle: NoItem
     icon:
       sprite: Interface/Actions/actions_vampire.rsi
-      state: thermal
+      state: thermalvision
     iconOn:
       sprite: Interface/Actions/actions_vampire.rsi
-      state: thermal
+      state: thermalvision
     event: 
       !type:VampireThermalVisionEvent
       definitionName: ThermalVision
