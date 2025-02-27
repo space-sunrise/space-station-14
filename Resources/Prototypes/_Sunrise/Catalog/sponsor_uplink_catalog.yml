@@ -1523,6 +1523,17 @@
   conditions:
   - !type:ListingLimitedStockCondition
     stock: 1
+    
+- type: listing
+  id: UplinkSunrisePlushieMadokaMori
+  productEntity: PlushieMadokaMori
+  cost:
+    Suntick: 4
+  categories:
+  - SpecialThings
+  conditions:
+  - !type:ListingLimitedStockCondition
+    stock: 1
 
 - type: listing
   id: UplinkSunrisePlushieRichardDetective
