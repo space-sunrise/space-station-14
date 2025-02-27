@@ -181,14 +181,18 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         // Sunrise-End
     }
 
-    private void EnsureSubvertedSiliconRole(EntityUid mindId)
+    protected override void EnsureSubvertedSiliconRole(EntityUid mindId)
     {
+        base.EnsureSubvertedSiliconRole(mindId);
+
         if (!_roles.MindHasRole<SubvertedSiliconRoleComponent>(mindId))
             _roles.MindAddRole(mindId, "MindRoleSubvertedSilicon", silent: true);
     }
 
-    private void RemoveSubvertedSiliconRole(EntityUid mindId)
+    protected override void RemoveSubvertedSiliconRole(EntityUid mindId)
     {
+        base.RemoveSubvertedSiliconRole(mindId);
+
         if (_roles.MindHasRole<SubvertedSiliconRoleComponent>(mindId))
             _roles.MindTryRemoveRole<SubvertedSiliconRoleComponent>(mindId);
     }
@@ -248,8 +252,10 @@ public sealed class SiliconLawSystem : SharedSiliconLawSystem
         return ev.Laws;
     }
 
-    public void NotifyLawsChanged(EntityUid uid, SoundSpecifier? cue = null)
+    public override void NotifyLawsChanged(EntityUid uid, SoundSpecifier? cue = null)
     {
+        base.NotifyLawsChanged(uid, cue);
+
         if (!TryComp<ActorComponent>(uid, out var actor))
             return;
 

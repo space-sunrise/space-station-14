@@ -214,7 +214,7 @@ public sealed partial class EnergyDomeSystem : EntitySystem
 
     public bool AttemptToggle(Entity<EnergyDomeGeneratorComponent> generator, bool status)
     {
-        if (TryComp<UseDelayComponent>(generator, out var useDelay) && _useDelay.IsDelayed(new Entity<UseDelayComponent>(generator, useDelay)))
+        if (TryComp<UseDelayComponent>(generator, out var useDelay) && _useDelay.IsDelayed(new (generator, useDelay)))
         {
             _audio.PlayPvs(generator.Comp.TurnOffSound, generator);
             _popup.PopupEntity(
@@ -283,12 +283,12 @@ public sealed partial class EnergyDomeSystem : EntitySystem
         {
             domeComp.Generator = generator;
         }
-        
+
         if (TryComp<PowerCellDrawComponent>(generator.Owner, out var powerCellDrawComponent))
         {
             _powerCell.SetDrawEnabled(generator.Owner, true);
         }
-        
+
         if (TryComp<BatterySelfRechargerComponent>(generator, out var recharger)) {
             recharger.AutoRecharge = true;
         }
@@ -305,7 +305,7 @@ public sealed partial class EnergyDomeSystem : EntitySystem
 
         generator.Comp.Enabled = false;
         QueueDel(generator.Comp.SpawnedDome);
-        
+
         if (TryComp<PowerCellDrawComponent>(generator.Owner, out var powerCellDrawComponent))
         {
             _powerCell.SetDrawEnabled(generator.Owner, false);
