@@ -356,9 +356,9 @@ public sealed partial class ChatSystem : SharedChatSystem
             announcementSound ??= new SoundPathSpecifier(DefaultAnnouncementSound);
         }
 
-        if (playTts)
+        if (playTts && announcementSound != null)
         {
-            var announcementEv = new AnnouncementSpokeEvent(Filter.Broadcast(), message, announcementSound, announceVoice);
+            var announcementEv = new AnnouncementSpokeEvent(Filter.Broadcast(), message, _audio.ResolveSound(announcementSound), announceVoice);
             RaiseLocalEvent(announcementEv);
         }
         // Sunrise-end
@@ -395,9 +395,9 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (playDefault && announcementSound == null)
             announcementSound = new SoundPathSpecifier(DefaultAnnouncementSound);
 
-        if (playTts)
+        if (playTts && announcementSound != null)
         {
-            RaiseLocalEvent(new AnnouncementSpokeEvent(filter, message, announcementSound, announceVoice));
+            RaiseLocalEvent(new AnnouncementSpokeEvent(filter, message, _audio.ResolveSound(announcementSound), announceVoice));
         }
         // Sunrise-edit
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Station Announcement from {sender}: {message}");
@@ -444,9 +444,9 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (playDefault && announcementSound == null)
             announcementSound = new SoundPathSpecifier(DefaultAnnouncementSound);
 
-        if (playTts)
+        if (playTts && announcementSound != null)
         {
-            RaiseLocalEvent(new AnnouncementSpokeEvent(filter, message, announcementSound, announceVoice));
+            RaiseLocalEvent(new AnnouncementSpokeEvent(filter, message, _audio.ResolveSound(announcementSound), announceVoice));
         }
         // Sunrise-edit
 
@@ -1121,14 +1121,14 @@ public enum ChatTransmitRange : byte
 public sealed class AnnouncementSpokeEvent(
     Filter source,
     string message,
-    SoundSpecifier? announcementSound,
+    ResolvedSoundSpecifier? announcementSound,
     string? announceVoice)
     : EntityEventArgs
 {
     public readonly Filter Source = source;
     public readonly string Message = message;
     public readonly string? AnnounceVoice = announceVoice;
-    public readonly SoundSpecifier? AnnouncementSound = announcementSound;
+    public readonly ResolvedSoundSpecifier? AnnouncementSound = announcementSound;
 }
 
 public sealed class RadioSpokeEvent(EntityUid source, string message, EntityUid[] receivers) : EntityEventArgs
