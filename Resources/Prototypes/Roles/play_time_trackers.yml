@@ -221,3 +221,9 @@
 
 - type: playTimeTracker
   id: AntagPlanetPrisoner
+
+- type: playTimeTracker
+  id: AntagSurvivor
+
+- type: playTimeTracker
+  id: AntagWizard
