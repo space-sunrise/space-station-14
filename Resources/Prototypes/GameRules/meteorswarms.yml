@@ -56,38 +56,35 @@
   id: MeteorSwarmScheduler
   components:
   - type: GameRule
-# Sunrise-Edit: No meteorites
-#  - type: BasicStationEventScheduler
-#    minimumTimeUntilFirstEvent: 600 # 10 min
-#    minMaxEventTiming:
-#      min: 750 # 12.5 min
-#      max: 930 # 17.5 min
-#    scheduledGameRules: !type:NestedSelector
-#      tableId: BasicMeteorSwarmEventsTable
+  - type: BasicStationEventScheduler
+    minimumTimeUntilFirstEvent: 600 # 10 min
+    minMaxEventTiming:
+      min: 750 # 12.5 min
+      max: 930 # 17.5 min
+    scheduledGameRules: !type:NestedSelector
+      tableId: BasicMeteorSwarmEventsTable
 
 - type: entity
   parent: BaseGameRule
   id: MeteorSwarmMildScheduler
   components:
   - type: GameRule
-# Sunrise-Edit: No meteorites
-#  - type: BasicStationEventScheduler
-#    minimumTimeUntilFirstEvent: 600 # 10 min
-#    minMaxEventTiming:
-#      min: 750 # 12.5 min
-#      max: 930 # 17.5 min
-#    scheduledGameRules: !type:NestedSelector
-#      tableId: MeteorSwarmMildTable
+  - type: BasicStationEventScheduler
+    minimumTimeUntilFirstEvent: 600 # 10 min
+    minMaxEventTiming:
+      min: 750 # 12.5 min
+      max: 930 # 17.5 min
+    scheduledGameRules: !type:NestedSelector
+      tableId: MeteorSwarmMildTable
 
 - type: entity
   parent: BaseGameRule
   id: KesslerSyndromeScheduler
   components:
   - type: GameRule
-# Sunrise-Edit: No meteorites
-#  - type: RampingStationEventScheduler
-#    scheduledGameRules: !type:NestedSelector
-#      tableId: BasicMeteorSwarmEventsTable
+  - type: RampingStationEventScheduler
+    scheduledGameRules: !type:NestedSelector
+      tableId: BasicMeteorSwarmEventsTable
 
 # Game Rules
 
