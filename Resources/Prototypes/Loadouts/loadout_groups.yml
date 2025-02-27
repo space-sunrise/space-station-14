@@ -847,6 +847,7 @@
 - type: loadoutGroup
   id: StationEngineerHead
   name: loadout-group-station-engineer-head
+  minLimit: 0
   loadouts:
 #sunrise-start
   - Sunrise-EngineerHeadBeret
