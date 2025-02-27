@@ -878,13 +878,13 @@
   - type: SolutionContainerManager
     solutions:
       udder:
-        maxVol: 250
+        maxVol: 500 #Sunrise-edit
         reagents:
         - ReagentId: Milk
           Quantity: 30
   - type: Udder
     reagentId: Milk
-    quantityPerUpdate: 25
+    quantityPerUpdate: 50
     growthDelay: 30
   - type: ExaminableHunger
   - type: Butcherable
