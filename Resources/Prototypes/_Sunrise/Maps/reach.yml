@@ -1,4 +1,4 @@
-﻿- type: gameMap
+- type: gameMap
   id: SunriseReach
   mapName: 'Reach'
   mapPath: /Maps/_Sunrise/Station/reach.yml
@@ -60,4 +60,5 @@
           - CleaningUp
           - HumanitarianAid
           - PersonnelRecovery
+          - CrewEducation
           #- VirusFlesh
