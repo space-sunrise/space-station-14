@@ -9,7 +9,7 @@
   hide: true
   rules:
   - FleshCult
-  - LiteSubGamemodesRule
+  - SubGamemodesRule
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler
