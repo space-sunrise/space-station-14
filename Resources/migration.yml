@@ -552,6 +552,12 @@ FoodCondimentPacketFrostoil: FoodCondimentPacketColdsauce
 WeaponSubMachineGunVector: null
 WeaponSubMachineGunVectorRubber: null
 
+# 2025-02-20
+MagazineBoxAntiMaterielBig: null
+MagazineBoxCaselessRifle10x24: null
+MagazineBoxCaselessRifleBig: null
+MagazinePistolHighCapacityRubber: null
+
 # Sunrise migrations
 AirlockExternalGlassShuttleArrivals: AirlockExternalGlassShuttleArrivalsLocked
 AirlockHatchSyndicate: AirlockHatchSyndicateLocked
