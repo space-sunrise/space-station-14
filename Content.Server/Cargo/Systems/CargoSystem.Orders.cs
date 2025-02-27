@@ -370,7 +370,7 @@ namespace Content.Server.Cargo.Systems
 
         private void PlayDenySound(EntityUid uid, SoundSpecifier errorSound) // Sunrise-Edit
         {
-            _audio.PlayPvs(_audio.GetSound(errorSound), uid); // Sunrise-Edit
+            _audio.PlayPvs(_audio.ResolveSound(errorSound), uid); // Sunrise-Edit
         }
 
         private static CargoOrderData GetOrderData(CargoConsoleAddOrderMessage args, CargoProductPrototype cargoProduct, int id)
