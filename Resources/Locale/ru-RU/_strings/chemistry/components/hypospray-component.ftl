@@ -23,3 +23,5 @@ hypospray-cant-inject = Нельзя сделать инъекцию в { $targe
 ## failure
 
 hypospay-component-failure-hardsuit = Вы не сможете провести иглу через толстое покрытие!
+
+hypospray-filtered-some = You draw {$amount}u from {$target}, but some reagents have been filtered out.
