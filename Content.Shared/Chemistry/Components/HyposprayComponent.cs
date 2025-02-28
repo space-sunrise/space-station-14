@@ -53,4 +53,5 @@ public sealed partial class HyposprayComponent : Component
 [Serializable, NetSerializable]
 public sealed partial class HyposprayDoAfterEvent : SimpleDoAfterEvent
 {
+    // Sunrise-End
 }
