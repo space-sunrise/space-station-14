@@ -1318,7 +1318,7 @@
   id: UplinkAnacondaTier
   name: Anaconda
   description: Like a Deagle, but have self-reload
-  productEntity: WeaponAnaconda
+  productEntity: WeaponPistolAnaconda
   discountCategory: usualDiscounts
   discountDownTo:
     Telecrystal: 2
