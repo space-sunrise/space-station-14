@@ -50,7 +50,7 @@
     Chest: MobHumanSlimTorso
     HeadTop: MobHumanoidAnyMarking
     Tail: MobHumanoidAnyMarking
-    Eyes: MobHumanoidEyes
+    Eyes: MobHumanoidSlimEyes
     LArm: MobHumanSlimLArm
     RArm: MobHumanSlimRArm
     LHand: MobHumanSlimLHand
@@ -259,3 +259,9 @@
   baseSprite:
     sprite: Mobs/Species/Human/parts.rsi
     state: r_foot_slim
+
+- type: humanoidBaseSprite
+  id: MobHumanoidSlimEyes
+  baseSprite:
+    sprite: _Sunrise/Mobs/Customization/slim_eyes.rsi
+    state: slim_eyes
