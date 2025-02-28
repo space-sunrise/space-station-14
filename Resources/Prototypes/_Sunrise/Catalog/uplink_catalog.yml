@@ -13,20 +13,6 @@
   - UplinkWearables
 
 - type: listing
-  id: UplinkClothingEyesGlassesThermalSyndie
-  name: uplink-syndie-thermal-name
-  description: uplink-syndie-thermal-desc
-  icon: { sprite: /Textures/_Sunrise/Clothing/Eyes/Glasses/synd_thermal.rsi, state: icon }
-  productEntity: ClothingEyesGlassesThermalSyndie
-  discountCategory: usualDiscounts
-  discountDownTo:
-    Telecrystal: 4
-  cost:
-    Telecrystal: 8
-  categories:
-  - UplinkWearables
-
-- type: listing
   id: UplinkClothingEyesHudSyndicateMech
   name: uplink-syndie-diagnostic-hud-name
   description: uplink-syndie-diagnostic-hud-desc
@@ -176,7 +162,7 @@
   description: uplink-ammo-smgkit-desc
   productEntity: SMGAmmoKit
   cost:
-    Telecrystal: 8
+    Telecrystal: 9
   categories:
   - UplinkAmmo
   conditions:
@@ -191,7 +177,7 @@
   description: uplink-ammo-caselesskit-desc
   productEntity: CaselessAmmoKit
   cost:
-    Telecrystal: 18
+    Telecrystal: 15
   categories:
   - UplinkAmmo
   conditions:
@@ -206,7 +192,7 @@
   description: uplink-ammo-smgincendiarykit-desc
   productEntity: SMGIncendiaryAmmoKit
   cost:
-    Telecrystal: 12
+    Telecrystal: 14
   categories:
   - UplinkAmmo
   conditions:
@@ -221,7 +207,7 @@
   description: uplink-ammo-smguraniumkit-desc
   productEntity: SMGUraniumAmmoKit
   cost:
-    Telecrystal: 15
+    Telecrystal: 18
   categories:
   - UplinkAmmo
   conditions:
@@ -236,7 +222,7 @@
   description: uplink-ammo-shotgunkit-desc
   productEntity: ShotGunKit
   cost:
-    Telecrystal: 10
+    Telecrystal: 15
   categories:
   - UplinkAmmo
   conditions:
@@ -251,7 +237,7 @@
   description: uplink-ammo-shotgunincendiarykit-desc
   productEntity: ShotGunIncendiaryKit
   cost:
-    Telecrystal: 13
+    Telecrystal: 16
   categories:
   - UplinkAmmo
   conditions:
@@ -266,7 +252,7 @@
   description: uplink-ammo-shotgunuraniumkit-desc
   productEntity: ShotGunUraniumKit
   cost:
-    Telecrystal: 16
+    Telecrystal: 18
   categories:
   - UplinkAmmo
   conditions:
@@ -281,7 +267,7 @@
   description: uplink-ammo-lmgkit-desc
   productEntity: LMGKit
   cost:
-    Telecrystal: 8
+    Telecrystal: 10
   categories:
   - UplinkAmmo
   conditions:
@@ -296,7 +282,7 @@
   description: uplink-ammo-lmgincendiarykit-desc
   productEntity: LMGIncendiaryKit
   cost:
-    Telecrystal: 12
+    Telecrystal: 14
   categories:
   - UplinkAmmo
   conditions:
@@ -311,7 +297,7 @@
   description: uplink-ammo-lmguraniumkit-desc
   productEntity: LMGUraniumKit
   cost:
-    Telecrystal: 16
+    Telecrystal: 18
   categories:
   - UplinkAmmo
   conditions:
@@ -328,9 +314,9 @@
   productEntity: CrateAmmokitBundle
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 40
+    Telecrystal: 50
   cost:
-    Telecrystal: 80
+    Telecrystal: 100
   categories:
   - UplinkAmmo
   conditions:
@@ -884,9 +870,9 @@
   productEntity: PolytrinicAcidChemistryBottle
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 2
-  cost:
     Telecrystal: 4
+  cost:
+    Telecrystal: 8
   categories:
   - UplinkChemicals
 
@@ -897,9 +883,9 @@
   productEntity: LauncherSyringePistolFilled
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 4
-  cost:
     Telecrystal: 6
+  cost:
+    Telecrystal: 10
   categories:
   - UplinkChemicals
 
@@ -910,9 +896,9 @@
   productEntity: BoxMiniSyringe
   discountCategory: veryRareDiscounts
   discountDownTo:
-    Telecrystal: 1
-  cost:
     Telecrystal: 2
+  cost:
+    Telecrystal: 4
   categories:
   - UplinkChemicals
 
@@ -923,9 +909,9 @@
   productEntity: LauncherSyringeRapidFilled
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 6
-  cost:
     Telecrystal: 8
+  cost:
+    Telecrystal: 14
   categories:
   - UplinkChemicals
 
@@ -1017,7 +1003,7 @@
   discountDownTo:
     Telecrystal: 60
   cost:
-    Telecrystal: 125
+    Telecrystal: 120
   categories:
   - UplinkMechs
   conditions:
@@ -1076,9 +1062,9 @@
   productEntity: WeaponMechCombatShotgun
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 5
+    Telecrystal: 3
   cost:
-    Telecrystal: 10
+    Telecrystal: 11
   categories:
   - UplinkMechs
   conditions:
@@ -1095,9 +1081,9 @@
   productEntity: WeaponMechCombatShotgunIncendiary
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 6
+    Telecrystal: 7
   cost:
-    Telecrystal: 12
+    Telecrystal: 14
   categories:
   - UplinkMechs
   conditions:
@@ -1136,25 +1122,6 @@
     Telecrystal: 5
   cost:
     Telecrystal: 10
-  categories:
-  - UplinkMechs
-  conditions:
-  - !type:StoreWhitelistCondition
-    whitelist:
-      tags:
-      - NukeOpsUplink
-
-- type: listing
-  id: UplinkMechChainSword
-  #name: uplink-mech-equipment-amlg90-name
-  #description: uplink-mech-equipment-amlg90-desc
-  icon: { sprite: /Textures/Objects/Specific/Mech/mecha_equipment.rsi, state: mecha_chainsword }
-  productEntity: WeaponMechChainSword
-  discountCategory: rareDiscounts
-  discountDownTo:
-    Telecrystal: 4
-  cost:
-    Telecrystal: 8
   categories:
   - UplinkMechs
   conditions:
@@ -1247,9 +1214,9 @@
   - UplinkWearables
   conditions:
   - !type:StoreWhitelistCondition
-    blacklist:
+    whitelist:
       tags:
-      - AssaultOpsUplink
+      - NukeOpsUplink
 
 - type: listing
   id: UplinkEnergyDomeBackpackSyndie
@@ -1313,19 +1280,6 @@
       components:
       - SurplusBundle
 
-# Implats
-
-- type: listing
-  id: UplinkSmokeScreenImplanter  #PR Wiz #31782
-  name: uplink-smoke-screen-implanter-name
-  description: uplink-smoke-screen-implanter-desc
-  icon: { sprite: Objects/Weapons/Grenades/smoke.rsi, state: icon }
-  productEntity: SmokeScreenImplanter
-  cost:
-    Telecrystal: 4
-  categories:
-  - UplinkImplants
-
 # Jobs
 
 - type: listing
@@ -1335,9 +1289,9 @@
   productEntity: LauncherCreamPieFake
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 6
+    Telecrystal: 10
   cost:
-    Telecrystal: 8
+    Telecrystal: 15
   categories:
   - UplinkJob
   conditions:
@@ -1347,45 +1301,30 @@
 
 - type: listing
   id: UplinkSubMachineGunUzi
-  name: uzi-name
-  description: uzi-desc
+  name: ent-UplinkSubMachineGunUzi-name
+  description: ent-UplinkSubMachineGunUzi-name
   productEntity: UplinkSubMachineGunUzi
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 8
+    Telecrystal: 6
   cost:
-    Telecrystal: 16
+    Telecrystal: 12
   categories:
   - UplinkWeaponry
   conditions:
   - !type:BuyerJobCondition
 
 - type: listing
-  id: UplinkClusterSyndieMiniBomb
-  name: uplink-cluster-mini-bomb-name
-  description: uplink-cluster-mini-bomb-desc
-  productEntity: SyndyClusterGrenade
-  discountCategory: veryRareDiscounts
+  id: UplinkAnacondaTier
+  name: Anaconda
+  description: Like a Deagle, but have self-reload
+  productEntity: WeaponAnaconda
+  discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 6
+    Telecrystal: 2
   cost:
-    Telecrystal: 12
-  categories:
-  - UplinkExplosives
-
-- type: listing
-  id: uplinkContortionistJumpsuit
-  name: uplink-contortionist-jumpsuit-name
-  description: uplink-contortionist-jumpsuit-desc
-  productEntity: ClothingUniformJumpsuitAtmosSyndie
-  discountCategory: rareDiscounts
-  discountDownTo:
     Telecrystal: 8
-  cost:
-    Telecrystal: 12
   categories:
-  - UplinkJob
+  - UplinkWeaponry
   conditions:
   - !type:BuyerJobCondition
-    whitelist:
-    - AtmosphericTechnician
