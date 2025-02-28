@@ -72,6 +72,10 @@
             "directions": 4
         },
         {
+            "name": "fishnet_thigh-body-slim",
+            "directions": 4
+        },
+        {
             "name": "rainbow_thigh",
             "directions": 4
         },
@@ -81,6 +85,10 @@
         },
         {
             "name": "thin_thigh",
+            "directions": 4
+        },
+        {
+            "name": "thin_thigh-body-slim",
             "directions": 4
         },
         {

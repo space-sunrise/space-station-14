@@ -4,14 +4,16 @@
   name: species-name-xeno
   roundStart: true
   prototype: MobHumanoidXeno
-  sprites: MobHumanoidXenoSprites
+  bodyTypes:
+  - HumanoidXenoNormal
   markingLimits: MobHumanoidXenoMarkingLimits
   dollPrototype: MobXenoDummy
   skinColoration: TintedHues
   sponsorOnly: true
 
-- type: speciesBaseSprites
-  id: MobHumanoidXenoSprites
+- type: bodyType
+  id: HumanoidXenoNormal
+  name: body-normal
   sprites:
     Head: MobHumanoidXenoHead
     Chest: MobHumanoidXenoTorso
