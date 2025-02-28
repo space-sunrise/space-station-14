@@ -191,13 +191,13 @@ public sealed class HypospraySystem : SharedHypospraySystem
         else if (target == user)
             msgFormat = "hypospray-component-inject-self-message";
 
-        // Sunrise-Start Not made by sunrise, transferred from the rejected PR of wizards. PR 30704
+        // Sunrise-Start
         if (!InjectionFailureCheck(entity, target, user, out var hypoSpraySoln, out var targetSoln, out var targetSolution, out var returnValue)
             || hypoSpraySoln == null
             || targetSoln == null
             || targetSolution == null)
             return returnValue;
-        // Sunrise-End Not made by sunrise, transferred from the rejected PR of wizards. PR 30704
+        // Sunrise-End
 
         _popup.PopupEntity(Loc.GetString(msgFormat ?? "hypospray-component-inject-other-message", ("other", target)), target, user);
 
@@ -276,6 +276,7 @@ public sealed class HypospraySystem : SharedHypospraySystem
         }
 
         var removedSolution = _solutionContainers.Draw(target.Owner, targetSolution, realTransferAmount);
+        // Sunrise-End
         if (!_solutionContainers.TryAddSolution(soln.Value, removedSolution))
         {
             return false;
@@ -284,7 +285,6 @@ public sealed class HypospraySystem : SharedHypospraySystem
         _popup.PopupEntity(Loc.GetString("injector-component-draw-success-message",
             ("amount", removedSolution.Volume),
             ("target", Identity.Entity(target, EntityManager))), entity.Owner, user);
-        // Sunrise-End
 
         return true;
     }
