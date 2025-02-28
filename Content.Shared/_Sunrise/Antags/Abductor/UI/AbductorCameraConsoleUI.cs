@@ -18,6 +18,11 @@ public sealed class AbductorConsoleBuiState : BoundUserInterfaceState
     public string? VictimName { get; init; }
     public bool AlienPadFound { get; init; }
     public bool ExperimentatorFound { get; init; }
+    public bool DispencerFound { get; init; }
+    public bool ArmorFound { get; init; }
+    public bool ArmorLocked { get; init; }
+    public AbductorArmorModeType CurrentArmorMode { get; init; }
+    public int? CurrentBalance { get; init; }
 }
 
 [Serializable, NetSerializable]
@@ -38,5 +43,23 @@ public sealed class AbductorAttractBuiMsg : BoundUserInterfaceMessage
 }
 [Serializable, NetSerializable]
 public sealed class AbductorCompleteExperimentBuiMsg : BoundUserInterfaceMessage
+{
+}
+
+[Serializable, NetSerializable]
+public sealed class AbductorVestModeChangeBuiMsg : BoundUserInterfaceMessage
+{
+    public required AbductorArmorModeType Mode { get; init; }
+}
+
+[Serializable, NetSerializable]
+public sealed class AbductorItemBuyedBuiMsg : BoundUserInterfaceMessage
+{
+    public required EntProtoId Item { get; init; }
+    public required int Price { get; init; }
+}
+
+[Serializable, NetSerializable]
+public sealed class AbductorLockBuiMsg : BoundUserInterfaceMessage
 {
 }

@@ -345,7 +345,7 @@ namespace Content.Shared.Cuffs
 
             if (!args.Cancelled && TryAddNewCuffs(target, user, uid, cuffable))
             {
-                component.Used = true;
+                // component.Used = true; // Starlight-Abductor edit
                 _audio.PlayPredicted(component.EndCuffSound, uid, user);
 
                 _popup.PopupEntity(Loc.GetString("handcuff-component-cuff-observer-success-message",
@@ -474,6 +474,12 @@ namespace Content.Shared.Cuffs
             if (TryComp<HandsComponent>(target, out var hands) && hands.Count <= component.CuffedHandCount)
                 return false;
 
+            // Starlight-Abductor start
+            EnsureComp<HandcuffComponent>(handcuff, out var handcuffsComp);
+            handcuffsComp.Used = true;
+            Dirty(handcuff, handcuffsComp);
+            // Starlight-Abductor end
+
             // Success!
             _hands.TryDrop(user, handcuff);
 
@@ -485,7 +491,12 @@ namespace Content.Shared.Cuffs
             RaiseLocalEvent(target, ref ev);
             // Sunrise-End
 
-            return true;
+            // Starlight-Abductor start
+            var result = _container.Insert(handcuff, component.Container);
+            UpdateHeldItems(target, handcuff, component);
+
+            return result;
+            // Starlight-Abductor end
         }
 
         // Sunrise-Start

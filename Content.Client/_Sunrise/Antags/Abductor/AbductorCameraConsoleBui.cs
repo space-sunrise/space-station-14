@@ -1,7 +1,7 @@
 ﻿using Content.Shared._Sunrise.Antags.Abductor;
 using JetBrains.Annotations;
-using static Content.Shared.Pinpointer.SharedNavMapSystem;
 using Content.Client._Sunrise.Choice;
+using static Content.Shared.Pinpointer.SharedNavMapSystem;
 
 namespace Content.Client._Sunrise.Antags.Abductor;
 

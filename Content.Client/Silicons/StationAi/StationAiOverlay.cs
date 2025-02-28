@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Shared.Silicons.StationAi;
+using Content.Shared.Movement.Components;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Enums;
@@ -50,6 +51,12 @@ public sealed class StationAiOverlay : Overlay
         var worldBounds = args.WorldBounds;
 
         var playerEnt = _player.LocalEntity;
+        // Starlight-abductor start
+        if (_entManager.TryGetComponent(playerEnt, out StationAiOverlayComponent? stationAiOverlay)
+            && stationAiOverlay.AllowCrossGrid
+            && _entManager.TryGetComponent(playerEnt, out RelayInputMoverComponent? relay))
+            playerEnt = relay.RelayEntity;
+        // Starlight-abductor end
         _entManager.TryGetComponent(playerEnt, out TransformComponent? playerXform);
         var gridUid = playerXform?.GridUid ?? EntityUid.Invalid;
         _entManager.TryGetComponent(gridUid, out MapGridComponent? grid);

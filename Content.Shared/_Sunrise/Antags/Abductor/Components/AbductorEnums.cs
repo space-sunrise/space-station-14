@@ -15,7 +15,14 @@ public enum AbductorOrganType : byte
     Plasma,
     Gravity,
     Egg,
-    Spider
+    Spider,
+    Vent
+}
+[Serializable, NetSerializable]
+public enum AbductorArmorModeType : byte
+{
+    Combat,
+    Stealth
 }
 [Serializable, NetSerializable]
 public enum AbductorCameraConsoleUIKey

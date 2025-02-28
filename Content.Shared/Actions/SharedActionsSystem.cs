@@ -1052,6 +1052,28 @@ public abstract class SharedActionsSystem : EntitySystem
             QueueDel(actionId.Value);
     }
 
+    // Starlight-Abductor-start
+    public EntityUid[] HideActions(EntityUid performer, ActionsComponent? comp = null)
+    {
+        if (!Resolve(performer, ref comp, false))
+            return [];
+
+        var actions = comp.Actions.ToArray();
+        comp.Actions.Clear();
+        Dirty(performer, comp);
+        return actions;
+    }
+    public void UnHideActions(EntityUid performer, EntityUid[] actions, ActionsComponent? comp = null)
+    {
+        if (!Resolve(performer, ref comp, false))
+            return;
+
+        foreach (var action in actions)
+            comp.Actions.Add(action);
+        Dirty(performer, comp);
+    }
+    // Starlight-Abductor-end
+
     /// <summary>
     /// This method gets called after an action got removed.
     /// </summary>

@@ -1,4 +1,4 @@
-using Content.Shared._Sunrise.Antags.Abductor;
+﻿using Content.Shared._Sunrise.Antags.Abductor;
 using Content.Shared._Sunrise.Medical.Surgery;
 using Content.Shared.Actions;
 using Content.Shared.DoAfter;
@@ -13,12 +13,14 @@ using System.Linq;
 using Content.Shared.Tag;
 using Content.Shared.Popups;
 using System;
+using Content.Shared.ActionBlocker;
 
 namespace Content.Server._Sunrise.Antags.Abductor;
 
 public sealed partial class AbductorSystem : SharedAbductorSystem
 {
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
 
     private static readonly ProtoId<TagPrototype> _abductor = "Abductor";
     public void InitializeGizmo()
@@ -39,11 +41,13 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
 
     private void OnGizmoInteract(Entity<AbductorGizmoComponent> ent, ref AfterInteractEvent args)
     {
+        if (!_actionBlockerSystem.CanInstrumentInteract(args.User, args.Used, args.Target)) return;
         if (!args.Target.HasValue) return;
+
         if (TryComp<AbductorConsoleComponent>(args.Target, out var console))
         {
             console.Target = ent.Comp.Target;
-            _popup.PopupClient(Loc.GetString("abductors-ui-gizmo-transferred"), args.User);
+            _popup.PopupEntity(Loc.GetString("abductors-ui-gizmo-transferred"), args.User);
             _color.RaiseEffect(Color.FromHex("#00BA00"), new List<EntityUid>(2) { ent.Owner, args.Target.Value }, Filter.Pvs(args.User, entityManager: EntityManager));
             UpdateGui(console.Target, (args.Target.Value, console));
             return;
@@ -74,6 +78,7 @@ public sealed partial class AbductorSystem : SharedAbductorSystem
         ent.Comp.Target = GetNetEntity(args.Target);
         EnsureComp<AbductorVictimComponent>(args.Target.Value, out var victimComponent);
         victimComponent.LastActivation = _time.CurTime + TimeSpan.FromMinutes(5);
-        victimComponent.Position = EnsureComp<TransformComponent>(args.Target.Value).Coordinates;
+
+        victimComponent.Position ??= EnsureComp<TransformComponent>(args.Target.Value).Coordinates;
     }
 }

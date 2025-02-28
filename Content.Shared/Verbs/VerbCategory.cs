@@ -87,5 +87,7 @@ namespace Content.Shared.Verbs
         public static readonly VerbCategory PowerLevel = new("verb-categories-power-level", null);
 
         public static readonly VerbCategory ReagentSwitch = new("solution-regeneration-switcher-switch-verb", null);
+
+        public static readonly VerbCategory Switch = new("verb-categories-switch", "/Textures/Interface/VerbIcons/group.svg.192dpi.png"); // Starlight-surgery
     }
 }
